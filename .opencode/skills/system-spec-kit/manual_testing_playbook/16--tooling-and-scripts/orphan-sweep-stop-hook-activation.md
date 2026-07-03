@@ -44,12 +44,40 @@ Validate the Stop-hook orphan-sweep fallback and confirm it is default-off and o
 
 ### Evidence
 
-Shell transcript for all commands: the `bash -n` exit status, the vitest pass summary for `tests/launcher-stop-hook-orphan-sweep.vitest.ts`, and the grep output showing the fallback function, the default-off flag assignment, and the activation guard.
+Command 1:
+
+```text
+$ bash -n .opencode/scripts/session-cleanup.sh
+(no output)
+Exit status: 0
+```
+
+Command 2:
+
+```text
+$ cd .opencode/skills/system-spec-kit/mcp_server && npx vitest run tests/launcher-stop-hook-orphan-sweep.vitest.ts
+
+ RUN  v4.1.9 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit
+
+
+ Test Files  1 passed (1)
+      Tests  4 passed (4)
+   Start at  23:36:08
+   Duration  137ms (transform 13ms, setup 13ms, import 7ms, tests 54ms, environment 0ms)
+```
+
+Command 3:
+
+```text
+$ rg -n "run_orphan_sweep_fallback|SPECKIT_STOP_HOOK_ORPHAN_SWEEP" .opencode/scripts/session-cleanup.sh
+24:ORPHAN_SWEEP_MODE="${SPECKIT_STOP_HOOK_ORPHAN_SWEEP:-off}"
+105:run_orphan_sweep_fallback() {
+122:  run_orphan_sweep_fallback
+```
 
 ### Pass / Fail
 
-- **Pass**: the syntax check passes, the orphan-sweep suite passes, the flag defaults to off, and the fallback only runs when the flag is set.
-- **Fail**: the syntax check fails, any default-off or flag-enabled case fails, the flag does not default to off, or the fallback runs unconditionally.
+- **PASS**: the syntax check passed with exit status 0, the orphan-sweep suite passed 4 tests in 1 file, `SPECKIT_STOP_HOOK_ORPHAN_SWEEP` defaults to `off`, and the fallback call is gated through the orphan-sweep mode.
 
 ### Failure Triage
 

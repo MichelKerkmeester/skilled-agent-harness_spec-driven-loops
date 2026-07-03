@@ -64,12 +64,44 @@ rm -rf "$SANDBOX"
 
 ### Evidence
 
-Shell transcript with the byte count, the unique-hash listing per format, and the vitest summary.
+Shell transcript from 2026-07-02:
+
+```text
+@spec-kit/mcp-server dist is stale. Run: cd .opencode/skills/system-spec-kit/mcp_server && npm run build
+payload bytes: 0 (must be > 65536)
+@spec-kit/mcp-server dist is stale. Run: cd .opencode/skills/system-spec-kit/mcp_server && npm run build
+Traceback (most recent call last):
+  File "<string>", line 1, in <module>
+  File "/Applications/Xcode.app/Contents/Developer/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/json/__init__.py", line 293, in load
+    return loads(fp.read(),
+  File "/Applications/Xcode.app/Contents/Developer/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/json/__init__.py", line 346, in loads
+    return _default_decoder.decode(s)
+  File "/Applications/Xcode.app/Contents/Developer/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/json/decoder.py", line 337, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+  File "/Applications/Xcode.app/Contents/Developer/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/json/decoder.py", line 355, in raw_decode
+    raise JSONDecodeError("Expecting value", s, err.value) from None
+json.decoder.JSONDecodeError: Expecting value: line 1 column 1 (char 0)
+format=json unique-hash-lines:
+PARSE-FAIL
+e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+format=jsonl unique-hash-lines:
+PARSE-FAIL
+e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+
+ RUN  v4.1.9 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit
+
+
+ Test Files  1 passed (1)
+      Tests  1 passed (1)
+   Start at  22:43:20
+   Duration  352ms (transform 189ms, setup 16ms, import 246ms, tests 11ms, environment 0ms)
+```
+
+The `@spec-kit/mcp-server dist is stale...` line appeared before the byte-count command and before each of the ten `json` and ten `jsonl` repetitions. Each repetition produced the same `JSONDecodeError: Expecting value: line 1 column 1 (char 0)` traceback shown above, because `/tmp/cli-436-payload.json` and `/tmp/cli-436-payload.jsonl` were empty.
 
 ### Pass / Fail
 
-- **Pass**: size > 64KB, one hash per format, all reps parse, suite green.
-- **Fail**: any truncated/parse-failing rep, multiple hashes per format, or a payload that no longer clears 64KB (which would invalidate the fixture — pick a larger surface and update this scenario).
+- **BLOCKED**: `node .opencode/bin/spec-memory.cjs list-tools --format json` returned no payload because `@spec-kit/mcp-server dist is stale. Run: cd .opencode/skills/system-spec-kit/mcp_server && npm run build`; observed `payload bytes: 0 (must be > 65536)`, `PARSE-FAIL` for both formats, and empty-payload hash `e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855`, while the dual-client vitest suite passed.
 
 ### Failure Triage
 

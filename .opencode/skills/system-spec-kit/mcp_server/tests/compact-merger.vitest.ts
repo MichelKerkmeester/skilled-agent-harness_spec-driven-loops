@@ -13,6 +13,23 @@ function createInput(overrides: Partial<MergeInput> = {}): MergeInput {
   };
 }
 
+function emitCompactMergerDiagnostics(result: ReturnType<typeof mergeCompactBrief>): void {
+  process.stdout.write(`${[
+    '[compact-merger evidence]',
+    'Rendered section headers and token estimates:',
+    ...result.sections.map((section) => `- ## ${section.name} source=${section.source} tokenEstimate=${section.tokenEstimate}`),
+    'MergedBrief.allocation:',
+    ...result.allocation.allocations.map((allocation) => (
+      `- ${allocation.name} floor=${allocation.floor} requested=${allocation.requested} granted=${allocation.granted} dropped=${allocation.dropped}`
+    )),
+    `MergedBrief.metadata.totalTokenEstimate=${result.metadata.totalTokenEstimate}`,
+    `MergedBrief.metadata.sourceCount=${result.metadata.sourceCount}`,
+    `MergedBrief.metadata.mergedAt=${result.metadata.mergedAt}`,
+    `MergedBrief.metadata.mergeDurationMs=${result.metadata.mergeDurationMs}`,
+    `MergedBrief.metadata.deduplicatedFiles=${result.metadata.deduplicatedFiles}`,
+  ].join('\n')}\n`);
+}
+
 describe('compact merger manual scenarios 257 and 258', () => {
   it('tracks files with recency-weighted ordering and serializes state', () => {
     vi.useFakeTimers();
@@ -59,7 +76,11 @@ describe('compact merger manual scenarios 257 and 258', () => {
   });
 
   it('renders all non-empty compact sections in priority order within budget', () => {
-    const result = mergeCompactBrief(createInput(), 4000);
+    const result = mergeCompactBrief(createInput({
+      sessionState: 'Next: run context-preservation scenario verification.\nActive file: /repo/src/session-resume.ts',
+    }), 4000);
+
+    emitCompactMergerDiagnostics(result);
 
     expect(result.text).toContain('## Constitutional Rules');
     expect(result.text).toContain('## Active Files & Structural Context');
@@ -74,7 +95,9 @@ describe('compact merger manual scenarios 257 and 258', () => {
     expect(result.metadata.totalTokenEstimate).toBeLessThanOrEqual(4000);
     expect(result.metadata.sourceCount).toBe(4);
     expect(result.metadata.mergedAt).toEqual(expect.any(String));
-    expect(result.metadata.deduplicatedFiles).toBe(0);
+    expect(result.metadata.deduplicatedFiles).toBe(1);
+    expect(result.sections.find((section) => section.name === 'Session State / Next Steps')?.content)
+      .not.toContain('/repo/src/session-resume.ts');
     expect(result.allocation.allocations.every((allocation) => (
       typeof allocation.floor === 'number'
       && typeof allocation.requested === 'number'

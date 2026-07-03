@@ -66,6 +66,155 @@ sqlite3 .opencode/skills/system-skill-advisor/mcp_server/database/skill-graph.sq
 | Doc-heavy skill outranks curated matches | doc evidence dominates attribution | Audit top-3/tier-weight/0.45-cap constants in `lanes/derived.ts`. |
 | Skill docs appear in memory results | `memory_match_triggers` returns skill paths | Block release — the memory boundary is an operator directive. |
 
+### Evidence
+
+Step 1 command:
+
+```bash
+node .opencode/bin/skill-advisor.cjs skill_graph_scan --trusted --format json
+```
+
+Observed output:
+
+```json
+{
+  "status": "error",
+  "data": {
+    "progress": [
+      {
+        "step": "advisor_status_before",
+        "generation": 9476,
+        "ok": true
+      },
+      {
+        "step": "skill_graph_scan",
+        "ok": false
+      },
+      {
+        "step": "advisor_status_after",
+        "generation": 9476,
+        "ok": true
+      }
+    ],
+    "generationBefore": 9476,
+    "generationAfter": 9476,
+    "scan": {
+      "status": "error",
+      "error": "Skill graph scan failed: .opencode/skills/z_archive/cli-codex-retired/graph-metadata.json: skill_id \"cli-codex\" does not match folder name \"cli-codex-retired\""
+    }
+  },
+  "error": "Skill graph scan failed: .opencode/skills/z_archive/cli-codex-retired/graph-metadata.json: skill_id \"cli-codex\" does not match folder name \"cli-codex-retired\""
+}
+```
+
+Step 2 command:
+
+```bash
+sqlite3 .opencode/skills/system-skill-advisor/mcp_server/database/skill-graph.sqlite "SELECT COUNT(*) FROM skill_docs;"
+```
+
+Observed output:
+
+```text
+295
+```
+
+Step 3 command:
+
+```bash
+node .opencode/bin/skill-advisor.cjs advisor_recommend --json '{"prompt":"coverage graph script exit codes"}' --format json
+```
+
+Observed output:
+
+```json
+{
+  "status": "ok",
+  "data": {
+    "workspaceRoot": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public",
+    "effectiveThresholds": {
+      "confidenceThreshold": 0.8,
+      "uncertaintyThreshold": 0.35,
+      "confidenceOnly": false
+    },
+    "recommendations": [],
+    "ambiguous": false,
+    "freshness": "unavailable",
+    "trustState": {
+      "state": "unavailable",
+      "reason": "advisor_unavailable",
+      "generation": 9476,
+      "checkedAt": "2026-07-03T02:19:30.702Z",
+      "lastLiveAt": null
+    },
+    "generatedAt": "2026-07-03T02:19:30.702Z",
+    "cache": {
+      "hit": false,
+      "sourceSignaturePresent": false
+    },
+    "warnings": [
+      "advisor_unavailable"
+    ],
+    "abstainReasons": [
+      "Skill advisor freshness is unavailable; returning fail-open empty recommendations."
+    ]
+  }
+}
+```
+
+Step 4 MCP call:
+
+```text
+memory_match_triggers({ prompt: "coverage graph script exit codes", limit: 10 })
+```
+
+Observed output excerpt with actual returned values:
+
+```json
+{
+  "summary": "Found 10 memories",
+  "data": {
+    "matchType": "trigger-phrase",
+    "count": 10,
+    "results": [
+      {
+        "memoryId": 8651,
+        "specFolder": "system-spec-kit/z_archive/024-compact-code-graph/019-code-graph-auto-trigger",
+        "filePath": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/z_archive/024-compact-code-graph/019-code-graph-auto-trigger/spec.md",
+        "title": "Phase 019: Code Graph Auto-Trigger [system-spec-kit/024-compact-code-graph/019-code-graph-auto-trigger/spec]",
+        "matchedPhrases": ["graph"],
+        "importanceWeight": 0.8
+      },
+      {
+        "memoryId": 8580,
+        "specFolder": "system-spec-kit/z_archive/024-compact-code-graph/009-code-graph-storage-query",
+        "filePath": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/z_archive/024-compact-code-graph/009-code-graph-storage-query/spec.md",
+        "title": "Phase 009: Code Graph Storage + Query [system-spec-kit/024-compact-code-graph/009-code-graph-storage-query/spec]",
+        "matchedPhrases": ["graph"],
+        "importanceWeight": 0.8,
+        "compact": true
+      },
+      {
+        "memoryId": 6901,
+        "specFolder": "system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/053-script-analysis-testing",
+        "filePath": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/053-script-analysis-testing/spec.md",
+        "title": "Feature Specificatio [system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/053-script-analysis-testing/spec]",
+        "matchedPhrases": ["script"],
+        "importanceWeight": 0.8,
+        "compact": true
+      }
+    ],
+    "constitutionalCount": 0
+  }
+}
+```
+
+Step 5 was not run. The required flag-off invariance probe specifies "in an isolated workspace copy without the flag," but this execution was constrained to the single allowed write path above, and the prerequisite trusted scan in Step 1 failed before doc counters were available.
+
+### Pass/Fail
+
+BLOCKED - The trusted scan prerequisite failed with `skill_id "cli-codex" does not match folder name "cli-codex-retired"`, so the scenario could not produce doc counters, verify `matchedDocs`, or run the isolated flag-off invariance probe.
+
 ---
 
 ## 4. SOURCE FILES

@@ -47,12 +47,147 @@ quick: topResult + oneLineWhy + omittedCount + tokenReduction; research: results
 
 ### Evidence
 
-Response JSON per profile + token savings calculation
+Executed the scenario against the live `memory_search` MCP surface. Initial native MCP calls with empty optional values were rejected before execution:
+
+```json
+{
+  "summary": "Error: An unexpected error occurred. Please check logs for details.",
+  "data": {
+    "error": "An unexpected error occurred. Please check logs for details.",
+    "code": "E030",
+    "details": {
+      "tool": "memory_search",
+      "issues": [
+        "cursor: Too small: expected string to have >=1 characters",
+        "concepts: Too small: expected array to have >=2 items"
+      ]
+    }
+  }
+}
+```
+
+Daemon-backed CLI attempt to set the feature flag explicitly was blocked by stale dist output:
+
+```text
+$ SPECKIT_RESPONSE_PROFILE=true node .opencode/bin/spec-memory.cjs memory_search --json '{"query":"test profiles","profile":"quick","limit":10}' --format json --timeout-ms 3000
+@spec-kit/mcp-server dist is stale. Run: cd .opencode/skills/system-spec-kit/mcp_server && npm run build
+```
+
+Rebuilding would modify files outside this scenario's allowed write path, so no build was run.
+
+Native MCP quick profile executed with schema-valid parameters and returned the expected quick-profile fields:
+
+```json
+{
+  "summary": "Found 5 memories",
+  "data": {
+    "topResult": {
+      "id": 27621,
+      "title": "Implementation Summary [template:level_1/implementation-summary.md]",
+      "score": 0.55136796
+    },
+    "oneLineWhy": "Ranked first because semantic similarity and high spec quality",
+    "omittedCount": 4,
+    "tokenReduction": {
+      "originalTokens": 1309,
+      "returnedTokens": 281,
+      "savingsPercent": 79
+    }
+  },
+  "meta": {
+    "responseProfile": "quick"
+  }
+}
+```
+
+Native MCP research profile returned the expected research-profile fields:
+
+```json
+{
+  "summary": "Found 5 memories",
+  "data": {
+    "results": [
+      {
+        "id": 27621,
+        "title": "Implementation Summary [template:level_1/implementation-summary.md]",
+        "score": 0.55136796
+      },
+      {
+        "id": 27623,
+        "title": "Feature Specification: Phase 5: filename-underscore-alignment [template:level_1/spec.md]",
+        "score": 0.54007512
+      }
+    ],
+    "evidenceDigest": "5 results retrieved; avg score 0.52.",
+    "followUps": []
+  },
+  "meta": {
+    "responseProfile": "research"
+  }
+}
+```
+
+Native MCP resume profile returned the expected resume-profile fields:
+
+```json
+{
+  "summary": "Found 5 memories",
+  "data": {
+    "state": "Found 5 memories",
+    "nextSteps": [],
+    "blockers": [
+      "5 result(s) have low confidence scores"
+    ],
+    "topResult": {
+      "id": 27621,
+      "title": "Implementation Summary [template:level_1/implementation-summary.md]",
+      "score": 0.55136796
+    }
+  },
+  "meta": {
+    "responseProfile": "resume"
+  }
+}
+```
+
+Native MCP debug profile returned a full response-shaped payload, but this does not verify the required "full response when flag OFF" condition because the flag-off CLI path is blocked by stale dist:
+
+```json
+{
+  "summary": "Found 5 memories",
+  "data": {
+    "results": [
+      {
+        "id": 27621,
+        "title": "Implementation Summary [template:level_1/implementation-summary.md]",
+        "score": 0.55136796
+      }
+    ],
+    "summary": "Found 5 memories",
+    "hints": [
+      "Use includeContent: true to embed file contents in results"
+    ],
+    "meta": {
+      "tool": "memory_search",
+      "tokenCount": 4758,
+      "latencyMs": 597,
+      "cacheHit": false
+    },
+    "tokenStats": {
+      "totalTokens": 1309,
+      "resultCount": 5,
+      "avgTokensPerResult": 262
+    }
+  },
+  "meta": {
+    "responseProfile": "debug"
+  }
+}
+```
 
 ### Pass / Fail
 
-- **Pass**: each profile shape correct and full response when flag OFF
-- **Fail**: shape fields missing or token savings absent
+- **BLOCKED**: quick, research, and resume profile shapes matched the Expected fields, but the required full-response flag-off control could not be verified because `SPECKIT_RESPONSE_PROFILE=true node .opencode/bin/spec-memory.cjs memory_search --json '{"query":"test profiles","profile":"quick","limit":10}' --format json --timeout-ms 3000` returned `@spec-kit/mcp-server dist is stale. Run: cd .opencode/skills/system-spec-kit/mcp_server && npm run build`, and rebuilding would modify files outside the allowed write path.
 
 ### Failure Triage
 

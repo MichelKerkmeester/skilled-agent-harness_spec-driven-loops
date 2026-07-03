@@ -64,3 +64,73 @@ Check write accessibility by verifying lastPersistedAt is recent.
 - Group: Post-Rename Infrastructure
 - Playbook ID: 019
 - Canonical root source: `manual_testing_playbook.md`
+
+---
+
+## 6. EVIDENCE
+
+### Command 1
+
+`ls -la .opencode/skills/system-code-graph/mcp_server/database/code-graph.sqlite`
+
+```text
+-rw-r--r--@ 1 michelkerkmeester  staff  103501824 Jun 29 14:46 .opencode/skills/system-code-graph/mcp_server/database/code-graph.sqlite
+```
+
+### Command 2
+
+`code_graph_status({})`
+
+```text
+plugin_id=mk-code-graph
+cache_ttl_ms=5000
+spec_folder=auto
+resume_mode=minimal
+messages_transform_enabled=true
+messages_transform_mode=schema_aligned
+runtime_ready=false
+node_binary=node
+bridge_timeout_ms=15000
+bridge_path=/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-code-graph/mcp_server/plugin_bridges/mk-code-graph-bridge.mjs
+last_runtime_error=Bridge skipped: SOCKET_ABSENT (exit=75); plugin injection will no-op
+cache_entries=0
+cache=empty
+```
+
+Warm CLI fallback attempted for code-graph status:
+
+`node .opencode/bin/code-index.cjs code-graph-status --format json --timeout-ms 3000 --warm-only`
+
+```json
+{
+  "status": "error",
+  "error": "backend unavailable: connect ENOENT /tmp/mk-code-index/daemon-ipc.sock",
+  "exitCode": 75
+}
+```
+
+### Command 3
+
+`Glob: .opencode/skills/system_code_graph/**`
+
+```text
+No files found
+```
+
+`Glob: .opencode/system-code-graph/database/**`
+
+```text
+No files found
+```
+
+`Glob: .opencode/skills/system-code-graph/mcp_server/database/code-graph.sqlite`
+
+```text
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-code-graph/mcp_server/database/code-graph.sqlite
+```
+
+---
+
+## 7. PASS/FAIL
+
+BLOCKED: The canonical database file exists and is non-empty, and the checked legacy paths were absent, but `code_graph_status({})` did not report `dbFileSize` because the code-graph runtime socket was absent (`SOCKET_ABSENT`, fallback `exitCode: 75`).

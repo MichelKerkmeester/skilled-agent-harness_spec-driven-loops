@@ -196,17 +196,39 @@ Per-CLI JSON response shape:
 
 ### Evidence
 
+Setup command output:
+
+```bash
+grep -F "REMEDIATION PACKET NAMING" \
+  .opencode/skills/system-spec-kit/SKILL.md
+```
+
+```text
+
+```
+
+Setup command output:
+
+```bash
+grep -F "Literal naming for AI-derived" \
+  .opencode/skills/system-spec-kit/SKILL.md
+```
+
+```text
+20. **Literal naming for AI-derived spec folders and phases** - When the AI (not the user) picks a spec-folder or phase slug, the name MUST describe the concrete work being built or fixed. Names must include a specific subject token (the component, behavior, or bug being addressed). Forbidden as standalone slugs: `remediation`, `cleanup`, `fix`, `phase-N`, `review-remediation`, `round-N`. Good remediation-packet examples: `fix-deep-review-p1-p2-findings-for-sk-doc-skill`, `harden-mcp-server-startup-races`, `fix-singleton-leak-in-launcher`. Good phase-decomposition examples: `data-model-design`, `api-implementation`, `ui-integration`. **Remediation-packet source/target rule** - remediation slugs MUST follow `NNN-fix-<source>-for-<target>` where: **Source** = the event or evidence that triggered the packet (e.g. `deep-review-p0-p1-findings`, `verdict-fail`, `audit-finding-NN`); **Target** = the specific component being remediated (e.g. `skill-local-benchmarks-format`, `mk-spec-memory-handler`, `launcher-cache`). The source names WHERE the work comes from; the target names WHAT is being fixed. Do not conflate them: the thing being remediated is the target, not the source. Worked example: `007-fix-deep-review-p0-p1-findings-for-skill-local-benchmarks-format` (source=`deep-review-p0-p1-findings`, target=`skill-local-benchmarks-format`). This rule is documentation-layer guidance; `validate.sh` does not lint slugs today (operator decision; may be lifted in a follow-on packet).
+```
+
+The Phase 1 precondition expected at least 1 match for `REMEDIATION PACKET NAMING`. The command returned no output, so Phase 2 CLI invocations were not run.
+
 Summary table across CLIs tested:
 
 ```
 | External CLI    | model            | proposed_slug                                                       | source_token              | target_token                          | verdict |
 |-----------------|------------------|---------------------------------------------------------------------|---------------------------|---------------------------------------|---------|
-| cli-opencode       | gpt-5.5 high     | 005-fix-deep-review-p0-p1-for-skill-local-benchmarks-format         | deep-review-p0-p1         | for-skill-local-benchmarks-format     | PASS    |
-| cli-opencode       | gpt-5.5 medium   | 005-remediate-verdict-fail-in-004-bench-format-spec-docs            | verdict-fail              | in-004-bench-format-spec-docs         | PASS    |
-| cli-opencode    | deepseek-v4-pro  | ...                                                                 | ...                       | ...                                   | ...     |
+| not run         | not run          | not run                                                             | not run                   | not run                               | BLOCKED |
 ```
 
-Include verbatim JSON responses from each CLI in the test report.
+Verbatim JSON responses from each CLI: not collected because the setup precondition failed before CLI dispatch.
 
 ### Pass / Fail
 
@@ -216,9 +238,7 @@ Include verbatim JSON responses from each CLI in the test report.
 
 Aggregate verdict:
 
-- PASS: 2 or more CLIs report PASS.
-- PARTIAL: 1 CLI reports PASS and the others report PARTIAL.
-- FAIL: 0 CLIs report PASS.
+- BLOCKED: Phase 1 setup command `grep -F "REMEDIATION PACKET NAMING" .opencode/skills/system-spec-kit/SKILL.md` returned no output, so the required precondition was missing and CLI rotation was not executed.
 
 ### Failure Triage
 

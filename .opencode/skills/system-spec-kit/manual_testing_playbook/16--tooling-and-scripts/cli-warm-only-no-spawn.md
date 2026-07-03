@@ -56,12 +56,30 @@ rm -rf "$SANDBOX"
 
 ### Evidence
 
-Shell transcript with the three error envelopes, the three exit codes, the launcher process counts, and the socket-directory listing.
+```text
+@spec-kit/mcp-server dist is stale. Run: cd .opencode/skills/system-spec-kit/mcp_server && npm run build
+spec-memory exit=69
+{
+  "status": "error",
+  "error": "backend unavailable: connect ENOENT /tmp/cli-playbook.Xrl7rt/sock/daemon-ipc.sock",
+  "exitCode": 75
+}
+code-index exit=75
+{
+  "status": "error",
+  "error": "backend unavailable: connect ENOENT /tmp/cli-playbook.Xrl7rt/sock/daemon-ipc.sock",
+  "exitCode": 75
+}
+skill-advisor exit=75
+launchers before=      11 after=      11
+total 0
+drwx------@ 2 michelkerkmeester  wheel  64 Jul  2 22:54 .
+drwx------@ 3 michelkerkmeester  wheel  96 Jul  2 22:54 ..
+```
 
 ### Pass / Fail
 
-- **Pass**: every call exits 75, payloads say `backend unavailable`, no launcher was spawned, no socket appeared.
-- **Fail**: any call exits 0/1/64/69, hangs past the timeout, spawns a launcher, or creates a socket.
+- **FAIL**: `spec-memory` exited 69 with `@spec-kit/mcp-server dist is stale. Run: cd .opencode/skills/system-spec-kit/mcp_server && npm run build` instead of shell exit 75, so the scenario did not satisfy the all-three-calls exit-75 requirement; launcher counts stayed unchanged at 11 and no `daemon-ipc.sock` appeared in the sandbox socket directory.
 
 ### Failure Triage
 

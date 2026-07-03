@@ -122,6 +122,23 @@ Generated from `lib/search/search-flags.ts`. "Default state" is the shipped beha
 | Cosine top-N reorder | ON | `SPECKIT_COSINE_TOPN_REORDER` | Stable reorder of the top-N final ranked list by absolute cosine relevance over the fused RRF order. Graduated kill switch, set `false` to restore pure fused order | graduated |
 | Archived retrieval by default | ON | `SPECKIT_INCLUDE_ARCHIVED_DEFAULT` | Includes archived cold deprecated-tier memories in the lexical, FTS, BM25 and trigger query channels instead of hard-excluding them. Graduated kill switch, set `false` to restore the hard exclusion | graduated |
 | Archived vector inclusion | ON | `SPECKIT_INCLUDE_ARCHIVED_VECTOR` | Extends cold archived inclusion to the vector semantic lane through the active-memory projection backfill. Graduated kill switch, set `false` to restore the vector-lane exclusion | graduated |
+| Post-insert enrichment sync | OFF | `SPECKIT_POST_INSERT_ENRICHMENT_SYNC` | Runs the post-insert enrichment bundle synchronously inside the save instead of asynchronously in the background | spec 017 |
+| World summary prelude | ON | `SPECKIT_WORLD_SUMMARY_PRELUDE` | Appends coarse-to-fine world-summary grounding to memory_context without displacing baseline results | current |
+| Retrieval-class routing | OFF | `SPECKIT_RETRIEVAL_CLASS_ROUTING` | Opt-in SingleHop query-shape suppression of graph and degree channels in the query router | current |
+| True citation emitter | OFF | `SPECKIT_TRUE_CITATION_EMITTER` | Mines post-hoc transcripts for actually referenced memory_ids and writes used/not-used shadow feedback pairs | built-but-held |
+| Absolute relevance calibration | ON | `SPECKIT_ABSOLUTE_RELEVANCE_CALIBRATION` | Calibrates confidence, request quality and result-set digests on absolute cosine relevance instead of fused RRF magnitude | current |
+| Confidence calibration | ON | `SPECKIT_CONFIDENCE_CALIBRATION` | Applies fitted isotonic calibration so displayed confidence approximates probability of relevance | current |
+| Confidence calibration model | default model | `SPECKIT_CONFIDENCE_CALIBRATION_MODEL` | Selects the fitted isotonic calibration model path; unset uses the committed default and an explicitly empty value disables model application | current |
+| Retention forgetting | ON | `SPECKIT_RETENTION_FORGETTING` | Conservative spare-only retention axes and live incoming-edge protection for retention decisions | current |
+| Lexical grounding | ON | `SPECKIT_LEXICAL_GROUNDING` | Lexical grounding floor and single-hit corroboration guard for request-quality verdicts | current |
+| Noise-floor subtraction | ON | `SPECKIT_NOISE_FLOOR_SUBTRACTION` | Subtracts the measured embedder corpus noise floor before request-quality banding | current |
+| Cite with caveat | ON | `SPECKIT_CITE_WITH_CAVEAT` | Adds a `cite_with_caveat` citation-policy tier for borderline grounded weak verdicts | current |
+| Evidence-gap verdict bridge | ON | `SPECKIT_EVIDENCE_GAP_VERDICT` | Caps otherwise-good request-quality verdicts at weak when Stage 4 reports an evidence gap | current |
+| Derived id provenance | ON | `SPECKIT_DERIVED_ID_PROVENANCE` | Persists content-addressed derived_id provenance for generated causal edges | current |
+| Deterministic multihop | OFF | `SPECKIT_DETERMINISTIC_MULTIHOP` | Appends explicitly referenced sibling or cross-reference spec documents to the result tail without LLMs or re-embedding | built-but-held |
+| Lane champion backfill | OFF | `SPECKIT_LANE_CHAMPION_BACKFILL` | Appends each base retrieval lane's strongest missed candidate into available tail slots after fusion | built-but-held |
+| Relevance-aware gap | ON | `SPECKIT_RELEVANCE_AWARE_GAP` | Uses noise-floor-subtracted absolute relevance rather than Z-score peakedness for evidence-gap decisions | current |
+| Rollout percentage | 100 | `SPECKIT_ROLLOUT_PERCENT` | Global rollout percentage applied by `isFeatureEnabled()` feature gates | graduated |
 <!-- PHASE-007-ENV-SLOT: SPECKIT_CODE_GRAPH_INTENT_* flags inserted here (027/007) -->
 <!-- PHASE-008-ENV-SLOT: SPECKIT_SEMANTIC_TRIGGERS_* flags inserted here (027/008) -->
 <!-- PHASE-009-ENV-SLOT: SPECKIT_FEEDBACK_* / SPECKIT_CODE_GRAPH_FEEDBACK_RERANK_* / SPECKIT_SESSION_TRACE_CAUSAL_* / SPECKIT_FEEDBACK_RETENTION_* flags inserted here (027/009) -->

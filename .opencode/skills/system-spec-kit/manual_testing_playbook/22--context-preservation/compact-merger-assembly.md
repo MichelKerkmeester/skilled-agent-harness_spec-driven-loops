@@ -44,12 +44,29 @@ Output contains "## Constitutional Rules", "## Active Files & Structural Context
 
 ### Evidence
 
-Test output showing rendered section headers
+Command run:
+
+```bash
+cd .opencode/skills/system-spec-kit/mcp_server && npx vitest run tests/compact-merger.vitest.ts
+```
+
+Observed output:
+
+```text
+ RUN  v4.1.9 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit
+
+
+ Test Files  1 passed (1)
+      Tests  4 passed (4)
+   Start at  02:01:29
+   Duration  99ms (transform 24ms, setup 13ms, import 20ms, tests 4ms, environment 0ms)
+```
+
+Observed output does not contain `## Constitutional Rules`, `## Active Files & Structural Context`, `## Semantic Neighbors`, `## Session State / Next Steps`, or `## Triggered Memories`.
 
 ### Pass / Fail
 
-- **Pass**: all 5 sections present with correct headers when all inputs non-empty
-- **Fail**: Any contradicting evidence appears or the pass condition is not met.
+- **FAIL**: The vitest command passed, but the actual output did not contain the required rendered section headers.
 
 ### Failure Triage
 
@@ -73,12 +90,29 @@ As a context-and-code-graph validation operator, validate Budget allocation and 
 
 ### Evidence
 
-Test output showing allocation and token estimates
+Command run:
+
+```bash
+cd .opencode/skills/system-spec-kit/mcp_server && npx vitest run tests/compact-merger.vitest.ts
+```
+
+Observed output:
+
+```text
+ RUN  v4.1.9 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit
+
+
+ Test Files  1 passed (1)
+      Tests  4 passed (4)
+   Start at  02:01:29
+   Duration  99ms (transform 25ms, setup 13ms, import 20ms, tests 4ms, environment 0ms)
+```
+
+Observed output does not show `MergedBrief.metadata.totalTokenEstimate <= 4000` or per-section granted budget values.
 
 ### Pass / Fail
 
-- **Pass**: total within budget and no section exceeds its granted allocation
-- **Fail**: Any contradicting evidence appears or the pass condition is not met.
+- **FAIL**: The vitest command passed, but the actual output did not show allocation or token-estimate evidence required by this scenario.
 
 ### Failure Triage
 
@@ -102,12 +136,29 @@ Duplicate file paths removed from lower-priority sections, metadata has sourceCo
 
 ### Evidence
 
-Test output showing dedup count and metadata fields
+Command run:
+
+```bash
+cd .opencode/skills/system-spec-kit/mcp_server && npx vitest run tests/compact-merger.vitest.ts
+```
+
+Observed output:
+
+```text
+ RUN  v4.1.9 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit
+
+
+ Test Files  1 passed (1)
+      Tests  4 passed (4)
+   Start at  02:01:29
+   Duration  98ms (transform 24ms, setup 13ms, import 20ms, tests 4ms, environment 0ms)
+```
+
+Observed output does not show duplicate file path removal, `sourceCount`, `mergedAt`, or `deduplicatedFiles` metadata fields.
 
 ### Pass / Fail
 
-- **Pass**: duplicate file paths removed and all metadata fields present with correct values
-- **Fail**: Any contradicting evidence appears or the pass condition is not met.
+- **FAIL**: The vitest command passed, but the actual output did not show deduplication or metadata-field evidence required by this scenario.
 
 ### Failure Triage
 

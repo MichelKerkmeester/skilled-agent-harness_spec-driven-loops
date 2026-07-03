@@ -46,12 +46,81 @@ All known multi-feature files carry >= 2 annotations; annotations are semantical
 
 ### Evidence
 
-File list with annotation counts + sample content verification
+Executed from `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public`:
+
+```bash
+rg -n "// Feature catalog:" ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts" ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts" ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-delete.ts" && rg -c "// Feature catalog:" ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts" ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts" ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-delete.ts"
+```
+
+Observed output:
+
+```text
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-delete.ts:27:// Feature catalog: Single and folder delete (memory_delete)
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-delete.ts:28:// Feature catalog: Validation feedback (memory_validate)
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-delete.ts:29:// Feature catalog: Transaction wrappers on mutation handlers
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-delete.ts:30:// Feature catalog: Per-memory history log
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:124:// Feature catalog: Semantic and lexical search (memory_search)
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:125:// Feature catalog: Hybrid search pipeline
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:126:// Feature catalog: 4-stage pipeline architecture
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:127:// Feature catalog: Quality-aware 3-tier search fallback
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts:208:// Feature catalog: Memory indexing (memory_save)
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts:209:// Feature catalog: Verify-fix-verify memory quality loop
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts:210:// Feature catalog: Dry-run preflight for memory_save
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts:211:// Feature catalog: Prediction-error save arbitration
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-delete.ts:4
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:4
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts:4
+```
+
+Semantic spot-check command:
+
+```bash
+rg -n "runQualityLoop|buildDryRunSummary|evaluateAndApplyPeDecision|atomicIndexMemory|executePipeline|shouldRunCommunityFallback|Quality-aware|Hybrid|database\.transaction|recordHistory|runPostMutationHooks|handleMemoryDelete" ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts" ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts" ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-delete.ts"
+```
+
+Observed output:
+
+```text
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-delete.ts:18:import { recordHistory } from '../lib/storage/history.js';
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-delete.ts:20:import { runPostMutationHooks } from './mutation-hooks.js';
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-delete.ts:102:async function handleMemoryDelete(args: DeleteArgs): Promise<MCPResponse> {
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-delete.ts:131:    database.transaction(() => {
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-delete.ts:138:          recordHistory(
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-delete.ts:153:          command: 'memory-crud-delete.handleMemoryDelete',
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-delete.ts:231:    const bulkDeleteTx = database.transaction(() => {
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-delete.ts:237:            recordHistory(
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-delete.ts:252:            command: 'memory-crud-delete.handleMemoryDelete',
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-delete.ts:289:      postMutationHooks = runPostMutationHooks('delete', { specFolder, deletedCount });
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-delete.ts:344:export { handleMemoryDelete };
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:16:import { executePipeline } from '../lib/search/pipeline/index.js';
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:125:// Feature catalog: Hybrid search pipeline
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:127:// Feature catalog: Quality-aware 3-tier search fallback
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:377:function shouldRunCommunityFallback({
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:1253:    const pipelineResult: PipelineResult = await executePipeline(pipelineConfig);
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:1258:    const shouldRunCommunitySearch = shouldRunCommunityFallback({
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:1922:  shouldRunCommunityFallback,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts:54:import { runPostMutationHooks } from './mutation-hooks.js';
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts:75:  runQualityLoop,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts:103:import { evaluateAndApplyPeDecision } from './save/pe-orchestration.js';
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts:140:import { atomicIndexMemory } from './save/atomic-index-memory.js';
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts:199:  buildDryRunSummary,
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts:223:    runPostMutationHooks(sourceOperation, {
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts:528:  const qualityLoopResult = runQualityLoop(parsed.content, buildQualityLoopMetadata(parsed, database), {
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts:2463:    const peResult = evaluateAndApplyPeDecision(
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts:2526:          const finalizeChunkedPeTx = database.transaction(() => {
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts:2593:    // atomicity. Uses database.transaction() so inner transaction() calls in
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts:2617:    const writeTransaction = database.transaction((): number => {
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts:3362:        : buildDryRunSummary(
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts:3787:    const applyGovernanceTx = database.transaction(() => {
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts:3898:  return atomicIndexMemory<PreparedParsedMemory | CanonicalAtomicPrepared>(params, options, {
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts:4036:          postMutationHooks = runPostMutationHooks('atomic-save', {
+```
+
+Result: all three checked multi-feature files have `4` `// Feature catalog:` annotations. The listed features are supported by nearby imports/functions and handler code: `memory-save.ts` includes indexing, quality loop, dry-run, and prediction-error orchestration signals; `memory-search.ts` includes pipeline execution and fallback/search signals; `memory-crud-delete.ts` includes delete handler, transaction, history, and post-mutation hook signals.
 
 ### Pass / Fail
 
-- **Pass**: all checked multi-feature files have >= 2 annotations and no obviously-missing features
-- **Fail**: Any contradicting evidence appears or the pass condition is not met.
+- **PASS**: all checked multi-feature files have >= 2 annotations and no obviously-missing features.
 
 ### Failure Triage
 

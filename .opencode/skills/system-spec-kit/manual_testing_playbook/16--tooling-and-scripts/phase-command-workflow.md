@@ -51,12 +51,58 @@ All 7 steps execute in sequence; scoring output visible; folders created with co
 
 ### Evidence
 
-Command transcript covering all 7 steps + final output summary
+2026-07-02 manual execution transcript:
+
+```bash
+$ bash ".opencode/skills/system-spec-kit/scripts/spec/recommend-level.sh" --json --recommend-phases --phase-threshold 0.6 --loc 500 --files 8
+ERROR: --phase-threshold must be a positive integer
+```
+
+```bash
+$ bash ".opencode/skills/system-spec-kit/scripts/spec/recommend-level.sh" --json --recommend-phases --phase-threshold 300 --loc 500 --files 8
+{
+  "recommended_level": 1,
+  "level_name": "Baseline",
+  "total_score": 39,
+  "max_score": 100,
+  "confidence": 80,
+  "recommended_phases": false,
+  "phase_score": 0,
+  "phase_reason": "",
+  "suggested_phase_count": 0,
+  "inputs": {
+    "loc": 500,
+    "files": 8,
+    "auth": false,
+    "api": false,
+    "db": false,
+    "architectural": false
+  },
+  "breakdown": {
+    "loc_score": 29,
+    "files_score": 10,
+    "risk_score": 0,
+    "complexity_score": 0,
+    "details": {
+      "auth_points": 0,
+      "api_points": 0,
+      "db_points": 0,
+      "architectural_points": 0
+    }
+  },
+  "thresholds": {
+    "level_0_max": 24,
+    "level_1_max": 44,
+    "level_2_max": 69
+  }
+}
+```
+
+Execution stopped before Step 4 because the scenario requires `bash .opencode/skills/system-spec-kit/scripts/spec/create.sh "{feature_description}" --phase --phases {phase_count} --phase-names "{phase_names}" --level {parent_level}`, which creates parent and child spec folders. The active manual-test constraints for this run explicitly allowed writes only to `.opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/phase-command-workflow.md` and banned modifying, creating, or deleting any other file. Therefore folders could not be created, template population could not be performed, and `check-phase-links.sh` / `validate.sh --recursive` could not be run against newly created workflow output.
 
 ### Pass / Fail
 
-- **Pass**: all 7 workflow steps complete without error, created folders match expected structure, link validation reports no warnings, and recursive validation exits 0
-- **Fail**: Any contradicting evidence appears or the pass condition is not met.
+- **BLOCKED**: required Step 4 folder creation would write outside the only allowed write path for this run, so the full 7-step workflow could not be executed and the expected success signals could not be verified.
 
 ### Failure Triage
 

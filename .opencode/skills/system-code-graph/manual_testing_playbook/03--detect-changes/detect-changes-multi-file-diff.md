@@ -77,6 +77,46 @@ version: 1.2.0.2
 | 5 | Empty diff raises validation error (not silent empty) | ☐ |
 | 6 | Stale graph returns blocked | ☐ |
 
+## Evidence
+
+Precondition check, native `mk_code_graph_status`:
+
+```text
+plugin_id=mk-code-graph
+cache_ttl_ms=5000
+spec_folder=auto
+resume_mode=minimal
+messages_transform_enabled=true
+messages_transform_mode=schema_aligned
+runtime_ready=false
+node_binary=node
+bridge_timeout_ms=15000
+bridge_path=/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-code-graph/mcp_server/plugin_bridges/mk-code-graph-bridge.mjs
+last_runtime_error=Bridge skipped: SOCKET_ABSENT (exit=75); plugin injection will no-op
+cache_entries=0
+cache=empty
+```
+
+Precondition check, daemon CLI fallback:
+
+```bash
+node .opencode/bin/code-index.cjs code-graph-status --format json --timeout-ms 3000 --warm-only
+```
+
+```json
+{
+  "status": "error",
+  "error": "backend unavailable: connect ENOENT /tmp/mk-code-index/daemon-ipc.sock",
+  "exitCode": 75
+}
+```
+
+The required precondition `Code graph index fresh (verify via code_graph_status -> freshness:"fresh")` was not met because the code graph runtime was unavailable and no `freshness:"fresh"` result could be obtained. Per the scenario instruction, the remaining `detect_changes` commands were not run after the missing precondition was observed.
+
+## Pass/Fail
+
+BLOCKED — Missing precondition: `code_graph_status` could not verify `freshness:"fresh"`; native bridge reported `SOCKET_ABSENT` and CLI fallback exited `75` for absent `/tmp/mk-code-index/daemon-ipc.sock`.
+
 ## Notes
 
 Tests `mcp_server/handlers/detect-changes.ts` → diff parser → line-range overlap query against `code_nodes`. Critical invariant: the tool refuses with `blocked` when readiness is anything other than `fresh` to prevent false-safe empty results — see architecture.md §6 Invariant 2.

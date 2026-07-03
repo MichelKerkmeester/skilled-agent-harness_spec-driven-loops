@@ -55,6 +55,8 @@ interface CacheArgsInput {
   enableSessionBoost: boolean;
   enableCausalBoost: boolean;
   includeTrace?: boolean;
+  resultExplainEnabled?: boolean;
+  resultExplainDebugEnabled?: boolean;
   retrievalLevel?: 'local' | 'global' | 'auto';
   cacheVersion?: string;
   /**
@@ -177,6 +179,8 @@ function buildCacheArgs({
   enableSessionBoost,
   enableCausalBoost,
   includeTrace = false,
+  resultExplainEnabled,
+  resultExplainDebugEnabled,
   retrievalLevel = 'auto',
   cacheVersion,
   causalEdgesGeneration,
@@ -221,6 +225,8 @@ function buildCacheArgs({
     enableSessionBoost,
     enableCausalBoost,
     includeTrace,
+    resultExplainEnabled,
+    resultExplainDebugEnabled,
     retrievalLevel,
     graphUnifiedEnabled: isGraphUnifiedEnabled(),
     cacheVersion,

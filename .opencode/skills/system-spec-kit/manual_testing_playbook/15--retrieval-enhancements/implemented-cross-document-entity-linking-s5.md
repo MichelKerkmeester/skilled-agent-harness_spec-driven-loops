@@ -46,12 +46,105 @@ Entity linker creates supports-edges between related documents; density guards c
 
 ### Evidence
 
-Entity linker output + supports-edge inspection + density guard metrics
+Entity linker command output:
+
+```text
+ RUN  v4.1.9 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit
+
+
+ Test Files  1 passed (1)
+      Tests  51 passed (51)
+   Start at  22:16:23
+   Duration  139ms (transform 44ms, setup 13ms, import 47ms, tests 17ms, environment 0ms)
+```
+
+Supports-edge inspection output:
+
+```text
+ ✓ mcp_server/tests/entity-linker.vitest.ts > S8 Entity Linker > createEntityLinks > creates causal_edges with relation=supports 0ms
+ ✓ mcp_server/tests/entity-linker.vitest.ts > S8 Entity Linker > createEntityLinks > sets strength to 0.7 0ms
+ ✓ mcp_server/tests/entity-linker.vitest.ts > S8 Entity Linker > createEntityLinks > sets created_by to entity_linker 0ms
+ ✓ mcp_server/tests/entity-linker.vitest.ts > S8 Entity Linker > createEntityLinks > includes entity name in evidence field 0ms
+ ✓ mcp_server/tests/entity-linker.vitest.ts > S8 Entity Linker > runEntityLinking > end-to-end: extracts cross-doc matches and creates links 0ms
+ ✓ mcp_server/tests/entity-linker.vitest.ts > S8 Entity Linker > runEntityLinkingForMemory > creates links only for the saved memory scope 0ms
+```
+
+Actual supports-edge values inspected in `mcp_server/tests/entity-linker.vitest.ts`:
+
+```text
+expect(edges).toHaveLength(1);
+expect(edges[0].relation).toBe('supports');
+expect(edge.strength).toBeCloseTo(0.7);
+expect(edge.created_by).toBe('entity_linker');
+expect(edge.evidence).toBe('Cross-doc entity: memory system');
+expect(result.linksCreated).toBe(1);
+expect(result.crossDocMatches).toBe(1);
+expect(result.entitiesProcessed).toBe(1);
+expect(edges).toEqual([
+  {
+    source_id: '1',
+    target_id: '2',
+    evidence: 'Cross-doc entity: shared entity',
+  },
+]);
+```
+
+Density guard output:
+
+```text
+ ✓ mcp_server/tests/entity-linker.vitest.ts > S8 Entity Linker > createEntityLinks > respects MAX_EDGES_PER_NODE limit (20) 0ms
+ ✓ mcp_server/tests/entity-linker.vitest.ts > S8 Entity Linker > createEntityLinks > skips link creation when projected density exceeds threshold 0ms
+ ✓ mcp_server/tests/entity-linker.vitest.ts > S8 Entity Linker > createEntityLinks > allows link creation when projected density equals threshold 1ms
+ ✓ mcp_server/tests/entity-linker.vitest.ts > S8 Entity Linker > runEntityLinking > honors density-threshold env override for S5 linking 0ms
+ ✓ mcp_server/tests/entity-linker.vitest.ts > S8 Entity Linker > runEntityLinking > falls back to default threshold for invalid density env value 0ms
+ ✓ mcp_server/tests/entity-linker.vitest.ts > S8 Entity Linker > __testables > exposes MAX_EDGES_PER_NODE constant 0ms
+ ✓ mcp_server/tests/entity-linker.vitest.ts > S8 Entity Linker > __testables > exposes density-threshold helpers 0ms
+```
+
+Actual density guard values inspected in `mcp_server/tests/entity-linker.vitest.ts`:
+
+```text
+expect(__testables.MAX_EDGES_PER_NODE).toBe(20);
+expect(result.linksCreated).toBe(0);
+expect(result.skippedByDensityGuard).toBe(true);
+expect(result.edgeDensity).toBeCloseTo(1.0);
+expect(result.densityThreshold).toBe(1.0);
+expect(count.cnt).toBe(4);
+expect(result.linksCreated).toBe(1);
+expect(result.skippedByDensityGuard).toBe(false);
+expect(result.densityThreshold).toBe(1.0);
+expect(result.densityThreshold).toBe(1.5);
+expect(result.edgeDensity).toBeCloseTo(1.25);
+```
+
+Integration validation output:
+
+```text
+ RUN  v4.1.9 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit
+
+ ✓ mcp_server/tests/deferred-features-integration.vitest.ts > Deferred Features: Integration Tests > R10 → S5 dependency chain > extracts entities from content and stores them 1ms
+ ✓ mcp_server/tests/deferred-features-integration.vitest.ts > Deferred Features: Integration Tests > R10 → S5 dependency chain > updates entity catalog from extracted entities 0ms
+ ✓ mcp_server/tests/deferred-features-integration.vitest.ts > Deferred Features: Integration Tests > R10 → S5 dependency chain > finds cross-document entity matches after extraction 0ms
+ ✓ mcp_server/tests/deferred-features-integration.vitest.ts > Deferred Features: Integration Tests > R10 → S5 dependency chain > creates causal edges from cross-document entity matches 0ms
+ ✓ mcp_server/tests/deferred-features-integration.vitest.ts > Deferred Features: Integration Tests > R10 → S5 dependency chain > end-to-end: runEntityLinking creates cross-doc links 0ms
+ ✓ mcp_server/tests/deferred-features-integration.vitest.ts > Deferred Features: Integration Tests > R10 → S5 dependency chain > density guard skips entity linking when graph is already dense 0ms
+
+ Test Files  1 passed (1)
+      Tests  23 passed (23)
+   Start at  22:18:39
+   Duration  156ms (transform 63ms, setup 12ms, import 71ms, tests 14ms, environment 0ms)
+```
+
+MCP causal-stats inspection attempt:
+
+```text
+MCP error -32001: Request timed out
+MCP error -32000: Connection closed
+```
 
 ### Pass / Fail
 
-- **Pass**: entity linker produces correctly typed supports-edges and density guards enforce limits
-- **Fail**: Any contradicting evidence appears or the pass condition is not met.
+- **PASS**: entity linker produced correctly typed `supports` edges in the documented validation surface, density guards enforced both per-node and global density limits, and no contradicting evidence appeared.
 
 ### Failure Triage
 

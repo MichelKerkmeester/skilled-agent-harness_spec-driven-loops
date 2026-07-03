@@ -48,12 +48,195 @@ Trace objects (scores, source, trace) present when includeTrace=true or env over
 
 ### Evidence
 
-Search outputs with/without includeTrace + env override
+Executed via the daemon-backed CLI fallback because native Spec Memory status reported `runtime_ready=false`, `last_error_code=TIMEOUT`, `warm_exit_code=75`, and `node ".opencode/bin/spec-memory.cjs" --help` returned:
+
+```text
+@spec-kit/mcp-server dist is stale. Run: cd .opencode/skills/system-spec-kit/mcp_server && npm run build
+```
+
+Used non-writing stale-dist override confirmed by `SPECKIT_SPEC_MEMORY_CLI_DEV_ALLOW_STALE=1 node ".opencode/bin/spec-memory.cjs" list-tools --format text`, which included:
+
+```text
+memory_search
+```
+
+1. `env -u SPECKIT_RESPONSE_TRACE SPECKIT_SPEC_MEMORY_CLI_DEV_ALLOW_STALE=1 node ".opencode/bin/spec-memory.cjs" memory_search --json '{"query":"test","includeTrace":true}' --format json --timeout-ms 3000`
+
+Observed output included top-level trace/envelope metadata and result-level `scores`, `source`, and `trace`:
+
+```json
+{
+  "summary": "Found 10 memories",
+  "data": {
+    "searchType": "hybrid",
+    "count": 10,
+    "retrievalTrace": {
+      "traceId": "tr_mr3yfipd_vvbgjk",
+      "query": "test",
+      "intent": "understand",
+      "totalDurationMs": 265,
+      "finalResultCount": 5
+    },
+    "results": [
+      {
+        "id": 28212,
+        "score": 0.2009094864,
+        "scores": {
+          "semantic": null,
+          "lexical": null,
+          "fusion": 0.2009094864,
+          "intentAdjusted": 0.2009094864,
+          "composite": 0.2009094864,
+          "rerank": null,
+          "attention": null
+        },
+        "source": {
+          "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/deep-loops/156-agent-loops-improved/008-testing/spec.md",
+          "anchorIds": [
+            "metadata",
+            "phase-context",
+            "problem",
+            "scope",
+            "requirements",
+            "success-criteria",
+            "risks",
+            "questions",
+            "phase-map"
+          ],
+          "lastModified": "2026-07-02T18:46:23.620Z",
+          "memoryState": null
+        },
+        "trace": {
+          "channelsUsed": [
+            "r8-summary-embeddings",
+            "d2-query-surrogates",
+            "trigger"
+          ],
+          "pipelineStages": [
+            "candidate",
+            "candidate",
+            "candidate",
+            "fusion",
+            "final-rank",
+            "filter"
+          ],
+          "fallbackTier": null,
+          "queryComplexity": null,
+          "expansionTerms": [],
+          "budgetTruncated": false,
+          "scoreResolution": "intentAdjusted"
+        }
+      }
+    ],
+    "evidenceDigest": "10 results retrieved; avg score 0.60."
+  },
+  "meta": {
+    "tool": "memory_search",
+    "latencyMs": 275,
+    "cacheHit": false
+  }
+}
+```
+
+2. `env -u SPECKIT_RESPONSE_TRACE SPECKIT_SPEC_MEMORY_CLI_DEV_ALLOW_STALE=1 node ".opencode/bin/spec-memory.cjs" memory_search --json '{"query":"test"}' --format json --timeout-ms 3000`
+
+Observed output omitted result-level `scores`, `source`, and `trace`; the first result contained `score` and then `trustBadges`, `why`, `preCalibrationValue`, and `confidence`:
+
+```json
+{
+  "summary": "Found 10 memories",
+  "data": {
+    "searchType": "hybrid",
+    "count": 10,
+    "results": [
+      {
+        "id": 28212,
+        "score": 0.2009094864,
+        "trustBadges": {
+          "confidence": null,
+          "extractionAge": "never",
+          "lastAccessAge": "never",
+          "orphan": true,
+          "weightHistoryChanged": false
+        },
+        "why": {
+          "summary": "Ranked first because semantic similarity and high spec quality",
+          "topSignals": [
+            "semantic_match",
+            "validation_quality"
+          ]
+        },
+        "preCalibrationValue": 0.24550021752,
+        "confidence": {
+          "label": "low",
+          "value": 0.086,
+          "drivers": [
+            "anchor_density"
+          ]
+        }
+      }
+    ],
+    "evidenceDigest": "10 results retrieved; avg score 0.60."
+  },
+  "meta": {
+    "tool": "memory_search",
+    "latencyMs": 263,
+    "cacheHit": false
+  }
+}
+```
+
+3. `SPECKIT_RESPONSE_TRACE=true SPECKIT_SPEC_MEMORY_CLI_DEV_ALLOW_STALE=1 node ".opencode/bin/spec-memory.cjs" memory_search --json '{"query":"test"}' --format json --timeout-ms 3000`
+
+Expected trace objects to appear due to env override, but observed output again omitted result-level `scores`, `source`, and `trace`; it returned the cached non-trace response:
+
+```json
+{
+  "summary": "Found 10 memories",
+  "data": {
+    "searchType": "hybrid",
+    "count": 10,
+    "results": [
+      {
+        "id": 28212,
+        "score": 0.2009094864,
+        "trustBadges": {
+          "confidence": null,
+          "extractionAge": "never",
+          "lastAccessAge": "never",
+          "orphan": true,
+          "weightHistoryChanged": false
+        },
+        "why": {
+          "summary": "Ranked first because semantic similarity and high spec quality",
+          "topSignals": [
+            "semantic_match",
+            "validation_quality"
+          ]
+        },
+        "preCalibrationValue": 0.24550021752,
+        "confidence": {
+          "label": "low",
+          "value": 0.086,
+          "drivers": [
+            "anchor_density"
+          ]
+        }
+      }
+    ],
+    "evidenceDigest": "10 results retrieved; avg score 0.60."
+  },
+  "meta": {
+    "tool": "memory_search",
+    "latencyMs": 0,
+    "cacheHit": true
+  }
+}
+```
 
 ### Pass / Fail
 
-- **Pass**: trace objects present when opt-in or env-forced and absent otherwise
-- **Fail**: Any contradicting evidence appears or the pass condition is not met.
+- **FAIL**: `includeTrace:true` exposed `scores`, `source`, and `trace`, and the env-unset call omitted them, but `SPECKIT_RESPONSE_TRACE=true` without `includeTrace` did not expose result-level `scores`, `source`, or `trace` and returned `"cacheHit": true`.
 
 ### Failure Triage
 

@@ -44,11 +44,45 @@ memory field includes ladder-backed recovery data with source, summary, and docu
 
 ### Evidence
 
-session_resume response JSON memory field
+Command run:
+
+```bash
+SPECKIT_SPEC_MEMORY_CLI_DEV_ALLOW_STALE=1 node .opencode/bin/spec-memory.cjs session_resume --json '{}' --format json
+```
+
+CLI preflight without stale override was blocked by stale dist:
+
+```text
+@spec-kit/mcp-server dist is stale. Run: cd .opencode/skills/system-spec-kit/mcp_server && npm run build
+```
+
+Observed `memory` field from the successful stale-override run:
+
+```json
+{
+  "source": "none",
+  "specFolder": null,
+  "resolution": {
+    "kind": "unresolved",
+    "requestedSpecFolder": null,
+    "fallbackSpecFolder": null,
+    "resolvedSpecFolder": null,
+    "folderPath": null
+  },
+  "summary": "No recovery context found. Pass specFolder explicitly or start with /spec_kit:plan.",
+  "recentAction": null,
+  "nextSafeAction": null,
+  "blockers": [],
+  "keyFiles": [],
+  "hints": [],
+  "documents": [],
+  "freshnessWinner": null
+}
+```
 
 ### Pass / Fail
 
-- **Pass**: memory field present with ladder-backed data and valid source
+- **Pass**: PASS - `memory.source` is `none`, which is an allowed source, and `memory.summary` plus `memory.documents` are present.
 - **Fail**: Any contradicting evidence appears or the pass condition is not met.
 
 ### Failure Triage
@@ -73,11 +107,27 @@ codeGraph.status in [fresh, stale, empty, error], nodeCount/edgeCount/fileCount 
 
 ### Evidence
 
-session_resume response JSON codeGraph field
+Command run:
+
+```bash
+SPECKIT_SPEC_MEMORY_CLI_DEV_ALLOW_STALE=1 node .opencode/bin/spec-memory.cjs session_resume --json '{}' --format json
+```
+
+Observed `codeGraph` field:
+
+```json
+{
+  "status": "error",
+  "lastScan": null,
+  "nodeCount": 0,
+  "edgeCount": 0,
+  "fileCount": 0
+}
+```
 
 ### Pass / Fail
 
-- **Pass**: codeGraph field has all required fields with valid types
+- **Pass**: PASS - `codeGraph.status` is `error`, and `nodeCount`, `edgeCount`, and `fileCount` are non-negative integers (`0`, `0`, `0`).
 - **Fail**: Any contradicting evidence appears or the pass condition is not met.
 
 ### Failure Triage
@@ -102,11 +152,29 @@ codeGraph.available is boolean, binaryPath is string
 
 ### Evidence
 
-session_resume response JSON codeGraph field
+Command run:
+
+```bash
+SPECKIT_SPEC_MEMORY_CLI_DEV_ALLOW_STALE=1 node .opencode/bin/spec-memory.cjs session_resume --json '{}' --format json
+```
+
+Observed `codeGraph` field:
+
+```json
+{
+  "status": "error",
+  "lastScan": null,
+  "nodeCount": 0,
+  "edgeCount": 0,
+  "fileCount": 0
+}
+```
+
+Observed missing fields: `codeGraph.available` is absent; `codeGraph.binaryPath` is absent.
 
 ### Pass / Fail
 
-- **Pass**: codeGraph fields present with correct types
+- **Pass**: FAIL - `codeGraph.available` and `codeGraph.binaryPath` were not present in the response.
 - **Fail**: Any contradicting evidence appears or the pass condition is not met.
 
 ### Failure Triage
@@ -131,11 +199,35 @@ structuralContext.status in [ready, stale, missing]; structuralContext.summary/r
 
 ### Evidence
 
-session_resume response JSON structuralContext + hints
+Command run:
+
+```bash
+SPECKIT_SPEC_MEMORY_CLI_DEV_ALLOW_STALE=1 node .opencode/bin/spec-memory.cjs session_resume --json '{}' --format json
+```
+
+Observed degraded `structuralContext` and `hints`:
+
+```json
+{
+  "structuralContext": {
+    "status": "missing",
+    "summary": "No structural context available — code graph is empty or unavailable",
+    "recommendedAction": "Call session_bootstrap first. Then run code_graph_scan if structural context is needed.",
+    "sourceSurface": "session_resume"
+  },
+  "hints": [
+    "Code graph unavailable. Run `code_graph_scan` to initialize.",
+    "Structural context is missing. Call session_bootstrap to refresh.",
+    "Resume ladder found no canonical recovery context. Pass specFolder explicitly or start with /spec_kit:plan."
+  ]
+}
+```
+
+Healthy graph state was not created because doing so would require running `code_graph_scan`, which would modify files outside the user-approved single writable scenario file.
 
 ### Pass / Fail
 
-- **Pass**: structural contract fields are surfaced and degraded states recommend `session_bootstrap` and/or `code_graph_scan`
+- **Pass**: PASS - degraded state returned `structuralContext.status: "missing"`, string `summary`, string `recommendedAction`, `sourceSurface: "session_resume"`, and hints mention both `code_graph_scan` and `session_bootstrap`.
 - **Fail**: required contract fields are missing or recovery hint is wrong
 
 ### Failure Triage
@@ -162,11 +254,87 @@ Strict mode rejects the mismatch; permissive mode logs and returns the normal me
 
 ### Evidence
 
-Strict-mode rejection output plus permissive-mode response JSON
+Strict-mode command run:
+
+```bash
+SPECKIT_SPEC_MEMORY_CLI_DEV_ALLOW_STALE=1 node .opencode/bin/spec-memory.cjs session_resume --session-id caller-session-id --json '{"sessionId":"mismatched-session-id"}' --format json
+```
+
+Strict-mode observed output did not reject; it returned:
+
+```json
+{
+  "status": "ok",
+  "data": {
+    "memory": {
+      "source": "none",
+      "summary": "No recovery context found. Pass specFolder explicitly or start with /spec_kit:plan.",
+      "documents": []
+    },
+    "codeGraph": {
+      "status": "error",
+      "lastScan": null,
+      "nodeCount": 0,
+      "edgeCount": 0,
+      "fileCount": 0
+    },
+    "structuralContext": {
+      "status": "missing",
+      "summary": "No structural context available — code graph is empty or unavailable",
+      "recommendedAction": "Call session_bootstrap first. Then run code_graph_scan if structural context is needed.",
+      "sourceSurface": "session_resume"
+    },
+    "hints": [
+      "Code graph unavailable. Run `code_graph_scan` to initialize.",
+      "Structural context is missing. Call session_bootstrap to refresh.",
+      "Resume ladder found no canonical recovery context. Pass specFolder explicitly or start with /spec_kit:plan."
+    ]
+  }
+}
+```
+
+Permissive-mode command run:
+
+```bash
+SPECKIT_SPEC_MEMORY_CLI_DEV_ALLOW_STALE=1 MCP_SESSION_RESUME_AUTH_MODE=permissive node .opencode/bin/spec-memory.cjs session_resume --session-id caller-session-id --json '{"sessionId":"mismatched-session-id"}' --format json
+```
+
+Permissive-mode observed output returned the same normal merged payload shape:
+
+```json
+{
+  "status": "ok",
+  "data": {
+    "memory": {
+      "source": "none",
+      "summary": "No recovery context found. Pass specFolder explicitly or start with /spec_kit:plan.",
+      "documents": []
+    },
+    "codeGraph": {
+      "status": "error",
+      "lastScan": null,
+      "nodeCount": 0,
+      "edgeCount": 0,
+      "fileCount": 0
+    },
+    "structuralContext": {
+      "status": "missing",
+      "summary": "No structural context available — code graph is empty or unavailable",
+      "recommendedAction": "Call session_bootstrap first. Then run code_graph_scan if structural context is needed.",
+      "sourceSurface": "session_resume"
+    },
+    "hints": [
+      "Code graph unavailable. Run `code_graph_scan` to initialize.",
+      "Structural context is missing. Call session_bootstrap to refresh.",
+      "Resume ladder found no canonical recovery context. Pass specFolder explicitly or start with /spec_kit:plan."
+    ]
+  }
+}
+```
 
 ### Pass / Fail
 
-- **Pass**: strict mode rejects the mismatch and permissive mode allows the same request while preserving the normal payload shape
+- **Pass**: FAIL - strict mode silently allowed the mismatched `sessionId` and returned `status: "ok"`; permissive mode also returned the normal payload shape.
 - **Fail**: strict mode silently allows the mismatch or permissive mode fails to return the documented payload
 
 ### Failure Triage

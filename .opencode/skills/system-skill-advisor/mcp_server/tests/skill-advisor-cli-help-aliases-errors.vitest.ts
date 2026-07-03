@@ -159,4 +159,40 @@ describe('skill-advisor CLI aliases and unknown command recovery', () => {
       promptTime: false,
     })).not.toThrow();
   });
+
+  it('backs off and retries retryable advisor_validate transport errors', async () => {
+    const sleeps: number[] = [];
+    let attempts = 0;
+
+    const result = await __testing.invokeWithRetry(async () => {
+      attempts += 1;
+      if (attempts < 3) throw new Error('MCP error -32001: backend recycled; retry');
+      return 'ok';
+    }, {
+      maxAttempts: 3,
+      sleepMsForAttempt: __testing.advisorValidateRetryDelayMs,
+      sleepFn: async (ms: number) => {
+        sleeps.push(ms);
+      },
+    });
+
+    expect(result).toBe('ok');
+    expect(attempts).toBe(3);
+    expect(sleeps).toEqual([250, 500]);
+  });
+
+  it('does not retry non-retryable advisor_validate errors', async () => {
+    let attempts = 0;
+
+    await expect(__testing.invokeWithRetry(async () => {
+      attempts += 1;
+      throw new Error('schema rejected');
+    }, {
+      maxAttempts: 3,
+      sleepMsForAttempt: __testing.advisorValidateRetryDelayMs,
+      sleepFn: async () => undefined,
+    })).rejects.toThrow('schema rejected');
+
+    expect(attempts).toBe(1);
+  });
 });

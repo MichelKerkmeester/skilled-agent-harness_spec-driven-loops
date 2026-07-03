@@ -45,12 +45,43 @@ Startup output includes `Session Context` and `Recovery Tools`, and `Recovery To
 
 ### Evidence
 
-Test output showing the startup sections and recovery-tool names
+Command run serially after the scenario command was invoked in a normal operator shape:
+
+```text
+ RUN  v4.1.9 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit
+
+
+ Test Files  1 passed (1)
+      Tests  10 passed | 1 skipped (11)
+   Start at  02:20:53
+   Duration  252ms (transform 109ms, setup 12ms, import 73ms, tests 95ms, environment 0ms)
+```
+
+Source evidence from `mcp_server/tests/hook-session-start.vitest.ts` and `mcp_server/hooks/claude/session-prime.ts`:
+
+```text
+expect(sections[0]?.title).toBe('Session Context');
+expect(sections.map((section) => section.title)).toContain('Recovery Tools');
+title: 'Recovery Tools',
+content: [
+  '- `memory_context({ input, mode })` — unified context retrieval',
+  '- `memory_match_triggers({ prompt })` — fast trigger matching',
+  '- `memory_search({ query })` — semantic search',
+  '- `code_graph_scan`, `code_graph_query`, `code_graph_context`, `code_graph_status`',
+].join('\n'),
+```
+
+Operator note: an earlier accidental parallel duplicate invocation of the same suite produced one shared-temp collision while four duplicate invocations passed:
+
+```text
+Error: ENOENT: no such file or directory, open '/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/speckit-claude-hooks/c6b35a74608a/a32c9a795710066c.json'
+ Test Files  1 failed (1)
+      Tests  1 failed | 9 passed | 1 skipped (11)
+```
 
 ### Pass / Fail
 
-- **Pass**: startup sections exist and all 7+ tools are listed in the recovery surface
-- **Fail**: Any contradicting evidence appears or the pass condition is not met.
+- **PASS**: Serial scenario command passed, and the startup surface contains `Session Context`, `Recovery Tools`, `memory_context`, `memory_match_triggers`, `memory_search`, `code_graph_scan`, `code_graph_query`, `code_graph_context`, and `code_graph_status`.
 
 ### Failure Triage
 
@@ -74,12 +105,35 @@ Startup output includes `Startup Payload Contract` with startup status, `"produc
 
 ### Evidence
 
-Test output showing the `Startup Payload Contract` section and payload fields
+Command output:
+
+```text
+ RUN  v4.1.9 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit
+
+
+ Test Files  1 passed (1)
+      Tests  10 passed | 1 skipped (11)
+   Start at  02:20:53
+   Duration  252ms (transform 109ms, setup 12ms, import 73ms, tests 95ms, environment 0ms)
+```
+
+Source evidence from `mcp_server/tests/hook-session-start.vitest.ts`:
+
+```text
+sharedPayloadTransport: JSON.stringify({
+  kind: 'startup',
+  provenance: { producer: 'startup_brief', trustState: 'live' },
+  sectionKeys: ['structural-context'],
+}, null, 2),
+expect(sections.map((section) => section.title)).toContain('Startup Payload Contract');
+expect(sections.find((section) => section.title === 'Startup Payload Contract')?.content).toContain(
+  '"producer": "startup_brief"',
+);
+```
 
 ### Pass / Fail
 
-- **Pass**: payload contract section appears and carries the expected startup payload fields
-- **Fail**: Any contradicting evidence appears or the pass condition is not met.
+- **PASS**: The passing suite asserts `Startup Payload Contract`, startup kind, `"producer": "startup_brief"`, and `sectionKeys: ['structural-context']`.
 
 ### Failure Triage
 
@@ -103,12 +157,37 @@ Startup path preserves graph-quality evidence through `Structural Context`, `gra
 
 ### Evidence
 
-Test output and source evidence showing `Structural Context`, `graphQualitySummary`, and the structural-context formatter path
+Command output:
+
+```text
+ RUN  v4.1.9 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit
+
+
+ Test Files  1 passed (1)
+      Tests  10 passed | 1 skipped (11)
+   Start at  02:20:53
+   Duration  252ms (transform 109ms, setup 12ms, import 73ms, tests 95ms, environment 0ms)
+```
+
+Source evidence from `mcp_server/tests/hook-session-start.vitest.ts` and `mcp_server/hooks/claude/session-prime.ts`:
+
+```text
+graphQualitySummary: {
+  detectorProvenanceSummary: { dominant: 'structured', counts: { structured: 1 } },
+  graphEdgeEnrichmentSummary: { edgeEvidenceClass: 'direct_call', numericConfidence: 0.92 },
+},
+expect(sections.map((section) => section.title)).toContain('Structural Context');
+if (startupBrief?.graphOutline) {
+  sections.push({
+    title: 'Structural Context',
+    content: startupBrief.graphOutline,
+  });
+}
+```
 
 ### Pass / Fail
 
-- **Pass**: startup output keeps structural context present and the graph-quality path is evidenced by the test fixture plus formatter implementation
-- **Fail**: Any contradicting evidence appears or the pass condition is not met.
+- **PASS**: The passing suite includes a startup fixture with `graphQualitySummary` and asserts `Structural Context`; the formatter path emits `Structural Context` from the startup brief graph outline.
 
 ### Failure Triage
 
@@ -132,12 +211,35 @@ Code Graph line reflects runtime availability or fallback startup behavior
 
 ### Evidence
 
-Test output showing the Code Graph status line
+Command output:
+
+```text
+ RUN  v4.1.9 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit
+
+
+ Test Files  1 passed (1)
+      Tests  10 passed | 1 skipped (11)
+   Start at  02:20:53
+   Duration  252ms (transform 109ms, setup 12ms, import 73ms, tests 95ms, environment 0ms)
+```
+
+Source evidence from `mcp_server/tests/hook-session-start.vitest.ts`:
+
+```text
+expect(sections[0]?.content).toContain('- Code Graph: ready');
+graphState: 'missing',
+startupSurface: [
+  'Session context received. Current state:',
+  '',
+  '- Memory: startup summary only (resume on demand)',
+  '- Code Graph: unavailable',
+].join('\n'),
+expect(sections[0]?.content).toContain('- Code Graph: unavailable');
+```
 
 ### Pass / Fail
 
-- **Pass**: Code Graph status matches the startup-brief or fallback path under test
-- **Fail**: Any contradicting evidence appears or the pass condition is not met.
+- **PASS**: The passing suite verifies the startup-brief path reports `- Code Graph: ready` and the fallback/missing path reports `- Code Graph: unavailable`.
 
 ### Failure Triage
 
@@ -161,12 +263,31 @@ Output length <= 8000 chars (2000 tokens x 4 chars/token)
 
 ### Evidence
 
-Test output showing char count
+Command output:
+
+```text
+ RUN  v4.1.9 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit
+
+
+ Test Files  1 passed (1)
+      Tests  10 passed | 1 skipped (11)
+   Start at  02:20:53
+   Duration  252ms (transform 109ms, setup 12ms, import 73ms, tests 95ms, environment 0ms)
+```
+
+Source evidence from `mcp_server/tests/hook-session-start.vitest.ts` and `mcp_server/hooks/claude/shared.ts`:
+
+```text
+const truncated = truncateToTokenBudget(output, SESSION_PRIME_TOKEN_BUDGET);
+expect(truncated.length / 4).toBeLessThanOrEqual(SESSION_PRIME_TOKEN_BUDGET);
+export const SESSION_PRIME_TOKEN_BUDGET = 2000;
+```
+
+Observed budget value: `SESSION_PRIME_TOKEN_BUDGET = 2000`, so the asserted limit is `2000 * 4 = 8000` chars.
 
 ### Pass / Fail
 
-- **Pass**: output within 2000-token budget
-- **Fail**: Any contradicting evidence appears or the pass condition is not met.
+- **PASS**: The passing suite asserts `truncated.length / 4 <= SESSION_PRIME_TOKEN_BUDGET`, and `SESSION_PRIME_TOKEN_BUDGET` is `2000`.
 
 ### Failure Triage
 

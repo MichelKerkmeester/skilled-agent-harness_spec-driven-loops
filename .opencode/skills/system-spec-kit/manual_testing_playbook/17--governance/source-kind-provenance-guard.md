@@ -51,12 +51,26 @@ Validate source_kind provenance guarding with normal writes, forged inputs, and 
 
 ### Evidence
 
-Save response, stored row before/after table, forged-call error payloads, automated overwrite refusal output, and audit ledger excerpt.
+BLOCKED before scenario command execution.
+
+Observed scenario command requiring an out-of-scope write:
+
+```text
+1. Create a sandbox manual spec-doc file with distinctive title, trigger phrases, and importance tier.
+```
+
+Active execution constraint for this run:
+
+```text
+ALLOWED WRITE PATHS
+- .opencode/skills/system-spec-kit/manual_testing_playbook/17--governance/source-kind-provenance-guard.md (this file only)
+```
+
+No `memory_save`, `memory_list`, `memory_update`, automated writer harness, stored-row re-read, or audit-ledger commands were run because the required sandbox file creation would violate the run's allowed write path.
 
 ### Pass / Fail
 
-- **Pass**: provenance is server-derived, forged inputs fail closed, protected fields remain unchanged, and audit deduping is visible.
-- **Fail**: caller-provided provenance is accepted, protected fields change, or failed attempts do not produce auditable refusal evidence.
+- **BLOCKED**: scenario command 1 requires creating a sandbox manual spec-doc file, but this run permits writes only to `.opencode/skills/system-spec-kit/manual_testing_playbook/17--governance/source-kind-provenance-guard.md`.
 
 ### Failure Triage
 

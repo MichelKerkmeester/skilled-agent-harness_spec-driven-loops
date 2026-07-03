@@ -92,6 +92,25 @@ export interface QueryIntentClassification {
   matchedKeywords: string[];
 }
 
+const STRUCTURAL_QUERY_PATTERNS: readonly RegExp[] = [
+  /\b(?:who|what)\s+calls?\b/i,
+  /\bcallers?\s+of\b/i,
+  /\b(?:who|what)\s+imports?\b/i,
+  /\bimports?\s+of\b/i,
+  /\b(?:show|list|get|locate)\s+(?:the\s+)?(?:outline|structure|callers?|callees?|dependencies|dependents|imports?|exports?|references)\b/i,
+  /\b(?:outline|structure|definition|declaration|signature|hierarchy)\s+of\b/i,
+  /\b(?:dependency|dependencies|depends|dependents|references|extends|implements|overrides)\b/i,
+  /\b(?:impact|blast\s+radius)\s+of\b/i,
+];
+
+const SEMANTIC_QUERY_PATTERNS: readonly RegExp[] = [
+  /\b(?:explain|describe|overview|purpose|rationale|why|how)\b/i,
+  /\b(?:architecture|design|decision|concept|strategy|approach)\b/i,
+];
+
+const STRUCTURAL_CONFIDENCE_FLOOR = 0.85;
+const HYBRID_CONFIDENCE_FLOOR = 0.75;
+
 function isRecord(value: unknown): value is Record<string, unknown> {
   return typeof value === 'object' && value !== null && !Array.isArray(value);
 }
@@ -355,12 +374,77 @@ function parseQueryIntentClassification(value: unknown): QueryIntentClassificati
   };
 }
 
-export async function classifyQueryIntent(query: string): Promise<QueryIntentClassification> {
-  const payload = await callCodeGraphTool('code_graph_classify_query_intent', { query });
-  if (payload.status !== 'ok') {
-    throw new Error(typeof payload.error === 'string' ? payload.error : 'code_graph_classify_query_intent failed');
+function normalizeQueryIntentClassification(query: string, classification: QueryIntentClassification): QueryIntentClassification {
+  const localClassification = classifyQueryIntentLocally(query);
+  if (localClassification.intent === 'semantic') {
+    return classification;
   }
-  return parseQueryIntentClassification(payload.data);
+
+  if (classification.intent === localClassification.intent && classification.confidence >= localClassification.confidence) {
+    return classification;
+  }
+
+  return {
+    intent: localClassification.intent,
+    confidence: Math.max(classification.confidence, localClassification.confidence),
+    structuralScore: Math.max(classification.structuralScore, localClassification.structuralScore),
+    semanticScore: Math.max(classification.semanticScore, localClassification.semanticScore),
+    matchedKeywords: uniqueStrings([
+      ...classification.matchedKeywords,
+      ...localClassification.matchedKeywords,
+    ]),
+  };
+}
+
+function classifyQueryIntentLocally(query: string): QueryIntentClassification {
+  const structuralMatches = matchQueryPatterns(query, STRUCTURAL_QUERY_PATTERNS);
+  if (structuralMatches.length === 0) {
+    return {
+      intent: 'semantic',
+      confidence: 0.5,
+      structuralScore: 0,
+      semanticScore: 0,
+      matchedKeywords: [],
+    };
+  }
+
+  const semanticMatches = matchQueryPatterns(query, SEMANTIC_QUERY_PATTERNS);
+  const intent: QueryIntent = semanticMatches.length > 0 ? 'hybrid' : 'structural';
+
+  return {
+    intent,
+    confidence: intent === 'hybrid' ? HYBRID_CONFIDENCE_FLOOR : STRUCTURAL_CONFIDENCE_FLOOR,
+    structuralScore: structuralMatches.length,
+    semanticScore: semanticMatches.length,
+    matchedKeywords: uniqueStrings([...structuralMatches, ...semanticMatches]),
+  };
+}
+
+function matchQueryPatterns(query: string, patterns: readonly RegExp[]): string[] {
+  const matches: string[] = [];
+  for (const pattern of patterns) {
+    const match = query.match(pattern);
+    if (match?.[0]) {
+      matches.push(match[0].toLowerCase());
+    }
+  }
+  return matches;
+}
+
+function uniqueStrings(values: readonly string[]): string[] {
+  return [...new Set(values.filter((value) => value.length > 0))];
+}
+
+export async function classifyQueryIntent(query: string): Promise<QueryIntentClassification> {
+  try {
+    const payload = await callCodeGraphTool('code_graph_classify_query_intent', { query });
+    if (payload.status !== 'ok') {
+      return classifyQueryIntentLocally(query);
+    }
+    return normalizeQueryIntentClassification(query, parseQueryIntentClassification(payload.data));
+  } catch {
+    return classifyQueryIntentLocally(query);
+  }
 }
 
 export function normalizeReadyAction(value: unknown): ReadyAction {

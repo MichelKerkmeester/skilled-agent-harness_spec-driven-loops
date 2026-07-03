@@ -46,12 +46,164 @@ Validate Feature catalog annotation name validity against the documented validat
 
 ### Evidence
 
-Sorted annotation list + H3 heading list + diff showing 0 invalid entries.
+Executed from repository root: `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public`.
+
+Command 1, annotation extraction:
+
+```console
+$ grep -rho --include='*.ts' --include='*.js' --include='*.mts' --include='*.mjs' "// Feature catalog: .*" .opencode/skills/system-spec-kit/mcp_server/ .opencode/skills/system-spec-kit/shared/ | sort -u
+// Feature catalog: 4-stage pipeline architecture
+// Feature catalog: 4-stage pipeline refactor
+// Feature catalog: 7-layer tool architecture metadata
+// Feature catalog: ANCHOR tags as graph nodes
+// Feature catalog: Ablation studies (eval_run_ablation)
+// Feature catalog: Access-driven popularity scoring
+// Feature catalog: Adaptive shadow ranking, bounded proposals, and rollback
+// Feature catalog: Agent consumption instrumentation
+// Feature catalog: Anchor-aware chunk thinning
+// Feature catalog: Architecture boundary enforcement
+// Feature catalog: Assistive reconsolidation
+// Feature catalog: Async ingestion job lifecycle
+// Feature catalog: Atomic-save parity and partial-indexing hints
+// Feature catalog: Auto entity extraction
+// Feature catalog: Auto-promotion on validation
+// Feature catalog: BM25 trigger phrase re-index gate
+// Feature catalog: Canonical ID dedup hardening
+// Feature catalog: Causal chain tracing (memory_drift_why)
+// Feature catalog: Causal edge creation (memory_causal_link)
+// Feature catalog: Causal edge deletion (memory_causal_unlink)
+// Feature catalog: Causal graph statistics (memory_causal_stats)
+// Feature catalog: Causal neighbor boost and injection
+// Feature catalog: Channel min-representation
+// Feature catalog: Checkpoint creation (checkpoint_create)
+// Feature catalog: Checkpoint delete confirmName safety
+// Feature catalog: Checkpoint deletion (checkpoint_delete)
+// Feature catalog: Checkpoint listing (checkpoint_list)
+// Feature catalog: Checkpoint restore (checkpoint_restore)
+// Feature catalog: Chunking Orchestrator Safe Swap
+// Feature catalog: Classification-based decay
+// Feature catalog: Co-activation boost strength increase
+// Feature catalog: Co-activation fan-effect divisor
+// Feature catalog: Confidence-based result truncation
+// Feature catalog: Constitutional memory as expert knowledge injection
+// Feature catalog: Content-aware memory filename generation
+// Feature catalog: Core metric computation
+// Feature catalog: Cross-document entity linking
+// Feature catalog: Database and schema safety
+// Feature catalog: Deferred lexical-only indexing
+// Feature catalog: Dry-run preflight for memory_save
+// Feature catalog: Dual-scope memory auto-surface
+// Feature catalog: Duplicate-save no-op feedback hardening
+// Feature catalog: Dynamic token budget allocation
+// Feature catalog: Embedding cache
+// Feature catalog: Embedding retry orchestrator
+// Feature catalog: Encoding-intent capture at index time
+// Feature catalog: Entity normalization consolidation
+// Feature catalog: Evaluation database and schema
+// Feature catalog: Feature flag governance
+// Feature catalog: Folder-level relevance scoring
+// Feature catalog: Graph and cognitive memory fixes
+// Feature catalog: Graph calibration profiles and community thresholds
+// Feature catalog: Graph lifecycle refresh
+// Feature catalog: Guards and edge cases
+// Feature catalog: Health diagnostics (memory_health)
+// Feature catalog: Hierarchical scope governance, governed ingest, retention, and audit
+// Feature catalog: HyDE (Hypothetical Document Embeddings)
+// Feature catalog: Hybrid search pipeline
+// Feature catalog: Implicit feedback log
+// Feature catalog: Index-time query surrogates
+// Feature catalog: Interference scoring
+// Feature catalog: Known-item ground truth corpus
+// Feature catalog: LLM query reformulation
+// Feature catalog: Learned Stage 2 weight combiner
+// Feature catalog: Learned relevance feedback
+// Feature catalog: Learning history (memory_get_learning_history)
+// Feature catalog: Lightweight consolidation
+// Feature catalog: Lineage state active projection and asOf resolution
+// Feature catalog: MPAB chunk-to-memory aggregation
+// Feature catalog: Memory browser (memory_list)
+// Feature catalog: Memory health autoRepair metadata
+// Feature catalog: Memory indexing (memory_save)
+// Feature catalog: Memory metadata update (memory_update)
+// Feature catalog: Memory roadmap baseline snapshot
+// Feature catalog: Memory summary search channel
+// Feature catalog: Migration checkpoint scripts
+// Feature catalog: Mutation hook result contract expansion
+// Feature catalog: Mutation response UX payload exposure
+// Feature catalog: Negative feedback confidence signal
+// Feature catalog: Per-memory history log
+// Feature catalog: Post-task learning measurement (task_postflight)
+// Feature catalog: Pre-storage quality gate
+// Feature catalog: Prediction-error save arbitration
+// Feature catalog: Provenance-rich response envelopes
+// Feature catalog: Quality proxy formula
+// Feature catalog: Quality-aware 3-tier search fallback
+// Feature catalog: Query complexity router
+// Feature catalog: Query decomposition
+// Feature catalog: Query expansion
+// Feature catalog: RRF K-value sensitivity analysis
+// Feature catalog: Real-time filesystem watching with chokidar
+// Feature catalog: Reconsolidation-on-save
+// Feature catalog: Reporting dashboard (eval_reporting_dashboard)
+// Feature catalog: SHA-256 content-hash deduplication
+// Feature catalog: Score normalization
+// Feature catalog: Scoring observability
+// Feature catalog: Semantic and lexical search (memory_search)
+// Feature catalog: Session-manager transaction gap fixes
+// Feature catalog: Shadow scoring with holdout evaluation
+// Feature catalog: Shared post-mutation hook wiring
+// Feature catalog: Signal vocabulary expansion
+// Feature catalog: Single and folder delete (memory_delete)
+// Feature catalog: Spec folder description discovery
+// Feature catalog: Spec folder hierarchy as retrieval structure
+// Feature catalog: Stage 3 effectiveScore fallback chain
+// Feature catalog: Strict Zod schema validation
+// Feature catalog: Synthetic ground truth corpus
+// Feature catalog: System statistics (memory_stats)
+// Feature catalog: Template anchor optimization
+// Feature catalog: Temporal contiguity layer
+// Feature catalog: Tier-based bulk deletion (memory_bulk_delete)
+// Feature catalog: Tool-level TTL cache
+// Feature catalog: Tool-result extraction to working memory
+// Feature catalog: Transaction wrappers on mutation handlers
+// Feature catalog: Trigger phrase matching (memory_match_triggers)
+// Feature catalog: Typed-weighted degree channel
+// Feature catalog: Unified context retrieval (memory_context)
+// Feature catalog: Unified graph retrieval, deterministic ranking, explainability, and rollback
+// Feature catalog: Validation feedback (memory_validate)
+// Feature catalog: Validation signals as retrieval metadata
+// Feature catalog: Verify-fix-verify memory quality loop
+// Feature catalog: Watcher delete/rename cleanup
+// Feature catalog: Weekly batch feedback learning
+// Feature catalog: Working Memory Session Cleanup Timestamp Fix
+// Feature catalog: Workspace scanning and indexing (memory_index_scan)
+```
+
+Command 2 exactly as written:
+
+```console
+$ grep "^### " FEATURE_CATALOG.md
+grep: FEATURE_CATALOG.md: No such file or directory
+```
+
+Observed catalog location check:
+
+```text
+.opencode/skills/system-spec-kit/feature_catalog contains feature_catalog.md
+Glob **/FEATURE_CATALOG.md returned only:
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/mcp-click-up/feature_catalog/FEATURE_CATALOG.md
+```
+
+Supplemental cross-reference against the available system-spec-kit catalog file:
+
+```console
+$ comm -23 <(grep -rho --include='*.ts' --include='*.js' --include='*.mts' --include='*.mjs' "// Feature catalog: .*" .opencode/skills/system-spec-kit/mcp_server/ .opencode/skills/system-spec-kit/shared/ | sed 's/^\/\/ Feature catalog: //' | sort -u) <(grep "^### " .opencode/skills/system-spec-kit/feature_catalog/feature_catalog.md | sed 's/^### //' | sort -u)
+Known-item ground truth corpus
+```
 
 ### Pass / Fail
 
-- **Pass**: cross-reference produces 0 mismatches
-- **Fail**: Any contradicting evidence appears or the pass condition is not met.
+- **FAIL**: the documented H3 extraction command could not read `FEATURE_CATALOG.md`, and the supplemental cross-reference against the available system-spec-kit catalog produced 1 mismatch: `Known-item ground truth corpus`.
 
 ### Failure Triage
 

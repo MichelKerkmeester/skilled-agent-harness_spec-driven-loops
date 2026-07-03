@@ -47,6 +47,8 @@ describe('embedder_list', () => {
     expect(data).toEqual([
       {
         name: 'jina-embeddings-v3',
+        dimensions: 1024,
+        provider: 'ollama',
         dim: 1024,
         backend: 'ollama',
         active: true,
@@ -55,6 +57,8 @@ describe('embedder_list', () => {
       },
       {
         name: 'mxbai-embed-large-v1',
+        dimensions: 1024,
+        provider: 'ollama',
         dim: 1024,
         backend: 'ollama',
         active: false,

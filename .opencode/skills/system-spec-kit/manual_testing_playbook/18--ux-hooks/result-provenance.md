@@ -54,14 +54,124 @@ Validate result provenance and confirm graphEvidence surfaces edge IDs, communit
 
 ### Evidence
 
-- Two `memory_search` responses (default-on, flag-off)
-- `graphEvidence` content extracted from the boosted result
-- Vitest summary
+- Scenario file read in full from `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/manual_testing_playbook/18--ux-hooks/result-provenance.md`.
+- Stable record IDs selected from `memory_list({ limit: 10, offset: 0, specFolder: "", sortBy: "importance_weight", includeChunks: false })`:
+  ```json
+  {
+    "summary": "Found 10 memories",
+    "data": {
+      "total": 32758,
+      "offset": 0,
+      "limit": 10,
+      "sortBy": "importance_weight",
+      "includeChunks": false,
+      "count": 10,
+      "results": [
+        {
+          "id": 8,
+          "specFolder": "system-spec-kit",
+          "title": "TOOL ROUTING - Search & Retrieval Decision Tree",
+          "createdAt": "2026-06-04T07:01:03.136Z",
+          "updatedAt": "2026-06-05 15:26:09",
+          "importanceWeight": 1,
+          "triggerCount": 19,
+          "filePath": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/constitutional/gate-tool-routing.md",
+          "compact": true
+        },
+        {
+          "id": 13,
+          "specFolder": "system-spec-kit",
+          "title": "Spec-Folder Naming & Rename Convention",
+          "createdAt": "2026-06-04T07:01:03.259Z",
+          "updatedAt": "2026-06-11 09:32:52",
+          "importanceWeight": 1,
+          "triggerCount": 8,
+          "filePath": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/constitutional/spec-folder-naming.md",
+          "compact": true
+        }
+      ]
+    }
+  }
+  ```
+- Known causal edge creation with `memory_causal_link({ sourceId: "8", targetId: "13", relation: "supports", strength: 0.7, evidence: "Manual playbook result provenance scenario: create known boost path from strong query match A=8 to neighbor B=13.", tenantId: "", userId: "", agentId: "" })`:
+  ```json
+  {
+    "summary": "Created causal link: 8 --[supports]--> 13",
+    "data": {
+      "success": true,
+      "edge": 46937
+    }
+  }
+  ```
+- Native `memory_search` attempt for the default-on response could not produce an initial search response. Empty cursor was rejected:
+  ```json
+  {
+    "summary": "Error: An unexpected error occurred. Please check logs for details.",
+    "data": {
+      "error": "An unexpected error occurred. Please check logs for details.",
+      "code": "E030",
+      "details": {
+        "tool": "memory_search",
+        "issues": [
+          "cursor: Too small: expected string to have >=1 characters",
+          "concepts: Too small: expected array to have >=2 items"
+        ]
+      }
+    }
+  }
+  ```
+- Native `memory_search` retry with a non-empty placeholder cursor was rejected as a continuation cursor:
+  ```json
+  {
+    "summary": "Error: Cursor is invalid, expired, or out of scope",
+    "data": {
+      "error": "Cursor is invalid, expired, or out of scope",
+      "code": "E_VALIDATION",
+      "details": {
+        "parameter": "cursor"
+      }
+    },
+    "hints": [
+      "Retry the original search to generate a fresh continuation cursor"
+    ]
+  }
+  ```
+- Daemon CLI front door attempt for the same `memory_search` tool surface:
+  ```bash
+  node .opencode/bin/spec-memory.cjs memory_search --json '{"query":"TOOL ROUTING - Search & Retrieval Decision Tree","specFolder":"system-spec-kit","enableCausalBoost":true,"includeTrace":true,"includeConstitutional":false,"limit":10,"bypassCache":true,"profile":"debug"}' --format json --timeout-ms 10000
+  ```
+  Output:
+  ```text
+  @spec-kit/mcp-server dist is stale. Run: cd .opencode/skills/system-spec-kit/mcp_server && npm run build
+  ```
+- Because no default-on `memory_search` response was available, no boosted result could be located and no `graphEvidence` content could be extracted. The flag-off run was not performed because the scenario was already blocked at the required default-on response, and MCP env restart was not available from this running tool session.
+- Cleanup used the available causal-edge delete API, `memory_causal_unlink({ edgeId: 46937 })`:
+  ```json
+  {
+    "summary": "Deleted causal edge 46937",
+    "data": {
+      "deleted": true
+    }
+  }
+  ```
+- Targeted Vitest command:
+  ```bash
+  npm exec -- vitest run tests/provenance-envelope.vitest.ts
+  ```
+  Output:
+  ```text
+   RUN  v4.1.9 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit
+
+
+   Test Files  1 passed (1)
+        Tests  5 passed (5)
+     Start at  01:15:35
+     Duration  403ms (transform 246ms, setup 13ms, import 323ms, tests 6ms, environment 0ms)
+  ```
 
 ### Pass / Fail
 
-- **Pass**: `graphEvidence` populated with documented fields on boosted results, absent on unboosted, stripped under kill-switch, Vitest exits 0.
-- **Fail**: missing field, incomplete content, kill-switch ineffective, or Vitest fails.
+- **BLOCKED**: The scenario could not obtain the required default-on `memory_search` response because the native MCP tool rejected initial-search cursor parameters and the daemon CLI reported `@spec-kit/mcp-server dist is stale. Run: cd .opencode/skills/system-spec-kit/mcp_server && npm run build`; without that response, the boosted result, unboosted result, and flag-off provenance assertions could not be evaluated. The temporary causal edge was cleaned up and the targeted Vitest exited 0.
 
 ### Failure Triage
 

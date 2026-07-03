@@ -79,12 +79,29 @@ rm -rf "$SANDBOX"
 
 ### Evidence
 
-Shell transcript with the six count/schema lines and successful shell parse commands.
+Shell transcript from running the Commands block exactly as written:
+
+```text
+@spec-kit/mcp-server dist is stale. Run: cd .opencode/skills/system-spec-kit/mcp_server && npm run build
+@spec-kit/mcp-server dist is stale. Run: cd .opencode/skills/system-spec-kit/mcp_server && npm run build
+@spec-kit/mcp-server dist is stale. Run: cd .opencode/skills/system-spec-kit/mcp_server && npm run build
+@spec-kit/mcp-server dist is stale. Run: cd .opencode/skills/system-spec-kit/mcp_server && npm run build
+Traceback (most recent call last):
+  File "<stdin>", line 8, in <module>
+  File "/Applications/Xcode.app/Contents/Developer/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/json/__init__.py", line 346, in loads
+    return _default_decoder.decode(s)
+  File "/Applications/Xcode.app/Contents/Developer/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/json/decoder.py", line 337, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+  File "/Applications/Xcode.app/Contents/Developer/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/json/decoder.py", line 355, in raw_decode
+    raise JSONDecodeError("Expecting value", s, err.value) from None
+json.decoder.JSONDecodeError: Expecting value: line 1 column 1 (char 0)
+```
+
+No count/schema lines were produced because the first JSON parse failed before the expected `print(...)` lines could run. The shell parse commands did not emit output.
 
 ### Pass / Fail
 
-- **Pass**: counts are exactly 37 / 8 / 9, compact and names-only output expose zero `inputSchema` fields, and all generated completion files parse.
-- **Fail**: any count differs, any compact/names-only payload includes schema fields, or any generated completion script fails shell parsing.
+- **BLOCKED**: the local `@spec-kit/mcp-server` build output is stale, so the daemon-backed CLI command output was not parseable JSON and the scenario could not verify the expected counts, schema absence, or completion parsing evidence.
 
 ### Failure Triage
 

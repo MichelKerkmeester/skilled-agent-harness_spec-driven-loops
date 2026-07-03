@@ -45,12 +45,29 @@ Stdout includes "Recovered Context (Post-Compaction)" with payload text, "Recove
 
 ### Evidence
 
-Test output showing stdout sections
+Command run:
+
+```bash
+cd .opencode/skills/system-spec-kit/mcp_server && npx vitest run tests/hook-session-start.vitest.ts
+```
+
+Observed output:
+
+```text
+ RUN  v4.1.9 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit
+
+
+ Test Files  1 passed (1)
+      Tests  10 passed | 1 skipped (11)
+   Start at  02:20:30
+   Duration  244ms (transform 113ms, setup 13ms, import 73ms, tests 99ms, environment 0ms)
+```
+
+The observed output does not include `Recovered Context (Post-Compaction)` or `Recovery Instructions`.
 
 ### Pass / Fail
 
-- **Pass**: cached payload appears in stdout with correct headers
-- **Fail**: Any contradicting evidence appears or the pass condition is not met.
+- **FAIL**: cached payload headers were not present in the observed stdout.
 
 ### Failure Triage
 
@@ -74,12 +91,29 @@ As a context-and-code-graph validation operator, validate pendingCompactPrime cl
 
 ### Evidence
 
-Test output confirming state cleared
+Command run:
+
+```bash
+cd .opencode/skills/system-spec-kit/mcp_server && npx vitest run tests/hook-session-start.vitest.ts
+```
+
+Observed output:
+
+```text
+ RUN  v4.1.9 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit
+
+
+ Test Files  1 passed (1)
+      Tests  10 passed | 1 skipped (11)
+   Start at  02:20:30
+   Duration  244ms (transform 113ms, setup 13ms, import 73ms, tests 99ms, environment 0ms)
+```
+
+The observed output does not show `updateState()` called with `pendingCompactPrime: null`.
 
 ### Pass / Fail
 
-- **Pass**: state no longer contains pendingCompactPrime after injection
-- **Fail**: Any contradicting evidence appears or the pass condition is not met.
+- **FAIL**: state-clearing evidence was not present in the observed stdout.
 
 ### Failure Triage
 
@@ -103,12 +137,29 @@ Stdout contains "Context Recovery" section instructing `/speckit:resume`
 
 ### Evidence
 
-Test output showing fallback message
+Command run:
+
+```bash
+cd .opencode/skills/system-spec-kit/mcp_server && npx vitest run tests/hook-session-start.vitest.ts
+```
+
+Observed output:
+
+```text
+ RUN  v4.1.9 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit
+
+
+ Test Files  1 passed (1)
+      Tests  10 passed | 1 skipped (11)
+   Start at  02:20:30
+   Duration  244ms (transform 113ms, setup 13ms, import 73ms, tests 99ms, environment 0ms)
+```
+
+The observed output does not include `Context Recovery` or `/speckit:resume`.
 
 ### Pass / Fail
 
-- **Pass**: fallback message appears when pendingCompactPrime is null
-- **Fail**: Any contradicting evidence appears or the pass condition is not met.
+- **FAIL**: fallback recovery message was not present in the observed stdout.
 
 ### Failure Triage
 

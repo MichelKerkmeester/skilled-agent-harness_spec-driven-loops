@@ -41,6 +41,49 @@ Prove code_graph_verify refuses stale graph state before executing the gold batt
 
 First verify returns `status:"blocked"` with readiness. Second verify returns `status:"ok"` with `result.passed` and pass-rate fields.
 
+### Evidence
+
+BLOCKED before command execution.
+
+Scenario file read output showed no `Preconditions`, `Evidence`, or `Pass/Fail` section in the 67-line file:
+
+```text
+31: ## 3. TEST EXECUTION
+32: 
+33: ### Commands
+34: 
+35: 1. Run full scan.
+36: 2. Modify a tracked source file.
+37: 3. Call `code_graph_verify({"rootDir":"$WORK"})`.
+38: 4. Run `code_graph_scan({"rootDir":"$WORK","incremental":false})` and call verify again.
+39: 
+40: ### Expected Output / Verification
+41: 
+42: First verify returns `status:"blocked"` with readiness. Second verify returns `status:"ok"` with `result.passed` and pass-rate fields.
+43: 
+44: ### Cleanup
+45: 
+46: `rm -rf "$WORK"`
+47: 
+48: ### Variant Scenarios
+```
+
+The requested execution constraints conflict with the scenario's required commands:
+
+```text
+BANNED OPERATIONS
+- Do NOT modify, create, or delete any file OTHER than the single scenario file named below.
+
+ALLOWED WRITE PATHS
+- .opencode/skills/system-code-graph/manual_testing_playbook/02--manual-scan-verify-status/code-graph-verify-blocked-on-stale.md (this file only)
+```
+
+The scenario's command step `2. Modify a tracked source file.` cannot be performed without modifying a file outside the only allowed write path. The cleanup command ``rm -rf "$WORK"`` also cannot be run under the same write/delete restriction unless `$WORK` creation and deletion outside the scenario file are permitted.
+
+### Pass/Fail
+
+BLOCKED - Required scenario preconditions/commands are incompatible with the allowed write paths: executing the scenario requires modifying a tracked source file outside this scenario file, and the file has no Preconditions section defining a safe `$WORK` sandbox.
+
 ### Cleanup
 
 `rm -rf "$WORK"`

@@ -79,12 +79,13 @@ STEADY    (2nd pass, warm provider):     p50=142 ms  p95=612 ms  p99=1.8 s  qps=
 
 ### Evidence
 
-- The exact 50-query workload (commit it as `_sandbox/24--local-llm-query-intelligence/410/workload.json` for reproducibility).
-- The full per-query timing log.
-- The cold + steady percentile + throughput summary tables.
-- Active provider from memory_health at start and end of run.
-- System load during the run (idle vs concurrent activity).
-- Optional: memory_health "lazy_warmup_completed" timing to separate cold-start from steady-state.
+- BLOCKED before workload execution.
+- Scenario command 1 requires preparing `_sandbox/24--local-llm-query-intelligence/410/workload.json` with 50 queries.
+- User constraint: `Do NOT modify, create, or delete any file OTHER than the single scenario file named below.`
+- Allowed write path: `.opencode/skills/system-spec-kit/manual_testing_playbook/24--local-llm-query-intelligence/query-latency-and-throughput.md`.
+- Because `_sandbox/24--local-llm-query-intelligence/410/workload.json` is outside the allowed write path, the required workload file could not be created and the workload could not be run exactly as written.
+- No `memory_search` latency samples were collected; no p50/p95/p99/qps values are available.
+- Pass/Fail: BLOCKED — required workload file creation is forbidden by the allowed write path for this run.
 
 ## 4. NOTES
 

@@ -48,12 +48,25 @@ Parent folder with Phase Documentation Map in spec.md; 3 child folders with corr
 
 ### Evidence
 
-Command transcript + `ls -R` of created structure + spec.md excerpts showing links
+BLOCKED before command execution by the scenario invocation's required writes outside the allowed path.
+
+Documented command not run:
+
+```bash
+bash .opencode/skills/system-spec-kit/scripts/spec/create.sh "Phase Test" --phase --level 3 --phases 3 --phase-names "Design,Implement,Verify"
+```
+
+Reason: the command is documented to create `specs/NNN-phase-test/` plus child folders `001-design/`, `002-implement/`, and `003-verify/`, but this run's allowed write paths are limited to:
+
+```text
+.opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/phase-folder-creation.md
+```
+
+No `ls -R` transcript or generated `spec.md` excerpts exist for this run because executing the creation command would modify/create files outside the allowed write path.
 
 ### Pass / Fail
 
-- **Pass**: parent contains Phase Documentation Map listing all 3 children, parent contains the lean phase-parent trio (`spec.md`, `description.json`, `graph-metadata.json`), each child has parent back-reference, middle child has both predecessor and successor links, and each child contains Level 1 templates
-- **Fail**: Any contradicting evidence appears or the pass condition is not met.
+- **BLOCKED**: The documented creation command would create files under `specs/NNN-phase-test/`, which is outside the only allowed write path for this run.
 
 ### Failure Triage
 

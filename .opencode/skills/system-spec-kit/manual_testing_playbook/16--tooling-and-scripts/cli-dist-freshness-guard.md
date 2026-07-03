@@ -58,12 +58,30 @@ The same three phases apply with the equivalent messages for `code-index.cjs` (`
 
 ### Evidence
 
-Shell transcript with the three exit codes and the stale-dist stderr line.
+BLOCKED before executing the Commands block.
+
+Required scenario commands would write outside the allowed scenario file:
+
+```bash
+SRC=.opencode/skills/system-spec-kit/mcp_server/spec-memory-cli.ts
+BAK=$(mktemp); cp "$SRC" "$BAK"                                  # exact content backup
+printf '\n// freshness probe: content change to trip the hash gate (reverted below)\n' >> "$SRC"
+cp "$BAK" "$SRC"; rm -f "$BAK"                                   # restore exact content (hash matches again)
+```
+
+User-provided constraint for this run:
+
+```text
+Do NOT modify, create, or delete any file OTHER than the single scenario file named below.
+ALLOWED WRITE PATHS
+- .opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/cli-dist-freshness-guard.md (this file only)
+```
+
+The scenario also has no `### Preconditions` section to satisfy before the write-requiring Commands block.
 
 ### Pass / Fail
 
-- **Pass**: 69 → 0 (override) → 0 (restored), with the rebuild instruction printed on the trip.
-- **Fail**: the tripped run executes anyway, exits with a different code, the override does not bypass, or the restored run still trips.
+- **BLOCKED**: The scenario's required Commands block cannot be executed under this run's allowed-write constraint because it must append to and restore `.opencode/skills/system-spec-kit/mcp_server/spec-memory-cli.ts`, plus create/remove a temporary backup file outside the allowed write path.
 
 ### Failure Triage
 

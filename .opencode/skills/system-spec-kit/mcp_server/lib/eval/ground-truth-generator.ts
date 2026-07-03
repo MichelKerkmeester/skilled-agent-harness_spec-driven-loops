@@ -1,7 +1,7 @@
 // ───────────────────────────────────────────────────────────────
 // MODULE: Ground Truth Generator
 // ───────────────────────────────────────────────────────────────
-// Feature catalog: Known-item ground truth corpus
+// Feature catalog: Synthetic ground truth corpus
 // Functions for generating, loading, and validating the
 // live-DB-aligned ground truth dataset for retrieval evaluation.
 //

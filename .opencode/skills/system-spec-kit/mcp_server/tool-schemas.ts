@@ -360,6 +360,18 @@ const memorySearch: ToolDefinition = {
         enum: ['local', 'global', 'auto'],
         default: 'auto',
         description: 'Graph retrieval scope for entity- vs community-level search: "local" returns entity-level matches only; "global" and "auto" (default) also permit a community-level fallback (graph community detection) when direct matches are sparse.'
+      },
+      debug: {
+        type: 'object',
+        additionalProperties: false,
+        properties: {
+          enabled: {
+            type: 'boolean',
+            default: false,
+            description: 'When true, include result explainability debug details such as why.channelContribution when result explainability is enabled.'
+          }
+        },
+        description: 'Optional result explainability debug controls.'
       }
     }
   },

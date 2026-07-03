@@ -66,12 +66,36 @@ rm -rf "$SANDBOX"
 
 ### Evidence
 
-Shell transcript with the full matrix of `case -> exit` lines; rerun a sample failure without `>/dev/null` to capture the message text.
+Shell transcript with the full matrix of `case -> exit` lines:
+
+```text
+--limit 5 -> exit=75
+--limit 1000 -> exit=75
+--includeTransitive true --maxDepth 3 -> exit=75
+--minConfidence 0.5 -> exit=75
+--limit 0 -> exit=75
+--limit 1001 -> exit=75
+--maxDepth 21 -> exit=75
+--minConfidence 1.5 -> exit=75
+--limit abc -> exit=64
+--limit  -> exit=64
+--nosuchflag 1 -> exit=64
+--operation bogus -> exit=64
+```
+
+Sample failure rerun without `>/dev/null`:
+
+```text
+{
+  "status": "error",
+  "error": "Invalid value for limit: expected a number, received \"abc\"",
+  "exitCode": 64
+}
+```
 
 ### Pass / Fail
 
-- **Pass**: every case lands on its expected exit code.
-- **Fail**: any malformed value reaches IPC (75/0), any valid value is rejected (64), or an unknown flag is silently accepted.
+- **PASS**: every case landed on its expected exit code.
 
 ### Failure Triage
 

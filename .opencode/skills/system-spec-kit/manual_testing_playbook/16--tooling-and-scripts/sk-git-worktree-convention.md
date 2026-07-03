@@ -48,12 +48,53 @@ The computed counter is the 4-digit zero-padded successor of the highest existin
 
 ### Evidence
 
-The existing `.worktrees/` listing and the computed next counter.
+Command run:
+
+```sh
+ls .worktrees/ 2>/dev/null | grep -E '^[0-9]{4}-' | sort
+```
+
+Output:
+
+```text
+0001-mcp-front-proxy
+0002-followups
+0003-followup-sentinel
+0004-followup-memorysave
+0005-memory-followups
+0006-028-cli-impl
+0008-findings-remediation
+0009-edge-confidence-remedi
+```
+
+Initial computed-counter command run:
+
+```sh
+next=$(ls .worktrees/ 2>/dev/null | grep -E '^[0-9]{4}-' | sort | perl -ne 'print $1 if /^([0-9]{4})-/' | sort -n | tail -1); if [ -z "$next" ]; then printf '0001\n'; else printf '%04d\n' $((10#$next + 1)); fi
+```
+
+Output:
+
+```text
+zsh:1: number truncated after 23 digits: 00010002000300040005000600080009 + 1
+-8444743773669546615
+```
+
+Corrected computed-counter command run:
+
+```sh
+max=''; for entry in $(ls .worktrees/ 2>/dev/null | grep -E '^[0-9]{4}-' | sort); do max=${entry%%-*}; done; if [ -z "$max" ]; then printf '0001\n'; else printf '%04d\n' $((10#$max + 1)); fi
+```
+
+Output:
+
+```text
+0010
+```
 
 ### Pass / Fail
 
-- **Pass**: the next counter is `max(existing NNNN) + 1`, zero-padded to four digits (or `0001`)
-- **Fail**: Any contradicting evidence appears or the pass condition is not met.
+- **PASS**: the highest existing numbered worktree directory is `0009-edge-confidence-remedi`, and the corrected computed next counter is `0010`, which is `max(existing NNNN) + 1` and zero-padded to four digits.
 
 ### Failure Triage
 
@@ -81,12 +122,27 @@ As a tooling validation operator, validate creating a sk-git worktree against th
 
 ### Evidence
 
-`git worktree list` output and the `.worktrees/{NNNN}-{name}` directory listing.
+Blocked before running the creation command. The scenario command would be:
+
+```sh
+git worktree add -b wt/0010-manual-playbook-validation .worktrees/0010-manual-playbook-validation main
+```
+
+That command was not run because it would create files under `.worktrees/0010-manual-playbook-validation`, which conflicts with the user-level write constraint:
+
+```text
+Do NOT modify, create, or delete any file OTHER than the single scenario file named below.
+```
+
+Allowed write path from the user instruction:
+
+```text
+.opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/sk-git-worktree-convention.md (this file only)
+```
 
 ### Pass / Fail
 
-- **Pass**: the worktree exists on `wt/{NNNN}-{name}` at `.worktrees/{NNNN}-{name}` with no git writes beyond the worktree add
-- **Fail**: Any contradicting evidence appears or the pass condition is not met.
+- **BLOCKED**: the required `git worktree add` command would create a worktree directory outside the only allowed write path, so the branch/path registration and directory-existence checks could not be executed without violating the scenario runner constraints.
 
 ### Failure Triage
 

@@ -54,6 +54,52 @@ Validate that `lib/lifecycle/rollback.ts` can revert lifecycle changes (superses
 | Rollback leaves residue in derived | Graph-metadata derived block still reflects mutation | Audit derived-sync integration with lifecycle rollback. |
 | Rollback fails silently | State does not change | Confirm rollback entry point is wired to lifecycle subsystem. |
 
+### Evidence
+
+- Read scenario file in full: `.opencode/skills/system-skill-advisor/manual_testing_playbook/07--lifecycle-routing/rollback-lifecycle.md` lines 1-72.
+- MCP/file glob check for built server output:
+  ```text
+  No files found
+  ```
+- Package entry point and build scripts observed in `.opencode/skills/system-skill-advisor/mcp_server/package.json`:
+  ```json
+  {
+    "name": "@spec-kit/system-skill-advisor",
+    "private": true,
+    "type": "module",
+    "main": "./dist/mcp_server/advisor-server.js",
+    "scripts": {
+      "clean": "rm -rf dist",
+      "build": "npm --prefix ../../system-spec-kit/shared run build && ../../system-spec-kit/node_modules/.bin/tsc -p tsconfig.build.json",
+      "postbuild": "mkdir -p dist/mcp_server/data && cp data/*.json dist/mcp_server/data/",
+      "typecheck": "../../system-spec-kit/node_modules/.bin/tsc --noEmit --composite false -p tsconfig.build.json",
+      "test": "vitest run"
+    },
+  ```
+- Referenced rollback source observed in `.opencode/skills/system-skill-advisor/mcp_server/lib/lifecycle/rollback.ts`:
+  ```ts
+  export function rollbackGraphMetadataFile(graphMetadataPath: string): RollbackResult {
+    const parsed: unknown = JSON.parse(readFileSync(graphMetadataPath, 'utf8'));
+    if (typeof parsed !== 'object' || parsed === null || Array.isArray(parsed)) {
+      throw new Error(`graph-metadata root must be an object: ${graphMetadataPath}`);
+    }
+    const result = rollbackDerivedBlock(parsed as Record<string, unknown>);
+    writeJsonAtomic(graphMetadataPath, result.metadata);
+    return result;
+  }
+  ```
+- Scenario preconditions not satisfied or not executable under this run's constraints:
+  ```text
+  - Disposable workspace copy.
+  - MCP server built.
+  - Known lifecycle checkpoint or pre-change snapshot captured before the mutation under test.
+  ```
+- The scenario steps require applying a lifecycle mutation and triggering rollback against lifecycle metadata. The rollback entry point writes to the supplied graph metadata file, which would modify a file outside the allowed write path for this execution.
+
+### Pass/Fail
+
+BLOCKED - Missing built MCP server output (`dist/**` returned `No files found`), no known lifecycle checkpoint/pre-change snapshot was provided, and the required mutation/rollback would write outside the single allowed scenario file.
+
 ---
 
 ## 4. SOURCE FILES

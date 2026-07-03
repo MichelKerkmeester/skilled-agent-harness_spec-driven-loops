@@ -93,4 +93,65 @@ describe('advisor_recommend unavailable freshness fail-open', () => {
     ]);
     expect(mockScoreAdvisorPrompt).not.toHaveBeenCalled();
   });
+
+  it('serves recommendations when unavailable status has usable stale trust state', async () => {
+    mockReadAdvisorStatus.mockReturnValue({
+      freshness: 'unavailable',
+      generation: 7,
+      trustState: {
+        state: 'stale',
+        reason: 'SIGTERM',
+        generation: 7,
+        checkedAt: '2026-04-28T00:00:00.000Z',
+        lastLiveAt: null,
+      },
+      lastGenerationBump: '2026-04-28T00:00:00.000Z',
+      lastScanAt: '2026-04-28T00:00:00.000Z',
+      skillCount: 42,
+      laneWeights: {
+        explicit_author: 0.42,
+        lexical: 0.28,
+        graph_causal: 0.13,
+        derived_generated: 0.12,
+        semantic_shadow: 0.05,
+      },
+    });
+    mockScoreAdvisorPrompt.mockReturnValue({
+      recommendations: [{
+        skill: 'system-spec-kit',
+        score: 0.9,
+        confidence: 0.95,
+        uncertainty: 0.05,
+        dominantLane: 'explicit_author',
+        laneContributions: [],
+        lifecycleStatus: 'active',
+      }],
+      topSkill: 'system-spec-kit',
+      unknown: false,
+      ambiguous: false,
+      metrics: { candidateCount: 1, liveLaneCount: 5 },
+    });
+
+    const response = parseResponse(await handleAdvisorRecommend({
+      prompt: 'Implement a spec folder workflow',
+    }));
+
+    expect(response.status).toBe('ok');
+    expect(response.data.freshness).toBe('stale');
+    expect(response.data.recommendations).toEqual([
+      expect.objectContaining({ skillId: 'system-spec-kit' }),
+    ]);
+    expect(response.data.warnings).toEqual(['SIGTERM']);
+    expect(mockScoreAdvisorPrompt).toHaveBeenCalledWith(
+      'Implement a spec folder workflow',
+      expect.objectContaining({
+        runtimeLaneHealth: {
+          graph_causal: {
+            status: 'runtime_degraded',
+            reason: 'SIGTERM',
+          },
+        },
+      }),
+    );
+  });
 });

@@ -48,12 +48,71 @@ Per-phase pass/fail in output; JSON `phases` array; combined exit code reflects 
 
 ### Evidence
 
-Command transcript + validation output + JSON phases array + exit code after deliberate error
+BLOCKED before running `validate.sh --recursive`: the required phase parent from PHASE-002 is not available in the current repo state, and the fallback creation command plus the deliberate child `spec.md` error injection would both write outside this run's only allowed write path.
+
+Observed PHASE-002 state:
+
+```text
+49: ### Evidence
+50: 
+51: BLOCKED before command execution by the scenario invocation's required writes outside the allowed path.
+52: 
+53: Documented command not run:
+54: 
+55: ```bash
+56: bash .opencode/skills/system-spec-kit/scripts/spec/create.sh "Phase Test" --phase --level 3 --phases 3 --phase-names "Design,Implement,Verify"
+57: ```
+58: 
+59: Reason: the command is documented to create `specs/NNN-phase-test/` plus child folders `001-design/`, `002-implement/`, and `003-verify/`, but this run's allowed write paths are limited to:
+60: 
+61: ```text
+62: .opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/phase-folder-creation.md
+63: ```
+64: 
+65: No `ls -R` transcript or generated `spec.md` excerpts exist for this run because executing the creation command would modify/create files outside the allowed write path.
+66: 
+67: ### Pass / Fail
+68: 
+69: - **BLOCKED**: The documented creation command would create files under `specs/NNN-phase-test/`, which is outside the only allowed write path for this run.
+```
+
+Search for the scenario's fallback `Validate Test` folder:
+
+```text
+Glob pattern: **/*Validate*Test*
+Result: No files found
+```
+
+Search for `Validate Test` references:
+
+```text
+Found 5 matches
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/manual_testing_playbook/manual_testing_playbook.md:
+  Line 3308: Prompt: `Validate Recursive phase validation against create.sh "Validate Test" --phase --level 2 --phases 2 and report cited pass/fail evidence.`
+
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/recursive-phase-validation.md:
+  Line 19: - Real user request: `` Please validate Recursive phase validation against create.sh "Validate Test" --phase --level 2 --phases 2 and tell me whether the expected signals are present: Per-phase pass/fail in output; JSON `phases` array; combined exit code reflects worst child; error propagation works. ``
+
+  Line 20: - Prompt: `Validate Recursive phase validation against create.sh "Validate Test" --phase --level 2 --phases 2 and report cited pass/fail evidence.`
+
+  Line 33: Validate Recursive phase validation against create.sh "Validate Test" --phase --level 2 --phases 2 and report cited pass/fail evidence.
+
+  Line 38: 1. Use the phase folder created in PHASE-002 (or create one via `create.sh "Validate Test" --phase --level 2 --phases 2`)
+```
+
+Blocked commands not run because they would violate the allowed write path constraint:
+
+```bash
+bash .opencode/skills/system-spec-kit/scripts/spec/create.sh "Validate Test" --phase --level 2 --phases 2
+```
+
+```text
+Introduce a deliberate error in one child spec.md and re-run; verify aggregated exit code is 2 (error)
+```
 
 ### Pass / Fail
 
-- **Pass**: `--recursive` discovers all `[0-9][0-9][0-9]-*/` child folders, validates each independently, produces aggregated JSON with per-phase status, and combined exit code escalates to highest severity
-- **Fail**: Any contradicting evidence appears or the pass condition is not met.
+- **BLOCKED**: The required PHASE-002 phase parent is missing because PHASE-002 was itself blocked before creation, and this run's constraints allow writes only to this scenario file, preventing both fallback phase-parent creation and deliberate child `spec.md` error injection.
 
 ### Failure Triage
 

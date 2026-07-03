@@ -45,6 +45,89 @@ Run embedder_list and verify each embedder entry includes name, dimensions, prov
 - One active embedder is identifiable.
 - Dimension/provider metadata is present for every entry.
 
+### Evidence
+
+Command run: `embedder_list({})`
+
+Actual output:
+
+```json
+{
+  "summary": "Listed 1 embedders",
+  "data": [
+    {
+      "name": "nomic-embed-text-v1.5",
+      "dim": 768,
+      "backend": "ollama",
+      "active": true,
+      "ready": true,
+      "notes": "Drop-in 768-dim swap candidate. Retrieval-specialist trained on 235M pairs with hard negatives. Requires prefix tokens. Local-first cascade default per ADR-014."
+    }
+  ],
+  "hints": [
+    "[session] Context quality is degraded. Session may benefit from a `session_resume` call.",
+    "Session priming: loaded 10 constitutional memories and code graph status unavailable",
+    "primePackage: available in meta.sessionPriming.primePackage",
+    "Code graph: empty",
+    "Recommended next calls: code_graph_scan, memory_context({ input: \"resume previous work\", mode: \"resume\", profile: \"resume\" })",
+    "Session priming trimmed to fit the 1000 token budget; full constitutional content remains retrievable via memory_search"
+  ],
+  "meta": {
+    "tool": "embedder_list",
+    "tokenCount": 678,
+    "latencyMs": 4,
+    "cacheHit": false,
+    "sessionPriming": {
+      "trimmed": true,
+      "constitutionalCount": 10,
+      "primePackage": {
+        "specFolder": null,
+        "currentTask": null,
+        "codeGraphStatus": "empty",
+        "recommendedCalls": [
+          "code_graph_scan",
+          "memory_context({ input: \"resume previous work\", mode: \"resume\", profile: \"resume\" })"
+        ],
+        "structuralContext": {
+          "status": "missing",
+          "summary": "No structural context available — code graph is empty or unavailable",
+          "recommendedAction": "Call session_bootstrap first. Then run code_graph_scan if structural context is needed.",
+          "sourceSurface": "auto-prime",
+          "provenance": {
+            "producer": "session_snapshot",
+            "sourceSurface": "auto-prime",
+            "trustState": "absent",
+            "generatedAt": "2026-07-02T21:00:24.354Z",
+            "lastUpdated": null,
+            "sourceRefs": [
+              "code-graph-db",
+              "session-snapshot"
+            ]
+          }
+        },
+        "routingRules": {
+          "graphRetrieval": "For broad topic questions, use memory_search with retrievalLevel: \"global\" for community-level results. For specific memories, use \"local\" (default). Use \"auto\" for automatic fallback.",
+          "communitySearch": "When primary search returns weak results, community search fallback activates automatically (SPECKIT_COMMUNITY_SEARCH_FALLBACK). Graph provenance is visible in graphEvidence field.",
+          "toolRouting": "SEARCH ROUTING: exact text/regex → Grep"
+        }
+      }
+    },
+    "tokenBudget": 1000,
+    "sessionPrimingTrimmed": true
+  }
+}
+```
+
+Verification observations:
+
+- At least one embedder is listed: `data` contains 1 entry.
+- One active embedder is identifiable: `nomic-embed-text-v1.5` has `active: true`.
+- Dimension/provider metadata is not present using the required field names for every entry: the entry includes `dim: 768` and `backend: "ollama"`, but does not include `dimensions` or `provider` fields.
+
+### Pass/Fail
+
+FAIL — `embedder_list({})` returned one active embedder, but the entry omitted the required `dimensions` and `provider` fields.
+
 ### Cleanup
 
 No persistent cleanup is required unless the command writes a temporary fixture path; remove only that temporary path.

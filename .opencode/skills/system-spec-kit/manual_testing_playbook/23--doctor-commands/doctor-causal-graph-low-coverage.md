@@ -54,17 +54,18 @@ The pre-run and post-run causal edge counts are identical because the read-only 
 
 ### Evidence
 
-- Pre-run `memory_causal_stats({})` output showing coverage below 60%.
-- `/doctor causal-graph` transcript showing the status, coverage percentage, target coverage, drift signals, and recommendation.
-- Post-run `memory_causal_stats({})` output showing the same causal edge count as the pre-run baseline.
-- State-log path emitted by the command.
+- Pre-run `memory_causal_stats({})` MCP attempt 1 output: `MCP error -32001: backend recycled; retry`.
+- Pre-run `memory_causal_stats({})` MCP attempt 2 output: `MCP error -32001: backend recycled; retry`.
+- Warm CLI fallback command: `node .opencode/bin/spec-memory.cjs memory_causal_stats --json '{"backfill":{"dryRun":true,"limit":10,"actor":"manual-playbook-doc-328","similarity":false,"contradicts":false,"similarityThreshold":80}}' --format json --timeout-ms 3000 --warm-only`.
+- Warm CLI fallback output: `@spec-kit/mcp-server dist is stale. Run: cd .opencode/skills/system-spec-kit/mcp_server && npm run build`.
+- Exact Phase 0 database stat command output for `stat -f '%m %z' mcp_server/database/context-index.sqlite`: `stat: mcp_server/database/context-index.sqlite: stat: No such file or directory`.
+- `/doctor causal-graph` was not executed because the scenario precondition could not be confirmed: the required `memory_causal_stats({})` call was unavailable, the fallback required a build that would write outside this scenario's allowed write path, and the workflow's exact Phase 0 database path was missing.
+- Post-run `memory_causal_stats({})` was not run because the pre-run stats command never succeeded and the diagnostic command was blocked before execution.
+- State-log path was not emitted because executing the command to Phase 3 would require a state-log write outside the single allowed scenario file.
 
 ### Pass / Fail
 
-- **PASS**: coverage below 60% is reported, the status is degraded or attention-worthy, the recommendation explicitly names `/doctor causal-graph`, and edge count is unchanged.
-- **FAIL**: coverage is omitted, the report claims healthy status below the 60% target, the apply recommendation is missing, or read-only diagnostic flow mutates causal edges.
-- **SKIP**: no sandbox or target active resolved profile Memory MCP database with below-target causal coverage is available.
-- **UNAUTOMATABLE**: the runtime cannot execute `/doctor causal-graph` or the memory causal stats tool in the current environment.
+- **BLOCKED**: the required precondition could not be confirmed because `memory_causal_stats({})` failed with `MCP error -32001: backend recycled; retry`, the warm CLI fallback reported `@spec-kit/mcp-server dist is stale. Run: cd .opencode/skills/system-spec-kit/mcp_server && npm run build`, and the exact workflow database path `mcp_server/database/context-index.sqlite` was missing.
 
 ### Failure Triage
 

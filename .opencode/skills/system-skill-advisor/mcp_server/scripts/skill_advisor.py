@@ -29,6 +29,7 @@ import re
 import sqlite3
 import subprocess
 import sys
+from functools import lru_cache
 from pathlib import Path
 from typing import Any, Dict, List, Optional, Set
 
@@ -705,6 +706,13 @@ def recommend_with_native_advisor(
                 -float(x.get("score", 0.0) if isinstance(x.get("score"), (int, float)) else 0.0),
                 str(x.get("skill", "")),
             )
+        )
+        recommendations = filter_recommendations(
+            recommendations=recommendations,
+            confidence_threshold=confidence_threshold,
+            uncertainty_threshold=uncertainty_threshold,
+            confidence_only=confidence_only,
+            show_rejections=False,
         )
     return recommendations
 
@@ -1914,7 +1922,7 @@ PHRASE_INTENT_BOOSTERS = {
     "release readiness review": [("deep-review", 2.0)],
     "spec folder review": [("deep-review", 2.0), ("sk-code-review", 0.8)],
     "review convergence": [("deep-review", 2.5)],
-    "auto review release readiness": [("deep-review", 7.0)],
+    "auto review release readiness": [("deep-review", 7.0), ("deep-loop-workflows", 7.0)],
     "auto review security audit": [("deep-review", 2.5)],
     "auto review audit": [("deep-review", 2.2)],
     "auto review loop": [("deep-review", 2.5)],
@@ -1941,6 +1949,10 @@ PHRASE_INTENT_BOOSTERS = {
     "deep reasoning": [("cli-claude-code", 1.5)],
     "claude code review": [("cli-claude-code", 2.0), ("sk-code-review", 0.4)],
     "cross-ai claude": [("cli-claude-code", 2.0)],
+    "delegate to opencode": [("cli-opencode", 4.0)],
+    "opencode cli": [("cli-opencode", 3.2)],
+    "use opencode cli": [("cli-opencode", 3.4)],
+    "use cli-opencode": [("cli-opencode", 3.4)],
     "cli-claude-code": [("cli-claude-code", 2.8)],
     "/cli-claude-code": [("cli-claude-code", 2.8)],
     ".opencode/skills/cli-claude-code": [("cli-claude-code", 3.0)],
@@ -2187,6 +2199,12 @@ def _build_variants(skill_name: str) -> Set[str]:
     }
 
 
+@lru_cache(maxsize=None)
+def _phrase_boundary_pattern(phrase: str) -> re.Pattern:
+    """Compile the boundary matcher once per metadata phrase."""
+    return re.compile(rf"(?<![a-z0-9_-]){re.escape(phrase)}(?![a-z0-9_-])")
+
+
 def _matches_phrase_boundary(text: str, phrase: str) -> bool:
     """Return True when a phrase is not embedded inside a larger identifier.
 
@@ -2197,8 +2215,7 @@ def _matches_phrase_boundary(text: str, phrase: str) -> bool:
     """
     if not phrase:
         return False
-    pattern = re.compile(rf"(?<![a-z0-9_-]){re.escape(phrase)}(?![a-z0-9_-])")
-    return pattern.search(text) is not None
+    return _phrase_boundary_pattern(phrase).search(text) is not None
 
 
 def _build_inline_record(
@@ -2253,6 +2270,23 @@ def get_skills(force_refresh: bool = False) -> Dict[str, Dict[str, Any]]:
         source="bridge",
         path=None,
         extra_variants={"/create:testing-playbook", "create testing playbook", "create test playbook"},
+    )
+    skills["deep-improvement"] = _build_inline_record(
+        name="deep-improvement",
+        description=(
+            "Evaluator-first deep improvement workflow for 5d scoring, "
+            "5-dimension agent scoring, integration scan, dynamic profile, "
+            "agent improvement, candidate scoring, and proposal-only improvement."
+        ),
+        kind="skill",
+        source="bridge",
+        path=None,
+        extra_variants={
+            "/deep:start-agent-improvement-loop",
+            "deep-agent-improvement",
+            "sk-deep-agent-improvement",
+            "sk-agent-improvement-loop",
+        },
     )
     for command_name, command_config in COMMAND_BRIDGES.items():
         markers = set(command_config.get("slash_markers", []))
@@ -2460,6 +2494,19 @@ def skill_matches_alias(actual: str, expected: str) -> bool:
     return canonical_skill_id(actual) == canonical_skill_id(expected)
 
 
+def recommendation_matches_alias(recommendation: Dict[str, Any], expected: str) -> bool:
+    """Return True when a recommendation matches a legacy or merged deep-loop alias."""
+    actual = str(recommendation.get("skill", ""))
+    if skill_matches_alias(actual, expected):
+        return True
+    if actual != MERGED_DEEP_SKILL_ID:
+        return False
+
+    mode = recommendation.get("workflowMode") or recommendation.get("mode")
+    expected_canonical = canonical_skill_id(expected)
+    return DEEP_ROUTING_MODE_BY_KEY.get(expected_canonical) == mode
+
+
 def _is_ambiguous_code_problem(prompt_lower: str) -> bool:
     return bool(
         re.search(
@@ -2517,6 +2564,7 @@ DEEP_ROUTING_LEXICAL_PATTERNS = {
         (r"\bfindings?\b|\bconvergence\b|\bloop\b|\biterate\b", 0.35),
     ),
     "deep-research": (
+        (r"\bautoresearch\b|/autoresearch\b", 2.0),
         (r"\bdeep[- ]research\b|\bresearch loop\b|\biterative research\b", 1.8),
         (r"\binvestigat(?:e|ion|ing)\b|\bresearch\b|\bdiscover(?:y|ing)?\b", 1.2),
         (r"\bnewinforatio\b|\bnegative knowledge\b|\bruled out\b", 1.2),
@@ -2737,7 +2785,7 @@ def _apply_deep_skill_routing_layer(
 
     prompt_lower = prompt.lower()
     has_deep_signal = re.search(
-        r":review:(?:auto|confirm)\b|\b(deep[- ]research|deep[- ]review|deep[- ]council|ai[- ]council|convergence|findings? stabiliz|architecture decision|deliberat|investigation)\b",
+        r":review:(?:auto|confirm)\b|/autoresearch\b|\b(autoresearch|auto review release readiness|deep[- ]research|deep[- ]review|deep[- ]council|ai[- ]council|convergence|findings? stabiliz|architecture decision|deliberat|investigation)\b",
         prompt_lower,
     )
     if not has_deep_signal:
@@ -3179,6 +3227,27 @@ def _apply_code_edit_cli_disambiguation(
     sk_code = next((rec for rec in recommendations if rec.get("skill") == "sk-code"), None)
     if sk_code is not None:
         sk_code["uncertainty"] = min(float(sk_code.get("uncertainty", 1.0)), 0.30)
+
+
+def _apply_cli_opencode_delegation_disambiguation(
+    recommendations: List[Dict[str, Any]],
+    prompt_lower: str,
+) -> None:
+    """Keep explicit OpenCode delegation prompts on the CLI executor route."""
+    if not CLI_OPENCODE_EXPLICIT_RE.search(prompt_lower):
+        return
+    cli_opencode = _find_recommendation(recommendations, "cli-opencode")
+    if cli_opencode is None:
+        return
+
+    cli_opencode["confidence"] = max(float(cli_opencode.get("confidence", 0.0)), 0.95)
+    cli_opencode["uncertainty"] = min(float(cli_opencode.get("uncertainty", 1.0)), 0.20)
+    _append_reason_note(cli_opencode, "[disambiguation: explicit opencode delegation]")
+
+    sk_code = _find_recommendation(recommendations, "sk-code")
+    if sk_code is not None:
+        sk_code["confidence"] = min(float(sk_code.get("confidence", 0.0)), 0.88)
+        _append_reason_note(sk_code, "[disambiguation: explicit opencode delegation]")
 
 
 def _apply_review_plus_write_disambiguation(
@@ -3645,6 +3714,7 @@ def analyze_request(prompt: str) -> List[Dict[str, Any]]:
     _apply_deep_research_disambiguation(recommendations, prompt_lower)
     _apply_code_mode_disambiguation(recommendations, prompt_lower)
     _apply_code_edit_cli_disambiguation(recommendations, prompt_lower)
+    _apply_cli_opencode_delegation_disambiguation(recommendations, prompt_lower)
     _apply_review_plus_write_disambiguation(recommendations, prompt_lower)
     _apply_deep_skill_routing_layer(recommendations, prompt)
 
@@ -3916,6 +3986,16 @@ def resolve_single_prompt_input(args: argparse.Namespace, stdin: Any = sys.stdin
             args.prompt = stdin_prompt
 
 
+def _warn_native_fallback(probe: Dict[str, Any]) -> None:
+    """Make default native-to-local fallback visible without corrupting JSON stdout."""
+    reason = probe.get("reason", "UNKNOWN")
+    freshness = probe.get("freshness", "unavailable")
+    print(
+        f"Native advisor unavailable ({reason}; freshness={freshness}); falling back to local Python scorer.",
+        file=sys.stderr,
+    )
+
+
 # ───────────────────────────────────────────────────────────────
 # 6. CLI ENTRY POINT
 # ───────────────────────────────────────────────────────────────
@@ -4097,6 +4177,8 @@ Examples:
                 "freshness": probe.get("freshness", "unavailable"),
             }, indent=2))
             return 2
+        else:
+            _warn_native_fallback(probe)
 
     if args.force_native:
         print(json.dumps({"error": "Native advisor unavailable", "reason": "NATIVE_CALL_FAILED"}, indent=2))

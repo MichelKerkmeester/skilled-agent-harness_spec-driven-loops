@@ -19,6 +19,8 @@ import {
 const JSON_RPC_PROTOCOL_VERSION = '2025-06-18';
 const DEFAULT_TIMEOUT_MS = 30_000;
 const DEFAULT_SOCKET_DIR = '/tmp/mk-skill-advisor';
+const ADVISOR_VALIDATE_MAX_ATTEMPTS = 3;
+const ADVISOR_VALIDATE_RETRY_BASE_DELAY_MS = 250;
 const RESERVED_COMMANDS = new Set(['list-tools', 'completion']);
 
 const EXIT_SUCCESS = 0;
@@ -96,6 +98,12 @@ interface ToolResult {
 interface ToolPayloadResult {
   readonly payload: unknown;
   readonly isError: boolean;
+}
+
+interface RetryOptions {
+  readonly maxAttempts: number;
+  readonly sleepMsForAttempt: (attempt: number) => number;
+  readonly sleepFn?: (ms: number) => Promise<void>;
 }
 
 class CliUsageError extends Error {
@@ -1063,6 +1071,10 @@ function sleep(ms: number): Promise<void> {
   return new Promise((resolve) => setTimeout(resolve, ms));
 }
 
+function advisorValidateRetryDelayMs(attempt: number): number {
+  return ADVISOR_VALIDATE_RETRY_BASE_DELAY_MS * attempt;
+}
+
 function spawnLauncher(paths: RepoPaths): void {
   const child = spawn(process.execPath, [paths.launcherPath], {
     cwd: paths.repoRoot,
@@ -1264,6 +1276,29 @@ async function invokeToolPayload(toolName: string, args: Record<string, unknown>
   return extractToolPayload(toolName, result);
 }
 
+async function invokeWithRetry<T>(operation: () => Promise<T>, options: RetryOptions): Promise<T> {
+  let attempt = 1;
+  while (true) {
+    try {
+      return await operation();
+    } catch (error: unknown) {
+      if (attempt >= options.maxAttempts || !isRetryableError(error)) throw error;
+      await (options.sleepFn ?? sleep)(options.sleepMsForAttempt(attempt));
+      attempt += 1;
+    }
+  }
+}
+
+async function invokeAdvisorValidatePayload(args: Record<string, unknown>, timeoutMs: number, trusted: boolean, warmOnly: boolean): Promise<ToolPayloadResult> {
+  return invokeWithRetry(
+    () => invokeToolPayload('advisor_validate', args, timeoutMs, trusted, warmOnly),
+    {
+      maxAttempts: ADVISOR_VALIDATE_MAX_ATTEMPTS,
+      sleepMsForAttempt: advisorValidateRetryDelayMs,
+    },
+  );
+}
+
 function generationFromPayload(payload: unknown): unknown {
   return getDataRecord(payload)?.generation ?? null;
 }
@@ -1325,7 +1360,9 @@ export async function runSkillAdvisorCli(argv: string[], io: CliIo = { stdout: p
 
     const invoked = validated.tool.name === 'skill_graph_scan'
       ? await runSkillGraphScanJob(validated.args, parsed.timeoutMs, parsed.trusted, parsed.warmOnly)
-      : await invokeToolPayload(validated.tool.name, validated.args, parsed.timeoutMs, parsed.trusted, parsed.warmOnly);
+      : validated.tool.name === 'advisor_validate'
+        ? await invokeAdvisorValidatePayload(validated.args, parsed.timeoutMs, parsed.trusted, parsed.warmOnly)
+        : await invokeToolPayload(validated.tool.name, validated.args, parsed.timeoutMs, parsed.trusted, parsed.warmOnly);
     await writeLine(io.stdout, renderPayload(invoked.payload, parsed.format, validated.tool.name));
     return invoked.isError ? EXIT_RUNTIME : EXIT_SUCCESS;
   } catch (error: unknown) {
@@ -1370,11 +1407,13 @@ export const __testing = {
   EXIT_PROTOCOL,
   EXIT_RETRYABLE,
   EXIT_USAGE,
+  advisorValidateRetryDelayMs,
   commandMap,
   closestCommand,
   ensureSocketEnvironment,
   exitCodeForError,
   findRepoPaths,
+  invokeWithRetry,
   renderCompletion,
   renderToolList,
   resolvePropertyName,

@@ -93,11 +93,94 @@ For each query, capture:
 
 ### Evidence
 
-- The 3 queries verbatim.
-- The top-10 result paths for each.
-- The rank-pair table.
-- An honest note: if the decoy ranks above the target, IS the decoy actually a better answer for this query? (Test files can sometimes be the most explicit single source for a behavior — that's a legitimate edge case, not a ranker failure.)
-- Active provider from memory_health.
+- The 3 queries verbatim:
+  - Query A: `where are embedding results cached by content hash to skip recomputation`
+  - Query B: `core class that opens the sqlite-vec virtual table for runtime vector queries`
+  - Query C: `primary entry point that constructs concrete embedding provider instances and resolves auto cascade`
+- Native Code Graph status before retrying the commands:
+
+```text
+plugin_id=mk-code-graph
+cache_ttl_ms=5000
+spec_folder=auto
+resume_mode=minimal
+messages_transform_enabled=true
+messages_transform_mode=schema_aligned
+runtime_ready=false
+node_binary=node
+bridge_timeout_ms=15000
+bridge_path=/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-code-graph/mcp_server/plugin_bridges/mk-code-graph-bridge.mjs
+last_runtime_error=Bridge skipped: SOCKET_ABSENT (exit=75); plugin injection will no-op
+cache_entries=0
+cache=empty
+```
+
+- Code Index CLI tool availability check:
+
+```text
+code_graph_scan
+code_graph_query
+code_graph_status
+code_graph_context
+code_graph_classify_query_intent
+code_graph_verify
+code_graph_apply
+detect_changes
+```
+
+- Query A command output:
+
+```json
+{
+  "status": "error",
+  "error": "backend unavailable: connect ENOENT /tmp/mk-code-index/daemon-ipc.sock",
+  "exitCode": 75
+}
+```
+
+- Query B command output:
+
+```json
+{
+  "status": "error",
+  "error": "backend unavailable: connect ENOENT /tmp/mk-code-index/daemon-ipc.sock",
+  "exitCode": 75
+}
+```
+
+- Query C command output:
+
+```json
+{
+  "status": "error",
+  "error": "backend unavailable: connect ENOENT /tmp/mk-code-index/daemon-ipc.sock",
+  "exitCode": 75
+}
+```
+
+- Top-10 result paths for each query: BLOCKED. No top-10 result paths were returned because every `code_graph_context` invocation failed with `exitCode: 75` and `connect ENOENT /tmp/mk-code-index/daemon-ipc.sock`.
+- Rank-pair table:
+
+```text
+| Query | Semantic target        | Target rank | Lexical decoy                     | Decoy rank | Target > Decoy? |
+|-------|------------------------|------------:|-----------------------------------|-----------:|----------------|
+| A     | embedding-cache.ts     | BLOCKED     | embedding-circuit-breaker.vitest.ts | BLOCKED  | BLOCKED        |
+| B     | vector-index-store.ts  | BLOCKED     | vector-index-impl.vitest.ts       | BLOCKED    | BLOCKED        |
+| C     | factory.ts             | BLOCKED     | embeddings-ollama-factory.vitest.ts | BLOCKED  | BLOCKED        |
+```
+
+- Honest note: unable to assess whether any decoy is actually a better answer because no ranked result lists were produced.
+- Active provider from `memory_health`: BLOCKED. Native MCP `memory_health` returned this output on repeated attempts:
+
+```text
+MCP error -32001: backend recycled; retry
+```
+
+- Spec Memory CLI fallback for `memory_health` returned this output:
+
+```text
+@spec-kit/mcp-server dist is stale. Run: cd .opencode/skills/system-spec-kit/mcp_server && npm run build
+```
 
 ## 4. PASS PREDICATE
 
@@ -107,3 +190,5 @@ A FAIL signal indicates one of:
 3. The corpus genuinely lacks an alternative to the decoy file (sparse-content issue, not a ranker issue).
 
 Differentiate (1)/(2) from (3) by inspecting the top-10 — if MANY test/decoy files cluster at the top and the impl is buried, it's (1)/(2). If the impl simply doesn't have rich content, it's (3) and the test is inconclusive.
+
+Result: BLOCKED — `code_graph_context` could not execute because the Code Index backend socket was absent, and `memory_health` could not provide the active provider because the native backend recycled and the CLI fallback reported stale dist.

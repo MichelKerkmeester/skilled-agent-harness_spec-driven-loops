@@ -53,18 +53,51 @@ The command loads `doctor_update.yaml` and uses tier-aware interactive mode. Sho
 
 ### Evidence
 
-- Prompt transcript showing single interactive mode selection and tier-aware behavior.
-- Evidence that short steps ran without individual prompts.
-- Combined medium prompt covering code-graph and eval.
-- Long-pole memory prompt including `5-15 min` or equivalent ETA language.
-- State log mapping steps to tiers and outcomes.
+- BLOCKED before invoking `/doctor:update`: Command step 1 requires `Prepare a disposable workspace with mixed subsystem states.`, but this run's allowed write paths permit edits only to `.opencode/skills/system-spec-kit/manual_testing_playbook/23--doctor-commands/doctor-update-tier-aware-default.md`. Preparing a disposable workspace would require creating/modifying files outside the allowed path.
+- BLOCKED before invoking `/doctor:update`: the scenario metadata says `Destructive: Potentially; disposable workspace only.`
+- Read of `.opencode/commands/doctor/update.md` confirmed the default command has no suffix and obsolete mode suffixes are invalid:
+
+```text
+3: argument-hint: "[--force] [--no-snapshot] [--cleanup-legacy] [--migrate] [--keep-snapshots] [--resume-bootstrap]"
+38: ## Routing Rules
+40: - This command is always interactive; deleted mode suffixes are invalid.
+46: - Every terminal path writes the update state log defined by the YAML workflow.
+```
+
+- Read of `.opencode/commands/doctor/assets/doctor_update.yaml` confirmed running the real workflow would write outside the allowed path:
+
+```text
+18:   state_log: "mcp_server/database/.doctor-update.last-run.json"
+98: mutation_boundaries:
+99:   allowed_targets:
+100:     - ".opencode/skills/system-code-graph/mcp_server/database/code-graph.sqlite"  # structural code graph DB (skill-local)
+102:     - "mcp_server/database/context-index.sqlite"  # canonical memory DB
+104:     - ".opencode/skills/system-skill-advisor/mcp_server/database/skill-graph.sqlite"  # standalone advisor routing graph DB
+106:     - ".opencode/skills/deep-loop-runtime/database/deep-loop-graph.sqlite"  # research/review coverage graph DB
+108:     - "mcp_server/database/speckit-eval.db"  # eval/ablation DB
+110:     - "mcp_server/database/.doctor-update.flock"  # single-instance lock
+112:     - "mcp_server/database/.doctor-update.last-run.json"  # orchestrator state log
+386:   phase_5_dependency_order_execute:
+397:       code-graph: "code_graph_scan({ incremental: false })"
+399:         action: "memory_index_scan({ incremental: false, force: true })"
+456:       skill-graph: "mk_skill_advisor.skill_graph_scan({})"
+457:       advisor: "mk_skill_advisor.advisor_rebuild({ force: true }) + mk_skill_advisor.advisor_validate({})"
+459:       speckit-eval: "eval_run_ablation({})"
+501:   phase_10_state_log_unlock_cleanup:
+503:     state.log: "write .doctor-update.last-run.json with timestamps, durations, snapshot paths"
+```
+
+- Glob check for the state log path returned an existing state log path, confirming the real command's final artifact path is outside the only allowed write path:
+
+```text
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/database/.doctor-update.last-run.json
+```
+
+- No prompt transcript, tier-aware prompt sequence, final dashboard, or fresh `.doctor-update.last-run.json` was captured because invoking the real command would violate the user-provided write-path restriction and the playbook's own disposable-workspace precondition is unavailable under that restriction.
 
 ### Pass / Fail
 
-- **PASS**: short steps run silently, medium steps share one combined prompt, the memory rebuild prompt includes explicit ETA language, and the observed tier classification matches the command contract.
-- **FAIL**: single interactive mode behaves like an unattended run, prompts every step individually, silently starts the memory rebuild, or misclassifies the documented tiers.
-- **SKIP**: the sandbox cannot produce mixed subsystem states that exercise all three tiers.
-- **UNAUTOMATABLE**: the runtime cannot invoke default `/doctor:update` interactively.
+- **BLOCKED**: the current run forbids all writes except this scenario file, while the scenario requires a disposable workspace and the real `/doctor:update` workflow writes database, lock, snapshot, and state-log artifacts outside the allowed path.
 
 ### Failure Triage
 

@@ -40,6 +40,52 @@ Verify dispatcher/schema validation catches malformed code_graph tool calls.
 
 Each malformed call returns `status:"error"` or schema validation error naming missing fields. Valid shape reaches the handler.
 
+### Evidence
+
+Command: `node .opencode/bin/code-index.cjs code_graph_query --json '{"operation":"outline"}' --format json --timeout-ms 3000 --warm-only`
+
+```json
+{
+  "status": "error",
+  "error": "Missing required field: subject",
+  "exitCode": 64
+}
+```
+
+Command: `node .opencode/bin/code-index.cjs code_graph_query --json '{"query":"anything"}' --format json --timeout-ms 3000 --warm-only`
+
+```json
+{
+  "status": "error",
+  "error": "Missing required fields: operation, subject",
+  "exitCode": 64
+}
+```
+
+Command: `node .opencode/bin/code-index.cjs detect_changes --json '{}' --format json --timeout-ms 3000 --warm-only`
+
+```json
+{
+  "status": "error",
+  "error": "Missing required field: diff",
+  "exitCode": 64
+}
+```
+
+Valid routing check command: `node .opencode/bin/code-index.cjs code_graph_query --json '{"operation":"outline","subject":".opencode/skills/system-code-graph/manual_testing_playbook/06--mcp-tool-surface/tool-call-shape-validation.md"}' --format json --timeout-ms 3000 --warm-only`
+
+```json
+{
+  "status": "error",
+  "error": "backend unavailable: connect ENOENT /tmp/mk-code-index/daemon-ipc.sock",
+  "exitCode": 75
+}
+```
+
+### Pass/Fail
+
+BLOCKED - malformed calls returned field-specific validation errors, but the valid routing case could not reach the handler because the warm code-index daemon socket was missing: `/tmp/mk-code-index/daemon-ipc.sock`.
+
 ### Cleanup
 
 None.

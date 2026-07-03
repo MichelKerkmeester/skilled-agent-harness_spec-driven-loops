@@ -55,19 +55,19 @@ The command loads `doctor_update.yaml`, skips the status decision gate, begins t
 
 ### Evidence
 
-- Pre-run checksums for the active resolved profile Memory MCP database and the vector DB.
-- Transcript showing `/doctor:update` entered the memory rebuild step.
-- Transcript showing Ctrl-C was sent and SIGINT handling ran.
-- State log with cancellation timestamp, rollback reason, snapshot path, and final status cancelled.
-- Exit code `130`.
-- Post-cancel DB checksums matching the pre-run baseline or snapshot.
+- BLOCKED before executing Command 1 because the scenario requires creating a disposable workspace, but the run constraints allow writes only to this scenario file.
+- Scenario text read from this file:
+  - Line 13: `This is destructive and requires a disposable workspace. The test is only truthful when a real SQLite rebuild is interrupted and the post-cancel DB is compared against the pre-rebuild baseline.`
+  - Line 23: ``- Preconditions: A long-pole full rebuild reaches `memory_index_scan`; snapshots are enabled; the workspace is disposable.``
+  - Line 42: `1. Create a disposable workspace with the current spec-kit databases.`
+- User constraint for this run: `Do NOT modify, create, or delete any file OTHER than the single scenario file named below.`
+- Allowed write path for this run: `.opencode/skills/system-spec-kit/manual_testing_playbook/23--doctor-commands/doctor-update-G7-sigint.md (this file only)`
+- Missing precondition: a disposable workspace that can be created or used for the destructive `/doctor:update` SIGINT run without writing any files outside this scenario file.
+- `/doctor:update` was not started; no memory rebuild, SIGINT, exit code, state log, or DB checksum comparison was produced.
 
 ### Pass / Fail
 
-- **PASS**: SIGINT is caught, restore completes, exit code is 130, state log records cancellation, and affected DB checksums match the baseline.
-- **FAIL**: SIGINT kills the process without orchestrator handling, exit code is not 130, no snapshot is restored, state log is missing, or the DB is left half-rebuilt.
-- **SKIP**: no long-pole rebuild can be reached in the disposable workspace.
-- **UNAUTOMATABLE**: the runtime cannot send a real Ctrl-C to a running `/doctor:update` process.
+- **BLOCKED**: Command 1 requires creating a disposable workspace, but this run is constrained to write only this scenario file. The destructive `/doctor:update` SIGINT test cannot truthfully run without that disposable workspace.
 
 ### Failure Triage
 

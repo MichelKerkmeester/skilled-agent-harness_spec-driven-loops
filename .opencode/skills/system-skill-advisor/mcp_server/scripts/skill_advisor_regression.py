@@ -149,8 +149,7 @@ def evaluate_case(
         # Gold labels may use a renamed alias (e.g. sk-deep-research) of the
         # live skill id (deep-research). Match alias-aware so the harness does
         # not flag legitimate renames as failures.
-        actual_skill = top["skill"]
-        top_ok = any(advisor.skill_matches_alias(actual_skill, candidate) for candidate in expected_top)
+        top_ok = any(advisor.recommendation_matches_alias(top, candidate) for candidate in expected_top)
 
     if expect_result and top is not None and expect_kind:
         kind_ok = top.get("kind") == expect_kind

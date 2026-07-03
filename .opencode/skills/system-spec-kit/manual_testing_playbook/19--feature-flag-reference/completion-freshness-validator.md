@@ -51,12 +51,31 @@ Validate SPECKIT_COMPLETION_FRESHNESS and SPECKIT_COMPLETION_FRESHNESS_ENFORCE w
 
 ### Evidence
 
-Sandbox diff showing the stale condition, all four validation command transcripts with exit codes, and a severity comparison table.
+BLOCKED before validation commands could be executed.
+
+Blocking instruction conflict:
+
+```text
+BANNED OPERATIONS
+- Do NOT modify, create, or delete any file OTHER than the single scenario file named below.
+- Do NOT touch any other manual testing playbook scenario file.
+
+ALLOWED WRITE PATHS
+- .opencode/skills/system-spec-kit/manual_testing_playbook/19--feature-flag-reference/completion-freshness-validator.md (this file only)
+```
+
+Scenario commands that require prohibited writes:
+
+```text
+1. Copy a complete Level 1 spec folder into a disposable sandbox.
+2. Modify an in-scope spec doc after the stored continuity fingerprint is present, or intentionally set a stale `session_dedup.fingerprint` in the sandbox frontmatter.
+```
+
+Because creating a sandbox spec folder and modifying its contents would create and modify files outside the single allowed write path, no sandbox diff or validation command transcript was produced.
 
 ### Pass / Fail
 
-- **Pass**: disabled, warn, enforce, and disabled rollback modes all match expected severity and exit behavior.
-- **Fail**: freshness runs while disabled, warn mode blocks unexpectedly, enforce mode does not block stale state, or disabling leaves freshness findings active.
+- **BLOCKED**: the scenario requires creating and modifying a disposable sandbox spec folder, but the execution constraints allow writes only to this scenario file.
 
 ### Failure Triage
 

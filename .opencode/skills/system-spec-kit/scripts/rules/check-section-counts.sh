@@ -79,16 +79,27 @@ _section_count_acceptance_scenarios() {
 }
 
 _section_expected_spec_h2() {
-    local level="$1"
-    local contract_json="$2"
-    node - "$level" "$contract_json" <<'NODE'
-const [level, raw] = process.argv.slice(2);
-const contract = JSON.parse(raw);
-const count = Object.entries(contract.sectionGates || {})
-  .filter(([, levels]) => Array.isArray(levels) && levels.includes(level))
-  .length;
-process.stdout.write(String(count || 5));
-NODE
+    local helper_script="$1"
+    local level="$2"
+    local expected_h2
+    expected_h2="$(_section_expected_template_h2 "$helper_script" "$level" "spec.md")"
+
+    # Fall back to current template minimums so helper failures do not disable the check.
+    if [[ "$expected_h2" -eq 0 ]]; then
+        case "$level" in
+            3+)
+                expected_h2=18
+                ;;
+            3)
+                expected_h2=14
+                ;;
+            *)
+                expected_h2=7
+                ;;
+        esac
+    fi
+
+    echo "$expected_h2"
 }
 
 _section_expected_template_h2() {
@@ -110,6 +121,8 @@ NODE
 # 2. MAIN RUN_CHECK FUNCTION
 # ───────────────────────────────────────────────────────────────
 
+# Rule files publish status fields to the sourcing validator.
+# shellcheck disable=SC2034
 run_check() {
     local folder="$1"
     local level="$2"
@@ -149,11 +162,9 @@ run_check() {
     requirements=$(_section_count_requirements "$folder")
     scenarios=$(_section_count_acceptance_scenarios "$folder")
 
-    # Define minimum section expectations from the shared Level contract.
+    # Define minimum section expectations from each document's template contract.
     local min_spec_h2 min_plan_h2 min_requirements min_scenarios
-    local contract_json
-    contract_json="$(node "$helper_script" level-contract "$declared_level")"
-    min_spec_h2="$(_section_expected_spec_h2 "$declared_level" "$contract_json")"
+    min_spec_h2="$(_section_expected_spec_h2 "$helper_script" "$declared_level")"
     min_plan_h2="$(_section_expected_template_h2 "$helper_script" "$declared_level" "plan.md")"
     [[ "$min_plan_h2" -eq 0 ]] && min_plan_h2=4
 

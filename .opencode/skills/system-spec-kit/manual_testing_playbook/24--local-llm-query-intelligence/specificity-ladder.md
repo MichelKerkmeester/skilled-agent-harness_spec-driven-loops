@@ -72,11 +72,66 @@ For each level, classify the top-3 results as:
 
 ### Evidence
 
-- The 3 queries verbatim.
-- The top-5 file paths for each.
-- A classification table mapping each top-3 result to A/M/S level.
-- An honest note: if Level 1 (abstract) returns a source file as #1, is the file actually a reasonable abstract answer (e.g., a heavily-commented file with an introductory paragraph), or is the ranking miscalibrated?
-- Active provider from memory_health.
+- The 3 queries verbatim:
+  - `local embeddings for memory and code search`
+  - `Q8_0 GGUF quantization for sentence embeddings via ollama`
+  - `OLLAMA_DEFAULT_MODEL_PATH constant in ollama-availability`
+- Search transport attempted because the direct `memory_search` MCP tool was not exposed in this runtime's visible tool namespace:
+  - `node .opencode/bin/spec-memory.cjs memory_search --json '{"query":"local embeddings for memory and code search","limit":5}' --format json --timeout-ms 10000`
+- Actual output from the Level 1 search attempt:
+  ```
+  @spec-kit/mcp-server dist is stale. Run: cd .opencode/skills/system-spec-kit/mcp_server && npm run build
+  ```
+- Top-5 file paths for each:
+  - Level 1: BLOCKED before results; no top-5 returned.
+  - Level 2: BLOCKED because the Level 1 required command showed the Spec Kit Memory MCP server dist is stale; no top-5 returned.
+  - Level 3: BLOCKED because the Level 1 required command showed the Spec Kit Memory MCP server dist is stale; no top-5 returned.
+- Classification table mapping each top-3 result to A/M/S level:
+  | Level | Top-3 result | Class | Evidence |
+  |-------|--------------|-------|----------|
+  | 1 (ABS) | BLOCKED | N/A | `@spec-kit/mcp-server dist is stale. Run: cd .opencode/skills/system-spec-kit/mcp_server && npm run build` |
+  | 2 (MID) | BLOCKED | N/A | Not run after required memory_search transport was confirmed unavailable/stale. |
+  | 3 (SPEC) | BLOCKED | N/A | Not run after required memory_search transport was confirmed unavailable/stale. |
+- Honest note for Level 1: no result was returned, so there is no #1 result to classify as a reasonable abstract answer or a miscalibrated source-file match.
+- Active provider from memory_health:
+  - `node .opencode/bin/spec-memory.cjs memory_health --format json --timeout-ms 10000`
+  - Actual output:
+    ```
+    @spec-kit/mcp-server dist is stale. Run: cd .opencode/skills/system-spec-kit/mcp_server && npm run build
+    ```
+  - Active provider could not be observed because `memory_health` was blocked by the stale Spec Kit MCP server dist.
+- Spec Kit Memory plugin status observed via `mk_spec_memory_status()`:
+  ```
+  plugin_id=mk-spec-memory
+  enabled=true
+  disabled_reason=none
+  cache_ttl_ms=5000
+  max_brief_chars=2400
+  max_cache_entries=200
+  runtime_ready=false
+  node_binary=node
+  bridge_timeout_ms=3000
+  cli_timeout_ms=2500
+  bridge_path=[spec-memory-bridge]
+  last_bridge_status=fail_open
+  last_error_code=EXIT_69
+  last_duration_ms=50
+  bridge_invocations=8
+  continuity_lookups=7
+  cache_entries=0
+  cache_hits=0
+  cache_misses=7
+  cache_hit_rate=0
+  warm_status=fail_open
+  warm_error=EXIT_69
+  warm_route=cli
+  warm_retryable=false
+  warm_exit_code=69
+  ```
+
+### Pass/Fail
+
+BLOCKED — The required Spec Kit Memory search and health commands could not run because the local MCP server dist is stale; fixing it would require running the requested build command, which would write outside the single allowed scenario file.
 
 ## 4. NOTES
 

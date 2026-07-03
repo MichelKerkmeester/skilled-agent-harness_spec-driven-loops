@@ -17,10 +17,33 @@ const { checkPackageFreshness } = require(path.join(opencodeDir, 'skills', 'syst
 const defaultSocketDir = '/tmp/mk-spec-memory';
 const socketFileName = 'daemon-ipc.sock';
 const allowStale = process.env.SPECKIT_SPEC_MEMORY_CLI_DEV_ALLOW_STALE === '1';
+const EXIT_PROTOCOL = 69;
+const EXIT_RETRYABLE = 75;
 
-function fail(message) {
-  process.stderr.write(`${message}\n`);
-  process.exit(69);
+function requestedFormat(argv) {
+  for (let index = 0; index < argv.length; index += 1) {
+    const token = argv[index];
+    if (token === '--format') return argv[index + 1] || 'json';
+    const inline = token.match(/^--format=(.*)$/);
+    if (inline) return inline[1];
+  }
+  return 'json';
+}
+
+function fail(message, exitCode = EXIT_PROTOCOL, fields = {}) {
+  const format = requestedFormat(process.argv.slice(2));
+  if (format === 'json' || format === 'jsonl') {
+    const payload = {
+      status: 'error',
+      error: message,
+      exitCode,
+      ...fields,
+    };
+    process.stderr.write(`${format === 'jsonl' ? JSON.stringify(payload) : JSON.stringify(payload, null, 2)}\n`);
+  } else {
+    process.stderr.write(`${message}\n`);
+  }
+  process.exit(exitCode);
 }
 
 function ensureFreshDist() {
@@ -29,7 +52,9 @@ function ensureFreshDist() {
     entry: 'spec-memory-cli',
     allowStale,
   });
-  if (result.status === 'missing' || result.stale) fail(result.message);
+  if (result.status === 'missing' || result.stale) {
+    fail(result.message, EXIT_RETRYABLE, { staleDistWarning: result.message });
+  }
   if (result.status === 'error') {
     process.stderr.write(`WARNING: ${result.message}\n`);
   }

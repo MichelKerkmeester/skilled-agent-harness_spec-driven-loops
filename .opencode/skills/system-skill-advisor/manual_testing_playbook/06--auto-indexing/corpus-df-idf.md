@@ -60,6 +60,97 @@ touch .opencode/skills/system-spec-kit/SKILL.md
 | Archived skills in IDF | Document count exceeds active skill count | Audit corpus filter against `z_archive/` and `z_future/`. |
 | Stale IDF after active change | Statistics unchanged after active touch | Confirm write path and debounce flush. |
 
+### Evidence
+
+Scenario file was read in full before execution.
+
+Read-only advisor status check:
+
+```json
+{
+  "status": "ok",
+  "data": {
+    "freshness": "unavailable",
+    "generation": 9476,
+    "trustState": {
+      "state": "stale",
+      "reason": "SIGTERM",
+      "generation": 9476,
+      "checkedAt": "2026-07-03T02:14:57.239Z",
+      "lastLiveAt": null
+    },
+    "lastGenerationBump": "2026-07-02T05:27:14.803Z",
+    "lastScanAt": "2026-07-02T05:27:14.803Z",
+    "skillCount": 26,
+    "laneWeights": {
+      "explicit_author": 0.42,
+      "lexical": 0.28,
+      "graph_causal": 0.13,
+      "derived_generated": 0.12,
+      "semantic_shadow": 0.05
+    }
+  }
+}
+```
+
+Active `SKILL.md` path check:
+
+```text
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/sk-git/SKILL.md
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/cli-opencode/SKILL.md
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/mcp-click-up/SKILL.md
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/deep-loop-workflows/deep-context/SKILL.md
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/deep-loop-workflows/deep-research/SKILL.md
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/mcp-code-mode/SKILL.md
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/sk-doc/SKILL.md
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/mcp-figma/SKILL.md
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/deep-loop-workflows/SKILL.md
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/sk-design/design-md-generator/SKILL.md
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/deep-loop-workflows/deep-ai-council/SKILL.md
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/mcp-open-design/SKILL.md
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/sk-code-review/SKILL.md
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/sk-design/SKILL.md
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-skill-advisor/SKILL.md
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-code-graph/SKILL.md
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/sk-design/design-foundations/SKILL.md
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/deep-loop-workflows/deep-improvement/SKILL.md
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/deep-loop-workflows/deep-review/SKILL.md
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/sk-design/design-audit/SKILL.md
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/sk-design/design-motion/SKILL.md
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/sk-design/design-interface/SKILL.md
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/deep-loop-runtime/SKILL.md
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/sk-prompt-models/SKILL.md
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/SKILL.md
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/sk-code/SKILL.md
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/cli-claude-code/SKILL.md
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/sk-prompt/SKILL.md
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/mcp-chrome-devtools/SKILL.md
+```
+
+Archive/future precondition checks:
+
+```text
+z_archive glob output included:
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/z_archive/cli-codex-retired/SKILL.retired.md
+
+z_future glob output:
+No files found
+```
+
+The required scenario commands were not executed:
+
+```bash
+touch .opencode/skills/sk-git/SKILL.md
+touch .opencode/skills/sk-doc/SKILL.md
+touch .opencode/skills/system-spec-kit/SKILL.md
+```
+
+Reason: the session-level allowed write path is only `.opencode/skills/system-skill-advisor/manual_testing_playbook/06--auto-indexing/corpus-df-idf.md`; the scenario commands would modify `.opencode/skills/sk-git/SKILL.md`, `.opencode/skills/sk-doc/SKILL.md`, and `.opencode/skills/system-spec-kit/SKILL.md` mtimes outside the allowed write path. The archived-skill touch step would also require modifying a file under `.opencode/skills/z_archive/`, which is outside the allowed write path.
+
+### Pass/Fail
+
+BLOCKED - The scenario cannot be executed under the provided write restrictions because its required `touch` commands modify files outside the single allowed write path. Additionally, `advisor_status` reported `freshness: "unavailable"` and `trustState.state: "stale"` with `reason: "SIGTERM"`, so the daemon-backed active IDF state was not available for the expected recomputation checks.
+
 ---
 
 ## 4. SOURCE FILES

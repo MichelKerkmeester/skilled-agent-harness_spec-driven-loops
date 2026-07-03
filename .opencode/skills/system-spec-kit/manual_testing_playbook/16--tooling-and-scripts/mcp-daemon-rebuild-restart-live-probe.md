@@ -47,12 +47,31 @@ Source diff non-empty on expected paths; targeted vitest exits 0; `dist/` carrie
 
 ### Evidence
 
-`/tmp/278-source-diff.txt` (source diff), `/tmp/278-vitest.txt` (vitest transcript), grep + stat output (dist verification), runtime restart confirmation, and the live MCP probe response with the post-fix field highlighted
+BLOCKED before command execution.
+
+Observed scenario file content:
+
+```text
+38: 1. `git diff mcp_server/ > /tmp/278-source-diff.txt && wc -l /tmp/278-source-diff.txt` — confirm source diff non-empty and on expected paths
+39: 2. `cd .opencode/skills/system-spec-kit/mcp_server && npx vitest run <suite> 2>&1 | tee /tmp/278-vitest.txt` — confirm exit 0
+40: 3. `cd .opencode/skills/system-spec-kit/mcp_server && npm run build && grep -l "<new-marker>" dist/<file>.js && stat -f "%m" dist/<file>.js src/<file>.ts` — confirm marker present and dist mtime > source mtime
+41: 4. Restart the MCP-owning runtime per `references/mcp-rebuild-restart-protocol.md` (OpenCode: reload tools; Claude Code: restart binary; OpenCode: restart binary)
+42: 5. Issue the live MCP probe per `references/live-probe-template.md` for the affected subsystem (`memory_context`, `memory_search`, `code_graph_query`, or `memory_causal_stats`) and assert the post-fix contract field is present
+```
+
+Blocking constraints from the execution request:
+
+```text
+Do NOT modify, create, or delete any file OTHER than the single scenario file named below.
+ALLOWED WRITE PATHS
+- .opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/mcp-daemon-rebuild-restart-live-probe.md (this file only)
+```
+
+Commands 1 and 2 require creating `/tmp/278-source-diff.txt` and `/tmp/278-vitest.txt`, which are outside the only allowed write path. Command 2 also leaves `<suite>` unresolved, and command 3 leaves `<new-marker>`, `dist/<file>.js`, and `src/<file>.ts` unresolved. The scenario does not name the representative TypeScript fix, affected file, marker, vitest suite, runtime restart command, or exact live probe payload to execute.
 
 ### Pass / Fail
 
-- **Pass**: all 4 parts verified, live probe surfaces post-fix contract
-- **Fail**: vitest passes but dist marker missing (stale build), dist marker present but live probe returns pre-fix payload (stale daemon — the phantom-fix pathology), or any step skipped
+- **BLOCKED**: commands require writes outside the only allowed write path (`/tmp/278-source-diff.txt`, `/tmp/278-vitest.txt`) and contain unresolved placeholders (`<suite>`, `<new-marker>`, `dist/<file>.js`, `src/<file>.ts`) for the representative TypeScript fix.
 
 ### Failure Triage
 

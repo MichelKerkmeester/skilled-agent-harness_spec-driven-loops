@@ -85,3 +85,135 @@ cd .opencode/skills/system-skill-advisor/mcp_server && npm exec -- vitest run te
 - Playbook ID: NC-010
 - Canonical root source: manual_testing_playbook.md
 - Feature file path: 01--native-mcp-tools/shadow-delta-sink.md
+
+---
+
+## 6. EVIDENCE
+
+Precondition/env check command:
+
+```bash
+pwd; printenv SPECKIT_ADVISOR_SHADOW_DELTA_PATH; printenv SPECKIT_ADVISOR_SHADOW_DELTA_ENABLED; printenv SPECKIT_SKILL_ADVISOR_HOOK_DISABLED
+```
+
+Output:
+
+```text
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+```
+
+Live sink file presence check:
+
+```text
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-skill-advisor/mcp_server/data/shadow-deltas.jsonl
+```
+
+Shadow sink contract test file presence check:
+
+```text
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-skill-advisor/mcp_server/tests/shadow-sink.vitest.ts
+```
+
+Live sink metadata before default-off MCP call:
+
+```bash
+stat -f '%N %z %m' '.opencode/skills/system-skill-advisor/mcp_server/data/shadow-deltas.jsonl'
+```
+
+Output:
+
+```text
+.opencode/skills/system-skill-advisor/mcp_server/data/shadow-deltas.jsonl 300200 1779564968
+```
+
+Default-off MCP call:
+
+```text
+advisor_recommend({"prompt":"build a typescript handler with vitest coverage","options":{"topK":3}})
+```
+
+Observed MCP response:
+
+```json
+{
+  "status": "ok",
+  "data": {
+    "workspaceRoot": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public",
+    "effectiveThresholds": {
+      "confidenceThreshold": 0,
+      "uncertaintyThreshold": 1,
+      "confidenceOnly": false
+    },
+    "recommendations": [],
+    "ambiguous": false,
+    "freshness": "unavailable",
+    "trustState": {
+      "state": "unavailable",
+      "reason": "advisor_unavailable",
+      "generation": 9476,
+      "checkedAt": "2026-07-03T01:49:40.277Z",
+      "lastLiveAt": null
+    },
+    "generatedAt": "2026-07-03T01:49:40.277Z",
+    "cache": {
+      "hit": false,
+      "sourceSignaturePresent": false
+    },
+    "warnings": [
+      "advisor_unavailable"
+    ],
+    "abstainReasons": [
+      "Skill advisor freshness is unavailable; returning fail-open empty recommendations."
+    ]
+  }
+}
+```
+
+Live sink metadata after default-off MCP call and scratch path existence check:
+
+```bash
+stat -f '%N %z %m' '.opencode/skills/system-skill-advisor/mcp_server/data/shadow-deltas.jsonl'; test -e '/tmp/skill-advisor-playbook/shadow-deltas.jsonl' && stat -f '%N %z %m' '/tmp/skill-advisor-playbook/shadow-deltas.jsonl'
+```
+
+Output:
+
+```text
+.opencode/skills/system-skill-advisor/mcp_server/data/shadow-deltas.jsonl 300200 1779564968
+```
+
+Advisor status check:
+
+```json
+{
+  "status": "ok",
+  "data": {
+    "freshness": "unavailable",
+    "generation": 9476,
+    "trustState": {
+      "state": "stale",
+      "reason": "SIGTERM",
+      "generation": 9476,
+      "checkedAt": "2026-07-03T01:50:48.128Z",
+      "lastLiveAt": null
+    },
+    "lastGenerationBump": "2026-07-02T05:27:14.803Z",
+    "lastScanAt": "2026-07-02T05:27:14.803Z",
+    "skillCount": 26,
+    "laneWeights": {
+      "explicit_author": 0.42,
+      "lexical": 0.28,
+      "graph_causal": 0.13,
+      "derived_generated": 0.12,
+      "semantic_shadow": 0.05
+    }
+  }
+}
+```
+
+The enabled-sink command and shadow-sink contract test were not run after the precondition failure. The scenario requires "MCP server built. Daemon reachable." but the real MCP response reported `advisor_unavailable`, and `advisor_status` reported `freshness: "unavailable"` with `trustState.reason: "SIGTERM"`.
+
+---
+
+## 7. PASS/FAIL
+
+BLOCKED - The daemon reachable precondition is not satisfied: `advisor_recommend` returned `warnings: ["advisor_unavailable"]`, and `advisor_status` returned `freshness: "unavailable"` with `trustState.reason: "SIGTERM"`.

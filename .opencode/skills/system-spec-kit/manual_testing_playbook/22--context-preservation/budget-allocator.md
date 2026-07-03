@@ -44,12 +44,54 @@ Each source.granted = min(source.floor, source.actualSize), unused floor added t
 
 ### Evidence
 
-Test output showing allocation values
+Command run:
+
+```text
+cd .opencode/skills/system-spec-kit/mcp_server && npx vitest run tests/budget-allocator.vitest.ts
+```
+
+Observed output:
+
+```text
+ RUN  v4.1.9 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit
+
+
+ Test Files  1 passed (1)
+      Tests  4 passed (4)
+   Start at  02:01:17
+   Duration  81ms (transform 15ms, setup 12ms, import 8ms, tests 2ms, environment 0ms)
+```
+
+Observed test assertions from `.opencode/skills/system-spec-kit/mcp_server/tests/budget-allocator.vitest.ts`:
+
+```text
+expect(DEFAULT_FLOORS).toEqual({
+  constitutional: 700,
+  codeGraph: 1200,
+  triggered: 400,
+  overflow: 800,
+});
+
+const result = allocateBudget(createDefaultSources(500, 1500, 100), 4000);
+expect(byName.constitutional).toMatchObject({
+  floor: DEFAULT_FLOORS.constitutional,
+  requested: 500,
+  granted: 500,
+  dropped: 0,
+});
+expect(result.totalUsed).toBeLessThanOrEqual(result.totalBudget);
+```
+
+Observed allocator logic from `.opencode/skills/system-spec-kit/shared/budget-allocator.ts`:
+
+```text
+const granted = Math.min(source.floor, source.actualSize);
+overflowPool += source.floor - granted;
+```
 
 ### Pass / Fail
 
-- **Pass**: floor allocation matches min(floor, actualSize) for each source
-- **Fail**: Any contradicting evidence appears or the pass condition is not met.
+- **PASS**: floor allocation matches `min(floor, actualSize)` for the asserted source, unused floor is added to overflow, and `budget-allocator.vitest.ts` passed 4/4 tests.
 
 ### Failure Triage
 
@@ -73,12 +115,43 @@ When sources need more than floor, overflow given by priority: constitutional > 
 
 ### Evidence
 
-Test output showing bonus allocations
+Command run:
+
+```text
+cd .opencode/skills/system-spec-kit/mcp_server && npx vitest run tests/budget-allocator.vitest.ts
+```
+
+Observed output:
+
+```text
+ RUN  v4.1.9 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit
+
+
+ Test Files  1 passed (1)
+      Tests  4 passed (4)
+   Start at  02:01:17
+   Duration  81ms (transform 15ms, setup 12ms, import 8ms, tests 2ms, environment 0ms)
+```
+
+Observed test assertions from `.opencode/skills/system-spec-kit/mcp_server/tests/budget-allocator.vitest.ts`:
+
+```text
+const result = allocateBudget(createDefaultSources(1200, 1800, 900), 4000);
+expect(byName.constitutional.granted).toBe(1200);
+expect(byName.codeGraph.granted).toBe(1800);
+expect(byName.triggered.granted).toBe(900);
+expect(result.totalUsed).toBe(3900);
+```
+
+Observed allocator priority order from `.opencode/skills/system-spec-kit/shared/budget-allocator.ts`:
+
+```text
+const PRIORITY_ORDER = ['constitutional', 'codeGraph', 'sessionState', 'triggered'] as const;
+```
 
 ### Pass / Fail
 
-- **Pass**: highest-priority sources receive overflow before lower-priority
-- **Fail**: Any contradicting evidence appears or the pass condition is not met.
+- **PASS**: highest-priority sources receive overflow before lower-priority sources in the asserted scenario, and `budget-allocator.vitest.ts` passed 4/4 tests.
 
 ### Failure Triage
 
@@ -102,12 +175,50 @@ As a context-and-code-graph validation operator, validate Total cap enforcement:
 
 ### Evidence
 
-Test output showing totalUsed and trim results
+Command run:
+
+```text
+cd .opencode/skills/system-spec-kit/mcp_server && npx vitest run tests/budget-allocator.vitest.ts
+```
+
+Observed output:
+
+```text
+ RUN  v4.1.9 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit
+
+
+ Test Files  1 passed (1)
+      Tests  4 passed (4)
+   Start at  02:01:17
+   Duration  81ms (transform 15ms, setup 12ms, import 8ms, tests 2ms, environment 0ms)
+```
+
+Observed test assertions from `.opencode/skills/system-spec-kit/mcp_server/tests/budget-allocator.vitest.ts`:
+
+```text
+const result = allocateBudget(createDefaultSources(10_000, 10_000, 10_000), 4000);
+expect(result.totalUsed).toBeLessThanOrEqual(4000);
+expect(result.allocations.every((allocation) => allocation.granted >= 0)).toBe(true);
+```
+
+Observed trim logic from `.opencode/skills/system-spec-kit/shared/budget-allocator.ts`:
+
+```text
+for (const name of [...PRIORITY_ORDER].reverse()) {
+  if (totalUsed <= totalBudget) break;
+  const allocation = allocations.find((entry) => entry.name === name);
+  if (!allocation) continue;
+
+  const trim = Math.min(totalUsed - totalBudget, allocation.granted);
+  allocation.granted -= trim;
+  allocation.dropped += trim;
+  totalUsed -= trim;
+}
+```
 
 ### Pass / Fail
 
-- **Pass**: totalUsed <= 4000 in all scenarios and trim follows reverse priority
-- **Fail**: Any contradicting evidence appears or the pass condition is not met.
+- **PASS**: `totalUsed <= 4000` is asserted for the over-cap scenario, trim iterates in reverse priority order, and `budget-allocator.vitest.ts` passed 4/4 tests.
 
 ### Failure Triage
 

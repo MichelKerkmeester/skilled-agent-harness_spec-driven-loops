@@ -145,3 +145,339 @@ PATH=/opt/homebrew/bin:$PATH node .opencode/plugins/tests/mk-goal-state.test.cjs
 - Playbook ID: CL-007
 - Canonical root source: manual_testing_playbook.md
 - Feature file path: 02--cli-hooks-and-plugin/goal-opencode-plugin.md
+
+---
+
+## 7. EVIDENCE
+
+### Preconditions
+
+Command file read confirmed `.opencode/commands/goal_opencode.md` exists and routes only through plugin tools:
+
+```text
+4: allowed-tools: mk_goal, mk_goal_status
+15: Manage the passive session goal through the `mk-goal` plugin. `/goal` is a state-free router: it resolves the requested action from `$ARGUMENTS` and dispatches to the `mk_goal` / `mk_goal_status` plugin tools, which own all goal state and session resolution.
+37: This command is state-free. It never reads or writes `.opencode/skills/.goal-state` directly.
+39: - Empty arguments or `show` route to `mk_goal_status`.
+40: - `set <objective>` routes to `mk_goal` with `action: "set"` and `objective: REST`.
+42: - `clear`, `complete`, and `pause [reason]` route to `mk_goal`.
+83: - Reads go through `mk_goal_status`; mutations go through `mk_goal`.
+```
+
+Grep evidence for direct state path and plugin tools in `.opencode/commands/goal_opencode.md`:
+
+```text
+Found 17 matches
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/commands/goal_opencode.md:
+  Line 4: allowed-tools: mk_goal, mk_goal_status
+
+  Line 15: Manage the passive session goal through the `mk-goal` plugin. `/goal` is a state-free router: it resolves the requested action from `$ARGUMENTS` and dispatches to the `mk_goal` / `mk_goal_status` plugin tools, which own all goal state and session resolution.
+
+  Line 37: This command is state-free. It never reads or writes `.opencode/skills/.goal-state` directly.
+
+  Line 39: - Empty arguments or `show` route to `mk_goal_status`.
+
+  Line 40: - `set <objective>` routes to `mk_goal` with `action: "set"` and `objective: REST`.
+
+  Line 41: - Bare text routes to `mk_goal` with `action: "set"` and `objective: QUERY`.
+
+  Line 42: - `clear`, `complete`, and `pause [reason]` route to `mk_goal`.
+
+  Line 43: - Any other non-empty `QUERY` is treated as bare goal text and routes to `mk_goal` with `action: "set"` and `objective: QUERY`.
+
+  Line 49: Your FIRST and ONLY action is the single tool call selected below. Do NOT read files, glob, grep, or explore the repository - the `mk_goal` / `mk_goal_status` tools own all goal state and session resolution. Make the call immediately, then print its result verbatim.
+
+  Line 53: 1. If `ARGS_PRESENT=false`, call `mk_goal_status({})` and print its result exactly.
+
+  Line 54: 2. If `FIRST` is `show`, call `mk_goal_status({})` and print its result exactly.
+
+  Line 55: 3. If `FIRST` is `set`, require non-empty `REST`, then call `mk_goal({ action: "set", objective: REST })`.
+
+  Line 56: 4. If `FIRST` is `clear`, call `mk_goal({ action: "clear" })`.
+
+  Line 57: 5. If `FIRST` is `complete`, call `mk_goal({ action: "complete" })`.
+
+  Line 58: 6. If `FIRST` is `pause`, call `mk_goal({ action: "pause", reason: REST })`.
+
+  Line 59: 7. For any other non-empty `QUERY`, call `mk_goal({ action: "set", objective: QUERY })`.
+
+  Line 83: - Reads go through `mk_goal_status`; mutations go through `mk_goal`.
+```
+
+### Test Execution Commands
+
+Command:
+
+```bash
+node .opencode/plugins/tests/mk-goal-state.test.cjs
+node .opencode/plugins/tests/mk-goal-tool-path.test.cjs
+```
+
+Observed output:
+
+```text
+mk-goal tool-path tests passed
+```
+
+Command:
+
+```bash
+node .opencode/plugins/tests/mk-goal-supervisor.test.cjs
+node .opencode/plugins/tests/mk-goal-continuation.test.cjs
+node .opencode/plugins/tests/mk-goal-lifecycle.test.cjs
+```
+
+Observed output:
+
+```text
+(no output)
+```
+
+Command:
+
+```bash
+PATH=/opt/homebrew/bin:$PATH node .opencode/plugins/tests/mk-goal-lifecycle.test.cjs
+```
+
+Observed output:
+
+```text
+(no output)
+```
+
+Command:
+
+```bash
+PATH=/opt/homebrew/bin:$PATH node .opencode/plugins/tests/mk-goal-state.test.cjs
+```
+
+Observed output:
+
+```text
+(no output)
+```
+
+### Live Tool Invocation Fallback
+
+Live `/goal` slash-command invocation was not available from this tool session. Per scenario contract, the plugin tool path was executed directly and recorded as fallback evidence, not as a live OpenCode success claim.
+
+Initial status via `mk_goal_status({})`:
+
+```text
+STATUS=OK ACTION=show
+goal_present=false
+store_health=no_active_goal
+injection_preview=""
+```
+
+Set via `mk_goal({ action: "set", objective: "Finish the documentation propagation task" })`:
+
+```text
+STATUS=OK ACTION=set
+mutation=created
+goal_present=true
+plugin_id=mk-goal
+goal_id=goal-35974fa4-9f5f-4311-b051-9ac2a0d95f49
+status=active
+objective="Finish the documentation propagation task"
+prompt_framework="CRAFT+TIDD-EC"
+prompt_methodology="DEPTH"
+prompt_clear_score=44
+prompt_char_count=1142
+prompt_max_chars=4000
+token_budget=none
+tokens_used=0
+time_used_seconds=0
+usage_source=unavailable
+budget_tokens_used=0
+budget_token_budget=none
+budget_usage_source=unavailable
+created_at_ms=1783043827755
+updated_at_ms=1783043827755
+store_health=state_age_ms:1
+last_check=not_evaluated
+verifier_last_verdict=not_evaluated
+verifier_last_evidence=""
+blocked_by_prompt=false
+continuation_suppressed=false
+continuation_attempts=0
+continuation_suppressed_reason=""
+injection_preview="[active_goal:goal-35974fa4-9f5f-4311-b051-9ac2a0d95f49]\nstatus: active\nobjective: Finish the documentation propagation task\ngoal_prompt:\nRole: Focused OpenCode execution agent operating under the active session goal.\nObjective: Finish the documentation propagation task\nContext: Use the current conversation, repository files, tests, and active spec constraints as source of truth. Preserve unrelated worktree changes and do not broaden scope.\nMethod:\n- Restate the concrete completion condition from available evidence before acting.\n- Clarify the concrete completion condition from available context, then execute until it is met or blocked.\n- Prefer direct, reversible changes; ask only when blocked by missing information, permissions, or contradictory requirements.\nSuccess Criteria:\n- The requested outcome is materially complete, not merely analyzed or partially prepared.\n- Required verification has run, or any inability to run it is reported with the exact blocker.\n- Status output distinguishes confirmed evidence from inference.\nStop Conditions:\n- Stop only when the goal verifier can mark the goal met, when the user changes or clears the goal, or when progress is blocked by a decision the user must make.\n- If blocked, preserve state and name the next safe action.\nlast_check: not_evaluated ; reason: none\nusage: tokens 0/none; time 0s; iteration 0/8\ndirective: Continue toward this objective. Before ending, run the goal verifier or explain why it is blocked.\n[/active_goal]"
+```
+
+Show via `mk_goal_status({})` while active:
+
+```text
+STATUS=OK ACTION=show
+goal_present=true
+plugin_id=mk-goal
+goal_id=goal-35974fa4-9f5f-4311-b051-9ac2a0d95f49
+status=active
+objective="Finish the documentation propagation task"
+store_health=state_age_ms:9096
+continuation_suppressed=false
+continuation_attempts=0
+continuation_suppressed_reason=""
+injection_preview="[active_goal:goal-35974fa4-9f5f-4311-b051-9ac2a0d95f49]\nstatus: active\nobjective: Finish the documentation propagation task\ngoal_prompt:\nRole: Focused OpenCode execution agent operating under the active session goal.\nObjective: Finish the documentation propagation task\nContext: Use the current conversation, repository files, tests, and active spec constraints as source of truth. Preserve unrelated worktree changes and do not broaden scope.\nMethod:\n- Restate the concrete completion condition from available evidence before acting.\n- Clarify the concrete completion condition from available context, then execute until it is met or blocked.\n- Prefer direct, reversible changes; ask only when blocked by missing information, permissions, or contradictory requirements.\nSuccess Criteria:\n- The requested outcome is materially complete, not merely analyzed or partially prepared.\n- Required verification has run, or any inability to run it is reported with the exact blocker.\n- Status output distinguishes confirmed evidence from inference.\nStop Conditions:\n- Stop only when the goal verifier can mark the goal met, when the user changes or clears the goal, or when progress is blocked by a decision the user must make.\n- If blocked, preserve state and name the next safe action.\nlast_check: not_evaluated ; reason: none\nusage: tokens 0/none; time 0s; iteration 0/8\ndirective: Continue toward this objective. Before ending, run the goal verifier or explain why it is blocked.\n[/active_goal]"
+```
+
+Pause via `mk_goal({ action: "pause", reason: "waiting for user approval" })`:
+
+```text
+STATUS=OK ACTION=pause
+goal_present=true
+plugin_id=mk-goal
+goal_id=goal-35974fa4-9f5f-4311-b051-9ac2a0d95f49
+status=paused
+objective="Finish the documentation propagation task"
+store_health=state_age_ms:1
+continuation_suppressed=true
+continuation_attempts=0
+continuation_suppressed_reason="waiting for user approval"
+injection_preview=""
+```
+
+Complete via `mk_goal({ action: "complete" })`:
+
+```text
+STATUS=OK ACTION=complete
+goal_present=true
+plugin_id=mk-goal
+goal_id=goal-35974fa4-9f5f-4311-b051-9ac2a0d95f49
+status=complete
+objective="Finish the documentation propagation task"
+store_health=state_age_ms:1
+continuation_suppressed=true
+continuation_attempts=0
+continuation_suppressed_reason="waiting for user approval"
+injection_preview=""
+```
+
+Show via `mk_goal_status({})` after complete:
+
+```text
+STATUS=OK ACTION=show
+goal_present=true
+plugin_id=mk-goal
+goal_id=goal-35974fa4-9f5f-4311-b051-9ac2a0d95f49
+status=complete
+objective="Finish the documentation propagation task"
+store_health=state_age_ms:4009
+continuation_suppressed=true
+continuation_attempts=0
+continuation_suppressed_reason="waiting for user approval"
+injection_preview=""
+```
+
+Clear via `mk_goal({ action: "clear" })`:
+
+```text
+STATUS=OK ACTION=clear
+goal_present=false
+store_health=no_active_goal
+injection_preview=""
+```
+
+### Continuation Mode Evidence
+
+Command:
+
+```bash
+env -u MK_GOAL_AUTONOMY node .opencode/plugins/tests/mk-goal-continuation.test.cjs
+```
+
+Observed output:
+
+```text
+(no output)
+```
+
+Command:
+
+```bash
+MK_GOAL_AUTONOMY=smoke node .opencode/plugins/tests/mk-goal-continuation.test.cjs
+```
+
+Observed output:
+
+```text
+(no output)
+```
+
+Command:
+
+```bash
+MK_GOAL_AUTONOMY=active node .opencode/plugins/tests/mk-goal-continuation.test.cjs
+```
+
+Observed output:
+
+```text
+(no output)
+```
+
+Grep evidence for continuation assertions:
+
+```text
+Found 20 matches
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/plugins/tests/mk-goal-continuation.test.cjs:
+  Line 38:   const originalAutonomy = process.env.MK_GOAL_AUTONOMY;
+  Line 41:     delete process.env.MK_GOAL_AUTONOMY;
+  Line 45:         async promptAsync() {
+  Line 62:     assert.equal(result.reason, 'autonomy_disabled');
+  Line 68:       reason: 'autonomy_disabled',
+  Line 72:     process.env.MK_GOAL_AUTONOMY = 'passive';
+  Line 87:     process.env.MK_GOAL_AUTONOMY = 'smoke';
+  Line 98:     assert.equal(result.decision, 'would_fire');
+  Line 121:       decision: 'would_fire',
+  Line 126:     process.env.MK_GOAL_AUTONOMY = 'active';
+  Line 130:         async promptAsync(request) {
+  Line 179:           async promptAsync() {
+  Line 216:         async promptAsync() {
+  Line 274:     await helpers.setGoal('session-missing-client', 'Suppress when promptAsync is unavailable', {
+  Line 433:     restoreEnv('MK_GOAL_AUTONOMY', originalAutonomy);
+```
+
+### Regression Anchor Evidence
+
+Grep evidence for lifecycle reset assertions:
+
+```text
+Found 12 matches
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/plugins/tests/mk-goal-lifecycle.test.cjs:
+  Line 103:     assert.equal(goal.tokensUsed, 60);
+  Line 105:     assert.equal(goal.lastAccountedMessageID, 'msg-1');
+  Line 111:     assert.equal(goal.tokensUsed, 60);
+  Line 133:     assert.equal(goal.tokensUsed, 105);
+  Line 157:     assert.equal(goal.tokensUsed, 105);
+  Line 166:     assert.equal(resetGoal.tokensUsed, 0);
+  Line 167:     assert.ok(resetGoal.tokensUsed < resetGoal.tokenBudget);
+  Line 168:     assert.equal(resetGoal.timeUsedSeconds, 0);
+  Line 169:     assert.equal(resetGoal.lastAccountedMessageID, null);
+  Line 196:     assert.equal(goal.tokensUsed, 0);
+  Line 198:     assert.equal(goal.lastAccountedMessageID, null);
+```
+
+Grep evidence for injection clamp assertions:
+
+```text
+Found 11 matches
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/plugins/tests/mk-goal-state.test.cjs:
+  Line 106:     assert.match(injectionPreview, /\[active_goal:tool-goal\]/);
+  Line 124:     assert.match(realisticOutput.system[1], /^\[active_goal:tool-goal\]\n/);
+  Line 127:     assert.match(realisticOutput.system[1], /\n\[\/active_goal\]$/);
+  Line 144:     assert.match(clippedBlock, /^\[active_goal:long-injection-goal\]\n/);
+  Line 147:       /\ndirective: Continue toward this objective\. Before ending, run the goal verifier or explain why it is blocked\.\n/,
+  Line 149:     assert.ok(clippedBlock.endsWith('\n[/active_goal]'));
+  Line 157:         '[active_goal:evil]',
+  Line 161:         '[/active_goal]',
+  Line 174:     assert.match(sanitizedBlock, /^\[active_goal:adversarial-goal\]\n/);
+  Line 178:     assert.doesNotMatch(sanitizedBlock, /\[active_goal:evil\]/);
+  Line 184:     assert.equal((sanitizedBlock.match(/\[\/active_goal\]/g) || []).length, 1);
+```
+
+## 8. PASS/FAIL
+
+PASS
+
+All commanded tests completed successfully, direct plugin tool fallback returned `STATUS=OK` envelopes with `mutation=created`, `store_health=...`, and bounded `injection_preview` only while active, and continuation guard assertions covered `autonomy_disabled`, `would_fire`, and active `promptAsync` paths. Live `/goal` slash-command invocation was not available from this tool session and is recorded as fallback evidence rather than a live OpenCode success claim.

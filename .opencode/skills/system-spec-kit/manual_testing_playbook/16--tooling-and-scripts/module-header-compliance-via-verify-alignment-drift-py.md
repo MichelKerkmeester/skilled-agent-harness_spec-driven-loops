@@ -46,12 +46,34 @@ verify_alignment_drift.py reports PASS with 0 TS-MODULE-HEADER findings
 
 ### Evidence
 
-Script output showing PASS verdict + finding count
+Command 1: `cd .opencode/skills/system-spec-kit`
+
+Command 2: `python3 ../sk-code/assets/scripts/verify_alignment_drift.py --root .`
+
+```text
+[alignment-drift] PASS
+Scanned files: 1734
+Findings: 1
+Errors: 0
+Warnings: 1
+
+Actionable findings:
+- mcp_server/scripts/evals/generate-known-item-ground-truth.cjs:1 [JS-USE-STRICT] [WARN] Missing `'use strict';` near file top. Fix: Add `'use strict';` within the first 40 lines for JS runtime scripts.
+
+Note: warnings are non-blocking by default. Use --fail-on-warn to make warnings fail.
+```
+
+Command 3: `python3 ../sk-code/assets/scripts/verify_alignment_drift.py --root . | rg -n "TS-MODULE-HEADER"`
+
+```text
+(no output)
+```
+
+Observed result: verifier reported `[alignment-drift] PASS`; grep returned no `TS-MODULE-HEADER` findings.
 
 ### Pass / Fail
 
-- **Pass**: 0 TS-MODULE-HEADER findings reported
-- **Fail**: Any contradicting evidence appears or the pass condition is not met.
+- **PASS**: 0 `TS-MODULE-HEADER` findings reported.
 
 ### Failure Triage
 

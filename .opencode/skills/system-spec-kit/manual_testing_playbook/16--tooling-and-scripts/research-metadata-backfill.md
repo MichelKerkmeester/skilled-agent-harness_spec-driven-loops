@@ -46,12 +46,50 @@ Missing metadata files created; complete folders unchanged; output identifies on
 
 ### Evidence
 
-Script output plus before/after file listings for incomplete and complete iteration folders
+Before listing for the pre-approved packet research tree:
+
+```text
+$ ls -la "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-speckit/031-manual-playbook-execution-sweep/research"
+ls: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-speckit/031-manual-playbook-execution-sweep/research: No such file or directory
+```
+
+Existing fixture search:
+
+```text
+Glob .opencode/specs/**/research/**/iterations: No files found
+Glob specs/**/research/**/iterations: No files found
+```
+
+Backfill dry-run output against the pre-approved packet:
+
+```text
+$ npx tsx memory/backfill-research-metadata.ts "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-speckit/031-manual-playbook-execution-sweep" --dry-run
+{
+  "specFolderPath": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-speckit/031-manual-playbook-execution-sweep",
+  "dryRun": true,
+  "iterationDirectories": [],
+  "descriptionCreated": 0,
+  "graphCreated": 0,
+  "unchanged": 0,
+  "failed": 0,
+  "failures": []
+}
+(node:91681) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+```
+
+After listing for the pre-approved packet research tree:
+
+```text
+$ ls -la "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-speckit/031-manual-playbook-execution-sweep/research"
+ls: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-speckit/031-manual-playbook-execution-sweep/research: No such file or directory
+```
+
+The scenario requires a fixture or packet containing both missing-metadata and complete research iteration folders. None exists under `.opencode/specs` or `specs`, and preparing one or running `--apply` would create or modify files outside the allowed write path for this execution.
 
 ### Pass / Fail
 
-- **Pass**: the script repairs incomplete research iteration folders without rewriting the complete ones
-- **Fail**: it rewrites complete folders or leaves missing metadata behind
+- **BLOCKED**: no eligible research iteration fixture or packet exists in the current repo state, and the allowed-write boundary permits editing only this scenario file.
 
 ### Failure Triage
 

@@ -73,9 +73,9 @@ const REQUIRED_FRONTMATTER_KEYS = ['packet_pointer', 'last_updated_at', 'last_up
 const OPTIONAL_TEMPLATE_HEADER_RE = /^(?:L(?:2|3\+?)|FIX ADDENDUM)\s*:/iu;
 const OPTIONAL_TEMPLATE_ANCHORS = new Set(['affected-surfaces']);
 
-type RegistrySeverity = 'error' | 'warn' | 'info' | 'skip';
+export type RegistrySeverity = 'error' | 'warn' | 'info' | 'skip';
 
-interface ValidatorRegistryEntry {
+export interface ValidatorRegistryEntry {
   rule_id: string;
   script_path: string;
   severity: RegistrySeverity;
@@ -266,19 +266,40 @@ function runRegistryShellRules(
   nativeRuleIds: Set<string>,
   opts: ValidateOpts,
 ): ValidationEntry[] {
+  const strict = opts.strict === true;
   return readValidatorRegistry()
-    .filter((rule) => rule.strict_only !== true && rule.severity !== 'skip')
-    .filter((rule) => !nativeRuleIds.has(rule.rule_id))
+    .filter((rule) => shouldRunRegistryShellRule(rule, nativeRuleIds, strict))
     .flatMap((rule) => {
       const scriptPath = resolveRegistryRuleScript(rule.script_path);
       if (!scriptPath) return [];
-      return [runRegistryShellRule(folder, level, rule, scriptPath, opts.strict === true)];
+      return [runRegistryShellRule(folder, level, rule, scriptPath, strict)];
     });
+}
+
+function shouldRunRegistryShellRule(rule: ValidatorRegistryEntry, nativeRuleIds: Set<string>, strict: boolean): boolean {
+  if (rule.severity === 'skip') return false;
+  if (rule.strict_only === true && !strict) return false;
+  return !nativeRuleIds.has(rule.rule_id);
 }
 
 function docsForLevel(level: SpecKitLevel): string[] {
   const contract = resolveLevelContract(level);
   return [...contract.requiredCoreDocs, ...contract.requiredAddonDocs];
+}
+
+const STARTED_WORK_ITEM_RE = /^[ \t]*[-*] \[[xX]\]/mu;
+
+function hasStartedWork(folder: string): boolean {
+  for (const docName of ['checklist.md', 'tasks.md']) {
+    const content = readIfExists(path.join(folder, docName));
+    if (content && STARTED_WORK_ITEM_RE.test(content)) return true;
+  }
+  return false;
+}
+
+function requiredDocsForLevel(folder: string, level: SpecKitLevel): string[] {
+  const started = hasStartedWork(folder);
+  return docsForLevel(level).filter((docName) => docName !== 'implementation-summary.md' || started);
 }
 
 function readIfExists(filePath: string): string | null {
@@ -369,7 +390,8 @@ function anchors(content: string): string[] {
 }
 
 function validateFileExists(folder: string, level: SpecKitLevel): ValidationEntry {
-  const missing = docsForLevel(level).filter((docName) => !fs.existsSync(path.join(folder, docName)));
+  const requiredDocs = level === 'phase' ? docsForLevel(level) : requiredDocsForLevel(folder, level);
+  const missing = requiredDocs.filter((docName) => !fs.existsSync(path.join(folder, docName)));
   if (level === 'phase') {
     for (const required of ['description.json', 'graph-metadata.json']) {
       if (!fs.existsSync(path.join(folder, required))) missing.push(required);
@@ -634,6 +656,14 @@ export function validateFolder(folderPath: string, opts: ValidateOpts = {}): Val
     passed: summary.errors === 0 && !(opts.strict && summary.warnings > 0),
   };
 }
+
+export const __testables = {
+  mapShellRuleStatus,
+  resolveRegistryRuleScript,
+  shouldRunRegistryShellRule,
+  hasStartedWork,
+  validateFileExists,
+};
 
 function parseCliArgs(argv: string[]): { folder: string; opts: ValidateOpts } {
   let folder = '';

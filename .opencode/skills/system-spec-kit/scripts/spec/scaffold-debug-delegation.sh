@@ -205,10 +205,17 @@ else
     A1_DIFF_BLOCK="- **Diff:** [optional — paste the failed diff or link]"
 fi
 
-# Spec-folder-relative packet pointer (drops everything up to and including .opencode/specs/).
-PACKET_POINTER="${SPEC_FOLDER_ABS#*/.opencode/specs/}"
-if [[ "$PACKET_POINTER" == "$SPEC_FOLDER_ABS" ]]; then
-    PACKET_POINTER="${SPEC_FOLDER_ABS#*/specs/}"
+# Emit a canonical packet pointer instead of leaking machine-local temp paths.
+OPENCODE_SPECS_ROOT="$REPO_ROOT/.opencode/specs"
+ROOT_SPECS_ROOT="$REPO_ROOT/specs"
+if is_path_within "$SPEC_FOLDER_ABS" "$OPENCODE_SPECS_ROOT"; then
+    PACKET_POINTER="${SPEC_FOLDER_ABS#"$OPENCODE_SPECS_ROOT"}"
+    PACKET_POINTER="${PACKET_POINTER#/}"
+elif is_path_within "$SPEC_FOLDER_ABS" "$ROOT_SPECS_ROOT"; then
+    PACKET_POINTER="${SPEC_FOLDER_ABS#"$ROOT_SPECS_ROOT"}"
+    PACKET_POINTER="${PACKET_POINTER#/}"
+else
+    PACKET_POINTER="$(basename "$SPEC_FOLDER_ABS")"
 fi
 
 # Sanitize user-supplied strings before heredoc interpolation to block backtick / $() command-substitution

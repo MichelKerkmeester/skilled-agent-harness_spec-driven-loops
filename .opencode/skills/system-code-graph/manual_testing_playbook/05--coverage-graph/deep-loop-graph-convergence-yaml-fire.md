@@ -64,3 +64,63 @@ Check confirm-mode YAML paths for parity.
 - Group: Code Graph Runtime
 - Playbook ID: 009
 - Canonical root source: `manual_testing_playbook.md`
+
+---
+
+## 6. EVIDENCE
+
+Command 1: Read `.opencode/commands/deep/assets/deep_research_auto.yaml:456-467`.
+
+```text
+456:           if (appended) {
+457:             try {
+458:               appendObservabilityEvent(observabilityPath, row, {
+459:                 producer: 'deep-research-auto',
+460:                 stream: 'single-loop-telemetry',
+461:                 subject: { label: row.label, sessionId, generation },
+462:                 event: row.event,
+463:                 status: 'running',
+464:               });
+465:             } catch {}
+466:           }
+467:           EOF
+```
+
+Command 2: Read `.opencode/commands/deep/assets/deep_review_auto.yaml:483-502`.
+
+```text
+483: 
+484:       step_read_state:
+485:         action: "Read current state from JSONL, strategy, and config"
+486:         read:
+487:           - "{state_paths.state_log}"
+488:           - "{state_paths.findings_registry}"
+489:           - "{state_paths.strategy}"
+490:           - "{state_paths.config}"
+491:         extract:
+492:           - iteration_count: "Count lines where type === 'iteration'"
+493:           - current_iteration: "iteration_count + 1"
+494:           - last_newFindingsRatio: "Extract newFindingsRatio from last iteration record"
+495:           - last_focus: "Extract focus/dimension from latest iteration record, else 'none yet'"
+496:           - ratio_prev: "Extract newFindingsRatio from second-latest iteration record, else 'N/A'"
+497:           - ratio_latest: "Extract newFindingsRatio from latest iteration record, else 'N/A'"
+498:           - next_dimension: "Next uncovered dimension from dimension_queue in strategy.md"
+499:           - dimensions_covered: "List of dimensions already reviewed"
+500:           - dimensions_remaining: "List of dimensions not yet reviewed"
+501:           - dimension_coverage: "covered / total dimensions"
+502:           - coverage_age: "Iterations since dimension coverage last changed; require >= 1 before STOP"
+```
+
+Command 3: Optionally run a minimal deep-loop fixture and capture graph_convergence JSONL event.
+
+```text
+Not run. The fixture step is optional in this scenario, and the session write constraint allows modifying only .opencode/skills/system-code-graph/manual_testing_playbook/05--coverage-graph/deep-loop-graph-convergence-yaml-fire.md.
+```
+
+---
+
+## 7. PASS/FAIL
+
+FAIL
+
+The specified YAML ranges did not show `node .opencode/skills/deep-loop-runtime/scripts/convergence.cjs --spec-folder "{spec_folder}" --loop-type "<research|review>" --session-id "<session-id>"` before inline stop logic, so the Expected Output / Verification condition was not met.

@@ -66,7 +66,7 @@ PRIORITY ENFORCEMENT:
   [P1] High      - Required, must complete OR get user approval
   [P2] Medium    - Can defer with documented reason (unless --strict)
   [UNTAGGED]     - BLOCKING; add P0/P1/P2 context before claiming completion
-  Completed P0/P1 items must include evidence markers ([EVIDENCE:], | Evidence:, checkmark, or verified/tested/confirmed note)
+  Completed P0/P1 items must include evidence markers ([EVIDENCE:], | Evidence:, **Evidence**:, checkmark, or verified/tested/confirmed note)
 
 EXAMPLES:
   ./$SCRIPT_NAME specs/007-feature/
@@ -124,17 +124,19 @@ parse_args() {
 count_checklist_items() {
     local checklist_file="$1"
     local current_priority=""
+    local pending_completed_priority=""
+    local pending_has_evidence=false
 
     while IFS= read -r line; do
-        if [[ "$line" =~ ^#{1,6}[[:space:]]+\[?(P[0-2])\]?([[:space:]]|$|:|-) ]]; then
-            current_priority="${BASH_REMATCH[1]}"
-            continue
-        fi
-
         if [[ "$line" =~ ^[[:space:]]*-[[:space:]]\[([[:space:]]|x|X)\][[:space:]] ]]; then
+            if [[ -n "$pending_completed_priority" ]]; then
+                record_missing_evidence_if_needed "$pending_completed_priority" "$pending_has_evidence"
+                pending_completed_priority=""
+                pending_has_evidence=false
+            fi
+
             local is_completed=false
             local item_priority=""
-            local line_lower=""
             local has_evidence=false
 
             ((TOTAL_ITEMS++)) || true
@@ -150,25 +152,13 @@ count_checklist_items() {
                 item_priority="$current_priority"
             fi
 
-            line_lower=$(printf '%s' "$line" | tr '[:upper:]' '[:lower:]')
-            [[ "$line_lower" == *"[evidence:"* ]] && has_evidence=true
-            [[ "$line_lower" == *"| evidence:"* ]] && has_evidence=true
-            [[ "$line_lower" == *"(verified)"* || "$line_lower" == *"(tested)"* || "$line_lower" == *"(confirmed)"* ]] && has_evidence=true
-            [[ "$line_lower" == *"[deferred:"* ]] && has_evidence=true
-            if [[ "$line" == *"✓"* || "$line" == *"✔"* || "$line" == *"☑"* || "$line" == *"✅"* ]]; then
-                has_evidence=true
-            fi
-            if [[ "$line" =~ \[[xX]\].*\[[xX]\] ]]; then
+            if line_has_evidence_marker "$line"; then
                 has_evidence=true
             fi
 
-            if [[ "$is_completed" == "true" ]]; then
-                if [[ "$item_priority" == "P0" && "$has_evidence" == "false" ]]; then
-                    ((P0_MISSING_EVIDENCE++)) || true
-                fi
-                if [[ "$item_priority" == "P1" && "$has_evidence" == "false" ]]; then
-                    ((P1_MISSING_EVIDENCE++)) || true
-                fi
+            if [[ "$is_completed" == "true" && ( "$item_priority" == "P0" || "$item_priority" == "P1" ) ]]; then
+                pending_completed_priority="$item_priority"
+                pending_has_evidence="$has_evidence"
             fi
 
             case "$item_priority" in
@@ -197,8 +187,66 @@ count_checklist_items() {
                     fi
                     ;;
             esac
+
+            continue
+        fi
+
+        if [[ "$line" =~ ^#{1,6}[[:space:]]+ ]]; then
+            if [[ -n "$pending_completed_priority" ]]; then
+                record_missing_evidence_if_needed "$pending_completed_priority" "$pending_has_evidence"
+                pending_completed_priority=""
+                pending_has_evidence=false
+            fi
+
+            if [[ "$line" =~ ^#{1,6}[[:space:]]+\[?(P[0-2])\]?([[:space:]]|$|:|-) ]]; then
+                current_priority="${BASH_REMATCH[1]}"
+            fi
+            continue
+        fi
+
+        if [[ -n "$pending_completed_priority" ]] && line_has_evidence_marker "$line"; then
+            pending_has_evidence=true
         fi
     done < "$checklist_file"
+
+    if [[ -n "$pending_completed_priority" ]]; then
+        record_missing_evidence_if_needed "$pending_completed_priority" "$pending_has_evidence"
+    fi
+}
+
+line_has_evidence_marker() {
+    local line="$1"
+    local line_lower=""
+
+    line_lower=$(printf '%s' "$line" | tr '[:upper:]' '[:lower:]')
+    [[ "$line_lower" == *"[evidence:"* ]] && return 0
+    [[ "$line_lower" == *"| evidence:"* ]] && return 0
+    [[ "$line_lower" == *"**evidence**:"* ]] && return 0
+    [[ "$line_lower" == *"(verified)"* || "$line_lower" == *"(tested)"* || "$line_lower" == *"(confirmed)"* ]] && return 0
+    [[ "$line_lower" == *"[deferred:"* ]] && return 0
+    if [[ "$line" == *"✓"* || "$line" == *"✔"* || "$line" == *"☑"* || "$line" == *"✅"* ]]; then
+        return 0
+    fi
+    if [[ "$line" =~ \[[xX]\].*\[[xX]\] ]]; then
+        return 0
+    fi
+
+    return 1
+}
+
+record_missing_evidence_if_needed() {
+    local item_priority="$1"
+    local has_evidence="$2"
+
+    if [[ "$has_evidence" == "true" ]]; then
+        return
+    fi
+
+    if [[ "$item_priority" == "P0" ]]; then
+        ((P0_MISSING_EVIDENCE++)) || true
+    elif [[ "$item_priority" == "P1" ]]; then
+        ((P1_MISSING_EVIDENCE++)) || true
+    fi
 }
 
 calculate_status() {

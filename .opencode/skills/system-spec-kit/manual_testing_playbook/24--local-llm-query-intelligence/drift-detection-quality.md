@@ -119,12 +119,21 @@ Step 5 — return JSON:
 
 ### Evidence
 
-- The full AI-to-CLI handoff transcript.
-- The 5 variant content strings + parent IDs.
-- The drift_why response verbatim.
-- The variant-to-rank table.
-- An honest assessment of whether V1's exclusion was correct (no real contradiction = correctly excluded vs. real contradiction = missed = closer to FAIL).
-- Active provider from memory_health.
+- BLOCKED before executing Step 1 due to an explicit write-scope conflict in the current run instructions.
+- User allowed exactly one write path: `.opencode/skills/system-spec-kit/manual_testing_playbook/24--local-llm-query-intelligence/drift-detection-quality.md`.
+- Scenario Step 1 requires writing a canonical memory file under `<spec-folder>`: `Step 1 — write `<spec-folder>` (baseline):`.
+- Scenario Step 2 requires writing five additional files under `<spec-folder><n>/research.md`: `Step 2 — for each of 5 variants V1..V5, write `<spec-folder><n>/research.md` then save:`.
+- Scenario cleanup requires deleting on-disk folders: `rm -rf <spec-folder> <spec-folder> <spec-folder> <spec-folder> <spec-folder> <spec-folder>`.
+- Because creating or deleting those files/folders would violate the BANNED OPERATIONS and ALLOWED WRITE PATHS for this execution, no `memory_save`, `memory_drift_why`, `memory_delete`, or cleanup commands were run.
+- The 5 variant content strings were read from this scenario file, but no parent IDs were created.
+- Drift_why response verbatim: NOT AVAILABLE; blocked before the required memory records could be saved.
+- Variant-to-rank table: NOT AVAILABLE; blocked before `memory_drift_why` could be called.
+- V1 exclusion assessment: NOT AVAILABLE; blocked before drift explanation could be generated.
+- Active provider from memory_health: NOT COLLECTED; the scenario was blocked by write-scope constraints before command execution.
+
+### Pass/Fail
+
+BLOCKED — The scenario requires creating and later deleting files outside the single allowed write path, so the Preconditions/Commands could not be executed without violating the run constraints.
 
 ---
 

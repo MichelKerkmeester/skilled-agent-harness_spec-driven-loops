@@ -96,6 +96,14 @@ function runtimeLaneHealthForStatus(status: AdvisorStatus): AdvisorScoringOption
   };
 }
 
+function renderableStatus(status: AdvisorStatus): AdvisorStatus {
+  const trustState = status.trustState.state;
+  if (status.freshness === 'unavailable' && (trustState === 'live' || trustState === 'stale')) {
+    return { ...status, freshness: trustState };
+  }
+  return status;
+}
+
 function emptyOutput(args: {
   workspaceRoot: string;
   effectiveThresholds: AdvisorRecommendOutput['effectiveThresholds'];
@@ -371,7 +379,7 @@ async function computeRecommendationOutput(input: AdvisorRecommendInput): Promis
   // 'live' from the generation counters and the recommend path would serve
   // results as fresh. The verdict is cached per generation, so the quick_check
   // runs at most once per rebuild rather than on every recommendation.
-  const status = readAdvisorStatus({ workspaceRoot, checkArtifactIntegrity: true });
+  const status = renderableStatus(readAdvisorStatus({ workspaceRoot, checkArtifactIntegrity: true }));
   if (status.freshness === 'unavailable') {
     return unavailableOutput(status, workspaceRoot, effectiveThresholds);
   }

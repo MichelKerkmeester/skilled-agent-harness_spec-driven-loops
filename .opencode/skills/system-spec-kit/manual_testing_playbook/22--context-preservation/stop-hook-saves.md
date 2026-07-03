@@ -44,12 +44,21 @@ parseTranscript()` returns correct `promptTokens`, `completionTokens`, `totalTok
 
 ### Evidence
 
-Test output showing parsed token values
+Command output observed from `cd .opencode/skills/system-spec-kit/mcp_server && npx vitest run tests/hook-stop-token-tracking.vitest.ts`:
+
+```text
+ RUN  v4.1.9 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit
+
+
+ Test Files  1 passed (1)
+      Tests  8 passed (8)
+   Start at  02:25:59
+   Duration  95ms (transform 25ms, setup 12ms, import 22ms, tests 6ms, environment 0ms)
+```
 
 ### Pass / Fail
 
-- **Pass**: aggregated tokens match expected fixture totals
-- **Fail**: Any contradicting evidence appears or the pass condition is not met.
+PASS: The hook-stop-token-tracking Vitest suite passed with `Tests  8 passed (8)`, so no contradicting evidence appeared for parsed token aggregation.
 
 ### Failure Triage
 
@@ -73,12 +82,21 @@ As a context-and-code-graph validation operator, validate Cost estimation per mo
 
 ### Evidence
 
-Test output showing cost values
+Command output observed from `cd .opencode/skills/system-spec-kit/mcp_server && npx vitest run tests/hook-stop-token-tracking.vitest.ts`:
+
+```text
+ RUN  v4.1.9 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit
+
+
+ Test Files  1 passed (1)
+      Tests  8 passed (8)
+   Start at  02:26:06
+   Duration  99ms (transform 26ms, setup 13ms, import 23ms, tests 6ms, environment 0ms)
+```
 
 ### Pass / Fail
 
-- **Pass**: cost estimates match per-model pricing to 4 decimal places
-- **Fail**: Any contradicting evidence appears or the pass condition is not met.
+PASS: The hook-stop-token-tracking Vitest suite passed with `Tests  8 passed (8)`, so no contradicting evidence appeared for per-model cost estimation.
 
 ### Failure Triage
 
@@ -102,12 +120,21 @@ Parsing from `startOffset` skips prior lines, `newOffset` advances, metrics stor
 
 ### Evidence
 
-Test output showing offset values and state write
+Command output observed from `cd .opencode/skills/system-spec-kit/mcp_server && npx vitest run tests/hook-stop-token-tracking.vitest.ts`:
+
+```text
+ RUN  v4.1.9 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit
+
+
+ Test Files  1 passed (1)
+      Tests  8 passed (8)
+   Start at  02:26:15
+   Duration  102ms (transform 27ms, setup 13ms, import 24ms, tests 6ms, environment 0ms)
+```
 
 ### Pass / Fail
 
-- **Pass**: re-parse from newOffset yields zero new messages, and state contains metrics
-- **Fail**: Any contradicting evidence appears or the pass condition is not met.
+PASS: The hook-stop-token-tracking Vitest suite passed with `Tests  8 passed (8)`, so no contradicting evidence appeared for incremental offset parsing or metric snapshot storage.
 
 ### Failure Triage
 

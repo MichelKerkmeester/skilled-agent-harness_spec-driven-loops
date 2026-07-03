@@ -879,6 +879,58 @@ description: Fixture helper for routing tests
     except Exception as exc:
         fail_test("T243-SA-020: native bridge preserves legacy parity fields", str(exc))
 
+    # Native-unavailable default path warns before local fallback without corrupting JSON stdout.
+    try:
+        original_argv = sys.argv
+        original_resolve = advisor.resolve_single_prompt_input
+        original_probe = advisor.probe_native_advisor
+        original_analyze = advisor.analyze_prompt
+        try:
+            sys.argv = ["skill_advisor.py", "--stdin", "--threshold", "0.8"]
+
+            def fake_resolve(args):
+                args.prompt = "save this conversation context to memory"
+
+            advisor.resolve_single_prompt_input = fake_resolve
+            advisor.probe_native_advisor = lambda: {
+                "available": False,
+                "reason": "advisor_unavailable",
+                "freshness": "unavailable",
+            }
+            advisor.analyze_prompt = lambda **kwargs: [{
+                "skill": "system-spec-kit",
+                "kind": "skill",
+                "confidence": 0.95,
+                "uncertainty": 0.2,
+                "passes_threshold": True,
+                "source": "local",
+            }]
+
+            stdout = io.StringIO()
+            stderr = io.StringIO()
+            with contextlib.redirect_stdout(stdout), contextlib.redirect_stderr(stderr):
+                exit_code = advisor.main()
+            parsed = json.loads(stdout.getvalue() or "[]")
+            first = parsed[0] if isinstance(parsed, list) and parsed else {}
+            if (
+                exit_code == 0
+                and first.get("source") == "local"
+                and "falling back to local Python scorer" in stderr.getvalue()
+            ):
+                ok("T243-SA-021: native-unavailable stdin fallback warns and stays JSON")
+            else:
+                fail_test(
+                    "T243-SA-021: native-unavailable stdin fallback warns and stays JSON",
+                    f"exit={exit_code} stdout={stdout.getvalue()!r} stderr={stderr.getvalue()!r}",
+                )
+        finally:
+            sys.argv = original_argv
+            advisor.resolve_single_prompt_input = original_resolve
+            advisor.probe_native_advisor = original_probe
+            advisor.analyze_prompt = original_analyze
+    except Exception as exc:
+        fail_test("T243-SA-021: native-unavailable stdin fallback warns and stays JSON", str(exc))
+
 
 # ───────────────────────────────────────────────────────────────
 # 3. BENCH HARNESS TESTS

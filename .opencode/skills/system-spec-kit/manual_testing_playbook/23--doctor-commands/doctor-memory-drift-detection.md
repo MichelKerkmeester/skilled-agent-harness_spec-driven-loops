@@ -51,18 +51,16 @@ The command resolves `intent=DIAGNOSE`, loads `.opencode/commands/doctor/assets/
 
 ### Evidence
 
-- Pre-run populated-index evidence, such as `memory_stats({})` total records or a prior successful apply transcript.
-- Diff or shell transcript showing the three markdown files changed after indexing.
-- `/doctor memory` report citing the three modified file paths.
-- State log with nonzero drift class counts and no apply phase.
-- Recommendation text containing `/doctor memory --incremental=true`.
+- BLOCKED before scenario command execution because the scenario requires writes outside the single allowed file.
+- User allowed write path: `.opencode/skills/system-spec-kit/manual_testing_playbook/23--doctor-commands/doctor-memory-drift-detection.md (this file only)`.
+- User banned operation: `Do NOT modify, create, or delete any file OTHER than the single scenario file named below.`
+- Scenario Command 3 requires forbidden writes: ``Pick three markdown files under `.opencode/specs/` and append a harmless sandbox-only marker line to each file.``
+- Scenario Command 7 also requires forbidden writes: `Revert or discard the sandbox edits after evidence capture.`
+- No `/doctor memory` diagnostic report, state log, or `memory_drift_why` output was captured because executing the scenario exactly as written would require modifying three markdown files outside the allowed write path.
 
 ### Pass / Fail
 
-- **PASS**: Diagnostic mode returns `DEGRADED` or `STALE`, cites all three modified files or their record IDs, and recommends `/doctor memory --incremental=true`.
-- **FAIL**: The command reports `OK`, omits the edited files, mutates the index, or recommends a full rebuild when only source mtime drift is present.
-- **SKIP**: The sandbox cannot produce a populated index or cannot invoke the real memory MCP tools.
-- **UNAUTOMATABLE**: Not expected; the scenario is runnable with real markdown edits in a disposable workspace.
+- **BLOCKED**: The scenario cannot be executed under the current task constraints because Commands 3 and 7 require modifying files outside the only allowed write path.
 
 ### Failure Triage
 

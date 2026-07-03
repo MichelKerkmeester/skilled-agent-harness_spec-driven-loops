@@ -72,3 +72,124 @@ printf '%s' "save this conversation context to memory" | python3 .opencode/skill
 - Playbook ID: PC-001
 - Canonical root source: manual_testing_playbook.md
 - Feature file path: 10--python-compat/stdin-mode.md
+
+---
+
+## 6. EVIDENCE
+
+Precondition checks:
+
+```bash
+python3 --version
+```
+
+```text
+Python 3.9.6
+```
+
+```bash
+printenv SPECKIT_SKILL_ADVISOR_HOOK_DISABLED
+```
+
+```text
+
+```
+
+Skill advisor MCP availability observed before scenario execution:
+
+```text
+{
+  "status": "ok",
+  "data": {
+    "workspaceRoot": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public",
+    "effectiveThresholds": {
+      "confidenceThreshold": 0.8,
+      "uncertaintyThreshold": 0.35,
+      "confidenceOnly": false
+    },
+    "recommendations": [],
+    "ambiguous": false,
+    "freshness": "unavailable",
+    "trustState": {
+      "state": "unavailable",
+      "reason": "advisor_unavailable",
+      "generation": 9476,
+      "checkedAt": "2026-07-03T02:38:31.796Z",
+      "lastLiveAt": null
+    },
+    "generatedAt": "2026-07-03T02:38:31.796Z",
+    "cache": {
+      "hit": false,
+      "sourceSignaturePresent": false
+    },
+    "warnings": [
+      "advisor_unavailable"
+    ],
+    "abstainReasons": [
+      "Skill advisor freshness is unavailable; returning fail-open empty recommendations."
+    ]
+  }
+}
+```
+
+Scenario command 1:
+
+```bash
+printf '%s' "save this conversation context to memory" | python3 .opencode/skills/system-skill-advisor/mcp_server/scripts/skill_advisor.py --stdin --threshold 0.8
+```
+
+Observed output:
+
+```text
+Skill graph: loaded from SQLite
+[
+  {
+    "skill": "system-spec-kit",
+    "kind": "skill",
+    "confidence": 0.95,
+    "uncertainty": 0.2,
+    "passes_threshold": true,
+    "reason": "Matched: !context, !context(multi), !memory, !save this conversation context(phrase), !save(multi) [boundary: owns memory/context preservation]",
+    "_graph_boost_count": 0,
+    "source": "local"
+  },
+  {
+    "skill": "memory:save",
+    "kind": "skill",
+    "confidence": 0.88,
+    "uncertainty": 0.15,
+    "passes_threshold": true,
+    "reason": "Matched: !intent:memory, !save this conversation context(phrase), context, memory(name), save(name)",
+    "_graph_boost_count": 0,
+    "source": "local"
+  },
+  {
+    "skill": "command-memory-save",
+    "kind": "command",
+    "confidence": 0.95,
+    "uncertainty": 0.15,
+    "passes_threshold": true,
+    "reason": "Matched: !save this conversation context(phrase), command_penalty, context, conversation, memory(name)",
+    "_graph_boost_count": 0,
+    "source": "local"
+  }
+]
+```
+
+Scenario command 2:
+
+```bash
+printf '' | python3 .opencode/skills/system-skill-advisor/mcp_server/scripts/skill_advisor.py --stdin --threshold 0.8
+```
+
+Observed output:
+
+```text
+[]
+```
+
+---
+
+## 7. PASS/FAIL
+
+FAIL: The prompted stdin run returned the expected top skill slug and empty stdin returned `[]`, but the first result used `"source": "local"` rather than `"source": "native"`; the advisor availability check also reported `"freshness": "unavailable"` and `"reason": "advisor_unavailable"`.

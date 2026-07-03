@@ -67,6 +67,21 @@ interface TriggerPromotionResult {
   metadata?: NonNullable<PipelineResult['metadata']['triggerPromotion']>;
 }
 
+function matchesSpecFolderScope(row: Stage4ReadonlyRow, specFolder: string): boolean {
+  const record = row as unknown as Record<string, unknown>;
+  const folder = record.spec_folder ?? record.specFolder;
+  return typeof folder === 'string'
+    && (folder === specFolder || folder.startsWith(`${specFolder}/`));
+}
+
+function applyFinalSpecFolderGuard(
+  results: Stage4ReadonlyRow[],
+  specFolder: string | undefined,
+): Stage4ReadonlyRow[] {
+  if (!specFolder) return results;
+  return results.filter((row) => matchesSpecFolderScope(row, specFolder));
+}
+
 function buildConfidenceTruncationMetadata(
   result: ReturnType<typeof truncateByConfidence>,
 ): ConfidenceTruncationMetadata {
@@ -399,6 +414,8 @@ export async function executePipeline(config: PipelineConfig): Promise<PipelineR
       );
     }
   }
+
+  finalResults = applyFinalSpecFolderGuard(finalResults, config.specFolder);
 
   timing.total = Date.now() - pipelineStart;
 

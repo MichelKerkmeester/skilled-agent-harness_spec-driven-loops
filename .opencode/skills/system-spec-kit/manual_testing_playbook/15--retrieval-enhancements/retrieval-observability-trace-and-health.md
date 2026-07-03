@@ -51,12 +51,59 @@ Validate retrieval observability with memory_search includeTrace, degraded-vecto
 
 ### Evidence
 
-Baseline and trace search payloads, rank-order comparison, degraded-vector health excerpt, maintenance command outputs, and before/after `memory_health` counter excerpt.
+BLOCKED before baseline capture because the Spec Memory transport was unavailable and rebuilding it would modify files outside this scenario's allowed write path.
+
+Command: `node .opencode/bin/spec-memory.cjs memory_search --json '{"query":"manual playbook observability probe","limit":5}' --format json --timeout-ms 3000`
+
+Output:
+
+```text
+@spec-kit/mcp-server dist is stale. Run: cd .opencode/skills/system-spec-kit/mcp_server && npm run build
+```
+
+Native plugin status from `mk_spec_memory_status()`:
+
+```text
+plugin_id=mk-spec-memory
+enabled=true
+disabled_reason=none
+cache_ttl_ms=5000
+max_brief_chars=2400
+max_cache_entries=200
+runtime_ready=false
+node_binary=node
+bridge_timeout_ms=3000
+cli_timeout_ms=2500
+bridge_path=[spec-memory-bridge]
+last_bridge_status=fail_open
+last_error_code=EXIT_69
+last_duration_ms=53
+bridge_invocations=6
+continuity_lookups=5
+cache_entries=0
+cache_hits=0
+cache_misses=5
+cache_hit_rate=0
+warm_status=fail_open
+warm_error=EXIT_69
+warm_route=cli
+warm_retryable=false
+warm_exit_code=69
+```
+
+Command: `node .opencode/bin/spec-memory.cjs memory_health --json '{"reportMode":"full"}' --format json --timeout-ms 3000`
+
+Output:
+
+```text
+@spec-kit/mcp-server dist is stale. Run: cd .opencode/skills/system-spec-kit/mcp_server && npm run build
+```
+
+The scenario commands require `memory_search`, `memory_health`, `memory_index_scan`, `memory_embedding_reconcile`, and `memory_retention_sweep`, plus a sandbox DB where a vector-degraded condition can be marked or created. The current repo state is missing an available Spec Memory runtime (`runtime_ready=false`, `EXIT_69`) and the suggested remediation (`npm run build` under `.opencode/skills/system-spec-kit/mcp_server`) would modify files outside `.opencode/skills/system-spec-kit/manual_testing_playbook/15--retrieval-enhancements/retrieval-observability-trace-and-health.md`.
 
 ### Pass / Fail
 
-- **Pass**: observability fields appear only through opt-in or health surfaces, maintenance counters update, and result order is unchanged by tracing.
-- **Fail**: trace calls change rank order, diagnostics are absent under opt-in, degraded-vector state is hidden, or health omits maintenance counters after tools run.
+- **BLOCKED**: Spec Memory commands cannot run because `@spec-kit/mcp-server dist is stale` and the native plugin reports `runtime_ready=false` / `EXIT_69`; rebuilding the MCP server and creating or marking the required sandbox degraded-vector DB would require writes outside the single allowed scenario file.
 
 ### Failure Triage
 

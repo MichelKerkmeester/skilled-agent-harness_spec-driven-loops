@@ -73,12 +73,45 @@ The exact subject resolves and queries in both flag states, the near-miss subjec
 
 ### Evidence
 
-The four responses (exact flag-off, near-miss flag-off, near-miss flag-on, exact flag-on), captured with the flag state for each call, plus the `symbolResolution` block from the flag-on near-miss response.
+BLOCKED before the four `code_graph_query` responses could be captured because the required code-graph tool transport was unavailable, so the precondition "Code graph index is `fresh` (verify via `code_graph_status`)" could not be satisfied.
+
+Attempted status check with the daemon-backed code-index CLI:
+
+```bash
+node .opencode/bin/code-index.cjs code_graph_status --format json --timeout-ms 3000 --warm-only
+```
+
+Observed output:
+
+```json
+{
+  "status": "error",
+  "error": "backend unavailable: connect ENOENT /tmp/mk-code-index/daemon-ipc.sock",
+  "exitCode": 75
+}
+```
+
+Checked available runtime bridge state:
+
+```text
+plugin_id=mk-code-graph
+cache_ttl_ms=5000
+spec_folder=auto
+resume_mode=minimal
+messages_transform_enabled=true
+messages_transform_mode=schema_aligned
+runtime_ready=false
+node_binary=node
+bridge_timeout_ms=15000
+bridge_path=/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-code-graph/mcp_server/plugin_bridges/mk-code-graph-bridge.mjs
+last_runtime_error=Bridge skipped: SOCKET_ABSENT (exit=75); plugin injection will no-op
+cache_entries=0
+cache=empty
+```
 
 ### Pass / Fail
 
-- **Pass**: flag-on near-miss returns `resolver: "bm25"` disambiguation-only candidates, flag-off near-miss returns the plain error, exact resolution is unaffected by the flag and no query runs from a suggestion.
-- **Fail**: candidates appear with the flag off, exact resolution changes under the flag, a candidate auto-executes the query, or the flag-on near-miss omits the `symbolResolution` block.
+- **BLOCKED**: required `code_graph_status` / `code_graph_query` transport was unavailable. The warm CLI returned `exitCode: 75` with `backend unavailable: connect ENOENT /tmp/mk-code-index/daemon-ipc.sock`, and the plugin bridge reported `runtime_ready=false` with `SOCKET_ABSENT`.
 
 ### Failure Triage
 

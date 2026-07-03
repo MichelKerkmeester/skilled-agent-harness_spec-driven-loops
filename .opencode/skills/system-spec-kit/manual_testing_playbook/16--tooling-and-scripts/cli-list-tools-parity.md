@@ -62,12 +62,87 @@ rm -rf "$SANDBOX"
 
 ### Evidence
 
-Shell transcript with the three count lines and the three vitest pass summaries.
+Shell transcript from the required command block:
+
+```text
+CLI offline smoke: FAIL
+scenario=cli-list-tools-parity
+spec-memory: fail count=n/a/39 freshness=unknown daemonFree=true
+code-index: ok count=8/8 freshness=fresh daemonFree=true
+skill-advisor: ok count=9/9 freshness=fresh daemonFree=true
+scenario=cli-cwd-independent-resolution
+spec-memory: fail count=n/a/39 cwd=[unrelated-temp-dir] daemonFree=true
+code-index: ok count=8/8 cwd=[unrelated-temp-dir] daemonFree=true
+skill-advisor: ok count=9/9 cwd=[unrelated-temp-dir] daemonFree=true
+spec-memory: @spec-kit/mcp-server dist is stale. Run: cd .opencode/skills/system-spec-kit/mcp_server && npm run build
+Traceback (most recent call last):
+  File "<string>", line 1, in <module>
+  File "/Applications/Xcode.app/Contents/Developer/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/json/__init__.py", line 293, in load
+    return loads(fp.read(),
+  File "/Applications/Xcode.app/Contents/Developer/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/json/__init__.py", line 346, in loads
+    return _default_decoder.decode(s)
+  File "/Applications/Xcode.app/Contents/Developer/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/json/decoder.py", line 337, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+  File "/Applications/Xcode.app/Contents/Developer/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/json/decoder.py", line 355, in raw_decode
+    raise JSONDecodeError("Expecting value", s, err.value) from None
+json.decoder.JSONDecodeError: Expecting value: line 1 column 1 (char 0)
+code-index: ok 8
+skill-advisor: ok 9
+
+ RUN  v4.1.9 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit
+
+
+ Test Files  1 passed (1)
+      Tests  2 passed (2)
+   Start at  22:43:57
+   Duration  204ms (transform 89ms, setup 12ms, import 129ms, tests 4ms, environment 0ms)
+
+
+ RUN  v4.1.7 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+
+
+ Test Files  1 passed (1)
+      Tests  2 passed (2)
+   Start at  22:43:58
+   Duration  150ms (transform 31ms, setup 0ms, import 41ms, tests 50ms, environment 0ms)
+
+
+ RUN  v4.1.6 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-skill-advisor/mcp_server
+
+ ❯ tests/skill-advisor-cli-parity.vitest.ts (1 test | 1 failed) 21874ms
+     × keeps top recommendations identical across ten representative prompts 21873ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/skill-advisor-cli-parity.vitest.ts > skill-advisor CLI local/native parity fixture > keeps top recommendations identical across ten representative prompts
+AssertionError: expected null to be 'sk-code' // Object.is equality
+
+- Expected:
+"sk-code"
+
++ Received:
+null
+
+ ❯ tests/skill-advisor-cli-parity.vitest.ts:136:22
+    134|       const cliTop = cliTopSkill(row.prompt, scope);
+    135|       expect(pythonTop).toBe(row.skill);
+    136|       expect(cliTop).toBe(row.skill);
+       |                      ^
+    137|       if (pythonTop !== cliTop) mismatches.push({ prompt: row.prompt, …
+    138|     }
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed (1)
+   Start at  22:43:58
+   Duration  21.99s (transform 20ms, setup 13ms, import 28ms, tests 21.87s, environment 0ms)
+```
 
 ### Pass / Fail
 
-- **Pass**: counts are exactly 39 / 8 / 9 and all parity suites pass.
-- **Fail**: any count differs, `status` is not `ok`, or a parity suite fails.
+- **FAIL**: `spec-memory` did not return the expected `ok 39` count, the offline smoke reported `spec-memory: fail count=n/a/39 freshness=unknown daemonFree=true`, and `tests/skill-advisor-cli-parity.vitest.ts` failed with `AssertionError: expected null to be 'sk-code'`.
 
 ### Failure Triage
 

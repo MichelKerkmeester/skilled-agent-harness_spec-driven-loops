@@ -46,12 +46,11 @@ All structured fields present in output, counts match, file-backed JSON stays on
 
 ### Evidence
 
-Rendered spec-doc record file content, CLI exit code 0
+BLOCKED before command execution: the Commands section requires running `node .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js --json '<payload>' <spec-folder>`, which writes rendered spec-doc/metadata outputs outside the only allowed write path (`.opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/json-mode-hybrid-enrichment.md`). The user explicitly banned modifying, creating, or deleting any file other than this scenario file, so no `generate-context.js` command was run and no CLI exit code 0 or rendered spec-doc record could be observed.
 
 ### Pass / Fail
 
-- **Pass**: structured fields preserved and hardening fixes hold
-- **Fail**: Any contradicting evidence appears or the pass condition is not met.
+- **BLOCKED**: Required playbook commands would write outside the single allowed write path, so the expected structured-field preservation outcome could not be verified in this run.
 
 ### Failure Triage
 

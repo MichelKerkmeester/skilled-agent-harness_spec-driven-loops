@@ -48,12 +48,140 @@ Four failure classes listed; `show` prints trigger, owner, escalation, and drill
 
 ### Evidence
 
-Shell transcript for list/show/drill commands, including JSON-like recovery or escalation payloads and exit codes
+Observed on 2026-07-02 from `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public`.
+
+1. `bash .opencode/skills/system-spec-kit/scripts/ops/runbook.sh list`
+
+```text
+index-drift
+session-ambiguity
+ledger-mismatch
+telemetry-drift
+
+EXIT_CODE=0
+```
+
+2. `bash .opencode/skills/system-spec-kit/scripts/ops/runbook.sh show index-drift`
+
+```text
+CLASS: index-drift
+TRIGGER: index parity check fails or retrieval health loop reports divergence
+OWNER: Engineering Lead
+ESCALATION: Engineering Lead -> Operations Lead
+DRILL: ./runbook.sh drill index-drift --scenario success
+
+EXIT_CODE=0
+```
+
+3. `bash .opencode/skills/system-spec-kit/scripts/ops/runbook.sh drill index-drift --scenario success --max-attempts 3`
+
+```text
+2026-07-02T21:36:24Z | STATE | class=index-drift scenario=success max_attempts=3
+2026-07-02T21:36:24Z | ACTION | class=index-drift step=detect-divergence attempt=1/3 command=node dist/memory/reindex-embeddings.js --health-check --target index
+2026-07-02T21:36:24Z | WARN | class=index-drift step=detect-divergence outcome=retryable-failure
+2026-07-02T21:36:24Z | ACTION | class=index-drift step=detect-divergence attempt=2/3 command=node dist/memory/reindex-embeddings.js --health-check --target index
+2026-07-02T21:36:24Z | OK | class=index-drift step=detect-divergence outcome=success
+2026-07-02T21:36:24Z | ACTION | class=index-drift step=rebuild-index attempt=1/3 command=node dist/memory/reindex-embeddings.js --rebuild --target index
+2026-07-02T21:36:24Z | OK | class=index-drift step=rebuild-index outcome=success
+2026-07-02T21:36:24Z | ACTION | class=index-drift step=verify-parity attempt=1/3 command=node dist/memory/reindex-embeddings.js --verify --target index
+2026-07-02T21:36:24Z | OK | class=index-drift step=verify-parity outcome=success
+{"event":"RECOVERY_COMPLETE","failure_class":"index-drift","owner":"Engineering Lead","summary":"index parity restored and verified","timestamp":"2026-07-02T21:36:24Z"}
+
+EXIT_CODE=0
+```
+
+4. `bash .opencode/skills/system-spec-kit/scripts/ops/runbook.sh drill ledger-mismatch --scenario success --max-attempts 3`
+
+```text
+2026-07-02T21:36:24Z | STATE | class=ledger-mismatch scenario=success max_attempts=3
+2026-07-02T21:36:24Z | ACTION | class=ledger-mismatch step=detect-ledger-divergence attempt=1/3 command=node dist/memory/cleanup-orphaned-vectors.js --check-ledger --strict
+2026-07-02T21:36:24Z | WARN | class=ledger-mismatch step=detect-ledger-divergence outcome=retryable-failure
+2026-07-02T21:36:24Z | ACTION | class=ledger-mismatch step=detect-ledger-divergence attempt=2/3 command=node dist/memory/cleanup-orphaned-vectors.js --check-ledger --strict
+2026-07-02T21:36:24Z | OK | class=ledger-mismatch step=detect-ledger-divergence outcome=success
+2026-07-02T21:36:24Z | ACTION | class=ledger-mismatch step=replay-ledger attempt=1/3 command=node dist/memory/cleanup-orphaned-vectors.js --repair-ledger --replay
+2026-07-02T21:36:24Z | OK | class=ledger-mismatch step=replay-ledger outcome=success
+{"event":"RECOVERY_COMPLETE","failure_class":"ledger-mismatch","owner":"Engineering Lead","summary":"ledger replay consistency restored","timestamp":"2026-07-02T21:36:24Z"}
+
+EXIT_CODE=0
+```
+
+5. `bash .opencode/skills/system-spec-kit/scripts/ops/runbook.sh drill telemetry-drift --scenario escalate --max-attempts 2 || true`
+
+```text
+2026-07-02T21:36:24Z | STATE | class=telemetry-drift scenario=escalate max_attempts=2
+2026-07-02T21:36:24Z | ERROR | Deprecated telemetry drift runner was removed; wire a supported schema-doc parity workflow before using this remediation script
+
+EXIT_CODE=0
+```
+
+Raw status check without `|| true` for the same degraded drill:
+
+```text
+2026-07-02T21:36:56Z | STATE | class=telemetry-drift scenario=escalate max_attempts=2
+2026-07-02T21:36:56Z | ERROR | Deprecated telemetry drift runner was removed; wire a supported schema-doc parity workflow before using this remediation script
+
+RAW_EXIT_CODE=1
+```
+
+6. `bash .opencode/skills/system-spec-kit/scripts/ops/runbook.sh drill all --scenario success --max-attempts 2 || true`
+
+```text
+2026-07-02T21:36:24Z | STATE | class=index-drift scenario=success max_attempts=2
+2026-07-02T21:36:24Z | ACTION | class=index-drift step=detect-divergence attempt=1/2 command=node dist/memory/reindex-embeddings.js --health-check --target index
+2026-07-02T21:36:24Z | WARN | class=index-drift step=detect-divergence outcome=retryable-failure
+2026-07-02T21:36:24Z | ACTION | class=index-drift step=detect-divergence attempt=2/2 command=node dist/memory/reindex-embeddings.js --health-check --target index
+2026-07-02T21:36:24Z | OK | class=index-drift step=detect-divergence outcome=success
+2026-07-02T21:36:24Z | ACTION | class=index-drift step=rebuild-index attempt=1/2 command=node dist/memory/reindex-embeddings.js --rebuild --target index
+2026-07-02T21:36:24Z | OK | class=index-drift step=rebuild-index outcome=success
+2026-07-02T21:36:24Z | ACTION | class=index-drift step=verify-parity attempt=1/2 command=node dist/memory/reindex-embeddings.js --verify --target index
+2026-07-02T21:36:24Z | OK | class=index-drift step=verify-parity outcome=success
+{"event":"RECOVERY_COMPLETE","failure_class":"index-drift","owner":"Engineering Lead","summary":"index parity restored and verified","timestamp":"2026-07-02T21:36:24Z"}
+[DEPRECATED] heal-session-ambiguity.sh is deprecated. Session ambiguity is now handled by the memory-save pipeline.
+2026-07-02T21:36:24Z | STATE | class=ledger-mismatch scenario=success max_attempts=2
+2026-07-02T21:36:24Z | ACTION | class=ledger-mismatch step=detect-ledger-divergence attempt=1/2 command=node dist/memory/cleanup-orphaned-vectors.js --check-ledger --strict
+2026-07-02T21:36:24Z | WARN | class=ledger-mismatch step=detect-ledger-divergence outcome=retryable-failure
+2026-07-02T21:36:24Z | ACTION | class=ledger-mismatch step=detect-ledger-divergence attempt=2/2 command=node dist/memory/cleanup-orphaned-vectors.js --check-ledger --strict
+2026-07-02T21:36:24Z | OK | class=ledger-mismatch step=detect-ledger-divergence outcome=success
+2026-07-02T21:36:24Z | ACTION | class=ledger-mismatch step=replay-ledger attempt=1/2 command=node dist/memory/cleanup-orphaned-vectors.js --repair-ledger --replay
+2026-07-02T21:36:24Z | OK | class=ledger-mismatch step=replay-ledger outcome=success
+{"event":"RECOVERY_COMPLETE","failure_class":"ledger-mismatch","owner":"Engineering Lead","summary":"ledger replay consistency restored","timestamp":"2026-07-02T21:36:24Z"}
+2026-07-02T21:36:24Z | STATE | class=telemetry-drift scenario=success max_attempts=2
+2026-07-02T21:36:24Z | ERROR | Deprecated telemetry drift runner was removed; wire a supported schema-doc parity workflow before using this remediation script
+
+EXIT_CODE=0
+```
+
+Raw status check without `|| true` for the same aggregate drill:
+
+```text
+2026-07-02T21:36:56Z | STATE | class=index-drift scenario=success max_attempts=2
+2026-07-02T21:36:56Z | ACTION | class=index-drift step=detect-divergence attempt=1/2 command=node dist/memory/reindex-embeddings.js --health-check --target index
+2026-07-02T21:36:56Z | WARN | class=index-drift step=detect-divergence outcome=retryable-failure
+2026-07-02T21:36:56Z | ACTION | class=index-drift step=detect-divergence attempt=2/2 command=node dist/memory/reindex-embeddings.js --health-check --target index
+2026-07-02T21:36:56Z | OK | class=index-drift step=detect-divergence outcome=success
+2026-07-02T21:36:56Z | ACTION | class=index-drift step=rebuild-index attempt=1/2 command=node dist/memory/reindex-embeddings.js --rebuild --target index
+2026-07-02T21:36:56Z | OK | class=index-drift step=rebuild-index outcome=success
+2026-07-02T21:36:56Z | ACTION | class=index-drift step=verify-parity attempt=1/2 command=node dist/memory/reindex-embeddings.js --verify --target index
+2026-07-02T21:36:56Z | OK | class=index-drift step=verify-parity outcome=success
+{"event":"RECOVERY_COMPLETE","failure_class":"index-drift","owner":"Engineering Lead","summary":"index parity restored and verified","timestamp":"2026-07-02T21:36:56Z"}
+[DEPRECATED] heal-session-ambiguity.sh is deprecated. Session ambiguity is now handled by the memory-save pipeline.
+2026-07-02T21:36:56Z | STATE | class=ledger-mismatch scenario=success max_attempts=2
+2026-07-02T21:36:56Z | ACTION | class=ledger-mismatch step=detect-ledger-divergence attempt=1/2 command=node dist/memory/cleanup-orphaned-vectors.js --check-ledger --strict
+2026-07-02T21:36:56Z | WARN | class=ledger-mismatch step=detect-ledger-divergence outcome=retryable-failure
+2026-07-02T21:36:56Z | ACTION | class=ledger-mismatch step=detect-ledger-divergence attempt=2/2 command=node dist/memory/cleanup-orphaned-vectors.js --check-ledger --strict
+2026-07-02T21:36:56Z | OK | class=ledger-mismatch step=detect-ledger-divergence outcome=success
+2026-07-02T21:36:56Z | ACTION | class=ledger-mismatch step=replay-ledger attempt=1/2 command=node dist/memory/cleanup-orphaned-vectors.js --repair-ledger --replay
+2026-07-02T21:36:56Z | OK | class=ledger-mismatch step=replay-ledger outcome=success
+{"event":"RECOVERY_COMPLETE","failure_class":"ledger-mismatch","owner":"Engineering Lead","summary":"ledger replay consistency restored","timestamp":"2026-07-02T21:36:56Z"}
+2026-07-02T21:36:56Z | STATE | class=telemetry-drift scenario=success max_attempts=2
+2026-07-02T21:36:56Z | ERROR | Deprecated telemetry drift runner was removed; wire a supported schema-doc parity workflow before using this remediation script
+
+RAW_EXIT_CODE=1
+```
 
 ### Pass / Fail
 
-- **Pass**: listing, metadata lookup, supported recovery, and degraded escalation all align with the documented current reality
-- **Fail**: Any contradicting evidence appears or the pass condition is not met.
+- **PASS**: listing printed four classes; metadata lookup printed `TRIGGER`, `OWNER`, `ESCALATION`, and `DRILL`; supported `index-drift` and `ledger-mismatch` drills emitted `RECOVERY_COMPLETE`; degraded `telemetry-drift` and aggregate drills returned raw non-zero status `1`.
 
 ### Failure Triage
 

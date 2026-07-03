@@ -181,17 +181,34 @@ Per-CLI JSON response shape:
 
 ### Evidence
 
+Setup command executed:
+
+```bash
+grep -Fl "LITERAL phase names" \
+  .opencode/commands/speckit/assets/spec_kit_plan_auto.yaml \
+  .opencode/commands/speckit/assets/spec_kit_plan_confirm.yaml \
+  .opencode/commands/speckit/assets/spec_kit_complete_auto.yaml \
+  .opencode/commands/speckit/assets/spec_kit_complete_confirm.yaml
+```
+
+Observed output:
+
+```text
+grep: .opencode/commands/speckit/assets/spec_kit_plan_auto.yaml: No such file or directory
+grep: .opencode/commands/speckit/assets/spec_kit_plan_confirm.yaml: No such file or directory
+grep: .opencode/commands/speckit/assets/spec_kit_complete_auto.yaml: No such file or directory
+grep: .opencode/commands/speckit/assets/spec_kit_complete_confirm.yaml: No such file or directory
+```
+
 Summary table across CLIs tested:
 
-```
-| External CLI    | model            | slug 1                           | slug 2                              | slug 3                            | verdict |
-|-----------------|------------------|----------------------------------|-------------------------------------|-----------------------------------|---------|
-| cli-opencode       | gpt-5.5 high     | fix-singleton-leak-in-launcher   | harden-session-teardown             | add-launcher-uptime-smoke         | PASS    |
-| cli-opencode       | gpt-5.5 medium   | identify-singleton-leak-site     | implement-teardown-cache-release    | smoke-test-multi-hour-uptime      | PASS    |
-| cli-opencode    | deepseek-v4-pro  | ...                              | ...                                 | ...                               | ...     |
+```text
+| External CLI | model | slug 1 | slug 2 | slug 3 | verdict |
+|--------------|-------|--------|--------|--------|---------|
+| not run      | n/a   | n/a    | n/a    | n/a    | BLOCKED |
 ```
 
-Include verbatim JSON responses from each CLI in the test report.
+No CLI JSON responses were collected because the Phase 1 setup command printed 0 of 4 expected YAML workflow files. The scenario instruction says to stop if fewer than 4 files are printed.
 
 ### Pass / Fail
 
@@ -201,9 +218,7 @@ Include verbatim JSON responses from each CLI in the test report.
 
 Aggregate verdict:
 
-- PASS: 2 or more CLIs report PASS.
-- PARTIAL: 1 CLI reports PASS and the others report PARTIAL.
-- FAIL: 0 CLIs report PASS.
+- BLOCKED: Phase 1 setup failed because all four referenced YAML workflow files were missing at the paths used by the required command.
 
 ### Failure Triage
 

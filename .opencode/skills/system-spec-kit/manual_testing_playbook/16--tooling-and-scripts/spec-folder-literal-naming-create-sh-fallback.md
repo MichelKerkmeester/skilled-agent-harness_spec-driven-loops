@@ -93,14 +93,42 @@ Exit code from step 1: `0`
 
 ### Evidence
 
-- Full `ls "$SMOKE_DIR"` output showing child folder names.
-- Full content of `/tmp/speckit-stderr-$$.log`.
-- Exit code captured after the `create.sh` invocation.
+- Exit code captured after the `create.sh` invocation:
+
+  ```
+  exit code: 0
+  ```
+
+- Full `ls "$SMOKE_DIR"` output showing child folder names:
+
+  ```
+  001-phase-1-PROVIDE-DESCRIPTIVE-SLUG
+  002-phase-2-PROVIDE-DESCRIPTIVE-SLUG
+  003-phase-3-PROVIDE-DESCRIPTIVE-SLUG
+  description.json
+  graph-metadata.json
+  spec.md
+  ```
+
+- Full content of `/tmp/speckit-stderr-$$.log`:
+
+  ```
+  [speckit] Warning: Falling back to generic phase name 'phase-1-PROVIDE-DESCRIPTIVE-SLUG'. Provide --phase-names with literal slugs describing the concrete work.
+  [speckit] Warning: Falling back to generic phase name 'phase-2-PROVIDE-DESCRIPTIVE-SLUG'. Provide --phase-names with literal slugs describing the concrete work.
+  [speckit] Warning: Falling back to generic phase name 'phase-3-PROVIDE-DESCRIPTIVE-SLUG'. Provide --phase-names with literal slugs describing the concrete work.
+  (node:14502) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+  (Use `node --trace-warnings ...` to show where the warning was created)
+  (node:14626) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+  (Use `node --trace-warnings ...` to show where the warning was created)
+  (node:14788) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+  (Use `node --trace-warnings ...` to show where the warning was created)
+  (node:14939) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+  (Use `node --trace-warnings ...` to show where the warning was created)
+  ```
 
 ### Pass / Fail
 
-- **Pass**: All 3 child folder names contain `-PROVIDE-DESCRIPTIVE-SLUG`, exactly 3 `[speckit] Warning:` lines appear in the stderr log, and `create.sh` exits 0.
-- **Fail**: Any child name is a bare `phase-N` without the placeholder token (pre-012 regression); or `create.sh` exits non-zero; or fewer than 3 warning lines appear in the stderr log.
+- **PASS**: All 3 child folder names contain `-PROVIDE-DESCRIPTIVE-SLUG`, exactly 3 `[speckit] Warning:` lines appear in the stderr log, and `create.sh` exits 0. The stderr log also contains Node `ExperimentalWarning` lines after the required 3 speckit warnings.
 
 ### Failure Triage
 

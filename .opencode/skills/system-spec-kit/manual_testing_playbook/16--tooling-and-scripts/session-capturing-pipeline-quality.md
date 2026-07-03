@@ -129,28 +129,35 @@ This snippet preserves the canonical memory/spec-kit operator workflow for `M-00
   - Indexing succeeds when validation passes.
 ### Evidence
 
-- Grep output for crypto IDs, quality abort threshold, five-backend loader wiring, caller-aware source preference wiring, ANCHOR cleanup regex, trigger-phrase template wiring, and sufficiency-gate wiring.
-  - Passing `npm test` targeted Vitest output.
-  - Passing JS suite summaries from `scripts/tests/`.
-  - Passing `mcp_server` lint/build/targeted/full-test output for the package-clean closure bar.
-  - Passing alignment drift output.
-  - Passing `spec/validate.sh` output.
-  - Fresh per-CLI transcripts or artifacts generated during this run for OpenCode, Claude Code, OpenCode, and Copilot CLI whenever a universal live-proof claim is made.
-  - `generate-context.js` output or capture logs showing results for `M-007a` through `M-007j`.
-  - `generate-context.js` output or targeted Vitest evidence showing results for `M-007k` through `M-007q`.
+- `grep -n 'crypto.randomBytes' .opencode/skills/system-spec-kit/scripts/extractors/session-extractor.ts`
+  - `89:  const randomPart = crypto.randomBytes(6).toString('hex'); // 6 bytes = 12 hex chars = 48 bits`
+- `grep -n 'qualityAbortThreshold' .opencode/skills/system-spec-kit/scripts/core/workflow.ts .opencode/skills/system-spec-kit/scripts/core/config.ts`
+  - `.opencode/skills/system-spec-kit/scripts/core/config.ts:37:  qualityAbortThreshold: number;`
+  - `.opencode/skills/system-spec-kit/scripts/core/config.ts:107:    log('warn', 'qualityAbortThreshold invalid or out of range 0.0-1.0 (or legacy 1-100), using default', {`
+  - `.opencode/skills/system-spec-kit/scripts/core/config.ts:115:    log('warn', 'qualityAbortThreshold uses legacy 1-100 scale and was auto-converted to canonical 0.0-1.0', {`
+  - `.opencode/skills/system-spec-kit/scripts/core/config.ts:154:  validated.qualityAbortThreshold = normalizeQualityAbortThreshold(`
+  - `.opencode/skills/system-spec-kit/scripts/core/config.ts:155:    validated.qualityAbortThreshold,`
+  - `.opencode/skills/system-spec-kit/scripts/core/config.ts:156:    defaults.qualityAbortThreshold,`
+  - `.opencode/skills/system-spec-kit/scripts/core/config.ts:242:    qualityAbortThreshold: 0.15,`
+  - `.opencode/skills/system-spec-kit/scripts/core/config.ts:306:  QUALITY_ABORT_THRESHOLD: userConfig.qualityAbortThreshold,`
+- `grep -n 'claude-code-capture\|opencode-cli-capture\|copilot-cli-capture' .opencode/skills/system-spec-kit/scripts/loaders/data-loader.ts .opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts`
+  - `.opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts:28:  | 'claude-code-capture'`
+  - `.opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts:29:  | 'opencode-cli-capture'`
+  - `.opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts:30:  | 'copilot-cli-capture'`
+- `grep -n 'INSUFFICIENT_CONTEXT_ABORT\|evaluateMemorySufficiency' .opencode/skills/system-spec-kit/scripts/core/workflow.ts .opencode/skills/system-spec-kit/shared/parsing/memory-sufficiency.ts`
+  - `.opencode/skills/system-spec-kit/scripts/core/workflow.ts:56:  evaluateMemorySufficiency,`
+  - `.opencode/skills/system-spec-kit/scripts/core/workflow.ts:1590:  const sufficiencyResult = evaluateMemorySufficiency({`
+  - `.opencode/skills/system-spec-kit/shared/parsing/memory-sufficiency.ts:59:export const MEMORY_SUFFICIENCY_REJECTION_CODE = 'INSUFFICIENT_CONTEXT_ABORT' as const;`
+  - `.opencode/skills/system-spec-kit/shared/parsing/memory-sufficiency.ts:311:export function evaluateMemorySufficiency(snapshot: MemoryEvidenceSnapshot): MemorySufficiencyResult {`
+- `grep -n 'WORKFLOW_HTML_COMMENT_RE\|stripWorkflowHtmlOutsideCodeFences' .opencode/skills/system-spec-kit/scripts/core/workflow.ts`
+  - `73:import { stripWorkflowHtmlOutsideCodeFences, escapeLiteralAnchorExamples } from './content-cleaner.js';`
+  - `1913:export { stripWorkflowHtmlOutsideCodeFences } from './content-cleaner.js';`
+- `grep -n 'SYSTEM_SPEC_KIT_CAPTURE_SOURCE\|trigger_phrases' .opencode/skills/system-spec-kit/scripts/loaders/data-loader.ts .opencode/skills/system-spec-kit/scripts/memory/generate-context.ts`
+  - `(no output)`
+- BLOCKED before the Targeted automated closure suite and later manual/e2e scenarios: the remaining Commands include `npm run build` and multiple `generate-context.js` save flows that can modify, create, or delete files outside the single allowed write path. The task-level constraint says: `Do NOT modify, create, or delete any file OTHER than the single scenario file named below.`
 ### Pass/Fail
 
-- All automated commands pass.
-  - Package-clean MCP verification passes alongside the scripts-side closure suite.
-  - `M-007a` validates and indexes successfully.
-  - `M-007b` proves thin aligned JSON now fails `INSUFFICIENT_CONTEXT_ABORT` with lower diagnostic quality than `M-007a` and with no new spec-doc record file written.
-  - `M-007c` proves the explicit-CLI same-workspace captured-session run warns on missing anchors and still hard-fails `ALIGNMENT_BLOCK` when file overlap is too low.
-  - `M-007d` shows provenance-tagged enrichment.
-  - `M-007d` also proves ANCHOR preservation, rendered-memory contract compliance, and frontmatter trigger-phrase quality.
-  - `M-007e` proves OpenCode precedence does not override the later save-path gates.
-  - `M-007f` through `M-007h` prove per-backend native capture selection and save-gate behavior under canonical `.opencode` workspace identity, the direct-mode caller hint, and the tightened alignment plus insufficiency gates without malformed trigger rendering or `V5` corruption. They are not, by themselves, full Hydra end-to-end proof for those CLIs.
-  - `M-007j` proves final `NO_DATA_FILE` behavior.
-  - `M-007k` through `M-007q` prove the Phase 017 captured-session soft-warning vs hard-block split, structured-input authority, shipped `toolCalls` / `exchanges` support, file-backed JSON authority, Claude-only contamination downgrade, and the Phase 018 output-quality hardening.
+- BLOCKED: the full scenario could not be executed under the current repository constraints because required Commands can write outside `.opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/session-capturing-pipeline-quality.md`, which is the only allowed write path for this run.
 ### Failure Triage
 
 - Check `data-loader.ts` fallback ordering.

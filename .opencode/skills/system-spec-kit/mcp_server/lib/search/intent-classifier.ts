@@ -294,8 +294,33 @@ const PARAPHRASE_STOPWORDS = new Set([
   'this',
   'to',
   'what',
+  'where',
+  'which',
+  'who',
   'with',
   'you',
+  'find',
+  'get',
+  'list',
+  'locate',
+  'show',
+]);
+
+const PARAPHRASE_TOKEN_ALIASES = new Map<string, string>([
+  ['call', 'calls'],
+  ['caller', 'calls'],
+  ['callers', 'calls'],
+  ['callee', 'calls'],
+  ['callees', 'calls'],
+  ['dependency', 'dependencies'],
+  ['depends', 'dependencies'],
+  ['dependent', 'dependencies'],
+  ['dependents', 'dependencies'],
+  ['import', 'imports'],
+  ['export', 'exports'],
+  ['reference', 'references'],
+  ['referenced', 'references'],
+  ['structure', 'outline'],
 ]);
 
 const INTENT_WEIGHT_ADJUSTMENTS: Record<IntentType, IntentWeights> = {
@@ -666,6 +691,7 @@ function deriveParaphraseGroup(query: string): string {
   }
 
   return (query.toLowerCase().match(/[a-z0-9_]+/g) ?? [])
+    .map((token) => PARAPHRASE_TOKEN_ALIASES.get(token) ?? token)
     .filter((token) => token.length > 1 && !PARAPHRASE_STOPWORDS.has(token))
     .sort((left, right) => left.localeCompare(right))
     .join('-');

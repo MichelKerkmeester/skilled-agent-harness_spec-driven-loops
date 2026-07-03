@@ -51,12 +51,50 @@ The query succeeds, returns structured metadata and respects the requested resul
 
 ### Evidence
 
-Tool response transcript showing query metadata and result count.
+Command run:
+
+```json
+{
+  "queryType": "hub_skills",
+  "skillId": "",
+  "sourceSkillId": "",
+  "targetSkillId": "",
+  "family": "system",
+  "minInbound": 1,
+  "depth": 0,
+  "limit": 10
+}
+```
+
+Tool response transcript excerpt:
+
+```json
+{
+  "status": "ok",
+  "data": {
+    "queryType": "hub_skills",
+    "minInbound": 1,
+    "skills": [
+      { "node": { "id": "sk-code", "family": "sk-code", "category": "code-quality", "schemaVersion": 2 }, "inboundCount": 10 },
+      { "node": { "id": "system-spec-kit", "family": "system", "category": "system", "schemaVersion": 2 }, "inboundCount": 9 },
+      { "node": { "id": "deep-loop-workflows", "family": "deep-loop", "category": "workflow", "schemaVersion": 2 }, "inboundCount": 7 },
+      { "node": { "id": "sk-design", "family": "sk-code", "category": "design", "schemaVersion": 2 }, "inboundCount": 6 },
+      { "node": { "id": "cli-opencode", "family": "cli", "category": "cli-orchestrator", "schemaVersion": 2 }, "inboundCount": 5 },
+      { "node": { "id": "mcp-figma", "family": "mcp", "category": "mcp-tool", "schemaVersion": 2 }, "inboundCount": 5 },
+      { "node": { "id": "cli-claude-code", "family": "cli", "category": "cli-orchestrator", "schemaVersion": 2 }, "inboundCount": 4 },
+      { "node": { "id": "cli-codex", "family": "cli", "category": "cli-orchestrator", "schemaVersion": 2 }, "inboundCount": 4 },
+      { "node": { "id": "mcp-code-mode", "family": "mcp", "category": "mcp-tool", "schemaVersion": 2 }, "inboundCount": 4 },
+      { "node": { "id": "sk-code-review", "family": "sk-code", "category": "code-quality", "schemaVersion": 2 }, "inboundCount": 4 }
+    ]
+  }
+}
+```
+
+Observed result count: `10` rows for requested `limit: 10`.
 
 ### Pass / Fail
 
-- **Pass**: Query metadata is present and result count respects `limit`.
-- **Fail**: The handler errors, metadata is missing or more than 10 rows are returned.
+- **PASS**: Query metadata is present (`"queryType": "hub_skills"`) and the observed result count is `10`, which respects `limit: 10`.
 
 ---
 

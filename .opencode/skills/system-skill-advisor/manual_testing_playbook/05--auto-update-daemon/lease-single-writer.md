@@ -61,6 +61,20 @@ advisor_status({"workspaceRoot":"/tmp/path-to-copy"})
 | Stale lease never reclaimed | Shell B remains `absent` after 90s | Verify heartbeat TTL and reclaim interval in `lease.ts`. |
 | Lease corruption | Daemon crashes on acquire | Treat as HALT. Quarantine DB and run rebuild-from-source per OP-003. |
 
+### Evidence
+
+BLOCKED at precondition validation. The scenario requires a disposable workspace copy and specifies the MCP status call with `workspaceRoot` set to `/tmp/path-to-copy`, but that path does not exist in the current environment. Creating a disposable copy would violate this run's allowed write paths, which permit writes only to this scenario file.
+
+Actual file-read output while checking the documented workspace root:
+
+```text
+File not found: /tmp/path-to-copy
+```
+
+### Pass/Fail
+
+BLOCKED - missing disposable workspace copy at `/tmp/path-to-copy`; scenario commands could not be run without creating files outside the allowed write path.
+
 ---
 
 ## 4. SOURCE FILES

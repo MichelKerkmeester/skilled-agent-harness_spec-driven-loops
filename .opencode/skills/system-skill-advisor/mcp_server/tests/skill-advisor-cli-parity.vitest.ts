@@ -1,4 +1,4 @@
-import { existsSync } from 'node:fs';
+import { copyFileSync, existsSync } from 'node:fs';
 import { spawnSync, type SpawnSyncReturns } from 'node:child_process';
 import { join } from 'node:path';
 
@@ -30,6 +30,10 @@ interface CliRecommendPayload {
 }
 
 const scopes: IsolatedCliScope[] = [];
+const canonicalSkillGraphDb = join(
+  repoRoot,
+  '.opencode/skills/system-skill-advisor/mcp_server/database/skill-graph.sqlite',
+);
 
 const parityPrompts: ReadonlyArray<{ readonly skill: string; readonly prompt: string }> = [
   { skill: 'sk-code', prompt: 'Use sk-code to implement a TypeScript test and run the code verification gate.' },
@@ -108,6 +112,14 @@ function cliTopSkill(prompt: string, scope: IsolatedCliScope): string | null {
   return payload.data?.recommendations?.[0]?.skillId ?? null;
 }
 
+function seedCliProjection(scope: IsolatedCliScope): void {
+  expect(existsSync(canonicalSkillGraphDb)).toBe(true);
+  for (const suffix of ['', '-wal', '-shm']) {
+    const source = `${canonicalSkillGraphDb}${suffix}`;
+    if (existsSync(source)) copyFileSync(source, join(scope.skillAdvisorDbDir, `skill-graph.sqlite${suffix}`));
+  }
+}
+
 afterEach(async () => {
   while (scopes.length > 0) {
     const scope = scopes.pop();
@@ -123,6 +135,7 @@ describe('skill-advisor CLI local/native parity fixture', () => {
     () => {
     const scope = createIsolatedCliScope('parity');
     scopes.push(scope);
+    seedCliProjection(scope);
 
     for (const row of parityPrompts) {
       expect(existsSync(join(repoRoot, '.opencode/skills', row.skill, 'SKILL.md'))).toBe(true);

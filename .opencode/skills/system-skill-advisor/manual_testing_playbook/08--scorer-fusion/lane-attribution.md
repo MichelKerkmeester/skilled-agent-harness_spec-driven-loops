@@ -60,6 +60,132 @@ advisor_recommend({"prompt":"review this pull request","options":{"topK":1,"incl
 | `why_recommended` echoes the prompt | User words appear verbatim | Block release as prompt-safety failure. |
 | shadowOnly missing from semantic | `semantic_shadow` lacks flag | Audit `attribution.ts` lane tagging. |
 
+### Evidence
+
+Repo root precondition check:
+
+```text
+$ pwd
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+```
+
+Advisor status precondition check:
+
+```json
+{
+  "status": "ok",
+  "data": {
+    "freshness": "unavailable",
+    "generation": 9476,
+    "trustState": {
+      "state": "stale",
+      "reason": "SIGTERM",
+      "generation": 9476,
+      "checkedAt": "2026-07-03T02:35:47.275Z",
+      "lastLiveAt": null
+    },
+    "lastGenerationBump": "2026-07-02T05:27:14.803Z",
+    "lastScanAt": "2026-07-02T05:27:14.803Z",
+    "skillCount": 26,
+    "laneWeights": {
+      "explicit_author": 0.42,
+      "lexical": 0.28,
+      "graph_causal": 0.13,
+      "derived_generated": 0.12,
+      "semantic_shadow": 0.05
+    }
+  }
+}
+```
+
+Call with attribution enabled:
+
+```json
+{
+  "status": "ok",
+  "data": {
+    "workspaceRoot": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public",
+    "effectiveThresholds": {
+      "confidenceThreshold": 0.8,
+      "uncertaintyThreshold": 0.35,
+      "confidenceOnly": false
+    },
+    "recommendations": [],
+    "ambiguous": false,
+    "freshness": "unavailable",
+    "trustState": {
+      "state": "unavailable",
+      "reason": "advisor_unavailable",
+      "generation": 9476,
+      "checkedAt": "2026-07-03T02:36:01.495Z",
+      "lastLiveAt": null
+    },
+    "generatedAt": "2026-07-03T02:36:01.495Z",
+    "cache": {
+      "hit": false,
+      "sourceSignaturePresent": false
+    },
+    "warnings": [
+      "advisor_unavailable"
+    ],
+    "abstainReasons": [
+      "Skill advisor freshness is unavailable; returning fail-open empty recommendations."
+    ]
+  }
+}
+```
+
+Call with attribution disabled:
+
+```json
+{
+  "status": "ok",
+  "data": {
+    "workspaceRoot": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public",
+    "effectiveThresholds": {
+      "confidenceThreshold": 0.8,
+      "uncertaintyThreshold": 0.35,
+      "confidenceOnly": false
+    },
+    "recommendations": [],
+    "ambiguous": false,
+    "freshness": "unavailable",
+    "trustState": {
+      "state": "unavailable",
+      "reason": "advisor_unavailable",
+      "generation": 9476,
+      "checkedAt": "2026-07-03T02:36:10.770Z",
+      "lastLiveAt": null
+    },
+    "generatedAt": "2026-07-03T02:36:10.770Z",
+    "cache": {
+      "hit": false,
+      "sourceSignaturePresent": false
+    },
+    "warnings": [
+      "advisor_unavailable"
+    ],
+    "abstainReasons": [
+      "Skill advisor freshness is unavailable; returning fail-open empty recommendations."
+    ]
+  }
+}
+```
+
+Attribution inspection result:
+
+```text
+recommendations: []
+laneBreakdown: not present because no top recommendation was returned
+why_recommended: not present because no top recommendation was returned
+raw prompt substring scan target: "review this pull request"
+raw prompt substring in attribution: no attribution JSON was returned to scan
+```
+
+### Pass/Fail
+
+BLOCKED - The required precondition "Any prompt that routes to a known skill" is missing in the current repo/runtime state because the advisor reports `freshness: "unavailable"`, `reason: "advisor_unavailable"`, and both scenario calls returned `recommendations: []`.
+
 ---
 
 ## 4. SOURCE FILES

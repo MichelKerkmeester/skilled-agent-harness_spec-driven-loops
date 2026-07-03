@@ -70,6 +70,7 @@ function sampleValueForProperty(toolName: string, propertyName: string, property
   if (propertyName === 'contextType') return 'decision';
   if (propertyName === 'min_quality_score' || propertyName === 'minQualityScore' || propertyName === 'tokenUsage') return 0.5;
   if (propertyName === 'limit') return 10;
+  if (toolName === 'memory_search' && propertyName === 'debug') return { enabled: true };
   if (toolName === 'memory_search' && propertyName === 'mode') return 'auto';
 
   const enumValues = propertySchema.enum;
@@ -513,6 +514,18 @@ describe('governed retrieval schema propagation', () => {
       validateToolInputSchema('memory_context', args, TOOL_DEFINITIONS);
     }).not.toThrow();
     expect(validateToolArgs('memory_context', args)).toEqual(args);
+  });
+
+  it('public and runtime schemas accept result explain debug controls for memory_search', () => {
+    const args = {
+      query: 'auth design',
+      debug: { enabled: true },
+    };
+
+    expectPublicAndRuntimeAccept('memory_search', args);
+    expect(getToolProperties('memory_search').debug).toMatchObject({
+      type: 'object',
+    });
   });
 
   it('public and runtime schemas accept governed scope fields for memory_quick_search', () => {

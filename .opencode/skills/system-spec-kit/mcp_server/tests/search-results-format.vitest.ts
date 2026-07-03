@@ -2,7 +2,7 @@
 // 1. SEARCH RESULTS FORMAT VITEST
 // ───────────────────────────────────────────────────────────────
 // Converted from: search-results-format.test.ts (custom runner)
-import { describe, it, expect } from 'vitest';
+import { afterEach, describe, it, expect } from 'vitest';
 import {
   safeJsonParse,
   validateFilePathLocal,
@@ -35,6 +35,22 @@ interface SearchResultsResponseData {
 }
 
 type SearchResultsEnvelope = MCPEnvelope<SearchResultsResponseData>;
+
+const ORIGINAL_RESULT_EXPLAIN_ENV = process.env.SPECKIT_RESULT_EXPLAIN;
+const ORIGINAL_RESULT_EXPLAIN_DEBUG_ENV = process.env.SPECKIT_RESULT_EXPLAIN_DEBUG;
+
+afterEach(() => {
+  if (ORIGINAL_RESULT_EXPLAIN_ENV === undefined) {
+    delete process.env.SPECKIT_RESULT_EXPLAIN;
+  } else {
+    process.env.SPECKIT_RESULT_EXPLAIN = ORIGINAL_RESULT_EXPLAIN_ENV;
+  }
+  if (ORIGINAL_RESULT_EXPLAIN_DEBUG_ENV === undefined) {
+    delete process.env.SPECKIT_RESULT_EXPLAIN_DEBUG;
+  } else {
+    process.env.SPECKIT_RESULT_EXPLAIN_DEBUG = ORIGINAL_RESULT_EXPLAIN_DEBUG_ENV;
+  }
+});
 
 function parseEnvelope(response: MCPResponse): SearchResultsEnvelope {
   expect(response.content).toBeDefined();
@@ -585,6 +601,56 @@ describe('formatSearchResults', () => {
     const res = await formatSearchResults(mockResults, 'semantic', false, null, null, null, {}, true);
     const envelope = parseEnvelope(res);
     expect(envelope.data.results[0]?.trace?.queryComplexity).toBe('moderate');
+  });
+
+  it('C18: result explainability flag OFF omits per-result why', async () => {
+    process.env.SPECKIT_RESULT_EXPLAIN = 'false';
+    const mockResults = [{
+      id: 54,
+      spec_folder: 'specs/012-test',
+      file_path: '/tmp/no-why.md',
+      title: 'No Why',
+      score: 0.8,
+    }];
+
+    const res = await formatSearchResults(mockResults, 'hybrid');
+    const envelope = parseEnvelope(res);
+    expect(envelope.data.results[0]?.why).toBeUndefined();
+  });
+
+  it('C19: result explainability debug option includes channelContribution', async () => {
+    process.env.SPECKIT_RESULT_EXPLAIN = 'true';
+    delete process.env.SPECKIT_RESULT_EXPLAIN_DEBUG;
+    const mockResults = [{
+      id: 55,
+      spec_folder: 'specs/013-test',
+      file_path: '/tmp/debug-why.md',
+      title: 'Debug Why',
+      score: 0.8,
+      vectorScore: 0.7,
+      ftsScore: 0.2,
+      graphContribution: { totalDelta: 0.05 },
+    }];
+
+    const res = await formatSearchResults(
+      mockResults,
+      'hybrid',
+      false,
+      null,
+      null,
+      null,
+      {},
+      false,
+      'debug why',
+      null,
+      { enabled: true, debugEnabled: true },
+    );
+    const envelope = parseEnvelope(res);
+    expect(envelope.data.results[0]?.why?.channelContribution).toEqual({
+      vector: 0.7,
+      fts: 0.2,
+      graph: 0.05,
+    });
   });
 });
 

@@ -52,13 +52,186 @@ Validate passive context enrichment and confirm tool responses carry constitutio
 
 ### Evidence
 
-- Three response envelopes (regular tool call, mutation tool call, oversized-hint scenario)
-- Hints section content for each
+- Known trigger confirmation: `memory_match_triggers({ prompt: "speckit", limit: 5 })` returned:
+  ```json
+  {
+    "summary": "Matched 5 memories via trigger phrases",
+    "data": {
+      "matchType": "trigger-phrase",
+      "count": 5,
+      "results": [
+        {
+          "memoryId": 7434,
+          "specFolder": "system-spec-kit/z_archive/021-spec-kit-phase-system",
+          "title": "Feature Specification: SpecKit Phase System [system-spec-kit/021-spec-kit-phase-system/spec]",
+          "matchedPhrases": ["speckit"]
+        }
+      ]
+    },
+    "hints": [
+      "Auto-surface hook: injected 10 constitutional and 5 triggered memories (0ms)"
+    ],
+    "meta": {
+      "autoSurface": {
+        "constitutionalCount": 10,
+        "triggeredCount": 5,
+        "surfaced_at": "2026-07-03T00:11:44.723Z",
+        "latencyMs": 0
+      },
+      "tokenBudget": 3500
+    }
+  }
+  ```
+- Regular MCP response envelope: `memory_stats({ folderRanking: "count", excludePatterns: [], includeScores: false, includeArchived: false, limit: 10 })` returned these hints and code graph status values:
+  ```json
+  {
+    "summary": "Memory system: 32758 memories across 3819 folders",
+    "hints": [
+      "8123 memories pending re-indexing",
+      "Session priming: loaded 10 constitutional memories and code graph status unavailable",
+      "primePackage: available in meta.sessionPriming.primePackage",
+      "Code graph: empty",
+      "Recommended next calls: code_graph_scan, memory_context({ input: \"resume previous work\", mode: \"resume\", profile: \"resume\" })",
+      "Session priming trimmed to fit the 1000 token budget; full constitutional content remains retrievable via memory_search",
+      "Response exceeds token budget (1156/1000)"
+    ],
+    "meta": {
+      "sessionPriming": {
+        "trimmed": true,
+        "constitutionalCount": 10,
+        "primePackage": {
+          "codeGraphStatus": "empty"
+        }
+      },
+      "tokenBudget": 1000,
+      "sessionPrimingTrimmed": true
+    }
+  }
+  ```
+- Direct code graph status check returned no response `hints` envelope and reported:
+  ```text
+  plugin_id=mk-code-graph
+  cache_ttl_ms=5000
+  spec_folder=auto
+  resume_mode=minimal
+  messages_transform_enabled=true
+  messages_transform_mode=schema_aligned
+  runtime_ready=false
+  node_binary=node
+  bridge_timeout_ms=15000
+  bridge_path=/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-code-graph/mcp_server/plugin_bridges/mk-code-graph-bridge.mjs
+  last_runtime_error=Bridge skipped: SOCKET_ABSENT (exit=75); plugin injection will no-op
+  cache_entries=0
+  cache=empty
+  ```
+- Non-memory tool call with the known trigger phrase: `advisor_recommend({ prompt: "speckit passive context enrichment trigger phrase check for MCP response hints", ... })` returned no `hints` section:
+  ```json
+  {
+    "status": "ok",
+    "data": {
+      "recommendations": [],
+      "ambiguous": false,
+      "freshness": "unavailable",
+      "trustState": {
+        "state": "unavailable",
+        "reason": "advisor_unavailable",
+        "generation": 9476,
+        "checkedAt": "2026-07-03T00:13:42.232Z",
+        "lastLiveAt": null
+      },
+      "warnings": ["advisor_unavailable"],
+      "abstainReasons": [
+        "Skill advisor freshness is unavailable; returning fail-open empty recommendations."
+      ]
+    }
+  }
+  ```
+- Mutation response envelope: no disposable file existed under `.opencode/specs/system-speckit/031-manual-playbook-execution-sweep/`, and the user constraint prohibited creating one, so `memory_save` was run against the existing approved spec file `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-speckit/031-manual-playbook-execution-sweep/spec.md`. The first attempt returned:
+  ```json
+  {
+    "summary": "Error: Governed ingest rejected: tenantId is required for governed ingest; sessionId is required for governed ingest; userId or agentId is required for governed ingest; provenanceSource is required for governed ingest; provenanceActor is required for governed ingest",
+    "data": {
+      "error": "Governed ingest rejected: tenantId is required for governed ingest; sessionId is required for governed ingest; userId or agentId is required for governed ingest; provenanceSource is required for governed ingest; provenanceActor is required for governed ingest",
+      "code": "E085"
+    },
+    "hints": [
+      "Supply the required governed-ingest provenance/scope fields and retry.",
+      "Provide the missing tenant/provenance/actor metadata",
+      "Retry memory_save"
+    ]
+  }
+  ```
+- Retried mutation response with governed ingest fields returned mutation/planner hints but blocked before canonical apply:
+  ```json
+  {
+    "summary": "Planner found blocker(s) that must be resolved before the canonical save can run.",
+    "data": {
+      "status": "blocked",
+      "specFolder": "system-speckit/031-manual-playbook-execution-sweep",
+      "blockers": [
+        {
+          "code": "SPEC_DOC_STRUCTURE_BLOCKER",
+          "message": "SPECDOC_SUFFICIENCY_001: spec.md: anchor parse failure: line 210: orphaned closing anchor 'questions'"
+        },
+        {
+          "code": "TEMPLATE_CONTRACT_BLOCKER",
+          "message": "Rendered memory is missing the required continue-session section.; Rendered memory is missing the required canonical-docs section.; Rendered memory is missing the required overview section.; Rendered memory is missing the required evidence section.; Rendered memory is missing the required recovery-hints section.; Rendered memory is missing the required memory-metadata section."
+        }
+      ]
+    },
+    "hints": [
+      "Planner prepared 1 proposed edit(s) for /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-speckit/031-manual-playbook-execution-sweep/spec.md",
+      "Available follow-up actions: apply, refresh-graph, reindex, reconsolidate",
+      "3 advisory warning(s) remain after structural planning checks",
+      "Resolve planner blockers before requesting full-auto apply mode",
+      "Auto-surface hook: injected 10 constitutional and 5 triggered memories (1644ms)",
+      "Session priming: loaded 10 constitutional memories and code graph status unavailable",
+      "primePackage: available in meta.sessionPriming.primePackage",
+      "Code graph: empty",
+      "Recommended next calls: code_graph_scan, memory_context({ input: \"resume previous work\", mode: \"resume\", profile: \"resume\" })",
+      "Session priming trimmed to fit the 3500 token budget; full constitutional content remains retrievable via memory_search",
+      "Response exceeds token budget (4178/3500)"
+    ],
+    "meta": {
+      "autoSurface": { "constitutionalCount": 10, "triggeredCount": 5 },
+      "tokenBudget": 3500,
+      "sessionPrimingTrimmed": true
+    }
+  }
+  ```
+- Oversized-hint scenario: `memory_match_triggers({ prompt: "speckit system spec memory context implementation plan task review design code graph skill advisor deep research deep review command dispatch workflow validation testing manual playbook constitutional session resume save update delete search index trigger prompt phase agent orchestration cli opencode markdown documentation feature bug refactor audit security performance accessibility token budget hints response evidence expected pass fail", limit: 100 })` returned:
+  ```json
+  {
+    "summary": "Found 10 memories",
+    "data": {
+      "count": 10,
+      "results": [
+        {
+          "memoryId": 7433,
+          "matchedPhrases": ["implementation", "plan", "speckit", "phase", "system", "spec"]
+        },
+        {
+          "memoryId": 7434,
+          "compact": true
+        }
+      ]
+    },
+    "hints": [
+      "Auto-surface hook: injected 10 constitutional and 5 triggered memories (3920ms)",
+      "Token budget enforced: 50 → 10 results (9 compact) to fit 3500 token budget"
+    ],
+    "meta": {
+      "tokenBudget": 3500,
+      "tokenBudgetTruncated": true,
+      "originalResultCount": 50,
+      "returnedResultCount": 10
+    }
+  }
+  ```
 
 ### Pass / Fail
 
-- **Pass**: documented categories surface, mutation feedback present, token budget respected.
-- **Fail**: hints empty for known trigger, mutation feedback missing, payload exceeds budget.
+- **FAIL**: `memory_stats` and `memory_save` carried constitutional/session priming, trigger, code graph, mutation/planner, and token-budget hints, but the non-memory `advisor_recommend` call containing the known trigger phrase returned no `hints` section, so the documented “every tool response” / known-trigger expectation did not hold.
 
 ### Failure Triage
 

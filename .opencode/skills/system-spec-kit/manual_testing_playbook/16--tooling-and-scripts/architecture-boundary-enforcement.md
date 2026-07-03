@@ -47,12 +47,46 @@ shared/ imports into mcp_server/ or scripts/ are flagged across supported import
 
 ### Evidence
 
-Vitest output for T39-T45 + CLI pass output showing "Architecture boundary check passed" on the clean fixture path
+Command: `node mcp_server/node_modules/vitest/vitest.mjs run scripts/tests/architecture-boundary-enforcement.vitest.ts --config mcp_server/vitest.config.ts --reporter verbose`
+
+```text
+ RUN  v4.1.9 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit
+
+10:40:49 PM [vite] (ssr) Failed to load source map for /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/node_modules/typescript/lib/typescript.js.
+Error: An error occurred while trying to read the map file at typescript.js.map
+Error: ENOENT: no such file or directory, open '/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/node_modules/typescript/lib/typescript.js.map'
+    at Object.readFileSync (node:fs:440:20)
+    at file:///Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/node_modules/vitest/node_modules/vite/dist/node/chunks/node.js:18742:13
+    at readFromFileMap (file:///Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/node_modules/vitest/node_modules/vite/dist/node/chunks/node.js:18442:13)
+    at Object.exports.fromMapFileComment (file:///Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/node_modules/vitest/node_modules/vite/dist/node/chunks/node.js:18536:12)
+    at Object.exports.fromMapFileSource (file:///Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/node_modules/vitest/node_modules/vite/dist/node/chunks/node.js:18547:22)
+    at extractSourcemapFromFile (file:///Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/node_modules/vitest/node_modules/vite/dist/node/chunks/node.js:18728:87)
+    at loadAndTransform (file:///Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/node_modules/vitest/node_modules/vite/dist/node/chunks/node.js:19697:22)
+ ✓ scripts/tests/architecture-boundary-enforcement.vitest.ts > Architecture Boundary Enforcement > T39: GAP A detects shared -> mcp_server/scripts imports across syntax variants 6ms
+ ✓ scripts/tests/architecture-boundary-enforcement.vitest.ts > Architecture Boundary Enforcement > parses export-from, import type, and require() forms when checking shared neutrality 2ms
+ ✓ scripts/tests/architecture-boundary-enforcement.vitest.ts > Architecture Boundary Enforcement > T40: GAP B flags wrappers exceeding 50 substantive lines 2ms
+ ✓ scripts/tests/architecture-boundary-enforcement.vitest.ts > Architecture Boundary Enforcement > T41: GAP B flags wrappers missing child_process import 1ms
+ ✓ scripts/tests/architecture-boundary-enforcement.vitest.ts > Architecture Boundary Enforcement > T42: GAP B flags wrappers missing scripts/dist reference 1ms
+ ✓ scripts/tests/architecture-boundary-enforcement.vitest.ts > Architecture Boundary Enforcement > T43: GAP B catches wrapper bypasses (barrel re-exports and scripts import without spawn/exec) 1ms
+ ✓ scripts/tests/architecture-boundary-enforcement.vitest.ts > Architecture Boundary Enforcement > T44: legitimate thin wrappers pass GAP B checks 1ms
+ ✓ scripts/tests/architecture-boundary-enforcement.vitest.ts > Architecture Boundary Enforcement > reports no violations when the fixture layout satisfies both architecture boundaries 1ms
+ ✓ scripts/tests/architecture-boundary-enforcement.vitest.ts > Architecture Boundary Enforcement > T45: valid mcp_server/scripts -> shared imports are not false positives 1ms
+
+ Test Files  1 passed (1)
+      Tests  9 passed (9)
+   Start at  22:40:49
+   Duration  1.54s (transform 1.09s, setup 12ms, import 1.45s, tests 18ms, environment 0ms)
+```
+
+Command: `node scripts/dist/evals/check-architecture-boundaries.js`
+
+```text
+Architecture boundary check passed: shared/ neutrality OK, mcp_server/scripts/ wrappers OK.
+```
 
 ### Pass / Fail
 
-- **Pass**: both GAP A and GAP B violations are detected and clean controls pass without false positives
-- **Fail**: Any contradicting evidence appears or the pass condition is not met.
+PASS — both GAP A and GAP B violations were detected by the Vitest suite, clean controls passed without false positives, and the CLI architecture check reported a passing package root.
 
 ### Failure Triage
 

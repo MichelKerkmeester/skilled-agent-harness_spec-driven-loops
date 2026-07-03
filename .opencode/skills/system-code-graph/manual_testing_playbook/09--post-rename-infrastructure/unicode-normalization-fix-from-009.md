@@ -64,3 +64,36 @@ Import `mcp_server/dist/tool-schemas.js` in Node to verify the direct build outp
 - Group: Post-Rename Infrastructure
 - Playbook ID: 021
 - Canonical root source: `manual_testing_playbook.md`
+
+---
+
+## 6. Evidence
+
+Command: `npm --prefix .opencode/skills/system-code-graph run clean && npm --prefix .opencode/skills/system-code-graph run build`
+
+```text
+> @spec-kit/system-code-graph@1.0.0 clean
+> rm -rf dist mcp_server/dist
+
+
+> @spec-kit/system-code-graph@1.0.0 build
+> tsc --build tsconfig.json
+```
+
+Command: `test -f .opencode/skills/system-code-graph/mcp_server/dist/index.js && printf '.opencode/skills/system-code-graph/mcp_server/dist/index.js exists\n' || printf '.opencode/skills/system-code-graph/mcp_server/dist/index.js missing\n'`
+
+```text
+.opencode/skills/system-code-graph/mcp_server/dist/index.js exists
+```
+
+Command: `test ! -d .opencode/skills/system-code-graph/dist && printf '.opencode/skills/system-code-graph/dist absent\n' || printf '.opencode/skills/system-code-graph/dist exists\n'`
+
+```text
+.opencode/skills/system-code-graph/dist absent
+```
+
+---
+
+## 7. Pass/Fail
+
+PASS

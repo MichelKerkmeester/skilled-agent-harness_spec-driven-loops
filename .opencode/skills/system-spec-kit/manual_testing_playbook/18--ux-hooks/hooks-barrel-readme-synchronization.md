@@ -45,12 +45,63 @@ Both barrel and README reference `mutation-feedback`, `response-hints`, `Mutatio
 
 ### Evidence
 
-ripgrep output snippets
+Command 1:
+
+```bash
+rg "mutation-feedback" .opencode/skills/system-spec-kit/mcp_server/hooks/index.ts
+```
+
+Output:
+
+```text
+export { buildMutationHookFeedback } from './mutation-feedback.js';
+```
+
+Command 2:
+
+```bash
+rg "response-hints" .opencode/skills/system-spec-kit/mcp_server/hooks/index.ts
+```
+
+Output:
+
+```text
+} from './response-hints.js';
+```
+
+Command 3:
+
+```bash
+rg "mutation-feedback\|response-hints\|MutationHookResult\|postMutationHooks" .opencode/skills/system-spec-kit/mcp_server/hooks/README.md
+```
+
+Output:
+
+```text
+(no output)
+```
+
+Additional file-read observations used to compare the observed repo state against the Expected section:
+
+```text
+.opencode/skills/system-spec-kit/mcp_server/hooks/index.ts:19: export { buildMutationHookFeedback } from './mutation-feedback.js';
+.opencode/skills/system-spec-kit/mcp_server/hooks/index.ts:20: export {
+.opencode/skills/system-spec-kit/mcp_server/hooks/index.ts:21:   appendAutoSurfaceHints,
+.opencode/skills/system-spec-kit/mcp_server/hooks/index.ts:22:   syncEnvelopeTokenCount,
+.opencode/skills/system-spec-kit/mcp_server/hooks/index.ts:23:   serializeEnvelopeWithTokenCount,
+.opencode/skills/system-spec-kit/mcp_server/hooks/index.ts:24: } from './response-hints.js';
+.opencode/skills/system-spec-kit/mcp_server/hooks/README.md:67: ├── mutation-feedback.ts           # Post-mutation feedback payloads
+.opencode/skills/system-spec-kit/mcp_server/hooks/README.md:68: ├── response-hints.ts              # Auto-surface hints and token count sync
+.opencode/skills/system-spec-kit/mcp_server/hooks/README.md:86: | `mutation-feedback.ts` | Maps `MutationHookResult` values into public `postMutationHooks` response payloads. |
+.opencode/skills/system-spec-kit/mcp_server/hooks/README.md:87: | `response-hints.ts` | Adds auto-surface hints and token counts to MCP JSON envelopes. |
+.opencode/skills/system-spec-kit/mcp_server/hooks/README.md:103: | Response contract | Expose post-mutation UX state through the `postMutationHooks` field, preserving the `MutationHookResult` cache-clearing and error fields. |
+```
+
+The barrel references `mutation-feedback` and `response-hints`, but it does not reference `MutationHookResult` or `postMutationHooks`. The README file content references all four expected terms, but the documented README `rg` command returned no output as executed.
 
 ### Pass / Fail
 
-- **Pass**: both files reference the new modules and contract fields
-- **Fail**: Any contradicting evidence appears or the pass condition is not met.
+- **FAIL**: The pass condition is not met because both files do not reference all four expected terms; `hooks/index.ts` references `mutation-feedback` and `response-hints` but not `MutationHookResult` or `postMutationHooks`, and the documented README command returned no output.
 
 ### Failure Triage
 

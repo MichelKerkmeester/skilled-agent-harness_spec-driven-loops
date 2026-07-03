@@ -53,18 +53,19 @@ The command resolves `intent=APPLY`, loads `.opencode/commands/doctor/assets/doc
 
 ### Evidence
 
-- Pre-run `test ! -e` output or shell transcript proving the DB was absent.
-- `/doctor memory --incremental=true` transcript.
-- Post-run existence output proving the active resolved profile database exists.
-- State log showing `command: "/doctor memory"`, `intent: APPLY`, `incremental: true`, and `status: APPLIED`.
-- Gold-battery summary with exit 0 or equivalent pass indicator.
+- BLOCKED before running the scenario command sequence.
+- Real observed scenario command 1: `Create a disposable copy of the repository or fresh checkout.`
+- Real active execution constraint from the operator request: `Do NOT modify, create, or delete any file OTHER than the single scenario file named below.`
+- Real active allowed write path from the operator request: `.opencode/skills/system-spec-kit/manual_testing_playbook/23--doctor-commands/doctor-memory-fresh-install.md (this file only)`
+- Because command 1 requires creating a disposable repository copy and the active execution constraint forbids creating any file other than this scenario file, the sandbox precondition could not be established without violating the allowed write paths.
+- `/doctor memory --incremental=true` was not run.
+- Post-run database existence check was not run.
+- State log was not produced.
+- Gold-battery summary was not produced.
 
 ### Pass / Fail
 
-- **PASS**: the active resolved profile database exists and is nonempty after the run, `memory_index_scan` reports bootstrap or scan completion, and gold-battery verification exits 0.
-- **FAIL**: The missing DB causes a hard error, the schema is not created, the DB remains absent or zero bytes, or the gold battery fails without rollback evidence.
-- **SKIP**: Runtime cannot invoke the real `/doctor memory` command or the memory MCP tools are unavailable in the sandbox.
-- **UNAUTOMATABLE**: Not expected for this scenario; the behavior is directly runnable in a disposable workspace.
+- **BLOCKED**: The scenario requires creating a disposable repository copy or fresh checkout, but the active operator constraints allow writes only to this scenario file, so the required sandbox precondition could not be created and the real `/doctor memory --incremental=true` run could not be performed.
 
 ### Failure Triage
 

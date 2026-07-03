@@ -45,12 +45,75 @@ Save-path regression suite passes, successful save responses include typed `post
 
 ### Evidence
 
-Test transcript + highlighted assertion names or output snippets showing success-payload and no-op suppression coverage
+Command run:
+
+```bash
+cd .opencode/skills/system-spec-kit/mcp_server && npx vitest run tests/memory-save-ux-regressions.vitest.ts
+```
+
+Observed output:
+
+```text
+ RUN  v4.1.9 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit
+
+{"timestamp":"2026-07-02T23:03:04.227Z","level":"info","message":"contamination_audit","stage":"post-render","patternsChecked":["frontmatter:trigger_phrases","frontmatter:key_topics","body:foreign-spec-dominance","body:foreign-spec-scatter","title:template instructional heading","title:placeholder bracket title","title:generic stub title","title:spec-id-only title"],"matchesFound":[],"actionsTaken":["failed_rules:none"],"passedThrough":["current_spec:999-memory-save-ux-fixtures","trigger_phrases:2","key_topics:0","captured_file_count:unknown","filesystem_file_count:unknown"]}
+{"timestamp":"2026-07-02T23:03:04.247Z","level":"info","message":"contamination_audit","stage":"post-render","patternsChecked":["frontmatter:trigger_phrases","frontmatter:key_topics","body:foreign-spec-dominance","body:foreign-spec-scatter","title:template instructional heading","title:placeholder bracket title","title:generic stub title","title:spec-id-only title"],"matchesFound":[],"actionsTaken":["failed_rules:none"],"passedThrough":["current_spec:999-memory-save-ux-fixtures","trigger_phrases:2","key_topics:0","captured_file_count:unknown","filesystem_file_count:unknown"]}
+{"timestamp":"2026-07-02T23:03:04.257Z","level":"info","message":"contamination_audit","stage":"post-render","patternsChecked":["frontmatter:trigger_phrases","frontmatter:key_topics","body:foreign-spec-dominance","body:foreign-spec-scatter","title:template instructional heading","title:placeholder bracket title","title:generic stub title","title:spec-id-only title"],"matchesFound":[],"actionsTaken":["failed_rules:none"],"passedThrough":["current_spec:999-memory-save-ux-fixtures","trigger_phrases:2","key_topics:0","captured_file_count:unknown","filesystem_file_count:unknown"]}
+
+ Test Files  1 passed (1)
+      Tests  3 passed (3)
+   Start at  01:03:03
+   Duration  1.02s (transform 638ms, setup 16ms, import 861ms, tests 73ms, environment 0ms)
+```
+
+Assertion inspection output:
+
+```text
+Found 28 matches
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/tests/memory-save-ux-regressions.vitest.ts:
+  Line 45: description: "Durable regression fixture for memory_save UX contract coverage."
+  Line 66: Continue validating the \`memory_save\` UX contract with a fixture that is rich enough to satisfy the durable-memory gate while still exercising duplicate no-op, deferred embedding, and post-mutation feedback behavior.
+  Line 74: - \`decision-record.md\` — UX contract and duplicate detection strategy
+  Line 83: | \`mcp_server/handlers/memory-save.ts\` | Coordinates duplicate detection, sufficiency evaluation, template validation, and post-mutation feedback for \`memory_save\`. |
+  Line 84: | \`mcp_server/handlers/save/response-builder.ts\` | Shapes successful save payloads, duplicate no-op hints, and deferred embedding response details. |
+  Line 92: This regression fixture exists to prove that successful saves and duplicate no-op saves still report the correct UX payloads after the shared insufficiency gate and rendered-memory template contract were added to the save pipeline.
+  Line 100: - Validated duplicate no-op response shape
+  Line 108: - Decided to keep duplicate no-op saves visible in the UX contract so callers can distinguish unchanged content from validation failures.
+  Line 114: - Verified duplicate no-op saves omit post-mutation hooks and leave caches unchanged.
+  Line 142: description: "Continuity-focused regression fixture for memory_save UX contract coverage."
+  Line 317:     body: 'Existing implementation-summary content should remain unchanged during planner-only UX tests.',
+  Line 418:   it('returns readable, action-oriented planner output for narrative progress saves', async () => {
+  Line 419:     const plannerResult = await handler.atomicSaveMemory({
+  Line 429:     expect(parsed.data).toMatchObject({
+  Line 439:     expect(parsed.data.proposedEdits[0]).toEqual(expect.objectContaining({
+  Line 444:     expect(parsed.data.followUpActions).toEqual(expect.arrayContaining([
+  Line 456:     expect(parsed.hints).toEqual(expect.arrayContaining([
+  Line 462:   it('keeps metadata-only planner guidance readable and continuity-focused', async () => {
+  Line 463:     const plannerResult = await handler.atomicSaveMemory({
+  Line 471:     expect(parsed.data).toMatchObject({
+  Line 480:     expect(parsed.data.proposedEdits[0]).toEqual(expect.objectContaining({
+  Line 484:     expect(parsed.data.followUpActions).toEqual(expect.arrayContaining([
+  Line 500:   it('reports blocked planner responses with readable blocker and next-step language', async () => {
+  Line 501:     const plannerResult = await handler.atomicSaveMemory({
+  Line 511:     expect(parsed.data.status).toBe('blocked');
+  Line 512:     expect(parsed.data.blockers).toEqual([
+  Line 519:     expect(parsed.data.followUpActions).toEqual([
+  Line 526:     expect(parsed.hints).toEqual(expect.arrayContaining([
+```
+
+Relevant inspected assertion names present in `tests/memory-save-ux-regressions.vitest.ts`:
+
+```text
+Line 418: it('returns readable, action-oriented planner output for narrative progress saves', async () => {
+Line 462: it('keeps metadata-only planner guidance readable and continuity-focused', async () => {
+Line 500: it('reports blocked planner responses with readable blocker and next-step language', async () => {
+```
+
+The executed suite passed, but the observed assertions did not include typed `postMutationHooks` fields, successful `memory_save` response payload assertions, duplicate/no-op `postMutationHooks` omission assertions, or cache-left-unchanged guidance assertions.
 
 ### Pass / Fail
 
-- **Pass**: the save-path suite passes and the assertions prove success responses expose the UX payload contract while no-op responses suppress false hook metadata
-- **Fail**: Any contradicting evidence appears or the pass condition is not met.
+- **FAIL**: The save-path suite passed, but the inspected assertions do not prove typed `postMutationHooks` exposure or duplicate/no-op suppression with cache-left-unchanged guidance.
 
 ### Failure Triage
 

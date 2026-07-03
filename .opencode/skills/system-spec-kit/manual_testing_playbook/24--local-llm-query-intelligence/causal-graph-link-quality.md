@@ -107,11 +107,57 @@ The orchestrating Claude (this playbook caller) verifies the external CLI's resp
 ### Evidence
 
 - The exact AI-to-CLI handoff prompt + the CLI's verbatim response.
+  - Handoff prompt was not sent to an external CLI because step 1 requires writing three canonical research-doc files, while the active run constraint allowed writes only to `.opencode/skills/system-spec-kit/manual_testing_playbook/24--local-llm-query-intelligence/causal-graph-link-quality.md`.
+  - Attempted Spec Memory CLI fallback discovery command:
+    ```
+    node ".opencode/bin/spec-memory.cjs" --help
+    ```
+  - Verbatim CLI output:
+    ```
+    @spec-kit/mcp-server dist is stale. Run: cd .opencode/skills/system-spec-kit/mcp_server && npm run build
+    ```
+  - Spec Memory plugin status tool output:
+    ```
+    plugin_id=mk-spec-memory
+    enabled=true
+    disabled_reason=none
+    cache_ttl_ms=5000
+    max_brief_chars=2400
+    max_cache_entries=200
+    runtime_ready=false
+    node_binary=node
+    bridge_timeout_ms=3000
+    cli_timeout_ms=2500
+    bridge_path=[spec-memory-bridge]
+    last_bridge_status=fail_open
+    last_error_code=EXIT_69
+    last_duration_ms=50
+    bridge_invocations=6
+    continuity_lookups=5
+    cache_entries=0
+    cache_hits=0
+    cache_misses=5
+    cache_hit_rate=0
+    warm_status=fail_open
+    warm_error=EXIT_69
+    warm_route=cli
+    warm_retryable=false
+    warm_exit_code=69
+    ```
 - The 3 parent IDs.
+  - BLOCKED: no parent IDs were created because the scenario requires creating three canonical research-doc files first, and that write was outside the allowed write path for this run.
 - The causal_stats delta (pre vs post).
+  - BLOCKED: no pre/post causal stats were collected because the required `memory_save` setup could not be performed without out-of-scope file writes.
 - The edges_among_three list.
+  - BLOCKED: no `edges_among_three` list was produced because there were no A_ID/B_ID/C_ID values to pass to `memory_causal_link`.
 - Active provider from `memory_health`.
+  - BLOCKED: `memory_health` was not reachable through the available Spec Memory path; the CLI fallback reported stale dist, and rebuilding would modify files outside the allowed write path.
 - An honest note if extra edges formed (causal builder may legitimately link to unrelated memories — note but do not fail unless those wrongly-paired edges dominate the chain edges).
+  - No extra edges were observed because the scenario was blocked before memory creation and causal linking.
+
+### Pass/Fail
+
+BLOCKED — Missing permission to create the three canonical research-doc files required by step 1, and the Spec Memory CLI fallback reported a stale dist that could not be rebuilt under the allowed write-path restriction.
 
 ---
 

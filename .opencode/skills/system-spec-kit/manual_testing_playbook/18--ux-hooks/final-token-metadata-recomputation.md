@@ -45,12 +45,83 @@ Hook and context-server suites pass, `appendAutoSurfaceHints` recomputes `meta.t
 
 ### Evidence
 
-Test transcript + highlighted assertion names or output snippets for hook-level and end-to-end token-count verification
+Command run from `.opencode/skills/system-spec-kit/mcp_server`:
+
+```text
+npx vitest run tests/hooks-ux-feedback.vitest.ts tests/context-server.vitest.ts
+
+ RUN  v4.1.9 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit
+
+
+ Test Files  2 passed (2)
+      Tests  397 passed (397)
+   Start at  00:59:25
+   Duration  1.11s (transform 477ms, setup 16ms, import 263ms, tests 692ms, environment 0ms)
+```
+
+Hook-level assertion inspected in `mcp_server/tests/hooks-ux-feedback.vitest.ts`:
+
+```ts
+it('appendAutoSurfaceHints injects hints and sets tokenCount from the final serialized envelope JSON', () => {
+```
+
+Observed assertion snippets:
+
+```ts
+expect(parsed.hints.some((hint: string) => hint.includes('Auto-surface hook: injected 2 constitutional and 1 triggered memories (6ms)'))).toBe(true);
+expect(parsed.meta.autoSurface).toEqual({
+  constitutionalCount: 2,
+  triggeredCount: 1,
+  surfaced_at: '2026-03-05T10:00:00.000Z',
+  latencyMs: 6,
+  tokenCount: 185,
+});
+expect(finalText).toBe(JSON.stringify(parsed, null, 2));
+expect(parsed.meta.tokenCount).not.toBe(12);
+expect(parsed.meta.tokenCount).toBe(estimateTokenCount(finalText));
+```
+
+Context-server success-path assertion inspected in `mcp_server/tests/context-server.vitest.ts`:
+
+```ts
+it('T000j: final tokenCount matches the serialized envelope after hints and tokenBudget injection', async () => {
+```
+
+Observed assertion snippets:
+
+```ts
+actualAppendAutoSurfaceHints(response, surfaced)
+actualSyncEnvelopeTokenCount(response)
+
+const finalText = response.content[0].text
+const parsed = JSON.parse(finalText)
+
+expect(finalText).toContain('"tokenBudget": 1000')
+expect(parsed.hints).toContain('Initial hint')
+expect(parsed.hints.some((hint: string) => hint.includes('Auto-surface hook: injected 1 constitutional and 1 triggered memories (11ms)'))).toBe(true)
+expect(parsed.meta.tokenCount).toBe(estimateTokenCount(finalText))
+```
+
+Implementation ordering inspected in `mcp_server/context-server.ts`:
+
+```ts
+appendAutoSurfaceHints(result, autoSurfacedContext);
+```
+
+```ts
+meta.tokenBudget = budget;
+syncEnvelopeTokenCount(envelope);
+
+if (typeof meta.tokenCount === 'number' && meta.tokenCount > budget) {
+```
+
+```ts
+result.content[0].text = serializeEnvelopeWithTokenCount(envelope);
+```
 
 ### Pass / Fail
 
-- **Pass**: the suites pass and the assertions prove final token-count recomputation happens after hint append and before budget enforcement
-- **Fail**: Any contradicting evidence appears or the pass condition is not met.
+- **PASS**: the suites passed (`2 passed`, `397 passed`), `appendAutoSurfaceHints` is asserted to recompute `meta.tokenCount` from `estimateTokenCount(finalText)`, and context-server assertions plus implementation ordering show token-budget metadata/enforcement uses the finalized serialized envelope after hint append.
 
 ### Failure Triage
 

@@ -51,12 +51,110 @@ Validate stale-exclusion audit through memory_health and tool-ownership lint dri
 
 ### Evidence
 
-Health payload excerpt, clean lint transcript, drift failure transcripts, and source-tree diff showing no committed fixture mutation.
+Attempted `memory_health({ reportMode: "full" })` through the Spec Memory CLI from the workspace root:
+
+```text
+$ node .opencode/bin/spec-memory.cjs memory_health --json '{"reportMode":"full"}' --format json --timeout-ms 3000
+@spec-kit/mcp-server dist is stale. Run: cd .opencode/skills/system-spec-kit/mcp_server && npm run build
+```
+
+Attempted direct TypeScript source handler invocation against a disposable DB fixture containing `normal`, `deprecated`, and `archived` `memory_index.importance_tier` rows plus `memory_fts`:
+
+```text
+[shared/paths] database dir resolved outside @spec-kit workspace root (/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit); falling back to import.meta.dirname-relative resolution
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/node_modules/@types/better-sqlite3/index.d.ts:159
+export = Database;
+         ^
+
+ReferenceError: Database is not defined
+    at <anonymous> (/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/node_modules/@types/better-sqlite3/index.d.ts:159:10)
+    at Object.<anonymous> (/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/node_modules/@types/better-sqlite3/index.d.ts:159:10)
+    at Module._compile (node:internal/modules/cjs/loader:1781:14)
+    at Object.transformer (/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/scripts/node_modules/tsx/dist/register-BOkp8V6j.cjs:9:3176)
+    at Module.load (node:internal/modules/cjs/loader:1505:32)
+    at Function._load (node:internal/modules/cjs/loader:1309:12)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:254:19)
+    at loadCJSModuleWithModuleLoad (node:internal/modules/esm/translators:335:3)
+    at ModuleWrap.<anonymous> (node:internal/modules/esm/translators:235:7)
+    at ModuleJob.run (node:internal/modules/esm/module_job:343:25)
+
+Node.js v22.23.1
+```
+
+Attempted the project-local `tsx` entry path:
+
+```text
+sh: tsx: command not found
+```
+
+Focused suite from `.opencode/skills/system-spec-kit/mcp_server`:
+
+```text
+$ npx vitest run tests/stale-audit-tool-ownership.vitest.ts
+
+ RUN  v4.1.9 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit
+
+stderr | mcp_server/tests/stale-audit-tool-ownership.vitest.ts
+[shared/paths] database dir resolved outside @spec-kit workspace root (/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit); falling back to import.meta.dirname-relative resolution
+
+ ❯ mcp_server/tests/stale-audit-tool-ownership.vitest.ts (6 tests | 1 failed) 66ms
+     × flags deprecated relevant rows while recall output stays byte-identical 6ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  mcp_server/tests/stale-audit-tool-ownership.vitest.ts > stale/status hard-exclusion audit > flags deprecated relevant rows while recall output stays byte-identical
+AssertionError: expected [ 1, 2 ] to deeply equal [ 1 ]
+
+- Expected
++ Received
+
+  [
+    1,
++   2,
+  ]
+
+ ❯ mcp_server/tests/stale-audit-tool-ownership.vitest.ts:111:32
+    109|
+    110|     expect(before).toBe(after);
+    111|     expect(JSON.parse(before)).toEqual([1]);
+       |                                ^
+    112|     expect(report.status).toBe('risk');
+    113|     expect(report.diagnostics).toEqual(
+
+⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 5 passed (6)
+   Start at  00:41:00
+   Duration  1.04s (transform 671ms, setup 13ms, import 902ms, tests 66ms, environment 0ms)
+```
+
+Clean lint command from `.opencode/skills/system-spec-kit/mcp_server`:
+
+```text
+$ node tests/tool-ownership-lint-runner.mjs
+tool-ownership map clean (39 tool(s))
+```
+
+Unreadable definitions drift check from `.opencode/skills/system-spec-kit/mcp_server` after creating a temp directory and copying `tests/fixtures/tool-ownership-map.json` to `<temp>/tool-ownership-map.json`:
+
+```text
+$ SPECKIT_TOOL_SCHEMAS_PATH="/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/opencode/tool-ownership.LuMGaC/missing-tool-schemas.ts" SPECKIT_TOOL_OWNERSHIP_MAP_PATH="/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/opencode/tool-ownership.LuMGaC/tool-ownership-map.json" node tests/tool-ownership-lint-runner.mjs
+tool-ownership lint failed closed: TOOL_DEFINITIONS source unreadable: ENOENT: no such file or directory, open '/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/opencode/tool-ownership.LuMGaC/missing-tool-schemas.ts'
+```
+
+Committed fixture and lint runner diff from the workspace root:
+
+```text
+$ git diff -- .opencode/skills/system-spec-kit/mcp_server/tests/fixtures/tool-ownership-map.json .opencode/skills/system-spec-kit/mcp_server/tests/tool-ownership-lint-runner.mjs
+```
+
+No output was produced by the diff command.
 
 ### Pass / Fail
 
-- **Pass**: audit metadata is visible, clean lint passes, every drift simulation fails closed, and committed source files remain unchanged.
-- **Fail**: health hides stale-exclusion risk, clean lint fails, drift passes silently, or the test mutates committed fixtures.
+- **BLOCKED**: `memory_health({ reportMode: "full" })` could not be executed because the Spec Memory CLI reports stale dist output and rebuilding would modify files outside the allowed write path; additionally, the focused suite currently fails `flags deprecated relevant rows while recall output stays byte-identical` because recall returns `[1, 2]` instead of `[1]`.
 
 ### Failure Triage
 

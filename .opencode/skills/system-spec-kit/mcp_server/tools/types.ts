@@ -73,6 +73,7 @@ export interface SearchArgs {
   includeArchived?: boolean;
   mode?: 'auto' | 'deep';
   includeTrace?: boolean;
+  debug?: { enabled?: boolean };
 }
 
 /** Arguments for trigger matching requests. */

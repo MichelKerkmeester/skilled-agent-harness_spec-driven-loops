@@ -49,12 +49,130 @@ Per-result confidence score computed; 3 factors weighted correctly; HIGH_THRESHO
 
 ### Evidence
 
-Per-result confidence output + factor breakdown + label assignments + driver lists + requestQuality + test transcript
+Test transcript:
+
+```text
+$ if [ -z "${SPECKIT_RESULT_CONFIDENCE+x}" ]; then printf 'SPECKIT_RESULT_CONFIDENCE is unset\n'; else printf 'SPECKIT_RESULT_CONFIDENCE=%s\n' "$SPECKIT_RESULT_CONFIDENCE"; fi
+SPECKIT_RESULT_CONFIDENCE is unset
+```
+
+Native MCP `memory_search({ query: "well-covered topic with multiple memories" })` did not return per-result confidence output. The real observed tool error was:
+
+```json
+{
+  "summary": "Error: An unexpected error occurred. Please check logs for details.",
+  "data": {
+    "error": "An unexpected error occurred. Please check logs for details.",
+    "code": "E030",
+    "details": {
+      "tool": "memory_search",
+      "issues": [
+        "cursor: Too small: expected string to have >=1 characters",
+        "concepts: Too small: expected array to have >=2 items"
+      ],
+      "unknownParameters": [],
+      "expectedParameters": [
+        "cursor",
+        "query",
+        "concepts",
+        "specFolder",
+        "tenantId",
+        "userId",
+        "agentId",
+        "limit",
+        "sessionId",
+        "enableDedup",
+        "tier",
+        "contextType",
+        "useDecay",
+        "includeContiguity",
+        "includeConstitutional",
+        "enableSessionBoost",
+        "enableCausalBoost",
+        "includeContent",
+        "anchors",
+        "min_quality_score",
+        "minQualityScore",
+        "bypassCache",
+        "rerank",
+        "applyLengthPenalty",
+        "applyStateLimits",
+        "minState",
+        "intent",
+        "autoDetectIntent",
+        "trackAccess",
+        "includeArchived",
+        "mode",
+        "retrievalLevel",
+        "includeTrace",
+        "profile"
+      ]
+    }
+  },
+  "hints": [
+    "Invalid parameter value provided.",
+    "Check parameter type matches expected schema",
+    "Review tool documentation for valid parameter values",
+    "Ensure strings are properly quoted"
+  ],
+  "meta": {
+    "tool": "memory_search",
+    "isError": true,
+    "severity": "low"
+  }
+}
+```
+
+Daemon-backed Spec Memory CLI fallback also did not return per-result confidence output. The real observed command output was:
+
+```text
+$ node .opencode/bin/spec-memory.cjs memory_search --json '{"query":"well-covered topic with multiple memories"}' --format json --timeout-ms 3000
+@spec-kit/mcp-server dist is stale. Run: cd .opencode/skills/system-spec-kit/mcp_server && npm run build
+```
+
+Source inspection of `mcp_server/lib/search/confidence-scoring.ts` showed the expected implementation constants and logic are present:
+
+```text
+const HIGH_THRESHOLD = 0.7;
+const LOW_THRESHOLD = 0.4;
+const WEIGHT_MARGIN = 0.35;
+const WEIGHT_CHANNEL_AGREEMENT = 0.30;
+const WEIGHT_ANCHOR_DENSITY = 0.15;
+const WEIGHT_HEURISTIC = 0.45;
+const WEIGHT_SCORE_PRIOR = 0.55;
+export type ConfidenceLabel = 'high' | 'medium' | 'low';
+export type RequestQualityLabel = 'good' | 'weak' | 'gap';
+export type ConfidenceDriver =
+  | 'large_margin'
+  | 'multi_channel_agreement'
+  | 'anchor_density';
+function toConfidenceLabel(value: number): ConfidenceLabel {
+  if (value >= HIGH_THRESHOLD) return 'high';
+  if (value >= LOW_THRESHOLD) return 'medium';
+  return 'low';
+}
+const rawValue =
+  WEIGHT_MARGIN * marginFactor +
+  WEIGHT_CHANNEL_AGREEMENT * channelFactor +
+  WEIGHT_ANCHOR_DENSITY * anchorFactor;
+const scorePrior = resolveCalibrationScore(result) * WEIGHT_SCORE_PRIOR;
+const heuristicValue = rawValue * WEIGHT_HEURISTIC;
+const rebalancedValue = Math.max(0, Math.min(1, heuristicValue + scorePrior));
+const value = maybeCalibrate(rebalancedValue);
+const label = toConfidenceLabel(rebalancedValue);
+const drivers: ConfidenceDriver[] = [];
+if (margin >= LARGE_MARGIN_THRESHOLD) drivers.push('large_margin');
+if (channelCount >= STRONG_CHANNEL_AGREEMENT_MIN) drivers.push('multi_channel_agreement');
+if (anchorCount >= 2) drivers.push('anchor_density');
+return { requestQuality: { label } };
+```
+
+No per-result confidence scores, label assignments, driver lists, or requestQuality output were observed from a successful real `memory_search` run because the required command was blocked before producing search results.
 
 ### Pass / Fail
 
-- **Pass**: 3-factor weighted confidence produces correct scores, labels match thresholds, and drivers reported
-- **Fail**: weights wrong, thresholds incorrect, labels missing, or LLM used
+- **Status**: BLOCKED
+- **Reason**: `SPECKIT_RESULT_CONFIDENCE` is unset, but the required real `memory_search` result output could not be produced because native MCP rejected the generated request and the CLI fallback reported stale dist artifacts requiring `npm run build`, which would modify files outside the allowed write path.
 
 ### Failure Triage
 

@@ -55,18 +55,39 @@ The command loads `doctor_update.yaml`, snapshots the in-scope SQLite DBs, reach
 
 ### Evidence
 
-- Environment transcript showing `SPECKIT_FAIL_STEP=causal-edges-init`.
-- Prompt transcript showing phase approvals and retry/rollback/leave choices.
-- Rollback log entry and state log final status.
-- Snapshot path for the affected DB.
-- Pre-run and post-rollback checksum comparison proving the affected DB matches the baseline.
+- Precondition check: the scenario requires `SPECKIT_FAIL_STEP=causal-edges-init` to be exported in a disposable workspace. The current workspace is the active repository, not a disposable workspace, and the execution constraints for this run allowed writes only to this scenario file, so a disposable workspace could not be created.
+
+  ```text
+  $ pwd
+  /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+  ```
+
+  ```text
+  $ git rev-parse --show-toplevel
+  /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+  ```
+
+  ```text
+  $ printenv SPECKIT_FAIL_STEP
+  (no output)
+  ```
+
+- The in-scope SQLite DBs exist in the active repository, but running `/doctor:update` here would mutate and roll back these production workspace DBs rather than a disposable copy.
+
+  ```text
+  $ shasum -a 256 ".opencode/skills/system-spec-kit/mcp_server/database/context-index.sqlite" ".opencode/skills/system-code-graph/mcp_server/database/code-graph.sqlite" ".opencode/skills/system-skill-advisor/mcp_server/database/skill-graph.sqlite" ".opencode/skills/deep-loop-runtime/database/deep-loop-graph.sqlite" ".opencode/skills/system-spec-kit/mcp_server/database/speckit-eval.db"
+  c8285fadd996a42040e96e593eecc5161d4774150dfd3fe232d70a7ca7c49d60  .opencode/skills/system-spec-kit/mcp_server/database/context-index.sqlite
+  f817640df0db31c04220f159b7a71c9e038f6965c84704a9fe1fca34288adaf5  .opencode/skills/system-code-graph/mcp_server/database/code-graph.sqlite
+  dcb47b324816dce37fe09d591666f9aecc6d278e1c9410efcef676578e99a863  .opencode/skills/system-skill-advisor/mcp_server/database/skill-graph.sqlite
+  f94ba30ef11a715e9c52df479b1cd303d533a33531e9aa1a150a43c856795190  .opencode/skills/deep-loop-runtime/database/deep-loop-graph.sqlite
+  f4032ad2d0118005c1923e33c20526bea3ba2f5a27e701581f4a3ca3852ddb80  .opencode/skills/system-spec-kit/mcp_server/database/speckit-eval.db
+  ```
+
+- The prompt transcript, rollback log entry, snapshot path, `.doctor-update.last-run.json`, and post-rollback checksum comparison were not produced because the destructive scenario was blocked before `/doctor:update` execution by the missing disposable workspace precondition.
 
 ### Pass / Fail
 
-- **PASS**: the synthetic failure is caught, interactive mode offers retry/rollback/leave, rollback is selected, the affected DB matches the snapshot baseline, and the state log records rollback.
-- **FAIL**: the failure crashes the runtime, no rollback choice appears, rollback is skipped, the affected DB differs from baseline, or the state log omits the failure.
-- **SKIP**: failure injection support is unavailable in the current runtime build.
-- **UNAUTOMATABLE**: no disposable workspace can safely run a mutating interactive rollback test.
+- **BLOCKED**: no disposable workspace was available, `SPECKIT_FAIL_STEP=causal-edges-init` was not exported in the current runtime environment, and the run constraints allowed writes only to this scenario file, preventing creation of the required disposable workspace or safe execution of the mutating `/doctor:update` rollback test.
 
 ### Failure Triage
 

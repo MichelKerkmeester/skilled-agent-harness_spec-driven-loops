@@ -65,12 +65,27 @@ rm -rf "$SANDBOX"
 
 ### Evidence
 
-Shell transcript with the probe-failure counter, churn suite summary, launcher counts, and socket-dir listing. Optionally wrap the storm in `time` to record aggregate latency.
+Shell transcript from running the Commands block exactly as written:
+
+```text
+ RUN  v4.1.9 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit
+
+
+ Test Files  1 passed (1)
+      Tests  3 passed (3)
+   Start at  22:50:41
+   Duration  109ms (transform 16ms, setup 14ms, import 14ms, tests 14ms, environment 0ms)
+
+non-75 probes: 20 / 60
+churn suite exit=0
+launchers before=       9 after=       9
+```
+
+The final `ls "$SANDBOX/sock" 2>/dev/null || echo "socket dir empty/absent"` command produced no additional output after `launchers before=       9 after=       9`.
 
 ### Pass / Fail
 
-- **Pass**: 60/60 probes exit 75, churn suite green, zero spawn delta.
-- **Fail**: any probe exits with another code, hangs toward its timeout, or a launcher appears.
+- **FAIL**: `non-75 probes: 20 / 60`; churn suite was green (`churn suite exit=0`) and launcher count was unchanged (`launchers before=       9 after=       9`), but the expected `non-75 probes: 0 / 60` condition did not hold.
 
 ### Failure Triage
 

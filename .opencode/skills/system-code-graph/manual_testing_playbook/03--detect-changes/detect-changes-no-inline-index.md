@@ -65,3 +65,63 @@ After an explicit scan, rerun detect_changes and verify `affectedSymbols` or `af
 - Group: Code Graph Runtime
 - Playbook ID: 007
 - Canonical root source: `manual_testing_playbook.md`
+
+---
+
+## 6. EVIDENCE
+
+Command run from `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public`:
+
+```bash
+node .opencode/bin/code-index.cjs code_graph_scan --format json --timeout-ms 120000
+```
+
+Observed output:
+
+```text
+(no output)
+
+<shell_metadata>
+shell tool terminated command after exceeding timeout 120000 ms. If this command is expected to take longer and is not waiting for interactive input, retry with a larger timeout value in milliseconds.
+</shell_metadata>
+```
+
+Command run from `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public`:
+
+```bash
+node .opencode/bin/code-index.cjs code_graph_scan --format json --timeout-ms 300000
+```
+
+Observed output:
+
+```json
+{
+  "status": "error",
+  "error": "backend unavailable: connect ENOENT /tmp/mk-code-index/daemon-ipc.sock",
+  "exitCode": 75
+}
+```
+
+MCP bridge status check:
+
+```text
+plugin_id=mk-code-graph
+cache_ttl_ms=5000
+spec_folder=auto
+resume_mode=minimal
+messages_transform_enabled=true
+messages_transform_mode=schema_aligned
+runtime_ready=false
+node_binary=node
+bridge_timeout_ms=15000
+bridge_path=/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-code-graph/mcp_server/plugin_bridges/mk-code-graph-bridge.mjs
+last_runtime_error=Bridge skipped: SOCKET_ABSENT (exit=75); plugin injection will no-op
+cache_entries=0
+cache=empty
+```
+
+The scenario did not proceed to modifying a tracked file, capturing `git diff`, or calling `detect_changes` because the required initial full scan could not complete.
+
+## 7. PASS/FAIL
+
+BLOCKED: The required full scan precondition is unavailable because the code-index backend socket `/tmp/mk-code-index/daemon-ipc.sock` is absent and the MCP bridge reports `runtime_ready=false`.

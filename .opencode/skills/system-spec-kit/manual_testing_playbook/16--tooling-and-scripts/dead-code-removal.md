@@ -46,12 +46,51 @@ Removed hybrid-search branches absent; retired helpers absent; dead module state
 
 ### Evidence
 
-Empty symbol-search output + representative flow transcripts
+Command: `rg -n "isShadowScoringEnabled|isRsfEnabled|stmtCache|lastComputedAt|activeProvider|flushCount|computeCausalDepth|getSubgraphWeights|RECOVERY_HALF_LIFE_DAYS|logCoActivationEvent" .opencode/skills/system-spec-kit/mcp_server .opencode/skills/system-spec-kit/scripts .opencode/skills/system-spec-kit/shared --glob '!**/node_modules/**' --glob '!**/dist/**'`
+
+```text
+.opencode/skills/system-spec-kit/mcp_server/lib/embedders/reindex.ts:725:      const activeProvider = manifest.backend === 'ollama'
+.opencode/skills/system-spec-kit/mcp_server/lib/embedders/reindex.ts:730:      setActiveEmbedder(jobDb, initialJob.toName, initialJob.toDim, activeProvider);
+```
+
+Command: `rg -n "decayInterval|attentionDecayRate|minAttentionScore" .opencode/skills/system-spec-kit/mcp_server .opencode/skills/system-spec-kit/scripts .opencode/skills/system-spec-kit/shared --glob '!**/node_modules/**' --glob '!**/dist/**'`
+
+```text
+(no output)
+```
+
+Command: `npx vitest run tests/dead-code-regression.vitest.ts tests/memory-crud-extended.vitest.ts tests/intent-routing.vitest.ts`
+
+```text
+ RUN  v4.1.9 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit
+
+
+ Test Files  3 passed (3)
+      Tests  70 passed | 23 skipped (93)
+   Start at  23:01:26
+   Duration  1.63s (transform 802ms, setup 20ms, import 266ms, tests 1.15s, environment 0ms)
+```
+
+MCP representative flow: `memory_quick_search({ query: "SPECKIT search pipeline flags active inert retired RSF shadow scoring", limit: 5 })`
+
+```text
+summary: Found 5 memories
+data.searchType: hybrid
+data.count: 5
+data.pipelineMetadata.stage1.searchType: hybrid
+data.pipelineMetadata.stage1.candidateCount: 19
+data.pipelineMetadata.stage2.sessionBoostApplied: off
+data.pipelineMetadata.stage2.causalBoostApplied: applied
+data.pipelineMetadata.stage2.durationMs: 817
+data.pipelineMetadata.timing.total: 1498
+data.fallbackState: ok
+```
 
 ### Pass / Fail
 
-- **Pass**: the documented removals have zero live references and representative flows execute cleanly
-- **Fail**: any removed symbol is still wired or a representative flow trips a missing reference
+FAIL
+
+Reason: `activeProvider` still has live references in `.opencode/skills/system-spec-kit/mcp_server/lib/embedders/reindex.ts`, so the expected zero-live-reference condition did not hold; representative flows executed without missing-reference errors.
 
 ### Failure Triage
 

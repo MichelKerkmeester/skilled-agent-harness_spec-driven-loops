@@ -44,12 +44,64 @@ status === 'ok', qualityScore.level === 'healthy', recency factor close to 1.0
 
 ### Evidence
 
-session_health response JSON
+Command sequence executed:
+
+1. `memory_stats({"folderRanking":"count","excludePatterns":[],"includeScores":false,"includeArchived":false,"limit":10})`
+2. `session_health({})`
+
+Preceding `memory_stats` response excerpt:
+
+```json
+{
+  "summary": "Memory system: 32864 memories across 3819 folders",
+  "data": {
+    "totalMemories": 32864,
+    "totalSpecFolders": 3819,
+    "lastIndexedAt": "2026-07-03T00:20:12.267Z"
+  },
+  "meta": {
+    "tool": "memory_stats",
+    "latencyMs": 43,
+    "cacheHit": false
+  }
+}
+```
+
+`session_health({})` response excerpt:
+
+```json
+{
+  "status": "ok",
+  "data": {
+    "status": "ok",
+    "details": {
+      "sessionAgeMs": 75921,
+      "lastToolCallAgoMs": 6823,
+      "graphFreshness": "error",
+      "specFolder": ".opencode/specs/system-speckit/031-manual-playbook-execution-sweep",
+      "primingStatus": "primed"
+    },
+    "qualityScore": {
+      "level": "healthy",
+      "score": 0.6,
+      "factors": {
+        "recency": 1,
+        "recovery": 0,
+        "graphFreshness": 0,
+        "continuity": 1
+      }
+    }
+  },
+  "meta": {
+    "tokenBudget": 1000,
+    "tokenCount": 1452
+  }
+}
+```
 
 ### Pass / Fail
 
-- **Pass**: status is 'ok' and quality level is 'healthy'
-- **Fail**: Any contradicting evidence appears or the pass condition is not met.
+- **PASS**: `status` is `"ok"`, `qualityScore.level` is `"healthy"`, and `qualityScore.factors.recency` is `1`.
 
 ### Failure Triage
 
@@ -73,12 +125,39 @@ sessionAgeMs > 0, lastToolCallAgoMs >= 0, graphFreshness in [fresh, stale, empty
 
 ### Evidence
 
-Response fields and values
+Command executed: `session_health({})`
+
+Response fields and values:
+
+```json
+{
+  "status": "ok",
+  "data": {
+    "status": "ok",
+    "details": {
+      "sessionAgeMs": 86910,
+      "lastToolCallAgoMs": 17812,
+      "graphFreshness": "error",
+      "specFolder": ".opencode/specs/system-speckit/031-manual-playbook-execution-sweep",
+      "primingStatus": "primed"
+    },
+    "qualityScore": {
+      "level": "healthy",
+      "score": 0.6,
+      "factors": {
+        "recency": 1,
+        "recovery": 0,
+        "graphFreshness": 0,
+        "continuity": 1
+      }
+    }
+  }
+}
+```
 
 ### Pass / Fail
 
-- **Pass**: all detail fields present with valid values
-- **Fail**: Any contradicting evidence appears or the pass condition is not met.
+- **PASS**: `sessionAgeMs` is `86910`, `lastToolCallAgoMs` is `17812`, `graphFreshness` is `"error"`, and `primingStatus` is `"primed"`.
 
 ### Failure Triage
 
@@ -102,12 +181,28 @@ qualityScore.factors has recency, recovery, graphFreshness, continuity each 0.0-
 
 ### Evidence
 
-Factor values in response
+Command executed: `session_health({})`
+
+Factor values in response:
+
+```json
+{
+  "qualityScore": {
+    "level": "healthy",
+    "score": 0.8,
+    "factors": {
+      "recency": 1,
+      "recovery": 1,
+      "graphFreshness": 0,
+      "continuity": 1
+    }
+  }
+}
+```
 
 ### Pass / Fail
 
-- **Pass**: all 4 factors present and within [0.0, 1.0] range
-- **Fail**: Any contradicting evidence appears or the pass condition is not met.
+- **PASS**: all 4 factors were present and within `[0.0, 1.0]`: `recency=1`, `recovery=1`, `graphFreshness=0`, `continuity=1`.
 
 ### Failure Triage
 
@@ -131,12 +226,89 @@ lastToolCallAgoMs` continues increasing from the last non-health tool call inste
 
 ### Evidence
 
-Two `session_health` responses showing increasing `lastToolCallAgoMs` despite an intervening health check
+Command sequence executed:
+
+1. `memory_stats({"folderRanking":"count","excludePatterns":[],"includeScores":false,"includeArchived":false,"limit":10})`
+2. `sleep 2`
+3. `session_health({})`
+4. `sleep 2`
+5. `session_health({})`
+
+Preceding `memory_stats` response excerpt:
+
+```json
+{
+  "summary": "Memory system: 32874 memories across 3819 folders",
+  "data": {
+    "totalMemories": 32874,
+    "totalSpecFolders": 3819,
+    "lastIndexedAt": "2026-07-03T00:21:03.557Z"
+  },
+  "meta": {
+    "tool": "memory_stats",
+    "latencyMs": 42,
+    "cacheHit": false
+  }
+}
+```
+
+First `session_health({})` response excerpt:
+
+```json
+{
+  "status": "ok",
+  "data": {
+    "details": {
+      "sessionAgeMs": 115979,
+      "lastToolCallAgoMs": 4956,
+      "graphFreshness": "error",
+      "specFolder": ".opencode/specs/system-speckit/031-manual-playbook-execution-sweep",
+      "primingStatus": "primed"
+    },
+    "qualityScore": {
+      "level": "healthy",
+      "score": 0.8,
+      "factors": {
+        "recency": 1,
+        "recovery": 1,
+        "graphFreshness": 0,
+        "continuity": 1
+      }
+    }
+  }
+}
+```
+
+Second `session_health({})` response excerpt:
+
+```json
+{
+  "status": "ok",
+  "data": {
+    "details": {
+      "sessionAgeMs": 127797,
+      "lastToolCallAgoMs": 8470,
+      "graphFreshness": "error",
+      "specFolder": ".opencode/specs/system-speckit/031-manual-playbook-execution-sweep",
+      "primingStatus": "primed"
+    },
+    "qualityScore": {
+      "level": "healthy",
+      "score": 0.8,
+      "factors": {
+        "recency": 1,
+        "recovery": 1,
+        "graphFreshness": 0,
+        "continuity": 1
+      }
+    }
+  }
+}
+```
 
 ### Pass / Fail
 
-- **Pass**: `lastToolCallAgoMs` reflects time since the last non-health tool call, not the `session_health` call itself
-- **Fail**: Any contradicting evidence appears or the pass condition is not met.
+- **PASS**: `lastToolCallAgoMs` increased from `4956` to `8470` across two `session_health({})` calls, so the health check did not reset the idle timer.
 
 ### Failure Triage
 

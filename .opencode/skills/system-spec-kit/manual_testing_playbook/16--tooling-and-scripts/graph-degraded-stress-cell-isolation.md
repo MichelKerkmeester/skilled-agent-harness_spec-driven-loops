@@ -45,12 +45,39 @@ Vitest exits 0 with all 4 bucket assertions passing and the dedicated live-DB gu
 
 ### Evidence
 
-`/tmp/279-vitest.txt` (vitest transcript with all 4 buckets + guard test) + `/tmp/279-pre.sha` + `/tmp/279-post.sha` + diff output
+`/tmp/279-vitest.txt`:
+
+```text
+
+ RUN  v4.1.9 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit
+
+No test files found, exiting with code 1
+
+filter: tests/code-graph-degraded-sweep.vitest.ts
+include: mcp_server/tests/**/*.{vitest,test}.ts, ../deep-loop-runtime/tests/**/*.{vitest,test}.ts, scripts/tests/**/*.{vitest,test}.ts
+exclude:  mcp_server/tests/memory-save.vitest.ts, mcp_server/tests/archive/**
+```
+
+`/tmp/279-pre.sha`:
+
+```text
+f817640df0db31c04220f159b7a71c9e038f6965c84704a9fe1fca34288adaf5  .opencode/skills/system-code-graph/mcp_server/database/code-graph.sqlite
+```
+
+`/tmp/279-post.sha`:
+
+```text
+f817640df0db31c04220f159b7a71c9e038f6965c84704a9fe1fca34288adaf5  .opencode/skills/system-code-graph/mcp_server/database/code-graph.sqlite
+```
+
+`diff /tmp/279-pre.sha /tmp/279-post.sha`:
+
+```text
+```
 
 ### Pass / Fail
 
-- **Pass**: vitest exits 0 with 5 tests passing (4 buckets + guard) AND sha256 diff empty
-- **Fail**: any bucket fails, guard test fails, runtime >5s, OR sha256 diff non-empty (live DB was touched — isolation broke)
+- **FAIL**: vitest exited 1 with `No test files found, exiting with code 1`; the expected 5 passing tests were not observed. The sha256 diff was empty.
 
 ### Failure Triage
 

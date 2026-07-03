@@ -76,3 +76,148 @@ advisor_recommend({"prompt":"<prompt matching recent skill>","options":{"include
 - Playbook ID: LC-001
 - Canonical root source: manual_testing_playbook.md
 - Feature file path: 07--lifecycle-routing/age-haircut.md
+
+---
+
+## 6. EVIDENCE
+
+### `stat` on `SKILL.md`
+
+```text
+2026-06-30T13:36:50+0200 .opencode/skills/sk-git/SKILL.md
+2026-07-01T18:33:45+0200 .opencode/skills/cli-opencode/SKILL.md
+2026-06-27T18:06:29+0200 .opencode/skills/sk-design/SKILL.md
+2026-06-30T13:36:50+0200 .opencode/skills/mcp-open-design/SKILL.md
+2026-05-31T11:45:37+0200 .opencode/skills/mcp-click-up/SKILL.md
+2026-06-30T11:10:00+0200 .opencode/skills/sk-doc/SKILL.md
+2026-06-30T13:36:50+0200 .opencode/skills/system-code-graph/SKILL.md
+2026-06-15T20:16:53+0200 .opencode/skills/sk-code/SKILL.md
+2026-07-01T18:28:00+0200 .opencode/skills/deep-loop-runtime/SKILL.md
+2026-06-30T13:36:50+0200 .opencode/skills/system-skill-advisor/SKILL.md
+2026-06-28T11:41:18+0200 .opencode/skills/deep-loop-workflows/SKILL.md
+2026-06-23T11:12:57+0200 .opencode/skills/mcp-code-mode/SKILL.md
+2026-06-28T16:12:27+0200 .opencode/skills/sk-prompt-models/SKILL.md
+2026-06-26T11:22:22+0200 .opencode/skills/mcp-figma/SKILL.md
+2026-06-30T13:36:50+0200 .opencode/skills/sk-code-review/SKILL.md
+2026-07-01T15:35:15+0200 .opencode/skills/system-spec-kit/SKILL.md
+2026-06-30T13:36:50+0200 .opencode/skills/sk-prompt/SKILL.md
+2026-06-30T13:36:50+0200 .opencode/skills/cli-claude-code/SKILL.md
+2026-06-23T11:12:57+0200 .opencode/skills/mcp-chrome-devtools/SKILL.md
+```
+
+Selected older skill: `.opencode/skills/mcp-click-up/SKILL.md` (`2026-05-31T11:45:37+0200`).
+
+Selected recent skill: `.opencode/skills/cli-opencode/SKILL.md` (`2026-07-01T18:33:45+0200`).
+
+### `advisor_recommend` for older skill prompt
+
+Prompt: `ClickUp daily ops get teams route official MCP docs goals bulk cupt CLI`
+
+```json
+{
+  "status": "ok",
+  "data": {
+    "workspaceRoot": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public",
+    "effectiveThresholds": {
+      "confidenceThreshold": 0,
+      "uncertaintyThreshold": 1,
+      "confidenceOnly": false
+    },
+    "recommendations": [],
+    "ambiguous": false,
+    "freshness": "unavailable",
+    "trustState": {
+      "state": "unavailable",
+      "reason": "advisor_unavailable",
+      "generation": 9476,
+      "checkedAt": "2026-07-03T02:27:30.204Z",
+      "lastLiveAt": null
+    },
+    "generatedAt": "2026-07-03T02:27:30.204Z",
+    "cache": {
+      "hit": false,
+      "sourceSignaturePresent": false
+    },
+    "warnings": [
+      "advisor_unavailable"
+    ],
+    "abstainReasons": [
+      "Skill advisor freshness is unavailable; returning fail-open empty recommendations."
+    ]
+  }
+}
+```
+
+### `advisor_recommend` for recent skill prompt
+
+Prompt: `OpenCode CLI orchestrator external dispatch in-OpenCode parallel sessions cross-AI handback full runtime context`
+
+```json
+{
+  "status": "ok",
+  "data": {
+    "workspaceRoot": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public",
+    "effectiveThresholds": {
+      "confidenceThreshold": 0,
+      "uncertaintyThreshold": 1,
+      "confidenceOnly": false
+    },
+    "recommendations": [],
+    "ambiguous": false,
+    "freshness": "unavailable",
+    "trustState": {
+      "state": "unavailable",
+      "reason": "advisor_unavailable",
+      "generation": 9476,
+      "checkedAt": "2026-07-03T02:27:30.368Z",
+      "lastLiveAt": null
+    },
+    "generatedAt": "2026-07-03T02:27:30.368Z",
+    "cache": {
+      "hit": false,
+      "sourceSignaturePresent": false
+    },
+    "warnings": [
+      "advisor_unavailable"
+    ],
+    "abstainReasons": [
+      "Skill advisor freshness is unavailable; returning fail-open empty recommendations."
+    ]
+  }
+}
+```
+
+### `advisor_status`
+
+```json
+{
+  "status": "ok",
+  "data": {
+    "freshness": "unavailable",
+    "generation": 9476,
+    "trustState": {
+      "state": "stale",
+      "reason": "SIGTERM",
+      "generation": 9476,
+      "checkedAt": "2026-07-03T02:27:39.245Z",
+      "lastLiveAt": null
+    },
+    "lastGenerationBump": "2026-07-02T05:27:14.803Z",
+    "lastScanAt": "2026-07-02T05:27:14.803Z",
+    "skillCount": 26,
+    "laneWeights": {
+      "explicit_author": 0.42,
+      "lexical": 0.28,
+      "graph_causal": 0.13,
+      "derived_generated": 0.12,
+      "semantic_shadow": 0.05
+    }
+  }
+}
+```
+
+---
+
+## 7. PASS/FAIL
+
+BLOCKED: The scenario contract requires a reachable daemon, but `advisor_recommend` returned `freshness: "unavailable"` with `warnings: ["advisor_unavailable"]`, and `advisor_status` returned `trustState.reason: "SIGTERM"`; no recommendations or `laneBreakdown` values were available to compare against Expected Signals.

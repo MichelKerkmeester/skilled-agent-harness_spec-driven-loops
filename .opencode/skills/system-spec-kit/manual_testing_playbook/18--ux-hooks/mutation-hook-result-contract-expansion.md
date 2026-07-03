@@ -45,12 +45,104 @@ Hook and UX feedback suites pass, hook results include `latencyMs`, cache-clear 
 
 ### Evidence
 
-Test transcript + highlighted assertion names or output snippets showing contract-field and hint coverage
+Command run from `.opencode/skills/system-spec-kit/mcp_server`:
+
+```text
+npx vitest run tests/mutation-hooks.vitest.ts tests/hooks-mutation-wiring.vitest.ts tests/hooks-ux-feedback.vitest.ts
+```
+
+Observed test transcript:
+
+```text
+ RUN  v4.1.9 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit
+
+
+ Test Files  3 passed (3)
+      Tests  13 passed (13)
+   Start at  01:03:31
+   Duration  889ms (transform 384ms, setup 19ms, import 682ms, tests 11ms, environment 0ms)
+```
+
+Highlighted assertion snippets observed in `tests/mutation-hooks.vitest.ts`:
+
+```text
+60:   it('returns success status flags when all hooks succeed', () => {
+63:     expect(result.latencyMs).toBeGreaterThanOrEqual(0);
+64:     expect(result.triggerCacheCleared).toBe(true);
+65:     expect(result.toolCacheInvalidated).toBe(3);
+66:     expect(result.constitutionalCacheCleared).toBe(true);
+67:     expect(result.graphSignalsCacheCleared).toBe(true);
+68:     expect(result.coactivationCacheCleared).toBe(true);
+69:     expect(result.errors).toEqual([]);
+79:   it('continues running remaining hooks when one hook fails', () => {
+88:     expect(result.triggerCacheCleared).toBe(false);
+89:     expect(result.toolCacheInvalidated).toBe(1);
+90:     expect(result.constitutionalCacheCleared).toBe(true);
+91:     expect(result.graphSignalsCacheCleared).toBe(true);
+92:     expect(result.coactivationCacheCleared).toBe(true);
+93:     expect(result.errors).toEqual(['trigger-cache: trigger cache failure']);
+107:   it('reports graph cache invalidation failures when degree cache clearing throws', () => {
+115:     expect(result.graphSignalsCacheCleared).toBe(false);
+116:     expect(result.errors).toContain('graph-cache: degree cache failure');
+123:   it('treats automated audit append failures as non-fatal hook warnings', () => {
+133:     expect(result.triggerCacheCleared).toBe(true);
+134:     expect(result.toolCacheInvalidated).toBe(3);
+135:     expect(result.errors.some((error) => error.startsWith('automated-audit:'))).toBe(true);
+```
+
+Highlighted assertion snippets observed in `tests/hooks-mutation-wiring.vitest.ts`:
+
+```text
+52: function assertMutationHookResultShape(result: MutationHookResult): void {
+53:   expect(typeof result.latencyMs).toBe('number');
+54:   expect(result.latencyMs).toBeGreaterThanOrEqual(0);
+55:   expect(typeof result.triggerCacheCleared).toBe('boolean');
+56:   expect(typeof result.constitutionalCacheCleared).toBe('boolean');
+57:   expect(typeof result.graphSignalsCacheCleared).toBe('boolean');
+58:   expect(typeof result.coactivationCacheCleared).toBe('boolean');
+59:   expect(typeof result.toolCacheInvalidated).toBe('number');
+60:   expect(Array.isArray(result.errors)).toBe(true);
+77:   it('runs post-mutation hooks for save/update/delete/bulk-delete/atomic-save with full MutationHookResult contract', () => {
+96:   it('captures thrown hook error details in errors and marks the failing hook status false', () => {
+104:     assertMutationHookResultShape(result);
+105:     expect(result.coactivationCacheCleared).toBe(false);
+106:     expect(result.errors).toEqual(
+107:       expect.arrayContaining([expect.stringContaining('coactivation hook blew up')])
+```
+
+Highlighted assertion snippets observed in `tests/hooks-ux-feedback.vitest.ts`:
+
+```text
+7:   it('buildMutationHookFeedback returns data and expected hints', () => {
+8:     const feedback = buildMutationHookFeedback('save', {
+9:       latencyMs: 9,
+10:       triggerCacheCleared: true,
+11:       constitutionalCacheCleared: false,
+12:       graphSignalsCacheCleared: true,
+13:       coactivationCacheCleared: true,
+14:       toolCacheInvalidated: 3,
+15:       errors: [],
+18:     expect(feedback.data).toEqual({
+20:       latencyMs: 9,
+21:       triggerCacheCleared: true,
+22:       constitutionalCacheCleared: false,
+23:       graphSignalsCacheCleared: true,
+24:       coactivationCacheCleared: true,
+25:       toolCacheInvalidated: 3,
+26:       errors: [],
+29:     expect(feedback.hints.some((hint) => hint.includes('Post-mutation subscribers'))).toBe(true);
+30:     expect(feedback.hints.some((hint) => hint.includes('constitutional=failed'))).toBe(true);
+31:     expect(feedback.hints.some((hint) => hint.includes('Tool cache invalidation'))).toBe(true);
+32:     expect(feedback.hints.some((hint) => hint.includes('non-fatal'))).toBe(true);
+49:   it('buildMutationHookFeedback surfaces error messages in hints and data', () => {
+57:       errors: ['hook failed: xyz'],
+60:     expect(feedback.data.errors).toEqual(['hook failed: xyz']);
+61:     expect(feedback.hints.some((hint) => hint.includes('Post-mutation hook errors: hook failed: xyz'))).toBe(true);
+```
 
 ### Pass / Fail
 
-- **Pass**: the suites pass and the assertions prove the expanded hook-result contract is present and consumable end to end
-- **Fail**: Any contradicting evidence appears or the pass condition is not met.
+- **PASS**: the suites passed and the assertions prove the expanded hook-result contract is present and consumable end to end.
 
 ### Failure Triage
 

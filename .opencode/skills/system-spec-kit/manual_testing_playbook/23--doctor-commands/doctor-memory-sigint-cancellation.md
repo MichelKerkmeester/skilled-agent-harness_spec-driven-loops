@@ -58,19 +58,26 @@ The command catches SIGINT during Phase 3, allows the active per-file transactio
 
 ### Evidence
 
-- `docker info` transcript proving the daemon was available, or the `UNAUTOMATABLE` reason if not.
-- Pre-rebuild checksums for both memory DBs.
-- Transcript showing Ctrl-C was sent during rebuild.
-- State log with cancel timestamp, rollback reason, and snapshot restore paths.
-- Exit code `130`.
-- Post-cancel checksums matching the pre-rebuild snapshot or pre-run copied DBs.
+- `docker info` transcript:
+  ```text
+  Client:
+   Version:    29.3.1
+   Context:    desktop-linux
+   Debug Mode: false
+   Plugins:
+    scout: Docker Scout (Docker Inc.)
+      Version:  v1.20.4
+      Path:     /Users/michelkerkmeester/.docker/cli-plugins/docker-scout
+
+  Server:
+  failed to connect to the docker API at unix:///Users/michelkerkmeester/.docker/run/docker.sock; check if the path is correct and if the daemon is running: dial unix /Users/michelkerkmeester/.docker/run/docker.sock: connect: no such file or directory
+  ```
+- Result: Docker daemon was unavailable, so the scenario could not create the required disposable Docker-backed sandbox.
+- Per command step 2, execution stopped before creating a disposable workspace, recording checksums, starting `/doctor memory --incremental=false`, sending Ctrl-C, capturing a state log, or comparing post-cancel checksums.
 
 ### Pass / Fail
 
-- **PASS**: SIGINT is caught, restore completes after the ADR-001 settle window, exit code is 130, and post-cancel DB checksums match the pre-rebuild snapshot baseline.
-- **FAIL**: Exit code is not 130, restore is skipped, the post-cancel DB differs from the snapshot baseline, or the command leaves a half-rebuilt index.
-- **SKIP**: Only use `SKIP` for a temporary sandbox setup failure after Docker availability is proven.
-- **UNAUTOMATABLE**: Docker daemon is unavailable; do not substitute a mock cancellation test.
+- **BLOCKED**: Docker daemon is unavailable; `docker info` failed before the required disposable Docker-backed sandbox could be created.
 
 ### Failure Triage
 

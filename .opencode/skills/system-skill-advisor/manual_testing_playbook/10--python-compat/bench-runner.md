@@ -80,3 +80,140 @@ python3 .opencode/skills/system-skill-advisor/mcp_server/scripts/skill_advisor_b
 - Playbook ID: PC-005
 - Canonical root source: manual_testing_playbook.md
 - Feature file path: 10--python-compat/bench-runner.md
+
+---
+
+## 6. Evidence
+
+Command run from repo root:
+
+```bash
+python3 .opencode/skills/system-skill-advisor/mcp_server/scripts/skill_advisor_bench.py \
+  --dataset .opencode/skills/system-skill-advisor/mcp_server/scripts/fixtures/skill_advisor_regression_cases.jsonl \
+  --runs 1 \
+  --out /tmp/skill-advisor-bench.json
+```
+
+Stdout:
+
+```json
+Skill graph: loaded from SQLite
+{
+  "dataset": ".opencode/skills/system-skill-advisor/mcp_server/scripts/fixtures/skill_advisor_regression_cases.jsonl",
+  "runs": 1,
+  "prompts": 50,
+  "threshold": 0.8,
+  "uncertainty": 0.35,
+  "subprocess_one_shot": {
+    "count": 50,
+    "p50_ms": 362.0035,
+    "p95_ms": 455.1037,
+    "min_ms": 347.8627,
+    "max_ms": 487.2537,
+    "mean_ms": 376.0593,
+    "runtime_mode": "subprocess_one_shot",
+    "throughput_prompts_per_sec": 2.659,
+    "total_prompts": 50
+  },
+  "inprocess_warm": {
+    "count": 50,
+    "p50_ms": 58.0585,
+    "p95_ms": 70.0421,
+    "min_ms": 54.045,
+    "max_ms": 72.1062,
+    "mean_ms": 58.8024,
+    "runtime_mode": "python_inprocess",
+    "throughput_prompts_per_sec": 17.0059,
+    "total_prompts": 50
+  },
+  "batch_mode": {
+    "count": 1,
+    "p50_ms": 2927.8917,
+    "p95_ms": 2927.8917,
+    "min_ms": 2927.8917,
+    "max_ms": 2927.8917,
+    "mean_ms": 2927.8917,
+    "runtime_mode": "subprocess_batch",
+    "throughput_prompts_per_sec": 17.0771,
+    "total_prompts": 50,
+    "batch_size": 50
+  },
+  "throughput_multiplier": 6.4224,
+  "gates": {
+    "warm_p95": false,
+    "cold_p95": false,
+    "throughput_multiplier": true
+  },
+  "cold_p95_advisory": true,
+  "overall_pass": false
+}
+```
+
+`/tmp/skill-advisor-bench.json`:
+
+```json
+{
+  "dataset": ".opencode/skills/system-skill-advisor/mcp_server/scripts/fixtures/skill_advisor_regression_cases.jsonl",
+  "runs": 1,
+  "prompts": 50,
+  "threshold": 0.8,
+  "uncertainty": 0.35,
+  "subprocess_one_shot": {
+    "count": 50,
+    "p50_ms": 362.0035,
+    "p95_ms": 455.1037,
+    "min_ms": 347.8627,
+    "max_ms": 487.2537,
+    "mean_ms": 376.0593,
+    "runtime_mode": "subprocess_one_shot",
+    "throughput_prompts_per_sec": 2.659,
+    "total_prompts": 50
+  },
+  "inprocess_warm": {
+    "count": 50,
+    "p50_ms": 58.0585,
+    "p95_ms": 70.0421,
+    "min_ms": 54.045,
+    "max_ms": 72.1062,
+    "mean_ms": 58.8024,
+    "runtime_mode": "python_inprocess",
+    "throughput_prompts_per_sec": 17.0059,
+    "total_prompts": 50
+  },
+  "batch_mode": {
+    "count": 1,
+    "p50_ms": 2927.8917,
+    "p95_ms": 2927.8917,
+    "min_ms": 2927.8917,
+    "max_ms": 2927.8917,
+    "mean_ms": 2927.8917,
+    "runtime_mode": "subprocess_batch",
+    "throughput_prompts_per_sec": 17.0771,
+    "total_prompts": 50,
+    "batch_size": 50
+  },
+  "throughput_multiplier": 6.4224,
+  "gates": {
+    "warm_p95": false,
+    "cold_p95": false,
+    "throughput_multiplier": true
+  },
+  "cold_p95_advisory": true,
+  "overall_pass": false
+}
+```
+
+Recorded latency values:
+
+- `inprocess_warm`: p50 `58.0585` ms, p95 `70.0421` ms.
+- `subprocess_one_shot`: p50 `362.0035` ms, p95 `455.1037` ms.
+- `batch_mode`: p50 `2927.8917` ms, p95 `2927.8917` ms.
+- `throughput_multiplier`: `6.4224`.
+
+No runtime warning about native unavailability appeared in stdout; stdout began with `Skill graph: loaded from SQLite`.
+
+---
+
+## 7. Pass/Fail
+
+FAIL: Bench produced a JSON report and `throughput_multiplier` passed, but `gates.warm_p95` was `false` with in-process warm p95 `70.0421` ms, above the expected `<= 50` ms envelope, and `overall_pass` was `false`.

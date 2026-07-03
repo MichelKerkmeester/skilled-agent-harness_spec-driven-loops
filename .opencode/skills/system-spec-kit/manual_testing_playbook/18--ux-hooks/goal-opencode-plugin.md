@@ -47,9 +47,115 @@ Status output includes active goal state, `goal_prompt=`, prompt metadata, `muta
 
 ### Evidence
 
-Capture the `/goal show` status envelope or the two Node test transcripts.
+Live OpenCode goal plugin tool output from `/goal set Finish the goal plugin docs integration and validate it` equivalent:
+
+```text
+STATUS=OK ACTION=set
+mutation=created
+goal_present=true
+plugin_id=mk-goal
+goal_id=goal-b7a3ad9a-f1a6-4787-8eb8-3c413c78a894
+status=active
+objective="Finish the goal plugin docs integration and validate it"
+goal_prompt="Role: Focused OpenCode execution agent operating under the active session goal.\nObjective: Finish the goal plugin docs integration and validate it\nContext: Use the current conversation, repository files, tests, and active spec constraints as source of truth. Preserve unrelated worktree changes and do not broaden scope.\nMethod:\n- Restate the concrete completion condition from available evidence before acting.\n- Clarify the concrete completion condition from available context, then execute until it is met or blocked.\n- Prefer direct, reversible changes; ask only when blocked by missing information, permissions, or contradictory requirements.\nSuccess Criteria:\n- The requested outcome is materially complete, not merely analyzed or partially prepared.\n- Required verification has run, or any inability to run it is reported with the exact blocker.\n- Status output distinguishes confirmed evidence from inference.\nStop Conditions:\n- Stop only when the goal verifier can mark the goal met, when the user changes or clears the goal, or when progress is blocked by a decision the user must make.\n- If blocked, preserve state and name the next safe action."
+prompt_framework="CRAFT+TIDD-EC"
+prompt_methodology="DEPTH"
+prompt_clear_score=44
+prompt_char_count=1156
+prompt_max_chars=4000
+token_budget=none
+tokens_used=0
+time_used_seconds=0
+usage_source=unavailable
+budget_tokens_used=0
+budget_token_budget=none
+budget_usage_source=unavailable
+created_at_ms=1783033167486
+updated_at_ms=1783033167486
+store_health=state_age_ms:5
+last_check=not_evaluated
+verifier_last_verdict=not_evaluated
+verifier_last_evidence=""
+blocked_by_prompt=false
+continuation_suppressed=false
+continuation_attempts=0
+continuation_suppressed_reason=""
+injection_preview="[active_goal:goal-b7a3ad9a-f1a6-4787-8eb8-3c413c78a894]\nstatus: active\nobjective: Finish the goal plugin docs integration and validate it\ngoal_prompt:\nRole: Focused OpenCode execution agent operating under the active session goal.\nObjective: Finish the goal plugin docs integration and validate it\nContext: Use the current conversation, repository files, tests, and active spec constraints as source of truth. Preserve unrelated worktree changes and do not broaden scope.\nMethod:\n- Restate the concrete completion condition from available evidence before acting.\n- Clarify the concrete completion condition from available context, then execute until it is met or blocked.\n- Prefer direct, reversible changes; ask only when blocked by missing information, permissions, or contradictory requirements.\nSuccess Criteria:\n- The requested outcome is materially complete, not merely analyzed or partially prepared.\n- Required verification has run, or any inability to run it is reported with the exact blocker.\n- Status output distinguishes confirmed evidence from inference.\nStop Conditions:\n- Stop only when the goal verifier can mark the goal met, when the user changes or clears the goal, or when progress is blocked by a decision the user must make.\n- If blocked, preserve state and name the next safe action.\nlast_check: not_evaluated ; reason: none\nusage: tokens 0/none; time 0s; iteration 0/8\ndirective: Continue toward this objective. Before ending, run the goal verifier or explain why it is blocked.\n[/active_goal]"
+```
+
+Live OpenCode goal plugin tool output from `/goal show` equivalent:
+
+```text
+STATUS=OK ACTION=show
+goal_present=true
+plugin_id=mk-goal
+goal_id=goal-b7a3ad9a-f1a6-4787-8eb8-3c413c78a894
+status=active
+objective="Finish the goal plugin docs integration and validate it"
+goal_prompt="Role: Focused OpenCode execution agent operating under the active session goal.\nObjective: Finish the goal plugin docs integration and validate it\nContext: Use the current conversation, repository files, tests, and active spec constraints as source of truth. Preserve unrelated worktree changes and do not broaden scope.\nMethod:\n- Restate the concrete completion condition from available evidence before acting.\n- Clarify the concrete completion condition from available context, then execute until it is met or blocked.\n- Prefer direct, reversible changes; ask only when blocked by missing information, permissions, or contradictory requirements.\nSuccess Criteria:\n- The requested outcome is materially complete, not merely analyzed or partially prepared.\n- Required verification has run, or any inability to run it is reported with the exact blocker.\n- Status output distinguishes confirmed evidence from inference.\nStop Conditions:\n- Stop only when the goal verifier can mark the goal met, when the user changes or clears the goal, or when progress is blocked by a decision the user must make.\n- If blocked, preserve state and name the next safe action."
+prompt_framework="CRAFT+TIDD-EC"
+prompt_methodology="DEPTH"
+prompt_clear_score=44
+prompt_char_count=1156
+prompt_max_chars=4000
+token_budget=none
+tokens_used=0
+time_used_seconds=0
+usage_source=unavailable
+budget_tokens_used=0
+budget_token_budget=none
+budget_usage_source=unavailable
+created_at_ms=1783033167486
+updated_at_ms=1783033168833
+store_health=state_age_ms:3677
+last_check=not_evaluated
+verifier_last_verdict=not_evaluated
+verifier_last_evidence=""
+blocked_by_prompt=false
+continuation_suppressed=false
+continuation_attempts=0
+continuation_suppressed_reason=""
+injection_preview="[active_goal:goal-b7a3ad9a-f1a6-4787-8eb8-3c413c78a894]\nstatus: active\nobjective: Finish the goal plugin docs integration and validate it\ngoal_prompt:\nRole: Focused OpenCode execution agent operating under the active session goal.\nObjective: Finish the goal plugin docs integration and validate it\nContext: Use the current conversation, repository files, tests, and active spec constraints as source of truth. Preserve unrelated worktree changes and do not broaden scope.\nMethod:\n- Restate the concrete completion condition from available evidence before acting.\n- Clarify the concrete completion condition from available context, then execute until it is met or blocked.\n- Prefer direct, reversible changes; ask only when blocked by missing information, permissions, or contradictory requirements.\nSuccess Criteria:\n- The requested outcome is materially complete, not merely analyzed or partially prepared.\n- Required verification has run, or any inability to run it is reported with the exact blocker.\n- Status output distinguishes confirmed evidence from inference.\nStop Conditions:\n- Stop only when the goal verifier can mark the goal met, when the user changes or clears the goal, or when progress is blocked by a decision the user must make.\n- If blocked, preserve state and name the next safe action.\nlast_check: not_evaluated ; reason: none\nusage: tokens 0/none; time 0s; iteration 0/8\ndirective: Continue toward this objective. Before ending, run the goal verifier or explain why it is blocked.\n[/active_goal]"
+```
+
+Dedicated active-goal status and injection preview output:
+
+```text
+STATUS=OK ACTION=show
+goal_present=true
+plugin_id=mk-goal
+goal_id=goal-b7a3ad9a-f1a6-4787-8eb8-3c413c78a894
+status=active
+objective="Finish the goal plugin docs integration and validate it"
+goal_prompt="Role: Focused OpenCode execution agent operating under the active session goal.\nObjective: Finish the goal plugin docs integration and validate it\nContext: Use the current conversation, repository files, tests, and active spec constraints as source of truth. Preserve unrelated worktree changes and do not broaden scope.\nMethod:\n- Restate the concrete completion condition from available evidence before acting.\n- Clarify the concrete completion condition from available context, then execute until it is met or blocked.\n- Prefer direct, reversible changes; ask only when blocked by missing information, permissions, or contradictory requirements.\nSuccess Criteria:\n- The requested outcome is materially complete, not merely analyzed or partially prepared.\n- Required verification has run, or any inability to run it is reported with the exact blocker.\n- Status output distinguishes confirmed evidence from inference.\nStop Conditions:\n- Stop only when the goal verifier can mark the goal met, when the user changes or clears the goal, or when progress is blocked by a decision the user must make.\n- If blocked, preserve state and name the next safe action."
+prompt_framework="CRAFT+TIDD-EC"
+prompt_methodology="DEPTH"
+prompt_clear_score=44
+prompt_char_count=1156
+prompt_max_chars=4000
+token_budget=none
+tokens_used=0
+time_used_seconds=0
+usage_source=unavailable
+budget_tokens_used=0
+budget_token_budget=none
+budget_usage_source=unavailable
+created_at_ms=1783033167486
+updated_at_ms=1783033173736
+store_health=state_age_ms:6701
+last_check=not_evaluated
+verifier_last_verdict=not_evaluated
+verifier_last_evidence=""
+blocked_by_prompt=false
+continuation_suppressed=false
+continuation_attempts=0
+continuation_suppressed_reason=""
+injection_preview="[active_goal:goal-b7a3ad9a-f1a6-4787-8eb8-3c413c78a894]\nstatus: active\nobjective: Finish the goal plugin docs integration and validate it\ngoal_prompt:\nRole: Focused OpenCode execution agent operating under the active session goal.\nObjective: Finish the goal plugin docs integration and validate it\nContext: Use the current conversation, repository files, tests, and active spec constraints as source of truth. Preserve unrelated worktree changes and do not broaden scope.\nMethod:\n- Restate the concrete completion condition from available evidence before acting.\n- Clarify the concrete completion condition from available context, then execute until it is met or blocked.\n- Prefer direct, reversible changes; ask only when blocked by missing information, permissions, or contradictory requirements.\nSuccess Criteria:\n- The requested outcome is materially complete, not merely analyzed or partially prepared.\n- Required verification has run, or any inability to run it is reported with the exact blocker.\n- Status output distinguishes confirmed evidence from inference.\nStop Conditions:\n- Stop only when the goal verifier can mark the goal met, when the user changes or clears the goal, or when progress is blocked by a decision the user must make.\n- If blocked, preserve state and name the next safe action.\nlast_check: not_evaluated ; reason: none\nusage: tokens 0/none; time 0s; iteration 0/8\ndirective: Continue toward this objective. Before ending, run the goal verifier or explain why it is blocked.\n[/active_goal]"
+```
 
 ### Pass / Fail
+
+- **PASS**: active goal state, `goal_prompt=`, `prompt_framework="CRAFT+TIDD-EC"`, `prompt_max_chars=4000`, `mutation=created`, `store_health=`, and injection preview with `[active_goal:goal-b7a3ad9a-f1a6-4787-8eb8-3c413c78a894]` plus `goal_prompt:` were visible from plugin-owned tool output.
 
 - **Pass**: active goal state, prompt metadata, and injection preview are visible and owned by plugin tools.
 - **Fail**: command markdown reads state directly, status lacks prompt metadata, set output omits `mutation=`, status/set output omits `store_health=`, or injection preview omits `goal_prompt:`.

@@ -44,12 +44,31 @@ Targeted suite passes; transcript shows missing-table reporting and minimal-comp
 
 ### Evidence
 
-Test transcript + suite summary
+Command run from `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server`:
+
+```text
+npm test -- --run tests/vector-index-schema-compatibility.vitest.ts
+```
+
+Observed output:
+
+```text
+> @spec-kit/mcp-server@1.8.0 test
+> node scripts/run-tests.mjs --run tests/vector-index-schema-compatibility.vitest.ts
+
+
+ RUN  v4.1.9 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit
+
+
+ Test Files  1 passed (1)
+      Tests  2 passed (2)
+   Start at  23:54:56
+   Duration  476ms (transform 310ms, setup 14ms, import 393ms, tests 5ms, environment 0ms)
+```
 
 ### Pass / Fail
 
-- **Pass**: `vector-index-schema-compatibility.vitest.ts` completes with all tests passing and no failures
-- **Fail**: Any contradicting evidence appears or the pass condition is not met.
+- **PASS**: `vector-index-schema-compatibility.vitest.ts` completed with all tests passing and no failures: `Test Files  1 passed (1)` and `Tests  2 passed (2)`.
 
 ### Failure Triage
 

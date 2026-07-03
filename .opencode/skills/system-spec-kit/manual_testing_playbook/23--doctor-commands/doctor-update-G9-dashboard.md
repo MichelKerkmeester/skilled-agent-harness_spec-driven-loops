@@ -53,17 +53,56 @@ The command loads `doctor_update.yaml` and renders the cross-subsystem dashboard
 
 ### Evidence
 
-- Full dashboard transcript.
-- Row-count check showing seven required subsystem rows.
-- Highlighted row snippets proving each row has status, age, and recommended action.
-- State log path emitted by the command.
+- BLOCKED before running `/doctor:update`: the scenario command requires writes outside the user-approved path, so the real runtime could not be executed under this task's constraints.
+- User-approved write path for this run: `.opencode/skills/system-spec-kit/manual_testing_playbook/23--doctor-commands/doctor-update-G9-dashboard.md` only.
+- Actual command contract observed in `.opencode/commands/doctor/update.md`:
+
+```text
+40: - Snapshot every SQLite database before mutation unless `--no-snapshot` was explicitly passed.
+46: - Every terminal path writes the update state log defined by the YAML workflow.
+```
+
+- Actual YAML state-log and mutation-boundary output observed in `.opencode/commands/doctor/assets/doctor_update.yaml`:
+
+```text
+18:   state_log: "mcp_server/database/.doctor-update.last-run.json"
+100:     - ".opencode/skills/system-code-graph/mcp_server/database/code-graph.sqlite"  # structural code graph DB (skill-local)
+101:     - ".opencode/skills/system-code-graph/mcp_server/database/code-graph.sqlite.pre-doctor-update.*.bak"
+102:     - "mcp_server/database/context-index.sqlite"  # canonical memory DB
+103:     - "mcp_server/database/context-index.sqlite.pre-doctor-update.*.bak"
+104:     - ".opencode/skills/system-skill-advisor/mcp_server/database/skill-graph.sqlite"  # standalone advisor routing graph DB
+105:     - ".opencode/skills/system-skill-advisor/mcp_server/database/skill-graph.sqlite.pre-doctor-update.*.bak"
+106:     - ".opencode/skills/deep-loop-runtime/database/deep-loop-graph.sqlite"  # research/review coverage graph DB
+107:     - ".opencode/skills/deep-loop-runtime/database/deep-loop-graph.sqlite.pre-doctor-update.*.bak"
+108:     - "mcp_server/database/speckit-eval.db"  # eval/ablation DB
+109:     - "mcp_server/database/speckit-eval.db.pre-doctor-update.*.bak"
+110:     - "mcp_server/database/.doctor-update.flock"  # single-instance lock
+111:     - "mcp_server/database/.doctor-update.lock"
+112:     - "mcp_server/database/.doctor-update.last-run.json"  # orchestrator state log
+113:     - "mcp_server/database/.doctor-update.bootstrap.json"  # pre-MCP bootstrap state
+114:     - "mcp_server/database/.doctor-update.bootstrap.lockdir"  # pre-MCP bootstrap lock
+```
+
+- Actual presentation contract observed in `.opencode/commands/doctor/assets/doctor_update_presentation.txt` confirms the expected seven-row dashboard shape, but this was not real runtime output from `/doctor:update`:
+
+```text
+136: Cross-Subsystem Health Dashboard
+138: | Subsystem     | Status | Age | Coverage | Recommended Action |
+140: | code-graph    | [OK|STALE|MISSING|REGRESSED] | [age] | [n/a|metric] | [scan|skip|rollback] |
+141: | context-index | [OK|STALE|MISSING|REGRESSED] | [age] | [metric] | [index-scan|skip|rollback] |
+142: | causal-edges  | [OK|LOW-COVERAGE|REGRESSED] | [age] | [metric] | [init-links|skip|rollback] |
+143: | skill-graph   | [OK|STALE|MISSING] | [age] | [n/a|metric] | [scan|skip] |
+144: | advisor       | [OK|INVALID|STALE] | [age] | [n/a|metric] | [rebuild|validate] |
+145: | deep-loop     | [OK|EMPTY|STALE] | [age] | [n/a|metric] | [upsert|skip] |
+146: | eval          | [OK|STALE|SKIPPED] | [age] | [n/a|metric] | [run-ablation|skip] |
+```
+
+- Row-count check: BLOCKED; no real `/doctor:update` dashboard transcript was produced because executing the command would violate the allowed write paths.
+- State log path emitted by command contract: `mcp_server/database/.doctor-update.last-run.json`; not captured from a real run because the command was not executed.
 
 ### Pass / Fail
 
-- **PASS**: all seven rows appear exactly once, each row includes status, age, and recommended action, and statuses map to the observed subsystem health.
-- **FAIL**: any required row is missing, a row lacks age or action, row count is not seven, or status/action recommendations contradict observed health.
-- **SKIP**: a subsystem cannot be made probeable in the sandbox.
-- **UNAUTOMATABLE**: the runtime cannot execute `/doctor:update` or capture the dashboard.
+- **BLOCKED**: `/doctor:update` could not be executed under this task's constraints because the command contract requires writing `mcp_server/database/.doctor-update.last-run.json` on every terminal path and may write additional lock, bootstrap, database, and snapshot files outside the single allowed scenario file.
 
 ### Failure Triage
 

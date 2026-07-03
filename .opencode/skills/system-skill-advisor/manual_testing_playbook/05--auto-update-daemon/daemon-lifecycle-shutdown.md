@@ -69,6 +69,49 @@ kill -TERM <daemon_pid>
 | Stack trace on shutdown | Stderr contains unhandled rejection | Block release. Investigate teardown path. |
 | Idle timeout kills active IPC client | Active secondary client exits during activity | Inspect `mcp_server/lib/ipc/socket-server.ts` activity callbacks. |
 
+### Evidence
+
+Step 1 was executed exactly against the scenario command's workspace root placeholder:
+
+```json
+{
+  "status": "ok",
+  "data": {
+    "freshness": "absent",
+    "generation": 0,
+    "trustState": {
+      "state": "absent",
+      "reason": "GENERATION_ABSENT",
+      "generation": 0,
+      "checkedAt": "2026-07-03T02:12:21.484Z",
+      "lastLiveAt": null
+    },
+    "lastGenerationBump": null,
+    "lastScanAt": null,
+    "skillCount": 0,
+    "laneWeights": {
+      "explicit_author": 0.42,
+      "lexical": 0.28,
+      "graph_causal": 0.13,
+      "derived_generated": 0.12,
+      "semantic_shadow": 0.05
+    }
+  }
+}
+```
+
+The disposable workspace copy precondition was checked directly:
+
+```text
+exists=1
+```
+
+No daemon PID, populated skill count, or live/stale trust state was available from the required first status call, so the SIGTERM, post-restart, and idle-timeout checks could not be executed without substituting a different workspace/process than the scenario specified.
+
+### Pass/Fail
+
+BLOCKED - `/tmp/path-to-copy` does not exist, and `advisor_status({"workspaceRoot":"/tmp/path-to-copy"})` returned `freshness: "absent"`, `skillCount: 0`, `generation: 0`, and `trustState.state: "absent"` instead of a live or stale daemon status with a daemon PID to signal.
+
 ---
 
 ## 4. SOURCE FILES

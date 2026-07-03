@@ -145,11 +145,13 @@ Verdict: PASS — 50/50 reads coherent, 10/10 writes succeeded, 0 errors total.
 
 ### Evidence
 
-- Pre-seed save responses (5 parent IDs).
-- CLI-A reader response array (50 records).
-- CLI-B writer response array (10 records).
-- The verification analysis (error count, duplicate count, response-count progression).
-- Active provider from `memory_health`.
+- BLOCKED before Phase 1. The scenario commands require writing additional files outside this scenario file:
+  - Phase 1 lines 36-53: `Orchestrating AI stores 5 baseline memories. For each i in 1..5:` then `Write `<spec-folder>{i}/research.md`` and `mcp__mk_spec_memory__memory_save({ filePath: "<absolute path from step a>" })`.
+  - Phase 3 lines 87-107: `Wait 3 seconds for CLI-A's reader to start its loop, then fire 10 memory_save calls back-to-back` and for each i in 1..10 `Write `<spec-folder>{i}/research.md`` then `mcp__mk_spec_memory__memory_save({ filePath: "<absolute path from step a>" })`.
+- User-provided write constraint for this execution: `Do NOT modify, create, or delete any file OTHER than the single scenario file named below.`
+- User-provided allowed write path for this execution: `.opencode/skills/system-spec-kit/manual_testing_playbook/24--local-llm-query-intelligence/concurrent-multi-ai-safety.md (this file only)`.
+- No pre-seed files were written, no `memory_save` calls were run, no concurrent reader/writer CLI sessions were launched, and no cleanup commands were run, because doing so would require creating and deleting files outside the single allowed write path.
+- Pass/Fail: BLOCKED — required scenario setup and writer commands need additional on-disk `research.md` files, which are outside the allowed write paths for this execution.
 
 ---
 

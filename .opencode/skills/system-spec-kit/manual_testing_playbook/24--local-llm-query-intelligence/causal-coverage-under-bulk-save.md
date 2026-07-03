@@ -99,12 +99,19 @@ diagonal-row-leader check: 4/4 ✓
 
 ### Evidence
 
-- The 20 parent IDs grouped by topic.
-- The full 4×4 confusion matrix.
-- intra_count, inter_count, ratio.
-- The "diagonal is row leader" check per topic.
-- Active provider from memory_health.
-- An honest note: if Topic 2 and Topic 4 have many cross-edges (e.g., 5+), inspect content — are profile-DB-filename memories semantically close to chunking memories? Some cross-edges are expected when topics overlap conceptually.
+- BLOCKED before executing scenario commands. The scenario's AI-to-CLI handoff requires creating 20 canonical research-doc files at `<spec-folder><topic>-<n>/research.md`, calling `memory_save({filePath})` for each, then the CLEAN-UP section requires `rm -rf <spec-folder>*` after `memory_delete`.
+- Current execution constraint from the user: `Do NOT modify, create, or delete any file OTHER than the single scenario file named below.`
+- Current allowed write path from the user: `.opencode/skills/system-spec-kit/manual_testing_playbook/24--local-llm-query-intelligence/causal-coverage-under-bulk-save.md (this file only)`
+- No `memory_save`, `memory_causal_stats`, `memory_causal_link`, `memory_delete`, or `rm -rf <spec-folder>*` commands were run because the scenario's required file creation/deletion would violate the allowed write scope.
+- The 20 parent IDs grouped by topic: not produced.
+- The full 4×4 confusion matrix: not produced.
+- intra_count, inter_count, ratio: not produced.
+- The "diagonal is row leader" check per topic: not produced.
+- Active provider from memory_health: not checked; blocked before scenario command execution.
+
+### Pass/Fail
+
+BLOCKED — The playbook requires creating and deleting files outside the only user-approved write path, so its required commands cannot be executed exactly as written in the current constrained run.
 
 ---
 

@@ -12,7 +12,7 @@ import { z } from 'zod';
 import { scoreAdvisorPrompt } from '../lib/scorer/fusion.js';
 import { runPromotionLatencyBench } from '../bench/latency-bench.js';
 import { createFixtureProjection } from '../lib/scorer/projection.js';
-import { skillInAliasSet, skillMatchesAlias } from '../lib/scorer/aliases.js';
+import { mergedSkillForAlias, skillInAliasSet, skillMatchesAlias } from '../lib/scorer/aliases.js';
 import { findAdvisorWorkspaceRoot } from '../lib/utils/workspace-root.js';
 import {
   DEFAULT_ADVISOR_CONFIDENCE_THRESHOLD,
@@ -269,26 +269,28 @@ function evaluateRows(rows: readonly CorpusRow[], workspaceRoot: string): {
   const aggregates = new Map<string, SkillAggregate>();
   for (const row of rows) {
     const expected = goldSkill(row);
+    const expectedForMatch = expected === null ? null : mergedSkillForAlias(expected);
     const result = scoreAdvisorPrompt(row.prompt, { workspaceRoot });
+    const topForMatch = result.topSkill === null ? null : mergedSkillForAlias(result.topSkill);
     if (result.topSkill === null) unknown += 1;
     if (expected === null && result.topSkill !== null) falseFire += 1;
     // Alias-aware gold matching: corpus labels may use superseded skill IDs
-    // (e.g. sk-deep-research) that the live graph indexes under a canonical
-    // alias (deep-research). skillMatchesAlias canonicalizes both sides.
+    // or folded deep-loop mode IDs. mergedSkillForAlias canonicalizes both
+    // sides to the public live skill before comparing.
     // The strict `===` branch preserves the both-null (correct-abstain) case.
     const topMatchesExpected =
-      result.topSkill === expected ||
-      (result.topSkill !== null &&
-        expected !== null &&
-        skillMatchesAlias(result.topSkill, expected));
+      topForMatch === expectedForMatch ||
+      (topForMatch !== null &&
+        expectedForMatch !== null &&
+        skillMatchesAlias(topForMatch, expectedForMatch));
     if (topMatchesExpected) correct += 1;
-    if (expected !== null) {
-      const aggregate = aggregates.get(expected) ?? { total: 0, matched: 0 };
+    if (expectedForMatch !== null) {
+      const aggregate = aggregates.get(expectedForMatch) ?? { total: 0, matched: 0 };
       aggregate.total += 1;
-      if (result.topSkill !== null && skillMatchesAlias(result.topSkill, expected)) {
+      if (topForMatch !== null && skillMatchesAlias(topForMatch, expectedForMatch)) {
         aggregate.matched += 1;
       }
-      aggregates.set(expected, aggregate);
+      aggregates.set(expectedForMatch, aggregate);
     }
   }
   return { correct, unknown, falseFire, aggregates };
@@ -500,6 +502,7 @@ export async function validateAdvisor(input: AdvisorValidateInput = { confirmHea
     ? canonicalizeWorkspaceRoot(args.workspaceRoot)
     : findWorkspaceRoot();
   const selectedSkillSlug = args.skillSlug ?? null;
+  const selectedSkillSlugForMatch = selectedSkillSlug === null ? null : mergedSkillForAlias(selectedSkillSlug);
   const recordedOutcomeRecords: AdvisorHookOutcomeRecord[] = [];
   for (const outcomeEvent of args.outcomeEvents ?? []) {
     const record = createAdvisorHookOutcomeRecord({
@@ -515,7 +518,7 @@ export async function validateAdvisor(input: AdvisorValidateInput = { confirmHea
     await persistAdvisorHookOutcomeRecord(workspaceRoot, record);
   }
   const corpus = loadCorpus(workspaceRoot)
-    .filter((row) => selectedSkillSlug ? row.skill_top_1 === selectedSkillSlug : true);
+    .filter((row) => selectedSkillSlugForMatch ? mergedSkillForAlias(row.skill_top_1) === selectedSkillSlugForMatch : true);
   const full = evaluateRows(corpus, workspaceRoot);
   const holdout = stratifiedHoldout(corpus);
   const holdoutResult = evaluateRows(holdout, workspaceRoot);

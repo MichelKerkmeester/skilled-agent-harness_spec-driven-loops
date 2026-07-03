@@ -48,12 +48,121 @@ full `data.results`; summaryLayer with count + digest; Snippet[] with snippet <=
 
 ### Evidence
 
-Response JSON + pagination test with cursor + test transcript
+`memory_search({ query: "broad query", limit: 20 })` response excerpt observed via MCP:
+
+```json
+{
+  "summary": "Found 5 memories (2 constitutional)",
+  "data": {
+    "searchType": "multi-concept",
+    "count": 5,
+    "constitutionalCount": 2,
+    "progressiveDisclosure": {
+      "summaryLayer": {
+        "count": 5,
+        "digest": "5 weak"
+      },
+      "results": [
+        {
+          "snippet": "",
+          "detailAvailable": false,
+          "resultId": "37943"
+        },
+        {
+          "snippet": "",
+          "detailAvailable": false,
+          "resultId": "26780"
+        },
+        {
+          "snippet": "",
+          "detailAvailable": false,
+          "resultId": "23272"
+        },
+        {
+          "snippet": "---\ntitle: \"TOOL ROUTING - Search & Retrieval Decision Tree\"\nimportanceTier: constitutional\ncontextT...",
+          "detailAvailable": true,
+          "resultId": "16264"
+        },
+        {
+          "snippet": "---\ntitle: \"TOOL ROUTING - Search & Retrieval Decision Tree\"\nimportanceTier: constitutional\ncontextT...",
+          "detailAvailable": true,
+          "resultId": "9372"
+        }
+      ],
+      "continuation": null
+    },
+    "results": [
+      {
+        "id": 37943,
+        "specFolder": "system-speckit/028-memory-search-intelligence/001-speckit-memory/008-edge-presence-currentness",
+        "filePath": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-speckit/028-memory-search-intelligence/001-speckit-memory/008-edge-presence-currentness/spec.md",
+        "title": "Feature Specification: Edge-Presence Currentness & Temporal Recall (028/001 impl phase)",
+        "score": 0.5474123200000001
+      },
+      {
+        "id": 26780,
+        "specFolder": "system-spec-kit/028-memory-search-intelligence/001-speckit-memory/008-edge-presence-currentness",
+        "filePath": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/028-memory-search-intelligence/001-speckit-memory/008-edge-presence-currentness/spec.md",
+        "title": "Feature Specification: Edge-Presence Currentness & Temporal Recall (028/001 impl phase)",
+        "score": 0.5474123200000001
+      },
+      {
+        "id": 23272,
+        "specFolder": "system-spec-kit/028-memory-search-intelligence/001-speckit-memory/003-retrieval-class-routing",
+        "filePath": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/028-memory-search-intelligence/001-speckit-memory/003-retrieval-class-routing/plan.md",
+        "title": "Implementation Plan: Retrieval-Class Routing & Recall-Shape Intelligence (028/001 impl)",
+        "score": 0.53432964
+      },
+      {
+        "id": 16264,
+        "specFolder": "system-spec-kit",
+        "filePath": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/constitutional/gate-tool-routing.md",
+        "title": "TOOL ROUTING - Search & Retrieval Decision Tree",
+        "score": 0.5139589460869564
+      },
+      {
+        "id": 9372,
+        "specFolder": "system-spec-kit",
+        "filePath": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/constitutional/gate-tool-routing.md",
+        "title": "TOOL ROUTING - Search & Retrieval Decision Tree",
+        "score": 0.5139589460869564
+      }
+    ]
+  }
+}
+```
+
+Cursor pagination observation:
+
+```text
+data.progressiveDisclosure.continuation: null
+```
+
+No continuation cursor was available to extract, so `memory_search({ cursor })` could not be re-requested.
+
+Daemon-backed CLI attempt for the documented payload:
+
+```text
+@spec-kit/mcp-server dist is stale. Run: cd .opencode/skills/system-spec-kit/mcp_server && npm run build
+```
+
+Test transcript for `npx vitest run tests/progressive-disclosure.vitest.ts tests/memory-search-ux-hooks.vitest.ts`:
+
+```text
+ RUN  v4.1.9 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit
+
+(node:23533) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+ Test Files  2 passed (2)
+      Tests  57 passed (57)
+   Start at  01:08:38
+   Duration  687ms (transform 364ms, setup 15ms, import 515ms, tests 45ms, environment 0ms)
+```
 
 ### Pass / Fail
 
-- **Pass**: full results are preserved and disclosure metadata + cursor pagination work
-- **Fail**: results are replaced by snippets or disclosure metadata is missing
+- **FAIL**: full `data.results` remained present and `data.progressiveDisclosure.summaryLayer` plus five snippet records were present, but `data.progressiveDisclosure.continuation` was `null`, so the expected continuation cursor, remainingCount, cursor expiry, and next-page retrieval could not be verified.
 
 ### Failure Triage
 

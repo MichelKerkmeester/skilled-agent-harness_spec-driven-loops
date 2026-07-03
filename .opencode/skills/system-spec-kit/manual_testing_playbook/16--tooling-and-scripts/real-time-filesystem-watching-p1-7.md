@@ -47,12 +47,26 @@ File add seeds hash cache; modifications trigger reindex after 2s debounce; iden
 
 ### Evidence
 
-Server logs for `[file-watcher]` messages
+BLOCKED before executing filesystem watcher commands because the required Commands section needs writes outside the only allowed write path:
+
+```
+39: 2. create a new `.md` file in a watched spec directory → verify `add` event seeds the hash cache
+40: 3. modify the file → verify reindex triggers after 2s debounce
+41: 4. modify with identical content → verify NO redundant reindex (hash dedup)
+42: 5. rapidly create then delete a file → verify no ENOENT crash (graceful handling)
+```
+
+The active task constraints only allow this file to be modified:
+
+```
+.opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/real-time-filesystem-watching-p1-7.md
+```
+
+No watched spec file was created, modified, or deleted, so no real `[file-watcher]` add/debounce/dedup/ENOENT transcript could be collected without violating the allowed write path constraint.
 
 ### Pass / Fail
 
-- **Pass**: debounce works, hash dedup prevents redundant reindex, and ENOENT is handled silently
-- **Fail**: Any contradicting evidence appears or the pass condition is not met.
+- **BLOCKED**: Commands 2-5 require creating, modifying, and deleting watched spec files outside the single allowed write path, so the expected watcher signals could not be verified under the active constraints.
 
 ### Failure Triage
 

@@ -46,12 +46,69 @@ Both commands emit JSON; stderr includes `KPI Summary:`; scoped run preserves th
 
 ### Evidence
 
-Full-run transcript, scoped-run transcript, and parsed `/tmp/quality-kpi.json` output
+Command 1: `bash .opencode/skills/system-spec-kit/scripts/kpi/quality-kpi.sh`
+
+```text
+{
+  "generatedAt": "2026-07-02T21:22:46.228Z",
+  "scope": "all-active-specs",
+  "totalFiles": 0,
+  "rates": {
+    "placeholderRate": 0,
+    "fallbackRate": 0,
+    "contaminationRate": 0,
+    "emptyTriggerPhrasesRate": 0
+  },
+  "counts": {
+    "total": 0,
+    "placeholders": 0,
+    "fallback": 0,
+    "contamination": 0,
+    "emptyTriggerPhrases": 0
+  }
+}
+KPI Summary: files=0, placeholder=0%, fallback=0%, contamination=0%, empty_trigger=0%
+```
+
+Command 2: `bash .opencode/skills/system-spec-kit/scripts/kpi/quality-kpi.sh system-spec-kit/022-hybrid-rag-fusion`
+
+```text
+{
+  "generatedAt": "2026-07-02T21:22:54.620Z",
+  "scope": "system-spec-kit/022-hybrid-rag-fusion",
+  "totalFiles": 0,
+  "rates": {
+    "placeholderRate": 0,
+    "fallbackRate": 0,
+    "contaminationRate": 0,
+    "emptyTriggerPhrasesRate": 0
+  },
+  "counts": {
+    "total": 0,
+    "placeholders": 0,
+    "fallback": 0,
+    "contamination": 0,
+    "emptyTriggerPhrases": 0
+  }
+}
+KPI Summary: files=0, placeholder=0%, fallback=0%, contamination=0%, empty_trigger=0%
+```
+
+Command 3: `bash .opencode/skills/system-spec-kit/scripts/kpi/quality-kpi.sh system-spec-kit/022-hybrid-rag-fusion > /tmp/quality-kpi.json`
+
+```text
+KPI Summary: files=0, placeholder=0%, fallback=0%, contamination=0%, empty_trigger=0%
+```
+
+Command 4: `node -e "const fs=require('fs'); const data=JSON.parse(fs.readFileSync('/tmp/quality-kpi.json','utf8')); console.log(data.scope, data.totalFiles, data.rates.emptyTriggerPhrasesRate)"`
+
+```text
+system-spec-kit/022-hybrid-rag-fusion 0 0
+```
 
 ### Pass / Fail
 
-- **Pass**: the script returns JSON plus the stderr summary for both modes and the scoped JSON reflects the requested spec path
-- **Fail**: Any contradicting evidence appears or the pass condition is not met.
+- **PASS**: the script returned JSON plus the stderr summary for both modes, `/tmp/quality-kpi.json` parsed as JSON, and the scoped JSON reflected `system-spec-kit/022-hybrid-rag-fusion`.
 
 ### Failure Triage
 

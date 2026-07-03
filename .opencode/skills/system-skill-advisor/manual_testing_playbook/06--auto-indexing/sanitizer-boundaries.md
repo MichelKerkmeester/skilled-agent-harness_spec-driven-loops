@@ -60,6 +60,84 @@ advisor_recommend({"prompt":"save this conversation context to memory","options"
 | Unsanitized label in DB | SQLite row contains raw input | Audit `sanitizer.ts` invocation at persistence layer. |
 | Sanitizer silently skips | Label passes through unchanged despite control chars | Add regression case and inspect sanitizer input path. |
 
+### Evidence
+
+`advisor_recommend({"prompt":"save this conversation context to memory","options":{"topK":2,"includeAttribution":true}})` via MCP returned:
+
+```json
+{
+  "status": "ok",
+  "data": {
+    "workspaceRoot": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public",
+    "effectiveThresholds": {
+      "confidenceThreshold": 0.8,
+      "uncertaintyThreshold": 0.35,
+      "confidenceOnly": false
+    },
+    "recommendations": [],
+    "ambiguous": false,
+    "freshness": "unavailable",
+    "trustState": {
+      "state": "unavailable",
+      "reason": "advisor_unavailable",
+      "generation": 9476,
+      "checkedAt": "2026-07-03T02:18:34.818Z",
+      "lastLiveAt": null
+    },
+    "generatedAt": "2026-07-03T02:18:34.818Z",
+    "cache": {
+      "hit": false,
+      "sourceSignaturePresent": false
+    },
+    "warnings": [
+      "advisor_unavailable"
+    ],
+    "abstainReasons": [
+      "Skill advisor freshness is unavailable; returning fail-open empty recommendations."
+    ]
+  }
+}
+```
+
+`advisor_status` via MCP returned:
+
+```json
+{
+  "status": "ok",
+  "data": {
+    "freshness": "unavailable",
+    "generation": 9476,
+    "trustState": {
+      "state": "stale",
+      "reason": "SIGTERM",
+      "generation": 9476,
+      "checkedAt": "2026-07-03T02:18:14.606Z",
+      "lastLiveAt": null
+    },
+    "lastGenerationBump": "2026-07-02T05:27:14.803Z",
+    "lastScanAt": "2026-07-02T05:27:14.803Z",
+    "skillCount": 26,
+    "laneWeights": {
+      "explicit_author": 0.42,
+      "lexical": 0.28,
+      "graph_causal": 0.13,
+      "derived_generated": 0.12,
+      "semantic_shadow": 0.05
+    }
+  }
+}
+```
+
+Step 2 could not inspect `laneBreakdown` because the `advisor_recommend` envelope did not include `laneBreakdown`; it returned `recommendations: []`, `freshness: "unavailable"`, `trustState.reason: "advisor_unavailable"`, and `warnings: ["advisor_unavailable"]`.
+
+Step 3 could not be executed because it requires injecting a fixture skill with control characters or unsafe path segments in a disposable copy, but this run's allowed write paths permit editing only `.opencode/skills/system-skill-advisor/manual_testing_playbook/06--auto-indexing/sanitizer-boundaries.md` and explicitly ban modifying, creating, or deleting any other file.
+
+Step 5 could not be executed because no injected fixture could be created under the allowed write path constraint, so there was no injected fixture `graph-metadata.json.derived` block to read.
+
+### Pass/Fail
+
+BLOCKED - The advisor was unavailable (`freshness: "unavailable"`, `trustState.reason: "advisor_unavailable"`) and the malformed-fixture write required by step 3 was outside the allowed write paths for this run.
+
 ---
 
 ## 4. SOURCE FILES

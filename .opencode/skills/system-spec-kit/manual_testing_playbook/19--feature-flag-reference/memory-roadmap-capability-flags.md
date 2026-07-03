@@ -65,12 +65,69 @@ First snapshot keeps the `scope-governance` phase with graph-unified metadata on
 
 ### Evidence
 
-Four JSON snapshots from the dist build
+Command 1:
+
+```bash
+cd .opencode/skills/system-spec-kit/mcp_server
+```
+
+Output:
+
+```text
+(no output)
+```
+
+Command 2:
+
+```bash
+SPECKIT_GRAPH_UNIFIED=false node -e "const { getMemoryRoadmapDefaults } = require('./dist/lib/config/capability-flags.js'); console.log(JSON.stringify(getMemoryRoadmapDefaults('manual-125-a')))"
+```
+
+Output:
+
+```json
+{"phase":"scope-governance","capabilities":{"lineageState":true,"graphUnified":true,"adaptiveRanking":false},"scopeDimensionsTracked":4}
+```
+
+Command 3:
+
+```bash
+SPECKIT_MEMORY_ROADMAP_PHASE=graph SPECKIT_MEMORY_GRAPH_UNIFIED=false node -e "const { getMemoryRoadmapDefaults } = require('./dist/lib/config/capability-flags.js'); console.log(JSON.stringify(getMemoryRoadmapDefaults('manual-125-b')))"
+```
+
+Output:
+
+```json
+{"phase":"graph","capabilities":{"lineageState":true,"graphUnified":false,"adaptiveRanking":false},"scopeDimensionsTracked":4}
+```
+
+Command 4:
+
+```bash
+SPECKIT_MEMORY_ADAPTIVE_RANKING=true node -e "const { getMemoryRoadmapDefaults } = require('./dist/lib/config/capability-flags.js'); console.log(JSON.stringify(getMemoryRoadmapDefaults('manual-125-c')))"
+```
+
+Output:
+
+```json
+{"phase":"scope-governance","capabilities":{"lineageState":true,"graphUnified":true,"adaptiveRanking":true},"scopeDimensionsTracked":4}
+```
+
+Command 5:
+
+```bash
+SPECKIT_MEMORY_ADAPTIVE_RANKING=false node -e "const { getMemoryRoadmapDefaults } = require('./dist/lib/config/capability-flags.js'); console.log(JSON.stringify(getMemoryRoadmapDefaults('manual-125-d')))"
+```
+
+Output:
+
+```json
+{"phase":"scope-governance","capabilities":{"lineageState":true,"graphUnified":true,"adaptiveRanking":false},"scopeDimensionsTracked":4}
+```
 
 ### Pass / Fail
 
-- **Pass**: the runtime `SPECKIT_GRAPH_UNIFIED` flag does not flip roadmap metadata, adaptive ranking stays off by default in roadmap snapshots, and explicit opt-in/opt-out behavior stays correct
-- **Fail**: Any contradicting evidence appears or the pass condition is not met.
+- **PASS**: the runtime `SPECKIT_GRAPH_UNIFIED` flag did not flip roadmap metadata, adaptive ranking stayed off by default in roadmap snapshots, and explicit opt-in/opt-out behavior stayed correct.
 
 ### Failure Triage
 

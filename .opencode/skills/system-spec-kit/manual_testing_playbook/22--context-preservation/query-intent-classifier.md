@@ -53,13 +53,17 @@ Validate query-intent classifier and confirm intent labels, telemetry envelope, 
 
 ### Evidence
 
-- Four `memory_context` envelopes captured for the three queries plus the paraphrase
-- `paraphraseGroup` token comparison
+- Four accepted `memory_context` envelopes captured for the three queries plus the paraphrase with `includeTrace: true`:
+  - Structural query `find callers of memory_search` returned `data.searchDecisionEnvelope.requestId: "0a9386ad-8670-45d1-928a-d4216f25ebda"`, `data.searchDecisionEnvelope.queryPlan.selectedChannels: ["vector", "fts", "bm25", "graph", "degree"]`, `data.searchDecisionEnvelope.queryPlan.routingReasons: ["complexity:moderate", "confidence:low", "terms:4", "artifact:memory", "channels:vector+fts+bm25+graph+degree", "graph-preserved-by-entity-density"]`, `meta.intent.taskIntent.classificationKind: "task-intent"`, `meta.intent.backendRouting.classificationKind: "backend-routing"`, `meta.intent.backendRouting.route: "semantic"`, `meta.intent.paraphraseGroup: "callers-find-memory_search"`.
+  - Semantic query `how does the search pipeline handle empty results` returned `data.searchDecisionEnvelope.requestId: "035a9202-6b35-4d52-b23f-df2216c65476"`, `data.searchDecisionEnvelope.queryPlan.selectedChannels: ["vector", "fts", "bm25", "graph", "degree"]`, `data.searchDecisionEnvelope.queryPlan.routingReasons: ["complexity:moderate", "confidence:low", "terms:8", "artifact:research", "channels:vector+fts+bm25+graph+degree", "graph-preserved-by-entity-density"]`, `meta.intent.taskIntent.classificationKind: "task-intent"`, `meta.intent.backendRouting.classificationKind: "backend-routing"`, `meta.intent.backendRouting.route: "semantic"`, `meta.intent.paraphraseGroup: "does-empty-handle-pipeline-results-search"`.
+  - Hybrid query `where is the cache invalidation logic and how does it work` returned `data.searchDecisionEnvelope.requestId: "a42d12ac-5a24-40ea-8859-4a3116840a95"`, `data.searchDecisionEnvelope.queryPlan.selectedChannels: ["vector", "fts", "bm25", "graph", "degree"]`, `data.searchDecisionEnvelope.queryPlan.routingReasons: ["complexity:complex", "confidence:medium", "terms:11", "artifact:unknown", "channels:vector+fts+bm25+graph+degree"]`, `meta.intent.taskIntent.classificationKind: "task-intent"`, `meta.intent.backendRouting.classificationKind: "backend-routing"`, `meta.intent.backendRouting.route: "semantic"`, `meta.intent.paraphraseGroup: "cache-does-invalidation-logic-where-work"`.
+  - Structural paraphrase `who calls memory_search` returned `data.searchDecisionEnvelope.requestId: "36cdc41e-52ba-4563-95b2-dc3f9f686a2e"`, `data.searchDecisionEnvelope.queryPlan.selectedChannels: ["vector", "fts"]`, `data.searchDecisionEnvelope.queryPlan.skippedChannels: [{"channel":"bm25","reason":"Skipped by simple complexity route"},{"channel":"graph","reason":"Skipped by simple complexity route"},{"channel":"degree","reason":"Skipped by simple complexity route"}]`, `meta.intent.taskIntent.classificationKind: "task-intent"`, `meta.intent.backendRouting.classificationKind: "backend-routing"`, `meta.intent.backendRouting.route: "semantic"`, `meta.intent.paraphraseGroup: "calls-memory_search-who"`.
+- `paraphraseGroup` token comparison: original structural query returned `"callers-find-memory_search"`; paraphrase returned `"calls-memory_search-who"`; these are not identical.
+- Additional observed schema rejection while attempting to omit defaults: `code: "E030"`, `issues: ["limit: Too small: expected number to be >=1"]`.
 
 ### Pass / Fail
 
-- **Pass**: labels match documented categories, envelope shape is correct, paraphraseGroup is stable across paraphrases.
-- **Fail**: wrong labels, envelope missing required fields, paraphraseGroup differs across paraphrases.
+- **FAIL**: The telemetry envelope included `taskIntent.classificationKind`, `backendRouting.classificationKind`, and `paraphraseGroup`, but the structural query returned `meta.intent.backendRouting.route: "semantic"` instead of a code-graph route, the hybrid query returned `meta.intent.backendRouting.route: "semantic"` instead of an explicit merged route, and the structural paraphrase changed `paraphraseGroup` from `"callers-find-memory_search"` to `"calls-memory_search-who"`.
 
 ### Failure Triage
 

@@ -73,3 +73,110 @@ printf '%s' "save this conversation context to memory" | python3 .opencode/skill
 - Playbook ID: CP-001
 - Canonical root source: manual_testing_playbook.md
 - Feature file path: 03--compat-and-disable/python-shim-stdin.md
+
+---
+
+## 6. EVIDENCE
+
+Command 1:
+
+```bash
+printf '%s' "save this conversation context to memory" | python3 .opencode/skills/system-skill-advisor/mcp_server/scripts/skill_advisor.py --stdin --threshold 0.8
+```
+
+Output:
+
+```text
+Skill graph: loaded from SQLite
+[
+  {
+    "skill": "system-spec-kit",
+    "kind": "skill",
+    "confidence": 0.95,
+    "uncertainty": 0.2,
+    "passes_threshold": true,
+    "reason": "Matched: !context, !context(multi), !memory, !save this conversation context(phrase), !save(multi) [boundary: owns memory/context preservation]",
+    "_graph_boost_count": 0,
+    "source": "local"
+  },
+  {
+    "skill": "memory:save",
+    "kind": "skill",
+    "confidence": 0.88,
+    "uncertainty": 0.15,
+    "passes_threshold": true,
+    "reason": "Matched: !intent:memory, !save this conversation context(phrase), context, memory(name), save(name)",
+    "_graph_boost_count": 0,
+    "source": "local"
+  },
+  {
+    "skill": "command-memory-save",
+    "kind": "command",
+    "confidence": 0.95,
+    "uncertainty": 0.15,
+    "passes_threshold": true,
+    "reason": "Matched: !save this conversation context(phrase), command_penalty, context, conversation, memory(name)",
+    "_graph_boost_count": 0,
+    "source": "local"
+  }
+]
+```
+
+Command 2:
+
+```bash
+printf '%s' "save this conversation context to memory" | python3 .opencode/skills/system-skill-advisor/mcp_server/scripts/skill_advisor.py --stdin --force-native --threshold 0.8
+```
+
+Output:
+
+```json
+{
+  "error": "Native advisor unavailable",
+  "reason": "SIGTERM",
+  "freshness": "unavailable"
+}
+```
+
+Failure-mode advisor_status check:
+
+```json
+{
+  "status": "ok",
+  "data": {
+    "freshness": "unavailable",
+    "generation": 9476,
+    "trustState": {
+      "state": "stale",
+      "reason": "SIGTERM",
+      "generation": 9476,
+      "checkedAt": "2026-07-03T02:07:24.081Z",
+      "lastLiveAt": null
+    },
+    "lastGenerationBump": "2026-07-02T05:27:14.803Z",
+    "lastScanAt": "2026-07-02T05:27:14.803Z",
+    "skillCount": 26,
+    "laneWeights": {
+      "explicit_author": 0.42,
+      "lexical": 0.28,
+      "graph_causal": 0.13,
+      "derived_generated": 0.12,
+      "semantic_shadow": 0.05
+    }
+  }
+}
+```
+
+Observed comparison:
+
+- Command 1 output included a non-JSON prefix line: `Skill graph: loaded from SQLite`.
+- Command 1 top skill was `system-spec-kit`.
+- Command 1 entries used `source: "local"`, not `source: "native"`.
+- Command 2 reported `Native advisor unavailable` with `reason: "SIGTERM"` and `freshness: "unavailable"`.
+- `advisor_status` reported `freshness: "unavailable"` and `trustState.reason: "SIGTERM"`.
+
+---
+
+## 7. PASS/FAIL
+
+BLOCKED - Native advisor is unavailable in the current environment: forced-native stdin mode returned `Native advisor unavailable` with `reason: "SIGTERM"`, and `advisor_status` reported `freshness: "unavailable"`.

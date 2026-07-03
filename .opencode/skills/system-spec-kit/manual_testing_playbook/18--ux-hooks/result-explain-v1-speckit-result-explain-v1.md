@@ -47,12 +47,179 @@ why.summary non-empty; topSignals array with valid SignalLabel entries; channelC
 
 ### Evidence
 
-Result JSON with why field + debug channelContribution
+Commands executed:
+
+```bash
+SPECKIT_RESULT_EXPLAIN=true
+SPECKIT_SPEC_MEMORY_CLI_DEV_ALLOW_STALE=1 SPECKIT_RESULT_EXPLAIN=true node .opencode/bin/spec-memory.cjs memory_search --json '{"query":"test explainability","limit":3,"includeTrace":false}' --format json --timeout-ms 10000
+```
+
+Observed flag-on result excerpt:
+
+```json
+{
+  "summary": "Found 3 memories",
+  "data": {
+    "count": 3,
+    "results": [
+      {
+        "id": 5720,
+        "score": 0.513474,
+        "why": {
+          "summary": "Ranked first because semantic similarity and high spec quality",
+          "topSignals": [
+            "semantic_match",
+            "validation_quality"
+          ]
+        },
+        "preCalibrationValue": 0.3499107,
+        "confidence": {
+          "label": "low",
+          "value": 0.1,
+          "drivers": [
+            "anchor_density"
+          ]
+        }
+      },
+      {
+        "id": 31597,
+        "compact": true
+      },
+      {
+        "id": 5718,
+        "compact": true
+      }
+    ]
+  },
+  "meta": {
+    "cacheHit": false,
+    "tokenBudgetTruncated": true,
+    "originalResultCount": 3,
+    "returnedResultCount": 3
+  }
+}
+```
+
+Documented debug knob rejected by current schema:
+
+```bash
+SPECKIT_SPEC_MEMORY_CLI_DEV_ALLOW_STALE=1 SPECKIT_RESULT_EXPLAIN=true node .opencode/bin/spec-memory.cjs memory_search --json '{"query":"test explainability","limit":1,"profile":"debug","includeTrace":true,"debug":{"enabled":true}}' --format json --timeout-ms 10000
+```
+
+```text
+[schema-validation] memory_search: Invalid arguments for "memory_search". Unknown parameter(s): debug. Expected parameter names: cursor, query, concepts, specFolder, tenantId, userId, agentId, limit, sessionId, enableDedup, tier, contextType, useDecay, includeContiguity, includeConstitutional, enableSessionBoost, enableCausalBoost, includeContent, anchors, min_quality_score, minQualityScore, bypassCache, rerank, applyLengthPenalty, applyStateLimits, minState, intent, autoDetectIntent, trackAccess, includeArchived, mode, retrievalLevel, includeTrace, profile. Action: remove unknown keys and fix the listed parameter types/values, then retry the same tool call.
+{
+  "status": "error",
+  "error": "Invalid arguments for \"memory_search\". Unknown parameter(s): debug. Expected parameter names: cursor, query, concepts, specFolder, tenantId, userId, agentId, limit, sessionId, enableDedup, tier, contextType, useDecay, includeContiguity, includeConstitutional, enableSessionBoost, enableCausalBoost, includeContent, anchors, min_quality_score, minQualityScore, bypassCache, rerank, applyLengthPenalty, applyStateLimits, minState, intent, autoDetectIntent, trackAccess, includeArchived, mode, retrievalLevel, includeTrace, profile. Action: remove unknown keys and fix the listed parameter types/values, then retry the same tool call.",
+  "exitCode": 64
+}
+```
+
+Accepted debug-facing run used `profile:"debug"` and `includeTrace:true`:
+
+```bash
+SPECKIT_SPEC_MEMORY_CLI_DEV_ALLOW_STALE=1 SPECKIT_RESULT_EXPLAIN=true node .opencode/bin/spec-memory.cjs memory_search --json '{"query":"test explainability","limit":1,"profile":"debug","includeTrace":true}' --format json --timeout-ms 10000
+```
+
+Observed debug result excerpt: `why` and `why_ranked.channels` were present, but no `channelContribution` field was present.
+
+```json
+{
+  "data": {
+    "retrievalTrace": {
+      "traceId": "tr_mr447kvs_swkt0f",
+      "finalResultCount": 1
+    },
+    "results": [
+      {
+        "id": 5720,
+        "scores": {
+          "semantic": null,
+          "lexical": null,
+          "fusion": 0.513474,
+          "intentAdjusted": 0.513474,
+          "composite": 0.513474,
+          "rerank": null,
+          "attention": null
+        },
+        "why_ranked": {
+          "document": {
+            "path": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/002-deprecate-coco-index/017-remove-llm-reranking-keep-mmr/tasks.md",
+            "anchor": null
+          },
+          "rank": 1,
+          "effectiveScore": 0.513474,
+          "scoreSource": "intentAdjusted",
+          "channels": {
+            "vector": null,
+            "bm25": null,
+            "fts": null,
+            "graph": null,
+            "trigger": null
+          },
+          "signals": {
+            "fsrs": 1,
+            "importance": 0.6,
+            "recency": null
+          },
+          "source": "ranker_intermediates"
+        },
+        "why": {
+          "summary": "Ranked first because semantic similarity and high spec quality",
+          "topSignals": [
+            "semantic_match",
+            "validation_quality"
+          ]
+        }
+      }
+    ],
+    "meta": {
+      "responseProfile": "debug"
+    }
+  }
+}
+```
+
+Flag-off/no-env run with cache bypass:
+
+```bash
+SPECKIT_SPEC_MEMORY_CLI_DEV_ALLOW_STALE=1 node .opencode/bin/spec-memory.cjs memory_search --json '{"query":"test explainability","limit":1,"includeTrace":false,"bypassCache":true}' --format json --timeout-ms 10000
+```
+
+Observed flag-off/no-env result still included `why`:
+
+```json
+{
+  "data": {
+    "pipelineMetadata": {
+      "confidenceTruncation": {
+        "featureFlagEnabled": true
+      }
+    },
+    "results": [
+      {
+        "id": 5720,
+        "why": {
+          "summary": "Ranked first because semantic similarity and high spec quality",
+          "topSignals": [
+            "semantic_match",
+            "validation_quality"
+          ]
+        }
+      }
+    ]
+  },
+  "meta": {
+    "cacheHit": false,
+    "responseProfile": "research"
+  }
+}
+```
 
 ### Pass / Fail
 
 - **Pass**: slim tier present and debug tier includes channelContribution
-- **Fail**: summary missing, topSignals empty, or channelContribution leaks in non-debug
+- **Fail**: FAIL. Slim `why.summary` and `why.topSignals` appeared for the checked flag-on result, but the accepted debug-mode output did not include `channelContribution`, the documented `debug.enabled=true` parameter was rejected by schema validation, and flag-off/no-env output still included a `why` field.
 
 ### Failure Triage
 

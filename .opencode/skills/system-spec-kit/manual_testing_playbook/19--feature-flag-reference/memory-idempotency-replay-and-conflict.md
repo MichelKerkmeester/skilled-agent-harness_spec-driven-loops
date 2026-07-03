@@ -52,12 +52,20 @@ Validate SPECKIT_MEMORY_IDEMPOTENCY with default-off save behavior, receipt repl
 
 ### Evidence
 
-Sandbox file contents, baseline and disabled public save responses, focused vitest transcript, verbatim replay/conflict/forged-token test names, and a cleanup transcript deleting the sandbox records.
+BLOCKED before command execution.
+
+Observed blocker:
+
+```text
+Scenario command 1 requires: Create a disposable spec-doc markdown file in a sandbox folder with title `Idempotency probe` and a unique body string.
+User constraint allows writes only to: .opencode/skills/system-spec-kit/manual_testing_playbook/19--feature-flag-reference/memory-idempotency-replay-and-conflict.md (this file only)
+```
+
+No sandbox file was created, no `memory_save` calls were run, and no vitest command was run because creating the required disposable spec-doc file would violate the allowed write path constraint.
 
 ### Pass / Fail
 
-- **Pass**: enabled focused suite proves verbatim replay, conflict and forged-token ignore, while public flag-off and disabled saves use ordinary write behavior.
-- **Fail**: the conflict case does not fail closed, replay creates a second durable row, replay adds a public marker, forged tokens affect key derivation, or conflict metadata appears while disabled.
+- **BLOCKED**: scenario command 1 requires creating a disposable sandbox spec-doc file, but this run only permits writes to this scenario file.
 
 ### Failure Triage
 

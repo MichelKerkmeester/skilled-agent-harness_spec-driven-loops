@@ -96,9 +96,11 @@ function classifyStatus(ctx: RecoveryContext): RecoveryStatus {
 /**
  * Classify root cause from context signals.
  */
-function classifyReason(ctx: RecoveryContext, status: RecoveryStatus): RecoveryReason {
-  // If a narrow filter was applied and no results returned, that is most likely the cause
-  if (ctx.hasSpecFolderFilter && status === 'no_results') {
+function classifyReason(ctx: RecoveryContext, _status: RecoveryStatus): RecoveryReason {
+  // A caller-supplied spec folder is the most specific recovery signal. Keep it
+  // ahead of query-shape heuristics so scoped empty/weak/partial results do not
+  // fall through to generic knowledge-gap guidance.
+  if (ctx.hasSpecFolderFilter) {
     return 'spec_filter_too_narrow';
   }
   // Very short or generic queries (< 3 words) suggest low signal
@@ -223,8 +225,9 @@ function synthesizeBroadeningSuggestions(ctx: RecoveryContext): string[] {
  * Map status + reason to a recommended next action.
  */
 function recommendAction(status: RecoveryStatus, reason: RecoveryReason): RecoveryAction {
+  if (reason === 'spec_filter_too_narrow') return 'retry_broader';
+
   if (status === 'no_results') {
-    if (reason === 'spec_filter_too_narrow') return 'retry_broader';
     if (reason === 'low_signal_query') return 'switch_mode';
     return 'refuse_without_evidence';
   }

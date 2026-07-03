@@ -44,12 +44,48 @@ As a context-and-code-graph validation operator, validate Transcript tail extrac
 
 ### Evidence
 
-Test output showing extraction results
+Command run:
+
+```bash
+cd .opencode/skills/system-spec-kit/mcp_server && npx vitest run tests/hook-precompact.vitest.ts
+```
+
+Observed output:
+
+```text
+ RUN  v4.1.9 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit
+
+
+ Test Files  1 passed (1)
+      Tests  6 passed (6)
+   Start at  02:11:03
+   Duration  677ms (transform 425ms, setup 13ms, import 590ms, tests 7ms, environment 0ms)
+```
+
+Observed test source evidence:
+
+```text
+73:     it('extracts file paths from transcript lines', () => {
+74:       const lines = [
+75:         '{"message":{"content":"Reading /src/hooks/shared.ts"}}',
+76:         '{"message":{"content":"Editing /src/lib/code-graph/indexer.ts"}}',
+77:         'plain text with /some/path.js reference',
+78:       ];
+79:       const pathRegex = /(?:\/[\w.-]+){2,}(?:\.\w+)/g;
+80:       const paths = new Set<string>();
+81:       for (const line of lines) {
+82:         const matches = line.match(pathRegex);
+83:         if (matches) matches.forEach(m => paths.add(m));
+84:       }
+85:       expect(paths.size).toBeGreaterThan(0);
+86:       expect([...paths]).toContain('/src/hooks/shared.ts');
+```
+
+No observed command output showed `tailFile()` returning lines or `extractTopics()` returning spec/tool refs, and `hook-precompact.vitest.ts` did not contain `tailFile` or `extractTopics` references in the file read.
 
 ### Pass / Fail
 
-- **Pass**: file paths and topics extracted from transcript tail
-- **Fail**: Any contradicting evidence appears or the pass condition is not met.
+- **FAIL**: The vitest command passed, but the observed output/source did not show `tailFile()` returning lines or `extractTopics()` returning spec/tool refs, so the pass condition is not fully met.
 
 ### Failure Triage
 
@@ -73,12 +109,47 @@ As a context-and-code-graph validation operator, validate 3-source merge pipelin
 
 ### Evidence
 
-Test output showing token estimate
+Command run:
+
+```bash
+cd .opencode/skills/system-spec-kit/mcp_server && npx vitest run tests/hook-precompact.vitest.ts
+```
+
+Observed output:
+
+```text
+ RUN  v4.1.9 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit
+
+
+ Test Files  1 passed (1)
+      Tests  6 passed (6)
+   Start at  02:11:11
+   Duration  634ms (transform 387ms, setup 14ms, import 550ms, tests 6ms, environment 0ms)
+```
+
+Observed test source evidence:
+
+```text
+57:   describe('token budget enforcement', () => {
+58:     it('truncates payload exceeding budget', () => {
+59:       const largePayload = 'a'.repeat(20000);
+60:       const truncated = truncateToTokenBudget(largePayload, COMPACTION_TOKEN_BUDGET);
+61:       expect(truncated.length).toBeLessThan(largePayload.length);
+62:       expect(truncated).toContain('[...truncated');
+63:     });
+64: 
+65:     it('keeps payload within budget', () => {
+66:       const smallPayload = '## Context\n- file.ts';
+67:       const result = truncateToTokenBudget(smallPayload, COMPACTION_TOKEN_BUDGET);
+68:       expect(result).toBe(smallPayload);
+69:     });
+```
+
+No observed command output showed `mergeCompactBrief()` being called or an output length/token estimate value, and `hook-precompact.vitest.ts` did not contain a `mergeCompactBrief` reference in the file read.
 
 ### Pass / Fail
 
-- **Pass**: merged payload fits within COMPACTION_TOKEN_BUDGET
-- **Fail**: Any contradicting evidence appears or the pass condition is not met.
+- **FAIL**: The vitest command passed, but the observed output/source did not show `mergeCompactBrief()` being called or an output length `<= 16000 chars`, so the pass condition is not fully met.
 
 ### Failure Triage
 
@@ -102,12 +173,48 @@ As a context-and-code-graph validation operator, validate Hook state file writte
 
 ### Evidence
 
-Test output confirming state write
+Command run:
+
+```bash
+cd .opencode/skills/system-spec-kit/mcp_server && npx vitest run tests/hook-precompact.vitest.ts
+```
+
+Observed output:
+
+```text
+ RUN  v4.1.9 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit
+
+
+ Test Files  1 passed (1)
+      Tests  6 passed (6)
+   Start at  02:11:18
+   Duration  599ms (transform 368ms, setup 12ms, import 523ms, tests 6ms, environment 0ms)
+```
+
+Observed test source evidence:
+
+```text
+29:     it('caches payload in hook state', () => {
+30:       const payload = '## Active Files\n- /src/main.ts\n- /src/utils.ts';
+31:       updateState(testSessionId, {
+32:         pendingCompactPrime: {
+33:           payload,
+34:           cachedAt: new Date().toISOString(),
+35:         },
+36:       });
+37: 
+38:       const state = loadPersistedState(testSessionId);
+39:       expect(state).not.toBeNull();
+40:       expect(state!.pendingCompactPrime).not.toBeNull();
+41:       expect(state!.pendingCompactPrime!.payload).toBe(payload);
+42:     });
+```
+
+No observed command output confirmed the written JSON value, `pendingCompactPrime.cachedAt`, or hook stdout behavior; the test source asserts `pendingCompactPrime.payload` but does not assert `pendingCompactPrime.cachedAt` or no stdout in the file read.
 
 ### Pass / Fail
 
-- **Pass**: state file has valid pendingCompactPrime and stdout is empty
-- **Fail**: Any contradicting evidence appears or the pass condition is not met.
+- **FAIL**: The vitest command passed, but the observed output/source did not confirm `pendingCompactPrime.cachedAt` or empty stdout, so the pass condition is not fully met.
 
 ### Failure Triage
 

@@ -72,6 +72,9 @@ const pathString = (minLength = 0) => {
   return schema.refine(isSafePath, { message: PATH_TRAVERSAL_MESSAGE });
 };
 const optionalPathString = (minLength = 0) => pathString(minLength).optional();
+const resultExplainDebugSchema = z.object({
+  enabled: z.boolean().optional(),
+}).strict();
 
 /** Shared max paths constant — used by both schema and handler. */
 export const MAX_INGEST_PATHS = 50;
@@ -228,6 +231,7 @@ const memorySearchSchema = getSchema({
   retrievalLevel: z.enum(['local', 'global', 'auto']).optional(),
   includeTrace: z.boolean().optional(),
   profile: z.enum(['quick', 'research', 'resume', 'debug']).optional(),
+  debug: resultExplainDebugSchema.optional(),
 });
 
 // E3: Simplified search schema — 3 params only
@@ -548,6 +552,7 @@ const embedderListSchema = getSchema({});
 
 const embedderSetSchema = getSchema({
   name: z.string().min(1),
+  dryRun: z.boolean().optional(),
 });
 
 const embedderStatusSchema = getSchema({
@@ -631,7 +636,7 @@ export const TOOL_SCHEMAS: Record<string, ToolInputSchema> = {
 
 const ALLOWED_PARAMETERS: Record<string, string[]> = {
   memory_context: ['input', 'mode', 'intent', 'specFolder', 'tenantId', 'userId', 'agentId', 'limit', 'sessionId', 'enableDedup', 'includeContent', 'includeTrace', 'tokenUsage', 'anchors', 'profile'],
-  memory_search: ['cursor', 'query', 'concepts', 'specFolder', 'tenantId', 'userId', 'agentId', 'limit', 'sessionId', 'enableDedup', 'tier', 'contextType', 'useDecay', 'includeContiguity', 'includeConstitutional', 'enableSessionBoost', 'enableCausalBoost', 'includeContent', 'anchors', 'min_quality_score', 'minQualityScore', 'bypassCache', 'rerank', 'applyLengthPenalty', 'applyStateLimits', 'minState', 'intent', 'autoDetectIntent', 'trackAccess', 'includeArchived', 'mode', 'retrievalLevel', 'includeTrace', 'profile'],
+  memory_search: ['cursor', 'query', 'concepts', 'specFolder', 'tenantId', 'userId', 'agentId', 'limit', 'sessionId', 'enableDedup', 'tier', 'contextType', 'useDecay', 'includeContiguity', 'includeConstitutional', 'enableSessionBoost', 'enableCausalBoost', 'includeContent', 'anchors', 'min_quality_score', 'minQualityScore', 'bypassCache', 'rerank', 'applyLengthPenalty', 'applyStateLimits', 'minState', 'intent', 'autoDetectIntent', 'trackAccess', 'includeArchived', 'mode', 'retrievalLevel', 'includeTrace', 'profile', 'debug'],
   memory_quick_search: ['query', 'limit', 'specFolder', 'tenantId', 'userId', 'agentId'],
   memory_match_triggers: ['prompt', 'specFolder', 'tenantId', 'userId', 'agentId', 'limit', 'session_id', 'turnNumber', 'include_cognitive'],
   memory_save: ['filePath', 'force', 'dryRun', 'skipPreflight', 'asyncEmbedding', 'routeAs', 'mergeModeHint', 'plannerMode', 'targetAnchorId', 'tenantId', 'userId', 'agentId', 'sessionId', 'provenanceSource', 'provenanceActor', 'governedAt', 'retentionPolicy', 'deleteAfter'],
@@ -664,7 +669,7 @@ const ALLOWED_PARAMETERS: Record<string, string[]> = {
   memory_ingest_status: ['jobId'],
   memory_ingest_cancel: ['jobId'],
   embedder_list: [],
-  embedder_set: ['name'],
+  embedder_set: ['name', 'dryRun'],
   embedder_status: ['jobId'],
   skill_graph_scan: ['skillsRoot'],
   skill_graph_query: ['queryType', 'skillId', 'sourceSkillId', 'targetSkillId', 'family', 'minInbound', 'depth', 'limit'],

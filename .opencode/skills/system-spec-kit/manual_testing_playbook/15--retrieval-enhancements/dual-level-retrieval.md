@@ -53,13 +53,54 @@ Validate dual-level retrieval modes and confirm auto-mode fallback fires on weak
 
 ### Evidence
 
-- Five `memory_search` trace envelopes covering the three modes plus weak-query and flag-off cases
-- Compared rank lists per mode
+- BLOCKED before the five required trace envelopes could be captured. Query selected for `<Q-strong>`: `memory search retrievalLevel system spec kit`.
+- MCP wrapper attempts using `memory_search` with `retrievalLevel: "local"`, `"global"`, and `"auto"` first returned schema errors before execution:
+  ```
+  cursor: Too small: expected string to have >=1 characters
+  concepts: Too small: expected array to have >=2 items
+  ```
+- Retrying through the parity CLI with the playbook payload failed before executing the search:
+  ```
+  $ node .opencode/bin/spec-memory.cjs memory_search --json '{"query":"memory search retrievalLevel system spec kit","retrievalLevel":"local","limit":10,"includeTrace":true}' --format json --timeout-ms 3000 --warm-only
+  @spec-kit/mcp-server dist is stale. Run: cd .opencode/skills/system-spec-kit/mcp_server && npm run build
+  ```
+- Retrying MCP with schema-valid values reached the transport, but the transport closed:
+  ```
+  MCP error -32000: Connection closed
+  ```
+- Spec Memory runtime status after the failure:
+  ```
+  plugin_id=mk-spec-memory
+  enabled=true
+  disabled_reason=none
+  cache_ttl_ms=5000
+  max_brief_chars=2400
+  max_cache_entries=200
+  runtime_ready=false
+  node_binary=node
+  bridge_timeout_ms=3000
+  cli_timeout_ms=2500
+  bridge_path=[spec-memory-bridge]
+  last_bridge_status=skipped
+  last_error_code=CONNECT_ECONNREFUSED__TMP_MK_SPEC_MEMORY_DAEMON_IPC_SOCK
+  last_duration_ms=24
+  bridge_invocations=11
+  continuity_lookups=10
+  cache_entries=0
+  cache_hits=0
+  cache_misses=10
+  cache_hit_rate=0
+  warm_status=skipped
+  warm_error=CONNECT_ECONNREFUSED__TMP_MK_SPEC_MEMORY_DAEMON_IPC_SOCK
+  warm_route=warm_probe
+  warm_retryable=true
+  warm_exit_code=75
+  ```
+- No rank lists were available to compare because no `memory_search` trace envelope completed.
 
 ### Pass / Fail
 
-- **Pass**: per-mode behavior matches documented contract, weak-query auto fallback fires, kill-switch reverts.
-- **Fail**: modes produce identical output, auto fallback never fires, kill-switch ineffective.
+- **BLOCKED**: required `memory_search` trace collection could not execute because the Spec Memory runtime is unavailable (`runtime_ready=false`, `CONNECT_ECONNREFUSED__TMP_MK_SPEC_MEMORY_DAEMON_IPC_SOCK`) and the CLI fallback reports stale dist (`@spec-kit/mcp-server dist is stale. Run: cd .opencode/skills/system-spec-kit/mcp_server && npm run build`).
 
 ### Failure Triage
 

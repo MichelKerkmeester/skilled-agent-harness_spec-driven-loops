@@ -3,7 +3,7 @@ import fs from 'fs';
 import path from 'path';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 
-import type { MutationHookResult } from '../handlers/mutation-hooks';
+import type { MutationHookResult } from '../hooks';
 
 const {
   mockClearCache,
@@ -45,7 +45,7 @@ vi.mock('../lib/cognitive/co-activation', () => ({
   clearRelatedCache: mockClearRelatedCache,
 }));
 
-import { runPostMutationHooks } from '../handlers/mutation-hooks';
+import { runPostMutationHooks } from '../hooks';
 
 const MUTATION_OPERATIONS = ['save', 'update', 'delete', 'bulk-delete', 'atomic-save'] as const;
 
@@ -146,5 +146,8 @@ describe('Hooks mutation wiring', () => {
     for (const exportedName of documentedExports) {
       expect(explicitExportSet.has(exportedName)).toBe(true);
     }
+
+    expect(explicitExportSet.has('runPostMutationHooks')).toBe(true);
+    expect(indexSource).toMatch(/export\s+type\s*\{\s*MutationHookResult\s*\}/);
   });
 });

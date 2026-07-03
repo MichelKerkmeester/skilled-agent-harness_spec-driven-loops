@@ -722,12 +722,12 @@ async function runJob(db: Database.Database, jobId: string): Promise<void> {
       // which readActiveEmbedderIfValid coerces to undefined and the next boot loses provider
       // identity. 'api' backends are ambiguous (openai vs voyage) from the manifest alone, so
       // leave the provider unset for those rather than guess.
-      const activeProvider = manifest.backend === 'ollama'
+      const activeEmbedderProvider = manifest.backend === 'ollama'
         ? 'ollama'
         : manifest.backend === 'sentence-transformers'
           ? 'hf-local'
           : undefined;
-      setActiveEmbedder(jobDb, initialJob.toName, initialJob.toDim, activeProvider);
+      setActiveEmbedder(jobDb, initialJob.toName, initialJob.toDim, activeEmbedderProvider);
       // Commit embedding_status for rows now backed by an active-profile vector.
       // A vector-only reindex previously wrote vectors but left memory_index.embedding_status
       // stale, so a "completed" bulk re-embed never raised the success count. Reconcile the

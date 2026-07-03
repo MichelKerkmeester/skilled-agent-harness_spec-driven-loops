@@ -49,12 +49,32 @@ Syntax checks exit `0`; plist lint reports OK; dry-run output contains summary l
 
 ### Evidence
 
-Shell transcript for all commands, `/tmp/orphan-sweeper-review.log`, relevant dry-run preserve/action lines, and grep output showing the documentation anchors.
+Command 1:
+
+```text
+$ bash -n .opencode/scripts/orphan-mcp-sweeper.sh
+(no output)
+```
+
+Command 2:
+
+```text
+$ bash -n .opencode/scripts/claude-session-cleanup.sh
+(no output)
+```
+
+Command 3:
+
+```text
+$ plutil -lint .opencode/scripts/launchagents/com.michelkerkmeester.orphan-sweep.plist
+.opencode/scripts/launchagents/com.michelkerkmeester.orphan-sweep.plist: OK
+```
+
+Command 4 was not executed because the scenario command requires writing `/tmp/orphan-sweeper-review.log`, but the execution request allowed writes only to `.opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/orphan-mcp-runtime-lifecycle-guardrails.md` and explicitly banned modifying, creating, or deleting any other file.
 
 ### Pass / Fail
 
-- **Pass**: all checks pass, dry-run is non-mutating, and documentation references align with the implementation packet.
-- **Fail**: any syntax/lint check fails, dry-run performs a mutation, documentation omits the idle-timeout knob, or the runbook describes the LaunchAgent as active by default.
+- **Blocked**: command 4 requires writing `/tmp/orphan-sweeper-review.log`, which is outside the single allowed write path for this execution.
 
 ### Failure Triage
 

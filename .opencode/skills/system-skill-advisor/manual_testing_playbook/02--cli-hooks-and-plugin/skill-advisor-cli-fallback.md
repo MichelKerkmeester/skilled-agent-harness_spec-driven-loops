@@ -50,12 +50,20 @@ rm -rf "$SANDBOX"
 
 ### Evidence
 
-Shell transcript with the count line, the three exit codes, and the socket-dir listing.
+Shell transcript from `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public`:
+
+```text
+ok 9
+warm-only exit=75
+untrusted exit=64
+trusted exit=75
+```
+
+The final `ls "$SANDBOX/sock" 2>/dev/null || echo "socket dir empty"` command produced no additional stdout after `trusted exit=75`.
 
 ### Pass / Fail
 
-- **Pass**: all four signals as expected, nothing spawned.
-- **Fail**: count drift, a spawn, an untrusted mutation reaching IPC (75/0), or a trusted call refused (64).
+- **PASS**: all four expected signals matched: `ok 9`, `warm-only exit=75`, `untrusted exit=64`, and `trusted exit=75`; the socket-dir listing printed no socket entries.
 
 ### Failure Triage
 

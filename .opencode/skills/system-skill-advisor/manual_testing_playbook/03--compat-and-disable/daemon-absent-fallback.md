@@ -73,3 +73,88 @@ advisor_recommend({"prompt":"help me commit my changes","options":{"topK":1,"inc
 - Playbook ID: CP-004
 - Canonical root source: manual_testing_playbook.md
 - Feature file path: 03--compat-and-disable/daemon-absent-fallback.md
+
+---
+
+## 6. EVIDENCE
+
+Command:
+
+```bash
+SPECKIT_SKILL_ADVISOR_FORCE_LOCAL=1 python3 .opencode/skills/system-skill-advisor/mcp_server/scripts/skill_advisor.py "help me commit my changes"
+```
+
+Output:
+
+```text
+Skill graph: loaded from SQLite
+[
+  {
+    "skill": "sk-git",
+    "kind": "skill",
+    "confidence": 0.95,
+    "uncertainty": 0.23,
+    "passes_threshold": true,
+    "reason": "Matched: !changes(multi), !commit, !commit(keyword), !commit(signal), branch",
+    "_graph_boost_count": 0,
+    "source": "local"
+  }
+]
+```
+
+MCP call:
+
+```text
+advisor_recommend({"prompt":"help me commit my changes","options":{"topK":1,"includeAbstainReasons":true}})
+```
+
+Observed response:
+
+```json
+{
+  "status": "ok",
+  "data": {
+    "workspaceRoot": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public",
+    "effectiveThresholds": {
+      "confidenceThreshold": 0.8,
+      "uncertaintyThreshold": 0.35,
+      "confidenceOnly": false
+    },
+    "recommendations": [],
+    "ambiguous": false,
+    "freshness": "unavailable",
+    "trustState": {
+      "state": "unavailable",
+      "reason": "advisor_unavailable",
+      "generation": 9476,
+      "checkedAt": "2026-07-03T02:02:56.797Z",
+      "lastLiveAt": null
+    },
+    "generatedAt": "2026-07-03T02:02:56.797Z",
+    "cache": {
+      "hit": false,
+      "sourceSignaturePresent": false
+    },
+    "warnings": [
+      "advisor_unavailable"
+    ],
+    "abstainReasons": [
+      "Skill advisor freshness is unavailable; returning fail-open empty recommendations."
+    ]
+  }
+}
+```
+
+Comparison against Expected Signals:
+
+- Forced-local shim returned a JSON array from the Python scorer.
+- Native response returned `recommendations: []` and a prompt-safe abstain reason.
+- Native response did not throw and did not block prompt handling.
+- Native response returned `freshness: "unavailable"`, not the expected `freshness: "absent"`.
+- The required disposable workspace or controlled environment override for absent native generation/artifact state was not available under the allowed write constraints for this run.
+
+---
+
+## 7. PASS/FAIL
+
+BLOCKED - The scenario could not establish the required absent native generation/artifact precondition; the real native response was fail-open but reported `freshness: "unavailable"` instead of the expected `freshness: "absent"`.

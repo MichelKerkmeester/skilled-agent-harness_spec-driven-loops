@@ -46,12 +46,119 @@ Validation and handler suites pass with missing-`confirmName` rejection plus suc
 
 ### Evidence
 
-Test transcript + assertion snippets
+Command 1, run from `.opencode/skills/system-spec-kit/mcp_server`:
+
+```text
+$ npx vitest run tests/handler-checkpoints.vitest.ts tests/tool-input-schema.vitest.ts tests/mcp-input-validation.vitest.ts
+
+ RUN  v4.1.9 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit
+
+(node:1154) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+ Test Files  3 passed (3)
+      Tests  144 passed (144)
+   Start at  00:50:06
+   Duration  2.06s (transform 1.24s, setup 21ms, import 210ms, tests 1.64s, environment 0ms)
+```
+
+Command 2, run from `.opencode/skills/system-spec-kit/mcp_server`:
+
+```text
+$ npx vitest run tests/context-server.vitest.ts
+
+ RUN  v4.1.9 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit
+
+
+ Test Files  1 passed (1)
+      Tests  391 passed (391)
+   Start at  00:50:06
+   Duration  958ms (transform 491ms, setup 15ms, import 109ms, tests 767ms, environment 0ms)
+```
+
+Assertion snippets inspected:
+
+```text
+tests/handler-checkpoints.vitest.ts:507-514
+    it('T521-DEL3: Missing confirmName throws', async () => {
+      await expect(
+        handler.handleCheckpointDelete(
+          invalidArgs<Parameters<typeof handler.handleCheckpointDelete>[0]>({
+            name: 'checkpoint-without-confirm',
+          }),
+        ),
+      ).rejects.toThrow(/confirmName.*required/);
+
+tests/handler-checkpoints.vitest.ts:523-533
+    it('T521-DEL5: Matching confirmName deletes checkpoint and reports safety confirmation', async () => {
+      const spy = vi.spyOn(checkpointStorageMod, 'deleteCheckpoint').mockReturnValue(true);
+      try {
+        const result = await handler.handleCheckpointDelete({
+          name: 'safe-delete',
+          confirmName: 'safe-delete',
+        });
+        expect(result.isError).toBeFalsy();
+        const parsed = JSON.parse(result.content[0].text);
+        expect(parsed.data?.success).toBe(true);
+        expect(parsed.data?.safetyConfirmationUsed).toBe(true);
+
+tests/tool-input-schema.vitest.ts:588-597
+  it('requires confirmName at schema level', () => {
+    expect(() => {
+      validateToolInputSchema('checkpoint_delete', { name: 'danger-zone' }, TOOL_DEFINITIONS);
+    }).toThrow(/Missing required arguments.*confirmName/);
+  });
+
+  it('accepts matching name + confirmName payload shape', () => {
+    expect(() => {
+      validateToolInputSchema('checkpoint_delete', { name: 'danger-zone', confirmName: 'danger-zone' }, TOOL_DEFINITIONS);
+    }).not.toThrow();
+
+tests/mcp-input-validation.vitest.ts:119-123
+  {
+    tool: 'checkpoint_delete',
+    handler: 'handleCheckpointDelete',
+    invalidArgs: { name: 'checkpoint-without-confirm' },
+    description: 'missing required confirmName string',
+
+tests/context-server.vitest.ts:2745-2776
+  describe('Group 13b: checkpoint_delete confirmName safety', () => {
+    it('T103: checkpoint_delete requires confirmName in schema', () => {
+      expect(toolSchemasCode).toMatch(/checkpoint_delete[\s\S]*?required.*confirmName/)
+    })
+
+    it('T104: checkpoint_delete handler rejects missing confirmName', () => {
+      const handlerFile = fs.readFileSync(
+        path.join(SERVER_DIR, 'handlers', 'checkpoints.ts'),
+        'utf8'
+      )
+      expect(handlerFile).toMatch(/confirmName.*required.*must be a string/)
+    })
+
+    it('T105: checkpoint_delete handler rejects mismatched confirmName', () => {
+      const handlerFile = fs.readFileSync(
+        path.join(SERVER_DIR, 'handlers', 'checkpoints.ts'),
+        'utf8'
+      )
+      expect(handlerFile).toMatch(/confirmName must exactly match name/)
+    })
+
+    it('T106: checkpoint_delete proceeds when confirmName matches name', () => {
+      const handlerFile = fs.readFileSync(
+        path.join(SERVER_DIR, 'handlers', 'checkpoints.ts'),
+        'utf8'
+      )
+      // After confirmName validation, deleteCheckpoint is called
+      const confirmCheck = handlerFile.indexOf('confirmName must exactly match name')
+      const deleteCall = handlerFile.indexOf('deleteCheckpoint(name')
+      expect(confirmCheck).toBeGreaterThan(-1)
+      expect(deleteCall).toBeGreaterThan(-1)
+      expect(deleteCall).toBeGreaterThan(confirmCheck)
+```
 
 ### Pass / Fail
 
-- **Pass**: the three suites plus `context-server.vitest.ts` Group 13b pass and prove required `confirmName` enforcement end to end
-- **Fail**: Any contradicting evidence appears or the pass condition is not met.
+- **PASS**: the three suites passed (`3 passed`, `144 passed`) and `context-server.vitest.ts` passed (`1 passed`, `391 passed`); inspected assertions prove required `confirmName` rejection and `safetyConfirmationUsed=true` reporting, with Group 13b T103-T106 structural checks present.
 
 ### Failure Triage
 

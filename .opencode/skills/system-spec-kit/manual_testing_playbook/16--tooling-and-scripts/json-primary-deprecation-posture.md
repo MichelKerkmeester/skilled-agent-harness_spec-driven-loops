@@ -44,12 +44,21 @@ Path 1: exit 0, Path 2: exit 0, Path 3: exit 0
 
 ### Evidence
 
-CLI exit codes and stdout/stderr output
+BLOCKED before command execution.
+
+Observed scenario command surface:
+
+```text
+1. node .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js --json '{"specFolder":"test","sessionSummary":"test"}' <spec-folder> -> expect exit 0
+2. printf '{"specFolder":"test","sessionSummary":"test"}' | node .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js --stdin <spec-folder> -> expect exit 0
+3. node .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js /tmp/save-context-data-<session-id>.json <spec-folder> -> expect exit 0
+```
+
+Blocking condition: command 3 requires a concrete pre-existing `/tmp/save-context-data-<session-id>.json` file, but this scenario defines no Preconditions section and provides no command that creates or identifies that file. The current task also restricts writes to this scenario file only, so creating the required `/tmp/save-context-data-<session-id>.json` fixture or allowing `generate-context.js` to write save outputs outside this file was not permitted.
 
 ### Pass / Fail
 
-- **Pass**: all three paths match documented behavior
-- **Fail**: Any contradicting evidence appears or the pass condition is not met.
+- **BLOCKED**: command 3 is missing its required concrete positional JSON input file/precondition, and the current task's allowed write path does not permit creating that fixture or running save commands that may write outside this scenario file.
 
 ### Failure Triage
 

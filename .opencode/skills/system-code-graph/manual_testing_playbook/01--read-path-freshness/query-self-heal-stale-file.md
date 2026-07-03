@@ -40,6 +40,33 @@ Validate the code_graph_query handler self-heal path and full-scan refusal behav
 
 Single-file stale state is repaired or answered with readiness metadata. Broad stale state returns a blocked payload with `requiredAction:"code_graph_scan"` or equivalent fallback decision.
 
+### Evidence
+
+Scenario commands were not executed because the scenario's Commands section requires writes outside the allowed path:
+
+```text
+35: 1. Run a full scan in a disposable copy.
+36: 2. Modify one tracked file and call `code_graph_query` for outline.
+37: 3. Modify more than 50 tracked files and call `code_graph_query` again.
+```
+
+The user instruction for this execution explicitly constrained writes to the single scenario file:
+
+```text
+BANNED OPERATIONS
+- Do NOT modify, create, or delete any file OTHER than the single scenario file named below.
+- Do NOT touch any other manual testing playbook scenario file.
+
+ALLOWED WRITE PATHS
+- .opencode/skills/system-code-graph/manual_testing_playbook/01--read-path-freshness/query-self-heal-stale-file.md (this file only)
+```
+
+Because a disposable copy, tracked-file edits, and cleanup would create, modify, and delete files outside `.opencode/skills/system-code-graph/manual_testing_playbook/01--read-path-freshness/query-self-heal-stale-file.md`, the preconditions for safe execution under the supplied constraints were not met.
+
+### Pass/Fail
+
+BLOCKED - Scenario execution requires creating/modifying/deleting files outside the only allowed write path.
+
 ### Cleanup
 
 `rm -rf "$WORK"`

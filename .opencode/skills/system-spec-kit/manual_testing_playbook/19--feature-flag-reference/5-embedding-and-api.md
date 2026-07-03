@@ -46,10 +46,90 @@ Provider rules show explicit `EMBEDDINGS_PROVIDER` first, then `VOYAGE_API_KEY`,
 
 Search output
 
+Native MCP attempt for documented command `memory_search({ query:"EMBEDDINGS_PROVIDER auto provider selection rules ollama hf-local nomic-embed-text-v1.5 local defaults", limit:20 })` was rejected before returning search results because the runtime serialized empty optional fields:
+
+```json
+{
+  "summary": "Error: An unexpected error occurred. Please check logs for details.",
+  "data": {
+    "error": "An unexpected error occurred. Please check logs for details.",
+    "code": "E030",
+    "details": {
+      "tool": "memory_search",
+      "issues": [
+        "cursor: Too small: expected string to have >=1 characters",
+        "concepts: Too small: expected array to have >=2 items"
+      ],
+      "unknownParameters": [],
+      "expectedParameters": [
+        "cursor",
+        "query",
+        "concepts",
+        "specFolder",
+        "tenantId",
+        "userId",
+        "agentId",
+        "limit",
+        "sessionId",
+        "enableDedup",
+        "tier",
+        "contextType",
+        "useDecay",
+        "includeContiguity",
+        "includeConstitutional",
+        "enableSessionBoost",
+        "enableCausalBoost",
+        "includeContent",
+        "anchors",
+        "min_quality_score",
+        "minQualityScore",
+        "bypassCache",
+        "rerank",
+        "applyLengthPenalty",
+        "applyStateLimits",
+        "minState",
+        "intent",
+        "autoDetectIntent",
+        "trackAccess",
+        "includeArchived",
+        "mode",
+        "retrievalLevel",
+        "includeTrace",
+        "profile"
+      ]
+    }
+  },
+  "hints": [
+    "Invalid parameter value provided.",
+    "Check parameter type matches expected schema",
+    "Review tool documentation for valid parameter values",
+    "Ensure strings are properly quoted"
+  ],
+  "meta": {
+    "tool": "memory_search",
+    "isError": true,
+    "severity": "low"
+  }
+}
+```
+
+CLI fallback attempt using the exact JSON payload:
+
+```bash
+node ".opencode/bin/spec-memory.cjs" memory_search --json '{"query":"EMBEDDINGS_PROVIDER auto provider selection rules ollama hf-local nomic-embed-text-v1.5 local defaults","limit":20}' --format json --timeout-ms 10000
+```
+
+Actual output:
+
+```text
+@spec-kit/mcp-server dist is stale. Run: cd .opencode/skills/system-spec-kit/mcp_server && npm run build
+```
+
+Because the documented command did not produce a valid `memory_search` result transcript, the expected provider-order and local-model signals could not be verified from this scenario run.
+
 ### Pass / Fail
 
-- **Pass**: provider routing, key precedence, and both local default/fallback model IDs are clear
-- **Fail**: Any contradicting evidence appears or the pass condition is not met.
+- **BLOCKED**: The documented `memory_search({ query:"EMBEDDINGS_PROVIDER auto provider selection rules ollama hf-local nomic-embed-text-v1.5 local defaults", limit:20 })` command did not return search results; native MCP rejected serialized optional empty fields and the CLI fallback reported `@spec-kit/mcp-server dist is stale`.
 
 ### Failure Triage
 

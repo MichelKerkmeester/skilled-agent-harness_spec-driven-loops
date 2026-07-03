@@ -126,6 +126,7 @@ vi.mock('../lib/feedback/feedback-ledger', () => ({
 }));
 
 import { handleMemorySearch } from '../handlers/memory-search';
+import * as formatters from '../formatters';
 import * as pipeline from '../lib/search/pipeline';
 import { clearCursorStore } from '../lib/search/progressive-disclosure';
 import { manager as retrievalSessionStateManager } from '../lib/search/session-state';
@@ -189,6 +190,56 @@ describe('memory_search UX hook integration', () => {
     expect(results).toHaveLength(2);
     expect(results[0]?.resultId).toBe('6');
     expect(nextData.continuation).toBeNull();
+  });
+
+  it('builds continuation from the final formatted result set', async () => {
+    vi.mocked(pipeline.executePipeline).mockResolvedValueOnce({
+      results: PIPELINE_RESULTS.slice(0, 5),
+      metadata: {
+        stage1: { searchType: 'hybrid', channelCount: 2, candidateCount: 5, constitutionalInjected: 0, durationMs: 1 },
+        stage2: {
+          sessionBoostApplied: 'off',
+          causalBoostApplied: 'off',
+          intentWeightsApplied: 'off',
+          artifactRoutingApplied: 'off',
+          feedbackSignalsApplied: 'off',
+          qualityFiltered: 0,
+          durationMs: 1,
+        },
+        stage3: {
+          rerankApplied: false,
+          chunkReassemblyStats: { collapsedChunkHits: 0, chunkParents: 0, reassembled: 0, fallback: 0 },
+          durationMs: 1,
+        },
+        stage4: { stateFiltered: 0, constitutionalInjected: 0, evidenceGapDetected: false, durationMs: 1 },
+      },
+      annotations: { stateStats: {}, featureFlags: {} },
+      trace: undefined,
+    });
+    vi.mocked(formatters.formatSearchResults).mockResolvedValueOnce({
+      content: [{
+        type: 'text',
+        text: JSON.stringify({
+          summary: 'Found 7 memories',
+          data: {
+            count: PIPELINE_RESULTS.length,
+            results: PIPELINE_RESULTS.map((row) => ({ ...row })),
+          },
+        }),
+      }],
+      isError: false,
+    });
+
+    const response = await handleMemorySearch({ query: 'Find fusion scoring decisions', limit: 20 });
+    const envelope = parseEnvelope(response);
+    const data = envelope.data as Record<string, unknown>;
+    const progressive = data.progressiveDisclosure as Record<string, unknown>;
+    const continuation = progressive.continuation as Record<string, unknown>;
+
+    expect((data.results as Array<Record<string, unknown>>)).toHaveLength(7);
+    expect(progressive.summaryLayer).toMatchObject({ count: 7 });
+    expect(continuation.remainingCount).toBe(2);
+    expect(typeof continuation.cursor).toBe('string');
   });
 
   it('rejects continuation cursors when the resuming scope does not match the original query scope', async () => {

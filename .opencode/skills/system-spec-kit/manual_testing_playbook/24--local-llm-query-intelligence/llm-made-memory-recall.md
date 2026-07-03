@@ -71,11 +71,75 @@ Summary: 8/10 or better in top-3, mean rank <= 2.0 -> PASS
 
 ### Evidence
 
-- The exact fixture version and active profile DB filename.
-- For each sample: the paraphrase query used, the Memory MCP query payload, the expected source memory ID, and the source rank in the response.
-- A summary line: `X of 10 in top-3, mean rank Y.Z`.
-- Active provider from memory_health.
-- Confirmation that all fixture IDs exist in `memory_index`, have `embedding_status = 'success'`, and reference files that exist on disk.
+- Fixture version from frontmatter: `fixture_version: "post-surgery"`; fixture file: `409-fixture.json`.
+- Fixture load command executed:
+  ```bash
+  jq -c '.[]' .opencode/skills/system-spec-kit/manual_testing_playbook/24--local-llm-query-intelligence/409-fixture.json
+  ```
+- Fixture load output:
+  ```json
+  {"query":"documentation verification checklist for the CocoIndex complete-fork author docs phase","expected_source_memory_id":2000,"expected_title_substring":"Verification Checklist: Author Fork Documentation","paraphrase_difficulty":"easy"}
+  {"query":"checklist for fixing V8 cross-spec contamination and ADR numeric prefix overreach in the local embeddings migration","expected_source_memory_id":1620,"expected_title_substring":"040 V-rule cross-spec overreach fix","paraphrase_difficulty":"medium"}
+  {"query":"deep-research summary comparing Contextador's retrieval ergonomics and MCP query surface against Public's existing substrate","expected_source_memory_id":954,"expected_title_substring":"research-and-baseline","paraphrase_difficulty":"medium"}
+  {"query":"ADR about consolidating spec-kit templates into the level and addendum generator instead of leaving compose scripts separate","expected_source_memory_id":1404,"expected_title_substring":"Decision Record: Template System Consolidation","paraphrase_difficulty":"medium"}
+  {"query":"research packet for turning review findings into fix-completeness inventories and cross-surface planner checks","expected_source_memory_id":1047,"expected_title_substring":"Feature Specification: Fix-Iteration Quality Meta-Research","paraphrase_difficulty":"hard"}
+  {"query":"implementation summary for the FIX-010-v2 remediation of packet docs, review strategy state, and inert planner imports","expected_source_memory_id":1046,"expected_title_substring":"Implementation Summary: FIX-010-v2","paraphrase_difficulty":"easy"}
+  {"query":"file ledger resource map for the testing playbook trio follow-up quality pass","expected_source_memory_id":729,"expected_title_substring":"Resource Map - 037 child 003 testing playbook trio","paraphrase_difficulty":"easy"}
+  {"query":"plan covering memory indexer invariants, PE lineage guardrails, scan recheck bypass, and constitutional tier cleanup","expected_source_memory_id":1007,"expected_title_substring":"Plan: Memory Indexer Invariants","paraphrase_difficulty":"hard"}
+  {"query":"stress-test task list tracking cat-14 pipeline gaps, cat-16 tooling fixes, and the remaining cat-24 memory-recall failure","expected_source_memory_id":908,"expected_title_substring":"Tasks: 052 Stress Test Expansion and Alignment","paraphrase_difficulty":"hard"}
+  {"query":"task checklist for the mxbai swap that planned a 20-scenario PASS sample across cat-01, cat-11, cat-15, cat-13, and cat-23","expected_source_memory_id":1096,"expected_title_substring":"Verification Checklist: Real-World Usefulness Test","paraphrase_difficulty":"medium"}
+  ```
+- Native Memory MCP `memory_search` call attempted for sample 1 with payload equivalent to `memory_search({ query: "documentation verification checklist for the CocoIndex complete-fork author docs phase", limit: 10 })`; the OpenCode tool wrapper injected empty optional `cursor` and `concepts` fields and returned:
+  ```json
+  {
+    "summary": "Error: An unexpected error occurred. Please check logs for details.",
+    "data": {
+      "error": "An unexpected error occurred. Please check logs for details.",
+      "code": "E030",
+      "details": {
+        "tool": "memory_search",
+        "issues": [
+          "cursor: Too small: expected string to have >=1 characters",
+          "concepts: Too small: expected array to have >=2 items"
+        ]
+      }
+    }
+  }
+  ```
+- Retry with placeholder non-empty `cursor` failed because searches cannot be started with a fake cursor:
+  ```json
+  {
+    "summary": "Error: Cursor is invalid, expired, or out of scope",
+    "data": {
+      "error": "Cursor is invalid, expired, or out of scope",
+      "code": "E_VALIDATION",
+      "details": {
+        "parameter": "cursor"
+      }
+    }
+  }
+  ```
+- `memory_health` could not provide active provider or active profile DB filename; both attempts returned exactly:
+  ```text
+  MCP error -32001: backend recycled; retry
+  ```
+- Warm CLI fallback command attempted:
+  ```bash
+  node '.opencode/bin/spec-memory.cjs' memory_health --json '{"reportMode":"full","includeFullReport":false}' --format json --timeout-ms 3000
+  ```
+- Warm CLI fallback output:
+  ```text
+  @spec-kit/mcp-server dist is stale. Run: cd .opencode/skills/system-spec-kit/mcp_server && npm run build
+  ```
+- Active provider from `memory_health`: unavailable because `memory_health` repeatedly failed with `MCP error -32001: backend recycled; retry`.
+- Active profile DB filename: unavailable because `memory_health` repeatedly failed and the CLI fallback refused to run due stale dist.
+- Per-sample source ranks: unavailable because the required `memory_search({ query: "<fixture query>", limit: 10 })` command path is not executable in the current runtime.
+- Summary: `0 of 10 queried; mean rank unavailable`.
+- Confirmation that fixture IDs exist in `memory_index`, have `embedding_status = 'success'`, and reference files that exist on disk: unavailable because the scenario's required Memory MCP health/search path is blocked, and rebuilding the stale CLI dist would modify files outside the allowed write path.
+
+### Pass/Fail
+
+BLOCKED - Required Memory MCP search and health evidence could not be collected: native MCP returned `E030` / backend recycle errors, and the warm CLI fallback refused to run because `@spec-kit/mcp-server dist is stale`; rebuilding dist would violate this scenario's allowed write paths.
 
 ## 4. NOTES
 

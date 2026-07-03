@@ -78,6 +78,93 @@ version: 1.2.0.3
 | 4 | recover-sqlite-corruption | Refuses without confirm | ☐ |
 | 5 | rollback-bad-apply | Dry-run reports prior baseline | ☐ |
 
+## Evidence
+
+`mcp__mk_code_index__code_graph_status({})` observed through the native status tool:
+
+```text
+plugin_id=mk-code-graph
+cache_ttl_ms=5000
+spec_folder=auto
+resume_mode=minimal
+messages_transform_enabled=true
+messages_transform_mode=schema_aligned
+runtime_ready=false
+node_binary=node
+bridge_timeout_ms=15000
+bridge_path=/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-code-graph/mcp_server/plugin_bridges/mk-code-graph-bridge.mjs
+last_runtime_error=Bridge skipped: SOCKET_ABSENT (exit=75); plugin injection will no-op
+cache_entries=0
+cache=empty
+```
+
+`node ".opencode/bin/code-index.cjs" list-tools --format text`:
+
+```text
+code_graph_scan
+code_graph_query
+code_graph_status
+code_graph_context
+code_graph_classify_query_intent
+code_graph_verify
+code_graph_apply
+detect_changes
+```
+
+`node ".opencode/bin/code-index.cjs" code_graph_apply --json '{"operation":"rescan","dryRun":true}' --format json`:
+
+```json
+{
+  "status": "error",
+  "error": "backend unavailable: connect ENOENT /tmp/mk-code-index/daemon-ipc.sock",
+  "exitCode": 75
+}
+```
+
+`node ".opencode/bin/code-index.cjs" code_graph_apply --json '{"operation":"prune-excludes","excludePatterns":["**/__tests__/**","**/*.test.ts"],"lowTierOptIn":false,"dryRun":true}' --format json`:
+
+```json
+{
+  "status": "error",
+  "error": "backend unavailable: connect ENOENT /tmp/mk-code-index/daemon-ipc.sock",
+  "exitCode": 75
+}
+```
+
+`node ".opencode/bin/code-index.cjs" code_graph_apply --json '{"operation":"repair-nodes","quarantineOlderThanDays":7}' --format json`:
+
+```json
+{
+  "status": "error",
+  "error": "backend unavailable: connect ENOENT /tmp/mk-code-index/daemon-ipc.sock",
+  "exitCode": 75
+}
+```
+
+`node ".opencode/bin/code-index.cjs" code_graph_apply --json '{"operation":"recover-sqlite-corruption"}' --format json`:
+
+```json
+{
+  "status": "error",
+  "error": "backend unavailable: connect ENOENT /tmp/mk-code-index/daemon-ipc.sock",
+  "exitCode": 75
+}
+```
+
+`node ".opencode/bin/code-index.cjs" code_graph_status --format json`:
+
+```json
+{
+  "status": "error",
+  "error": "backend unavailable: connect ENOENT /tmp/mk-code-index/daemon-ipc.sock",
+  "exitCode": 75
+}
+```
+
+## Pass/Fail
+
+BLOCKED: The code graph backend is unavailable (`connect ENOENT /tmp/mk-code-index/daemon-ipc.sock`), and the native status tool reports `runtime_ready=false` with `last_runtime_error=Bridge skipped: SOCKET_ABSENT (exit=75); plugin injection will no-op`; none of the scenario's expected `code_graph_apply` operation outcomes could be observed.
+
 ## Notes
 
 Tests `mcp_server/handlers/apply.ts` → `mcp_server/lib/apply-orchestrator.ts` for operation dispatch and `mcp_server/lib/recovery-procedures.ts` for CG-RP-001/002/003 recovery procedures. Each operation runs the gold-query battery before AND after (verify via `apply.batteryPassRate` in `code_graph_status` post-apply).

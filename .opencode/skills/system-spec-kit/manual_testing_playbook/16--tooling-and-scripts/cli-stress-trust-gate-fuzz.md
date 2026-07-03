@@ -68,12 +68,54 @@ rm -rf "$SANDBOX"
 
 ### Evidence
 
-Shell transcript with the full matrix; rerun one refusal without `>/dev/null` to capture the refusal message verbatim.
+Shell transcript with the full matrix:
+
+```text
+== untrusted mutation attempts: ALL must exit 64
+advisor_rebuild -> exit=64
+advisor_rebuild --force true -> exit=64
+advisor_rebuild --untrusted -> exit=64
+advisor_rebuild --trusted --untrusted -> exit=64
+advisor_rebuild -> exit=64
+skill_graph_scan -> exit=64
+skill_graph_scan --format jsonl --timeout-ms 1000 -> exit=64
+skill_graph_propagate_enhances --mode apply --dryRun false -> exit=64
+skill_graph_propagate_enhances --json {"mode":"apply","dryRun":false} -> exit=64
+== controls
+advisor_rebuild --trusted -> exit=75
+advisor_rebuild --maintainer -> exit=75
+skill_graph_scan -> exit=75
+skill_graph_propagate_enhances --mode apply -> exit=75
+advisor_status --workspaceRoot . -> exit=75
+```
+
+Refusal rerun without `>/dev/null`:
+
+```text
+{
+  "status": "error",
+  "error": "advisor_rebuild requires --trusted or MK_SKILL_ADVISOR_CLI_TRUSTED=1",
+  "exitCode": 64
+}
+refusal_exit=64
+sandbox=/tmp/cli-playbook.t6rnij
+total 0
+drwx------@ 2 michelkerkmeester  wheel  64 Jul  2 22:49 .
+drwx------@ 3 michelkerkmeester  wheel  96 Jul  2 22:49 ..
+```
+
+Post-matrix socket directory listing before sandbox cleanup:
+
+```text
+post_matrix_sandbox=/tmp/cli-playbook.lQRHFA
+total 0
+drwx------@ 2 michelkerkmeester  wheel  64 Jul  2 22:50 .
+drwx------@ 3 michelkerkmeester  wheel  96 Jul  2 22:50 ..
+```
 
 ### Pass / Fail
 
-- **Pass**: untrusted block uniformly 64, controls uniformly 75, nothing spawned.
-- **Fail**: any untrusted mutation attempt exits 75 or 0 (gate bypass), any control is refused, or a daemon socket appears.
+- **PASS**: untrusted block uniformly 64, controls uniformly 75, and the sandbox socket directory remained empty (`total 0`).
 
 ### Failure Triage
 

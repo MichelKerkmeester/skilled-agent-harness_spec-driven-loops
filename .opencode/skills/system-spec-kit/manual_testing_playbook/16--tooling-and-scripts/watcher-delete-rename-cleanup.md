@@ -47,12 +47,88 @@ unlink events call removeFn for deleted markdown files; rename removes the old p
 
 ### Evidence
 
-Vitest output for delete/unlink, rename lifecycle, default debounce, burst rename, and concurrent rename cases + any logged indexed-path snapshots used to prove stale entries were removed
+Command run from `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server`:
+
+```text
+npm run test:file-watcher
+
+> @spec-kit/mcp-server@1.8.0 test:file-watcher
+> vitest run tests/file-watcher.vitest.ts
+
+
+ RUN  v4.1.9 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit
+
+
+ Test Files  1 passed (1)
+      Tests  22 passed (22)
+   Start at  00:22:18
+   Duration  128ms (transform 33ms, setup 12ms, import 31ms, tests 27ms, environment 0ms)
+```
+
+Verbose evidence command run from `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server`:
+
+```text
+npx vitest run tests/file-watcher.vitest.ts --reporter verbose
+
+ RUN  v4.1.9 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit
+
+stderr | mcp_server/tests/file-watcher.vitest.ts > file-watcher runtime behavior > calls removeFn when a markdown file is deleted
+[file-watcher] Removed indexed entries for sample.md
+
+stderr | mcp_server/tests/file-watcher.vitest.ts > file-watcher runtime behavior > removes old entry and indexes new entry on file rename
+[file-watcher] Removed indexed entries for rename-old.md
+
+stderr | mcp_server/tests/file-watcher.vitest.ts > file-watcher runtime behavior > removes old entry and indexes new entry on file rename
+[file-watcher] Reindexed rename-new.md in 0ms (total: 6 files, avg: 500ms)
+
+stderr | mcp_server/tests/file-watcher.vitest.ts > file-watcher runtime behavior > debounces rapid changes within the 2-second default window to one reindex
+[file-watcher] Reindexed debounce-default-window.md in 0ms (total: 7 files, avg: 429ms)
+
+stderr | mcp_server/tests/file-watcher.vitest.ts > file-watcher runtime behavior > handles burst renames and keeps only final path indexed
+[file-watcher] Removed indexed entries for burst-0.md
+
+stderr | mcp_server/tests/file-watcher.vitest.ts > file-watcher runtime behavior > handles burst renames and keeps only final path indexed
+[file-watcher] Removed indexed entries for burst-1.md
+
+stderr | mcp_server/tests/file-watcher.vitest.ts > file-watcher runtime behavior > handles burst renames and keeps only final path indexed
+[file-watcher] Removed indexed entries for burst-2.md
+
+stderr | mcp_server/tests/file-watcher.vitest.ts > file-watcher runtime behavior > handles burst renames and keeps only final path indexed
+[file-watcher] Reindexed burst-3.md in 0ms (total: 8 files, avg: 375ms)
+
+stderr | mcp_server/tests/file-watcher.vitest.ts > file-watcher runtime behavior > handles concurrent renames across multiple files
+[file-watcher] Removed indexed entries for alpha.md
+
+stderr | mcp_server/tests/file-watcher.vitest.ts > file-watcher runtime behavior > handles concurrent renames across multiple files
+[file-watcher] Removed indexed entries for beta.md
+
+stderr | mcp_server/tests/file-watcher.vitest.ts > file-watcher runtime behavior > handles concurrent renames across multiple files
+[file-watcher] Removed indexed entries for gamma.md
+
+stderr | mcp_server/tests/file-watcher.vitest.ts > file-watcher runtime behavior > handles concurrent renames across multiple files
+[file-watcher] Reindexed alpha-renamed.md in 0ms (total: 9 files, avg: 333ms)
+
+stderr | mcp_server/tests/file-watcher.vitest.ts > file-watcher runtime behavior > handles concurrent renames across multiple files
+[file-watcher] Reindexed beta-renamed.md in 0ms (total: 10 files, avg: 300ms)
+
+stderr | mcp_server/tests/file-watcher.vitest.ts > file-watcher runtime behavior > handles concurrent renames across multiple files
+[file-watcher] Reindexed gamma-renamed.md in 0ms (total: 11 files, avg: 273ms)
+
+ ✓ mcp_server/tests/file-watcher.vitest.ts > file-watcher runtime behavior > calls removeFn when a markdown file is deleted 1ms
+ ✓ mcp_server/tests/file-watcher.vitest.ts > file-watcher runtime behavior > removes old entry and indexes new entry on file rename 2ms
+ ✓ mcp_server/tests/file-watcher.vitest.ts > file-watcher runtime behavior > debounces rapid changes within the 2-second default window to one reindex 3ms
+ ✓ mcp_server/tests/file-watcher.vitest.ts > file-watcher runtime behavior > handles burst renames and keeps only final path indexed 1ms
+ ✓ mcp_server/tests/file-watcher.vitest.ts > file-watcher runtime behavior > handles concurrent renames across multiple files 2ms
+
+ Test Files  1 passed (1)
+      Tests  22 passed (22)
+   Start at  00:22:32
+   Duration  132ms (transform 33ms, setup 12ms, import 30ms, tests 29ms, environment 0ms)
+```
 
 ### Pass / Fail
 
-- **Pass**: stale paths are removed, renamed paths are reindexed, and no orphaned entries remain after delete, rename, burst-rename, or concurrent-rename flows
-- **Fail**: Any contradicting evidence appears or the pass condition is not met.
+- **PASS**: `npm run test:file-watcher` passed with `Test Files  1 passed (1)` and `Tests  22 passed (22)`; the verbose run showed the required delete/unlink, rename lifecycle, default debounce, burst-rename, and concurrent-rename cases all passed with stale-path removal and renamed/final-path reindex logs.
 
 ### Failure Triage
 

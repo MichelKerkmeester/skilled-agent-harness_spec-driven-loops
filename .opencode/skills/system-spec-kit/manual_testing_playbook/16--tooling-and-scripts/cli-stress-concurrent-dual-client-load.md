@@ -60,12 +60,157 @@ echo "launchers before=$BEFORE after=$AFTER"
 
 ### Evidence
 
-Per-round vitest summaries and the launcher counts before/after.
+```text
+=== round 1
+
+ RUN  v4.1.9 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit
+
+
+ RUN  v4.1.7 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+
+
+ RUN  v4.1.6 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-skill-advisor/mcp_server
+
+
+ Test Files  1 passed (1)
+      Tests  1 passed (1)
+   Start at  22:43:56
+   Duration  166ms (transform 28ms, setup 17ms, import 21ms, tests 58ms, environment 0ms)
+
+
+ Test Files  1 passed (1)
+      Tests  1 passed (1)
+   Start at  22:43:56
+   Duration  230ms (transform 100ms, setup 15ms, import 144ms, tests 8ms, environment 0ms)
+
+[mk-code-index-launcher] loaded 1 env(s) from .env.local
+[mk-code-index-launcher] env clickup_CLICKUP_API_KEY from .env is not allowlisted; skipping
+[mk-code-index-launcher] env clickup_CLICKUP_TEAM_ID from .env is not allowlisted; skipping
+[mk-code-index-launcher] env figma_FIGMA_API_KEY from .env is not allowlisted; skipping
+[mk-code-index-launcher] env github_GITHUB_PERSONAL_ACCESS_TOKEN from .env is not allowlisted; skipping
+[mk-code-index-launcher] env SPECKIT_ABLATION from .env is not allowlisted; skipping
+[mk-code-index-launcher] MAINTAINER_MODE: forcing INDEX_* to "true" for skills, plugins
+[mk-code-index-launcher] liveOwnerDetected: ownerPid=68502 classification=live-owner
+[mk-code-index-launcher] bridging to lease holder pid=68502 socket=/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/ci-QCdvG7/daemon-ipc.sock
+[mk-code-index-launcher] loaded 1 env(s) from .env.local
+[mk-code-index-launcher] env clickup_CLICKUP_API_KEY from .env is not allowlisted; skipping
+[mk-code-index-launcher] env clickup_CLICKUP_TEAM_ID from .env is not allowlisted; skipping
+[mk-code-index-launcher] env figma_FIGMA_API_KEY from .env is not allowlisted; skipping
+[mk-code-index-launcher] env github_GITHUB_PERSONAL_ACCESS_TOKEN from .env is not allowlisted; skipping
+[mk-code-index-launcher] env SPECKIT_ABLATION from .env is not allowlisted; skipping
+[mk-code-index-launcher] MAINTAINER_MODE: forcing INDEX_* to "true" for skills, plugins
+[mk-code-index-launcher] ready: {"start":"2026-07-02T20:43:57.037Z","end":"2026-07-02T20:43:57.049Z","actions":[],"server":".opencode/skills/system-code-graph/mcp_server/dist/index.js"}
+[ipc-bridge] socket listening at /private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/ci-9KwOYv/daemon-ipc.sock
+[mk-code-index] unknown tool dispatched: code_graph_not_registered
+[mk-code-index] SIGTERM
+
+ Test Files  1 passed (1)
+      Tests  2 passed (2)
+   Start at  22:43:56
+   Duration  3.62s (transform 20ms, setup 0ms, import 27ms, tests 3.53s, environment 0ms)
+
+=== round 2
+
+ RUN  v4.1.7 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+
+
+ RUN  v4.1.9 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit
+
+
+ RUN  v4.1.6 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-skill-advisor/mcp_server
+
+
+ Test Files  1 passed (1)
+      Tests  1 passed (1)
+   Start at  22:44:02
+   Duration  893ms (transform 388ms, setup 172ms, import 284ms, tests 129ms, environment 0ms)
+
+[mk-code-index-launcher] loaded 1 env(s) from .env.local
+[mk-code-index-launcher] env clickup_CLICKUP_API_KEY from .env is not allowlisted; skipping
+[mk-code-index-launcher] env clickup_CLICKUP_TEAM_ID from .env is not allowlisted; skipping
+[mk-code-index-launcher] env figma_FIGMA_API_KEY from .env is not allowlisted; skipping
+[mk-code-index-launcher] env github_GITHUB_PERSONAL_ACCESS_TOKEN from .env is not allowlisted; skipping
+[mk-code-index-launcher] env SPECKIT_ABLATION from .env is not allowlisted; skipping
+[mk-code-index-launcher] MAINTAINER_MODE: forcing INDEX_* to "true" for skills, plugins
+[mk-code-index-launcher] liveOwnerDetected: ownerPid=68970 classification=live-owner
+[mk-code-index-launcher] bridging to lease holder pid=68970 socket=/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/ci-e2Ocsm/daemon-ipc.sock
+
+ Test Files  1 passed (1)
+      Tests  1 passed (1)
+   Start at  22:44:02
+   Duration  1.34s (transform 740ms, setup 243ms, import 706ms, tests 20ms, environment 0ms)
+
+[mk-code-index-launcher] loaded 1 env(s) from .env.local
+[mk-code-index-launcher] env clickup_CLICKUP_API_KEY from .env is not allowlisted; skipping
+[mk-code-index-launcher] env clickup_CLICKUP_TEAM_ID from .env is not allowlisted; skipping
+[mk-code-index-launcher] env figma_FIGMA_API_KEY from .env is not allowlisted; skipping
+[mk-code-index-launcher] env github_GITHUB_PERSONAL_ACCESS_TOKEN from .env is not allowlisted; skipping
+[mk-code-index-launcher] env SPECKIT_ABLATION from .env is not allowlisted; skipping
+[mk-code-index-launcher] MAINTAINER_MODE: forcing INDEX_* to "true" for skills, plugins
+[mk-code-index-launcher] ready: {"start":"2026-07-02T20:44:03.914Z","end":"2026-07-02T20:44:03.929Z","actions":[],"server":".opencode/skills/system-code-graph/mcp_server/dist/index.js"}
+[ipc-bridge] socket listening at /private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/ci-nkwr7g/daemon-ipc.sock
+[mk-code-index] unknown tool dispatched: code_graph_not_registered
+[mk-code-index] SIGTERM
+
+ Test Files  1 passed (1)
+      Tests  2 passed (2)
+   Start at  22:44:02
+   Duration  5.04s (transform 280ms, setup 0ms, import 332ms, tests 4.54s, environment 0ms)
+
+=== round 3
+
+ RUN  v4.1.9 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit
+
+
+ RUN  v4.1.7 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+
+
+ RUN  v4.1.6 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-skill-advisor/mcp_server
+
+
+ Test Files  1 passed (1)
+      Tests  1 passed (1)
+   Start at  22:44:08
+   Duration  761ms (transform 450ms, setup 42ms, import 553ms, tests 12ms, environment 0ms)
+
+
+ Test Files  1 passed (1)
+      Tests  1 passed (1)
+   Start at  22:44:08
+   Duration  306ms (transform 51ms, setup 39ms, import 53ms, tests 82ms, environment 0ms)
+
+[mk-code-index-launcher] loaded 1 env(s) from .env.local
+[mk-code-index-launcher] env clickup_CLICKUP_API_KEY from .env is not allowlisted; skipping
+[mk-code-index-launcher] env clickup_CLICKUP_TEAM_ID from .env is not allowlisted; skipping
+[mk-code-index-launcher] env figma_FIGMA_API_KEY from .env is not allowlisted; skipping
+[mk-code-index-launcher] env github_GITHUB_PERSONAL_ACCESS_TOKEN from .env is not allowlisted; skipping
+[mk-code-index-launcher] env SPECKIT_ABLATION from .env is not allowlisted; skipping
+[mk-code-index-launcher] MAINTAINER_MODE: forcing INDEX_* to "true" for skills, plugins
+[mk-code-index-launcher] liveOwnerDetected: ownerPid=69326 classification=live-owner
+[mk-code-index-launcher] bridging to lease holder pid=69326 socket=/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/ci-up0ltm/daemon-ipc.sock
+[mk-code-index-launcher] loaded 1 env(s) from .env.local
+[mk-code-index-launcher] env clickup_CLICKUP_API_KEY from .env is not allowlisted; skipping
+[mk-code-index-launcher] env clickup_CLICKUP_TEAM_ID from .env is not allowlisted; skipping
+[mk-code-index-launcher] env figma_FIGMA_API_KEY from .env is not allowlisted; skipping
+[mk-code-index-launcher] env github_GITHUB_PERSONAL_ACCESS_TOKEN from .env is not allowlisted; skipping
+[mk-code-index-launcher] env SPECKIT_ABLATION from .env is not allowlisted; skipping
+[mk-code-index-launcher] MAINTAINER_MODE: forcing INDEX_* to "true" for skills, plugins
+[mk-code-index-launcher] ready: {"start":"2026-07-02T20:44:09.874Z","end":"2026-07-02T20:44:09.890Z","actions":[],"server":".opencode/skills/system-code-graph/mcp_server/dist/index.js"}
+[ipc-bridge] socket listening at /private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/ci-eXStRz/daemon-ipc.sock
+[mk-code-index] unknown tool dispatched: code_graph_not_registered
+[mk-code-index] SIGTERM
+
+ Test Files  1 passed (1)
+      Tests  2 passed (2)
+   Start at  22:44:08
+   Duration  4.70s (transform 36ms, setup 0ms, import 58ms, tests 4.51s, environment 0ms)
+
+launchers before=      14 after=      14
+```
 
 ### Pass / Fail
 
-- **Pass**: 9/9 suite executions green, no wedge, orphan delta zero.
-- **Fail**: any suite fails or hangs under concurrency, or launcher count grows.
+- **PASS**: 9/9 suite executions green, no wedge, launcher count settled from `before=      14` to `after=      14`.
 
 ### Failure Triage
 

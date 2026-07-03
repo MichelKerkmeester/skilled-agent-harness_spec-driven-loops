@@ -53,18 +53,28 @@ The command loads `doctor_update.yaml`, reads `migration-manifest.json`, detects
 
 ### Evidence
 
-- Version evidence showing source version `3.4.1.0`.
-- Manifest excerpt showing `current_version: 3.4.1.0` and the no-op upgrade path.
-- `/doctor:update --migrate` transcript showing migration skipped.
-- State log showing no migration steps executed.
-- Evidence that no migration script IDs or fallback operations ran.
+- Precondition check command:
+
+```bash
+node -e "const fs=require('fs'); const skill='.opencode/skills/system-spec-kit/SKILL.md'; const manifest='.opencode/specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/009-phase-parent-lean-trio-documentation/004-legacy-phase-parent-migration/scratch/migration-manifest.json'; const skillText=fs.readFileSync(skill,'utf8'); const version=(skillText.match(/^version:\\s*(.+)$/m)||[])[1]||'<missing>'; const data=JSON.parse(fs.readFileSync(manifest,'utf8')); console.log('system-spec-kit SKILL.md version: '+version); console.log('manifest path: '+manifest); console.log('manifest current_version: '+(Object.prototype.hasOwnProperty.call(data,'current_version')?data.current_version:'<missing>')); console.log('manifest top-level keys: '+Object.keys(data).join(', '));"
+```
+
+- Precondition check output:
+
+```text
+system-spec-kit SKILL.md version: 3.7.0.0
+manifest path: .opencode/specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/009-phase-parent-lean-trio-documentation/004-legacy-phase-parent-migration/scratch/migration-manifest.json
+manifest current_version: <missing>
+manifest top-level keys: schema_version, migration, completed_at, executor, workers, totals
+```
+
+- `/doctor:update --migrate` was not invoked because the scenario preconditions were not established in the current repo state.
+- Missing precondition: repository and installed spec-kit version are not `3.4.1.0`; `.opencode/skills/system-spec-kit/SKILL.md` reports `version: 3.7.0.0`.
+- Missing precondition: referenced `migration-manifest.json` does not contain `current_version: 3.4.1.0`; it has no `current_version` key.
 
 ### Pass / Fail
 
-- **PASS**: source equals current version, migration is explicitly skipped, no migration scripts execute, and the command reports a steady-state outcome.
-- **FAIL**: migration scripts run for `3.4.1.0`, legacy cleanup runs without `--cleanup-legacy`, the command reports an undeclared gap, or no state-log evidence explains the no-op.
-- **SKIP**: the workspace cannot establish installed version `3.4.1.0`.
-- **UNAUTOMATABLE**: the runtime cannot invoke `/doctor:update --migrate`.
+- **BLOCKED**: the workspace cannot establish the required installed version `3.4.1.0`, and the referenced manifest lacks the required `current_version: 3.4.1.0`; running `/doctor:update --migrate` would not test the specified already-current no-op scenario.
 
 ### Failure Triage
 

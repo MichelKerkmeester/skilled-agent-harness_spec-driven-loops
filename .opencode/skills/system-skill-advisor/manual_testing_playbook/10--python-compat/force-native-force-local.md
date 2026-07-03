@@ -81,3 +81,96 @@ SPECKIT_SKILL_ADVISOR_HOOK_DISABLED=1 python3 .opencode/skills/system-skill-advi
 - Playbook ID: PC-002
 - Canonical root source: manual_testing_playbook.md
 - Feature file path: 10--python-compat/force-native-force-local.md
+
+---
+
+## 6. EVIDENCE
+
+Command 1:
+
+```bash
+python3 .opencode/skills/system-skill-advisor/mcp_server/scripts/skill_advisor.py --force-native "save this conversation context to memory" --threshold 0.8
+```
+
+Output:
+
+```json
+{
+  "error": "Native advisor unavailable",
+  "reason": "SIGTERM",
+  "freshness": "unavailable"
+}
+```
+
+Command 2:
+
+```bash
+python3 .opencode/skills/system-skill-advisor/mcp_server/scripts/skill_advisor.py --force-local "save this conversation context to memory" --threshold 0.8
+```
+
+Output:
+
+```text
+Skill graph: loaded from SQLite
+[
+  {
+    "skill": "system-spec-kit",
+    "kind": "skill",
+    "confidence": 0.95,
+    "uncertainty": 0.2,
+    "passes_threshold": true,
+    "reason": "Matched: !context, !context(multi), !memory, !save this conversation context(phrase), !save(multi) [boundary: owns memory/context preservation]",
+    "_graph_boost_count": 0,
+    "source": "local"
+  },
+  {
+    "skill": "memory:save",
+    "kind": "skill",
+    "confidence": 0.88,
+    "uncertainty": 0.15,
+    "passes_threshold": true,
+    "reason": "Matched: !intent:memory, !save this conversation context(phrase), context, memory(name), save(name)",
+    "_graph_boost_count": 0,
+    "source": "local"
+  },
+  {
+    "skill": "command-memory-save",
+    "kind": "command",
+    "confidence": 0.95,
+    "uncertainty": 0.15,
+    "passes_threshold": true,
+    "reason": "Matched: !save this conversation context(phrase), command_penalty, context, conversation, memory(name)",
+    "_graph_boost_count": 0,
+    "source": "local"
+  }
+]
+```
+
+Command 3:
+
+```bash
+SPECKIT_SKILL_ADVISOR_HOOK_DISABLED=1 python3 .opencode/skills/system-skill-advisor/mcp_server/scripts/skill_advisor.py --force-native "save this conversation context to memory"
+```
+
+Output:
+
+```json
+{
+  "error": "Native advisor unavailable",
+  "reason": "ADVISOR_DISABLED",
+  "freshness": "native-unavailable"
+}
+```
+
+Comparison to Expected Signals:
+
+- Step 1 expected entries tagged `source: "native"`; actual output was `Native advisor unavailable` with `reason: "SIGTERM"` and `freshness: "unavailable"`.
+- Step 2 expected entries tagged `source: "local"`; actual output contained three entries with `"source": "local"`.
+- Step 3 expected non-zero exit or explicit native unavailable error; actual output emitted `"error": "Native advisor unavailable"` with `"reason": "ADVISOR_DISABLED"`.
+- Prompt text appeared only in expected match/reason fields from the scorer output; no unexpected metadata field was observed in the command output.
+
+---
+
+## 7. PASS/FAIL
+
+BLOCKED: The precondition `MCP server built (native available)` is missing or broken in the current repo state because the native-required command returned `"error": "Native advisor unavailable"`, `"reason": "SIGTERM"`, and `"freshness": "unavailable"` instead of native results.

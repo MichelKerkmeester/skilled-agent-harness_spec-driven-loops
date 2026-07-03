@@ -17,6 +17,8 @@ export {
   getCodeGraphStatusSnapshot,
 } from './memory-surface.js';
 export { buildMutationHookFeedback } from './mutation-feedback.js';
+export { runPostMutationHooks } from '../handlers/mutation-hooks.js';
+export type { MutationHookResult } from '../handlers/mutation-hooks.js';
 export {
   appendAutoSurfaceHints,
   syncEnvelopeTokenCount,

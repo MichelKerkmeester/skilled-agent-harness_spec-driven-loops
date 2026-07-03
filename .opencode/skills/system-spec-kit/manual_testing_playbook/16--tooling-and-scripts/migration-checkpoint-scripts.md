@@ -44,12 +44,31 @@ Targeted suite passes; transcript shows checkpoint sidecar creation, restore suc
 
 ### Evidence
 
-Test transcript + suite summary
+Command run from `.opencode/skills/system-spec-kit/mcp_server`:
+
+```text
+npm test -- --run tests/migration-checkpoint-scripts.vitest.ts
+```
+
+Observed transcript:
+
+```text
+> @spec-kit/mcp-server@1.8.0 test
+> node scripts/run-tests.mjs --run tests/migration-checkpoint-scripts.vitest.ts
+
+
+ RUN  v4.1.9 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit
+
+
+ Test Files  1 passed (1)
+      Tests  2 passed (2)
+   Start at  23:23:01
+   Duration  211ms (transform 85ms, setup 14ms, import 121ms, tests 13ms, environment 0ms)
+```
 
 ### Pass / Fail
 
-- **Pass**: `migration-checkpoint-scripts.vitest.ts` completes with all tests passing and no failures
-- **Fail**: Any contradicting evidence appears or the pass condition is not met.
+- **PASS**: `migration-checkpoint-scripts.vitest.ts` completed with all tests passing and no failures: `Test Files  1 passed (1)` and `Tests  2 passed (2)`.
 
 ### Failure Triage
 

@@ -60,12 +60,96 @@ Flag-off trace is uniform `0.8/INFERRED` for all CALLS edges regardless of what 
 
 ### Evidence
 
-The three `why_included` trace payloads (flag-off baseline, flag-on, flag-off-after-flag-on-scan), with the CALLS and non-CALLS edge entries called out for each.
+BLOCKED before the three `why_included` trace payloads could be collected. The required precondition/command transport was unavailable: both `code_graph_status` and the required flag-off `code_graph_scan({ incremental:false })` returned exit `75` because the `mk-code-index` daemon IPC socket was absent.
+
+`node .opencode/bin/code-index.cjs code_graph_status --format json --timeout-ms 30000`:
+
+```json
+{
+  "status": "error",
+  "error": "backend unavailable: connect ENOENT /tmp/mk-code-index/daemon-ipc.sock",
+  "exitCode": 75
+}
+```
+
+`env -u SPECKIT_CODE_GRAPH_EDGE_CONFIDENCE_DIFFERENTIATION node .opencode/bin/code-index.cjs code_graph_scan --json '{"incremental":false}' --format json --timeout-ms 120000`:
+
+```json
+{
+  "status": "error",
+  "error": "backend unavailable: connect ENOENT /tmp/mk-code-index/daemon-ipc.sock",
+  "exitCode": 75
+}
+```
+
+`mk_code_graph_status` plugin bridge output:
+
+```text
+plugin_id=mk-code-graph
+cache_ttl_ms=5000
+spec_folder=auto
+resume_mode=minimal
+messages_transform_enabled=true
+messages_transform_mode=schema_aligned
+runtime_ready=false
+node_binary=node
+bridge_timeout_ms=15000
+bridge_path=/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-code-graph/mcp_server/plugin_bridges/mk-code-graph-bridge.mjs
+last_runtime_error=Bridge skipped: SOCKET_ABSENT (exit=75); plugin injection will no-op
+cache_entries=0
+cache=empty
+```
+
+`node .opencode/bin/mk-code-index-launcher.cjs --help` did not print help; it attempted launcher startup and reported the live owner lease instead:
+
+```text
+[mk-code-index-launcher] loaded 1 env(s) from .env.local
+[mk-code-index-launcher] env clickup_CLICKUP_API_KEY from .env is not allowlisted; skipping
+[mk-code-index-launcher] env clickup_CLICKUP_TEAM_ID from .env is not allowlisted; skipping
+[mk-code-index-launcher] env figma_FIGMA_API_KEY from .env is not allowlisted; skipping
+[mk-code-index-launcher] env github_GITHUB_PERSONAL_ACCESS_TOKEN from .env is not allowlisted; skipping
+[mk-code-index-launcher] env SPECKIT_ABLATION from .env is not allowlisted; skipping
+[mk-code-index-launcher] MAINTAINER_MODE: forcing INDEX_* to "true" for skills, plugins
+[mk-code-index-launcher] liveOwnerDetected: ownerPid=92774 classification=live-owner
+LEASE_HELD_BY:92774 startedAt=2026-06-29T09:35:48.872Z (dead-socket-recheck)
+```
+
+Owner lease payload from `.opencode/skills/system-code-graph/mcp_server/database/.code-graph-owner.json`:
+
+```json
+{
+  "ownerPid": 92774,
+  "ppid": 92771,
+  "executablePath": "/Users/michelkerkmeester/.hermes/node/bin/node",
+  "startedAtIso": "2026-06-29T09:35:48.872Z",
+  "lastHeartbeatIso": "2026-07-03T01:22:31.903Z",
+  "ttlMs": 60000,
+  "canonicalDbDir": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-code-graph/mcp_server/database",
+  "socketPath": "/tmp/mk-code-index/daemon-ipc.sock"
+}
+```
+
+PID lease payload from `.opencode/skills/system-code-graph/mcp_server/database/.mk-code-index-launcher.json`:
+
+```json
+{
+  "pid": 92771,
+  "startedAt": "2026-06-29T09:35:48.889Z",
+  "socketPath": "/tmp/mk-code-index/daemon-ipc.sock"
+}
+```
+
+`ps -p 92774 -o pid=,ppid=,stat=,command=`:
+
+```text
+92774 92771 S    /Users/michelkerkmeester/.hermes/node/bin/node /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-code-graph/mcp_server/dist/index.js
+```
+
+No flag-off baseline, flag-on, or flag-off-after-flag-on-scan `why_included` payloads were produced because the scenario's required code-graph commands could not run through the available MCP/CLI transport.
 
 ### Pass / Fail
 
-- **Pass**: gradient appears only while the flag is on, AMBIGUOUS is weak evidence, non-CALLS edges are unaffected in every state, and flag-off-after-flag-on-scan reads the legacy tier.
-- **Fail**: flag-off ever shows a differentiated value, AMBIGUOUS is missed as weak evidence, a non-CALLS edge's metadata changes with the flag, or flag-off-after-flag-on-scan still shows the differentiated value.
+- **BLOCKED**: Required `code_graph_status` / `code_graph_scan` execution was unavailable. The CLI returned `backend unavailable: connect ENOENT /tmp/mk-code-index/daemon-ipc.sock` with `exitCode: 75`, while launcher startup reported `LEASE_HELD_BY:92774 ... (dead-socket-recheck)` and the owner process was still live.
 
 ### Failure Triage
 

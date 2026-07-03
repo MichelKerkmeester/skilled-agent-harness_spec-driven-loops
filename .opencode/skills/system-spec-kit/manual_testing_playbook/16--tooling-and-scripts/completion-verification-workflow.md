@@ -49,12 +49,172 @@ Level 1 fixture returns advisory exit 0; compliant Level 3 fixture reports COMPL
 
 ### Evidence
 
-Command transcript, JSON output for the compliant and degraded runs, and the modified checklist diff in the temp fixture
+Command 1:
+
+```text
+$ bash .opencode/skills/system-spec-kit/scripts/spec/check-completion.sh .opencode/skills/system-spec-kit/scripts/test-fixtures/062-template-compliant-level1
+⚠ No checklist.md found in .opencode/skills/system-spec-kit/scripts/test-fixtures/062-template-compliant-level1
+  This may be a Level 1 spec (checklist not required).
+  Create checklist.md for Level 2+ enforcement.
+EXIT_CODE=0
+```
+
+Command 2:
+
+```json
+{
+  "folder": ".opencode/skills/system-spec-kit/scripts/test-fixtures/063-template-compliant-level3",
+  "status": "EVIDENCE_MISSING",
+  "passed": false,
+  "strict": false,
+  "summary": {
+    "total": 36,
+    "completed": 36,
+    "percentage": 100
+  },
+  "priorities": {
+    "p0": { "total": 12, "completed": 12 },
+    "p1": { "total": 20, "completed": 20 },
+    "p2": { "total": 4, "completed": 4 },
+    "untagged": { "total": 0, "completed": 0 }
+  },
+  "qualityGates": {
+    "priorityContextMissing": 0,
+    "p0MissingEvidence": 12,
+    "p1MissingEvidence": 20
+  }
+}
+EXIT_CODE=1
+```
+
+Commands 3-7 and temp fixture evidence:
+
+```text
+TMP_DIR=/tmp/speckit-completion-tl1LPK
+JSON_AS_WRITTEN:
+{
+  "folder": "/tmp/speckit-completion-tl1LPK/level3-missing-evidence",
+  "status": "EVIDENCE_MISSING",
+  "passed": false,
+  "strict": false,
+  "summary": {
+    "total": 36,
+    "completed": 36,
+    "percentage": 100
+  },
+  "priorities": {
+    "p0": { "total": 12, "completed": 12 },
+    "p1": { "total": 20, "completed": 20 },
+    "p2": { "total": 4, "completed": 4 },
+    "untagged": { "total": 0, "completed": 0 }
+  },
+  "qualityGates": {
+    "priorityContextMissing": 0,
+    "p0MissingEvidence": 12,
+    "p1MissingEvidence": 20
+  }
+}
+JSON_AS_WRITTEN_EXIT_CODE=0
+JSON_DIRECT_EXIT_CHECK:
+{
+  "folder": "/tmp/speckit-completion-tl1LPK/level3-missing-evidence",
+  "status": "EVIDENCE_MISSING",
+  "passed": false,
+  "strict": false,
+  "summary": {
+    "total": 36,
+    "completed": 36,
+    "percentage": 100
+  },
+  "priorities": {
+    "p0": { "total": 12, "completed": 12 },
+    "p1": { "total": 20, "completed": 20 },
+    "p2": { "total": 4, "completed": 4 },
+    "untagged": { "total": 0, "completed": 0 }
+  },
+  "qualityGates": {
+    "priorityContextMissing": 0,
+    "p0MissingEvidence": 12,
+    "p1MissingEvidence": 20
+  }
+}
+JSON_DIRECT_EXIT_CODE=1
+STRICT_AS_WRITTEN:
+
+───────────────────────────────────────────────────────────────
+
+  Checklist Completion Check
+───────────────────────────────────────────────────────────────
+
+
+  Folder: /tmp/speckit-completion-tl1LPK/level3-missing-evidence
+  Mode:   Strict (P2 required)
+
+───────────────────────────────────────────────────────────────
+
+
+  Priority Breakdown:
+    ✓ [P0] Critical: 12/12 complete
+    ✓ [P1] High: 20/20 complete
+    ✓ [P2] Medium: 4/4 complete
+    ✓ Priority context present for all checklist items
+
+───────────────────────────────────────────────────────────────
+
+
+  Summary: 36/36 items (100%)
+
+  RESULT: BLOCKED
+
+STRICT_AS_WRITTEN_EXIT_CODE=0
+STRICT_DIRECT_EXIT_CHECK:
+    ✗ Evidence on completed P0/P1: missing on 32 item(s) (BLOCKING)
+  Completed P0/P1 items are missing evidence markers. Add [EVIDENCE:] before claiming completion.
+
+───────────────────────────────────────────────────────────────
+
+  Checklist Completion Check
+───────────────────────────────────────────────────────────────
+
+
+  Folder: /tmp/speckit-completion-tl1LPK/level3-missing-evidence
+  Mode:   Strict (P2 required)
+
+───────────────────────────────────────────────────────────────
+
+
+  Priority Breakdown:
+    ✓ [P0] Critical: 12/12 complete
+    ✓ [P1] High: 20/20 complete
+    ✓ [P2] Medium: 4/4 complete
+    ✓ Priority context present for all checklist items
+
+───────────────────────────────────────────────────────────────
+
+
+  Summary: 36/36 items (100%)
+
+  RESULT: BLOCKED
+
+STRICT_DIRECT_EXIT_CODE=1
+DIFF_EXIT_CHECK:
+    ✗ Evidence on completed P0/P1: missing on 32 item(s) (BLOCKING)
+  Completed P0/P1 items are missing evidence markers. Add [EVIDENCE:] before claiming completion.
+DIFF_EXIT_CODE=0
+```
+
+Additional fixture check:
+
+```text
+$ grep EVIDENCE .opencode/skills/system-spec-kit/scripts/test-fixtures/063-template-compliant-level3/checklist.md
+No files found
+```
+
+The expected `COMPLETE` signal for the compliant Level 3 fixture was not present. The fixture already lacks `[EVIDENCE:...]` markers, so the perl degradation command produced no checklist diff (`DIFF_EXIT_CODE=0`) and both compliant and degraded Level 3 checks reported `EVIDENCE_MISSING`.
 
 ### Pass / Fail
 
-- **Pass**: the lightweight fixture does not hard-fail, the compliant fixture reports COMPLETE, and the degraded fixture blocks completion with a non-zero exit and explicit reason
-- **Fail**: Any contradicting evidence appears or the pass condition is not met.
+- **Fail**: The lightweight fixture returned advisory exit 0, but the compliant Level 3 fixture returned `status: "EVIDENCE_MISSING"`, `passed: false`, and `EXIT_CODE=1` instead of reporting `COMPLETE`; the pass condition is not met.
 
 ### Failure Triage
 

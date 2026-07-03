@@ -65,3 +65,71 @@ Compare with .opencode/mcp.json if present for parity.
 - Group: Post-Rename Infrastructure
 - Playbook ID: 018
 - Canonical root source: `manual_testing_playbook.md`
+
+---
+
+## 6. EVIDENCE
+
+Read `.claude/mcp.json` in full. Relevant observed values:
+
+```json
+{
+  "mcpServers": {
+    "sequential_thinking": {
+      "command": "npx",
+      "args": [
+        "@modelcontextprotocol/server-sequential-thinking@2025.12.18"
+      ]
+    },
+    "mk-spec-memory": {
+      "command": "node",
+      "args": [
+        ".opencode/bin/mk-spec-memory-launcher.cjs"
+      ]
+    },
+    "mk_skill_advisor": {
+      "command": "node",
+      "args": [
+        ".opencode/bin/mk-skill-advisor-launcher.cjs"
+      ]
+    },
+    "mk_code_index": {
+      "command": "node",
+      "args": [
+        ".opencode/bin/mk-code-index-launcher.cjs"
+      ]
+    },
+    "code_mode": {
+      "command": "/Users/michelkerkmeester/.nvm/versions/node/v24.9.0/bin/node",
+      "args": [
+        ".opencode/skills/mcp-code-mode/mcp_server/dist/index.js"
+      ]
+    }
+  }
+}
+```
+
+Variant scenario check: `.opencode/mcp.json` was not present.
+
+Command run:
+
+```bash
+node -e 'const fs=require("fs"); const data=JSON.parse(fs.readFileSync(".claude/mcp.json","utf8")); const servers=data.mcpServers||{}; console.log("mcpServers keys:", Object.keys(servers).join(", ")); console.log("mk_code_index present:", Object.prototype.hasOwnProperty.call(servers,"mk_code_index")); console.log("system_code_graph present:", Object.prototype.hasOwnProperty.call(servers,"system_code_graph")); console.log("mk_code_index.command:", servers.mk_code_index && servers.mk_code_index.command); console.log("mk_code_index.args:", JSON.stringify(servers.mk_code_index && servers.mk_code_index.args)); console.log("mk-code-index-launcher.cjs arg present:", Array.isArray(servers.mk_code_index && servers.mk_code_index.args) && servers.mk_code_index.args.some((arg)=>arg.includes("mk-code-index-launcher.cjs")));'
+```
+
+Actual output:
+
+```text
+mcpServers keys: sequential_thinking, mk-spec-memory, mk_skill_advisor, mk_code_index, code_mode
+mk_code_index present: true
+system_code_graph present: false
+mk_code_index.command: node
+mk_code_index.args: [".opencode/bin/mk-code-index-launcher.cjs"]
+mk-code-index-launcher.cjs arg present: true
+```
+
+---
+
+## 7. PASS/FAIL
+
+PASS

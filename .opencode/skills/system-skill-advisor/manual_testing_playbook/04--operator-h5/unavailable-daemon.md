@@ -78,3 +78,47 @@ advisor_status({"workspaceRoot":"/tmp/path-to-copy"})
 - Playbook ID: OP-003
 - Canonical root source: manual_testing_playbook.md
 - Feature file path: 04--operator-h5/unavailable-daemon.md
+
+---
+
+## 6. EVIDENCE
+
+- Scenario file read in full: `Read` returned `(End of file - total 80 lines)`.
+- The file contains no explicit `Preconditions` heading, no explicit `Commands` heading, no existing `Evidence` heading, and no existing `Pass/Fail` heading in lines 1-80.
+- Required execution steps observed in the file:
+
+````text
+33: 1. In a disposable copy, replace the copied `skill-graph.sqlite` with invalid bytes.
+34: 2. Detect:
+35: 
+36: ```text
+37: advisor_status({"workspaceRoot":"/tmp/path-to-copy"})
+38: ```
+39: 
+40: 3. Confirm `freshness: "unavailable"` or trust reason indicating database failure.
+41: 4. Trigger rebuild:
+42: 
+43: ```text
+44: skill_graph_scan({}) from a trusted operator/daemon context
+45: advisor_status({"workspaceRoot":"/tmp/path-to-copy"})
+46: ```
+47: 
+48: 5. If MCP scan is unavailable, restart the MCP server after deleting only the corrupt copied database.
+49: 6. Negative auth check: call `skill_graph_scan({})` from an untrusted public MCP context and confirm the response is `status: "error"`, `code: "UNTRUSTED_CALLER"`, with no graph mutation.
+````
+
+- Execution was blocked before creating a disposable copy or replacing `skill-graph.sqlite` because the operator instruction for this run says:
+
+```text
+Do NOT modify, create, or delete any file OTHER than the single scenario file named below.
+```
+
+- The scenario's own execution step 1 requires creating and corrupting a copied `skill-graph.sqlite`, and step 5 may require deleting the corrupt copied database; those writes are outside the only allowed write path:
+
+```text
+.opencode/skills/system-skill-advisor/manual_testing_playbook/04--operator-h5/unavailable-daemon.md (this file only)
+```
+
+## 7. PASS/FAIL
+
+BLOCKED - The scenario requires creating and corrupting a disposable SQLite database copy, but this run permits writes only to this scenario file.

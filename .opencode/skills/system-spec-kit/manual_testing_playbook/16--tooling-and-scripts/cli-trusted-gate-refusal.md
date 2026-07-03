@@ -59,12 +59,50 @@ rm -rf "$SANDBOX"
 
 ### Evidence
 
-Shell transcript with all six envelopes and exit codes.
+Shell transcript with all six envelopes and exit codes:
+
+```text
+{
+  "status": "error",
+  "error": "advisor_rebuild requires --trusted or MK_SKILL_ADVISOR_CLI_TRUSTED=1",
+  "exitCode": 64
+}
+rebuild exit=64
+{
+  "status": "error",
+  "error": "skill_graph_scan requires --trusted or MK_SKILL_ADVISOR_CLI_TRUSTED=1",
+  "exitCode": 64
+}
+scan exit=64
+{
+  "status": "error",
+  "error": "skill_graph_propagate_enhances requires --trusted or MK_SKILL_ADVISOR_CLI_TRUSTED=1",
+  "exitCode": 64
+}
+apply exit=64
+{
+  "status": "error",
+  "error": "backend unavailable: connect ENOENT /tmp/cli-playbook.B5biRI/sock/daemon-ipc.sock",
+  "exitCode": 75
+}
+trusted exit=75
+{
+  "status": "error",
+  "error": "backend unavailable: connect ENOENT /tmp/cli-playbook.B5biRI/sock/daemon-ipc.sock",
+  "exitCode": 75
+}
+env-trusted exit=75
+{
+  "status": "error",
+  "error": "backend unavailable: connect ENOENT /tmp/cli-playbook.B5biRI/sock/daemon-ipc.sock",
+  "exitCode": 75
+}
+dry-run exit=75
+```
 
 ### Pass / Fail
 
-- **Pass**: the three untrusted mutations exit 64 pre-IPC; the trusted and dry-run calls reach IPC (exit 75 in the sandbox).
-- **Fail**: any untrusted mutation reaches IPC (exit 75/0), any refusal carries the wrong exit code, or the trusted flag fails to pass the gate.
+PASS: the three untrusted mutations exited 64 pre-IPC; the trusted and dry-run calls reached IPC and exited 75 in the daemon-less sandbox.
 
 ### Failure Triage
 

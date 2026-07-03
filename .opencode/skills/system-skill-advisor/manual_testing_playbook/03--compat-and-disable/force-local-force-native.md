@@ -77,3 +77,76 @@ python3 .opencode/skills/system-skill-advisor/mcp_server/scripts/skill_advisor.p
 - Playbook ID: CP-002
 - Canonical root source: manual_testing_playbook.md
 - Feature file path: 03--compat-and-disable/force-local-force-native.md
+
+---
+
+## 6. EVIDENCE
+
+### Force local
+
+Command:
+
+```bash
+python3 .opencode/skills/system-skill-advisor/mcp_server/scripts/skill_advisor.py --force-local "help me commit my changes"
+```
+
+Observed output:
+
+```text
+Skill graph: loaded from SQLite
+[
+  {
+    "skill": "sk-git",
+    "kind": "skill",
+    "confidence": 0.95,
+    "uncertainty": 0.23,
+    "passes_threshold": true,
+    "reason": "Matched: !changes(multi), !commit, !commit(keyword), !commit(signal), branch",
+    "_graph_boost_count": 0,
+    "source": "local"
+  }
+]
+EXIT_CODE=0
+```
+
+### Force native
+
+Command:
+
+```bash
+python3 .opencode/skills/system-skill-advisor/mcp_server/scripts/skill_advisor.py --force-native "help me commit my changes"
+```
+
+Observed output:
+
+```text
+{
+  "error": "Native advisor unavailable",
+  "reason": "SIGTERM",
+  "freshness": "unavailable"
+}
+EXIT_CODE=2
+```
+
+### Invalid combination
+
+Command:
+
+```bash
+python3 .opencode/skills/system-skill-advisor/mcp_server/scripts/skill_advisor.py --force-local --force-native "help me commit my changes"
+```
+
+Observed output:
+
+```text
+{
+  "error": "Use only one of --force-local or --force-native."
+}
+EXIT_CODE=2
+```
+
+---
+
+## 7. PASS/FAIL
+
+PASS

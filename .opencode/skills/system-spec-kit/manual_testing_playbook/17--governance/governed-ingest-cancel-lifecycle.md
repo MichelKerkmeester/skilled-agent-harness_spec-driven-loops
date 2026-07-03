@@ -63,3 +63,29 @@ No persistent cleanup is required unless the command writes a temporary fixture 
 - Group: Governance
 - Playbook ID: 278
 - Tools: `memory_ingest_start`, `memory_ingest_status`, `memory_ingest_cancel`
+
+---
+
+## 6. EVIDENCE
+
+Scenario command 1 requires creating a temporary folder under `/tmp/playbook-017-ingest` with one markdown file. The manual execution request also explicitly restricted writes to only this scenario file, so creating that fixture would violate the allowed write paths.
+
+Observed fixture check before attempting ingest commands:
+
+```text
+$ ls -ld "/tmp/playbook-017-ingest" "/tmp/playbook-017-ingest"/*.md
+zsh:1: no matches found: /tmp/playbook-017-ingest/*.md
+```
+
+Observed direct path check:
+
+```text
+$ ls -ld "/tmp/playbook-017-ingest"
+ls: /tmp/playbook-017-ingest: No such file or directory
+```
+
+Because the fixture path does not exist and this run was not allowed to create files outside `.opencode/skills/system-spec-kit/manual_testing_playbook/17--governance/governed-ingest-cancel-lifecycle.md`, the required `memory_ingest_start/status/cancel` lifecycle commands were not run.
+
+## 7. PASS/FAIL
+
+BLOCKED - Required temporary fixture `/tmp/playbook-017-ingest` is missing, and creating it is prohibited by the run's allowed write paths.

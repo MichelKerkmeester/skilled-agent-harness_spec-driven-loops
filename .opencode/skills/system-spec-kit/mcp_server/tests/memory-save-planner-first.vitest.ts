@@ -2,6 +2,7 @@ import { describe, expect, it } from 'vitest';
 
 import {
   buildPlannerResponse,
+  buildSaveResponse,
   serializePlannerAdvisory,
   serializePlannerBlocker,
   serializePlannerFollowUpAction,
@@ -209,6 +210,64 @@ describe('memory-save planner-first response contract', () => {
     expect(payload.hints).toEqual(expect.arrayContaining([
       'Available follow-up actions: apply',
       'Resolve planner blockers before requesting full-auto apply mode',
+    ]));
+  });
+
+  it('exposes typed postMutationHooks and partial-indexing guidance for applied saves', () => {
+    const response = buildSaveResponse({
+      result: {
+        status: 'indexed',
+        id: 42,
+        specFolder: 'system-spec-kit/015-save-flow-planner-first-trim',
+        title: 'Save Flow Planner First',
+        embeddingStatus: 'partial',
+      },
+      filePath: '/tmp/source-memory.md',
+      asyncEmbedding: false,
+      requestId: 'test-request-post-hooks',
+    });
+
+    const payload = JSON.parse(String(response.content?.[0]?.text ?? '{}'));
+
+    expect(payload.data.postMutationHooks).toEqual(expect.objectContaining({
+      operation: 'save',
+      triggerCacheCleared: true,
+      constitutionalCacheCleared: true,
+      graphSignalsCacheCleared: true,
+      coactivationCacheCleared: true,
+      toolCacheInvalidated: expect.any(Number),
+      errors: [],
+    }));
+    expect(payload.data.postMutationHooks.subscribers).toEqual(expect.arrayContaining([
+      expect.objectContaining({ name: 'trigger-cache', ok: true }),
+      expect.objectContaining({ name: 'constitutional-cache', ok: true }),
+      expect.objectContaining({ name: 'graph-cache', ok: true }),
+      expect.objectContaining({ name: 'coactivation-cache', ok: true }),
+    ]));
+    expect(payload.hints).toEqual(expect.arrayContaining([
+      'Large file indexed via chunking: parent record + individual chunk records with embeddings',
+      expect.stringContaining('Post-mutation subscribers:'),
+    ]));
+  });
+
+  it('suppresses postMutationHooks for duplicate no-op saves and reports unchanged caches', () => {
+    const response = buildSaveResponse({
+      result: {
+        status: 'duplicate',
+        id: 42,
+        specFolder: 'system-spec-kit/015-save-flow-planner-first-trim',
+        title: 'Save Flow Planner First',
+      },
+      filePath: '/tmp/source-memory.md',
+      asyncEmbedding: false,
+      requestId: 'test-request-duplicate-no-op',
+    });
+
+    const payload = JSON.parse(String(response.content?.[0]?.text ?? '{}'));
+
+    expect(payload.data.postMutationHooks).toBeUndefined();
+    expect(payload.hints).toEqual(expect.arrayContaining([
+      'Duplicate content matched an existing indexed memory, so caches were left unchanged',
     ]));
   });
 });

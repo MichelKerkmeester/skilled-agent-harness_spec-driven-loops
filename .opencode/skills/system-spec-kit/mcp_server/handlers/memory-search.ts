@@ -9,7 +9,7 @@ import * as toolCache from '../lib/cache/tool-cache.js';
 import * as causalEdges from '../lib/storage/causal-edges.js';
 import * as sessionManager from '../lib/session/session-manager.js';
 import * as intentClassifier from '../lib/search/intent-classifier.js';
-import { isSessionBoostEnabled, isCausalBoostEnabled, isCommunitySearchFallbackEnabled, isDualRetrievalEnabled, isIntentAutoProfileEnabled } from '../lib/search/search-flags.js';
+import { isSessionBoostEnabled, isCausalBoostEnabled, isCommunitySearchFallbackEnabled, isDualRetrievalEnabled, isIntentAutoProfileEnabled, isResultExplainEnabled } from '../lib/search/search-flags.js';
 import { isRetrievalProfileWeightsEnabled } from '../lib/search/retrieval-profile.js';
 import { searchCommunities } from '../lib/search/community-search.js';
 // 4-stage pipeline architecture
@@ -92,6 +92,7 @@ import {
 } from '../lib/response/profile-formatters.js';
 import {
   buildProgressiveResponse,
+  type DisclosureResult,
   extractSnippets,
   isProgressiveDisclosureEnabled,
   resolveCursor,
@@ -357,6 +358,7 @@ interface SearchArgs {
   min_quality_score?: number;
   mode?: string; // "deep" mode enables query expansion for multi-query RAG
   includeTrace?: boolean;
+  debug?: { enabled?: boolean };
   sessionTransition?: SessionTransitionTrace;
   /** Presentation profile ('quick'|'research'|'resume'|'debug'). Default: full response. */
   profile?: string;
@@ -758,6 +760,24 @@ function isPlainRecord(value: unknown): value is Record<string, unknown> {
   return typeof value === 'object' && value !== null && !Array.isArray(value);
 }
 
+function isDisclosureResult(value: unknown): value is DisclosureResult {
+  return isPlainRecord(value) && (typeof value.id === 'number' || typeof value.id === 'string');
+}
+
+function resolveProgressiveDisclosureResults(
+  formattedResults: unknown,
+  fallbackResults: DisclosureResult[],
+): DisclosureResult[] {
+  if (!Array.isArray(formattedResults)) {
+    return fallbackResults;
+  }
+
+  const disclosureResults = formattedResults.filter(isDisclosureResult);
+  return disclosureResults.length === formattedResults.length
+    ? disclosureResults
+    : fallbackResults;
+}
+
 function documentKey(document: unknown): string | null {
   if (!isPlainRecord(document) || typeof document.path !== 'string') {
     return null;
@@ -894,12 +914,16 @@ async function handleMemorySearch(args: SearchArgs): Promise<MCPResponse> {
     min_quality_score,
     mode,
     includeTrace: includeTraceArg = false,
+    debug,
     sessionTransition,
     profile,
     retrievalLevel: retrievalLevel = 'auto',
   } = args;
   const includeTraceByFlag = process.env.SPECKIT_RESPONSE_TRACE === 'true';
   const includeTrace = includeTraceByFlag || includeTraceArg === true;
+  const resultExplainEnabled = isResultExplainEnabled();
+  const resultExplainDebugEnabled = debug?.enabled === true
+    || process.env.SPECKIT_RESULT_EXPLAIN_DEBUG?.toLowerCase().trim() === 'true';
   const includeArchived = false;
 
   // Validate any caller-supplied sessionId through the server-side session
@@ -1192,6 +1216,8 @@ async function handleMemorySearch(args: SearchArgs): Promise<MCPResponse> {
     enableSessionBoost,
     enableCausalBoost,
     includeTrace,
+    resultExplainEnabled,
+    resultExplainDebugEnabled,
     retrievalLevel,
     cacheVersion: CANONICAL_READER_CACHE_VERSION,
     causalEdgesGeneration: causalEdgesGenerationForCache,
@@ -1538,7 +1564,11 @@ async function handleMemorySearch(args: SearchArgs): Promise<MCPResponse> {
       extraData,
       includeTrace,
       normalizedQuery,   // pass query for recovery + confidence context
-      specFolder ?? null // pass specFolder for recovery narrowing detection
+      specFolder ?? null, // pass specFolder for recovery narrowing detection
+      {
+        enabled: resultExplainEnabled,
+        debugEnabled: resultExplainDebugEnabled,
+      }
     );
 
     // Prepend evidence gap warning if present
@@ -1559,8 +1589,9 @@ async function handleMemorySearch(args: SearchArgs): Promise<MCPResponse> {
         const data = parsedFormatted.envelope.data && typeof parsedFormatted.envelope.data === 'object'
           ? parsedFormatted.envelope.data as Record<string, unknown>
           : {};
+        const progressiveResults = resolveProgressiveDisclosureResults(data.results, resultsForFormatting);
         data.progressiveDisclosure = buildProgressiveResponse(
-          resultsForFormatting,
+          progressiveResults,
           undefined,
           effectiveQuery,
           { scopeKey: progressiveScopeKey },

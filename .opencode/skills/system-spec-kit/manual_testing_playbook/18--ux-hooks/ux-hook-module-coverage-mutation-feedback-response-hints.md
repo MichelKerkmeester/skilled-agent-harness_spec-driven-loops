@@ -43,12 +43,23 @@ Test output shows suite pass (6 tests), including latency/cache-clear booleans, 
 
 ### Evidence
 
-Test transcript + snippet for passing assertions
+Command run from `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public`:
+
+```console
+$ npx vitest run tests/hooks-ux-feedback.vitest.ts
+
+ RUN  v4.1.9 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+
+No test files found, exiting with code 1
+
+filter: tests/hooks-ux-feedback.vitest.ts
+include: **/*.{test,spec}.?(c|m)[jt]s?(x)
+exclude:  **/node_modules/**, **/.git/**
+```
 
 ### Pass / Fail
 
-- **Pass**: `tests/hooks-ux-feedback.vitest.ts` passes all 6 tests with no failing assertions
-- **Fail**: Any contradicting evidence appears or the pass condition is not met.
+- **BLOCKED**: `npx vitest run tests/hooks-ux-feedback.vitest.ts` exited with code 1 because Vitest found no matching test file for `tests/hooks-ux-feedback.vitest.ts`, so the 6-test suite and expected assertion signals could not be observed.
 
 ### Failure Triage
 

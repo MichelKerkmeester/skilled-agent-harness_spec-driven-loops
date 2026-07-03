@@ -71,6 +71,53 @@ advisor_status({"workspaceRoot":"/absolute/path/to/repo"})
 | Reader observes partial write | Recommendation missing newly-indexed skill | Check temp-file rename ordering. |
 | Generation never advances | Status unchanged after touch | Combine with AU-001 to isolate watcher vs. publication fault. |
 
+### Evidence
+
+Baseline `advisor_status({"workspaceRoot":"/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public","checkArtifactIntegrity":true})` output:
+
+```json
+{
+  "status": "ok",
+  "data": {
+    "freshness": "unavailable",
+    "generation": 9476,
+    "trustState": {
+      "state": "stale",
+      "reason": "SIGTERM",
+      "generation": 9476,
+      "checkedAt": "2026-07-03T02:11:56.562Z",
+      "lastLiveAt": null
+    },
+    "lastGenerationBump": "2026-07-02T05:27:14.803Z",
+    "lastScanAt": "2026-07-02T05:27:14.803Z",
+    "skillCount": 26,
+    "laneWeights": {
+      "explicit_author": 0.42,
+      "lexical": 0.28,
+      "graph_causal": 0.13,
+      "derived_generated": 0.12,
+      "semantic_shadow": 0.05
+    }
+  }
+}
+```
+
+Step 2 was not executed because the scenario command requires this write outside the allowed path:
+
+```bash
+touch .opencode/skills/sk-git/SKILL.md
+```
+
+Allowed write paths for this run only permitted:
+
+```text
+.opencode/skills/system-skill-advisor/manual_testing_playbook/05--auto-update-daemon/generation-publication.md
+```
+
+### Pass/Fail
+
+BLOCKED - Step 2 requires modifying `.opencode/skills/sk-git/SKILL.md`, but this run explicitly allowed writes only to `.opencode/skills/system-skill-advisor/manual_testing_playbook/05--auto-update-daemon/generation-publication.md`; the daemon was also not live at baseline (`freshness`: `unavailable`, `trustState.state`: `stale`, `trustState.reason`: `SIGTERM`).
+
 ---
 
 ## 4. SOURCE FILES

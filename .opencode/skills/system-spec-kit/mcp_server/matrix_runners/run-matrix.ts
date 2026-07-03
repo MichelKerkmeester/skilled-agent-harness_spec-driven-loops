@@ -198,6 +198,18 @@ function aggregateRows(records: readonly MatrixCellRecord[], key: 'featureId' | 
   });
 }
 
+function aggregateSummary(records: readonly MatrixCellRecord[]): string {
+  return [
+    'Pass rate by feature',
+    'label\tpassed/applicable\tpass_rate',
+    ...aggregateRows(records, 'featureId'),
+    '',
+    'Pass rate by executor',
+    'label\tpassed/applicable\tpass_rate',
+    ...aggregateRows(records, 'executor'),
+  ].join('\n');
+}
+
 async function runWithConcurrency<T, R>(
   items: readonly T[],
   limit: number,
@@ -249,16 +261,8 @@ export async function runMatrix(options: CliOptions): Promise<readonly MatrixCel
     return record;
   });
 
-  writeFileSync(join(options.outputDir, 'summary.tsv'), summaryRows(records), 'utf8');
-  const aggregate = [
-    'Pass rate by feature',
-    'label\tpassed/applicable\tpass_rate',
-    ...aggregateRows(records, 'featureId'),
-    '',
-    'Pass rate by executor',
-    'label\tpassed/applicable\tpass_rate',
-    ...aggregateRows(records, 'executor'),
-  ].join('\n');
+  const aggregate = aggregateSummary(records);
+  writeFileSync(join(options.outputDir, 'summary.tsv'), `${summaryRows(records)}\n${aggregate}\n`, 'utf8');
   process.stdout.write(`${aggregate}\n`);
 
   return records;

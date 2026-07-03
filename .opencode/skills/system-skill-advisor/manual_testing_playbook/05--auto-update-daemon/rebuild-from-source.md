@@ -61,6 +61,35 @@ skill_graph_scan({})
 - Step 4 post-rebuild status is `live` or `stale` and `advisor_recommend` returns recommendations for the touchstone prompt.
 - No stack trace in stderr and no prompt leakage in diagnostics.
 
+### Evidence
+
+BLOCKED before executing Step 1. The scenario contract requires:
+
+```text
+- Disposable workspace copy. Do not corrupt the live repo database.
+- Backup of the original `skill-graph.sqlite` captured before corruption.
+- MCP server reachable for the copy.
+- Operator has shell access to delete or mutate the copied database.
+```
+
+The scenario command uses an unresolved placeholder path:
+
+```bash
+printf 'corrupt' > /tmp/path-to-copy/.opencode/skills/system-skill-advisor/mcp_server/database/skill-graph.sqlite
+```
+
+The task-level allowed write path is only:
+
+```text
+.opencode/skills/system-skill-advisor/manual_testing_playbook/05--auto-update-daemon/rebuild-from-source.md
+```
+
+No disposable workspace copy path or database backup path was provided, and creating or corrupting `/tmp/path-to-copy/.opencode/skills/system-skill-advisor/mcp_server/database/skill-graph.sqlite` would modify a file outside the allowed write path. Therefore Step 1, Step 2, Step 3, and Step 4 were not executed.
+
+### Pass/Fail
+
+BLOCKED - Missing disposable workspace copy and backup required by the scenario contract; the first command would write outside the task-level allowed write path.
+
 ### Failure Modes
 
 | Symptom | Detection | Action |

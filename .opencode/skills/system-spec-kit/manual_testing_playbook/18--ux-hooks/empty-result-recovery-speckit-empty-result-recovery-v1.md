@@ -47,12 +47,180 @@ Recovery payload contains status (no_results/low_confidence/partial); root cause
 
 ### Evidence
 
-Recovery payload JSON per status + root cause + action list + alternative queries + test transcript
+Test transcript and observed output, run on 2026-07-02:
+
+```text
+$ if test -z "${SPECKIT_EMPTY_RESULT_RECOVERY+x}"; then printf 'SPECKIT_EMPTY_RESULT_RECOVERY is unset\n'; else printf 'SPECKIT_EMPTY_RESULT_RECOVERY=%s\n' "$SPECKIT_EMPTY_RESULT_RECOVERY"; fi
+SPECKIT_EMPTY_RESULT_RECOVERY is unset
+```
+
+Native MCP `memory_search` wrapper attempts were rejected before executing the scenario search when empty optional fields or placeholder cursors were supplied:
+
+```json
+{
+  "summary": "Error: An unexpected error occurred. Please check logs for details.",
+  "data": {
+    "error": "An unexpected error occurred. Please check logs for details.",
+    "code": "E030",
+    "details": {
+      "tool": "memory_search",
+      "issues": [
+        "cursor: Too small: expected string to have >=1 characters",
+        "concepts: Too small: expected array to have >=2 items"
+      ]
+    }
+  }
+}
+```
+
+The documented CLI front door was initially blocked by stale dist:
+
+```text
+$ node .opencode/bin/spec-memory.cjs memory_search --json '{"query":"completely nonexistent topic xyzzy","limit":10,"includeConstitutional":false,"profile":"debug","includeTrace":true,"bypassCache":true}' --format json --timeout-ms 10000
+@spec-kit/mcp-server dist is stale. Run: cd .opencode/skills/system-spec-kit/mcp_server && npm run build
+```
+
+Rebuild was not run because it would write outside the allowed scenario file. The CLI source exposes the read-only stale-dist bypass `SPECKIT_SPEC_MEMORY_CLI_DEV_ALLOW_STALE=1`, so the search commands were executed with that environment variable.
+
+No-results command from the scenario did not produce `status: "no_results"`; it returned 5 memories and no `recovery` object:
+
+```text
+$ SPECKIT_SPEC_MEMORY_CLI_DEV_ALLOW_STALE=1 node .opencode/bin/spec-memory.cjs memory_search --json '{"query":"completely nonexistent topic xyzzy","limit":10,"includeConstitutional":false,"profile":"debug","includeTrace":true,"bypassCache":true}' --format json --timeout-ms 10000
+(node:6431) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+{
+  "summary": "Found 5 memories",
+  "data": {
+    "searchType": "hybrid",
+    "count": 5,
+    "constitutionalCount": 0,
+    "requestQuality": {
+      "label": "weak"
+    },
+    "citationPolicy": "do_not_cite_results",
+    "envelopeRender": "requestQuality weak\ncitationPolicy do_not_cite_results",
+    "retrievalTrace": {
+      "traceId": "tr_mr43r2ct_jym5g7",
+      "query": "completely nonexistent topic xyzzy",
+      "finalResultCount": 5
+    },
+    "summary": "Found 5 memories"
+  }
+}
+```
+
+Low-signal query produced a `low_confidence` recovery payload with `knowledge_gap`, suggested queries, and singular `recommendedAction`:
+
+```text
+$ SPECKIT_SPEC_MEMORY_CLI_DEV_ALLOW_STALE=1 node .opencode/bin/spec-memory.cjs memory_search --json '{"query":"thing stuff help","limit":10,"includeConstitutional":false,"profile":"debug","includeTrace":true,"bypassCache":true}' --format json --timeout-ms 10000
+[factory] Failed to read active-embedder metadata from /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/database/context-index.sqlite: database is locked; continuing provider cascade.
+(node:6435) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+{
+  "summary": "Found 5 memories",
+  "data": {
+    "searchType": "hybrid",
+    "count": 5,
+    "constitutionalCount": 0,
+    "requestQuality": {
+      "label": "gap"
+    },
+    "recovery": {
+      "status": "low_confidence",
+      "reason": "knowledge_gap",
+      "suggestedQueries": [
+        "thing stuff",
+        "thing stuff help"
+      ],
+      "recommendedAction": "ask_user"
+    },
+    "responsePolicy": {
+      "requiredAction": "broaden_or_ask",
+      "noCanonicalPathClaims": true,
+      "citationRequiredForPaths": true,
+      "safeResponse": "Retrieval quality is weak. Broaden the query or ask the user for disambiguation before citing any path."
+    },
+    "retrievalTrace": {
+      "traceId": "tr_mr43r2pv_875v0u",
+      "query": "thing stuff help",
+      "finalResultCount": 5
+    },
+    "summary": "Found 5 memories"
+  }
+}
+```
+
+Narrow specFolder filter with a nonexistent folder did not produce `partial` or `spec_filter_too_narrow`; it returned 5 memories and no `recovery` object:
+
+```text
+$ SPECKIT_SPEC_MEMORY_CLI_DEV_ALLOW_STALE=1 node .opencode/bin/spec-memory.cjs memory_search --json '{"query":"memory search recovery payload","specFolder":"definitely-no-such-spec-folder-xyzzy","limit":10,"includeConstitutional":false,"profile":"debug","includeTrace":true,"bypassCache":true}' --format json --timeout-ms 10000
+(node:6434) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+{
+  "summary": "Found 5 memories",
+  "data": {
+    "searchType": "hybrid",
+    "count": 5,
+    "constitutionalCount": 0,
+    "requestQuality": {
+      "label": "weak"
+    },
+    "citationPolicy": "cite_with_caveat",
+    "retrievalTrace": {
+      "traceId": "tr_mr43r2m4_c71hph",
+      "query": "memory search recovery payload",
+      "finalResultCount": 5
+    },
+    "summary": "Found 5 memories"
+  }
+}
+```
+
+An additional narrow existing specFolder run with `limit: 2` did produce `partial`, but its reason/action did not match the expected `spec_filter_too_narrow` / action-list contract:
+
+```text
+$ SPECKIT_SPEC_MEMORY_CLI_DEV_ALLOW_STALE=1 node .opencode/bin/spec-memory.cjs memory_search --json '{"query":"memory search recovery payload","specFolder":"system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/016-search-and-output-intelligence/003-generic-query-deep-routing","limit":2,"includeConstitutional":false,"profile":"debug","includeTrace":true,"bypassCache":true}' --format json --timeout-ms 10000
+(node:6887) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+{
+  "summary": "Found 2 memories",
+  "data": {
+    "searchType": "hybrid",
+    "count": 2,
+    "constitutionalCount": 0,
+    "requestQuality": {
+      "label": "weak"
+    },
+    "recovery": {
+      "status": "partial",
+      "reason": "knowledge_gap",
+      "suggestedQueries": [
+        "memory search recovery payload",
+        "context search recovery payload",
+        "memory retrieval recovery payload"
+      ],
+      "recommendedAction": "broaden_or_ask"
+    },
+    "retrievalTrace": {
+      "traceId": "tr_mr43s25w_somjgm",
+      "query": "memory search recovery payload",
+      "finalResultCount": 2
+    },
+    "summary": "Found 2 memories"
+  }
+}
+```
+
+Source constants observed in `mcp_server/lib/search/recovery-payload.ts`:
+
+```ts
+const DEFAULT_LOW_CONFIDENCE_THRESHOLD = 0.4;
+const PARTIAL_RESULT_MIN = 3;
+```
 
 ### Pass / Fail
 
-- **Pass**: all 3 statuses produce structured payloads with reason, actions, and alternatives
-- **Fail**: status missing, payload fields incomplete, or thresholds incorrect
+- **FAIL**: Expected outcome did not hold. Observed output did not produce all 3 statuses: `no_results` was missing for `completely nonexistent topic xyzzy`; the nonexistent narrow `specFolder` run produced no recovery payload; the only observed `partial` payload used `reason: "knowledge_gap"` and `recommendedAction: "broaden_or_ask"` rather than the expected `spec_filter_too_narrow` and suggested action-list contract. Threshold constants matched source (`DEFAULT_LOW_CONFIDENCE_THRESHOLD = 0.4`, `PARTIAL_RESULT_MIN = 3`).
 
 ### Failure Triage
 

@@ -46,12 +46,27 @@ Dry-run surfaces template-contract violations; non-dry-run rejects malformed fil
 
 ### Evidence
 
-Dry-run/save rejection output + successful render validation evidence
+BLOCKED before command execution.
+
+Scenario command 1 requires creating a sandbox memory file:
+
+```text
+1. Create a sandbox memory missing mandatory anchors or required frontmatter keys
+```
+
+The active execution constraints prohibit that required setup because only this scenario file is writable:
+
+```text
+Do NOT modify, create, or delete any file OTHER than the single scenario file named below.
+ALLOWED WRITE PATHS
+- .opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/rendered-memory-template-contract.md (this file only)
+```
+
+No `memory_save({ filePath:"<sandbox-file>", dryRun:true })`, `memory_save({ filePath:"<sandbox-file>", force:true })`, or `generate-context.js` command was run, because the scenario's required `<sandbox-file>` could not be created under the stated write constraints.
 
 ### Pass / Fail
 
-- **Pass**: malformed files are rejected before write/index and valid rendered output remains validator-clean
-- **Fail**: Any contradicting evidence appears or the pass condition is not met.
+- **BLOCKED**: Required sandbox-file creation is forbidden by the active allowed-write-path constraint, so the scenario commands cannot be executed exactly as written.
 
 ### Failure Triage
 

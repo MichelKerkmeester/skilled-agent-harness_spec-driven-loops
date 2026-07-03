@@ -44,9 +44,36 @@ rg -n "blocked is an|requiredAction" .opencode/skills/system-code-graph/mcp_serv
 
 ### Evidence
 
-Vitest pass summary plus the grep output showing the policy comment and rendering anchors.
+Command: `(cd .opencode/skills/system-code-graph/mcp_server && npx vitest run tests/code-index-cli-blocked-read.vitest.ts)`
+
+```text
+ RUN  v4.1.7 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+
+
+ Test Files  1 passed (1)
+      Tests  9 passed (9)
+   Start at  22:39:33
+   Duration  5.76s (transform 23ms, setup 0ms, import 31ms, tests 5.65s, environment 0ms)
+```
+
+Command: `rg -n "blocked is an|requiredAction" .opencode/skills/system-code-graph/mcp_server/code-index-cli.ts | head -10`
+
+```text
+260:  status:"blocked" readiness refusals exit 0 deliberately: blocked is an
+261:  actionable answer (run the surfaced requiredAction), not a CLI failure.`;
+790:  return stringField(payload, 'requiredAction')
+791:    ?? (data ? stringField(data, 'requiredAction') : undefined)
+803:  const requiredAction = inferRequiredAction(payload);
+804:  if (!requiredAction) return payload;
+809:    requiredAction,
+810:    data: data ? { ...data, requiredAction } : { requiredAction },
+821:  const requiredAction = inferRequiredAction(payload) ?? 'UNKNOWN';
+822:  return `blocked: ${reason}\nrequiredAction: ${requiredAction}`;
+```
 
 ### Pass / Fail
+
+- **PASS**: suite green with 9 stale-readiness cases passing, and the grep output shows the exit-0 blocked policy plus `requiredAction` lifting and `blocked:` / `requiredAction:` text rendering anchors.
 
 - **Pass**: suite green and both anchors present.
 - **Fail**: any stale case returns an empty-impact answer, a blocked read exits non-zero, or `requiredAction` is missing from either rendering.

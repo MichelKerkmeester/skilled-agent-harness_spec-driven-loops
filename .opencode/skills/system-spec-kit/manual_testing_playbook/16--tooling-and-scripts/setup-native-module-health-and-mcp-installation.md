@@ -46,12 +46,42 @@ Prerequisite JSON is emitted; native probe prints diagnostic lines and recovery 
 
 ### Evidence
 
-JSON prerequisite output, native-module probe transcript, record-node-version stdout, and installer transcript
+Command 1: `bash .opencode/skills/system-spec-kit/scripts/setup/check-prerequisites.sh --json --validate`
+
+```text
+ERROR: Not on a feature branch. Current: system-speckit/028-memory-search-intelligence
+Feature branches should be: 001-feature-name (or main/master/trunk for trunk-based operators)
+```
+
+Command 2: `cd .opencode/skills/system-spec-kit && bash scripts/setup/check-native-modules.sh`
+
+```text
+-- Native Module Health Check --
+
+Current Node.js: v22.23.1
+MODULE_VERSION:  127
+
+Marker Node.js:  v22.23.1
+Marker MODULE:   127
+Version match:   [OK]
+
+-- Module Probes --
+
+better-sqlite3:    [OK] loads
+sharp:             [SKIP] not installed
+
+-- Summary --
+
+If any modules FAILED, run: bash scripts/setup/rebuild-native-modules.sh
+```
+
+Command 3 was not run because `node scripts/setup/record-node-version.js` writes `.node-version-marker`, but the execution request allowed writes only to this scenario file.
+
+Command 4 was not run because `bash scripts/setup/install.sh --skip-verify` is an installer command that may modify MCP/setup configuration outside the only allowed write path.
 
 ### Pass / Fail
 
-- **Pass**: the first three steps succeed and the installer run is explicit about success, rebuild needs, or existing configuration
-- **Fail**: Any contradicting evidence appears or the pass condition is not met.
+- **BLOCKED**: the prerequisite command did not emit JSON and stopped with `ERROR: Not on a feature branch. Current: system-speckit/028-memory-search-intelligence`; the remaining write-capable setup commands could not be run under the request's allowed-write-path restriction.
 
 ### Failure Triage
 

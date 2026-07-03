@@ -46,12 +46,65 @@ Summary channel activates only above corpus size threshold; channel contributes 
 
 ### Evidence
 
-Search output showing channel activation status + corpus size count + fusion contribution evidence
+Command: `npx vitest run tests/memory-summaries.vitest.ts tests/search-flags.vitest.ts tests/rollout-policy.vitest.ts`
+
+```text
+ RUN  v4.1.9 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit
+
+
+ Test Files  3 passed (3)
+      Tests  71 passed (71)
+   Start at  22:26:20
+   Duration  302ms (transform 56ms, setup 21ms, import 68ms, tests 24ms, environment 0ms)
+```
+
+Command: `sqlite3 "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/database/context-index.sqlite" "SELECT 'memory_index_success_count', COUNT(*) FROM memory_index WHERE embedding_status = 'success'; SELECT 'memory_summaries_count', COUNT(*) FROM memory_summaries; SELECT 'scale_gate_gt_5000', CASE WHEN (SELECT COUNT(*) FROM memory_index WHERE embedding_status = 'success') > 5000 THEN 'true' ELSE 'false' END;"`
+
+```text
+memory_index_success_count|18831
+memory_summaries_count|21067
+scale_gate_gt_5000|true
+```
+
+Command: `node "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/bin/spec-memory.cjs" memory_search --json '{"query":"memory summary search channel","limit":5}' --format json --timeout-ms 10000`
+
+```text
+@spec-kit/mcp-server dist is stale. Run: cd .opencode/skills/system-spec-kit/mcp_server && npm run build
+```
+
+MCP status output:
+
+```text
+plugin_id=mk-spec-memory
+enabled=true
+disabled_reason=none
+cache_ttl_ms=5000
+max_brief_chars=2400
+max_cache_entries=200
+runtime_ready=false
+node_binary=node
+bridge_timeout_ms=3000
+cli_timeout_ms=2500
+bridge_path=[spec-memory-bridge]
+last_bridge_status=fail_open
+last_error_code=EXIT_69
+last_duration_ms=51
+bridge_invocations=16
+continuity_lookups=15
+cache_entries=0
+cache_hits=0
+cache_misses=15
+cache_hit_rate=0
+warm_status=fail_open
+warm_error=EXIT_69
+warm_route=cli
+warm_retryable=false
+warm_exit_code=69
+```
 
 ### Pass / Fail
 
-- **Pass**: summary channel activates above threshold and remains inert below it
-- **Fail**: Any contradicting evidence appears or the pass condition is not met.
+- **BLOCKED**: Targeted unit tests pass and the live corpus is above the 5,000-memory threshold, but the real `memory_search` execution path needed to observe Stage 1 search/channel activation output is blocked because `@spec-kit/mcp-server dist is stale` and the Spec Memory MCP bridge reports `runtime_ready=false`, `warm_error=EXIT_69`, `warm_exit_code=69`; rebuilding would modify files outside the allowed write path.
 
 ### Failure Triage
 

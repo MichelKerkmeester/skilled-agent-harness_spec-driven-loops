@@ -58,6 +58,28 @@ advisor_validate({"skillSlug":null})
 | Ablation numbers match baseline exactly | Disabling a lane has no effect | Inspect `ablation.ts` weight override wiring. |
 | Ablation crashes | Runtime exception | Treat as HALT and audit ablation path. |
 
+### Evidence
+
+Required command attempted as MCP `advisor_validate({"skillSlug":null})` with tool-required fields `confirmHeavyRun:true`, `workspaceRoot:"/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public"`, and `outcomeEvents:[]`.
+
+First attempt output:
+
+```text
+MCP error -32001: backend recycled; retry
+```
+
+Retry output:
+
+```text
+MCP error -32001: backend recycled; retry
+```
+
+The required baseline and ablation slice were not returned, so steps 2-4 could not be executed. Missing/broken precondition: `advisor_validate` is not currently returning validation output; the MCP backend recycled on both real attempts.
+
+### Pass/Fail
+
+BLOCKED — `advisor_validate({"skillSlug":null})` did not return the baseline or ablation slice; both real MCP attempts returned `MCP error -32001: backend recycled; retry`.
+
 ---
 
 ## 4. SOURCE FILES

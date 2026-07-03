@@ -13,10 +13,37 @@ const defaultSocketDir = '/tmp/mk-skill-advisor';
 const socketFileName = 'daemon-ipc.sock';
 const allowStale = process.env.MK_SKILL_ADVISOR_CLI_DEV_ALLOW_STALE === '1'
   || process.env.SPECKIT_SKILL_ADVISOR_CLI_DEV_ALLOW_STALE === '1';
+const EXIT_PROTOCOL = 69;
+const EXIT_RETRYABLE = 75;
 
-function fail(message) {
-  process.stderr.write(`${message}\n`);
-  process.exit(69);
+function requestedFormat(argv) {
+  for (let index = 0; index < argv.length; index += 1) {
+    const token = argv[index];
+    if (token === '--format') return argv[index + 1] || 'json';
+    const inline = token.match(/^--format=(.*)$/);
+    if (inline) return inline[1];
+  }
+  return 'json';
+}
+
+function requestedWarmOnly(argv) {
+  return argv.some((token) => token === '--warm-only' || token === '--warm-only=true' || token === '--warm-only=1');
+}
+
+function fail(message, exitCode = EXIT_PROTOCOL, fields = {}) {
+  const format = requestedFormat(process.argv.slice(2));
+  if (format === 'json' || format === 'jsonl') {
+    const payload = {
+      status: 'error',
+      error: message,
+      exitCode,
+      ...fields,
+    };
+    process.stderr.write(`${format === 'jsonl' ? JSON.stringify(payload) : JSON.stringify(payload, null, 2)}\n`);
+  } else {
+    process.stderr.write(`${message}\n`);
+  }
+  process.exit(exitCode);
 }
 
 function ensureFreshDist() {
@@ -25,7 +52,10 @@ function ensureFreshDist() {
     entry: 'skill-advisor-cli',
     allowStale,
   });
-  if (result.status === 'missing' || result.stale) fail(result.message);
+  if (result.status === 'missing' || result.stale) {
+    const warmOnly = requestedWarmOnly(process.argv.slice(2));
+    fail(result.message, warmOnly ? EXIT_RETRYABLE : EXIT_PROTOCOL, warmOnly ? { staleDistWarning: result.message } : {});
+  }
   if (result.status === 'error') {
     process.stderr.write(`WARNING: ${result.message}\n`);
   }
@@ -55,7 +85,7 @@ const result = spawnSync(process.execPath, [cliDist, ...process.argv.slice(2)], 
 
 if (result.error) {
   process.stderr.write(`${result.error.message}\n`);
-  process.exit(75);
+  process.exit(EXIT_RETRYABLE);
 }
 
 process.exit(result.status ?? 1);

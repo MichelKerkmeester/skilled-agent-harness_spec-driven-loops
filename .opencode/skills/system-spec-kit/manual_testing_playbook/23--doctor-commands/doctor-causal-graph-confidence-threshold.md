@@ -55,19 +55,64 @@ The state log or final report shows `threshold: 0.7`, the attempted count, inser
 
 ### Evidence
 
-- Candidate list with confidence values.
-- Snapshot path emitted before mutation.
-- Link results showing `memory_causal_link` calls only for `confidence >= 0.7`.
-- Skipped-candidate log entries for `0.65` and `0.40` records.
-- Pre-run and post-run causal edge counts proving the delta equals the eligible insert count.
-- Final state-log path and gold-battery result.
+- Command/read evidence for routed workflow contract:
+  - Read `.opencode/commands/doctor/speckit.md`; frontmatter allows `mcp__mk_spec_memory__memory_causal_stats`, `mcp__mk_spec_memory__memory_drift_why`, and `mcp__mk_spec_memory__memory_search` for `/doctor causal-graph`.
+  - Read `.opencode/commands/doctor/_routes.yaml`; route `causal-graph` has `allowed_flags: ["--confidence-threshold=N"]`, `mutating: read-only`, and `gate3_location: "n/a (read-only diagnostic; samples causal_edges and recommends candidates, no writes)"`.
+  - Read `.opencode/commands/doctor/assets/doctor_causal-graph.yaml`; lines observed in command output include `purpose: Read-only causal graph stats and drift sampling with user review gates. No mutations.` and `This command is READ-ONLY by contract. Any attempted write or delete halts with STATUS=FAIL and ERROR='confirm-mode-mutation-violation'.`
+- Baseline DB stat command:
+  ```
+  stat -f '%m %z' .opencode/skills/system-spec-kit/mcp_server/database/context-index.sqlite
+  ```
+  Output:
+  ```
+  1783038505 1327964160
+  ```
+- Baseline `memory_causal_stats({})` command attempted through the warm Spec Memory CLI fallback:
+  ```
+  node .opencode/bin/spec-memory.cjs memory_causal_stats --json '{}' --format json --timeout-ms 3000 --warm-only
+  ```
+  Output:
+  ```
+  @spec-kit/mcp-server dist is stale. Run: cd .opencode/skills/system-spec-kit/mcp_server && npm run build
+  ```
+- Spec Memory plugin status after the failed `memory_causal_stats` attempt:
+  ```
+  plugin_id=mk-spec-memory
+  enabled=true
+  disabled_reason=none
+  cache_ttl_ms=5000
+  max_brief_chars=2400
+  max_cache_entries=200
+  runtime_ready=false
+  node_binary=node
+  bridge_timeout_ms=3000
+  cli_timeout_ms=2500
+  bridge_path=[spec-memory-bridge]
+  last_bridge_status=fail_open
+  last_error_code=EXIT_69
+  last_duration_ms=51
+  bridge_invocations=8
+  continuity_lookups=7
+  cache_entries=0
+  cache_hits=0
+  cache_misses=7
+  cache_hit_rate=0
+  warm_status=fail_open
+  warm_error=EXIT_69
+  warm_route=cli
+  warm_retryable=false
+  warm_exit_code=69
+  ```
+- Candidate list with confidence values: not available because `memory_causal_stats({})` could not execute and the required mixed-confidence candidate precondition could not be confirmed.
+- Snapshot path emitted before mutation: not available; current routed `/doctor causal-graph` workflow is read-only and the scenario run was blocked before candidate analysis.
+- Link results showing `memory_causal_link` calls only for `confidence >= 0.7`: not available; current routed `/doctor causal-graph` workflow explicitly says it never calls `memory_causal_link`.
+- Skipped-candidate log entries for `0.65` and `0.40` records: not available because candidate analysis could not run.
+- Pre-run and post-run causal edge counts proving the delta equals the eligible insert count: not available because `memory_causal_stats({})` could not execute.
+- Final state-log path and gold-battery result: not available because the command sequence was blocked by stale Spec Memory MCP dist/runtime readiness.
 
 ### Pass / Fail
 
-- **PASS**: every inserted edge has confidence `>= 0.7`, every below-threshold candidate is skipped with a visible reason, and edge count delta equals the eligible inserted count.
-- **FAIL**: any candidate below `0.7` is linked, below-threshold skips are not logged, the threshold is lowered, or edge count delta does not match the eligible insert count.
-- **SKIP**: no sandbox or target dataset with mixed-confidence causal candidates is available.
-- **UNAUTOMATABLE**: the runtime cannot execute `/doctor causal-graph` or inspect candidate/link evidence.
+- **BLOCKED**: `memory_causal_stats({})` could not execute because the Spec Memory MCP dist is stale (`@spec-kit/mcp-server dist is stale. Run: cd .opencode/skills/system-spec-kit/mcp_server && npm run build`) and the plugin reports `runtime_ready=false`, `last_error_code=EXIT_69`, `warm_status=fail_open`, `warm_retryable=false`. Rebuilding would modify files outside this scenario's allowed write path, so the mixed-confidence candidate precondition and expected link/skip evidence could not be verified.
 
 ### Failure Triage
 

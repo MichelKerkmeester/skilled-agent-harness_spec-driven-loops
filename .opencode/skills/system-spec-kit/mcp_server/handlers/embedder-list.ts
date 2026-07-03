@@ -22,6 +22,8 @@ import type { MCPResponse } from './types.js';
 
 interface EmbedderListEntry {
   readonly name: string;
+  readonly dimensions: number;
+  readonly provider: BackendKind;
   readonly dim: number;
   readonly backend: BackendKind;
   readonly active: boolean;
@@ -99,6 +101,8 @@ export async function handleEmbedderList(): Promise<MCPResponse> {
 
   const data: EmbedderListEntry[] = manifests.map((manifest, index) => ({
     name: manifest.name,
+    dimensions: manifest.dim,
+    provider: manifest.backend,
     dim: manifest.dim,
     backend: manifest.backend,
     active: manifest.name === active.name,

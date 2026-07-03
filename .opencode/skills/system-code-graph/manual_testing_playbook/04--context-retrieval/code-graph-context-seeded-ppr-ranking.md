@@ -59,12 +59,45 @@ Flag-off and default-unset states both use the flat single-hop walk with one-hop
 
 ### Evidence
 
-The three impact-mode responses (flag-off, flag-on, default-unset), with candidate ordering and the multi-hop caller's `edgeChain` array called out for the flag-on response.
+Precondition check attempted with the documented daemon-backed CLI because the `mcp__mk_code_index__code_graph_status` / `mcp__mk_code_index__code_graph_context` tools were not registered in this runtime:
+
+```bash
+node .opencode/bin/code-index.cjs code_graph_status --format json --timeout-ms 3000 --warm-only
+```
+
+Observed output:
+
+```json
+{
+  "status": "error",
+  "error": "backend unavailable: connect ENOENT /tmp/mk-code-index/daemon-ipc.sock",
+  "exitCode": 75
+}
+```
+
+Available plugin bridge status check:
+
+```text
+plugin_id=mk-code-graph
+cache_ttl_ms=5000
+spec_folder=auto
+resume_mode=minimal
+messages_transform_enabled=true
+messages_transform_mode=schema_aligned
+runtime_ready=false
+node_binary=node
+bridge_timeout_ms=15000
+bridge_path=/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-code-graph/mcp_server/plugin_bridges/mk-code-graph-bridge.mjs
+last_runtime_error=Bridge skipped: SOCKET_ABSENT (exit=75); plugin injection will no-op
+cache_entries=0
+cache=empty
+```
+
+The scenario's first precondition could not be satisfied: `code_graph_status` could not verify a `fresh` index because the `mk-code-index` daemon socket `/tmp/mk-code-index/daemon-ipc.sock` is absent, and the MCP code graph tools required for `code_graph_context` are unavailable in this runtime.
 
 ### Pass / Fail
 
-- **Pass**: flag gate behaves as described, seeded-PPR ranking is not byte-identical to the flat walk, and `edgeChain` correctly reconstructs a real multi-hop path.
-- **Fail**: the flag has no observable effect, seeded-PPR output equals the flat-walk output, or `edgeChain` stays one-hop for a caller that is genuinely reached through an intermediate hop.
+- **BLOCKED**: `code_graph_status` could not verify a fresh graph and `code_graph_context` could not be executed because the code-index MCP tools are unavailable and the documented warm CLI returned `exitCode: 75` with `backend unavailable: connect ENOENT /tmp/mk-code-index/daemon-ipc.sock`.
 
 ### Failure Triage
 

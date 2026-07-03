@@ -83,22 +83,77 @@ Validate Debug-delegation scaffold generator + failure-threshold prompt rehearsa
 
 ## 4. EVIDENCE TO CAPTURE
 
-- Output of step 2 (scaffold path printed on stdout).
-- Output of step 3 grep counts (5 sections, 3 attempt-approach hits).
-- Output of step 4 (versioned `debug-delegation-002.md` exists).
-- Output of step 5 grep (zero `Task tool` / `subagent_type` matches in the Bash script).
-- Output of step 6 grep (at least 3 hits on the y/n/skip / no_autonomous_routing / prompt_user_with_y_n_skip markers).
+- Step 1 command output:
+  ```text
+  (no output)
+  ```
+- Step 2 scaffold generator stdout:
+  ```text
+  /private/tmp/scaf-test/031-manual-playbook-execution-sweep/debug-delegation.md
+  ```
+- Step 3 literal documented `test -f /tmp/scaf-test/031-manual-playbook-execution-sweep` result:
+  ```text
+  exit=1
+  ```
+- Step 3 literal documented section-count grep output:
+  ```text
+  grep: /tmp/scaf-test/031-manual-playbook-execution-sweep: Is a directory
+  ```
+- Step 3 literal documented attempt grep output:
+  ```text
+  grep: /tmp/scaf-test/031-manual-playbook-execution-sweep: Is a directory
+  ```
+- Supplemental check against the generated file path printed by step 2:
+  ```text
+  test -f /tmp/scaf-test/031-manual-playbook-execution-sweep/debug-delegation.md
+  exit=0
+  grep -c "^## [0-9]\." /tmp/scaf-test/031-manual-playbook-execution-sweep/debug-delegation.md
+  5
+  grep -E "Clear cache and retry|Hardcode value|Add wait" /tmp/scaf-test/031-manual-playbook-execution-sweep/debug-delegation.md
+  - **Approach:** Clear cache and retry
+  - **Approach:** Hardcode value
+  - **Approach:** Add wait
+  ```
+- Generated YAML frontmatter observed in `/tmp/scaf-test/031-manual-playbook-execution-sweep/debug-delegation.md`:
+  ```text
+  _memory:
+    continuity:
+      packet_pointer: "/private/tmp/scaf-test/031-manual-playbook-execution-sweep"
+      last_updated_at: "2026-07-02T21:01:06Z"
+      last_updated_by: "scaffold-debug-delegation.sh"
+  ```
+- Step 4 second generator stdout:
+  ```text
+  /private/tmp/scaf-test/031-manual-playbook-execution-sweep/debug-delegation-002.md
+  ```
+- Step 4 literal documented `test -f /tmp/scaf-test/031-manual-playbook-execution-sweep` result:
+  ```text
+  exit=1
+  ```
+- Supplemental check for the versioned output file printed by step 4:
+  ```text
+  test -f /tmp/scaf-test/031-manual-playbook-execution-sweep/debug-delegation-002.md
+  exit=0
+  ```
+- Step 5 grep for `Task tool` / `subagent_type` in the Bash script:
+  ```text
+  exit=1
+  ```
+- Step 6 YAML prompt-marker grep output:
+  ```text
+  .opencode/commands/speckit/assets/speckit_complete_auto.yaml-        action: "prompt_user_with_y_n_skip"
+  .opencode/commands/speckit/assets/speckit_complete_auto.yaml-        no_autonomous_routing: true
+  ```
+- Step 7 cleanup output:
+  ```text
+  (no output)
+  ```
 
 ---
 
 ## 5. PASS / FAIL
 
-- **PASS**: All 5 evidence items match the expected signals. The script produced a well-formed scaffold, versioned correctly on collision, and no autonomous routing occurred.
-- **FAIL**: Any of:
-  - Scaffold missing one of the 5 schema sections.
-  - Versioned filename did not increment on second run (overwrote prior scaffold).
-  - Script contains a `Task tool` or `subagent_type` reference (would indicate autonomous routing crept in).
-  - YAML configs lack the y/n/skip prompt language or contain `subagent_type: "debug"` in an action block.
+- **FAIL**: The generator produced `debug-delegation.md` and then `debug-delegation-002.md`, and the Bash script contained zero `Task tool` / `subagent_type` matches, but the documented step 3 and step 4 `test -f` / `grep` commands target the spec folder directory instead of the generated markdown file (`exit=1`, `Is a directory`), the generated `_memory.continuity.packet_pointer` was absolute (`/private/tmp/scaf-test/031-manual-playbook-execution-sweep`) rather than a spec-folder relative path, and the YAML marker grep returned only 2 hits instead of the expected at least 3.
 
 ---
 

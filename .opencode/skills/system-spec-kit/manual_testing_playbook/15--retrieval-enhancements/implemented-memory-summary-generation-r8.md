@@ -46,10 +46,20 @@ Summary generated for long memories; summary persisted in DB; scale gate prevent
 
 ### Evidence
 
-Save output + summary field in DB record + scale gate threshold verification
+BLOCKED before executing `save long memory`.
+
+Actual constraint from this scenario run:
+
+```text
+ALLOWED WRITE PATHS
+- .opencode/skills/system-spec-kit/manual_testing_playbook/15--retrieval-enhancements/implemented-memory-summary-generation-r8.md (this file only)
+```
+
+The scenario command `save long memory` is a persistence operation. Running a real memory save would modify memory storage outside the single allowed scenario file, which is explicitly prohibited by the run instructions. No save output, DB summary record, or scale-gate runtime result was produced because executing the first command would violate the allowed write path.
 
 ### Pass / Fail
 
+- **BLOCKED**: The required `save long memory` command cannot be executed under the run's single-file write restriction; real summary persistence verification would require writes outside `.opencode/skills/system-spec-kit/manual_testing_playbook/15--retrieval-enhancements/implemented-memory-summary-generation-r8.md`.
 - **Pass**: summaries are generated and persisted for long memories and scale gate correctly controls activation
 - **Fail**: Any contradicting evidence appears or the pass condition is not met.
 

@@ -45,12 +45,27 @@ Zero symlinks found
 
 ### Evidence
 
-find command output (should be empty)
+Command context: `.opencode/skills/system-spec-kit`
+
+Command: `find mcp_server/lib -type l`
+
+Output:
+
+```text
+
+```
+
+Command: `echo $?`
+
+Output:
+
+```text
+0
+```
 
 ### Pass / Fail
 
-- **Pass**: find returns no output
-- **Fail**: Any contradicting evidence appears or the pass condition is not met.
+- **PASS**: `find mcp_server/lib -type l` returned no output and `echo $?` returned `0`.
 
 ### Failure Triage
 

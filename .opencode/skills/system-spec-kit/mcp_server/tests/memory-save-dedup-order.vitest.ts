@@ -89,4 +89,42 @@ describe('Memory-save dedup ordering regressions', () => {
     expect(replayReturnIndex).toBeLessThan(indexCallIndex);
     expect(replayReturnIndex).toBeLessThan(buildResponseIndex);
   });
+
+  it('keeps atomic-save post-mutation hooks behind duplicate and unchanged no-op suppression', () => {
+    const sourcePath = path.resolve(__dirname, '..', 'handlers', 'memory-save.ts');
+    const source = fs.readFileSync(sourcePath, 'utf8');
+
+    const suppressionIndex = source.indexOf(
+      "const shouldEmitPostMutationFeedback = indexResult.status !== 'duplicate' && indexResult.status !== 'unchanged';"
+    );
+    const guardedBranchIndex = source.indexOf('if (shouldEmitPostMutationFeedback) {', suppressionIndex);
+    const hookCallIndex = source.indexOf("runPostMutationHooks('atomic-save'", guardedBranchIndex);
+    const responsePayloadIndex = source.indexOf('postMutationHooks: postMutationFeedback.data', hookCallIndex);
+    const duplicateHintIndex = source.indexOf(
+      'Duplicate content matched an existing indexed memory, so caches were left unchanged',
+      hookCallIndex,
+    );
+
+    expect(suppressionIndex).toBeGreaterThan(-1);
+    expect(guardedBranchIndex).toBeGreaterThan(suppressionIndex);
+    expect(hookCallIndex).toBeGreaterThan(guardedBranchIndex);
+    expect(responsePayloadIndex).toBeGreaterThan(hookCallIndex);
+    expect(duplicateHintIndex).toBeGreaterThan(hookCallIndex);
+  });
+
+  it('keeps atomic-save partial-indexing guidance before returning the applied-save payload', () => {
+    const sourcePath = path.resolve(__dirname, '..', 'handlers', 'memory-save.ts');
+    const source = fs.readFileSync(sourcePath, 'utf8');
+
+    const partialBranchIndex = source.indexOf("if (indexResult.embeddingStatus === 'partial') {");
+    const partialHintIndex = source.indexOf(
+      'Large file indexed via chunking: parent record + individual chunk records with embeddings',
+      partialBranchIndex,
+    );
+    const returnIndex = source.indexOf('return {', partialHintIndex);
+
+    expect(partialBranchIndex).toBeGreaterThan(-1);
+    expect(partialHintIndex).toBeGreaterThan(partialBranchIndex);
+    expect(partialHintIndex).toBeLessThan(returnIndex);
+  });
 });

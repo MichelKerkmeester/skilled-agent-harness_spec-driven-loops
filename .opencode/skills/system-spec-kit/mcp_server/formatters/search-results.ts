@@ -955,7 +955,8 @@ export async function formatSearchResults(
   extraData: Record<string, unknown> = {},
   includeTrace: boolean = false,
   query: string | null = null,
-  specFolder: string | null = null
+  specFolder: string | null = null,
+  resultExplain: { enabled?: boolean; debugEnabled?: boolean } = {}
 ): Promise<MCPResponse> {
   const startMs = startTime || Date.now();
   const includeContent = include_content;
@@ -1297,12 +1298,15 @@ export async function formatSearchResults(
   }
 
   const explainOptions: ExplainabilityOptions = {
-    debugEnabled: process.env.SPECKIT_RESULT_EXPLAIN_DEBUG?.toLowerCase().trim() === 'true',
+    debugEnabled: resultExplain.debugEnabled === true
+      || process.env.SPECKIT_RESULT_EXPLAIN_DEBUG?.toLowerCase().trim() === 'true',
   };
-  const explainedRawResults = isResultExplainEnabled()
+  const resultExplainEnabled = resultExplain.enabled ?? isResultExplainEnabled();
+  const explainedRawResults = resultExplainEnabled
     ? attachExplainabilityToResults(
         results.map(toExplainabilityRow),
-        explainOptions
+        explainOptions,
+        resultExplainEnabled
       )
     : null;
 

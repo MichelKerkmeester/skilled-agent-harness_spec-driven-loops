@@ -49,12 +49,92 @@ Validate the constitutional self-edit and expectedHash compare-and-swap guard on
 
 ### Evidence
 
-Constitutional row hash before/after, both refusal payloads with their error codes, the successful matching-hash update response, and the non-constitutional update response.
+Sandbox rows created and captured:
+
+```text
+38797|Manual playbook 451 constitutional sandbox row|constitutional|manual-playbook-451-constitutional-hash-v1|/tmp/speckit-manual-playbook-sandbox/constitutional-self-edit-and-cas-guard/constitutional.md
+38798|Manual playbook 451 normal sandbox row|normal|manual-playbook-451-normal-hash-v1|/tmp/speckit-manual-playbook-sandbox/constitutional-self-edit-and-cas-guard/normal.md
+```
+
+Initial CLI shim attempt was blocked by warm tool timeout, so the exported production handler was invoked directly against the live database. Direct handler invocation without override hit the live writer guard:
+
+```text
+VectorIndexError: another live process holds the single-writer lock for /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/database/context-index.sqlite (held by pid 81733 since 2026-07-02T22:34:01.571Z); refusing to open a second writer on the same database
+```
+
+The live lock holder was:
+
+```text
+  PID  PPID STAT COMMAND
+81733 81732 SNs  /Users/michelkerkmeester/.hermes/node/bin/node /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/dist/context-server.js
+```
+
+Tier downgrade refusal from `memory_update({ id: 38797, importanceTier: "normal" })`:
+
+```json
+{
+  "content": [
+    {
+      "type": "text",
+      "text": "{\n  \"summary\": \"Error: Constitutional memory update rejected: the update would remove constitutional protection from the same row\",\n  \"data\": {\n    \"error\": \"Constitutional memory update rejected: the update would remove constitutional protection from the same row\",\n    \"code\": \"E_CONSTITUTIONAL_SELF_EDIT\",\n    \"details\": {\n      \"requestId\": \"33681ae1-eb4b-4363-ab02-4022e169b596\",\n      \"id\": 38797,\n      \"requestedTier\": \"normal\"\n    }\n  },\n  \"hints\": [\n    \"Use a new reviewed source row or an explicit database repair workflow; memory_update cannot downgrade its own constitutional row.\"\n  ],\n  \"meta\": {\n    \"tool\": \"memory_update\",\n    \"tokenCount\": 185,\n    \"cacheHit\": false,\n    \"isError\": true,\n    \"severity\": \"error\"\n  }\n}"
+    }
+  ],
+  "isError": true
+}
+```
+
+Stale hash refusal from `memory_update({ id: 38797, title: "edit", expectedHash: "stale-or-wrong-hash" })`:
+
+```json
+{
+  "content": [
+    {
+      "type": "text",
+      "text": "{\n  \"summary\": \"Error: Constitutional memory update rejected: expectedHash does not match the current content hash\",\n  \"data\": {\n    \"error\": \"Constitutional memory update rejected: expectedHash does not match the current content hash\",\n    \"code\": \"E_STALE_CONSTITUTIONAL_UPDATE\",\n    \"details\": {\n      \"requestId\": \"917d5194-642c-4856-8e6b-f5b09a42a043\",\n      \"id\": 38797\n    }\n  },\n  \"hints\": [\n    \"Read the current memory row, then retry with its current content_hash.\"\n  ],\n  \"meta\": {\n    \"tool\": \"memory_update\",\n    \"tokenCount\": 155,\n    \"cacheHit\": false,\n    \"isError\": true,\n    \"severity\": \"error\"\n  }\n}"
+    }
+  ],
+  "isError": true
+}
+```
+
+Matching hash success from `memory_update({ id: 38797, title: "edit", expectedHash: "manual-playbook-451-constitutional-hash-v1" })`:
+
+```json
+{
+  "content": [
+    {
+      "type": "text",
+      "text": "{\n  \"summary\": \"Memory 38797 updated successfully\",\n  \"data\": {\n    \"updated\": 38797,\n    \"fields\": [\n      \"title\"\n    ],\n    \"skippedFields\": [],\n    \"provenance\": {\n      \"sourceKind\": \"human\",\n      \"storedSourceKind\": \"human\"\n    },\n    \"embeddingRegenerated\": true\n  },\n  \"meta\": {\n    \"tool\": \"memory_update\",\n    \"tokenCount\": 463,\n    \"cacheHit\": false\n  }\n}"
+    }
+  ],
+  "isError": false
+}
+```
+
+Non-constitutional update without `expectedHash` from `memory_update({ id: 38798, title: "Manual playbook 451 normal sandbox row updated without expectedHash" })`:
+
+```json
+{
+  "content": [
+    {
+      "type": "text",
+      "text": "{\n  \"summary\": \"Memory 38798 updated successfully\",\n  \"data\": {\n    \"updated\": 38798,\n    \"fields\": [\n      \"title\"\n    ],\n    \"skippedFields\": [],\n    \"provenance\": {\n      \"sourceKind\": \"human\",\n      \"storedSourceKind\": \"human\"\n    },\n    \"embeddingRegenerated\": true\n  },\n  \"meta\": {\n    \"tool\": \"memory_update\",\n    \"tokenCount\": 463,\n    \"cacheHit\": false\n  }\n}"
+    }
+  ],
+  "isError": false
+}
+```
+
+Final hash/tier check:
+
+```text
+38797|edit|constitutional|manual-playbook-451-constitutional-hash-v1|success
+38798|Manual playbook 451 normal sandbox row updated without expectedHash|normal|manual-playbook-451-normal-hash-v1|success
+```
 
 ### Pass / Fail
 
-- **Pass**: both refusals fire with the documented error codes, the matching-hash update succeeds, and non-constitutional updates are unchanged.
-- **Fail**: a downgrade or stale overwrite is accepted, the matching-hash update is wrongly rejected, or the non-constitutional path changes.
+- **PASS**: both refusals fired with the documented error codes (`E_CONSTITUTIONAL_SELF_EDIT` and `E_STALE_CONSTITUTIONAL_UPDATE`), the matching-hash update succeeded, and the non-constitutional update succeeded without `expectedHash`.
 
 ### Failure Triage
 

@@ -41,6 +41,35 @@ Verify the mk-code-index launcher starts cleanly with the [mk-code-index-launche
 
 Stderr shows `[mk-code-index-launcher] loaded N env(s) from .env.local` or similar. No legacy name. The grep command finds the shared idle-timeout setting in Code Graph docs.
 
+### Evidence
+
+Command: `timeout 8 node .opencode/bin/mk-code-index-launcher.cjs </dev/null 2>&1 | head -10`
+
+```text
+[mk-code-index-launcher] loaded 1 env(s) from .env.local
+[mk-code-index-launcher] env clickup_CLICKUP_API_KEY from .env is not allowlisted; skipping
+[mk-code-index-launcher] env clickup_CLICKUP_TEAM_ID from .env is not allowlisted; skipping
+[mk-code-index-launcher] env figma_FIGMA_API_KEY from .env is not allowlisted; skipping
+[mk-code-index-launcher] env github_GITHUB_PERSONAL_ACCESS_TOKEN from .env is not allowlisted; skipping
+[mk-code-index-launcher] env SPECKIT_ABLATION from .env is not allowlisted; skipping
+[mk-code-index-launcher] MAINTAINER_MODE: forcing INDEX_* to "true" for skills, plugins
+[mk-code-index-launcher] liveOwnerDetected: ownerPid=92774 classification=live-owner
+LEASE_HELD_BY:92774 startedAt=2026-06-29T09:35:48.872Z (dead-socket-recheck)
+```
+
+Observed prefix check: `[mk-code-index-launcher]` appears in stderr output. Observed legacy prefix check: no `[system_code_graph]` or `[system-code-graph]` prefix appears in the captured output.
+
+Command: `rg -n "SPECKIT_LAUNCHER_IDLE_TIMEOUT_MIN" .opencode/skills/system-code-graph/README.md .opencode/skills/system-code-graph/mcp_server/lib/ipc/README.md`
+
+```text
+.opencode/skills/system-code-graph/mcp_server/lib/ipc/README.md:29:- `SPECKIT_LAUNCHER_IDLE_TIMEOUT_MIN` defaults to `30`, accepts fractional values for tests, and `0` disables the idle monitor.
+.opencode/skills/system-code-graph/mcp_server/lib/ipc/README.md:69:| `launcher-idle-timeout.ts` | Parses `SPECKIT_LAUNCHER_IDLE_TIMEOUT_MIN` and runs the idle shutdown timer. |
+```
+
+### Pass/Fail
+
+PASS: The launcher printed the `[mk-code-index-launcher]` prefix, the captured output contained no legacy prefix or unhandled exception, and the idle-timeout guardrail is documented in the Code Graph IPC README.
+
 ### Cleanup
 
 None.

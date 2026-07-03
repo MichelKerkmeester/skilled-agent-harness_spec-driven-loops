@@ -82,12 +82,48 @@ version: 1.2.0.4
 
 | # | Check | Pass |
 |---|-------|------|
-| 1 | Single-subject returns non-blocked | ☐ |
-| 2 | Multi-subject union ≥ single-subject | ☐ |
-| 3 | Transitive expansion > non-transitive | ☐ |
-| 4 | minConfidence filter reduces count | ☐ |
-| 5 | `includeTrace:true` adds `why_included`; default response omits it | ☐ |
-| 6 | Stale graph returns blocked (hard refuse) | ☐ |
+| 1 | Single-subject returns non-blocked | BLOCKED |
+| 2 | Multi-subject union ≥ single-subject | BLOCKED |
+| 3 | Transitive expansion > non-transitive | BLOCKED |
+| 4 | minConfidence filter reduces count | BLOCKED |
+| 5 | `includeTrace:true` adds `why_included`; default response omits it | BLOCKED |
+| 6 | Stale graph returns blocked (hard refuse) | BLOCKED |
+
+## Evidence
+
+Precondition check via `mk_code_graph_status` returned:
+
+```text
+plugin_id=mk-code-graph
+cache_ttl_ms=5000
+spec_folder=auto
+resume_mode=minimal
+messages_transform_enabled=true
+messages_transform_mode=schema_aligned
+runtime_ready=false
+node_binary=node
+bridge_timeout_ms=15000
+bridge_path=/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-code-graph/mcp_server/plugin_bridges/mk-code-graph-bridge.mjs
+last_runtime_error=Bridge skipped: SOCKET_ABSENT (exit=75); plugin injection will no-op
+cache_entries=0
+cache=empty
+```
+
+Precondition check via `node ".opencode/bin/code-index.cjs" code_graph_status --format json --timeout-ms 3000 --warm-only` returned:
+
+```json
+{
+  "status": "error",
+  "error": "backend unavailable: connect ENOENT /tmp/mk-code-index/daemon-ipc.sock",
+  "exitCode": 75
+}
+```
+
+The scenario precondition requires a fresh code graph verified via `code_graph_status`. The available MCP/plugin bridge was not runtime-ready, and the warm CLI status path could not connect to the daemon socket. The query steps were not executed because the required fresh graph precondition could not be verified. The stale-graph step was also not executed because artificially marking the graph stale would require modifying a file other than this scenario file, which the task explicitly banned.
+
+## Pass/Fail
+
+BLOCKED — code graph readiness could not be verified because the mk-code-index daemon socket was absent and the runtime bridge reported `runtime_ready=false`.
 
 ## Notes
 
