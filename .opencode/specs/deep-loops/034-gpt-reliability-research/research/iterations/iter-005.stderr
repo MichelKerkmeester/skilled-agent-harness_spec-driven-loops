@@ -1,0 +1,61 @@
+[mk-dist-freshness-guard] session.created: STALE DIST WARNING: @spec-kit/mcp-server -- run: cd .opencode/skills/system-spec-kit/mcp_server && npm run build
+[0m
+> build · gpt-5.5-fast
+[0m
+[0m✗ [0mmk-spec-memory_memory_match_triggers {"prompt":"READ-ONLY RESEARCH TASK. Analyze .opencode/agents/deep-research.md, .opencode/agents/orchestrate.md, and .opencode/agents/ai-council.md for structural parseability by GPT executors. No file writes. Produce markdown findings and proposals.","specFolder":"","tenantId":"","userId":"","agentId":"","limit":3,"session_id":"","turnNumber":0,"include_cognitive":false} failed
+[91m[1mError: [0m{
+  "summary": "Error: An unexpected error occurred. Please check logs for details.",
+  "data": {
+    "error": "An unexpected error occurred. Please check logs for details.",
+    "code": "E030",
+    "details": {
+      "tool": "memory_match_triggers",
+      "issues": [
+        "turnNumber: Too small: expected number to be >=1"
+      ],
+      "unknownParameters": [],
+      "expectedParameters": [
+        "prompt",
+        "specFolder",
+        "tenantId",
+        "userId",
+        "agentId",
+        "limit",
+        "session_id",
+        "turnNumber",
+        "include_cognitive"
+      ]
+    }
+  },
+  "hints": [
+    "Invalid parameter value provided.",
+    "Check parameter type matches expected schema",
+    "Review tool documentation for valid parameter values",
+    "Ensure strings are properly quoted"
+  ],
+  "meta": {
+    "tool": "memory_match_triggers",
+    "isError": true,
+    "severity": "low"
+  }
+}
+[0m⚙ [0mmk_skill_advisor_advisor_recommend {"prompt":"READ-ONLY RESEARCH TASK. Analyze OpenCode agent definition markdown files for structural parseability by GPT executors. No file writes. Produce markdown findings and proposals.","options":{"topK":3,"includeAttribution":true,"includeAbstainReasons":true,"confidenceThreshold":0.8,"uncertaintyThreshold":0.35}}
+[0m⚙ [0mmk-spec-memory_memory_match_triggers {"prompt":"READ-ONLY RESEARCH TASK. Analyze .opencode/agents/deep-research.md, .opencode/agents/orchestrate.md, and .opencode/agents/ai-council.md for structural parseability by GPT executors. No file writes. Produce markdown findings and proposals.","specFolder":"","tenantId":"","userId":"","agentId":"","limit":3,"session_id":"","turnNumber":1,"include_cognitive":false}
+[0m→ [0mRead .opencode/agents/deep-research.md[90m [offset=1, limit=400][0m
+[0m→ [0mRead .opencode/agents/orchestrate.md[90m [offset=1, limit=500][0m
+[0m→ [0mRead .opencode/agents/ai-council.md[90m [offset=1, limit=350][0m
+[0m→ [0mRead .opencode/agents/deep-research.md[90m [offset=401, limit=220][0m
+[0m→ [0mRead .opencode/agents/orchestrate.md[90m [offset=501, limit=360][0m
+[0m→ [0mRead .opencode/agents/ai-council.md[90m [offset=351, limit=470][0m
+[0m✱ [0mGrep "^(##|###)|HARD BLOCK|MANDATORY|CRITICAL|MUST|NEVER|ALWAYS|ESCALATE|Rule [0-9]"[90m in .opencode/agents/orchestrate.md · 100 matches[0m
+[0m✱ [0mGrep "^(##|###)|HARD BLOCK|MANDATORY|CRITICAL|MUST|NEVER|ALWAYS|ESCALATE|Rule [0-9]"[90m in .opencode/agents/ai-council.md · 92 matches[0m
+[0m✱ [0mGrep "^(##|###)|HARD BLOCK|MANDATORY|CRITICAL|MUST|NEVER|ALWAYS|ESCALATE|Rule [0-9]"[90m in .opencode/agents/deep-research.md · 54 matches[0m
+[0m
+[0m$ [0mrg --count-matches "\b(MUST|NEVER|HARD BLOCK|MANDATORY|CRITICAL|ALWAYS|ESCALATE)\b" ".opencode/agents/deep-research.md" ".opencode/agents/orchestrate.md" ".opencode/agents/ai-council.md" && rg --count-matches "^#{2,4} " ".opencode/agents/deep-research.md" ".opencode/agents/orchestrate.md" ".opencode/agents/ai-council.md"
+.opencode/agents/deep-research.md:10
+.opencode/agents/orchestrate.md:44
+.opencode/agents/ai-council.md:22
+.opencode/agents/orchestrate.md:73
+.opencode/agents/deep-research.md:48
+.opencode/agents/ai-council.md:79
+[0m

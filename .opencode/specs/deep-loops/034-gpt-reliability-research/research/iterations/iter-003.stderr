@@ -1,0 +1,55 @@
+[mk-dist-freshness-guard] session.created: STALE DIST WARNING: @spec-kit/mcp-server -- run: cd .opencode/skills/system-spec-kit/mcp_server && npm run build
+[0m
+> build · gpt-5.5-fast
+[0m
+[0m⚙ [0mmk-spec-memory_memory_match_triggers {"prompt":"# Research Brief A3 — LEAF dispatch protocol vs GPT role absorption\n\nREAD-ONLY RESEARCH TASK. No file writes are requested. Do not ask about spec\nfolders or documentation scope. Do not ask any questions; produce the analysis.\n\nMeasured problem: dispatch modes review/research gpt-5.5-fast MEDIUM executor absorbs LEAF role, writes route-proof records without task events, needs absorption-resistant dispatch protocol. Read deep_review_auto.yaml, deep-review prompt_pack_iteration template, deep-research SKILL.md, deep-loop-runtime route-proof/state JSONL expectations; diagnose wording and forged route-proof; compare benchmark task events divergence. Output findings/proposals only.","specFolder":"","tenantId":"","userId":"","agentId":"","limit":3,"session_id":"","turnNumber":1,"include_cognitive":false}
+[0m→ [0mSkill "deep-loop-workflows"
+[0m→ [0mRead .opencode/commands/deep/assets/deep_review_auto.yaml[90m [offset=1, limit=240][0m
+[0m→ [0mRead .opencode/skills/deep-loop-workflows/deep-review/assets/prompt_pack_iteration.md.tmpl[90m [offset=1, limit=260][0m
+[0m→ [0mRead .opencode/skills/deep-loop-workflows/deep-research/SKILL.md[90m [offset=1, limit=320][0m
+[0m✱ [0mGlob ".opencode/skills/deep-loop-runtime/**"[90m in . · 100 matches[0m
+[0m✱ [0mGrep "route[-_ ]proof|routeProof|task event|task_events|dispatch"[90m in .opencode/skills/deep-loop-runtime · 100 matches[0m
+[0m✱ [0mGrep "RVB-007|RSB-007|RSB-005|task events|route-proof|route proof|fabricat"[90m in . · 100 matches[0m
+[0m✱ [0mGrep "route[-_ ]proof|routeProof|post_dispatch|dispatch|Task|target_agent|agent_definition_loaded|resolved_route"[90m in .opencode/commands/deep/assets/deep_review_auto.yaml · 100 matches[0m
+[0m✱ [0mGrep "dispatch|LEAF|route|state_log|JSONL|iteration"[90m in .opencode/skills/deep-loop-workflows/deep-research/SKILL.md · 61 matches[0m
+[0m→ [0mRead .opencode/skills/deep-loop-workflows/deep-research/SKILL.md[90m [offset=321, limit=220][0m
+[0m→ [0mRead .opencode/skills/deep-loop-runtime/lib/deep-loop/README.md[90m [offset=1, limit=80][0m
+[0m→ [0mRead .opencode/skills/deep-loop-runtime/lib/deep-loop/evidence-contract.ts[90m [offset=1, limit=260][0m
+[0m→ [0mRead .opencode/skills/deep-loop-runtime/lib/deep-loop/post-dispatch-validate.ts[90m [offset=1, limit=260][0m
+[0m→ [0mRead .opencode/commands/deep/assets/deep_review_auto.yaml[90m [offset=720, limit=270][0m
+[0m→ [0mRead .opencode/commands/deep/assets/deep_review_auto.yaml[90m [offset=1530, limit=55][0m
+[0m→ [0mRead .opencode/skills/deep-loop-runtime/lib/deep-loop/post-dispatch-validate.ts[90m [offset=600, limit=80][0m
+[0m→ [0mRead .opencode/skills/deep-loop-runtime/lib/deep-loop/post-dispatch-validate.ts[90m [offset=1200, limit=220][0m
+[0m→ [0mRead .opencode/skills/deep-loop-runtime/lib/deep-loop/executor-audit.ts[90m [offset=466, limit=220][0m
+[0m→ [0mRead .opencode/skills/deep-loop-runtime/lib/deep-loop/executor-audit.ts[90m [offset=528, limit=260][0m
+[0m✱ [0mGlob ".opencode/**/*RVB-007*"[90m in . · 9 matches[0m
+[0m✱ [0mGlob ".opencode/**/*RSB-007*"[90m in . · 9 matches[0m
+[0m✱ [0mGrep "RVB-007|RSB-007|RSB-005|task events|route-proof|route proof|fabricated route|zero task"[90m in .opencode · 2 matches[0m
+[0m✱ [0mGlob ".opencode/**/*RSB-005*"[90m in . · 7 matches[0m
+[0m✱ [0mGrep "RVB-007|RSB-007|RSB-005|task events|route-proof|route proof|fabricated route|zero task"[90m in .opencode · 100 matches[0m
+[0m✱ [0mGrep "RVB-007|RSB-007|RSB-005|task events|route-proof|route proof|fabricated route|zero task"[90m in .opencode · 100 matches[0m
+[0m→ [0mRead .opencode/skills/deep-loop-workflows/shared/behavior-benchmark/framework.md[90m [offset=115, limit=130][0m
+[0m→ [0mRead .opencode/skills/deep-loop-workflows/deep-review/behavior_benchmark/scenarios/RVB-007-delegation-route-proof.md[90m [offset=1, limit=55][0m
+[0m→ [0mRead .opencode/skills/deep-loop-workflows/deep-research/behavior_benchmark/scenarios/RSB-007-delegation-route-proof.md[90m [offset=1, limit=55][0m
+[0m→ [0mRead .opencode/specs/deep-loops/033-deep-loop-behavior-benchmarks/002-pilot-deep-review/runs/gpt-fast-med/RVB-007-gpt-fast-med.result.json[90m [offset=1, limit=180][0m
+[0m→ [0mRead .opencode/specs/deep-loops/033-deep-loop-behavior-benchmarks/003-rollout-research-context/runs/gpt-fast-med/RSB-007-gpt-fast-med.result.json[90m [offset=1, limit=180][0m
+[0m→ [0mRead .opencode/specs/deep-loops/033-deep-loop-behavior-benchmarks/003-rollout-research-context/runs/gpt-fast-med/RSB-005-gpt-fast-med.result.json[90m [offset=1, limit=180][0m
+[0m✗ [0mGrep "target_agent|agent_definition_loaded|resolved_route|Task|tool_use.*task|"name":"Task"|deep-review" failed[90m in .opencode/specs/deep-loops/033-deep-loop-behavior-benchmarks/002-pilot-deep-review/runs/gpt-fast-med/RVB-007-gpt-fast-med.transcript.jsonl[0m
+[91m[1mError: [0mRipgrep JSON record exceeded 65536 bytes
+[0m✗ [0mGrep "target_agent|agent_definition_loaded|resolved_route|Task|tool_use.*task|"name":"Task"|deep-research" failed[90m in .opencode/specs/deep-loops/033-deep-loop-behavior-benchmarks/003-rollout-research-context/runs/gpt-fast-med/RSB-007-gpt-fast-med.transcript.jsonl[0m
+[91m[1mError: [0mRipgrep JSON record exceeded 65536 bytes
+[0m✗ [0mGrep "Task|tool_use.*task|"name":"Task"|deep-research|dispatch, do not research it yourself|research it yourself" failed[90m in .opencode/specs/deep-loops/033-deep-loop-behavior-benchmarks/003-rollout-research-context/runs/gpt-fast-med/RSB-005-gpt-fast-med.transcript.jsonl[0m
+[91m[1mError: [0mRipgrep JSON record exceeded 65536 bytes
+[0m→ [0mRead .opencode/skills/deep-loop-workflows/deep-research/behavior_benchmark/scenarios/RSB-005-orchestrate-handoff.md[90m [offset=1, limit=60][0m
+[0m→ [0mRead .opencode/commands/deep/assets/deep_research_auto.yaml[90m [offset=880, limit=130][0m
+[0m→ [0mRead .opencode/skills/deep-loop-workflows/deep-research/assets/prompt_pack_iteration.md.tmpl[90m [offset=1, limit=150][0m
+[0m✱ [0mGrep "routeProofRecords|taskEvents|role_absorption|expected_delegation"[90m in .opencode/skills/deep-loop-workflows · 0 matches[0m
+[0m✱ [0mGrep "receipt|dispatch.*event|taskEvents|taskEvents|routeProofRecords|routeProof|extract"[90m in .opencode/skills/deep-loop-workflows · 30 matches[0m
+[0m✱ [0mGrep "routeProofRecords|taskEvents|task events|role_absorption|expected_delegation"[90m in .opencode/skills/deep-loop-workflows · 54 matches[0m
+[0m→ [0mRead .opencode/skills/deep-loop-workflows/shared/behavior-benchmark/behavior-bench-run.cjs[90m [offset=190, limit=105][0m
+[0m→ [0mRead .opencode/skills/deep-loop-workflows/shared/behavior-benchmark/behavior-bench-run.cjs[90m [offset=334, limit=45][0m
+[0m→ [0mRead .opencode/skills/deep-loop-workflows/shared/behavior-benchmark/behavior-bench-run.cjs[90m [offset=620, limit=60][0m
+[0m→ [0mRead .opencode/skills/deep-loop-workflows/shared/behavior-benchmark/behavior-bench-run.cjs[90m [offset=740, limit=65][0m
+[0m→ [0mRead .opencode/skills/deep-loop-workflows/shared/behavior-benchmark/tests/behavior-bench-run.test.cjs[90m [offset=160, limit=60][0m
+[0m✱ [0mGrep "function collectRouteProof|target_agent|resolved_route"[90m in .opencode/skills/deep-loop-workflows/shared/behavior-benchmark/behavior-bench-run.cjs · 6 matches[0m
+[0m→ [0mRead .opencode/skills/deep-loop-workflows/shared/behavior-benchmark/behavior-bench-run.cjs[90m [offset=400, limit=65][0m

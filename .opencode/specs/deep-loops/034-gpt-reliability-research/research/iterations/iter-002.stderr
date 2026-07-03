@@ -1,0 +1,22 @@
+[mk-dist-freshness-guard] session.created: STALE DIST WARNING: @spec-kit/system-skill-advisor -- run: cd .opencode/skills/system-skill-advisor/mcp_server && npm run build
+[0m
+> build · gpt-5.5-fast
+[0m
+[0m⚙ [0mmk-spec-memory_memory_match_triggers {"prompt":"Research Brief A2 read-only: diagnose command presentation/setup contracts vs GPT rendering for deep review/context/agent-improvement presentation assets and confirm YAML; no file writes, no questions, final markdown findings/proposals only.","specFolder":"","tenantId":"","userId":"","agentId":"","limit":5,"session_id":"","turnNumber":1,"include_cognitive":false}
+[0m⚙ [0mmk_skill_advisor_advisor_recommend {"prompt":"READ-ONLY RESEARCH TASK: diagnose command presentation/setup contracts vs GPT rendering by reading deep presentation asset text, confirm YAML, and command doc. No file writes. Output findings/proposals only.","options":{"topK":3,"includeAttribution":true,"includeAbstainReasons":true,"confidenceThreshold":0.8,"uncertaintyThreshold":0.35}}
+[0m→ [0mSkill "sk-code-review"
+[0m→ [0mRead .opencode/commands/deep/assets/deep_review_presentation.txt[90m [offset=1, limit=400][0m
+[0m→ [0mRead .opencode/commands/deep/assets/deep_context_presentation.txt[90m [offset=1, limit=400][0m
+[0m→ [0mRead .opencode/commands/deep/assets/deep_agent-improvement_presentation.txt[90m [offset=1, limit=400][0m
+[0m→ [0mRead .opencode/commands/deep/review.md[90m [offset=1, limit=600][0m
+[0m→ [0mRead .opencode/commands/deep/assets/deep_review_confirm.yaml[90m [offset=1, limit=500][0m
+[0m✱ [0mGrep "named-missing-inputs|missing.*inputs|Tier 3|consolidated setup|SETUP"[90m in .opencode/skills/system-spec-kit/references/workflows · 26 matches[0m
+[0m✱ [0mGrep "deep_review_presentation|presentation contract|deep_context_presentation|deep_agent-improvement_presentation|Load the presentation|PRESENTATION BOUNDARY"[90m in .opencode/commands/deep · 52 matches[0m
+[0m✱ [0mGrep "setup_question|presentation|consolidated setup|RVB-002|CXB-002|IMB-003|bare command|no topic|no target"[90m in . · 100 matches[0m
+[0m→ [0mRead .opencode/skills/system-spec-kit/references/workflows/auto_mode_contract.md[90m [offset=1, limit=190][0m
+[0m→ [0mRead .opencode/commands/deep/context.md[90m [offset=1, limit=130][0m
+[0m→ [0mRead .opencode/commands/deep/agent-improvement.md[90m [offset=1, limit=170][0m
+[0m→ [0mRead .opencode/commands/deep/assets/deep_review_presentation.txt[90m [offset=401, limit=80][0m
+[0m→ [0mRead .opencode/commands/deep/assets/deep_agent-improvement_presentation.txt[90m [offset=401, limit=80][0m
+[0m✱ [0mGrep "Consolidated Setup|EXECUTE THIS SINGLE|presentation|review_target|user_inputs|preflight_contract|required_values_present"[90m in .opencode/commands/deep/assets/deep_review_confirm.yaml · 55 matches[0m
+[0m✱ [0mGrep "EXECUTE THIS SINGLE CONSOLIDATED PROMPT|STATUS: ☐ BLOCKED|WAIT for user response|DO NOT PROCEED|Reply format examples|Q0\.|Q1\.|Q2\.|Q3\."[90m in .opencode/commands/deep/assets · 50 matches[0m
