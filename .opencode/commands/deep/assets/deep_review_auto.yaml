@@ -929,7 +929,7 @@ workflow:
           validator: ".opencode/skills/deep-loop-runtime/lib/deep-loop/post-dispatch-validate.ts#validateIterationOutputs"
           assert_exists: "{state_paths.iteration_pattern}"
           assert_appended: "{state_paths.state_log}"
-          assert_jsonl_fields: [type, iteration, mode, run, status, focus, dimensions, filesReviewed, findingsCount, findingsSummary, findingsNew, findingDetails, newFindingsRatio, sessionId, generation, lineageMode, timestamp, durationMs, target_agent, agent_definition_loaded, resolved_route]
+          assert_jsonl_fields: [type, iteration, mode, run, status, focus, dimensions, filesReviewed, findingsCount, findingsSummary, findingsNew, findingDetails, newFindingsRatio, sessionId, generation, lineageMode, timestamp, durationMs]
           route_proof:
             mode: review
             target_agent: deep-review

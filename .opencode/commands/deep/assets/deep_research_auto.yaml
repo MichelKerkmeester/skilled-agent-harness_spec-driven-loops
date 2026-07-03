@@ -949,7 +949,7 @@ workflow:
           validator: ".opencode/skills/deep-loop-runtime/lib/deep-loop/post-dispatch-validate.ts#validateIterationOutputs"
           assert_exists: "{state_paths.iteration_pattern}"
           assert_appended: "{state_paths.state_log}"
-          assert_jsonl_fields: [type, iteration, newInfoRatio, status, focus, mode, target_agent, agent_definition_loaded, resolved_route]
+          assert_jsonl_fields: [type, iteration, newInfoRatio, status, focus, mode]
           route_proof:
             mode: research
             target_agent: deep-research

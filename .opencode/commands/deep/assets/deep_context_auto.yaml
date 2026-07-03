@@ -548,7 +548,7 @@ workflow:
           validator: ".opencode/skills/deep-loop-runtime/lib/deep-loop/post-dispatch-validate.ts#validateIterationOutputs"
           assert_exists: "{state_paths.iteration_pattern}"
           assert_appended: "{state_paths.state_log}"
-          assert_jsonl_fields: [type, run, mode, status, focus, target_agent, agent_definition_loaded, resolved_route]
+          assert_jsonl_fields: [type, run, mode, status, focus]
           assert_canonical_type: "iteration"
           assert_delta_file_exists: "{state_paths.delta_pattern}"
           assert_delta_file_has_iteration_record: true

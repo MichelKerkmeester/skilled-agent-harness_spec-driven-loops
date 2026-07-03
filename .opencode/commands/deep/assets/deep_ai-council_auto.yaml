@@ -128,7 +128,7 @@ workflow:
         post_dispatch_validate:
           validator: ".opencode/skills/deep-loop-runtime/lib/council/session-state-hierarchy.cjs#validateSessionStateHierarchy"
           assert_jsonl_record_type: round_completed
-          assert_jsonl_fields: [type, topic_id, round_id, round_number, mode, target_agent, agent_definition_loaded, resolved_route]
+          assert_jsonl_fields: [type, topic_id, round_id, round_number, mode]
           route_proof:
             mode: ai-council
             target_agent: ai-council

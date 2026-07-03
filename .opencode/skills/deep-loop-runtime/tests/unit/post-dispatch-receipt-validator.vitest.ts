@@ -243,3 +243,137 @@ describe('post-dispatch-validate dispatch receipts', () => {
     });
   });
 });
+
+describe('post-dispatch-validate route-proof demotion on valid receipt', () => {
+  type RouteProofLike = {
+    mode: string;
+    targetAgent: string;
+    resolvedRoute: string;
+    requireAgentDefinitionLoaded?: boolean;
+  };
+
+  const ROUTE_PROOF: RouteProofLike = {
+    mode: 'research',
+    targetAgent: 'deep-research',
+    resolvedRoute: 'Resolved route: mode=research target_agent=deep-research',
+    requireAgentDefinitionLoaded: true,
+  };
+
+  beforeEach(() => {
+    __setRunMasterSecretForTesting(KNOWN_SECRET);
+  });
+
+  afterEach(() => {
+    __setRunMasterSecretForTesting(undefined);
+  });
+
+  function seedIteration(paths: TempPaths, recordOverrides: Record<string, unknown> = {}): number {
+    writeFileSync(paths.iterationFile, '# Iteration 1\n', 'utf8');
+    writeFileSync(paths.stateLogPath, '{"type":"event"}\n', 'utf8');
+    const previousStateLogSize = statSync(paths.stateLogPath).size;
+    const record = {
+      type: 'iteration',
+      iteration: 1,
+      newInfoRatio: 0.4,
+      status: 'continue',
+      focus: 'coverage',
+      mode: 'research',
+      ...recordOverrides,
+    };
+    writeFileSync(
+      paths.stateLogPath,
+      `${readFileSync(paths.stateLogPath, 'utf8')}${JSON.stringify(record)}\n`,
+      'utf8',
+    );
+    return previousStateLogSize;
+  }
+
+  function writeValidReceipts(paths: TempPaths, dispatchId: string): void {
+    const facts = buildReceiptFacts();
+    writeReceipt(paths.receiptDir, dispatchId, 'intent', buildReceiptRecord('intent', dispatchId, facts));
+    writeReceipt(
+      paths.receiptDir,
+      dispatchId,
+      'completion',
+      buildReceiptRecord('completion', dispatchId, completionFacts(facts)),
+    );
+  }
+
+  function validate(
+    paths: TempPaths,
+    previousStateLogSize: number,
+    dispatchId: string,
+    options: { receipt: boolean; routeProof?: RouteProofLike },
+  ) {
+    return validateIterationOutputs({
+      iterationFile: paths.iterationFile,
+      stateLogPath: paths.stateLogPath,
+      previousStateLogSize,
+      requiredJsonlFields: ['type', 'iteration', 'newInfoRatio', 'status', 'focus'],
+      routeProof: options.routeProof,
+      ...(options.receipt ? { dispatchReceipt: { receiptDir: paths.receiptDir, dispatchId } } : {}),
+    });
+  }
+
+  it('accepts an iteration omitting the model-written route-proof fields when a valid receipt is present', () => {
+    withTempPaths((paths) => {
+      const previousStateLogSize = seedIteration(paths);
+      const dispatchId = 'route-demote-omit';
+      writeValidReceipts(paths, dispatchId);
+
+      const result = validate(paths, previousStateLogSize, dispatchId, { receipt: true, routeProof: ROUTE_PROOF });
+      expect(result.ok).toBe(true);
+      if (result.ok) {
+        const codes = (result.warnings ?? []).map((warning) => warning.code);
+        expect(codes).toContain('route_proof_missing');
+      }
+    });
+  });
+
+  it('warns instead of failing when model-written route-proof fields mismatch but a valid receipt is present', () => {
+    withTempPaths((paths) => {
+      const previousStateLogSize = seedIteration(paths, {
+        target_agent: 'deep-review',
+        agent_definition_loaded: false,
+        resolved_route: 'Resolved route: mode=review target_agent=deep-review',
+      });
+      const dispatchId = 'route-demote-mismatch';
+      writeValidReceipts(paths, dispatchId);
+
+      const result = validate(paths, previousStateLogSize, dispatchId, { receipt: true, routeProof: ROUTE_PROOF });
+      expect(result.ok).toBe(true);
+      if (result.ok) {
+        const codes = (result.warnings ?? []).map((warning) => warning.code);
+        expect(codes).toContain('route_proof_mismatch');
+      }
+    });
+  });
+
+  it('still hard-fails on a mode mismatch even when a valid receipt is present', () => {
+    withTempPaths((paths) => {
+      const previousStateLogSize = seedIteration(paths, { mode: 'review' });
+      const dispatchId = 'route-demote-mode';
+      writeValidReceipts(paths, dispatchId);
+
+      const result = validate(paths, previousStateLogSize, dispatchId, { receipt: true, routeProof: ROUTE_PROOF });
+      expect(result).toMatchObject({
+        ok: false,
+        reason: 'route_proof_mismatch',
+        details: expect.stringContaining("state_log.mode='review'"),
+      });
+    });
+  });
+
+  it('keeps the legacy hard failure for missing model-written fields when no receipt is configured', () => {
+    withTempPaths((paths) => {
+      const previousStateLogSize = seedIteration(paths);
+
+      const result = validate(paths, previousStateLogSize, 'unused', { receipt: false, routeProof: ROUTE_PROOF });
+      expect(result).toMatchObject({
+        ok: false,
+        reason: 'route_proof_missing',
+        details: expect.stringContaining('target_agent'),
+      });
+    });
+  });
+});

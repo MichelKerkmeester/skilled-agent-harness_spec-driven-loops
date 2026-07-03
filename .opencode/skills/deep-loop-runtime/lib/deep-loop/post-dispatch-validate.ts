@@ -630,53 +630,110 @@ function requiredJsonlFieldSet(
   return requiredFields;
 }
 
+// The three model-written route-proof fields. When a valid engine-signed
+// dispatch receipt is present these become advisory: the receipt-derived route
+// facts are authoritative, so a dispatch that omits or disagrees on them is
+// accepted (warned, not blocked). `mode` is engine-determined, never demoted.
+const ROUTE_PROOF_MODEL_FIELDS = ['target_agent', 'agent_definition_loaded', 'resolved_route'] as const;
+
+type RouteProofOutcome = {
+  failure: Extract<PostDispatchValidateResult, { ok: false }> | null;
+  warnings: PostDispatchAdvisory[];
+};
+
+function routeProofMismatch(
+  source: string,
+  field: string,
+  actual: unknown,
+  expected: unknown,
+): Extract<PostDispatchValidateResult, { ok: false }> {
+  return {
+    ok: false,
+    reason: 'route_proof_mismatch',
+    details: `${source}.${field}='${String(actual)}' expected '${String(expected)}'`,
+  };
+}
+
 function validateRouteProofRecord(
   record: Record<string, unknown>,
   routeProof: RouteProofExpectation | undefined,
   source: string,
-): PostDispatchValidateResult | null {
-  if (!routeProof) return null;
+  modelFieldsAdvisory: boolean,
+): RouteProofOutcome {
+  if (!routeProof) return { failure: null, warnings: [] };
 
-  const requiredFields = ['mode', 'target_agent', 'agent_definition_loaded', 'resolved_route'];
-  const missingFields = requiredFields.filter((field) => !(field in record));
-  if (missingFields.length > 0) {
-    return {
-      ok: false,
-      reason: 'route_proof_missing',
-      details: `${source} missing route-proof fields: ${missingFields.join(',')}`,
-    };
+  // Legacy strict behavior: all four route-proof fields are required and their
+  // values are hard-enforced. Preserved unchanged when no receipt is configured.
+  if (!modelFieldsAdvisory) {
+    const requiredFields = ['mode', ...ROUTE_PROOF_MODEL_FIELDS];
+    const missingFields = requiredFields.filter((field) => !(field in record));
+    if (missingFields.length > 0) {
+      return {
+        failure: {
+          ok: false,
+          reason: 'route_proof_missing',
+          details: `${source} missing route-proof fields: ${missingFields.join(',')}`,
+        },
+        warnings: [],
+      };
+    }
+    if (record.mode !== routeProof.mode) {
+      return { failure: routeProofMismatch(source, 'mode', record.mode, routeProof.mode), warnings: [] };
+    }
+    if (record.target_agent !== routeProof.targetAgent) {
+      return { failure: routeProofMismatch(source, 'target_agent', record.target_agent, routeProof.targetAgent), warnings: [] };
+    }
+    if (routeProof.requireAgentDefinitionLoaded !== false && record.agent_definition_loaded !== true) {
+      return {
+        failure: { ok: false, reason: 'route_proof_mismatch', details: `${source}.agent_definition_loaded must be true` },
+        warnings: [],
+      };
+    }
+    if (record.resolved_route !== routeProof.resolvedRoute) {
+      return { failure: routeProofMismatch(source, 'resolved_route', record.resolved_route, routeProof.resolvedRoute), warnings: [] };
+    }
+    return { failure: null, warnings: [] };
   }
 
+  // Advisory mode: a valid dispatch receipt is present, so the receipt-derived
+  // route facts are authoritative. `mode` stays engine-enforced; the three
+  // model-written fields surface as warnings instead of hard failures.
+  if (!('mode' in record)) {
+    return {
+      failure: {
+        ok: false,
+        reason: 'route_proof_missing',
+        details: `${source} missing route-proof fields: mode`,
+      },
+      warnings: [],
+    };
+  }
   if (record.mode !== routeProof.mode) {
-    return {
-      ok: false,
-      reason: 'route_proof_mismatch',
-      details: `${source}.mode='${String(record.mode)}' expected '${routeProof.mode}'`,
-    };
-  }
-  if (record.target_agent !== routeProof.targetAgent) {
-    return {
-      ok: false,
-      reason: 'route_proof_mismatch',
-      details: `${source}.target_agent='${String(record.target_agent)}' expected '${routeProof.targetAgent}'`,
-    };
-  }
-  if (routeProof.requireAgentDefinitionLoaded !== false && record.agent_definition_loaded !== true) {
-    return {
-      ok: false,
-      reason: 'route_proof_mismatch',
-      details: `${source}.agent_definition_loaded must be true`,
-    };
-  }
-  if (record.resolved_route !== routeProof.resolvedRoute) {
-    return {
-      ok: false,
-      reason: 'route_proof_mismatch',
-      details: `${source}.resolved_route='${String(record.resolved_route)}' expected '${routeProof.resolvedRoute}'`,
-    };
+    return { failure: routeProofMismatch(source, 'mode', record.mode, routeProof.mode), warnings: [] };
   }
 
-  return null;
+  const advisorySuffix = ' (advisory; valid dispatch receipt present)';
+  const warnings: PostDispatchAdvisory[] = [];
+
+  if (!('target_agent' in record)) {
+    warnings.push({ code: 'route_proof_missing', detail: `${source} missing route-proof field: target_agent${advisorySuffix}`, fieldPath: 'target_agent' });
+  } else if (record.target_agent !== routeProof.targetAgent) {
+    warnings.push({ code: 'route_proof_mismatch', detail: `${source}.target_agent='${String(record.target_agent)}' expected '${routeProof.targetAgent}'${advisorySuffix}`, fieldPath: 'target_agent' });
+  }
+
+  if (!('agent_definition_loaded' in record)) {
+    warnings.push({ code: 'route_proof_missing', detail: `${source} missing route-proof field: agent_definition_loaded${advisorySuffix}`, fieldPath: 'agent_definition_loaded' });
+  } else if (routeProof.requireAgentDefinitionLoaded !== false && record.agent_definition_loaded !== true) {
+    warnings.push({ code: 'route_proof_mismatch', detail: `${source}.agent_definition_loaded must be true${advisorySuffix}`, fieldPath: 'agent_definition_loaded' });
+  }
+
+  if (!('resolved_route' in record)) {
+    warnings.push({ code: 'route_proof_missing', detail: `${source} missing route-proof field: resolved_route${advisorySuffix}`, fieldPath: 'resolved_route' });
+  } else if (record.resolved_route !== routeProof.resolvedRoute) {
+    warnings.push({ code: 'route_proof_mismatch', detail: `${source}.resolved_route='${String(record.resolved_route)}' expected '${routeProof.resolvedRoute}'${advisorySuffix}`, fieldPath: 'resolved_route' });
+  }
+
+  return { failure: null, warnings };
 }
 
 // ───── DISPATCH RECEIPT VALIDATION ─────
@@ -1582,23 +1639,31 @@ export function validateIterationOutputs(input: PostDispatchValidateInput): Post
       }
     }
 
-    const stateRouteProofFailure = validateRouteProofRecord(parsedRecord, input.routeProof, 'state_log');
-    if (stateRouteProofFailure) {
-      return stateRouteProofFailure;
-    }
-
-    if (deltaIterationRecord) {
-      const deltaRouteProofFailure = validateRouteProofRecord(deltaIterationRecord, input.routeProof, 'delta');
-      if (deltaRouteProofFailure) {
-        return deltaRouteProofFailure;
-      }
-    }
-
+    // A valid engine-signed dispatch receipt makes the model-written route-proof
+    // fields advisory: the receipt-derived route facts are authoritative, so a
+    // dispatch that omits or disagrees on them is accepted (warned, not blocked).
+    // When no receipt is configured, route-proof keeps its legacy strict behavior.
+    let modelFieldsAdvisory = false;
     if (input.dispatchReceipt) {
       const receiptFailure = validateDispatchReceipt(input.dispatchReceipt);
       if (receiptFailure) {
         return receiptFailure;
       }
+      modelFieldsAdvisory = true;
+    }
+
+    const stateRouteProof = validateRouteProofRecord(parsedRecord, input.routeProof, 'state_log', modelFieldsAdvisory);
+    if (stateRouteProof.failure) {
+      return stateRouteProof.failure;
+    }
+    warnings.push(...stateRouteProof.warnings);
+
+    if (deltaIterationRecord) {
+      const deltaRouteProof = validateRouteProofRecord(deltaIterationRecord, input.routeProof, 'delta', modelFieldsAdvisory);
+      if (deltaRouteProof.failure) {
+        return deltaRouteProof.failure;
+      }
+      warnings.push(...deltaRouteProof.warnings);
     }
 
     if (parsedRecord.reviewDepthSchemaVersion !== 2) {
