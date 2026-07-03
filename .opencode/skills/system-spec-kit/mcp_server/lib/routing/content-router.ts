@@ -410,8 +410,9 @@ const TIER1_RULE_LIBRARY = [
     id: 'tier1.transcript.wrapper',
     category: 'drop',
     confidence: 0.98,
-    when: (_chunk: ContentChunk, normalized: string): boolean =>
-      /conversation_log|timestamped dialogue|assistant:|user:|tool:/.test(normalized),
+    when: (chunk: ContentChunk, normalized: string): boolean =>
+      /conversation_log|timestamped dialogue/.test(normalized)
+      || (chunk.text.toLowerCase().match(/^\s*(?:assistant|user|tool):/gmu) ?? []).length >= 2,
   },
   {
     id: 'tier1.placeholder.boilerplate',
@@ -432,7 +433,7 @@ const DELIVERY_GATING_CUES = /\b(gate|gated|gating|prerequisite|depends on|block
 const DELIVERY_ROLLOUT_CUES = /\b(feature flag|feature-flag|shadow|rollout|deployed?|deployment|canary|dual-write|ship(?:ped|ping)?|release(?:d)?|migrat(?:e|ed|ion)|staging)\b/u;
 const DELIVERY_VERIFICATION_CUES = /\b(verify|verified|validate(?:d|s|ion)?|confirm(?:ed|s)?|check(?:ed|ing|s)?|verification stayed|closure only happened after|awaiting runtime verification|auditable)\b/u;
 const STRONG_DELIVERY_PHRASES = /\b(updated together|same-?pass|same runtime truth|kept (?:the work )?pending until|closure only happened after|awaiting runtime verification|verification stayed|only then)\b/u;
-const HARD_DROP_WRAPPER_CUES = /\b(conversation transcript|generic recovery hints|tool telemetry|table of contents|raw tool|repository state|assistant:|user:|tool:|recovery scenarios|diagnostic commands)\b/u;
+const HARD_DROP_WRAPPER_CUES = /\b(conversation transcript|generic recovery hints|tool telemetry|table of contents|raw tool|repository state|recovery scenarios|diagnostic commands)\b/u;
 const SOFT_OPERATIONAL_DROP_CUES = /\b(git diff|list memories|force re-index)\b/u;
 const STRONG_HANDOVER_LANGUAGE = /\b(current state|next session|resume|blocker|continuation|hand off|pick up where|active files|current blockers|remaining effort|immediate next session work|recent action|next safe action|fresh session|restart recipe)\b/u;
 

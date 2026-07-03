@@ -3,6 +3,7 @@
 // ───────────────────────────────────────────────────────────────
 import crypto from 'crypto';
 import fs from 'fs';
+import path from 'path';
 import { CHUNKING_THRESHOLD } from '../chunking/anchor-chunker.js';
 import { normalizeScopeValue } from '../governance/scope-governance.js';
 
@@ -62,6 +63,7 @@ export interface AnchorValidationResult {
 export interface DuplicateCheckResult {
   isDuplicate: boolean;
   duplicate_type: 'exact' | 'similar' | null;
+  status?: 'unchanged';
   existingId: number | null;
   existing_path: string | null;
   similarity: number | null;
@@ -96,6 +98,7 @@ export interface ContentSizeResult {
 export interface DuplicateCheckParams {
   content: string;
   content_hash?: string;
+  file_path?: string;
   spec_folder?: string;
   database?: DatabaseLike;
   find_similar?: FindSimilarFn;
@@ -147,6 +150,7 @@ export interface PreflightDetails {
 /** Unified preflight result */
 export interface PreflightResult {
   pass: boolean;
+  status?: 'unchanged';
   dry_run: boolean;
   dry_run_would_pass?: boolean;
   errors: PreflightIssue[];
@@ -189,6 +193,17 @@ function verifyStoredContentMatch(
   }
 
   return null;
+}
+
+function normalizePathForComparison(value: unknown): string | null {
+  if (typeof value !== 'string') {
+    return null;
+  }
+  const trimmed = value.trim();
+  if (trimmed.length === 0) {
+    return null;
+  }
+  return path.resolve(trimmed).replace(/\\/gu, '/');
 }
 
 /** Type for the find_similar callback */
@@ -414,6 +429,7 @@ export function checkDuplicate(params: DuplicateCheckParams, options: DuplicateC
   const {
     content,
     content_hash: provided_hash,
+    file_path,
     spec_folder,
     database,
     find_similar,
@@ -497,6 +513,7 @@ export function checkDuplicate(params: DuplicateCheckParams, options: DuplicateC
   // Compute content hash if not provided
   const content_hash = provided_hash || computeContentHash(content);
   result.content_hash = content_hash;
+  const incomingPath = normalizePathForComparison(file_path);
 
   // Check 1: Exact duplicate via content hash (fast)
   if (check_exact && database) {
@@ -529,12 +546,19 @@ export function checkDuplicate(params: DuplicateCheckParams, options: DuplicateC
       } | undefined;
 
       if (existing) {
+        const existingPath = normalizePathForComparison(existing.file_path);
         const verifiedMatch = verifyStoredContentMatch(
           existing.content_text,
           existing.file_path,
           content,
         );
         if (verifiedMatch === false) {
+          return result;
+        }
+        if (incomingPath !== null && existingPath === incomingPath) {
+          result.status = 'unchanged';
+          result.existingId = existing.id;
+          redactDuplicateForScope(existing, 1.0);
           return result;
         }
         result.isDuplicate = true;
@@ -834,10 +858,14 @@ export function runPreflight(params: PreflightParams, options: PreflightOptions 
   // 4. Duplicate detection
   if (check_duplicates && content) {
     const dupResult = checkDuplicate(
-      { content, spec_folder, database, find_similar, embedding, tenantId, userId, agentId },
+      { content, file_path, spec_folder, database, find_similar, embedding, tenantId, userId, agentId },
       { check_exact: true, check_similar }
     );
     addCheck('duplicate_check', dupResult);
+
+    if (dupResult.status === 'unchanged') {
+      result.status = 'unchanged';
+    }
 
     if (dupResult.isDuplicate) {
       // Exact duplicates block save

@@ -440,23 +440,6 @@ export function createMemoryRecord(
       peDecision.reason,
     );
 
-    if (bm25Index.isBm25Enabled()) {
-      try {
-        const bm25 = bm25Index.getIndex();
-        bm25.addDocument(String(memory_id), bm25Index.buildBm25DocumentText({
-          title: parsed.title,
-          content_text: parsed.content,
-          trigger_phrases: parsed.triggerPhrases,
-          file_path: filePath,
-        }));
-      } catch (bm25_err: unknown) {
-        const message = toErrorMessage(bm25_err);
-        console.warn(embedding
-          ? `[memory-save] BM25 indexing failed: ${message}`
-          : `[memory-save] BM25 indexing failed (deferred path): ${message}`);
-      }
-    }
-
     // Append-first writes add a new row for every new current version.
     try {
       recordHistory(memory_id, 'ADD', null, parsed.title ?? filePath, 'mcp:memory_save');
@@ -476,5 +459,24 @@ export function createMemoryRecord(
     return memory_id;
   });
 
-  return indexWithMetadata();
+  const memoryId = indexWithMetadata();
+
+  if (bm25Index.isBm25Enabled()) {
+    try {
+      const bm25 = bm25Index.getIndex();
+      bm25.addDocument(String(memoryId), bm25Index.buildBm25DocumentText({
+        title: parsed.title,
+        content_text: parsed.content,
+        trigger_phrases: parsed.triggerPhrases,
+        file_path: filePath,
+      }));
+    } catch (bm25_err: unknown) {
+      const message = toErrorMessage(bm25_err);
+      console.warn(embedding
+        ? `[memory-save] BM25 indexing failed: ${message}`
+        : `[memory-save] BM25 indexing failed (deferred path): ${message}`);
+    }
+  }
+
+  return memoryId;
 }

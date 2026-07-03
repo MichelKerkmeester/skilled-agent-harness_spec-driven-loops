@@ -72,6 +72,7 @@ import { resolveFusionIntentContract } from './search-utils.js';
 import { fts5Bm25Search } from './sqlite-fts.js';
 import { ACTIVE_ROW_SQL, isActiveRow } from './active-row-predicate.js';
 import { parse_trigger_phrases, specFolderLikePattern } from './vector-index-types.js';
+import { getCanonicalPathKey } from '../utils/canonical-path.js';
 
 import type Database from 'better-sqlite3';
 import type { MMRCandidate } from '@spec-kit/shared/algorithms/mmr-reranker';
@@ -948,7 +949,7 @@ function collectCandidatesFromLists(
         sourceScores: { [list.source]: normalizedScore },
         channelAttribution: [list.source],
       };
-      const key = canonicalResultId(candidate.id);
+      const key = canonicalResultIdentity(candidate);
       deduped.set(key, mergeRawCandidate(deduped.get(key), candidate));
     }
   }
@@ -971,7 +972,7 @@ function mergeRawCandidateSets(
   const merged = new Map<string, HybridSearchResult>();
 
   for (const result of [...existing, ...incoming]) {
-    const key = canonicalResultId(result.id);
+    const key = canonicalResultIdentity(result);
     merged.set(key, mergeRawCandidate(merged.get(key), result));
   }
 
@@ -2441,6 +2442,32 @@ function canonicalResultId(id: number | string): string {
   return raw;
 }
 
+function canonicalResultIdentity(result: HybridSearchResult): string {
+  const row = result as Record<string, unknown>;
+  const isChunk = row.parent_id != null
+    || row.parentId != null
+    || row.chunk_id != null
+    || row.chunkId != null;
+  if (isChunk) {
+    return `row:${canonicalResultId(result.id)}`;
+  }
+
+  const pathCandidate = [
+    row.canonical_file_path,
+    row.canonicalFilePath,
+    row.file_path,
+    row.filePath,
+  ].find((value): value is string => typeof value === 'string' && value.length > 0);
+  if (!pathCandidate) {
+    return `row:${canonicalResultId(result.id)}`;
+  }
+
+  const anchor = typeof row.anchor_id === 'string' && row.anchor_id.length > 0
+    ? row.anchor_id
+    : (typeof row.anchorId === 'string' && row.anchorId.length > 0 ? row.anchorId : '_');
+  return `file:${getCanonicalPathKey(pathCandidate)}#${anchor}`;
+}
+
 function truncateChars(input: string, maxChars: number): string {
   if (input.length <= maxChars) return input;
   if (maxChars <= 1) return input.slice(0, maxChars);
@@ -3101,6 +3128,7 @@ function truncateToBudget(
 
 export const __testables = {
   canonicalResultId,
+  canonicalResultIdentity,
   getHardExclusionPredicates,
   truncateChars,
   extractSpecSegments,

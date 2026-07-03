@@ -10,9 +10,94 @@ function sha256Hex(input: string): string {
   return createHash('sha256').update(input, 'utf-8').digest('hex');
 }
 
+const ZERO_CONTINUITY_FINGERPRINT = 'sha256:0000000000000000000000000000000000000000000000000000000000000000';
+const ZERO_CONTINUITY_TIMESTAMP = '0000-00-00T00:00:00.000Z';
+
+function indentationOf(line: string): number {
+  return line.length - line.trimStart().length;
+}
+
+function isBlockBoundary(line: string, indent: number): boolean {
+  const trimmed = line.trim();
+  return trimmed.length > 0 && !trimmed.startsWith('#') && indentationOf(line) <= indent;
+}
+
+/** Normalize markdown bytes that do not change durable document identity. */
+export function normalizeContentHashInput(content: string): string {
+  const normalizedLines = content.replace(/\r\n/g, '\n').replace(/\r/g, '\n').split('\n');
+  const inYamlFrontmatter = normalizedLines[0]?.replace(/^\uFEFF/u, '') === '---';
+  let frontmatterClosed = !inYamlFrontmatter;
+  let inMemoryBlock = false;
+  let memoryIndent = -1;
+  let inContinuityBlock = false;
+  let continuityIndent = -1;
+
+  return normalizedLines
+    .map((line, index) => {
+      if (index > 0 && !frontmatterClosed && line.trim() === '---') {
+        frontmatterClosed = true;
+        return line.trimEnd();
+      }
+
+      if (frontmatterClosed) {
+        return line.trimEnd();
+      }
+
+      const trimmed = line.trim();
+      const indent = indentationOf(line);
+      if (/^_memory:\s*$/u.test(trimmed)) {
+        inMemoryBlock = true;
+        memoryIndent = indent;
+        inContinuityBlock = false;
+        return line.trimEnd();
+      }
+
+      if (inMemoryBlock && isBlockBoundary(line, memoryIndent)) {
+        inMemoryBlock = false;
+        inContinuityBlock = false;
+      }
+
+      if (inMemoryBlock && /^continuity:\s*$/u.test(trimmed) && indent > memoryIndent) {
+        inContinuityBlock = true;
+        continuityIndent = indent;
+        return line.trimEnd();
+      }
+
+      if (inContinuityBlock && isBlockBoundary(line, continuityIndent)) {
+        inContinuityBlock = false;
+      }
+
+      if (inContinuityBlock && /^last_updated_at:\s*/u.test(trimmed)) {
+        return line.replace(/^(\s*last_updated_at:\s*).*/u, `$1"${ZERO_CONTINUITY_TIMESTAMP}"`).trimEnd();
+      }
+
+      if (inContinuityBlock && /^fingerprint:\s*/u.test(trimmed)) {
+        return line.replace(/^(\s*fingerprint:\s*).*/u, `$1"${ZERO_CONTINUITY_FINGERPRINT}"`).trimEnd();
+      }
+
+      return line.trimEnd();
+    })
+    .join('\n');
+}
+
 /** Hash a raw content body without adding a namespace or prefix. */
 export function hashContentBody(content: string): string {
   return sha256Hex(content);
+}
+
+/** Return the normalized content hash written by new save-path rows. */
+export function hashNormalizedContentBody(content: string): string {
+  return hashContentBody(normalizeContentHashInput(content));
+}
+
+/** Return accepted hashes for matching rows written before and after normalization. */
+export function contentHashVariants(content: string): readonly string[] {
+  return [...new Set([hashNormalizedContentBody(content), hashContentBody(content)])];
+}
+
+/** Compare content against either normalized or legacy raw stored hashes. */
+export function hashesMatch(content: string, storedHash: string | null | undefined): boolean {
+  return typeof storedHash === 'string' && contentHashVariants(content).includes(storedHash);
 }
 
 /** Hash a normalized JSON value without changing the caller's identity rules. */

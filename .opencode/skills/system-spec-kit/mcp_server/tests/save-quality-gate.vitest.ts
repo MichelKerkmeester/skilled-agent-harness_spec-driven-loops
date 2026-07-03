@@ -668,6 +668,23 @@ describe('Save Quality Gate (TM-04)', () => {
       expect(result.pass).toBe(true);
       expect(result.isDuplicate).toBe(false);
     });
+
+    it('SD-9: Same-path predecessor exclusion is forwarded to semantic lookup', () => {
+      const embedding = makeEmbedding(10);
+      const findSimilar = vi.fn<FindSimilarFn>(() => []);
+
+      checkSemanticDedup(embedding, 'test-spec', findSimilar, {
+        filePath: '/test/spec.md',
+        canonicalFilePath: '/canonical/test/spec.md',
+      });
+
+      expect(findSimilar).toHaveBeenCalledWith(embedding, {
+        limit: 1,
+        specFolder: 'test-spec',
+        excludeFilePath: '/test/spec.md',
+        excludeCanonicalFilePath: '/canonical/test/spec.md',
+      });
+    });
   });
 
   /* ─────────────────────────────────────────────────────────────

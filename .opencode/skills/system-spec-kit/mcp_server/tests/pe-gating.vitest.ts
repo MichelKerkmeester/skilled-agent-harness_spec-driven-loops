@@ -98,4 +98,27 @@ describe('PE gating scoped similar-memory search', () => {
     expect(results).toHaveLength(1);
     expect(results[0]).toEqual(expect.objectContaining({ id: 10, similarity: 0.88 }));
   });
+
+  it('keeps same-path candidates reachable when the caller does not pass exclusion options', () => {
+    vi.spyOn(vectorIndex, 'vectorSearch')
+      .mockReturnValue([
+        makeCandidate(20, {
+          file_path: '/specs/026-memory-database-refinement/spec.md',
+          tenant_id: 'tenant-a',
+        }),
+      ] as ReturnType<typeof vectorIndex.vectorSearch>);
+
+    const results = findSimilarMemories(new Float32Array([0.8, 0.9, 1]), {
+      limit: 1,
+      specFolder: 'specs/026-memory-database-refinement',
+      tenantId: 'tenant-a',
+    });
+
+    expect(results).toEqual([
+      expect.objectContaining({
+        id: 20,
+        file_path: '/specs/026-memory-database-refinement/spec.md',
+      }),
+    ]);
+  });
 });

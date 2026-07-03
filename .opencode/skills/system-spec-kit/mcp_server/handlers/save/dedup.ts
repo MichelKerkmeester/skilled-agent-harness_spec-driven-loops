@@ -5,6 +5,7 @@ import fs from 'fs';
 import type Database from 'better-sqlite3';
 
 import type { ParsedMemory } from '../../lib/parsing/memory-parser.js';
+import { contentHashVariants, hashesMatch, normalizeContentHashInput } from '../../lib/content-id.js';
 import type { IndexResult } from './types.js';
 
 // Feature catalog: SHA-256 content-hash deduplication
@@ -37,6 +38,7 @@ type ScopeColumnName = typeof SCOPE_COLUMNS[number][0];
 interface LatestMemoryLookupRow {
   id: number;
   content_hash: string;
+  content_text: string | null;
   embedding_status: string | null;
   trigger_phrases: string | null;
   quality_score: number | null;
@@ -100,7 +102,7 @@ function selectLatestExistingRow(
   ];
 
   return database.prepare(`
-    SELECT id, content_hash, embedding_status, trigger_phrases, quality_score, quality_flags
+    SELECT id, content_hash, content_text, embedding_status, trigger_phrases, quality_score, quality_flags
     FROM memory_index
     WHERE ${whereClauses.join('\n      AND ')}
     ORDER BY id DESC
@@ -111,6 +113,15 @@ function selectLatestExistingRow(
     ...(targetAnchorId !== null ? [targetAnchorId] : []),
     ...scopeParams,
   ) as LatestMemoryLookupRow | undefined;
+}
+
+function isSameContentIdentity(existing: LatestMemoryLookupRow, parsed: ParsedMemory): boolean {
+  if (hashesMatch(parsed.content, existing.content_hash)) {
+    return true;
+  }
+
+  return typeof existing.content_text === 'string'
+    && normalizeContentHashInput(existing.content_text) === normalizeContentHashInput(parsed.content);
 }
 
 function parseJsonStringArray(raw: string | null): string[] {
@@ -266,7 +277,7 @@ export function checkExistingRow(
   // Check content hash even during force reindex to prevent duplicate
   // row accumulation. If content AND metadata are identical, the embedding would
   // not change either, so re-indexing provides no value and creates duplicates.
-  if (existing && existing.content_hash === parsed.contentHash && isUnchangedEligible && isMetadataEquivalent) {
+  if (existing && isSameContentIdentity(existing, parsed) && isUnchangedEligible && isMetadataEquivalent) {
     return {
       status: 'unchanged',
       id: existing.id,
@@ -294,14 +305,14 @@ export function checkContentHashDedup(
     const { clauses: scopeClauses, params: scopeParams } = buildScopedWhereClauses(scope);
     const whereClauses = [
       'spec_folder = ?',
-      'content_hash = ?',
+      `content_hash IN (${contentHashVariants(parsed.content).map(() => '?').join(', ')})`,
       'parent_id IS NULL',
       'embedding_status IN (?, ?)',
       ...scopeClauses,
     ];
     const duplicateParams: Array<string> = [
       parsed.specFolder,
-      parsed.contentHash,
+      ...contentHashVariants(parsed.content),
       ...DEDUP_ELIGIBLE_EMBEDDING_STATUSES,
       ...scopeParams,
     ];

@@ -14,6 +14,8 @@ import * as crypto from 'crypto';
 import * as hybridSearch from '../lib/search/hybrid-search';
 import { findSamePathExistingMemory } from '../handlers/save/create-record';
 import { checkContentHashDedup, checkExistingRow } from '../handlers/save/dedup';
+import { hashContentBody, hashesMatch } from '../lib/content-id';
+import { computeContentHash } from '../lib/parsing/memory-parser';
 
 /* ───────────────────────────────────────────────────────────────
    HELPERS
@@ -133,6 +135,76 @@ describe('T054: SHA256 Content-Hash Dedup (TM-02)', () => {
 
   beforeAll(() => {
     db = createMinimalDb();
+  });
+
+  describe('Normalized content-hash identity', () => {
+    const stableContent = [
+      '---',
+      '_memory:',
+      '  continuity:',
+      '    packet_pointer: "specs/demo/001-test"',
+      '    last_updated_at: "2026-07-03T10:00:00Z"',
+      '    session_dedup:',
+      '      fingerprint: "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"',
+      '---',
+      '# Demo',
+      'Body line',
+    ].join('\n');
+
+    it('treats CRLF, trailing whitespace, and continuity churn as the same content hash', () => {
+      const churned = stableContent
+        .replace(/\n/g, '\r\n')
+        .replace('Body line', 'Body line   ')
+        .replace('2026-07-03T10:00:00Z', '2026-07-03T11:00:00Z')
+        .replace(/a{64}/u, 'b'.repeat(64));
+
+      expect(computeContentHash(churned)).toBe(computeContentHash(stableContent));
+    });
+
+    it('accepts legacy raw hashes without rewriting stored values', () => {
+      const legacyHash = hashContentBody(stableContent);
+
+      expect(legacyHash).not.toBe(computeContentHash(stableContent));
+      expect(hashesMatch(stableContent, legacyHash)).toBe(true);
+    });
+
+    it('returns unchanged for a same-path row with a legacy raw hash', () => {
+      const legacyHash = hashContentBody(stableContent.replace(/\n/g, '\r\n'));
+      const filePath = artifactPath('specs/normalized-dedup', 'spec.md');
+      db.prepare(`
+        INSERT INTO memory_index (
+          spec_folder, file_path, canonical_file_path, title, content_hash,
+          embedding_status, trigger_phrases, quality_flags, quality_score, content_text
+        ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+      `).run(
+        'specs/normalized-dedup',
+        filePath,
+        filePath,
+        'Normalized Dedup',
+        legacyHash,
+        'success',
+        JSON.stringify([]),
+        JSON.stringify([]),
+        0,
+        stableContent.replace(/\n/g, '\r\n'),
+      );
+
+      const result = checkExistingRow(
+        db,
+        {
+          ...buildParsedMemory('specs/normalized-dedup', stableContent, 'Normalized Dedup'),
+          contentHash: computeContentHash(stableContent),
+        },
+        filePath,
+        filePath,
+        null,
+        false,
+        [],
+        {},
+      );
+
+      expect(result?.status).toBe('unchanged');
+    });
   });
 
   afterAll(() => {

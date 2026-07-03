@@ -7,6 +7,7 @@ const mocks = vi.hoisted(() => ({
   updateExistingMemoryMock: vi.fn(),
   logPeDecisionMock: vi.fn(),
   evaluateMemoryMock: vi.fn(),
+  initMock: vi.fn(),
 }));
 
 vi.mock('../handlers/pe-gating.js', () => ({
@@ -29,6 +30,7 @@ vi.mock('../lib/cognitive/prediction-error-gate.js', () => ({
     SUPERSEDE: 'SUPERSEDE',
     UPDATE: 'UPDATE',
   },
+  init: mocks.initMock,
   evaluateMemory: mocks.evaluateMemoryMock,
 }));
 
@@ -41,6 +43,7 @@ describe('PE orchestration lineage guard', () => {
     mocks.updateExistingMemoryMock.mockReset();
     mocks.logPeDecisionMock.mockReset();
     mocks.evaluateMemoryMock.mockReset();
+    mocks.initMock.mockReset();
   });
 
   it('downgrades a tasks.md update against a similar sibling checklist.md to CREATE', () => {
@@ -213,6 +216,13 @@ describe('PE orchestration lineage guard', () => {
       );
 
       expect(result.decision.action).toBe('UPDATE');
+      expect(mocks.findSimilarMemoriesMock).toHaveBeenCalledWith(
+        expect.any(Float32Array),
+        expect.not.objectContaining({
+          excludeFilePath: expect.any(String),
+          excludeCanonicalFilePath: expect.any(String),
+        }),
+      );
       expect(mocks.updateExistingMemoryMock).toHaveBeenCalledWith(
         123,
         expect.objectContaining({
@@ -237,15 +247,68 @@ describe('PE orchestration lineage guard', () => {
           userId: 'user-scan',
           agentId: 'agent-scan',
           sessionId: 'session-scan',
-          excludeFilePath: tasksPath,
-          excludeCanonicalFilePath: tasksPath,
         }),
       );
+      const similarOptions = mocks.findSimilarMemoriesMock.mock.calls[0]?.[1] as Record<string, unknown>;
+      expect(similarOptions).not.toHaveProperty('excludeFilePath');
+      expect(similarOptions).not.toHaveProperty('excludeCanonicalFilePath');
       expect(result.earlyReturn).toMatchObject({
         status: 'updated',
         id: 123,
         pe_action: 'UPDATE',
       });
+    } finally {
+      database.close();
+    }
+  });
+
+  it('downgrades cross-file supersede decisions to CREATE before deprecating a sibling row', () => {
+    const database = new Database(':memory:');
+    const tasksPath = '/workspace/.opencode/specs/system-spec-kit/026-graph-and-context-optimization/010-memory-indexer-lineage-and-concurrency-fix/tasks.md';
+    const checklistPath = '/workspace/.opencode/specs/system-spec-kit/026-graph-and-context-optimization/010-memory-indexer-lineage-and-concurrency-fix/checklist.md';
+
+    mocks.findSimilarMemoriesMock.mockReturnValue([
+      {
+        id: 321,
+        similarity: 0.95,
+        content: 'sibling checklist content says old thing',
+        stability: 1,
+        difficulty: 1,
+        file_path: checklistPath,
+        canonical_file_path: checklistPath,
+      },
+    ]);
+    mocks.evaluateMemoryMock.mockReturnValue({
+      action: 'SUPERSEDE',
+      similarity: 0.95,
+      existingMemoryId: 321,
+      reason: 'High match with contradiction',
+    });
+
+    try {
+      const result = evaluateAndApplyPeDecision(
+        database,
+        {
+          specFolder: 'system-spec-kit/026-graph-and-context-optimization/010-memory-indexer-lineage-and-concurrency-fix',
+          filePath: tasksPath,
+          title: 'Memory Indexer Lineage Fix Tasks',
+          triggerPhrases: ['supersede guard'],
+          content: 'sibling tasks content says new thing',
+          contentHash: 'tasks-hash-4',
+          contextType: 'tasks',
+          importanceTier: 'important',
+          documentType: 'tasks',
+        } as any,
+        new Float32Array([0.1, 0.2, 0.3]),
+        false,
+        [],
+        'success',
+        tasksPath,
+      );
+
+      expect(result.decision.action).toBe('CREATE');
+      expect(result.supersededId).toBeNull();
+      expect(result.earlyReturn).toBeNull();
     } finally {
       database.close();
     }

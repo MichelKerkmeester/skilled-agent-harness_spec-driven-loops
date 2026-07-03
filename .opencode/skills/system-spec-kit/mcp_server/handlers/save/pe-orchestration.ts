@@ -56,6 +56,7 @@ export function evaluateAndApplyPeDecision(
   let supersededId: number | null = null;
 
   if (!force && embedding) {
+    predictionErrorGate.init(database);
     candidates = findSimilarMemories(embedding, {
       limit: 5,
       specFolder: parsed.specFolder,
@@ -63,8 +64,6 @@ export function evaluateAndApplyPeDecision(
       userId: scope?.userId,
       agentId: scope?.agentId,
       sessionId: scope?.sessionId,
-      excludeFilePath: filePath,
-      excludeCanonicalFilePath: filePath,
     });
   }
 
@@ -79,7 +78,8 @@ export function evaluateAndApplyPeDecision(
     if (
       peDecision.existingMemoryId != null &&
       (peDecision.action === predictionErrorGate.ACTION.UPDATE ||
-        peDecision.action === predictionErrorGate.ACTION.REINFORCE)
+        peDecision.action === predictionErrorGate.ACTION.REINFORCE ||
+        peDecision.action === predictionErrorGate.ACTION.SUPERSEDE)
     ) {
       const targetCanonicalPath = getCanonicalPathKey(filePath);
       const matchedCandidate = candidates.find((candidate) => candidate.id === peDecision.existingMemoryId);

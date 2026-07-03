@@ -55,6 +55,7 @@ export interface ContaminationPlan {
 export interface PostSavePlan {
   file?: string;
   expectedFingerprint?: string;
+  expectedContent?: string;
   snapshotContent?: string;
   expectedSize?: number;
   expectedMtimeMs?: number;
@@ -579,14 +580,6 @@ export function normalizeForContinuityFingerprint(content: string): string {
 
 export function buildContinuityFingerprint(content: string): string {
   return `sha256:${createHash('sha256').update(normalizeForContinuityFingerprint(content), 'utf8').digest('hex')}`;
-}
-
-function computeNormalizedFingerprint(content: string): string {
-  const normalized = content
-    .replace(/\r\n/g, '\n')
-    .replace(/[ \t]+$/gm, '');
-
-  return `sha256:${createHash('sha256').update(normalized, 'utf8').digest('hex')}`;
 }
 
 function resolveTargetPath(folder: string, candidate: string | undefined): string | null {
@@ -1122,12 +1115,17 @@ function validatePostSaveFingerprint(folder: string, postSavePlan: PostSavePlan 
     return createResult('POST_SAVE_FINGERPRINT', diagnostics, 'Post-save fingerprint check passed');
   }
 
-  const currentContent = fs.readFileSync(targetPath, 'utf8');
-  const currentFingerprint = computeNormalizedFingerprint(currentContent);
+  const currentContent = typeof postSavePlan.expectedContent === 'string'
+    ? postSavePlan.expectedContent
+    : fs.readFileSync(targetPath, 'utf8');
+  const currentFingerprint = buildContinuityFingerprint(currentContent);
   const stat = fs.statSync(targetPath);
+  const currentSize = typeof postSavePlan.expectedContent === 'string'
+    ? Buffer.byteLength(postSavePlan.expectedContent, 'utf8')
+    : stat.size;
 
   if (
-    (typeof postSavePlan.expectedSize === 'number' && stat.size !== postSavePlan.expectedSize)
+    (typeof postSavePlan.expectedSize === 'number' && currentSize !== postSavePlan.expectedSize)
     || (typeof postSavePlan.expectedMtimeMs === 'number' && Math.round(stat.mtimeMs) !== Math.round(postSavePlan.expectedMtimeMs))
   ) {
     diagnostics.push({
@@ -1138,19 +1136,6 @@ function validatePostSaveFingerprint(folder: string, postSavePlan: PostSavePlan 
   }
 
   if (currentFingerprint !== postSavePlan.expectedFingerprint) {
-    if (typeof postSavePlan.snapshotContent === 'string') {
-      try {
-        fs.writeFileSync(targetPath, postSavePlan.snapshotContent, 'utf8');
-      } catch (error: unknown) {
-        const message = error instanceof Error ? error.message : String(error);
-        diagnostics.push({
-          code: 'SPECDOC_FINGERPRINT_003',
-          severity: 'error',
-          detail: `rollback failed after fingerprint mismatch: ${message}`,
-        });
-      }
-    }
-
     diagnostics.push({
       code: 'SPECDOC_FINGERPRINT_002',
       severity: 'error',

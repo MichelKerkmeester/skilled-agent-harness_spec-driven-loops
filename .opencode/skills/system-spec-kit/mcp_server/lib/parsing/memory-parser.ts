@@ -9,7 +9,7 @@ import path from 'path';
 // Internal modules
 import { escapeRegex } from '../utils/path-security.js';
 import { getCanonicalPathKey, canonicalizeForSpecFolderExtraction } from '../utils/canonical-path.js';
-import { hashContentBody } from '../content-id.js';
+import { hashNormalizedContentBody } from '../content-id.js';
 import { getDefaultTierForDocumentType, isValidTier, normalizeTier } from '../scoring/importance-tiers.js';
 // Import type inference for memory_type classification
 import { inferMemoryType } from '../config/type-inference.js';
@@ -913,7 +913,7 @@ export function extractImportanceTier(content: string, options: ExtractImportanc
 
 /** Compute SHA-256 hash of content for change detection */
 export function computeContentHash(content: string): string {
-  return hashContentBody(content);
+  return hashNormalizedContentBody(content);
 }
 
 function lineNumberAtOffset(lineStarts: number[], offset: number): number {

@@ -4,7 +4,7 @@
 /* --- 1. DEPENDENCIES --- */
 
 // Node built-ins
-import { createHash, randomUUID } from 'node:crypto';
+import { randomUUID } from 'node:crypto';
 import * as fs from 'node:fs';
 import path from 'path';
 
@@ -30,6 +30,7 @@ import { ensureMemoryRuntimeInitialized } from '../lib/runtime/memory-runtime-gu
 import { scrubSecretsDetailed } from '../lib/parsing/secret-scrubber.js';
 import { createFilePathValidator } from '../utils/validators.js';
 import * as memoryParser from '../lib/parsing/memory-parser.js';
+import { hashesMatch } from '../lib/content-id.js';
 import { normalizeTier } from '../lib/scoring/importance-tiers.js';
 import * as transactionManager from '../lib/storage/transaction-manager.js';
 import * as checkpoints from '../lib/storage/checkpoints.js';
@@ -160,6 +161,7 @@ import {
 } from '../lib/continuity/thin-continuity-record.js';
 import {
   runSpecDocStructureRule,
+  buildContinuityFingerprint,
   type ContaminationPlan,
   type MergePlan,
   type PostSavePlan,
@@ -1070,16 +1072,6 @@ function toValidatorLevel(packetLevel: CanonicalPacketLevel): string {
   return packetLevel.replace(/^L/u, '');
 }
 
-function normalizeForFingerprint(content: string): string {
-  return content
-    .replace(/\r\n/g, '\n')
-    .replace(/[ \t]+$/gm, '');
-}
-
-function buildContinuityFingerprint(content: string): string {
-  return `sha256:${createHash('sha256').update(normalizeForFingerprint(content), 'utf8').digest('hex')}`;
-}
-
 function normalizePhaseAnchor(value: string | null | undefined): string | null {
   if (typeof value !== 'string') {
     return null;
@@ -1805,6 +1797,7 @@ async function buildCanonicalAtomicPreparedSave(
           ? {
               file: relativeTargetFile,
               expectedFingerprint: buildContinuityFingerprint(persistedContent),
+              expectedContent: persistedContent,
               snapshotContent: originalTargetContent,
               expectedSize: Buffer.byteLength(persistedContent, 'utf8'),
             }
@@ -2395,11 +2388,14 @@ async function processPreparedMemory(
           triggerPhrases: routedParsed.triggerPhrases,
           contextType: routedParsed.contextType,
           mode: 'legacy',
+          semanticDedupExclusion: samePathDedupExclusion,
           embedding: embedding,
           findSimilar: embedding ? (emb, gateOptions) => {
             return findSimilarMemories(emb as Float32Array, {
               limit: gateOptions.limit,
               specFolder: gateOptions.specFolder,
+              excludeFilePath: gateOptions.excludeFilePath,
+              excludeCanonicalFilePath: gateOptions.excludeCanonicalFilePath,
               tenantId: scope.tenantId,
               userId: scope.userId,
               agentId: scope.agentId,
@@ -2616,7 +2612,7 @@ async function processPreparedMemory(
 
     const requestedScope = getRequestedScope(scope);
     const writeTransaction = database.transaction((): number => {
-      if (indexingOrigin !== 'scan' && embedding) {
+      if (!force && isSaveReconsolidationEnabled() && indexingOrigin !== 'scan' && embedding) {
         const complementRecheck = findScopeFilteredCandidates({
           database,
           embedding,
@@ -2626,7 +2622,7 @@ async function processPreparedMemory(
           minSimilarity: 50,
           overfetchMultiplier: 3,
         });
-        const topCandidate = complementRecheck.candidates[0];
+        const topCandidate = complementRecheck.candidates.find((candidate) => candidate.id !== samePathExisting?.id);
         if (topCandidate) {
           const transactionalAction = determineAction(topCandidate.similarity);
           if (transactionalAction !== 'complement') {
@@ -2661,7 +2657,7 @@ async function processPreparedMemory(
       // this branch only — PE-gate / reconsolidation lineage (createMemoryRecord)
       // is intentionally preserved.
       const samePathSupersededPredecessorId =
-        existing && existing.content_hash !== routedParsed.contentHash ? existing.id : null;
+        existing && !hashesMatch(routedParsed.content, existing.content_hash) ? existing.id : null;
 
       // Retire the same-path predecessor before inserting the new version so the
       // active-row uniqueness guard holds at insert time. Deprecating (not deleting)
@@ -3198,7 +3194,7 @@ async function handleMemorySaveInner(args: SaveArgs, requestId: string): Promise
     deleteAfter,
   } = args;
   const plannerMode = requestedPlannerMode ?? resolveSavePlannerMode();
-  const shouldPlanCanonicalSave = !dryRun && plannerMode !== 'full-auto' && Boolean(routeAs || mergeModeHint || targetAnchorId);
+  const shouldPlanCanonicalSave = !dryRun && Boolean(routeAs || mergeModeHint || targetAnchorId);
 
   // Validate inputs before any I/O (checkDatabaseUpdated is deferred until after validation).
   // Return a classified validation error instead of a bare throw, which the dispatcher would
@@ -3673,7 +3669,8 @@ async function handleMemorySaveInner(args: SaveArgs, requestId: string): Promise
         const replayMemoryId = extractMemoryIdFromResponse(lookup.response);
         if (
           activeRow
-          && activeRow.content_hash === lookup.key.contentHash
+          && hashesMatch(parsedForIdempotency.content, activeRow.content_hash)
+          && hashesMatch(parsedForIdempotency.content, lookup.key.contentHash)
           && (replayMemoryId == null || activeRow.id === replayMemoryId)
         ) {
           return lookup.response;

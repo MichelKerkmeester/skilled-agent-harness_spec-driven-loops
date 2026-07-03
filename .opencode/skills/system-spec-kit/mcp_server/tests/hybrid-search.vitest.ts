@@ -251,7 +251,7 @@ function createTriggerPhraseMockDb(): Database.Database {
 }
 
 function createBm25MetadataDb(
-  rowsById: Map<number, { spec_folder: string; importance_tier: string | null }>
+  rowsById: Map<number, { spec_folder: string; importance_tier: string | null; deleted_at?: string | null }>
 ): Database.Database {
   return {
     prepare(sql: string) {
@@ -263,7 +263,7 @@ function createBm25MetadataDb(
           return null;
         },
         all(...ids: unknown[]) {
-          if (sql.includes('SELECT id, spec_folder, importance_tier FROM memory_index')) {
+          if (sql.includes('SELECT id, spec_folder, importance_tier, deleted_at FROM memory_index')) {
             return ids
               .map((id) => {
                 const numericId = Number(id);
@@ -273,9 +273,10 @@ function createBm25MetadataDb(
                   id: numericId,
                   spec_folder: metadata.spec_folder,
                   importance_tier: metadata.importance_tier,
+                  deleted_at: metadata.deleted_at ?? null,
                 };
               })
-              .filter((row): row is { id: number; spec_folder: string; importance_tier: string | null } => row !== null);
+              .filter((row): row is { id: number; spec_folder: string; importance_tier: string | null; deleted_at: string | null } => row !== null);
           }
           return [];
         },
@@ -434,7 +435,7 @@ describe('Hybrid Search Unit Tests (T031+)', () => {
             };
           }
 
-          if (sql.includes('SELECT id, spec_folder, importance_tier FROM memory_index')) {
+          if (sql.includes('SELECT id, spec_folder, importance_tier, deleted_at FROM memory_index')) {
             return {
               all() {
                 throw new Error('scope lookup failed');
@@ -479,13 +480,14 @@ describe('Hybrid Search Unit Tests (T031+)', () => {
             };
           }
 
-          if (sql.includes('SELECT id, spec_folder, importance_tier FROM memory_index')) {
+          if (sql.includes('SELECT id, spec_folder, importance_tier, deleted_at FROM memory_index')) {
             return {
               all(...ids: unknown[]) {
                 return ids.map((id) => ({
                   id: Number(id),
                   spec_folder: 'specs/auth',
                   importance_tier: Number(id) === 2 ? 'deprecated' : 'normal',
+                  deleted_at: null,
                 }));
               },
             };
@@ -896,6 +898,31 @@ describe('Hybrid Search Unit Tests (T031+)', () => {
       const canonicalIds = results.map((r) => hybridSearch.__testables.canonicalResultId(r.id));
       const uniqueCanonicalIds = Array.from(new Set(canonicalIds));
       expect(canonicalIds.length).toBe(uniqueCanonicalIds.length);
+    });
+
+    it('deduplicates fusion candidates by canonical file identity while keeping chunks row-scoped', () => {
+      const first = hybridSearch.__testables.canonicalResultIdentity({
+        id: 10,
+        score: 0.9,
+        source: 'vector',
+        file_path: '/workspace/specs/demo/spec.md',
+      });
+      const second = hybridSearch.__testables.canonicalResultIdentity({
+        id: 11,
+        score: 0.8,
+        source: 'fts',
+        canonical_file_path: '/workspace/specs/demo/spec.md',
+      });
+      const chunk = hybridSearch.__testables.canonicalResultIdentity({
+        id: 12,
+        score: 0.7,
+        source: 'fts',
+        canonical_file_path: '/workspace/specs/demo/spec.md',
+        parent_id: 10,
+      });
+
+      expect(second).toBe(first);
+      expect(chunk).not.toBe(first);
     });
   });
 

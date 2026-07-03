@@ -206,13 +206,23 @@ describe('content-router tier 1 classification', () => {
   it('routes transcript-like content to drop and refusal target', async () => {
     const decision = await router.classifyContent({
       id: 'chunk-9',
-      text: '2026-04-11 user: continue anyway. 2026-04-11 assistant: applying targeted fix. 2026-04-11 tool: git diff --name-only.',
+      text: 'user: continue anyway.\nassistant: applying targeted fix.\ntool: git diff --name-only.',
       sourceField: 'unknown',
     }, makeContext());
 
     expect(decision.category).toBe('drop');
     expect(decision.target.mergeMode).toBe('refuse-to-route');
     expect(decision.overrideable).toBe(false);
+  });
+
+  it('does not drop prose that mentions speaker cues mid-line', async () => {
+    const decision = await router.classifyContent({
+      id: 'chunk-9b',
+      text: 'Implemented and fixed the save path, updated verification, and all focused tests pass while documenting how tool: output handling behaves as plain prose; the user: label remains an inline example, not a speaker turn.',
+      sourceField: 'observations',
+    }, makeContext());
+
+    expect(decision.category).not.toBe('drop');
   });
 });
 

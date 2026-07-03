@@ -98,6 +98,29 @@ function isReclaimableLock(lockDir: string): boolean {
   return ownerState === 'dead' || (ownerState === 'unknown' && ageMs > LOCK_STALE_MS);
 }
 
+function reclaimInterprocessLock(lockDir: string): boolean {
+  const reclaimedDir = `${lockDir}.reclaiming-${process.pid}-${Date.now()}`;
+  try {
+    fs.renameSync(lockDir, reclaimedDir);
+  } catch (error: unknown) {
+    if (getNodeErrorCode(error) === 'ENOENT') {
+      return true;
+    }
+    return false;
+  }
+
+  if (fs.existsSync(lockDir) || !fs.existsSync(reclaimedDir)) {
+    return false;
+  }
+
+  try {
+    fs.rmSync(reclaimedDir, { recursive: true, force: true });
+  } catch (error: unknown) {
+    console.warn('[memory-save] failed to remove reclaimed interprocess spec-folder lock:', error);
+  }
+  return true;
+}
+
 function stopHeartbeat(lockDir: string): void {
   const heartbeat = lockHeartbeats.get(lockDir);
   if (!heartbeat) {
@@ -159,8 +182,9 @@ async function acquireInterprocessLock(specFolder: string): Promise<Interprocess
       }
 
       if (isReclaimableLock(lockDir)) {
-        fs.rmSync(lockDir, { recursive: true, force: true });
-        continue;
+        if (reclaimInterprocessLock(lockDir)) {
+          continue;
+        }
       }
 
       if (Date.now() >= deadline) {
@@ -205,6 +229,7 @@ export {
   getLockDir,
   getLockOwnerState,
   isReclaimableLock,
+  reclaimInterprocessLock,
   createInterprocessLock,
   releaseInterprocessLock,
 };

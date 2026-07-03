@@ -83,6 +83,10 @@ export interface QualityGateParams {
   anchors?: string[];
   embedding?: Float32Array | number[] | null;
   findSimilar?: FindSimilarFn | null;
+  semanticDedupExclusion?: {
+    filePath?: string;
+    canonicalFilePath?: string;
+  };
   /** context_type for short-critical exception evaluation */
   contextType?: string | null;
   mode?: 'planner-advisory' | 'legacy';
@@ -91,7 +95,12 @@ export interface QualityGateParams {
 /** Callback for finding similar memories by embedding */
 type FindSimilarFn = (
   embedding: Float32Array | number[],
-  options: { limit: number; specFolder?: string }
+  options: {
+    limit: number;
+    specFolder?: string;
+    excludeFilePath?: string;
+    excludeCanonicalFilePath?: string;
+  }
 ) => Array<{ id: number; file_path: string; similarity: number }>;
 
 // ───────────────────────────────────────────────────────────────
@@ -698,12 +707,15 @@ export function cosineSimilarity(
 export function checkSemanticDedup(
   embedding: Float32Array | number[],
   specFolder: string,
-  findSimilar: FindSimilarFn
+  findSimilar: FindSimilarFn,
+  exclusion: QualityGateParams['semanticDedupExclusion'] = undefined,
 ): SemanticDedupResult {
   try {
     const candidates = findSimilar(embedding, {
       limit: 1,
       specFolder,
+      excludeFilePath: exclusion?.filePath,
+      excludeCanonicalFilePath: exclusion?.canonicalFilePath,
     });
 
     if (!candidates || candidates.length === 0) {
@@ -822,7 +834,8 @@ export function runQualityGate(params: QualityGateParams): QualityGateResult {
     semanticDedup = checkSemanticDedup(
       params.embedding,
       params.specFolder,
-      params.findSimilar
+      params.findSimilar,
+      params.semanticDedupExclusion,
     );
     if (semanticDedup.reason) {
       allReasons.push(semanticDedup.reason);

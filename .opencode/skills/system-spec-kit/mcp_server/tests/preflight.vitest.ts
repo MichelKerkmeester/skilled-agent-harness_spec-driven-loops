@@ -520,6 +520,53 @@ More content follows.
       expect(result.redactedForScope).toBe(false);
     });
 
+    it('treats same-path exact duplicates as unchanged instead of blocking preflight', () => {
+      const testContent = 'Same path exact duplicate content';
+      const contentHash = preflight.computeContentHash(testContent);
+      const filePath = '/specs/test/memory/current.md';
+      const mockDatabase = {
+        prepare: () => ({
+          get: (...params: unknown[]) => {
+            expect(params[0]).toBe(contentHash);
+            return {
+              id: 52,
+              file_path: filePath,
+              content_text: testContent,
+              tenant_id: null,
+              user_id: null,
+              agent_id: null,
+            };
+          },
+        }),
+      };
+
+      const result = preflight.runPreflight(
+        {
+          content: testContent,
+          file_path: filePath,
+          spec_folder: 'test-spec',
+          database: mockDatabase,
+        } as unknown as Parameters<typeof preflight.runPreflight>[0],
+        {
+          check_anchors: false,
+          check_tokens: false,
+          check_size: true,
+          check_duplicates: true,
+        },
+      );
+
+      expect(result.pass).toBe(true);
+      expect(result.status).toBe('unchanged');
+      expect(result.errors).not.toEqual(expect.arrayContaining([
+        expect.objectContaining({ code: preflight.PreflightErrorCodes.DUPLICATE_EXACT }),
+      ]));
+      expect(result.details.duplicate_check).toMatchObject({
+        status: 'unchanged',
+        existingId: 52,
+        existing_path: filePath,
+      });
+    });
+
     it('T164: similar duplicate match via vector', () => {
       const testContent = 'Test memory content for similarity detection';
       const mockEmbedding = new Float32Array([0.1, 0.2, 0.3, 0.4, 0.5]);

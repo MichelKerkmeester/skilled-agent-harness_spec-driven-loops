@@ -15,10 +15,12 @@
     "cites",
     "913"
   ],
-  "lastUpdated": "2026-07-03T12:03:51.756Z",
+  "lastUpdated": "2026-07-03T19:02:31.724Z",
   "specId": "003",
   "folderSlug": "content-hash-normalization-and-save-dedup-lanes",
   "parentChain": [
+    ".opencode",
+    "specs",
     "system-speckit",
     "028-memory-search-intelligence",
     "016-fix-deep-dive-p0-p2-findings-for-mk-spec-memory"
