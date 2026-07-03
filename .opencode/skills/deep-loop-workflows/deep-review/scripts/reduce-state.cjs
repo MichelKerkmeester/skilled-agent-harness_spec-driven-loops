@@ -12,6 +12,7 @@ const fs = require('node:fs');
 const path = require('node:path');
 const { emitResourceMap } = require('../../shared/synthesis/resource-map.cjs');
 const { resolveArtifactRoot } = require('../../../deep-loop-runtime/lib/deep-loop/artifact-root.cjs');
+const { filterCompletionBearingRecords } = require('../../shared/progress/progress-record.cjs');
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 2. CONSTANTS
@@ -1833,7 +1834,11 @@ function reduceReviewState(specFolder, options = {}) {
   const deltaDir = path.join(reviewDir, 'deltas');
 
   const config = readJson(configPath);
-  const { records, corruptionWarnings } = parseJsonlDetailed(readUtf8(stateLogPath));
+  const { records: allRecords, corruptionWarnings } = parseJsonlDetailed(readUtf8(stateLogPath));
+  // Allowlist: only iteration + event types bear completion semantics. Progress
+  // records (type:'progress') are additive liveness signals — they reset the
+  // no-progress watchdog but MUST NOT count as iterations or completion events.
+  const records = filterCompletionBearingRecords(allRecords);
   const terminalStop = buildTerminalStopState(records);
   const lineage = buildLineageState(config, records, terminalStop);
   config.sessionId = lineage.sessionId || config.sessionId || '';

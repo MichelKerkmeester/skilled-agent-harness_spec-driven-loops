@@ -18,6 +18,7 @@ const {
   deriveNextFocusFromContinuity,
   formatCarriedForwardOpenQuestions,
 } = require('../../../deep-loop-runtime/lib/deep-loop/continuity-thread.cjs');
+const { filterCompletionBearingRecords } = require('../../shared/progress/progress-record.cjs');
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 2. HELPERS
@@ -2512,8 +2513,12 @@ function reduceResearchState(specFolder, options = {}) {
 
   const config = readJson(configPath);
   const { records: parsedRecords, corruptionWarnings } = readStateLogForReduction(stateLogPath, requireExistingState);
-  const records = parsedRecords.filter((record) => record.type === 'iteration');
-  const events = parsedRecords.filter((record) => record.type === 'event');
+  // Allowlist: only iteration + event types bear completion semantics. Progress
+  // records (type:'progress') are additive liveness signals — they reset the
+  // no-progress watchdog but MUST NOT count as iterations or completion events.
+  const completionBearingRecords = filterCompletionBearingRecords(parsedRecords);
+  const records = completionBearingRecords.filter((record) => record.type === 'iteration');
+  const events = completionBearingRecords.filter((record) => record.type === 'event');
   const strategyContent = readUtf8(strategyPath);
   const strategyQuestions = parseStrategyQuestions(strategyContent);
   const inbox = readInboxQuestions(inboxPath);
@@ -2542,7 +2547,7 @@ function reduceResearchState(specFolder, options = {}) {
         .map((fileName) => parseIterationFile(path.join(iterationDir, fileName)))
     : [];
 
-  const terminalStop = buildTerminalStopState(parsedRecords);
+  const terminalStop = buildTerminalStopState(completionBearingRecords);
   const lineage = buildLineageState(config, events);
   config.lineage = {
     ...(config.lineage && typeof config.lineage === 'object' ? config.lineage : {}),

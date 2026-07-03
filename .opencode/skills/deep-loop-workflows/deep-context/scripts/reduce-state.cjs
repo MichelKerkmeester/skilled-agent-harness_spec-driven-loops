@@ -13,6 +13,7 @@ const fs = require('node:fs');
 const path = require('node:path');
 const crypto = require('node:crypto');
 const { resolveArtifactRoot } = require('../../../deep-loop-runtime/lib/deep-loop/artifact-root.cjs');
+const { filterCompletionBearingRecords } = require('../../shared/progress/progress-record.cjs');
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 2. CONSTANTS
@@ -683,10 +684,14 @@ function reduceContextState(specFolder, options = {}) {
   const stateLogRepair = stateSafety.repairJsonlTail(stateLogPath);
   const stateLogContent = fs.existsSync(stateLogPath) ? readUtf8(stateLogPath) : '';
   const { records: parsedRecords, corruptionWarnings } = parseJsonlDetailed(stateLogContent);
-  const iterationRecords = parsedRecords
+  // Allowlist: only iteration + event types bear completion semantics. Progress
+  // records (type:'progress') are additive liveness signals — they reset the
+  // no-progress watchdog but MUST NOT count as iterations or completion events.
+  const completionBearingRecords = filterCompletionBearingRecords(parsedRecords);
+  const iterationRecords = completionBearingRecords
     .filter((r) => r && r.type === 'iteration')
     .sort((a, b) => toNumber(a.run, 0) - toNumber(b.run, 0));
-  const eventRecords = parsedRecords.filter((r) => r && r.type === 'event');
+  const eventRecords = completionBearingRecords.filter((r) => r && r.type === 'event');
 
   const relevanceGate = isFiniteNumber(config.relevanceGate) ? config.relevanceGate : DEFAULT_RELEVANCE_GATE;
   const agreementMin = isFiniteNumber(config.agreementMin) ? config.agreementMin : DEFAULT_AGREEMENT_MIN;
