@@ -1,0 +1,31 @@
+{
+  "level": "3",
+  "specFolder": "system-speckit/028-memory-search-intelligence/014-manual-playbook-execution-sweep",
+  "description": "Automated stress tests confirm code-level behavior under load, but manual testing playbooks exist specifically to validate operator-facing, end-to-end",
+  "keywords": [
+    "automated",
+    "stress",
+    "tests",
+    "confirm",
+    "code-level",
+    "behavior",
+    "load",
+    "manual",
+    "testing",
+    "playbooks",
+    "exist",
+    "specifically",
+    "validate",
+    "operator-facing",
+    "end-to-end"
+  ],
+  "lastUpdated": "2026-07-03T07:43:38.421Z",
+  "specId": "014",
+  "folderSlug": "manual-playbook-execution-sweep",
+  "parentChain": [
+    "system-speckit",
+    "028-memory-search-intelligence"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

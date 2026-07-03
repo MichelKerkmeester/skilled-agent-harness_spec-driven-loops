@@ -1,0 +1,223 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/028-memory-search-intelligence/015-deep-review-followup-hardening/003-session-id-parity-tests",
+  "spec_folder": "system-speckit/028-memory-search-intelligence/015-deep-review-followup-hardening/003-session-id-parity-tests",
+  "parent_id": "system-speckit/028-memory-search-intelligence/015-deep-review-followup-hardening",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "session id parity tests",
+      "cross mode parity",
+      "parity tests plan",
+      "parity tests tasks",
+      "parity tests checklist",
+      "parity tests decisions",
+      "session id parity implementation",
+      "workflow session id parity tests"
+    ],
+    "key_topics": [
+      "session",
+      "parity",
+      "tests",
+      "cross",
+      "mode",
+      "plan",
+      "tasks",
+      "checklist",
+      "decisions",
+      "implementation",
+      "workflow",
+      "cross-mode"
+    ],
+    "importance_tier": "medium",
+    "status": "complete",
+    "key_files": [
+      ".opencode/skills/deep-loop-runtime/tests/unit/workflow-session-id-parity.vitest.ts",
+      ".opencode/commands/deep/assets/deep_review_auto.yaml",
+      ".opencode/commands/deep/assets/deep_context_auto.yaml",
+      ".opencode/commands/deep/assets/deep_research_auto.yaml",
+      ".opencode/specs/deep-loops/030-agent-loops-improved/review/lineages/gpt/review-report.md",
+      "decision-record.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "spec.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "workflow-session-id-parity.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/deep-loop-runtime/tests/unit/workflow-session-id-parity.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "deep_review_auto.yaml",
+        "kind": "config",
+        "path": ".opencode/commands/deep/assets/deep_review_auto.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "deep_context_auto.yaml",
+        "kind": "config",
+        "path": ".opencode/commands/deep/assets/deep_context_auto.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "deep_research_auto.yaml",
+        "kind": "config",
+        "path": ".opencode/commands/deep/assets/deep_research_auto.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "review-report.md",
+        "kind": "doc",
+        "path": ".opencode/specs/deep-loops/030-agent-loops-improved/review/lineages/gpt/review-report.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Id Parity Tests",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Cross",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Encode",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview One",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Contract",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Cross-mode workflow parity is maintained by discipline, not tests",
+    "created_at": "2026-07-02T15:14:06.822Z",
+    "last_save_at": "2026-07-03T07:44:11.576Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:1a375119701f904ea8c4f7a2e116c5ccc1fcb079735ae0c95996104ebea17aa2",
+    "source_doc_hashes": {
+      "spec.md": "f348ad0b4509ac3d98a43ad1826ebc90ce1f98c18da928eb7633e0feffe7c8a9",
+      "plan.md": "8b91b0728ddf1e6709f6cecaef3010db787d3e60601e8db46eaff46226a59884",
+      "tasks.md": "05a1bcc3c83bb1e8b9ba8d309b5ab9bff62503ce9a16d56db2f8a822a13712d9",
+      "checklist.md": "44468b1c8c16bb332a0397b0cbdd625a9029728d4b087fefdbe0a5a7bd4b26e7",
+      "decision-record.md": "ff1ff06e5701caba9cf647ca3cf8121b1105defb4c73545d83cdf7fdd64213a3",
+      "implementation-summary.md": "1e379a5ad22ad791da32ce89087ca48e2a48c69a02b81be829997e8bd15e4c29"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

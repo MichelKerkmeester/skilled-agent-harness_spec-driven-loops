@@ -1,0 +1,217 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/028-memory-search-intelligence/014-manual-playbook-execution-sweep",
+  "spec_folder": "system-speckit/028-memory-search-intelligence/014-manual-playbook-execution-sweep",
+  "parent_id": "system-speckit/028-memory-search-intelligence",
+  "children_ids": [
+    "system-speckit/028-memory-search-intelligence/014-manual-playbook-execution-sweep/001-findings-remediation"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "manual playbook execution sweep",
+      "run all manual testing playbooks",
+      "gpt-5.5 medium playbook run",
+      "manual playbook execution sweep plan",
+      "manual playbook execution sweep tasks",
+      "manual playbook execution sweep checklist",
+      "manual playbook execution sweep decisions"
+    ],
+    "key_topics": [
+      "manual",
+      "playbook",
+      "execution",
+      "sweep",
+      "run",
+      "testing",
+      "playbooks",
+      "gpt-5",
+      "medium",
+      "plan",
+      "tasks",
+      "checklist"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "tasks.md",
+      "plan.md",
+      "checklist.md",
+      "decision-record.md",
+      "001-findings-remediation/spec.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Manual Testing Playbook Execution Sweep",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Dependencies",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Build",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Wave",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "a",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "real",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Date",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Automated stress tests confirm code-level behavior under load, but manual testing playbooks exist specifically to validate operator-facing, end-to-end scenarios (MCP tool call sequences, CLI invocations, degraded-mode behavior) that stress tests don't cover",
+    "created_at": "2026-07-02T04:40:48.870Z",
+    "last_save_at": "2026-07-03T07:44:08.924Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md"
+    ],
+    "source_fingerprint": "sha256:8eed29963abc5db4b6424405c07dd4d0ff50fd73667106adeabfd44320ae94d6",
+    "source_doc_hashes": {
+      "spec.md": "6f8f20063a4267f1b18c763026a7da058057547b090c6cad752c59931cb63fc3",
+      "plan.md": "ae24ddee2b3f4c2477bb3cb0668e05975b1a8ed8e0412d20f7969411da8c4b38",
+      "tasks.md": "290abbc04493b9a24a8b2eba7b3dfc7fd5d395a1dc6b461a45bfe33ef301d81c",
+      "checklist.md": "482ca0398ab629514f301f10315682a43e0ca1520ea6503a7c67d927abeeb2ae",
+      "decision-record.md": "dbd178c4d4e6aab159d6f597bae5dc14b5c8da605c318364acab1af906257f17"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

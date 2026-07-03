@@ -39,7 +39,7 @@ _memory:
       - "Children 001-004 record their implementation child maps."
       - "Child 000 defines release-cleanup scope only."
       - "Earlier research-only rounds live in subsystem research archives."
-      - "Packet 030 is the Wave-0 SHIPPED done-evidence record and remains intentionally separate."
+      - "Adopted standalone packets 030, 031 and 032 as children 013, 014 and 015."
 ---
 
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
@@ -71,10 +71,10 @@ Use this root `spec.md` as the current phase map. Use `changelog/README.md`, `be
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
-Packet 028 owns the planning record that turns external memory-system research into shipped retrieval intelligence, cleanup, review remediation, data-quality generation and dark-flag graduation work. Its eight top-level children span release cleanup, four subsystem phase parents, the spec-data-quality lineage, the review-remediation phase parent and the dark-flag graduation program so research inputs, candidate plans, cleanup scopes, child validation state and benchmark verdicts are easy to navigate. The kept-off flag-resolution, new-feature-research-build and reranker-research phases are nested under 001-speckit-memory as children 022 through 024, followed by the off-corpus eval gate, lexical-grounding floor, envelope-fidelity enforcement, scoring-hardening and substrate sandbox cleanup builds as children 025 through 029, and a 30th child, `030-opencode-temp-worker-reaping`, a planned scaffold not yet started.
+Packet 028 owns the planning record that turns external memory-system research into shipped retrieval intelligence, cleanup, review remediation, data-quality generation and dark-flag graduation work. Its top-level children span release cleanup, four subsystem phase parents, the spec-data-quality lineage, the review-remediation phase parent, the dark-flag graduation program and later hardening/adoption tracks so research inputs, candidate plans, cleanup scopes, child validation state and benchmark verdicts are easy to navigate. The kept-off flag-resolution, new-feature-research-build and reranker-research phases are nested under 001-speckit-memory as children 022 through 024, followed by the off-corpus eval gate, lexical-grounding floor, envelope-fidelity enforcement, scoring-hardening and substrate sandbox cleanup builds as children 025 through 029, and a 30th child, `030-opencode-temp-worker-reaping`, a planned scaffold not yet started.
 
 ### Purpose
-Provide the root purpose, child map and cross-packet boundary for packet 028. This parent routes the release-cleanup, subsystem, data-quality, review-remediation and dark-flag children to their current child maps and records packet 030 as the Wave-0 SHIPPED done-evidence record.
+Provide the root purpose, child map and cross-packet boundary for packet 028. This parent routes the release-cleanup, subsystem, data-quality, review-remediation, dark-flag and adopted hardening children to their current child maps.
 
 > **Phase-parent note:** This `spec.md` is the only authored document at this parent level. Detailed planning lives in the child phase folders listed below.
 <!-- /ANCHOR:problem -->
@@ -89,10 +89,10 @@ Provide the root purpose, child map and cross-packet boundary for packet 028. Th
 - Phase-documentation map updates for children 000 through 007.
 - Release-cleanup scope routing for every pre-release documentation surface.
 - Merged research archive pointers for earlier research-only rounds.
-- A pointer to packet 030 as the Wave-0 SHIPPED done-evidence record.
+- Adopted child routing for former standalone packets 030, 031 and 032.
 
 ### Out of Scope
-- Editing packet 030.
+- Rewriting adopted children beyond identity metadata and path references.
 - Implementing any PENDING candidate.
 
 ### Files to Change
@@ -130,6 +130,9 @@ Provide the root purpose, child map and cross-packet boundary for packet 028. Th
 | 010 | `010-generated-metadata-status-integrity/` | Fixes a real deriveStatus defect (213 folders repo-wide already mislabeled `complete` from a doc's mere presence, not its content) and adds a report-mode-default `validate.sh --strict` rule catching the same class going forward | Complete |
 | 011 | `011-create-sh-parent-corruption-fix/` | Fixes a deterministic create.sh bug where append-mode phase scaffolding overwrote an existing parent packet's `description.json` with the appended child's own metadata, and repairs the one confirmed already-corrupted packet | Complete |
 | 012 | `012-derive-status-explicit-bypass-fix/` | Closes a second deriveStatus bypass an independent adversarial follow-up review found in phase 010's own shipped fix: an explicit `status: complete` claim returned immediately, ahead of the completion-evidence gate; also wires the MCP validation orchestrator's enforcement flag | Complete |
+| 013 | `013-validate-sh-dist-freshness-and-repo-remediation/` | validate.sh dist-freshness enforcement and repo remediation, adopted from standalone packet 030 | In Progress |
+| 014 | `014-manual-playbook-execution-sweep/` | Manual playbook execution sweep; findings-remediation waves 1-7 shipped with Phase-2 appendix items open, adopted from standalone packet 031 | In Progress |
+| 015 | `015-deep-review-followup-hardening/` | Deep-review follow-up hardening; children 002-004 complete and 001 not started, adopted from standalone packet 032 | In Progress |
 
 ### Phase Transition Rules
 
@@ -138,6 +141,7 @@ Provide the root purpose, child map and cross-packet boundary for packet 028. Th
 - Child 005 is the data-quality lineage. Its first 28 children remain the planned research scaffold and children 029 through 044 record the shipped benchmark, generated-metadata, migration and search-quality tail.
 - Child 006 is the review-remediation rollup, with four executed children and two pending remediation contracts.
 - Child 007 is the dark-flag graduation suite, with twelve benchmark, cleanup, validation, follow-up and review children.
+- Children 013 through 015 were adopted from standalone packets 030 through 032 on 2026-07-03 by operator restructure.
 - Research-only material from earlier rounds lives under subsystem `research/from-*` archives.
 - Run strict validation on a child parent and its direct children before using it as an execution source.
 

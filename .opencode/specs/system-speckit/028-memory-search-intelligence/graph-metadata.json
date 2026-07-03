@@ -16,7 +16,10 @@
     "system-speckit/028-memory-search-intelligence/009-drift-audit-deep-history-correction",
     "system-speckit/028-memory-search-intelligence/010-generated-metadata-status-integrity",
     "system-speckit/028-memory-search-intelligence/011-create-sh-parent-corruption-fix",
-    "system-speckit/028-memory-search-intelligence/012-derive-status-explicit-bypass-fix"
+    "system-speckit/028-memory-search-intelligence/012-derive-status-explicit-bypass-fix",
+    "system-speckit/028-memory-search-intelligence/013-validate-sh-dist-freshness-and-repo-remediation",
+    "system-speckit/028-memory-search-intelligence/014-manual-playbook-execution-sweep",
+    "system-speckit/028-memory-search-intelligence/015-deep-review-followup-hardening"
   ],
   "migrated": true,
   "migration_source": "legacy",
@@ -126,15 +129,15 @@
     ],
     "causal_summary": "Packet 028 owns the planning record that turns external memory-system research into shipped retrieval intelligence, cleanup, review remediation, data-quality generation and dark-flag graduation work",
     "created_at": "2026-06-16T14:27:21.650Z",
-    "last_save_at": "2026-07-02T15:11:49.176Z",
+    "last_save_at": "2026-07-03T07:44:12.540Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:c9c048248a289981b9def97a3545601b31d9279d8a6b3a05ad9b1080987202fe",
+    "source_fingerprint": "sha256:fbeaf3f5b8ba097fb7d0d70ceb202b02f1d9f7c6058221fac3f88c8311af1bdc",
     "source_doc_hashes": {
-      "spec.md": "4ecbdf6eb9cdde7b2710bad3b961eeca72bbf7780922e6800c1beac09a7dd3d9"
+      "spec.md": "980c31a20959bc11b58b321c8a9041481216002f62ac9827ab68d7171a836eca"
     },
     "last_active_child_id": null,
     "last_active_at": "2026-06-26T20:31:34.159Z"

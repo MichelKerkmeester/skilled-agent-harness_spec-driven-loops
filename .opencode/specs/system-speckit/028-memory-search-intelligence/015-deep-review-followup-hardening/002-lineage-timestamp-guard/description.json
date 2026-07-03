@@ -1,0 +1,30 @@
+{
+  "level": "3",
+  "specFolder": "system-speckit/028-memory-search-intelligence/015-deep-review-followup-hardening/002-lineage-timestamp-guard",
+  "description": "Lineage subprocesses own their JSONL state writes (`deep-review-state.jsonl` et al.) and the prompt asks for ISO-8601 timestamps, but nothing verifies",
+  "keywords": [
+    "lineage",
+    "subprocesses",
+    "own",
+    "jsonl",
+    "state",
+    "writes",
+    "deep-review-state",
+    "prompt",
+    "asks",
+    "iso-8601",
+    "timestamps",
+    "nothing",
+    "verifies"
+  ],
+  "lastUpdated": "2026-07-03T07:43:40.321Z",
+  "specId": "002",
+  "folderSlug": "lineage-timestamp-guard",
+  "parentChain": [
+    "system-speckit",
+    "028-memory-search-intelligence",
+    "015-deep-review-followup-hardening"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

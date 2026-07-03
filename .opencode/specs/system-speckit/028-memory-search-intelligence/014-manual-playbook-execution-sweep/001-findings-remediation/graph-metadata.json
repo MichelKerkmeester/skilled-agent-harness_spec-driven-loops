@@ -1,0 +1,225 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/028-memory-search-intelligence/014-manual-playbook-execution-sweep/001-findings-remediation",
+  "spec_folder": "system-speckit/028-memory-search-intelligence/014-manual-playbook-execution-sweep/001-findings-remediation",
+  "parent_id": "system-speckit/028-memory-search-intelligence/014-manual-playbook-execution-sweep",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "playbook sweep findings remediation",
+      "031 findings fixes",
+      "playbook sweep findings remediation plan",
+      "playbook sweep findings remediation tasks",
+      "playbook sweep findings remediation checklist"
+    ],
+    "key_topics": [
+      "playbook",
+      "sweep",
+      "findings",
+      "remediation",
+      "031",
+      "fixes",
+      "plan",
+      "tasks",
+      "checklist",
+      "485-scenario",
+      "manual",
+      "testing"
+    ],
+    "importance_tier": "important",
+    "status": "planned",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "formatters/search-results.ts",
+      "lib/search/hybrid-search.ts",
+      "handlers/memory-index.ts",
+      "handlers/eval-reporting.ts",
+      "lib/eval/reporting-dashboard.ts",
+      "mcp_server/formatters/search-results.ts",
+      "mcp_server/lib/search/hybrid-search.ts",
+      "mcp_server/context-server.ts",
+      "mcp_server/lib/storage/checkpoints.ts",
+      "mcp_server/lib/embedders/reindex.ts",
+      "mcp_server/api/providers.ts",
+      "shared/embeddings.ts",
+      "mcp_server/handlers/memory-search.ts",
+      "mcp_server/tests/pipeline-v2.vitest.ts",
+      "lib/storage/lineage-state.ts",
+      "mcp_server/lib/search/causal-boost.ts"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "search-results.ts",
+        "kind": "code",
+        "path": "formatters/search-results.ts",
+        "source": "derived"
+      },
+      {
+        "name": "hybrid-search.ts",
+        "kind": "code",
+        "path": "lib/search/hybrid-search.ts",
+        "source": "derived"
+      },
+      {
+        "name": "memory-index.ts",
+        "kind": "code",
+        "path": "handlers/memory-index.ts",
+        "source": "derived"
+      },
+      {
+        "name": "eval-reporting.ts",
+        "kind": "code",
+        "path": "handlers/eval-reporting.ts",
+        "source": "derived"
+      },
+      {
+        "name": "reporting-dashboard.ts",
+        "kind": "code",
+        "path": "lib/eval/reporting-dashboard.ts",
+        "source": "derived"
+      },
+      {
+        "name": "context-server.ts",
+        "kind": "code",
+        "path": "mcp_server/context-server.ts",
+        "source": "derived"
+      },
+      {
+        "name": "checkpoints.ts",
+        "kind": "code",
+        "path": "mcp_server/lib/storage/checkpoints.ts",
+        "source": "derived"
+      },
+      {
+        "name": "reindex.ts",
+        "kind": "code",
+        "path": "mcp_server/lib/embedders/reindex.ts",
+        "source": "derived"
+      },
+      {
+        "name": "providers.ts",
+        "kind": "code",
+        "path": "mcp_server/api/providers.ts",
+        "source": "derived"
+      },
+      {
+        "name": "embeddings.ts",
+        "kind": "code",
+        "path": "shared/embeddings.ts",
+        "source": "derived"
+      },
+      {
+        "name": "memory-search.ts",
+        "kind": "code",
+        "path": "mcp_server/handlers/memory-search.ts",
+        "source": "derived"
+      },
+      {
+        "name": "pipeline-v2.vitest.ts",
+        "kind": "test",
+        "path": "mcp_server/tests/pipeline-v2.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "lineage-state.ts",
+        "kind": "code",
+        "path": "lib/storage/lineage-state.ts",
+        "source": "derived"
+      },
+      {
+        "name": "causal-boost.ts",
+        "kind": "code",
+        "path": "mcp_server/lib/search/causal-boost.ts",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Manual Playbook Sweep Findings Remediation",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Provide",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Failure Triage",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The 485-scenario manual testing playbook sweep (packet `031-manual-playbook-execution-sweep`) is confirming real, reproducible bugs across the spec-kit/code-graph/skill-advisor stack — feature-flag kill-switches that don't disable their feature, a \"read-only\" indexing path that mutates data, scoring-pipeline synchronization gaps, and more",
+    "created_at": "2026-07-02T11:57:47.283Z",
+    "last_save_at": "2026-07-03T07:44:09.374Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md"
+    ],
+    "source_fingerprint": "sha256:a17a0fa52292f65ffc02a713db3959db44554e81012efcb44f4a7c4641919dd5",
+    "source_doc_hashes": {
+      "spec.md": "a437f84eeadc495fd8cac3eb575ab1066469c388d8bf4514feab47766ab7cf62",
+      "plan.md": "e5b1686eafae921bc1f8e2181ee2d7c46fc02b970d1597e6bd91f806dbbb64d9",
+      "tasks.md": "08fe1766de17eeb5a2e142ebe61ae544dc5ee6be1edee060dc985cef0777d5d8",
+      "checklist.md": "71e0a8318ca4066e9460efd02bb826456beced26c4a8420e1e277c2caad17490"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

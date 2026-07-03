@@ -1,0 +1,114 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/028-memory-search-intelligence/013-validate-sh-dist-freshness-and-repo-remediation",
+  "spec_folder": "system-speckit/028-memory-search-intelligence/013-validate-sh-dist-freshness-and-repo-remediation",
+  "parent_id": "system-speckit/028-memory-search-intelligence",
+  "children_ids": [
+    "system-speckit/028-memory-search-intelligence/013-validate-sh-dist-freshness-and-repo-remediation/001-dist-freshness-enforcement",
+    "system-speckit/028-memory-search-intelligence/013-validate-sh-dist-freshness-and-repo-remediation/002-repo-wide-remediation-sweep"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "dist freshness enforcement",
+      "validate.sh stale dist",
+      "repo-wide validate.sh remediation",
+      "stale dist prevention hook plugin"
+    ],
+    "key_topics": [
+      "dist",
+      "freshness",
+      "enforcement",
+      "validate",
+      "stale",
+      "repo-wide",
+      "remediation",
+      "prevention",
+      "hook",
+      "plugin",
+      "while",
+      "closing"
+    ],
+    "importance_tier": "critical",
+    "status": "in_progress",
+    "key_files": [
+      ".opencode/skills/system-spec-kit/scripts/spec/validate.sh",
+      ".opencode/bin/spec-memory.cjs",
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "validate.sh",
+        "kind": "script",
+        "path": ".opencode/skills/system-spec-kit/scripts/spec/validate.sh",
+        "source": "derived"
+      },
+      {
+        "name": "spec-memory.cjs",
+        "kind": "file",
+        "path": ".opencode/bin/spec-memory.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Dist Freshness",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Wide Remediation",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "While closing packet `030-agent-loops-improved` phase 011's child 006 (a `validate.sh` registry bridge), a rebuild of `system-spec-kit/mcpserver`'s compiled `dist/` output (required because `validate.sh` executes compiled JS, not TypeScript source directly) revealed two compounding problems: (1) `validate.sh`'s default path (`runnodeorchestrator()`, `scripts/spec/validate.sh:975-989`) only checks that the compiled orchestrator file exists, never whether it is fresh relative to its source -- `dist/` had silently been ~2 weeks stale, meaning several already-committed, already-graduated validator",
+    "created_at": "2026-07-02T03:37:12.935Z",
+    "last_save_at": "2026-07-03T07:44:07.438Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "source_fingerprint": "sha256:5bff48926d7681c6748b01addceb6a2e136e42c8b29524628f9472d1aafeda26",
+    "source_doc_hashes": {
+      "spec.md": "41cc3ba11cc345aa81ed3577d64ae8792e0a161af3c89a55fcc426758f0ab562"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}
