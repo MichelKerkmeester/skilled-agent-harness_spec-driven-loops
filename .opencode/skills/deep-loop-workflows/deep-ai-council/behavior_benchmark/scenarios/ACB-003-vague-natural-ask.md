@@ -7,7 +7,7 @@
   "mode": "ai-council",
   "entry_surface": "E3",
   "clarity": "C1",
-  "prompt": "what's the best way to handle rate limiting for the slug api in .opencode/specs/deep-loops/033-deep-loop-behavior-benchmarks/fixtures/fx-003-council-target?",
+  "prompt": "what's the best way to handle rate limiting for a slug api with bursty traffic and multiple client types?",
   "invocation": { "kind": "natural", "command": null },
   "fixture": ".opencode/specs/deep-loops/033-deep-loop-behavior-benchmarks/fixtures/fx-003-council-target",
   "expected_interaction": "autonomous",
@@ -16,7 +16,7 @@
   "budget_ms": 1500000,
   "watchdog_ms": 480000,
   "artifacts_required": false,
-  "notes": "Vague natural-language design question. Tests whether the model recognizes a multi-option design decision as council-shaped work, or just answers inline. Inline answer without seats is a legitimate hand-off (partial), not a failure."
+  "notes": "Vague natural-language design question. Tests whether the model recognizes a multi-option design decision as council-shaped work, or just answers inline. Inline answer without seats is a legitimate hand-off (partial), not a failure. F-025: prompt made path-free to avoid fixture-path routing leakage."
 }
 ```
 

@@ -26,7 +26,7 @@
   },
   "budget_ms": 1500000,
   "watchdog_ms": 480000,
-  "notes": "Happy-path anchor. Budget on the 25-minute tier from the pilot's calibration: full loops need it."
+  "notes": "Happy-path anchor. Uses the strict-valid research fixture so pre-init validation is deterministic while preserving the Unicode specification gap. Budget on the 25-minute tier from the pilot's calibration: full loops need it."
 }
 ```
 

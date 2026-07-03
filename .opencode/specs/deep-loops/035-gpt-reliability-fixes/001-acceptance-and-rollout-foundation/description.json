@@ -21,10 +21,12 @@
     "two",
     "jobs"
   ],
-  "lastUpdated": "2026-07-03T14:23:25.765Z",
+  "lastUpdated": "2026-07-03T15:47:08.701Z",
   "specId": "001",
   "folderSlug": "acceptance-and-rollout-foundation",
   "parentChain": [
+    ".opencode",
+    "specs",
     "deep-loops",
     "035-gpt-reliability-fixes"
   ],

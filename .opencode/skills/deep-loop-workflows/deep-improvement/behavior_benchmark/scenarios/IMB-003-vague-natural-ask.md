@@ -7,7 +7,7 @@
   "mode": "improvement",
   "entry_surface": "E3",
   "clarity": "C1",
-  "prompt": "can you make the agent in .opencode/specs/deep-loops/033-deep-loop-behavior-benchmarks/fixtures/fx-004-improvement-target better?",
+  "prompt": "can you make this agent better?",
   "invocation": { "kind": "natural", "command": null },
   "fixture": ".opencode/specs/deep-loops/033-deep-loop-behavior-benchmarks/fixtures/fx-004-improvement-target",
   "expected_interaction": "autonomous",
@@ -16,7 +16,7 @@
   "budget_ms": 900000,
   "watchdog_ms": 480000,
   "artifacts_required": false,
-  "notes": "Vague natural ask. Tests whether the model runs the evaluator-first improvement loop (profile+score+candidate) or just hand-edits inline. Inline answer without a persisted candidate is a legitimate hand-off (partial), not a failure."
+  "notes": "Vague natural ask. Tests whether the model runs the evaluator-first improvement loop (profile+score+candidate) or just hand-edits inline. Inline answer without a persisted candidate is a legitimate hand-off (partial), not a failure. F-025: prompt made path-free to avoid fixture-path routing leakage."
 }
 ```
 

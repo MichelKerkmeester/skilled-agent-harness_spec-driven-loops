@@ -78,7 +78,7 @@ Findings closed: F-014, F-025. Absorbs plan-review GAP-01, GAP-03, GAP-06, GAP-0
 - **REQ-005**: One-shot full 32×3 re-score under the corrected runner with a delta-classification report BEFORE any phase-002 flip; cells whose bucket moves invalidate the prior "baseline green" claim for that cell (GAP-37).
 - **REQ-006**: Add one non-GPT executor leg (DeepSeek or Kimi) to the acceptance harness to test that "GPT-safe" == "executor-safe" (GAP-45).
 - **REQ-007**: A per-command feature flag (default off) selecting `fix` vs a byte-identical pre-035 injection fallback; a CI comparator that re-runs the Claude-native-leg cells on both branches and blocks promotion on unexpected divergence; a documented promotion rule (N consecutive green GPT-leg runs) (GAP-47, GAP-49).
-- **REQ-008**: RSB-001 fixture strict-validation is resolved — either the toy research fixture is made strict-valid or the fail-close is classified an intended probe, and RSB-001 is named an acceptance cell (GAP-01).
+- **REQ-008**: RSB-001 pre-init determinism is resolved — the toy research fixture `fx-002-research-target` is made valid against deep-research's ACTUAL pre-init rule set (the scoped `SPECKIT_RULES=FRONTMATTER_VALID,LEVEL_DECLARED,TEMPLATE_SOURCE,TEMPLATE_HEADERS,PLACEHOLDER_FILLED,SECTIONS_PRESENT,ANCHORS_VALID,SPEC_DOC_INTEGRITY,TOC_POLICY` that `deep_research_auto.yaml` runs — NOT plain `--strict`, which additionally enforces `FOLDER_NAMING` and is stricter than what RSB-001 triggers), fixed in place so RSB-001/006/007/008 all validate deterministically; RSB-001 is named an acceptance cell (GAP-01). The fixture keeps its `fx-` name (the pre-init check does not enforce FOLDER_NAMING); the Unicode-vs-spec probe is preserved.
 <!-- /ANCHOR:requirements -->
 
 ---

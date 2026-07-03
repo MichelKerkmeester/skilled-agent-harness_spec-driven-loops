@@ -25,7 +25,7 @@ function loadSmokeContract() {
 }
 
 function writeScenario(dir, contract) {
-  const p = path.join(dir, 'scenario.md');
+  const p = path.join(dir, contract.id + '.md');
   fs.writeFileSync(p, '# ' + contract.id + '\n\n```json\n' + JSON.stringify(contract, null, 2) + '\n```\n');
   return p;
 }
@@ -42,7 +42,36 @@ async function main() {
   const bench = require(RUNNER);
   assert.equal(typeof bench.classify, 'function');
   assert.equal(typeof bench.score, 'function');
+  assert.equal(typeof bench.extractRenderedBlock, 'function');
+  assert.equal(typeof bench.buildBudgetEdgeSignals, 'function');
+  assert.equal(typeof bench.classifyVagueAsk, 'function');
   assert.deepEqual(Object.keys(bench.LEG_TABLE).sort(), ['claude-cli', 'glm-max', 'gpt-fast-high', 'gpt-fast-med']);
+
+  // ── measurement helpers ─────────────────────────────────────────────────
+  assert.equal(
+    bench.extractRenderedBlock(['MARKER-B'], ['noise before', 'Setup Phase: choose scope', 'detail line', 'MARKER-B', '{"tool":"task"}']),
+    'Setup Phase: choose scope\ndetail line\nMARKER-B\n',
+    'rendered block spans the setup/marker lines verbatim',
+  );
+  const budgetSignals = bench.buildBudgetEdgeSignals({
+    budgetMs: 1000,
+    watchdogMs: 400,
+    checkpoints: { tTerminalMs: 900 },
+    fixtureMutationTimesMs: [250],
+    progressTimestampsMs: [100, 250, 700],
+  });
+  assert.equal(budgetSignals.tFirstArtifactMs, 250);
+  assert.equal(budgetSignals.firstArtifactDeadlineRemainingMs, 750);
+  assert.equal(budgetSignals.progressCadence.maxGapMs, 450);
+  assert.equal(budgetSignals.preCapFinalizerRemainingMs, 100);
+  const vagueOfferContract = { title: 'Vague natural ask', clarity: 'C1', expected_interaction: 'question_halt', expected_delegation: {} };
+  const vagueOfferObs = { killedBy: 'none', spawnError: null, taskEvents: [], routeProofRecords: [], markerHits: ['clarify'] };
+  assert.equal(bench.classifyVagueAsk(vagueOfferContract, vagueOfferObs, 'pass'), 'offered');
+  const vagueMisrouteObs = { ...vagueOfferObs, taskEvents: [{ t: 1, line: '{"tool":"task"}' }] };
+  assert.equal(bench.classifyVagueAsk(vagueOfferContract, vagueMisrouteObs, 'setup_misbind'), 'misroute');
+  const vagueRoutedContract = { clarity: 'C1', expected_interaction: 'autonomous', expected_delegation: { evidence_kind: 'candidate_evidence' } };
+  assert.equal(bench.classifyVagueAsk(vagueRoutedContract, { ...vagueOfferObs, candidateArtifacts: 1 }, 'partial'), 'routed');
+  assert.equal(bench.classifyVagueAsk(vagueRoutedContract, { ...vagueOfferObs, candidateArtifacts: 0 }, 'partial'), 'inline');
 
   // ── classify unit cases ──────────────────────────────────────────────────
 
@@ -213,6 +242,54 @@ async function main() {
   assert.equal(normalResult.terminal.killedBy, 'none');
   assert.equal(normalResult.delegation.taskEvents.length, 1);
   assert.equal(normalResult.classification, 'pass');
+  assert.equal(normalResult.renderedBlock, 'BENCH-SMOKE-MARKER\n');
+  assert.equal(normalResult.vagueAskOutcome, null);
+  assert.equal(normalResult.budgetEdge.budgetMs, contract.budget_ms);
+  assert.equal(normalResult.budgetEdge.watchdogMs, 60000);
+  assert.equal(typeof normalResult.budgetEdge.tFirstArtifactMs, 'number');
+  assert.equal(typeof normalResult.budgetEdge.firstArtifactDeadlineRemainingMs, 'number');
+  assert.equal(typeof normalResult.budgetEdge.progressCadence.eventCount, 'number');
+  assert.ok(normalResult.budgetEdge.progressCadence.gapsMs.length > 0, 'cadence includes observed gaps');
+  assert.equal(typeof normalResult.budgetEdge.preCapFinalizerRemainingMs, 'number');
+
+  // ── integration: vague-ask telemetry is written into result JSON ─────────
+  const vagueContract = loadSmokeContract();
+  vagueContract.id = 'SMOKE-VAGUE';
+  vagueContract.title = 'Vague natural ask';
+  vagueContract.clarity = 'C1';
+  vagueContract.fixture = fixtureDir;
+  vagueContract.expected_interaction = 'question_halt';
+  vagueContract.expected_delegation = {
+    leaf_agent: null,
+    min_task_events: 0,
+    route_proof_required: false,
+    role_absorption_forbidden: false,
+  };
+  const vagueScenarioPath = writeScenario(rootTmp, vagueContract);
+  const vagueOut = path.join(rootTmp, 'out-vague');
+  const vague = runBench(
+    ['--scenario', vagueScenarioPath, '--leg', 'smoke', '--out-dir', vagueOut, '--repo-root', rootTmp, '--watchdog-ms', '60000'],
+    { BEHAVIOR_BENCH_SPAWN_JSON: spawnJson, FAKE_LEG_FIXTURE: fixtureDir },
+  );
+  assert.equal(vague.status, 0, 'runner must exit 0 for a vague scored run; stderr: ' + vague.stderr);
+  const vagueResult = JSON.parse(fs.readFileSync(path.join(vagueOut, vagueContract.id + '-smoke.result.json'), 'utf8'));
+  assert.equal(vagueResult.classification, 'setup_misbind');
+  assert.equal(vagueResult.vagueAskOutcome, 'misroute');
+
+  // ── integration: rewrite-only fixture artifact still counts as gained ────
+  const artifactPath = path.join(fixtureDir, 'artifact.txt');
+  fs.writeFileSync(artifactPath, 'before rewrite\n');
+  const rewriteOut = path.join(rootTmp, 'out-rewrite');
+  const rewrite = runBench(
+    ['--scenario', scenarioPath, '--leg', 'smoke', '--out-dir', rewriteOut, '--repo-root', rootTmp, '--watchdog-ms', '60000'],
+    { BEHAVIOR_BENCH_SPAWN_JSON: spawnJson, FAKE_LEG_FIXTURE: fixtureDir },
+  );
+  assert.equal(rewrite.status, 0, 'runner must exit 0 for a rewrite-only scored run; stderr: ' + rewrite.stderr);
+
+  const rewriteResult = JSON.parse(fs.readFileSync(path.join(rewriteOut, contract.id + '-smoke.result.json'), 'utf8'));
+  assert.equal(fs.readFileSync(artifactPath, 'utf8'), 'smoke\n');
+  assert.equal(rewriteResult.classification, 'pass', 'rewrite-only fixture change must satisfy artifact gain');
+  assert.equal(rewriteResult.dimensions.d4, 2, 'rewrite-only fixture change sets fixtureGained true');
 
   // ── integration: hang mode -> watchdog -> stuck_no_progress ──────────────
   const hangOut = path.join(rootTmp, 'out-hang');

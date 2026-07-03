@@ -45,7 +45,15 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-Nothing yet — planning state. This phase closes F-014, F-025 + rollout mechanism; requirements are fixed in `spec.md`, the packet-wide gap mapping in `../context-index.md`.
+Partial — 5 of 8 REQs implemented and independently Sonnet-verified (GPT-5.5-fast implemented; a Sonnet-5 agent verified each). Orchestrator-hosted GPT+Sonnet loop.
+
+- **REQ-001 (F-014) ✅** — content-hash `fixtureGained` detection in `behavior-bench-run.cjs` (rewrites of existing fixtures now count, additively) + rewrite-only unit test.
+- **REQ-002 (F-025) ✅** — the three vague-ask prompts (ACB-003, IMB-003, RSB-004) rewritten path-free; fixture linkage unaffected (runner resolves from `contract.fixture`, not the prompt).
+- **REQ-003 ✅** — harness instrumentation: `renderedBlock` snapshot, `budgetEdge` timing, `vagueAskOutcome` telemetry added to the result JSON + tests.
+- **REQ-007 (core) ✅ / wiring deferred** — new `shared/rollout/` module: `command-injection-rollout.json`, `resolve-injection-mode.cjs` (+ tests), `promotion-rule.md`. Manifest-capture + comparator + plugin emitter-wiring are DEFERRED (they must edit the injection plugins, which a concurrent session is actively modifying).
+- **REQ-008 ✅** — `fx-002-research-target` made valid in place against deep-research's ACTUAL scoped pre-init rule set (not plain `--strict`; REQ-008 corrected accordingly). RSB-001/006/007/008 now validate deterministically; Unicode probe preserved.
+
+Still owed: **REQ-004** (N≥3 methodology + `primary_cause`/`secondary_cause` fields + stall-rate), **REQ-006** (non-GPT executor leg), **REQ-005** (full 32×3 re-score — an acceptance *run*, ~96 legs), and REQ-007's deferred wiring.
 <!-- /ANCHOR:what-built -->
 
 ---

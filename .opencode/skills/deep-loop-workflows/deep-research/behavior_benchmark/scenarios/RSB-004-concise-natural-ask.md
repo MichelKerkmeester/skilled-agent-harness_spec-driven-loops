@@ -7,7 +7,7 @@
   "mode": "research",
   "entry_surface": "E3",
   "clarity": "C2",
-  "prompt": "research how the slug utility in .opencode/specs/deep-loops/033-deep-loop-behavior-benchmarks/fixtures/fx-001-review-target handles edge cases",
+  "prompt": "research how our slug utility handles edge cases",
   "invocation": {
     "kind": "natural",
     "command": null
@@ -25,7 +25,7 @@
     "role_absorption_forbidden": false
   },
   "budget_ms": 600000,
-  "notes": "Names the workflow shape and target but not the mode: correct routing surfaces the deep-research setup question."
+  "notes": "Names the workflow shape and target but not the mode: correct routing surfaces the deep-research setup question. F-025: prompt made path-free to avoid fixture-path routing leakage."
 }
 ```
 

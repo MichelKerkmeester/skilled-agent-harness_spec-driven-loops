@@ -10,6 +10,7 @@
 
 const fs = require('node:fs');
 const path = require('node:path');
+const crypto = require('node:crypto');
 const { spawn, execFileSync } = require('node:child_process');
 
 // ── Exit codes ───────────────────────────────────────────────────────────────
@@ -103,24 +104,42 @@ function parseScenario(filePath) {
 
 // ── Presentation markers: /regex/ or /regex/flags (always case-insensitive),
 //    otherwise a literal substring ────────────────────────────────────────────
+function markerMatches(marker, text) {
+  const re = /^\/(.+)\/([a-z]*)$/.exec(marker);
+  if (re) {
+    try {
+      const flags = re[2].includes('i') ? re[2] : re[2] + 'i';
+      return new RegExp(re[1], flags).test(text);
+    } catch {
+      return false;
+    }
+  }
+  return text.includes(marker);
+}
+
 function matchMarkers(markers, text) {
   const hits = [];
   for (const m of markers) {
-    let matched;
-    const re = /^\/(.+)\/([a-z]*)$/.exec(m);
-    if (re) {
-      try {
-        const flags = re[2].includes('i') ? re[2] : re[2] + 'i';
-        matched = new RegExp(re[1], flags).test(text);
-      } catch {
-        matched = false;
-      }
-    } else {
-      matched = text.includes(m);
-    }
-    if (matched) hits.push(m);
+    if (markerMatches(m, text)) hits.push(m);
   }
   return hits;
+}
+
+function extractRenderedBlock(markers, stdoutLines) {
+  if (!Array.isArray(stdoutLines) || stdoutLines.length === 0) return null;
+  const hitIndices = [];
+  for (let i = 0; i < stdoutLines.length; i += 1) {
+    const line = stdoutLines[i];
+    if (SETUP_RE.test(line) || (markers || []).some((m) => markerMatches(m, line))) {
+      hitIndices.push(i);
+    }
+  }
+  if (hitIndices.length === 0) return null;
+  let end = hitIndices[hitIndices.length - 1];
+  while (end + 1 < stdoutLines.length && stdoutLines[end + 1] !== '' && !DISPATCH_RE.test(stdoutLines[end + 1])) {
+    end += 1;
+  }
+  return stdoutLines.slice(hitIndices[0], end + 1).join('\n') + '\n';
 }
 
 // ╔══════════════════════════════════════════════════════════════════════════╗
@@ -481,6 +500,128 @@ function snapshotFixtureFiles(dir) {
   return set;
 }
 
+function snapshotFixtureContentHashes(dir) {
+  const map = new Map();
+  if (!dir) return map;
+  const walk = (d, base) => {
+    let entries;
+    try {
+      entries = fs.readdirSync(d, { withFileTypes: true });
+    } catch {
+      return;
+    }
+    for (const e of entries) {
+      const rel = base ? base + '/' + e.name : e.name;
+      const full = path.join(d, e.name);
+      if (e.isDirectory()) {
+        walk(full, rel);
+      } else if (e.isFile()) {
+        try {
+          const hash = crypto.createHash('sha256').update(fs.readFileSync(full)).digest('hex');
+          map.set(rel, hash);
+        } catch {
+          // Best-effort evidence snapshot; unreadable files are ignored like missing dirs.
+        }
+      }
+    }
+  };
+  walk(dir, '');
+  return map;
+}
+
+function fixtureContentChanged(beforeHashes, afterHashes) {
+  for (const [rel, beforeHash] of beforeHashes) {
+    if (afterHashes.has(rel) && afterHashes.get(rel) !== beforeHash) return true;
+  }
+  return false;
+}
+
+function fixtureMutationTimes(dir, beforeHashes, afterHashes, originMs) {
+  const times = [];
+  if (!dir) return times;
+  for (const [rel, afterHash] of afterHashes) {
+    if (beforeHashes.has(rel) && beforeHashes.get(rel) === afterHash) continue;
+    try {
+      const st = fs.statSync(path.join(dir, rel));
+      times.push(Math.max(0, Math.round(st.mtimeMs - originMs)));
+    } catch {
+      // Best-effort timing: missing files do not invalidate the scored result.
+    }
+  }
+  return times.sort((a, b) => a - b);
+}
+
+function summarizeProgressCadence(progressTimestampsMs, terminalMs) {
+  const seen = new Set();
+  const events = [];
+  for (const raw of progressTimestampsMs || []) {
+    if (!Number.isFinite(raw)) continue;
+    const t = Math.max(0, Math.round(raw));
+    if (terminalMs != null && t > terminalMs) continue;
+    if (!seen.has(t)) {
+      seen.add(t);
+      events.push(t);
+    }
+  }
+  events.sort((a, b) => a - b);
+
+  const gaps = [];
+  let prev = 0;
+  for (const t of events) {
+    gaps.push(Math.max(0, t - prev));
+    prev = t;
+  }
+  if (terminalMs != null) gaps.push(Math.max(0, Math.round(terminalMs) - prev));
+
+  return {
+    eventCount: events.length,
+    firstProgressMs: events.length > 0 ? events[0] : null,
+    lastProgressMs: events.length > 0 ? events[events.length - 1] : null,
+    gapsMs: gaps,
+    maxGapMs: gaps.length > 0 ? Math.max(...gaps) : null,
+  };
+}
+
+function buildBudgetEdgeSignals({ budgetMs, watchdogMs, checkpoints, fixtureMutationTimesMs, progressTimestampsMs }) {
+  const tTerminalMs = checkpoints && checkpoints.tTerminalMs != null ? checkpoints.tTerminalMs : null;
+  const firstArtifactMs = fixtureMutationTimesMs && fixtureMutationTimesMs.length > 0
+    ? fixtureMutationTimesMs[0]
+    : null;
+  return {
+    budgetMs,
+    watchdogMs,
+    tFirstArtifactMs: firstArtifactMs,
+    firstArtifactDeadlineRemainingMs: firstArtifactMs == null ? null : Math.max(0, budgetMs - firstArtifactMs),
+    progressCadence: summarizeProgressCadence(progressTimestampsMs, tTerminalMs),
+    preCapFinalizerRemainingMs: tTerminalMs == null ? null : Math.max(0, budgetMs - tTerminalMs),
+  };
+}
+
+function isVagueAskCell(contract) {
+  const clarity = String((contract && contract.clarity) || '').toLowerCase();
+  if (clarity === 'c1' || clarity === 'vague') return true;
+  const title = String((contract && contract.title) || '').toLowerCase();
+  return title.includes('vague');
+}
+
+function classifyVagueAsk(contract, obs, bucket) {
+  if (!isVagueAskCell(contract)) return null;
+
+  const deleg = contract.expected_delegation || {};
+  const evidence = hasDelegationEvidence(deleg, obs);
+  const hasDispatch = (obs.taskEvents || []).length > 0;
+  const hasRouteProof = (obs.routeProofRecords || []).length > 0;
+  const markerMatched = (obs.markerHits || []).length > 0;
+  const naturalTerminal = obs.killedBy === 'none' && !obs.spawnError;
+
+  if (bucket === 'setup_misbind' || bucket === 'route_mismatch') return 'misroute';
+  if (deleg.route_proof_required && hasRouteProof && !evidence) return 'misroute';
+  if (hasDispatch && !evidence && contract.expected_interaction !== 'question_halt') return 'misroute';
+  if (evidence) return 'routed';
+  if (contract.expected_interaction === 'question_halt' && naturalTerminal && !hasDispatch && markerMatched) return 'offered';
+  return 'inline';
+}
+
 function extractPorcelainPath(line) {
   if (line.length < 3) return '';
   let p = line.slice(3);
@@ -626,6 +767,8 @@ async function runOnce(args) {
   let stderrBuf = '';
   let stdoutNonEmptyLines = 0;
   let stdoutText = '';
+  const stdoutLines = [];
+  const progressTimestampsMs = [];
   let tFirstOutputMs = null;
   let tSetupMs = null;
   let tFirstDispatchMs = null;
@@ -643,6 +786,7 @@ async function runOnce(args) {
   const stream = fs.createWriteStream(transcriptPath);
 
   const beforeFixture = snapshotFixtureFiles(fixtureDir);
+  const beforeFixtureHashes = snapshotFixtureContentHashes(fixtureDir);
   const gitBefore = new Set(gitStatusPaths(repoRoot));
 
   const [cmd, ...rest] = spawnArray;
@@ -655,7 +799,9 @@ async function runOnce(args) {
 
   const emitLine = (src, line, t) => {
     stream.write(JSON.stringify({ t, src, line }) + '\n');
+    if (src === 'out') stdoutLines.push(line);
     if (line.length === 0) return;
+    progressTimestampsMs.push(t);
     if (src === 'out') {
       stdoutNonEmptyLines += 1;
       stdoutText += line + '\n';
@@ -753,7 +899,9 @@ async function runOnce(args) {
 
   const afterFixture = snapshotFixtureFiles(fixtureDir);
   const newFixtureFiles = [...afterFixture].filter((x) => !beforeFixture.has(x));
-  const fixtureGained = newFixtureFiles.length > 0;
+  const afterFixtureHashes = snapshotFixtureContentHashes(fixtureDir);
+  const fixtureMutationTimesMs = fixtureMutationTimes(fixtureDir, beforeFixtureHashes, afterFixtureHashes, spawnTime);
+  const fixtureGained = newFixtureFiles.length > 0 || fixtureContentChanged(beforeFixtureHashes, afterFixtureHashes);
 
   const routeProofRecords = collectRouteProof(fixtureDir);
   const { seatArtifacts, candidateArtifacts } = countModeArtifacts(fixtureDir, newFixtureFiles);
@@ -763,6 +911,14 @@ async function runOnce(args) {
 
   const checkpoints = { tFirstOutputMs, tSetupMs, tFirstDispatchMs, tTerminalMs };
   const markerHits = matchMarkers(contract.expected_presentation_markers || [], stdoutText);
+  const renderedBlock = extractRenderedBlock(contract.expected_presentation_markers || [], stdoutLines);
+  const budgetEdge = buildBudgetEdgeSignals({
+    budgetMs,
+    watchdogMs,
+    checkpoints,
+    fixtureMutationTimesMs,
+    progressTimestampsMs: [...progressTimestampsMs, ...fixtureMutationTimesMs],
+  });
 
   const obs = {
     spawnError,
@@ -793,6 +949,9 @@ async function runOnce(args) {
     startedAt: startedAt.toISOString(),
     endedAt: endedAt.toISOString(),
     checkpoints,
+    renderedBlock,
+    budgetEdge,
+    vagueAskOutcome: classifyVagueAsk(contract, obs, bucket),
     delegation: { taskEvents, routeProofRecords, seatArtifacts, candidateArtifacts, guardWarnings },
     isolation: { clean: violations.length === 0, violations },
     terminal: { exitCode, killedBy },
@@ -844,6 +1003,11 @@ module.exports = {
   buildSpawnArgs,
   parseScenario,
   matchMarkers,
+  extractRenderedBlock,
+  buildBudgetEdgeSignals,
+  summarizeProgressCadence,
+  classifyVagueAsk,
+  isVagueAskCell,
   LEG_TABLE,
 };
 
