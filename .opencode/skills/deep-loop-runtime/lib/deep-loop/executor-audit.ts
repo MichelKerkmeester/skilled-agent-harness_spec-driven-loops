@@ -1,11 +1,13 @@
 // MODULE: Deep-Loop Executor Audit
 
+import { randomBytes } from 'node:crypto';
 import { spawn, spawnSync } from 'node:child_process';
-import { existsSync, readFileSync, readdirSync, statSync, writeFileSync } from 'node:fs';
-import { basename, join } from 'node:path';
+import { existsSync, mkdirSync, readFileSync, readdirSync, renameSync, statSync, writeFileSync } from 'node:fs';
+import { basename, dirname, join } from 'node:path';
 
 import type { ExecutorConfig, ExecutorKind } from './executor-config.js';
 import { appendJsonlRecord as appendJsonlRecordSafe, repairJsonlTail } from './jsonl-repair.js';
+import { deriveReceiptKey, signReceipt } from './receipt-crypto.js';
 
 // ───── TYPE DEFINITIONS ─────
 
@@ -18,6 +20,7 @@ export type DispatchFailureReason =
   | 'invalid_output'
   | 'model_mismatch'
   | 'other'
+  | 'dispatch_receipt_write_failed'
   | RecursionGuardFailureReason;
 
 export type RecursionGuardLayer = 'stack' | 'ancestry' | 'env' | 'lockfile';
@@ -96,6 +99,12 @@ type RunAuditedExecutorCommandInput = {
   guardContext?: ExecutorDispatchGuardContext;
   timeoutGraceMs?: number;
   lineageId?: string;
+  // Opt-in dispatch-receipt envelope. When receiptDir is set, the engine writes
+  // an INTENT receipt before spawn and a COMPLETION countersign after the
+  // dispatch returns, to a parent-owned, child-unwritable path. dispatchId is
+  // optional; the engine generates a filename-safe unique one when omitted.
+  receiptDir?: string;
+  dispatchId?: string;
 };
 
 // ───── HELPERS ─────
@@ -377,6 +386,188 @@ function readEventModelId(event: Record<string, unknown>): string | null {
 
 function pickString(value: unknown): string | null {
   return typeof value === 'string' && value.trim() !== '' ? value : null;
+}
+
+// ───── DISPATCH RECEIPTS ─────
+//
+// KEY CONTAINMENT GUARANTEE:
+// The run-master secret lives ONLY as the module-scoped `runMasterSecret`
+// closure variable below. It is generated in this process via randomBytes and
+// is, by construction, never:
+//   (1) assigned to process.env or to any env object passed to a spawned child,
+//   (2) interpolated into the command string or the args array,
+//   (3) written to the filesystem (only derived HMAC signatures and receipt
+//       JSON — which carry the mac, never the key/secret — are persisted),
+//   (4) exported from this module (only opaque test seams touch it).
+// Defense in depth: buildExecutorDispatchEnv allowlists env keys, so even a
+// hypothetical secret-named var could not transit to a child. The primary
+// guarantee is structural — the secret simply never exists in a child-reachable
+// location. The per-dispatch signing key (deriveReceiptKey) is recomputed in
+// memory from the secret + dispatchId and is likewise never passed to the child.
+
+let runMasterSecret: string | undefined;
+
+function getRunMasterSecret(): string {
+  if (runMasterSecret === undefined) {
+    runMasterSecret = randomBytes(32).toString('hex');
+  }
+  return runMasterSecret;
+}
+
+/**
+ * Test seam: install a known run-master secret so containment assertions can
+ * assert a recognizable value never reaches a child. Not for production use.
+ */
+export function __setRunMasterSecretForTesting(secret: string | undefined): void {
+  runMasterSecret = secret;
+}
+
+/**
+ * Test seam: read the active run-master secret for containment assertions.
+ * Not for production use.
+ */
+export function __getRunMasterSecretForTesting(): string {
+  return getRunMasterSecret();
+}
+
+type ReceiptPhase = 'intent' | 'completion';
+
+type ReceiptContext = {
+  dispatchId: string;
+  key: string;
+  intentPath: string;
+  completionPath: string;
+};
+
+function generateDispatchId(input: RunAuditedExecutorCommandInput): string {
+  const nonce = randomBytes(8).toString('hex');
+  const lineage = (input.lineageId ?? 'dispatch').replace(/[^a-z0-9-]/gi, '-').toLowerCase();
+  return `${lineage}-i${input.iteration}-${nonce}`;
+}
+
+function receiptPaths(receiptDir: string, dispatchId: string): { intentPath: string; completionPath: string } {
+  return {
+    intentPath: join(receiptDir, `dispatch-${dispatchId}.intent.json`),
+    completionPath: join(receiptDir, `dispatch-${dispatchId}.completion.json`),
+  };
+}
+
+// Atomic, parent-owned write: create the dir owner-only (0o700), write the
+// record to a uniquely-named temp file (0o600, owner-only), then rename over
+// the target. POSIX rename is atomic, so a reader never observes a half-written
+// receipt. Restrictive perms make the path child-unwritable as defense in depth
+// (the stronger guarantee is that the child cannot forge a valid mac anyway).
+function writeReceiptAtomic(receiptPath: string, record: object): void {
+  const dir = dirname(receiptPath);
+  mkdirSync(dir, { recursive: true, mode: 0o700 });
+  const tmpPath = `${receiptPath}.${process.pid}.${randomBytes(6).toString('hex')}.tmp`;
+  writeFileSync(tmpPath, `${JSON.stringify(record)}\n`, { encoding: 'utf8', mode: 0o600 });
+  renameSync(tmpPath, receiptPath);
+}
+
+function buildReceiptFacts(input: RunAuditedExecutorCommandInput): Record<string, unknown> {
+  return {
+    command: input.command,
+    args: input.args,
+    cwd: input.cwd,
+    executor: buildExecutorAuditRecord(input.executor, input.lineageId),
+    iteration: input.iteration,
+  };
+}
+
+function buildReceiptRecord(
+  phase: ReceiptPhase,
+  dispatchId: string,
+  facts: Record<string, unknown>,
+  key: string,
+): Record<string, unknown> {
+  const unsigned = {
+    version: 1,
+    type: 'dispatch_receipt',
+    phase,
+    dispatchId,
+    issuedAt: new Date().toISOString(),
+    facts,
+  };
+  return { ...unsigned, mac: signReceipt(unsigned, key) };
+}
+
+function emitReceiptWriteFailure(
+  stateLogPath: string,
+  executor: ExecutorConfig,
+  iteration: number,
+  phase: ReceiptPhase,
+  detail: string,
+): void {
+  // Distinct from the dispatch_failure event (and never deduped against it) so
+  // a write failure is always observable separately from a 'missing' receipt
+  // the validator reports later.
+  appendJsonlRecordSafe(stateLogPath, {
+    type: 'event',
+    event: 'dispatch_receipt_write_failed',
+    reason: 'dispatch_receipt_write_failed' as DispatchFailureReason,
+    phase,
+    iteration,
+    ...(getExecutorKind(executor) === 'native' ? {} : { executor: buildExecutorAuditRecord(executor) }),
+    timestamp: new Date().toISOString(),
+    ...(detail ? { detail } : {}),
+  });
+}
+
+function tryWriteReceipt(
+  stateLogPath: string,
+  executor: ExecutorConfig,
+  iteration: number,
+  phase: ReceiptPhase,
+  receiptPath: string,
+  record: Record<string, unknown>,
+): void {
+  try {
+    writeReceiptAtomic(receiptPath, record);
+  } catch (err) {
+    emitReceiptWriteFailure(stateLogPath, executor, iteration, phase, (err as Error).message ?? String(err));
+  }
+}
+
+// Pre-dispatch: write the INTENT receipt (engine-signed, no child id yet). The
+// dispatch has not happened, so the facts carry only what the engine intends.
+function beginReceipt(input: RunAuditedExecutorCommandInput): ReceiptContext | null {
+  if (!input.receiptDir) {
+    return null;
+  }
+  const dispatchId = input.dispatchId ?? generateDispatchId(input);
+  const key = deriveReceiptKey(getRunMasterSecret(), dispatchId);
+  const paths = receiptPaths(input.receiptDir, dispatchId);
+  const record = buildReceiptRecord('intent', dispatchId, buildReceiptFacts(input), key);
+  tryWriteReceipt(input.stateLogPath, input.executor, input.iteration, 'intent', paths.intentPath, record);
+  return { dispatchId, key, intentPath: paths.intentPath, completionPath: paths.completionPath };
+}
+
+// Post-dispatch: countersign a COMPLETION receipt with the facts the audited
+// wrapper observed after spawn returned (child pid / exit / signal). sessionId
+// is null here — the engine cannot read a child-set env var; a caller/validator
+// that recovers it binds it separately.
+type CompletionFacts = {
+  childPid: number | null;
+  exitStatus: number | null;
+  signal: NodeJS.Signals | null;
+  sessionId: string | null;
+};
+
+function completeReceipt(
+  input: RunAuditedExecutorCommandInput,
+  ctx: ReceiptContext,
+  completion: CompletionFacts,
+): void {
+  const facts = {
+    ...buildReceiptFacts(input),
+    childPid: completion.childPid,
+    exitStatus: completion.exitStatus,
+    signal: completion.signal,
+    sessionId: completion.sessionId,
+  };
+  const record = buildReceiptRecord('completion', ctx.dispatchId, facts, ctx.key);
+  tryWriteReceipt(input.stateLogPath, input.executor, input.iteration, 'completion', ctx.completionPath, record);
 }
 
 // ───── EXPORTS ─────
@@ -661,6 +852,10 @@ export function runAuditedExecutorCommand(input: RunAuditedExecutorCommandInput)
     return 0;
   }
 
+  // Pre-dispatch INTENT receipt (engine-signed, no child id yet). Null when the
+  // caller did not opt into receipts.
+  const receiptCtx = beginReceipt(input);
+
   const timeoutMs = Number.isFinite(input.timeoutSeconds)
     ? Math.max(1000, Math.trunc(input.timeoutSeconds * 1000) - 1000)
     : 1000;
@@ -678,6 +873,18 @@ export function runAuditedExecutorCommand(input: RunAuditedExecutorCommandInput)
   }
   if (typeof result.stderr === 'string' && result.stderr.length > 0) {
     process.stderr.write(result.stderr);
+  }
+
+  // Post-dispatch COMPLETION countersign: bind the INTENT to the child facts the
+  // wrapper observed (pid / exit / signal). Written before failure classification
+  // so it always reflects the real outcome, even when the dispatch crashed.
+  if (receiptCtx) {
+    completeReceipt(input, receiptCtx, {
+      childPid: typeof result.pid === 'number' ? result.pid : null,
+      exitStatus: typeof result.status === 'number' ? result.status : null,
+      signal: typeof result.signal === 'string' ? result.signal : null,
+      sessionId: null,
+    });
   }
 
   if (result.error) {
@@ -765,6 +972,9 @@ export async function runAuditedExecutorCommandAsync(input: RunAuditedExecutorCo
     return 0;
   }
 
+  // Pre-dispatch INTENT receipt (engine-signed, no child id yet).
+  const receiptCtx = beginReceipt(input);
+
   const timeoutMs = Number.isFinite(input.timeoutSeconds)
     ? Math.max(1, Math.trunc(input.timeoutSeconds * 1000))
     : 1000;
@@ -775,6 +985,7 @@ export async function runAuditedExecutorCommandAsync(input: RunAuditedExecutorCo
   await new Promise<void>((resolve) => {
     let timedOut = false;
     let settled = false;
+    let completionWritten = false;
     let graceTimer: NodeJS.Timeout | undefined;
     const child = spawn(input.command, input.args, {
       cwd: input.cwd,
@@ -782,6 +993,22 @@ export async function runAuditedExecutorCommandAsync(input: RunAuditedExecutorCo
       env: buildExecutorDispatchEnv(input.executor, input.guardContext?.env ?? process.env),
       stdio: ['pipe', 'pipe', 'pipe'],
     });
+    // Capture the real child pid before any handler runs; on spawn failure it may
+    // be undefined, in which case the COMPLETION records a null pid (no child).
+    const childPid = typeof child.pid === 'number' ? child.pid : null;
+
+    const writeCompletionOnce = (status: number | null, signal: NodeJS.Signals | null): void => {
+      if (completionWritten || !receiptCtx) {
+        return;
+      }
+      completionWritten = true;
+      completeReceipt(input, receiptCtx, {
+        childPid,
+        exitStatus: status,
+        signal,
+        sessionId: null,
+      });
+    };
 
     const timeoutTimer = setTimeout(() => {
       timedOut = true;
@@ -810,6 +1037,8 @@ export async function runAuditedExecutorCommandAsync(input: RunAuditedExecutorCo
       settled = true;
       clearTimeout(timeoutTimer);
       if (graceTimer) clearTimeout(graceTimer);
+      // Spawn failed before a child existed; countersign with null facts.
+      writeCompletionOnce(null, null);
       emitDispatchFailure(input.stateLogPath, input.executor, 'crash', input.iteration, error.message);
       resolve();
     });
@@ -821,6 +1050,9 @@ export async function runAuditedExecutorCommandAsync(input: RunAuditedExecutorCo
       settled = true;
       clearTimeout(timeoutTimer);
       if (graceTimer) clearTimeout(graceTimer);
+
+      // Bind INTENT to the observed child exit facts before failure classification.
+      writeCompletionOnce(status, signal);
 
       if (timedOut) {
         emitDispatchFailure(
