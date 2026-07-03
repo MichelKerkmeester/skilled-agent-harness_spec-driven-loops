@@ -2,6 +2,10 @@
 // TEST: TRIGGER MATCHER
 // Validates phrase matching, Unicode normalization, word boundary
 // Detection, regex caching, and matching performance.
+import fs from 'node:fs';
+import os from 'node:os';
+import path from 'node:path';
+
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 
 interface MockMemoryRow {
@@ -49,6 +53,7 @@ import {
   CONFIG,
   clearCache,
   getCacheStats,
+  getTriggerCacheLoaderSqlForTests,
 } from '../lib/parsing/trigger-matcher';
 
 type TriggerPrompt = Parameters<typeof matchTriggerPhrases>[0];
@@ -521,6 +526,98 @@ describe('Trigger Matcher (T501)', () => {
       const secondLoad = loadTriggerCache();
       expect(secondLoad.length).toBeGreaterThan(0);
       expect(mockDbState.prepareCalls).toBe(prepareCallsAfterFirstLoad);
+    });
+  });
+
+  describe('Trigger quality guards', () => {
+    it('filters noisy single-token phrases while preserving rare single-token identifiers', () => {
+      const rows: MockMemoryRow[] = Array.from({ length: 150 }, (_, index) => ({
+        id: index + 1,
+        spec_folder: 'specs/noise',
+        file_path: `/noise-${index + 1}.md`,
+        title: `Feature ${index + 1}`,
+        trigger_phrases: JSON.stringify(['feature']),
+        importance_weight: 0.2,
+      }));
+      rows.push({
+        id: 500,
+        spec_folder: 'specs/noise',
+        file_path: '/rare.md',
+        title: 'Rare Identifier',
+        trigger_phrases: JSON.stringify(['quasar']),
+        importance_weight: 0.9,
+      });
+      rows.push({
+        id: 501,
+        spec_folder: 'specs/noise',
+        file_path: '/stopword.md',
+        title: 'Stopword',
+        trigger_phrases: JSON.stringify(['the', 'ab']),
+        importance_weight: 1,
+      });
+      setMockDbRows(rows);
+
+      const cache = loadTriggerCache();
+      const matches = matchTriggerPhrases('the feature quasar ab', 10);
+
+      expect(cache.map((entry) => entry.phrase)).toContain('quasar');
+      expect(cache.map((entry) => entry.phrase)).not.toContain('feature');
+      expect(cache.map((entry) => entry.phrase)).not.toContain('the');
+      expect(cache.map((entry) => entry.phrase)).not.toContain('ab');
+      expect(matches.map((match) => match.memoryId)).toEqual([500]);
+    });
+
+    it('deduplicates phrases per memory case-insensitively', () => {
+      setMockDbRows([
+        {
+          id: 77,
+          spec_folder: 'specs/dedup',
+          file_path: '/dedup.md',
+          title: 'Dedup',
+          trigger_phrases: JSON.stringify(['Trigger Quality', 'trigger quality', 'TRIGGER QUALITY']),
+          importance_weight: 0.8,
+        },
+      ]);
+
+      const cache = loadTriggerCache();
+
+      expect(cache).toHaveLength(1);
+      expect(cache[0].phrase).toBe('trigger quality');
+    });
+
+    it('keeps the path and mtime phrase extraction cache across trigger cache clears', () => {
+      const tempDir = fs.mkdtempSync(path.join(os.tmpdir(), 'trigger-matcher-'));
+      const filePath = path.join(tempDir, 'spec.md');
+      fs.writeFileSync(filePath, buildSpecDocContent(JSON.stringify(['mtime cache phrase'])), 'utf8');
+      setMockDbRows([
+        {
+          id: 88,
+          spec_folder: 'specs/cache',
+          file_path: filePath,
+          title: 'Cache',
+          trigger_phrases: JSON.stringify(['stale stored phrase']),
+          importance_weight: 0.8,
+        },
+      ]);
+      const readSpy = vi.spyOn(fs, 'readFileSync');
+
+      expect(loadTriggerCache().map((entry) => entry.phrase)).toEqual(['mtime cache phrase']);
+      const firstReadCount = readSpy.mock.calls.filter((call) => call[0] === filePath).length;
+      clearCache();
+      expect(loadTriggerCache().map((entry) => entry.phrase)).toEqual(['mtime cache phrase']);
+      const secondReadCount = readSpy.mock.calls.filter((call) => call[0] === filePath).length;
+
+      expect(firstReadCount).toBe(1);
+      expect(secondReadCount).toBe(1);
+      readSpy.mockRestore();
+      fs.rmSync(tempDir, { recursive: true, force: true });
+    });
+
+    it('loads only active ranked rows through the shared predicate', () => {
+      const loaderSql = getTriggerCacheLoaderSqlForTests();
+
+      expect(loaderSql).toContain('deleted_at IS NULL');
+      expect(loaderSql).toContain("'deprecated','archived','constitutional'");
     });
   });
 });

@@ -133,6 +133,16 @@ interface TriggerSourceRow {
   content_text: string | null;
 }
 
+interface PhraseExtractionCacheEntry {
+  mtimeMs: number;
+  phrases: string[];
+}
+
+interface SingleTokenCorpusStats {
+  totalSources: number;
+  frequencies: Map<string, number>;
+}
+
 /* --- 2. CONFIGURATION --- */
 
 /**
@@ -183,6 +193,7 @@ let triggerCandidateIndex: Map<string, Set<number>> | null = null;
 let cacheTimestamp: number = 0;
 let lastDegradedState: TriggerMatcherDegradedState | null = null;
 const triggerCacheLoaderStatementByConnection = new WeakMap<Database.Database, Database.Statement>();
+const phraseExtractionCache = new Map<string, PhraseExtractionCacheEntry>();
 
 // LRU cache for regex objects to prevent memory leaks
 const regexLruCache: Map<string, RegExp> = new Map();
@@ -191,6 +202,10 @@ const UNICODE_TOKEN_PATTERN = /[\p{L}\p{N}\p{M}]+/gu;
 const CJK_SCRIPT_PATTERN = /[\p{Script=Han}\p{Script=Hiragana}\p{Script=Katakana}\p{Script=Hangul}]/u;
 const MIN_INDEX_NGRAM_SIZE = 2;
 const MAX_INDEX_NGRAM_SIZE = 3;
+const MIN_SINGLE_TOKEN_LENGTH = 4;
+const MIN_CORPUS_FOR_IDF_FILTER = 50;
+const MIN_SINGLE_TOKEN_IDF = 5;
+const SINGLE_TOKEN_ALLOWLIST = new Set(['api', 'cli', 'mcp', 'bm25', 'fsrs']);
 const COMMON_TRIGGER_STOPWORDS = new Set([
   'a', 'an', 'the', 'and', 'or', 'but',
   'is', 'am', 'are', 'was', 'were', 'be', 'been', 'being',
@@ -211,7 +226,7 @@ const TRIGGER_CACHE_LOADER_SQL = `
   SELECT id, spec_folder, file_path, title, trigger_phrases, importance_weight, document_type, anchor_id, content_text
   FROM memory_index
   WHERE embedding_status = 'success'
-    AND ${ACTIVE_ROW_SQL('memory_index')}
+    AND ${ACTIVE_ROW_SQL('memory_index', { includeCold: false })}
     AND trigger_phrases IS NOT NULL
     AND trigger_phrases != '[]'
     AND trigger_phrases != ''
@@ -332,20 +347,25 @@ function tryParseStoredTriggerPhrases(raw: string | null | undefined): {
   }
 }
 
-function readCanonicalSpecDocContent(row: TriggerSourceRow): string {
-  if (typeof row.file_path === 'string' && row.file_path.length > 0 && fs.existsSync(row.file_path)) {
+function extractCanonicalTriggerPhrases(row: TriggerSourceRow): string[] {
+  if (typeof row.file_path === 'string' && row.file_path.length > 0) {
     try {
-      return fs.readFileSync(row.file_path, 'utf8');
+      const stats = fs.statSync(row.file_path);
+      if (stats.isFile()) {
+        const cached = phraseExtractionCache.get(row.file_path);
+        if (cached && cached.mtimeMs === stats.mtimeMs) {
+          return cached.phrases;
+        }
+        const phrases = extractTriggerPhrases(fs.readFileSync(row.file_path, 'utf8'));
+        phraseExtractionCache.set(row.file_path, { mtimeMs: stats.mtimeMs, phrases });
+        return phrases;
+      }
     } catch {
       // Fall back to the indexed snapshot when the live doc cannot be read.
     }
   }
 
-  return row.content_text ?? '';
-}
-
-function extractCanonicalTriggerPhrases(row: TriggerSourceRow): string[] {
-  return extractTriggerPhrases(readCanonicalSpecDocContent(row));
+  return extractTriggerPhrases(row.content_text ?? '');
 }
 
 function isCanonicalSpecDocRow(row: TriggerSourceRow): boolean {
@@ -417,6 +437,26 @@ function resolveTriggerSourceRows(rows: TriggerSourceRow[]): Array<{
   return resolvedSources;
 }
 
+function buildSingleTokenCorpusStats(
+  resolvedSources: Array<{ row: TriggerSourceRow; phrases: string[] }>,
+): SingleTokenCorpusStats {
+  const frequencies = new Map<string, number>();
+  for (const source of resolvedSources) {
+    const tokensForMemory = new Set<string>();
+    for (const phrase of source.phrases) {
+      const normalized = normalizeTriggerText(phrase);
+      const tokens = normalized.split(/\s+/u).filter(Boolean);
+      if (tokens.length === 1) {
+        tokensForMemory.add(tokens[0]);
+      }
+    }
+    for (const token of tokensForMemory) {
+      frequencies.set(token, (frequencies.get(token) ?? 0) + 1);
+    }
+  }
+  return { totalSources: resolvedSources.length, frequencies };
+}
+
 function indexTriggerEntry(entry: TriggerCacheEntry): void {
   if (!triggerCandidateIndex) {
     triggerCandidateIndex = new Map();
@@ -434,7 +474,7 @@ function indexTriggerEntry(entry: TriggerCacheEntry): void {
   }
 }
 
-function isSpecificTriggerPhrase(phrase: string): boolean {
+function isSpecificTriggerPhrase(phrase: string, corpusStats?: SingleTokenCorpusStats): boolean {
   const normalized = normalizeTriggerText(phrase);
   if (normalized.length < CONFIG.MIN_PHRASE_LENGTH) {
     return false;
@@ -446,7 +486,21 @@ function isSpecificTriggerPhrase(phrase: string): boolean {
   }
 
   if (tokens.length === 1) {
-    return !COMMON_TRIGGER_STOPWORDS.has(tokens[0]);
+    const token = tokens[0];
+    if (SINGLE_TOKEN_ALLOWLIST.has(token)) {
+      return true;
+    }
+    if (token.length < MIN_SINGLE_TOKEN_LENGTH || COMMON_TRIGGER_STOPWORDS.has(token)) {
+      return false;
+    }
+    if (corpusStats && corpusStats.totalSources >= MIN_CORPUS_FOR_IDF_FILTER) {
+      const frequency = corpusStats.frequencies.get(token) ?? 0;
+      const inverseDocumentFrequency = Math.log((corpusStats.totalSources + 1) / (frequency + 1)) + 1;
+      if (inverseDocumentFrequency < MIN_SINGLE_TOKEN_IDF) {
+        return false;
+      }
+    }
+    return true;
   }
 
   return tokens.some((token) => token.length >= CONFIG.MIN_PHRASE_LENGTH);
@@ -514,6 +568,8 @@ export function loadTriggerCache(): TriggerCacheEntry[] {
     triggerCandidateIndex = new Map();
     const failures: TriggerMatcherFailure[] = [];
     const resolvedRows = resolveTriggerSourceRows(rows);
+    const singleTokenCorpusStats = buildSingleTokenCorpusStats(resolvedRows);
+    const seenPhraseKeysByMemory = new Map<number, Set<string>>();
     for (const row of rows) {
       if (!isContinuityTriggerRow(row)) {
         continue;
@@ -538,9 +594,15 @@ export function loadTriggerCache(): TriggerCacheEntry[] {
         }
 
         const normalizedPhrase = normalizeTriggerText(phrase);
-        if (!isSpecificTriggerPhrase(normalizedPhrase)) {
+        if (!isSpecificTriggerPhrase(normalizedPhrase, singleTokenCorpusStats)) {
           continue;
         }
+        const seenPhraseKeys = seenPhraseKeysByMemory.get(row.id) ?? new Set<string>();
+        if (seenPhraseKeys.has(normalizedPhrase)) {
+          continue;
+        }
+        seenPhraseKeys.add(normalizedPhrase);
+        seenPhraseKeysByMemory.set(row.id, seenPhraseKeys);
 
         const entry: TriggerCacheEntry = {
           triggerId: triggerCache.length,
@@ -939,6 +1001,10 @@ export function getTriggerCandidates(userPrompt: string, cache: TriggerCacheEntr
     .sort((left, right) => left - right)
     .map((triggerId) => cache[triggerId])
     .filter((entry): entry is TriggerCacheEntry => Boolean(entry));
+}
+
+export function getTriggerCacheLoaderSqlForTests(): string {
+  return TRIGGER_CACHE_LOADER_SQL;
 }
 
 /** Get memories by trigger phrase */

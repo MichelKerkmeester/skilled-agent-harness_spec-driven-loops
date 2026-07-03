@@ -105,4 +105,40 @@ describe('trigger embedding backfill resume', () => {
     expect(row).toEqual({ total: 3, uniqueRows: 3, readyRows: 3, pendingRows: 0 });
     expect(embeddingMocks.generateDocumentEmbedding).toHaveBeenCalledTimes(3);
   });
+
+  it('parks failed rows behind attempt metadata instead of re-pending immediately', async () => {
+    insertMemory(database, 1, ['permanent failure phrase']);
+    embeddingMocks.generateDocumentEmbedding.mockRejectedValue(new Error('provider down'));
+
+    const first = await runTriggerEmbeddingBackfill(database, { enabled: true, limit: 10 });
+    const second = await runTriggerEmbeddingBackfill(database, { enabled: true, limit: 10 });
+
+    const row = database.prepare(`
+      SELECT embedding_status, failure_reason
+      FROM memory_trigger_embeddings
+      WHERE memory_id = 1
+    `).get() as { embedding_status: string; failure_reason: string | null };
+
+    expect(first).toMatchObject({ failedRows: 1, pendingRemaining: 0 });
+    expect(second).toMatchObject({ pendingRows: 0, failedRows: 0 });
+    expect(row.embedding_status).toBe('failed');
+    expect(row.failure_reason).toContain('attempts=1');
+    expect(embeddingMocks.generateDocumentEmbedding).toHaveBeenCalledTimes(1);
+  });
+
+  it('removes trigger embedding rows for deleted memories', async () => {
+    insertMemory(database, 1, ['orphan cleanup phrase']);
+    await runTriggerEmbeddingBackfill(database, { enabled: true, limit: 10 });
+    database.prepare(`
+      UPDATE memory_index
+      SET deleted_at = datetime('now')
+      WHERE id = 1
+    `).run();
+
+    const result = await runTriggerEmbeddingBackfill(database, { enabled: true, limit: 10 });
+    const remaining = database.prepare('SELECT COUNT(*) AS count FROM memory_trigger_embeddings').get() as { count: number };
+
+    expect(result.orphanRowsRemoved).toBe(1);
+    expect(remaining.count).toBe(0);
+  });
 });

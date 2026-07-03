@@ -162,11 +162,12 @@ function fetchMemoryRecords(memoryIds: number[]): Map<number, TierInput> {
   if (!db) return records;
 
   try {
+    const placeholders = memoryIds.map(() => '?').join(',');
     const stmt = db.prepare(
-      'SELECT * FROM memory_index WHERE id = ?'
+      `SELECT * FROM memory_index WHERE id IN (${placeholders})`
     );
-    for (const id of memoryIds) {
-      const row = stmt.get(id) as TierInput | undefined;
+    const rows = stmt.all(...memoryIds) as TierInput[];
+    for (const row of rows) {
       if (row) {
         records.set(row.id as number, row);
       }
@@ -177,6 +178,13 @@ function fetchMemoryRecords(memoryIds: number[]): Map<number, TierInput> {
   }
 
   return records;
+}
+
+function isSpecFolderInScope(folder: string | undefined, scope: string | undefined): boolean {
+  if (!scope) {
+    return true;
+  }
+  return typeof folder === 'string' && (folder === scope || folder.startsWith(`${scope}/`));
 }
 
 function getSemanticTriggerMode(): SemanticTriggerMode {
@@ -266,7 +274,7 @@ function filterSemanticMatchesByScope(
   return matches.filter((match) => {
     const row = scopeMap.get(match.memoryId);
     if (!row) return false;
-    if (specFolder && row.spec_folder !== specFolder) return false;
+    if (!isSpecFolderInScope(row.spec_folder, specFolder)) return false;
     if (tenantId && row.tenant_id !== tenantId) return false;
     if (userId && row.user_id !== userId) return false;
     if (agentId && row.agent_id !== agentId) return false;
@@ -447,7 +455,7 @@ async function handleMemoryMatchTriggers(args: TriggerArgs): Promise<MCPResponse
           const row = scopeMap.get(match.memoryId);
           if (!row) return false;
           // Scoped requests fail closed so unscoped rows cannot leak into scoped results.
-          if (specFolder && row.spec_folder !== specFolder) return false;
+          if (!isSpecFolderInScope(row.spec_folder, specFolder)) return false;
           if (tenantId && row.tenant_id !== tenantId) return false;
           if (userId && row.user_id !== userId) return false;
           if (agentId && row.agent_id !== agentId) return false;

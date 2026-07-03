@@ -367,6 +367,38 @@ describe('Sprint-0 reliability fixes', () => {
     expect(results[0]?.memoryId).toBe(11);
     expect(results[0]?.filePath).toBe('/tmp/scoped.md');
   });
+
+  it('uses path-segment-aware specFolder prefix filtering for phase children', async () => {
+    vi.spyOn(triggerMatcher, 'matchTriggerPhrasesWithStats').mockReturnValue(
+      buildTriggerMatchResult([
+        buildTriggerMatch({ memoryId: 31, filePath: '/tmp/parent.md' }),
+        buildTriggerMatch({ memoryId: 32, filePath: '/tmp/child.md' }),
+        buildTriggerMatch({ memoryId: 33, filePath: '/tmp/sibling-prefix.md' }),
+      ])
+    );
+    vi.spyOn(evalLogger, 'logSearchQuery').mockReturnValue({ queryId: 43, evalRunId: 44 });
+    vi.spyOn(evalLogger, 'logFinalResult').mockImplementation(() => undefined);
+    vi.spyOn(vectorIndexStore, 'initialize_db').mockReturnValue({
+      prepare: vi.fn(() => ({
+        all: vi.fn(() => [
+          { id: 31, spec_folder: 'specs/028-foo' },
+          { id: 32, spec_folder: 'specs/028-foo/005-phase' },
+          { id: 33, spec_folder: 'specs/028-foobar' },
+        ]),
+      })),
+    } as never);
+
+    const response = await handler.handleMemoryMatchTriggers({
+      prompt: 'resume packet',
+      include_cognitive: false,
+      specFolder: 'specs/028-foo',
+    });
+    const payload = parseEnvelope(response);
+    const data = getRecord(payload.data) ?? {};
+    const results = getArray(data.results).map((item) => getRecord(item) ?? {});
+
+    expect(results.map((result) => result.memoryId)).toEqual([31, 32]);
+  });
 });
 
 describe('semantic trigger shadow handler wiring', () => {

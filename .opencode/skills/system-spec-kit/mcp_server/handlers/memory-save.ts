@@ -73,6 +73,7 @@ import {
   type GovernanceDecision,
 } from '../lib/governance/scope-governance.js';
 import { delete_memory_from_database } from '../lib/search/vector-index-mutations.js';
+import { MAX_TRIGGERS_PER_MEMORY } from '../lib/search/vector-index-types.js';
 import {
   runQualityLoop,
 } from './quality-loop.js';
@@ -435,6 +436,36 @@ function buildQualityLoopMetadata(
   };
 }
 
+function mergeTriggerPhrases(
+  authoredPhrases: readonly string[],
+  extractedPhrases: readonly string[],
+): string[] {
+  const merged: string[] = [];
+  const seen = new Set<string>();
+  for (const phrase of [...authoredPhrases, ...extractedPhrases]) {
+    const cleaned = phrase.trim().replace(/\s+/g, ' ');
+    const key = cleaned.toLowerCase();
+    if (!cleaned || seen.has(key)) {
+      continue;
+    }
+    seen.add(key);
+    merged.push(cleaned);
+    if (merged.length >= MAX_TRIGGERS_PER_MEMORY) {
+      break;
+    }
+  }
+  return merged;
+}
+
+function isSandboxConstitutionalSource(filePath: string): boolean {
+  const normalized = path.resolve(filePath).replace(/\\/g, '/').toLowerCase();
+  return normalized.startsWith('/tmp/')
+    || normalized.startsWith('/private/tmp/')
+    || normalized.includes('/tmp/')
+    || normalized.includes('/sandbox/')
+    || normalized.includes('sandbox');
+}
+
 function prepareParsedMemoryForIndexing(
   parsed: ReturnType<typeof memoryParser.parseMemoryFile>,
   database: ReturnType<typeof requireDb>,
@@ -447,6 +478,9 @@ function prepareParsedMemoryForIndexing(
   const canonicalFilePath = resolveCanonicalPath(path.resolve(parsed.filePath));
   if (!shouldIndexForMemory(canonicalFilePath)) {
     throw new Error(`Memory indexing excluded for path: ${parsed.filePath}`);
+  }
+  if (parsed.importanceTier === 'constitutional' && isSandboxConstitutionalSource(canonicalFilePath)) {
+    throw new Error(`Constitutional memory saves from temporary or sandbox paths are rejected: ${parsed.filePath}`);
   }
   if (parsed.importanceTier === 'constitutional' && !isIndexableConstitutionalMemoryPath(canonicalFilePath)) {
     console.warn('[memory-save] importance_tier=constitutional rejected for non-constitutional path; downgrading to important', {
@@ -538,7 +572,10 @@ function prepareParsedMemoryForIndexing(
     ...qualityLoopResult.score.issues,
   ]));
   if (qualityLoopResult.fixedTriggerPhrases) {
-    parsed.triggerPhrases = qualityLoopResult.fixedTriggerPhrases;
+    parsed.triggerPhrases = mergeTriggerPhrases(
+      parsed.triggerPhrases ?? [],
+      qualityLoopResult.fixedTriggerPhrases,
+    );
   }
   const finalizedFileContent = qualityLoopResult.fixedContent
     && qualityLoopResult.passed
@@ -4117,6 +4154,8 @@ export {
 
 export const __memorySaveTestables = {
   applyInjectionMarkerCapturePolicy,
+  isSandboxConstitutionalSource,
+  mergeTriggerPhrases,
 };
 
 // Backward-compatible aliases (snake_case) — only for symbols defined in this module

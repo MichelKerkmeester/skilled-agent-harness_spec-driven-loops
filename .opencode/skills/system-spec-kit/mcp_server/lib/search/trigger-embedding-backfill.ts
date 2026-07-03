@@ -43,10 +43,13 @@ export interface TriggerEmbeddingBackfillResult {
   cacheHits: number;
   generated: number;
   pendingRemaining: number;
+  orphanRowsRemoved: number;
   warnings: string[];
 }
 
 const DEFAULT_TRIGGER_BACKFILL_LIMIT = 100;
+const MAX_FAILED_EMBEDDING_ATTEMPTS = 3;
+const FAILED_RETRY_BACKOFF_MS = 60 * 60 * 1000;
 // The phrase-sync upserts the entire eligible corpus. better-sqlite3 transactions
 // run synchronously, so the corpus is processed in chunks and the loop yields
 // between chunk transactions — never inside one, which would suspend an open write
@@ -72,6 +75,7 @@ function emptyResult(enabled: boolean, status: TriggerEmbeddingBackfillResult['s
     cacheHits: 0,
     generated: 0,
     pendingRemaining: 0,
+    orphanRowsRemoved: 0,
     warnings: [],
   };
 }
@@ -137,6 +141,9 @@ function markTriggerEmbeddingStatus(
   status: 'ready' | 'failed',
   failureReason: string | null,
 ): void {
+  const storedFailureReason = status === 'failed'
+    ? buildStoredFailureReason(database, row, profileKey, inputKind, failureReason)
+    : null;
   database.prepare(`
     UPDATE memory_trigger_embeddings
     SET embedding_status = ?,
@@ -146,7 +153,108 @@ function markTriggerEmbeddingStatus(
       AND phrase_hash = ?
       AND profile_key = ?
       AND input_kind = ?
-  `).run(status, failureReason, row.memory_id, row.phrase_hash, profileKey, inputKind);
+  `).run(status, storedFailureReason, row.memory_id, row.phrase_hash, profileKey, inputKind);
+}
+
+function parseFailureAttempts(reason: string | null): number {
+  if (!reason) {
+    return 0;
+  }
+  const match = reason.match(/attempts=(\d+)/u);
+  return match ? Number.parseInt(match[1], 10) : 0;
+}
+
+function parseNextRetryAt(reason: string | null): number {
+  if (!reason) {
+    return 0;
+  }
+  const match = reason.match(/nextRetryAt=([^\]\s]+)/u);
+  const parsed = match ? Date.parse(match[1]) : Number.NaN;
+  return Number.isFinite(parsed) ? parsed : 0;
+}
+
+function stripFailureMetadata(reason: string | null): string {
+  return (reason ?? '').replace(/^\[attempts=\d+ nextRetryAt=[^\]]+\]\s*/u, '').trim();
+}
+
+function buildStoredFailureReason(
+  database: Database.Database,
+  row: PendingTriggerEmbeddingRow,
+  profileKey: string,
+  inputKind: TriggerEmbeddingInputKind,
+  failureReason: string | null,
+): string {
+  const existing = database.prepare(`
+    SELECT failure_reason
+    FROM memory_trigger_embeddings
+    WHERE memory_id = ?
+      AND phrase_hash = ?
+      AND profile_key = ?
+      AND input_kind = ?
+  `).get(row.memory_id, row.phrase_hash, profileKey, inputKind) as { failure_reason: string | null } | undefined;
+  const attempts = Math.min(
+    MAX_FAILED_EMBEDDING_ATTEMPTS,
+    parseFailureAttempts(existing?.failure_reason ?? null) + 1,
+  );
+  const nextRetryAt = new Date(Date.now() + FAILED_RETRY_BACKOFF_MS * attempts).toISOString();
+  return `[attempts=${attempts} nextRetryAt=${nextRetryAt}] ${failureReason ?? 'Embedding generation failed'}`;
+}
+
+function requeueRetryableFailures(
+  database: Database.Database,
+  profileKey: string,
+  inputKind: TriggerEmbeddingInputKind,
+): number {
+  const rows = database.prepare(`
+    SELECT memory_id, phrase_hash, failure_reason
+    FROM memory_trigger_embeddings
+    WHERE profile_key = ?
+      AND input_kind = ?
+      AND embedding_status = 'failed'
+  `).all(profileKey, inputKind) as Array<PendingTriggerEmbeddingRow & { failure_reason: string | null }>;
+  const now = Date.now();
+  const retry = database.prepare(`
+    UPDATE memory_trigger_embeddings
+    SET embedding_status = 'pending',
+        failure_reason = NULL,
+        updated_at = datetime('now')
+    WHERE memory_id = ?
+      AND phrase_hash = ?
+      AND profile_key = ?
+      AND input_kind = ?
+      AND embedding_status = 'failed'
+  `);
+  let requeued = 0;
+  for (const row of rows) {
+    const attempts = parseFailureAttempts(row.failure_reason);
+    const nextRetryAt = parseNextRetryAt(row.failure_reason);
+    if (attempts >= MAX_FAILED_EMBEDDING_ATTEMPTS || nextRetryAt > now) {
+      continue;
+    }
+    requeued += retry.run(row.memory_id, row.phrase_hash, profileKey, inputKind).changes;
+  }
+  return requeued;
+}
+
+function cleanupOrphanedTriggerEmbeddings(
+  database: Database.Database,
+  profileKey: string,
+  inputKind: TriggerEmbeddingInputKind,
+): number {
+  return database.prepare(`
+    DELETE FROM memory_trigger_embeddings
+    WHERE profile_key = ?
+      AND input_kind = ?
+      AND (
+        NOT EXISTS (SELECT 1 FROM memory_index WHERE memory_index.id = memory_trigger_embeddings.memory_id)
+        OR EXISTS (
+          SELECT 1
+          FROM memory_index
+          WHERE memory_index.id = memory_trigger_embeddings.memory_id
+            AND memory_index.deleted_at IS NOT NULL
+        )
+      )
+  `).run(profileKey, inputKind).changes;
 }
 
 export async function runTriggerEmbeddingBackfill(
@@ -169,6 +277,7 @@ export async function runTriggerEmbeddingBackfill(
     const dimensions = profile?.dim ?? embeddings.getEmbeddingDimension();
     const profileKey = getActiveEmbeddingProfileKey(database, modelId, dimensions);
     const phraseByHash = new Map<string, string>();
+    result.orphanRowsRemoved = cleanupOrphanedTriggerEmbeddings(database, profileKey, TRIGGER_INPUT_KIND);
 
     // Single upfront read of the trigger-phrase source rows. This is a bounded
     // projection (only id + trigger_phrases of non-empty rows) and the backfill
@@ -180,6 +289,7 @@ export async function runTriggerEmbeddingBackfill(
       WHERE trigger_phrases IS NOT NULL
         AND trim(trigger_phrases) != ''
         AND trim(trigger_phrases) != '[]'
+        AND deleted_at IS NULL
       ORDER BY id ASC
     `).all() as TriggerSourceRow[];
 
@@ -207,6 +317,8 @@ export async function runTriggerEmbeddingBackfill(
               AND memory_trigger_embeddings.model_id = excluded.model_id
               AND memory_trigger_embeddings.dimensions = excluded.dimensions
             THEN memory_trigger_embeddings.embedding_status
+            WHEN memory_trigger_embeddings.embedding_status = 'failed'
+            THEN memory_trigger_embeddings.embedding_status
             ELSE 'pending'
           END,
           failure_reason = CASE
@@ -214,12 +326,16 @@ export async function runTriggerEmbeddingBackfill(
               AND memory_trigger_embeddings.model_id = excluded.model_id
               AND memory_trigger_embeddings.dimensions = excluded.dimensions
             THEN memory_trigger_embeddings.failure_reason
+            WHEN memory_trigger_embeddings.embedding_status = 'failed'
+            THEN memory_trigger_embeddings.failure_reason
             ELSE NULL
           END,
           updated_at = CASE
             WHEN memory_trigger_embeddings.embedding_status = 'ready'
               AND memory_trigger_embeddings.model_id = excluded.model_id
               AND memory_trigger_embeddings.dimensions = excluded.dimensions
+            THEN memory_trigger_embeddings.updated_at
+            WHEN memory_trigger_embeddings.embedding_status = 'failed'
             THEN memory_trigger_embeddings.updated_at
             ELSE datetime('now')
           END
@@ -280,6 +396,11 @@ export async function runTriggerEmbeddingBackfill(
       // idempotent (ON CONFLICT DO UPDATE) and the deletes are per-memory-id, so a
       // mid-sync cancel leaves a consistent partial state the next scan reconciles.
       await new Promise<void>((resolve) => setImmediate(resolve));
+    }
+
+    const requeuedFailures = requeueRetryableFailures(database, profileKey, TRIGGER_INPUT_KIND);
+    if (requeuedFailures > 0) {
+      result.warnings.push(`Requeued ${requeuedFailures} failed trigger embedding row(s) after backoff`);
     }
 
     const pendingRows = database.prepare(`
@@ -356,7 +477,7 @@ export async function runTriggerEmbeddingBackfill(
           error,
           { provider: modelId, force: false },
         ) ?? 'EMBEDDING_PROVIDER_ERROR (provider=unknown, type=provider_error)';
-        markTriggerEmbeddingStatus(database, row, profileKey, TRIGGER_INPUT_KIND, 'failed', sanitized);
+        markTriggerEmbeddingStatus(database, row, profileKey, TRIGGER_INPUT_KIND, 'failed', stripFailureMetadata(sanitized));
         result.failedRows += 1;
       }
     }

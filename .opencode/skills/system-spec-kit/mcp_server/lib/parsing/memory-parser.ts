@@ -11,6 +11,7 @@ import { escapeRegex } from '../utils/path-security.js';
 import { getCanonicalPathKey, canonicalizeForSpecFolderExtraction } from '../utils/canonical-path.js';
 import { hashNormalizedContentBody } from '../content-id.js';
 import { getDefaultTierForDocumentType, isValidTier, normalizeTier } from '../scoring/importance-tiers.js';
+import { MAX_TRIGGERS_PER_MEMORY } from '../search/vector-index-types.js';
 // Import type inference for memory_type classification
 import { inferMemoryType } from '../config/type-inference.js';
 import {
@@ -785,19 +786,32 @@ export function extractTitle(content: string): string | null {
 /** Extract trigger phrases from ## Trigger Phrases section OR YAML frontmatter */
 export function extractTriggerPhrases(content: string): string[] {
   const triggers: string[] = [];
+  const seenTriggers = new Set<string>();
   const frontmatter = extractFrontmatterBlock(content) ?? '';
+
+  const addTrigger = (value: string): void => {
+    const cleaned = cleanYamlTriggerPhrase(value);
+    const key = cleaned.toLowerCase();
+    if (
+      cleaned.length > 0
+      && cleaned.length < 100
+      && !/^-+$/u.test(cleaned)
+      && !seenTriggers.has(key)
+      && triggers.length < MAX_TRIGGERS_PER_MEMORY
+    ) {
+      seenTriggers.add(key);
+      triggers.push(cleaned);
+    }
+  };
 
   // Method 1a: Check YAML frontmatter inline format
   const inlineMatch = frontmatter.match(/(?:triggerPhrases|trigger_phrases):\s*\[([^\]]+)\]/i);
   if (inlineMatch) {
     const arrayContent = inlineMatch[1];
-    const phrases = arrayContent.match(/["']([^"']+)["']/g);
+    const phrases = arrayContent.match(/"(?:\\.|[^"\\])*"|'(?:''|[^'])*'|[^,]+/g);
     if (phrases) {
       phrases.forEach((p: string) => {
-        const cleaned = p.replace(/^["']|["']$/g, '').trim();
-        if (cleaned.length > 0 && cleaned.length < 100) {
-          triggers.push(cleaned);
-        }
+        addTrigger(p.replace(/,$/u, ''));
       });
     }
   }
@@ -806,6 +820,15 @@ export function extractTriggerPhrases(content: string): string[] {
   if (triggers.length === 0) {
     const lines = frontmatter.split('\n');
     let inTriggerBlock = false;
+    let pendingBlock: { indent: number; lines: string[] } | null = null;
+
+    const flushPendingBlock = (): void => {
+      if (!pendingBlock) {
+        return;
+      }
+      addTrigger(pendingBlock.lines.join(' '));
+      pendingBlock = null;
+    };
 
     for (const line of lines) {
       if (/^\s*(?:triggerPhrases|trigger_phrases):\s*$/i.test(line)) {
@@ -815,19 +838,35 @@ export function extractTriggerPhrases(content: string): string[] {
 
       if (inTriggerBlock) {
         if (/^---\s*$/.test(line)) {
+          flushPendingBlock();
           break;
         }
-        const itemMatch = line.match(/^\s*-\s*["']?([^"'\n#]+?)["']?\s*(?:#.*)?$/);
+        const blockContinuation = pendingBlock
+          && line.trim().length > 0
+          && line.search(/\S/u) > pendingBlock.indent;
+        if (blockContinuation && pendingBlock) {
+          pendingBlock.lines.push(line.trim());
+          continue;
+        }
+
+        flushPendingBlock();
+
+        const blockMatch = line.match(/^(\s*)-\s*[>|]\s*(?:#.*)?$/u);
+        if (blockMatch) {
+          pendingBlock = { indent: blockMatch[1].length, lines: [] };
+          continue;
+        }
+
+        const itemMatch = line.match(/^\s*-\s*((?:"(?:\\.|[^"\\])*")|(?:'(?:''|[^'])*')|[^#\n]+?)\s*(?:#.*)?$/u);
         if (itemMatch) {
-          const phrase = itemMatch[1].trim();
-          if (phrase.length > 0 && phrase.length < 100 && !/^-+$/.test(phrase) && !triggers.includes(phrase)) {
-            triggers.push(phrase);
-          }
+          addTrigger(itemMatch[1]);
         } else if (!/^\s*$/.test(line) && !/^\s*#/.test(line) && !/^\s+-/.test(line)) {
           break;
         }
       }
     }
+
+    flushPendingBlock();
   }
 
   // Method 2: Find ## Trigger Phrases section (fallback/additional)
@@ -840,14 +879,22 @@ export function extractTriggerPhrases(content: string): string[] {
     if (bullets) {
       bullets.forEach((line: string) => {
         const phrase = line.replace(/^[\s]*[-*]\s+/, '').trim();
-        if (phrase.length > 0 && phrase.length < 100 && !triggers.includes(phrase)) {
-          triggers.push(phrase);
-        }
+        addTrigger(phrase);
       });
     }
   }
 
   return triggers;
+}
+
+function cleanYamlTriggerPhrase(value: string): string {
+  let cleaned = value.trim().replace(/,$/u, '').trim();
+  if (cleaned.startsWith('"') && cleaned.endsWith('"')) {
+    cleaned = cleaned.slice(1, -1).replace(/\\"/g, '"').replace(/\\'/g, "'");
+  } else if (cleaned.startsWith("'") && cleaned.endsWith("'")) {
+    cleaned = cleaned.slice(1, -1).replace(/''/g, "'");
+  }
+  return cleaned.replace(/\s+/g, ' ').trim();
 }
 
 /** Extract context type from metadata block */
