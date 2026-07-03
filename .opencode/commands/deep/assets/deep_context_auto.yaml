@@ -381,6 +381,14 @@ workflow:
       # All seats analyze the SAME current_focus. native batch ‖ CLI pool
       # start TOGETHER and barrier-join. Seats are READ-ONLY; they write
       # only their own seats/iter-NNN/{label}.json. The host merges after.
+      #
+      # PER-SEAT SETTLE LIVENESS (F-017): the host settles EACH seat as it
+      # returns (write its seats/iter-NNN/{label}.json + emit a per-seat
+      # started/completed progress_record pair to deep-context-state.jsonl)
+      # rather than going dark until the full barrier-join. The barrier-join
+      # still gates the merge, but per-seat settle gives the watchdog a
+      # liveness edge per seat so a slow straggler cannot make a healthy
+      # multi-seat sweep look stalled.
       # ───────────────────────────────────────────────────────────
       step_render_seat_prompts:
         action: "Render ONE prompt per seat for the SHARED current focus, carrying the full lineage contract"
@@ -432,6 +440,12 @@ workflow:
                 context_source: "{state_paths.prompt_dir}/iter-{current_iteration}/{seat.label}.md"
                 returns: "structured findings (seat_output_schema)"
                 host_writes: "Host writes each seat's return to {state_paths.seat_dir}/iter-{current_iteration}/{seat.label}.json"
+            per_seat_settle: |
+              F-017 per-seat settle: the host writes the returned findings file AND appends a per-seat
+              progress_record pair (started before the dispatch resolves, completed with progress_delta=1
+              and artifact_path={seat.label}.json after the host-collected write) to
+              {state_paths.state_log} AS EACH seat returns — not deferred to the barrier-join. The sweep
+              still barrier-joins before step_merge_findings, but liveness is now per-seat.
             wait_for_completion: true
 
           step_sweep_cli_pool:
@@ -458,7 +472,9 @@ workflow:
                 scripts/fanout-run.cjs#buildLineageCommand(lineage, prompt, sandbox, permission); the
                 difference is the PROMPT (one-shot analysis contract below, NOT buildLoopPrompt's
                 "run phase_init/phase_main_loop/phase_synthesis" text). The host then writes each seat's
-                returned findings JSON to {state_paths.seat_dir}/iter-{current_iteration}/{seat.label}.json.
+                returned findings JSON to {state_paths.seat_dir}/iter-{current_iteration}/{seat.label}.json
+                and appends a per-seat started/completed progress_record pair to {state_paths.state_log}
+                as that seat settles (F-017) — liveness is per-seat, not deferred to the barrier-join.
               one_shot_prompt_contract: |
                 Resolved route: mode=context; target_agent=@deep-context; execution=parallel_read_only_sweep; seat_label={seat.label}; do_not_run_full_loop=true
 

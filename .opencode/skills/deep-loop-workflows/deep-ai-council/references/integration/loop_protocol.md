@@ -64,13 +64,46 @@ Each seat should produce:
 
 When external CLIs are not actually invoked, label the perspective as simulated. Do not imply real external participation.
 
+### 3.1 Per-seat stepwise liveness (GAP-32 / GAP-36)
+
+Each seat is persisted STEPWISE as it returns — a single seat is written without
+requiring the full report sections (Composition / Recommended Plan / Plan
+Confidence), so one seat's dispatch never fails validation because the other
+seats have not returned yet. The stepwise writer is
+`persist-artifacts.cjs --seat` / `lib/persist-artifacts.cjs#persistSeatStepwise`,
+which for every seat appends to `ai-council-state.jsonl` in this order:
+
+1. `progress_record` with `status:"started"` (resets the watchdog timer).
+2. The seat artifact write under `seats/{round}/{seat}.md` (emits its own
+   `artifact_written` audit envelope).
+3. `progress_record` with `status:"completed"`, carrying `progress_delta > 0`
+   and `artifact_path` (the work-anchor required by the shared pair validator so
+   a no-op heartbeat cannot mask a stall).
+
+For **in-CLI** runs (STEP 2 simulating seats within one round), the host breaks
+the round into per-seat sub-steps and calls the stepwise writer once per seat,
+so the completed `progress_record` count equals `seats_per_round`. Each
+sub-step is bounded by a started/completed pair, giving the watchdog a
+per-seat liveness edge instead of one dark window for the whole round.
+
+**Watchdog-only bounding (in-CLI fallback).** When the host genuinely cannot
+emit a per-seat started/completed boundary in in-CLI mode (for example, a
+single in-process seat pass that is indivisible), the run is bounded by the
+watchdog alone: the no-progress window fires if no `progress_record` AND no
+artifact `mtime` change occurs within the window. In that case the loop MUST
+emit at least one work-anchored `progress_record` per round, and operators
+treat the per-seat count contract as best-effort, not guaranteed. The
+stepwise writer is the preferred path; watchdog-only bounding is the
+documented fallback, never the default.
+
 Required resources:
 
 - `references/patterns/seat_diversity_patterns.md`
 - `references/scoring/scoring_rubric.md`
 - `assets/prompt_pack_round.md`
+- `.opencode/skills/deep-loop-workflows/shared/progress/progress-record.cjs` (additive `progress_record` type + pair validator)
 
-Acceptance criteria: every seat has a named lens, a distinct mandate, and enough evidence for critique.
+Acceptance criteria: every seat has a named lens, a distinct mandate, and enough evidence for critique; the completed `progress_record` count equals the number of seats persisted when the host uses the stepwise writer.
 
 ---
 

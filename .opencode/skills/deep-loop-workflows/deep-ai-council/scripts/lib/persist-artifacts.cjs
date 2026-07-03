@@ -22,6 +22,15 @@ const {
   normalizeRoundId,
 } = require('./audit-trail.cjs');
 
+// Shared step-transition progress_record type (additive JSONL event). Used for
+// per-seat liveness so the watchdog sees real work between seat dispatches and
+// the barrier-join instead of a minutes-long dark window.
+const {
+  PROGRESS_RECORD_TYPE,
+  PROGRESS_RECORD_EVENT,
+  validateProgressRecordPair,
+} = require('../../../shared/progress/progress-record.cjs');
+
 // ─────────────────────────────────────────────────────────────────────────────
 // 2. CONSTANTS
 // ─────────────────────────────────────────────────────────────────────────────
@@ -683,6 +692,212 @@ function appendStateLine(packetSpecFolder, event) {
   return statePath;
 }
 
+// ─────────────────────────────────────────────────────────────────────────────
+// 4b. STEPWISE PER-SEAT PERSISTENCE
+// A single seat can be persisted WITHOUT requiring the full-report sections
+// (Composition / Recommended Plan / Plan Confidence). Each seat emits a
+// started/completed progress_record pair to the state log so per-seat liveness
+// is observable between dispatch and the deliberation barrier-join.
+// ─────────────────────────────────────────────────────────────────────────────
+
+/**
+ * Build one progress_record event for per-seat step liveness.
+ *
+ * @param {string} seatId - Seat identifier (seat-NNN)
+ * @param {string} roundId - Normalized round id (round-NNN)
+ * @param {'started'|'completed'} status - Step-transition status
+ * @param {Object} [options={}] - Record options
+ * @param {string} [options.step='seat'] - Logical step name
+ * @param {string} [options.timestamp] - ISO-8601 timestamp
+ * @param {number} [options.progressDelta] - Work delta (completed only)
+ * @param {string} [options.artifactPath] - Artifact path anchor (completed only)
+ * @returns {Object} Normalized progress_record event
+ */
+function buildProgressRecord(seatId, roundId, status, options = {}) {
+  const record = {
+    type: PROGRESS_RECORD_TYPE,
+    event: PROGRESS_RECORD_EVENT,
+    status,
+    seat_id: seatId,
+    round_id: roundId,
+    step: options.step || 'seat',
+    timestamp: options.timestamp || new Date().toISOString(),
+  };
+  if (status === 'completed') {
+    const delta = Number(options.progressDelta);
+    record.progress_delta = Number.isFinite(delta) ? delta : 1;
+    record.artifact_path = options.artifactPath || null;
+  }
+  return record;
+}
+
+/**
+ * Normalize a caller-provided seat object (JSON input) into the writer model.
+ *
+ * @param {Object} obj - Raw seat object
+ * @param {Object} [options={}] - Options carrying a fallback label
+ * @param {number} [options.index=0] - Index for seat-id derivation
+ * @returns {Object} Normalized seat object
+ */
+function normalizeSeatObject(obj, options = {}) {
+  const index = Number.isFinite(Number(options.index)) ? Number(options.index) : 0;
+  const label = normalizeText(obj.label || obj.seat) || options.label || `seat-${String(index + 1).padStart(3, '0')}`;
+  return {
+    id: normalizeSeatId(obj.id || label, index),
+    label,
+    lens: normalizeText(obj.lens) || normalizeText(obj.strategy_lens) || 'Unknown',
+    vantage: normalizeText(obj.vantage) || normalizeText(obj.ai_vantage) || 'Unknown',
+    mandate: normalizeText(obj.mandate) || '',
+    confidence: normalizeText(obj.confidence) || '',
+    content: typeof obj.content === 'string' ? obj.content : '',
+    source: 'single-seat-json',
+  };
+}
+
+/**
+ * Build a seat object from a parsed `## Seat N` markdown section.
+ *
+ * @param {Object} section - Section produced by splitSections
+ * @param {number} index - Seat index
+ * @returns {Object} Normalized seat object
+ */
+function buildSeatFromSection(section, index) {
+  const id = normalizeSeatId(section.heading, index);
+  const title = section.heading.replace(/^Seat\s+\d+\s*[-:—]\s*/i, '');
+  const parts = title.split('/').map(normalizeText);
+  return {
+    id,
+    label: id,
+    lens: parts[0] || 'Unknown',
+    vantage: parts[1] || 'Unknown',
+    mandate: '',
+    confidence: '',
+    content: section.content,
+    source: 'single-seat-heading',
+  };
+}
+
+/**
+ * Parse a SINGLE seat from markdown or JSON without requiring the full-report
+ * sections (Composition / Recommended Plan / Plan Confidence). A single-seat
+ * call therefore does not fail the full-report validation gate.
+ *
+ * Input shapes accepted:
+ *  - JSON object: { id?, label?, lens?, vantage?, mandate?, confidence?, content? }
+ *  - Markdown with a `## Seat N — Lens / Vantage` heading
+ *  - Bare markdown body (whole input treated as one seat's content)
+ *
+ * @param {string} input - Single-seat markdown or JSON
+ * @param {Object} [options={}] - Options for bare-body fallback
+ * @param {string} [options.label] - Seat label when none is derivable
+ * @param {string} [options.lens] - Strategy lens when none is derivable
+ * @param {string} [options.vantage] - AI vantage when none is derivable
+ * @returns {{ok: boolean, missing: string[], seat: Object|null}} Parsed single seat
+ */
+function parseSeatReport(input, options = {}) {
+  const raw = String(input || '');
+  const trimmed = raw.trim();
+  if (!trimmed) {
+    return { ok: false, missing: ['empty seat input'], seat: null };
+  }
+
+  if (trimmed.startsWith('{')) {
+    try {
+      const obj = JSON.parse(trimmed);
+      if (obj && typeof obj === 'object' && !Array.isArray(obj)) {
+        const seat = normalizeSeatObject(obj, { ...options, index: 0 });
+        return seatResult(seat);
+      }
+    } catch {
+      // Not valid JSON — fall through to markdown parsing.
+    }
+  }
+
+  const sections = splitSections(raw);
+  const seatSection = sections.find((section) => /^seat\s+\d{1,3}\b|^seat-\d{1,3}\b/i.test(section.normalized));
+  let seat;
+  if (seatSection) {
+    seat = buildSeatFromSection(seatSection, 0);
+  } else {
+    const label = options.label || 'seat-001';
+    seat = {
+      id: normalizeSeatId(label, 0),
+      label,
+      lens: options.lens || 'Unknown',
+      vantage: options.vantage || 'Unknown',
+      mandate: '',
+      confidence: '',
+      content: plainText(raw) ? raw : '',
+      source: 'single-seat-input',
+    };
+  }
+  return seatResult(seat);
+}
+
+function seatResult(seat) {
+  const missing = [];
+  const hasBody = Boolean(normalizeText(seat.content));
+  const hasIdentity = seat.lens !== 'Unknown' || seat.vantage !== 'Unknown' || seat.mandate;
+  if (!hasBody && !hasIdentity) missing.push('seat body or identity');
+  return { ok: missing.length === 0, missing, seat };
+}
+
+/**
+ * Persist a SINGLE seat stepwise and emit a started/completed progress_record
+ * pair to the council state log. This is the stepwise writer path: it
+ * does NOT require Composition / Recommended Plan / Plan Confidence and never
+ * runs the full-report validation gate.
+ *
+ * State-log order per seat: progress(started) → seat artifact write (emits its
+ * own artifact_written audit) → progress(completed, work-anchored).
+ *
+ * @param {string} packetSpecFolder - Packet spec folder to write into
+ * @param {Object} seat - Normalized seat object (id, lens, vantage, mandate, ...)
+ * @param {Object} [options={}] - Persistence options
+ * @param {number} [options.round=1] - Council round number
+ * @param {string} [options.timestamp] - ISO-8601 timestamp
+ * @returns {{seatPath: string, relativeSeatPath: string, round: string, started: Object, completed: Object}}
+ */
+function persistSeatStepwise(packetSpecFolder, seat, options = {}) {
+  if (!seat || typeof seat !== 'object') {
+    throw new Error('[ai-council] persistSeatStepwise requires a seat object');
+  }
+  const round = Number(options.round || 1);
+  const roundDir = roundLabel(round);
+  const timestamp = options.timestamp || new Date().toISOString();
+  const { aiCouncilRoot } = councilRootFor(packetSpecFolder);
+  fs.mkdirSync(aiCouncilRoot, { recursive: true });
+
+  const seatId = normalizeSeatId(seat.id || seat.label, 0);
+  const normalizedSeat = { ...seat, id: seatId };
+
+  const started = buildProgressRecord(seatId, roundDir, 'started', { timestamp, step: 'seat' });
+  appendStateLine(packetSpecFolder, started);
+
+  const content = renderSeatArtifact(normalizedSeat, round);
+  const seatSlug = slugify(seat.vantage || seatId);
+  const relativeSeatPath = `seats/${roundDir}/${seatId}-${seatSlug}.md`;
+  const seatPath = writeSeat(packetSpecFolder, relativeSeatPath, content, {
+    round_id: roundDir,
+    seat_id: seatId,
+    timestamp,
+  });
+
+  const completed = buildProgressRecord(seatId, roundDir, 'completed', {
+    timestamp,
+    step: 'seat',
+    progressDelta: 1,
+    artifactPath: relativeSeatPath,
+  });
+  const pairCheck = validateProgressRecordPair(started, completed);
+  if (!pairCheck.valid) {
+    throw new Error(`[ai-council] stepwise progress pair invalid: ${pairCheck.reason}`);
+  }
+  appendStateLine(packetSpecFolder, completed);
+
+  return { seatPath, relativeSeatPath, round: roundDir, started, completed };
+}
+
 function parseArgs(argv) {
   const args = {
     packetSpecFolder: null,
@@ -691,6 +906,10 @@ function parseArgs(argv) {
     strictOutput: false,
     force: false,
     memorySavePayloadOut: null,
+    seat: false,
+    seatLabel: null,
+    lens: null,
+    vantage: null,
   };
   const rest = [...argv];
   args.packetSpecFolder = rest.shift() || null;
@@ -701,12 +920,16 @@ function parseArgs(argv) {
     else if (flag === '--memory-save-payload-out') args.memorySavePayloadOut = rest.shift();
     else if (flag === '--strict-output') args.strictOutput = true;
     else if (flag === '--force') args.force = true;
+    else if (flag === '--seat' || flag === '--incremental') args.seat = true;
+    else if (flag === '--seat-label') args.seatLabel = rest.shift();
+    else if (flag === '--lens') args.lens = rest.shift();
+    else if (flag === '--vantage') args.vantage = rest.shift();
     else throw new Error(`[ai-council] Unknown argument: ${flag}`);
   }
   if (!args.packetSpecFolder) {
-    throw new Error('Usage: node persist-artifacts.cjs <packet-spec-folder> [--round NNN] [--input-file FILE] [--memory-save-payload-out FILE] [--strict-output] [--force]');
+    throw new Error('Usage: node persist-artifacts.cjs <packet-spec-folder> [--round NNN] [--input-file FILE] [--memory-save-payload-out FILE] [--strict-output] [--force] [--seat [--seat-label L] [--lens L] [--vantage V]]');
   }
-  if (args.memorySavePayloadOut === undefined) {
+  if (!args.seat && args.memorySavePayloadOut === undefined) {
     throw new Error('[ai-council] --memory-save-payload-out requires a file path');
   }
   roundLabel(args.round);
@@ -730,6 +953,22 @@ function main(argv = process.argv.slice(2)) {
     args = parseArgs(argv);
     const markdown = readInput(args.inputFile);
     if (!normalizeText(markdown)) throw new Error('[ai-council] No council report input provided');
+
+    if (args.seat) {
+      const parsed = parseSeatReport(markdown, {
+        label: args.seatLabel,
+        lens: args.lens,
+        vantage: args.vantage,
+      });
+      if (!parsed.ok) {
+        console.error(`[ai-council] Single-seat persist failed validation: ${parsed.missing.join(', ')}`);
+        return 1;
+      }
+      const result = persistSeatStepwise(args.packetSpecFolder, parsed.seat, { round: args.round });
+      console.log(`[ai-council] Persisted seat ${parsed.seat.id} (round ${result.round}) -> ${result.relativeSeatPath} with started/completed progress records`);
+      return 0;
+    }
+
     const parsed = parseCouncilReport(markdown);
     if (!parsed.ok) {
       console.error(`[ai-council] Missing required section(s): ${parsed.missing.join(', ')}`);
@@ -771,7 +1010,12 @@ module.exports = {
   SCHEMA_VERSION,
   PROTOCOL,
   PRODUCER_VERSION,
+  PROGRESS_RECORD_TYPE,
+  PROGRESS_RECORD_EVENT,
   parseCouncilReport,
+  parseSeatReport,
+  persistSeatStepwise,
+  buildProgressRecord,
   parseStateLine,
   parseStateLog,
   renderArtifacts,

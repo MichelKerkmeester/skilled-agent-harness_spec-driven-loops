@@ -123,6 +123,11 @@ workflow:
           - "{state_paths.session_state_log}"
           - "{state_paths.findings_registry}"
           - "{state_paths.topics_dir}/**"
+        progress_liveness:
+          contract: "Per-seat stepwise persistence (GAP-32/GAP-36). Each seat is persisted as it returns via persist-artifacts.cjs --seat (lib/persist-artifacts.cjs#persistSeatStepwise) WITHOUT requiring the full report sections, so one seat's dispatch cannot fail because other seats have not returned yet."
+          per_seat_pair: "For every seat the host appends a started/completed progress_record pair to ai-council-state.jsonl around the seat artifact write (started -> seat write -> completed with progress_delta>0 and artifact_path)."
+          in_cli: "For in-CLI runs (STEP 2 simulating seats within one round), break the round into per-seat sub-steps; the completed progress_record count MUST equal seats_per_round."
+          watchdog_only_fallback: "If a per-seat started/completed boundary cannot be emitted (an indivisible in-process pass), the run is watchdog-bounded only and MUST still emit at least one work-anchored progress_record per round; per-seat count is best-effort, not guaranteed. The stepwise writer is the default; watchdog-only is the documented fallback."
         outputs:
           - session_result: "topics_completed, topic_results, skipped_topic_ids, stop_reason"
         post_dispatch_validate:
