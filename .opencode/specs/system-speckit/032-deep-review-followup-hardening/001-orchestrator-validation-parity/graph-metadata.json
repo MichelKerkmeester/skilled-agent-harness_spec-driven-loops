@@ -1,0 +1,217 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/032-deep-review-followup-hardening/001-orchestrator-validation-parity",
+  "spec_folder": "system-speckit/032-deep-review-followup-hardening/001-orchestrator-validation-parity",
+  "parent_id": "system-speckit/032-deep-review-followup-hardening",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "orchestrator validation parity",
+      "strict only rules skipped",
+      "file exists started work exemption",
+      "orchestrator parity plan",
+      "orchestrator parity tasks",
+      "orchestrator parity checklist",
+      "orchestrator parity decisions",
+      "decision record"
+    ],
+    "key_topics": [
+      "orchestrator",
+      "validation",
+      "parity",
+      "strict",
+      "only",
+      "rules",
+      "skipped",
+      "file",
+      "exists",
+      "started",
+      "work",
+      "exemption"
+    ],
+    "importance_tier": "high",
+    "status": "planned",
+    "key_files": [
+      ".opencode/skills/system-spec-kit/mcp_server/lib/validation/orchestrator.ts",
+      ".opencode/specs/deep-loops/030-agent-loops-improved/review/lineages/gpt/review-report.md",
+      "decision-record.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "orchestrator.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/validation/orchestrator.ts",
+        "source": "derived"
+      },
+      {
+        "name": "review-report.md",
+        "kind": "doc",
+        "path": ".opencode/specs/deep-loops/030-agent-loops-improved/review/lineages/gpt/review-report.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Orchestrator Validation Parity",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Authored Level",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Not Started",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Transition Rules",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Two",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Minimal",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "`runRegistryShellRules` filters the validator registry with `rule.strictonly !== true` unconditionally (`orchestrator.ts:269` at time of writing), so strict-only shell rules such as `CONTINUITYFRESHNESS` and `EVIDENCEMARKERLINT` never execute through the default Node path even under `--strict` — while the legacy shell path runs them",
+    "created_at": "2026-07-02T15:14:06.540Z",
+    "last_save_at": "2026-07-02T15:14:06.540Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md"
+    ],
+    "source_fingerprint": "sha256:0ed25f4548907643373f819db2debf9bffc760a37ed1b7dbbafea944af5ea858",
+    "source_doc_hashes": {
+      "spec.md": "f2c260705fa54d547add70fef11cf419cd4b38846529918d6c985dc0b4679d58",
+      "plan.md": "9da1a2a161f26d37530ef8e831c39ea53ef815362a4bd59f5b3bb6003a1d1e0d",
+      "tasks.md": "3a35daa4951ae76a8080ac1d8e3fa2fe8930beaafa5ddcaf20cb6c2355714bb7",
+      "checklist.md": "4dee334d2823388cf784c4ef3dac8be373191a9fd53c4960b219e76c9aab068c",
+      "decision-record.md": "7e3e01adce87bc1e9810a3aa82ca5cc193ff5a63a0c50c5743ba803da91eb3f9"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

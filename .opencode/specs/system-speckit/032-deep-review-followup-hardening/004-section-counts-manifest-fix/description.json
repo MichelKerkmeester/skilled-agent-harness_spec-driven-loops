@@ -1,0 +1,26 @@
+{
+  "specFolder": "system-speckit/032-deep-review-followup-hardening/004-section-counts-manifest-fix",
+  "description": "In `check-section-counts.sh`, `sectionexpectedspech2` counts every `sectionGates` entry active at the declared level from `template-structure.js",
+  "keywords": [
+    "check-section-counts",
+    "sectionexpectedspech2",
+    "counts",
+    "every",
+    "sectiongates",
+    "entry",
+    "active",
+    "declared",
+    "level",
+    "template-structure"
+  ],
+  "lastUpdated": "2026-07-02T17:59:20.849Z",
+  "specId": "004",
+  "folderSlug": "section-counts-manifest-fix",
+  "parentChain": [
+    "system-speckit",
+    "032-deep-review-followup-hardening"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "3"
+}

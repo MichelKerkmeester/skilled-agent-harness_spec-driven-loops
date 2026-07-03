@@ -1,0 +1,223 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/032-deep-review-followup-hardening/002-lineage-timestamp-guard",
+  "spec_folder": "system-speckit/032-deep-review-followup-hardening/002-lineage-timestamp-guard",
+  "parent_id": "system-speckit/032-deep-review-followup-hardening",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "lineage timestamp guard",
+      "fabricated timestamps",
+      "timestamp anomaly detection",
+      "timestamp guard plan",
+      "timestamp guard tasks",
+      "timestamp guard checklist",
+      "timestamp guard decisions",
+      "lineage timestamp guard summary",
+      "timestamp anomaly implementation"
+    ],
+    "key_topics": [
+      "lineage",
+      "timestamp",
+      "guard",
+      "fabricated",
+      "timestamps",
+      "anomaly",
+      "detection",
+      "plan",
+      "tasks",
+      "checklist",
+      "decisions",
+      "summary"
+    ],
+    "importance_tier": "medium",
+    "status": "complete",
+    "key_files": [
+      ".opencode/skills/deep-loop-runtime/scripts/fanout-run.cjs",
+      ".opencode/skills/deep-loop-runtime/lib/deep-loop/lineage-timestamp-window.ts",
+      ".opencode/skills/deep-loop-runtime/tests/unit/lineage-timestamp-window.vitest.ts",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "decision-record.md",
+      "checklist.md",
+      "implementation-summary.md",
+      ".opencode/specs/deep-loops/030-agent-loops-improved/review/lineages/gpt/deep-review-state.jsonl"
+    ],
+    "entities": [
+      {
+        "name": "fanout-run.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/deep-loop-runtime/scripts/fanout-run.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "lineage-timestamp-window.ts",
+        "kind": "code",
+        "path": ".opencode/skills/deep-loop-runtime/lib/deep-loop/lineage-timestamp-window.ts",
+        "source": "derived"
+      },
+      {
+        "name": "lineage-timestamp-window.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/deep-loop-runtime/tests/unit/lineage-timestamp-window.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-review-state.jsonl",
+        "kind": "file",
+        "path": ".opencode/specs/deep-loops/030-agent-loops-improved/review/lineages/gpt/deep-review-state.jsonl",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Lineage Timestamp Guard",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Lineage",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Make",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview One",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Pure",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Lineage subprocesses own their JSONL state writes (`deep-review-state.jsonl` et al.) and the prompt asks for ISO-8601 timestamps, but nothing verifies truthfulness",
+    "created_at": "2026-07-02T15:14:06.679Z",
+    "last_save_at": "2026-07-02T16:38:33.037Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:3491fd86f8e3f16cbbf4a535b02c153a9defeed532040aadabbe6638996d4939",
+    "source_doc_hashes": {
+      "spec.md": "169453411745bfb7c34a2787fc10645b2a034ff87a6a43527773607a060abfed",
+      "plan.md": "afe4137a507b90c9978731fbf69bca968c9f5270702829eb86ff741594dfc49c",
+      "tasks.md": "9c5ed7a772f6234b92e8e71db00cf6935de00bd7325bc1919bd10dd9bd8cd802",
+      "checklist.md": "d8b1e00fa60a73e522549c50a13c9db063ec6e4f11eb0fccca4659188b0475cd",
+      "decision-record.md": "519cb2e8e644d94749a83f6d396f60876a89eb585b98e7805e246eea6540dcee",
+      "implementation-summary.md": "f26b9be2c02a051e6245e86fedfbec5f80f089b9997631e56fe4aa0f5c42f45d"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}
