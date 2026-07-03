@@ -111,15 +111,15 @@
     ],
     "causal_summary": "Implementation packet for the packet-034 research synthesis, restructured per the plan-review (58 verified gaps) into the unified command-contract architecture. Five phases in dependency order: acceptance + rollout foundation, the P0 Gate-3 precedence package with a concrete validator, the build-time compiled command contract (subsuming render + agent-contracts + compiled + injection), dispatch receipts + progress records, then retrofit + pacing + rollout completion. Each phase names the 033 behavior-benchmark cells that must flip to accept it, ships behind a per-command feature flag, and",
     "created_at": "2026-07-03T11:54:51.159Z",
-    "last_save_at": "2026-07-03T14:14:00.662Z",
+    "last_save_at": "2026-07-03T17:04:54.145Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:d67666f7be0009c271e51cd33010bc2860ba31d06c4bb73571e4263433c3977c",
+    "source_fingerprint": "sha256:cf65ee44bb6e4483a345f79c95ed1df2c2087fb155813cbb8eab211cedcb51c3",
     "source_doc_hashes": {
-      "spec.md": "5a82170726b8ca9c2e742107459f3f1d2ebb80dce93a80c09b669e4393286701"
+      "spec.md": "07c26833af51d4e9dcee16086f00790297aaecd0ac73fff76552c213ef5ec8aa"
     },
     "last_active_child_id": null,
     "last_active_at": null

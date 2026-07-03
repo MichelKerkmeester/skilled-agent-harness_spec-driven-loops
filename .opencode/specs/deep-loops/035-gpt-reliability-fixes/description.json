@@ -16,10 +16,12 @@
     "unified",
     "command-contract"
   ],
-  "lastUpdated": "2026-07-03T14:23:25.757Z",
+  "lastUpdated": "2026-07-03T17:04:53.499Z",
   "specId": "035",
   "folderSlug": "gpt-reliability-fixes",
   "parentChain": [
+    ".opencode",
+    "specs",
     "deep-loops"
   ],
   "memorySequence": 0,

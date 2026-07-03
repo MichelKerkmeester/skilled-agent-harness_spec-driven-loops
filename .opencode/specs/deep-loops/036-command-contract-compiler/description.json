@@ -1,0 +1,30 @@
+{
+  "specFolder": "deep-loops/036-command-contract-compiler",
+  "description": "Design-first structural packet carved from 035 (GPT-reliability fixes) after the phase-003 design pass confirmed the contract compiler is",
+  "keywords": [
+    "design-first",
+    "structural",
+    "packet",
+    "carved",
+    "035",
+    "gpt-reliability",
+    "fixes",
+    "phase-003",
+    "design",
+    "pass",
+    "confirmed",
+    "contract",
+    "compiler"
+  ],
+  "lastUpdated": "2026-07-03T17:04:53.224Z",
+  "specId": "036",
+  "folderSlug": "command-contract-compiler",
+  "parentChain": [
+    ".opencode",
+    "specs",
+    "deep-loops"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "phase"
+}

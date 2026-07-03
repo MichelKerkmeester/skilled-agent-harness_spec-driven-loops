@@ -1,0 +1,33 @@
+{
+  "specFolder": "deep-loops/036-command-contract-compiler/001-contract-compiler-design",
+  "description": "Phase 001 of packet 036 (command contract compiler, carved from 035). Design-first: verify and expand the seed design (design.md, produced during the",
+  "keywords": [
+    "phase",
+    "001",
+    "packet",
+    "036",
+    "command",
+    "contract",
+    "compiler",
+    "carved",
+    "035",
+    "design-first",
+    "verify",
+    "expand",
+    "seed",
+    "design",
+    "produced"
+  ],
+  "lastUpdated": "2026-07-03T17:04:53.350Z",
+  "specId": "001",
+  "folderSlug": "contract-compiler-design",
+  "parentChain": [
+    ".opencode",
+    "specs",
+    "deep-loops",
+    "036-command-contract-compiler"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

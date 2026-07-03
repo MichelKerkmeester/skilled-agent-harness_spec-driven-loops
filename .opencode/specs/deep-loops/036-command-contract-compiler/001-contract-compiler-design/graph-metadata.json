@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "deep-loops/035-gpt-reliability-fixes/003-command-contract-compiler",
-  "spec_folder": "deep-loops/035-gpt-reliability-fixes/003-command-contract-compiler",
-  "parent_id": "deep-loops/035-gpt-reliability-fixes",
+  "packet_id": "deep-loops/036-command-contract-compiler/001-contract-compiler-design",
+  "spec_folder": "deep-loops/036-command-contract-compiler/001-contract-compiler-design",
+  "parent_id": "deep-loops/036-command-contract-compiler",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -11,30 +11,29 @@
   },
   "derived": {
     "trigger_phrases": [
-      "035 phase 003",
-      "command contract compiler",
-      "compiled execution contract",
+      "036 phase 001",
+      "contract compiler design",
       "plan",
-      "035 003 plan",
+      "036 001 plan",
       "tasks",
-      "035 003 tasks",
+      "036 001 tasks",
       "implementation",
       "summary",
-      "035 003"
+      "036 001"
     ],
     "key_topics": [
-      "035",
+      "036",
       "phase",
-      "003",
-      "command",
+      "001",
       "contract",
       "compiler",
-      "compiled",
-      "execution",
+      "design",
       "plan",
       "tasks",
       "implementation",
-      "summary"
+      "summary",
+      "packet",
+      "command"
     ],
     "importance_tier": "high",
     "status": "planned",
@@ -70,7 +69,7 @@
         "source": "derived"
       },
       {
-        "name": "Command Contract Compiler",
+        "name": "Contract Compiler Design",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -88,25 +87,25 @@
         "source": "derived"
       },
       {
-        "name": "maintainers",
-        "kind": "key_phrase",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "the",
-        "kind": "key_phrase",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "START",
-        "kind": "key_phrase",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "a",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "per-phase",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "cited",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "effort",
         "kind": "key_phrase",
         "path": "plan.md",
         "source": "derived"
@@ -130,12 +129,6 @@
         "source": "derived"
       },
       {
-        "name": "3. ARCHITECTURE",
-        "kind": "heading",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
         "name": "Task Notation",
         "kind": "proper_noun",
         "path": "tasks.md",
@@ -150,18 +143,6 @@
       {
         "name": "Completion Criteria",
         "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Phase 1: Setup",
-        "kind": "heading",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Phase 2: Implementation",
-        "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
       },
@@ -188,11 +169,17 @@
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
-    "causal_summary": "Phase 003 of packet 035 (unified command-contract architecture). Design-first. The central restructure (plan-review GAP-58): every command emits ONE build-time self-contained typed contract the executor reads first — Gate-3 line, verbatim render block, output template, write boundary, receipts + progress contract refs, tool list, absorption-abort rule — with maintainers keeping layered sources behind a drift guard. Subsumes old render/agent-contracts/compiled/injection phases. Closes F-006/007/009/019/020/021/022/027/029/035/036/037/038/039/042. Absorbs GAP-02/09/10/42/43/46/52/53/55/56/57/58.",
-    "created_at": "2026-07-03T14:05:28.379Z",
-    "last_save_at": "2026-07-03T14:11:35.593Z",
+    "causal_summary": "Phase 001 of packet 036 (command contract compiler, carved from 035). Design-first: verify and expand the seed design (design.md, produced during the 035 phase-003 pass and grounded in the real /deep:review 14-file authority chain) into an implementable spec, resolving the three named unknowns — the OpenCode prompt-injection insertion point, checksum ownership over generated markdown, and CLI-executor receipt/progress parity under fan-out — then decompose the build and retrofit phases.",
+    "created_at": "2026-07-03T17:04:53.763Z",
+    "last_save_at": "2026-07-03T17:04:53.763Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -201,12 +188,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:7f8d576371672b98ea3d7cf3b794d3a8b1e60efdf8183f3992ca220e458fe9b0",
+    "source_fingerprint": "sha256:b22a80c9250292d0f6312774c48a1b7bde17e48e75574ece2d66dc383a5bb501",
     "source_doc_hashes": {
-      "spec.md": "da748cbfebb332de98e58d6e18c297c0260874ad683cbe2263e9c627edc66009",
-      "plan.md": "bb35d6a2ed08640c0e1221838de999593352937a42bd3052315c3d8988a4ebde",
-      "tasks.md": "46647fe735625254886e9539a52e684caa6976a75d1f9413a9d240b3871f97f3",
-      "implementation-summary.md": "a391ec420d1552dedcb22196a9f6bb2e3f8ca108cbb20d39ba51a5fd86a13ddf"
+      "spec.md": "5a49a9f2f0d695bfc8362672b6e45e34515c0064bc77121bac556be77d88042b",
+      "plan.md": "f7b557afa7195b9347498a87ebcdd4a463de8fe9bd33bddb50c0bd2158012cfe",
+      "tasks.md": "730e83c4f47160500467631d1c151af3e628c191a0c0c8dda173f128775b9b7d",
+      "implementation-summary.md": "e81b30518669857ba2a69d3fabf5611b1ef1812c48d53d1b5295139ac2b5a624"
     },
     "last_active_child_id": null,
     "last_active_at": null

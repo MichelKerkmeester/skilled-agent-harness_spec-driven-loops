@@ -1,6 +1,6 @@
 ---
 title: "Spec: Dispatch Receipts and Progress Records"
-description: "Phase 004 of packet 035 (unified command-contract architecture). Two dispatch-integrity contracts referenced by the phase-003 compiled contract: engine-held HMAC dispatch receipts (the key never leaves the engine process — plan-review GAP-23 blocker) and step-transition progress records with a work-anchored schema. Closes F-010/011/012/013/041 (receipts) and F-015/016/017/031/043 (progress). Absorbs GAP-13/15/23/24/25/26/27/28/29/30/31/32/34/35/36."
+description: "Phase 004 of packet 035 (the last acute-fix phase). Two standalone dispatch-integrity mechanisms (packet 036's compiled contract will reference them): engine-held HMAC dispatch receipts (the key never leaves the engine process — plan-review GAP-23 blocker) and step-transition progress records with a work-anchored schema. Closes F-010/011/012/013/041 (receipts) and F-015/016/017/031/043 (progress). Absorbs GAP-13/15/23/24/25/26/27/28/29/30/31/32/34/35/36."
 trigger_phrases:
   - "035 phase 004"
   - "dispatch receipts progress records"
@@ -13,7 +13,7 @@ _memory:
     last_updated_at: "2026-07-03T16:00:00Z"
     last_updated_by: "claude-code"
     recent_action: "Authored: dispatch receipts + progress"
-    next_safe_action: "Execute after 003; author the receipt + progress contracts the compiled contract references"
+    next_safe_action: "Build the standalone receipt + progress mechanisms"
     blockers: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
@@ -41,8 +41,7 @@ _memory:
 | **Created** | 2026-07-03 |
 | **Parent Packet** | ../ (035-gpt-reliability-fixes) |
 | **Parent Spec** | ../spec.md |
-| **Predecessor** | [../003-command-contract-compiler/spec.md](../003-command-contract-compiler/spec.md) |
-| **Successor** | [../005-retrofit-pacing-and-rollout-completion/spec.md](../005-retrofit-pacing-and-rollout-completion/spec.md) |
+| **Predecessor** | [../002-gate3-precedence-and-validator/spec.md](../002-gate3-precedence-and-validator/spec.md) |
 | **Closes findings** | F-010, F-011, F-012, F-013, F-015, F-016, F-017, F-031, F-041, F-043 |
 | **Effort** | L |
 <!-- /ANCHOR:metadata -->
@@ -62,7 +61,7 @@ Findings closed: F-010, F-011, F-012, F-013, F-041 (receipts); F-015, F-016, F-0
 <!-- ANCHOR:scope -->
 ## 3. SCOPE
 
-**In scope:** `executor-audit` + `post-dispatch-validate.ts`; the `deep_*_auto.yaml` dispatch steps + CLI branches (copilot/claude-code/opencode × review/research/context/ai-council); the LEAF prompt packs; the council/context liveness records; the shared `progress_record` JSONL type. Both mechanisms are referenced by the phase-003 compiled contract.
+**In scope:** `executor-audit` + `post-dispatch-validate.ts`; the `deep_*_auto.yaml` dispatch steps + CLI branches (copilot/claude-code/opencode × review/research/context/ai-council); the LEAF prompt packs; the council/context liveness records; the shared `progress_record` JSONL type. Both are standalone mechanisms that packet 036's compiled contract will reference.
 
 **Out of scope:** the council two-of-three convergence rule (F-018 → phase 005); the pacing/budget policy (F-032/033/034 → phase 005).
 <!-- /ANCHOR:scope -->
@@ -106,7 +105,7 @@ Findings closed: F-010, F-011, F-012, F-013, F-041 (receipts); F-015, F-016, F-0
 | GAP-28 — key lifecycle on resume | Derived key (run-master + dispatchId), non-persisted |
 | GAP-35 — no-op heartbeats mask stalls | Work-anchored schema field, validator-checked |
 | GAP-30 — reducer allowlist not enforced | REQ-006 makes it a requirement + test |
-| Depends on 003 contract refs | Receipt + progress contracts are referenced by the compiled contract |
+| Standalone mechanisms | Built independently; packet 036's compiled contract will reference them (no dependency on 036 to land 004) |
 <!-- /ANCHOR:risks -->
 
 ---

@@ -1,5 +1,8 @@
 # Context Index — 035 Restructure (unified command-contract architecture)
 
+> **Update (2026-07-03): phases 003 + 005 carved to packet `036-command-contract-compiler`.** During execution, the phase-003 design pass returned a research-sized feasibility verdict (matching plan-review GAP-53/54), so the command-contract compiler (003), the retrofit + pacing/resume (005), the deferred `AGENTS.md` bridge, and the rollout emitter-wiring were moved to a new design-first packet 036. **035 retains the three acute-fix phases — 001 (acceptance + rollout core), 002 (Gate-3 validator, GAP-16 closed), 004 (receipts + progress, GAP-23) — which are implementable now.** The gap→phase mapping below still records where each gap is *conceptually* addressed; gaps assigned to old 003/005 are now delivered by 036. See `036/context-index.md`.
+
+
 > Migration bridge for the phase-parent reorganization. The parent `spec.md` documents root purpose only; this file records the restructure narration, the old→new phase mapping, and how all 58 plan-review gaps are absorbed. Source of the restructure: `plan-review/gap-synthesis.md` (GAP-58) + the full `plan-review/gap-registry.md`.
 
 ## Why the restructure

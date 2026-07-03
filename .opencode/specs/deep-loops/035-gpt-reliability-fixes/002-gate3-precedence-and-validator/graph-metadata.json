@@ -192,7 +192,7 @@
     ],
     "causal_summary": "Phase 002 of packet 035 (unified command-contract architecture). The P0 fix: kill the most-replicated GPT failure — the Gate-3 spec-folder halt on autonomous command runs — with an autonomous-precedence bridge AND a concrete validateSpecFolderBinding() the satisfaction rule actually calls (plan-review GAP-16 blocker). Closes F-001/002/003/004/005/028/030/040. Absorbs plan-review gaps GAP-04/07/12/16/17/18/19/20/21/22/48/51.",
     "created_at": "2026-07-03T14:05:28.198Z",
-    "last_save_at": "2026-07-03T16:48:50.735Z",
+    "last_save_at": "2026-07-03T17:07:00.141Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -201,9 +201,9 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:1d1112337c363a28781dd1d17239b3874c37c19aca391038e29dea4bb43687b0",
+    "source_fingerprint": "sha256:44ff71da597d4a5a4388919a041c10bebb76720c9bb87756ae39e27725717ab9",
     "source_doc_hashes": {
-      "spec.md": "8c7fb6894e4920806986fb6c005fd506fb6f7a3ccde669f9f03f4fc6c679e467",
+      "spec.md": "7f3c5305103e25347ff57b53404d1c6bba983da9249066f36fc426c904120db1",
       "plan.md": "72676e376d5ba4530619992a6bcc607f75a4eb5799b583f731c8f131dbdd6f84",
       "tasks.md": "d3b7e471e15276833b8b08ba84c1aad248c0ad68be27f3bf1a31c4f691c2afc8",
       "implementation-summary.md": "823e2b8706a85b7e3a97f4c6d9b3f58ef8b58a187a8d300e50687094a83b2181"

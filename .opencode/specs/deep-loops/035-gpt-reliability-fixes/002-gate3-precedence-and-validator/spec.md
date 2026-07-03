@@ -42,7 +42,7 @@ _memory:
 | **Parent Packet** | ../ (035-gpt-reliability-fixes) |
 | **Parent Spec** | ../spec.md |
 | **Predecessor** | [../001-acceptance-and-rollout-foundation/spec.md](../001-acceptance-and-rollout-foundation/spec.md) |
-| **Successor** | [../003-command-contract-compiler/spec.md](../003-command-contract-compiler/spec.md) |
+| **Successor** | [../004-dispatch-receipts-and-progress/spec.md](../004-dispatch-receipts-and-progress/spec.md) |
 | **Closes findings** | F-001, F-002, F-003, F-004, F-005, F-028, F-030, F-040 |
 | **Effort** | L |
 <!-- /ANCHOR:metadata -->
