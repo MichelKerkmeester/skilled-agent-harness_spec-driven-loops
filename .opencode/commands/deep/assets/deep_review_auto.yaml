@@ -818,8 +818,9 @@ workflow:
           command: |
             node --experimental-strip-types --input-type=module <<'EOF'
             import { readFileSync, writeFileSync } from 'node:fs';
-            import { spawnSync } from 'node:child_process';
+            import { randomBytes } from 'node:crypto';
 
+            import { runAuditedExecutorCommand } from './.opencode/skills/deep-loop-runtime/lib/deep-loop/executor-audit.ts';
             import { buildCopilotPromptArg } from './.opencode/skills/deep-loop-runtime/lib/deep-loop/executor-config.ts';
 
             const promptPath = '{state_paths.prompt_dir}/iteration-{current_iteration}.md';
@@ -860,17 +861,41 @@ workflow:
               writeFileSync(promptPath, built.promptFileBody, 'utf8');
             }
 
-            const result = spawnSync('copilot', built.argv, {
-              cwd: '{repo_root}',
-              stdio: 'inherit',
-              timeout: Number('{config.executor.timeoutSeconds}') * 1000,
-            });
-            process.exit(result.status ?? 1);
+            // Copilot is routed through the audited executor wrapper so it produces
+            // INTENT + COMPLETION dispatch receipts alongside claude-code/opencode
+            // There is no cli-copilot kind in the executor schema, so it
+            // dispatches as kind:'native' (full env passthrough, no recursion-guard
+            // layer configured for copilot); the receipt still records the real
+            // 'copilot' command + built.argv as facts.
+            const dispatchId = 'review-i{current_iteration}-' + randomBytes(4).toString('hex');
+            process.exit(
+              runAuditedExecutorCommand({
+                command: 'copilot',
+                args: built.argv,
+                cwd: '{repo_root}',
+                timeoutSeconds: Number('{config.executor.timeoutSeconds}'),
+                stateLogPath: '{state_paths.state_log}',
+                executor: {
+                  kind: 'native',
+                  model: '{config.executor.model}',
+                  configDir: null,
+                  reasoningEffort: null,
+                  serviceTier: null,
+                  sandboxMode: null,
+                  timeoutSeconds: Number('{config.executor.timeoutSeconds}'),
+                  governor: null,
+                },
+                iteration: Number('{current_iteration}'),
+                receiptDir: '{state_paths.packet_dir}/dispatch-receipts',
+                dispatchId,
+              }),
+            );
             EOF
           working_directory: "{repo_root}"
           timeout_seconds: "{config.executor.timeoutSeconds}"
           wait_for_completion: true
           notes:
+            - "Routed through runAuditedExecutorCommand so copilot produces INTENT + COMPLETION dispatch receipts; built.argv (@PROMPT_PATH or positional) is forwarded verbatim as the receipt facts"
             - "copilot has no stdin support; prompt is positional"
             - "Size check uses 16KB threshold; above that uses @PROMPT_PATH wrapper prompt"
             - "Large-prompt path relies on copilot honoring @path references within its prompt string"
@@ -879,13 +904,61 @@ workflow:
             - "Large-prompt wrapper mode rewrites the prompt file at promptPath to include the TARGET AUTHORITY preamble (prefix + divider + original body); the argv becomes a bare @promptPath reference"
         if_cli_claude_code:
           command: |
-            if [ -n "{optional_claude_config_dir}" ]; then export CLAUDE_CONFIG_DIR="{optional_claude_config_dir}"; fi
-            claude \
-              -p "$(cat '{state_paths.prompt_dir}/iteration-{current_iteration}.md')" \
-              --model "{config.executor.model}" \
-              --permission-mode acceptEdits \
-              --output-format text \
-              {optional_effort_flag}
+            node --experimental-strip-types --input-type=module <<'EOF'
+            import { readFileSync } from 'node:fs';
+            import { randomBytes } from 'node:crypto';
+
+            import { runAuditedExecutorCommand } from './.opencode/skills/deep-loop-runtime/lib/deep-loop/executor-audit.ts';
+
+            const configDir = '{optional_claude_config_dir}';
+            const reasoningEffort = '{config.executor.reasoningEffort}' === 'null' ? null : '{config.executor.reasoningEffort}';
+            const executor = {
+              kind: 'cli-claude-code',
+              model: '{config.executor.model}',
+              configDir: configDir || null,
+              reasoningEffort,
+              serviceTier: null,
+              sandboxMode: null,
+              timeoutSeconds: Number('{config.executor.timeoutSeconds}'),
+              governor: null,
+            };
+            const args = [
+              '-p',
+              readFileSync('{state_paths.prompt_dir}/iteration-{current_iteration}.md', 'utf8'),
+              '--model',
+              executor.model,
+              '--permission-mode',
+              'acceptEdits',
+              '--output-format',
+              'text',
+            ];
+            if (executor.reasoningEffort) {
+              args.push('--effort', executor.reasoningEffort);
+            }
+
+            // CLAUDE_CONFIG_DIR rides through guardContext.env; the CLAUDE_ prefix is
+            // on the cli-claude-code env allowlist so buildExecutorDispatchEnv admits it.
+            const parentEnv = { ...process.env };
+            if (configDir) {
+              parentEnv.CLAUDE_CONFIG_DIR = configDir;
+            }
+
+            const dispatchId = 'review-i{current_iteration}-' + randomBytes(4).toString('hex');
+            process.exit(
+              runAuditedExecutorCommand({
+                command: 'claude',
+                args,
+                cwd: '{repo_root}',
+                timeoutSeconds: executor.timeoutSeconds,
+                stateLogPath: '{state_paths.state_log}',
+                executor,
+                iteration: Number('{current_iteration}'),
+                guardContext: { env: parentEnv },
+                receiptDir: '{state_paths.packet_dir}/dispatch-receipts',
+                dispatchId,
+              }),
+            );
+            EOF
           working_directory: "{repo_root}"
           timeout_seconds: "{config.executor.timeoutSeconds}"
           wait_for_completion: true
@@ -893,38 +966,78 @@ workflow:
             optional_claude_config_dir: |
               If config.executor.configDir is set and non-null, expand a leading ~ to HOME and bind that path.
               Otherwise expand to empty string.
-            optional_effort_flag: |
-              If config.executor.reasoningEffort is set and non-null, expand to: --effort {config.executor.reasoningEffort}
-              Otherwise expand to empty string.
           notes:
-            - "claude-code default permission-mode is 'plan' (read-only); we override to 'acceptEdits' for iteration writes"
-            - "config.executor.configDir maps to CLAUDE_CONFIG_DIR for account-specific Claude Code routing"
-            - "claude-code has no serviceTier flag"
+            - "Routed through runAuditedExecutorCommand so claude-code produces INTENT + COMPLETION dispatch receipts; recursion guard + env allowlist enforced via buildExecutorDispatchEnv"
+            - "CLAUDE_CONFIG_DIR is forwarded through guardContext.env (CLAUDE_ prefix is allowlisted) so account-specific Claude Code routing is preserved"
+            - "permission-mode stays acceptEdits (review's existing iteration-write behavior); claude-code has no serviceTier flag"
             - "claude-code supports --effort for reasoning depth"
         if_cli_opencode:
           command: |
-            opencode run \
-              --model "{config.executor.model}" \
-              --format json \
-              --dangerously-skip-permissions \
-              --pure \
-              --dir "{repo_root}" \
-              {optional_variant_flag} \
-              "$(printf '%s\n\n' 'Resolved route: mode=review; target_agent=@deep-review; execution=single_review_iteration; state_source=externalized_files; do_not_switch_mode=true'; cat '{state_paths.prompt_dir}/iteration-{current_iteration}.md')" \
-              </dev/null
+            node --experimental-strip-types --input-type=module <<'EOF'
+            import { readFileSync } from 'node:fs';
+            import { randomBytes } from 'node:crypto';
+
+            import { runAuditedExecutorCommand } from './.opencode/skills/deep-loop-runtime/lib/deep-loop/executor-audit.ts';
+
+            const reasoningEffort = '{config.executor.reasoningEffort}' === 'null' ? null : '{config.executor.reasoningEffort}';
+            const executor = {
+              kind: 'cli-opencode',
+              model: '{config.executor.model}',
+              configDir: null,
+              reasoningEffort,
+              serviceTier: null,
+              sandboxMode: null,
+              timeoutSeconds: Number('{config.executor.timeoutSeconds}'),
+              governor: null,
+            };
+            const promptBody = readFileSync('{state_paths.prompt_dir}/iteration-{current_iteration}.md', 'utf8');
+            const message = 'Resolved route: mode=review; target_agent=@deep-review; execution=single_review_iteration; state_source=externalized_files; do_not_switch_mode=true'
+              + '\n\n'
+              + promptBody;
+            const args = [
+              'run',
+              '--model',
+              executor.model,
+              '--format',
+              'json',
+              '--dangerously-skip-permissions',
+              '--pure',
+              '--dir',
+              '{repo_root}',
+            ];
+            if (executor.reasoningEffort) {
+              args.push('--variant', executor.reasoningEffort);
+            }
+            args.push(message);
+
+            const dispatchId = 'review-i{current_iteration}-' + randomBytes(4).toString('hex');
+            process.exit(
+              runAuditedExecutorCommand({
+                command: 'opencode',
+                args,
+                cwd: '{repo_root}',
+                timeoutSeconds: executor.timeoutSeconds,
+                stateLogPath: '{state_paths.state_log}',
+                executor,
+                iteration: Number('{current_iteration}'),
+                // opencode v1.14.39 reads stdin at startup before session creation;
+                // an empty input gives EOF stdin, equivalent to </dev/null.
+                input: '',
+                receiptDir: '{state_paths.packet_dir}/dispatch-receipts',
+                dispatchId,
+              }),
+            );
+            EOF
           working_directory: "{repo_root}"
           timeout_seconds: "{config.executor.timeoutSeconds}"
           wait_for_completion: true
-          render_hint:
-            optional_variant_flag: |
-              If config.executor.reasoningEffort is set and non-null, expand to: --variant {config.executor.reasoningEffort}
-              Otherwise expand to empty string.
           notes:
-            - "opencode run takes a positional message; prompt is fed via command substitution"
+            - "Routed through runAuditedExecutorCommand so opencode produces INTENT + COMPLETION dispatch receipts; recursion guard + env allowlist enforced via buildExecutorDispatchEnv"
+            - "input:'' yields closed stdin (EOF), equivalent to </dev/null — opencode v1.14.39 reads stdin at startup and hangs at 0% CPU after +60s snapshot prune without it (cli-opencode SKILL.md §4 ALWAYS rule)"
+            - "opencode run takes a positional message; prompt is the route-proof preamble + iteration body"
             - "--variant maps reasoningEffort to opencode's provider-specific reasoning lever (e.g., high, medium, minimal)"
             - "--dangerously-skip-permissions enables hands-off automation; sandboxMode='read-only' is not currently honored (no opencode equivalent)"
             - "cli-opencode self-invocation guard: this single-executor branch must only run from a non-OpenCode dispatch surface (Claude Code/raw shell). Explicit parallel-detached cli-opencode fan-out is handled by step_fanout_spawn_cli/fanout-run.cjs, not this branch. The cli-opencode skill SKILL.md §SELF-INVOCATION PROHIBITED contract is the authoritative gate"
-            - "</dev/null required: opencode v1.14.39 reads stdin at startup before session creation. Without explicit closed stdin, automation that redirects stdout/stderr hangs at 0% CPU after `+60s snapshot prune cleanup`. See cli-opencode SKILL.md §4 ALWAYS rule + memory feedback_opencode_run_requires_dev_null_stdin.md."
         post_dispatch_validate:
           validator: ".opencode/skills/deep-loop-runtime/lib/deep-loop/post-dispatch-validate.ts#validateIterationOutputs"
           assert_exists: "{state_paths.iteration_pattern}"

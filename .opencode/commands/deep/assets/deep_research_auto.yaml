@@ -867,6 +867,7 @@ workflow:
           command: |
             node --experimental-strip-types --input-type=module <<'EOF'
             import { readFileSync } from 'node:fs';
+            import { randomBytes } from 'node:crypto';
 
             import { runAuditedExecutorCommand } from './.opencode/skills/deep-loop-runtime/lib/deep-loop/executor-audit.ts';
             import { resolveClaudePermissionMode } from './.opencode/skills/deep-loop-runtime/lib/deep-loop/executor-config.ts';
@@ -893,6 +894,7 @@ workflow:
               args.push('--effort', executor.reasoningEffort);
             }
 
+            const claudeDispatchId = 'research-i{current_iteration}-' + randomBytes(4).toString('hex');
             process.exit(
               runAuditedExecutorCommand({
                 command: 'claude',
@@ -902,6 +904,8 @@ workflow:
                 stateLogPath: '{state_paths.state_log}',
                 executor,
                 iteration: Number('{current_iteration}'),
+                receiptDir: '{state_paths.packet_dir}/dispatch-receipts',
+                dispatchId: claudeDispatchId,
               }),
             );
             EOF
@@ -923,28 +927,71 @@ workflow:
             serviceTier: "{config.executor.serviceTier}"
         if_cli_opencode:
           command: |
-            opencode run \
-              --model "{config.executor.model}" \
-              --format json \
-              --dangerously-skip-permissions \
-              --pure \
-              --dir "{repo_root}" \
-              {optional_variant_flag} \
-              "$(printf '%s\n\n' 'Resolved route: mode=research; target_agent=@deep-research; execution=single_iteration; state_source=externalized_files; do_not_switch_mode=true'; cat '{state_paths.prompt_dir}/iteration-{current_iteration}.md')" \
-              </dev/null
+            node --experimental-strip-types --input-type=module <<'EOF'
+            import { readFileSync } from 'node:fs';
+            import { randomBytes } from 'node:crypto';
+
+            import { runAuditedExecutorCommand } from './.opencode/skills/deep-loop-runtime/lib/deep-loop/executor-audit.ts';
+
+            const reasoningEffort = '{config.executor.reasoningEffort}' === 'null' ? null : '{config.executor.reasoningEffort}';
+            const executor = {
+              kind: 'cli-opencode',
+              model: '{config.executor.model}',
+              configDir: null,
+              reasoningEffort,
+              serviceTier: null,
+              sandboxMode: null,
+              timeoutSeconds: Number('{config.executor.timeoutSeconds}'),
+              governor: null,
+            };
+            const promptBody = readFileSync('{state_paths.prompt_dir}/iteration-{current_iteration}.md', 'utf8');
+            const message = 'Resolved route: mode=research; target_agent=@deep-research; execution=single_iteration; state_source=externalized_files; do_not_switch_mode=true'
+              + '\n\n'
+              + promptBody;
+            const args = [
+              'run',
+              '--model',
+              executor.model,
+              '--format',
+              'json',
+              '--dangerously-skip-permissions',
+              '--pure',
+              '--dir',
+              '{repo_root}',
+            ];
+            if (executor.reasoningEffort) {
+              args.push('--variant', executor.reasoningEffort);
+            }
+            args.push(message);
+
+            const dispatchId = 'research-i{current_iteration}-' + randomBytes(4).toString('hex');
+            process.exit(
+              runAuditedExecutorCommand({
+                command: 'opencode',
+                args,
+                cwd: '{repo_root}',
+                timeoutSeconds: executor.timeoutSeconds,
+                stateLogPath: '{state_paths.state_log}',
+                executor,
+                iteration: Number('{current_iteration}'),
+                // opencode v1.14.39 reads stdin at startup before session creation;
+                // an empty input gives EOF stdin, equivalent to </dev/null.
+                input: '',
+                receiptDir: '{state_paths.packet_dir}/dispatch-receipts',
+                dispatchId,
+              }),
+            );
+            EOF
           working_directory: "{repo_root}"
           timeout_seconds: "{config.executor.timeoutSeconds}"
           wait_for_completion: true
-          render_hint:
-            optional_variant_flag: |
-              If config.executor.reasoningEffort is set and non-null, expand to: --variant {config.executor.reasoningEffort}
-              Otherwise expand to empty string.
           notes:
-            - "opencode run takes a positional message; prompt is fed via command substitution"
+            - "Routed through runAuditedExecutorCommand so opencode produces INTENT + COMPLETION dispatch receipts; recursion guard + env allowlist enforced via buildExecutorDispatchEnv"
+            - "input:'' yields closed stdin (EOF), equivalent to </dev/null — opencode v1.14.39 reads stdin at startup and hangs at 0% CPU after +60s snapshot prune without it (cli-opencode SKILL.md §4 ALWAYS rule)"
+            - "opencode run takes a positional message; prompt is the route-proof preamble + iteration body"
             - "--variant maps reasoningEffort to opencode's provider-specific reasoning lever (e.g., high, medium, minimal)"
             - "--dangerously-skip-permissions enables hands-off automation; sandboxMode='read-only' is not currently honored (no opencode equivalent)"
             - "cli-opencode self-invocation guard: this branch must only run from a non-OpenCode dispatch surface (Claude Code/raw shell). The cli-opencode skill SKILL.md §SELF-INVOCATION PROHIBITED contract is the authoritative gate"
-            - "</dev/null required: opencode v1.14.39 reads stdin at startup before session creation. Without explicit closed stdin, automation that redirects stdout/stderr hangs at 0% CPU after `+60s snapshot prune cleanup`. See cli-opencode SKILL.md §4 ALWAYS rule + memory feedback_opencode_run_requires_dev_null_stdin.md."
         post_dispatch_validate:
           validator: ".opencode/skills/deep-loop-runtime/lib/deep-loop/post-dispatch-validate.ts#validateIterationOutputs"
           assert_exists: "{state_paths.iteration_pattern}"
