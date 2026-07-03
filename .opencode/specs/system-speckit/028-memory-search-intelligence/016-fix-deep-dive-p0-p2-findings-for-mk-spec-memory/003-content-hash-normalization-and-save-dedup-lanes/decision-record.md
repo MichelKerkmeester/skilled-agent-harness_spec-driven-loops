@@ -69,7 +69,7 @@ _memory:
 
 **We chose**: Normalize the hash input inside `computeContentHash` (CRLF to LF, strip trailing whitespace, zero the continuity fingerprint and timestamp lines) and ship a dual-compare migration that accepts the legacy raw hash or the normalized hash as equal for the same logical content.
 
-**How it works**: The parser normalizes a copy of the content before hashing; stored bytes never change. Every dedup comparison consults both forms during the transition window, so existing rows keep their identity. New saves write normalized hashes only.
+**How it works**: The parser normalizes a copy of the content before hashing inside `computeContentHash` (the single wrapper over `hashContentBody` @ content-id.ts:14); stored bytes never change. Every dedup comparison routes through one shared `hashesMatch(content, storedHash)` helper that consults both forms during the transition window, so existing rows keep their identity. New saves write normalized hashes only.
 <!-- /ANCHOR:adr-001-decision -->
 
 ---
@@ -93,7 +93,7 @@ _memory:
 
 **What improves**:
 - Timestamp-only and whitespace-only re-saves stop minting deprecated snapshots (spec SC-003).
-- Phase 001's dup collapse works against a stable identity instead of a moving one.
+- Phase 001's dup collapse works against a stable identity instead of a moving one. Ordering caveat: 003 runs after 001, so until 003 lands 001 collapses against a still-moving identity — 001's "one active row per logical key" is not durable until 003 stops the churn (timestamp/CRLF re-saves keep minting deprecated snapshots between 001 and 003, bounded by re-save rate).
 
 **What it costs**:
 - A dual-compare branch in dedup checks until retirement. Mitigation: document the retirement condition (spec.md open question) and keep the branch behind one helper.
@@ -128,7 +128,8 @@ _memory:
 ### Implementation
 
 **What changes**:
-- `lib/parsing/memory-parser.ts:914` normalizes the hash input.
+- `lib/parsing/memory-parser.ts:914` normalizes the hash input inside `computeContentHash` (the single wrapper over `hashContentBody` @ `lib/content-id.ts:14`).
+- The shared `hashesMatch(content, storedHash)` helper (home: `lib/content-id.ts`) centralizes the legacy-or-normalized comparison for every consumer (preflight, PE gate, quality gate, v28 lineage).
 - Migration surface (`vector-index-schema.ts` registry) adds the dual-compare behavior for stored-hash checks.
 
 **How to roll back**: Revert the phase commits and rebuild dist; stored hashes were never rewritten, so prior behavior returns without data repair.
@@ -153,7 +154,7 @@ _memory:
 <!-- ANCHOR:adr-002-context -->
 ### Context
 
-The PE gate can only return UPDATE or REINFORCE when a same-path predecessor is among its candidates, but the orchestration call excludes exactly those rows via `excludeFilePath`/`excludeCanonicalFilePath` (`pe-orchestration.ts:66-67`), and `pe-gating.ts:172-174` filters on the same params. Every save therefore becomes CREATE, FSRS reinforcement never fires, and supersede chains grow (report §3 #26, Chain E). Tests hide the gap by mocking `findSimilarMemories`. Separately, the cross-file SUPERSEDE path can deprecate sibling docs from regex matches because the canonical-path guard covers UPDATE/REINFORCE only (ledger Agent G P1).
+The PE gate can only return UPDATE or REINFORCE when a same-path predecessor is among its candidates, but the orchestration call excludes exactly those rows via `excludeFilePath`/`excludeCanonicalFilePath` (`pe-orchestration.ts:66-67`), and `pe-gating.ts:172-174` filters on the same params. Every save therefore becomes CREATE, FSRS reinforcement never fires, and supersede chains grow (report §3 #26, Chain E). Tests hide the gap by mocking `findSimilarMemories`. Separately, the cross-file SUPERSEDE path can deprecate sibling docs from regex matches because the canonical-path guard in `pe-orchestration.ts:84-97` (condition at :80-82) covers UPDATE/REINFORCE only (ledger Agent G P1). Note `pe-gating.ts:293-298` is `markMemorySuperseded` (the UPDATE mutation), not this guard.
 
 ### Constraints
 
@@ -228,7 +229,7 @@ The PE gate can only return UPDATE or REINFORCE when a same-path predecessor is 
 
 **What changes**:
 - `handlers/save/pe-orchestration.ts:66-67` drops the two exclusion params.
-- `handlers/pe-gating.ts:293-298` area extends the canonical-path rewrite to SUPERSEDE; `predictionErrorGate.init(db)` gets wired so PE audit logging works.
+- `handlers/save/pe-orchestration.ts:84-97` (guard condition :80-82, which tests only UPDATE/REINFORCE today) extends the canonical-path rewrite to SUPERSEDE; `predictionErrorGate.init(db)` gets wired in pe-gating so PE audit logging works. (`pe-gating.ts:293-298` is `markMemorySuperseded`, the UPDATE mutation, not the guard.)
 - Tests in pe-orchestration.vitest.ts, pe-gating.vitest.ts, handler-memory-save.vitest.ts gain same-path fixtures.
 
 **How to roll back**: Revert the commits; the exclusion params return and the gate falls back to CREATE-only behavior.

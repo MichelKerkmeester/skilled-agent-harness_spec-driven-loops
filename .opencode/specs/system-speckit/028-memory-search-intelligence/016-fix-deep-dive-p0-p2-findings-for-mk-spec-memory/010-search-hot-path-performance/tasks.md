@@ -11,13 +11,13 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "scaffold/010-search-hot-path-performance"
-    last_updated_at: "2026-07-03T09:44:25Z"
-    last_updated_by: "template-author"
-    recent_action: "Initialize continuity block"
-    next_safe_action: "Replace template defaults on first save"
+    packet_pointer: "system-speckit/028-memory-search-intelligence/016-fix-deep-dive-p0-p2-findings-for-mk-spec-memory/010-search-hot-path-performance"
+    last_updated_at: "2026-07-03T11:54:21Z"
+    last_updated_by: "claude-opus-4-8"
+    recent_action: "Applied plan-review remediation (008↔010 fence, REQ-003 FTS gate, continuity populated)"
+    next_safe_action: "Capture latency baselines, then run the confirm-before-fix pass on 🟡 items"
     blockers: []
-    key_files: []
+    key_files: ["spec.md", "plan.md", "tasks.md", "checklist.md", "implementation-summary.md"]
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "scaffold-scaffold/010-search-hot-path-performance"
@@ -72,13 +72,13 @@ Batches ordered by measured impact; re-measure on the harness after each batch.
 ### Batch A — Rescue layer (measured stage2 dominator)
 
 - [ ] T006 Batch rescue hydration: replace per-candidate `SELECT *` with one parameterized `id IN` fetch, chunked below the SQLite variable limit (lib/search/rerank/retrieval-rescue.ts:336; report §4.1; ledger B OPT-P1)
-- [ ] T007 Restructure rescue backfill: FTS-route the full-table LIKE scan or execute it only behind a weak-result gate, per the 006 decision; sanitize tokens for FTS5 MATCH; document the chosen gate threshold in plan.md (lib/search/rerank/retrieval-rescue.ts:303; report §4.1; ledger B OPT-P1)
-- [ ] T008 Add rank-parity fixture: fixed query set asserts identical ordered result IDs pre/post Batch A; adversarial FTS token table (quotes, NEAR/OR/-, unicode, empty, no-op gate case); re-run harness and record stage2 delta (tests/)
+- [ ] T007 Restructure rescue backfill: FTS-route the full-table LIKE scan or execute it only behind a weak-result gate, per the 006 decision; sanitize tokens for FTS5 MATCH (token-equivalence to the replaced LIKE is gated by T008 — a divergence blocks completion); document the chosen gate threshold in plan.md (lib/search/rerank/retrieval-rescue.ts:303; report §4.1; ledger B OPT-P1)
+- [ ] T008 Add rank-parity fixture: fixed query set asserts identical ordered result IDs pre/post Batch A; adversarial FTS token-equivalence table (quotes, NEAR/OR/-, unicode, empty, no-op gate case) that GATES completion — FTS-routed results MUST match the LIKE substring semantics they replace, a divergence blocks the phase (not report-only); re-run harness and record stage2 delta (tests/)
 
 ### Batch B — Per-search caches
 
-- [ ] T009 Cache graph edge adjacency across searches, keyed by DB identity + graph version; invalidate on edge write and DB rebind — avoids the known memoryId-only cache-key bug class (lib/graph/graph-signals.ts:576; ledger C OPT + C P2 cache-key class)
-- [ ] T010 [P] Load + parse communities once per search into a map instead of per candidate row (lib/graph/community-detection.ts:623; report §4.4; ledger D OPT)
+- [ ] T009 Cache graph edge adjacency across searches (NEW cache at lib/graph/graph-signals.ts:576), REUSING 008's DB-identity keying scheme (008 T026 lands first and owns the existing signal-cache fix — do NOT re-fix the memoryId-only bug here); invalidate on edge write and DB rebind (ledger C OPT + C P2 cache-key class)
+- [ ] T010 [P] Load + parse communities once per search into a map instead of per candidate row; rebase onto 008's community-lifecycle edits (008 lands first) (lib/graph/community-detection.ts:623; report §4.4; ledger D OPT)
 - [ ] T011 [P] Hoist intent-classifier query embedding; memoize per distinct query text per request — baseline 7x per classification, 6-8 classifications per deep query (lib/search/intent-classifier.ts:502; report §4.5; ledger D OPT)
 - [ ] T012 [P] Cache constitutional/retrieval-directives file content keyed by (path, mtime); freshness test on mtime change (lib/search/retrieval-directives.ts; report §5 constitutional block; ledger D OPT readFileSync-per-result)
 
@@ -98,7 +98,7 @@ Batches ordered by measured impact; re-measure on the harness after each batch.
 ### Batch E — Tier-3 micro batch
 
 - [ ] T020 [P] Co-activation top-K via heap instead of full sort/scan (lib/cognitive/co-activation.ts; ledger C OPT)
-- [ ] T021 [P] BFS visited-state dedup + O(1) dequeue on the per-save 500-edge walk (lib/search/graph-lifecycle.ts; report §4.8 BFS shift(); ledger D OPT)
+- [ ] T021 [P] BFS visited-state dedup + O(1) dequeue on the per-save 500-edge walk; rebase onto 008's graph-lifecycle edits (008 lands first) (lib/search/graph-lifecycle.ts; report §4.8 BFS shift(); ledger D OPT)
 - [ ] T022 [P] Hoist provenance Set construction out of the per-row loop (lib/search/hybrid-search.ts; decomposition §010 B OPT)
 - [ ] T023 [P] Batch shadow-delta writes into one transaction; aggregate auto-promotion negative counts via GROUP BY — perf aspect only; semantics owned by phase 009, coordinate to avoid double-implementation (lib/feedback/shadow-scoring.ts + lib/search/auto-promotion.ts; decomposition §009 G OPT overlap)
 <!-- /ANCHOR:phase-2 -->

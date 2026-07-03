@@ -2,26 +2,233 @@
   "schema_version": 1,
   "packet_id": "system-speckit/028-memory-search-intelligence/016-fix-deep-dive-p0-p2-findings-for-mk-spec-memory/009-learning-feedback-loop-repair",
   "spec_folder": "system-speckit/028-memory-search-intelligence/016-fix-deep-dive-p0-p2-findings-for-mk-spec-memory/009-learning-feedback-loop-repair",
-  "parent_id": null,
+  "parent_id": "system-speckit/028-memory-search-intelligence/016-fix-deep-dive-p0-p2-findings-for-mk-spec-memory",
   "children_ids": [],
   "manual": {
     "depends_on": [],
     "supersedes": [],
     "related_to": []
   },
-    "derived": {
-    "trigger_phrases": [],
-    "key_topics": [],
-    "importance_tier": "important",
-    "status": "planned",
-    "key_files": ["spec.md","plan.md","tasks.md"],
-    "entities": [],
-    "causal_summary": "The memory learning loop cannot learn because only 65 of 33,101 index rows have ever recorded an access",
+  "derived": {
+    "trigger_phrases": [
+      "learning feedback loop repair",
+      "track access cache hits",
+      "auto promotion demotion hysteresis",
+      "learned feedback expiry cap",
+      "batch learning reformulation negative",
+      "retention spare-only stale snapshot",
+      "learning feedback loop repair plan",
+      "feedback ledger retention sweep",
+      "batch learning idempotency",
+      "learning feedback loop repair tasks",
+      "feedback ledger sweep tasks",
+      "learning feedback loop repair checklist"
+    ],
+    "key_topics": [
+      "learning",
+      "feedback",
+      "loop",
+      "repair",
+      "track",
+      "access",
+      "cache",
+      "hits",
+      "auto",
+      "promotion",
+      "demotion",
+      "hysteresis"
+    ],
+    "importance_tier": "normal",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "handlers/memory-search.ts",
+      "lib/learning/corrections.ts",
+      "lib/search/auto-promotion.ts",
+      "lib/cognitive/fsrs-scheduler.ts",
+      "handlers/quality-loop.ts",
+      "mcp_server/handlers/memory-search.ts",
+      "mcp_server/lib/search/search-utils.ts",
+      "mcp_server/lib/search/fsrs.ts",
+      "mcp_server/lib/storage/post-insert-metadata.ts",
+      "mcp_server/lib/cognitive/tier-classifier.ts",
+      "mcp_server/lib/search/learned-feedback.ts",
+      "mcp_server/lib/feedback/batch-learning.ts",
+      "mcp_server/lib/learning/corrections.ts",
+      "mcp_server/lib/search/auto-promotion.ts",
+      "mcp_server/lib/governance/memory-retention-sweep.ts",
+      "mcp_server/lib/cognitive/working-memory.ts"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "memory-search.ts",
+        "kind": "code",
+        "path": "handlers/memory-search.ts",
+        "source": "derived"
+      },
+      {
+        "name": "corrections.ts",
+        "kind": "code",
+        "path": "lib/learning/corrections.ts",
+        "source": "derived"
+      },
+      {
+        "name": "auto-promotion.ts",
+        "kind": "code",
+        "path": "lib/search/auto-promotion.ts",
+        "source": "derived"
+      },
+      {
+        "name": "fsrs-scheduler.ts",
+        "kind": "code",
+        "path": "lib/cognitive/fsrs-scheduler.ts",
+        "source": "derived"
+      },
+      {
+        "name": "quality-loop.ts",
+        "kind": "code",
+        "path": "handlers/quality-loop.ts",
+        "source": "derived"
+      },
+      {
+        "name": "search-utils.ts",
+        "kind": "code",
+        "path": "mcp_server/lib/search/search-utils.ts",
+        "source": "derived"
+      },
+      {
+        "name": "fsrs.ts",
+        "kind": "code",
+        "path": "mcp_server/lib/search/fsrs.ts",
+        "source": "derived"
+      },
+      {
+        "name": "post-insert-metadata.ts",
+        "kind": "code",
+        "path": "mcp_server/lib/storage/post-insert-metadata.ts",
+        "source": "derived"
+      },
+      {
+        "name": "tier-classifier.ts",
+        "kind": "code",
+        "path": "mcp_server/lib/cognitive/tier-classifier.ts",
+        "source": "derived"
+      },
+      {
+        "name": "learned-feedback.ts",
+        "kind": "code",
+        "path": "mcp_server/lib/search/learned-feedback.ts",
+        "source": "derived"
+      },
+      {
+        "name": "batch-learning.ts",
+        "kind": "code",
+        "path": "mcp_server/lib/feedback/batch-learning.ts",
+        "source": "derived"
+      },
+      {
+        "name": "memory-retention-sweep.ts",
+        "kind": "code",
+        "path": "mcp_server/lib/governance/memory-retention-sweep.ts",
+        "source": "derived"
+      },
+      {
+        "name": "working-memory.ts",
+        "kind": "code",
+        "path": "mcp_server/lib/cognitive/working-memory.ts",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Learning Feedback Loop Repair",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Run Phase",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The memory learning loop is starved of usage signal: only 65 of 33,101 index rows have ever recorded an access, and `trackAccess` is default-off (`memory-search.ts:909`) with zero production enablers, so the loop receives almost no fuel today",
     "created_at": "2026-07-03T09:44:23Z",
-    "last_save_at": "2026-07-03T09:44:23Z",
+    "last_save_at": "2026-07-03T12:17:18.048Z",
     "save_lineage": "graph_only",
-    "source_fingerprint": "sha256:a5e84d638267e738e6c597156dc1c563db37aa885b431352045fe3757d89d175",
     "last_accessed_at": null,
-    "source_docs": ["spec.md","plan.md","tasks.md"]
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:907448d211bd5be40a010eaa52da63f914532c20cabdbcd37914dc9a75e8bde1",
+    "source_doc_hashes": {
+      "spec.md": "1603e5513b90e91eb1670c1c9c335454b7d0098ffb77687e34a35c0d9044f63d",
+      "plan.md": "0c26e4d93b8ffb806e1907b0bdc9c6bfcd9e1bf6f346e5cb7a449ddfa30f15f9",
+      "tasks.md": "7207d4915bc9ca41a3aebb4f8c186be63faa8bd9b09a97ce8be8b33dc6d755e8",
+      "checklist.md": "a1a39265e4ea38e8cdb457641f64d69a53f92c64d928fb6ae486e29e7f461aac",
+      "implementation-summary.md": "9bf4c009c14c754927e6f44c2f62eaf75244b491ffd1a8c0aba5140b98c51843"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
   }
 }

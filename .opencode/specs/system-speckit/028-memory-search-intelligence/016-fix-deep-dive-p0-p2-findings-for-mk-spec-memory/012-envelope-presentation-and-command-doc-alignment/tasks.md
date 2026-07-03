@@ -66,7 +66,7 @@ Baseline capture and 🟡 verify-first battery — no behavior changes in this p
 - [ ] T005 🟡-verify formatter drops `canonicalSource`/`documentType`/`_communityFallback` — reproduce WITHOUT the formatter mock (E P1) (.opencode/skills/system-spec-kit/mcp_server/lib/response/profile-formatters.ts)
 - [ ] T006 🟡-verify rendering-lane batch: session-dedup marks pre-truncation (E P2, memory-search.ts:1652); world-summary bare LIMIT no ORDER BY (E P2, memory-summaries.ts); blanket `semantic_match` label (E P2, result-explainability.ts); `includeContent` unbounded (E P2); no-input error shape (E P2) (mcp_server handlers + lib/search)
 - [ ] T007 [P] Consumer inventory: rg both casings of `artifactRouting`/`searchDecisionEnvelope`/`graphContribution`/`appliedBoosts` + formatter fields across `*.ts/*.js/*.cjs/*.md`; enumerate every double-emission site and every consumer; choose surviving casing (repo-wide rg, commands in plan.md FIX ADDENDUM)
-- [ ] T008 [P] Doc-claim inventory: pin exact file:line in BOTH trees for every battery claim T050-T067; record extra `/spec_kit:resume` slug hits outside the battery (lib/session, lib/errors READMEs, recovery-hints.ts) for 013-sweep disposition (.opencode/commands/, .claude/commands/, references/)
+- [ ] T008 [P] **HARD PREREQUISITE for every doc-drift fix (T050-T067): each battery claim's exact file:line MUST be pinned and re-verified against the live file HERE before its fix edits — anchor drift is confirmed in this battery (T053's claim cited `manage.md` but the real drift lives in `assets/manage_presentation.txt:68`), per finding-is-a-hypothesis.** Doc-claim inventory: pin exact file:line in BOTH trees for every battery claim; record extra `/spec_kit:resume` slug hits outside the battery (lib/session, lib/errors READMEs, recovery-hints.ts) for 013-sweep disposition (.opencode/commands/, .claude/commands/, references/)
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -81,6 +81,7 @@ Baseline capture and 🟡 verify-first battery — no behavior changes in this p
 - [ ] T012 Delete the unreachable sanity guard (E P2) (.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:608-625)
 - [ ] T013 `meta.tokenCount` honesty: report the final serialized payload count, within ±10% of actual (L7 🟢) (.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts, memory-search.ts)
 - [ ] T014 Compact-row snippet floor: over-budget compaction hits metadata before result rows; no empty-snippet result rows in the default envelope (L7 🟢 compact:true empty snippets) (.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts)
+- [ ] T015 De-nest the delegated `memory_search` envelope in `memory_context`: it is wrapped as JSON-in-string (`content[0].text = JSON.stringify(innerEnvelope)` at ~:757/:761/:827/:925, re-parsed at ~:287/:305/:328), double-encoding results and burying `requestQuality`/`citationPolicy`/`envelopeRender` — the exact fidelity slots the search presentation contract renders (search.md:78-80) — below the top-level `data`. Surface those verdict fields at top-level `data` (verified absent: zero hits in memory-context.ts) (Agent I JSON-in-string, routed in from 013) (.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:~1088-1116, ~1900)
 
 ### Workstream B — Progressive Disclosure
 
@@ -100,6 +101,7 @@ Baseline capture and 🟡 verify-first battery — no behavior changes in this p
 - [ ] T034 Session-dedup marks results "sent" AFTER budget truncation — truncated-away memories stay eligible (E P2) (.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:1652)
 - [ ] T035 World-summary prelude: deterministic ORDER BY replacing the bare LIMIT (E P2, oldest-~75-only) (.opencode/skills/system-spec-kit/mcp_server/lib/search/memory-summaries.ts)
 - [ ] T036 No-input/empty-query errors return the standard error envelope (E P2) (.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts)
+- [ ] T037 Resume-ladder `fingerprintStatus` honesty: the resume path hardcodes `fingerprintStatus:'verified'` (:484; type pinned to the lone literal at :267) while `fingerprintExpected` is `null` (:483) — a read-stability read with no expected-value comparison, so 'verified' overclaims. Report a truthful status (unverified/read-only, or compare an actual expected fingerprint) (Agent E, silent-drop #10 routed to 012) (.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:267,484)
 
 ### Workstream D — CLI
 
@@ -107,10 +109,12 @@ Baseline capture and 🟡 verify-first battery — no behavior changes in this p
 
 ### Workstream E — Command-Doc Drift Battery (one task per drifted claim; fix BOTH trees)
 
+**Gate:** T008 (doc-claim inventory) is a HARD prerequisite — no T050-T067 fix may edit until its claim's exact file:line is pinned and re-verified against the live file (anchor drift confirmed in this battery: T053).
+
 - [ ] T050 Envelope-fidelity flag documented default-OFF but code default-ON — align doc to code (#28, I P1) (.opencode/commands/memory/search.md:78 vs mcp_server/lib/search/search-flags.ts:702)
 - [ ] T051 `--intent:type` colon form documented but never parsed — document the real form (I) (.opencode/commands/memory/README.txt + search.md)
 - [ ] T052 `validate <useful|not>` documented vs actual `<true|false>` — align (I) (.opencode/commands/memory/README.txt)
-- [ ] T053 Stats presentation maps field names the tool doesn't return (totalRecords vs totalMemories etc.) — align to handler output (I) (.opencode/commands/memory/manage.md)
+- [ ] T053 Stats presentation names a field the tool never returns: `assets/manage_presentation.txt:68` maps `memory_stats.totalRecords`, but the handler returns `totalMemories` (verified `handlers/memory-crud-stats.ts:307`) — align the presentation contract to the handler field. Anchor RE-PINNED from `manage.md` (zero hits, plan-review-confirmed) to the assets presentation file per finding-is-a-hypothesis (I) (.opencode/commands/memory/assets/manage_presentation.txt:68)
 - [ ] T054 Tool-coverage matrix cites tools not in allowed-tools — reconcile matrix rows (I) (.opencode/commands/memory/README.txt)
 - [ ] T055 README section order does not match the actual document — fix ordering claim (I) (.opencode/commands/memory/README.txt)
 - [ ] T056 README missing/wrong retention-sweep row — align to shipped behavior (I) (.opencode/commands/memory/README.txt + manage.md)
@@ -147,6 +151,7 @@ Baseline capture and 🟡 verify-first battery — no behavior changes in this p
 - [ ] T084 Adversarial cursor suite green: cross-scope, forged, expired-vs-malformed, dead-cursor, no-op resolve (REQ-004)
 - [ ] T085 `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh <this-folder> --strict` exit 0
 - [ ] T086 Synchronize spec/plan/tasks/checklist statuses; complete implementation-summary.md with baseline, decisions (casing choice, substitute-vs-drop), and evidence pinned to fix SHA; refresh ../changelog/ entry per phase-context note
+- [ ] T087 Verify the two routed-in findings: `memory_context` top-level `data` surfaces `requestQuality`/`citationPolicy`/`envelopeRender` as structured fields (no JSON-in-string double-encode), and resume-ladder rows report a truthful `fingerprintStatus` (not 'verified' when `fingerprintExpected` is null) (T015, T037, REQ-011, REQ-012)
 <!-- /ANCHOR:phase-3 -->
 
 ---

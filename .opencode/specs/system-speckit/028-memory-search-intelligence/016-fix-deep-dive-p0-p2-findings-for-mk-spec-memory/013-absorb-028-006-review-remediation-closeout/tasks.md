@@ -71,10 +71,10 @@ Each task carries a metadata comment citing its source: report finding numbers (
 
 ### Group A — 028/006 review-remediation trackers
 
-- [ ] T004 Mark 006/002 rows absorbed with pointers: T005 (P1-2 derived_id rule_version) and T006 (P1-4 in-lock semantic-edge embedding) → `../008-causal-graph-hygiene-and-entity-linker-noise/`; T007 (P1-5 retention spare-only re-validate) → `../009-learning-feedback-loop-repair/`; update spec.md status + implementation-summary.md disposition (`../../006-review-remediation/002-memory-schema-and-concurrency/`)
-  <!-- meta: source=deep-dive-report.md §6 known-open; decomposition §008 absorbed items + §009 absorbed P1-5; tracker rows 006/002 T005-T007 -->
-- [ ] T005 Complete the 91-item P2 mapping table in 006/004: each item → covered by phase NNN of this program (cite the owning phase task) or accept-as-is with a one-line reason; close its T004-T011 rows against the finished table; update implementation-summary.md (`../../006-review-remediation/004-p2-triage/`)
-  <!-- meta: source=028/006/004 pending contract (91 P2 from 028/006/archive/review-report.md, 15 lens families); REQ-002 -->
+- [ ] T004 Mark 006/002 rows absorbed with **verify-first-then-close** pointers (plan-review SYSTEMIC #1 confirmed all three are ALREADY FIXED in live code — the pointers schedule verification + tests, NOT re-fixes): T005 (P1-2 derived_id rule_version) → `../008-causal-graph-hygiene-and-entity-linker-noise/` to RUN the derived_id backfill migration (code already hashes the correct `causal-edge:v1` rule version per `vector-index-schema.ts:1119-1129`; the migration just hasn't run — derived_id NULL on ~32.4k/33.4k rows) + add a twin-identity test; T006 (P1-4 in-lock semantic-edge embedding) → `../008-.../` to VERIFY the scan already runs outside `BEGIN IMMEDIATE` (`consolidation.ts:574-578`; the pre-absorption acceptance criterion tested `runSemanticEdgeEmbeddingPass`/`embedEdgeText`, symbols that return zero tree-wide) + add a concurrency/interleaving test; T007 (P1-5 retention spare-only re-validate) → `../009-learning-feedback-loop-repair/` to VERIFY the fresh in-tx row is already revalidated before DELETE (`memory-retention-sweep.ts:660-687`) + add a regression test; the pointers must NOT tell 008/009 to re-implement correct code; update spec.md status + implementation-summary.md disposition (`../../006-review-remediation/002-memory-schema-and-concurrency/`)
+  <!-- meta: source=plan-review SYSTEMIC #1 (P1-2/P1-4/P1-5 already fixed in code); deep-dive-report.md §6 known-open; decomposition §008 absorbed items + §009 absorbed P1-5; tracker rows 006/002 T005-T007 -->
+- [ ] T005 **Reconstruct** and complete the 91-item P2 mapping table in 006/004: the frozen per-item source does NOT exist (verified 2026-07-03 — `028/006/archive/review-report.md` and `../../archive/review-report.md` both absent; no per-item P2 enumeration survives in the 028 packet), so rebuild the per-item list from the deep-dive findings-ledger P2 entries (`../research/findings-ledger.md`) cross-referenced with this tracker's own G1-G15 lens grouping (`004-p2-triage/spec.md` §"P2 Lens Triage", ~79-86 approx); reconcile the reconstructed count against the "91" headline and record any delta + cause (do NOT fabricate items to force 91); then each item → covered by phase NNN of this program (cite the owning phase task) or accept-as-is with a one-line reason; ALSO repath this tracker's own inherited dead pointer (`004-p2-triage/spec.md:65,86` and `tasks.md:51` cite `../../archive/review-report.md`) to the reconstructed list; close its T004-T011 rows against the finished table; update implementation-summary.md (`../../006-review-remediation/004-p2-triage/`)
+  <!-- meta: source=plan-review SYSTEMIC #4 + "013 dead source path" (frozen 91-P2 source unrecoverable); reconstruct from findings-ledger.md + 004-p2-triage G1-G15; REQ-002 -->
 - [ ] T006 Update the 028/006 parent: phase-map rows for 002/004 from "PENDING, scaffold only" to absorbed/closed with pointers; record the operator's re-review disposition in the phase-transition rules; refresh the source-review context paragraph (`../../006-review-remediation/spec.md`)
   <!-- meta: source=028/006 parent phase map + transition rule "re-run /deep:review until clean"; spec.md open question 1 -->
 - [ ] T007 Regenerate 028/006 generator-owned metadata after the spec edit; verify JSON parses and derived status matches the new roster (`../../006-review-remediation/graph-metadata.json`, `description.json`)
@@ -91,8 +91,8 @@ Each task carries a metadata comment citing its source: report finding numbers (
 
 ### Group C — findings-completeness sweep
 
-- [ ] T011 Walk `../research/findings-ledger.md` section by section and fill the mapping table below: every finding mapped to a phase task or explicitly accepted-as-is with a reason; no silent drops (`tasks.md`, this file)
-  <!-- meta: source=REQ-004; decomposition cross-cutting rule "every finding fix cites the report/ledger ID" -->
+- [ ] T011 Walk `../research/findings-ledger.md` at the **finding level** (not section level) and fill both tables below: (a) the finding-level table — one row per finding, starting from the 13 previously-silent findings pre-enumerated from plan-review SYSTEMIC #4 (already carrying their owning phases) and extending to any other individual finding; (b) the section-level index as a coarse cross-check only. The no-silent-drops guarantee rests on the finding-level table, NOT the section sweep (the section-level sweep let 11 findings + a security item slip past). Every finding → a phase task or accept-as-is with a reason; no silent drops (`tasks.md`, this file)
+  <!-- meta: source=REQ-004 + plan-review SYSTEMIC #4 (finding-level upgrade; 11 silent drops + security item); decomposition cross-cutting rule "every finding fix cites the report/ledger ID" -->
 - [ ] T012 Cross-check the curated report inventory against phase tasks: §3 items #1-#28, §4 performance items, §5 presentation items each owned by a phase task or accepted with reason; reconcile counts with the table below (`../research/deep-dive-report.md`)
   <!-- meta: source=deep-dive-report.md §3/§4/§5; belt-and-braces over T011 because the ledger has no Agent B section (see table note) -->
 
@@ -102,7 +102,9 @@ Each task carries a metadata comment citing its source: report finding numbers (
   <!-- meta: source=016 parent spec.md in-scope bullet (tooling defects); verified 2026-07-03 against create.sh:1328,1360 -->
 - [ ] T014 Record finding TOOL-2 as a tracked item: `upgrade-level.sh` references removed template paths — `ADDENDUM_L2="${TEMPLATES_DIR}/addendum/level2-verify"` (also level3-arch, level3-plus-govern) at `scripts/spec/upgrade-level.sh:46-48`, but `templates/addendum/` does not exist (templates moved to `templates/manifest/*.tmpl`), so the L1→L2 upgrade path is broken; repro: `ls .opencode/skills/system-spec-kit/templates/addendum/` → "No such file or directory"
   <!-- meta: source=016 parent spec.md in-scope bullet (tooling defects); verified 2026-07-03 against upgrade-level.sh:42-48 + templates/ listing -->
-- [ ] T015 Route TOOL-1 and TOOL-2 to a follow-on owner (existing speckit tooling tracker or a new packet — operator decision); record the routing decision next to both findings; fixing the scripts stays out of this program's scope
+- [ ] T015 Record finding TOOL-3 as a tracked item: `generate-description.js` ignores its `--level` argument — the CLI parses `--level` (`scripts/spec-folder/generate-description.ts:63-64`) and assigns it in-memory (`:98-99`, via a non-native cast `desc as PerFolderDescription & { level?: string }`; dist equivalent `dist/spec-folder/generate-description.js:80`), but the value does NOT survive `savePerFolderDescription`: in the spec.md path the level is derived internally by `generatePerFolderDescription()` (`:97`) and that internal derivation wins; live repro (verified 2026-07-03): `node .opencode/skills/system-spec-kit/scripts/dist/spec-folder/generate-description.js <016-child> .opencode/specs --level 2` on this phase's folder (spec.md `SPECKIT_LEVEL: 2`) still writes `"level":"1"` into description.json; evidence: 7 of 13 016 children carry description.json `level:"1"` while their spec.md declares L2/L3 (incl. this phase's own 013)
+  <!-- meta: source=third tooling defect found this session; verified live 2026-07-03 against generate-description.ts:63-64,97-99 + probe run on 013 -->
+- [ ] T016 Route TOOL-1, TOOL-2, and TOOL-3 to a follow-on owner (existing speckit tooling tracker or a new packet — operator decision); record the routing decision next to all three findings; fixing the scripts stays out of this program's scope
   <!-- meta: source=spec.md open question 2; REQ-008 -->
 <!-- /ANCHOR:phase-2 -->
 
@@ -111,24 +113,48 @@ Each task carries a metadata comment citing its source: report finding numbers (
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T016 Grep audits: `rg -n 'PENDING, scaffold only|queued for next fix-dispatch round'` over the 006 and 014 trackers returns zero hits; every absorbed row carries exactly one disposition pointer (plan.md FIX ADDENDUM inventories)
+- [ ] T017 Grep audits: `rg -n 'PENDING, scaffold only|queued for next fix-dispatch round'` over the 006 and 014 trackers returns zero hits; every absorbed row carries exactly one disposition pointer (plan.md FIX ADDENDUM inventories)
   <!-- meta: source=plan.md affected-surfaces invariant -->
-- [ ] T017 Final program validation: `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh <folder> --strict` exit 0 for the 016 parent and each of the 13 children (recursive run over the parent where supported); record exit codes against the T003 baseline
+- [ ] T018 Final program validation: `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh <folder> --strict` exit 0 for the 016 parent and each of the 13 children (recursive run over the parent where supported); record exit codes against the T003 baseline
   <!-- meta: source=REQ-006; parent SC-004 -->
-- [ ] T018 Scoped index refresh: `memory_index_scan({ specFolder })` over the 016 program parent and the edited tracker folders; confirm the updated docs are visible to a scoped `memory_search`
+- [ ] T019 Scoped index refresh: `memory_index_scan({ specFolder })` over the 016 program parent and the edited tracker folders; confirm the updated docs are visible to a scoped `memory_search`
   <!-- meta: source=REQ-006; CLAUDE.md memory-save indexing rule -->
-- [ ] T019 Closeout save: `/memory:save` for the program against the 016 parent (Gate-3 folder already established); verify the post-save quality review output and patch HIGH issues
+- [ ] T020 Closeout save: `/memory:save` for the program against the 016 parent (Gate-3 folder already established); verify the post-save quality review output and patch HIGH issues
   <!-- meta: source=REQ-006; program-complete handoff row in ../spec.md -->
-- [ ] T020 Mark this phase's checklist.md with evidence, refresh this folder's changelog entry, and set final statuses in the 016 parent phase map (`checklist.md`, `../spec.md`, `../graph-metadata.json`)
+- [ ] T021 Mark this phase's checklist.md with evidence, refresh this folder's changelog entry, and set final statuses in the 016 parent phase map (`checklist.md`, `../spec.md`, `../graph-metadata.json`)
   <!-- meta: source=completion-verification rule; spec.md phase-context changelog note -->
 <!-- /ANCHOR:phase-3 -->
 
 ---
 
 <!-- ANCHOR:mapping-table -->
-## Findings-Completeness Mapping Table (filled during execution — T011/T012)
+## Findings-Completeness Mapping (filled during execution — T011/T012)
 
-One row per ledger section. Disposition column resolves to: mapped (cite phase + task ids), accept-as-is (with reason), or split (both, itemized beneath the table). "Pending" rows are not allowed at completion. Coverage means an owning phase task exists — it does not by itself claim the fix shipped.
+**The no-silent-drops guarantee rests on the finding-level table below (one row per finding), NOT the section-level index.** Plan-review SYSTEMIC FINDING #4 traced ~35 findings and caught 11 (plus a security item and 2 conscious defers) that mapped to no phase task under the old section-level sweep. Those 13 are pre-enumerated here NOW with their owning phases, rather than deferred to an execution-time sweep. Disposition resolves to: mapped (cite phase + task ids), accept-as-is (with reason), or split. "Pending" rows are not allowed at completion. Coverage means an owning phase task exists — it does not by itself claim the fix shipped.
+
+### Finding-level table — previously-silent findings (authoritative no-silent-drops guarantee)
+
+Pre-enumerated from plan-review SYSTEMIC #4. Each already carries its owning phase; execution confirms the owning phase's task id and any split.
+
+| # | Finding | Source tag | Owning phase | Note |
+|---|---------|-----------|--------------|------|
+| 1 | `llm-reformulation` unfenced prompt-injection (+ cache-before-flag, no-negative-caching) — **SECURITY** | Agent D P2 | 007 | `llm-reformulation.ts` was owned by no phase; route the injection fence to 007 |
+| 2 | `retrieval-directives` `parseCandidateLine` mid-word `indexOf` (malformed directives to LLM) | Agent D P2 | 007 | perf aspect already mapped to 010; this is the dropped correctness bug |
+| 3 | content-router Tier-1 drops chunks containing `tool:`/`user:` | Agent F P2 | 003 | chunk-drop on the save/dedup lane |
+| 4 | stale-delete counts cascaded children as failures | Agent F P2 | 004 | coverage/reconcile accounting |
+| 5 | session-boost writes ranking score into `attentionScore` alias (contract violation) | Agent C P2 | 007 | score-scale/contract lane |
+| 6 | constitutional recency exemption = perpetual +0.07 (tier-order violation) | Agent C contract | 007 | |
+| 7 | concept alias map expands common words (default-ON, dilutes lexical precision) | Agent D refinement | 007 | |
+| 8 | FSRS hybrid-decay default-ON before flag check | Agent C contract | 009 | learning-loop decay lane |
+| 9 | dashboard `latency` prefix mislabels `ablation_latency_*` as improved; quality snapshots eternal `eval_run_id=0` | Agent G P2 | 009 | eval/dashboard lane |
+| 10 | session-trace causal reducer (single co-occurrence, no threshold) | Agent G P2 | 008 | causal-graph hygiene |
+| 11 | `memory_context` resume hardcodes `fingerprintStatus:'verified'` | Agent E | 012 | envelope/doc-alignment |
+| 12 | `memory_context` JSON-in-string double-encoding | conscious defer (report §3/§4) | 012 | previously had no explicit 013 slot |
+| 13 | working-memory decay double-apply | report §3 P1 #20 | 009 | the only report §3 P1 with no fix-phase owner; reassigned off code-less 013 to 009 |
+
+### Section-level index (coarse cross-check only — NOT the guarantee)
+
+Retained to reconcile per-section counts against the ledger. One row per ledger section; individual findings are owned by the finding-level table above plus each phase's own tasks.
 
 | Ledger Section | Scope | Expected Owners (per phase-decomposition.md) | Disposition |
 |----------------|-------|----------------------------------------------|-------------|
@@ -162,7 +188,7 @@ Sweep notes recorded at execution time go below this line (itemized splits, acce
 
 - [ ] All tasks marked `[x]`
 - [ ] No `[B]` blocked tasks remaining
-- [ ] Mapping table above has zero Pending rows; 91/91 P2 items dispositioned in 006/004
+- [ ] Finding-level table has zero Pending rows and covers all 13 pre-enumerated silent drops; section-level index reconciled; reconstructed P2 list fully dispositioned in 006/004 (count reconciled to the "91" headline, delta explained)
 - [ ] Grep audits and final recursive strict validation passed with recorded evidence
 <!-- /ANCHOR:completion -->
 

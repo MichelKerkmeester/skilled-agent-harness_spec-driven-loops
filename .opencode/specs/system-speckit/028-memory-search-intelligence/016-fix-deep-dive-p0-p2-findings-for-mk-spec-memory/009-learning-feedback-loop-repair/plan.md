@@ -12,10 +12,10 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-speckit/028-memory-search-intelligence/016-fix-deep-dive-p0-p2-findings-for-mk-spec-memory/009-learning-feedback-loop-repair"
-    last_updated_at: "2026-07-03T10:03:01Z"
+    last_updated_at: "2026-07-03T13:20:00Z"
     last_updated_by: "markdown-agent"
-    recent_action: "Authored phase implementation plan from deep-dive research sources"
-    next_safe_action: "Run Phase 1 baseline capture and verify-first tasks before changing code"
+    recent_action: "Remediated REWORK: verify-first P1-5, preventive trackAccess/ledger, absorbed 3 routed findings"
+    next_safe_action: "Run Phase 1 baseline capture and verify-first tasks (T002-T009, T035-T037) before changing code"
     blockers: []
     key_files:
       - "spec.md"
@@ -57,7 +57,7 @@ FAILURE MODES:
 | **Testing** | vitest (unit + integration), read-only SQL probes against the live DB for baselines |
 
 ### Overview
-Repair twelve defect clusters in the learning/feedback loop identified by deep-dive Chain E and the agent G ledger, plus the absorbed P1-5 retention snapshot fix from 028/006-review-remediation/002. The approach is verify-first (every 🟡 finding gets a confirm-before-fix task), then small surgical fixes per cluster with unit tests, then integration proof that the loop actually learns: repeat-query strengthening, a promotion/demotion cycle, and bounded ledgers measured against the Phase 1 baseline (65 of 33,101 rows ever accessed).
+Repair the learning/feedback defect clusters identified by deep-dive Chain E and the agent G ledger, plus the absorbed P1-5 retention item from 028/006-review-remediation/002 and three routed silent-drop findings (working-memory decay, dashboard mislabel, FSRS hybrid-decay). The approach is verify-first (every 🟡 finding gets a confirm-before-fix task), then small surgical fixes per cluster with unit tests, then proof via synthetic fixtures that the loop CAN learn once fueled: cache-hit strengthening with `trackAccess` forced on (it is default-off with zero production enablers, so this is preventive/latent), a promotion/demotion cycle, and ledger sweeps proven on injected aged rows rather than organic volume (the live ledgers are near-empty at 65 of 33,101 rows ever accessed). The absorbed P1-5 re-validation already ships in code (`memory-retention-sweep.ts:666`), so it collapses to a proving interleaving test, not a code fix.
 <!-- /ANCHOR:summary -->
 
 ---
@@ -71,7 +71,7 @@ Repair twelve defect clusters in the learning/feedback loop identified by deep-d
 - [ ] Dependencies identified (phases 003/006 overlaps, `SPECKIT_RETENTION_FORGETTING_V1` flag)
 
 ### Definition of Done
-- [ ] All P0 acceptance criteria met with tests (REQ-001..REQ-006)
+- [ ] All P0 acceptance criteria met with tests (REQ-001..REQ-005); absorbed P1-5 (REQ-006) verify-first with its interleaving test
 - [ ] Whole vitest gate re-run and delta reported against the Phase 1 baseline
 - [ ] Docs updated (spec/plan/tasks/checklist synchronized; changelog refreshed per parent convention)
 <!-- /ANCHOR:quality-gates -->
@@ -90,8 +90,9 @@ Existing layered MCP server: handlers (tool surface) -> lib modules (search, fee
 - **Batch learning**: `lib/feedback/batch-learning.ts` (sign, idempotency key, SQL aggregation).
 - **Corrections**: `lib/learning/corrections.ts` (idempotent apply, delta undo).
 - **Promotion governance**: `lib/search/auto-promotion.ts` (demotion, hysteresis, per-memory throttle, batched counts).
-- **Retention governance**: `lib/governance/memory-retention-sweep.ts` (absorbed P1-5 in-tx re-validation, extend-window) plus age-based sweeps across the seven ledger owners.
-- **Evaluation honesty**: `lib/feedback/shadow-evaluation-runtime.ts`, `lib/feedback/shadow-scoring.ts`, `lib/feedback/true-citation-emitter.ts`, `handlers/quality-loop.ts`, `lib/cognitive/prediction-error-gate.ts`.
+- **Retention governance**: `lib/governance/memory-retention-sweep.ts` (absorbed P1-5 in-tx re-validation ALREADY ships at :666 — verify + interleaving test only; extend-window) plus age-based sweeps across the seven ledger owners.
+- **Evaluation honesty**: `lib/feedback/shadow-evaluation-runtime.ts`, `lib/feedback/shadow-scoring.ts`, `lib/feedback/true-citation-emitter.ts`, `handlers/quality-loop.ts` (pairing + real sprint id), `lib/eval/reporting-dashboard.ts` (trend direction), `lib/cognitive/prediction-error-gate.ts`.
+- **Attention & decay (absorbed routed findings)**: `lib/cognitive/working-memory.ts` (decay base vs re-added mention boost, §3 P1 #20) and `lib/cognitive/fsrs-scheduler.ts` (classification-flag-before-hybrid ordering, Agent C CONTRACT).
 
 ### Data Flow
 Search/save events emit feedback signals -> ledgers (`feedback_events`, audits) -> aggregators (batch learning, auto-promotion, corrections, learned feedback) -> learned state (learned terms, tiers, FSRS metadata) -> future ranking inputs. Retention sweeps bound the ledgers; shadow eval and the prediction-error audit observe the loop without mutating live ranking.
@@ -114,13 +115,16 @@ Use this section when `research_intent=fix_bug`, when planning from a deep-revie
 | `lib/feedback/batch-learning.ts` (aggregator) | Positive sign for reformulation; restart double-count; JS aggregation (#25) | update | Sign test, idempotency test, SQL-aggregation assertion |
 | `lib/learning/corrections.ts` (pair mutator) | Compounds penalty on retry; absolute-value undo (G P2) | update | Retry no-op test; delta-undo test |
 | `lib/search/auto-promotion.ts` (tier mutator) | Promote-only, global throttle, per-row negative counts (G refinement/OPT) | update | Promotion/demotion cycle test with hysteresis band |
-| `lib/governance/memory-retention-sweep.ts` (deleter) | Spare-only delete uses stale pre-tx snapshot (absorbed P1-5); extend sees 7-day window | update | Deterministic interleaving test; extend-window unit test |
+| `lib/governance/memory-retention-sweep.ts` (deleter) | Spare-only delete ALREADY re-validates the fresh in-tx row (absorbed P1-5, :666); extend sees 7-day window | verify + test (no re-validation change); update extend-window | Deterministic interleaving test proving existing behavior; extend-window unit test |
 | Seven ledger tables (storage) | Unbounded growth, no age retention (G P2, C OPT) | update (age sweeps + dry-run mode) | Before/after row counts vs baseline; shadow-window guard test |
 | `lib/feedback/shadow-evaluation-runtime.ts` + `lib/feedback/shadow-scoring.ts` (eval consumers) | Query-independent labels; empty holdout records | update | Unlabeled-cycle marking test; empty-holdout non-recording test |
 | `lib/feedback/true-citation-emitter.ts` (label producer, flag OFF) | Bare-id false positives, all-words false negatives (G P2) | update | Adversarial table tests (see algorithm invariant below) |
-| `handlers/quality-loop.ts` (save-quality surface) | Returns bestContent with last attempt's score; fix log overstates (G P2) | update | Pairing unit test; log-content assertion |
+| `handlers/quality-loop.ts` (save-quality surface) | Returns bestContent with last attempt's score; fix log overstates (G P2); writes `eval_run_id=0` (:729) | update | Pairing unit test; log-content assertion; non-zero sprint-id assertion |
 | `lib/cognitive/prediction-error-gate.ts` (audit producer) | `init(db)` never called - audit dead (G CONTRACT) | verify first (phase 003 overlap), then update | Startup wiring check; audit row written on a gating decision |
 | `.opencode/commands/memory/manage.md` + manage handler (consumer surface) | No expiry/clear/sweep maintenance actions | update | Doc/handler parity check; action smoke test |
+| `lib/cognitive/working-memory.ts` (attention mutator, absorbed §3 P1 #20) | `batchUpdateScores` re-applies full decay to the stored score and re-adds the mention boost each pass (:601-616) → attention binary | update | Multi-pass fixture: attention stays in a stable mid-range |
+| `lib/eval/reporting-dashboard.ts` (telemetry, absorbed Agent G P2) | `latency` prefix misses `ablation_latency_*` (:179-181) → rising latency labeled "improved" | update | Direction table test: `ablation_latency_*` = lower-is-better |
+| `lib/cognitive/fsrs-scheduler.ts` (decay policy, absorbed Agent C CONTRACT) | `applyClassificationDecay` runs the default-ON hybrid NO_DECAY branch (:351) before the classification flag check (:356) → two policies combined | update | Ordering test: classification flag OFF short-circuits before the hybrid branch |
 | Ranking consumers of learned boosts (stage2/rescue) | Consume learned terms; authority decided by phase 006 | not a consumer of this change (signal production only) | Pointer note in spec.md Out of Scope; no stage2 diffs in this phase |
 | PE-gate lanes (`pe-gating.ts`, `pe-orchestration.ts`) | Chain E sibling, owned by phase 003 | not a consumer | No diffs to those files in this phase |
 
@@ -128,6 +132,7 @@ Required inventories:
 - Same-class producers: `rg -n "last_review|CURRENT_TIMESTAMP" mcp_server/lib mcp_server/handlers` (FSRS writers); `rg -n "trackAccess" mcp_server` (tracking call sites).
 - Consumers of changed symbols: `rg -n "expireLearnedTerms|clearAllLearnedTriggers|computed_boost|memory_promotion_audit|evaluateSpareOnlyRetention|getRetentionProtectionReason" mcp_server --glob '*.ts' --glob '*.md'`.
 - Ledger owners: `rg -n "feedback_events|shadow_scoring_log|batch_learning_log|learned_feedback_audit|memory_promotion_audit|memory_conflicts|adaptive_signal_events" mcp_server/lib`.
+- Absorbed routed findings: `rg -n "EVENT_DECAY_FACTOR|mention_count|attention_score" mcp_server/lib/cognitive/working-memory.ts`; `rg -n "isHigherBetter|lowerIsBetterPrefixes|eval_run_id" mcp_server/lib/eval/reporting-dashboard.ts mcp_server/handlers/quality-loop.ts`; `rg -n "isHybridDecayPolicyEnabled|applyClassificationDecay" mcp_server/lib/cognitive/fsrs-scheduler.ts`.
 - Matrix axes: signal type (positive / negative / reformulation) x restart (yes/no) for batch learning; tier state x feedback direction x hysteresis position for promotion; each spare axis (`importance_weight`, `quality_score`, `retention_trust_score`, `created_at`) x concurrent-writer timing for retention; label presence x holdout size for shadow eval.
 - Algorithm invariant: a dissatisfaction signal never increases boost; a delete decision is re-validated against fresh axis values inside its transaction; a learning cap counts only live terms; a citation match requires a >=2-digit id or a 2-of-3 word anchor subset. Adversarial cases: "8 packets" (no citation), "28" bare id (citation), anchor with one shared word (no match), anchor with two of three words (match), same citation twice in one session (counted once).
 <!-- /ANCHOR:affected-surfaces -->
@@ -143,10 +148,11 @@ Required inventories:
 - [ ] Phase 003 overlap resolved: prediction-error-gate init state recorded
 
 ### Phase 2: Core Implementation
-- [ ] Fuel fixes: cache-hit tracking, FSRS `last_review` format + no-op guard
+- [ ] Fuel fixes: cache-hit tracking (preventive; fixture forces `trackAccess` on), FSRS `last_review` format + no-op guard
 - [ ] Learning fixes: learned-term expiry cap + manage wiring, batch-learning sign/idempotency/SQL, corrections no-op/delta-undo, promotion demotion/hysteresis/throttle
-- [ ] Governance fixes: absorbed P1-5 in-tx re-validation, extend-window widening, seven age-based ledger sweeps (dry-run first)
-- [ ] Evaluation fixes: shadow labels/holdout, true-citation regexes + session uniqueness, quality-loop pairing + honest log, prediction-error audit init
+- [ ] Governance fixes: absorbed P1-5 is verify + interleaving test only (re-validation already at :666), extend-window widening, seven age-based ledger sweeps proven on injected fixtures (dry-run first)
+- [ ] Evaluation fixes: shadow labels/holdout, true-citation regexes + session uniqueness, quality-loop pairing + honest log + real sprint id, prediction-error audit init
+- [ ] Absorbed routed findings: working-memory decay/boost separation, dashboard trend-direction + sprint labeling, FSRS hybrid-decay ordering; plus a decision-record evaluating `trackAccess` prod enablement (no force-enable)
 
 ### Phase 3: Verification
 - [ ] Integration proof: repeat-query strengthening, promotion/demotion cycle, bounded ledgers vs baseline
@@ -161,9 +167,9 @@ Required inventories:
 
 | Test Type | Scope | Tools |
 |-----------|-------|-------|
-| Unit | Per-cluster fixes: cache-hit tracking, term cap, batch sign/idempotency, corrections, hysteresis, retention re-validation, citation regex table tests, quality-loop pairing | vitest |
-| Integration | Repeat-query strengthening end-to-end; promotion/demotion cycle; sweep interleaving with concurrent writer; shadow-cycle labeling | vitest + scripted daemon runs |
-| Manual | Live fuel-number recheck (rows ever accessed) and ledger row counts via read-only SQL before/after | sqlite3 read-only probes |
+| Unit | Per-cluster fixes: cache-hit tracking (fixture forces `trackAccess`), term cap, batch sign/idempotency, corrections, hysteresis, existing retention re-validation, citation regex table tests, quality-loop pairing; absorbed working-memory multi-pass decay, dashboard direction table, FSRS ordering | vitest |
+| Integration | Cache-hit strengthening via synthetic probe; promotion/demotion cycle; sweep interleaving with concurrent writer (proves existing :666 re-validation); shadow-cycle labeling; ledger sweeps over injected aged rows | vitest + scripted daemon runs |
+| Manual | Ledger row counts via read-only SQL before/after on injected fixtures; live fuel number recorded as baseline only (`trackAccess` default-off, so it will not move organically) | sqlite3 read-only probes |
 <!-- /ANCHOR:testing -->
 
 ---

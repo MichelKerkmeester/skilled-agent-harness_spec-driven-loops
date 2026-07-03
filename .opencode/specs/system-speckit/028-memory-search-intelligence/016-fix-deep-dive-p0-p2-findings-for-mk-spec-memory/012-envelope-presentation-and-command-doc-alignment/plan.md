@@ -71,7 +71,7 @@ Fix the presentation lane in place: pick one telemetry casing and delete the twi
 - [x] Dependencies identified (phase 011 recommended-first for trustworthy live capture; no schema deps)
 
 ### Definition of Done
-- [ ] All acceptance criteria met (spec.md REQ-001..REQ-010 + scenarios 1-6)
+- [ ] All acceptance criteria met (spec.md REQ-001..REQ-012 + scenarios 1-6)
 - [ ] Vitest suites green with delta reported against the REQ-001 baseline
 - [ ] Docs updated (spec/plan/tasks/checklist synchronized; implementation-summary.md carries baseline + decisions + evidence)
 <!-- /ANCHOR:quality-gates -->
@@ -108,6 +108,8 @@ Use this section when `research_intent=fix_bug`, when planning from a deep-revie
 |---------|--------------|--------|--------------|
 | Envelope telemetry emission (memory-search.ts) | Emits every block in camelCase AND snake_case (L7 🟢) | Update: single casing per T007 inventory | Grep captured payload for twin keys; consumer grep both casings |
 | Budget enforcement + sanity guard (memory-context.ts:608-625, ~1886-1969) | Enforces budget pre-attach; guard unreachable (E P2 🟡) | Update: enforce post-attach; delete guard | Unit test on ordering; live `meta.tokenCount` vs actual |
+| Delegated-envelope nesting (memory-context.ts ~:757/:761/:925, ~:1088-1116) | Wraps the inner search envelope as JSON-in-string; fidelity fields buried (Agent I, routed in from 013) | Update: de-nest; surface requestQuality/citationPolicy/envelopeRender at top-level data | Envelope capture shows structured data + the three fields present |
+| Resume-ladder fingerprintStatus (memory-context.ts:267,484) | Hardcodes 'verified' while fingerprintExpected is null (Agent E, silent-drop #10) | Update: truthful status; no 'verified' without an actual comparison | Resume-row assertion: null-expected → non-'verified' |
 | Progressive-disclosure cursor store (progressive-disclosure.ts:402) | Scope binding lost after page 1; client-forgeable (#18 🟡) | Update: server-side scopeKey compare per resolve | Adversarial table tests (cross-scope, forged, expired, malformed, no-op) |
 | Result explainability (result-explainability.ts) | Blanket `semantic_match`; `why` computed, never rendered (E P2 / I gap 🟡) | Update: gate label on vector attribution; render or trace-gate `why` | Rendered-output assertion per lane |
 | Profile formatter (lib/response/profile-formatters.ts) | Drops `canonicalSource`/`documentType`/`_communityFallback` (E P1 🟡; test passes via mock) | Update: pass through | Formatter test WITHOUT mock |
@@ -138,9 +140,9 @@ Required inventories:
 - [ ] Run the consumer + doc-claim inventories (T007-T008)
 
 ### Phase 2: Core Implementation
-- [ ] Workstream A — Envelope: single casing, budget-after-attach, guard deletion, tokenCount honesty, snippet floor (T010-T014)
+- [ ] Workstream A — Envelope: single casing, budget-after-attach, guard deletion, tokenCount honesty, snippet floor, `memory_context` envelope de-nesting (T010-T015)
 - [ ] Workstream B — Progressive disclosure: scopeKey, page-2+ metadata, exhausted-vs-invalid, dead-cursor purge, lean store, substitute-vs-drop decision (T020-T025)
-- [ ] Workstream C — Rendering: `why`, label gating, formatter passthrough, content cap, dedup timing, ORDER BY, no-input envelope (T030-T036)
+- [ ] Workstream C — Rendering: `why`, label gating, formatter passthrough, content cap, dedup timing, ORDER BY, no-input envelope, resume `fingerprintStatus` honesty (T030-T037)
 - [ ] Workstream D — CLI `--format text` renderer + omission notice (T040)
 - [ ] Workstream E — Command-doc battery in both trees + parity script (T050-T069)
 - [ ] Workstream F — Hook-lane hygiene: constitutional suppression, boundary truncation, shim JSON fix (T070-T072)
@@ -149,6 +151,7 @@ Required inventories:
 - [ ] Re-measure the baseline query: envelope < 6KB, single casing, honest tokenCount (T080)
 - [ ] Zero-drift re-audit + parity script green (T081-T082)
 - [ ] Vitest suite + delta vs baseline; adversarial cursor suite green (T083-T084)
+- [ ] Verify routed-in findings: `memory_context` envelope de-nest + truthful resume `fingerprintStatus` (T087)
 - [ ] `validate.sh --strict` exit 0; docs + evidence synchronized (T085-T086)
 <!-- /ANCHOR:phases -->
 

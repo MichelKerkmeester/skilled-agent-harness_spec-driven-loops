@@ -56,7 +56,7 @@ FAILURE MODES:
 <!-- ANCHOR:pre-impl -->
 ## Pre-Implementation
 
-- [ ] CHK-001 [P0] Requirements documented in spec.md (REQ-001..REQ-009 with report/ledger refs)
+- [ ] CHK-001 [P0] Requirements documented in spec.md (REQ-001..REQ-010 with report/ledger refs)
 - [ ] CHK-002 [P0] Technical approach defined in plan.md (FIX ADDENDUM inventories + phases + testing + rollback)
 - [ ] CHK-003 [P1] Dependencies identified and available (phase 002 predicate status; migration registry slot)
 <!-- /ANCHOR:pre-impl -->
@@ -95,12 +95,13 @@ FAILURE MODES:
 ## Fix Completeness
 
 - [ ] CHK-FIX-001 [P0] Each actionable finding has a finding class: `instance-only`, `class-of-bug`, `cross-consumer`, `algorithmic`, `matrix/evidence`, or `test-isolation`.
-- [ ] CHK-FIX-002 [P0] Same-class producer inventory completed, or instance-only status proven by grep (sha256 producers beyond memory-parser.ts:914).
+- [ ] CHK-FIX-002 [P0] Same-class producer inventory completed, or instance-only status proven by grep (sha256 producers beyond `computeContentHash` @ memory-parser.ts:914 and its sole primitive `hashContentBody` @ content-id.ts:14).
 - [ ] CHK-FIX-003 [P0] Consumer inventory completed for changed helpers, policies, schema fields, response fields, docs, and tests (`computeContentHash`, `buildContinuityFingerprint`, `canonicalResultId`, exclusion params).
 - [ ] CHK-FIX-004 [P0] Security/path/parser/redaction fixes include adversarial table tests for delimiter, joined-input, outside-root, no-op, and fallback cases (normalization must not rewrite body text resembling continuity lines).
 - [ ] CHK-FIX-005 [P1] Matrix axes and row count are listed before completion is claimed (16 pairwise rows from plan.md).
 - [ ] CHK-FIX-006 [P1] Hostile env/global-state variant executed when tests or code read process-wide state (planner-mode env resolution in `resolveSavePlannerMode`).
 - [ ] CHK-FIX-007 [P1] Evidence is pinned to a fix SHA or explicit diff range, not a moving branch-relative range.
+- [ ] CHK-FIX-008 [P2] Content-router Tier-1 transcript-wrapper fix (REQ-010/T025): a mid-line `tool:`/`user:` mention survives Tier-1 routing and a real multi-turn transcript still drops (`content-router.ts:410-414`).
 <!-- /ANCHOR:fix-completeness -->
 
 ---
@@ -141,7 +142,7 @@ FAILURE MODES:
 |----------|-------|----------|
 | P0 Items | 19 | 0/19 |
 | P1 Items | 25 | 0/25 |
-| P2 Items | 9 | 0/9 |
+| P2 Items | 10 | 0/10 |
 
 **Verification Date**: Pending (phase not yet implemented)
 <!-- /ANCHOR:summary -->

@@ -11,9 +11,9 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-speckit/028-memory-search-intelligence/016-fix-deep-dive-p0-p2-findings-for-mk-spec-memory/009-learning-feedback-loop-repair"
-    last_updated_at: "2026-07-03T10:03:01Z"
+    last_updated_at: "2026-07-03T13:20:00Z"
     last_updated_by: "markdown-agent"
-    recent_action: "Authored phase verification checklist from deep-dive research sources"
+    recent_action: "Remediated REWORK: P0 now REQ-001..005, SC reframed synthetic/injected, added CHK-028/029"
     next_safe_action: "Leave all items unchecked until execution produces evidence"
     blockers: []
     key_files:
@@ -80,14 +80,16 @@ FAILURE MODES:
 <!-- ANCHOR:testing -->
 ## Testing
 
-- [ ] CHK-020 [P0] All acceptance criteria met (REQ-001..REQ-006 P0 set; six acceptance scenarios covered by tests)
-- [ ] CHK-021 [P0] Repeat-query strengthening observed live: cached repeat search increments access metadata (SC-001)
+- [ ] CHK-020 [P0] All acceptance criteria met (REQ-001..REQ-005 P0 set; REQ-006 verify-first; seven acceptance scenarios covered by tests)
+- [ ] CHK-021 [P0] Cache-hit tracking mechanism proven via synthetic probe (`trackAccess` forced on): cached repeat search increments access metadata (SC-001; preventive/latent, not organic strengthening)
 - [ ] CHK-022 [P0] Promotion/demotion cycle test green with no hysteresis flapping (SC-002)
-- [ ] CHK-023 [P0] Absorbed P1-5 interleaving test green: concurrently protected row survives the spare-only sweep (SC-004)
-- [ ] CHK-024 [P1] Ledger sweeps bounded: before/after counts recorded against the T001 baseline, shadow-window guard proven (SC-003)
-- [ ] CHK-025 [P1] Edge cases tested (cap boundary at 8 live terms, empty holdout, "8 packets" non-citation, empty metadata call, hysteresis boundary)
+- [ ] CHK-023 [P0] Absorbed P1-5 interleaving test green: concurrently protected row survives the spare-only sweep, proving the existing re-validation at `memory-retention-sweep.ts:666` (SC-004)
+- [ ] CHK-024 [P1] Ledger sweeps bounded via injected aged fixtures (live ledgers near-empty at 65 lifetime accesses): before/after counts on the injected set, shadow-window guard proven (SC-003)
+- [ ] CHK-025 [P1] Edge cases tested (cap boundary at 8 live terms, empty holdout, "8 packets" non-citation, empty metadata call, hysteresis boundary, working-memory multi-pass stability)
 - [ ] CHK-026 [P1] Error scenarios validated (restart mid-window idempotency, undo after stacked corrections)
 - [ ] CHK-027 [P1] Whole vitest gate re-run and delta reported against the T001 baseline (no unexplained regressions)
+- [ ] CHK-028 [P1] Absorbed working-memory decay: multi-pass `batchUpdateScores` fixture proves attention stays in a stable mid-range, not binary (REQ-014, SC-006)
+- [ ] CHK-029 [P2] Absorbed telemetry/latent fixes covered: dashboard direction table test (`ablation_latency_*` lower-is-better) + non-zero sprint id, and FSRS classification-flag-before-hybrid ordering test (REQ-015, REQ-016, SC-006)
 <!-- /ANCHOR:testing -->
 
 ---
@@ -141,8 +143,8 @@ FAILURE MODES:
 | Category | Total | Verified |
 |----------|-------|----------|
 | P0 Items | 15 | 0/15 |
-| P1 Items | 15 | 0/15 |
-| P2 Items | 1 | 0/1 |
+| P1 Items | 16 | 0/16 |
+| P2 Items | 2 | 0/2 |
 
 **Verification Date**: Pending — phase not yet executed
 <!-- /ANCHOR:summary -->

@@ -2,7 +2,7 @@
   "schema_version": 1,
   "packet_id": "system-speckit/028-memory-search-intelligence/016-fix-deep-dive-p0-p2-findings-for-mk-spec-memory/004-embedding-coverage-and-vector-shard-consistency",
   "spec_folder": "system-speckit/028-memory-search-intelligence/016-fix-deep-dive-p0-p2-findings-for-mk-spec-memory/004-embedding-coverage-and-vector-shard-consistency",
-  "parent_id": null,
+  "parent_id": "system-speckit/028-memory-search-intelligence/016-fix-deep-dive-p0-p2-findings-for-mk-spec-memory",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -15,25 +15,213 @@
       "vector shard consistency",
       "pending vectors drain",
       "memory embedding reconcile",
-      "chunking safe-swap fix"
+      "chunking safe-swap fix",
+      "embedding model backfill",
+      "retry manager drain",
+      "embedding reconcile plan",
+      "embedding coverage tasks",
+      "verify first battery",
+      "embedding reconcile tasks",
+      "embedding coverage checklist"
     ],
     "key_topics": [
-      "embedding coverage",
-      "vector shard consistency",
-      "retry drain",
-      "embedding model provenance",
-      "chunking decision"
+      "embedding",
+      "coverage",
+      "repair",
+      "vector",
+      "shard",
+      "consistency",
+      "pending",
+      "vectors",
+      "drain",
+      "memory",
+      "reconcile",
+      "chunking"
     ],
-    "importance_tier": "important",
-    "status": "planned",
-    "key_files": ["spec.md", "plan.md", "tasks.md", "checklist.md", "decision-record.md"],
-    "entities": [],
+    "importance_tier": "normal",
+    "status": "draft",
+    "key_files": [
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "mcp_server/lib/providers/retry-manager.ts",
+      "mcp_server/lib/embedders/embedding-reconcile.ts",
+      "mcp_server/handlers/chunking-orchestrator.ts",
+      "mcp_server/lib/search/vector-index-store.ts",
+      "mcp_server/lib/search/vector-index-mutations.ts",
+      "spec.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "retry-manager.ts",
+        "kind": "code",
+        "path": "mcp_server/lib/providers/retry-manager.ts",
+        "source": "derived"
+      },
+      {
+        "name": "embedding-reconcile.ts",
+        "kind": "code",
+        "path": "mcp_server/lib/embedders/embedding-reconcile.ts",
+        "source": "derived"
+      },
+      {
+        "name": "chunking-orchestrator.ts",
+        "kind": "code",
+        "path": "mcp_server/handlers/chunking-orchestrator.ts",
+        "source": "derived"
+      },
+      {
+        "name": "vector-index-store.ts",
+        "kind": "code",
+        "path": "mcp_server/lib/search/vector-index-store.ts",
+        "source": "derived"
+      },
+      {
+        "name": "vector-index-mutations.ts",
+        "kind": "code",
+        "path": "mcp_server/lib/search/vector-index-mutations.ts",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Authored Level",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Run Phase",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Dependencies",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Execute Phase",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Four",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Repair",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
     "causal_summary": "43% of the 33,101-row memory corpus is invisible to vector search: 8,761 rows are pending, 4,247 failed, and 1,260 sit in retry, while 367 rows report embedding success with no stored vector",
     "created_at": "2026-07-03T09:44:20Z",
-    "last_save_at": "2026-07-03T10:15:00Z",
+    "last_save_at": "2026-07-03T12:00:21.935Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
-    "source_docs": ["spec.md", "plan.md", "tasks.md", "checklist.md", "decision-record.md"],
-    "source_fingerprint": "sha256:355b99b7125b1190fe6af516705ab3d15cbe36fe7754747623daa14e98ecca89"
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:82cd16c0b7da4cbc8db817df2a87b2e94e389d03d34faee9cd7ebb56715341c5",
+    "source_doc_hashes": {
+      "spec.md": "a7f56523da3f9e432a40be1a71b03bbaa31d8c9947492ef4a16d17928fbe87e3",
+      "plan.md": "869b4f1698276558f2a7fc466b18987526c242e1f21efc64ab007a1973bd4c34",
+      "tasks.md": "c2e475fb4cafa2e09b7e0cf3810ffba9487c654d692278f2f686987f6e21af51",
+      "checklist.md": "daf412a023c92dffa833f3d8ce24b79c17660396b4351531b60ca7ae3f325b8e",
+      "decision-record.md": "4b410a8b64da30616861579b91146b2e6a7e370e9e8b227ec730e0c91353f422",
+      "implementation-summary.md": "e973247182df1f1ee58a9be01e474e4b5103d34c4915dcb7c5f7717edc05557d"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
   }
 }

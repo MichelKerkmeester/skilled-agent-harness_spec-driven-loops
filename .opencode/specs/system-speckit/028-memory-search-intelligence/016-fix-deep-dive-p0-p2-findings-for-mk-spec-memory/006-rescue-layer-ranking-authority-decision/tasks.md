@@ -67,8 +67,8 @@ Finding citations live HERE in tasks.md metadata comments, never in code comment
   <!-- meta: source=report §3 P1 #25 + ledger Agent G P1 (🟡); class=class-of-bug (stale-binding after swap); blocks T010 -->
 - [ ] T007 🟡 [P] VERIFY-FIRST: eval DB path resolution is cwd-dependent (run from repo root vs unrelated cwd, compare resolved paths) (handlers/eval-reporting.ts)
   <!-- meta: source=phase-decomposition §006 "eval DB path cwd dependence (G contract)"; class=path-handling; blocks T011 -->
-- [ ] T008 🟡 [P] VERIFY-FIRST: composite-scoring + interference-scoring have zero production callers (only importer attention-decay.ts, itself dead); interference O(folder^2) Jaccard runs on the write path feeding a column nothing reads; memory-search.ts:711 hardcodes interferenceApplied:false (lib/scoring/composite-scoring.ts, lib/scoring/interference-scoring.ts, lib/cognitive/attention-decay.ts)
-  <!-- meta: source=report §3 P1 #15 + ledger Agent C P1 (🟡); class=cross-consumer; blocks T018 -->
+- [ ] T008 🟡 [P] VERIFY-FIRST: confirm the precise dead surface, NOT "three dead modules". Expected: (a) composite-scoring five-factor RANKING functions (applyCompositeScoring/calculateCompositeScore) have zero production ranking callers = dead, but the module's sub-factor helpers are imported by the LIVE attention-decay.ts; (b) interference-scoring computeInterferenceScoresBatch is LIVE on the write path via vector-index-store.ts refresh_interference_scores_for_folder (the O(folder^2) tax), feeding interference_score which memory-search.ts:711 leaves interferenceApplied:false; (c) attention-decay.activateMemory is LIVE at memory-triggers.ts:626 (Gate-1). Record which of applyCompositeScoring/calculateCompositeScore/computeInterferenceScoresBatch/activateMemory have callers (lib/scoring/composite-scoring.ts, lib/scoring/interference-scoring.ts, lib/search/vector-index-store.ts, lib/cognitive/attention-decay.ts, handlers/memory-triggers.ts, handlers/memory-search.ts)
+  <!-- meta: source=report §3 P1 #15 + ledger Agent C P1 (🟡); class=cross-consumer; blocks T018; re-scoped per plan-review: 2/3 modules live -->
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -76,26 +76,26 @@ Finding citations live HERE in tasks.md metadata comments, never in code comment
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T009 [B:T005] Part 1: route eval-reporting + ablation through executePipeline with prod-mode composition incl. render-floor K=3 truncation (handlers/eval-reporting.ts)
-  <!-- meta: REQ-001; source=phase-decomposition §006 Task 1 + report §7 Wave-2 item 11; truncation law per ledger Agent A "prod render floor K=3 taxes retrieval candidates" -->
-- [ ] T010 [B:T006] Part 1: fix ablation DB-swap restore so rebindDatabaseConsumers rebuilds graphSearchFn (no closed-connection closure; no concurrent reads of eval DB) (core/db-state.ts, handlers/eval-reporting.ts)
-  <!-- meta: REQ-002; source=report §3 P1 #25 + ledger Agent G P1 -->
+- [ ] T009 [B:T005] Part 1: route eval-reporting + ablation through executePipeline with prod-mode composition incl. render-floor K=3 truncation; map the ALL_CHANNELS ablation toggles (vector/bm25/fts5/graph/trigger, today toHybridSearchFlags -> legacy hybrid flags) onto executePipeline's channel-enable config so per-channel ablation survives the routing (handlers/eval-reporting.ts, lib/eval/ablation-framework.ts)
+  <!-- meta: REQ-001; source=phase-decomposition §006 Task 1 + report §7 Wave-2 item 11; truncation law per ledger Agent A "prod render floor K=3 taxes retrieval candidates"; channel-mapping added per plan-review -->
+- [ ] T010 [B:T006] Part 1: fix ablation DB-swap restore. Mechanism: make rebindDatabaseConsumers rebuild graphSearchFn per-connection via createUnifiedGraphSearchFn(newDb) rather than reusing the module-level graphSearchFnRef (db-state.ts:102,:166); AND guard the process-global vectorIndex DB swap in withAblationDb (eval-reporting.ts:150-189) with a mutex/quiesce so no concurrent production search reads the eval DB during the swap window (core/db-state.ts, handlers/eval-reporting.ts, lib/search/graph-search-fn.ts)
+  <!-- meta: REQ-002; source=report §3 P1 #25 + ledger Agent G P1; mechanism specified per plan-review (per-connection graph fn + swap quiesce) -->
 - [ ] T011 [B:T007] Part 1: resolve eval DB path against package/repo root, not cwd (handlers/eval-reporting.ts)
   <!-- meta: REQ-003; source=phase-decomposition §006 (G contract) -->
-- [ ] T012 Part 1 gate: parity assertion test proving eval path == production executePipeline composition for the same query + config; add ablation round-trip test and two-cwd path test (mcp_server tests)
-  <!-- meta: REQ-001/002/003 acceptance; permanent members of the vitest gate -->
+- [ ] T012 Part 1 gate: parity assertion test proving eval path == production executePipeline composition for the same query + config; a channel-mapping case (disabling a channel in the ablation set disables the same pipeline channel); an ablation round-trip test with a concurrent-search case that observes zero eval-DB reads; a two-cwd path test (mcp_server tests)
+  <!-- meta: REQ-001/002/003 acceptance; permanent members of the vitest gate; channel-mapping + concurrent-isolation cases added per plan-review -->
 - [ ] T013 [B:T004,T012] Part 2: implement flag-gated variants: B rescue as bounded additive delta / injected-rows-only; C rescue as floor only below a base-score threshold; defaults unchanged (lib/search/rerank/retrieval-rescue.ts, lib/search/pipeline/stage2-fusion.ts, search flags)
   <!-- meta: REQ-004 prerequisite; program rule: behavior-changing ranking work behind flags because 006 requires A/B -->
-- [ ] T014 [B:T003,T013] Part 2: run the A/B/C benchmark on the parity harness; record per-variant prod-mode completeRecall@3 + deltas vs current default; record secondary MRR + latency (not gated); record corpus snapshot stats (scratch/benchmark-results.md)
-  <!-- meta: REQ-004; success gate "decision-record with benchmark deltas" per phase-decomposition §006 -->
+- [ ] T014 [B:T003,T013] Part 2: run the A/B/C benchmark on the parity harness; record per-variant MRR + rank-position deltas vs current default as the GATED discriminators (completeRecall@3 saturates at the K=3 render floor with <=3 gold docs/query, so it is recorded as a no-regression floor, not the separator); record latency (not gated); record corpus snapshot stats (scratch/benchmark-results.md)
+  <!-- meta: REQ-004; success gate "decision-record with benchmark deltas" per phase-decomposition §006; MRR/rank-position promoted into the gate per plan-review (metric power) -->
 - [ ] T015 [B:T014] Part 2: decide per ADR-002 decision gates; flip ADR-002 Proposed -> Accepted with measured deltas; set production defaults to the accepted option; remove or document losing variant flags (decision-record.md, search flags)
   <!-- meta: REQ-005; the phase centerpiece -->
 - [ ] T016 [B:T015] Encode the signal-ordering contract as a test: ranking-relevant steps run post-rescue or are folded into the accepted blend; assert documented tie policy on all-equal-overlap plateaus (mcp_server tests)
   <!-- meta: REQ-006; source=phase-decomposition §006 "encode signal-ordering contract in stage2 docs + a test asserting the contract" -->
 - [ ] T017 [B:T015] Align stage2 docs with behavior: rewrite the 13-step header (stage2-fusion.ts:21, :1011) and pipeline/README.md to the accepted contract; update rescue-dominance tests to assert the accepted semantics (lib/search/pipeline/stage2-fusion.ts, lib/search/pipeline/README.md)
   <!-- meta: REQ-007; source=report Chain D "stage2's own architecture doc still presents the 13-step stack as the ranking authority" -->
-- [ ] T018 [B:T008,T015] Dead-battery disposition per ADR-003: wire composite/interference/attention-decay into the accepted contract OR delete them and the O(folder^2) write-path interference refresh; cross-check phase 009/010 expectations before delete (lib/scoring/, lib/cognitive/attention-decay.ts)
-  <!-- meta: REQ-008; source=report §3 P1 #15 + ledger Agent C P1 -->
+- [ ] T018 [B:T008,T015] Dead-surface disposition per ADR-003: wire OR delete (a) the composite five-factor ranking surface (applyCompositeScoring/calculateCompositeScore) and (b) the O(folder^2) interference write-path compute (vector-index-store.ts refresh_interference_scores_for_folder -> computeInterferenceScoresBatch). PRESERVE attention-decay.ts + activateMemory (live at memory-triggers.ts:626); on delete, keep/move the composite sub-factor helpers attention-decay imports so the Gate-1 path still compiles. Cross-check phase 009/010 expectations before delete (lib/scoring/composite-scoring.ts, lib/scoring/interference-scoring.ts, lib/search/vector-index-store.ts, lib/cognitive/attention-decay.ts)
+  <!-- meta: REQ-008; source=report §3 P1 #15 + ledger Agent C P1; re-scoped per plan-review: Option-A delete must not break Gate-1 -->
 <!-- /ANCHOR:phase-2 -->
 
 ---

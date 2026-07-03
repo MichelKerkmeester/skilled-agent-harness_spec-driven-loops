@@ -1,6 +1,6 @@
 ---
 title: "Verification Checklist: Orphan Sweep Cursor and Corpus Identity Repair"
-description: "P0/P1/P2 verification gates for the cursor persistence fix and the checkpointed drain/heal/collapse migrations, with evidence slots per item."
+description: "P0/P1/P2 verification gates for the cursor persistence fix, the count-verified dead-row drain, and the checkpoint-clean heal/collapse migrations, with evidence slots per item."
 trigger_phrases:
   - "orphan sweep cursor checklist"
   - "corpus identity repair verification"
@@ -78,8 +78,8 @@ FAILURE MODES:
 ## Testing
 
 - [ ] CHK-020 [P0] All REQ acceptance criteria met (REQ-001..REQ-010 traced to passing checks). Evidence:
-- [ ] CHK-021 [P0] SQL success gates pass on the live DB: orphan rows = 0, cross-prefix dupes = 0, exactly 1 active row per logical key (T028). Evidence:
-- [ ] CHK-022 [P1] Edge cases tested: heal decision-tree matrix rows, chunked parents >2 rows, path-reuse projection scenario. Evidence:
+- [ ] CHK-021 [P0] SQL success gates pass on the live DB (SQL-level invariant at 001-completion): orphan rows = 0, cross-prefix duplicate active rows = 0, exactly 1 active row per logical key (T028); the search-level one-row-per-doc guarantee is deferred to post-002. Evidence:
+- [ ] CHK-022 [P1] Edge cases tested: heal decision-tree matrix rows, chunked parents >2 rows, path-reuse projection scenario, `embedding_status='failed'` rows covered by reconcile projection repoint and track-heal (T031). Evidence:
 - [ ] CHK-023 [P1] Error scenarios validated: checkpoint failure abort, mid-chunk interruption resume, watcher-write during step detection. Evidence:
 - [ ] CHK-024 [P0] Whole vitest gate re-run after changes; delta vs T005 baseline reported with real numbers. Evidence:
 - [ ] CHK-025 [P1] Migration idempotency: re-running heal and collapse after success changes 0 rows. Evidence:
@@ -152,9 +152,9 @@ FAILURE MODES:
 ## L3+: ARCHITECTURE VERIFICATION
 
 - [ ] CHK-100 [P0] Architecture decisions documented in decision-record.md (ADR-001 disposal, ADR-002 near_duplicate_of, ADR-003 cursor storage, ADR-004 migration packaging). Evidence:
-- [ ] CHK-101 [P1] All ADRs have status (Proposed/Accepted); ADR-001/ADR-002 ratified after T013/T020 data. Evidence:
+- [ ] CHK-101 [P1] All ADRs have status (Proposed/Accepted); ADR-001 ratified after T013 data, ADR-002 after T004 format/consumer confirm and T020 winner validation. Evidence:
 - [ ] CHK-102 [P1] Alternatives documented with rejection rationale in each ADR. Evidence:
-- [ ] CHK-103 [P2] Migration path documented: drain -> heal -> collapse ordering with per-step checkpoints. Evidence:
+- [ ] CHK-103 [P2] Migration path documented: drain -> heal -> collapse ordering; checkpoint-clean heal/collapse, count-verified drain (no drain checkpoint). Evidence:
 <!-- /ANCHOR:arch-verify -->
 
 ---
@@ -173,8 +173,8 @@ FAILURE MODES:
 <!-- ANCHOR:deploy-ready -->
 ## L3+: DEPLOYMENT READINESS
 
-- [ ] CHK-120 [P0] Rollback procedure documented AND tested: checkpoint restore drill passed on a DB copy (T006). Evidence:
-- [ ] CHK-121 [P0] Checkpoint id recorded BEFORE each destructive step (T012, T015, T019). Evidence:
+- [ ] CHK-120 [P0] Rollback procedure documented AND tested: checkpoint restore drill passed on a DB copy for heal/collapse (T006); drain rollback documented as restore-by-count-verification (delete only file-absent rows, reconcile counts). Evidence:
+- [ ] CHK-121 [P0] Checkpoint id recorded BEFORE each bounded migration step (heal T015, collapse T019); the drain (T012/T014) records the baseline dead-row count and uses count-verification (no checkpoint). Evidence:
 - [ ] CHK-122 [P1] Post-step SQL verification queries wired and run after each destructive step. Evidence:
 - [ ] CHK-123 [P1] Rollback runbook (command sequence per step) committed in implementation-summary.md. Evidence:
 - [ ] CHK-124 [P2] Loser-row ledger handed to phase 002 for read-exclusion verification (T022). Evidence:
@@ -199,7 +199,7 @@ FAILURE MODES:
 - [ ] CHK-140 [P1] All spec documents synchronized (spec/plan/tasks/checklist/decision-record + implementation-summary at close). Evidence:
 - [ ] CHK-141 [P1] Tool-surface behavior changes (scan results cursor field, health labels) documented where those surfaces are described. Evidence:
 - [ ] CHK-142 [P2] Parent packet phase map and changelog entry refreshed at close. Evidence:
-- [ ] CHK-143 [P2] Knowledge transfer: heal decision tree and winner heuristic recorded for phases 002/003. Evidence:
+- [ ] CHK-143 [P2] Knowledge transfer: heal decision tree, winner heuristic, and the `near_duplicate_of` JSON format (for phase 003's save-time lane) recorded for phases 002/003. Evidence:
 <!-- /ANCHOR:docs-verify -->
 
 ---

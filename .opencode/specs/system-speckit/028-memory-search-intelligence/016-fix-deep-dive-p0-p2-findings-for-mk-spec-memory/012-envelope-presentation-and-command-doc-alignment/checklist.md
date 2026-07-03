@@ -59,7 +59,7 @@ FAILURE MODES:
 <!-- ANCHOR:pre-impl -->
 ## Pre-Implementation
 
-- [ ] CHK-001 [P0] Requirements documented in spec.md (REQ-001..REQ-010 + acceptance scenarios 1-6)
+- [ ] CHK-001 [P0] Requirements documented in spec.md (REQ-001..REQ-012 + acceptance scenarios 1-6)
 - [ ] CHK-002 [P0] Technical approach defined in plan.md (FIX ADDENDUM surfaces table, inventories, cursor invariant)
 - [ ] CHK-003 [P1] Dependencies identified and available (phase 011 surface trust noted; no schema deps)
 - [ ] CHK-004 [P0] Baseline captured BEFORE first code change: live envelope byte/token breakdown (per-block incl. duplicated casings, `meta.tokenCount` vs actual) + vitest baseline (T001-T002, REQ-001)
@@ -90,6 +90,7 @@ FAILURE MODES:
 - [ ] CHK-026 [P1] `--format text` renders one row per result + explicit omission notice; no silent drops (REQ-007, SC-003)
 - [ ] CHK-027 [P0] Command-doc re-audit battery returns zero drifted claims across BOTH trees (REQ-008, SC-002)
 - [ ] CHK-028 [P1] Parity script: negative test detects injected byte diff; green run on aligned trees; wiring merged (REQ-009)
+- [ ] CHK-029 [P1] Routed-in findings verified: `memory_context` surfaces the delegated search envelope as structured top-level `data` — fidelity fields (`requestQuality`/`citationPolicy`/`envelopeRender`) reachable, no JSON-in-string double-encode (REQ-011) — AND resume-ladder `fingerprintStatus` is truthful when `fingerprintExpected` is null (REQ-012)
 <!-- /ANCHOR:testing -->
 
 ---
@@ -145,7 +146,7 @@ FAILURE MODES:
 | Category | Total | Verified |
 |----------|-------|----------|
 | P0 Items | 17 | 0/17 |
-| P1 Items | 16 | 0/16 |
+| P1 Items | 17 | 0/17 |
 | P2 Items | 1 | 0/1 |
 
 **Verification Date**: Pending — set when Phase 3 verification runs

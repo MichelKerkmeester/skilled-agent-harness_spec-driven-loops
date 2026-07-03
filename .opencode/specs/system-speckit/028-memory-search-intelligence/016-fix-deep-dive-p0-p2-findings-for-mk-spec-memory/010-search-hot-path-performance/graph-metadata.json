@@ -41,20 +41,50 @@
     "importance_tier": "normal",
     "status": "draft",
     "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md",
       "lib/search/rerank/retrieval-rescue.ts",
       "lib/search/retrieval-directives.ts",
       "lib/search/hybrid-search.ts",
       "lib/storage/incremental-index.ts",
       "handlers/memory-index.ts",
       "lib/search/folder-discovery.ts",
-      "handlers/memory-index-alias.ts",
-      "spec.md",
-      "plan.md",
-      "tasks.md",
-      "checklist.md",
-      "implementation-summary.md"
+      "handlers/memory-index-alias.ts"
     ],
     "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
       {
         "name": "retrieval-rescue.ts",
         "kind": "code",
@@ -95,36 +125,6 @@
         "name": "memory-index-alias.ts",
         "kind": "code",
         "path": "handlers/memory-index-alias.ts",
-        "source": "derived"
-      },
-      {
-        "name": "spec.md",
-        "kind": "doc",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "plan.md",
-        "kind": "doc",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "tasks.md",
-        "kind": "doc",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -202,7 +202,7 @@
     ],
     "causal_summary": "Warm `memorysearch` takes 2.0-2.9s at 33,101 rows (stage1 0.5-1.5s, stage2 ~1.2s constant even for 15-19 candidates), with +3.9s on the first-call auto-surface, ~15s cold runtime init, and ~492MB RSS at 9s uptime (deep-dive report §1/§4, measured 🟢 2026-07-03)",
     "created_at": "2026-07-03T09:44:24Z",
-    "last_save_at": "2026-07-03T10:09:10.509Z",
+    "last_save_at": "2026-07-03T12:00:38.962Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -212,12 +212,12 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:ef8e5f3bd3fb86888fae2f1767b948f181f7b096ec09512aefc6f4f04fbea05a",
+    "source_fingerprint": "sha256:afb6ec7408ba6c924052ad495c2d01b2bb1462711f75ab3c72a1b86f3cf87d72",
     "source_doc_hashes": {
-      "spec.md": "d6a0f4622722d5ff87db9149e5b92419fd8c4a2a751982ee735a6d95d6864ffd",
-      "plan.md": "e94a03e9839930723f3e4510d68c41675535c41ee1c3b0d66257ba7b692ffc12",
-      "tasks.md": "f0d2567c58912abfaa8cf69598d8c5e02d50ad89a696606bb6d3c6e5da54d725",
-      "checklist.md": "f862f242b0e31e6dbefc0cf3d235f1b281ff5ff54885346d68b05d4e53e14015",
+      "spec.md": "fc651a885e3a58979c632e89cd0aeac04920dad81cd96a0b34a37933345a7184",
+      "plan.md": "cdff37c65b1e83228c474ecb01c8e7597a70a4f9c62e0900b1e766c0d2a278eb",
+      "tasks.md": "cc8aec02ad3abdf70d82751dcc87d8e0bc38ce284485ab71fa5d4449bea8079e",
+      "checklist.md": "7f6b8db6dbcba23b377f2b078e876e5b5805469bf40904b4827cd205d1234a48",
       "implementation-summary.md": "b1c9f09e1b52f3329326826141d1f4ee5f225daa94d7886dd026fb28e03428fc"
     },
     "last_active_child_id": null,

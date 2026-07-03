@@ -83,7 +83,7 @@ FAILURE MODES:
 - [ ] CHK-021 [P0] Manual testing complete: resume-style prompt reproduction + latency measurement against the production corpus
 - [ ] CHK-022 [P1] Edge cases tested: apostrophe/multi-line phrases, stopword-only prompts, phase-child scope, stale/unchanged mtime cache states
 - [ ] CHK-023 [P1] Error scenarios validated: deleted-memory FK cleanup, permanently-failing backfill rows, interrupted migration resume
-- [ ] CHK-024 [P0] Success gate: warm memory_match_triggers p50 < 300ms, measured over 10+ warm calls (baseline 2.3s warm / 17s cold from T002)
+- [ ] CHK-024 [P0] Success gate: warm memory_match_triggers p50 < 300ms, measured over 10+ warm calls UNDER write/scan churn (clearCache()-firing saves interleaved, not quiescent) (baseline 2.3s warm / 17s cold from T002)
 - [ ] CHK-025 [P0] Success gate: resume-style prompts surface active-packet docs; 0 z_archive rows via single-word matches (baseline 5/5)
 - [ ] CHK-026 [P1] Success gate: single-word share of phrase occurrences materially below the 45% baseline after regeneration; write-side guards prevent reintroduction
 - [ ] CHK-027 [P1] Success gate: constitutional tier audited at 20 distinct rows; sandbox row id 38797 purged; write guard test passes

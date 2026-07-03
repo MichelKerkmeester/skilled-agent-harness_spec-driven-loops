@@ -56,7 +56,7 @@ FAILURE MODES:
 | **Testing** | vitest (unit + integration), fixed-query benchmark harness, `validate.sh --strict` |
 
 ### Overview
-Part 1 makes eval measure production: `handlers/eval-reporting.ts` stops calling the legacy `hybridSearch()` monolith (which carries its own co-activation and truncation) and routes through `executePipeline` with prod-mode config; the ablation DB swap-and-restore is fixed so `graphSearchFn` never stays bound to a closed connection, and the eval DB path stops depending on cwd. Part 2 runs a flag-gated A/B/C benchmark (Option A lexical dominance as contract, Option B bounded additive rescue, Option C floor-below-threshold) on that parity harness, scores each variant with prod-mode completeRecall@3 (render-floor K=3 truncation law), and records the accepted contract in ADR-002, the signal-ordering contract test, stage2 docs, and the dead-battery disposition.
+Part 1 makes eval measure production: `handlers/eval-reporting.ts` stops calling the legacy `hybridSearch()` monolith (which carries its own co-activation and truncation) and routes through `executePipeline` with prod-mode config; the ablation DB swap-and-restore is fixed so `graphSearchFn` never stays bound to a closed connection, and the eval DB path stops depending on cwd. Part 2 runs a flag-gated A/B/C benchmark (Option A lexical dominance as contract, Option B bounded additive rescue, Option C floor-below-threshold) on that parity harness, scores each variant with MRR and rank-position deltas as the gated discriminators (prod-mode completeRecall@3 held as a no-regression floor since it saturates at the render-floor K=3), and records the accepted contract in ADR-002, the signal-ordering contract test, stage2 docs, and the dead-surface disposition.
 <!-- /ANCHOR:summary -->
 
 ---
@@ -87,9 +87,9 @@ Decision-gated remediation on a staged retrieval pipeline (candidate-gen -> fusi
 - **`lib/search/pipeline/` (executePipeline)**: production four-stage pipeline; the only composition eval is allowed to measure after Part 1.
 - **`lib/search/pipeline/stage2-fusion.ts`**: 13-step signal application stack (documented at lines 21 and 1011); rescue apply site at line 1425; validation multiplier at line 1470 (the only survivor today).
 - **`lib/search/rerank/retrieval-rescue.ts`**: produces the `0.03*base + 0.78*lexicalOverlap` blend (line 210), default ON, 026 lexical-grounding-floor lineage.
-- **`handlers/eval-reporting.ts`**: eval + ablation harness; currently exercises legacy `lib/search/hybrid-search.ts` monolith; DB swap at line 138.
-- **`core/db-state.ts` (rebindDatabaseConsumers)**: consumer rebinding on DB swap/restore; currently reuses the stale `graphSearchFn` reference.
-- **Dead battery**: `lib/scoring/composite-scoring.ts`, `lib/scoring/interference-scoring.ts`, `lib/cognitive/attention-decay.ts`; zero production callers, O(folder^2) interference refresh on the write path.
+- **`handlers/eval-reporting.ts`**: eval + ablation harness; currently exercises legacy `lib/search/hybrid-search.ts` monolith; `withAblationDb` swaps the process-global `vectorIndex` DB at lines 150-189 (`closeDb`/`initializeDb`); ablation channel toggles map via `toHybridSearchFlags` to legacy hybrid flags, not `executePipeline` config.
+- **`core/db-state.ts` (rebindDatabaseConsumers)**: consumer rebinding on DB swap/restore; reuses the module-level `graphSearchFnRef` (`:102`, `:166`) instead of rebuilding the graph fn for the swapped connection.
+- **Dead ranking surface + live write tax**: `composite-scoring.ts`'s five-factor RANKING functions (`applyCompositeScoring`/`calculateCompositeScore`) have zero production ranking callers (dead), but the module also exports sub-factor helpers that the LIVE `attention-decay.ts` imports; `interference-scoring.ts` `computeInterferenceScoresBatch` is LIVE on the write path (`vector-index-store.ts` `refresh_interference_scores_for_folder`, the O(folder^2) tax); `attention-decay.ts` is LIVE (`memory-triggers.ts:626` `activateMemory`, Gate-1) and MUST survive. The dead surface is the composite ranking functions plus the interference write-path compute, not the three modules wholesale.
 
 ### Data Flow
 Query -> stage1 candidate generation (hybrid/vector/multi-concept channels) -> stage2 fusion applies 13 ordered signal steps, then rescue overwrites the blended score at :1425, then the validation multiplier at :1470 -> stage3 MMR/MPAB -> stage4 filter/annotate -> render floor K=3 (truncation law). Eval must traverse this exact flow; today it forks at a legacy monolith before stage2 semantics apply.
@@ -104,14 +104,16 @@ Use this section when `research_intent=fix_bug`, when planning from a deep-revie
 
 | Surface | Current Role | Action | Verification |
 |---------|--------------|--------|--------------|
-| `handlers/eval-reporting.ts` (producer) | Eval/ablation harness calling legacy `hybridSearch()` with its own co-activation + truncation; DB swap at :138 | update: route through `executePipeline` prod-mode; restore-rebind ordering; cwd-independent DB path | Parity assertion test; `rg -n "hybridSearch" mcp_server/handlers/` returns no eval-harness import |
+| `handlers/eval-reporting.ts` (producer) | Eval/ablation harness calling legacy `hybridSearch()` with its own co-activation + truncation; global `vectorIndex` DB swap in `withAblationDb` :150-189; ablation channel toggles via `toHybridSearchFlags` | update: route through `executePipeline` prod-mode; map `ALL_CHANNELS` toggles onto pipeline channel-enable config; mutex/quiesce the global DB swap so concurrent prod searches never read the eval DB; cwd-independent DB path | Parity assertion + channel-mapping test; concurrent-search isolation test; `rg -n "hybridSearch" mcp_server/handlers/` returns no eval-harness import |
 | `lib/search/hybrid-search.ts` (legacy monolith) | Still a production consumer surface elsewhere; source of divergent eval semantics | unchanged here (phase 007/010 own its bug fixes); eval merely stops calling it | Consumer inventory grep recorded before/after; monolith tests still green |
-| `core/db-state.ts` `rebindDatabaseConsumers` (policy/helper) | Rebinds consumers on swap; reuses stale `graphSearchFn` closure over closed startup connection | update: rebuild graph-channel binding on restore | Ablation round-trip integration test: post-restore graph query serves production DB |
+| `core/db-state.ts` `rebindDatabaseConsumers` (policy/helper) | Reuses the module-level `graphSearchFnRef` (:102, :166), leaving `graphSearchFn` closed over the old closed connection after a swap | update: rebuild `graphSearchFn` per-connection via `createUnifiedGraphSearchFn(newDb)` on restore, not the module-level ref | Ablation round-trip integration test: post-restore graph query serves production DB from a freshly built graph fn |
 | Eval DB path resolution (path handling) | Resolved relative to cwd | update: resolve against package/repo root | Two-cwd test evidence (repo root + unrelated dir resolve same absolute path) |
 | `lib/search/rerank/retrieval-rescue.ts` (producer) | Emits `0.03*base + 0.78*lexicalOverlap` for ALL rows (:210), default ON | decision-dependent update: A document-as-contract; B bounded additive delta / injected-rows-only; C floor below base-score threshold | Unit tests per accepted semantics; A/B/C benchmark deltas |
 | `lib/search/pipeline/stage2-fusion.ts` (consumer + docs) | Applies rescue at :1425 after the 13-step stack; validation multiplier :1470 runs after; header (:21, :1011) claims stack authority | update: apply-site semantics per ADR-002; header rewritten to accepted contract | Signal-ordering contract test; doc-vs-behavior checklist row |
 | `lib/search/pipeline/README.md` (docs) | Describes stage2 as fusion + retrieval signals without the overwrite | update: state the accepted ranking contract | Doc review with file:line evidence (CHK-043) |
-| `lib/scoring/composite-scoring.ts`, `lib/scoring/interference-scoring.ts`, `lib/cognitive/attention-decay.ts` (dead battery) | Zero production callers; interference O(folder^2) Jaccard on every write feeds a column nothing reads; `memory-search.ts:711` hardcodes `interferenceApplied:false` | wire or delete per ADR-003 (consistent with ADR-002 outcome) | Caller inventory grep pre/post; write-path no longer computes unread columns; vitest gate green |
+| `lib/scoring/composite-scoring.ts` five-factor ranking surface (`applyCompositeScoring`/`calculateCompositeScore`) | Zero production ranking callers (dead); module also exports sub-factor helpers used by the LIVE `attention-decay.ts` | wire or delete the ranking surface per ADR-003; keep/move the sub-factor helpers so the Gate-1 path compiles | Caller inventory grep pre/post; vitest gate green; `attention-decay.ts` still imports what it needs |
+| `lib/scoring/interference-scoring.ts` + `lib/search/vector-index-store.ts` (`refresh_interference_scores_for_folder`) | LIVE write path: `computeInterferenceScoresBatch` runs O(folder^2) Jaccard on insert/update, feeding an `interference_score` column ranking never applies (`memory-search.ts:711` `interferenceApplied:false`) | wire or delete the write-path compute per ADR-003 (this IS the O(folder^2) tax; NOT dead code) | Caller inventory grep pre/post; write-path no longer computes unread columns; write-cost delta measured (CHK-112) |
+| `lib/cognitive/attention-decay.ts` (LIVE, Gate-1) | `activateMemory` called at `memory-triggers.ts:626` on the Gate-1 hot path; imports composite sub-factor helpers | preserve `activateMemory`; sever only its dependency on a deleted composite ranking surface. NOT deleted | `rg` shows `memory-triggers.ts:626` still resolves `activateMemory`; Gate-1 trigger test green |
 | Rescue-dominance tests (tests) | Encode the 026 overwrite as intended behavior | update per accepted option (A: keep + rename intent; B/C: assert new semantics) | Test suite diff reviewed; no test asserts a rejected contract |
 | Search feature flags (config/policy) | Rescue default ON; no variant gating | update: add flag-gated B and C variants for the benchmark; defaults unchanged until ADR-002 Accepted | Flag defaults asserted in test; flags doc row |
 
@@ -130,12 +132,12 @@ Required inventories:
 ### Phase 1: Setup (baseline + verify-first)
 - [ ] Capture vitest whole-gate baseline and current eval/ablation output (labeled pre-parity legacy numbers)
 - [ ] Pin the fixed benchmark query set with gold expectations (incl. zero-lexical and 026-class queries)
-- [ ] Verify-first passes for all five 🟡/contract findings (rescue overwrite mechanics, eval monolith divergence, DB-swap closed connection, cwd-dependent path, dead battery)
+- [ ] Verify-first passes for all five 🟡/contract findings (rescue overwrite mechanics, eval monolith divergence, DB-swap closed connection, cwd-dependent path, precise live/dead surface of the composite+interference+attention-decay modules)
 
 ### Phase 2: Core Implementation
-- [ ] Part 1 eval parity: `executePipeline` routing with prod-mode truncation; restore-rebind fix; cwd-independent eval DB path; parity assertion test
-- [ ] Part 2 decision: flag-gated variants B and C; A/B/C benchmark with prod-mode completeRecall@3; ADR-002 flipped to Accepted with deltas
-- [ ] Contract encoding: signal-ordering contract test; stage2 header + pipeline README alignment; dead-battery disposition per ADR-003
+- [ ] Part 1 eval parity: `executePipeline` routing with prod-mode truncation + `ALL_CHANNELS`->pipeline channel-config mapping; per-connection `graphSearchFn` rebuild + mutex/quiesce around the global DB swap; cwd-independent eval DB path; parity assertion test
+- [ ] Part 2 decision: flag-gated variants B and C; A/B/C benchmark gated on MRR + rank-position deltas (completeRecall@3 as no-regression floor); ADR-002 flipped to Accepted with deltas
+- [ ] Contract encoding: signal-ordering contract test; stage2 header + pipeline README alignment; dead-surface disposition per ADR-003 (composite ranking surface + interference write-path compute; attention-decay preserved)
 
 ### Phase 3: Verification
 - [ ] Whole vitest gate re-run; delta vs Phase 1 baseline reported (baseline-before-delta rule)
@@ -153,7 +155,7 @@ Required inventories:
 | Unit | Rescue blend semantics per accepted option; eval DB path resolution; rebind rebuild | vitest |
 | Integration | Parity assertion (eval composition == production composition); ablation swap-restore round-trip incl. graph channel | vitest |
 | Contract | Signal-ordering contract: ranking-relevant steps post-rescue or folded in, per ADR-002 | vitest (stays in gate permanently) |
-| Benchmark | A/B/C on fixed query set; prod-mode completeRecall@3 + deltas; secondary MRR + latency recorded (not gated) | Parity harness via `executePipeline` |
+| Benchmark | A/B/C on fixed query set; MRR + rank-position deltas as the gated discriminators, prod-mode completeRecall@3 held as a no-regression floor (it saturates at K=3), latency recorded but NOT gated | Parity harness via `executePipeline` |
 | Regression | Whole vitest gate before/after with explicit delta table | vitest + baseline artifacts |
 <!-- /ANCHOR:testing -->
 

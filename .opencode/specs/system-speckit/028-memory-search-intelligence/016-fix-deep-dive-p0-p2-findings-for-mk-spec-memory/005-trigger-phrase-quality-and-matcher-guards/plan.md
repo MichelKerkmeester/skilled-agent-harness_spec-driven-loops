@@ -33,7 +33,7 @@ _memory:
 <!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2 -->
 # Implementation Plan: Phase 5: trigger-phrase-quality-and-matcher-guards
 
-<!-- SPECKIT_LEVEL: 1 -->
+<!-- SPECKIT_LEVEL: 2 -->
 <!--
 SELF-CHECK:
 - Confirm the plan names the simplest viable approach, affected surfaces, and verification path.
@@ -87,11 +87,11 @@ Existing modular MCP server: handlers own tool surfaces, lib/parsing owns extrac
 ### Key Components
 - **lib/parsing/memory-parser.ts**: Frontmatter trigger extraction (write-side producer; apostrophe/multi-line fix + parse-time dedupe/cap).
 - **handlers/memory-save.ts**: Quality-loop auto-fix application (merge-not-replace at line 537 area) and the constitutional write guard.
-- **lib/parsing/trigger-matcher.ts**: Trigger cache loader + matcher (stopword/IDF guard, tier exclusion, (path, mtime) cache replacing readCanonicalSpecDocContent full re-reads at line 333 area).
+- **lib/parsing/trigger-matcher.ts**: Trigger cache loader + matcher (stopword/IDF guard, tier exclusion, (path, mtime) cache replacing readCanonicalSpecDocContent full re-reads at line 333 area). INVARIANT: the (path, mtime) extraction cache is a SEPARATE store from the TTL trigger cache — `clearCache()` (:583, fired on every write by `mutation-hooks.ts:132` and `chunking-orchestrator.ts:472/584/640`) and the 60s `CACHE_TTL_MS` expiry (:489) must NOT wipe it, or the warm path pays the full disk re-read the 2.3s baseline measures.
 - **handlers/memory-triggers.ts**: memory_match_triggers tool (specFolder prefix scope at lines 449/269; batched id IN hydration).
 - **lib/search/trigger-embedding-backfill.ts**: Backfill loop (attempt cap/backoff, FK cleanup).
 - **handlers/quality-loop.ts**: Existing extractor, reused unchanged as the regeneration engine.
-- **New migration**: Batched, resumable regeneration of legacy word-soup rows + constitutional dedup/purge.
+- **New migration**: Batched, resumable regeneration of legacy word-soup rows (selector: title-word-soup single-token rows predating the write-side guards; MERGE-not-replace with existing phrases to preserve any user-authored triggers; SKIP z_archive/archived + constitutional rows) + constitutional dedup/purge.
 
 ### Data Flow
 Save: doc frontmatter -> memory-parser extraction -> quality-loop auto-fix (merge) -> index rows + phrase rows. Match: user prompt -> memory_match_triggers -> trigger cache (loader applies active-row predicate; (path, mtime) cache feeds phrase extraction) -> guarded matching (stopword/min-length/IDF, per-memory dedup) -> scoped filter (prefix semantics) -> batched hydration -> matches.
@@ -110,7 +110,7 @@ Use this section when `research_intent=fix_bug`, when planning from a deep-revie
 | handlers/memory-save.ts (producer/policy) | Applies quality-loop fixedTriggerPhrases by replacement at :537; writes constitutional rows without source-path guard | update | Regression test: user triggers survive auto-fix; guard test rejects /tmp constitutional save |
 | handlers/quality-loop.ts (helper) | Trigger extractor used by save-time auto-fix | unchanged (reused by regeneration migration) | Extractor output sampled on legacy rows in T001 before migration is written |
 | lib/parsing/trigger-matcher.ts (consumer/policy) | Cache loader (no tier exclusion) + matcher (no single-token guard); full-corpus disk re-read per TTL at :333 | update | Latency budget test + goldens; cold/warm cache tests; exclusion test with deprecated/archived rows |
-| handlers/memory-triggers.ts (consumer/public response) | match_triggers tool; specFolder exact match at :449/:269; per-candidate hydration | update | Scope matrix test (none/exact/parent-prefix/foreign); hydration batch assertion |
+| handlers/memory-triggers.ts (consumer/public response) | match_triggers tool; specFolder exact match `row.spec_folder !== specFolder` at :450/:269 (fail-closed at :449); per-candidate hydration | update to the shared path-segment-aware prefix idiom `folder === specFolder \|\| folder.startsWith(specFolder + '/')` (hybrid-search.ts:571) / `specFolderLikePattern()` (vector-index-types.ts:34), preserving fail-closed | Scope matrix test (none/exact/parent-prefix/foreign, incl. sibling-prefix "028-foo" vs "028-foobar"); hydration batch assertion |
 | lib/search/trigger-embedding-backfill.ts (producer) | Re-pends failed phrase rows forever; no FK cleanup | update | trigger-backfill-resume.vitest.ts extended: capped failure terminates; orphan FK rows removed |
 | Constitutional priming surface (consumer) | Injects constitutional rows (70 rows / 20 distinct incl. sandbox id 38797) into session priming | update via data migration + write guard | SQL audit post-migration: 20 distinct, id 38797 gone |
 | Phase 002 shared active-row predicate (shared policy) | Owns tier/tombstone exclusion semantics | not a consumer yet - this phase consumes it in the cache loader, never forks it | `rg -n "activeRowPredicate\|deleted_at IS NULL" mcp_server/lib` confirms single definition once 002 lands |
@@ -155,9 +155,9 @@ Required inventories:
 |-----------|-------|-------|
 | Unit | Parser (apostrophe/multi-line/dedupe/cap), auto-fix merge, single-token guard predicate, prefix scope filter, cache keying | vitest |
 | Integration | match_triggers end-to-end warm/cold; cache-loader exclusion; backfill termination; migration dry-run on DB copy | vitest + existing integration-trigger-pipeline suite |
-| Manual | Resume-style prompt reproduction against production corpus; latency measurement (p50 over repeated warm calls); constitutional priming audit | CLI (spec-memory.cjs) + SQL audit queries |
+| Manual | Resume-style prompt reproduction against production corpus; latency measurement (p50 over repeated warm calls with `clearCache()`-firing saves interleaved — under-churn, not quiescent); constitutional priming audit | CLI (spec-memory.cjs) + SQL audit queries |
 
-Baseline-before-delta is mandatory: T002 captures the full vitest trigger-suite results, warm/cold match_triggers latency (report baseline 2.3s warm / 17s cold, re-measured locally), the junk-match reproduction (resume prompt -> 5/5 z_archive), the 45% single-word corpus share, and the constitutional row counts BEFORE any change. T017 re-runs the WHOLE gate and reports the delta against those exact numbers - no "no regressions" claim without the baseline comparison.
+Baseline-before-delta is mandatory: T002 captures the full vitest trigger-suite results, warm/cold match_triggers latency (report baseline 2.3s warm / 17s cold, re-measured locally), the junk-match reproduction (resume prompt -> 5/5 z_archive), the 45% single-word corpus share, and the constitutional row counts BEFORE any change. Warm p50 is measured UNDER write/scan churn (`clearCache()`-firing saves interleaved between calls), never a quiescent loop — a quiescent measurement passes while production stays slow because `clearCache()` fires on every write. T017 re-runs the WHOLE gate and reports the delta against those exact numbers - no "no regressions" claim without the baseline comparison.
 <!-- /ANCHOR:testing -->
 
 ---

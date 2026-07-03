@@ -83,7 +83,7 @@ Mark the task `[B]` with the blocking reason inline, surface it in the session s
 
 - [ ] T001 Capture baseline live counts to scratch/ via read-only SQL: embedding_status split (18,833 success / 8,761 pending / 4,247 failed / 1,260 retry), 367 success-without-vector, 27,706 empty embedding_model, spelling counts (1,405 vs 3,990) <!-- source: report §1 + ledger L3, all 🟢; baseline-before-delta rule -->
 - [ ] T002 [P] Capture the FULL vitest gate baseline for mcp_server suites (record pass/fail/skip counts, incl. currently skipped chunking update-path tests) <!-- source: program cross-cutting rule; regression-baseline-and-delta -->
-- [ ] T003 🟡 VERIFY-FIRST: confirm drain writes only `vec_memories`, never the active `vec_<dim>` shard (.opencode/skills/system-spec-kit/mcp_server/lib/providers/retry-manager.ts:747-765) <!-- finding: report §3 #16 | ledger Agent F P1 | class: cross-consumer -->
+- [ ] T003 🟡 VERIFY-FIRST: confirm drain writes only `vec_memories`, never the active `vec_<dim>` shard (.opencode/skills/system-spec-kit/mcp_server/lib/providers/retry-manager.ts:747-765); ALSO assert a non-default `vec_<dim>` shard is active (prod = 768 shard) before trusting the REQ-002 tests, because `activeDimVectorSource` returns null under the DEFAULT embedder (vector-index-mutations.ts:75-79) so `writeActiveVectorPayload` writes only `vec_memories` there and the REQ-002 tests false-pass under the default embedder <!-- finding: report §3 #16 | ledger Agent F P1 | class: cross-consumer | precondition: non-default dim shard active -->
 - [ ] T004 🟡 VERIFY-FIRST: confirm drain embeds different weighted text than the sync path AND poisons the shared embedding cache under the same key <!-- finding: ledger Agent F P2 x2 | class: class-of-bug -->
 - [ ] T005 🟡 [P] VERIFY-FIRST: confirm rows at max retries are invisible to BOTH scan reindex and the retry queue (24h dead-end) <!-- finding: ledger Agent F P2 | class: instance-only until disproven -->
 - [ ] T006 🟡 [P] VERIFY-FIRST: confirm the 'auto' embedder shard-repair sentinel counts `vec_<dim>` while writes go to `vec_memories`, so it never clears <!-- finding: ledger Agent F contract | class: cross-consumer -->
@@ -100,7 +100,7 @@ Mark the task `[B]` with the blocking reason inline, surface it in the session s
 - [ ] T010 REQ-001 Fix safe-swap self-delete: append-only staging or oldChildIds = old minus new (.opencode/skills/system-spec-kit/mcp_server/handlers/chunking-orchestrator.ts:488-553) <!-- finding: report §3 P0 #3 🟢 | class: algorithmic -->
 - [ ] T011 REQ-001 Add parent-aware dedup lookup feeding the swap (.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-store.ts:1857-1873) <!-- finding: ledger L9 🟢 | class: algorithmic -->
 - [ ] T012 REQ-001 Un-skip and extend the chunked update-path tests; add adversarial re-save-of-chunked-memory test <!-- finding: report §3 #3 remediation contract -->
-- [ ] T013 REQ-002 Route drain writes through `writeActiveVectorPayload` so drained rows land in the active `vec_<dim>` shard (.opencode/skills/system-spec-kit/mcp_server/lib/providers/retry-manager.ts:747-765; symbol lives in mcp_server/lib/search/vector-index-mutations.ts) <!-- finding: report §3 #16 | blocked-by: T003 confirmation -->
+- [ ] T013 REQ-002 Route drain writes through `writeActiveVectorPayload` so drained rows land in the active `vec_<dim>` shard (.opencode/skills/system-spec-kit/mcp_server/lib/providers/retry-manager.ts:747-765; symbol lives in mcp_server/lib/search/vector-index-mutations.ts); the REQ-002 test must run with a non-default `vec_<dim>` shard active (T003 precondition) or it false-passes under the default embedder <!-- finding: report §3 #16 | blocked-by: T003 confirmation -->
 - [ ] T014 REQ-007 Drain embeds the same weighted text as the sync path; embedding cache key includes the embedded-text projection; add poisoning regression test <!-- finding: ledger Agent F P2 x2 | blocked-by: T004 -->
 - [ ] T015 REQ-004 Scale drain batch/interval by queue size (default 5 rows/5min -> adaptive or raised; target: 8.7k backlog < 24h, no event-loop lag) <!-- finding: report §4 item 9 🟢(config)/🟡(rate) -->
 - [ ] T016 REQ-006 Retry@max dead-end rescue: rows at cap re-enter reconcile pickup or scan reindex <!-- finding: ledger Agent F P2 | blocked-by: T005 -->
@@ -111,6 +111,7 @@ Mark the task `[B]` with the blocking reason inline, surface it in the session s
 - [ ] T021 REQ-011 Scan lifecycle: scope-aware coalescing; cancelled scan does not arm cooldown; heartbeat cannot resurrect a released lease (files per T007) <!-- finding: ledger Agent F P2 x3 | blocked-by: T007 -->
 - [ ] T022 REQ-012 Fix pendingVectors undercount on updated files <!-- finding: decomposition §004 (Agent F P2) | blocked-by: T008 -->
 - [ ] T023 REQ-005 Execute the ADR-001 accepted option: EITHER wire `indexChunkedMemoryFile` into the scan path for over-threshold docs behind a flag (today's only call site: mcp_server/handlers/memory-save.ts:2511) OR write the single-vector truncation policy + FTS-only tail coverage documentation; flip ADR-001 to Accepted with the T009 spike evidence <!-- finding: decomposition §004 decision | blocked-by: T009, T010-T012 -->
+- [ ] T030 REQ-013 (Battery D) Fix the stale-delete cascade double-count: delete children before parents (sort stale ids DESC) or treat an already-gone row as a successful delete, so cascade-removed chunk children stop inflating `failed` (.opencode/skills/system-spec-kit/mcp_server/handlers/memory-index.ts:596-658; cascade at .opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:1927,3742) <!-- finding: Agent F P2 via plan-review Systemic #4 | class: algorithmic | scan-lifecycle scope -->
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -121,7 +122,7 @@ Mark the task `[B]` with the blocking reason inline, surface it in the session s
 - [ ] T024 Re-measure live counts vs T001 baseline: SC-001 success-row == vector-row (367 -> 0), SC-004 embedding_model empties == 0 with one spelling; enumerate the embed-path x shard x row-state matrix rows from the FIX ADDENDUM <!-- gates: decomposition §004 -->
 - [ ] T025 Measure drain throughput over a bounded window; project full-drain time for the pending backlog; assert < 24h (SC-002) and no event-loop lag warnings (NFR-P02)
 - [ ] T026 SC-003 check per ADR-001 outcome: Option A - query the tail of a >50KB doc and confirm a vector-channel hit; Option B - confirm the policy doc states the truncation limit and FTS-only tail coverage
-- [ ] T027 Run the adversarial scan-lifecycle tests (scoped-scan-during-scan, cancel-then-scan, lease-release-heartbeat) and the safe-swap re-save test; all green
+- [ ] T027 Run the adversarial scan-lifecycle tests (scoped-scan-during-scan, cancel-then-scan, lease-release-heartbeat), the safe-swap re-save test, and the stale-delete cascade test (delete a chunked parent + its children, assert failed==0 for cascade-removed rows, REQ-013); all green
 - [ ] T028 Re-run the FULL vitest gate; compare to T002 baseline; report the numeric delta (SC-005); no unexplained regressions
 - [ ] T029 Sync docs: checklist.md evidence filled, spec/plan/tasks statuses reconciled, ADR-001 Accepted recorded; clean scratch/; run validate.sh --strict on this folder (exit 0)
 <!-- /ANCHOR:phase-3 -->
@@ -142,7 +143,7 @@ Mark the task `[B]` with the blocking reason inline, surface it in the session s
 <!-- ANCHOR:cross-refs -->
 ## Cross-References
 
-- **Specification**: See `spec.md` (REQ-001..REQ-012, SC-001..SC-005)
+- **Specification**: See `spec.md` (REQ-001..REQ-013, SC-001..SC-005)
 - **Plan**: See `plan.md` (batteries, FIX ADDENDUM inventories, rollback)
 - **Decision Record**: See `decision-record.md` (ADR-001)
 - **Sources**: `../research/phase-decomposition.md` §004; `../research/deep-dive-report.md` §1, §3 (#3, #16), §4 item 9; `../research/findings-ledger.md` L3, L9, Agent F

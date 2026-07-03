@@ -1,6 +1,6 @@
 ---
 title: "Tasks: Orphan Sweep Cursor and Corpus Identity Repair"
-description: "Granular tasks: confirm-before-fix verification for agent-verified findings, baseline capture, cursor persistence, checkpointed drain/heal/collapse migrations, reconcile hardening, and delta verification."
+description: "Granular tasks: confirm-before-fix verification for agent-verified findings, baseline capture, cursor persistence, count-verified drain plus checkpointed heal/collapse migrations, reconcile hardening (including failed-embedding coverage), and delta verification."
 trigger_phrases:
   - "orphan sweep cursor tasks"
   - "dead path row drain tasks"
@@ -59,7 +59,7 @@ Every task carries an inline metadata comment (`agent | deps | touched-files`) a
 - [ ] T001 Confirm `reconcileMoves` does not repoint `active_memory_projection`, and document the path-reuse unsearchable-row mechanism (report §3 #17 🟡; lib/storage/incremental-index.ts:547-700, UPDATE region at :657) <!-- agent: direct | deps: [] | touched-files: [scratch/t001-projection-confirm.md] -->
 - [ ] T002 Confirm relative stored paths are existence-checked without base resolution in `sweepOrphanIndexRows`, with a fixture row that would be falsely classified orphaned (decomposition §001, ledger agent F P2 🟡; lib/storage/incremental-index.ts:443-495) <!-- agent: direct | deps: [] | touched-files: [scratch/t002-path-resolution-confirm.md] -->
 - [ ] T003 Confirm `normalizeSpecFolderScope` silently rejects legacy `specs/`-prefixed scopes and inventory the `getSpecsBasePaths` vs `findSpecDocuments` discovery-surface mismatch (ledger agent F 🟡; handlers/memory-index-discovery.ts:97, lib/search/folder-discovery.ts:1304, lib/discovery/spec-document-finder.ts) <!-- agent: direct | deps: [] | touched-files: [scratch/t003-scope-discovery-confirm.md] -->
-- [ ] T004 Confirm `near_duplicate_of` population state (expected 0 rows, ledger L1 🟢) and inventory its consumers; sample live dup-hash pairs to ground the winner heuristic (OQ-1) (lib/storage/near-duplicate.ts:27-113) <!-- agent: direct | deps: [] | touched-files: [scratch/t004-near-dup-sample.md] -->
+- [ ] T004 Confirm `near_duplicate_of` state: population count (expected ~0 rows, ledger L1 🟢) AND the ACTIVE save-time writer at lib/storage/near-duplicate.ts:141-146 storing `{id, similarity, threshold}` JSON (`NearDuplicateHint`, :12-16) plus the reader `parseNearDuplicateHint` (:37-58) and response-builder.ts:386-390/:698-699; confirm the exact JSON shape the T021 backfill must match (not a bare integer). Sample live dup-hash pairs to ground the winner heuristic (OQ-1) (lib/storage/near-duplicate.ts, handlers/save/response-builder.ts) <!-- agent: direct | deps: [] | touched-files: [scratch/t004-near-dup-sample.md] -->
 - [ ] T005 Baseline capture: run the whole mcp_server vitest gate and record live-DB SQL counts (total rows, dead-path rows ~12,352, dup-hash parents 12,280, cross-prefix pairs 7,012, stale/current prefix rows 12,306/5,658, health orphanFiles figure) (cross-cutting rule: baseline-before-no-regressions; report §1) <!-- agent: direct | deps: [] | touched-files: [scratch/baseline-2026-07-03.md] -->
 - [ ] T006 Checkpoint create/restore drill on a DB copy; document the exact command sequence for the rollback runbook (REQ-004; handlers/checkpoints.ts, lib/storage/checkpoints.ts) <!-- agent: direct | deps: [] | touched-files: [scratch/t006-checkpoint-drill.md] -->
 <!-- /ANCHOR:phase-1 -->
@@ -80,24 +80,24 @@ Every task carries an inline metadata comment (`agent | deps | touched-files`) a
 - [ ] T010 Resolve relative stored paths against the base path before the existence check in `sweepOrphanIndexRows`; never resolve outside the workspace base (REQ-008; decomposition §001, ledger agent F P2; per T002 evidence) (lib/storage/incremental-index.ts:443-495) <!-- agent: direct | deps: [T002] | touched-files: [.opencode/skills/system-spec-kit/mcp_server/lib/storage/incremental-index.ts] -->
 - [ ] T011 Adversarial path tests: relative path, absolute path, `..` segments, case-variant prefix, symlinked base (NFR-S02) (mcp_server tests) <!-- agent: direct | deps: [T010] | touched-files: [.opencode/skills/system-spec-kit/mcp_server/tests/] -->
 
-### 2c. Dead-Path Row Drain (plan Phase 4, checkpointed)
+### 2c. Dead-Path Row Drain (plan Phase 4, count-verified)
 
-- [ ] T012 `checkpoint_create` before the drain; record checkpoint id in implementation-summary.md (REQ-004) (handlers/checkpoints.ts) <!-- agent: direct | deps: [T006, T009, T011] | touched-files: [implementation-summary.md] -->
+- [ ] T012 Record the pre-drain baseline dead-row count in implementation-summary.md and establish the file-absent delete guard for restore-by-count-verification; NO pre-drain checkpoint (the drain spans ~24h of scheduled scans with the watcher live, so one checkpoint restore would lose a day of legitimate writes) (REQ-002; REQ-004) <!-- agent: direct | deps: [T009, T011] | touched-files: [implementation-summary.md] -->
 - [ ] T013 Dry-run orphan classification over the full id range; compare count against the T005 baseline before deleting anything (report §1: 12,352 expected class) <!-- agent: direct | deps: [T012] | touched-files: [scratch/t013-drain-dryrun.md] -->
-- [ ] T014 Drain dead-path rows via the advancing sweep; verify rows citing nonexistent files = 0 by SQL (REQ-002; Chain B; decomposition §001 success gate) <!-- agent: direct | deps: [T013] | touched-files: [scratch/t014-drain-verify.md] -->
+- [ ] T014 Drain dead-path rows via the advancing sweep, deleting ONLY base-resolved-absent rows; reconcile the deletion count against the T012/T013 baseline (restore-by-count-verification); verify rows citing nonexistent files = 0 by SQL (REQ-002; Chain B; decomposition §001 success gate) <!-- agent: direct | deps: [T013] | touched-files: [scratch/t014-drain-verify.md] -->
 
 ### 2d. Track-Prefix Identity Heal (plan Phase 5, checkpointed, separately revertible)
 
-- [ ] T015 `checkpoint_create` before the heal; record checkpoint id (REQ-004) (handlers/checkpoints.ts) <!-- agent: direct | deps: [T014] | touched-files: [implementation-summary.md] -->
+- [ ] T015 `checkpoint_create` before the heal (bounded, checkpoint-clean migration); record checkpoint id (REQ-004; checkpoint drill T006 gates this first checkpointed step) (handlers/checkpoints.ts) <!-- agent: direct | deps: [T006, T014] | touched-files: [implementation-summary.md] -->
 - [ ] T016 Enumerate the heal decision-tree matrix (stored prefix x target exists x current twin exists x chunked child) with classification SQL per row; commit counts before mutation (Chain A step 6; plan.md affected-surfaces matrix axes) <!-- agent: direct | deps: [T015] | touched-files: [scratch/t016-heal-matrix.md] -->
 - [ ] T017 Identity-heal migration: chunked idempotent repoint of `system-spec-kit/*` rows to `system-speckit/*` where target exists and no current twin; collision cases routed to sub-phase 2e, dead cases to drain (REQ-003; Chain A step 6; ledger L1; unique index at lib/search/vector-index-schema.ts:2402) <!-- agent: direct | deps: [T016] | touched-files: [.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts] -->
 - [ ] T018 Extend `reconcileMoves` to track-level renames so future track renames heal without a migration (REQ-006 part; decomposition §001) (lib/storage/incremental-index.ts:547) <!-- agent: direct | deps: [T017] | touched-files: [.opencode/skills/system-spec-kit/mcp_server/lib/storage/incremental-index.ts] -->
 
 ### 2e. Dup-Hash Collapse (plan Phase 6, checkpointed, separately revertible)
 
-- [ ] T019 `checkpoint_create` before the collapse; record checkpoint id (REQ-004) (handlers/checkpoints.ts) <!-- agent: direct | deps: [T017] | touched-files: [implementation-summary.md] -->
+- [ ] T019 `checkpoint_create` before the collapse (bounded, checkpoint-clean migration); record checkpoint id (REQ-004) (handlers/checkpoints.ts) <!-- agent: direct | deps: [T017] | touched-files: [implementation-summary.md] -->
 - [ ] T020 Validate the winner heuristic (current-prefix, freshest source mtime) against the T004 sampled pairs; adjust the rule and record the final predicate (OQ-1; ledger L1: 7,012 cross-prefix pairs) <!-- agent: direct | deps: [T004, T019] | touched-files: [scratch/t020-winner-validation.md] -->
-- [ ] T021 Collapse migration: keep one winner per logical key, deprecate losers, backfill `near_duplicate_of` = winner id on losers (REQ-007; ADR-002; ledger L1: 12,280 dup-hash parents; migration v28 precedent at vector-index-schema.ts:1485) <!-- agent: direct | deps: [T020] | touched-files: [.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts, .opencode/skills/system-spec-kit/mcp_server/lib/storage/near-duplicate.ts] -->
+- [ ] T021 Collapse migration: keep one winner per logical key, deprecate losers, backfill `near_duplicate_of` on losers as `{id: winnerId, similarity, threshold}` JSON matching the active writer at near-duplicate.ts:141-146 (never a bare integer; avoids the format collision with the reader `parseNearDuplicateHint` / response-builder.ts:698-699) (REQ-007; ADR-002; ledger L1: 12,280 dup-hash parents; migration v28 precedent at vector-index-schema.ts:1485) <!-- agent: direct | deps: [T004, T020] | touched-files: [.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts, .opencode/skills/system-spec-kit/mcp_server/lib/storage/near-duplicate.ts] -->
 - [ ] T022 Record deprecated loser row ids and counts for phase 002's read-exclusion verification (decomposition §001 dep: 002 predicate) <!-- agent: direct | deps: [T021] | touched-files: [scratch/t022-loser-ledger.md] -->
 
 ### 2f. Reconcile + Discovery Hardening (plan Phase 7, parallel to 2c-2e)
@@ -106,6 +106,7 @@ Every task carries an inline metadata comment (`agent | deps | touched-files`) a
 - [ ] T024 [P] Extend reconcile to chunked docs: remove or parameterize the LIMIT 2 guard so parents with >2 rows reconcile completely (REQ-006; decomposition §001) (lib/storage/incremental-index.ts:547-700) <!-- agent: direct | deps: [T001] | touched-files: [.opencode/skills/system-spec-kit/mcp_server/lib/storage/incremental-index.ts] -->
 - [ ] T025 [P] Accept legacy `specs/`-prefixed scopes in `normalizeSpecFolderScope` (REQ-009; ledger agent F; per T003 evidence) (handlers/memory-index-discovery.ts:97) <!-- agent: direct | deps: [T003] | touched-files: [.opencode/skills/system-spec-kit/mcp_server/handlers/memory-index-discovery.ts] -->
 - [ ] T026 [P] Align `getSpecsBasePaths` and `findSpecDocuments` discovery surfaces to one contract, or record proof they already agree (REQ-009; ledger agent F; per T003 evidence) (lib/search/folder-discovery.ts:1304, lib/discovery/spec-document-finder.ts) <!-- agent: direct | deps: [T003] | touched-files: [.opencode/skills/system-spec-kit/mcp_server/lib/search/folder-discovery.ts, .opencode/skills/system-spec-kit/mcp_server/lib/discovery/spec-document-finder.ts] -->
+- [ ] T031 Cover `embedding_status='failed'` rows in `reconcileMoves`: the repoint UPDATE guard (incremental-index.ts:665) and the chunked candidate select (:599-600) carry `AND embedding_status != 'failed'`, so ~4,247 failed rows are skipped by projection repoint (REQ-005/T023) and track-heal (REQ-006/T018); extend or explicitly route them so moved/renamed failed-embedding rows are not silently missed, with a failed-embedding reconcile regression test (REQ-005; REQ-006; report OTHER MUST-FIX; per T001 evidence) (lib/storage/incremental-index.ts:599-600, :657-666) <!-- agent: direct | deps: [T001, T023, T024] | touched-files: [.opencode/skills/system-spec-kit/mcp_server/lib/storage/incremental-index.ts, .opencode/skills/system-spec-kit/mcp_server/tests/] -->
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -113,10 +114,10 @@ Every task carries an inline metadata comment (`agent | deps | touched-files`) a
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T027 Re-run the WHOLE vitest gate; report the delta against the T005 baseline with real numbers (cross-cutting rule: baseline-before-no-regressions) <!-- agent: direct | deps: [T009, T011, T014, T018, T021, T023, T024, T025, T026] | touched-files: [scratch/t027-vitest-delta.md] -->
-- [ ] T028 SQL success gates: orphan rows = 0, cross-prefix dupes = 0, exactly 1 active row per logical key, losers carry `near_duplicate_of` (SC-001, SC-002; decomposition §001 success gates) <!-- agent: direct | deps: [T027] | touched-files: [scratch/t028-sql-gates.md] -->
+- [ ] T027 Re-run the WHOLE vitest gate; report the delta against the T005 baseline with real numbers (cross-cutting rule: baseline-before-no-regressions) <!-- agent: direct | deps: [T009, T011, T014, T018, T021, T023, T024, T025, T026, T031] | touched-files: [scratch/t027-vitest-delta.md] -->
+- [ ] T028 SQL success gates (SQL-level invariant at 001-completion): orphan rows = 0, cross-prefix duplicate active rows = 0, exactly 1 active row per logical key, losers carry `near_duplicate_of` JSON `{id, ...}` that parses via `parseNearDuplicateHint` (SC-001, SC-002; decomposition §001 success gates) <!-- agent: direct | deps: [T027] | touched-files: [scratch/t028-sql-gates.md] -->
 - [ ] T029 Health honesty check: `memory_health` orphan figure reconciles with raw SQL or is labeled sampled (REQ-010; SC-003; ledger L2) (handlers/memory-crud-health.ts if a label change is needed) <!-- agent: direct | deps: [T028] | touched-files: [.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts] -->
-- [ ] T030 Scoped-search probe: "packet 028 memory search intelligence status" returns 1 row per logical doc (baseline: same spec.md at ranks 1-4, ledger L1); update spec docs and implementation-summary.md with final state (SC-002) <!-- agent: direct | deps: [T028] | touched-files: [implementation-summary.md] -->
+- [ ] T030 Record the SQL-level invariant (1 active row per logical key) at 001-completion and NOTE that the scoped-search one-row-per-doc probe ("packet 028 memory search intelligence status", baseline: same spec.md at ranks 1-4, ledger L1) is DEFERRED to post-002: at 001-completion the deprecated losers still surface via ranked channels until 002's active-row predicate excludes them, so do NOT assert search-level dedup here; hand the loser ids to 002 (T022). Update spec docs and implementation-summary.md with final state (SC-002) <!-- agent: direct | deps: [T028] | touched-files: [implementation-summary.md] -->
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -127,7 +128,7 @@ Every task carries an inline metadata comment (`agent | deps | touched-files`) a
 - [ ] All tasks marked `[x]`
 - [ ] No `[B]` blocked tasks remaining
 - [ ] Success gates T028-T030 verified with recorded evidence
-- [ ] Checkpoint ids for T012/T015/T019 recorded in implementation-summary.md
+- [ ] Checkpoint ids for T015/T019 (heal, collapse) recorded in implementation-summary.md; T012/T014 drain deletion counts reconciled against the baseline dead-row class (no drain checkpoint)
 <!-- /ANCHOR:completion -->
 
 ---
@@ -150,8 +151,8 @@ Every task carries an inline metadata comment (`agent | deps | touched-files`) a
 
 - [ ] Read the target file region before editing (Law 1); line anchors in each task are hints, not guarantees.
 - [ ] Confirm the task's confirm-before-fix dependency (T001-T004) is closed before implementing against a 🟡 finding.
-- [ ] For destructive tasks (T012-T022): verify the step's checkpoint id is recorded BEFORE the first mutation.
-- [ ] Confirm scans are quiesced before drain/heal/collapse steps.
+- [ ] For checkpointed migration tasks (heal/collapse, T015-T021): verify the step's checkpoint id is recorded BEFORE the first mutation. For the drain (T012-T014): verify the baseline dead-row count is recorded and only base-resolved-absent rows are deleted (count-verification), since the drain takes no checkpoint.
+- [ ] Confirm scans are quiesced before the bounded heal/collapse migration steps; the drain runs with the watcher live across scheduled scans.
 
 ### Execution Rules
 

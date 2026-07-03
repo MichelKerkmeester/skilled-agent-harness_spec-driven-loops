@@ -12,10 +12,10 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "scaffold/002-archived-tier-and-tombstone-read-exclusions"
-    last_updated_at: "2026-07-03T12:15:00Z"
-    last_updated_by: "markdown-agent"
-    recent_action: "Authored ADR-001..ADR-004 for the read-exclusion phase"
-    next_safe_action: "Revisit ADR statuses at implementation start; flip Proposed to Accepted on first code commit"
+    last_updated_at: "2026-07-03T13:30:00Z"
+    last_updated_by: "plan-remediation"
+    recent_action: "Remediated REWORK: rewrote ADR-001 premise + predicate, ADR-002/ADR-004 constitutional fixes"
+    next_safe_action: "Record T-004a graduated-flag logic-sync decision before predicate adoption"
     blockers: []
     key_files: []
     session_dedup:
@@ -50,7 +50,7 @@ _memory:
 <!-- ANCHOR:adr-001-context -->
 ### Context
 
-Read exclusion is enforced per channel today and the channels disagree: the vector channel filters deprecated rows (vector-index-queries.ts:431) while FTS, BM25, graph injection (causal-boost.ts:457,687), the summary lane (stage1-candidate-gen.ts:167 is a literal no-op stub), community injection, rescue backfill (retrieval-rescue.ts:388), trigger cache, keyword fallback, and stats/health apply no tier or tombstone filter. The live result: 7,340 deprecated snapshots rank at 0.85 through lexical channels and 11,086 archived rows rank as active. We needed one owner for the exclusion contract so ten channels cannot drift apart again.
+Read exclusion is enforced inconsistently today and the channels disagree on both mechanism and gate. Three channels already exclude deprecated rows, each differently: the vector channel NULL-guards and excludes deprecated + constitutional (vector-index-queries.ts:431 default branch) behind its own `isArchivedVectorInclusionEnabled()` override; FTS (sqlite-fts.ts:186-188) and BM25/hybrid (hybrid-search.ts:560-566) exclude deprecated gated by the graduated `SPECKIT_INCLUDE_ARCHIVED_DEFAULT` flag (search-flags.ts:834, default TRUE). Because that flag is graduated to admit cold/deprecated rows and let FSRS rank them low, the 7,340 deprecated snapshots surface at 0.85 through the lexical channels by design — but graph injection (causal-boost.ts:457,687), the summary-lane no-op stub (stage1-candidate-gen.ts:167), community injection, rescue backfill (retrieval-rescue.ts:388), keyword fallback (vector-index-queries.ts:875), and stats/health consult no gate at all and admit those rows unconditionally. We needed one owner for the exclusion contract — honoring the SAME graduated flag consistently — so the channels cannot drift apart again.
 
 ### Constraints
 
@@ -66,7 +66,11 @@ Read exclusion is enforced per channel today and the channels disagree: the vect
 
 **We chose**: A new single-owner module, `mcp_server/lib/search/active-row-predicate.ts`, exporting one SQL fragment builder and one row filter that every read channel imports.
 
-**How it works**: The module exports `ACTIVE_ROW_SQL(alias)` returning the fragment `<alias>.deleted_at IS NULL AND lower(<alias>.importance_tier) NOT IN ('deprecated','archived')` and `isActiveRow(row, opts)` with options `{ includeArchived, lane }`. Channels embed the fragment in their queries or filter hydrated candidates through the function. `includeArchived: true` widens only the archived exclusion; the `constitutional` lane bypasses tier exclusion but never the tombstone exclusion (ADR-002).
+**How it works**: The module exports `ACTIVE_ROW_SQL(alias, opts)` returning, for ranked lanes, the fragment `<alias>.deleted_at IS NULL AND (<alias>.importance_tier IS NULL OR lower(<alias>.importance_tier) NOT IN ('deprecated','archived','constitutional'))` and `isActiveRow(row, opts)` with options `{ includeArchived, includeCold, lane }`. The `IS NULL OR` guard keeps NULL-tier legacy rows active (matching the live convention at vector-index-queries.ts:431 and sqlite-fts.ts:188 — an unguarded `NOT IN` would drop NULL-tier rows via SQL three-valued logic). Constitutional stays excluded from ranked results and is retained explicitly because the vector channel already excludes it; dropping it would double-surface constitutional against its injection lane (ADR-002). The tier list is sourced from the repurposed canonical `getSearchableTiersFilter()` (importance-tiers.ts:148, previously zero production callers) rather than a second fork. `includeArchived: true` widens only the archived exclusion; the `constitutional` lane bypasses the tier clause but never the tombstone clause (ADR-002).
+
+### Logic-Sync: the graduated cold-inclusion flag
+
+`includeCold` defaults from the graduated `SPECKIT_INCLUDE_ARCHIVED_DEFAULT` flag (`isArchivedRetrievalIncludedByDefault()`, search-flags.ts:834, default TRUE) that FTS and BM25 already honor, so adopting the shared predicate does NOT silently reverse that deliberate decision. The graduation rationale in code is explicit: FSRS ranks cold/deprecated rows low, so a hard wall is redundant. Before the predicate is adopted, T-004a (REQ-000) re-reads sqlite-fts.ts:186-188, hybrid-search.ts:560-566, and the flag, and records an explicit decision — keep the graduated flag governing deprecated/archived across all channels (the default posture here: consistency without reversal), or move to unconditional hard exclusion (a reversal that requires operator sign-off). The predicate's cold-inclusion default MUST match the recorded decision; tombstone exclusion and the ranked-lane constitutional exclusion are NOT graduated and always apply.
 <!-- /ANCHOR:adr-001-decision -->
 
 ---
@@ -167,7 +171,7 @@ Constitutional-tier rows are injected into session priming through their own lan
 
 **We chose**: Keep constitutional rows separately injected; the predicate's `lane: 'constitutional'` option bypasses tier exclusion but always enforces `deleted_at IS NULL`.
 
-**How it works**: Ranked channels call the predicate with the default lane, which excludes deprecated and archived tiers. The constitutional injection path calls it with `lane: 'constitutional'`, which skips the tier clause and keeps the tombstone clause. Trigger-cache visibility for constitutional rows stays as-is and is decided in phase 005.
+**How it works**: Ranked channels call the predicate with the default lane, which excludes deprecated, archived, AND constitutional tiers — constitutional reaches results only through the injection lane, never ranked retrieval, so it is not double-surfaced (this retains the exclusion the vector channel already applies at vector-index-queries.ts:431). The constitutional injection path calls the predicate with `lane: 'constitutional'`, which skips the tier clause and keeps the tombstone clause. Trigger-cache visibility for constitutional rows stays as-is and is decided in phase 005.
 <!-- /ANCHOR:adr-002-decision -->
 
 ---
@@ -250,7 +254,7 @@ Constitutional-tier rows are injected into session priming through their own lan
 <!-- ANCHOR:adr-003-context -->
 ### Context
 
-11,086 rows (33% of the corpus) point into z_archive folders yet rank as active, including 272 critical and 4,278 important rows; `is_archived=0` on every row in the DB and `includeArchived` is hardcoded false, so both halves of archive filtering are broken (ledger L5). Once the archived tier exists (REQ-004), the corpus needs a one-shot migration or the tier stays empty and the predicate excludes nothing.
+11,086 rows (33% of the corpus) point into z_archive folders yet rank as active, including 272 critical and 4,278 important rows; `is_archived=0` on every row in the DB and `includeArchived` is hardcoded false, so both halves of archive filtering are broken (ledger L5). The `archived` tier is a prerequisite: REQ-004/T-017 add it to IMPORTANCE_TIERS with a defined ranking weight and decay (value 0.2, searchBoost 0.0, decay false, autoExpireDays null) so it lands between deprecated (0.1) and temporary (0.3) and derives into VALID_TIERS via `Object.keys(IMPORTANCE_TIERS)`. Once the archived tier exists, the corpus needs a one-shot migration or the tier stays empty and the predicate excludes nothing.
 
 ### Constraints
 
@@ -351,7 +355,7 @@ Constitutional-tier rows are injected into session priming through their own lan
 <!-- ANCHOR:adr-004-context -->
 ### Context
 
-memory-parser.ts:892 sets a row's tier when `[CRITICAL]` or `[IMPORTANT]` appears as a bare substring anywhere in the body, so docs quoting log formats get critical tier, no decay, and a 2x boost. This explains the 948-row critical audit population, including 272 rows inside z_archive (report P2 highlights, ledger Agent H P2). Fixing the parser stops new inflation but leaves 948 already-mislabeled rows ranked wrong.
+memory-parser.ts sets a row's tier when `[CONSTITUTIONAL]` (:892), `[CRITICAL]` (:895), or `[IMPORTANT]` (:898) appears as a bare substring anywhere in the body, so docs quoting those markers get the tier, no decay, and a boost — and `[CONSTITUTIONAL]` even grants always-surface injection (searchBoost 3.0). This explains the 948-row critical audit population, including 272 rows inside z_archive (report P2 highlights, ledger Agent H P2). REQ-008 originally named only `[CRITICAL]`/`[IMPORTANT]`; we resolve the asymmetry by including `[CONSTITUTIONAL]` in the frontmatter-only restriction, because it is the highest-privilege and therefore most dangerous substring-inflation path. Fixing the parser stops new inflation but leaves already-mislabeled rows ranked wrong.
 
 ### Constraints
 
@@ -367,7 +371,7 @@ memory-parser.ts:892 sets a row's tier when `[CRITICAL]` or `[IMPORTANT]` appear
 
 **We chose**: Land the parser fix first (tier from frontmatter only), then run a one-shot retro-fix migration that recomputes tier from stored frontmatter for the substring-inflated population, demoting to the frontmatter tier or the default tier when frontmatter declares none, with every change audited.
 
-**How it works**: T-020 restricts tier assignment to explicit frontmatter (`importance_tier:` or a frontmatter-level marker). The migration then selects rows whose current critical/important tier has no frontmatter support, rewrites them to their frontmatter tier (default 'normal' when absent), and logs prior/new tiers to `memory_tier_migration_audit`. It runs AFTER the ADR-003 migration so the 272 archived rows are already settled; rows with unreadable source files are recomputed from the indexed frontmatter snapshot in the DB, not from disk.
+**How it works**: T-020 restricts tier assignment for all three markers — `[CONSTITUTIONAL]` (:892), `[CRITICAL]` (:895), `[IMPORTANT]` (:898) — to explicit frontmatter (`importance_tier:` or a frontmatter-level marker). The retro-fix migration then selects rows whose current critical/important tier has no frontmatter support, rewrites them to their frontmatter tier (default 'normal' when absent), and logs prior/new tiers to `memory_tier_migration_audit`. It runs AFTER the ADR-003 migration so the 272 archived rows are already settled; rows with unreadable source files are recomputed from the indexed frontmatter snapshot in the DB, not from disk. Existing substring-inflated constitutional rows are NOT retro-fixed here — they are healed together with phase 005's constitutional dedup (70→20) so those rows are touched once; this phase's parser fix is what stops new constitutional inflation.
 <!-- /ANCHOR:adr-004-decision -->
 
 ---

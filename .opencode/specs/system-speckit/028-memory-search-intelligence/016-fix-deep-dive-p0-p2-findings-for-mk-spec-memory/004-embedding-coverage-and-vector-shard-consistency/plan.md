@@ -67,7 +67,7 @@ Four fix batteries, executed verify-first: (A) drain and reconcile (active-shard
 - [ ] Dependencies identified (program order 011/001-003; embedder endpoint)
 
 ### Definition of Done
-- [ ] All acceptance criteria met (REQ-001..REQ-012)
+- [ ] All acceptance criteria met (REQ-001..REQ-013)
 - [ ] Tests passing: vitest whole gate re-run vs T002 baseline, delta reported
 - [ ] Docs updated (spec/plan/tasks/checklist/decision-record synchronized; ADR-001 Accepted)
 <!-- /ANCHOR:quality-gates -->
@@ -110,6 +110,7 @@ Use this section when `research_intent=fix_bug`, when planning from a deep-revie
 | Shard-repair sentinel for 'auto' embedder (consumer/status) | Counts `vec_<dim>` while writes go to `vec_memories`; never clears | update: count the write-target shard (REQ-010) | sentinel clears in integration test after repair |
 | stats pendingVectors (consumer/status) | Undercounts updated files (REQ-012) | update | undercount regression test |
 | Scan coalescing/cooldown/lease (policy) | Scope-blind coalescing; cancel arms cooldown; heartbeat resurrects lease | update (REQ-011) | three adversarial lifecycle tests |
+| Stale-delete loop in scan handler (producer/status) | Parent delete cascades chunk children; per-child re-delete returns false and inflates `failed` | update: delete children before parents (DESC) or treat already-gone rows as success (REQ-013) | parent+children stale-delete test asserts failed==0 for cascade-removed rows |
 | memory_search query path (consumer) | Scores stored vectors without embedder-identity assertion | update: assert identity, exclude/re-queue on mismatch (REQ-009) | mismatch-handling test with telemetry assertion |
 | /memory:manage + maintenance docs (docs) | No reconcile cadence documented (never run) | update: wiring + doc rows | doc diff; command exercises reconcile |
 | Phase-012 envelope/presentation surfaces (not a consumer) | Presentation only; no shard semantics | not a consumer | scope note; no changes here |
@@ -135,7 +136,7 @@ Required inventories:
 - [ ] Battery C1: safe-swap self-delete fix + un-skipped update-path tests (REQ-001)
 - [ ] Battery A: active-shard drain write, text parity + cache key, drain scaling, retry@max rescue, reconcile run + schedule (REQ-002/003/004/006/007)
 - [ ] Battery B: provenance migration + query-time identity assertion + 'auto' sentinel (REQ-008/009/010)
-- [ ] Battery D: scan lifecycle fixes + pendingVectors undercount (REQ-011/012)
+- [ ] Battery D: scan lifecycle fixes + pendingVectors undercount + stale-delete cascade double-count (REQ-011/012/013)
 - [ ] Battery C2: execute ADR-001 accepted option (scan-path chunking flag-gated, or policy documentation) (REQ-005)
 
 ### Phase 3: Verification
@@ -165,7 +166,7 @@ Baseline-before-delta: capture the FULL vitest gate and the live SQL counts befo
 
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
-| Phases 011, 001-003 land first (program order) | Internal | Yellow (in flight) | Drain embeds dead/duplicate rows; scope drain to active predicate as fallback |
+| Phases 011, 001-003 land first (program order) | Internal | Yellow (in flight) | Drain embeds dead/duplicate rows; the "scope drain to 002's active predicate" fallback is only partial because that predicate itself needs 002 landed (mildly circular) |
 | Embedder endpoint (nomic) for ~14k embeddings | External | Green | Backlog cannot drain; resumable queue waits |
 | sqlite-vec active shard schema (`vec_<dim>`) | Internal | Green | REQ-002 write path has no target |
 | Phase 002 shared active-row predicate | Internal | Yellow | Reconcile/drain may prioritize archived rows; acceptable, wasteful |
@@ -197,7 +198,7 @@ Phase 1 (Baseline + Verify-first) ──► Battery C1 (safe-swap P0) ──► 
 | Battery C1 (REQ-001) | Phase 1 | Battery C2 |
 | Battery A (REQ-002/003/004/006/007) | Phase 1 | Battery B, Phase 3 |
 | Battery B (REQ-008/009/010) | Battery A landed (new writes attribute correctly) | Phase 3 |
-| Battery D (REQ-011/012) | Phase 1 | Phase 3 |
+| Battery D (REQ-011/012/013) | Phase 1 | Phase 3 |
 | Battery C2 (REQ-005) | C1 + ADR-001 Accepted | Phase 3 |
 | Phase 3 verification | All batteries | None |
 <!-- /ANCHOR:phase-deps -->

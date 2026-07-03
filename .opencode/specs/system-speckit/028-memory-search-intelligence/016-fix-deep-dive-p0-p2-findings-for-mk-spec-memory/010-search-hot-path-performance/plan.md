@@ -11,13 +11,13 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "scaffold/010-search-hot-path-performance"
-    last_updated_at: "2026-07-03T09:44:25Z"
-    last_updated_by: "template-author"
-    recent_action: "Initialize continuity block"
-    next_safe_action: "Replace template defaults on first save"
+    packet_pointer: "system-speckit/028-memory-search-intelligence/016-fix-deep-dive-p0-p2-findings-for-mk-spec-memory/010-search-hot-path-performance"
+    last_updated_at: "2026-07-03T11:54:21Z"
+    last_updated_by: "claude-opus-4-8"
+    recent_action: "Applied plan-review remediation (008↔010 fence, REQ-003 FTS gate, continuity populated)"
+    next_safe_action: "Capture latency baselines, then run the confirm-before-fix pass on 🟡 items"
     blockers: []
-    key_files: []
+    key_files: ["spec.md", "plan.md", "tasks.md", "checklist.md", "implementation-summary.md"]
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "scaffold-scaffold/010-search-hot-path-performance"
@@ -103,8 +103,8 @@ Use this section when `research_intent=fix_bug`, when planning from a deep-revie
 |---------|--------------|--------|--------------|
 | retrieval-rescue.ts (producer) | Owns final-score rescue pass; full-table LIKE backfill :303 + per-candidate `SELECT *` :336 on every search | update — batch hydration; FTS-route or weak-result-gate backfill per 006 decision | query-count assertion (1 hydration query); SQL trace shows no unconditional LIKE; stage2 timing delta |
 | stage2-fusion.ts (consumer) | Consumes rescue output for final ordering (:1425 blend, :1470 validation multiplier) | unchanged semantics — verify only | rank-parity fixture identical ordered IDs |
-| graph-signals.ts (producer) | Rebuilds full 33k-edge adjacency per search (:576); module cache keyed by memoryId only (no DB identity — known bug class) | update — adjacency cache keyed by DB identity + graph version; invalidate on edge write/rebind | cache hit/invalidation unit tests; per-search rebuild eliminated |
-| community-detection.ts (producer) | Re-loads + JSON-parses whole communities table per candidate row (:623) | update — single load per search into a map | parse-count assertion; identical boost values on fixture |
+| graph-signals.ts (producer) | Rebuilds full 33k-edge adjacency per search (:576); existing momentum/depth caches keyed by memoryId only (no DB identity — known bug class, owned by 008 T026) | update — add NEW cross-search adjacency cache REUSING 008's DB-identity keying scheme (008 lands first; do NOT re-fix the memoryId-only signal-cache bug here); invalidate on edge write/rebind | cache hit/invalidation unit tests; per-search rebuild eliminated |
+| community-detection.ts (producer) | Re-loads + JSON-parses whole communities table per candidate row (:623) | update — single load per search into a map; rebase onto 008's community-lifecycle edits (008 lands first) | parse-count assertion; identical boost values on fixture |
 | intent-classifier.ts (producer) | Re-embeds query 7x per classification; classification runs 6-8x per deep query (:502) | update — hoist + memoize embedding per distinct query text per request | embedder call-count spy ≤1 per distinct text |
 | memory-search.ts handler (producer/public response) | JSON round-trips envelope ~8x (:1564-1913) before emission | update — thread object refs; serialize once | round-trip instrumentation; envelope content-equivalent on fixture (shape owned by 012 — do not change payload shape) |
 | vector-index-queries.ts keyword_search (producer) | Fallback pulls entire table incl. content_text into JS, no LIMIT (:875) | update — SQL-side LIMIT/FTS route | no full-table `SELECT m.*`; same top-K on fixture |
@@ -166,6 +166,7 @@ Required inventories:
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
 | Phase 006 decision-record (rescue + interference dispositions) | Internal | Yellow — must exist before Batch A gating and Batch D interference work | Backfill gating and interference execution blocked; batching (pure perf) proceeds regardless |
+| Phase 008 causal-graph hygiene (shared files: graph-signals.ts, community-detection.ts, graph-lifecycle.ts) | Internal | Yellow — 008 lands FIRST in execution order (008 → 009 → 010) | This phase rebases onto 008; its NEW adjacency cache reuses 008's DB-identity keying (008 T026) — no independent re-fix of the memoryId-only bug |
 | Phase 005 trigger-extraction cache | Internal | Yellow — owns match_triggers < 300ms | Target becomes report-only with recorded deviation |
 | Pinned corpus snapshot for benchmarking | Internal | Green — snapshot at phase start | Before/after numbers incomparable if corpus mutates mid-run |
 | vitest suite + existing fixtures | Internal | Green | No regression baseline; blocks completion claims |

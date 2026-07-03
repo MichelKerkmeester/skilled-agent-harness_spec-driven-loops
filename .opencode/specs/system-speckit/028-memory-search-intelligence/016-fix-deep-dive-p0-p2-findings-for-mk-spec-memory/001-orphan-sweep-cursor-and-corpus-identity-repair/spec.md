@@ -48,11 +48,11 @@ FAILURE MODES:
 
 ## EXECUTIVE SUMMARY
 
-37% of the memory index (12,352 of 33,101 rows) points at files that no longer exist, and 12,280 duplicate content-hash parents plus 7,012 cross-prefix twins stack the same document into the top-K of live searches. Root causes are two mechanical bugs: the orphan-sweep cursor is echoed but never persisted (report §2 Chain B), and the `system-spec-kit/` to `system-speckit/` track rename was never healed because move-reconciliation matches per-folder, not per-track (report §2 Chain A step 6). This phase fixes the trivial cursor bug, then runs three separately revertible corpus repairs (dead-row drain, identity heal, dup-hash collapse) behind a `checkpoint_create` snapshot, because those repairs delete or rewrite roughly 12k rows and are the highest-blast data operations in the remediation program.
+37% of the memory index (12,352 of 33,101 rows) points at files that no longer exist, and 12,280 duplicate content-hash parents plus 7,012 cross-prefix twins stack the same document into the top-K of live searches. Root causes are two mechanical bugs: the orphan-sweep cursor is echoed but never persisted (report §2 Chain B), and the `system-spec-kit/` to `system-speckit/` track rename was never healed because move-reconciliation matches per-folder, not per-track (report §2 Chain A step 6). This phase fixes the trivial cursor bug, then runs three separately revertible corpus repairs (dead-row drain, identity heal, dup-hash collapse), because those repairs delete or rewrite roughly 12k rows and are the highest-blast data operations in the remediation program. The bounded identity-heal and dup-collapse migrations run behind `checkpoint_create` snapshots; the dead-row drain, which advances across scheduled scans over ~24h with the file-watcher live, cannot be cleanly restored from one pre-drain checkpoint, so it is made safe by deleting only file-absent rows and reconciling deletion counts (restore-by-count-verification).
 
-**Key Decisions**: Drain-then-delete for dead-path rows (ADR-001), backfill `near_duplicate_of` on deprecated dup losers rather than dropping the column (ADR-002), persist the sweep cursor in a dedicated maintenance-state table (ADR-003), package drain/heal/collapse as three separately revertible steps (ADR-004)
+**Key Decisions**: Drain-then-delete for dead-path rows (ADR-001), backfill `near_duplicate_of` on deprecated dup losers in the active `{id, ...}` JSON shape rather than dropping the column (ADR-002), persist the sweep cursor in a dedicated maintenance-state table (ADR-003), package drain/heal/collapse as three separately revertible steps with checkpoint-clean heal/collapse and count-verified drain (ADR-004)
 
-**Critical Dependencies**: `checkpoint_create` tooling before any destructive step; phase 002's shared active-row predicate for user-visible exclusion of deprecated dup losers
+**Critical Dependencies**: `checkpoint_create` tooling before the bounded heal/collapse steps; phase 002's shared active-row predicate for user-visible exclusion of deprecated dup losers
 
 ---
 <!-- ANCHOR:metadata -->
@@ -69,7 +69,7 @@ FAILURE MODES:
 | **Phase** | 1 of 13 |
 | **Predecessor** | 011-daemon-freshness-and-health-truthfulness (first in recommended execution order) |
 | **Successor** | 002-archived-tier-and-tombstone-read-exclusions |
-| **Handoff Criteria** | Orphan rows drained to 0, cross-prefix duplicates collapsed to 0, cursor persisted across scans, baseline-vs-after delta report committed |
+| **Handoff Criteria** | Orphan rows drained to 0; one active row per logical key (SQL-level invariant, cross-prefix duplicate active rows collapsed to 0) with deprecated losers still visible in ranked channels until 002's predicate lands; cursor persisted across scans; baseline-vs-after delta report committed |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -84,11 +84,11 @@ This is **Phase 1** of the Deep dive remediation phase children specification.
 **Dependencies**:
 - Phase 011 (recommended predecessor): a trustworthy daemon/CLI surface and honest health numbers make before/after verification believable.
 - Phase 002 (forward dependency): deprecated dup-collapse losers only disappear from every channel once 002's shared active-row predicate lands; this phase records loser rows so 002 can verify exclusion.
-- `checkpoint_create` (`.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts`) must be operational before the drain, heal, and collapse steps.
+- `checkpoint_create` (`.opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts`) must be operational before the bounded heal and collapse steps; the drain uses count-verification instead (no pre-drain checkpoint).
 
 **Deliverables**:
 - Persisted orphan-sweep cursor fed into `sweepOrphanIndexRows({ cursor })` with wraparound (report §3 #4).
-- Full drain of the 12,352 dead-path rows behind a checkpoint (report §1; §2 Chain B).
+- Full drain of the 12,352 dead-path rows via the advancing sweep, made safe by deleting only file-absent rows and reconciling deletion counts (restore-by-count-verification), not a pre-drain checkpoint (report §1; §2 Chain B).
 - One-shot track-prefix identity-heal migration repointing `system-spec-kit/*` rows to `system-speckit/*` where the target exists, plus track-level rename support in move-reconciliation (report §2 Chain A step 6).
 - `active_memory_projection` repoint inside `reconcileMoves` and chunked-doc reconcile coverage (report §3 #17).
 - Dup-hash collapse keeping one winner per logical key, with the ADR-002 `near_duplicate_of` decision executed (ledger L1).
@@ -107,7 +107,7 @@ This is **Phase 1** of the Deep dive remediation phase children specification.
 `handlers/memory-index.ts:684` calls `sweepOrphanIndexRows({ limit: 200 })` with no cursor; the function defaults cursor=0 and returns `nextCursor`, which is echoed in scan results but never persisted or fed back, so every scan re-checks the same ~200 lowest-id rows forever (report §2 Chain B; ledger L2, live-verified 🟢). As a result 12,352 rows citing dead file paths (37% of 33,101) survive and rank, while health reports `orphanFiles: 25` from a 200-row sample. Independently, the `system-spec-kit/` to `system-speckit/` track rename was never healed (12,306 stale-prefix rows vs 5,658 current, 7,012 cross-prefix duplicate pairs, 12,280 duplicate content-hash parents overall), and result-time dedup keys on row id only (`hybrid-search.ts:949`), so a live query for "packet 028 memory search intelligence status" returned the same spec.md in ranks 1-4 (ledger L1 🟢).
 
 ### Purpose
-After this phase, a full scan cycle drains orphan rows to zero, every logical document resolves to exactly one active index row under the current track prefix, and the drain/heal/collapse repairs are each revertible from a recorded DB checkpoint.
+After this phase, a full scan cycle drains orphan rows to zero, every logical document resolves to exactly one active index row under the current track prefix (SQL-level; search-level one-row-per-doc lands once 002's predicate excludes the deprecated losers), the identity-heal and dup-collapse migrations are each revertible from a recorded DB checkpoint, and the dead-row drain is revertible by count-verification because it deletes only file-absent rows.
 <!-- /ANCHOR:problem -->
 
 ---
@@ -117,7 +117,7 @@ After this phase, a full scan cycle drains orphan rows to zero, every logical do
 
 ### In Scope
 - Orphan-sweep cursor persistence across scans and process restarts, feeding `sweepOrphanIndexRows({ cursor })` (report §3 #4; Chain B).
-- Dead-path row drain: full sweep of the 12,352 rows whose stored path no longer resolves, after a checkpoint (report §1).
+- Dead-path row drain: full sweep of the 12,352 rows whose stored path no longer resolves, deleting only file-absent rows with deletion-count reconciliation (no pre-drain checkpoint; the drain spans ~24h of scheduled scans with the watcher live) (report §1).
 - Track-prefix identity heal: one-shot migration repointing `system-spec-kit/*` rows to `system-speckit/*` where the target file exists; extend move-reconciliation to track-level renames (Chain A step 6).
 - `active_memory_projection` repoint inside `reconcileMoves`, and reconcile coverage for chunked docs (the LIMIT 2 guard) (report §3 #17).
 - Dup-hash collapse of the 12,280 duplicate content-hash parents: keep one winner per logical key, deprecate losers with `near_duplicate_of` backfill per ADR-002 (ledger L1).
@@ -138,7 +138,7 @@ After this phase, a full scan cycle drains orphan rows to zero, every logical do
 | .opencode/skills/system-spec-kit/mcp_server/handlers/memory-index.ts | Modify | Load persisted cursor, pass `{ cursor }` into the `sweepOrphanIndexRows` call at line 684, persist `nextCursor` after each sweep |
 | .opencode/skills/system-spec-kit/mcp_server/lib/storage/incremental-index.ts | Modify | `sweepOrphanIndexRows` (line 443): path-resolution hardening + cursor contract; `reconcileMoves` (line 547): repoint `active_memory_projection` (line 657 region), track-level renames, chunked-doc coverage |
 | .opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts | Modify | New migrations (current SCHEMA_VERSION 41): maintenance-state table for the cursor, identity-heal step, dup-collapse step; each separately revertible |
-| .opencode/skills/system-spec-kit/mcp_server/lib/storage/near-duplicate.ts | Modify | Execute ADR-002: backfill `near_duplicate_of` on deprecated dup losers during collapse |
+| .opencode/skills/system-spec-kit/mcp_server/lib/storage/near-duplicate.ts | Modify | Execute ADR-002: backfill `near_duplicate_of` on deprecated dup losers during collapse, writing the SAME `{id: winnerId, similarity, threshold}` JSON as the active writer at :141-146 (`NearDuplicateHint` shape, :12-16), never a bare integer, so the existing reader `parseNearDuplicateHint` (handlers/save/response-builder.ts:386-390, emitted :698-699) hits no format collision |
 | .opencode/skills/system-spec-kit/mcp_server/handlers/memory-index-discovery.ts | Modify | `normalizeSpecFolderScope` (line 97): accept legacy `specs/`-prefixed scopes instead of silently rejecting |
 | .opencode/skills/system-spec-kit/mcp_server/lib/search/folder-discovery.ts | Modify | Align `getSpecsBasePaths` (line 1304) with `findSpecDocuments` discovery surfaces |
 | .opencode/skills/system-spec-kit/mcp_server/lib/discovery/spec-document-finder.ts | Modify | Counterpart of the discovery-surface alignment (verify in T003; may reduce to no-op) |
@@ -155,17 +155,17 @@ After this phase, a full scan cycle drains orphan rows to zero, every logical do
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
 | REQ-001 | Persist the orphan-sweep cursor across scans and restarts, and feed it back into `sweepOrphanIndexRows({ cursor })` (report §3 #4 🟢; Chain B; ledger L2) | Two consecutive scans check different id windows; cursor survives daemon restart; wraparound to 0 after the highest id; unit test asserts persisted cursor equals returned `nextCursor` |
-| REQ-002 | Drain all dead-path rows once the cursor advances, behind a recorded checkpoint (report §1: 12,352 rows; Chain B) | After full drain cycles: `SELECT COUNT(*)` of rows citing nonexistent files = 0; checkpoint id recorded in implementation-summary.md before the drain started |
+| REQ-002 | Drain all dead-path rows once the cursor advances, deleting only file-absent rows with deletion-count reconciliation (report §1: 12,352 rows; Chain B) | After full drain cycles: `SELECT COUNT(*)` of rows citing nonexistent files = 0; the deletion count reconciles with the baseline dead-row class (no valid row deleted); rollback is restore-by-count-verification, not a checkpoint restore, because the drain spans ~24h of scheduled scans with the watcher live |
 | REQ-003 | One-shot identity-heal migration repoints `system-spec-kit/*` rows to `system-speckit/*` where the target file exists, without violating `idx_memory_logical_key_active_unique` (Chain A step 6; ledger L1; vector-index-schema.ts:2402) | Post-migration: 0 active rows under the stale prefix whose target exists under the current prefix; no unique-index collision during migration (collision cases routed to the dup-collapse step); migration is individually revertible |
-| REQ-004 | DB checkpoint via `checkpoint_create` before the dead-row drain and before each identity-heal/dup-collapse migration step (phase emphasis: ~12k rows deleted/rewritten) | Checkpoint ids logged per step; restore drill executed once on a copy and documented |
+| REQ-004 | DB checkpoint via `checkpoint_create` before each bounded identity-heal and dup-collapse migration step (checkpoint-clean, restorable). The dead-row drain takes no restorable pre-drain checkpoint (it spans ~24h of scheduled scans with the watcher live; one checkpoint restore would lose a day of legitimate writes); its safety is restore-by-count-verification: delete only file-absent rows, reconcile deletion counts against the baseline dead-row class (phase emphasis: ~12k rows deleted/rewritten) | Checkpoint ids logged for heal and collapse; restore drill executed once on a copy and documented; drain deletion counts reconciled against the baseline with no valid-row deletion |
 
 ### P1 - Required (complete OR user-approved deferral)
 
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-005 | Repoint `active_memory_projection` inside `reconcileMoves` so path reuse cannot leave a moved row permanently unsearchable (report §3 #17 🟡; incremental-index.ts:657) | Confirm-before-fix reproduction recorded (T001); after fix, move-then-reuse scenario test shows the moved row searchable via projection |
-| REQ-006 | Extend move-reconciliation to track-level renames and to chunked docs (the LIMIT 2 guard) (decomposition §001; Chain A step 6) | Track-rename fixture reconciles all child rows in one pass; chunked parent with >2 rows reconciles completely |
-| REQ-007 | Collapse dup-hash rows: keep one winner per logical key, deprecate losers, execute ADR-002 `near_duplicate_of` backfill (ledger L1: 12,280 dup-hash parents, 7,012 cross-prefix pairs) | Post-collapse: 0 cross-prefix duplicate pairs; exactly one active row per logical key; loser rows carry `near_duplicate_of` = winner id |
+| REQ-005 | Repoint `active_memory_projection` inside `reconcileMoves` so path reuse cannot leave a moved row permanently unsearchable, including rows with `embedding_status='failed'` that the reconcile UPDATE guard at incremental-index.ts:665 currently excludes (report §3 #17 🟡; incremental-index.ts:657-666) | Confirm-before-fix reproduction recorded (T001); after fix, move-then-reuse scenario test shows the moved row searchable via projection; a failed-embedding fixture row is repointed, not skipped (T031) |
+| REQ-006 | Extend move-reconciliation to track-level renames and to chunked docs (the LIMIT 2 guard), and cover rows with `embedding_status='failed'` that the chunked candidate select (incremental-index.ts:599-600) and the repoint UPDATE (:665) currently skip (decomposition §001; Chain A step 6) | Track-rename fixture reconciles all child rows in one pass; chunked parent with >2 rows reconciles completely; a `embedding_status='failed'` child row is included, not silently missed (T031) |
+| REQ-007 | Collapse dup-hash rows: keep one winner per logical key, deprecate losers, execute ADR-002 `near_duplicate_of` backfill in the active JSON shape (ledger L1: 12,280 dup-hash parents, 7,012 cross-prefix pairs) | Post-collapse: 0 cross-prefix duplicate active-row pairs; exactly one active row per logical key; loser rows carry `near_duplicate_of` JSON `{id: winnerId, similarity, threshold}` (matching the active writer's shape), not a bare integer |
 | REQ-008 | Harden orphan path resolution: resolve relative stored paths against the base path before the existence check (decomposition §001; ledger agent F P2 🟡) | Confirm-before-fix check recorded (T002); relative-path fixture rows are not falsely swept |
 | REQ-009 | Accept legacy `specs/`-prefixed scopes in `normalizeSpecFolderScope` and align `getSpecsBasePaths` vs `findSpecDocuments` discovery surfaces (ledger agent F 🟡) | Confirm-before-fix check recorded (T003); scoped search with a legacy `specs/`-prefixed scope returns the same rows as the canonical scope |
 | REQ-010 | Health `orphanFiles` reports an honest number or is labeled as sampled (decomposition §001 success gate; ledger L2) | `memory_health` orphan figure matches raw SQL within a documented definition after the drain |
@@ -177,9 +177,9 @@ After this phase, a full scan cycle drains orphan rows to zero, every logical do
 ## 5. SUCCESS CRITERIA
 
 - **SC-001**: Orphan rows drain to 0 on a full drain cycle (decomposition §001 success gate; baseline 12,352).
-- **SC-002**: Cross-prefix duplicates drop to 0 (baseline 7,012 pairs); scoped searches return exactly 1 row per logical document (baseline live-repro: same spec.md at ranks 1-4).
+- **SC-002**: At 001-completion (SQL-level invariant): cross-prefix duplicate active rows drop to 0 (baseline 7,012 pairs) and exactly 1 active row exists per logical key; 001 deprecates the losers. The search-level guarantee (scoped searches return exactly 1 row per logical document) is DEFERRED to post-002, where 002's shared active-row predicate excludes the deprecated losers from ranked channels (baseline live-repro: same spec.md at ranks 1-4).
 - **SC-003**: Health `orphanFiles` is honest: figure reconciles with raw SQL, or is explicitly labeled a sample (baseline: reports 25 from a 200-row sample against 12,352 actual).
-- **SC-004**: Every destructive step (drain, heal, collapse) has a recorded checkpoint id and a demonstrated restore path; steps are individually revertible.
+- **SC-004**: The bounded heal and collapse steps each have a recorded checkpoint id and a demonstrated restore path; the dead-row drain is revertible by count-verification (deletes only file-absent rows, deletion counts reconciled against the baseline) rather than a pre-drain checkpoint. All three steps are individually revertible.
 - **SC-005**: Vitest suite re-run after changes matches the captured baseline except for tests intentionally updated by this phase; the delta is reported, not asserted from memory.
 <!-- /ANCHOR:success-criteria -->
 
@@ -190,7 +190,7 @@ After this phase, a full scan cycle drains orphan rows to zero, every logical do
 
 | Type | Item | Impact | Mitigation |
 |------|------|--------|------------|
-| Dependency | `checkpoint_create` tooling (handlers/checkpoints.ts) | No safe rollback for ~12k row mutations | Verify checkpoint create/restore on a DB copy in Phase 1 before any destructive step |
+| Dependency | `checkpoint_create` tooling (handlers/checkpoints.ts) | No safe rollback for the bounded heal/collapse row mutations | Verify checkpoint create/restore on a DB copy in Phase 1 before the heal/collapse steps; the drain instead uses count-verification (delete only file-absent rows) because it spans ~24h with the watcher live |
 | Dependency | Phase 002 shared active-row predicate | Deprecated dup losers still surface via FTS/BM25/graph until 002 lands | Record loser row ids for 002 verification; note residual visibility in implementation-summary.md |
 | Dependency | Live file-watcher indexing during migration | Row set shifts mid-migration (index grew +30 rows during read-only probing, ledger L6) | Quiesce or pause scans during migration steps; re-run count verification after |
 | Risk | Drain deletes rows whose path is live but stored relative (false orphan) | Data loss of valid rows | REQ-008 path-resolution hardening ships BEFORE the drain; drain dry-run count compared to baseline first |
@@ -214,7 +214,7 @@ After this phase, a full scan cycle drains orphan rows to zero, every logical do
 
 ### Reliability
 - **NFR-R01**: Each destructive step is idempotent on re-run (re-running the heal or collapse after success changes 0 rows).
-- **NFR-R02**: A failed migration step leaves the DB restorable from its recorded checkpoint with a single documented command sequence.
+- **NFR-R02**: A failed bounded migration step (heal or collapse) leaves the DB restorable from its recorded checkpoint with a single documented command sequence. The drain has no such checkpoint; a divergent drain deletion count halts the sweep for count-verification instead.
 
 ---
 
@@ -227,13 +227,14 @@ After this phase, a full scan cycle drains orphan rows to zero, every logical do
 - Relative stored paths: resolve against the base before the existence check; a row must never be classified dead because of resolution, only because the resolved file is absent (REQ-008).
 
 ### Error Scenarios
-- Checkpoint creation fails: abort the step before any mutation; no destructive statement runs without a recorded checkpoint id.
+- Checkpoint creation fails: abort the bounded step (heal or collapse) before any mutation; no heal/collapse migration statement runs without a recorded checkpoint id. The drain has no checkpoint gate (it deletes only file-absent rows and reconciles counts), so a checkpoint failure does not apply to it.
 - Migration interrupted mid-chunk: chunked transactions mean completed chunks persist; re-run continues via idempotent predicates (NFR-R01).
 - Watcher indexes a file mid-heal: post-step verification counts re-run; discrepancy above 0 triggers investigation before the next step.
 
 ### State Transitions
 - Dup loser that is also a dead-path row: drain wins (delete); collapse only processes rows whose files exist.
 - Chunked parent docs: reconcile must cover all child rows, not the first 2 (LIMIT 2 guard removed or parameterized per REQ-006).
+- Failed-embedding rows (`embedding_status='failed'`, ~4,247 live per the deep-dive live-DB count): `reconcileMoves` skips them because the repoint UPDATE guard (incremental-index.ts:665) and the chunked candidate select (:599-600) both carry `AND embedding_status != 'failed'`. Projection repoint (REQ-005) and track-heal (REQ-006) must include these rows or explicitly route them, or a moved/renamed failed-embedding row stays stale and unsearchable (covered by T031).
 
 ---
 
@@ -254,11 +255,11 @@ After this phase, a full scan cycle drains orphan rows to zero, every logical do
 
 | Risk ID | Description | Impact | Likelihood | Mitigation |
 |---------|-------------|--------|------------|------------|
-| R-001 | Drain deletes valid rows misclassified as orphans (relative-path bug live at drain time) | H | M | Land REQ-008 first; dry-run count vs baseline; checkpoint restore drill |
+| R-001 | Drain deletes valid rows misclassified as orphans (relative-path bug live at drain time) | H | M | Land REQ-008 first; dry-run count vs baseline; delete only file-absent rows with deletion-count reconciliation (no checkpoint restore for the drain, which spans ~24h with the watcher live) |
 | R-002 | Identity heal mispoints rows (wrong target mapping across prefixes) | H | L | Deterministic prefix mapping only where target file exists; per-chunk verification queries |
 | R-003 | Dup collapse keeps a stale winner and deprecates fresh content | M | M | Winner heuristic validated against sampled live pairs before migration (OQ-1); losers deprecated not deleted |
 | R-004 | Unique-index collision aborts the heal migration mid-way | M | M | Decision tree routes twins to collapse; chunked idempotent transactions |
-| R-005 | Checkpoint restore loses writes that landed after the checkpoint | M | L | Quiesce scans during steps; restore drill documents the accepted write-loss window |
+| R-005 | Checkpoint restore loses writes that landed after the checkpoint | M | L | Heal/collapse quiesce scans and are bounded, so their restore window is small; the drain avoids this risk entirely by using count-verification (no pre-drain checkpoint) since it spans ~24h with the watcher live |
 | R-006 | Cursor persistence bug re-sweeps or skips id ranges | L | M | Unit tests for persist/advance/wraparound; sweep is read-mostly and re-checkable |
 
 ---
@@ -279,17 +280,18 @@ After this phase, a full scan cycle drains orphan rows to zero, every logical do
 **As a** memory-search user, **I want** each logical document to have exactly one active index row, **so that** a scoped search returns distinct documents instead of four snapshots of the same spec.md.
 
 **Acceptance Criteria**:
-1. **Given** the identity heal and dup collapse have run, **When** I search "packet 028 memory search intelligence status", **Then** no two results resolve to the same canonical file path.
+1. **Given** the identity heal and dup collapse have run at 001-completion, **When** I inspect active rows by logical key, **Then** exactly one active row exists per logical key (SQL-level invariant). The search-level guarantee (a scoped search for "packet 028 memory search intelligence status" returns no two results resolving to the same canonical file path) lands post-002, once 002's active-row predicate excludes the deprecated losers from ranked channels.
 2. **Given** a stale-prefix row whose target exists under the current prefix with no current twin, **When** the heal runs, **Then** the row is repointed and remains searchable.
-3. **Given** cross-prefix twins for the same content, **When** the collapse runs, **Then** exactly one winner stays active and the loser carries `near_duplicate_of` = winner id.
+3. **Given** cross-prefix twins for the same content, **When** the collapse runs, **Then** exactly one winner stays active and the loser is deprecated carrying `near_duplicate_of` JSON `{id: winnerId, similarity, threshold}` (the active writer's shape).
 
 ### US-003: Reversible migrations (Priority: P0)
 
-**As a** repo maintainer, **I want** each destructive step checkpointed and separately revertible, **so that** a bad migration over ~12k rows is an UPDATE or restore away from recovery, not a corpus rebuild.
+**As a** repo maintainer, **I want** the bounded heal/collapse migrations checkpointed and the drain count-verified, each separately revertible, **so that** a bad repair over ~12k rows is an UPDATE, a scoped restore, or a halt-and-reconcile away from recovery, not a corpus rebuild.
 
 **Acceptance Criteria**:
-1. **Given** any of drain/heal/collapse is about to run, **When** the step starts, **Then** a `checkpoint_create` id is recorded before the first mutation.
-2. **Given** a completed step produced wrong results, **When** I follow the documented rollback, **Then** the DB returns to the recorded checkpoint state for that step without undoing earlier completed steps.
+1. **Given** the identity-heal or dup-collapse (bounded) step is about to run, **When** the step starts, **Then** a `checkpoint_create` id is recorded before the first mutation.
+2. **Given** a completed heal/collapse step produced wrong results, **When** I follow the documented rollback, **Then** the DB returns to the recorded checkpoint state for that step without undoing earlier completed steps.
+3. **Given** the dead-row drain runs across scheduled scans over ~24h with the watcher live, **When** rows are deleted, **Then** only file-absent rows are removed and the deletion count is reconciled against the baseline dead-row class (restore-by-count-verification), because a single pre-drain checkpoint cannot be cleanly restored.
 
 ### US-004: Honest health numbers (Priority: P1)
 

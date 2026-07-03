@@ -10,13 +10,13 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "scaffold/010-search-hot-path-performance"
-    last_updated_at: "2026-07-03T09:44:25Z"
-    last_updated_by: "template-author"
-    recent_action: "Initialize continuity block"
-    next_safe_action: "Replace template defaults on first save"
+    packet_pointer: "system-speckit/028-memory-search-intelligence/016-fix-deep-dive-p0-p2-findings-for-mk-spec-memory/010-search-hot-path-performance"
+    last_updated_at: "2026-07-03T11:54:21Z"
+    last_updated_by: "claude-opus-4-8"
+    recent_action: "Applied plan-review remediation (008↔010 fence, REQ-003 FTS gate, continuity populated)"
+    next_safe_action: "Capture latency baselines, then run the confirm-before-fix pass on 🟡 items"
     blockers: []
-    key_files: []
+    key_files: ["spec.md", "plan.md", "tasks.md", "checklist.md", "implementation-summary.md"]
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "scaffold-scaffold/010-search-hot-path-performance"
@@ -81,7 +81,7 @@ FAILURE MODES:
 - [ ] CHK-022 [P1] Edge cases tested: empty candidate set, oversized `id IN` chunking, FTS adversarial tokens (quotes, NEAR/OR/-, unicode, empty), mtime change + rollback, DB rebind
 - [ ] CHK-023 [P1] Error scenarios validated: cache invalidation on DB rebind, weak-result gate no-op case equals current behavior
 - [ ] CHK-024 [P0] GATE: memory_search p50 < 800ms warm @33k rows on the fixed query set (baseline 2.0-2.9s)
-- [ ] CHK-025 [P0] GATE: rank-parity fixture green across all batches; any weak-result-gate delta documented against the 006 contract
+- [ ] CHK-025 [P0] GATE: rank-parity fixture green across all batches; the FTS-routed backfill passes the adversarial token-equivalence table (matches the LIKE substring semantics it replaces — quotes, NEAR/OR/-, unicode, empty, no-op gate; divergence blocks completion, REQ-003); any weak-result-gate delta documented against the 006 contract
 - [ ] CHK-026 [P1] match_triggers measured < 300ms warm on the same harness, or deviation recorded and attributed to phase 005 (baseline 2.3s warm / 17s cold)
 - [ ] CHK-027 [P1] GATE: full scan completes with zero event-loop-lag warnings; scan wall time recorded before/after
 - [ ] CHK-028 [P1] Before/after delta table recorded in implementation-summary.md (all report-class metrics included: stage split, auto-surface, cold init, RSS)
@@ -95,7 +95,7 @@ FAILURE MODES:
 - [ ] CHK-FIX-001 [P0] Each actionable finding has a finding class: `instance-only`, `class-of-bug`, `cross-consumer`, `algorithmic`, `matrix/evidence`, or `test-isolation`.
 - [ ] CHK-FIX-002 [P0] Same-class producer inventory completed, or instance-only status proven by grep (N+1 SELECT, readFileSync-per-result, JSON round-trip, statSync classes — commands in plan.md FIX ADDENDUM).
 - [ ] CHK-FIX-003 [P0] Consumer inventory completed for changed helpers, policies, schema fields, response fields, docs, and tests (envelope consumers: formatters, hooks, CLI renderers).
-- [ ] CHK-FIX-004 [P0] Security/path/parser/redaction fixes include adversarial table tests for delimiter, joined-input, outside-root, no-op, and fallback cases (FTS MATCH token sanitization table).
+- [ ] CHK-FIX-004 [P0] GATE: Security/path/parser/redaction fixes include adversarial table tests for delimiter, joined-input, outside-root, no-op, and fallback cases; the FTS MATCH token-equivalence table proves the FTS-routed backfill matches the LIKE substring semantics it replaces — a divergence blocks completion (REQ-003), not report-only.
 - [ ] CHK-FIX-005 [P1] Matrix axes and row count are listed before completion is claimed (query type x daemon state x corpus snapshot — plan.md FIX ADDENDUM).
 - [ ] CHK-FIX-006 [P1] Hostile env/global-state variant executed when tests or code read process-wide state (cache behavior across DB rebind; env-flag states for any gate flag).
 - [ ] CHK-FIX-007 [P1] Evidence is pinned to a fix SHA or explicit diff range, not a moving branch-relative range.
@@ -108,7 +108,7 @@ FAILURE MODES:
 
 - [ ] CHK-030 [P0] No hardcoded secrets
 - [ ] CHK-031 [P0] Input validation implemented: parameterized `id IN` batching; user tokens sanitized before FTS5 MATCH interpolation
-- [ ] CHK-032 [P1] Cache isolation correct: all new caches keyed by DB identity, no cross-DB leakage after rebind (known memoryId-only cache-key bug class avoided)
+- [ ] CHK-032 [P1] Cache isolation correct: all new caches keyed by DB identity, no cross-DB leakage after rebind; the NEW adjacency cache reuses 008's DB-identity keying scheme (008 T026, lands first) rather than re-fixing the memoryId-only bug here
 <!-- /ANCHOR:security -->
 
 ---

@@ -33,7 +33,7 @@ _memory:
 <!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2 -->
 # Implementation Plan: Phase 11: daemon-freshness-and-health-truthfulness
 
-<!-- SPECKIT_LEVEL: 1 -->
+<!-- SPECKIT_LEVEL: 2 -->
 <!--
 SELF-CHECK:
 - Confirm the plan names the simplest viable approach, affected surfaces, and verification path.
@@ -85,9 +85,9 @@ Break the freshness deadlock where it starts: the build finalizer (`finalize-dis
 Shared checker module + thin consumers: one `dist-freshness.cjs` module defines "stale"; CLI shims fail closed, validate.sh backstop fails closed, hook/plugin consumers warn or fall back open. This phase adds one producer (build finalizer writes the cache) and keeps the consumer topology intact.
 
 ### Key Components
-- **`dist-freshness.cjs` (shared checker)**: hash-cache short-circuit at :349-364; mtime comparison at :366-392; cache write today only at :394 (post-mtime-pass — the deadlock). Gains an exported cache-write helper so the finalizer does not duplicate cache-path logic (`cachePathFor`, `hashSourceFiles` stay single-sourced).
-- **`finalize-dist.mjs` (build finalizer)**: after a successful build, writes the source-hash cache for each mcp_server entry (default, `spec-memory-cli`, `validation-orchestrator`).
-- **`spec-memory.cjs` (CLI gate)**: `ensureFreshDist()` currently unconditional (:76-77), exits `EXIT_RETRYABLE=75` on stale/missing (:56). Gains argv exemptions and the explicit taxonomy.
+- **`dist-freshness.cjs` (shared checker)**: hash-cache short-circuit at :349-364; source enumeration via `collectSourceFiles` at :333; hash+cache-path at :349-350; mtime comparison at :366-392; cache write today only at :394 (post-mtime-pass — the deadlock). Gains exported helpers so the finalizer reuses the checker's own source *enumeration* AND hash/cache-path logic (`collectSourceFiles`, `hashSourceFiles`, `cachePathFor` stay single-sourced). Reusing only the hash function is insufficient: a finalizer that enumerates its own file set would hash a different set than the checker walks at :333, so the stored hash would never match and the deadlock would persist.
+- **`finalize-dist.mjs` (build finalizer)**: after a successful build, writes the source-hash cache for each mcp_server entry (default, `spec-memory-cli`, `validation-orchestrator`), computing each cache over the checker's `collectSourceFiles` enumeration so the written hash equals what the checker recomputes.
+- **`spec-memory.cjs` (CLI gate)**: `ensureFreshDist()` currently unconditional (:76-77), exits `EXIT_RETRYABLE=75` on stale/missing (:55-56). Gains argv exemptions and the explicit taxonomy — conservative default keeps stale-dist inside 75 as a documented non-retryable sub-case (75 is a live retryable contract), a distinct code only if the consumer inventory proves it.
 - **`spec-memory-cli-fallback.ts` + `session-health.ts` (visibility)**: fallback currently classifies fail-open silently (:258); gains a surfaced skip reason and a queryable last-fallback record.
 - **`memory-crud-health.ts` (truthfulness)**: exclusion audit at :463-473 references nonexistent `content` column; sampled orphan scan; maintenance lastRun; population definitions note shared with stats and phase 002.
 
@@ -104,8 +104,8 @@ Use this section when `research_intent=fix_bug`, when planning from a deep-revie
 
 | Surface | Current Role | Action | Verification |
 |---------|--------------|--------|--------------|
-| `scripts/lib/dist-freshness.cjs` (producer/policy) | Owns the staleness verdict; writes hash cache only after an mtime pass (:394) | update — export cache-write helper; unify :314/:390 message texts | vitest bootstrap test; `rg -n "writeStoredSourceHash" scripts/lib` |
-| `mcp_server/scripts/finalize-dist.mjs` (producer) | Finalizes build output; never touches freshness caches (enforcement doc: "never pre-warmed by a build script") | update — write per-entry caches post-build | build → CLI invocation receipt; test asserts cache files exist after finalize |
+| `scripts/lib/dist-freshness.cjs` (producer/policy) | Owns the staleness verdict; enumerates via `collectSourceFiles` (:333), hashes at :349, writes hash cache only after an mtime pass (:394) | update — export the source *enumeration* + cache-write helpers (`collectSourceFiles`/`hashSourceFiles`/`cachePathFor`); unify :314/:390 message texts | vitest bootstrap test; `rg -n "collectSourceFiles\|writeStoredSourceHash" scripts/lib` |
+| `mcp_server/scripts/finalize-dist.mjs` (producer) | Finalizes build output; never touches freshness caches (enforcement doc: "never pre-warmed by a build script") | update — write per-entry caches post-build using the checker's `collectSourceFiles` enumeration (NOT an independent walk — divergent file set → permanent cache miss → deadlock persists) | build → CLI invocation receipt; test asserts cache files exist after finalize AND the checker returns fresh via the hash short-circuit |
 | `.opencode/bin/spec-memory.cjs` (consumer/gate) | Unconditional `ensureFreshDist()` before argv (:76-77); exit 75 on stale (:56); spawns CLI (:79) | update — argv exemptions, taxonomy, `--disable-warning`/`--no-warnings` on spawn; reconcile git state | forced-stale `--help` exit 0; `git status --porcelain .opencode/bin/spec-memory.cjs` |
 | `.opencode/bin/code-index.cjs`, `.opencode/bin/skill-advisor.cjs` (same-class producers) | Same shared-module gate pattern (enforcement doc §2) | inventory only — document whether they share the deadlock and the exemption gap; fix only if trivially identical, else record disposition for their owning systems | `rg -n "checkPackageFreshness|EXIT_RETRYABLE|--help" .opencode/bin/*.cjs` |
 | `mcp_server/hooks/spec-memory-cli-fallback.ts` (consumer) | Fail-open classification at :258; spawn at :210 | update — skip-reason surfacing, last-fallback recording, warning suppression | forced-stale session-start receipt shows the one-liner |
@@ -122,6 +122,7 @@ Required inventories:
 - Consumers of changed symbols: `rg -n "exitCode|staleDistWarning|75|fail_open" .opencode/skills/system-spec-kit/mcp_server/hooks .opencode/bin --glob '*.{ts,js,cjs,md}'` before the taxonomy decision.
 - Matrix axes: {dist state: fresh / stale-mtime-only / genuinely-stale / missing} × {argv: tool call / --help / --version / completion} × {cache: absent / matching / mismatched} — enumerate rows in the regression test before implementation.
 - Algorithm invariant: a genuinely stale dist (source content differs from what built the dist) MUST still refuse after the cache-bootstrap change; adversarial cases: cache present but source edited afterward; cache written by a failed build (must not happen); cache for one entry must not vouch for another entry.
+- Enumeration-equality invariant: the finalizer's source enumeration MUST equal the checker's `collectSourceFiles` output for the same pkg/root/entry (same `sourceCandidates`, `excludedSegments`, and watched extensions). Any divergence makes the finalizer-written hash unequal to the checker's recompute at `:349`, so the hash short-circuit never fires and the deadlock is not actually broken — test by asserting the checker reports fresh via the hash path (not mtime) immediately after finalize.
 <!-- /ANCHOR:affected-surfaces -->
 
 ---

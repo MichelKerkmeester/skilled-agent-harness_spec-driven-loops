@@ -11,9 +11,9 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-speckit/028-memory-search-intelligence/016-fix-deep-dive-p0-p2-findings-for-mk-spec-memory/008-causal-graph-hygiene-and-entity-linker-noise"
-    last_updated_at: "2026-07-03T10:05:00Z"
-    last_updated_by: "claude-fable-5"
-    recent_action: "Authored task breakdown with finding-ID citations per task"
+    last_updated_at: "2026-07-03T13:00:00Z"
+    last_updated_by: "claude-opus-4-8"
+    recent_action: "Remediated REWORK: Cluster A/C down-weight + verify-first, T013 restate, column + T032 fixes"
     next_safe_action: "Start T001 (vitest baseline) before touching any source file"
     blockers: []
     key_files:
@@ -80,13 +80,13 @@ Mark the task `[B]` with the blocker named inline, add it to the continuity bloc
 ## Phase 1: Setup
 
 - [ ] T001 Capture vitest baseline: full suite run, store pass/fail counts and failing-test list as the regression gate (mcp_server/)
-- [ ] T002 [P] Capture data baselines on the live DB (read-only): relation histogram (`SELECT relation_type, COUNT(*), source FROM causal_edges GROUP BY 1,3`), strength distribution, `entity_catalog`=61,638 / `memory_entities`=561,785 / placeholder-title surrogate=7,108 counts (🟢 L8 refresh)
+- [ ] T002 [P] Capture data baselines on the live DB (read-only): relation histogram (`SELECT relation, created_by, ROUND(strength,2), COUNT(*) FROM causal_edges GROUP BY 1,2,3`), strength distribution, `entity_catalog`=61,638 / `memory_entities`=561,785 / placeholder-title surrogate=7,108 counts (🟢 L8 refresh; live re-measure 2026-07-03: 33,476 edges, 31,536 `supports`@0.7 `created_by='entity_linker'`, derived_id NULL on 32,465)
 - [ ] T003 [P] Prepare a production DB copy for migration dry-runs (scratch/, never committed)
 - [ ] T004 🟡 confirm-before-fix: recomputeLocal ratchet - quote current `MIN(1.0, strength + ...)` behavior and its onWrite call sites (report #19; mcp_server/lib/search/graph-lifecycle.ts:309-323)
 - [ ] T005 [P] 🟡 confirm-before-fix: causal-links `blocks`→reversed-`enabled` mapping and fuzzy-LIKE fallback reach (Agent H P2; mcp_server/handlers/causal-links-processor.ts:67,290)
 - [ ] T006 [P] 🟡 confirm-before-fix: entity-linker incremental-vs-full normalization mismatch, degree-cache staleness on createEntityLinks, reversed A→B/B→A dup pairs, density guard counting pseudo-edges, catalog LIMIT 500 without ORDER BY, per-memory error full-corpus fallback (Agent D P2/contract; mcp_server/lib/search/entity-linker.ts)
 - [ ] T007 [P] 🟡 confirm-before-fix: community rebuild frozen at checkpoint-restore, fingerprint sum-collision, cache not reset on DB rebind, phantom injected member ids; graph-signals exact now-7d momentum + memoryId-only cache keys (Agent D P2, Agent C P2; mcp_server/lib/graph/community-detection.ts, mcp_server/lib/graph/graph-signals.ts)
-- [ ] T008 Read the absorbed contract and quote its fix intent for P1-2 (derived_id split: vector-index-schema.ts:1126 `legacy-pre-derived-id` vs causal-edges.ts:125 `causal-edge:v1`, content-id.ts:67) and P1-4 (embedding inside BEGIN IMMEDIATE: consolidation.ts:684/701) (../../006-review-remediation/002-memory-schema-and-concurrency/spec.md)
+- [ ] T008 Read the absorbed contract, then CONFIRM both fixes are already in live code: P1-2 (the v40 backfill already hashes `DEFAULT_DERIVED_CAUSAL_EDGE_RULE_VERSION` at vector-index-schema.ts:1119-1129, matching the live default at causal-edges.ts:125; content-id.ts:28 = `causal-edge:v1`; twin-identity test at tests/derived-id-provenance.vitest.ts) and P1-4 (the read-only scan already runs before BEGIN IMMEDIATE at consolidation.ts:574-578; `runSemanticEdgeEmbeddingPass`/`embedEdgeText` do not exist tree-wide; the old :684/:701 cite exceeds the 634-line file). Record that both code defects are already gone — only the P1-2 backfill and the P1-4 test remain (../../006-review-remediation/002-memory-schema-and-concurrency/spec.md)
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -96,26 +96,27 @@ Mark the task `[B]` with the blocker named inline, add it to the continuity bloc
 
 ### Cluster A - ADR-001 co-occurrence disposition (REQ-001, 🟢 L8)
 
-- [ ] T009 Consumer inventory: rg every reader of `'supports'`/`RELATION_TYPES.SUPPORTS`/`entity_linker` provenance across mcp_server; record update/unchanged/not-a-consumer per surface in ADR-001 (plan.md FIX ADDENDUM commands)
-- [ ] T010 Migration dry-run on the DB copy: disposition of the 31,118 entity-linker `'supports'` @0.7 edges per ADR-001 Proposed option; capture before/after counts; ratify or flip ADR-001 on the evidence (mcp_server/lib/search/vector-index-schema.ts)
-- [ ] T011 Land the write-side change: entity-linker inserts use the ratified relation/table/weight; causal boost excludes co-occurrence edges by default with an explicit opt-in (mcp_server/lib/search/entity-linker.ts:865)
-- [ ] T012 Ship the forward + reverse migration pair, batched and idempotent (mcp_server/lib/search/vector-index-schema.ts)
+- [ ] T009 Consumer inventory: rg every reader of `'supports'`/`RELATION_TYPES.SUPPORTS`/`created_by='entity_linker'` provenance and of the strength band across mcp_server; record update/unchanged/not-a-consumer per surface in ADR-001 (plan.md FIX ADDENDUM commands)
+- [ ] T010 Dry-run on the DB copy: down-weight the ~31,536 `created_by='entity_linker'` `'supports'`@0.7 edges per ADR-001 (strength UPDATE only — relocation to `entity_cooccurrence` is blocked by the CHECK constraint and would force a full table rebuild); capture before/after strength counts; ratify or flip ADR-001 on the evidence (mcp_server/lib/search/vector-index-schema.ts)
+- [ ] T011 Land the write-side change: entity-linker inserts write `relation='supports'` at the ratified low strength (not 0.7); causal boost/traversal/density guard exclude `created_by='entity_linker'` edges by default with an explicit opt-in (mcp_server/lib/search/entity-linker.ts:865)
+- [ ] T012 Ship the forward + reverse strength-UPDATE migration pair, provenance-scoped, batched and idempotent (no schema change) (mcp_server/lib/search/vector-index-schema.ts)
 
 ### Cluster B - graph-lifecycle (REQ-002, REQ-012 partial; report #19, Agent D P2)
 
-- [ ] T013 Replace the additive ratchet with strength derived from graph state; keep typed-degree weights consistent; skip onWrite recompute when `inserted == 0` (mcp_server/lib/search/graph-lifecycle.ts:309-323)
+- [ ] T013 Replace the additive `MIN(1.0, strength + degreeBoost)` ratchet: recompute the relation prior each save and combine it idempotently with the current degree (or move the degree term to its own column) so strength never accumulates and never collapses to a degree-only value; keep typed-degree weights consistent; skip onWrite recompute when `inserted == 0` (mcp_server/lib/search/graph-lifecycle.ts:309-323)
 - [ ] T014 [P] Filter pseudo-node ids (`heading:`/`alias:`/`concept:`) out of `estimateComponentSize` and `recomputeLocal` traversal; drain the dirty set when no refresh fn is registered (mcp_server/lib/search/graph-lifecycle.ts)
 - [ ] T015 [P] Generate surrogates with the real document title instead of `Memory ${id}` (mcp_server/lib/search/graph-lifecycle.ts:532)
 
-### Cluster C - absorbed 028/006/002 (REQ-003, REQ-004; P1-2, P1-4)
+### Cluster C - absorbed 028/006/002, verify-first (REQ-003, REQ-004; P1-2, P1-4)
 
-- [ ] T016 Unify causal-edge `derived_id`: align the v40 backfill rule_version with the live default (or reconcile the skew) so backfilled and live twins share one identity; migration touches only `WHERE derived_id IS NULL` or explicitly recorded skew rows (mcp_server/lib/search/vector-index-schema.ts:1126, mcp_server/lib/storage/causal-edges.ts:125, mcp_server/lib/content-id.ts:67)
-- [ ] T017 Move semantic-edge embedding outside the consolidation `BEGIN IMMEDIATE` transaction; wrap the long phase in a maintenance handle with explicit `refresh()` per the TTL contract (mcp_server/lib/storage/consolidation.ts:684,701)
+- [ ] T016 P1-2 verify-then-backfill: confirm the v40 backfill already hashes the live default (vector-index-schema.ts:1119-1129 == causal-edges.ts:125, content-id.ts:28) and the twin-identity test passes; then run the idempotent `WHERE derived_id IS NULL` backfill on the 32,465 NULL rows so backfilled and live twins collapse under the partial UNIQUE index (mcp_server/lib/search/vector-index-schema.ts)
+- [ ] T017 P1-4 verify-then-test: confirm the read-only scan already runs before `BEGIN IMMEDIATE` (consolidation.ts:574-578) and that no embedding call runs under the lock (no `embedEdgeText` symbol exists tree-wide); add a concurrency/interleaving test asserting the immediate lock scope covers only the Hebbian write phase (mcp_server/lib/storage/consolidation.ts, mcp_server/tests/)
 
-### Cluster D - causal-links-processor (REQ-005; Agent H P2)
+### Cluster D - honest edge inference: causal-links-processor + session-trace (REQ-005, REQ-013; Agent H P2, routed silent-drop)
 
-- [ ] T018 Fix `blocks` polarity: stop storing reversed `enabled`; map to the ratified non-inverting relation (mcp_server/handlers/causal-links-processor.ts:67)
+- [ ] T018 Fix `blocks` polarity: stop storing reversed `enabled`; map to `contradicts` (CHECK-legal; a first-class `blocks` relation would need the CHECK table rebuild) (mcp_server/handlers/causal-links-processor.ts:67)
 - [ ] T019 Replace the fuzzy-LIKE fallback with unresolved-with-suggestion (no edge written); add liveness/parent filters to numeric ref resolution (mcp_server/handlers/causal-links-processor.ts:290)
+- [ ] T032 [P] Session-trace causal reducer (routed silent-drop; REQ-013): require ≥2 distinct-session co-occurrences before inferring an edge and exclude same-query co-retrieved sources in `selectPriorSearchSources` (today it infers from a single co-occurrence and prefers same-query sources; flag `SPECKIT_SESSION_TRACE_CAUSAL_INFERENCE` default OFF) (mcp_server/lib/feedback/session-trace-causal-reducer.ts)
 
 ### Cluster E - entity-linker parity and hygiene (REQ-006..REQ-009; Agent D P2/refinement/contract)
 
@@ -154,7 +155,7 @@ Mark the task `[B]` with the blocker named inline, add it to the continuity bloc
 - [ ] All tasks marked `[x]`
 - [ ] No `[B]` blocked tasks remaining
 - [ ] Manual verification passed (T029 probes evidenced in checklist.md)
-- [ ] REQ-001..REQ-004 (P0) complete; REQ-005..REQ-012 complete or user-approved deferral
+- [ ] REQ-001..REQ-002 (P0) complete; REQ-003..REQ-013 (P1, incl. verify-first P1-2/P1-4 and the session-trace reducer) complete or user-approved deferral
 <!-- /ANCHOR:completion -->
 
 ---

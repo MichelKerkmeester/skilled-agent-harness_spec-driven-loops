@@ -52,13 +52,14 @@ _memory:
 <!-- ANCHOR:adr-001-context -->
 ### Context
 
-Min-max normalization in stage2 fusion maps the top candidate to exactly 1.0. Every boost that runs after normalization clamps at 1.0, so boosts are structurally inert at the top ranks and ties resolve by hash or row id (findings-ledger, Agent C P2). The damage spreads: the HyDE gate compares an absolute 0.45 threshold against scores whose max is always 1.0, so it can never fire while any candidate exists (Agent D P1, hyde.ts:88), and an all-equal fusion input collapses to a flat all-1.0 output. We needed to choose how to restore boost headroom without breaking the documented 0-to-1 score envelope.
+Min-max normalization in stage2 fusion maps the top candidate to exactly 1.0. Every boost that runs after normalization clamps at 1.0, so boosts are structurally inert at the top ranks and ties resolve by hash or row id (findings-ledger, Agent C P2). The dominant post-normalization boost makes this concrete: the learned trigger boost is a large ADDITIVE term (+0.7, `learned-feedback.ts:75`) applied as `Math.min(1.0, currentScore + learnedBoost)` at `stage2-fusion.ts:843`. Any two rows that both receive it and start above ~0.3 both saturate at the 1.0 clamp and re-tie - the exact "ties resolve by hash" bug REQ-016 claims to fix. A sub-1.0 band alone does NOT fix this: normalizing into 0-0.95 still leaves a +0.7 additive boost far exceeding the 0.05 headroom, so both boosted rows still clamp to 1.0. The damage spreads: the HyDE gate compares an absolute 0.45 threshold against scores whose max is always 1.0, so it can never fire while any candidate exists (Agent D P1, hyde.ts:88), and an all-equal fusion input collapses to a flat all-1.0 output. We needed to restore boost headroom without breaking the documented 0-to-1 score envelope AND without leaving the additive-boost saturation unresolved.
 
 ### Constraints
 
 - The score envelope stays inside 0 to 1; downstream consumers and telemetry assume that range.
 - Thresholds tuned against the pinned scale (MIN_MATCH_THRESHOLD, HyDE 0.45, degradation 0.02) must be inventoried and reviewed in the same change, per the plan.md FIX ADDENDUM.
-- Phase 006 owns the rescue-layer authority decision; this ADR must hold under either outcome.
+- A band constant alone is insufficient: the additive +0.7 learned boost (`stage2-fusion.ts:843`) must ALSO be reconciled with the band, or two boosted rows re-tie at 1.0 and the ADR ships the very bug it targets.
+- **Precondition (006 gate):** this is a ranking-order change, not a correctness fix. Phase 006 owns the rescue-layer authority decision; if 006 chooses Option A (rescue stays the ranking authority, lexical dominance kept), ADR-001 is WITHDRAWN as moot BEFORE the threshold-consumer inventory runs, so R-002's migration cost is never paid for a no-op. ADR-001 only proceeds when 006 keeps ranking-order signals load-bearing.
 <!-- /ANCHOR:adr-001-context -->
 
 ---
@@ -66,9 +67,9 @@ Min-max normalization in stage2 fusion maps the top candidate to exactly 1.0. Ev
 <!-- ANCHOR:adr-001-decision -->
 ### Decision
 
-**We chose**: normalize fused scores into a sub-1.0 band (working constant 0.95, final value set by A/B on the 006 parity harness) so post-normalization boosts keep real headroom.
+**We chose**: normalize fused scores into a sub-1.0 band (working constant 0.95, final value set by A/B on the 006 parity harness) AND rescale post-normalization boosts so they operate inside the remaining headroom instead of adding raw then clamping at 1.0. Both pieces are required; the band without the boost rescale re-ships the re-tie bug.
 
-**How it works**: the stage2 min-max step scales into 0 to BAND instead of 0 to 1.0. Boosts and demotions then move rows inside the remaining headroom before the final clamp. The threshold-consumer inventory runs first, and every absolute threshold is re-based or explicitly confirmed against the new band.
+**How it works**: the stage2 min-max step scales into 0 to BAND instead of 0 to 1.0. The additive learned boost at `stage2-fusion.ts:843` changes from `Math.min(1.0, score + boost)` to a headroom-proportional application - the boost moves a row a fraction of the distance from its score toward BAND (for example `score + boost * (BAND - score)`), so two boosted rows separate by their base signal instead of both saturating at the clamp. Demotions apply symmetrically inside the band. We chose rescale-into-the-band over shrink-the-band because shrinking far enough to leave raw +0.7 additive headroom (band <= 0.3) would crush the base similarity signal; rescaling keeps the base signal intact and still makes boosts reorder. The threshold-consumer inventory runs first, and every absolute threshold is re-based or explicitly confirmed against the new band.
 <!-- /ANCHOR:adr-001-decision -->
 
 ---
@@ -78,11 +79,13 @@ Min-max normalization in stage2 fusion maps the top candidate to exactly 1.0. Ev
 
 | Option | Pros | Cons | Score |
 |--------|------|------|-------|
-| **Sub-1.0 band (chosen)** | One-site change; boosts become visible at top ranks; envelope preserved | Threshold consumers need review; band constant needs A/B | 8/10 |
+| **Sub-1.0 band + boost rescale (chosen)** | Boosts become visible at top ranks; envelope preserved; base similarity signal kept intact; resolves the additive +0.7 re-tie directly | Two coordinated changes (band constant + boost-application rewrite at `stage2-fusion.ts:843`); threshold consumers need review; band constant needs A/B | 8/10 |
+| Band only (no boost rescale) | Truly one-site change | Does NOT fix the additive +0.7 saturation - two boosted rows still re-tie at 1.0, shipping the exact bug REQ-016 targets | 3/10 |
+| Shrink the band far enough for raw additive boosts (band <= 0.3) | No boost-application change | Crushes the base similarity signal into a narrow range; over-compresses real relevance | 4/10 |
 | Apply boosts pre-normalization | No band constant; ordering survives normalization | Touches every boost site; interaction with the rescue overlay gets murky; much larger diff | 6/10 |
 | Keep pinning, retire the boosts | Honest about today's behavior | Contradicts the phase goal; wholesale signal retirement belongs to phase 006 | 3/10 |
 
-**Why this one**: it is the smallest change that makes boosts mean something, and it keeps the retirement question where it belongs (006).
+**Why this one**: it is the smallest change that makes boosts mean something AND actually resolves the additive-boost re-tie, and it keeps the retirement question where it belongs (006).
 <!-- /ANCHOR:adr-001-alternatives -->
 
 ---
@@ -126,11 +129,11 @@ Min-max normalization in stage2 fusion maps the top candidate to exactly 1.0. Ev
 <!-- ANCHOR:adr-001-impl -->
 ### Implementation
 
-**What changes**:
-- `lib/search/pipeline/stage2-fusion.ts`: min-max normalization emits the sub-1.0 band.
+**What changes** (only when the 006 gate is not Option A):
+- `lib/search/pipeline/stage2-fusion.ts`: min-max normalization emits the sub-1.0 band, AND the additive learned-boost application at `:843` becomes headroom-proportional so it no longer saturates at the 1.0 clamp.
 - Threshold consumers flagged by the FIX ADDENDUM inventory: re-based or confirmed, each with a test.
 
-**How to roll back**: set the band constant back to 1.0 (single-line revert) or turn the cluster-3 phase flag off per ADR-003; both restore pre-phase ranking on the next request once cluster 1 lands.
+**How to roll back**: set the band constant back to 1.0 and restore the additive clamp (single-commit revert) or turn the cluster-3 phase flag off per ADR-003; both restore pre-phase ranking on the next request once cluster 1 lands. If 006 = Option A the ADR is not implemented at all (withdrawn), so there is nothing to roll back.
 <!-- /ANCHOR:adr-001-impl -->
 <!-- /ANCHOR:adr-001 -->
 
@@ -159,6 +162,7 @@ The trigger lane applies a 1.4 weight outside fusion normalization, so a trigger
 - Trigger matches carry real user-intent signal, and phase 005 is improving trigger quality; the lane must not be deleted.
 - All channels must contribute on the fused scale (the same invariant driving ADR-001).
 - Weight values are empirical: the 006 parity harness decides them, not spec constants.
+- **Precondition (006 gate):** like ADR-001, this is a ranking-order change, not a correctness fix. If 006 chooses Option A (rescue stays the ranking authority, lexical dominance kept), the trigger contribution never reaches the fused ranking in a load-bearing way, so ADR-002 is WITHDRAWN as moot rather than shipped as an inert re-weighting. The keyword-lane FTS5 dedupe (a correctness fix, not a ranking-order change) still lands either way. ADR-002's trigger-weight normalization only proceeds when 006 keeps ranking-order signals load-bearing.
 <!-- /ANCHOR:adr-002-context -->
 
 ---
@@ -227,10 +231,10 @@ The trigger lane applies a 1.4 weight outside fusion normalization, so a trigger
 ### Implementation
 
 **What changes**:
-- `lib/search/pipeline/stage2-fusion.ts`: trigger channel weight inside fusion; keyword-lane dedupe; dead-weight disposition.
+- `lib/search/pipeline/stage2-fusion.ts`: trigger channel weight inside fusion (006-gated ranking-order change); keyword-lane dedupe (correctness fix, lands either way); dead-weight disposition.
 - `lib/cognitive/adaptive-ranking.ts`: adaptive-fusion divisor fix confirmed by T004.
 
-**How to roll back**: revert the cluster-3 commit or turn the cluster-3 phase flag off; both restore the out-of-band multiplier behavior.
+**How to roll back**: revert the cluster-3 commit or turn the cluster-3 phase flag off; both restore the out-of-band multiplier behavior. If 006 = Option A, the trigger-weight normalization is not implemented (withdrawn); only the keyword-lane dedupe lands.
 <!-- /ANCHOR:adr-002-impl -->
 <!-- /ANCHOR:adr-002 -->
 
@@ -266,9 +270,9 @@ The program's cross-cutting rule says fixes to default-ON behavior ship direct, 
 <!-- ANCHOR:adr-003-decision -->
 ### Decision
 
-**We chose**: ship clusters 1, 2, and 4 direct as correctness fixes with per-cluster revertable commits and no new flags; ship cluster-3 ranking-order changes behind one phase-scoped flag, default OFF, flipped ON after the eval-delta gate passes, then removed at phase close.
+**We chose**: ship clusters 1, 2, and the gate-CORRECTNESS parts of cluster 4 direct with per-cluster revertable commits and no new flags; group every RANKING-ORDER change - the headroom band (ADR-001), the trigger-weight normalization (ADR-002), the recency curve, AND cluster 4's two ranking-order gate fixes (#13 non-hybrid blend, #14 causal-boost scaling) - behind one phase-scoped flag, measured together on the 006 harness, default OFF, flipped ON after the eval-delta gate passes, then removed at phase close.
 
-**How it works**: each cluster lands as its own conventional commit. The single cluster-3 flag guards the headroom band (ADR-001), the trigger-weight normalization (ADR-002), and the recency-curve change together, because they are measured together on the 006 harness. After a clean eval-delta the default flips, and the flag is deleted before the phase claims completion so no dead knob survives.
+**How it works**: each cluster lands as its own conventional commit. Correctness fixes (minState, scope hard-gating, HyDE gate-fire, graph-FTS, quality-gap, evidence-gap, intent-classifier, community existence) ship direct because they change whether a gate is correct, not the rank order of already-correct results. The single ranking-order flag guards ADR-001, ADR-002, the recency curve, and #13/#14 together, because they are measured together on the 006 harness. #13 and #14 are NOT shipped "direct" even though they live in cluster 4: they are rank-order changes the harness must measure, and the review flagged that shipping them direct would land a ranking change the harness never sees. **006 gate:** if 006 chooses Option A, this entire flagged group (ADR-001, ADR-002, #13, #14) is withdrawn rather than flipped on. After a clean eval-delta the default flips, and the flag is deleted before the phase claims completion so no dead knob survives.
 <!-- /ANCHOR:adr-003-decision -->
 
 ---
@@ -328,10 +332,10 @@ The program's cross-cutting rule says fixes to default-ON behavior ship direct, 
 ### Implementation
 
 **What changes**:
-- `lib/search/search-flags.ts`: one phase-scoped cluster-3 flag using the per-request read contract.
-- Git history: four cluster commits, each independently revertable.
+- `lib/search/search-flags.ts`: one phase-scoped ranking-order flag using the per-request read contract, guarding ADR-001, ADR-002, the recency curve, and cluster 4's #13/#14 together.
+- Git history: per-cluster commits (clusters 1, 2, 3, 4, and the cluster 5 silent-drop absorptions), each independently revertable.
 
-**How to roll back**: turn the cluster-3 flag off for ranking changes (effective next request), or `git revert` the specific cluster commit for direct-shipped fixes.
+**How to roll back**: turn the ranking-order flag off for the flagged group (effective next request), or `git revert` the specific cluster commit for direct-shipped fixes.
 <!-- /ANCHOR:adr-003-impl -->
 <!-- /ANCHOR:adr-003 -->
 

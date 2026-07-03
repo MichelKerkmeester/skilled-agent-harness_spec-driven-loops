@@ -2,7 +2,7 @@
   "schema_version": 1,
   "packet_id": "system-speckit/028-memory-search-intelligence/016-fix-deep-dive-p0-p2-findings-for-mk-spec-memory/003-content-hash-normalization-and-save-dedup-lanes",
   "spec_folder": "system-speckit/028-memory-search-intelligence/016-fix-deep-dive-p0-p2-findings-for-mk-spec-memory/003-content-hash-normalization-and-save-dedup-lanes",
-  "parent_id": null,
+  "parent_id": "system-speckit/028-memory-search-intelligence/016-fix-deep-dive-p0-p2-findings-for-mk-spec-memory",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -10,34 +10,226 @@
     "related_to": []
   },
   "derived": {
-    "trigger_phrases": [],
-    "key_topics": [],
-    "importance_tier": "important",
-    "status": "planned",
-    "key_files": [
-      "spec.md",
-      "plan.md",
-      "tasks.md"
+    "trigger_phrases": [
+      "content hash normalization",
+      "save dedup lanes",
+      "snapshot churn supersede",
+      "pe-gate update reinforce lanes",
+      "full-auto canonical save self-reject",
+      "post save fingerprint ordering",
+      "buildContinuityFingerprint unification",
+      "content hash normalization plan",
+      "save dedup lanes plan",
+      "snapshot churn supersede fix",
+      "dual-compare hash migration",
+      "un-skip memory save parity tests"
     ],
-    "entities": [],
+    "key_topics": [
+      "content",
+      "hash",
+      "normalization",
+      "save",
+      "dedup",
+      "lanes",
+      "snapshot",
+      "churn",
+      "supersede",
+      "pe-gate",
+      "update",
+      "reinforce"
+    ],
+    "importance_tier": "important",
+    "status": "draft",
+    "key_files": [
+      ".opencode/skills/system-spec-kit/mcp_server/lib/parsing/memory-parser.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/handlers/save/pe-orchestration.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/handlers/save/atomic-index-memory.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "lib/parsing/memory-parser.ts",
+      "handlers/memory-save.ts",
+      "handlers/save/pe-orchestration.ts",
+      "handlers/pe-gating.ts",
+      "handlers/save/atomic-index-memory.ts",
+      "lib/validation/spec-doc-structure.ts",
+      "lib/search/hybrid-search.ts",
+      "spec.md",
+      "lib/content-id.ts",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "memory-parser.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/parsing/memory-parser.ts",
+        "source": "derived"
+      },
+      {
+        "name": "memory-save.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts",
+        "source": "derived"
+      },
+      {
+        "name": "pe-orchestration.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/handlers/save/pe-orchestration.ts",
+        "source": "derived"
+      },
+      {
+        "name": "atomic-index-memory.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/handlers/save/atomic-index-memory.ts",
+        "source": "derived"
+      },
+      {
+        "name": "hybrid-search.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "pe-gating.ts",
+        "kind": "code",
+        "path": "handlers/pe-gating.ts",
+        "source": "derived"
+      },
+      {
+        "name": "spec-doc-structure.ts",
+        "kind": "code",
+        "path": "lib/validation/spec-doc-structure.ts",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "content-id.ts",
+        "kind": "code",
+        "path": "lib/content-id.ts",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Authored Level",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Dependencies",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Kill",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Handler",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
     "causal_summary": "`contenthash` is a raw sha256 with no normalization (`memory-parser.ts:914`; deep-dive-report Chain A step 1 cites :913), so any CRLF/trailing-whitespace or `memory.continuity.lastupdatedat` churn registers as new content; each same-path re-save then retires the predecessor to `tier='deprecated'` and inserts a new row, accumulating snapshots unboundedly (Chain A steps 2-3)",
     "created_at": "2026-07-03T09:44:19Z",
-    "last_save_at": "2026-07-03T09:44:19Z",
+    "last_save_at": "2026-07-03T12:08:15.608Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
-      "tasks.md"
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:40e0d683429a241ab23ca9cb3b046f7c1e2b090bc1d1375f3848a1ce550dee9d",
+    "source_fingerprint": "sha256:3cf0c9f94fb3dc5d84f97fd6ddf667308ed3cec46e65a19cde78bdd9f0347dba",
     "source_doc_hashes": {
-      "spec.md": "b23975d9f2fe3c3247d798ab96bb4721a25b56f7efd6b064be6966c4ff07849a",
-      "plan.md": "1289a0fc0b04a4199db16dcff2ffd0d656d414732dd1f7c4ee8f46109a8c2109",
-      "tasks.md": "f6267f65338888e48792faeb703571f56590a1cee8f43ad3a4b2265364a845a9",
-      "checklist.md": "218f94dc73a247a51b1943c8d241186ddb7da050edcd9e68c176ef9b33e0f59e",
-      "decision-record.md": "9909189ae7c1d7086ec8e0b85e4ccb153d790221cff6087e73e63d47ea107cf2",
+      "spec.md": "139e0647139b1019d587d8cc15e0b8d715a3581586905ca9d45cf0106aad1a1c",
+      "plan.md": "facd2e0dcb6bcac1892ff1fc6cb58f5b40362c7c9d6db36d70a4a8f9e7a7e4b7",
+      "tasks.md": "6abd7f26183584f91694234737a91f8aab1dd6407acff011d270e7d0e53ae1a2",
+      "checklist.md": "ed420abd7c80f5dc3a7515ee6a4b2136e2a3e61c952e9c9019b0ff9e8936e9fd",
+      "decision-record.md": "c61841dcc6c0fc15ad9ed78343da6319620b322abd57262c19e0801e38bdf426",
       "implementation-summary.md": "30b5c45270f8cbbe0d465116d06e97861de6dec387469dafb5339f4b156c118c"
-    }
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
   }
 }

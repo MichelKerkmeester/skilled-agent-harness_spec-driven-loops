@@ -131,15 +131,15 @@
     ],
     "causal_summary": "The 2026-07-03 deep dive (live production probing + eight code audits over ~96k lines) found ~150 defects across the mk-spec-memory search stack",
     "created_at": "2026-07-03T09:43:59Z",
-    "last_save_at": "2026-07-03T10:36:59.996Z",
+    "last_save_at": "2026-07-03T12:30:47.772Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:7fad303047f9b11f236f67c82ce8789a0d872554102a4fbc759203599f4bd15c",
+    "source_fingerprint": "sha256:5c0f46aa765e49522016c34487d80e26f7f9a661e9de6be9bde74a61f55b955a",
     "source_doc_hashes": {
-      "spec.md": "6aa601c4426dc9864104ef8cd4ee0d9b99efbc47bd30c10200b2c5489fbb57ae"
+      "spec.md": "7377fdb61e7beada0eb7590b9870aee91f9518e972260b87491bdc3a88ba0c6d"
     },
     "last_active_child_id": null,
     "last_active_at": null

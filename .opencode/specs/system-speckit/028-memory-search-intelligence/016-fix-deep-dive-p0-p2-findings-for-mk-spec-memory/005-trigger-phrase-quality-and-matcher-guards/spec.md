@@ -140,16 +140,16 @@ Gate-1 trigger surfacing becomes fast and trustworthy: warm `memory_match_trigge
 
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-001 | Retroactive trigger regeneration for legacy word-soup rows via the quality-loop extractor (report §1 trigger row; ledger L4) | Migration runs batched + resumable on a DB copy first; post-run audit shows legacy title-word-soup rows regenerated into multi-word phrases; single-word share drops from the 45% baseline; migration is idempotent on re-run |
+| REQ-001 | Retroactive trigger regeneration for legacy word-soup rows via the quality-loop extractor (report §1 trigger row; ledger L4). SELECTOR predicate: a row qualifies as "legacy word-soup" when its stored `trigger_phrases` are all/predominantly single-token entries drawn from the row title (title-word-soup signature) AND it predates the write-side guards (T003-T005). Regeneration MERGES newly-extracted phrases with the row's existing phrases (case-insensitive dedup, never blind-replace) so any surviving user-authored trigger is preserved — legacy save-time auto-fix already ran replace (REQ-004), so user phrases cannot be assumed absent. z_archive/archived-tier rows (~11k, excluded once phase 002's predicate lands) and constitutional rows are SKIPPED, to avoid burning extraction on soon-excluded rows and re-surfacing archived phrases | Migration runs batched + resumable on a DB copy first; the selector predicate, merge-preserve, and archived/constitutional skip are each asserted by the post-run audit; audit shows selected title-word-soup rows regenerated into multi-word phrases with prior user-authored phrases retained; single-word share drops from the 45% baseline; migration is idempotent on re-run |
 | REQ-002 | Matcher-side stopword/min-length/IDF guard for single-token matches plus per-memory phrase dedup (ledger L4; Agent E P2) | Resume-style prompt reproduction returns 0 z_archive rows via single-word matches (baseline 5/5); stopword-only queries return no trigger hits; guard unit tests cover stopword, short-token, and high-IDF single-token cases |
-| REQ-003 | (path, mtime)-keyed phrase extraction cache replacing the full-corpus disk re-read per 60s TTL, plus batched record fetch (report §4 item 2; ledger L4; `trigger-matcher.ts:333`) | Warm `memory_match_triggers` p50 < 300ms (baseline 2.3s warm / 17s cold); unchanged (path, mtime) entries perform zero disk reads on cache refresh |
+| REQ-003 | (path, mtime)-keyed phrase extraction cache replacing the full-corpus disk re-read per 60s TTL, plus batched record fetch (report §4 item 2; ledger L4; `trigger-matcher.ts:333`). INVARIANT: the extraction cache MUST be a SEPARATE, write-invalidation-resistant store from the TTL trigger cache. `clearCache()` (`trigger-matcher.ts:583`) fires on EVERY write (`handlers/mutation-hooks.ts:132`, `handlers/chunking-orchestrator.ts:472/584/640`) and the 60s `CACHE_TTL_MS` check (`trigger-matcher.ts:489`) expires the trigger cache — neither may wipe the (path, mtime) extraction entries, or the "warm" path pays the full disk re-read that the 2.3s baseline measures | Warm `memory_match_triggers` p50 < 300ms measured UNDER write/scan churn (saves that fire `clearCache()` interleaved between measured calls), not just a quiescent loop (baseline 2.3s warm / 17s cold); after a `clearCache()` and after a 60s TTL expiry, unchanged (path, mtime) entries still perform zero disk reads on the next cache refresh |
 | REQ-004 | Write-side auto-fix merges extracted triggers with user-authored triggers instead of replacing, with case-insensitive dedupe and count cap (report §3 P2 highlights; ledger Agent G P2; `memory-save.ts:537`) | Re-saving a doc with user-authored triggers preserves them in the index; merged list is deduped case-insensitively and capped; regression test asserts user phrases survive auto-fix |
 
 ### P1 - Required (complete OR user-approved deferral)
 
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-005 | specFolder prefix matching in `memory_match_triggers` consistent with every other read surface (report §3 P1 #10; `memory-triggers.ts:449,269`) | Scoped match with a parent packet folder returns phase-child rows; exact-scope behavior preserved for leaf folders; scope test matrix passes |
+| REQ-005 | specFolder prefix matching in `memory_match_triggers` consistent with every other read surface, using the shared path-segment-aware idiom `folder === specFolder \|\| folder.startsWith(specFolder + '/')` (as in `hybrid-search.ts:571`, `memory-search.ts:1334`, `retrieval-rescue.ts:366`), or the `specFolderLikePattern()` `<folder>/%` helper (`vector-index-types.ts:34`) for the SQL lane, replacing the exact-match `row.spec_folder !== specFolder` at `memory-triggers.ts:450` and `:269`. The trailing `/` separator is REQUIRED so path-segment awareness holds: scope "028-foo" must NOT match sibling "028-foobar" (report §3 P1 #10; `memory-triggers.ts:449,269`) | Scoped match with a parent packet folder returns phase-child rows ("028-foo" matches "028-foo/005-..."); sibling-prefix "028-foobar" is NOT matched by scope "028-foo"; exact-scope behavior preserved for leaf folders; the documented fail-closed behavior at `memory-triggers.ts:449` (missing/unknown row excluded, scope-error returns empty) is preserved; scope test matrix passes |
 | REQ-006 | Archive/deprecated exclusion in the trigger cache loader using the phase 002 shared active-row predicate (ledger L5; DUP MECHANISM section) | Trigger cache contains no archived/deprecated/tombstoned rows once 002 predicate is available; dependency on 002 recorded and checked before implementation |
 | REQ-007 | Constitutional hygiene: dedup 70 rows to 20 distinct, purge /tmp sandbox row id 38797, write guard rejects constitutional saves from /tmp or sandbox paths (ledger L5) | Post-migration audit: constitutional tier has exactly the distinct set (20 titles), sandbox row gone; guard test proves a /tmp-sourced constitutional save is rejected with a clear error |
 | REQ-008 | Frontmatter trigger parsing handles apostrophes and multi-line YAML phrases (ledger Agent H P2; `memory-parser.ts:820`) | Parser unit tests: phrases with apostrophes and multi-line list items round-trip into the index unchanged |
@@ -167,7 +167,7 @@ Gate-1 trigger surfacing becomes fast and trustworthy: warm `memory_match_trigge
 <!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA
 
-- **SC-001**: Warm `memory_match_triggers` p50 < 300ms measured against the ~33k-row production corpus (baseline: 2.3s warm / 17s cold, deep-dive report §1).
+- **SC-001**: Warm `memory_match_triggers` p50 < 300ms measured against the ~33k-row production corpus UNDER write/scan churn — `clearCache()`-firing saves interleaved between the measured calls, NOT a quiescent loop (the 2.3s baseline is the post-invalidation rebuild cost; a quiescent test passes while production stays slow because `clearCache()` fires on every write) (baseline: 2.3s warm / 17s cold, deep-dive report §1).
 - **SC-002**: Resume-style prompt trigger matching surfaces active-packet docs; zero z_archive rows reachable via single-word matches (baseline: 5/5 hits from z_archive, ledger L4).
 - **SC-003**: Single-word share of stored trigger-phrase occurrences drops materially below the 45% baseline after regeneration, and new saves cannot reintroduce junk (write-side guards + matcher guard both active).
 - **SC-004**: Constitutional priming set is 20 distinct rows with no /tmp sandbox row; a guard blocks future sandbox-sourced constitutional writes.
@@ -186,6 +186,7 @@ Gate-1 trigger surfacing becomes fast and trustworthy: warm `memory_match_trigge
 | Risk | IDF/min-length guard over-filters legitimate single-token triggers (rare identifiers) | Medium - recall loss on niche prompts | Tune threshold against the live corpus during T006; allowlist for high-IDF single tokens; goldens re-run before/after |
 | Risk | Merge-not-replace inflates phrase counts per memory | Low - envelope/index bloat | Case-insensitive dedupe + hard count cap in the same change (REQ-004) |
 | Risk | Cache keyed on (path, mtime) misses content changes when mtime is preserved | Low - stale phrases served | Documented limitation; TTL still bounds staleness; content-hash fallback considered in T013 if measured necessary |
+| Risk | Extraction cache wiped by `clearCache()` (every write) or the 60s TTL | High - defeats the p50 target; the "warm" 2.3s IS this post-invalidation rebuild | Keep the (path, mtime) extraction cache in a separate store that `clearCache()` (`trigger-matcher.ts:583`) and TTL expiry do NOT clear; gate SC-001 on p50 measured under write churn |
 <!-- /ANCHOR:risks -->
 
 ---
@@ -195,7 +196,7 @@ Gate-1 trigger surfacing becomes fast and trustworthy: warm `memory_match_trigge
 
 ### Performance
 - **NFR-P01**: Warm `memory_match_triggers` p50 < 300ms at ~33k index rows (baseline 2.3s warm).
-- **NFR-P02**: Trigger cache refresh performs zero disk reads for entries whose (path, mtime) is unchanged; no full-corpus re-read per 60s TTL.
+- **NFR-P02**: The (path, mtime) extraction cache survives BOTH `clearCache()` (fired on every write) and the 60s `CACHE_TTL_MS` expiry as a separate write-invalidation-resistant store; trigger cache refresh performs zero disk reads for entries whose (path, mtime) is unchanged; no full-corpus re-read per 60s TTL.
 
 ### Security
 - **NFR-S01**: Constitutional write guard rejects constitutional-tier saves whose source path matches /tmp or sandbox locations; rejection is explicit, not silent.
@@ -224,7 +225,7 @@ Gate-1 trigger surfacing becomes fast and trustworthy: warm `memory_match_trigge
 ### State Transitions
 - Cache entry with unchanged (path, mtime) across TTL expiry: reused without disk read; changed mtime triggers re-extraction for that path only.
 - Row transitions to archived/deprecated (via phase 002): drops out of the trigger cache on next load (REQ-006).
-- Scoped query with a parent packet folder: prefix semantics return phase-child rows; foreign-folder rows stay excluded (REQ-005).
+- Scoped query with a parent packet folder: prefix semantics return phase-child rows; foreign-folder rows stay excluded; sibling-prefix folders ("028-foobar" under scope "028-foo") stay excluded because the match requires the "028-foo/" segment boundary (REQ-005).
 <!-- /ANCHOR:edge-cases -->
 
 ---

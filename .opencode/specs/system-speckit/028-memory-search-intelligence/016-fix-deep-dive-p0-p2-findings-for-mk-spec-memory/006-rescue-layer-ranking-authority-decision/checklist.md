@@ -81,8 +81,8 @@ FAILURE MODES:
 - [ ] CHK-021 [P0] Manual testing complete (one eval run + one ablation round-trip exercised by hand, output inspected)
 - [ ] CHK-022 [P1] Edge cases tested (zero-lexical-overlap query, all-equal-overlap tie plateau, injected-row-only results)
 - [ ] CHK-023 [P1] Error scenarios validated (swap during concurrent search; harness failure mid-benchmark discards partial variant results)
-- [ ] CHK-024 [P0] Parity assertion test green: eval path composition == production `executePipeline` composition incl. truncation (REQ-001)
-- [ ] CHK-025 [P0] A/B/C benchmark rows recorded: per-variant prod-mode completeRecall@3 + deltas vs current default, with corpus snapshot stats (REQ-004)
+- [ ] CHK-024 [P0] Parity assertion test green: eval path composition == production `executePipeline` composition incl. truncation, and the `ALL_CHANNELS` ablation toggles map onto pipeline channel-enable config (disabling a channel in ablation disables the same pipeline channel) (REQ-001)
+- [ ] CHK-025 [P0] A/B/C benchmark rows recorded: per-variant MRR + rank-position deltas (the gated discriminators) plus prod-mode completeRecall@3 as a no-regression floor, all vs current default, with corpus snapshot stats (REQ-004)
 - [ ] CHK-026 [P0] Signal-ordering contract test green and added to the permanent vitest gate (REQ-006)
 - [ ] CHK-027 [P1] Rescue-dominance tests updated to assert the ACCEPTED contract; no test still asserts a rejected option
 <!-- /ANCHOR:testing -->
@@ -108,7 +108,7 @@ FAILURE MODES:
 
 - [ ] CHK-030 [P0] No hardcoded secrets (no DB paths or credentials embedded in harness code)
 - [ ] CHK-031 [P0] Input validation implemented (benchmark query set + gold labels validated before scoring; malformed rows rejected loudly)
-- [ ] CHK-032 [P1] DB boundary isolation enforced: production consumers never bound to eval DB or closed connections after ablation (REQ-002 / NFR-S01)
+- [ ] CHK-032 [P1] DB boundary isolation enforced via mechanism: `rebindDatabaseConsumers` rebuilds `graphSearchFn` per-connection (not the module-level `graphSearchFnRef`) and the global `vectorIndex` DB swap is mutex/quiesce-guarded so production consumers never bind to the eval DB or a closed connection, and no concurrent search reads the eval DB (REQ-002 / NFR-S01)
 <!-- /ANCHOR:security -->
 
 ---
@@ -159,7 +159,7 @@ FAILURE MODES:
 - [ ] CHK-101 [P1] All ADRs have status (Proposed/Accepted); ADR-002 and ADR-003 flipped to Accepted only with benchmark evidence
 - [ ] CHK-102 [P1] Alternatives documented with rejection rationale (Options A/B/C scored; losing options carry measured reasons)
 - [ ] CHK-103 [P2] Migration path documented (flag removal or default flip steps for the accepted option)
-- [ ] CHK-104 [P0] ADR-002 Accepted with measured prod-mode completeRecall@3 deltas BEFORE any production default changes ship (REQ-005)
+- [ ] CHK-104 [P0] ADR-002 Accepted with measured MRR + rank-position deltas (completeRecall@3 as no-regression floor) BEFORE any production default changes ship (REQ-005)
 <!-- /ANCHOR:arch-verify -->
 
 ---
@@ -168,7 +168,7 @@ FAILURE MODES:
 ## L3+: PERFORMANCE VERIFICATION
 
 - [ ] CHK-110 [P1] Benchmark session bounded and repeatable (NFR-P01: full A/B/C run target < 30 min wall clock)
-- [ ] CHK-111 [P1] Secondary metrics recorded per variant (MRR, stage2 latency) as context, explicitly NOT decision gates
+- [ ] CHK-111 [P1] MRR + rank-position recorded per variant AS the decision-gate discriminators (completeRecall@3 saturates at K=3); only stage2 latency is recorded as context and explicitly NOT a decision gate
 - [ ] CHK-112 [P2] Write-path cost delta measured if the O(folder^2) interference refresh is deleted
 - [ ] CHK-113 [P2] Performance observations handed to phase 010 (rescue hydration/backfill stay out of scope here)
 <!-- /ANCHOR:perf-verify -->

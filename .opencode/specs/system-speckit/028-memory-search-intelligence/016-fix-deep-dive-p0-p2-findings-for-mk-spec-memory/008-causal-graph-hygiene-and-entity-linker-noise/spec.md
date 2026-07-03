@@ -13,9 +13,9 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-speckit/028-memory-search-intelligence/016-fix-deep-dive-p0-p2-findings-for-mk-spec-memory/008-causal-graph-hygiene-and-entity-linker-noise"
-    last_updated_at: "2026-07-03T10:05:00Z"
-    last_updated_by: "claude-fable-5"
-    recent_action: "Authored Level 3 planning docs from deep-dive research"
+    last_updated_at: "2026-07-03T13:00:00Z"
+    last_updated_by: "claude-opus-4-8"
+    recent_action: "Remediated REWORK: verify-first P1-2/P1-4, ADR-001 down-weight, REQ-002 restate, column fixes"
     next_safe_action: "Execute Phase 1 setup: capture baselines and run the confirm-before-fix pass on 🟡 findings"
     blockers: []
     key_files:
@@ -30,8 +30,8 @@ _memory:
       parent_session_id: null
     completion_pct: 0
     open_questions:
-      - "Does ADR-001 land as relation relocation or in-place down-weight after the migration dry-run?"
-      - "Which relation does 'blocks' map to once the reversed-'enabled' inversion is removed?"
+      - "ADR-001 down-weight-in-place recommended (no schema migration); ratify vs relocate (full CHECK table rebuild) after the dry-run counts."
+      - "Un-inverted 'blocks' prefers 'contradicts' (CHECK-legal); confirm vs a first-class 'blocks' relation (needs the CHECK rebuild)."
     answered_questions: []
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core + level2-verify + level3-arch | v2.2 -->
@@ -50,7 +50,7 @@ FAILURE MODES:
 
 ## EXECUTIVE SUMMARY
 
-The live causal graph carries 33,101 edges, and 31,118 of them (94%) are auto-created entity-linker `'supports'` edges at fixed strength 0.7 (`entity-linker.ts:865`); real causal edges number roughly 1,983. On top of that, `recomputeLocal` applies an additive `MIN(1.0, strength + deg/max*0.1)` ratchet on every save (`graph-lifecycle.ts:309-323`), so all strengths converge to 1.0 and the strength signal dies. This phase relocates or down-weights the co-occurrence noise (ADR-001), removes the ratchet, repairs the linker and community lifecycles, and absorbs two pending schema/concurrency fixes from 028/006/002 (derived_id identity split, embedding inside `BEGIN IMMEDIATE`).
+The live causal graph carries 33,101 edges, and 31,118 of them (94%) are auto-created entity-linker `'supports'` edges at fixed strength 0.7 (`entity-linker.ts:865`); real causal edges number roughly 1,983. On top of that, `recomputeLocal` applies an additive `MIN(1.0, strength + deg/max*0.1)` ratchet on every save (`graph-lifecycle.ts:309-323`), so all strengths converge to 1.0 and the strength signal dies. This phase down-weights the co-occurrence noise in place (ADR-001, no schema migration), removes the ratchet, repairs the linker and community lifecycles, and verifies two absorbed 028/006/002 items that live code already fixed: the derived_id identity split (code fixed at `vector-index-schema.ts:1119-1129`; only the backfill on the 32,465 NULL rows remains) and semantic-edge embedding, which already runs outside the `BEGIN IMMEDIATE` lock (`consolidation.ts:574-578`; only a concurrency test remains).
 
 **Key Decisions**: ADR-001 entity co-occurrence edge disposition (relocate vs down-weight), ADR-002 community "Louvain" naming vs real modularity, ADR-003 surrogate regeneration strategy for 7,108 placeholder-title rows.
 
@@ -64,14 +64,14 @@ The live causal graph carries 33,101 edges, and 31,118 of them (94%) are auto-cr
 |-------|-------|
 | **Level** | 3 |
 | **Priority** | P1 |
-| **Status** | Draft |
+| **Status** | Planned |
 | **Created** | 2026-07-03 |
 | **Branch** | `system-speckit/028-memory-search-intelligence` |
 | **Parent Spec** | ../spec.md |
 | **Phase** | 8 of 13 |
 | **Predecessor** | 007-ranking-filter-bypass-and-score-scale-fixes |
 | **Successor** | 009-learning-feedback-loop-repair |
-| **Handoff Criteria** | Relation histogram sane post-migration, ratchet removed with stable strengths, absorbed P1-2/P1-4 fixed, vitest delta vs baseline clean, all three ADRs Accepted |
+| **Handoff Criteria** | Causal reads sane (co-occurrence down-weighted, excluded by provenance+strength), ratchet removed with idempotent strengths, absorbed P1-2 backfill run + twin-identity test green, P1-4 lock-scope verified + concurrency test added, vitest delta vs baseline clean, all three ADRs Accepted |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -81,7 +81,7 @@ The live causal graph carries 33,101 edges, and 31,118 of them (94%) are auto-cr
 
 This is **Phase 8** of the Deep dive remediation phase children specification (parent: `016-fix-deep-dive-p0-p2-findings-for-mk-spec-memory`).
 
-**Scope Boundary**: Causal-graph data hygiene and graph-side write/lifecycle correctness: entity-linker co-occurrence pollution, edge-strength ratchet, causal-links reference resolution, entity-linker path parity and pruning, surrogate titles, community lifecycle, graph-signals caching, plus the two absorbed 028/006/002 items (P1-2 derived_id split, P1-4 embedding-in-lock). Ranking-side consumers of the graph (causal boost scaling, graph-FTS tokenization, community injection scoring) belong to Phase 007; learning-loop and retention items to Phase 009; pure perf caches to Phase 010.
+**Scope Boundary**: Causal-graph data hygiene and graph-side write/lifecycle correctness: entity-linker co-occurrence pollution, edge-strength ratchet, causal-links reference resolution, entity-linker path parity and pruning, surrogate titles, community lifecycle, graph-signals caching, the session-trace causal-inference reducer, plus the two verify-first absorbed 028/006/002 items (P1-2 derived_id backfill, P1-4 embedding lock-scope). Ranking-side consumers of the graph (causal boost scaling, graph-FTS tokenization, community injection scoring) belong to Phase 007; learning-loop and retention items to Phase 009; pure perf caches to Phase 010.
 
 **Dependencies**:
 - Phase 002 (`002-archived-tier-and-tombstone-read-exclusions`): the shared active-row predicate this phase reuses when filtering graph members and edge endpoints.
@@ -89,10 +89,11 @@ This is **Phase 8** of the Deep dive remediation phase children specification (p
 - Absorbed contract: `../../006-review-remediation/002-memory-schema-and-concurrency/` (P1-2, P1-4). Phase 013 updates that tracker's pointers; this phase executes the fixes.
 
 **Deliverables**:
-- Migration + code change executing the ADR-001 disposition for the 31,118 entity-linker `'supports'` edges.
-- `recomputeLocal` strength derivation without the additive ratchet; `onWrite` skip when `inserted == 0`.
-- Unified causal-edge `derived_id` across the v40 backfill and live writes (absorbed P1-2).
-- Semantic-edge embedding moved out of the consolidation `BEGIN IMMEDIATE` lock with maintenance-marker refresh (absorbed P1-4).
+- Provenance-scoped strength UPDATE + code change executing the ADR-001 down-weight disposition for the ~31,536 entity-linker `'supports'`@0.7 edges (no schema migration).
+- `recomputeLocal` strength that recomputes the relation prior and combines it idempotently with degree (no additive accumulation); `onWrite` skip when `inserted == 0`.
+- P1-2 verified fixed in code (`vector-index-schema.ts:1119-1129` == `causal-edges.ts:125`); derived_id backfill run on the 32,465 NULL rows; existing twin-identity test kept green (absorbed P1-2).
+- P1-4 verified: embedding already runs outside `BEGIN IMMEDIATE` (scan precedes the lock at `consolidation.ts:574-578`); concurrency/interleaving test added (absorbed P1-4).
+- Session-trace causal reducer hardened: require ≥2 distinct-session co-occurrences and exclude same-query sources before inferring an edge (routed silent-drop).
 - causal-links-processor, entity-linker, surrogate, community-lifecycle, and graph-signals fixes listed in Section 4.
 - decision-record.md with ADR-001/002/003 ratified from dry-run evidence.
 
@@ -118,10 +119,11 @@ After this phase, `causal_edges` contains a sane relation histogram where real c
 ## 3. SCOPE
 
 ### In Scope
-- Entity-linker `'supports'` pollution disposition per ADR-001: own relation (`entity_cooccurrence`) or table vs down-weight in place; migration for the 31,118 existing edges; causal-boost exclusion unless opted in (🟢 L8).
-- `recomputeLocal` ratchet removal: derive strength from graph state, stop the +0.1 additive step (`graph-lifecycle.ts:309-323`, report #19 🟡); typed-degree weight consistency; `onWrite` skip when `inserted == 0`.
-- Absorbed 028/006/002 P1-2: causal-edge `derived_id` identity unification (v40 backfill hardcodes `legacy-pre-derived-id` at `vector-index-schema.ts:1126` vs live-write default `causal-edge:v1` at `causal-edges.ts:125`; `content-id.ts:67` hashes `rule_version`).
-- Absorbed 028/006/002 P1-4: semantic-edge embedding out of the consolidation `BEGIN IMMEDIATE` write lock (`consolidation.ts:684/701`) with a refreshed maintenance handle.
+- Entity-linker `'supports'` pollution disposition per ADR-001: down-weight in place (recommended; keeps `relation='supports'`, no schema migration) vs relocate (needs a CHECK table rebuild); provenance-scoped strength UPDATE for the ~31,536 existing edges; causal-boost exclusion of `created_by='entity_linker'` unless opted in (🟢 L8).
+- `recomputeLocal` ratchet removal: stop the additive `strength + deg/max*0.1` accumulation (`graph-lifecycle.ts:309-323`, report #19 🟡); recompute the relation prior and combine it idempotently with degree (or hold degree in its own column) so the causal signal survives; typed-degree weight consistency; `onWrite` skip when `inserted == 0`.
+- Absorbed 028/006/002 P1-2 (verify-first): the v40 backfill already hashes `DEFAULT_DERIVED_CAUSAL_EDGE_RULE_VERSION` (`vector-index-schema.ts:1119-1129`), matching the live-write default (`causal-edges.ts:125`); `content-id.ts:28` defines `causal-edge:v1`. Code fixed; the open work is running the `WHERE derived_id IS NULL` backfill on the 32,465 NULL rows and keeping the existing twin-identity test (`tests/derived-id-provenance.vitest.ts`) green.
+- Absorbed 028/006/002 P1-4 (verify-first): confirm the expensive scan already runs outside `BEGIN IMMEDIATE` (`consolidation.ts:574-578`) and that `runSemanticEdgeEmbeddingPass`/`embedEdgeText` do not exist tree-wide (the cited `:684/:701` exceed the 634-line file); add a concurrency/interleaving test around the lock scope.
+- Session-trace causal reducer (`lib/feedback/session-trace-causal-reducer.ts`, flag `SPECKIT_SESSION_TRACE_CAUSAL_INFERENCE` default OFF): require ≥2 distinct-session co-occurrences and exclude same-query co-retrieved sources before inferring an `enabled` edge (routed silent-drop; today it infers from a single co-occurrence and prefers same-query sources).
 - causal-links-processor: fuzzy-LIKE fallback becomes unresolved-with-suggestion; `blocks` stored as reversed `enabled` polarity inversion fixed (`causal-links-processor.ts:67,290`, Agent H P2 🟡); numeric-ref liveness/parent filters.
 - entity-linker path parity: normalized incremental matching (full-run parity), degree-cache invalidation on `createEntityLinks`, canonical pair order for reversed A→B/B→A dup pairs (Agent D P2 🟡).
 - Density guard counts numeric-endpoint (memory↔memory) edges only, not `heading:`/`alias:`/`concept:` pseudo-edges (Agent D P2 🟡).
@@ -147,11 +149,12 @@ After this phase, `causal_edges` contains a sane relation histogram where real c
 | `mcp_server/handlers/causal-links-processor.ts` | Modify | Fuzzy-LIKE fallback to unresolved-with-suggestion; blocks polarity mapping (:67); numeric-ref liveness/parent filters (:290) |
 | `mcp_server/lib/graph/community-detection.ts` | Modify | Rebuild cadence; stable community IDs; fingerprint collision; DB-rebind cache reset; phantom member filtering; naming per ADR-002 |
 | `mcp_server/lib/graph/graph-signals.ts` | Modify | Momentum nearest-snapshot lookup; per-DB cache keys |
-| `mcp_server/lib/storage/consolidation.ts` | Modify | Move semantic-edge embedding out of BEGIN IMMEDIATE (:684/:701); maintenance handle with refresh() (absorbed P1-4) |
-| `mcp_server/lib/search/vector-index-schema.ts` | Modify | Align v40 backfill rule_version (:1126) with live default (absorbed P1-2); new migration for co-occurrence disposition and surrogate regeneration backlog |
-| `mcp_server/lib/storage/causal-edges.ts` | Investigate | Live-write derived_id default `causal-edge:v1` (:125); confirm one identity post-fix |
-| `mcp_server/lib/content-id.ts` | Investigate | `rule_version` hashed into edge identity (:67); decide backfill-vs-live alignment direction |
-| `mcp_server/tests/` | Create/Modify | Vitest coverage for each fix cluster; migration dry-run fixtures; concurrency window test for P1-4 |
+| `mcp_server/lib/storage/consolidation.ts` | Verify | Confirm embedding already runs outside BEGIN IMMEDIATE (scan precedes lock ~:574-578; no `embedEdgeText` symbol exists); no code change, test only (absorbed P1-4) |
+| `mcp_server/lib/search/vector-index-schema.ts` | Modify | Verify v40 backfill already aligned (:1119-1129, absorbed P1-2); provenance-scoped strength-UPDATE migration for the ADR-001 down-weight + derived_id `WHERE derived_id IS NULL` backfill + surrogate regeneration backlog |
+| `mcp_server/lib/storage/causal-edges.ts` | Investigate | Live-write derived_id default `causal-edge:v1` (:125); already aligned with the backfill — confirm one identity, no change expected |
+| `mcp_server/lib/content-id.ts` | Investigate | `DEFAULT_DERIVED_CAUSAL_EDGE_RULE_VERSION='causal-edge:v1'` (:28) hashed into edge identity; confirm backfill/live already share it, no change expected |
+| `mcp_server/lib/feedback/session-trace-causal-reducer.ts` | Modify | Require ≥2 distinct-session co-occurrences; exclude same-query co-retrieved sources before inferring an `enabled` edge (routed silent-drop; flag `SPECKIT_SESSION_TRACE_CAUSAL_INFERENCE` default OFF) |
+| `mcp_server/tests/` | Create/Modify | Vitest coverage for each fix cluster; migration dry-run fixtures; concurrency/interleaving test for P1-4; ≥2-session threshold test for the session-trace reducer |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -163,15 +166,15 @@ After this phase, `causal_edges` contains a sane relation histogram where real c
 
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-001 | Entity co-occurrence disposition executed per ADR-001 with migration for existing edges | Post-migration histogram: entity-linker co-occurrence edges live under their own relation/table (or carry the ratified down-weight), and causal boost excludes them by default; `SELECT relation_type, COUNT(*) FROM causal_edges GROUP BY 1` shows real causal relations no longer swamped |
-| REQ-002 | `recomputeLocal` derives strength from graph state; additive +0.1 ratchet removed; `onWrite` skips when `inserted == 0` (report #19) | Repeated no-op saves leave every edge strength byte-identical; unit test asserts strength is a pure function of graph state |
-| REQ-003 | One causal-edge `derived_id` identity across the v40 backfill and live writes (absorbed 028/006/002 P1-2) | A backfilled edge and its live-written twin produce the same `derived_id`; the partial UNIQUE index can dedup them; migration is idempotent on re-run |
-| REQ-004 | Semantic-edge embedding runs outside the consolidation `BEGIN IMMEDIATE` lock with a refreshed maintenance handle (absorbed 028/006/002 P1-4) | No `provider.embedEdgeText()` call executes while the immediate transaction is open; the long phase holds a maintenance handle and calls `refresh()` per the TTL contract; concurrency test covers the reaper-starvation window |
+| REQ-001 | Entity co-occurrence disposition executed per ADR-001 (down-weight in place; provenance-scoped strength UPDATE, no schema migration) | Causal consumers exclude `created_by='entity_linker'` co-occurrence edges by default; `SELECT relation, created_by, ROUND(strength,2), COUNT(*) FROM causal_edges GROUP BY 1,2,3` shows the ~31,536 co-occurrence rows down-weighted below the causal band, so real causal edges dominate the default causal read |
+| REQ-002 | `recomputeLocal` stops accumulating: replace the additive `strength = MIN(1.0, strength + degreeBoost)` ratchet (`graph-lifecycle.ts:309-323`) with a strength that recomputes the edge's relation prior each save and combines it idempotently with the current degree term (or holds the degree term in its own column so the relation prior stays pure); `onWrite` skips when `inserted == 0` (report #19) | Repeated no-op saves leave every edge strength byte-identical (SC-002 idempotency); the relation prior survives (a causal edge does not collapse to a degree-only value); unit test asserts strength is a pure, non-accumulating function of (relation prior, current graph state) |
 
 ### P1 - Required (complete OR user-approved deferral)
 
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
+| REQ-003 | Verify the causal-edge `derived_id` identity fix is present, then run the backfill (absorbed 028/006/002 P1-2, verify-first) | Confirm `vector-index-schema.ts:1119-1129` already hashes `DEFAULT_DERIVED_CAUSAL_EDGE_RULE_VERSION` (='causal-edge:v1', `content-id.ts:28`), matching the live writer (`causal-edges.ts:125`) — the code defect is already fixed and the existing twin-identity test (`tests/derived-id-provenance.vitest.ts`) stays green; the only open work is running the idempotent `WHERE derived_id IS NULL` backfill on the 32,465/33,476 NULL rows so backfilled and live twins collapse under the partial UNIQUE index |
+| REQ-004 | Verify semantic-edge embedding already runs outside the consolidation `BEGIN IMMEDIATE` lock, then lock it with a test (absorbed 028/006/002 P1-4, verify-first) | Confirm the structure: `consolidation.ts` runs the read-only scan (`scanReadOnly`) before `BEGIN IMMEDIATE` (:574-578) and holds the lock only over the Hebbian write; `runSemanticEdgeEmbeddingPass`/`provider.embedEdgeText` do not exist tree-wide and the cited `:684/:701` exceed the 634-line file — there is no embedding-inside-lock defect; add a concurrency/interleaving test asserting the immediate lock scope covers only the write phase |
 | REQ-005 | causal-links-processor stops linking arbitrary memories: fuzzy-LIKE fallback returns unresolved-with-suggestion; `blocks` polarity no longer inverted to reversed `enabled`; numeric refs get liveness/parent filters | Unit tests: an unresolvable ref yields no edge plus a suggestion; a `blocks:` frontmatter link produces a non-inverted relation; numeric refs to deleted/chunk-parent rows are rejected |
 | REQ-006 | Entity-linker path parity: incremental matching normalizes like the full run; `createEntityLinks` invalidates the degree cache; reversed A→B/B→A pairs collapse to one canonical pair | Same corpus produces the same edge set via incremental and full paths; degree cache never serves stale counts after a link write; no reversed dup pairs in a fresh link run |
 | REQ-007 | Density guard counts numeric-endpoint (memory↔memory) edges only, so pseudo-edges cannot silently disable cross-doc linking | Unit test: accumulating `heading:`/`alias:`/`concept:` pseudo-edges does not trip the guard; real-edge density still does |
@@ -180,6 +183,7 @@ After this phase, `causal_edges` contains a sane relation histogram where real c
 | REQ-010 | Surrogates get real titles at generation, and the 7,108 placeholder-title rows are regenerated per ADR-003; alias dup provenance fixed | New surrogates carry the document title; a post-regeneration probe finds zero "Memory NNNN" question surrogates (or the ADR-003-ratified residual with reason) |
 | REQ-011 | Community lifecycle is live: rebuild cadence beyond checkpoint-restore, stable community IDs across rebuilds, fingerprint sum-collision fixed, module cache reset on DB rebind, phantom member ids for deleted memories filtered; naming per ADR-002 | Membership updates without a checkpoint-restore; rebuild keeps stable IDs for unchanged communities; rebind test shows no cross-DB cache bleed; injected members always exist |
 | REQ-012 | Graph-signals correctness: momentum uses nearest-snapshot lookup (not exact now-7d), caches key on DB identity plus memoryId, pseudo-nodes filtered from `estimateComponentSize`/`recomputeLocal`, dirty-set drains when no refresh fn is registered | Momentum non-zero the day after a missed snapshot; two DBs in one process never share cached signals; component-size estimates count numeric nodes only; dirty set is bounded in a no-refresh-fn run |
+| REQ-013 | Session-trace causal reducer requires ≥2 distinct-session co-occurrences and excludes same-query co-retrieved sources before inferring an edge (routed silent-drop; `lib/feedback/session-trace-causal-reducer.ts`, flag `SPECKIT_SESSION_TRACE_CAUSAL_INFERENCE` default OFF) | A single co-occurrence no longer creates an edge; only sources co-occurring with the citation across ≥2 distinct sessions qualify; same-query co-retrieved sources are excluded from candidate selection (`selectPriorSearchSources`); a unit test with the flag ON asserts the threshold and the same-query exclusion |
 <!-- /ANCHOR:requirements -->
 
 ---
@@ -187,10 +191,10 @@ After this phase, `causal_edges` contains a sane relation histogram where real c
 <!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA
 
-- **SC-001**: Causal graph relation histogram is sane: entity co-occurrence edges are out of the default causal relation space (own relation/table or ratified down-weight), and the ≈1,983 real causal edges dominate what causal consumers read.
-- **SC-002**: Edge strengths are stable: N repeated no-op saves produce zero strength drift (baseline today: every save ratchets +0.1-scaled toward 1.0).
-- **SC-003**: One `derived_id` identity: backfilled and live-written twins collapse under the partial UNIQUE index (absorbed P1-2 verified by test and by dry-run on a DB copy).
-- **SC-004**: Consolidation holds no `BEGIN IMMEDIATE` across provider embedding, and the maintenance marker refreshes during the long phase (absorbed P1-4).
+- **SC-001**: Causal reads are sane: entity co-occurrence edges are down-weighted below the causal band and excluded from causal consumers by provenance (`created_by='entity_linker'`) by default, so the ≈1,983 real causal edges dominate what causal consumers read (measured via `relation, created_by, strength`, since down-weight keeps `relation='supports'`).
+- **SC-002**: Edge strengths are idempotent: N repeated no-op saves produce zero strength drift, and the relation prior survives (strength is not overwritten with a degree-only value). Baseline today: every save ratchets +0.1-scaled toward 1.0.
+- **SC-003**: `derived_id` identity fix confirmed present (`vector-index-schema.ts:1119-1129` == `causal-edges.ts:125`), the existing twin-identity test passes, and the `WHERE derived_id IS NULL` backfill collapses the 32,465 NULL rows so backfilled and live twins dedup under the partial UNIQUE index (absorbed P1-2; verified by dry-run on a DB copy).
+- **SC-004**: Consolidation already holds no `BEGIN IMMEDIATE` across provider embedding — the read-only scan runs before the lock (:574-578) and no `embedEdgeText` symbol exists — and a new concurrency/interleaving test locks that lock-scope invariant in place (absorbed P1-4).
 - **SC-005**: Baseline-before-no-regressions: vitest suite delta vs the Phase 1 captured baseline is zero new failures; graph-touching suites extended with the new adversarial cases.
 - **SC-006**: `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh <this-folder> --strict` exits 0 at phase close, and the Phase 007 harness (post-006 decision) shows causal boost amplifying real causality rather than co-occurrence noise.
 <!-- /ANCHOR:success-criteria -->
@@ -204,8 +208,8 @@ After this phase, `causal_edges` contains a sane relation histogram where real c
 |------|------|--------|------------|
 | Dependency | Phase 002 shared active-row predicate | Graph member/endpoint filtering diverges if 002 slips | Land 008's filters against the 002 predicate signature; feature-check at integration |
 | Dependency | Phase 007 causal-boost consumer fixes | "Boost amplifies real causality" gate unmeasurable | Gate SC-006's boost assertion on 007 landing; histogram gates (SC-001) stand alone |
-| Dependency | 028/006/002 absorbed contract (`../../006-review-remediation/002-memory-schema-and-concurrency/`) | Divergent fix scope if both trackers execute | This phase executes P1-2/P1-4; Phase 013 re-points the old tracker; do not edit it here |
-| Risk | Migration mass-relabels the wrong edges (provenance column ambiguity) | High | Dry-run on DB copy; select strictly on `metadata`/provenance = `entity_linker` AND relation `supports` AND strength 0.7; count-assert before/after |
+| Dependency | 028/006/002 absorbed contract (`../../006-review-remediation/002-memory-schema-and-concurrency/`) | Divergent fix scope if both trackers execute | This phase verifies P1-2 (code already fixed; runs the backfill) and P1-4 (already lock-safe; adds the test); Phase 013 re-points the old tracker; do not edit it here |
+| Risk | Down-weight UPDATE hits the wrong edges (provenance column ambiguity) | High | Dry-run on DB copy; select strictly on `created_by = 'entity_linker'` AND relation `supports` AND strength 0.7; count-assert before/after |
 | Risk | Unknown consumers read `'supports'` relation semantics | Medium | Consumer inventory (plan FIX ADDENDUM) before relocation; ADR-001 records the blast radius |
 | Risk | Surrogate regeneration cost (7,108 rows re-embedded) | Medium | ADR-003 chooses batch/lazy strategy; run through the async queue, not the save path |
 <!-- /ANCHOR:risks -->
@@ -239,7 +243,7 @@ After this phase, `causal_edges` contains a sane relation histogram where real c
 - Pseudo-node endpoints (`heading:`/`alias:`/`concept:`) in `estimateComponentSize`/`recomputeLocal` traversal: filtered, never mutated.
 - Missed momentum snapshot day: nearest-snapshot lookup degrades gracefully instead of zeroing the channel all day.
 - DB rebind mid-session (eval/ablation swap): community and graph-signals caches reset; no closed-connection reads and no cross-DB bleed.
-- Embedding provider stall during consolidation: lock already released (P1-4 fix); maintenance marker refresh keeps the daemon from being reaped.
+- Embedding provider stall during consolidation: the read-only scan already runs before `BEGIN IMMEDIATE` (P1-4 verified, `consolidation.ts:574-578`), so the immediate lock is never held across provider work.
 
 ---
 
@@ -248,7 +252,7 @@ After this phase, `causal_edges` contains a sane relation histogram where real c
 | Dimension | Score | Triggers |
 |-----------|-------|----------|
 | Scope | 20/25 | Files: 10, LOC: ~600-900, Systems: graph write path + storage + migration |
-| Risk | 18/25 | Schema/data migration on 33k edges; concurrency window fix; Breaking: relation semantics for graph consumers |
+| Risk | 18/25 | Data down-weight UPDATE on ~31.5k edges + derived_id backfill on 32.5k NULL rows; verify-first concurrency test; Breaking: strength/provenance exclusion semantics for graph consumers |
 | Research | 14/20 | 🟡 confirm-before-fix pass across nine agent-reported findings; two ADR dry-runs |
 | Multi-Agent | 6/15 | Single-seat execution; parallelizable test authoring |
 | Coordination | 10/15 | Dependencies on phases 002/007/013 plus the absorbed 028/006/002 contract |
@@ -260,11 +264,11 @@ After this phase, `causal_edges` contains a sane relation histogram where real c
 
 | Risk ID | Description | Impact | Likelihood | Mitigation |
 |---------|-------------|--------|------------|------------|
-| R-001 | Migration relabels/relocates non-linker `supports` edges (false positives) | H | M | Provenance-scoped WHERE clause; dry-run counts on DB copy; before/after histogram diff committed as evidence |
-| R-002 | Hidden consumers of `'supports'` semantics break after relocation | H | M | FIX ADDENDUM consumer inventory (rg over relation literals) before code change; ADR-001 records every consumer and its action |
+| R-001 | Down-weight UPDATE touches non-linker `supports` edges (false positives) | H | M | Provenance-scoped WHERE (`created_by='entity_linker' AND relation='supports' AND strength=0.7`); dry-run counts on DB copy; before/after strength diff committed as evidence |
+| R-002 | Hidden consumers of `'supports'` semantics break after the down-weight/exclusion | H | M | FIX ADDENDUM consumer inventory (rg over relation/strength/provenance literals) before code change; ADR-001 records every consumer and its action |
 | R-003 | Surrogate regeneration floods the embedding queue (7,108 rows on an 8.7k backlog) | M | H | ADR-003: batched/off-peak regeneration through the retry queue; cap batch size; sequence after Phase 004 drain-rate fix if available |
 | R-004 | Community rebuild cadence churns IDs and invalidates stored references | M | M | Stable-ID mapping keyed on membership fingerprint (post-collision-fix); rebuild test asserts ID stability for unchanged communities |
-| R-005 | Absorbed P1-2 backfill alignment corrupts existing derived_id rows | H | L | Backfill only `WHERE derived_id IS NULL` or explicit skew reconciliation; test on a copy first (inherited from the 028/006/002 contract) |
+| R-005 | Absorbed P1-2 backfill corrupts existing derived_id rows | H | L | Code already aligned (`vector-index-schema.ts:1119-1129`); backfill touches only `WHERE derived_id IS NULL` (32,465 rows) or explicit skew reconciliation; test on a copy first (inherited from the 028/006/002 contract) |
 
 ---
 
@@ -275,29 +279,29 @@ After this phase, `causal_edges` contains a sane relation histogram where real c
 **As a** memory-search operator, **I want** causal boosts computed over real causal edges instead of co-occurrence noise, **so that** graph-boosted results reflect actual cause/effect lineage.
 
 **Acceptance Criteria**:
-1. **Given** the post-ADR-001 migration has run, **When** I group `causal_edges` by relation, **Then** entity co-occurrence edges are in their own relation/table (or ratified down-weight) and real causal relations dominate the default read.
+1. **Given** the ADR-001 down-weight UPDATE has run, **When** I group `causal_edges` by `relation, created_by, strength`, **Then** the `created_by='entity_linker'` co-occurrence edges sit below the causal strength band and real causal edges dominate the default causal read.
 2. **Given** causal boost runs with default flags, **When** a query touches a memory with only co-occurrence neighbors, **Then** no co-occurrence-driven boost applies unless explicitly opted in.
 
 ### US-002: Stable edge strengths (Priority: P0)
 
-**As a** graph maintainer, **I want** edge strength derived from graph state, **so that** repeated saves cannot ratchet every edge to 1.0.
+**As a** graph maintainer, **I want** edge strength recomputed idempotently (relation prior recomputed, not accumulated), **so that** repeated saves cannot ratchet every edge to 1.0 and the causal signal survives.
 
 **Acceptance Criteria**:
-1. **Given** a memory with existing edges, **When** I re-save it N times with zero new edges, **Then** every edge strength stays byte-identical (`graph-lifecycle.ts:309-323` ratchet removed).
+1. **Given** a memory with existing edges, **When** I re-save it N times with zero new edges, **Then** every edge strength stays byte-identical and the relation prior is preserved (`graph-lifecycle.ts:309-323` additive accumulation removed, not replaced by a degree-only value).
 
-### US-003: One edge identity (Priority: P0)
+### US-003: One edge identity (Priority: P1)
 
-**As a** schema owner, **I want** one `derived_id` per logical edge across migration and live writes, **so that** the partial UNIQUE index can dedup and replay identity holds (absorbed P1-2).
-
-**Acceptance Criteria**:
-1. **Given** a backfilled edge and its live-written twin, **When** both identities are computed, **Then** they are byte-equal and the UNIQUE index collapses them.
-
-### US-004: No reaper starvation during consolidation (Priority: P0)
-
-**As a** daemon operator, **I want** semantic-edge embedding outside the write lock, **so that** a slow provider cannot get the daemon reaped mid-write (absorbed P1-4).
+**As a** schema owner, **I want** to confirm the one-`derived_id`-per-edge fix is already in code and then backfill the NULL rows, **so that** the partial UNIQUE index can dedup and replay identity holds (absorbed P1-2, verify-first).
 
 **Acceptance Criteria**:
-1. **Given** a provider stalled beyond the lease TTL, **When** consolidation runs, **Then** `BEGIN IMMEDIATE` is not held across the embedding loop and the maintenance marker refreshes on schedule.
+1. **Given** the backfill hasher (`vector-index-schema.ts:1119-1129`) and the live default (`causal-edges.ts:125`) already share `causal-edge:v1` and the twin-identity test passes, **When** the `WHERE derived_id IS NULL` backfill runs on the 32,465 NULL rows, **Then** a backfilled edge and its live-written twin are byte-equal and the UNIQUE index collapses them.
+
+### US-004: No reaper starvation during consolidation (Priority: P1)
+
+**As a** daemon operator, **I want** to confirm semantic-edge embedding already runs outside the write lock and lock a regression test around it, **so that** a slow provider cannot get the daemon reaped mid-write (absorbed P1-4, verify-first).
+
+**Acceptance Criteria**:
+1. **Given** consolidation runs the read-only scan before `BEGIN IMMEDIATE` (:574-578) and holds the lock only over the Hebbian write (no `embedEdgeText` symbol exists), **When** a concurrency test interleaves a competing writer, **Then** no embedding call executes under the immediate lock and the write phase is the only locked section.
 
 ### US-005: Honest reference resolution (Priority: P1)
 
@@ -305,7 +309,7 @@ After this phase, `causal_edges` contains a sane relation histogram where real c
 
 **Acceptance Criteria**:
 1. **Given** a `causal_links` ref that matches nothing exactly, **When** the processor runs, **Then** it records unresolved-with-suggestion instead of a fuzzy-LIKE edge (`causal-links-processor.ts:290`).
-2. **Given** a `blocks:` link, **When** the edge is stored, **Then** its relation and direction express blocking, not reversed `enabled` (`causal-links-processor.ts:67`).
+2. **Given** a `blocks:` link, **When** the edge is stored, **Then** its relation and direction express blocking without inverting to reversed `enabled` — mapped to `contradicts` (a CHECK-legal relation; a first-class `blocks` relation would need the same CHECK table rebuild) (`causal-links-processor.ts:67`).
 
 ### US-006: Deterministic linker and living communities (Priority: P1)
 
@@ -319,8 +323,8 @@ After this phase, `causal_edges` contains a sane relation histogram where real c
 
 ## 12. OPEN QUESTIONS
 
-- ADR-001 final disposition (relocate vs down-weight) is Proposed pending the migration dry-run counts and the consumer inventory; ratify during execution.
-- Which relation the un-inverted `blocks` maps to (`contradicts` family vs a first-class `blocks` relation) once the reversed-`enabled` mapping is removed; decide with the RELATION_TYPES owner during execution.
+- ADR-001 disposition is Proposed with down-weight-in-place as the recommended default (keeps `relation='supports'`, no schema migration); relocation to `entity_cooccurrence` stays a flip-option but pays a full CHECK table rebuild. Ratify from the dry-run counts + consumer inventory during execution.
+- Which relation the un-inverted `blocks` maps to: prefer `contradicts` (CHECK-legal, no schema change); a first-class `blocks` relation would need the same CHECK table rebuild. Confirm with the RELATION_TYPES owner during execution.
 - Surrogate regeneration batching (one-shot backfill vs lazy on-access) and its interaction with the Phase 004 embedding-queue drain rate; ADR-003 records the ratified choice.
 <!-- /ANCHOR:questions -->
 

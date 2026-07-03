@@ -12,10 +12,10 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "scaffold/002-archived-tier-and-tombstone-read-exclusions"
-    last_updated_at: "2026-07-03T12:15:00Z"
-    last_updated_by: "markdown-agent"
-    recent_action: "Authored Level 3 implementation plan from deep-dive findings"
-    next_safe_action: "Execute T-001..T-006 confirm-before-fix verification and baseline capture before any code change"
+    last_updated_at: "2026-07-03T13:30:00Z"
+    last_updated_by: "plan-remediation"
+    recent_action: "Remediated REWORK: fixed predicate fragment, corrected FIX ADDENDUM rows, added T-004a task"
+    next_safe_action: "Run T-001..T-004a confirm + logic-sync decision, then T-006 baseline before code changes"
     blockers: []
     key_files:
       - ".opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-queries.ts"
@@ -56,7 +56,7 @@ FAILURE MODES:
 | **Testing** | vitest (mcp_server/tests), live CLI probes against the production DB (read-only) |
 
 ### Overview
-Build one pure predicate module (`active-row-predicate.ts`) that encodes the active-row contract (`deleted_at IS NULL AND tier NOT IN ('deprecated','archived')`, constitutional injected separately) and adopt it at all ten read call sites, replacing scattered ad-hoc filters. Then land the lifecycle fixes that make the predicate's inputs honest: archived tier in VALID_TIERS and memory_update, includeArchived unhardcoded, tombstone read exclusion with edge preservation, tier write normalization, parser frontmatter-only tiers, and three audited migrations (z_archive rewrite, tier-case normalization, substring-tier retro-fix).
+Build one pure predicate module (`active-row-predicate.ts`) that encodes the active-row contract (`deleted_at IS NULL AND (importance_tier IS NULL OR lower(importance_tier) NOT IN ('deprecated','archived','constitutional'))` for ranked lanes — NULL tier is active, constitutional is excluded from ranked results and injected separately per ADR-002, and the deprecated/archived half is gated by the graduated `SPECKIT_INCLUDE_ARCHIVED_DEFAULT` flag per the T-004a logic-sync decision) and adopt it at all ten read call sites, replacing the divergent per-channel filters (three gated differently today, the rest ungated). Then land the lifecycle fixes that make the predicate's inputs honest: archived tier added to IMPORTANCE_TIERS/VALID_TIERS and memory_update, includeArchived unhardcoded, tombstone read exclusion with edge preservation, tier write normalization, parser frontmatter-only tiers, and three audited migrations (z_archive rewrite, tier-case normalization, substring-tier retro-fix).
 <!-- /ANCHOR:summary -->
 
 ---
@@ -84,7 +84,7 @@ Build one pure predicate module (`active-row-predicate.ts`) that encodes the act
 Single-owner policy module with call-site adoption (no framework change). The predicate is one exported SQL fragment plus one row-level filter function; channels compose it into their existing queries.
 
 ### Key Components
-- **active-row-predicate.ts (new)**: Owns the exclusion contract; exports `ACTIVE_ROW_SQL(alias)`, `isActiveRow(row, opts)`, and options `{ includeArchived, lane: 'ranked' | 'constitutional' }` per ADR-001/ADR-002.
+- **active-row-predicate.ts (new)**: Owns the exclusion contract; exports `ACTIVE_ROW_SQL(alias, opts)`, `isActiveRow(row, opts)`, and options `{ includeArchived, includeCold, lane: 'ranked' | 'constitutional' }` where `includeCold` defaults from the graduated flag per ADR-001/ADR-002. The tier list is sourced from the repurposed canonical `getSearchableTiersFilter()` in importance-tiers.ts, not a second fork.
 - **Channel call sites (10)**: vector, FTS, BM25, graph injection, summary lane, community, rescue backfill, trigger cache, keyword fallback, stats/health; each swaps its local filter (or absence of one) for the shared module.
 - **Lifecycle writers**: memory-crud-delete.ts (tombstone semantics), memory-crud-update.ts (tier normalization + archived settable), memory-parser.ts (frontmatter-only tier), importance-tiers.ts (VALID_TIERS).
 - **Migrations (vector-index-schema.ts)**: z_archive archived rewrite, tier-case normalization, substring-tier retro-fix; all writing a `memory_tier_migration_audit` trail per NFR-R01.
@@ -102,10 +102,10 @@ Use this section when `research_intent=fix_bug`, when planning from a deep-revie
 
 | Surface | Current Role | Action | Verification |
 |---------|--------------|--------|--------------|
-| `lib/search/vector-index-queries.ts:431` (vector) | Only channel filtering deprecated today | update: swap local filter for shared predicate | `rg -n "deprecated" mcp_server/lib/search/vector-index-queries.ts` returns no ad-hoc tier literal post-change |
-| `lib/search/vector-index-queries.ts:875` (keyword fallback) | Full-table read, no tier/tombstone filter | update: adopt predicate | channel adversarial test row-state matrix |
-| `lib/search/sqlite-fts.ts` (FTS) | Surfaces deprecated rows at 0.85 (ledger DUP MECHANISM) | update: adopt predicate + includeArchived param | live reproduction query returns 0 deprecated rows |
-| `lib/search/hybrid-search.ts` (BM25 lane) | No deprecated/archived exclusion | update: adopt predicate | adversarial test + `rg -n "tier" mcp_server/lib/search/hybrid-search.ts` |
+| `lib/search/vector-index-queries.ts:431` (vector) | Default branch already NULL-guards and excludes deprecated + constitutional; a vector-specific `isArchivedVectorInclusionEnabled()` override admits cold rows | update: swap local filter for the shared predicate, preserving the constitutional exclusion and NULL guard | `rg -n "NOT IN .'deprecated" mcp_server/lib/search/vector-index-queries.ts` shows the literal replaced by the shared helper |
+| `lib/search/vector-index-queries.ts:875` (keyword fallback) | Joins `active_memory_projection` (one-active-per-logical-key dedup) but applies no tier/tombstone predicate | update: add the shared predicate on top of the projection join | channel adversarial test row-state matrix |
+| `lib/search/sqlite-fts.ts:186-188` (FTS) | Already NULL-guards and excludes deprecated via `deprecatedTierFilter`, gated by `includeCold = includeArchived \|\| isArchivedRetrievalIncludedByDefault()` (:173); admits cold rows by default under the graduated flag | update: adopt the shared predicate honoring the same flag; extend to archived + constitutional-consistent exclusion | live reproduction query matches the recorded REQ-000 flag decision |
+| `lib/search/hybrid-search.ts:560-566` (BM25 lane) | Already drops `importanceTier==='deprecated'` JS-side, gated by `excludeCold = !isArchivedRetrievalIncludedByDefault()`; admits cold rows by default under the graduated flag | update: replace the ad-hoc JS drop with `isActiveRow` honoring the same flag; add archived | adversarial test + `rg -n "importanceTier === 'deprecated'" mcp_server/lib/search/hybrid-search.ts` returns nothing post-change |
 | `lib/search/causal-boost.ts:457,687` (graph injection) | No tier/parent filter; deprecated re-enter via graph (agent C P2) | update: predicate on injected neighbor rows | test: deprecated neighbor never injected |
 | `lib/search/pipeline/stage1-candidate-gen.ts:167` (summary lane) | Archive filter is a literal no-op stub (Chain A step 4) | update: replace stub with predicate | test asserts stub replaced; grep for stub marker gone |
 | `lib/graph/community-detection.ts` (community members) | Injects member ids with no existence/tier check (agent D P2) | update: predicate + existence check before inject | test: archived/deleted member never injected |
@@ -113,7 +113,7 @@ Use this section when `research_intent=fix_bug`, when planning from a deep-revie
 | `lib/parsing/trigger-matcher.ts` + `handlers/memory-triggers.ts` (trigger cache) | z_archive rows hit via single-word triggers (L4) | update: cache loader applies predicate | match_triggers probe on resume-style prompt returns 0 archived rows |
 | `handlers/memory-crud-stats.ts` + `handlers/memory-crud-health.ts` | Disagree by 7,369 rows; silent population mismatch (L1) | update: active-vs-raw split, shared definitions | SQL reconciliation: active + excluded = raw on both surfaces |
 | `handlers/memory-crud-delete.ts:82-99` (tombstone writer) | Soft delete invisible to no read path; edges hard-deleted (#1) | update: stop edge hard-delete in tombstone mode; bulk idempotency filter | restore-preserves-edges test; double-run bulk delete affects 0 rows |
-| `handlers/memory-crud-update.ts:254` + `lib/scoring/importance-tiers.ts` (tier writers) | Raw-case store escapes predicates (#23); archived not settable | update: normalize lowercase; add archived to VALID_TIERS | case-variant write test; memory_update tier=archived accepted |
+| `handlers/memory-crud-update.ts:254` + `lib/scoring/importance-tiers.ts` (tier writers) | Raw-case store escapes predicates (#23); archived absent from the `ImportanceTier` union / IMPORTANCE_TIERS so it cannot be settable or in VALID_TIERS | update: normalize lowercase; add an `archived` IMPORTANCE_TIERS entry (value 0.2 / searchBoost 0.0 / decay false / autoExpireDays null) + union member so VALID_TIERS derives it (`Object.keys(IMPORTANCE_TIERS)` :80) | case-variant write test; memory_update tier=archived accepted; VALID_TIERS includes archived |
 | `lib/parsing/memory-parser.ts:892` (tier producer) | Body substring sets tier (948 inflated rows) | update: frontmatter-only tier | parser table test incl. quoted-log adversarial case |
 | `lib/search/vector-index-schema.ts` (migrations) | Owns migration registry (v28 retire pattern) | update: add 3 audited migrations | migration up/down test on fixture DB; audit rows count = rewritten rows |
 | PE-gate/save dedup lanes (`memory-save.ts`, `pe-gating.ts`) | Read predecessor rows for dedup; tombstone-match semantics owned by phase 003 | unchanged: documented consumer, no edit here | note in predicate module contract; phase 003 pointer |
@@ -124,7 +124,7 @@ Required inventories:
 - Consumers of changed symbols after the change: `rg -n "ACTIVE_ROW_SQL|isActiveRow|active-row-predicate" .opencode/skills/system-spec-kit/mcp_server --glob '*.ts' --glob '*.md'` must list exactly the ten channels plus stats/health and tests.
 - Tier literal audit (no case-sensitive stragglers): `rg -n "'critical'|'important'|'deprecated'|'archived'|\"critical\"" .opencode/skills/system-spec-kit/mcp_server/lib/search .opencode/skills/system-spec-kit/mcp_server/handlers --glob '*.ts'`
 - Matrix axes: channel (10) x row-state (active, deprecated, archived, tombstoned, mixed-case tier, NULL tier, constitutional, archived+tombstoned) = 80 planned rows; enumerate before implementation in the T-021 test table.
-- Algorithm invariant: a row is readable by a ranked channel iff `deleted_at IS NULL AND lower(tier) NOT IN ('deprecated','archived')`; `includeArchived: true` widens ONLY the archived exclusion; the constitutional lane bypasses tier exclusion but never the tombstone exclusion. Adversarial cases: mixed-case tiers, NULL tier, tombstoned constitutional row, archived row requested with includeArchived, restore after tombstone.
+- Algorithm invariant: a row is readable by a ranked channel iff `deleted_at IS NULL AND (importance_tier IS NULL OR lower(importance_tier) NOT IN ('deprecated','archived','constitutional'))`, with the deprecated/archived half gated by the graduated flag per the T-004a logic-sync decision (an unguarded `NOT IN` drops NULL-tier rows via SQL three-valued logic — the live channels all use the `IS NULL OR` guard). `includeArchived: true` widens ONLY the archived exclusion; constitutional is always excluded from ranked lanes and reaches results solely through its injection lane, which bypasses the tier clause but never the tombstone clause. Adversarial cases: mixed-case tiers, NULL tier, tombstoned constitutional row, archived row requested with includeArchived, restore after tombstone.
 <!-- /ANCHOR:affected-surfaces -->
 
 ---
@@ -133,7 +133,7 @@ Required inventories:
 ## 4. IMPLEMENTATION PHASES
 
 ### Phase 1: Setup - confirm-before-fix + baseline
-- [ ] 🟡 findings re-verified in current code (T-001..T-005): tombstone read paths, edge hard-delete, tier raw store, parser substring, graph-injection/summary-stub filter gaps, includeArchived hardcode
+- [ ] 🟡 findings re-verified in current code (T-001..T-005): tombstone read paths, edge hard-delete, tier raw store, parser substring, graph-injection/summary-stub filter gaps, includeArchived hardcode; graduated-flag logic-sync decision recorded (T-004a) before predicate adoption
 - [ ] Baseline captured BEFORE any change (T-006): full vitest run, SQL state counts (deprecated=7,340, z_archive=11,086, critical=948-audit population), warm search + match_triggers latency
 - [ ] Fixture DB snapshot taken for migration up/down tests
 

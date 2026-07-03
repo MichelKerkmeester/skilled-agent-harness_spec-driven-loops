@@ -2,26 +2,233 @@
   "schema_version": 1,
   "packet_id": "system-speckit/028-memory-search-intelligence/016-fix-deep-dive-p0-p2-findings-for-mk-spec-memory/011-daemon-freshness-and-health-truthfulness",
   "spec_folder": "system-speckit/028-memory-search-intelligence/016-fix-deep-dive-p0-p2-findings-for-mk-spec-memory/011-daemon-freshness-and-health-truthfulness",
-  "parent_id": null,
+  "parent_id": "system-speckit/028-memory-search-intelligence/016-fix-deep-dive-p0-p2-findings-for-mk-spec-memory",
   "children_ids": [],
   "manual": {
     "depends_on": [],
     "supersedes": [],
     "related_to": []
   },
-    "derived": {
-    "trigger_phrases": ["dist freshness deadlock", "stale dist exit 75", "memory health truthfulness", "sigbus crash loop"],
-    "key_topics": ["dist-freshness", "cli-exit-taxonomy", "hook-fallback-visibility", "memory-health", "sigbus-diagnosis"],
+  "derived": {
+    "trigger_phrases": [
+      "dist freshness deadlock",
+      "stale dist exit 75",
+      "memory health truthfulness",
+      "sigbus crash loop",
+      "cli fallback skipped",
+      "finalize-dist hash cache",
+      "daemon freshness tasks",
+      "daemon freshness checklist",
+      "implementation",
+      "summary",
+      "template",
+      "impl summary core"
+    ],
+    "key_topics": [
+      "dist",
+      "freshness",
+      "deadlock",
+      "stale",
+      "exit",
+      "memory",
+      "health",
+      "truthfulness",
+      "sigbus",
+      "crash",
+      "loop",
+      "cli"
+    ],
     "importance_tier": "important",
-    "status": "planned",
-    "key_files": ["spec.md","plan.md","tasks.md"],
-    "entities": [],
+    "status": "draft",
+    "key_files": [
+      ".opencode/skills/system-spec-kit/scripts/lib/dist-freshness.cjs",
+      ".opencode/skills/system-spec-kit/mcp_server/scripts/finalize-dist.mjs",
+      ".opencode/bin/spec-memory.cjs",
+      ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/hooks/spec-memory-cli-fallback.ts",
+      "mcp_server/tests/dist-freshness.vitest.ts",
+      "scripts/tests/test-dist-freshness.sh",
+      "scripts/lib/dist-freshness.cjs",
+      "mcp_server/scripts/finalize-dist.mjs",
+      ".opencode/bin/code-index.cjs",
+      ".opencode/bin/skill-advisor.cjs",
+      "mcp_server/hooks/spec-memory-cli-fallback.ts",
+      "mcp_server/handlers/session-health.ts",
+      "mcp_server/handlers/memory-crud-health.ts",
+      "feature_catalog/16--tooling-and-scripts/dist-freshness-enforcement.md",
+      "scripts/spec/validate.sh",
+      "scripts/validation/continuity-freshness.ts",
+      "mcp_server/dist/lib/validation/spec-doc-structure.js",
+      "spec.md",
+      "plan.md"
+    ],
+    "entities": [
+      {
+        "name": "dist-freshness.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-spec-kit/scripts/lib/dist-freshness.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "finalize-dist.mjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/scripts/finalize-dist.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "spec-memory.cjs",
+        "kind": "file",
+        "path": ".opencode/bin/spec-memory.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "memory-crud-health.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts",
+        "source": "derived"
+      },
+      {
+        "name": "spec-memory-cli-fallback.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/hooks/spec-memory-cli-fallback.ts",
+        "source": "derived"
+      },
+      {
+        "name": "dist-freshness.vitest.ts",
+        "kind": "test",
+        "path": "mcp_server/tests/dist-freshness.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "test-dist-freshness.sh",
+        "kind": "script",
+        "path": "scripts/tests/test-dist-freshness.sh",
+        "source": "derived"
+      },
+      {
+        "name": "code-index.cjs",
+        "kind": "file",
+        "path": ".opencode/bin/code-index.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "skill-advisor.cjs",
+        "kind": "file",
+        "path": ".opencode/bin/skill-advisor.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "session-health.ts",
+        "kind": "code",
+        "path": "mcp_server/handlers/session-health.ts",
+        "source": "derived"
+      },
+      {
+        "name": "dist-freshness-enforcement.md",
+        "kind": "doc",
+        "path": "feature_catalog/16--tooling-and-scripts/dist-freshness-enforcement.md",
+        "source": "derived"
+      },
+      {
+        "name": "validate.sh",
+        "kind": "script",
+        "path": "scripts/spec/validate.sh",
+        "source": "derived"
+      },
+      {
+        "name": "continuity-freshness.ts",
+        "kind": "code",
+        "path": "scripts/validation/continuity-freshness.ts",
+        "source": "derived"
+      },
+      {
+        "name": "spec-doc-structure.js",
+        "kind": "code",
+        "path": "mcp_server/dist/lib/validation/spec-doc-structure.js",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Start Phase",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Execute Phase",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
     "causal_summary": "The entire memory surface was down at session start on 2026-07-03 and the loss was silent: a dist-freshness bootstrap deadlock that `npm run build` (exit 0) cannot clear blocked the CLI shim (live-reproduced twice, deep-dive Chain C), the stale condition was misclassified as retryable exit 75 while hooks fail open, and the daemon's context-server had been crash-looping with SIGBUS earlier that morning (launcher log 05:52-06:07)",
     "created_at": "2026-07-03T09:44:25Z",
-    "last_save_at": "2026-07-03T09:59:39Z",
+    "last_save_at": "2026-07-03T11:58:32.872Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
-    "source_docs": ["spec.md","plan.md","tasks.md"],
-    "source_fingerprint": "sha256:c489c61734335b0eb6cd9e7b0648d158e29495b07099714e72ac629254154c90"
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:d7a8f1a8f12d1ec1dd05d6eb7e36ef0ba517e708153b5bf1b98ebcaa8bf5eca2",
+    "source_doc_hashes": {
+      "spec.md": "a1eda35a87cc1e648a27c1a4dcd00e69c183209ae4fc479892b6d8b0a5082aa0",
+      "plan.md": "e88a47daa80ba4efd8d2242387555a3316ec079caa16b6e12a791b644dcba27d",
+      "tasks.md": "397298f901d5de9a0f112d537583e5613634a1f31d21f33c5b04cbf03b0d2a01",
+      "checklist.md": "e4e3631c91b659db6e244467660b1e69db354ae6f301d8a0a4cfb3f9e7de4a8c",
+      "implementation-summary.md": "54011820440908a317df96449153b8cddfefdf3db00bc00af44c6ea4d7ac905b"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
   }
 }

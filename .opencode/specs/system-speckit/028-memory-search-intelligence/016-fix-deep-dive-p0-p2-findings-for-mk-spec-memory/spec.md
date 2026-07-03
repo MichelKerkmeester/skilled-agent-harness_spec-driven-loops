@@ -14,7 +14,7 @@ _memory:
     packet_pointer: "system-speckit/028-memory-search-intelligence/016-fix-deep-dive-p0-p2-findings-for-mk-spec-memory"
     last_updated_at: "2026-07-03T10:15:00Z"
     last_updated_by: "claude-fable-5"
-    recent_action: "Scaffolded program parent + 13 phase children; authoring of child planning docs dispatched"
+    recent_action: "Review and remediation applied; all 14 folders strict-green"
     next_safe_action: "Begin implementation with phase 011 (daemon freshness) per the recommended execution order"
     blockers: []
     key_files:
@@ -33,6 +33,7 @@ _memory:
     answered_questions:
       - "Gate 3: program lives under 028 as child 016 (operator answer E, 2026-07-03)"
       - "Known-open trackers (Group-A, 028/006/002, 028/006/004) are ABSORBED into phases 007/008/009/013 (operator decision)"
+      - "Plan reviewed by 5 fresh reviewers; remediation applied — see research/plan-review-report.md. Absorbed 028/006/002 P1-2/P1-4/P1-5 were found already fixed in code, reclassified to verify-first-then-close"
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 # Feature Specification: Deep-Dive P0-P2 Remediation Program for mk-spec-memory

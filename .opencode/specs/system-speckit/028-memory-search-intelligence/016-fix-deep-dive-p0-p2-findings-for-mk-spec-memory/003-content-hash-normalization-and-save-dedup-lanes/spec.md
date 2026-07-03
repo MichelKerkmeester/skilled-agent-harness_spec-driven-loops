@@ -86,6 +86,7 @@ This is **Phase 3** of the Deep dive remediation phase children specification.
 **Dependencies**:
 - Phase 002 shared active-row predicate (`deleted_at IS NULL AND tier NOT IN (deprecated, archived)`) for tombstone/deprecated visibility in dedup and save results.
 - Program execution order: 011 → 001 → 002 → **003** (research/phase-decomposition.md, RECOMMENDED EXECUTION ORDER).
+- Ordering honesty: 003 is the durable root-cause fix (Chain A), but it runs after 001's dup-collapse and 002. 001's "one active row per logical key" invariant is therefore not durable at 001-completion — between 001 and 003, ongoing timestamp/CRLF churn keeps minting deprecated snapshots of the same logical key (bounded by the re-save rate). Treat 001's post-collapse state as transient until 003 lands.
 
 **Deliverables**:
 - Normalized `computeContentHash` input with dual-compare migration for existing hashes.
@@ -104,7 +105,7 @@ This is **Phase 3** of the Deep dive remediation phase children specification.
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
-`content_hash` is a raw sha256 with no normalization (`memory-parser.ts:914`; deep-dive-report Chain A step 1 cites :913), so any CRLF/trailing-whitespace or `_memory.continuity.last_updated_at` churn registers as new content; each same-path re-save then retires the predecessor to `tier='deprecated'` and inserts a new row, accumulating snapshots unboundedly (Chain A steps 2-3). The lanes that should absorb these re-saves are all broken: PE-gate UPDATE/REINFORCE are unreachable because the orchestration call excludes same-path candidates (`pe-orchestration.ts:66-67`, report §3 #26), the transactional complement recheck aborts legitimate re-saves even with reconsolidation disabled (`memory-save.ts:2618`, #21), the quality-gate semantic dedup rejects a re-save as a near-dup of its own predecessor (`memory-save.ts:2398` + `save-quality-gate.ts:704`, #22), and the full-auto canonical routed save structurally self-rejects because POST_SAVE_FINGERPRINT is validated pre-promotion and the advertised apply follow-up never dispatches the canonical writer (`memory-save.ts:1803,3200` + `atomic-index-memory.ts:360` + `spec-doc-structure.ts:1105`, P0 #2).
+`content_hash` is a raw sha256 with no normalization (`memory-parser.ts:914`; deep-dive-report Chain A step 1 cites :913), so any CRLF/trailing-whitespace or `_memory.continuity.last_updated_at` churn registers as new content; each same-path re-save then retires the predecessor to `tier='deprecated'` and inserts a new row, accumulating snapshots unboundedly (Chain A steps 2-3). The lanes that should absorb these re-saves are all broken: PE-gate UPDATE/REINFORCE are unreachable because the orchestration call excludes same-path candidates (`pe-orchestration.ts:66-67`, report §3 #26), the transactional complement recheck aborts legitimate re-saves even with reconsolidation disabled (`memory-save.ts:2618`, #21), the quality-gate semantic dedup rejects a re-save as a near-dup of its own predecessor (`memory-save.ts:2398` + `lib/validation/save-quality-gate.ts:704`, #22), and the full-auto canonical routed save structurally self-rejects because POST_SAVE_FINGERPRINT is validated pre-promotion and the advertised apply follow-up never dispatches the canonical writer (`memory-save.ts:1803,3200` + `atomic-index-memory.ts:360` + `spec-doc-structure.ts:1105`, P0 #2).
 
 ### Purpose
 A re-save of an unchanged file returns `unchanged`, an edited same-path re-save routes through UPDATE/REINFORCE, and continuity-timestamp churn stops minting deprecated snapshots at the source.
@@ -116,13 +117,14 @@ A re-save of an unchanged file returns `unchanged`, an edited same-path re-save 
 ## 3. SCOPE
 
 ### In Scope
-- Content-hash input normalization (CRLF/trailing-whitespace; zero continuity fingerprint/timestamp lines) with dual-compare migration for existing hashes (Chain A; ledger Agent H P2 root cause of L1).
+- Content-hash input normalization (CRLF/trailing-whitespace; zero continuity fingerprint/timestamp lines) with a dual-compare migration for existing hashes, exposed as one shared `hashesMatch(content, storedHash)` helper used at every comparison site (preflight, PE gate, quality gate, v28 lineage) (Chain A; ledger Agent H P2 root cause of L1).
 - Unification of the two `buildContinuityFingerprint` builders (`memory-save.ts:1078` local vs `spec-doc-structure.ts:580` exported; ledger Agent H CONTRACT).
 - PE-gate lane reachability: drop same-path exclusion params at `pe-orchestration.ts:66-67`; fix tests that mock `findSimilarMemories` to mask it; extend the canonical-path guard to SUPERSEDE (ledger Agent G P1); wire PE audit init (dead T-09 logging).
 - P0 full-auto canonical save: POST_SAVE_FINGERPRINT ordering and apply follow-up dispatch (`memory-save.ts:1803/3200`, `atomic-index-memory.ts:360`, `spec-doc-structure.ts:1105`); un-skip the `describe.skip`'d parity tests (`memory-save-integration.vitest.ts:526`).
 - Complement recheck gating on recon-enabled + `!force` with same-path predecessor exclusion (`memory-save.ts:2618`, #21).
-- Quality-gate Layer-3 dedup predecessor exclusion (#22).
+- Quality-gate Layer-3 dedup predecessor exclusion (`lib/validation/save-quality-gate.ts:704`, #22).
 - Preflight exact-dup same-path exclusion returning benign `unchanged` (ledger Agent H P2).
+- Content-router Tier-1 transcript-wrapper correctness: anchor `assistant:`/`user:`/`tool:` speaker cues to line-start instead of matching anywhere in normalized text, so save/index chunks that merely mention those tokens are not silently dropped (report Systemic #4 item 3, Agent F P2; `lib/routing/content-router.ts:410-414`).
 - Recon conflict ordering: retire predecessor before insert (unique-index collision; ledger Agent H P1).
 - Retire-carry: stop re-stamping `deprecated` onto the successor; dedup/tombstone visibility in save results (resurrect path) (ledger Agent H P2).
 - Governance rollback re-activating the retired predecessor; chunked-save rollback transactional note; spec-folder mutex reclaim rename-verify; BM25 add post-commit (ledger Agent H P2 batch).
@@ -138,15 +140,17 @@ A re-save of an unchanged file returns `unchanged`, an edited same-path re-save 
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| .opencode/skills/system-spec-kit/mcp_server/lib/parsing/memory-parser.ts | Modify | Normalize `computeContentHash` input at :914 (CRLF→LF, strip trailing whitespace, zero continuity fingerprint/timestamp lines) |
+| .opencode/skills/system-spec-kit/mcp_server/lib/parsing/memory-parser.ts | Modify | Normalize `computeContentHash` input at :914 (CRLF→LF, strip trailing whitespace, zero continuity fingerprint/timestamp lines); this wrapper over `hashContentBody` is the single normalization point |
+| .opencode/skills/system-spec-kit/mcp_server/lib/content-id.ts | Modify | `hashContentBody` (:14) is the raw sha256 primitive wrapped by `computeContentHash`; add the shared `hashesMatch(content, storedHash)` dual-compare helper consumed at every comparison site (preflight, PE gate, quality gate, v28 lineage) |
 | .opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts | Modify | Remove local fingerprint builder (:1078); POST_SAVE_FINGERPRINT plan ordering (:1803); quality-gate wiring (:2398); complement recheck gating (:2618); canonical-writer dispatch for full-auto (:3200); preflight/retire-carry/recon-conflict/governance-rollback lanes |
 | .opencode/skills/system-spec-kit/mcp_server/lib/validation/spec-doc-structure.ts | Modify | Canonical `buildContinuityFingerprint` home (:580); post-save fingerprint validation input (:1105) |
-| .opencode/skills/system-spec-kit/mcp_server/handlers/save/pe-orchestration.ts | Modify | Drop `excludeFilePath`/`excludeCanonicalFilePath` from the `findSimilarMemories` call (:66-67) |
-| .opencode/skills/system-spec-kit/mcp_server/handlers/pe-gating.ts | Modify | Same-path candidate handling (:172-174); extend canonical-path guard to SUPERSEDE (:293-298 area) |
+| .opencode/skills/system-spec-kit/mcp_server/handlers/save/pe-orchestration.ts | Modify | Drop `excludeFilePath`/`excludeCanonicalFilePath` from the `findSimilarMemories` call (:66-67); add the SUPERSEDE case to the cross-file canonical-path guard condition at :80-82 (guard body rewrites cross-file targets to CREATE at :84-97) |
+| .opencode/skills/system-spec-kit/mcp_server/handlers/pe-gating.ts | Modify | Same-path candidate exclusion filters (:172-174); wire `predictionErrorGate.init(db)` for PE audit logging. NOTE: :293-298 is `markMemorySuperseded` (the UPDATE mutation), not the cross-file guard — the SUPERSEDE guard extension lives in pe-orchestration.ts:80-97 |
 | .opencode/skills/system-spec-kit/mcp_server/handlers/save/atomic-index-memory.ts | Modify | Pending-file write/promotion ordering relative to fingerprint validation (:360 area) |
-| .opencode/skills/system-spec-kit/mcp_server/lib/memory/save-quality-gate.ts | Modify | Layer-3 semantic dedup predecessor exclusion (:704) |
+| .opencode/skills/system-spec-kit/mcp_server/lib/validation/save-quality-gate.ts | Modify | Layer-3 semantic dedup predecessor exclusion (`checkSemanticDedup` :704) |
 | .opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts | Modify | Result-time dedup key: canonical file identity, keep best (:949) |
-| .opencode/skills/system-spec-kit/mcp_server/lib/storage (migration surface, e.g. vector-index-schema.ts) | Modify | Dual-compare content-hash migration (idempotent, non-destructive) |
+| .opencode/skills/system-spec-kit/mcp_server/lib/routing/content-router.ts | Modify | Anchor the Tier-1 `tier1.transcript.wrapper` speaker cues to line-start (:410-414; `assistant:`/`user:`/`tool:` currently match anywhere in normalized text, category `drop`) |
+| .opencode/skills/system-spec-kit/mcp_server/lib/storage (migration surface, e.g. vector-index-schema.ts) | Modify | Dual-compare content-hash migration (idempotent, non-destructive) via the shared `hashesMatch` helper; no stored-hash rewrite |
 | .opencode/skills/system-spec-kit/mcp_server/tests/memory-save-integration.vitest.ts | Modify | Un-skip `describe.skip('planner-first and fallback parity')` (:526); rewrite stale assertions to the current planner-default contract |
 | .opencode/skills/system-spec-kit/mcp_server/tests/pe-orchestration.vitest.ts, tests/pe-gating.vitest.ts, tests/handler-memory-save.vitest.ts | Modify | Stop mocking `findSimilarMemories` in ways that hide same-path candidates; add same-path lane coverage |
 <!-- /ANCHOR:scope -->
@@ -170,8 +174,8 @@ A re-save of an unchanged file returns `unchanged`, an edited same-path re-save 
 |----|-------------|---------------------|
 | REQ-004 | Unify the two `buildContinuityFingerprint` builders onto one exported implementation (ledger Agent H CONTRACT; `memory-save.ts:1078` vs `spec-doc-structure.ts:580`) | **Given** identical doc content, **When** both former call sites compute a fingerprint, **Then** they produce byte-identical output from the single shared builder and CONTINUITY_FRESHNESS cannot mismatch by construction |
 | REQ-005 | Gate the transactional complement recheck on reconsolidation-enabled and `!force`, excluding the same-path predecessor (report §3 #21; `memory-save.ts:2618`) | **Given** recon disabled or `force=true`, **When** a same-path re-save runs, **Then** no E088 `candidate_changed` abort fires from the complement recheck |
-| REQ-006 | Exclude the doc's own predecessor from quality-gate Layer-3 semantic dedup (report §3 #22; `memory-save.ts:2398` + `save-quality-gate.ts:704`) | **Given** a lightly edited same-path re-save in enforce mode, **When** the quality gate runs, **Then** the save is not rejected as a near-duplicate of its own predecessor |
-| REQ-007 | Fix recon conflict ordering (retire predecessor before insert; ledger Agent H P1 unique-index collision) and extend the canonical-path guard to SUPERSEDE so cross-file regex matches cannot deprecate sibling docs (ledger Agent G P1, `pe-gating.ts:293-298` area) | **Given** a same-path conflict-tier re-save, **When** the recon path inserts the successor, **Then** no `idx_memory_logical_key_active_unique` collision occurs; **Given** a cross-file SUPERSEDE candidate, **When** its canonical path differs from the save target, **Then** no sibling doc is marked deprecated |
+| REQ-006 | Exclude the doc's own predecessor from quality-gate Layer-3 semantic dedup (report §3 #22; `memory-save.ts:2398` + `lib/validation/save-quality-gate.ts:704`) | **Given** a lightly edited same-path re-save in enforce mode, **When** the quality gate runs, **Then** the save is not rejected as a near-duplicate of its own predecessor |
+| REQ-007 | Fix recon conflict ordering (retire predecessor before insert; ledger Agent H P1 unique-index collision) and extend the cross-file canonical-path guard to SUPERSEDE so cross-file regex matches cannot deprecate sibling docs (ledger Agent G P1; the guard is `pe-orchestration.ts:84-97`, condition at :80-82 tests only UPDATE/REINFORCE today — `pe-gating.ts:293-298` is `markMemorySuperseded`, the UPDATE mutation, not the guard) | **Given** a same-path conflict-tier re-save, **When** the recon path inserts the successor, **Then** no `idx_memory_logical_key_active_unique` collision occurs; **Given** a cross-file SUPERSEDE candidate, **When** its canonical path differs from the save target, **Then** no sibling doc is marked deprecated |
 
 ### P2 - Optional (defer with documented reason)
 
@@ -179,6 +183,7 @@ A re-save of an unchanged file returns `unchanged`, an edited same-path re-save 
 |----|-------------|---------------------|
 | REQ-008 | Save-path P2 batch (ledger Agent H P2): preflight exact-dup same-path returns benign `unchanged`; retire-carry stops re-stamping `deprecated` onto the successor and save results surface dedup/tombstone hits (resurrect path); governance rollback re-activates the retired predecessor; spec-folder mutex reclaim verifies rename; BM25 in-memory add moves post-commit; chunked-save rollback transactional note | **Given** each listed lane, **When** its trigger scenario is replayed from the T001 confirmation probes, **Then** the corrected behavior is observed and covered by a test |
 | REQ-009 | Result-time file-identity collapse: dedup pipeline candidates by canonical file identity (keep best), not row id alone (ledger L1; `hybrid-search.ts:949`) as belt-and-braces behind the source fix | **Given** multiple rows for one canonical path in a candidate set, **When** fusion dedup runs, **Then** one result per canonical path survives with the best score retained |
+| REQ-010 | Anchor the content-router Tier-1 transcript-wrapper speaker cues to line-start (`^\s*(user|assistant|tool):`) or require ≥2 speaker turns instead of a substring match, so save/index chunks that merely mention `tool:`/`user:`/`assistant:` are not silently dropped (report Systemic #4 item 3, Agent F P2; `lib/routing/content-router.ts:410-414` `tier1.transcript.wrapper`, category `drop`) | **Given** a chunk whose body mentions `tool:` or `user:` mid-line but is not a transcript, **When** Tier-1 routing runs, **Then** the chunk is not dropped by `tier1.transcript.wrapper`; **Given** an actual multi-turn transcript, **When** Tier-1 routing runs, **Then** it is still dropped |
 <!-- /ANCHOR:requirements -->
 
 ---
@@ -202,6 +207,7 @@ A re-save of an unchanged file returns `unchanged`, an edited same-path re-save 
 | Type | Item | Impact | Mitigation |
 |------|------|--------|------------|
 | Dependency | Phase 002 shared active-row predicate | Tombstone/deprecated visibility in dedup and save results diverges if 002 lands differently | Consume the 002 predicate helper; if 002 is not yet merged, scope retire/tombstone visibility behind the same predicate signature |
+| Dependency | 001 dup-collapse precedes 003 | 001's "one active row per logical key" is not durable until 003 stops the churn; timestamp/CRLF re-saves keep minting deprecated snapshots between 001 and 003 (bounded by re-save rate) | 003 is the durable fix; treat 001's collapsed state as transient and re-verify one-active-row after 003 merges |
 | Dependency | Migration surface (`vector-index-schema.ts` migration registry) | Dual-compare migration must be idempotent and versioned | Follow the v28-style migration pattern; add an idempotency test |
 | Risk | Hash normalization invalidates existing dedup identity | High | Dual-compare: accept legacy raw hash OR normalized hash during the transition window; no destructive rewrite of stored hashes |
 | Risk | Opening PE lanes causes wrong-direction cross-file merges | Medium | Keep the existing cross-file CREATE rewrite guard; extend it to SUPERSEDE (REQ-007) |
@@ -245,7 +251,7 @@ A re-save of an unchanged file returns `unchanged`, an edited same-path re-save 
 
 | Dimension | Score | Triggers |
 |-----------|-------|----------|
-| Scope | 18/25 | Files: ~11, LOC: 500+, Systems: parser, save orchestration, PE gate, atomic index, quality gate, search pipeline |
+| Scope | 18/25 | Files: ~13, LOC: 500+, Systems: parser, content identity, save orchestration, PE gate, atomic index, quality gate, content router, search pipeline |
 | Risk | 18/25 | Auth: N, API: N, Breaking: potential dedup-identity break without dual-compare |
 | Research | 12/20 | 🟡 findings need confirm-before-fix probes; parity-test contract needs re-derivation |
 | Multi-Agent | 5/15 | Single workstream; test fixes parallelizable |

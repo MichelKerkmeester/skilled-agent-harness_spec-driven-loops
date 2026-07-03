@@ -91,10 +91,10 @@ FAILURE MODES:
 ## Fix Completeness
 
 - [ ] CHK-FIX-001 [P0] Every absorbed tracker row carries exactly one disposition: covered by phase NNN, stays in its packet, or obsolete — none double-mapped, none silent
-- [ ] CHK-FIX-002 [P0] The 91-item P2 mapping table is complete: row count reconciles to 91 against the frozen review report; every phase pointer names an existing child folder
-- [ ] CHK-FIX-003 [P0] The ledger completeness table in tasks.md has zero Pending rows, including the Agent B gap handled via report §3/§4 citations
-- [ ] CHK-FIX-004 [P0] Both tooling findings (TOOL-1 create.sh child level, TOOL-2 upgrade-level.sh addendum paths) are recorded with script-line anchors and a reproducing command, and carry a routing decision
-- [ ] CHK-FIX-005 [P1] Mapping dispositions distinguish owned-by-phase from shipped — no completion overclaim for any phase that closed differently than planned
+- [ ] CHK-FIX-002 [P0] The reconstructed 91-item P2 mapping table is complete: the frozen per-item source is unrecoverable, so the list is rebuilt from the deep-dive ledger + 004-p2-triage G1-G15 grouping and its count reconciled against the "91" headline with any delta explained; every phase pointer names an existing child folder
+- [ ] CHK-FIX-003 [P0] The finding-level ledger completeness table in tasks.md has zero Pending rows and carries all 13 previously-silent findings (plan-review SYSTEMIC #4) with owning phases; the section-level index is retained only as a coarse cross-check, with the Agent B gap handled via report §3/§4 citations
+- [ ] CHK-FIX-004 [P0] All three tooling findings (TOOL-1 create.sh child level, TOOL-2 upgrade-level.sh addendum paths, TOOL-3 generate-description.js ignored `--level`) are recorded with script-line anchors and a reproducing command, and carry a routing decision
+- [ ] CHK-FIX-005 [P1] Mapping dispositions distinguish owned-by-phase from shipped — no completion overclaim; the 028/006/002 absorptions read as verify-first-then-close (P1-2/P1-4/P1-5 already fixed in code per SYSTEMIC #1), not as re-fixes handed to 008/009
 - [ ] CHK-FIX-006 [P1] Concurrent-session guard executed: `git status` checked on every target file before editing, collisions halted and reported
 - [ ] CHK-FIX-007 [P1] Closeout evidence pinned to a commit SHA or explicit diff range, not a moving branch-relative range
 <!-- /ANCHOR:fix-completeness -->

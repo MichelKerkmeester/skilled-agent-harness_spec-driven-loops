@@ -11,9 +11,9 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-speckit/028-memory-search-intelligence/016-fix-deep-dive-p0-p2-findings-for-mk-spec-memory/008-causal-graph-hygiene-and-entity-linker-noise"
-    last_updated_at: "2026-07-03T10:05:00Z"
-    last_updated_by: "claude-fable-5"
-    recent_action: "Authored Level 3 verification checklist; all items pending execution"
+    last_updated_at: "2026-07-03T13:00:00Z"
+    last_updated_by: "claude-opus-4-8"
+    recent_action: "Remediated REWORK: CHK-020 verify-first P1-2/P1-4, session-trace producer + flag updates"
     next_safe_action: "Execute tasks.md Phase 1 before checking any item"
     blockers: []
     key_files:
@@ -77,7 +77,7 @@ FAILURE MODES:
 <!-- ANCHOR:testing -->
 ## Testing
 
-- [ ] CHK-020 [P0] All acceptance criteria met (REQ-001..REQ-004 evidenced; REQ-005..REQ-012 met or deferred with approval)
+- [ ] CHK-020 [P0] All acceptance criteria met (REQ-001..REQ-002 evidenced; REQ-003..REQ-013 met or deferred with approval, incl. verify-first P1-2/P1-4 and the session-trace reducer)
 - [ ] CHK-021 [P0] Manual testing complete (T029 probes: histogram, no-op-save strengths, twin identity, lock scope; evidence pasted below or linked)
 - [ ] CHK-022 [P1] Edge cases tested (empty graph, pseudo-node endpoints, reversed pairs, deleted-memory endpoints, missed snapshot day, DB rebind)
 - [ ] CHK-023 [P1] Error scenarios validated (unresolvable refs, poisoned memory in save path, provider stall during consolidation)
@@ -89,7 +89,7 @@ FAILURE MODES:
 ## Fix Completeness
 
 - [ ] CHK-FIX-001 [P0] Each actionable finding has a finding class: `instance-only`, `class-of-bug`, `cross-consumer`, `algorithmic`, `matrix/evidence`, or `test-isolation`.
-- [ ] CHK-FIX-002 [P0] Same-class producer inventory completed, or instance-only status proven by grep (all writers of `'supports'`/co-occurrence edges and of edge strengths).
+- [ ] CHK-FIX-002 [P0] Same-class producer inventory completed, or instance-only status proven by grep (all writers of `'supports'`/co-occurrence edges and of edge strengths: entity-linker `:865`, the session-trace reducer, causal-links-processor).
 - [ ] CHK-FIX-003 [P0] Consumer inventory completed for changed helpers, policies, schema fields, response fields, docs, and tests (relation literals, `derived_id`, `rule_version`, strength readers).
 - [ ] CHK-FIX-004 [P0] Security/path/parser/redaction fixes include adversarial table tests for delimiter, joined-input, outside-root, no-op, and fallback cases (fuzzy-fallback removal, migration re-run, zero-new-edges save).
 - [ ] CHK-FIX-005 [P1] Matrix axes and row count are listed before completion is claimed (provenance × relation × endpoint × path per plan.md FIX ADDENDUM).
@@ -172,7 +172,7 @@ FAILURE MODES:
 ## L3+: DEPLOYMENT READINESS
 
 - [ ] CHK-120 [P0] Rollback procedure documented and tested (reverse migration rehearsed on the DB copy; cluster commits individually revertable)
-- [ ] CHK-121 [P0] Feature flag configured (if applicable: co-occurrence opt-in for causal boost; absorbed P1-2/P1-4 stay on their gated paths)
+- [ ] CHK-121 [P0] Feature flag configured (if applicable: co-occurrence opt-in for causal boost; session-trace reducer stays default-OFF behind `SPECKIT_SESSION_TRACE_CAUSAL_INFERENCE`; absorbed P1-2/P1-4 stay on their gated paths)
 - [ ] CHK-122 [P1] Monitoring/alerting configured (histogram probe command recorded for post-deploy spot checks)
 - [ ] CHK-123 [P1] Runbook created (migration run + reversal steps in plan.md Enhanced Rollback)
 - [ ] CHK-124 [P2] Deployment runbook reviewed

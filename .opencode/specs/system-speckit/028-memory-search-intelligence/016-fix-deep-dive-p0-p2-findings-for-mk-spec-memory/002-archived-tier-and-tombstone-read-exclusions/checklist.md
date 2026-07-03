@@ -11,9 +11,9 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "scaffold/002-archived-tier-and-tombstone-read-exclusions"
-    last_updated_at: "2026-07-03T12:15:00Z"
-    last_updated_by: "markdown-agent"
-    recent_action: "Authored Level 3 verification checklist with evidence slots"
+    last_updated_at: "2026-07-03T13:30:00Z"
+    last_updated_by: "plan-remediation"
+    recent_action: "Remediated REWORK: added CHK-006 logic-sync gate and widened CHK-020 to REQ-000"
     next_safe_action: "Fill evidence slots as tasks complete; no [x] without evidence"
     blockers: []
     key_files: []
@@ -66,6 +66,8 @@ Evidence slots: every item carries an `Evidence:` line. Fill it with a test name
   Evidence: pending (per-task confirmation quotes in tasks.md)
 - [ ] CHK-005 [P0] Baseline captured BEFORE changes: vitest counts, SQL population counts, latency, reproduction-query outputs (T-006)
   Evidence: pending (scratch/baseline/ artifact paths + capture date)
+- [ ] CHK-006 [P0] Logic-sync decision recorded BEFORE predicate adoption (REQ-000/T-004a): sqlite-fts.ts:186-188 and hybrid-search.ts:560-566 re-read as already-filtering-deprecated, `isArchivedRetrievalIncludedByDefault` (search-flags.ts:834) confirmed default-TRUE graduated, and an explicit keep-graduated-vs-hard-exclude decision written; the predicate's cold-inclusion default matches it (no silent reversal)
+  Evidence: pending (decision text + file:line quotes in tasks.md T-004a)
 <!-- /ANCHOR:pre-impl -->
 
 ---
@@ -90,7 +92,7 @@ Evidence slots: every item carries an `Evidence:` line. Fill it with a test name
 <!-- ANCHOR:testing -->
 ## Testing
 
-- [ ] CHK-020 [P0] All acceptance criteria met (REQ-001..REQ-005 P0 rows verified individually)
+- [ ] CHK-020 [P0] All acceptance criteria met (REQ-000..REQ-005 P0 rows verified individually)
   Evidence: pending (per-REQ test names + results)
 - [ ] CHK-021 [P0] Manual testing complete: report §1 reproduction queries return 0 deprecated/archived rows; delete-then-search returns nothing; restore preserves edges
   Evidence: pending (CLI probe transcripts)
@@ -167,7 +169,7 @@ Evidence slots: every item carries an `Evidence:` line. Fill it with a test name
 
 | Category | Total | Verified |
 |----------|-------|----------|
-| P0 Items | 16 | 0/16 |
+| P0 Items | 17 | 0/17 |
 | P1 Items | 13 | 0/13 |
 | P2 Items | 4 | 0/4 |
 

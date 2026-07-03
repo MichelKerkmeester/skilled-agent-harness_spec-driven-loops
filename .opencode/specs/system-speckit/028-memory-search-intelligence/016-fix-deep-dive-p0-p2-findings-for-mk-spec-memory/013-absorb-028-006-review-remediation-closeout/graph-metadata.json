@@ -163,25 +163,25 @@
         "source": "derived"
       },
       {
+        "name": "Lens Triage",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
         "name": "Mark Group",
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
       },
       {
-        "name": "Completeness Mapping Table",
+        "name": "Completeness Mapping",
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
       },
       {
         "name": "Ledger Section",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Expected Owners",
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
@@ -195,7 +195,7 @@
     ],
     "causal_summary": "The operator absorbed three open trackers into this program, but the tracker docs still advertise their pre-absorption state: `028/006/002-memory-schema-and-concurrency` and `028/006/004-p2-triage` read \"PENDING, scaffold only\" with no pointer to the phases that now own their items, and the ex-031 tracker (`028/014/001-findings-remediation`) still lists T-0211/T-0212 as \"queued for next fix-dispatch round\"",
     "created_at": "2026-07-03T09:44:26Z",
-    "last_save_at": "2026-07-03T10:07:36.652Z",
+    "last_save_at": "2026-07-03T12:12:44.443Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,12 +205,12 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:09b900f62a002c2eb5d625c22700124f306c058c25e319dac9d8bf21c1f11c41",
+    "source_fingerprint": "sha256:947a925171e65535e5e4843eeb775db159acb327d8690b51ba6aafa43f799c16",
     "source_doc_hashes": {
-      "spec.md": "ff9e39b77075c0799fa11dcdfc43c8f030303eda850f8ce508c716a03d9e4af9",
-      "plan.md": "99db0e33140f3bacdbb328daebc3c273a840552af2f093f4b280a68b09bbf40f",
-      "tasks.md": "ff80e48f78e1bead43262d91ac98e589ccd4bec7023f578d18569f82646dcfe9",
-      "checklist.md": "209e3cf9ceb3ccd0b9c7fa778e57a54990a5359692c3530d5ff168c5ecfd4905",
+      "spec.md": "23d2a58e776e169b26fc34378c0c0a241073fbe3d427bce15a5f4dc51d3874f0",
+      "plan.md": "71746051cd3205ab7c3f82895527573c02f58e2946457ec285a8757c637dbdab",
+      "tasks.md": "8721eb854e788380206a1db64a093c1311b355b4bed0cf669d97131340c7c005",
+      "checklist.md": "b1b25096224bd205844beff50a2269e36864790ab7fde6b8063c4f24df998c67",
       "implementation-summary.md": "dbda1d791007d91af984abe139ddadacf3cf354ed4e4c7a0ea3d15f8ea845893"
     },
     "last_active_child_id": null,

@@ -210,7 +210,7 @@
     ],
     "causal_summary": "The deep-dive report (../research/deep-dive-report.md, Chain D) shows a large fraction of the ranking stack is computed, recorded in telemetry as applied, and then discarded or bypassed before it can influence final order",
     "created_at": "2026-07-03T09:44:22Z",
-    "last_save_at": "2026-07-03T10:31:45.001Z",
+    "last_save_at": "2026-07-03T12:10:19.088Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -221,13 +221,13 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:66649776ded9579aefb8dfce8063c80aea0aa8d9882aa8a824141229aa3bc232",
+    "source_fingerprint": "sha256:d0b1bdaa3d8f1d7fef6df99cb196e40026d7aea92f868600d79d19484279fe47",
     "source_doc_hashes": {
-      "spec.md": "dab14324e9e908e2d31234e8608e3f795e33e03bf582f2c09a215136a70b9d22",
-      "plan.md": "803b514e44021d909f9561c9fe78bb33a042e5d50e3d720c38ee21091f25f3e9",
-      "tasks.md": "cadf4a8020443798ba925c89999529c59ee962ab165ca068145f4d0f2ccdd87d",
-      "checklist.md": "b35818def949b28bb117a6db7772d614e257978fcfaa0f7fee0a3d7b288752ae",
-      "decision-record.md": "1e455dd0d6a17deca5596f1610c67ccf257bc0f8b905f4030222c9904afa30c9",
+      "spec.md": "8ecca2b79327aed74ac81246de073e3e2b0f9fc379915902403c1c6c07b82775",
+      "plan.md": "9be963d47972d960545c3d0c55c27dfc62dbbf9dab22fab23e45f8f79a6f3388",
+      "tasks.md": "515e8cd493fd67dad3b5a3e4fb8092e8c0e74cc062cc9beed773d27ed5d8781f",
+      "checklist.md": "6c5ecfcf9ecd648a414cde905aa1e00a31ed67ed0b9404ca37aaac5b8db957e8",
+      "decision-record.md": "27c03df619c40bd902d7a7065db49f99f1515ebc67e7e818fd69e8caa2a708fd",
       "implementation-summary.md": "1451dc71702cc3df1a494080293e60046b7c87f52a61419a32521486b89ad960"
     },
     "last_active_child_id": null,

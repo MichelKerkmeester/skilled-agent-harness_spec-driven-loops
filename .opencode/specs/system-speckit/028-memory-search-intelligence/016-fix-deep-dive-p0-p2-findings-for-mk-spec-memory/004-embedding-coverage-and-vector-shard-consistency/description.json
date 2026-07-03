@@ -1,20 +1,34 @@
 {
-  "specFolder": "016-fix-deep-dive-p0-p2-findings-for-mk-spec-memory/004-embedding-coverage-and-vector-shard-consistency",
+  "level": "3",
+  "specFolder": "system-speckit/028-memory-search-intelligence/016-fix-deep-dive-p0-p2-findings-for-mk-spec-memory/004-embedding-coverage-and-vector-shard-consistency",
   "description": "43% of the 33,101-row memory corpus is invisible to vector search: 8,761 rows are pending, 4,247 failed, and 1,260 sit in retry, while 367 rows report",
   "keywords": [
-    "phase",
-    "embedding-coverage-and-vector-shard-consistency",
-    "embedding coverage repair",
-    "vector shard consistency",
-    "pending vectors drain"
+    "101-row",
+    "memory",
+    "corpus",
+    "invisible",
+    "vector",
+    "search",
+    "761",
+    "rows",
+    "pending",
+    "247",
+    "failed",
+    "260",
+    "sit",
+    "retry",
+    "while",
+    "367",
+    "report"
   ],
-  "lastUpdated": "2026-07-03T10:15:00.000Z",
+  "lastUpdated": "2026-07-03T10:51:47.106Z",
   "specId": "004",
   "folderSlug": "embedding-coverage-and-vector-shard-consistency",
   "parentChain": [
+    "system-speckit",
+    "028-memory-search-intelligence",
     "016-fix-deep-dive-p0-p2-findings-for-mk-spec-memory"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "3"
+  "memoryNameHistory": []
 }

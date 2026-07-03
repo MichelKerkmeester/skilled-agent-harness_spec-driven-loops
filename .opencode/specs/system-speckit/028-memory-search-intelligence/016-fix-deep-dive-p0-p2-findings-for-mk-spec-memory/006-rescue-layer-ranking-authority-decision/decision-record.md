@@ -53,12 +53,14 @@ _memory:
 <!-- ANCHOR:adr-001-context -->
 ### Context
 
-We cannot decide the rescue layer's authority with the current eval harness, because the harness does not measure production. `handlers/eval-reporting.ts` exercises the legacy `hybridSearch()` monolith, which carries its own co-activation and truncation behavior, while production runs `executePipeline` (ledger Agent C contract note: "eval metrics != production executePipeline composition"). Two further defects make eval runs unsafe: the ablation DB swap at `eval-reporting.ts:138` restores the production DB but leaves `graphSearchFn` closed over the old, now-closed startup connection because `rebindDatabaseConsumers` reuses the stale reference, breaking the graph lane until restart and letting concurrent searches hit the eval DB (ledger Agent G P1, report §3 #25); and the eval DB path resolves against cwd, so runs from different directories measure different databases (phase-decomposition §006, G contract).
+We cannot decide the rescue layer's authority with the current eval harness, because the harness does not measure production. `handlers/eval-reporting.ts` exercises the legacy `hybridSearch()` monolith, which carries its own co-activation and truncation behavior, while production runs `executePipeline` (ledger Agent C contract note: "eval metrics != production executePipeline composition"). Two further defects make eval runs unsafe. First, `withAblationDb` (`eval-reporting.ts:150-189`) swaps the GLOBAL `vectorIndex` DB (`vectorIndex.closeDb()` then `vectorIndex.initializeDb(overrideDbPath)`), and `rebindDatabaseConsumers` reinitializes `hybridSearch` with the module-level `graphSearchFnRef` (`db-state.ts:102`, `:166`) instead of rebuilding the graph fn for the swapped connection, so after restore `graphSearchFn` stays closed over the old, now-closed startup connection, breaking the graph lane until restart; and because the swap is process-global, any concurrent production search reads the eval DB (ledger Agent G P1, report §3 #25). Routing eval through the production `executePipeline` makes this cross-read worse, not better, so parity requires an explicit isolation mechanism, not just a rebind. Second, the eval DB path resolves against cwd, so runs from different directories measure different databases (phase-decomposition §006, G contract).
 
 ### Constraints
 
 - Any ADR-002 verdict must come from numbers produced by the production composition, including production truncation (render floor K=3, the truncation law from the prior data-quality work: candidates below rank 3 are never seen).
 - The legacy monolith keeps other production consumers; this phase must not rewrite it, only stop the eval harness from using it (monolith bug fixes belong to phases 007/010).
+- The ablation channel toggles (`ALL_CHANNELS` = vector/bm25/fts5/graph/trigger, `lib/eval/ablation-framework.ts:84-87`, currently mapped by `toHybridSearchFlags` onto the legacy hybrid path) must map onto `executePipeline`'s channel-enable config, or routing through the pipeline silently loses per-channel ablation.
+- The global `vectorIndex` DB swap must be serialized against production searches (mutex/quiesce): no production search may run during the swap-and-restore window, and the swapped connection must rebuild its own `graphSearchFn`.
 - Pre-parity eval history becomes incomparable; dashboards must not mix eras.
 <!-- /ANCHOR:adr-001-context -->
 
@@ -67,9 +69,9 @@ We cannot decide the rescue layer's authority with the current eval harness, bec
 <!-- ANCHOR:adr-001-decision -->
 ### Decision
 
-**We chose**: Route eval-reporting and ablation through `executePipeline` with prod-mode configuration, fix the restore rebind so every consumer including `graphSearchFn` binds to the restored connection, and resolve the eval DB path against the package root instead of cwd.
+**We chose**: Route eval-reporting and ablation through `executePipeline` with prod-mode configuration (mapping the `ALL_CHANNELS` ablation toggles onto the pipeline's channel-enable config), make `rebindDatabaseConsumers` rebuild `graphSearchFn` per-connection via `createUnifiedGraphSearchFn(newDb)` rather than reusing the module-level `graphSearchFnRef`, guard the global `vectorIndex` DB swap with a mutex/quiesce so no production search runs against the eval DB during the swap window, and resolve the eval DB path against the package root instead of cwd.
 
-**How it works**: The eval harness calls the same public pipeline entry point production uses, with the same channel composition, co-activation, and truncation. A parity assertion test proves eval and production produce identical composition for the same query and stays in the vitest gate permanently. The ablation round-trip test proves the graph channel serves the restored production DB after a swap.
+**How it works**: The eval harness calls the same public pipeline entry point production uses, with the same channel composition, co-activation, and truncation; the ablation channel set is expressed as pipeline channel-enable config rather than legacy hybrid flags. A parity assertion test proves eval and production produce identical composition for the same query and stays in the vitest gate permanently. The ablation round-trip test proves the graph channel serves the restored production DB after a swap, and a concurrent-search case proves the quiesce prevents any eval-DB read.
 <!-- /ANCHOR:adr-001-decision -->
 
 ---
@@ -105,7 +107,7 @@ We cannot decide the rescue layer's authority with the current eval harness, bec
 | Risk | Impact | Mitigation |
 |------|--------|------------|
 | Harness config drifts from prod defaults again | M | Parity assertion test in the permanent gate fails on drift |
-| Restore ordering still races concurrent searches | M | Round-trip test includes a concurrent-query case (spec.md §8) |
+| Restore ordering still races concurrent searches | M | Global-swap window guarded by a mutex/quiesce (no production search during swap); round-trip test includes a concurrent-query case that must observe zero eval-DB reads (spec.md §8) |
 <!-- /ANCHOR:adr-001-consequences -->
 
 ---
@@ -130,9 +132,9 @@ We cannot decide the rescue layer's authority with the current eval harness, bec
 ### Implementation
 
 **What changes**:
-- `handlers/eval-reporting.ts`: pipeline routing, prod-mode truncation, root-anchored DB path (tasks T009, T011).
-- `core/db-state.ts`: `rebindDatabaseConsumers` rebuilds the graph-channel binding on restore (task T010).
-- Tests: parity assertion, ablation round-trip, two-cwd path resolution (task T012).
+- `handlers/eval-reporting.ts`: pipeline routing with `ALL_CHANNELS`->pipeline channel-config mapping, prod-mode truncation, a mutex/quiesce around the global DB swap, root-anchored DB path (tasks T009, T011).
+- `core/db-state.ts`: `rebindDatabaseConsumers` rebuilds `graphSearchFn` per-connection via `createUnifiedGraphSearchFn` on restore, not the module-level `graphSearchFnRef` (task T010).
+- Tests: parity assertion (incl. channel-mapping), ablation round-trip with a concurrent-search isolation case, two-cwd path resolution (task T012).
 
 **How to roll back**: `git revert` the routing commit; the parity assertion test is removed in the same revert so the gate never asserts an unshipped contract. The rebind and path fixes are plain bug fixes and stay.
 <!-- /ANCHOR:adr-001-impl -->
@@ -158,13 +160,13 @@ We cannot decide the rescue layer's authority with the current eval harness, bec
 
 Retrieval-rescue overwrites the final score of every candidate with `0.03*base + 0.78*lexicalOverlap` (`retrieval-rescue.ts:210`, applied at `stage2-fusion.ts:1425`, default ON). The 0.03 coefficient caps the entire upstream stack at 3.7% of blended score mass (0.03 of 0.81 total weight), so 13 documented signal steps (learned trigger boosts of +0.7 arrive as at most 0.021, negative demotions of x0.3, graph, recency, co-activation) are computed, logged in telemetry as applied, and then discarded (report Chain D "signal theater"; ledger Agent G P1). Only the validation multiplier at `stage2-fusion.ts:1470` runs after rescue and survives.
 
-This is NOT a plain bug. The overwrite is deliberate 026 lexical-grounding-floor lineage, and existing tests encode it as intended behavior. The tension: stage2's own architecture doc (`stage2-fusion.ts:21` "SIGNAL APPLICATION ORDER (must not be reordered, 13 steps)" and `:1011`) still presents the upstream stack as the ranking authority, telemetry reports signals as applied, and downstream phases (007 bug battery, 009 learning loop, 010 performance) cannot be evaluated while the system's real ranking function is undocumented. Meanwhile a dead composite/interference battery burns O(folder^2) per write feeding a column nothing reads (report §3 #15, ledger Agent C P1), a cost only justifiable if the upstream stack becomes real.
+This is NOT a plain bug. The overwrite is deliberate 026 lexical-grounding-floor lineage, and existing tests encode it as intended behavior. The tension: stage2's own architecture doc (`stage2-fusion.ts:21` "SIGNAL APPLICATION ORDER (must not be reordered, 13 steps)" and `:1011`) still presents the upstream stack as the ranking authority, telemetry reports signals as applied, and downstream phases (007 bug battery, 009 learning loop, 010 performance) cannot be evaluated while the system's real ranking function is undocumented. Meanwhile the composite five-factor ranking surface (`applyCompositeScoring`/`calculateCompositeScore`) is dead (no production ranking caller), yet the interference recompute it belongs to still runs O(folder^2) Jaccard on every folder write (`vector-index-store.ts` `refresh_interference_scores_for_folder` -> `computeInterferenceScoresBatch`) to feed an `interference_score` column ranking never applies (`memory-search.ts:711` hardcodes `interferenceApplied:false`) (report §3 #15, ledger Agent C P1), a write-path cost only justifiable if the upstream stack becomes real.
 
 We must choose one of three contracts and make code, tests, telemetry, and docs agree with it.
 
 ### Constraints
 
-- Metric honesty: the benchmark scores prod-mode completeRecall@3, honoring the truncation law (production render floor K=3; a hit at rank 4 does not exist for the user).
+- Metric honesty: the benchmark scores prod-mode completeRecall@3 honoring the truncation law (production render floor K=3; a hit at rank 4 does not exist for the user), but completeRecall@3 alone cannot separate the variants: with the render floor at K=3 and typically <=3 gold docs per query it saturates at 1.0 for all three options. MRR and rank-position deltas are therefore primary discrimination metrics, not secondary color.
 - The 026 lineage is load-bearing: rescue was built to ground vector drift with lexical evidence; whichever option wins must not silently resurrect the failure class 026 fixed. The fixed query set includes 026-class queries.
 - Program cross-cutting rule: behavior-changing ranking work ships flag-gated because this decision requires A/B; production defaults change only after Accepted.
 - Benchmark validity depends on corpus repair (phases 001-005) landing first; results record corpus snapshot stats.
@@ -176,14 +178,14 @@ We must choose one of three contracts and make code, tests, telemetry, and docs 
 <!-- ANCHOR:adr-002-decision -->
 ### Decision
 
-**We chose**: To bind the choice to measured evidence: the decision gates below select among Option A (lexical dominance IS the contract), Option B (rescue demoted to a bounded additive delta and/or injected-rows-only), and Option C (rescue as a floor only below a base-score threshold), using per-variant prod-mode completeRecall@3 deltas from the fixed query set on the parity harness.
+**We chose**: To bind the choice to measured evidence: the decision gates below select among Option A (lexical dominance IS the contract), Option B (rescue demoted to a bounded additive delta and/or injected-rows-only), and Option C (rescue as a floor only below a base-score threshold), using per-variant prod-mode completeRecall@3, MRR, and rank-position deltas from the fixed query set on the parity harness.
 
-**How it works**: Variants B and C ship behind flags with defaults unchanged (task T013). The benchmark (task T014) runs all three on identical corpus and query set. The gates:
+**How it works**: Variants B and C ship behind flags with defaults unchanged (task T013). The benchmark (task T014) runs all three on identical corpus and query set. Because completeRecall@3 saturates at the K=3 render floor, the gates decide on MRR and mean rank-position deltas first, with completeRecall@3 held as a no-regression floor (a variant may not drop completeRecall@3 below Option A on any class):
 
-1. **Gate B**: If Option B's completeRecall@3 is greater than or equal to Option A's on EVERY query class (no class drops beyond the noise floor of one query), choose B: the upstream stack becomes real.
-2. **Gate C**: If Option B wins overall but regresses the 026-class or exact-token classes, choose C: the lexical floor keeps the 026 guarantee below the threshold while base ranking rules above it.
-3. **Gate A**: If Option A is greater than or equal to both B and C across classes, choose A: declare lexical dominance the contract, then delete or no-op the neutered upstream steps and their write-path costs honestly.
-4. **Tie policy**: At equal measured recall, the simplest honest system wins: A (fewest live moving parts) over C over B.
+1. **Gate B**: If Option B's MRR and mean rank-position improve over Option A on the aggregate set with no completeRecall@3 regression on any query class (beyond the one-query noise floor), choose B: the upstream stack becomes real.
+2. **Gate C**: If Option B wins on aggregate MRR/rank-position but regresses MRR or completeRecall@3 on the 026-class or exact-token classes, choose C: the lexical floor keeps the 026 guarantee below the threshold while base ranking rules above it.
+3. **Gate A**: If Option A's MRR and rank-position are greater than or equal to both B and C across classes (no variant beats it beyond the noise floor), choose A: declare lexical dominance the contract, then delete or no-op the neutered upstream steps and their write-path costs honestly.
+4. **Tie policy**: At statistically indistinguishable MRR and rank-position (and equal completeRecall@3), the simplest honest system wins: A (fewest live moving parts) over C over B.
 
 The record flips from Proposed to Accepted by appending the measured per-variant table and naming the satisfied gate (task T015).
 <!-- /ANCHOR:adr-002-decision -->
@@ -195,7 +197,7 @@ The record flips from Proposed to Accepted by appending the measured per-variant
 
 | Option | Pros | Cons | Score |
 |--------|------|------|-------|
-| **A: Lexical dominance as contract** | Honors 026 intent exactly; simplest runtime (13 neutered steps deleted or no-opped); kills the dead battery and its O(folder^2) write tax outright; docs become trivially true | Learned feedback, graph, recency, and co-activation can never influence ranking; phase 009's learning loop has no ranking outlet; conceptual zero-overlap queries rank by 0.03*base alone | pending benchmark |
+| **A: Lexical dominance as contract** | Honors 026 intent exactly; simplest runtime (13 neutered steps deleted or no-opped); deletes the dead composite five-factor ranking surface and the O(folder^2) interference write tax outright (attention-decay's `activateMemory` stays; only its dependency on the deleted ranking surface is severed); docs become trivially true | Learned feedback, graph, recency, and co-activation can never influence ranking; phase 009's learning loop has no ranking outlet; conceptual zero-overlap queries rank by 0.03*base alone | pending benchmark |
 | B: Bounded additive delta / injected-rows-only | 13-step stack becomes real; learned boosts and demotions actually rank; rescue still grounds injected rows; telemetry stops lying by construction | Highest regression risk for the 026 failure class; most machinery to keep honest; upstream stack inherits phase 007's unfixed bugs until that phase lands | pending benchmark |
 | C: Floor only below base-score threshold | Preserves the 026 guarantee where vector evidence is weak; restores upstream authority where evidence is strong; bounded blast radius | Threshold is a new tunable with its own drift risk; two ranking regimes to document and test; boundary behavior needs its own edge cases | pending benchmark |
 | Status quo (undocumented overwrite) | No work | Docs, tests, and telemetry disagree with runtime; every downstream ranking phase builds on sand; rejected without benchmark | 0/10 |
@@ -224,6 +226,7 @@ The record flips from Proposed to Accepted by appending the measured per-variant
 | Benchmark run before corpus repair completes, deltas measure rot | H | Sequence after phases 001-005; corpus snapshot stats recorded with results (R-001) |
 | Option B/C re-introduces the 026 vector-drift failure class | H | Gate C exists for exactly this signature; flag-gated rollout; instant flag rollback |
 | Gates produce a split verdict across classes not covered above | M | Record the split, choose the gate whose losing classes have the lowest query volume, and document the residual as an explicit doc note (REQ-010) |
+| completeRecall@3 render-floor-saturates and cannot discriminate A/B/C | H | MRR and rank-position deltas are the primary gate metrics; this addresses metric POWER (a saturated metric), which is distinct from the query-set-SIZE risk below (a small sample). Fixing one does not fix the other |
 | Fixed query set too small to separate variants | M | Gold labels pinned before implementation (T003); expand set and re-run rather than lower the bar |
 <!-- /ANCHOR:adr-002-consequences -->
 
@@ -277,7 +280,7 @@ The record flips from Proposed to Accepted by appending the measured per-variant
 <!-- ANCHOR:adr-003-context -->
 ### Context
 
-Stage2 drifted into signal theater once already: the 13-step header says "must not be reordered" while runtime authority lives at the rescue apply site, and telemetry reports signals as applied that the blend then discards. Nothing structural prevents the next contributor from adding step 14 on the discarded side. Separately, `composite-scoring.ts` and `interference-scoring.ts` have zero production callers (their only importer, `attention-decay.ts`, is itself dead), `memory-search.ts:711` hardcodes `interferenceApplied:false`, and the interference recompute runs O(folder^2) Jaccard inside every insert/update transaction to feed a column nothing reads (report §3 #15; ledger Agent C P1).
+Stage2 drifted into signal theater once already: the 13-step header says "must not be reordered" while runtime authority lives at the rescue apply site, and telemetry reports signals as applied that the blend then discards. Nothing structural prevents the next contributor from adding step 14 on the discarded side. Separately, `composite-scoring.ts`'s five-factor RANKING surface (`applyCompositeScoring`/`calculateCompositeScore`) has zero production callers and is dead; but the module is NOT wholly dead: `attention-decay.ts` imports its sub-factor helpers (`calculateFiveFactorScore`, `calculateTemporalScore`, and siblings, `attention-decay.ts:25-34`) and `attention-decay.ts` is itself LIVE on the Gate-1 hot path (`memory-triggers.ts:626` calls `attentionDecay.activateMemory`). Likewise `interference-scoring.ts` is NOT callerless: `computeInterferenceScoresBatch` runs on the write path (`vector-index-store.ts` `refresh_interference_scores_for_folder`, reached from `vector-index-mutations.ts` on insert/update) as an O(folder^2) Jaccard recompute feeding an `interference_score` column ranking never applies (`memory-search.ts:711` hardcodes `interferenceApplied:false`) (report §3 #15; ledger Agent C P1). So the dead surface is the composite five-factor RANKING functions plus the interference write-path COMPUTE, not the three modules wholesale.
 
 ### Constraints
 
@@ -291,9 +294,9 @@ Stage2 drifted into signal theater once already: the 13-step header says "must n
 <!-- ANCHOR:adr-003-decision -->
 ### Decision
 
-**We chose**: Encode the signal-ordering contract as a permanent vitest-gate test (any ranking-relevant step runs after the rescue apply site or is folded into the accepted blend, with a documented tie policy), align the stage2 header (`stage2-fusion.ts:21`, `:1011`) and `lib/search/pipeline/README.md` with the accepted contract, and disposition the dead battery per the ADR-002 outcome: under Option A the battery and its write-path refresh are deleted; under B or C each module is either wired into the live contract with a real consumer or deleted, with the choice and reason recorded here.
+**We chose**: Encode the signal-ordering contract as a permanent vitest-gate test (any ranking-relevant step runs after the rescue apply site or is folded into the accepted blend, with a documented tie policy), align the stage2 header (`stage2-fusion.ts:21`, `:1011`) and `lib/search/pipeline/README.md` with the accepted contract, and disposition the dead surface per the ADR-002 outcome: under Option A the composite five-factor ranking surface (`applyCompositeScoring`/`calculateCompositeScore`) and the interference write-path compute (`vector-index-store.ts` `refresh_interference_scores_for_folder` -> `computeInterferenceScoresBatch`) are deleted, while `attention-decay.ts` and its `activateMemory` export survive intact (only its import of the deleted composite ranking surface is severed, keeping the Gate-1 trigger path working); under B or C each surface is either wired into the live contract with a real consumer or deleted on the same terms, with the choice and reason recorded here.
 
-**How it works**: The test derives the set of ranking-relevant steps from the accepted contract and fails when a step's output cannot influence final order and carries no explicit doc note (REQ-010). Doc alignment lands in the same commit as the accepted semantics so doc and behavior cannot diverge within the phase. The battery disposition is a separate commit for clean revert.
+**How it works**: The test derives the set of ranking-relevant steps from the accepted contract and fails when a step's output cannot influence final order and carries no explicit doc note (REQ-010). Doc alignment lands in the same commit as the accepted semantics so doc and behavior cannot diverge within the phase. The disposition is a separate commit for clean revert, and any Option-A delete is verified to leave `attentionDecay.activateMemory` importable so `memory-triggers.ts:626` keeps working.
 <!-- /ANCHOR:adr-003-decision -->
 
 ---
@@ -305,7 +308,7 @@ Stage2 drifted into signal theater once already: the 13-step header says "must n
 |--------|------|------|-------|
 | **Contract test + doc alignment + gated disposition (chosen)** | Structural guarantee against theater recurrence; write tax ends; docs provably true | One more permanent gate test to maintain | 9/10 |
 | Doc alignment only, no test | Cheap | The doc drifted once already with no alarm; guarantees nothing | 3/10 |
-| Delete the battery immediately, before ADR-002 | Stops the O(folder^2) tax now | Pre-judges Option B (which might wire composite scoring); risks colliding with phase 009/010 expectations | 4/10 |
+| Delete the battery immediately, before ADR-002 | Stops the O(folder^2) tax now | Pre-judges Option B (which might wire composite scoring); a naive wholesale delete of attention-decay/composite would break the Gate-1 trigger path (`memory-triggers.ts:626`); risks colliding with phase 009/010 expectations | 4/10 |
 | Wire the battery unconditionally | Signals stop being dead | Adds ranking machinery before the authority decision; exactly backwards | 1/10 |
 
 **Why this one**: A test is the only mechanism in this codebase that has actually prevented regressions; the disposition must follow the authority decision or it becomes a new source of theater.
@@ -356,9 +359,9 @@ Stage2 drifted into signal theater once already: the 13-step header says "must n
 **What changes**:
 - New contract test in the mcp_server vitest gate (task T016).
 - `stage2-fusion.ts` header rewrite (:21, :1011) and `pipeline/README.md` update (task T017).
-- Battery modules wired or deleted per gate outcome, including the write-path interference refresh (task T018).
+- Composite five-factor ranking surface and interference write-path compute (`vector-index-store.ts` refresh) wired or deleted per gate outcome; `attention-decay.ts`/`activateMemory` preserved and its composite import severed cleanly (task T018).
 
-**How to roll back**: Revert the disposition commit independently (battery returns, write tax returns, documented as accepted cost); revert the doc/test commit together so the gate never asserts a contract the code does not ship.
+**How to roll back**: Revert the disposition commit independently (ranking surface and write tax return, documented as accepted cost); revert the doc/test commit together so the gate never asserts a contract the code does not ship.
 <!-- /ANCHOR:adr-003-impl -->
 <!-- /ANCHOR:adr-003 -->
 

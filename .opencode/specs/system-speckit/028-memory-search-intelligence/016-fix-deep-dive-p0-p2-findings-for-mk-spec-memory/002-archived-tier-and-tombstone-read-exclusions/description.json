@@ -1,17 +1,26 @@
 {
-  "specFolder": "016-fix-deep-dive-p0-p2-findings-for-mk-spec-memory/002-archived-tier-and-tombstone-read-exclusions",
-  "description": "Non-active rows dominate search results because read exclusion is channel-inconsistent: 7,340 `tier='deprecated'` snapshot rows still surface at 0.85",
+  "level": "3",
+  "specFolder": "system-speckit/028-memory-search-intelligence/016-fix-deep-dive-p0-p2-findings-for-mk-spec-memory/002-archived-tier-and-tombstone-read-exclusions",
+  "description": "Non-active rows dominate search results because read exclusion is channel-inconsistent",
   "keywords": [
-    "phase",
-    "archived-tier-and-tombstone-read-exclusions"
+    "non-active",
+    "rows",
+    "dominate",
+    "search",
+    "results",
+    "because",
+    "read",
+    "exclusion",
+    "channel-inconsistent"
   ],
-  "lastUpdated": "2026-07-03T12:15:00.000Z",
+  "lastUpdated": "2026-07-03T12:09:53.824Z",
   "specId": "002",
   "folderSlug": "archived-tier-and-tombstone-read-exclusions",
   "parentChain": [
+    "system-speckit",
+    "028-memory-search-intelligence",
     "016-fix-deep-dive-p0-p2-findings-for-mk-spec-memory"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "3"
+  "memoryNameHistory": []
 }

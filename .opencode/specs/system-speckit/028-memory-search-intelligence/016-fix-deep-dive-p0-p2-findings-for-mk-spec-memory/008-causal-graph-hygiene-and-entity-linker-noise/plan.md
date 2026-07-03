@@ -12,9 +12,9 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-speckit/028-memory-search-intelligence/016-fix-deep-dive-p0-p2-findings-for-mk-spec-memory/008-causal-graph-hygiene-and-entity-linker-noise"
-    last_updated_at: "2026-07-03T10:05:00Z"
-    last_updated_by: "claude-fable-5"
-    recent_action: "Authored Level 3 implementation plan with FIX ADDENDUM surfaces and L3 scheduling addendums"
+    last_updated_at: "2026-07-03T13:00:00Z"
+    last_updated_by: "claude-opus-4-8"
+    recent_action: "Remediated REWORK: down-weight + verify-first surfaces, column-grep + session-trace fixes"
     next_safe_action: "Run Phase 1 baselines (vitest + edge histogram) before any code change"
     blockers: []
     key_files:
@@ -56,7 +56,7 @@ FAILURE MODES:
 | **Testing** | vitest (`mcp_server/tests/`), migration dry-runs on a DB copy, read-only SQL probes against the 1.3GB production DB |
 
 ### Overview
-Execute the Section 4 requirement clusters in verify-first order: capture baselines, confirm every 🟡 finding against the live code (finding-is-a-hypothesis), then land fixes cluster by cluster with the ADR-001 co-occurrence disposition migration as the centerpiece. The two absorbed 028/006/002 items (P1-2 derived_id split, P1-4 embedding-in-lock) are executed here against the old contract's quoted fix intent; Phase 013 re-points that tracker. Fixes to default-ON write-path behavior ship direct; the co-occurrence disposition is migration-gated and reversible.
+Execute the Section 4 requirement clusters in verify-first order: capture baselines, confirm every 🟡 finding against the live code (finding-is-a-hypothesis), then land fixes cluster by cluster with the ADR-001 co-occurrence down-weight as the centerpiece. The two absorbed 028/006/002 items are verify-first: P1-2's code fix is already present (`vector-index-schema.ts:1119-1129` == `causal-edges.ts:125`), so only the `WHERE derived_id IS NULL` backfill remains; P1-4's embedding already runs outside `BEGIN IMMEDIATE` (`consolidation.ts:574-578`), so only a concurrency test remains. Phase 013 re-points that tracker. Fixes to default-ON write-path behavior ship direct; the co-occurrence down-weight is a provenance-scoped strength UPDATE (no schema migration) and reversible.
 <!-- /ANCHOR:summary -->
 
 ---
@@ -71,7 +71,7 @@ Execute the Section 4 requirement clusters in verify-first order: capture baseli
 - [ ] Baselines captured BEFORE any change: vitest full-suite result, edge relation histogram, strength distribution snapshot, `memory_entities`/`entity_catalog` row counts
 
 ### Definition of Done
-- [ ] All P0 requirements (REQ-001..REQ-004) met with cited evidence; P1s met or user-approved deferral
+- [ ] P0 requirements (REQ-001..REQ-002) met with cited evidence; verify-first P1-2/P1-4 (REQ-003..REQ-004) and remaining P1s met or user-approved deferral
 - [ ] Vitest re-run against the SAME baseline gate: zero new failures (regression-baseline-and-delta)
 - [ ] Migration dry-run evidence (before/after counts on DB copy) attached to checklist items
 - [ ] Docs updated (spec/plan/tasks/checklist/decision-record synchronized; ADRs ratified)
@@ -106,22 +106,23 @@ Use this section when `research_intent=fix_bug`, when planning from a deep-revie
 
 | Surface | Current Role | Action | Verification |
 |---------|--------------|--------|--------------|
-| `lib/search/entity-linker.ts` (producer) | Inserts `'supports'` @0.7 provenance `entity_linker` (`:865`); density guard; catalog reads | update (ADR-001 relation/weight, guard, ORDER BY, parity, containment) | Unit tests + post-migration histogram; rg inventory below |
-| `lib/search/graph-lifecycle.ts` (producer) | Ratchets strengths on save; generates placeholder-title surrogates; traverses pseudo-nodes | update (derived strength, real titles, pseudo-node filter, dirty-set drain) | No-op-save strength test; surrogate title probe |
-| `handlers/causal-links-processor.ts` (producer) | Maps `blocks`→reversed `enabled`; fuzzy-LIKE last-resort resolver | update (mapping + unresolved-with-suggestion) | Polarity + fallback unit tests |
-| `lib/search/vector-index-schema.ts` (schema/migration) | v40 backfill hardcodes `legacy-pre-derived-id` (`:1126`); partial UNIQUE index | update (rule_version alignment; new co-occurrence migration) | Idempotent dry-run on DB copy; twin-identity test |
-| `lib/storage/causal-edges.ts` + `lib/content-id.ts` (identity policy) | Live default `causal-edge:v1` (`:125`); `rule_version` hashed into identity (`:67`) | investigate then align per absorbed P1-2 fix intent | Identity unit test across backfill/live |
-| `lib/storage/consolidation.ts` (writer/lock) | Embeds semantic edges inside `BEGIN IMMEDIATE` (`:684/:701`) | update (embed outside tx; maintenance handle refresh) | Concurrency window test; lock-scope assertion |
+| `lib/search/entity-linker.ts` (producer) | Inserts `'supports'` @0.7, `created_by='entity_linker'` (`:865`); density guard; catalog reads | update (ADR-001 down-weight strength, guard, ORDER BY, parity, containment) | Unit tests + provenance/strength histogram; rg inventory below |
+| `lib/search/graph-lifecycle.ts` (producer) | Ratchets strengths on save (`MIN(1.0, strength + degreeBoost)`, `:309-323`); generates placeholder-title surrogates; traverses pseudo-nodes | update (idempotent strength = relation prior recomputed + degree, no accumulation; real titles; pseudo-node filter; dirty-set drain) | No-op-save strength test; surrogate title probe |
+| `handlers/causal-links-processor.ts` (producer) | Maps `blocks`→reversed `enabled`; fuzzy-LIKE last-resort resolver | update (map `blocks`→`contradicts`; unresolved-with-suggestion) | Polarity + fallback unit tests |
+| `lib/feedback/session-trace-causal-reducer.ts` (producer, flag-gated) | Infers an `enabled` edge from a single co-occurrence; prefers same-query sources (`selectPriorSearchSources`); flag `SPECKIT_SESSION_TRACE_CAUSAL_INFERENCE` default OFF | update (≥2 distinct-session threshold; exclude same-query sources) | Threshold + same-query-exclusion unit test |
+| `lib/search/vector-index-schema.ts` (schema/migration) | v40 backfill already hashes the live default `causal-edge:v1` (`:1119-1129`); partial UNIQUE index | update (already aligned — run derived_id backfill; add the down-weight strength-UPDATE migration) | Idempotent dry-run on DB copy; existing twin-identity test stays green |
+| `lib/storage/causal-edges.ts` + `lib/content-id.ts` (identity policy) | Live default `causal-edge:v1` (`:125`); `DEFAULT_DERIVED_CAUSAL_EDGE_RULE_VERSION` defined at `content-id.ts:28` | investigate only — backfill/live already share it, no change expected | Existing identity/twin test across backfill/live |
+| `lib/storage/consolidation.ts` (writer/lock) | Runs the O(n²) scan BEFORE `BEGIN IMMEDIATE` (`:574-578`); only the Hebbian write is under the lock; no `embedEdgeText` symbol exists | verify only — already lock-safe; add a concurrency/interleaving test | Concurrency window test; lock-scope assertion |
 | `lib/graph/community-detection.ts` (lifecycle) | Rebuild only on checkpoint-restore; fingerprint sum; cache survives rebind; phantom members | update | Rebuild-cadence, stable-ID, rebind, phantom-member tests |
 | `lib/graph/graph-signals.ts` (consumer/cache) | Exact now-7d momentum; memoryId-only cache keys | update (nearest snapshot; DB-identity keys) | Missed-day + dual-DB tests |
 | Causal-boost / graph channel (`causal-boost.ts`, `graph-search-fn.ts`) (consumers) | Read `causal_edges` relations/strengths | unchanged here; Phase 007 owns; must be inventoried for relation-literal reads before ADR-001 lands | rg consumer inventory below; 007 harness re-run |
 | Tests + docs (`mcp_server/tests/`, stage2/graph docs) | Encode current mapping/ratchet behavior | update alongside each fix; no test deleted to make green | Vitest delta vs baseline |
 
 Required inventories:
-- Same-class producers: `rg -n "'supports'|RELATION_TYPES\.SUPPORTS|entity_linker" .opencode/skills/system-spec-kit/mcp_server --glob '*.ts'` (every writer of the polluted relation before relocation).
-- Consumers of changed symbols: `rg -n "relation_type|RELATION_TYPES|derived_id|rule_version|strength" .opencode/skills/system-spec-kit/mcp_server --glob '*.ts' --glob '*.md'` scoped to graph/boost/community readers; record each as update/unchanged/not-a-consumer in ADR-001.
-- Matrix axes: {edge provenance: entity_linker | causal_links | consolidation} × {relation: supports | caused | enabled/blocks | supersedes | derived_from} × {endpoint: numeric | pseudo-node | deleted-memory} × {path: incremental | full-run | migration}; rows enumerated in tasks.md T-verification cluster.
-- Algorithm invariant: edge identity is a pure function of (source, target, relation, rule_version) with ONE rule_version policy across backfill and live; strength is a pure function of current graph state (no history-dependent ratchet). Adversarial cases: re-run migration twice, save N times with zero new edges, reversed pair insert, deleted-endpoint insert.
+- Same-class producers: `rg -n "'supports'|RELATION_TYPES\.SUPPORTS|entity_linker" .opencode/skills/system-spec-kit/mcp_server --glob '*.ts'` (every writer of the polluted relation before the down-weight; includes entity-linker `:865` and the flag-gated session-trace reducer).
+- Consumers of changed symbols: `rg -n "\brelation\b|RELATION_TYPES|derived_id|rule_version|strength|created_by" .opencode/skills/system-spec-kit/mcp_server --glob '*.ts' --glob '*.md'` scoped to graph/boost/community readers; record each as update/unchanged/not-a-consumer in ADR-001.
+- Matrix axes: {edge provenance: entity_linker | causal_links | session_trace | consolidation} × {relation: supports | caused | enabled | contradicts | supersedes | derived_from} × {endpoint: numeric | pseudo-node | deleted-memory} × {path: incremental | full-run | migration}; rows enumerated in tasks.md T-verification cluster.
+- Algorithm invariant: edge identity is a pure function of (source_id, target_id, relation, rule_version) with ONE rule_version policy across backfill and live (verified present at `content-id.ts:28` + `vector-index-schema.ts:1119-1129`); strength is a pure, non-accumulating function of (relation prior, current graph state) — the relation prior is recomputed, not overwritten by a degree-only value. Adversarial cases: re-run backfill twice, save N times with zero new edges, reversed pair insert, deleted-endpoint insert.
 <!-- /ANCHOR:affected-surfaces -->
 
 ---
@@ -135,10 +136,10 @@ Required inventories:
 - [ ] Absorbed contract read: `../../006-review-remediation/002-memory-schema-and-concurrency/spec.md` P1-2/P1-4 fix intent quoted into working notes; DB copy prepared for migration dry-runs
 
 ### Phase 2: Core Implementation
-- [ ] Cluster A - ADR-001 co-occurrence disposition: consumer inventory, migration, entity-linker write change, causal-boost default exclusion
-- [ ] Cluster B - graph-lifecycle: ratchet removal, onWrite skip, pseudo-node filtering, dirty-set drain, surrogate real titles
-- [ ] Cluster C - absorbed P1-2 (derived_id alignment) + P1-4 (embedding out of lock, maintenance refresh)
-- [ ] Cluster D - causal-links-processor: polarity mapping, unresolved-with-suggestion fallback, liveness/parent filters
+- [ ] Cluster A - ADR-001 co-occurrence down-weight: consumer inventory, provenance-scoped strength-UPDATE migration, entity-linker write change, causal-boost default exclusion by provenance
+- [ ] Cluster B - graph-lifecycle: ratchet removal (idempotent relation-prior + degree), onWrite skip, pseudo-node filtering, dirty-set drain, surrogate real titles
+- [ ] Cluster C - absorbed P1-2 (verify code fix present; run derived_id backfill on the 32,465 NULL rows) + P1-4 (verify embedding already outside the lock; add concurrency test)
+- [ ] Cluster D - honest edge inference: causal-links-processor (polarity→`contradicts`, unresolved-with-suggestion fallback, liveness/parent filters) + session-trace reducer (≥2-session threshold, exclude same-query sources)
 - [ ] Cluster E - entity-linker parity/hygiene: normalization parity, degree-cache invalidation, canonical pair order, density guard, catalog ORDER BY + pruning, per-memory error containment
 - [ ] Cluster F - community lifecycle (cadence, stable IDs, fingerprint, rebind reset, phantom members; ADR-002) + graph-signals (nearest snapshot, per-DB keys)
 - [ ] Cluster G - ADR-003 surrogate regeneration backlog (7,108 rows) through the async queue
@@ -170,8 +171,8 @@ Required inventories:
 |------------|------|--------|-------------------|
 | Phase 002 shared active-row predicate | Internal | Yellow (parallel phase) | Endpoint/member liveness filters land against a provisional predicate signature; re-verify at integration |
 | Phase 007 causal-boost consumer fixes | Internal | Yellow (later in execution order) | SC-006 boost-amplification assertion deferred until 007; histogram gates unaffected |
-| Absorbed 028/006/002 contract (P1-2, P1-4) | Internal | Green (contract readable; fixes pending) | None; this phase executes, Phase 013 re-points the tracker |
-| `maintenance-marker.ts` TTL contract | Internal | Green | P1-4 refresh fix reuses the existing maintenance-handle pattern |
+| Absorbed 028/006/002 contract (P1-2, P1-4) | Internal | Green (contract readable; code already fixed, backfill+test pending) | None; this phase verifies + backfills, Phase 013 re-points the tracker |
+| `maintenance-marker.ts` TTL contract | Internal | Green | P1-4 is verify-only; embedding already runs outside the lock, so no maintenance-handle change is needed |
 | Production DB copy for dry-runs | Internal | Green | Without it, migration ships without count evidence: blocked by policy |
 <!-- /ANCHOR:dependencies -->
 
@@ -181,7 +182,7 @@ Required inventories:
 ## 7. ROLLBACK PLAN
 
 - **Trigger**: Post-migration histogram shows unexpected relation counts; vitest delta vs baseline shows new failures; save-path latency regresses; consolidation lock behavior changes on the default path.
-- **Procedure**: Code changes revert via `git revert` of the phase commits (each cluster lands as its own commit). The co-occurrence migration ships with a reverse migration (relation/table rename back or weight restore) and is rehearsed on the DB copy before touching production.
+- **Procedure**: Code changes revert via `git revert` of the phase commits (each cluster lands as its own commit). The co-occurrence down-weight ships with a reverse migration (restore strength 0.7 on `created_by='entity_linker'` rows) and is rehearsed on the DB copy before touching production.
 <!-- /ANCHOR:rollback -->
 
 ---
@@ -244,7 +245,7 @@ Phase 1 (Baselines + 🟡 verify) ──► Cluster A (ADR-001 migration) ──
 
 ### Data Reversal
 - **Has data migrations?** Yes (co-occurrence disposition; derived_id backfill alignment; surrogate regeneration).
-- **Reversal procedure**: disposition migration is paired with a reverse migration (relation rename back / weight restore keyed on provenance = `entity_linker`); derived_id alignment touches only `WHERE derived_id IS NULL` rows or explicit skew rows recorded by the forward run; surrogate regeneration keeps prior rows recoverable until verification passes (soft-replace, then cleanup).
+- **Reversal procedure**: the down-weight migration is paired with a reverse migration (strength restore keyed on `created_by='entity_linker'`); the derived_id backfill touches only `WHERE derived_id IS NULL` rows or explicit skew rows recorded by the forward run; surrogate regeneration keeps prior rows recoverable until verification passes (soft-replace, then cleanup).
 <!-- /ANCHOR:enhanced-rollback -->
 
 ---
@@ -322,7 +323,7 @@ Phase 1 (Baselines + 🟡 verify) ──► Cluster A (ADR-001 migration) ──
 
 Architecture decisions for this phase live in `decision-record.md`:
 
-- **ADR-001**: Entity co-occurrence edge disposition: relocate to own relation/table vs down-weight in place (Proposed; ratify after dry-run + consumer inventory).
+- **ADR-001**: Entity co-occurrence edge disposition: down-weight in place (recommended default, no schema migration) vs relocate to own relation (blocked by the `causal_edges` CHECK; needs a full table rebuild) (Proposed; ratify after dry-run + consumer inventory).
 - **ADR-002**: Community detection naming: keep "Louvain" label vs rename to label-propagation vs implement real modularity (Proposed).
 - **ADR-003**: Surrogate regeneration strategy for the 7,108 placeholder-title rows (Proposed).
 

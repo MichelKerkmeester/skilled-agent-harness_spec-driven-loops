@@ -12,13 +12,13 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "scaffold/010-search-hot-path-performance"
-    last_updated_at: "2026-07-03T09:44:25Z"
-    last_updated_by: "template-author"
-    recent_action: "Initialize continuity block"
-    next_safe_action: "Replace template defaults on first save"
+    packet_pointer: "system-speckit/028-memory-search-intelligence/016-fix-deep-dive-p0-p2-findings-for-mk-spec-memory/010-search-hot-path-performance"
+    last_updated_at: "2026-07-03T11:54:21Z"
+    last_updated_by: "claude-opus-4-8"
+    recent_action: "Applied plan-review remediation (008↔010 fence, REQ-003 FTS gate, continuity populated)"
+    next_safe_action: "Capture latency baselines, then run the confirm-before-fix pass on 🟡 items"
     blockers: []
-    key_files: []
+    key_files: ["spec.md", "plan.md", "tasks.md", "checklist.md", "implementation-summary.md"]
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "scaffold-scaffold/010-search-hot-path-performance"
@@ -71,6 +71,7 @@ This is **Phase 10** of the Deep dive remediation phase children specification.
 - **Phase 006 decision-record** — rescue-layer ranking authority decision gates how the full-table LIKE backfill may be restructured, and owns the interference O(folder²) write-tax disposition. This phase executes that disposition on the scan side; it does not re-decide it.
 - **Phase 005** — owns the `match_triggers` < 300ms target (trigger extraction cached by (path, mtime)). This phase measures and reports it on the same harness.
 - **Phases 001-004** — corpus repair shrinks/changes the row population; baseline and after-numbers must be captured against the same corpus snapshot with row count recorded.
+- **Phase 008 (causal-graph hygiene)** — 008 edits the same three graph files this phase touches (`graph-signals.ts`, `community-detection.ts`, `graph-lifecycle.ts`) and lands FIRST in execution order (008 → 009 → 010). This phase rebases onto 008; it does not re-fix graph-side correctness. Cache-key boundary: 008 owns existing signal-cache correctness (momentum/depth caches re-keyed to DB identity, 008 T026); this phase's REQ-005/T009 NEW cross-search adjacency cache REUSES 008's DB-identity keying scheme rather than independently re-fixing the memoryId-only bug.
 
 **Deliverables**:
 - Batched rescue hydration (single `id IN` fetch) replacing per-candidate `SELECT *`.
@@ -125,8 +126,8 @@ Paths relative to `.opencode/skills/system-spec-kit/mcp_server/`. Line numbers a
 |-----------|-------------|-------------|
 | lib/search/rerank/retrieval-rescue.ts | Modify | Batch candidate hydration (`id IN`, chunked); FTS-route or weak-result-gate the full-table LIKE backfill |
 | lib/search/pipeline/stage2-fusion.ts | Modify | Consume batched rescue results; stage-timing instrumentation (behavior unchanged) |
-| lib/graph/graph-signals.ts | Modify | Cache edge adjacency across searches; DB-identity cache key + write invalidation |
-| lib/graph/community-detection.ts | Modify | Load + parse communities once per search into a map (not per candidate row) |
+| lib/graph/graph-signals.ts | Modify | NEW cross-search adjacency cache REUSING 008's DB-identity keying (008 lands first; 008 T026 owns the existing memoryId-only signal-cache fix — do not re-fix here) + write invalidation |
+| lib/graph/community-detection.ts | Modify | Load + parse communities once per search into a map (not per candidate row); rebase onto 008's community-lifecycle edits (008 lands first) |
 | lib/search/intent-classifier.ts | Modify | Hoist query embedding; memoize per distinct query text per request |
 | handlers/memory-search.ts | Modify | Single-serialize envelope; remove intermediate JSON round-trips |
 | lib/search/vector-index-queries.ts | Modify | `keyword_search` fallback: SQL-side LIMIT/FTS route, no full-table materialization in JS |
@@ -137,7 +138,7 @@ Paths relative to `.opencode/skills/system-spec-kit/mcp_server/`. Line numbers a
 | lib/search/folder-discovery.ts | Modify | Cache TTL probe instead of full rediscovery |
 | handlers/memory-index-alias.ts | Modify | Scope alias hygiene scans to the affected folder set |
 | lib/cognitive/co-activation.ts | Modify | Heap-based top-K selection |
-| lib/search/graph-lifecycle.ts | Modify | BFS visited-state dedup; remove O(n) shift() dequeue on the per-save walk |
+| lib/search/graph-lifecycle.ts | Modify | BFS visited-state dedup; remove O(n) shift() dequeue on the per-save walk; rebase onto 008's graph-lifecycle edits (008 lands first) |
 | lib/feedback/shadow-scoring.ts | Modify | Batch shadow-delta writes into one transaction |
 | lib/search/auto-promotion.ts | Modify | Negative-count aggregation via GROUP BY (perf aspect; semantics owned by 009) |
 | tests/ (vitest) | Create/Modify | Rank-parity fixture, cache-invalidation tests, query/call-count assertions |
@@ -154,14 +155,14 @@ Paths relative to `.opencode/skills/system-spec-kit/mcp_server/`. Line numbers a
 |----|-------------|---------------------|
 | REQ-001 | Baseline before changes: fixed-query perf harness capturing warm search p50/p95, stage1/stage2 split, match_triggers, first-call auto-surface delta, cold init, RSS, and corpus row count | Baseline numbers recorded (scratch/ + implementation-summary.md) before the first hot-path commit; vitest whole-gate baseline captured |
 | REQ-002 | Rescue hydration batched: replace per-candidate `SELECT *` (retrieval-rescue.ts:336) with one parameterized `id IN` fetch (chunked below the SQLite variable limit) | Test asserts exactly 1 hydration query for N candidates; stage2 timing drop recorded on harness |
-| REQ-003 | Rescue backfill restructured: full-table LIKE scan (retrieval-rescue.ts:303) FTS-routed or executed only behind a weak-result gate, consistent with the phase-006 rescue decision | No unconditional full-table LIKE in the search path (SQL trace evidence); FTS MATCH token sanitization covered by adversarial tests |
+| REQ-003 | Rescue backfill restructured: full-table LIKE scan (retrieval-rescue.ts:303) FTS-routed or executed only behind a weak-result gate, consistent with the phase-006 rescue decision | No unconditional full-table LIKE in the search path (SQL trace evidence); **the adversarial FTS token-equivalence tests GATE completion** — because FTS MATCH changes matching semantics vs the substring LIKE it replaces, the FTS-routed backfill must return results token-equivalent to LIKE across the adversarial table (quotes, FTS5 operators NEAR/OR/-, unicode, empty, no-op gate), and a divergence blocks the phase (not report-only) |
 | REQ-004 | Rank parity: pure-perf changes must not alter result IDs or order | Fixed-query fixture asserts identical ordered IDs before/after each batch; gated-behavior deltas (weak-result gate) explicitly documented |
 
 ### P1 - Required (complete OR user-approved deferral)
 
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-005 | Graph adjacency cached across searches (graph-signals.ts:576) with DB-identity cache key and invalidation on graph writes/DB rebind | Unit test: cache hit on second search, invalidation on edge write and rebind; per-search adjacency rebuild eliminated |
+| REQ-005 | Graph adjacency cached across searches (NEW cache, graph-signals.ts:576) REUSING 008's DB-identity keying scheme (008 lands first and owns the existing signal-cache fix — no independent re-fix here), with invalidation on graph writes/DB rebind | Unit test: cache hit on second search, invalidation on edge write and rebind; per-search adjacency rebuild eliminated; reuses 008's key scheme (no memoryId-only re-fix) |
 | REQ-006 | Community table loaded + parsed once per search (community-detection.ts:623), not per candidate row | Parse-count assertion: 1 load per search; identical boost values on fixture |
 | REQ-007 | Intent-classifier embedding hoisted and memoized per distinct query text (intent-classifier.ts:502) | Embedder call-count spy: at most 1 embed per distinct text per request (baseline: 7x per classification, 6-8 classifications per deep query) |
 | REQ-008 | Envelope single-serialization (memory-search.ts:1564-1913): transforms operate on object references; serialize once at emission | Round-trip instrumentation shows 1 serialization in the handler path (baseline ~8x); envelope content equivalent on fixture |
@@ -195,6 +196,7 @@ Baseline measured 🟢 2026-07-03 (deep-dive report §1/§4) at 33,101 rows. "Ga
 | Cold runtime init | ~15s | delta reported | Report |
 | RSS | ~492MB at 9s uptime | delta reported | Report |
 | Scan event-loop lag | warnings present (~2 statSync/row full-table on event loop) | zero event-loop-lag warnings during full scan | Gate |
+| FTS-routed backfill token-equivalence | LIKE substring match semantics | identical result set to LIKE across the adversarial token table (quotes, NEAR/OR/-, unicode, empty, no-op gate) | Gate |
 
 *If phase 005 has not shipped when this phase closes, record match_triggers as a measured deviation attributed to 005 rather than a failed gate here.
 
@@ -202,7 +204,7 @@ Baseline measured 🟢 2026-07-03 (deep-dive report §1/§4) at 33,101 rows. "Ga
 - **SC-002**: Rescue layer no longer performs per-candidate hydration or unconditional full-table LIKE; stage2 is no longer ~1.2s constant (before/after stage split recorded).
 - **SC-003**: `match_triggers` measured < 300ms warm on the same harness, or the deviation is recorded against phase 005.
 - **SC-004**: Full scan on the production-shape corpus completes with zero event-loop-lag warnings.
-- **SC-005**: Rank parity — the fixed query set returns identical result IDs and order across every pure-perf change; any weak-result-gate delta is explicit and consistent with the 006 contract.
+- **SC-005**: Rank parity — the fixed query set returns identical result IDs and order across every pure-perf change; any weak-result-gate delta is explicit and consistent with the 006 contract; the FTS-routed backfill additionally passes the adversarial token-equivalence gate (matches LIKE substring semantics — quotes, NEAR/OR/-, unicode, empty, no-op gate), and a divergence blocks completion.
 - **SC-006**: Before/after delta table (search p50/p95, stage1/stage2 split, match_triggers, auto-surface, cold init, RSS, corpus row count) recorded in implementation-summary.md.
 
 ### Acceptance Scenarios
@@ -225,7 +227,7 @@ Baseline measured 🟢 2026-07-03 (deep-dive report §1/§4) at 33,101 rows. "Ga
 | Dependency | Phase 006 rescue decision | Backfill restructuring blocked or reworked if decision changes rescue's role | Land batching (pure perf, decision-independent) first; gate/route work reads the recorded decision before implementation |
 | Dependency | Phase 005 trigger cache | match_triggers < 300ms unreachable here if 005 unshipped | Target is measured-and-reported here, gated only when 005 shipped; deviation recorded otherwise |
 | Dependency | Phases 001-004 corpus repair | Before/after numbers incomparable if corpus shrinks mid-phase | Capture baseline and after-numbers on the same corpus snapshot; record row count with every measurement |
-| Risk | Stale caches serving wrong data (known bug class: graph-signals cache keyed by memoryId only, no DB identity — ledger C P2) | High | Every new cache keyed by DB identity; invalidation on write + rebind; dedicated invalidation tests |
+| Risk | Stale caches serving wrong data (known bug class: graph-signals cache keyed by memoryId only, no DB identity — ledger C P2) | High | 008 fixes the existing signal-cache keying (T026, lands first); this phase's NEW adjacency cache reuses that DB-identity scheme; invalidation on write + rebind; dedicated invalidation tests |
 | Risk | FTS-routing changes matching semantics vs LIKE (tokenization, operators) | Med | Rank-parity fixture; adversarial token tests (quotes, FTS operators, unicode); weak-result gate default preserves current behavior |
 | Risk | 🟡 attribution wrong — a fixed hot spot doesn't move the measured number | Med | Verify-first tasks (T003/T004) reproduce each cost before fixing; re-measure after each batch, not only at the end |
 | Risk | Chunked `id IN` exceeds SQLite variable limit on large candidate sets | Low | Chunk at a safe bound (e.g. 500 ids); test with oversized candidate list |

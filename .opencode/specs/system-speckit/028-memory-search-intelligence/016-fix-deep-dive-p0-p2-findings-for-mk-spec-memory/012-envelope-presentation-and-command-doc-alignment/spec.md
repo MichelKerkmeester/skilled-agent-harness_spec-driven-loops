@@ -60,7 +60,7 @@ FAILURE MODES:
 | **Phase** | 12 of 13 |
 | **Predecessor** | 011-daemon-freshness-and-health-truthfulness |
 | **Successor** | 013-absorb-028-006-review-remediation-closeout |
-| **Handoff Criteria** | 5-result default `memory_search` envelope < 6KB with single-casing telemetry and honest `meta.tokenCount`; cursor scope enforced server-side with adversarial tests green; command-doc re-audit shows zero drifted claims in both trees; parity check script wired and exiting 0; `--format text` renders result rows |
+| **Handoff Criteria** | 5-result default `memory_search` envelope < 6KB with single-casing telemetry and honest `meta.tokenCount`; cursor scope enforced server-side with adversarial tests green; command-doc re-audit shows zero drifted claims in both trees; parity check script wired and exiting 0; `--format text` renders result rows; `memory_context` returns structured (non-double-encoded) top-level `data` with truthful resume `fingerprintStatus` |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -107,8 +107,9 @@ A default 5-result search envelope under 6KB that tells the truth (one casing, h
 
 ### In Scope
 - **Envelope**: single casing per telemetry block (kill the camelCase+snake_case double emission); budget enforcement moved AFTER graphContext/routing/envelope attach; delete the unreachable sanity guard (`memory-context.ts:608-625`, enforcement region ~1886-1969); `meta.tokenCount` honesty; compact-row snippet floor so result rows survive before metadata does.
+- **`memory_context` envelope shape**: de-nest the delegated `memory_search` envelope so it is not double-encoded as JSON-in-string (`memory-context.ts` ~:757/:761/:925), and surface the fidelity verdict fields (`requestQuality`/`citationPolicy`/`envelopeRender`) at the top-level `data` the search presentation contract renders (search.md:78-80) — routed in from the 013 sweep.
 - **Progressive disclosure**: cursor `scopeKey` stored server-side and compared on every resolve (#18); page-2+ rows carry title/path/score/tier; exhausted vs invalid cursors distinguishable; cached responses must not embed dead cursors; cursorStore holds ids+snippets, not full results; substitute-vs-drop decision for the additive block.
-- **Result rendering**: `why` rendered as a one-token suffix or emission trace-gated; `semantic_match` label gated on real vector attribution; formatter passes `canonicalSource`/`documentType`/`_communityFallback`; `includeContent` per-result cap with truncation marker; session-dedup marks "sent" AFTER truncation; world-summary prelude gets a deterministic ORDER BY; no-input errors return the standard error envelope.
+- **Result rendering**: `why` rendered as a one-token suffix or emission trace-gated; `semantic_match` label gated on real vector attribution; formatter passes `canonicalSource`/`documentType`/`_communityFallback`; `includeContent` per-result cap with truncation marker; session-dedup marks "sent" AFTER truncation; world-summary prelude gets a deterministic ORDER BY; no-input errors return the standard error envelope; resume-ladder `fingerprintStatus` reports a truthful status instead of a hardcoded `'verified'` when no expected fingerprint is compared (`memory-context.ts:267,484`).
 - **CLI**: `--format text` minimal row renderer plus an explicit omission notice for suppressed blocks.
 - **Command-doc drift battery**: one task per drifted claim (envelope-fidelity default, `--intent` forms, validate true/false, stats field names, tool matrix rows, README section order + retention-sweep row + assets claim, hooks README opencode/ folder + settings file name + `/spec_kit:resume` slug, save_workflow v37→v41 + retired-filename checklist, memory_system DB_UPDATED_FILE path + 4/5-state model, resume history hint, search.md arg quoting, health status enum), applied to both trees.
 - **Dual command-tree parity**: byte-parity check script for `.opencode/commands` ↔ `.claude/commands`, wired into validate or CI.
@@ -119,7 +120,6 @@ A default 5-result search envelope under 6KB that tells the truth (one casing, h
 - Envelope single-serialization performance (the ~8× JSON round-trip) — phase 010 (E OPT); this phase changes WHAT is emitted, not how many times it is serialized.
 - Ranking/score semantics, trust badges, confidence calibration display — phase 007 and the 013 sweep; presentation here only stops mislabeling, it does not re-rank.
 - Trigger-phrase quality and matcher/cache behavior — phase 005.
-- `memory_context` JSON-in-string double encoding (Agent I) — not mapped to this phase by the decomposition; goes to the 013 accept-or-map sweep.
 - Tracker closeout and the 91-P2 triage table — phase 013.
 
 ### Files to Change
@@ -127,7 +127,7 @@ A default 5-result search envelope under 6KB that tells the truth (one casing, h
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
 | .opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts | Modify | Single-casing telemetry emission; `includeContent` per-result cap + truncation marker; session-dedup mark-after-truncation (~:1652); standard no-input error envelope |
-| .opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts | Modify | Budget enforcement after graphContext/routing/envelope attach (~:1886-1969); delete unreachable sanity guard (:608-625); `meta.tokenCount` honesty; fallback-chain constitutional suppression |
+| .opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts | Modify | Budget enforcement after graphContext/routing/envelope attach (~:1886-1969); delete unreachable sanity guard (:608-625); `meta.tokenCount` honesty; fallback-chain constitutional suppression; de-nest delegated search envelope + surface fidelity fields (~:757/:761/:925, ~:1088-1116); truthful resume-ladder `fingerprintStatus` (:267,484) |
 | .opencode/skills/system-spec-kit/mcp_server/lib/search/progressive-disclosure.ts | Modify | Server-side cursor scopeKey + per-resolve compare (:402); page-2+ metadata; exhausted-vs-invalid; lean cursorStore; no dead cursors in cached responses; substitute-vs-drop outcome |
 | .opencode/skills/system-spec-kit/mcp_server/lib/search/result-explainability.ts | Modify | `why` one-token suffix render or trace-gated emission; `semantic_match` gated on vector attribution |
 | .opencode/skills/system-spec-kit/mcp_server/lib/response/profile-formatters.ts | Modify | Pass `canonicalSource`/`documentType`/`_communityFallback` through to rendered results |
@@ -168,6 +168,8 @@ A default 5-result search envelope under 6KB that tells the truth (one casing, h
 | REQ-008 | **Command-doc drift battery**: every enumerated drifted claim fixed in BOTH trees (see tasks T050-T067) | Re-audit battery (grep per claim) returns zero drifted claims |
 | REQ-009 | **Dual-tree parity**: byte-parity check script comparing `.opencode/commands` ↔ `.claude/commands`, wired into validate or CI | Script exits non-zero on injected byte diff (negative test) and 0 on the aligned trees; wiring merged |
 | REQ-010 | **Hook-lane hygiene**: constitutional block suppressed after first call in a fallback chain (`includeConstitutional:false`); startup truncation cuts at section boundaries; UserPromptSubmit shim invalid-JSON concat fixed | Fallback-chain trace shows constitutional block once; truncated startup context ends at a section boundary; shim test with invalid JSON input produces valid output |
+| REQ-011 | **`memory_context` envelope de-nesting** (Agent I, routed in from 013): the delegated `memory_search` envelope is not double-encoded as JSON-in-string; `requestQuality`/`citationPolicy`/`envelopeRender` are reachable at the top-level `data` | Envelope capture shows the inner search result as structured `data` (not a JSON-string blob); the three fidelity fields appear at top level when the source envelope carries them |
+| REQ-012 | **Resume-status honesty** (Agent E, silent-drop #10): resume-ladder rows do not report `fingerprintStatus:'verified'` unless an expected fingerprint was actually compared; a read-stability-only read reports a truthful status | Resume-ladder row with `fingerprintExpected:null` reports a non-`'verified'` status; test asserts the status reflects whether a comparison occurred |
 
 ### Acceptance Scenarios
 
@@ -189,6 +191,7 @@ A default 5-result search envelope under 6KB that tells the truth (one casing, h
 - **SC-003**: `--format text` is usable — result rows visible, omissions explicit.
 - **SC-004**: `meta.tokenCount` within ±10% of the actual serialized payload; over-budget compaction hits metadata before result rows (snippet floor respected).
 - **SC-005**: Cursor adversarial suite green (cross-scope, forged, expired-vs-malformed); vitest delta vs the REQ-001 baseline shows no regressions.
+- **SC-006**: `memory_context` surfaces the delegated search result as structured top-level `data` (no JSON-in-string double-encode; `requestQuality`/`citationPolicy`/`envelopeRender` reachable), and resume-ladder `fingerprintStatus` is truthful — never a blanket `'verified'` when `fingerprintExpected` is null (REQ-011, REQ-012).
 <!-- /ANCHOR:success-criteria -->
 
 ---

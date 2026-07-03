@@ -119,6 +119,7 @@ Every successfully indexed active row has a queryable vector in the active shard
 - 'auto' embedder shard-repair sentinel fix (counts vs writes mismatch, Agent F contract).
 - Chunking decision (ADR-001): wire chunked indexing into the scan path for over-threshold docs OR document the single-vector truncation policy + FTS-only tail coverage; fix the P0 safe-swap self-delete either way (#3, `chunking-orchestrator.ts:488-553`, `vector-index-store.ts:1857`); un-skip/cover the update path in tests.
 - Scan lifecycle: pendingVectors undercount on updated files, scope-blind coalescing, cancel-cooldown, heartbeat phantom lease (Agent F P2 x4).
+- Stale-delete cascade double-count: a chunked parent's delete cascades its children via `ON DELETE CASCADE`, then each already-gone child's per-row `deleteMemory` returns false and inflates the failed-delete count with phantom failures (Agent F P2, routed from plan-review Systemic #4).
 
 ### Out of Scope
 - Ranking/fusion behavior and filter bypasses - phase 007 owns them.
@@ -138,6 +139,7 @@ Every successfully indexed active row has a queryable vector in the active shard
 | .opencode/skills/system-spec-kit/mcp_server/lib/embedders/embedding-reconcile.ts | Modify | Reconcile scheduling, /memory:manage wiring, retry@max pickup |
 | .opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts | Modify (conditional) | Scan-path chunking wiring per ADR-001 Option A; :2511 is today's only indexChunkedMemoryFile call site |
 | Scan lifecycle modules (coalescing/cooldown/lease; exact files located in T007) | Modify | Scope-aware coalescing, cancel does not arm cooldown, heartbeat cannot resurrect a released lease |
+| .opencode/skills/system-spec-kit/mcp_server/handlers/memory-index.ts | Modify | Stale-delete cascade double-count (:596-658): delete children before parents (sort DESC) or treat already-gone rows as success |
 | embedding_model provenance migration (new script under mcp_server) | Create | Spelling normalization + backfill from shard provenance, with before-value logging for reversal |
 <!-- /ANCHOR:scope -->
 
@@ -150,8 +152,8 @@ Every successfully indexed active row has a queryable vector in the active shard
 
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-001 | Fix the chunking safe-swap self-delete (report §3 P0 #3, mechanism verified; `chunking-orchestrator.ts:488-553` + `vector-index-store.ts:1857-1873`): staging dedups to update-in-place, then finalize bulk-deletes oldChildIds captured post-staging, deleting the just-updated chunk rows and leaving the parent 'partial' and mtime-skipped forever. Fix via append-only staging or oldChildIds = old minus new. Required under BOTH ADR-001 options | Re-save of a chunked memory keeps all fresh child rows; parent never left 'partial' after a successful swap; previously skipped update-path tests un-skipped and passing |
-| REQ-002 | Retry-manager drain writes the active `vec_<dim>` shard via `writeActiveVectorPayload`, not only `vec_memories` (report §3 P1 #16, `retry-manager.ts:747-765`; 031 T-0175 class residue; matches the live 367) | Drained rows are immediately queryable through the active vector surface; new drains produce zero success-without-vector rows |
+| REQ-001 | Fix the chunking safe-swap self-delete (report §3 P0 #3, mechanism verified; `chunking-orchestrator.ts:488-553` + `vector-index-store.ts:1857-1873`): staging dedups to update-in-place, then finalize bulk-deletes oldChildIds captured post-staging, deleting the just-updated chunk rows so the doc loses its vector children while the mtime-skipped parent keeps only its 500-char summary. Fix via append-only staging or oldChildIds = old minus new. Required under BOTH ADR-001 options | The fresh child rows (childIds) survive the safe-swap and the content stays reachable via those children; previously skipped update-path tests un-skipped and passing. NOTE: a chunked parent staying `embedding_status='partial'` is BY DESIGN (`chunking-orchestrator.ts:516` sets it so the parent holds the 500-char summary while children hold the vectors), so an implementer MUST NOT force parent->'success' |
+| REQ-002 | Retry-manager drain writes the active `vec_<dim>` shard via `writeActiveVectorPayload`, not only `vec_memories` (report §3 P1 #16, `retry-manager.ts:747-765`; 031 T-0175 class residue; matches the live 367) | Precondition: a non-default `vec_<dim>` shard is active (prod = 768 shard); under the DEFAULT embedder `activeDimVectorSource` returns null (`vector-index-mutations.ts:75-79`) so `writeActiveVectorPayload` writes only `vec_memories` and this REQ is a no-op there. Given an active dim shard: drained rows are immediately queryable through the active vector surface; new drains produce zero success-without-vector rows |
 | REQ-003 | Run `memory_embedding_reconcile` once against the live desync (367 success-no-vector, ledger L3; maintenance.lastRunAt currently null) and schedule it: maintenance cadence + /memory:manage wiring | Health consistency check reports 0 success-without-vector rows; a recurring cadence and a manual /memory:manage entry point exist |
 | REQ-004 | Scale the drain batch/interval by queue size (default 5 rows/5min, report §4 item 9; 8,761 pending is days-to-weeks at default) | Projected full drain of the pending backlog < 24h, measured over a bounded observation window; no event-loop lag warnings during drain |
 | REQ-005 | Resolve ADR-001: wire chunked indexing into the scan path for over-threshold docs OR document the single-vector truncation policy + explicit FTS-only tail coverage (decomposition §004; ledger L9: 39 docs >50KB, max 193KB, single vector) | decision-record.md ADR-001 status Accepted with spike evidence; implementation matches the accepted option |
@@ -167,6 +169,7 @@ Every successfully indexed active row has a queryable vector in the active shard
 | REQ-010 | Fix the 'auto' embedder shard-repair sentinel: it counts `vec_<dim>` while writes go to `vec_memories`, so it never clears (Agent F contract) | Sentinel clears after repair; its count reads the shard the writes actually target |
 | REQ-011 | Scan lifecycle races: coalescing is scope-blind (scoped scan B reports success without scanning), a cancelled scan arms the 30s cooldown, and a heartbeat can resurrect a released lease (Agent F P2 x3) | Adversarial tests pass: scoped scan during in-flight scan actually scans its scope; cancel does not arm cooldown; released lease cannot be resurrected |
 | REQ-012 | Fix pendingVectors undercount on updated files (Agent F P2, via decomposition §004) | pendingVectors count includes updated files; undercount regression test passes |
+| REQ-013 | Fix the stale-delete cascade double-count: during scan stale cleanup a chunked parent delete cascades its children (`memory_index.parent_id ... ON DELETE CASCADE`), then each already-gone child's `deleteMemory` returns false and increments `failed` (`memory-index.ts:596-658`; cascade at `vector-index-schema.ts:1927,3742`; Agent F P2 via plan-review Systemic #4). Fix: delete children before parents (sort DESC) or treat already-gone rows as success | Deleting a chunked parent plus its children reports each row once; no phantom failed++ for cascade-removed rows; a parent+children stale-delete test asserts failed==0 for already-gone rows |
 <!-- /ANCHOR:requirements -->
 
 ---
@@ -174,7 +177,7 @@ Every successfully indexed active row has a queryable vector in the active shard
 <!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA
 
-- **SC-001**: Success-row count == vector-row count on the active shard (367 desync -> 0; health consistency check clean). [Decomposition §004 gate]
+- **SC-001**: Success-row count == vector-row count on the active shard (367 desync -> 0; health consistency check clean) and the reconciled rows are queryable via the active vector surface (a reconcile that merely moves rows success->retry without embedding does not satisfy this). [Decomposition §004 gate]
 - **SC-002**: Pending backlog drains in < 24h at the scaled drain rate (8,761 pending baseline). [Decomposition §004 gate]
 - **SC-003**: Big docs are searchable beyond the embedder window if chunking is chosen; otherwise the single-vector truncation policy + FTS-only tail coverage is explicitly documented. [Decomposition §004 gate, conditional on ADR-001]
 - **SC-004**: embedding_model attribution complete: 0 empty rows (from 27,706) and one canonical model spelling.
@@ -188,7 +191,7 @@ Every successfully indexed active row has a queryable vector in the active shard
 
 | Type | Item | Impact | Mitigation |
 |------|------|--------|------------|
-| Dependency | Program order: 011 then 001-003 land first | Drain wastes embedder cycles on 12,352 dead-path rows and dup snapshots | Run reconcile/drain after corpus repair, or scope the drain to the phase-002 active-row predicate |
+| Dependency | Program order: 011 then 001-003 land first | Drain wastes embedder cycles on 12,352 dead-path rows and dup snapshots | Run reconcile/drain after corpus repair; the fallback (scope the drain to phase-002's active-row predicate) is only a partial mitigation because that predicate itself needs 002 landed, so an early run before 001-003 stays mildly circular |
 | Dependency | Embedder endpoint (nomic) availability for ~14k embeddings | Backlog drain stalls | Throttled, resumable drain queue; failure classes recorded, not retried blindly |
 | Risk | Provenance backfill mislabels embedding_model | High | Dry-run count report before write; before-values logged; DB backup restore path |
 | Risk | Drain-rate scaling overloads the embedder or event loop | Med | Bounded batch sizes, adaptive interval, watch event-loop lag during observation window |
@@ -228,6 +231,7 @@ Every successfully indexed active row has a queryable vector in the active shard
 - Re-save of a chunked memory (update path): safe-swap must not delete the fresh children (REQ-001).
 - Scoped scan requested during an in-flight scan: coalescing must not report success without scanning that scope (REQ-011).
 - Cancelled scan / released lease: cooldown and heartbeat must not block or resurrect subsequent scans (REQ-011).
+- Stale delete of a chunked parent plus its children: the parent's `ON DELETE CASCADE` removes the children, so their ids must not be re-counted as failed deletes (REQ-013).
 
 ---
 

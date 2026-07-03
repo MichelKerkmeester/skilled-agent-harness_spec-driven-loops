@@ -88,7 +88,7 @@ Handler + lib module architecture inside the mk-spec-memory MCP server; save flo
 ### Key Components
 - **memory-parser (`lib/parsing/memory-parser.ts`)**: owns `computeContentHash` (:914) — the single hash producer to normalize.
 - **memory-save handler (`handlers/memory-save.ts`)**: orchestrates preflight, quality gate (:2398), complement recheck (:2618), planner/full-auto routing (:3200), post-save plan (:1803), and hosts the duplicate local fingerprint builder (:1078).
-- **PE gate (`handlers/save/pe-orchestration.ts` + `handlers/pe-gating.ts`)**: candidate discovery (:66-67 exclusion params) and lane decision/guards (:172-174, :293-298).
+- **PE gate (`handlers/save/pe-orchestration.ts` + `handlers/pe-gating.ts`)**: candidate discovery and the cross-file canonical-path guard live in pe-orchestration.ts (:66-67 exclusion params; guard condition :80-82, body :84-97 — extend to SUPERSEDE); pe-gating.ts holds the same-path exclusion filters (:172-174) and `predictionErrorGate.init(db)`. NOTE: pe-gating.ts:293-298 is `markMemorySuperseded` (the UPDATE mutation), not the guard.
 - **Atomic index (`handlers/save/atomic-index-memory.ts`)**: pending-file write → indexPrepared → promotion (:360 area); fingerprint validation ordering lives against this lifecycle.
 - **Validation (`lib/validation/spec-doc-structure.ts`)**: canonical `buildContinuityFingerprint` (:580) and POST_SAVE_FINGERPRINT rule (:1105).
 - **Search pipeline (`lib/search/hybrid-search.ts`)**: result-time dedup key (:949) for the belt-and-braces collapse.
@@ -106,20 +106,21 @@ Use this section when `research_intent=fix_bug`, when planning from a deep-revie
 
 | Surface | Current Role | Action | Verification |
 |---------|--------------|--------|--------------|
-| `computeContentHash` (memory-parser.ts:914) | Sole hash producer for parse-time identity | update (normalize input) | `rg -n "computeContentHash" .opencode/skills/system-spec-kit/mcp_server --type ts` — every caller inherits normalization |
-| Stored `content_hash` comparisons (preflight, PE gate, dedup, migration v28 lineage) | Consumers of the hash for equality checks | update (dual-compare legacy vs normalized) | Migration idempotency test + matrix rows for legacy-hash docs |
+| `computeContentHash` (memory-parser.ts:914, wraps `hashContentBody` @ content-id.ts:14) | Sole hash producer for parse-time identity; the wrapper is the single normalization point | update (normalize input inside the wrapper) | `rg -n "computeContentHash\|hashContentBody" .opencode/skills/system-spec-kit/mcp_server --type ts` — every caller inherits normalization; confirm no direct `createHash('sha256')` content-identity producer bypasses it |
+| Stored `content_hash` comparisons (preflight, PE gate, quality gate, migration v28 lineage) | Consumers of the hash for equality checks | update (route every site through the shared `hashesMatch(content, storedHash)` dual-compare helper: legacy raw OR normalized) | Migration idempotency test + matrix rows for legacy-hash docs; `rg -n "hashesMatch" .opencode/skills/system-spec-kit/mcp_server --type ts` shows one helper, N call sites |
 | `buildContinuityFingerprint` ×2 (memory-save.ts:1078 local; spec-doc-structure.ts:580 exported) | Two divergent producers of the continuity fingerprint | update (delete local, import canonical) | `rg -n "buildContinuityFingerprint" .opencode/skills/system-spec-kit --type ts` returns one definition, N imports |
 | `findSimilarMemories` call sites (pe-orchestration.ts:66-67; quality gate memory-save.ts:2398; complement recheck :2618; preflight) | Candidate discovery feeding every dedup lane | update (exclusion params per lane contract) | `rg -n "findSimilarMemories\(" .opencode/skills/system-spec-kit/mcp_server --type ts` — audit each call's exclusions |
 | POST_SAVE_FINGERPRINT rule + postSavePlan (spec-doc-structure.ts:1105; memory-save.ts:1803) | Post-save validator currently fed pre-promotion content | update (ordering/input) | `rg -n "POST_SAVE_FINGERPRINT\|postSavePlan" .opencode/skills/system-spec-kit/mcp_server --type ts` |
 | Canonical writer dispatch (memory-save.ts:3200 `shouldPlanCanonicalSave`) | Excludes full-auto from canonical planning | update (full-auto dispatches canonical writer) | Parity tests T511+ un-skipped (memory-save-integration.vitest.ts:526) |
 | `retirePredecessorForActiveReindex` / retire-carry / recon conflict lanes (memory-save.ts) | Predecessor retirement + successor stamping | update (ordering; stop deprecated re-stamp) | `rg -n "retirePredecessor\|'deprecated'" .opencode/skills/system-spec-kit/mcp_server/handlers --type ts` |
 | Result dedup key (hybrid-search.ts:949 `canonicalResultId`) | Row-id-only collapse at fusion time | update (canonical path identity, keep best) | `rg -n "canonicalResultId" .opencode/skills/system-spec-kit/mcp_server --type ts` + pipeline test |
+| Content-router Tier-1 transcript-wrapper (content-router.ts:410-414 `tier1.transcript.wrapper`, category `drop`) | Substring-matches `assistant:`/`user:`/`tool:` anywhere in normalized text, silently dropping legitimate save/index chunks | update (anchor cues to line-start `^\s*(user|assistant|tool):` or require ≥2 speaker turns) | Fixture: mid-line mention survives, real transcript still drops; `rg -n "tier1.transcript.wrapper" .opencode/skills/system-spec-kit/mcp_server --type ts` |
 | Tests mocking `findSimilarMemories` (pe-orchestration.vitest.ts, pe-gating.vitest.ts, handler-memory-save.vitest.ts, memory-save-integration.vitest.ts) | Mask same-path candidates today | update (same-path fixtures; un-skip parity) | `rg -n "findSimilarMemories" .opencode/skills/system-spec-kit/mcp_server/tests` |
 | Downstream channels/stats reading `tier='deprecated'` rows | Observers of churn volume | unchanged (phase 002 owns exclusion predicates) | Note in checklist; no predicate edits here |
 | Chunked-doc identity (parent/child rows) | Distinct rows sharing a path | unchanged (collapse excludes chunk children) | Pipeline test with chunk fixtures |
 
 Required inventories:
-- Same-class producers: `rg -n "createHash\('sha256'\)|sha256" .opencode/skills/system-spec-kit/mcp_server/lib/parsing .opencode/skills/system-spec-kit/mcp_server/handlers/save --type ts` (confirm no second content-hash producer bypasses normalization).
+- Same-class producers: `rg -n "createHash\('sha256'\)|sha256" .opencode/skills/system-spec-kit/mcp_server/lib/parsing .opencode/skills/system-spec-kit/mcp_server/handlers/save --type ts` (confirm no second content-hash producer bypasses normalization; the sweep of lib/parsing + handlers/save returns no direct producer — the sole sha256 primitive lives one level up in `lib/content-id.ts:14` `hashContentBody`, wrapped by `computeContentHash`).
 - Consumers of changed symbols: `rg -n "computeContentHash|buildContinuityFingerprint|canonicalResultId|excludeFilePath|excludeCanonicalFilePath" .opencode/skills/system-spec-kit --type ts --type js -g '!dist' -g '!node_modules'`.
 - Matrix axes (independent input axes): save mode {planner-first, full-auto} × content change {none, whitespace/CRLF-only, continuity-stamp-only, semantic edit} × reconsolidation {on, off} × force {true, false} × predecessor state {active, deprecated, tombstoned, none}. Full cross = 128; required rows = 16 pairwise-selected covering every axis value plus the four named regression scenarios (#2, #21, #22, #26).
 - Algorithm invariant: `normalize(content)` is stable under CRLF/trailing-whitespace mutation and under `_memory.continuity` fingerprint/timestamp churn, and touches nothing outside the frontmatter continuity block. Adversarial cases: CRLF inside fenced code blocks; a fingerprint-shaped line in body text (must not be zeroed); frontmatter without a continuity block; empty content; a doc whose only change is a reordered continuity key.
@@ -142,6 +143,7 @@ Required inventories:
 - [ ] P0 canonical save ordering + dispatch (T009-T010, REQ-002)
 - [ ] Dedup lane gating: complement, quality gate, preflight, recon conflict, retire-carry, rollback/mutex/BM25 batch (T011-T017, REQ-005/006/007/008)
 - [ ] Result-time file-identity collapse (T018, REQ-009)
+- [ ] Content-router Tier-1 transcript-wrapper line-start anchoring (T025, REQ-010)
 
 ### Phase 3: Verification
 - [ ] Un-skip parity tests; fix findSimilarMemories-mocking tests (T019-T020)
@@ -174,6 +176,7 @@ Required inventories:
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
 | Phase 002 shared active-row predicate | Internal (program) | Yellow (002 planned, not merged) | Retire/tombstone visibility lands behind a locally-scoped predicate matching 002's signature; reconcile when 002 merges |
+| Phase 001 dup-collapse ordering | Internal (program) | Yellow (001 runs before 003) | 001's "one active row per logical key" is not durable until 003 stops the churn; between 001 and 003, timestamp/CRLF re-saves keep minting deprecated snapshots (bounded by re-save rate) — treat 001's collapsed state as transient |
 | Migration registry (`vector-index-schema.ts`) | Internal | Green | Dual-compare shim ships read-side only until a migration slot is available |
 | vitest + fixture DBs (`mcp_server/tests`) | Internal | Green | Matrix rows fall back to in-memory DB fixtures |
 | better-sqlite3 / sqlite-vec native modules | External | Green | Only affects live probes, not unit coverage |
@@ -318,7 +321,6 @@ Phase 1 (Confirm + Baseline) ──► Phase 2 (Core Implementation) ──► P
 
 ---
 
-<!-- ANCHOR:ai-protocol -->
 ## L3: AI EXECUTION PROTOCOL
 
 ### Pre-Task Checklist
@@ -331,7 +333,7 @@ Phase 1 (Confirm + Baseline) ──► Phase 2 (Core Implementation) ──► P
 
 | Rule | Requirement |
 |------|-------------|
-| TASK-SEQ | Execute tasks in order T001 → T024; Phase 2 tasks must not start before T001/T002 complete |
+| TASK-SEQ | Execute tasks in order T001 → T024; T025 is a Phase-2 implementation task (content-router) that runs with T011-T018 despite its trailing number; Phase 2 tasks must not start before T001/T002 complete |
 | TASK-SCOPE | One task per change set; no adjacent-code cleanup; finding IDs stay out of code comments |
 | TASK-EVIDENCE | Every completed task records file:line evidence or a test name in tasks.md/checklist.md |
 | TASK-VERIFY | `npm run build` + targeted vitest must pass before marking any implementation task `[x]` |
@@ -341,7 +343,6 @@ Report per task: `T### | status (done/blocked/in-progress) | evidence (test name
 
 ### Blocked Task Protocol
 Mark the task `[B]` with the blocking reason in tasks.md, halt dependent tasks, and escalate per the Logic-Sync protocol if implementation evidence contradicts this plan (amendment decision, not a silent workaround). BLOCKED tasks never get skipped silently.
-<!-- /ANCHOR:ai-protocol -->
 
 ---
 

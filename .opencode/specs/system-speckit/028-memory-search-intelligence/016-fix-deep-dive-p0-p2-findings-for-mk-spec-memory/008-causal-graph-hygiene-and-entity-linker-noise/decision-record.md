@@ -11,10 +11,10 @@ contextType: "decision"
 _memory:
   continuity:
     packet_pointer: "system-speckit/028-memory-search-intelligence/016-fix-deep-dive-p0-p2-findings-for-mk-spec-memory/008-causal-graph-hygiene-and-entity-linker-noise"
-    last_updated_at: "2026-07-03T10:05:00Z"
-    last_updated_by: "claude-fable-5"
-    recent_action: "Authored ADR-001/002/003 in Proposed status with recommendations"
-    next_safe_action: "Ratify each ADR from migration dry-run evidence during execution"
+    last_updated_at: "2026-07-03T13:00:00Z"
+    last_updated_by: "claude-opus-4-8"
+    recent_action: "Re-scored ADR-001: down-weight recommended (relocation needs CHECK rebuild); columns fixed"
+    next_safe_action: "Ratify each ADR from dry-run evidence during execution"
     blockers: []
     key_files:
       - "decision-record.md"
@@ -25,7 +25,7 @@ _memory:
       parent_session_id: null
     completion_pct: 0
     open_questions:
-      - "ADR-001 final option pending dry-run counts and consumer inventory"
+      - "ADR-001 down-weight-in-place recommended; ratify vs relocate (CHECK table rebuild) after dry-run counts + consumer inventory"
     answered_questions: []
 ---
 # Decision Record: Phase 8: causal-graph-hygiene-and-entity-linker-noise
@@ -56,9 +56,10 @@ The entity linker auto-creates a `'supports'` edge at fixed strength 0.7 for eve
 
 ### Constraints
 
+- The `causal_edges` CHECK constraint allows `relation` in only `('caused','enabled','supersedes','contradicts','derived_from','supports')` (verified live: `sqlite3 -readonly ... "SELECT sql FROM sqlite_master WHERE name='causal_edges'"`). `'entity_cooccurrence'` is not a legal value, so any relocation to a new relation requires a full table rebuild (SQLite cannot ALTER a CHECK).
 - `memory_entities` holds 561,785 rows and `entity_catalog` 61,638 with no pruning path, so the co-occurrence signal keeps growing.
-- Unknown consumers may read `'supports'` semantics; the consumer inventory (plan.md FIX ADDENDUM) must complete before the migration runs.
-- The migration touches 31,118 rows on a 1.3GB production DB and must be batched, idempotent, and reversible.
+- Unknown consumers may read `'supports'` semantics; the consumer inventory (plan.md FIX ADDENDUM) must complete before the disposition runs.
+- The disposition touches ~31,536 provenance-scoped rows (`created_by='entity_linker' AND relation='supports' AND strength=0.7`, measured on a DB copy) on a 1.3GB production DB and must be batched, idempotent, and reversible.
 - Phase 007 owns the causal-boost consumer; this decision only controls what data that consumer sees.
 <!-- /ANCHOR:adr-001-context -->
 
@@ -67,9 +68,11 @@ The entity linker auto-creates a `'supports'` edge at fixed strength 0.7 for eve
 <!-- ANCHOR:adr-001-decision -->
 ### Decision
 
-**We chose**: Relocate entity co-occurrence edges to their own relation, `entity_cooccurrence`, inside the existing `causal_edges` table, and exclude that relation from causal consumers by default (opt-in only).
+**We chose** (recommended default, pending dry-run): Down-weight the entity co-occurrence edges in place. They keep `relation = 'supports'` (a value the `causal_edges` CHECK already allows) and get a low strength; causal consumers exclude them by default using their provenance (`created_by = 'entity_linker'`) plus the low-strength band, with an explicit opt-in for consumers that want the co-occurrence signal. No schema migration runs.
 
-**How it works**: The entity-linker insert at `entity-linker.ts:865` writes `entity_cooccurrence` instead of `'supports'`. A batched migration relabels existing rows selected strictly by provenance (`source = 'entity_linker'`, relation `supports`, strength 0.7). Causal boost, typed traversal, and the density guard read numeric-endpoint causal relations only; co-occurrence stays available behind an explicit opt-in for consumers that want it. This stays Proposed until the dry-run counts and the consumer inventory confirm the blast radius; ratify or flip to down-weight at that point.
+**Why not relocate**: `causal_edges` declares `relation TEXT NOT NULL CHECK(relation IN ('caused','enabled','supersedes','contradicts','derived_from','supports'))` (verified live). `'entity_cooccurrence'` is not in that set, so both an `INSERT ... relation='entity_cooccurrence'` and an `UPDATE ... SET relation='entity_cooccurrence'` fail with `CHECK constraint failed` (reproduced on a DB copy, SQLite error 19). Adding the value means rebuilding the whole table (SQLite cannot ALTER a CHECK): create a new table with the widened CHECK, copy all 33,476 rows, swap, and rebuild all nine secondary indexes (including the partial-UNIQUE `derived_id` index and the partial open-currentness index, plus the UNIQUE autoindex) and the six bitemporal columns — a full 1.3GB table rebuild, not the "one-column UPDATE" the first draft assumed. Down-weight avoids the rebuild entirely.
+
+**How it works**: The entity-linker insert at `entity-linker.ts:865` writes `relation='supports'` at the ratified low strength (not 0.7). A batched, idempotent migration UPDATEs strength on existing rows selected strictly by provenance (`created_by = 'entity_linker'`, relation `supports`, strength 0.7). Causal boost, typed traversal, and the density guard exclude the down-weighted `created_by='entity_linker'` edges by default; co-occurrence stays available behind an explicit opt-in for consumers that want it. This stays Proposed until the dry-run counts and the consumer inventory confirm the blast radius; ratify (or flip to relocation, accepting the table-rebuild cost) at that point.
 <!-- /ANCHOR:adr-001-decision -->
 
 ---
@@ -79,11 +82,11 @@ The entity linker auto-creates a `'supports'` edge at fixed strength 0.7 for eve
 
 | Option | Pros | Cons | Score |
 |--------|------|------|-------|
-| **Relocate to own relation (chosen)** | Honest histogram; one-column UPDATE migration; adjacency preserved for opt-in consumers; trivially reversible | Consumers reading `'supports'` literals need inventory and updates | 8/10 |
-| Separate table (`entity_cooccurrence`) | Strongest isolation; causal table shrinks 94% | New table, indexes, and query changes across every co-occurrence consumer; heavier migration and rollback | 6/10 |
-| Down-weight in place (e.g., strength 0.1) | No relation change; smallest diff | Histogram keeps lying; every consumer must know the weight convention; density guard and traversal still walk noise; ratchet history shows weights drift | 4/10 |
+| **Down-weight in place (recommended)** | Keeps `relation='supports'` (CHECK-legal); no schema migration; a single-column strength UPDATE scoped by `created_by='entity_linker'`; reversible by restoring strength; consumers exclude via provenance + strength band | Histogram still shows `supports`, so a "sane" read is measured via strength/provenance, not relation alone; every consumer must honor the exclusion convention | 8/10 |
+| Relocate to own relation (`entity_cooccurrence`) | Honest relation histogram; adjacency preserved for opt-in consumers | `'entity_cooccurrence'` violates the live CHECK — needs a full table rebuild (new table + copy 33,476 rows + swap + rebuild 9 indexes incl. the partial-UNIQUE `derived_id` + 6 bitemporal columns), NOT a one-column UPDATE; consumers reading `'supports'` literals still need inventory | 3/10 |
+| Separate table (`entity_cooccurrence`) | Strongest isolation; causal table shrinks 94% | New table, indexes, and query changes across every co-occurrence consumer; heaviest migration and rollback | 4/10 |
 
-**Why this one**: The relation rename is the smallest change that makes the causal relation space truthful, and it keeps the co-occurrence signal available instead of destroying it.
+**Why this one**: Down-weight is the only option with no schema migration and no CHECK fight. The relation rename the first draft scored 8/10 as a "trivial one-column UPDATE" is actually a 1.3GB table rebuild (the CHECK blocks the value), so its true cost is far higher; down-weight delivers the same consumer-facing outcome — co-occurrence excluded from causal reads by default — at a fraction of the risk, and keeps the signal available instead of destroying it.
 <!-- /ANCHOR:adr-001-alternatives -->
 
 ---
@@ -92,19 +95,21 @@ The entity linker auto-creates a `'supports'` edge at fixed strength 0.7 for eve
 ### Consequences
 
 **What improves**:
-- `SELECT relation_type, COUNT(*)` on `causal_edges` becomes an honest inventory: real causal relations dominate the default read (SC-001).
+- Causal consumers (boost, typed traversal, density guard) read real memory-to-memory causality by default: the down-weighted `created_by='entity_linker'` edges fall below the strength band and are excluded unless opted in (SC-001).
+- No schema migration, so the 1.3GB table and its nine indexes are never rebuilt and the partial-UNIQUE `derived_id` index is untouched.
 - Phase 007's causal boost amplifies actual causality instead of shared-entity noise.
 - The density guard counts real memory-to-memory causal edges, so cross-doc linking stops silently disabling itself.
 
 **What it costs**:
-- Every reader of `'supports'` semantics must be classified and updated where needed. Mitigation: the plan.md FIX ADDENDUM consumer inventory runs before the code change, and each consumer's action is recorded here at ratification.
+- The relation histogram still shows `supports`, so "sane causal read" is measured by strength/provenance, not by relation alone. Mitigation: the SC-001 probe groups by `relation, created_by, strength`, and every causal consumer honors the provenance+strength exclusion (recorded here at ratification).
+- Every reader of `'supports'` semantics must be classified. Mitigation: the plan.md FIX ADDENDUM consumer inventory runs before the code change.
 
 **Risks**:
 
 | Risk | Impact | Mitigation |
 |------|--------|------------|
-| Migration relabels non-linker `supports` edges | H | Provenance-scoped WHERE clause; dry-run count assertion on a DB copy before production |
-| Hidden consumer breaks post-relocation | M | rg inventory over relation literals; reverse migration rehearsed |
+| Down-weight UPDATE hits non-linker `supports` edges | H | WHERE scoped to `created_by='entity_linker' AND relation='supports' AND strength=0.7`; dry-run count assertion on a DB copy (31,536 such rows measured) before production |
+| A causal consumer ignores the exclusion convention and reads the low-strength edges | M | rg inventory over relation/strength/provenance literals; each reader's action recorded; opt-in flag is explicit |
 <!-- /ANCHOR:adr-001-consequences -->
 
 ---
@@ -114,11 +119,11 @@ The entity linker auto-creates a `'supports'` edge at fixed strength 0.7 for eve
 
 | # | Check | Result | Evidence |
 |---|-------|--------|----------|
-| 1 | **Necessary?** | PASS | 94% noise measured live on 2026-07-03 (ledger L8 🟢); boost consumers read it today |
-| 2 | **Beyond Local Maxima?** | PASS | Three options scored, including the do-less down-weight |
-| 3 | **Sufficient?** | PASS | One relation rename plus default exclusion achieves the goal; no new table needed |
+| 1 | **Necessary?** | PASS | 94% noise measured live 2026-07-03 (ledger L8 🟢); 31,536 `supports`@0.7 `created_by='entity_linker'` rows confirmed on a DB copy; boost consumers read them today |
+| 2 | **Beyond Local Maxima?** | PASS | Three options re-scored on true cost; the relocate option's CHECK-rebuild cost is now explicit |
+| 3 | **Sufficient?** | PASS | Down-weight plus provenance+strength exclusion achieves the causal-read goal with no schema migration |
 | 4 | **Fits Goal?** | PASS | Directly gates SC-001 and the Phase 007 boost-truthfulness gate |
-| 5 | **Open Horizons?** | PASS | Co-occurrence data survives under its own name for future opt-in features |
+| 5 | **Open Horizons?** | PASS | Co-occurrence data survives at low strength for future opt-in features; relocation stays available if a later CHECK rebuild is justified |
 
 **Checks Summary**: 5/5 PASS
 <!-- /ANCHOR:adr-001-five-checks -->
@@ -129,11 +134,11 @@ The entity linker auto-creates a `'supports'` edge at fixed strength 0.7 for eve
 ### Implementation
 
 **What changes**:
-- `mcp_server/lib/search/entity-linker.ts:865`: insert writes `entity_cooccurrence`; density guard counts numeric-endpoint causal relations only.
-- `mcp_server/lib/search/vector-index-schema.ts`: forward migration (provenance-scoped relabel, batched, idempotent) plus reverse migration.
-- Causal consumers: default exclusion of `entity_cooccurrence` with explicit opt-in parameter (consumer list finalized at ratification).
+- `mcp_server/lib/search/entity-linker.ts:865`: co-occurrence insert writes `relation='supports'` at the ratified low strength (not 0.7); density guard counts numeric-endpoint causal relations only.
+- `mcp_server/lib/search/vector-index-schema.ts`: forward migration is a provenance-scoped strength UPDATE (`created_by='entity_linker' AND relation='supports' AND strength=0.7`), batched and idempotent, plus a reverse migration that restores strength 0.7. No table rebuild, no CHECK change.
+- Causal consumers: default exclusion of the down-weighted `created_by='entity_linker'` edges with an explicit opt-in parameter (consumer list finalized at ratification).
 
-**How to roll back**: Run the reverse migration (relabel `entity_cooccurrence` rows with `source = 'entity_linker'` back to `supports`), then `git revert` the cluster A commit and rebuild dist.
+**How to roll back**: Run the reverse migration (restore strength 0.7 on `created_by='entity_linker'` rows), then `git revert` the cluster A commit and rebuild dist.
 <!-- /ANCHOR:adr-001-impl -->
 <!-- /ANCHOR:adr-001 -->
 

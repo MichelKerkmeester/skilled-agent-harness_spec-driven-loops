@@ -58,7 +58,7 @@ FAILURE MODES:
 ## Pre-Implementation
 
 - [ ] CHK-001 [P0] Requirements documented in spec.md (REQ-001..REQ-008 with acceptance criteria and finding IDs)
-- [ ] CHK-002 [P0] Technical approach defined in plan.md (FIX ADDENDUM surface inventory + cache-bootstrap invariant)
+- [ ] CHK-002 [P0] Technical approach defined in plan.md (FIX ADDENDUM surface inventory + cache-bootstrap invariant, including the enumeration-equality invariant: finalizer reuses the checker's `collectSourceFiles`)
 - [ ] CHK-003 [P1] Dependencies identified and available (no upstream phase; native modules present; phase-002 handoff note planned)
 <!-- /ANCHOR:pre-impl -->
 
@@ -70,7 +70,7 @@ FAILURE MODES:
 - [ ] CHK-010 [P0] Code passes lint/format checks (mcp_server + shim files touched by T004-T012)
 - [ ] CHK-011 [P0] No console errors or warnings (ExperimentalWarning absent from CLI stderr after T011)
 - [ ] CHK-012 [P1] Error handling implemented (gate refusal paths keep structured JSON error envelope; fallback hook records failures instead of swallowing)
-- [ ] CHK-013 [P1] Code follows project patterns (cache-path logic stays single-sourced in dist-freshness.cjs; no finding IDs in code comments per comment-hygiene rule)
+- [ ] CHK-013 [P1] Code follows project patterns (source-enumeration `collectSourceFiles` + hash/cache-path logic stay single-sourced in dist-freshness.cjs — finalizer reuses them, does not re-walk; no finding IDs in code comments per comment-hygiene rule)
 <!-- /ANCHOR:code-quality -->
 
 ---

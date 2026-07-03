@@ -114,14 +114,19 @@ Applies because this plan comes from deep-review findings touching shared policy
 | `search-flags.ts` flag readers (producer/policy) | Resolve Group-A flag booleans; some read once at module load | update (per-request resolution or live-state exposure) | Toggle matrix test per flag; `rg -n 'isCausalBoostEnabled\|isContextHeadersEnabled\|COMMUNITY_SEARCH_FALLBACK\|ADAPTIVE_RANKING\|ENABLE_BM25\|GRAPH_UNIFIED' lib/` |
 | `buildCacheArgs()` in `search-utils.ts` (consumer) | Builds cache keys for computed search state | update where flag state still missing from keys (T-0110 precedent) | `rg -n 'buildCacheArgs' lib/` plus cache-invalidation test on toggle |
 | `stage4-filter.ts` minState mapping (policy) | Maps requested minimum state to a priority threshold | update (line 144 inversion) | Unit test matrix over empty/default/each-state inputs |
-| Pipeline `orchestrator.ts` trigger-lane promotion (producer) | Appends trigger-matched rows to results | update (re-apply scope/tier/context/quality gates, lines 125-163) | Adversarial excluded-row test per filter class |
-| `retrieval-rescue.ts` injection (producer) | Appends lexical-rescue rows post-pipeline | update (gate battery at line 388) | Adversarial excluded-row test via rescue entry |
+| Pipeline `orchestrator.ts` trigger-lane promotion (producer) | Appends trigger-matched rows (`promoteTriggerLaneRows`, lines 125-163) with NO re-gating today | update: HARD-gate tenant/user/agent scope (security); SOFT-gate tier/contextType/quality (relax or penalize, not hard-drop) so the lane keeps legitimate recall (REQ-006, NFR-S01) | Adversarial: scope-excluded row hard-dropped; tier/quality-only failure ranked down, not dropped |
+| `retrieval-rescue.ts` injection (producer) | Appends lexical-rescue/sibling rows post-pipeline (line 388) | update: scope + folder are ALREADY re-applied by `buildInjectionBoundary` (lines 353-401); remaining is SOFT tier/contextType/quality/expiry/embedding-status only (REQ-007) | Adversarial: scope/folder already excluded (existing boundary); tier/quality/expiry/embedding failure ranked down, not dropped |
 | `hybrid-search.ts` `toHybridResult` + degradation check (producer/consumer) | Maps channel rows to hybrid results; widens on degradation | update (line 232 scale; line 2652 reads rrfScore) | Score-bound assertion test; degradation-fire fixture |
-| `stage2-fusion.ts` fusion + keyword lane + non-hybrid step-4 (policy) | Normalizes and blends channel scores | update (dedupe, trigger-weight normalization per ADR-002, blend-not-recompute at line 1311) | Fusion-band property test; boost-preservation test on vector-only search |
+| `stage2-fusion.ts` fusion + keyword lane + non-hybrid step-4 + learned-boost application (policy) | Normalizes and blends channel scores; applies the additive learned boost at line 843 | update (dedupe, trigger-weight normalization per ADR-002, blend-not-recompute at line 1311, and headroom-proportional learned-boost at line 843 per ADR-001 so +0.7 no longer clamps to a 1.0 re-tie) | Fusion-band property test; boost-preservation test on vector-only search; two-boosted-rows-separate test |
 | `vector-index-queries.ts` multi-concept rows (producer) | Emits multi-concept search rows | update (line 586 similarity mapping) | Multi-concept ranking fixture |
-| Gate modules (`hyde.ts`, `query-router.ts`, `evidence-gap-detector.ts`, `intent-classifier.ts`, `graph-search-fn.ts`, `causal-boost.ts`, community modules) | Decide when auxiliary retrieval/boost paths engage | update per spec REQ-018 through REQ-024 | Gate-fire and gate-hold fixtures per module |
+| Gate modules (`hyde.ts`, `query-router.ts`, `evidence-gap-detector.ts`, `intent-classifier.ts`, `graph-search-fn.ts`, `causal-boost.ts`, community modules) | Decide when auxiliary retrieval/boost paths engage | update per spec REQ-018 through REQ-024. NOTE: #13 non-hybrid blend + #14 causal scaling are ranking-order changes, 006-gated with cluster 3, not shipped direct. `evidence-gap-detector.ts:282-291` already has a `stdDev===0` guard + `applyRelevanceAwareGap` wrapper: scope its task as narrowing the residual n<=2 gap, not a fresh fix | Gate-fire and gate-hold fixtures per module |
 | Scoring helpers (`mpab-aggregation.ts`, `adaptive-ranking.ts`) | Aggregate chunk scores; adaptive fusion weighting | verify-first, then update (Agent-B items) | T004 confirmation notes plus graduated-value tests |
-| Threshold consumers of the normalized scale (consumers) | Read scores assuming top pins at 1.0 | inventory before ADR-001 headroom change | `rg -n '0\.95\|>= *1\.0\|=== *1\b\|MIN_MATCH_THRESHOLD' lib/search/` reviewed row by row |
+| Threshold consumers of the normalized scale (consumers) | Read scores assuming top pins at 1.0 | check the 006 gate FIRST (skip entirely if 006 = Option A); otherwise inventory before ADR-001 headroom change | `rg -n '0\.95\|>= *1\.0\|=== *1\b\|MIN_MATCH_THRESHOLD' lib/search/` reviewed row by row |
+| `llm-reformulation.ts` prompt build + cache (producer, SECURITY) | Builds the reformulation LLM prompt (lines 149-177); reads cache before the flag (356 vs 363); no negative caching | update: fence seeds + query as quoted data blocks, cap length; cap parser output; flag before cache; short-TTL negative sentinel (REQ-025, NFR-S02) | Prompt-injection fixture; flag-before-cache test; outage negative-cache test |
+| `retrieval-directives.ts` `parseCandidateLine` (parser) | Finds imperative verbs via unbounded `indexOf` (line 159) | update: `\b`-anchored token match so verbs do not match mid-word (REQ-026) | Mid-word-verb no-match test; leading-verb still-parses test |
+| `session-boost.ts` boost application (producer) | Writes boosted `finalScore` into `attentionScore` alias when unset (line 178) | update: leave `attentionScore` undefined when absent (REQ-027) | No-prior-attentionScore preservation test |
+| `shared/scoring/folder-scoring.ts` recency (policy) | Constitutional recency returns perpetual 1.0 regardless of age (lines 139-141) | update: resolve recency-channel tier-order (bounded exemption or tier-consistent decay) (REQ-028). Consumed via `lib/scoring/folder-scoring.ts` barrel | Constitutional-vs-fresh-critical recency test |
+| `entity-linker.ts` concept alias map (policy) | `BUILTIN_CONCEPT_ALIASES` expands common words ('context'->memory, 'plan'->spec, line 91), default-ON via `SPECKIT_QUERY_CONCEPT_EXPANSION` | update: per-alias specificity weight or >=2-token requirement (REQ-029) | Common-word-not-expanded fixture |
 | stage2 architecture doc + telemetry docs (docs) | Present the 13-step stack as ranking authority | update notes where semantics change; defer authority wording to 006 | Doc diff reviewed at close |
 | Existing vitest suites (tests) | Encode current bypass/scale behavior as expected | update alongside each fix | Whole-gate vitest delta vs baseline |
 
@@ -141,12 +146,15 @@ Required inventories:
 - [ ] Vitest whole-gate baseline captured to `scratch/baseline-vitest.txt`
 - [ ] 006-harness eval baseline captured to `scratch/baseline-eval.json` (fixed query set, prod-mode completeRecall@3)
 - [ ] Verify-first battery complete: every agent-verified finding confirmed (or closed as not-a-bug) at its cited line before edits
+- [ ] Dedicated T-0211 zero-symptom diagnosis (T009): the causal flag is already per-request + cache-keyed, so trace why `causalBoosted:0` independently of the flag work and of #14; record the confirmed cause or close not-a-bug
+- [ ] Note the already-mitigated findings so their tasks narrow the residual gap rather than re-fix: `evidence-gap-detector.ts:282-291` (`stdDev===0` guard + `applyRelevanceAwareGap`), and rescue scope/folder re-application via `buildInjectionBoundary` (`retrieval-rescue.ts:353-401`)
 
 ### Phase 2: Core Implementation
-- [ ] Cluster 1: Group-A flag plumbing root cause fixed, then causal boost/community fallback/context headers verified live
-- [ ] Cluster 2: filter-bypass battery (minState inversion, trigger-lane gates, rescue-injection gates)
-- [ ] Cluster 3: score-scale battery (multi-concept similarity, BM25 leak, keyword lane, adaptive fusion, MPAB, pinning, falsy-zero, headroom, recency)
-- [ ] Cluster 4: gate fixes (HyDE, graph-FTS, non-hybrid blend, causal-boost scaling, quality-gap, evidence-gap, intent classifier, community)
+- [ ] Cluster 1: Group-A flag plumbing root cause fixed for the T-0212/REQ-214 class; community fallback + context headers verified live. (T-0211 causal-zero is NOT here - it runs as the T009 dedicated diagnosis in Phase 1.)
+- [ ] Cluster 2: filter-bypass battery (minState inversion; trigger-lane HARD scope + SOFT tier/quality; rescue-injection SOFT tier/quality/expiry/embedding on top of the existing scope boundary)
+- [ ] Cluster 3: score-scale battery (multi-concept similarity, BM25 leak, keyword lane, adaptive fusion, MPAB, pinning, falsy-zero, headroom band + boost rescale, recency) - all 006-gated ranking-order changes
+- [ ] Cluster 4: gate fixes. Gate-CORRECTNESS parts ship direct (HyDE, graph-FTS, quality-gap, evidence-gap residual, intent classifier, community existence). #13 non-hybrid blend + #14 causal-boost scaling are ranking-ORDER changes: 006-gated with cluster 3, NOT direct
+- [ ] Cluster 5: absorbed silent-drop findings (REQ-025 llm-reformulation security, REQ-026 parseCandidateLine, REQ-027 session-boost alias, REQ-028 recency tier-order, REQ-029 concept-alias specificity)
 
 ### Phase 3: Verification
 - [ ] Adversarial regression battery green (one test per fixed bypass/gate)
@@ -176,8 +184,8 @@ Required inventories:
 
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
-| Phase 006 eval-parity harness | Internal | Yellow (in flight) | Cluster 3 cannot be measured; hold cluster 3, land clusters 1-2 and 4 on unit/adversarial tests |
-| Phase 006 rescue-authority decision | Internal | Yellow (in flight) | Interpretation of score-scale deltas changes; fixes still land as correctness work |
+| Phase 006 eval-parity harness | Internal | Yellow (in flight) | Cluster 3 and cluster 4's #13/#14 (ranking-order) cannot be measured; hold them, land clusters 1-2, gate-correctness cluster 4, and cluster 5 on unit/adversarial tests |
+| Phase 006 rescue-authority decision | Internal | Yellow (in flight) | HARD GATE for ranking-order work: if Option A, ADR-001/ADR-002 and #13/#14 are WITHDRAWN before paying R-002's threshold-migration cost. Correctness fixes land either way |
 | Phase 011 daemon/dist freshness | Internal | Green (first in program order) | Warm-daemon toggle tests need a trustworthy CLI surface |
 | Phases 001-005 corpus repair | Internal | Yellow (in flight) | Eval deltas are directional on a polluted corpus; rely on fixtures for pass/fail |
 | Agent B pipeline-core ledger section | Internal | Red (pending) | MPAB/adaptive-fusion details second-hand; T004 verify-first substitutes primary evidence |
@@ -199,10 +207,11 @@ Required inventories:
 
 | Cluster | Depends On | Reason |
 |---------|-----------|--------|
-| Cluster 1 (Group-A plumbing) | none (first) | Restores flag observability; clusters 3-4 boost fixes are only verifiable once flags actually apply |
-| Cluster 2 (filter bypasses) | none (parallel-safe with cluster 1) | Pure gate correctness; unit/adversarial tested without the harness |
-| Cluster 3 (score scale) | Cluster 1, 006 harness, ADR-001/ADR-002 accepted | Ranking-order changes need live flags, a measurement harness, and the normalization/trigger-weight decisions |
-| Cluster 4 (gate fixes) | Cluster 1 for causal/community items; others independent | causalBoosted/communityDelta verification requires working flag plumbing |
+| Cluster 1 (Group-A plumbing) | none (first) | Restores flag observability for the T-0212/REQ-214 class; the T-0211 causal-zero is a separate T009 diagnosis, not flag work |
+| Cluster 2 (filter bypasses) | none (parallel-safe with cluster 1) | Pure gate correctness; unit/adversarial tested without the harness. Trigger/rescue lanes hard-gate scope, soft-gate tier/quality |
+| Cluster 3 (score scale) | Cluster 1, 006 harness, 006 decision != Option A, ADR-001/ADR-002 | Ranking-order changes need live flags, a measurement harness, and the 006 authority decision; withdrawn if Option A |
+| Cluster 4 (gate fixes) | Cluster 1 for community items; gate-correctness independent; #13/#14 need the 006 harness + decision like cluster 3 | Correctness gates ship direct; #13/#14 are ranking-order, 006-gated |
+| Cluster 5 (silent-drop absorptions) | none (independent) | REQ-025..REQ-029 are localized correctness/security fixes; unit/adversarial tested without the harness |
 <!-- /ANCHOR:phase-deps -->
 
 ---
@@ -212,13 +221,14 @@ Required inventories:
 
 | Cluster | Complexity | Estimated Effort |
 |---------|------------|------------------|
-| Phase 1 (baselines + 🟡 confirm pass) | Medium | 2-3 hours |
+| Phase 1 (baselines + 🟡 confirm pass + T009 causal-zero diagnosis) | Medium | 3-4 hours |
 | Cluster 1 (Group-A flag plumbing root cause) | High | 3-5 hours |
 | Cluster 2 (filter-bypass battery) | Medium | 3-4 hours |
 | Cluster 3 (score-scale battery) | High | 6-9 hours |
 | Cluster 4 (gate fixes) | High | 5-7 hours |
+| Cluster 5 (silent-drop absorptions) | Medium | 2-3 hours |
 | Verification (adversarial + eval delta) | Medium | 3-4 hours |
-| **Total** | | **22-32 hours** |
+| **Total** | | **25-36 hours** |
 <!-- /ANCHOR:effort -->
 
 ---
@@ -274,11 +284,12 @@ Required inventories:
 
 | Component | Depends On | Produces | Blocks |
 |-----------|------------|----------|--------|
-| Baselines + 🟡 verify | None | Confirmed findings + baseline evidence | All clusters |
-| Cluster 1 (Group-A plumbing) | Setup | Per-request flag reads; live boost observability | Cluster 3, Cluster 4 causal/community items |
-| Cluster 2 (filter bypasses) | Setup | Excluded-row correctness across lanes | Phase 3 |
-| Cluster 3 (score scale) | Cluster 1, 006 harness, ADR-001/ADR-002 | Bounded, comparable scores | Phase 3 |
-| Cluster 4 (gate fixes) | Cluster 1 (causal/community only) | Firing gates; honest telemetry | Phase 3 |
+| Baselines + 🟡 verify + T009 | None | Confirmed findings + baseline evidence + T-0211 causal-zero root cause | All clusters |
+| Cluster 1 (Group-A plumbing) | Setup | Per-request flag reads (T-0212/REQ-214); live boost observability | Cluster 4 community items |
+| Cluster 2 (filter bypasses) | Setup | Scope-hard / tier-soft correctness across lanes | Phase 3 |
+| Cluster 3 (score scale) | Cluster 1, 006 harness, 006 decision != Option A, ADR-001/ADR-002 | Bounded, comparable scores (withdrawn if Option A) | Phase 3 |
+| Cluster 4 (gate fixes) | Cluster 1 (community only); #13/#14 need 006 harness + decision | Firing gates (direct); #13/#14 ranking order (006-gated) | Phase 3 |
+| Cluster 5 (silent-drop absorptions) | Setup | Security + parser + contract + recency + alias fixes | Phase 3 |
 | Verification | All clusters | Eval delta + adversarial battery | Phase close |
 <!-- /ANCHOR:dependency-graph -->
 
@@ -319,9 +330,9 @@ Required inventories:
 
 Architecture decisions for this phase live in `decision-record.md`:
 
-- **ADR-001**: Score-normalization headroom approach — sub-1 normalization band vs applying bounded boosts pre-normalization (Proposed; ratify against the 006-harness A/B).
-- **ADR-002**: Trigger-lane fusion weight — keep the 1.4 bypass-of-normalization vs fold into the normalized channel set (Proposed).
-- **ADR-003**: Per-cluster flag/rollout strategy for ranking-order changes (Proposed).
+- **ADR-001**: Score-normalization headroom approach — sub-1 band PLUS headroom-proportional boost rescale so the additive +0.7 learned boost no longer re-ties at 1.0 (Proposed; 006-gated, withdrawn if 006 = Option A; ratify against the 006-harness A/B).
+- **ADR-002**: Trigger-lane fusion weight — fold the 1.4 out-of-band multiplier into the normalized channel set (Proposed; 006-gated, withdrawn if 006 = Option A; keyword-lane dedupe lands either way).
+- **ADR-003**: Per-cluster flag/rollout strategy — correctness fixes direct; all ranking-order changes (ADR-001, ADR-002, recency, #13, #14) behind one 006-gated flag (Accepted).
 
 ---
 

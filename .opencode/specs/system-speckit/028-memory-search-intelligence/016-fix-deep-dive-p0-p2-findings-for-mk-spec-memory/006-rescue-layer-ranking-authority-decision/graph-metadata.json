@@ -57,6 +57,7 @@
       "core/db-state.ts",
       "lib/scoring/composite-scoring.ts",
       "lib/scoring/interference-scoring.ts",
+      "lib/search/vector-index-store.ts",
       "lib/cognitive/attention-decay.ts",
       "spec.md",
       "implementation-summary.md"
@@ -135,6 +136,12 @@
         "source": "derived"
       },
       {
+        "name": "vector-index-store.ts",
+        "kind": "code",
+        "path": "lib/search/vector-index-store.ts",
+        "source": "derived"
+      },
+      {
         "name": "attention-decay.ts",
         "kind": "code",
         "path": "lib/cognitive/attention-decay.ts",
@@ -199,17 +206,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Overview Part",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Retrieval-rescue (default ON) overwrites the final score of every candidate with `0.03base + 0.78lexicalOverlap` (`retrieval-rescue.ts:210`, applied at `stage2-fusion.ts:1425`), so learned trigger boosts (+0.7), negative demotions (x0.3), graph, recency, and co-activation signals are compressed to at most 3.7% of ranking mass (a +0.7 learned boost lands as <=0.021); only the validation multiplier at `stage2-fusion.ts:1470` runs after rescue and survives (deep-dive report Chain D; ledger Agent G P1)",
     "created_at": "2026-07-03T09:44:21Z",
-    "last_save_at": "2026-07-03T10:13:15.381Z",
+    "last_save_at": "2026-07-03T12:13:32.987Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -220,13 +221,13 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:e868136be7169fd7d50642705ff89374982b8ebaf689752d7e442101170cfa85",
+    "source_fingerprint": "sha256:f30842307cdeae263b250f09f48c8e97947e3d110ca382fc9ec6e58b783c847a",
     "source_doc_hashes": {
-      "spec.md": "f0524a36e71f363795759d80f36372c50e8d3ef103415d2fd66f7b5c0457ab14",
-      "plan.md": "fe66b094e2ab4475e13ad4a3013ed064a550947278b00ee39377cdfca8bf9841",
-      "tasks.md": "c8e50d6fcddca5c0fe6b641b7dccb5114b9bd9e9ea336c1c9bd9b6dce98fe3d7",
-      "checklist.md": "52cae6af80db36d1c6684bccf1ff27013d342dadffee4f858998e37b20b6e49f",
-      "decision-record.md": "6f5983bd6404f27abcb33e58a54814a3eaefba1f858d2e616e31843c0e457305",
+      "spec.md": "13d0314b5562fc1b9e0cb0037f19d9c566ad953825f28d73b87823a62016d436",
+      "plan.md": "931773792732aa32d5f0612a7920c8497980575a8f9a7d8a34015bc47e84a2fb",
+      "tasks.md": "57d4683c1c0253a482494b1ca74de817f07d71274dde60f520c69b48cc5e4e9f",
+      "checklist.md": "da6a47f152f76437fd3da8f659e14fb53c88acf7edb1a206fdf82d56ee77f4f6",
+      "decision-record.md": "e017e19a0708b081e1cc70a33cc04276075a1679479fbec2f9f4d4cc3450e8f1",
       "implementation-summary.md": "574741fb95109f103ff22acfa1f90f94a249caa54dbe701bf40943dfd8ee2fd4"
     },
     "last_active_child_id": null,

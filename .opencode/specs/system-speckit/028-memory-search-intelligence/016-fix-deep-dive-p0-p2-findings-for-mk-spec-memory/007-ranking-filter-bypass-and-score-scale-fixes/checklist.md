@@ -86,6 +86,8 @@ FAILURE MODES:
 - [ ] CHK-025 [P0] Group-A toggle matrix passes for all six member flag classes, cold start and warm toggle (task T014)
 - [ ] CHK-026 [P0] Baseline captured before first code edit and eval-delta reported after: vitest whole-gate plus 006-harness completeRecall@3 with no regression (tasks T001/T002/T051/T052)
 - [ ] CHK-027 [P1] Telemetry truthfulness verified: causalBoosted, communityDelta, graphContribution non-zero only when boosts genuinely apply (task T053)
+- [ ] CHK-028 [P0] T-0211 causal-zero root cause recorded by the dedicated diagnosis (T009) BEFORE REQ-002/T011 is claimed - not assumed to be the flag-plumbing fix, not conflated with #14 cap saturation (finding-is-a-hypothesis)
+- [ ] CHK-029 [P1] Cluster 5 silent-drop absorptions each verified or closed not-a-bug with a code/line citation (REQ-025 llm-reformulation, REQ-026 parseCandidateLine, REQ-027 session-boost alias, REQ-028 recency tier-order, REQ-029 concept-alias specificity; tasks T060-T064)
 <!-- /ANCHOR:testing -->
 
 ---
@@ -96,7 +98,7 @@ FAILURE MODES:
 - [ ] CHK-FIX-001 [P0] Each actionable finding has a finding class: `instance-only`, `class-of-bug`, `cross-consumer`, `algorithmic`, `matrix/evidence`, or `test-isolation`.
 - [ ] CHK-FIX-002 [P0] Same-class producer inventory completed, or instance-only status proven by grep (all lanes appending rows post-filter enumerated).
 - [ ] CHK-FIX-003 [P0] Consumer inventory completed for changed helpers, policies, schema fields, response fields, docs, and tests (score-scale symbol consumers per FIX ADDENDUM).
-- [ ] CHK-FIX-004 [P0] Security/path/parser/redaction fixes include adversarial table tests for delimiter, joined-input, outside-root, no-op, and fallback cases (tenant-scope re-application battery).
+- [ ] CHK-FIX-004 [P0] Security/path/parser/redaction fixes include adversarial table tests for delimiter, joined-input, outside-root, no-op, and fallback cases (tenant-scope re-application battery; llm-reformulation prompt-injection fence per REQ-025; parseCandidateLine mid-word verb per REQ-026).
 - [ ] CHK-FIX-005 [P1] Matrix axes and row count are listed before completion is claimed (lane x filter x flag matrix from plan.md).
 - [ ] CHK-FIX-006 [P1] Hostile env/global-state variant executed when tests or code read process-wide state (flag toggles under warm daemon, explicit-0 env knobs).
 - [ ] CHK-FIX-007 [P1] Evidence is pinned to a fix SHA or explicit diff range, not a moving branch-relative range.
@@ -108,8 +110,9 @@ FAILURE MODES:
 ## Security
 
 - [ ] CHK-030 [P0] No hardcoded secrets
-- [ ] CHK-031 [P0] Input validation implemented (gate battery re-applied on every side-entry lane)
-- [ ] CHK-032 [P1] Auth/authz working correctly (tenant/user/agent scope filters enforceable on trigger-lane and rescue rows; NFR-S01)
+- [ ] CHK-031 [P0] Input validation implemented: tenant/user/agent SCOPE hard-gated on every side-entry lane (security boundary); tier/contextType/quality applied as SOFT gates, not hard drops (NFR-S01)
+- [ ] CHK-032 [P1] Auth/authz working correctly: scope filters enforced on trigger-lane and rescue rows (rescue scope/folder already via buildInjectionBoundary); tier/quality soft-gating does not re-admit scope-excluded rows (NFR-S01)
+- [ ] CHK-033 [P0] LLM-facing prompt-injection boundary: llm-reformulation fences seeds + query as quoted data blocks with length caps, checks the enable flag before the cache read, and negative-caches outages (REQ-025, NFR-S02)
 <!-- /ANCHOR:security -->
 
 ---
@@ -138,8 +141,8 @@ FAILURE MODES:
 
 | Category | Total | Verified |
 |----------|-------|----------|
-| P0 Items | 18 | 0/18 |
-| P1 Items | 24 | 0/24 |
+| P0 Items | 21 | 0/21 |
+| P1 Items | 25 | 0/25 |
 | P2 Items | 9 | 0/9 |
 
 **Verification Date**: Pending (set when phase verification runs)
@@ -154,6 +157,7 @@ FAILURE MODES:
 - [ ] CHK-101 [P1] All ADRs have status (Proposed/Accepted); statuses updated when A/B results land
 - [ ] CHK-102 [P1] Alternatives documented with rejection rationale
 - [ ] CHK-103 [P2] Migration path documented (threshold consumers of the normalization scale inventoried before headroom change)
+- [ ] CHK-104 [P0] 006 decision checked BEFORE any ranking-order work: if 006 = Option A, ADR-001 (headroom band + boost rescale), ADR-002 (trigger weight), and #13/#14 are withdrawn - no inert ranking change shipped and R-002's threshold-migration inventory is not run. If 006 keeps ranking-order load-bearing, the ADRs proceed and the additive +0.7 boost re-tie (stage2-fusion.ts:843) is resolved, not left implicit
 <!-- /ANCHOR:arch-verify -->
 
 ---

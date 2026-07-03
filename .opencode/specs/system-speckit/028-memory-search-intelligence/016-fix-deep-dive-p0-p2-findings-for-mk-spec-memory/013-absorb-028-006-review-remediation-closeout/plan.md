@@ -56,7 +56,7 @@ FAILURE MODES:
 | **Testing** | `validate.sh --strict` (per folder + parent recursive), `check-placeholders.sh`, JSON parse checks, grep pointer audits |
 
 ### Overview
-This phase is a documentation reconciliation pass, not a code change. It walks three absorbed trackers and three parent rollups, replaces stale open-state rows with disposition pointers into this program's phases, completes two mapping tables (the 91-item P2 triage and the full findings-ledger completeness sweep), records two tooling findings with repro, and finishes with the program-wide strict validation, a scoped index scan, and the closeout memory save.
+This phase is a documentation reconciliation pass, not a code change. It walks three absorbed trackers and three parent rollups, replaces stale open-state rows with verify-first-then-close disposition pointers into this program's phases (the 028/006/002 items are already fixed in code per plan-review SYSTEMIC #1), completes two mapping tables (the reconstructed 91-item P2 triage — the frozen per-item source is unrecoverable — and the finding-level findings-ledger completeness sweep), records three tooling findings with repro, and finishes with the program-wide strict validation, a scoped index scan, and the closeout memory save.
 <!-- /ANCHOR:summary -->
 
 ---
@@ -86,7 +86,7 @@ Tracker-absorption and completeness-audit pass over documentation surfaces (sing
 ### Key Components
 - **Absorbed trackers**: `028/006/002-memory-schema-and-concurrency/` (three pending items), `028/006/004-p2-triage/` (91-item decision layer), `028/014/001-findings-remediation/tasks.md` (Group-A rows + open Phase-2 appendix and deferred rows).
 - **Parent rollups**: `028/006/spec.md` + its `graph-metadata.json`, the 028 packet-parent `spec.md` + `graph-metadata.json`, and the 016 program-parent `spec.md` + `graph-metadata.json`.
-- **Mapping tables**: the completed per-item P2 table (lives in 028/006/004) and the findings-ledger completeness table (lives in this phase's `tasks.md`).
+- **Mapping tables**: the reconstructed per-item P2 table (lives in 028/006/004; frozen source unrecoverable) and the finding-level findings-ledger completeness table (lives in this phase's `tasks.md`).
 - **Evidence corpus (read-only)**: `../research/phase-decomposition.md` (authoritative finding-to-phase map), `../research/deep-dive-report.md` §6, `../research/findings-ledger.md`.
 
 ### Data Flow
@@ -102,8 +102,8 @@ This phase edits spec docs, not code, so the addendum inventories documentation 
 
 | Surface | Current Role | Action | Verification |
 |---------|--------------|--------|--------------|
-| `028/006/002-memory-schema-and-concurrency/` (spec/tasks/impl-summary) | Pending remediation contract for P1-2/P1-4/P1-5 | Update: absorbed pointers → phases 008/009 | `rg -n 'P1-2\|P1-4\|P1-5\|absorbed' <folder>` shows pointer lines; no unowned pending claim |
-| `028/006/004-p2-triage/` (spec/tasks/impl-summary) | Lens-grouped 91-item P2 triage, per-item map PENDING | Update: complete per-item mapping + close tasks | Row count = 91; `rg -n 'PENDING'` returns no unresolved triage rows |
+| `028/006/002-memory-schema-and-concurrency/` (spec/tasks/impl-summary) | Pending remediation contract for P1-2/P1-4/P1-5 (already fixed in code per SYSTEMIC #1) | Update: verify-first-then-close pointers → phases 008/009 (run migration for P1-2; add tests for P1-4/P1-5; NOT re-fixes) | `rg -n 'P1-2\|P1-4\|P1-5\|absorbed' <folder>` shows verify-first pointer lines; no unowned pending claim |
+| `028/006/004-p2-triage/` (spec/tasks/impl-summary) | Lens-grouped 91-item P2 triage, per-item map PENDING; frozen source unrecoverable + inherited dead `../../archive/review-report.md` pointer | Update: reconstruct per-item list (ledger + G1-G15), repath dead pointer, complete mapping + close tasks | Reconstructed count reconciled to the "91" headline; `rg -n 'PENDING'` returns no unresolved triage rows |
 | `028/006/spec.md` phase map | Reports 002/004 as "PENDING, scaffold only" | Update: absorbed/closed rows with pointers + re-review disposition | `rg -n 'PENDING, scaffold only' 028/006/spec.md` empty after edit |
 | `028/006/graph-metadata.json`, `description.json` | Generator-owned derived status | Regenerate via spec-kit generators | `node -e 'JSON.parse(...)'` exit 0; derived status matches spec.md |
 | 028 packet-parent `spec.md` + `graph-metadata.json` | Phase-map row for 006 drives packet 028 blocker status | Update row + regenerate | Row text matches 006 parent state; JSON parses |
@@ -131,7 +131,7 @@ Required inventories:
 ### Phase 2: Core Implementation
 - [ ] Absorption pointers: 006/002 rows → phases 008/009; ex-031 Group-A rows → phase 007
 - [ ] Mapping tables: complete the 91-item P2 table in 006/004; fill the ledger completeness table in this phase's tasks.md; sweep 014's open rows
-- [ ] Status reconciliation: 028/006 parent, 028 packet parent, 016 program parent — spec rows edited, JSON regenerated; record the two tooling findings with repro and routing
+- [ ] Status reconciliation: 028/006 parent, 028 packet parent, 016 program parent — spec rows edited, JSON regenerated; record the three tooling findings (create.sh, upgrade-level.sh, generate-description.js `--level`) with repro and routing
 
 ### Phase 3: Verification
 - [ ] Grep audits pass: no stale open-state strings; every absorbed row carries exactly one disposition
@@ -149,7 +149,7 @@ Required inventories:
 | Structural validation | Every edited spec folder + final recursive run over 016 parent and 13 children | `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh <folder> --strict` |
 | Placeholder audit | Edited tracker docs and this phase's four docs | `check-placeholders.sh`; `rg` for stale open-state strings |
 | Metadata integrity | Regenerated graph-metadata.json / description.json for 006, 028, 016 parents | JSON parse via node; derived-status cross-check against spec.md rows |
-| Completeness audit | 91-item P2 table and ledger mapping table | Row-count reconciliation against review-report.md (91) and findings-ledger.md sections |
+| Completeness audit | Reconstructed 91-item P2 table and finding-level ledger mapping table | Count reconciliation against the "91" headline (frozen per-item source unrecoverable — reconstruct from ledger + G1-G15) and the finding-level table covering all 13 pre-enumerated silent drops |
 | Index visibility | Edited folders visible to memory search | Scoped `memory_index_scan({ specFolder })` + a follow-up scoped search |
 <!-- /ANCHOR:testing -->
 

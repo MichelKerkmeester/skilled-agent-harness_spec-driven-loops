@@ -75,7 +75,7 @@ FAILURE MODES:
 <!-- ANCHOR:testing -->
 ## Testing
 
-- [ ] CHK-020 [P0] All acceptance criteria met (REQ-001..REQ-012 acceptance columns)
+- [ ] CHK-020 [P0] All acceptance criteria met (REQ-001..REQ-013 acceptance columns)
 - [ ] CHK-021 [P0] Manual testing complete (SQL parity counts, drain throughput window, tail-of-large-doc query per ADR-001)
 - [ ] CHK-022 [P1] Edge cases tested (retry@max rescue, model mismatch at query time, chunked re-save, empty queue idle)
 - [ ] CHK-023 [P1] Error scenarios validated (embedder outage resume, cache poisoning attempt, cancelled scan)
@@ -129,7 +129,7 @@ FAILURE MODES:
 <!-- ANCHOR:phase-gates -->
 ## Phase Gates (Decomposition §004)
 
-- [ ] CHK-200 [P0] SC-001: success-row count == vector-row count on the active shard; health consistency check reports 0 desync (was 367)
+- [ ] CHK-200 [P0] SC-001: success-row count == vector-row count on the active shard; health consistency check reports 0 desync (was 367); reconciled rows queryable via the active vector surface (success->retry churn without embedding does not count)
 - [ ] CHK-201 [P0] SC-002: pending backlog projected to drain < 24h at the scaled rate, measured over a bounded window (was 8,761 pending at 5 rows/5min)
 - [ ] CHK-202 [P0] SC-003 + ADR-001: decision Accepted with spike evidence; big-doc tails vector-searchable (Option A) or truncation policy explicitly documented (Option B); safe-swap P0 fixed either way
 - [ ] CHK-203 [P1] SC-004: embedding_model empties 0 (was 27,706); exactly one canonical spelling (was 2)
