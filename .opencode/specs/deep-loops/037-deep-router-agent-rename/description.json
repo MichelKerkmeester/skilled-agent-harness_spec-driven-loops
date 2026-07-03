@@ -1,0 +1,23 @@
+{
+  "specFolder": "deep-loops/037-deep-router-agent-rename",
+  "description": "The primary deep-loop router agent was named `deep`",
+  "keywords": [
+    "primary",
+    "deep-loop",
+    "router",
+    "agent",
+    "named",
+    "deep"
+  ],
+  "lastUpdated": "2026-07-03T19:58:53.981Z",
+  "specId": "037",
+  "folderSlug": "deep-router-agent-rename",
+  "parentChain": [
+    ".opencode",
+    "specs",
+    "deep-loops"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

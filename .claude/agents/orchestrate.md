@@ -111,10 +111,10 @@ LEGAL: Orchestrator(0) → @general(1)
 ILLEGAL: Orch(0) → @context(1) → @review(2)
 ILLEGAL: Orch(0) → @review(1) → @general(2)
 ILLEGAL: Orch(0) → Sub-Orch(1) → @leaf(2)
-ILLEGAL: Orch(0) → @deep(1)  [@deep is mode: primary, not a depth-1 leaf -- it self-routes and would itself need to dispatch a leaf at depth 2]
+ILLEGAL: Orch(0) → @deep-loop(1)  [@deep-loop is mode: primary, not a depth-1 leaf -- it self-routes and would itself need to dispatch a leaf at depth 2]
 ```
 
-**@deep is never a Task-dispatch target for this orchestrator.** For `/deep:*` requests, resolve the target leaf agent directly from the Priority table above (registry-backed) and dispatch that leaf at depth 1. Never Task-dispatch `@deep` itself as a worker — it is a primary router, and doing so would create the illegal `Orch(0) → @deep(1) → @leaf(2)` chain.
+**@deep-loop is never a Task-dispatch target for this orchestrator.** For `/deep:*` requests, resolve the target leaf agent directly from the Priority table above (registry-backed) and dispatch that leaf at depth 1. Never Task-dispatch `@deep-loop` itself as a worker — it is a primary router, and doing so would create the illegal `Orch(0) → @deep-loop(1) → @leaf(2)` chain.
 
 #### 🔒 LEAF Enforcement Instruction
 
