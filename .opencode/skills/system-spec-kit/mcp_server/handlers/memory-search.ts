@@ -1200,7 +1200,7 @@ async function handleMemorySearch(args: SearchArgs): Promise<MCPResponse> {
     tier,
     contextType,
     useDecay,
-    includeArchived,
+    includeArchived: false,
     qualityThreshold,
     applyStateLimits,
     includeContiguity,

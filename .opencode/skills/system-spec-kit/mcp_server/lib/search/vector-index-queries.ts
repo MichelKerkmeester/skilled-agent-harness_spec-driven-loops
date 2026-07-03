@@ -15,7 +15,7 @@ import { isArchivedVectorInclusionEnabled } from './search-flags.js';
 import { ACTIVE_ROW_SQL, isActiveRow } from './active-row-predicate.js';
 import * as embeddingsProvider from '../providers/embeddings.js';
 import { getStartupEmbeddingProfile } from '@spec-kit/shared/embeddings';
-import { DEFAULT_ACTIVE_EMBEDDER, getActiveEmbedder } from '../embedders/schema.js';
+import { DEFAULT_ACTIVE_EMBEDDER, getActiveEmbedder, normalizeEmbeddingModelName } from '../embedders/schema.js';
 import { getEmbedderAdapter } from '../embedders/execution-router.js';
 import { getManifest } from '../embedders/registry.js';
 import {
@@ -68,6 +68,30 @@ type VectorSource = {
   idColumn: string;
   embeddingColumn: string;
 };
+
+function activeEmbeddingModelAliases(database: Database.Database): string[] {
+  const active = getActiveEmbedder(database);
+  const model = active.name !== DEFAULT_ACTIVE_EMBEDDER.name
+    ? active.name
+    : embeddingsProvider.getModelName();
+  const canonical = normalizeEmbeddingModelName(model);
+  if (!canonical) return [];
+  const aliases = new Set([canonical]);
+  if (canonical === 'nomic-embed-text-v1.5') {
+    aliases.add('nomic-ai/nomic-embed-text-v1.5');
+  }
+  return [...aliases];
+}
+
+function appendEmbeddingModelIdentityGuard(clauses: string[], params: unknown[], database: Database.Database): void {
+  const aliases = activeEmbeddingModelAliases(database);
+  if (aliases.length === 0) return;
+  clauses.push(`(
+    COALESCE(NULLIF(TRIM(m.embedding_model), ''), ?) = ?
+    OR m.embedding_model IN (${aliases.map(() => '?').join(', ')})
+  )`);
+  params.push(aliases[0], aliases[0], ...aliases);
+}
 
 export interface KnnQueryShapeBenchmarkResult {
   readonly corpusSize: number;
@@ -437,6 +461,7 @@ export function vector_search(
   }
 
   appendSpecFolderScope(where_clauses, params, specFolder);
+  appendEmbeddingModelIdentityGuard(where_clauses, params, database);
 
   if (contextType) {
     where_clauses.push('m.context_type = ?');
@@ -552,6 +577,10 @@ export function multi_concept_search(
   ).join(' AND ');
 
   const folder_filter = specFolder ? "AND (m.spec_folder = ? OR m.spec_folder LIKE ? ESCAPE '\\')" : '';
+  const identityAliases = activeEmbeddingModelAliases(database);
+  const identityFilter = identityAliases.length > 0
+    ? `AND (COALESCE(NULLIF(TRIM(m.embedding_model), ''), ?) = ? OR m.embedding_model IN (${identityAliases.map(() => '?').join(', ')}))`
+    : '';
   const similarity_select = concept_buffers.map((_, i) =>
     `ROUND((1 - sub.dist_${i} / 2) * 100, 2) as similarity_${i}`
   ).join(', ');
@@ -574,6 +603,7 @@ export function multi_concept_search(
         AND ${ACTIVE_ROW_SQL('m', { includeCold: isArchivedVectorInclusionEnabled() })}
         AND (m.expires_at IS NULL OR m.expires_at > datetime('now'))
         ${folder_filter}
+        ${identityFilter}
         AND ${distance_filters}
     ) sub
     ORDER BY avg_distance ASC,
@@ -584,6 +614,7 @@ export function multi_concept_search(
   const params = [
     ...concept_buffers,
     ...(specFolder ? [specFolder, specFolderLikePattern(specFolder)] : []),
+    ...(identityAliases.length > 0 ? [identityAliases[0], identityAliases[0], ...identityAliases] : []),
     ...concept_buffers.flatMap(b => [b, max_distance]),
     limit
   ];
@@ -791,9 +822,9 @@ export async function generate_query_embedding(query: string): Promise<Float32Ar
     const database = initialize_db();
     const active = getActiveEmbedder(database);
     const trimmedQuery = query.trim();
-    const modelId = active.name !== DEFAULT_ACTIVE_EMBEDDER.name
+    const modelId = normalizeEmbeddingModelName(active.name !== DEFAULT_ACTIVE_EMBEDDER.name
       ? active.name
-      : embeddingsProvider.getModelName();
+      : embeddingsProvider.getModelName()) ?? embeddingsProvider.getModelName();
     const embeddingDim = active.name !== DEFAULT_ACTIVE_EMBEDDER.name
       ? active.dim
       : embeddingsProvider.getEmbeddingDimension();

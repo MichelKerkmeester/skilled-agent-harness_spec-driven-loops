@@ -21,6 +21,7 @@ import { create_schema, ensure_schema_version } from '../lib/search/vector-index
 import { migrateLegacySingleDbToShardSync } from '../lib/search/db-shard-migration';
 import { index_memory } from '../lib/search/vector-index-mutations';
 import { vector_search } from '../lib/search/vector-index-queries';
+import { fts5Bm25Search } from '../lib/search/sqlite-fts';
 import {
   clearCache,
   initEmbeddingCache,
@@ -146,6 +147,10 @@ function createLegacySingleDb(legacyPath: string, profile = makeProfile()): void
     VALUES (?, ?, ?, ?, ?, ?)
   `).run('hash-1', `${profile.provider}:${profile.model}:${profile.dim}`, 'document', profile.model, makeEmbeddingBuffer(), profile.dim);
   db.close();
+}
+
+function vectorRepairSentinelPath(shardPath: string): string {
+  return path.join(path.dirname(path.dirname(shardPath)), 'checkpoints', `.${path.basename(shardPath)}.repair-pending`);
 }
 
 describe('canonical metadata DB + active vector shard split', () => {
@@ -293,6 +298,7 @@ describe('canonical metadata DB + active vector shard split', () => {
     const dimCount = db.prepare(`SELECT COUNT(*) AS count FROM ${activeVectorSource(`vec_${profile.dim}`)} WHERE id = ?`)
       .get(id) as { count: number };
     expect(dimCount.count).toBe(1);
+    db.prepare('UPDATE memory_index SET embedding_model = ? WHERE id = ?').run(profile.model, id);
     expect(vector_search(makeEmbedding(), { limit: 5, includeConstitutional: false }, db).map((row) => row.id))
       .toContain(id);
     expect(tableExists(db, 'main', 'vec_memories')).toBe(false);
@@ -324,6 +330,34 @@ describe('canonical metadata DB + active vector shard split', () => {
     db.close();
   });
 
+  it('clears default auto repair sentinel when vec_memories has vectors', () => {
+    const profile = makeProfile();
+    const db = createSchemaBackedDb(tempDir, profile);
+    index_memory({
+      specFolder: 'specs/demo',
+      filePath: 'default-auto.md',
+      title: 'Default auto vector row',
+      triggerPhrases: ['auto'],
+      importanceWeight: 0.5,
+      embedding: makeEmbedding(),
+      contentText: 'default auto writes only the vec_memories search payload',
+    }, db);
+    const shardPath = profile.getVectorShardPath(tempDir);
+    const sentinelPath = vectorRepairSentinelPath(shardPath);
+    fs.mkdirSync(path.dirname(sentinelPath), { recursive: true });
+    fs.writeFileSync(sentinelPath, JSON.stringify({ reason: 'stale repair marker', quarantinePath: null }), 'utf8');
+
+    detachActiveVectorShard(db);
+    db.close();
+
+    const reopened = openCanonical(tempDir, profile);
+
+    expect(fs.existsSync(sentinelPath)).toBe(false);
+
+    detachActiveVectorShard(reopened);
+    reopened.close();
+  });
+
   it('runs vector_search against active_vec.vec_memories', () => {
     const profile = makeProfile();
     const db = createSchemaBackedDb(tempDir, profile);
@@ -340,6 +374,80 @@ describe('canonical metadata DB + active vector shard split', () => {
     const results = vector_search(makeEmbedding(), { limit: 5, includeConstitutional: false }, db);
 
     expect(results.map((row) => row.id)).toContain(id);
+    detachActiveVectorShard(db);
+    db.close();
+  });
+
+  it('keeps oversized document tails reachable through FTS with one stored vector', () => {
+    const profile = makeProfile();
+    const db = createSchemaBackedDb(tempDir, profile);
+    const tailSentinel = 'taillexicalsentinel unique recovery phrase';
+    const contentText = `${'embedded prefix content '.repeat(3000)}\n${tailSentinel}`;
+
+    const id = index_memory({
+      specFolder: 'specs/demo',
+      filePath: 'oversized.md',
+      title: 'Oversized one-vector row',
+      triggerPhrases: ['oversized'],
+      importanceWeight: 0.5,
+      embedding: makeEmbedding(),
+      contentText,
+    }, db);
+
+    const vectorRows = db.prepare(`SELECT COUNT(*) AS count FROM ${activeVectorSource('vec_memories')} WHERE rowid = ?`)
+      .get(id) as { count: number };
+    const ftsRows = fts5Bm25Search(db, 'taillexicalsentinel', { limit: 5, specFolder: 'specs/demo' });
+
+    expect(contentText.length).toBeGreaterThan(50_000);
+    expect(vectorRows.count).toBe(1);
+    expect(ftsRows.map((row) => row.id)).toContain(id);
+
+    detachActiveVectorShard(db);
+    db.close();
+  });
+
+  it('filters vector results to the active embedding model identity', () => {
+    const profile = makeProfile();
+    const db = createSchemaBackedDb(tempDir, profile);
+    setActiveEmbedder(db, profile.model, profile.dim, profile.provider);
+
+    const activeId = index_memory({
+      specFolder: 'specs/demo',
+      filePath: 'active.md',
+      title: 'Active model row',
+      triggerPhrases: ['active'],
+      importanceWeight: 0.5,
+      embedding: makeEmbedding(),
+      contentText: 'active model vector row',
+    }, db);
+    db.prepare('UPDATE memory_index SET embedding_model = ? WHERE id = ?').run(profile.model, activeId);
+    const mismatchedId = index_memory({
+      specFolder: 'specs/demo',
+      filePath: 'mismatch.md',
+      title: 'Mismatched model row',
+      triggerPhrases: ['mismatch'],
+      importanceWeight: 0.5,
+      embedding: makeEmbedding(),
+      contentText: 'mismatched model vector row',
+    }, db);
+    const legacyId = index_memory({
+      specFolder: 'specs/demo',
+      filePath: 'legacy.md',
+      title: 'Legacy provenance row',
+      triggerPhrases: ['legacy'],
+      importanceWeight: 0.5,
+      embedding: makeEmbedding(),
+      contentText: 'legacy vector row without model provenance',
+    }, db);
+    db.prepare('UPDATE memory_index SET embedding_model = ? WHERE id = ?').run('other-model', mismatchedId);
+    db.prepare('UPDATE memory_index SET embedding_model = ? WHERE id = ?').run('', legacyId);
+
+    const ids = vector_search(makeEmbedding(), { limit: 5, includeConstitutional: false }, db).map((row) => row.id);
+
+    expect(ids).toContain(activeId);
+    expect(ids).toContain(legacyId);
+    expect(ids).not.toContain(mismatchedId);
+
     detachActiveVectorShard(db);
     db.close();
   });

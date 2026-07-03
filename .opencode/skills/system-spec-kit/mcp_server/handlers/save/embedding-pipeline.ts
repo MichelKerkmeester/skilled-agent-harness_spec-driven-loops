@@ -118,8 +118,8 @@ function buildParsedMemoryWeightedSections(parsed: ParsedMemory): WeightedDocume
   };
 }
 
-function computeCacheKey(content: string): string {
-  return computeContentHash(normalizeContentForEmbedding(content));
+function computeCacheKey(embeddedText: string): string {
+  return computeContentHash(embeddedText);
 }
 
 export async function generateOrCacheEmbedding(
@@ -135,7 +135,8 @@ export async function generateOrCacheEmbedding(
   const embeddingDim = embeddings.getEmbeddingDimension();
   const profileKey = getActiveEmbeddingProfileKey(database, modelId, embeddingDim);
   const inputKind = 'document' as const;
-  const cacheKey = computeCacheKey(parsed.content);
+  const weightedInput = embeddings.buildWeightedDocumentText(buildParsedMemoryWeightedSections(parsed));
+  const cacheKey = computeCacheKey(weightedInput);
 
   if (asyncEmbedding) {
     const cachedBuf = lookupEmbedding(database, cacheKey, modelId, embeddingDim, { profileKey, inputKind });
@@ -165,9 +166,6 @@ export async function generateOrCacheEmbedding(
         embeddingStatus = 'success';
         console.error(`[memory-save] Embedding cache HIT for ${path.basename(filePath)}`);
       } else {
-        // Cache miss: normalize content then generate embedding via provider
-        // strip structural noise (frontmatter, anchors, HTML comments) before embedding
-        const weightedInput = embeddings.buildWeightedDocumentText(buildParsedMemoryWeightedSections(parsed));
         embedding = await embeddings.generateDocumentEmbedding(weightedInput);
         if (embedding) {
           embeddingStatus = 'success';

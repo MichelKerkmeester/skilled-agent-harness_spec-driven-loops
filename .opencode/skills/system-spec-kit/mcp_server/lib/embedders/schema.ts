@@ -45,6 +45,10 @@ export const DEFAULT_ACTIVE_EMBEDDER: ActiveEmbedder = Object.freeze({
   dim: 0,
 });
 
+const MODEL_NAME_ALIASES = new Map<string, string>([
+  ['nomic-ai/nomic-embed-text-v1.5', 'nomic-embed-text-v1.5'],
+]);
+
 const ACTIVE_EMBEDDER_NAME_KEY = 'active_embedder_name';
 const ACTIVE_EMBEDDER_DIM_KEY = 'active_embedder_dim';
 const ACTIVE_EMBEDDER_PROVIDER_KEY = 'active_embedder_provider';
@@ -57,6 +61,15 @@ function validateDim(dim: number): void {
   if (!Number.isInteger(dim) || dim <= 0) {
     throw new RangeError(`Embedder dimension must be a positive integer, got ${dim}`);
   }
+}
+
+export function normalizeEmbeddingModelName(name: string | null | undefined): string | null {
+  const trimmed = typeof name === 'string' ? name.trim() : '';
+  if (trimmed.length === 0) {
+    return null;
+  }
+
+  return MODEL_NAME_ALIASES.get(trimmed) ?? trimmed;
 }
 
 export function vecTableNameForDim(dim: number): string {
@@ -86,7 +99,7 @@ function readActiveEmbedderIfValid(db: Database.Database): ActiveEmbedder | null
     ACTIVE_EMBEDDER_PROVIDER_KEY,
   ) as MetadataRow[]).map((row) => [row.key, row.value]));
 
-  const name = rows.get(ACTIVE_EMBEDDER_NAME_KEY);
+  const name = normalizeEmbeddingModelName(rows.get(ACTIVE_EMBEDDER_NAME_KEY));
   const dimRaw = rows.get(ACTIVE_EMBEDDER_DIM_KEY);
   const dim = typeof dimRaw === 'string' ? Number.parseInt(dimRaw, 10) : NaN;
 
@@ -165,8 +178,8 @@ export function setActiveEmbedder(
   dim: number,
   provider?: AutoSelectedEmbedderProvider,
 ): void {
-  const trimmedName = name.trim();
-  if (trimmedName.length === 0) {
+  const trimmedName = normalizeEmbeddingModelName(name);
+  if (!trimmedName) {
     throw new TypeError('Active embedder name must be non-empty');
   }
   validateDim(dim);

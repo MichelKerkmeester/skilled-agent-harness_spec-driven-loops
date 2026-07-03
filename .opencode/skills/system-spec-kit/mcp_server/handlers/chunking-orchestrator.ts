@@ -264,6 +264,12 @@ async function indexChunkedMemoryFile(
   // Use existingParentUpdated below for mutation ledger (replaces `existing` variable)
   const existing = existingParentUpdated;
   const useSafeSwap = existing;
+  const oldChildRows = useSafeSwap
+    ? database.prepare(`
+      SELECT id FROM memory_index WHERE parent_id = ?
+    `).all(parentId) as Array<{ id: number }>
+    : [];
+  const oldChildIds = oldChildRows.map((row) => row.id);
 
   // Index each chunk as a child record
   let successCount = 0;
@@ -321,6 +327,7 @@ async function indexChunkedMemoryFile(
             documentType: parsed.documentType || 'memory',
             contentText: chunk.content,
             scope,
+            ...(useSafeSwap ? { appendOnly: true } : {}),
           }, database);
         } else {
           childId = vectorIndex.indexMemoryDeferred({
@@ -336,6 +343,7 @@ async function indexChunkedMemoryFile(
             documentType: parsed.documentType || 'memory',
             contentText: chunk.content,
             scope,
+            ...(useSafeSwap ? { appendOnly: true } : {}),
           }, database);
         }
 
@@ -486,11 +494,6 @@ async function indexChunkedMemoryFile(
   }
 
   if (useSafeSwap) {
-    const oldChildRows = database.prepare(`
-      SELECT id FROM memory_index WHERE parent_id = ?
-    `).all(parentId) as Array<{ id: number }>;
-    const oldChildIds = oldChildRows.map((row) => row.id);
-
     const finalizeSwapTx = database.transaction((newChildIds: number[]) => {
       const importanceWeight = calculateDocumentWeight(filePath, parsed.documentType);
       const specLevel = isSpecDocumentType(parsed.documentType)

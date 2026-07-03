@@ -1,6 +1,6 @@
 import BetterSqlite3 from 'better-sqlite3';
 import { afterEach, describe, expect, it, vi } from 'vitest';
-import { acquireIndexScanLease, completeIndexScanLease, init } from '../core/db-state';
+import { acquireIndexScanLease, completeIndexScanLease, init, refreshScanLease } from '../core/db-state';
 import type { DatabaseLike } from '../core/db-state';
 
 describe('db-state', () => {
@@ -163,6 +163,103 @@ describe('db-state', () => {
 
     expect(Number.parseInt(lastScan.value, 10)).toBe(completedAt);
     expect(activeLease).toBeUndefined();
+
+    db.close();
+  });
+
+  it('applies scan cooldown only to the same scan key', async () => {
+    const db = new BetterSqlite3(':memory:');
+
+    init({
+      vectorIndex: {
+        initializeDb: vi.fn(),
+        getDb: vi.fn(() => db as unknown as DatabaseLike),
+        closeDb: vi.fn(),
+      },
+    });
+
+    const start = Date.now();
+    const first = await acquireIndexScanLease({ now: start, cooldownMs: 60000, leaseExpiryMs: 120000, scanKey: 'scope-a' });
+    await completeIndexScanLease(start + 2000, { scanKey: 'scope-a' });
+    const sameScope = await acquireIndexScanLease({ now: start + 3000, cooldownMs: 60000, leaseExpiryMs: 120000, scanKey: 'scope-a' });
+    const differentScope = await acquireIndexScanLease({ now: start + 4000, cooldownMs: 60000, leaseExpiryMs: 120000, scanKey: 'scope-b' });
+
+    expect(first.acquired).toBe(true);
+    expect(sameScope.acquired).toBe(false);
+    expect(sameScope.reason).toBe('cooldown');
+    expect(differentScope.acquired).toBe(true);
+
+    db.close();
+  });
+
+  it('does not coalesce an active lease for a different scan key', async () => {
+    const db = new BetterSqlite3(':memory:');
+
+    init({
+      vectorIndex: {
+        initializeDb: vi.fn(),
+        getDb: vi.fn(() => db as unknown as DatabaseLike),
+        closeDb: vi.fn(),
+      },
+    });
+
+    const now = Date.now();
+    const first = await acquireIndexScanLease({ now, cooldownMs: 60000, leaseExpiryMs: 120000, scanKey: 'scope-a' });
+    const differentScope = await acquireIndexScanLease({ now: now + 1000, cooldownMs: 60000, leaseExpiryMs: 120000, scanKey: 'scope-b' });
+    const sameScope = await acquireIndexScanLease({ now: now + 2000, cooldownMs: 60000, leaseExpiryMs: 120000, scanKey: 'scope-b' });
+
+    expect(first.acquired).toBe(true);
+    expect(differentScope.acquired).toBe(true);
+    expect(sameScope.acquired).toBe(false);
+    expect(sameScope.reason).toBe('lease_active');
+
+    db.close();
+  });
+
+  it('clears a cancelled scan lease without stamping cooldown', async () => {
+    const db = new BetterSqlite3(':memory:');
+
+    init({
+      vectorIndex: {
+        initializeDb: vi.fn(),
+        getDb: vi.fn(() => db as unknown as DatabaseLike),
+        closeDb: vi.fn(),
+      },
+    });
+
+    const start = Date.now();
+    const first = await acquireIndexScanLease({ now: start, cooldownMs: 60000, leaseExpiryMs: 120000, scanKey: 'scope-a' });
+    await completeIndexScanLease(start + 1000, { scanKey: 'scope-a', setCooldown: false });
+    const second = await acquireIndexScanLease({ now: start + 2000, cooldownMs: 60000, leaseExpiryMs: 120000, scanKey: 'scope-a' });
+    const lastScan = db.prepare('SELECT value FROM config WHERE key = ?').get('last_index_scan') as { value: string } | undefined;
+
+    expect(first.acquired).toBe(true);
+    expect(second.acquired).toBe(true);
+    expect(lastScan).toBeUndefined();
+
+    db.close();
+  });
+
+  it('refreshes only the matching keyed scan lease', async () => {
+    const db = new BetterSqlite3(':memory:');
+
+    init({
+      vectorIndex: {
+        initializeDb: vi.fn(),
+        getDb: vi.fn(() => db as unknown as DatabaseLike),
+        closeDb: vi.fn(),
+      },
+    });
+
+    const start = Date.now();
+    await acquireIndexScanLease({ now: start, cooldownMs: 60000, leaseExpiryMs: 120000, scanKey: 'scope-a' });
+    refreshScanLease(start + 1000, undefined, 'scope-b');
+    const unchanged = db.prepare('SELECT value FROM config WHERE key = ?').get('scan_started_at') as { value: string };
+    refreshScanLease(start + 2000, undefined, 'scope-a');
+    const refreshed = db.prepare('SELECT value FROM config WHERE key = ?').get('scan_started_at') as { value: string };
+
+    expect(Number.parseInt(unchanged.value, 10)).toBe(start);
+    expect(Number.parseInt(refreshed.value, 10)).toBe(start + 2000);
 
     db.close();
   });

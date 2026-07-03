@@ -86,6 +86,7 @@ let constitutionalCacheTime: number = 0;
 let configTableCreated: boolean = false;
 const CONFIG_KEY_LAST_INDEX_SCAN = 'last_index_scan';
 const CONFIG_KEY_SCAN_STARTED_AT = 'scan_started_at';
+const CONFIG_KEY_SCAN_KEY = 'scan_key';
 const DEFAULT_SCAN_LEASE_EXPIRY_MS = INDEX_SCAN_COOLDOWN * 2;
 
 // ────────────────────────────────────────────────────────────────
@@ -378,6 +379,7 @@ export interface IndexScanLeaseResult {
   scanStartedAt: number;
   leaseExpiryMs: number;
   cooldownMs: number;
+  scanKey: string | null;
 }
 
 /**
@@ -410,6 +412,7 @@ export async function acquireIndexScanLease(options?: {
   now?: number;
   cooldownMs?: number;
   leaseExpiryMs?: number;
+  scanKey?: string;
 }): Promise<IndexScanLeaseResult> {
   if (!vectorIndex) {
     throw new Error('db-state not initialized: vector_index is null');
@@ -422,6 +425,7 @@ export async function acquireIndexScanLease(options?: {
     ? options.cooldownMs
     : INDEX_SCAN_COOLDOWN;
   const leaseExpiryMs = resolveScanLeaseExpiryMs(options?.leaseExpiryMs);
+  const requestedScanKey = typeof options?.scanKey === 'string' && options.scanKey.length > 0 ? options.scanKey : null;
 
   try {
     const db = vectorIndex.getDb();
@@ -434,6 +438,7 @@ export async function acquireIndexScanLease(options?: {
         scanStartedAt: 0,
         leaseExpiryMs,
         cooldownMs,
+        scanKey: requestedScanKey,
       };
     }
 
@@ -443,23 +448,31 @@ export async function acquireIndexScanLease(options?: {
       const rows = db.prepare(`
         SELECT key, value
         FROM config
-        WHERE key IN (?, ?)
-      `).all(CONFIG_KEY_LAST_INDEX_SCAN, CONFIG_KEY_SCAN_STARTED_AT) as Array<{ key?: string; value?: string }>;
+        WHERE key IN (?, ?, ?)
+      `).all(CONFIG_KEY_LAST_INDEX_SCAN, CONFIG_KEY_SCAN_STARTED_AT, CONFIG_KEY_SCAN_KEY) as Array<{ key?: string; value?: string }>;
 
       let lastIndexScan = 0;
       let scanStartedAt = 0;
+      let activeScanKey: string | null = null;
 
       for (const row of rows) {
         if (row.key === CONFIG_KEY_LAST_INDEX_SCAN) {
           lastIndexScan = parseConfigTimestamp(row.value);
         } else if (row.key === CONFIG_KEY_SCAN_STARTED_AT) {
           scanStartedAt = parseConfigTimestamp(row.value);
+        } else if (row.key === CONFIG_KEY_SCAN_KEY) {
+          activeScanKey = typeof row.value === 'string' && row.value.length > 0 ? row.value : null;
         }
       }
 
-      scanStartedAt = clearStaleScanLease(db, now, scanStartedAt, leaseExpiryMs);
+      const clearedStartedAt = clearStaleScanLease(db, now, scanStartedAt, leaseExpiryMs);
+      if (clearedStartedAt === 0 && scanStartedAt !== 0) {
+        db.prepare('DELETE FROM config WHERE key = ?').run(CONFIG_KEY_SCAN_KEY);
+        activeScanKey = null;
+      }
+      scanStartedAt = clearedStartedAt;
 
-      if (scanStartedAt > 0 && now - scanStartedAt < leaseExpiryMs) {
+      if (scanStartedAt > 0 && now - scanStartedAt < leaseExpiryMs && (!activeScanKey || !requestedScanKey || activeScanKey === requestedScanKey)) {
         const waitSeconds = Math.ceil((leaseExpiryMs - (now - scanStartedAt)) / 1000);
         return {
           acquired: false,
@@ -469,10 +482,11 @@ export async function acquireIndexScanLease(options?: {
           scanStartedAt,
           leaseExpiryMs,
           cooldownMs,
+          scanKey: activeScanKey,
         };
       }
 
-      if (lastIndexScan > 0 && now - lastIndexScan < cooldownMs) {
+      if (lastIndexScan > 0 && now - lastIndexScan < cooldownMs && activeScanKey === requestedScanKey) {
         const waitSeconds = Math.ceil((cooldownMs - (now - lastIndexScan)) / 1000);
         return {
           acquired: false,
@@ -482,6 +496,7 @@ export async function acquireIndexScanLease(options?: {
           scanStartedAt,
           leaseExpiryMs,
           cooldownMs,
+          scanKey: activeScanKey,
         };
       }
 
@@ -489,6 +504,14 @@ export async function acquireIndexScanLease(options?: {
         CONFIG_KEY_SCAN_STARTED_AT,
         String(now),
       );
+      if (requestedScanKey) {
+        db.prepare('INSERT OR REPLACE INTO config (key, value) VALUES (?, ?)').run(
+          CONFIG_KEY_SCAN_KEY,
+          requestedScanKey,
+        );
+      } else {
+        db.prepare('DELETE FROM config WHERE key = ?').run(CONFIG_KEY_SCAN_KEY);
+      }
 
       return {
         acquired: true,
@@ -498,6 +521,7 @@ export async function acquireIndexScanLease(options?: {
         scanStartedAt: now,
         leaseExpiryMs,
         cooldownMs,
+        scanKey: requestedScanKey,
       };
     });
 
@@ -518,6 +542,7 @@ export async function acquireIndexScanLease(options?: {
         scanStartedAt: 0,
         leaseExpiryMs,
         cooldownMs,
+        scanKey: requestedScanKey,
       };
     }
 
@@ -532,6 +557,7 @@ export async function acquireIndexScanLease(options?: {
       scanStartedAt: 0,
       leaseExpiryMs,
       cooldownMs,
+      scanKey: requestedScanKey,
     };
   }
 }
@@ -540,19 +566,27 @@ export async function acquireIndexScanLease(options?: {
  * Refresh the active scan lease timestamp to prevent expiry during long scans.
  * Call every ~30s during a scan to keep the lease alive.
  */
-export function refreshScanLease(now?: number): void {
+export function refreshScanLease(now?: number, expectedScanStartedAt?: number, scanKey?: string): void {
   try {
     const db = vectorIndex?.getDb();
     if (!db) return;
-    db.prepare('INSERT OR REPLACE INTO config (key, value) VALUES (?, ?)')
-      .run(CONFIG_KEY_SCAN_STARTED_AT, String(now ?? Date.now()));
+    const current = db.prepare('SELECT value FROM config WHERE key = ?').get(CONFIG_KEY_SCAN_STARTED_AT) as { value?: string } | undefined;
+    if (typeof expectedScanStartedAt === 'number' && parseConfigTimestamp(current?.value) !== expectedScanStartedAt) {
+      return;
+    }
+    if (scanKey) {
+      const currentKey = db.prepare('SELECT value FROM config WHERE key = ?').get(CONFIG_KEY_SCAN_KEY) as { value?: string } | undefined;
+      if (currentKey?.value !== scanKey) return;
+    }
+    db.prepare('UPDATE config SET value = ? WHERE key = ?')
+      .run(String(now ?? Date.now()), CONFIG_KEY_SCAN_STARTED_AT);
   } catch {
     // heartbeat is best-effort
   }
 }
 
 /** Complete an index scan and convert active lease to last_index_scan timestamp. */
-export async function completeIndexScanLease(time: number): Promise<void> {
+export async function completeIndexScanLease(time: number, options: { setCooldown?: boolean; scanKey?: string } = {}): Promise<void> {
   if (!vectorIndex) {
     throw new Error('db-state not initialized: vector_index is null');
   }
@@ -563,11 +597,20 @@ export async function completeIndexScanLease(time: number): Promise<void> {
 
     ensureConfigTable(db);
     const completeLeaseTx = db.transaction(() => {
-      db.prepare('INSERT OR REPLACE INTO config (key, value) VALUES (?, ?)').run(
-        CONFIG_KEY_LAST_INDEX_SCAN,
-        String(time),
-      );
+      const currentKey = db.prepare('SELECT value FROM config WHERE key = ?').get(CONFIG_KEY_SCAN_KEY) as { value?: string } | undefined;
+      if (options.scanKey && currentKey?.value !== options.scanKey) {
+        return;
+      }
+      if (options.setCooldown !== false) {
+        db.prepare('INSERT OR REPLACE INTO config (key, value) VALUES (?, ?)').run(
+          CONFIG_KEY_LAST_INDEX_SCAN,
+          String(time),
+        );
+      }
       db.prepare('DELETE FROM config WHERE key = ?').run(CONFIG_KEY_SCAN_STARTED_AT);
+      if (options.setCooldown === false || !options.scanKey) {
+        db.prepare('DELETE FROM config WHERE key = ?').run(CONFIG_KEY_SCAN_KEY);
+      }
     });
     completeLeaseTx();
   } catch (e: unknown) {

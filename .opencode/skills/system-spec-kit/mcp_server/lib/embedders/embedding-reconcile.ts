@@ -11,6 +11,7 @@
 // fails closed on mismatch.
 
 import type Database from 'better-sqlite3';
+import { normalizeEmbeddingModelName } from './schema.js';
 
 /** Maintenance modes. */
 export type EmbeddingReconcileMode = 'dry-run' | 'apply';
@@ -136,7 +137,7 @@ function metadataMap(database: Database.Database, schema: string): Map<string, s
 
 function readActiveEmbedder(database: Database.Database): { name: string | null; dim: number | null; provider: string | null } {
   const meta = metadataMap(database, 'main');
-  const name = meta.get('active_embedder_name') ?? null;
+  const name = normalizeEmbeddingModelName(meta.get('active_embedder_name'));
   const rawDim = meta.get('active_embedder_dim');
   const dim = rawDim != null && /^[0-9]+$/.test(rawDim) ? Number.parseInt(rawDim, 10) : null;
   const rawProvider = meta.get('active_embedder_provider');
@@ -174,7 +175,7 @@ function verifyActiveShard(
   }
 
   const shard = metadataMap(database, ACTIVE_SCHEMA);
-  const shardName = shard.get('model') ?? shard.get('embedding_model') ?? null;
+  const shardName = normalizeEmbeddingModelName(shard.get('model') ?? shard.get('embedding_model'));
   const rawShardDim = shard.get('dim') ?? shard.get('embedding_dim') ?? null;
   const shardDim = rawShardDim != null && /^[0-9]+$/.test(rawShardDim) ? Number.parseInt(rawShardDim, 10) : null;
   const shardProvider = shard.get('provider') ?? null;

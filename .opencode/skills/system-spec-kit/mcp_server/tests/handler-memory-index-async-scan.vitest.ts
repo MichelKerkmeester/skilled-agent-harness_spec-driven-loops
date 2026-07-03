@@ -283,6 +283,35 @@ describe('handler-memory-index async scan mode', () => {
     expect(envelope.data.status).toBe('complete_with_pending_vectors');
     expect(envelope.data.pendingVectors).toBeGreaterThan(0);
   });
+
+  it('counts updated rows with pending embeddings as pending vectors', async () => {
+    const testFile = '/tmp/mock-workspace/memory/test/spec.md';
+    mocks.mockFindSpecDocuments.mockReturnValue([testFile]);
+    mocks.mockCategorizeFilesForIndexing.mockReturnValue({
+      toIndex: [testFile],
+      toUpdate: [],
+      toSkip: [],
+      toDelete: [],
+    });
+    mocks.mockIndexMemoryFile.mockResolvedValue({
+      status: 'updated',
+      embeddingStatus: 'pending',
+      id: 2,
+      specFolder: 'specs/test',
+    });
+
+    const result = await handler.handleMemoryIndexScan({
+      includeConstitutional: false,
+      includeSpecDocs: true,
+      incremental: false,
+      force: false,
+    });
+
+    const envelope = JSON.parse(result.content[0].text);
+    expect(envelope.data.updated).toBe(1);
+    expect(envelope.data.status).toBe('complete_with_pending_vectors');
+    expect(envelope.data.pendingVectors).toBe(1);
+  });
 });
 
 // ──────────────────────────────────────────────────────────────

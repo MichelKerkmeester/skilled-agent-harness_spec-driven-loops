@@ -88,6 +88,7 @@ interface IndexResult {
   id?: number;
   specFolder?: string;
   title?: string | null;
+  embeddingStatus?: string;
   error?: string;
   errorDetail?: string;
   [key: string]: unknown;
@@ -477,6 +478,7 @@ async function runIndexScan(args: ScanArgs, ctx: ScanRunContext = {}): Promise<M
   const lease = await acquireIndexScanLease({
     now,
     cooldownMs: INDEX_SCAN_COOLDOWN,
+    scanKey,
   });
   if (!lease.acquired) {
     let message: string;
@@ -510,10 +512,10 @@ async function runIndexScan(args: ScanArgs, ctx: ScanRunContext = {}): Promise<M
   }
 
   let scanLeaseReleased = false;
-  const releaseScanLease = async (): Promise<void> => {
+  const releaseScanLease = async (options: { setCooldown?: boolean } = {}): Promise<void> => {
     if (scanLeaseReleased) return;
     scanLeaseReleased = true;
-    await completeIndexScanLease(Date.now());
+    await completeIndexScanLease(Date.now(), { setCooldown: options.setCooldown, scanKey });
   };
 
   const checkpointRepair = runCheckpointNeedsRebuildRepairForScan();
@@ -537,7 +539,7 @@ async function runIndexScan(args: ScanArgs, ctx: ScanRunContext = {}): Promise<M
 
   try {
   leaseHeartbeat = setInterval(() => {
-    refreshScanLease();
+    refreshScanLease(undefined, undefined, scanKey);
   }, leaseHeartbeatMs);
   leaseHeartbeat.unref?.();
 
@@ -559,7 +561,7 @@ async function runIndexScan(args: ScanArgs, ctx: ScanRunContext = {}): Promise<M
   }
 
   if (ctx.isCancelled?.()) {
-    await releaseScanLease();
+    await releaseScanLease({ setCooldown: false });
     return cancelledScanEnvelope(scanKey);
   }
   ctx.onPhase?.('discovering');
@@ -1190,7 +1192,6 @@ async function runIndexScan(args: ScanArgs, ctx: ScanRunContext = {}): Promise<M
           successfullyIndexedFiles.push(filePath);
         } else if (result.status === 'deferred') {
           results.indexed++;
-          results.deferred++;
           successfullyIndexedFiles.push(filePath);
           scanAppliedActions.push(createStatediffAction('insert', {
             target: 'memory_index',
@@ -1198,6 +1199,10 @@ async function runIndexScan(args: ScanArgs, ctx: ScanRunContext = {}): Promise<M
             sourceOperation: 'scan',
             metadata: { filePath, specFolder: result.specFolder ?? null, status: result.status },
           }));
+        }
+
+        if (result.status === 'deferred' || result.embeddingStatus === 'pending') {
+          results.deferred++;
         }
 
         if (isConstitutional) {
@@ -1268,11 +1273,12 @@ async function runIndexScan(args: ScanArgs, ctx: ScanRunContext = {}): Promise<M
       // loop is starved for the duration and no IPC (status, cancel, health,
       // search) can be serviced. Yield and re-check cancellation between rows; the
       // yield lands between self-contained promoteMetadataEdges transactions, never
-      // inside one, so atomicity on the shared connection is preserved.
-      if (++promoterYieldCount % 200 === 0) {
-        if (ctx.isCancelled?.()) {
-          return cancelledScanEnvelope(scanKey);
-        }
+        // inside one, so atomicity on the shared connection is preserved.
+        if (++promoterYieldCount % 200 === 0) {
+          if (ctx.isCancelled?.()) {
+            await releaseScanLease({ setCooldown: false });
+            return cancelledScanEnvelope(scanKey);
+          }
         await new Promise<void>((resolve) => setImmediate(resolve));
       }
       if (!fileResult.id || !fileResult.filePath || fileResult.status === 'failed') {
@@ -1300,6 +1306,7 @@ async function runIndexScan(args: ScanArgs, ctx: ScanRunContext = {}): Promise<M
   }
 
   if (ctx.isCancelled?.()) {
+    await releaseScanLease({ setCooldown: false });
     return cancelledScanEnvelope(scanKey);
   }
   ctx.onPhase?.('post-processing');
@@ -1389,6 +1396,7 @@ async function runIndexScan(args: ScanArgs, ctx: ScanRunContext = {}): Promise<M
           // metadata-edge sweep above).
           if (++chainYieldCount % 50 === 0) {
             if (ctx.isCancelled?.()) {
+              await releaseScanLease({ setCooldown: false });
               return cancelledScanEnvelope(scanKey);
             }
             await new Promise<void>((resolve) => setImmediate(resolve));

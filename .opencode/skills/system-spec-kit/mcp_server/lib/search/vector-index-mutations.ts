@@ -41,7 +41,7 @@ import {
   sqlite_vec_available as get_sqlite_vec_available,
   activeVectorSource,
 } from './vector-index-store.js';
-import { DEFAULT_ACTIVE_EMBEDDER, getActiveEmbedder, vecTableNameForDim } from '../embedders/schema.js';
+import { DEFAULT_ACTIVE_EMBEDDER, getActiveEmbedder, normalizeEmbeddingModelName, vecTableNameForDim } from '../embedders/schema.js';
 import type {
   IndexMemoryParams as SharedIndexMemoryParams,
   MemoryScopeParams,
@@ -70,6 +70,27 @@ function activeVectorTableExists(database: Database.Database, tableName: string)
   }
 }
 
+function mainTableExists(database: Database.Database, tableName: string): boolean {
+  try {
+    const row = database.prepare(`
+      SELECT 1 AS found
+      FROM sqlite_master
+      WHERE type = 'table' AND name = ?
+      LIMIT 1
+    `).get(tableName) as { found?: number } | undefined;
+    return row?.found === 1;
+  } catch (_error: unknown) {
+    return false;
+  }
+}
+
+function activeVectorMemoriesSource(database: Database.Database): string {
+  if (activeVectorTableExists(database, 'vec_memories')) {
+    return activeVectorSource('vec_memories');
+  }
+  return mainTableExists(database, 'vec_memories') ? 'vec_memories' : activeVectorSource('vec_memories');
+}
+
 function activeDimVectorSource(database: Database.Database): string | null {
   const active = getActiveEmbedder(database);
   if (active.name === DEFAULT_ACTIVE_EMBEDDER.name) {
@@ -80,9 +101,10 @@ function activeDimVectorSource(database: Database.Database): string | null {
 }
 
 function writeActiveVectorPayload(database: Database.Database, id: bigint, embeddingBuffer: Buffer): void {
-  database.prepare(`DELETE FROM ${activeVectorSource('vec_memories')} WHERE rowid = ?`).run(id);
+  const vectorMemoriesSource = activeVectorMemoriesSource(database);
+  database.prepare(`DELETE FROM ${vectorMemoriesSource} WHERE rowid = ?`).run(id);
   database.prepare(`
-    INSERT INTO ${activeVectorSource('vec_memories')} (rowid, embedding) VALUES (?, ?)
+    INSERT INTO ${vectorMemoriesSource} (rowid, embedding) VALUES (?, ?)
   `).run(id, embeddingBuffer);
 
   const dimSource = activeDimVectorSource(database);
@@ -375,7 +397,7 @@ export function index_memory(
       ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
     `).run(
       specFolder, filePath, canonicalFilePath, anchorId, title, triggers_json,
-      importanceWeight, now, now, embeddingsProvider.getModelName(), now, embedding_status,
+      importanceWeight, now, now, normalizeEmbeddingModelName(embeddingsProvider.getModelName()), now, embedding_status,
       encodingIntent ?? 'document', documentType, specLevel, contentText, qualityScore, JSON.stringify(qualityFlags), parentId,
       scope.tenant_id, scope.user_id, scope.agent_id, scope.session_id
     );
@@ -636,7 +658,7 @@ export function update_memory(
       updates.push('embedding_model = ?');
       updates.push('embedding_generated_at = ?');
       updates.push('embedding_status = ?');
-      values.push(embeddingsProvider.getModelName(), now, 'pending');
+      values.push(normalizeEmbeddingModelName(embeddingsProvider.getModelName()), now, 'pending');
     }
 
     values.push(id);
@@ -1008,7 +1030,7 @@ export function update_confidence(
 
 // Exported so the store-port clear() can resolve and purge the active per-dim
 // vector shard, mirroring the per-record delete path.
-export { activeDimVectorSource };
+export { activeDimVectorSource, writeActiveVectorPayload };
 
 // CamelCase aliases
 export { index_memory as indexMemory };

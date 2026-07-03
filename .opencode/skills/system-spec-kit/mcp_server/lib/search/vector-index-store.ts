@@ -568,6 +568,19 @@ function count_successful_embedding_rows(database: Database.Database): number {
 }
 
 function count_attached_vector_rows(database: Database.Database, profile: EmbeddingProfile): number {
+  const active = getActiveEmbedder(database);
+  if (active.name === DEFAULT_ACTIVE_EMBEDDER.name && table_exists_in_schema(database, ACTIVE_VECTOR_SCHEMA, 'vec_memories')) {
+    try {
+      const row = database.prepare(`
+        SELECT COUNT(*) AS count
+        FROM ${ACTIVE_VECTOR_SCHEMA}.vec_memories
+      `).get() as { count?: number } | undefined;
+      return Math.max(0, Number(row?.count ?? 0));
+    } catch (_error: unknown) {
+      return 0;
+    }
+  }
+
   const tableName = vector_table_name_for_profile(profile);
   if (!table_exists_in_schema(database, ACTIVE_VECTOR_SCHEMA, tableName)) {
     return 0;
@@ -583,15 +596,22 @@ function count_attached_vector_rows(database: Database.Database, profile: Embedd
   }
 }
 
-function count_vector_rows_at_path(shardPath: string, profile: EmbeddingProfile): number {
+function vector_repair_count_table(database: Database.Database, profile: EmbeddingProfile): string {
+  const active = getActiveEmbedder(database);
+  return active.name === DEFAULT_ACTIVE_EMBEDDER.name ? 'vec_memories' : vector_table_name_for_profile(profile);
+}
+
+function count_vector_rows_at_path(shardPath: string, tableName: string): number {
   if (!fs.existsSync(shardPath)) {
     return 0;
   }
 
-  const tableName = vector_table_name_for_profile(profile);
   let shard: Database.Database | null = null;
   try {
     shard = new Database(shardPath, { readonly: true, fileMustExist: true });
+    if (sqlite_vec_available_flag) {
+      sqliteVec.load(shard);
+    }
     const table = shard.prepare(`
       SELECT 1 AS found
       FROM sqlite_master
@@ -640,7 +660,7 @@ function assess_vector_shard_repair_state(
   const vecRows = probe.ok
     ? attached
       ? count_attached_vector_rows(database, profile)
-      : count_vector_rows_at_path(shardPath, profile)
+      : count_vector_rows_at_path(shardPath, vector_repair_count_table(database, profile))
     : 0;
   const shardComplete = probe.ok && (expected === 0 || vecRows >= expected);
   const orphanQuarantine = !shardComplete && !sentinel && has_orphan_vector_shard_quarantine(shardPath);
@@ -1868,6 +1888,7 @@ export function init_prepared_statements(database: Database.Database): PreparedS
         AND COALESCE(m.user_id,'') = COALESCE(?, '')
         AND COALESCE(m.agent_id,'') = COALESCE(?, '')
         AND COALESCE(m.session_id,'') = COALESCE(?, '')
+        AND m.parent_id IS NULL
       ORDER BY m.id DESC
       LIMIT 1
     `),

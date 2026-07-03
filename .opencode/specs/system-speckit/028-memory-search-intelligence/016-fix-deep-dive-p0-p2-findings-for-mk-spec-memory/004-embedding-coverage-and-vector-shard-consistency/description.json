@@ -21,10 +21,12 @@
     "367",
     "report"
   ],
-  "lastUpdated": "2026-07-03T10:51:47.106Z",
+  "lastUpdated": "2026-07-03T20:47:22.901Z",
   "specId": "004",
   "folderSlug": "embedding-coverage-and-vector-shard-consistency",
   "parentChain": [
+    ".opencode",
+    "specs",
     "system-speckit",
     "028-memory-search-intelligence",
     "016-fix-deep-dive-p0-p2-findings-for-mk-spec-memory"

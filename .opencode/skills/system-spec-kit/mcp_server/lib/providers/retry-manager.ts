@@ -8,12 +8,14 @@ import * as fsPromises from 'fs/promises';
 // Internal modules
 import * as vectorIndex from '../search/vector-index.js';
 import { getIndex as getBm25Index, getBm25EngineStatus, isBm25Enabled } from '../search/bm25-index.js';
-import { computeContentHash, lookupEmbedding, storeEmbedding } from '../cache/embedding-cache.js';
+import { computeContentHash, getActiveEmbeddingProfileKey, lookupEmbedding, storeEmbedding } from '../cache/embedding-cache.js';
 import { normalizeContentForEmbedding } from '../parsing/content-normalizer.js';
-import { generateDocumentEmbedding, getEmbeddingDimension, getModelName } from './embeddings.js';
+import { buildWeightedDocumentText, generateDocumentEmbedding, getEmbeddingDimension, getModelName } from './embeddings.js';
 import { clearRegisteredTimer, registerInterval } from '../runtime/timer-registry.js';
 import { registerShutdownHook } from '../runtime/shutdown-hooks.js';
 import { beginMaintenance, type MaintenanceMarkerHandle } from '../storage/maintenance-marker.js';
+import { normalizeEmbeddingModelName } from '../embedders/schema.js';
+import { writeActiveVectorPayload } from '../search/vector-index-mutations.js';
 
 // Type imports
 import type { MemoryDbRow } from '@spec-kit/shared/types';
@@ -91,7 +93,13 @@ type RetryMemoryRow = Partial<MemoryDbRow> & Record<string, unknown> & {
 };
 
 type ContentLoader = (memory: RetryMemoryRow) => Promise<string | null>;
-type RetryQueueStatus = 'pending' | 'retry';
+type RetryQueueStatus = 'pending' | 'retry' | 'failed';
+
+interface MarkdownSectionMatch {
+  content: string;
+  start: number;
+  end: number;
+}
 
 type EmbeddingFailureCode =
   | 'EMBEDDING_PROVIDER_ERROR'
@@ -123,7 +131,7 @@ function getRetryStatus(memory: RetryMemoryRow): RetryQueueStatus | null {
       ? memory.embeddingStatus
       : null;
 
-  return status === 'pending' || status === 'retry' ? status : null;
+  return status === 'pending' || status === 'retry' || status === 'failed' ? status : null;
 }
 
 function getRetryCountValue(memory: RetryMemoryRow): number {
@@ -137,6 +145,63 @@ function getLastRetryAtValue(memory: RetryMemoryRow): string | null {
       ? memory.lastRetryAt
       : null;
   return value && value.trim().length > 0 ? value : null;
+}
+
+function normalizeHeadingLabel(heading: string): string {
+  return heading.replace(/^\d+\.\s*/, '').trim().toLowerCase();
+}
+
+function extractMarkdownSection(markdown: string, headingNames: string[]): MarkdownSectionMatch | null {
+  const headingPattern = /^#{1,6}\s+(.+)$/gm;
+  const headings = Array.from(markdown.matchAll(headingPattern));
+  const normalizedHeadingNames = headingNames.map((heading) => heading.toLowerCase());
+  for (let index = 0; index < headings.length; index++) {
+    const match = headings[index];
+    const label = normalizeHeadingLabel(match[1] || '');
+    if (!normalizedHeadingNames.includes(label)) continue;
+    const start = match.index ?? 0;
+    const contentStart = start + match[0].length;
+    const end = index + 1 < headings.length ? (headings[index + 1].index ?? markdown.length) : markdown.length;
+    return { content: markdown.slice(contentStart, end).trim(), start, end };
+  }
+  return null;
+}
+
+function extractSectionBullets(content: string): string[] {
+  return content
+    .split('\n')
+    .map((line) => line.trim())
+    .filter((line) => /^[-*]\s+/.test(line))
+    .map((line) => line.replace(/^[-*]\s+/, '').trim())
+    .filter(Boolean);
+}
+
+function removeMarkdownSections(markdown: string, sections: Array<MarkdownSectionMatch | null>): string {
+  const matches = sections
+    .filter((section): section is MarkdownSectionMatch => Boolean(section))
+    .sort((left, right) => right.start - left.start);
+  let nextMarkdown = markdown;
+  for (const match of matches) {
+    nextMarkdown = `${nextMarkdown.slice(0, match.start)}\n\n${nextMarkdown.slice(match.end)}`;
+  }
+  return nextMarkdown.replace(/\n{3,}/g, '\n\n').trim();
+}
+
+function buildRetryDocumentEmbeddingText(memory: { title?: unknown; file_path?: unknown; filePath?: unknown }, content: string): string {
+  const decisionSection = extractMarkdownSection(content, ['decisions']);
+  const outcomeSection = extractMarkdownSection(content, ['key outcomes', 'outcomes']);
+  const fallbackPath = typeof memory.file_path === 'string'
+    ? memory.file_path
+    : typeof memory.filePath === 'string'
+      ? memory.filePath
+      : '';
+  const title = typeof memory.title === 'string' && memory.title.trim().length > 0 ? memory.title : fallbackPath;
+  return buildWeightedDocumentText({
+    title,
+    decisions: extractSectionBullets(decisionSection?.content || ''),
+    outcomes: extractSectionBullets(outcomeSection?.content || ''),
+    general: normalizeContentForEmbedding(removeMarkdownSections(content, [decisionSection, outcomeSection])),
+  });
 }
 
 function detectEmbeddingProviderName(source: string | null | undefined): string | null {
@@ -314,6 +379,19 @@ function claimRetryCandidate(memory: RetryMemoryRow): RetryClaimResult {
           AND retry_count = ?
           AND ((? IS NULL AND last_retry_at IS NULL) OR last_retry_at = ?)
       `).run(now, now, memory.id, retryCount, lastRetryAt, lastRetryAt)
+    : previousStatus === 'failed'
+      ? db.prepare(`
+        UPDATE memory_index
+        SET embedding_status = 'retry',
+            retry_count = 0,
+            last_retry_at = ?,
+            updated_at = ?,
+            failure_reason = NULL
+        WHERE id = ?
+          AND embedding_status = 'failed'
+          AND retry_count >= ?
+          AND failure_reason = 'Maximum retry attempts exceeded'
+      `).run(now, now, memory.id, MAX_RETRIES)
     : db.prepare(`
         UPDATE memory_index
         SET last_retry_at = ?,
@@ -366,6 +444,21 @@ const BACKGROUND_JOB_CONFIG: BackgroundJobConfig = {
   batchSize: parseInt(process.env.SPECKIT_RETRY_BATCH_SIZE || '5', 10),
   enabled: (process.env.SPECKIT_RETRY_ENABLED ?? 'true') !== 'false',
 };
+
+function resolveBackgroundJobConfig(stats: Pick<RetryStats, 'queue_size'>): BackgroundJobConfig {
+  const explicitInterval = process.env.SPECKIT_RETRY_INTERVAL_MS;
+  const explicitBatch = process.env.SPECKIT_RETRY_BATCH_SIZE;
+  const queueSize = Math.max(0, stats.queue_size);
+  const adaptiveBatch = queueSize >= 400
+    ? Math.min(100, Math.max(25, Math.ceil(queueSize / 96)))
+    : BACKGROUND_JOB_CONFIG.batchSize;
+  const adaptiveInterval = queueSize >= 400 ? 60_000 : BACKGROUND_JOB_CONFIG.intervalMs;
+  return {
+    enabled: BACKGROUND_JOB_CONFIG.enabled,
+    intervalMs: explicitInterval ? BACKGROUND_JOB_CONFIG.intervalMs : adaptiveInterval,
+    batchSize: explicitBatch ? BACKGROUND_JOB_CONFIG.batchSize : adaptiveBatch,
+  };
+}
 
 // Background job state
 let backgroundJobInterval: ReturnType<typeof setInterval> | null = null;
@@ -558,14 +651,23 @@ function getRetryQueue(limit = 10): RetryMemoryRow[] {
 
   const rows = db.prepare(`
     SELECT * FROM memory_index
-    WHERE embedding_status IN ('pending', 'retry')
-      AND retry_count < ?
+    WHERE (
+        embedding_status IN ('pending', 'retry')
+        AND retry_count < ?
+      ) OR (
+        embedding_status = 'retry'
+        AND retry_count >= ?
+      ) OR (
+        embedding_status = 'failed'
+        AND retry_count >= ?
+        AND failure_reason = 'Maximum retry attempts exceeded'
+      )
     ORDER BY
-      CASE WHEN embedding_status = 'pending' THEN 0 ELSE 1 END,
+      CASE WHEN embedding_status = 'pending' THEN 0 WHEN embedding_status = 'retry' THEN 1 ELSE 2 END,
       retry_count ASC,
       created_at ASC
     LIMIT ?
-  `).all(MAX_RETRIES, limit * 2) as RetryMemoryRow[];
+  `).all(MAX_RETRIES, MAX_RETRIES, MAX_RETRIES, limit * 2) as RetryMemoryRow[];
 
   const eligible: RetryMemoryRow[] = [];
   for (const row of rows) {
@@ -688,14 +790,15 @@ async function retryEmbedding(
       return { success: false, error: 'Maximum retries exceeded', permanent: true };
     }
 
-    // Normalize content before embedding to match sync save path (memory-save.ts:1119).
-    // Without this, async-saved memories get embeddings from raw markdown (YAML frontmatter, HTML
-    // Comments, code fences) while sync-saved memories get clean normalized embeddings.
-    const normalizedContent = normalizeContentForEmbedding(content);
-    const modelId = getModelName();
+    const embeddedText = buildRetryDocumentEmbeddingText(memory, content);
+    const modelId = normalizeEmbeddingModelName(getModelName()) ?? getModelName();
     const embeddingDim = getEmbeddingDimension();
-    const contentHash = computeContentHash(normalizedContent);
-    const cachedEmbedding = lookupEmbedding(db, contentHash, modelId, embeddingDim);
+    const profileKey = getActiveEmbeddingProfileKey(db, modelId, embeddingDim);
+    const contentHash = computeContentHash(embeddedText);
+    const cachedEmbedding = lookupEmbedding(db, contentHash, modelId, embeddingDim, {
+      profileKey,
+      inputKind: 'document',
+    });
 
     let embedding: Float32Array | null = null;
 
@@ -712,7 +815,7 @@ async function retryEmbedding(
       }
 
       try {
-        embedding = await generateDocumentEmbedding(normalizedContent);
+        embedding = await generateDocumentEmbedding(embeddedText);
       } catch (providerError: unknown) {
         const sanitizedError = sanitizeAndLogEmbeddingFailure(
           `[retry-manager] Embedding retry failed for #${id}`,
@@ -733,6 +836,7 @@ async function retryEmbedding(
           modelId,
           Buffer.from(embedding.buffer, embedding.byteOffset, embedding.byteLength),
           embedding.length,
+          { profileKey, inputKind: 'document' },
         );
       } else {
         recordProviderFailure();
@@ -750,28 +854,21 @@ async function retryEmbedding(
         SET embedding_status = 'success',
             embedding_generated_at = ?,
             updated_at = ?,
-            failure_reason = NULL
+            failure_reason = NULL,
+            embedding_model = ?
         WHERE id = ?
-      `).run(now, now, id);
-
-      try {
-        db.prepare('DELETE FROM vec_memories WHERE rowid = ?').run(BigInt(id));
-      } catch (_error: unknown) {
-        // Ignore if doesn't exist
-      }
+      `).run(now, now, modelId, id);
 
       const embeddingBuffer = Buffer.from(embedding.buffer, embedding.byteOffset, embedding.byteLength);
-      db.prepare('INSERT INTO vec_memories (rowid, embedding) VALUES (?, ?)').run(BigInt(id), embeddingBuffer);
+      writeActiveVectorPayload(db, BigInt(id), embeddingBuffer);
     });
 
     try {
       updateTx();
       const bm25EngineStatus = getBm25EngineStatus(db);
-      if (isBm25Enabled()) {
-        const syncedRows = getBm25Index().syncChangedRows(db, [id]);
-        if (bm25EngineStatus.warms_in_memory_bm25 && syncedRows === 0) {
-          console.warn(`[retry-manager] BM25 sync returned no rows after retry success for #${id}; lexical repair may be needed`);
-        }
+      const syncedRows = getBm25Index().syncChangedRows(db, [id]);
+      if ((isBm25Enabled() || bm25EngineStatus.warms_in_memory_bm25) && syncedRows === 0) {
+        console.warn(`[retry-manager] BM25 sync returned no rows after retry success for #${id}; lexical repair may be needed`);
       }
       applyRetryHealthTransition(previousStatus, 'success');
       return { success: true, id, dimensions: embedding.length };
@@ -977,7 +1074,9 @@ function startBackgroundJob(options: Partial<BackgroundJobConfig> = {}): boolean
     return false;
   }
 
-  const config = { ...BACKGROUND_JOB_CONFIG, ...options };
+  const bootStats = getRetryStats();
+  const adaptiveConfig = resolveBackgroundJobConfig(bootStats);
+  const config = { ...adaptiveConfig, ...options };
   shutdownRequested = false;
   retryAbortController = new AbortController();
 
@@ -1058,9 +1157,11 @@ async function runBackgroundJob(batchSize: number = BACKGROUND_JOB_CONFIG.batchS
     // The deferred-embedding burst keeps the daemon busy; mark it busy-by-design so
     // a competing launcher adopts it rather than reaping it mid-drain.
     maintenanceHandle = beginMaintenance('embedding-queue');
-    console.error(`[retry-manager] Background job: Processing up to ${batchSize} of ${stats.queue_size} pending embeddings`);
+    const effectiveConfig = resolveBackgroundJobConfig(stats);
+    const effectiveBatchSize = process.env.SPECKIT_RETRY_BATCH_SIZE ? batchSize : effectiveConfig.batchSize;
+    console.error(`[retry-manager] Background job: Processing up to ${effectiveBatchSize} of ${stats.queue_size} pending embeddings`);
 
-    const result = await processRetryQueue(batchSize);
+    const result = await processRetryQueue(effectiveBatchSize);
 
     if (result.processed > 0) {
       console.error(`[retry-manager] Background job complete: ${result.succeeded}/${result.processed} succeeded`);
@@ -1160,4 +1261,5 @@ export {
   MAX_RETRY_QUEUE_AGE_MS,
   getMaxRetryQueuePending,
   getMaxRetryQueueAgeMs,
+  resolveBackgroundJobConfig,
 };

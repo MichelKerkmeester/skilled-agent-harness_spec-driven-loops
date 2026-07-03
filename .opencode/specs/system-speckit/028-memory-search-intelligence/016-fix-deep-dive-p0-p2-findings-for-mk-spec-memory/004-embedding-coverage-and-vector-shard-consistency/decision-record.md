@@ -1,6 +1,6 @@
 ---
 title: "Decision Record: Phase 4: embedding-coverage-and-vector-shard-consistency"
-description: "ADR-001: wire chunked indexing into the scan path for oversized docs, or document the single-vector truncation policy; the safe-swap self-delete gets fixed under either option."
+description: "ADR-001: accepted single-vector truncation for oversized scan documents with explicit FTS/BM25 tail coverage; scan-path chunking is not activated."
 trigger_phrases:
   - "chunking decision"
   - "vector shard consistency"
@@ -12,10 +12,10 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-speckit/028-memory-search-intelligence/016-fix-deep-dive-p0-p2-findings-for-mk-spec-memory/004-embedding-coverage-and-vector-shard-consistency"
-    last_updated_at: "2026-07-03T10:05:00Z"
+    last_updated_at: "2026-07-03T20:47:23Z"
     last_updated_by: "markdown-agent"
-    recent_action: "Authored ADR-001 decision frame with spike gate"
-    next_safe_action: "Run the T009 spike, then flip ADR-001 to Accepted with evidence"
+    recent_action: "Accepted ADR-001 single-vector truncation policy with lexical tail coverage"
+    next_safe_action: "Verify oversized-document tail retrieval through FTS/BM25 and keep scan-path chunking inactive"
     blockers: []
     key_files: []
     session_dedup:
@@ -41,7 +41,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Status** | Proposed (flips to Accepted after the T009 spike; the safe-swap fix is unconditional and starts now) |
+| **Status** | Accepted |
 | **Date** | 2026-07-03 |
 | **Deciders** | Michel Kerkmeester |
 
@@ -50,7 +50,7 @@ _memory:
 <!-- ANCHOR:adr-001-context -->
 ### Context
 
-We needed to decide what to do with the dormant chunking subsystem because the corpus it was built for never uses it. `indexChunkedMemoryFile` has exactly one caller (`memory-save.ts:2511`); the scan path that produced 99.96% of the 33,101-row corpus never chunks. The result: 39 docs larger than 50KB (max 193KB) are embedded as one truncated vector each, so their tails are invisible to vector search and only FTS can reach them (ledger L9, live-verified).
+We needed to decide what to do with the dormant chunking subsystem because the corpus it was built for never uses it. `indexChunkedMemoryFile` has exactly one caller (`memory-save.ts:2511`); the scan path that produced 99.96% of the 33,101-row corpus never chunks. The result: 39 docs larger than 50KB (max 193KB) are embedded as one truncated vector each, so their tails are intentionally not vector-searchable and remain retrievable through FTS/BM25 because scan indexing stores the full `content_text` in the lexical index.
 
 The same subsystem carries a verified P0: the safe-swap update path deletes the chunk rows it just updated. Staging dedups to update-in-place (`vector-index-store.ts:1857-1873`, no parent filter), the orchestrator captures oldChildIds after staging, then finalize bulk-deletes them, so the doc loses its freshly written vector children while the mtime-skipped parent keeps only its 500-char summary and `embedding_status='partial'` (that parent state is by design per `chunking-orchestrator.ts:516`; the fix restores the children, it does not force the parent to 'success') (report §3 P0 #3, `chunking-orchestrator.ts:311, 488-553`; mechanism verified, dormant today). Any decision that keeps or expands chunking makes this bug live; even the policy-only branch leaves it reachable through re-saves of chunked saved memories.
 
@@ -67,9 +67,9 @@ The same subsystem carries a verified P0: the safe-swap update path deletes the 
 <!-- ANCHOR:adr-001-decision -->
 ### Decision
 
-**We chose**: Fix the safe-swap self-delete unconditionally first, then gate scan-path chunking activation on a bounded spike (T009) over the 39 oversized docs, and fall back to an explicit single-vector truncation policy with documented FTS-only tail coverage if the spike fails its cost budget.
+**We chose**: Keep scan indexing on a single-vector policy for oversized documents. The vector payload may represent only the embedded prefix, while the full document body remains stored in `content_text` and indexed into FTS/BM25 so tail-only terms stay lexically retrievable.
 
-**How it works**: T010-T012 land the safe-swap fix (append-only staging or oldChildIds = old minus new, plus a parent-aware dedup lookup) and un-skip the update-path tests before any activation question is asked. The T009 spike then measures chunk-row growth and scan-latency cost on the real 39-doc population; Option A wires `indexChunkedMemoryFile` into the scan path behind a flag with a >50KB threshold when the spike passes, Option B writes the truncation policy into the memory-system docs when it does not. Either branch flips this ADR to Accepted with the spike numbers attached (REQ-005, SC-003).
+**How it works**: The scan path does not call `indexChunkedMemoryFile` for over-threshold documents. It stores one vector row per document and writes the complete document text into the lexical index. Searches for text beyond the embedded prefix depend on FTS/BM25, not vector recall. The safe-swap fix remains necessary for saved memories that already use chunked indexing, but chunked indexing is not wired into scan.
 <!-- /ANCHOR:adr-001-decision -->
 
 ---
@@ -79,12 +79,12 @@ The same subsystem carries a verified P0: the safe-swap update path deletes the 
 
 | Option | Pros | Cons | Score |
 |--------|------|------|-------|
-| **Spike-gated activation with policy fallback (chosen)** | P0 fixed either way; decision made on measured cost, not guesses; flag keeps rollback trivial | Two possible end states to verify; spike costs a few hours | 8/10 |
+| **Single-vector truncation with lexical tail coverage (chosen)** | Zero scan-path fanout; matches the current corpus behavior; tail terms remain searchable through FTS/BM25; no dormant chunking activation risk | Tail-only semantic recall remains unavailable through vectors | 8/10 |
 | Option A direct: wire chunking into the scan path now | Tails of the 39 docs become vector-searchable immediately; MPAB machinery finally earns its keep | Activates a dormant subsystem with a P0 history on the full corpus without cost data; chunk-row growth unmeasured | 6/10 |
 | Option B direct: document the truncation policy only | Zero behavioral risk; honest docs in one afternoon | 39 doc tails stay vector-invisible; chunking machinery stays dead weight; still must fix the P0 for saved-memory re-saves | 5/10 |
 | Do nothing | No effort | Fails the decomposition gate; keeps a verified P0 latent and 39 docs silently truncated | 1/10 |
 
-**Why this one**: The live numbers say the truncation problem is real but small (39 docs), so the activation question deserves measurement rather than conviction; the P0 fix is not optional under any branch, so it moves out of the decision entirely.
+**Why this one**: The live numbers say the truncation problem is real but small (39 docs), and lexical tail coverage already preserves retrieval for exact tail terms. Activating chunked scan indexing would expand row counts and revive dormant-path risk for a small corpus slice.
 <!-- /ANCHOR:adr-001-alternatives -->
 
 ---
@@ -94,20 +94,19 @@ The same subsystem carries a verified P0: the safe-swap update path deletes the 
 
 **What improves**:
 - The safe-swap update path stops deleting fresh chunk rows; re-saving a chunked memory becomes safe (previously skipped tests now run and pass).
-- SC-003 closes honestly under either branch: tails searchable, or limits documented where users can read them.
+- SC-003 closes honestly: tail-only semantic recall is not promised, and exact tail terms remain retrievable through FTS/BM25.
 - Future chunking work inherits a fixed swap path instead of a landmine.
 
 **What it costs**:
-- The spike delays the activation decision by a few hours. Mitigation: T009 runs in Phase 1 parallel to the verify-first battery.
-- Option A adds flag-gated scan cost for oversized docs. Mitigation: >50KB threshold and phase-010 baseline comparison before the flag defaults on.
+- Tail-only vector recall remains unavailable for oversized scan documents. Mitigation: document the policy and test lexical tail retrieval.
 
 **Risks**:
 
 | Risk | Impact | Mitigation |
 |------|--------|------------|
-| Spike underestimates chunk-row growth on future corpora | M | Flag stays off by default until phase-010 perf work confirms headroom |
+| Users expect tail-only semantic vector recall for oversized scan documents | M | Policy states the limit and tests FTS/BM25 tail retrieval |
 | Safe-swap fix changes update semantics for existing chunked saved memories | H | Adversarial re-save test plus un-skipped update-path suite before merge |
-| Option B policy doc drifts from actual embedder window over time | L | Policy doc cites the embedder identity work (REQ-008/009) rather than hardcoded token counts |
+| Policy doc drifts from actual embedder window over time | L | Policy avoids hardcoded token counts and anchors on single-vector scan behavior |
 <!-- /ANCHOR:adr-001-consequences -->
 
 ---
@@ -135,10 +134,10 @@ The same subsystem carries a verified P0: the safe-swap update path deletes the 
 - `mcp_server/handlers/chunking-orchestrator.ts` (:488-553): finalize deletes only oldChildIds minus newChildIds, or staging becomes append-only (T010).
 - `mcp_server/lib/search/vector-index-store.ts` (:1857-1873): dedup lookup gains a parent filter (T011).
 - Skipped chunked update-path tests un-skipped plus one adversarial re-save test (T012).
-- Option A only: `indexChunkedMemoryFile` wired into the scan path behind a flag with a >50KB threshold; today's only call site stays `memory-save.ts:2511` until the flag flips (T023).
-- Option B only: memory-system docs gain the single-vector truncation policy and FTS-only tail coverage statement (T023).
+- Scan-path chunking remains inactive; today's only `indexChunkedMemoryFile` call site stays `memory-save.ts:2511`.
+- Memory-system docs state the single-vector truncation policy and FTS/BM25 tail coverage guarantee.
 
-**How to roll back**: Turn the scan-path chunking flag off (Option A), then `git revert` the safe-swap and store commits; no DB restore is needed because chunk rows only exist where chunking actually ran, and the T001 snapshot plus health consistency check confirm the pre-phase state.
+**How to roll back**: Revert this policy doc/test change and reopen the chunking activation decision. No database restore is needed because scan-path chunking is not activated.
 <!-- /ANCHOR:adr-001-impl -->
 <!-- /ANCHOR:adr-001 -->
 

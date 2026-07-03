@@ -58,6 +58,7 @@ export {
   deleteMemories,
   updateEmbeddingStatus,
   updateConfidence,
+  writeActiveVectorPayload,
 } from './vector-index-mutations.js';
 export {
   get_memory,

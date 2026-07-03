@@ -7,9 +7,10 @@ import type Database from 'better-sqlite3';
 import * as mod from '../lib/providers/retry-manager';
 import * as vectorIndex from '../lib/search/vector-index';
 import * as embeddings from '../lib/providers/embeddings';
-import { computeContentHash, lookupEmbedding } from '../lib/cache/embedding-cache';
+import { computeContentHash, getActiveEmbeddingProfileKey, lookupEmbedding } from '../lib/cache/embedding-cache';
 import { normalizeContentForEmbedding } from '../lib/parsing/content-normalizer';
 import { getIndex as getBm25Index } from '../lib/search/bm25-index';
+import { normalizeEmbeddingModelName } from '../lib/embedders/schema';
 
 type RetryFunctionExportName =
   | 'getRetryQueue'
@@ -348,13 +349,13 @@ describe('retry-manager [deferred - requires DB test fixtures]', () => {
         expect(testIds).toContain(2002);
       });
 
-      it('T29: getRetryQueue() excludes items at MAX_RETRIES', () => {
+      it('T29: getRetryQueue() includes items at MAX_RETRIES for rescue', () => {
         insertTestMemory(2010, '/tmp/maxed.md', 'retry', 3);
         insertTestMemory(2011, '/tmp/ok.md', 'pending', 0);
 
         const queue = mod.getRetryQueue(10);
         const ids = queue.map((r) => r.id);
-        expect(ids).not.toContain(2010);
+        expect(ids).toContain(2010);
         expect(ids).toContain(2011);
       });
 
@@ -693,18 +694,28 @@ describe('retry-manager [deferred - requires DB test fixtures]', () => {
         expect(activeDb.prepare('SELECT COUNT(*) as count FROM vec_memories WHERE rowid = ?').get(BigInt(firstId))).toMatchObject({ count: 1 });
         expect(bm25SyncSpy).toHaveBeenCalledWith(activeDb, [firstId]);
 
-        const contentHash = computeContentHash(normalizeContentForEmbedding(content));
+        const contentHash = computeContentHash(embeddings.buildWeightedDocumentText({
+          title: 'Retry orchestrator first',
+          decisions: [],
+          outcomes: [],
+          general: normalizeContentForEmbedding(content),
+        }));
+        const modelId = normalizeEmbeddingModelName(embeddings.getModelName()) ?? embeddings.getModelName();
         expect(lookupEmbedding(
           activeDb,
           contentHash,
-          embeddings.getModelName(),
+          modelId,
           embeddings.getEmbeddingDimension(),
+          {
+            profileKey: getActiveEmbeddingProfileKey(activeDb, modelId, embeddings.getEmbeddingDimension()),
+            inputKind: 'document',
+          },
         )).toBeTruthy();
 
         const secondId = vectorIndex.indexMemoryDeferred({
           specFolder: 'test/spec',
           filePath: '/tmp/retry-orchestrator-second.md',
-          title: 'Retry orchestrator second',
+          title: 'Retry orchestrator first',
           triggerPhrases: ['pending lexical fallback'],
           contentText: content,
           appendOnly: true,

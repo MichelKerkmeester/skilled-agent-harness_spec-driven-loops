@@ -12,7 +12,7 @@ import {
   setActiveEmbedder,
 } from '../lib/embedders/index.js';
 
-describe('016/002 embedder schema helpers', () => {
+describe('embedder schema helpers', () => {
   const openDatabases = new Set<Database.Database>();
 
   function createDatabase(): Database.Database {
@@ -95,6 +95,19 @@ describe('016/002 embedder schema helpers', () => {
       { key: 'active_embedder_dim', value: '1024' },
       { key: 'active_embedder_name', value: 'mxbai-embed-large-v1' },
     ]);
+  });
+
+  it('normalizes equivalent active embedder model spellings', () => {
+    const db = createDatabase();
+
+    setActiveEmbedder(db, 'nomic-ai/nomic-embed-text-v1.5', 768);
+
+    expect(getActiveEmbedder(db)).toEqual({
+      name: 'nomic-embed-text-v1.5',
+      dim: 768,
+    });
+    const row = db.prepare("SELECT value FROM vec_metadata WHERE key = 'active_embedder_name'").get() as { value: string };
+    expect(row.value).toBe('nomic-embed-text-v1.5');
   });
 
   it('preserves existing vec_metadata rows while updating the pointer', () => {
