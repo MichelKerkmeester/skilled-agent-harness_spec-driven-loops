@@ -19,9 +19,10 @@
       "plan",
       "design fidelity polish",
       "tasks",
-      "summary",
-      "template",
-      "impl summary core"
+      "goal plugin usage limited detector",
+      "goal plugin continuity fingerprint refresh",
+      "goal plugin store health status",
+      "goal plugin fsync debug logging"
     ],
     "key_topics": [
       "status",
@@ -38,7 +39,7 @@
       "plan"
     ],
     "importance_tier": "normal",
-    "status": "draft",
+    "status": "complete",
     "key_files": [
       ".opencode/plugins/mk-goal.js",
       ".opencode/plugins/tests/mk-goal-lifecycle.test.cjs",
@@ -198,7 +199,7 @@
     ],
     "causal_summary": "Research's 9-design-fork cross-check (iteration 7) found the shipped plugin faithfully realizes 7 of 9 original design forks, but fork #6 (status set) is only partially realized: `usagelimited` is declared in the enum and documented as first-class in the feature catalog, but has zero production writers — a planned-but-unimplemented contract",
     "created_at": "2026-07-01T10:04:52Z",
-    "last_save_at": "2026-07-01T17:58:32.085Z",
+    "last_save_at": "2026-07-03T13:21:41.944Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,12 +208,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:68693dcec9ce4d19452ec9453ad7abfdec8b8381acd63018ced4f5adfa5bfff6",
+    "source_fingerprint": "sha256:b769c712f6a9a99d85240ebb6ec6b82908ef3d52d73349ec5aeec64747d99bb6",
     "source_doc_hashes": {
-      "spec.md": "3848a5af3063870f96519061727ca9683fe6e658dd55d3a326678eeb0e12ba2b",
-      "plan.md": "5c09464bfb7dcef4207324b15f1998f01432d3c78b4795e7bd9b12e162fbc4b3",
-      "tasks.md": "5deac6f3da4ec897eb38ab3b9ce73237225467ed585023f1a4fa81b39de8435d",
-      "implementation-summary.md": "c4db10dc88d18fa82815c573fe98da28cc33d58dd9440c43b5526464761e747e"
+      "spec.md": "2ed42f00dbb1f16e282a48c62901fdb88a1219504305f5d043c039e53acc6c43",
+      "plan.md": "bf34aaa73463d5b4e95e3def3731876eaf29d85136d7402191d0cff708fbbf74",
+      "tasks.md": "a1687e4c2af66d17406fbc94355fff110e967fc320568cb3750a94116b450707",
+      "implementation-summary.md": "4e84749dd9bf54fd859300a2bc39e0cbb213f57c0200216934aa61a274afb5d6"
     },
     "last_active_child_id": null,
     "last_active_at": null

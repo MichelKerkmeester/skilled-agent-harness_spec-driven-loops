@@ -1,7 +1,7 @@
 {
   "level": "1",
   "specFolder": "deep-loops/032-goal-opencode-plugin/010-security-and-correctness-fixes",
-  "description": "Deep-review found 2 security defects and 3 correctness defects in the shipped `/goal` plugin, all confirmed and adversarially re-verified across the f",
+  "description": "Deep-review found 2 security defects and 3 correctness defects in the shipped `/goal` plugin, all confirmed and adversarially re-verified across the",
   "keywords": [
     "deep-review",
     "found",
@@ -16,12 +16,10 @@
     "re-verified",
     "across"
   ],
-  "lastUpdated": "2026-07-01T10:18:53.954Z",
+  "lastUpdated": "2026-07-03T11:24:25.164Z",
   "specId": "010",
   "folderSlug": "security-and-correctness-fixes",
   "parentChain": [
-    ".opencode",
-    "specs",
     "deep-loops",
     "032-goal-opencode-plugin"
   ],

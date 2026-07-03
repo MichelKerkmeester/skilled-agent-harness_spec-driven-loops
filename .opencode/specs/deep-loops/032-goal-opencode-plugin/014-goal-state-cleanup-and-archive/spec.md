@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: Phase 14: goal-state-cleanup-and-archive [template:level_1/spec.md]"
+title: "Feature Specification: Phase 14: goal-state-cleanup-and-archive"
 description: "session.deleted never touches the on-disk .goal-state/*.json file, so per-session goal state accumulates forever. Add archive-then-prune cleanup on session teardown plus a throttled sweep for orphaned states from sessions that never fire that event."
 trigger_phrases:
   - "goal state cleanup"
@@ -19,7 +19,7 @@ _memory:
     key_files:
       - ".opencode/plugins/mk-goal.js"
     session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      fingerprint: "sha256:d77ab2762b75fd54de78218a12216846f3b92728357faf49f8b680df61cc9d3b"
       session_id: "scaffold-032-014"
       parent_session_id: null
     completion_pct: 0
@@ -40,12 +40,13 @@ _memory:
 |-------|-------|
 | **Level** | 1 |
 | **Priority** | P2 |
+| **Status** | Complete |
 | **Created** | 2026-07-01 |
 | **Branch** | `032-goal-opencode-plugin` |
 | **Parent Spec** | ../spec.md |
-| **Phase** | 14 of 14 |
+| **Phase** | 14 |
 | **Predecessor** | 013-design-fidelity-and-polish (independent — can run in either order) |
-| **Successor** | None (final phase of this packet) |
+| **Successor** | 015-packet-hygiene-and-narrative-integrity |
 | **Handoff Criteria** | `.opencode/skills/.goal-state/` no longer grows unboundedly across the session lifecycle; existing 6-file test suite plus new archive/sweep tests pass fresh |
 <!-- /ANCHOR:metadata -->
 

@@ -50,7 +50,7 @@ OpenCode now has a passive goal layer with durable session state, visible status
 | `010-security-and-correctness-fixes` | Complete | Closed all five P1 security/correctness defects a 15-iteration deep review found: unredacted verifier exceptions, a bypassable prompt-injection sanitizer, an uncapped injection block, a stale-verifier race, and a missing RICCE metadata field. |
 | `011-command-surface-normalization` | Complete | Normalized the twice-renamed /goal command filename to its final operator-confirmed name (goal_opencode.md), swept all nine referencing surfaces, and closed two smaller config-contract gaps. |
 | `012-regression-test-backfill` | Complete | Backfilled regression coverage through real integration seams (transform hook, event branches, autonomy smoke, export contract, tool registration) pinning the corrected phase 010/011 behavior. |
-| `013-design-fidelity-and-polish` | Complete | Wired a real usage_limited provider-429 detector, replaced packet-wide zero-placeholder fingerprints with real hashes, corrected phase 006's overstated completion, and added fsync-error and store-health observability. |
+| `013-design-fidelity-and-polish` | Complete | Wired a real usage_limited provider-429 detector, replaced phases 001-008 zero-placeholder fingerprints with real hashes, corrected phase 006's overstated completion, and added fsync-error and store-health observability. |
 | `014-goal-state-cleanup-and-archive` | Complete | Goal state files now archive-then-prune on session.deleted and orphaned active state sweeps on a throttled session.created pass, so .goal-state/ stops growing unboundedly. |
 
 ### Added

@@ -1,5 +1,5 @@
 ---
-title: "Tasks: Phase 7: sk-prompt-goal-enhancement [template:level_1/tasks.md]"
+title: "Tasks: Phase 7: sk-prompt-goal-enhancement"
 description: "Task list for adding deterministic sk-prompt goal prompt generation to the mk-goal plugin."
 trigger_phrases:
   - "goal prompt tasks"

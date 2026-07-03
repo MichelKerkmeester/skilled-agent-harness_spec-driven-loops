@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: Phase 7: sk-prompt-goal-enhancement [template:level_1/plan.md]"
+title: "Implementation Plan: Phase 7: sk-prompt-goal-enhancement"
 description: "Implement deterministic sk-prompt-style goal prompt generation inside the mk-goal plugin and keep the /goal command as a thin router."
 trigger_phrases:
   - "goal prompt generation plan"

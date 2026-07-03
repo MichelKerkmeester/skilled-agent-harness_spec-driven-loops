@@ -17,7 +17,7 @@ version: 0.8.0.33
 
 ## 1. OVERVIEW
 
-Validate that `/goal` routes through the OpenCode plugin tools, persists per-session state, injects a bounded active-goal block, reports status through `mk_goal_status`, and keeps active continuation default-off unless `MK_GOAL_AUTONOMY` explicitly enables smoke or active mode.
+Validate that `/goal` routes through the OpenCode plugin tools, persists per-session state, injects a bounded active-goal block, reports status through `mk_goal_status`, verifies completion through injected or default verifiers, and keeps active continuation default-off unless `MK_GOAL_AUTONOMY` explicitly enables smoke or active mode.
 
 ---
 
@@ -45,32 +45,46 @@ node .opencode/plugins/tests/mk-goal-tool-path.test.cjs
 node .opencode/plugins/tests/mk-goal-supervisor.test.cjs
 node .opencode/plugins/tests/mk-goal-continuation.test.cjs
 node .opencode/plugins/tests/mk-goal-lifecycle.test.cjs
+node .opencode/plugins/tests/mk-goal-capabilities.test.cjs
 ```
 
 3. In a live OpenCode session when tool invocation is available, run:
 
 ```text
 /goal set Finish the documentation propagation task
+/goal set Finish the documentation propagation task --budget 1234
 /goal show
+/goal history
+/goal doctor
+/goal health
 /goal pause waiting for user approval
+/goal resume
 /goal complete
 /goal clear
 ```
 
-4. Capture the `STATUS=OK` envelopes and verify mutation responses include the post-mutation state, including `mutation=created|refreshed|replaced` on `/goal set` and `store_health=` on status/set output.
+4. Capture the `STATUS=OK` envelopes and verify mutation responses include the post-mutation state, including `mutation=created|refreshed|replaced` on `/goal set`, `token_budget=1234` after `--budget`, and `store_health=` on status/set output.
 5. Verify `mk_goal_status` includes `injection_preview=` and that the preview contains `[active_goal:<goal-id>]` only while the goal is active.
-6. With `MK_GOAL_AUTONOMY` unset, confirm continuation is suppressed with `autonomy_disabled`.
-7. With `MK_GOAL_AUTONOMY=smoke`, confirm the decision is `would_fire` and no prompt is submitted.
-8. With `MK_GOAL_AUTONOMY=active`, confirm `promptAsync` is called only when every guard passes; if a live OpenCode session is unavailable in this run, fall back to the plugin tool path directly (see §1).
+6. Verify `/goal history` includes `archive_count=`, `/goal doctor` and `/goal health` include `active_state_file_count=`, `archive_file_count=`, `continuation_log_bytes=`, `goal_events_log_bytes=`, `last_sweep_at=`, and `orphan_candidate_count=`.
+7. Verify `/goal resume` reactivates a paused goal and that a completed goal still rejects resume with `code=INVALID_STATUS_TRANSITION`.
+8. With `MK_GOAL_AUTONOMY` unset, confirm continuation is suppressed with `autonomy_disabled`.
+9. With `MK_GOAL_AUTONOMY=smoke`, confirm the decision is `would_fire` and no prompt is submitted.
+10. With `MK_GOAL_AUTONOMY=active`, confirm `promptAsync` is called only when every guard passes; if a live OpenCode session is unavailable in this run, fall back to the plugin tool path directly (see §1).
+11. With `MK_GOAL_MAX_AUTO_TURNS=3` and `MK_GOAL_MAX_WALL_MS=4000`, restart OpenCode and verify `/goal show` reports `remaining_auto_turns=`, `remaining_wall_ms=`, and `provider_retry_after_ms=`.
+12. With `MK_GOAL_VERIFIER` unset or `heuristic`, verify only explicit objective-specific evidence completes and the adversarial negative matrix remains `not_met`. With `MK_GOAL_VERIFIER=llm`, verify `ctx.client.session.promptAsync` is called and status reports `verifier_source=default-llm`.
 
 ### Expected Signals
 
 - `/goal` does not read or write `.opencode/skills/.goal-state` directly; all state access goes through `mk_goal` or `mk_goal_status`.
 - `/goal set` output includes `mutation=created|refreshed|replaced` matching the actual set-time outcome.
+- `/goal set <objective> --budget N` rejects invalid budgets and reports the accepted token budget in status output.
+- `/goal history`, `/goal doctor`, `/goal health`, and `/goal resume` route through `mk_goal`; none reads `.opencode/skills/.goal-state` directly from command markdown.
 - Status/set output includes `store_health=no_active_goal` or `store_health=state_age_ms:<N>`.
+- Status/set output includes `verifier_source=none|injected|default-heuristic|default-llm`.
+- Status/set output includes `remaining_auto_turns`, `remaining_wall_ms`, and `provider_retry_after_ms`; env caps honor `MK_GOAL_MAX_AUTO_TURNS` and `MK_GOAL_MAX_WALL_MS`.
 - Per-session JSON state is isolated by session id.
 - Passive injection is bounded and sanitized.
-- Supervisor verdicts map to durable goal state: `met` completes, `blocked` blocks, and ambiguous evidence remains active.
+- Supervisor verdicts map to durable goal state: `met` completes, `blocked` blocks, and ambiguous evidence remains active. Injected verifiers keep precedence. The default heuristic rejects empty, unrelated, mixed blocker, generic, truncated, repeat-only, investigation-only, and TODO evidence.
 - Continuation is default-off and capped when explicitly enabled.
 - Live OpenCode-run tool invocation gaps are reported as a known limitation, not as a plugin success claim.
 
@@ -82,6 +96,12 @@ node .opencode/plugins/tests/mk-goal-lifecycle.test.cjs
 | Cross-session state leak | Goal set in one session appears in another | Inspect `sessionKeyForSession` and state path logic. |
 | Prompt injection leaks into context | Injection preview contains unredacted role or instruction text | Inspect `sanitizeInlineText` and `renderGoalInjection`. |
 | Active continuation fires by default | `MK_GOAL_AUTONOMY` unset still submits a prompt | Block release; default-off gate regressed. |
+| Resume revives terminal goals | `/goal resume` succeeds after `/goal complete` | Block release; transition map must reject `complete` to `active`. |
+| Doctor or history mutates state | `history`, `doctor`, or `health` creates active JSON files | Block release; these verbs must stay read-only. |
+| Env caps ignored | `MK_GOAL_MAX_AUTO_TURNS` or `MK_GOAL_MAX_WALL_MS` does not alter status/caps after restart | Inspect `normalizeOptions` env reads and status output. |
+| Default verifier false-completes | Weak or mixed evidence marks a goal complete under `MK_GOAL_VERIFIER=heuristic` | Block release; the heuristic must fail closed unless evidence is explicit and objective-specific. |
+| Verifier provenance missing | Status omits `verifier_source` after a verifier run | Inspect `lastVerifierSource` persistence and status rendering. |
+| LLM verifier cannot call client | `MK_GOAL_VERIFIER=llm` never reaches `ctx.client.session.promptAsync` | Inspect `client: ctx?.client` threading into `maybeVerifyGoal`. |
 | Live tool path unavailable | OpenCode cannot invoke `mk_goal`/`mk_goal_status` in the run | Mark live portion `SKIP` with the blocker; keep direct plugin test evidence. |
 
 ---

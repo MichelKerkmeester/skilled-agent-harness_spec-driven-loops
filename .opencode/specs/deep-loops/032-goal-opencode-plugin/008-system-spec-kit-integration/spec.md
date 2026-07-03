@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: system-spec-kit integration [template:level_1/spec.md]"
+title: "Feature Specification: system-spec-kit integration"
 description: "Integrate the local /goal OpenCode plugin into system-spec-kit skill routing, references, catalog assets, and validation guidance."
 trigger_phrases:
   - "goal plugin system-spec-kit integration"
@@ -54,7 +54,7 @@ FAILURE MODES:
 | **Created** | 2026-06-30 |
 | **Branch** | `system-speckit/028-memory-search-intelligence` |
 | **Parent Spec** | ../spec.md |
-| **Phase** | 8 of 8 |
+| **Phase** | 8 |
 | **Predecessor** | 007-sk-prompt-goal-enhancement |
 | **Successor** | None |
 | **Handoff Criteria** | System-spec-kit docs route `mk-goal` as a known OpenCode plugin surface and validation passes |

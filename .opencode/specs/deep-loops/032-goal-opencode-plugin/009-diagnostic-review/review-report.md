@@ -10,6 +10,8 @@ description: 10-iteration diagnostic audit of .opencode/specs/deep-loops/032-goa
 **Executor:** cli-opencode, model `zai-coding-plan/glm-5.2`, reasoningEffort `max` (`--variant max` accepted, no fallback needed)
 **Iterations:** 10 of 10 (stop_policy=max-iterations; convergence signals were telemetry-only throughout, per operator directive to force full depth)
 
+**Artifact pointer:** This diagnostic folder's source artifacts are local to this folder: `iterations/`, `deltas/`, `deep-review-state.jsonl`, `deep-review-findings-registry.json`, `deep-review-dashboard.md`, and `deep-review-strategy.md`.
+
 ---
 
 ## 1. Executive Summary

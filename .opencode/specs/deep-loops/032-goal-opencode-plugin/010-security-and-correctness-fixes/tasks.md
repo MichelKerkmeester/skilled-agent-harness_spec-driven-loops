@@ -1,5 +1,5 @@
 ---
-title: "Tasks: Phase 10: security-and-correctness-fixes [template:level_1/tasks.md]"
+title: "Tasks: Phase 10: security-and-correctness-fixes"
 description: "Task Format: T### [P?] Description (file path)"
 trigger_phrases:
   - "tasks"
@@ -17,7 +17,7 @@ _memory:
     key_files:
       - ".opencode/plugins/mk-goal.js"
     session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      fingerprint: "sha256:3d1bf9335caad08e048ccb4c5ef42f4df2535d8fd0a719e705615772b7d0e8b3"
       session_id: "scaffold-032-010"
       parent_session_id: null
     completion_pct: 0
@@ -105,5 +105,5 @@ _memory:
 
 - **Specification**: See `spec.md`
 - **Plan**: See `plan.md`
-- **Finding source**: `../review/review-report.md` §3 (DR-001, DR-003, DR-004-P1, DR-005, DR-006)
+- **Finding source**: `../review_archive/2026-07-01-plugin-implementation-review/review-report.md` §3 (DR-001, DR-003, DR-004-P1, DR-005, DR-006)
 <!-- /ANCHOR:cross-refs -->

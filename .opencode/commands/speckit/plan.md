@@ -1,7 +1,7 @@
 ---
 description: Planning workflow (8 steps): spec through plan only. Modes :auto, :confirm, :autopilot/:unattended/--unattended, :with-context, :with-phases.
 argument-hint: "<feature-description> [:auto|:confirm|:autopilot|:unattended|--unattended] [:with-context] [:with-phases] [--intake-only] [--phases N] [--phase-names list] [--phase-folder=<path>] [--spec-folder=PATH] [--level=1|2|3|3+] [--start-state=STATE] [--repair-mode=MODE] [--record-relationships=yes|no] [--depends-on=IDs] [--related-to=IDs] [--supersedes=IDs] (:auto supports PRE-BOUND SETUP ANSWERS: prompt-body block for non-interactive setup; :autopilot/:unattended/--unattended prepares unattended task metadata)"
-allowed-tools: Read, Write, Edit, Bash, Grep, Glob, Task, mcp__mk_spec_memory__memory_search, mcp__mk_spec_memory__memory_save, mcp__mk_code_index__code_graph_query
+allowed-tools: Read, Write, Edit, Bash, Grep, Glob, Task, mcp__mk_spec_memory__memory_search, mcp__mk_spec_memory__memory_save, mcp__mk_code_index__code_graph_query, mk_goal, mk_goal_status
 ---
 
 # SpecKit Plan

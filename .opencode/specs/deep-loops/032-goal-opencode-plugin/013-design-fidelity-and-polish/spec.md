@@ -1,6 +1,6 @@
 ---
 title: "Feature Specification: Phase 13: design-fidelity-and-polish [template:level_1/spec.md]"
-description: "Wire a real usage_limited detector (operator-chosen resolution) plus packet-wide metadata/observability polish items."
+description: "Wire a real usage_limited detector (operator-chosen resolution) plus phases 001-008 metadata and observability polish items."
 trigger_phrases:
   - "usage_limited status decision"
   - "session_dedup fingerprint fix"
@@ -19,7 +19,7 @@ _memory:
     key_files:
       - ".opencode/plugins/mk-goal.js"
     session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      fingerprint: "sha256:8e070526ab959da10abe7b4b4d9efdbef8f90b8007e450589979652ffb3cea0b"
       session_id: "scaffold-032-013"
       parent_session_id: null
     completion_pct: 0
@@ -41,13 +41,13 @@ _memory:
 |-------|-------|
 | **Level** | 1 |
 | **Priority** | P2 |
-| **Status** | Draft |
+| **Status** | Complete |
 | **Created** | 2026-07-01 |
 | **Branch** | `032-goal-opencode-plugin` |
 | **Parent Spec** | ../spec.md |
-| **Phase** | 13 of 13 |
+| **Phase** | 13 |
 | **Predecessor** | 012-regression-test-backfill |
-| **Successor** | None (final phase of this packet's remediation) |
+| **Successor** | 014-goal-state-cleanup-and-archive |
 | **Handoff Criteria** | Operator has explicitly decided the `usage_limited` fork; all P2/P3 polish items landed or explicitly deferred with the operator's sign-off |
 <!-- /ANCHOR:metadata -->
 
@@ -62,7 +62,7 @@ This is the lowest-priority remediation phase — polish and design-fidelity ite
 
 **Dependencies**: none — all 5 items are independent of phases 010/011/012 and of each other.
 
-**Deliverables**: the `usage_limited` decision implemented, packet-wide fingerprint fix, phase 006 metadata downgrade, `fsyncDirectory` error logging, and a store-health status dimension.
+**Deliverables**: the `usage_limited` decision implemented, phases 001-008 fingerprint fix, phase 006 metadata downgrade, `fsyncDirectory` error logging, and a store-health status dimension.
 
 **Changelog**: refresh `../changelog/changelog-032-013-design-fidelity-and-polish.md` when this phase closes.
 <!-- /ANCHOR:phase-context -->
@@ -73,7 +73,7 @@ This is the lowest-priority remediation phase — polish and design-fidelity ite
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
-Research's 9-design-fork cross-check (iteration 7) found the shipped plugin faithfully realizes 7 of 9 original design forks, but fork #6 (status set) is only partially realized: `usage_limited` is declared in the enum and documented as first-class in the feature catalog, but has zero production writers — a planned-but-unimplemented contract. Separately, research found 4 lower-severity polish items: a packet-wide hardcoded fingerprint defeating the freshness gate (F-012), a phase-006 completion-percentage overclaim given its own honestly-disclosed live-smoke gap (F-010), silent fsync-error swallowing (F-016), and a missing store-health diagnostic dimension the original design asked for (F-017).
+Research's 9-design-fork cross-check (iteration 7) found the shipped plugin faithfully realizes 7 of 9 original design forks, but fork #6 (status set) is only partially realized: `usage_limited` is declared in the enum and documented as first-class in the feature catalog, but has zero production writers — a planned-but-unimplemented contract. Separately, research found 4 lower-severity polish items: phases 001-008 carried hardcoded fingerprints defeating the freshness gate (F-012), a phase-006 completion-percentage overclaim given its own honestly-disclosed live-smoke gap (F-010), silent fsync-error swallowing (F-016), and a missing store-health diagnostic dimension the original design asked for (F-017).
 
 ### Purpose
 Resolve the one genuine design decision (`usage_limited`) with explicit operator input, and land the 4 independent polish items.
@@ -86,7 +86,7 @@ Resolve the one genuine design decision (`usage_limited`) with explicit operator
 
 ### In Scope
 - F-003/F-014: implement the operator-chosen resolution — wire a real provider-usage-limit detector (not collapse the enum). Evidence: `@opencode-ai/sdk`'s `AssistantMessage.error` union includes `ApiError` with `data.statusCode` and `data.isRetryable`; HTTP 429 on `data.statusCode` is the concrete, stable signal for a provider rate-limit/usage-cap refusal, available on the `message.updated` event's message payload (same event `recordMessageUpdated`/`extractUsageFromEvent` already read for token accounting).
-- F-012: recompute real `session_dedup.fingerprint` values across all 8 original phase docs' `_memory.continuity` blocks (packet-wide, not per-phase logic).
+- F-012: recompute real `session_dedup.fingerprint` values across all 8 original phase docs' `_memory.continuity` blocks (phases 001-008, not per-phase plugin logic).
 - F-010: downgrade phase 006's `implementation-summary.md` `completion_pct` from 100 to reflect the never-exercised live `session.idle` smoke test; align `recent_action` wording with the already-correct `next_safe_action`.
 - F-016: add `MK_GOAL_DEBUG`-gated logging to `fsyncDirectory`'s currently-silent error swallowing.
 - F-017: add a store-health/session-liveness diagnostic dimension to `mk_goal_status`/`/goal show`, per the original design's fork #7(c).
@@ -100,7 +100,7 @@ Resolve the one genuine design decision (`usage_limited`) with explicit operator
 | File Path | Change Type | Description |
 |-----------|-------------|--------------|
 | `.opencode/plugins/mk-goal.js` | Modify | Wire the `usage_limited` detector on `message.updated`, `fsyncDirectory` logging, store-health status field |
-| `032-goal-opencode-plugin/00{1-8}-*/{spec,plan,tasks,implementation-summary}.md` (`_memory.continuity.session_dedup.fingerprint`) | Modify | Recompute real fingerprints, packet-wide |
+| `032-goal-opencode-plugin/00{1-8}-*/{spec,plan,tasks,implementation-summary}.md` (`_memory.continuity.session_dedup.fingerprint`) | Modify | Recompute real fingerprints for phases 001-008 |
 | `032-goal-opencode-plugin/006-active-continuation/implementation-summary.md` | Modify | Downgrade `completion_pct`, align `recent_action` wording |
 <!-- /ANCHOR:scope -->
 

@@ -10,6 +10,7 @@
 // ─────────────────────────────────────────────────────────────────────────────
 
 import { randomUUID } from 'node:crypto';
+import { statSync } from 'node:fs';
 import { appendFile, mkdir, open, readFile, readdir, rename, stat, unlink } from 'node:fs/promises';
 import { join, resolve as resolvePath } from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -33,15 +34,62 @@ const DEFAULT_MAX_WALL_MS = 30 * 60 * 1000;
 const DEFAULT_ARCHIVE_RETENTION_DAYS = 90;
 const DEFAULT_ACTIVE_RETENTION_DAYS = 30;
 const DEFAULT_SWEEP_INTERVAL_MS = 60 * 60 * 1000;
+const GOAL_ID_MAX_CHARS = 160;
+const PROMPT_OVERHEAD_CHARS = 1900;
+const OBJECTIVE_PREVIEW_RATIO = 0.12;
+const OBJECTIVE_PREVIEW_MIN_CHARS = 60;
+const OBJECTIVE_PREVIEW_MAX_CHARS = 600;
+const MIN_PROMPT_BUDGET_CHARS = 3;
+const MAX_ACCOUNTED_MESSAGES = 64;
+const NORMALIZED_OPTIONS_MARKER = Symbol('mkGoalNormalizedOptions');
 const MS_PER_DAY = 24 * 60 * 60 * 1000;
 const DISABLED_ENV = 'MK_GOAL_PLUGIN_DISABLED';
 const AUTONOMY_ENV = 'MK_GOAL_AUTONOMY';
 const DEBUG_ENV = 'MK_GOAL_DEBUG';
+const VERIFIER_ENV = 'MK_GOAL_VERIFIER';
+const DEFAULT_VERIFIER_MODE = 'heuristic';
 const ARCHIVE_RETENTION_DAYS_ENV = 'MK_GOAL_STATE_ARCHIVE_RETENTION_DAYS';
 const ACTIVE_RETENTION_DAYS_ENV = 'MK_GOAL_STATE_ACTIVE_RETENTION_DAYS';
 const SWEEP_INTERVAL_MS_ENV = 'MK_GOAL_STATE_SWEEP_INTERVAL_MS';
+const MAX_AUTO_TURNS_ENV = 'MK_GOAL_MAX_AUTO_TURNS';
+const MAX_WALL_MS_ENV = 'MK_GOAL_MAX_WALL_MS';
 const CONTINUATION_LOG_FILENAME = '.continuation.log';
 const GOAL_EVENTS_LOG_FILENAME = '.goal-events.log';
+const OWNED_JSONL_LOGS = new Set([CONTINUATION_LOG_FILENAME, GOAL_EVENTS_LOG_FILENAME]);
+const QUIET_CONTINUATION_REASONS = new Set(['plugin_disabled', 'autonomy_disabled', 'autonomy_passive']);
+const ROLE_HOMOGLYPHS = Object.freeze({
+  а: 'a',
+  е: 'e',
+  і: 'i',
+  о: 'o',
+  р: 'p',
+  с: 'c',
+  ѕ: 's',
+  у: 'y',
+  Α: 'A',
+  Β: 'B',
+  Ε: 'E',
+  Ζ: 'Z',
+  Η: 'H',
+  Ι: 'I',
+  Κ: 'K',
+  Μ: 'M',
+  Ν: 'N',
+  Ο: 'O',
+  Ρ: 'P',
+  Τ: 'T',
+  Χ: 'X',
+  α: 'a',
+  β: 'b',
+  ε: 'e',
+  η: 'n',
+  ι: 'i',
+  κ: 'k',
+  ο: 'o',
+  ρ: 'p',
+  τ: 't',
+  χ: 'x',
+});
 const PROMPT_ENHANCEMENT_VERSION = 'sk-prompt-goal-v1';
 const PROMPT_ENHANCEMENT_FRAMEWORK = 'CRAFT+TIDD-EC';
 const PROMPT_ENHANCEMENT_METHODOLOGY = 'DEPTH';
@@ -58,6 +106,35 @@ const PROMPT_ENHANCEMENT_PERSPECTIVES = [
   'token_efficiency',
 ];
 const AUTONOMY_ACTIVE_MODES = new Set(['active', 'smoke']);
+const VALID_VERIFIER_MODES = new Set(['heuristic', 'llm']);
+const VERIFIER_BLOCKING_PATTERN = /\b(blocked?|blocker|error|failed|failing|failure|cannot|can't|unable|todo|not yet|partial(?:ly)?|still need(?:s)?|incomplete|not complete|not done|waiting|pending)\b/i;
+const VERIFIER_COMPLETION_PATTERN = /\b(done|completed?|finished|implemented|fixed|resolved|delivered|shipped|verified|validated|tests? passed|checks? passed|passing)\b/i;
+const VERIFIER_STOPWORDS = new Set([
+  'about',
+  'after',
+  'against',
+  'before',
+  'build',
+  'change',
+  'complete',
+  'create',
+  'done',
+  'execute',
+  'finish',
+  'fix',
+  'from',
+  'goal',
+  'implement',
+  'into',
+  'make',
+  'mission',
+  'phase',
+  'that',
+  'this',
+  'update',
+  'with',
+  'work',
+]);
 const VALID_STATUSES = new Set([
   'active',
   'paused',
@@ -66,10 +143,21 @@ const VALID_STATUSES = new Set([
   'budget_limited',
   'complete',
 ]);
+const STATUS_TRANSITIONS = Object.freeze({
+  active: new Set(['active', 'paused', 'complete']),
+  paused: new Set(['active', 'paused', 'complete']),
+  blocked: new Set(['blocked', 'complete']),
+  usage_limited: new Set(['active', 'usage_limited', 'complete']),
+  budget_limited: new Set(['budget_limited', 'complete']),
+  complete: new Set(['complete']),
+});
 const VALID_VERIFIER_VERDICTS = new Set(['met', 'not_met', 'blocked']);
 const EMPTY_INJECTION_PREVIEW = '';
-const GOAL_ACTIONS = ['set', 'show', 'clear', 'complete', 'pause'];
+const GOAL_ACTIONS = ['set', 'show', 'clear', 'complete', 'pause', 'history', 'resume', 'doctor', 'health'];
 const mutationQueues = new Map();
+const knownStateDirs = new Set();
+const goalBriefCache = new Map();
+const lastArchivePruneAtMs = new Map();
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 3. ERRORS
@@ -95,18 +183,49 @@ function normalizeMaxGoalPromptChars(value, fallback = DEFAULT_MAX_GOAL_PROMPT_C
   return Math.min(DEFAULT_MAX_GOAL_PROMPT_CHARS, normalizePositiveInt(value, fallback));
 }
 
+function countMetric(rawOptions, name, amount = 1) {
+  const metrics = rawOptions?.metrics;
+  if (!metrics || typeof metrics !== 'object') return;
+  metrics[name] = (metrics[name] || 0) + amount;
+}
+
+function markNormalizedOptions(options) {
+  Object.defineProperty(options, NORMALIZED_OPTIONS_MARKER, {
+    value: true,
+    enumerable: false,
+  });
+  return options;
+}
+
+function normalizeVerifierMode(value) {
+  const mode = sanitizeInlineText(value || DEFAULT_VERIFIER_MODE, 40).toLowerCase();
+  return VALID_VERIFIER_MODES.has(mode) ? mode : DEFAULT_VERIFIER_MODE;
+}
+
+function defaultSupervisorVerifierForMode(mode, normalizedOptions) {
+  if (mode === 'llm') return (input) => defaultLlmSupervisorVerifier(input, normalizedOptions);
+  return (input) => defaultHeuristicSupervisorVerifier(input);
+}
+
 function normalizeOptions(rawOptions = {}) {
+  if (rawOptions?.[NORMALIZED_OPTIONS_MARKER]) return rawOptions;
+  countMetric(rawOptions, 'normalizeOptions');
   const envMaxObjectiveChars = Number(process.env.MK_GOAL_MAX_OBJECTIVE_CHARS);
   const envMaxGoalPromptChars = Number(process.env.MK_GOAL_MAX_GOAL_PROMPT_CHARS);
   const envMaxInjectionChars = Number(process.env.MK_GOAL_MAX_INJECTION_CHARS);
   const envMaxEvidenceChars = Number(process.env.MK_GOAL_MAX_EVIDENCE_CHARS);
+  const envMaxAutoTurns = Number(process.env[MAX_AUTO_TURNS_ENV]);
+  const envMaxWallMs = Number(process.env[MAX_WALL_MS_ENV]);
   const options = rawOptions && typeof rawOptions === 'object' ? rawOptions : {};
+  const verifierMode = normalizeVerifierMode(options.verifierMode || process.env[VERIFIER_ENV]);
+  const injectedSupervisorVerifier = typeof options.supervisorVerifier === 'function' ? options.supervisorVerifier : null;
 
-  return {
+  const normalized = {
     enabled: options.enabled !== false && process.env[DISABLED_ENV] !== '1',
     stateDir: resolvePath(typeof options.stateDir === 'string' && options.stateDir.trim()
       ? options.stateDir.trim()
       : DEFAULT_STATE_DIR),
+    metrics: options.metrics && typeof options.metrics === 'object' ? options.metrics : null,
     maxObjectiveChars: normalizePositiveInt(
       options.maxObjectiveChars,
       normalizePositiveInt(envMaxObjectiveChars, DEFAULT_MAX_OBJECTIVE_CHARS),
@@ -123,14 +242,31 @@ function normalizeOptions(rawOptions = {}) {
       options.maxEvidenceChars,
       normalizePositiveInt(envMaxEvidenceChars, DEFAULT_MAX_EVIDENCE_CHARS),
     ),
+    maxAutoTurns: normalizePositiveInt(
+      options.maxAutoTurns,
+      normalizePositiveInt(envMaxAutoTurns, DEFAULT_MAX_AUTO_TURNS),
+    ),
+    maxWallMs: normalizePositiveInt(
+      options.maxWallMs,
+      normalizePositiveInt(envMaxWallMs, DEFAULT_MAX_WALL_MS),
+    ),
     nowMs: Number.isFinite(options.nowMs) ? Math.trunc(options.nowMs) : null,
     goalIdFactory: typeof options.goalIdFactory === 'function' ? options.goalIdFactory : null,
-    supervisorVerifier: typeof options.supervisorVerifier === 'function' ? options.supervisorVerifier : null,
+    client: options.client && typeof options.client === 'object' ? options.client : null,
+    verifierMode,
+    supervisorVerifier: injectedSupervisorVerifier,
+    supervisorVerifierSource: injectedSupervisorVerifier ? 'injected' : `default-${verifierMode}`,
   };
+  normalized.supervisorVerifier ||= defaultSupervisorVerifierForMode(verifierMode, normalized);
+  return markNormalizedOptions(normalized);
 }
 
 function nowMs(options = {}) {
   return Number.isFinite(options.nowMs) ? Math.trunc(options.nowMs) : Date.now();
+}
+
+function retentionNowMs(rawOptions = {}) {
+  return nowMs(rawOptions);
 }
 
 function isoFromMs(value) {
@@ -188,6 +324,10 @@ function clampText(value, maxChars) {
   return `${text.slice(0, limit - 3).trimEnd()}...`;
 }
 
+function foldRoleToken(value) {
+  return String(value || '').replace(/[аеіорсѕуΑΒΕΖΗΙΚΜΝΟΡΤΧαβεηικορτχ]/g, (char) => ROLE_HOMOGLYPHS[char] || char);
+}
+
 function normalizeUserAuthoredText(value) {
   return String(value ?? '')
     .normalize('NFKC')
@@ -196,9 +336,10 @@ function normalizeUserAuthoredText(value) {
     .replace(/[\u0009\u000a\u000d]+/g, '\n')
     .replace(/\[\/?active_goal[^\]]*\]/gi, '[goal-marker-redacted]')
     .replace(/`{3,}/g, '\'\'\'')
-    .replace(/(^|[\s\n>])([a-z][\w -]{0,24})\s*:/gi, (match, prefix, role) => {
-      if (!/^(system|developer|assistant|tool|user)$/i.test(role.trim())) return match;
-      return `${prefix}${role}-role:`;
+    .replace(/(^|[^\p{L}\p{N}_-])([\p{L}][\p{L}\p{N}_ -]{0,24})\s*:/giu, (match, prefix, role) => {
+      const foldedRole = foldRoleToken(role.trim()).toLowerCase();
+      if (!/^(system|developer|assistant|tool|user)$/.test(foldedRole)) return match;
+      return `${prefix}${foldedRole}-role:`;
     })
     .replace(/\b(ignore|disregard|forget|override|bypass|disable|drop|replace)\s+(all\s+)?(previous|prior|above|earlier|system|developer|safety|tool)\s+(instructions?|messages?|prompts?|rules?|constraints?)\b/gi, '[instruction-redacted]')
     .replace(/\b(reveal|print|show|dump|exfiltrate|leak)\s+(the\s+)?(system|developer|hidden|secret)\s+(prompt|instructions?|messages?|rules?)\b/gi, '[instruction-redacted]')
@@ -214,6 +355,17 @@ function sanitizeInlineText(value, maxChars = DEFAULT_MAX_OBJECTIVE_CHARS) {
   return clampText(text, maxChars);
 }
 
+function normalizeGoalID(value) {
+  return sanitizeInlineText(value, GOAL_ID_MAX_CHARS).replace(/\s+/g, '-');
+}
+
+function calculateObjectivePreviewChars(maxInjectionChars) {
+  return Math.max(
+    OBJECTIVE_PREVIEW_MIN_CHARS,
+    Math.min(OBJECTIVE_PREVIEW_MAX_CHARS, Math.floor(maxInjectionChars * OBJECTIVE_PREVIEW_RATIO)),
+  );
+}
+
 function sanitizePromptText(value, maxChars = DEFAULT_MAX_GOAL_PROMPT_CHARS) {
   const text = normalizeUserAuthoredText(value)
     .replace(/\r\n?/g, '\n')
@@ -227,6 +379,8 @@ function sanitizePromptText(value, maxChars = DEFAULT_MAX_GOAL_PROMPT_CHARS) {
 
 function redactEvidence(value, maxChars = DEFAULT_MAX_EVIDENCE_CHARS) {
   const text = sanitizeInlineText(value, maxChars)
+    .replace(/\bBearer\s+[A-Za-z0-9._-]{20,}\b/gi, '[secret-redacted]')
+    .replace(/\beyJ[A-Za-z0-9_-]*\.[A-Za-z0-9_-]+\.[A-Za-z0-9_-]+\b/g, '[secret-redacted]')
     .replace(/\b(sk-[A-Za-z0-9_-]{8,})\b/g, '[secret-redacted]')
     .replace(/\b(gh[pousr]_[A-Za-z0-9_]{12,})\b/g, '[secret-redacted]')
     .replace(/\b(xox[baprs]-[A-Za-z0-9-]{12,})\b/g, '[secret-redacted]')
@@ -235,7 +389,8 @@ function redactEvidence(value, maxChars = DEFAULT_MAX_EVIDENCE_CHARS) {
   return clampText(text, maxChars);
 }
 
-function scoreEnhancedGoalPrompt(goalPrompt) {
+function scoreEnhancedGoalPrompt(goalPrompt, rawOptions = {}) {
+  countMetric(rawOptions, 'scoreEnhancedGoalPrompt');
   const prompt = String(goalPrompt || '');
   const hasRole = /(^|\n)Role:/i.test(prompt);
   const hasObjective = /(^|\n)Objective:/i.test(prompt);
@@ -287,7 +442,7 @@ function goalFocusHints(objective) {
 function buildEnhancedGoalPrompt(objective, rawOptions = {}) {
   const options = normalizeOptions(rawOptions);
   const rawObjective = sanitizeInlineText(objective, options.maxObjectiveChars);
-  const objectiveBudget = Math.max(240, Math.min(1200, options.maxGoalPromptChars - 1900));
+  const objectiveBudget = Math.max(240, Math.min(1200, options.maxGoalPromptChars - PROMPT_OVERHEAD_CHARS));
   const objectiveSummary = clampText(rawObjective, objectiveBudget);
   const hints = goalFocusHints(rawObjective);
   const prompt = sanitizePromptText([
@@ -306,7 +461,7 @@ function buildEnhancedGoalPrompt(objective, rawOptions = {}) {
     '- Stop only when the goal verifier can mark the goal met, when the user changes or clears the goal, or when progress is blocked by a decision the user must make.',
     '- If blocked, preserve state and name the next safe action.',
   ].join('\n'), options.maxGoalPromptChars);
-  const score = scoreEnhancedGoalPrompt(prompt);
+  const score = scoreEnhancedGoalPrompt(prompt, options);
 
   return {
     goalPrompt: prompt,
@@ -325,10 +480,52 @@ function buildEnhancedGoalPrompt(objective, rawOptions = {}) {
   };
 }
 
+function hasUsableStoredPromptEnhancement(rawEnhancement, goalPrompt, rawOptions = {}) {
+  const options = normalizeOptions(rawOptions);
+  const raw = rawEnhancement && typeof rawEnhancement === 'object' ? rawEnhancement : null;
+  if (!raw) return false;
+  if (!sanitizeInlineText(raw.version || '', 80)) return false;
+  if (!sanitizeInlineText(raw.methodology || '', 80)) return false;
+  if (!sanitizeInlineText(raw.mode || '', 80)) return false;
+  if (!sanitizeInlineText(raw.framework || '', 80)) return false;
+  if (!Number.isFinite(raw.clearScore)) return false;
+  if (!raw.clearBreakdown || typeof raw.clearBreakdown !== 'object') return false;
+  const breakdownKeys = ['correctness', 'logic', 'expression', 'arrangement', 'reusability'];
+  if (!breakdownKeys.every((key) => Number.isFinite(raw.clearBreakdown[key]))) return false;
+  if (!Number.isFinite(raw.charCount) || Math.trunc(raw.charCount) !== goalPrompt.length) return false;
+  if (!Number.isFinite(raw.maxChars) || Math.trunc(raw.maxChars) !== options.maxGoalPromptChars) return false;
+  return true;
+}
+
+function normalizeStoredPromptEnhancement(rawEnhancement, goalPrompt, rawOptions = {}) {
+  const options = normalizeOptions(rawOptions);
+  const raw = rawEnhancement && typeof rawEnhancement === 'object' ? rawEnhancement : {};
+  return {
+    version: sanitizeInlineText(raw.version || PROMPT_ENHANCEMENT_VERSION, 80),
+    methodology: sanitizeInlineText(raw.methodology || PROMPT_ENHANCEMENT_METHODOLOGY, 80),
+    mode: sanitizeInlineText(raw.mode || PROMPT_ENHANCEMENT_MODE, 80),
+    framework: sanitizeInlineText(raw.framework || PROMPT_ENHANCEMENT_FRAMEWORK, 80),
+    ricce: PROMPT_ENHANCEMENT_RICCE,
+    perspectives: Array.isArray(raw.perspectives) && raw.perspectives.length > 0
+      ? raw.perspectives.map((entry) => sanitizeInlineText(entry, 80)).filter(Boolean).slice(0, 8)
+      : PROMPT_ENHANCEMENT_PERSPECTIVES,
+    clearScore: Math.trunc(raw.clearScore),
+    clearBreakdown: {
+      correctness: Math.trunc(raw.clearBreakdown.correctness),
+      logic: Math.trunc(raw.clearBreakdown.logic),
+      expression: Math.trunc(raw.clearBreakdown.expression),
+      arrangement: Math.trunc(raw.clearBreakdown.arrangement),
+      reusability: Math.trunc(raw.clearBreakdown.reusability),
+    },
+    maxChars: options.maxGoalPromptChars,
+    charCount: goalPrompt.length,
+  };
+}
+
 function normalizePromptEnhancement(rawEnhancement, goalPrompt, rawOptions = {}) {
   const options = normalizeOptions(rawOptions);
   const raw = rawEnhancement && typeof rawEnhancement === 'object' ? rawEnhancement : {};
-  const score = scoreEnhancedGoalPrompt(goalPrompt);
+  const score = scoreEnhancedGoalPrompt(goalPrompt, options);
   return {
     version: sanitizeInlineText(raw.version || PROMPT_ENHANCEMENT_VERSION, 80),
     methodology: sanitizeInlineText(raw.methodology || PROMPT_ENHANCEMENT_METHODOLOGY, 80),
@@ -347,8 +544,14 @@ function normalizePromptEnhancement(rawEnhancement, goalPrompt, rawOptions = {})
 
 function normalizeGoalPromptFields(rawGoal, objective, rawOptions = {}) {
   const options = normalizeOptions(rawOptions);
-  const fallback = buildEnhancedGoalPrompt(objective, options);
   const storedPrompt = sanitizePromptText(rawGoal?.goalPrompt || '', options.maxGoalPromptChars);
+  if (storedPrompt && hasUsableStoredPromptEnhancement(rawGoal?.promptEnhancement, storedPrompt, options)) {
+    return {
+      goalPrompt: storedPrompt,
+      promptEnhancement: normalizeStoredPromptEnhancement(rawGoal.promptEnhancement, storedPrompt, options),
+    };
+  }
+  const fallback = buildEnhancedGoalPrompt(objective, options);
   const goalPrompt = storedPrompt || fallback.goalPrompt;
   return {
     goalPrompt,
@@ -372,9 +575,9 @@ function quoteValue(value) {
 
 function goalIdFromFactory(options) {
   const candidate = options.goalIdFactory ? options.goalIdFactory() : null;
-  const normalized = sanitizeInlineText(candidate || `goal-${randomUUID()}`, 160);
+  const normalized = normalizeGoalID(candidate || `goal-${randomUUID()}`);
   if (!normalized) return `goal-${randomUUID()}`;
-  return normalized.replace(/\s+/g, '-');
+  return normalized;
 }
 
 function eventPayloadFrom(event) {
@@ -436,7 +639,7 @@ function extractEventMessageID(event) {
 function extractEventGoalID(event) {
   const payload = eventPayloadFrom(event);
   const properties = eventPropertiesFrom(payload);
-  return sanitizeInlineText(
+  return normalizeGoalID(
     payload?.goalID
       || payload?.goalId
       || properties.goalID
@@ -444,8 +647,7 @@ function extractEventGoalID(event) {
       || properties.info?.goalID
       || properties.info?.goalId
       || null,
-    160,
-  ).replace(/\s+/g, '-');
+  );
 }
 
 function extractEventSessionStatus(event) {
@@ -463,23 +665,67 @@ function disabledAutonomyReason(mode) {
   return mode === 'passive' ? 'autonomy_passive' : 'autonomy_disabled';
 }
 
-function normalizeAutoTurns(value) {
+function normalizeAutoTurns(value, maxAutoTurns = DEFAULT_MAX_AUTO_TURNS) {
   if (!Number.isFinite(value)) return 0;
-  return Math.max(0, Math.min(DEFAULT_MAX_AUTO_TURNS, Math.trunc(value)));
+  return Math.max(0, Math.min(maxAutoTurns, Math.trunc(value)));
+}
+
+function normalizeDeadlineMs(value) {
+  if (!Number.isFinite(value)) return null;
+  const timestamp = Math.trunc(value);
+  return timestamp > 0 ? timestamp : null;
+}
+
+function normalizeAccountedMessageUsage(value) {
+  if (!value || typeof value !== 'object' || Array.isArray(value)) return {};
+  return Object.fromEntries(Object.entries(value)
+    .map(([key, entry]) => [sanitizeInlineText(key, GOAL_ID_MAX_CHARS), Number(entry)])
+    .filter(([key, entry]) => key && Number.isFinite(entry) && entry > 0)
+    .slice(-MAX_ACCOUNTED_MESSAGES)
+    .map(([key, entry]) => [key, Math.trunc(entry)]));
+}
+
+function rememberAccountedMessage(accountedMessageUsage, messageID, tokenTotal) {
+  const next = { ...normalizeAccountedMessageUsage(accountedMessageUsage) };
+  delete next[messageID];
+  next[messageID] = Math.trunc(tokenTotal);
+  return Object.fromEntries(Object.entries(next).slice(-MAX_ACCOUNTED_MESSAGES));
 }
 
 async function appendGoalJsonl(filename, payload, rawOptions = {}) {
   try {
     const stateDir = await ensureGoalStateDir(rawOptions);
-    await appendFile(join(stateDir, filename), `${JSON.stringify(payload)}\n`, 'utf8');
+    await pruneJsonlLog(filename, stateDir, rawOptions);
+    const timestamp = isoFromMs(nowMs(rawOptions));
+    const entry = {
+      ts: timestamp,
+      goalId: payload?.goalId === undefined ? null : payload.goalId,
+      ...payload,
+    };
+    await appendFile(join(stateDir, filename), `${JSON.stringify(entry)}\n`, 'utf8');
   } catch {
     return;
   }
 }
 
-async function logContinuationDecision(sessionID, decision, reason, autoTurnsUsed, rawOptions = {}) {
+async function pruneJsonlLog(filename, stateDir, rawOptions = {}) {
+  if (!OWNED_JSONL_LOGS.has(filename)) return;
+  try {
+    const retentionMs = retentionDaysFromEnv(ARCHIVE_RETENTION_DAYS_ENV, DEFAULT_ARCHIVE_RETENTION_DAYS) * MS_PER_DAY;
+    const timestamp = retentionNowMs(rawOptions);
+    const path = join(stateDir, filename);
+    const fileStats = await stat(path);
+    if (timestamp - fileStats.mtimeMs > retentionMs) await unlink(path);
+  } catch {
+    return;
+  }
+}
+
+async function logContinuationDecision(sessionID, decision, reason, autoTurnsUsed, rawOptions = {}, goalId = null) {
+  if (QUIET_CONTINUATION_REASONS.has(reason)) return;
   await appendGoalJsonl(CONTINUATION_LOG_FILENAME, {
     sid: sessionID || null,
+    goalId: goalId || null,
     decision,
     reason: sanitizeInlineText(reason, DEFAULT_MAX_REASON_CHARS) || 'unknown',
     autoTurnsUsed: normalizeAutoTurns(autoTurnsUsed),
@@ -491,15 +737,16 @@ async function logDebugEvent(eventType, sessionID, rawOptions = {}) {
   await appendGoalJsonl(GOAL_EVENTS_LOG_FILENAME, {
     type: sanitizeInlineText(eventType || 'unknown', 80),
     sid: sessionID || null,
+    goalId: null,
   }, rawOptions);
 }
 
 async function logDebugEventError(event, error, rawOptions = {}) {
-  if (process.env[DEBUG_ENV] !== '1') return;
   await appendGoalJsonl(GOAL_EVENTS_LOG_FILENAME, {
     type: 'event_error',
     eventType: sanitizeInlineText(eventTypeFrom(event) || 'unknown', 80),
     sid: extractEventSessionID(event),
+    goalId: extractEventGoalID(event) || null,
     error: redactEvidence(error?.message || 'unknown error', DEFAULT_MAX_REASON_CHARS),
   }, rawOptions);
 }
@@ -576,6 +823,89 @@ function extractErrorFromEvent(event) {
   ].find((candidate) => candidate && typeof candidate === 'object') || null;
 }
 
+function firstValue(source, keys) {
+  if (!source || typeof source !== 'object') return undefined;
+  for (const key of keys) {
+    if (source[key] !== undefined) return source[key];
+  }
+  return undefined;
+}
+
+function statusCodeFromError(error) {
+  const candidates = [
+    error?.statusCode,
+    error?.status,
+    error?.code,
+    error?.data?.statusCode,
+    error?.data?.status,
+    error?.response?.statusCode,
+    error?.response?.status,
+  ];
+  for (const candidate of candidates) {
+    const numeric = Number(candidate);
+    if (Number.isFinite(numeric)) return Math.trunc(numeric);
+  }
+  return null;
+}
+
+function errorMessageText(error) {
+  return [
+    error?.message,
+    error?.data?.message,
+    error?.data?.error,
+    error?.body?.message,
+    error?.response?.message,
+  ].map((entry) => (entry === null || entry === undefined ? '' : String(entry))).filter(Boolean).join(' ');
+}
+
+function isProviderUsageLimit(error) {
+  if (!error || typeof error !== 'object') return false;
+  if (statusCodeFromError(error) === 429) return true;
+  return /\b(?:rate\s*limit(?:ed)?|too many requests|usage[_ -]?limit(?:ed)?|insufficient quota|quota (?:exceeded|limit|reached))\b/i.test(errorMessageText(error));
+}
+
+function retryAfterDeadlineFromValue(value, unit, rawOptions = {}) {
+  if (value === null || value === undefined || value === '') return null;
+  const timestamp = nowMs(rawOptions);
+  const numeric = Number(value);
+  if (Number.isFinite(numeric) && numeric > 0) {
+    if (unit === 'ms') return Math.trunc(timestamp + numeric);
+    if (numeric > 1000000000000) return Math.trunc(numeric);
+    return Math.trunc(timestamp + (numeric * 1000));
+  }
+  const dateMs = Date.parse(String(value));
+  return Number.isFinite(dateMs) && dateMs > timestamp ? Math.trunc(dateMs) : null;
+}
+
+function providerRetryAfterDeadlineMs(error, rawOptions = {}) {
+  const headerRetryAfter = firstValue(error?.headers, ['retry-after', 'Retry-After'])
+    ?? firstValue(error?.data?.headers, ['retry-after', 'Retry-After'])
+    ?? firstValue(error?.response?.headers, ['retry-after', 'Retry-After']);
+  const candidates = [
+    [error?.retryAfterMs, 'ms'],
+    [error?.data?.retryAfterMs, 'ms'],
+    [error?.retryAfter, 'seconds'],
+    [error?.retry_after, 'seconds'],
+    [error?.data?.retryAfter, 'seconds'],
+    [error?.data?.retry_after, 'seconds'],
+    [headerRetryAfter, 'seconds'],
+  ];
+  for (const [value, unit] of candidates) {
+    const deadline = retryAfterDeadlineFromValue(value, unit, rawOptions);
+    if (deadline !== null) return deadline;
+  }
+  return null;
+}
+
+function providerUsageLimitPatch(error, rawOptions = {}) {
+  return {
+    status: 'usage_limited',
+    continuationSuppressed: true,
+    continuationSuppressedReason: 'usage_limited',
+    providerRetryAfterMs: providerRetryAfterDeadlineMs(error, rawOptions),
+  };
+}
+
 function roleFromObject(value) {
   if (!value || typeof value !== 'object') return null;
   return sanitizeInlineText(value.role || value.author?.role || value.sender?.role || '', 80).toLowerCase() || null;
@@ -626,13 +956,17 @@ function extractAssistantEvidence(event, rawOptions = {}) {
  */
 async function ensureGoalStateDir(rawOptions = {}) {
   const options = normalizeOptions(rawOptions);
+  if (knownStateDirs.has(options.stateDir)) return options.stateDir;
+  countMetric(options, 'mkdirStateDir');
   await mkdir(options.stateDir, { recursive: true, mode: 0o700 });
+  knownStateDirs.add(options.stateDir);
   return options.stateDir;
 }
 
 async function ensureGoalArchiveDir(rawOptions = {}) {
   const stateDir = await ensureGoalStateDir(rawOptions);
   const archiveDir = join(stateDir, '.archive');
+  countMetric(rawOptions, 'mkdirArchiveDir');
   await mkdir(archiveDir, { recursive: true, mode: 0o700 });
   return archiveDir;
 }
@@ -647,6 +981,14 @@ async function ensureGoalArchiveDir(rawOptions = {}) {
 function goalPathForSession(sessionID, rawOptions = {}) {
   const options = normalizeOptions(rawOptions);
   return join(options.stateDir, `${sessionKeyForSession(sessionID)}.json`);
+}
+
+function invalidateGoalBriefCache(sessionID, rawOptions = {}) {
+  try {
+    goalBriefCache.delete(goalPathForSession(sessionID, rawOptions));
+  } catch {
+    return;
+  }
 }
 
 function normalizeStoredGoal(rawGoal, fallbackSessionID, rawOptions = {}) {
@@ -666,16 +1008,16 @@ function normalizeStoredGoal(rawGoal, fallbackSessionID, rawOptions = {}) {
   const createdAtMs = Number.isFinite(rawGoal.createdAtMs) ? Math.trunc(rawGoal.createdAtMs) : nowMs(options);
   const updatedAtMs = Number.isFinite(rawGoal.updatedAtMs) ? Math.trunc(rawGoal.updatedAtMs) : createdAtMs;
   const promptFields = normalizeGoalPromptFields(rawGoal, objective, options);
+  const tokenBudget = rawGoal.tokenBudget === undefined ? null : normalizeTokenBudget(rawGoal.tokenBudget);
 
   return {
-    ...rawGoal,
     sessionId: sessionID,
-    goalId: sanitizeInlineText(rawGoal.goalId || goalIdFromFactory(options), 160).replace(/\s+/g, '-'),
+    goalId: normalizeGoalID(rawGoal.goalId || goalIdFromFactory(options)),
     objective,
     goalPrompt: promptFields.goalPrompt,
     promptEnhancement: promptFields.promptEnhancement,
     status: rawGoal.status,
-    tokenBudget: rawGoal.tokenBudget === undefined ? null : rawGoal.tokenBudget,
+    tokenBudget,
     tokensUsed: Number.isFinite(rawGoal.tokensUsed) ? Math.max(0, Math.trunc(rawGoal.tokensUsed)) : 0,
     timeUsedSeconds: Number.isFinite(rawGoal.timeUsedSeconds) ? Math.max(0, Math.trunc(rawGoal.timeUsedSeconds)) : 0,
     createdAtMs,
@@ -683,21 +1025,21 @@ function normalizeStoredGoal(rawGoal, fallbackSessionID, rawOptions = {}) {
     createdAt: typeof rawGoal.createdAt === 'string' ? rawGoal.createdAt : isoFromMs(createdAtMs),
     updatedAt: typeof rawGoal.updatedAt === 'string' ? rawGoal.updatedAt : isoFromMs(updatedAtMs),
     continuationSuppressed: rawGoal.continuationSuppressed === true,
-    autoTurnsUsed: normalizeAutoTurns(rawGoal.autoTurnsUsed),
+    autoTurnsUsed: normalizeAutoTurns(rawGoal.autoTurnsUsed, options.maxAutoTurns),
     maxAutoTurns: Number.isFinite(rawGoal.maxAutoTurns)
-      ? Math.max(0, Math.min(DEFAULT_MAX_AUTO_TURNS, Math.trunc(rawGoal.maxAutoTurns)))
-      : DEFAULT_MAX_AUTO_TURNS,
+      ? Math.max(0, Math.min(options.maxAutoTurns, Math.trunc(rawGoal.maxAutoTurns)))
+      : options.maxAutoTurns,
     startedAtMs: Number.isFinite(rawGoal.startedAtMs) ? Math.max(0, Math.trunc(rawGoal.startedAtMs)) : createdAtMs,
     lastActivityAtMs: Number.isFinite(rawGoal.lastActivityAtMs) ? Math.max(0, Math.trunc(rawGoal.lastActivityAtMs)) : 0,
     lastActivityMessageID: rawGoal.lastActivityMessageID === null || rawGoal.lastActivityMessageID === undefined
       ? null
-      : sanitizeInlineText(rawGoal.lastActivityMessageID, 160),
+      : sanitizeInlineText(rawGoal.lastActivityMessageID, GOAL_ID_MAX_CHARS),
     lastContinuationAtMs: Number.isFinite(rawGoal.lastContinuationAtMs)
       ? Math.max(0, Math.trunc(rawGoal.lastContinuationAtMs))
       : 0,
     lastContinuationMessageId: rawGoal.lastContinuationMessageId === null || rawGoal.lastContinuationMessageId === undefined
       ? null
-      : sanitizeInlineText(rawGoal.lastContinuationMessageId, 160),
+      : sanitizeInlineText(rawGoal.lastContinuationMessageId, GOAL_ID_MAX_CHARS),
     lastContinuationError: rawGoal.lastContinuationError === null || rawGoal.lastContinuationError === undefined
       ? null
       : sanitizeInlineText(rawGoal.lastContinuationError, DEFAULT_MAX_REASON_CHARS),
@@ -713,6 +1055,9 @@ function normalizeStoredGoal(rawGoal, fallbackSessionID, rawOptions = {}) {
     lastVerifierConfidence: Number.isFinite(rawGoal.lastVerifierConfidence)
       ? Math.max(0, Math.min(1, Number(rawGoal.lastVerifierConfidence)))
       : null,
+    lastVerifierSource: rawGoal.lastVerifierSource === null || rawGoal.lastVerifierSource === undefined
+      ? null
+      : sanitizeInlineText(rawGoal.lastVerifierSource, 80),
     lastCheckAtMs: Number.isFinite(rawGoal.lastCheckAtMs) ? Math.max(0, Math.trunc(rawGoal.lastCheckAtMs)) : 0,
     lastEvidence: rawGoal.lastEvidence === null || rawGoal.lastEvidence === undefined
       ? null
@@ -722,11 +1067,13 @@ function normalizeStoredGoal(rawGoal, fallbackSessionID, rawOptions = {}) {
       : sanitizeInlineText(rawGoal.completionSource, 80),
     verifierRunID: rawGoal.verifierRunID === null || rawGoal.verifierRunID === undefined
       ? null
-      : sanitizeInlineText(rawGoal.verifierRunID, 160),
+      : sanitizeInlineText(rawGoal.verifierRunID, GOAL_ID_MAX_CHARS),
     lastAccountedMessageID: rawGoal.lastAccountedMessageID === null || rawGoal.lastAccountedMessageID === undefined
       ? null
-      : sanitizeInlineText(rawGoal.lastAccountedMessageID, 160),
+      : sanitizeInlineText(rawGoal.lastAccountedMessageID, GOAL_ID_MAX_CHARS),
+    accountedMessageUsage: normalizeAccountedMessageUsage(rawGoal.accountedMessageUsage),
     usageSource: sanitizeInlineText(rawGoal.usageSource || 'unavailable', 80),
+    providerRetryAfterMs: normalizeDeadlineMs(rawGoal.providerRetryAfterMs),
   };
 }
 
@@ -740,6 +1087,7 @@ function normalizeStoredGoal(rawGoal, fallbackSessionID, rawOptions = {}) {
 async function readGoal(sessionID, rawOptions = {}) {
   const path = goalPathForSession(sessionID, rawOptions);
   try {
+    countMetric(rawOptions, 'readGoalReadFile');
     const raw = await readFile(path, 'utf8');
     return normalizeStoredGoal(JSON.parse(raw), sessionID, rawOptions);
   } catch (error) {
@@ -756,11 +1104,12 @@ async function fsyncDirectory(directoryPath, rawOptions = {}) {
     await handle.sync();
   } catch (error) {
     if (process.env[DEBUG_ENV] === '1') {
+      const options = normalizeOptions(rawOptions);
       await appendGoalJsonl(GOAL_EVENTS_LOG_FILENAME, {
         type: 'fsync_directory_error',
         directory: sanitizeInlineText(directoryPath, 1000),
         error: redactEvidence(error?.message || 'unknown error', DEFAULT_MAX_REASON_CHARS),
-      }, { ...rawOptions, stateDir: directoryPath });
+      }, { ...options, stateDir: options.stateDir });
     }
     return;
   } finally {
@@ -780,7 +1129,7 @@ async function writeGoalAtomic(goal, rawOptions = {}) {
   const normalized = normalizeStoredGoal(goal, goal?.sessionId, options);
   const stateDir = await ensureGoalStateDir(options);
   const finalPath = goalPathForSession(normalized.sessionId, options);
-  const tempPath = `${finalPath}.${process.pid}.${Date.now()}.${Math.random().toString(16).slice(2)}.tmp`;
+  const tempPath = `${finalPath}.${process.pid}.${nowMs(options)}.${Math.random().toString(16).slice(2)}.tmp`;
   let handle = null;
 
   try {
@@ -789,8 +1138,10 @@ async function writeGoalAtomic(goal, rawOptions = {}) {
     await handle.sync();
     await handle.close();
     handle = null;
+    countMetric(options, 'writeCycles');
     await rename(tempPath, finalPath);
     await fsyncDirectory(stateDir, options);
+    invalidateGoalBriefCache(normalized.sessionId, options);
     return normalized;
   } catch (error) {
     if (handle) await handle.close().catch(() => {});
@@ -810,6 +1161,7 @@ async function deleteGoalFile(sessionID, rawOptions = {}) {
     }
   }
   await fsyncDirectory(normalizeOptions(rawOptions).stateDir);
+  invalidateGoalBriefCache(sessionID, rawOptions);
   return null;
 }
 
@@ -817,14 +1169,10 @@ function retentionDaysFromEnv(name, fallback) {
   return normalizePositiveInt(Number(process.env[name]), fallback);
 }
 
-function retentionNowMs(rawOptions = {}) {
-  const options = normalizeOptions(rawOptions);
-  return Number.isFinite(options.nowMs) ? options.nowMs : Date.now();
-}
-
 async function pruneArchive(rawOptions = {}) {
   try {
     const options = normalizeOptions(rawOptions);
+    countMetric(options, 'pruneArchive');
     const archiveDir = join(options.stateDir, '.archive');
     const retentionMs = retentionDaysFromEnv(ARCHIVE_RETENTION_DAYS_ENV, DEFAULT_ARCHIVE_RETENTION_DAYS) * MS_PER_DAY;
     const timestamp = retentionNowMs(options);
@@ -844,24 +1192,33 @@ async function pruneArchive(rawOptions = {}) {
   }
 }
 
+async function maybePruneArchive(rawOptions = {}) {
+  const options = normalizeOptions(rawOptions);
+  const intervalMs = normalizePositiveInt(Number(process.env[SWEEP_INTERVAL_MS_ENV]), DEFAULT_SWEEP_INTERVAL_MS);
+  const timestamp = nowMs(options);
+  const lastPruneAtMs = lastArchivePruneAtMs.get(options.stateDir) || 0;
+  if (timestamp - lastPruneAtMs <= intervalMs) return;
+  lastArchivePruneAtMs.set(options.stateDir, timestamp);
+  await pruneArchive(options);
+}
+
 async function archiveGoalStateFile(sessionID, rawOptions = {}) {
-  try {
-    const sourcePath = goalPathForSession(sessionID, rawOptions);
-    const archiveDir = await ensureGoalArchiveDir(rawOptions);
-    const archivePath = join(archiveDir, `${sessionKeyForSession(sessionID)}.json`);
+  return enqueueGoalMutation(sessionID, rawOptions, async (normalizedSessionID, options) => {
+    const sourcePath = goalPathForSession(normalizedSessionID, options);
+    const archiveDir = await ensureGoalArchiveDir(options);
+    const archivePath = join(archiveDir, `${sessionKeyForSession(normalizedSessionID)}.json`);
     try {
       await rename(sourcePath, archivePath);
     } catch (error) {
       if (error?.code === 'ENOENT') return null;
       return null;
     }
-    await fsyncDirectory(normalizeOptions(rawOptions).stateDir, rawOptions);
-    await fsyncDirectory(archiveDir, rawOptions);
-    await pruneArchive(rawOptions);
+    await fsyncDirectory(options.stateDir, options);
+    await fsyncDirectory(archiveDir, options);
+    invalidateGoalBriefCache(normalizedSessionID, options);
+    await maybePruneArchive(options);
     return archivePath;
-  } catch {
-    return null;
-  }
+  }).catch(() => null);
 }
 
 function sessionIDFromStateFilename(filename) {
@@ -874,7 +1231,7 @@ function sessionIDFromStateFilename(filename) {
 async function sweepOrphanedActiveStates(rawOptions = {}, runtimeState = {}) {
   try {
     const intervalMs = normalizePositiveInt(Number(process.env[SWEEP_INTERVAL_MS_ENV]), DEFAULT_SWEEP_INTERVAL_MS);
-    const sweepTimestamp = Date.now();
+    const sweepTimestamp = nowMs(rawOptions);
     if (sweepTimestamp - (runtimeState.lastSweepAtMs || 0) <= intervalMs) return;
     runtimeState.lastSweepAtMs = sweepTimestamp;
 
@@ -887,7 +1244,10 @@ async function sweepOrphanedActiveStates(rawOptions = {}, runtimeState = {}) {
       if (!entry.isFile() || !entry.name.endsWith('.json')) return;
       const path = join(stateDir, entry.name);
       try {
+        const fileStats = await stat(path);
+        if (timestamp - fileStats.mtimeMs <= retentionMs) return;
         const raw = await readFile(path, 'utf8');
+        countMetric(options, 'sweepJsonParse');
         const updatedAtMs = Number(JSON.parse(raw)?.updatedAtMs);
         if (!Number.isFinite(updatedAtMs) || timestamp - updatedAtMs <= retentionMs) return;
         const archivedSessionID = sessionIDFromStateFilename(entry.name);
@@ -901,6 +1261,81 @@ async function sweepOrphanedActiveStates(rawOptions = {}, runtimeState = {}) {
   }
 }
 
+async function readDirectoryEntries(directoryPath) {
+  try {
+    return await readdir(directoryPath, { withFileTypes: true });
+  } catch (error) {
+    if (error?.code === 'ENOENT') return [];
+    throw error;
+  }
+}
+
+async function listArchivedGoalRecords(rawOptions = {}) {
+  const options = normalizeOptions(rawOptions);
+  const archiveDir = join(options.stateDir, '.archive');
+  const entries = await readDirectoryEntries(archiveDir);
+  const records = [];
+  for (const entry of entries) {
+    if (!entry.isFile() || !entry.name.endsWith('.json')) continue;
+    const path = join(archiveDir, entry.name);
+    try {
+      const [fileStats, raw] = await Promise.all([stat(path), readFile(path, 'utf8')]);
+      const fallbackSessionID = sessionIDFromStateFilename(entry.name) || 'archived-session';
+      const goal = normalizeStoredGoal(JSON.parse(raw), fallbackSessionID, options);
+      records.push({ filename: entry.name, sizeBytes: fileStats.size, mtimeMs: fileStats.mtimeMs, goal });
+    } catch {
+      continue;
+    }
+  }
+  return records.sort((a, b) => b.mtimeMs - a.mtimeMs);
+}
+
+async function fileSizeBytes(path) {
+  try {
+    return (await stat(path)).size;
+  } catch (error) {
+    if (error?.code === 'ENOENT') return 0;
+    throw error;
+  }
+}
+
+async function countOrphanCandidates(entries, stateDir, rawOptions = {}) {
+  const retentionMs = retentionDaysFromEnv(ACTIVE_RETENTION_DAYS_ENV, DEFAULT_ACTIVE_RETENTION_DAYS) * MS_PER_DAY;
+  const timestamp = retentionNowMs(rawOptions);
+  let count = 0;
+  await Promise.all(entries.map(async (entry) => {
+    if (!entry.isFile() || !entry.name.endsWith('.json')) return;
+    const path = join(stateDir, entry.name);
+    try {
+      const fileStats = await stat(path);
+      if (timestamp - fileStats.mtimeMs <= retentionMs) return;
+      const raw = await readFile(path, 'utf8');
+      const updatedAtMs = Number(JSON.parse(raw)?.updatedAtMs);
+      if (Number.isFinite(updatedAtMs) && timestamp - updatedAtMs > retentionMs) count += 1;
+    } catch {
+      return;
+    }
+  }));
+  return count;
+}
+
+async function inspectGoalHealth(rawOptions = {}) {
+  const options = normalizeOptions(rawOptions);
+  const stateEntries = await readDirectoryEntries(options.stateDir);
+  const archiveEntries = await readDirectoryEntries(join(options.stateDir, '.archive'));
+  const activeStateFiles = stateEntries.filter((entry) => entry.isFile() && entry.name.endsWith('.json'));
+  const archiveFiles = archiveEntries.filter((entry) => entry.isFile() && entry.name.endsWith('.json'));
+  const lastSweepAtMs = normalizeDeadlineMs(rawOptions?.runtimeState?.lastSweepAtMs);
+  return {
+    activeStateFileCount: activeStateFiles.length,
+    archiveFileCount: archiveFiles.length,
+    continuationLogBytes: await fileSizeBytes(join(options.stateDir, CONTINUATION_LOG_FILENAME)),
+    goalEventsLogBytes: await fileSizeBytes(join(options.stateDir, GOAL_EVENTS_LOG_FILENAME)),
+    lastSweepAtMs,
+    orphanCandidateCount: await countOrphanCandidates(activeStateFiles, options.stateDir, options),
+  };
+}
+
 /**
  * Mutate a session goal through the in-process write queue.
  *
@@ -909,18 +1344,12 @@ async function sweepOrphanedActiveStates(rawOptions = {}, runtimeState = {}) {
  * @param {Object} [rawOptions] - State helper options
  * @returns {Promise<Object|null>} Mutated goal, or null after delete
  */
-async function mutateGoal(sessionID, mutator, rawOptions = {}) {
+async function enqueueGoalMutation(sessionID, rawOptions = {}, operation) {
   const options = normalizeOptions(rawOptions);
   const normalizedSessionID = requireSessionID(sessionID);
   const queueKey = `${options.stateDir}:${sessionKeyForSession(normalizedSessionID)}`;
   const previous = mutationQueues.get(queueKey) || Promise.resolve();
-  const run = previous.catch(() => undefined).then(async () => {
-    const current = await readGoal(normalizedSessionID, options);
-    const next = await mutator(current);
-    if (next === null) return deleteGoalFile(normalizedSessionID, options);
-    if (next === undefined) return current;
-    return writeGoalAtomic(next, options);
-  });
+  const run = previous.catch(() => undefined).then(() => operation(normalizedSessionID, options));
 
   mutationQueues.set(queueKey, run);
   try {
@@ -928,6 +1357,16 @@ async function mutateGoal(sessionID, mutator, rawOptions = {}) {
   } finally {
     if (mutationQueues.get(queueKey) === run) mutationQueues.delete(queueKey);
   }
+}
+
+async function mutateGoal(sessionID, mutator, rawOptions = {}) {
+  return enqueueGoalMutation(sessionID, rawOptions, async (normalizedSessionID, options) => {
+    const current = await readGoal(normalizedSessionID, options);
+    const next = await mutator(current);
+    if (next === null) return deleteGoalFile(normalizedSessionID, options);
+    if (next === undefined) return current;
+    return writeGoalAtomic(next, options);
+  });
 }
 
 function buildNewGoal(sessionID, objective, tokenBudget, rawOptions = {}) {
@@ -951,7 +1390,7 @@ function buildNewGoal(sessionID, objective, tokenBudget, rawOptions = {}) {
     updatedAt: isoFromMs(timestamp),
     continuationSuppressed: false,
     autoTurnsUsed: 0,
-    maxAutoTurns: DEFAULT_MAX_AUTO_TURNS,
+    maxAutoTurns: options.maxAutoTurns,
     startedAtMs: timestamp,
     lastActivityAtMs: 0,
     lastActivityMessageID: null,
@@ -965,11 +1404,14 @@ function buildNewGoal(sessionID, objective, tokenBudget, rawOptions = {}) {
     lastVerifierVerdict: 'not_evaluated',
     lastVerifierReason: null,
     lastVerifierConfidence: null,
+    lastVerifierSource: null,
     lastEvidence: null,
     completionSource: null,
     verifierRunID: null,
     lastAccountedMessageID: null,
+    accountedMessageUsage: {},
     usageSource: 'unavailable',
+    providerRetryAfterMs: null,
   };
 }
 
@@ -989,15 +1431,18 @@ async function setGoal(sessionID, objective, rawOptions = {}) {
     throw new GoalError('INVALID_OBJECTIVE', 'Objective is required');
   }
   const requestedBudget = normalizeTokenBudget(rawOptions.tokenBudget);
+  let mutation = 'created';
 
-  return mutateGoal(sessionID, (current) => {
+  const goal = await mutateGoal(sessionID, (current) => {
     const timestamp = nowMs(options);
     const tokenBudget = requestedBudget === undefined ? current?.tokenBudget ?? null : requestedBudget;
     const promptFields = buildEnhancedGoalPrompt(sanitizedObjective, options);
     if (current && current.objective === sanitizedObjective) {
       if (current.status !== 'active' && current.status !== 'paused') {
+        mutation = 'replaced';
         return buildNewGoal(sessionID, sanitizedObjective, tokenBudget, options);
       }
+      mutation = 'refreshed';
       return {
         ...current,
         status: 'active',
@@ -1011,8 +1456,17 @@ async function setGoal(sessionID, objective, rawOptions = {}) {
         blockedByPrompt: false,
       };
     }
+    mutation = current ? 'replaced' : 'created';
     return buildNewGoal(sessionID, sanitizedObjective, tokenBudget, options);
   }, options);
+  if (goal && typeof goal === 'object') {
+    Object.defineProperty(goal, 'mutation', {
+      value: mutation,
+      enumerable: false,
+      configurable: true,
+    });
+  }
+  return goal;
 }
 
 /**
@@ -1031,23 +1485,65 @@ async function markGoalStatus(sessionID, status, rawOptions = {}) {
     throw new GoalError('INVALID_STATUS', `Unsupported goal status: ${status}`);
   }
   const reason = sanitizeInlineText(rawOptions.reason || '', DEFAULT_MAX_REASON_CHARS);
+  const allowedFrom = Array.isArray(rawOptions.allowedFrom)
+    ? new Set(rawOptions.allowedFrom.map((entry) => sanitizeInlineText(entry, 80)).filter(Boolean))
+    : null;
   return mutateGoal(sessionID, (current) => {
     if (!current) throw new GoalError('GOAL_NOT_FOUND', 'No goal is set for this session');
+    if (allowedFrom && !allowedFrom.has(current.status)) {
+      throw new GoalError('INVALID_STATUS_TRANSITION', `Cannot transition goal status from ${current.status} to ${status}`);
+    }
+    if (!STATUS_TRANSITIONS[current.status]?.has(status)) {
+      throw new GoalError('INVALID_STATUS_TRANSITION', `Cannot transition goal status from ${current.status} to ${status}`);
+    }
     const timestamp = nowMs(rawOptions);
     return {
       ...current,
       status,
       updatedAtMs: timestamp,
       updatedAt: isoFromMs(timestamp),
-      continuationSuppressed: status === 'paused' || status === 'complete' ? true : current.continuationSuppressed,
-      continuationSuppressedReason: reason || (status === 'paused' ? 'paused' : current.continuationSuppressedReason),
+      continuationSuppressed: status === 'active' ? false : status === 'paused' || status === 'complete' ? true : current.continuationSuppressed,
+      continuationSuppressedReason: status === 'active' ? null : reason || (status === 'paused' ? 'paused' : current.continuationSuppressedReason),
       completionSource: status === 'complete' ? 'manual' : current.completionSource,
+      providerRetryAfterMs: status === 'active' ? null : current.providerRetryAfterMs,
     };
   }, rawOptions);
 }
 
+async function resumeGoal(sessionID, rawOptions = {}) {
+  return markGoalStatus(sessionID, 'active', {
+    ...rawOptions,
+    allowedFrom: ['paused', 'usage_limited'],
+  });
+}
+
+async function recoverProviderUsageLimitIfDue(sessionID, rawOptions = {}) {
+  const normalizedSessionID = normalizeSessionID(sessionID);
+  if (!normalizedSessionID) return null;
+  const goal = await readGoal(normalizedSessionID, rawOptions);
+  const deadline = normalizeDeadlineMs(goal?.providerRetryAfterMs);
+  if (!goal || goal.status !== 'usage_limited' || deadline === null || nowMs(rawOptions) < deadline) return goal;
+  return resumeGoal(normalizedSessionID, rawOptions);
+}
+
 function budgetWasCrossed(nextTokensUsed, tokenBudget) {
   return Number.isFinite(tokenBudget) && tokenBudget > 0 && nextTokensUsed >= tokenBudget;
+}
+
+async function patchGoalIfCurrent(sessionID, goalID, patch, rawOptions = {}) {
+  const normalizedGoalID = normalizeGoalID(goalID);
+  if (!normalizedGoalID) return null;
+  return mutateGoal(sessionID, (current) => {
+    if (!current || current.goalId !== normalizedGoalID) return current;
+    const timestamp = nowMs(rawOptions);
+    const patchFields = typeof patch === 'function' ? patch(current) : patch;
+    return {
+      ...current,
+      ...patchFields,
+      updatedAtMs: timestamp,
+      updatedAt: isoFromMs(timestamp),
+    };
+  }, rawOptions);
 }
 
 /**
@@ -1061,10 +1557,10 @@ function budgetWasCrossed(nextTokensUsed, tokenBudget) {
  */
 async function accountUsage(sessionID, expectedGoalID, usage = {}, rawOptions = {}) {
   const options = normalizeOptions(rawOptions);
-  const normalizedExpectedGoalID = sanitizeInlineText(expectedGoalID, 160).replace(/\s+/g, '-');
+  const normalizedExpectedGoalID = normalizeGoalID(expectedGoalID);
   const messageID = usage.messageID === null || usage.messageID === undefined
     ? null
-    : sanitizeInlineText(usage.messageID, 160);
+    : sanitizeInlineText(usage.messageID, GOAL_ID_MAX_CHARS);
   const tokenDelta = Number.isFinite(usage.tokenDelta) && usage.tokenDelta > 0 ? Math.trunc(usage.tokenDelta) : 0;
   const timeDeltaSeconds = Number.isFinite(usage.timeDeltaSeconds) && usage.timeDeltaSeconds > 0
     ? Math.trunc(usage.timeDeltaSeconds)
@@ -1075,19 +1571,22 @@ async function accountUsage(sessionID, expectedGoalID, usage = {}, rawOptions = 
     if (!current) return null;
     if (current.status !== 'active') return current;
     if (!normalizedExpectedGoalID || current.goalId !== normalizedExpectedGoalID) return current;
-    if (messageID && current.lastAccountedMessageID === messageID) return current;
+    const accountedMessageUsage = normalizeAccountedMessageUsage(current.accountedMessageUsage);
+    const previousMessageTokens = messageID ? accountedMessageUsage[messageID] || 0 : 0;
+    const chargeTokenDelta = messageID ? Math.max(0, tokenDelta - previousMessageTokens) : tokenDelta;
 
     const timestamp = nowMs(options);
-    if (tokenDelta <= 0) {
+    if (chargeTokenDelta <= 0) {
       return {
         ...current,
+        accountedMessageUsage,
         usageSource,
         updatedAtMs: timestamp,
         updatedAt: isoFromMs(timestamp),
       };
     }
 
-    const nextTokensUsed = current.tokensUsed + tokenDelta;
+    const nextTokensUsed = current.tokensUsed + chargeTokenDelta;
     const nextStatus = budgetWasCrossed(nextTokensUsed, current.tokenBudget) ? 'budget_limited' : current.status;
     return {
       ...current,
@@ -1095,6 +1594,9 @@ async function accountUsage(sessionID, expectedGoalID, usage = {}, rawOptions = 
       tokensUsed: nextTokensUsed,
       timeUsedSeconds: current.timeUsedSeconds + timeDeltaSeconds,
       lastAccountedMessageID: messageID || current.lastAccountedMessageID,
+      accountedMessageUsage: messageID
+        ? rememberAccountedMessage(accountedMessageUsage, messageID, tokenDelta)
+        : accountedMessageUsage,
       usageSource,
       continuationSuppressed: nextStatus === 'budget_limited' ? true : current.continuationSuppressed,
       continuationSuppressedReason: nextStatus === 'budget_limited' ? 'token budget reached' : current.continuationSuppressedReason,
@@ -1125,17 +1627,69 @@ async function refreshGoalActivity(sessionID, event, rawOptions = {}) {
 
 async function recordMessageUpdated(sessionID, event, rawOptions = {}) {
   const options = normalizeOptions(rawOptions);
-  const goalAfterActivity = await refreshGoalActivity(sessionID, event, options);
-  if (!goalAfterActivity) return null;
+  await recoverProviderUsageLimitIfDue(sessionID, options);
+  const messageID = extractEventMessageID(event);
+  const evidence = extractAssistantEvidence(event, options);
   const error = extractErrorFromEvent(event);
-  if (error?.name === 'APIError' && error?.data?.statusCode === 429) {
-    return recordProviderUsageLimit(sessionID, goalAfterActivity.goalId, options);
-  }
   const usage = extractUsageFromEvent(event);
   const eventGoalID = extractEventGoalID(event);
-  return accountUsage(sessionID, eventGoalID || goalAfterActivity.goalId, {
-    ...usage,
-    messageID: extractEventMessageID(event),
+
+  return mutateGoal(sessionID, (current) => {
+    if (!current) return null;
+    const timestamp = nowMs(options);
+    const afterActivity = {
+      ...current,
+      lastActivityAtMs: timestamp,
+      lastActivityMessageID: messageID || current.lastActivityMessageID,
+      lastEvidence: evidence || current.lastEvidence,
+      updatedAtMs: timestamp,
+      updatedAt: isoFromMs(timestamp),
+    };
+
+    const expectedGoalID = normalizeGoalID(eventGoalID || afterActivity.goalId);
+    if (isProviderUsageLimit(error)) {
+      if (!expectedGoalID || afterActivity.goalId !== expectedGoalID) return afterActivity;
+      return {
+        ...afterActivity,
+        ...providerUsageLimitPatch(error, options),
+      };
+    }
+
+    if (afterActivity.status !== 'active') return afterActivity;
+    if (!expectedGoalID || afterActivity.goalId !== expectedGoalID) return afterActivity;
+
+    const tokenDelta = Number.isFinite(usage.tokenDelta) && usage.tokenDelta > 0 ? Math.trunc(usage.tokenDelta) : 0;
+    const timeDeltaSeconds = Number.isFinite(usage.timeDeltaSeconds) && usage.timeDeltaSeconds > 0
+      ? Math.trunc(usage.timeDeltaSeconds)
+      : 0;
+    const usageSource = sanitizeInlineText(usage.usageSource || 'unavailable', 80) || 'unavailable';
+    const accountedMessageUsage = normalizeAccountedMessageUsage(afterActivity.accountedMessageUsage);
+    const previousMessageTokens = messageID ? accountedMessageUsage[messageID] || 0 : 0;
+    const chargeTokenDelta = messageID ? Math.max(0, tokenDelta - previousMessageTokens) : tokenDelta;
+
+    if (chargeTokenDelta <= 0) {
+      return {
+        ...afterActivity,
+        accountedMessageUsage,
+        usageSource,
+      };
+    }
+
+    const nextTokensUsed = afterActivity.tokensUsed + chargeTokenDelta;
+    const nextStatus = budgetWasCrossed(nextTokensUsed, afterActivity.tokenBudget) ? 'budget_limited' : afterActivity.status;
+    return {
+      ...afterActivity,
+      status: nextStatus,
+      tokensUsed: nextTokensUsed,
+      timeUsedSeconds: afterActivity.timeUsedSeconds + timeDeltaSeconds,
+      lastAccountedMessageID: messageID || afterActivity.lastAccountedMessageID,
+      accountedMessageUsage: messageID
+        ? rememberAccountedMessage(accountedMessageUsage, messageID, tokenDelta)
+        : accountedMessageUsage,
+      usageSource,
+      continuationSuppressed: nextStatus === 'budget_limited' ? true : afterActivity.continuationSuppressed,
+      continuationSuppressedReason: nextStatus === 'budget_limited' ? 'token budget reached' : afterActivity.continuationSuppressedReason,
+    };
   }, options);
 }
 
@@ -1158,19 +1712,131 @@ async function restoreActiveGoal(sessionID, rawOptions = {}) {
   return goal?.status === 'active' ? goal : null;
 }
 
-function defaultVerifierResult(reason, evidence = null) {
+function objectiveKeywords(objective) {
+  return [...new Set(String(objective || '')
+    .toLowerCase()
+    .match(/[a-z0-9][a-z0-9_-]{3,}/g) || [])]
+    .filter((token) => !VERIFIER_STOPWORDS.has(token))
+    .slice(0, 12);
+}
+
+function countEvidenceKeywordMatches(evidenceText, keywords) {
+  const normalizedEvidence = String(evidenceText || '').toLowerCase();
+  return keywords.filter((keyword) => normalizedEvidence.includes(keyword)).length;
+}
+
+function defaultHeuristicSupervisorVerifier({ goal, evidence }) {
+  // Free-form assistant text can sound conclusive while still describing a blocker, so ambiguous or mixed evidence always stays open.
+  const safeEvidence = sanitizeInlineText(evidence || '', DEFAULT_MAX_EVIDENCE_CHARS);
+  const safeObjective = sanitizeInlineText(goal?.objective || '', DEFAULT_MAX_OBJECTIVE_CHARS);
+  if (safeEvidence.length < 24) {
+    return defaultVerifierResult('Evidence is too short to prove completion', safeEvidence, 'default-heuristic');
+  }
+
+  if (VERIFIER_BLOCKING_PATTERN.test(safeEvidence)) {
+    return defaultVerifierResult('Evidence includes blocking or incomplete-work language', safeEvidence, 'default-heuristic');
+  }
+
+  if (/\.\.\.$/.test(safeEvidence) || /\btruncated\b/i.test(safeEvidence)) {
+    return defaultVerifierResult('Evidence appears truncated before it proves completion', safeEvidence, 'default-heuristic');
+  }
+
+  if (!VERIFIER_COMPLETION_PATTERN.test(safeEvidence)) {
+    return defaultVerifierResult('Evidence lacks an explicit completion signal', safeEvidence, 'default-heuristic');
+  }
+
+  const keywords = objectiveKeywords(safeObjective);
+  const requiredMatches = keywords.length >= 2 ? 2 : 1;
+  if (keywords.length === 0 || countEvidenceKeywordMatches(safeEvidence, keywords) < requiredMatches) {
+    return defaultVerifierResult('Evidence does not reference the goal objective specifically enough', safeEvidence, 'default-heuristic');
+  }
+
+  return {
+    verdict: 'met',
+    confidence: 0.72,
+    reason: 'Evidence gives an explicit completion signal tied to the goal objective',
+    evidence: safeEvidence,
+    verifierSource: 'default-heuristic',
+  };
+}
+
+function buildLlmVerifierPrompt(goal, evidence) {
+  return sanitizePromptText([
+    'Judge whether the active goal is complete from the latest assistant evidence.',
+    'Return only JSON with keys: verdict, confidence, reason, evidence.',
+    'Allowed verdict values: met, not_met, blocked.',
+    'Use not_met unless the evidence positively proves completion. Use blocked for errors, blockers, or required user action.',
+    `Goal objective: ${sanitizeInlineText(goal?.objective || '', DEFAULT_MAX_OBJECTIVE_CHARS)}`,
+    `Latest assistant evidence: ${sanitizeInlineText(evidence || '', DEFAULT_MAX_EVIDENCE_CHARS)}`,
+  ].join('\n'), DEFAULT_MAX_GOAL_PROMPT_CHARS);
+}
+
+function verifierResponseText(value, depth = 0) {
+  if (depth > 5 || value === null || value === undefined) return '';
+  if (typeof value === 'string') return value;
+  if (Array.isArray(value)) return value.map((entry) => verifierResponseText(entry, depth + 1)).filter(Boolean).join(' ');
+  if (typeof value !== 'object') return '';
+  const direct = textFromValue(value);
+  if (direct) return direct;
+  return Object.values(value).map((entry) => verifierResponseText(entry, depth + 1)).filter(Boolean).join(' ');
+}
+
+function parseLlmVerifierResponse(response) {
+  if (response && typeof response === 'object' && !Array.isArray(response) && typeof response.verdict === 'string') {
+    return response;
+  }
+  const text = verifierResponseText(response) || String(response ?? '');
+  const fenced = text.match(/```(?:json)?\s*([\s\S]*?)```/i)?.[1];
+  const candidate = fenced || text.match(/\{[\s\S]*\}/)?.[0] || '';
+  if (!candidate) throw new Error('verifier response missing structured JSON');
+  return JSON.parse(candidate);
+}
+
+async function defaultLlmSupervisorVerifier({ goal, sessionID, evidence }, rawOptions = {}) {
+  const promptAsync = rawOptions.client?.session?.promptAsync;
+  if (typeof promptAsync !== 'function') {
+    throw new Error('promptAsync unavailable for default verifier');
+  }
+  const response = await promptAsync.call(rawOptions.client.session, {
+    path: { id: sessionID },
+    body: {
+      messageID: `goal-verifier-${randomUUID()}`,
+      parts: [{
+        type: 'text',
+        text: buildLlmVerifierPrompt(goal, evidence),
+      }],
+    },
+  });
+  return {
+    ...parseLlmVerifierResponse(response),
+    verifierSource: 'default-llm',
+  };
+}
+
+function defaultVerifierResult(reason, evidence = null, verifierSource = null) {
   return {
     verdict: 'not_met',
     confidence: 0,
     reason,
     evidence,
+    verifierSource,
   };
 }
 
-function normalizeVerifierResult(rawResult, fallbackEvidence, rawOptions = {}) {
+function verifierResultEnvelope(result, fields = {}) {
+  return {
+    ...result,
+    goalId: fields.goalId || null,
+    currentGoalId: fields.currentGoalId || null,
+    verifierRunID: fields.verifierRunID || null,
+    stale: fields.stale === true,
+  };
+}
+
+function normalizeVerifierResult(rawResult, fallbackEvidence, rawOptions = {}, verifierSource = null) {
   const options = normalizeOptions(rawOptions);
   if (!rawResult || typeof rawResult !== 'object') {
-    return defaultVerifierResult('Verifier returned no usable result', redactEvidence(fallbackEvidence, options.maxEvidenceChars));
+    return defaultVerifierResult('Verifier returned no usable result', redactEvidence(fallbackEvidence, options.maxEvidenceChars), verifierSource);
   }
   const verdict = VALID_VERIFIER_VERDICTS.has(rawResult.verdict) ? rawResult.verdict : 'not_met';
   const confidence = Number.isFinite(rawResult.confidence)
@@ -1186,16 +1852,14 @@ function normalizeVerifierResult(rawResult, fallbackEvidence, rawOptions = {}) {
     confidence,
     reason,
     evidence,
+    verifierSource,
   };
 }
 
 async function runSupervisorVerifier(goal, rawOptions = {}) {
   const options = normalizeOptions(rawOptions);
   if (!goal?.lastEvidence) {
-    return defaultVerifierResult('No verifier evidence is available', null);
-  }
-  if (!options.supervisorVerifier) {
-    return defaultVerifierResult('Supervisor verifier is not configured', goal.lastEvidence);
+    return defaultVerifierResult('No verifier evidence is available', null, options.supervisorVerifierSource);
   }
   try {
     const result = await options.supervisorVerifier({
@@ -1203,7 +1867,7 @@ async function runSupervisorVerifier(goal, rawOptions = {}) {
       sessionID: goal.sessionId,
       evidence: goal.lastEvidence,
     });
-    return normalizeVerifierResult(result, goal.lastEvidence, options);
+    return normalizeVerifierResult(result, goal.lastEvidence, options, options.supervisorVerifierSource);
   } catch (error) {
     const reason = redactEvidence(`Verifier failed: ${error?.message || 'unknown error'}`, DEFAULT_MAX_REASON_CHARS);
     return {
@@ -1211,6 +1875,7 @@ async function runSupervisorVerifier(goal, rawOptions = {}) {
       confidence: 0,
       reason,
       evidence: redactEvidence(goal.lastEvidence, options.maxEvidenceChars),
+      verifierSource: options.supervisorVerifierSource,
     };
   }
 }
@@ -1226,7 +1891,10 @@ async function maybeVerifyGoal(sessionID, rawOptions = {}) {
   const options = normalizeOptions(rawOptions);
   const goal = await readGoal(sessionID, options);
   if (!goal || goal.status !== 'active') {
-    return defaultVerifierResult('No active goal to verify', null);
+    return verifierResultEnvelope(defaultVerifierResult('No active goal to verify', null), {
+      goalId: goal?.goalId || null,
+      currentGoalId: goal?.goalId || null,
+    });
   }
 
   const result = await runSupervisorVerifier(goal, options);
@@ -1244,6 +1912,7 @@ async function maybeVerifyGoal(sessionID, rawOptions = {}) {
       lastVerifierVerdict: result.verdict,
       lastVerifierReason: result.reason,
       lastVerifierConfidence: result.confidence,
+      lastVerifierSource: result.verifierSource,
       lastEvidence: result.evidence || current.lastEvidence,
       verifierRunID,
       iterations: result.verdict === 'not_met' ? current.iterations + 1 : current.iterations,
@@ -1270,19 +1939,18 @@ async function maybeVerifyGoal(sessionID, rawOptions = {}) {
     return next;
   }, options);
 
-  return {
-    ...result,
+  return verifierResultEnvelope(result, {
     goalId: goal.goalId,
     currentGoalId: currentGoalID,
     verifierRunID,
     stale: !resultApplied,
-  };
+  });
 }
 
 function renderContinuationPrompt(goal, rawOptions = {}) {
   const options = normalizeOptions(rawOptions);
-  const objectivePreviewChars = Math.max(60, Math.min(600, Math.floor(options.maxInjectionChars * 0.12)));
-  const objective = sanitizeInlineText(goal?.objective, Math.min(options.maxObjectiveChars, objectivePreviewChars));
+  const objectivePreviewLimit = calculateObjectivePreviewChars(options.maxInjectionChars);
+  const objective = sanitizeInlineText(goal?.objective, Math.min(options.maxObjectiveChars, objectivePreviewLimit));
   const goalPrompt = sanitizePromptText(goal?.goalPrompt || goal?.objective, options.maxGoalPromptChars);
   const reason = sanitizeInlineText(goal?.lastVerifierReason || 'not verified complete', DEFAULT_MAX_REASON_CHARS);
   return clampText([
@@ -1301,10 +1969,11 @@ function continuationRuntimeStatus(runtimeState, sessionID) {
   return sanitizeInlineText(rawStatus?.type || rawStatus || '', 80).toLowerCase() || null;
 }
 
-function continuationCapReason(goal, timestamp) {
-  const maxAutoTurns = Math.min(goal.maxAutoTurns || DEFAULT_MAX_AUTO_TURNS, DEFAULT_MAX_AUTO_TURNS);
+function continuationCapReason(goal, timestamp, rawOptions = {}) {
+  const options = normalizeOptions(rawOptions);
+  const maxAutoTurns = Math.min(goal.maxAutoTurns || options.maxAutoTurns, options.maxAutoTurns);
   if (goal.autoTurnsUsed >= maxAutoTurns) return 'auto_turn_cap_reached';
-  if (timestamp - goal.startedAtMs >= DEFAULT_MAX_WALL_MS) return 'wall_clock_cap_reached';
+  if (timestamp - goal.startedAtMs >= options.maxWallMs) return 'wall_clock_cap_reached';
   return null;
 }
 
@@ -1316,65 +1985,34 @@ function continuationBudgetReason(goal) {
 }
 
 async function recordContinuationReason(sessionID, goalID, reason, rawOptions = {}, suppress = false, errorText = null) {
-  const normalizedGoalID = sanitizeInlineText(goalID, 160).replace(/\s+/g, '-');
-  if (!normalizedGoalID) return null;
-  return mutateGoal(sessionID, (current) => {
-    if (!current || current.goalId !== normalizedGoalID) return current;
-    const timestamp = nowMs(rawOptions);
-    return {
-      ...current,
-      continuationSuppressed: suppress ? true : current.continuationSuppressed,
-      continuationSuppressedReason: sanitizeInlineText(reason, DEFAULT_MAX_REASON_CHARS),
-      lastContinuationError: errorText
-        ? sanitizeInlineText(errorText, DEFAULT_MAX_REASON_CHARS)
-        : current.lastContinuationError,
-      updatedAtMs: timestamp,
-      updatedAt: isoFromMs(timestamp),
-    };
-  }, rawOptions);
+  return patchGoalIfCurrent(sessionID, goalID, (current) => ({
+    continuationSuppressed: suppress ? true : current.continuationSuppressed,
+    continuationSuppressedReason: sanitizeInlineText(reason, DEFAULT_MAX_REASON_CHARS),
+    lastContinuationError: errorText
+      ? sanitizeInlineText(errorText, DEFAULT_MAX_REASON_CHARS)
+      : current.lastContinuationError,
+  }), rawOptions);
 }
 
 async function recordContinuationBudgetStop(sessionID, goalID, rawOptions = {}) {
-  const normalizedGoalID = sanitizeInlineText(goalID, 160).replace(/\s+/g, '-');
-  if (!normalizedGoalID) return null;
-  return mutateGoal(sessionID, (current) => {
-    if (!current || current.goalId !== normalizedGoalID) return current;
-    const timestamp = nowMs(rawOptions);
-    return {
-      ...current,
-      status: 'budget_limited',
-      continuationSuppressed: true,
-      continuationSuppressedReason: 'budget_exhausted',
-      updatedAtMs: timestamp,
-      updatedAt: isoFromMs(timestamp),
-    };
+  return patchGoalIfCurrent(sessionID, goalID, {
+    status: 'budget_limited',
+    continuationSuppressed: true,
+    continuationSuppressedReason: 'budget_exhausted',
   }, rawOptions);
 }
 
-async function recordProviderUsageLimit(sessionID, goalID, rawOptions = {}) {
-  const normalizedGoalID = sanitizeInlineText(goalID, 160).replace(/\s+/g, '-');
-  if (!normalizedGoalID) return null;
-  return mutateGoal(sessionID, (current) => {
-    if (!current || current.goalId !== normalizedGoalID) return current;
-    const timestamp = nowMs(rawOptions);
-    return {
-      ...current,
-      status: 'usage_limited',
-      continuationSuppressed: true,
-      continuationSuppressedReason: 'usage_limited',
-      updatedAtMs: timestamp,
-      updatedAt: isoFromMs(timestamp),
-    };
-  }, rawOptions);
+async function recordProviderUsageLimit(sessionID, goalID, error = null, rawOptions = {}) {
+  return patchGoalIfCurrent(sessionID, goalID, providerUsageLimitPatch(error, rawOptions), rawOptions);
 }
 
 async function reserveContinuationTurn(sessionID, goalID, rawOptions = {}) {
-  const normalizedGoalID = sanitizeInlineText(goalID, 160).replace(/\s+/g, '-');
+  const normalizedGoalID = normalizeGoalID(goalID);
   const messageID = `goal-continuation-${randomUUID()}`;
   let didReserve = false;
   const goal = await mutateGoal(sessionID, (current) => {
     if (!current || current.goalId !== normalizedGoalID || current.status !== 'active') return current;
-    const maxAutoTurns = Math.min(current.maxAutoTurns || DEFAULT_MAX_AUTO_TURNS, DEFAULT_MAX_AUTO_TURNS);
+    const maxAutoTurns = Math.min(current.maxAutoTurns || rawOptions.maxAutoTurns || DEFAULT_MAX_AUTO_TURNS, rawOptions.maxAutoTurns || DEFAULT_MAX_AUTO_TURNS);
     if (current.autoTurnsUsed >= maxAutoTurns) return current;
     const timestamp = nowMs(rawOptions);
     didReserve = true;
@@ -1394,7 +2032,16 @@ async function reserveContinuationTurn(sessionID, goalID, rawOptions = {}) {
 }
 
 function buildPromptAsyncOptions(sessionID, goal, messageID, rawOptions = {}) {
-  const directory = sanitizeInlineText(rawOptions.directory || '', 1000);
+  const rawDirectory = typeof rawOptions.directory === 'string' ? rawOptions.directory.trim() : '';
+  let directory = '';
+  if (rawDirectory) {
+    try {
+      const resolvedDirectory = resolvePath(rawDirectory);
+      if (statSync(resolvedDirectory).isDirectory()) directory = resolvedDirectory;
+    } catch {
+      directory = '';
+    }
+  }
   return {
     path: { id: sessionID },
     query: directory ? { directory } : undefined,
@@ -1419,9 +2066,10 @@ async function maybeContinueGoal(sessionID, rawOptions = {}) {
   const options = normalizeOptions(rawOptions);
   const runtimeState = rawOptions.runtimeState || {};
   const normalizedSessionID = normalizeSessionID(sessionID);
+  let decisionGoalID = null;
 
   async function decision(decisionType, reason, autoTurnsUsed = 0) {
-    await logContinuationDecision(normalizedSessionID, decisionType, reason, autoTurnsUsed, options);
+    await logContinuationDecision(normalizedSessionID, decisionType, reason, autoTurnsUsed, options, decisionGoalID);
     return {
       decision: decisionType,
       reason,
@@ -1438,65 +2086,68 @@ async function maybeContinueGoal(sessionID, rawOptions = {}) {
 
   if (!normalizedSessionID) return decision('suppressed', 'missing_session_id');
 
-  const goal = await readGoal(normalizedSessionID, options);
-  const autoTurnsUsed = goal?.autoTurnsUsed || 0;
-  if (!goal || goal.status !== 'active') return decision('suppressed', 'goal_not_active', autoTurnsUsed);
-
-  const verifierResult = rawOptions.verifierResult || null;
-  if (verifierResult?.stale) return decision('suppressed', 'stale_verifier_result', autoTurnsUsed);
-  if (verifierResult?.goalId && verifierResult.goalId !== goal.goalId) {
-    return decision('suppressed', 'verifier_goal_mismatch', autoTurnsUsed);
-  }
-
-  if (goal.continuationSuppressed) {
-    return decision('suppressed', goal.continuationSuppressedReason || 'continuation_suppressed', autoTurnsUsed);
-  }
+  await recoverProviderUsageLimitIfDue(normalizedSessionID, options);
 
   const continuationLocks = runtimeState.inFlightContinuations;
   if (continuationLocks?.has?.(normalizedSessionID)) {
-    return decision('suppressed', 'continuation_in_flight', autoTurnsUsed);
+    return decision('suppressed', 'continuation_in_flight', 0);
   }
-
-  if (goal.blockedByPrompt || runtimeState.blockedByPromptSessions?.has?.(normalizedSessionID)) {
-    await recordContinuationReason(normalizedSessionID, goal.goalId, 'permission_or_question_block', options);
-    return decision('suppressed', 'permission_or_question_block', autoTurnsUsed);
-  }
-
-  const runtimeStatus = continuationRuntimeStatus(runtimeState, normalizedSessionID);
-  if (runtimeStatus === 'busy' || runtimeStatus === 'retry') {
-    const reason = `session_${runtimeStatus}`;
-    await recordContinuationReason(normalizedSessionID, goal.goalId, reason, options);
-    return decision('suppressed', reason, autoTurnsUsed);
-  }
-
-  const timestamp = nowMs(options);
-  if (goal.lastContinuationAtMs > 0 && timestamp - goal.lastContinuationAtMs < DEFAULT_CONTINUATION_COOLDOWN_MS) {
-    await recordContinuationReason(normalizedSessionID, goal.goalId, 'cooldown', options);
-    return decision('suppressed', 'cooldown', autoTurnsUsed);
-  }
-
-  const capReason = continuationCapReason(goal, timestamp);
-  if (capReason) {
-    await recordContinuationReason(normalizedSessionID, goal.goalId, capReason, options, true);
-    return decision('suppressed', capReason, autoTurnsUsed);
-  }
-
-  const budgetReason = continuationBudgetReason(goal);
-  if (budgetReason) {
-    await recordContinuationBudgetStop(normalizedSessionID, goal.goalId, options);
-    return decision('suppressed', budgetReason, autoTurnsUsed);
-  }
-
-  if (autonomyMode === 'smoke') return decision('would_fire', 'smoke_mode', autoTurnsUsed);
-
-  const promptAsync = rawOptions.client?.session?.promptAsync;
-  if (typeof promptAsync !== 'function') {
-    await recordContinuationReason(normalizedSessionID, goal.goalId, 'prompt_async_unavailable', options, true);
-    return decision('suppressed', 'prompt_async_unavailable', autoTurnsUsed);
-  }
-
   continuationLocks?.add?.(normalizedSessionID);
+
   try {
+    const goal = await readGoal(normalizedSessionID, options);
+    decisionGoalID = goal?.goalId || null;
+    const autoTurnsUsed = goal?.autoTurnsUsed || 0;
+    if (!goal || goal.status !== 'active') return decision('suppressed', 'goal_not_active', autoTurnsUsed);
+
+    const verifierResult = rawOptions.verifierResult || null;
+    if (verifierResult?.stale) return decision('suppressed', 'stale_verifier_result', autoTurnsUsed);
+    if (verifierResult?.goalId && verifierResult.goalId !== goal.goalId) {
+      return decision('suppressed', 'verifier_goal_mismatch', autoTurnsUsed);
+    }
+
+    if (goal.continuationSuppressed) {
+      return decision('suppressed', goal.continuationSuppressedReason || 'continuation_suppressed', autoTurnsUsed);
+    }
+
+    if (goal.blockedByPrompt || runtimeState.blockedByPromptSessions?.has?.(normalizedSessionID)) {
+      await recordContinuationReason(normalizedSessionID, goal.goalId, 'permission_or_question_block', options);
+      return decision('suppressed', 'permission_or_question_block', autoTurnsUsed);
+    }
+
+    const runtimeStatus = continuationRuntimeStatus(runtimeState, normalizedSessionID);
+    if (runtimeStatus === 'busy' || runtimeStatus === 'retry') {
+      const reason = `session_${runtimeStatus}`;
+      await recordContinuationReason(normalizedSessionID, goal.goalId, reason, options);
+      return decision('suppressed', reason, autoTurnsUsed);
+    }
+
+    const timestamp = nowMs(options);
+    if (goal.lastContinuationAtMs > 0 && timestamp - goal.lastContinuationAtMs < DEFAULT_CONTINUATION_COOLDOWN_MS) {
+      await recordContinuationReason(normalizedSessionID, goal.goalId, 'cooldown', options);
+      return decision('suppressed', 'cooldown', autoTurnsUsed);
+    }
+
+    const capReason = continuationCapReason(goal, timestamp, options);
+    if (capReason) {
+      await recordContinuationReason(normalizedSessionID, goal.goalId, capReason, options, true);
+      return decision('suppressed', capReason, autoTurnsUsed);
+    }
+
+    const budgetReason = continuationBudgetReason(goal);
+    if (budgetReason) {
+      await recordContinuationBudgetStop(normalizedSessionID, goal.goalId, options);
+      return decision('suppressed', budgetReason, autoTurnsUsed);
+    }
+
+    if (autonomyMode === 'smoke') return decision('would_fire', 'smoke_mode', autoTurnsUsed);
+
+    const promptAsync = rawOptions.client?.session?.promptAsync;
+    if (typeof promptAsync !== 'function') {
+      await recordContinuationReason(normalizedSessionID, goal.goalId, 'prompt_async_unavailable', options, true);
+      return decision('suppressed', 'prompt_async_unavailable', autoTurnsUsed);
+    }
+
     const reserved = await reserveContinuationTurn(normalizedSessionID, goal.goalId, options);
     if (!reserved.didReserve) {
       return decision('suppressed', 'auto_turn_cap_reached', reserved.goal?.autoTurnsUsed || autoTurnsUsed);
@@ -1537,9 +2188,10 @@ async function maybeContinueGoal(sessionID, rawOptions = {}) {
  */
 function renderGoalInjection(goal, rawOptions = {}) {
   if (!goal || goal.status !== 'active') return EMPTY_INJECTION_PREVIEW;
+  countMetric(rawOptions, 'renderGoalInjection');
   const options = normalizeOptions(rawOptions);
-  const objectivePreviewChars = Math.max(60, Math.min(600, Math.floor(options.maxInjectionChars * 0.12)));
-  const objective = sanitizeInlineText(goal.objective, Math.min(options.maxObjectiveChars, objectivePreviewChars));
+  const objectivePreviewLimit = calculateObjectivePreviewChars(options.maxInjectionChars);
+  const objective = sanitizeInlineText(goal.objective, Math.min(options.maxObjectiveChars, objectivePreviewLimit));
   const goalPrompt = sanitizePromptText(goal.goalPrompt || goal.objective, options.maxGoalPromptChars);
   const reason = sanitizeInlineText(goal.lastVerifierReason || 'none', DEFAULT_MAX_REASON_CHARS) || 'none';
   const tokenBudget = goal.tokenBudget === null || goal.tokenBudget === undefined ? 'none' : String(goal.tokenBudget);
@@ -1548,7 +2200,7 @@ function renderGoalInjection(goal, rawOptions = {}) {
   const autoTurnsUsed = Number.isFinite(goal.autoTurnsUsed) ? Math.max(0, Math.trunc(goal.autoTurnsUsed)) : 0;
   const maxAutoTurns = Number.isFinite(goal.maxAutoTurns) ? Math.max(0, Math.trunc(goal.maxAutoTurns)) : DEFAULT_MAX_AUTO_TURNS;
   const verdict = sanitizeInlineText(goal.lastVerifierVerdict || 'not_evaluated', 80) || 'not_evaluated';
-  const goalId = sanitizeInlineText(goal.goalId, 160).replace(/\s+/g, '-');
+  const goalId = normalizeGoalID(goal.goalId);
   const directive = 'directive: Continue toward this objective. Before ending, run the goal verifier or explain why it is blocked.';
   const buildBlock = (promptText) => [
     `[active_goal:${goalId}]`,
@@ -1561,7 +2213,7 @@ function renderGoalInjection(goal, rawOptions = {}) {
     directive,
     '[/active_goal]',
   ].join('\n');
-  const promptBudget = Math.max(3, options.maxInjectionChars - buildBlock('').length);
+  const promptBudget = Math.max(MIN_PROMPT_BUDGET_CHARS, options.maxInjectionChars - buildBlock('').length);
   const block = buildBlock(sanitizePromptText(goalPrompt, promptBudget));
   if (block.length <= options.maxInjectionChars) return block;
 
@@ -1573,9 +2225,41 @@ function renderGoalInjection(goal, rawOptions = {}) {
     directive,
     '[/active_goal]',
   ].join('\n');
-  const compactPromptBudget = Math.max(3, options.maxInjectionChars - buildCompactBlock('').length);
+  const compactPromptBudget = Math.max(MIN_PROMPT_BUDGET_CHARS, options.maxInjectionChars - buildCompactBlock('').length);
 
   return clampText(buildCompactBlock(sanitizePromptText(goalPrompt, compactPromptBudget)), options.maxInjectionChars);
+}
+
+async function readGoalForBrief(sessionID, rawOptions = {}) {
+  const options = normalizeOptions(rawOptions);
+  const path = goalPathForSession(sessionID, options);
+  const cached = goalBriefCache.get(path);
+  let fileStats = null;
+  try {
+    fileStats = await stat(path);
+  } catch (error) {
+    if (error?.code !== 'ENOENT') throw error;
+    if (cached?.missing === true) return null;
+    goalBriefCache.set(path, { missing: true });
+    return null;
+  }
+
+  const cacheKey = `${fileStats.mtimeMs}:${fileStats.size}`;
+  if (cached?.cacheKey === cacheKey) return cached.goal;
+
+  try {
+    countMetric(options, 'briefReadFile');
+    const raw = await readFile(path, 'utf8');
+    const goal = normalizeStoredGoal(JSON.parse(raw), sessionID, options);
+    goalBriefCache.set(path, { cacheKey, goal });
+    return goal;
+  } catch (error) {
+    if (error?.code === 'ENOENT') {
+      goalBriefCache.set(path, { missing: true });
+      return null;
+    }
+    throw error;
+  }
 }
 
 async function appendGoalBrief(input = {}, output = { system: [] }, rawOptions = {}) {
@@ -1584,7 +2268,7 @@ async function appendGoalBrief(input = {}, output = { system: [] }, rawOptions =
     output.system = Array.isArray(output.system) ? output.system : [];
     const sessionID = sessionIdFromInput(input);
     if (!sessionID) return;
-    const goal = await readGoal(sessionID, rawOptions);
+    const goal = await readGoalForBrief(sessionID, rawOptions);
     const block = renderGoalInjection(goal, rawOptions);
     if (!block) return;
     const marker = `[active_goal:${goal.goalId}]`;
@@ -1599,18 +2283,25 @@ async function appendGoalBrief(input = {}, output = { system: [] }, rawOptions =
 // 7. TOOL OUTPUT
 // ─────────────────────────────────────────────────────────────────────────────
 
-function goalStateLines(action, goal, rawOptions = {}, mutation = null) {
-  const injectionPreview = renderGoalInjection(goal, rawOptions);
+function goalStateLines(action, goal, rawOptions = {}, mutation = null, renderOptions = {}) {
+  const includeInjectionPreview = renderOptions.includeInjectionPreview !== false;
+  const injectionPreview = includeInjectionPreview ? renderGoalInjection(goal, rawOptions) : EMPTY_INJECTION_PREVIEW;
   if (!goal) {
-    return [
+    const lines = [
       `STATUS=OK ACTION=${action}`,
       'goal_present=false',
       'store_health=no_active_goal',
-      `injection_preview=${JSON.stringify(injectionPreview)}`,
-    ].join('\n');
+    ];
+    if (includeInjectionPreview) lines.push(`injection_preview=${JSON.stringify(injectionPreview)}`);
+    return lines.join('\n');
   }
 
   const stateAgeMs = Math.max(0, nowMs(rawOptions) - goal.updatedAtMs);
+  const options = normalizeOptions(rawOptions);
+  const maxAutoTurns = Number.isFinite(goal.maxAutoTurns) ? Math.max(0, Math.trunc(goal.maxAutoTurns)) : options.maxAutoTurns;
+  const autoTurnsUsed = Number.isFinite(goal.autoTurnsUsed) ? Math.max(0, Math.trunc(goal.autoTurnsUsed)) : 0;
+  const wallElapsedMs = Math.max(0, nowMs(options) - goal.startedAtMs);
+  const remainingWallMs = Math.max(0, options.maxWallMs - wallElapsedMs);
   const lines = [
     `STATUS=OK ACTION=${action}`,
     'goal_present=true',
@@ -1623,10 +2314,15 @@ function goalStateLines(action, goal, rawOptions = {}, mutation = null) {
     `prompt_methodology=${quoteValue(goal.promptEnhancement?.methodology || '')}`,
     `prompt_clear_score=${goal.promptEnhancement?.clearScore ?? 'unknown'}`,
     `prompt_char_count=${goal.promptEnhancement?.charCount ?? String(goal.goalPrompt || '').length}`,
-    `prompt_max_chars=${goal.promptEnhancement?.maxChars ?? normalizeOptions(rawOptions).maxGoalPromptChars}`,
+    `prompt_max_chars=${goal.promptEnhancement?.maxChars ?? options.maxGoalPromptChars}`,
     `token_budget=${goal.tokenBudget === null || goal.tokenBudget === undefined ? 'none' : goal.tokenBudget}`,
     `tokens_used=${goal.tokensUsed}`,
     `time_used_seconds=${goal.timeUsedSeconds}`,
+    `max_auto_turns=${maxAutoTurns}`,
+    `remaining_auto_turns=${Math.max(0, maxAutoTurns - autoTurnsUsed)}`,
+    `max_wall_ms=${options.maxWallMs}`,
+    `remaining_wall_ms=${remainingWallMs}`,
+    `provider_retry_after_ms=${goal.providerRetryAfterMs === null || goal.providerRetryAfterMs === undefined ? 'none' : goal.providerRetryAfterMs}`,
     `usage_source=${goal.usageSource || 'unavailable'}`,
     `budget_tokens_used=${goal.tokensUsed}`,
     `budget_token_budget=${goal.tokenBudget === null || goal.tokenBudget === undefined ? 'none' : goal.tokenBudget}`,
@@ -1636,22 +2332,57 @@ function goalStateLines(action, goal, rawOptions = {}, mutation = null) {
     `store_health=state_age_ms:${stateAgeMs}`,
     `last_check=${goal.lastVerifierVerdict || 'not_evaluated'}`,
     `verifier_last_verdict=${goal.lastVerifierVerdict || 'not_evaluated'}`,
-    `verifier_last_evidence=${quoteValue(redactEvidence(goal.lastEvidence || '', normalizeOptions(rawOptions).maxEvidenceChars))}`,
+    `verifier_source=${goal.lastVerifierSource || 'none'}`,
+    `verifier_last_evidence=${quoteValue(redactEvidence(goal.lastEvidence || '', options.maxEvidenceChars))}`,
     `blocked_by_prompt=${goal.blockedByPrompt === true}`,
     `continuation_suppressed=${goal.continuationSuppressed === true}`,
     `continuation_attempts=${goal.autoTurnsUsed}`,
     `continuation_suppressed_reason=${quoteValue(goal.continuationSuppressedReason || '')}`,
-    `injection_preview=${JSON.stringify(injectionPreview)}`,
   ];
+  if (includeInjectionPreview) lines.push(`injection_preview=${JSON.stringify(injectionPreview)}`);
   if (mutation) lines.splice(1, 0, `mutation=${mutation}`);
   return lines.join('\n');
 }
 
-function failureLines(error) {
+function historyLines(records) {
+  const lines = [
+    'STATUS=OK ACTION=history',
+    `archive_count=${records.length}`,
+  ];
+  records.forEach((record, index) => {
+    lines.push(
+      `archive_${index}_file=${quoteValue(record.filename)}`,
+      `archive_${index}_goal_id=${quoteValue(record.goal.goalId)}`,
+      `archive_${index}_session_id=${quoteValue(record.goal.sessionId)}`,
+      `archive_${index}_status=${quoteValue(record.goal.status)}`,
+      `archive_${index}_objective=${quoteValue(record.goal.objective)}`,
+      `archive_${index}_updated_at_ms=${record.goal.updatedAtMs}`,
+      `archive_${index}_size_bytes=${record.sizeBytes}`,
+    );
+  });
+  return lines.join('\n');
+}
+
+function healthLines(action, health) {
+  const lastSweepAtMs = health.lastSweepAtMs || 0;
+  return [
+    `STATUS=OK ACTION=${action}`,
+    `active_state_file_count=${health.activeStateFileCount}`,
+    `archive_file_count=${health.archiveFileCount}`,
+    `continuation_log_bytes=${health.continuationLogBytes}`,
+    `goal_events_log_bytes=${health.goalEventsLogBytes}`,
+    `last_sweep_at_ms=${lastSweepAtMs}`,
+    `last_sweep_at=${quoteValue(lastSweepAtMs > 0 ? isoFromMs(lastSweepAtMs) : 'never')}`,
+    `orphan_candidate_count=${health.orphanCandidateCount}`,
+  ].join('\n');
+}
+
+function failureLines(error, action = 'show') {
   const code = error?.code || 'GOAL_ERROR';
   const message = error?.message || 'Goal operation failed';
+  const normalizedAction = GOAL_ACTIONS.includes(action) ? action : 'show';
   return [
-    `STATUS=FAIL ERROR=${quoteValue(message)}`,
+    `STATUS=FAIL ACTION=${normalizedAction} ERROR=${quoteValue(message)}`,
     `code=${code}`,
   ].join('\n');
 }
@@ -1660,39 +2391,50 @@ async function executeGoalAction(args, context, rawOptions = {}) {
   const action = GOAL_ACTIONS.includes(args?.action) ? args.action : 'show';
   const sessionID = sessionIdFromContext(context);
   const options = normalizeOptions(rawOptions);
+  const renderOptions = { includeInjectionPreview: rawOptions.includeInjectionPreview !== false };
 
   try {
     if (!options.enabled) {
       throw new GoalError('PLUGIN_DISABLED', `${DISABLED_ENV}=1 disables goal plugin tool execution`);
     }
+    if (action === 'history') {
+      const records = await listArchivedGoalRecords(options);
+      return historyLines(records);
+    }
+    if (action === 'doctor' || action === 'health') {
+      const health = await inspectGoalHealth({ ...options, runtimeState: rawOptions.runtimeState });
+      return healthLines(action, health);
+    }
     if (action === 'set') {
-      const previousGoal = await readGoal(sessionID, options);
       const goal = await setGoal(sessionID, args?.objective, {
         ...options,
         tokenBudget: args?.tokenBudget,
       });
-      const mutation = previousGoal ? (previousGoal.objective === goal.objective ? 'refreshed' : 'replaced') : 'created';
-      return goalStateLines(action, goal, options, mutation);
+      return goalStateLines(action, goal, options, goal.mutation || 'created', renderOptions);
     }
     if (action === 'clear') {
       await clearGoal(sessionID, options);
-      return goalStateLines(action, null, options);
+      return goalStateLines(action, null, options, null, renderOptions);
     }
     if (action === 'complete') {
       const goal = await markGoalStatus(sessionID, 'complete', options);
-      return goalStateLines(action, goal, options);
+      return goalStateLines(action, goal, options, null, renderOptions);
     }
     if (action === 'pause') {
       const goal = await markGoalStatus(sessionID, 'paused', {
         ...options,
         reason: args?.reason,
       });
-      return goalStateLines(action, goal, options);
+      return goalStateLines(action, goal, options, null, renderOptions);
+    }
+    if (action === 'resume') {
+      const goal = await resumeGoal(sessionID, options);
+      return goalStateLines(action, goal, options, null, renderOptions);
     }
     const goal = await readGoal(sessionID, options);
-    return goalStateLines('show', goal, options);
+    return goalStateLines('show', goal, options, null, renderOptions);
   } catch (error) {
-    return failureLines(error);
+    return failureLines(error, action);
   }
 }
 
@@ -1706,7 +2448,7 @@ async function executeGoalStatus(context, rawOptions = {}) {
     const goal = await readGoal(sessionID, options);
     return goalStateLines('show', goal, options);
   } catch (error) {
-    return failureLines(error);
+    return failureLines(error, 'show');
   }
 }
 
@@ -1750,15 +2492,17 @@ export default async function MkGoalPlugin(ctx, rawOptions = {}) {
   }
 
   async function handleEvent(event) {
+    const eventOptions = normalizeOptions(rawOptions);
+    if (!eventOptions.enabled) return;
     const eventType = eventTypeFrom(event);
     const sessionID = extractEventSessionID(event);
     if (!eventType) return;
-    await logDebugEvent(eventType, sessionID, options);
+    await logDebugEvent(eventType, sessionID, eventOptions);
 
     if (eventType === 'session.created') {
-      if (sessionID) await restoreActiveGoal(sessionID, options);
+      if (sessionID) await restoreActiveGoal(sessionID, eventOptions);
       try {
-        await sweepOrphanedActiveStates(options, runtimeState);
+        await sweepOrphanedActiveStates(eventOptions, runtimeState);
       } catch {
         return;
       }
@@ -1766,7 +2510,7 @@ export default async function MkGoalPlugin(ctx, rawOptions = {}) {
     }
 
     if (eventType === 'message.updated') {
-      if (sessionID) await recordMessageUpdated(sessionID, event, options);
+      if (sessionID) await recordMessageUpdated(sessionID, event, eventOptions);
       return;
     }
 
@@ -1779,7 +2523,7 @@ export default async function MkGoalPlugin(ctx, rawOptions = {}) {
     if (eventType === 'permission.asked' || eventType === 'question.asked') {
       if (sessionID) {
         runtimeState.blockedByPromptSessions.add(sessionID);
-        await setBlockedByPrompt(sessionID, true, options);
+        await setBlockedByPrompt(sessionID, true, eventOptions);
       }
       return;
     }
@@ -1787,7 +2531,7 @@ export default async function MkGoalPlugin(ctx, rawOptions = {}) {
     if (eventType === 'permission.replied' || eventType === 'question.replied' || eventType === 'question.rejected') {
       if (sessionID) {
         runtimeState.blockedByPromptSessions.delete(sessionID);
-        await setBlockedByPrompt(sessionID, false, options);
+        await setBlockedByPrompt(sessionID, false, eventOptions);
       }
       return;
     }
@@ -1795,7 +2539,7 @@ export default async function MkGoalPlugin(ctx, rawOptions = {}) {
     if (eventType === 'session.idle') {
       if (!sessionID) {
         await maybeContinueGoal(sessionID, {
-          ...options,
+          ...eventOptions,
           client: ctx?.client,
           directory: ctx?.directory,
           runtimeState,
@@ -1807,12 +2551,15 @@ export default async function MkGoalPlugin(ctx, rawOptions = {}) {
       runtimeState.inFlightVerifications.add(sessionID);
       let verifierResult = null;
       try {
-        verifierResult = await maybeVerifyGoal(sessionID, options);
+        verifierResult = await maybeVerifyGoal(sessionID, {
+          ...rawOptions,
+          client: ctx?.client,
+        });
       } finally {
         runtimeState.inFlightVerifications.delete(sessionID);
       }
       await maybeContinueGoal(sessionID, {
-        ...options,
+        ...eventOptions,
         client: ctx?.client,
         directory: ctx?.directory,
         runtimeState,
@@ -1825,7 +2572,7 @@ export default async function MkGoalPlugin(ctx, rawOptions = {}) {
       flushVolatileLocks(sessionID);
       if (sessionID) {
         try {
-          await archiveGoalStateFile(sessionID, options);
+          await archiveGoalStateFile(sessionID, eventOptions);
         } catch {
           return;
         }
@@ -1843,19 +2590,20 @@ export default async function MkGoalPlugin(ctx, rawOptions = {}) {
       try {
         await handleEvent(input.event || input);
       } catch (error) {
-        await logDebugEventError(input.event || input, error, options);
+        await logDebugEventError(input.event || input, error, normalizeOptions(rawOptions));
         return;
       }
     },
 
     'experimental.chat.system.transform': async (input, output) => {
-      if (!options.enabled) return;
-      await appendGoalBrief(input, output, options);
+      const transformOptions = normalizeOptions(rawOptions);
+      if (!transformOptions.enabled) return;
+      await appendGoalBrief(input, output, transformOptions);
     },
 
     tool: {
       mk_goal: tool({
-        description: 'Set, show, clear, complete, or pause the active session goal',
+        description: 'Set, show, clear, complete, pause, resume, inspect history, or check goal plugin health',
         args: {
           action: tool.schema.enum(GOAL_ACTIONS),
           objective: tool.schema.string().optional(),
@@ -1863,14 +2611,14 @@ export default async function MkGoalPlugin(ctx, rawOptions = {}) {
           reason: tool.schema.string().optional(),
         },
         async execute(args, context) {
-          return executeGoalAction(args, context, options);
+          return executeGoalAction(args, context, { ...rawOptions, runtimeState });
         },
       }),
       mk_goal_status: tool({
         description: 'Show the active session goal and exact injection preview',
         args: {},
         async execute(_args, context) {
-          return executeGoalStatus(context, options);
+          return executeGoalStatus(context, rawOptions);
         },
       }),
     },
@@ -1894,7 +2642,9 @@ const __test = Object.freeze({
   ensureGoalStateDir,
   executeGoalAction,
   executeGoalStatus,
+  fsyncDirectory,
   goalPathForSession,
+  markGoalStatus,
   maybeContinueGoal,
   maybeVerifyGoal,
   readGoal,

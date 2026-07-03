@@ -1,5 +1,5 @@
 ---
-title: "Tasks: Phase 11: command-surface-normalization [template:level_1/tasks.md]"
+title: "Tasks: Phase 11: command-surface-normalization"
 description: "Task Format: T### [P?] Description (file path)"
 trigger_phrases:
   - "tasks"
@@ -17,7 +17,7 @@ _memory:
     key_files:
       - ".opencode/commands/goal_opencode.md"
     session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      fingerprint: "sha256:dcd31e900816c601e3029e9189aaea3283cea968c09774804d2f60ffbca1f972"
       session_id: "scaffold-032-011"
       parent_session_id: null
     completion_pct: 100
@@ -117,5 +117,5 @@ _memory:
 
 - **Specification**: See `spec.md`
 - **Plan**: See `plan.md`
-- **Finding source**: `../review/review-report.md` §3 (DR-002, DR-004-P2, DR-007-P1/P2, DR-008, DR-010); `../research/iterations/iteration-00{2,3,4}.md` (F-005 through F-009)
+- **Finding source**: `../review/review-report.md` §3 (DR-002, DR-004-P2, DR-007-P1/P2, DR-008, DR-010); `../research_archive/2026-07-01-plugin-implementation-audit/iterations/iteration-00{2,3,4}.md` (F-005 through F-009)
 <!-- /ANCHOR:cross-refs -->

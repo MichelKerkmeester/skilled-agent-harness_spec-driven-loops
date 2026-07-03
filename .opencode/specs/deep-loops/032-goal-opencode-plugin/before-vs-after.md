@@ -46,7 +46,7 @@ Passive injection was chosen over an active per-turn prompt because it needed to
 
 ## 3. GOAL COMMAND
 
-Phase 003 gives the feature a root command surface, later renamed twice (phase 011) but architecturally unchanged since this phase.
+Phase 003 gives the feature a root command surface, later renamed three committed times across the command-normalization work but architecturally unchanged since this phase.
 
 **Before**
 
@@ -186,11 +186,11 @@ These fixes shipped code-only, with zero renames or doc changes, so the remediat
 
 ## 10. COMMAND SURFACE NORMALIZATION
 
-Phase 011 settles a command filename that had already been renamed twice with no doc sweep either time.
+Phase 011 settles a command filename after three committed renames with no durable doc sweep.
 
 **Before**
 
-`.opencode/commands/goal.md` (never actually shipped, per phase 003's original, never-realized mandate), then `opencode_goal.md`, then `goal_opencode.md` by a concurrent session, had left nine referencing surfaces potentially stale across phase docs, graph metadata, feature catalogs, and playbooks. `MK_GOAL_PLUGIN_DISABLED` still let manual mutations execute while claiming to disable the plugin. The command doc claimed unknown verbs fail, when dispatch actually coerced every input to `set`.
+The committed filename lineage `goal.md` -> `goal_opencode.md` -> `goal.md` -> `goal_opencode.md` had left nine referencing surfaces potentially stale across phase docs, graph metadata, feature catalogs, and playbooks; `opencode_goal.md` was never a committed path. `MK_GOAL_PLUGIN_DISABLED` still let manual mutations execute while claiming to disable the plugin. The command doc claimed unknown verbs fail, when dispatch actually coerced every input to `set`.
 
 **After**
 
@@ -226,7 +226,7 @@ A test suite that only calls internal helpers can pass while the real public ent
 
 ## 12. DESIGN FIDELITY AND POLISH
 
-Phase 013 wires a dormant status enum to real behavior and closes packet-wide metadata drift the earlier phases had accumulated.
+Phase 013 wires a dormant status enum to real behavior and closes phases 001-008 metadata drift the earlier phases had accumulated.
 
 **Before**
 
@@ -238,7 +238,7 @@ The operator chose to wire a real detector over collapsing the enum: `recordMess
 
 **Impact**
 
-`usage_limited` is now a status a goal can actually reach, packet-wide freshness checks stop universally failing on a shared placeholder, and phase 006's own claim now matches what was actually verified.
+`usage_limited` is now a status a goal can actually reach, phases 001-008 freshness checks stop failing on a shared placeholder, and phase 006's own claim now matches what was actually verified.
 
 **Why**
 

@@ -1,5 +1,5 @@
 ---
-title: "Tasks: Phase 13: design-fidelity-and-polish [template:level_1/tasks.md]"
+title: "Tasks: Phase 13: design-fidelity-and-polish"
 description: "Task Format: T### [P?] Description (file path)"
 trigger_phrases:
   - "tasks"
@@ -17,7 +17,7 @@ _memory:
     key_files:
       - ".opencode/plugins/mk-goal.js"
     session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      fingerprint: "sha256:5deac6f3da4ec897eb38ab3b9ce73237225467ed585023f1a4fa81b39de8435d"
       session_id: "scaffold-032-013"
       parent_session_id: null
     completion_pct: 0

@@ -1,7 +1,7 @@
 ---
 description: Resume or recover work on a spec folder: canonical continuity recovery with one next step.
 argument-hint: "[spec-folder-path] [:auto|:confirm] [--phase-folder=<path>] (:auto supports PRE-BOUND SETUP ANSWERS: prompt-body block for non-interactive setup)"
-allowed-tools: Read, Write, Edit, Bash, Grep, Glob, Task, mcp__mk_spec_memory__memory_context, mcp__mk_spec_memory__memory_search, mcp__mk_spec_memory__memory_match_triggers, mcp__mk_spec_memory__memory_list, mcp__mk_spec_memory__session_bootstrap
+allowed-tools: Read, Write, Edit, Bash, Grep, Glob, Task, mcp__mk_spec_memory__memory_context, mcp__mk_spec_memory__memory_search, mcp__mk_spec_memory__memory_match_triggers, mcp__mk_spec_memory__memory_list, mcp__mk_spec_memory__session_bootstrap, mk_goal_status
 ---
 
 # SpecKit Resume

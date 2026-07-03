@@ -47,6 +47,8 @@ user_inputs:
   request: "[REQUEST] - Implementation scope. Default: comprehensive review."
   environment: "[STAGING LINK] - Staging/production URL for browser testing."
   scope: "[FILES] - Files/folders to work with."
+  goal_prompt_choice: "[offer|skip|set] - Optional session-goal behavior. Defaults to offer under :auto; set requires goal_objective."
+  goal_objective: "[TEXT] - Objective passed to mk_goal only when goal_prompt_choice is set."
 
 # ─────────────────────────────────────────────────────────────────
 # FIELD HANDLING
@@ -74,6 +76,22 @@ field_handling:
       detection_rule: "isPhaseParent(folder) — at .opencode/skills/system-spec-kit/mcp_server/lib/spec/is-phase-parent.ts and the shell mirror is_phase_parent in scripts/lib/shell-common.sh. Both must agree."
       spec_id_derivation: "spec_id is the FIRST {NNN} segment under specs/. For deep nests, parent_chain accumulates from outermost to innermost, and graph-metadata.json.parent_id encodes the immediate parent."
   scope_policy: { default: "**", rule: "Implementation may edit any workspace file. Narrow to [FILES] scope when explicitly provided by the user." }
+
+goal_prompting:
+  default_choice: offer
+  choices:
+    offer: "Render the optional session-goal offer only; do not call mk_goal."
+    skip: "Suppress the optional session-goal offer; do not call mk_goal."
+    set: "Set a session goal only when goal_objective is provided."
+  set_mutation:
+    when:
+      field: goal_prompt_choice
+      op: "=="
+      value: set
+    require: goal_objective
+    tool: mk_goal
+    invocation: 'mk_goal({ action: "set", objective: goal_objective })'
+  status_tool: mk_goal_status
 
 # ─────────────────────────────────────────────────────────────────
 # REQUEST HANDLING

@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: Phase 10: security-and-correctness-fixes [template:level_1/spec.md]"
+title: "Feature Specification: Phase 10: security-and-correctness-fixes"
 description: "Fix the 5 confirmed code-level defects (2 security, 3 correctness) that deep-review found in the shipped /goal plugin (verdict CONDITIONAL)."
 trigger_phrases:
   - "goal plugin security fixes"
@@ -19,7 +19,7 @@ _memory:
     key_files:
       - ".opencode/plugins/mk-goal.js"
     session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      fingerprint: "sha256:63d4d17242d5c1608c73f9607ea28a9713e697314581ec5aaa3f42b1a2fbb3d0"
       session_id: "scaffold-032-010"
       parent_session_id: null
     completion_pct: 0
@@ -40,11 +40,11 @@ _memory:
 |-------|-------|
 | **Level** | 1 |
 | **Priority** | P1 |
-| **Status** | Draft |
+| **Status** | Complete |
 | **Created** | 2026-07-01 |
 | **Branch** | `032-goal-opencode-plugin` |
 | **Parent Spec** | ../spec.md |
-| **Phase** | 10 of 13 |
+| **Phase** | 10 |
 | **Predecessor** | None (independent of 009, which is owned by a separate in-flight session) |
 | **Successor** | 011-command-surface-normalization |
 | **Handoff Criteria** | All 5 fixes land in `mk-goal.js`, the existing 6-file test suite still passes via `node --test`, freshly executed and pasted as evidence |
@@ -55,7 +55,7 @@ _memory:
 <!-- ANCHOR:phase-context -->
 ## Phase Context
 
-This is the first remediation phase for the `/goal` plugin, addressing the highest-severity findings from this packet's completed deep-review audit (15 iterations, GPT-5.5, verdict CONDITIONAL — `review/review-report.md`).
+This is the first remediation phase for the `/goal` plugin, addressing the highest-severity findings from this packet's completed deep-review audit (15 iterations, GPT-5.5, verdict CONDITIONAL — `../review_archive/2026-07-01-plugin-implementation-review/review-report.md`).
 
 **Scope Boundary**: code-only fixes to `.opencode/plugins/mk-goal.js`. No renaming, no doc sweeps (that's phase 011), no new regression tests beyond confirming the existing suite still passes (new tests are phase 012's scope).
 
@@ -101,7 +101,7 @@ Land all 5 fixes so `mk-goal.js`'s behavior matches its own documented contracts
 |-----------|-------------|--------------|
 | `.opencode/plugins/mk-goal.js` | Modify | 5 targeted fixes at the line ranges below; no new files. |
 
-**Evidence anchors** (from `review/review-report.md` §3 Active Finding Registry and its cited iteration files):
+**Evidence anchors** (from `../review_archive/2026-07-01-plugin-implementation-review/review-report.md` §3 Active Finding Registry and its cited iteration files):
 - DR-006: `mk-goal.js:1057` — verifier exception handling bypasses `redactEvidence`.
 - DR-005: `mk-goal.js:177` — `sanitizeInlineText`/`sanitizePromptText` blacklist.
 - DR-001: `mk-goal.js:1376` — `renderGoalInjection` clamps only the prompt subsection.

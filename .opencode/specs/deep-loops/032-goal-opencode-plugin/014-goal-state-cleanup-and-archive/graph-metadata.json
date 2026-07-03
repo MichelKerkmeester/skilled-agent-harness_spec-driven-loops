@@ -196,7 +196,7 @@
     ],
     "causal_summary": "`.opencode/skills/.goal-state/.json` files are created per session (`goalPathForSession`) but never removed by the plugin's own lifecycle handling",
     "created_at": "2026-07-01T12:44:45Z",
-    "last_save_at": "2026-07-01T17:58:32.223Z",
+    "last_save_at": "2026-07-03T13:21:42.100Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,12 +205,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:f31a5d48314ae27374270a284460c4b65603f28500ab4720a7575a2ab19ef9a1",
+    "source_fingerprint": "sha256:833d190d2f742531b44b1b52d839996640bb9772769151b25e163938f8ee8a92",
     "source_doc_hashes": {
-      "spec.md": "9355330720baf484e94cb48c2425894ab7f8c0dcd974b8000ab25a0d2957fb41",
-      "plan.md": "d87845fa9f9b81afea9f7bcf6dc7581b76d0ee0f1a919a4cdb37b8e2271df94e",
-      "tasks.md": "373a1456c5d1f6b0dfab5b9836194ec533f0c12f1154cdbd4e80413161f2d6b0",
-      "implementation-summary.md": "699d2fe34dc8bf495818959ae15b2bbf5bec924219c305ea8ac38a3bcf137e03"
+      "spec.md": "420fd7fbe4d811a45d1f19708af381baabdca2c76c3c604907ba1d909bc8ecd3",
+      "plan.md": "116fe694600fdf4b7e6f83a8547144d5993acc7ac8ff486ec9077b2fd082cfaa",
+      "tasks.md": "6acc3afd83cf22e4c63b6dc5d3a6f4e9551b21b3b17e4ad5d119666141d0aa87",
+      "implementation-summary.md": "786de51e9681bea3e1d23194cece5c96f89853302801d997c524fe7c41241e73"
     },
     "last_active_child_id": null,
     "last_active_at": null

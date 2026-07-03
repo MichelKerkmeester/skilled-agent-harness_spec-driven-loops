@@ -1,5 +1,5 @@
 ---
-title: "Implementation Summary: system-spec-kit integration [template:level_1/implementation-summary.md]"
+title: "Implementation Summary: system-spec-kit integration"
 description: "System-spec-kit now documents the /goal OpenCode plugin as a local runtime plugin surface with references, assets, env docs, and validation guidance."
 trigger_phrases:
   - "goal plugin implementation summary"

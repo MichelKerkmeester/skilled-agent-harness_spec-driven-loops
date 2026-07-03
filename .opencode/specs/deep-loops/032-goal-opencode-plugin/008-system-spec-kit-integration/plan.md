@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: system-spec-kit integration [template:level_1/plan.md]"
+title: "Implementation Plan: system-spec-kit integration"
 description: "Document mk-goal as a first-class system-spec-kit OpenCode plugin surface without changing runtime behavior."
 trigger_phrases:
   - "goal plugin system-spec-kit plan"

@@ -47,6 +47,8 @@ user_inputs:
   request: "[REQUEST] - Implementation scope. Default: comprehensive review."
   environment: "[STAGING LINK] - Staging/production URL for browser testing."
   scope: "[FILES] - Files/folders to work with."
+  goal_prompt_choice: "[offer|skip|set] - Optional session-goal behavior. Defaults to offer unless the user chooses skip or set; set requires goal_objective."
+  goal_objective: "[TEXT] - Objective passed to mk_goal only when goal_prompt_choice is set."
 
 # ─────────────────────────────────────────────────────────────────
 # FIELD HANDLING
@@ -60,6 +62,22 @@ field_handling:
     note: "[SPEC_FOLDER] may be a phase child path (e.g., specs/003-name/001-phase/). When Option E is selected or --phase-folder is provided, spec_id derives from the parent folder NNN, not the child NNN. Also load parent spec.md for cross-reference context."
     path_pattern: "specs/{NNN-parent}/{NNN-phase}/"
   scope_policy: { default: "**", rule: "Implementation may edit any workspace file. Narrow to [FILES] scope when explicitly provided by the user." }
+
+goal_prompting:
+  default_choice: offer
+  choices:
+    offer: "Render the optional session-goal offer only; do not call mk_goal."
+    skip: "Suppress the optional session-goal offer; do not call mk_goal."
+    set: "Set a session goal only when goal_objective is provided."
+  set_mutation:
+    when:
+      field: goal_prompt_choice
+      op: "=="
+      value: set
+    require: goal_objective
+    tool: mk_goal
+    invocation: 'mk_goal({ action: "set", objective: goal_objective })'
+  status_tool: mk_goal_status
 
 # ─────────────────────────────────────────────────────────────────
 # REQUEST HANDLING

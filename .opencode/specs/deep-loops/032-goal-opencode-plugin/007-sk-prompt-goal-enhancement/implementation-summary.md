@@ -1,5 +1,5 @@
 ---
-title: "Implementation Summary: sk-prompt goal enhancement [template:level_1/implementation-summary.md]"
+title: "Implementation Summary: sk-prompt goal enhancement"
 description: "The /goal plugin now turns raw user input into a deterministic sk-prompt-style goal prompt before injecting it into session context."
 trigger_phrases:
   - "goal prompt implementation summary"

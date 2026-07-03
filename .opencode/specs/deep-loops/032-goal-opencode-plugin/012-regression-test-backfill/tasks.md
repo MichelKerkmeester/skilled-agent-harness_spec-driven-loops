@@ -1,5 +1,5 @@
 ---
-title: "Tasks: Phase 12: regression-test-backfill [template:level_1/tasks.md]"
+title: "Tasks: Phase 12: regression-test-backfill"
 description: "Task Format: T### [P?] Description (file path)"
 trigger_phrases:
   - "tasks"
@@ -17,7 +17,7 @@ _memory:
     key_files:
       - ".opencode/plugins/tests/mk-goal-state.test.cjs"
     session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      fingerprint: "sha256:a53acaa1bbf417d881ada2782d33384215310d86ac0e00a0b8865b31b9148512"
       session_id: "scaffold-032-012"
       parent_session_id: null
     completion_pct: 100
@@ -113,5 +113,5 @@ _memory:
 
 - **Specification**: See `spec.md`
 - **Plan**: See `plan.md`
-- **Finding source**: `../review/review-report.md` §3 (DR-009 cluster); `../research/iterations/iteration-00{5,7,8}.md` (F-013, F-018 through F-022)
+- **Finding source**: `../review/review-report.md` §3 (DR-009 cluster); `../research_archive/2026-07-01-plugin-implementation-audit/iterations/iteration-00{5,7,8}.md` (F-013, F-018 through F-022)
 <!-- /ANCHOR:cross-refs -->

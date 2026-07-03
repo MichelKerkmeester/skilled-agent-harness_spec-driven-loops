@@ -19,7 +19,7 @@ _memory:
       - ".opencode/commands/goal_opencode.md"
       - ".opencode/plugins/mk-goal.js"
     session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      fingerprint: "sha256:161cc6191170579d804aa33b19b09fa5d4f84c3266169d2e0d05fe486f877406"
       session_id: "phase-011-command-surface-20260701"
       parent_session_id: null
     completion_pct: 100
@@ -43,6 +43,7 @@ _memory:
 |-------|-------|
 | **Spec Folder** | 011-command-surface-normalization |
 | **Completed** | 2026-07-01 |
+| **Status** | Complete |
 | **Level** | 1 |
 <!-- /ANCHOR:metadata -->
 
@@ -51,7 +52,7 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-The `/goal` command file had been renamed twice in two days with no doc sweep either time (`opencode_goal.md` -> `goal_opencode.md`), leaving nine referencing surfaces stale. This phase picked one final name, backed by deep-research's confirmed no-built-in-collision finding, and closed every reference in one pass, plus fixed two smaller config-contract gaps deep-review found in the same command surface.
+The `/goal` command file had three committed renames in two days with no durable doc sweep: `goal.md` -> `goal_opencode.md` -> `goal.md` -> `goal_opencode.md`. `opencode_goal.md` was never a committed path. This phase picked one final name, backed by deep-research's confirmed no-built-in-collision finding, and closed every reference in one pass, plus fixed two smaller config-contract gaps deep-review found in the same command surface.
 
 **Amendment (2026-07-01, same day):** this phase originally renamed the file to `.opencode/commands/goal.md`. The operator subsequently confirmed `.opencode/commands/goal_opencode.md` as the correct, final name instead (a concurrent session had independently reached the same filename). All referencing surfaces below were re-swept to point at `goal_opencode.md`; the command file itself was not renamed again since it was already at that name in the shared working tree.
 

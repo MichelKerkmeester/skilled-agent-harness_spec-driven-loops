@@ -1,0 +1,31 @@
+{
+  "level": "1",
+  "specFolder": "deep-loops/032-goal-opencode-plugin/019-code-refinements",
+  "description": "`mk-goal.js` contains duplication and implicit contracts that made the F-series correctness bugs (fixed in phase 016) possible in the first place: the",
+  "keywords": [
+    "mk-goal",
+    "contains",
+    "duplication",
+    "implicit",
+    "contracts",
+    "made",
+    "f-series",
+    "correctness",
+    "bugs",
+    "fixed",
+    "phase",
+    "016",
+    "possible",
+    "first",
+    "place"
+  ],
+  "lastUpdated": "2026-07-03T17:03:06.035Z",
+  "specId": "019",
+  "folderSlug": "code-refinements",
+  "parentChain": [
+    "deep-loops",
+    "032-goal-opencode-plugin"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

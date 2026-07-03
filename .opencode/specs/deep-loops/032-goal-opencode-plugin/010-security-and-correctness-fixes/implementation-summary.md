@@ -20,7 +20,7 @@ _memory:
       - ".opencode/specs/deep-loops/032-goal-opencode-plugin/010-security-and-correctness-fixes/tasks.md"
       - ".opencode/specs/deep-loops/032-goal-opencode-plugin/010-security-and-correctness-fixes/implementation-summary.md"
     session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      fingerprint: "sha256:f0747d631d715b1d1fbefd01d9f90156a9a4899e196ad997f63f77af6b5ea9a4"
       session_id: "phase-010-security-correctness-20260701"
       parent_session_id: null
     completion_pct: 100
@@ -123,7 +123,7 @@ mk-goal tool-path tests passed
 exit: 0
 ```
 
-### Step 3: Syntax Check
+### Step 2: Syntax Check
 
 Command:
 
@@ -137,7 +137,7 @@ Output:
 (no output)
 ```
 
-### Step 4: Regression Suite After Edits
+### Step 3: Regression Suite After Edits
 
 Command:
 

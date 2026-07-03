@@ -1,0 +1,32 @@
+{
+  "level": "1",
+  "specFolder": "deep-loops/032-goal-opencode-plugin/018-test-architecture-restructure",
+  "description": "All 6 goal-plugin test files under `.opencode/plugins/tests/` are monolithic single-`async function main()` scripts (confirmed:",
+  "keywords": [
+    "goal-plugin",
+    "test",
+    "files",
+    "opencode",
+    "plugins",
+    "tests",
+    "monolithic",
+    "single",
+    "async",
+    "function",
+    "main",
+    "scripts",
+    "confirmed"
+  ],
+  "lastUpdated": "2026-07-03T15:55:04.922Z",
+  "specId": "018",
+  "folderSlug": "test-architecture-restructure",
+  "parentChain": [
+    "deep-loops",
+    "032-goal-opencode-plugin"
+  ],
+  "memorySequence": 2,
+  "memoryNameHistory": [
+    "03-07-26_16-51__phase-018-test-architecture-restructure.md",
+    "03-07-26_16-55__phase-018-test-architecture-restructure.md"
+  ]
+}

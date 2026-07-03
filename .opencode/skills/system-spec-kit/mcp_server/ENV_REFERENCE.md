@@ -145,7 +145,7 @@ Generated from `lib/search/search-flags.ts`. "Default state" is the shipped beha
 <!-- PHASE-010-ENV-SLOT: SPECKIT_RERANK_USE_SHARED_RERANK / SPECKIT_EMBEDDING_CACHE_* flags inserted here (027/010) -->
 <!-- PHASE-011-ENV-SLOT: SPECKIT_CODE_GRAPH_EXEMPLARS_* / SPECKIT_CONTEXT_CURATOR_* flags inserted here (027/011) -->
 
-Total unique variables documented: 295, counted as unique backticked names in first table columns (legacy HYDRA aliases removed, dual-stack CLI front-door variables included, see the "CLI front door" section). Recount with that method when adding rows. Multi-variable cells count once per cell here.
+Total unique variables documented: 298, counted as unique backticked names in first table columns (legacy HYDRA aliases removed, dual-stack CLI front-door variables included, see the "CLI front door" section). Recount with that method when adding rows. Multi-variable cells count once per cell here.
 
 ### Data Quality and Generator Hardening (028/005)
 
@@ -665,17 +665,20 @@ Code-graph P1 config defaults with env-var overrides.  Numeric values are parsed
 
 ## OPENCODE GOAL PLUGIN
 
-Environment variables consumed by the local `.opencode/plugins/mk-goal.js` plugin. These are plugin-level controls, not MCP daemon flags.
+Environment variables consumed by the local `.opencode/plugins/mk-goal.js` plugin. These are plugin-level controls, not MCP daemon flags. The same plugin owns `/goal history`, `/goal doctor`, `/goal health`, and `/goal resume`; status output includes `remaining_auto_turns`, `remaining_wall_ms`, `provider_retry_after_ms`, and verifier provenance via `verifier_source` alongside the existing budget fields.
 
 | Variable | Default | Type | Description | Source |
 |----------|---------|------|-------------|--------|
 | `MK_GOAL_PLUGIN_DISABLED` | unset (enabled) | boolean (`"1"`) | Disables goal injection and goal plugin behavior for the running OpenCode process. Restart OpenCode after changing it. | `.opencode/plugins/mk-goal.js` |
 | `MK_GOAL_AUTONOMY` | unset (continuation suppressed) | enum (`active`, `smoke`, `passive`, unset) | `active` enables guarded continuation, `smoke` logs would-fire decisions without sending a prompt, `passive` explicitly suppresses continuation, and unset is treated as disabled. | `.opencode/plugins/mk-goal.js` |
 | `MK_GOAL_DEBUG` | unset (off) | boolean (`"1"`) | Writes bounded debug events into `.opencode/skills/.goal-state/.goal-events.log`. | `.opencode/plugins/mk-goal.js` |
+| `MK_GOAL_VERIFIER` | `heuristic` | enum (`heuristic`, `llm`) | Selects the production default completion verifier when no injected `supervisorVerifier` is provided. `heuristic` is deterministic and fail-closed; `llm` opts into `ctx.client.session.promptAsync` semantic verdicts. Invalid values fall back to `heuristic`. | `.opencode/plugins/mk-goal.js` |
 | `MK_GOAL_MAX_OBJECTIVE_CHARS` | `4000` | number (positive int) | Maximum stored raw objective length. | `.opencode/plugins/mk-goal.js` |
 | `MK_GOAL_MAX_GOAL_PROMPT_CHARS` | `4000` | number (positive int, clamped to 4000) | Maximum generated `goalPrompt` length. | `.opencode/plugins/mk-goal.js` |
 | `MK_GOAL_MAX_INJECTION_CHARS` | `4800` | number (positive int) | Maximum `[active_goal]` system-injection block length. | `.opencode/plugins/mk-goal.js` |
 | `MK_GOAL_MAX_EVIDENCE_CHARS` | `1200` | number (positive int) | Maximum verifier evidence retained in goal state. | `.opencode/plugins/mk-goal.js` |
+| `MK_GOAL_MAX_AUTO_TURNS` | `8` | number (positive int) | Maximum guarded auto-continuation turns for new and normalized goal state; `/goal show` reports `remaining_auto_turns`. | `.opencode/plugins/mk-goal.js` |
+| `MK_GOAL_MAX_WALL_MS` | `1800000` | number (positive int, ms) | Maximum guarded auto-continuation wall-clock duration; `/goal show` reports `remaining_wall_ms`. | `.opencode/plugins/mk-goal.js` |
 | `MK_GOAL_STATE_ARCHIVE_RETENTION_DAYS` | `90` | number (positive int, days) | Retention window before an archived goal-state file is pruned. | `.opencode/plugins/mk-goal.js` |
 | `MK_GOAL_STATE_ACTIVE_RETENTION_DAYS` | `30` | number (positive int, days) | Age threshold before an orphaned active-state file is swept and archived. | `.opencode/plugins/mk-goal.js` |
 | `MK_GOAL_STATE_SWEEP_INTERVAL_MS` | `3600000` (1 hour) | number (positive int, ms) | Minimum interval between orphaned-active-state sweep passes. | `.opencode/plugins/mk-goal.js` |

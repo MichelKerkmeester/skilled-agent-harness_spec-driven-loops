@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: Phase 13: design-fidelity-and-polish [template:level_1/plan.md]"
+title: "Implementation Plan: Phase 13: design-fidelity-and-polish"
 description: "Wire the usage_limited detector (operator chose wire over collapse), fix packet-wide fingerprints, downgrade a completion overclaim, and add 2 small observability improvements."
 trigger_phrases:
   - "implementation"
@@ -18,7 +18,7 @@ _memory:
     key_files:
       - ".opencode/plugins/mk-goal.js"
     session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      fingerprint: "sha256:5c09464bfb7dcef4207324b15f1998f01432d3c78b4795e7bd9b12e162fbc4b3"
       session_id: "scaffold-032-013"
       parent_session_id: null
     completion_pct: 0

@@ -1,5 +1,5 @@
 ---
-title: "Tasks: Phase 14: goal-state-cleanup-and-archive [template:level_1/tasks.md]"
+title: "Tasks: Phase 14: goal-state-cleanup-and-archive"
 description: "Task Format: T### [P?] Description (file path)"
 trigger_phrases:
   - "tasks"
@@ -17,7 +17,7 @@ _memory:
     key_files:
       - ".opencode/plugins/mk-goal.js"
     session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      fingerprint: "sha256:373a1456c5d1f6b0dfab5b9836194ec533f0c12f1154cdbd4e80413161f2d6b0"
       session_id: "scaffold-032-014"
       parent_session_id: null
     completion_pct: 0

@@ -1,5 +1,5 @@
 ---
-title: "Tasks: system-spec-kit integration [template:level_1/tasks.md]"
+title: "Tasks: system-spec-kit integration"
 description: "Task list for integrating mk-goal into system-spec-kit references, assets, and routing docs."
 trigger_phrases:
   - "goal plugin integration tasks"

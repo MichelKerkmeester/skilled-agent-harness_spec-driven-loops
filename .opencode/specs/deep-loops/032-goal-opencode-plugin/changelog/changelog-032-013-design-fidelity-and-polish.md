@@ -37,7 +37,7 @@ The goal plugin now treats provider rate limiting as a real lifecycle stop inste
 ### Fixed
 
 - F-003/F-014: `usage_limited` was declared in `VALID_STATUSES` and documented as first-class but had zero production writers; the operator's wire-the-detector decision (over collapsing the enum) closes that gap
-- F-012: packet-wide hardcoded all-zero fingerprints were universally failing `SPECKIT_COMPLETION_FRESHNESS`'s freshness gate
+- F-012: phases 001-008 hardcoded all-zero fingerprints were universally failing `SPECKIT_COMPLETION_FRESHNESS`'s freshness gate
 - F-010: phase 006 claimed 100% completion despite `MK_GOAL_AUTONOMY=smoke` session.idle behavior never being exercised end-to-end
 - F-016: `fsyncDirectory` silently swallowed all fsync errors with no observability
 

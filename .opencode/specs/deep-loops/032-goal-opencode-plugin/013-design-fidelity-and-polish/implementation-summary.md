@@ -2,10 +2,10 @@
 title: "Implementation Summary: design-fidelity-and-polish"
 description: "The final goal-plugin polish phase wires provider rate-limit handling, refreshes stale continuity fingerprints, corrects overstated phase-006 completion, and adds status/debug observability."
 trigger_phrases:
-  - "implementation"
-  - "summary"
-  - "template"
-  - "impl summary core"
+  - "goal plugin usage limited detector"
+  - "goal plugin continuity fingerprint refresh"
+  - "goal plugin store health status"
+  - "goal plugin fsync debug logging"
 importance_tier: "normal"
 contextType: "general"
 _memory:
@@ -21,7 +21,7 @@ _memory:
       - ".opencode/plugins/tests/mk-goal-lifecycle.test.cjs"
       - ".opencode/specs/deep-loops/032-goal-opencode-plugin/013-design-fidelity-and-polish/tasks.md"
     session_dedup:
-      fingerprint: "sha256:9975b0019ad35530001603f71c243dfb170318a5c4e7008605985518ff141062"
+      fingerprint: "sha256:3f38a2d16b7d30c3fd190cfe30d3cbf63f61ec23217c3c92fbdf688e4e87ed4b"
       session_id: "goal-phase-013-20260701"
       parent_session_id: null
     completion_pct: 100
@@ -44,6 +44,7 @@ _memory:
 |-------|-------|
 | **Spec Folder** | 013-design-fidelity-and-polish |
 | **Completed** | 2026-07-01 |
+| **Status** | Complete |
 | **Level** | 1 |
 <!-- /ANCHOR:metadata -->
 
@@ -51,14 +52,6 @@ _memory:
 
 <!-- ANCHOR:what-built -->
 ## What Was Built
-
-<!-- Voice guide:
-     Open with a hook: what changed and why it matters. One paragraph, impact first.
-     Then use ### subsections per feature. Each subsection: what it does + why it exists.
-     Write "You can now inspect the trace" not "Trace inspection was implemented."
-     NO "Files Changed" table for Level 3/3+. The narrative IS the summary.
-     For Level 1-2, a Files Changed table after the narrative is fine.
-     Reference: specs/system-spec-kit/020-mcp-working-memory-hybrid-rag/implementation-summary.md -->
 
 The goal plugin now treats provider rate limiting as a real lifecycle stop instead of a dormant enum value. This phase also removes stale continuity placeholders from phases 001-008, corrects phase 006's completion claim to reflect the missing live idle smoke, and exposes two lightweight observability signals for operators.
 
@@ -73,8 +66,6 @@ The detector is intentionally narrow. Missing errors, `ProviderAuthError`, `Mess
 Phases 001-008 now carry real `session_dedup.fingerprint` values instead of the zero placeholder. Phase 006's continuity block now reports `completion_pct: 90` and states that live idle smoke remains pending. `goalStateLines` now emits `store_health=state_age_ms:<ms>` for active goal state and `store_health=no_active_goal` when no goal is present. `fsyncDirectory` still swallows fsync failures for caller compatibility, but under `MK_GOAL_DEBUG=1` it writes a `fsync_directory_error` row to `.goal-events.log`.
 
 ### Files Changed
-
-<!-- Include for Level 1-2. Omit for Level 3/3+ where the narrative carries. -->
 
 | File | Action | Purpose |
 |------|--------|---------|
@@ -91,12 +82,6 @@ Phases 001-008 now carry real `session_dedup.fingerprint` values instead of the 
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-<!-- Voice guide:
-     Tell the delivery story. What gave you confidence this works?
-     "All features shipped behind feature flags" not "Feature flags were used."
-     For Level 1: a single sentence is enough.
-     For Level 3+: describe stages (testing, rollout, verification). -->
-
 The change was delivered in place with no new files and no new plugin abstractions beyond the specified helper. Verification covered syntax, the full six-file plugin test loop before and after edits, placeholder removal, and manual status/fsync observability smoke checks.
 <!-- /ANCHOR:how-delivered -->
 
@@ -104,9 +89,6 @@ The change was delivered in place with no new files and no new plugin abstractio
 
 <!-- ANCHOR:decisions -->
 ## Key Decisions
-
-<!-- Voice guide: "Why" column should read like you're explaining to a colleague.
-     "Chose X because Y" not "X was selected due to Y." -->
 
 | Decision | Why |
 |----------|-----|
@@ -120,9 +102,6 @@ The change was delivered in place with no new files and no new plugin abstractio
 
 <!-- ANCHOR:verification -->
 ## Verification
-
-<!-- Voice guide: Be honest. Show failures alongside passes.
-     "FAIL, TS2349 error in benchmarks.ts" not "Minor issues detected." -->
 
 | Check | Result |
 |-------|--------|
@@ -139,18 +118,7 @@ The change was delivered in place with no new files and no new plugin abstractio
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-<!-- Voice guide: Number them. Be specific and actionable.
-     "Adaptive fusion is enabled by default. Set SPECKIT_ADAPTIVE_FUSION=false to disable."
-     not "Some features may require configuration."
-     Write "None identified." if nothing applies. -->
-
 None identified for this scoped phase.
 <!-- /ANCHOR:limitations -->
 
 ---
-
-<!--
-CORE TEMPLATE: Post-implementation documentation, created AFTER work completes.
-Write in human voice: active, direct, specific. No em dashes, no hedging, no AI filler.
-HVR rules: .opencode/skills/sk-doc/references/hvr_rules.md
--->

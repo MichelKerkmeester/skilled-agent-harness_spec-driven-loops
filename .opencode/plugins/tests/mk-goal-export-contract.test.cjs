@@ -6,15 +6,27 @@
 'use strict';
 
 const assert = require('node:assert/strict');
+const test = require('node:test');
 const { join } = require('node:path');
 const { pathToFileURL } = require('node:url');
 
-async function main() {
+async function loadPluginModule() {
   const pluginUrl = pathToFileURL(join(__dirname, '..', 'mk-goal.js')).href;
-  const pluginModule = await import(pluginUrl);
+  return import(pluginUrl);
+}
 
+test('module exports only the default plugin entrypoint', async () => {
+  const pluginModule = await loadPluginModule();
   assert.deepEqual(Object.keys(pluginModule), ['default']);
+});
+
+test('default export is a plugin factory function', async () => {
+  const pluginModule = await loadPluginModule();
   assert.equal(typeof pluginModule.default, 'function');
+});
+
+test('default export exposes the complete pinned __test seam list', async () => {
+  const pluginModule = await loadPluginModule();
   assert.deepEqual(Object.keys(pluginModule.default.__test).sort(), [
     'GoalError',
     'accountUsage',
@@ -23,7 +35,9 @@ async function main() {
     'ensureGoalStateDir',
     'executeGoalAction',
     'executeGoalStatus',
+    'fsyncDirectory',
     'goalPathForSession',
+    'markGoalStatus',
     'maybeContinueGoal',
     'maybeVerifyGoal',
     'readGoal',
@@ -32,9 +46,4 @@ async function main() {
     'setGoal',
     'writeGoalAtomic',
   ]);
-}
-
-main().catch((error) => {
-  console.error(error);
-  process.exitCode = 1;
 });

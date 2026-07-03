@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: Phase 7: sk-prompt-goal-enhancement [template:level_1/spec.md]"
+title: "Feature Specification: Phase 7: sk-prompt-goal-enhancement"
 description: "Upgrade /goal set so user input is transformed into a bounded sk-prompt-style goal prompt before injection, while preserving the raw objective for status and compatibility."
 trigger_phrases:
   - "sk-prompt goal enhancement"
@@ -48,7 +48,7 @@ _memory:
 | **Created** | 2026-06-30 |
 | **Branch** | `system-speckit/028-memory-search-intelligence` |
 | **Parent Spec** | ../spec.md |
-| **Phase** | 7 of 7 |
+| **Phase** | 7 |
 | **Predecessor** | 006-active-continuation |
 | **Successor** | None |
 | **Handoff Criteria** | `/goal set` stores a raw objective plus a deterministic sk-prompt-enhanced `goalPrompt` under 4000 chars, injection uses the enhanced prompt, and all mk-goal tests plus strict parent validation pass. |

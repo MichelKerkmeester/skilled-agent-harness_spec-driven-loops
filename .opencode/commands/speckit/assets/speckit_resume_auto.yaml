@@ -25,6 +25,23 @@ resume_philosophy:
 # ─────────────────────────────────────────────────────────────────
 user_inputs:
   spec_folder: "[SPEC_FOLDER] - Spec folder path. Leave empty to auto-detect from most recent memory."
+  goal_prompt_choice: "[offer|skip|set] - Optional session-goal behavior. Defaults to offer under :auto; set records goal_objective for handoff only on this read-only surface."
+  goal_objective: "[TEXT] - Objective text captured only when goal_prompt_choice is set; resume does not call mk_goal."
+
+goal_prompting:
+  default_choice: offer
+  choices:
+    offer: "Render or reference the current session-goal status in the resume brief; do not call mk_goal."
+    skip: "Suppress session-goal status in the resume brief; do not call mk_goal."
+    set: "Carry goal_objective into the resume brief and route actual setting to a mutation-capable surface."
+  set_handling:
+    when:
+      field: goal_prompt_choice
+      op: "=="
+      value: set
+    require: goal_objective
+    behavior: "Do not call mk_goal from resume; present the objective as a follow-up action."
+  status_tool: mk_goal_status
 
 # ─────────────────────────────────────────────────────────────────
 # SESSION DETECTION

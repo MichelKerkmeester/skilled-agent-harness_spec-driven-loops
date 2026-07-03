@@ -27,7 +27,7 @@ _memory:
 # 032 Goal OpenCode Plugin Chronological Timeline
 
 > **Sort key.** Git commit order, oldest first, for commits and review records that carried the `/goal` plugin work.
-> **What this packet did.** It designed and shipped a session-goal OpenCode plugin with durable per-session state, passive system-context injection, a root `/goal` command, lifecycle accounting, conservative completion supervision, guarded default-off continuation, prompt-quality enhancement and system-spec-kit integration. A dual deep-research/deep-review audit against the shipped state then drove five remediation phases, followed by a separate doc-staleness audit and a repo-wide test-directory rename.
+> **What this packet did.** It designed and shipped a session-goal OpenCode plugin with durable per-session state, passive system-context injection, a root `/goal` command, lifecycle accounting, conservative completion supervision, guarded default-off continuation, prompt-quality enhancement and system-spec-kit integration. The command filename's committed lineage is `goal.md` -> `goal_opencode.md` -> `goal.md` -> `goal_opencode.md`; `opencode_goal.md` was never committed. A dual deep-research/deep-review audit against the shipped state then drove five remediation phases, followed by a separate doc-staleness audit and a repo-wide test-directory rename.
 > **Where the truth lives.** The phase changelog lives in `changelog/`, and the before-and-after framing lives in `before-vs-after.md`.
 > **Phase 009.** A `/speckit:*` goal-prompt-offer integration, owned by a separate concurrently in-flight session, is intentionally excluded from this timeline.
 
@@ -65,6 +65,8 @@ _memory:
 
 A deep-research (8 iterations) plus deep-review (15 iterations) dual audit against the shipped 001-008 state produced a CONDITIONAL verdict. Five remediation phases closed every P1 finding, in dependency order: security/correctness fixes first, then command normalization, then regression-test backfill, then design-fidelity polish, then a mid-session addition for goal-state cleanup that neither audit had caught.
 
+The command-normalization phase and its same-day amendment account for the three committed filename renames: `goal.md` -> `goal_opencode.md` -> `goal.md` -> `goal_opencode.md`. Historical references to `goal.md` are real; `opencode_goal.md` is not part of the committed lineage.
+
  4be33488ea  chore(032-goal-opencode-plugin): snapshot dual-audit + remediation phases before dispatch
  3cb6d1bff9  fix(mk-goal): land phase 010 security + correctness fixes
  303902e631  fix(mk-goal): normalize command filename + close 2 config-contract gaps
@@ -82,6 +84,8 @@ A deep-research (8 iterations) plus deep-review (15 iterations) dual audit again
 ## 7. Documentation-staleness audit and shared test-directory rename (2026-07-01)
 
 A separate 10-iteration deep-research plus 10-iteration deep-review pass asked whether related skill documentation and READMEs still described phases 010-014's shipped behavior accurately. It found 3 P1 and 6 P2 gaps (missing env-var/output-field rows, a stale contract-delegation pointer, a root README wording that conflicted with the Claude-Code-vs-OpenCode routing rule, and more), all fixed and independently re-verified. A follow-on request then renamed the shared `.opencode/plugins/__tests__/` directory to `.opencode/plugins/tests/` across all three packets that referenced it.
+
+DR-013-P1-001 is not part of the goal plugin packet after disposition review; it is tracked as a deferral to the deep-loop-runtime track.
 
  0650d3123d  docs(032-goal-opencode-plugin): remediate 10-iter doc-staleness review findings
  8bfbffc433  refactor(plugins): rename __tests__ to tests, complete goal-plugin doc sweep

@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: Phase 12: regression-test-backfill [template:level_1/spec.md]"
+title: "Feature Specification: Phase 12: regression-test-backfill"
 description: "Close the test-coverage gaps both audits independently flagged as the plugin's largest blind spot: the passive-injection transform hook and the full opencode event-handler surface are entirely untested."
 trigger_phrases:
   - "goal plugin test coverage"
@@ -20,7 +20,7 @@ _memory:
       - ".opencode/plugins/tests/mk-goal-state.test.cjs"
       - ".opencode/plugins/tests/mk-goal-export-contract.test.cjs"
     session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      fingerprint: "sha256:887d7b73ec93346c9d535012751e5b70baa6821195f504daad20638f87ef4c4d"
       session_id: "scaffold-032-012"
       parent_session_id: null
     completion_pct: 0
@@ -45,7 +45,7 @@ _memory:
 | **Created** | 2026-07-01 |
 | **Branch** | `032-goal-opencode-plugin` |
 | **Parent Spec** | ../spec.md |
-| **Phase** | 12 of 13 |
+| **Phase** | 12 |
 | **Predecessor** | 011-command-surface-normalization (pins the corrected behavior, not pre-fix behavior) |
 | **Successor** | 013-design-fidelity-and-polish |
 | **Handoff Criteria** | Full test suite (existing 6 files + new tests) passes via a fresh `node --test`/direct execution run, pasted as evidence; each new test demonstrably fails against pre-010/011 code (or is annotated why not) |

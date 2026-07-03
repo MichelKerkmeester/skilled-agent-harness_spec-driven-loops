@@ -25,7 +25,7 @@ _memory:
       - ".opencode/specs/deep-loops/032-goal-opencode-plugin/012-regression-test-backfill/tasks.md"
       - ".opencode/specs/deep-loops/032-goal-opencode-plugin/012-regression-test-backfill/implementation-summary.md"
     session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      fingerprint: "sha256:09b376c84b84d99b7c5fddf1d2d6cfaf2f867b48f93ffe364707438f2e558406"
       session_id: "phase-012-regression-backfill-20260701"
       parent_session_id: null
     completion_pct: 100

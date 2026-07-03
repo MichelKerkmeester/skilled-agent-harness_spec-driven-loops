@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: Phase 11: command-surface-normalization [template:level_1/plan.md]"
+title: "Implementation Plan: Phase 11: command-surface-normalization"
 description: "Rename the /goal command to one evidence-backed canonical name and sweep all referencing surfaces; reconcile two config-contract gaps."
 trigger_phrases:
   - "implementation"
@@ -19,7 +19,7 @@ _memory:
     key_files:
       - ".opencode/commands/goal_opencode.md"
     session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      fingerprint: "sha256:1a51b870376748c8d6f592aa3a2df352d14e9b1b107da76d42456165248d6c1e"
       session_id: "scaffold-032-011"
       parent_session_id: null
     completion_pct: 0

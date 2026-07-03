@@ -92,7 +92,7 @@ Use this handover when resuming phase 009, reviewing the planned `/speckit:*` go
 
 - **File:** `.opencode/commands/speckit/assets/speckit_plan_presentation.txt:11`
 - **Next safe action**: Fill phase 009 spec/plan/tasks, then update the four presentation contracts with a shared optional goal-prompt setup field and dashboard row.
-- **Cold-read order**: 1. `handover.md` -> 2. `spec.md` -> 3. `.opencode/commands/speckit/assets/speckit_plan_presentation.txt` -> 4. `.opencode/commands/speckit/assets/speckit_complete_presentation.txt` -> 5. `.opencode/commands/goal.md`
+- **Cold-read order**: 1. `handover.md` -> 2. `spec.md` -> 3. `.opencode/commands/speckit/assets/speckit_plan_presentation.txt` -> 4. `.opencode/commands/speckit/assets/speckit_complete_presentation.txt` -> 5. `.opencode/commands/goal_opencode.md`
 - **Context:** The user wants `/speckit:*` initial questions and dashboards to proactively offer writing or setting a goal prompt so the AI always proposes goal help without forcing it.
 
 ### 3.2 Priority Tasks Remaining

@@ -91,6 +91,8 @@ user_inputs:
   request: "[REQUEST] - Feature or improvement to plan. REQUIRED."
   environment: "[STAGING LINK] - Staging/production URL for browser testing. Leave empty to skip."
   scope: "[FILES] - Files or folders to focus on. Leave empty for default scope."
+  goal_prompt_choice: "[offer|skip|set] - Optional session-goal behavior. Defaults to offer unless the user chooses skip or set; set requires goal_objective."
+  goal_objective: "[TEXT] - Objective passed to mk_goal only when goal_prompt_choice is set."
 
 # ─────────────────────────────────────────────────────────────────
 # FIELD HANDLING
@@ -108,6 +110,22 @@ field_handling:
     trigger_states: [no-spec, partial-folder, repair-mode, placeholder-upgrade]
     returned_fields: [feature_description, spec_path, selected_level, start_state, repair_mode, manual_relationships]
     no_regression_rule: "When folder_state == populated-folder, skip shared intake-contract execution (`.opencode/skills/system-spec-kit/references/workflows/intake_contract.md` §2-§5) and preserve the current Step 1 behavior."
+
+goal_prompting:
+  default_choice: offer
+  choices:
+    offer: "Render the optional session-goal offer only; do not call mk_goal."
+    skip: "Suppress the optional session-goal offer; do not call mk_goal."
+    set: "Set a session goal only when goal_objective is provided."
+  set_mutation:
+    when:
+      field: goal_prompt_choice
+      op: "=="
+      value: set
+    require: goal_objective
+    tool: mk_goal
+    invocation: 'mk_goal({ action: "set", objective: goal_objective })'
+  status_tool: mk_goal_status
 
 packet_graph_metadata:
   creation_contract:

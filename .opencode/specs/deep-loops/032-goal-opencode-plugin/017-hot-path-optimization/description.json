@@ -1,0 +1,43 @@
+{
+  "level": "1",
+  "specFolder": "deep-loops/032-goal-opencode-plugin/017-hot-path-optimization",
+  "description": "The passive injection path re-reads and fully re-normalizes goal state including a 7-regex CLEAR scoring pass on every chat message, and message.updat",
+  "keywords": [
+    "passive",
+    "injection",
+    "path",
+    "re-reads",
+    "fully",
+    "re-normalizes",
+    "goal",
+    "state",
+    "including",
+    "7-regex",
+    "clear",
+    "scoring",
+    "pass",
+    "every",
+    "chat",
+    "message",
+    "updated",
+    "triggers",
+    "two",
+    "separate",
+    "atomic",
+    "write",
+    "cycles",
+    "duplicate",
+    "fsync",
+    "rename",
+    "work"
+  ],
+  "lastUpdated": "2026-07-03T09:57:06.005Z",
+  "specId": "017",
+  "folderSlug": "hot-path-optimization",
+  "parentChain": [
+    "deep-loops",
+    "032-goal-opencode-plugin"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

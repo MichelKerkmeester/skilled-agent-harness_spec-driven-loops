@@ -78,10 +78,11 @@ Q5. Research Intent: A) add_feature  B) fix_bug  C) refactor  D) understand
 Q6. Phase Decomposition, if not already enabled: A) No  B) Yes
 Q7. Phase Count, if phase decomposition is enabled and not provided: default 3
 Q8. Phase Names, if phase decomposition is enabled and not provided: optional comma-separated names
+Q9. Session Goal (optional): A) Offer or reference a session goal for this workflow  B) Skip  C) Set goal: <objective>
 
 If folder intake is required, include the intake interview in this same prompt.
 
-Reply format covers Q0-Q8 in order, with `-` for omitted conditional answers: "Add auth, B, A, B-single, C, add_feature, A, -, -" or "B, A, A, -, A, fix_bug, B, 3, api,tests,docs".
+Reply format covers Q0-Q9 in order, with `-` for omitted conditional answers: "Add auth, B, A, B-single, C, add_feature, A, -, -, A" or "B, A, A, -, A, fix_bug, B, 3, api,tests,docs, B".
 ```
 
 Never split these questions into separate visible prompts. If `--intake-only` is present, stop after intake emit and do not continue to planning steps.

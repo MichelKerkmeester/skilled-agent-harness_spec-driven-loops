@@ -1,7 +1,7 @@
 ---
 description: Implementation workflow (9 steps): execute pre-planned work. Requires plan.md. Modes :auto, :confirm, :autopilot/:unattended/--unattended.
 argument-hint: "<spec-folder> [:auto|:confirm|:autopilot|:unattended|--unattended] [--phase-folder=<path>] (:auto supports PRE-BOUND SETUP ANSWERS: prompt-body block for non-interactive setup; :autopilot/:unattended/--unattended preserves the branch on hard failure)"
-allowed-tools: Read, Write, Edit, Bash, Grep, Glob, Task, mcp__mk_spec_memory__memory_search, mcp__mk_spec_memory__memory_save, mcp__mk_code_index__code_graph_query
+allowed-tools: Read, Write, Edit, Bash, Grep, Glob, Task, mcp__mk_spec_memory__memory_search, mcp__mk_spec_memory__memory_save, mcp__mk_code_index__code_graph_query, mk_goal, mk_goal_status
 ---
 
 # SpecKit Implement

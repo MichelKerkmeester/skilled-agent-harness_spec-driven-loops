@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: Phase 10: security-and-correctness-fixes [template:level_1/plan.md]"
+title: "Implementation Plan: Phase 10: security-and-correctness-fixes"
 description: "Land 5 targeted fixes in mk-goal.js: 2 security (redaction, sanitizer), 3 correctness (injection clamp, stale-verifier guard, RICCE metadata)."
 trigger_phrases:
   - "implementation"
@@ -18,7 +18,7 @@ _memory:
     key_files:
       - ".opencode/plugins/mk-goal.js"
     session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      fingerprint: "sha256:892b855d642d1fb86b5e7e4d43b1bf3225e0604bab5c6adb21a9deb658233c00"
       session_id: "scaffold-032-010"
       parent_session_id: null
     completion_pct: 0

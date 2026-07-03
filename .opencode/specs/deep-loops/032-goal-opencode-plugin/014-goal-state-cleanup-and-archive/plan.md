@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: Phase 14: goal-state-cleanup-and-archive [template:level_1/plan.md]"
+title: "Implementation Plan: Phase 14: goal-state-cleanup-and-archive"
 description: "Archive-then-prune goal state on session.deleted; throttled orphan sweep on session.created for sessions that never fire session.deleted."
 trigger_phrases:
   - "implementation"
@@ -18,7 +18,7 @@ _memory:
     key_files:
       - ".opencode/plugins/mk-goal.js"
     session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      fingerprint: "sha256:d87845fa9f9b81afea9f7bcf6dc7581b76d0ee0f1a919a4cdb37b8e2271df94e"
       session_id: "scaffold-032-014"
       parent_session_id: null
     completion_pct: 0

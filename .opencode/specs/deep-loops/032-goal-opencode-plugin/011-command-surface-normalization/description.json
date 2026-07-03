@@ -11,12 +11,10 @@
     "commands",
     "goal"
   ],
-  "lastUpdated": "2026-07-01T13:40:04.430Z",
+  "lastUpdated": "2026-07-03T11:24:25.169Z",
   "specId": "011",
   "folderSlug": "command-surface-normalization",
   "parentChain": [
-    ".opencode",
-    "specs",
     "deep-loops",
     "032-goal-opencode-plugin"
   ],

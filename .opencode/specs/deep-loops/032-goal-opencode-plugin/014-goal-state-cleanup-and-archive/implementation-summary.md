@@ -1,5 +1,5 @@
 ---
-title: "Implementation Summary [template:level_1/implementation-summary.md]"
+title: "Implementation Summary"
 description: "Goal state files now leave the active directory on session teardown and stale leftovers are archived automatically."
 trigger_phrases:
   - "implementation"
@@ -20,7 +20,7 @@ _memory:
       - ".opencode/plugins/mk-goal.js"
       - ".opencode/plugins/tests/mk-goal-lifecycle.test.cjs"
     session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      fingerprint: "sha256:699d2fe34dc8bf495818959ae15b2bbf5bec924219c305ea8ac38a3bcf137e03"
       session_id: "implementation-032-014"
       parent_session_id: null
     completion_pct: 100

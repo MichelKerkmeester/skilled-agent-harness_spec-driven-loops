@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: Phase 12: regression-test-backfill [template:level_1/plan.md]"
+title: "Implementation Plan: Phase 12: regression-test-backfill"
 description: "Add tests for the transform hook, the 7 untested event branches, autonomy-enabled session.idle, and pin phase 010/011's fixes."
 trigger_phrases:
   - "implementation"
@@ -19,7 +19,7 @@ _memory:
     key_files:
       - ".opencode/plugins/tests/mk-goal-state.test.cjs"
     session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      fingerprint: "sha256:ab2df1dae0689f29ad11298444a257008b13930347b4f460bacb4dc85d886937"
       session_id: "scaffold-032-012"
       parent_session_id: null
     completion_pct: 0

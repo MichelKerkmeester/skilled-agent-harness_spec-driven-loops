@@ -13,79 +13,62 @@
   },
   "derived": {
     "trigger_phrases": [
-      "feature",
-      "specification",
-      "name",
-      "template",
-      "spec core",
-      "implementation",
-      "plan",
-      "plan core",
-      "tasks",
-      "tasks core",
-      "summary",
-      "impl summary core"
+      "speckit command goal prompt offer",
+      "goal_prompt_choice workflow field",
+      "phase 009 speckit goal integration",
+      "speckit command goal prompt offer plan",
+      "phase 009 plan",
+      "speckit command goal prompt offer tasks",
+      "phase 009 tasks",
+      "speckit command goal prompt offer implemented",
+      "goal_prompt_choice contract test",
+      "phase 009 implementation summary",
+      "speckit goal prompt handover",
+      "goal prompt offer handover"
     ],
     "key_topics": [
-      "feature",
-      "specification",
-      "name",
-      "template",
-      "spec",
-      "core",
-      "implementation",
+      "speckit",
+      "command",
+      "goal",
+      "prompt",
+      "offer",
+      "workflow",
+      "field",
+      "phase",
+      "009",
+      "integration",
       "plan",
-      "tasks",
-      "summary",
-      "impl",
-      "broken"
+      "tasks"
     ],
-    "importance_tier": "normal",
-    "status": "in_progress",
+    "importance_tier": "important",
+    "status": "planned",
     "key_files": [
-      "spec.md",
-      "plan.md",
-      "handover.md",
-      ".opencode/specs/deep-loops/032-goal-opencode-plugin/009-speckit-command-goal-prompt-offer/spec.md",
-      ".opencode/specs/deep-loops/032-goal-opencode-plugin/009-speckit-command-goal-prompt-offer/plan.md",
-      ".opencode/specs/deep-loops/032-goal-opencode-plugin/009-speckit-command-goal-prompt-offer/tasks.md",
-      ".opencode/specs/deep-loops/032-goal-opencode-plugin/009-speckit-command-goal-prompt-offer/implementation-summary.md",
-      ".opencode/specs/deep-loops/032-goal-opencode-plugin/009-speckit-command-goal-prompt-offer/handover.md",
-      ".opencode/specs/deep-loops/032-goal-opencode-plugin/spec.md",
+      ".opencode/commands/goal_opencode.md",
       ".opencode/commands/speckit/assets/speckit_plan_presentation.txt",
       ".opencode/commands/speckit/assets/speckit_complete_presentation.txt",
+      ".opencode/commands/speckit/assets/speckit_implement_presentation.txt",
+      ".opencode/commands/speckit/assets/speckit_resume_presentation.txt",
+      ".opencode/commands/speckit/plan.md",
+      ".opencode/commands/speckit/complete.md",
+      ".opencode/commands/speckit/implement.md",
+      ".opencode/commands/speckit/resume.md",
+      ".opencode/plugins/tests/speckit-goal-offer-contract.test.cjs",
+      "handover.md",
+      "spec.md",
+      "plan.md",
       "tasks.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      ".opencode/plugins/tests/mk-goal-export-contract.test.cjs",
+      ".opencode/commands/speckit/assets/speckit_plan_auto.yaml",
+      ".opencode/commands/speckit/assets/speckit_plan_confirm.yaml",
+      ".opencode/commands/speckit/assets/speckit_complete_auto.yaml",
+      ".opencode/commands/speckit/assets/speckit_complete_confirm.yaml"
     ],
     "entities": [
       {
-        "name": "spec.md",
+        "name": "goal_opencode.md",
         "kind": "doc",
-        "path": ".opencode/specs/deep-loops/032-goal-opencode-plugin/009-speckit-command-goal-prompt-offer/spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "plan.md",
-        "kind": "doc",
-        "path": ".opencode/specs/deep-loops/032-goal-opencode-plugin/009-speckit-command-goal-prompt-offer/plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "handover.md",
-        "kind": "doc",
-        "path": ".opencode/specs/deep-loops/032-goal-opencode-plugin/009-speckit-command-goal-prompt-offer/handover.md",
-        "source": "derived"
-      },
-      {
-        "name": "tasks.md",
-        "kind": "doc",
-        "path": ".opencode/specs/deep-loops/032-goal-opencode-plugin/009-speckit-command-goal-prompt-offer/tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": ".opencode/specs/deep-loops/032-goal-opencode-plugin/009-speckit-command-goal-prompt-offer/implementation-summary.md",
+        "path": ".opencode/commands/goal_opencode.md",
         "source": "derived"
       },
       {
@@ -101,13 +84,103 @@
         "source": "derived"
       },
       {
-        "name": "Feature Specification",
-        "kind": "proper_noun",
+        "name": "speckit_implement_presentation.txt",
+        "kind": "file",
+        "path": ".opencode/commands/speckit/assets/speckit_implement_presentation.txt",
+        "source": "derived"
+      },
+      {
+        "name": "speckit_resume_presentation.txt",
+        "kind": "file",
+        "path": ".opencode/commands/speckit/assets/speckit_resume_presentation.txt",
+        "source": "derived"
+      },
+      {
+        "name": "complete.md",
+        "kind": "doc",
+        "path": ".opencode/commands/speckit/complete.md",
+        "source": "derived"
+      },
+      {
+        "name": "implement.md",
+        "kind": "doc",
+        "path": ".opencode/commands/speckit/implement.md",
+        "source": "derived"
+      },
+      {
+        "name": "resume.md",
+        "kind": "doc",
+        "path": ".opencode/commands/speckit/resume.md",
+        "source": "derived"
+      },
+      {
+        "name": "speckit-goal-offer-contract.test.cjs",
+        "kind": "file",
+        "path": ".opencode/plugins/tests/speckit-goal-offer-contract.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "handover.md",
+        "kind": "doc",
+        "path": "handover.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "In Progress",
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "mk-goal-export-contract.test.cjs",
+        "kind": "file",
+        "path": ".opencode/plugins/tests/mk-goal-export-contract.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "speckit_plan_auto.yaml",
+        "kind": "config",
+        "path": ".opencode/commands/speckit/assets/speckit_plan_auto.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "speckit_plan_confirm.yaml",
+        "kind": "config",
+        "path": ".opencode/commands/speckit/assets/speckit_plan_confirm.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "speckit_complete_auto.yaml",
+        "kind": "config",
+        "path": ".opencode/commands/speckit/assets/speckit_complete_auto.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "speckit_complete_confirm.yaml",
+        "kind": "config",
+        "path": ".opencode/commands/speckit/assets/speckit_complete_confirm.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -135,77 +208,11 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
-      },
-      {
-        "name": "Implementation Plan",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Technical Context",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Clean Architecture",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Key Components",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Data Flow",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Current Role",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Phase 1: Setup",
-        "kind": "heading",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Phase 2: Implementation",
-        "kind": "heading",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
-    "causal_summary": "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]",
+    "causal_summary": "Finding INT-1 (dossier §E, verbatim): the `/speckit:` goal-prompt offer — this phase's whole original purpose — is NOT implemented",
     "created_at": "2026-07-02T05:31:05.812Z",
-    "last_save_at": "2026-07-02T05:31:05.812Z",
+    "last_save_at": "2026-07-03T17:45:45.982Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -215,13 +222,13 @@
       "implementation-summary.md",
       "handover.md"
     ],
-    "source_fingerprint": "sha256:19770d4c952d3f73adf974b57a5aeffb9166f354ec9070f7473331df0feca914",
+    "source_fingerprint": "sha256:2be98b197d34d8f7e4f214efba3ab62c2d98af393fe259a48eabb015c99df877",
     "source_doc_hashes": {
-      "spec.md": "5f87ab7adda034018f46cbf3a6b0a5c8d60d1da30cb19d85540eba648d8ad266",
-      "plan.md": "35cbc8a0805d46d060a0ca57e72a6105648a7f92cf400bb3f9c938d11881c481",
-      "tasks.md": "931c864b09c9dcc9209d695e1ccffca2f8626f49d788e35f904da7d78b2e1406",
-      "implementation-summary.md": "71a82d85aea4f4d53a20fb8d9701bbbcc0801f4b30fd91bb77273a2231fee733",
-      "handover.md": "80cac2bf01f8a7687d11e3a6b85d4d96d28f08fb5f12b0f313ee0bdfb8161b4a"
+      "spec.md": "351367b246ac426dfb52434c15c589ff6254878db0f5423aa34e123d597744da",
+      "plan.md": "e9a6fbc7e4fcfb51dd972f8c33078bce3fec1a93bb110d4899043e54b0197365",
+      "tasks.md": "e9b5f75aed313b71d5effe1d33094c6d924bc935e0a970d0d291519beed16218",
+      "implementation-summary.md": "e4e04316a48833f1a9ea4477286ce24441240932a8a8540fcc6cab92a3235f02",
+      "handover.md": "e70747ea0703170da6522025cce8893286ae045c27b20a3a0b64a88e92c0d9f9"
     },
     "last_active_child_id": null,
     "last_active_at": null

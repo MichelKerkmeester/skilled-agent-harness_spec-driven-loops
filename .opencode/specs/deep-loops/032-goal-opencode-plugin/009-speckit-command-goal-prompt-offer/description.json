@@ -1,19 +1,22 @@
 {
   "level": "1",
   "specFolder": "deep-loops/032-goal-opencode-plugin/009-speckit-command-goal-prompt-offer",
-  "description": "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]",
+  "description": "Finding INT-1 (dossier §E, verbatim): the `/speckit:` goal-prompt offer — this phase's whole original purpose — is NOT implemented",
   "keywords": [
-    "broken",
-    "missing",
-    "inefficient",
-    "2-3",
-    "sentences",
-    "describing",
-    "specific",
-    "pain",
-    "point"
+    "finding",
+    "int-1",
+    "dossier",
+    "verbatim",
+    "speckit",
+    "goal-prompt",
+    "offer",
+    "phase",
+    "whole",
+    "original",
+    "purpose",
+    "implemented"
   ],
-  "lastUpdated": "2026-07-01T05:32:33.140Z",
+  "lastUpdated": "2026-07-03T09:57:47.989Z",
   "specId": "009",
   "folderSlug": "speckit-command-goal-prompt-offer",
   "parentChain": [

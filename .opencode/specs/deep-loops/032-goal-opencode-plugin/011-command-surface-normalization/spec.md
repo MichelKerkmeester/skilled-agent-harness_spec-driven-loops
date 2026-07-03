@@ -19,7 +19,7 @@ _memory:
     key_files:
       - ".opencode/commands/goal_opencode.md"
     session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      fingerprint: "sha256:decb316f0132fdf9c5a15bcd7cb7fc1a9956366e7da9f4b71459c657c6d92ce3"
       session_id: "scaffold-032-011"
       parent_session_id: null
     completion_pct: 0
@@ -40,11 +40,11 @@ _memory:
 |-------|-------|
 | **Level** | 1 |
 | **Priority** | P1 |
-| **Status** | Draft |
+| **Status** | Complete |
 | **Created** | 2026-07-01 |
 | **Branch** | `032-goal-opencode-plugin` |
 | **Parent Spec** | ../spec.md |
-| **Phase** | 11 of 13 |
+| **Phase** | 11 |
 | **Predecessor** | 010-security-and-correctness-fixes (code-stable first; this phase touches naming/docs only) |
 | **Successor** | 012-regression-test-backfill |
 | **Handoff Criteria** | Exactly one canonical command filename exists; grep for both retired names across the whole repo returns zero stale references outside historical changelogs/research archives |
@@ -72,7 +72,7 @@ This phase closes the single most corroborated finding from this packet's dual a
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
-Phase 003's docs mandated `.opencode/commands/goal.md`. It never shipped under that name — it shipped as `opencode_goal.md`, then was renamed again mid-audit to `goal_opencode.md` by an unrelated concurrent session. Research (iteration 3) proved via a `strings` search of the opencode 1.17.11 binary that **no built-in `/goal` command exists**, so there was never a real namespace collision forcing a prefix — this is unforced drift, and every doc, catalog, and playbook that references the command surface is now stale a second time over.
+Phase 003's docs mandated `.opencode/commands/goal.md`. Git history shows the command was added as `goal.md`, renamed to `goal_opencode.md`, renamed back to `goal.md` during this phase, then amended back to `goal_opencode.md`; `opencode_goal.md` was never a committed path. Research (iteration 3) proved via a `strings` search of the opencode 1.17.11 binary that **no built-in `/goal` command exists**, so there was never a real namespace collision forcing a prefix — this is unforced drift, and every doc, catalog, and playbook that references the command surface needed a final sweep.
 
 ### Purpose
 Pick one canonical name backed by the confirmed no-collision evidence, sweep every referencing surface in one pass, and stop the churn.
