@@ -12,6 +12,7 @@ import * as incrementalIndex from '../../lib/storage/incremental-index.js';
 import * as causalEdges from '../../lib/storage/causal-edges.js';
 import type * as memoryParser from '../../lib/parsing/memory-parser.js';
 import { sanitizeEmbeddingFailureMessage } from '../../lib/providers/retry-manager.js';
+import { normalizeTier } from '../../lib/scoring/importance-tiers.js';
 import { getCanonicalPathKey } from '../../lib/utils/canonical-path.js';
 import { recordLineageTransition, retirePredecessorForActiveReindex } from '../../lib/storage/lineage-state.js';
 import { toErrorMessage } from '../../utils/index.js';
@@ -410,7 +411,7 @@ export function createMemoryRecord(
     if (reindexCarry != null) {
       database
         .prepare('UPDATE memory_index SET importance_tier = ? WHERE id = ?')
-        .run(reindexCarry.importanceTier, memory_id);
+        .run(normalizeTier(reindexCarry.importanceTier), memory_id);
       persistSourceKind(database, memory_id, reindexCarry.sourceKind as SourceKind);
     }
 

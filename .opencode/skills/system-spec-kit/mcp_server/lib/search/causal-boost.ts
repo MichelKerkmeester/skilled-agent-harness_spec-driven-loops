@@ -14,6 +14,7 @@
 //   score = seedScore * edgePrior * hopDecay * freshness
 // Both requirements are gated behind SPECKIT_TYPED_TRAVERSAL (default ON, graduated).
 import { isCausalBoostEnabled, isTypedTraversalEnabled as _isTypedTraversalEnabled, isGraphContextInjectionEnabled } from './search-flags.js';
+import { ACTIVE_ROW_SQL } from './active-row-predicate.js';
 import { routeQueryConcepts } from './entity-linker.js';
 import { BetterSqliteGraphTraversal, type GraphTraversal } from '../storage/ports/index.js';
 
@@ -458,6 +459,7 @@ function fetchNeighborRows(memoryIds: number[]): RankedSearchResult[] {
     SELECT id, spec_folder, file_path, title, importance_tier, trigger_phrases, created_at
     FROM memory_index
     WHERE id IN (${placeholders})
+      AND ${ACTIVE_ROW_SQL('memory_index')}
   `) as Database.Statement).all(...memoryIds) as RankedSearchResult[];
 
   return rows;
@@ -685,7 +687,7 @@ function injectGraphContext(
     const likeParams = routing.concepts.map((c) => `%${c.toLowerCase()}%`);
 
     const seedRows = (database.prepare(`
-      SELECT id FROM memory_index WHERE (${likeClauses}) LIMIT 10
+      SELECT id FROM memory_index WHERE (${likeClauses}) AND ${ACTIVE_ROW_SQL('memory_index')} LIMIT 10
     `) as Database.Statement).all(...likeParams) as Array<{ id: number }>;
 
     if (seedRows.length === 0) {
@@ -704,9 +706,15 @@ function injectGraphContext(
         END AS neighbor_id,
         ce.relation
       FROM causal_edges ce
-      WHERE ce.source_id IN (${seedPlaceholders}) OR ce.target_id IN (${seedPlaceholders})
+      JOIN memory_index m ON m.id = CASE
+        WHEN ce.source_id IN (${seedPlaceholders}) THEN CAST(ce.target_id AS INTEGER)
+        ELSE CAST(ce.source_id AS INTEGER)
+      END
+      WHERE (ce.source_id IN (${seedPlaceholders}) OR ce.target_id IN (${seedPlaceholders}))
+        AND ${ACTIVE_ROW_SQL('m')}
       LIMIT 20
     `) as Database.Statement).all(
+      ...seedIds,
       ...seedIds,
       ...seedIds,
       ...seedIds,

@@ -42,7 +42,7 @@ describe('Vector index schema compatibility validator', () => {
           id INTEGER PRIMARY KEY,
           spec_folder TEXT,
           file_path TEXT,
-          importance_tier TEXT CHECK(importance_tier IN ('constitutional', 'critical', 'important', 'normal', 'temporary', 'deprecated')),
+          importance_tier TEXT CHECK(importance_tier IN ('constitutional', 'critical', 'important', 'normal', 'temporary', 'archived', 'deprecated')),
           context_type TEXT,
           session_id TEXT,
           source_kind TEXT,

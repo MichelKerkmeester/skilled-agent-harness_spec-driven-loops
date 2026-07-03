@@ -55,6 +55,7 @@ import {
   getMaintenanceObservabilitySnapshot,
 } from '../lib/observability/retrieval-observability.js';
 import { isTrueCitationEmitterEnabled } from '../lib/search/search-flags.js';
+import { ACTIVE_POPULATION_SQL } from '../lib/search/active-row-predicate.js';
 import { probeTrueCitationDensity } from '../lib/feedback/true-citation-emitter.js';
 
 import type { MCPResponse, EmbeddingProfile } from './types.js';
@@ -945,6 +946,9 @@ async function handleMemoryHealth(args: HealthArgs): Promise<MCPResponse> {
   const database = vectorIndex.tryGetDb();
   const fullMemoryReport = getFullMemoryReport(includeFullReport, database);
   let memoryCount = 0;
+  let activeMemoryCount = 0;
+  let excludedDeprecatedArchived = 0;
+  let excludedTombstoned = 0;
   let aliasConflicts: ReturnType<typeof summarizeAliasConflicts> = summarizeAliasConflicts([]);
   let aliasRows: AliasConflictDbRow[] = [];
   let divergentAliasGroups: DivergentAliasGroup[] = [];
@@ -964,6 +968,19 @@ async function handleMemoryHealth(args: HealthArgs): Promise<MCPResponse> {
       const countResult = database.prepare('SELECT COUNT(*) as count FROM memory_index')
         .get() as Record<string, number> | undefined;
       memoryCount = countResult?.count ?? 0;
+      const activeCountResult = database.prepare(`SELECT COUNT(*) as count FROM memory_index m WHERE ${ACTIVE_POPULATION_SQL('m')}`)
+        .get() as Record<string, number> | undefined;
+      activeMemoryCount = activeCountResult?.count ?? 0;
+      const coldCountResult = database.prepare(`
+        SELECT COUNT(*) as count
+        FROM memory_index
+        WHERE deleted_at IS NULL
+          AND lower(COALESCE(importance_tier, '')) IN ('deprecated', 'archived')
+      `).get() as Record<string, number> | undefined;
+      excludedDeprecatedArchived = coldCountResult?.count ?? 0;
+      const tombstoneCountResult = database.prepare('SELECT COUNT(*) as count FROM memory_index WHERE deleted_at IS NOT NULL')
+        .get() as Record<string, number> | undefined;
+      excludedTombstoned = tombstoneCountResult?.count ?? 0;
 
       const whereParts: string[] = [
         'parent_id IS NULL',
@@ -1061,6 +1078,15 @@ async function handleMemoryHealth(args: HealthArgs): Promise<MCPResponse> {
         runtime_initialized: runtimeInitialized,
         databaseConnected: !!database,
         process: processHealth,
+        population: {
+          note: 'raw includes every memory_index row; active excludes tombstoned rows and deprecated/archived tiers.',
+          rawTotal: memoryCount,
+          activeTotal: activeMemoryCount,
+          excluded: {
+            deprecatedOrArchived: excludedDeprecatedArchived,
+            tombstoned: excludedTombstoned,
+          },
+        },
         index: indexHealth,
         recallDegradation: vectorDegradation,
         maintenance: maintenanceWithLastRun,
@@ -1458,6 +1484,15 @@ async function handleMemoryHealth(args: HealthArgs): Promise<MCPResponse> {
       vectorSearchAvailable: vectorIndex.isVectorSearchAvailable(),
       recallDegradation: vectorDegradation,
       memoryCount,
+      population: {
+        note: 'raw includes every memory_index row; active excludes tombstoned rows and deprecated/archived tiers.',
+        rawTotal: memoryCount,
+        activeTotal: activeMemoryCount,
+        excluded: {
+          deprecatedOrArchived: excludedDeprecatedArchived,
+          tombstoned: excludedTombstoned,
+        },
+      },
       uptime: process.uptime(),
       process: processHealth,
       index: indexHealth,

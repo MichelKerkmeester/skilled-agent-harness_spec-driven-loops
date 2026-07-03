@@ -30,6 +30,7 @@ import { ensureMemoryRuntimeInitialized } from '../lib/runtime/memory-runtime-gu
 import { scrubSecretsDetailed } from '../lib/parsing/secret-scrubber.js';
 import { createFilePathValidator } from '../utils/validators.js';
 import * as memoryParser from '../lib/parsing/memory-parser.js';
+import { normalizeTier } from '../lib/scoring/importance-tiers.js';
 import * as transactionManager from '../lib/storage/transaction-manager.js';
 import * as checkpoints from '../lib/storage/checkpoints.js';
 import * as preflight from '../lib/validation/preflight.js';
@@ -2707,7 +2708,7 @@ async function processPreparedMemory(
       if (reindexTierCarry != null) {
         database
           .prepare('UPDATE memory_index SET importance_tier = ? WHERE id = ?')
-          .run(reindexTierCarry.importanceTier, memoryId);
+          .run(normalizeTier(reindexTierCarry.importanceTier), memoryId);
         persistSourceKind(database, memoryId, reindexTierCarry.sourceKind as SourceKind);
       }
 

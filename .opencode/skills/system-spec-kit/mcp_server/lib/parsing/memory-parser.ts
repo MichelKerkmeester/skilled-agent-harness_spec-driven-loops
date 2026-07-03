@@ -888,14 +888,15 @@ export function extractImportanceTier(content: string, options: ExtractImportanc
     }
   }
 
-  // Check for tier markers in content (only in non-comment content)
-  if (contentWithoutComments.includes('[CONSTITUTIONAL]') || contentWithoutComments.includes('importance: constitutional')) {
+  const markerScope = frontmatter ?? '';
+
+  if (markerScope.includes('[CONSTITUTIONAL]') || /importance:\s*constitutional/i.test(markerScope)) {
     return 'constitutional';
   }
-  if (contentWithoutComments.includes('[CRITICAL]') || contentWithoutComments.includes('importance: critical')) {
+  if (markerScope.includes('[CRITICAL]') || /importance:\s*critical/i.test(markerScope)) {
     return 'critical';
   }
-  if (contentWithoutComments.includes('[IMPORTANT]') || contentWithoutComments.includes('importance: important')) {
+  if (markerScope.includes('[IMPORTANT]') || /importance:\s*important/i.test(markerScope)) {
     return 'important';
   }
 

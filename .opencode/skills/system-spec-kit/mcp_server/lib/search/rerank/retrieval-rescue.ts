@@ -10,6 +10,7 @@ import type { PipelineRow } from '../pipeline/types.js';
 import { createScopeFilterPredicate } from '../../governance/scope-governance.js';
 import type { ScopeContext } from '../../governance/scope-governance.js';
 import { createLogger } from '../../utils/logger.js';
+import { ACTIVE_ROW_SQL, isActiveRow } from '../active-row-predicate.js';
 
 type RescueOptions = {
   db?: Database.Database | null;
@@ -278,6 +279,7 @@ function fetchSiblingRows(db: Database.Database, rows: PipelineRow[], maxPerFold
     SELECT *
     FROM memory_index
     WHERE spec_folder = ?
+      AND ${ACTIVE_ROW_SQL('memory_index')}
       AND document_type IN (${SIBLING_DOCUMENT_TYPES.map(() => '?').join(',')})
     ORDER BY
       CASE document_type
@@ -313,7 +315,8 @@ function fetchLexicalBackfillRows(db: Database.Database, query: string): Pipelin
     return db.prepare(`
       SELECT *, content_text AS content
       FROM memory_index
-      WHERE ${clauses.join(' OR ')}
+      WHERE (${clauses.join(' OR ')})
+        AND ${ACTIVE_ROW_SQL('memory_index')}
       ORDER BY
         CASE document_type
           WHEN 'decision_record' THEN 0
@@ -335,15 +338,16 @@ function fetchLexicalBackfillRows(db: Database.Database, query: string): Pipelin
 
 function hydrateCandidateRows(db: Database.Database, rows: PipelineRow[]): PipelineRow[] {
   if (rows.length === 0) return rows;
-  const stmt = db.prepare('SELECT *, content_text AS content FROM memory_index WHERE id = ?');
+  const stmt = db.prepare(`SELECT *, content_text AS content FROM memory_index WHERE id = ? AND ${ACTIVE_ROW_SQL('memory_index')}`);
   return rows.map((row) => {
     try {
       const hydrated = stmt.get(row.id) as PipelineRow | undefined;
-      return hydrated ? mergeRicherRow(row, hydrated) : row;
+      if (hydrated) return mergeRicherRow(row, hydrated);
+      return isActiveRow(row) ? row : null;
     } catch {
       return row;
     }
-  });
+  }).filter((row): row is PipelineRow => row !== null);
 }
 
 // Build a boundary gate for NEWLY-injected rescue rows, mirroring the

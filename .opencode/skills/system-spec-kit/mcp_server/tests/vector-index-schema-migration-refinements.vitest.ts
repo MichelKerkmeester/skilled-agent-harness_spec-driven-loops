@@ -265,6 +265,56 @@ describe('vector-index schema migration refinements', () => {
     expect(() => migrateConstitutionalTier(database)).toThrow(/constitutional support/i);
   });
 
+  it('allows archived tier inserts in the fresh schema', () => {
+    const database = createTestDatabase();
+    openDatabases.add(database);
+
+    expect(() => database.prepare(`
+      INSERT INTO memory_index (
+        id, spec_folder, file_path, created_at, updated_at, importance_tier
+      ) VALUES (?, ?, ?, ?, ?, ?)
+    `).run(501, 'specs/current', 'specs/current/archive.md', '2026-07-03T00:00:00Z', '2026-07-03T00:00:00Z', 'archived')).not.toThrow();
+  });
+
+  it('rebuilds existing archived-missing tier constraints without losing rows', () => {
+    const database = new Database(':memory:');
+    openDatabases.add(database);
+
+    database.exec(`
+      CREATE TABLE memory_index (
+        id INTEGER PRIMARY KEY,
+        spec_folder TEXT NOT NULL,
+        file_path TEXT NOT NULL,
+        created_at TEXT NOT NULL,
+        updated_at TEXT NOT NULL,
+        importance_tier TEXT DEFAULT 'normal' CHECK(importance_tier IN ('constitutional', 'critical', 'important', 'normal', 'temporary', 'deprecated')),
+        context_type TEXT DEFAULT 'general',
+        session_id TEXT,
+        source_kind TEXT NOT NULL DEFAULT 'system',
+        deleted_at TEXT
+      );
+      INSERT INTO memory_index (id, spec_folder, file_path, created_at, updated_at, importance_tier)
+      VALUES (601, 'specs/current', 'specs/current/live.md', '2026-07-03T00:00:00Z', '2026-07-03T00:00:00Z', 'normal');
+    `);
+
+    createSchema(database, {
+      sqlite_vec_available: false,
+      get_embedding_dim: () => 4,
+    });
+
+    expect(() => database.prepare(`
+      INSERT INTO memory_index (
+        id, spec_folder, file_path, created_at, updated_at, importance_tier
+      ) VALUES (?, ?, ?, ?, ?, ?)
+    `).run(602, 'specs/current', 'specs/current/archive.md', '2026-07-03T00:00:00Z', '2026-07-03T00:00:00Z', 'archived')).not.toThrow();
+
+    const rows = database.prepare('SELECT id, importance_tier FROM memory_index WHERE id IN (601, 602) ORDER BY id').all();
+    expect(rows).toEqual([
+      { id: 601, importance_tier: 'normal' },
+      { id: 602, importance_tier: 'archived' },
+    ]);
+  });
+
   it('preserves legacy memory_conflicts audit rows when upgrading to the unified v12 schema', () => {
     const database = new Database(':memory:');
     openDatabases.add(database);

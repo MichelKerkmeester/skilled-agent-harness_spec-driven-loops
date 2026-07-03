@@ -361,6 +361,127 @@ function hasConstitutionalTierConstraint(database: Database.Database): boolean {
   return typeof tableSql === 'string' && tableSql.includes("'constitutional'");
 }
 
+function hasArchivedTierConstraint(database: Database.Database): boolean {
+  const tableSql = getTableSql(database, 'memory_index');
+  return typeof tableSql === 'string' && tableSql.includes("'archived'");
+}
+
+function addArchivedToImportanceTierCheck(tableSql: string): string {
+  const checkPattern = /CHECK\s*\(\s*importance_tier\s+IN\s*\(([^)]*)\)\s*\)/i;
+  const match = tableSql.match(checkPattern);
+  if (!match) {
+    throw new Error('memory_index importance_tier CHECK constraint not found; rebuild requires manual schema review');
+  }
+
+  const values = match[1]
+    .split(',')
+    .map((value) => value.trim())
+    .filter((value) => value.length > 0);
+  if (values.some((value) => value.replace(/['"]/g, '').toLowerCase() === 'archived')) {
+    return tableSql;
+  }
+
+  const deprecatedIndex = values.findIndex((value) => value.replace(/['"]/g, '').toLowerCase() === 'deprecated');
+  const insertionIndex = deprecatedIndex >= 0 ? deprecatedIndex : values.length;
+  values.splice(insertionIndex, 0, "'archived'");
+  return tableSql.replace(checkPattern, `CHECK(importance_tier IN (${values.join(', ')}))`);
+}
+
+function createMemoryFtsSyncTriggers(database: Database.Database): void {
+  if (!getTableColumns(database, 'memory_index').includes('content_text')) {
+    return;
+  }
+
+  database.exec(`
+    CREATE VIRTUAL TABLE IF NOT EXISTS memory_fts USING fts5(
+      title, trigger_phrases, file_path, content_text,
+      content='memory_index', content_rowid='id'
+    )
+  `);
+
+  database.exec(`
+    CREATE TRIGGER IF NOT EXISTS memory_fts_insert AFTER INSERT ON memory_index BEGIN
+      INSERT INTO memory_fts(rowid, title, trigger_phrases, file_path, content_text)
+      VALUES (new.id, new.title, new.trigger_phrases, new.file_path, new.content_text);
+    END
+  `);
+
+  database.exec(`
+    CREATE TRIGGER IF NOT EXISTS memory_fts_update AFTER UPDATE ON memory_index BEGIN
+      INSERT INTO memory_fts(memory_fts, rowid, title, trigger_phrases, file_path, content_text)
+      VALUES ('delete', old.id, old.title, old.trigger_phrases, old.file_path, old.content_text);
+      INSERT INTO memory_fts(rowid, title, trigger_phrases, file_path, content_text)
+      VALUES (new.id, new.title, new.trigger_phrases, new.file_path, new.content_text);
+    END
+  `);
+
+  database.exec(`
+    CREATE TRIGGER IF NOT EXISTS memory_fts_delete AFTER DELETE ON memory_index BEGIN
+      INSERT INTO memory_fts(memory_fts, rowid, title, trigger_phrases, file_path, content_text)
+      VALUES ('delete', old.id, old.title, old.trigger_phrases, old.file_path, old.content_text);
+    END
+  `);
+}
+
+function migrateArchivedTierConstraint(database: Database.Database): void {
+  const tableSql = getTableSql(database, 'memory_index');
+  if (!tableSql || hasArchivedTierConstraint(database)) return;
+  if (!hasConstitutionalTierConstraint(database)) return;
+
+  const rebuiltTableSql = addArchivedToImportanceTierCheck(tableSql);
+  if (rebuiltTableSql === tableSql) return;
+
+  const backupTableName = 'memory_index_before_archived_tier_check';
+  const columns = getTableColumns(database, 'memory_index');
+  const quotedColumns = columns.map((column) => `"${column.replace(/"/g, '""')}"`).join(', ');
+  const createSql = rebuiltTableSql.replace(/CREATE\s+TABLE\s+(?:IF\s+NOT\s+EXISTS\s+)?(?:"memory_index"|memory_index)/i, 'CREATE TABLE memory_index');
+
+  // Renaming the table moves its indexes to the backup, so capture their DDL to
+  // recreate them afterwards. The active-uniqueness index must also treat
+  // archived as non-active, or re-tiering a formerly-deprecated row to archived
+  // re-admits it into the partial index and collides with its logical-key twin.
+  const indexDdls = (database
+    .prepare("SELECT sql FROM sqlite_master WHERE type='index' AND tbl_name='memory_index' AND sql IS NOT NULL")
+    .all() as Array<{ sql: string }>)
+    .map((row) => row.sql);
+
+  database.exec(`DROP TABLE IF EXISTS ${backupTableName}`);
+  const foreignKeysWereOn = database.pragma('foreign_keys', { simple: true }) === 1;
+  // foreign_keys cannot be toggled inside a transaction; disable enforcement so
+  // the rebuild's intermediate states are legal.
+  database.pragma('foreign_keys = OFF');
+  const rebuild = database.transaction(() => {
+    // Preserve child-table FK references to the original name across the rename,
+    // otherwise SQLite repoints them at the backup table and they dangle on drop.
+    database.pragma('legacy_alter_table = ON');
+    for (const triggerName of ['memory_fts_insert', 'memory_fts_update', 'memory_fts_delete']) {
+      database.exec(`DROP TRIGGER IF EXISTS ${triggerName}`);
+    }
+    database.exec(`ALTER TABLE memory_index RENAME TO ${backupTableName}`);
+    database.exec(createSql);
+    database.exec(`INSERT INTO memory_index (${quotedColumns}) SELECT ${quotedColumns} FROM ${backupTableName}`);
+    database.exec(`DROP TABLE ${backupTableName}`);
+    for (const ddl of indexDdls) {
+      const patched = ddl.includes("NOT IN ('constitutional', 'deprecated')")
+        ? ddl.replace("NOT IN ('constitutional', 'deprecated')", "NOT IN ('constitutional', 'deprecated', 'archived')")
+        : ddl;
+      database.exec(patched);
+    }
+    const fkViolations = database.prepare('PRAGMA foreign_key_check').all();
+    if (fkViolations.length > 0) {
+      throw new Error(`archived-tier rebuild introduced ${fkViolations.length} foreign-key violation(s); aborting`);
+    }
+    database.pragma('legacy_alter_table = OFF');
+  });
+  try {
+    rebuild();
+  } finally {
+    database.pragma('legacy_alter_table = OFF');
+    if (foreignKeysWereOn) database.pragma('foreign_keys = ON');
+  }
+  createMemoryFtsSyncTriggers(database);
+}
+
 function createRequiredIndex(
   database: Database.Database,
   indexName: string,
@@ -2410,7 +2531,7 @@ export function run_migrations(database: Database.Database, from_version: number
            COALESCE(agent_id, ''),
            COALESCE(session_id, '')
          )
-         WHERE COALESCE(importance_tier, 'normal') NOT IN ('constitutional', 'deprecated')`,
+         WHERE COALESCE(importance_tier, 'normal') NOT IN ('constitutional', 'deprecated', 'archived')`,
       'Migration v28',
     );
     logger.info('Migration v28: Created active-row logical-key unique index');
@@ -2841,6 +2962,11 @@ export function validate_backward_compatibility(database: Database.Database): Sc
       }
       if (!hasConstitutionalTierConstraint(database)) {
         constraintMismatches.push('memory_index.importance_tier CHECK constraint is missing constitutional support');
+      }
+      if (!hasArchivedTierConstraint(database)) {
+        // The archived tier is added by the schema migration, so a database
+        // that predates it is compatible-and-upgradeable, not incompatible.
+        warnings.push('memory_index.importance_tier CHECK constraint is missing archived support; the schema migration will add it');
       }
     } else {
       missingColumns.memory_index = [...REQUIRED_MEMORY_INDEX_COLUMNS];
@@ -3655,6 +3781,7 @@ export function create_schema(
   if (table_exists) {
     migrate_confidence_columns(database);
     migrate_constitutional_tier(database);
+    migrateArchivedTierConstraint(database);
     ensure_canonical_file_path_support(database);
     create_common_indexes(database);
     ensureCompanionTables(database);
@@ -3704,7 +3831,7 @@ export function create_schema(
       is_pinned INTEGER DEFAULT 0,
       access_count INTEGER DEFAULT 0,
       last_accessed INTEGER DEFAULT 0,
-      importance_tier TEXT DEFAULT 'normal' CHECK(importance_tier IN ('constitutional', 'critical', 'important', 'normal', 'temporary', 'deprecated')),
+      importance_tier TEXT DEFAULT 'normal' CHECK(importance_tier IN ('constitutional', 'critical', 'important', 'normal', 'temporary', 'archived', 'deprecated')),
       tenant_id TEXT,
       user_id TEXT,
       agent_id TEXT,
@@ -3788,29 +3915,7 @@ export function create_schema(
     )
   `);
 
-  // Create FTS5 sync triggers (includes content_text)
-  database.exec(`
-    CREATE TRIGGER IF NOT EXISTS memory_fts_insert AFTER INSERT ON memory_index BEGIN
-      INSERT INTO memory_fts(rowid, title, trigger_phrases, file_path, content_text)
-      VALUES (new.id, new.title, new.trigger_phrases, new.file_path, new.content_text);
-    END
-  `);
-
-  database.exec(`
-    CREATE TRIGGER IF NOT EXISTS memory_fts_update AFTER UPDATE ON memory_index BEGIN
-      INSERT INTO memory_fts(memory_fts, rowid, title, trigger_phrases, file_path, content_text)
-      VALUES ('delete', old.id, old.title, old.trigger_phrases, old.file_path, old.content_text);
-      INSERT INTO memory_fts(rowid, title, trigger_phrases, file_path, content_text)
-      VALUES (new.id, new.title, new.trigger_phrases, new.file_path, new.content_text);
-    END
-  `);
-
-  database.exec(`
-    CREATE TRIGGER IF NOT EXISTS memory_fts_delete AFTER DELETE ON memory_index BEGIN
-      INSERT INTO memory_fts(memory_fts, rowid, title, trigger_phrases, file_path, content_text)
-      VALUES ('delete', old.id, old.title, old.trigger_phrases, old.file_path, old.content_text);
-    END
-  `);
+  createMemoryFtsSyncTriggers(database);
 
   // Create companion tables
   ensureCompanionTables(database);

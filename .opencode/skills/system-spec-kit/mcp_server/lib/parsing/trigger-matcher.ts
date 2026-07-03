@@ -5,6 +5,7 @@
 import fs from 'node:fs';
 import type Database from 'better-sqlite3';
 import * as vectorIndex from '../search/vector-index.js';
+import { ACTIVE_ROW_SQL } from '../search/active-row-predicate.js';
 import { extractTriggerPhrases } from './memory-parser.js';
 import { escapeRegex } from '../utils/path-security.js';
 
@@ -210,6 +211,7 @@ const TRIGGER_CACHE_LOADER_SQL = `
   SELECT id, spec_folder, file_path, title, trigger_phrases, importance_weight, document_type, anchor_id, content_text
   FROM memory_index
   WHERE embedding_status = 'success'
+    AND ${ACTIVE_ROW_SQL('memory_index')}
     AND trigger_phrases IS NOT NULL
     AND trigger_phrases != '[]'
     AND trigger_phrases != ''

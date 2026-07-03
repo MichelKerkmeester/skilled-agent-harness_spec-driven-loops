@@ -15,6 +15,7 @@ import * as vectorIndex from '../lib/search/vector-index.js';
 import * as folderScoring from '../lib/scoring/folder-scoring.js';
 import type { FolderMemoryInput } from '../lib/scoring/folder-scoring.js';
 import { getGraphMetrics } from '../lib/search/hybrid-search.js';
+import { ACTIVE_POPULATION_SQL } from '../lib/search/active-row-predicate.js';
 import { createMCPSuccessResponse, createMCPErrorResponse } from '../lib/response/envelope.js';
 import { toErrorMessage } from '../utils/index.js';
 
@@ -126,6 +127,9 @@ async function handleMemoryStats(args: StatsArgs | null): Promise<MCPResponse> {
   const safeLimit = Math.max(1, Math.min(Math.floor(rawLimit || 10), 100));
 
   let total = 0;
+  let activeTotal = 0;
+  let excludedDeprecatedArchived = 0;
+  let excludedTombstoned = 0;
   let statusCounts: ReturnType<typeof vectorIndex.getStatusCounts> = { success: 0, pending: 0, failed: 0, retry: 0, partial: 0 };
   let dates: Record<string, unknown> = { oldest: null, newest: null };
   let triggerCount = 0;
@@ -136,6 +140,17 @@ async function handleMemoryStats(args: StatsArgs | null): Promise<MCPResponse> {
   try {
     const totalResult = database.prepare('SELECT COUNT(*) as count FROM memory_index').get() as Record<string, unknown>;
     total = (totalResult && typeof totalResult.count === 'number') ? totalResult.count : 0;
+    const activeResult = database.prepare(`SELECT COUNT(*) as count FROM memory_index m WHERE ${ACTIVE_POPULATION_SQL('m')}`).get() as Record<string, unknown>;
+    activeTotal = (activeResult && typeof activeResult.count === 'number') ? activeResult.count : 0;
+    const coldResult = database.prepare(`
+      SELECT COUNT(*) as count
+      FROM memory_index
+      WHERE deleted_at IS NULL
+        AND lower(COALESCE(importance_tier, '')) IN ('deprecated', 'archived')
+    `).get() as Record<string, unknown>;
+    excludedDeprecatedArchived = (coldResult && typeof coldResult.count === 'number') ? coldResult.count : 0;
+    const tombstoneResult = database.prepare('SELECT COUNT(*) as count FROM memory_index WHERE deleted_at IS NOT NULL').get() as Record<string, unknown>;
+    excludedTombstoned = (tombstoneResult && typeof tombstoneResult.count === 'number') ? tombstoneResult.count : 0;
     statusCounts = vectorIndex.getStatusCounts();
     dates = (database.prepare('SELECT MIN(created_at) as oldest, MAX(created_at) as newest FROM memory_index').get() || { oldest: null, newest: null }) as Record<string, unknown>;
 
@@ -305,6 +320,15 @@ async function handleMemoryStats(args: StatsArgs | null): Promise<MCPResponse> {
     summary,
     data: {
       totalMemories: total,
+      population: {
+        note: 'raw includes every memory_index row; active excludes tombstoned rows and deprecated/archived tiers.',
+        rawTotal: total,
+        activeTotal,
+        excluded: {
+          deprecatedOrArchived: excludedDeprecatedArchived,
+          tombstoned: excludedTombstoned,
+        },
+      },
       byStatus: statusCounts,
       oldestMemory: dates.oldest || null,
       newestMemory: dates.newest || null,

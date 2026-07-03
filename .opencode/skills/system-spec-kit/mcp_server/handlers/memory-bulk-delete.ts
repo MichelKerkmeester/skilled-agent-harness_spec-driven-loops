@@ -66,8 +66,13 @@ function tombstoneMemory(database: NonNullable<ReturnType<typeof vectorIndex.get
     SET deleted_at = COALESCE(deleted_at, ?),
         updated_at = datetime('now')
     WHERE id = ?
+      AND deleted_at IS NULL
   `).run(deletedAt, memoryId);
   return result.changes > 0;
+}
+
+function shouldPreserveEdgesForTombstone(database: NonNullable<ReturnType<typeof vectorIndex.getDb>>): boolean {
+  return isSoftDeleteTombstonesEnabled() && hasDeletedAtColumn(database);
 }
 
 /* ───────────────────────────────────────────────────────────────
@@ -103,7 +108,7 @@ async function handleMemoryBulkDelete(args: BulkDeleteArgs): Promise<MCPResponse
     throw new Error('tier is required and must be a string');
   }
 
-  const validTiers = ['constitutional', 'critical', 'important', 'normal', 'temporary', 'deprecated'];
+  const validTiers = ['constitutional', 'critical', 'important', 'normal', 'temporary', 'archived', 'deprecated'];
   if (!validTiers.includes(tier)) {
     throw new Error(`Invalid tier: "${tier}". Must be one of: ${validTiers.join(', ')}`);
   }
@@ -148,7 +153,7 @@ async function handleMemoryBulkDelete(args: BulkDeleteArgs): Promise<MCPResponse
   }
 
   // Build query to count affected memories
-  let countSql = 'SELECT COUNT(*) as count FROM memory_index WHERE importance_tier = ?';
+  let countSql = 'SELECT COUNT(*) as count FROM memory_index WHERE importance_tier = ? AND deleted_at IS NULL';
   const countParams: unknown[] = [tier];
 
   if (specFolder) {
@@ -216,7 +221,7 @@ async function handleMemoryBulkDelete(args: BulkDeleteArgs): Promise<MCPResponse
   }
 
   // Fetch IDs for deletion (needed for causal edge cleanup and ledger)
-  let selectSql = 'SELECT id, content_hash, file_path, spec_folder FROM memory_index WHERE importance_tier = ?';
+  let selectSql = 'SELECT id, content_hash, file_path, spec_folder FROM memory_index WHERE importance_tier = ? AND deleted_at IS NULL';
   const selectParams: unknown[] = [tier];
 
   if (specFolder) {
@@ -261,15 +266,13 @@ async function handleMemoryBulkDelete(args: BulkDeleteArgs): Promise<MCPResponse
         deletedCount++;
         deletedIds.push(memory.id);
 
-        // Clean up causal edges
-        // Propagate edge-cleanup errors to fail the transaction.
-        // Previously errors were caught and logged, leaving orphan causal edges
-        // When memory rows were successfully deleted but edge cleanup failed.
-        causalEdges.deleteEdgesForMemory(String(memory.id), {
-          reason: 'memory row mutation cleanup',
-          command: 'memory-bulk-delete.handleMemoryBulkDelete',
-          restoreContext: { memoryId: memory.id, tier, specFolder: memory.spec_folder, checkpointName },
-        });
+        if (!shouldPreserveEdgesForTombstone(database)) {
+          causalEdges.deleteEdgesForMemory(String(memory.id), {
+            reason: 'memory row mutation cleanup',
+            command: 'memory-bulk-delete.handleMemoryBulkDelete',
+            restoreContext: { memoryId: memory.id, tier, specFolder: memory.spec_folder, checkpointName },
+          });
+        }
       }
     }
   });

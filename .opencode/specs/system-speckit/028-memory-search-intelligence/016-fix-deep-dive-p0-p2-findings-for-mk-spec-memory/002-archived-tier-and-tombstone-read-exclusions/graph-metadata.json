@@ -22,7 +22,7 @@
       "predicate verification checklist",
       "predicate ownership decision",
       "z_archive tier rewrite",
-      "implementation"
+      "archived tier read exclusion"
     ],
     "key_topics": [
       "archived",
@@ -45,6 +45,7 @@
       ".opencode/skills/system-spec-kit/mcp_server/lib/search/causal-boost.ts",
       ".opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts",
       "decision-record.md",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/search/active-row-predicate.ts",
       ".opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-queries.ts",
       ".opencode/skills/system-spec-kit/mcp_server/lib/search/sqlite-fts.ts",
       ".opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts",
@@ -59,8 +60,7 @@
       ".opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts",
       "plan.md",
       "tasks.md",
-      "checklist.md",
-      "lib/graph/community-detection.ts"
+      "checklist.md"
     ],
     "entities": [
       {
@@ -85,6 +85,12 @@
         "name": "decision-record.md",
         "kind": "doc",
         "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "active-row-predicate.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/search/active-row-predicate.ts",
         "source": "derived"
       },
       {
@@ -200,17 +206,11 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
-      },
-      {
-        "name": "Handoff Criteria",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Non-active rows dominate search results because read exclusion is channel-inconsistent",
     "created_at": "2026-07-03T09:44:18Z",
-    "last_save_at": "2026-07-03T12:12:30.709Z",
+    "last_save_at": "2026-07-03T17:28:35.370Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -221,14 +221,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:8527813cbd5e0005cb1f87b4698219655c8d9a4018c9823d65bd6ce655236e7c",
+    "source_fingerprint": "sha256:46a8f55c58e0d14978be392c3551c687b7b24354fcf634834714ec1ea4ba7250",
     "source_doc_hashes": {
       "spec.md": "5568cbba8fe246d4611070f24aca23010e7072f0155d0188004ce372fc9b3cdb",
       "plan.md": "3169edc97138d0dce8f52d3828da9718d8be8330cad3c24c768fb19ca3cb5c87",
       "tasks.md": "594e43cc8d084203b3f33b00b66267557ca6747697f7f220f6a53847693086d4",
-      "checklist.md": "d76c935e01399382d2d5df7032483edb2bc6b57faac98a4a4167ef5ed052d432",
-      "decision-record.md": "1b61eeb1901ab8e1fd6dfdf70863dd680144a395014d9b48916822f8b1fc4ead",
-      "implementation-summary.md": "a5b928dcae895ddbec3f9564b6e365afe80ccb8517208b83dfd61aaf54bf742a"
+      "checklist.md": "61b1f41d2b6060abaf6d505d64c5f0b643636f407ed1adcf2f35cababf129803",
+      "decision-record.md": "0ba4a4a6633ab2e9631d98b08fa4e1b66ae5e64c0bc9f37cf3f953c95fb6a733",
+      "implementation-summary.md": "289b9f8c0d525259a0558d8e38b6730303a7d0c14dddc456adfd45d94b81d300"
     },
     "last_active_child_id": null,
     "last_active_at": null

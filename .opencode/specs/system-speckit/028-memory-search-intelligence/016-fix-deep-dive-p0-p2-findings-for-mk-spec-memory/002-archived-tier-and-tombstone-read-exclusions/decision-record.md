@@ -12,7 +12,7 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "scaffold/002-archived-tier-and-tombstone-read-exclusions"
-    last_updated_at: "2026-07-03T13:30:00Z"
+    last_updated_at: "2026-07-03T17:26:54Z"
     last_updated_by: "plan-remediation"
     recent_action: "Remediated REWORK: rewrote ADR-001 premise + predicate, ADR-002/ADR-004 constitutional fixes"
     next_safe_action: "Record T-004a graduated-flag logic-sync decision before predicate adoption"
@@ -306,6 +306,8 @@ Constitutional-tier rows are injected into session priming through their own lan
 |------|--------|------------|
 | Path predicate misses non-standard archive locations | M | Confirm the z_archive path pattern against live SQL during T-018 before running the rewrite |
 | Migration interrupted mid-run | L | Versioned + batched; audit rows written before mutation make the run resumable and reversible |
+
+**Amendment (implementation):** This decision assumed setting `importance_tier='archived'` would succeed, but the live `memory_index` CHECK constraint permitted only six tiers and rejected `archived` (an empirical `UPDATE` probe failed). Extending a baked-in SQLite CHECK requires recreating the table, so the operator chose a full table rebuild over a `writable_schema` patch or an `is_archived`-only design. The rebuild recreates `memory_index` with an archived-inclusive CHECK while preserving all 41 indexes, the three FTS5 external-content sync triggers, and every row id; it uses `legacy_alter_table` so child foreign keys survive the rename, and aborts on any introduced FK violation. A necessary consequence: the active-uniqueness partial index now also excludes `archived` (archived is non-active), or re-tiering a formerly-deprecated row would re-admit it and collide. Verified on real-data database copies before the live run.
 <!-- /ANCHOR:adr-003-consequences -->
 
 ---

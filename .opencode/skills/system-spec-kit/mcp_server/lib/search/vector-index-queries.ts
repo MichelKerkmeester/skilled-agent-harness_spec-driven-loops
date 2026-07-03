@@ -12,6 +12,7 @@ import { formatAgeString as format_age_string } from '../utils/format-helpers.js
 import { createLogger } from '../utils/logger.js';
 import { recordHistory } from '../storage/history.js';
 import { isArchivedVectorInclusionEnabled } from './search-flags.js';
+import { ACTIVE_ROW_SQL, isActiveRow } from './active-row-predicate.js';
 import * as embeddingsProvider from '../providers/embeddings.js';
 import { getStartupEmbeddingProfile } from '@spec-kit/shared/embeddings';
 import { DEFAULT_ACTIVE_EMBEDDER, getActiveEmbedder } from '../embedders/schema.js';
@@ -281,6 +282,7 @@ export function get_memories_by_folder(
     FROM memory_index m
     JOIN active_memory_projection p ON p.active_memory_id = m.id
     WHERE (m.spec_folder = ? OR m.spec_folder LIKE ? ESCAPE '\\')
+      AND m.deleted_at IS NULL
     ORDER BY m.created_at DESC
   `).all(spec_folder, specFolderLikePattern(spec_folder)) as MemoryRow[];
 
@@ -406,7 +408,8 @@ export function vector_search(
   let constitutional_results: MemoryRow[] = [];
 
   if (includeConstitutional && tier !== 'constitutional') {
-    constitutional_results = get_constitutional_memories(database, specFolder, includeArchived);
+    constitutional_results = get_constitutional_memories(database, specFolder, includeArchived)
+      .filter((row) => isActiveRow(row, { lane: 'constitutional' }));
   }
 
   const where_clauses = ['m.embedding_status = \'success\''];
@@ -416,19 +419,21 @@ export function vector_search(
 
   if (tier === 'deprecated') {
     where_clauses.push('m.importance_tier = ?');
+    where_clauses.push('m.deleted_at IS NULL');
     params.push('deprecated');
   } else if (tier === 'constitutional') {
     where_clauses.push('m.importance_tier = ?');
+    where_clauses.push(ACTIVE_ROW_SQL('m', { lane: 'constitutional' }));
     params.push('constitutional');
   } else if (tier) {
     where_clauses.push('m.importance_tier = ?');
+    where_clauses.push('m.deleted_at IS NULL');
     params.push(tier);
-  } else if (isArchivedVectorInclusionEnabled()) {
-    // Cold/archived rows admitted to the projection (option A) must not be re-excluded
-    // here; still keep constitutional on its own injected path.
-    where_clauses.push('(m.importance_tier IS NULL OR m.importance_tier != \'constitutional\')');
   } else {
-    where_clauses.push('(m.importance_tier IS NULL OR m.importance_tier NOT IN (\'deprecated\', \'constitutional\'))');
+    where_clauses.push(ACTIVE_ROW_SQL('m', {
+      includeArchived,
+      includeCold: includeArchived || isArchivedVectorInclusionEnabled(),
+    }));
   }
 
   appendSpecFolderScope(where_clauses, params, specFolder);
@@ -566,6 +571,7 @@ export function multi_concept_search(
       JOIN active_memory_projection p ON p.active_memory_id = m.id
       JOIN ${vectorSource.tableName} v ON m.id = v.${vectorSource.idColumn}
       WHERE m.embedding_status = 'success'
+        AND ${ACTIVE_ROW_SQL('m', { includeCold: isArchivedVectorInclusionEnabled() })}
         AND (m.expires_at IS NULL OR m.expires_at > datetime('now'))
         ${folder_filter}
         AND ${distance_filters}
@@ -848,10 +854,10 @@ export async function generate_query_embedding(query: string): Promise<Float32Ar
  */
 export function keyword_search(
   query: string,
-  options: { limit?: number; specFolder?: string | null } = {},
+  options: { limit?: number; specFolder?: string | null; includeArchived?: boolean } = {},
   database: Database.Database = initialize_db(),
 ): MemoryRow[] {
-  const { limit = 20, specFolder = null } = options;
+  const { limit = 20, specFolder = null, includeArchived = false } = options;
 
   if (!query || typeof query !== 'string') {
     console.warn('[vector-index] keyword_search: invalid query, expected non-empty string');
@@ -876,6 +882,7 @@ export function keyword_search(
     SELECT m.* FROM memory_index m
     JOIN active_memory_projection p ON p.active_memory_id = m.id
     WHERE ${where_clause}
+      AND ${ACTIVE_ROW_SQL('m', { includeArchived, includeCold: includeArchived || isArchivedVectorInclusionEnabled() })}
     ORDER BY m.importance_weight DESC, m.created_at DESC
   `;
 

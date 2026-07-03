@@ -75,6 +75,7 @@ import { runHyDE } from '../hyde.js';
 import { matchSurrogates } from '../query-surrogates.js';
 import { loadSurrogatesBatch } from '../surrogate-storage.js';
 import { queryCommunityMembersAsRankedList } from '../community-search.js';
+import { isActiveRow } from '../active-row-predicate.js';
 
 // Feature catalog: 4-stage pipeline architecture
 // Feature catalog: Hybrid search pipeline
@@ -180,9 +181,9 @@ function backfillMissingQualityScores(results: PipelineRow[]): PipelineRow[] {
 
 function applyArchiveFilter(
   results: PipelineRow[],
-  _includeArchived: boolean
+  includeArchived: boolean
 ): PipelineRow[] {
-  return results;
+  return results.filter((row) => isActiveRow(row, { includeArchived }));
 }
 
 function _applyFolderFilter(

@@ -70,6 +70,7 @@ import {
 } from './search-flags.js';
 import { resolveFusionIntentContract } from './search-utils.js';
 import { fts5Bm25Search } from './sqlite-fts.js';
+import { ACTIVE_ROW_SQL, isActiveRow } from './active-row-predicate.js';
 import { parse_trigger_phrases, specFolderLikePattern } from './vector-index-types.js';
 
 import type Database from 'better-sqlite3';
@@ -219,6 +220,7 @@ function getHardExclusionPredicates(): HardExclusionPredicate[] {
 type Bm25MemoryMetadata = {
   specFolder: string | null;
   importanceTier: string | null;
+  deletedAt: string | null;
 };
 
 /** Non-enumerable shadow metadata attached to result arrays via Object.defineProperty. */
@@ -458,20 +460,21 @@ function ensureLlmBackfillRegistered(): void {
  */
 function bm25Search(
   query: string,
-  options: { limit?: number; specFolder?: string } = {}
+  options: { limit?: number; specFolder?: string; includeArchived?: boolean } = {}
 ): HybridSearchResult[] {
   if (!isBm25Enabled()) {
     console.warn('[hybrid-search] BM25 not enabled — returning empty bm25Search results');
     return [];
   }
 
-  const { limit = DEFAULT_LIMIT, specFolder } = options;
+  const { limit = DEFAULT_LIMIT, specFolder, includeArchived = false } = options;
 
   try {
     if (shouldUseSqliteLexicalEngine(db)) {
       return ftsSearch(query, {
         limit,
         specFolder,
+        includeArchived,
       }).map((result) => ({
         ...result,
         bm25_score: result.score,
@@ -532,12 +535,13 @@ function bm25Search(
             const batch = ids.slice(offset, offset + METADATA_BATCH);
             const placeholders = batch.map(() => '?').join(',');
             const rows = db.prepare(
-              `SELECT id, spec_folder, importance_tier FROM memory_index WHERE id IN (${placeholders})`
-            ).all(...batch) as Array<{ id: number; spec_folder: string | null; importance_tier: string | null }>;
+              `SELECT id, spec_folder, importance_tier, deleted_at FROM memory_index WHERE id IN (${placeholders})`
+            ).all(...batch) as Array<{ id: number; spec_folder: string | null; importance_tier: string | null; deleted_at: string | null }>;
             for (const row of rows) {
               memoryMetadataMap.set(row.id, {
                 specFolder: row.spec_folder,
                 importanceTier: row.importance_tier,
+                deletedAt: row.deleted_at,
               });
             }
           }
@@ -557,15 +561,15 @@ function bm25Search(
       }
     }
 
-    const excludeCold = !isArchivedRetrievalIncludedByDefault();
     return results
       .filter((r: { id: string }) => {
         const metadata = memoryMetadataMap?.get(Number(r.id));
-        // Cold/deprecated rows are included by default (FSRS ranks them lower);
-        // only drop them when archived retrieval is disabled.
-        if (excludeCold && metadata?.importanceTier === 'deprecated') return false;
-        if (!specFolder) return true;
         if (!metadata) return false;
+        if (!isActiveRow({
+          deleted_at: metadata.deletedAt,
+          importance_tier: metadata.importanceTier,
+        }, { includeArchived, includeCold: includeArchived || isArchivedRetrievalIncludedByDefault() })) return false;
+        if (!specFolder) return true;
         const folder = metadata.specFolder;
         if (!folder) return false;
         return folder === specFolder || folder.startsWith(specFolder + '/');
@@ -644,7 +648,7 @@ function ftsSearch(
     // Delegate to weighted BM25 FTS5 search from sqlite-fts.ts
     // Uses bm25(memory_fts, 10.0, 5.0, 2.0, 1.0) for per-column weighting
     // (title 10x, trigger_phrases 5x, file_path 2x, content 1x)
-    // Filters: deprecated-tier exclusion and spec-folder matching handled by fts5Bm25Search
+    // Filters: active-row predicate and spec-folder matching handled by fts5Bm25Search
     const bm25Results = fts5Bm25Search(db, query, { limit, specFolder, includeArchived });
 
     return bm25Results.map(row => ({
@@ -757,9 +761,7 @@ function exactTriggerSearch(
     // Cold/deprecated-tier rows are included by default (FSRS retrievability ranks
     // them below hot memories); the hard exclusion only applies when archived
     // retrieval is disabled.
-    ...(isArchivedRetrievalIncludedByDefault()
-      ? []
-      : [`(m.importance_tier IS NULL OR m.importance_tier != 'deprecated')`]),
+    ACTIVE_ROW_SQL('m', { includeArchived: options.includeArchived, includeCold: Boolean(options.includeArchived) || isArchivedRetrievalIncludedByDefault() }),
     `(m.expires_at IS NULL OR m.expires_at > datetime('now'))`,
     `(${tokens.map(() => 'LOWER(m.trigger_phrases) LIKE ?').join(' OR ')})`,
   ];
@@ -2354,7 +2356,7 @@ async function searchWithFallback(
  * @returns Array of HybridSearchResult with source='structural'.
  */
 function structuralSearch(
-  options: Pick<HybridSearchOptions, 'specFolder' | 'limit'> = {}
+  options: Pick<HybridSearchOptions, 'specFolder' | 'limit' | 'includeArchived'> = {}
 ): HybridSearchResult[] {
   if (!db) {
     console.warn('[hybrid-search] db not initialized — returning empty structuralSearch results');
@@ -2364,10 +2366,11 @@ function structuralSearch(
   const limit = options.limit ?? DEFAULT_LIMIT;
 
   try {
-    // Build SQL with optional specFolder filter
-    // Exclude archived rows unless explicitly requested
     const conditions = [
-      `(importance_tier IS NULL OR importance_tier NOT IN ('deprecated', 'archived'))`,
+      ACTIVE_ROW_SQL('m', {
+        includeArchived: options.includeArchived,
+        includeCold: Boolean(options.includeArchived) || isArchivedRetrievalIncludedByDefault(),
+      }),
     ];
     const params: unknown[] = [];
 
@@ -2380,7 +2383,7 @@ function structuralSearch(
 
     const sql = `
       SELECT id, title, file_path, importance_tier, importance_weight, spec_folder
-      FROM memory_index
+      FROM memory_index m
       WHERE ${whereClause}
       ORDER BY
         CASE importance_tier
@@ -2391,8 +2394,8 @@ function structuralSearch(
           WHEN 'temporary' THEN 5
           ELSE 6
         END ASC,
-        importance_weight DESC,
-        created_at DESC
+        m.importance_weight DESC,
+        m.created_at DESC
       LIMIT ?
     `;
     params.push(limit);
@@ -2759,7 +2762,7 @@ async function searchWithFallbackTiered(
 
       console.error(`[hybrid-search] Tier 2→3 degradation: ${tier2Trigger.reason} (topScore=${tier2Trigger.topScore.toFixed(3)}, count=${tier2Trigger.resultCount})`);
 
-      const tier3Results = structuralSearch({ specFolder: options.specFolder, limit: options.limit });
+      const tier3Results = structuralSearch({ specFolder: options.specFolder, limit: options.limit, includeArchived: options.includeArchived });
       const calibratedTier3 = calibrateTier3Scores(results, tier3Results);
       results = mergeResults(results, calibratedTier3);
       degradationEvents.push({

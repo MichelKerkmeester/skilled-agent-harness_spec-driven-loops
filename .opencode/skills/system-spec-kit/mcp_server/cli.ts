@@ -255,7 +255,7 @@ async function runBulkDelete(): Promise<void> {
     process.exit(1);
   }
 
-  const validTiers = ['constitutional', 'critical', 'important', 'normal', 'temporary', 'deprecated'];
+  const validTiers = ['constitutional', 'critical', 'important', 'normal', 'temporary', 'archived', 'deprecated'];
   if (!validTiers.includes(tier)) {
     console.error(`ERROR: Invalid tier "${tier}". Must be one of: ${validTiers.join(', ')}`);
     process.exit(1);

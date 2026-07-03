@@ -94,8 +94,13 @@ function tombstoneMemory(database: NonNullable<ReturnType<typeof vectorIndex.get
     SET deleted_at = COALESCE(deleted_at, ?),
         updated_at = datetime('now')
     WHERE id = ?
+      AND deleted_at IS NULL
   `).run(deletedAt, memoryId);
   return result.changes > 0;
+}
+
+function shouldPreserveEdgesForTombstone(database: NonNullable<ReturnType<typeof vectorIndex.getDb>>): boolean {
+  return isSoftDeleteTombstonesEnabled() && hasDeletedAtColumn(database);
 }
 
 /** Handle memory_delete tool -- deletes a single memory by ID or bulk-deletes by spec folder. */
@@ -147,14 +152,16 @@ async function handleMemoryDelete(args: DeleteArgs): Promise<MCPResponse> {
           // History recording is best-effort
         }
 
-        causalEdges.init(database);
-        causalEdges.deleteEdgesForMemory(String(numericId), {
-          reason: 'memory row mutation cleanup',
-          command: 'memory-crud-delete.handleMemoryDelete',
-          restoreContext: { memoryId: numericId, specFolder: singleSnapshot?.spec_folder ?? null },
-        });
-        // Use db-specific invalidation instead of the no-op global version
-        clearDegreeCacheForDb(database);
+        if (!shouldPreserveEdgesForTombstone(database)) {
+          causalEdges.init(database);
+          causalEdges.deleteEdgesForMemory(String(numericId), {
+            reason: 'memory row mutation cleanup',
+            command: 'memory-crud-delete.handleMemoryDelete',
+            restoreContext: { memoryId: numericId, specFolder: singleSnapshot?.spec_folder ?? null },
+          });
+          // Use db-specific invalidation instead of the no-op global version
+          clearDegreeCacheForDb(database);
+        }
 
         const ledgerRecorded = appendMutationLedgerSafe(database, {
           mutationType: 'delete',
@@ -177,7 +184,7 @@ async function handleMemoryDelete(args: DeleteArgs): Promise<MCPResponse> {
       }
     })();
   } else {
-    const memories: { id: number }[] = vectorIndex.getMemoriesByFolder(specFolder as string);
+    let memories: { id: number }[] = vectorIndex.getMemoriesByFolder(specFolder as string);
     const deletedIds: number[] = [];
     const hashById = new Map<number, MemoryHashSnapshot>();
 
@@ -187,6 +194,7 @@ async function handleMemoryDelete(args: DeleteArgs): Promise<MCPResponse> {
           SELECT id, content_hash, spec_folder, file_path
           FROM memory_index
           WHERE spec_folder = ?
+            AND deleted_at IS NULL
         `).all(specFolder as string) as MemoryHashSnapshot[];
 
         for (const row of rows) {
@@ -226,8 +234,19 @@ async function handleMemoryDelete(args: DeleteArgs): Promise<MCPResponse> {
       }
     }
 
+    if (shouldPreserveEdgesForTombstone(database)) {
+      memories = (database.prepare(`
+        SELECT id
+        FROM memory_index
+        WHERE spec_folder = ?
+          AND deleted_at IS NULL
+      `).all(specFolder as string) as { id: number }[]);
+    }
+
     // Snapshot-then-delete is safe under single-process better-sqlite3; re-evaluate if multi-process support is added
-    causalEdges.init(database);
+    if (!shouldPreserveEdgesForTombstone(database)) {
+      causalEdges.init(database);
+    }
     const bulkDeleteTx = database.transaction(() => {
       for (const memory of memories) {
         if (tombstoneMemory(database, memory.id)) {
@@ -247,11 +266,13 @@ async function handleMemoryDelete(args: DeleteArgs): Promise<MCPResponse> {
           }
           deletedCount++;
           deletedIds.push(memory.id);
-          causalEdges.deleteEdgesForMemory(String(memory.id), {
-            reason: 'memory row mutation cleanup',
-            command: 'memory-crud-delete.handleMemoryDelete',
-            restoreContext: { memoryId: memory.id, specFolder, checkpointName },
-          });
+          if (!shouldPreserveEdgesForTombstone(database)) {
+            causalEdges.deleteEdgesForMemory(String(memory.id), {
+              reason: 'memory row mutation cleanup',
+              command: 'memory-crud-delete.handleMemoryDelete',
+              restoreContext: { memoryId: memory.id, specFolder, checkpointName },
+            });
+          }
         }
       }
 

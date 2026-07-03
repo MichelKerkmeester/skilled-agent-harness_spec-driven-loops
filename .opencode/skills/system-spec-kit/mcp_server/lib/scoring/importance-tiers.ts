@@ -23,6 +23,7 @@ export type ImportanceTier =
   | 'important'
   | 'normal'
   | 'temporary'
+  | 'archived'
   | 'deprecated';
 
 // ───────────────────────────────────────────────────────────────
@@ -66,6 +67,14 @@ export const IMPORTANCE_TIERS: Readonly<Record<ImportanceTier, TierConfig>> = {
     decay: true,
     autoExpireDays: 7,
     description: 'Session-scoped, auto-expires',
+  },
+  archived: {
+    value: 0.2,
+    searchBoost: 0.0,
+    decay: false,
+    autoExpireDays: null,
+    excludeFromSearch: true,
+    description: 'Archived memory, hidden from ranked search by default',
   },
   deprecated: {
     value: 0.1,
@@ -144,9 +153,41 @@ export function getExpiredTemporaryFilter(): string {
   return `importance_tier = 'temporary' AND created_at < datetime('now', '-${days} days')`;
 }
 
-// SQL WHERE clause for searchable tiers (excludes deprecated)
-export function getSearchableTiersFilter(): string {
-  return "importance_tier != 'deprecated'";
+interface SearchableTiersFilterOptions {
+  alias?: string;
+  includeArchived?: boolean;
+  includeCold?: boolean;
+  includeConstitutional?: boolean;
+}
+
+function qualifyTierColumn(alias?: string): string {
+  if (!alias) return 'importance_tier';
+  if (!/^[A-Za-z_][A-Za-z0-9_]*$/.test(alias)) {
+    throw new Error(`Invalid SQL alias for importance_tier: ${alias}`);
+  }
+  return `${alias}.importance_tier`;
+}
+
+// SQL WHERE clause for ranked searchable tiers. NULL tier is active legacy data.
+export function getSearchableTiersFilter(options: SearchableTiersFilterOptions = {}): string {
+  const tierColumn = qualifyTierColumn(options.alias);
+  const excluded = new Set<string>();
+  if (!options.includeCold) {
+    excluded.add('deprecated');
+    if (!options.includeArchived) {
+      excluded.add('archived');
+    }
+  }
+  if (!options.includeConstitutional) {
+    excluded.add('constitutional');
+  }
+
+  if (excluded.size === 0) {
+    return '1=1';
+  }
+
+  const literals = Array.from(excluded).map((tier) => `'${tier}'`).join(',');
+  return `(${tierColumn} IS NULL OR lower(${tierColumn}) NOT IN (${literals}))`;
 }
 
 // Check if tier should always surface in search (constitutional)

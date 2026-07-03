@@ -33,6 +33,7 @@ function createDb() {
       file_path TEXT,
       title TEXT,
       importance_tier TEXT,
+      deleted_at TEXT,
       trigger_phrases TEXT,
       created_at TEXT DEFAULT CURRENT_TIMESTAMP
     );

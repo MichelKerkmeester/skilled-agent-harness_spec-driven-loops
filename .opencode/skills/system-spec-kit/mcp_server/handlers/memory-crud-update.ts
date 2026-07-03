@@ -13,7 +13,7 @@ import * as vectorIndex from '../lib/search/vector-index.js';
 import type { UpdateMemoryParams } from '../lib/search/vector-index.js';
 import * as embeddings from '../lib/providers/embeddings.js';
 import * as bm25Index from '../lib/search/bm25-index.js';
-import { VALID_TIERS, isValidTier } from '../lib/scoring/importance-tiers.js';
+import { VALID_TIERS, isValidTier, normalizeTier } from '../lib/scoring/importance-tiers.js';
 import { MemoryError, ErrorCodes } from '../lib/errors.js';
 import * as mutationLedger from '../lib/storage/mutation-ledger.js';
 import { runInTransaction } from '../lib/storage/transaction-manager.js';
@@ -209,9 +209,10 @@ async function handleMemoryUpdate(args: UpdateArgs): Promise<MCPResponse> {
     title: rawTitle,
     triggerPhrases: rawTriggerPhrases,
     importanceWeight,
-    importanceTier,
+    importanceTier: rawImportanceTier,
     allowPartialUpdate = false,
   } = args;
+  const importanceTier = rawImportanceTier === undefined ? undefined : normalizeTier(rawImportanceTier);
 
   if (typeof id !== 'number') {
     throw new MemoryError(ErrorCodes.MISSING_REQUIRED_PARAM, 'id is required', { param: 'id' });
@@ -251,11 +252,11 @@ async function handleMemoryUpdate(args: UpdateArgs): Promise<MCPResponse> {
     );
   }
 
-  if (importanceTier !== undefined && !isValidTier(importanceTier)) {
+  if (rawImportanceTier !== undefined && !isValidTier(rawImportanceTier)) {
     throw new MemoryError(
       ErrorCodes.INVALID_PARAMETER,
-      `Invalid importance tier: ${importanceTier}. Valid tiers: ${VALID_TIERS.join(', ')}`,
-      { param: 'importanceTier', value: importanceTier }
+      `Invalid importance tier: ${rawImportanceTier}. Valid tiers: ${VALID_TIERS.join(', ')}`,
+      { param: 'importanceTier', value: rawImportanceTier }
     );
   }
 
@@ -265,7 +266,7 @@ async function handleMemoryUpdate(args: UpdateArgs): Promise<MCPResponse> {
   }
 
   const constitutionalPreconditionError = validateConstitutionalEditPreconditions(
-    { ...args, title, triggerPhrases },
+    { ...args, title, triggerPhrases, importanceTier },
     existing as Record<string, unknown>,
     requestId,
   );
@@ -276,7 +277,7 @@ async function handleMemoryUpdate(args: UpdateArgs): Promise<MCPResponse> {
   const database = vectorIndex.getDb();
   const priorSnapshot = getMemoryHashSnapshot(database, id);
 
-  const guard = buildGuardedUpdateParams({ ...args, title, triggerPhrases }, existing as Record<string, unknown>);
+  const guard = buildGuardedUpdateParams({ ...args, title, triggerPhrases, importanceTier }, existing as Record<string, unknown>);
   const updateParams = guard.updateParams;
   let idempotencyKey: IdempotencyReceiptKey | null = null;
 

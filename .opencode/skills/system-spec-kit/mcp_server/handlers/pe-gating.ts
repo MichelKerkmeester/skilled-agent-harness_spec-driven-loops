@@ -8,6 +8,7 @@ import { recordHistory } from '../lib/storage/history.js';
 import { recordLineageTransition, retirePredecessorForActiveReindex } from '../lib/storage/lineage-state.js';
 import { classifyEncodingIntent } from '../lib/search/encoding-intent.js';
 import { isEncodingIntentEnabled } from '../lib/search/search-flags.js';
+import { normalizeTier } from '../lib/scoring/importance-tiers.js';
 import { calculateDocumentWeight, isSpecDocumentType } from '../lib/storage/document-helpers.js';
 import { applyPostInsertMetadata } from '../lib/storage/post-insert-metadata.js';
 import { detectSpecLevelFromParsed } from '../lib/spec/spec-level.js';
@@ -393,7 +394,7 @@ function updateExistingMemory(
     if (reindexCarry != null) {
       database
         .prepare('UPDATE memory_index SET importance_tier = ? WHERE id = ?')
-        .run(reindexCarry.importanceTier, nextMemoryId);
+        .run(normalizeTier(reindexCarry.importanceTier), nextMemoryId);
       persistSourceKind(database, nextMemoryId, reindexCarry.sourceKind as SourceKind);
     }
 

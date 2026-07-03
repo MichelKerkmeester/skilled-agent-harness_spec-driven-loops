@@ -11,18 +11,18 @@ describe('Importance Tiers (T504)', () => {
 
   // 4.1 TIER RECOGNITION
   describe('Tier Recognition (T504-01)', () => {
-    it('T504-01: All 6 tiers recognized', () => {
-      const expectedTiers: ImportanceTier[] = ['constitutional', 'critical', 'important', 'normal', 'temporary', 'deprecated'];
+    it('T504-01: All 7 tiers recognized', () => {
+      const expectedTiers: ImportanceTier[] = ['constitutional', 'critical', 'important', 'normal', 'temporary', 'archived', 'deprecated'];
       const allPresent = expectedTiers.every(t => mod.IMPORTANCE_TIERS[t] !== undefined);
       const tierCount = Object.keys(mod.IMPORTANCE_TIERS).length;
 
       expect(allPresent).toBe(true);
-      expect(tierCount).toBe(6);
+      expect(tierCount).toBe(7);
     });
 
-    it('T504-01b: VALID_TIERS array has 6 entries', () => {
+    it('T504-01b: VALID_TIERS array has 7 entries', () => {
       expect(Array.isArray(mod.VALID_TIERS)).toBe(true);
-      expect(mod.VALID_TIERS.length).toBe(6);
+      expect(mod.VALID_TIERS.length).toBe(7);
     });
   });
 
@@ -185,7 +185,7 @@ describe('Importance Tiers (T504)', () => {
         const sorted = mod.getTiersByImportance();
 
         expect(Array.isArray(sorted)).toBe(true);
-        expect(sorted.length).toBe(6);
+        expect(sorted.length).toBe(7);
         expect(['constitutional', 'critical']).toContain(sorted[0]);
       }
     });

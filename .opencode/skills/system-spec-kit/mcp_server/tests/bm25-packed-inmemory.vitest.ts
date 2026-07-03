@@ -60,7 +60,8 @@ function createFtsDatabase(docs: BM25PackedFixtureDocument[]): Database.Database
       content_text TEXT,
       trigger_phrases TEXT,
       file_path TEXT,
-      importance_tier TEXT
+      importance_tier TEXT,
+      deleted_at TEXT
     );
     CREATE VIRTUAL TABLE memory_fts USING fts5(
       title,

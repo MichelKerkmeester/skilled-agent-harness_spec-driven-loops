@@ -11,6 +11,7 @@ import { randomUUID } from 'node:crypto';
 import { checkDatabaseUpdated } from '../core/index.js';
 import { ensureMemoryRuntimeInitialized } from '../lib/runtime/memory-runtime-guard.js';
 import * as vectorIndex from '../lib/search/vector-index.js';
+import { ACTIVE_ROW_SQL } from '../lib/search/active-row-predicate.js';
 import { createMCPSuccessResponse, createMCPErrorResponse } from '../lib/response/envelope.js';
 import { toErrorMessage } from '../utils/index.js';
 
@@ -148,16 +149,16 @@ async function handleMemoryList(args: ListArgs): Promise<MCPResponse> {
     : 'created_at';
 
   try {
-    const whereParts: string[] = [];
+    const whereParts: string[] = [ACTIVE_ROW_SQL('m', { includeCold: false })];
     const baseParams: unknown[] = [];
 
     if (!includeChunks) {
-      whereParts.push('parent_id IS NULL');
+      whereParts.push('m.parent_id IS NULL');
     }
 
     if (specFolder) {
       const specFolderCandidates = buildSpecFolderCandidates(specFolder);
-      const specFolderPredicates = specFolderCandidates.map(() => '(spec_folder = ? OR spec_folder LIKE ?)');
+      const specFolderPredicates = specFolderCandidates.map(() => '(m.spec_folder = ? OR m.spec_folder LIKE ?)');
       whereParts.push(`(${specFolderPredicates.join(' OR ')})`);
       for (const candidate of specFolderCandidates) {
         baseParams.push(candidate, `${candidate}/%`);
@@ -166,11 +167,11 @@ async function handleMemoryList(args: ListArgs): Promise<MCPResponse> {
 
     const whereClause = whereParts.length > 0 ? `WHERE ${whereParts.join(' AND ')}` : '';
 
-    const countSql = `SELECT COUNT(*) as count FROM memory_index ${whereClause}`;
+    const countSql = `SELECT COUNT(*) as count FROM memory_index m ${whereClause}`;
     const countResult = database.prepare(countSql).get(...baseParams) as Record<string, unknown> | undefined;
     total = (countResult && typeof countResult.count === 'number') ? countResult.count : 0;
 
-    const sql = `SELECT id, spec_folder, file_path, title, trigger_phrases, importance_weight, created_at, updated_at FROM memory_index ${whereClause} ORDER BY ${sortColumn} DESC LIMIT ? OFFSET ?`;
+    const sql = `SELECT id, spec_folder, file_path, title, trigger_phrases, importance_weight, created_at, updated_at FROM memory_index m ${whereClause} ORDER BY m.${sortColumn} DESC LIMIT ? OFFSET ?`;
     const params = [...baseParams, safeLimit, safeOffset];
     rows = database.prepare(sql).all(...params);
   } catch (dbErr: unknown) {

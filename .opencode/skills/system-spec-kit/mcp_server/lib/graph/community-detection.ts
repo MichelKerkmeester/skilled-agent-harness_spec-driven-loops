@@ -5,6 +5,7 @@
 import type Database from 'better-sqlite3';
 
 import { isCommunitySummariesEnabled } from '../search/search-flags.js';
+import { ACTIVE_ROW_SQL } from '../search/active-row-predicate.js';
 import { getCommunities, storeCommunities } from './community-storage.js';
 // CommunityResult now lives in the neutral types seam so the
 // detection/storage/summaries triangle cannot reform a value cycle. The
@@ -371,6 +372,20 @@ function buildAssignmentsFromCommunities(communities: CommunityResult[]): Map<st
   return assignments;
 }
 
+function filterActiveMemoryIds(db: Database.Database, ids: number[]): number[] {
+  const uniqueIds = Array.from(new Set(ids.filter((id) => Number.isFinite(id))));
+  if (uniqueIds.length === 0) return [];
+  const placeholders = uniqueIds.map(() => '?').join(',');
+  const rows = db.prepare(`
+    SELECT id
+    FROM memory_index
+    WHERE id IN (${placeholders})
+      AND ${ACTIVE_ROW_SQL('memory_index')}
+  `).all(...uniqueIds) as Array<{ id: number }>;
+  const activeIds = new Set(rows.map((row) => row.id));
+  return uniqueIds.filter((id) => activeIds.has(id));
+}
+
 function buildCommunitiesFromAssignments(
   db: Database.Database,
   assignments: Map<string, number>,
@@ -628,7 +643,7 @@ export function getCommunityMembers(db: Database.Database, memoryId: number): nu
         continue;
       }
 
-      return community.memberIds
+      return filterActiveMemoryIds(db, community.memberIds)
         .filter((memberId) => memberId !== memoryId)
         .sort((left, right) => left - right);
     }
@@ -639,10 +654,10 @@ export function getCommunityMembers(db: Database.Database, memoryId: number): nu
       return [];
     }
 
-    return Array.from(legacyAssignments.entries())
+    return filterActiveMemoryIds(db, Array.from(legacyAssignments.entries())
       .filter(([nodeId, communityId]) => communityId === legacyCommunityId && Number.parseInt(nodeId, 10) !== memoryId)
       .map(([nodeId]) => Number.parseInt(nodeId, 10))
-      .filter((nodeId) => Number.isFinite(nodeId))
+      .filter((nodeId) => Number.isFinite(nodeId)))
       .sort((left, right) => left - right);
   } catch (error: unknown) {
     const message = error instanceof Error ? error.message : String(error);

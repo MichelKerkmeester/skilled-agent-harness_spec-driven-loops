@@ -126,6 +126,7 @@ const importanceTierEnum = z.enum([
   'important',
   'normal',
   'temporary',
+  'archived',
   'deprecated',
 ]);
 

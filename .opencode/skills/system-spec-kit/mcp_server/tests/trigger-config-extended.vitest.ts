@@ -149,7 +149,9 @@ function createMockDb(rows: MockMemoryRow[] = []): DatabaseInstance {
       embedding_status TEXT DEFAULT 'success',
       document_type   TEXT DEFAULT 'spec',
       anchor_id       TEXT,
-      content_text    TEXT
+      content_text    TEXT,
+      deleted_at      TEXT,
+      importance_tier TEXT
     )
   `);
   const insert = db.prepare(`

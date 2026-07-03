@@ -907,7 +907,7 @@ async function handleMemorySearch(args: SearchArgs): Promise<MCPResponse> {
     rerank = true, // Enable reranking by default for better result quality
     applyLengthPenalty: applyLengthPenalty = true,
     trackAccess: trackAccess = false, // opt-in, off by default
-    includeArchived: includeArchivedRequested = false, // compatibility-only after Gate B cleanup
+    includeArchived: includeArchivedRequested = false,
     enableSessionBoost: enableSessionBoost = isSessionBoostEnabled(),
     enableCausalBoost: enableCausalBoost = isCausalBoostEnabled(),
     minQualityScore,
@@ -924,7 +924,7 @@ async function handleMemorySearch(args: SearchArgs): Promise<MCPResponse> {
   const resultExplainEnabled = isResultExplainEnabled();
   const resultExplainDebugEnabled = debug?.enabled === true
     || process.env.SPECKIT_RESULT_EXPLAIN_DEBUG?.toLowerCase().trim() === 'true';
-  const includeArchived = false;
+  const includeArchived = includeArchivedRequested === true;
 
   // Validate any caller-supplied sessionId through the server-side session
   // manager to prevent IDOR: a caller must not read or mutate another
@@ -1491,9 +1491,9 @@ async function handleMemorySearch(args: SearchArgs): Promise<MCPResponse> {
     }
     extraData.sourceContract = {
       version: CANONICAL_READER_CACHE_VERSION,
-      archivedTierEnabled: false,
+      archivedTierEnabled: true,
       legacyFallbackEnabled: false,
-      includeArchivedCompatibility: includeArchivedRequested === true ? 'ignored' : 'not_requested',
+      includeArchivedCompatibility: includeArchived ? 'honored' : 'not_requested',
       preferredDocumentTypes: ['spec_doc', 'continuity'],
       retainedResults: canonicalFilter.stats.retained,
       droppedNonCanonicalResults: canonicalFilter.stats.dropped,

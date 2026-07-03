@@ -9,6 +9,7 @@
 import { BM25_FTS5_WEIGHTS } from './bm25-index.js';
 import { specFolderLikePattern } from './vector-index-types.js';
 import { normalizeLexicalQueryTokens } from './lexical-normalizer.js';
+import { ACTIVE_ROW_SQL } from './active-row-predicate.js';
 import { isArchivedRetrievalIncludedByDefault } from './search-flags.js';
 import type Database from 'better-sqlite3';
 
@@ -183,9 +184,7 @@ function fts5Bm25Search(
   const folderFilter = specFolder
     ? "AND (m.spec_folder = ? OR m.spec_folder LIKE ? ESCAPE '\\')"
     : '';
-  const deprecatedTierFilter = includeCold
-    ? ''
-    : "AND (m.importance_tier IS NULL OR m.importance_tier != 'deprecated')";
+  const activeRowFilter = `AND ${ACTIVE_ROW_SQL('m', { includeArchived, includeCold })}`;
 
   const params: (string | number)[] = specFolder
     ? [sanitized, specFolder, specFolderLikePattern(specFolder), limit]
@@ -200,7 +199,7 @@ function fts5Bm25Search(
     JOIN memory_index m ON m.id = memory_fts.rowid
     WHERE memory_fts MATCH ?
       ${folderFilter}
-      ${deprecatedTierFilter}
+      ${activeRowFilter}
     ORDER BY fts_score DESC
     LIMIT ?
   `;
