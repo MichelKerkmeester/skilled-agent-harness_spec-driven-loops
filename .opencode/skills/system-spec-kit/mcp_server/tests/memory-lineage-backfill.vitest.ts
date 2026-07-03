@@ -173,6 +173,40 @@ describe('Memory lineage backfill', () => {
     `).get() as { total: number };
     expect(restoredLineage.total).toBe(0);
     expect(restoredProjection.total).toBe(0);
+
+    process.stdout.write(`${JSON.stringify({
+      drill: 'lineage-backfill-rollback',
+      checkpointCreated: {
+        ok: checkpoint.ok,
+        schemaVersion: checkpoint.schemaVersion,
+        sizeBytes: checkpoint.sizeBytes,
+      },
+      dryRunPlan: {
+        dryRun: dryRun.dryRun,
+        totalGroups: dryRun.totalGroups,
+        scanned: dryRun.scanned,
+        seeded: dryRun.seeded,
+        skipped: dryRun.skipped,
+        lineageRowsBeforeBackfill: beforeBackfill.total,
+      },
+      appliedBackfill: {
+        dryRun: executed.dryRun,
+        seeded: executed.seeded,
+        skipped: executed.skipped,
+        lineageRowsAfterBackfill: afterBackfill.total,
+        activeMemoryId: summary.activeMemoryId,
+        activeVersionNumber: summary.activeVersionNumber,
+        transitionCounts: summary.transitionCounts,
+      },
+      idempotentRerun: {
+        seeded: rerun.seeded,
+        skipped: rerun.skipped,
+      },
+      postRestore: {
+        lineageRows: restoredLineage.total,
+        activeProjectionRows: restoredProjection.total,
+      },
+    }, null, 2)}\n`);
     database.close();
   });
 });

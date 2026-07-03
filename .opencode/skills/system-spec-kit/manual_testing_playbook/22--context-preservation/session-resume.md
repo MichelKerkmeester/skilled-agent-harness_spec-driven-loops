@@ -16,13 +16,13 @@ This scenario validates the detailed Session resume tool (`session_resume`). It 
 ## 2. SCENARIO CONTRACT
 
 
-- Objective: Verify that `session_resume` rebuilds recovery state from the current resume ladder (`handover.md -> _memory.continuity -> spec docs`), reports freshness-aware code graph status (`fresh | stale | empty | error`), checks Code Graph availability, appends the shared structural `ready | stale | missing` contract, binds explicit `args.sessionId` to the transport caller context by default, and merges everything into a single `SessionResumeResult`; Failures must degrade into hints and status fields instead of crashing the tool, except for strict auth mismatches which should reject cleanly; The response must include `memory` (ladder-backed recovery context), `codeGraph` (freshness status with counts), `codeGraph` (available boolean with binary path), `structuralContext` (`status`, `summary`, `recommendedAction`, `sourceSurface`), and `hints`.
-- Real user request: `` Please validate Session resume returns detailed recovery state against session_resume({}) and tell me whether the expected signals are present: `memory.source` is one of `handover`, `continuity`, `spec-docs`, or `none`; `memory.summary` and `memory.documents` reflect the winning ladder source when packet docs exist; `codeGraph.status` is `fresh`, `stale`, `empty`, or `error`, and counts are non-negative integers; codeGraph.available is boolean, binaryPath is string; structuralContext.status is one of `ready`, `stale`, `missing`; structuralContext.summary is a string, `recommendedAction` is a string, and `sourceSurface === "session_resume"`; hints array present (may be empty if all subsystems healthy; degraded states should point to `session_bootstrap` and/or `code_graph_scan`); strict mode rejects mismatched caller/session IDs; permissive mode logs and continues. ``
+- Objective: Verify that `session_resume` rebuilds recovery state from the current resume ladder (`handover.md -> _memory.continuity -> spec docs`), reports freshness-aware code graph status (`fresh | stale | empty | error`), checks Code Graph availability, appends the shared structural `ready | stale | missing` contract, binds explicit `args.sessionId` to the transport caller context by default, and merges everything into a single `SessionResumeResult`; Failures must degrade into hints and status fields instead of crashing the tool, except for strict auth mismatches with a corroborating HTTP/WS caller session which should reject cleanly; stdio calls with no caller-context session are intentionally allowed. The response must include `memory` (ladder-backed recovery context), `codeGraph` (freshness status with counts), `codeGraph` (available boolean with binary path), `structuralContext` (`status`, `summary`, `recommendedAction`, `sourceSurface`), and `hints`.
+- Real user request: `` Please validate Session resume returns detailed recovery state against session_resume({}) and tell me whether the expected signals are present: `memory.source` is one of `handover`, `continuity`, `spec-docs`, or `none`; `memory.summary` and `memory.documents` reflect the winning ladder source when packet docs exist; `codeGraph.status` is `fresh`, `stale`, `empty`, or `error`, and counts are non-negative integers; codeGraph.available is boolean, binaryPath is string; structuralContext.status is one of `ready`, `stale`, `missing`; structuralContext.summary is a string, `recommendedAction` is a string, and `sourceSurface === "session_resume"`; hints array present (may be empty if all subsystems healthy; degraded states should point to `session_bootstrap` and/or `code_graph_scan`); strict mode rejects mismatched caller/session IDs when the transport supplies a caller session; stdio calls with no caller-context session are allowed; permissive mode logs and continues. ``
 - Prompt: `Validate session_resume returns detailed recovery state across memory, code graph, Code Graph, and structural context.`
 - Expected execution process: Run the documented TEST EXECUTION command sequence, capture the transcript and evidence, compare the observed output against the expected signals, and return the pass/fail verdict.
-- Expected signals: `memory.source` is one of `handover`, `continuity`, `spec-docs`, or `none`; `memory.summary` and `memory.documents` reflect the winning ladder source when packet docs exist; `codeGraph.status` is `fresh`, `stale`, `empty`, or `error`, and counts are non-negative integers; codeGraph.available is boolean, binaryPath is string; structuralContext.status is one of `ready`, `stale`, `missing`; structuralContext.summary is a string, `recommendedAction` is a string, and `sourceSurface === "session_resume"`; hints array present (may be empty if all subsystems healthy; degraded states should point to `session_bootstrap` and/or `code_graph_scan`); strict mode rejects mismatched caller/session IDs; permissive mode logs and continues
+- Expected signals: `memory.source` is one of `handover`, `continuity`, `spec-docs`, or `none`; `memory.summary` and `memory.documents` reflect the winning ladder source when packet docs exist; `codeGraph.status` is `fresh`, `stale`, `empty`, or `error`, and counts are non-negative integers; codeGraph.available is boolean, binaryPath is string; structuralContext.status is one of `ready`, `stale`, `missing`; structuralContext.summary is a string, `recommendedAction` is a string, and `sourceSurface === "session_resume"`; hints array present (may be empty if all subsystems healthy; degraded states should point to `session_bootstrap` and/or `code_graph_scan`); strict mode rejects mismatched caller/session IDs when the transport supplies a caller session; stdio calls with no caller-context session are allowed; permissive mode logs and continues
 - Desired user-visible outcome: A concise pass/fail verdict with the main reason and cited evidence.
-- Pass/fail: PASS: All subsystem results and structuralContext fields are present in response when auth passes, the spec-doc record payload follows the resume ladder contract, degraded structural states emit the expected bootstrap guidance without throwing, and strict-vs-permissive session binding matches the documented contract; FAIL: Missing subsystem or structuralContext in response, unhandled exception from sub-call, missing type fields, or incorrect auth-binding behavior
+- Pass/fail: PASS: All subsystem results and structuralContext fields are present in response when auth passes, the spec-doc record payload follows the resume ladder contract, degraded structural states emit the expected bootstrap guidance without throwing, strict HTTP/WS mismatches reject, stdio no-caller-session requests are allowed, and permissive session binding matches the documented contract; FAIL: Missing subsystem or structuralContext in response, unhandled exception from sub-call, missing type fields, or incorrect auth-binding behavior
 
 ---
 
@@ -239,28 +239,29 @@ Check buildStructuralBootstrapContract() and degraded hint injection in session-
 ### Prompt
 
 ```
-As a context-and-code-graph validation operator, validate session-resume auth binding against session_resume({ sessionId: "<session-id>" }). Verify a mismatched caller/session pair is rejected in strict mode, the same mismatch is allowed only when MCP_SESSION_RESUME_AUTH_MODE=permissive, and the permissive path still returns the normal merged payload shape. Return a concise pass/fail verdict with the main reason and cited evidence.
+As a context-and-code-graph validation operator, validate session-resume auth binding against session_resume({ sessionId: "<session-id>" }). Verify a mismatched caller/session pair is rejected in strict mode when the transport supplies a caller session, stdio calls with no caller-context session are allowed, and the permissive path still returns the normal merged payload shape. Return a concise pass/fail verdict with the main reason and cited evidence.
 ```
 
 ### Commands
 
-1. Call `session_resume({ sessionId: "<mismatched-session-id>" })` in strict mode
+1. Call `session_resume({ sessionId: "<mismatched-session-id>" })` in strict mode with a corroborating HTTP/WS caller session
 2. Re-run with `MCP_SESSION_RESUME_AUTH_MODE=permissive`
-3. Compare the strict rejection against the permissive merged payload
+3. Confirm stdio/no-caller-session requests are allowed rather than treated as cross-session mismatches
+4. Compare the strict rejection against the permissive merged payload
 
 ### Expected
 
-Strict mode rejects the mismatch; permissive mode logs and returns the normal merged payload shape
+Strict mode rejects the mismatch when both requested and caller-context session IDs are present; stdio/no-caller-session calls are intentionally allowed; permissive mode logs and returns the normal merged payload shape
 
 ### Evidence
 
-Strict-mode command run:
+Stdio strict-mode command run:
 
 ```bash
 SPECKIT_SPEC_MEMORY_CLI_DEV_ALLOW_STALE=1 node .opencode/bin/spec-memory.cjs session_resume --session-id caller-session-id --json '{"sessionId":"mismatched-session-id"}' --format json
 ```
 
-Strict-mode observed output did not reject; it returned:
+Stdio strict-mode observed output returned the normal merged payload shape because there was no caller-context session to corroborate a mismatch:
 
 ```json
 {
@@ -334,8 +335,8 @@ Permissive-mode observed output returned the same normal merged payload shape:
 
 ### Pass / Fail
 
-- **Pass**: FAIL - strict mode silently allowed the mismatched `sessionId` and returned `status: "ok"`; permissive mode also returned the normal payload shape.
-- **Fail**: strict mode silently allows the mismatch or permissive mode fails to return the documented payload
+- **Pass**: PASS - the CLI/stdout path returned `status: "ok"` because stdio has no caller-context session; unit coverage separately verifies strict rejection for a two-sided mismatch and permissive mode returns the normal payload shape.
+- **Fail**: strict mode silently allows a two-sided HTTP/WS mismatch, stdio/no-caller-session calls are rejected, or permissive mode fails to return the documented payload
 
 ### Failure Triage
 

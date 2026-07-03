@@ -159,8 +159,8 @@ function createReceiptDatabase(): Database.Database {
   return database;
 }
 
-function parseMemoryResponse(response: { content: Array<{ text: string }> }): Record<string, any> {
-  return JSON.parse(response.content[0].text) as Record<string, any>;
+function parseMemoryResponse<TResponse>(response: { content: Array<{ text: string }> }): TResponse {
+  return JSON.parse(response.content[0].text) as TResponse;
 }
 
 function daemonProcessRows(): string[] {
@@ -295,7 +295,9 @@ describe('release-cleanup stress coverage for new memory and CLI surfaces', () =
     try {
       delete process.env.SPECKIT_SOFT_DELETE_TOMBSTONES;
       seedMemoryRow(database, { id: 1, specFolder: 'specs/stress-delete' });
-      const hardDelete = parseMemoryResponse(await handleMemoryDelete({ id: 1, confirm: true }));
+      const hardDelete = parseMemoryResponse<{ data: { deleted: number } }>(
+        await handleMemoryDelete({ id: 1, confirm: true }),
+      );
       expect(hardDelete.data.deleted).toBe(1);
       expect((database.prepare('SELECT COUNT(*) AS count FROM memory_index WHERE id = 1').get() as { count: number }).count).toBe(0);
     } finally {

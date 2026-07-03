@@ -285,6 +285,30 @@ describe('Handler Eval Reporting (007-evaluation)', () => {
       ).rejects.toThrow(/no report/i);
     });
 
+    it('T006-A7b: dataset dry-run returns structured empty-dataset response without persistence', async () => {
+      const result = await evalReporting.handleEvalRunAblation({
+        dataset: 'playbook-017-empty-dataset',
+        dryRun: true,
+      });
+
+      expect(mocks.mockRunAblation).not.toHaveBeenCalled();
+      expect(mocks.mockStoreAblationResults).not.toHaveBeenCalled();
+
+      const envelope = parseEnvelope(result);
+      expect(envelope.summary).toContain('empty or unavailable');
+      const data = getData(envelope);
+      expect(data.status).toBe('empty_dataset');
+      expect(data.datasetSelector).toBe('playbook-017-empty-dataset');
+      expect(data.dryRun).toBe(true);
+      expect(data.stored).toBe(false);
+      expect(data.warnings).toEqual([
+        expect.objectContaining({
+          code: 'EMPTY_DATASET',
+          selector: 'playbook-017-empty-dataset',
+        }),
+      ]);
+    });
+
     it('T006-A8: storeResults=false skips persistence', async () => {
       const result = await evalReporting.handleEvalRunAblation({
         channels: ['vector'],
@@ -297,6 +321,36 @@ describe('Handler Eval Reporting (007-evaluation)', () => {
       expect(data.stored).toBe(false);
       const hints = envelope.hints as string[];
       expect(hints.some((h: string) => /not persisted/i.test(h))).toBe(true);
+    });
+
+    it('T006-A8b: empty dataset reports never persist metrics', async () => {
+      mocks.mockRunAblation.mockResolvedValueOnce(makeAblationReport({
+        status: 'empty_dataset',
+        results: [],
+        overallBaselineRecall: 0,
+        queryCount: 0,
+        evaluatedQueryCount: 0,
+        requestedQueryIds: [999999],
+        resolvedQueryIds: [],
+        missingQueryIds: [999999],
+        datasetSelector: 'groundTruthQueryIds=[999999]',
+        warnings: ['Ablation dataset empty or unavailable for selector groundTruthQueryIds=[999999]: no selected ground-truth queries resolved.'],
+      }));
+
+      const result = await evalReporting.handleEvalRunAblation({
+        channels: ['vector'],
+        groundTruthQueryIds: [999999],
+      });
+
+      expect(mocks.mockStoreAblationResults).not.toHaveBeenCalled();
+      const envelope = parseEnvelope(result);
+      expect(envelope.summary).toContain('empty or unavailable');
+      const data = getData(envelope);
+      expect(data.status).toBe('empty_dataset');
+      expect(data.stored).toBe(false);
+      expect(data.warnings).toEqual([
+        'Ablation dataset empty or unavailable for selector groundTruthQueryIds=[999999]: no selected ground-truth queries resolved.',
+      ]);
     });
 
     it('T006-A9: includeFormattedReport=false omits formatted report', async () => {

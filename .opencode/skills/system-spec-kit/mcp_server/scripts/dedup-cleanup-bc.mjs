@@ -36,7 +36,6 @@ const DELETE_SET_SQL = `
 `;
 
 function log(msg) {
-  // eslint-disable-next-line no-console
   console.log(`[dedup-cleanup] ${msg}`);
 }
 

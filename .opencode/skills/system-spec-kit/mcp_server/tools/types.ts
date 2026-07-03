@@ -358,6 +358,8 @@ export interface BulkDeleteArgs {
 /** Arguments for evaluation ablation runs. */
 export interface EvalRunAblationArgs {
   mode?: 'ablation' | 'k_sensitivity';
+  dataset?: string;
+  dryRun?: boolean;
   channels?: Array<'vector' | 'bm25' | 'fts5' | 'graph' | 'trigger'>;
   queries?: string[];
   groundTruthQueryIds?: number[];

@@ -29,7 +29,7 @@ export const ALL_DISPATCHERS = [
 export async function dispatchTool(
   name: string,
   args: Record<string, unknown>,
-  callerContext?: MCPCallerContext | null,
+  _callerContext?: MCPCallerContext | null,
 ): Promise<import('./types.js').MCPResponse | null> {
   for (const dispatcher of ALL_DISPATCHERS) {
     if (dispatcher.TOOL_NAMES.has(name)) {

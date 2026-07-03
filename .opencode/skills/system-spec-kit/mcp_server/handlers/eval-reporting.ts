@@ -52,12 +52,54 @@ import type { MCPResponse } from './types.js';
 
 interface RunAblationArgs {
   mode?: 'ablation' | 'k_sensitivity';
+  dataset?: string;
+  dryRun?: boolean;
   channels?: AblationChannel[];
   groundTruthQueryIds?: number[];
   recallK?: number;
   queries?: string[];
   storeResults?: boolean;
   includeFormattedReport?: boolean;
+}
+
+function normalizeDatasetSelector(args: RunAblationArgs): string | undefined {
+  const dataset = args.dataset?.trim();
+  if (dataset) return dataset;
+  if (Array.isArray(args.groundTruthQueryIds) && args.groundTruthQueryIds.length > 0) {
+    return `groundTruthQueryIds=[${args.groundTruthQueryIds.join(',')}]`;
+  }
+  return undefined;
+}
+
+function createEmptyDatasetAblationResponse(selector: string, dryRun: boolean): MCPResponse {
+  const warning = {
+    code: 'EMPTY_DATASET',
+    selector,
+    message: `Ablation dataset selector "${selector}" is empty or unavailable.`,
+  };
+
+  return createMCPSuccessResponse({
+    tool: 'eval_run_ablation',
+    summary: `Ablation dataset empty or unavailable (selector=${selector})`,
+    data: {
+      status: 'empty_dataset',
+      datasetSelector: selector,
+      dryRun,
+      stored: false,
+      warnings: [warning],
+      recovery: {
+        actions: [
+          'Use groundTruthQueryIds to select static ground-truth queries.',
+          'Omit dataset to run the default ablation corpus.',
+        ],
+      },
+    },
+    hints: [
+      dryRun
+        ? 'Dry-run requested; no ablation metrics were persisted.'
+        : 'No ablation metrics were persisted because the dataset selector was empty or unavailable.',
+    ],
+  });
 }
 
 interface KSensitivityArgs {
@@ -247,6 +289,11 @@ async function handleEvalRunAblation(args: RunAblationArgs): Promise<MCPResponse
     );
   }
 
+  const datasetSelector = normalizeDatasetSelector(args);
+  if (args.dataset) {
+    return createEmptyDatasetAblationResponse(datasetSelector ?? args.dataset, args.dryRun === true);
+  }
+
   const channels = normalizeChannels(args.channels as string[] | undefined);
   const recallK = typeof args.recallK === 'number' && Number.isFinite(args.recallK)
     ? Math.max(1, Math.floor(args.recallK))
@@ -304,6 +351,7 @@ async function handleEvalRunAblation(args: RunAblationArgs): Promise<MCPResponse
       channels,
       groundTruthQueryIds: args.groundTruthQueryIds,
       recallK,
+      datasetSelector,
       alignmentDb: db,
       alignmentDbPath: dbPath,
       alignmentContext: 'eval_run_ablation',
@@ -319,23 +367,37 @@ async function handleEvalRunAblation(args: RunAblationArgs): Promise<MCPResponse
     );
   }
 
-  const shouldStore = args.storeResults !== false;
+  const isEmptyDataset = report.status === 'empty_dataset' || report.evaluatedQueryCount === 0;
+  const shouldStore = args.storeResults !== false && args.dryRun !== true && !isEmptyDataset;
   const stored = shouldStore ? storeAblationResults(report) : false;
   const formatted = args.includeFormattedReport === false ? null : formatAblationReport(report);
+  const status = report.status ?? 'complete';
+  const summary = isEmptyDataset
+    ? `Ablation dataset empty or unavailable (selector=${report.datasetSelector ?? datasetSelector ?? 'default ground truth dataset'})`
+    : `Ablation run complete (${report.results.length} channels, baseline=${report.overallBaselineRecall.toFixed(4)})`;
 
   return createMCPSuccessResponse({
     tool: 'eval_run_ablation',
-    summary: `Ablation run complete (${report.results.length} channels, baseline=${report.overallBaselineRecall.toFixed(4)})`,
+    summary,
     data: {
+      status,
       report,
       stored,
+      dryRun: args.dryRun === true,
+      warnings: report.warnings ?? [],
       ...(formatted ? { formattedReport: formatted } : {}),
     },
     hints: [
+      args.dryRun === true
+        ? 'Ablation dry-run requested; metrics were not persisted'
+        : null,
+      isEmptyDataset
+        ? 'Ablation dataset was empty or unavailable; no metrics were persisted'
+        : null,
       shouldStore
         ? (stored ? 'Ablation metrics stored to eval_metric_snapshots' : 'Ablation metrics storage failed')
         : 'Ablation metrics were not persisted (storeResults=false)',
-    ],
+    ].filter((hint): hint is string => typeof hint === 'string'),
   });
 }
 

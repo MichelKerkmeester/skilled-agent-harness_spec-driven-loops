@@ -12,10 +12,6 @@
 
 import { describe, it, expect } from 'vitest';
 import {
-  classifyQueryComplexity,
-  type QueryComplexityTier,
-} from '../../lib/search/query-classifier';
-import {
   routeQuery,
   getChannelSubset,
   DEFAULT_ROUTING_CONFIG,
@@ -181,7 +177,6 @@ describe('T031-01: Synthetic Query Corpus', () => {
   it('T5: no query appears in multiple tier lists', () => {
     const simple = new Set(SIMPLE_QUERIES);
     const moderate = new Set(MODERATE_QUERIES);
-    const complex = new Set(COMPLEX_QUERIES);
     for (const q of MODERATE_QUERIES) {
       expect(simple.has(q)).toBe(false);
     }

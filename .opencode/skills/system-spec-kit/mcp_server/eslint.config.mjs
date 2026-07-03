@@ -34,4 +34,10 @@ export default tseslint.config(
       '@typescript-eslint/no-unused-vars': 'off',
     },
   },
+  {
+    files: ['**/*.cjs'],
+    rules: {
+      '@typescript-eslint/no-require-imports': 'off',
+    },
+  },
 );

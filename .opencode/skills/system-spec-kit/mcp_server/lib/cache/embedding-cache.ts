@@ -265,7 +265,7 @@ function migrateEmbeddingCacheSchema(db: Database.Database): void {
   backfillActiveProfileKey(db);
 }
 
-function estimateRowBytes(row: {
+function _estimateRowBytes(row: {
   embedding?: Buffer;
   content_hash: string;
   model_id: string;

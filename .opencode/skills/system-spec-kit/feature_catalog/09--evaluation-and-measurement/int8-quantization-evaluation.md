@@ -1,6 +1,6 @@
 ---
 title: "INT8 quantization evaluation"
-description: "Records the NO-GO decision on INT8 quantization after all three activation criteria (corpus size, p95 latency, embedding dimensions) were unmet."
+description: "Records the INT8 quantization decision check; current live data now meets the corpus-size activation criterion, so the prior NO-GO needs re-evaluation."
 trigger_phrases:
   - "int8 quantization evaluation"
   - "int8 quantization no-go decision"
@@ -16,7 +16,7 @@ version: 3.6.0.12
 
 ## 1. OVERVIEW
 
-Records the NO-GO decision on INT8 quantization after all three activation criteria (corpus size, p95 latency, embedding dimensions) were unmet.
+Records the INT8 quantization decision check. The original decision was **NO-GO** when all three activation criteria were unmet; current live data now meets the corpus-size activation criterion, so the prior no-go should be re-evaluated before any implementation decision.
 
 This evaluated whether compressing stored data to save space was worth the trade-off in search accuracy. The answer was no: the storage saved was tiny and the risk of slightly worse results was not justified. Think of it like deciding whether to photocopy your photos at lower quality to save a filing cabinet drawer. When the drawer is mostly empty anyway, the savings are not worth the blur.
 
@@ -24,11 +24,15 @@ This evaluated whether compressing stored data to save space was worth the trade
 
 ## 2. HOW IT WORKS
 
-Decision: **NO-GO**. All three activation criteria were unmet.
+Current decision: **RE-EVALUATE**. The prior **NO-GO** is no longer reaffirmed against current live data because at least one activation criterion is now met.
 
-Active memories with embeddings: 2,412 measured versus the 10,000 threshold (24.1%). P95 search latency: approximately 15ms measured versus the 50ms threshold (approximately 30%). Embedding dimensions: 1,024 measured versus the 1,536 threshold (66.7%).
+Fresh read-only measurements from the live memory database on 2026-07-03:
 
-The estimated 7.1 MB storage savings (3.9% of 180 MB total DB) did not justify 5.32% estimated recall risk, custom quantized BLOB complexity or KL-divergence calibration overhead. Re-evaluate when the corpus grows approximately 4x (above 10K memories), sustained p95 exceeds 50ms or the embedding provider changes to dimensions above 1,536.
+- Active memories with embeddings: 18,466 vector-backed active rows in the `vec_768` shard versus the 10,000 threshold (184.7%). `memory_index` marks 18,840 active rows as `embedding_status='success'`; the lower vector-backed count is the conservative count because 374 success rows currently lack an active vector payload.
+- P95 search latency: 123ms versus the 50ms threshold, based on the current persisted `speckit-eval.db.eval_final_results` latency samples (`n=2`). This is a sparse persisted sample, not a sustained fresh benchmark, so it should trigger re-measurement rather than stand alone as an implementation go/no-go.
+- Embedding dimensions: active `nomic-embed-text-v1.5` via `ollama`, 768 dimensions versus the 1,536 threshold (50%). This matches `vec_metadata.active_embedder_dim=768` and the registered embedder configuration.
+
+The current vector-backed corpus would save approximately 42.5 MB (40.6 MiB) of raw vector payload if 768-dim fp32 vectors were replaced by int8 payloads, before SQLite/index overhead. That is about 2.8% of the current main-plus-active-shard database footprint (1.49 GB) and about 31% of the active vector shard. Because the corpus threshold is now met, re-run a dedicated INT8 evaluation before deciding whether storage savings justify the documented 5.32% estimated recall risk, custom quantized BLOB complexity, and KL-divergence calibration overhead.
 
 ---
 

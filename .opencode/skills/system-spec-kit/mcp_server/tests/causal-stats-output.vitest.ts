@@ -3,6 +3,7 @@ import * as handler from '../handlers/causal-graph';
 import * as core from '../core';
 import * as vectorIndex from '../lib/search/vector-index';
 import * as causalEdges from '../lib/storage/causal-edges';
+import { validateToolArgs } from '../schemas/tool-input-schemas';
 import { createMemoryDbFixture, disposeMemoryDbFixture, seedMemoryRow } from './helpers/memory-db-fixture';
 
 function parseResponse(result: { content: Array<{ text: string }> }) {
@@ -37,6 +38,40 @@ afterEach(() => {
 });
 
 describe('memory_causal_stats output schema', () => {
+  it('accepts a scope and returns structured zero-state for an empty scoped graph', async () => {
+    const scope = 'playbook-017-empty-causal-scope';
+    const db = createMemoryDbFixture();
+    try {
+      expect(validateToolArgs('memory_causal_stats', { scope })).toMatchObject({ scope });
+
+      seedMemoryRow(db, { id: 1, specFolder: 'specs/linked-global' });
+      seedMemoryRow(db, { id: 2, specFolder: 'specs/linked-global' });
+      causalEdges.init(db);
+      db.prepare(`
+        INSERT INTO causal_edges (source_id, target_id, relation, strength, evidence, created_by)
+        VALUES ('1', '2', 'caused', 1.0, 'global fixture', 'manual')
+      `).run();
+
+      const result = await handler.handleMemoryCausalStats({ scope });
+      const parsed = parseResponse(result);
+
+      expect(parsed.summary).toContain(scope);
+      expect(parsed.data.scope).toBe(scope);
+      expect(parsed.data.total_edges).toBe(0);
+      expect(parsed.data.unique_sources).toBe(0);
+      expect(parsed.data.unique_targets).toBe(0);
+      expect(parsed.data.link_coverage_percent).toBe('0%');
+      for (const relation of ['supersedes', 'caused', 'supports', 'contradicts', 'enabled', 'derived_from']) {
+        expect(parsed.data.by_relation).toHaveProperty(relation);
+        expect(typeof parsed.data.by_relation[relation]).toBe('number');
+        expect(parsed.data.by_relation[relation]).toBe(0);
+      }
+      expect(parsed.hints.join('\n')).toContain('memory_causal_link');
+    } finally {
+      disposeMemoryDbFixture(db);
+    }
+  });
+
   it('emits zero-filled memory causal graph relations, target-gated health, and remediation hints', async () => {
     vi.spyOn(core, 'checkDatabaseUpdated').mockResolvedValue(false);
     vi.spyOn(vectorIndex, 'initializeDb').mockImplementation(() => undefined);

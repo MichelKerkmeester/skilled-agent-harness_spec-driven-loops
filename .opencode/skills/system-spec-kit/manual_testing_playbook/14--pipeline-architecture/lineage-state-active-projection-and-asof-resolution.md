@@ -71,20 +71,38 @@ $ npm test -- --run tests/memory-lineage-state.vitest.ts
 
 
  Test Files  1 passed (1)
-      Tests  16 passed (16)
-   Start at  15:01:27
-   Duration  611ms (transform 310ms, setup 13ms, import 387ms, tests 153ms, environment 0ms)
+      Tests  17 passed (17)
+   Start at  13:03:18
+   Duration  882ms (transform 374ms, setup 27ms, import 491ms, tests 211ms, environment 0ms)
 ```
 
-Observed comparison against Expected: the targeted suite passed with `1 passed (1)` test file and `16 passed (16)` tests, but the transcript did not show active projection selection, deterministic `asOf` resolution, malformed-chain detection, or timestamp-order coverage for non-ISO or timezone variants.
+Supplemental evidence command:
+
+```console
+$ npm test -- --run tests/memory-lineage-state.vitest.ts --reporter=verbose
+
+> @spec-kit/mcp-server@1.8.0 test
+> node scripts/run-tests.mjs --run tests/memory-lineage-state.vitest.ts --reporter=verbose
+
+PASS mcp_server/tests/memory-lineage-state.vitest.ts > Memory lineage state > records append-first versions and resolves active plus asOf reads deterministically
+PASS mcp_server/tests/memory-lineage-state.vitest.ts > Memory lineage state > resolves asOf reads by parsed epoch across timezone-offset lineage windows
+PASS mcp_server/tests/memory-lineage-state.vitest.ts > Memory lineage state > resolves lineage reads from any chain member even when the active projection row is missing
+PASS mcp_server/tests/memory-lineage-state.vitest.ts > Memory lineage state > detects malformed predecessor chains and projection drift
+PASS mcp_server/tests/memory-lineage-state.vitest.ts > Memory lineage state > rejects backwards valid_from timestamps and warns when a predecessor is already superseded
+
+Test Files  1 passed (1)
+     Tests  17 passed (17)
+```
+
+Observed comparison against Expected: the targeted suite passed with `1 passed (1)` test file and `17 passed (17)` tests. The verbose transcript now shows active projection selection, deterministic `asOf` resolution, malformed-chain detection, and timestamp-order coverage that depends on parsed epoch comparisons for timezone-offset lineage windows.
 
 ### Pass / Fail
 
-- **FAIL**: `memory-lineage-state.vitest.ts` completed with all tests passing, but the actual transcript did not show both valid and malformed lineage cases plus timestamp-order coverage that depends on parsed epoch comparisons.
+- **PASS**: `memory-lineage-state.vitest.ts` completed with all tests passing, and the verbose transcript shows both valid and malformed lineage cases plus timestamp-order coverage that depends on parsed epoch comparisons.
 
-### Failure Triage
+### Regression Triage
 
-Re-run `npm test -- --run tests/memory-lineage-state.vitest.ts -t asOf`; inspect `validateTransitionInput()` in `lib/storage/lineage-state.ts` and `lib/search/vector-index-schema.ts` if projection or timestamp assertions drift
+Re-run `npm test -- --run tests/memory-lineage-state.vitest.ts -t asOf`; inspect `validateTransitionInput()` and `resolveLineageAsOf()` in `lib/storage/lineage-state.ts` and `lib/search/vector-index-schema.ts` if projection or timestamp assertions drift.
 
 ## 4. SOURCE FILES
 - Root playbook: [manual_testing_playbook.md](../manual_testing_playbook.md)

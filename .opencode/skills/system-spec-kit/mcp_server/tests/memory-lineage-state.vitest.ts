@@ -192,6 +192,60 @@ describe('Memory lineage state', () => {
     expect(predecessorTier.importance_tier).toBe('deprecated');
   });
 
+  it('resolves asOf reads by parsed epoch across timezone-offset lineage windows', () => {
+    const filePath = '/tmp/specs/015-memory-state/memory/timezone-lineage.md';
+    insertMemory(database, {
+      id: 101,
+      specFolder: 'specs/015-memory-state',
+      filePath,
+      title: 'Timezone v1',
+      createdAt: '2026-03-13T09:30:00+02:00',
+    });
+    recordLineageVersion(database, {
+      memoryId: 101,
+      actor: 'ops:lineage-timezone',
+      effectiveAt: '2026-03-13T09:30:00+02:00',
+      transitionEvent: 'CREATE',
+    });
+
+    insertMemory(database, {
+      id: 102,
+      specFolder: 'specs/015-memory-state',
+      filePath,
+      title: 'Timezone v2',
+      createdAt: '2026-03-13T08:00:00.000Z',
+    });
+    recordLineageVersion(database, {
+      memoryId: 102,
+      actor: 'ops:lineage-timezone',
+      predecessorMemoryId: 101,
+      effectiveAt: '2026-03-13T08:00:00.000Z',
+      transitionEvent: 'SUPERSEDE',
+    });
+
+    const projection = getActiveMemoryProjection(database, { memoryId: 101 });
+    const beforeSupersede = resolveMemoryAsOf(database, {
+      memoryId: 102,
+      asOf: '2026-03-13T07:45:00.000Z',
+    });
+    const afterSupersede = resolveMemoryAsOf(database, {
+      memoryId: 101,
+      asOf: '2026-03-13T08:15:00.000Z',
+    });
+
+    expect(projection?.memoryId).toBe(102);
+    expect(beforeSupersede?.memoryId).toBe(101);
+    expect(afterSupersede?.memoryId).toBe(102);
+
+    const predecessorWindow = database.prepare(`
+      SELECT valid_from, valid_to
+      FROM memory_lineage
+      WHERE memory_id = 101
+    `).get() as { valid_from: string; valid_to: string | null };
+    expect(predecessorWindow.valid_from).toBe('2026-03-13T09:30:00+02:00');
+    expect(predecessorWindow.valid_to).toBe('2026-03-13T08:00:00.000Z');
+  });
+
   it('validates lineage schema support for phase 2 tables', () => {
     const report = validateLineageSchemaSupport(database);
     expect(report.compatible).toBe(true);

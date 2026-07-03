@@ -13,7 +13,7 @@ import path from 'node:path';
 import { graphMetadataSchema } from '../graph/graph-metadata-schema.js';
 import { perFolderDescriptionSchema } from '../description/description-schema.js';
 import { computeSourceFingerprintForFolder, parseCompletionPct, hasOpenTaskItems } from '../graph/graph-metadata-parser.js';
-import { isGeneratorHardeningEnabled, isStatusCompletionConsistencyGateEnabled } from '../config/capability-flags.js';
+import { isGeneratorHardeningEnabled } from '../config/capability-flags.js';
 
 export const GENERATED_METADATA_INTEGRITY_RULE = 'GENERATED_METADATA_INTEGRITY' as const;
 

@@ -1699,4 +1699,48 @@ describe('Ablation Framework — Multi-Metric Wiring (CHK-088–091)', () => {
       }
     }
   });
+
+  it('returns a structured empty-dataset report when requested groundTruthQueryIds do not resolve', async () => {
+    const savedEnv = process.env.SPECKIT_ABLATION;
+    process.env.SPECKIT_ABLATION = 'true';
+
+    try {
+      const warnSpy = vi.spyOn(console, 'warn').mockImplementation(() => {});
+      const searchFn = vi.fn(() => []);
+      const missingId = 999999;
+
+      const report = await runAblation(searchFn, {
+        channels: ['vector'],
+        groundTruthQueryIds: [missingId],
+      });
+
+      expect(searchFn).not.toHaveBeenCalled();
+      expect(report).not.toBeNull();
+      if (!report) return;
+
+      expect(report.status).toBe('empty_dataset');
+      expect(report.results).toEqual([]);
+      expect(report.queryCount).toBe(0);
+      expect(report.evaluatedQueryCount).toBe(0);
+      expect(report.requestedQueryIds).toEqual([missingId]);
+      expect(report.resolvedQueryIds).toEqual([]);
+      expect(report.missingQueryIds).toEqual([missingId]);
+      expect(report.datasetSelector).toBe(`groundTruthQueryIds=[${missingId}]`);
+      expect(report.warnings?.[0]).toContain(`groundTruthQueryIds=[${missingId}]`);
+
+      const formatted = formatAblationReport(report);
+      expect(formatted).toContain('**Status:** empty_dataset');
+      expect(formatted).toContain(`**Dataset selector:** groundTruthQueryIds=[${missingId}]`);
+      expect(formatted).toContain('| n/a | n/a | n/a | n/a | n/a | 0 | 0 | 0 | empty dataset |');
+      expect(warnSpy).toHaveBeenCalledWith(
+        `[ablation] No queries to evaluate. Requested IDs not found: ${missingId}.`,
+      );
+    } finally {
+      if (savedEnv !== undefined) {
+        process.env.SPECKIT_ABLATION = savedEnv;
+      } else {
+        delete process.env.SPECKIT_ABLATION;
+      }
+    }
+  });
 });

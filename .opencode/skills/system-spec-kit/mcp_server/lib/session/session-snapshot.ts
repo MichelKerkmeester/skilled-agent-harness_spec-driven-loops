@@ -11,10 +11,7 @@ import {
   getGraphFreshnessFromMarker,
   getGraphStatsFromMarker,
 } from '../code-graph-boundary.js';
-import {
-  trustStateFromStructuralStatus,
-  type SharedPayloadProvenance,
-} from '../context/shared-payload.js';
+import { trustStateFromStructuralStatus } from '../context/shared-payload.js';
 // StructuralBootstrapContract now lives in a neutral seam
 // module so memory-surface and session-snapshot can both depend on it
 // without creating a value-level dependency cycle. The re-export keeps every

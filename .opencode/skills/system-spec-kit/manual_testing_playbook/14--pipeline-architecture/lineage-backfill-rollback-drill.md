@@ -61,23 +61,61 @@ Observed transcript:
 
  RUN  v4.1.9 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit
 
+{
+  "drill": "lineage-backfill-rollback",
+  "checkpointCreated": {
+    "ok": true,
+    "schemaVersion": 41,
+    "sizeBytes": 581632
+  },
+  "dryRunPlan": {
+    "dryRun": true,
+    "totalGroups": 2,
+    "scanned": 3,
+    "seeded": 3,
+    "skipped": 0,
+    "lineageRowsBeforeBackfill": 0
+  },
+  "appliedBackfill": {
+    "dryRun": false,
+    "seeded": 3,
+    "skipped": 0,
+    "lineageRowsAfterBackfill": 3,
+    "activeMemoryId": 2,
+    "activeVersionNumber": 2,
+    "transitionCounts": {
+      "CREATE": 0,
+      "UPDATE": 0,
+      "SUPERSEDE": 0,
+      "BACKFILL": 2
+    }
+  },
+  "idempotentRerun": {
+    "seeded": 0,
+    "skipped": 3
+  },
+  "postRestore": {
+    "lineageRows": 0,
+    "activeProjectionRows": 0
+  }
+}
 
  Test Files  1 passed (1)
       Tests  1 passed (1)
-   Start at  15:01:00
-   Duration  481ms (transform 272ms, setup 14ms, import 353ms, tests 50ms, environment 0ms)
+   Start at  13:10:20
+   Duration  592ms (transform 334ms, setup 18ms, import 439ms, tests 61ms, environment 0ms)
 ```
 
-The transcript shows the targeted suite passed, but it does not show dry-run plan counts, successful backfill application, idempotent rerun/zero-change rerun, or checkpoint restore rollback/post-restore empty lineage tables.
+The transcript shows the targeted suite passed and captures the dry-run plan counts, successful backfill application, idempotent rerun/zero-change rerun, and checkpoint restore rollback/post-restore empty lineage tables.
 
 ### Pass / Fail
 
-- **Verdict**: FAIL
-- **Reason**: `memory-lineage-backfill.vitest.ts` completed with all tests passing, but the observed transcript did not show the required execution and rollback evidence.
+- **Verdict**: PASS
+- **Reason**: `memory-lineage-backfill.vitest.ts` completed with all tests passing and the observed transcript shows dry-run planning (`seeded: 3`, `skipped: 0`), applied backfill (`lineageRowsAfterBackfill: 3`), idempotent rerun (`seeded: 0`, `skipped: 3`), and checkpoint restore rollback (`lineageRows: 0`, `activeProjectionRows: 0`).
 
 ### Failure Triage
 
-Re-run `npm test -- --run tests/memory-lineage-backfill.vitest.ts -t rollback`; inspect `lib/storage/lineage-state.ts` and `scripts/migrations/*checkpoint*.ts` if backfill or restore assertions drift
+If this scenario regresses, re-run `npm test -- --run tests/memory-lineage-backfill.vitest.ts -t rollback`; inspect `lib/storage/lineage-state.ts` and `scripts/migrations/*checkpoint*.ts` if backfill or restore assertions drift.
 
 ## 4. SOURCE FILES
 - Root playbook: [manual_testing_playbook.md](../manual_testing_playbook.md)

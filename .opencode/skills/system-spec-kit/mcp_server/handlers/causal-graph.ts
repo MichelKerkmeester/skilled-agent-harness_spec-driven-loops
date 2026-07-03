@@ -111,6 +111,8 @@ interface CausalStatsArgs {
   // Retained for structural compatibility with the tool-layer CausalStatsArgs
   // (tools/types.ts), which the dispatcher passes through parseArgs.
   _?: never;
+  /** Optional exact spec_folder filter for read-only graph statistics. */
+  scope?: string;
   /**
    * Optional bounded relation-inference backfill. When present, the handler
    * infers typed causal edges from strong existing signals (spec-document
@@ -141,6 +143,14 @@ type RelationBalance = {
   windowStartedAt: string;
 };
 
+type GraphStatsSnapshot = {
+  totalEdges: number;
+  byRelation: Record<string, number>;
+  avgStrength: number;
+  uniqueSources: number;
+  uniqueTargets: number;
+};
+
 const RELATION_BALANCE_WINDOW_MS = 15 * 60 * 1000;
 const RELATION_SKEW_SHARE_THRESHOLD = 0.80;
 const RELATION_SKEW_MIN_TOTAL = 50;
@@ -166,6 +176,129 @@ function createZeroFilledRelationCounts(seed: Record<string, number> = {}): Reco
     counts[relation] = seed[relation] ?? 0;
   }
   return counts;
+}
+
+function emptyGraphStatsSnapshot(): GraphStatsSnapshot {
+  return { totalEdges: 0, byRelation: {}, avgStrength: 0, uniqueSources: 0, uniqueTargets: 0 };
+}
+
+function mapScopedCausalEdgeRow(row: Record<string, unknown>): CausalEdge {
+  return {
+    id: Number(row.id),
+    source_id: String(row.source_id),
+    target_id: String(row.target_id),
+    source_anchor: row.source_anchor == null ? null : String(row.source_anchor),
+    target_anchor: row.target_anchor == null ? null : String(row.target_anchor),
+    relation: String(row.relation) as CausalEdge['relation'],
+    strength: Number(row.strength ?? 0),
+    evidence: row.evidence == null ? null : String(row.evidence),
+    extracted_at: String(row.extracted_at ?? ''),
+    created_by: String(row.created_by ?? 'manual'),
+    last_accessed: row.last_accessed == null ? null : String(row.last_accessed),
+  };
+}
+
+function readScopedGraphStats(
+  db: import('better-sqlite3').Database,
+  scope: string,
+): GraphStatsSnapshot {
+  try {
+    const scopedEdgeWhere = `
+      EXISTS (SELECT 1 FROM memory_index source WHERE source.spec_folder = ? AND CAST(source.id AS TEXT) = ce.source_id)
+      AND EXISTS (SELECT 1 FROM memory_index target WHERE target.spec_folder = ? AND CAST(target.id AS TEXT) = ce.target_id)
+    `;
+    const total = (db.prepare(`SELECT COUNT(*) AS count FROM causal_edges ce WHERE ${scopedEdgeWhere}`) as import('better-sqlite3').Statement).get(scope, scope) as { count: number };
+    const byRelation = (db.prepare(`SELECT ce.relation, COUNT(*) AS count FROM causal_edges ce WHERE ${scopedEdgeWhere} GROUP BY ce.relation`) as import('better-sqlite3').Statement).all(scope, scope) as Array<{ relation: string; count: number }>;
+    const avgStrength = (db.prepare(`SELECT AVG(ce.strength) AS avg FROM causal_edges ce WHERE ${scopedEdgeWhere}`) as import('better-sqlite3').Statement).get(scope, scope) as { avg: number | null };
+    const sources = (db.prepare(`SELECT COUNT(DISTINCT ce.source_id) AS count FROM causal_edges ce WHERE ${scopedEdgeWhere}`) as import('better-sqlite3').Statement).get(scope, scope) as { count: number };
+    const targets = (db.prepare(`SELECT COUNT(DISTINCT ce.target_id) AS count FROM causal_edges ce WHERE ${scopedEdgeWhere}`) as import('better-sqlite3').Statement).get(scope, scope) as { count: number };
+
+    const relationMap: Record<string, number> = {};
+    for (const row of byRelation) {
+      relationMap[row.relation] = row.count;
+    }
+
+    return {
+      totalEdges: total.count,
+      byRelation: relationMap,
+      avgStrength: Math.round((avgStrength.avg || 0) * 100) / 100,
+      uniqueSources: sources.count,
+      uniqueTargets: targets.count,
+    };
+  } catch {
+    return emptyGraphStatsSnapshot();
+  }
+}
+
+function readScopedCausalEdges(
+  db: import('better-sqlite3').Database,
+  scope: string,
+  limit = 1000,
+): CausalEdge[] {
+  try {
+    const safeLimit = Math.max(1, Math.min(5000, Math.floor(limit)));
+    return (db.prepare(`
+      SELECT ce.* FROM causal_edges ce
+      WHERE EXISTS (SELECT 1 FROM memory_index source WHERE source.spec_folder = ? AND CAST(source.id AS TEXT) = ce.source_id)
+        AND EXISTS (SELECT 1 FROM memory_index target WHERE target.spec_folder = ? AND CAST(target.id AS TEXT) = ce.target_id)
+      ORDER BY ce.id DESC
+      LIMIT ?
+    `) as import('better-sqlite3').Statement)
+      .all(scope, scope, safeLimit)
+      .map((row) => mapScopedCausalEdgeRow(row as Record<string, unknown>));
+  } catch {
+    return [];
+  }
+}
+
+function readScopedLinkedMemoryIds(
+  db: import('better-sqlite3').Database,
+  scope: string,
+): string[] {
+  try {
+    const rows = (db.prepare(`
+      SELECT DISTINCT ce.source_id AS id FROM causal_edges ce
+      WHERE EXISTS (SELECT 1 FROM memory_index source WHERE source.spec_folder = ? AND CAST(source.id AS TEXT) = ce.source_id)
+        AND EXISTS (SELECT 1 FROM memory_index target WHERE target.spec_folder = ? AND CAST(target.id AS TEXT) = ce.target_id)
+      UNION
+      SELECT DISTINCT ce.target_id AS id FROM causal_edges ce
+      WHERE EXISTS (SELECT 1 FROM memory_index source WHERE source.spec_folder = ? AND CAST(source.id AS TEXT) = ce.source_id)
+        AND EXISTS (SELECT 1 FROM memory_index target WHERE target.spec_folder = ? AND CAST(target.id AS TEXT) = ce.target_id)
+    `) as import('better-sqlite3').Statement).all(scope, scope, scope, scope) as Array<{ id: string }>;
+    return rows.map((row) => row.id);
+  } catch {
+    return [];
+  }
+}
+
+function readScopedMemoryCount(db: import('better-sqlite3').Database, scope: string): number {
+  try {
+    const row = (db.prepare('SELECT COUNT(*) AS count FROM memory_index WHERE spec_folder = ?') as import('better-sqlite3').Statement).get(scope) as { count: number };
+    return row.count;
+  } catch {
+    return 0;
+  }
+}
+
+function findScopedOrphanedEdges(db: import('better-sqlite3').Database, scope: string): CausalEdge[] {
+  try {
+    return (db.prepare(`
+      SELECT ce.* FROM causal_edges ce
+      WHERE (
+          EXISTS (SELECT 1 FROM memory_index source WHERE source.spec_folder = ? AND CAST(source.id AS TEXT) = ce.source_id)
+          OR EXISTS (SELECT 1 FROM memory_index target WHERE target.spec_folder = ? AND CAST(target.id AS TEXT) = ce.target_id)
+        )
+        AND (
+          NOT EXISTS (SELECT 1 FROM memory_index source_any WHERE CAST(source_any.id AS TEXT) = ce.source_id)
+          OR NOT EXISTS (SELECT 1 FROM memory_index target_any WHERE CAST(target_any.id AS TEXT) = ce.target_id)
+        )
+      LIMIT 1000
+    `) as import('better-sqlite3').Statement)
+      .all(scope, scope)
+      .map((row) => mapScopedCausalEdgeRow(row as Record<string, unknown>));
+  } catch {
+    return [];
+  }
 }
 
 function parseEdgeTimestampMs(timestamp: string): number | null {
@@ -225,20 +358,23 @@ function computeRelationBalance(
 function readTopUnlinkedRecords(
   db: import('better-sqlite3').Database,
   limit = 5,
+  scope: string | null = null,
 ): Array<{ id: number | string; title: string; specFolder: string | null }> {
   try {
     const safeLimit = Math.max(1, Math.min(20, Math.floor(limit)));
+    const scopeClause = scope ? 'm.spec_folder = ? AND' : '';
+    const params = scope ? [scope, safeLimit] : [safeLimit];
     return (db.prepare(`
       SELECT id, COALESCE(title, file_path, CAST(id AS TEXT)) AS title, spec_folder AS specFolder
       FROM memory_index m
-      WHERE NOT EXISTS (
+      WHERE ${scopeClause} NOT EXISTS (
         SELECT 1 FROM causal_edges ce
         WHERE ce.source_id = CAST(m.id AS TEXT)
            OR ce.target_id = CAST(m.id AS TEXT)
       )
       ORDER BY COALESCE(importance_weight, 0) DESC, updated_at DESC, id DESC
       LIMIT ?
-    `) as import('better-sqlite3').Statement).all(safeLimit) as Array<{ id: number | string; title: string; specFolder: string | null }>;
+    `) as import('better-sqlite3').Statement).all(...params) as Array<{ id: number | string; title: string; specFolder: string | null }>;
   } catch {
     return [];
   }
@@ -945,6 +1081,9 @@ async function handleMemoryCausalStats(args: CausalStatsArgs = {}): Promise<MCPR
   await ensureMemoryRuntimeInitialized('handler:memory_causal_stats');
   const startTime = Date.now();
   const backfillRequest = args?.backfill;
+  const scope = typeof args?.scope === 'string' && args.scope.trim().length > 0
+    ? args.scope.trim()
+    : null;
 
   try {
     await checkDatabaseUpdated();
@@ -982,20 +1121,28 @@ async function handleMemoryCausalStats(args: CausalStatsArgs = {}): Promise<MCPR
       }
     }
 
-    const stats = causalEdges.getGraphStats();
-    const orphanedEdges: CausalEdge[] = causalEdges.findOrphanedEdges();
+    const stats = scope ? readScopedGraphStats(db, scope) : causalEdges.getGraphStats();
+    const orphanedEdges: CausalEdge[] = scope ? findScopedOrphanedEdges(db, scope) : causalEdges.findOrphanedEdges();
 
     // Compute link coverage: unique memories linked / total memories
-    const totalMemories = (db.prepare('SELECT COUNT(*) as count FROM memory_index') as import('better-sqlite3').Statement).get() as { count: number };
+    const totalMemories = scope
+      ? { count: readScopedMemoryCount(db, scope) }
+      : (db.prepare('SELECT COUNT(*) as count FROM memory_index') as import('better-sqlite3').Statement).get() as { count: number };
     const uniqueLinked = new Set<string>();
 
     // Count unique memory IDs that appear as source or target
     try {
-      const linkedRows = (db.prepare(
-        'SELECT DISTINCT source_id FROM causal_edges WHERE EXISTS (SELECT 1 FROM memory_index WHERE CAST(id AS TEXT) = source_id) UNION SELECT DISTINCT target_id FROM causal_edges WHERE EXISTS (SELECT 1 FROM memory_index WHERE CAST(id AS TEXT) = target_id)'
-      ) as import('better-sqlite3').Statement).all() as Array<{ source_id: string }>;
-      for (const row of linkedRows) {
-        uniqueLinked.add(row.source_id);
+      if (scope) {
+        for (const id of readScopedLinkedMemoryIds(db, scope)) {
+          uniqueLinked.add(id);
+        }
+      } else {
+        const linkedRows = (db.prepare(
+          'SELECT DISTINCT source_id FROM causal_edges WHERE EXISTS (SELECT 1 FROM memory_index WHERE CAST(id AS TEXT) = source_id) UNION SELECT DISTINCT target_id FROM causal_edges WHERE EXISTS (SELECT 1 FROM memory_index WHERE CAST(id AS TEXT) = target_id)'
+        ) as import('better-sqlite3').Statement).all() as Array<{ source_id: string }>;
+        for (const row of linkedRows) {
+          uniqueLinked.add(row.source_id);
+        }
       }
     } catch (error: unknown) {
       const message = toErrorMessage(error).toLowerCase();
@@ -1009,7 +1156,7 @@ async function handleMemoryCausalStats(args: CausalStatsArgs = {}): Promise<MCPR
 
     const safeTotalEdges = stats.totalEdges ?? 0;
     const byRelation = createZeroFilledRelationCounts(stats.byRelation);
-    const relationBalance = computeRelationBalance(causalEdges.getAllEdges(1000));
+    const relationBalance = computeRelationBalance(scope ? readScopedCausalEdges(db, scope, 1000) : causalEdges.getAllEdges(1000));
     const relationCoverage = buildRelationCoverageState(byRelation, db);
     const coveragePercent = totalMemories.count > 0
       ? Math.round((uniqueLinked.size / totalMemories.count) * 10000) / 100
@@ -1020,11 +1167,13 @@ async function handleMemoryCausalStats(args: CausalStatsArgs = {}): Promise<MCPR
       ? 'attention'
       : orphanedEdges.length === 0 ? 'healthy' : 'has_orphans';
 
-    const summary = `Memory causal graph: ${safeTotalEdges} edges, ${coveragePercent}% coverage (${health})`;
+    const summary = scope
+      ? `Memory causal graph (${scope}): ${safeTotalEdges} edges, ${coveragePercent}% coverage (${health})`
+      : `Memory causal graph: ${safeTotalEdges} edges, ${coveragePercent}% coverage (${health})`;
 
     const hints: string[] = [];
     if (!meetsTarget) {
-      const topUnlinkedRecords = readTopUnlinkedRecords(db, 5);
+      const topUnlinkedRecords = readTopUnlinkedRecords(db, 5, scope);
       const topRecordHint = topUnlinkedRecords.length > 0
         ? `Top ${topUnlinkedRecords.length} unlinked records: ${topUnlinkedRecords.map((record) => `#${record.id} ${record.title}`).join('; ')}`
         : 'Top N unlinked records unavailable; run memory_health({ autoRepair: true, confirmed: true }) to backfill.';
@@ -1068,6 +1217,7 @@ async function handleMemoryCausalStats(args: CausalStatsArgs = {}): Promise<MCPR
       data: {
         total_edges: safeTotalEdges,
         graphName: 'memory causal graph',
+        scope,
         by_relation: byRelation,
         avg_strength: stats.avgStrength,
         unique_sources: stats.uniqueSources,

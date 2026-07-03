@@ -94,6 +94,8 @@ export const ALL_CHANNELS: AblationChannel[] = [
 
 /** Configuration for an ablation study. */
 export interface AblationConfig {
+  /** Optional dataset selector supplied by the caller for diagnostics. */
+  datasetSelector?: string;
   /** Channels to ablate (one at a time). Defaults to ALL_CHANNELS. */
   channels: AblationChannel[];
   /** Subset of ground truth query IDs to use. Omit for all queries. */
@@ -304,6 +306,8 @@ export interface AblationChannelFailure {
 
 /** Full ablation study report. */
 export interface AblationReport {
+  /** Run status; empty_dataset is a structured non-crashing edge result. */
+  status?: 'complete' | 'empty_dataset';
   /** ISO timestamp of the study. */
   timestamp: string;
   /** Unique run identifier. */
@@ -332,6 +336,10 @@ export interface AblationReport {
   resolvedQueryIds?: number[];
   /** Requested query IDs that were missing from the static dataset. */
   missingQueryIds?: number[];
+  /** Dataset/query selector reflected in empty-dataset diagnostics. */
+  datasetSelector?: string;
+  /** Structured warnings for partial or empty evaluation surfaces. */
+  warnings?: string[];
   /** Total wall-clock duration in milliseconds. */
   durationMs: number;
 }
@@ -409,7 +417,7 @@ function probeActiveVectorSource(database: Database.Database): ActiveVectorProbe
   }
 }
 
-function canQueryVecMemories(database: Database.Database): boolean {
+function _canQueryVecMemories(database: Database.Database): boolean {
   return probeActiveVectorSource(database).available;
 }
 
@@ -798,6 +806,48 @@ function getQueriesToEvaluate(config: AblationConfig): QuerySelection {
     };
   }
   return { queries: GROUND_TRUTH_QUERIES };
+}
+
+function describeDatasetSelector(config: AblationConfig, querySelection: QuerySelection): string {
+  if (config.datasetSelector && config.datasetSelector.trim().length > 0) {
+    return config.datasetSelector.trim();
+  }
+  if (querySelection.requestedQueryIds && querySelection.requestedQueryIds.length > 0) {
+    return `groundTruthQueryIds=[${querySelection.requestedQueryIds.join(',')}]`;
+  }
+  return 'default ground truth dataset';
+}
+
+function buildEmptyDatasetReport(
+  config: AblationConfig,
+  querySelection: QuerySelection,
+  startTime: number,
+  runId: string,
+  reason: string,
+): AblationReport {
+  const selector = describeDatasetSelector(config, querySelection);
+  const warnings = [
+    `Ablation dataset empty or unavailable for selector ${selector}: ${reason}`,
+  ];
+
+  return {
+    status: 'empty_dataset',
+    timestamp: new Date().toISOString(),
+    runId,
+    config,
+    results: [],
+    overallBaselineRecall: 0,
+    queryCount: querySelection.queries.length,
+    evaluatedQueryCount: 0,
+    ...(querySelection.requestedQueryIds ? { requestedQueryIds: querySelection.requestedQueryIds } : {}),
+    ...(querySelection.resolvedQueryIds ? { resolvedQueryIds: querySelection.resolvedQueryIds } : {}),
+    ...(querySelection.missingQueryIds && querySelection.missingQueryIds.length > 0
+      ? { missingQueryIds: querySelection.missingQueryIds }
+      : {}),
+    datasetSelector: selector,
+    warnings,
+    durationMs: Date.now() - startTime,
+  };
 }
 
 /**
@@ -1195,7 +1245,13 @@ export async function runAblation(
       ? ` Requested IDs not found: ${querySelection.missingQueryIds.join(', ')}.`
       : '';
     console.warn(`[ablation] No queries to evaluate.${suffix}`);
-    return null;
+    return buildEmptyDatasetReport(
+      config,
+      querySelection,
+      startTime,
+      runId,
+      `no selected ground-truth queries resolved.${suffix}`.trim(),
+    );
   }
 
   if (querySelection.missingQueryIds && querySelection.missingQueryIds.length > 0) {
@@ -1254,6 +1310,14 @@ export async function runAblation(
       if (config.includeDiagnosticSnapshots) {
         diagnosticSnapshots.push(buildDiagnosticSnapshot(q.id, q.query, baselineOutput));
       }
+    }
+
+    if (evaluatedCount === 0) {
+      const reason = querySelection.requestedQueryIds && querySelection.requestedQueryIds.length > 0
+        ? 'selected ground-truth queries have no relevance rows'
+        : 'the default ground-truth dataset has no relevance rows';
+      console.warn(`[ablation] No queries with ground truth to evaluate. ${reason}.`);
+      return buildEmptyDatasetReport(config, querySelection, startTime, runId, reason);
     }
 
     const overallBaselineRecall = meanRecall([...baselineRecalls.values()]);
@@ -1364,6 +1428,7 @@ export async function runAblation(
     }
 
     const report: AblationReport = {
+      status: 'complete',
       timestamp: new Date().toISOString(),
       runId,
       config,
@@ -1408,6 +1473,7 @@ export async function runAblation(
  */
 export function storeAblationResults(report: AblationReport): boolean {
   if (!isAblationEnabled()) return false;
+  if (report.status === 'empty_dataset' || report.evaluatedQueryCount === 0) return false;
 
   try {
     const db = getDb();
@@ -1535,6 +1601,12 @@ export function formatAblationReport(report: AblationReport): string {
   const recallK = report.config.recallK ?? 20;
   lines.push(`- **Baseline Recall@${recallK}:** ${report.overallBaselineRecall.toFixed(4)}`);
   lines.push(`- **Duration:** ${report.durationMs}ms`);
+  if (report.status) {
+    lines.push(`- **Status:** ${report.status}`);
+  }
+  if (report.datasetSelector) {
+    lines.push(`- **Dataset selector:** ${report.datasetSelector}`);
+  }
   const queriesEvaluated = report.evaluatedQueryCount
     ?? report.results[0]?.queryCount
     ?? report.queryCount
@@ -1547,6 +1619,11 @@ export function formatAblationReport(report: AblationReport): string {
   if (report.missingQueryIds && report.missingQueryIds.length > 0) {
     lines.push(`- **Missing query IDs:** ${report.missingQueryIds.join(', ')}`);
   }
+  if (report.warnings && report.warnings.length > 0) {
+    for (const warning of report.warnings) {
+      lines.push(`- **Warning:** ${warning}`);
+    }
+  }
   lines.push(``);
 
   // Sort by absolute delta descending (most impactful first)
@@ -1556,6 +1633,10 @@ export function formatAblationReport(report: AblationReport): string {
 
   lines.push(`| Channel | Baseline | Ablated | Delta | p-value | Ch. Helped | Ch. Hurt | Unchanged | Verdict |`);
   lines.push(`|---------|----------|---------|-------|---------|------------|----------|-----------|---------|`);
+
+  if (sorted.length === 0) {
+    lines.push(`| n/a | n/a | n/a | n/a | n/a | 0 | 0 | 0 | empty dataset |`);
+  }
 
   for (const r of sorted) {
     const sig = r.pValue !== null && r.pValue < 0.05 ? '*' : '';

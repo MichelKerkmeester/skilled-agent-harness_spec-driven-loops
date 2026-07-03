@@ -2,7 +2,7 @@
 title: "017 -- Session health shared payload"
 description: "Validates session_health reports shared payload freshness and degraded-state recovery hints."
 audited_post_017: true
-version: 3.6.0.1
+version: 3.6.0.2
 ---
 
 # 017 -- Session health shared payload
@@ -32,6 +32,12 @@ This scenario covers the lightweight session health endpoint that operators use 
 ```
 Run session_health and verify shared payload state, freshness, and recovery hints are reported.
 ```
+
+### Preconditions
+
+- Run against a warm Spec Kit Memory daemon with current `mcp_server/dist` artifacts.
+- If the first call is only a daemon warm-up, discard that output and capture the second `session_health({})` response as evidence.
+- If the CLI fallback reports `@spec-kit/mcp-server dist is stale`, classify the scenario as blocked by the runtime artifact state until a build is allowed; do not record that as a `session_health` product failure.
 
 ### Commands
 

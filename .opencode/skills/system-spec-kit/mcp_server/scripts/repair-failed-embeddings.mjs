@@ -8,7 +8,6 @@
 
 import fs from 'node:fs';
 import path from 'node:path';
-import { fileURLToPath } from 'node:url';
 
 import Database from 'better-sqlite3';
 import { load as loadSqliteVec } from 'sqlite-vec';
@@ -27,10 +26,6 @@ const MODULE = '[repair-failed-embeddings]';
 const DEFAULT_BATCH_SIZE = 10;
 const BATCH_SLEEP_MS = 1000;
 const PREVIEW_LIMIT = 5;
-
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-const SYSTEM_SPEC_KIT_ROOT = path.resolve(__dirname, '../..');
 
 function usage() {
   return `repair-failed-embeddings — re-embed memory_index rows with embedding_status='failed'
@@ -124,7 +119,7 @@ function readFallbackFile(filePath) {
   }
   try {
     return fs.readFileSync(filePath, 'utf8');
-  } catch (_error) {
+  } catch {
     return null;
   }
 }

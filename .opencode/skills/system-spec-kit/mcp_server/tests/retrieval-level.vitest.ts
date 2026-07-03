@@ -4,13 +4,13 @@ import { beforeEach, describe, expect, it, vi } from 'vitest';
 const collectRawCandidatesMock = vi.hoisted(() => vi.fn(async () => [
   {
     id: 1,
-    title: 'Local lane result',
+    title: 'retrieval level query local result',
     spec_folder: 'scope/local',
     file_path: 'scope/local/spec.md',
     source: 'hybrid',
-    score: 0.8,
-    similarity: 80,
-    quality_score: 0.8,
+    score: 0.99,
+    similarity: 99,
+    quality_score: 0.99,
   },
 ]));
 const queryCommunityMembersAsRankedListMock = vi.hoisted(() => vi.fn(() => [
@@ -114,6 +114,51 @@ function makeConfig(overrides: Partial<PipelineConfig> = {}): PipelineConfig {
   };
 }
 
+function makeWeakLocalRows(): Array<Record<string, unknown> & { id: number }> {
+  return [
+    {
+      id: 11,
+      title: 'unrelated alpha',
+      spec_folder: 'scope/local',
+      file_path: 'scope/local/a.md',
+      source: 'hybrid',
+      score: 0.45,
+      similarity: 45,
+      quality_score: 0.45,
+    },
+    {
+      id: 12,
+      title: 'unrelated beta',
+      spec_folder: 'scope/local',
+      file_path: 'scope/local/b.md',
+      source: 'hybrid',
+      score: 0.41,
+      similarity: 41,
+      quality_score: 0.41,
+    },
+    {
+      id: 13,
+      title: 'unrelated gamma',
+      spec_folder: 'scope/local',
+      file_path: 'scope/local/c.md',
+      source: 'hybrid',
+      score: 0.39,
+      similarity: 39,
+      quality_score: 0.39,
+    },
+    {
+      id: 14,
+      title: 'unrelated delta',
+      spec_folder: 'scope/local',
+      file_path: 'scope/local/d.md',
+      source: 'hybrid',
+      score: 0.38,
+      similarity: 38,
+      quality_score: 0.38,
+    },
+  ];
+}
+
 describe('memory_search retrievalLevel', () => {
   beforeEach(() => {
     vi.clearAllMocks();
@@ -137,6 +182,38 @@ describe('memory_search retrievalLevel', () => {
     expect(auto.candidates.map((row) => row.id)).toEqual([1]);
     expect(collectRawCandidatesMock).toHaveBeenCalledTimes(1);
     expect(queryCommunityMembersAsRankedListMock).not.toHaveBeenCalled();
+  });
+
+  it('appends community candidates for weak auto-level local retrieval', async () => {
+    collectRawCandidatesMock.mockResolvedValueOnce(makeWeakLocalRows());
+
+    const result = await executeStage1({ config: makeConfig({ retrievalLevel: 'auto' }) });
+
+    expect(queryCommunityMembersAsRankedListMock).toHaveBeenCalledTimes(1);
+    expect(result.candidates.map((row) => row.id)).toEqual([11, 12, 13, 14, 2]);
+    expect(result.candidates.at(-1)).toMatchObject({
+      id: 2,
+      source: 'community',
+      sources: ['community'],
+      channelAttribution: ['community'],
+      _communityFallback: true,
+    });
+  });
+
+  it('suppresses weak auto-level community fallback when its kill switch is off', async () => {
+    const prev = process.env.SPECKIT_COMMUNITY_SEARCH_FALLBACK;
+    process.env.SPECKIT_COMMUNITY_SEARCH_FALLBACK = 'false';
+    collectRawCandidatesMock.mockResolvedValueOnce(makeWeakLocalRows());
+
+    try {
+      const result = await executeStage1({ config: makeConfig({ retrievalLevel: 'auto' }) });
+
+      expect(queryCommunityMembersAsRankedListMock).not.toHaveBeenCalled();
+      expect(result.candidates.map((row) => row.id)).toEqual([11, 12, 13, 14]);
+    } finally {
+      if (prev === undefined) delete process.env.SPECKIT_COMMUNITY_SEARCH_FALLBACK;
+      else process.env.SPECKIT_COMMUNITY_SEARCH_FALLBACK = prev;
+    }
   });
 
   it('coerces global to local when SPECKIT_DUAL_RETRIEVAL is off (kill switch)', async () => {

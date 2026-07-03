@@ -32,7 +32,7 @@ export const ROUTING_CATEGORIES = [
 ] as const;
 
 const INTERNAL_TIER3_DROP = 'drop_candidate' as const;
-const SOURCE_SHAPES = [
+const _SOURCE_SHAPES = [
   'implementation-summary',
   'decision-record',
   'handover',
@@ -87,7 +87,7 @@ type Tier2TriggerReason =
   | 'manual_retry';
 type CacheScope = 'session' | 'spec-folder';
 type Tier3Category = Exclude<RoutingCategory, 'drop'> | typeof INTERNAL_TIER3_DROP;
-type SourceShape = typeof SOURCE_SHAPES[number];
+type SourceShape = typeof _SOURCE_SHAPES[number];
 
 export type RoutingCategory = typeof ROUTING_CATEGORIES[number];
 

@@ -9,7 +9,8 @@
 // logs mismatches for staged canary rollout instead of rejecting immediately.
 
 import { createHash } from 'node:crypto';
-import { statSync } from 'node:fs';
+import { existsSync, statSync } from 'node:fs';
+import { fileURLToPath } from 'node:url';
 import {
   getCodeGraphStatusViaRpc,
   getGraphFreshnessFromMarker,
@@ -107,6 +108,8 @@ interface CodeGraphStatus {
   nodeCount: number;
   edgeCount: number;
   fileCount: number;
+  available: boolean;
+  binaryPath: string;
 }
 
 interface SessionResumeResult {
@@ -157,6 +160,25 @@ function normalizeSpecFolder(specFolder: string | null | undefined): string | nu
   }
 
   return trimmed.replace(/^\.opencode\//, '');
+}
+
+function resolveCodeGraphBinaryPath(): string {
+  const candidates = [
+    fileURLToPath(new URL('../../../../bin/mk-code-index-launcher.cjs', import.meta.url)),
+    fileURLToPath(new URL('../../../../../bin/mk-code-index-launcher.cjs', import.meta.url)),
+  ];
+
+  return candidates.find(candidate => existsSync(candidate)) ?? candidates[0];
+}
+
+function buildCodeGraphStatus(fields: Omit<CodeGraphStatus, 'available' | 'binaryPath'>): CodeGraphStatus {
+  const binaryPath = resolveCodeGraphBinaryPath();
+
+  return {
+    ...fields,
+    available: existsSync(binaryPath),
+    binaryPath,
+  };
 }
 
 function buildMinimalResumePayload(state: SessionResumeTransportState): SharedPayloadEnvelope {
@@ -568,30 +590,30 @@ export async function handleSessionResume(args: SessionResumeArgs): Promise<MCPR
   }
 
   // ── Sub-call 1: Code graph status ───────────────────────────
-  let codeGraph: CodeGraphStatus = {
+  let codeGraph: CodeGraphStatus = buildCodeGraphStatus({
     status: 'error',
     lastScan: null,
     nodeCount: 0,
     edgeCount: 0,
     fileCount: 0,
-  };
+  });
   try {
     const snapshot = await getCodeGraphStatusViaRpc();
     if (snapshot.status !== 'ok' || !snapshot.data) {
       throw new Error(snapshot.error ?? 'code_graph_status returned no data');
     }
     const freshness = snapshot.data.freshness ?? getGraphFreshnessFromMarker();
-    codeGraph = {
+    codeGraph = buildCodeGraphStatus({
       status: freshness,
       lastScan: snapshot.data.lastScanAt,
       nodeCount: snapshot.data.totalNodes,
       edgeCount: snapshot.data.totalEdges,
       fileCount: snapshot.data.totalFiles,
-    };
+    });
     // Graph status hints deferred to structural contract.
     // — structural context hints at lines 128-130 provide preferred recovery path
   } catch {
-    codeGraph = { status: 'error', lastScan: null, nodeCount: 0, edgeCount: 0, fileCount: 0 };
+    codeGraph = buildCodeGraphStatus({ status: 'error', lastScan: null, nodeCount: 0, edgeCount: 0, fileCount: 0 });
     hints.push('Code graph unavailable. Run `code_graph_scan` to initialize.');
   }
 

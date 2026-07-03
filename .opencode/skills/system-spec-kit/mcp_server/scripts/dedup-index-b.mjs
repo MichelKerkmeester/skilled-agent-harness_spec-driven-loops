@@ -38,7 +38,7 @@ const COLLISION_ROWS_SQL = `
   FROM collisions
 `;
 
-function log(m) { /* eslint-disable-next-line no-console */ console.log(`[dedup-index-b] ${m}`); }
+function log(m) { console.log(`[dedup-index-b] ${m}`); }
 
 const vi = await import('../dist/lib/search/vector-index.js');
 vi.initializeDb();

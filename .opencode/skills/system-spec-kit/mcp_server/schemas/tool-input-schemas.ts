@@ -468,6 +468,7 @@ const memoryCausalLinkSchema = getSchema({
 });
 
 const memoryCausalStatsSchema = getSchema({
+  scope: optionalPathString(1),
   // Optional bounded relation-inference backfill. Defaults to a dry run; pass
   // { dryRun: false } to commit bounded, idempotent, created_by='auto' edges.
   // Built via getSchema so the nested object inherits the same strict/unknown-key
@@ -492,6 +493,8 @@ const memoryCausalUnlinkSchema = getSchema({
 
 const evalRunAblationSchema = getSchema({
   mode: z.enum(['ablation', 'k_sensitivity']).optional(),
+  dataset: z.string().min(1).optional(),
+  dryRun: z.boolean().optional(),
   channels: z.array(z.enum(['vector', 'bm25', 'fts5', 'graph', 'trigger'])).optional(),
   queries: z.array(z.string()).optional(),
   groundTruthQueryIds: z.array(positiveInt).optional(),
@@ -657,9 +660,9 @@ const ALLOWED_PARAMETERS: Record<string, string[]> = {
   task_postflight: ['specFolder', 'taskId', 'knowledgeScore', 'uncertaintyScore', 'contextScore', 'gapsClosed', 'newGapsDiscovered', 'sessionId'],
   memory_drift_why: ['memoryId', 'maxDepth', 'direction', 'relations', 'includeMemoryDetails', 'tenantId', 'userId', 'agentId'],
   memory_causal_link: ['sourceId', 'targetId', 'relation', 'strength', 'evidence', 'tenantId', 'userId', 'agentId'],
-  memory_causal_stats: ['backfill'],
+  memory_causal_stats: ['scope', 'backfill'],
   memory_causal_unlink: ['edgeId'],
-  eval_run_ablation: ['mode', 'channels', 'queries', 'groundTruthQueryIds', 'recallK', 'storeResults', 'includeFormattedReport'],
+  eval_run_ablation: ['mode', 'dataset', 'dryRun', 'channels', 'queries', 'groundTruthQueryIds', 'recallK', 'storeResults', 'includeFormattedReport'],
   eval_reporting_dashboard: ['sprintFilter', 'channelFilter', 'metricFilter', 'limit', 'format'],
   memory_index_scan: ['specFolder', 'force', 'includeConstitutional', 'includeSpecDocs', 'incremental', 'background', 'tenantId', 'userId', 'agentId', 'sessionId', 'provenanceSource', 'provenanceActor', 'governedAt', 'retentionPolicy', 'deleteAfter'],
   memory_index_scan_status: ['jobId'],

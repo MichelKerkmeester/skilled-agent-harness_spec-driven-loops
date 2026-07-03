@@ -63,7 +63,7 @@ export interface MaintenanceRunCounters {
   staleCandidates: number;
 }
 
-const CHANNEL_KEYS = ['vector', 'bm25', 'fts', 'graph', 'trigger'] as const;
+const _CHANNEL_KEYS = ['vector', 'bm25', 'fts', 'graph', 'trigger'] as const;
 
 const maintenanceRuns: Record<MaintenanceTool, MaintenanceRunCounters> = {
   memory_index_scan: emptyMaintenanceRun('memory_index_scan'),
@@ -129,7 +129,7 @@ function updateDegradedVectorHealth(update: Partial<DegradedVectorHealthSnapshot
   });
 }
 
-function channelScore(rawResult: Record<string, unknown>, channel: typeof CHANNEL_KEYS[number]): number | null {
+function channelScore(rawResult: Record<string, unknown>, channel: typeof _CHANNEL_KEYS[number]): number | null {
   const scores = scoreMap(rawResult.sourceScores);
   if (scores[channel] !== undefined) return scores[channel];
   if (channel === 'fts') return finiteNumber(rawResult.fts_score);

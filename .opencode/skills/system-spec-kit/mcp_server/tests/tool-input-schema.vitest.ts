@@ -197,6 +197,15 @@ describe('Tool Input Schema Validation', () => {
     }).not.toThrow();
   });
 
+  it('accepts eval_run_ablation empty dataset dry-run selectors', () => {
+    expect(() => {
+      validateToolArgs('eval_run_ablation', {
+        dataset: 'playbook-017-empty-dataset',
+        dryRun: true,
+      });
+    }).not.toThrow();
+  });
+
   it('rejects unknown eval_run_ablation modes', () => {
     expect(() => {
       validateToolArgs('eval_run_ablation', {

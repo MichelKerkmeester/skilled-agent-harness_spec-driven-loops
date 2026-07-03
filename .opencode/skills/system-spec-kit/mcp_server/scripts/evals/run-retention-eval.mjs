@@ -179,7 +179,11 @@ async function main() {
 
   const labelById = new Map(labeled.map((row) => [row.id, row.expected]));
   // Strip the expected-label field so the reducer sees a clean RetentionCandidateRow.
-  const candidates = labeled.map(({ expected, ...candidate }) => candidate);
+  const candidates = labeled.map((row) => {
+    const candidate = { ...row };
+    delete candidate.expected;
+    return candidate;
+  });
 
   // No feedback signals: this isolates the row-local safety axes (the SAFETY
   // layer) rather than positive-feedback extension. extend decisions therefore

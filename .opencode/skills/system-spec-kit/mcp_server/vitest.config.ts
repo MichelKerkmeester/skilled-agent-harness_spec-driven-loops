@@ -10,7 +10,7 @@ import path from 'path';
 
 const TEST_TIMEOUT_MS = 30_000; // 30s default, increase for CI if needed
 const TEARDOWN_TIMEOUT_MS = 1_000;
-const INCLUDE_BENCHES = process.env.SPECKIT_RUN_BENCHES === 'true';
+const _INCLUDE_BENCHES = process.env.SPECKIT_RUN_BENCHES === 'true';
 
 export default defineConfig({
   root: path.resolve(import.meta.dirname, '..'),

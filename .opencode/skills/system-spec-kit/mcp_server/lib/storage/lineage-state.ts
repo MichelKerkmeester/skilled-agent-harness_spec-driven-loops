@@ -203,6 +203,10 @@ function normalizeTimestamp(value?: string | null): string {
   return new Date().toISOString();
 }
 
+function toTimestampMillis(value: string | Date): number {
+  return value instanceof Date ? value.getTime() : new Date(value).getTime();
+}
+
 function getSafeHistoryEvents(database: Database.Database, memoryId: number): HistoryLineageEvent[] {
   try {
     return getHistoryEventsForLineage(memoryId, database);
@@ -695,7 +699,7 @@ function validateTransitionInput(
   }
   // Compare timestamps as numeric epoch values, not raw strings,
   // to handle non-ISO strings and timezone-offset variants correctly.
-  if (predecessor && new Date(validFrom).getTime() < new Date(predecessor.valid_from).getTime()) {
+  if (predecessor && toTimestampMillis(validFrom) < toTimestampMillis(predecessor.valid_from)) {
     throw new Error(
       `E_LINEAGE: valid_from (${validFrom}) is earlier than predecessor valid_from (${predecessor.valid_from})`,
     );
@@ -1116,10 +1120,10 @@ export function resolveLineageAsOf(
     return null;
   }
 
-  const asOfTimestamp = typeof asOf === 'string' ? asOf : asOf.toISOString();
+  const asOfTimestamp = toTimestampMillis(asOf);
   const row = [...lineage.rows].reverse().find((candidate) => (
-    candidate.valid_from <= asOfTimestamp
-    && (candidate.valid_to == null || candidate.valid_to > asOfTimestamp)
+    toTimestampMillis(candidate.valid_from) <= asOfTimestamp
+    && (candidate.valid_to == null || toTimestampMillis(candidate.valid_to) > asOfTimestamp)
   )) ?? null;
 
   return row ? resolveSnapshotFromLineageRow(database, row) : null;

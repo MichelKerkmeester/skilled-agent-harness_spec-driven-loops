@@ -298,7 +298,6 @@ function safeGetDb(): Database.Database | null {
     if (!_safeGetDbWarnedClasses.has(errClass)) {
       _safeGetDbWarnedClasses.add(errClass);
       const message = err instanceof Error ? err.message : String(err);
-      // eslint-disable-next-line no-console
       console.warn(`[query-router] safeGetDb failed (${errClass}): ${message}`);
     }
     return null;

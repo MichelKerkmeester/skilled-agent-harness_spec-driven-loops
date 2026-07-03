@@ -653,6 +653,7 @@ const memoryCausalStats: ToolDefinition = {
     type: 'object',
     additionalProperties: ALLOW_UNKNOWN_PARAMETERS,
     properties: {
+      scope: { type: 'string', minLength: 1, description: 'Optional exact spec_folder scope. When supplied, stats and coverage are computed only for causal links whose source and target records are both in that spec folder.' },
       backfill: {
         type: 'object',
         additionalProperties: ALLOW_UNKNOWN_PARAMETERS,
@@ -689,6 +690,11 @@ const evalRunAblation: ToolDefinition = {
         enum: ['ablation', 'k_sensitivity'],
         description: 'Evaluation mode. Defaults to ablation; use k_sensitivity for raw pre-fusion RRF K analysis.'
       },
+      dataset: {
+        type: 'string',
+        description: 'Optional dataset selector. Empty or unavailable selectors return a structured empty_dataset diagnostic.'
+      },
+      dryRun: { type: 'boolean', default: false, description: 'Run without persisting ablation metrics.' },
       channels: {
         type: 'array',
         items: { type: 'string', enum: ['vector', 'bm25', 'fts5', 'graph', 'trigger'] },

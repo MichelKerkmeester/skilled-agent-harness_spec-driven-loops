@@ -33,16 +33,30 @@
 //     - Generates query embeddings via the embeddings provider (external call)
 //     - Reads from the vector index and FTS5 / BM25 index (DB reads only)
 //
-import type { Stage1Input, Stage1Output, PipelineRow } from './types.js';
+import type { Stage1Input, Stage1Output, PipelineRow, PipelineConfig } from './types.js';
 import { attachLaneLists, readLaneLists } from './types.js';
 import { resolveEffectiveScore } from './types.js';
 import * as vectorIndex from '../vector-index.js';
 import * as hybridSearch from '../hybrid-search.js';
 import { vectorSearchWithContiguity } from '../../cognitive/temporal-contiguity.js';
-import { isMultiQueryEnabled, isEmbeddingExpansionEnabled, isMemorySummariesEnabled, isQueryDecompositionEnabled, isGraphConceptRoutingEnabled, isLlmReformulationEnabled, isHyDEEnabled, isQuerySurrogatesEnabled, isTemporalContiguityEnabled, isQueryConceptExpansionEnabled, isDualRetrievalEnabled } from '../search-flags.js';
+import {
+  isMultiQueryEnabled,
+  isEmbeddingExpansionEnabled,
+  isMemorySummariesEnabled,
+  isQueryDecompositionEnabled,
+  isGraphConceptRoutingEnabled,
+  isLlmReformulationEnabled,
+  isHyDEEnabled,
+  isQuerySurrogatesEnabled,
+  isTemporalContiguityEnabled,
+  isQueryConceptExpansionEnabled,
+  isDualRetrievalEnabled,
+  isCommunitySearchFallbackEnabled,
+} from '../search-flags.js';
 import { expandQuery } from '../query-expander.js';
 import { expandQueryWithEmbeddings, isExpansionActive } from '../embedding-expansion.js';
 import { querySummaryEmbeddings, checkScaleGate } from '../memory-summaries.js';
+import { assessRequestQuality, computeResultConfidence } from '../confidence-scoring.js';
 import { addTraceEntry } from '@spec-kit/shared/contracts/retrieval-trace';
 import { requireDb } from '../../../utils/db-helpers.js';
 import { filterRowsByScope } from '../../governance/scope-governance.js';
@@ -171,7 +185,7 @@ function applyArchiveFilter(
   return results;
 }
 
-function applyFolderFilter(
+function _applyFolderFilter(
   results: PipelineRow[],
   specFolder?: string
 ): PipelineRow[] {
@@ -185,7 +199,7 @@ function applyFolderFilter(
 /**
  * Prefix-aware spec-folder filter for the summary lane: a parent-scope query
  * keeps descendant folders, matching the primary BM25/vector lanes rather than
- * the exact-match {@link applyFolderFilter}. Summary-lane use only.
+ * the exact-match {@link _applyFolderFilter}. Summary-lane use only.
  */
 function applyFolderFilterPrefix(
   results: PipelineRow[],
@@ -368,6 +382,34 @@ function boostGraphMetadataCandidates(
       },
     };
   });
+}
+
+type CandidateQuality = 'good' | 'weak' | 'gap';
+
+function assessCandidateQuality(candidates: PipelineRow[], query: string): CandidateQuality {
+  const rankedCandidates = [...candidates].sort((a, b) => resolveEffectiveScore(b) - resolveEffectiveScore(a));
+  const confidences = computeResultConfidence(rankedCandidates);
+  return assessRequestQuality(rankedCandidates, confidences, { query }).requestQuality.label;
+}
+
+function resolveAutoCommunityFallbackQuality(
+  retrievalLevel: PipelineConfig['retrievalLevel'],
+  candidates: PipelineRow[],
+  query: string,
+): CandidateQuality | null {
+  if (retrievalLevel !== 'auto' || !isDualRetrievalEnabled() || !isCommunitySearchFallbackEnabled()) {
+    return null;
+  }
+
+  const quality = assessCandidateQuality(candidates, query);
+  return quality === 'good' ? null : quality;
+}
+
+function markCommunityFallbackRows(rows: PipelineRow[]): PipelineRow[] {
+  return rows.map((row) => ({
+    ...row,
+    _communityFallback: true,
+  }));
 }
 
 function annotateBranchScore(row: PipelineRow, branchLabel: string): Record<string, number> {
@@ -1404,6 +1446,64 @@ async function executeStage1Core(input: Stage1Input, startTime: number): Promise
   candidates = backfillMissingQualityScores(candidates);
   candidates = filterByMinQualityScore(candidates, qualityThreshold);
   candidates = boostGraphMetadataCandidates(candidates, query);
+
+  const autoCommunityFallbackQuality = resolveAutoCommunityFallbackQuality(
+    retrievalLevel,
+    candidates,
+    effectiveQuery,
+  );
+  if (autoCommunityFallbackQuality) {
+    try {
+      const db = requireDb();
+      let communityCandidates = queryCommunityMembersAsRankedList(
+        effectiveQuery,
+        db,
+        limit,
+        { specFolder, tenantId, userId, agentId },
+      ) as PipelineRow[];
+
+      if (tier) {
+        communityCandidates = applyTierFilter(communityCandidates, tier);
+      } else if (!includeArchived) {
+        communityCandidates = communityCandidates.filter(
+          (row) => row.importance_tier == null || row.importance_tier !== 'deprecated',
+        );
+      }
+      if (contextType) {
+        communityCandidates = communityCandidates.filter(
+          (row) => resolveRowContextType(row) === contextType,
+        );
+      }
+      communityCandidates = backfillMissingQualityScores(communityCandidates);
+      communityCandidates = filterByMinQualityScore(communityCandidates, qualityThreshold);
+
+      if (communityCandidates.length > 0) {
+        const beforeCount = candidates.length;
+        candidates = mergeCandidateBatches([
+          { label: 'community', rows: markCommunityFallbackRows(communityCandidates) },
+        ], {
+          seedCandidates: candidates,
+          seedLabel: query,
+        });
+
+        const appendedCount = Math.max(0, candidates.length - beforeCount);
+        if (appendedCount > 0) {
+          channelCount++;
+        }
+        if (trace) {
+          addTraceEntry(trace, 'fallback', beforeCount, candidates.length, 0, {
+            channel: 'community',
+            retrievalLevel: 'auto',
+            requestQuality: autoCommunityFallbackQuality,
+            appendedCount,
+          });
+        }
+      }
+    } catch (communityErr: unknown) {
+      const communityMsg = communityErr instanceof Error ? communityErr.message : String(communityErr);
+      console.warn(`[stage1-candidate-gen] Auto community fallback failed (fail-open): ${communityMsg}`);
+    }
+  }
 
   // -- Corpus-Grounded LLM Reformulation ----------------------
   //
