@@ -11,8 +11,8 @@ _memory:
     packet_pointer: "deep-loops/035-gpt-reliability-fixes/004-dispatch-receipts-and-progress"
     last_updated_at: "2026-07-03T16:00:00Z"
     last_updated_by: "claude-code"
-    recent_action: "Task stub scaffolded from plan-review restructure"
-    next_safe_action: "Expand tasks when this phase starts"
+    recent_action: "Implementation tasks done; live acceptance re-run open"
+    next_safe_action: "Run the live acceptance-cell benchmark on gpt-fast"
     blockers: []
     key_files: []
     session_dedup:
@@ -47,7 +47,7 @@ _memory:
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 Apply the requirement edits from `spec.md` §4, verifying quoted current-text against the live files first; wire each change behind the phase-001 feature flag (closes F-010, F-011, F-012, F-013, F-015, F-016, F-017, F-031, F-041, F-043).
+- [x] T001 Apply the requirement edits from `spec.md` §4, verifying quoted current-text against the live files first; wire each change behind the phase-001 feature flag (closes F-010, F-011, F-012, F-013, F-015, F-016, F-017, F-031, F-041, F-043). — Shipped as six scoped commits (receipt engine, validator, progress records, route-advisory migration, CLI-branch wrapper routing, council stepwise persistence); each Sonnet-verified.
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -55,7 +55,7 @@ _memory:
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T002 Re-run the acceptance cells (RVB-007, RSB-005, RSB-007, ACB-004-high, ACB-005, CXB-004) on gpt-fast-med + gpt-fast-high; confirm the baseline leg does not regress and the CI comparator is green.
+- [ ] T002 Re-run the acceptance cells (RVB-007, RSB-005, RSB-007, ACB-004-high, ACB-005, CXB-004) on gpt-fast-med + gpt-fast-high; confirm the baseline leg does not regress and the CI comparator is green. — OPEN: live-model benchmark not yet run; implementation is complete and unit/integration-verified, this closes the end-to-end behavior-flip criterion.
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -63,7 +63,7 @@ _memory:
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T003 Update docs, run `validate.sh --strict`, scoped commit + push.
+- [x] T003 Update docs, run `validate.sh --strict`, scoped commit + push. — implementation-summary + tasks updated to shipped state; strict validation run at closeout; scoped commits pushed to the branch.
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -71,7 +71,8 @@ _memory:
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] Requirement edits applied behind the flag; acceptance cells moved to expected verdict; baseline green (per parent REQ-006).
+- [x] Requirement edits applied behind the flag (six Sonnet-verified commits).
+- [ ] Acceptance cells moved to expected verdict; baseline green (per parent REQ-006) — OPEN, pending the live-model benchmark re-run (T002).
 <!-- /ANCHOR:completion -->
 
 ---
