@@ -9,7 +9,8 @@
     "system-speckit/028-memory-search-intelligence/004-deep-loop/003-fanout-failure-recovery",
     "system-speckit/028-memory-search-intelligence/004-deep-loop/004-reliability-weighted-convergence",
     "system-speckit/028-memory-search-intelligence/004-deep-loop/005-stop-input-corroboration",
-    "system-speckit/028-memory-search-intelligence/004-deep-loop/006-continuity-threading"
+    "system-speckit/028-memory-search-intelligence/004-deep-loop/006-continuity-threading",
+    "system-speckit/028-memory-search-intelligence/004-deep-loop/007-deep-review-followup-hardening"
   ],
   "migrated": true,
   "manual": {

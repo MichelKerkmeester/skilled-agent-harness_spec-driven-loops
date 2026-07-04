@@ -72,7 +72,7 @@ Provide the subsystem root purpose and implementation phase map for the Deep Loo
 ## 3. SCOPE
 
 ### In Scope
-- Root-level routing for the 6 Deep Loop Runtime implementation child folders.
+- Root-level routing for the 6 Deep Loop Runtime implementation child folders plus the re-nested deep-review-followup-hardening phase (007, from former top-level 015).
 - A phase-documentation map that names each implementation sub-phase and current planning status.
 - A research-input pointer for the evidence packet that fed these child plans.
 
@@ -106,6 +106,7 @@ Research input: `research/research.md` remains the subsystem source packet for c
 | 004 | `004-reliability-weighted-convergence/` | Reliability-weighted convergence | NO-GO |
 | 005 | `005-stop-input-corroboration/` | Stop-input corroboration checks | Partial (runtime only) |
 | 006 | `006-continuity-threading/` | Continuity threading across iterations | Implemented |
+| 007 | `007-deep-review-followup-hardening/` | Deep-review follow-up hardening with its own four children (adopted from packet 032, re-nested from top-level 015 on 2026-07-04) | In Progress |
 
 ### Phase Transition Rules
 

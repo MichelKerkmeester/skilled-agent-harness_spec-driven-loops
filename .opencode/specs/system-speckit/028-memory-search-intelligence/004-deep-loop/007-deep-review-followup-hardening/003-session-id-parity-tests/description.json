@@ -1,0 +1,24 @@
+{
+  "level": "3",
+  "specFolder": "system-speckit/028-memory-search-intelligence/004-deep-loop/007-deep-review-followup-hardening/003-session-id-parity-tests",
+  "description": "Cross-mode workflow parity is maintained by discipline, not tests",
+  "keywords": [
+    "cross-mode",
+    "workflow",
+    "parity",
+    "maintained",
+    "discipline",
+    "tests"
+  ],
+  "lastUpdated": "2026-07-04T16:33:20.546Z",
+  "specId": "003",
+  "folderSlug": "session-id-parity-tests",
+  "parentChain": [
+    "system-speckit",
+    "028-memory-search-intelligence",
+    "004-deep-loop",
+    "007-deep-review-followup-hardening"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

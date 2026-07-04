@@ -126,7 +126,6 @@ Provide the root purpose, child map and cross-packet boundary for packet 028. Th
 | 006 | `006-review-remediation/` | Six-child review-remediation track: 001, 003, 005, 006 executed; 002 and 004 ABSORBED into 016 (verify-first-then-close, closed by phase 013 2026-07-04) | Phase parent |
 | 007 | `007-dark-flag-graduation/` | Twelve-child dark-flag graduation suite that benchmarked built-but-default-off capabilities, returned graduate, refine or cut verdicts and closed follow-up validation | Phase parent |
 | 014 | `014-manual-playbook-execution-sweep/` | Manual playbook execution sweep; findings-remediation waves 1-7 shipped with Phase-2 appendix items open, adopted from standalone packet 031 | In Progress |
-| 015 | `015-deep-review-followup-hardening/` | Deep-review follow-up hardening; children 002-004 complete and 001 not started, adopted from standalone packet 032 | In Progress |
 | 016 | `016-fix-deep-dive-p0-p2-findings-for-mk-spec-memory/` | 13-phase remediation program for every P0/P1/P2 finding from the 2026-07-03 memory search deep dive; absorbs the Group-A flag cluster and the 006/002 + 006/004 scopes | Complete — 13/13 phases shipped + pushed 2026-07-04 (live-latency/eval/reconcile gates are daemon-side captures) |
 
 ### Phase Transition Rules
@@ -137,7 +136,7 @@ Provide the root purpose, child map and cross-packet boundary for packet 028. Th
 - Child 006 is the review-remediation rollup, with four executed children and two scopes (002/004) absorbed into the 016 program and closed 2026-07-04.
 - Child 007 is the dark-flag graduation suite, with twelve benchmark, cleanup, validation, follow-up and review children.
 - Children 013 through 015 were adopted from standalone packets 030 through 032 on 2026-07-03 by operator restructure.
-- **Top-level ceiling (governance):** 028 has exactly eight canonical top-level phase-parent folders — 000 through 007. All new phase work nests as a child of one of them by subject; never create a new top-level `0NN-` folder. Folders 014 through 016 remain top-level pending re-nest to their subject parents (014 to 000, 015 to 004, 016 to 001) in follow-up passes — the last standing exceptions, not a licence for new ones. Folder 013 was re-nested to `005-spec-data-quality/050-validate-sh-dist-freshness-and-repo-remediation` on 2026-07-04.
+- **Top-level ceiling (governance):** 028 has exactly eight canonical top-level phase-parent folders — 000 through 007. All new phase work nests as a child of one of them by subject; never create a new top-level `0NN-` folder. Folders 014 and 016 remain top-level pending re-nest to their subject parents (014 to 000, 016 to 001) in follow-up passes — the last standing exceptions, not a licence for new ones. Folders 013 and 015 were re-nested on 2026-07-04 (013 to `005-spec-data-quality/050-validate-sh-dist-freshness-and-repo-remediation`, 015 to `004-deep-loop/007-deep-review-followup-hardening`).
 - Research-only material from earlier rounds lives under subsystem `research/from-*` archives.
 - Run strict validation on a child parent and its direct children before using it as an execution source.
 
