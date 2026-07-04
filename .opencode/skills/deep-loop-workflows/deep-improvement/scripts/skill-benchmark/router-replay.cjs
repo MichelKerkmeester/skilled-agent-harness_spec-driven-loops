@@ -179,7 +179,7 @@ function buildHubRouteTelemetry({ skillRoot, intents, router, taskLower }) {
   for (const mode of selectedModes) {
     const signal = router.intentSignals && router.intentSignals[mode] ? router.intentSignals[mode] : {};
     for (const keyword of Array.isArray(signal.keywords) ? signal.keywords : []) {
-      if (keyword && taskLower.includes(keyword)) matchedAliases.push(keyword);
+      if (keywordHits(taskLower, keyword)) matchedAliases.push(keyword);
     }
   }
 
@@ -288,12 +288,26 @@ function parseRouter(skillMdText, skillRoot) {
  * @param {Object} intentSignals - Map of intent -> {weight, keywords}.
  * @returns {Array<{intent:string,score:number}>} Scored intents, highest first.
  */
+const WORD_BOUNDARY_KEYWORDS = new Set(['review']);
+
+// A bare keyword like "review" gets swallowed by unrelated longer words
+// ("preview" contains "review"), so match those on word boundaries. Path- and
+// identifier-style keywords keep substring matching so "javascript" still
+// matches inside "2_javascript".
+function keywordHits(taskLower, kw) {
+  if (!kw) return false;
+  if (WORD_BOUNDARY_KEYWORDS.has(kw)) {
+    return new RegExp(`\\b${kw.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}\\b`, 'i').test(taskLower);
+  }
+  return taskLower.includes(kw);
+}
+
 function scoreIntents(taskLower, intentSignals) {
   const scores = [];
   for (const [key, sig] of Object.entries(intentSignals)) {
     let score = 0;
     for (const kw of sig.keywords) {
-      if (kw && taskLower.includes(kw)) score += sig.weight;
+      if (keywordHits(taskLower, kw)) score += sig.weight;
     }
     if (score > 0) scores.push({ intent: key, score });
   }

@@ -24,13 +24,15 @@ const { parseRouter } = require('./router-replay.cjs');
 
 const HARD_VERDICT = 'VOCAB-DRIFT';
 const SCORE_PENALTY = { P0: 40, P1: 12, P2: 3 };
-const MODE_PREFIXES = [
-  ['md-generator-', 'md-generator'],
-  ['interface-', 'interface'],
-  ['foundations-', 'foundations'],
-  ['motion-', 'motion'],
-  ['audit-', 'audit'],
-];
+// Mode prefixes are derived from each hub's own registry so this check works
+// for any parent hub, not just one family's fixed mode names.
+function buildModePrefixes(registry) {
+  const modes = Array.isArray(registry && registry.modes) ? registry.modes : [];
+  return modes
+    .map((mode) => (mode && mode.workflowMode ? String(mode.workflowMode) : ''))
+    .filter(Boolean)
+    .map((workflowMode) => [`${workflowMode}-`, workflowMode]);
+}
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 3. HELPERS
@@ -108,9 +110,9 @@ function readJson(filePath, findings, label, required) {
   }
 }
 
-function ownerModeForClass(className) {
+function ownerModeForClass(className, modePrefixes) {
   if (className === 'hub-identity') return null;
-  for (const [prefix, mode] of MODE_PREFIXES) {
+  for (const [prefix, mode] of modePrefixes || []) {
     if (className.startsWith(prefix)) return mode;
   }
   return null;
@@ -134,13 +136,13 @@ function graphTriggerPhrases(graph) {
   return [...new Set(phrases.map(String))];
 }
 
-function buildProjection(vocabularyClasses) {
+function buildProjection(vocabularyClasses, modePrefixes) {
   const projection = new Map();
   const typedKeywordRaw = new Map();
   const typedAliasKeys = new Set();
 
   for (const [className, klass] of Object.entries(vocabularyClasses || {})) {
-    const ownerMode = ownerModeForClass(className);
+    const ownerMode = ownerModeForClass(className, modePrefixes);
     const keywords = Array.isArray(klass && klass.keywords) ? klass.keywords : [];
     for (const raw of keywords) {
       const normalized = normalizePhrase(raw);
@@ -304,7 +306,8 @@ function checkVocabSync({ skillRoot }) {
   const hubSkillMd = fs.existsSync(skillMdPath) ? fs.readFileSync(skillMdPath, 'utf8') : '';
   const hubKeywords = extractHubKeywords(hubSkillMd);
   const triggerPhrases = graphTriggerPhrases(graph);
-  const { projection, typedKeywordRaw, typedAliasKeys } = buildProjection(hub.vocabularyClasses);
+  const modePrefixes = buildModePrefixes(registry);
+  const { projection, typedKeywordRaw, typedAliasKeys } = buildProjection(hub.vocabularyClasses, modePrefixes);
   const { aliases: registryAliases, ownerMap: registryAliasOwners } = buildRegistryAliases(registry);
   const intentSignalOwners = buildIntentSignalOwners(skillRoot, registry, findings);
 

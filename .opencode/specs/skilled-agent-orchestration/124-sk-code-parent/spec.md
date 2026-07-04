@@ -13,15 +13,15 @@ _memory:
     packet_pointer: "skilled-agent-orchestration/124-sk-code-parent"
     last_updated_at: "2026-07-03T00:00:00Z"
     last_updated_by: "claude-opus"
-    recent_action: "Completed 008 routing-benchmark-and-review — deterministic router-mode benchmark + three-lens family deep-review found zero real router defects; re-layered the shared skill-benchmark harness for thin hubs + fixed its negative-scoring (honest verdict 44->71), restored a merge-blocking Iron-Law canary, fixed four cheap defects, zero net-new test failures"
-    next_safe_action: "Proceed to 009 cutover-and-rollout (final recursive validation, native-invocability regression, back-compat aliases, version/changelog bumps, rollout+rollback readiness). Deferred to main: advisor-rebuild + memory reindex. Deferred to 009: alias-covered NAME refs + alias removal, 8 pre-existing harness-test migrations, parent-hub-vocab-sync generalization, CS-003 matcher"
+    recent_action: "Landed the 009 branch-side cutover prep — verified cleanup (8 harness-test migrations, parent-hub-vocab-sync generalization, CS-003 matcher, a 29-path smart_routing content-drift fix) + two fold-broken live fixes — and authored the atomic main-side advisor-rebuild + alias-removal rollout runbook (the load-bearing cutover can't run in the worktree: graph compiler fails validation on un-built dist, TS scorer can't load)"
+    next_safe_action: "Merge the branch, then execute the main-side rollout runbook in 009/implementation-summary.md (build dist -> remove advisor scorer identity TS+Python -> rebaseline corpora -> regen skill-graph -> reindex -> delete 4 alias sites -> repoint ~350 NAME refs -> version release -> full verification). Then the parent rollup."
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "bootstrap-session"
       parent_session_id: null
-    completion_pct: 87
+    completion_pct: 93
     open_questions: []
     answered_questions: []
 ---
@@ -111,7 +111,7 @@ Per-phase detail lives in each child's `plan.md`; the authoritative blast-radius
 | 006 | `006-build-remaining-modes/` | Distribute the pre-hub flat doctrine into the four `code-*` mode contracts (implement=Phase 0/1, quality=Phase 1.5, debug=Phase 2, verify=Phase 3 non-mutating); mirror sk-design shape; registry-exact tool surfaces; consume shared detection. Per-mode playbooks/changelogs deferred. | **complete** |
 | 007 | `007-advisor-and-integration/` | Repoint all live references broken by the 004 relocation + 005 fold via a ground-truth deterministic sweep (77 files; restored the silently-broken pre-commit hygiene gate); merge review keywords into the hub advisor node + clean dangling sk-code-review edges (alias kept). Advisor-rebuild/reindex → main; alias-covered NAME refs (agent prose + speckit `baseline:`) → 009. | **complete** |
 | 008 | `008-routing-benchmark-and-review/` | Deterministic router-mode benchmark + three-lens family deep-review (zero real router defects); re-layered the shared skill-benchmark harness for thin hubs + fixed its negative-scoring (honest verdict 44→71), restored a merge-blocking Iron-Law canary, fixed four cheap defects. Deferred to 009: 8 pre-existing harness-test migrations, parent-hub-vocab-sync generalization, CS-003 matcher. | **complete** |
-| 009 | `009-cutover-and-rollout/` | Final recursive validation, native-invocability regression, back-compat aliases, version/changelog bumps, rollout + rollback readiness. | planned |
+| 009 | `009-cutover-and-rollout/` | **Branch:** verified cleanup (8 harness migrations, vocab-sync generalization, CS-003 matcher, 29-path smart_routing fix) + 2 fold-broken live fixes. **Main-side rollout (runbook in 009/implementation-summary.md):** atomic advisor-rebuild — sk-code-review scorer removal (TS+Python), skill-graph regen + reindex, 4 alias-site deletions, ~350 NAME-ref repoints, version release. Split because the load-bearing cutover can't run in the worktree (no compiled dist). | branch complete · main-side rollout pending |
 
 ### Phase Transition Rules
 

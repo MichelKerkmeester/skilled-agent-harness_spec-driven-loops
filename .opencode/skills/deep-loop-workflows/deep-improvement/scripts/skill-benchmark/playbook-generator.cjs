@@ -28,7 +28,7 @@
 
 const fs = require('fs');
 const path = require('path');
-const { parseRouter, routeSkillResources } = require('./router-replay.cjs');
+const { parseRouter, routeSkillResources, loadSurfaceRouter } = require('./router-replay.cjs');
 const { buildBannedVocab, lintFixture } = require('./contamination-lint.cjs');
 const { loadPlaybookScenarios } = require('./load-playbook-scenarios.cjs');
 
@@ -45,7 +45,16 @@ const { loadPlaybookScenarios } = require('./load-playbook-scenarios.cjs');
 function analyzeCoverage(skillRoot) {
   const skillMd = fs.readFileSync(path.join(skillRoot, 'SKILL.md'), 'utf8');
   const router = parseRouter(skillMd, skillRoot);
-  const intents = Object.keys(router.intentSignals);
+  // A parent hub's router only carries the mode keys (implement/quality/debug/...);
+  // the retained surface router (when present) carries the real per-intent signal
+  // set the resource targets are actually keyed on, so merge it in for coverage.
+  let intents = Object.keys(router.intentSignals);
+  if (router.routerSource === 'hub-router.json') {
+    const surfaceRouter = loadSurfaceRouter(skillRoot);
+    if (surfaceRouter) {
+      intents = [...new Set([...intents, ...Object.keys(surfaceRouter.intentSignals)])];
+    }
+  }
   const resourceTargets = [...new Set(Object.values(router.resourceMap).flat())];
   const m = /#{1,3}\s*When NOT to Use([\s\S]*?)(?:\n#{1,3}\s|$)/i.exec(skillMd);
   const negatives = m ? (m[1].match(/^\s*[-*]\s+(.+)$/gm) || []).map((s) => s.replace(/^\s*[-*]\s+/, '').trim().slice(0, 140)) : [];

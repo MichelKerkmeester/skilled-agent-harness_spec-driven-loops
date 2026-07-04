@@ -1,0 +1,92 @@
+{
+  "schema_version": 1,
+  "packet_id": "skilled-agent-orchestration/124-sk-code-parent/009-cutover-and-rollout",
+  "spec_folder": "skilled-agent-orchestration/124-sk-code-parent/009-cutover-and-rollout",
+  "parent_id": "skilled-agent-orchestration/124-sk-code-parent",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [
+      "skilled-agent-orchestration/124-sk-code-parent/008-routing-benchmark-and-review"
+    ],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "sk-code cutover and rollout",
+      "sk-code-review alias removal",
+      "sk-code advisor-rebuild",
+      "main-side rollout runbook",
+      "advisor scorer removal"
+    ],
+    "key_topics": [
+      "sk-code",
+      "parent-hub",
+      "cutover-and-rollout",
+      "sk-code-review",
+      "alias-removal",
+      "advisor-rebuild",
+      "advisor-scorer",
+      "skill-graph-regen",
+      "name-ref-repoint",
+      "harness-migration"
+    ],
+    "importance_tier": "critical",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Phase 009 is the final cutover-and-rollout. Investigation revealed the sk-code-review removal is not a bounded alias delete but a retune of ~100 calibrated entries across the production advisor scorer (TS + Python mirror) plus a graph regeneration and coupled-corpora rebaseline — and that the load-bearing steps cannot run in the worktree (the graph compiler fails validation on another skill's un-built dist paths; the TS scorer can't load @spec-kit/shared). The phase therefore split at the verifiability seam. The BRANCH portion landed and verified: 8 harness-test migrations to the hub layout (suite 8-failed to 1-failed, the 1 being a sk-design-owned stale digest), the parent-hub-vocab-sync generalization (registry-derived mode prefixes; sk-design unchanged; sk-code orphans 47->13), the CS-003 word-boundary matcher fix (preview no longer false-matches review), a 29-path content-drift fix in smart_routing.md (0 dead paths, also lifting the 008 benchmark), and two fold-broken live fixes (setup-cp-sandbox.sh, a dead README link). The MAIN-SIDE ROLLOUT is specified as one atomic advisor-rebuild runbook (build dist -> remove scorer identity TS+Python -> rebaseline corpora -> regen graph node 19->18 -> reindex -> delete 4 alias sites -> repoint ~350 NAME refs -> cut version release -> full verification), sequenced so no step exposes an unresolvable identity, with the sk-code-review alias kept as a working shim until the rebuild lands it all at once.",
+    "created_at": "2026-07-04T00:00:00Z",
+    "last_save_at": "2026-07-04T00:00:00Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": null,
+    "source_doc_hashes": {},
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

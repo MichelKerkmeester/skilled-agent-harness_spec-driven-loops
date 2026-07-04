@@ -19,7 +19,7 @@ function makeRouterlessSkill(): string {
 }
 
 // router-replay is a pure module — exercise it directly.
-const { routeSkillResources, scoreIntents, selectIntents, parseRouter } = require(join(SB, 'router-replay.cjs'));
+const { routeSkillResources, scoreIntents, selectIntents, parseRouter, loadSurfaceRouter } = require(join(SB, 'router-replay.cjs'));
 const { buildBannedVocab, lintFixture } = require(join(SB, 'contamination-lint.cjs'));
 const { scanConnectivity, scanHubRegistry } = require(join(SB, 'd5-connectivity.cjs'));
 const {
@@ -97,17 +97,23 @@ describe('Lane C — reference-following router (delegated RESOURCE_MAP)', () =>
     const skillMd = readFileSync(join(SKCODE, 'SKILL.md'), 'utf8');
     // SKILL.md alone has no inline dicts -> unparseable without the skillRoot pointer.
     expect(parseRouter(skillMd).parseable).toBe(false);
-    // With the skill root, parseRouter follows the pointer to smart_routing.md.
+    // With the skill root, parseRouter follows the pointer to the hub router, which
+    // selects the mode (implement/quality/debug/verify/review).
     const router = parseRouter(skillMd, SKCODE);
     expect(router.parseable).toBe(true);
-    expect(router.routerSource).toContain('smart_routing.md');
+    expect(router.routerSource).toBe('hub-router.json');
     expect(Object.keys(router.resourceMap).length).toBeGreaterThan(0);
+    // The retained surface router (shared/references/smart_routing.md) still carries
+    // the per-surface RESOURCE_MAP the hub projection does not expose.
+    const surface = loadSurfaceRouter(SKCODE);
+    expect(surface).toBeTruthy();
+    expect(Object.keys(surface.resourceMap).length).toBeGreaterThan(0);
   });
 
   it('routes a sk-code task to existing resources with no dead paths', () => {
-    const res = routeSkillResources({ skillRoot: SKCODE, taskText: 'improve lighthouse score and core web vitals' });
+    const res = routeSkillResources({ skillRoot: SKCODE, taskText: 'improve lighthouse score and core web vitals for the webflow site' });
     expect(res.parseable).toBe(true);
-    expect(res.intents).toContain('PERFORMANCE');
+    expect(res.intents).toContain('implement');
     expect(res.resources.length).toBeGreaterThan(0);
     expect(res.missingResources).toEqual([]); // every routed path exists on disk
   });

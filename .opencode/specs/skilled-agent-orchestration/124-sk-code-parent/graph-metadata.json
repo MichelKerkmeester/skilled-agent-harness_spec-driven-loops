@@ -11,7 +11,8 @@
     "skilled-agent-orchestration/124-sk-code-parent/005-foldin-review",
     "skilled-agent-orchestration/124-sk-code-parent/006-build-remaining-modes",
     "skilled-agent-orchestration/124-sk-code-parent/007-advisor-and-integration",
-    "skilled-agent-orchestration/124-sk-code-parent/008-routing-benchmark-and-review"
+    "skilled-agent-orchestration/124-sk-code-parent/008-routing-benchmark-and-review",
+    "skilled-agent-orchestration/124-sk-code-parent/009-cutover-and-rollout"
   ],
   "manual": {
     "depends_on": [
@@ -86,7 +87,7 @@
     ],
     "source_fingerprint": null,
     "source_doc_hashes": {},
-    "last_active_child_id": "skilled-agent-orchestration/124-sk-code-parent/008-routing-benchmark-and-review",
+    "last_active_child_id": "skilled-agent-orchestration/124-sk-code-parent/009-cutover-and-rollout",
     "last_active_at": "2026-07-04T00:00:00Z"
   }
 }

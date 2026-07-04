@@ -72,7 +72,6 @@ Each skill name links to its own README. The one-line descriptions come from the
 | Skill | What it does |
 |---|---|
 | [`sk-code`](sk-code/README.md) | The single code-work skill that detects your surface, loads your standards and verifies before claiming done |
-| [`sk-code-review`](sk-code-review/README.md) | Stack-agnostic findings-first code review that classifies each finding by severity |
 | [`sk-doc`](sk-doc/README.md) | Document quality that starts with structure, with a deterministic script that extracts and scores |
 | [`sk-git`](sk-git/README.md) | Move from a clean workspace to a merged PR, with worktree setup, Conventional Commits and branch discipline |
 | [`sk-design`](sk-design/README.md) | Set distinctive visual direction (palette, typography, layout, motion) that avoids templated AI defaults, grounding against real design systems (`mcp-open-design`) and shipped-UI references (Mobbin/Refero via Code Mode), then hand the build to sk-code |

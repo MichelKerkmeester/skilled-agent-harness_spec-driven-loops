@@ -18,7 +18,7 @@ import { join, resolve, relative } from 'node:path';
 const SKILL_ROOT = resolve(__dirname, '..', '..', '..');
 const REPO_SKILLS = resolve(SKILL_ROOT, '..', '..');
 const SKCODE = join(REPO_SKILLS, 'sk-code');
-const { parseRouter } = require(join(SKILL_ROOT, 'scripts', 'skill-benchmark', 'router-replay.cjs'));
+const { parseRouter, loadSurfaceRouter, registryPacketRoots } = require(join(SKILL_ROOT, 'scripts', 'skill-benchmark', 'router-replay.cjs'));
 
 // Router-internal navigation docs — intentionally NOT intent resources.
 const NON_ROUTED_ALLOWLIST = new Set([
@@ -33,6 +33,18 @@ function machineRouterPaths(): Set<string> {
   for (const r of router.defaultResource || []) set.add(r);
   for (const paths of Object.values(router.resourceMap) as string[][]) {
     for (const p of paths) set.add(p);
+  }
+  // The hub router only projects mode-level pointers (a mode's SKILL.md); the
+  // retained surface router carries the real per-surface RESOURCE_MAP this guard
+  // exists to check, so union it in for a hub skill.
+  if (router.routerSource === 'hub-router.json') {
+    const surfaceRouter = loadSurfaceRouter(SKCODE);
+    if (surfaceRouter) {
+      for (const r of surfaceRouter.defaultResource || []) set.add(r);
+      for (const paths of Object.values(surfaceRouter.resourceMap) as string[][]) {
+        for (const p of paths) set.add(p);
+      }
+    }
   }
   return set;
 }
@@ -56,7 +68,7 @@ function listRoutableMarkdown(): string[] {
 }
 
 function proseExplicitPaths(): Set<string> {
-  const md = readFileSync(join(SKCODE, 'references', 'smart_routing.md'), 'utf8');
+  const md = readFileSync(join(SKCODE, 'shared', 'references', 'smart_routing.md'), 'utf8');
   const start = md.indexOf('## 4. WEBFLOW MAP');
   const end = md.indexOf('## 7. VERIFICATION COMMANDS');
   const prose = md.slice(start, end);
@@ -76,7 +88,10 @@ describe('sk-code router sync — machine block vs filesystem and prose', () => 
   });
 
   it('every machine-router path exists on disk (no dead routes)', () => {
-    const dead = [...machine].filter((p) => !existsSync(join(SKCODE, p)));
+    // The unioned surface-router paths resolve under a mode packet or the shared
+    // preamble tier, not the hub root, so existence must check every packet root.
+    const roots = [SKCODE, ...registryPacketRoots(SKCODE)];
+    const dead = [...machine].filter((p) => !roots.some((root) => existsSync(join(root, p))));
     expect(dead).toEqual([]);
   });
 
