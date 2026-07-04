@@ -537,6 +537,18 @@ All other quality standards remain in effect for OpenCode plugin files, includin
 - `UPPER_SNAKE_CASE` constants
 - `camelCase` functions
 
+### Runtime Output — Never Overlay the TUI
+
+OpenCode's TUI paints plugin `stdout`/`stderr` onto the prompt input line, where it sticks until a redraw and corrupts the interactive session. Plugins therefore MUST NOT write user- or agent-facing output to the console (`console.log`/`warn`/`error`, `process.stdout`/`stderr.write`). Surface the signal through a non-intrusive channel instead:
+
+| Channel | Use for |
+|---|---|
+| `experimental.chat.system.transform` — push a **bounded** string to `output.system` | Agent-actionable notices the model should see and can act on or relay |
+| Append-only log file (e.g. `.opencode/logs/*.log`, fail-open) | Durable operator/audit record |
+| A plugin `tool` the agent can call | On-demand status the user explicitly requests |
+
+`stderr` diagnostics are allowed only behind an explicit debug env flag that defaults off (matching `mk-goal`'s `MK_GOAL_DEBUG`). Reference implementations: `mk-dist-freshness-guard.js` (injection + log) and `mk-deep-loop-guard.js` (log-only).
+
 ### Brief Example
 
 ```javascript

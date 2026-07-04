@@ -148,6 +148,15 @@ export default async function ExamplePlugin(ctx, options = {}) {
 (`export default`) — see `quality_standards.md` §10 OpenCode Plugin Exemption
 Tier.
 
+**Plugin runtime output (P0)**:
+```markdown
+[ ] OpenCode plugin never writes to stdout/stderr (would overlay the TUI chat input)
+```
+Surface stale/guard notices via `experimental.chat.system.transform` (bounded
+`output.system` push), a fail-open log file, or a plugin tool — `stderr` only
+behind a default-off debug env flag. Reference: `mk-dist-freshness-guard.js`.
+See `quality_standards.md` §10.
+
 **Wrong for non-plugin CommonJS utilities**:
 ```javascript
 export { function_name };
