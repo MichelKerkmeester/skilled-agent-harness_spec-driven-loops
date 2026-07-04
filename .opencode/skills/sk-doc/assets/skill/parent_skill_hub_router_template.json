@@ -1,0 +1,75 @@
+{
+  "_template": "Parent-skill hub-router.json scaffold. Replace every [bracketed] placeholder. Keep routerSignals keys bidirectionally aligned with mode-registry.json modes[].workflowMode. The canonical live example is sk-code/hub-router.json.",
+  "skill": "[parent-skill-name]",
+  "version": "1.0.0.0",
+  "routerPolicy": {
+    "defaultMode": "[workflow-mode-a]",
+    "ambiguityDelta": 1,
+    "tieBreak": ["[workflow-mode-a]", "[workflow-mode-b]", "[workflow-mode-c]", "[surface-name]"],
+    "outcomes": {
+      "single": "one dominant workflow intent routes to one workflow mode",
+      "orderedBundle": "clearly separate workflow intents route to an ordered workflow mode list",
+      "surfaceBundle": "one workflow mode primary plus zero-or-more read-only surface packets as evidence, workflow ordered first",
+      "defer": "unclear or contradictory intent asks for disambiguation"
+    },
+    "defaultResource": ["[shared-or-workflow-resource].md"],
+    "bundleRules": [
+      {
+        "_example": "Optional rule that references real modes from mode-registry.json.",
+        "when": "[condition phrase or class combination]",
+        "primary": "[workflow-mode-a]",
+        "surfaces": ["[surface-name]"],
+        "outcome": "surfaceBundle"
+      }
+    ]
+  },
+  "routerSignals": {
+    "[workflow-mode-a]": {
+      "weight": 4,
+      "classes": ["[workflow-mode-a]-aliases", "[workflow-mode-a]-actions", "hub-identity"],
+      "resources": ["[workflow-packet-a]/SKILL.md"]
+    },
+    "[workflow-mode-b]": {
+      "weight": 4,
+      "classes": ["[workflow-mode-b]-aliases", "[workflow-mode-b]-evidence", "hub-identity"],
+      "resources": ["[workflow-packet-b]/SKILL.md"]
+    },
+    "[workflow-mode-c]": {
+      "weight": 3,
+      "classes": ["[workflow-mode-c]-aliases", "hub-identity"],
+      "resources": ["[workflow-packet-c]/SKILL.md"]
+    },
+    "[surface-name]": {
+      "_example": "Surface packet signal: normal router entry, read-only resources, metadata route in mode-registry.json.",
+      "weight": 2,
+      "classes": ["[surface-name]-aliases", "[surface-name]-runtime", "hub-identity"],
+      "resources": ["[surface-name]/SKILL.md", "[surface-name]/references/[reference].md"]
+    }
+  },
+  "vocabularyClasses": {
+    "hub-identity": {
+      "keywords": ["[parent-skill-name]", "mode-registry", "hub-router", "workflowmode", "packetkind", "[domain keyword]"]
+    },
+    "[workflow-mode-a]-aliases": {
+      "keywords": ["[workflow-mode-a]", "[workflow phrase]", "[natural-language alias]"]
+    },
+    "[workflow-mode-a]-actions": {
+      "keywords": ["[action verb]", "[workflow action phrase]"]
+    },
+    "[workflow-mode-b]-aliases": {
+      "keywords": ["[workflow-mode-b]", "[workflow phrase]", "[natural-language alias]"]
+    },
+    "[workflow-mode-b]-evidence": {
+      "keywords": ["[evidence phrase]", "[verification phrase]"]
+    },
+    "[workflow-mode-c]-aliases": {
+      "keywords": ["[workflow-mode-c]", "[workflow phrase]", "[natural-language alias]"]
+    },
+    "[surface-name]-aliases": {
+      "keywords": ["[surface-name]", "[surface phrase]", "[surface natural-language alias]"]
+    },
+    "[surface-name]-runtime": {
+      "keywords": ["[surface runtime keyword]", "[surface framework keyword]", "[surface evidence keyword]"]
+    }
+  }
+}

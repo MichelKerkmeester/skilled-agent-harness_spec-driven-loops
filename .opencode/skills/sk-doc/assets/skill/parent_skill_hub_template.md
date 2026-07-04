@@ -1,21 +1,26 @@
 ---
-title: Parent Skill Hub Template - Routing-Only SKILL.md
-description: Fill-in template for a parent skill's routing hub that dispatches a request to one of N self-contained mode packets over a shared backend.
+title: Parent Skill Hub Template - Canonical Two-Axis Hub
+description: Copy-paste template for a parent skill hub with a thin SKILL.md plus companion metadata over workflow and surface packets.
 trigger_phrases:
   - "parent skill hub template"
-  - "routing hub skill"
-  - "nested mode packet skill"
+  - "two-axis parent hub"
   - "mode registry routing"
+  - "surface packet scaffold"
 importance_tier: normal
 contextType: general
-version: 1.8.0.3
+version: 2.0.0.0
 ---
 
-# Parent Skill Hub Template - Routing-Only SKILL.md
+# Parent Skill Hub Template - Canonical Two-Axis Hub
 
-Template for the thin routing hub of a **parent skill**: one advisor-routable identity that dispatches by mode key through `mode-registry.json` to N verbatim, self-contained mode packets over a shared backend. The hub holds **no** per-mode logic.
+Template for a **parent skill hub**: one advisor-routable identity with a thin `SKILL.md` plus companion metadata. The canonical live example is `sk-code`: the hub routes by `mode-registry.json`, declares routing behavior in `hub-router.json`, and keeps one `graph-metadata.json` identity for the whole family.
 
-Read the pattern first: [parent_skills_nested_packets.md](../../references/skill_creation/parent_skills_nested_packets.md). Canonical example: [`deep-loop-workflows/SKILL.md`](../../../deep-loop-workflows/SKILL.md).
+The core is always the same **2-tier shape**:
+
+1. Hub tier: `SKILL.md`, `mode-registry.json`, `hub-router.json`, `description.json`, `graph-metadata.json`.
+2. Packet tier: workflow packets and optional surface packets listed in one `modes[]` array.
+
+Deep-loop-style runtime machinery is not the core shape. If a hub needs it, declare it under top-level `extensions` in `mode-registry.json`; do not create a third physical tier.
 
 ---
 
@@ -23,158 +28,264 @@ Read the pattern first: [parent_skills_nested_packets.md](../../references/skill
 
 ### When to Use This Template
 
-Use for a family of related workflows that share one backend but keep genuinely distinct per-mode contracts (convergence math, state shape, artifacts, tool permissions). For two or three near-identical modes, prefer one `SKILL.md` with mode subsections instead.
+Use for a family that must keep one public skill identity while routing to multiple packet contracts:
+
+- Workflow packets for process/lifecycle modes such as implementation, review, verification, research, or audit.
+- Surface packets for read-only domain evidence such as a platform, framework, runtime, or reference corpus.
+
+For two or three near-identical procedures with no independent packet contracts, prefer one regular `SKILL.md` with mode subsections.
 
 ### The Hard Invariant
 
-Exactly **one** `graph-metadata.json` per parent skill (the hub's, `skill_id == folder`). Mode packets and `shared/` carry **none** — they are advisor-invisible by construction. Adding a second `graph-metadata.json` either throws at discovery (`skill_id != folder`) or registers a second skill identity.
+Exactly **one** `graph-metadata.json` per parent hub. Packet folders and shared resources carry none. The advisor sees the hub identity; the hub router selects packets.
 
-### Required Companion Files
+### Canonical Example
 
-- `mode-registry.json` — the declarative single source of truth (use [parent_skill_registry_template.json](./parent_skill_registry_template.json)).
-- `graph-metadata.json` — exactly one, the hub's.
-- N mode packets, each `folder == packetSkillName == deep-<mode>`, each with its own `SKILL.md`.
+Model the hub on `sk-code`:
+
+- `SKILL.md` is thin and routes by mode.
+- `mode-registry.json` is the packet registry and discriminator source.
+- `hub-router.json` owns router policy, signals, vocabulary classes, and bundle outcomes.
+- `description.json` is the advisor-facing summary.
+- `graph-metadata.json` is the one skill-graph identity node.
 
 ---
 
-## 2. FRONTMATTER
+## 2. TWO-AXIS MODEL
+
+Every packet is one entry in `mode-registry.json > modes[]`. Use `packetKind` to choose the axis; do not create a separate surface array.
+
+| Axis | `packetKind` | Purpose | Naming | Tool posture | Advisor routing |
+|------|--------------|---------|--------|--------------|-----------------|
+| Workflow | `workflow` | A process or lifecycle mode | `[hub-prefix]-[mode]` or existing packet name | Mutating or read-only per role | `lexical`, `alias-fold`, `metadata`, or `command-bridge` |
+| Surface | `surface` | A domain evidence base | Bare noun such as `[surface]` | Read-only only | `metadata` |
+
+Surface packets have these required properties:
+
+- `backendKind: "evidence-base"`.
+- `toolSurface.mutatesWorkspace: false`.
+- `toolSurface.allowed` is a subset of `Read`, `Bash`, `Grep`, and `Glob`.
+- `toolSurface.forbidden` includes `Write`, `Edit`, and `Task`.
+- `advisorRouting.routingClass: "metadata"` so the surface stays advisor-invisible.
+
+---
+
+## 3. REQUIRED COMPANION FILES
+
+| Scope | File or directory | Required | Purpose |
+|-------|-------------------|----------|---------|
+| Hub | `SKILL.md` | Yes | Thin routing entry point; no packet-local logic |
+| Hub | `mode-registry.json` | Yes | Single packet array with `packetKind`, `toolSurface`, and `advisorRouting` |
+| Hub | `hub-router.json` | Yes | Router policy, tie-breaks, outcomes, signals, vocabulary classes |
+| Hub | `description.json` | Yes | Advisor-facing hub description and triggers |
+| Hub | `graph-metadata.json` | Yes | One skill-graph identity node for the whole hub |
+| Hub | `changelog/` | Yes | Real changelog files for the hub |
+| Hub | `manual_testing_playbook/` | Yes | Baseline manual validation package |
+| Hub | `benchmark/` | Yes | Baseline benchmark or evidence package |
+| Workflow packet | `SKILL.md` | Yes | Self-contained workflow contract |
+| Workflow packet | `README.md` | Yes | Human orientation for the packet |
+| Workflow packet | `changelog/` | Yes | Real changelog files for the packet |
+| Surface packet | `SKILL.md` | Yes | Read-only evidence-base contract |
+| Surface packet | `README.md` | Yes | Human orientation for the evidence base |
+| Surface packet | `references/` | Yes | Read-only source material |
+| Surface packet | `assets/` | Yes | Read-only reusable snippets or examples |
+| Surface packet | `changelog/` | Yes | Real changelog files for the packet |
+
+---
+
+## 4. HUB FRONTMATTER
 
 ```yaml
 ---
 name: [parent-skill-name]
-description: "[Unified skill: routes a request to one of N modes ([mode-a], [mode-b], …) over the shared [backend] backend. Holds no per-mode logic — dispatches by [modeKey] through mode-registry.json.]"
+description: "[Unified skill: routes [workflow-count] workflow packet(s) and [surface-count] surface packet(s) through mode-registry.json; holds no packet-local logic.]"
 allowed-tools: [Read, Write, Edit, Bash, Grep, Glob]
 version: 1.0.0.0
 ---
 ```
 
-- `name` must match the hub folder name, hyphen-case.
-- `description` says "routes to N modes" and "holds no per-mode logic"; keep it ≤ 130 chars after trimming stack/product enumerations.
-- `allowed-tools` is the **union** the modes need (add `Task`/`WebFetch` only if a mode requires them).
+- `name` must match the hub folder name.
+- `description` names routing, the registry, and the no-packet-logic invariant.
+- `allowed-tools` is the union required by workflow modes; read-only surfaces do not justify mutating tools.
+- `version` is four-part `X.Y.Z.W`.
 
 ---
 
-## 3. HUB TEMPLATE
+## 5. COPY-PASTE HUB SCAFFOLD
 
-Copy the block below into the hub `SKILL.md` and fill the bracketed placeholders. Keep it routing-only.
+Copy the block below into the hub `SKILL.md` and fill every `[bracketed]` placeholder.
 
 ```markdown
 ---
 name: [parent-skill-name]
-description: "[Unified skill that routes to N modes over a shared backend; holds no per-mode logic.]"
+description: "[Unified skill that routes workflow and surface packets through mode-registry.json; holds no packet-local logic.]"
 allowed-tools: [Read, Write, Edit, Bash, Grep, Glob]
 version: 1.0.0.0
 ---
 
-<!-- Keywords: [parent-skill-name], [mode-a], [mode-b], [modeKey], mode-registry, [backend], [domain keywords] -->
+<!-- Keywords: [parent-skill-name], mode-registry, hub-router, workflowMode, packetKind, [workflow-mode-a], [surface-name], [domain keywords] -->
 
 # [Parent Skill Title]
 
-[One sentence: N modes, one shared backend, one identity.] This hub holds NO per-mode logic — it routes by [modeKey] through `mode-registry.json`. Each mode keeps its own contract in its packet.
+[One sentence: one public skill identity, [workflow-count] workflow packet(s), and [surface-count] optional surface evidence packet(s).] This hub holds no packet-local logic. It routes by `workflowMode` through `mode-registry.json` and uses `hub-router.json` for router policy, signals, and bundle outcomes.
 
 ---
 
 ## 1. WHEN TO USE
 
-Use this skill (through its commands and agents) for any [family] workflow:
+Use this skill when the request belongs to the [family/domain] family and should route to one of these packets:
 
-| Mode | Use it for | Command | Agent |
-|------|-----------|---------|-------|
-| **[mode-a]** | [inward/outward purpose → artifact] | `[/cmd:mode-a]` | `[agent-a]` |
-| **[mode-b]** | [purpose → artifact] | `[/cmd:mode-b]` | `[agent-b]` |
+| Packet | Kind | Use it for | Tool posture |
+|--------|------|------------|--------------|
+| `[workflow-mode-a]` | workflow | [process outcome] | [mutating/read-only] |
+| `[workflow-mode-b]` | workflow | [process outcome] | [mutating/read-only] |
+| `[surface-name]` | surface | [read-only evidence domain] | read-only evidence-base |
 
 ### When NOT to Use
-- A single quick read/edit (no loop) — use the relevant skill directly.
-- Backend/runtime support primitives — that is `[backend]`, consumed here, not invoked as a user workflow.
+
+- Requests outside [family/domain].
+- Direct runtime/backend maintenance unless that is an explicit workflow packet.
+- Mutating work inside a surface packet; surfaces are read-only evidence bases.
 
 ---
 
 ## 2. SMART ROUTING
 
-Routing is **registry-driven**. `mode-registry.json` is the single source of truth; the hub, commands, and advisor all read it and none re-derive the mapping.
+Routing is registry-driven. `mode-registry.json` lists every workflow and surface packet in one `modes[]` array. `hub-router.json` decides whether the result is a single mode, ordered workflow bundle, defer response, or surface bundle.
 
-### The discriminator
-- **`[modeKey]`** — the public mode key (every mode).
-- **`[loopTypeKey]`** — the backend convergence key (validated against the allowed set; explicit `null` for non-loop modes; NEVER inferred from `[modeKey]`).
-- **`[backendKind]`** — which backend runs the mode.
+### Two-Axis Model
 
-### Routing rule
-\`\`\`
-read mode-registry.json
-  → resolve [modeKey] from the command / advisor alias
-  → load the mode packet at registry[mode].packet/
-  → dispatch to the backend named by registry[mode].[backendKind]
-\`\`\`
+- `packetKind: "workflow"` means a process/lifecycle packet.
+- `packetKind: "surface"` means a read-only evidence-base packet.
+- Surface packets use `backendKind: "evidence-base"`, `routingClass: "metadata"`, and `mutatesWorkspace: false`.
+- There is no separate surface array; consumers derive packet roots and vocabulary ownership from `modes[]`.
 
-Per-mode behavior is **not flattened**: each packet keeps its own convergence math, state shape, artifacts, and tool-permission guards.
+### Routing Rule
+
+```text
+read hub-router.json
+  -> score routerSignals and vocabularyClasses
+  -> apply routerPolicy.tieBreak, workflow modes first then surfaces
+  -> read mode-registry.json for packetKind, backendKind, toolSurface, and advisorRouting
+  -> load the selected packet(s)
+```
+
+### Outcomes
+
+- `single`: one dominant workflow mode.
+- `orderedBundle`: multiple workflow modes, ordered by policy.
+- `surfaceBundle`: one workflow primary plus zero or more read-only surface evidence packets.
+- `defer`: unclear or contradictory intent asks for disambiguation.
 
 ---
 
 ## 3. HOW IT WORKS
 
 ### Layout
-\`\`\`
+
+```text
 [parent-skill-name]/
-  SKILL.md               # this routing hub (no per-mode logic)
-  mode-registry.json     # the discriminator + advisorRouting (single source of truth)
-  graph-metadata.json    # the ONE advisor identity for the whole skill
-  deep-[mode-a]/  deep-[mode-b]/  …   # N verbatim mode packets (no per-packet graph-metadata.json)
-  shared/                # non-discoverable workflow-layer helpers (synthesis, not execution primitives)
-\`\`\`
+  SKILL.md
+  mode-registry.json
+  hub-router.json
+  description.json
+  graph-metadata.json
+  changelog/
+  manual_testing_playbook/
+  benchmark/
+  [workflow-packet-a]/
+    SKILL.md
+    README.md
+    changelog/
+  [surface-name]/
+    SKILL.md
+    README.md
+    references/
+    assets/
+    changelog/
+```
 
-Each mode packet is self-contained (own `SKILL.md`, `references/`, `scripts/`, `assets/`) with internal paths repointed and **no per-packet `graph-metadata.json`**.
+### Companion Metadata
 
-### Backend
-Modes consume `[backend]` per their `backendKind` (a mode may run over the shared backend, a host process, or an external adapter). Name what it provides and what it must never gain.
+- `mode-registry.json` owns `workflowMode`, `packetKind`, `backendKind`, `toolSurface`, packet folder identity, alias phrases, and `advisorRouting`.
+- `hub-router.json` owns `routerPolicy`, `routerSignals`, `vocabularyClasses`, and bundle rules.
+- `description.json` owns advisor-facing summary fields and optional hub-specific arrays.
+- `graph-metadata.json` owns the one skill-graph identity node.
+
+### Optional Extensions
+
+Use top-level `extensions` in `mode-registry.json` only when the hub needs extra machinery:
+
+- `runtime-loop`: activates per-mode `runtimeLoopType` and convergence backend fields.
+- `advisor-projection`: declares the drift-guard path for lexical or alias-fold routes.
+- `transform-verbs`: declares verb-transform routing for design-like hubs.
+- `deprecated-modes`: documents retired modes kept as shims.
+- `surface-axis`: declares that the hub includes `packetKind: "surface"` packets.
+
+These extensions activate in-place fields. They do not move `advisorRouting` data and do not create a third physical tier.
 
 ---
 
 ## 4. RULES
 
 ### ALWAYS
-- **ALWAYS** resolve a mode through `mode-registry.json`; never hardcode a router mapping.
-- **ALWAYS** keep each mode's contract in its packet — the hub stays logic-free.
-- **ALWAYS** keep exactly one `graph-metadata.json` (this hub's) so the advisor sees one skill.
-- **ALWAYS** give every mode an `advisorRouting` block with a valid `routingClass` and `packetSkillName`.
+
+- Resolve packets through `mode-registry.json`; never hardcode packet roots in prose-only logic.
+- Keep `SKILL.md` thin: routing, invariants, and navigation only.
+- Keep every packet in `modes[]` and give every packet a `packetKind`.
+- Keep surfaces read-only with `backendKind: "evidence-base"` and `routingClass: "metadata"`.
+- Keep exactly one `graph-metadata.json`, at the hub root.
+- Keep `hub-router.json` signal keys and registry `workflowMode` values bidirectionally aligned.
 
 ### NEVER
-- **NEVER** add a `graph-metadata.json` or a discoverable skill marker inside a mode packet or `shared/`.
-- **NEVER** infer `[loopTypeKey]` from `[modeKey]` — read it from the registry (explicit `null` is load-bearing).
-- **NEVER** make the advisor read `mode-registry.json` at runtime — keep the projection maps in code and guard them with the drift-guard test.
-- **NEVER** move weighted lexical regex into the registry, synthesis into the backend, or execution primitives into `shared/`.
+
+- Never add `surfacePackets[]` or any second packet array.
+- Never put mutating tools on a surface packet.
+- Never add packet-local `graph-metadata.json` files.
+- Never infer extension-only fields from `workflowMode`; declare the extension and field explicitly.
+- Never move `advisorRouting` fields away from mode entries.
 
 ### ESCALATE IF
-- A new mode is needed — extend `mode-registry.json` and open a packet; do not bolt logic onto the hub.
-- A change would require the backend to gain an out-of-class responsibility — that contradicts the architecture; escalate.
+
+- A packet cannot be classified as `workflow` or `surface`.
+- A surface needs mutation; it is no longer a surface evidence base.
+- A lexical or alias-fold route lacks a drift guard.
+- Router signals, vocabulary classes, and registry modes cannot be made bidirectionally consistent.
 
 ---
 
 ## 5. REFERENCES
 
-- Backend: `[backend]` (consumed by every mode).
-- Mode packets: `deep-[mode-a]/SKILL.md`, `deep-[mode-b]/SKILL.md`, … (per-mode detail).
-- Commands: the per-mode commands under `[command dir]`.
-- Registry: `mode-registry.json` (the routing contract).
+- Registry: `mode-registry.json`.
+- Router: `hub-router.json`.
+- Advisor description: `description.json`.
+- Skill graph identity: `graph-metadata.json`.
+- Workflow packets: `[workflow-packet-a]/SKILL.md`, `[workflow-packet-b]/SKILL.md`.
+- Surface packets: `[surface-name]/SKILL.md`, `[surface-name]/references/`, `[surface-name]/assets/`.
 ```
 
 ---
 
-## 4. CHECKLIST
+## 6. CHECKLIST
 
 Before claiming the hub complete:
 
-- [ ] Hub `SKILL.md` holds routing only — no per-mode convergence/state/synthesis logic.
-- [ ] Exactly one `graph-metadata.json` (the hub's); zero inside packets or `shared/`.
-- [ ] `mode-registry.json` exists, every mode has an `advisorRouting` block.
-- [ ] Each mode packet is self-contained with `folder == packetSkillName == deep-<mode>` (grandfathered mismatches recorded via `packetSkillName`).
-- [ ] Drift-guard test asserts `hardcoded maps == registry projection` and passes.
-- [ ] `package_skill.py` validation passes on the hub `SKILL.md`.
+- [ ] Hub `SKILL.md` is thin and contains no packet-local workflow or surface logic.
+- [ ] `mode-registry.json` has one `modes[]` array with `packetKind` on every entry.
+- [ ] Every mode has `toolSurface` and `grandfatheredFolderMismatch`.
+- [ ] Every surface is read-only, `backendKind: "evidence-base"`, and `routingClass: "metadata"`.
+- [ ] `hub-router.json` has `surfaceBundle`, workflow-first `tieBreak`, bidirectional mode keys, and defined vocabulary classes.
+- [ ] `description.json` has the required advisor-facing fields and a four-part version.
+- [ ] `graph-metadata.json` is the only advisor identity node for the hub.
+- [ ] Changelog directories use real files, not symlinks.
 
 ---
 
-## 5. RELATED RESOURCES
+## 7. RELATED RESOURCES
 
-- [parent_skills_nested_packets.md](../../references/skill_creation/parent_skills_nested_packets.md) - the full pattern, invariant, and routing contract.
-- [parent_skill_registry_template.json](./parent_skill_registry_template.json) - the companion `mode-registry.json` scaffold.
-- [skill_md_template.md](./skill_md_template.md) - the single-skill `SKILL.md` template (use for each mode packet).
-- Canonical example: [`deep-loop-workflows/SKILL.md`](../../../deep-loop-workflows/SKILL.md), [`mode-registry.json`](../../../deep-loop-workflows/mode-registry.json), [`graph-metadata.json`](../../../deep-loop-workflows/graph-metadata.json).
+- `parent_skill_registry_template.json` - companion `mode-registry.json` scaffold.
+- `parent_skill_hub_router_template.json` - companion `hub-router.json` scaffold.
+- `parent_skill_description_template.json` - companion `description.json` scaffold.
+- `parent_skill_graph_metadata_template.json` - companion `graph-metadata.json` scaffold.
+- `skill_md_template.md` - packet-level `SKILL.md` template.
+- Canonical example: `sk-code` hub metadata files.

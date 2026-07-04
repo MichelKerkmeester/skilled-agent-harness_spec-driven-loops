@@ -2,7 +2,7 @@
 name: sk-doc
 description: "Markdown and OpenCode component specialist: doc quality, content optimization, component scaffolds, install guides, playbooks."
 allowed-tools: [Bash, Edit, Glob, Grep, Read, Task, Write]
-version: 1.8.1.0
+version: 1.8.2.0
 ---
 
 <!-- Keywords: sk-doc, markdown-quality, skill-creation, document-validation, ascii-flowchart, llms-txt, content-optimization, extract-structure -->
@@ -60,6 +60,7 @@ Create and manage OpenCode components (skills, agents, commands). Each component
 
 **Component Types:**
 - **Skills** (.opencode/skills/) - Knowledge bundles with workflows → [skill_creation.md](./references/skill_creation.md)
+- **Parent Hubs** (.opencode/skills/) - Advisor-routable skill families with mode packets, mode registries, hub routers, and optional surface packets → [parent_skills_nested_packets.md](./references/skill_creation/parent_skills_nested_packets.md)
 - **Agents** (.opencode/agents/) - AI personas with tool permissions → [agent_creation.md](./references/agent_creation.md)
 - **Commands** (.opencode/commands/) - Slash commands for user invocation → [command_template.md](./assets/command/command_template.md)
 
@@ -179,7 +180,7 @@ Create skill-local `mcp_server/benchmarks/benchmark-<YYYY-MM-DD>/` folders that 
 The router discovers markdown resources recursively from `references/` and `assets/` and then applies intent scoring from `RESOURCE_MAP`. Keep this section domain-focused rather than static file inventories.
 
 - `references/global/` for documentation standards, validation rules, optimization guidance, voice rules, and shared execution workflows.
-- `references/` root for document-family and component creation guides such as skill creation, agent creation, install guides, feature catalogs, and manual testing playbooks.
+- `references/` root for document-family and component creation guides such as skill creation, parent hubs, agent creation, install guides, feature catalogs, and manual testing playbooks.
 - `assets/readme/` for README and install-guide scaffolds; `assets/changelog_template.md`, `assets/frontmatter_templates.md`, and `assets/llmstxt_templates.md` at the assets/ root for cross-cutting templates.
 - `assets/skill/` for skill creation templates, including `SKILL.md`, skill README, reference and asset scaffolds; `assets/agent_template.md` at the assets/ root and `assets/command/command_template.md` (with `assets/command/command_presentation_template.md`) for agent and command creation templates.
 - `assets/feature_catalog/` and `assets/testing_playbook/` at the assets/ root for feature catalog and manual testing playbook package templates.
@@ -216,6 +217,7 @@ INTENT_SIGNALS = {
     "DOC_QUALITY": {"weight": 4, "keywords": ["dqi", "quality", "validate", "extract_structure"]},
     "OPTIMIZATION": {"weight": 3, "keywords": ["optimize", "llms.txt", "ai context"]},
     "SKILL_CREATION": {"weight": 4, "keywords": ["skill creation", "new skill", "init_skill", "package_skill"]},
+    "PARENT_HUB": {"weight": 4, "keywords": ["parent skill", "parent hub", "mode packet", "mode registry", "hub router", "surface packet"]},
     "AGENT_COMMAND": {"weight": 4, "keywords": ["create agent", "create command", "agent template", "command template"]},
     "FLOWCHART": {"weight": 3, "keywords": ["flowchart", "ascii diagram", "decision tree", "swimlane"]},
     "INSTALL_GUIDE": {"weight": 3, "keywords": ["install guide", "setup instructions", "prerequisite"]},
@@ -231,6 +233,7 @@ RESOURCE_MAP = {
     "DOC_QUALITY": ["references/global/validation.md", "references/global/workflows.md", "references/global/core_standards.md", "references/global/evergreen_packet_id_rule.md"],
     "OPTIMIZATION": ["references/global/optimization.md", "assets/llmstxt_templates.md"],
     "SKILL_CREATION": ["references/skill_creation.md", "assets/skill/skill_md_template.md", "assets/skill/skill_readme_template.md", "assets/skill/skill_reference_template.md"],
+    "PARENT_HUB": ["references/skill_creation/parent_skills_nested_packets.md", "references/skill_creation/parent_hub_router_schema.md"],
     "AGENT_COMMAND": ["references/agent_creation.md", "assets/agent_template.md", "assets/command/command_template.md"],
     "FLOWCHART": ["assets/flowcharts/simple_workflow.md", "assets/flowcharts/decision_tree_flow.md"],
     "INSTALL_GUIDE": ["assets/readme/install_guide_template.md", "references/install_guide_creation.md"],

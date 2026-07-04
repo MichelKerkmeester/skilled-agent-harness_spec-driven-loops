@@ -1,86 +1,166 @@
 {
-  "_template": "Parent-skill mode-registry.json scaffold. Replace every [bracketed] placeholder. This file is the single source of truth for the discriminator + advisorRouting; routers/commands/tests READ it and none re-derive the mapping. The advisor keeps its hardcoded projection maps in sync via a CI drift-guard test (maps == registry projection); it does NOT read this file at runtime. See sk-doc/references/skill_creation.md section 10.",
+  "_template": "Parent-skill mode-registry.json scaffold. Replace every [bracketed] placeholder. Keep one modes[] array for workflow and surface packets; packetKind is the axis discriminator. The canonical live example is sk-code/mode-registry.json.",
   "skill": "[parent-skill-name]",
-  "version": "1.0.0",
-  "description": "[Declarative mode registry: the discriminator (workflowMode/runtimeLoopType/backendKind) PLUS the advisorRouting projection for [parent-skill-name]. Hardcoded projection maps stay in sync via a CI drift-guard test; the advisor does not read this file at runtime.]",
+  "version": "1.0.0.0",
+  "description": "[Declarative packet registry: workflowMode, packetKind, backendKind, toolSurface, and advisorRouting for [parent-skill-name]. The advisor routes the hub identity; the hub selects workflow and surface packets.]",
   "discriminator": {
-    "workflowMode": "Public command/advisor/mode key. Stable identity used in commands, advisor aliases, and this registry. Carried by every mode.",
-    "runtimeLoopType": "The backend convergence loop key consumed by [backend]'s convergence step. Validated against the allowed set. Explicit null for non-loop (host/adapter) modes; NEVER inferred from workflowMode.",
-    "backendKind": "Which backend actually runs the mode: [runtime-loop-type | improvement-host | external-adapter | ...]."
+    "workflowMode": "Public hub/mode key. Stable identity used by the hub router and this registry. Carried by every mode.",
+    "packetKind": "Axis discriminator: workflow for process/lifecycle packets, surface for read-only evidence-base packets.",
+    "backendKind": "Which backend runs the mode. Surface packets use evidence-base. Workflow packets use the hub's declared backend kinds."
   },
   "advisorRoutingContract": {
-    "routingClass": "How the advisor finds the mode. 'lexical' = weighted-regex scoring in skill_advisor.py AND present in both projection maps. 'alias-fold' = TS projection map only (an alias projection, not lexically scored). 'metadata' = resolved by skill membership; no advisor map entry. 'command-bridge' = routed by its command, not an advisor map entry.",
-    "legacyAdvisorId": "The legacy skill id the projection maps key on (present for lexical + alias-fold modes only).",
+    "routingClass": "How the advisor finds the packet. lexical = weighted-regex scoring and projection maps. alias-fold = projection-only alias. metadata = resolved by hub membership with no advisor map entry. command-bridge = routed by command. Surface packets use metadata.",
+    "legacyAdvisorId": "Legacy skill id used by lexical and alias-fold projection maps only.",
     "advisorDefaultMode": "Marks the default mode a multi-mode legacy id folds to. Never inferred from array order.",
-    "legacyAliases": "The advisor's SYSTEM-ID alias set (not the natural-language aliases[] phrases); the drift-guard asserts these match order-insensitively.",
-    "packetSkillName": "The packet's SKILL.md name. Standard for new parent skills: folder == packetSkillName == deep-<mode>. Grandfather any mismatch here.",
-    "driftGuard": "[path to the vitest that asserts the hardcoded Python + TS maps equal this registry's projection]."
+    "legacyAliases": "Advisor system-id aliases for lexical or alias-fold routes; drift guards compare these order-insensitively.",
+    "packetSkillName": "The packet SKILL.md name. Folder equals packetSkillName unless grandfatheredFolderMismatch is true.",
+    "grandfatheredFolderMismatch": "Required on every mode; false unless a legacy folder/name mismatch is intentionally preserved.",
+    "toolSurface": "Required on every mode; declares allowed tools, forbidden tools, mutating posture, and any bash allowlist."
   },
   "modes": [
     {
-      "_example": "routingClass 'lexical' — weighted-regex scored AND in both projection maps.",
+      "_example": "routingClass lexical: weighted-regex scored and present in projection maps.",
       "workflowMode": "[mode-a]",
+      "packetKind": "workflow",
       "runtimeLoopType": "[loop-type-a]",
       "backendKind": "runtime-loop-type",
-      "packet": "deep-[mode-a]",
+      "toolSurface": {
+        "allowed": ["Read", "Write", "Edit", "Bash", "Grep", "Glob", "Task"],
+        "forbidden": [],
+        "mutatesWorkspace": true,
+        "bashAllowlist": []
+      },
+      "packet": "[hub-prefix]-[mode-a]",
+      "packetSkillName": "[hub-prefix]-[mode-a]",
+      "grandfatheredFolderMismatch": false,
       "command": "[/cmd:mode-a]",
       "agent": "[agent-a]",
       "artifactRoot": "[mode-a]/",
-      "aliases": ["deep-[mode-a]", "[natural-language phrase]", "[another phrase]"],
+      "aliases": ["[mode-a]", "[natural-language phrase]", "[another phrase]"],
       "advisorRouting": {
         "routingClass": "lexical",
-        "legacyAdvisorId": "deep-[mode-a]",
-        "legacyAliases": ["command-spec-kit-deep-[mode-a]", "spec_kit:deep-[mode-a]", "deep-[mode-a]", "sk-deep-[mode-a]"],
-        "packetSkillName": "deep-[mode-a]"
+        "legacyAdvisorId": "[legacy-skill-id-a]",
+        "legacyAliases": ["[legacy-alias-a]", "[legacy-alias-b]"],
+        "packetSkillName": "[hub-prefix]-[mode-a]"
       }
     },
     {
-      "_example": "routingClass 'alias-fold' — a multi-mode legacy id folding to its default mode via advisorDefaultMode; projected in TS only, not lexically scored.",
+      "_example": "routingClass alias-fold: a legacy id folding to its default mode; projected but not lexically scored.",
       "workflowMode": "[mode-b]",
+      "packetKind": "workflow",
       "runtimeLoopType": null,
       "backendKind": "improvement-host",
-      "packet": "deep-[mode-b]",
+      "toolSurface": {
+        "allowed": ["Read", "Write", "Edit", "Bash", "Grep", "Glob", "Task"],
+        "forbidden": [],
+        "mutatesWorkspace": true,
+        "bashAllowlist": []
+      },
+      "packet": "[hub-prefix]-[mode-b]",
+      "packetSkillName": "[hub-prefix]-[mode-b]",
+      "grandfatheredFolderMismatch": false,
       "command": "[/cmd:mode-b]",
       "agent": "[agent-b]",
       "artifactRoot": "[mode-b]/",
       "aliases": ["[natural-language phrase]", "[another phrase]"],
       "advisorRouting": {
         "routingClass": "alias-fold",
-        "legacyAdvisorId": "deep-[mode-b-family]",
+        "legacyAdvisorId": "[legacy-family-id]",
         "advisorDefaultMode": true,
-        "legacyAliases": ["command-spec-kit-deep-[mode-b]", "deep-[mode-b]", "sk-deep-[mode-b]"],
-        "packetSkillName": "deep-[mode-b]"
+        "legacyAliases": ["[legacy-alias-c]", "[legacy-alias-d]"],
+        "packetSkillName": "[hub-prefix]-[mode-b]"
       }
     },
     {
-      "_example": "routingClass 'metadata' — resolved by skill membership; no advisor map entry of its own (no legacyAdvisorId).",
+      "_example": "routingClass metadata: resolved by hub membership; no advisor map entry of its own.",
       "workflowMode": "[mode-c]",
+      "packetKind": "workflow",
       "runtimeLoopType": "[loop-type-c]",
-      "backendKind": "runtime-loop-type",
-      "packet": "deep-[mode-c]",
+      "backendKind": "surface-router",
+      "toolSurface": {
+        "allowed": ["Read", "Write", "Edit", "Bash", "Grep", "Glob"],
+        "forbidden": ["Task"],
+        "mutatesWorkspace": true,
+        "bashAllowlist": []
+      },
+      "packet": "[hub-prefix]-[mode-c]",
+      "packetSkillName": "[hub-prefix]-[mode-c]",
+      "grandfatheredFolderMismatch": false,
       "command": "[/cmd:mode-c]",
       "agent": "[agent-c]",
       "artifactRoot": "[mode-c]/",
-      "aliases": ["deep-[mode-c]", "[natural-language phrase]"],
+      "aliases": ["[mode-c]", "[natural-language phrase]"],
       "advisorRouting": {
         "routingClass": "metadata",
-        "packetSkillName": "deep-[mode-c]"
+        "packetSkillName": "[hub-prefix]-[mode-c]"
       }
     },
     {
-      "_example": "routingClass 'command-bridge' — routed by its command, not by an advisor map entry (no legacyAdvisorId).",
+      "_example": "routingClass command-bridge: routed by its command, not by an advisor map entry.",
       "workflowMode": "[mode-d]",
+      "packetKind": "workflow",
       "runtimeLoopType": null,
       "backendKind": "external-adapter",
-      "packet": "deep-[mode-d]",
+      "toolSurface": {
+        "allowed": ["Read", "Bash", "Grep", "Glob"],
+        "forbidden": ["Write", "Edit", "Task"],
+        "mutatesWorkspace": false,
+        "bashAllowlist": []
+      },
+      "packet": "[hub-prefix]-[mode-d]",
+      "packetSkillName": "[hub-prefix]-[mode-d]",
+      "grandfatheredFolderMismatch": false,
       "command": "[/cmd:mode-d]",
       "agent": "[agent-d]",
       "artifactRoot": "[mode-d]/",
       "aliases": ["[natural-language phrase]", "[another phrase]"],
       "advisorRouting": {
         "routingClass": "command-bridge",
-        "packetSkillName": "deep-[mode-d]"
+        "packetSkillName": "[hub-prefix]-[mode-d]"
+      }
+    },
+    {
+      "_example": "packetKind surface: bare-noun read-only evidence base; advisor-invisible metadata route.",
+      "workflowMode": "[surface-name]",
+      "packetKind": "surface",
+      "backendKind": "evidence-base",
+      "toolSurface": {
+        "allowed": ["Read", "Bash", "Grep", "Glob"],
+        "forbidden": ["Write", "Edit", "Task"],
+        "mutatesWorkspace": false,
+        "bashAllowlist": []
+      },
+      "packet": "[surface-name]",
+      "packetSkillName": "[surface-name]",
+      "grandfatheredFolderMismatch": false,
+      "aliases": ["[surface-name]", "[surface natural-language phrase]", "[surface evidence phrase]"],
+      "advisorRouting": {
+        "routingClass": "metadata",
+        "packetSkillName": "[surface-name]"
       }
     }
-  ]
+  ],
+  "extensions": {
+    "_template": "OPTIONAL declaration-only block. Keep only extensions this hub actually uses; delete this block for a pure two-tier hub.",
+    "runtime-loop": {
+      "_example": "Activates runtimeLoopType per workflow mode and names the convergence backend.",
+      "backend": "[runtime-backend-name]"
+    },
+    "advisor-projection": {
+      "_example": "Required when any mode uses routingClass lexical or alias-fold.",
+      "driftGuard": "[path/to/drift-guard.test.ts]"
+    },
+    "transform-verbs": {
+      "_example": "Declares verb-transform routing for hubs whose modes are selected through action verbs.",
+      "verbs": ["[verb-a]", "[verb-b]"]
+    },
+    "deprecated-modes": {
+      "_example": "Documents retired modes kept as compatibility shims.",
+      "modes": ["[deprecated-mode]"]
+    },
+    "surface-axis": {
+      "_example": "Declares that this hub carries packetKind surface packets in modes[].",
+      "surfaces": ["[surface-name]"]
+    }
+  }
 }

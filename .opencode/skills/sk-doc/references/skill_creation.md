@@ -9,7 +9,7 @@ trigger_phrases:
   - "progressive disclosure skills"
 importance_tier: normal
 contextType: implementation
-version: 1.8.0.34
+version: 1.8.0.35
 ---
 
 # Skill Creation Workflow - Complete Development Guide
@@ -20,7 +20,7 @@ Routing hub for the full skill lifecycle. The depth lives in the `skill_creation
 
 ## 1. OVERVIEW
 
-This file is a thin index over the skill-creation reference set. Each stage of the lifecycle — what a skill is, how to build one, how to validate and ship it, the pitfalls to avoid, worked examples and maintenance, and the parent-skill pattern — lives in its own single-concern file under [`skill_creation/`](./skill_creation/).
+This file is a thin index over the skill-creation reference set. Each stage of the lifecycle — what a skill is, how to build one, how to validate and ship it, the pitfalls to avoid, worked examples and maintenance, and the parent-hub pattern — lives in its own single-concern file under [`skill_creation/`](./skill_creation/).
 
 **Core Principle**: Progressive disclosure maximizes value, minimizes cost — for the skill being built and for this documentation set.
 
@@ -45,7 +45,8 @@ Load the file that matches the current task:
 | **Validation and packaging** — minimal vs comprehensive validation, distribution checklist, installation | [validation_and_packaging.md](./skill_creation/validation_and_packaging.md) | Before packaging, releasing, or diagnosing a rejected skill |
 | **Common pitfalls** — eight recurring defects (generic/bloated description, oversized SKILL.md, missing resources, unclear triggers, second-person voice, platform assumptions, multiline YAML, misplaced references) | [common_pitfalls.md](./skill_creation/common_pitfalls.md) | A skill does not trigger, bloats context, or fails budget checks; reviewing fresh authored skills |
 | **Examples and maintenance** — worked example skill layouts (PDF editor, brand guidelines, database query) and the update/versioning workflow | [examples_and_maintenance.md](./skill_creation/examples_and_maintenance.md) | Modeling a new skill on a proven layout, or maintaining and versioning a shipped skill |
-| **Parent skills with nested mode packets** — one hub dispatching to self-contained mode packets over a shared backend, the single `graph-metadata.json` invariant, the registry `advisorRouting` contract | [parent_skills_nested_packets.md](./skill_creation/parent_skills_nested_packets.md) | Designing or repairing a multi-mode parent skill |
+| **Parent hubs with nested mode packets** — one advisor identity dispatching to workflow and surface packets through a two-axis `modes[]` registry with `packetKind`, named extensions, and required hub-router metadata | [parent_skills_nested_packets.md](./skill_creation/parent_skills_nested_packets.md) | Designing or repairing a parent skill, parent hub, mode packet, surface packet, mode registry, or hub router |
+| **Parent hub router schema** — detailed schema companion for `mode-registry.json`, `hub-router.json`, `packetKind`, `surfaceBundle`, router signals, vocabulary classes, and named extensions | [parent_hub_router_schema.md](./skill_creation/parent_hub_router_schema.md) | Validating or authoring parent-hub router metadata and two-axis mode declarations |
 
 ---
 
@@ -57,7 +58,8 @@ Load the file that matches the current task:
 - [validation_and_packaging.md](./skill_creation/validation_and_packaging.md) - Validation requirements and distribution
 - [common_pitfalls.md](./skill_creation/common_pitfalls.md) - Common skill-creation pitfalls and fixes
 - [examples_and_maintenance.md](./skill_creation/examples_and_maintenance.md) - Example skills and maintenance workflow
-- [parent_skills_nested_packets.md](./skill_creation/parent_skills_nested_packets.md) - Parent skills with nested mode packets
+- [parent_skills_nested_packets.md](./skill_creation/parent_skills_nested_packets.md) - Parent hubs with nested workflow and surface packets
+- [parent_hub_router_schema.md](./skill_creation/parent_hub_router_schema.md) - Parent hub router and two-axis mode schema
 
 ### Templates
 - [skill_md_template.md](../assets/skill/skill_md_template.md) - SKILL.md file templates
