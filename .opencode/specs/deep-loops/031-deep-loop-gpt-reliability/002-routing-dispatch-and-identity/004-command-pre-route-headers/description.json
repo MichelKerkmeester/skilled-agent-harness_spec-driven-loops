@@ -1,0 +1,25 @@
+{
+  "level": "2",
+  "specFolder": "deep-loops/031-deep-loop-gpt-reliability/002-routing-dispatch-and-identity/004-command-pre-route-headers",
+  "description": "The research evidence identifies role-resolution overhead as the dominant GPT-slow mechanism",
+  "keywords": [
+    "research",
+    "evidence",
+    "identifies",
+    "role-resolution",
+    "overhead",
+    "dominant",
+    "gpt-slow",
+    "mechanism"
+  ],
+  "lastUpdated": "2026-07-04T19:02:56.882Z",
+  "specId": "004",
+  "folderSlug": "command-pre-route-headers",
+  "parentChain": [
+    "deep-loops",
+    "031-deep-loop-gpt-reliability",
+    "002-routing-dispatch-and-identity"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

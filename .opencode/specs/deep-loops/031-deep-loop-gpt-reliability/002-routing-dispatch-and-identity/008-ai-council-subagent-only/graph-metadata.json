@@ -1,0 +1,222 @@
+{
+  "schema_version": 1,
+  "packet_id": "deep-loops/031-deep-loop-gpt-reliability/002-routing-dispatch-and-identity/008-ai-council-subagent-only",
+  "spec_folder": "deep-loops/031-deep-loop-gpt-reliability/002-routing-dispatch-and-identity/008-ai-council-subagent-only",
+  "parent_id": "deep-loops/031-deep-loop-gpt-reliability/002-routing-dispatch-and-identity",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "ai-council subagent only",
+      "ai council mode conversion",
+      "remove primary agent reachability",
+      "implementation",
+      "plan",
+      "tasks",
+      "verification",
+      "checklist",
+      "summary"
+    ],
+    "key_topics": [
+      "ai-council",
+      "subagent",
+      "only",
+      "council",
+      "mode",
+      "conversion",
+      "remove",
+      "primary",
+      "agent",
+      "reachability",
+      "implementation",
+      "plan"
+    ],
+    "importance_tier": "critical",
+    "status": "complete",
+    "key_files": [
+      "decision-record.md",
+      ".opencode/agents/ai-council.md",
+      ".opencode/skills/cli-opencode/references/agent_delegation.md",
+      ".opencode/skills/sk-doc/assets/agent_template.md",
+      "spec.md",
+      "implementation-summary.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md"
+    ],
+    "entities": [
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "ai-council.md",
+        "kind": "doc",
+        "path": ".opencode/agents/ai-council.md",
+        "source": "derived"
+      },
+      {
+        "name": "agent_delegation.md",
+        "kind": "doc",
+        "path": ".opencode/skills/cli-opencode/references/agent_delegation.md",
+        "source": "derived"
+      },
+      {
+        "name": "agent_template.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/assets/agent_template.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Only Conversion",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Claude Code",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Single",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow Before",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Agent Loading Protocol",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "`.opencode/agents/ai-council.md:4` currently declares `mode: all`, meaning it is dual-reachable: directly selectable as a top-level agent in OpenCode (like a primary agent) AND dispatchable as a Task-tool sub-agent",
+    "created_at": "2026-07-01T10:56:26.917Z",
+    "last_save_at": "2026-07-04T19:02:59.019Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:5ee2c9adfd2f85f2f1a495d78c1b6f6d5fb9b43bde346ef595fa575f44cc4528",
+    "source_doc_hashes": {
+      "spec.md": "07fad54e2f6d9b2b4dd56be21a9b0fb462616b3da5b6542b831b3d83270d7b8f",
+      "plan.md": "a067fbad83bdd5cb7c97d846ff48d48ef17312ac04e9f25d2c4de79e1a722306",
+      "tasks.md": "b8915e054aa65a17b22f822266b0f9fbd430064646eeab7a7dcf00bf372d6b2f",
+      "checklist.md": "e0615fcf9157c18dc86bf7419720eb31d8bcce6f472bfde26da1449c5597c667",
+      "decision-record.md": "d5280979f235b1ab9a71edd86a931d7451f859ac7180d256210aeb48c149c6b6",
+      "implementation-summary.md": "d8e27aa05c1730b620c52ac668f013217665e96566742e24449e361bcd6905f6"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

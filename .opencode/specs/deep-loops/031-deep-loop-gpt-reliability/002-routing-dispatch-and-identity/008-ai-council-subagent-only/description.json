@@ -1,0 +1,29 @@
+{
+  "level": "2",
+  "specFolder": "deep-loops/031-deep-loop-gpt-reliability/002-routing-dispatch-and-identity/008-ai-council-subagent-only",
+  "description": "`.opencode/agents/ai-council.md:4` currently declares `mode: all`, meaning it is dual-reachable: directly selectable as a top-level agent in OpenCode",
+  "keywords": [
+    "opencode",
+    "agents",
+    "ai-council",
+    "currently",
+    "declares",
+    "mode",
+    "meaning",
+    "dual-reachable",
+    "directly",
+    "selectable",
+    "top-level",
+    "agent"
+  ],
+  "lastUpdated": "2026-07-04T19:02:58.827Z",
+  "specId": "008",
+  "folderSlug": "ai-council-subagent-only",
+  "parentChain": [
+    "deep-loops",
+    "031-deep-loop-gpt-reliability",
+    "002-routing-dispatch-and-identity"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}
