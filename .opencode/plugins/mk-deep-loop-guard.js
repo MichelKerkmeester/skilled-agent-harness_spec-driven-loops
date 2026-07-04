@@ -7,6 +7,8 @@
 // ║          the resolved target agent, and flags/blocks repeated/loop-like ║
 // ║          orchestrate-to-command-owned-loop-executor dispatches within a ║
 // ║          session while allowing exactly one legitimate bounded hand-off.║
+// ║          Also sweeps/archives/prunes its own per-session state so the   ║
+// ║          .loop-guard-state directory does not grow unbounded.          ║
 // ╚══════════════════════════════════════════════════════════════════════════╝
 'use strict';
 
@@ -14,7 +16,16 @@
 // 1. IMPORTS
 // ─────────────────────────────────────────────────────────────────────────────
 
-import { appendFileSync, mkdirSync, readFileSync, renameSync, unlinkSync, writeFileSync } from 'node:fs';
+import {
+  appendFileSync,
+  mkdirSync,
+  readdirSync,
+  readFileSync,
+  renameSync,
+  statSync,
+  unlinkSync,
+  writeFileSync,
+} from 'node:fs';
 import { join } from 'node:path';
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -23,9 +34,22 @@ import { join } from 'node:path';
 
 const REGISTRY_RELATIVE_PATH = '.opencode/skills/deep-loop-workflows/mode-registry.json';
 const LOOP_GUARD_STATE_DIR_RELATIVE_PATH = '.opencode/skills/.loop-guard-state';
+const LOOP_GUARD_ARCHIVE_DIR_NAME = '.archive';
 const WARN_LOG_FILENAME = 'guard-warnings.log';
 const REJECT_MODE_ENV = 'MK_DEEP_LOOP_GUARD_REJECT';
 const REJECT_LOOP_ENV = 'MK_DEEP_LOOP_GUARD_REJECT_LOOP';
+
+// Retention/cleanup env vars, mirroring the mk-goal.js sweep/archive/prune
+// pattern: an active state file untouched past ACTIVE_RETENTION_DAYS is
+// archived, and an archived file untouched past ARCHIVE_RETENTION_DAYS is
+// deleted. Defaults match the goal plugin's current tuning.
+const LOOP_GUARD_ACTIVE_RETENTION_DAYS_ENV = 'MK_DEEP_LOOP_GUARD_ACTIVE_RETENTION_DAYS';
+const LOOP_GUARD_ARCHIVE_RETENTION_DAYS_ENV = 'MK_DEEP_LOOP_GUARD_ARCHIVE_RETENTION_DAYS';
+const LOOP_GUARD_SWEEP_INTERVAL_MS_ENV = 'MK_DEEP_LOOP_GUARD_SWEEP_INTERVAL_MS';
+const DEFAULT_ACTIVE_RETENTION_DAYS = 2;
+const DEFAULT_ARCHIVE_RETENTION_DAYS = 90;
+const DEFAULT_SWEEP_INTERVAL_MS = 60 * 60 * 1000;
+const MS_PER_DAY = 24 * 60 * 60 * 1000;
 
 // Command-owned loop executors: dispatched only by their parent /deep:* command,
 // which owns iteration state and convergence. orchestrate may perform exactly one
@@ -193,11 +217,122 @@ function loopRepeatDetail(targetAgent, count) {
 // never affect or block the dispatch this hook guards.
 function appendWarningLog(stateDir, detail) {
   try {
+    pruneStaleWarningLog(stateDir);
     mkdirSync(stateDir, { recursive: true });
     const line = `${new Date().toISOString()} [mk-deep-loop-guard] WARN: ${detail}\n`;
     appendFileSync(join(stateDir, WARN_LOG_FILENAME), line, 'utf8');
   } catch (_) {
     // Fail open: swallow logging errors so the guarded dispatch is untouched.
+  }
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 5b. HELPERS -- retention (age-based sweep, archive, prune)
+// ─────────────────────────────────────────────────────────────────────────────
+
+function positiveIntFromEnv(envName, fallback) {
+  const raw = Number(process.env[envName]);
+  return Number.isFinite(raw) && raw > 0 ? Math.trunc(raw) : fallback;
+}
+
+// Whole-file log rotation, mirroring mk-goal.js's pruneJsonlLog: a log that has
+// gone untouched past the archive-retention window is dropped entirely before
+// the next append, rather than growing forever. Ordinary active use (frequent
+// appends) never triggers this -- only long dormancy does.
+function pruneStaleWarningLog(stateDir) {
+  const logPath = join(stateDir, WARN_LOG_FILENAME);
+  try {
+    const fileStats = statSync(logPath);
+    const retentionMs = positiveIntFromEnv(LOOP_GUARD_ARCHIVE_RETENTION_DAYS_ENV, DEFAULT_ARCHIVE_RETENTION_DAYS) * MS_PER_DAY;
+    if (Date.now() - fileStats.mtimeMs > retentionMs) unlinkSync(logPath);
+  } catch (_) {
+    // Absent or unreadable: nothing to prune.
+  }
+}
+
+function ensureLoopGuardArchiveDir(stateDir) {
+  const archiveDir = join(stateDir, LOOP_GUARD_ARCHIVE_DIR_NAME);
+  try {
+    mkdirSync(archiveDir, { recursive: true, mode: 0o700 });
+  } catch (_) {
+    return null;
+  }
+  return archiveDir;
+}
+
+// Deletes archived per-session state files whose mtime exceeds the archive
+// retention window. Called only from within the already-throttled sweep below,
+// so it does not need its own separate throttle.
+function pruneLoopGuardArchive(stateDir) {
+  const archiveDir = join(stateDir, LOOP_GUARD_ARCHIVE_DIR_NAME);
+  let entries;
+  try {
+    entries = readdirSync(archiveDir, { withFileTypes: true });
+  } catch (_) {
+    return;
+  }
+  const retentionMs = positiveIntFromEnv(LOOP_GUARD_ARCHIVE_RETENTION_DAYS_ENV, DEFAULT_ARCHIVE_RETENTION_DAYS) * MS_PER_DAY;
+  const now = Date.now();
+  for (const entry of entries) {
+    if (!entry.isFile()) continue;
+    const filePath = join(archiveDir, entry.name);
+    try {
+      const fileStats = statSync(filePath);
+      if (now - fileStats.mtimeMs > retentionMs) unlinkSync(filePath);
+    } catch (_) {
+      // Fail open on a single entry; the rest of the prune pass still runs.
+    }
+  }
+}
+
+/**
+ * Archive per-session loop-guard state files that have gone untouched past the
+ * active-retention window, then prune the archive itself. Throttled to once
+ * per sweep interval via runtimeState, mirroring mk-goal.js's
+ * sweepOrphanedActiveStates/maybePruneArchive pair.
+ *
+ * Every operation here is synchronous (readdirSync/statSync/renameSync), and
+ * this plugin's only other hook (tool.execute.before) is likewise free of any
+ * `await` before it touches loop-guard state files. Node runs synchronous code
+ * to completion before yielding the event loop, so a sweep in progress cannot
+ * interleave with a concurrent dispatch's state write -- no separate mutation
+ * queue is needed the way mk-goal.js's fully-async I/O requires.
+ *
+ * @param {string} stateDir - loop-guard state directory
+ * @param {{ lastLoopGuardSweepAtMs?: number }} runtimeState - per-plugin-instance throttle state
+ */
+function sweepStaleLoopGuardStates(stateDir, runtimeState) {
+  try {
+    const intervalMs = positiveIntFromEnv(LOOP_GUARD_SWEEP_INTERVAL_MS_ENV, DEFAULT_SWEEP_INTERVAL_MS);
+    const now = Date.now();
+    if (now - (runtimeState.lastLoopGuardSweepAtMs || 0) <= intervalMs) return;
+    runtimeState.lastLoopGuardSweepAtMs = now;
+
+    let entries;
+    try {
+      entries = readdirSync(stateDir, { withFileTypes: true });
+    } catch (_) {
+      return;
+    }
+    const archiveDir = ensureLoopGuardArchiveDir(stateDir);
+    if (!archiveDir) return;
+
+    const activeRetentionMs = positiveIntFromEnv(LOOP_GUARD_ACTIVE_RETENTION_DAYS_ENV, DEFAULT_ACTIVE_RETENTION_DAYS) * MS_PER_DAY;
+    for (const entry of entries) {
+      if (!entry.isFile() || !entry.name.endsWith('.json')) continue;
+      const sourcePath = join(stateDir, entry.name);
+      try {
+        const fileStats = statSync(sourcePath);
+        if (now - fileStats.mtimeMs <= activeRetentionMs) continue;
+        renameSync(sourcePath, join(archiveDir, entry.name));
+      } catch (_) {
+        // Fail open on a single entry; the rest of the sweep pass still runs.
+      }
+    }
+
+    pruneLoopGuardArchive(stateDir);
+  } catch (_) {
+    // Fail open: a sweep error must never affect session startup.
   }
 }
 
@@ -226,8 +361,17 @@ export default async function MkDeepLoopGuardPlugin(ctx) {
   const projectDir = ctx?.directory || process.cwd();
   const registryPath = join(projectDir, REGISTRY_RELATIVE_PATH);
   const loopStateDir = join(projectDir, LOOP_GUARD_STATE_DIR_RELATIVE_PATH);
+  const runtimeState = { lastLoopGuardSweepAtMs: 0 };
 
   return {
+    async event(input = {}) {
+      try {
+        const type = input?.event?.type || input?.type;
+        if (type === 'session.created') sweepStaleLoopGuardStates(loopStateDir, runtimeState);
+      } catch (_) {
+        // Fail open: a sweep error must never affect session startup.
+      }
+    },
     async 'tool.execute.before'(input, output) {
       try {
         if (!input || input.tool !== 'task') return;

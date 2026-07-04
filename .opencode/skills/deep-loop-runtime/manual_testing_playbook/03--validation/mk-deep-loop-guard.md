@@ -1,7 +1,7 @@
 ---
 title: "DLR-052 -- mk-deep-loop-guard"
 description: "Manual validation scenario for mk-deep-loop-guard in the deep-loop-runtime skill."
-version: 1.0.0.0
+version: 1.1.0.0
 ---
 
 # DLR-052 -- mk-deep-loop-guard
@@ -46,7 +46,8 @@ If this plugin silently stops firing (hook deregistered, registry path resolutio
 4. Live fail-open check: temporarily move `mode-registry.json` aside, repeat step 3; confirm the dispatch completes normally (not blocked) despite reject mode being on.
 5. Live passthrough check: with reject mode still on, dispatch `subagent_type=review` (not a registry entry); confirm it completes normally.
 6. Confirm no `.opencode/skills/.loop-guard-state/` file is created for a non-loop-executor target (e.g. `ai-council`) after any of the above live dispatches.
-7. Record PASS, PARTIAL, FAIL, or SKIP with rationale.
+7. Retention check: with `MK_DEEP_LOOP_GUARD_ACTIVE_RETENTION_DAYS=1` set, write a per-session state file, backdate its mtime with `touch -t` (or `utimes`) to more than 1 day in the past, then fire a `session.created` event (a fresh OpenCode session, or the automated test's direct `hooks.event({ event: { type: 'session.created' } })` call); confirm the file moves into `.loop-guard-state/.archive/`. Confirm a recently-touched sibling file stays in the active directory.
+8. Record PASS, PARTIAL, FAIL, or SKIP with rationale.
 
 ### Expected Outcome
 
@@ -59,6 +60,8 @@ The automated test passes, and the live-dispatch checks (warn, reject with corre
 - A missing/corrupt `mode-registry.json`, or an unwritable `.opencode/skills/.loop-guard-state/` directory, starts blocking unrelated dispatches instead of failing open.
 - `resolveTargetIdentity()` regresses and resolves `"general"` literally instead of parsing prompt text, silently disabling both checks for real `orchestrate` dispatches.
 - A command-driven iteration (carrying `Iteration: N of M` / `STATE SUMMARY`) is miscounted toward the loop-repeat threshold.
+- The retention sweep never fires (the `event` hook is not registered, or `session.created` is not recognized), so `.loop-guard-state/` grows unbounded.
+- The sweep fires but archives a recently-touched file, or fails to archive a genuinely stale one (retention-days/interval env parsing regression).
 - Evidence is inferred from memory instead of captured from current source or live command output.
 
 ---

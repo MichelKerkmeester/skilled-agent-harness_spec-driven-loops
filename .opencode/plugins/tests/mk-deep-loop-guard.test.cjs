@@ -210,6 +210,66 @@ async function main() {
   delete process.env[REJECT_LOOP_ENV];
   fs.rmSync(blockedStateDirPath, { force: true });
 
+  // --- Retention: sweep archives stale per-session state, prune deletes old archives ---
+
+  const retentionStateDir = path.join(tmpDir, '.opencode', 'skills', '.loop-guard-state');
+  fs.mkdirSync(retentionStateDir, { recursive: true });
+  const retentionArchiveDir = path.join(retentionStateDir, '.archive');
+
+  function sessionKeyFor(id) {
+    return Buffer.from(id, 'utf8').toString('hex');
+  }
+
+  const staleKey = sessionKeyFor('session-retention-stale');
+  const freshKey = sessionKeyFor('session-retention-fresh');
+  const staleStatePath = path.join(retentionStateDir, `${staleKey}.json`);
+  const freshStatePath = path.join(retentionStateDir, `${freshKey}.json`);
+  fs.writeFileSync(staleStatePath, JSON.stringify({ sessionId: 'session-retention-stale', dispatches: {} }));
+  fs.writeFileSync(freshStatePath, JSON.stringify({ sessionId: 'session-retention-fresh', dispatches: {} }));
+  const threeDaysAgo = new Date(Date.now() - 3 * 24 * 60 * 60 * 1000);
+  fs.utimesSync(staleStatePath, threeDaysAgo, threeDaysAgo);
+
+  process.env['MK_DEEP_LOOP_GUARD_ACTIVE_RETENTION_DAYS'] = '1';
+  const retentionHooks1 = await pluginModule.default({ directory: tmpDir });
+  assert.equal(typeof retentionHooks1.event, 'function');
+  await retentionHooks1.event({ event: { type: 'session.created' } });
+
+  assert.equal(fs.existsSync(staleStatePath), false, 'a state file untouched past the active-retention window should be archived out of the active dir');
+  assert.equal(fs.existsSync(path.join(retentionArchiveDir, `${staleKey}.json`)), true, 'the archived file should land in .archive/ under the same filename');
+  assert.equal(fs.existsSync(freshStatePath), true, 'a recently-touched state file should remain active, untouched by the sweep');
+
+  // Second session.created on the SAME plugin instance, immediately after: throttled, no-op.
+  const secondKey = sessionKeyFor('session-retention-second');
+  const secondStatePath = path.join(retentionStateDir, `${secondKey}.json`);
+  fs.writeFileSync(secondStatePath, JSON.stringify({ sessionId: 'session-retention-second', dispatches: {} }));
+  const alsoOld = new Date(Date.now() - 3 * 24 * 60 * 60 * 1000);
+  fs.utimesSync(secondStatePath, alsoOld, alsoOld);
+  await retentionHooks1.event({ event: { type: 'session.created' } });
+  assert.equal(fs.existsSync(secondStatePath), true, 'a second session.created within the sweep interval on the same plugin instance must be throttled (no re-sweep)');
+
+  // Archive prune: an archived file past the archive-retention window gets deleted.
+  // Uses a fresh plugin instance so its own throttle state starts unswept, guaranteeing
+  // the sweep (and its trailing archive prune) actually runs on the very next call.
+  process.env['MK_DEEP_LOOP_GUARD_ARCHIVE_RETENTION_DAYS'] = '1';
+  const archivedStalePath = path.join(retentionArchiveDir, `${staleKey}.json`);
+  const veryOld = new Date(Date.now() - 3 * 24 * 60 * 60 * 1000);
+  fs.utimesSync(archivedStalePath, veryOld, veryOld);
+  const retentionHooks2 = await pluginModule.default({ directory: tmpDir });
+  await retentionHooks2.event({ event: { type: 'session.created' } });
+  assert.equal(fs.existsSync(archivedStalePath), false, 'an archived file past the archive-retention window should be pruned by the next sweep pass');
+
+  // Non-session.created events must never trigger a sweep.
+  const untouchedKey = sessionKeyFor('session-retention-untouched-event');
+  const untouchedStatePath = path.join(retentionStateDir, `${untouchedKey}.json`);
+  fs.writeFileSync(untouchedStatePath, JSON.stringify({ sessionId: 'session-retention-untouched-event', dispatches: {} }));
+  fs.utimesSync(untouchedStatePath, veryOld, veryOld);
+  const retentionHooks3 = await pluginModule.default({ directory: tmpDir });
+  await retentionHooks3.event({ event: { type: 'session.idle' } });
+  assert.equal(fs.existsSync(untouchedStatePath), true, 'a non-session.created event must never trigger the sweep');
+
+  delete process.env['MK_DEEP_LOOP_GUARD_ACTIVE_RETENTION_DAYS'];
+  delete process.env['MK_DEEP_LOOP_GUARD_ARCHIVE_RETENTION_DAYS'];
+
   fs.rmSync(tmpDir, { recursive: true, force: true });
   console.log('mk-deep-loop-guard.test.cjs: all assertions passed');
 }

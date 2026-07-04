@@ -1,13 +1,15 @@
 ---
 title: "mk-deep-loop-guard"
-description: "Detection-layer OpenCode plugin with two checks: flags/blocks a Task dispatch whose declared Deep Route mode disagrees with mode-registry.json's entry for the resolved target agent, and flags/blocks a session-scoped loop-like repeated orchestrate-to-command-owned-loop-executor dispatch."
+description: "Detection-layer OpenCode plugin with two checks: flags/blocks a Task dispatch whose declared Deep Route mode disagrees with mode-registry.json's entry for the resolved target agent, and flags/blocks a session-scoped loop-like repeated orchestrate-to-command-owned-loop-executor dispatch. Also sweeps/archives/prunes its own per-session state so its directory does not grow unbounded."
 trigger_phrases:
   - "mk-deep-loop-guard"
   - "deep route guard plugin"
   - "tool.execute.before dispatch guard"
   - "Deep Route mode mismatch detection"
   - "loop-like repeated dispatch detection"
-version: 1.1.0.0
+  - "loop-guard state cleanup"
+  - "loop-guard state retention"
+version: 1.2.0.0
 ---
 
 # mk-deep-loop-guard (tool.execute.before plugin)
@@ -49,6 +51,12 @@ Any internal error in either check (missing/unreadable registry, unexpected arg 
 ### Hard limits (by design)
 
 Cannot create hard runtime identity (that remains host/FIX-5 territory). Does not catch a schema-valid, route-matched artifact that internally does semantically wrong-mode work — it only compares declared identity fields, not actual task content. Loop-repeat detection is session-scoped and per-target-agent; it cannot detect a cross-executor meta-loop (e.g. `deep-research`, then `deep-review`, then `deep-research` again) — only repeated hand-offs to the SAME executor.
+
+### State-directory cleanup (sweep, archive, prune)
+
+Mirrors the `mk-goal.js` retention pattern. On every `session.created` event (a new `event` hook), the plugin sweeps `.opencode/skills/.loop-guard-state/` for per-session state files untouched past `MK_DEEP_LOOP_GUARD_ACTIVE_RETENTION_DAYS` (default 2 days) and archives them into `.loop-guard-state/.archive/`, then prunes (deletes) archived files untouched past `MK_DEEP_LOOP_GUARD_ARCHIVE_RETENTION_DAYS` (default 90 days). The sweep itself is throttled to once per `MK_DEEP_LOOP_GUARD_SWEEP_INTERVAL_MS` (default 1 hour) via an in-memory per-plugin-instance timestamp. `guard-warnings.log` gets the same whole-file rotation as `mk-goal.js`'s JSONL logs: if it has gone untouched past the archive-retention window, it is deleted before the next append rather than growing forever.
+
+Unlike `mk-goal.js`, this plugin needs no per-session mutation queue to make the sweep safe: every state-touching operation here is synchronous (`readdirSync`/`statSync`/`renameSync`/`writeFileSync`), and neither this hook nor `tool.execute.before` ever `await`s before touching a state file, so Node's single-threaded execution model already guarantees a sweep in progress cannot interleave with a concurrent dispatch's write.
 
 ---
 

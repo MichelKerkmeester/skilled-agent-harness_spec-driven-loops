@@ -740,6 +740,20 @@ Runtime overrides for the shared deep-loop fan-out merge. These read from the de
 
 ---
 
+## DEEP-LOOP GUARD PLUGIN
+
+Detection and enforcement for Task-tool dispatches to deep-loop sub-agents (Deep Route mode mismatch, loop-like repeated orchestrate hand-offs), plus its own state-directory cleanup.
+
+| Variable | Default | Type | Description | Source |
+|----------|---------|------|-------------|--------|
+| `MK_DEEP_LOOP_GUARD_REJECT` | unset (warn-only) | boolean (`1` to enable) | Hard-blocks a dispatch on a Deep Route mode mismatch instead of warning. | `.opencode/plugins/mk-deep-loop-guard.js` |
+| `MK_DEEP_LOOP_GUARD_REJECT_LOOP` | unset (warn-only) | boolean (`1` to enable) | Hard-blocks the 3rd+ non-command-driven repeated hand-off to the same loop executor instead of warning. | `.opencode/plugins/mk-deep-loop-guard.js` |
+| `MK_DEEP_LOOP_GUARD_ACTIVE_RETENTION_DAYS` | `2` | number (positive int, days) | Age threshold before an untouched per-session loop-guard state file is swept and archived. | `.opencode/plugins/mk-deep-loop-guard.js` |
+| `MK_DEEP_LOOP_GUARD_ARCHIVE_RETENTION_DAYS` | `90` | number (positive int, days) | Retention window before an archived loop-guard state file (or a dormant `guard-warnings.log`) is pruned. | `.opencode/plugins/mk-deep-loop-guard.js` |
+| `MK_DEEP_LOOP_GUARD_SWEEP_INTERVAL_MS` | `3600000` (1 hour) | number (positive int, ms) | Minimum interval between orphaned-loop-guard-state sweep passes, triggered on `session.created`. | `.opencode/plugins/mk-deep-loop-guard.js` |
+
+---
+
 ## 17. QUICK START EXAMPLES
 
 ### Disable a Graduated Feature
