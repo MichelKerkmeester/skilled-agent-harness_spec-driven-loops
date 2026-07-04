@@ -1,6 +1,6 @@
 {
   "level": "phase",
-  "specFolder": "deep-loops/035-gpt-reliability-fixes",
+  "specFolder": "deep-loops/031-deep-loop-gpt-reliability/006-reliability-fixes",
   "description": "Implementation packet for the packet-034 research synthesis, restructured per the plan-review (58 verified gaps) into the unified command-contract",
   "keywords": [
     "implementation",
@@ -16,13 +16,12 @@
     "unified",
     "command-contract"
   ],
-  "lastUpdated": "2026-07-04T11:23:41.938Z",
-  "specId": "035",
-  "folderSlug": "gpt-reliability-fixes",
+  "lastUpdated": "2026-07-04T19:14:57.189Z",
+  "specId": "006",
+  "folderSlug": "reliability-fixes",
   "parentChain": [
-    ".opencode",
-    "specs",
-    "deep-loops"
+    "deep-loops",
+    "031-deep-loop-gpt-reliability"
   ],
   "memorySequence": 17,
   "memoryNameHistory": [

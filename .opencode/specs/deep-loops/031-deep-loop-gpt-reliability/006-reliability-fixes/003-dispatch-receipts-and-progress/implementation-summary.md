@@ -9,7 +9,7 @@ importance_tier: "high"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "deep-loops/035-gpt-reliability-fixes/004-dispatch-receipts-and-progress"
+    packet_pointer: "deep-loops/031-deep-loop-gpt-reliability/006-reliability-fixes/003-dispatch-receipts-and-progress"
     last_updated_at: "2026-07-03T18:00:00Z"
     last_updated_by: "claude-code"
     recent_action: "Shipped all six tasks; each Sonnet-verified and committed"
@@ -35,7 +35,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 004-dispatch-receipts-and-progress |
+| **Spec Folder** | 003-dispatch-receipts-and-progress |
 | **Completed** | 2026-07-03 (implementation + per-piece verification) |
 | **Level** | 1 |
 <!-- /ANCHOR:metadata -->

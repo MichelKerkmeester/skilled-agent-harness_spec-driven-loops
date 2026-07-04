@@ -1,14 +1,14 @@
 ---
-title: "Plan: Acceptance and Rollout Foundation"
-description: "Lean plan for phase 001 of packet 035 (unified command-contract architecture); authored fully at execution. Closes F-014, F-025 + rollout mechanism; effort M."
+title: "Plan: Dispatch Receipts and Progress Records"
+description: "Lean plan for phase 004 of packet 035 (unified command-contract architecture); authored fully at execution. Closes F-010, F-011, F-012, F-013, F-015, F-016, F-017, F-031, F-041, F-043; effort L."
 trigger_phrases:
   - "plan"
-  - "035 001 plan"
+  - "035 004 plan"
 importance_tier: "high"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "deep-loops/035-gpt-reliability-fixes/001-acceptance-and-rollout-foundation"
+    packet_pointer: "deep-loops/031-deep-loop-gpt-reliability/006-reliability-fixes/003-dispatch-receipts-and-progress"
     last_updated_at: "2026-07-03T16:00:00Z"
     last_updated_by: "claude-code"
     recent_action: "Plan stub scaffolded from plan-review restructure"
@@ -16,14 +16,14 @@ _memory:
     blockers: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "035-001-plan"
+      session_id: "035-004-plan"
       parent_session_id: null
     completion_pct: 0
     open_questions: []
     answered_questions: []
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2 -->
-# Plan: Acceptance and Rollout Foundation
+# Plan: Dispatch Receipts and Progress Records
 
 <!-- SPECKIT_LEVEL: 1 -->
 
@@ -32,7 +32,7 @@ _memory:
 <!-- ANCHOR:summary -->
 ## 1. SUMMARY
 
-Implement the fix package that closes F-014, F-025 + rollout mechanism (effort M). The full step-by-step plan is authored when this phase is picked up; requirements and acceptance cells are fixed in `spec.md`, and the packet-wide gap mapping in `../context-index.md`.
+Implement the fix package that closes F-010, F-011, F-012, F-013, F-015, F-016, F-017, F-031, F-041, F-043 (effort L). The full step-by-step plan is authored when this phase is picked up; requirements and acceptance cells are fixed in `spec.md`, and the packet-wide gap mapping in `../context-index.md`.
 <!-- /ANCHOR:summary -->
 
 ---
@@ -72,7 +72,7 @@ Per `spec.md` §3 SCOPE and §4 REQUIREMENTS. Change surfaces and evidence are n
 <!-- ANCHOR:testing -->
 ## 5. TESTING STRATEGY
 
-Acceptance is the 033 behavior benchmark: Harness-internal + rollout smoke. Re-run gpt-fast-med + gpt-fast-high on the affected cells; baseline leg must not regress beyond the parent REQ-006 exceptions.
+Acceptance is the 033 behavior benchmark: RVB-007, RSB-005, RSB-007, ACB-004-high, ACB-005, CXB-004. Re-run gpt-fast-med + gpt-fast-high on the affected cells; baseline leg must not regress beyond the parent REQ-006 exceptions.
 <!-- /ANCHOR:testing -->
 
 ---
