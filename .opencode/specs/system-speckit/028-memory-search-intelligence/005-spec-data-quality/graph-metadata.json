@@ -9,7 +9,12 @@
     "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/003-retrieval-gated-tuning",
     "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/004-novel-research",
     "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/005-shared-engine-and-research",
-    "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/006-generated-metadata-build"
+    "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/006-generated-metadata-build",
+    "system-speckit/028-memory-search-intelligence/005-spec-data-quality/045-drift-audit-remediation",
+    "system-speckit/028-memory-search-intelligence/005-spec-data-quality/046-drift-audit-deep-history-correction",
+    "system-speckit/028-memory-search-intelligence/005-spec-data-quality/047-generated-metadata-status-integrity",
+    "system-speckit/028-memory-search-intelligence/005-spec-data-quality/048-create-sh-parent-corruption-fix",
+    "system-speckit/028-memory-search-intelligence/005-spec-data-quality/049-derive-status-explicit-bypass-fix"
   ],
   "manual": {
     "depends_on": [],

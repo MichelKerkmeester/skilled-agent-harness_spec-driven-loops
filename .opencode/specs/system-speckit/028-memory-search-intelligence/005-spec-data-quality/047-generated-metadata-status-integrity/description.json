@@ -1,0 +1,27 @@
+{
+  "level": "1",
+  "specFolder": "system-speckit/028-memory-search-intelligence/005-spec-data-quality/047-generated-metadata-status-integrity",
+  "description": "`deriveStatus` (`graph-metadata-parser.ts:1215-1218`) returns `status: 'complete'` whenever `implementation-summary.md` exists and `checklist.md` does",
+  "keywords": [
+    "derivestatus",
+    "graph-metadata-parser",
+    "1215-1218",
+    "returns",
+    "status",
+    "complete",
+    "whenever",
+    "implementation-summary",
+    "exists",
+    "checklist"
+  ],
+  "lastUpdated": "2026-07-04T15:46:51.033Z",
+  "specId": "047",
+  "folderSlug": "generated-metadata-status-integrity",
+  "parentChain": [
+    "system-speckit",
+    "028-memory-search-intelligence",
+    "005-spec-data-quality"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

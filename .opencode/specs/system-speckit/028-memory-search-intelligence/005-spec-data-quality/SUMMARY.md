@@ -67,6 +67,20 @@ The honest read is still the one captured by the review remediation: the buildab
 
 ---
 
+## 045-049: Re-nested Drift-Audit and Metadata-Integrity Phases (from packet-028 top-level)
+
+Relocated from packet-028 top-level `008-012` to their subject parent and renumbered `045-049` on 2026-07-04, clearing the `001-044` roster. Each was executed and shipped before the move; see the per-child `implementation-summary.md` for evidence.
+
+| Phase | Folder | Status | Focus |
+|-------|--------|--------|-------|
+| 045 | `045-drift-audit-remediation/` | Complete | Fixed all 75 findings from a GPT-5.5-fast drift audit across 028's other children (formerly top-level `008`). |
+| 046 | `046-drift-audit-deep-history-correction/` | Complete | Second-pass doc correction proving the `008` code-gap findings were built, shadow-shipped, benchmarked and deliberately deleted for cause (formerly `009`). |
+| 047 | `047-generated-metadata-status-integrity/` | Complete | Fixed a deriveStatus defect mislabeling 213 folders `complete` from doc presence, plus a report-mode `validate.sh --strict` rule (formerly `010`). |
+| 048 | `048-create-sh-parent-corruption-fix/` | Complete | Fixed a create.sh append-mode bug that overwrote a parent packet's `description.json`, and repaired the corrupted packet (formerly `011`). |
+| 049 | `049-derive-status-explicit-bypass-fix/` | Complete | Closed a second deriveStatus bypass (explicit `status: complete` short-circuit) and wired the MCP validation-orchestrator enforcement flag (formerly `012`). |
+
+---
+
 ## Count and Source Notes
 
-The verified disk inventory is 44 child folders, `001-*` through `044-*`. No `045-*` child folder is present in this track at this point. For detailed evidence, read the per-phase child specs and the rollup changelog before relying on older summaries.
+The verified disk inventory is 44 child folders `001-*` through `044-*`, plus five phases `045-*` through `049-*` re-nested from packet-028 top-level (former `008-012`) on 2026-07-04. Earlier summaries asserting no `045-*` folder exists predate that re-nest. For detailed evidence, read the per-phase child specs and the rollup changelog before relying on older summaries.

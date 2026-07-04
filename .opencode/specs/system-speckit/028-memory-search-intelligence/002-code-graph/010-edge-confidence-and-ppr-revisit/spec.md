@@ -86,7 +86,7 @@ Build real per-edge confidence differentiation (reusing existing signals and sch
 
 ### Out of Scope
 - A full call-resolution rewrite (e.g. swapping the tree-sitter/regex extractor for a TypeScript-compiler-API symbol binder) -- the candidate-cardinality heuristic is an approximation, not true semantic resolution, and that's an explicitly separate, much larger project.
-- Reviving any of the other 3 cut features (summary-fusion lane, C4 shadow-weight promoter, outcome-weighted ranking) -- tracked as docs-only in `../../009-drift-audit-deep-history-correction/`.
+- Reviving any of the other 3 cut features (summary-fusion lane, C4 shadow-weight promoter, outcome-weighted ranking) -- tracked as docs-only in `../../005-spec-data-quality/046-drift-audit-deep-history-correction/`.
 - Changing IMPORTS edge confidence -- those already resolve to confidence 1.0/EXTRACTED by construction (successful module+export resolution), no change needed.
 
 ### Files to Change
@@ -218,7 +218,7 @@ Build real per-edge confidence differentiation (reusing existing signals and sch
 
 - **Original cut record**: `../../007-dark-flag-graduation/005-codegraph-seeded-ppr/benchmark-results.md`
 - **Original spec (being revisited)**: `../005-seeded-ppr-ranking/spec.md`
-- **Doc-correction pass**: `../../009-drift-audit-deep-history-correction/`
+- **Doc-correction pass**: `../../005-spec-data-quality/046-drift-audit-deep-history-correction/`
 - **Implementation Plan**: See `plan.md`
 - **Task Breakdown**: See `tasks.md`
 - **Verification Checklist**: See `checklist.md`

@@ -1,0 +1,28 @@
+{
+  "level": "1",
+  "specFolder": "system-speckit/028-memory-search-intelligence/005-spec-data-quality/048-create-sh-parent-corruption-fix",
+  "description": "`create.sh --phase --phase-parent <existing-packet> --phase-names <name> ...` rebinds `FEATUREDIR` to the existing parent (`create.sh:1046-1062`) but",
+  "keywords": [
+    "create",
+    "phase",
+    "phase-parent",
+    "existing-packet",
+    "phase-names",
+    "name",
+    "rebinds",
+    "featuredir",
+    "existing",
+    "parent",
+    "1046-1062"
+  ],
+  "lastUpdated": "2026-07-04T15:46:51.294Z",
+  "specId": "048",
+  "folderSlug": "create-sh-parent-corruption-fix",
+  "parentChain": [
+    "system-speckit",
+    "028-memory-search-intelligence",
+    "005-spec-data-quality"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

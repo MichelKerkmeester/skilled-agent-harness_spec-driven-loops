@@ -122,14 +122,9 @@ Provide the root purpose, child map and cross-packet boundary for packet 028. Th
 | 002 | `002-code-graph/` | Code Graph research plus 8 implementation child plans | Phase parent |
 | 003 | `003-skill-advisor/` | Skill Advisor research plus 8 implementation child plans | Phase parent |
 | 004 | `004-deep-loop/` | Deep Loop Runtime research plus 6 implementation child plans | Phase parent |
-| 005 | `005-spec-data-quality/` | Spec-kit data-quality research that then shipped: 44 child phases spanning the go/no-go research scaffold, benchmark and generated-JSON bridge, generated-metadata build, full-repo JSON migration, flag-graduation benchmark and search-quality/evidence-gap wave | Complete |
+| 005 | `005-spec-data-quality/` | Spec-kit data-quality research that then shipped: 49 child phases spanning the go/no-go research scaffold, benchmark and generated-JSON bridge, generated-metadata build, full-repo JSON migration, flag-graduation benchmark and search-quality/evidence-gap wave, plus five drift-audit, metadata-status-integrity and create.sh-corruption phases (045-049) re-nested here from top-level on 2026-07-04 | Complete |
 | 006 | `006-review-remediation/` | Six-child review-remediation track: 001, 003, 005, 006 executed; 002 and 004 ABSORBED into 016 (verify-first-then-close, closed by phase 013 2026-07-04) | Phase parent |
 | 007 | `007-dark-flag-graduation/` | Twelve-child dark-flag graduation suite that benchmarked built-but-default-off capabilities, returned graduate, refine or cut verdicts and closed follow-up validation | Phase parent |
-| 008 | `008-drift-audit-remediation/` | Fixed all 75 findings from a GPT-5.5-fast drift audit spanning this packet's other seven children (24 confirmed + 51 unverified, 42 directories corrected) | Complete |
-| 009 | `009-drift-audit-deep-history-correction/` | Second-pass doc correction: git history shows the 4 code-gap findings from 008 were built, shadow-shipped, benchmarked and deliberately deleted for cause, not abandoned | Complete |
-| 010 | `010-generated-metadata-status-integrity/` | Fixes a real deriveStatus defect (213 folders repo-wide already mislabeled `complete` from a doc's mere presence, not its content) and adds a report-mode-default `validate.sh --strict` rule catching the same class going forward | Complete |
-| 011 | `011-create-sh-parent-corruption-fix/` | Fixes a deterministic create.sh bug where append-mode phase scaffolding overwrote an existing parent packet's `description.json` with the appended child's own metadata, and repairs the one confirmed already-corrupted packet | Complete |
-| 012 | `012-derive-status-explicit-bypass-fix/` | Closes a second deriveStatus bypass an independent adversarial follow-up review found in phase 010's own shipped fix: an explicit `status: complete` claim returned immediately, ahead of the completion-evidence gate; also wires the MCP validation orchestrator's enforcement flag | Complete |
 | 013 | `013-validate-sh-dist-freshness-and-repo-remediation/` | validate.sh dist-freshness enforcement and repo remediation, adopted from standalone packet 030 | In Progress |
 | 014 | `014-manual-playbook-execution-sweep/` | Manual playbook execution sweep; findings-remediation waves 1-7 shipped with Phase-2 appendix items open, adopted from standalone packet 031 | In Progress |
 | 015 | `015-deep-review-followup-hardening/` | Deep-review follow-up hardening; children 002-004 complete and 001 not started, adopted from standalone packet 032 | In Progress |
@@ -139,10 +134,11 @@ Provide the root purpose, child map and cross-packet boundary for packet 028. Th
 
 - Children 001 through 004 are subsystem phase parents. Their direct child folders own implementation specs, plans, tasks and validation evidence.
 - Child 000 is an executed release-cleanup phase parent. Its direct child folders record the cleanup, validation and drift-remediation scopes.
-- Child 005 is the data-quality lineage. Its first 28 children remain the planned research scaffold and children 029 through 044 record the shipped benchmark, generated-metadata, migration and search-quality tail.
+- Child 005 is the data-quality lineage. Its first 28 children remain the planned research scaffold, children 029 through 044 record the shipped benchmark, generated-metadata, migration and search-quality tail, and children 045 through 049 are the drift-audit, metadata-status-integrity and create.sh-corruption phases re-nested here from top-level on 2026-07-04.
 - Child 006 is the review-remediation rollup, with four executed children and two scopes (002/004) absorbed into the 016 program and closed 2026-07-04.
 - Child 007 is the dark-flag graduation suite, with twelve benchmark, cleanup, validation, follow-up and review children.
 - Children 013 through 015 were adopted from standalone packets 030 through 032 on 2026-07-03 by operator restructure.
+- **Top-level ceiling (governance):** 028 has exactly eight canonical top-level phase-parent folders — 000 through 007. All new phase work nests as a child of one of them by subject; never create a new top-level `0NN-` folder. Folders 013 through 016 remain top-level pending re-nest to their subject parents (013 and 014 to 005 and 000, 015 to 004, 016 to 001) in follow-up passes — the last standing exceptions, not a licence for new ones.
 - Research-only material from earlier rounds lives under subsystem `research/from-*` archives.
 - Run strict validation on a child parent and its direct children before using it as an execution source.
 
@@ -154,8 +150,6 @@ Provide the root purpose, child map and cross-packet boundary for packet 028. Th
 | subsystem parent | implementation child | Select the next PENDING candidate group | Child `spec.md` names gate, scope and evidence |
 | release cleanup parent | cleanup child | Inspect one executed cleanup or validation surface | Child `spec.md` and changelog name scope, evidence and follow-ups |
 | implementation child | root | Child reaches strict validation green | `validate.sh <child> --strict` exits 0 |
-| 009-drift-audit-deep-history-correction | 010-generated-metadata-status-integrity | Independent, not a continuation of 009's own scope; surfaced by an unrelated diagnostic review | Targeted 9-file suite green (108/108); full repo-wide suite deliberately stopped after root cause (unrelated serial-execution config) confirmed |
-| 010-generated-metadata-status-integrity | 011-create-sh-parent-corruption-fix, 012-derive-status-explicit-bypass-fix | Independent findings, not continuations of 010's own scope; both surfaced by an unrelated adversarial follow-up review auditing 010's shipped fix and the create.sh scaffolding tool concurrently | Both phases: targeted suite green (test-phase-system.sh 8/8 for 011; 9-file/119-test suite for 012), zero new errors under `validate.sh --strict` (one pre-existing, cross-verified-unrelated `SECTION_COUNTS` warning documented in each phase's implementation-summary.md) |
 <!-- /ANCHOR:phase-map -->
 
 ---

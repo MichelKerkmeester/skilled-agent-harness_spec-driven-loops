@@ -71,7 +71,7 @@ Genuine sequential dependency chain -- each task blocks the next.
 ## Phase 3: Verification
 
 - [x] T008 Sync implementation to live tree as uncommitted diffs -- confirmed via `git status --short` showing the code-graph mcp_server changes and review artifacts present in the live tree, not just the worktree
-- [x] T009 Finalized PPR doc entries in `../005-seeded-ppr-ranking/`, `../../007-dark-flag-graduation/005-codegraph-seeded-ppr/benchmark-results.md`, and `../../009-drift-audit-deep-history-correction/` with the real CUT-confirmed verdict, replacing the "in progress" forward-pointers
+- [x] T009 Finalized PPR doc entries in `../005-seeded-ppr-ranking/`, `../../007-dark-flag-graduation/005-codegraph-seeded-ppr/benchmark-results.md`, and `../../005-spec-data-quality/046-drift-audit-deep-history-correction/` with the real CUT-confirmed verdict, replacing the "in progress" forward-pointers
 - [x] T010 Update this folder's checklist.md, implementation-summary.md, decision-record.md -- all three carry the final CUT verdict and verification evidence
 - [x] T011 Run `validate.sh 002-code-graph/010-edge-confidence-and-ppr-revisit --strict` -- PASSED, 0 errors, 0 warnings
 <!-- /ANCHOR:phase-3 -->

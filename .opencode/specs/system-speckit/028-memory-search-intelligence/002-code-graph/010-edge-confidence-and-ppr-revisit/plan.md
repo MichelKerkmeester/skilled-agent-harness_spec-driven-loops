@@ -115,7 +115,7 @@ Required inventories:
 
 ### Phase 3: Verification
 - [x] Sync to live tree
-- [x] Finalize PPR doc entries in `../005-seeded-ppr-ranking/` and `009-drift-audit-deep-history-correction/` with the real verdict
+- [x] Finalize PPR doc entries in `../005-seeded-ppr-ranking/` and `046-drift-audit-deep-history-correction/` with the real verdict
 - [x] `validate.sh --strict`
 <!-- /ANCHOR:phases -->
 
@@ -138,7 +138,7 @@ Required inventories:
 
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
-| `009-drift-audit-deep-history-correction` | Internal (parallel) | In progress | Independent; that pass's PPR forward-pointer gets finalized once this completes |
+| `046-drift-audit-deep-history-correction` | Internal (parallel) | In progress | Independent; that pass's PPR forward-pointer gets finalized once this completes |
 | OpenAI `openai/gpt-5.5-fast` provider | External | Configured | Dispatch cannot run if it drops |
 <!-- /ANCHOR:dependencies -->
 
