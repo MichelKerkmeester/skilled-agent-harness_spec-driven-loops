@@ -91,12 +91,24 @@
       "section": "full"
     }
   ],
-  "compiledBodyDigest": "5c5a7b76f5baf69a383447eebf53d6aadda40c47f80e04d8eb5c2e124fd6fd53"
+  "compiledBodyDigest": "fd3a185ccbbd1de76d88d428ec744530eddd0b60139aff9d22aafdeb63099b2d"
 }
 GENERATED_COMMAND_CONTRACT_HEADER_END -->
 # Compiled Command Contract: /deep:research
 
 This generated contract collapses the maintained command authority chain into one grep-checkable executor contract. Maintained sources remain authoritative; regenerate this file when any source digest changes.
+
+## autonomousExecutionDirective
+
+> Read this first. It is an imperative to you, the executor — not background information.
+
+You were invoked via `opencode run --command deep/research` with the `:auto` suffix and a bound spec_folder and target in your message. The `:auto` suffix plus the bound spec_folder mean setup is ALREADY resolved. Therefore:
+
+- DO NOT emit the consolidated setup question (target/mode, research topic, Spec Folder A/B/C/D/E, execution mode, max iterations, executor). The bound spec_folder is your write authority; do not ask which spec folder should own the writes.
+- DO NOT halt for the repo-wide `CLAUDE.md` Gate-3 documentation gate. Under AUTONOMOUS execution with a validated prebound spec folder, Gate 3 is already satisfied by that folder (see gate3Precedence below).
+- PROCEED immediately: load the auto workflow YAML and dispatch the `deep-research` agent to run the research loop over the bound target.
+
+Your task is to RUN THE RESEARCH LOOP over the bound target — NOT to review, analyze, or summarize this contract. This contract is your instruction set; the research target is the bound spec_folder/target named in your message, never this document.
 
 ## sourceAuthority
 

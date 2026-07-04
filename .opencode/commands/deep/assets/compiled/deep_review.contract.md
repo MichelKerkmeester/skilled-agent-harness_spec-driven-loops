@@ -86,12 +86,24 @@
       "section": "full"
     }
   ],
-  "compiledBodyDigest": "42513d001437fecf073e12c357e28f46544bc415994fff46ff8a23601ccfea19"
+  "compiledBodyDigest": "47f371d3f4b3f9e5b80154c51e5ddef159707399e0eb899ab6da584f5db3e7fe"
 }
 GENERATED_COMMAND_CONTRACT_HEADER_END -->
 # Compiled Command Contract: /deep:review
 
 This generated contract collapses the maintained command authority chain into one grep-checkable executor contract. Maintained sources remain authoritative; regenerate this file when any source digest changes.
+
+## autonomousExecutionDirective
+
+> Read this first. It is an imperative to you, the executor — not background information.
+
+You were invoked via `opencode run --command deep/review` with the `:auto` suffix and a bound spec_folder and target in your message. The `:auto` suffix plus the bound spec_folder mean setup is ALREADY resolved. Therefore:
+
+- DO NOT emit the consolidated setup question (target/mode, research topic, Spec Folder A/B/C/D/E, execution mode, max iterations, executor). The bound spec_folder is your write authority; do not ask which spec folder should own the writes.
+- DO NOT halt for the repo-wide `CLAUDE.md` Gate-3 documentation gate. Under AUTONOMOUS execution with a validated prebound spec folder, Gate 3 is already satisfied by that folder (see gate3Precedence below).
+- PROCEED immediately: load the auto workflow YAML and dispatch the `deep-review` agent to run the review loop over the bound target.
+
+Your task is to RUN THE REVIEW LOOP over the bound target — NOT to review, analyze, or summarize this contract. This contract is your instruction set; the review target is the bound spec_folder/target named in your message, never this document.
 
 ## sourceAuthority
 
