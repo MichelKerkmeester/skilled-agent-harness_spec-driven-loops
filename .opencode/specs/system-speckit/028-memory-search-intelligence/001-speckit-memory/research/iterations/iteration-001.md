@@ -3,7 +3,7 @@
 ## Focus
 Reconnaissance. Locate the live Spec-Kit Memory MCP modules implementing (a) hybrid channel-fusion RRF, (b) save/index path, (c) recall rendering/serialization, (d) causal-graph store, (e) FSRS decay. Read aionforge `docs/retrieval.md` (8-signal set, RRF k=60, 5-class query router). Produce a code-anchored baseline map and first candidate hypotheses for Q1 (signal mapping) and Q2 (where a query-class classifier + per-class weights would live). NOT proposing implementations.
 
-All internal paths are relative to `.opencode/skills/system-spec-kit/`. The aionforge doc path is `.opencode/specs/system-spec-kit/028-memory-search-intelligence/external/aionforge-memory-development/docs/retrieval.md`.
+All internal paths are relative to `.opencode/skills/system-spec-kit/`. The aionforge doc path is `.opencode/specs/system-speckit/028-memory-search-intelligence/external/aionforge-memory-development/docs/retrieval.md`.
 
 ## Actions Taken
 1. Grep/Glob over `mcp_server/` to enumerate the `lib/search/` tree (~80 source modules) and locate fusion/RRF, channel-assembly, classifier, causal, and FSRS symbols.

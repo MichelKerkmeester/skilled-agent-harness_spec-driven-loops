@@ -12,7 +12,7 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/028-memory-search-intelligence"
-    last_updated_at: "2026-07-04T16:42:01.468Z"
+    last_updated_at: "2026-07-04T17:56:26.146Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "016 deep-dive program complete (13/13 shipped); 006/002+006/004 absorbed"
     next_safe_action: "016 complete; daemon-side captures pending a daemon restart"
@@ -125,7 +125,6 @@ Provide the root purpose, child map and cross-packet boundary for packet 028. Th
 | 005 | `005-spec-data-quality/` | Spec-kit data-quality research that then shipped: 49 child phases spanning the go/no-go research scaffold, benchmark and generated-JSON bridge, generated-metadata build, full-repo JSON migration, flag-graduation benchmark and search-quality/evidence-gap wave, plus five drift-audit, metadata-status-integrity and create.sh-corruption phases (045-049) re-nested here from top-level on 2026-07-04 | Complete |
 | 006 | `006-review-remediation/` | Six-child review-remediation track: 001, 003, 005, 006 executed; 002 and 004 ABSORBED into 016 (verify-first-then-close, closed by phase 013 2026-07-04) | Phase parent |
 | 007 | `007-dark-flag-graduation/` | Twelve-child dark-flag graduation suite that benchmarked built-but-default-off capabilities, returned graduate, refine or cut verdicts and closed follow-up validation | Phase parent |
-| 016 | `016-fix-deep-dive-p0-p2-findings-for-mk-spec-memory/` | 13-phase remediation program for every P0/P1/P2 finding from the 2026-07-03 memory search deep dive; absorbs the Group-A flag cluster and the 006/002 + 006/004 scopes | Complete — 13/13 phases shipped + pushed 2026-07-04 (live-latency/eval/reconcile gates are daemon-side captures) |
 
 ### Phase Transition Rules
 
@@ -135,7 +134,7 @@ Provide the root purpose, child map and cross-packet boundary for packet 028. Th
 - Child 006 is the review-remediation rollup, with four executed children and two scopes (002/004) absorbed into the 016 program and closed 2026-07-04.
 - Child 007 is the dark-flag graduation suite, with twelve benchmark, cleanup, validation, follow-up and review children.
 - Children 013 through 015 were adopted from standalone packets 030 through 032 on 2026-07-03 by operator restructure.
-- **Top-level ceiling (governance):** 028 has exactly eight canonical top-level phase-parent folders — 000 through 007. All new phase work nests as a child of one of them by subject; never create a new top-level `0NN-` folder. Folder 016 remains the last top-level exception, pending re-nest to `001-speckit-memory`; it is deferred while under active concurrent edit. The 016 program's ~13 cross-references into the absorbed ex-031 Group-A tracker now point at its new home `000-release-cleanup/015-manual-playbook-execution-sweep/001-findings-remediation`. Folders 013, 014 and 015 were re-nested on 2026-07-04 (013 to `005-spec-data-quality/050-validate-sh-dist-freshness-and-repo-remediation`, 014 to `000-release-cleanup/015-manual-playbook-execution-sweep`, 015 to `004-deep-loop/007-deep-review-followup-hardening`).
+- **Top-level ceiling (governance):** 028 has exactly eight canonical top-level phase-parent folders — 000 through 007. All new phase work nests as a child of one of them by subject; never create a new top-level `0NN-` folder. The eight-parent structure is now clean: the folders 013 through 016 that had accreted at top level were all re-nested to their subject parents on 2026-07-04 — 013 to `005-spec-data-quality/050-validate-sh-dist-freshness-and-repo-remediation`, 014 to `000-release-cleanup/015-manual-playbook-execution-sweep`, 015 to `004-deep-loop/007-deep-review-followup-hardening`, and 016 to `001-speckit-memory/031-fix-deep-dive-p0-p2-findings-for-mk-spec-memory`. No top-level `0NN-` folder outside 000 through 007 remains.
 - Research-only material from earlier rounds lives under subsystem `research/from-*` archives.
 - Run strict validation on a child parent and its direct children before using it as an execution source.
 

@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/028-memory-search-intelligence/001-speckit-memory/012-procedural-reliability-benchmark",
-  "spec_folder": "system-spec-kit/028-memory-search-intelligence/001-speckit-memory/012-procedural-reliability-benchmark",
-  "parent_id": "system-spec-kit/028-memory-search-intelligence/001-speckit-memory",
+  "packet_id": "system-speckit/028-memory-search-intelligence/001-speckit-memory/012-procedural-reliability-benchmark",
+  "spec_folder": "system-speckit/028-memory-search-intelligence/001-speckit-memory/012-procedural-reliability-benchmark",
+  "parent_id": "system-speckit/028-memory-search-intelligence/001-speckit-memory",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -41,16 +41,16 @@
     "importance_tier": "normal",
     "status": "in_progress",
     "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
       "decision-record.md",
       "lib/feedback/feedback-ledger.ts",
       "lib/cognitive/adaptive-ranking.ts",
       "mcp_server/lib/feedback/feedback-ledger.ts",
       "mcp_server/lib/cognitive/adaptive-ranking.ts",
       "handlers/checkpoints.ts",
-      "plan.md",
-      "tasks.md",
-      "checklist.md",
-      "spec.md",
       "tests/feedback-ledger.vitest.ts",
       "tests/adaptive-ranking.vitest.ts",
       "tests/search-flags.vitest.ts",
@@ -61,6 +61,30 @@
       "implementation-summary.md"
     ],
     "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
       {
         "name": "decision-record.md",
         "kind": "doc",
@@ -83,30 +107,6 @@
         "name": "checkpoints.ts",
         "kind": "code",
         "path": "handlers/checkpoints.ts",
-        "source": "derived"
-      },
-      {
-        "name": "plan.md",
-        "kind": "doc",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "tasks.md",
-        "kind": "doc",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "spec.md",
-        "kind": "doc",
-        "path": "spec.md",
         "source": "derived"
       },
       {
@@ -208,7 +208,7 @@
     ],
     "causal_summary": "The Spec-Kit Memory MCP treats `procedural` as a decay-only classification label, there is no track-record machinery on a stored procedure [CONFIRMED: `memory-types.ts:93-98` (decay-only label, no success/failure counters), `research/iterations/iteration-015.md:9`]",
     "created_at": "2026-06-19T05:40:37.447Z",
-    "last_save_at": "2026-06-23T03:49:58.228Z",
+    "last_save_at": "2026-07-04T17:51:04.560Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -219,14 +219,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:740d8b3dc5691a23962a7f81fe4e163329e5a4dccc2151d364685b3d1540a1ec",
+    "source_fingerprint": "sha256:5a9fffa92d5adc8408e92121f6fed683156048cd911ccd25820c853afdcc21ba",
     "source_doc_hashes": {
-      "spec.md": "21aa33c62ba27190c5abccda959c25de7602ac6b05a33c7817e84358a6ef8d16",
-      "plan.md": "10b7dcaff30cc05bef00d93cea3ee2f6f7a166ad34ff1b76146980e4f673448f",
-      "tasks.md": "2c2c26e51a6a89f17a0fca72bf00b712cf69dcf416568634cb72a8fa36b6ac46",
-      "checklist.md": "c3a206faf0e66c9dd0d644c8f395e51a123b40f7ae09e82c7bb72fd7dd1d0f89",
-      "decision-record.md": "30ef331838d394fcc8a6ac2831fa447ecdf3fa32cf084341742a7d5da334595f",
-      "implementation-summary.md": "7c63f73f7b5942587c9f86a4b27fa9ee5943c68c86f2ab2bdc75c175af938a5d"
+      "spec.md": "5e12231b55f7bb853b3d37079c3fa3d62a2543064b130b0157253a1d904a4ce7",
+      "plan.md": "6b992462a9f99867790b72381c3989608ec4f7e6ef37f9ea0a8e648d47bef64f",
+      "tasks.md": "b4928a5c9cbffecb192b24daed8e9ec9744a4e96aa0cb4195d0233629fb015f7",
+      "checklist.md": "044410cb645f830768a3ef4f7850934196323079793143b97c5b80498d77d090",
+      "decision-record.md": "f3c4e0a7424dec14c3de9f68516741521c1d65bbeef742a7832a07dfe706a636",
+      "implementation-summary.md": "3f56657daa37a550c646ecd330a396f407e363acff3149d6956d868ccd2427a9"
     },
     "last_active_child_id": null,
     "last_active_at": null

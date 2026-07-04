@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/028-memory-search-intelligence/001-speckit-memory/010-consolidation-cursor-clock",
-  "spec_folder": "system-spec-kit/028-memory-search-intelligence/001-speckit-memory/010-consolidation-cursor-clock",
-  "parent_id": "system-spec-kit/028-memory-search-intelligence/001-speckit-memory",
+  "packet_id": "system-speckit/028-memory-search-intelligence/001-speckit-memory/010-consolidation-cursor-clock",
+  "spec_folder": "system-speckit/028-memory-search-intelligence/001-speckit-memory/010-consolidation-cursor-clock",
+  "parent_id": "system-speckit/028-memory-search-intelligence/001-speckit-memory",
   "children_ids": [],
   "migrated": true,
   "migration_source": "legacy",
@@ -44,8 +44,9 @@
     "status": "draft",
     "key_files": [
       "spec.md",
-      "tasks.md",
       "plan.md",
+      "tasks.md",
+      "checklist.md",
       "decision-record.md",
       "mcp_server/lib/storage/idempotency-receipts.ts",
       "mcp_server/handlers/memory-save.ts",
@@ -54,7 +55,6 @@
       "mcp_server/lib/enrichment/retry-budget.ts",
       "mcp_server/handlers/save/post-insert.ts",
       "mcp_server/handlers/pe-gating.ts",
-      "checklist.md",
       "implementation-summary.md"
     ],
     "entities": [
@@ -65,15 +65,21 @@
         "source": "derived"
       },
       {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
         "source": "derived"
       },
       {
-        "name": "plan.md",
+        "name": "checklist.md",
         "kind": "doc",
-        "path": "plan.md",
+        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -122,12 +128,6 @@
         "name": "pe-gating.ts",
         "kind": "code",
         "path": "mcp_server/handlers/pe-gating.ts",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -205,7 +205,7 @@
     ],
     "causal_summary": "The Memory MCP's async-consolidation path is half-built and not crash-safe",
     "created_at": "2026-06-19T05:40:37.446Z",
-    "last_save_at": "2026-06-23T03:49:58.211Z",
+    "last_save_at": "2026-07-04T17:51:02.602Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -216,14 +216,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:2442736af672d1baa4aca0feefca2f729e627c4bd8932bd2c72362b01fe2c3aa",
+    "source_fingerprint": "sha256:ca3ba152d4af9bbb83fda00151d440fd288fc07a5da63e83825b05d77c1d125f",
     "source_doc_hashes": {
-      "spec.md": "6b3d758c1562764b06a73aff73a0a5af8b7b09a878f842a0333b13165fd1a633",
-      "plan.md": "89a89ed0e7bcafffe16aa8760ab40b7c29c1474438a820e992529a0b74707f92",
-      "tasks.md": "ed935b220ce73f332fea8a951f8ff1ebe0d76a7ca2d1181ac0c72eee5c89e500",
-      "checklist.md": "4b40a94ac182ed18b1dc1c0256f01d527a10eadd6494f34eaf50965b954d1404",
-      "decision-record.md": "4e3b6e5faa070d6152a3a04fd3d32f74e5946468d6a756829095393b1467a9d4",
-      "implementation-summary.md": "5785b427841f640619b3d1c3b23ea63115aab99b316c88950a44d2bc19aa8564"
+      "spec.md": "0e0429b58ab7958493ee2b3aaf13062188cece0c6ed59bd2aa4d0995de91d0b3",
+      "plan.md": "7b8f21b3024a4964a4f045dbe468b4a8cca2b124091fc39a911f836157165de9",
+      "tasks.md": "4d56b1773b840c1cdb7ccbd198905482071948123c0836f2d4ff926c21cb9cc3",
+      "checklist.md": "0cefe78c0ee71893b74ed6b1799338429f7698e32b1519789db936b881ab216a",
+      "decision-record.md": "7c31d956851b05b2c20552703556eec7e2316c1162124a51fea6bfea47257e1d",
+      "implementation-summary.md": "db8dff93d294a65720d1db4839a5b048b110aba7e50921595badc82306f99466"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -1,7 +1,7 @@
 {
   "level": "2",
-  "specFolder": "system-spec-kit/028-memory-search-intelligence/001-speckit-memory/023-new-feature-research-build",
-  "description": "The flag-resolution reckoning deleted ten default-off switches, and each deletion taught something specific about why a lever fails to move live recal",
+  "specFolder": "system-speckit/028-memory-search-intelligence/001-speckit-memory/023-new-feature-research-build",
+  "description": "The flag-resolution reckoning deleted ten default-off switches, and each deletion taught something specific about why a lever fails to move live",
   "keywords": [
     "flag-resolution",
     "reckoning",
@@ -17,14 +17,13 @@
     "lever",
     "fails",
     "move",
-    "live",
-    "recal"
+    "live"
   ],
-  "lastUpdated": "2026-06-23T03:49:58.316Z",
+  "lastUpdated": "2026-07-04T17:51:04.765Z",
   "specId": "023",
   "folderSlug": "new-feature-research-build",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "028-memory-search-intelligence",
     "001-speckit-memory"
   ],

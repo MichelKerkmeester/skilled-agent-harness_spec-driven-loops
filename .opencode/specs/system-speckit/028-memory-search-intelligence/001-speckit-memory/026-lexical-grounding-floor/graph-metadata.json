@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/028-memory-search-intelligence/001-speckit-memory/026-lexical-grounding-floor",
-  "spec_folder": "system-spec-kit/028-memory-search-intelligence/001-speckit-memory/026-lexical-grounding-floor",
-  "parent_id": "system-spec-kit/028-memory-search-intelligence/001-speckit-memory",
+  "packet_id": "system-speckit/028-memory-search-intelligence/001-speckit-memory/026-lexical-grounding-floor",
+  "spec_folder": "system-speckit/028-memory-search-intelligence/001-speckit-memory/026-lexical-grounding-floor",
+  "parent_id": "system-speckit/028-memory-search-intelligence/001-speckit-memory",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -35,8 +35,8 @@
     "status": "complete",
     "key_files": [
       ".opencode/skills/system-spec-kit/mcp_server/lib/search/confidence-scoring.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/lib/search/search-flags.ts",
       ".opencode/skills/system-spec-kit/mcp_server/formatters/search-results.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/search/search-flags.ts",
       ".opencode/skills/system-spec-kit/mcp_server/tests/lexical-grounding-floor.vitest.ts",
       "tests/lexical-grounding-floor.vitest.ts",
       "tests/request-quality-aggregation.vitest.ts",
@@ -55,15 +55,15 @@
         "source": "derived"
       },
       {
-        "name": "search-flags.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/search/search-flags.ts",
-        "source": "derived"
-      },
-      {
         "name": "search-results.ts",
         "kind": "code",
         "path": ".opencode/skills/system-spec-kit/mcp_server/formatters/search-results.ts",
+        "source": "derived"
+      },
+      {
+        "name": "search-flags.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/search/search-flags.ts",
         "source": "derived"
       },
       {
@@ -195,7 +195,7 @@
     ],
     "causal_summary": "The `/memory:search` verdict cites an off-corpus term with confidence",
     "created_at": "2026-06-22T00:00:00Z",
-    "last_save_at": "2026-06-23T03:49:58.335Z",
+    "last_save_at": "2026-07-04T17:50:59.665Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,13 +205,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:f34734db575aeafd2d7f3c3f068cc4c93f571aec91ad9509836bb5e74b86805f",
+    "source_fingerprint": "sha256:b1b11686da2417dfaad3fe8ceef449365c007c242ea05eddb786518f0059214a",
     "source_doc_hashes": {
-      "spec.md": "b5c73257e63a8a0b971b1c079da2b5846d5d128d8cd81fa21ded73f3cf0fe0b4",
-      "plan.md": "cabb70bf0f3b7a48d789deda9fa70c7a6db0c914a5288d33febacdbf8d1fb8bf",
-      "tasks.md": "24c38029039dcd3bc211b0934372dbf7789afc5f02ed1999652100bfa7838721",
-      "checklist.md": "fa9ba3c53ecec79b00c5f606b03e0366a5d8c188f0cb12df667731ffa5f9502a",
-      "implementation-summary.md": "5a6dbb59f2836fb21bf16d175fb6870e53b16d7dc89a9775a41a73b4a1db2cfe"
+      "spec.md": "7b6c53607c4f391be67c9959ce1f93160656759d94f9f3890fd2f004207d7c78",
+      "plan.md": "84d0178405a69a4b14b2415b07c8924c1442f8234da295cf0ad45f70751a0516",
+      "tasks.md": "d75e9b6a2343f04e8f94aaa5bb45407ea9067c164e0a90a9fadb99398b08ff6a",
+      "checklist.md": "c9f101bc5e62239dca991932877976d74eb012c21344b0046b0e3ab01a4e3133",
+      "implementation-summary.md": "db1e11bc41972890c15d185cddda192c3aceed03768c96d40694acf5fc2c7937"
     },
     "last_active_child_id": null,
     "last_active_at": null

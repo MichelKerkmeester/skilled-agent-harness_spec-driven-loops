@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/028-memory-search-intelligence/001-speckit-memory/006-redteam-probe-gate",
-  "spec_folder": "system-spec-kit/028-memory-search-intelligence/001-speckit-memory/006-redteam-probe-gate",
-  "parent_id": "system-spec-kit/028-memory-search-intelligence/001-speckit-memory",
+  "packet_id": "system-speckit/028-memory-search-intelligence/001-speckit-memory/006-redteam-probe-gate",
+  "spec_folder": "system-speckit/028-memory-search-intelligence/001-speckit-memory/006-redteam-probe-gate",
+  "parent_id": "system-speckit/028-memory-search-intelligence/001-speckit-memory",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -41,6 +41,10 @@
     "importance_tier": "important",
     "status": "in_progress",
     "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
       "lib/governance/scope-governance.ts",
       ".opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts",
       ".opencode/skills/system-spec-kit/mcp_server/scripts/run-tests.mjs",
@@ -56,13 +60,33 @@
       "tests/architecture-seam.vitest.ts",
       "tests/bm25-security.vitest.ts",
       "tests/advisor-fixtures/unicodeInstructionalSkillLabel.json",
-      "formatters/search-results.ts",
-      "handlers/memory-triggers.ts",
-      "mcp_server/tests/security/redteam-probe-gate.vitest.ts",
-      "mcp_server/scripts/run-tests.mjs",
-      "spec.md"
+      "formatters/search-results.ts"
     ],
     "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
       {
         "name": "scope-governance.ts",
         "kind": "code",
@@ -142,18 +166,6 @@
         "source": "derived"
       },
       {
-        "name": "memory-triggers.ts",
-        "kind": "code",
-        "path": "handlers/memory-triggers.ts",
-        "source": "derived"
-      },
-      {
-        "name": "spec.md",
-        "kind": "doc",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -194,23 +206,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Authored Level",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Technical Context",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The Spec-Kit Memory MCP already defends its individual injection seams, but no single gate proves the whole surface holds",
     "created_at": "2026-06-19T05:40:37.443Z",
-    "last_save_at": "2026-06-23T03:49:58.179Z",
+    "last_save_at": "2026-07-04T17:51:05.982Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -220,13 +220,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:6dc1c2a677009eb1a9f15162b152593445adac65b94ca9e1085cebc07428f717",
+    "source_fingerprint": "sha256:e1dad01de702e04612c16af81f6b73c39b1c686ab8fd029ac7e870bab5481389",
     "source_doc_hashes": {
-      "spec.md": "f3bf3ea1c7711b1778212ce93b719ec2e421f5a7c55486aa139c8f2756f22064",
-      "plan.md": "897f059c145f6eec84cf639b3fc93230c69bc46f43028dcbc2e03e6209e2a831",
-      "tasks.md": "ad793fd9ab8be8d1c8323a733aa9f64a56995602a71056e969c7f7ccf74c54af",
-      "checklist.md": "50fca43cce7fdab918c99e35160215c2ef400c0c377e965a4a5dad1ee462a562",
-      "implementation-summary.md": "cab1791709dc2d61515c0674de3e3695c4751c4e1af00bb0afe3ce38ed59c0f4"
+      "spec.md": "3867736f922c6666b755cd6fe5e76b35834dd0aead404213cc4745e3161ad8dd",
+      "plan.md": "af45625b961346bb9379d54cc9d3859c2b9d6acb9d8d4a8f39d5cfa002a333e6",
+      "tasks.md": "a34f1c7952f8af45b1a1f7f02d284410effca7eda9c1589916c1e5bc71bfc5df",
+      "checklist.md": "571a175e0d0c95350784ddc45282fe5a3901b0a39b7d68b4f9bab9e478fffad2",
+      "implementation-summary.md": "26a831885a2730b5ad550ccea100d02f79ccd10733f8b4e73127fbf7908bdb51"
     },
     "last_active_child_id": null,
     "last_active_at": null

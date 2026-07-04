@@ -1,7 +1,7 @@
 {
   "level": "2",
   "specFolder": "system-speckit/028-memory-search-intelligence/001-speckit-memory/020-eval-calibration-ab",
-  "description": "The Memory MCP ships two classes of unvalidated retrieval intelligence, dormant calibration machinery that cannot be promoted and default-on levers th",
+  "description": "The Memory MCP ships two classes of unvalidated retrieval intelligence, dormant calibration machinery that cannot be promoted and default-on levers",
   "keywords": [
     "memory",
     "mcp",
@@ -19,7 +19,7 @@
     "default-on",
     "levers"
   ],
-  "lastUpdated": "2026-06-30T12:42:37.727Z",
+  "lastUpdated": "2026-07-04T17:51:01.695Z",
   "specId": "020",
   "folderSlug": "eval-calibration-ab",
   "parentChain": [

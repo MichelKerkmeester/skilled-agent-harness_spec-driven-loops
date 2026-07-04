@@ -1,0 +1,33 @@
+{
+  "level": "3",
+  "specFolder": "system-speckit/028-memory-search-intelligence/001-speckit-memory/031-fix-deep-dive-p0-p2-findings-for-mk-spec-memory/008-causal-graph-hygiene-and-entity-linker-noise",
+  "description": "The causal graph is 94% entity-linker noise and every save ratchets edge strengths toward 1.0, so graph signals cannot rank real causality",
+  "keywords": [
+    "causal",
+    "graph",
+    "entity-linker",
+    "noise",
+    "every",
+    "save",
+    "ratchets",
+    "edge",
+    "strengths",
+    "toward",
+    "signals",
+    "cannot",
+    "rank",
+    "real",
+    "causality"
+  ],
+  "lastUpdated": "2026-07-04T17:46:15.540Z",
+  "specId": "008",
+  "folderSlug": "causal-graph-hygiene-and-entity-linker-noise",
+  "parentChain": [
+    "system-speckit",
+    "028-memory-search-intelligence",
+    "001-speckit-memory",
+    "031-fix-deep-dive-p0-p2-findings-for-mk-spec-memory"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

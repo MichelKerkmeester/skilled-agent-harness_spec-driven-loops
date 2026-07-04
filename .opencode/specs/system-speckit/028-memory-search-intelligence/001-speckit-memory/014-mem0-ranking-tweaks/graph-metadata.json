@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/028-memory-search-intelligence/001-speckit-memory/014-mem0-ranking-tweaks",
-  "spec_folder": "system-spec-kit/028-memory-search-intelligence/001-speckit-memory/014-mem0-ranking-tweaks",
-  "parent_id": "system-spec-kit/028-memory-search-intelligence/001-speckit-memory",
+  "packet_id": "system-speckit/028-memory-search-intelligence/001-speckit-memory/014-mem0-ranking-tweaks",
+  "spec_folder": "system-speckit/028-memory-search-intelligence/001-speckit-memory/014-mem0-ranking-tweaks",
+  "parent_id": "system-speckit/028-memory-search-intelligence/001-speckit-memory",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -41,6 +41,9 @@
     "importance_tier": "important",
     "status": "in_progress",
     "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
       "mcp_server/lib/extraction/entity-extractor.ts",
       "mcp_server/lib/extraction/entity-extraction-rules.json",
       "mcp_server/lib/search/graph-search-fn.ts",
@@ -55,14 +58,29 @@
       "handlers/save/dedup.ts",
       "lib/extraction/entity-extraction-rules.json",
       "lib/search/graph-search-fn.ts",
-      "plan.md",
-      "tasks.md",
       "tests/mem0-ranking-tweaks.vitest.ts",
-      "spec.md",
       "checklist.md",
       "implementation-summary.md"
     ],
     "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
       {
         "name": "entity-extractor.ts",
         "kind": "code",
@@ -130,24 +148,6 @@
         "source": "derived"
       },
       {
-        "name": "plan.md",
-        "kind": "doc",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "tasks.md",
-        "kind": "doc",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "spec.md",
-        "kind": "doc",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "checklist.md",
         "kind": "doc",
         "path": "checklist.md",
@@ -210,7 +210,7 @@
     ],
     "causal_summary": "The 028 campaign's external-memory-systems child (`007-memory-systems`, 22 iterations across Mem0 / Graphiti / Letta / Cognee) surfaced a bundle of cheap ranking and extraction improvements for the Spec-Kit Memory MCP, mostly mined from Mem0 scoring/extraction plus two Cognee extraction-config wins",
     "created_at": "2026-06-19T05:40:37.448Z",
-    "last_save_at": "2026-06-23T03:49:58.244Z",
+    "last_save_at": "2026-07-04T17:51:00.375Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -220,13 +220,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:b948674ba1bf7370d5b7ba858f630adda40e39962d3c3594a262c90a06f10668",
+    "source_fingerprint": "sha256:0c250faab86722a5c7d1cc4974c145b95ceb8734d52f38084c7316983badda37",
     "source_doc_hashes": {
-      "spec.md": "194a8f14e4a3d699415efe51f03e744ce0e7e7ea2e6277e21220ba3561a765dc",
-      "plan.md": "cfbee975b0f31f39f75801a93c8e07f86f64637ac29b3f9eb5499e57019562f5",
-      "tasks.md": "ef0b6f726a1e57d895146c8f1a52319f2e407e31dadb3061bc9754f34a1195d2",
-      "checklist.md": "293142deeda3e7ca68c7269d82a23784d25bc67d90eec78dde00a73a6974a1e6",
-      "implementation-summary.md": "198078b2c8e16218fa76af4ad35f881e9b9edb4e50d1cd222bb16e0c86ad5bd5"
+      "spec.md": "7d6e050eacd5bea5d1a0c144364a2028433063a96204c8f14195ac671d9eac8a",
+      "plan.md": "7ca2d4c22ffd2b47e36e8f2b6024498d83f15561e85ddce191ec34f262bde0fd",
+      "tasks.md": "414b77e7d78c0cf21d679d69c272bb0f8dfb843e131da7c44e5147ec4fa44887",
+      "checklist.md": "06946b39c67bd64bb7ad3493fec2b9e063837e75572813a5b3130f373d794bef",
+      "implementation-summary.md": "951980d2355ab861905b4760df857831b022e448ec598760883c8c4975390826"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -1,0 +1,32 @@
+{
+  "level": "2",
+  "specFolder": "system-speckit/028-memory-search-intelligence/001-speckit-memory/031-fix-deep-dive-p0-p2-findings-for-mk-spec-memory/005-trigger-phrase-quality-and-matcher-guards",
+  "description": "The trigger-phrase corpus is dominated by junk: 45% of 165,979 phrase occurrences are single words (\"feature\" x2,072, \"specification\" x2,034,",
+  "keywords": [
+    "trigger-phrase",
+    "corpus",
+    "dominated",
+    "junk",
+    "165",
+    "979",
+    "phrase",
+    "occurrences",
+    "single",
+    "words",
+    "feature",
+    "072",
+    "specification",
+    "034"
+  ],
+  "lastUpdated": "2026-07-04T17:46:13.038Z",
+  "specId": "005",
+  "folderSlug": "trigger-phrase-quality-and-matcher-guards",
+  "parentChain": [
+    "system-speckit",
+    "028-memory-search-intelligence",
+    "001-speckit-memory",
+    "031-fix-deep-dive-p0-p2-findings-for-mk-spec-memory"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

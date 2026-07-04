@@ -11,8 +11,8 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/028-memory-search-intelligence/001-speckit-memory/012-procedural-reliability-benchmark"
-    last_updated_at: "2026-06-19T00:00:00Z"
+    packet_pointer: "system-speckit/028-memory-search-intelligence/001-speckit-memory/012-procedural-reliability-benchmark"
+    last_updated_at: "2026-07-04T17:51:04.560Z"
     last_updated_by: "codex"
     recent_action: "Built default-off procedural reliability plumbing and unit tests"
     next_safe_action: "Run the benefit micro-benchmark before promoting any procedural candidate"
@@ -60,7 +60,7 @@ This sub-phase scopes the Memory MCP **procedural-reliability** cluster mined fr
 | **Created** | 2026-06-19 |
 | **Branch** | `system-speckit/027-xce-research-based-refinement` |
 | **Source roadmap** | `../../research/roadmap.md` §5 + §7 follow-ups, `../../research/synthesis/01-go-candidates.md` (Needs-validation + Follow-ups) |
-| **Parent Packet** | system-spec-kit/028-memory-search-intelligence/001-speckit-memory |
+| **Parent Packet** | system-speckit/028-memory-search-intelligence/001-speckit-memory |
 <!-- /ANCHOR:metadata -->
 
 ---

@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/028-memory-search-intelligence/001-speckit-memory/004-graceful-degradation",
-  "spec_folder": "system-spec-kit/028-memory-search-intelligence/001-speckit-memory/004-graceful-degradation",
-  "parent_id": "system-spec-kit/028-memory-search-intelligence/001-speckit-memory",
+  "packet_id": "system-speckit/028-memory-search-intelligence/001-speckit-memory/004-graceful-degradation",
+  "spec_folder": "system-speckit/028-memory-search-intelligence/001-speckit-memory/004-graceful-degradation",
+  "parent_id": "system-speckit/028-memory-search-intelligence/001-speckit-memory",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -41,16 +41,40 @@
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
-      "mcp_server/lib/search/pipeline/stage1-candidate-gen.ts",
-      "mcp_server/lib/search/pipeline/types.ts",
-      "mcp_server/handlers/memory-search.ts",
-      "mcp_server/tests/stage1-embedder-degrade.vitest.ts",
+      "spec.md",
       "plan.md",
       "tasks.md",
       "implementation-summary.md",
-      "spec.md"
+      "mcp_server/lib/search/pipeline/stage1-candidate-gen.ts",
+      "mcp_server/lib/search/pipeline/types.ts",
+      "mcp_server/handlers/memory-search.ts",
+      "mcp_server/tests/stage1-embedder-degrade.vitest.ts"
     ],
     "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
       {
         "name": "stage1-candidate-gen.ts",
         "kind": "code",
@@ -73,30 +97,6 @@
         "name": "stage1-embedder-degrade.vitest.ts",
         "kind": "test",
         "path": "mcp_server/tests/stage1-embedder-degrade.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "plan.md",
-        "kind": "doc",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "tasks.md",
-        "kind": "doc",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "spec.md",
-        "kind": "doc",
-        "path": "spec.md",
         "source": "derived"
       },
       {
@@ -198,7 +198,7 @@
     ],
     "causal_summary": "When the embedder is unavailable and `generateQueryEmbedding` returns a null/empty embedding, Memory recall throws instead of degrading to lexical",
     "created_at": "2026-06-19T05:40:37.442Z",
-    "last_save_at": "2026-06-23T03:49:58.162Z",
+    "last_save_at": "2026-07-04T17:50:57.895Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,12 +207,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:c6b676e585ed02dc476278f1ffb00a495804e01567c54260a38ec04ca5c6e94b",
+    "source_fingerprint": "sha256:dedb013f75407b0615541148cf186d26d4aee29ba622ffe560717673bbf2148c",
     "source_doc_hashes": {
-      "spec.md": "9a71ce028c0f72b0b184df2dcffc21ac2c09c90c29b439311f59b8e1492e3e0a",
-      "plan.md": "a182314cf509daf1ecd489328613956da6a7a4fc0a640f7ed5d9de641de67fa8",
-      "tasks.md": "75e980bb3cf1893204dc8c563984d1afa088f6602e382377851462bc3a2ccbf9",
-      "implementation-summary.md": "b4f78365512fb004654d649e2d7724e4b9506b626ea910fccda26acd3f5a3dbc"
+      "spec.md": "8898906ca6eac63559e175da384a7d4e22c4f433bc50c25ca979e3c8647102cd",
+      "plan.md": "bbdf09caeea8c617916a1ac8766360c02b4a8fd38a1c3ff84e2f5ecaee87ce27",
+      "tasks.md": "6da7303bf9d082cc9fc29b0f94d4db2d2b6772ad1d01ac41dd676b26c17ee417",
+      "implementation-summary.md": "4598e18026f6593887a07f715109c5092991931f21f7b9f5fd2189793a45b46b"
     },
     "last_active_child_id": null,
     "last_active_at": null

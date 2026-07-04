@@ -11,8 +11,8 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/028-memory-search-intelligence/001-speckit-memory/005-recall-render-escaper"
-    last_updated_at: "2026-06-19T00:00:00Z"
+    packet_pointer: "system-speckit/028-memory-search-intelligence/001-speckit-memory/005-recall-render-escaper"
+    last_updated_at: "2026-07-04T17:50:59.324Z"
     last_updated_by: "codex-gpt-5"
     recent_action: "Implemented ungated candidates"
     next_safe_action: "Resolve the substrate-internal row signal before flipping default recall exclusion"
@@ -57,7 +57,7 @@ This sub-phase implements the highest-stakes spine of the Spec-Kit Memory MCP, t
 | **Status** | complete |
 | **Created** | 2026-06-19 |
 | **Branch** | `system-speckit/027-xce-research-based-refinement` |
-| **Parent research phase** | `system-spec-kit/028-memory-search-intelligence/001-speckit-memory` |
+| **Parent research phase** | `system-speckit/028-memory-search-intelligence/001-speckit-memory` |
 | **Subsystem** | Spec-Kit Memory MCP (PRIMARY), retrieval intelligence |
 | **Source research** | `../research/research.md` + `../../research/roadmap.md` + `../../research/synthesis/{01,03,04}-*.md` |
 | **Shipped record** | Wave-0 record (commits `738e118751..ab5459fb6d`) |

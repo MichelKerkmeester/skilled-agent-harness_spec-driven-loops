@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/028-memory-search-intelligence/001-speckit-memory/028-scoring-hardening",
-  "spec_folder": "system-spec-kit/028-memory-search-intelligence/001-speckit-memory/028-scoring-hardening",
-  "parent_id": "system-spec-kit/028-memory-search-intelligence/001-speckit-memory",
+  "packet_id": "system-speckit/028-memory-search-intelligence/001-speckit-memory/028-scoring-hardening",
+  "spec_folder": "system-speckit/028-memory-search-intelligence/001-speckit-memory/028-scoring-hardening",
+  "parent_id": "system-speckit/028-memory-search-intelligence/001-speckit-memory",
   "children_ids": [],
   "migrated": true,
   "migration_source": "legacy",
@@ -36,40 +36,25 @@
     "importance_tier": "normal",
     "status": "complete",
     "key_files": [
-      ".opencode/skills/system-spec-kit/mcp_server/lib/search/search-flags.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/lib/search/noise-floor.ts",
       ".opencode/skills/system-spec-kit/mcp_server/lib/search/confidence-scoring.ts",
       ".opencode/skills/system-spec-kit/mcp_server/formatters/search-results.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/search/noise-floor.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/search/search-flags.ts",
       ".opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md",
       ".opencode/skills/system-spec-kit/mcp_server/tests/scoring-hardening.vitest.ts",
       ".opencode/skills/system-spec-kit/mcp_server/scripts/evals/run-eval-v2.mjs",
-      ".opencode/skills/system-spec-kit/mcp_server/dist/lib/search/confidence-scoring.d.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/dist/lib/search/confidence-scoring.js",
       ".opencode/skills/system-spec-kit/mcp_server/scripts/evals/run-false-confirm-eval.mjs",
       "spec.md",
       "plan.md",
       "scripts/evals/run-false-confirm-eval.mjs",
       "lib/search/noise-floor.ts",
       "lib/search/search-flags.ts",
-      "dist/lib/search/search-flags.js",
-      "dist/lib/search/confidence-scoring.js",
-      "dist/formatters/search-results.js",
       "tests/scoring-hardening.vitest.ts",
-      "tasks.md"
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
     ],
     "entities": [
-      {
-        "name": "search-flags.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/search/search-flags.ts",
-        "source": "derived"
-      },
-      {
-        "name": "noise-floor.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/search/noise-floor.ts",
-        "source": "derived"
-      },
       {
         "name": "confidence-scoring.ts",
         "kind": "code",
@@ -80,6 +65,18 @@
         "name": "search-results.ts",
         "kind": "code",
         "path": ".opencode/skills/system-spec-kit/mcp_server/formatters/search-results.ts",
+        "source": "derived"
+      },
+      {
+        "name": "noise-floor.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/search/noise-floor.ts",
+        "source": "derived"
+      },
+      {
+        "name": "search-flags.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/search/search-flags.ts",
         "source": "derived"
       },
       {
@@ -101,18 +98,6 @@
         "source": "derived"
       },
       {
-        "name": "confidence-scoring.d.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/dist/lib/search/confidence-scoring.d.ts",
-        "source": "derived"
-      },
-      {
-        "name": "confidence-scoring.js",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/dist/lib/search/confidence-scoring.js",
-        "source": "derived"
-      },
-      {
         "name": "run-false-confirm-eval.mjs",
         "kind": "file",
         "path": ".opencode/skills/system-spec-kit/mcp_server/scripts/evals/run-false-confirm-eval.mjs",
@@ -131,21 +116,21 @@
         "source": "derived"
       },
       {
-        "name": "search-flags.js",
-        "kind": "code",
-        "path": "dist/lib/search/search-flags.js",
-        "source": "derived"
-      },
-      {
-        "name": "search-results.js",
-        "kind": "code",
-        "path": "dist/formatters/search-results.js",
-        "source": "derived"
-      },
-      {
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -201,11 +186,23 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Pattern Flag",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The `/memory:search` verdict and citation path scores an off-corpus term as good on a lone spurious high-cosine hit",
     "created_at": "2026-06-22T00:00:00Z",
-    "last_save_at": "2026-06-23T03:49:58.348Z",
+    "last_save_at": "2026-07-04T17:51:07.092Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -215,13 +212,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:fbe73e1013c7956a95dadb8fcd4f82f4bdd6197664e749eac60f770f6626094e",
+    "source_fingerprint": "sha256:acf3e9fb6ca014bfbc7f444507507ad4a3395cdca42a40b1aeb9eb7671f6440f",
     "source_doc_hashes": {
-      "spec.md": "4e8b4057cadc170ffc74964554e123b5e46ad472a8587af5d04a1c03405551c8",
-      "plan.md": "5e249c251126494245389b348c19fe4890ada6283bcfe5a2916d916b4b29ed62",
-      "tasks.md": "206e215d950b5e595e1795be069e6802ef0200c97b199c83e6f3791a8155b2c7",
-      "checklist.md": "088abc01ee0a8363b2f2e76bcf7d3319593f1f2d9965faf4b46f97addcb4ba90",
-      "implementation-summary.md": "9fce78d92e2cc946c9e2a222a2dde94fd2ad78cbee61aaf7491a49f48360de81"
+      "spec.md": "c4eddfd46582ac88f298903ff7bed1bde8f94d178e4f7542a13dd1580a807bc2",
+      "plan.md": "3962147cd6632c412c4f6eeaf508690b8b1a42f87ab4c0042444fe9282c1b5f0",
+      "tasks.md": "04a26f204de7f194e09ed9d68549d1672e9d70feabefb0276989b38f0052c0bb",
+      "checklist.md": "10baa3f2c2b657f8aa1370ff0661295f495e339ece68d2180333f6acdbbaa91b",
+      "implementation-summary.md": "bd29fa6d234cc07012cb4638eb09e0fd55e2a563d98034a9bcd57a8e64bf6a78"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -9,8 +9,8 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/028-memory-search-intelligence/001-speckit-memory/007-bitemporal-window"
-    last_updated_at: "2026-06-19T00:00:00Z"
+    packet_pointer: "system-speckit/028-memory-search-intelligence/001-speckit-memory/007-bitemporal-window"
+    last_updated_at: "2026-07-04T17:51:08.870Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "Author bi-temporal-window plan from 028/001 research"
     next_safe_action: "Implement MEM-fact-invalidation-event-time spearhead (single-site)"

@@ -11,8 +11,8 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/028-memory-search-intelligence/001-speckit-memory/001-corpus-reindex-gate-zero"
-    last_updated_at: "2026-06-19T00:00:00Z"
+    packet_pointer: "system-speckit/028-memory-search-intelligence/001-speckit-memory/001-corpus-reindex-gate-zero"
+    last_updated_at: "2026-07-04T17:51:03.030Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "Shipped C9-4 coverage guard, coverage already 100pct so reindex superseded"
     next_safe_action: "None - coverage gate satisfied, proceed to benchmark tier"
@@ -47,7 +47,7 @@ _memory:
 | **Status** | complete |
 | **Created** | 2026-06-19 |
 | **Branch** | `system-speckit/027-xce-research-based-refinement` |
-| **Parent Packet** | system-spec-kit/028-memory-search-intelligence/001-speckit-memory |
+| **Parent Packet** | system-speckit/028-memory-search-intelligence/001-speckit-memory |
 | **Candidate** | `corpus-reindex-gate-zero` (a.k.a. C9-4-assertEmbeddingCoverage, gate-zero) |
 
 <!-- /ANCHOR:metadata -->

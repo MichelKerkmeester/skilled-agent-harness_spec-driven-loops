@@ -11,8 +11,8 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/028-memory-search-intelligence/001-speckit-memory/019-eval-harness-extension"
-    last_updated_at: "2026-06-19T08:00:00+02:00"
+    packet_pointer: "system-speckit/028-memory-search-intelligence/001-speckit-memory/019-eval-harness-extension"
+    last_updated_at: "2026-07-04T17:51:00.031Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "Implemented C9 eval-harness metric lanes as code + deterministic tests"
     next_safe_action: "Plan the A8 ledger/gate schema and live gate-validation step separately"
@@ -55,7 +55,7 @@ This implementation phase extends the Spec-Kit Memory MCP's **already ~80%-built
 | **Status** | complete (partial scope, C9 implemented, A8 pending, see §14) |
 | **Created** | 2026-06-19 |
 | **Branch** | `system-speckit/027-xce-research-based-refinement` |
-| **Parent Packet** | system-spec-kit/028-memory-search-intelligence/001-speckit-memory |
+| **Parent Packet** | system-speckit/028-memory-search-intelligence/001-speckit-memory |
 | **Candidate** | `eval-harness-spine` (C9-1 / C9-2 / C9-3 + A8-1/A8-2/A8-5/A8-4) |
 | **Source research** | `../research/retrieval-evaluation/research.md` (+ `iterations/iteration-{001,008,009,011,012}.md`) |
 | **Source synthesis** | `../../research/synthesis/08-retrieval-evaluation-findings.md` (Wave-1 spine) |

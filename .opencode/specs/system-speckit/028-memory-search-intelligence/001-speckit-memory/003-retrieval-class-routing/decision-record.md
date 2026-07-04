@@ -10,8 +10,8 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/028-memory-search-intelligence/001-speckit-memory/003-retrieval-class-routing"
-    last_updated_at: "2026-06-19T07:40:00Z"
+    packet_pointer: "system-speckit/028-memory-search-intelligence/001-speckit-memory/003-retrieval-class-routing"
+    last_updated_at: "2026-07-04T17:50:58.974Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "Recorded the two gating-axis + neutral-default decisions"
     next_safe_action: "Build C2-A classifier as the additive third router axis"

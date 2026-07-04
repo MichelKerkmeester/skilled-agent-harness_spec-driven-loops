@@ -9,8 +9,8 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/028-memory-search-intelligence/001-speckit-memory/015-summary-fusion-grounding"
-    last_updated_at: "2026-06-19T00:00:00Z"
+    packet_pointer: "system-speckit/028-memory-search-intelligence/001-speckit-memory/015-summary-fusion-grounding"
+    last_updated_at: "2026-07-04T17:51:04.196Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "Shipped shadow-gated fused lane and read-only grounding prelude default-off"
     next_safe_action: "Capture the retrieval baseline delta, then build the persistent hierarchy"
@@ -36,7 +36,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | `system-spec-kit/028-memory-search-intelligence/001-speckit-memory/015-summary-fusion-grounding` |
+| **Spec Folder** | `system-speckit/028-memory-search-intelligence/001-speckit-memory/015-summary-fusion-grounding` |
 | **Completed** | Partial implementation 2026-06-19 |
 | **Level** | 2 |
 | **Priority** | P1 |

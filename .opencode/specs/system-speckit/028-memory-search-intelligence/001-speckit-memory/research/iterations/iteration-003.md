@@ -3,7 +3,7 @@
 ## Focus
 Pivot to the recall/serialization + degrade cluster. Confirm or refute iteration-1's negative-evidence GAP guesses for Q5 (byte-identical recall serialization) and Q8 (untrusted-XML recall wrapper) by reading the actual code, and resolve Q9 (graceful embedder-degrade). Map each against galadriel stable-prefix prompt-cache (`CACHING.md`) and aionforge content-derived `SerializationId` ordering + `recalled-memory-context` untrusted wrapper + `embedder_available:false` degrade (`docs/retrieval.md`). Close the small Q3 residual: are `valid_at`/`invalid_at` event-time or transaction-time today? Produce candidate proposals (NOT implementations) with file:line evidence and S/M/L effort.
 
-All internal paths relative to `.opencode/skills/system-spec-kit/mcp_server/`. External paths relative to `.opencode/specs/system-spec-kit/028-memory-search-intelligence/external/`.
+All internal paths relative to `.opencode/skills/system-spec-kit/mcp_server/`. External paths relative to `.opencode/specs/system-speckit/028-memory-search-intelligence/external/`.
 
 **Headline:** iteration-1's two negative-evidence guesses are **both CONFIRMED as real gaps** — and Q9 reveals a sharper gap than the strategy assumed: the embedder-unavailable path **throws** rather than degrading to lexical, the exact opposite of aionforge's `embedder_available:false` keep-lexical contract.
 

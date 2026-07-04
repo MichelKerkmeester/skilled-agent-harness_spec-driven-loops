@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: Red-Team Probe Gate [system-spec-kit/028-memory-search-intelligence/001-speckit-memory/006-redteam-probe-gate/spec]"
+title: "Feature Specification: Red-Team Probe Gate [system-speckit/028-memory-search-intelligence/001-speckit-memory/006-redteam-probe-gate/spec]"
 description: "One named CI red-team probe gate aggregating the existing per-seam injection sanitizers plus a new deep-loop prompt-pack render probe, holding a zero-success ceiling against poisoned-RAG, query-only-injection and wrapper-breakout attacks. Folds the no-querytext exfil-audit hygiene as a sub-requirement."
 trigger_phrases:
   - "red-team probe gate"
@@ -12,8 +12,8 @@ importance_tier: "important"
 contextType: "specification"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/028-memory-search-intelligence/001-speckit-memory/006-redteam-probe-gate"
-    last_updated_at: "2026-06-19T07:40:00Z"
+    packet_pointer: "system-speckit/028-memory-search-intelligence/001-speckit-memory/006-redteam-probe-gate"
+    last_updated_at: "2026-07-04T17:51:05.982Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "Implemented MCP-server red-team probe gate + no-querytext denial audit"
     next_safe_action: "Implement sibling prompt-pack probe"

@@ -96,7 +96,7 @@ The 016 deep-dive remediation program shipped. Thirteen phases fixed the P0 thro
 
 | Phase | Status | Summary |
 |---|---|---|
-| `016-fix-deep-dive-p0-p2-findings-for-mk-spec-memory` | Phase Parent (13/13 Complete) | The deep-dive remediation program. Thirteen phases that fixed the mk-spec-memory P0 through P2 findings across corpus identity, read-exclusions, save-dedup, embeddings, trigger quality, ranking, causal-graph hygiene, the learning loop, search performance, daemon health, envelope presentation and the review-remediation closeout. Rollup: [changelog-016-root.md](./016-fix-deep-dive-p0-p2-findings-for-mk-spec-memory/changelog-016-root.md). |
+| `001-speckit-memory/031-fix-deep-dive-p0-p2-findings-for-mk-spec-memory` (spec folder re-nested 2026-07-04, formerly top-level `016`) | Phase Parent (13/13 Complete) | The deep-dive remediation program. Thirteen phases that fixed the mk-spec-memory P0 through P2 findings across corpus identity, read-exclusions, save-dedup, embeddings, trigger quality, ranking, causal-graph hygiene, the learning loop, search performance, daemon health, envelope presentation and the review-remediation closeout. Rollup: [changelog-016-root.md](./016-fix-deep-dive-p0-p2-findings-for-mk-spec-memory/changelog-016-root.md). |
 
 ### Follow-Ups
 

@@ -10,8 +10,8 @@ importance_tier: "important"
 contextType: "research"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/028-memory-search-intelligence/001-speckit-memory/024-reranker-research"
-    last_updated_at: "2026-06-21T00:00:00Z"
+    packet_pointer: "system-speckit/028-memory-search-intelligence/001-speckit-memory/024-reranker-research"
+    last_updated_at: "2026-07-04T17:51:00.741Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "Captured the 10-iteration reranker deep research, CONDITIONAL-GO"
     next_safe_action: "Use this research as the authoritative reranker investigation for 028"

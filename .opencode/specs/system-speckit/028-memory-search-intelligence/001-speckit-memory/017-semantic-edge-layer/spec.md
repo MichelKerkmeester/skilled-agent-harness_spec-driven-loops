@@ -11,8 +11,8 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/028-memory-search-intelligence/001-speckit-memory/017-semantic-edge-layer"
-    last_updated_at: "2026-06-19T00:00:00Z"
+    packet_pointer: "system-speckit/028-memory-search-intelligence/001-speckit-memory/017-semantic-edge-layer"
+    last_updated_at: "2026-07-04T17:50:57.515Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "Implemented semantic-edge substrate"
     next_safe_action: "Run strict validation and final typecheck/tests"
@@ -61,7 +61,7 @@ The internal causal graph stores edges in SQLite only: an edge is a `(source_id,
 | **Status** | No-Go (Partial) |
 | **Created** | 2026-06-19 |
 | **Branch** | `system-speckit/027-xce-research-based-refinement` |
-| **Parent Packet** | system-spec-kit/028-memory-search-intelligence/001-speckit-memory |
+| **Parent Packet** | system-speckit/028-memory-search-intelligence/001-speckit-memory |
 | **Wave** | Wave-2 (prove-first, shadow-gated) |
 | **Candidates** | semantic-edge-layer, GR-fact-embedding-on-edge (root), unlocking CG-edge-vector-index, CG-edge-aware-triplet-search, GR-semantic-fact-dedup-merge, GR-semantic-invalidation-discovery |
 <!-- /ANCHOR:metadata -->

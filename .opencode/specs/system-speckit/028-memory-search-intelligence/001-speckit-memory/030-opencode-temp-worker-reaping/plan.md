@@ -12,7 +12,7 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "scaffold/030-opencode-temp-worker-reaping"
-    last_updated_at: "2026-06-30T07:44:29Z"
+    last_updated_at: "2026-07-04T17:51:05.616Z"
     last_updated_by: "template-author"
     recent_action: "Initialize continuity block"
     next_safe_action: "Replace template defaults on first save"

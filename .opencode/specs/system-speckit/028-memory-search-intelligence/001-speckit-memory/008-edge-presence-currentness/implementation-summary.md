@@ -10,8 +10,8 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/028-memory-search-intelligence/001-speckit-memory/008-edge-presence-currentness"
-    last_updated_at: "2026-06-19T06:00:00+02:00"
+    packet_pointer: "system-speckit/028-memory-search-intelligence/001-speckit-memory/008-edge-presence-currentness"
+    last_updated_at: "2026-07-04T17:51:03.395Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "C3-A shipped then kept off as integrity-only, 4 candidates pending"
     next_safe_action: "Land C3-C TemporalMode and memory_history after the C3-B substrate lands"
@@ -42,7 +42,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | system-spec-kit/028-memory-search-intelligence/001-speckit-memory/008-edge-presence-currentness |
+| **Spec Folder** | system-speckit/028-memory-search-intelligence/001-speckit-memory/008-edge-presence-currentness |
 | **Status** | in-progress |
 | **Level** | 3 |
 | **Scope** | Five temporal candidates, C3-A shipped and four pending |
@@ -126,7 +126,7 @@ C3-A is implemented and committed at `cb92f2f211`. The `description.json` and `g
 
 ```bash
 bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh \
-  .opencode/specs/system-spec-kit/028-memory-search-intelligence/001-speckit-memory/008-edge-presence-currentness --strict
+  .opencode/specs/system-speckit/028-memory-search-intelligence/001-speckit-memory/008-edge-presence-currentness --strict
 
 git log --oneline 1ecc531431..ab5459fb6d | grep -iE "temporal|history|unforget|currentness|C3"
 ```

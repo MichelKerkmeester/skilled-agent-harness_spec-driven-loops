@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/028-memory-search-intelligence/001-speckit-memory/002-determinism-content-id-foundation",
-  "spec_folder": "system-spec-kit/028-memory-search-intelligence/001-speckit-memory/002-determinism-content-id-foundation",
-  "parent_id": "system-spec-kit/028-memory-search-intelligence/001-speckit-memory",
+  "packet_id": "system-speckit/028-memory-search-intelligence/001-speckit-memory/002-determinism-content-id-foundation",
+  "spec_folder": "system-speckit/028-memory-search-intelligence/001-speckit-memory/002-determinism-content-id-foundation",
+  "parent_id": "system-speckit/028-memory-search-intelligence/001-speckit-memory",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -41,14 +41,14 @@
     "importance_tier": "important",
     "status": "in_progress",
     "key_files": [
-      "lib/content-id.ts",
-      "formatters/search-results.ts",
+      "spec.md",
       "plan.md",
       "tasks.md",
       "checklist.md",
+      "lib/content-id.ts",
+      "formatters/search-results.ts",
       "decision-record.md",
       "implementation-summary.md",
-      "spec.md",
       "shared/algorithms/rrf-fusion.ts",
       "mcp_server/lib/search/vector-index-queries.ts",
       "mcp_server/lib/search/pipeline/stage2-fusion.ts",
@@ -58,15 +58,9 @@
     ],
     "entities": [
       {
-        "name": "content-id.ts",
-        "kind": "code",
-        "path": "lib/content-id.ts",
-        "source": "derived"
-      },
-      {
-        "name": "search-results.ts",
-        "kind": "code",
-        "path": "formatters/search-results.ts",
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
         "source": "derived"
       },
       {
@@ -88,6 +82,18 @@
         "source": "derived"
       },
       {
+        "name": "content-id.ts",
+        "kind": "code",
+        "path": "lib/content-id.ts",
+        "source": "derived"
+      },
+      {
+        "name": "search-results.ts",
+        "kind": "code",
+        "path": "formatters/search-results.ts",
+        "source": "derived"
+      },
+      {
         "name": "decision-record.md",
         "kind": "doc",
         "path": "decision-record.md",
@@ -97,12 +103,6 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "spec.md",
-        "kind": "doc",
-        "path": "spec.md",
         "source": "derived"
       },
       {
@@ -204,7 +204,7 @@
     ],
     "causal_summary": "The Memory MCP fuses ranked signals and renders a result set the downstream agent loop caches against, but its ordering is not reproducible: the candidate-merge comparators sort score-only with non-content tie-breaks (input-order or clock-derived `updatedat`), the four ranked ANN `ORDER BY distance` queries have no tie-break so which rows survive the LIMIT into fusion is run-to-run unstable, and recall serialization is a bare `JSON.stringify` with no content-derived render-order stage (`research.md` Internal Baseline, `001` iter-3 Q5)",
     "created_at": "2026-06-19T05:40:47.071Z",
-    "last_save_at": "2026-06-23T03:49:58.147Z",
+    "last_save_at": "2026-07-04T17:51:02.224Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -215,14 +215,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:9c4ee6cee89d83e3f3b1946d7a73b7146a40ab5dcdcd32bbe33a4e1857985df6",
+    "source_fingerprint": "sha256:08b9d17b49dfe4d38659993bde82035d59e279270f40fdf20fd81bd8724624b8",
     "source_doc_hashes": {
-      "spec.md": "b31e1af29df3cfd08bcc95cfacff9a2f67d598a466d413ec7051c397a1d97ca1",
-      "plan.md": "5842c972eac7aeefb5cc2c8955568c41167c2d2408fba83486254fd54ecf216c",
-      "tasks.md": "e470d6d3d594e574e4f05e51687a8c539c524787abc0c41d51d2ead51c782697",
-      "checklist.md": "c8f7698c1e45290de0232474198d3733d176bc2b6d724b8ac108a87f66329a0d",
-      "decision-record.md": "e6b3ad2319ed533063e4e3e0383ec70c72cf5d631034fc04620cc6be5891b2a1",
-      "implementation-summary.md": "a94268c7fc858ce08afa1055b587d74c9832212d8875ffb99366e369c855b04b"
+      "spec.md": "a3a5a71cb8439fd9dfd091f6061061bf518aedb87dd210124fd36dcba7553de4",
+      "plan.md": "fdce9922d9e7e6d4d1b2126152a774d104e1818f0153957e4f806a920587587f",
+      "tasks.md": "02fd7288251fc2c285a3969f3d783da11151a6a0b9319e3ac18ba0dae8018873",
+      "checklist.md": "576f0ba38325367579c56a7b23c7b28ae0a73f6bbed0304b21080c11e7fd20f5",
+      "decision-record.md": "d17285ecb94e8001d8b89bb0184f541e1a8269cacf411e5eb7ee3901d7892540",
+      "implementation-summary.md": "4c3fa0e3e745d7cef4995eea15c9d5db1af787058cb7f7e1dc8eab10bd325f5e"
     },
     "last_active_child_id": null,
     "last_active_at": null

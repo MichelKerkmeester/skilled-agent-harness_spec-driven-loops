@@ -9,8 +9,8 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/028-memory-search-intelligence/001-speckit-memory/004-graceful-degradation"
-    last_updated_at: "2026-06-19T00:00:00Z"
+    packet_pointer: "system-speckit/028-memory-search-intelligence/001-speckit-memory/004-graceful-degradation"
+    last_updated_at: "2026-07-04T17:50:57.895Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "Record C9 done-state (030 commit 484b77b589) in the 028 impl tree"
     next_safe_action: "None. C9 shipped and verified"

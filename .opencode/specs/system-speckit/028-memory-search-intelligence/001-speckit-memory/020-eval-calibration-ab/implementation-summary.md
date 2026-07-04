@@ -9,8 +9,8 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/028-memory-search-intelligence/001-speckit-memory/020-eval-calibration-ab"
-    last_updated_at: "2026-06-19T00:00:00Z"
+    packet_pointer: "system-speckit/028-memory-search-intelligence/001-speckit-memory/020-eval-calibration-ab"
+    last_updated_at: "2026-07-04T17:51:01.862Z"
     last_updated_by: "codex"
     recent_action: "Implemented observe-only calibration and lever A/B utilities"
     next_safe_action: "Run 019-backed golden benchmark"
@@ -37,7 +37,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | `system-spec-kit/028-memory-search-intelligence/001-speckit-memory/020-eval-calibration-ab` |
+| **Spec Folder** | `system-speckit/028-memory-search-intelligence/001-speckit-memory/020-eval-calibration-ab` |
 | **Completed** | Partial safe core |
 | **Level** | 2 |
 | **Priority** | P2 |

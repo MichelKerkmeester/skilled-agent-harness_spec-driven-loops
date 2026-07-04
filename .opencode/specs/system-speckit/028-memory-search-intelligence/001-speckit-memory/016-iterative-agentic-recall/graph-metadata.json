@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/028-memory-search-intelligence/001-speckit-memory/016-iterative-agentic-recall",
-  "spec_folder": "system-spec-kit/028-memory-search-intelligence/001-speckit-memory/016-iterative-agentic-recall",
-  "parent_id": "system-spec-kit/028-memory-search-intelligence/001-speckit-memory",
+  "packet_id": "system-speckit/028-memory-search-intelligence/001-speckit-memory/016-iterative-agentic-recall",
+  "spec_folder": "system-speckit/028-memory-search-intelligence/001-speckit-memory/016-iterative-agentic-recall",
+  "parent_id": "system-speckit/028-memory-search-intelligence/001-speckit-memory",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -41,24 +41,48 @@
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
       "mcp_server/lib/search/search-flags.ts",
       "mcp_server/tests/flag-ceiling.vitest.ts",
       "mcp_server/handlers/memory-context.ts",
       "schemas/tool-input-schemas.ts",
       ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts",
       ".opencode/skills/system-spec-kit/mcp_server/lib/search/search-flags.ts",
-      "plan.md",
-      "tasks.md",
-      "checklist.md",
       "handlers/memory-context.ts",
       "lib/search/search-flags.ts",
       "lib/search/hybrid-search.ts",
       "lib/search/pipeline/stage2-fusion.ts",
-      "spec.md",
       "decision-record.md",
       "implementation-summary.md"
     ],
     "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
       {
         "name": "search-flags.ts",
         "kind": "code",
@@ -84,24 +108,6 @@
         "source": "derived"
       },
       {
-        "name": "plan.md",
-        "kind": "doc",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "tasks.md",
-        "kind": "doc",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
         "name": "hybrid-search.ts",
         "kind": "code",
         "path": "lib/search/hybrid-search.ts",
@@ -111,12 +117,6 @@
         "name": "stage2-fusion.ts",
         "kind": "code",
         "path": "lib/search/pipeline/stage2-fusion.ts",
-        "source": "derived"
-      },
-      {
-        "name": "spec.md",
-        "kind": "doc",
-        "path": "spec.md",
         "source": "derived"
       },
       {
@@ -206,7 +206,7 @@
     ],
     "causal_summary": "The Memory MCP's `memorycontext` is a static mode router with zero tool-calling: its `executeStrategy` switch dispatches `quick|deep|focused|resume`, and each branch is one straight-line retrieval call (quick→triggers, deep/focused→single `handleMemorySearch`, resume→ladder) [CONFIRMED: `handlers/memory-context.ts:1292-1311` (`executeStrategy` switch), deltas/iter-017.jsonl]",
     "created_at": "2026-06-19T05:40:37.449Z",
-    "last_save_at": "2026-06-23T03:49:58.260Z",
+    "last_save_at": "2026-07-04T17:51:08.473Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -217,14 +217,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:4436c43e0edfc7a3a6fbe4a7009a352b23b0ce7b860898934f887961acc079a9",
+    "source_fingerprint": "sha256:1052c8d905d19171616bf843660783fd5e9dcad3602f689f7756774ba3d725fa",
     "source_doc_hashes": {
-      "spec.md": "b643d976f4e49cb1523fdb43c0344900f718d254ee19af90fd0daa31cd5a1b00",
-      "plan.md": "19174573cea092539d675e52019bc8d6f3f8c18f08d8dae1b3550701f669c450",
-      "tasks.md": "337e0ced1be441838b495e451e4036ca1950de64fb7635d756c20d4d14ac3fef",
-      "checklist.md": "e3fe5b4add8854aee93349b0f86ead711cdb47a3c02ef18927fe398c204953d7",
-      "decision-record.md": "9cf48710e628c22ba01a4bf4bb58ce740304a0e95b7d1af7b609d131c121ec58",
-      "implementation-summary.md": "2213e4acb51ea8676f2a0728fc131833e668a84bf1b6a3659eeac832dcbbec53"
+      "spec.md": "ed7db9c312fe66bffc791c7cc840c7b55390dac04d340a8d8c8fa382b71fa14b",
+      "plan.md": "e5fd4f7579c05cfa38445a65f8a3827b817b6be6dae751f68c43345ffcf123a9",
+      "tasks.md": "79efe5e2b14161747a769c3e56d539736f3a4867c3e987126b9c1b4555332ac6",
+      "checklist.md": "fbaa47a88c4aa5417bb1e6a0eda764b04198ae5cf1e499bb2cb6b09fedfba0e3",
+      "decision-record.md": "803923dc71ba88a7a11e596339fec724ed6d602ce96b171d345f0b32d1471bc3",
+      "implementation-summary.md": "f05c06c1a8ad36771e37ff1fbe25cc06a0856f08167471e81d9e5ea4763ac557"
     },
     "last_active_child_id": null,
     "last_active_at": null

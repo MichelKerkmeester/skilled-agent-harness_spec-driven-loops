@@ -11,8 +11,8 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/028-memory-search-intelligence/001-speckit-memory/002-determinism-content-id-foundation"
-    last_updated_at: "2026-06-19T00:00:00Z"
+    packet_pointer: "system-speckit/028-memory-search-intelligence/001-speckit-memory/002-determinism-content-id-foundation"
+    last_updated_at: "2026-07-04T17:51:02.224Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "Shipped 5 determinism candidates byte-identical, 4 gated residue"
     next_safe_action: "Land fusion-bonus invariant test before configured-mode promotion"
@@ -59,7 +59,7 @@ This sub-phase is the determinism keystone of the Spec-Kit Memory MCP (the PRIMA
 | **Status** | In Progress |
 | **Created** | 2026-06-19 |
 | **Branch** | `system-speckit/028-memory-search-intelligence` |
-| **Parent Packet** | system-spec-kit/028-memory-search-intelligence/001-speckit-memory |
+| **Parent Packet** | system-speckit/028-memory-search-intelligence/001-speckit-memory |
 | **Source research** | `../research/research.md`, `../../research/roadmap.md`, `../../research/synthesis/01-go-candidates.md` + `03` |
 | **Shipped record** | Wave-0 record (Wave-0 commits `738e118751..ab5459fb6d`) |
 <!-- /ANCHOR:metadata -->

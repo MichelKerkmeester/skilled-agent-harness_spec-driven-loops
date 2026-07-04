@@ -11,8 +11,8 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/028-memory-search-intelligence/001-speckit-memory/027-envelope-fidelity-enforcement"
-    last_updated_at: "2026-06-22T00:00:00Z"
+    packet_pointer: "system-speckit/028-memory-search-intelligence/001-speckit-memory/027-envelope-fidelity-enforcement"
+    last_updated_at: "2026-07-04T17:51:01.493Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "Implemented recs 5, 6, 9 behind SPECKIT_ENVELOPE_FIDELITY_V1, all tasks checked"
     next_safe_action: "Run the grandfather report over a captured render corpus before the default-on flip follow-on"

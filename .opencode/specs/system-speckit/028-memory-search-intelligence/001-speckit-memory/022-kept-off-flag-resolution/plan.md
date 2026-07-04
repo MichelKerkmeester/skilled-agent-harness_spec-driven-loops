@@ -9,8 +9,8 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/028-memory-search-intelligence/001-speckit-memory/022-kept-off-flag-resolution"
-    last_updated_at: "2026-06-20T00:00:00Z"
+    packet_pointer: "system-speckit/028-memory-search-intelligence/001-speckit-memory/022-kept-off-flag-resolution"
+    last_updated_at: "2026-07-04T17:51:01.130Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "Created the flag-resolution plan"
     next_safe_action: "Reconcile the cross-cutting docs to the final tally"

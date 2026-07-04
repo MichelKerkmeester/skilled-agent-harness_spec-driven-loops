@@ -11,8 +11,8 @@ importance_tier: "important"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/028-memory-search-intelligence/001-speckit-memory/028-scoring-hardening"
-    last_updated_at: "2026-06-22T00:00:00Z"
+    packet_pointer: "system-speckit/028-memory-search-intelligence/001-speckit-memory/028-scoring-hardening"
+    last_updated_at: "2026-07-04T17:51:07.092Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "Implemented recs 7 8 10 11 12 behind default-OFF flags, built dist, vitest green"
     next_safe_action: "Graduate a flag only after its off-corpus fixture arm is green"

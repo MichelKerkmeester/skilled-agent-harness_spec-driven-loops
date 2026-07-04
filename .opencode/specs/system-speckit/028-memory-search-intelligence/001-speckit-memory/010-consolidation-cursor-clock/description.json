@@ -1,6 +1,6 @@
 {
   "level": "3",
-  "specFolder": "system-spec-kit/028-memory-search-intelligence/001-speckit-memory/010-consolidation-cursor-clock",
+  "specFolder": "system-speckit/028-memory-search-intelligence/001-speckit-memory/010-consolidation-cursor-clock",
   "description": "The Memory MCP's async-consolidation path is half-built and not crash-safe",
   "keywords": [
     "memory",
@@ -10,11 +10,11 @@
     "half-built",
     "crash-safe"
   ],
-  "lastUpdated": "2026-06-23T03:49:58.215Z",
+  "lastUpdated": "2026-07-04T17:51:02.441Z",
   "specId": "010",
   "folderSlug": "consolidation-cursor-clock",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "028-memory-search-intelligence",
     "001-speckit-memory"
   ],

@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "system-spec-kit/028-memory-search-intelligence/001-speckit-memory/028-scoring-hardening",
+  "specFolder": "system-speckit/028-memory-search-intelligence/001-speckit-memory/028-scoring-hardening",
   "description": "The `/memory:search` verdict and citation path scores an off-corpus term as good on a lone spurious high-cosine hit",
   "keywords": [
     "memory",
@@ -17,11 +17,11 @@
     "high-cosine",
     "hit"
   ],
-  "lastUpdated": "2026-06-23T03:49:58.351Z",
+  "lastUpdated": "2026-07-04T17:51:06.927Z",
   "specId": "028",
   "folderSlug": "scoring-hardening",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "028-memory-search-intelligence",
     "001-speckit-memory"
   ],

@@ -10,8 +10,8 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/028-memory-search-intelligence/001-speckit-memory/012-procedural-reliability-benchmark"
-    last_updated_at: "2026-06-19T00:00:00Z"
+    packet_pointer: "system-speckit/028-memory-search-intelligence/001-speckit-memory/012-procedural-reliability-benchmark"
+    last_updated_at: "2026-07-04T17:51:04.560Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "Sequence the benchmark-first procedural-reliability plan (emitter then Beta then benchmark)"
     next_safe_action: "Build the outcome/usefulness emitter prereq before any reliability fold"

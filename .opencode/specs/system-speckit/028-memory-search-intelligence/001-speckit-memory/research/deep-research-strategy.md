@@ -19,7 +19,7 @@ Persistent brain for the Memory MCP external-mining research session. Records ke
 ---
 
 ## 2. TOPIC
-Mine the two external memory systems under `.opencode/specs/system-spec-kit/028-memory-search-intelligence/external/` — AIONFORGE (Rust: `aionforge-memory-development/docs/retrieval.md`, `docs/bi-temporal-model.md`, `docs/consolidation.md`, `docs/decay-and-importance.md`) and GALADRIEL (Python: `galadriel-public-main 2/CACHING.md`, `README.md`, `harness/palace.py`) — for evidence-backed, code-mapped improvements to the Spec-Kit Memory MCP under `.opencode/skills/system-spec-kit/mcp_server/`. Target areas: hybrid 5-channel RRF retrieval (vector+FTS5+BM25+causal-graph+degree), FSRS power-law decay, causal graph, off-state soft-delete tombstones + idempotency receipts, and recall serialization.
+Mine the two external memory systems under `.opencode/specs/system-speckit/028-memory-search-intelligence/external/` — AIONFORGE (Rust: `aionforge-memory-development/docs/retrieval.md`, `docs/bi-temporal-model.md`, `docs/consolidation.md`, `docs/decay-and-importance.md`) and GALADRIEL (Python: `galadriel-public-main 2/CACHING.md`, `README.md`, `harness/palace.py`) — for evidence-backed, code-mapped improvements to the Spec-Kit Memory MCP under `.opencode/skills/system-spec-kit/mcp_server/`. Target areas: hybrid 5-channel RRF retrieval (vector+FTS5+BM25+causal-graph+degree), FSRS power-law decay, causal graph, off-state soft-delete tombstones + idempotency receipts, and recall serialization.
 
 ---
 

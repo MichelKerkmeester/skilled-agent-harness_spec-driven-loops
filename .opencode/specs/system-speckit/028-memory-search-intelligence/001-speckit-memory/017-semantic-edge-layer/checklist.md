@@ -1,5 +1,5 @@
 ---
-title: "Verification Checklist: Semantic Edge Layer [system-spec-kit/028-memory-search-intelligence/001-speckit-memory/017-semantic-edge-layer/checklist]"
+title: "Verification Checklist: Semantic Edge Layer [system-speckit/028-memory-search-intelligence/001-speckit-memory/017-semantic-edge-layer/checklist]"
 description: "Verification Date: 2026-06-19 - partial implementation: semantic-edge substrate, edge-vector store, consolidation embedder hook and retrieval primitive done, benchmark/LLM consumers pending."
 trigger_phrases:
   - "semantic edge layer checklist"
@@ -10,8 +10,8 @@ importance_tier: "important"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/028-memory-search-intelligence/001-speckit-memory/017-semantic-edge-layer"
-    last_updated_at: "2026-06-19T00:00:00Z"
+    packet_pointer: "system-speckit/028-memory-search-intelligence/001-speckit-memory/017-semantic-edge-layer"
+    last_updated_at: "2026-07-04T17:50:57.515Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "Implemented semantic-edge substrate and shadow retrieval primitive"
     next_safe_action: "Run strict validation and final typecheck/tests"

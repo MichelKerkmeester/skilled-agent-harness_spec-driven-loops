@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/028-memory-search-intelligence/001-speckit-memory/001-corpus-reindex-gate-zero",
-  "spec_folder": "system-spec-kit/028-memory-search-intelligence/001-speckit-memory/001-corpus-reindex-gate-zero",
-  "parent_id": "system-spec-kit/028-memory-search-intelligence/001-speckit-memory",
+  "packet_id": "system-speckit/028-memory-search-intelligence/001-speckit-memory/001-corpus-reindex-gate-zero",
+  "spec_folder": "system-speckit/028-memory-search-intelligence/001-speckit-memory/001-corpus-reindex-gate-zero",
+  "parent_id": "system-speckit/028-memory-search-intelligence/001-speckit-memory",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -41,38 +41,27 @@
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
-      ".opencode/skills/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts",
+      "spec.md",
       "plan.md",
-      ".opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json",
-      ".opencode/skills/system-spec-kit/mcp_server/database/context-index.sqlite",
       "tasks.md",
       "checklist.md",
-      "spec.md",
+      "lib/eval/ablation-framework.ts",
+      "lib/eval/data/ground-truth.json",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json",
       "implementation-summary.md"
     ],
     "entities": [
       {
-        "name": "ablation-framework.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts",
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
         "source": "derived"
       },
       {
         "name": "plan.md",
         "kind": "doc",
         "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "ground-truth.json",
-        "kind": "config",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json",
-        "source": "derived"
-      },
-      {
-        "name": "context-index.sqlite",
-        "kind": "file",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/database/context-index.sqlite",
         "source": "derived"
       },
       {
@@ -88,9 +77,15 @@
         "source": "derived"
       },
       {
-        "name": "spec.md",
-        "kind": "doc",
-        "path": "spec.md",
+        "name": "ablation-framework.ts",
+        "kind": "code",
+        "path": "lib/eval/ablation-framework.ts",
+        "source": "derived"
+      },
+      {
+        "name": "ground-truth.json",
+        "kind": "config",
+        "path": "lib/eval/data/ground-truth.json",
         "source": "derived"
       },
       {
@@ -194,11 +189,17 @@
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
+      },
+      {
+        "name": "Code Quality",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The Spec-Kit Memory MCP index is partly cold: a measurable fraction of indexed rows are un-enriched / un-embedded, and the FTS/vector consistency state is degraded",
     "created_at": "2026-06-19T05:40:37.442Z",
-    "last_save_at": "2026-06-23T03:49:58.139Z",
+    "last_save_at": "2026-07-04T17:51:03.030Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,13 +209,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:f245aebd16b1f4ed7be2156ce71592d7ca1b8e7f4455a155116620f95f72897f",
+    "source_fingerprint": "sha256:916af3bb9a8c9a355b10258014ceaf6493d9d8c40794c5cf16f4ec000826eafe",
     "source_doc_hashes": {
-      "spec.md": "9e332e8688e09af96a4e076820aa6d8e5f4100e6f53e7530bc27d6d4a000262b",
-      "plan.md": "43199014626f352a5a404257f4715febd7a18b9662726cd7aff4d936b0882795",
-      "tasks.md": "77988070f3714aaccadfbe01df2640bb5ece6664c24626c6b4b5835870e97a30",
-      "checklist.md": "a305700c937bd361b0220206f8689b6248bde0213f01604aa98a5170e70695d1",
-      "implementation-summary.md": "51401687e3129f5d3d67560628a575a5e30e7d54daa214969c551f8e8deea568"
+      "spec.md": "dbbd52f31a5852749c252076b5c48fda90958a8794668dba5f8b3f13051695af",
+      "plan.md": "affd0d6cd00ee0e1fd0f31c0b60b9aecf088fe26dd1b618ad6a332af8ed75ab1",
+      "tasks.md": "2bd1158ad6d9c501455620a6078f2476018ebb0ecfba5fbee3d54020a2166610",
+      "checklist.md": "307c9d2bda6886fca9619c8eba6a34b96b93110df567917d18f7fb5d18a97df1",
+      "implementation-summary.md": "e87b71f28d64e5489e90f52bfde159bc80d995ee24c43535d3d27b685e0f0a07"
     },
     "last_active_child_id": null,
     "last_active_at": null

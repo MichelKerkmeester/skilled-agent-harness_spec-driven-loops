@@ -17,12 +17,12 @@ Last 3 Iterations Summary: none yet.
 
 ## STATE FILES (paths relative to repo root)
 
-- Config: .opencode/specs/system-spec-kit/028-memory-search-intelligence/001-speckit-memory/research/deep-research-config.json
-- State Log: .opencode/specs/system-spec-kit/028-memory-search-intelligence/001-speckit-memory/research/deep-research-state.jsonl
-- Strategy: .opencode/specs/system-spec-kit/028-memory-search-intelligence/001-speckit-memory/research/deep-research-strategy.md
-- Registry: .opencode/specs/system-spec-kit/028-memory-search-intelligence/001-speckit-memory/research/deep-research-findings-registry.json
-- Write iteration narrative to: .opencode/specs/system-spec-kit/028-memory-search-intelligence/001-speckit-memory/research/iterations/iteration-001.md
-- Write per-iteration delta file to: .opencode/specs/system-spec-kit/028-memory-search-intelligence/001-speckit-memory/research/deltas/iter-001.jsonl
+- Config: .opencode/specs/system-speckit/028-memory-search-intelligence/001-speckit-memory/research/deep-research-config.json
+- State Log: .opencode/specs/system-speckit/028-memory-search-intelligence/001-speckit-memory/research/deep-research-state.jsonl
+- Strategy: .opencode/specs/system-speckit/028-memory-search-intelligence/001-speckit-memory/research/deep-research-strategy.md
+- Registry: .opencode/specs/system-speckit/028-memory-search-intelligence/001-speckit-memory/research/deep-research-findings-registry.json
+- Write iteration narrative to: .opencode/specs/system-speckit/028-memory-search-intelligence/001-speckit-memory/research/iterations/iteration-001.md
+- Write per-iteration delta file to: .opencode/specs/system-speckit/028-memory-search-intelligence/001-speckit-memory/research/deltas/iter-001.jsonl
 
 ## CONSTRAINTS
 

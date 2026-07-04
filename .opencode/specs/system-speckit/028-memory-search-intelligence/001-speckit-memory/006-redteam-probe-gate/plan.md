@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: Red-Team Probe Gate [system-spec-kit/028-memory-search-intelligence/001-speckit-memory/006-redteam-probe-gate/plan]"
+title: "Implementation Plan: Red-Team Probe Gate [system-speckit/028-memory-search-intelligence/001-speckit-memory/006-redteam-probe-gate/plan]"
 description: "Aggregate the existing per-seam Memory MCP injection sanitizers into one named zero-success-ceiling CI gate, add the missing deep-loop prompt-pack render probe and fold in the no-querytext exfil-audit assertion, additive test infrastructure plus one audit-path edit."
 trigger_phrases:
   - "red-team probe gate plan"
@@ -11,8 +11,8 @@ importance_tier: "important"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/028-memory-search-intelligence/001-speckit-memory/006-redteam-probe-gate"
-    last_updated_at: "2026-06-19T07:40:00Z"
+    packet_pointer: "system-speckit/028-memory-search-intelligence/001-speckit-memory/006-redteam-probe-gate"
+    last_updated_at: "2026-07-04T17:51:05.982Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "Authored Level 2 implementation plan for the red-team probe gate"
     next_safe_action: "Operator review before any gate implementation"

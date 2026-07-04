@@ -11,8 +11,7 @@
     "system-speckit/028-memory-search-intelligence/004-deep-loop",
     "system-speckit/028-memory-search-intelligence/005-spec-data-quality",
     "system-speckit/028-memory-search-intelligence/006-review-remediation",
-    "system-speckit/028-memory-search-intelligence/007-dark-flag-graduation",
-    "system-speckit/028-memory-search-intelligence/016-fix-deep-dive-p0-p2-findings-for-mk-spec-memory"
+    "system-speckit/028-memory-search-intelligence/007-dark-flag-graduation"
   ],
   "migrated": true,
   "migration_source": "legacy",
@@ -122,15 +121,15 @@
     ],
     "causal_summary": "Packet 028 owns the planning record that turns external memory-system research into shipped retrieval intelligence, cleanup, review remediation, data-quality generation and dark-flag graduation work",
     "created_at": "2026-06-16T14:27:21.650Z",
-    "last_save_at": "2026-07-04T16:42:01.468Z",
+    "last_save_at": "2026-07-04T17:56:26.146Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:46857bf543af7f0e7df587dd0dd8b46f44b13c93e1dae16b733b2fd1b1edc9e3",
+    "source_fingerprint": "sha256:4d81e028e3680d5d29e3d75089f24052834094981d1122ef57a5bc8b428d6755",
     "source_doc_hashes": {
-      "spec.md": "49ce9a37ec36b9ed085e748ec08da0d8f27714f98befa7f29257919ca2ab7927"
+      "spec.md": "e88bd4c0de25a469c62de678387ae99dca96139bd317f58117a58540101ead0b"
     },
     "last_active_child_id": null,
     "last_active_at": "2026-06-26T20:31:34.159Z"

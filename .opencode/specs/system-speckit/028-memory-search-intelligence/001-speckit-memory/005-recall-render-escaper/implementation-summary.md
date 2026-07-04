@@ -9,8 +9,8 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/028-memory-search-intelligence/001-speckit-memory/005-recall-render-escaper"
-    last_updated_at: "2026-06-19T00:00:00Z"
+    packet_pointer: "system-speckit/028-memory-search-intelligence/001-speckit-memory/005-recall-render-escaper"
+    last_updated_at: "2026-07-04T17:50:59.324Z"
     last_updated_by: "codex-gpt-5"
     recent_action: "Implemented ungated candidates"
     next_safe_action: "Resolve M-system-kind-exclusion with a substrate-only marker and live-DB validation"
@@ -43,7 +43,7 @@ _memory:
 |-------|-------|
 | **Level** | 2 |
 | **Status** | complete |
-| **Phase** | `system-spec-kit/028-memory-search-intelligence/001-speckit-memory/005-recall-render-escaper` |
+| **Phase** | `system-speckit/028-memory-search-intelligence/001-speckit-memory/005-recall-render-escaper` |
 | **Branch** | `system-speckit/027-xce-research-based-refinement` |
 | **Completion** | ~83% (5 DONE / 1 PENDING) |
 <!-- /ANCHOR:metadata -->
@@ -101,7 +101,7 @@ This phase now has real code for every ungated candidate in the writeâ†’recallâ†
 - **After implementation:** `npm run typecheck` passed, focused vitest passed with 6 files / 99 tests after adding `tests/injection-marker-capture.vitest.ts` and new recall-render probes.
 - **Additional checks:** alignment drift passed over `mcp_server`, comment hygiene passed on all modified code/test files, mutation checks confirmed the C8 escaping, injection-quality flag and residual-retention disclosure tests fail when their guarded behavior is broken.
 - **Not run / not claimed:** `npm run build` and the broad schema/health/promoter suites were not run, the requested gate was typecheck + relevant vitest.
-- **Spec validation:** `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-spec-kit/028-memory-search-intelligence/001-speckit-memory/005-recall-render-escaper --strict` passed with 0 errors / 0 warnings.
+- **Spec validation:** `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-speckit/028-memory-search-intelligence/001-speckit-memory/005-recall-render-escaper --strict` passed with 0 errors / 0 warnings.
 <!-- /ANCHOR:verification -->
 
 ---

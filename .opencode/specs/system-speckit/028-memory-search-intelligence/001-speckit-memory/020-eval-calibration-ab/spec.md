@@ -11,8 +11,8 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/028-memory-search-intelligence/001-speckit-memory/020-eval-calibration-ab"
-    last_updated_at: "2026-06-19T00:00:00Z"
+    packet_pointer: "system-speckit/028-memory-search-intelligence/001-speckit-memory/020-eval-calibration-ab"
+    last_updated_at: "2026-07-04T17:51:01.862Z"
     last_updated_by: "codex"
     recent_action: "Implemented observe-only calibration and lever A/B consumer utilities"
     next_safe_action: "Run 019-backed golden benchmark"
@@ -53,7 +53,7 @@ _memory:
 | **Created** | 2026-06-19 |
 | **Branch** | `system-speckit/027-xce-research-based-refinement` |
 | **Parent Spec** | `../spec.md` (028 / 001-speckit-memory research phase) |
-| **Parent Packet** | system-spec-kit/028-memory-search-intelligence |
+| **Parent Packet** | system-speckit/028-memory-search-intelligence |
 | **Wave** | Wave-2 (intelligence-class, shadow-gated, gated on the 019 eval-harness) |
 | **Candidates** | `A2-isotonic-calibration`, `A3-AB-shipped-levers` |
 <!-- /ANCHOR:metadata -->
@@ -135,7 +135,7 @@ Make the dormant isotonic calibration promotable on real evidence, harvest the l
 | `.opencode/skills/system-spec-kit/mcp_server/lib/search/query-classifier.ts` | Read | The S3 escalation seam (`:157,:245`) and `SPECKIT_COMPLEXITY_ROUTER` (`:62`), read for the A/B partition. |
 | `.opencode/skills/system-spec-kit/mcp_server/lib/search/search-flags.ts` | Read | `isConfidenceCalibrationEnabled` (`:622`) and the lever flags, read. Flag graduation is a default change, not a new flag. |
 | `.opencode/skills/system-spec-kit/mcp_server/tests/**` | Create | Label-harvest, grade-binarization, ECE/reliability-bin, three-way shadow, S5 eval-mode toggle and per-lever A/B tests (temp/in-memory fixtures only). |
-| `.opencode/specs/system-spec-kit/028-memory-search-intelligence/001-speckit-memory/020-eval-calibration-ab/*` | Create | This phase's documentation. |
+| `.opencode/specs/system-speckit/028-memory-search-intelligence/001-speckit-memory/020-eval-calibration-ab/*` | Create | This phase's documentation. |
 <!-- /ANCHOR:scope -->
 
 ---

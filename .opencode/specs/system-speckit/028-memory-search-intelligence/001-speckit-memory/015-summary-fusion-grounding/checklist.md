@@ -9,14 +9,14 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/028-memory-search-intelligence/001-speckit-memory/015-summary-fusion-grounding"
-    last_updated_at: "2026-06-19T00:00:00Z"
+    packet_pointer: "system-speckit/028-memory-search-intelligence/001-speckit-memory/015-summary-fusion-grounding"
+    last_updated_at: "2026-07-04T17:51:04.196Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "Updated checklist to reflect shipped shadow-gated fused lane and prelude"
     next_safe_action: "Capture the retrieval baseline (CHK-020 precondition)."
     blockers: []
     key_files:
-      - ".opencode/specs/system-spec-kit/028-memory-search-intelligence/001-speckit-memory/015-summary-fusion-grounding/checklist.md"
+      - ".opencode/specs/system-speckit/028-memory-search-intelligence/001-speckit-memory/015-summary-fusion-grounding/checklist.md"
     completion_pct: 70
     open_questions: []
     answered_questions: []

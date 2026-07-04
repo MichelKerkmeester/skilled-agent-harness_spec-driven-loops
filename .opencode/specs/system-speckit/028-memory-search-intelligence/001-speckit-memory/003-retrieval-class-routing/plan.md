@@ -11,8 +11,8 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/028-memory-search-intelligence/001-speckit-memory/003-retrieval-class-routing"
-    last_updated_at: "2026-06-19T11:40:16Z"
+    packet_pointer: "system-speckit/028-memory-search-intelligence/001-speckit-memory/003-retrieval-class-routing"
+    last_updated_at: "2026-07-04T17:50:58.974Z"
     last_updated_by: "codex-gpt-5"
     recent_action: "Implemented the C2-A/C2-C/C2-B plan slice and left recall-shape gates pending"
     next_safe_action: "Run final broad related Vitest slice and strict phase validation"

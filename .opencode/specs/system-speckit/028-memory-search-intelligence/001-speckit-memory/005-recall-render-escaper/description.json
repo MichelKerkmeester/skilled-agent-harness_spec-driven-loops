@@ -1,5 +1,5 @@
 {
-  "specFolder": "system-spec-kit/028-memory-search-intelligence/001-speckit-memory/005-recall-render-escaper",
+  "specFolder": "system-speckit/028-memory-search-intelligence/001-speckit-memory/005-recall-render-escaper",
   "description": "The Memory MCP captures arbitrary content via `memorysave` and later renders recalled bodies directly into the consuming agent's prompt loop, with no",
   "keywords": [
     "memory",
@@ -19,11 +19,11 @@
     "prompt",
     "loop"
   ],
-  "lastUpdated": "2026-06-23T03:49:58.174Z",
+  "lastUpdated": "2026-07-04T17:50:59.177Z",
   "specId": "005",
   "folderSlug": "recall-render-escaper",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "028-memory-search-intelligence",
     "001-speckit-memory"
   ],

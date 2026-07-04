@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/028-memory-search-intelligence/001-speckit-memory/009-derived-id-provenance",
-  "spec_folder": "system-spec-kit/028-memory-search-intelligence/001-speckit-memory/009-derived-id-provenance",
-  "parent_id": "system-spec-kit/028-memory-search-intelligence/001-speckit-memory",
+  "packet_id": "system-speckit/028-memory-search-intelligence/001-speckit-memory/009-derived-id-provenance",
+  "spec_folder": "system-speckit/028-memory-search-intelligence/001-speckit-memory/009-derived-id-provenance",
+  "parent_id": "system-speckit/028-memory-search-intelligence/001-speckit-memory",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -41,6 +41,12 @@
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      ".opencode/specs/system-speckit/028-memory-search-intelligence/001-speckit-memory/research/research.md",
       ".opencode/skills/system-spec-kit/mcp_server/lib/content-id.ts",
       ".opencode/skills/system-spec-kit/mcp_server/lib/search/search-flags.ts",
       ".opencode/skills/system-spec-kit/mcp_server/tests/flag-ceiling.vitest.ts",
@@ -50,17 +56,42 @@
       ".opencode/skills/system-spec-kit/mcp_server/tests/derived-id-provenance.vitest.ts",
       ".opencode/skills/system-spec-kit/mcp_server/tests/vector-index-schema-compatibility.vitest.ts",
       "lib/content-id.ts",
-      "decision-record.md",
-      "plan.md",
-      "tasks.md",
-      "checklist.md",
       "tests/derived-id-provenance.vitest.ts",
       "implementation-summary.md",
       "lib/search/vector-index-schema.ts",
-      "lib/storage/causal-edges.ts",
-      "spec.md"
+      "lib/storage/causal-edges.ts"
     ],
     "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
       {
         "name": "content-id.ts",
         "kind": "code",
@@ -110,39 +141,9 @@
         "source": "derived"
       },
       {
-        "name": "decision-record.md",
-        "kind": "doc",
-        "path": "decision-record.md",
-        "source": "derived"
-      },
-      {
-        "name": "plan.md",
-        "kind": "doc",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "tasks.md",
-        "kind": "doc",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "spec.md",
-        "kind": "doc",
-        "path": "spec.md",
         "source": "derived"
       },
       {
@@ -208,7 +209,7 @@
     ],
     "causal_summary": "Generated (DERIVED) causal edges have no content-addressed identity",
     "created_at": "2026-06-19T05:40:37.445Z",
-    "last_save_at": "2026-06-23T03:49:58.203Z",
+    "last_save_at": "2026-07-04T17:51:03.790Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -219,14 +220,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:8b4d2c2ecb30700bd62c4f2e57dec684096c78151f59ad7cd8e11000788b63db",
+    "source_fingerprint": "sha256:2900eed9b87ba6911a6f481ef344db31d6bb76a8cf3731719e3a251729c9b7dd",
     "source_doc_hashes": {
-      "spec.md": "054d8cad0511820ec48a2c07c1abfd9815c945049ad5aa5ce303fb9665a57a5d",
-      "plan.md": "e5b03e41602e4deadb113ed36ff0ca9819e4d67e0cff80d1ef3812a595fc1021",
-      "tasks.md": "82cfe6fac644c75a42554254b319e0cd9c130823759a6b0d2d0cebea664b1822",
-      "checklist.md": "ec04b9c2d8ca3b41673c72ae7658923cd41e2e73fd083d1734fad9c100bb2eaf",
-      "decision-record.md": "cce11fe3fce75366d005894de9ba279e5760e06302e92f310bf83d6f3a19a309",
-      "implementation-summary.md": "a4740964f0f6aa05c616f54a476fb329c06a97f92fc9dfc721620a7968ae71e7"
+      "spec.md": "f177f90cae5c39837566e91dea427442378fe76382fc34ae21a0a7edcb5dd3d8",
+      "plan.md": "cd4d52fc89fe547b4ad55a7d280f69f10d7c88e9b7fe447627421c2403fd0f3e",
+      "tasks.md": "fb0da5ee81f227ffde377c1dfe22942765ede4c07eb87d3b54be46bd19ecf193",
+      "checklist.md": "a3d7c0343e0925cd28d436f762439b2734e33557605e479891ae5fbdb6f67199",
+      "decision-record.md": "b9eedef9115f782c1b3149eb56ee7c04150ef3a2a758a04443f52358a8000590",
+      "implementation-summary.md": "0ebb3a2de1cf1d8b387c7687c5b788bc245f068f27fc3b2a6b0622b16436e964"
     },
     "last_active_child_id": null,
     "last_active_at": null

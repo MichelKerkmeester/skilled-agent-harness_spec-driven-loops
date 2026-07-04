@@ -11,8 +11,8 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/028-memory-search-intelligence/001-speckit-memory/016-iterative-agentic-recall"
-    last_updated_at: "2026-06-19T00:00:00Z"
+    packet_pointer: "system-speckit/028-memory-search-intelligence/001-speckit-memory/016-iterative-agentic-recall"
+    last_updated_at: "2026-07-04T17:51:08.473Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "Built default-off agentic loop governor + SPECKIT_AGENTIC_RECALL flag, 18 tests pass"
     next_safe_action: "Wire case agentic (needs mode-enum change + live LLM), then benchmark, PENDING"
@@ -63,7 +63,7 @@ Add a ReAct-style agentic strategy to the Memory MCP's `memory_context` mode rou
 | **Status** | complete |
 | **Created** | 2026-06-19 |
 | **Branch** | `system-speckit/027-xce-research-based-refinement` |
-| **Parent Packet** | system-spec-kit/028-memory-search-intelligence/001-speckit-memory |
+| **Parent Packet** | system-speckit/028-memory-search-intelligence/001-speckit-memory |
 | **Wave** | Wave-2 (prove-first) |
 | **Candidate** | CG-agentic-tool-loop |
 <!-- /ANCHOR:metadata -->

@@ -10,8 +10,8 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/028-memory-search-intelligence/001-speckit-memory/022-kept-off-flag-resolution"
-    last_updated_at: "2026-06-20T00:00:00Z"
+    packet_pointer: "system-speckit/028-memory-search-intelligence/001-speckit-memory/022-kept-off-flag-resolution"
+    last_updated_at: "2026-07-04T17:51:01.130Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "Created the flag-resolution phase folder documenting keep 5 and delete 10"
     next_safe_action: "Use this phase as the authoritative per-flag disposition for 028"
@@ -47,7 +47,7 @@ _memory:
 | **Status** | Complete |
 | **Created** | 2026-06-20 |
 | **Parent Spec** | ../spec.md |
-| **Parent Packet** | `system-spec-kit/028-memory-search-intelligence` |
+| **Parent Packet** | `system-speckit/028-memory-search-intelligence` |
 | **Phase** | 007 of 007 |
 | **Predecessor** | ../006-review-remediation/spec.md |
 | **Source decisions** | `../benchmark-status.md`, `../keep-off-flag-roadmap.md` |
@@ -131,7 +131,7 @@ Close the experiment with a per-flag flip-or-delete decision so every 028 defaul
 - The final tally is keep 5 default-on and delete 10, recorded in `benchmark-status.md` and `keep-off-flag-roadmap.md`.
 - Every cross-cutting doc, the affected decision-records, the changelog and the timeline agree with that tally.
 - No surviving document carries the transitional four-flip or path-to-useful framing.
-- `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-spec-kit/028-memory-search-intelligence --strict` exits 0.
+- `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-speckit/028-memory-search-intelligence --strict` exits 0.
 <!-- /ANCHOR:success-criteria -->
 
 ---

@@ -1,5 +1,5 @@
 {
-  "specFolder": "system-spec-kit/028-memory-search-intelligence/001-speckit-memory/011-retention-forgetting",
+  "specFolder": "system-speckit/028-memory-search-intelligence/001-speckit-memory/011-retention-forgetting",
   "description": "The Spec-Kit Memory MCP retains and recalls memories with no diversity or eligibility shaping at the result-set boundary",
   "keywords": [
     "spec-kit",
@@ -14,11 +14,11 @@
     "result-set",
     "boundary"
   ],
-  "lastUpdated": "2026-06-23T03:49:58.223Z",
+  "lastUpdated": "2026-07-04T17:51:07.827Z",
   "specId": "011",
   "folderSlug": "retention-forgetting",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "028-memory-search-intelligence",
     "001-speckit-memory"
   ],

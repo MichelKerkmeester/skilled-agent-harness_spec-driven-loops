@@ -11,8 +11,8 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/028-memory-search-intelligence/001-speckit-memory"
-    last_updated_at: "2026-06-19T06:45:00Z"
+    packet_pointer: "system-speckit/028-memory-search-intelligence/001-speckit-memory"
+    last_updated_at: "2026-07-04T17:50:57.196Z"
     last_updated_by: "codex-gpt-5"
     recent_action: "Wired Spec-Kit Memory MCP as a phase parent with 30 child phases"
     next_safe_action: "Use the child map to implement PENDING memory candidates in gate order"
@@ -51,7 +51,7 @@ _memory:
 | **Created** | 2026-06-16 |
 | **Updated** | 2026-06-19 |
 | **Parent Spec** | `../spec.md` |
-| **Parent Packet** | `system-spec-kit/028-memory-search-intelligence` |
+| **Parent Packet** | `system-speckit/028-memory-search-intelligence` |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -133,11 +133,12 @@ Research input: `research/research.md` remains the subsystem source packet for c
 | 029 | `029-substrate-sandbox-cleanup/` | Substrate stress-harness sandbox cleanup | Complete |
 
 | 030 | `030-opencode-temp-worker-reaping/` | OpenCode temp worker reaping and Vitest runaway prevention | Planned (scaffold only, not yet started) |
+| 031 | `031-fix-deep-dive-p0-p2-findings-for-mk-spec-memory/` | 13-phase deep-dive P0-P2 remediation program (complete, 13/13 shipped) with its 13 children, re-nested from former top-level 016 on 2026-07-04 | Complete |
 ### Phase Transition Rules
 
 - Each child folder owns its own `spec.md`, `plan.md`, `tasks.md` and level-required validation docs.
 - Parent status changes only after child strict validation passes.
-- Use `/speckit:resume system-spec-kit/028-memory-search-intelligence/001-speckit-memory/[NNN-phase]/` to resume a specific child.
+- Use `/speckit:resume system-speckit/028-memory-search-intelligence/001-speckit-memory/[NNN-phase]/` to resume a specific child.
 
 ### Phase Handoff Criteria
 

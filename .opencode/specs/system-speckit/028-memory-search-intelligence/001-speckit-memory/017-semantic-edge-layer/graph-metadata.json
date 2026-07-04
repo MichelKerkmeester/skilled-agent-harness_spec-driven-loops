@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/028-memory-search-intelligence/001-speckit-memory/017-semantic-edge-layer",
-  "spec_folder": "system-spec-kit/028-memory-search-intelligence/001-speckit-memory/017-semantic-edge-layer",
-  "parent_id": "system-spec-kit/028-memory-search-intelligence/001-speckit-memory",
+  "packet_id": "system-speckit/028-memory-search-intelligence/001-speckit-memory/017-semantic-edge-layer",
+  "spec_folder": "system-speckit/028-memory-search-intelligence/001-speckit-memory/017-semantic-edge-layer",
+  "parent_id": "system-speckit/028-memory-search-intelligence/001-speckit-memory",
   "children_ids": [],
   "migrated": true,
   "migration_source": "legacy",
@@ -43,6 +43,10 @@
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
       "mcp_server/lib/search/vector-index-schema.ts",
       "mcp_server/lib/storage/causal-edges.ts",
       "mcp_server/lib/storage/consolidation.ts",
@@ -52,19 +56,39 @@
       ".opencode/skills/system-spec-kit/mcp_server/lib/storage/consolidation.ts",
       ".opencode/skills/system-spec-kit/mcp_server/lib/graph/contradiction-detection.ts",
       ".opencode/skills/system-spec-kit/mcp_server/lib/search/search-flags.ts",
-      "plan.md",
-      "tasks.md",
-      "checklist.md",
       "lib/storage/causal-edges.ts",
       "lib/storage/consolidation.ts",
       "lib/graph/contradiction-detection.ts",
       "lib/search/hybrid-search.ts",
       "lib/search/search-flags.ts",
       "tests/flag-ceiling.vitest.ts",
-      "spec.md",
       "lib/storage/README.md"
     ],
     "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
       {
         "name": "vector-index-schema.ts",
         "kind": "code",
@@ -102,24 +126,6 @@
         "source": "derived"
       },
       {
-        "name": "plan.md",
-        "kind": "doc",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "tasks.md",
-        "kind": "doc",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
         "name": "hybrid-search.ts",
         "kind": "code",
         "path": "lib/search/hybrid-search.ts",
@@ -129,12 +135,6 @@
         "name": "flag-ceiling.vitest.ts",
         "kind": "test",
         "path": "tests/flag-ceiling.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "spec.md",
-        "kind": "doc",
-        "path": "spec.md",
         "source": "derived"
       },
       {
@@ -212,7 +212,7 @@
     ],
     "causal_summary": "The causal graph is substrate-blind at the edge",
     "created_at": "2026-06-19T05:47:05.578Z",
-    "last_save_at": "2026-06-23T03:49:58.269Z",
+    "last_save_at": "2026-07-04T17:50:57.515Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -223,14 +223,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:fbf21ab4f33addcc6ad7f82e7c71598a31d3b7aae719a5577fdc75356105c7f7",
+    "source_fingerprint": "sha256:46670552bcbc32119db1316008d33d9f7936b787368957dd5db2af8e619cadde",
     "source_doc_hashes": {
-      "spec.md": "1e4788de12bbab1cb4138439fa3b2c4ece48eda25eb5e8bec0e801b2c4cbd75d",
-      "plan.md": "6273e7550c42deb5b8f4080e265d1d08d970c4781b594290d777df048b81042f",
-      "tasks.md": "b253f2452e3306b76611a6571d3f8a76b971937696e117cc15430821576334cf",
-      "checklist.md": "1e7258a27f47f2f3a419747e6eaa1275097bd0a881cfcc805d9b960f771bd0ef",
-      "decision-record.md": "146f5e4d320df42dd2aba6c03adb4fe37f41749bef0aa6faeb1eadef69db8537",
-      "implementation-summary.md": "48183aaf83e9296c50bb0e804ea0e0b2a33473fcef318df44e96bf9a6c4e569b"
+      "spec.md": "7f981c267b8ef52ca6b51bb6e9f38fb0069779993a7d125df57f50f498274031",
+      "plan.md": "cdce77f7427763b688188ac2713427bed0d95d30e7bf292015bb7d797371b556",
+      "tasks.md": "a78fa2643aba685f1df1308cdf810fe86d0709ecb7f8b2583252ebefb0c5eedf",
+      "checklist.md": "b2e9ce9ee43f6a5fa3373e51918010e3c524357deb1155bde6e2d5c132cfc715",
+      "decision-record.md": "c9c5f30f11f844a32eff395fb54e8458f6578f6fd8bbd47d9c014a27235a78d5",
+      "implementation-summary.md": "2523c4b55ea33c21d1773c9deacbc1b57fbe084b84506d90ba281dbc496b3626"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -11,8 +11,8 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/028-memory-search-intelligence/001-speckit-memory/026-lexical-grounding-floor"
-    last_updated_at: "2026-06-22T00:00:00Z"
+    packet_pointer: "system-speckit/028-memory-search-intelligence/001-speckit-memory/026-lexical-grounding-floor"
+    last_updated_at: "2026-07-04T17:50:59.665Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "Implemented and verified the floor gate, the corroboration guard and the flag"
     next_safe_action: "Graduate the flag after a wider validation pass"

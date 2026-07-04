@@ -11,8 +11,8 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/028-memory-search-intelligence/001-speckit-memory/008-edge-presence-currentness"
-    last_updated_at: "2026-06-19T06:00:00+02:00"
+    packet_pointer: "system-speckit/028-memory-search-intelligence/001-speckit-memory/008-edge-presence-currentness"
+    last_updated_at: "2026-07-04T17:51:03.395Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "C3-A shipped then kept off as integrity-only, 4 candidates pending"
     next_safe_action: "Land C3-C TemporalMode and memory_history after the C3-B substrate lands"
@@ -56,7 +56,7 @@ This implementation phase turns the Spec-Kit Memory MCP's bi-temporal substrate 
 | **Status** | in-progress |
 | **Created** | 2026-06-19 |
 | **Branch** | `system-speckit/027-xce-research-based-refinement` |
-| **Parent Packet** | system-spec-kit/028-memory-search-intelligence/001-speckit-memory |
+| **Parent Packet** | system-speckit/028-memory-search-intelligence/001-speckit-memory |
 | **Source roadmap** | `../../research/roadmap.md` (BROADENING + 027-REVISIT + MEMORY-SYSTEMS addenda, authoritative) |
 | **Source synthesis** | `../../research/synthesis/01-go-candidates.md`, `03-corrections-caveats-and-residuals.md` |
 | **Source research** | `../research/research.md`, `../research/cross-packet-027-reconciliation/research.md`, `../research/external-memory-systems/research.md` |

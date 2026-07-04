@@ -1,5 +1,5 @@
 ---
-title: "Verification Checklist: Red-Team Probe Gate [system-spec-kit/028-memory-search-intelligence/001-speckit-memory/006-redteam-probe-gate/checklist]"
+title: "Verification Checklist: Red-Team Probe Gate [system-speckit/028-memory-search-intelligence/001-speckit-memory/006-redteam-probe-gate/checklist]"
 description: "Verification Date: PENDING - both candidates unimplemented, this checklist gates the future implementation of the red-team probe gate + no-querytext exfil-audit."
 trigger_phrases:
   - "red-team probe gate checklist"
@@ -10,8 +10,8 @@ importance_tier: "important"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/028-memory-search-intelligence/001-speckit-memory/006-redteam-probe-gate"
-    last_updated_at: "2026-06-19T07:40:00Z"
+    packet_pointer: "system-speckit/028-memory-search-intelligence/001-speckit-memory/006-redteam-probe-gate"
+    last_updated_at: "2026-07-04T17:51:05.982Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "Authored Level 2 verification checklist for the red-team probe gate"
     next_safe_action: "Operator review before any gate implementation"

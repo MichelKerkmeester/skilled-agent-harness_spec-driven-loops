@@ -9,8 +9,8 @@ importance_tier: "important"
 contextType: "research"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/028-memory-search-intelligence/001-speckit-memory/024-reranker-research"
-    last_updated_at: "2026-06-21T00:00:00Z"
+    packet_pointer: "system-speckit/028-memory-search-intelligence/001-speckit-memory/024-reranker-research"
+    last_updated_at: "2026-07-04T17:51:00.741Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "Recorded the reranker research outcome, CONDITIONAL-GO blocked on data"
     next_safe_action: "Treat this phase as the authoritative reranker research outcome for 028"
@@ -41,7 +41,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | system-spec-kit/028-memory-search-intelligence/001-speckit-memory/024-reranker-research |
+| **Spec Folder** | system-speckit/028-memory-search-intelligence/001-speckit-memory/024-reranker-research |
 | **Completed** | 2026-06-21 |
 | **Level** | 2 |
 | **Phase type** | Research, read-only, no code shipped |

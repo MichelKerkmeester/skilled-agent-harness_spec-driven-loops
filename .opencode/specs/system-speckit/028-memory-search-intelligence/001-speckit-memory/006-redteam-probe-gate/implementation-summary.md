@@ -1,5 +1,5 @@
 ---
-title: "Implementation Summary [system-spec-kit/028-memory-search-intelligence/001-speckit-memory/006-redteam-probe-gate/implementation-summary]"
+title: "Implementation Summary [system-speckit/028-memory-search-intelligence/001-speckit-memory/006-redteam-probe-gate/implementation-summary]"
 description: "Status of the red-team probe gate sub-phase. The MCP-server gate and no-querytext denial audit are implemented. The sibling deep-loop prompt-pack probe remains pending."
 trigger_phrases:
   - "red-team probe gate status"
@@ -10,8 +10,8 @@ importance_tier: "important"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/028-memory-search-intelligence/001-speckit-memory/006-redteam-probe-gate"
-    last_updated_at: "2026-06-19T07:40:00Z"
+    packet_pointer: "system-speckit/028-memory-search-intelligence/001-speckit-memory/006-redteam-probe-gate"
+    last_updated_at: "2026-07-04T17:51:05.982Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "Implemented the MCP-server red-team probe gate and no-querytext denial audit"
     next_safe_action: "Implement sibling prompt-pack probe"

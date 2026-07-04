@@ -11,8 +11,8 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/028-memory-search-intelligence/001-speckit-memory/021-residual-correctness"
-    last_updated_at: "2026-06-19T00:00:00Z"
+    packet_pointer: "system-speckit/028-memory-search-intelligence/001-speckit-memory/021-residual-correctness"
+    last_updated_at: "2026-07-04T17:51:06.364Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "Implemented both residual correctness candidates and added focused tests"
     next_safe_action: "None, phase complete"
@@ -50,7 +50,7 @@ _memory:
 | **Status** | DONE |
 | **Created** | 2026-06-19 |
 | **Branch** | `system-speckit/027-xce-research-based-refinement` |
-| **Parent Packet** | system-spec-kit/028-memory-search-intelligence/001-speckit-memory |
+| **Parent Packet** | system-speckit/028-memory-search-intelligence/001-speckit-memory |
 | **Subsystem** | Spec-Kit Memory MCP (PRIMARY) |
 | **Wave** | Wave-0 (correctness, always-on, no harness/benchmark dependency) |
 | **Source research** | `../../research/synthesis/08-retrieval-evaluation-findings.md` (Wave-0 §9-10), `../research/retrieval-evaluation/research.md`, `../research/retrieval-evaluation/deltas/iter-002.jsonl` (A4), `../research/retrieval-evaluation/deltas/iter-007.jsonl` (A7) |

@@ -10,7 +10,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/028-memory-search-intelligence/005-revisit-027"
+    packet_pointer: "system-speckit/028-memory-search-intelligence/005-revisit-027"
     last_updated_at: "2026-06-17T00:40:00Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "Synthesized the cross-packet reconciliation ledger from 50 read-only iterations"

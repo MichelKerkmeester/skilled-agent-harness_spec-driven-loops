@@ -10,8 +10,8 @@ importance_tier: "important"
 contextType: "research"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/028-memory-search-intelligence/001-speckit-memory/024-reranker-research"
-    last_updated_at: "2026-06-21T00:00:00Z"
+    packet_pointer: "system-speckit/028-memory-search-intelligence/001-speckit-memory/024-reranker-research"
+    last_updated_at: "2026-07-04T17:51:00.741Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "Created the reranker research phase folder with the CONDITIONAL-GO verdict"
     next_safe_action: "Use this phase as the authoritative reranker research outcome for 028"
@@ -49,7 +49,7 @@ _memory:
 | **Status** | Complete |
 | **Created** | 2026-06-21 |
 | **Parent Spec** | ../spec.md |
-| **Parent Packet** | `system-spec-kit/028-memory-search-intelligence` |
+| **Parent Packet** | `system-speckit/028-memory-search-intelligence` |
 | **Phase** | 009 of 009 |
 | **Phase type** | Research, read-only, no code shipped |
 | **Predecessor** | ../008-new-feature-research-build/spec.md |
@@ -135,7 +135,7 @@ Record the 10-iteration deep research on a citation-ledger reranker. Document th
 - The prototype 0.0357 to 0.2116 oracle-ceiling move under a synthesized ledger is recorded as a capability check.
 - The 0.000-by-construction real-data refutation is documented with the gold-and-ledger intersection numbers.
 - The earn-it prerequisites are documented as the data and geometry block on a measured win.
-- `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-spec-kit/028-memory-search-intelligence --strict` exits 0.
+- `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-speckit/028-memory-search-intelligence --strict` exits 0.
 <!-- /ANCHOR:success-criteria -->
 
 ---

@@ -11,8 +11,8 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/028-memory-search-intelligence/001-speckit-memory/011-retention-forgetting"
-    last_updated_at: "2026-06-19T00:00:00Z"
+    packet_pointer: "system-speckit/028-memory-search-intelligence/001-speckit-memory/011-retention-forgetting"
+    last_updated_at: "2026-07-04T17:51:08.036Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "Implemented retention spare-only eligibility + incoming-edge allowlist"
     next_safe_action: "Run strict validation, then continue semantic edge layer"
@@ -47,7 +47,7 @@ _memory:
 | **Status** | in_progress |
 | **Created** | 2026-06-19 |
 | **Branch** | `system-speckit/027-xce-research-based-refinement` |
-| **Parent Packet** | system-spec-kit/028-memory-search-intelligence/001-speckit-memory |
+| **Parent Packet** | system-speckit/028-memory-search-intelligence/001-speckit-memory |
 | **Source research** | `../research/research.md` + `../../research/roadmap.md` + `../../research/synthesis/01-go-candidates.md` + `06` |
 <!-- /ANCHOR:metadata -->
 

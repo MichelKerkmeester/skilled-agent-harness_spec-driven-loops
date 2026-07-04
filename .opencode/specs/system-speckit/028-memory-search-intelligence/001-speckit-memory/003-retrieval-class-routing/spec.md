@@ -11,8 +11,8 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/028-memory-search-intelligence/001-speckit-memory/003-retrieval-class-routing"
-    last_updated_at: "2026-06-19T11:40:16Z"
+    packet_pointer: "system-speckit/028-memory-search-intelligence/001-speckit-memory/003-retrieval-class-routing"
+    last_updated_at: "2026-07-04T17:50:58.974Z"
     last_updated_by: "codex-gpt-5"
     recent_action: "Built C2-A/C2-C/C2-B"
     next_safe_action: "Validate packet, leave recall gates pending"
@@ -66,7 +66,7 @@ The Spec-Kit Memory MCP routes every query through two orthogonal classifiers (c
 | **Status** | in_progress |
 | **Created** | 2026-06-19 |
 | **Branch** | `system-speckit/027-xce-research-based-refinement` |
-| **Parent Packet** | system-spec-kit/028-memory-search-intelligence/001-speckit-memory |
+| **Parent Packet** | system-speckit/028-memory-search-intelligence/001-speckit-memory |
 | **Source research** | `../research/research.md`, `../../research/roadmap.md` (§3 Query-Class Routing + MEMORY-SYSTEMS ADDENDUM), `../../research/synthesis/{01,03,06}` |
 | **Shipped-record (done-candidate evidence)** | Wave-0 record + commits `1ecc531431..HEAD` |
 <!-- /ANCHOR:metadata -->

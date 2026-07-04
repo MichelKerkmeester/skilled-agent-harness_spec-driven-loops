@@ -9,8 +9,8 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/028-memory-search-intelligence/001-speckit-memory/002-determinism-content-id-foundation"
-    last_updated_at: "2026-06-19T00:00:00Z"
+    packet_pointer: "system-speckit/028-memory-search-intelligence/001-speckit-memory/002-determinism-content-id-foundation"
+    last_updated_at: "2026-07-04T17:51:02.224Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "5 determinism candidates shipped default-byte-identical + 4 gated residue"
     next_safe_action: "Land the fusion-bonus invariant test before any configured-mode promotion"
@@ -41,7 +41,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | system-spec-kit/028-memory-search-intelligence/001-speckit-memory/002-determinism-content-id-foundation |
+| **Spec Folder** | system-speckit/028-memory-search-intelligence/001-speckit-memory/002-determinism-content-id-foundation |
 | **Authored** | 2026-06-19 |
 | **Level** | 3 |
 | **Scope** | Determinism + content-id foundation: 5 shipped (Wave-0), 4 gated residue |
@@ -131,7 +131,7 @@ No code was written in this re-plan: the shipped work already exists in packet 0
 ```bash
 git log --oneline 1ecc531431..HEAD
 bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh \
-  .opencode/specs/system-spec-kit/028-memory-search-intelligence/001-speckit-memory/002-determinism-content-id-foundation --strict
+  .opencode/specs/system-speckit/028-memory-search-intelligence/001-speckit-memory/002-determinism-content-id-foundation --strict
 ```
 
 > The candidate-level test/build evidence is owned by the Wave-0 shipped record (Wave-0 verification evidence). This sub-phase re-homes the commits and adds the gated residue, it does not re-run the full subsystem suite.

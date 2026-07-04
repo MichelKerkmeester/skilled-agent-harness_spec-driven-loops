@@ -10,8 +10,8 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/028-memory-search-intelligence/001-speckit-memory/019-eval-harness-extension"
-    last_updated_at: "2026-06-19T08:00:00+02:00"
+    packet_pointer: "system-speckit/028-memory-search-intelligence/001-speckit-memory/019-eval-harness-extension"
+    last_updated_at: "2026-07-04T17:51:00.031Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "Implemented C9 eval-harness metric lanes and deferred A8 gate work"
     next_safe_action: "Run strict packet validation, then scope A8 schema/live-gate work separately"

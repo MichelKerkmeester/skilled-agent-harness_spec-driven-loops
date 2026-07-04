@@ -1,7 +1,7 @@
 {
   "level": "3",
-  "specFolder": "system-spec-kit/028-memory-search-intelligence/001-speckit-memory/003-retrieval-class-routing",
-  "description": "The Memory MCP query router (`mcpserver/lib/search/query-router.ts`) fuses exactly two orthogonal classifiers into `RouteResult`, complexity tier (`si",
+  "specFolder": "system-speckit/028-memory-search-intelligence/001-speckit-memory/003-retrieval-class-routing",
+  "description": "The Memory MCP query router (`mcpserver/lib/search/query-router.ts`) fuses exactly two orthogonal classifiers into `RouteResult`, complexity tier",
   "keywords": [
     "memory",
     "mcp",
@@ -20,11 +20,11 @@
     "complexity",
     "tier"
   ],
-  "lastUpdated": "2026-06-23T03:49:58.157Z",
+  "lastUpdated": "2026-07-04T17:50:58.822Z",
   "specId": "003",
   "folderSlug": "retrieval-class-routing",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "028-memory-search-intelligence",
     "001-speckit-memory"
   ],

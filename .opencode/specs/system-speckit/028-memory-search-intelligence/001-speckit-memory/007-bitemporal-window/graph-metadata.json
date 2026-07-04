@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/028-memory-search-intelligence/001-speckit-memory/007-bitemporal-window",
-  "spec_folder": "system-spec-kit/028-memory-search-intelligence/001-speckit-memory/007-bitemporal-window",
-  "parent_id": "system-spec-kit/028-memory-search-intelligence/001-speckit-memory",
+  "packet_id": "system-speckit/028-memory-search-intelligence/001-speckit-memory/007-bitemporal-window",
+  "spec_folder": "system-speckit/028-memory-search-intelligence/001-speckit-memory/007-bitemporal-window",
+  "parent_id": "system-speckit/028-memory-search-intelligence/001-speckit-memory",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -41,47 +41,26 @@
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
-      ".opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/lib/graph/temporal-edges.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/lib/search/search-flags.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/lib/graph/contradiction-detection.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/lib/causal/frontmatter-promoter.ts",
+      "spec.md",
       "plan.md",
       "tasks.md",
       "checklist.md",
       "decision-record.md",
-      "spec.md",
+      "lib/search/vector-index-schema.ts",
+      "lib/graph/temporal-edges.ts",
+      "lib/search/search-flags.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/graph/temporal-edges.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/graph/contradiction-detection.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/causal/frontmatter-promoter.ts",
+      "lib/causal/frontmatter-promoter.ts",
       "implementation-summary.md"
     ],
     "entities": [
       {
-        "name": "vector-index-schema.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts",
-        "source": "derived"
-      },
-      {
-        "name": "temporal-edges.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/graph/temporal-edges.ts",
-        "source": "derived"
-      },
-      {
-        "name": "search-flags.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/search/search-flags.ts",
-        "source": "derived"
-      },
-      {
-        "name": "contradiction-detection.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/graph/contradiction-detection.ts",
-        "source": "derived"
-      },
-      {
-        "name": "frontmatter-promoter.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/causal/frontmatter-promoter.ts",
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
         "source": "derived"
       },
       {
@@ -109,9 +88,33 @@
         "source": "derived"
       },
       {
-        "name": "spec.md",
-        "kind": "doc",
-        "path": "spec.md",
+        "name": "vector-index-schema.ts",
+        "kind": "code",
+        "path": "lib/search/vector-index-schema.ts",
+        "source": "derived"
+      },
+      {
+        "name": "temporal-edges.ts",
+        "kind": "code",
+        "path": "lib/graph/temporal-edges.ts",
+        "source": "derived"
+      },
+      {
+        "name": "search-flags.ts",
+        "kind": "code",
+        "path": "lib/search/search-flags.ts",
+        "source": "derived"
+      },
+      {
+        "name": "contradiction-detection.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/graph/contradiction-detection.ts",
+        "source": "derived"
+      },
+      {
+        "name": "frontmatter-promoter.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/causal/frontmatter-promoter.ts",
         "source": "derived"
       },
       {
@@ -201,7 +204,7 @@
     ],
     "causal_summary": "The Memory MCP's causal-edge currentness machinery records the wrong time and the wrong number of times",
     "created_at": "2026-06-19T05:40:37.444Z",
-    "last_save_at": "2026-06-23T03:49:58.187Z",
+    "last_save_at": "2026-07-04T17:51:08.870Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -212,14 +215,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:de849e9af96cf0fdbb998667c16be23a3a872da5e9583560717ee2dc4cc7b036",
+    "source_fingerprint": "sha256:c0eb22e1d094611cbb9e9dcb3f44825906697cf7938210fc382fbb5a34b21bba",
     "source_doc_hashes": {
-      "spec.md": "4b6c98b0d2a02cfa4e16d92a9baa2d6c9418aa4b1c486f8e0f152977d6a9ccbe",
-      "plan.md": "3ad00d5b8b421540d4d7d11b7a709268e0a9ca569b8f2e564d9f015620560e0c",
-      "tasks.md": "3ac7cf0254dec6e413912b9f86468ad2cb3ebfccd549c545d50c0c59ef78ffa3",
-      "checklist.md": "20902421743ba7721d09173eff8b63c13d8a322cbd44dafaeb75c854ff24d61d",
-      "decision-record.md": "205340d7c93617dd49c48efca1ac570f098c4abdeb95684985fa4f206a47a419",
-      "implementation-summary.md": "5a3275e5f00deb3ca15e8cc550f05e177b522761e62522ef6d44fedc9529cc41"
+      "spec.md": "f376ec3936848317924b0da146adcda2e7c9daecf876e0febb8aeaacb12f89a7",
+      "plan.md": "5fd4100521ebbe44eb417ed4c2cd062217e1e027a30384e22209256c4f3e9e8e",
+      "tasks.md": "79845d6420cdf953b94b7e3feb83b908d3f8c530b4d3a8ea64d34263c09afae2",
+      "checklist.md": "bea04615f33118c86e32d79044ad7434d5727a5841b7150981a2dd0f2ee820f5",
+      "decision-record.md": "a39e199947df02d2d63e9a53cf4151b6c8f9035a45ec786a4ed4c68dab68d5ae",
+      "implementation-summary.md": "7b2b6d19c7dd3942dd234fad966ce3abf4b595de399c18fc9369dbb4990bc487"
     },
     "last_active_child_id": null,
     "last_active_at": null

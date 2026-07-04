@@ -9,7 +9,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/028-memory-search-intelligence/007-memory-systems"
+    packet_pointer: "system-speckit/028-memory-search-intelligence/007-memory-systems"
     last_updated_at: "2026-06-17T13:10:00Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "CLOSED at 22/40 (saturation); synthesis/06 + roadmap addendum + 00-index written"

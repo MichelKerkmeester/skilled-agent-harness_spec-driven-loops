@@ -1,0 +1,35 @@
+{
+  "level": "1",
+  "specFolder": "system-speckit/028-memory-search-intelligence/001-speckit-memory/031-fix-deep-dive-p0-p2-findings-for-mk-spec-memory",
+  "description": "The 2026-07-03 deep dive (live production probing + eight code audits over ~96k lines) found ~150 defects across the mk-spec-memory search stack",
+  "keywords": [
+    "2026-07-03",
+    "deep",
+    "dive",
+    "live",
+    "production",
+    "probing",
+    "eight",
+    "code",
+    "audits",
+    "96k",
+    "lines",
+    "found",
+    "150",
+    "defects",
+    "across",
+    "mk-spec-memory",
+    "search",
+    "stack"
+  ],
+  "lastUpdated": "2026-07-04T17:46:11.676Z",
+  "specId": "031",
+  "folderSlug": "fix-deep-dive-p0-p2-findings-for-mk-spec-memory",
+  "parentChain": [
+    "system-speckit",
+    "028-memory-search-intelligence",
+    "001-speckit-memory"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

@@ -11,8 +11,8 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/028-memory-search-intelligence/001-speckit-memory/010-consolidation-cursor-clock"
-    last_updated_at: "2026-06-19T00:00:00Z"
+    packet_pointer: "system-speckit/028-memory-search-intelligence/001-speckit-memory/010-consolidation-cursor-clock"
+    last_updated_at: "2026-07-04T17:51:02.602Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "Authored impl sub-phase spec from 028 research (10 candidates, all PENDING)"
     next_safe_action: "Sequence C4-A scoping fix first, then C4-C cursor, then C-G1 clock"
@@ -57,7 +57,7 @@ The Spec-Kit Memory MCP already ships most of an idempotent async-consolidation 
 | **Status** | Draft |
 | **Created** | 2026-06-19 |
 | **Branch** | `system-speckit/028-memory-search-intelligence` |
-| **Parent Packet** | system-spec-kit/028-memory-search-intelligence/001-speckit-memory |
+| **Parent Packet** | system-speckit/028-memory-search-intelligence/001-speckit-memory |
 <!-- /ANCHOR:metadata -->
 
 ---

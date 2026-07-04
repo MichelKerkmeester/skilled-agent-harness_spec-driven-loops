@@ -1,0 +1,233 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/028-memory-search-intelligence/001-speckit-memory/031-fix-deep-dive-p0-p2-findings-for-mk-spec-memory/012-envelope-presentation-and-command-doc-alignment",
+  "spec_folder": "system-speckit/028-memory-search-intelligence/001-speckit-memory/031-fix-deep-dive-p0-p2-findings-for-mk-spec-memory/012-envelope-presentation-and-command-doc-alignment",
+  "parent_id": "system-speckit/028-memory-search-intelligence/001-speckit-memory/031-fix-deep-dive-p0-p2-findings-for-mk-spec-memory",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "envelope double emission",
+      "token budget breach",
+      "command doc drift",
+      "progressive disclosure cursor",
+      "single casing envelope",
+      "dual command tree parity",
+      "command doc drift battery",
+      "format text renderer",
+      "verification checklist",
+      "envelope presentation",
+      "command doc alignment",
+      "envelope single casing"
+    ],
+    "key_topics": [
+      "envelope",
+      "double",
+      "emission",
+      "token",
+      "budget",
+      "breach",
+      "command",
+      "doc",
+      "drift",
+      "progressive",
+      "disclosure",
+      "cursor"
+    ],
+    "importance_tier": "normal",
+    "status": "draft",
+    "key_files": [
+      ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/search/progressive-disclosure.ts",
+      ".opencode/commands/memory/search.md",
+      "handlers/memory-search.ts",
+      "handlers/memory-context.ts",
+      "lib/search/progressive-disclosure.ts",
+      "lib/search/result-explainability.ts",
+      "lib/response/profile-formatters.ts",
+      "formatters/search-results.ts",
+      "lib/search/memory-summaries.ts",
+      "references/memory/save_workflow.md",
+      "references/memory/memory_system.md",
+      "mcp_server/hooks/README.md",
+      "spec.md",
+      "plan.md",
+      "checklist.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "memory-search.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts",
+        "source": "derived"
+      },
+      {
+        "name": "memory-context.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts",
+        "source": "derived"
+      },
+      {
+        "name": "progressive-disclosure.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/search/progressive-disclosure.ts",
+        "source": "derived"
+      },
+      {
+        "name": "search.md",
+        "kind": "doc",
+        "path": ".opencode/commands/memory/search.md",
+        "source": "derived"
+      },
+      {
+        "name": "result-explainability.ts",
+        "kind": "code",
+        "path": "lib/search/result-explainability.ts",
+        "source": "derived"
+      },
+      {
+        "name": "profile-formatters.ts",
+        "kind": "code",
+        "path": "lib/response/profile-formatters.ts",
+        "source": "derived"
+      },
+      {
+        "name": "search-results.ts",
+        "kind": "code",
+        "path": "formatters/search-results.ts",
+        "source": "derived"
+      },
+      {
+        "name": "memory-summaries.ts",
+        "kind": "code",
+        "path": "lib/search/memory-summaries.ts",
+        "source": "derived"
+      },
+      {
+        "name": "save_workflow.md",
+        "kind": "doc",
+        "path": "references/memory/save_workflow.md",
+        "source": "derived"
+      },
+      {
+        "name": "memory_system.md",
+        "kind": "doc",
+        "path": "references/memory/memory_system.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": "mcp_server/hooks/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Envelope Presentation",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Doc Alignment",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Authored Level",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Live-measured (deep-dive report §5, ledger L7 🟢): a 5-result `memorysearch` returns a 17.6KB envelope because every telemetry block is double-emitted in camelCase AND snakecase (`artifactRouting`/`artifactrouting`, `graphContribution`/`graphcontribution`, `searchDecisionEnvelope`/`searchdecisionenvelope`, `appliedBoosts`/`appliedboosts`), while the token budget is enforced BEFORE graphContext/routing/envelope attach — so results get compacted to empty snippets while metadata survives, and `meta.tokenCount` reports 6,455 against an \"enforced\" budget of 3,500",
+    "created_at": "2026-07-03T09:44:26Z",
+    "last_save_at": "2026-07-04T17:51:09.855Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:0ef4bced82a945b434c60ea315ebd1198e2ea2bed2fb7752d57cc37b38bac670",
+    "source_doc_hashes": {
+      "spec.md": "61efbbb0df3dbcdbbe90a8c28e82acbe1067e668fb6abbc75c1824f2e99a5527",
+      "plan.md": "23d7aa2191b8888412e1060336820c06ffdb8832c9393ad0ddde81051ce04a00",
+      "tasks.md": "ab8e2ce66e3958770de3ba3b5c40af91668fd6e46a65af03205403a74ecdee79",
+      "checklist.md": "cd663db0fda91cbe77b823eb24f1108f08fd2d1cabc03438d9c8de340729e76b",
+      "implementation-summary.md": "a4cfa664f2813dc51fcc851ed10669264bd7e90d50cddb3953255f01d22bbba1"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

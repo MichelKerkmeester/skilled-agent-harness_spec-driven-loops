@@ -10,8 +10,8 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/028-memory-search-intelligence/001-speckit-memory/017-semantic-edge-layer"
-    last_updated_at: "2026-06-19T00:00:00Z"
+    packet_pointer: "system-speckit/028-memory-search-intelligence/001-speckit-memory/017-semantic-edge-layer"
+    last_updated_at: "2026-07-04T17:50:57.515Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "Implemented semantic-edge substrate"
     next_safe_action: "Run strict validation and final typecheck/tests"

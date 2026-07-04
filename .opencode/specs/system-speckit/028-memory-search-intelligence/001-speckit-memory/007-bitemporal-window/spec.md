@@ -11,8 +11,8 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/028-memory-search-intelligence/001-speckit-memory/007-bitemporal-window"
-    last_updated_at: "2026-06-19T00:00:00Z"
+    packet_pointer: "system-speckit/028-memory-search-intelligence/001-speckit-memory/007-bitemporal-window"
+    last_updated_at: "2026-07-04T17:51:08.870Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "Implemented schema-migration foundation for the bi-temporal window"
     next_safe_action: "Run final broad verification and strict phase validation"
@@ -63,8 +63,8 @@ The Memory MCP already ships an edge-presence currentness substrate (`SPECKIT_TE
 | **Status** | complete |
 | **Created** | 2026-06-19 |
 | **Branch** | `system-speckit/027-xce-research-based-refinement` |
-| **Parent Phase** | `system-spec-kit/028-memory-search-intelligence/001-speckit-memory` (research) |
-| **Parent Packet** | `system-spec-kit/028-memory-search-intelligence` |
+| **Parent Phase** | `system-speckit/028-memory-search-intelligence/001-speckit-memory` (research) |
+| **Parent Packet** | `system-speckit/028-memory-search-intelligence` |
 | **Subsystem** | Spec-Kit Memory MCP (PRIMARY), retrieval intelligence |
 <!-- /ANCHOR:metadata -->
 

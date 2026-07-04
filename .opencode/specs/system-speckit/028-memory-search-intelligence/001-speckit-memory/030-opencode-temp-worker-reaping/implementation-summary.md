@@ -11,8 +11,8 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/028-memory-search-intelligence/001-speckit-memory/030-opencode-temp-worker-reaping"
-    last_updated_at: "2026-07-01T00:00:00Z"
+    packet_pointer: "system-speckit/028-memory-search-intelligence/001-speckit-memory/030-opencode-temp-worker-reaping"
+    last_updated_at: "2026-07-04T17:51:05.616Z"
     last_updated_by: "claude-sonnet-5"
     recent_action: "Corrected false completion claim; not started"
     next_safe_action: "Plan implementation, or leave marked not-started until child 030 is actually planned"

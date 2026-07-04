@@ -1,7 +1,7 @@
 {
   "level": "2",
-  "specFolder": "system-spec-kit/028-memory-search-intelligence/001-speckit-memory/029-substrate-sandbox-cleanup",
-  "description": "The substrate stress harness `run-substrate-stress-harness.mjs` writes its evidence and scratch into `sandbox/24--local-llm-query-intelligence/` at th",
+  "specFolder": "system-speckit/028-memory-search-intelligence/001-speckit-memory/029-substrate-sandbox-cleanup",
+  "description": "The substrate stress harness `run-substrate-stress-harness.mjs` writes its evidence and scratch into `sandbox/24--local-llm-query-intelligence/` at",
   "keywords": [
     "substrate",
     "stress",
@@ -14,11 +14,11 @@
     "sandbox",
     "24-local-llm-query-intelligence"
   ],
-  "lastUpdated": "2026-06-23T06:20:25.363Z",
+  "lastUpdated": "2026-07-04T17:50:58.452Z",
   "specId": "029",
   "folderSlug": "substrate-sandbox-cleanup",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "028-memory-search-intelligence",
     "001-speckit-memory"
   ],

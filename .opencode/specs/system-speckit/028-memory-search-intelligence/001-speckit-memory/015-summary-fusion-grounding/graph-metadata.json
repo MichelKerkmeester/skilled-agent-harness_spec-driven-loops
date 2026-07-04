@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/028-memory-search-intelligence/001-speckit-memory/015-summary-fusion-grounding",
-  "spec_folder": "system-spec-kit/028-memory-search-intelligence/001-speckit-memory/015-summary-fusion-grounding",
-  "parent_id": "system-spec-kit/028-memory-search-intelligence/001-speckit-memory",
+  "packet_id": "system-speckit/028-memory-search-intelligence/001-speckit-memory/015-summary-fusion-grounding",
+  "spec_folder": "system-speckit/028-memory-search-intelligence/001-speckit-memory/015-summary-fusion-grounding",
+  "parent_id": "system-speckit/028-memory-search-intelligence/001-speckit-memory",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -41,6 +41,12 @@
     "importance_tier": "important",
     "status": "in_progress",
     "key_files": [
+      ".opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/search/query-router.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/search/community-search.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/search/memory-summaries.ts",
       "mcp_server/lib/search/hybrid-search.ts",
       "mcp_server/lib/search/community-search.ts",
       "mcp_server/lib/search/memory-summaries.ts",
@@ -49,54 +55,54 @@
       "mcp_server/handlers/memory-search.ts",
       "mcp_server/handlers/memory-context.ts",
       "mcp_server/lib/search/search-flags.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/lib/search/query-router.ts",
+      ".opencode/skills/system-spec-kit/changelog/v3.7.0.0.md",
+      "implementation-summary.md",
       ".opencode/skills/system-spec-kit/mcp_server/lib/search/routing-telemetry.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts",
       ".opencode/skills/system-spec-kit/mcp_server/lib/search/artifact-routing.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/lib/search/community-search.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/lib/search/memory-summaries.ts",
       ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/lib/search/search-flags.ts",
-      "plan.md",
-      "tasks.md"
+      ".opencode/skills/system-spec-kit/mcp_server/lib/search/search-flags.ts"
     ],
     "entities": [
       {
         "name": "hybrid-search.ts",
         "kind": "code",
-        "path": "mcp_server/lib/search/hybrid-search.ts",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts",
+        "source": "derived"
+      },
+      {
+        "name": "query-router.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/search/query-router.ts",
+        "source": "derived"
+      },
+      {
+        "name": "memory-search.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts",
+        "source": "derived"
+      },
+      {
+        "name": "stage1-candidate-gen.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts",
         "source": "derived"
       },
       {
         "name": "community-search.ts",
         "kind": "code",
-        "path": "mcp_server/lib/search/community-search.ts",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/search/community-search.ts",
         "source": "derived"
       },
       {
         "name": "memory-summaries.ts",
         "kind": "code",
-        "path": "mcp_server/lib/search/memory-summaries.ts",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/search/memory-summaries.ts",
         "source": "derived"
       },
       {
         "name": "artifact-routing.ts",
         "kind": "code",
         "path": "mcp_server/lib/search/artifact-routing.ts",
-        "source": "derived"
-      },
-      {
-        "name": "stage1-candidate-gen.ts",
-        "kind": "code",
-        "path": "mcp_server/lib/search/pipeline/stage1-candidate-gen.ts",
-        "source": "derived"
-      },
-      {
-        "name": "memory-search.ts",
-        "kind": "code",
-        "path": "mcp_server/handlers/memory-search.ts",
         "source": "derived"
       },
       {
@@ -112,27 +118,21 @@
         "source": "derived"
       },
       {
-        "name": "query-router.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/search/query-router.ts",
+        "name": "v3.7.0.0.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/changelog/v3.7.0.0.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
         "name": "routing-telemetry.ts",
         "kind": "code",
         "path": ".opencode/skills/system-spec-kit/mcp_server/lib/search/routing-telemetry.ts",
-        "source": "derived"
-      },
-      {
-        "name": "plan.md",
-        "kind": "doc",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "tasks.md",
-        "kind": "doc",
-        "path": "tasks.md",
         "source": "derived"
       },
       {
@@ -210,7 +210,7 @@
     ],
     "causal_summary": "The Memory MCP already computes community and per-chunk summaries, but that evidence never participates in the main ranked blend, and there is no coarse-to-fine grounding prelude:",
     "created_at": "2026-06-19T05:40:37.449Z",
-    "last_save_at": "2026-06-23T03:49:58.253Z",
+    "last_save_at": "2026-07-04T17:51:04.196Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -220,13 +220,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:3bedeeb3659e879d9fdf40bb1bb569d573abc25ab6ac4e4fb22f1a0b9237bda9",
+    "source_fingerprint": "sha256:36db2bd7b14639c77d4dfa3acbfc8d4ff407de60fb3116dc95dfd67650dc3573",
     "source_doc_hashes": {
-      "spec.md": "a9b2ed5d7d41333ecbb7e05d4fd3091b3cf2ab68673f15f6ae95b1df63ba6d73",
-      "plan.md": "e6cca66a6cd794c160dce19f28d51f280a4b0ce838d781fa8a19095fe3886c58",
-      "tasks.md": "d79ab77b1c240506e3b81f2bfadfe3e365b4fa7437f94d9892684f5bd76ceca0",
-      "checklist.md": "5eece3bb9439a62e2fb3d44449b6e49f1425bd27e720933e7a5932e48a8afd81",
-      "implementation-summary.md": "cb8f8c298606fea8afbf382625f63c2710246d6cde12c7a10bd9b791d4f4d197"
+      "spec.md": "0d62fcab395740a0af417e90e7707298a4540dfd031d281bd753bdfc88721734",
+      "plan.md": "425bbb714a35508d31a283fd1b379b9d12e1e4138f268ed919495623444b6e18",
+      "tasks.md": "fc9da9d01f763f1bde884f6e9da07659ed5fe16ff8f915a2d6046d37c6e0df09",
+      "checklist.md": "2d74867dde83ba0a0ef0fcf463be73a609a081bd63e4e787c1de86cf593fc837",
+      "implementation-summary.md": "dc016cef1df2a82e265510d48e37e06609c8973f297948e91dec6e0b54b9afe3"
     },
     "last_active_child_id": null,
     "last_active_at": null

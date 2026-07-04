@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/028-memory-search-intelligence/001-speckit-memory/027-envelope-fidelity-enforcement",
-  "spec_folder": "system-spec-kit/028-memory-search-intelligence/001-speckit-memory/027-envelope-fidelity-enforcement",
-  "parent_id": "system-spec-kit/028-memory-search-intelligence/001-speckit-memory",
+  "packet_id": "system-speckit/028-memory-search-intelligence/001-speckit-memory/027-envelope-fidelity-enforcement",
+  "spec_folder": "system-speckit/028-memory-search-intelligence/001-speckit-memory/027-envelope-fidelity-enforcement",
+  "parent_id": "system-speckit/028-memory-search-intelligence/001-speckit-memory",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -34,12 +34,12 @@
     "importance_tier": "normal",
     "status": "complete",
     "key_files": [
-      "formatters/search-results.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/lib/search/search-flags.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/formatters/search-results.ts",
       ".opencode/commands/memory/search.md",
       ".opencode/commands/memory/assets/search_presentation.txt",
+      ".opencode/skills/system-spec-kit/mcp_server/formatters/search-results.ts",
       ".opencode/skills/system-spec-kit/mcp_server/scripts/evals/check-envelope-fidelity.mjs",
+      "formatters/search-results.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/search/search-flags.ts",
       ".opencode/skills/system-spec-kit/mcp_server/tests/envelope-fidelity.vitest.ts",
       ".opencode/skills/system-spec-kit/mcp_server/tests/provenance-envelope.vitest.ts",
       ".opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md",
@@ -54,18 +54,6 @@
     ],
     "entities": [
       {
-        "name": "search-results.ts",
-        "kind": "code",
-        "path": "formatters/search-results.ts",
-        "source": "derived"
-      },
-      {
-        "name": "search-flags.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/search/search-flags.ts",
-        "source": "derived"
-      },
-      {
         "name": "search.md",
         "kind": "doc",
         "path": ".opencode/commands/memory/search.md",
@@ -78,9 +66,21 @@
         "source": "derived"
       },
       {
+        "name": "search-results.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/formatters/search-results.ts",
+        "source": "derived"
+      },
+      {
         "name": "check-envelope-fidelity.mjs",
         "kind": "file",
         "path": ".opencode/skills/system-spec-kit/mcp_server/scripts/evals/check-envelope-fidelity.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "search-flags.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/search/search-flags.ts",
         "source": "derived"
       },
       {
@@ -200,7 +200,7 @@
     ],
     "causal_summary": "The 029 model benchmark exposed soft spot B, envelope fidelity",
     "created_at": "2026-06-22T00:00:00Z",
-    "last_save_at": "2026-06-23T03:49:58.341Z",
+    "last_save_at": "2026-07-04T17:51:01.493Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,13 +210,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:61e87c10e793c468a4d4159a7b92b11e04443e2dfd52b14e3e1e0b59d5173e91",
+    "source_fingerprint": "sha256:a6062cd3a4e23fd52aa2cddf1aeae9b49eaf48f6fb63a567d7d8b341c004a2bb",
     "source_doc_hashes": {
-      "spec.md": "6e99001dea13127e1cdaf043d65eb06535ff8b72c9aa50b2ca13cd6820504491",
-      "plan.md": "2bfaa21415262d03d4946e16c6f1ae50b58d357724b859ca6cc6a3ec4934660b",
-      "tasks.md": "97f02c09ec3df659f9a3fdcf984f2ed7fd8b04036049271db35fbbd73aba83d6",
-      "checklist.md": "c022cdd4fcfdf3e7eb6127b8ab397c6529028c768aa013aacdb25286d7b1f68e",
-      "implementation-summary.md": "83ca20f6d4e60ee19a50f80de66415b279bb643ab6a4ce58b0ecaebccd6c59db"
+      "spec.md": "4c7267fb0854b61ec956976f6693ba21166504dfb9630cc03bdb71b0c893e703",
+      "plan.md": "330b78c5e27b1c1d6eb692c691756aa15047dcb7b0c5bb7893811332388e51a2",
+      "tasks.md": "7607f48e37e396feef16c250af13ef4ec28fa1444c9bdacafaeb7b092ed3d222",
+      "checklist.md": "9995c08ccfc95ae62d5b54144f4d968961766db34865d65cb44ccd892f5da2c4",
+      "implementation-summary.md": "4e3eaf3f63ba4569ae355250418e88a0db05cba39260bdc451f4c3c6d9193a3b"
     },
     "last_active_child_id": null,
     "last_active_at": null

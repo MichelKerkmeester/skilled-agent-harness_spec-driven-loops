@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/028-memory-search-intelligence/001-speckit-memory/029-substrate-sandbox-cleanup",
-  "spec_folder": "system-spec-kit/028-memory-search-intelligence/001-speckit-memory/029-substrate-sandbox-cleanup",
-  "parent_id": "system-spec-kit/028-memory-search-intelligence/001-speckit-memory",
+  "packet_id": "system-speckit/028-memory-search-intelligence/001-speckit-memory/029-substrate-sandbox-cleanup",
+  "spec_folder": "system-speckit/028-memory-search-intelligence/001-speckit-memory/029-substrate-sandbox-cleanup",
+  "parent_id": "system-speckit/028-memory-search-intelligence/001-speckit-memory",
   "children_ids": [],
   "migrated": true,
   "migration_source": "legacy",
@@ -192,7 +192,7 @@
     ],
     "causal_summary": "The substrate stress harness `run-substrate-stress-harness.mjs` writes its evidence and scratch into `sandbox/24--local-llm-query-intelligence/` at the REPOSITORY ROOT, and nothing cleans it, so every harness run leaves that folder at the repo root",
     "created_at": "2026-06-23T00:00:00Z",
-    "last_save_at": "2026-06-23T06:20:16.855Z",
+    "last_save_at": "2026-07-04T17:50:58.595Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -202,13 +202,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:75c0435f64164ee552faa4fb79d54bd4a5e10ae7d32203940ce4ccacf1693401",
+    "source_fingerprint": "sha256:410a1d3f67b997433f4d5c8843e8c91c630e7c74f654541cc749b45899a4c56d",
     "source_doc_hashes": {
-      "spec.md": "ab4336b785612bb02312e7009906554f798012cac672c8610ee78f1123f9e020",
-      "plan.md": "4b0832df9f4045c884e46ba531dbfab9ce63b8a8faf031d0411f4a177a2403bd",
-      "tasks.md": "656d3ef29d372c1f9b29cb93b5db7ea7bcccd031953439ea4d3e48cb34a70a89",
-      "checklist.md": "477a81b2d213f617aace3e74f0f310cf70cd9cd13f2bd6928c92b03c98818cef",
-      "implementation-summary.md": "4efa4b3936d2f0c6307f43bb8732db514b2353ee0a29b51bc07bdf5e1d9c7cde"
+      "spec.md": "348279e7ddb047a3540cfe62d07e8b9d15cbeab16899047d1b0b281ac71725ef",
+      "plan.md": "8b2ceb43d2243f5ac632c6e1bebc4f381c1cd442c16c9b5470e9ff4a8da64a26",
+      "tasks.md": "e88228e4bf0fc6b73640c873dfaed16d3e59cca0406fdcb6921c52ab4a84bf40",
+      "checklist.md": "6ce65838c743f171dfaf7ab04f2b9951fadd309847e93cd477273ad7823dcdd4",
+      "implementation-summary.md": "d8e2c88c788150ded3359c008202acc9124f7bc82c356217830d7f649d1a7764"
     },
     "last_active_child_id": null,
     "last_active_at": null

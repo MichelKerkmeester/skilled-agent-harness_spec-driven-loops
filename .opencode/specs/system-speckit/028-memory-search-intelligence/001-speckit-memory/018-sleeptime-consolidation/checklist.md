@@ -9,8 +9,8 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/028-memory-search-intelligence/001-speckit-memory/018-sleeptime-consolidation"
-    last_updated_at: "2026-06-19T00:00:00Z"
+    packet_pointer: "system-speckit/028-memory-search-intelligence/001-speckit-memory/018-sleeptime-consolidation"
+    last_updated_at: "2026-07-04T17:51:07.543Z"
     last_updated_by: "codex"
     recent_action: "Verified default-off governor and shadow scaffold with deterministic tests"
     next_safe_action: "Keep dispatch/live writes pending"

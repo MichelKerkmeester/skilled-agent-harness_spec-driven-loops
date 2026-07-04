@@ -1,5 +1,5 @@
 ---
-title: "Tasks: Red-Team Probe Gate [system-spec-kit/028-memory-search-intelligence/001-speckit-memory/006-redteam-probe-gate/tasks]"
+title: "Tasks: Red-Team Probe Gate [system-speckit/028-memory-search-intelligence/001-speckit-memory/006-redteam-probe-gate/tasks]"
 description: "Task Format: T### [P?] Description (file path). All tasks PENDING, neither candidate shipped in the Wave-0 030 record."
 trigger_phrases:
   - "red-team probe gate tasks"
@@ -10,8 +10,8 @@ importance_tier: "important"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/028-memory-search-intelligence/001-speckit-memory/006-redteam-probe-gate"
-    last_updated_at: "2026-06-19T07:40:00Z"
+    packet_pointer: "system-speckit/028-memory-search-intelligence/001-speckit-memory/006-redteam-probe-gate"
+    last_updated_at: "2026-07-04T17:51:05.982Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "Authored Level 2 task breakdown for the red-team probe gate"
     next_safe_action: "Operator review before any gate implementation"
@@ -89,7 +89,7 @@ template_source_hint: "<!-- SPECKIT_TEMPLATE_SOURCE: spec-core + level2-verify |
 - [x] T013 Run the gate as one group. Confirm zero-success ceiling fails on any probe success and the structured report names the broken seam
 - [x] T014 Confirm both recall shapes (full + compact) and the negative control pass, REQ-009
 - [x] T015 `tsc`/build green + existing suite green vs the pre-gate baseline (capture baseline first), SC-004, REQ-010
-- [x] T016 `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-spec-kit/028-memory-search-intelligence/001-speckit-memory/006-redteam-probe-gate --strict` green
+- [x] T016 `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-speckit/028-memory-search-intelligence/001-speckit-memory/006-redteam-probe-gate --strict` green
 - [ ] T017 Adversarial review of the gate (independent seat tries to find a probe-bypass or a false-green), left pending: no separate reviewer seat was run
 
 <!-- /ANCHOR:phase-3 -->

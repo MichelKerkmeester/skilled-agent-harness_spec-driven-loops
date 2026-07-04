@@ -10,8 +10,8 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/028-memory-search-intelligence/001-speckit-memory/009-derived-id-provenance"
-    last_updated_at: "2026-06-19T15:50:18Z"
+    packet_pointer: "system-speckit/028-memory-search-intelligence/001-speckit-memory/009-derived-id-provenance"
+    last_updated_at: "2026-07-04T17:51:03.790Z"
     last_updated_by: "codex"
     recent_action: "Implemented the C4-B plan as v40 with focused tests"
     next_safe_action: "Keep only benchmark-cost measurement pending until a measured run exists"

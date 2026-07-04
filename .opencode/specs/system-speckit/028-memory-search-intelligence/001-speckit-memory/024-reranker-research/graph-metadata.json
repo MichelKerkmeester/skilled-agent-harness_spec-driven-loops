@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/028-memory-search-intelligence/001-speckit-memory/024-reranker-research",
-  "spec_folder": "system-spec-kit/028-memory-search-intelligence/001-speckit-memory/024-reranker-research",
-  "parent_id": "system-spec-kit/028-memory-search-intelligence/001-speckit-memory",
+  "packet_id": "system-speckit/028-memory-search-intelligence/001-speckit-memory/024-reranker-research",
+  "spec_folder": "system-speckit/028-memory-search-intelligence/001-speckit-memory/024-reranker-research",
+  "parent_id": "system-speckit/028-memory-search-intelligence/001-speckit-memory",
   "children_ids": [],
   "migrated": true,
   "migration_source": "legacy",
@@ -47,8 +47,8 @@
       "plan.md",
       "tasks.md",
       "checklist.md",
-      "implementation-summary.md",
       "research.md",
+      "implementation-summary.md",
       ".opencode/skills/sk-doc/references/global/hvr_rules.md"
     ],
     "entities": [
@@ -77,15 +77,15 @@
         "source": "derived"
       },
       {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
         "name": "research.md",
         "kind": "doc",
         "path": "research.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -199,7 +199,7 @@
     ],
     "causal_summary": "The new-feature arc closed with a hard architectural finding",
     "created_at": "2026-06-21T00:00:00Z",
-    "last_save_at": "2026-06-23T03:49:58.321Z",
+    "last_save_at": "2026-07-04T17:51:00.741Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,14 +210,14 @@
       "implementation-summary.md",
       "research.md"
     ],
-    "source_fingerprint": "sha256:23bb5a753542c70f2c698d8932f81e6e3ca9583fd202d7e204d8497331a48032",
+    "source_fingerprint": "sha256:8515be63457ba7d36cec83856f62bff877e22a205985fa7309a3232263703ef0",
     "source_doc_hashes": {
-      "spec.md": "d29cde52334af06ff87699f9ae6f09ed77307674022ba2072b60decb22d6526d",
-      "plan.md": "3d407a21e05a67459b16245096055a79e9c19773ee4dbe1ae0cfa41a6c80076e",
-      "tasks.md": "0f379cea0901e92e52c871bf500240a86a010ae91e2f3f7e18e80abb7275a28d",
-      "checklist.md": "5ba3cc3cba4c68584c8d09f51560fe60d3af76b50b0dd279bf2ee80791273fc6",
-      "implementation-summary.md": "8e7f07d01597eb8e369bb6a8a8fecfd7208b8f9f4417a1673978456452d3e412",
-      "research.md": "88b69f614279502e4422dcb94d74bef84df290c0b6504e948bee074839082767"
+      "spec.md": "0337fe44939a96948148d84e033352cdb41b43202852ee84a33381de117f8af8",
+      "plan.md": "db44ae78806ca44097a6e3c24d2839c7264d074279f75bc664028ca787175568",
+      "tasks.md": "fd319ba9ce906a560467e1c6005c04ad34f67a0858fb4e9c0b2dd5de6f28d5d7",
+      "checklist.md": "295be4cf0a402e7d04b9e808772893139f1d4d252f6b7d160865f3221a9499d3",
+      "implementation-summary.md": "afe995ac4becd463cf4f328fcac5d1a2acfac6319eef499077a06f7074403839",
+      "research.md": "f7b4acb922c7e2db5c495d2874ec77807976c757e796ec2c09ac5bdb51eaf900"
     },
     "last_active_child_id": null,
     "last_active_at": null

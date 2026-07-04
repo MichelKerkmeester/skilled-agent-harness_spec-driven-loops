@@ -11,8 +11,8 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/028-memory-search-intelligence/001-speckit-memory/009-derived-id-provenance"
-    last_updated_at: "2026-06-19T15:44:13Z"
+    packet_pointer: "system-speckit/028-memory-search-intelligence/001-speckit-memory/009-derived-id-provenance"
+    last_updated_at: "2026-07-04T17:51:03.790Z"
     last_updated_by: "codex"
     recent_action: "Implemented C4-B derived-id provenance with default-off flag and v40 migration"
     next_safe_action: "Keep benchmark-only performance promotion pending until a measured run exists"
@@ -23,8 +23,8 @@ _memory:
       - "tasks.md"
       - "checklist.md"
       - "decision-record.md"
-      - ".opencode/specs/system-spec-kit/028-memory-search-intelligence/001-speckit-memory/research/research.md"
-      - ".opencode/specs/system-spec-kit/028-memory-search-intelligence/research/synthesis/01-go-candidates.md"
+      - ".opencode/specs/system-speckit/028-memory-search-intelligence/001-speckit-memory/research/research.md"
+      - ".opencode/specs/system-speckit/028-memory-search-intelligence/research/synthesis/01-go-candidates.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-06-19-c4b-replan"
@@ -63,7 +63,7 @@ Derived memory artifacts, starting with generated causal edges, currently have n
 | **Candidate** | C4-B (content-addressed `derived_id`) |
 | **Wave** | Wave-2 (schema-migration / SCHEMA_VERSION bump / gated) |
 | **Source research** | `../research/research.md` + `../../research/synthesis/01-go-candidates.md` §Wave-2 + `../../research/synthesis/04-sibling-and-cross-cutting.md` §C4-B + `../../research/roadmap.md` §1 + §027-REVISIT edit #1/#4b |
-| **Parent phase** | `system-spec-kit/028-memory-search-intelligence/001-speckit-memory` (Memory MCP, PRIMARY) |
+| **Parent phase** | `system-speckit/028-memory-search-intelligence/001-speckit-memory` (Memory MCP, PRIMARY) |
 <!-- /ANCHOR:metadata -->
 
 ---

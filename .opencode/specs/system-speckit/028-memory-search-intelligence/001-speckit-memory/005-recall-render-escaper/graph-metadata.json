@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/028-memory-search-intelligence/001-speckit-memory/005-recall-render-escaper",
-  "spec_folder": "system-spec-kit/028-memory-search-intelligence/001-speckit-memory/005-recall-render-escaper",
-  "parent_id": "system-spec-kit/028-memory-search-intelligence/001-speckit-memory",
+  "packet_id": "system-speckit/028-memory-search-intelligence/001-speckit-memory/005-recall-render-escaper",
+  "spec_folder": "system-speckit/028-memory-search-intelligence/001-speckit-memory/005-recall-render-escaper",
+  "parent_id": "system-speckit/028-memory-search-intelligence/001-speckit-memory",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -41,6 +41,10 @@
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
       "formatters/search-results.ts",
       "tests/injection-marker-capture.vitest.ts",
       "mcp_server/lib/context/shared-payload.ts",
@@ -56,13 +60,33 @@
       "tests/redaction-gate.vitest.ts",
       "tests/memory-crud-update-constitutional-guard.vitest.ts",
       "mcp_server/lib/governance/memory-retention-sweep.ts",
-      "tests/memory-retention-sweep.vitest.ts",
-      "plan.md",
-      "tasks.md",
-      "checklist.md",
-      "implementation-summary.md"
+      "tests/memory-retention-sweep.vitest.ts"
     ],
     "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
       {
         "name": "search-results.ts",
         "kind": "code",
@@ -142,30 +166,6 @@
         "source": "derived"
       },
       {
-        "name": "plan.md",
-        "kind": "doc",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "tasks.md",
-        "kind": "doc",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
         "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -210,7 +210,7 @@
     ],
     "causal_summary": "The Memory MCP captures arbitrary content via `memorysave` and later renders recalled bodies directly into the consuming agent's prompt loop, with no untrusted-content boundary at either end",
     "created_at": "2026-06-19T05:40:47.073Z",
-    "last_save_at": "2026-06-23T03:49:58.170Z",
+    "last_save_at": "2026-07-04T17:50:59.324Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -220,13 +220,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:2cadd7b4bb1bf2e7eb840daf1fd8e65e0b0f8db5daa618895e859b4fcabaf671",
+    "source_fingerprint": "sha256:4b8965eed2d5659860a6c039e0832dfd28774b1f6a1ded4ec0707d6fa385283a",
     "source_doc_hashes": {
-      "spec.md": "ee881268e05e6887027f50bb299b3417dabe0518c4360598284929206af4fe29",
-      "plan.md": "764365ea8d93394864dcd637470c2b8077002a5724f715f0980efac0ddecfdbe",
-      "tasks.md": "7a32329aa62cbb3e2a7285e433bacd615d3c9491aca94a5b59d856e549474f04",
-      "checklist.md": "eedf843f7e7dc05b8ecb704c866b1f3e52562870ed1ee3abe7e165e92cf03012",
-      "implementation-summary.md": "17977b025d9581d5366b3de6a13f0e22f01a839aec9dd8f376ffb2fa7ee7f6d5"
+      "spec.md": "81f1df652e291ecc39229fb77131d894e5940a7b4e1364f10d212aa30ba58d52",
+      "plan.md": "7912b3e1461cd218cbabb479bb2acbb65b45bbe9feb388855233e4b52786011a",
+      "tasks.md": "e3a6df77420df0cd963a3f72460c716fbc1658e560de69723347c2bc92deb6e3",
+      "checklist.md": "e8d9157f1bf45ab9716c84893c1c072fa0513c2c5b9a935312f80bfc749f254b",
+      "implementation-summary.md": "d6e130a017d11e81b939c1b793ef59bb1801ad38b0d44884a66e2981ca0a775e"
     },
     "last_active_child_id": null,
     "last_active_at": null

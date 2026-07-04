@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/028-memory-search-intelligence/001-speckit-memory/013-enrichment-observability",
-  "spec_folder": "system-spec-kit/028-memory-search-intelligence/001-speckit-memory/013-enrichment-observability",
-  "parent_id": "system-spec-kit/028-memory-search-intelligence/001-speckit-memory",
+  "packet_id": "system-speckit/028-memory-search-intelligence/001-speckit-memory/013-enrichment-observability",
+  "spec_folder": "system-speckit/028-memory-search-intelligence/001-speckit-memory/013-enrichment-observability",
+  "parent_id": "system-speckit/028-memory-search-intelligence/001-speckit-memory",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -41,17 +41,35 @@
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
       ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts",
       ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts",
       ".opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-health-edge.vitest.ts",
       "handlers/memory-crud-health.ts",
-      "plan.md",
-      "tasks.md",
-      "spec.md",
       "handlers/memory-save.ts",
       "implementation-summary.md"
     ],
     "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
       {
         "name": "memory-save.ts",
         "kind": "code",
@@ -68,24 +86,6 @@
         "name": "handler-memory-health-edge.vitest.ts",
         "kind": "test",
         "path": ".opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-health-edge.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "plan.md",
-        "kind": "doc",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "tasks.md",
-        "kind": "doc",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "spec.md",
-        "kind": "doc",
-        "path": "spec.md",
         "source": "derived"
       },
       {
@@ -199,7 +199,7 @@
     ],
     "causal_summary": "The Memory MCP splits the write path from background post-insert enrichment: a row commits immediately marked enrichment-pending, then an async, concurrency-capped scheduler runs the actual entity/graph enrichment later [CONFIRMED: `handlers/memory-save.ts:2934-2987`, `lib/search/vector-index-schema.ts:1884-1885`, `postinsertenrichmentstatus TEXT NOT NULL DEFAULT 'complete'`]",
     "created_at": "2026-06-19T05:40:37.448Z",
-    "last_save_at": "2026-06-23T03:49:58.237Z",
+    "last_save_at": "2026-07-04T17:51:05.281Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,12 +208,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:066efb8f76d90c4a98ed37aa5eda2cfd4910330b6a0522475ba48f68028e42bf",
+    "source_fingerprint": "sha256:7f02998b60ef598708f139a85128f9188f3bd9908e24ad6220458ee5296d22b4",
     "source_doc_hashes": {
-      "spec.md": "46a2d3f86e1a9d41193d69b21c8009adeb15e8484ef360c0e156d0103e81e5b9",
-      "plan.md": "1fc3d370405488abcb7e579bdb98ba89754391784745eddb896dd5fcd96db0ab",
-      "tasks.md": "4a633b7beeadfb846b7ff6d2527ab9ca401ac34f89f250e41cc935ee00018e54",
-      "implementation-summary.md": "4bb345a3d0dcb64df504fd92e3e6623ca8335691c02eb0886b7e390805aba935"
+      "spec.md": "374cda8a2b46c8f746e8582581361be557479bf0a4bd29571f02044099cbdb6f",
+      "plan.md": "5dfb570886b1bc6f96e78bda6fd53cb3971cf5dc46bca83dcf0cdaaa25a9b665",
+      "tasks.md": "f3529a68dde7e12a99c88cd226cc99175705262759b63d98ace306975b8c18f8",
+      "implementation-summary.md": "2acb7b101e10af4e73d4f4c26c768bf23db2034c0d9cbe96bf1b1b830e3ddaaf"
     },
     "last_active_child_id": null,
     "last_active_at": null

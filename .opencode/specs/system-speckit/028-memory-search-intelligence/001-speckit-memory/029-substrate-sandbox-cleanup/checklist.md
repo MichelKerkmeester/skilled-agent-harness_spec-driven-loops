@@ -11,8 +11,8 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/028-memory-search-intelligence/001-speckit-memory/029-substrate-sandbox-cleanup"
-    last_updated_at: "2026-06-23T00:00:00Z"
+    packet_pointer: "system-speckit/028-memory-search-intelligence/001-speckit-memory/029-substrate-sandbox-cleanup"
+    last_updated_at: "2026-07-04T17:50:58.595Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "Verified all P0/P1 checklist items against the shipped implementation"
     next_safe_action: "Revert the two files if a future run needs the persisted sandbox evidence"

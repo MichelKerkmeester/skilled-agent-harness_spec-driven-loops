@@ -9,7 +9,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/028-memory-search-intelligence/008-retrieval-evaluation"
+    packet_pointer: "system-speckit/028-memory-search-intelligence/008-retrieval-evaluation"
     last_updated_at: "2026-06-17T14:00:00Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "CLOSED at 12/20 (saturation); synthesis/08 + 00-index written"

@@ -9,8 +9,8 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/028-memory-search-intelligence/001-speckit-memory/012-procedural-reliability-benchmark"
-    last_updated_at: "2026-06-19T00:00:00Z"
+    packet_pointer: "system-speckit/028-memory-search-intelligence/001-speckit-memory/012-procedural-reliability-benchmark"
+    last_updated_at: "2026-07-04T17:51:04.560Z"
     last_updated_by: "codex"
     recent_action: "Implemented default-off outcome bridge, Beta primitive and recall plumbing"
     next_safe_action: "Run the benefit micro-benchmark before promoting the reliability-recall candidate"

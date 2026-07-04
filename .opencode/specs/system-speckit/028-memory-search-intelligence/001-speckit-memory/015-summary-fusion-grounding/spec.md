@@ -11,8 +11,8 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/028-memory-search-intelligence/001-speckit-memory/015-summary-fusion-grounding"
-    last_updated_at: "2026-06-19T14:45:00+02:00"
+    packet_pointer: "system-speckit/028-memory-search-intelligence/001-speckit-memory/015-summary-fusion-grounding"
+    last_updated_at: "2026-07-04T17:51:04.196Z"
     last_updated_by: "codex-gpt-5"
     recent_action: "Implemented shadow-gated lane/prelude"
     next_safe_action: "Run the broad verification suite, then capture benchmark deltas before any promotion."
@@ -54,7 +54,7 @@ _memory:
 | **Created** | 2026-06-19 |
 | **Branch** | `system-speckit/027-xce-research-based-refinement` |
 | **Parent Spec** | `../spec.md` (028 / 001-speckit-memory research phase) |
-| **Parent Packet** | system-spec-kit/028-memory-search-intelligence |
+| **Parent Packet** | system-speckit/028-memory-search-intelligence |
 | **Wave** | Wave-2 (intelligence-class, shadow-gated, needs baseline-and-delta) |
 | **Candidates** | `MEM-fused-summary-channel`, `CG-global-context-summary-hierarchy` |
 <!-- /ANCHOR:metadata -->
@@ -137,7 +137,7 @@ Make the already-built summary/community evidence a first-class weighted RRF lan
 | `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts` | Modify | Prepend the coarse-to-fine world-summary grounding prelude before retrieved context. |
 | `.opencode/skills/system-spec-kit/mcp_server/lib/search/search-flags.ts` | Modify | Add default-off shadow flags for the fused lane and the grounding prelude. |
 | `.opencode/skills/system-spec-kit/mcp_server/tests/**` | Create | Lane-fusion, double-count-avoidance, weight-wiring and prelude tests (temp/in-memory fixtures only). |
-| `.opencode/specs/system-spec-kit/028-memory-search-intelligence/001-speckit-memory/015-summary-fusion-grounding/*` | Create | This phase's documentation. |
+| `.opencode/specs/system-speckit/028-memory-search-intelligence/001-speckit-memory/015-summary-fusion-grounding/*` | Create | This phase's documentation. |
 <!-- /ANCHOR:scope -->
 
 ---

@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/028-memory-search-intelligence/001-speckit-memory/030-opencode-temp-worker-reaping",
-  "spec_folder": "system-spec-kit/028-memory-search-intelligence/001-speckit-memory/030-opencode-temp-worker-reaping",
-  "parent_id": null,
+  "packet_id": "system-speckit/028-memory-search-intelligence/001-speckit-memory/030-opencode-temp-worker-reaping",
+  "spec_folder": "system-speckit/028-memory-search-intelligence/001-speckit-memory/030-opencode-temp-worker-reaping",
+  "parent_id": "system-speckit/028-memory-search-intelligence/001-speckit-memory",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -10,19 +10,192 @@
     "related_to": []
   },
   "derived": {
-    "trigger_phrases": [],
-    "key_topics": [],
-    "importance_tier": "important",
+    "trigger_phrases": [
+      "opencode temp worker reaping",
+      "session process cleanup",
+      "orphan worker reaping",
+      "vitest runaway prevention",
+      "mcp helper lifecycle",
+      "implementation",
+      "plan",
+      "name",
+      "template",
+      "plan core",
+      "tasks",
+      "tasks core"
+    ],
+    "key_topics": [
+      "opencode",
+      "temp",
+      "worker",
+      "reaping",
+      "session",
+      "process",
+      "cleanup",
+      "orphan",
+      "vitest",
+      "runaway",
+      "prevention",
+      "mcp"
+    ],
+    "importance_tier": "normal",
     "status": "planned",
     "key_files": [
       "spec.md",
+      "implementation-summary.md",
+      ".opencode/scripts/session-cleanup.sh",
       "plan.md",
       "tasks.md"
     ],
-    "entities": [],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "session-cleanup.sh",
+        "kind": "script",
+        "path": ".opencode/scripts/session-cleanup.sh",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Temp Worker Reaping",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Vitest Runaway Prevention",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Clean Architecture",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Current Role",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 3: Verification",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
     "causal_summary": "OpenCode sessions that spawn parallel detached workers or MCP helpers leave orphan processes when the parent exits ungracefully",
     "created_at": "2026-06-30T07:44:28Z",
-    "last_save_at": "2026-06-30T07:44:28Z",
+    "last_save_at": "2026-07-04T17:51:05.616Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -31,12 +204,14 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:9a65d5e677ec1067830d8d3e633a2b462c12c41a5840b74da757f802eec8529c",
+    "source_fingerprint": "sha256:cc2e0edb890bb316e8ca743d3fe8ab54b45a3cf595a7ec03c533f9401b213006",
     "source_doc_hashes": {
-      "spec.md": "f9991c76638892b76f3de625b7c4a7b790168bff86d29978b28341c36e8e0c2f",
+      "spec.md": "369edc5fee617f27681c41d1b8e764352d873630130e101224cd941e3737abe2",
       "plan.md": "90eec89c212803d3131cbc04b282ef4380e0dab6acd7d5bbc539c0cf161ff06a",
       "tasks.md": "0f5341f62ed1158d3f25614b3bcae00dd87e7ff28510f06f299557facb93d5a4",
-      "implementation-summary.md": "2476348dfc17181be28781ea1863b107be8de9b05a329ed3f938630b18e7033c"
-    }
+      "implementation-summary.md": "ebc05bbac9b6b16edab0393debac55152cafa4fd80cc4813e844b50e3f57b845"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
   }
 }

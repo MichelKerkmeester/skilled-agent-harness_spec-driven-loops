@@ -9,8 +9,8 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/028-memory-search-intelligence/001-speckit-memory/004-graceful-degradation"
-    last_updated_at: "2026-06-19T00:00:00Z"
+    packet_pointer: "system-speckit/028-memory-search-intelligence/001-speckit-memory/004-graceful-degradation"
+    last_updated_at: "2026-07-04T17:50:57.895Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "Author C9 impl plan (DONE-record for 030 484b77b589)"
     next_safe_action: "None. C9 shipped"

@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/028-memory-search-intelligence/001-speckit-memory/003-retrieval-class-routing",
-  "spec_folder": "system-spec-kit/028-memory-search-intelligence/001-speckit-memory/003-retrieval-class-routing",
-  "parent_id": "system-spec-kit/028-memory-search-intelligence/001-speckit-memory",
+  "packet_id": "system-speckit/028-memory-search-intelligence/001-speckit-memory/003-retrieval-class-routing",
+  "spec_folder": "system-speckit/028-memory-search-intelligence/001-speckit-memory/003-retrieval-class-routing",
+  "parent_id": "system-speckit/028-memory-search-intelligence/001-speckit-memory",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -41,6 +41,10 @@
     "importance_tier": "important",
     "status": "in_progress",
     "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
       "mcp_server/lib/search/retrieval-class-classifier.ts",
       "mcp_server/lib/search/query-router.ts",
       "shared/algorithms/rrf-fusion.ts",
@@ -52,15 +56,35 @@
       "mcp_server/lib/cognitive/pressure-monitor.ts",
       "mcp_server/handlers/chunking-orchestrator.ts",
       "mcp_server/lib/search/artifact-routing.ts",
-      "plan.md",
-      "tasks.md",
-      "checklist.md",
       "tests/query-router.vitest.ts",
-      "spec.md",
       "decision-record.md",
       "implementation-summary.md"
     ],
     "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
       {
         "name": "retrieval-class-classifier.ts",
         "kind": "code",
@@ -116,33 +140,9 @@
         "source": "derived"
       },
       {
-        "name": "plan.md",
-        "kind": "doc",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "tasks.md",
-        "kind": "doc",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
         "name": "query-router.vitest.ts",
         "kind": "test",
         "path": "tests/query-router.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "spec.md",
-        "kind": "doc",
-        "path": "spec.md",
         "source": "derived"
       },
       {
@@ -208,7 +208,7 @@
     ],
     "causal_summary": "The Memory MCP query router (`mcpserver/lib/search/query-router.ts`) fuses exactly two orthogonal classifiers into `RouteResult`, complexity tier (`simple|moderate|complex`) and task intent (`addfeature|fixbug|findspec|…`), and neither is a retrieval-shape classifier [CONFIRMED: `query-router.ts:46-52`, `RouteResult` has `tier`/`channels`/`classification`, no `retrievalClass`]",
     "created_at": "2026-06-19T05:47:05.552Z",
-    "last_save_at": "2026-06-23T03:49:58.154Z",
+    "last_save_at": "2026-07-04T17:50:58.974Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -219,14 +219,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:e46d0cf2809eb5a098a8de039b1ac16282ea02ed1b9f06c4b5ad1a77da9def2f",
+    "source_fingerprint": "sha256:88fe6aae53174dd751c3b70493d32b3b446e0d10e87f9e27932954d75bbe5a77",
     "source_doc_hashes": {
-      "spec.md": "dee87446fa496b23fca6e7445ec3102fcb47d403b6d63d13155d002026983e63",
-      "plan.md": "02997e3e0686c52628a605e584f5246c6beb484538f952754a2c15a488c76c2b",
-      "tasks.md": "d4a697cd9e480d5e4082b9a984e43ee07092a364197632bd872fc4fd712a152b",
-      "checklist.md": "986f675fa60cc9a3f599d1a07aa52a899e4506944ed3fd6033a05fa52c02bb9e",
-      "decision-record.md": "b1d19330fb1ba8a02579998682892f8acaeb31dbabcff7fc7dd76aaed7dc2ad8",
-      "implementation-summary.md": "00276ad42c0d76f45c06a128546e9d46439992dd973b5212b6d378bbca643dc9"
+      "spec.md": "9e32f07e0b3058e0e39346eda99cd01d5d63ae897d635b600b50fe5ddbbdc937",
+      "plan.md": "2223b146507e05540a961ebb6de199bf0d2158699c2af425b79fad0da265072b",
+      "tasks.md": "1725fec05a61bc6263a01758da236cedf4bf2ff3b055322a32abc7fc86f527ba",
+      "checklist.md": "e4b2fb6bb2361d169d19da3ab7ec0f316e15c78380318d2a46fac83405e09bd8",
+      "decision-record.md": "8af336d1bd8440f1febb89267a9890ce302e428b68a943030cc8cd347f591602",
+      "implementation-summary.md": "8594fcd7564f910bd61028254cf61da72580171904d31a750cd210e3a3bc46d6"
     },
     "last_active_child_id": null,
     "last_active_at": null

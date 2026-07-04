@@ -11,8 +11,8 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/028-memory-search-intelligence/001-speckit-memory/004-graceful-degradation"
-    last_updated_at: "2026-06-19T00:00:00Z"
+    packet_pointer: "system-speckit/028-memory-search-intelligence/001-speckit-memory/004-graceful-degradation"
+    last_updated_at: "2026-07-04T17:50:57.895Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "Author C9 impl sub-phase spec (DONE-record for 030 484b77b589)"
     next_safe_action: "None. C9 shipped and record tracks done-state in 028 impl tree"
@@ -46,7 +46,7 @@ _memory:
 | **Status** | Complete |
 | **Created** | 2026-06-19 |
 | **Branch** | `system-speckit/027-xce-research-based-refinement` |
-| **Parent Packet** | system-spec-kit/028-memory-search-intelligence/001-speckit-memory |
+| **Parent Packet** | system-speckit/028-memory-search-intelligence/001-speckit-memory |
 | **Candidates** | C9 |
 | **Shipped In** | 030 commit `484b77b589` (Wave-0 record) |
 <!-- /ANCHOR:metadata -->

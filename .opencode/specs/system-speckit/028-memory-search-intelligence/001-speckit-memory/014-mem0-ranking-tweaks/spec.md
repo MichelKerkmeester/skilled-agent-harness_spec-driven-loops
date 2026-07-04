@@ -11,8 +11,8 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/028-memory-search-intelligence/001-speckit-memory/014-mem0-ranking-tweaks"
-    last_updated_at: "2026-06-19T00:00:00Z"
+    packet_pointer: "system-speckit/028-memory-search-intelligence/001-speckit-memory/014-mem0-ranking-tweaks"
+    last_updated_at: "2026-07-04T17:51:00.375Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "Shipped 4 candidates always-on + 2 default-off, closed 8 NO-TRANSFER"
     next_safe_action: "Run gate-zero corpus reindex"
@@ -51,7 +51,7 @@ _memory:
 | **Status detail** | Candidates 4 + 2 shipped, candidate 8 resolved NO-TRANSFER, candidates 1, 3, 5, 6, 7 PENDING on their gates |
 | **Created** | 2026-06-19 |
 | **Branch** | `system-speckit/027-xce-research-based-refinement` |
-| **Parent Packet** | `system-spec-kit/028-memory-search-intelligence/001-speckit-memory` (Memory MCP research phase, PRIMARY) |
+| **Parent Packet** | `system-speckit/028-memory-search-intelligence/001-speckit-memory` (Memory MCP research phase, PRIMARY) |
 | **Source research** | `../research/research.md`, `../research/external-memory-systems/{research.md,iterations,deltas}`, `../../research/synthesis/06-memory-systems-findings.md`, `../../research/roadmap.md` (MEMORY-SYSTEMS addendum) |
 | **Wave-0 done-record** | Wave-0 record, this bundle is **entirely absent** from it |
 <!-- /ANCHOR:metadata -->

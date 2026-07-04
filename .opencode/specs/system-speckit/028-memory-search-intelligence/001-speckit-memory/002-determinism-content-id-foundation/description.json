@@ -1,6 +1,6 @@
 {
-  "specFolder": "system-spec-kit/028-memory-search-intelligence/001-speckit-memory/002-determinism-content-id-foundation",
-  "description": "The Memory MCP fuses ranked signals and renders a result set the downstream agent loop caches against, but its ordering is not reproducible: the candi",
+  "specFolder": "system-speckit/028-memory-search-intelligence/001-speckit-memory/002-determinism-content-id-foundation",
+  "description": "The Memory MCP fuses ranked signals and renders a result set the downstream agent loop caches against, but its ordering is not reproducible: the",
   "keywords": [
     "memory",
     "mcp",
@@ -16,14 +16,13 @@
     "caches",
     "against",
     "ordering",
-    "reproducible",
-    "candi"
+    "reproducible"
   ],
-  "lastUpdated": "2026-06-23T03:49:58.150Z",
+  "lastUpdated": "2026-07-04T17:51:02.066Z",
   "specId": "002",
   "folderSlug": "determinism-content-id-foundation",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "028-memory-search-intelligence",
     "001-speckit-memory"
   ],

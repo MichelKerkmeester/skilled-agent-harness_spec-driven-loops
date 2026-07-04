@@ -10,8 +10,8 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/028-memory-search-intelligence/001-speckit-memory/009-derived-id-provenance"
-    last_updated_at: "2026-06-19T15:47:19Z"
+    packet_pointer: "system-speckit/028-memory-search-intelligence/001-speckit-memory/009-derived-id-provenance"
+    last_updated_at: "2026-07-04T17:51:03.790Z"
     last_updated_by: "codex"
     recent_action: "Accepted the derived-id recipe and recorded the delivered v40 schema shape"
     next_safe_action: "Keep the benchmark-only insert-cost candidate pending until measured"

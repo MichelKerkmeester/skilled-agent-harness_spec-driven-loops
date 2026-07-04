@@ -10,8 +10,8 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/028-memory-search-intelligence/001-speckit-memory/023-new-feature-research-build"
-    last_updated_at: "2026-06-20T00:00:00Z"
+    packet_pointer: "system-speckit/028-memory-search-intelligence/001-speckit-memory/023-new-feature-research-build"
+    last_updated_at: "2026-07-04T17:51:04.915Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "Created the new-feature phase folder, eval-v2 kept and 3 features held"
     next_safe_action: "Use this phase as the authoritative TRACK B new-feature outcome for 028"
@@ -48,7 +48,7 @@ _memory:
 | **Status** | Complete |
 | **Created** | 2026-06-20 |
 | **Parent Spec** | ../spec.md |
-| **Parent Packet** | `system-spec-kit/028-memory-search-intelligence` |
+| **Parent Packet** | `system-speckit/028-memory-search-intelligence` |
 | **Phase** | 008 of 008 |
 | **Predecessor** | ../007-kept-off-flag-resolution/spec.md |
 | **Source decisions** | `../benchmark-status.md`, `../feature-flags.md`, `../before-vs-after.md` |
@@ -133,7 +133,7 @@ Record the research-to-eval-v2-to-build-to-benchmark-to-fresh-Opus-hold arc for 
 - The three built features are each recorded HELD default-off with a prod-mode number and a next step.
 - The append-not-displace truncation finding is documented prominently as the reason tail-additive recall is zero at prod K.
 - The root child map, the feature-flags doc, the 001-speckit-memory changelog and the timeline agree with this outcome.
-- `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-spec-kit/028-memory-search-intelligence --strict` exits 0.
+- `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-speckit/028-memory-search-intelligence --strict` exits 0.
 <!-- /ANCHOR:success-criteria -->
 
 ---

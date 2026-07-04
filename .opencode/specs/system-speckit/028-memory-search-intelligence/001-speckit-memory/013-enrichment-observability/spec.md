@@ -11,8 +11,8 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/028-memory-search-intelligence/001-speckit-memory/013-enrichment-observability"
-    last_updated_at: "2026-06-19T08:41:16Z"
+    packet_pointer: "system-speckit/028-memory-search-intelligence/001-speckit-memory/013-enrichment-observability"
+    last_updated_at: "2026-07-04T17:51:05.281Z"
     last_updated_by: "codex-gpt-5"
     recent_action: "Implemented gauge-lag health observability"
     next_safe_action: "Run packet validation and hand back verification evidence"
@@ -49,7 +49,7 @@ _memory:
 | **Status** | Complete |
 | **Created** | 2026-06-19 |
 | **Branch** | `system-speckit/027-xce-research-based-refinement` |
-| **Parent Packet** | system-spec-kit/028-memory-search-intelligence/001-speckit-memory |
+| **Parent Packet** | system-speckit/028-memory-search-intelligence/001-speckit-memory |
 | **Subsystem** | Spec-Kit Memory MCP (PRIMARY) |
 | **Source research** | `../research/research.md`, `../../research/roadmap.md`, `../../research/synthesis/01-go-candidates.md` |
 | **Shipped record** | Wave-0 record |

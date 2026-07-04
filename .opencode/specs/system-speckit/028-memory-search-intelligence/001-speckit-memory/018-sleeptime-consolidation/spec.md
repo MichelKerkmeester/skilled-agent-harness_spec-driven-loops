@@ -11,8 +11,8 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/028-memory-search-intelligence/001-speckit-memory/018-sleeptime-consolidation"
-    last_updated_at: "2026-06-19T00:00:00Z"
+    packet_pointer: "system-speckit/028-memory-search-intelligence/001-speckit-memory/018-sleeptime-consolidation"
+    last_updated_at: "2026-07-04T17:51:07.543Z"
     last_updated_by: "codex"
     recent_action: "Implemented default-off sleeptime governor and shadow agent scaffold"
     next_safe_action: "Wire cadence/dispatch only after sibling 010 lands the clock/cursor gate"
@@ -59,7 +59,7 @@ The Spec-Kit Memory MCP reorganizes memory **synchronously, on-save**, `handlers
 | **Status** | in_progress |
 | **Created** | 2026-06-19 |
 | **Branch** | `system-speckit/027-xce-research-based-refinement` |
-| **Parent Packet** | system-spec-kit/028-memory-search-intelligence/001-speckit-memory |
+| **Parent Packet** | system-speckit/028-memory-search-intelligence/001-speckit-memory |
 | **Wave** | Wave-2 (prove-first, intelligence-class shadow-gated) |
 | **Candidate** | async-sleeptime-consolidation (`LT-bg-sleeptime-agent` + `LT-turn-cadence-trigger` + `LT-llm-transcript-chunking`, `LT-tool-rule-memory-chain` governor) |
 <!-- /ANCHOR:metadata -->
