@@ -127,6 +127,16 @@ describe('verify-iteration leaf-reliability check', () => {
     expect(r.reason).toBe(REASONS.DELTA_FILE_MISSING);
   });
 
+  it('uses the latest record when an append-only redispatch added a corrected one', () => {
+    writeComplete(dir, 1);
+    // A bad record first (route-proof mismatch), then the corrected retry record.
+    const bad = reviewRecord(1, { target_agent: 'general' });
+    const good = reviewRecord(1);
+    fs.writeFileSync(path.join(dir, 'deep-review-state.jsonl'), `${JSON.stringify(bad)}\n${JSON.stringify(good)}\n`);
+    const r = verify('review', dir, 1);
+    expect(r.ok).toBe(true);
+  });
+
   it('skips malformed JSONL lines without crashing', () => {
     writeComplete(dir, 1);
     fs.appendFileSync(path.join(dir, 'deep-review-state.jsonl'), 'not json at all\n');

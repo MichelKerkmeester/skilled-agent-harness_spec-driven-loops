@@ -143,8 +143,11 @@ function verify(loopType, artifactDir, iteration) {
   const stateRecords = readJsonlRecords(path.join(artifactDir, stateLogName));
   // Review/research key the iteration number as `iteration`; context keys it as `run`.
   // Match either so one shim covers all three modes (a non-numeric run-id yields NaN
-  // and never false-matches).
-  const iterationRecord = (stateRecords || []).find(
+  // and never false-matches). Take the LAST matching record, not the first: the state
+  // log is append-only, so a re-dispatched iteration appends a corrected record after
+  // the bad one -- matching the first would keep reporting the stale failure and defeat
+  // the bounded retry. The state reducer applies the same latest-record-wins rule.
+  const iterationRecord = (stateRecords || []).findLast(
     (r) => r && r.type === 'iteration' && (Number(r.iteration) === iteration || Number(r.run) === iteration),
   );
   if (!iterationRecord) {
