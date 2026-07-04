@@ -179,3 +179,34 @@ The second samples (context + council, fix and fallback arms) completed the N≥
 2. **HOLD council at `fallback`** — fix the seat-convergence stall (stepwise per-seat persistence/liveness) before promotion, then bound the fix-arm pass rate at N≥3.
 3. **Context: defer to the concurrent deprecation workstream**, and reconcile the 036 surface with it — the compiler/renderer/drift-guard `deep/context` entries and the compiled context contract reference sources that deprecation deletes; retire them together or the drift guard will hard-fail on missing sources.
 4. The N=1 → N=2 reversal is recorded deliberately: it is the concrete case for keeping the N≥2 gate on flip claims.
+
+---
+
+## Council-stall fix + N=3 re-probe — runner correct but the executor won't invoke it
+
+Follow-up to the N=2 council split. Built the missing mechanical bound (commit `233e6a32f3`, Sonnet-CONFIRMED): `orchestrate-session.cjs` gained a CLI entrypoint + a per-seat subprocess `dispatchSeat` + a runner-owned heartbeat (a `progress_record` appended to `session-state.jsonl` every 45s) that deterministically bounds the 480s watchdog dark window. The heartbeat write is a real fsync'd append under the fixture's `ai-council/` dir; the seat return shape is compatible with `adjudicateRound`; `orchestrateSession` is byte-unchanged.
+
+### N=3 fix re-probe (ACB-005, gpt-fast-med) — with runner-engagement capture
+
+| Run | Classification | `orchestrate-session` invoked | `session_heartbeat` records |
+|---|---|---|---|
+| 1 | `missing_artifact` | 0 | 0 |
+| 2 | `missing_artifact` | 0 | 0 |
+| 3 | `stuck_no_progress` | 0 | 0 |
+
+**0/3 pass — and decisively, the runner was invoked ZERO times in all three runs.** gpt-fast hand-rolled the in-CLI round every time and never ran the `orchestrate-session.cjs` command the auto-YAML wires, so the heartbeat never fired and the dark window was never bounded. Combined with N=2 (fix 1/2), the council fix arm is **1 pass / 5 runs (~20%)**.
+
+### Verdict
+
+The mechanical fix is **correct but ineffective at the executor**. The runner + heartbeat *would* bound the stall if invoked — but a single-turn in-CLI executor decides whether to run the wired command, and gpt-fast chooses to hand-roll instead. This is the same model-followed wall as the leaf-reliability re-dispatch: building and verifying a mechanism does not force a non-cooperating executor to use it. The stall is now precisely a **non-invocation** problem, not a missing-mechanism problem — which is a sharper, more useful diagnosis than the N=2 "stall" label.
+
+### Promotion state (posted)
+
+- **review / research: PROMOTED to `fix`** (validated rounds 1-3; live in `command-injection-rollout.json`).
+- **council: HELD at `fallback`** — 1/5 fix pass, runner never invoked; fails the ≥2/3 gate.
+- **context: deferred** to the concurrent deep-context deprecation.
+
+### Follow-ups (the real council fix is NOT a bigger runner)
+
+1. Forcing the runner requires either a **host-level bang-shell invocation** that owns the loop (beyond the compiled contract's model-followed reach), or a **more capable executor** that follows the wired command — neither is "more directive prose." The committed runner is the right substrate for a capable executor; it is dormant-no-longer but executor-gated.
+2. `seatVerdictFromOutput` flattens `confidence` to `0.0` (extract from seat output or omit the key) — minor, orthogonal to the stall.

@@ -1,0 +1,72 @@
+{
+  "schemaVersion": 1,
+  "scenarioId": "ACB-005",
+  "leg": "gpt-fast-med",
+  "startedAt": "2026-07-04T17:00:03.862Z",
+  "endedAt": "2026-07-04T17:00:31.161Z",
+  "checkpoints": {
+    "tFirstOutputMs": 9843,
+    "tSetupMs": null,
+    "tFirstDispatchMs": null,
+    "tTerminalMs": 27299
+  },
+  "renderedBlock": "{\"type\":\"text\",\"timestamp\":1783184427939,\"sessionID\":\"ses_0d1ed4ce9ffesjli2ZmA3Y42iV\",\"part\":{\"id\":\"prt_f2e1305e800122lmT8zxwD5kBU\",\"messageID\":\"msg_f2e12b679001xxkLf7qidI49Zd\",\"sessionID\":\"ses_0d1ed4ce9ffesjli2ZmA3Y42iV\",\"type\":\"text\",\"text\":\"Before I proceed, I need to ask about documentation:\\n\\nShould I use the existing spec folder `.opencode/specs/deep-loops/033-deep-loop-behavior-benchmarks/` for the council process artifacts, or do you want a different option?\\n\\nOptions: A) Existing, B) New, C) Update related, D) Skip, E) Phase folder.\",\"time\":{\"start\":1783184426472,\"end\":1783184427938},\"metadata\":{\"openai\":{\"itemId\":\"msg_01f0982b005e4fd9016a493c2a70f0819197603712b750c89f\",\"phase\":\"final_answer\"}}}}\n{\"type\":\"step_finish\",\"timestamp\":1783184428585,\"sessionID\":\"ses_0d1ed4ce9ffesjli2ZmA3Y42iV\",\"part\":{\"id\":\"prt_f2e130e25001F9BAye5lYy1osX\",\"reason\":\"stop\",\"snapshot\":\"19bb03c39302c0b2bc520baf2ed67ff7face441a\",\"messageID\":\"msg_f2e12b679001xxkLf7qidI49Zd\",\"sessionID\":\"ses_0d1ed4ce9ffesjli2ZmA3Y42iV\",\"type\":\"step-finish\",\"tokens\":{\"total\":22640,\"input\":22307,\"output\":84,\"reasoning\":249,\"cache\":{\"write\":0,\"read\":0}},\"cost\":0}}\n",
+  "budgetEdge": {
+    "budgetMs": 1500000,
+    "watchdogMs": 480000,
+    "tFirstArtifactMs": null,
+    "firstArtifactDeadlineRemainingMs": null,
+    "progressCadence": {
+      "eventCount": 4,
+      "firstProgressMs": 1596,
+      "lastProgressMs": 24723,
+      "gapsMs": [
+        1596,
+        8247,
+        14234,
+        646,
+        2576
+      ],
+      "maxGapMs": 14234
+    },
+    "preCapFinalizerRemainingMs": 1472701
+  },
+  "vagueAskOutcome": null,
+  "delegation": {
+    "taskEvents": [],
+    "routeProofRecords": [],
+    "seatArtifacts": 0,
+    "candidateArtifacts": 0,
+    "guardWarnings": []
+  },
+  "isolation": {
+    "clean": false,
+    "violations": [
+      "opencode/skills/.goal-state/7365735f30646334343461653066666557595932624870574750636b377a.json"
+    ]
+  },
+  "terminal": {
+    "exitCode": 0,
+    "killedBy": "none"
+  },
+  "classification": "missing_artifact",
+  "primaryCause": "missing_artifact",
+  "secondaryCause": null,
+  "multiCauseLocked": true,
+  "stuckNoProgressRate": {
+    "mode": "ai-council",
+    "stalled": false,
+    "numerator": 0,
+    "denominator": 1,
+    "value": 0
+  },
+  "dimensions": {
+    "d1": 2,
+    "d2": 2,
+    "d3": 0,
+    "d4": 1,
+    "d5": null
+  },
+  "singleSample": true,
+  "transcriptPath": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/deep-loops/036-command-contract-compiler/003-generalization-probes/runs/council-fix-n3-r1/ACB-005-gpt-fast-med.transcript.jsonl"
+}
