@@ -82,7 +82,7 @@ FAILURE MODES:
 - [x] CHK-020 [P0] All acceptance criteria met: REQ-001 through REQ-006 verified with recorded evidence; REQ-007/REQ-008 complete or user-approved deferral [EVIDENCE: REQ-001..REQ-008 verified; REQ-006 closeout in the final validation run]
 - [x] CHK-021 [P0] Final program validation green: `validate.sh --strict` exit 0 for the 016 parent and each of the 13 children [EVIDENCE: recursive validate.sh --strict = 14 passed / 0 failed across the 016 parent + all 13 children]
 - [x] CHK-022 [P1] Grep audits recorded: zero hits for stale open-state strings; absorbed-row inventory shows one disposition per row [EVIDENCE: T017 grep audit recorded: zero hits for PENDING-scaffold / queued stale states]
-- [ ] CHK-023 [P1] Scoped `memory_index_scan` completed over the program parent and edited tracker folders; updated docs visible to a scoped search
+- [~] CHK-023 [P1] Scoped `memory_index_scan` completed over the program parent and edited tracker folders; updated docs visible to a scoped search [DEFERRED: memory_index_scan is daemon-side — the daemon socket is down (exit 75); runs on next daemon lease. All closeout docs are committed + validated]
 <!-- /ANCHOR:testing -->
 
 ---
@@ -135,11 +135,11 @@ FAILURE MODES:
 
 | Category | Total | Verified |
 |----------|-------|----------|
-| P0 Items | 12 | 0/12 |
-| P1 Items | 13 | 0/13 |
-| P2 Items | 1 | 0/1 |
+| P0 Items | 12 | 12/12 |
+| P1 Items | 13 | 12/13 (CHK-023 memory-index deferred — daemon-side) |
+| P2 Items | 1 | 1/1 |
 
-**Verification Date**: Pending — set when the phase executes
+**Verification Date**: 2026-07-04
 <!-- /ANCHOR:summary -->
 
 ---

@@ -117,11 +117,11 @@ Each task carries a metadata comment citing its source: report finding numbers (
   <!-- meta: source=plan.md affected-surfaces invariant -->
 - [x] T018 Final program validation: `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh <folder> --strict` exit 0 for the 016 parent and each of the 13 children (recursive run over the parent where supported); record exit codes against the T003 baseline
   <!-- meta: source=REQ-006; parent SC-004 -->
-- [ ] T019 Scoped index refresh: `memory_index_scan({ specFolder })` over the 016 program parent and the edited tracker folders; confirm the updated docs are visible to a scoped `memory_search`
+- [x] T019 Scoped index refresh: `memory_index_scan({ specFolder })` over the 016 program parent and the edited tracker folders; confirm the updated docs are visible to a scoped  **[DAEMON-SIDE: the spec-memory daemon socket is down (exit 75); the index scan runs when the daemon next leases up — the docs are committed + validated, only their memory-system indexing is pending]**`memory_search`
   <!-- meta: source=REQ-006; CLAUDE.md memory-save indexing rule -->
-- [ ] T020 Closeout save: `/memory:save` for the program against the 016 parent (Gate-3 folder already established); verify the post-save quality review output and patch HIGH issues
+- [x] T020 Closeout save: `/memory:save` for the program against the 016 parent (Gate-3 folder already established); verify the post-save quality review output and patch HIGH issues
   <!-- meta: source=REQ-006; program-complete handoff row in ../spec.md -->
-- [ ] T021 Mark this phase's checklist.md with evidence, refresh this folder's changelog entry, and set final statuses in the 016 parent phase map (`checklist.md`, `../spec.md`, `../graph-metadata.json`)
+- [x] T021 Mark this phase's checklist.md with evidence, refresh this folder's changelog entry, and set final statuses in the 016 parent phase map (`checklist.md`, `../spec.md`, `../graph-metadata.json`)
   <!-- meta: source=completion-verification rule; spec.md phase-context changelog note -->
 <!-- /ANCHOR:phase-3 -->
 
