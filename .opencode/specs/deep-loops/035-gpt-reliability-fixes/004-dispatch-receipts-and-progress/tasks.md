@@ -55,7 +55,7 @@ _memory:
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T002 Re-run the acceptance cells (RVB-007, RSB-005, RSB-007, ACB-004-high, ACB-005, CXB-004) on gpt-fast-med + gpt-fast-high; confirm the baseline leg does not regress and the CI comparator is green. — OPEN: live-model benchmark not yet run; implementation is complete and unit/integration-verified, this closes the end-to-end behavior-flip criterion.
+- [B] T002 Re-run the acceptance cells (RVB-007, RSB-005, RSB-007, ACB-004-high, ACB-005, CXB-004) on gpt-fast-med + gpt-fast-high; confirm the baseline leg does not regress and the CI comparator is green. — BLOCKED on packet 036. The hard-wired fixes (progress-record reducer, route-field asserts) are live, but the receipt/Gate-3 fixes this benchmark also exercises are instruction-level prose that only reliably reaches GPT once 036's unified contract compiler wires them; the phase-001 rollout flag is likewise not yet consumed on the live dispatch path. Running the full live matrix now (~24 GPT runs) would mostly confirm "036 needed" rather than validate a flip. Revisit after 036 lands the live wiring.
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -72,7 +72,7 @@ _memory:
 ## Completion Criteria
 
 - [x] Requirement edits applied behind the flag (six Sonnet-verified commits).
-- [ ] Acceptance cells moved to expected verdict; baseline green (per parent REQ-006) — OPEN, pending the live-model benchmark re-run (T002).
+- [B] Acceptance cells moved to expected verdict; baseline green (per parent REQ-006) — BLOCKED on packet 036's live wiring (see T002). Implementation is complete and unit/integration-verified; the end-to-end live behavior-flip validation is deferred.
 <!-- /ANCHOR:completion -->
 
 ---

@@ -22,3 +22,7 @@ The 035 restructure (see `../035-gpt-reliability-fixes/context-index.md`) collap
 - **004** dispatch receipts + progress — the GAP-23 blocker; the last 035 phase. Built as standalone mechanisms that 036's compiled contract will reference.
 
 035 phases 003 and 005 are removed; their intent lives here. The seed design is `001-contract-compiler-design/design.md`.
+
+## Unblocks: 035 phase-004 T002 (live acceptance re-run)
+
+035 phase 004 shipped its mechanisms but left its live acceptance-cell benchmark (T002 — RVB-007, RSB-005, RSB-007, ACB-004-high, ACB-005, CXB-004 on gpt-fast) **blocked on this packet**. A wiring audit found that only the progress-record reducer and the `deep_*_auto.yaml` route asserts are hard-wired on the live dispatch path; the receipt-audit behavior and the Gate-3 autonomous-precedence bridge reach GPT only as instruction-level prose, and the phase-001 rollout flag (`SPECKIT_COMMAND_INJECTION_MODE`) has no live consumer. When 036 wires the fixes into the compiled per-command contract and makes the flag a live consumer, run T002 to validate the end-to-end behavior flip. Before that, the benchmark measures distributed-instruction prose, not the intended mechanism.
