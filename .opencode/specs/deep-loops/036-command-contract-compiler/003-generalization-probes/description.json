@@ -1,0 +1,33 @@
+{
+  "specFolder": "deep-loops/036-command-contract-compiler/003-generalization-probes",
+  "description": "Phase 003 of packet 036. Prove the compiled-command-contract behavior flip generalizes beyond review/research to the context and council modes, and",
+  "keywords": [
+    "phase",
+    "003",
+    "packet",
+    "036",
+    "prove",
+    "compiled-command-contract",
+    "behavior",
+    "flip",
+    "generalizes",
+    "beyond",
+    "review",
+    "research",
+    "context",
+    "council",
+    "modes"
+  ],
+  "lastUpdated": "2026-07-04T14:19:08.747Z",
+  "specId": "003",
+  "folderSlug": "generalization-probes",
+  "parentChain": [
+    ".opencode",
+    "specs",
+    "deep-loops",
+    "036-command-contract-compiler"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

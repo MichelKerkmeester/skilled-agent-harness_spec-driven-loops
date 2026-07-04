@@ -1,0 +1,96 @@
+{
+  "schema_version": 1,
+  "packet_id": "deep-loops/036-command-contract-compiler/003-generalization-probes",
+  "spec_folder": "deep-loops/036-command-contract-compiler/003-generalization-probes",
+  "parent_id": "deep-loops/036-command-contract-compiler",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "036 phase 003",
+      "generalization probes",
+      "compiled contract flip generalization"
+    ],
+    "key_topics": [
+      "036",
+      "phase",
+      "003",
+      "generalization",
+      "probes",
+      "compiled",
+      "contract",
+      "flip",
+      "packet",
+      "prove",
+      "compiled-command-contract",
+      "behavior"
+    ],
+    "importance_tier": "medium",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Contract Generalization Probes",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. METADATA",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Phase 003 of packet 036. Prove the compiled-command-contract behavior flip generalizes beyond review/research to the context and council modes, and check whether the leaf-reliability check lifts the pass rate. Prepares behavior-benchmark scenario cells (context CXB-004, council ACB-005, review re-probe) and runs them fix-vs-fallback on the gpt-fast-med leg; results and the generalization verdict are recorded here.",
+    "created_at": "2026-07-04T14:19:08.954Z",
+    "last_save_at": "2026-07-04T14:19:08.954Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "source_fingerprint": "sha256:8275eb44624eb5b3205ab7abde834030bb59f2347857bf27cc5ad7cf8e12602c",
+    "source_doc_hashes": {
+      "spec.md": "cba8341ce683849eca744010329cfe6500b1e73d14d79b485bf0ef01df2e89ae"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

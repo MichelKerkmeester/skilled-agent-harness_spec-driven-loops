@@ -5,7 +5,8 @@
   "parent_id": null,
   "children_ids": [
     "deep-loops/036-command-contract-compiler/001-contract-compiler-design",
-    "deep-loops/036-command-contract-compiler/002-deep-loop-router-deprecation"
+    "deep-loops/036-command-contract-compiler/002-deep-loop-router-deprecation",
+    "deep-loops/036-command-contract-compiler/003-generalization-probes"
   ],
   "manual": {
     "depends_on": [],
@@ -90,7 +91,7 @@
     ],
     "causal_summary": "Design-first structural packet carved from 035 (GPT-reliability fixes) after the phase-003 design pass confirmed the contract compiler is research-sized, not a single implementation phase. Builds the build-time unified command-contract compiler that collapses the ~14-file resolution chain into one self-contained typed contract per command, plus the deterministic setup loader, the drift-guard contract, the retrofit of all deep commands + 14 agent files to contract pointers, the deferred AGENTS.md autonomous-precedence bridge, the rollout emitter-wiring, and pacing/resume. Phase 001 is the",
     "created_at": "2026-07-03T17:04:53.888Z",
-    "last_save_at": "2026-07-04T12:56:07.518Z",
+    "last_save_at": "2026-07-04T14:19:09.155Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
