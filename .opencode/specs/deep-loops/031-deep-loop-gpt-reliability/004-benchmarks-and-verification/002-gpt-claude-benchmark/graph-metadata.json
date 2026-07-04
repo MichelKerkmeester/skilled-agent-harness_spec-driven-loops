@@ -1,11 +1,9 @@
 {
   "schema_version": 1,
-  "packet_id": "deep-loops/031-deep-loop-issues-with-gpt-opencode/005-gpt-verification-smoke",
-  "spec_folder": "deep-loops/031-deep-loop-issues-with-gpt-opencode/005-gpt-verification-smoke",
-  "parent_id": "deep-loops/031-deep-loop-issues-with-gpt-opencode",
+  "packet_id": "deep-loops/031-deep-loop-gpt-reliability/004-benchmarks-and-verification/002-gpt-claude-benchmark",
+  "spec_folder": "deep-loops/031-deep-loop-gpt-reliability/004-benchmarks-and-verification/002-gpt-claude-benchmark",
+  "parent_id": "deep-loops/031-deep-loop-gpt-reliability/004-benchmarks-and-verification",
   "children_ids": [],
-  "migrated": true,
-  "migration_source": "legacy",
   "manual": {
     "depends_on": [],
     "supersedes": [],
@@ -13,38 +11,47 @@
   },
   "derived": {
     "trigger_phrases": [
-      "gpt verification smoke",
-      "first-dispatch test",
-      "fix-5 escalation decision",
-      "deep dispatch probe",
+      "gpt vs claude benchmark",
+      "external smoke test",
+      "mode d failure bucket",
+      "deep mode benchmark",
+      "implementation",
       "plan",
-      "gpt-verification-smoke",
-      "tasks"
+      "tasks",
+      "verification",
+      "checklist",
+      "summary"
     ],
     "key_topics": [
       "gpt",
-      "verification",
+      "claude",
+      "benchmark",
+      "external",
       "smoke",
-      "first-dispatch",
       "test",
-      "fix-5",
-      "escalation",
-      "decision",
+      "mode",
+      "failure",
+      "bucket",
       "deep",
-      "dispatch",
-      "probe",
+      "implementation",
       "plan"
     ],
     "importance_tier": "critical",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
+      "implementation-summary.md",
       "spec.md",
       "plan.md",
       "tasks.md",
-      "implementation-summary.md",
-      "context/deep-context-state.jsonl"
+      "checklist.md"
     ],
     "entities": [
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -64,15 +71,9 @@
         "source": "derived"
       },
       {
-        "name": "implementation-summary.md",
+        "name": "checklist.md",
         "kind": "doc",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "deep-context-state.jsonl",
-        "kind": "file",
-        "path": "context/deep-context-state.jsonl",
+        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -82,31 +83,31 @@
         "source": "derived"
       },
       {
-        "name": "Dispatch Verification Smoke",
+        "name": "External Smoke",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Claude Behavioral Benchmark",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Claude Code",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "The Claude",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
         "name": "Parent Packet",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Handoff Criteria",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Problem Statement Existing",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Purpose Prove",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -124,19 +125,13 @@
         "source": "derived"
       },
       {
-        "name": "Mode Coverage",
+        "name": "Overview This",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
       },
       {
-        "name": "Primary Blocker",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Overview The",
+        "name": "Pattern Precondition",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -148,65 +143,73 @@
         "source": "derived"
       },
       {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Date",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Impact",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
         "name": "Implementation Summary",
         "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Smoke Procedure",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "route-proof",
-        "kind": "key_phrase",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "TASK NOTATION",
-        "kind": "heading",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Spec Folder",
-        "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "Files Changed",
+        "name": "Zero Mode",
         "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "registered",
-        "kind": "key_phrase",
         "path": "implementation-summary.md",
         "source": "derived"
       }
     ],
-    "causal_summary": "Existing provenance can verify GPT first-dispatch correctness without new benchmark tooling, but the smoke must include route-proof assertions",
-    "created_at": "2026-06-30T15:20:00Z",
-    "last_save_at": "2026-07-02T05:31:05.422Z",
+    "causal_summary": "Every prior attempt to get decisive GPT-backed dispatch evidence has been blocked upstream: phase 005 (the packet's original acceptance-gate smoke) never reached a clean pass or disproof because every command-owned smoke was blocked by `cli-opencode`'s self-invocation guard before real leaf-dispatch behavior could be observed",
+    "created_at": "2026-07-01T10:56:27.228Z",
+    "last_save_at": "2026-07-04T19:10:41.144Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
+      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:79f1073c2adeff1845a2eadc3606ea910548dd632a15f30ff3b5b666f28a406b",
+    "source_fingerprint": "sha256:743ef6754dcf5684d41171c63d25450ed42cf64c4062e307d4a345e451c3d437",
     "source_doc_hashes": {
-      "spec.md": "9d9a41e7b1ee4bbdab96cfc17c38cd074d94168cecab440bafa0283faab82f63",
-      "plan.md": "aefb183a40b2780ebbde6d4a2df2a961c53c7f7ada18eb5a56db19fa0c3efc8e",
-      "tasks.md": "7a1d204b9f27fe4c30cecb686c1cdbb200429aad1d0af5965cdb5b5a816b1ef5",
-      "implementation-summary.md": "e4710504639f4abfc1c15073edbe4e508d5902434907b04293ecd8be6e5707c4"
+      "spec.md": "e777d12d1fac1e072400b4a804712513a8c6af05f9a49236fb0df642486c7971",
+      "plan.md": "c779a21367b4216afce6a9cbcde8aa2bb7ec9057e799710890b51cbe435f61bc",
+      "tasks.md": "7fa5b0021eb33f9b5b7f38d0f6fea17d4b4ba412d27c427e383d600192f73721",
+      "checklist.md": "e6703c2254533013676bf9ebfc7c5caaad7426421194125b0b3edd37b64ad8ef",
+      "implementation-summary.md": "b2a172ee3bfc8788cccace14833074182b20049832d5dbcfb02bc23784265197"
     },
     "last_active_child_id": null,
     "last_active_at": null

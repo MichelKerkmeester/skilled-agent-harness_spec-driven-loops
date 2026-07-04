@@ -11,7 +11,7 @@ contextType: "implementation"
 predecessor_research: "../001-deep-agent-router-and-orchestration/research/research.md"
 _memory:
   continuity:
-    packet_pointer: "deep-loops/031-deep-loop-issues-with-gpt-opencode/005-gpt-verification-smoke"
+    packet_pointer: "deep-loops/031-deep-loop-gpt-reliability/004-benchmarks-and-verification/001-gpt-verification-smoke"
     last_updated_at: "2026-06-30T21:05:00Z"
     last_updated_by: "opencode-gpt"
     recent_action: "Command-owned GPT smokes attempted; gate failed"
