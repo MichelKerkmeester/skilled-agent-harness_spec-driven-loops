@@ -867,7 +867,7 @@ workflow:
           command: |
             node --experimental-strip-types --input-type=module <<'EOF'
             import { readFileSync } from 'node:fs';
-            import { randomBytes } from 'node:crypto';
+            import { createHash } from 'node:crypto';
 
             import { runAuditedExecutorCommand } from './.opencode/skills/deep-loop-runtime/lib/deep-loop/executor-audit.ts';
             import { resolveClaudePermissionMode } from './.opencode/skills/deep-loop-runtime/lib/deep-loop/executor-config.ts';
@@ -894,7 +894,18 @@ workflow:
               args.push('--effort', executor.reasoningEffort);
             }
 
-            const claudeDispatchId = 'research-i{current_iteration}-' + randomBytes(4).toString('hex');
+            const dispatchFacts = {
+              command: 'deep/research',
+              mode: 'research',
+              specFolder: '{spec_folder}',
+              artifactDir: '{state_paths.packet_dir}',
+              iteration: Number('{current_iteration}'),
+              executorKind: '{config.executor.type}',
+              branchId: '{config.executor.type}',
+              sessionId: '{config.lineage.sessionId}',
+              generation: Number('{config.lineage.generation}'),
+            };
+            const dispatchId = 'research-i{current_iteration}-g{config.lineage.generation}';
             process.exit(
               runAuditedExecutorCommand({
                 command: 'claude',
@@ -905,7 +916,7 @@ workflow:
                 executor,
                 iteration: Number('{current_iteration}'),
                 receiptDir: '{state_paths.packet_dir}/dispatch-receipts',
-                dispatchId: claudeDispatchId,
+                dispatchId,
               }),
             );
             EOF
@@ -929,7 +940,7 @@ workflow:
           command: |
             node --experimental-strip-types --input-type=module <<'EOF'
             import { readFileSync } from 'node:fs';
-            import { randomBytes } from 'node:crypto';
+            import { createHash } from 'node:crypto';
 
             import { runAuditedExecutorCommand } from './.opencode/skills/deep-loop-runtime/lib/deep-loop/executor-audit.ts';
 
@@ -964,7 +975,18 @@ workflow:
             }
             args.push(message);
 
-            const dispatchId = 'research-i{current_iteration}-' + randomBytes(4).toString('hex');
+            const dispatchFacts = {
+              command: 'deep/research',
+              mode: 'research',
+              specFolder: '{spec_folder}',
+              artifactDir: '{state_paths.packet_dir}',
+              iteration: Number('{current_iteration}'),
+              executorKind: '{config.executor.type}',
+              branchId: '{config.executor.type}',
+              sessionId: '{config.lineage.sessionId}',
+              generation: Number('{config.lineage.generation}'),
+            };
+            const dispatchId = 'research-i{current_iteration}-g{config.lineage.generation}';
             process.exit(
               runAuditedExecutorCommand({
                 command: 'opencode',
@@ -1002,6 +1024,9 @@ workflow:
             target_agent: deep-research
             agent_definition_loaded: true
             resolved_route: "Resolved route: mode=research target_agent=deep-research"
+          dispatchReceipt:
+            receiptDir: "{state_paths.packet_dir}/dispatch-receipts"
+            dispatchId: "research-i{current_iteration}-g{config.lineage.generation}"
           optional_jsonl_fields:
             logOffset: "Byte offset where the seekable log region starts"
             logSize: "Byte length of the seekable log region"

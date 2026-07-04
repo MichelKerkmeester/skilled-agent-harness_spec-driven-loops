@@ -41,6 +41,9 @@ build/
 dist/
 .opencode/output/
 
+# Command-contract render manifest (runtime render evidence, not source)
+.opencode/commands/deep/assets/compiled/manifest.jsonl
+
 # Generated lane-weight-sweep diagnostic reports (test artifacts)
 sweep-reports/
 

@@ -818,7 +818,7 @@ workflow:
           command: |
             node --experimental-strip-types --input-type=module <<'EOF'
             import { readFileSync, writeFileSync } from 'node:fs';
-            import { randomBytes } from 'node:crypto';
+            import { createHash } from 'node:crypto';
 
             import { runAuditedExecutorCommand } from './.opencode/skills/deep-loop-runtime/lib/deep-loop/executor-audit.ts';
             import { buildCopilotPromptArg } from './.opencode/skills/deep-loop-runtime/lib/deep-loop/executor-config.ts';
@@ -867,7 +867,18 @@ workflow:
             // dispatches as kind:'native' (full env passthrough, no recursion-guard
             // layer configured for copilot); the receipt still records the real
             // 'copilot' command + built.argv as facts.
-            const dispatchId = 'review-i{current_iteration}-' + randomBytes(4).toString('hex');
+            const dispatchFacts = {
+              command: 'deep/review',
+              mode: 'review',
+              specFolder: '{spec_folder}',
+              artifactDir: '{state_paths.packet_dir}',
+              iteration: Number('{current_iteration}'),
+              executorKind: '{config.executor.kind}',
+              branchId: '{config.executor.kind}',
+              sessionId: '{session_id}',
+              generation: Number('{generation}'),
+            };
+            const dispatchId = 'review-i{current_iteration}-g{generation}';
             process.exit(
               runAuditedExecutorCommand({
                 command: 'copilot',
@@ -906,7 +917,7 @@ workflow:
           command: |
             node --experimental-strip-types --input-type=module <<'EOF'
             import { readFileSync } from 'node:fs';
-            import { randomBytes } from 'node:crypto';
+            import { createHash } from 'node:crypto';
 
             import { runAuditedExecutorCommand } from './.opencode/skills/deep-loop-runtime/lib/deep-loop/executor-audit.ts';
 
@@ -943,7 +954,18 @@ workflow:
               parentEnv.CLAUDE_CONFIG_DIR = configDir;
             }
 
-            const dispatchId = 'review-i{current_iteration}-' + randomBytes(4).toString('hex');
+            const dispatchFacts = {
+              command: 'deep/review',
+              mode: 'review',
+              specFolder: '{spec_folder}',
+              artifactDir: '{state_paths.packet_dir}',
+              iteration: Number('{current_iteration}'),
+              executorKind: '{config.executor.kind}',
+              branchId: '{config.executor.kind}',
+              sessionId: '{session_id}',
+              generation: Number('{generation}'),
+            };
+            const dispatchId = 'review-i{current_iteration}-g{generation}';
             process.exit(
               runAuditedExecutorCommand({
                 command: 'claude',
@@ -975,7 +997,7 @@ workflow:
           command: |
             node --experimental-strip-types --input-type=module <<'EOF'
             import { readFileSync } from 'node:fs';
-            import { randomBytes } from 'node:crypto';
+            import { createHash } from 'node:crypto';
 
             import { runAuditedExecutorCommand } from './.opencode/skills/deep-loop-runtime/lib/deep-loop/executor-audit.ts';
 
@@ -1010,7 +1032,18 @@ workflow:
             }
             args.push(message);
 
-            const dispatchId = 'review-i{current_iteration}-' + randomBytes(4).toString('hex');
+            const dispatchFacts = {
+              command: 'deep/review',
+              mode: 'review',
+              specFolder: '{spec_folder}',
+              artifactDir: '{state_paths.packet_dir}',
+              iteration: Number('{current_iteration}'),
+              executorKind: '{config.executor.kind}',
+              branchId: '{config.executor.kind}',
+              sessionId: '{session_id}',
+              generation: Number('{generation}'),
+            };
+            const dispatchId = 'review-i{current_iteration}-g{generation}';
             process.exit(
               runAuditedExecutorCommand({
                 command: 'opencode',
@@ -1048,6 +1081,9 @@ workflow:
             target_agent: deep-review
             agent_definition_loaded: true
             resolved_route: "Resolved route: mode=review target_agent=deep-review"
+          dispatchReceipt:
+            receiptDir: "{state_paths.packet_dir}/dispatch-receipts"
+            dispatchId: "review-i{current_iteration}-g{generation}"
           assert_canonical_type: "iteration"
           assert_delta_file_exists: "{state_paths.delta_pattern}"
           assert_delta_file_has_iteration_record: true
