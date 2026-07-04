@@ -489,7 +489,7 @@ description: Fixture helper for routing tests
     except Exception as exc:
         fail_test("T243-SA-010: graph signals and trigger phrases boost routing", str(exc))
 
-    # Deep-research vs sk-code-review margin >= 0.10
+    # Deep-research vs sk-code margin >= 0.10
     try:
         thin_margin_prompts = [
             "deep research audit this subsystem",
@@ -509,7 +509,7 @@ description: Fixture helper for routing tests
             # The legacy deep-research skill is folded into the merged
             # deep-loop-workflows node; the research mode surfaces under it.
             dr = by_skill.get("deep-loop-workflows") or by_skill.get("deep-research")
-            cr = by_skill.get("sk-code-review")
+            cr = by_skill.get("sk-code")
             if not dr or not cr:
                 margin_failures.append(f"{prompt!r} missing dr={bool(dr)} cr={bool(cr)}")
                 continue
@@ -526,7 +526,7 @@ description: Fixture helper for routing tests
     except Exception as exc:
         fail_test("T243-SA-011: deep-research disambiguation enforces >= 0.10 margin", str(exc))
 
-    # Deep-review vs sk-code-review margin >= 0.10
+    # Deep-review vs sk-code margin >= 0.10
     try:
         review_failures = []
         for prompt in ["deep review this code for audit findings", "deep-review audit the module"]:
@@ -541,7 +541,7 @@ description: Fixture helper for routing tests
             # The legacy deep-review skill is folded into the merged
             # deep-loop-workflows node; the review mode surfaces under it.
             drv = by_skill.get("deep-loop-workflows") or by_skill.get("deep-review")
-            cr = by_skill.get("sk-code-review")
+            cr = by_skill.get("sk-code")
             if not drv or not cr:
                 review_failures.append(f"{prompt!r} missing drv={bool(drv)} cr={bool(cr)}")
                 continue

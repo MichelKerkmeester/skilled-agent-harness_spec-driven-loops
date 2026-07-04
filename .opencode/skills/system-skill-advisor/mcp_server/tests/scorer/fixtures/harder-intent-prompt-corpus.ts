@@ -86,7 +86,7 @@ export const HARDER_INTENT_PROMPT_CORPUS: ReadonlyArray<HarderIntentEntry> = [
     prompt: 'Open the local interface, reproduce the broken interaction, and capture the page evidence from the runtime.',
     expectedSkill: 'mcp-chrome-devtools',
     category: 'lexical-mis-route',
-    reason: 'Runtime page evidence implies browser tooling, but broken interaction can route to sk-code/sk-code-review.',
+    reason: 'Runtime page evidence implies browser tooling, but broken interaction can route to sk-code.',
   },
   {
     prompt: 'Inspect what the rendered page actually did after the click, including network and visual proof.',
@@ -122,13 +122,13 @@ export const HARDER_INTENT_PROMPT_CORPUS: ReadonlyArray<HarderIntentEntry> = [
     prompt: 'Make several independent passes over this change, stop when findings converge, and rank the release risks.',
     expectedSkill: 'deep-review',
     category: 'lexical-mis-route',
-    reason: 'Uses generic risk language that may route to sk-code-review without explicit deep-review triggers.',
+    reason: 'Uses generic risk language that may route to sk-code without explicit deep-review triggers.',
   },
   {
     prompt: 'Audit the implementation repeatedly with a persistent state log until only residual issues remain.',
     expectedSkill: 'deep-review',
     category: 'lexical-mis-route',
-    reason: 'Audit and implementation can pull toward sk-code-review/sk-code, while repeated stateful passes are deep-review.',
+    reason: 'Audit and implementation can pull toward sk-code, while repeated stateful passes are deep-review.',
   },
   {
     prompt: 'Have multiple perspectives argue the plan, compare tradeoffs, and leave the decision artifacts in the packet.',

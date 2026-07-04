@@ -15,8 +15,8 @@ export const INTENT_PROMPT_CORPUS: ReadonlyArray<{
     category: 'today-correct',
   },
   {
-    prompt: 'Run sk-code-review on this pull request and report blocker findings first.',
-    expectedSkill: 'sk-code-review',
+    prompt: 'Use sk-code to review this pull request and report blocker findings first.',
+    expectedSkill: 'sk-code',
     category: 'today-correct',
   },
   {
@@ -76,7 +76,7 @@ export const INTENT_PROMPT_CORPUS: ReadonlyArray<{
   },
   {
     prompt: 'Inspect this diff for behavioral regressions, security risk, and missing test coverage.',
-    expectedSkill: 'sk-code-review',
+    expectedSkill: 'sk-code',
     category: 'intent-described',
   },
   {
