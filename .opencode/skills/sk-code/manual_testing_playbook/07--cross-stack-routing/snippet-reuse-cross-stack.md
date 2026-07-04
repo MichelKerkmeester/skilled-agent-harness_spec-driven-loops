@@ -63,9 +63,9 @@ Evidence files:
 
 ## 4. SOURCE FILES
 
-- `.opencode/skills/sk-code/code-implement/assets/motion_dev/snippets/in_view_reveal.js` - Required reusable snippet.
-- `.opencode/skills/sk-code/code-implement/references/motion_dev/integration_patterns.md` - Cross-stack integration guidance.
-- `.opencode/skills/sk-code/code-implement/references/webflow/javascript/style_guide.md` - Snake_case caveat source.
+- `.opencode/skills/sk-code/animation/assets/snippets/in_view_reveal.js` - Required reusable snippet.
+- `.opencode/skills/sk-code/animation/references/integration_patterns.md` - Cross-stack integration guidance.
+- `.opencode/skills/sk-code/webflow/references/javascript/style_guide.md` - Snake_case caveat source.
 
 ---
 

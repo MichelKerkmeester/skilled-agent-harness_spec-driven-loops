@@ -1,19 +1,27 @@
 {
   "skill": "sk-code",
-  "version": "1.0.0",
-  "description": "Declarative mode registry: the discriminator (workflowMode/backendKind) plus the advisorRouting contract for sk-code. The hub reads this file to resolve a mode; the advisor routes code queries to the single identity sk-code and the hub picks the mode.",
+  "version": "1.1.0",
+  "description": "Declarative two-axis mode registry for the sk-code parent hub. Every packet is a modes[] entry carrying the discriminator (workflowMode/packetKind/backendKind) plus its advisorRouting contract. The WORKFLOW axis (implement/quality/debug/verify/review) is process; the SURFACE axis (webflow/opencode/animation) is read-only domain evidence. The advisor routes the single identity sk-code; the hub resolves the workflow mode and bundles surface packets as evidence.",
   "discriminator": {
     "workflowMode": "Public hub/mode key. Stable identity used by the hub router and this registry. Carried by every mode.",
-    "backendKind": "Which backend runs the mode: surface-router for surface-aware code workflows or review-cache for review output caching."
+    "packetKind": "The axis discriminator: 'workflow' for process modes that act, 'surface' for read-only domain-evidence packets bundled alongside a workflow mode.",
+    "backendKind": "Which backend runs the mode: surface-router for surface-aware code workflows, review-cache for review output caching, evidence-base for read-only surface packets."
   },
   "advisorRoutingContract": {
-    "routingClass": "How the advisor finds the mode. For sk-code every mode is 'metadata' = resolved by hub membership; the advisor routes the single identity sk-code and the hub picks the mode.",
-    "packetSkillName": "The packet's SKILL.md name. Folder equals packetSkillName for every code mode.",
+    "routingClass": "How the advisor finds the mode. For sk-code every mode is 'metadata' = resolved by hub membership; the advisor routes the single identity sk-code and the hub picks the mode. Surface packets are advisor-invisible and reached only by hub bundling.",
+    "packetSkillName": "The packet's SKILL.md name. Folder equals packetSkillName for every mode.",
     "grandfatheredFolderMismatch": "false for every mode because folder equals packetSkillName."
+  },
+  "extensions": {
+    "surface-axis": {
+      "description": "Declares the SURFACE axis. packetKind:'surface' entries are read-only domain-evidence packets (backendKind:'evidence-base', routingClass:'metadata', mutatesWorkspace:false) bundled alongside a workflow mode via routerPolicy.outcomes.surfaceBundle. They carry stack knowledge, never process.",
+      "surfacePackets": ["webflow", "opencode", "animation"]
+    }
   },
   "modes": [
     {
       "workflowMode": "implement",
+      "packetKind": "workflow",
       "backendKind": "surface-router",
       "toolSurface": {
         "allowed": ["Read", "Write", "Edit", "Bash", "Grep", "Glob", "Task"],
@@ -24,7 +32,7 @@
       "packet": "code-implement",
       "packetSkillName": "code-implement",
       "grandfatheredFolderMismatch": false,
-      "aliases": ["implement feature", "refactor function", "webflow implementation", "opencode system code", "motion.dev animation", "implement code", "add a flag", "add a fallback", "add a parameter", "build a script", "frontend implementation standards"],
+      "aliases": ["implement feature", "refactor function", "implement code", "add a flag", "add a fallback", "add a parameter", "build a script"],
       "advisorRouting": {
         "routingClass": "metadata",
         "packetSkillName": "code-implement"
@@ -32,6 +40,7 @@
     },
     {
       "workflowMode": "quality",
+      "packetKind": "workflow",
       "backendKind": "surface-router",
       "toolSurface": {
         "allowed": ["Read", "Edit", "Bash", "Grep", "Glob"],
@@ -50,6 +59,7 @@
     },
     {
       "workflowMode": "debug",
+      "packetKind": "workflow",
       "backendKind": "surface-router",
       "toolSurface": {
         "allowed": ["Read", "Edit", "Bash", "Grep", "Glob", "Task"],
@@ -68,6 +78,7 @@
     },
     {
       "workflowMode": "verify",
+      "packetKind": "workflow",
       "backendKind": "surface-router",
       "toolSurface": {
         "allowed": ["Read", "Bash", "Grep", "Glob"],
@@ -86,6 +97,7 @@
     },
     {
       "workflowMode": "review",
+      "packetKind": "workflow",
       "backendKind": "review-cache",
       "toolSurface": {
         "allowed": ["Read", "Bash", "Grep", "Glob", "Write"],
@@ -93,13 +105,70 @@
         "mutatesWorkspace": false,
         "bashAllowlist": []
       },
-      "packet": "code-review",
-      "packetSkillName": "code-review",
+      "packet": "review",
+      "packetSkillName": "review",
       "grandfatheredFolderMismatch": false,
       "aliases": ["code review", "reviewer", "findings-first review", "security review", "pr review", "review baseline", "correctness review", "test quality review", "review output contract", "pr-state gates"],
       "advisorRouting": {
         "routingClass": "metadata",
-        "packetSkillName": "code-review"
+        "packetSkillName": "review"
+      }
+    },
+    {
+      "workflowMode": "webflow",
+      "packetKind": "surface",
+      "backendKind": "evidence-base",
+      "toolSurface": {
+        "allowed": ["Read", "Bash", "Grep", "Glob"],
+        "forbidden": ["Write", "Edit", "Task"],
+        "mutatesWorkspace": false,
+        "bashAllowlist": []
+      },
+      "packet": "webflow",
+      "packetSkillName": "webflow",
+      "grandfatheredFolderMismatch": false,
+      "aliases": ["webflow implementation", "frontend implementation standards", "webflow frontend workflow"],
+      "advisorRouting": {
+        "routingClass": "metadata",
+        "packetSkillName": "webflow"
+      }
+    },
+    {
+      "workflowMode": "opencode",
+      "packetKind": "surface",
+      "backendKind": "evidence-base",
+      "toolSurface": {
+        "allowed": ["Read", "Bash", "Grep", "Glob"],
+        "forbidden": ["Write", "Edit", "Task"],
+        "mutatesWorkspace": false,
+        "bashAllowlist": []
+      },
+      "packet": "opencode",
+      "packetSkillName": "opencode",
+      "grandfatheredFolderMismatch": false,
+      "aliases": ["opencode system code", "opencode system code workflow", "opencode typescript verification"],
+      "advisorRouting": {
+        "routingClass": "metadata",
+        "packetSkillName": "opencode"
+      }
+    },
+    {
+      "workflowMode": "animation",
+      "packetKind": "surface",
+      "backendKind": "evidence-base",
+      "toolSurface": {
+        "allowed": ["Read", "Bash", "Grep", "Glob"],
+        "forbidden": ["Write", "Edit", "Task"],
+        "mutatesWorkspace": false,
+        "bashAllowlist": []
+      },
+      "packet": "animation",
+      "packetSkillName": "animation",
+      "grandfatheredFolderMismatch": false,
+      "aliases": ["motion.dev animation", "motion animation integration", "cross-stack animation"],
+      "advisorRouting": {
+        "routingClass": "metadata",
+        "packetSkillName": "animation"
       }
     }
   ]

@@ -149,7 +149,7 @@ Use `bundleRules[]` when a hub has a durable prose rule such as "if the request 
     "review": {
       "weight": 4,
       "classes": ["review-aliases", "review-findings", "review-security", "review-pr", "hub-identity"],
-      "resources": ["code-review/SKILL.md"]
+      "resources": ["review/SKILL.md"]
     },
     "webflow": {
       "weight": 3,
@@ -293,7 +293,7 @@ All resource paths must be hub-root-relative and packet-qualified.
 
 | Good | Problem if omitted |
 | --- | --- |
-| `code-review/SKILL.md` | The router can load the selected packet contract directly. |
+| `review/SKILL.md` | The router can load the selected packet contract directly. |
 | `webflow/references/runtime.md` | Surface evidence stays under the owning surface packet once that packet exists. |
 | `shared/README.md` | Default resources are clearly hub-level shared context. |
 

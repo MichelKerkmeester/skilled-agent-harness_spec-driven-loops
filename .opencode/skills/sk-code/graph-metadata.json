@@ -188,14 +188,16 @@
       "hub-router.json",
       "shared/references/stack_detection.md",
       "shared/references/smart_routing.md",
-      "shared/references/smart_routing.md",
       "shared/references/phase_detection.md",
-      "code-implement/references/motion_dev/animate_and_timelines.md",
-      "code-implement/references/motion_dev/decision_matrix.md",
-      "code-implement/references/motion_dev/integration_patterns.md",
-      "code-implement/references/motion_dev/performance_and_pitfalls.md",
-      "code-implement/references/motion_dev/quick_start.md",
-      "code-implement/references/motion_dev/scroll_and_gestures.md"
+      "animation/references/animate_and_timelines.md",
+      "animation/references/decision_matrix.md",
+      "animation/references/integration_patterns.md",
+      "animation/references/performance_and_pitfalls.md",
+      "animation/references/quick_start.md",
+      "animation/references/scroll_and_gestures.md",
+      "webflow/SKILL.md",
+      "opencode/SKILL.md",
+      "animation/SKILL.md"
     ],
     "key_files": [
       ".opencode/skills/sk-code/SKILL.md",
@@ -206,21 +208,23 @@
       ".opencode/skills/sk-code/code-quality/SKILL.md",
       ".opencode/skills/sk-code/code-debug/SKILL.md",
       ".opencode/skills/sk-code/code-verify/SKILL.md",
-      ".opencode/skills/sk-code/code-review/SKILL.md",
+      ".opencode/skills/sk-code/review/SKILL.md",
       ".opencode/skills/sk-code/shared/references/stack_detection.md",
       ".opencode/skills/sk-code/shared/references/smart_routing.md",
-      ".opencode/skills/sk-code/shared/references/smart_routing.md",
       ".opencode/skills/sk-code/shared/references/phase_detection.md",
-      ".opencode/skills/sk-code/code-implement/references/motion_dev/quick_start.md",
-      ".opencode/skills/sk-code/code-implement/references/motion_dev/decision_matrix.md",
-      ".opencode/skills/sk-code/code-implement/references/motion_dev/integration_patterns.md",
-      ".opencode/skills/sk-code/code-implement/references/motion_dev/performance_and_pitfalls.md",
-      ".opencode/skills/sk-code/code-implement/assets/motion_dev/install_card.md",
-      ".opencode/skills/sk-code/code-implement/assets/motion_dev/playbook_entries.md",
-      ".opencode/skills/sk-code/code-implement/assets/webflow/patterns/wait_patterns.js",
-      ".opencode/skills/sk-code/code-implement/references/webflow/implementation/implementation_workflows.md",
-      ".opencode/skills/sk-code/shared/references/opencode-shared/universal_patterns.md",
-      ".opencode/skills/sk-code/code-verify/assets/scripts/verify_alignment_drift.py"
+      ".opencode/skills/sk-code/animation/references/quick_start.md",
+      ".opencode/skills/sk-code/animation/references/decision_matrix.md",
+      ".opencode/skills/sk-code/animation/references/integration_patterns.md",
+      ".opencode/skills/sk-code/animation/references/performance_and_pitfalls.md",
+      ".opencode/skills/sk-code/animation/assets/install_card.md",
+      ".opencode/skills/sk-code/animation/assets/playbook_entries.md",
+      ".opencode/skills/sk-code/webflow/assets/patterns/wait_patterns.js",
+      ".opencode/skills/sk-code/webflow/references/implementation/implementation_workflows.md",
+      ".opencode/skills/sk-code/opencode/references/shared/universal_patterns.md",
+      ".opencode/skills/sk-code/code-verify/assets/scripts/verify_alignment_drift.py",
+      ".opencode/skills/sk-code/webflow/SKILL.md",
+      ".opencode/skills/sk-code/opencode/SKILL.md",
+      ".opencode/skills/sk-code/animation/SKILL.md"
     ],
     "entities": [
       {
@@ -232,7 +236,7 @@
       {
         "name": "motion_dev",
         "kind": "reference",
-        "path": ".opencode/skills/sk-code/code-implement/references/motion_dev/quick_start.md",
+        "path": ".opencode/skills/sk-code/animation/references/quick_start.md",
         "source": "derived"
       },
       {

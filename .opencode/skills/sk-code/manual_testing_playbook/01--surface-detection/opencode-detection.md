@@ -54,7 +54,7 @@ Handle empty prompts in .opencode/skills/system-spec-kit/mcp_server/lib/scorer/l
 
 1. `.opencode/skills/sk-code/SKILL.md` is at HEAD-of-main.
 2. The target file exists: `bash: test -f .opencode/skills/system-spec-kit/mcp_server/lib/scorer/lanes/explicit.ts`.
-3. The sub-language reference set exists: `bash: ls .opencode/skills/sk-code/code-implement/references/opencode/typescript/` returns `style_guide.md quality_standards.md quick_reference.md`.
+3. The sub-language reference set exists: `bash: ls .opencode/skills/sk-code/opencode/references/typescript/` returns `style_guide.md quality_standards.md quick_reference.md`.
 4. Skill advisor callable.
 
 ### Exact Command Sequence
@@ -95,8 +95,8 @@ Handle empty prompts in .opencode/skills/system-spec-kit/mcp_server/lib/scorer/l
 
 - `.opencode/skills/sk-code/SKILL.md` — Smart router + sub-detection table (lines 53-90).
 - `.opencode/skills/sk-code/shared/references/stack_detection.md` — OPENCODE marker definition (lines 39-40).
-- `.opencode/skills/sk-code/code-implement/references/opencode/typescript/` — Expected-loaded TypeScript references.
-- `.opencode/skills/sk-code/shared/references/opencode-shared/` — Expected-loaded shared OPENCODE references.
+- `.opencode/skills/sk-code/opencode/references/typescript/` — Expected-loaded TypeScript references.
+- `.opencode/skills/sk-code/opencode/references/shared/` — Expected-loaded shared OPENCODE references.
 - `.opencode/skills/sk-code/code-verify/assets/scripts/verify_alignment_drift.py` — OPENCODE alignment verifier (run after the edit for evidence).
 - `.opencode/agents/code.md` — @code agent dispatch convention.
 

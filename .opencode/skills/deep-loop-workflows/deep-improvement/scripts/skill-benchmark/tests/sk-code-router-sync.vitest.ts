@@ -73,7 +73,9 @@ function proseExplicitPaths(): Set<string> {
   const end = md.indexOf('## 7. VERIFICATION COMMANDS');
   const prose = md.slice(start, end);
   // Explicit full paths only — skip brace `{a,b}.md`, glob `dir/*`, and bare shorthand.
-  const re = /`((?:references|assets)\/[^`*{}\s]+\.md)`/g;
+  // Surface packets are hub-root-relative and packet-qualified (webflow/…, opencode/…,
+  // animation/…); the universal/shared tiers stay references/… and assets/….
+  const re = /`((?:references|assets|webflow|opencode|animation)\/[^`*{}\s]+\.md)`/g;
   const set = new Set<string>();
   let m: RegExpExecArray | null;
   while ((m = re.exec(prose)) !== null) set.add(m[1]);

@@ -1,13 +1,14 @@
 {
   "skill": "sk-code",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "routerPolicy": {
     "defaultMode": "implement",
     "ambiguityDelta": 1,
-    "tieBreak": ["implement", "quality", "debug", "verify", "review"],
+    "tieBreak": ["implement", "quality", "debug", "verify", "review", "webflow", "opencode", "animation"],
     "outcomes": {
-      "single": "one dominant code intent routes to one mode",
-      "orderedBundle": "clearly separate code intents route to an ordered mode list",
+      "single": "one dominant code intent routes to one workflow mode",
+      "orderedBundle": "clearly separate code intents route to an ordered workflow-mode list",
+      "surfaceBundle": "one workflow mode primary plus zero-or-more surface packets as read-only evidence, workflow ordered first then surfaces",
       "defer": "unclear or contradictory code intent asks for disambiguation"
     },
     "defaultResource": ["shared/README.md"]
@@ -15,87 +16,108 @@
   "routerSignals": {
     "implement": {
       "weight": 4,
-      "classes": ["implement-aliases", "implementation-actions", "surface-webflow", "surface-opencode", "motion-dev", "hub-identity"],
+      "classes": ["implement-aliases", "implement-actions", "hub-identity"],
       "resources": ["code-implement/SKILL.md"]
     },
     "quality": {
       "weight": 4,
-      "classes": ["quality-aliases", "quality-gates", "opencode-authoring", "hub-identity"],
+      "classes": ["quality-aliases", "quality-gates", "hub-identity"],
       "resources": ["code-quality/SKILL.md"]
     },
     "debug": {
       "weight": 4,
-      "classes": ["debug-aliases", "debug-symptoms", "error-recovery", "hub-identity"],
+      "classes": ["debug-aliases", "debug-symptoms", "debug-recovery", "hub-identity"],
       "resources": ["code-debug/SKILL.md"]
     },
     "verify": {
       "weight": 4,
-      "classes": ["verify-aliases", "verification-evidence", "mutation-falsifier", "hub-identity"],
+      "classes": ["verify-aliases", "verify-evidence", "verify-mutation", "hub-identity"],
       "resources": ["code-verify/SKILL.md"]
     },
     "review": {
       "weight": 4,
       "classes": ["review-aliases", "review-findings", "review-security", "review-pr", "hub-identity"],
-      "resources": ["code-review/SKILL.md"]
+      "resources": ["review/SKILL.md"]
+    },
+    "webflow": {
+      "weight": 4,
+      "classes": ["webflow-aliases", "webflow-runtime", "hub-identity"],
+      "resources": ["webflow/SKILL.md"]
+    },
+    "opencode": {
+      "weight": 4,
+      "classes": ["opencode-aliases", "opencode-runtime", "opencode-authoring", "hub-identity"],
+      "resources": ["opencode/SKILL.md"]
+    },
+    "animation": {
+      "weight": 4,
+      "classes": ["animation-aliases", "hub-identity"],
+      "resources": ["animation/SKILL.md"]
     }
   },
   "vocabularyClasses": {
     "hub-identity": {
-      "keywords": ["sk-code", "code-family", "mode-registry", "workflowmode", "backendkind", "surface-router", "surface-aware", "smart-router", "code surface detection", "webflow", "opencode", "motion.dev", "motion-dev", "motion_dev"]
-    },
-    "surface-webflow": {
-      "keywords": ["webflow", "frontend", "browser", "html", "css", "javascript", "cdn", "browser test", "webflow frontend workflow", "frontend implementation standards", "src/2_javascript", "webflow.js", "gsap", "lenis", "swiper", "hls.js", "filepond", "intersectionobserver"]
-    },
-    "surface-opencode": {
-      "keywords": ["opencode", "system code", "system-code", "mcp", "skill", "agent", "command", "typescript", "python", "shell", "json", "jsonc", "opencode system code workflow", "opencode typescript verification", "alignment verifier workflow"]
-    },
-    "motion-dev": {
-      "keywords": ["motion.dev", "motion-dev", "motion_dev", "motion api", "motion snippets", "motion decision matrix", "motion.dev integration", "cross-stack animation", "cross-stack-animation", "motion animation integration", "animation", "gsap timeline", "lenis smooth-scroll"]
+      "keywords": ["sk-code", "code-family", "mode-registry", "workflowmode", "backendkind", "surface-router", "surface-aware", "smart-router", "code surface detection", "two-axis hub"]
     },
     "implement-aliases": {
       "keywords": ["implement", "implement feature", "implement code", "implementation", "write code", "modify code", "refactor", "refactor function", "refactor the", "build a script", "build a tiny script", "tiny script that counts", "counts how many", "build a script that"]
     },
-    "implementation-actions": {
+    "implement-actions": {
       "keywords": ["add a flag", "add a fallback", "add a parameter", "add a method", "implement function", "early return", "type annotation", "function signature", "argparse block", "throw on missing"]
     },
     "quality-aliases": {
-      "keywords": ["quality", "code quality", "quality gate", "code-quality", "stack-specific code quality gate", "surface checklist", "surface checklists", "p0", "p1", "p2"]
+      "keywords": ["quality", "code quality", "quality gate", "code-quality", "stack-specific code quality gate", "surface checklist", "surface checklists"]
     },
     "quality-gates": {
-      "keywords": ["comment hygiene", "comment hygiene check", "author checks", "p0 p1 p2 author check", "stable jsonl keys", "console.error fallback", "add set -euo pipefail", "alignment verifier"]
-    },
-    "opencode-authoring": {
-      "keywords": ["skill authoring", "agent authoring", "command authoring", "mcp server authoring", "spec folder authoring", "jsonc", "shell", "typescript", "python"]
+      "keywords": ["comment hygiene", "comment hygiene check", "author checks", "p0 p1 p2 author check", "stable jsonl keys", "add set -euo pipefail", "alignment verifier"]
     },
     "debug-aliases": {
       "keywords": ["debug", "debugging", "debugging workflow", "fix bug", "bug", "root cause", "root-cause", "error recovery", "trace symptom", "test failure", "build failure"]
     },
     "debug-symptoms": {
-      "keywords": ["handle empty", "handle null", "empty state", "null", "missing", "throws", "fails", "failure", "runtime error", "three fixes", "escalation"]
+      "keywords": ["handle empty", "handle null", "empty state", "null", "missing", "throws", "fails", "failure", "runtime error", "three fixes", "escalation", "console.error fallback"]
     },
-    "error-recovery": {
-      "keywords": ["error recovery", "recover", "fallback", "root cause debugging", "escalation discipline", "symptom", "current evidence"]
+    "debug-recovery": {
+      "keywords": ["recover", "fallback", "root cause debugging", "escalation discipline", "symptom", "current evidence"]
     },
     "verify-aliases": {
       "keywords": ["verify", "verification", "verification commands", "language-specific verification commands", "verify after change", "before completion claim", "fresh verification evidence", "iron law"]
     },
-    "verification-evidence": {
-      "keywords": ["browser test", "desktop browser", "mobile browser", "vitest covering", "pytest", "shellcheck", "json validation", "alignment verifier", "verify-minification", "test-minified-runtime", "mutation check"]
+    "verify-evidence": {
+      "keywords": ["browser test", "desktop browser", "mobile browser", "vitest covering", "pytest", "shellcheck", "json validation", "alignment verifier workflow", "verify-minification", "test-minified-runtime", "mutation check"]
     },
-    "mutation-falsifier": {
+    "verify-mutation": {
       "keywords": ["mutation test", "claim-falsifier", "true-red", "compile-red", "verification ladder", "fresh evidence", "surface-appropriate verification"]
     },
     "review-aliases": {
       "keywords": ["review", "reviewer", "code review", "findings-first review", "security review", "pr review", "review baseline", "review mode", "code-review"]
     },
     "review-findings": {
-      "keywords": ["findings first", "findings-first", "severity", "p0", "p1", "p2", "output contract", "checklists", "correctness baseline", "test quality review"]
+      "keywords": ["findings first", "findings-first", "severity", "output contract", "checklists", "correctness baseline", "test quality review", "correctness review", "review output contract"]
     },
     "review-security": {
       "keywords": ["security", "security review", "correctness", "vulnerability", "unsafe", "filesystem behavior", "validation"]
     },
     "review-pr": {
       "keywords": ["pr review", "pull request review", "pr-state gates", "review-result cache", "review output cache"]
+    },
+    "webflow-aliases": {
+      "keywords": ["webflow implementation", "frontend implementation standards", "webflow frontend workflow", "webflow", "frontend", "webflow.js", "src/2_javascript"]
+    },
+    "webflow-runtime": {
+      "keywords": ["html", "css", "javascript", "cdn", "gsap", "lenis", "swiper", "hls.js", "filepond", "intersectionobserver", "browser"]
+    },
+    "opencode-aliases": {
+      "keywords": ["opencode system code", "opencode system code workflow", "opencode typescript verification", "opencode", "system code", "system-code", "mcp"]
+    },
+    "opencode-runtime": {
+      "keywords": ["typescript", "python", "shell", "json", "jsonc", "config"]
+    },
+    "opencode-authoring": {
+      "keywords": ["skill authoring", "agent authoring", "command authoring", "mcp server authoring"]
+    },
+    "animation-aliases": {
+      "keywords": ["motion.dev animation", "motion animation integration", "cross-stack animation", "motion.dev", "motion-dev", "motion_dev", "motion api", "animation", "motion snippets", "motion decision matrix", "motion.dev integration", "cross-stack-animation", "gsap timeline", "lenis smooth-scroll"]
     }
   }
 }

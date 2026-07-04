@@ -76,8 +76,8 @@ Evidence files:
 
 - `.opencode/skills/sk-code/shared/references/stack_detection.md` - OPENCODE precedence rule.
 - `.opencode/skills/sk-code/shared/references/smart_routing.md` - OPENCODE and MOTION_DEV maps.
-- `.opencode/skills/sk-code/code-implement/references/opencode/typescript/quick_reference.md` - Expected TypeScript route.
-- `.opencode/skills/sk-code/code-implement/assets/motion_dev/snippets/es_module_bootstrap.js` - Supplementary Motion ESM pattern.
+- `.opencode/skills/sk-code/opencode/references/typescript/quick_reference.md` - Expected TypeScript route.
+- `.opencode/skills/sk-code/animation/assets/snippets/es_module_bootstrap.js` - Supplementary Motion ESM pattern.
 
 ---
 

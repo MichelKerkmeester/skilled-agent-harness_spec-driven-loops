@@ -71,8 +71,8 @@ Evidence files:
 
 - `.opencode/skills/sk-code/shared/references/stack_detection.md` - generic-node guard.
 - `.opencode/skills/sk-code/shared/references/smart_routing.md` - MOTION_DEV signals.
-- `.opencode/skills/sk-code/code-implement/references/motion_dev/decision_matrix.md` - CSS/Motion/WAAPI trade-offs.
-- `.opencode/skills/sk-code/code-implement/assets/motion_dev/snippets/hover_gesture.js` - Required snippet.
+- `.opencode/skills/sk-code/animation/references/decision_matrix.md` - CSS/Motion/WAAPI trade-offs.
+- `.opencode/skills/sk-code/animation/assets/snippets/hover_gesture.js` - Required snippet.
 
 ---
 

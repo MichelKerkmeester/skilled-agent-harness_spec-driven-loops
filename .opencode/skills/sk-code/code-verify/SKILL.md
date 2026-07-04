@@ -115,7 +115,7 @@ Phase 1 Implementation
 
 | Surface | Required Evidence | Blind Spot To Name |
 | --- | --- | --- |
-| WEBFLOW | `node .opencode/skills/sk-code/code-implement/assets/webflow/scripts/minify-webflow.mjs`, `node .opencode/skills/sk-code/code-implement/assets/webflow/scripts/verify-minification.mjs`, `node .opencode/skills/sk-code/code-implement/assets/webflow/scripts/test-minified-runtime.mjs`, and browser evidence for affected desktop/mobile behavior | Build scripts cannot prove real browser interaction, layout, animation timing, or console state. |
+| WEBFLOW | `node .opencode/skills/sk-code/webflow/assets/scripts/minify-webflow.mjs`, `node .opencode/skills/sk-code/webflow/assets/scripts/verify-minification.mjs`, `node .opencode/skills/sk-code/webflow/assets/scripts/test-minified-runtime.mjs`, and browser evidence for affected desktop/mobile behavior | Build scripts cannot prove real browser interaction, layout, animation timing, or console state. |
 | OPENCODE | `python3 .opencode/skills/sk-code/code-verify/assets/scripts/verify_alignment_drift.py --root <changed-scope>` plus targeted tests such as vitest, pytest, shellcheck, JSON validation, or spec validation | Alignment checks cannot prove every runtime path or external consumer behavior. |
 | UNKNOWN | User-selected command set before any claim | Unsupported surfaces have no built-in evidence contract. |
 
@@ -256,17 +256,17 @@ This mode never uses `Edit`, `Write`, or `Task`. When a command fails, a test is
 ### Verification Assets And References
 
 - [`assets/universal-verification_checklist.md`](assets/universal-verification_checklist.md) - Required pre-claim gate.
-- [`assets/webflow-verification_checklist.md`](assets/webflow-verification_checklist.md) - Webflow/browser verification checklist.
+- [`assets/webflow-verification_checklist.md`](../webflow/assets/webflow-verification_checklist.md) - Webflow/browser verification checklist.
 - [`assets/performance_loading_checklist.md`](assets/performance_loading_checklist.md) - Performance loading checklist.
 - [`assets/scripts/verify_alignment_drift.py`](assets/scripts/verify_alignment_drift.py) - OpenCode alignment drift verifier.
 - [`assets/scripts/test_verify_alignment_drift.py`](assets/scripts/test_verify_alignment_drift.py) - Tests for the alignment verifier.
 - [`assets/scripts/verify_stack_folders.py`](assets/scripts/verify_stack_folders.py) - Stack-folder integrity verifier.
-- [`references/webflow-verification/verification_workflows.md`](references/webflow-verification/verification_workflows.md) - Webflow/browser verification workflows.
-- [`references/webflow-verification/performance_checklist.md`](references/webflow-verification/performance_checklist.md) - Webflow performance verification checklist.
+- [`references/webflow-verification/verification_workflows.md`](../webflow/references/verification/verification_workflows.md) - Webflow/browser verification workflows.
+- [`references/webflow-verification/performance_checklist.md`](../webflow/references/verification/performance_checklist.md) - Webflow performance verification checklist.
 
 ### Sibling Mode Contracts
 
 - [`../code-implement/SKILL.md`](../code-implement/SKILL.md) - Planned implementation and new behavior.
 - [`../code-quality/SKILL.md`](../code-quality/SKILL.md) - Quality gate before verification.
 - [`../code-debug/SKILL.md`](../code-debug/SKILL.md) - Root-cause repair after verification failures.
-- [`../code-review/SKILL.md`](../code-review/SKILL.md) - Findings-first review output.
+- [`../review/SKILL.md`](../review/SKILL.md) - Findings-first review output.
