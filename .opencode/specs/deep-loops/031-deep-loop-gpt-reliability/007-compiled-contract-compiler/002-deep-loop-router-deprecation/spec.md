@@ -9,7 +9,7 @@ importance_tier: "medium"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "deep-loops/036-command-contract-compiler/002-deep-loop-router-deprecation"
+    packet_pointer: "deep-loops/031-deep-loop-gpt-reliability/007-compiled-contract-compiler/002-deep-loop-router-deprecation"
     last_updated_at: "2026-07-04T12:55:17Z"
     last_updated_by: "claude-code"
     recent_action: "Deleted 3 deep-loop.md mirrors; reworded orchestrate lines; verified parity + no refs"

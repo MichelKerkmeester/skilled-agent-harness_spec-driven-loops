@@ -1,6 +1,6 @@
 {
   "level": "1",
-  "specFolder": "deep-loops/036-command-contract-compiler/001-contract-compiler-design",
+  "specFolder": "deep-loops/031-deep-loop-gpt-reliability/007-compiled-contract-compiler/001-contract-compiler-design",
   "description": "Phase 001 of packet 036 (command contract compiler, carved from 035). Design-first: verify and expand the seed design (design.md, produced during the",
   "keywords": [
     "phase",
@@ -19,14 +19,13 @@
     "design",
     "produced"
   ],
-  "lastUpdated": "2026-07-04T15:34:31.910Z",
+  "lastUpdated": "2026-07-04T19:18:11.020Z",
   "specId": "001",
   "folderSlug": "contract-compiler-design",
   "parentChain": [
-    ".opencode",
-    "specs",
     "deep-loops",
-    "036-command-contract-compiler"
+    "031-deep-loop-gpt-reliability",
+    "007-compiled-contract-compiler"
   ],
   "memorySequence": 2,
   "memoryNameHistory": [

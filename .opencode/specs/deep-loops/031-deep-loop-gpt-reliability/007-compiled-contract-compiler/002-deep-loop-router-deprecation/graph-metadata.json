@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "deep-loops/036-command-contract-compiler/002-deep-loop-router-deprecation",
-  "spec_folder": "deep-loops/036-command-contract-compiler/002-deep-loop-router-deprecation",
-  "parent_id": "deep-loops/036-command-contract-compiler",
+  "packet_id": "deep-loops/031-deep-loop-gpt-reliability/007-compiled-contract-compiler/002-deep-loop-router-deprecation",
+  "spec_folder": "deep-loops/031-deep-loop-gpt-reliability/007-compiled-contract-compiler/002-deep-loop-router-deprecation",
+  "parent_id": "deep-loops/031-deep-loop-gpt-reliability/007-compiled-contract-compiler",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -38,21 +38,12 @@
     "importance_tier": "medium",
     "status": "complete",
     "key_files": [
-      ".opencode/agents/deep-loop.md",
-      ".claude/agents/deep-loop.md",
-      ".codex/agents/deep-loop.md",
       "spec.md",
       "plan.md",
       "implementation-summary.md",
       "tasks.md"
     ],
     "entities": [
-      {
-        "name": "deep-loop.md",
-        "kind": "doc",
-        "path": ".opencode/agents/deep-loop.md",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -194,7 +185,7 @@
     ],
     "causal_summary": "Phase 002 of packet 036 (command contract compiler). Retire the now-dead deep-loop primary router agent: the compiled-command-contract mechanism (phase 001 + the review/research/context/ai-council rollout) made the /deep:* commands dispatch their leaf agents directly, so the routing hop the deep-loop agent provided is off every live path. Full-delete the three mirror agent files and reword the two orchestrate boundary lines that named it, preserving the positive leaf-dispatch rule.",
     "created_at": "2026-07-04T12:45:57.770Z",
-    "last_save_at": "2026-07-04T12:55:17.766Z",
+    "last_save_at": "2026-07-04T19:18:11.603Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,12 +194,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:bd1974fd6ccc37bd31556c1e97eef6c85749f2efa88fdc213178cfa7946042e6",
+    "source_fingerprint": "sha256:7269b9e4719af0eb60cde1efd63dc0b2d8d1776d4ac102a64ede5bd04a39b6c6",
     "source_doc_hashes": {
-      "spec.md": "6f7e961360c37f2fc32e568f88f434f6ff051155cb3f4601e10311de9815b8a9",
-      "plan.md": "6a5ba55db09a421d0fca5139a07baf507b378bfc8faa4b7fd802fecf21a3ad5c",
-      "tasks.md": "ee1b4622653f5e73bb4e8471e5858ff36beaaec8dfbf2cc314062ec3470f0123",
-      "implementation-summary.md": "eac0063af1ebf7679340c41333806decc646b85f5ef12b5c56aba894050527a1"
+      "spec.md": "d4a9857c5d7c975cd7f06dfc96de7fa39ee56a9b8bf92d540e6785782f6467b0",
+      "plan.md": "329f2845883b6fc619ebf1b61e78cc16ee28cc2eccdf07312b2f4f8e679da29b",
+      "tasks.md": "6c3c6aac8e008db36f33ed62eed4b84088c0eeae2bf81b9faedbce0afa5f6d75",
+      "implementation-summary.md": "1de23a69c503a2577eb07d22b21b058b14f8e54cf95b2fea4ef3dd12a2e95a66"
     },
     "last_active_child_id": null,
     "last_active_at": null
