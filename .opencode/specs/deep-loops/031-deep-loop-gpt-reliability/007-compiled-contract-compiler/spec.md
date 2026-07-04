@@ -9,7 +9,7 @@ importance_tier: "high"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "deep-loops/036-command-contract-compiler"
+    packet_pointer: "deep-loops/031-deep-loop-gpt-reliability/007-compiled-contract-compiler"
     last_updated_at: "2026-07-03T19:00:00Z"
     last_updated_by: "claude-code"
     recent_action: "Packet carved from 035 phase-003; design seed captured"

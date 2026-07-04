@@ -1,12 +1,15 @@
 {
   "schema_version": 1,
-  "packet_id": "deep-loops/036-command-contract-compiler",
-  "spec_folder": "deep-loops/036-command-contract-compiler",
-  "parent_id": null,
+  "packet_id": "deep-loops/031-deep-loop-gpt-reliability/007-compiled-contract-compiler",
+  "spec_folder": "deep-loops/031-deep-loop-gpt-reliability/007-compiled-contract-compiler",
+  "parent_id": "deep-loops/031-deep-loop-gpt-reliability",
   "children_ids": [
     "deep-loops/036-command-contract-compiler/001-contract-compiler-design",
     "deep-loops/036-command-contract-compiler/002-deep-loop-router-deprecation",
-    "deep-loops/036-command-contract-compiler/003-generalization-probes"
+    "deep-loops/036-command-contract-compiler/003-generalization-probes",
+    "deep-loops/031-deep-loop-gpt-reliability/007-compiled-contract-compiler/001-contract-compiler-design",
+    "deep-loops/031-deep-loop-gpt-reliability/007-compiled-contract-compiler/002-deep-loop-router-deprecation",
+    "deep-loops/031-deep-loop-gpt-reliability/007-compiled-contract-compiler/003-generalization-probes"
   ],
   "manual": {
     "depends_on": [],
@@ -91,15 +94,15 @@
     ],
     "causal_summary": "Design-first structural packet carved from 035 (GPT-reliability fixes) after the phase-003 design pass confirmed the contract compiler is research-sized, not a single implementation phase. Builds the build-time unified command-contract compiler that collapses the ~14-file resolution chain into one self-contained typed contract per command, plus the deterministic setup loader, the drift-guard contract, the retrofit of all deep commands + 14 agent files to contract pointers, the deferred AGENTS.md autonomous-precedence bridge, the rollout emitter-wiring, and pacing/resume. Phase 001 is the",
     "created_at": "2026-07-03T17:04:53.888Z",
-    "last_save_at": "2026-07-04T17:19:03.918Z",
+    "last_save_at": "2026-07-04T19:18:12.345Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:7ace3c8c03e252d7f568602d04a71abf93facb51771d8249126bb7aed263fed2",
+    "source_fingerprint": "sha256:0d37e7956db71b1f51e595e11e170b5b1468733baa5ddba0c8b35c940101f423",
     "source_doc_hashes": {
-      "spec.md": "2d5c589a1100e09687d3668250c12e2382ff85dcb96e485ad629c03208d972ab"
+      "spec.md": "17cb88460c24b69c0feac37bb9c880ec2de225c06d21efdbde8fdf1ed59f8969"
     },
     "last_active_child_id": null,
     "last_active_at": "2026-07-04T17:19:03.918Z"

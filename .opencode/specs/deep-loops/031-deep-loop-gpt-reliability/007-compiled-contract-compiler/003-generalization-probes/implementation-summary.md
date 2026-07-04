@@ -8,7 +8,7 @@ importance_tier: "medium"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "deep-loops/036-command-contract-compiler/003-generalization-probes"
+    packet_pointer: "deep-loops/031-deep-loop-gpt-reliability/007-compiled-contract-compiler/003-generalization-probes"
     last_updated_at: "2026-07-04T16:07:46Z"
     last_updated_by: "claude-code"
     recent_action: "N=2 completion scored; council verdict revised (fix arm split 1/2)"

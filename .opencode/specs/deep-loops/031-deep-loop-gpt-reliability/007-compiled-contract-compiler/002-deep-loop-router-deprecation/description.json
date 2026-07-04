@@ -1,6 +1,6 @@
 {
   "level": "1",
-  "specFolder": "deep-loops/036-command-contract-compiler/002-deep-loop-router-deprecation",
+  "specFolder": "deep-loops/031-deep-loop-gpt-reliability/007-compiled-contract-compiler/002-deep-loop-router-deprecation",
   "description": "Phase 002 of packet 036 (command contract compiler). Retire the now-dead deep-loop primary router agent: the compiled-command-contract mechanism",
   "keywords": [
     "phase",
@@ -19,12 +19,13 @@
     "compiled-command-contract",
     "mechanism"
   ],
-  "lastUpdated": "2026-07-04T14:39:14.219Z",
+  "lastUpdated": "2026-07-04T19:18:11.386Z",
   "specId": "002",
   "folderSlug": "deep-loop-router-deprecation",
   "parentChain": [
     "deep-loops",
-    "036-command-contract-compiler"
+    "031-deep-loop-gpt-reliability",
+    "007-compiled-contract-compiler"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []
