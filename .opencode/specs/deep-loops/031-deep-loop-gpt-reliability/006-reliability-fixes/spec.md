@@ -10,7 +10,7 @@ importance_tier: "high"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "deep-loops/035-gpt-reliability-fixes"
+    packet_pointer: "deep-loops/031-deep-loop-gpt-reliability/006-reliability-fixes"
     last_updated_at: "2026-07-03T16:00:00Z"
     last_updated_by: "claude-code"
     recent_action: "Restructured to unified command-contract architecture"
@@ -123,7 +123,7 @@ Dependency-ordered. Effort and acceptance cells (033 behavior-benchmark ids) per
 |-------|--------|--------|--------|----------------------------|
 | [`001-acceptance-and-rollout-foundation`](./001-acceptance-and-rollout-foundation/spec.md) | Planned | F-014, F-025 + rollout mechanism | M | **Land first.** Make the 033 harness trustworthy (content-hash rewrite detection, path-free prompts, missing instrumentation, N≥3 for contested cells, full 32×3 re-score, stall-rate deltas, one non-GPT executor leg, CI baseline gate) AND build the rollout kill-switch (feature flag + byte-identical fallback + CI comparator + promotion rule). Enables every later cell-flip and makes the rewrites reversible. Cells: harness-internal + rollout smoke. |
 | [`002-gate3-precedence-and-validator`](./002-gate3-precedence-and-validator/spec.md) | Planned | F-001, F-002, F-003, F-004, F-005, F-028, F-030, F-040 | L | **P0.** Autonomous-precedence bridge + a concrete `validateSpecFolderBinding()` the rule calls (GAP-16 blocker), enforced writeBoundary, prior_answer mode-gate, phase-parent resolution, `/doctor` precedence, `:confirm` vocab, child-agent propagation, and the 34-caller migration. High effort mandated + enforced. Cells: RVB-008, RSB-008, ACB-004-med, IMB-004, IMB-005. |
-| [`004-dispatch-receipts-and-progress`](./004-dispatch-receipts-and-progress/spec.md) | Planned | F-010, F-011, F-012, F-013, F-015, F-016, F-017, F-031, F-041, F-043 | L | Engine-held HMAC receipts (key never leaves the engine process — GAP-23 blocker), pre-dispatch intent + post-dispatch completion countersign, atomic writes, route-field migration across 4 YAMLs, resumable key lifecycle, parent-owned receipt path; step-transition progress records with a work-anchored schema field, reducer allowlist, council stepwise writer. Embedded in the compiled contract. Cells: RVB-007, RSB-005, RSB-007, ACB-004-high, ACB-005, CXB-004; IMB-001-high partial. |
+| [`003-dispatch-receipts-and-progress`](./003-dispatch-receipts-and-progress/spec.md) | Planned | F-010, F-011, F-012, F-013, F-015, F-016, F-017, F-031, F-041, F-043 | L | Engine-held HMAC receipts (key never leaves the engine process — GAP-23 blocker), pre-dispatch intent + post-dispatch completion countersign, atomic writes, route-field migration across 4 YAMLs, resumable key lifecycle, parent-owned receipt path; step-transition progress records with a work-anchored schema field, reducer allowlist, council stepwise writer. Embedded in the compiled contract. Cells: RVB-007, RSB-005, RSB-007, ACB-004-high, ACB-005, CXB-004; IMB-001-high partial. |
 <!-- /ANCHOR:phases -->
 
 > **Carved to 036:** the original phases 003 (command-contract compiler) and 005 (retrofit + pacing) were research-sized (design verdict + plan-review GAP-53/54) and moved to packet `036-command-contract-compiler`, together with the deferred `AGENTS.md` bridge and rollout emitter-wiring. 035 keeps the acute fixes (001, 002, 004). See `context-index.md`.
