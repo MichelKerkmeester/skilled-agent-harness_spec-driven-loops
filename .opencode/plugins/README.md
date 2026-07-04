@@ -70,7 +70,7 @@ This keeps plugin entrypoints minimal and lets owning skills own their bridge co
 
 ## 5. CONFIGURATION
 
-Both plugins support a **4-tier configuration precedence** (highest to lowest):
+The two config-file-aware plugins (`mk-skill-advisor` and `mk-code-graph`) support a **4-tier configuration precedence** (highest to lowest):
 
 1. **Raw plugin options** (passed programmatically at plugin registration)
 2. **Config file** (`~/.config/opencode/plugin/<plugin-name>.json`)
