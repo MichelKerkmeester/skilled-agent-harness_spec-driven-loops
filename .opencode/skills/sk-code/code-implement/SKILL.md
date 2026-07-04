@@ -68,7 +68,7 @@ Load the smallest set that can safely author the change. Do not load whole direc
 | WEBFLOW deployment / CDN | [`references/webflow/deployment/cdn_deployment.md`](references/webflow/deployment/cdn_deployment.md), [`references/webflow/deployment/minification_guide.md`](references/webflow/deployment/minification_guide.md) | [`references/webflow/deployment/webflow_staging_production.md`](references/webflow/deployment/webflow_staging_production.md), [`assets/webflow/scripts/README.md`](assets/webflow/scripts/README.md) |
 | WEBFLOW performance | [`references/webflow/performance/resource_loading.md`](references/webflow/performance/resource_loading.md), [`references/webflow/performance/webflow_constraints.md`](references/webflow/performance/webflow_constraints.md) | [`interaction_gated_loading.md`](references/webflow/performance/interaction_gated_loading.md), [`cwv_remediation.md`](references/webflow/performance/cwv_remediation.md), [`third_party.md`](references/webflow/performance/third_party.md) |
 | OPENCODE base | [`../shared/references/opencode-shared/universal_patterns.md`](../shared/references/opencode-shared/universal_patterns.md), [`../shared/references/opencode-shared/code_organization.md`](../shared/references/opencode-shared/code_organization.md) | [`../shared/references/opencode-shared/hooks.md`](../shared/references/opencode-shared/hooks.md) when hook behavior changes |
-| OPENCODE authoring | The language-specific references from the table below | At write-time, load the matching authoring checklist from [`../code-quality/assets/opencode-checklists/`](../code-quality/assets/opencode-checklists/) and load [`assets/opencode/recipes/spec_folder_write.md`](assets/opencode/recipes/spec_folder_write.md) for spec-folder writes |
+| OPENCODE authoring | The language-specific references from the table below | At write-time, load the matching authoring checklist from [`../code-quality/assets/opencode-checklists/`](../code-quality/assets/opencode-checklists/) and load [`spec_folder_write_recipe.md`](../../system-spec-kit/references/workflows/spec_folder_write_recipe.md) (system-spec-kit) for spec-folder writes |
 | MOTION_DEV overlay | [`references/motion_dev/quick_start.md`](references/motion_dev/quick_start.md), [`animation_principles.md`](references/motion_dev/animation_principles.md), [`integration_patterns.md`](references/motion_dev/integration_patterns.md), [`decision_matrix.md`](references/motion_dev/decision_matrix.md) | [`animate_and_timelines.md`](references/motion_dev/animate_and_timelines.md), [`scroll_and_gestures.md`](references/motion_dev/scroll_and_gestures.md), [`performance_and_pitfalls.md`](references/motion_dev/performance_and_pitfalls.md), [`assets/motion_dev/snippets/README.md`](assets/motion_dev/snippets/README.md), and exact snippet assets |
 | UNKNOWN | Shared detection and universal references only | Ask for the active runtime surface and verification command set before implementing |
 
@@ -96,7 +96,7 @@ For `.opencode/` authoring, implementation loads the relevant checklist **before
 | Agent file | [`../code-quality/assets/opencode-checklists/agent_authoring.md`](../code-quality/assets/opencode-checklists/agent_authoring.md) | n/a |
 | Command file | [`../code-quality/assets/opencode-checklists/command_authoring.md`](../code-quality/assets/opencode-checklists/command_authoring.md) | n/a |
 | MCP server source | [`../code-quality/assets/opencode-checklists/mcp_server_authoring.md`](../code-quality/assets/opencode-checklists/mcp_server_authoring.md) | n/a |
-| Spec-folder authored docs | [`../code-quality/assets/opencode-checklists/spec_folder_authoring.md`](../code-quality/assets/opencode-checklists/spec_folder_authoring.md) | [`assets/opencode/recipes/spec_folder_write.md`](assets/opencode/recipes/spec_folder_write.md) |
+| Spec-folder authored docs | [`spec_folder_authoring_checklist.md`](../../system-spec-kit/references/workflows/spec_folder_authoring_checklist.md) (system-spec-kit) | [`spec_folder_write_recipe.md`](../../system-spec-kit/references/workflows/spec_folder_write_recipe.md) (system-spec-kit) |
 
 ---
 
@@ -252,7 +252,7 @@ An implementation handoff is ready when:
 - [`references/opencode/javascript/quick_reference.md`](references/opencode/javascript/quick_reference.md), [`references/opencode/typescript/quick_reference.md`](references/opencode/typescript/quick_reference.md), [`references/opencode/python/quick_reference.md`](references/opencode/python/quick_reference.md), [`references/opencode/shell/quick_reference.md`](references/opencode/shell/quick_reference.md), and [`references/opencode/config/quick_reference.md`](references/opencode/config/quick_reference.md) - OPENCODE language entry points.
 - [`references/motion_dev/quick_start.md`](references/motion_dev/quick_start.md), [`references/motion_dev/integration_patterns.md`](references/motion_dev/integration_patterns.md), [`references/motion_dev/decision_matrix.md`](references/motion_dev/decision_matrix.md), and [`references/motion_dev/performance_and_pitfalls.md`](references/motion_dev/performance_and_pitfalls.md) - Motion.dev overlay guidance.
 - [`assets/webflow/templates/README.md`](assets/webflow/templates/README.md), [`assets/webflow/patterns/README.md`](assets/webflow/patterns/README.md), [`assets/webflow/integrations/README.md`](assets/webflow/integrations/README.md), and [`assets/motion_dev/snippets/README.md`](assets/motion_dev/snippets/README.md) - reusable authoring assets.
-- [`assets/opencode/recipes/spec_folder_write.md`](assets/opencode/recipes/spec_folder_write.md) - implementation-time recipe for spec-folder writes.
+- [`spec_folder_write_recipe.md`](../../system-spec-kit/references/workflows/spec_folder_write_recipe.md) - implementation-time recipe for spec-folder writes (owned by system-spec-kit).
 
 ### Cross-Packet Quality Assets
 
@@ -260,6 +260,6 @@ An implementation handoff is ready when:
 - [`../code-quality/assets/opencode-checklists/agent_authoring.md`](../code-quality/assets/opencode-checklists/agent_authoring.md)
 - [`../code-quality/assets/opencode-checklists/command_authoring.md`](../code-quality/assets/opencode-checklists/command_authoring.md)
 - [`../code-quality/assets/opencode-checklists/mcp_server_authoring.md`](../code-quality/assets/opencode-checklists/mcp_server_authoring.md)
-- [`../code-quality/assets/opencode-checklists/spec_folder_authoring.md`](../code-quality/assets/opencode-checklists/spec_folder_authoring.md)
+- [`spec_folder_authoring_checklist.md`](../../system-spec-kit/references/workflows/spec_folder_authoring_checklist.md) (owned by system-spec-kit)
 
 ---

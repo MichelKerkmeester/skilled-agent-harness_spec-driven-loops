@@ -103,7 +103,7 @@ Phase 1 Implementation writes or changes files
 | CONDITIONAL | `.opencode/skills/` target | `assets/opencode-checklists/skill_authoring.md` |
 | CONDITIONAL | `.opencode/agents/` target | `assets/opencode-checklists/agent_authoring.md` |
 | CONDITIONAL | `.opencode/commands/` target | `assets/opencode-checklists/command_authoring.md` |
-| CONDITIONAL | `.opencode/specs/` target | `assets/opencode-checklists/spec_folder_authoring.md` |
+| CONDITIONAL | `.opencode/specs/` target | `../../system-spec-kit/references/workflows/spec_folder_authoring_checklist.md` (system-spec-kit) |
 | CONDITIONAL | MCP server source | `assets/opencode-checklists/mcp_server_authoring.md` |
 | CONDITIONAL | OpenCode JavaScript, TypeScript, Python, Shell, JSON, or JSONC files | `assets/opencode-checklists/javascript_checklist.md`, `assets/opencode-checklists/typescript_checklist.md`, `assets/opencode-checklists/python_checklist.md`, `assets/opencode-checklists/shell_checklist.md`, `assets/opencode-checklists/config_checklist.md` as applicable |
 | CONDITIONAL | Generated distribution artifacts or mirrored outputs changed | `scripts/check-dist-staleness.sh` |
@@ -116,7 +116,7 @@ Phase 1 Implementation writes or changes files
 | `.opencode/skills/` | `assets/opencode-checklists/skill_authoring.md` | Check frontmatter, section structure, resource layout, routing, version, allowed tools, and validation path. |
 | `.opencode/agents/` | `assets/opencode-checklists/agent_authoring.md` | Check agent frontmatter, prompt boundary, tool access, and role clarity. |
 | `.opencode/commands/` | `assets/opencode-checklists/command_authoring.md` | Check command metadata, arguments, routing, and execution contract. |
-| `.opencode/specs/` | `assets/opencode-checklists/spec_folder_authoring.md` | Check spec-folder structure and packet-document consistency. |
+| `.opencode/specs/` | `../../system-spec-kit/references/workflows/spec_folder_authoring_checklist.md` (system-spec-kit) | Check spec-folder structure and packet-document consistency. |
 | MCP server source | `assets/opencode-checklists/mcp_server_authoring.md` | Check tool contracts, input/output schemas, transport assumptions, and failure handling. |
 | OpenCode language/config files | language/config checklist in `assets/opencode-checklists/` | Check language-specific quality and style expectations. |
 | Webflow/frontend files | `assets/code_quality_checklist.md` | Check frontend style, maintainability, headers, comments, and platform expectations. |
@@ -242,7 +242,7 @@ Comments should explain durable WHY and constraints. They must not embed tempora
 - [`assets/opencode-checklists/skill_authoring.md`](assets/opencode-checklists/skill_authoring.md) - Skill authoring checklist.
 - [`assets/opencode-checklists/agent_authoring.md`](assets/opencode-checklists/agent_authoring.md) - Agent authoring checklist.
 - [`assets/opencode-checklists/command_authoring.md`](assets/opencode-checklists/command_authoring.md) - Command authoring checklist.
-- [`assets/opencode-checklists/spec_folder_authoring.md`](assets/opencode-checklists/spec_folder_authoring.md) - Spec folder authoring checklist.
+- [`spec_folder_authoring_checklist.md`](../../system-spec-kit/references/workflows/spec_folder_authoring_checklist.md) - Spec folder authoring checklist (owned by system-spec-kit).
 - [`assets/opencode-checklists/mcp_server_authoring.md`](assets/opencode-checklists/mcp_server_authoring.md) - MCP server authoring checklist.
 - [`assets/opencode-checklists/javascript_checklist.md`](assets/opencode-checklists/javascript_checklist.md) - JavaScript checklist.
 - [`assets/opencode-checklists/typescript_checklist.md`](assets/opencode-checklists/typescript_checklist.md) - TypeScript checklist.

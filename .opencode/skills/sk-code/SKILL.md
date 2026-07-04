@@ -2,7 +2,7 @@
 name: sk-code
 description: "Unified code skill: routes to five modes (implement, quality, debug, verify, review) over shared surface-detection; holds no per-mode logic; dispatches by workflowMode through mode-registry.json."
 allowed-tools: [Read, Write, Edit, Bash, Grep, Glob, Task]
-version: 4.0.0.0
+version: 4.0.1.0
 metadata:
   author: OpenCode
   family: sk-code

@@ -38,8 +38,6 @@
     "agent_authoring",
     "command_authoring",
     "mcp_server_authoring",
-    "spec_folder_authoring",
-    "spec_folder_write",
     "code-quality",
     "debugging",
     "verification"

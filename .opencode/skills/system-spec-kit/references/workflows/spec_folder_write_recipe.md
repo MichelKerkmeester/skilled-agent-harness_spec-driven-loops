@@ -118,7 +118,7 @@ Verification gate: confirm `git status --short` only includes the intended packe
 
 ## 6. RELATED RESOURCES
 
-- sk-code/assets/opencode/checklists/spec_folder_authoring.md (companion checklist)
+- spec_folder_authoring_checklist.md (companion checklist, same directory)
 - system-spec-kit/scripts/spec/validate.sh (the gate)
 - system-spec-kit/scripts/dist/spec-folder/generate-description.js (metadata refresh)
 - system-spec-kit/templates/manifest/{spec,plan,tasks,implementation-summary}.md.tmpl (canonical templates)

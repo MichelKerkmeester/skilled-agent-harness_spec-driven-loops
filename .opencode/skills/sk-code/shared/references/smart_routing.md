@@ -229,7 +229,7 @@ When OPENCODE intent is `authoring-new-X`, additionally load the matching author
 | New agent | `code-quality/assets/opencode-checklists/agent_authoring.md` |
 | New command | `code-quality/assets/opencode-checklists/command_authoring.md` |
 | New MCP server | `code-quality/assets/opencode-checklists/mcp_server_authoring.md` |
-| Spec folder write | `code-quality/assets/opencode-checklists/spec_folder_authoring.md` + `assets/opencode/recipes/spec_folder_write.md` |
+| Spec folder write | Now in system-spec-kit: `system-spec-kit/references/workflows/spec_folder_authoring_checklist.md` + `system-spec-kit/references/workflows/spec_folder_write_recipe.md` |
 
 ---
 
@@ -349,8 +349,6 @@ RESOURCE_MAP = {
         "code-quality/assets/opencode-checklists/command_authoring.md",
         "code-quality/assets/opencode-checklists/skill_authoring.md",
         "code-quality/assets/opencode-checklists/mcp_server_authoring.md",
-        "code-quality/assets/opencode-checklists/spec_folder_authoring.md",
-        "assets/opencode/recipes/spec_folder_write.md",
         "shared/assets/patterns/README.md",
         "assets/webflow/integrations/README.md",
         "assets/webflow/patterns/README.md",
