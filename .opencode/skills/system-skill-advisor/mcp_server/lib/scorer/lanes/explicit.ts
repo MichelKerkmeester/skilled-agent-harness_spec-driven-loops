@@ -16,7 +16,7 @@ interface ExplicitScoreEntry {
 }
 
 const TOKEN_BOOSTS: Readonly<Record<string, readonly [string, number][]>> = {
-  audit: [['sk-code-review', 0.75]],
+  audit: [['sk-code', 0.75]],
   branch: [['sk-git', 0.45]],
   browser: [['sk-code', 0.55]],
   checklist: [['system-spec-kit', 0.55]],
@@ -33,7 +33,7 @@ const TOKEN_BOOSTS: Readonly<Record<string, readonly [string, number][]>> = {
   devtools: [['mcp-chrome-devtools', 1]],
   docs: [['sk-doc', 0.8]],
   documentation: [['sk-doc', 0.85]],
-  findings: [['sk-code-review', 0.85]],
+  findings: [['sk-code', 0.85]],
   frontend: [['sk-code', 0.7]],
   git: [['sk-git', 1]],
   github: [['sk-git', 0.95]],
@@ -50,16 +50,16 @@ const TOKEN_BOOSTS: Readonly<Record<string, readonly [string, number][]>> = {
   opencode: [['sk-code', 1]],
   packet: [['system-spec-kit', 0.55]],
   playbook: [['sk-doc', 0.75]],
-  pr: [['sk-code-review', 0.5], ['sk-git', 0.35]],
+  pr: [['sk-code', 0.5], ['sk-git', 0.35]],
   prompt: [['sk-prompt', 0.75]],
   prompts: [['sk-prompt', 0.75]],
   python: [['sk-code', 0.7]],
   readme: [['sk-doc', 0.95]],
   rebase: [['sk-git', 0.85]],
   reducer: [['sk-code', 0.35]],
-  regression: [['sk-code-review', 0.55]],
+  regression: [['sk-code', 0.55]],
   responsive: [['sk-code', 0.55]],
-  review: [['sk-code-review', 0.85]],
+  review: [['sk-code', 0.85]],
   reviewer: [],
   routing: [['system-spec-kit', 0.25]],
   save: [['system-spec-kit', 0.6]],
@@ -109,11 +109,11 @@ const PHRASE_BOOSTS: Readonly<Record<string, readonly [string, number][]>> = {
   '/speckit:resume': [['system-spec-kit', 0.9], ['command-spec-kit', 0.75]],
   'auto review release readiness': [['deep-loop-workflows', 1]],
   // Colon-command syntax (":review:auto") is a deep-review LOOP invocation,
-  // distinct from natural-language "auto review this PR" (which stays
-  // sk-code-review). Strong direct-evidence anchor + a bounded code-review
-  // penalty so the loop skill wins the rank.
-  ':review:auto': [['deep-loop-workflows', 1.6], ['sk-code-review', -0.6]],
-  ':review:confirm': [['deep-loop-workflows', 1.6], ['sk-code-review', -0.6]],
+  // distinct from natural-language "auto review this PR" (which routes to
+  // sk-code's code-review mode). Strong direct-evidence anchor + a bounded
+  // penalty on the single-pass skill so the loop skill wins the rank.
+  ':review:auto': [['deep-loop-workflows', 1.6], ['sk-code', -0.6]],
+  ':review:confirm': [['deep-loop-workflows', 1.6], ['sk-code', -0.6]],
   // Domain phrase anchors (multi-token, so they lift confidence via the direct
   // lane without firing on single tokens like "scan"/"profile"/"search"/"cms").
   'webflow cms': [['mcp-code-mode', 1.5], ['sk-code', -0.5]],
@@ -156,16 +156,16 @@ const PHRASE_BOOSTS: Readonly<Record<string, readonly [string, number][]>> = {
   'production url': [['mcp-chrome-devtools', 0.65]],
   'browser console': [['mcp-chrome-devtools', 0.75]],
   'cleaner prompt': [['sk-prompt', 1]],
-  'code review': [['sk-code-review', 1]],
-  'review the routing': [['sk-code-review', 0.6]],
-  'review the taxonomy': [['sk-code-review', 0.6]],
-  'review the routing taxonomy': [['sk-code-review', 1.1], ['sk-doc', -0.4]],
-  'review the packet docs': [['sk-code-review', 1.2]],
-  'audit packet docs': [['sk-code-review', 1.2]],
-  'documented consistently': [['sk-code-review', 1]],
-  'scoped correctly': [['sk-code-review', 1]],
-  'iteration is scoped': [['sk-code-review', 1]],
-  'classifier vocabulary': [['sk-code-review', 0.9]],
+  'code review': [['sk-code', 1]],
+  'review the routing': [['sk-code', 0.6]],
+  'review the taxonomy': [['sk-code', 0.6]],
+  'review the routing taxonomy': [['sk-code', 1.1], ['sk-doc', -0.4]],
+  'review the packet docs': [['sk-code', 1.2]],
+  'audit packet docs': [['sk-code', 1.2]],
+  'documented consistently': [['sk-code', 1]],
+  'scoped correctly': [['sk-code', 1]],
+  'iteration is scoped': [['sk-code', 1]],
+  'classifier vocabulary': [['sk-code', 0.9]],
   'commonjs helper': [['sk-code', 1]],
   'create a prompt': [['sk-prompt', 0.95]],
   'deep research': [['deep-loop-workflows', 1]],
@@ -189,8 +189,8 @@ const PHRASE_BOOSTS: Readonly<Record<string, readonly [string, number][]>> = {
   'improve my prompt': [['sk-prompt', 1]],
   'manual testing playbook': [['sk-doc', 1]],
   'negative-trigger whitelist': [['sk-code', 0.9]],
-  'list any mismatches': [['sk-code-review', 0.8]],
-  'pull request': [['sk-code-review', 0.45], ['sk-git', 0.45]],
+  'list any mismatches': [['sk-code', 0.8]],
+  'pull request': [['sk-code', 0.45], ['sk-git', 0.45]],
   'resume deep research': [['deep-loop-workflows', 1]],
   'resume deep review': [['deep-loop-workflows', 1]],
   'resume the phase folder': [['system-spec-kit', 1]],
@@ -292,21 +292,15 @@ export function scoreExplicitLane(
     push(scores, 'system-spec-kit', 0.4, 'speckit-resume-skill-disambiguation');
     push(scores, 'command-spec-kit', -1.0, 'speckit-resume-skill-disambiguation');
   }
-  // Review-plus-write disambiguation. When the prompt contains
-  // the word `review` AND any explicit write/edit verb (`update|edit|fix|modify`),
-  // the request is implementation work, not a code review. Nudge the explicit
-  // lane toward `sk-code` and away from `sk-code-review`. The magnitudes
-  // (+3.0 / -2.0) are calibrated to overcome the combined `review` signals
-  // (token boost + intent boost + name match + graph sibling/enhances edges
-  // to sk-code-review) that otherwise keep sk-code-review on top. The lane's
-  // emit clamps with `Math.min(value.score, 1)` so per-skill score stays
-  // within [-1, 1]; the wide raw magnitude is needed because graph boosts
-  // compound through downstream layers. Pure review prompts (no write verb)
-  // are unaffected — they keep routing to `sk-code-review` via the existing
-  // `review` token boost above.
+  // Review-plus-write intent. When the prompt contains the word `review`
+  // AND an explicit write/edit verb (`update|edit|fix|modify`), the request
+  // is implementation work; anchor the explicit lane firmly on `sk-code` so
+  // the code hub wins the skill selection (its router then selects the
+  // implement mode rather than the code-review mode). The lane's emit clamps
+  // with `Math.min(value.score, 1)`, so the wide magnitude only guarantees
+  // the anchor; it cannot overshoot.
   if (/\breview\b/.test(lower) && /\b(update|edit|fix|modify)\b/.test(lower)) {
     push(scores, 'sk-code', 3.0, 'review-plus-write-disambiguation');
-    push(scores, 'sk-code-review', -2.0, 'review-plus-write-disambiguation');
   }
   if (/\b(continue|resume|launch|kick off|overnight|convergence|iteration|iterative|multi-pass|loop)\b/.test(lower) && /\bresearch\b/.test(lower)) {
     push(scores, 'deep-loop-workflows', 0.85, 'research-loop');
@@ -322,13 +316,12 @@ export function scoreExplicitLane(
   if (/\b(continue|resume|launch|start|convergence|iteration|iterative|multi-pass|loop)\b/.test(lower) && /\breview\b/.test(lower)) {
     push(scores, 'deep-loop-workflows', 0.85, 'review-loop');
     if (/\b(audit|spec folder|packet|convergence)\b/.test(lower)) {
-      push(scores, 'sk-code-review', -0.6, 'iterative-review-vs-pr-disambiguation');
+      push(scores, 'sk-code', -0.6, 'iterative-review-vs-pr-disambiguation');
     }
   }
   if (/\b(figure out|find|diagnose|debug)\b.{0,40}\b(wrong|broken|failing|bug|issue)\b.{0,40}\bcode\b|\b(wrong|broken|failing)\b.{0,30}\bcode\b/.test(lower)) {
-    push(scores, 'sk-code-review', 0.9, 'ambiguous-code-problem');
+    push(scores, 'sk-code', 0.9, 'ambiguous-code-problem');
     push(scores, 'deep-loop-workflows', 0.45, 'ambiguous-code-problem');
-    push(scores, 'sk-code', -0.45, 'ambiguous-code-problem');
   }
 
   for (const skill of projection.skills) {

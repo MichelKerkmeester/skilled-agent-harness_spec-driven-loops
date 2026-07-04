@@ -1614,17 +1614,17 @@ INTENT_BOOSTERS = {
     "worktree": ("sk-git", 1.2),
 
     # ─────────────────────────────────────────────────────────────────
-    # SK-CODE--REVIEW: Stack-agnostic code review baseline
+    # SK-CODE code-review mode: Stack-agnostic code review baseline
     # ─────────────────────────────────────────────────────────────────
-    "review": ("sk-code-review", 1.2),
-    "findings": ("sk-code-review", 1.1),
-    "blocker": ("sk-code-review", 0.9),
-    "blockers": ("sk-code-review", 0.9),
-    "vulnerability": ("sk-code-review", 1.0),
-    "regression": ("sk-code-review", 0.8),
-    "audit": ("sk-code-review", 1.0),
-    "solid": ("sk-code-review", 0.9),
-    "readiness": ("sk-code-review", 0.8),
+    "review": ("sk-code", 1.2),
+    "findings": ("sk-code", 1.1),
+    "blocker": ("sk-code", 0.9),
+    "blockers": ("sk-code", 0.9),
+    "vulnerability": ("sk-code", 1.0),
+    "regression": ("sk-code", 0.8),
+    "audit": ("sk-code", 1.0),
+    "solid": ("sk-code", 0.9),
+    "readiness": ("sk-code", 0.8),
 
     # ─────────────────────────────────────────────────────────────────
     # MCP-CHROME-DEVTOOLS: Browser debugging
@@ -1746,7 +1746,7 @@ INTENT_BOOSTERS = {
 # Format: keyword -> list of (skill_name, boost_amount)
 MULTI_SKILL_BOOSTERS = {
     "api": [("mcp-code-mode", 0.2), ("sk-code", 0.5)],
-    "audit": [("sk-code-review", 0.6), ("system-spec-kit", 0.3), ("mcp-chrome-devtools", 0.3), ("sk-code", 0.2)],
+    "audit": [("sk-code", 0.6), ("system-spec-kit", 0.3), ("mcp-chrome-devtools", 0.3)],
     "chain": [("mcp-code-mode", 0.3)],
     "changes": [("sk-git", 0.4), ("system-spec-kit", 0.2)],
     "discover": [("system-code-graph", 0.5)],
@@ -1769,10 +1769,10 @@ MULTI_SKILL_BOOSTERS = {
     "task": [("system-spec-kit", 0.3)],
     "test": [("sk-code", 0.3), ("mcp-chrome-devtools", 0.2)],
     "update": [("mcp-code-mode", 0.3), ("sk-git", 0.2), ("sk-code", 0.2)],
-    "review": [("sk-code-review", 0.8)],
+    "review": [("sk-code", 0.8)],
     "delegate": [("cli-claude-code", 0.5)],
-    "opinion": [("cli-claude-code", 0.3), ("sk-code-review", 0.2)],
-    "validate": [("cli-claude-code", 0.2), ("sk-code-review", 0.3)],
+    "opinion": [("cli-claude-code", 0.3), ("sk-code", 0.2)],
+    "validate": [("cli-claude-code", 0.2), ("sk-code", 0.3)],
     "improve": [("sk-prompt", 0.6), ("sk-code", 0.2)],
     "enhance": [("sk-prompt", 0.8)],
     "refine": [("sk-prompt", 0.6), ("sk-code", 0.2)],
@@ -1806,24 +1806,24 @@ PHRASE_INTENT_BOOSTERS = {
     "save conversation": [("system-spec-kit", 1.6), ("memory:save", 1.0), ("command-memory-save", 0.8)],
     "save conversation context": [("system-spec-kit", 1.6), ("memory:save", 1.0), ("command-memory-save", 0.8)],
     "save this conversation context": [("system-spec-kit", 1.6), ("memory:save", 1.0), ("command-memory-save", 0.8)],
-    "code review": [("sk-code-review", 2.4)],
-    "pr review": [("sk-code-review", 2.3), ("sk-git", 0.4)],
-    "security review": [("sk-code-review", 2.2)],
-    "review this pr": [("sk-code-review", 2.4)],
-    "review this diff": [("sk-code-review", 2.2)],
-    "quality gate": [("sk-code-review", 2.0)],
-    "quality gate validation": [("sk-code-review", 1.8)],
-    "request changes": [("sk-code-review", 2.0)],
-    "race conditions": [("sk-code-review", 1.5)],
-    "auth bugs": [("sk-code-review", 1.5)],
-    "code audit": [("sk-code-review", 2.2)],
-    "audit this code": [("sk-code-review", 2.3)],
-    "check this code": [("sk-code-review", 2.0)],
-    "check for issues": [("sk-code-review", 2.0)],
-    "solid violations": [("sk-code-review", 2.2)],
-    "solid principles": [("sk-code-review", 2.0)],
-    "merge readiness": [("sk-code-review", 2.2), ("sk-git", 0.4)],
-    "ready to merge": [("sk-code-review", 2.2), ("sk-git", 0.4)],
+    "code review": [("sk-code", 2.4)],
+    "pr review": [("sk-code", 2.3), ("sk-git", 0.4)],
+    "security review": [("sk-code", 2.2)],
+    "review this pr": [("sk-code", 2.4)],
+    "review this diff": [("sk-code", 2.2)],
+    "quality gate": [("sk-code", 2.0)],
+    "quality gate validation": [("sk-code", 1.8)],
+    "request changes": [("sk-code", 2.0)],
+    "race conditions": [("sk-code", 1.5)],
+    "auth bugs": [("sk-code", 1.5)],
+    "code audit": [("sk-code", 2.2)],
+    "audit this code": [("sk-code", 2.3)],
+    "check this code": [("sk-code", 2.0)],
+    "check for issues": [("sk-code", 2.0)],
+    "solid violations": [("sk-code", 2.2)],
+    "solid principles": [("sk-code", 2.0)],
+    "merge readiness": [("sk-code", 2.2), ("sk-git", 0.4)],
+    "ready to merge": [("sk-code", 2.2), ("sk-git", 0.4)],
     "implement feature": [("sk-code", 0.9)],
     "responsive css": [("sk-code", 1.2)],
     "responsive css layout": [("sk-code", 1.4)],
@@ -1920,7 +1920,7 @@ PHRASE_INTENT_BOOSTERS = {
     "code audit loop": [("deep-review", 2.5)],
     "review mode": [("deep-review", 2.0)],
     "release readiness review": [("deep-review", 2.0)],
-    "spec folder review": [("deep-review", 2.0), ("sk-code-review", 0.8)],
+    "spec folder review": [("deep-review", 2.0), ("sk-code", 0.8)],
     "review convergence": [("deep-review", 2.5)],
     "auto review release readiness": [("deep-review", 7.0), ("deep-loop-workflows", 7.0)],
     "auto review security audit": [("deep-review", 2.5)],
@@ -1937,17 +1937,14 @@ PHRASE_INTENT_BOOSTERS = {
     "full stack development workflow": [("sk-code", 2.1)],
     "implementation testing verification flow": [("sk-code", 1.8)],
     "detect project stack automatically": [("sk-code", 1.6)],
-    "sk-code-review": [("sk-code-review", 2.8)],
-    "/sk-code-review": [("sk-code-review", 2.8)],
-    ".opencode/skills/sk-code-review": [("sk-code-review", 3.0)],
-    "opencode review": [("sk-code-review", 0.4)],
+    "opencode review": [("sk-code", 0.4)],
     # --- Claude Code CLI cross-AI orchestration ---
     "use claude code": [("cli-claude-code", 2.5)],
     "claude code cli": [("cli-claude-code", 2.5)],
     "delegate to claude code": [("cli-claude-code", 2.5)],
     "extended thinking": [("cli-claude-code", 2.0)],
     "deep reasoning": [("cli-claude-code", 1.5)],
-    "claude code review": [("cli-claude-code", 2.0), ("sk-code-review", 0.4)],
+    "claude code review": [("cli-claude-code", 2.0), ("sk-code", 0.4)],
     "cross-ai claude": [("cli-claude-code", 2.0)],
     "delegate to opencode": [("cli-opencode", 4.0)],
     "opencode cli": [("cli-opencode", 3.2)],
@@ -2139,7 +2136,7 @@ INTENT_NORMALIZATION_RULES = {
     "review": {
         "phrases": ["code review", "pr review", "security review", "quality gate", "request changes"],
         "tokens": {"review", "audit", "regression", "findings", "readiness", "vulnerability"},
-        "boosts": [("sk-code-review", 0.8)],
+        "boosts": [("sk-code", 0.8)],
     },
     "implementation": {
         "phrases": ["implement feature", "fix bug", "refactor module", "build feature"],
@@ -2208,10 +2205,10 @@ def _phrase_boundary_pattern(phrase: str) -> re.Pattern:
 def _matches_phrase_boundary(text: str, phrase: str) -> bool:
     """Return True when a phrase is not embedded inside a larger identifier.
 
-    The flank class includes '-' and '_' (not just alphanumerics) so a skill
-    name like 'sk-code' does not match inside the longer identifier
-    'sk-code-reviewer' (and 'sk_code' inside 'sk_code_review') — those are
-    distinct skills, not an explicit mention of the shorter one.
+    The flank class includes '-' and '_' (not just alphanumerics) so a short
+    skill name like 'sk-code' does not match inside a longer hyphenated or
+    underscored identifier that merely contains it as a substring — a
+    substring hit is not an explicit mention of the shorter skill.
     """
     if not phrase:
         return False
@@ -3064,7 +3061,7 @@ ITERATION_LOOP_PHRASES = (
 )
 
 # Deep-research disambiguation phrases. When the prompt
-# contains one of these and both `deep-research` and `sk-code-review`
+# contains one of these and both `deep-research` and `sk-code`
 # appear as candidates within a thin margin, enforce a ≥ 0.10 confidence gap
 # so `deep-research` keeps the primary slot. Wording-sensitive audit/review
 # tokens must not steal a deep-research prompt back into the generic review
@@ -3084,7 +3081,7 @@ DEEP_RESEARCH_DISAMBIGUATION_PHRASES = (
 
 # Symmetric guard for deep-review vs code-review wording collisions.
 # NOTE: "auto review" is intentionally omitted because the shipped regression
-# corpus treats "auto review this PR" as an sk-code-review prompt. Strong
+# corpus treats "auto review this PR" as an sk-code prompt. Strong
 # deep-review phrases (e.g. "auto review release readiness") are already
 # covered by explicit multi-token PHRASE_INTENT_BOOSTERS entries that win
 # on raw score before this disambiguation tier executes.
@@ -3139,7 +3136,7 @@ CLI_OPENCODE_EXPLICIT_RE = re.compile(r"\b(cli-opencode|opencode cli|delegate to
 
 # Git vocabulary is intentionally broad, but ownership boundaries still matter:
 # memory/context preservation belongs to system-spec-kit, and review phrases that
-# mention PRs or merge readiness belong to sk-code-review.
+# mention PRs or merge readiness belong to sk-code.
 MEMORY_PRESERVATION_INTENT_RE = re.compile(
     r"\b(save|preserve|remember|store|capture|checkpoint)\b.{0,80}"
     r"\b(memory|context|conversation|session|handover)\b"
@@ -3193,17 +3190,17 @@ def _apply_git_boundary_disambiguation(
             _append_reason_note(system_spec, "[boundary: owns memory/context preservation]")
 
     if CODE_REVIEW_INTENT_RE.search(prompt_lower) and GIT_REVIEW_OVERLAP_RE.search(prompt_lower):
-        sk_code_review = _find_recommendation(recommendations, "sk-code-review")
-        if sk_code_review is None:
+        code_rec = _find_recommendation(recommendations, "sk-code")
+        if code_rec is None:
             return
 
-        review_confidence = float(sk_code_review.get("confidence", 0.0))
+        review_confidence = float(code_rec.get("confidence", 0.0))
         git_confidence = float(sk_git.get("confidence", 0.0))
         capped = round(max(0.0, review_confidence - 0.03), 2)
         if git_confidence >= review_confidence:
             sk_git["confidence"] = min(git_confidence, capped)
             _append_reason_note(sk_git, "[boundary: review phrasing is not git workflow ownership]")
-        sk_code_review["uncertainty"] = min(float(sk_code_review.get("uncertainty", 1.0)), 0.25)
+        code_rec["uncertainty"] = min(float(code_rec.get("uncertainty", 1.0)), 0.25)
 
 
 def _apply_code_edit_cli_disambiguation(
@@ -3258,16 +3255,11 @@ def _apply_review_plus_write_disambiguation(
     if not REVIEW_PLUS_WRITE_RE.search(prompt_lower):
         return
     sk_code = _find_recommendation(recommendations, "sk-code")
-    sk_code_review = _find_recommendation(recommendations, "sk-code-review")
     if sk_code is not None:
         sk_code["confidence"] = max(float(sk_code.get("confidence", 0.0)), 0.92)
         sk_code["uncertainty"] = min(float(sk_code.get("uncertainty", 1.0)), 0.25)
         sk_code["_score"] = max(float(sk_code.get("_score", 0.0)), 3.0)
         _append_reason_note(sk_code, "[disambiguation: edit requested]")
-    if sk_code_review is not None:
-        sk_code_review["confidence"] = min(float(sk_code_review.get("confidence", 0.0)), 0.78)
-        sk_code_review["uncertainty"] = max(float(sk_code_review.get("uncertainty", 0.0)), 0.38)
-        _append_reason_note(sk_code_review, "[disambiguation: edit requested]")
 
 
 def _apply_code_mode_disambiguation(
@@ -3404,16 +3396,16 @@ def _apply_deep_research_disambiguation(
     recommendations: List[Dict[str, Any]],
     prompt_lower: str,
 ) -> None:
-    """Ensure deep-research beats sk-code-review by ≥ 0.10 on deep-research prompts.
+    """Ensure deep-research beats sk-code by ≥ 0.10 on deep-research prompts.
 
     Audit/review-token overlap between deep-research prompts
     and code-review prompts produced sub-0.02 confidence ties. When the prompt
     contains an unambiguous deep-research marker AND both `deep-research`
-    and `sk-code-review` appear as candidates, widen the margin to at least
+    and `sk-code` appear as candidates, widen the margin to at least
     ``DISAMBIGUATION_MARGIN`` so the router returns a stable deep-research
     recommendation instead of a wording-sensitive tie.
 
-    Symmetric handling is applied for `deep-review` vs `sk-code-review` via
+    Symmetric handling is applied for `deep-review` vs `sk-code` via
     ``DEEP_REVIEW_DISAMBIGUATION_PHRASES``.
     """
     if not prompt_lower or not recommendations:
@@ -3449,13 +3441,13 @@ def _apply_deep_research_disambiguation(
 
     if any(phrase in prompt_lower for phrase in DEEP_RESEARCH_DISAMBIGUATION_PHRASES):
         winner = _deep_winner("deep-research")
-        loser = _find("sk-code-review")
+        loser = _find("sk-code")
         if winner and loser:
             _enforce_margin(winner, loser, "deep-research")
 
     if any(phrase in prompt_lower for phrase in DEEP_REVIEW_DISAMBIGUATION_PHRASES):
         winner = _deep_winner("deep-review")
-        loser = _find("sk-code-review")
+        loser = _find("sk-code")
         if winner and loser:
             _enforce_margin(winner, loser, "deep-review")
 
@@ -3565,9 +3557,8 @@ def analyze_request(prompt: str) -> List[Dict[str, Any]]:
 
     if _is_ambiguous_code_problem(prompt_lower):
         for skill, boost in (
-            ("sk-code-review", 1.3),
+            ("sk-code", 1.3),
             ("deep-review", 0.55),
-            ("sk-code", -0.65),
         ):
             skill_boosts[skill] = skill_boosts.get(skill, 0.0) + boost
             boost_reasons.setdefault(skill, []).append("!ambiguous-code-problem")
@@ -3578,22 +3569,16 @@ def analyze_request(prompt: str) -> List[Dict[str, Any]]:
     _apply_graph_boosts(skill_boosts, boost_reasons)
     _apply_family_affinity(skill_boosts, boost_reasons)
 
-    # Review-plus-write disambiguation (Python parity with the
-    # TypeScript explicit lane). Applied AFTER graph boosts so the
-    # sibling/enhances graph signal between sk-code-review and sk-code does
-    # not counter-boost sk-code-review back above sk-code. When the prompt
-    # contains the word `review` AND any explicit write/edit verb
-    # (`update|edit|fix|modify`), the request is implementation work, not a
-    # code review. Push the lane toward `sk-code` and away from
-    # `sk-code-review`. Magnitudes (+1.5 / -1.0) overcome the combined
-    # review token boost + graph-sibling/enhances signal. Pure review
-    # prompts (no write verb) keep routing to `sk-code-review` via the
-    # existing review token boost in INTENT_BOOSTERS.
+    # Review-plus-write intent (Python parity with the TypeScript explicit
+    # lane). Applied AFTER graph boosts so the graph signal does not dilute
+    # the anchor. When the prompt contains the word `review` AND any explicit
+    # write/edit verb (`update|edit|fix|modify`), the request is
+    # implementation work; anchor firmly on `sk-code` so the code hub wins the
+    # skill selection (its router then selects the implement mode over the
+    # code-review mode).
     if re.search(r"\breview\b", prompt_lower) and re.search(r"\b(update|edit|fix|modify)\b", prompt_lower):
         skill_boosts["sk-code"] = skill_boosts.get("sk-code", 0.0) + 3.0
-        skill_boosts["sk-code-review"] = skill_boosts.get("sk-code-review", 0.0) - 2.0
         boost_reasons.setdefault("sk-code", []).append("!review-plus-write-disambiguation")
-        boost_reasons.setdefault("sk-code-review", []).append("!review-plus-write-disambiguation")
 
     # Strongly prefer the explicitly named skill when users mention it directly.
     # This protects routing in mixed prompts that also contain broad terms like "opencode".

@@ -112,7 +112,6 @@ export interface RoutingCalibration {
   readonly deepResearchCycleOtherSkillsPenalty: number;
   // compare/audit/review + classifier-vocabulary intent
   readonly compareAuditCodeReviewBonus: number;
-  readonly compareAuditCodeOpenCodePenalty: number;
   // corpus/predictions/continuation/study-config intent
   readonly corpusStudySpecKitBonus: number;
   readonly corpusStudyOtherSkillsPenalty: number;
@@ -208,7 +207,6 @@ export const SCORING_CALIBRATION: ScoringCalibration = Object.freeze({
     deepResearchOtherSkillsPenalty: -0.18,
     deepResearchCycleOtherSkillsPenalty: -0.18,
     compareAuditCodeReviewBonus: 0.35,
-    compareAuditCodeOpenCodePenalty: -0.18,
     corpusStudySpecKitBonus: 0.35,
     corpusStudyOtherSkillsPenalty: -0.16,
     speckitResumeSpecKitBonus: 0.16,

@@ -514,7 +514,7 @@ function readOnlyRouteAllowed(promptLower: string, skillId: string): boolean {
   if (/\b(no edits?|without making changes|do not (change|edit|modify|touch)|read-only only|no edits yet|only; do not|just show|just list)\b/.test(promptLower)) {
     return false;
   }
-  if (skillId === 'sk-code-review' && /\b(compare|audit|review)\b/.test(promptLower)
+  if (skillId === 'sk-code' && /\b(compare|audit|review)\b/.test(promptLower)
     && /\b(classifier|vocabulary|prose|implementation|agents\.md|drift|mismatch)\b/.test(promptLower)) {
     return true;
   }
@@ -557,17 +557,16 @@ function primaryIntentBonus(
     if (recommendation.skill === 'system-code-graph') return R.semanticSearchCodeGraphBonus;
   }
   if (/\bdeep[- ]review\b/.test(promptLower)) {
-    if (recommendation.skill === 'sk-code-review') return R.deepReviewSkCodeReviewPenalty;
+    if (recommendation.skill === 'sk-code') return R.deepReviewSkCodeReviewPenalty;
   }
   if (/\bdeep[- ]research\b/.test(promptLower)) {
-    if (recommendation.skill === 'system-spec-kit' || recommendation.skill === 'sk-code-review') return R.deepResearchOtherSkillsPenalty;
+    if (recommendation.skill === 'system-spec-kit' || recommendation.skill === 'sk-code') return R.deepResearchOtherSkillsPenalty;
   }
   if (DEEP_RESEARCH_CYCLE.test(promptLower)) {
-    if (recommendation.skill === 'system-spec-kit' || recommendation.skill === 'sk-code-review' || recommendation.skill === 'sk-code') return R.deepResearchCycleOtherSkillsPenalty;
+    if (recommendation.skill === 'system-spec-kit' || recommendation.skill === 'sk-code') return R.deepResearchCycleOtherSkillsPenalty;
   }
   if (/\b(compare|audit|review)\b/.test(promptLower) && /\b(classifier|vocabulary|prose|implementation|agents\.md|drift|mismatch)\b/.test(promptLower)) {
-    if (recommendation.skill === 'sk-code-review') return R.compareAuditCodeReviewBonus;
-    if (recommendation.skill === 'sk-code') return R.compareAuditCodeOpenCodePenalty;
+    if (recommendation.skill === 'sk-code') return R.compareAuditCodeReviewBonus;
   }
   if (/\b(corpus ids?|first-100 predictions|continuation prompts|routing study config|confusion matrix|source-mix note|prompt template|packet-local)\b/.test(promptLower)) {
     if (recommendation.skill === 'system-spec-kit') return R.corpusStudySpecKitBonus;
@@ -591,20 +590,20 @@ function primaryIntentBonus(
     if (recommendation.skill === 'sk-code') return R.mcpToolchainSkCodePenalty;
   }
   // A "code audit" is a code-review task, not a deep-review loop. On the
-  // near-tie this phrase produces, prefer sk-code-review over deep-review.
+  // near-tie this phrase produces, prefer sk-code over deep-review.
   if (/\bcode audit\b/.test(promptLower)) {
-    if (recommendation.skill === 'sk-code-review') return R.codeAuditCodeReviewBonus;
+    if (recommendation.skill === 'sk-code') return R.codeAuditCodeReviewBonus;
     if (recommendation.skill === 'deep-review' || recommendation.skill === 'deep-loop-workflows') return R.codeAuditDeepReviewPenalty;
   }
   // Colon-command review-loop syntax (":review:auto") invokes the deep-review
   // loop; rank it above single-pass code review.
   if (/:review:(auto|confirm)\b/.test(promptLower)) {
     if (recommendation.skill === 'deep-loop-workflows') return R.reviewLoopDeepReviewBonus;
-    if (recommendation.skill === 'sk-code-review') return R.deepReviewSkCodeReviewPenalty;
+    if (recommendation.skill === 'sk-code') return R.deepReviewSkCodeReviewPenalty;
   }
   // Auditing recommendation quality is a review task, not an advisor-self task.
   if (/\baudit\b/.test(promptLower) && /\b(recommendation|recommendations|recommendation quality|routing quality)\b/.test(promptLower)) {
-    if (recommendation.skill === 'sk-code-review') return R.auditRecsCodeReviewBonus;
+    if (recommendation.skill === 'sk-code') return R.auditRecsCodeReviewBonus;
     if (!selfRecommendationGuardEnabled && isAdvisorSelfRecommendationSkill(recommendation.skill)) return R.auditRecsAdvisorPenalty;
     if (shouldApplyAdvisorSelfRecommendationGuard({
       skillId: recommendation.skill,
