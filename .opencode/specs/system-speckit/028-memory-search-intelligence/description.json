@@ -19,12 +19,10 @@
     "review",
     "remediation"
   ],
-  "lastUpdated": "2026-07-04T14:16:12.749Z",
+  "lastUpdated": "2026-07-04T16:42:01.297Z",
   "specId": "028",
   "folderSlug": "memory-search-intelligence",
   "parentChain": [
-    ".opencode",
-    "specs",
     "system-speckit"
   ],
   "memorySequence": 9,

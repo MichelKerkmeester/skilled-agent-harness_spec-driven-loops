@@ -123,15 +123,15 @@
     ],
     "causal_summary": "Packet 028 owns the planning record that turns external memory-system research into shipped retrieval intelligence, cleanup, review remediation, data-quality generation and dark-flag graduation work",
     "created_at": "2026-06-16T14:27:21.650Z",
-    "last_save_at": "2026-07-03T09:54:30.254Z",
+    "last_save_at": "2026-07-04T16:42:01.468Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:bb116e996980188421c4b4f407ce6ae1ad94a4fa71681ef9441dfa99cf7f67ed",
+    "source_fingerprint": "sha256:46857bf543af7f0e7df587dd0dd8b46f44b13c93e1dae16b733b2fd1b1edc9e3",
     "source_doc_hashes": {
-      "spec.md": "df221b1d4df1b0abfc1745010bc6a530e87b90f3dce3a8843e6a5c6ba75f2999"
+      "spec.md": "49ce9a37ec36b9ed085e748ec08da0d8f27714f98befa7f29257919ca2ab7927"
     },
     "last_active_child_id": null,
     "last_active_at": "2026-06-26T20:31:34.159Z"

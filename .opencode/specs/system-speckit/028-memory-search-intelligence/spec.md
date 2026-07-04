@@ -12,7 +12,7 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/028-memory-search-intelligence"
-    last_updated_at: "2026-07-04T14:16:12Z"
+    last_updated_at: "2026-07-04T16:42:01.468Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "016 deep-dive program complete (13/13 shipped); 006/002+006/004 absorbed"
     next_safe_action: "016 complete; daemon-side captures pending a daemon restart"
@@ -136,7 +136,7 @@ Provide the root purpose, child map and cross-packet boundary for packet 028. Th
 - Child 006 is the review-remediation rollup, with four executed children and two scopes (002/004) absorbed into the 016 program and closed 2026-07-04.
 - Child 007 is the dark-flag graduation suite, with twelve benchmark, cleanup, validation, follow-up and review children.
 - Children 013 through 015 were adopted from standalone packets 030 through 032 on 2026-07-03 by operator restructure.
-- **Top-level ceiling (governance):** 028 has exactly eight canonical top-level phase-parent folders — 000 through 007. All new phase work nests as a child of one of them by subject; never create a new top-level `0NN-` folder. Folders 014 and 016 remain top-level pending re-nest to their subject parents (014 to 000, 016 to 001) in follow-up passes — the last standing exceptions, not a licence for new ones. Folders 013 and 015 were re-nested on 2026-07-04 (013 to `005-spec-data-quality/050-validate-sh-dist-freshness-and-repo-remediation`, 015 to `004-deep-loop/007-deep-review-followup-hardening`).
+- **Top-level ceiling (governance):** 028 has exactly eight canonical top-level phase-parent folders — 000 through 007. All new phase work nests as a child of one of them by subject; never create a new top-level `0NN-` folder. Folders 014 and 016 remain top-level pending re-nest to their subject parents (014 to 000, 016 to 001) in follow-up passes — the last standing exceptions, not a licence for new ones. They are a coupled pair: the 016 program holds ~13 cross-references into `014-manual-playbook-execution-sweep/001-findings-remediation` (the absorbed ex-031 Group-A tracker), so 014 and 016 must be re-nested together once 016 is no longer under active concurrent edit. Folders 013 and 015 were re-nested on 2026-07-04 (013 to `005-spec-data-quality/050-validate-sh-dist-freshness-and-repo-remediation`, 015 to `004-deep-loop/007-deep-review-followup-hardening`).
 - Research-only material from earlier rounds lives under subsystem `research/from-*` archives.
 - Run strict validation on a child parent and its direct children before using it as an execution source.
 
