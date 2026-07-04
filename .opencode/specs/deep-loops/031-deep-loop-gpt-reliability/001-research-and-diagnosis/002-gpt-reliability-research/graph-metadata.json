@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "deep-loops/034-gpt-reliability-research",
-  "spec_folder": "deep-loops/034-gpt-reliability-research",
-  "parent_id": null,
+  "packet_id": "deep-loops/031-deep-loop-gpt-reliability/001-research-and-diagnosis/002-gpt-reliability-research",
+  "spec_folder": "deep-loops/031-deep-loop-gpt-reliability/001-research-and-diagnosis/002-gpt-reliability-research",
+  "parent_id": "deep-loops/031-deep-loop-gpt-reliability/001-research-and-diagnosis",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -198,7 +198,7 @@
     ],
     "causal_summary": "30-iteration orchestrator-hosted deep-research campaign using GPT-5.5-fast xhigh as the researcher: identify which parts of our commands, gates, deep-loop workflows, agents, skills, and hooks can be simplified, optimized, or re-approached so GPT-backed executors in opencode use them correctly as intended, like Claude does. Seeded by packet 033's measured failure modes (Gate-3 halts every mode/both efforts; structured-mode stalls; dispatch-mode absorption; presentation gaps).",
     "created_at": "2026-07-03T05:53:51.876Z",
-    "last_save_at": "2026-07-03T09:59:49.810Z",
+    "last_save_at": "2026-07-04T18:55:40.687Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,13 +208,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:710a14e754fcba7d4685dcb622e691a4bc3752c26acbe8019299fda9836f9fef",
+    "source_fingerprint": "sha256:22c2d3baa2ed6d86bb088087431cdfdd0e0bc77079116e357e7897d0edac1238",
     "source_doc_hashes": {
-      "spec.md": "ad24cd49a5d7184c6640360a8b1d3297caf9a8d45915384f52943367e957cbd4",
-      "plan.md": "034074acc3c89504fe9961012ae77b32b90533d0e3302595c4a0daf02da63465",
-      "tasks.md": "5cb78aab731e4fea5d4320265a70359e3f8dcb17b6afca99f00ee3e55379bf28",
-      "checklist.md": "8761bcfccdf222efe4aa4db92a5370d8d8ed469b412aac9b0ef95b4d539ad16e",
-      "implementation-summary.md": "6f14c97e0dbf7741f4ad08499c43f9aa6cfbcc84c7ba8efbf724d68d9dd39044"
+      "spec.md": "0d87281469aa8093b3041355ab30c2326e1ffb5088c511c70c8add52f16760e1",
+      "plan.md": "96ab1cb8a380f12ef10414326834aa1d3cc061056d309952f15ada64176992d0",
+      "tasks.md": "2bf3c948fbd9ae961f532a8ccc0a014febcb43937a9567e02f80212211108d49",
+      "checklist.md": "71fcf8016842666ce2c05f25a86c7749b9520a2ced87c539dd3a489c8040a2f1",
+      "implementation-summary.md": "81994005e7ceadee91ff3a46e42e6863bfa17153863c5c33d439e0faa15fe504"
     },
     "last_active_child_id": null,
     "last_active_at": null

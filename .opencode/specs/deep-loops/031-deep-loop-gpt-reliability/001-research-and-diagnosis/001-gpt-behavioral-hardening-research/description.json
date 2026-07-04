@@ -1,6 +1,6 @@
 {
   "level": "1",
-  "specFolder": "deep-loops/031-deep-loop-issues-with-gpt-opencode/007-gpt-behavioral-hardening-research",
+  "specFolder": "deep-loops/031-deep-loop-gpt-reliability/001-research-and-diagnosis/001-gpt-behavioral-hardening-research",
   "description": "Phases 002-004 landed and were independently re-verified as code-complete",
   "keywords": [
     "phases",
@@ -10,12 +10,13 @@
     "re-verified",
     "code-complete"
   ],
-  "lastUpdated": "2026-07-01T05:43:14.318Z",
-  "specId": "007",
+  "lastUpdated": "2026-07-04T18:44:18.676Z",
+  "specId": "001",
   "folderSlug": "gpt-behavioral-hardening-research",
   "parentChain": [
     "deep-loops",
-    "031-deep-loop-issues-with-gpt-opencode"
+    "031-deep-loop-gpt-reliability",
+    "001-research-and-diagnosis"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []
