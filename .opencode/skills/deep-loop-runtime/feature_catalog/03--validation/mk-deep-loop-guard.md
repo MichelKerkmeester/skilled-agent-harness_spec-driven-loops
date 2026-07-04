@@ -40,7 +40,7 @@ For dispatches targeting a command-owned loop executor, the plugin persists a se
 
 ### Warn vs. reject
 
-Default behavior for both checks is mutate-and-warn: on a mismatch or loop-repeat, the plugin logs `[mk-deep-loop-guard] WARN: ...` and lets the dispatch proceed. `MK_DEEP_LOOP_GUARD_REJECT=1` switches Check 1 to fail-closed; `MK_DEEP_LOOP_GUARD_REJECT_LOOP=1` independently switches Check 2 to fail-closed. Both throw-blocks-dispatch mechanisms are confirmed via live testing against the installed OpenCode host — throwing from `tool.execute.before` genuinely prevents the underlying tool call from executing, not merely logging a warning.
+Default behavior for both checks is mutate-and-warn: on a mismatch or loop-repeat, the plugin appends a `[mk-deep-loop-guard] WARN: ...` line to `.opencode/skills/.loop-guard-state/guard-warnings.log` (never to stdout/stderr, which OpenCode's TUI paints onto the prompt input line during `tool.execute.before`) and lets the dispatch proceed. `MK_DEEP_LOOP_GUARD_REJECT=1` switches Check 1 to fail-closed; `MK_DEEP_LOOP_GUARD_REJECT_LOOP=1` independently switches Check 2 to fail-closed. Both throw-blocks-dispatch mechanisms are confirmed via live testing against the installed OpenCode host — throwing from `tool.execute.before` genuinely prevents the underlying tool call from executing, not merely logging a warning.
 
 ### Fail-open guard
 

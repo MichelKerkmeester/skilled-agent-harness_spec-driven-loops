@@ -14,7 +14,7 @@
 // 1. IMPORTS
 // ─────────────────────────────────────────────────────────────────────────────
 
-import { mkdirSync, readFileSync, renameSync, unlinkSync, writeFileSync } from 'node:fs';
+import { appendFileSync, mkdirSync, readFileSync, renameSync, unlinkSync, writeFileSync } from 'node:fs';
 import { join } from 'node:path';
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -23,6 +23,7 @@ import { join } from 'node:path';
 
 const REGISTRY_RELATIVE_PATH = '.opencode/skills/deep-loop-workflows/mode-registry.json';
 const LOOP_GUARD_STATE_DIR_RELATIVE_PATH = '.opencode/skills/.loop-guard-state';
+const WARN_LOG_FILENAME = 'guard-warnings.log';
 const REJECT_MODE_ENV = 'MK_DEEP_LOOP_GUARD_REJECT';
 const REJECT_LOOP_ENV = 'MK_DEEP_LOOP_GUARD_REJECT_LOOP';
 
@@ -185,6 +186,21 @@ function loopRepeatDetail(targetAgent, count) {
   ].join(' ');
 }
 
+// Soft warnings must never reach stdout/stderr: OpenCode's TUI paints plugin
+// console output onto the prompt input line during tool.execute.before, where it
+// sticks until a redraw. Persisting to a state-dir log keeps the signal auditable
+// without corrupting the interactive session. Fail-open -- a logging error must
+// never affect or block the dispatch this hook guards.
+function appendWarningLog(stateDir, detail) {
+  try {
+    mkdirSync(stateDir, { recursive: true });
+    const line = `${new Date().toISOString()} [mk-deep-loop-guard] WARN: ${detail}\n`;
+    appendFileSync(join(stateDir, WARN_LOG_FILENAME), line, 'utf8');
+  } catch (_) {
+    // Fail open: swallow logging errors so the guarded dispatch is untouched.
+  }
+}
+
 // ─────────────────────────────────────────────────────────────────────────────
 // 6. PLUGIN FACTORY
 // ─────────────────────────────────────────────────────────────────────────────
@@ -231,7 +247,7 @@ export default async function MkDeepLoopGuardPlugin(ctx) {
             if (declaredMode && declaredMode !== entry.workflowMode) {
               const detail = mismatchDetail(targetAgent, entry.workflowMode, declaredMode);
               if (process.env[REJECT_MODE_ENV] === '1') throw new Error(detail);
-              console.error(`[mk-deep-loop-guard] WARN: ${detail}`);
+              appendWarningLog(loopStateDir, detail);
             }
           }
         }
@@ -246,7 +262,7 @@ export default async function MkDeepLoopGuardPlugin(ctx) {
             if (count >= BLOCK_AT_COUNT && process.env[REJECT_LOOP_ENV] === '1') {
               throw new Error(detail);
             }
-            console.error(`[mk-deep-loop-guard] WARN: ${detail}`);
+            appendWarningLog(loopStateDir, detail);
           }
         }
       } catch (err) {

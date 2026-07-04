@@ -41,7 +41,7 @@ If this plugin silently stops firing (hook deregistered, registry path resolutio
 ### Steps
 
 1. Run the automated regression test: `node .opencode/plugins/tests/mk-deep-loop-guard.test.cjs` and require EXIT 0 (covers identity resolution, loop-repeat thresholds, command-driven exemption, non-loop-executor exemption, cross-session isolation, and both fail-open paths hermetically).
-2. Live warn-mode check: dispatch a Task call with a prompt containing `Agent: @ai-council` (or a direct `subagent_type=ai-council`) and `mode=research` via `opencode run --agent general "..."`; confirm `[mk-deep-loop-guard] WARN: ... mode mismatch ...` appears and the dispatch still completes.
+2. Live warn-mode check: dispatch a Task call with a prompt containing `Agent: @ai-council` (or a direct `subagent_type=ai-council`) and `mode=research` via `opencode run --agent general "..."`; confirm a `[mk-deep-loop-guard] WARN: ... mode mismatch ...` line is appended to `.opencode/skills/.loop-guard-state/guard-warnings.log` (not printed to the console/TUI) and the dispatch still completes.
 3. Live reject-mode check: repeat step 2 with `MK_DEEP_LOOP_GUARD_REJECT=1` set; confirm the `task` tool call's status becomes `"error"` and the dispatch is blocked, and that identity resolution correctly named the resolved agent (not the literal `"general"` placeholder) in the thrown message.
 4. Live fail-open check: temporarily move `mode-registry.json` aside, repeat step 3; confirm the dispatch completes normally (not blocked) despite reject mode being on.
 5. Live passthrough check: with reject mode still on, dispatch `subagent_type=review` (not a registry entry); confirm it completes normally.

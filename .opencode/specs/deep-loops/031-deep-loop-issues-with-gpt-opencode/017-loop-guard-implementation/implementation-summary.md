@@ -153,3 +153,15 @@ Ran a targeted grep-based sweep for every file referencing `mk-deep-loop-guard`,
 - Deep-loop-runtime's feature-catalog and manual-testing-playbook root-index feature/scenario counts (50/52) are unaffected, since F050/DLR-052 already existed and this phase only extended, not added, entries.
 
 Re-ran `node .opencode/plugins/tests/mk-deep-loop-guard.test.cjs` (exit 0) and `verify_alignment_drift.py --root .opencode/plugins` (PASS, 0 findings) after the README fix.
+
+---
+
+## Follow-Up: Warn Surface Moved Off the TUI (2026-07-04)
+
+**Symptom:** the plugin's soft-warn tier wrote via `console.error`, and OpenCode's TUI paints plugin stderr onto the prompt input line during `tool.execute.before` — so a fired warning stuck in the user's input box until a redraw, corrupting the interactive session.
+
+**Fix:** both warn-tier emissions (Check 1 mode-mismatch and Check 2 loop-repeat) now append a timestamped `[mk-deep-loop-guard] WARN: ...` line to `.opencode/skills/.loop-guard-state/guard-warnings.log` via a new fail-open `appendWarningLog()` helper — never to stdout/stderr. The hard-block path (`throw` when `MK_DEEP_LOOP_GUARD_REJECT` / `MK_DEEP_LOOP_GUARD_REJECT_LOOP` is set) is unchanged, and the detection logic is unchanged; the warning signal stays auditable and CI-inspectable in the log file.
+
+**Doc-truth sync:** updated `feature_catalog/03--validation/mk-deep-loop-guard.md` and `manual_testing_playbook/03--validation/mk-deep-loop-guard.md` to describe the log-file surface instead of console output.
+
+**Verification:** `node .opencode/plugins/tests/mk-deep-loop-guard.test.cjs` → exit 0 (assertions rewritten to read the warning log instead of intercepting `console.error`); confirmed zero `console.*` calls remain in the plugin.
