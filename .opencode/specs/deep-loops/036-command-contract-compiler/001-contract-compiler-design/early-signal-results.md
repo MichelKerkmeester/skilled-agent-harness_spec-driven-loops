@@ -138,6 +138,8 @@ The retrofit extended the validated mechanism to the remaining modes and added t
 | **CXB-004 context** | `setup_misbind` (dispatched `deep-context`) | `setup_misbind` | Mechanism bites; the should-halt cell confounds the score |
 | **RVB-REPROBE review** | `missing_artifact` (D3=1) | — | Leaf-reliability lift NOT demonstrated |
 
+> **Sample-count deviation (recorded).** The P7 gate specified N≥2 on CXB-004 + ACB-005; this ran N=1 per cell. Reason: the focused-set scope was adopted after the should-halt confound + per-run stall cost (13–15 min) were surfaced, and a subsequent N=2 re-run was not completed. N=1 is decisive for the load-bearing council result — the fix `pass` vs fallback `stuck_no_progress` delta is stark — and adds no signal on the confounded context cell (both modes misbind regardless of N). A full N≥2 matrix remains available on request.
+
 ### Verdict
 
 - **Does the flip generalize beyond review/research?** **Council: yes, decisively** (silent stall → converged seats). **Context: mechanism yes** — under fix GPT autonomously dispatches the `deep-context` leaf — but CXB-004 is a should-halt cell, so autonomous-precedence over-rides a legitimately-ambiguous ask and both modes score `setup_misbind`; the delegation trace proves the mechanism works even though classification cannot separate the modes.
