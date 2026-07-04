@@ -8,7 +8,7 @@ importance_tier: "critical"
 contextType: "research"
 _memory:
   continuity:
-    packet_pointer: "deep-loops/031-deep-loop-issues-with-gpt-opencode/007-gpt-behavioral-hardening-research"
+    packet_pointer: "deep-loops/031-deep-loop-gpt-reliability/001-research-and-diagnosis/001-gpt-behavioral-hardening-research"
     last_updated_at: "2026-07-01T05:45:00Z"
     last_updated_by: "claude-code"
     recent_action: "Research complete: both lineages 30/30 iterations, consolidated research.md written"

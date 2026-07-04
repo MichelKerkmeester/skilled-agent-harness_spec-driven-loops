@@ -9,7 +9,7 @@ importance_tier: "high"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "deep-loops/034-gpt-reliability-research"
+    packet_pointer: "deep-loops/031-deep-loop-gpt-reliability/001-research-and-diagnosis/002-gpt-reliability-research"
     last_updated_at: "2026-07-03T12:15:00Z"
     last_updated_by: "claude-code"
     recent_action: "All items verified; campaign complete"
