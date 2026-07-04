@@ -10,7 +10,7 @@ importance_tier: "high"
 contextType: "review"
 _memory:
   continuity:
-    packet_pointer: "deep-loops/031-deep-loop-issues-with-gpt-opencode/014-skill-doc-drift-audit"
+    packet_pointer: "deep-loops/031-deep-loop-gpt-reliability/005-skill-doc-hygiene/001-skill-doc-drift-audit"
     last_updated_at: "2026-07-01T17:15:00Z"
     last_updated_by: "claude-code"
     recent_action: "Phase scaffolded; review fan-out about to start"

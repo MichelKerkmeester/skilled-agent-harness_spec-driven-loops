@@ -10,7 +10,7 @@ importance_tier: "high"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "deep-loops/031-deep-loop-issues-with-gpt-opencode/015-skill-doc-drift-remediation"
+    packet_pointer: "deep-loops/031-deep-loop-gpt-reliability/005-skill-doc-hygiene/002-skill-doc-drift-remediation"
     last_updated_at: "2026-07-01T19:00:00Z"
     last_updated_by: "claude-code"
     recent_action: "All 6 clusters patched and verified; packet complete"
