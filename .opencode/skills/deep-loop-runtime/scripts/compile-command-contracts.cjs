@@ -442,6 +442,25 @@ function buildContractBody(definition) {
   const sourceList = definition.sourcePaths.map((sourcePath, index) => `${index + 1}. \`${sourcePath}\``).join('\n');
   const mode = definition.commandName.replace('/deep:', '');
   const leaf = definition.agentPath.split('/').pop().replace(/\.md$/, '');
+  // Council convenes its seats in-CLI (the runtime's own models); every other deep
+  // mode delegates one leaf per iteration. The delegation directive + its proof of
+  // work differ accordingly, so the executor is told the right thing per mode.
+  const delegationKind = definition.delegationKind || 'leaf_dispatch';
+  const minSeats = definition.minSeats || 3;
+  const delegationBullets = delegationKind === 'in_cli_seats'
+    ? [
+        `- PROCEED immediately: load the auto workflow YAML and convene the ${mode} round over the bound topic.`,
+        `- CONVENE IN-CLI: run the round's seats using your OWN model bench / distinct reasoning lenses in-CLI — do NOT dispatch a task per seat (in-CLI is the default and common council mode). Produce at least ${minSeats} DISTINCT seats.`,
+        `- SEAT PROOF: persist each seat stepwise as it returns (persist-artifacts.cjs --seat / persistSeatStepwise) so the persisted artifacts name distinct seat ids; the completed per-seat progress-record count must equal seats_per_round. The delegation evidence is the persisted distinct seats, not a task dispatch.`,
+      ]
+    : [
+        `- PROCEED immediately: load the auto workflow YAML and dispatch the \`${leaf}\` agent to run the ${mode} loop over the bound target.`,
+        `- DISPATCH ONLY: you dispatch \`${leaf}\` to run the loop; you do NOT read, edit, patch, or run the ${mode} loop over the target yourself. The \`${leaf}\` leaf owns the loop and every artifact write — mixing your own inline work with the dispatch is a route violation.`,
+        `- ROUTE PROOF: dispatch through the auto workflow with its prompt pack so \`${leaf}\` writes each iteration state record with the route-proof fields present — \`target_agent: "${leaf}"\`, \`resolved_route\`, \`agent_definition_loaded: true\`, and \`mode: "${mode}"\`. A completed run whose iteration state records omit these fields is an incomplete delegation and does not pass.`,
+      ];
+  const delegationClosing = delegationKind === 'in_cli_seats'
+    ? `Your job is to CONVENE ${minSeats}+ distinct ${mode} seats in-CLI over the bound topic and persist each as it returns — NOT to write a single-lens plan yourself, and NOT to review, analyze, or summarize this contract. This contract is your instruction set; the topic is the bound spec_folder/target named in your message, never this document.`
+    : `Your job is to DISPATCH \`${leaf}\` to run the ${mode} loop over the bound target — NOT to run the loop yourself, and NOT to review, analyze, or summarize this contract. This contract is your instruction set; the ${mode} target is the bound spec_folder/target named in your message, never this document.`;
   return normalizeCompiledBody([
     `# Compiled Command Contract: ${definition.commandName}`,
     '',
@@ -455,11 +474,9 @@ function buildContractBody(definition) {
     '',
     '- DO NOT emit the consolidated setup question (target/mode, research topic, Spec Folder A/B/C/D/E, execution mode, max iterations, executor). The bound spec_folder is your write authority; do not ask which spec folder should own the writes.',
     '- DO NOT halt for the repo-wide `CLAUDE.md` Gate-3 documentation gate. Under AUTONOMOUS execution with a validated prebound spec folder, Gate 3 is already satisfied by that folder (see gate3Precedence below).',
-    `- PROCEED immediately: load the auto workflow YAML and dispatch the \`${leaf}\` agent to run the ${mode} loop over the bound target.`,
-    `- DISPATCH ONLY: you dispatch \`${leaf}\` to run the loop; you do NOT read, edit, patch, or run the ${mode} loop over the target yourself. The \`${leaf}\` leaf owns the loop and every artifact write — mixing your own inline work with the dispatch is a route violation.`,
-    `- ROUTE PROOF: dispatch through the auto workflow with its prompt pack so \`${leaf}\` writes each iteration state record with the route-proof fields present — \`target_agent: "${leaf}"\`, \`resolved_route\`, \`agent_definition_loaded: true\`, and \`mode: "${mode}"\`. A completed run whose iteration state records omit these fields is an incomplete delegation and does not pass.`,
+    ...delegationBullets,
     '',
-    `Your job is to DISPATCH \`${leaf}\` to run the ${mode} loop over the bound target — NOT to run the loop yourself, and NOT to review, analyze, or summarize this contract. This contract is your instruction set; the ${mode} target is the bound spec_folder/target named in your message, never this document.`,
+    delegationClosing,
     '',
     '## sourceAuthority',
     '',
