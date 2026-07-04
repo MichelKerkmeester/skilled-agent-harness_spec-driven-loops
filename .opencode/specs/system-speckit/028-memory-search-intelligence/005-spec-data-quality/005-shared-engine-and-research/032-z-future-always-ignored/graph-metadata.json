@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/005-shared-engine-and-research/032-z-future-always-ignored",
-  "spec_folder": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/005-shared-engine-and-research/032-z-future-always-ignored",
-  "parent_id": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/005-shared-engine-and-research",
+  "packet_id": "system-speckit/028-memory-search-intelligence/005-spec-data-quality/005-shared-engine-and-research/032-z-future-always-ignored",
+  "spec_folder": "system-speckit/028-memory-search-intelligence/005-spec-data-quality/005-shared-engine-and-research/032-z-future-always-ignored",
+  "parent_id": "system-speckit/028-memory-search-intelligence/005-spec-data-quality/005-shared-engine-and-research",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -39,9 +39,8 @@
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
-      ".opencode/skills/system-spec-kit/scripts/tests/graph-metadata-backfill.vitest.ts",
       ".opencode/skills/system-spec-kit/scripts/graph/backfill-graph-metadata.ts",
-      ".opencode/skills/system-spec-kit/scripts/dist/graph/backfill-graph-metadata.js",
+      ".opencode/skills/system-spec-kit/scripts/tests/graph-metadata-backfill.vitest.ts",
       "spec.md",
       "plan.md",
       "tasks.md",
@@ -50,21 +49,15 @@
     ],
     "entities": [
       {
-        "name": "graph-metadata-backfill.vitest.ts",
-        "kind": "test",
-        "path": ".opencode/skills/system-spec-kit/scripts/tests/graph-metadata-backfill.vitest.ts",
-        "source": "derived"
-      },
-      {
         "name": "backfill-graph-metadata.ts",
         "kind": "code",
         "path": ".opencode/skills/system-spec-kit/scripts/graph/backfill-graph-metadata.ts",
         "source": "derived"
       },
       {
-        "name": "backfill-graph-metadata.js",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/scripts/dist/graph/backfill-graph-metadata.js",
+        "name": "graph-metadata-backfill.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-spec-kit/scripts/tests/graph-metadata-backfill.vitest.ts",
         "source": "derived"
       },
       {
@@ -192,11 +185,17 @@
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
+      },
+      {
+        "name": "Verification Date",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The graph-metadata backfill generator refreshed `zfuture/` by default",
     "created_at": "2026-06-27T17:15:41.172Z",
-    "last_save_at": "2026-06-27T17:15:41.172Z",
+    "last_save_at": "2026-07-04T17:12:03.578Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,13 +205,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:64f725885f065499c56239ed2de3dd0aae60b993713d14b2404af6352c7cb8a7",
+    "source_fingerprint": "sha256:5a6af1748345283b166e82109108c43cd7a062e289d11ead2b674de8c0f9aa08",
     "source_doc_hashes": {
-      "spec.md": "8fb3aaf795e7633da4553db03fef72014d30fdbd30fb2e3eb6facdf0a094b985",
-      "plan.md": "7c679e8b66f7b3eaa7ed725ccdda3f450802f018a574586e062af1ab4b36b095",
-      "tasks.md": "385e53adeacc08a38df40cf5956775e883aa0e8204aa7f3f6ffa2d8cdb3f1fa0",
-      "checklist.md": "51090cc05a8aef10187ecfd759a679ab9e62001e9e772d482279763b3116735e",
-      "implementation-summary.md": "8ec722aa7584b67d75739e4a1352ad8a5848419ea02b45e6f614640567158919"
+      "spec.md": "bc6e2ca9f35d7b1714cb8830dd36c9eaced6fc94d526750695861861837b210f",
+      "plan.md": "fe0d7db4fdb2c622956d3d11c80d6bd8392d15ff0e223d44565fcd6809f3f988",
+      "tasks.md": "254c1aea438458a6a94a8282bcd949b06fb42d89cd223b25efd77c25ba27fc23",
+      "checklist.md": "e4d65cb14bb3970f513239b82cbe3d79edd9888c1b65171918f4cc280eddad17",
+      "implementation-summary.md": "9ec2aeb8137e3b7812a467fbd3c1c451551253cdf82c06c1ce6cc237bba37e98"
     },
     "last_active_child_id": null,
     "last_active_at": null

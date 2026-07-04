@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/001-on-write-quality/008-surface-provenance-fields",
-  "spec_folder": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/001-on-write-quality/008-surface-provenance-fields",
-  "parent_id": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/001-on-write-quality",
+  "packet_id": "system-speckit/028-memory-search-intelligence/005-spec-data-quality/001-on-write-quality/008-surface-provenance-fields",
+  "spec_folder": "system-speckit/028-memory-search-intelligence/005-spec-data-quality/001-on-write-quality/008-surface-provenance-fields",
+  "parent_id": "system-speckit/028-memory-search-intelligence/005-spec-data-quality/001-on-write-quality",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -41,8 +41,9 @@
     "importance_tier": "important",
     "status": "draft",
     "key_files": [
-      ".opencode/skills/system-spec-kit/mcp_server/lib/description/description-schema.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/storage/write-provenance.ts",
       ".opencode/skills/system-spec-kit/mcp_server/lib/graph/graph-metadata-schema.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/description/description-schema.ts",
       ".opencode/skills/system-spec-kit/scripts/memory/generate-context.ts",
       "spec.md",
       "plan.md",
@@ -52,15 +53,21 @@
     ],
     "entities": [
       {
-        "name": "description-schema.ts",
+        "name": "write-provenance.ts",
         "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/description/description-schema.ts",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/storage/write-provenance.ts",
         "source": "derived"
       },
       {
         "name": "graph-metadata-schema.ts",
         "kind": "code",
         "path": ".opencode/skills/system-spec-kit/mcp_server/lib/graph/graph-metadata-schema.ts",
+        "source": "derived"
+      },
+      {
+        "name": "description-schema.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/description/description-schema.ts",
         "source": "derived"
       },
       {
@@ -188,17 +195,11 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Phase 2: Implementation",
-        "kind": "heading",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The memory side already computes provenance and `sourcekind` for every saved row, but the two metadata JSONs never expose them as first-class fields",
     "created_at": "2026-06-27T17:15:34.677Z",
-    "last_save_at": "2026-06-27T17:15:34.677Z",
+    "last_save_at": "2026-07-04T17:12:00.389Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,13 +209,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:af67d09cebc64f478095345bdc78dfc439eb639d977f8a0429a046358f86db16",
+    "source_fingerprint": "sha256:3c1867bbb0f38b2ec091b6019cf4c5ec9c22c557134636e92007ed07390a1694",
     "source_doc_hashes": {
-      "spec.md": "0f3e819f64643407ebb12e9b3b29e2151ea72dace501532b2580efa07b7d0d44",
-      "plan.md": "9b0232a6ef6c9b9e26e0f0b44f6cf2c67c958360d211265d46c9498610d5d349",
-      "tasks.md": "4db9fed70020924ad3fb634ead0d1aa76efb9863d3d0b97ab892606e6d718572",
-      "checklist.md": "268c3311b3f68abca1330f55e510a78322884907ed8d96aa9846fb864c3d68d1",
-      "implementation-summary.md": "8c595cf3e88a82f3024ca2313e19aae82c96bfbe8c6f728d845ba98a4ef36c3b"
+      "spec.md": "0e052aa58cf91b2af4e68b31d9ff175c88951ad512bd6210e5dcd982a76658b9",
+      "plan.md": "79cd84a543d58fe1ab3142afacc0757203b6c4851447363ca92c308979e40054",
+      "tasks.md": "e939e380a10036d78438ba62f8f14a15c6ca4bd4aa9011a3cf17a2773854662e",
+      "checklist.md": "405ab5d0ccbaf5bb21952c61d0ce629c8ead628c4c22a77171896173b4176e3f",
+      "implementation-summary.md": "b9f77e423b9384adfcd14c70d737ab95127697489f9c711ce1ec7a611217c8f8"
     },
     "last_active_child_id": null,
     "last_active_at": null

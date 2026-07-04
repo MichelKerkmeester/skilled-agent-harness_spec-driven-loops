@@ -11,8 +11,8 @@ importance_tier: "important"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/006-generated-metadata-build/039-full-repo-json-migration"
-    last_updated_at: "2026-06-22T00:00:00Z"
+    packet_pointer: "system-speckit/028-memory-search-intelligence/005-spec-data-quality/006-generated-metadata-build/039-full-repo-json-migration"
+    last_updated_at: "2026-07-04T17:11:58.036Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "Scaffolded the Stage 3 migration phase at PLANNED, gated on J1 to J4"
     next_safe_action: "Confirm phases 033 through 036 are done and tested, then build the scoped migration driver"

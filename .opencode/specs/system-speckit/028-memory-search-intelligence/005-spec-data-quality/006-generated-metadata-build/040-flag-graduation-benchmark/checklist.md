@@ -11,8 +11,8 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/006-generated-metadata-build/040-flag-graduation-benchmark"
-    last_updated_at: "2026-06-22T00:00:00Z"
+    packet_pointer: "system-speckit/028-memory-search-intelligence/005-spec-data-quality/006-generated-metadata-build/040-flag-graduation-benchmark"
+    last_updated_at: "2026-07-04T17:11:54.215Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "Scaffolded the checklist at PLANNED, all items pending verification"
     next_safe_action: "Build the benchmark driver, then verify each item with evidence"

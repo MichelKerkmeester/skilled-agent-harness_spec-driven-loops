@@ -1,7 +1,7 @@
 {
   "topic": "Deep review of the spec-kit Data Quality by Default phase-parent packet (005-spec-data-quality)",
   "mode": "review",
-  "reviewTarget": ".opencode/specs/system-spec-kit/028-memory-search-intelligence/005-spec-data-quality",
+  "reviewTarget": ".opencode/specs/system-speckit/028-memory-search-intelligence/005-spec-data-quality",
   "reviewTargetType": "spec-folder",
   "reviewDimensions": ["correctness", "security", "traceability", "maintainability"],
   "resource_map_present": false,
@@ -20,7 +20,7 @@
   },
   "qualityGateThreshold": true,
   "releaseReadinessState": "converged",
-  "specFolder": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality",
+  "specFolder": "system-speckit/028-memory-search-intelligence/005-spec-data-quality",
   "createdAt": "2026-06-21T17:05:25Z",
   "completedAt": "2026-06-21T17:35:00Z",
   "status": "complete",
@@ -31,7 +31,7 @@
   },
   "fanout": {
     "lineage": "dq-review",
-    "artifactDirOverride": ".opencode/specs/system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/review/lineages/dq-review"
+    "artifactDirOverride": ".opencode/specs/system-speckit/028-memory-search-intelligence/005-spec-data-quality/review/lineages/dq-review"
   },
   "fileProtection": {
     "deep-review-config.json": "immutable",

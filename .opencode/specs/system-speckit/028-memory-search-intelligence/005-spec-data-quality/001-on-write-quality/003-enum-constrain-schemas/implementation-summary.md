@@ -11,8 +11,8 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/001-on-write-quality/003-enum-constrain-schemas"
-    last_updated_at: "2026-06-21T00:00:00Z"
+    packet_pointer: "system-speckit/028-memory-search-intelligence/005-spec-data-quality/001-on-write-quality/003-enum-constrain-schemas"
+    last_updated_at: "2026-07-04T17:12:02.139Z"
     last_updated_by: "markdown-agent"
     recent_action: "Authored phase impl doc for A3 enum-constrain schemas scaffold"
     next_safe_action: "Hold for implementation, no code change has landed yet"

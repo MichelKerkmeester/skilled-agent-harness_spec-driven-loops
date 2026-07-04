@@ -11,8 +11,8 @@ importance_tier: "important"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/006-generated-metadata-build/042-deterministic-ranking-benchmark"
-    last_updated_at: "2026-06-23T00:00:00Z"
+    packet_pointer: "system-speckit/028-memory-search-intelligence/005-spec-data-quality/006-generated-metadata-build/042-deterministic-ranking-benchmark"
+    last_updated_at: "2026-07-04T17:11:55.517Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "Ran 72-cell matrix, computed metrics, authored results and verdict"
     next_safe_action: "A future graduation needs a labeled-relevance benchmark"

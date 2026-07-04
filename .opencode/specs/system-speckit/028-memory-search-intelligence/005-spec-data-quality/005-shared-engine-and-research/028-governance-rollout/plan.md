@@ -11,8 +11,8 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/005-shared-engine-and-research/028-governance-rollout"
-    last_updated_at: "2026-06-21T00:00:00Z"
+    packet_pointer: "system-speckit/028-memory-search-intelligence/005-spec-data-quality/005-shared-engine-and-research/028-governance-rollout"
+    last_updated_at: "2026-07-04T17:12:03.094Z"
     last_updated_by: "benchmark-test-author"
     recent_action: "Specified the conformance benchmark and flags-off test in plan 4 and 5"
     next_safe_action: "Author rollout-sequence.md"
@@ -110,7 +110,7 @@ This phase ships governance documents and a rollout manifest, not code. The tabl
 | The eighteen sibling phase specs | The phases this layer orders | Not a consumer, never edited | grep shows no sibling spec is modified by this phase |
 
 Required inventories:
-- Same-class producers: `rg -n 'rollout-sequence|migration-runbook|safety-model|measurement-plan|no-go-list' .opencode/specs/system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/005-shared-engine-and-research/028-governance-rollout`.
+- Same-class producers: `rg -n 'rollout-sequence|migration-runbook|safety-model|measurement-plan|no-go-list' .opencode/specs/system-speckit/028-memory-search-intelligence/005-spec-data-quality/005-shared-engine-and-research/028-governance-rollout`.
 - Consumers of changed symbols: `rg -n 'legacy_grandfathered|completeRecall|INV-1|INV-2' . --glob '*.md' --glob '*.sh' --glob '*.json'`.
 - Matrix axes: document (sequence vs runbook vs safety vs measurement vs no-go), beat (WARN vs BACKFILL vs REMEASURE vs ERROR), reader tier (write-time vs sweep vs retrieval).
 - Algorithm invariant: the rollout order is a valid topological sort of the five edges and no stage precedes a stage it depends on.
@@ -146,7 +146,7 @@ This is an INFRA governance phase so the metric is not recall. Prod search trunc
 - **REGRESS**: any edge-violation above 0, any of the five edges absent as a stage boundary, a NO-GO count below 18 or a gate phase whose runbook reference does not resolve.
 - **Planted-mismatch catch**: a deliberately reordered fixture manifest, engine placed after a front door or C2 placed after a retrieval promotion, MUST be flagged at a catch-rate of 1 of 1. This is the regress proof a green corpus alone cannot give.
 - **Default-safety**: this phase registers no new SPECKIT flag and adds no `validator-registry.json` rule, so there is no runtime switch to default OFF. The five documents are read-time, removing them restores byte-identical validate.sh output, and reversibility holds with no `SPECKIT_<FLAG>=false` needed because no flag is introduced. The keep-off rationale is that governance is blast-radius review, not a runtime toggle.
-- **Reproduce**: `npx vitest run .opencode/skills/system-spec-kit/scripts/tests/governance-rollout-manifest.vitest.ts` for the conformance and planted-mismatch assertions plus `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/005-shared-engine-and-research/028-governance-rollout --strict` for the scaffold gate. SPECIFIED not run, no code lands in this phase.
+- **Reproduce**: `npx vitest run .opencode/skills/system-spec-kit/scripts/tests/governance-rollout-manifest.vitest.ts` for the conformance and planted-mismatch assertions plus `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-speckit/028-memory-search-intelligence/005-spec-data-quality/005-shared-engine-and-research/028-governance-rollout --strict` for the scaffold gate. SPECIFIED not run, no code lands in this phase.
 <!-- /ANCHOR:phases -->
 
 ---

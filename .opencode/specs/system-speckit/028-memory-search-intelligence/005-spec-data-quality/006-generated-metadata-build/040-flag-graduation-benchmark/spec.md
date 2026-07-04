@@ -11,17 +11,17 @@ importance_tier: "important"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/006-generated-metadata-build/040-flag-graduation-benchmark"
-    last_updated_at: "2026-06-22T00:00:00Z"
+    packet_pointer: "system-speckit/028-memory-search-intelligence/005-spec-data-quality/006-generated-metadata-build/040-flag-graduation-benchmark"
+    last_updated_at: "2026-07-04T17:11:54.215Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "Scaffolded the Stage 4 graduation benchmark phase at PLANNED, gated on phase 039"
     next_safe_action: "Confirm phase 039 migration is done, then wire the per-flag before-and-after harness"
     blockers:
       - "HARD-GATED on phase 039, the full-repo migration, being done"
     key_files:
-      - ".opencode/specs/system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/005-shared-engine-and-research/029-vague-query-model-benchmark"
-      - ".opencode/specs/system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/004-novel-research/025-novel-per-doc-quality-slas"
-      - ".opencode/specs/system-spec-kit/028-memory-search-intelligence/feature-flags.md"
+      - ".opencode/specs/system-speckit/028-memory-search-intelligence/005-spec-data-quality/005-shared-engine-and-research/029-vague-query-model-benchmark"
+      - ".opencode/specs/system-speckit/028-memory-search-intelligence/005-spec-data-quality/004-novel-research/025-novel-per-doc-quality-slas"
+      - ".opencode/specs/system-speckit/028-memory-search-intelligence/feature-flags.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "phase-040-flag-graduation-benchmark"

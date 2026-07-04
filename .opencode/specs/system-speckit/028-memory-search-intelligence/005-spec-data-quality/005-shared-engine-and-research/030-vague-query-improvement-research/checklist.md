@@ -9,8 +9,8 @@ importance_tier: "important"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/005-shared-engine-and-research/030-vague-query-improvement-research"
-    last_updated_at: "2026-06-22T00:00:00Z"
+    packet_pointer: "system-speckit/028-memory-search-intelligence/005-spec-data-quality/005-shared-engine-and-research/030-vague-query-improvement-research"
+    last_updated_at: "2026-07-04T17:12:05.502Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "Verified all research QA items with evidence"
     next_safe_action: "Operator decides which verified proposals warrant a build phase"

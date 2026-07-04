@@ -193,7 +193,7 @@
     ],
     "causal_summary": "`create.sh --phase --phase-parent <existing-packet> --phase-names <name> ...` rebinds `FEATUREDIR` to the existing parent (`create.sh:1046-1062`) but still calls the parent description generator with the append request's own feature description (`create.sh:1310-1317`)",
     "created_at": "2026-07-02T15:04:28.155Z",
-    "last_save_at": "2026-07-04T15:47:00.766Z",
+    "last_save_at": "2026-07-04T17:11:45.809Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,10 +204,10 @@
     ],
     "source_fingerprint": "sha256:c314f57eda3fd645fc668caa9d553b1c95fe8f22d839103b2de77c2fcb7d1ae2",
     "source_doc_hashes": {
-      "spec.md": "9b2fd8e060b70b0f8d3c5576790bdf7a5aaeebdf5db44fa5b66ac31c523b1827",
-      "plan.md": "87c8691d52f24ec5f1e2809ba7b903365705973c26c6021b8fd28a353a477c6f",
-      "tasks.md": "db5f362aa212edc2395c209c0084a43219f883521c634ca363c8458944d0df99",
-      "implementation-summary.md": "03061657015411d17681b7492eb31079cb8c40fec09b3bce2eb44a3e1b8e3a87"
+      "spec.md": "696d3337870eb438025c2b1b166605dd949aff8a13afd757d6eeb5e4c2f7cd4a",
+      "plan.md": "e09728ce5c9be8171a09949b2bc7a794e64bd60dd3f04d64568054675f769f78",
+      "tasks.md": "f1ca92642b659efd07056794d769c8d2cded7c1f0eff912fedbaecb4f5287c92",
+      "implementation-summary.md": "e611e0ad4490908be9bd958864faea565fc9b12018d52e97f50fe52b6b0c1487"
     },
     "last_active_child_id": null,
     "last_active_at": null

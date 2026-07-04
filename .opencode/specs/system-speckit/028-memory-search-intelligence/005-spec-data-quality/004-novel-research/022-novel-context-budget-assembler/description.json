@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/004-novel-research/022-novel-context-budget-assembler",
+  "specFolder": "system-speckit/028-memory-search-intelligence/005-spec-data-quality/004-novel-research/022-novel-context-budget-assembler",
   "description": "The prod search path returns the post-floor result set with no density discipline",
   "keywords": [
     "prod",
@@ -13,11 +13,11 @@
     "density",
     "discipline"
   ],
-  "lastUpdated": "2026-06-28T14:23:06.802Z",
+  "lastUpdated": "2026-07-04T17:12:06.310Z",
   "specId": "022",
   "folderSlug": "novel-context-budget-assembler",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "028-memory-search-intelligence",
     "005-spec-data-quality",
     "004-novel-research"

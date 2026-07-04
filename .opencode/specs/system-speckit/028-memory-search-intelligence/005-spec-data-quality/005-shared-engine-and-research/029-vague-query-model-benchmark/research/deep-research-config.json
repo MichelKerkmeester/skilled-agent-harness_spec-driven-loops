@@ -7,7 +7,7 @@
   "maxToolCallsPerIteration": 12,
   "maxMinutesPerIteration": 12,
   "progressiveSynthesis": true,
-  "specFolder": ".opencode/specs/system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/029-vague-query-model-benchmark",
+  "specFolder": ".opencode/specs/system-speckit/028-memory-search-intelligence/005-spec-data-quality/029-vague-query-model-benchmark",
   "resource_map_present": false,
   "resource_map": { "emit": false },
   "createdAt": "2026-06-23T00:00:00Z",

@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/005-shared-engine-and-research/027-retrieval-floor-experiment",
-  "spec_folder": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/005-shared-engine-and-research/027-retrieval-floor-experiment",
-  "parent_id": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/005-shared-engine-and-research",
+  "packet_id": "system-speckit/028-memory-search-intelligence/005-spec-data-quality/005-shared-engine-and-research/027-retrieval-floor-experiment",
+  "spec_folder": "system-speckit/028-memory-search-intelligence/005-spec-data-quality/005-shared-engine-and-research/027-retrieval-floor-experiment",
+  "parent_id": "system-speckit/028-memory-search-intelligence/005-spec-data-quality/005-shared-engine-and-research",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -190,7 +190,7 @@
     ],
     "causal_summary": "The prod retrieval path guarantees a never-cut-below-3 minimum (`confidence-truncation.ts:35`, `DEFAULTMINRESULTS = 3`, a floor not a cap), then layers a cliff-conditional confidence truncation that returns 3 to 20 at roughly 2x the median gap and a token budget that is the real prod-limiting stage, all applied at the prod seam `if (!evaluationMode)` in `hybrid-search.ts` (the minimum guarantee surfaces at `hybrid-search.ts:2065` as `minResultsGuaranteed: DEFAULTMINRESULTS`)",
     "created_at": "2026-06-27T17:15:39.822Z",
-    "last_save_at": "2026-06-27T17:15:39.822Z",
+    "last_save_at": "2026-07-04T17:12:04.022Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -200,13 +200,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:dd4ef5424d4f33aef7528e97b3d785def77a5445ed2e888d5e9c8712085c3858",
+    "source_fingerprint": "sha256:4a23a144d3d897c6404981031bf1b973d34e202b3dd73b1235f64d5e8645861a",
     "source_doc_hashes": {
-      "spec.md": "7104075fbd48b12176aac9c5d9419e817094e294fc653bc09fd249e7044b5b18",
-      "plan.md": "90a5ec0f3c1cb0179c4f24de066cba9517c297d140b54baa98da1b0775a0dc5c",
-      "tasks.md": "305b1cf7e1a12a070b43bce86c807933fedbeea96b8fb0f2710dac55dd9ce72c",
-      "checklist.md": "e419c2a39f33bd72b644c12e96f882dda6062556591a965924f463ed1c0affcb",
-      "implementation-summary.md": "8e616331c2c6068a9c3fbd9176e3a14e2ac37136678532faf2e1a92478356c2a"
+      "spec.md": "aa73b7e292c8e81f9a50cdb0b9d507a5872e8d03c4bd63ff67bc68713a32bc92",
+      "plan.md": "4703a4a440940bf6005b178982b66430b75ddeabcfb9337ec17bb44c9123a577",
+      "tasks.md": "7bef77a19c06ca94747f4ca99156a86042aab9bf60aed4a7b96b8e5e48ba98b0",
+      "checklist.md": "6d629eef2128d3308b047bfac6b0a129a235967585e3f69de0c93e9dfcf22f32",
+      "implementation-summary.md": "51f4de597b18c27a353f430746943a530740eac27e976c9da80d4762209fdea3"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -11,8 +11,8 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/002-retroactive-automation/012-doctor-dq-route"
-    last_updated_at: "2026-06-21T00:00:00Z"
+    packet_pointer: "system-speckit/028-memory-search-intelligence/005-spec-data-quality/002-retroactive-automation/012-doctor-dq-route"
+    last_updated_at: "2026-07-04T17:12:09.850Z"
     last_updated_by: "markdown-agent"
     recent_action: "Authored tasks.md for the B2 doctor dq route scaffold"
     next_safe_action: "Start T001 once the B1 dq-engine seam lands"

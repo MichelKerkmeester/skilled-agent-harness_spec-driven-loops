@@ -1,16 +1,16 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/005-shared-engine-and-research",
-  "spec_folder": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/005-shared-engine-and-research",
-  "parent_id": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality",
+  "packet_id": "system-speckit/028-memory-search-intelligence/005-spec-data-quality/005-shared-engine-and-research",
+  "spec_folder": "system-speckit/028-memory-search-intelligence/005-spec-data-quality/005-shared-engine-and-research",
+  "parent_id": "system-speckit/028-memory-search-intelligence/005-spec-data-quality",
   "children_ids": [
-    "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/005-shared-engine-and-research/026-shared-safe-fix-engine",
-    "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/005-shared-engine-and-research/027-retrieval-floor-experiment",
-    "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/005-shared-engine-and-research/028-governance-rollout",
-    "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/005-shared-engine-and-research/029-vague-query-model-benchmark",
-    "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/005-shared-engine-and-research/030-vague-query-improvement-research",
-    "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/005-shared-engine-and-research/031-generated-metadata-quality-research",
-    "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/005-shared-engine-and-research/032-z-future-always-ignored"
+    "system-speckit/028-memory-search-intelligence/005-spec-data-quality/005-shared-engine-and-research/026-shared-safe-fix-engine",
+    "system-speckit/028-memory-search-intelligence/005-spec-data-quality/005-shared-engine-and-research/027-retrieval-floor-experiment",
+    "system-speckit/028-memory-search-intelligence/005-spec-data-quality/005-shared-engine-and-research/028-governance-rollout",
+    "system-speckit/028-memory-search-intelligence/005-spec-data-quality/005-shared-engine-and-research/029-vague-query-model-benchmark",
+    "system-speckit/028-memory-search-intelligence/005-spec-data-quality/005-shared-engine-and-research/030-vague-query-improvement-research",
+    "system-speckit/028-memory-search-intelligence/005-spec-data-quality/005-shared-engine-and-research/031-generated-metadata-quality-research",
+    "system-speckit/028-memory-search-intelligence/005-spec-data-quality/005-shared-engine-and-research/032-z-future-always-ignored"
   ],
   "manual": {
     "depends_on": [],
@@ -40,7 +40,8 @@
     "importance_tier": "normal",
     "status": "planned",
     "key_files": [
-      "spec.md"
+      "spec.md",
+      "026-shared-safe-fix-engine/spec.md"
     ],
     "entities": [
       {
@@ -88,15 +89,15 @@
     ],
     "causal_summary": "Shared Engine and Research subgroup of the spec-data-quality track: the shared fix engine, the floor experiment, governance rollout, and the vague-query/generated-metadata research bridge.",
     "created_at": "2026-06-27T17:25:56.206Z",
-    "last_save_at": "2026-06-27T17:25:56.206Z",
+    "last_save_at": "2026-07-04T17:11:47.141Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:529b7e9742151d0dba33eb98f85ec3af9f67cf8a42b3b271efb8b84e1baf0e91",
+    "source_fingerprint": "sha256:423df48e8ddf29e2d93b42976bbf8d3489676ddee17a20e5a5da579447fd76e6",
     "source_doc_hashes": {
-      "spec.md": "a8eca1ee68030547e9a6c2fda1d7dc877217abbdbfeb5f347d42fe1c988cc9a6"
+      "spec.md": "4f5b6282ced0059787679022154242a417584b388726a8500ac92984bdf755e3"
     },
     "last_active_child_id": null,
     "last_active_at": null

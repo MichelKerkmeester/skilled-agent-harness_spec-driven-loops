@@ -98,7 +98,7 @@
     ],
     "causal_summary": "While closing packet `030-agent-loops-improved` phase 011's child 006 (a `validate.sh` registry bridge), a rebuild of `system-spec-kit/mcpserver`'s compiled `dist/` output (required because `validate.sh` executes compiled JS, not TypeScript source directly) revealed two compounding problems: (1) `validate.sh`'s default path (`runnodeorchestrator()`, `scripts/spec/validate.sh:975-989`) only checks that the compiled orchestrator file exists, never whether it is fresh relative to its source -- `dist/` had silently been ~2 weeks stale, meaning several already-committed, already-graduated validator",
     "created_at": "2026-07-02T03:37:12.935Z",
-    "last_save_at": "2026-07-04T16:28:59.600Z",
+    "last_save_at": "2026-07-04T17:11:49.444Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -106,7 +106,7 @@
     ],
     "source_fingerprint": "sha256:7f3bafd68f127c687f2adad99ee889eee4935d8102d4524ec8204038d6e443a1",
     "source_doc_hashes": {
-      "spec.md": "f2e774b14f54714c70eea69bee8af0832216b488239396851d66d9d9655c6654"
+      "spec.md": "58b01874c70b466f14d8a71a2ea127ab26a3644502f938d9a3a69827681b28d2"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -11,8 +11,8 @@ importance_tier: "important"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/006-generated-metadata-build/042-deterministic-ranking-benchmark"
-    last_updated_at: "2026-06-23T00:00:00Z"
+    packet_pointer: "system-speckit/028-memory-search-intelligence/005-spec-data-quality/006-generated-metadata-build/042-deterministic-ranking-benchmark"
+    last_updated_at: "2026-07-04T17:11:55.517Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "Authored harness, ran the 72-cell matrix"
     next_safe_action: "Compute metrics and write the verdict"
@@ -101,7 +101,7 @@ This phase is an additive read-only benchmark, not a fix. It touches no shared s
 | phase `scripts/` and `results/` | New benchmark harness and data | create, self-contained in the phase folder | the working-tree diff stays confined to the phase folder |
 
 Required inventories:
-- Same-class producers: `rg -n 'executePipeline' .opencode/specs/system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/006-generated-metadata-build/042-deterministic-ranking-benchmark/scripts`.
+- Same-class producers: `rg -n 'executePipeline' .opencode/specs/system-speckit/028-memory-search-intelligence/005-spec-data-quality/006-generated-metadata-build/042-deterministic-ranking-benchmark/scripts`.
 - Consumers of changed symbols: none, the harness exports nothing and no shared code imports it.
 - Matrix axes: twelve queries across aligned, generic, off-corpus and max-vague classes, six runs per query split OFF x3 and ON x3.
 - Algorithm invariant: every query is embedded once and reused, the flag is set only through `process.env`, and each divergence metric is computed from the collected orderings not hand-entered.

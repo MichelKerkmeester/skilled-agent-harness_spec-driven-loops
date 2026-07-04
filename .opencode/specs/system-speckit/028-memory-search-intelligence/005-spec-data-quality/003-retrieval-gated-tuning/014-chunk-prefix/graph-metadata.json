@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/003-retrieval-gated-tuning/014-chunk-prefix",
-  "spec_folder": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/003-retrieval-gated-tuning/014-chunk-prefix",
-  "parent_id": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/003-retrieval-gated-tuning",
+  "packet_id": "system-speckit/028-memory-search-intelligence/005-spec-data-quality/003-retrieval-gated-tuning/014-chunk-prefix",
+  "spec_folder": "system-speckit/028-memory-search-intelligence/005-spec-data-quality/003-retrieval-gated-tuning/014-chunk-prefix",
+  "parent_id": "system-speckit/028-memory-search-intelligence/005-spec-data-quality/003-retrieval-gated-tuning",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -198,7 +198,7 @@
     ],
     "causal_summary": "The embed path strips the highest-value curated retrieval signal before it ever reaches a vector",
     "created_at": "2026-06-27T17:15:36.300Z",
-    "last_save_at": "2026-06-27T17:15:36.300Z",
+    "last_save_at": "2026-07-04T17:11:52.520Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,13 +208,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:10d3951320481a39164f554b66d064e93603c76038254ae7acaed853f78b1a67",
+    "source_fingerprint": "sha256:f5d041d2384a4f1fc92342b8f4b1c6c3cc3da143ca93db911330081aef0c61ba",
     "source_doc_hashes": {
-      "spec.md": "cac684edfd612c70a721f5483afc9fde23199c773499cded47915ff2ef69b7d9",
-      "plan.md": "a5015d9ae7381ca7d188a80a2bf04206f65c82d70952200f58455129dccc3a95",
-      "tasks.md": "76fa958388a6945adb899c12bf9579ae77015753e2c9240790260f60410c89b4",
-      "checklist.md": "c6bcfa269cd65701e6dea59dc1cf6186281f173ee901894f772068447b19f9ef",
-      "implementation-summary.md": "f11f6aedd540b012e6d54e7240e1f3f958025954e446d4874ff69ceeb6f171cb"
+      "spec.md": "278867fc7f81bb980b598b79ca99fc42e06a5bcf07e2833c44ca9238f8279e07",
+      "plan.md": "07fd8ddc84d5c1be90d9f4c7fe662de8a9f6fe6a475fa93ea012abac7e01dd48",
+      "tasks.md": "d606317a39f2664d1f06c54c97d6ced0fc02c95f003c512e5fcebe8fb899cd84",
+      "checklist.md": "3eaba4c53b177d475ce7828baa73409cf6e30a780aea7f5094de3f3cebde0269",
+      "implementation-summary.md": "8147fefb7f4b48e1424708fbf25d9059f3c1f0ebc0c4f2bc58834d25b9aa0bd3"
     },
     "last_active_child_id": null,
     "last_active_at": null

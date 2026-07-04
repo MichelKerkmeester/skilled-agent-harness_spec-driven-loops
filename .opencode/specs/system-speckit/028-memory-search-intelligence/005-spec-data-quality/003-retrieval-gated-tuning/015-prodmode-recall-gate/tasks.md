@@ -11,8 +11,8 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/003-retrieval-gated-tuning/015-prodmode-recall-gate"
-    last_updated_at: "2026-06-21T00:00:00Z"
+    packet_pointer: "system-speckit/028-memory-search-intelligence/005-spec-data-quality/003-retrieval-gated-tuning/015-prodmode-recall-gate"
+    last_updated_at: "2026-07-04T17:11:50.789Z"
     last_updated_by: "markdown-agent"
     recent_action: "Round-2 remediation: retasked gate for @3/@5/@8 plus order-sensitive metric"
     next_safe_action: "Hold for implementation, no task has started yet"

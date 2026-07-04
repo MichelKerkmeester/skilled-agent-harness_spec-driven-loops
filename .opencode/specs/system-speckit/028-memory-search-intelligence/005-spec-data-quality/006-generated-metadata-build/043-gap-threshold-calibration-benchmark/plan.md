@@ -11,8 +11,8 @@ importance_tier: "important"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/006-generated-metadata-build/043-gap-threshold-calibration-benchmark"
-    last_updated_at: "2026-06-23T00:00:00Z"
+    packet_pointer: "system-speckit/028-memory-search-intelligence/005-spec-data-quality/006-generated-metadata-build/043-gap-threshold-calibration-benchmark"
+    last_updated_at: "2026-07-04T17:11:54.651Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "Authored harness, ran the 18-query labeled set"
     next_safe_action: "Sweep the threshold and write the verdict"
@@ -102,7 +102,7 @@ This phase is an additive read-only benchmark, not a fix. It touches no shared s
 | phase `scripts/` and `results/` | New benchmark harness and data | create, self-contained in the phase folder | the working-tree diff stays confined to the phase folder |
 
 Required inventories:
-- Same-class producers: `rg -n 'executePipeline' .opencode/specs/system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/006-generated-metadata-build/043-gap-threshold-calibration-benchmark/scripts`.
+- Same-class producers: `rg -n 'executePipeline' .opencode/specs/system-speckit/028-memory-search-intelligence/005-spec-data-quality/006-generated-metadata-build/043-gap-threshold-calibration-benchmark/scripts`.
 - Consumers of changed symbols: none, the harness exports nothing and no shared code imports it.
 - Matrix axes: eighteen queries across the should-good, should-gap and boundary groups, one pipeline run per query with the Z-score swept across 0.5 to 3.0.
 - Algorithm invariant: the recomputed binary equals the production `evidenceGapDetected` for every one of the eighteen queries, the Z-score is recomputed from the production detector over the captured array, and every rate and separation is computed not hand-entered.

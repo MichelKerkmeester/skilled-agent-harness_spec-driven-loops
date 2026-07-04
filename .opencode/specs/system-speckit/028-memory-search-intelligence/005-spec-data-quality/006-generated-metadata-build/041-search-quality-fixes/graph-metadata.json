@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/006-generated-metadata-build/041-search-quality-fixes",
-  "spec_folder": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/006-generated-metadata-build/041-search-quality-fixes",
-  "parent_id": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/006-generated-metadata-build",
+  "packet_id": "system-speckit/028-memory-search-intelligence/005-spec-data-quality/006-generated-metadata-build/041-search-quality-fixes",
+  "spec_folder": "system-speckit/028-memory-search-intelligence/005-spec-data-quality/006-generated-metadata-build/041-search-quality-fixes",
+  "parent_id": "system-speckit/028-memory-search-intelligence/005-spec-data-quality/006-generated-metadata-build",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -203,7 +203,7 @@
     ],
     "causal_summary": "The 029 deep-research traced the vague-query benchmark findings to six fixable causes in the live memory-search pipeline",
     "created_at": "2026-06-27T17:15:43.628Z",
-    "last_save_at": "2026-06-27T17:15:43.628Z",
+    "last_save_at": "2026-07-04T17:11:55.938Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -213,13 +213,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:3c9256ee52214cd93a43fc72480e5e96c7a6b8c8d46ee8a9695f37ab3e486d8d",
+    "source_fingerprint": "sha256:62162cabb838131139e617922772eeee913307660a4e66cb58de9fd68d733a69",
     "source_doc_hashes": {
-      "spec.md": "0da29fcaf62114ab244bd5884898dbaa56541b3dd3299288965ee645223f2ef2",
-      "plan.md": "fa42893ee01d6171c75f705cdd957365995359f45111d780123057dd3faf3bf6",
-      "tasks.md": "f5df50afd5776c10776ece61322ade85dbb98143e444d2ea7b5fe740f0f37c39",
-      "checklist.md": "46ce3d2ae0b97f70de2c040b5bbf4a9e06605550dd4542edc015f552fcaa2449",
-      "implementation-summary.md": "3bd7815620f307b6af973a7ff7c0ab09c52075021714188d7d31a7e8efb188bc"
+      "spec.md": "0ea13a215974954eb3f6e876f3b2c18fa97b3eceb30ec4660f513c76dfd78ef5",
+      "plan.md": "b7ca313f6c8d72f53baa1b731a10006ccf764818addc771a1ed964c6863f019a",
+      "tasks.md": "7b91313166db3b79ac923ed3e0e99dca94029c205f5fdd73e59fd47fddfb4cf6",
+      "checklist.md": "b60285b97abca64acacedb0b279c03205ec5d35c2c26893e6ce94a72af234dde",
+      "implementation-summary.md": "c15b4ba1acb702f41f57cdd3ababdf794a5733ad9a7f7713ca0d65029fe2db5a"
     },
     "last_active_child_id": null,
     "last_active_at": null

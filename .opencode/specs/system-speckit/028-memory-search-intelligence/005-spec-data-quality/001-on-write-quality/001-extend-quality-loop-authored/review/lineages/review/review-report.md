@@ -1,6 +1,6 @@
 # Review Report — A1 Extend the Live Quality Machinery to Authored Specs
 
-- **Target**: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/001-on-write-quality/001-extend-quality-loop-authored`
+- **Target**: `.opencode/specs/system-speckit/028-memory-search-intelligence/005-spec-data-quality/001-on-write-quality/001-extend-quality-loop-authored`
 - **Target type**: spec-folder (PLANNED scaffold, no code shipped)
 - **Session**: `fanout-review-1782055952411-5f991r` · lineage `review` · generation 1
 - **Executor**: cli-claude-code model=opus

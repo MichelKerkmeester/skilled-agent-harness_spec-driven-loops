@@ -1,21 +1,22 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality",
-  "spec_folder": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality",
-  "parent_id": "system-spec-kit/028-memory-search-intelligence",
+  "packet_id": "system-speckit/028-memory-search-intelligence/005-spec-data-quality",
+  "spec_folder": "system-speckit/028-memory-search-intelligence/005-spec-data-quality",
+  "parent_id": "system-speckit/028-memory-search-intelligence",
   "children_ids": [
-    "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/001-on-write-quality",
-    "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/002-retroactive-automation",
-    "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/003-retrieval-gated-tuning",
-    "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/004-novel-research",
-    "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/005-shared-engine-and-research",
-    "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/006-generated-metadata-build",
+    "system-speckit/028-memory-search-intelligence/005-spec-data-quality/001-on-write-quality",
+    "system-speckit/028-memory-search-intelligence/005-spec-data-quality/002-retroactive-automation",
+    "system-speckit/028-memory-search-intelligence/005-spec-data-quality/003-retrieval-gated-tuning",
+    "system-speckit/028-memory-search-intelligence/005-spec-data-quality/004-novel-research",
+    "system-speckit/028-memory-search-intelligence/005-spec-data-quality/005-shared-engine-and-research",
+    "system-speckit/028-memory-search-intelligence/005-spec-data-quality/006-generated-metadata-build",
     "system-speckit/028-memory-search-intelligence/005-spec-data-quality/045-drift-audit-remediation",
     "system-speckit/028-memory-search-intelligence/005-spec-data-quality/046-drift-audit-deep-history-correction",
     "system-speckit/028-memory-search-intelligence/005-spec-data-quality/047-generated-metadata-status-integrity",
     "system-speckit/028-memory-search-intelligence/005-spec-data-quality/048-create-sh-parent-corruption-fix",
     "system-speckit/028-memory-search-intelligence/005-spec-data-quality/049-derive-status-explicit-bypass-fix",
-    "system-speckit/028-memory-search-intelligence/005-spec-data-quality/050-validate-sh-dist-freshness-and-repo-remediation"
+    "system-speckit/028-memory-search-intelligence/005-spec-data-quality/050-validate-sh-dist-freshness-and-repo-remediation",
+    "system-speckit/028-memory-search-intelligence/005-spec-data-quality/029-vague-query-model-benchmark"
   ],
   "manual": {
     "depends_on": [],
@@ -54,8 +55,8 @@
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
-      "research/stage-0-external-findings.md",
       "research/research.md",
+      "research/stage-0-external-findings.md",
       "plan.md",
       "tasks.md",
       "checklist.md",
@@ -67,15 +68,15 @@
     ],
     "entities": [
       {
-        "name": "stage-0-external-findings.md",
-        "kind": "doc",
-        "path": "research/stage-0-external-findings.md",
-        "source": "derived"
-      },
-      {
         "name": "research.md",
         "kind": "doc",
         "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "stage-0-external-findings.md",
+        "kind": "doc",
+        "path": "research/stage-0-external-findings.md",
         "source": "derived"
       },
       {
@@ -213,7 +214,7 @@
     ],
     "causal_summary": "Spec-kit writes plain markdown chunks and two metadata JSONs per packet, but none of that is shaped for retrieval recall, for AI instruction adherence or for machine logic reading",
     "created_at": "2026-06-27T17:15:46.346Z",
-    "last_save_at": "2026-06-27T17:15:46.346Z",
+    "last_save_at": "2026-07-04T17:11:44.982Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -226,16 +227,16 @@
       "research/research.md",
       "handover.md"
     ],
-    "source_fingerprint": "sha256:2bf82945f8e5722d2242f34534c9e3b208e08cb77d06f4694fc9069447337305",
+    "source_fingerprint": "sha256:15c665fdd76a9f597a989e2e8228d822bb0b123d21e68e68133ee3962b2d201c",
     "source_doc_hashes": {
-      "spec.md": "0c4882ac36b161e0b72f36bd99cc12f6231e44f0d34e499838f705ee9e999f77",
-      "plan.md": "2f14a5fa58606c4d7c453e28e1cce06891ac8c92d748a5b09462bb1c8aae72de",
-      "tasks.md": "92a09f90b74cc4cc4fbdc43b814164f0596337e53f74d284b7d904f9c6d1306c",
-      "checklist.md": "779783e6702d705f645dc22372bb257ef0538a14abc9746463bee32fd560544a",
-      "decision-record.md": "e78eee4b8891e303a9e36a9b0ea1533abdccdbb6dae407bec878076b930094de",
-      "implementation-summary.md": "896bf58a30a1efd3e7c53bd86c0cc40cda2a21a7523b557cae35d53cd5418e3c",
+      "spec.md": "3e2b2ceec36b00dd04a4b5217a8e113056fd50a7b483b0707a4082e17bfcd845",
+      "plan.md": "e0a4a4cac7cfa1f62f7254571169f4ef48c07700e0857cf49a7bb6d3a5eee5ef",
+      "tasks.md": "4f4bc4751c7f4b3a77e2ce26527b88f8b2b6861228ee2537205a96115a6ccded",
+      "checklist.md": "e576e800de3950cf29e8f7f873fb904c1458a2e75270a2d5e8c6cdc1b59a36c7",
+      "decision-record.md": "a723cfdc16a7ef3bad6f3c97c1f0f7ef0b9cd29d638319c3a2f4940fffe1c431",
+      "implementation-summary.md": "a74dcb783800c02be328321b900bc130c59379bfea65c3ef6d956bb6fceeac09",
       "research/research.md": "a068540b6b8cf204988f0813ce0741a6648dad9cf87c2fc014d15cf2706c54af",
-      "handover.md": "665829491f97cf6ba491641869c5656e96da6e783fff74bf9b3c88982f6a9aa1"
+      "handover.md": "4d5303438e728c6f6513001db09494ec5a69db4e8be45976f5803f501f94406d"
     },
     "last_active_child_id": null,
     "last_active_at": null

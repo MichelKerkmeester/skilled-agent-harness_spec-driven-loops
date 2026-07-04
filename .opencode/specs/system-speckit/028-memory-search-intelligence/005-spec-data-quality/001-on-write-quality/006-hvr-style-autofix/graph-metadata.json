@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/001-on-write-quality/006-hvr-style-autofix",
-  "spec_folder": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/001-on-write-quality/006-hvr-style-autofix",
-  "parent_id": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/001-on-write-quality",
+  "packet_id": "system-speckit/028-memory-search-intelligence/005-spec-data-quality/001-on-write-quality/006-hvr-style-autofix",
+  "spec_folder": "system-speckit/028-memory-search-intelligence/005-spec-data-quality/001-on-write-quality/006-hvr-style-autofix",
+  "parent_id": "system-speckit/028-memory-search-intelligence/005-spec-data-quality/001-on-write-quality",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -34,6 +34,7 @@
     "importance_tier": "normal",
     "status": "draft",
     "key_files": [
+      ".opencode/skills/system-spec-kit/mcp_server/handlers/quality-loop.ts",
       "scripts/lib/validator-registry.json",
       ".opencode/skills/system-spec-kit/mcp_server/tests/flag-ceiling.vitest.ts",
       "spec.md",
@@ -43,6 +44,12 @@
       "implementation-summary.md"
     ],
     "entities": [
+      {
+        "name": "quality-loop.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/handlers/quality-loop.ts",
+        "source": "derived"
+      },
       {
         "name": "validator-registry.json",
         "kind": "config",
@@ -180,17 +187,11 @@
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
-      },
-      {
-        "name": "Verification Protocol",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The HVR house voice (no em-dashes, no prose semicolons, no Oxford commas) is a documented authoring rule that no tool enforces, so adherence drifts every time a spec-doc is hand-edited",
     "created_at": "2026-06-27T17:15:34.135Z",
-    "last_save_at": "2026-06-27T17:15:34.135Z",
+    "last_save_at": "2026-07-04T17:11:59.545Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -200,13 +201,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:9d1450de51826aa804b466d88716d5f4a7d8c5dec5fc1e6089c6d8e80fd55af0",
+    "source_fingerprint": "sha256:a3ffd3cd4b7adaf4a98548c2e6e86ce0df9d9d965f83808ce77f4e59523caa9d",
     "source_doc_hashes": {
-      "spec.md": "9debefd01e11d6fc84dbb789223606880f4cfa9654a5fb3a29f4511d627175cb",
-      "plan.md": "796712c8402d0d8e59853e6821d7591254fd5b0109ffdb9393f4580f0da862bd",
-      "tasks.md": "5349e9f96eff58d6910ebd9ac26f31ed953fa72e11a3dee308b0d7b53816c790",
-      "checklist.md": "5e3c29b95e85d56f6518a07e5a0d3ec795d8dcbff3e763bf45128c5dd08c19a1",
-      "implementation-summary.md": "e30ff948491248d50aa971c56fab45f92204a0c5f604147e960ff73faa174263"
+      "spec.md": "2a09cced48a191195c347f09ad690cfba3f6410cc57d355017a357214c39dbbd",
+      "plan.md": "a5b6797cecb345eb0e6e95a7b5dba4501b36dcd07e848b12d90433377cdbea16",
+      "tasks.md": "ff51adde4a13a2a4ac46f2e837286b4ae2e9c73700008e22b58b96a24e459aa1",
+      "checklist.md": "a65252d228f8ba92b44b93cff393573aed6a45c75f9639ea91129552dc85b63e",
+      "implementation-summary.md": "ea10d8f4ac320008f0dc90f3c7d5496968a7b083494959f30b95c4f348ac6ec9"
     },
     "last_active_child_id": null,
     "last_active_at": null

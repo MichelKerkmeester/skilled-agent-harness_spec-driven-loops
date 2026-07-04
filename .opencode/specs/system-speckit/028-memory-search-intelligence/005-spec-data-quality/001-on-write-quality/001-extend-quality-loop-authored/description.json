@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/001-on-write-quality/001-extend-quality-loop-authored",
+  "specFolder": "system-speckit/028-memory-search-intelligence/005-spec-data-quality/001-on-write-quality/001-extend-quality-loop-authored",
   "description": "A verify-fix-verify quality loop already runs LIVE and default-ON on the memory-save path",
   "keywords": [
     "verify-fix-verify",
@@ -13,11 +13,11 @@
     "memory-save",
     "path"
   ],
-  "lastUpdated": "2026-06-28T14:23:06.686Z",
+  "lastUpdated": "2026-07-04T17:11:59.774Z",
   "specId": "001",
   "folderSlug": "extend-quality-loop-authored",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "028-memory-search-intelligence",
     "005-spec-data-quality",
     "001-on-write-quality"

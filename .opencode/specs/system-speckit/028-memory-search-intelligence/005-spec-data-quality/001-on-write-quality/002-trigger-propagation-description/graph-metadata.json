@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/001-on-write-quality/002-trigger-propagation-description",
-  "spec_folder": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/001-on-write-quality/002-trigger-propagation-description",
-  "parent_id": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/001-on-write-quality",
+  "packet_id": "system-speckit/028-memory-search-intelligence/005-spec-data-quality/001-on-write-quality/002-trigger-propagation-description",
+  "spec_folder": "system-speckit/028-memory-search-intelligence/005-spec-data-quality/001-on-write-quality/002-trigger-propagation-description",
+  "parent_id": "system-speckit/028-memory-search-intelligence/005-spec-data-quality/001-on-write-quality",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -191,7 +191,7 @@
     ],
     "causal_summary": "The per-folder `description.json` generator never propagates the curated frontmatter `triggerphrases` and its `description` is a verbatim copy of the spec title",
     "created_at": "2026-06-27T17:15:33.066Z",
-    "last_save_at": "2026-06-27T17:15:33.066Z",
+    "last_save_at": "2026-07-04T17:12:01.703Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -201,13 +201,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:f36c3e1a2c7a97108ede5917116853d4de850c073113ffbb5b188e0f8a90497d",
+    "source_fingerprint": "sha256:edce4cd158e2b879f152ddc17c3282c252e12866f5cbf83f0706e6c45a2ba37a",
     "source_doc_hashes": {
-      "spec.md": "b256aae77bfa314b1e0f36dac27d4f9e274d9d0a13c77f2290ebf239d09cbd73",
-      "plan.md": "d9562ed6b3ea60a80c5e6a4b039fadef35d9e769d1de1af4c5212550c4d581b4",
-      "tasks.md": "aa6871fd38af75d746f06916fb5a93401822596895c6988cc1d203c63677ebf7",
-      "checklist.md": "7fb282958ca3577c3a09f22451d910950c202fe2f26bdf11aa8650998e960395",
-      "implementation-summary.md": "1bab454ab86009ceec808e540366b8ec5d581e4d0e6cc10e7acf81310681d4ef"
+      "spec.md": "9ead1d429d87cde5fa6b197e60d542d651230657d1bcb49635e710c3f67dab36",
+      "plan.md": "1448c4b0dcd89ea6e3435a331ef9778bd70b53cf5884af1b6b5fbaed3dfa0fa1",
+      "tasks.md": "a6d1a8a4a4142caabe72fba77220315eb656039b37808f4f21a22b208ef9cced",
+      "checklist.md": "ec88b8a1f5c5c8988883ff12734f67af7f63c64c9d2252e93848ed067ff6a492",
+      "implementation-summary.md": "95105b587aa747b4ec547e586303c263b8501ccdd865d888e562ab66acab9aef"
     },
     "last_active_child_id": null,
     "last_active_at": null

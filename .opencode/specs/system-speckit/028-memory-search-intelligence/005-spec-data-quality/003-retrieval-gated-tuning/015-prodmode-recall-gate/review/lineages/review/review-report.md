@@ -1,7 +1,7 @@
 # Review Report — C2 Prod-Mode Recall Gate
 
 Lineage: `review` · Session: `fanout-review-1782055949478-i1h3i4` · Executor: cli-claude-code (opus)
-Target: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/003-retrieval-gated-tuning/015-prodmode-recall-gate` (spec-folder, Level 2, Status PLANNED)
+Target: `.opencode/specs/system-speckit/028-memory-search-intelligence/005-spec-data-quality/003-retrieval-gated-tuning/015-prodmode-recall-gate` (spec-folder, Level 2, Status PLANNED)
 
 ## 1. Executive Summary
 

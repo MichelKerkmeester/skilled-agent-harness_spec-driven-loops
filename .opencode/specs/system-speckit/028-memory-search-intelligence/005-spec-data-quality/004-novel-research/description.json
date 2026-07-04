@@ -1,5 +1,5 @@
 {
-  "specFolder": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/004-novel-research",
+  "specFolder": "system-speckit/028-memory-search-intelligence/005-spec-data-quality/004-novel-research",
   "description": "Novel Research subgroup of the spec-data-quality track: novel data-quality research ideas.",
   "keywords": [
     "novel",
@@ -10,11 +10,11 @@
     "data-quality",
     "ideas"
   ],
-  "lastUpdated": "2026-06-28T14:23:06.779Z",
+  "lastUpdated": "2026-07-04T17:11:47.742Z",
   "specId": "004",
   "folderSlug": "novel-research",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "028-memory-search-intelligence",
     "005-spec-data-quality"
   ],

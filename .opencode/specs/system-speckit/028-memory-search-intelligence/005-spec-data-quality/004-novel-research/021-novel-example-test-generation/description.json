@@ -1,7 +1,7 @@
 {
   "level": "2",
-  "specFolder": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/004-novel-research/021-novel-example-test-generation",
-  "description": "Authored spec requirements are prose-only, so adherence to a requirement is unprovable per requirement: there is no worked example showing the intende",
+  "specFolder": "system-speckit/028-memory-search-intelligence/005-spec-data-quality/004-novel-research/021-novel-example-test-generation",
+  "description": "Authored spec requirements are prose-only, so adherence to a requirement is unprovable per requirement: there is no worked example showing the",
   "keywords": [
     "authored",
     "spec",
@@ -13,14 +13,13 @@
     "per",
     "worked",
     "example",
-    "showing",
-    "intende"
+    "showing"
   ],
-  "lastUpdated": "2026-06-28T14:23:06.797Z",
+  "lastUpdated": "2026-07-04T17:12:07.148Z",
   "specId": "021",
   "folderSlug": "novel-example-test-generation",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "028-memory-search-intelligence",
     "005-spec-data-quality",
     "004-novel-research"

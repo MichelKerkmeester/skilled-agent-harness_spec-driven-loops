@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/001-on-write-quality/010-per-surface-gates",
-  "spec_folder": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/001-on-write-quality/010-per-surface-gates",
-  "parent_id": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/001-on-write-quality",
+  "packet_id": "system-speckit/028-memory-search-intelligence/005-spec-data-quality/001-on-write-quality/010-per-surface-gates",
+  "spec_folder": "system-speckit/028-memory-search-intelligence/005-spec-data-quality/001-on-write-quality/010-per-surface-gates",
+  "parent_id": "system-speckit/028-memory-search-intelligence/005-spec-data-quality/001-on-write-quality",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -200,7 +200,7 @@
     ],
     "causal_summary": "Three authoring surfaces beyond spec-doc and JSON ship machinery that is never enforced at write time",
     "created_at": "2026-06-27T17:15:35.223Z",
-    "last_save_at": "2026-06-27T17:15:35.223Z",
+    "last_save_at": "2026-07-04T17:11:58.812Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,13 +210,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:6726ca2620e455e3ad2a813e25506ebc81928e14b581c2916a1f0bf67e81d3f8",
+    "source_fingerprint": "sha256:10d08779ec9e8c1e7c5a944851ef7bd9fe72e2883baeaf3fa5fa89be45276e84",
     "source_doc_hashes": {
-      "spec.md": "f9a729802fda9f6b8801e259b18d4b47991071ce055c9592fba3c307ac97b1b2",
-      "plan.md": "5bbe77c3585d21e92af99c657037808a1f434673f946e998d16e92b5f632aedc",
-      "tasks.md": "98da726c5b6b77db26c1a2d49f223ed694fe6bf2694b6a84e435a998001c6e53",
-      "checklist.md": "39654ef225ae44511bd0459d73d2c8f2c022cd9cb383d45eccd73a4a369c4408",
-      "implementation-summary.md": "81f06858a593b364a9c55751ff4e9584471c2c5e3e93337dba79b70c9f12a711"
+      "spec.md": "4faf2f1cb3a7e2ee88027806b78b0ac74505c5a7ff4ecf0508341d6fef1e1465",
+      "plan.md": "871a1d19d600b69eed093539de59e6c380a0464fe63cd7b58d77e82f00bab222",
+      "tasks.md": "88a5f235c371107e583a52414ab76984faefaec4246dd0aec6fd47a784b5434d",
+      "checklist.md": "ea0c069666278c9b31fa8cca8b7f7c7fd30287c97e220e07d4c5eaa6c6de0d25",
+      "implementation-summary.md": "1651b88949af6065d90b00c3303397030aab5513a186894803e1724824a83ba7"
     },
     "last_active_child_id": null,
     "last_active_at": null

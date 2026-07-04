@@ -1,4 +1,4 @@
-specs/system-spec-kit/028-memory-search-intelligence/
+specs/system-speckit/028-memory-search-intelligence/
   0.55  #1  Borderline grounded retrieval result
 
 requestQuality weak

@@ -11,8 +11,8 @@ importance_tier: "important"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/006-generated-metadata-build/033-identity-resolver-merge-safety"
-    last_updated_at: "2026-06-22T00:00:00Z"
+    packet_pointer: "system-speckit/028-memory-search-intelligence/005-spec-data-quality/006-generated-metadata-build/033-identity-resolver-merge-safety"
+    last_updated_at: "2026-07-04T17:11:53.814Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "Scaffolded identity-resolver and merge-safety spec from research recs 2 and 3"
     next_safe_action: "Run speckit plan to decompose the resolver and the merge guard"
@@ -65,7 +65,7 @@ FAILURE MODES:
 ### Problem Statement
 The two generators that emit `description.json` and `graph-metadata.json` disagree on spec-folder identity and the graph merge path loses lineage. Research 031 section 4 ranks both findings P0/M and confirms each against live code in its section 6.
 
-Identity drift, rec #2. `description.json` stores a caller-base-relative path. The discovery builder computes `specFolder` as `path.relative(basePath, folderPath)` at `folder-discovery.ts:809`, so the value carried into `description.json` is whatever the caller passed as the base. Graph metadata instead stores a specs-root-relative path in `spec_folder` and `packet_id`, the form `system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/NNN-slug`. The two files therefore carry two different shapes for the same folder, which breaks joins between description discovery and the graph and reintroduces path-shape churn whenever the caller base changes. No single helper returns the canonical specs-root-relative `specFolder`, `parentId`, and `childrenIds` from an absolute path, so each generator recomputes identity its own way and `mergeGraphMetadata` has no safe parent-preservation rule to lean on.
+Identity drift, rec #2. `description.json` stores a caller-base-relative path. The discovery builder computes `specFolder` as `path.relative(basePath, folderPath)` at `folder-discovery.ts:809`, so the value carried into `description.json` is whatever the caller passed as the base. Graph metadata instead stores a specs-root-relative path in `spec_folder` and `packet_id`, the form `system-speckit/028-memory-search-intelligence/005-spec-data-quality/NNN-slug`. The two files therefore carry two different shapes for the same folder, which breaks joins between description discovery and the graph and reintroduces path-shape churn whenever the caller base changes. No single helper returns the canonical specs-root-relative `specFolder`, `parentId`, and `childrenIds` from an absolute path, so each generator recomputes identity its own way and `mergeGraphMetadata` has no safe parent-preservation rule to lean on.
 
 Lineage loss, rec #3. `mergeGraphMetadata` spreads the refreshed snapshot at `graph-metadata-parser.ts:1149-1161`, so top-level `parent_id` and `children_ids` are taken verbatim from the recomputation and are never reconciled against the persisted file. The build path derives `parent_id: resolveParentId(specFolder)` at `:1129`, which returns null when the parent cannot be resolved, and `children_ids: resolveChildrenIds(...)` at `:1130`, which reflects only what the current scan saw. The result is two failure modes. A re-derive whose `resolveParentId` returns null erases a previously valid non-null parent, and a scoped or racing scan that sees fewer children replaces the stored `children_ids` and deletes relationships. The merge already preserves `manual`, `created_at`, `last_accessed_at`, and the chronology pointers, but it does not preserve top-level lineage, so the very fields that record the folder's place in the tree are the ones it discards.
 

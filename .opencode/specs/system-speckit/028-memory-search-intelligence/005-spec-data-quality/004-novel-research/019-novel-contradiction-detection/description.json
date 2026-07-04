@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/004-novel-research/019-novel-contradiction-detection",
+  "specFolder": "system-speckit/028-memory-search-intelligence/005-spec-data-quality/004-novel-research/019-novel-contradiction-detection",
   "description": "The corpus has detectors for shape, frontmatter and cross-surface coherence within a single packet, but nothing checks whether two distinct docs that",
   "keywords": [
     "corpus",
@@ -19,11 +19,11 @@
     "distinct",
     "docs"
   ],
-  "lastUpdated": "2026-06-28T14:23:06.786Z",
+  "lastUpdated": "2026-07-04T17:12:07.579Z",
   "specId": "019",
   "folderSlug": "novel-contradiction-detection",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "028-memory-search-intelligence",
     "005-spec-data-quality",
     "004-novel-research"

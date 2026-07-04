@@ -1,7 +1,7 @@
 {
   "topic": "Review of A1 phase docs: extend the live quality machinery to authored specs (PLANNED scaffold)",
   "mode": "review",
-  "reviewTarget": ".opencode/specs/system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/001-on-write-quality/001-extend-quality-loop-authored",
+  "reviewTarget": ".opencode/specs/system-speckit/028-memory-search-intelligence/005-spec-data-quality/001-on-write-quality/001-extend-quality-loop-authored",
   "reviewTargetType": "spec-folder",
   "reviewDimensions": ["correctness", "security", "traceability", "maintainability"],
   "resource_map_present": false,
@@ -20,7 +20,7 @@
   },
   "qualityGateThreshold": true,
   "releaseReadinessState": "in-progress",
-  "specFolder": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/001-on-write-quality/001-extend-quality-loop-authored",
+  "specFolder": "system-speckit/028-memory-search-intelligence/005-spec-data-quality/001-on-write-quality/001-extend-quality-loop-authored",
   "createdAt": "2026-06-21T17:32:00Z",
   "status": "initialized",
   "executionMode": "auto",

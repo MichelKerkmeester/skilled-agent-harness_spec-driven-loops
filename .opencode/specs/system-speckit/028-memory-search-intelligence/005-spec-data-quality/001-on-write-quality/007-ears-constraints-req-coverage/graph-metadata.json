@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/001-on-write-quality/007-ears-constraints-req-coverage",
-  "spec_folder": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/001-on-write-quality/007-ears-constraints-req-coverage",
-  "parent_id": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/001-on-write-quality",
+  "packet_id": "system-speckit/028-memory-search-intelligence/005-spec-data-quality/001-on-write-quality/007-ears-constraints-req-coverage",
+  "spec_folder": "system-speckit/028-memory-search-intelligence/005-spec-data-quality/001-on-write-quality/007-ears-constraints-req-coverage",
+  "parent_id": "system-speckit/028-memory-search-intelligence/005-spec-data-quality/001-on-write-quality",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -41,11 +41,12 @@
     "importance_tier": "normal",
     "status": "draft",
     "key_files": [
+      ".opencode/skills/system-spec-kit/scripts/rules/check-ac-coverage.sh",
+      ".opencode/skills/system-spec-kit/scripts/lib/validator-registry.json",
+      ".opencode/skills/system-spec-kit/templates/manifest/spec.md.tmpl",
       "tasks.md",
       "scripts/rules/check-ac-coverage.sh",
-      ".opencode/skills/system-spec-kit/templates/manifest/spec.md.tmpl",
       ".opencode/skills/system-spec-kit/templates/manifest/tasks.md.tmpl",
-      ".opencode/skills/system-spec-kit/scripts/lib/validator-registry.json",
       "spec.md",
       "plan.md",
       "checklist.md",
@@ -53,15 +54,15 @@
     ],
     "entities": [
       {
-        "name": "tasks.md",
-        "kind": "doc",
-        "path": "tasks.md",
+        "name": "check-ac-coverage.sh",
+        "kind": "script",
+        "path": ".opencode/skills/system-spec-kit/scripts/rules/check-ac-coverage.sh",
         "source": "derived"
       },
       {
-        "name": "check-ac-coverage.sh",
-        "kind": "script",
-        "path": "scripts/rules/check-ac-coverage.sh",
+        "name": "validator-registry.json",
+        "kind": "config",
+        "path": ".opencode/skills/system-spec-kit/scripts/lib/validator-registry.json",
         "source": "derived"
       },
       {
@@ -71,15 +72,15 @@
         "source": "derived"
       },
       {
-        "name": "tasks.md.tmpl",
-        "kind": "file",
-        "path": ".opencode/skills/system-spec-kit/templates/manifest/tasks.md.tmpl",
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
         "source": "derived"
       },
       {
-        "name": "validator-registry.json",
-        "kind": "config",
-        "path": ".opencode/skills/system-spec-kit/scripts/lib/validator-registry.json",
+        "name": "tasks.md.tmpl",
+        "kind": "file",
+        "path": ".opencode/skills/system-spec-kit/templates/manifest/tasks.md.tmpl",
         "source": "derived"
       },
       {
@@ -199,7 +200,7 @@
     ],
     "causal_summary": "Spec requirement prose has no shared grammar, so requirements are authored in inconsistent free-form sentences that resist linting and machine extraction",
     "created_at": "2026-06-27T17:15:34.402Z",
-    "last_save_at": "2026-06-27T17:15:34.402Z",
+    "last_save_at": "2026-07-04T17:12:00.863Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,13 +210,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:0cb84424c991ffb901bd2d61c65f8eaa8f57c5acc472c82e989211bdc2a36486",
+    "source_fingerprint": "sha256:bcdc38bc631a3f6a6317ec88190e67d102e9220aa3e4698bcdf970f11cabc5ab",
     "source_doc_hashes": {
-      "spec.md": "d46b06be895776ff1de1aa538221105d480af1f97ae0c17533df5eba24a73517",
-      "plan.md": "9045f77feb7c70d3eb749d01b8dc774b3c45469d25ad62183204ad578743b9ff",
-      "tasks.md": "b8505bf7f670affa6b9d40991f7dbd26ed3155f591245a774a355796e0acf870",
-      "checklist.md": "b31418e972de0bf97d50b5aa92e52e6197e19d00c9a811d8d52075893082e936",
-      "implementation-summary.md": "99be5114ec9b282fa86738c8091478d362502a6abc28d39daa3d759768282621"
+      "spec.md": "532984d0eba2c174932bc91647484431b4d8894b4f6c3db5978f8c2db5dc1dd9",
+      "plan.md": "f02efe141284ca4d15d3c4e8f7fb89a21f48ebc52412bef745b75d0540a2c859",
+      "tasks.md": "4edca981d0cd3848520e658406c71ccd17d21562fbbc91feefa516e4efd58802",
+      "checklist.md": "2c234d0f5eee5fb04fd4ac98aa7937aadc6860895d7670eba57e5dd61408cc38",
+      "implementation-summary.md": "b5352d42bc7fe343e102bf9a4c8ce2305cb47f85e4e755b7cfbbb7778a3143d3"
     },
     "last_active_child_id": null,
     "last_active_at": null

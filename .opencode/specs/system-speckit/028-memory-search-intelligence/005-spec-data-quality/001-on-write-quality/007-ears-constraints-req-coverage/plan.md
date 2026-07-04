@@ -11,8 +11,8 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/001-on-write-quality/007-ears-constraints-req-coverage"
-    last_updated_at: "2026-06-21T00:00:00Z"
+    packet_pointer: "system-speckit/028-memory-search-intelligence/005-spec-data-quality/001-on-write-quality/007-ears-constraints-req-coverage"
+    last_updated_at: "2026-07-04T17:12:00.863Z"
     last_updated_by: "markdown-agent"
     recent_action: "Specified detector benchmark and flags-off test"
     next_safe_action: "Build the REQ_COVERAGE clone"
@@ -159,7 +159,7 @@ SPECKIT_REQ_COVERAGE=true bash .opencode/skills/system-spec-kit/scripts/spec/val
 
 # Flags-off byte-identical no-regress, on a real 005 sibling
 bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh \
-  .opencode/specs/system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/003-retrieval-gated-tuning/015-prodmode-recall-gate --strict
+  .opencode/specs/system-speckit/028-memory-search-intelligence/005-spec-data-quality/003-retrieval-gated-tuning/015-prodmode-recall-gate --strict
 # expect zero REQ_COVERAGE and EARS_LINT lines and the pre-phase exit code
 ```
 

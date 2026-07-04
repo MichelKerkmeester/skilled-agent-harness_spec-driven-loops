@@ -1,19 +1,19 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/001-on-write-quality",
-  "spec_folder": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/001-on-write-quality",
-  "parent_id": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality",
+  "packet_id": "system-speckit/028-memory-search-intelligence/005-spec-data-quality/001-on-write-quality",
+  "spec_folder": "system-speckit/028-memory-search-intelligence/005-spec-data-quality/001-on-write-quality",
+  "parent_id": "system-speckit/028-memory-search-intelligence/005-spec-data-quality",
   "children_ids": [
-    "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/001-on-write-quality/001-extend-quality-loop-authored",
-    "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/001-on-write-quality/002-trigger-propagation-description",
-    "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/001-on-write-quality/003-enum-constrain-schemas",
-    "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/001-on-write-quality/004-schema-warn-to-error",
-    "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/001-on-write-quality/005-trigger-coherence-assertion",
-    "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/001-on-write-quality/006-hvr-style-autofix",
-    "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/001-on-write-quality/007-ears-constraints-req-coverage",
-    "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/001-on-write-quality/008-surface-provenance-fields",
-    "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/001-on-write-quality/009-content-hash-integrity",
-    "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/001-on-write-quality/010-per-surface-gates"
+    "system-speckit/028-memory-search-intelligence/005-spec-data-quality/001-on-write-quality/001-extend-quality-loop-authored",
+    "system-speckit/028-memory-search-intelligence/005-spec-data-quality/001-on-write-quality/002-trigger-propagation-description",
+    "system-speckit/028-memory-search-intelligence/005-spec-data-quality/001-on-write-quality/003-enum-constrain-schemas",
+    "system-speckit/028-memory-search-intelligence/005-spec-data-quality/001-on-write-quality/004-schema-warn-to-error",
+    "system-speckit/028-memory-search-intelligence/005-spec-data-quality/001-on-write-quality/005-trigger-coherence-assertion",
+    "system-speckit/028-memory-search-intelligence/005-spec-data-quality/001-on-write-quality/006-hvr-style-autofix",
+    "system-speckit/028-memory-search-intelligence/005-spec-data-quality/001-on-write-quality/007-ears-constraints-req-coverage",
+    "system-speckit/028-memory-search-intelligence/005-spec-data-quality/001-on-write-quality/008-surface-provenance-fields",
+    "system-speckit/028-memory-search-intelligence/005-spec-data-quality/001-on-write-quality/009-content-hash-integrity",
+    "system-speckit/028-memory-search-intelligence/005-spec-data-quality/001-on-write-quality/010-per-surface-gates"
   ],
   "manual": {
     "depends_on": [],
@@ -43,7 +43,8 @@
     "importance_tier": "normal",
     "status": "planned",
     "key_files": [
-      "spec.md"
+      "spec.md",
+      "001-extend-quality-loop-authored/spec.md"
     ],
     "entities": [
       {
@@ -91,15 +92,15 @@
     ],
     "causal_summary": "On-Write Quality subgroup of the spec-data-quality track: on-write authored-spec quality gates.",
     "created_at": "2026-06-27T17:25:23.276Z",
-    "last_save_at": "2026-06-27T17:25:23.276Z",
+    "last_save_at": "2026-07-04T17:11:46.230Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:743faeeb1360bf2651b703063c7cb872bf48b9f41a925a842a4371beb6d1a416",
+    "source_fingerprint": "sha256:4c9aebf73a7f3638df1156775632a1ab4c93daf847aea739dd7aaf6ea2e8e6b0",
     "source_doc_hashes": {
-      "spec.md": "f1752d0f0f53a7b21d3d1846a6be62451be0c373c8d51ae1a6d4d3f05f232890"
+      "spec.md": "bdc642f212d2a07e04048beabdc0db3f70b8072d6b418170956441adf55dd3d4"
     },
     "last_active_child_id": null,
     "last_active_at": null

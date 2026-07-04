@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/006-generated-metadata-build/033-identity-resolver-merge-safety",
-  "spec_folder": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/006-generated-metadata-build/033-identity-resolver-merge-safety",
-  "parent_id": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/006-generated-metadata-build",
+  "packet_id": "system-speckit/028-memory-search-intelligence/005-spec-data-quality/006-generated-metadata-build/033-identity-resolver-merge-safety",
+  "spec_folder": "system-speckit/028-memory-search-intelligence/005-spec-data-quality/006-generated-metadata-build/033-identity-resolver-merge-safety",
+  "parent_id": "system-speckit/028-memory-search-intelligence/005-spec-data-quality/006-generated-metadata-build",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -34,12 +34,12 @@
     "importance_tier": "normal",
     "status": "in_progress",
     "key_files": [
+      ".opencode/skills/system-spec-kit/mcp_server/lib/graph/graph-metadata-parser.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/search/folder-discovery.ts",
       "lib/config/spec-doc-paths.ts",
       ".opencode/skills/system-spec-kit/mcp_server/lib/config/spec-doc-paths.ts",
       ".opencode/skills/system-spec-kit/mcp_server/lib/config/capability-flags.ts",
       ".opencode/skills/system-spec-kit/mcp_server/lib/graph/graph-metadata-schema.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/lib/graph/graph-metadata-parser.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/lib/search/folder-discovery.ts",
       ".opencode/skills/system-spec-kit/mcp_server/tests/identity-resolver-merge-safety.vitest.ts",
       "spec.md",
       "plan.md",
@@ -48,6 +48,18 @@
       "implementation-summary.md"
     ],
     "entities": [
+      {
+        "name": "graph-metadata-parser.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/graph/graph-metadata-parser.ts",
+        "source": "derived"
+      },
+      {
+        "name": "folder-discovery.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/search/folder-discovery.ts",
+        "source": "derived"
+      },
       {
         "name": "spec-doc-paths.ts",
         "kind": "code",
@@ -64,18 +76,6 @@
         "name": "graph-metadata-schema.ts",
         "kind": "code",
         "path": ".opencode/skills/system-spec-kit/mcp_server/lib/graph/graph-metadata-schema.ts",
-        "source": "derived"
-      },
-      {
-        "name": "graph-metadata-parser.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/graph/graph-metadata-parser.ts",
-        "source": "derived"
-      },
-      {
-        "name": "folder-discovery.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/search/folder-discovery.ts",
         "source": "derived"
       },
       {
@@ -195,7 +195,7 @@
     ],
     "causal_summary": "The two generators that emit `description.json` and `graph-metadata.json` disagree on spec-folder identity and the graph merge path loses lineage",
     "created_at": "2026-06-27T17:15:41.439Z",
-    "last_save_at": "2026-06-27T17:15:41.439Z",
+    "last_save_at": "2026-07-04T17:11:53.814Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,13 +205,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:a613859b9ae1f40da4284cbc9c06ecdbe7f8ab4b6057f29d83409f5eae0aba8b",
+    "source_fingerprint": "sha256:d7d088a213bd848889cfeaf87382bed0e8e7fe08a2f26ee6e609b02bc088f351",
     "source_doc_hashes": {
-      "spec.md": "49c713b5e03eb05b3c6cfb03859e46193e496207c1b05d5f90d1b352a99ff4b1",
-      "plan.md": "799cbdcd8e86a3006f583b75b4c65d70d4b09ebd11e74a2e144e7729cec64f82",
-      "tasks.md": "630900ef6f612013df92179a66e9fc4423018d0fe75c986ffb770235694cfec1",
-      "checklist.md": "1b03459e7a07b1b1ea9e6afa0299ad5897ffe6457504ac6e29259bc91db415ed",
-      "implementation-summary.md": "7aa5b13bbd8a8a5065204dae4f4efe89f0f2541f129c1fd7e033bfc41bee728b"
+      "spec.md": "037f3a62e79f4cdbe399c451646ef7e667584ae75aa3495a726939e6d7771ce2",
+      "plan.md": "98c1023d7127f10d1e7d599417a6e7349ad6f43585c5966322b4e3e26ce16b0e",
+      "tasks.md": "0d4fb5e1d1e00d47b9fff9adc87326289cd921ec37b36e968b471b051434b2a9",
+      "checklist.md": "dcfa04b4372716604fd0be75211daf9337b02cfbceb61581f7b90b82b7ac0de7",
+      "implementation-summary.md": "d387dfdca646906711daa95f1ebb8254f0774af2509f41c1479ee63a78e291f2"
     },
     "last_active_child_id": null,
     "last_active_at": null

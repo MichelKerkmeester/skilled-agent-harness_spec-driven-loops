@@ -11,15 +11,15 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/006-generated-metadata-build/040-flag-graduation-benchmark"
-    last_updated_at: "2026-06-23T00:00:00Z"
+    packet_pointer: "system-speckit/028-memory-search-intelligence/005-spec-data-quality/006-generated-metadata-build/040-flag-graduation-benchmark"
+    last_updated_at: "2026-07-04T17:11:54.215Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "Graduated twelve flags and deleted one under earn-or-delete"
     next_safe_action: "Reckoning complete, flips committed and deployed"
     blockers: []
     key_files:
-      - ".opencode/specs/system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/006-generated-metadata-build/040-flag-graduation-benchmark/scripts/flag-graduation-benchmark.mjs"
-      - ".opencode/specs/system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/006-generated-metadata-build/040-flag-graduation-benchmark/benchmark-results.md"
+      - ".opencode/specs/system-speckit/028-memory-search-intelligence/005-spec-data-quality/006-generated-metadata-build/040-flag-graduation-benchmark/scripts/flag-graduation-benchmark.mjs"
+      - ".opencode/specs/system-speckit/028-memory-search-intelligence/005-spec-data-quality/006-generated-metadata-build/040-flag-graduation-benchmark/benchmark-results.md"
       - ".opencode/skills/system-spec-kit/mcp_server/lib/config/capability-flags.ts"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"

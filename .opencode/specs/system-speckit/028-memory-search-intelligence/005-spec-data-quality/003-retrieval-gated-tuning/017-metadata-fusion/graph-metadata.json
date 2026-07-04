@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/003-retrieval-gated-tuning/017-metadata-fusion",
-  "spec_folder": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/003-retrieval-gated-tuning/017-metadata-fusion",
-  "parent_id": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/003-retrieval-gated-tuning",
+  "packet_id": "system-speckit/028-memory-search-intelligence/005-spec-data-quality/003-retrieval-gated-tuning/017-metadata-fusion",
+  "spec_folder": "system-speckit/028-memory-search-intelligence/005-spec-data-quality/003-retrieval-gated-tuning/017-metadata-fusion",
+  "parent_id": "system-speckit/028-memory-search-intelligence/005-spec-data-quality/003-retrieval-gated-tuning",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -190,7 +190,7 @@
     ],
     "causal_summary": "The fusion stage scores a candidate from text similarity and then applies a bounded validation multiplier over that composite (`stage2-fusion.ts:261-289`, clamped by `clampMultiplier` at `stage2-fusion.ts:157`)",
     "created_at": "2026-06-27T17:15:37.106Z",
-    "last_save_at": "2026-06-27T17:15:37.106Z",
+    "last_save_at": "2026-07-04T17:11:51.707Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -200,13 +200,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:1a628d218684114386f32da8beb86daea56b1f3f47a919df9055b15082ea85dc",
+    "source_fingerprint": "sha256:39e67fe49f3086073b0953f28ff658306a0c6e7d8eb782e5a8ec319514a6aea1",
     "source_doc_hashes": {
       "spec.md": "d10f7581d4fa985597366c324cbb40483826a2b3b1244fd5f27038310dc66668",
-      "plan.md": "3a5beb34e7f4b07043b1636094f6f8e0eef08d7182c47b6fc388e6a55b3b552c",
-      "tasks.md": "06203594fd772adf7df72e2c7c00a0bcbbbfacb59a3e2923c3830aa8fe1e2b70",
-      "checklist.md": "e96ddf74fde677e6db97799148558abd8a4179ec8f6c0ffb9d2566532f5a9c81",
-      "implementation-summary.md": "5d954f371cee391fc717857e5c4f8d3ff626413b494dc46f3745ac5cd001cce7"
+      "plan.md": "41a962f496ed3c34cecf837dd9241724f5b0f3997a6762d22316dcbd211a9018",
+      "tasks.md": "e9d544a3933d035770873649753cd4f268076b4b43d493a52a288c8b67ab73d1",
+      "checklist.md": "de470f571548a3b1a7728cd47c824927dab7530611ef2e143324f077006e2672",
+      "implementation-summary.md": "bf51c1ab69cac247c2bfd6745f62058951f804a00b58c035a2c5e01de09baa3b"
     },
     "last_active_child_id": null,
     "last_active_at": null

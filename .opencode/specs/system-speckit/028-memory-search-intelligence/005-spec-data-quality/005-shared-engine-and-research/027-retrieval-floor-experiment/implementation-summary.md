@@ -11,8 +11,8 @@ importance_tier: "important"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/005-shared-engine-and-research/027-retrieval-floor-experiment"
-    last_updated_at: "2026-06-21T00:00:00Z"
+    packet_pointer: "system-speckit/028-memory-search-intelligence/005-spec-data-quality/005-shared-engine-and-research/027-retrieval-floor-experiment"
+    last_updated_at: "2026-07-04T17:12:04.022Z"
     last_updated_by: "markdown-agent"
     recent_action: "Authored phase impl doc for retrieval floor experiment scaffold"
     next_safe_action: "Hold for 015-c2 recall gate before this phase runs"
@@ -75,7 +75,7 @@ This table lists the planned changes. None have been applied.
 |------|--------|---------|
 | `.opencode/skills/system-spec-kit/mcp_server/lib/search/confidence-truncation.ts` | Planned modify | Default-off `SPECKIT_FLOOR_OVERRIDE` env read for `DEFAULT_MIN_RESULTS` and the token budget, on-disk default stays 3 |
 | `.opencode/skills/system-spec-kit/mcp_server/scripts/evals/run-floor-experiment.mjs` | Planned create | Floor sweep driver reading only the prod-lens completeRecall@3 column against the C2 baseline |
-| `.opencode/specs/system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/005-shared-engine-and-research/027-retrieval-floor-experiment/floor-experiment-report.md` | Planned create | Per-setting prod-column recall deltas and the one signal-or-noise verdict |
+| `.opencode/specs/system-speckit/028-memory-search-intelligence/005-spec-data-quality/005-shared-engine-and-research/027-retrieval-floor-experiment/floor-experiment-report.md` | Planned create | Per-setting prod-column recall deltas and the one signal-or-noise verdict |
 | `.opencode/skills/system-spec-kit/mcp_server/scripts/evals/run-eval-v2.mjs` | Planned reuse | Consumed unchanged through the C2 export for the prod lens and the measurability classes |
 <!-- /ANCHOR:what-built -->
 

@@ -11,7 +11,7 @@ importance_tier: "important"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/005-shared-engine-and-research/029-vague-query-model-benchmark"
+    packet_pointer: "system-speckit/028-memory-search-intelligence/005-spec-data-quality/005-shared-engine-and-research/029-vague-query-model-benchmark"
     last_updated_at: "2026-06-23T00:00:00Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "Converged 5-iteration deep research on the 029 search-quality findings"

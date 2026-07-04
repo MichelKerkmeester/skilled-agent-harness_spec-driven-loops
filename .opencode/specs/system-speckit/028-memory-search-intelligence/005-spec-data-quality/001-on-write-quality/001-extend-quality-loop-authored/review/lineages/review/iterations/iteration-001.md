@@ -29,7 +29,7 @@ Correctness of the proposed A1 approach as documented in `spec.md` and `plan.md`
   "evidenceRefs": [
     ".opencode/skills/system-spec-kit/mcp_server/handlers/quality-loop.ts:392",
     ".opencode/skills/system-spec-kit/mcp_server/handlers/quality-loop.ts:596",
-    ".opencode/specs/system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/001-on-write-quality/001-extend-quality-loop-authored/spec.md:107"
+    ".opencode/specs/system-speckit/028-memory-search-intelligence/005-spec-data-quality/001-on-write-quality/001-extend-quality-loop-authored/spec.md:107"
   ],
   "counterevidenceSought": "Read the computeMemoryQualityScore signature and its two in-repo call sites in runQualityLoop; checked spec.md REQ-001 and plan.md H1 architecture bullet for any serialization note. None found.",
   "alternativeExplanation": "The implementer may treat 'payload' as already-stringified at the atomicWriteJson seam (atomicWriteJson serializes internally at generate-context.ts:405), in which case the score would run over the serialized form by convention. Plausible but undocumented, so the ambiguity stands as advisory.",

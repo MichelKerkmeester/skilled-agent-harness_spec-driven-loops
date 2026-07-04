@@ -12,7 +12,7 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "028-memory-search-intelligence/005-spec-data-quality/003-retrieval-gated-tuning/016-answerable-questions-tags"
-    last_updated_at: "2026-06-21T00:00:00Z"
+    last_updated_at: "2026-07-04T17:11:52.130Z"
     last_updated_by: "markdown-agent"
     recent_action: "Scaffolded planned phase docs"
     next_safe_action: "Resolve generator host module then start Phase 1"
@@ -99,7 +99,7 @@ Not yet delivered. The plan is to ship the write-time half on cost first and gat
 Doc-set verification command run on the scaffold:
 
 ```bash
-bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/003-retrieval-gated-tuning/016-answerable-questions-tags --strict
+bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-speckit/028-memory-search-intelligence/005-spec-data-quality/003-retrieval-gated-tuning/016-answerable-questions-tags --strict
 ```
 
 The code-level checks above stay PENDING until Phase 2 runs the Vitest parser and fusion suites.

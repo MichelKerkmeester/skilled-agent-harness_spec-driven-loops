@@ -1,5 +1,5 @@
 {
-  "specFolder": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/001-on-write-quality",
+  "specFolder": "system-speckit/028-memory-search-intelligence/005-spec-data-quality/001-on-write-quality",
   "description": "On-Write Quality subgroup of the spec-data-quality track: on-write authored-spec quality gates.",
   "keywords": [
     "on-write",
@@ -10,11 +10,11 @@
     "authored-spec",
     "gates"
   ],
-  "lastUpdated": "2026-06-28T14:23:06.682Z",
+  "lastUpdated": "2026-07-04T17:11:46.043Z",
   "specId": "001",
   "folderSlug": "on-write-quality",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "028-memory-search-intelligence",
     "005-spec-data-quality"
   ],

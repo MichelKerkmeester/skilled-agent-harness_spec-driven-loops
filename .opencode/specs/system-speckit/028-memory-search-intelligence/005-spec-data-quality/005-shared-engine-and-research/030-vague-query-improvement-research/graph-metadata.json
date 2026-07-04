@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/005-shared-engine-and-research/030-vague-query-improvement-research",
-  "spec_folder": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/005-shared-engine-and-research/030-vague-query-improvement-research",
-  "parent_id": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/005-shared-engine-and-research",
+  "packet_id": "system-speckit/028-memory-search-intelligence/005-spec-data-quality/005-shared-engine-and-research/030-vague-query-improvement-research",
+  "spec_folder": "system-speckit/028-memory-search-intelligence/005-spec-data-quality/005-shared-engine-and-research/030-vague-query-improvement-research",
+  "parent_id": "system-speckit/028-memory-search-intelligence/005-spec-data-quality/005-shared-engine-and-research",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -196,7 +196,7 @@
     ],
     "causal_summary": "The original 005 research decided which data-quality levers were worth building",
     "created_at": "2026-06-27T17:15:40.627Z",
-    "last_save_at": "2026-06-27T17:15:40.627Z",
+    "last_save_at": "2026-07-04T17:12:05.502Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,14 +207,14 @@
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:81c6b8087f0b6acd8769ad874dfd63e457e46a9c959fa098b11184942f3b746b",
+    "source_fingerprint": "sha256:f09ece5516f524260df755cc1e21fe41e2588be1973adbf530bae92a88a63361",
     "source_doc_hashes": {
-      "spec.md": "e2fdc8817d90ea973e8a4e410e23cf1cb64f6d82ef4a38d8826e4447b93778e0",
-      "plan.md": "05140f2ea3e044d9c4334d43fcfa4def9bf6cb2b682f73c1a56957c0972cc2a5",
-      "tasks.md": "4a4019106f739f570f71f44b290d797390866f8fb7decd1548f1a880ef7f5bde",
-      "checklist.md": "57ad2db430a0d4f25bf0dc13c41f8379dd795dec73023d7a90ff0bb985f88043",
-      "implementation-summary.md": "8aa645535983cd7d391cf878fbdb0d837959b93938dce8d1fb142a53a6b76feb",
-      "research/research.md": "89fdf41b93e815f6f873149132b0d84fd8ef52b417349b4d17c5824187016c5e"
+      "spec.md": "fe7d65aebaf0dd20291237d70bf6e2bec6b44235142775a8645c760d9cd42b4d",
+      "plan.md": "6a29460aebf0846d90907f25a18fc0e5cacbeb447cfa1eed54858bd0c66fb560",
+      "tasks.md": "68ef4c57fb1f36973d4f002c32f21f202240129e4b056dd99b8506c9fb4757e6",
+      "checklist.md": "1987d2f8d464277c2b302564326679e0fa89387db562943d3b9ec8811391cd9a",
+      "implementation-summary.md": "8170f55c0ec001e73f1332d3b2a68d1a273ecc4ed7f0ab255b40350847ba8d38",
+      "research/research.md": "4b3383df79d7bbd9a6afbcb0522e966b6af91065684bb39e0df631aba74e15a7"
     },
     "last_active_child_id": null,
     "last_active_at": null

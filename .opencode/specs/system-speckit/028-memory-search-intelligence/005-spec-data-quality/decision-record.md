@@ -11,8 +11,8 @@ importance_tier: "important"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality"
-    last_updated_at: "2026-06-21T12:00:00Z"
+    packet_pointer: "system-speckit/028-memory-search-intelligence/005-spec-data-quality"
+    last_updated_at: "2026-07-04T17:11:44.982Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "Confirmed research-before-build and scaffolded the 28 phase children"
     next_safe_action: "Build 026 the shared safe-fix engine, then 004 the schema gate"

@@ -40,7 +40,7 @@
       "status": "active",
       "dimension": "maintainability",
       "title": "Citations source/dist-relative and unanchored; tasks T004/T005 encode the single-seam framing",
-      "file": ".opencode/specs/system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/001-on-write-quality/001-extend-quality-loop-authored/plan.md",
+      "file": ".opencode/specs/system-speckit/028-memory-search-intelligence/005-spec-data-quality/001-on-write-quality/001-extend-quality-loop-authored/plan.md",
       "line": 104,
       "firstSeen": 4,
       "lastSeen": 4,

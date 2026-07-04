@@ -11,8 +11,8 @@ importance_tier: "important"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/005-shared-engine-and-research/029-vague-query-model-benchmark"
-    last_updated_at: "2026-06-22T00:00:00Z"
+    packet_pointer: "system-speckit/028-memory-search-intelligence/005-spec-data-quality/005-shared-engine-and-research/029-vague-query-model-benchmark"
+    last_updated_at: "2026-07-04T17:12:04.504Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "Authored harness, driver running the 144-cell matrix"
     next_safe_action: "Parse metrics and write the results tables"
@@ -101,7 +101,7 @@ This phase is an additive read-only benchmark, not a fix. It touches no shared s
 | phase `scripts/` and `results/` | New benchmark harness and data | create, self-contained in the phase folder | the working-tree diff stays confined to the phase folder |
 
 Required inventories:
-- Same-class producers: `rg -n 'opencode run --command' .opencode/specs/system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/005-shared-engine-and-research/029-vague-query-model-benchmark/scripts`.
+- Same-class producers: `rg -n 'opencode run --command' .opencode/specs/system-speckit/028-memory-search-intelligence/005-spec-data-quality/005-shared-engine-and-research/029-vague-query-model-benchmark/scripts`.
 - Consumers of changed symbols: none, the harness exports nothing and no shared code imports it.
 - Matrix axes: four models, twelve queries across four vagueness classes, three samples per cell.
 - Algorithm invariant: every dispatch is a bare-query retrieval, the parser sources each metric from the raw stream and the config, and the citation-correctness check applies the cite-iff-good rule per cell.

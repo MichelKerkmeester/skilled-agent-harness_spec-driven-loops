@@ -11,8 +11,8 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/001-on-write-quality/001-extend-quality-loop-authored"
-    last_updated_at: "2026-06-21T00:00:00Z"
+    packet_pointer: "system-speckit/028-memory-search-intelligence/005-spec-data-quality/001-on-write-quality/001-extend-quality-loop-authored"
+    last_updated_at: "2026-07-04T17:11:59.952Z"
     last_updated_by: "markdown-agent"
     recent_action: "Created PENDING A1 keystone implementation spec from the converged research"
     next_safe_action: "Plan the H1 H2 H3 seams before any code edit"
@@ -45,7 +45,7 @@ _memory:
 | **Status** | PENDING |
 | **Created** | 2026-06-21 |
 | **Parent Spec** | ../spec.md |
-| **Parent Packet** | `system-spec-kit/028-memory-search-intelligence/005-spec-data-quality` |
+| **Parent Packet** | `system-speckit/028-memory-search-intelligence/005-spec-data-quality` |
 | **Phase** | 001 |
 | **Tier** | A (on-write, reuse-first, floor-bypassing) |
 | **Verdict** | GO-on-cost (the Tier A keystone, while A4 is the only measured unconditional GO) |
@@ -127,7 +127,7 @@ Extend the SHIPPED quality machinery to the authored write surface through three
 - The authored spec-doc save artifacts pass through the non-mutating reviewer in `workflow.ts`.
 - `validate.sh` runs a `CONTENT_QUALITY` warn rule that the legacy corpus passes.
 - No code path reaches `runQualityLoop` or any content-mutating fix.
-- `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/001-on-write-quality/001-extend-quality-loop-authored --strict` exits 0 on this phase folder.
+- `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-speckit/028-memory-search-intelligence/005-spec-data-quality/001-on-write-quality/001-extend-quality-loop-authored --strict` exits 0 on this phase folder.
 <!-- /ANCHOR:success-criteria -->
 
 ---

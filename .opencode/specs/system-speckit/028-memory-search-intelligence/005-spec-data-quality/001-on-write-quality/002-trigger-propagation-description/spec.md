@@ -11,8 +11,8 @@ importance_tier: "important"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/001-on-write-quality/002-trigger-propagation-description"
-    last_updated_at: "2026-06-21T00:00:00Z"
+    packet_pointer: "system-speckit/028-memory-search-intelligence/005-spec-data-quality/001-on-write-quality/002-trigger-propagation-description"
+    last_updated_at: "2026-07-04T17:12:01.703Z"
     last_updated_by: "markdown-agent"
     recent_action: "Authored the A2 spec grounded to the description-generator seams"
     next_safe_action: "Plan the build that populates description.json triggers and derived text"

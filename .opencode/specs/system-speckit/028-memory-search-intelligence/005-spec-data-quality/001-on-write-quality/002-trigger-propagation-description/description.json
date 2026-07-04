@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/001-on-write-quality/002-trigger-propagation-description",
+  "specFolder": "system-speckit/028-memory-search-intelligence/005-spec-data-quality/001-on-write-quality/002-trigger-propagation-description",
   "description": "The per-folder `description.json` generator never propagates the curated frontmatter `triggerphrases` and its `description` is a verbatim copy of the",
   "keywords": [
     "per-folder",
@@ -15,11 +15,11 @@
     "verbatim",
     "copy"
   ],
-  "lastUpdated": "2026-06-28T14:23:06.690Z",
+  "lastUpdated": "2026-07-04T17:12:01.506Z",
   "specId": "002",
   "folderSlug": "trigger-propagation-description",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "028-memory-search-intelligence",
     "005-spec-data-quality",
     "001-on-write-quality"

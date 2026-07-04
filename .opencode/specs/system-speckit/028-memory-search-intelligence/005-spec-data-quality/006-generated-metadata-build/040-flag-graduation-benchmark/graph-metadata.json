@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/006-generated-metadata-build/040-flag-graduation-benchmark",
-  "spec_folder": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/006-generated-metadata-build/040-flag-graduation-benchmark",
-  "parent_id": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/006-generated-metadata-build",
+  "packet_id": "system-speckit/028-memory-search-intelligence/005-spec-data-quality/006-generated-metadata-build/040-flag-graduation-benchmark",
+  "spec_folder": "system-speckit/028-memory-search-intelligence/005-spec-data-quality/006-generated-metadata-build/040-flag-graduation-benchmark",
+  "parent_id": "system-speckit/028-memory-search-intelligence/005-spec-data-quality/006-generated-metadata-build",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -34,6 +34,7 @@
     "importance_tier": "normal",
     "status": "planned",
     "key_files": [
+      ".opencode/specs/system-speckit/028-memory-search-intelligence/feature-flags.md",
       "scripts/flag-graduation-benchmark.mjs",
       "scripts/benchmark-report.json",
       "implementation-summary.md",
@@ -44,6 +45,12 @@
       "checklist.md"
     ],
     "entities": [
+      {
+        "name": "feature-flags.md",
+        "kind": "doc",
+        "path": ".opencode/specs/system-speckit/028-memory-search-intelligence/feature-flags.md",
+        "source": "derived"
+      },
       {
         "name": "flag-graduation-benchmark.mjs",
         "kind": "file",
@@ -181,17 +188,11 @@
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Phase 1: Setup",
-        "kind": "heading",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "This program shipped each behavioral change behind a default-OFF flag so the rollout never mass-failed existing files or silently shifted ranking",
     "created_at": "2026-06-27T17:15:43.353Z",
-    "last_save_at": "2026-06-27T17:15:43.353Z",
+    "last_save_at": "2026-07-04T17:11:54.215Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -201,13 +202,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:d228b06b6f23369c871ff70d7b73fb8d68f684b60e49c68d537259561e0824bf",
+    "source_fingerprint": "sha256:ef25ab957d5f6e3c05c724b22b35e3749f3b80d308cf3b682b471c1391fa31b1",
     "source_doc_hashes": {
-      "spec.md": "39226ab6921c6151b0a319de9218ce54c1113038fbaa09f6180d09a99936909d",
-      "plan.md": "1452c3d30d5d42c3a34bc65539a5191fc9b4d497103eb19fd89c58483b4f30c8",
-      "tasks.md": "a4cfeba0171098b3bf989f2c977d0a4bcf10aa7173602a22d37ca1ef8aac6ba6",
-      "checklist.md": "8e50cb36d77cd474ade26d0804bbe4eb9ff183bb77953779f449f6ab63ad1e5b",
-      "implementation-summary.md": "f8baab83cab67cc7e407d739cfb730e3ca4600c7db07027d700cd166eecf4344"
+      "spec.md": "c05447e4deaf23c49e977fac76bf988677a8ad7446ce7ba6b5a5a103234be8ef",
+      "plan.md": "7bbd14a2451890e7cee95e2eb9dd51f7268a9f4a5cedf23dc609f49ce4457d02",
+      "tasks.md": "1ff901bea15005e01f6b7a28cdd011470e8fccc668b14282a3de153592eadd0e",
+      "checklist.md": "f5368e9774277720dfa7672cfb945d8aacd4287d3b2e1cb140337898c5b640d1",
+      "implementation-summary.md": "433292bc4e391977d3047f46b46398b0115f9902b5f404db74a839acd1564a7e"
     },
     "last_active_child_id": null,
     "last_active_at": null

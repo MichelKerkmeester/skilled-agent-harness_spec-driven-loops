@@ -1,8 +1,8 @@
 {
   "run_id": "1782055946319-8qzc54",
   "loop_type": "review",
-  "spec_folder": ".opencode/specs/system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/026-shared-safe-fix-engine",
-  "base_artifact_dir": ".opencode/specs/system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/026-shared-safe-fix-engine/review",
+  "spec_folder": ".opencode/specs/system-speckit/028-memory-search-intelligence/005-spec-data-quality/026-shared-safe-fix-engine",
+  "base_artifact_dir": ".opencode/specs/system-speckit/028-memory-search-intelligence/005-spec-data-quality/026-shared-safe-fix-engine/review",
   "total_cli_lineages": 1,
   "orphaned_lineages": [],
   "total": 1,

@@ -1,7 +1,7 @@
 {
   "level": "2",
-  "specFolder": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/001-on-write-quality/007-ears-constraints-req-coverage",
-  "description": "Spec requirement prose has no shared grammar, so requirements are authored in inconsistent free-form sentences that resist linting and machine extract",
+  "specFolder": "system-speckit/028-memory-search-intelligence/005-spec-data-quality/001-on-write-quality/007-ears-constraints-req-coverage",
+  "description": "Spec requirement prose has no shared grammar, so requirements are authored in inconsistent free-form sentences that resist linting and machine",
   "keywords": [
     "spec",
     "requirement",
@@ -15,14 +15,13 @@
     "sentences",
     "resist",
     "linting",
-    "machine",
-    "extract"
+    "machine"
   ],
-  "lastUpdated": "2026-06-28T14:23:06.710Z",
+  "lastUpdated": "2026-07-04T17:12:00.670Z",
   "specId": "007",
   "folderSlug": "ears-constraints-req-coverage",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "028-memory-search-intelligence",
     "005-spec-data-quality",
     "001-on-write-quality"

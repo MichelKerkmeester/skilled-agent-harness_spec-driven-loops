@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/004-novel-research/024-novel-freshness-decay-queue",
+  "specFolder": "system-speckit/028-memory-search-intelligence/005-spec-data-quality/004-novel-research/024-novel-freshness-decay-queue",
   "description": "The FSRS retrievability number is SHIPPED and computed live on every read",
   "keywords": [
     "fsrs",
@@ -12,11 +12,11 @@
     "every",
     "read"
   ],
-  "lastUpdated": "2026-06-28T14:23:06.812Z",
+  "lastUpdated": "2026-07-04T17:12:08.894Z",
   "specId": "024",
   "folderSlug": "novel-freshness-decay-queue",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "028-memory-search-intelligence",
     "005-spec-data-quality",
     "004-novel-research"

@@ -9,8 +9,8 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/004-novel-research"
-    last_updated_at: "2026-06-27T00:00:00Z"
+    packet_pointer: "system-speckit/028-memory-search-intelligence/005-spec-data-quality/004-novel-research"
+    last_updated_at: "2026-07-04T17:11:47.894Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "Grouped the novel research phases under one subparent during the 005 restructure"
     next_safe_action: "None — subgroup complete"

@@ -11,8 +11,8 @@ importance_tier: "normal"
 contextType: "architecture"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/001-on-write-quality/003-enum-constrain-schemas"
-    last_updated_at: "2026-06-21T00:00:00Z"
+    packet_pointer: "system-speckit/028-memory-search-intelligence/005-spec-data-quality/001-on-write-quality/003-enum-constrain-schemas"
+    last_updated_at: "2026-07-04T17:12:02.139Z"
     last_updated_by: "benchmark-spec-agent"
     recent_action: "Specified per-phase benchmark, test and default-safety in plan"
     next_safe_action: "Mirror benchmark and test into tasks and checklist"

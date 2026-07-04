@@ -39,8 +39,6 @@
       ".opencode/skills/system-spec-kit/scripts/spec/validate.sh",
       ".opencode/bin/spec-memory.cjs",
       ".opencode/skills/system-spec-kit/scripts/lib/dist-freshness.cjs",
-      ".opencode/skills/sk-code/scripts/hooks/claude-posttooluse.sh",
-      ".opencode/skills/sk-code/scripts/check-dist-staleness.sh",
       ".opencode/plugins/mk-dist-freshness-guard.js",
       ".opencode/bin/code-index.cjs",
       ".opencode/bin/skill-advisor.cjs",
@@ -70,18 +68,6 @@
         "name": "dist-freshness.cjs",
         "kind": "file",
         "path": ".opencode/skills/system-spec-kit/scripts/lib/dist-freshness.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "claude-posttooluse.sh",
-        "kind": "script",
-        "path": ".opencode/skills/sk-code/scripts/hooks/claude-posttooluse.sh",
-        "source": "derived"
-      },
-      {
-        "name": "check-dist-staleness.sh",
-        "kind": "script",
-        "path": ".opencode/skills/sk-code/scripts/check-dist-staleness.sh",
         "source": "derived"
       },
       {
@@ -197,11 +183,23 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Pattern Layered",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "`validate.sh`'s default path (`runnodeorchestrator()`, `scripts/spec/validate.sh:975-989`) only checks `[[ -f \"$orchestratorjs\" ]]` -- file existence -- before trusting the compiled `mcpserver/dist/lib/validation/orchestrator.js`",
     "created_at": "2026-07-02T03:37:12.940Z",
-    "last_save_at": "2026-07-04T16:29:00.013Z",
+    "last_save_at": "2026-07-04T17:11:52.937Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -212,10 +210,10 @@
     ],
     "source_fingerprint": "sha256:5898b3dc23ff049a3d2e2625e66dbaee5558863fdba42554d8f5a045fac6702b",
     "source_doc_hashes": {
-      "spec.md": "178380a8b01dea7c6f952989de8615e009940a4a6ed193eaa00754b7295bc70a",
-      "plan.md": "89df4d651bba97ee499ce816c5bfed2d206d73980db6bcc30f6a5106fcacac2d",
-      "tasks.md": "ebc188ad236d253234376c7f3c539bcd2ce19cab7dbd203345706c345fc59979",
-      "implementation-summary.md": "f8cee15b9dad20bf9ed68aad765d4612c55d601b28ce2445df553be8d1521d91"
+      "spec.md": "807ad49c32db466a7deec123250712d5a835f5e8699b925465087411c7620a6d",
+      "plan.md": "42884ccd4865b4eef66cff9482932daf8b0d2ecd002049b11d3fe1c7c7a3b00e",
+      "tasks.md": "d2fd74bdf137c401f2eedba7d662f08b66a92701416cd2e9a97b6dab9237ae2c",
+      "implementation-summary.md": "65eb8eb5de251c9c8249eea7c15d8e1dc1643b93b0ba535e3efb812bb2d5c78e"
     },
     "last_active_child_id": null,
     "last_active_at": null

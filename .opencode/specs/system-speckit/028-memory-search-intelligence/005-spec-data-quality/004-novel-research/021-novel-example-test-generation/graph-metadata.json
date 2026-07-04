@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/004-novel-research/021-novel-example-test-generation",
-  "spec_folder": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/004-novel-research/021-novel-example-test-generation",
-  "parent_id": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/004-novel-research",
+  "packet_id": "system-speckit/028-memory-search-intelligence/005-spec-data-quality/004-novel-research/021-novel-example-test-generation",
+  "spec_folder": "system-speckit/028-memory-search-intelligence/005-spec-data-quality/004-novel-research/021-novel-example-test-generation",
+  "parent_id": "system-speckit/028-memory-search-intelligence/005-spec-data-quality/004-novel-research",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -41,9 +41,10 @@
     "importance_tier": "normal",
     "status": "draft",
     "key_files": [
+      ".opencode/skills/system-spec-kit/scripts/rules/check-ac-coverage.sh",
+      ".opencode/skills/system-spec-kit/scripts/lib/validator-registry.json",
       ".opencode/skills/system-spec-kit/templates/manifest/spec.md.tmpl",
       ".opencode/skills/system-spec-kit/templates/manifest/tasks.md.tmpl",
-      ".opencode/skills/system-spec-kit/scripts/lib/validator-registry.json",
       "spec.md",
       "mcp_server/tests/flag-ceiling.vitest.ts",
       "plan.md",
@@ -52,6 +53,18 @@
       "implementation-summary.md"
     ],
     "entities": [
+      {
+        "name": "check-ac-coverage.sh",
+        "kind": "script",
+        "path": ".opencode/skills/system-spec-kit/scripts/rules/check-ac-coverage.sh",
+        "source": "derived"
+      },
+      {
+        "name": "validator-registry.json",
+        "kind": "config",
+        "path": ".opencode/skills/system-spec-kit/scripts/lib/validator-registry.json",
+        "source": "derived"
+      },
       {
         "name": "spec.md.tmpl",
         "kind": "file",
@@ -62,12 +75,6 @@
         "name": "tasks.md.tmpl",
         "kind": "file",
         "path": ".opencode/skills/system-spec-kit/templates/manifest/tasks.md.tmpl",
-        "source": "derived"
-      },
-      {
-        "name": "validator-registry.json",
-        "kind": "config",
-        "path": ".opencode/skills/system-spec-kit/scripts/lib/validator-registry.json",
         "source": "derived"
       },
       {
@@ -189,17 +196,11 @@
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Authored spec requirements are prose-only, so adherence to a requirement is unprovable per requirement: there is no worked example showing the intended behavior and no test stub that pins it",
     "created_at": "2026-06-27T17:15:38.197Z",
-    "last_save_at": "2026-06-27T17:15:38.197Z",
+    "last_save_at": "2026-07-04T17:12:07.329Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,13 +210,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:2db57c73402605386910b8fc45fc78e560e5a91295e6da839e8b31a18afc9cb0",
+    "source_fingerprint": "sha256:c3d50a191bd46850e347b9995208e12483376d128b34af0de178632eb60b445a",
     "source_doc_hashes": {
-      "spec.md": "1e956ba51e3dc6ecc085f4495bd1d4f11012421dc6a05ce687a448b00f36e9b0",
-      "plan.md": "ace2f5a96846b3f8d24d6866d15d0e50ec58cfe292f2b8531d770dacae64a44c",
-      "tasks.md": "2b777bd908457ac37f427c2bf9c0452bad7890d1bf37e294afe7b049ec74ec2d",
-      "checklist.md": "8c5a66a4e1f0a07c464aad44429b46b7575a748a3c0b7b441c2fa28c1c961056",
-      "implementation-summary.md": "5900f6a2fe64b0d7fd254e13b815675c17b4f647b1ab0a62c1344ea6db39a2d6"
+      "spec.md": "5fba71970aeee8423681ec3e314b26a51e1d84b9cf4a1517fec45e657537116f",
+      "plan.md": "6d65b958cd9fdd48be4b70f12c53962eab85de5af343e8c00fd574dab4bc2768",
+      "tasks.md": "1b9972272b56f6269a091ea5ba679c138dc82c2d3b3c5e8f694a2705b9826c84",
+      "checklist.md": "55e5c90115aeb5452879ea609944af0ab6b436c479a4e007391a5c5e3474a3cb",
+      "implementation-summary.md": "30bd2e9384afe680fab81040bc29d65136faa50ebc3dc3534dd56063998a2616"
     },
     "last_active_child_id": null,
     "last_active_at": null

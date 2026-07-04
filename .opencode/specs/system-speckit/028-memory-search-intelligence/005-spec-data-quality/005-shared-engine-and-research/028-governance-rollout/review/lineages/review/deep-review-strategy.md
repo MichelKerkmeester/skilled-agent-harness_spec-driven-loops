@@ -34,7 +34,7 @@ Iteration 1: correctness — verify the seventeen-stage / seven-phase / five-edg
 
 ## Known Context
 - Target is PLANNED: `implementation-summary.md` states "Nothing has shipped yet. This phase is PLANNED and scaffolded only." No governance deliverable exists. All checklist items `[ ]`, all tasks `[ ]`. This is an honest, non-contradictory completion state — there are no false completion claims to flag.
-- Parent research source: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/research/research.md` (one directory ABOVE the phase folder; the phase docs cite it as `research/research.md` which does not resolve relative to the phase folder).
+- Parent research source: `.opencode/specs/system-speckit/028-memory-search-intelligence/005-spec-data-quality/research/research.md` (one directory ABOVE the phase folder; the phase docs cite it as `research/research.md` which does not resolve relative to the phase folder).
 - Verified research seams (read 2026-06-21): §5 governance layer = lines 104-118 ✓; Tier-D NO-GO table = lines 55-66 (10 items) ✓; novel NO-GO rewrites = lines 83-85 (3 strict NO-GO) ✓; INV-1/INV-2 = line 110 ✓.
 - External reference checks: `legacy_grandfathered` present in validate.sh (3 hits) ✓; `validator-registry.json` exists ✓; `run-eval-v2.mjs` actually at `mcp_server/scripts/evals/` (plural) NOT the spec-cited `scripts/eval/` (singular); `computeAuthoredDocQuality` exists only in research + sibling 026 + this spec prose, NOT in shipped code (forward reference to sibling A1 work).
 - resource-map.md not present at the spec folder. Skipping coverage gate.

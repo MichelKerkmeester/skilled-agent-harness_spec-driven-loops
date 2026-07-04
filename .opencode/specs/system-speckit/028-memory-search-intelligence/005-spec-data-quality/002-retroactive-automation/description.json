@@ -1,5 +1,5 @@
 {
-  "specFolder": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/002-retroactive-automation",
+  "specFolder": "system-speckit/028-memory-search-intelligence/005-spec-data-quality/002-retroactive-automation",
   "description": "Retroactive Automation subgroup of the spec-data-quality track: scheduled/doctor/feedback automation over stored metadata.",
   "keywords": [
     "retroactive",
@@ -13,11 +13,11 @@
     "stored",
     "metadata"
   ],
-  "lastUpdated": "2026-06-28T14:23:06.728Z",
+  "lastUpdated": "2026-07-04T17:11:48.074Z",
   "specId": "002",
   "folderSlug": "retroactive-automation",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "028-memory-search-intelligence",
     "005-spec-data-quality"
   ],

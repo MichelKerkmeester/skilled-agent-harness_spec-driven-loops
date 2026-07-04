@@ -2,7 +2,7 @@
 
 | Field | Value |
 |-------|-------|
-| **Target** | `.opencode/specs/system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/005-shared-engine-and-research/028-governance-rollout` |
+| **Target** | `.opencode/specs/system-speckit/028-memory-search-intelligence/005-spec-data-quality/005-shared-engine-and-research/028-governance-rollout` |
 | **Target type** | spec-folder (Level 2, **PLANNED**) |
 | **Session / lineage** | fanout-review-1782055955337-zaecgs / `review` |
 | **Executor** | cli-claude-code, model=opus |

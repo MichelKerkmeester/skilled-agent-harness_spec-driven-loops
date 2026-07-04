@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/003-retrieval-gated-tuning/018-llm-judge-scorer",
-  "spec_folder": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/003-retrieval-gated-tuning/018-llm-judge-scorer",
-  "parent_id": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/003-retrieval-gated-tuning",
+  "packet_id": "system-speckit/028-memory-search-intelligence/005-spec-data-quality/003-retrieval-gated-tuning/018-llm-judge-scorer",
+  "spec_folder": "system-speckit/028-memory-search-intelligence/005-spec-data-quality/003-retrieval-gated-tuning/018-llm-judge-scorer",
+  "parent_id": "system-speckit/028-memory-search-intelligence/005-spec-data-quality/003-retrieval-gated-tuning",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -190,7 +190,7 @@
     ],
     "causal_summary": "The retrieval fusion stage already applies a bounded quality multiplier over the composite score",
     "created_at": "2026-06-27T17:15:37.376Z",
-    "last_save_at": "2026-06-27T17:15:37.376Z",
+    "last_save_at": "2026-07-04T17:11:51.250Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -200,13 +200,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:fc503abd4119b8499be2f0203f2b005d8d72429370ecf0deec827e4c5ac31513",
+    "source_fingerprint": "sha256:1485d8713ae1b89ac50a99080b2e310a8bfb2e7322a39df685d740e9759c556e",
     "source_doc_hashes": {
       "spec.md": "2cb7a5ed02a896d1cafab9f84f721b854f5ed95a1f8bb31c4c8b0a38a45f9c19",
-      "plan.md": "89c5096136b0ff6a6df20e0f7e7de981b0b1e111d9b1c05043d95136c138affe",
-      "tasks.md": "cd4e9be51c5de9f2cbaadb442148affddce3a2c32e6ea3169e2924de4c23a0eb",
-      "checklist.md": "b12b1614d725474c3ebedea16259642d1735cc8778aa1f77d279d48e4d28ccd6",
-      "implementation-summary.md": "5343932ca3c0d9de0016d5dfd753acf357051c1a7fc01119788e716850c7d4bc"
+      "plan.md": "8ce92782848288471697bab6fc0a772b084dc715f2f87d1edbdfed6cd112b42d",
+      "tasks.md": "21308b5ebee2881b7816c53c7c948605f77e82fd1a30fe951c7bb3ec5e3d2354",
+      "checklist.md": "04b658fa492aadcb4b3c3ebce3e5a76897cf659e6d377a4606382b4dfdec3703",
+      "implementation-summary.md": "4a53e068a00469c70f014a3a825d6ae0a043db3617b5d056568f624e01bec16e"
     },
     "last_active_child_id": null,
     "last_active_at": null

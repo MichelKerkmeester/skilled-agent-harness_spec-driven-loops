@@ -11,8 +11,8 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/006-generated-metadata-build/041-search-quality-fixes"
-    last_updated_at: "2026-06-23T00:00:00Z"
+    packet_pointer: "system-speckit/028-memory-search-intelligence/005-spec-data-quality/006-generated-metadata-build/041-search-quality-fixes"
+    last_updated_at: "2026-07-04T17:11:55.938Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "Landed and verified all six fixes, keystone caps off-corpus live"
     next_safe_action: "Close the phase, the Stage-4 gap-threshold tuning is a later packet"

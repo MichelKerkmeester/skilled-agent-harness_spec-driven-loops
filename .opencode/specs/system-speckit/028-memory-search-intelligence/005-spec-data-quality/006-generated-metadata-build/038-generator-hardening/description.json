@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/006-generated-metadata-build/038-generator-hardening",
+  "specFolder": "system-speckit/028-memory-search-intelligence/005-spec-data-quality/006-generated-metadata-build/038-generator-hardening",
   "description": "The graph-metadata generator and the JSON it produces carry two residual hardening gaps that the 031 research ranked P2 because neither is a fix for a",
   "keywords": [
     "graph-metadata",
@@ -18,11 +18,11 @@
     "because",
     "fix"
   ],
-  "lastUpdated": "2026-06-28T14:23:06.888Z",
+  "lastUpdated": "2026-07-04T17:11:56.199Z",
   "specId": "038",
   "folderSlug": "generator-hardening",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "028-memory-search-intelligence",
     "005-spec-data-quality",
     "006-generated-metadata-build"

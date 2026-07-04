@@ -1,14 +1,14 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/003-retrieval-gated-tuning",
-  "spec_folder": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/003-retrieval-gated-tuning",
-  "parent_id": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality",
+  "packet_id": "system-speckit/028-memory-search-intelligence/005-spec-data-quality/003-retrieval-gated-tuning",
+  "spec_folder": "system-speckit/028-memory-search-intelligence/005-spec-data-quality/003-retrieval-gated-tuning",
+  "parent_id": "system-speckit/028-memory-search-intelligence/005-spec-data-quality",
   "children_ids": [
-    "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/003-retrieval-gated-tuning/014-chunk-prefix",
-    "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/003-retrieval-gated-tuning/015-prodmode-recall-gate",
-    "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/003-retrieval-gated-tuning/016-answerable-questions-tags",
-    "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/003-retrieval-gated-tuning/017-metadata-fusion",
-    "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/003-retrieval-gated-tuning/018-llm-judge-scorer"
+    "system-speckit/028-memory-search-intelligence/005-spec-data-quality/003-retrieval-gated-tuning/014-chunk-prefix",
+    "system-speckit/028-memory-search-intelligence/005-spec-data-quality/003-retrieval-gated-tuning/015-prodmode-recall-gate",
+    "system-speckit/028-memory-search-intelligence/005-spec-data-quality/003-retrieval-gated-tuning/016-answerable-questions-tags",
+    "system-speckit/028-memory-search-intelligence/005-spec-data-quality/003-retrieval-gated-tuning/017-metadata-fusion",
+    "system-speckit/028-memory-search-intelligence/005-spec-data-quality/003-retrieval-gated-tuning/018-llm-judge-scorer"
   ],
   "manual": {
     "depends_on": [],
@@ -38,7 +38,8 @@
     "importance_tier": "normal",
     "status": "planned",
     "key_files": [
-      "spec.md"
+      "spec.md",
+      "014-chunk-prefix/spec.md"
     ],
     "entities": [
       {
@@ -86,15 +87,15 @@
     ],
     "causal_summary": "Retrieval-Gated Tuning subgroup of the spec-data-quality track: retrieval-tuning items gated behind benchmarks.",
     "created_at": "2026-06-27T17:25:40.245Z",
-    "last_save_at": "2026-06-27T17:25:40.245Z",
+    "last_save_at": "2026-07-04T17:11:48.666Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:b004aa5171fc0e0fe30698c9de0fc2b3b09f7e4a1aee88824667c78a84e1e7c1",
+    "source_fingerprint": "sha256:51774c804518b726c06ef148c4a0f170708354d1a2cb8345d85ecd0ca60ab9c1",
     "source_doc_hashes": {
-      "spec.md": "fa3d70a0c68cb8348cc4713fe080b9698594372add9ee8c2ac1111104c5f7c43"
+      "spec.md": "b357368df01080b1035e92e23892aebb3017454da77b76ec4ab8fb3efb7a3e50"
     },
     "last_active_child_id": null,
     "last_active_at": null

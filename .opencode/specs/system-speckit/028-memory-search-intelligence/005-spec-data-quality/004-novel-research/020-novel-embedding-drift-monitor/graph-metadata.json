@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/004-novel-research/020-novel-embedding-drift-monitor",
-  "spec_folder": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/004-novel-research/020-novel-embedding-drift-monitor",
-  "parent_id": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/004-novel-research",
+  "packet_id": "system-speckit/028-memory-search-intelligence/005-spec-data-quality/004-novel-research/020-novel-embedding-drift-monitor",
+  "spec_folder": "system-speckit/028-memory-search-intelligence/005-spec-data-quality/004-novel-research/020-novel-embedding-drift-monitor",
+  "parent_id": "system-speckit/028-memory-search-intelligence/005-spec-data-quality/004-novel-research",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -41,28 +41,16 @@
     "importance_tier": "normal",
     "status": "draft",
     "key_files": [
-      "spec.md",
-      "plan.md",
       ".opencode/skills/system-spec-kit/mcp_server/lib/cache/embedding-cache.ts",
       ".opencode/skills/system-spec-kit/shared/embeddings.ts",
+      "spec.md",
+      "plan.md",
       "shared/embeddings.ts",
       "tasks.md",
       "checklist.md",
       "implementation-summary.md"
     ],
     "entities": [
-      {
-        "name": "spec.md",
-        "kind": "doc",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "plan.md",
-        "kind": "doc",
-        "path": "plan.md",
-        "source": "derived"
-      },
       {
         "name": "embedding-cache.ts",
         "kind": "code",
@@ -73,6 +61,18 @@
         "name": "embeddings.ts",
         "kind": "code",
         "path": ".opencode/skills/system-spec-kit/shared/embeddings.ts",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
         "source": "derived"
       },
       {
@@ -198,7 +198,7 @@
     ],
     "causal_summary": "The re-index path has no mixed-vector guard and never specified one",
     "created_at": "2026-06-27T17:15:37.922Z",
-    "last_save_at": "2026-06-27T17:15:37.922Z",
+    "last_save_at": "2026-07-04T17:12:06.926Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,13 +208,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:6b023d46f1e28efc14b54dfb954d267d1301648d67d2e06a2d2d6e1587f9e130",
+    "source_fingerprint": "sha256:ad3ae5d827ab982fe602d5674fcbc2121501e0c2098105ef153baceba4aa712a",
     "source_doc_hashes": {
-      "spec.md": "8cfa495873d93706ebf684f6c31a3f56cda155ab6e8560fa34bf00189c453aa7",
-      "plan.md": "e980b7e3b2d9b4de78d170bbab1ad97df371dee848e52fba6aabff0e2d874a2c",
-      "tasks.md": "c9af5c531b19126ac2ff417e7b874f7a8006e5144a1ba37976a8bd562a583eb4",
-      "checklist.md": "569862c66a0ef3f8cc6206e437a5e1642aaef6651ea28288b1f6daa0ea23eec6",
-      "implementation-summary.md": "3e49629b9cc8546b7637904ba3a19c7385fa90f8ecf72dd370dceedc015a0f30"
+      "spec.md": "d1cc77361518020035065f15f1cf32d72bda6b6cf904890cbea343d96bd1456e",
+      "plan.md": "c5c545b7ec6de152d3845ddba07385452bc0c836238db3dc0ba7734fef77735f",
+      "tasks.md": "63bb02dca9e06a2312f3e0ea848d90764872655704fbc84e3ff9bb64d1e4d5a4",
+      "checklist.md": "91941654c01a20149229965cf7255eab98b8773eb4ffe311765914fef34d9f96",
+      "implementation-summary.md": "ee12939a71bdaf1847f0f17cc9156af79b773b7f21377a64a86c221e241ef23c"
     },
     "last_active_child_id": null,
     "last_active_at": null

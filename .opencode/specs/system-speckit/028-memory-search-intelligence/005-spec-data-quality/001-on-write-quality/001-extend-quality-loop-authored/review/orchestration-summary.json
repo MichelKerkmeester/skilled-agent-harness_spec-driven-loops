@@ -1,8 +1,8 @@
 {
   "run_id": "1782055952411-5f991r",
   "loop_type": "review",
-  "spec_folder": ".opencode/specs/system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/001-on-write-quality/001-extend-quality-loop-authored",
-  "base_artifact_dir": ".opencode/specs/system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/001-on-write-quality/001-extend-quality-loop-authored/review",
+  "spec_folder": ".opencode/specs/system-speckit/028-memory-search-intelligence/005-spec-data-quality/001-on-write-quality/001-extend-quality-loop-authored",
+  "base_artifact_dir": ".opencode/specs/system-speckit/028-memory-search-intelligence/005-spec-data-quality/001-on-write-quality/001-extend-quality-loop-authored/review",
   "total_cli_lineages": 1,
   "orphaned_lineages": [],
   "total": 1,

@@ -11,8 +11,8 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/001-on-write-quality/001-extend-quality-loop-authored"
-    last_updated_at: "2026-06-21T00:00:00Z"
+    packet_pointer: "system-speckit/028-memory-search-intelligence/005-spec-data-quality/001-on-write-quality/001-extend-quality-loop-authored"
+    last_updated_at: "2026-07-04T17:11:59.952Z"
     last_updated_by: "markdown-agent"
     recent_action: "Authored PLANNED checklist with items unchecked"
     next_safe_action: "Verify items after the H1 H2 H3 build lands"

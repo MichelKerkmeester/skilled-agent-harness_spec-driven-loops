@@ -11,8 +11,8 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/005-shared-engine-and-research/028-governance-rollout"
-    last_updated_at: "2026-06-21T00:00:00Z"
+    packet_pointer: "system-speckit/028-memory-search-intelligence/005-spec-data-quality/005-shared-engine-and-research/028-governance-rollout"
+    last_updated_at: "2026-07-04T17:12:03.094Z"
     last_updated_by: "markdown-agent"
     recent_action: "Scaffolded PLANNED phase docs, no deliverable shipped"
     next_safe_action: "Author rollout-sequence.md as the topological sort"
@@ -99,7 +99,7 @@ Not delivered. The phase is scaffolded for a later build. Delivery will ground e
 <!-- ANCHOR:verification -->
 ## Verification
 
-The phase-doc scaffold was checked with `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/005-shared-engine-and-research/028-governance-rollout --strict`. The build checks below stay PENDING until the five governance documents land.
+The phase-doc scaffold was checked with `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-speckit/028-memory-search-intelligence/005-spec-data-quality/005-shared-engine-and-research/028-governance-rollout --strict`. The build checks below stay PENDING until the five governance documents land.
 
 | Check | Command or Artifact | Result |
 |-------|---------------------|--------|

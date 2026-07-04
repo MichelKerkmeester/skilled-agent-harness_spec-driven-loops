@@ -1,7 +1,7 @@
 # Deep Review Report: Spec-Kit Data Quality by Default (005-spec-data-quality)
 
 Lineage: `dq-review` | Session: `fanout-dq-review-1782054325586-hj96cb` | Executor: cli-claude-code (opus)
-Target: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/005-spec-data-quality` (spec-folder, phase parent)
+Target: `.opencode/specs/system-speckit/028-memory-search-intelligence/005-spec-data-quality` (spec-folder, phase parent)
 
 ---
 

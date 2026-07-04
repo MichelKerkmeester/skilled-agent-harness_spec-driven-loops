@@ -11,8 +11,8 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/001-on-write-quality/007-ears-constraints-req-coverage"
-    last_updated_at: "2026-06-21T00:00:00Z"
+    packet_pointer: "system-speckit/028-memory-search-intelligence/005-spec-data-quality/001-on-write-quality/007-ears-constraints-req-coverage"
+    last_updated_at: "2026-07-04T17:12:00.863Z"
     last_updated_by: "markdown-agent"
     recent_action: "Mirrored benchmark and test into tasks"
     next_safe_action: "Build the REQ_COVERAGE clone"
@@ -56,7 +56,7 @@ _memory:
 
 - [ ] T001 Read check-ac-coverage.sh to lock the clone contract (.opencode/skills/system-spec-kit/scripts/rules/check-ac-coverage.sh) [REQ-001]
 - [ ] T002 Read the AC_COVERAGE registry entry and the run_check dispatch path (.opencode/skills/system-spec-kit/scripts/lib/validator-registry.json) [REQ-003]
-- [ ] T003 [P] Decide the REQ-to-task linkage shape, a tasks-table column or an inline REQ-NNN marker (.opencode/specs/system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/001-on-write-quality/007-ears-constraints-req-coverage/spec.md) [REQ-006]
+- [ ] T003 [P] Decide the REQ-to-task linkage shape, a tasks-table column or an inline REQ-NNN marker (.opencode/specs/system-speckit/028-memory-search-intelligence/005-spec-data-quality/001-on-write-quality/007-ears-constraints-req-coverage/spec.md) [REQ-006]
 <!-- /ANCHOR:phase-1 -->
 
 ---

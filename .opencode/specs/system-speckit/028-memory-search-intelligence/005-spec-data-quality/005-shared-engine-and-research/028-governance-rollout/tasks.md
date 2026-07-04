@@ -11,8 +11,8 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/005-shared-engine-and-research/028-governance-rollout"
-    last_updated_at: "2026-06-21T00:00:00Z"
+    packet_pointer: "system-speckit/028-memory-search-intelligence/005-spec-data-quality/005-shared-engine-and-research/028-governance-rollout"
+    last_updated_at: "2026-07-04T17:12:03.094Z"
     last_updated_by: "benchmark-test-author"
     recent_action: "Mirrored benchmark and flags-off test as T013 to T016"
     next_safe_action: "Start T004 author rollout-sequence.md"

@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/003-retrieval-gated-tuning/015-prodmode-recall-gate",
-  "spec_folder": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/003-retrieval-gated-tuning/015-prodmode-recall-gate",
-  "parent_id": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/003-retrieval-gated-tuning",
+  "packet_id": "system-speckit/028-memory-search-intelligence/005-spec-data-quality/003-retrieval-gated-tuning/015-prodmode-recall-gate",
+  "spec_folder": "system-speckit/028-memory-search-intelligence/005-spec-data-quality/003-retrieval-gated-tuning/015-prodmode-recall-gate",
+  "parent_id": "system-speckit/028-memory-search-intelligence/005-spec-data-quality/003-retrieval-gated-tuning",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -34,10 +34,7 @@
     "importance_tier": "normal",
     "status": "draft",
     "key_files": [
-      "dist/lib/eval/eval-metrics.js",
       ".opencode/skills/system-spec-kit/mcp_server/scripts/evals/run-eval-v2.mjs",
-      ".opencode/skills/system-spec-kit/mcp_server/dist/lib/eval/eval-metrics.js",
-      "dist/lib/eval/ground-truth-data.js",
       "spec.md",
       "plan.md",
       "tasks.md",
@@ -46,21 +43,9 @@
     ],
     "entities": [
       {
-        "name": "eval-metrics.js",
-        "kind": "code",
-        "path": "dist/lib/eval/eval-metrics.js",
-        "source": "derived"
-      },
-      {
         "name": "run-eval-v2.mjs",
         "kind": "file",
         "path": ".opencode/skills/system-spec-kit/mcp_server/scripts/evals/run-eval-v2.mjs",
-        "source": "derived"
-      },
-      {
-        "name": "ground-truth-data.js",
-        "kind": "code",
-        "path": "dist/lib/eval/ground-truth-data.js",
         "source": "derived"
       },
       {
@@ -188,11 +173,23 @@
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Date",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The prod retrieval path diverges from the external eval path, and the harness already measures the gap",
     "created_at": "2026-06-27T17:15:36.570Z",
-    "last_save_at": "2026-06-27T17:15:36.570Z",
+    "last_save_at": "2026-07-04T17:11:50.789Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -202,13 +199,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:109e34399431beec7f225cdf79a4c3834c851770106198092c28888ac6187f02",
+    "source_fingerprint": "sha256:7d575a9b1eddc99ac3315a879983f66f2e592335eefbfc5fe0c826c5a0c59dc8",
     "source_doc_hashes": {
-      "spec.md": "24cdd2f6b9d1b9ecb657e7095a529a3716f6ce04315cba112fa2bd8f9db396b3",
-      "plan.md": "bba5075b9ebccabbccf0913ae55983b8ca137a25d144f8088fb53801851dab0f",
-      "tasks.md": "296847d6015e989696a01be7985ede67cdef1ace09a0eabd1b9b77e332780c7b",
-      "checklist.md": "4a44528f9f6179ff03e91b15c67a4b93fc542eb1dec4262f8557fdbb4ce713f6",
-      "implementation-summary.md": "4fed240cf4fdfbb790acae04227955a1f9780f03548cc02ef8e0b74adf99ef79"
+      "spec.md": "34de12abc2063e20bc4835c9590679e8f195a11eb6d3cf50181f7b72df4be287",
+      "plan.md": "0b81baa707083454fb960755be3778cb2160d1c3dbe549d3adb093aa92f20c4b",
+      "tasks.md": "eb30e1f2b1dede4ab165b69c9f6b32936033a3537a292707e318b772437ec0c6",
+      "checklist.md": "3f609b6d3667e062cedb97d27fc4ad7b3a62023916a6d8e29ffdb8f2e5f6201f",
+      "implementation-summary.md": "4f4f804c29395d386db3df84c92eaba2f32750495ba4cda3014860003f4bbb16"
     },
     "last_active_child_id": null,
     "last_active_at": null

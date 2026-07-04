@@ -7,7 +7,7 @@
   "maxToolCallsPerIteration": 12,
   "maxMinutesPerIteration": 10,
   "progressiveSynthesis": true,
-  "specFolder": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality",
+  "specFolder": "system-speckit/028-memory-search-intelligence/005-spec-data-quality",
   "createdAt": "2026-06-21T10:05:00Z",
   "status": "complete",
   "executionMode": "auto",
@@ -29,7 +29,7 @@
     "generation": 1,
     "continuedFromRun": null,
     "fanoutLabel": "dq-probe",
-    "fanoutArtifactDir": ".opencode/specs/system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/research/lineages/dq-probe"
+    "fanoutArtifactDir": ".opencode/specs/system-speckit/028-memory-search-intelligence/005-spec-data-quality/research/lineages/dq-probe"
   },
   "reducer": {
     "enabled": true,

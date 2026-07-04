@@ -40,9 +40,9 @@ Citation fidelity is unusually strong: every line number resolves to the exact n
     ".opencode/skills/system-spec-kit/scripts/memory/generate-context.ts:587",
     ".opencode/skills/system-spec-kit/scripts/memory/generate-context.ts:55",
     ".opencode/skills/system-spec-kit/scripts/memory/generate-context.ts:27",
-    ".opencode/specs/system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/001-on-write-quality/001-extend-quality-loop-authored/spec.md:61",
-    ".opencode/specs/system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/001-on-write-quality/001-extend-quality-loop-authored/spec.md:73",
-    ".opencode/specs/system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/001-on-write-quality/001-extend-quality-loop-authored/plan.md:106"
+    ".opencode/specs/system-speckit/028-memory-search-intelligence/005-spec-data-quality/001-on-write-quality/001-extend-quality-loop-authored/spec.md:61",
+    ".opencode/specs/system-speckit/028-memory-search-intelligence/005-spec-data-quality/001-on-write-quality/001-extend-quality-loop-authored/spec.md:73",
+    ".opencode/specs/system-speckit/028-memory-search-intelligence/005-spec-data-quality/001-on-write-quality/001-extend-quality-loop-authored/plan.md:106"
   ],
   "counterevidenceSought": "Grepped generate-context.ts for every atomicWriteJson call, every 'description' token, every '.json' write, and every import. atomicWriteJson is called once (graphFile, :587); description has zero hits; description.json is generated through the runWorkflow import (:27). Also checked backfill-research-metadata.ts, which writes description.json on a separate iteration-pack path, confirming the description write does not live at the cited seam.",
   "alternativeExplanation": "The implementer could broaden H1 to ALSO hook the description.json write inside runWorkflow/workflow.ts and treat 'the atomicWriteJson seam' as shorthand for 'the metadata-write surface'. That is a reasonable build interpretation, but it is not what the spec says, and it changes the named seam, so the requirement-to-seam mapping is still defective as written and warrants an amendment.",

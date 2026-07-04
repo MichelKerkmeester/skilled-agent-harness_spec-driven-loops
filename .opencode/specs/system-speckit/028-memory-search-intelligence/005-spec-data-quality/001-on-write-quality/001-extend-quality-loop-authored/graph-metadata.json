@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/001-on-write-quality/001-extend-quality-loop-authored",
-  "spec_folder": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/001-on-write-quality/001-extend-quality-loop-authored",
-  "parent_id": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/001-on-write-quality",
+  "packet_id": "system-speckit/028-memory-search-intelligence/005-spec-data-quality/001-on-write-quality/001-extend-quality-loop-authored",
+  "spec_folder": "system-speckit/028-memory-search-intelligence/005-spec-data-quality/001-on-write-quality/001-extend-quality-loop-authored",
+  "parent_id": "system-speckit/028-memory-search-intelligence/005-spec-data-quality/001-on-write-quality",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -41,12 +41,12 @@
     "importance_tier": "normal",
     "status": "in_progress",
     "key_files": [
+      "spec.md",
       "plan.md",
       "tasks.md",
       "checklist.md",
       "implementation-summary.md",
       "scripts/core/workflow.ts",
-      "spec.md",
       ".opencode/skills/system-spec-kit/scripts/memory/generate-context.ts",
       ".opencode/skills/system-spec-kit/scripts/core/workflow.ts",
       ".opencode/skills/system-spec-kit/scripts/lib/validator-registry.json",
@@ -54,6 +54,12 @@
       "scripts/lib/validator-registry.json"
     ],
     "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
       {
         "name": "plan.md",
         "kind": "doc",
@@ -82,12 +88,6 @@
         "name": "workflow.ts",
         "kind": "code",
         "path": "scripts/core/workflow.ts",
-        "source": "derived"
-      },
-      {
-        "name": "spec.md",
-        "kind": "doc",
-        "path": "spec.md",
         "source": "derived"
       },
       {
@@ -201,7 +201,7 @@
     ],
     "causal_summary": "A verify-fix-verify quality loop already runs LIVE and default-ON on the memory-save path",
     "created_at": "2026-06-27T17:15:32.763Z",
-    "last_save_at": "2026-06-27T17:15:32.763Z",
+    "last_save_at": "2026-07-04T17:11:59.952Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -211,13 +211,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:08408bb3d005b527b6e32219f1e0e063822b9e4ae01ccca0c6780f6fbd16717b",
+    "source_fingerprint": "sha256:ca465035992523a8a73c22f2a01b1501c86397dabb06d23ec4b6849648c47471",
     "source_doc_hashes": {
-      "spec.md": "b60a30d0260cd7ceba59e0e191817399963a5bd67e0b945483ea83c9c9099c1d",
-      "plan.md": "a1b9609ec78d17d479eb99ffbf8a705408434233444ee135c8c5337dcbcb4e8a",
-      "tasks.md": "43b2766dd8e038c63e88fce3e92b6f2af7ab6d8e2c0a5f153d96cd06ef9a454e",
-      "checklist.md": "5107434a609fea3730afd064a859f596f70a440ff77a211465ce1df43430ca37",
-      "implementation-summary.md": "733d1eebd1c649fcc901e87b5f03dcbd9f23d2a48b6a07492d61986f7588739e"
+      "spec.md": "b1dc5434052e780f6b111e5f13b48e288187049dcbe1444b4e6945623d88fc04",
+      "plan.md": "6380909c9a167fa40d3f8d6dc25397ed93939c0fdcb7888d7e7a4d0c91ceb367",
+      "tasks.md": "748407e70b982d14307c1ee80dcde468cbbafbcaa19a8c381313d0b85070eeeb",
+      "checklist.md": "f0f6cb7846a641506d7291c07b9331ed1b8e1720bb105c5e753c96419f2a4f25",
+      "implementation-summary.md": "137be852ecc65173c7fd908509c9636c292e7027f9e170b5092d2c249e35c546"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/006-generated-metadata-build/044-relevance-aware-evidence-gap",
-  "spec_folder": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/006-generated-metadata-build/044-relevance-aware-evidence-gap",
-  "parent_id": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/006-generated-metadata-build",
+  "packet_id": "system-speckit/028-memory-search-intelligence/005-spec-data-quality/006-generated-metadata-build/044-relevance-aware-evidence-gap",
+  "spec_folder": "system-speckit/028-memory-search-intelligence/005-spec-data-quality/006-generated-metadata-build/044-relevance-aware-evidence-gap",
+  "parent_id": "system-speckit/028-memory-search-intelligence/005-spec-data-quality/006-generated-metadata-build",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -39,28 +39,22 @@
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
-      "tests/evidence-gap-relevance.vitest.ts",
       "scripts/gap-relevance-rebenchmark.mjs",
       "results/metrics.json",
+      "tests/evidence-gap-relevance.vitest.ts",
+      "implementation-summary.md",
       "lib/search/search-flags.ts",
       "lib/search/confidence-scoring.ts",
       "lib/search/evidence-gap-detector.ts",
       "lib/search/pipeline/types.ts",
       "lib/search/pipeline/stage4-filter.ts",
       "mcp_server/ENV_REFERENCE.md",
-      "implementation-summary.md",
       "spec.md",
       "plan.md",
       "tasks.md",
       "checklist.md"
     ],
     "entities": [
-      {
-        "name": "evidence-gap-relevance.vitest.ts",
-        "kind": "test",
-        "path": "tests/evidence-gap-relevance.vitest.ts",
-        "source": "derived"
-      },
       {
         "name": "gap-relevance-rebenchmark.mjs",
         "kind": "file",
@@ -71,6 +65,18 @@
         "name": "metrics.json",
         "kind": "config",
         "path": "results/metrics.json",
+        "source": "derived"
+      },
+      {
+        "name": "evidence-gap-relevance.vitest.ts",
+        "kind": "test",
+        "path": "tests/evidence-gap-relevance.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -107,12 +113,6 @@
         "name": "ENV_REFERENCE.md",
         "kind": "doc",
         "path": "mcp_server/ENV_REFERENCE.md",
-        "source": "derived"
-      },
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -202,7 +202,7 @@
     ],
     "causal_summary": "The 043 benchmark proved the Z-score evidence-gap detector measures peakedness, not relevance",
     "created_at": "2026-06-27T17:15:44.445Z",
-    "last_save_at": "2026-06-27T17:15:44.445Z",
+    "last_save_at": "2026-07-04T17:11:57.195Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -212,13 +212,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:6707e8c3d5e613d02e92836e5e0876bb8822b8af3809243b30ea0d517896d0cc",
+    "source_fingerprint": "sha256:c6b6a061458380862ca4592a526fd1d08063eda1571106098a7bf7fa205cbec6",
     "source_doc_hashes": {
-      "spec.md": "80e8fb14252f66baca33f10af0682bce1070ba870974f0da72271bb0b5b31821",
-      "plan.md": "17738f73ace3adb17f816144e8b88d62f0c4bf94f65390350d54776b88be8b59",
-      "tasks.md": "7598b7e43287088f76f5db96cb6c898d6df66e3fa213f2805c70878c39def743",
-      "checklist.md": "096cb11f67d0dfbdab27245ea6b8e144eb97c68fdd8556cf20bf95c92a7aea4d",
-      "implementation-summary.md": "adb2bb72577ad37177afd2179b29d32eb43c259900ec2d5b88f3306991a124e3"
+      "spec.md": "a6c6ddfd87ef29079fb17f663efa2c4820ade2db5a854e93dc11b886f1edd52d",
+      "plan.md": "f1c16d4bb585c72a42db00c88a96e849f04cf683625d32f22848cc576dbf3607",
+      "tasks.md": "434681dba08d85a738619434ae31076575ca5026c3798b7cb7de13dfcc5767a0",
+      "checklist.md": "6a1360e88a75975662c6e823aeb72c3f4863c6c3f5b911136e906de155d875d4",
+      "implementation-summary.md": "d00f687996945fcd89b948a1456a7e5e73cbc20bd890d4c923686fee168b68d4"
     },
     "last_active_child_id": null,
     "last_active_at": null

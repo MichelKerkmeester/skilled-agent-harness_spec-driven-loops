@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/005-shared-engine-and-research/029-vague-query-model-benchmark",
-  "spec_folder": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/005-shared-engine-and-research/029-vague-query-model-benchmark",
-  "parent_id": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/005-shared-engine-and-research",
+  "packet_id": "system-speckit/028-memory-search-intelligence/005-spec-data-quality/005-shared-engine-and-research/029-vague-query-model-benchmark",
+  "spec_folder": "system-speckit/028-memory-search-intelligence/005-spec-data-quality/005-shared-engine-and-research/029-vague-query-model-benchmark",
+  "parent_id": "system-speckit/028-memory-search-intelligence/005-spec-data-quality/005-shared-engine-and-research",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -41,10 +41,10 @@
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
-      "results/metrics.json",
       "scripts/benchmark-config.json",
       "scripts/run-benchmark.mjs",
       "scripts/extract-metrics.mjs",
+      "results/metrics.json",
       "implementation-summary.md",
       "spec.md",
       "plan.md",
@@ -53,12 +53,6 @@
       "research/research.md"
     ],
     "entities": [
-      {
-        "name": "metrics.json",
-        "kind": "config",
-        "path": "results/metrics.json",
-        "source": "derived"
-      },
       {
         "name": "benchmark-config.json",
         "kind": "config",
@@ -75,6 +69,12 @@
         "name": "extract-metrics.mjs",
         "kind": "file",
         "path": "scripts/extract-metrics.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "metrics.json",
+        "kind": "config",
+        "path": "results/metrics.json",
         "source": "derived"
       },
       {
@@ -200,7 +200,7 @@
     ],
     "causal_summary": "A pilot run showed that four different LLMs drive the `/memory:search` command very differently on the same vague query",
     "created_at": "2026-06-27T17:15:40.361Z",
-    "last_save_at": "2026-06-27T17:15:40.361Z",
+    "last_save_at": "2026-07-04T17:12:04.504Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -211,14 +211,14 @@
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:2a4294da1cd427bed69b9e04533ee2e59bc0532e61b851153ef3937f3583e772",
+    "source_fingerprint": "sha256:0494d9a9fda2a5cc492405e60e3d3df5c96ee483cf4a3d7247a6c7e9c91fc3bf",
     "source_doc_hashes": {
-      "spec.md": "1776ccb9f36101f781c1e30a16faadae08515f490a5da62689469292c3456609",
-      "plan.md": "e28df92b5850fc100142baef7e84ba4ba2d34ca677f866ea41ebc19f55a35197",
-      "tasks.md": "310b0fc9aac5e4d4c0e74fce45b62676df03494098bf6d1f5e44c019777da478",
-      "checklist.md": "48188a9ce58a6d68b4856fd4f0642ee20a65d69733c963025c3ef7c724d52d53",
-      "implementation-summary.md": "53d7c16b9105c91aa7d131bda4a915d754c1164fe6fcf1af2f6ec8d36bb15f2d",
-      "research/research.md": "3ca8ca1f81ab5b1491524de4ed970317dacdb44a4424f5483833b85cad02c5a4"
+      "spec.md": "b944fe5c6071c1a58f65a1c3c295886aaee8758dae0037379c7dc6b3a9fc1b3f",
+      "plan.md": "ebca42f0300ce9a28555a05e6fcc881a84d26cb1492fe7b50b9bbb860ede60c2",
+      "tasks.md": "ee76236325bc68b922a2ce815478e9b9b88e08e756625c82679f878226aca76e",
+      "checklist.md": "7d4ea9f46be240e2b7a3a7592a53980ded85eced9cf953f20645db94dbef1046",
+      "implementation-summary.md": "c67f6a446dff4845224b72ecbd8424e8e99f16993950ade2f08eec507bd8eb6e",
+      "research/research.md": "a50522105a9f5eff21b1acd278ce0e7a9dec7f949d1ab49fa57cfb8622c4ce09"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/004-novel-research/022-novel-context-budget-assembler",
-  "spec_folder": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/004-novel-research/022-novel-context-budget-assembler",
-  "parent_id": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/004-novel-research",
+  "packet_id": "system-speckit/028-memory-search-intelligence/005-spec-data-quality/004-novel-research/022-novel-context-budget-assembler",
+  "spec_folder": "system-speckit/028-memory-search-intelligence/005-spec-data-quality/004-novel-research/022-novel-context-budget-assembler",
+  "parent_id": "system-speckit/028-memory-search-intelligence/005-spec-data-quality/004-novel-research",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -35,6 +35,8 @@
     "status": "draft",
     "key_files": [
       ".opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/search/confidence-truncation.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/scoring/mpab-aggregation.ts",
       "spec.md",
       "plan.md",
       "tasks.md",
@@ -46,6 +48,18 @@
         "name": "hybrid-search.ts",
         "kind": "code",
         "path": ".opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts",
+        "source": "derived"
+      },
+      {
+        "name": "confidence-truncation.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/search/confidence-truncation.ts",
+        "source": "derived"
+      },
+      {
+        "name": "mpab-aggregation.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/scoring/mpab-aggregation.ts",
         "source": "derived"
       },
       {
@@ -173,23 +187,11 @@
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
-      },
-      {
-        "name": "Verification Protocol",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Impact",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The prod search path returns the post-floor result set with no density discipline",
     "created_at": "2026-06-27T17:15:38.473Z",
-    "last_save_at": "2026-06-27T17:15:38.473Z",
+    "last_save_at": "2026-07-04T17:12:06.511Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

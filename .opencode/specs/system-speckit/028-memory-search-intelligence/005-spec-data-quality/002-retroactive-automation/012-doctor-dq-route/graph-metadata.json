@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/002-retroactive-automation/012-doctor-dq-route",
-  "spec_folder": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/002-retroactive-automation/012-doctor-dq-route",
-  "parent_id": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/002-retroactive-automation",
+  "packet_id": "system-speckit/028-memory-search-intelligence/005-spec-data-quality/002-retroactive-automation/012-doctor-dq-route",
+  "spec_folder": "system-speckit/028-memory-search-intelligence/005-spec-data-quality/002-retroactive-automation/012-doctor-dq-route",
+  "parent_id": "system-speckit/028-memory-search-intelligence/005-spec-data-quality/002-retroactive-automation",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -42,8 +42,10 @@
     "status": "draft",
     "key_files": [
       ".opencode/commands/doctor/_routes.yaml",
-      ".opencode/commands/doctor/speckit.md",
+      ".opencode/commands/doctor/assets/doctor_code-graph.yaml",
       ".opencode/commands/doctor/assets/doctor_memory.yaml",
+      ".opencode/commands/doctor/scripts/route-validate.py",
+      ".opencode/commands/doctor/speckit.md",
       "spec.md",
       "plan.md",
       "tasks.md",
@@ -58,15 +60,27 @@
         "source": "derived"
       },
       {
-        "name": "speckit.md",
-        "kind": "doc",
-        "path": ".opencode/commands/doctor/speckit.md",
+        "name": "doctor_code-graph.yaml",
+        "kind": "config",
+        "path": ".opencode/commands/doctor/assets/doctor_code-graph.yaml",
         "source": "derived"
       },
       {
         "name": "doctor_memory.yaml",
         "kind": "config",
         "path": ".opencode/commands/doctor/assets/doctor_memory.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "route-validate.py",
+        "kind": "file",
+        "path": ".opencode/commands/doctor/scripts/route-validate.py",
+        "source": "derived"
+      },
+      {
+        "name": "speckit.md",
+        "kind": "doc",
+        "path": ".opencode/commands/doctor/speckit.md",
         "source": "derived"
       },
       {
@@ -182,23 +196,11 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "an",
-        "kind": "key_phrase",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "`/doctor` is an argv router whose route manifest at `.opencode/commands/doctor/routes.yaml` lists nine targets and zero of them inspect or remediate source-doc and metadata-JSON quality",
     "created_at": "2026-06-27T17:15:35.763Z",
-    "last_save_at": "2026-06-27T17:15:35.763Z",
+    "last_save_at": "2026-07-04T17:12:09.850Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,13 +210,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:07d9b2a8918f1bb1d95e98074a80088e384c3da69e3acb6d579cc6258ca17d8c",
+    "source_fingerprint": "sha256:c78a52b9e326e10863e321e6dc692dac7db6d1e1df247ce6319e5018968dbaa5",
     "source_doc_hashes": {
-      "spec.md": "ab6ad2070b1be58edb2fdc65d715003419b9c2b8a9bc6a5532464b79c38cf414",
-      "plan.md": "889e4c1366bf07ad59480ef2576a886d26706f145e0aafda373590a0cca3df5c",
-      "tasks.md": "cb79e99f08d70e9038ee111426c8c99f0142445b27110e13aea08f64a393d863",
-      "checklist.md": "bc66285e89b024116bf477bbe7f7df564d9b4231edfb7b13cf44fb0c2bd27169",
-      "implementation-summary.md": "27c1938474b24a20b7665a67e4c6f0e281c580e3aff2a5b420cbb7a967381adf"
+      "spec.md": "88782c3ee10eba76421428fd664fab3ae8217ea0c11b115c1a14bc43e818731f",
+      "plan.md": "aa720cf0de09d6aa405f727915084cf3b83dfc0ef62576e6a102367331802ee2",
+      "tasks.md": "bc0de7316877794ee10df26c2e67c52c26128f39bf166a09238f3622158ccd01",
+      "checklist.md": "0b0d14c545a5f2e00bd14c6a3c607e5db04599a29d74ebca9a0128bc222fca5e",
+      "implementation-summary.md": "b8386a1395e27ef14a166c93eb2e8dfbf271727951e34cf1c55d5635ca1482c6"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -11,7 +11,7 @@ importance_tier: "important"
 contextType: "research"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/005-shared-engine-and-research/030-vague-query-improvement-research"
+    packet_pointer: "system-speckit/028-memory-search-intelligence/005-spec-data-quality/005-shared-engine-and-research/030-vague-query-improvement-research"
     last_updated_at: "2026-06-22T00:00:00Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "Synthesized and cross-model-verified the 10-angle improvement research"
@@ -131,7 +131,7 @@ Net effect: the convergent lexical-grounding fix and the calibration-curve-indep
 <!-- ANCHOR:references -->
 ## 8. REFERENCES
 
-- `.opencode/specs/system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/005-shared-engine-and-research/029-vague-query-model-benchmark/` the benchmark that seeded this study.
+- `.opencode/specs/system-speckit/028-memory-search-intelligence/005-spec-data-quality/005-shared-engine-and-research/029-vague-query-model-benchmark/` the benchmark that seeded this study.
 - `.opencode/skills/system-spec-kit/mcp_server/dist/lib/search/confidence-scoring` the verdict banding and the margin signal.
 - `.opencode/skills/system-spec-kit/mcp_server/dist/lib/search/search-results` where the verdict fields are populated and shipped.
 - `.opencode/skills/system-spec-kit/mcp_server/dist/lib/eval/eval-metrics` the dormant `falseGoodOnHardNegatives` metric.

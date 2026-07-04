@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/001-on-write-quality/003-enum-constrain-schemas",
-  "spec_folder": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/001-on-write-quality/003-enum-constrain-schemas",
-  "parent_id": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/001-on-write-quality",
+  "packet_id": "system-speckit/028-memory-search-intelligence/005-spec-data-quality/001-on-write-quality/003-enum-constrain-schemas",
+  "spec_folder": "system-speckit/028-memory-search-intelligence/005-spec-data-quality/001-on-write-quality/003-enum-constrain-schemas",
+  "parent_id": "system-speckit/028-memory-search-intelligence/005-spec-data-quality/001-on-write-quality",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -36,6 +36,7 @@
     "key_files": [
       ".opencode/skills/system-spec-kit/mcp_server/lib/graph/graph-metadata-schema.ts",
       ".opencode/skills/system-spec-kit/mcp_server/lib/description/description-schema.ts",
+      ".opencode/commands/doctor/scripts/route-validate.py",
       ".opencode/skills/system-spec-kit/mcp_server/lib/graph/graph-metadata-parser.ts",
       ".opencode/skills/system-spec-kit/mcp_server/lib/search/search-flags.ts",
       ".opencode/skills/system-spec-kit/scripts/spec/validate.sh",
@@ -57,6 +58,12 @@
         "name": "description-schema.ts",
         "kind": "code",
         "path": ".opencode/skills/system-spec-kit/mcp_server/lib/description/description-schema.ts",
+        "source": "derived"
+      },
+      {
+        "name": "route-validate.py",
+        "kind": "file",
+        "path": ".opencode/commands/doctor/scripts/route-validate.py",
         "source": "derived"
       },
       {
@@ -184,17 +191,11 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The two zod metadata schemas type their controlled-vocabulary fields as free strings",
     "created_at": "2026-06-27T17:15:33.334Z",
-    "last_save_at": "2026-06-27T17:15:33.334Z",
+    "last_save_at": "2026-07-04T17:12:02.139Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,13 +205,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:d34a9ed11e6ea4344240d7e4f92f748e1aaa05768e713355523a8898ddc56919",
+    "source_fingerprint": "sha256:0a92d0ead4fbe5aff34768adfbb109e72f7760a31ca7f48f0204c4c675f4baa4",
     "source_doc_hashes": {
-      "spec.md": "ec04532e4fdcbd7c12a9aa6707366bece2ea92f60338a55d290a8bffb3579bf1",
-      "plan.md": "aeacba1eca0c9d453a28598dc31231307c5a4d0e03008416e3c1b9ddb43c0608",
-      "tasks.md": "10f6f5c95a16c9270eb9f93a6e3f166869b3ccf494286f75cac966079f1e301d",
-      "checklist.md": "7b70476f50682b7849c2fa3963534aaca5e2d0cbb973c1353136890b70dd4906",
-      "implementation-summary.md": "1dc306a4c529e9ec7d04c66c4a27c40d1c6b54b157440b082050a73ac8ccf7ab"
+      "spec.md": "e8f61d02581792302040cb854e1f80e3855298ec782d1e0f1b28d9a2a77a44bb",
+      "plan.md": "4657390844c7c36a0a8d20212cac2474eaf58c8286c6630b6db9e0c56bfdd2c5",
+      "tasks.md": "7c96d51ab9448a90239849cf79dab4aeab120aacbe9d60f3b39bca2930a07508",
+      "checklist.md": "fa6011d14b8c7b3eb843ffc353d327f660afb609ece267e9f3475df98ec2ed86",
+      "implementation-summary.md": "dd069ab300016c0c8f3bc77da59a7396c94436258c7aa4c302e644f35b2cfa43"
     },
     "last_active_child_id": null,
     "last_active_at": null

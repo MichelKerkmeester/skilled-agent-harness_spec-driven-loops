@@ -1,7 +1,7 @@
 {
   "topic": "Review of 028-governance-rollout phase folder (governance and rollout layer for the data-quality program)",
   "mode": "review",
-  "reviewTarget": ".opencode/specs/system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/028-governance-rollout",
+  "reviewTarget": ".opencode/specs/system-speckit/028-memory-search-intelligence/005-spec-data-quality/028-governance-rollout",
   "reviewTargetType": "spec-folder",
   "reviewDimensions": ["correctness", "security", "traceability", "maintainability"],
   "resource_map_present": false,
@@ -20,7 +20,7 @@
   },
   "qualityGateThreshold": true,
   "releaseReadinessState": "in-progress",
-  "specFolder": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/028-governance-rollout",
+  "specFolder": "system-speckit/028-memory-search-intelligence/005-spec-data-quality/028-governance-rollout",
   "createdAt": "2026-06-21T15:32:35Z",
   "status": "complete",
   "executionMode": "auto",

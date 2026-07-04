@@ -11,8 +11,8 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/001-on-write-quality/001-extend-quality-loop-authored"
-    last_updated_at: "2026-06-21T00:00:00Z"
+    packet_pointer: "system-speckit/028-memory-search-intelligence/005-spec-data-quality/001-on-write-quality/001-extend-quality-loop-authored"
+    last_updated_at: "2026-07-04T17:11:59.952Z"
     last_updated_by: "markdown-agent"
     recent_action: "Scaffolded PLANNED phase docs, no code shipped"
     next_safe_action: "Build H1 score-and-report at the seam"
@@ -98,7 +98,7 @@ Not delivered. The phase is scaffolded for a later build. Delivery will reuse th
 <!-- ANCHOR:verification -->
 ## Verification
 
-The phase-doc scaffold was checked with `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/001-on-write-quality/001-extend-quality-loop-authored --strict`. The build checks below stay PENDING until the H1 H2 H3 code lands.
+The phase-doc scaffold was checked with `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-speckit/028-memory-search-intelligence/005-spec-data-quality/001-on-write-quality/001-extend-quality-loop-authored --strict`. The build checks below stay PENDING until the H1 H2 H3 code lands.
 
 | Check | Command or Artifact | Result |
 |-------|---------------------|--------|

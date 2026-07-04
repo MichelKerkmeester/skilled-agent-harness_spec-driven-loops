@@ -11,8 +11,8 @@ importance_tier: "important"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/006-generated-metadata-build/043-gap-threshold-calibration-benchmark"
-    last_updated_at: "2026-06-23T00:00:00Z"
+    packet_pointer: "system-speckit/028-memory-search-intelligence/005-spec-data-quality/006-generated-metadata-build/043-gap-threshold-calibration-benchmark"
+    last_updated_at: "2026-07-04T17:11:54.651Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "Authored harness, labeled-set run complete"
     next_safe_action: "Sweep the threshold and author the results docs"

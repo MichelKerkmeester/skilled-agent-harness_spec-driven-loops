@@ -196,7 +196,7 @@
     ],
     "causal_summary": "`deriveStatus` (`graph-metadata-parser.ts:1185-1195`) reads any doc's own explicit `status:` frontmatter field or `spec.md`'s METADATA table status, ranked `implementation-summary.md` > `checklist.md` > `tasks.md` > `plan.md` > `spec.md`, and returns that value immediately when present — including `complete` — before the phase-010 completion-evidence fallback (`:1215-1239`) ever runs",
     "created_at": "2026-07-02T15:04:28.309Z",
-    "last_save_at": "2026-07-04T15:47:01.044Z",
+    "last_save_at": "2026-07-04T17:11:49.896Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,10 +207,10 @@
     ],
     "source_fingerprint": "sha256:d212f0ff5864eb9cb5e20096b58d9031a224d22704f1667c6f8fcdcc73eb840a",
     "source_doc_hashes": {
-      "spec.md": "e0d24442df94258758ce0db5a1d16f1393e0e45fef718e9394ce7f092a2ededd",
-      "plan.md": "6939622867b22f7a70205ecc8375f5e271828bc1c99bfa96bf39dcbe33611a72",
-      "tasks.md": "61e06a57ed9287fff8da1151745bea3902aa7d63432a681105236c35889c86ee",
-      "implementation-summary.md": "9fba0783e4d720470907f1120b09fad6d48f797b42787079c3d047e5e3a1df43"
+      "spec.md": "f435a9866f5d95bf306463e78ce040ca1f04d6fd18d0ac695be081e16f520c36",
+      "plan.md": "22092158578d90746d26075d2803232c9c35ffb9699beecf77f455a93e6dc5c7",
+      "tasks.md": "17a5bf42d568ae972db64a0764d8fd05ecaa9959a4bfe0e635f6281e22b1feeb",
+      "implementation-summary.md": "4590c1aa8991251608b0b1ec35b854d2113579fd0d92ef93cc03ef778a560e6c"
     },
     "last_active_child_id": null,
     "last_active_at": null

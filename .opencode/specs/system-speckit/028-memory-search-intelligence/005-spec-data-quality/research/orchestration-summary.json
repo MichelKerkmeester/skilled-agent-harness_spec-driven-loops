@@ -1,8 +1,8 @@
 {
   "run_id": "1782033947663-y4igj3",
   "loop_type": "research",
-  "spec_folder": ".opencode/specs/system-spec-kit/028-memory-search-intelligence/005-spec-data-quality",
-  "base_artifact_dir": ".opencode/specs/system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/research",
+  "spec_folder": ".opencode/specs/system-speckit/028-memory-search-intelligence/005-spec-data-quality",
+  "base_artifact_dir": ".opencode/specs/system-speckit/028-memory-search-intelligence/005-spec-data-quality/research",
   "total_cli_lineages": 1,
   "orphaned_lineages": [],
   "total": 1,

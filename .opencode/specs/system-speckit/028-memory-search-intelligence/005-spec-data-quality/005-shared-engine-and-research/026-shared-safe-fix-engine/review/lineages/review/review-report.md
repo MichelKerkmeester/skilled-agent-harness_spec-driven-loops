@@ -1,6 +1,6 @@
 # Review Report — Shared Safe-Fix Engine (026)
 
-**Target:** `.opencode/specs/system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/005-shared-engine-and-research/026-shared-safe-fix-engine`
+**Target:** `.opencode/specs/system-speckit/028-memory-search-intelligence/005-spec-data-quality/005-shared-engine-and-research/026-shared-safe-fix-engine`
 **Target type:** spec-folder (status PLANNED — no source code exists)
 **Lineage:** fanout `review` | session `fanout-review-1782055946319-8qzc54` | executor cli-claude-code/opus
 **Iterations:** 3 | **Stop reason:** coverage complete + stabilized

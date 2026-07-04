@@ -152,7 +152,7 @@ The migrate driver flag set lives in `scripts/graph/migrate-generated-json.ts` a
 ## 6. REPRODUCTION
 
 ```bash
-node .opencode/specs/system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/006-generated-metadata-build/040-flag-graduation-benchmark/scripts/flag-graduation-benchmark.mjs --sample 60
+node .opencode/specs/system-speckit/028-memory-search-intelligence/005-spec-data-quality/006-generated-metadata-build/040-flag-graduation-benchmark/scripts/flag-graduation-benchmark.mjs --sample 60
 ```
 
 The migration section reuses the migrate driver verify pass and the per-folder description generator. The benchmark section shells out to the false-confirm driver and the envelope checker. The full run writes `scripts/benchmark-report.json`. Pass `--no-eval` to run the migration section alone without the embedder-backed false-confirm runs.

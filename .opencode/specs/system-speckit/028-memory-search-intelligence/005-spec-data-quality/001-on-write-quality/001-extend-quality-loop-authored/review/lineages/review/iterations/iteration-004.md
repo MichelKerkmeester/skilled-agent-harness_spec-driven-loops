@@ -27,9 +27,9 @@ Cross-document synchronization across the five phase docs, citation convention (
   "findingId": "F003",
   "claim": "Phase-doc citations mix .ts source line numbers with a .js dist runtime and rely on bare line numbers in 700-1900 line files, making them drift-prone, and tasks.md T004/T005 still encode the single-seam framing flagged in F001.",
   "evidenceRefs": [
-    ".opencode/specs/system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/001-on-write-quality/001-extend-quality-loop-authored/plan.md:104",
+    ".opencode/specs/system-speckit/028-memory-search-intelligence/005-spec-data-quality/001-on-write-quality/001-extend-quality-loop-authored/plan.md:104",
     ".opencode/skills/system-spec-kit/scripts/core/workflow.ts:1854",
-    ".opencode/specs/system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/001-on-write-quality/001-extend-quality-loop-authored/tasks.md:66"
+    ".opencode/specs/system-speckit/028-memory-search-intelligence/005-spec-data-quality/001-on-write-quality/001-extend-quality-loop-authored/tasks.md:66"
   ],
   "counterevidenceSought": "Compared every cited path's source vs dist form; confirmed workflow.ts:1854 imports the .js dist sibling; checked tasks.md T004/T005 wording against the F001 seam split.",
   "alternativeExplanation": "Symbol names are already present alongside the line numbers, so a reader can re-locate after drift; this keeps it advisory rather than required.",

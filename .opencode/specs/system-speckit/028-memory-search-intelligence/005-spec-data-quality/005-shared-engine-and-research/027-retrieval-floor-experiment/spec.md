@@ -11,8 +11,8 @@ importance_tier: "important"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/005-shared-engine-and-research/027-retrieval-floor-experiment"
-    last_updated_at: "2026-06-21T00:00:00Z"
+    packet_pointer: "system-speckit/028-memory-search-intelligence/005-spec-data-quality/005-shared-engine-and-research/027-retrieval-floor-experiment"
+    last_updated_at: "2026-07-04T17:12:04.022Z"
     last_updated_by: "markdown-agent"
     recent_action: "Authored the retrieval floor experiment implementation spec from research.md"
     next_safe_action: "Run /speckit:plan after 015-c2 lands the prod-mode recall gate"
@@ -93,7 +93,7 @@ Run a prod-mode measurement that raises the retrieval floor and token budget acr
 |-----------|-------------|-------------|
 | `.opencode/skills/system-spec-kit/mcp_server/scripts/evals/run-floor-experiment.mjs` | Create | Experiment driver that sweeps floor settings via the env override and reports the prod-column completeRecall@3 delta per setting against the C2 baseline |
 | `.opencode/skills/system-spec-kit/mcp_server/lib/search/confidence-truncation.ts` | Modify | Read the default-off `SPECKIT_FLOOR_OVERRIDE` env override for `DEFAULT_MIN_RESULTS` and the token budget so the on-disk prod default stays 3 |
-| `.opencode/specs/system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/005-shared-engine-and-research/027-retrieval-floor-experiment/floor-experiment-report.md` | Create | The measured per-setting recall deltas and the one signal-or-noise verdict |
+| `.opencode/specs/system-speckit/028-memory-search-intelligence/005-spec-data-quality/005-shared-engine-and-research/027-retrieval-floor-experiment/floor-experiment-report.md` | Create | The measured per-setting recall deltas and the one signal-or-noise verdict |
 <!-- /ANCHOR:scope -->
 
 ---

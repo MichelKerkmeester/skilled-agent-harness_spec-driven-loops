@@ -1,12 +1,12 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/002-retroactive-automation",
-  "spec_folder": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/002-retroactive-automation",
-  "parent_id": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality",
+  "packet_id": "system-speckit/028-memory-search-intelligence/005-spec-data-quality/002-retroactive-automation",
+  "spec_folder": "system-speckit/028-memory-search-intelligence/005-spec-data-quality/002-retroactive-automation",
+  "parent_id": "system-speckit/028-memory-search-intelligence/005-spec-data-quality",
   "children_ids": [
-    "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/002-retroactive-automation/011-scheduled-dq-sweep",
-    "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/002-retroactive-automation/012-doctor-dq-route",
-    "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/002-retroactive-automation/013-retrieval-feedback-edge"
+    "system-speckit/028-memory-search-intelligence/005-spec-data-quality/002-retroactive-automation/011-scheduled-dq-sweep",
+    "system-speckit/028-memory-search-intelligence/005-spec-data-quality/002-retroactive-automation/012-doctor-dq-route",
+    "system-speckit/028-memory-search-intelligence/005-spec-data-quality/002-retroactive-automation/013-retrieval-feedback-edge"
   ],
   "manual": {
     "depends_on": [],
@@ -36,7 +36,8 @@
     "importance_tier": "normal",
     "status": "planned",
     "key_files": [
-      "spec.md"
+      "spec.md",
+      "011-scheduled-dq-sweep/spec.md"
     ],
     "entities": [
       {
@@ -84,15 +85,15 @@
     ],
     "causal_summary": "Retroactive Automation subgroup of the spec-data-quality track: scheduled/doctor/feedback automation over stored metadata.",
     "created_at": "2026-06-27T17:25:35.599Z",
-    "last_save_at": "2026-06-27T17:25:35.599Z",
+    "last_save_at": "2026-07-04T17:11:48.231Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:99f716f0531438803ddef8a931cca96c5a03a03c4370234e9fca2f81c7b0ce9f",
+    "source_fingerprint": "sha256:80625416d47a460274702564131a04ff57f0e94f9c77a0d29a6e63c0976e646a",
     "source_doc_hashes": {
-      "spec.md": "bf252efb3ea33073e5d2b2a62f0114c14b9afbfbc5f0d20c6585fa8636ed0a82"
+      "spec.md": "e0df05db44490fcc04558304f2cf35dfb33698cc288c0c3159d9f836df2f5c3a"
     },
     "last_active_child_id": null,
     "last_active_at": null

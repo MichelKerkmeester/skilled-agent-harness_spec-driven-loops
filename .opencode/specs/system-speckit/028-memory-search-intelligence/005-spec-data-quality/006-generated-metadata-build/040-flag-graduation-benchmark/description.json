@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/006-generated-metadata-build/040-flag-graduation-benchmark",
+  "specFolder": "system-speckit/028-memory-search-intelligence/005-spec-data-quality/006-generated-metadata-build/040-flag-graduation-benchmark",
   "description": "This program shipped each behavioral change behind a default-OFF flag so the rollout never mass-failed existing files or silently shifted ranking",
   "keywords": [
     "program",
@@ -19,11 +19,11 @@
     "shifted",
     "ranking"
   ],
-  "lastUpdated": "2026-06-28T14:23:06.896Z",
+  "lastUpdated": "2026-07-04T17:11:54.041Z",
   "specId": "040",
   "folderSlug": "flag-graduation-benchmark",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "028-memory-search-intelligence",
     "005-spec-data-quality",
     "006-generated-metadata-build"

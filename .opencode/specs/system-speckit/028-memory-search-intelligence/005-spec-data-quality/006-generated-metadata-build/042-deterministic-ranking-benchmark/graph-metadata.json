@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/006-generated-metadata-build/042-deterministic-ranking-benchmark",
-  "spec_folder": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/006-generated-metadata-build/042-deterministic-ranking-benchmark",
-  "parent_id": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/006-generated-metadata-build",
+  "packet_id": "system-speckit/028-memory-search-intelligence/005-spec-data-quality/006-generated-metadata-build/042-deterministic-ranking-benchmark",
+  "spec_folder": "system-speckit/028-memory-search-intelligence/005-spec-data-quality/006-generated-metadata-build/042-deterministic-ranking-benchmark",
+  "parent_id": "system-speckit/028-memory-search-intelligence/005-spec-data-quality/006-generated-metadata-build",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -39,8 +39,8 @@
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
-      "results/metrics.json",
       "scripts/deterministic-ranking-benchmark.mjs",
+      "results/metrics.json",
       "implementation-summary.md",
       "spec.md",
       "plan.md",
@@ -49,15 +49,15 @@
     ],
     "entities": [
       {
-        "name": "metrics.json",
-        "kind": "config",
-        "path": "results/metrics.json",
-        "source": "derived"
-      },
-      {
         "name": "deterministic-ranking-benchmark.mjs",
         "kind": "file",
         "path": "scripts/deterministic-ranking-benchmark.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "metrics.json",
+        "kind": "config",
+        "path": "results/metrics.json",
         "source": "derived"
       },
       {
@@ -195,7 +195,7 @@
     ],
     "causal_summary": "The Fix 5 flag `SPECKITDETERMINISTICRANKING` ships default-off",
     "created_at": "2026-06-27T17:15:43.899Z",
-    "last_save_at": "2026-06-27T17:15:43.899Z",
+    "last_save_at": "2026-07-04T17:11:55.517Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,13 +205,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:b6e33d8d1ed157bba862a480b8efc76d1dcee4928b7f5df9a02ad9448b169e92",
+    "source_fingerprint": "sha256:7c17edddadd363d9119b6420af5a055552d8cf0465620e2442ed200b5e676340",
     "source_doc_hashes": {
-      "spec.md": "1c170a4fd9ca5f74a8414f5bde023affcf81d44fde236555ad78caaea2e64e8b",
-      "plan.md": "147774e9d12b65869f87c512fd5e10286f9393c0bfabe0982b1a3f00e66e473c",
-      "tasks.md": "3eab4864fa14fb96b869be9d5b01b15f37c909f436c00e1f5c635b740eb6ca22",
-      "checklist.md": "94298713ad4e925d94828396043802df4e804c7b7493c6a4155976a7db36b2ef",
-      "implementation-summary.md": "ddea73d84c00e12f9f346d65fef17b9caa6ecfa44760f5f3f8df8661ef52a2c3"
+      "spec.md": "d55b1b236feb19dc97a9cbbc0265af04cfcf4351192afcb8260ca278e74a449e",
+      "plan.md": "fe66a9cb28999d41ef9d197318010dfe1c5cd44451b768aafe74480bc967bd2d",
+      "tasks.md": "187592d69c382e618c830f58c0082b73a6f97dbba28f4705523af89d30b8dbe0",
+      "checklist.md": "e1905d6f84ff527702a6170bb784575e2df5349d67770605c0111720eb120448",
+      "implementation-summary.md": "f726cbd5d0d160d758c9413fbb4bd5249ce9d86c546d1f1e101c855c7e08ad18"
     },
     "last_active_child_id": null,
     "last_active_at": null

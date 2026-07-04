@@ -12,7 +12,7 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "028-memory-search-intelligence/005-spec-data-quality/004-novel-research/025-novel-per-doc-quality-slas"
-    last_updated_at: "2026-06-21T00:00:00Z"
+    last_updated_at: "2026-06-27T17:15:39.283Z"
     last_updated_by: "markdown-agent"
     recent_action: "Scaffolded planned per-doc quality SLA doc set"
     next_safe_action: "Build SLA evaluator once a host queue ships"

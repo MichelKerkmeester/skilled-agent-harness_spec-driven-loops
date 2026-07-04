@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/006-generated-metadata-build/038-generator-hardening",
-  "spec_folder": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/006-generated-metadata-build/038-generator-hardening",
-  "parent_id": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/006-generated-metadata-build",
+  "packet_id": "system-speckit/028-memory-search-intelligence/005-spec-data-quality/006-generated-metadata-build/038-generator-hardening",
+  "spec_folder": "system-speckit/028-memory-search-intelligence/005-spec-data-quality/006-generated-metadata-build/038-generator-hardening",
+  "parent_id": "system-speckit/028-memory-search-intelligence/005-spec-data-quality/006-generated-metadata-build",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -34,9 +34,9 @@
     "importance_tier": "normal",
     "status": "complete",
     "key_files": [
-      ".opencode/skills/system-spec-kit/mcp_server/lib/config/capability-flags.ts",
       ".opencode/skills/system-spec-kit/mcp_server/lib/graph/graph-metadata-parser.ts",
       ".opencode/skills/system-spec-kit/mcp_server/lib/graph/graph-metadata-schema.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/config/capability-flags.ts",
       ".opencode/skills/system-spec-kit/mcp_server/lib/spec/is-phase-parent.ts",
       ".opencode/skills/system-spec-kit/mcp_server/lib/graph/access-telemetry.ts",
       ".opencode/skills/system-spec-kit/mcp_server/lib/resume/resume-ladder.ts",
@@ -55,12 +55,6 @@
     ],
     "entities": [
       {
-        "name": "capability-flags.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/config/capability-flags.ts",
-        "source": "derived"
-      },
-      {
         "name": "graph-metadata-parser.ts",
         "kind": "code",
         "path": ".opencode/skills/system-spec-kit/mcp_server/lib/graph/graph-metadata-parser.ts",
@@ -70,6 +64,12 @@
         "name": "graph-metadata-schema.ts",
         "kind": "code",
         "path": ".opencode/skills/system-spec-kit/mcp_server/lib/graph/graph-metadata-schema.ts",
+        "source": "derived"
+      },
+      {
+        "name": "capability-flags.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/config/capability-flags.ts",
         "source": "derived"
       },
       {
@@ -201,7 +201,7 @@
     ],
     "causal_summary": "The graph-metadata generator and the JSON it produces carry two residual hardening gaps that the 031 research ranked P2 because neither is a fix for a live crash, both are protections against silent drift and churn",
     "created_at": "2026-06-27T17:15:42.806Z",
-    "last_save_at": "2026-06-27T17:15:42.806Z",
+    "last_save_at": "2026-07-04T17:11:56.393Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -211,13 +211,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:f47321e3e23f6a77b79373edaae0780aa7eb4cb21e17ce2afa765c528da745ef",
+    "source_fingerprint": "sha256:0ac0569739060cfe040b3a5b439ae7bb9d45a67db5fc57ce580f7717fc499f0b",
     "source_doc_hashes": {
-      "spec.md": "85ad39e0f078ef3ff7626a42e36222f5acecf875bba731af86d8990114acf4f5",
-      "plan.md": "da63bd002864dd609c108a975f26df72d80fd8bc0b9879935125629a056ba213",
-      "tasks.md": "5d6436838796d43f8563b442e8d3786cf23bc3649988e5693e99e2d116043970",
-      "checklist.md": "3ff0d943050470e566dd4919b10b764e54833b32c8b21c14499d0c97b95ea644",
-      "implementation-summary.md": "e663c7c962895aa21419246871cb8ab0c14e2d680796cebcebd48606e9d486b9"
+      "spec.md": "5fd23b80dba350e26c929bdc19f84a743e37fd9949b9229d2ab201acca04a0df",
+      "plan.md": "44adfe6636dab024693775a493883748c83152c32dd7742c9455ca33a5b89d87",
+      "tasks.md": "0db195d484173c91314057317555595a6d1c5468241bbd0a045c588668b32c0f",
+      "checklist.md": "ded4e2c2bf18b45bcb0f29f637b1394b2bed042199f3b91da4ce30ebf7b63db6",
+      "implementation-summary.md": "8fb5a86cc4372d723c1093a458d83d96e42bcbcce7882abb88d1036399240a4c"
     },
     "last_active_child_id": null,
     "last_active_at": null

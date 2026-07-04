@@ -12,7 +12,7 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "028-memory-search-intelligence/005-spec-data-quality/002-retroactive-automation/011-scheduled-dq-sweep"
-    last_updated_at: "2026-06-21T00:00:00Z"
+    last_updated_at: "2026-06-27T17:15:35.490Z"
     last_updated_by: "markdown-agent"
     recent_action: "Scaffolded plan tasks and checklist, status PLANNED"
     next_safe_action: "Build the sweep after 026 engine lands"

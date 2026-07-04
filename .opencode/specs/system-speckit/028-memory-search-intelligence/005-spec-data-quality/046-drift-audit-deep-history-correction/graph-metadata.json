@@ -190,7 +190,7 @@
     ],
     "causal_summary": "Pass 1 of the drift audit corrected four feature docs to say their claimed shipped code was \"GENUINELYABSENT\" from the current tree",
     "created_at": "2026-07-01T00:00:00.000Z",
-    "last_save_at": "2026-07-04T15:47:00.374Z",
+    "last_save_at": "2026-07-04T17:11:46.692Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -202,11 +202,11 @@
     ],
     "source_fingerprint": "sha256:81ad9bfbcc1a4c0d123599f2982e1d605ce78a05abe885da550965f44ad1649b",
     "source_doc_hashes": {
-      "spec.md": "076f2818bf45e53643084666c1092fa03f16d494d15205f050106a4a4742c7ad",
-      "plan.md": "b3242b59c24b164573a42dac717c0930b7ae524008b58bd8e1955914b7e65046",
-      "tasks.md": "0b66b95ce1e3601c70803058783994acecf1d7411f930bc53245cd1ff2eaf199",
-      "checklist.md": "49d50e614170b860baa9ebecd831a71c477e4b7edf743626ae1fb1e1dd0be85d",
-      "implementation-summary.md": "facf0039735e0225d42ca8f26be6945af11d68af210eb9e4f234f6590832ae26"
+      "spec.md": "3cae75e8f6c5714ee5f26a4b5bc5b69f8cd9e6ace2c28961ee46a0c0170ad9c0",
+      "plan.md": "91b1f1e7aaad8d19452103ad491ee0227d07a7a52f1fac35cf3d12e9867621ff",
+      "tasks.md": "16537f88e772d124aa25ea1a35f438f486caaf9dda2876c85674bb11fdca26b4",
+      "checklist.md": "141ed7d27d77f07b3ef12ae2b5a5c99499af3f23e4edca893d0a80b80b271fba",
+      "implementation-summary.md": "4f4b98752f89d4fe4bc55e47e14d16a95ff9b81c018f7882d6633d95c47b592f"
     },
     "last_active_child_id": null,
     "last_active_at": "2026-07-01T00:00:00.000Z"

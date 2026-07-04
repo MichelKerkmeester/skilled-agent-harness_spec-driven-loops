@@ -7,9 +7,9 @@
   "generation": 1,
   "continuedFromRun": null,
   "releaseReadinessState": "converged",
-  "reviewTarget": ".opencode/specs/system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/026-shared-safe-fix-engine",
+  "reviewTarget": ".opencode/specs/system-speckit/028-memory-search-intelligence/005-spec-data-quality/026-shared-safe-fix-engine",
   "reviewTargetType": "spec-folder",
-  "artifactDir": ".opencode/specs/system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/026-shared-safe-fix-engine/review/lineages/review",
+  "artifactDir": ".opencode/specs/system-speckit/028-memory-search-intelligence/005-spec-data-quality/026-shared-safe-fix-engine/review/lineages/review",
   "executor": {
     "kind": "cli-claude-code",
     "model": "opus"
@@ -31,6 +31,6 @@
   "resource_map": { "emit": false },
   "fanout": {
     "lineage": "review",
-    "artifactDir": ".opencode/specs/system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/026-shared-safe-fix-engine/review/lineages/review"
+    "artifactDir": ".opencode/specs/system-speckit/028-memory-search-intelligence/005-spec-data-quality/026-shared-safe-fix-engine/review/lineages/review"
   }
 }

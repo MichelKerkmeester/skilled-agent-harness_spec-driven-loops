@@ -10,7 +10,7 @@
     "provider": "ollama",
     "dim": 768
   },
-  "queryConfigSource": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/029-vague-query-model-benchmark/scripts/benchmark-config.json",
+  "queryConfigSource": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-speckit/028-memory-search-intelligence/005-spec-data-quality/029-vague-query-model-benchmark/scripts/benchmark-config.json",
   "pipelinePath": "executePipeline (Stage 1 vector-decay + Stage 2 recency exercised)",
   "notes": [
     "Flag-ON drops the julianday(now) vector decay term and zeroes the Stage-2 recency contribution.",

@@ -1,8 +1,8 @@
 {
   "run_id": "1782055955337-zaecgs",
   "loop_type": "review",
-  "spec_folder": ".opencode/specs/system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/028-governance-rollout",
-  "base_artifact_dir": ".opencode/specs/system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/028-governance-rollout/review",
+  "spec_folder": ".opencode/specs/system-speckit/028-memory-search-intelligence/005-spec-data-quality/028-governance-rollout",
+  "base_artifact_dir": ".opencode/specs/system-speckit/028-memory-search-intelligence/005-spec-data-quality/028-governance-rollout/review",
   "total_cli_lineages": 1,
   "orphaned_lineages": [],
   "total": 1,

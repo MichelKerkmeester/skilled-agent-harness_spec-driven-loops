@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/001-on-write-quality/005-trigger-coherence-assertion",
-  "spec_folder": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/001-on-write-quality/005-trigger-coherence-assertion",
-  "parent_id": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/001-on-write-quality",
+  "packet_id": "system-speckit/028-memory-search-intelligence/005-spec-data-quality/001-on-write-quality/005-trigger-coherence-assertion",
+  "spec_folder": "system-speckit/028-memory-search-intelligence/005-spec-data-quality/001-on-write-quality/005-trigger-coherence-assertion",
+  "parent_id": "system-speckit/028-memory-search-intelligence/005-spec-data-quality/001-on-write-quality",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -34,8 +34,10 @@
     "importance_tier": "normal",
     "status": "draft",
     "key_files": [
-      ".opencode/skills/system-spec-kit/scripts/lib/validator-registry.json",
       ".opencode/skills/system-spec-kit/scripts/extractors/spec-folder-extractor.ts",
+      ".opencode/skills/system-spec-kit/scripts/rules/check-description-shape.sh",
+      ".opencode/skills/system-spec-kit/scripts/rules/check-graph-metadata-shape.sh",
+      ".opencode/skills/system-spec-kit/scripts/lib/validator-registry.json",
       ".opencode/skills/system-spec-kit/mcp_server/tests/flag-ceiling.vitest.ts",
       "spec.md",
       "plan.md",
@@ -45,15 +47,27 @@
     ],
     "entities": [
       {
-        "name": "validator-registry.json",
-        "kind": "config",
-        "path": ".opencode/skills/system-spec-kit/scripts/lib/validator-registry.json",
-        "source": "derived"
-      },
-      {
         "name": "spec-folder-extractor.ts",
         "kind": "code",
         "path": ".opencode/skills/system-spec-kit/scripts/extractors/spec-folder-extractor.ts",
+        "source": "derived"
+      },
+      {
+        "name": "check-description-shape.sh",
+        "kind": "script",
+        "path": ".opencode/skills/system-spec-kit/scripts/rules/check-description-shape.sh",
+        "source": "derived"
+      },
+      {
+        "name": "check-graph-metadata-shape.sh",
+        "kind": "script",
+        "path": ".opencode/skills/system-spec-kit/scripts/rules/check-graph-metadata-shape.sh",
+        "source": "derived"
+      },
+      {
+        "name": "validator-registry.json",
+        "kind": "config",
+        "path": ".opencode/skills/system-spec-kit/scripts/lib/validator-registry.json",
         "source": "derived"
       },
       {
@@ -175,23 +189,11 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "an",
-        "kind": "key_phrase",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "A spec folder carries the same `triggerphrases` concept in three separate surfaces that are never asserted to agree",
     "created_at": "2026-06-27T17:15:33.865Z",
-    "last_save_at": "2026-06-27T17:15:33.865Z",
+    "last_save_at": "2026-07-04T17:11:59.166Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -201,13 +203,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:6470761a951cf644ee69335f56c7bd1b18fab2131f976b479fd7fc46267da434",
+    "source_fingerprint": "sha256:0f8fed35f9c135e9101123e1079e6c901ecb9beadf3fe2ad1869f88665582d4a",
     "source_doc_hashes": {
-      "spec.md": "48bbf255e658d0f93a979b4cf09450f62389523fc90d4373102209a736a3dd97",
-      "plan.md": "ec2a4fa6db664544746bab75f88fd422b71f5c4ce191a1664021056eb3a10a87",
-      "tasks.md": "b2552af9df32615ea7e6afdd3437d422bc9ce8a627a109d62486651a862a4d21",
-      "checklist.md": "7cfd7543d7d768d45cfb081f81194154ba23c3f7ca9590982cc8d7e1d6a7796d",
-      "implementation-summary.md": "39d81637dda6eeacd9c667335f94b1b1300e6ba938b10c109ecf64345e2fa5b8"
+      "spec.md": "b6715c75b9d0ce5bf3da2c3809f6805da125cee4d2cc839525fd2fe424f3ac36",
+      "plan.md": "fcfcffb134f94ca000653a41c6b847e4e17afa96e952349a2d2999026c29b52e",
+      "tasks.md": "ee42cff3d2f0a5e42a6522468c9ce684570b63faf7218d4bbfa44d57a2dd2fe6",
+      "checklist.md": "49b89ffc88cb0e0a594e1afc67de16fe4cebe9572831874e767c95522f0f6dc3",
+      "implementation-summary.md": "de3e079f490e42e9759dcd061c1291fa2796ca5f6a5949a6f38896b0db40b7bd"
     },
     "last_active_child_id": null,
     "last_active_at": null

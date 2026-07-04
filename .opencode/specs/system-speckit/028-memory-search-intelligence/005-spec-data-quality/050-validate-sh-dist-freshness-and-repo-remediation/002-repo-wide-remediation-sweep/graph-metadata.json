@@ -189,7 +189,7 @@
     ],
     "causal_summary": "`validate.sh --strict --recursive` currently fails on all 43 packet roots repo-wide (257 folders, 0 passing), spanning `ai-systems` (9), `anobel.com` (5), `barter` (6), `deep-loops` (4), `design` (8), `skilled-agent-orchestration` (7), `system-speckit` (4)",
     "created_at": "2026-07-02T03:37:12.946Z",
-    "last_save_at": "2026-07-04T16:29:00.486Z",
+    "last_save_at": "2026-07-04T17:11:53.344Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -200,10 +200,10 @@
     ],
     "source_fingerprint": "sha256:510c2655805c59743bfa300df24884149522b303108871b397f297d9c42aeb7a",
     "source_doc_hashes": {
-      "spec.md": "70ca24b44630c77c54daf0caefce036379d6dcc4d0ce08411f3a32d7387a5bff",
-      "plan.md": "a782ad54655cedf95e6d2f362ff8247e2d95e80218f5e5c55266bf625d7e1175",
-      "tasks.md": "6cc497fedd11f19e5622975072f16f9b0ff32c7ca150359e65be047c7117d94c",
-      "implementation-summary.md": "034b177cb284be6e7548aa6c895e1d4ee5c7b2e5cc9887e5fae7a0338acac675"
+      "spec.md": "5876226bcdfa83cc0304ce875605adb6ce1f679880b1392cdbfe3c75004ccfbc",
+      "plan.md": "a789f53be04bd39676ac79d0003eb34b8d00a60311bfd4bd37a82aa31f160619",
+      "tasks.md": "6da03eae374223c82a4b46596e80213b05cc4e53d96c5525f6f2a74f20000eb0",
+      "implementation-summary.md": "45e2e36e5b231d0009d0ad95528f3fe4e0504c2b9d5430a8bea134d65ac10d2a"
     },
     "last_active_child_id": null,
     "last_active_at": null

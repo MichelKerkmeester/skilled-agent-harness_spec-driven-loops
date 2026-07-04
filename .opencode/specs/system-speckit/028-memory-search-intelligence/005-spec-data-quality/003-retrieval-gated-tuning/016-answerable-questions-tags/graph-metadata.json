@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/003-retrieval-gated-tuning/016-answerable-questions-tags",
-  "spec_folder": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/003-retrieval-gated-tuning/016-answerable-questions-tags",
-  "parent_id": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/003-retrieval-gated-tuning",
+  "packet_id": "system-speckit/028-memory-search-intelligence/005-spec-data-quality/003-retrieval-gated-tuning/016-answerable-questions-tags",
+  "spec_folder": "system-speckit/028-memory-search-intelligence/005-spec-data-quality/003-retrieval-gated-tuning/016-answerable-questions-tags",
+  "parent_id": "system-speckit/028-memory-search-intelligence/005-spec-data-quality/003-retrieval-gated-tuning",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -190,7 +190,7 @@
     ],
     "causal_summary": "A document can carry curated `answerablequestions` and `semanticintent` tags that name the queries it should win and the intent class it serves, but those tags are inert today",
     "created_at": "2026-06-27T17:15:36.837Z",
-    "last_save_at": "2026-06-27T17:15:36.837Z",
+    "last_save_at": "2026-07-04T17:11:52.130Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -200,13 +200,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:0e1ed9007c71a67915e45d312ffdd97f9cc0e861665499f3715b8f7192b21b6c",
+    "source_fingerprint": "sha256:c3fe38db616838eefd28c989dde16875b92681821189bbfc89b86c7ea6244421",
     "source_doc_hashes": {
       "spec.md": "55a1ea78304fa8c28c8bc461ad206af9b8d21fe0fe4cfcddb7fea35080257584",
       "plan.md": "2b64a44b8d3a83589a91025613f38d02ec204f7cc7f90eab68cddfad2f8e21d0",
       "tasks.md": "be0638f1e33f9d527f625c92197b18e93eb561e2fa9d5ffc3c625ea289da391f",
       "checklist.md": "4aa52c3c3520b7de87a75e399f61be44fdbf5e5459bd1243f29f874c09a4110e",
-      "implementation-summary.md": "7687b4a8b855424900938dab92274dbc5ce03dff2823947fdd5290c74cf32bd6"
+      "implementation-summary.md": "f127ea26f9bd644432dda3ac033b352c0fc305d041d1f1f9e8cf8d9afb00f167"
     },
     "last_active_child_id": null,
     "last_active_at": null

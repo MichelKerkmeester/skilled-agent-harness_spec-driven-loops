@@ -1,7 +1,7 @@
 {
   "level": "2",
-  "specFolder": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/005-shared-engine-and-research/027-retrieval-floor-experiment",
-  "description": "The prod retrieval path guarantees a never-cut-below-3 minimum (`confidence-truncation.ts:35`, `DEFAULTMINRESULTS = 3`, a floor not a cap), then layer",
+  "specFolder": "system-speckit/028-memory-search-intelligence/005-spec-data-quality/005-shared-engine-and-research/027-retrieval-floor-experiment",
+  "description": "The prod retrieval path guarantees a never-cut-below-3 minimum (`confidence-truncation.ts:35`, `DEFAULTMINRESULTS = 3`, a floor not a cap), then",
   "keywords": [
     "prod",
     "retrieval",
@@ -12,14 +12,13 @@
     "confidence-truncation",
     "defaultminresults",
     "floor",
-    "cap",
-    "layer"
+    "cap"
   ],
-  "lastUpdated": "2026-06-28T14:23:06.832Z",
+  "lastUpdated": "2026-07-04T17:12:03.838Z",
   "specId": "027",
   "folderSlug": "retrieval-floor-experiment",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "028-memory-search-intelligence",
     "005-spec-data-quality",
     "005-shared-engine-and-research"
