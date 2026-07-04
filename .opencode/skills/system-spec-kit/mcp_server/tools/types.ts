@@ -151,6 +151,16 @@ export interface RetentionSweepArgs {
   dryRun?: boolean;
 }
 
+/** Arguments for learned-trigger expiry maintenance. */
+export interface LearnedExpireArgs {
+  dryRun?: boolean;
+}
+
+/** Arguments for learned-trigger clear maintenance. */
+export interface LearnedClearArgs {
+  confirm?: boolean;
+}
+
 /** Arguments for memory_embedding_reconcile maintenance requests. */
 export interface ReconcileArgs {
   mode?: 'dry-run' | 'apply';

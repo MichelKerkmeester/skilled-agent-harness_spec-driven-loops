@@ -599,8 +599,8 @@ function batchUpdateScores(sessionId: string): number {
     db.transaction(() => {
       for (const entry of entries) {
         const eventsElapsed = calculateEventDistance(currentEventCounter, entry.event_counter);
-        const decayBase = entry.attention_score * Math.pow(EVENT_DECAY_FACTOR, eventsElapsed);
-        const mentionBoost = Math.min(entry.mention_count, MAX_MENTION_COUNT) * MENTION_BOOST_FACTOR;
+        const { baseScore, mentionBoost } = separateMentionBoost(entry.attention_score, entry.mention_count);
+        const decayBase = baseScore * Math.pow(EVENT_DECAY_FACTOR, eventsElapsed);
         const rawScore = decayBase + mentionBoost;
 
         if (rawScore < DELETE_THRESHOLD) {
@@ -657,6 +657,14 @@ function getLatestSessionEventCounter(sessionId: string): number | null {
     console.warn(`[working-memory] getLatestSessionEventCounter error: ${msg}`);
     return null;
   }
+}
+
+function separateMentionBoost(attentionScore: number, mentionCount: number): { baseScore: number; mentionBoost: number } {
+  const mentionBoost = Math.min(mentionCount, MAX_MENTION_COUNT) * MENTION_BOOST_FACTOR;
+  return {
+    baseScore: Math.max(0, attentionScore - mentionBoost),
+    mentionBoost,
+  };
 }
 
 function calculateEventDistance(currentCounter: number, entryCounter: number): number {

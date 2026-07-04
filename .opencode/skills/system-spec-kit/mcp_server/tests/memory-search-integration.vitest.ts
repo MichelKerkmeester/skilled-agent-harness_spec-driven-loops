@@ -337,7 +337,8 @@ describe('Memory Search Integration (T601-T650) [deferred - requires DB test fix
     });
 
     it('T648: last_review timestamp updates', () => {
-      expect(STAGE2_SOURCE).toContain('last_review = CURRENT_TIMESTAMP');
+      expect(STAGE2_SOURCE).toContain('last_review = ?');
+      expect(STAGE2_SOURCE).toContain('new Date(lastAccessed).toISOString()');
     });
 
     it('T649: Timestamp parseable as Date', () => {

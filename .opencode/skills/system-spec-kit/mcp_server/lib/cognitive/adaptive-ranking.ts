@@ -81,6 +81,15 @@ export interface AdaptiveThresholdTuningResult {
   next: AdaptiveThresholdSnapshot;
 }
 
+export interface AdaptiveSignalSweepResult {
+  table: 'adaptive_signal_events';
+  dryRun: boolean;
+  olderThanMs: number;
+  cutoffIso: string;
+  matched: number;
+  deleted: number;
+}
+
 const MAX_ADAPTIVE_DELTA = 0.08;
 const MIN_SIGNALS_FOR_PROMOTION = 3;
 const ADAPTIVE_SIGNAL_WEIGHTS: Record<AdaptiveSignalType, number> = {
@@ -397,6 +406,26 @@ export function ensureAdaptiveTables(database: Database.Database): void {
   database.exec(
     'CREATE INDEX IF NOT EXISTS idx_adaptive_signal_events_memory_type ON adaptive_signal_events(memory_id, signal_type)',
   );
+}
+
+export function sweepAdaptiveSignalEvents(
+  database: Database.Database,
+  options: { olderThanMs?: number; dryRun?: boolean; now?: number } = {},
+): AdaptiveSignalSweepResult {
+  ensureAdaptiveTables(database);
+  const olderThanMs = options.olderThanMs ?? 90 * 24 * 60 * 60 * 1000;
+  const cutoffIso = new Date((options.now ?? Date.now()) - olderThanMs).toISOString();
+  const row = database.prepare(
+    'SELECT COUNT(*) AS count FROM adaptive_signal_events WHERE datetime(created_at) < datetime(?)',
+  ).get(cutoffIso) as { count: number };
+  const matched = row.count;
+  const dryRun = options.dryRun !== false;
+  const deleted = dryRun
+    ? 0
+    : (database.prepare(
+      'DELETE FROM adaptive_signal_events WHERE datetime(created_at) < datetime(?)',
+    ).run(cutoffIso) as { changes: number }).changes;
+  return { table: 'adaptive_signal_events', dryRun, olderThanMs, cutoffIso, matched, deleted };
 }
 
 /**

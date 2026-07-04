@@ -132,6 +132,35 @@ describe('memory retention sweep', () => {
     expect(memoryIds(db)).toEqual([2, 3]);
   });
 
+  it('keeps a row when a concurrent protection raise lands before delete', () => {
+    const db = createMemoryIndexTestDatabase({ includeContentColumns: true, includeRetentionColumns: true });
+    insertMemory(db, 1, isoOffset(-3_600_000), 'stale candidate');
+    const previousLearning = process.env.SPECKIT_FEEDBACK_RETENTION_LEARNING;
+    const previousMode = process.env.SPECKIT_FEEDBACK_RETENTION_MODE;
+
+    try {
+      process.env.SPECKIT_FEEDBACK_RETENTION_LEARNING = 'true';
+      process.env.SPECKIT_FEEDBACK_RETENTION_MODE = 'active';
+      const result = withRetentionForgettingFlag('true', () => runMemoryRetentionSweep(db, {
+        feedbackRetention: { shadowEvaluationPassed: true },
+        beforeApply: () => {
+          db.prepare('UPDATE memory_index SET importance_weight = 0.95 WHERE id = 1').run();
+        },
+      }));
+
+      expect(result.deletedIds).toEqual([]);
+      expect(result.protectedIds).toEqual([1]);
+      expect(memoryIds(db)).toEqual([1]);
+      const row = db.prepare('SELECT delete_after FROM memory_index WHERE id = 1').get() as { delete_after: string | null };
+      expect(row.delete_after).toBeNull();
+    } finally {
+      if (previousLearning === undefined) delete process.env.SPECKIT_FEEDBACK_RETENTION_LEARNING;
+      else process.env.SPECKIT_FEEDBACK_RETENTION_LEARNING = previousLearning;
+      if (previousMode === undefined) delete process.env.SPECKIT_FEEDBACK_RETENTION_MODE;
+      else process.env.SPECKIT_FEEDBACK_RETENTION_MODE = previousMode;
+    }
+  });
+
   it('reports physical residual retention without creating a deny-list registry', () => {
     const db = createMemoryIndexTestDatabase({ includeContentColumns: true });
     insertMemory(db, 1, isoOffset(-3_600_000), 'expired');

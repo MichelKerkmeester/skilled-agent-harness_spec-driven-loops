@@ -133,10 +133,9 @@ describe('shadow-evaluation-runtime clean consumption_log schema', () => {
     insertSearch.run('a1b2c3d4e5f60718', 'fix_bug', 1, nowIso);
     insertSearch.run('00112233aabbccdd', 'fix_bug', 2, nowIso);
 
-    // Memory-id-level feedback — the unfiltered branch the synthetic path uses.
     initAdaptiveSignalEvents(db);
-    insertAdaptiveSignalEvent(db, 11, 'outcome', 2);
-    insertAdaptiveSignalEvent(db, 12, 'outcome', 1);
+    insertAdaptiveSignalEvent(db, 11, 'outcome', 2, 'resolve broken crash and incorrect behavior');
+    insertAdaptiveSignalEvent(db, 12, 'outcome', 1, 'resolve broken crash and incorrect behavior');
 
     vi.mocked(executePipeline).mockResolvedValue({
       results: [{ id: 11, score: 0.7 }, { id: 12, score: 0.5 }],
@@ -167,6 +166,52 @@ describe('shadow-evaluation-runtime clean consumption_log schema', () => {
     expect(report?.cycleResult.queryCount).toBe(1);
     expect(vi.mocked(executePipeline)).toHaveBeenCalled();
     expect(getCycleResults(db)).toHaveLength(1);
+  });
+
+  it('records an unlabeled cycle when telemetry replays without query labels', async () => {
+    const nowIso = new Date().toISOString();
+    db.prepare(`
+      INSERT INTO consumption_log (event_type, query_hash, intent, result_count, timestamp)
+      VALUES ('search', ?, ?, ?, ?)
+    `).run('feedfacecafebeef', 'fix_bug', 2, nowIso);
+
+    vi.mocked(executePipeline).mockResolvedValue({
+      results: [{ id: 11, score: 0.7 }, { id: 12, score: 0.5 }],
+    } as unknown as Awaited<ReturnType<typeof executePipeline>>);
+
+    vi.mocked(buildAdaptiveShadowProposal).mockReturnValue({
+      mode: 'shadow',
+      bounded: true,
+      maxDeltaApplied: 0.08,
+      query: 'synthetic class query',
+      promotedIds: [12],
+      demotedIds: [11],
+      rows: [
+        { memoryId: 12, productionRank: 2, shadowRank: 1, productionScore: 0.5, shadowScore: 0.9, scoreDelta: 0.4 },
+        { memoryId: 11, productionRank: 1, shadowRank: 2, productionScore: 0.7, shadowScore: 0.6, scoreDelta: -0.1 },
+      ],
+    });
+
+    const report = await runScheduledShadowEvaluationCycle(db, {
+      holdoutPercent: 1,
+      queryLookbackMs: 14 * 24 * 60 * 60 * 1000,
+      maxQueryPoolSize: 10,
+      searchLimit: 5,
+      seed: 42,
+    });
+
+    expect(report).not.toBeNull();
+    expect(report?.comparisons).toHaveLength(1);
+    expect(report?.cycleResult.queryCount).toBe(0);
+    expect(report?.cycleResult.unlabeledQueryCount).toBe(1);
+    expect(report?.cycleResult.hasPromotionSignal).toBe(false);
+    expect(report?.promotionGate.recommendation).toBe('wait');
+    expect(getCycleResults(db)[0]).toMatchObject({
+      queryCount: 0,
+      unlabeledQueryCount: 1,
+      hasPromotionSignal: false,
+    });
+    expect(getShadowScoringHistory(db)).toHaveLength(0);
   });
 });
 

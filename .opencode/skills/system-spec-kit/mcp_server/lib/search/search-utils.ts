@@ -59,6 +59,7 @@ interface CacheArgsInput {
   resultExplainDebugEnabled?: boolean;
   retrievalLevel?: 'local' | 'global' | 'auto';
   graphUnifiedEnabled?: boolean;
+  trackAccess?: boolean;
   cacheVersion?: string;
   /**
    * Causal-edges generation counter snapshot. When `enableCausalBoost`
@@ -184,6 +185,7 @@ function buildCacheArgs({
   resultExplainDebugEnabled,
   retrievalLevel = 'auto',
   graphUnifiedEnabled = isGraphUnifiedEnabled(),
+  trackAccess = false,
   cacheVersion,
   causalEdgesGeneration,
   folderBoost,
@@ -231,6 +233,7 @@ function buildCacheArgs({
     resultExplainDebugEnabled,
     retrievalLevel,
     graphUnifiedEnabled,
+    trackAccess,
     cacheVersion,
     causalEdgesGeneration: includeCausalGeneration ? causalEdgesGeneration : undefined,
     folderBoost: folderBoost && folderBoost.folder

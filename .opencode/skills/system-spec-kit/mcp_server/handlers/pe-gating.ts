@@ -247,18 +247,20 @@ function reinforceExistingMemory(
     // Keep document-type-aware weighting on reinforcement.
     const importanceWeight = calculateDocumentWeight(parsed.filePath, parsed.documentType);
 
-    // P4-05 FIX: Check result.changes to detect no-op updates (e.g., deleted memory)
+    const reviewedAt = new Date().toISOString();
+
+    // Check result.changes to detect no-op updates, such as deleted memories.
     const updateResult = database.prepare(`
       UPDATE memory_index
       SET stability = ?,
           importance_weight = ?,
           content_text = COALESCE(content_text, ?),
           content_hash = CASE WHEN content_text IS NULL THEN ? ELSE content_hash END,
-          last_review = datetime('now'),
+          last_review = ?,
           review_count = COALESCE(review_count, 0) + 1,
           updated_at = datetime('now')
       WHERE id = ?
-    `).run(newStability, importanceWeight, parsed.content, parsed.contentHash, memoryId);
+    `).run(newStability, importanceWeight, parsed.content, parsed.contentHash, reviewedAt, memoryId);
 
     if ((updateResult as { changes: number }).changes === 0) {
       throw new Error(`PE reinforcement UPDATE matched 0 rows for memory ${memoryId}`);

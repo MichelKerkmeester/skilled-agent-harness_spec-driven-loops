@@ -125,6 +125,7 @@ import {
 import * as workingMemory from './lib/cognitive/working-memory.js';
 import * as attentionDecay from './lib/cognitive/attention-decay.js';
 import * as coActivation from './lib/cognitive/co-activation.js';
+import * as predictionErrorGate from './lib/cognitive/prediction-error-gate.js';
 import { initScoringObservability } from './lib/telemetry/scoring-observability.js';
 import { rebindScoringObservability } from './lib/telemetry/scoring-observability.js';
 // Retry manager for background embedding retry job
@@ -258,6 +259,8 @@ const MEMORY_RUNTIME_TOOL_NAMES = new Set<string>([
   'memory_validate',
   'memory_bulk_delete',
   'memory_retention_sweep',
+  'memory_learned_expire',
+  'memory_learned_clear',
   'memory_embedding_reconcile',
   'memory_index_scan',
   'memory_index_scan_status',
@@ -2229,8 +2232,9 @@ async function main(): Promise<void> {
     initDbState({ graphSearchFn });
     sessionBoost.init(database);
     causalBoost.init(database);
+    predictionErrorGate.init(database);
     installGraphRefresh(database);
-    console.error('[context-server] Checkpoints, access tracker, hybrid search, session boost, and causal boost initialized');
+    console.error('[context-server] Checkpoints, access tracker, hybrid search, session boost, causal boost, and prediction-error gate initialized');
     runCheckpointNeedsRebuildRepair(database, 'boot');
 
     // P3-04/014: Warm in-memory BM25 only when the selected lexical engine needs it.

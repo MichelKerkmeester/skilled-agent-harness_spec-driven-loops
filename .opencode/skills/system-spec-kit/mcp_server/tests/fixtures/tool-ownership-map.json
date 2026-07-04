@@ -178,6 +178,20 @@
       "category": "Maintenance"
     },
     {
+      "name": "memory_learned_clear",
+      "owner": "memory-mutation",
+      "stability": "stable",
+      "level": "L4",
+      "category": "Mutation"
+    },
+    {
+      "name": "memory_learned_expire",
+      "owner": "memory-mutation",
+      "stability": "stable",
+      "level": "L4",
+      "category": "Mutation"
+    },
+    {
       "name": "memory_list",
       "owner": "memory-discovery",
       "stability": "stable",

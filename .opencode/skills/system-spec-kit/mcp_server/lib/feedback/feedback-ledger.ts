@@ -67,6 +67,15 @@ export interface GetFeedbackEventsOptions {
   offset?: number;
 }
 
+export interface FeedbackLedgerSweepResult {
+  table: 'feedback_events';
+  dryRun: boolean;
+  olderThanMs: number;
+  cutoff: number;
+  matched: number;
+  deleted: number;
+}
+
 export const FEEDBACK_LEDGER_SHADOW_ONLY_TABLES = Object.freeze(['feedback_events'] as const);
 
 export function assertFeedbackLedgerShadowOnlyTables(
@@ -349,6 +358,23 @@ export function getMemoryFeedbackSummary(
   } catch {
     return { memoryId, total: 0, strong: 0, medium: 0, weak: 0 };
   }
+}
+
+export function sweepFeedbackEvents(
+  db: Database.Database,
+  options: { olderThanMs?: number; dryRun?: boolean; now?: number } = {},
+): FeedbackLedgerSweepResult {
+  initFeedbackLedger(db);
+  const olderThanMs = options.olderThanMs ?? 90 * 24 * 60 * 60 * 1000;
+  const cutoff = (options.now ?? Date.now()) - olderThanMs;
+  const row = db.prepare('SELECT COUNT(*) AS count FROM feedback_events WHERE timestamp < ?')
+    .get(cutoff) as { count: number };
+  const matched = row.count;
+  const dryRun = options.dryRun !== false;
+  const deleted = dryRun
+    ? 0
+    : (db.prepare('DELETE FROM feedback_events WHERE timestamp < ?').run(cutoff) as { changes: number }).changes;
+  return { table: 'feedback_events', dryRun, olderThanMs, cutoff, matched, deleted };
 }
 
 /* ───────────────────────────────────────────────────────────────

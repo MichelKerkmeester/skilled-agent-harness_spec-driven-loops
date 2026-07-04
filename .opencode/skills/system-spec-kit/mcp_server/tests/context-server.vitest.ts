@@ -159,7 +159,7 @@ describe('Context Server', () => {
   // =================================================================
   // GROUP 2: Tool Definition Completeness
   // =================================================================
-  describe('Group 2: Tool Definitions (39 tools)', () => {
+  describe('Group 2: Tool Definitions (41 tools)', () => {
     const EXPECTED_TOOLS = [
       'memory_context',
       'memory_search',
@@ -173,6 +173,8 @@ describe('Context Server', () => {
       'memory_update',
       'memory_bulk_delete',
       'memory_retention_sweep',
+      'memory_learned_expire',
+      'memory_learned_clear',
       'memory_embedding_reconcile',
       'memory_validate',
       'checkpoint_create',

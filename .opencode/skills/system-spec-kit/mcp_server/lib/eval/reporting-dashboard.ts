@@ -173,12 +173,14 @@ function extractSprintFromMetadata(metadata: string | null): string | null {
  * Used for trend direction interpretation.
  */
 function isHigherBetter(metricName: string): boolean {
-  // Metrics where lower values indicate better performance.
-  // Checked via prefix match on lowercase to handle variants
-  // (e.g. inversion_rate, inversion-rate, latency_ms).
   const lowerName = metricName.toLowerCase();
-  const lowerIsBetterPrefixes = ['inversion', 'latency'];
-  return !lowerIsBetterPrefixes.some((prefix) => lowerName.startsWith(prefix));
+  if (lowerName === 'latency' || lowerName === 'duration_ms') {
+    return false;
+  }
+  if (lowerName.startsWith('inversion')) {
+    return false;
+  }
+  return !(lowerName.includes('_latency_') || lowerName.endsWith('_latency') || lowerName.endsWith('_ms'));
 }
 
 /**

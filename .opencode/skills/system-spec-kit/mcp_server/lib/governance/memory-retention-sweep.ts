@@ -7,7 +7,7 @@ import * as mutationLedger from '../storage/mutation-ledger.js';
 import { init as initHistory, recordHistory } from '../storage/history.js';
 import { BetterSqliteMaintenance, type MaintenanceOperation } from '../storage/ports/index.js';
 import { recordGovernanceAudit } from './scope-governance.js';
-import { aggregateEvents, BATCH_WINDOW_MS } from '../feedback/batch-learning.js';
+import { aggregateEvents } from '../feedback/batch-learning.js';
 import type { AggregatedSignal } from '../feedback/batch-learning.js';
 import {
   evaluateFeedbackRetention,
@@ -24,10 +24,13 @@ import type {
 
 import type Database from 'better-sqlite3';
 
+const DEFAULT_RETENTION_FEEDBACK_WINDOW_MS = 30 * 24 * 60 * 60 * 1000;
+
 /** Options for a governed memory retention sweep. */
 export interface MemoryRetentionSweepArgs {
   dryRun?: boolean;
   feedbackRetention?: FeedbackRetentionSweepArgs;
+  beforeApply?: () => void;
 }
 
 /** Options for the feedback-aware retention learning branch. */
@@ -414,7 +417,7 @@ function buildFeedbackRetentionReport(
   // write path stays unreachable in dry-run (the sweep returns before it).
   const signals = args.signals ?? aggregateEvents(
     database,
-    (args.runAt ?? Date.now()) - (args.windowMs ?? BATCH_WINDOW_MS),
+    (args.runAt ?? Date.now()) - (args.windowMs ?? DEFAULT_RETENTION_FEEDBACK_WINDOW_MS),
     args.runAt ?? Date.now(),
   );
   const evaluation = evaluateFeedbackRetention(candidates, signals, {
@@ -616,6 +619,8 @@ export function runMemoryRetentionSweep(
   const protectedIds: number[] = [];
   const extendedIds: number[] = [];
   let ledgerRecorded: boolean | null = null;
+
+  args.beforeApply?.();
 
   const sweepTx = database.transaction(() => {
     for (const candidate of candidates) {

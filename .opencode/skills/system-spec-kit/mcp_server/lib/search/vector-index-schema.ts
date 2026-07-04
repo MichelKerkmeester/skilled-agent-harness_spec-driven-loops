@@ -49,6 +49,15 @@ interface LineageSchemaReport {
   warnings: string[];
 }
 
+export interface MemoryConflictsSweepResult {
+  table: 'memory_conflicts';
+  dryRun: boolean;
+  olderThanMs: number;
+  cutoffIso: string;
+  matched: number;
+  deleted: number;
+}
+
 const MEMORY_LINEAGE_TABLE = 'memory_lineage';
 const ACTIVE_MEMORY_PROJECTION_TABLE = 'active_memory_projection';
 const LEGACY_MEMORY_LINEAGE_TABLE = 'hydra_memory_lineage';
@@ -544,6 +553,27 @@ function createMemoryConflictIndexes(
     'CREATE INDEX IF NOT EXISTS idx_conflicts_timestamp ON memory_conflicts(timestamp DESC)',
     context,
   );
+}
+
+export function sweepMemoryConflicts(
+  database: Database.Database,
+  options: { olderThanMs?: number; dryRun?: boolean; now?: number } = {},
+): MemoryConflictsSweepResult {
+  createMemoryConflictsTable(database);
+  createMemoryConflictIndexes(database, 'memory_conflicts sweep');
+  const olderThanMs = options.olderThanMs ?? 90 * 24 * 60 * 60 * 1000;
+  const cutoffIso = new Date((options.now ?? Date.now()) - olderThanMs).toISOString();
+  const row = database.prepare(
+    'SELECT COUNT(*) AS count FROM memory_conflicts WHERE datetime(timestamp) < datetime(?)',
+  ).get(cutoffIso) as { count: number };
+  const matched = row.count;
+  const dryRun = options.dryRun !== false;
+  const deleted = dryRun
+    ? 0
+    : (database.prepare(
+      'DELETE FROM memory_conflicts WHERE datetime(timestamp) < datetime(?)',
+    ).run(cutoffIso) as { changes: number }).changes;
+  return { table: 'memory_conflicts', dryRun, olderThanMs, cutoffIso, matched, deleted };
 }
 
 function getFirstAvailableColumnExpression(

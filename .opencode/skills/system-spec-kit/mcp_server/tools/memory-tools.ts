@@ -15,6 +15,8 @@ import {
   handleMemoryValidate,
   handleMemoryBulkDelete,
   handleMemoryRetentionSweep,
+  handleMemoryLearnedExpire,
+  handleMemoryLearnedClear,
   handleMemoryEmbeddingReconcile,
   handleEmbedderList,
   handleEmbedderSet,
@@ -36,6 +38,8 @@ import type {
   MemoryValidateArgs,
   BulkDeleteArgs,
   RetentionSweepArgs,
+  LearnedExpireArgs,
+  LearnedClearArgs,
   ReconcileArgs,
   EmbedderSetArgs,
   EmbedderStatusArgs,
@@ -55,6 +59,8 @@ export const TOOL_NAMES = new Set([
   'memory_validate',
   'memory_bulk_delete',
   'memory_retention_sweep',
+  'memory_learned_expire',
+  'memory_learned_clear',
   'memory_embedding_reconcile',
   'embedder_list',
   'embedder_set',
@@ -96,6 +102,8 @@ export async function handleTool(name: string, args: Record<string, unknown>): P
     case 'memory_validate':       return handleMemoryValidate(parseArgs<MemoryValidateArgs>(validateToolArgs('memory_validate', args)));
     case 'memory_bulk_delete':    return handleMemoryBulkDelete(parseArgs<BulkDeleteArgs>(validateToolArgs('memory_bulk_delete', args)));
     case 'memory_retention_sweep': return handleMemoryRetentionSweep(parseArgs<RetentionSweepArgs>(validateToolArgs('memory_retention_sweep', args)));
+    case 'memory_learned_expire': return handleMemoryLearnedExpire(parseArgs<LearnedExpireArgs>(validateToolArgs('memory_learned_expire', args)));
+    case 'memory_learned_clear': return handleMemoryLearnedClear(parseArgs<LearnedClearArgs>(validateToolArgs('memory_learned_clear', args)));
     case 'memory_embedding_reconcile': return handleMemoryEmbeddingReconcile(parseArgs<ReconcileArgs>(validateToolArgs('memory_embedding_reconcile', args)));
     case 'embedder_list':
       validateToolArgs('embedder_list', args);

@@ -472,8 +472,11 @@ function attemptAutoFix(
   // Fix #2 : Close unclosed ANCHOR tags
   const hasAnchorIssue = issues.some(i => /unclosed anchor/i.test(i));
   if (hasAnchorIssue) {
-    fixedContent = normalizeAnchors(fixedContent);
-    fixed.push('Normalized unclosed ANCHOR tags');
+    const normalized = normalizeAnchors(fixedContent);
+    if (normalized !== fixedContent) {
+      fixedContent = normalized;
+      fixed.push('Normalized unclosed ANCHOR tags');
+    }
   }
 
   return { content: fixedContent, metadata: fixedMetadata, fixed };
@@ -676,13 +679,13 @@ function runQualityLoop(
   }
 
   // Rejected after all retries
-  const rejectionReason = `Quality score ${score.total.toFixed(3)} below threshold ${threshold} after ${autoFixAttemptsUsed} auto-fix attempt(s). Issues: ${score.issues.join('; ')}`;
+  const rejectionReason = `Quality score ${bestScore.total.toFixed(3)} below threshold ${threshold} after ${autoFixAttemptsUsed} auto-fix attempt(s). Issues: ${bestScore.issues.join('; ')}`;
 
-  logQualityMetrics(score, attemptsUsed, false, true, emitEvalMetrics);
+  logQualityMetrics(bestScore, attemptsUsed, false, true, emitEvalMetrics);
 
   return {
     passed: false,
-    score,
+    score: bestScore,
     attempts: attemptsUsed,
     fixes: allFixes,
     rejected: true,
@@ -720,13 +723,14 @@ function logQualityMetrics(
       passed,
       rejected,
     });
+    const qualityRunId = Date.now();
 
     db.prepare(`
       INSERT INTO eval_metric_snapshots
         (eval_run_id, metric_name, metric_value, channel, query_count, metadata)
       VALUES (?, ?, ?, ?, ?, ?)
     `).run(
-      0, // No eval run for quality metrics
+      qualityRunId,
       'memory_quality_score',
       score.total,
       'quality_loop',

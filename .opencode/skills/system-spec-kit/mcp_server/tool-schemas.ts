@@ -530,6 +530,18 @@ const memoryRetentionSweep: ToolDefinition = {
   inputSchema: { type: 'object', additionalProperties: ALLOW_UNKNOWN_PARAMETERS, properties: { dryRun: { type: 'boolean', default: false, description: 'When true, return expired candidates without mutating memory_index or related indexes.' } } },
 };
 
+const memoryLearnedExpire: ToolDefinition = {
+  name: 'memory_learned_expire',
+  description: '[L4:Mutation] Expire stale learned trigger terms from memory_index.learned_triggers. Dry-run by default for /memory:manage previews. Token Budget: 500.',
+  inputSchema: { type: 'object', additionalProperties: ALLOW_UNKNOWN_PARAMETERS, properties: { dryRun: { type: 'boolean', default: true, description: 'When true or omitted, count expired learned terms without mutating memory_index.' } } },
+};
+
+const memoryLearnedClear: ToolDefinition = {
+  name: 'memory_learned_clear',
+  description: '[L4:Mutation] Clear all learned trigger terms from memory_index after operator confirmation. Token Budget: 500.',
+  inputSchema: { type: 'object', additionalProperties: ALLOW_UNKNOWN_PARAMETERS, properties: { confirm: { type: 'boolean', const: true, description: 'Required safety gate. Must be true to clear all learned triggers.' } }, required: ['confirm'] },
+};
+
 const memoryEmbeddingReconcile: ToolDefinition = {
   name: 'memory_embedding_reconcile',
   description: '[L4:Mutation] Reconcile memory_index.embedding_status against active vector coverage: flip vector-present failed/pending/retry rows to success, and optionally reset genuinely missing-vector retention failures to retry. Dry-run by default; resolves and verifies the active shard from runtime metadata and fails closed on mismatch. Token Budget: 500.',
@@ -954,6 +966,8 @@ export const TOOL_DEFINITIONS: ToolDefinition[] = [
   memoryValidate,
   memoryBulkDelete,
   memoryRetentionSweep,
+  memoryLearnedExpire,
+  memoryLearnedClear,
   memoryEmbeddingReconcile,
   // L5: Lifecycle
   checkpointCreate,

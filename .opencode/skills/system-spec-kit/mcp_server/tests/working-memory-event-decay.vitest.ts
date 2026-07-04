@@ -89,7 +89,8 @@ describe('T005-T008: event-based decay pipeline', () => {
       attention_score: number;
     };
 
-    const expected = (1.0 * Math.pow(0.85, 10)) + (2 * 0.05);
+    // Base score decays; mention boost is additive per pass, not compounded.
+    const expected = ((1.0 - (2 * 0.05)) * Math.pow(0.85, 10)) + (2 * 0.05);
     expect(Math.abs(row.attention_score - expected)).toBeLessThan(1e-9);
   });
 
@@ -119,13 +120,47 @@ describe('T005-T008: event-based decay pipeline', () => {
       ORDER BY memory_id ASC
     `).all() as Array<{ memory_id: number; attention_score: number }>;
 
-    const expected0 = (0.6 * Math.pow(0.85, 0)) + 0.05;
-    const expected10 = (0.6 * Math.pow(0.85, 10)) + 0.05;
-    const expected100 = (0.6 * Math.pow(0.85, 100)) + 0.05;
+    // Base score decays; mention boost is additive per pass, not compounded.
+    const baseScore = 0.6 - 0.05;
+    const expected0 = (baseScore * Math.pow(0.85, 0)) + 0.05;
+    const expected10 = (baseScore * Math.pow(0.85, 10)) + 0.05;
+    const expected100 = (baseScore * Math.pow(0.85, 100)) + 0.05;
 
     expect(Math.abs(rows[0].attention_score - expected0)).toBeLessThan(1e-9);
     expect(Math.abs(rows[1].attention_score - expected10)).toBeLessThan(1e-9);
     expect(Math.abs(rows[2].attention_score - expected100)).toBeLessThan(1e-9);
+  });
+
+  it('keeps repeated decay stable by decaying only the base score', () => {
+    db = createDb();
+
+    db.prepare(`
+      INSERT INTO working_memory (session_id, memory_id, attention_score, event_counter, mention_count, last_focused)
+      VALUES ('s-stable', 14, 0.6, 0, 1, '2026-01-01T00:00:00.000Z')
+    `).run();
+    db.prepare(`
+      INSERT INTO working_memory (session_id, memory_id, attention_score, event_counter, mention_count, last_focused)
+      VALUES ('s-stable', 15, 0.5, 10, 0, '2026-01-01T00:00:01.000Z')
+    `).run();
+
+    wm.batchUpdateScores('s-stable');
+    const first = db.prepare('SELECT attention_score FROM working_memory WHERE session_id = ? AND memory_id = ?').get('s-stable', 14) as {
+      attention_score: number;
+    };
+    wm.batchUpdateScores('s-stable');
+    const second = db.prepare('SELECT attention_score FROM working_memory WHERE session_id = ? AND memory_id = ?').get('s-stable', 14) as {
+      attention_score: number;
+    };
+
+    const baseScore = 0.6 - 0.05;
+    const decay = Math.pow(0.85, 10);
+    const expectedFirst = (baseScore * decay) + 0.05;
+    const expectedSecond = (baseScore * decay * decay) + 0.05;
+
+    expect(Math.abs(first.attention_score - expectedFirst)).toBeLessThan(1e-9);
+    expect(Math.abs(second.attention_score - expectedSecond)).toBeLessThan(1e-9);
+    expect(second.attention_score).toBeGreaterThan(0.05);
+    expect(second.attention_score).toBeLessThan(first.attention_score);
   });
 
   it('T008: delete threshold is checked before decay floor clamp', () => {

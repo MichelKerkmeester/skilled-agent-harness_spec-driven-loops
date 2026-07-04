@@ -665,12 +665,12 @@ function strengthenOnAccess(
     db.prepare(`
       UPDATE memory_index
       SET stability = ?,
-          last_review = CURRENT_TIMESTAMP,
+          last_review = ?,
           review_count = review_count + 1,
           access_count = access_count + 1,
           last_accessed = ?
       WHERE id = ?
-    `).run(newStability, lastAccessed, memoryId);
+    `).run(newStability, new Date(lastAccessed).toISOString(), lastAccessed, memoryId);
 
     return { stability: newStability, difficulty: (memory.difficulty as number) || fsrsScheduler.DEFAULT_INITIAL_DIFFICULTY };
   } catch (err: unknown) {

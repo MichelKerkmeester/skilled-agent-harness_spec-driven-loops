@@ -148,6 +148,13 @@ export interface SchemaResult {
   error?: string;
 }
 
+function applyReverseDelta(currentValue: number | null, before: number | null, after: number | null): number | null {
+  if (currentValue === null || before === null || after === null) {
+    return null;
+  }
+  return currentValue - (after - before);
+}
+
 /* ───────────────────────────────────────────────────────────────
    1. CONSTANTS & CONFIGURATION
 ──────────────────────────────────────────────────────────────── */
@@ -275,7 +282,7 @@ const SCHEMA_SQL: string = `
     corrected_by TEXT,
     created_at TEXT DEFAULT CURRENT_TIMESTAMP,
 
-    -- Undo tracking (CHK-070)
+    -- Undo tracking
     is_undone INTEGER DEFAULT 0,
     undone_at TEXT,
 
@@ -403,7 +410,7 @@ export function record_correction(params: RecordCorrectionParams): CorrectionRes
     return {
       success: false,
       skipped: true,
-      reason: 'SPECKIT_RELATIONS disabled (CHK-069)'
+      reason: 'SPECKIT_RELATIONS disabled'
     };
   }
 
@@ -432,6 +439,26 @@ export function record_correction(params: RecordCorrectionParams): CorrectionRes
   // Prevent self-correction
   if (correction_memory_id && original_memory_id === correction_memory_id) {
     throw new Error('original_memory_id and correction_memory_id cannot be the same');
+  }
+
+  const activePair = db.prepare(`
+    SELECT id FROM memory_corrections
+    WHERE original_memory_id = ?
+      AND COALESCE(correction_memory_id, -1) = COALESCE(?, -1)
+      AND correction_type = ?
+      AND is_undone = 0
+    LIMIT 1
+  `).get(original_memory_id, correction_memory_id, correction_type) as { id: number } | undefined;
+  if (activePair) {
+    return {
+      success: true,
+      skipped: true,
+      reason: 'active_correction_pair_exists',
+      correction_id: activePair.id,
+      original_memory_id,
+      correction_memory_id,
+      correction_type,
+    };
   }
 
   // Get current stability values
@@ -588,20 +615,30 @@ export function undo_correction(correction_id: number): UndoResult {
 
   // Use transaction for atomicity
   const run_undo = db.transaction(() => {
-    // Restore original memory stability
+    const currentOriginalStability = get_memory_stability(correction.original_memory_id);
+    const nextOriginalStability = applyReverseDelta(
+      currentOriginalStability,
+      correction.original_stability_before,
+      correction.original_stability_after,
+    );
     if (correction.original_stability_before !== null) {
-      set_memory_stability(
-        correction.original_memory_id,
-        correction.original_stability_before
-      );
+      if (nextOriginalStability !== null) {
+        set_memory_stability(correction.original_memory_id, nextOriginalStability);
+      }
     }
 
-    // Restore correction memory stability
+    const currentCorrectionStability = correction.correction_memory_id
+      ? get_memory_stability(correction.correction_memory_id)
+      : null;
+    const nextCorrectionStability = applyReverseDelta(
+      currentCorrectionStability,
+      correction.correction_stability_before,
+      correction.correction_stability_after,
+    );
     if (correction.correction_memory_id && correction.correction_stability_before !== null) {
-      set_memory_stability(
-        correction.correction_memory_id,
-        correction.correction_stability_before
-      );
+      if (nextCorrectionStability !== null) {
+        set_memory_stability(correction.correction_memory_id, nextCorrectionStability);
+      }
     }
 
     // Mark correction as undone
@@ -682,8 +719,8 @@ export function undo_correction(correction_id: number): UndoResult {
       original_memory_id: correction.original_memory_id,
       correction_memory_id: correction.correction_memory_id,
       stability_restored: {
-        original: correction.original_stability_before,
-        correction: correction.correction_stability_before
+        original: nextOriginalStability ?? correction.original_stability_before,
+        correction: nextCorrectionStability ?? correction.correction_stability_before
       }
     };
   });

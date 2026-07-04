@@ -2,12 +2,11 @@
 // MODULE: Auto Promotion
 // ───────────────────────────────────────────────────────────────
 //
-// Promotes memory importance tier based on positive validation count:
+// Adjusts memory importance tier based on validation signals:
 // - >=5 positive validations: normal -> important
 // - >=10 positive validations: important -> critical
-// - Below threshold: no change (no-op)
+// - Sustained negative validations can step important/critical down one tier.
 //
-// Does NOT demote -- only promotes upward.
 import type { DatabaseExtended as Database } from '@spec-kit/shared/types';
 import {
   isManualSourceKind,
@@ -28,6 +27,7 @@ export type { Database };
 export interface AutoPromotionResult {
   /** Whether promotion occurred */
   promoted: boolean;
+  demoted?: boolean;
   /** Previous importance tier */
   previousTier: string;
   /** New importance tier (same as previous if no promotion) */
@@ -36,6 +36,15 @@ export interface AutoPromotionResult {
   validationCount: number;
   /** Reason for the result */
   reason: string;
+}
+
+export interface PromotionAuditSweepResult {
+  table: 'memory_promotion_audit';
+  dryRun: boolean;
+  olderThanMs: number;
+  cutoff: number;
+  matched: number;
+  deleted: number;
 }
 
 // ───────────────────────────────────────────────────────────────
@@ -48,10 +57,15 @@ export const PROMOTE_TO_IMPORTANT_THRESHOLD = 5;
 /** Positive validations required to promote important -> critical */
 export const PROMOTE_TO_CRITICAL_THRESHOLD = 10;
 
-/** Tier promotion paths (source -> target). Only upward promotions. */
+/** Tier promotion paths (source -> target). */
 export const PROMOTION_PATHS: Readonly<Record<string, { target: string; threshold: number }>> = {
   normal: { target: 'important', threshold: PROMOTE_TO_IMPORTANT_THRESHOLD },
   important: { target: 'critical', threshold: PROMOTE_TO_CRITICAL_THRESHOLD },
+};
+
+export const DEMOTION_PATHS: Readonly<Record<string, { target: string; negativeThreshold: number; positiveFloor: number }>> = {
+  important: { target: 'normal', negativeThreshold: 3, positiveFloor: PROMOTE_TO_IMPORTANT_THRESHOLD - 1 },
+  critical: { target: 'important', negativeThreshold: 5, positiveFloor: PROMOTE_TO_CRITICAL_THRESHOLD - 1 },
 };
 
 /** Rolling window length for promotion throttle safeguard (hours). */
@@ -63,9 +77,8 @@ export const MAX_PROMOTIONS_PER_WINDOW = 3;
 /** Rolling window length in milliseconds. */
 export const PROMOTION_WINDOW_MS = PROMOTION_WINDOW_HOURS * 60 * 60 * 1000;
 
-/** Tiers that cannot be promoted (already at top or special-purpose). */
+/** Special-purpose tiers that are outside automatic tier changes. */
 export const NON_PROMOTABLE_TIERS: ReadonlySet<string> = new Set([
-  'critical',
   'constitutional',
   'temporary',
   'deprecated',
@@ -95,6 +108,22 @@ function getNegativeValidationCount(db: Database, memoryId: number): number {
   }
 }
 
+function getNegativeValidationCounts(db: Database, memoryIds: number[]): Map<number, number> {
+  if (memoryIds.length === 0) return new Map();
+  try {
+    const placeholders = memoryIds.map(() => '?').join(', ');
+    const rows = db.prepare(`
+      SELECT memory_id, COUNT(*) AS count
+      FROM negative_feedback_events
+      WHERE memory_id IN (${placeholders})
+      GROUP BY memory_id
+    `).all(...memoryIds) as Array<{ memory_id: number; count: number }>;
+    return new Map(rows.map((row) => [row.memory_id, row.count]));
+  } catch (_error: unknown) {
+    return new Map();
+  }
+}
+
 function resolvePositiveValidationCount(totalValidationCount: number, negativeValidationCount: number): number {
   return Math.max(0, totalValidationCount - Math.max(0, negativeValidationCount));
 }
@@ -118,11 +147,11 @@ function ensurePromotionAuditTable(db: Database): void {
   db.exec(PROMOTION_AUDIT_TABLE_SQL);
 }
 
-function countRecentPromotions(db: Database, nowMs: number): number {
+function countRecentPromotions(db: Database, memoryId: number, nowMs: number): number {
   const cutoffMs = nowMs - PROMOTION_WINDOW_MS;
   const row = db.prepare(
-    'SELECT COUNT(*) AS count FROM memory_promotion_audit WHERE promoted_at >= ?'
-  ).get(cutoffMs) as { count?: number } | undefined;
+    'SELECT COUNT(*) AS count FROM memory_promotion_audit WHERE memory_id = ? AND promoted_at >= ?'
+  ).get(memoryId, cutoffMs) as { count?: number } | undefined;
   return row?.count ?? 0;
 }
 
@@ -185,6 +214,18 @@ export function checkAutoPromotion(db: Database, memoryId: number): AutoPromotio
       };
     }
 
+    const demotionPath = DEMOTION_PATHS[tier];
+    if (demotionPath && negativeValidationCount >= demotionPath.negativeThreshold && validationCount <= demotionPath.positiveFloor) {
+      return {
+        promoted: false,
+        demoted: true,
+        previousTier: tier,
+        newTier: demotionPath.target,
+        validationCount,
+        reason: `demotion_threshold_met: negative_validation_count=${negativeValidationCount}>=${demotionPath.negativeThreshold}`,
+      };
+    }
+
     // Check if tier has a promotion path
     const path = PROMOTION_PATHS[tier];
     if (!path) {
@@ -229,12 +270,13 @@ export function checkAutoPromotion(db: Database, memoryId: number): AutoPromotio
 }
 
 /**
- * Execute auto-promotion for a memory if it qualifies.
- * Promotes the memory's importance tier in the database.
+ * Execute an automatic tier change for a memory if it qualifies.
+ * Updates the memory's importance tier in the database.
  *
- * Promotion rules (upward only, never demotes):
- * - >=5 positive validations: normal -> important
- * - >=10 positive validations: important -> critical
+   * Tier change rules:
+   * - >=5 positive validations: normal -> important
+   * - >=10 positive validations: important -> critical
+   * - sustained negative validations can demote important/critical one tier
  *
  * @param db - SQLite database connection
  * @param memoryId - ID of the memory to potentially promote
@@ -248,7 +290,7 @@ export function executeAutoPromotion(
   try {
     const check = checkAutoPromotion(db, memoryId);
 
-    if (!check.promoted) {
+    if (!check.promoted && check.demoted !== true) {
       return check;
     }
 
@@ -259,14 +301,14 @@ export function executeAutoPromotion(
 
     const executePromotion = db.transaction(() => {
       const nowMs = Date.now();
-      const recentPromotions = countRecentPromotions(db, nowMs);
+      const recentPromotions = countRecentPromotions(db, memoryId, nowMs);
       if (recentPromotions >= MAX_PROMOTIONS_PER_WINDOW) {
         return {
           promoted: false,
           previousTier: check.previousTier,
           newTier: check.previousTier,
           validationCount: check.validationCount,
-          reason: `promotion_window_rate_limited: ${recentPromotions}/${MAX_PROMOTIONS_PER_WINDOW} in ${PROMOTION_WINDOW_HOURS}h`,
+          reason: `tier_change_window_rate_limited: ${recentPromotions}/${MAX_PROMOTIONS_PER_WINDOW} in ${PROMOTION_WINDOW_HOURS}h`,
         };
       }
 
@@ -304,9 +346,9 @@ export function executeAutoPromotion(
 
     const result = executePromotion();
 
-    if (result.promoted) {
+    if (result.promoted || result.demoted) {
       console.warn(
-        `[auto-promotion] Memory ${memoryId} promoted: ${check.previousTier} -> ${check.newTier} ` +
+        `[auto-promotion] Memory ${memoryId} tier changed: ${check.previousTier} -> ${check.newTier} ` +
         `(${check.validationCount} validations)`
       );
     }
@@ -326,8 +368,8 @@ export function executeAutoPromotion(
 }
 
 /**
- * Batch check all memories for auto-promotion eligibility.
- * Returns a list of memories that qualify for promotion.
+ * Batch check all memories for automatic tier-change eligibility.
+ * Returns a list of memories that qualify for promotion or demotion.
  * Does NOT modify the database -- read-only scan.
  *
  * @param db - SQLite database connection
@@ -338,9 +380,8 @@ export function scanForPromotions(db: Database): AutoPromotionResult[] {
     const rows = db.prepare(`
       SELECT id, importance_tier, validation_count, source_kind
       FROM memory_index
-      WHERE importance_tier IN ('normal', 'important')
-        AND validation_count >= ?
-    `).all(PROMOTE_TO_IMPORTANT_THRESHOLD) as Array<{
+      WHERE importance_tier IN ('normal', 'important', 'critical')
+    `).all() as Array<{
       id: number;
       importance_tier: string;
       validation_count: number;
@@ -348,18 +389,33 @@ export function scanForPromotions(db: Database): AutoPromotionResult[] {
     }>;
 
     const eligible: AutoPromotionResult[] = [];
+    const negativeCounts = getNegativeValidationCounts(db, rows.map((row) => row.id));
 
     for (const row of rows) {
       const tier = row.importance_tier?.toLowerCase() || 'normal';
       if (isManualSourceKind(row.source_kind)) continue;
-      const path = PROMOTION_PATHS[tier];
-      if (!path) continue;
 
-      const negativeValidationCount = getNegativeValidationCount(db, row.id);
+      const negativeValidationCount = negativeCounts.get(row.id) ?? 0;
       const positiveValidationCount = resolvePositiveValidationCount(
         row.validation_count ?? 0,
         negativeValidationCount
       );
+
+      const demotionPath = DEMOTION_PATHS[tier];
+      if (demotionPath && negativeValidationCount >= demotionPath.negativeThreshold && positiveValidationCount <= demotionPath.positiveFloor) {
+        eligible.push({
+          promoted: false,
+          demoted: true,
+          previousTier: tier,
+          newTier: demotionPath.target,
+          validationCount: positiveValidationCount,
+          reason: `demotion_threshold_met: negative_validation_count=${negativeValidationCount}>=${demotionPath.negativeThreshold}`,
+        });
+        continue;
+      }
+
+      const path = PROMOTION_PATHS[tier];
+      if (!path) continue;
 
       if (positiveValidationCount < path.threshold) continue;
 
@@ -378,4 +434,21 @@ export function scanForPromotions(db: Database): AutoPromotionResult[] {
     console.error(`[auto-promotion] scanForPromotions failed: ${msg}`);
     return [];
   }
+}
+
+export function sweepMemoryPromotionAudit(
+  db: Database,
+  options: { olderThanMs?: number; dryRun?: boolean; now?: number } = {},
+): PromotionAuditSweepResult {
+  ensurePromotionAuditTable(db);
+  const olderThanMs = options.olderThanMs ?? 90 * 24 * 60 * 60 * 1000;
+  const cutoff = (options.now ?? Date.now()) - olderThanMs;
+  const row = db.prepare('SELECT COUNT(*) AS count FROM memory_promotion_audit WHERE promoted_at < ?')
+    .get(cutoff) as { count: number };
+  const matched = row.count;
+  const dryRun = options.dryRun !== false;
+  const deleted = dryRun
+    ? 0
+    : (db.prepare('DELETE FROM memory_promotion_audit WHERE promoted_at < ?').run(cutoff) as { changes: number }).changes;
+  return { table: 'memory_promotion_audit', dryRun, olderThanMs, cutoff, matched, deleted };
 }

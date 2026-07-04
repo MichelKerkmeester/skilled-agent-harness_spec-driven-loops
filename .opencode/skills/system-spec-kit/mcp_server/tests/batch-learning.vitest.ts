@@ -268,14 +268,14 @@ describe('Batch Learning — aggregateEvents', () => {
 
   it('computes weighted score correctly', () => {
     const db = createTestDb();
-    // 2 strong (1.0 each) + 1 medium (0.5) = 2.5
+    // 2 positive citations (1.0 each) and 1 reformulation dissatisfaction (-0.5) = 1.5
     seedEvents(db, [
       makeEvent({ confidence: 'strong', sessionId: 'sess-1' }),
       makeEvent({ confidence: 'strong', sessionId: 'sess-2' }),
-      makeEvent({ confidence: 'medium', sessionId: 'sess-3' }),
+      makeEvent({ type: 'query_reformulated', confidence: 'medium', sessionId: 'sess-3' }),
     ]);
     const signals = aggregateEvents(db, BASE_TS - 1, BASE_TS + 1);
-    expect(signals[0]!.weightedScore).toBeCloseTo(2.5);
+    expect(signals[0]!.weightedScore).toBeCloseTo(1.5);
   });
 
   it('computedBoost is capped at MAX_BOOST_DELTA', () => {

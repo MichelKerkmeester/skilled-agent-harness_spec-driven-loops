@@ -76,6 +76,10 @@ export interface CycleResult {
   totalUnchanged: number;
   /** Whether this cycle counts as an improvement (meanNdcgDelta >= 0). */
   isImprovement: boolean;
+  /** Holdout queries that replayed but had no relevance labels. */
+  unlabeledQueryCount?: number;
+  /** Whether this cycle should influence promotion/rollback gating. */
+  hasPromotionSignal?: boolean;
 }
 
 /** Row shape stored in shadow_cycle_results table. */
@@ -91,6 +95,8 @@ export interface CycleResultRow {
   total_degraded: number;
   total_unchanged: number;
   is_improvement: number; // 0 or 1
+  unlabeled_query_count?: number;
+  has_promotion_signal?: number;
 }
 
 /** Promotion gate evaluation result. */
@@ -127,6 +133,16 @@ export interface ShadowEvaluationReport {
   comparisons: RankComparisonResult[];
   cycleResult: CycleResult;
   promotionGate: PromotionGateResult;
+}
+
+export interface ShadowScoringSweepResult {
+  table: 'shadow_scoring_log';
+  dryRun: boolean;
+  olderThanMs: number;
+  cutoff: number;
+  activeShadowUntil: number | null;
+  matched: number;
+  deleted: number;
 }
 
 /* ───────────────────────────────────────────────────────────────
@@ -179,7 +195,9 @@ const SHADOW_CYCLE_RESULTS_SCHEMA_SQL = `
     total_improved   INTEGER NOT NULL DEFAULT 0,
     total_degraded   INTEGER NOT NULL DEFAULT 0,
     total_unchanged  INTEGER NOT NULL DEFAULT 0,
-    is_improvement   INTEGER NOT NULL DEFAULT 0 CHECK(is_improvement IN (0,1))
+    is_improvement   INTEGER NOT NULL DEFAULT 0 CHECK(is_improvement IN (0,1)),
+    unlabeled_query_count INTEGER NOT NULL DEFAULT 0,
+    has_promotion_signal INTEGER NOT NULL DEFAULT 1 CHECK(has_promotion_signal IN (0,1))
   )
 `;
 
@@ -203,8 +221,26 @@ export function initShadowScoringLog(db: Database.Database): void {
   db.exec(SHADOW_SCORING_LOG_SCHEMA_SQL);
   db.exec(SHADOW_SCORING_LOG_INDICES_SQL);
   db.exec(SHADOW_CYCLE_RESULTS_SCHEMA_SQL);
+  ensureShadowCycleResultsColumn(db, 'unlabeled_query_count', 'INTEGER NOT NULL DEFAULT 0');
+  ensureShadowCycleResultsColumn(db, 'has_promotion_signal', 'INTEGER NOT NULL DEFAULT 1 CHECK(has_promotion_signal IN (0,1))');
   db.exec(SHADOW_CYCLE_RESULTS_INDICES_SQL);
   initializedDbs.add(db);
+}
+
+function ensureShadowCycleResultsColumn(
+  db: Database.Database,
+  columnName: string,
+  columnDefinition: string,
+): void {
+  const columns = db.prepare('PRAGMA table_info(shadow_cycle_results)').all() as Array<{ name: string }>;
+  if (columns.some((column) => column.name === columnName)) {
+    return;
+  }
+  db.exec(`ALTER TABLE shadow_cycle_results ADD COLUMN ${columnName} ${columnDefinition}`);
+}
+
+function hasRelevanceLabels(liveRanked: RankedItem[], shadowRanked: RankedItem[]): boolean {
+  return [...liveRanked, ...shadowRanked].some((item) => typeof item.relevanceScore === 'number');
 }
 
 /* ───────────────────────────────────────────────────────────────
@@ -438,8 +474,9 @@ export function recordCycleResult(
     const res = db.prepare(`
       INSERT OR REPLACE INTO shadow_cycle_results
         (cycle_id, evaluated_at, query_count, mean_ndcg_delta, mean_mrr_delta,
-         mean_kendall_tau, total_improved, total_degraded, total_unchanged, is_improvement)
-      VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+         mean_kendall_tau, total_improved, total_degraded, total_unchanged, is_improvement,
+         unlabeled_query_count, has_promotion_signal)
+      VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
     `).run(
       result.cycleId,
       result.evaluatedAt,
@@ -450,7 +487,9 @@ export function recordCycleResult(
       result.totalImproved,
       result.totalDegraded,
       result.totalUnchanged,
-      result.isImprovement ? 1 : 0
+      result.isImprovement ? 1 : 0,
+      Math.max(0, Math.floor(result.unlabeledQueryCount ?? 0)),
+      result.hasPromotionSignal === false ? 0 : 1
     );
 
     return (res as { lastInsertRowid: number | bigint }).lastInsertRowid as number;
@@ -473,12 +512,15 @@ export function getConsecutiveImprovements(db: Database.Database): number {
     initShadowScoringLog(db);
 
     const rows = db.prepare(`
-      SELECT is_improvement FROM shadow_cycle_results
+      SELECT is_improvement, has_promotion_signal FROM shadow_cycle_results
       ORDER BY evaluated_at DESC
-    `).all() as Array<{ is_improvement: number }>;
+    `).all() as Array<{ is_improvement: number; has_promotion_signal?: number }>;
 
     let count = 0;
     for (const row of rows) {
+      if (row.has_promotion_signal === 0) {
+        continue;
+      }
       if (row.is_improvement === 1) {
         count++;
       } else {
@@ -525,6 +567,8 @@ export function getCycleResults(db: Database.Database): CycleResult[] {
       totalDegraded: row.total_degraded,
       totalUnchanged: row.total_unchanged,
       isImprovement: row.is_improvement === 1,
+      unlabeledQueryCount: row.unlabeled_query_count ?? 0,
+      hasPromotionSignal: row.has_promotion_signal !== 0,
     }));
   } catch {
     return [];
@@ -553,9 +597,10 @@ export function evaluatePromotionGate(db: Database.Database): PromotionGateResul
 
     // Check if the most recent cycle was a regression
     const rows = db.prepare(`
-      SELECT is_improvement FROM shadow_cycle_results
+      SELECT is_improvement, has_promotion_signal FROM shadow_cycle_results
+      WHERE has_promotion_signal != 0
       ORDER BY evaluated_at DESC LIMIT 1
-    `).all() as Array<{ is_improvement: number }>;
+    `).all() as Array<{ is_improvement: number; has_promotion_signal?: number }>;
 
     let recommendation: 'promote' | 'wait' | 'rollback';
 
@@ -632,27 +677,35 @@ export function runShadowEvaluation(
         totalDegraded: 0,
         totalUnchanged: 0,
         isImprovement: false,
+        unlabeledQueryCount: 0,
+        hasPromotionSignal: false,
       };
-      recordCycleResult(db, emptyCycleResult);
       return {
         cycleId,
         evaluatedAt,
         holdoutQueryIds: [],
         comparisons: [],
         cycleResult: emptyCycleResult,
-        promotionGate: evaluatePromotionGate(db),
+        promotionGate: { ready: false, consecutiveWeeks: 0, recommendation: 'wait' },
       };
     }
 
     // Steps 3-5: Compare and log each holdout query
     const comparisons: RankComparisonResult[] = [];
+    const labeledComparisons: RankComparisonResult[] = [];
+    let unlabeledQueryCount = 0;
 
     for (const qid of holdoutQueryIds) {
       const liveRanked = computeLiveRanks(qid);
       const shadowRanked = computeShadowRanks(qid);
       const comparison = compareRanks(qid, liveRanked, shadowRanked);
       comparisons.push(comparison);
-      logRankDelta(db, comparison, cycleId, evaluatedAt);
+      if (hasRelevanceLabels(liveRanked, shadowRanked)) {
+        labeledComparisons.push(comparison);
+        logRankDelta(db, comparison, cycleId, evaluatedAt);
+      } else {
+        unlabeledQueryCount += 1;
+      }
     }
 
     // Step 6: Aggregate into cycle result
@@ -663,7 +716,7 @@ export function runShadowEvaluation(
     let sumMrrDelta = 0;
     let sumKendallTau = 0;
 
-    for (const comp of comparisons) {
+    for (const comp of labeledComparisons) {
       totalImproved += comp.metrics.improvedCount;
       totalDegraded += comp.metrics.degradedCount;
       totalUnchanged += comp.metrics.unchangedCount;
@@ -672,7 +725,7 @@ export function runShadowEvaluation(
       sumKendallTau += comp.metrics.kendallTau;
     }
 
-    const queryCount = comparisons.length;
+    const queryCount = labeledComparisons.length;
     const meanNdcgDelta = queryCount > 0 ? sumNdcgDelta / queryCount : 0;
     const meanMrrDelta = queryCount > 0 ? sumMrrDelta / queryCount : 0;
     const meanKendallTau = queryCount > 0 ? sumKendallTau / queryCount : 0;
@@ -688,6 +741,8 @@ export function runShadowEvaluation(
       totalDegraded,
       totalUnchanged,
       isImprovement: queryCount > 0 && meanNdcgDelta > MIN_NDCG_IMPROVEMENT,
+      unlabeledQueryCount,
+      hasPromotionSignal: queryCount > 0,
     };
 
     // Step 7: Record cycle result
@@ -709,6 +764,31 @@ export function runShadowEvaluation(
     console.warn('[shadow-scoring] runShadowEvaluation error:', message);
     return null;
   }
+}
+
+export function sweepShadowScoringLog(
+  db: Database.Database,
+  options: { olderThanMs?: number; dryRun?: boolean; now?: number } = {},
+): ShadowScoringSweepResult {
+  initShadowScoringLog(db);
+  const olderThanMs = options.olderThanMs ?? 90 * 24 * 60 * 60 * 1000;
+  const now = options.now ?? Date.now();
+  const cutoff = now - olderThanMs;
+  const earliestRow = db.prepare('SELECT MIN(evaluated_at) AS earliest FROM shadow_scoring_log')
+    .get() as { earliest: number | null };
+  const activeShadowUntil = earliestRow.earliest === null ? null : earliestRow.earliest + EVALUATION_WINDOW_MS;
+  if (activeShadowUntil !== null && now < activeShadowUntil) {
+    return { table: 'shadow_scoring_log', dryRun: options.dryRun !== false, olderThanMs, cutoff, activeShadowUntil, matched: 0, deleted: 0 };
+  }
+
+  const row = db.prepare('SELECT COUNT(*) AS count FROM shadow_scoring_log WHERE evaluated_at < ?')
+    .get(cutoff) as { count: number };
+  const matched = row.count;
+  const dryRun = options.dryRun !== false;
+  const deleted = dryRun
+    ? 0
+    : (db.prepare('DELETE FROM shadow_scoring_log WHERE evaluated_at < ?').run(cutoff) as { changes: number }).changes;
+  return { table: 'shadow_scoring_log', dryRun, olderThanMs, cutoff, activeShadowUntil, matched, deleted };
 }
 
 /* ───────────────────────────────────────────────────────────────

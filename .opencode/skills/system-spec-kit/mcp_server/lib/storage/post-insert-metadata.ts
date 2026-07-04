@@ -76,7 +76,7 @@ export const ALLOWED_POST_INSERT_COLUMNS = new Set<string>([
  *
  * Special handling:
  * - `encoding_intent` uses `COALESCE(?, encoding_intent)`
- * - `last_review` is always refreshed to `datetime('now')`
+ * - `last_review` refreshes only when metadata actually changes
  *
  * @param db - Database connection that stores memory rows.
  * @param memoryId - Inserted memory identifier to enrich.
@@ -137,7 +137,12 @@ export function applyPostInsertMetadata(
     values.push(val);
   }
 
-  setClauses.push("last_review = datetime('now')");
+  if (setClauses.length === 0) {
+    return;
+  }
+
+  setClauses.push('last_review = ?');
+  values.push(new Date().toISOString());
 
   values.push(memoryId);
 

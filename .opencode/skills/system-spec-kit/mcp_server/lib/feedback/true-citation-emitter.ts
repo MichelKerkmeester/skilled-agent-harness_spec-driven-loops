@@ -114,8 +114,7 @@ const TRUE_CITATION_SCHEMA_SQL = `
     memory_id  TEXT NOT NULL,
     used       INTEGER NOT NULL CHECK(used IN (0, 1)),
     session_id TEXT,
-    timestamp  INTEGER NOT NULL,
-    UNIQUE(query_id, memory_id)
+    timestamp  INTEGER NOT NULL
   )
 `;
 
@@ -123,7 +122,9 @@ const TRUE_CITATION_INDEX_SQL = `
   CREATE INDEX IF NOT EXISTS idx_true_citation_query   ON true_citation_events(query_id);
   CREATE INDEX IF NOT EXISTS idx_true_citation_memory  ON true_citation_events(memory_id);
   CREATE INDEX IF NOT EXISTS idx_true_citation_used    ON true_citation_events(used);
-  CREATE INDEX IF NOT EXISTS idx_true_citation_session ON true_citation_events(session_id)
+  CREATE INDEX IF NOT EXISTS idx_true_citation_session ON true_citation_events(session_id);
+  CREATE UNIQUE INDEX IF NOT EXISTS idx_true_citation_session_query_memory
+    ON true_citation_events(COALESCE(session_id, ''), query_id, memory_id)
 `;
 
 /** This ledger is shadow-only and must never join the live ranking path. */
@@ -154,6 +155,7 @@ export function initTrueCitationLedger(db: Database.Database): void {
 function buildMemoryIdMatcher(memoryId: string): RegExp | null {
   const trimmed = memoryId.trim();
   if (!trimmed) return null;
+  if (/^\d$/.test(trimmed)) return null;
   const escaped = trimmed.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
   // (?<![\w-]) / (?![\w-]) treats hyphens as part of the id token too, so
   // "mem-1" is not matched inside "mem-12".
@@ -193,20 +195,23 @@ function distinctiveAnchorWords(anchor: string): string[] {
 
 /**
  * True when the assistant text echoes a memory's content anchor strongly enough to
- * count as a citation. The anchor's distinctive words must ALL appear as standalone
- * tokens in the text, so a partial overlap on one generic word never fires. This is
- * the precision lever: the assistant cites a memory by what it says, so a title or
- * a distinctive phrase is a far truer signal than the raw database id.
+ * count as a citation. At least two distinctive anchor words must appear as
+ * standalone tokens in the text, so a one-word overlap never fires while a concise
+ * paraphrase can still count as use.
  */
 function anchorReferenced(anchor: string, lowerText: string): boolean {
   const words = distinctiveAnchorWords(anchor);
   if (words.length === 0) return false;
+  let matched = 0;
   for (const word of words) {
     const escaped = word.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
     const matcher = new RegExp(`(?<![\\w-])${escaped}(?![\\w-])`, 'u');
-    if (!matcher.test(lowerText)) return false;
+    if (matcher.test(lowerText)) {
+      matched += 1;
+      if (matched >= 2) return true;
+    }
   }
-  return true;
+  return false;
 }
 
 /**

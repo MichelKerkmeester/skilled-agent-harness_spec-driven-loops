@@ -56,6 +56,15 @@ export interface AuditLogEntry {
   shadowMode: boolean;
 }
 
+export interface LearnedFeedbackSweepResult {
+  table: 'learned_feedback_audit';
+  dryRun: boolean;
+  olderThanMs: number;
+  cutoff: number;
+  matched: number;
+  deleted: number;
+}
+
 /** Result of a learned trigger query with 0.7x weighting. */
 export interface LearnedTriggerMatch {
   memoryId: number;
@@ -367,18 +376,18 @@ export function applyLearnedTriggers(
       throw new Error(`Memory not found: ${memoryId}`);
     }
 
-    const existing = parseLearnedTriggers(row.learned_triggers);
-    const existingTerms = new Set(existing.map((e) => e.term.toLowerCase()));
-
     const nowSeconds = Math.floor(Date.now() / 1000);
     const expiresAt = nowSeconds + LEARNED_TERM_TTL_SECONDS;
+    const existing = parseLearnedTriggers(row.learned_triggers);
+    const liveExisting = existing.filter((entry) => entry.expiresAt > nowSeconds);
+    const existingTerms = new Set(liveExisting.map((e) => e.term.toLowerCase()));
 
     // Filter out already-learned terms and respect rate cap (Safeguard #4)
     const newEntries: LearnedTriggerEntry[] = [];
     for (const term of terms) {
       const normalizedTerm = term.toLowerCase();
       if (existingTerms.has(normalizedTerm)) continue;
-      if (existing.length + newEntries.length >= MAX_TERMS_PER_MEMORY) break;
+      if (liveExisting.length + newEntries.length >= MAX_TERMS_PER_MEMORY) break;
 
       newEntries.push({
         term: normalizedTerm,
@@ -392,7 +401,7 @@ export function applyLearnedTriggers(
 
     if (newEntries.length === 0) return true;
 
-    const updated = [...existing, ...newEntries];
+    const updated = [...liveExisting, ...newEntries];
     const serialized = serializeLearnedTriggers(updated);
 
     // CRITICAL: Update ONLY the learned_triggers column on memory_index.
@@ -613,6 +622,30 @@ export function clearAllLearnedTriggers(db: Database): number {
     console.error(`[learned-feedback] clearAllLearnedTriggers failed: ${msg}`);
     return 0;
   }
+}
+
+export function sweepLearnedFeedbackAudit(
+  db: Database,
+  options: { olderThanMs?: number; dryRun?: boolean; now?: number } = {},
+): LearnedFeedbackSweepResult {
+  ensureAuditTable(db);
+  const olderThanMs = options.olderThanMs ?? 90 * 24 * 60 * 60 * 1000;
+  const cutoff = (options.now ?? Date.now()) - olderThanMs;
+  const row = db.prepare('SELECT COUNT(*) AS count FROM learned_feedback_audit WHERE timestamp < ?')
+    .get(cutoff) as { count: number };
+  const matched = row.count;
+  const dryRun = options.dryRun !== false;
+  const deleted = dryRun
+    ? 0
+    : (db.prepare('DELETE FROM learned_feedback_audit WHERE timestamp < ?').run(cutoff) as { changes: number }).changes;
+  return {
+    table: 'learned_feedback_audit',
+    dryRun,
+    olderThanMs,
+    cutoff,
+    matched,
+    deleted,
+  };
 }
 
 // ───────────────────────────────────────────────────────────────

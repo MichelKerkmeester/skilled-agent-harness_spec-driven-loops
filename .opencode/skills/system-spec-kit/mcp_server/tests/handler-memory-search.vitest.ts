@@ -6,6 +6,7 @@ import * as core from '../core';
 import * as toolCache from '../lib/cache/tool-cache';
 import * as sessionManager from '../lib/session/session-manager';
 import * as vectorIndex from '../lib/search/vector-index';
+import * as accessTracker from '../lib/storage/access-tracker';
 
 type MemorySearchResponse = Awaited<ReturnType<typeof handler.handleMemorySearch>>;
 type ChunkReassemblyInput =
@@ -194,6 +195,26 @@ describe('Packet 010 lexical capability response surface', () => {
     expect(data?.fallbackState).toBe('ok');
     expect(Array.isArray(data?.results)).toBe(true);
     expect((data?.results as Array<Record<string, unknown>>)[0]?.id).toBe(202);
+  });
+
+  it('tracks returned rows on cached responses when requested', async () => {
+    vi.spyOn(toolCache, 'get').mockReturnValue({
+      summary: 'Found 2 memories',
+      data: {
+        count: 2,
+        results: [
+          { id: 301, title: 'Tracked result' },
+          { id: 302, title: 'Also tracked' },
+        ],
+      },
+      hints: [],
+    });
+    vi.spyOn(accessTracker, 'init').mockImplementation(() => undefined);
+    const trackSpy = vi.spyOn(accessTracker, 'trackMultipleAccesses').mockImplementation(() => undefined);
+
+    await handler.handleMemorySearch({ query: 'tracked cached query', trackAccess: true });
+
+    expect(trackSpy).toHaveBeenCalledWith([301, 302]);
   });
 });
 

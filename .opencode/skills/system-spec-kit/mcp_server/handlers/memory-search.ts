@@ -7,6 +7,7 @@
 
 import * as toolCache from '../lib/cache/tool-cache.js';
 import * as causalEdges from '../lib/storage/causal-edges.js';
+import * as accessTracker from '../lib/storage/access-tracker.js';
 import * as sessionManager from '../lib/session/session-manager.js';
 import * as intentClassifier from '../lib/search/intent-classifier.js';
 import { isSessionBoostEnabled, isCausalBoostEnabled, isCommunitySearchFallbackEnabled, isDualRetrievalEnabled, isIntentAutoProfileEnabled, isResultExplainEnabled } from '../lib/search/search-flags.js';
@@ -516,6 +517,25 @@ function buildSearchResponseFromPayload(
     startTime,
     cacheHit,
   });
+}
+
+function trackCachedResultAccess(payload: SearchCachePayload, enabled: boolean): void {
+  if (!enabled) return;
+  const results = Array.isArray(payload.data.results)
+    ? payload.data.results as Array<Record<string, unknown>>
+    : [];
+  const memoryIds = results
+    .map((result) => result.id)
+    .filter((id): id is number => typeof id === 'number' && Number.isSafeInteger(id) && id > 0);
+  if (memoryIds.length === 0) return;
+
+  try {
+    accessTracker.init(requireDb());
+    accessTracker.trackMultipleAccesses(memoryIds);
+  } catch (error: unknown) {
+    const message = toErrorMessage(error);
+    console.warn(`[memory-search] Cached access tracking skipped: ${message}`);
+  }
 }
 
 const EFFECTIVE_SCORE_FIELDS = ['intentAdjustedScore', 'rrfScore', 'score'] as const;
@@ -1224,6 +1244,7 @@ async function handleMemorySearch(args: SearchArgs): Promise<MCPResponse> {
     resultExplainDebugEnabled,
     retrievalLevel,
     graphUnifiedEnabled,
+    trackAccess,
     cacheVersion: CANONICAL_READER_CACHE_VERSION,
     causalEdgesGeneration: causalEdgesGenerationForCache,
     folderBoost,
@@ -1240,6 +1261,7 @@ async function handleMemorySearch(args: SearchArgs): Promise<MCPResponse> {
   let goalRefinementPayload: Record<string, unknown> | null = null;
 
   if (cachedPayload) {
+    trackCachedResultAccess(cachedPayload, trackAccess);
     responseToReturn = buildSearchResponseFromPayload(cachedPayload, _searchStartTime, true);
   } else {
     const pipelineConfig: PipelineConfig = {

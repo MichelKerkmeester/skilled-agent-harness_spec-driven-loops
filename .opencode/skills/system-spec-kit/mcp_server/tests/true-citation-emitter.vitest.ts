@@ -42,14 +42,30 @@ describe('True-Citation Emitter (Stage 1)', () => {
 
   it('matches memory ids on word boundaries, not as substrings', () => {
     const turns: AssistantTurnText[] = [
-      { text: 'I relied on memory 12 and mem-7 for the answer.', timestamp: 100 },
+      { text: 'I relied on memory 12, memory 28, and mem-7 for the answer. There were 8 packets.', timestamp: 100 },
     ];
     // "1" must NOT match inside "12"; "mem-7" must NOT match inside a longer id.
-    const referenced = detectReferencedMemoryIds(['1', '12', 'mem-7', 'mem-70'], turns);
+    const referenced = detectReferencedMemoryIds(['1', '8', '12', '28', 'mem-7', 'mem-70'], turns);
     expect(referenced.has('12')).toBe(true);
+    expect(referenced.has('28')).toBe(true);
     expect(referenced.has('mem-7')).toBe(true);
     expect(referenced.has('1')).toBe(false);
+    expect(referenced.has('8')).toBe(false);
     expect(referenced.has('mem-70')).toBe(false);
+  });
+
+  it('matches content anchors on a two-word subset', () => {
+    const turns: AssistantTurnText[] = [
+      { text: 'The answer uses the canonical shard approach.', timestamp: 100 },
+    ];
+
+    const referenced = detectReferencedMemoryIds(['101', '102'], turns, {
+      '101': 'Canonical Vector Shard Split',
+      '102': 'Canonical Vector Index',
+    });
+
+    expect(referenced.has('101')).toBe(true);
+    expect(referenced.has('102')).toBe(false);
   });
 
   /* ───────────── pure pair mining: real negatives ───────────── */
@@ -132,6 +148,22 @@ describe('True-Citation Emitter (Stage 1)', () => {
     // A second pass over the same window must not double-count or flip rows.
     const second = emitTrueCitations(db, shownSets, turns, 9999);
     expect(second.emitted).toBe(0);
+    expect(getTrueCitationCount(db)).toBe(2);
+  });
+
+  it('deduplicates within a session, not across different sessions', () => {
+    const db = createTestDb();
+    const turns: AssistantTurnText[] = [{ text: 'memory 101 helped', timestamp: 1500 }];
+
+    const first = emitTrueCitations(db, [
+      { queryId: 'q1', shownMemoryIds: ['101'], shownAt: 1000, sessionId: 'sess-1' },
+    ], turns, 9000);
+    const second = emitTrueCitations(db, [
+      { queryId: 'q1', shownMemoryIds: ['101'], shownAt: 1000, sessionId: 'sess-2' },
+    ], turns, 9001);
+
+    expect(first.emitted).toBe(1);
+    expect(second.emitted).toBe(1);
     expect(getTrueCitationCount(db)).toBe(2);
   });
 

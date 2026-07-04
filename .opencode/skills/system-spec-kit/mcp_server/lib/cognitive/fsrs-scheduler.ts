@@ -163,7 +163,10 @@ function calculateElapsedDays(lastReview: string | null, nowMs: number = Date.no
     return 0;
   }
 
-  const lastDate = new Date(lastReview);
+  const normalizedReview = /^\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}$/u.test(lastReview)
+    ? `${lastReview.replace(' ', 'T')}.000Z`
+    : lastReview;
+  const lastDate = new Date(normalizedReview);
   if (isNaN(lastDate.getTime())) return 0;
   const safeNowMs = Number.isFinite(nowMs) ? nowMs : Date.now();
   const diffMs = safeNowMs - lastDate.getTime();
@@ -348,14 +351,14 @@ function applyClassificationDecay(
   contextType: string,
   importanceTier: string
 ): number {
-  if (isHybridDecayPolicyEnabled() && HYBRID_NO_DECAY_CONTEXT_TYPES.has(contextType)) {
-    return Infinity;
-  }
-
   // Graduated: default-ON. Set SPECKIT_CLASSIFICATION_DECAY=false to disable.
   const flag = process.env.SPECKIT_CLASSIFICATION_DECAY?.toLowerCase();
   if (flag === 'false' || flag === '0') {
     return stability;
+  }
+
+  if (isHybridDecayPolicyEnabled() && HYBRID_NO_DECAY_CONTEXT_TYPES.has(contextType)) {
+    return Infinity;
   }
 
   const multiplier = getClassificationDecayMultiplier(contextType, importanceTier);

@@ -354,6 +354,14 @@ export const memoryRetentionSweepSchema = getSchema({
   dryRun: z.boolean().optional(),
 });
 
+export const memoryLearnedExpireSchema = getSchema({
+  dryRun: z.boolean().optional(),
+});
+
+export const memoryLearnedClearSchema = getSchema({
+  confirm: z.literal(true),
+});
+
 export const memoryEmbeddingReconcileSchema = getSchema({
   mode: z.enum(['dry-run', 'apply']).optional(),
   activeOnly: z.boolean().optional(),
@@ -600,6 +608,8 @@ export const TOOL_SCHEMAS: Record<string, ToolInputSchema> = {
   memory_validate: memoryValidateSchema as unknown as ToolInputSchema,
   memory_bulk_delete: memoryBulkDeleteSchema as unknown as ToolInputSchema,
   memory_retention_sweep: memoryRetentionSweepSchema as unknown as ToolInputSchema,
+  memory_learned_expire: memoryLearnedExpireSchema as unknown as ToolInputSchema,
+  memory_learned_clear: memoryLearnedClearSchema as unknown as ToolInputSchema,
   memory_embedding_reconcile: memoryEmbeddingReconcileSchema as unknown as ToolInputSchema,
   checkpoint_create: checkpointCreateSchema as unknown as ToolInputSchema,
   checkpoint_list: checkpointListSchema as unknown as ToolInputSchema,
@@ -652,6 +662,8 @@ const ALLOWED_PARAMETERS: Record<string, string[]> = {
   memory_validate: ['id', 'wasUseful', 'queryId', 'queryTerms', 'resultRank', 'totalResultsShown', 'searchMode', 'intent', 'sessionId', 'notes'],
   memory_bulk_delete: ['tier', 'specFolder', 'confirm', 'olderThanDays', 'skipCheckpoint'],
   memory_retention_sweep: ['dryRun'],
+  memory_learned_expire: ['dryRun'],
+  memory_learned_clear: ['confirm'],
   memory_embedding_reconcile: ['mode', 'activeOnly', 'resetMissing', 'missingFailureScope', 'maskedFailedPolicy', 'providerFailurePolicy', 'requireActiveShard', 'repairSuccessCoverage'],
   checkpoint_create: ['name', 'includeEmbeddings', 'specFolder', 'tenantId', 'userId', 'agentId', 'metadata'],
   checkpoint_list: ['specFolder', 'tenantId', 'userId', 'agentId', 'limit'],

@@ -556,6 +556,31 @@ describe('Reporting Dashboard (R13-S3)', () => {
       expect(invTrend!.direction).toBe('improved');
       expect(invTrend!.delta).toBeLessThan(0);
     });
+
+    it('marks rising ablation latency as a regression', async () => {
+      seedSnapshots(testDb, [
+        {
+          eval_run_id: 1,
+          metric_name: 'ablation_latency_vector',
+          metric_value: 50,
+          metadata: JSON.stringify({ sprint: 'sprint-1' }),
+          created_at: '2026-01-10T10:00:00.000Z',
+        },
+        {
+          eval_run_id: 2,
+          metric_name: 'ablation_latency_vector',
+          metric_value: 75,
+          metadata: JSON.stringify({ sprint: 'sprint-2' }),
+          created_at: '2026-01-20T10:00:00.000Z',
+        },
+      ]);
+
+      const report = await generateDashboardReport();
+      const latencyTrend = report.trends.find(t => t.metric === 'ablation_latency_vector');
+      expect(latencyTrend).toBeDefined();
+      expect(latencyTrend!.direction).toBe('regressed');
+      expect(latencyTrend!.delta).toBeGreaterThan(0);
+    });
   });
 
   /* --- S7-RD-5: formatReportText --- */

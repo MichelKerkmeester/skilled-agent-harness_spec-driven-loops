@@ -440,8 +440,9 @@ describe('Stage 2 fusion regression coverage', () => {
 
     expect(selectGet).toHaveBeenCalledWith(row.id);
     expect(updateRun).toHaveBeenCalledTimes(1);
-    const [newStability, lastAccessed, memoryId] = updateRun.mock.calls[0];
+    const [newStability, lastReview, lastAccessed, memoryId] = updateRun.mock.calls[0];
     expect(newStability as number).toBeGreaterThan(1);
+    expect(lastReview).toBe(new Date(nowMs).toISOString());
     expect(lastAccessed).toBe(nowMs);
     expect(memoryId).toBe(row.id);
   });

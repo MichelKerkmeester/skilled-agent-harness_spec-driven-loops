@@ -138,4 +138,28 @@ describe('T055: positive-validation semantics for promotion thresholds', () => {
     expect(eligible).toHaveLength(1);
     expect(eligible[0].reason).toContain('positive_validation_count=5>=5');
   });
+
+  it('demotes sustained negative signals without flapping at the boundary', () => {
+    insertMemory(20, { tier: 'important', validationCount: 5 });
+    recordNegativeFeedbackEvent(db, 20);
+    recordNegativeFeedbackEvent(db, 20);
+    recordNegativeFeedbackEvent(db, 20);
+
+    const demotion = executeAutoPromotion(db, 20);
+    expect(demotion.demoted).toBe(true);
+    expect(demotion.newTier).toBe('normal');
+
+    const demotedRow = db.prepare('SELECT importance_tier FROM memory_index WHERE id = 20').get() as { importance_tier: string };
+    expect(demotedRow.importance_tier).toBe('normal');
+
+    insertMemory(21, { tier: 'important', validationCount: 8 });
+    recordNegativeFeedbackEvent(db, 21);
+    recordNegativeFeedbackEvent(db, 21);
+    recordNegativeFeedbackEvent(db, 21);
+
+    const held = checkAutoPromotion(db, 21);
+    expect(held.demoted).not.toBe(true);
+    expect(held.newTier).toBe('important');
+    expect(held.reason).toContain('below_threshold');
+  });
 });

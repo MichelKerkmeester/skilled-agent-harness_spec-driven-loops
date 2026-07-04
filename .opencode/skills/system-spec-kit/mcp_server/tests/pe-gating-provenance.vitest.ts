@@ -221,14 +221,15 @@ describe('PE mutation provenance', () => {
 
     expect(result.status).toBe('reinforced');
     const row = database.prepare(`
-      SELECT source_kind, provenance_source, provenance_actor
+      SELECT source_kind, provenance_source, provenance_actor, last_review
       FROM memory_index
       WHERE id = ?
-    `).get(101) as { source_kind: string; provenance_source: string; provenance_actor: string };
+    `).get(101) as { source_kind: string; provenance_source: string; provenance_actor: string; last_review: string };
     expect(row).toEqual({
       source_kind: 'human',
       provenance_source: 'system-scheduler',
       provenance_actor: 'daemon-scheduler',
+      last_review: expect.stringMatching(/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}\.\d{3}Z$/),
     });
   });
 });

@@ -20,10 +20,7 @@
 /** Shadow-only batch learning pipeline. Callable on-demand via runBatchLearning(db, opts). No live ranking mutations — writes to batch_learning_log for observability. Feature-flag gated by SPECKIT_BATCH_LEARNED_FEEDBACK (default ON). */
 
 import type Database from 'better-sqlite3';
-import {
-  initFeedbackLedger,
-  getFeedbackEvents,
-} from './feedback-ledger.js';
+import { initFeedbackLedger } from './feedback-ledger.js';
 import type { FeedbackConfidence, FeedbackEventType } from './feedback-ledger.js';
 
 /* ───────────────────────────────────────────────────────────────
@@ -162,6 +159,15 @@ export interface BatchLearningLogRow {
   promoted: 0 | 1;
 }
 
+export interface BatchLearningSweepResult {
+  table: 'batch_learning_log';
+  dryRun: boolean;
+  olderThanMs: number;
+  cutoff: number;
+  matched: number;
+  deleted: number;
+}
+
 /** Options for `runBatchLearning`. */
 export interface BatchLearningOptions {
   /** Epoch-ms timestamp of the batch run. Defaults to Date.now(). */
@@ -225,7 +231,8 @@ const BATCH_LEARNING_LOG_SCHEMA_SQL = `
 const BATCH_LEARNING_LOG_INDICES_SQL = `
   CREATE INDEX IF NOT EXISTS idx_batch_log_memory_id  ON batch_learning_log(memory_id);
   CREATE INDEX IF NOT EXISTS idx_batch_log_run_at     ON batch_learning_log(batch_run_at);
-  CREATE INDEX IF NOT EXISTS idx_batch_log_promoted   ON batch_learning_log(promoted)
+  CREATE INDEX IF NOT EXISTS idx_batch_log_promoted   ON batch_learning_log(promoted);
+  CREATE UNIQUE INDEX IF NOT EXISTS idx_batch_log_memory_run_unique ON batch_learning_log(memory_id, batch_run_at)
 `;
 
 /** Track which DB handles have had the batch-learning schema initialized. */
@@ -267,54 +274,70 @@ export function aggregateEvents(
 ): AggregatedSignal[] {
   try {
     initBatchLearning(db);
+    const rows = db.prepare(`
+      WITH deduped AS (
+        SELECT
+          MIN(id) AS id,
+          type,
+          memory_id,
+          query_id,
+          confidence,
+          timestamp,
+          COALESCE(session_id, '__null_' || id) AS session_key,
+          COUNT(*) - 1 AS duplicate_count
+        FROM feedback_events
+        WHERE timestamp >= ? AND timestamp <= ?
+        GROUP BY type, memory_id, query_id, confidence, timestamp, COALESCE(session_id, '__null_' || id)
+      )
+      SELECT
+        memory_id,
+        COUNT(DISTINCT session_key) AS session_count,
+        COUNT(DISTINCT query_id) AS query_count,
+        SUM(CASE WHEN confidence = 'strong' THEN 1 ELSE 0 END) AS strong_count,
+        SUM(CASE WHEN confidence = 'medium' THEN 1 ELSE 0 END) AS medium_count,
+        SUM(CASE WHEN confidence = 'weak' THEN 1 ELSE 0 END) AS weak_count,
+        SUM(CASE WHEN type = 'search_shown' THEN 1 ELSE 0 END) AS search_shown_count,
+        SUM(CASE WHEN type = 'result_cited' THEN 1 ELSE 0 END) AS result_cited_count,
+        SUM(CASE WHEN type = 'query_reformulated' THEN 1 ELSE 0 END) AS query_reformulated_count,
+        SUM(CASE WHEN type = 'same_topic_requery' THEN 1 ELSE 0 END) AS same_topic_requery_count,
+        SUM(CASE WHEN type = 'follow_on_tool_use' THEN 1 ELSE 0 END) AS follow_on_tool_use_count,
+        MIN(timestamp) AS first_seen,
+        MAX(timestamp) AS last_seen,
+        SUM(duplicate_count) AS duplicate_count
+      FROM deduped
+      GROUP BY memory_id
+    `).all(since, until) as Array<{
+      memory_id: string;
+      session_count: number;
+      query_count: number;
+      strong_count: number;
+      medium_count: number;
+      weak_count: number;
+      search_shown_count: number;
+      result_cited_count: number;
+      query_reformulated_count: number;
+      same_topic_requery_count: number;
+      follow_on_tool_use_count: number;
+      first_seen: number;
+      last_seen: number;
+      duplicate_count: number;
+    }>;
 
-    // Fetch all events in the window
-    const events = getFeedbackEvents(db, { since, until });
-
-    const byMemory = new Map<string, AggregationBucket>();
-    const seenEvents = new Map<string, AggregationBucket>();
-
-    for (const ev of events) {
-      const dedupKey = feedbackEventDedupKey(ev);
-      const original = seenEvents.get(dedupKey);
-      if (original) {
-        original.duplicateCount++;
-        continue;
-      }
-
-      let entry = byMemory.get(ev.memory_id);
-      if (!entry) {
-        entry = {
-          sessions: new Set<string>(),
-          queries: new Set<string>(),
-          strong: 0,
-          medium: 0,
-          weak: 0,
-          firstSeen: ev.timestamp,
-          lastSeen: ev.timestamp,
-          typeCounts: createEventTypeCounts(),
-          duplicateCount: 0,
-        };
-        byMemory.set(ev.memory_id, entry);
-      }
-      seenEvents.set(dedupKey, entry);
-      // Count distinct sessions (null session_id treated as each own distinct pseudo-session)
-      const sessionKey = ev.session_id ?? `__null_${ev.id}`;
-      entry.sessions.add(sessionKey);
-      entry.queries.add(ev.query_id);
-      entry.firstSeen = Math.min(entry.firstSeen, ev.timestamp);
-      entry.lastSeen = Math.max(entry.lastSeen, ev.timestamp);
-      entry[ev.confidence]++;
-      entry.typeCounts[ev.type]++;
-    }
-
-    // Build AggregatedSignal array
     const signals: AggregatedSignal[] = [];
-    for (const [memoryId, data] of byMemory) {
+    for (const data of rows) {
+      const typeCounts: FeedbackEventTypeCounts = {
+        search_shown: data.search_shown_count ?? 0,
+        result_cited: data.result_cited_count ?? 0,
+        query_reformulated: data.query_reformulated_count ?? 0,
+        same_topic_requery: data.same_topic_requery_count ?? 0,
+        follow_on_tool_use: data.follow_on_tool_use_count ?? 0,
+      };
       const weightedScore =
-        data.strong * CONFIDENCE_WEIGHTS.strong +
-        data.medium * CONFIDENCE_WEIGHTS.medium +
-        data.weak   * CONFIDENCE_WEIGHTS.weak;
+        (typeCounts.result_cited * CONFIDENCE_WEIGHTS.strong) +
+        (typeCounts.follow_on_tool_use * CONFIDENCE_WEIGHTS.strong) +
+        (typeCounts.search_shown * CONFIDENCE_WEIGHTS.weak) +
+        (typeCounts.same_topic_requery * CONFIDENCE_WEIGHTS.weak) -
+        (typeCounts.query_reformulated * CONFIDENCE_WEIGHTS.medium);
 
       // Volume-scaled boost: divide the raw weighted score by SCORE_NORMALIZATION
       // so boost grows with the number of signals, not just their average quality.
@@ -327,22 +350,22 @@ export function aggregateEvents(
 
       const weightedHitCount = Math.max(
         0,
-        data.strong +
-          (0.25 * data.typeCounts.same_topic_requery) -
-          (0.5 * data.typeCounts.query_reformulated)
+        data.strong_count +
+          (0.25 * typeCounts.same_topic_requery) -
+          (0.5 * typeCounts.query_reformulated)
       );
 
       signals.push({
-        memoryId,
-        sessionCount:  data.sessions.size,
-        queryCount:    data.queries.size,
-        strongCount:   data.strong,
-        mediumCount:   data.medium,
-        weakCount:     data.weak,
-        firstSeen:     data.firstSeen,
-        lastSeen:      data.lastSeen,
+        memoryId: data.memory_id,
+        sessionCount:  data.session_count,
+        queryCount:    data.query_count,
+        strongCount:   data.strong_count,
+        mediumCount:   data.medium_count,
+        weakCount:     data.weak_count,
+        firstSeen:     data.first_seen,
+        lastSeen:      data.last_seen,
         weightedHitCount,
-        duplicateCount: data.duplicateCount,
+        duplicateCount: data.duplicate_count,
         weightedScore,
         computedBoost,
       });
@@ -470,7 +493,7 @@ export function shadowApply(
     const shadowDelta = computeShadowRankDelta(db, signal.memoryId, boost);
 
     const result = db.prepare(`
-      INSERT INTO batch_learning_log
+      INSERT OR IGNORE INTO batch_learning_log
         (memory_id, batch_run_at, session_count, weighted_score, computed_boost, shadow_rank_delta, promoted)
       VALUES (?, ?, ?, ?, ?, ?, 1)
     `).run(
@@ -482,7 +505,9 @@ export function shadowApply(
       shadowDelta
     );
 
-    return (result as { lastInsertRowid: number | bigint }).lastInsertRowid as number;
+    return (result as { changes: number; lastInsertRowid: number | bigint }).changes > 0
+      ? (result as { lastInsertRowid: number | bigint }).lastInsertRowid as number
+      : null;
   } catch (err: unknown) {
     const message = err instanceof Error ? err.message : String(err);
     console.warn('[batch-learning] shadowApply error:', message);
@@ -627,6 +652,23 @@ export function getBatchLearningCount(
   } catch {
     return 0;
   }
+}
+
+export function sweepBatchLearningLog(
+  db: Database.Database,
+  options: { olderThanMs?: number; dryRun?: boolean; now?: number } = {},
+): BatchLearningSweepResult {
+  initBatchLearning(db);
+  const olderThanMs = options.olderThanMs ?? 90 * 24 * 60 * 60 * 1000;
+  const cutoff = (options.now ?? Date.now()) - olderThanMs;
+  const row = db.prepare('SELECT COUNT(*) AS count FROM batch_learning_log WHERE batch_run_at < ?')
+    .get(cutoff) as { count: number };
+  const matched = row.count;
+  const dryRun = options.dryRun !== false;
+  const deleted = dryRun
+    ? 0
+    : (db.prepare('DELETE FROM batch_learning_log WHERE batch_run_at < ?').run(cutoff) as { changes: number }).changes;
+  return { table: 'batch_learning_log', dryRun, olderThanMs, cutoff, matched, deleted };
 }
 
 /* ───────────────────────────────────────────────────────────────

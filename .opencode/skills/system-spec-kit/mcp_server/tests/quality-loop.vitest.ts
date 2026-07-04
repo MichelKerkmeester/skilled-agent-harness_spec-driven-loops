@@ -24,6 +24,7 @@ import {
   scoreCoherence,
   extractTriggersFromContent,
   normalizeAnchors,
+  logQualityMetrics,
   QUALITY_WEIGHTS,
   DEFAULT_TOKEN_BUDGET,
   DEFAULT_CHAR_BUDGET,
@@ -484,6 +485,29 @@ describe('runQualityLoop', () => {
     expect(result.score.total).toBeLessThan(0.6);
   });
 
+  it('returns rejection score and content from the same best attempt', () => {
+    process.env.SPECKIT_QUALITY_LOOP = 'true';
+    const content = [
+      '# Important Sprint Documentation',
+      '',
+      '## Overview of the Sprint',
+      'This sprint covers important improvements to the retrieval pipeline.',
+      'We implemented several key features including eval logging and metrics.',
+    ].join('\n');
+
+    const initialScore = computeMemoryQualityScore(content, { triggerPhrases: [], title: 'Important Sprint Documentation' });
+    const result = runQualityLoop(content, { triggerPhrases: [], title: 'Important Sprint Documentation' }, {
+      threshold: 0.95,
+      maxRetries: 1,
+      mode: 'full-auto',
+    });
+
+    expect(result.rejected).toBe(true);
+    expect(result.score.total).toBeGreaterThan(initialScore.total);
+    expect(result.fixedTriggerPhrases).toContain('important sprint documentation');
+    expect(result.rejectionReason).toContain(result.score.total.toFixed(3));
+  });
+
   it('honors maxRetries even when auto-fix applies no changes', () => {
     process.env.SPECKIT_QUALITY_LOOP = 'true';
     const result = runQualityLoop('x', { triggerPhrases: [] }, { maxRetries: 5, mode: 'full-auto' });
@@ -628,6 +652,21 @@ describe('runQualityLoop', () => {
     try {
       runQualityLoop(GOOD_CONTENT, GOOD_METADATA, { emitEvalMetrics: false });
       expect(initSpy).not.toHaveBeenCalled();
+    } finally {
+      initSpy.mockRestore();
+    }
+  });
+
+  it('writes quality metrics with a real eval run id', () => {
+    process.env.SPECKIT_EVAL_LOGGING = 'true';
+    const run = vi.fn();
+    const prepare = vi.fn(() => ({ run }));
+    const initSpy = vi.spyOn(evalDb, 'initEvalDb').mockReturnValue({ prepare } as unknown as ReturnType<typeof evalDb.initEvalDb>);
+
+    try {
+      logQualityMetrics(computeMemoryQualityScore(GOOD_CONTENT, GOOD_METADATA), 1, true, false, true);
+      expect(run).toHaveBeenCalledTimes(1);
+      expect(run.mock.calls[0][0]).toBeGreaterThan(0);
     } finally {
       initSpy.mockRestore();
     }

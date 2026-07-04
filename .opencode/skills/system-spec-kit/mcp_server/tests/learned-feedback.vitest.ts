@@ -72,6 +72,7 @@ import {
   initEvalDb,
   closeEvalDb,
 } from '../lib/eval/eval-db';
+import * as vectorIndex from '../lib/search/vector-index';
 import {
   recordUserSelection,
   getSelectionHistory,
@@ -672,6 +673,41 @@ describe('Learned Feedback Expiry & Rollback', () => {
     const clearEntry = audit.find((a) => a.action === 'clear');
     expect(clearEntry).toBeDefined();
   });
+
+  it('dispatches learned maintenance through memory tools', async () => {
+    const nowSeconds = Math.floor(Date.now() / 1000);
+    const entries: LearnedTriggerEntry[] = [
+      { term: 'expired-dispatch', addedAt: nowSeconds - 100000, source: 'old', expiresAt: nowSeconds - 1 },
+      { term: 'valid-dispatch', addedAt: nowSeconds, source: 'new', expiresAt: nowSeconds + 100000 },
+    ];
+    testDb.prepare('UPDATE memory_index SET learned_triggers = ? WHERE id = 1')
+      .run(serializeLearnedTriggers(entries));
+
+    const getDbSpy = vi.spyOn(vectorIndex, 'getDb').mockReturnValue(testDb as never);
+    const { handleTool } = await import('../tools/memory-tools');
+
+    try {
+      const expireResponse = await handleTool('memory_learned_expire', { dryRun: false });
+      expect(expireResponse).not.toBeNull();
+      const expirePayload = JSON.parse(expireResponse!.content[0].text) as { data: { updated: number } };
+      expect(expirePayload.data.updated).toBe(1);
+
+      let row = testDb.prepare('SELECT learned_triggers FROM memory_index WHERE id = 1').get();
+      let remaining = parseLearnedTriggers(row.learned_triggers);
+      expect(remaining.map((entry) => entry.term)).toEqual(['valid-dispatch']);
+
+      const clearResponse = await handleTool('memory_learned_clear', { confirm: true });
+      expect(clearResponse).not.toBeNull();
+      const clearPayload = JSON.parse(clearResponse!.content[0].text) as { data: { cleared: number } };
+      expect(clearPayload.data.cleared).toBe(1);
+
+      row = testDb.prepare('SELECT learned_triggers FROM memory_index WHERE id = 1').get();
+      remaining = parseLearnedTriggers(row.learned_triggers);
+      expect(remaining).toHaveLength(0);
+    } finally {
+      getDbSpy.mockRestore();
+    }
+  });
 });
 
 // ───────────────────────────────────────────────────────────────
@@ -834,7 +870,7 @@ describe('Auto-Promotion Engine (T002a)', () => {
     insertMemory(testDb, 1, { tier: 'critical', validationCount: 20 });
     const result = checkAutoPromotion(testDb, 1);
     expect(result.promoted).toBe(false);
-    expect(result.reason).toContain('tier_not_promotable');
+    expect(result.reason).toContain('no_promotion_path_for_tier');
   });
 
   it('R11-AP06: constitutional tier cannot be promoted', () => {
@@ -862,10 +898,11 @@ describe('Auto-Promotion Engine (T002a)', () => {
     expect(row.importance_tier).toBe('normal');
   });
 
-  it('R11-AP09: does NOT demote - only promotes upward', () => {
+  it('R11-AP09: does not demote without sustained negative feedback', () => {
     insertMemory(testDb, 1, { tier: 'critical', validationCount: 0 });
     const result = executeAutoPromotion(testDb, 1);
     expect(result.promoted).toBe(false);
+    expect(result.demoted).not.toBe(true);
 
     const row = testDb.prepare('SELECT importance_tier FROM memory_index WHERE id = 1').get();
     expect(row.importance_tier).toBe('critical');
@@ -886,24 +923,34 @@ describe('Auto-Promotion Engine (T002a)', () => {
     expect(result.reason).toBe('memory_not_found');
   });
 
-  it('R11-AP12: safeguards cap promotions to 3 per 8-hour rolling window', () => {
+  it('R11-AP12: safeguards cap tier changes per memory in the rolling window', () => {
     insertMemory(testDb, 1, { tier: 'normal', validationCount: 5 });
-    insertMemory(testDb, 2, { tier: 'normal', validationCount: 5 });
-    insertMemory(testDb, 3, { tier: 'normal', validationCount: 5 });
-    insertMemory(testDb, 4, { tier: 'normal', validationCount: 5 });
+    testDb.exec(`
+      CREATE TABLE IF NOT EXISTS memory_promotion_audit (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        memory_id INTEGER NOT NULL,
+        previous_tier TEXT NOT NULL,
+        new_tier TEXT NOT NULL,
+        validation_count INTEGER NOT NULL,
+        promoted_at INTEGER NOT NULL
+      )
+    `);
+    const recent = Date.now() - 1_000;
+    const insertAudit = testDb.prepare(`
+      INSERT INTO memory_promotion_audit
+        (memory_id, previous_tier, new_tier, validation_count, promoted_at)
+      VALUES (1, 'normal', 'important', 5, ?)
+    `);
+    for (let i = 0; i < MAX_PROMOTIONS_PER_WINDOW; i += 1) {
+      insertAudit.run(recent + i);
+    }
 
-    const r1 = executeAutoPromotion(testDb, 1);
-    const r2 = executeAutoPromotion(testDb, 2);
-    const r3 = executeAutoPromotion(testDb, 3);
-    const r4 = executeAutoPromotion(testDb, 4);
+    const result = executeAutoPromotion(testDb, 1);
 
-    expect(r1.promoted).toBe(true);
-    expect(r2.promoted).toBe(true);
-    expect(r3.promoted).toBe(true);
-    expect(r4.promoted).toBe(false);
-    expect(r4.reason).toContain('promotion_window_rate_limited');
-    expect(r4.reason).toContain(`${MAX_PROMOTIONS_PER_WINDOW}`);
-    expect(r4.reason).toContain(`${PROMOTION_WINDOW_HOURS}h`);
+    expect(result.promoted).toBe(false);
+    expect(result.reason).toContain('tier_change_window_rate_limited');
+    expect(result.reason).toContain(`${MAX_PROMOTIONS_PER_WINDOW}`);
+    expect(result.reason).toContain(`${PROMOTION_WINDOW_HOURS}h`);
   });
 
   it('R11-AP13: old promotions outside the 8-hour window do not block promotion', () => {

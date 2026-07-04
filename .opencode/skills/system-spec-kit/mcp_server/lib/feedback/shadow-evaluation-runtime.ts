@@ -159,9 +159,8 @@ function getRelevanceFeedback(
   );
 
   if (maxAbsoluteSignalTotal === 0) {
-    // All adaptive signals are zero or perfectly cancel out — no useful label
-    // can be derived from this data. Return an empty map so callers treat this
-    // cycle as unlabeled and skip recording an is_improvement result.
+    // All adaptive signals are zero or perfectly cancel out, so the replay is
+    // auditable but must not contribute ranking-quality or promotion signal.
     return new Map<number, number>();
   }
 
@@ -237,10 +236,6 @@ function buildReplayRanks(
       .filter((memoryId): memoryId is number => memoryId !== null),
   ]));
   const relevanceFeedbackById = getRelevanceFeedback(database, memoryIds, queryText);
-  if (relevanceFeedbackById.size === 0) {
-    return null;
-  }
-
   const live: RankedItem[] = [];
   for (let index = 0; index < liveRows.length; index += 1) {
     const row = liveRows[index];
@@ -306,10 +301,7 @@ async function replayQueryForShadowEvaluation(
     return null;
   }
 
-  // Synthetic class strings carry no per-query feedback, so relevance labels
-  // come from memory-id-level signal aggregation (the unfiltered branch). A
-  // synthetic string must never be used as a relevance query filter.
-  return buildReplayRanks(db, liveRows, shadowProposal.rows as ShadowProposalRow[], null);
+  return buildReplayRanks(db, liveRows, shadowProposal.rows as ShadowProposalRow[], queryText);
 }
 
 /**

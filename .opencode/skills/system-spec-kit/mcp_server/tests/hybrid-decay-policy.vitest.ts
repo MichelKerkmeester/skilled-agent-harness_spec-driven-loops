@@ -4,6 +4,7 @@ import {
   isHybridDecayPolicyEnabled,
   classifyHybridDecay,
   applyHybridDecayPolicy,
+  applyClassificationDecay,
   HYBRID_NO_DECAY_CONTEXT_TYPES,
   calculateRetrievability,
 } from '../lib/cognitive/fsrs-scheduler';
@@ -200,6 +201,13 @@ describe('Hybrid Decay Policy — separation from TM-03', () => {
     const stability = 2.0;
     // applyHybridDecayPolicy should return stability unchanged (its own flag is OFF)
     expect(applyHybridDecayPolicy(stability, 'decision')).toBe(stability);
+  });
+
+  it('classification decay flag short-circuits before hybrid no-decay', () => {
+    vi.stubEnv('SPECKIT_HYBRID_DECAY_POLICY', 'true');
+    vi.stubEnv('SPECKIT_CLASSIFICATION_DECAY', 'false');
+
+    expect(applyClassificationDecay(2.0, 'planning', 'critical')).toBe(2.0);
   });
 
   it('HYBRID_NO_DECAY_CONTEXT_TYPES is a ReadonlySet (no external mutation)', () => {
