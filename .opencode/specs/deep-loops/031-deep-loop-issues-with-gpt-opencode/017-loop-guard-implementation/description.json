@@ -17,10 +17,12 @@
     "loop-like",
     "repeated"
   ],
-  "lastUpdated": "2026-07-01T17:42:21.379Z",
+  "lastUpdated": "2026-07-04T13:02:04.942Z",
   "specId": "017",
   "folderSlug": "loop-guard-implementation",
   "parentChain": [
+    ".opencode",
+    "specs",
     "deep-loops",
     "031-deep-loop-issues-with-gpt-opencode"
   ],
