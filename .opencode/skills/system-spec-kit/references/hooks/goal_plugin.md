@@ -58,7 +58,7 @@ This is a local OpenCode plugin contract, not a Spec Kit Memory MCP tool and not
 | `MK_GOAL_MAX_AUTO_TURNS` | `8` | Caps guarded auto-continuation turns for new and normalized goals. |
 | `MK_GOAL_MAX_WALL_MS` | `1800000` | Caps guarded auto-continuation wall-clock duration in milliseconds. |
 | `MK_GOAL_STATE_ARCHIVE_RETENTION_DAYS` | `90` | Days before an archived goal-state file is pruned. |
-| `MK_GOAL_STATE_ACTIVE_RETENTION_DAYS` | `30` | Age threshold before an orphaned active-state file is swept and archived. |
+| `MK_GOAL_STATE_ACTIVE_RETENTION_DAYS` | `2` | Age threshold before an orphaned active-state file is swept and archived. |
 | `MK_GOAL_STATE_SWEEP_INTERVAL_MS` | `3600000` (1 hour) | Minimum interval between orphaned-active-state sweep passes. |
 
 ## 5. Output Fields

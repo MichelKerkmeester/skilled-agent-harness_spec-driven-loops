@@ -26,7 +26,9 @@
     "deep-loops/032-goal-opencode-plugin/019-code-refinements",
     "deep-loops/032-goal-opencode-plugin/020-capability-additions",
     "deep-loops/032-goal-opencode-plugin/021-completion-verifier-wiring",
-    "deep-loops/032-goal-opencode-plugin/022-review-remediation"
+    "deep-loops/032-goal-opencode-plugin/022-review-remediation",
+    "deep-loops/032-goal-opencode-plugin/023-p2-hardening",
+    "deep-loops/032-goal-opencode-plugin/024-retention-tightening"
   ],
   "manual": {
     "depends_on": [],
@@ -230,7 +232,7 @@
     ],
     "causal_summary": "OpenCode has no goal/completion-condition system",
     "created_at": "2026-06-28T14:00:33Z",
-    "last_save_at": "2026-07-04T08:33:05.529Z",
+    "last_save_at": "2026-07-04T17:02:24.129Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
