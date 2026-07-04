@@ -210,7 +210,7 @@
     ],
     "causal_summary": "Retrieval-rescue (default ON) overwrites the final score of every candidate with `0.03base + 0.78lexicalOverlap` (`retrieval-rescue.ts:210`, applied at `stage2-fusion.ts:1425`), so learned trigger boosts (+0.7), negative demotions (x0.3), graph, recency, and co-activation signals are compressed to at most 3.7% of ranking mass (a +0.7 learned boost lands as <=0.021); only the validation multiplier at `stage2-fusion.ts:1470` runs after rescue and survives (deep-dive report Chain D; ledger Agent G P1)",
     "created_at": "2026-07-03T09:44:21Z",
-    "last_save_at": "2026-07-03T12:13:32.987Z",
+    "last_save_at": "2026-07-04T02:19:52.445Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -221,14 +221,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:f30842307cdeae263b250f09f48c8e97947e3d110ca382fc9ec6e58b783c847a",
+    "source_fingerprint": "sha256:903f0e701e0ddc2313891c72b6a45159c768bda5435d930808a84c7279e287f4",
     "source_doc_hashes": {
       "spec.md": "13d0314b5562fc1b9e0cb0037f19d9c566ad953825f28d73b87823a62016d436",
       "plan.md": "931773792732aa32d5f0612a7920c8497980575a8f9a7d8a34015bc47e84a2fb",
       "tasks.md": "57d4683c1c0253a482494b1ca74de817f07d71274dde60f520c69b48cc5e4e9f",
-      "checklist.md": "da6a47f152f76437fd3da8f659e14fb53c88acf7edb1a206fdf82d56ee77f4f6",
-      "decision-record.md": "e017e19a0708b081e1cc70a33cc04276075a1679479fbec2f9f4d4cc3450e8f1",
-      "implementation-summary.md": "574741fb95109f103ff22acfa1f90f94a249caa54dbe701bf40943dfd8ee2fd4"
+      "checklist.md": "6d05fccb2c81d7e0aa98dbe2e50251ccd0bb061ac4194c56a09198c079d79a2c",
+      "decision-record.md": "841e5bd1005f610b507903ec245d70bae113b44bcfe7616037727b4a4adcf1f1",
+      "implementation-summary.md": "b570a733517ab22317dee77b2556658948107ee65e085e836857796fa43a37ab"
     },
     "last_active_child_id": null,
     "last_active_at": null

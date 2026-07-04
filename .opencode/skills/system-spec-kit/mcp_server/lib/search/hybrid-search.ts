@@ -107,6 +107,7 @@ interface HybridSearchOptions {
   useFts?: boolean;
   useVector?: boolean;
   useGraph?: boolean;
+  useTrigger?: boolean;
   tenantId?: string;
   userId?: string;
   agentId?: string;
@@ -1457,9 +1458,11 @@ async function collectAndFuseHybridResults(
       }
     }
 
-    triggerChannelResults = exactTriggerSearch(query, options);
-    if (triggerChannelResults.length > 0) {
-      lists.push({ source: 'trigger', results: triggerChannelResults, weight: 1.4 });
+    if (options.useTrigger !== false) {
+      triggerChannelResults = exactTriggerSearch(query, options);
+      if (triggerChannelResults.length > 0) {
+        lists.push({ source: 'trigger', results: triggerChannelResults, weight: 1.4 });
+      }
     }
 
     // Graph channel — gated by query-complexity routing

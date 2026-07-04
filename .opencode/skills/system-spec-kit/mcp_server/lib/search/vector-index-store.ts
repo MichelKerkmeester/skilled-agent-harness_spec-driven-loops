@@ -27,7 +27,6 @@ import {
 import { getStartupEmbeddingProfile } from '@spec-kit/shared/embeddings/factory';
 
 import { resolveDatabasePaths, SERVER_DIR } from '../../core/config.js';
-import { computeInterferenceScoresBatch } from '../scoring/interference-scoring.js';
 import { DEFAULT_ACTIVE_EMBEDDER, getActiveEmbedder } from '../embedders/schema.js';
 import {
   recordVectorShardProbeFailure,
@@ -2030,35 +2029,16 @@ export function clear_constitutional_cache(spec_folder: string | null = null): v
 }
 
 /**
- * Refreshes interference scores for memories in a folder.
+ * Preserves the historical write-path hook without recomputing unread ranking
+ * columns. The ranking pipeline does not consume `interference_score`; callers
+ * keep this no-op until the final ranking contract either wires the signal or
+ * removes the hook and column together.
  * @param database - The database connection to update.
  * @param specFolder - The spec folder whose scores should be refreshed.
  * @returns Nothing.
  */
-export function refresh_interference_scores_for_folder(database: Database.Database, specFolder: string): void {
-  if (!specFolder) return;
-
-  try {
-    const rows = database.prepare(
-      `SELECT m.id
-       FROM memory_index m
-       JOIN active_memory_projection p ON p.active_memory_id = m.id
-       WHERE m.spec_folder = ?
-         AND m.parent_id IS NULL
-         AND COALESCE(m.importance_tier, 'normal') != 'deprecated'`
-    ).all(specFolder) as Array<{ id: number }>;
-
-    if (rows.length === 0) return;
-
-    const memoryIds = rows.map(r => r.id);
-    const scores = computeInterferenceScoresBatch(database, memoryIds);
-    const updateStmt = database.prepare('UPDATE memory_index SET interference_score = ? WHERE id = ?');
-    for (const id of memoryIds) {
-      updateStmt.run(scores.get(id) ?? 0, id);
-    }
-  } catch (error: unknown) {
-    console.warn(`[vector-index] interference score refresh failed for '${specFolder}': ${get_error_message(error)}`);
-  }
+export function refresh_interference_scores_for_folder(_database: Database.Database, _specFolder: string): void {
+  return;
 }
 
 /* ───────────────────────────────────────────────────────────────

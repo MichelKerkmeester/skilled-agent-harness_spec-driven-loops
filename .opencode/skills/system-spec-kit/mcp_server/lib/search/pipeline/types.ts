@@ -198,7 +198,7 @@ export interface ConfidenceTruncationMetadata {
  */
 export interface PipelineConfig {
   query: string;
-  queryEmbedding?: Float32Array;
+  queryEmbedding?: Float32Array | number[];
   concepts?: string[];
   searchType: 'hybrid' | 'vector' | 'multi-concept';
   mode?: string;
@@ -231,6 +231,15 @@ export interface PipelineConfig {
   enableSessionBoost: boolean;
   enableCausalBoost: boolean;
   trackAccess: boolean;
+
+  // Evaluation and channel controls
+  evaluationMode?: boolean;
+  forceAllChannels?: boolean;
+  useVector?: boolean;
+  useBm25?: boolean;
+  useFts?: boolean;
+  useGraph?: boolean;
+  useTrigger?: boolean;
 
   // Intent
   detectedIntent: string | null;

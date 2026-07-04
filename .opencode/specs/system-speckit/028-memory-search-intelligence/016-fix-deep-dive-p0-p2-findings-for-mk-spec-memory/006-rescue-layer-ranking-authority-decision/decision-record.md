@@ -13,11 +13,12 @@ contextType: "decision"
 _memory:
   continuity:
     packet_pointer: "system-speckit/028-memory-search-intelligence/016-fix-deep-dive-p0-p2-findings-for-mk-spec-memory/006-rescue-layer-ranking-authority-decision"
-    last_updated_at: "2026-07-03T12:00:00Z"
-    last_updated_by: "planning-session"
-    recent_action: "Framed ADR-001/002/003 with options, decision gates, and benchmark plan"
-    next_safe_action: "Run verify-first tasks, then Part 1 parity, before executing the ADR-002 benchmark"
-    blockers: []
+    last_updated_at: "2026-07-04T02:19:52Z"
+    last_updated_by: "implementation-session"
+    recent_action: "Recorded A/B/C benchmark; operator deferred ADR-002 (ship parity harness, re-benchmark clean)"
+    next_safe_action: "Re-benchmark ADR-002 after vectors reconciled + eval ground truth refreshed"
+    blockers:
+      - "ADR-002 remains Proposed by operator instruction"
     key_files:
       - ".opencode/skills/system-spec-kit/mcp_server/lib/search/rerank/retrieval-rescue.ts"
       - ".opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts"
@@ -25,7 +26,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "planning-006-rescue-layer-ranking-authority-decision"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 85
     open_questions: []
     answered_questions: []
 ---
@@ -149,7 +150,7 @@ We cannot decide the rescue layer's authority with the current eval harness, bec
 
 | Field | Value |
 |-------|-------|
-| **Status** | Proposed (flips to Accepted with measured deltas from task T014; decision gates below select the winner) |
+| **Status** | Proposed (benchmark complete; recommendation recorded; not flipped to Accepted per operator instruction) |
 | **Date** | 2026-07-03 |
 | **Deciders** | Michel Kerkmeester (operator); evidence: A/B/C benchmark on the ADR-001 parity harness |
 
@@ -178,7 +179,7 @@ We must choose one of three contracts and make code, tests, telemetry, and docs 
 <!-- ANCHOR:adr-002-decision -->
 ### Decision
 
-**We chose**: To bind the choice to measured evidence: the decision gates below select among Option A (lexical dominance IS the contract), Option B (rescue demoted to a bounded additive delta and/or injected-rows-only), and Option C (rescue as a floor only below a base-score threshold), using per-variant prod-mode completeRecall@3, MRR, and rank-position deltas from the fixed query set on the parity harness.
+**We recommend**: Option A, lexical dominance as the documented contract. The compact read-only production-pipeline benchmark favored the current overwrite mode over both B and C on the fixed query axes available in this live index snapshot. ADR-002 remains Proposed until the operator accepts the recommendation.
 
 **How it works**: Variants B and C ship behind flags with defaults unchanged (task T013). The benchmark (task T014) runs all three on identical corpus and query set. Because completeRecall@3 saturates at the K=3 render floor, the gates decide on MRR and mean rank-position deltas first, with completeRecall@3 held as a no-regression floor (a variant may not drop completeRecall@3 below Option A on any class):
 
@@ -187,7 +188,23 @@ We must choose one of three contracts and make code, tests, telemetry, and docs 
 3. **Gate A**: If Option A's MRR and rank-position are greater than or equal to both B and C across classes (no variant beats it beyond the noise floor), choose A: declare lexical dominance the contract, then delete or no-op the neutered upstream steps and their write-path costs honestly.
 4. **Tie policy**: At statistically indistinguishable MRR and rank-position (and equal completeRecall@3), the simplest honest system wins: A (fewest live moving parts) over C over B.
 
-The record flips from Proposed to Accepted by appending the measured per-variant table and naming the satisfied gate (task T015).
+The record does not flip from Proposed to Accepted in this pass because the operator explicitly requested a recommendation only. If the recommendation is accepted later, Gate A is the satisfied gate.
+
+### Benchmark Evidence And Recommendation
+
+**Run context**: 2026-07-03, read-only against a temporary backup of `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/database/context-index.sqlite` plus its active vector shard `context-vectors__ollama__nomic-embed-text-v1.5__768.sqlite`. The benchmark used production `executePipeline`, `SPECKIT_RERANK_LAYER=true`, `forceAllChannels=true`, `evaluationMode=true`, K=3 for the render-floor metric, and a limit of 20 for MRR/first-rank measurement.
+
+**Fixed query axes**: resume-style, packet-status, verbose-conceptual, exact-token, and 026-class lineage query. Gold selectors matched the expected phase folder (`006-rescue-layer-ranking-authority-decision`) or the 026 lineage folder (`004-spec-memory-embedder-bake-off`).
+
+| Variant | Mode | completeRecall@3 | Delta vs A | MRR | Delta vs A | Mean First Gold Rank | Delta vs A | Wall Time |
+|---------|------|------------------|------------|-----|------------|----------------------|------------|-----------|
+| A | current overwrite | 0.400000 | 0.000000 | 0.400000 | 0.000000 | 13.000000 | 0.000000 | 8193 ms |
+| B | additive fold-in | 0.200000 | -0.200000 | 0.200000 | -0.200000 | 17.000000 | +4.000000 | 7410 ms |
+| C | floor threshold | 0.200000 | -0.200000 | 0.200000 | -0.200000 | 17.000000 | +4.000000 | 7324 ms |
+
+**Recommendation**: Choose A if/when ADR-002 is accepted. A satisfied Gate A: both alternatives lost on completeRecall@3 and MRR, and both pushed the mean first-gold rank four positions later. B and C did preserve the 026-class query at rank 1, but they collapsed the phase-local conceptual hit that A retrieved at rank 1.
+
+**Caveats**: The official eval/ablation ground-truth run is blocked by stale relevance IDs (`missing relevances=142 across 128 IDs`). This compact benchmark is therefore a decision-support run over folder selectors, not a replacement for the repaired official eval corpus. The run also surfaced existing live-index schema warnings (`no such column: memory_state`, `no such table: community_members`) during Stage 2 community hydration; those were non-fatal and appeared on all variants.
 <!-- /ANCHOR:adr-002-decision -->
 
 ---
@@ -197,9 +214,9 @@ The record flips from Proposed to Accepted by appending the measured per-variant
 
 | Option | Pros | Cons | Score |
 |--------|------|------|-------|
-| **A: Lexical dominance as contract** | Honors 026 intent exactly; simplest runtime (13 neutered steps deleted or no-opped); deletes the dead composite five-factor ranking surface and the O(folder^2) interference write tax outright (attention-decay's `activateMemory` stays; only its dependency on the deleted ranking surface is severed); docs become trivially true | Learned feedback, graph, recency, and co-activation can never influence ranking; phase 009's learning loop has no ranking outlet; conceptual zero-overlap queries rank by 0.03*base alone | pending benchmark |
-| B: Bounded additive delta / injected-rows-only | 13-step stack becomes real; learned boosts and demotions actually rank; rescue still grounds injected rows; telemetry stops lying by construction | Highest regression risk for the 026 failure class; most machinery to keep honest; upstream stack inherits phase 007's unfixed bugs until that phase lands | pending benchmark |
-| C: Floor only below base-score threshold | Preserves the 026 guarantee where vector evidence is weak; restores upstream authority where evidence is strong; bounded blast radius | Threshold is a new tunable with its own drift risk; two ranking regimes to document and test; boundary behavior needs its own edge cases | pending benchmark |
+| **A: Lexical dominance as contract** | Honors 026 intent exactly; simplest runtime (13 neutered steps deleted or no-opped); deletes the dead composite five-factor ranking surface and the O(folder^2) interference write tax outright (attention-decay's `activateMemory` stays; only its dependency on the deleted ranking surface is severed); docs become trivially true | Learned feedback, graph, recency, and co-activation can never influence ranking; phase 009's learning loop has no ranking outlet; conceptual zero-overlap queries rank by 0.03*base alone | recommended: 9/10 |
+| B: Bounded additive delta / injected-rows-only | 13-step stack becomes real; learned boosts and demotions actually rank; rescue still grounds injected rows; telemetry stops lying by construction | Regressed completeRecall@3 and MRR by -0.2 in the compact benchmark; highest machinery cost; upstream stack inherits phase 007's unfixed bugs until that phase lands | measured: 4/10 |
+| C: Floor only below base-score threshold | Preserves the 026 guarantee where vector evidence is weak; restores upstream authority where evidence is strong; bounded blast radius | Matched B's regression in the compact benchmark; threshold is a new tunable with drift risk; two ranking regimes to document and test | measured: 4/10 |
 | Status quo (undocumented overwrite) | No work | Docs, tests, and telemetry disagree with runtime; every downstream ranking phase builds on sand; rejected without benchmark | 0/10 |
 
 **Why this one**: Scoring A, B, and C without the parity benchmark would repeat the exact failure mode this phase exists to end: ranking beliefs unbacked by production measurement. The gates pre-commit the interpretation so the numbers cannot be argued into a preferred outcome after the fact.
@@ -256,7 +273,7 @@ The record flips from Proposed to Accepted by appending the measured per-variant
 - `lib/search/pipeline/stage2-fusion.ts`: apply-site semantics at :1425 per the accepted option; the surviving-signal set matches the contract.
 - Search flags: variant gating for the benchmark; after acceptance, defaults set to the winner and losing flags removed or documented.
 - Rescue-dominance tests: updated to assert the accepted contract (no test may keep asserting a rejected option).
-- This record: measured per-variant table appended, satisfied gate named, status flipped to Accepted.
+- This record: measured per-variant table appended and Gate A recommendation named; status remains Proposed until the operator accepts the recommendation.
 
 **How to roll back**: Flip the variant flag back to Option A behavior (the current default) with no code change; revert the acceptance commit; return this ADR to Proposed with the failure evidence appended; the ADR-003 contract test reverts in the same commit so the gate matches shipped behavior.
 <!-- /ANCHOR:adr-002-impl -->

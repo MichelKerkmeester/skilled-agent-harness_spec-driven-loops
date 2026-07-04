@@ -14,9 +14,11 @@ import * as vectorIndex from '../lib/search/vector-index';
 import type { PipelineRow } from '../lib/search/pipeline/types';
 
 const savedRescueFlag = process.env.SPECKIT_RERANK_LAYER;
+const savedRescueMode = process.env.SPECKIT_RETRIEVAL_RESCUE_MODE;
 
 function resetRescueFlagsForDefault(): void {
   delete process.env.SPECKIT_RERANK_LAYER;
+  delete process.env.SPECKIT_RETRIEVAL_RESCUE_MODE;
 }
 
 function restoreRescueFlag(): void {
@@ -24,6 +26,11 @@ function restoreRescueFlag(): void {
     delete process.env.SPECKIT_RERANK_LAYER;
   } else {
     process.env.SPECKIT_RERANK_LAYER = savedRescueFlag;
+  }
+  if (savedRescueMode === undefined) {
+    delete process.env.SPECKIT_RETRIEVAL_RESCUE_MODE;
+  } else {
+    process.env.SPECKIT_RETRIEVAL_RESCUE_MODE = savedRescueMode;
   }
 }
 
@@ -82,6 +89,44 @@ describe('retrieval rescue layer', () => {
 
     const ranked = applyRetrievalRescueLayer(query, rows);
     expect(ranked[0].id).toBe(2);
+  });
+
+  it('keeps lexical overwrite as the default ranking authority', () => {
+    delete process.env.SPECKIT_RETRIEVAL_RESCUE_MODE;
+
+    expect(__testables.computeRescueLayerScore(1, 1)).toBeCloseTo(0.81, 10);
+    expect(__testables.computeRescueLayerScore(1, 0)).toBeCloseTo(0.03, 10);
+  });
+
+  it('can fold lexical rescue in without erasing upstream score authority', () => {
+    process.env.SPECKIT_RETRIEVAL_RESCUE_MODE = 'additive';
+    const query = 'specific rescue phrase';
+    const rows: PipelineRow[] = [
+      {
+        id: 1,
+        title: 'Specific rescue phrase',
+        trigger_phrases: '[]',
+        content: 'specific rescue phrase',
+        score: 0.2,
+        rrfScore: 0.2,
+        intentAdjustedScore: 0.2,
+      },
+      {
+        id: 2,
+        title: 'Strong upstream result',
+        trigger_phrases: '[]',
+        content: 'unrelated upstream authority',
+        score: 0.85,
+        rrfScore: 0.85,
+        intentAdjustedScore: 0.85,
+      },
+    ];
+
+    const ranked = applyRetrievalRescueLayer(query, rows);
+
+    expect(ranked[0].id).toBe(2);
+    expect(ranked.find((row) => row.id === 1)?.score).toBeGreaterThan(0.2);
+    expect(ranked.find((row) => row.id === 1)?.score).toBeLessThan(0.4);
   });
 
   it('scores specific decision records above sibling specs for ADR-shaped queries', () => {

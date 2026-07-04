@@ -1,35 +1,39 @@
 ---
-title: "Implementation Summary [template:level_1/implementation-summary.md]"
-description: "Open with a hook: what changed and why it matters. One paragraph, impact first."
+title: "Implementation Summary: Rescue-Layer Ranking Authority Decision"
+description: "Built eval-production parity so the benchmark measures the real pipeline, made the rescue-layer ranking mode selectable and benchmarkable (overwrite/additive/floor), and recorded an A/B/C benchmark — while deferring the ADR-002 authority decision because the current numbers are confounded by sparse vectors and stale eval ground truth."
 trigger_phrases:
-  - "implementation"
-  - "summary"
-  - "template"
-  - "impl summary core"
+  - "rescue layer ranking authority"
+  - "eval production parity harness"
+  - "rescue mode benchmark"
+  - "signal ordering contract"
 importance_tier: "normal"
-contextType: "general"
+contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "scaffold/006-rescue-layer-ranking-authority-decision"
-    last_updated_at: "2026-07-03T09:44:22Z"
-    last_updated_by: "template-author"
-    recent_action: "Initialize continuity block"
-    next_safe_action: "Replace template defaults on first save"
+    packet_pointer: "system-speckit/028-memory-search-intelligence/016-fix-deep-dive-p0-p2-findings-for-mk-spec-memory/006-rescue-layer-ranking-authority-decision"
+    last_updated_at: "2026-07-04T02:19:52Z"
+    last_updated_by: "claude-opus-4-8"
+    recent_action: "Built eval-parity harness + benchmarkable rescue modes; operator deferred ADR-002"
+    next_safe_action: "Phase 007 ranking-filter-bypass (parity harness now unblocks 007/008)"
     blockers: []
-    key_files: []
+    key_files:
+      - "mcp_server/handlers/eval-reporting.ts"
+      - "mcp_server/lib/search/rerank/retrieval-rescue.ts"
+      - "mcp_server/core/db-state.ts"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "scaffold-scaffold/006-rescue-layer-ranking-authority-decision"
+      session_id: "2026-07-04-016-006-implementation"
       parent_session_id: null
-    completion_pct: 0
-    open_questions: []
-    answered_questions: []
+    completion_pct: 100
+    open_questions:
+      - "ADR-002 rescue-authority: deferred by operator pending a clean re-benchmark (vectors reconciled + ground truth refreshed)"
+    answered_questions:
+      - "Operator chose to ship the parity harness + modes and defer the ADR-002 accept decision"
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
 # Implementation Summary
 
-<!-- SPECKIT_LEVEL: 1 -->
-<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
+<!-- SPECKIT_LEVEL: 3 -->
 
 ---
 
@@ -39,8 +43,8 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 006-rescue-layer-ranking-authority-decision |
-| **Completed** | 2026-07-03 |
-| **Level** | 2 |
+| **Completed** | 2026-07-04 |
+| **Level** | 3 |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -48,28 +52,15 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-<!-- Voice guide:
-     Open with a hook: what changed and why it matters. One paragraph, impact first.
-     Then use ### subsections per feature. Each subsection: what it does + why it exists.
-     Write "You can now inspect the trace" not "Trace inspection was implemented."
-     NO "Files Changed" table for Level 3/3+. The narrative IS the summary.
-     For Level 1-2, a Files Changed table after the narrative is fine.
-     Reference: specs/system-spec-kit/020-mcp-working-memory-hybrid-rag/implementation-summary.md -->
+The benchmark can finally measure the real system. Eval reporting and ablation used to run a legacy `hybridSearch` path, so any ranking conclusion was drawn from a composition the daemon never actually runs. That is fixed: eval and ablation now execute the production `executePipeline` (channels, co-activation, render-floor K=3 truncation), the ablation DB swap-and-restore rebinds every consumer including `graphSearchFn` to the restored production connection, and the eval DB path resolves from `import.meta.url` rather than the current directory. This parity harness is the prerequisite that unblocks the later ranking phases.
 
-[Opening hook: 2-3 sentences on what changed and why it matters. Lead with impact.]
+### Selectable, benchmarkable rescue authority
 
-### [Feature Name]
+The retrieval-rescue layer's score rewrite is now a selectable mode — `overwrite` (the current `0.03*base + 0.78*lexical`), `additive` fold-in, or `floor` threshold — behind `SPECKIT_RETRIEVAL_RESCUE_MODE`, so the ranking authority can be A/B/C benchmarked instead of argued. The signal-ordering contract is pinned by a test, the stage2-fusion step header and pipeline README now describe the actual composition, and the two computed-but-discarded surfaces (the composite five-factor ranking surface and the interference-score write-path recompute) are dispositioned: the interference recompute is now an explicit no-op with a durable rationale, so no stage2 signal is silently computed and thrown away.
 
-[What this feature does and why it exists. 1-2 paragraphs. Use direct address.
-Explain what the user gains, not what files you touched.]
+### The decision, deliberately deferred
 
-### Files Changed
-
-<!-- Include for Level 1-2. Omit for Level 3/3+ where the narrative carries. -->
-
-| File | Action | Purpose |
-|------|--------|---------|
-| [path] | [Created/Modified/Deleted] | [What this change accomplishes] |
+The A/B/C benchmark ran on the parity harness and, surprisingly, favored the current overwrite (A) at completeRecall@3 0.40 versus 0.20 for additive and floor — the opposite of the deep-dive's "signal theater" hypothesis. But those numbers are confounded: the live vector shards are sparse (the phase-004 reconcile of 12,226 vector-missing rows is still daemon-side-pending), so the semantic signal the additive/floor modes lean on is degraded, and the eval ground truth is stale (142 missing relevances across 128 IDs). Rather than change live ranking on confounded data — or rubber-stamp the status quo — the operator chose to ship the harness and modes and leave ADR-002 Proposed, to be re-benchmarked once the system is healthy.
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -77,13 +68,7 @@ Explain what the user gains, not what files you touched.]
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-<!-- Voice guide:
-     Tell the delivery story. What gave you confidence this works?
-     "All features shipped behind feature flags" not "Feature flags were used."
-     For Level 1: a single sentence is enough.
-     For Level 3+: describe stages (testing, rollout, verification). -->
-
-[How was this tested, verified and shipped? What was the rollout approach?]
+GPT-5.5-fast (high) implemented. Its first pass correctly halted on a logic-sync scope conflict — REQ-001's ablation needs to disable the production trigger channel, which lives in `hybrid-search.ts`, a file outside the phase's Files-to-Change list — rather than silently touch it. Opus 4.8 authorized the minimal scope extension (an ablation-driven trigger-channel skip), and the re-dispatch built the harness, the benchmarkable modes, the contract test, the doc parity, and the dead-surface disposition. Opus 4.8 self-verified the harness (eval now calls `executePipeline`, db-state rebinds on swap/restore, path is `import.meta`-based), confirmed build clean and 31 tests green, and — after presenting the confounded benchmark — recorded the operator's decision to defer ADR-002.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -91,12 +76,12 @@ Explain what the user gains, not what files you touched.]
 <!-- ANCHOR:decisions -->
 ## Key Decisions
 
-<!-- Voice guide: "Why" column should read like you're explaining to a colleague.
-     "Chose X because Y" not "X was selected due to Y." -->
-
 | Decision | Why |
 |----------|-----|
-| [What was decided] | [Active-voice rationale with specific reasoning] |
+| ADR-001: eval-production parity is a prerequisite (Accepted) | A ranking decision drawn from a non-production path is meaningless; the harness now runs the real pipeline |
+| ADR-002: rescue-layer authority DEFERRED (operator) | The benchmark favors the overwrite but is confounded by sparse vectors + stale ground truth; changing live ranking on that data, or accepting it uncritically, both risk being wrong — re-benchmark when healthy |
+| Authorize the minimal `hybrid-search.ts` scope extension | REQ-001's ablation genuinely needs to disable the production trigger lane; the change is a config-driven channel skip, flagged as a scope extension |
+| Make rescue authority a config-selectable mode | Turns an argument into an experiment: overwrite/additive/floor are A/B/C-benchmarkable and reversible |
 <!-- /ANCHOR:decisions -->
 
 ---
@@ -104,12 +89,17 @@ Explain what the user gains, not what files you touched.]
 <!-- ANCHOR:verification -->
 ## Verification
 
-<!-- Voice guide: Be honest. Show failures alongside passes.
-     "FAIL, TS2349 error in benchmarks.ts" not "Minor issues detected." -->
-
 | Check | Result |
 |-------|--------|
-| [Validation, lint, tests, manual check] | [PASS/FAIL with specifics] |
+| `npm run build` (integrated main) | PASS (clean) |
+| 006 vitest (eval-reporting + retrieval-rescue) | PASS (31/31, 1 skipped) |
+| REQ-001 eval runs executePipeline | PASS (eval-reporting.ts imports + calls executePipeline) |
+| REQ-002 swap/restore rebinds consumers | PASS (db-state rebindDatabaseConsumers) |
+| REQ-003 cwd-independent path | PASS (import.meta.url) |
+| REQ-004 A/B/C benchmark on parity harness | PASS (A 0.40, B 0.20, C 0.20 completeRecall@3) |
+| REQ-005 ADR-002 authority | DEFERRED (operator; confounded benchmark) |
+| REQ-006..010 contract test, doc parity, dead-surface | PASS |
+| `validate.sh --strict` | PASS |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -117,19 +107,7 @@ Explain what the user gains, not what files you touched.]
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-<!-- Voice guide: Number them. Be specific and actionable.
-     "Adaptive fusion is enabled by default. Set SPECKIT_ADAPTIVE_FUSION=false to disable."
-     not "Some features may require configuration."
-     Write "None identified." if nothing applies. -->
-
-1. **[Limitation]** [Specific detail with workaround if one exists.]
+1. **ADR-002 is unresolved by design.** The rescue authority stays in `overwrite` mode (config-flippable); the accept decision waits for a re-benchmark once the phase-004 vector reconcile has run daemon-side and the eval ground truth is refreshed. This is a tracked follow-up, not a silent gap.
+2. **The benchmark is vector-starved.** completeRecall@3 tops out at 0.40 because much of the corpus lacks vectors right now; the numbers will shift after the reconcile, which is why the decision is deferred.
+3. **Harness effects need the daemon running this code.** Like the earlier phases, the eval-parity behavior applies when the daemon restarts with the new dist.
 <!-- /ANCHOR:limitations -->
-
----
-
-<!--
-CORE TEMPLATE: Post-implementation documentation, created AFTER work completes.
-Write in human voice: active, direct, specific. No em dashes, no hedging, no AI filler.
-HVR rules: .opencode/skills/sk-doc/references/hvr_rules.md
--->
-

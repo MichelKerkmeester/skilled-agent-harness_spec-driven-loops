@@ -25,7 +25,7 @@ Use this folder for retrieval flow changes that need a clear stage boundary. The
 | `index.ts` | Public barrel export for `executePipeline` and pipeline types. |
 | `orchestrator.ts` | Runs the four stages in order and assembles `PipelineResult`. |
 | `stage1-candidate-gen.ts` | Generates candidates from hybrid, vector, multi-concept, and expansion channels. |
-| `stage2-fusion.ts` | Applies score fusion and retrieval signals. |
+| `stage2-fusion.ts` | Applies score fusion, retrieval signals, rescue authority, and late validation scoring. |
 | `stage3-rerank.ts` | Applies MMR diversity reranking and MPAB chunk collapse. |
 | `stage4-filter.ts` | Filters by state and tier, adds annotations, and checks score immutability. |
 | `types.ts` | Shared data contracts and score invariant helpers. |
@@ -87,7 +87,7 @@ Stages may depend on lower-level search channels and scoring helpers. Lower-leve
 | Stage | Rule |
 | --- | --- |
 | Stage 1 | Produce candidates and apply source-level filters only. |
-| Stage 2 | Own score fusion and retrieval-signal score changes. |
+| Stage 2 | Own score fusion, retrieval-signal score changes, rescue authority, and late validation score changes. |
 | Stage 3 | Own reranking, diversity pruning, and chunk-to-parent aggregation. |
 | Stage 4 | Filter and annotate without changing score fields. |
 
@@ -96,6 +96,7 @@ Stages may depend on lower-level search channels and scoring helpers. Lower-leve
 | Invariant | Enforcement |
 | --- | --- |
 | Single scoring point | Score changes happen in Stage 2 or Stage 3 only. |
+| Rescue authority | Current default rescue mode rewrites the upstream base score with lexical rescue score; additive and floor modes are benchmark-only until a human finalizes the ranking contract. |
 | Hybrid double-weight guard | Intent weights are skipped in Stage 2 for hybrid search. |
 | Stage 4 immutability | `Stage4ReadonlyRow`, snapshots, and runtime checks block score mutation. |
 | Score resolution | All stages use `resolveEffectiveScore()` from `types.ts`. |

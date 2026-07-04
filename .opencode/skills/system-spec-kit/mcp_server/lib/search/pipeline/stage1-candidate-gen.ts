@@ -708,6 +708,13 @@ async function executeStage1Core(input: Stage1Input, startTime: number): Promise
     agentId,
     includeArchived,
     intent: config.adaptiveFusionIntent ?? undefined,
+    evaluationMode: config.evaluationMode,
+    forceAllChannels: config.forceAllChannels,
+    useVector: config.useVector,
+    useBm25: config.useBm25,
+    useFts: config.useFts,
+    useGraph: config.useGraph,
+    useTrigger: config.useTrigger,
   };
 
   // -- Graph Concept Routing -----------------------------------

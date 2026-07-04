@@ -22,6 +22,7 @@
 import { addTraceEntry } from '@spec-kit/shared/contracts/retrieval-trace';
 import { MemoryError, withTimeout } from '../../errors/core.js';
 import { requireDb } from '../../../utils/db-helpers.js';
+import { withDatabaseReadLock } from '../../../core/db-state.js';
 import {
   DEFAULT_MIN_RESULTS,
   GAP_THRESHOLD_MULTIPLIER,
@@ -174,6 +175,13 @@ function promoteTriggerLaneRows(
  * @returns Pipeline result with stage metadata and timing
  */
 export async function executePipeline(config: PipelineConfig): Promise<PipelineResult> {
+  if (config.evaluationMode === true) {
+    return executePipelineUnlocked(config);
+  }
+  return withDatabaseReadLock(() => executePipelineUnlocked(config));
+}
+
+async function executePipelineUnlocked(config: PipelineConfig): Promise<PipelineResult> {
   const timing: Record<string, number> = {};
   const pipelineStart = Date.now();
   let degraded = false;

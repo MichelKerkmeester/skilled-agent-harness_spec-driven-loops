@@ -15,10 +15,12 @@
     "210",
     "applied"
   ],
-  "lastUpdated": "2026-07-03T10:13:15.249Z",
+  "lastUpdated": "2026-07-04T02:19:52.070Z",
   "specId": "006",
   "folderSlug": "rescue-layer-ranking-authority-decision",
   "parentChain": [
+    ".opencode",
+    "specs",
     "system-speckit",
     "028-memory-search-intelligence",
     "016-fix-deep-dive-p0-p2-findings-for-mk-spec-memory"

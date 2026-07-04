@@ -23,6 +23,8 @@ type RescueOptions = {
   specFolder?: string;
 };
 
+type RescueRankingMode = 'overwrite' | 'additive' | 'floor';
+
 type ScoredRow = PipelineRow & {
   retrievalRescueScore?: number;
   retrievalRescueBoost?: number;
@@ -72,6 +74,8 @@ const SIBLING_DOCUMENT_TYPES = [
 
 const RESCUE_SCORE_CAP = 1.0;
 const RESCUE_TOP_K = 10;
+const RESCUE_ADDITIVE_WEIGHT = 0.12;
+const RESCUE_FLOOR_BASE_THRESHOLD = 0.24;
 const logger = createLogger('retrieval-rescue');
 
 const telemetryCounters = {
@@ -90,6 +94,12 @@ function envFlagExplicitFalse(name: string): boolean {
  */
 export function isRetrievalRescueEnabled(): boolean {
   return !envFlagExplicitFalse('SPECKIT_RERANK_LAYER');
+}
+
+function resolveRescueRankingMode(): RescueRankingMode {
+  const raw = process.env.SPECKIT_RETRIEVAL_RESCUE_MODE?.trim().toLowerCase();
+  if (raw === 'additive' || raw === 'floor' || raw === 'overwrite') return raw;
+  return 'overwrite';
 }
 
 function normalizeText(value: unknown): string {
@@ -203,12 +213,25 @@ function documentHintScore(tokens: string[], row: PipelineRow, artifactClass?: s
   return score;
 }
 
-function computeRescueLayerScore(baseScore: number, rescueScore: number): number {
+function computeRescueLayerScore(
+  baseScore: number,
+  rescueScore: number,
+  mode: RescueRankingMode = resolveRescueRankingMode(),
+): number {
+  const normalizedBase = Math.min(baseScore, 1);
+  if (mode === 'additive') {
+    return Math.min(RESCUE_SCORE_CAP, normalizedBase + rescueScore * RESCUE_ADDITIVE_WEIGHT);
+  }
+
+  if (mode === 'floor' && normalizedBase >= RESCUE_FLOOR_BASE_THRESHOLD) {
+    return normalizedBase;
+  }
+
   // Keep RESCUE_SCORE_CAP clamp as defense-in-depth even though the
   // formula ceiling (0.03 + 0.78 = 0.81) is below the 1.0 cap with rescueScore
   // bounded to [0,1] at the lexicalScore site. The cap exists in case the
   // formula or input bounds change in the future.
-  const uncapped = Math.min(baseScore, 1) * 0.03 + rescueScore * 0.78;
+  const uncapped = normalizedBase * 0.03 + rescueScore * 0.78;
   return Math.min(RESCUE_SCORE_CAP, uncapped);
 }
 
@@ -418,13 +441,14 @@ export function applyRetrievalRescueLayer(
 ): PipelineRow[] {
   if (!isRetrievalRescueEnabled() || rows.length === 0) return rows;
 
+  const mode = resolveRescueRankingMode();
   const expanded = mergeSiblingCandidates(query, rows, options);
   const rescued = expanded.map((row): ScoredRow => {
     const baseScore = resolveEffectiveScore(row);
     const rescue = lexicalScore(query, row, options.artifactClass);
     // Rescue candidates should compete after the outer normalization
     // clamp, not be held below original-lane candidates by a local 0.82 cap.
-    const score = computeRescueLayerScore(baseScore, rescue.score);
+    const score = computeRescueLayerScore(baseScore, rescue.score, mode);
     const boost = Math.max(0, score - baseScore);
     return {
       ...syncScore(row, score),
@@ -464,6 +488,7 @@ export const __testables = {
   queryTokens,
   lexicalScore,
   computeRescueLayerScore,
+  resolveRescueRankingMode,
   telemetryCounters,
   resetTelemetryCounters: () => {
     telemetryCounters.rescueRuns = 0;

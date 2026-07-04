@@ -6,6 +6,7 @@ import fs from 'fs/promises';
 import { resolveDatabasePaths, INDEX_SCAN_COOLDOWN } from './config.js';
 import type { DatabaseExtended } from '@spec-kit/shared/types';
 import type { GraphSearchFn } from '../lib/search/search-types.js';
+import { createUnifiedGraphSearchFn } from '../lib/search/graph-search-fn.js';
 
 // ────────────────────────────────────────────────────────────────
 // 1. TYPES 
@@ -68,6 +69,7 @@ export interface DbStateDeps {
   sessionManager?: SessionManagerLike;
   incrementalIndex?: IncrementalIndexLike;
   graphSearchFn?: GraphSearchFn | null;
+  graphSearchFactory?: (database: DatabaseLike) => GraphSearchFn;
   dbConsumers?: DatabaseConsumerLike[];
 }
 
@@ -101,11 +103,70 @@ let hybridSearch: HybridSearchLike | null = null;
 let sessionManagerRef: SessionManagerLike | null = null;
 let incrementalIndexRef: IncrementalIndexLike | null = null;
 let graphSearchFnRef: GraphSearchFn | null | undefined = undefined;
+let graphSearchFactoryRef: (database: DatabaseLike) => GraphSearchFn = (database) =>
+  createUnifiedGraphSearchFn(database as Parameters<typeof createUnifiedGraphSearchFn>[0]);
+let graphSearchEnabledRef = process.env.SPECKIT_GRAPH_UNIFIED !== 'false';
 const dbConsumersRef: DatabaseConsumerLike[] = [];
 let vectorIndexListenerCleanup: (() => void) | null = null;
 let subscribedVectorIndex: VectorIndexLike | null = null;
 let suppressVectorIndexListener = false;
 const databaseRebindListeners = new Set<DatabaseRebindListener>();
+let activeDatabaseReaders = 0;
+let databaseWriterActive = false;
+const pendingDatabaseReaders: Array<() => void> = [];
+const pendingDatabaseWriters: Array<() => void> = [];
+
+function releaseDatabaseLockWaiters(): void {
+  if (databaseWriterActive) return;
+  if (pendingDatabaseWriters.length > 0) {
+    if (activeDatabaseReaders > 0) return;
+    const nextWriter = pendingDatabaseWriters.shift();
+    if (nextWriter) {
+      databaseWriterActive = true;
+      nextWriter();
+    }
+    return;
+  }
+
+  while (pendingDatabaseReaders.length > 0) {
+    const nextReader = pendingDatabaseReaders.shift();
+    if (nextReader) nextReader();
+  }
+}
+
+async function waitForDatabaseReadSlot(): Promise<void> {
+  if (!databaseWriterActive && pendingDatabaseWriters.length === 0) return;
+  await new Promise<void>((resolve) => pendingDatabaseReaders.push(resolve));
+}
+
+async function waitForDatabaseWriteSlot(): Promise<void> {
+  if (!databaseWriterActive && activeDatabaseReaders === 0) {
+    databaseWriterActive = true;
+    return;
+  }
+  await new Promise<void>((resolve) => pendingDatabaseWriters.push(resolve));
+}
+
+export async function withDatabaseReadLock<T>(run: () => Promise<T>): Promise<T> {
+  await waitForDatabaseReadSlot();
+  activeDatabaseReaders++;
+  try {
+    return await run();
+  } finally {
+    activeDatabaseReaders--;
+    releaseDatabaseLockWaiters();
+  }
+}
+
+export async function withDatabaseWriteLock<T>(run: () => Promise<T>): Promise<T> {
+  await waitForDatabaseWriteSlot();
+  try {
+    return await run();
+  } finally {
+    databaseWriterActive = false;
+    releaseDatabaseLockWaiters();
+  }
+}
 
 export function registerDatabaseRebindListener(listener: DatabaseRebindListener): () => void {
   databaseRebindListeners.add(listener);
@@ -161,10 +222,14 @@ function rebindDatabaseConsumers(database: DatabaseLike): boolean {
   if (checkpoints) checkpoints.init(database);
   if (accessTracker) accessTracker.init(database);
   if (hybridSearch) {
-    if (!graphSearchFnRef && process.env.SPECKIT_GRAPH_UNIFIED !== 'false') {
+    const graphSearchFn = graphSearchEnabledRef && process.env.SPECKIT_GRAPH_UNIFIED !== 'false'
+      ? graphSearchFactoryRef(database)
+      : null;
+    graphSearchFnRef = graphSearchFn;
+    if (!graphSearchFn && process.env.SPECKIT_GRAPH_UNIFIED !== 'false') {
       console.warn('[db-state] hybridSearch reinit missing graphSearchFn; graph retrieval channel is disabled');
     }
-    hybridSearch.init(database, vectorIndex?.vectorSearch, graphSearchFnRef ?? null);
+    hybridSearch.init(database, vectorIndex?.vectorSearch, graphSearchFn);
   }
   if (sessionManagerRef) {
     const sessionInitResult = sessionManagerRef.init(database);
@@ -198,7 +263,11 @@ export function init(deps: DbStateDeps): void {
   if (deps.hybridSearch) hybridSearch = deps.hybridSearch;
   if (deps.sessionManager) sessionManagerRef = deps.sessionManager;
   if (deps.incrementalIndex) incrementalIndexRef = deps.incrementalIndex;
-  if (deps.graphSearchFn !== undefined) graphSearchFnRef = deps.graphSearchFn;
+  if (deps.graphSearchFactory) graphSearchFactoryRef = deps.graphSearchFactory;
+  if (deps.graphSearchFn !== undefined) {
+    graphSearchEnabledRef = deps.graphSearchFn !== null;
+    graphSearchFnRef = deps.graphSearchFn;
+  }
   if (Array.isArray(deps.dbConsumers) && deps.dbConsumers.length > 0) {
     for (const consumer of deps.dbConsumers) {
       if (consumer && !dbConsumersRef.includes(consumer)) {

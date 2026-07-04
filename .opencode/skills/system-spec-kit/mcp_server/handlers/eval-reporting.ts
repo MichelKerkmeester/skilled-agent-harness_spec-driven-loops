@@ -3,13 +3,15 @@
 // ────────────────────────────────────────────────────────────────
 
 import path from 'path';
+import { existsSync } from 'fs';
+import { fileURLToPath } from 'url';
 
 import { checkDatabaseUpdated } from '../core/index.js';
+import { withDatabaseWriteLock } from '../core/db-state.js';
 import { ensureMemoryRuntimeInitialized } from '../lib/runtime/memory-runtime-guard.js';
 import * as vectorIndex from '../lib/search/vector-index.js';
 import {
   init as initHybridSearch,
-  hybridSearchEnhanced,
   bm25Search,
   ftsSearch,
 } from '../lib/search/hybrid-search.js';
@@ -23,10 +25,11 @@ import {
   assertGroundTruthAlignment,
   storeAblationResults,
   formatAblationReport,
-  toHybridSearchFlags,
   type AblationChannel,
   type AblationSearchFn,
 } from '../lib/eval/ablation-framework.js';
+import { executePipeline } from '../lib/search/pipeline/index.js';
+import type { PipelineConfig } from '../lib/search/pipeline/index.js';
 import {
   generateDashboardReport,
   formatReportJSON,
@@ -41,7 +44,11 @@ import {
   computeDegreeScores,
   DEGREE_CHANNEL_WEIGHT,
 } from '../lib/search/graph-search-fn.js';
-import { isDegreeBoostEnabled } from '../lib/search/search-flags.js';
+import {
+  isCausalBoostEnabled,
+  isDegreeBoostEnabled,
+  isSessionBoostEnabled,
+} from '../lib/search/search-flags.js';
 import type { RankedList } from '@spec-kit/shared/algorithms/rrf-fusion';
 
 import type { MCPResponse } from './types.js';
@@ -107,6 +114,63 @@ interface KSensitivityArgs {
   limit?: number;
 }
 
+const modulePath = fileURLToPath(import.meta.url);
+const moduleDir = path.dirname(modulePath);
+
+function resolvePackageRoot(): string {
+  let current = moduleDir;
+  for (let depth = 0; depth < 5; depth++) {
+    if (existsSync(path.join(current, 'package.json'))) return current;
+    const parent = path.dirname(current);
+    if (parent === current) break;
+    current = parent;
+  }
+  return path.resolve(moduleDir, '..');
+}
+
+function toPipelineChannelConfig(disabledChannels: Set<AblationChannel>): Pick<PipelineConfig, 'useVector' | 'useBm25' | 'useFts' | 'useGraph' | 'useTrigger'> {
+  return {
+    useVector: !disabledChannels.has('vector'),
+    useBm25: !disabledChannels.has('bm25'),
+    useFts: !disabledChannels.has('fts5'),
+    useGraph: !disabledChannels.has('graph'),
+    useTrigger: !disabledChannels.has('trigger'),
+  };
+}
+
+function buildEvalPipelineConfig(
+  query: string,
+  embedding: Float32Array | number[] | null,
+  recallK: number,
+  disabledChannels: Set<AblationChannel>,
+): PipelineConfig {
+  return {
+    query,
+    ...(embedding ? { queryEmbedding: embedding } : {}),
+    searchType: 'hybrid',
+    limit: recallK,
+    includeArchived: false,
+    includeConstitutional: false,
+    includeContent: true,
+    minState: '',
+    applyStateLimits: false,
+    useDecay: true,
+    rerank: true,
+    applyLengthPenalty: true,
+    enableDedup: true,
+    enableSessionBoost: isSessionBoostEnabled(),
+    enableCausalBoost: isCausalBoostEnabled(),
+    trackAccess: false,
+    detectedIntent: null,
+    intentConfidence: 0,
+    intentWeights: null,
+    retrievalLevel: 'auto',
+    evaluationMode: true,
+    forceAllChannels: true,
+    ...toPipelineChannelConfig(disabledChannels),
+  };
+}
+
 interface ReportingDashboardArgs {
   sprintFilter?: string[];
   channelFilter?: string[];
@@ -145,7 +209,9 @@ function resolveEvalDbPath(): string | null {
     return null;
   }
 
-  return path.resolve(process.cwd(), configuredPath);
+  return path.isAbsolute(configuredPath)
+    ? configuredPath
+    : path.resolve(resolvePackageRoot(), configuredPath);
 }
 
 async function withAblationDb<T>(
@@ -177,15 +243,17 @@ async function withAblationDb<T>(
     return run(activeDb, currentDbPath);
   }
 
-  vectorIndex.closeDb();
-
-  try {
-    const overrideDb = vectorIndex.initializeDb(overrideDbPath);
-    return await run(overrideDb, vectorIndex.getDbPath());
-  } finally {
+  return withDatabaseWriteLock(async () => {
     vectorIndex.closeDb();
-    vectorIndex.initializeDb();
-  }
+
+    try {
+      const overrideDb = vectorIndex.initializeDb(overrideDbPath);
+      return await run(overrideDb, vectorIndex.getDbPath());
+    } finally {
+      vectorIndex.closeDb();
+      vectorIndex.initializeDb();
+    }
+  });
 }
 
 function buildRawFusionLists(
@@ -316,32 +384,22 @@ async function handleEvalRunAblation(args: RunAblationArgs): Promise<MCPResponse
     initializeEvalHybridSearch(db);
 
     const searchFn: AblationSearchFn = async (query, disabledChannels) => {
-      const channelFlags = toHybridSearchFlags(disabledChannels);
       const embedding = await generateQueryEmbeddingOrNull(query, 'ablation query');
 
-      const searchOptions = {
-        limit: recallK,
-        useVector: channelFlags.useVector,
-        useBm25: channelFlags.useBm25,
-        useFts: channelFlags.useFts,
-        useGraph: channelFlags.useGraph,
-        triggerPhrases: channelFlags.useTrigger ? undefined : [],
-        forceAllChannels: true,
-        evaluationMode: true,
-      };
-
-      const results = await hybridSearchEnhanced(query, embedding, searchOptions);
+      const pipelineConfig = buildEvalPipelineConfig(query, embedding, recallK, disabledChannels);
+      const pipelineResult = await executePipeline(pipelineConfig);
+      const results = pipelineResult.results;
       return {
         results: results.map((row, index) => ({
           memoryId: Number(
-            (row as Record<string, unknown>).parentMemoryId ?? row.id
+            (row as unknown as Record<string, unknown>).parentMemoryId ?? row.id
           ),
-          score: row.score,
+          score: row.score ?? 0,
           rank: index + 1,
         })),
         diagnosticRows: results.map((row, index) => ({
           ...row,
-          id: Number((row as Record<string, unknown>).parentMemoryId ?? row.id),
+          id: Number((row as unknown as Record<string, unknown>).parentMemoryId ?? row.id),
           rank: index + 1,
         })),
       };
@@ -413,7 +471,7 @@ const DEFAULT_K_SENSITIVITY_QUERIES = [
 /**
  * Run Multi-K RRF sensitivity analysis.
  *
- * 1. Runs hybridSearchEnhanced for each representative query
+ * 1. Builds raw channel fusion lists for each representative query
  * 2. Converts results to per-query RankedList[] groups
  * 3. Aggregates per-query sensitivity and formats the report
  */

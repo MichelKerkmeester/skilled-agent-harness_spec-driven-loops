@@ -18,28 +18,34 @@
 // Applied ONCE here only — this is the architectural guard against
 // The G2 double-weighting recurrence bug.
 //
-// SIGNAL APPLICATION ORDER (must not be reordered — 13 steps):
+// SIGNAL APPLICATION ORDER:
 // 1.  Session boost           — working-memory attention amplification
 // 1a. Recency fusion          — time-decay bonus for recent memories
 // 2.  Causal boost            — graph-traversal neighbor amplification
 // 2a. Co-activation spreading — spreading activation from top-N seeds
 // 2b. Community co-retrieval  — N2c inject community co-members
 // 2c. Graph signals           — N2a momentum + N2b causal depth
+// 2d. Usage ranking           — usage-weighted score adjustment
+// 2e. Graph evidence          — graph provenance annotation
 // 3.  Testing effect          — FSRS strengthening write-back (trackAccess)
 // 4.  Intent weights          — non-hybrid search post-scoring adjustment
 // 5.  Artifact routing        — class-based weight boosts
 // 6.  Feedback signals        — learned trigger boosts + negative demotions
-// 6a. Retrieval rescue        — default-on trigger/sibling/backfill rescue layer
+// 6a. Learned shadow scoring  — logged by default; small blend only when opted in
+// 6b. Retrieval rescue        — default overwrite ranking authority; benchmark modes can fold or floor it
 // 7.  Artifact limiting       — result count cap from routing strategy
 // 8.  Anchor metadata         — extract named ANCHOR sections (annotation)
-// 9.  Validation metadata     — spec quality signals enrichment + quality scoring
+// 9.  Validation metadata     — spec quality enrichment + late quality scoring
 //
 // Hybrid search already applies intent-aware scoring
 // Internally (RRF / RSF fusion). Post-search intent weighting is
 // Therefore ONLY applied for non-hybrid search types (vector,
 // Multi-concept). Applying it to hybrid results would double-count.
 //
-// SCORE AUDIT CONTRACT: Stage 2 writes the fused `score` field (steps 1-7).
+// SCORE AUDIT CONTRACT: Stage 2 writes the fused `score` field. In the default
+// rescue mode, the rescue blend overwrites the upstream base score; validation
+// scoring is the only later score change. Benchmark rescue modes deliberately
+// preserve or threshold the base score so the final authority can be measured.
 // Stage 3 (rerank) MAY overwrite `score` with the reranked value and MUST
 // preserve the original in `stage2Score` for auditability.
 // Stage 4 (filter) MUST NOT mutate any score fields — it is read-only.
@@ -1004,21 +1010,25 @@ function recordAdaptiveAccessSignals(
 /**
  * Execute Stage 2: Fusion + Signal Integration.
  *
- * This is the SINGLE authoritative point where all scoring signals are
- * applied. The ordering is fixed and must not be changed without updating
- * the architectural documentation (see types.ts Stage2 comment block).
+ * This is the single scoring stage. The default rescue mode overwrites the
+ * upstream base score near the end of Stage 2, so earlier score mutations are
+ * inputs to that blend rather than independent final-ranking authorities.
  *
- * Signal application order (13 steps):
+ * Signal application order:
  *   1.  Session boost      (hybrid only — working memory attention)
  *   1a. Recency fusion     (all types — time-decay bonus)
  *   2.  Causal boost       (hybrid only — graph-traversal amplification)
  *   2a. Co-activation      (spreading activation from top-N seeds)
  *   2b. Community boost    (N2c — inject co-members)
  *   2c. Graph signals      (N2a+N2b — momentum + depth)
+ *   2d. Usage ranking      (usage-weighted score adjustment)
+ *   2e. Graph evidence     (provenance annotation)
  *   3.  Testing effect     (all types, when trackAccess = true)
  *   4.  Intent weights     (non-hybrid only — G2 prevention)
  *   5.  Artifact routing   (all types, when routing confidence > 0)
  *   6.  Feedback signals   (all types — learned triggers + negative feedback)
+ *   6a. Learned shadow     (logged by default; small blend only when opted in)
+ *   6b. Retrieval rescue   (default overwrite; benchmark modes fold/floor)
  *   7.  Artifact limiting  (trim to strategy.maxResults if routing active)
  *   8.  Anchor metadata    (annotation — no score mutation)
  *   9.  Validation metadata (spec quality signals + quality scoring)
