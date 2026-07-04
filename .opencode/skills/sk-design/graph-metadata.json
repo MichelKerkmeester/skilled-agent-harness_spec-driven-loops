@@ -20,11 +20,6 @@
         "context": "Design-and-build peer in the sk-code family; sk-design owns taste, sk-code owns implementation"
       },
       {
-        "target": "sk-code-review",
-        "weight": 0.4,
-        "context": "Reviews implementation quality after design and build work converge"
-      },
-      {
         "target": "mcp-figma",
         "weight": 0.45,
         "context": "Sibling Figma tool with design handoff overlap"
@@ -53,7 +48,6 @@
     "depends_on": [],
     "related_to": [
       "sk-code",
-      "sk-code-review",
       "mcp-figma",
       "mcp-open-design"
     ]

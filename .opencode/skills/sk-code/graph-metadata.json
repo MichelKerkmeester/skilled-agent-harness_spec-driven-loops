@@ -152,8 +152,7 @@
       "sk-code hub",
       "code mode router",
       "implement mode",
-      "review mode",
-      "sk-code-review"
+      "review mode"
     ],
     "key_topics": [
       "code",
@@ -187,16 +186,16 @@
       "README.md",
       "mode-registry.json",
       "hub-router.json",
-      "references/stack_detection.md",
-      "references/smart_routing.md",
-      "references/smart_routing.md",
-      "references/phase_detection.md",
-      "references/motion_dev/animate_and_timelines.md",
-      "references/motion_dev/decision_matrix.md",
-      "references/motion_dev/integration_patterns.md",
-      "references/motion_dev/performance_and_pitfalls.md",
-      "references/motion_dev/quick_start.md",
-      "references/motion_dev/scroll_and_gestures.md"
+      "shared/references/stack_detection.md",
+      "shared/references/smart_routing.md",
+      "shared/references/smart_routing.md",
+      "shared/references/phase_detection.md",
+      "code-implement/references/motion_dev/animate_and_timelines.md",
+      "code-implement/references/motion_dev/decision_matrix.md",
+      "code-implement/references/motion_dev/integration_patterns.md",
+      "code-implement/references/motion_dev/performance_and_pitfalls.md",
+      "code-implement/references/motion_dev/quick_start.md",
+      "code-implement/references/motion_dev/scroll_and_gestures.md"
     ],
     "key_files": [
       ".opencode/skills/sk-code/SKILL.md",

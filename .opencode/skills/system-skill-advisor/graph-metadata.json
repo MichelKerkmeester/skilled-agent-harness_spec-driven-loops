@@ -32,11 +32,6 @@
         "context": "routes frontend and system-code requests via sk-code stack detection"
       },
       {
-        "target": "sk-code-review",
-        "weight": 0.7,
-        "context": "routes code review requests"
-      },
-      {
         "target": "deep-loop-workflows",
         "weight": 0.7,
         "context": "routes autonomous research requests"

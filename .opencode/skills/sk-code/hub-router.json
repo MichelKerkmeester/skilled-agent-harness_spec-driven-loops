@@ -86,7 +86,7 @@
       "keywords": ["mutation test", "claim-falsifier", "true-red", "compile-red", "verification ladder", "fresh evidence", "surface-appropriate verification"]
     },
     "review-aliases": {
-      "keywords": ["review", "reviewer", "code review", "findings-first review", "security review", "pr review", "review baseline", "review mode", "code-review", "sk-code-review"]
+      "keywords": ["review", "reviewer", "code review", "findings-first review", "security review", "pr review", "review baseline", "review mode", "code-review"]
     },
     "review-findings": {
       "keywords": ["findings first", "findings-first", "severity", "p0", "p1", "p2", "output contract", "checklists", "correctness baseline", "test quality review"]

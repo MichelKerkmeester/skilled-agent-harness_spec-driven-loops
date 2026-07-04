@@ -96,7 +96,7 @@
       "packet": "code-review",
       "packetSkillName": "code-review",
       "grandfatheredFolderMismatch": false,
-      "aliases": ["code review", "reviewer", "findings-first review", "security review", "pr review", "review baseline", "correctness review", "test quality review", "review output contract", "pr-state gates", "sk-code-review"],
+      "aliases": ["code review", "reviewer", "findings-first review", "security review", "pr review", "review baseline", "correctness review", "test quality review", "review output contract", "pr-state gates"],
       "advisorRouting": {
         "routingClass": "metadata",
         "packetSkillName": "code-review"
