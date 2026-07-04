@@ -251,6 +251,7 @@ export function estimateComponentSize(
 
   const visited = new Set<string>(numericNodeIds);
   const queue: string[] = [...numericNodeIds];
+  let queueIndex = 0;
   let edgesScanned = 0;
 
   try {
@@ -262,8 +263,8 @@ export function estimateComponentSize(
       LIMIT ?
     `) as Database.Statement;
 
-    while (queue.length > 0 && edgesScanned < LOCAL_RECOMPUTE_EDGE_LIMIT) {
-      const current = queue.shift()!;
+    while (queueIndex < queue.length && edgesScanned < LOCAL_RECOMPUTE_EDGE_LIMIT) {
+      const current = queue[queueIndex++]!;
       const rows = stmt.all(current, current, LOCAL_RECOMPUTE_EDGE_LIMIT - edgesScanned) as Array<{
         source_id: string;
         target_id: string;

@@ -505,9 +505,7 @@ function bm25Search(
     }
 
     const index = getIndex();
-    const candidateLimit = (specFolder || db)
-      ? index.getStats().documentCount
-      : limit;
+    const candidateLimit = Math.max(limit, limit * 3);
     // Metadata filters run after in-memory scoring, so fetch the corpus-bounded
     // candidate set whenever those filters can remove otherwise top-ranked hits.
     const results = index.search(query, candidateLimit);
@@ -746,6 +744,26 @@ function timestampBoost(value: unknown): number {
   return 1 / (1 + ageDays / 30);
 }
 
+function mergeProvenanceSources(
+  scratch: Set<string>,
+  ...sourceGroups: Array<readonly string[] | string | null | undefined>
+): string[] {
+  scratch.clear();
+  for (const group of sourceGroups) {
+    if (typeof group === 'string') {
+      scratch.add(group);
+      continue;
+    }
+    if (!Array.isArray(group)) continue;
+    for (const source of group) {
+      if (typeof source === 'string') {
+        scratch.add(source);
+      }
+    }
+  }
+  return Array.from(scratch);
+}
+
 function exactTriggerSearch(
   query: string,
   options: { limit?: number; specFolder?: string; includeArchived?: boolean } = {}
@@ -758,7 +776,7 @@ function exactTriggerSearch(
   const { limit = DEFAULT_LIMIT, specFolder } = options;
   const normalizedQuery = normalizeTriggerText(query);
   const exactPhraseLike = `%${normalizedQuery}%`;
-  const candidateLimit = Math.max(200, Math.min(1000, limit * 100));
+  const candidateLimit = Math.max(limit, limit * 3);
   const conditions = [
     `m.trigger_phrases IS NOT NULL`,
     `m.trigger_phrases != ''`,
@@ -1618,6 +1636,8 @@ async function collectAndFuseHybridResults(
           : adaptiveGraphWeight,
       }
       : fusionWeights;
+    const keywordProvenanceScratch = new Set<string>();
+    const fusedProvenanceScratch = new Set<string>();
     const keywordFusionResults = keywordResults.map((result) => {
       const originalSource = typeof result.source === 'string' ? result.source : null;
       const existingSources = Array.isArray((result as Record<string, unknown>).sources)
@@ -1626,7 +1646,7 @@ async function collectAndFuseHybridResults(
       return {
         ...result,
         source: 'keyword',
-        sources: Array.from(new Set([...existingSources, ...(originalSource ? [originalSource] : []), 'keyword'])),
+        sources: mergeProvenanceSources(keywordProvenanceScratch, existingSources, originalSource, 'keyword'),
       };
     });
     const baseFusionLists = lists
@@ -1699,7 +1719,7 @@ async function collectAndFuseHybridResults(
         const rowSources = Array.isArray(row.sources)
           ? row.sources.filter((source): source is string => typeof source === 'string')
           : [];
-        const sources = Array.from(new Set([...rowSources, ...keywordSources]));
+        const sources = mergeProvenanceSources(fusedProvenanceScratch, rowSources, keywordSources);
         row = {
           ...row,
           sources,
@@ -3178,6 +3198,7 @@ export const __testables = {
   injectContextualTree,
   toHybridResult,
   dedupeKeywordResults,
+  mergeProvenanceSources,
   ensureLlmBackfillRegistered,
   applyResultLimit,
   reorderTopNByCosine,

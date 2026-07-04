@@ -757,7 +757,14 @@ async function runIndexScan(args: ScanArgs, ctx: ScanRunContext = {}): Promise<M
     if (actions.length === 0) {
       return;
     }
-    results.aliasConflicts = detectAliasConflictsFromIndex();
+    const affectedFolders = Array.from(new Set(actions.flatMap((action) => {
+      const metadata = action.metadata && typeof action.metadata === 'object'
+        ? action.metadata as Record<string, unknown>
+        : {};
+      const folder = metadata.specFolder;
+      return typeof folder === 'string' && folder.length > 0 ? [folder] : [];
+    })));
+    results.aliasConflicts = detectAliasConflictsFromIndex({ affectedFolders });
     results.divergenceReconcile = runDivergenceReconcileHooks(results.aliasConflicts);
   };
 

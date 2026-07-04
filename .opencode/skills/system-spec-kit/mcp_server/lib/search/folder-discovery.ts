@@ -512,6 +512,19 @@ function collectDiscoveredSpecState(basePaths: string[]): DiscoveredSpecState {
   return { latestMtime, specFolders };
 }
 
+const DISCOVERED_STATE_TTL_MS = 2_000;
+let discoveredStateProbeCache: { key: string; expiresAt: number; state: DiscoveredSpecState } | null = null;
+
+function collectDiscoveredSpecStateWithTtl(basePaths: string[], nowMs = Date.now()): DiscoveredSpecState {
+  const key = basePaths.join('\0');
+  if (discoveredStateProbeCache && discoveredStateProbeCache.key === key && nowMs < discoveredStateProbeCache.expiresAt) {
+    return discoveredStateProbeCache.state;
+  }
+  const state = collectDiscoveredSpecState(basePaths);
+  discoveredStateProbeCache = { key, expiresAt: nowMs + DISCOVERED_STATE_TTL_MS, state };
+  return state;
+}
+
 // ───────────────────────────────────────────────────────────────
 // 3. DESCRIPTION EXTRACTION
 // ───────────────────────────────────────────────────────────────
@@ -1364,7 +1377,7 @@ export function isCacheStale(cache: DescriptionCache | null, basePaths: string[]
   }
 
   const normalizedBasePaths = normalizeBasePaths(basePaths);
-  const discoveredState = collectDiscoveredSpecState(normalizedBasePaths);
+  const discoveredState = collectDiscoveredSpecStateWithTtl(normalizedBasePaths);
   if (!cachedFoldersMatchDiscoveredState(cache, discoveredState.specFolders)) {
     return true;
   }

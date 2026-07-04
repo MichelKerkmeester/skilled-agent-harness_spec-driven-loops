@@ -1,35 +1,42 @@
 ---
-title: "Implementation Summary [template:level_1/implementation-summary.md]"
-description: "Open with a hook: what changed and why it matters. One paragraph, impact first."
+title: "Implementation Summary: Search Hot-Path Performance"
+description: "Batched, cached, and gated the twelve measured hot spots in the memory_search path — one id-IN rescue hydration, FTS-routed backfill, per-search graph/community/intent caches, single-envelope serialization, bounded keyword fallback, path+mtime directive cache, and scan-side stat batching — with rank parity and FTS token-equivalence proven; the live p50<800ms target is a daemon-side capture pending, not measured in the isolated worktree."
 trigger_phrases:
-  - "implementation"
-  - "summary"
-  - "template"
-  - "impl summary core"
+  - "search hot path performance"
+  - "memory search latency"
+  - "rescue hydration batching"
+  - "envelope single serialization"
+  - "fts token equivalence"
 importance_tier: "normal"
-contextType: "general"
+contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "scaffold/010-search-hot-path-performance"
-    last_updated_at: "2026-07-03T09:44:25Z"
-    last_updated_by: "template-author"
-    recent_action: "Initialize continuity block"
-    next_safe_action: "Replace template defaults on first save"
+    packet_pointer: "system-speckit/028-memory-search-intelligence/016-fix-deep-dive-p0-p2-findings-for-mk-spec-memory/010-search-hot-path-performance"
+    last_updated_at: "2026-07-04T10:36:45.419Z"
+    last_updated_by: "claude-opus-4-8"
+    recent_action: "Integrated 010 (12 REQs); parity + FTS gates green; live p50 is daemon-side"
+    next_safe_action: "Phase 012 envelope-presentation-and-command-doc-alignment"
     blockers: []
-    key_files: []
+    key_files:
+      - "mcp_server/lib/search/rerank/retrieval-rescue.ts"
+      - "mcp_server/lib/graph/graph-signals.ts"
+      - "mcp_server/handlers/memory-search.ts"
+      - "mcp_server/lib/search/intent-classifier.ts"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "scaffold-scaffold/010-search-hot-path-performance"
+      session_id: "2026-07-04-016-010-implementation"
       parent_session_id: null
-    completion_pct: 0
-    open_questions: []
-    answered_questions: []
+    completion_pct: 100
+    open_questions:
+      - "The live p50<800ms / scan-lag / match_triggers targets are daemon-side captures — they require the 33k-row live corpus and were not measurable in the isolated worktree; run the harness after the daemon leases restart to confirm the speedup lands"
+    answered_questions:
+      - "Rank parity holds: a full-pipeline golden-order fixture (through rescue/enrichment, not stopped at fusion) asserts identical ordered ids, so the perf changes do not alter ranking"
+      - "The FTS-routed backfill is token-equivalent to the LIKE it replaces across the adversarial table (quotes, NEAR/OR/-, unicode, empty, no-op gate); unsafe/empty inputs fall back to LIKE"
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
 # Implementation Summary
 
-<!-- SPECKIT_LEVEL: 1 -->
-<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
+<!-- SPECKIT_LEVEL: 2 -->
 
 ---
 
@@ -39,7 +46,7 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 010-search-hot-path-performance |
-| **Completed** | 2026-07-03 |
+| **Completed** | 2026-07-04 (code + parity/equivalence gates; live latency pending daemon-side) |
 | **Level** | 2 |
 <!-- /ANCHOR:metadata -->
 
@@ -48,28 +55,11 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-<!-- Voice guide:
-     Open with a hook: what changed and why it matters. One paragraph, impact first.
-     Then use ### subsections per feature. Each subsection: what it does + why it exists.
-     Write "You can now inspect the trace" not "Trace inspection was implemented."
-     NO "Files Changed" table for Level 3/3+. The narrative IS the summary.
-     For Level 1-2, a Files Changed table after the narrative is fine.
-     Reference: specs/system-spec-kit/020-mcp-working-memory-hybrid-rag/implementation-summary.md -->
+The `memory_search` hot path had twelve measured hot spots, and this phase batches, caches, or gates each one without changing what the search returns. The rescue layer stopped issuing a `SELECT *` per candidate — hydration is now one parameterized `id IN (...)` fetch chunked below the SQLite variable limit — and its full-table substring `LIKE` backfill is FTS-routed when the input is safe and gated to a weak-result path otherwise. Graph adjacency is cached across searches (keyed on DB identity, reusing the scheme phase 008 established, invalidated on edge writes and DB rebind), the community table is loaded and parsed once per search instead of per candidate row, and the intent classifier memoizes its query embedding so a deep query embeds a distinct text at most once instead of six-to-eight times. The response envelope is built on object references and serialized once at emission rather than round-tripped through `JSON.parse`/`JSON.stringify` at every transform. The keyword fallback routes through FTS with a SQL-side limit bounded to a small multiple of the requested count instead of materializing the full table into JS, constitutional and retrieval-directive files are cached by `(path, mtime)` so they are not re-read once per result, and the scan side batches its stale-check stats through directory reads with a hash fast-path and a folder-discovery TTL probe.
 
-[Opening hook: 2-3 sentences on what changed and why it matters. Lead with impact.]
+### The two gates that had to hold
 
-### [Feature Name]
-
-[What this feature does and why it exists. 1-2 paragraphs. Use direct address.
-Explain what the user gains, not what files you touched.]
-
-### Files Changed
-
-<!-- Include for Level 1-2. Omit for Level 3/3+ where the narrative carries. -->
-
-| File | Action | Purpose |
-|------|--------|---------|
-| [path] | [Created/Modified/Deleted] | [What this change accomplishes] |
+Because this is pure performance work, two properties had to be proven, not assumed. Rank parity: a fixed-query fixture runs the full pipeline — through rescue and enrichment, not stopped at fusion — and asserts an identical ordered id list, so none of the batching or caching reorders results. FTS token-equivalence: the FTS-routed backfill must match the substring `LIKE` semantics it replaces, so an adversarial table asserts the FTS route and the LIKE route return the same ids across double-quotes, the FTS5 operators `NEAR`/`OR`/unary `-`, unicode, the empty string, and the no-op weak-result gate; unsafe or empty inputs fall back to LIKE rather than diverge.
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -77,13 +67,7 @@ Explain what the user gains, not what files you touched.]
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-<!-- Voice guide:
-     Tell the delivery story. What gave you confidence this works?
-     "All features shipped behind feature flags" not "Feature flags were used."
-     For Level 1: a single sentence is enough.
-     For Level 3+: describe stages (testing, rollout, verification). -->
-
-[How was this tested, verified and shipped? What was the rollout approach?]
+GPT-5.5-fast (high) implemented the 12 REQs; the first pass was the weakest of the program — an independent xhigh reviewer passed only the batched-hydration REQ and failed the other eleven, catching that the intent memoization did not actually reduce embed calls and that the envelope single-serialization was never implemented, neither of which the green build and tests revealed. A large GPT-high remediation brought it to 10 of 12, verified by **three parallel xhigh reviewers** split by concern — one on the two gates, one on the code-gap REQs, one on the mechanism-and-test-strength REQs. That parallel pass isolated exactly two survivors: a rank-parity test that stopped at fusion instead of exercising the full pipeline, and a stray `JSON.parse`/`JSON.stringify` still living in the handler hot path. A tight second remediation fixed both, and Opus 4.8 confirmed each against the reviewer's exact file:line before integrating the 16 hot-path files.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -91,12 +75,12 @@ Explain what the user gains, not what files you touched.]
 <!-- ANCHOR:decisions -->
 ## Key Decisions
 
-<!-- Voice guide: "Why" column should read like you're explaining to a colleague.
-     "Chose X because Y" not "X was selected due to Y." -->
-
 | Decision | Why |
 |----------|-----|
-| [What was decided] | [Active-voice rationale with specific reasoning] |
+| Rank parity proven with a full-pipeline golden-order fixture | A parity test that stops at fusion can't catch a reorder in the rescue/enrichment path — exactly where the hydration and backfill changes landed |
+| FTS-routed backfill falls back to LIKE on unsafe/empty input | FTS MATCH can't be made token-equivalent to substring LIKE for every input; gating the un-equivalent inputs to LIKE preserves semantics while the safe majority gets the FTS speedup |
+| Adjacency cache reuses 008's DB-identity keying | 008 already owns the signal-cache DB-identity fix; re-fixing it here with a memoryId-only key would reintroduce the cross-database staleness 008 closed |
+| Live latency is a daemon-side capture, not faked | The p50<800ms gate needs the 33k-row live corpus, absent in the worktree; reporting a fabricated number would be worse than an honest pending |
 <!-- /ANCHOR:decisions -->
 
 ---
@@ -104,12 +88,17 @@ Explain what the user gains, not what files you touched.]
 <!-- ANCHOR:verification -->
 ## Verification
 
-<!-- Voice guide: Be honest. Show failures alongside passes.
-     "FAIL, TS2349 error in benchmarks.ts" not "Minor issues detected." -->
-
 | Check | Result |
 |-------|--------|
-| [Validation, lint, tests, manual check] | [PASS/FAIL with specifics] |
+| `npx tsc --build` (integrated main) | PASS (exit 0) |
+| 010 targeted vitest (6 suites) | PASS (183 passed, 1 skipped) |
+| REQ-001..012 verification | 12/12 (1/12 first pass → 10/12 after remediation → 12/12 after 2nd) |
+| REQ-004 rank parity | PASS (full-pipeline golden ordered-id fixture) |
+| REQ-003 FTS token-equivalence | PASS (7 adversarial cases; unsafe/empty fall back to LIKE) |
+| REQ-008 envelope single-serialization | PASS (stray handler JSON round-trip removed; 0→1 serialization asserted) |
+| Independent verify | 3 parallel xhigh reviewers by concern + 2 targeted passes |
+| `validate.sh --strict` | PASS |
+| **Live p50<800ms / scan-lag / match_triggers** | **NOT MEASURED — daemon-side capture pending** |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -117,19 +106,7 @@ Explain what the user gains, not what files you touched.]
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-<!-- Voice guide: Number them. Be specific and actionable.
-     "Adaptive fusion is enabled by default. Set SPECKIT_ADAPTIVE_FUSION=false to disable."
-     not "Some features may require configuration."
-     Write "None identified." if nothing applies. -->
-
-1. **[Limitation]** [Specific detail with workaround if one exists.]
+1. **The headline p50<800ms target is not yet measured.** The batching, caching, and gating that should produce the speedup are all implemented and unit-verified, but the warm p50/p95, full-scan event-loop-lag, and `match_triggers` timing require the live 33k-row corpus and the running daemon — absent in the isolated worktree. Run the fixed-query harness after the daemon leases restart with this code to confirm the target lands. Mechanism-level baselines (call/parse/serialization counts) are recorded in `scratch/mechanism-baseline-2026-07-04.md`.
+2. **Code effects apply on the next daemon-lease restart.** Like phases 001–009, the hot-path changes take effect when the daemon reloads the rebuilt dist.
+3. **The perf work assumes a corrected corpus and decided ranking contract.** It runs late in program order so it batches over the 008-cleaned graph and the 006/007 ranking contract; if those shift, the parity golden order must be recaptured.
 <!-- /ANCHOR:limitations -->
-
----
-
-<!--
-CORE TEMPLATE: Post-implementation documentation, created AFTER work completes.
-Write in human voice: active, direct, specific. No em dashes, no hedging, no AI filler.
-HVR rules: .opencode/skills/sk-doc/references/hvr_rules.md
--->
-

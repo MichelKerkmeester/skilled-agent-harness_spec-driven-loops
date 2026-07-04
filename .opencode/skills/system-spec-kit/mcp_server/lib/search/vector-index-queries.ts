@@ -13,6 +13,7 @@ import { createLogger } from '../utils/logger.js';
 import { recordHistory } from '../storage/history.js';
 import { isArchivedVectorInclusionEnabled } from './search-flags.js';
 import { ACTIVE_ROW_SQL, isActiveRow } from './active-row-predicate.js';
+import { fts5Bm25Search, isFts5Available } from './sqlite-fts.js';
 import * as embeddingsProvider from '../providers/embeddings.js';
 import { getStartupEmbeddingProfile } from '@spec-kit/shared/embeddings';
 import { DEFAULT_ACTIVE_EMBEDDER, getActiveEmbedder, normalizeEmbeddingModelName } from '../embedders/schema.js';
@@ -68,6 +69,10 @@ type VectorSource = {
   idColumn: string;
   embeddingColumn: string;
 };
+
+function canUseKeywordFtsRoute(searchTerms: string[]): boolean {
+  return searchTerms.length > 0 && searchTerms.every((term) => /^[a-z0-9_]+$/.test(term));
+}
 
 function activeEmbeddingModelAliases(database: Database.Database): string[] {
   const active = getActiveEmbedder(database);
@@ -905,6 +910,38 @@ export function keyword_search(
     return [];
   }
 
+  const candidateLimit = Math.max(limit, limit * 3);
+  const ftsRows = canUseKeywordFtsRoute(search_terms) && !/\b(?:NEAR|OR|AND|NOT)\b/i.test(query) && !/(^|\s)-\S/.test(query) && isFts5Available(database)
+    ? fts5Bm25Search(database, query, {
+      limit: candidateLimit,
+      specFolder: specFolder ?? undefined,
+      includeArchived,
+    }) as unknown as MemoryRow[]
+    : [];
+
+  const rows = ftsRows.length >= Math.min(limit, candidateLimit)
+    ? ftsRows
+    : fetchKeywordLikeCandidates(search_terms, candidateLimit, specFolder, includeArchived, database);
+
+  const filtered = scoreKeywordRows(rows, search_terms)
+    .filter((row: MemoryRow) => Number(row.keyword_score ?? 0) > 0)
+    .sort((a: MemoryRow, b: MemoryRow) => Number(b.keyword_score ?? 0) - Number(a.keyword_score ?? 0))
+    .slice(0, limit);
+
+  return filtered.map((row: MemoryRow) => {
+    row.trigger_phrases = parse_trigger_phrases(row.trigger_phrases);
+    row.isConstitutional = row.importance_tier === 'constitutional';
+    return row;
+  });
+}
+
+function fetchKeywordLikeCandidates(
+  search_terms: string[],
+  candidateLimit: number,
+  specFolder: string | null,
+  includeArchived: boolean,
+  database: Database.Database,
+): MemoryRow[] {
   let where_clause = '1=1';
   const params: unknown[] = [];
 
@@ -913,17 +950,28 @@ export function keyword_search(
     params.push(specFolder, specFolderLikePattern(specFolder));
   }
 
+  const searchableClause = search_terms.map(() => `(
+    LOWER(COALESCE(m.title, '') || ' ' || COALESCE(m.trigger_phrases, '') || ' ' || COALESCE(m.spec_folder, '') || ' ' || COALESCE(m.file_path, '')) LIKE ?
+  )`).join(' OR ');
+  for (const term of search_terms) {
+    params.push(`%${term}%`);
+  }
+
   const sql = `
     SELECT m.* FROM memory_index m
     JOIN active_memory_projection p ON p.active_memory_id = m.id
     WHERE ${where_clause}
+      AND (${searchableClause})
       AND ${ACTIVE_ROW_SQL('m', { includeArchived, includeCold: includeArchived || isArchivedVectorInclusionEnabled() })}
     ORDER BY m.importance_weight DESC, m.created_at DESC
+    LIMIT ?
   `;
 
-  const rows = database.prepare(sql).all(...params);
+  return database.prepare(sql).all(...params, candidateLimit) as MemoryRow[];
+}
 
-  const scored = (rows as MemoryRow[]).map((row: MemoryRow) => {
+function scoreKeywordRows(rows: MemoryRow[], search_terms: string[]): MemoryRow[] {
+  return rows.map((row: MemoryRow) => {
     let score = 0;
     const searchable_text = [
       row.title || '',
@@ -946,17 +994,6 @@ export function keyword_search(
 
     score *= (0.5 + (row.importance_weight ?? 0));
     return { ...row, keyword_score: score };
-  });
-
-  const filtered = scored
-    .filter((row: MemoryRow) => Number(row.keyword_score ?? 0) > 0)
-    .sort((a: MemoryRow, b: MemoryRow) => Number(b.keyword_score ?? 0) - Number(a.keyword_score ?? 0))
-    .slice(0, limit);
-
-  return filtered.map((row: MemoryRow) => {
-    row.trigger_phrases = parse_trigger_phrases(row.trigger_phrases);
-    row.isConstitutional = row.importance_tier === 'constitutional';
-    return row;
   });
 }
 
@@ -1789,4 +1826,7 @@ export { verify_integrity as verifyIntegrity };
 
 export const __testables = {
   hydrateMultiConceptRow,
+  canUseKeywordFtsRoute,
+  fetchKeywordLikeCandidates,
+  scoreKeywordRows,
 };

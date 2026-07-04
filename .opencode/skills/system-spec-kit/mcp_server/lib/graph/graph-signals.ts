@@ -34,6 +34,10 @@ const GRAPH_WALK_SECOND_HOP_WEIGHT = 0.5;
 let nextDbCacheId = 1;
 const dbCacheIds = new WeakMap<Database.Database, number>();
 
+type AdjacencySnapshot = ReturnType<typeof buildAdjacencyList>;
+const adjacencyCache = new Map<number, AdjacencySnapshot>();
+const adjacencyDiagnostics = { builds: 0 };
+
 type GraphWalkRolloutState = 'off' | 'trace_only' | 'bounded_runtime';
 
 interface GraphWalkMetrics {
@@ -53,12 +57,17 @@ function enforceCacheBound(cache: Map<string, number>): void {
   }
 }
 
-function cacheKey(db: Database.Database, memoryId: number): string {
+function getDbCacheId(db: Database.Database): number {
   let dbId = dbCacheIds.get(db);
   if (dbId === undefined) {
     dbId = nextDbCacheId++;
     dbCacheIds.set(db, dbId);
   }
+  return dbId;
+}
+
+function cacheKey(db: Database.Database, memoryId: number): string {
+  const dbId = getDbCacheId(db);
   return `${dbId}:${memoryId}`;
 }
 
@@ -75,12 +84,14 @@ function numericEndpointWhere(): string {
 export function clearGraphSignalsCache(): void {
   momentumCache.clear();
   depthCache.clear();
+  adjacencyCache.clear();
   dirtyMomentumKeys.clear();
   dirtyDepthKeys.clear();
 }
 
 /** Mark graph-signal cache entries stale for rows touched by graph mutations. */
 export function markGraphSignalsDirty(db: Database.Database, memoryIds: number[]): { marked: number } {
+  adjacencyCache.delete(getDbCacheId(db));
   let marked = 0;
   for (const memoryId of memoryIds) {
     if (!Number.isInteger(memoryId)) {
@@ -297,6 +308,16 @@ function buildAdjacencyList(db: Database.Database): { adjacency: Map<number, num
   return { adjacency, allNodes, inDegree };
 }
 
+function getCachedAdjacencyList(db: Database.Database): AdjacencySnapshot {
+  const dbId = getDbCacheId(db);
+  const cached = adjacencyCache.get(dbId);
+  if (cached) return cached;
+  adjacencyDiagnostics.builds += 1;
+  const built = buildAdjacencyList(db);
+  adjacencyCache.set(dbId, built);
+  return built;
+}
+
 function buildUndirectedAdjacency(adjacency: Map<number, number[]>): Map<number, Set<number>> {
   const undirected = new Map<number, Set<number>>();
 
@@ -332,7 +353,7 @@ function computeGraphWalkMetrics(
     return scores;
   }
 
-  const { adjacency } = buildAdjacencyList(db);
+  const { adjacency } = getCachedAdjacencyList(db);
   const graph = buildUndirectedAdjacency(adjacency);
   const candidateSet = new Set(uniqueIds);
   const candidateSpan = uniqueIds.length - 1;
@@ -565,7 +586,7 @@ export function computeDepthScores(db: Database.Database, memoryIds: number[]): 
 
   // Build graph once for all uncached IDs
   try {
-    const { adjacency, allNodes } = buildAdjacencyList(db);
+    const { adjacency, allNodes } = getCachedAdjacencyList(db);
 
     if (allNodes.size === 0) {
       for (const id of uncached) {
@@ -699,12 +720,18 @@ export const __testables = {
   getCurrentDegree,
   getPastDegree,
   buildAdjacencyList,
+  getCachedAdjacencyList,
   buildUndirectedAdjacency,
   computeGraphWalkMetrics,
   computeGraphWalkScores,
   clamp,
   momentumCache,
   depthCache,
+  adjacencyCache,
+  adjacencyDiagnostics,
+  resetAdjacencyDiagnostics: () => {
+    adjacencyDiagnostics.builds = 0;
+  },
   dirtyMomentumKeys,
   dirtyDepthKeys,
 };

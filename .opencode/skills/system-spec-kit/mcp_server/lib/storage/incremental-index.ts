@@ -62,6 +62,8 @@ interface IndexedRecordRow extends IndexedPathRow {
   id: number;
 }
 
+type PathExistenceCache = Map<string, boolean>;
+
 interface OrphanSweepOptions {
   limit?: number;
   cursor?: number;
@@ -82,6 +84,7 @@ interface OrphanSweepResult {
 let db: Database.Database | null = null;
 let canonicalPathColumnAvailable: boolean | null = null;
 let documentTypeColumnAvailable: boolean | null = null;
+const pathExistenceDiagnostics = { statSyncCalls: 0, readdirSyncCalls: 0 };
 
 function init(database: Database.Database): void {
   db = database;
@@ -129,6 +132,7 @@ function hasDocumentTypeColumn(): boolean {
 
 function getFileMetadata(filePath: string): FileMetadata {
   try {
+    pathExistenceDiagnostics.statSyncCalls += 1;
     const stats = fs.statSync(filePath);
     return {
       path: filePath,
@@ -181,6 +185,45 @@ function computeFileContentHash(filePath: string): string | null {
   } catch {
     return null;
   }
+}
+
+function buildPathExistenceCache(filePaths: string[]): PathExistenceCache {
+  const normalizedPaths = Array.from(new Set(
+    filePaths
+      .filter((filePath) => typeof filePath === 'string' && filePath.length > 0)
+      .map((filePath) => path.resolve(filePath))
+  ));
+  const pathsByDirectory = new Map<string, Set<string>>();
+  for (const filePath of normalizedPaths) {
+    const directory = path.dirname(filePath);
+    const entries = pathsByDirectory.get(directory) ?? new Set<string>();
+    entries.add(filePath);
+    pathsByDirectory.set(directory, entries);
+  }
+
+  const existingPaths = new Set<string>();
+  for (const directory of pathsByDirectory.keys()) {
+    try {
+      pathExistenceDiagnostics.readdirSyncCalls += 1;
+      for (const entry of fs.readdirSync(directory, { withFileTypes: true })) {
+        existingPaths.add(path.join(directory, entry.name));
+      }
+    } catch {
+      // Missing or unreadable directories mean every candidate in that directory is absent.
+    }
+  }
+
+  const cache: PathExistenceCache = new Map();
+  for (const filePath of normalizedPaths) {
+    const exists = existingPaths.has(filePath);
+    cache.set(filePath, exists);
+  }
+  return cache;
+}
+
+function cachedPathExists(cache: PathExistenceCache, filePath: string | null | undefined): boolean {
+  if (typeof filePath !== 'string' || filePath.length === 0) return false;
+  return cache.get(path.resolve(filePath)) === true;
 }
 
 /* ───────────────────────────────────────────────────────────────
@@ -315,6 +358,11 @@ function categorizeFilesForIndexing(filePaths: string[]): CategorizedFiles {
   return result;
 }
 
+function resetPathExistenceDiagnostics(): void {
+  pathExistenceDiagnostics.statSyncCalls = 0;
+  pathExistenceDiagnostics.readdirSyncCalls = 0;
+}
+
 function listStaleIndexedPaths(scannedFilePaths: string[]): string[] {
   if (!db) return [];
 
@@ -334,6 +382,11 @@ function listStaleIndexedPaths(scannedFilePaths: string[]): string[] {
           WHERE file_path IS NOT NULL AND file_path != ''
         `) as Database.Statement).all() as IndexedPathRow[];
 
+    const pathExistenceCache = buildPathExistenceCache(rows.flatMap((row) => [
+      row.file_path,
+      row.canonical_file_path ?? '',
+    ]));
+
     for (const row of rows) {
       if (!row || typeof row.file_path !== 'string' || row.file_path.length === 0) {
         continue;
@@ -347,9 +400,9 @@ function listStaleIndexedPaths(scannedFilePaths: string[]): string[] {
         continue;
       }
 
-      const filePathExists = getFileMetadata(row.file_path).exists;
+      const filePathExists = cachedPathExists(pathExistenceCache, row.file_path);
       const canonicalPathExists = typeof row.canonical_file_path === 'string' && row.canonical_file_path.length > 0
-        ? getFileMetadata(row.canonical_file_path).exists
+        ? cachedPathExists(pathExistenceCache, row.canonical_file_path)
         : false;
 
       if (!filePathExists && !canonicalPathExists) {
@@ -371,6 +424,8 @@ function listIndexedRecordIdsForDeletedPaths(filePaths: string[]): number[] {
   const seenLookupKeys = new Set<string>();
 
   try {
+    const pathExistenceCache = buildPathExistenceCache(filePaths);
+
     for (const filePath of filePaths) {
       if (typeof filePath !== 'string' || filePath.length === 0) {
         continue;
@@ -400,12 +455,8 @@ function listIndexedRecordIdsForDeletedPaths(filePaths: string[]): number[] {
           continue;
         }
 
-        const rowFileExists = typeof row.file_path === 'string' && row.file_path.length > 0
-          ? getFileMetadata(row.file_path).exists
-          : false;
-        const rowCanonicalExists = typeof row.canonical_file_path === 'string' && row.canonical_file_path.length > 0
-          ? getFileMetadata(row.canonical_file_path).exists
-          : false;
+        const rowFileExists = cachedPathExists(pathExistenceCache, row.file_path);
+        const rowCanonicalExists = cachedPathExists(pathExistenceCache, row.canonical_file_path);
 
         if (rowFileExists || rowCanonicalExists) {
           continue;
@@ -457,16 +508,17 @@ function legacyTrackPath(candidatePath: string | null | undefined): string | nul
   return null;
 }
 
-function indexedPathExists(candidatePath: string | null | undefined, basePath: string): boolean {
+function indexedPathExists(candidatePath: string | null | undefined, basePath: string, existenceCache?: PathExistenceCache): boolean {
   const candidates = [candidatePath, legacyTrackPath(candidatePath)];
   return candidates.some((candidate) => {
     const resolved = resolveIndexedPath(candidate, basePath);
-    return resolved ? getFileMetadata(resolved).exists : false;
+    if (!resolved) return false;
+    return existenceCache ? cachedPathExists(existenceCache, resolved) : getFileMetadata(resolved).exists;
   });
 }
 
-function indexedRecordIsAbsentWithinBase(row: IndexedRecordRow, basePath: string): boolean {
-  return !indexedPathExists(row.file_path, basePath) && !indexedPathExists(row.canonical_file_path, basePath);
+function indexedRecordIsAbsentWithinBase(row: IndexedRecordRow, basePath: string, existenceCache?: PathExistenceCache): boolean {
+  return !indexedPathExists(row.file_path, basePath, existenceCache) && !indexedPathExists(row.canonical_file_path, basePath, existenceCache);
 }
 
 function sweepOrphanIndexRows(options: OrphanSweepOptions = {}): OrphanSweepResult {
@@ -501,12 +553,18 @@ function sweepOrphanIndexRows(options: OrphanSweepOptions = {}): OrphanSweepResu
           LIMIT ?
         `) as Database.Statement).all(cursor, limit) as IndexedRecordRow[];
 
+    const existenceCache = buildPathExistenceCache(rows.flatMap((row) => [
+      resolveIndexedPath(row.file_path, basePath) ?? '',
+      resolveIndexedPath(row.canonical_file_path, basePath) ?? '',
+      resolveIndexedPath(legacyTrackPath(row.file_path), basePath) ?? '',
+      resolveIndexedPath(legacyTrackPath(row.canonical_file_path), basePath) ?? '',
+    ]));
     const orphanRecordIds: number[] = [];
     for (const row of rows) {
       if (!row || typeof row.id !== 'number') {
         continue;
       }
-      if (indexedRecordIsAbsentWithinBase(row, basePath)) {
+      if (indexedRecordIsAbsentWithinBase(row, basePath, existenceCache)) {
         orphanRecordIds.push(row.id);
       }
     }
@@ -924,6 +982,10 @@ export {
   listStaleIndexedPaths,
   listIndexedRecordIdsForDeletedPaths,
   sweepOrphanIndexRows,
+  buildPathExistenceCache,
+  cachedPathExists,
+  pathExistenceDiagnostics,
+  resetPathExistenceDiagnostics,
   reconcileMoves,
   batchUpdateMtimes,
   planMemoizedIndexing,

@@ -391,19 +391,22 @@ export function logRankDelta(
     `);
 
     let inserted = 0;
-    for (const d of comparison.deltas) {
-      stmt.run(
-        comparison.queryId,
-        d.resultId,
-        d.liveRank,
-        d.shadowRank,
-        d.delta,
-        d.direction,
-        evaluatedAt,
-        cycleId
-      );
-      inserted++;
-    }
+    const insertBatch = db.transaction((deltas: typeof comparison.deltas) => {
+      for (const d of deltas) {
+        stmt.run(
+          comparison.queryId,
+          d.resultId,
+          d.liveRank,
+          d.shadowRank,
+          d.delta,
+          d.direction,
+          evaluatedAt,
+          cycleId
+        );
+        inserted++;
+      }
+    });
+    insertBatch(comparison.deltas);
 
     return inserted;
   } catch (err: unknown) {

@@ -87,6 +87,8 @@ const MAX_CONTENT_SCAN_CHARS = 2000;
 
 /** Maximum characters allowed in a directive phrase component. */
 const MAX_DIRECTIVE_COMPONENT_CHARS = 120;
+const directiveContentCache = new Map<string, string>();
+const directiveDiagnostics = { readFileSyncCalls: 0 };
 
 /* ───────────────────────────────────────────────────────────────
    3. HELPERS
@@ -106,6 +108,20 @@ function normalise(text: string): string {
 function cap(text: string, max: number): string {
   if (text.length <= max) return text;
   return text.slice(0, max - 1) + '…';
+}
+
+function readDirectiveContent(filePath: string): string {
+  const validatedPath = validateFilePath(filePath, ALLOWED_BASE_PATHS);
+  if (!validatedPath) return '';
+  const stats = fs.statSync(validatedPath);
+  if (!stats.isFile()) return '';
+  const cacheKey = `${validatedPath}:${stats.mtimeMs}`;
+  const cached = directiveContentCache.get(cacheKey);
+  if (cached !== undefined) return cached;
+  directiveDiagnostics.readFileSyncCalls += 1;
+  const content = fs.readFileSync(validatedPath, 'utf-8');
+  directiveContentCache.set(cacheKey, content);
+  return content;
 }
 
 /**
@@ -328,10 +344,7 @@ export function enrichWithRetrievalDirectives(
     let content = '';
     if (result.filePath) {
       try {
-        const validatedPath = validateFilePath(result.filePath, ALLOWED_BASE_PATHS);
-        if (validatedPath && fs.existsSync(validatedPath)) {
-          content = fs.readFileSync(validatedPath, 'utf-8');
-        }
+        content = readDirectiveContent(result.filePath);
       } catch (_error: unknown) {
         // File read failure is non-fatal; fall back to title-only directive
         content = '';
@@ -349,3 +362,13 @@ export function enrichWithRetrievalDirectives(
     };
   });
 }
+
+export const __testables = {
+  readDirectiveContent,
+  directiveContentCache,
+  directiveDiagnostics,
+  clearDirectiveContentCache: () => directiveContentCache.clear(),
+  resetDirectiveDiagnostics: () => {
+    directiveDiagnostics.readFileSyncCalls = 0;
+  },
+};

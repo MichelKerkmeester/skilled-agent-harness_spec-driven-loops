@@ -66,6 +66,10 @@ interface DivergenceReconcileHookOptions {
   reconcileHook?: typeof mutationLedger.recordDivergenceReconcileHook;
 }
 
+interface AliasConflictScanOptions {
+  affectedFolders?: readonly string[];
+}
+
 export const EMPTY_ALIAS_CONFLICT_SUMMARY: AliasConflictSummary = {
   groups: 0,
   rows: 0,
@@ -74,6 +78,23 @@ export const EMPTY_ALIAS_CONFLICT_SUMMARY: AliasConflictSummary = {
   unknownHashGroups: 0,
   samples: [],
 };
+
+function normalizeAffectedFolders(folders: readonly string[] | undefined): string[] {
+  if (!folders) return [];
+  return Array.from(new Set(folders
+    .filter((folder): folder is string => typeof folder === 'string' && folder.trim().length > 0)
+    .map((folder) => folder.replace(/\\/g, '/').replace(/^\/+|\/+$/g, ''))
+    .filter(Boolean)))
+    .sort();
+}
+
+function appendAffectedFolderSql(clauses: string[], params: unknown[], affectedFolders: readonly string[]): void {
+  if (affectedFolders.length === 0) return;
+  clauses.push(`(${affectedFolders.map(() => `file_path LIKE ? OR file_path LIKE ? OR file_path LIKE ?`).join(' OR ')})`);
+  for (const folder of affectedFolders) {
+    params.push(`%/.opencode/specs/${folder}/%`, `%/specs/${folder}/%`, `${folder}/%`);
+  }
+}
 
 export function createDefaultDivergenceReconcileSummary(maxRetries?: number): DivergenceReconcileSummary {
   const boundedMaxRetries = Number.isFinite(maxRetries) && (maxRetries ?? 0) > 0
@@ -196,21 +217,24 @@ export function summarizeAliasConflicts(rows: AliasConflictRow[]): AliasConflict
   return summary;
 }
 
-export function detectAliasConflictsFromIndex(): AliasConflictSummary {
+export function detectAliasConflictsFromIndex(options: AliasConflictScanOptions = {}): AliasConflictSummary {
   try {
     const database = requireDb();
-    const rows = database.prepare(`
-      SELECT file_path, content_hash
-      FROM memory_index
-      WHERE parent_id IS NULL
-        AND (
+    const affectedFolders = normalizeAffectedFolders(options.affectedFolders);
+    const clauses = [`parent_id IS NULL`, `(
           file_path LIKE '%/.opencode/specs/%'
           OR file_path LIKE '%/specs/%'
           OR file_path LIKE '.opencode/specs/%'
           OR file_path LIKE 'specs/%'
-        )
+        )`];
+    const params: unknown[] = [];
+    appendAffectedFolderSql(clauses, params, affectedFolders);
+    const rows = database.prepare(`
+      SELECT file_path, content_hash
+      FROM memory_index
+      WHERE ${clauses.join(' AND ')}
       ORDER BY file_path ASC
-    `).all() as AliasConflictRow[];
+    `).all(...params) as AliasConflictRow[];
     return summarizeAliasConflicts(rows);
   } catch (err: unknown) {
     const message = toErrorMessage(err);

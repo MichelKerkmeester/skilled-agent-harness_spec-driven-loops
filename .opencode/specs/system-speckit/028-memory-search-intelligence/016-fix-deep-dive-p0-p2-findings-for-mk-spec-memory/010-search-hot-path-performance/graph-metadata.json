@@ -46,6 +46,7 @@
       "tasks.md",
       "checklist.md",
       "implementation-summary.md",
+      "scratch/mechanism-baseline-2026-07-04.md",
       "lib/search/rerank/retrieval-rescue.ts",
       "lib/search/retrieval-directives.ts",
       "lib/search/hybrid-search.ts",
@@ -83,6 +84,12 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "mechanism-baseline-2026-07-04.md",
+        "kind": "doc",
+        "path": "scratch/mechanism-baseline-2026-07-04.md",
         "source": "derived"
       },
       {
@@ -192,17 +199,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Warm `memorysearch` takes 2.0-2.9s at 33,101 rows (stage1 0.5-1.5s, stage2 ~1.2s constant even for 15-19 candidates), with +3.9s on the first-call auto-surface, ~15s cold runtime init, and ~492MB RSS at 9s uptime (deep-dive report §1/§4, measured 🟢 2026-07-03)",
     "created_at": "2026-07-03T09:44:24Z",
-    "last_save_at": "2026-07-03T12:00:38.962Z",
+    "last_save_at": "2026-07-04T10:38:45.264Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -212,13 +213,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:afb6ec7408ba6c924052ad495c2d01b2bb1462711f75ab3c72a1b86f3cf87d72",
+    "source_fingerprint": "sha256:c998ce33a4c30d924cd796b5fe88b84488682b2d953cede37ff96f60ec781f79",
     "source_doc_hashes": {
-      "spec.md": "fc651a885e3a58979c632e89cd0aeac04920dad81cd96a0b34a37933345a7184",
+      "spec.md": "a017e7a6b9f6e4f622d0cdd1ef3cfa31c792d9c8f3cded8c7a5ebe2245498d30",
       "plan.md": "cdff37c65b1e83228c474ecb01c8e7597a70a4f9c62e0900b1e766c0d2a278eb",
-      "tasks.md": "cc8aec02ad3abdf70d82751dcc87d8e0bc38ce284485ab71fa5d4449bea8079e",
-      "checklist.md": "7f6b8db6dbcba23b377f2b078e876e5b5805469bf40904b4827cd205d1234a48",
-      "implementation-summary.md": "b1c9f09e1b52f3329326826141d1f4ee5f225daa94d7886dd026fb28e03428fc"
+      "tasks.md": "a04765102026878401c62b54640316aa3a099e0c4cfb2b5c45e1eec95a07c83e",
+      "checklist.md": "4e86406efbccc0855825e94c784e7c8f5a86ba7e1b340d7564e3e410c8c3c53f",
+      "implementation-summary.md": "8aebd12b320eb93550c1d7d22cb6bebf7632c00599e60f41a1ece715b167ee38"
     },
     "last_active_child_id": null,
     "last_active_at": null

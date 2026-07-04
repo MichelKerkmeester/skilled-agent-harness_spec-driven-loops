@@ -70,6 +70,13 @@ interface RelatedMemoryReference {
   similarity: number;
 }
 
+interface QueueItem {
+  id: number;
+  score: number;
+  hop: number;
+  path: number[];
+}
+
 const DEFAULT_RELATED_MEMORY_SIMILARITY = 50;
 
 /* --- 3. MODULE STATE --- */
@@ -360,6 +367,38 @@ function getCausalNeighbors(
   }
 }
 
+function pushQueue(heap: QueueItem[], item: QueueItem): void {
+  heap.push(item);
+  let index = heap.length - 1;
+  while (index > 0) {
+    const parent = Math.floor((index - 1) / 2);
+    if ((heap[parent]?.score ?? 0) >= item.score) break;
+    heap[index] = heap[parent]!;
+    index = parent;
+  }
+  heap[index] = item;
+}
+
+function popQueue(heap: QueueItem[]): QueueItem | undefined {
+  if (heap.length === 0) return undefined;
+  const top = heap[0];
+  const last = heap.pop();
+  if (heap.length === 0 || !last) return top;
+  let index = 0;
+  while (true) {
+    const left = index * 2 + 1;
+    const right = left + 1;
+    const leftScore = heap[left]?.score ?? Number.NEGATIVE_INFINITY;
+    const rightScore = heap[right]?.score ?? Number.NEGATIVE_INFINITY;
+    if (leftScore <= last.score && rightScore <= last.score) break;
+    const next = rightScore > leftScore ? right : left;
+    heap[index] = heap[next]!;
+    index = next;
+  }
+  heap[index] = last;
+  return top;
+}
+
 /**
  * Spreading activation: traverse both pre-computed similarity graph
  * and causal_edges graph from seed memories. Merging both sources
@@ -376,22 +415,13 @@ function spreadActivation(
   const visited = new Set<number>();
   const results: SpreadResult[] = [];
 
-  interface QueueItem {
-    id: number;
-    score: number;
-    hop: number;
-    path: number[];
+  const queue: QueueItem[] = [];
+  for (const id of seedIds) {
+    pushQueue(queue, { id, score: 1.0, hop: 0, path: [id] });
   }
 
-  const queue: QueueItem[] = seedIds.map(id => ({
-    id,
-    score: 1.0,
-    hop: 0,
-    path: [id],
-  }));
-
   while (queue.length > 0 && results.length < limit) {
-    const current = queue.shift();
+    const current = popQueue(queue);
     if (!current) break;
 
     if (visited.has(current.id)) continue;
@@ -430,16 +460,13 @@ function spreadActivation(
       const decayedScore = current.score * CO_ACTIVATION_CONFIG.decayPerHop * (rel.similarity / 100);
       if (!Number.isFinite(decayedScore) || decayedScore < 0.01) continue;
 
-      queue.push({
+      pushQueue(queue, {
         id: rel.id,
         score: decayedScore,
         hop: current.hop + 1,
         path: [...current.path, rel.id],
       });
     }
-
-    // Sort queue by score (greedy best-first)
-    queue.sort((a, b) => b.score - a.score);
   }
 
   return results.sort((a, b) => b.activationScore - a.activationScore);
@@ -460,6 +487,8 @@ export {
   populateRelatedMemories,
   spreadActivation,
   clearRelatedCache,
+  pushQueue,
+  popQueue,
 };
 
 export type {

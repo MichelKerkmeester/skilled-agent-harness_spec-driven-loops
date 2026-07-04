@@ -11,6 +11,7 @@ import { createScopeFilterPredicate } from '../../governance/scope-governance.js
 import type { ScopeContext } from '../../governance/scope-governance.js';
 import { createLogger } from '../../utils/logger.js';
 import { ACTIVE_ROW_SQL, isActiveRow } from '../active-row-predicate.js';
+import { fts5Bm25Search, isFts5Available } from '../sqlite-fts.js';
 
 type RescueOptions = {
   db?: Database.Database | null;
@@ -27,6 +28,7 @@ type RescueOptions = {
 };
 
 type RescueRankingMode = 'overwrite' | 'additive' | 'floor';
+type BackfillRoute = 'fts' | 'like' | 'none';
 
 type ScoredRow = PipelineRow & {
   retrievalRescueScore?: number;
@@ -80,6 +82,9 @@ const RESCUE_TOP_K = 10;
 const RESCUE_ADDITIVE_WEIGHT = 0.12;
 const RESCUE_FLOOR_BASE_THRESHOLD = 0.24;
 const RESCUE_SOFT_GATE_PENALTY = 0.7;
+const RESCUE_HYDRATION_CHUNK_SIZE = 500;
+const RESCUE_BACKFILL_MIN_CANDIDATES = 5;
+const RESCUE_BACKFILL_MIN_LEXICAL_SCORE = 0.24;
 const logger = createLogger('retrieval-rescue');
 
 const telemetryCounters = {
@@ -90,6 +95,10 @@ const telemetryCounters = {
 function envFlagExplicitFalse(name: string): boolean {
   const raw = process.env[name]?.trim().toLowerCase();
   return raw === 'false';
+}
+
+function hasQueryableDb(db: Database.Database | null | undefined): db is Database.Database {
+  return Boolean(db && typeof (db as { prepare?: unknown }).prepare === 'function');
 }
 
 /**
@@ -360,6 +369,66 @@ function fetchSiblingRows(db: Database.Database, rows: PipelineRow[], maxPerFold
 }
 
 function fetchLexicalBackfillRows(db: Database.Database, query: string): PipelineRow[] {
+  const route = resolveLexicalBackfillRoute(db, query);
+  if (route === 'none') return [];
+  if (route === 'fts') {
+    const ftsRows = fetchFtsLexicalBackfillRows(db, query);
+    if (ftsRows.length > 0) return ftsRows;
+  }
+
+  return fetchLikeLexicalBackfillRows(db, query);
+}
+
+function resolveLexicalBackfillRoute(db: Database.Database, query: string): BackfillRoute {
+  const tokens = importantTokens(queryTokens(query)).slice(0, 10);
+  if (tokens.length === 0) return 'none';
+  if (!canUseFtsBackfillRoute(query, tokens)) return 'like';
+  return isFts5Available(db) ? 'fts' : 'like';
+}
+
+function canUseFtsBackfillRoute(query: string, tokens: string[]): boolean {
+  const trimmed = query.trim();
+  if (!trimmed) return false;
+  if (!/^[\x00-\x7F]*$/.test(trimmed)) return false;
+  if (/['"()^*:]/.test(trimmed)) return false;
+  if (/\b(?:NEAR|OR|AND|NOT)\b/i.test(trimmed)) return false;
+  if (/(^|\s)-\S/.test(trimmed)) return false;
+  return tokens.length > 0 && tokens.every((token) => /^[a-z0-9_]+$/.test(token));
+}
+
+function fetchFtsLexicalBackfillRows(db: Database.Database, query: string): PipelineRow[] {
+  try {
+    const ftsRows = fts5Bm25Search(db, query, { limit: 250 });
+    const ids = ftsRows
+      .map((row) => row.id)
+      .filter((id): id is number => Number.isInteger(id));
+    if (ids.length === 0) return [];
+    const placeholders = ids.map(() => '?').join(',');
+    return db.prepare(`
+      SELECT *, content_text AS content
+      FROM memory_index
+      WHERE id IN (${placeholders})
+        AND ${ACTIVE_ROW_SQL('memory_index')}
+      ORDER BY
+        CASE document_type
+          WHEN 'decision_record' THEN 0
+          WHEN 'implementation_summary' THEN 1
+          WHEN 'tasks' THEN 2
+          WHEN 'spec' THEN 3
+          WHEN 'checklist' THEN 4
+          WHEN 'plan' THEN 5
+          ELSE 6
+        END,
+        quality_score DESC,
+        id ASC
+      LIMIT 250
+    `).all(...ids) as PipelineRow[];
+  } catch {
+    return [];
+  }
+}
+
+function fetchLikeLexicalBackfillRows(db: Database.Database, query: string): PipelineRow[] {
   const tokens = importantTokens(queryTokens(query)).slice(0, 10);
   if (tokens.length === 0) return [];
 
@@ -393,17 +462,48 @@ function fetchLexicalBackfillRows(db: Database.Database, query: string): Pipelin
   }
 }
 
+function shouldRunLexicalBackfill(query: string, rows: PipelineRow[], artifactClass?: string | null): boolean {
+  if (importantTokens(queryTokens(query)).length === 0) return false;
+  if (rows.length < RESCUE_BACKFILL_MIN_CANDIDATES) return true;
+  const bestLexicalScore = rows.reduce((best, row) => {
+    const rescue = lexicalScore(query, row, artifactClass);
+    return Math.max(best, rescue.score);
+  }, 0);
+  return bestLexicalScore < RESCUE_BACKFILL_MIN_LEXICAL_SCORE;
+}
+
 function hydrateCandidateRows(db: Database.Database, rows: PipelineRow[]): PipelineRow[] {
   if (rows.length === 0) return rows;
-  const stmt = db.prepare(`SELECT *, content_text AS content FROM memory_index WHERE id = ? AND ${ACTIVE_ROW_SQL('memory_index')}`);
-  return rows.map((row) => {
-    try {
-      const hydrated = stmt.get(row.id) as PipelineRow | undefined;
-      if (hydrated) return mergeRicherRow(row, hydrated);
-      return isActiveRow(row) ? row : null;
-    } catch {
-      return row;
+  const uniqueIds = Array.from(new Set(
+    rows
+      .map((row) => row.id)
+      .filter((id): id is number => Number.isInteger(id))
+  ));
+  if (uniqueIds.length === 0) return rows.filter((row) => isActiveRow(row));
+
+  const hydratedById = new Map<number, PipelineRow>();
+  try {
+    for (let index = 0; index < uniqueIds.length; index += RESCUE_HYDRATION_CHUNK_SIZE) {
+      const chunk = uniqueIds.slice(index, index + RESCUE_HYDRATION_CHUNK_SIZE);
+      const placeholders = chunk.map(() => '?').join(',');
+      const fetched = db.prepare(`
+        SELECT *, content_text AS content
+        FROM memory_index
+        WHERE id IN (${placeholders})
+          AND ${ACTIVE_ROW_SQL('memory_index')}
+      `).all(...chunk) as PipelineRow[];
+      for (const hydrated of fetched) {
+        hydratedById.set(hydrated.id, hydrated);
+      }
     }
+  } catch {
+    return rows;
+  }
+
+  return rows.map((row) => {
+    const hydrated = hydratedById.get(row.id);
+    if (hydrated) return mergeRicherRow(row, hydrated);
+    return isActiveRow(row) ? row : null;
   }).filter((row): row is PipelineRow => row !== null);
 }
 
@@ -434,7 +534,9 @@ function mergeSiblingCandidates(query: string, rows: PipelineRow[], options: Res
   if (!options.db) return rows;
   const hydratedRows = hydrateCandidateRows(options.db, rows);
   const maxSiblingsPerFolder = options.maxSiblingsPerFolder ?? 8;
-  const backfill = fetchLexicalBackfillRows(options.db, query);
+  const backfill = shouldRunLexicalBackfill(query, hydratedRows, options.artifactClass)
+    ? fetchLexicalBackfillRows(options.db, query)
+    : [];
   const siblings = fetchSiblingRows(options.db, [...hydratedRows, ...backfill], maxSiblingsPerFolder);
   if (siblings.length === 0 && backfill.length === 0) return hydratedRows;
 
@@ -474,6 +576,7 @@ export function applyRetrievalRescueLayer(
   options: RescueOptions = {},
 ): PipelineRow[] {
   if (!isRetrievalRescueEnabled() || rows.length === 0) return rows;
+  if (options.db && !hasQueryableDb(options.db)) return rows;
 
   const mode = resolveRescueRankingMode();
   const expanded = mergeSiblingCandidates(query, rows, options);
@@ -536,4 +639,12 @@ export const __testables = {
   parseTriggerPhrases,
   mergeSiblingCandidates,
   buildInjectionBoundary,
+  fetchLexicalBackfillRows,
+  fetchFtsLexicalBackfillRows,
+  fetchLikeLexicalBackfillRows,
+  resolveLexicalBackfillRoute,
+  canUseFtsBackfillRoute,
+  hydrateCandidateRows,
+  shouldRunLexicalBackfill,
+  hasQueryableDb,
 };

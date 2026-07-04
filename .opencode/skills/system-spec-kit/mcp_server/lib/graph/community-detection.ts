@@ -498,6 +498,52 @@ function loadLegacyAssignments(db: Database.Database): Map<string, number> {
   return assignments;
 }
 
+function buildCommunityMemberLookupFromCommunities(communities: CommunityResult[]): Map<number, number[]> {
+  const lookup = new Map<number, number[]>();
+  for (const community of communities) {
+    for (const memberId of community.memberIds) {
+      lookup.set(
+        memberId,
+        community.memberIds
+          .filter((candidateId) => candidateId !== memberId)
+          .sort((left, right) => left - right),
+      );
+    }
+  }
+  return lookup;
+}
+
+function buildCommunityMemberLookupFromAssignments(assignments: Map<string, number>): Map<number, number[]> {
+  const byCommunity = new Map<number, number[]>();
+  for (const [nodeId, communityId] of assignments) {
+    const numericId = Number.parseInt(nodeId, 10);
+    if (!Number.isFinite(numericId)) continue;
+    const members = byCommunity.get(communityId) ?? [];
+    members.push(numericId);
+    byCommunity.set(communityId, members);
+  }
+
+  const lookup = new Map<number, number[]>();
+  for (const members of byCommunity.values()) {
+    const sortedMembers = Array.from(new Set(members)).sort((left, right) => left - right);
+    for (const memberId of sortedMembers) {
+      lookup.set(memberId, sortedMembers.filter((candidateId) => candidateId !== memberId));
+    }
+  }
+  return lookup;
+}
+
+const communityLookupDiagnostics = { loads: 0 };
+
+function loadCommunityMemberLookup(db: Database.Database): Map<number, number[]> {
+  communityLookupDiagnostics.loads += 1;
+  const storedCommunities = getCommunities(db);
+  if (storedCommunities.length > 0) {
+    return buildCommunityMemberLookupFromCommunities(storedCommunities);
+  }
+  return buildCommunityMemberLookupFromAssignments(loadLegacyAssignments(db));
+}
+
 export function detectCommunitiesBFS(db: Database.Database): Map<string, number> {
   const adjacency = buildLegacyAdjacency(buildAdjacencyList(db));
   const visited = new Set<string>();
@@ -791,19 +837,28 @@ export function applyCommunityBoost(
     const injectedRows: Array<{ id: number; score?: number; [key: string]: unknown }> = [];
     const maxInjectedRows = 3;
 
-    for (const row of rows) {
+    const memberLookup = loadCommunityMemberLookup(db);
+    const candidateMembers = rows.map((row) => ({ row, members: memberLookup.get(row.id) ?? [] }));
+    const activeMemberIds = new Set(filterActiveMemoryIds(
+      db,
+      candidateMembers.flatMap(({ members }) => members),
+    ));
+
+    for (const { row, members } of candidateMembers) {
       if (injectedRows.length >= maxInjectedRows) {
         break;
       }
 
-      const communityMembers = getCommunityMembers(db, row.id);
       const baseScore = typeof row.score === 'number' && Number.isFinite(row.score)
         ? row.score
         : 1.0;
       const injectedScore = COMMUNITY_BOOST_FACTOR * baseScore;
 
-      for (const memberId of communityMembers) {
+      for (const memberId of members) {
         if (existingIds.has(memberId)) {
+          continue;
+        }
+        if (!activeMemberIds.has(memberId)) {
           continue;
         }
         if (injectedRows.length >= maxInjectedRows) {
@@ -835,4 +890,9 @@ export const __testables = {
   rebuildCommunityArtifacts,
   rebuildCommunityArtifactsIfStale,
   resolveCommunityRebuildIntervalMs,
+  loadCommunityMemberLookup,
+  communityLookupDiagnostics,
+  resetCommunityLookupDiagnostics: () => {
+    communityLookupDiagnostics.loads = 0;
+  },
 };

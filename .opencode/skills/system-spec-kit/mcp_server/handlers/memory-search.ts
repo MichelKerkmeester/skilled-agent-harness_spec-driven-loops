@@ -71,7 +71,7 @@ import { ensureMemoryRuntimeInitialized } from '../lib/runtime/memory-runtime-gu
 import { validateQuery, requireDb, toErrorMessage } from '../utils/index.js';
 
 // Response envelope + formatters
-import { createMCPErrorResponse, createMCPSuccessResponse } from '../lib/response/envelope.js';
+import { createMCPErrorResponse, createMCPSuccessResponse, serializeEnvelopeWithTokenCount } from '../lib/response/envelope.js';
 import { formatSearchResults } from '../formatters/index.js';
 
 // Shared handler types
@@ -183,6 +183,12 @@ interface SearchCachePayload {
   hints: string[];
 }
 
+interface EnvelopeState {
+  firstEntry: { type: 'text'; text: string };
+  envelope: Record<string, unknown>;
+  dirty: boolean;
+}
+
 type SessionAwareResult = Record<string, unknown> & {
   id: number | string;
   score?: number;
@@ -215,6 +221,38 @@ const NON_CANONICAL_DOCUMENT_TYPES = new Set([
   'memory',
   'scratch',
 ]);
+
+const ENVELOPE_STATE = Symbol('memorySearchEnvelopeState');
+let responseEnvelopeSerializationCount = 0;
+
+type EnvelopeBackedResponse = MCPResponse & { [ENVELOPE_STATE]?: EnvelopeState };
+
+function attachEnvelopeState(response: MCPResponse, state: EnvelopeState): MCPResponse {
+  Object.defineProperty(response, ENVELOPE_STATE, {
+    value: state,
+    configurable: true,
+    enumerable: false,
+    writable: true,
+  });
+  return response;
+}
+
+function getEnvelopeState(response: MCPResponse): EnvelopeState | null {
+  return (response as EnvelopeBackedResponse)[ENVELOPE_STATE] ?? null;
+}
+
+function serializeSearchEnvelope(envelope: Record<string, unknown>): string {
+  responseEnvelopeSerializationCount += 1;
+  return serializeEnvelopeWithTokenCount(envelope);
+}
+
+function resetResponseEnvelopeSerializationDiagnostics(): void {
+  responseEnvelopeSerializationCount = 0;
+}
+
+function getResponseEnvelopeSerializationDiagnostics(): { serializations: number } {
+  return { serializations: responseEnvelopeSerializationCount };
+}
 
 function normalizeDocumentType(value: unknown): string | null {
   if (typeof value !== 'string') {
@@ -394,89 +432,80 @@ function attachTelemetryMeta(
   response: MCPResponse,
   telemetryPayload: Record<string, unknown>,
 ): MCPResponse {
-  const firstEntry = response?.content?.[0];
-  if (!firstEntry || typeof firstEntry.text !== 'string') {
+  const parsed = parseResponseEnvelope(response);
+  if (!parsed) {
     return response;
   }
 
-  try {
-    const envelope = JSON.parse(firstEntry.text) as Record<string, unknown>;
-    const meta = envelope.meta && typeof envelope.meta === 'object'
-      ? envelope.meta as Record<string, unknown>
-      : {};
-    envelope.meta = {
-      ...meta,
-      _telemetry: telemetryPayload,
-    };
+  const meta = parsed.envelope.meta && typeof parsed.envelope.meta === 'object'
+    ? parsed.envelope.meta as Record<string, unknown>
+    : {};
+  parsed.envelope.meta = {
+    ...meta,
+    _telemetry: telemetryPayload,
+  };
 
-    return {
-      ...response,
-      content: [{ ...firstEntry, text: JSON.stringify(envelope, null, 2) }],
-    };
-  } catch (error: unknown) {
-    const message = toErrorMessage(error);
-    console.warn('[memory-search] Failed to attach telemetry payload:', message);
-    return response;
-  }
+  return replaceResponseEnvelope(response, parsed.firstEntry, parsed.envelope);
 }
 
 function extractResponseResults(response: MCPResponse): Array<Record<string, unknown>> {
-  const firstEntry = response?.content?.[0];
-  if (!firstEntry || typeof firstEntry.text !== 'string') {
+  const parsed = parseResponseEnvelope(response);
+  if (!parsed) {
     return [];
   }
 
-  try {
-    const envelope = JSON.parse(firstEntry.text) as Record<string, unknown>;
-    const data = envelope.data && typeof envelope.data === 'object'
-      ? envelope.data as Record<string, unknown>
-      : null;
-    return Array.isArray(data?.results)
-      ? data.results as Array<Record<string, unknown>>
-      : [];
-  } catch {
-    return [];
-  }
+  const data = parsed.envelope.data && typeof parsed.envelope.data === 'object'
+    ? parsed.envelope.data as Record<string, unknown>
+    : null;
+  return Array.isArray(data?.results)
+    ? data.results as Array<Record<string, unknown>>
+    : [];
 }
 
 function extractSearchCachePayload(response: MCPResponse): SearchCachePayload | null {
-  const firstEntry = response?.content?.[0];
-  if (!firstEntry || typeof firstEntry.text !== 'string') {
+  const parsed = parseResponseEnvelope(response);
+  if (!parsed) {
     return null;
   }
 
-  try {
-    const envelope = JSON.parse(firstEntry.text) as Record<string, unknown>;
-    const summary = typeof envelope.summary === 'string' ? envelope.summary : null;
-    const data = envelope.data && typeof envelope.data === 'object'
-      ? envelope.data as Record<string, unknown>
-      : null;
-    const hints = Array.isArray(envelope.hints)
-      ? envelope.hints.filter((hint): hint is string => typeof hint === 'string')
-      : [];
+  const summary = typeof parsed.envelope.summary === 'string' ? parsed.envelope.summary : null;
+  const data = parsed.envelope.data && typeof parsed.envelope.data === 'object'
+    ? parsed.envelope.data as Record<string, unknown>
+    : null;
+  const hints = Array.isArray(parsed.envelope.hints)
+    ? parsed.envelope.hints.filter((hint): hint is string => typeof hint === 'string')
+    : [];
 
-    if (!summary || !data) {
-      return null;
-    }
-
-    return { summary, data, hints };
-  } catch {
+  if (!summary || !data) {
     return null;
   }
+
+  return { summary, data, hints };
 }
 
 function parseResponseEnvelope(
   response: MCPResponse,
 ): { firstEntry: { type: 'text'; text: string }; envelope: Record<string, unknown> } | null {
+  const state = getEnvelopeState(response);
+  if (state) {
+    return { firstEntry: state.firstEntry, envelope: state.envelope };
+  }
+
   const firstEntry = response?.content?.[0];
   if (!firstEntry || firstEntry.type !== 'text' || typeof firstEntry.text !== 'string') {
     return null;
   }
 
   try {
-    return {
+    const stateToAttach: EnvelopeState = {
       firstEntry,
       envelope: JSON.parse(firstEntry.text) as Record<string, unknown>,
+      dirty: false,
+    };
+    attachEnvelopeState(response, stateToAttach);
+    return {
+      firstEntry: stateToAttach.firstEntry,
+      envelope: stateToAttach.envelope,
     };
   } catch {
     return null;
@@ -488,10 +517,37 @@ function replaceResponseEnvelope(
   firstEntry: { type: 'text'; text: string },
   envelope: Record<string, unknown>,
 ): MCPResponse {
+  const nextResponse = {
+    ...response,
+    content: [{ ...firstEntry }],
+  };
+  return attachEnvelopeState(nextResponse, { firstEntry, envelope, dirty: true });
+}
+
+function finalizeResponseEnvelope(response: MCPResponse): MCPResponse {
+  const state = getEnvelopeState(response);
+  if (!state?.dirty) {
+    return response;
+  }
+
   return {
     ...response,
-    content: [{ ...firstEntry, text: JSON.stringify(envelope, null, 2) }],
+    content: [{ ...state.firstEntry, text: serializeSearchEnvelope(state.envelope) }],
   };
+}
+
+function prependEvidenceGapWarningToResponse(response: MCPResponse, warning: string | undefined): MCPResponse {
+  if (!warning) {
+    return response;
+  }
+
+  const parsed = parseResponseEnvelope(response);
+  if (!parsed || typeof parsed.envelope.summary !== 'string') {
+    return response;
+  }
+
+  parsed.envelope.summary = `${warning}\n\n${parsed.envelope.summary}`;
+  return replaceResponseEnvelope(response, parsed.firstEntry, parsed.envelope);
 }
 
 function buildSessionStatePayload(sessionId: string): Record<string, unknown> {
@@ -1598,18 +1654,7 @@ async function handleMemorySearch(args: SearchArgs): Promise<MCPResponse> {
       }
     );
 
-    // Prepend evidence gap warning if present
-    if (pipelineResult.annotations.evidenceGapWarning && formatted?.content?.[0]?.text) {
-      try {
-        const parsed = JSON.parse(formatted.content[0].text) as Record<string, unknown>;
-        if (typeof parsed.summary === 'string') {
-          parsed.summary = `${pipelineResult.annotations.evidenceGapWarning}\n\n${parsed.summary}`;
-          formatted.content[0].text = JSON.stringify(parsed, null, 2);
-        }
-      } catch (_error: unknown) {
-        // Non-fatal
-      }
-    }
+    formatted = prependEvidenceGapWarningToResponse(formatted, pipelineResult.annotations.evidenceGapWarning);
     if (isProgressiveDisclosureEnabled()) {
       const parsedFormatted = parseResponseEnvelope(formatted);
       if (parsedFormatted) {
@@ -1660,18 +1705,8 @@ async function handleMemorySearch(args: SearchArgs): Promise<MCPResponse> {
 
   // Apply session deduplication AFTER cache
   if (sessionId && enableDedup && sessionManager.isEnabled()) {
-    let resultsData: Record<string, unknown> | null = null;
-    if (responseToReturn?.content?.[0]?.text && typeof responseToReturn.content[0].text === 'string') {
-      try {
-        resultsData = JSON.parse(responseToReturn.content[0].text) as Record<string, unknown>;
-      } catch (err: unknown) {
-        const message = toErrorMessage(err);
-        console.warn('[memory-search] Failed to parse cached response for dedup:', message);
-        resultsData = null;
-      }
-    } else if (responseToReturn && typeof responseToReturn === 'object') {
-      resultsData = responseToReturn as unknown as Record<string, unknown>;
-    }
+    const parsedResponse = parseResponseEnvelope(responseToReturn);
+    const resultsData = parsedResponse?.envelope ?? null;
 
     // Validate response shape before dedup. If the cached response
     // Doesn't have the expected data.results array, log a warning and skip dedup
@@ -1687,7 +1722,7 @@ async function handleMemorySearch(args: SearchArgs): Promise<MCPResponse> {
       console.warn('[memory-search] Cached response shape mismatch: "data.results" is not an array, skipping dedup');
     }
 
-    if (resultsData && data && existingResults && existingResults.length > 0) {
+    if (parsedResponse && resultsData && data && existingResults && existingResults.length > 0) {
       const { results: dedupedResults } = applySessionDedup(
         existingResults,
         sessionId,
@@ -1725,10 +1760,7 @@ async function handleMemorySearch(args: SearchArgs): Promise<MCPResponse> {
         resultsData.summary += ` (${filteredCount} duplicates filtered, ~${tokensSaved} tokens saved)`;
       }
 
-      responseToReturn = {
-        ...responseToReturn,
-        content: [{ type: 'text', text: JSON.stringify(resultsData, null, 2) }]
-      } as MCPResponse;
+      responseToReturn = replaceResponseEnvelope(responseToReturn, parsedResponse.firstEntry, resultsData);
     }
   }
 
@@ -1784,17 +1816,9 @@ async function handleMemorySearch(args: SearchArgs): Promise<MCPResponse> {
     const db = (() => { try { return requireDb(); } catch (_error: unknown) { return null; } })();
     if (db) {
       initConsumptionLog(db);
-      let resultIds: number[] = [];
-      let resultCount = 0;
-      try {
-        if (responseToReturn?.content?.[0]?.text) {
-          const parsed = JSON.parse(responseToReturn.content[0].text) as Record<string, unknown>;
-          const data = parsed?.data as Record<string, unknown> | undefined;
-          const results = Array.isArray(data?.results) ? data.results as Array<Record<string, unknown>> : [];
-          resultIds = results.map(r => r.id as number).filter(id => typeof id === 'number');
-          resultCount = Array.isArray(data?.results) ? (data.results as unknown[]).length : 0;
-        }
-      } catch (_error: unknown) { /* ignore parse errors */ }
+      const results = extractResponseResults(responseToReturn);
+      const resultIds = results.map(r => r.id as number).filter(id => typeof id === 'number');
+      const resultCount = results.length;
       logConsumptionEvent(db, {
         event_type: 'search',
         query: effectiveQuery || null,
@@ -1811,17 +1835,9 @@ async function handleMemorySearch(args: SearchArgs): Promise<MCPResponse> {
   // Eval logger — capture final results at pipeline exit (fail-safe)
   try {
     if (_evalRunId && _evalQueryId) {
-      let finalMemoryIds: number[] = [];
-      let finalScores: number[] = [];
-      try {
-        if (responseToReturn?.content?.[0]?.text) {
-          const parsed = JSON.parse(responseToReturn.content[0].text) as Record<string, unknown>;
-          const data = parsed?.data as Record<string, unknown> | undefined;
-          const results = Array.isArray(data?.results) ? data.results as Array<Record<string, unknown>> : [];
-          finalMemoryIds = results.map(r => r.id as number).filter(id => typeof id === 'number');
-          finalScores = results.map(r => (r.score ?? r.similarity ?? 0) as number);
-        }
-      } catch (_error: unknown) { /* ignore parse errors */ }
+      const results = extractResponseResults(responseToReturn);
+      const finalMemoryIds = results.map(r => r.id as number).filter(id => typeof id === 'number');
+      const finalScores = results.map(r => (r.score ?? r.similarity ?? 0) as number);
       logFinalResult({
         evalRunId: _evalRunId,
         queryId: _evalQueryId,
@@ -1850,15 +1866,9 @@ async function handleMemorySearch(args: SearchArgs): Promise<MCPResponse> {
     if (isImplicitFeedbackLogEnabled()) {
       const db = (() => { try { return requireDb(); } catch (_error: unknown) { return null; } })();
       if (db) {
-        let shownMemoryIds: number[] = [];
-        try {
-          if (responseToReturn?.content?.[0]?.text) {
-            const parsed = JSON.parse(responseToReturn.content[0].text) as Record<string, unknown>;
-            const data = parsed?.data as Record<string, unknown> | undefined;
-            const results = Array.isArray(data?.results) ? data.results as Array<Record<string, unknown>> : [];
-            shownMemoryIds = results.map(r => r.id as number).filter(id => typeof id === 'number');
-          }
-        } catch (_error: unknown) { /* ignore parse errors */ }
+        const shownMemoryIds = extractResponseResults(responseToReturn)
+          .map(r => r.id as number)
+          .filter(id => typeof id === 'number');
 
         if (shownMemoryIds.length > 0) {
           const queryId = _evalQueryId ? String(_evalQueryId) : String(_searchStartTime);
@@ -1891,25 +1901,17 @@ async function handleMemorySearch(args: SearchArgs): Promise<MCPResponse> {
       const db = (() => { try { return requireDb(); } catch (_error: unknown) { return null; } })();
       if (db) {
         // Extract shown memory IDs from response (reuse parsed data if available)
-        let shownIds: string[] = [];
-        try {
-          if (responseToReturn?.content?.[0]?.text) {
-            const parsed = JSON.parse(responseToReturn.content[0].text) as Record<string, unknown>;
-            const data = parsed?.data as Record<string, unknown> | undefined;
-            const results = Array.isArray(data?.results) ? data.results as Array<Record<string, unknown>> : [];
-            shownIds = results.flatMap((result) => {
-              const candidate = result.id;
-              if (typeof candidate !== 'number' && typeof candidate !== 'string') {
-                return [];
-              }
-              const normalizedId = String(candidate).trim();
-              if (!normalizedId || normalizedId === 'undefined' || normalizedId === 'null') {
-                return [];
-              }
-              return [normalizedId];
-            });
+        const shownIds = extractResponseResults(responseToReturn).flatMap((result) => {
+          const candidate = result.id;
+          if (typeof candidate !== 'number' && typeof candidate !== 'string') {
+            return [];
           }
-        } catch (_error: unknown) { /* ignore parse errors */ }
+          const normalizedId = String(candidate).trim();
+          if (!normalizedId || normalizedId === 'undefined' || normalizedId === 'null') {
+            return [];
+          }
+          return [normalizedId];
+        });
 
         const queryId = _evalQueryId ? String(_evalQueryId) : String(_searchStartTime);
 
@@ -1929,6 +1931,7 @@ async function handleMemorySearch(args: SearchArgs): Promise<MCPResponse> {
   // Apply presentation profile when flag is enabled and profile is specified.
   // Phase C: effectiveProfile includes auto-routed profile from intent detection.
   if (effectiveProfile && typeof effectiveProfile === 'string' && isResponseProfileEnabled()) {
+    responseToReturn = finalizeResponseEnvelope(responseToReturn);
     const firstEntry = responseToReturn?.content?.[0];
     if (firstEntry && typeof firstEntry.text === 'string') {
       try {
@@ -1950,7 +1953,7 @@ async function handleMemorySearch(args: SearchArgs): Promise<MCPResponse> {
     getLastLexicalCapabilitySnapshot(),
   );
 
-  return responseToReturn;
+  return finalizeResponseEnvelope(responseToReturn);
 }
 
 /* ───────────────────────────────────────────────────────────────
@@ -1979,6 +1982,12 @@ export const __testables = {
   applyFolderBoostRanking,
   shouldRunCommunityFallback,
   reconcilePostFormatResultSet,
+  parseResponseEnvelope,
+  replaceResponseEnvelope,
+  finalizeResponseEnvelope,
+  prependEvidenceGapWarningToResponse,
+  resetResponseEnvelopeSerializationDiagnostics,
+  getResponseEnvelopeSerializationDiagnostics,
 };
 
 // Backward-compatible aliases (snake_case)

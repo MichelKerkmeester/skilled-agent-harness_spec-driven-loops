@@ -333,6 +333,7 @@ const INTENT_WEIGHT_ADJUSTMENTS: Record<IntentType, IntentWeights> = {
   find_decision: { recency: 0.1, importance: 0.5, similarity: 0.4, contextType: 'planning' },
 };
 
+const embeddingDiagnostics = { deterministicEmbeddingCalls: 0 };
 const INTENT_CENTROIDS: IntentCentroids = buildIntentCentroids();
 
 /* --- 2. SCORING FUNCTIONS --- */
@@ -411,6 +412,7 @@ function isExplicitSpecLookup(query: string): boolean {
  * @returns Normalized Float32Array embedding vector
  */
 function toDeterministicEmbedding(text: string): Float32Array {
+  embeddingDiagnostics.deterministicEmbeddingCalls += 1;
   const vec = new Float32Array(CENTROID_EMBED_DIM);
   const tokens = text.toLowerCase().match(/[a-z0-9_]+/g) ?? [];
   for (const token of tokens) {
@@ -499,10 +501,30 @@ function dotProduct(a: Float32Array | number[], b: Float32Array | number[]): num
  * @param intent - Intent type to score against
  * @returns Cosine similarity score (0-1)
  */
-function calculateCentroidScore(query: string, intent: IntentType): number {
-  const queryEmb = toDeterministicEmbedding(query);
+function calculateCentroidScore(query: string, intent: IntentType, queryEmbedding?: Float32Array): number {
+  const queryEmb = queryEmbedding ?? toDeterministicEmbedding(query);
   const centroid = INTENT_CENTROIDS[intent];
   return Math.max(0, dotProduct(queryEmb, centroid));
+}
+
+const QUERY_EMBEDDING_CACHE_LIMIT = 256;
+const queryEmbeddingCache = new Map<string, Float32Array>();
+
+function getMemoizedQueryEmbedding(query: string): Float32Array {
+  const cached = queryEmbeddingCache.get(query);
+  if (cached) {
+    return cached;
+  }
+
+  const embedding = toDeterministicEmbedding(query);
+  queryEmbeddingCache.set(query, embedding);
+  if (queryEmbeddingCache.size > QUERY_EMBEDDING_CACHE_LIMIT) {
+    const oldestKey = queryEmbeddingCache.keys().next().value as string | undefined;
+    if (oldestKey !== undefined) {
+      queryEmbeddingCache.delete(oldestKey);
+    }
+  }
+  return embedding;
 }
 
 function buildRankedIntents(scores: Record<IntentType, number>): RankedIntent[] {
@@ -558,6 +580,7 @@ function classifyIntent(query: string): IntentResult {
   };
 
   const allKeywords: string[] = [];
+  const queryEmbedding = getMemoizedQueryEmbedding(query);
   // Track per-intent keyword + pattern evidence so the
   // centroid-only confidence floor can fire on queries that scored ONLY via
   // hashed bag-of-words centroid match (e.g. "Semantic Search" → fix_bug 0.098).
@@ -574,7 +597,7 @@ function classifyIntent(query: string): IntentResult {
   for (const intent of Object.values(INTENT_TYPES)) {
     const { score: keywordScore, matches } = calculateKeywordScore(query, intent);
     const patternScore = calculatePatternScore(query, intent);
-    const centroidScore = calculateCentroidScore(query, intent);
+    const centroidScore = calculateCentroidScore(query, intent, queryEmbedding);
 
     let combined = (centroidScore * 0.5) + (keywordScore * 0.35) + (patternScore * 0.15);
 
@@ -877,6 +900,15 @@ const INTENT_LAMBDA_MAP: Readonly<Record<string, number>> = {
   security_audit: 0.75,
 } as const;
 
+const __testables = {
+  embeddingDiagnostics,
+  resetEmbeddingDiagnostics: () => {
+    embeddingDiagnostics.deterministicEmbeddingCalls = 0;
+    queryEmbeddingCache.clear();
+  },
+  queryEmbeddingCache,
+};
+
 const CONTINUITY_QUERY_PATTERNS: RegExp[] = [
   /\bresume\b/i,
   /\bcontinue\b/i,
@@ -908,6 +940,7 @@ export {
   calculateKeywordScore,
   calculatePatternScore,
   calculateCentroidScore,
+  getMemoizedQueryEmbedding,
   dotProduct,
   toDeterministicEmbedding,
   INTENT_CENTROIDS,
@@ -925,6 +958,7 @@ export {
   getIntentDescription,
   getProfileForIntent,
   isContinuityQuery,
+  __testables,
 };
 
 export type {
