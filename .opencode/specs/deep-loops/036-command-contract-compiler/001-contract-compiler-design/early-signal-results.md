@@ -36,3 +36,30 @@ Do **not** proceed to the full retrofit (P5/P6/P7) on this contract as-is. Befor
 3. **Fix the execution guidance** so a review/research dispatch runs the loop over the target, not a one-shot review of the contract text (RVB-007's degenerate dispatch).
 4. **Test the "minimum legacy body" variant** — `fix` currently emits contract + the *full* legacy body, so the model reads two overlapping instruction sets; the design's minimum-legacy optimization may reduce the confusion.
 5. **Widen the sample** — N≥3 + the gpt-fast-high leg — before drawing firm conclusions; N=1 med is noisy, and RVB-007's partial-positive could be variance.
+
+---
+
+## Refinement round 1: front-loaded autonomous-execution directive
+
+Added an imperative `## autonomousExecutionDirective` as the FIRST block of the compiled contract (addressed to the executor, not "the classifier"): under `:auto` + a bound spec_folder/target, setup is resolved — do not emit the A/B/C/D setup question, do not halt for the CLAUDE.md Gate-3 gate, dispatch the leaf and run the loop over the bound target (not review this contract). Committed; Sonnet-verified (correct for both commands, front-loaded, 6/6 tests, byte-identical fallback intact).
+
+### Re-probe (RVB-007 + RSB-007 fix, gpt-fast-med, N=1)
+
+| Cell | Original contract (fix) | Refined directive (fix) |
+|------|-------------------------|-------------------------|
+| RVB-007 | dispatched but degenerate | dispatched (`skill, task`), ~115s — no bare halt |
+| RSB-007 | **setup-halt, 0 tools** | **dispatched (`skill, skill, task`), ~86s** — halt killed |
+
+**The directive works: it killed the bare setup-halt.** RSB-007, which setup-halted with zero tool calls under the original contract, now routes and dispatches. Both cells proceed instead of asking the A/B/C/D question.
+
+### But no clean flip yet — a distinct, newly-isolated blocker (renderer, not contract)
+
+Both cells still end `missing_artifact`. RSB-007's own words: *"deep-research was dispatched. Result: FAIL_FAST. Missing required setup values: research_topic."* The topic IS in the invocation message, but the model reports it missing. Root cause, confirmed directly: **the renderer discards the user invocation message.** `render-command-contract.cjs` captures `$ARGUMENTS` only for the manifest hash and never echoes it to stdout (`render --command deep/review -- 'MARKER…'` → MARKER absent from output). So the model never sees the bound target/topic/flags. The working precedent — `/memory:search:17` — *echoes* its args ("bind your control flow to these values… do not ask the startup question"); this renderer does not. This is a **regression introduced by the P4 restructure** (bootstrap + prelude), which the byte-identical-body fallback check did not catch because the loss is in message-passing, not body content.
+
+### Verdict (round 1)
+
+The contract's autonomous-precedence directive is **effective at killing the setup-halt** — the goal's primary objective. The remaining barrier to a clean flip is a **renderer** issue: the invocation message must be surfaced to the model (echo `$ARGUMENTS`, like `/memory:search`). That fix necessarily changes the current strict byte-identical-fallback invariant (the args echo is a dynamic prefix), so it is a **design decision** deferred for approval rather than made silently.
+
+### Next (recommended)
+
+Fix the renderer to surface the invocation message to the model in both modes (mirroring `/memory:search`'s ARGS_PRESENT/QUERY echo + "bind setup from these" instruction), and evolve the fallback invariant to "static command body byte-identical, dynamic invocation message surfaced". Then re-probe — this is the likely last blocker to an actual completion/flip.
