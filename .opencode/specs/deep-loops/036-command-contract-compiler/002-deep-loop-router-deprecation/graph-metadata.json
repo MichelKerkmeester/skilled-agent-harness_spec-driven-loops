@@ -1,0 +1,216 @@
+{
+  "schema_version": 1,
+  "packet_id": "deep-loops/036-command-contract-compiler/002-deep-loop-router-deprecation",
+  "spec_folder": "deep-loops/036-command-contract-compiler/002-deep-loop-router-deprecation",
+  "parent_id": "deep-loops/036-command-contract-compiler",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "036 phase 002",
+      "deep-loop router deprecation",
+      "deprecate deep-loop agent",
+      "036 phase 002 plan",
+      "deep-loop router deprecation plan",
+      "036 phase 002 tasks",
+      "deep-loop router deprecation tasks",
+      "036 phase 002 summary",
+      "deep-loop router deprecation summary"
+    ],
+    "key_topics": [
+      "036",
+      "phase",
+      "002",
+      "deep-loop",
+      "router",
+      "deprecation",
+      "deprecate",
+      "agent",
+      "plan",
+      "tasks",
+      "summary",
+      "packet"
+    ],
+    "importance_tier": "medium",
+    "status": "complete",
+    "key_files": [
+      ".opencode/agents/deep-loop.md",
+      ".claude/agents/deep-loop.md",
+      ".codex/agents/deep-loop.md",
+      "spec.md",
+      "plan.md",
+      "implementation-summary.md",
+      "tasks.md"
+    ],
+    "entities": [
+      {
+        "name": "deep-loop.md",
+        "kind": "doc",
+        "path": ".opencode/agents/deep-loop.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Loop Router Agent Deprecation",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Deep Route",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. METADATA",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "2. PROBLEM & PURPOSE",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. SUMMARY",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "2. QUALITY GATES",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "3. ARCHITECTURE",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "4. IMPLEMENTATION PHASES",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "5. TESTING STRATEGY",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria All",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "a",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built Retired",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "How It Was Delivered",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Phase 002 of packet 036 (command contract compiler). Retire the now-dead deep-loop primary router agent: the compiled-command-contract mechanism (phase 001 + the review/research/context/ai-council rollout) made the /deep:* commands dispatch their leaf agents directly, so the routing hop the deep-loop agent provided is off every live path. Full-delete the three mirror agent files and reword the two orchestrate boundary lines that named it, preserving the positive leaf-dispatch rule.",
+    "created_at": "2026-07-04T12:45:57.770Z",
+    "last_save_at": "2026-07-04T12:55:17.766Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:bd1974fd6ccc37bd31556c1e97eef6c85749f2efa88fdc213178cfa7946042e6",
+    "source_doc_hashes": {
+      "spec.md": "6f7e961360c37f2fc32e568f88f434f6ff051155cb3f4601e10311de9815b8a9",
+      "plan.md": "6a5ba55db09a421d0fca5139a07baf507b378bfc8faa4b7fd802fecf21a3ad5c",
+      "tasks.md": "ee1b4622653f5e73bb4e8471e5858ff36beaaec8dfbf2cc314062ec3470f0123",
+      "implementation-summary.md": "eac0063af1ebf7679340c41333806decc646b85f5ef12b5c56aba894050527a1"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}
