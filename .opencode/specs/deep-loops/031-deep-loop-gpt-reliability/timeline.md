@@ -9,7 +9,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "deep-loops/031-deep-loop-issues-with-gpt-opencode"
+    packet_pointer: "deep-loops/031-deep-loop-gpt-reliability"
     last_updated_at: "2026-07-01T20:15:00Z"
     last_updated_by: "claude-sonnet-5"
     recent_action: "Authored full timeline across all 5 epochs with real commit hashes (packet complete, nothing pending commit)"

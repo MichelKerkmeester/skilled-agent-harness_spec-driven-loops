@@ -1,27 +1,16 @@
 {
   "schema_version": 1,
-  "packet_id": "deep-loops/031-deep-loop-issues-with-gpt-opencode",
-  "spec_folder": "deep-loops/031-deep-loop-issues-with-gpt-opencode",
+  "packet_id": "deep-loops/031-deep-loop-gpt-reliability",
+  "spec_folder": "deep-loops/031-deep-loop-gpt-reliability",
   "parent_id": null,
   "children_ids": [
-    "deep-loops/031-deep-loop-issues-with-gpt-opencode/001-deep-agent-router-and-orchestration",
-    "deep-loops/031-deep-loop-issues-with-gpt-opencode/002-route-proof-validation",
-    "deep-loops/031-deep-loop-issues-with-gpt-opencode/003-agent-dispatch-hardening",
-    "deep-loops/031-deep-loop-issues-with-gpt-opencode/004-command-pre-route-headers",
-    "deep-loops/031-deep-loop-issues-with-gpt-opencode/005-gpt-verification-smoke",
-    "deep-loops/031-deep-loop-issues-with-gpt-opencode/006-host-hard-identity-fix5",
-    "deep-loops/031-deep-loop-issues-with-gpt-opencode/007-gpt-behavioral-hardening-research",
-    "deep-loops/031-deep-loop-issues-with-gpt-opencode/008-mode-d-ai-council-identity-fix",
-    "deep-loops/031-deep-loop-issues-with-gpt-opencode/009-orchestrate-universal-routing",
-    "deep-loops/031-deep-loop-issues-with-gpt-opencode/010-ai-council-subagent-only",
-    "deep-loops/031-deep-loop-issues-with-gpt-opencode/011-deep-route-guard-plugin",
-    "deep-loops/031-deep-loop-issues-with-gpt-opencode/012-gpt-claude-benchmark",
-    "deep-loops/031-deep-loop-issues-with-gpt-opencode/013-fix5-checkpoint",
-    "deep-loops/031-deep-loop-issues-with-gpt-opencode/014-skill-doc-drift-audit",
-    "deep-loops/031-deep-loop-issues-with-gpt-opencode/015-skill-doc-drift-remediation",
-    "deep-loops/031-deep-loop-issues-with-gpt-opencode/016-mk-deep-loop-guard-hardening",
-    "deep-loops/031-deep-loop-issues-with-gpt-opencode/017-loop-guard-implementation",
-    "deep-loops/031-deep-loop-issues-with-gpt-opencode/018-fanout-stopreason-tolerance"
+    "deep-loops/031-deep-loop-gpt-reliability/001-research-and-diagnosis",
+    "deep-loops/031-deep-loop-gpt-reliability/002-routing-dispatch-and-identity",
+    "deep-loops/031-deep-loop-gpt-reliability/003-guard-and-enforcement",
+    "deep-loops/031-deep-loop-gpt-reliability/004-benchmarks-and-verification",
+    "deep-loops/031-deep-loop-gpt-reliability/005-skill-doc-hygiene",
+    "deep-loops/031-deep-loop-gpt-reliability/006-reliability-fixes",
+    "deep-loops/031-deep-loop-gpt-reliability/007-compiled-contract-compiler"
   ],
   "manual": {
     "depends_on": [],
@@ -30,56 +19,33 @@
   },
   "derived": {
     "trigger_phrases": [
-      "gpt deep agent",
-      "deep loop gpt",
-      "deep skills gpt opencode",
-      "deep agent router"
+      "gpt reliability deep-loop",
+      "deep loop gpt opencode routing identity",
+      "deep agent router guard benchmark"
     ],
     "key_topics": [
       "gpt",
+      "reliability",
+      "deep-loop",
       "deep",
-      "agent",
       "loop",
-      "skills",
       "opencode",
+      "routing",
+      "identity",
+      "agent",
       "router",
-      "parent",
-      "packet",
-      "fixing",
-      "deep-skill",
-      "invocation"
+      "guard",
+      "benchmark"
     ],
     "importance_tier": "critical",
-    "status": "complete",
+    "status": "planned",
     "key_files": [
-      "007-gpt-behavioral-hardening-research/research/research.md",
-      "012-gpt-claude-benchmark/benchmark-results.md",
-      "006-host-hard-identity-fix5/decision-record.md",
-      "016-mk-deep-loop-guard-hardening/implementation-summary.md",
-      "017-loop-guard-implementation/implementation-summary.md",
-      ".opencode/plugins/mk-deep-loop-guard.js",
-      ".opencode/plugins/README.md",
-      "spec.md"
+      "spec.md",
+      "001-research-and-diagnosis/spec.md",
+      "002-routing-dispatch-and-identity/spec.md",
+      "007-compiled-contract-compiler/spec.md"
     ],
     "entities": [
-      {
-        "name": "benchmark-results.md",
-        "kind": "doc",
-        "path": "012-gpt-claude-benchmark/benchmark-results.md",
-        "source": "derived"
-      },
-      {
-        "name": "mk-deep-loop-guard.js",
-        "kind": "code",
-        "path": ".opencode/plugins/mk-deep-loop-guard.js",
-        "source": "derived"
-      },
-      {
-        "name": "README.md",
-        "kind": "doc",
-        "path": ".opencode/plugins/README.md",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -93,49 +59,49 @@
         "source": "derived"
       },
       {
-        "name": "Loop Issues",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "Parent Packet",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "Deep Route",
+        "name": "Problem Statement",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "Final Resolution",
+        "name": "Purpose Root",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "Claude Code",
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       }
     ],
-    "causal_summary": "Parent packet for fixing deep-skill invocation, routing, and orchestration under GPT-backed OpenCode. Children implement research, validator hardening, and the structural deep-agent router.",
-    "created_at": "2026-06-30T11:58:13.600Z",
-    "last_save_at": "2026-07-04T10:55:58.586Z",
+    "causal_summary": "GPT-backed OpenCode mis-handled deep-loop routing, dispatch, host identity, and orchestration — deep skills were mis-invoked, routes were mismatched, and the host could not hold a hard identity (FIX-5)",
+    "created_at": "2026-07-04T19:23:28.685Z",
+    "last_save_at": "2026-07-04T19:28:07.351Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:db50d0b1f9108ff5bde33eba120f4c1d185adb62b44cdc2529fcea451d4f74af",
+    "source_fingerprint": "sha256:9ca9d5c909a6bd0498b30cbbfdcbf559a5ef049c471eea1a7dc195cd30fc4585",
     "source_doc_hashes": {
-      "spec.md": "4b0b3ac5f698abd3ef6a87ae47c4d775190026bd35501dba3ad96b76f48dcdff"
+      "spec.md": "2aa999d60ed79d9438de5d7dabdda0318c2453ad9ff28626187a0f79f600079d"
     },
-    "last_active_child_id": "deep-loops/031-deep-loop-issues-with-gpt-opencode/017-loop-guard-implementation",
-    "last_active_at": "2026-07-01T19:55:00.000Z"
+    "last_active_child_id": null,
+    "last_active_at": null
   }
 }
