@@ -115,8 +115,8 @@ Command output for count comparison, JSON syntax validation, C1 field checks, de
     ".opencode/specs/barter/002-text-wrap-balance-react-native/description.json",
     ".opencode/specs/barter/005-notifications-system/description.json",
     ".opencode/specs/barter/006-visual-multi-language/description.json",
-    ".opencode/specs/deep-loops/031-deep-loop-issues-with-gpt-opencode/description.json",
-    ".opencode/specs/deep-loops/031-deep-loop-issues-with-gpt-opencode/004-command-pre-route-headers/description.json"
+    ".opencode/specs/deep-loops/031-deep-loop-gpt-reliability/description.json",
+    ".opencode/specs/deep-loops/031-deep-loop-gpt-reliability/002-routing-dispatch-and-identity/004-command-pre-route-headers/description.json"
   ]
 }
 ```

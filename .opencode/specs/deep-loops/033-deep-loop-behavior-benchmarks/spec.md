@@ -18,7 +18,7 @@ _memory:
     blockers: []
     key_files:
       - "001-framework-and-harness/decision-record.md"
-      - "../031-deep-loop-issues-with-gpt-opencode/012-gpt-claude-benchmark/benchmark-results.md"
+      - "../031-deep-loop-gpt-reliability/004-benchmarks-and-verification/002-gpt-claude-benchmark/benchmark-results.md"
       - ".opencode/skills/deep-loop-workflows/mode-registry.json"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"

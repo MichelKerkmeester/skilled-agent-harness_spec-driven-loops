@@ -6,7 +6,7 @@
   "children_ids": [
     "deep-loops/029-deep-loop-workflows",
     "deep-loops/030-agent-loops-improved",
-    "deep-loops/031-deep-loop-issues-with-gpt-opencode",
+    "deep-loops/031-deep-loop-gpt-reliability",
     "deep-loops/z_archive/001-sk-deep-research-creation",
     "deep-loops/z_archive/002-sk-deep-research-refinement",
     "deep-loops/z_archive/003-sk-deep-research-testing-playbook",
