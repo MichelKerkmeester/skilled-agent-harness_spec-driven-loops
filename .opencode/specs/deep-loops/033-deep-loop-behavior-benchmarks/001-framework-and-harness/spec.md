@@ -17,7 +17,7 @@ _memory:
     blockers: []
     key_files:
       - "decision-record.md"
-      - "../../031-deep-loop-issues-with-gpt-opencode/012-gpt-claude-benchmark/benchmark-results.md"
+      - "../../031-deep-loop-gpt-reliability/004-benchmarks-and-verification/002-gpt-claude-benchmark/benchmark-results.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "033-001-init"
@@ -182,4 +182,4 @@ Ship the framework reference (scenario schema, rubric, taxonomy, budget/rerun po
 
 - **Decisions**: `decision-record.md` (D-001..D-006, OPEN-001, OPEN-002)
 - **Parent Spec**: `../spec.md`
-- **Predecessor evidence**: `../../031-deep-loop-issues-with-gpt-opencode/012-gpt-claude-benchmark/benchmark-results.md`
+- **Predecessor evidence**: `../../031-deep-loop-gpt-reliability/004-benchmarks-and-verification/002-gpt-claude-benchmark/benchmark-results.md`

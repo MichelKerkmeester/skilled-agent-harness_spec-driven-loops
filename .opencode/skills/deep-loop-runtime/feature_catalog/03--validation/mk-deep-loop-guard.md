@@ -74,7 +74,7 @@ Unlike `mk-goal.js`, this plugin needs no per-session mutation queue to make the
 |---|---|---|
 | `.opencode/plugins/tests/mk-deep-loop-guard.test.cjs` | Automated test | Hermetic regression coverage for export shape, identity resolution, both warn/reject toggles, command-driven/non-loop-executor exemptions, cross-session isolation, and both fail-open paths, run against a fixture registry (no live OpenCode session required). |
 
-Live-verified against a real `opencode` session during development (hook registration, warn-mode logging, reject-mode blocking for both checks, fail-open on a missing registry, and pass-through for non-deep `subagent_type` values) — see `.opencode/specs/deep-loops/031-deep-loop-issues-with-gpt-opencode/011-deep-route-guard-plugin/implementation-summary.md` (original mode-mismatch build) and `017-loop-guard-implementation/implementation-summary.md` (identity-resolution fix + loop-repeat detection) for the full evidence trail.
+Live-verified against a real `opencode` session during development (hook registration, warn-mode logging, reject-mode blocking for both checks, fail-open on a missing registry, and pass-through for non-deep `subagent_type` values) — see `.opencode/specs/deep-loops/031-deep-loop-gpt-reliability/003-guard-and-enforcement/001-deep-route-guard-plugin/implementation-summary.md` (original mode-mismatch build) and `031-deep-loop-gpt-reliability/003-guard-and-enforcement/003-loop-guard-implementation/implementation-summary.md` (identity-resolution fix + loop-repeat detection) for the full evidence trail.
 
 ---
 

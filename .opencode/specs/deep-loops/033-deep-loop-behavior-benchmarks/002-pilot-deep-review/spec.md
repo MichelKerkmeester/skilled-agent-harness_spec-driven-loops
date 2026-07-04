@@ -175,4 +175,4 @@ Ship `deep-review/behavior_benchmark/` (RVB-001..008 with verbatim user-style pr
 
 - **Parent Spec**: `../spec.md`
 - **Framework**: `../001-framework-and-harness/`
-- **Precedent**: `../../031-deep-loop-issues-with-gpt-opencode/012-gpt-claude-benchmark/benchmark-results.md`
+- **Precedent**: `../../031-deep-loop-gpt-reliability/004-benchmarks-and-verification/002-gpt-claude-benchmark/benchmark-results.md`
