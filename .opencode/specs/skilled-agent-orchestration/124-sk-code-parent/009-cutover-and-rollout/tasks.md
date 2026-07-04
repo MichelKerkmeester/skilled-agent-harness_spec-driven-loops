@@ -71,7 +71,9 @@ _memory:
 - [x] T011 Author the ordered main-side rollout runbook; evidence: `implementation-summary.md` § Main-Side Rollout Runbook (8 steps, per-step verification).
 - [ ] T012 [B] MAIN: remove advisor scorer identity (TS+Python), rebaseline corpora, regen graph, reindex.
 - [ ] T013 [B] MAIN: delete the 4 alias sites; repoint ~350 NAME refs; cut the version release.
-- [ ] T014 [B] MAIN: full verification (advisor vitest/parity, pytest, benchmark, `parent-skill-check.cjs`, `validate.sh --recursive`, 0 live sk-code-review refs).
+- [ ] T014 [B] MAIN: full verification (advisor vitest/parity, pytest, benchmark, `parent-skill-check.cjs` re-confirm, `validate.sh --recursive`, 0 live sk-code-review refs).
+- [x] T015 Review pass: canonical-scope `parent-skill-check.cjs` 3d; evidence: sk-code AND the reference hub sk-design both failed 10 invariants (validator hard-coded the canonical taxonomy; CI only ran the default target); after scoping, all three hubs pass and the canonical output is unchanged.
+- [x] T016 Review pass: add `reviewer` keyword/alias; evidence: the word-boundary fix had traded the `preview` false-positive for a `reviewer` false-negative; after the add, reviewer task → `[review]`, CS-003 → `[implement]`, vocab-sync 18→18, benchmark 71/zero diffs.
 <!-- /ANCHOR:phase-3 -->
 
 ---

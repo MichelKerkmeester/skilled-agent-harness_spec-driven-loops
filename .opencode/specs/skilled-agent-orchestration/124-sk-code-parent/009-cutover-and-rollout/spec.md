@@ -101,6 +101,8 @@ Land everything mergeable and verifiable now (cleanup + fold-fixes), and specify
 - Fix the CS-003 substring matcher with a narrow word-boundary guard.
 - Repoint the 29 drifted RESOURCE_MAP paths in `smart_routing.md`.
 - Fix the two fold-broken live references (sandbox script, README link).
+- Canonical-scope `parent-skill-check.cjs`'s 3d taxonomy checks so non-canonical hubs (sk-design, sk-code) validate; run all three hubs green in-branch.
+- Add the `reviewer` keyword/alias (closes the word-boundary false-negative the CS-003 fix introduced).
 - Author the main-side rollout runbook + phase docs.
 
 ### Out of Scope (branch → main-side rollout)
@@ -121,6 +123,8 @@ Land everything mergeable and verifiable now (cleanup + fold-fixes), and specify
 | `sk-code/shared/references/smart_routing.md` | Update | 29 drifted paths repointed |
 | `deep-review/.../setup-cp-sandbox.sh` | Update | Repoint fold-deleted `sk-code-review/` → `sk-code` |
 | `skills/README.md` | Update | Remove dead `sk-code-review` link (folded) |
+| `.opencode/commands/doctor/scripts/parent-skill-check.cjs` | Update | Canonical-scope the 3d taxonomy (non-canonical hubs presence-checked; canonical strictness preserved) |
+| `sk-code/hub-router.json`, `sk-code/mode-registry.json` | Update | Add `reviewer` keyword + alias (parity kept) |
 | `009-cutover-and-rollout/` | Create | Phase docs + rollout runbook |
 <!-- /ANCHOR:scope -->
 
@@ -155,6 +159,8 @@ Land everything mergeable and verifiable now (cleanup + fold-fixes), and specify
 - **SC-004**: `smart_routing.md` has `0` dead RESOURCE_MAP paths.
 - **SC-005**: `setup-cp-sandbox.sh` resolves + parses; the dead README link is gone.
 - **SC-006**: `implementation-summary.md` § Main-Side Rollout Runbook lists all deferred steps in dependency order with per-step verification.
+- **SC-007**: `parent-skill-check.cjs` passes for all three hubs (deep-loop default, sk-design, sk-code); the canonical hub's output is unchanged by the scoping fix.
+- **SC-008**: "address the reviewer comments…" routes `[review]`; CS-003 stays `[implement]`; benchmark aggregate holds 71 with zero scenario score diffs.
 <!-- /ANCHOR:success-criteria -->
 
 ---
@@ -178,7 +184,7 @@ Land everything mergeable and verifiable now (cleanup + fold-fixes), and specify
 | Type | Item | Impact | Mitigation |
 |------|------|--------|------------|
 | Risk | Blind TS scorer edits | Unverifiable routing regressions on main | Stage the retune for main; verify against the rebuilt toolchain |
-| Risk | Alias deleted before graph regen | Advisor recommends an unresolvable name | Runbook sequences alias deletion after the scorer removal + regen |
+| Risk | Alias deleted before graph regen | Advisor recommends an unresolvable name | Runbook sequences alias deletion after the scorer removal and before the one-pass graph regen (so the regenerated graph never carries the alias and nothing scores the name) |
 | Risk | TS/Python scorer divergence | Parity test red on main | Edit both in the same main-side step; keep the branch untouched (both retain the alias, so parity stays green) |
 | Risk | Half-repointed NAME refs | Confusing docs-vs-behavior mismatch | Bundle NAME refs with alias removal (atomic) |
 | Dependency | Compiled `dist` on main | Blocking | Runbook step 1 builds it |

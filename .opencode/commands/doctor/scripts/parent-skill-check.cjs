@@ -241,17 +241,24 @@ function main() {
           }
         }
 
-        // 3d — three-tier discriminator: workflowMode + backendKind required;
-        // runtimeLoopType must be present as a key but may be null. Values are
-        // validated against the allowed sets, not merely checked for presence —
-        // an out-of-set value silently breaks dispatch.
+        // 3d — three-tier discriminator: workflowMode + backendKind required
+        // everywhere. The strict taxonomy (runtimeLoopType key required + both
+        // enums) is canonical-scoped like 4a/4b: only the canonical hub's
+        // runtime dispatches on these values, so an out-of-set value breaks
+        // dispatch there. Other hub families name their own descriptive
+        // backends (the shipped reference hub uses values outside the
+        // canonical enum), so for them backendKind is presence-checked and
+        // runtimeLoopType is optional (enum-checked only when present).
+        const isCanonical = basename === CANONICAL_BASENAME;
         if (typeof mode.workflowMode !== 'string' || mode.workflowMode.length === 0) {
           fail(`3d: mode "${label}" is missing workflowMode`);
           discriminatorOk = false;
         }
         if (!('runtimeLoopType' in mode)) {
-          fail(`3d: mode "${label}" is missing the runtimeLoopType key (null is allowed, absence is not)`);
-          discriminatorOk = false;
+          if (isCanonical) {
+            fail(`3d: mode "${label}" is missing the runtimeLoopType key (null is allowed, absence is not)`);
+            discriminatorOk = false;
+          }
         } else if (!VALID_RUNTIME_LOOP_TYPES.includes(mode.runtimeLoopType)) {
           fail(`3d: mode "${label}" has invalid runtimeLoopType ${JSON.stringify(mode.runtimeLoopType)} (expected one of {research, review, council, context, null})`);
           discriminatorOk = false;
@@ -259,7 +266,7 @@ function main() {
         if (typeof mode.backendKind !== 'string' || mode.backendKind.length === 0) {
           fail(`3d: mode "${label}" is missing backendKind`);
           discriminatorOk = false;
-        } else if (!VALID_BACKEND_KINDS.includes(mode.backendKind)) {
+        } else if (isCanonical && !VALID_BACKEND_KINDS.includes(mode.backendKind)) {
           fail(`3d: mode "${label}" has invalid backendKind ${JSON.stringify(mode.backendKind)} (expected one of {${VALID_BACKEND_KINDS.join(', ')}})`);
           discriminatorOk = false;
         }

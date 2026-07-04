@@ -52,7 +52,7 @@ _memory:
 <!-- ANCHOR:safety -->
 ## Safety / Scope
 - [x] No blind edits to the un-runnable TS advisor scorer — evidence: staged in the runbook, not made in the branch.
-- [x] Alias deletion sequenced after graph regen — evidence: runbook steps 2→3 ordering + coupling note.
+- [x] Alias deletion sequenced after scorer removal and before the one-pass graph regen — evidence: runbook step order 2 (scorer) → 3 (alias sites) → 5 (regen) + coupling note.
 - [x] TS/Python scorer parity preserved in the branch (both untouched, both retain the alias) — evidence: no `system-skill-advisor/` scorer edits in the branch diff.
 - [x] sk-design-owned failure left untouched — evidence: `design-dispatch-boundary-proof` unchanged.
 - [x] No package.json/lock leak staged — evidence: `git checkout` before commit; explicit path staging.
@@ -66,6 +66,9 @@ _memory:
 - [x] `setup-cp-sandbox.sh` parses (`bash -n`) and its paths resolve.
 - [x] smart_routing `0` dead paths confirmed via router-replay existence scan.
 - [x] Worktree un-runnability of the load-bearing steps confirmed empirically (17 graph-validation errors; TS scorer 16/18 files fail to load) — justifies the branch/main split.
+- [x] `parent-skill-check.cjs` green for all three hubs after canonical-scoping 3d — evidence: deep-loop default unchanged all-pass; sk-design and sk-code both "all invariants passed" (both failed 10× before the fix).
+- [x] CI drift gate green at HEAD — evidence: `routing-registry-drift.yml`'s three vitest suites 21/21 locally + the check; this is the gate the main-side rollout PR triggers.
+- [x] `reviewer` false-negative closed — evidence: reviewer task routes `[review]`, CS-003 stays `[implement]`, vocab-sync findings 18→18, benchmark 71 with zero scenario diffs.
 <!-- /ANCHOR:load-bearing -->
 
 ---
