@@ -56,6 +56,7 @@ interface CausalEdgeRow {
   readonly target_id: string;
   readonly relation: string;
   readonly strength: number | null;
+  readonly created_by: string | null;
 }
 
 interface DependencyEdgeRow {
@@ -106,6 +107,25 @@ function relationWeight(relation: string, relationWeights: Readonly<Record<strin
 
 function edgeStrength(value: number | null): number {
   return typeof value === 'number' && Number.isFinite(value) ? value : 1.0;
+}
+
+function includeEntityLinkerEdges(): boolean {
+  const normalized = process.env.SPECKIT_INCLUDE_ENTITY_LINKER_CAUSAL_EDGES?.trim().toLowerCase();
+  return normalized === 'true' || normalized === '1';
+}
+
+function causalEdgeFilter(): string {
+  if (includeEntityLinkerEdges()) return '';
+  return "AND COALESCE(created_by, '') != 'entity_linker'";
+}
+
+function hasCausalEdgeCreatedByColumn(database: Database.Database): boolean {
+  try {
+    return (database.prepare('PRAGMA table_info(causal_edges)').all() as Array<{ name?: string }>)
+      .some((row) => row.name === 'created_by');
+  } catch (_error: unknown) {
+    return false;
+  }
 }
 
 function nextWalkScore<TNode extends TraversalNode>(
@@ -257,15 +277,19 @@ export function readCausalNeighborEdges(
 
   for (const nodeChunk of chunks(nodes.map((nodeId) => String(nodeId)), SQLITE_BINDING_CHUNK_SIZE)) {
     const chunkPlaceholders = placeholders(nodeChunk.length);
+    const createdByProjection = hasCausalEdgeCreatedByColumn(database) ? 'created_by' : 'NULL AS created_by';
+    const provenanceFilter = hasCausalEdgeCreatedByColumn(database) ? causalEdgeFilter() : '';
     const outgoingRows = database.prepare(`
-      SELECT source_id, target_id, relation, strength
+      SELECT source_id, target_id, relation, strength, ${createdByProjection}
       FROM causal_edges
       WHERE source_id IN (${chunkPlaceholders})
+        ${provenanceFilter}
     `).all(...nodeChunk) as CausalEdgeRow[];
     const incomingRows = database.prepare(`
-      SELECT source_id, target_id, relation, strength
+      SELECT source_id, target_id, relation, strength, ${createdByProjection}
       FROM causal_edges
       WHERE target_id IN (${chunkPlaceholders})
+        ${provenanceFilter}
     `).all(...nodeChunk) as CausalEdgeRow[];
 
     for (const row of outgoingRows) {

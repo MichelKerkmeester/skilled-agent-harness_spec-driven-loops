@@ -20,13 +20,19 @@ import {
 /** Maximum number of entries allowed in each session-scoped cache. */
 const CACHE_MAX_SIZE = 10000;
 
-/** Session-scoped cache for momentum scores (memoryId -> momentum). */
-const momentumCache = new Map<number, number>();
+/** Session-scoped cache for momentum scores. */
+const momentumCache = new Map<string, number>();
 
-/** Session-scoped cache for causal depth scores (memoryId -> normalized depth). */
-const depthCache = new Map<number, number>();
+/** Session-scoped cache for causal depth scores. */
+const depthCache = new Map<string, number>();
+
+/** Per-signal dirty keys let reads refresh only affected cached rows. */
+const dirtyMomentumKeys = new Set<string>();
+const dirtyDepthKeys = new Set<string>();
 
 const GRAPH_WALK_SECOND_HOP_WEIGHT = 0.5;
+let nextDbCacheId = 1;
+const dbCacheIds = new WeakMap<Database.Database, number>();
 
 type GraphWalkRolloutState = 'off' | 'trace_only' | 'bounded_runtime';
 
@@ -41,10 +47,25 @@ interface GraphWalkMetrics {
  * iteration order is insertion order and partial eviction of
  * "oldest" entries would require iterating anyway.
  */
-function enforceCacheBound(cache: Map<number, number>): void {
+function enforceCacheBound(cache: Map<string, number>): void {
   if (cache.size > CACHE_MAX_SIZE) {
     cache.clear();
   }
+}
+
+function cacheKey(db: Database.Database, memoryId: number): string {
+  let dbId = dbCacheIds.get(db);
+  if (dbId === undefined) {
+    dbId = nextDbCacheId++;
+    dbCacheIds.set(db, dbId);
+  }
+  return `${dbId}:${memoryId}`;
+}
+
+function numericEndpointWhere(): string {
+  return `source_id != '' AND target_id != ''
+    AND source_id NOT GLOB '*[^0-9]*'
+    AND target_id NOT GLOB '*[^0-9]*'`;
 }
 
 /**
@@ -54,6 +75,39 @@ function enforceCacheBound(cache: Map<number, number>): void {
 export function clearGraphSignalsCache(): void {
   momentumCache.clear();
   depthCache.clear();
+  dirtyMomentumKeys.clear();
+  dirtyDepthKeys.clear();
+}
+
+/** Mark graph-signal cache entries stale for rows touched by graph mutations. */
+export function markGraphSignalsDirty(db: Database.Database, memoryIds: number[]): { marked: number } {
+  let marked = 0;
+  for (const memoryId of memoryIds) {
+    if (!Number.isInteger(memoryId)) {
+      continue;
+    }
+
+    const key = cacheKey(db, memoryId);
+    if (!dirtyMomentumKeys.has(key)) {
+      dirtyMomentumKeys.add(key);
+      marked += 1;
+    }
+    if (!dirtyDepthKeys.has(key)) {
+      dirtyDepthKeys.add(key);
+      marked += 1;
+    }
+  }
+
+  return { marked };
+}
+
+/** Return current dirty-key counts for tests and diagnostics. */
+export function getGraphSignalsDirtyCounts(): { momentum: number; depth: number; total: number } {
+  return {
+    momentum: dirtyMomentumKeys.size,
+    depth: dirtyDepthKeys.size,
+    total: dirtyMomentumKeys.size + dirtyDepthKeys.size,
+  };
 }
 
 // 3. DEGREE SNAPSHOTS (N2a support)
@@ -71,11 +125,12 @@ export function snapshotDegrees(db: Database.Database): { snapshotted: number } 
     const rows = db.prepare(`
       SELECT node_id, COUNT(*) AS degree_count
       FROM (
-        SELECT source_id AS node_id FROM causal_edges
+        SELECT source_id AS node_id FROM causal_edges WHERE ${numericEndpointWhere()}
         UNION ALL
         SELECT target_id AS node_id
         FROM causal_edges
-        WHERE target_id != source_id
+        WHERE ${numericEndpointWhere()}
+          AND target_id != source_id
       )
       GROUP BY node_id
     `).all() as Array<{ node_id: string; degree_count: number }>;
@@ -120,7 +175,8 @@ function getCurrentDegree(db: Database.Database, memoryId: number): number {
     const row = db.prepare(`
       SELECT COUNT(*) AS degree
       FROM causal_edges
-      WHERE source_id = ? OR target_id = ?
+      WHERE (${numericEndpointWhere()})
+        AND (source_id = ? OR target_id = ?)
     `).get(idStr, idStr) as { degree: number } | undefined;
     return row?.degree ?? 0;
   } catch (error: unknown) {
@@ -139,7 +195,10 @@ function getPastDegree(db: Database.Database, memoryId: number): number | null {
     const row = db.prepare(`
       SELECT degree_count
       FROM degree_snapshots
-      WHERE memory_id = ? AND snapshot_date = date('now', '-7 days')
+      WHERE memory_id = ?
+      ORDER BY ABS(julianday(snapshot_date) - julianday(date('now', '-7 days'))) ASC,
+               snapshot_date DESC
+      LIMIT 1
     `).get(memoryId) as { degree_count: number } | undefined;
     return row?.degree_count ?? null;
   } catch (error: unknown) {
@@ -177,14 +236,16 @@ export function computeMomentumScores(db: Database.Database, memoryIds: number[]
 
   for (const memoryId of memoryIds) {
     // Check session cache first
-    const cached = momentumCache.get(memoryId);
-    if (cached !== undefined) {
+    const key = cacheKey(db, memoryId);
+    const cached = momentumCache.get(key);
+    const wasDirty = dirtyMomentumKeys.delete(key);
+    if (!wasDirty && cached !== undefined) {
       results.set(memoryId, cached);
       continue;
     }
 
     const momentum = computeMomentum(db, memoryId);
-    momentumCache.set(memoryId, momentum);
+    momentumCache.set(key, momentum);
     results.set(memoryId, momentum);
   }
 
@@ -207,6 +268,7 @@ function buildAdjacencyList(db: Database.Database): { adjacency: Map<number, num
   try {
     const edges = db.prepare(`
       SELECT source_id, target_id FROM causal_edges
+      WHERE ${numericEndpointWhere()}
     `).all() as Array<{ source_id: string; target_id: string }>;
 
     for (const edge of edges) {
@@ -489,8 +551,10 @@ export function computeDepthScores(db: Database.Database, memoryIds: number[]): 
   // Separate cached from uncached
   const uncached: number[] = [];
   for (const memoryId of memoryIds) {
-    const cached = depthCache.get(memoryId);
-    if (cached !== undefined) {
+    const key = cacheKey(db, memoryId);
+    const cached = depthCache.get(key);
+    const wasDirty = dirtyDepthKeys.delete(key);
+    if (!wasDirty && cached !== undefined) {
       results.set(memoryId, cached);
     } else {
       uncached.push(memoryId);
@@ -505,7 +569,7 @@ export function computeDepthScores(db: Database.Database, memoryIds: number[]): 
 
     if (allNodes.size === 0) {
       for (const id of uncached) {
-        depthCache.set(id, 0);
+        depthCache.set(cacheKey(db, id), 0);
         results.set(id, 0);
       }
       return results;
@@ -519,7 +583,7 @@ export function computeDepthScores(db: Database.Database, memoryIds: number[]): 
       if (maxDepth > 0 && depthByNode.has(id)) {
         normalizedDepth = (depthByNode.get(id) ?? 0) / maxDepth;
       }
-      depthCache.set(id, normalizedDepth);
+      depthCache.set(cacheKey(db, id), normalizedDepth);
       results.set(id, normalizedDepth);
     }
 
@@ -530,7 +594,7 @@ export function computeDepthScores(db: Database.Database, memoryIds: number[]): 
     console.warn(`[graph-signals] computeDepthScores failed: ${message}`);
     // Fill uncached with 0 on error
     for (const id of uncached) {
-      depthCache.set(id, 0);
+      depthCache.set(cacheKey(db, id), 0);
       results.set(id, 0);
     }
   }
@@ -641,4 +705,6 @@ export const __testables = {
   clamp,
   momentumCache,
   depthCache,
+  dirtyMomentumKeys,
+  dirtyDepthKeys,
 };

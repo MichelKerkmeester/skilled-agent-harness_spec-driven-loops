@@ -68,6 +68,7 @@ describe('T038-T044 causal boost', () => {
     } else {
       process.env.SPECKIT_CAUSAL_BOOST = previousFlag;
     }
+    delete process.env.SPECKIT_INCLUDE_ENTITY_LINKER_CAUSAL_EDGES;
   });
 
   it('T039/T043: computes 1-hop and 2-hop neighbors from causal_edges', () => {
@@ -131,6 +132,22 @@ describe('T038-T044 causal boost', () => {
 
     const cycle = causalBoost.getNeighborBoosts([1]);
     expect(cycle.get(2)?.boost).toBeCloseTo(0.05, 6);
+  });
+
+  it('excludes entity-linker co-occurrence edges by default with explicit opt-in', () => {
+    db?.prepare(`
+      INSERT INTO causal_edges (source_id, target_id, relation, strength, created_by)
+      VALUES ('1', '2', 'supports', 0.05, 'entity_linker'),
+             ('1', '3', 'caused', 1.0, 'manual')
+    `).run();
+
+    const defaultBoosts = causalBoost.getNeighborBoosts([1]);
+    expect(defaultBoosts.has(2)).toBe(false);
+    expect(defaultBoosts.has(3)).toBe(true);
+
+    process.env.SPECKIT_INCLUDE_ENTITY_LINKER_CAUSAL_EDGES = 'true';
+    const optedInBoosts = causalBoost.getNeighborBoosts([1]);
+    expect(optedInBoosts.has(2)).toBe(true);
   });
 });
 

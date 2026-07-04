@@ -15,7 +15,8 @@
 //   - TypeScript strict mode; zero external runtime deps beyond better-sqlite3
 
 import type Database from 'better-sqlite3';
-import { clearGraphSignalsCache } from '../graph/graph-signals.js';
+import { clearGraphSignalsCache, markGraphSignalsDirty } from '../graph/graph-signals.js';
+import { rebuildCommunityArtifactsIfStale } from '../graph/community-detection.js';
 import { createLogger } from '../utils/logger.js';
 import { extractHeadings, extractAliases, extractRelationPhrases, extractCodeFenceTechnologies,
   createTypedEdges as _createTypedEdgesWithCallback, EXPLICIT_ONLY_EVIDENCE } from './deterministic-extractor.js';
@@ -48,6 +49,23 @@ function invalidateGraphCaches(db: Database.Database): void {
   } catch (_error: unknown) {
     // Graph signals cache invalidation is best-effort for graph lifecycle mutations.
   }
+}
+
+function isNumericNodeId(nodeId: string): boolean {
+  return /^[0-9]+$/.test(nodeId);
+}
+
+function numericNodeIds(nodeIds: string[]): number[] {
+  return nodeIds
+    .filter(isNumericNodeId)
+    .map((nodeId) => Number.parseInt(nodeId, 10))
+    .filter((nodeId) => Number.isInteger(nodeId));
+}
+
+function numericEndpointWhere(): string {
+  return `source_id != '' AND target_id != ''
+    AND source_id NOT GLOB '*[^0-9]*'
+    AND target_id NOT GLOB '*[^0-9]*'`;
 }
 
 // ───────────────────────────────────────────────────────────────
@@ -103,6 +121,8 @@ const DEFAULT_LOCAL_RECOMPUTE_THRESHOLD = 50;
 
 /** Maximum number of edges to query per node during local recompute. */
 const LOCAL_RECOMPUTE_EDGE_LIMIT = 500;
+
+const DEGREE_BOOST_MAX = 0.1;
 
 // ───────────────────────────────────────────────────────────────
 // 3. INTERFACES
@@ -226,17 +246,19 @@ export function estimateComponentSize(
   db: Database.Database,
   nodeIds: string[],
 ): number {
-  if (nodeIds.length === 0) return 0;
+  const numericNodeIds = nodeIds.filter(isNumericNodeId);
+  if (numericNodeIds.length === 0) return 0;
 
-  const visited = new Set<string>(nodeIds);
-  const queue: string[] = [...nodeIds];
+  const visited = new Set<string>(numericNodeIds);
+  const queue: string[] = [...numericNodeIds];
   let edgesScanned = 0;
 
   try {
     const stmt = db.prepare(`
       SELECT source_id, target_id
       FROM causal_edges
-      WHERE source_id = ? OR target_id = ?
+      WHERE (${numericEndpointWhere()})
+        AND (source_id = ? OR target_id = ?)
       LIMIT ?
     `) as Database.Statement;
 
@@ -250,6 +272,7 @@ export function estimateComponentSize(
       for (const row of rows) {
         edgesScanned++;
         for (const neighbor of [row.source_id, row.target_id]) {
+          if (!isNumericNodeId(neighbor)) continue;
           if (!visited.has(neighbor)) {
             visited.add(neighbor);
             queue.push(neighbor);
@@ -286,17 +309,19 @@ export function recomputeLocal(
   db: Database.Database,
   nodeIds: string[],
 ): number {
-  if (nodeIds.length === 0) return 0;
+  const numericNodeIds = nodeIds.filter(isNumericNodeId);
+  if (numericNodeIds.length === 0) return 0;
 
   try {
     // Count in-degree for each dirty node
-    const placeholders = nodeIds.map(() => '?').join(', ');
+    const placeholders = numericNodeIds.map(() => '?').join(', ');
     const degreeRows = (db.prepare(`
       SELECT target_id AS node_id, COUNT(*) AS in_degree
       FROM causal_edges
-      WHERE target_id IN (${placeholders})
+      WHERE (${numericEndpointWhere()})
+        AND target_id IN (${placeholders})
       GROUP BY target_id
-    `) as Database.Statement).all(...nodeIds) as Array<{
+    `) as Database.Statement).all(...numericNodeIds) as Array<{
       node_id: string;
       in_degree: number;
     }>;
@@ -308,14 +333,26 @@ export function recomputeLocal(
 
     const updateStmt = db.prepare(`
       UPDATE causal_edges
-      SET strength = MIN(1.0, strength + ?)
+      SET strength = MIN(1.0,
+        CASE
+          WHEN relation = 'caused' THEN 0.9
+          WHEN relation = 'enabled' THEN 0.85
+          WHEN relation = 'supersedes' THEN 0.8
+          WHEN relation = 'contradicts' THEN 0.8
+          WHEN relation = 'derived_from' THEN 0.75
+          WHEN relation = 'supports' AND created_by = 'entity_linker' THEN 0.05
+          WHEN relation = 'supports' THEN 0.6
+          ELSE 0.5
+        END + ?
+      )
       WHERE target_id = ?
+        AND (${numericEndpointWhere()})
     `) as Database.Statement;
 
     let updated = 0;
     const runTransaction = db.transaction(() => {
       for (const row of degreeRows) {
-        const normalizedBoost = row.in_degree / maxDegree * 0.1; // bounded: max +0.1
+        const normalizedBoost = row.in_degree / maxDegree * DEGREE_BOOST_MAX;
         const result = updateStmt.run(normalizedBoost, row.node_id);
         updated += result.changes;
       }
@@ -447,8 +484,12 @@ export function onWrite(
     if (!Array.isArray(nodeIds) || nodeIds.length === 0) {
       return emptyResult;
     }
+    if (payload.inserted === 0) {
+      return emptyResult;
+    }
 
     const newlyDirty = markDirty(nodeIds);
+    markGraphSignalsDirty(db, numericNodeIds(nodeIds));
     const allDirty = Array.from(_dirtyNodes.nodeIds);
     const componentSize = estimateComponentSize(db, allDirty);
     const threshold = resolveLocalThreshold();
@@ -470,6 +511,8 @@ export function onWrite(
       scheduleGlobalRefresh();
       scheduledRefresh = true;
     }
+
+    rebuildCommunityArtifactsIfStale(db);
 
     return {
       mode,
@@ -529,7 +572,17 @@ export function onIndex(
   // while the query path always queried them.
   if (isQuerySurrogatesEnabled() && content && content.trim().length > 0) {
     try {
-      const surrogates = generateSurrogates(content, `Memory ${memoryId}`);
+      let title = `Memory ${memoryId}`;
+      try {
+        const titleRow = (db.prepare('SELECT title FROM memory_index WHERE id = ?') as Database.Statement)
+          .get(memoryId) as { title?: string | null } | undefined;
+        if (typeof titleRow?.title === 'string' && titleRow.title.trim().length > 0) {
+          title = titleRow.title.trim();
+        }
+      } catch (_error: unknown) {
+        // Older unit fixtures may exercise surrogate generation without memory_index.
+      }
+      const surrogates = generateSurrogates(content, title);
       if (surrogates) {
         storeSurrogates(db, memoryId, surrogates);
       }
@@ -690,6 +743,7 @@ function _scheduleLlmBackfill(memoryId: number): boolean {
 export const __testables = {
   DEFAULT_LOCAL_RECOMPUTE_THRESHOLD,
   LOCAL_RECOMPUTE_EDGE_LIMIT,
+  DEGREE_BOOST_MAX,
   DEFAULT_SCHEDULE_DELAY_MS,
   resolveLocalThreshold,
   getDirtyNodes,

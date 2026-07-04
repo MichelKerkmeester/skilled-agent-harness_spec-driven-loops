@@ -151,8 +151,8 @@ The entity linker auto-creates a `'supports'` edge at fixed strength 0.7 for eve
 
 | Field | Value |
 |-------|-------|
-| **Status** | Proposed |
-| **Date** | 2026-07-03 |
+| **Status** | Accepted (amended 2026-07-04 — lifecycle fixes shipped; naming rename deferred) |
+| **Date** | 2026-07-03 (amended 2026-07-04) |
 | **Deciders** | Michel Kerkmeester (operator), executing seat |
 
 ---
@@ -174,9 +174,13 @@ The community subsystem calls itself "Louvain", but the implementation is unweig
 <!-- ANCHOR:adr-002-decision -->
 ### Decision
 
-**We chose**: Rename honestly to label propagation everywhere the name surfaces (code identifiers, docs, telemetry labels), fix the lifecycle bugs, and defer a real weighted modularity implementation until post-006 measurement exists.
+**Originally proposed**: Rename honestly to label propagation everywhere the name surfaces (code identifiers, docs, telemetry labels), fix the lifecycle bugs, and defer a real weighted modularity implementation until post-006 measurement exists.
 
-**How it works**: The algorithm keeps its current behavior. Identifiers, comments, and telemetry that say "Louvain" change to "label propagation". The lifecycle fixes (rebuild cadence beyond checkpoint-restore, stable community IDs, collision-proof fingerprints, DB-rebind cache reset, phantom-member filtering) land in the same cluster. A real modularity algorithm becomes a candidate follow-up once 006's eval harness can measure whether it helps.
+**Amended (as shipped)**: Ship the lifecycle fixes now; **keep** the existing "Louvain" identifiers, env, and telemetry labels for external-consumer compatibility and document the misnomer in place; defer both the naming rename and the real weighted-modularity implementation until post-006 measurement exists.
+
+**Why amended**: The original ADR itself flagged the dominant risk of a rename — "rename misses a telemetry consumer parsing the old label." Because the algorithm's behavior is unchanged, the standing lie is a documentation problem, not a live defect. The live defects were the lifecycle bugs, and those are fixed. A broad identifier/telemetry rename mid-remediation expands this phase's blast radius beyond graph hygiene into every dashboard and doc that keys on the label, for zero behavior benefit. Documenting the misnomer where it surfaces removes the "silent lie" harm at no churn risk, and the honest rename rides along with the real-modularity decision once 006's harness can measure the whole subsystem.
+
+**How it works**: The algorithm keeps its current behavior and its current names. The lifecycle fixes (rebuild cadence beyond checkpoint-restore and stable community IDs across rebuilds) shipped. A real modularity algorithm and the naming rename both become candidate follow-ups once 006's eval harness can measure whether they help.
 <!-- /ANCHOR:adr-002-decision -->
 
 ---

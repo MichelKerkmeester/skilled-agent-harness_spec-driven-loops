@@ -166,12 +166,6 @@
         "source": "derived"
       },
       {
-        "name": "Execute Phase",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "Key Decisions",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -196,6 +190,12 @@
         "source": "derived"
       },
       {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
         "name": "Implementation Plan",
         "kind": "proper_noun",
         "path": "plan.md",
@@ -210,7 +210,7 @@
     ],
     "causal_summary": "The causal graph is 94% entity-linker noise and every save ratchets edge strengths toward 1.0, so graph signals cannot rank real causality",
     "created_at": "2026-07-03T09:44:23Z",
-    "last_save_at": "2026-07-03T12:20:21.601Z",
+    "last_save_at": "2026-07-04T06:08:02.043Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -221,14 +221,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:3bf09de023091d43b4e03272139934d13b7c5a1a36c1c2682fb6691595bad8ba",
+    "source_fingerprint": "sha256:3c2a4d7d77dcb2b022e4e7a55d620d1fd2211692a7b0255c58a2d295cc9a3e5f",
     "source_doc_hashes": {
-      "spec.md": "9b528a8ad8300ae066a5943c5da242a004cb8a31aa82b293897b91e7684e5064",
+      "spec.md": "f52d27a1b8c9c88cefa836d91d0103fbe75233c8507ebddc065ba07e6700aff8",
       "plan.md": "5f526bbba060bf2b6ad3fb8aa27f7633de0fd6f82147281be2d4813d72313613",
-      "tasks.md": "ffd4de45d06c57fa167ef67a3b0cb751b45abf11bb37eed5be07e8e2e7deb1ec",
-      "checklist.md": "ff17adb78c478b085de03d09f989f4bde937edfdc51dca16404d16ed3db82693",
-      "decision-record.md": "bff798fce27b06115f2e9282c2d00ccf1ffab8fea9a025f01c318791bac5af88",
-      "implementation-summary.md": "bf54605c0bb957b53858a2cd37ebc158012f32fedde324bca8bc17252872fdf9"
+      "tasks.md": "fb40f8fb88a6a090830fbdc6d37ab7fa41ec8e7a138cf4837e1db2b0a513fd7f",
+      "checklist.md": "808a8651db308c92927a903252c36e6deb31a12b9f1e2724a6ab86491316b45f",
+      "decision-record.md": "f7048e2d0f3b02251b8866b834d83b9bbdef5937e74c9be107de09704834818a",
+      "implementation-summary.md": "a2caf99b00725bcecbf4af722b1597cee161d423bcff4263c1923f5e1a1d938d"
     },
     "last_active_child_id": null,
     "last_active_at": null

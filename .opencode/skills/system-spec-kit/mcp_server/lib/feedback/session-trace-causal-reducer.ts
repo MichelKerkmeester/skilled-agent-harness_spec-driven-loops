@@ -27,6 +27,7 @@ type SkipReason =
   | 'missing_session'
   | 'no_prior_source'
   | 'self_candidate'
+  | 'insufficient_sessions'
   | 'already_created'
   | 'manual_protected'
   | 'insert_rejected'
@@ -111,13 +112,12 @@ function selectPriorSearchSources(
     if (event.type !== 'search_shown') continue;
     if (event.session_id !== citation.session_id) continue;
     if (event.memory_id === citation.memory_id) continue;
+    if (event.query_id === citation.query_id) continue;
     const existing = deduped.get(event.memory_id);
-    const existingSameQuery = existing?.query_id === citation.query_id;
-    const eventSameQuery = event.query_id === citation.query_id;
     if (
       !existing
-      || (eventSameQuery && !existingSameQuery)
-      || (eventSameQuery === existingSameQuery && (event.timestamp > existing.timestamp || (event.timestamp === existing.timestamp && event.id > existing.id)))
+      || event.timestamp > existing.timestamp
+      || (event.timestamp === existing.timestamp && event.id > existing.id)
     ) {
       deduped.set(event.memory_id, event);
     }
@@ -125,10 +125,7 @@ function selectPriorSearchSources(
 
   return [...deduped.values()]
     .sort((a, b) => {
-      const sameQueryA = a.query_id === citation.query_id ? 0 : 1;
-      const sameQueryB = b.query_id === citation.query_id ? 0 : 1;
-      return (sameQueryA - sameQueryB)
-        || (b.timestamp - a.timestamp)
+      return (b.timestamp - a.timestamp)
         || (a.id - b.id)
         || a.memory_id.localeCompare(b.memory_id);
     })
@@ -182,6 +179,32 @@ function buildEvidence(candidate: SessionTraceCandidate): string {
   return `session_trace session=${candidate.sessionId} query=${candidate.queryId}`;
 }
 
+function pairKey(sourceId: string, targetId: string): string {
+  return `${sourceId}\u0000${targetId}`;
+}
+
+function countDistinctSessionCooccurrences(events: FeedbackEventRow[], maxSources: number): Map<string, Set<string>> {
+  const bySession = new Map<string, FeedbackEventRow[]>();
+  const sessionsByPair = new Map<string, Set<string>>();
+
+  for (const event of events) {
+    if (!event.session_id) continue;
+    const priorEvents = bySession.get(event.session_id) ?? [];
+    if (event.type === 'result_cited') {
+      for (const source of selectPriorSearchSources(priorEvents, event, maxSources)) {
+        const key = pairKey(source.memory_id, event.memory_id);
+        const sessions = sessionsByPair.get(key) ?? new Set<string>();
+        sessions.add(event.session_id);
+        sessionsByPair.set(key, sessions);
+      }
+    }
+    priorEvents.push(event);
+    bySession.set(event.session_id, priorEvents);
+  }
+
+  return sessionsByPair;
+}
+
 function runSessionTraceCausalReducer(
   db: Database.Database,
   opts: SessionTraceCausalReducerOptions = {},
@@ -201,6 +224,8 @@ function runSessionTraceCausalReducer(
   if (!dryRun) initCausalEdges(db);
 
   const events = sortFeedbackEvents(getFeedbackEvents(db, { since: windowStart, until: windowEnd }));
+  const maxSources = opts.maxSourcesPerCitation ?? DEFAULT_MAX_SOURCES;
+  const distinctSessionsByPair = countDistinctSessionCooccurrences(events, maxSources);
   const bySession = new Map<string, FeedbackEventRow[]>();
   const skipped: SessionTraceSkip[] = [];
   const candidates: SessionTraceCandidate[] = [];
@@ -223,7 +248,7 @@ function runSessionTraceCausalReducer(
 
     if (event.type === 'result_cited') {
       citationsEvaluated++;
-      const sources = selectPriorSearchSources(priorEvents, event, opts.maxSourcesPerCitation ?? DEFAULT_MAX_SOURCES);
+      const sources = selectPriorSearchSources(priorEvents, event, maxSources);
       if (sources.length === 0) {
         const hadSelfCandidate = priorEvents.some((prior) => prior.type === 'search_shown' && prior.memory_id === event.memory_id);
         skipped.push({
@@ -244,6 +269,18 @@ function runSessionTraceCausalReducer(
           sourceEventId: source.id,
         };
         candidates.push(candidate);
+
+        const distinctSessions = distinctSessionsByPair.get(pairKey(candidate.sourceId, candidate.targetId))?.size ?? 0;
+        if (distinctSessions < 2) {
+          skipped.push({
+            reason: 'insufficient_sessions',
+            sessionId: candidate.sessionId,
+            queryId: candidate.queryId,
+            sourceId: candidate.sourceId,
+            targetId: candidate.targetId,
+          });
+          continue;
+        }
 
         const existing = readExistingEdge(db, candidate.sourceId, candidate.targetId, relation);
         if (existing?.created_by === CREATED_BY) {

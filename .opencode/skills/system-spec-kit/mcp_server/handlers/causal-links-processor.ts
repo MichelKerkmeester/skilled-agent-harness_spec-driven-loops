@@ -31,7 +31,7 @@ interface CausalLinksResult {
   processed: number;
   inserted: number;
   resolved: number;
-  unresolved: { type: string; reference: string }[];
+  unresolved: { type: string; reference: string; suggestions?: string[] }[];
   errors: { type: string; reference: string; error: string }[];
 }
 
@@ -47,6 +47,12 @@ interface PathLookupRow extends MemoryIdRow {
 
 interface TitleLookupRow extends MemoryIdRow {
   title: string | null;
+}
+
+interface SuggestionLookupRow extends MemoryIdRow {
+  title: string | null;
+  file_path: string | null;
+  canonical_file_path?: string | null;
 }
 
 interface PreparedReference {
@@ -68,7 +74,7 @@ const CAUSAL_LINK_MAPPINGS: Record<string, CausalLinkMapping> = {
   caused_by: { relation: causalEdges.RELATION_TYPES.CAUSED, reverse: true },
   supersedes: { relation: causalEdges.RELATION_TYPES.SUPERSEDES, reverse: false },
   derived_from: { relation: causalEdges.RELATION_TYPES.DERIVED_FROM, reverse: false },
-  blocks: { relation: causalEdges.RELATION_TYPES.ENABLED, reverse: true },
+  blocks: { relation: causalEdges.RELATION_TYPES.CONTRADICTS, reverse: false },
   related_to: { relation: causalEdges.RELATION_TYPES.SUPPORTS, reverse: false }
 };
 
@@ -139,6 +145,20 @@ function getMemoryIndexColumns(database: BetterSqlite3.Database): Set<string> {
   return new Set(rows.map((row) => row.name).filter((name): name is string => typeof name === 'string'));
 }
 
+function activeMemoryClauses(columns: Set<string>): string[] {
+  const clauses: string[] = [];
+  if (columns.has('deleted_at')) clauses.push('deleted_at IS NULL');
+  if (columns.has('importance_tier')) clauses.push("COALESCE(importance_tier, 'normal') != 'deprecated'");
+  if (columns.has('parent_id')) clauses.push('parent_id IS NULL');
+  if (columns.has('chunk_parent_id')) clauses.push('chunk_parent_id IS NULL');
+  return clauses;
+}
+
+function activeMemoryWhere(columns: Set<string>): string {
+  const clauses = activeMemoryClauses(columns);
+  return clauses.length > 0 ? ` AND ${clauses.join(' AND ')}` : '';
+}
+
 /** Resolve many memory references in batch (exact first, fuzzy fallback). */
 function resolveMemoryReferencesBatch(
   database: BetterSqlite3.Database,
@@ -148,6 +168,7 @@ function resolveMemoryReferencesBatch(
   const preparedRefs: PreparedReference[] = [];
   const memoryIndexColumns = getMemoryIndexColumns(database);
   const hasCanonicalFilePath = memoryIndexColumns.has('canonical_file_path');
+  const activeWhere = activeMemoryWhere(memoryIndexColumns);
 
   for (const reference of references) {
     const prepared = buildPreparedReference(reference);
@@ -182,6 +203,7 @@ function resolveMemoryReferencesBatch(
       SELECT id
       FROM memory_index
       WHERE id IN (${buildInClause(numericIds)})
+        ${activeWhere}
     `).all(...numericIds) as MemoryIdRow[];
     const foundIds = new Set(numericRows.map((row) => row.id));
     for (const ref of preparedRefs) {
@@ -217,16 +239,18 @@ function resolveMemoryReferencesBatch(
       ? database.prepare(`
         SELECT id, canonical_file_path, file_path, spec_folder
         FROM memory_index
-        WHERE canonical_file_path IN (${inClause})
+        WHERE (canonical_file_path IN (${inClause})
            OR file_path IN (${inClause})
-           OR spec_folder IN (${inClause})
+           OR spec_folder IN (${inClause}))
+           ${activeWhere}
         ORDER BY id DESC
       `).all(...values, ...values, ...values) as PathLookupRow[]
       : database.prepare(`
         SELECT id, NULL AS canonical_file_path, file_path, spec_folder
         FROM memory_index
-        WHERE file_path IN (${inClause})
-           OR spec_folder IN (${inClause})
+        WHERE (file_path IN (${inClause})
+           OR spec_folder IN (${inClause}))
+           ${activeWhere}
         ORDER BY id DESC
       `).all(...values, ...values) as PathLookupRow[];
 
@@ -265,6 +289,7 @@ function resolveMemoryReferencesBatch(
       SELECT id, title
       FROM memory_index
       WHERE title IN (${buildInClause(titleCandidates)})
+        ${activeWhere}
       ORDER BY id DESC
     `).all(...titleCandidates) as TitleLookupRow[];
 
@@ -287,53 +312,46 @@ function resolveMemoryReferencesBatch(
     }
   }
 
-  // 4) Fuzzy fallback (LIKE with leading wildcard is intentionally last-resort)
-  const byPathFallbackStmt = hasCanonicalFilePath
-    ? database.prepare(`
-      SELECT id
-      FROM memory_index
-      WHERE canonical_file_path LIKE ? ESCAPE '\\'
-         OR file_path LIKE ? ESCAPE '\\'
-      ORDER BY id DESC
-      LIMIT 1
-    `)
-    : database.prepare(`
-      SELECT id
-      FROM memory_index
-      WHERE file_path LIKE ? ESCAPE '\\'
-      ORDER BY id DESC
-      LIMIT 1
-    `);
-  const byTitlePartialStmt = database.prepare(`
-    SELECT id
-    FROM memory_index
-    WHERE title LIKE ? ESCAPE '\\'
-    ORDER BY id DESC
-    LIMIT 1
-  `);
-
-  for (const ref of preparedRefs) {
-    if (!unresolved(ref)) {
-      continue;
-    }
-
-    if (ref.isSessionLike || ref.isPathLike) {
-      const byPath = hasCanonicalFilePath
-        ? byPathFallbackStmt.get(`%${ref.escapedLike}%`, `%${ref.escapedLike}%`) as MemoryIdRow | undefined
-        : byPathFallbackStmt.get(`%${ref.escapedLike}%`) as MemoryIdRow | undefined;
-      if (byPath) {
-        setResolved(ref, byPath.id);
-        continue;
-      }
-    }
-
-    const byTitlePartial = byTitlePartialStmt.get(`%${escapeLikePattern(ref.trimmed)}%`) as MemoryIdRow | undefined;
-    if (byTitlePartial) {
-      setResolved(ref, byTitlePartial.id);
-    }
-  }
-
   return resolved;
+}
+
+function findMemoryReferenceSuggestions(
+  database: BetterSqlite3.Database,
+  reference: string,
+  maxSuggestions = 3,
+): string[] {
+  const prepared = buildPreparedReference(reference);
+  if (!prepared) return [];
+
+  const columns = getMemoryIndexColumns(database);
+  const hasCanonicalFilePath = columns.has('canonical_file_path');
+  const activeWhere = activeMemoryWhere(columns);
+  const limit = Math.max(1, Math.floor(maxSuggestions));
+  const rows = hasCanonicalFilePath
+    ? database.prepare(`
+      SELECT id, title, file_path, canonical_file_path
+      FROM memory_index
+      WHERE (canonical_file_path LIKE ? ESCAPE '\\'
+          OR file_path LIKE ? ESCAPE '\\'
+          OR title LIKE ? ESCAPE '\\')
+        ${activeWhere}
+      ORDER BY id DESC
+      LIMIT ?
+    `).all(`%${prepared.escapedLike}%`, `%${prepared.escapedLike}%`, `%${escapeLikePattern(prepared.trimmed)}%`, limit) as SuggestionLookupRow[]
+    : database.prepare(`
+      SELECT id, title, file_path
+      FROM memory_index
+      WHERE (file_path LIKE ? ESCAPE '\\'
+          OR title LIKE ? ESCAPE '\\')
+        ${activeWhere}
+      ORDER BY id DESC
+      LIMIT ?
+    `).all(`%${prepared.escapedLike}%`, `%${escapeLikePattern(prepared.trimmed)}%`, limit) as SuggestionLookupRow[];
+
+  return rows.map((row) => {
+    const label = row.title ?? row.canonical_file_path ?? row.file_path ?? `memory ${row.id}`;
+    return `${row.id}: ${label}`;
+  });
 }
 
 // ───────────────────────────────────────────────────────────────────
@@ -392,7 +410,12 @@ function processCausalLinks(database: BetterSqlite3.Database, memoryId: number, 
       }
 
       if (!resolvedId) {
-        result.unresolved.push({ type: link_type, reference });
+        const suggestions = findMemoryReferenceSuggestions(database, reference);
+        result.unresolved.push({
+          type: link_type,
+          reference,
+          ...(suggestions.length > 0 ? { suggestions } : {}),
+        });
         continue;
       }
 
@@ -456,6 +479,7 @@ export {
   processCausalLinks,
   resolveMemoryReference,
   resolveMemoryReferencesBatch,
+  findMemoryReferenceSuggestions,
   CAUSAL_LINK_MAPPINGS,
 };
 

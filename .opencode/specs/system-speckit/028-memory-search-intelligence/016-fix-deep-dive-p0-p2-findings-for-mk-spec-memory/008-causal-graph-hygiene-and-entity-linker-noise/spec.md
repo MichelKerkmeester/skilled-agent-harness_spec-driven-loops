@@ -13,10 +13,10 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-speckit/028-memory-search-intelligence/016-fix-deep-dive-p0-p2-findings-for-mk-spec-memory/008-causal-graph-hygiene-and-entity-linker-noise"
-    last_updated_at: "2026-07-03T13:00:00Z"
+    last_updated_at: "2026-07-04T06:06:02Z"
     last_updated_by: "claude-opus-4-8"
-    recent_action: "Remediated REWORK: verify-first P1-2/P1-4, ADR-001 down-weight, REQ-002 restate, column fixes"
-    next_safe_action: "Execute Phase 1 setup: capture baselines and run the confirm-before-fix pass on 🟡 findings"
+    recent_action: "Shipped 13 REQs; down-weighted 31,644 noise edges + regenerated 3,787 titles; 225 tests green"
+    next_safe_action: "Phase 009 learning-feedback-loop-repair"
     blockers: []
     key_files:
       - "spec.md"
@@ -28,11 +28,11 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-07-03-028-016-008-planning-authoring"
       parent_session_id: null
-    completion_pct: 0
-    open_questions:
-      - "ADR-001 down-weight-in-place recommended (no schema migration); ratify vs relocate (full CHECK table rebuild) after the dry-run counts."
-      - "Un-inverted 'blocks' prefers 'contradicts' (CHECK-legal); confirm vs a first-class 'blocks' relation (needs the CHECK rebuild)."
-    answered_questions: []
+    completion_pct: 100
+    open_questions: []
+    answered_questions:
+      - "ADR-001 ratified down-weight-in-place: the 31,644 co-occurrence edges dropped 0.7 → 0.05 via a strength UPDATE, no schema migration, no CHECK rebuild."
+      - "ADR-002 amended: the Louvain names stay + the misnomer is documented; the rename defers to post-006 with the real-modularity decision. The lifecycle fixes (rebuild cadence + stable IDs) shipped."
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core + level2-verify + level3-arch | v2.2 -->
 # Feature Specification: Phase 8: causal-graph-hygiene-and-entity-linker-noise

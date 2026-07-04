@@ -347,7 +347,7 @@ describe('S8 Entity Linker', () => {
       expect(edges[0].relation).toBe('supports');
     });
 
-    it('sets strength to 0.7', () => {
+    it('sets entity-linker supports strength below the causal band', () => {
       insertMemory(db, 1, 'specs/001-alpha');
       insertMemory(db, 2, 'specs/002-beta');
 
@@ -360,7 +360,7 @@ describe('S8 Entity Linker', () => {
       createEntityLinks(db, matches);
 
       const edge = db.prepare(`SELECT strength FROM causal_edges`).get() as { strength: number };
-      expect(edge.strength).toBeCloseTo(0.7);
+      expect(edge.strength).toBeCloseTo(__testables.ENTITY_LINKER_SUPPORT_STRENGTH);
     });
 
     it('sets created_by to entity_linker', () => {
@@ -542,6 +542,24 @@ describe('S8 Entity Linker', () => {
 
       const count = db.prepare(`SELECT COUNT(*) AS cnt FROM causal_edges`).get() as { cnt: number };
       expect(count.cnt).toBe(4);
+    });
+
+    it('ignores pseudo-node edges for density guard calculations', () => {
+      insertMemory(db, 1, 'specs/001-alpha');
+      insertMemory(db, 2, 'specs/002-beta');
+
+      db.prepare(`INSERT INTO causal_edges (source_id, target_id, relation, created_by) VALUES ('heading:intro', 'alias:intro', 'supports', 'graph_lifecycle')`).run();
+      db.prepare(`INSERT INTO causal_edges (source_id, target_id, relation, created_by) VALUES ('concept:alpha', '1', 'supports', 'graph_lifecycle')`).run();
+
+      const matches: EntityMatch[] = [{
+        canonicalName: 'pseudo density entity',
+        memoryIds: [1, 2],
+        specFolders: ['specs/001-alpha', 'specs/002-beta'],
+      }];
+
+      const result = createEntityLinks(db, matches, { maxEdgeDensity: 0.5 });
+      expect(result.linksCreated).toBe(1);
+      expect(result.skippedByDensityGuard).toBe(false);
     });
 
     it('allows link creation when projected density equals threshold', () => {
@@ -788,6 +806,26 @@ describe('S8 Entity Linker', () => {
       expect(typeof edge.source_id).toBe('string');
       expect(typeof edge.target_id).toBe('string');
     });
+
+    it('canonicalizes reversed memory pairs to one edge', () => {
+      insertCatalogEntry(db, 'canonical pair');
+      insertMemory(db, 1, 'specs/001-alpha');
+      insertMemory(db, 2, 'specs/002-beta');
+
+      const matches: EntityMatch[] = [{
+        canonicalName: 'canonical pair',
+        memoryIds: [2, 1],
+        specFolders: ['specs/002-beta', 'specs/001-alpha'],
+      }];
+
+      const first = createEntityLinks(db, matches, { maxEdgeDensity: 10 });
+      const second = createEntityLinks(db, matches, { maxEdgeDensity: 10 });
+      const edge = db.prepare(`SELECT source_id, target_id FROM causal_edges WHERE created_by = 'entity_linker'`).get() as { source_id: string; target_id: string };
+
+      expect(first.linksCreated).toBe(1);
+      expect(second.linksCreated).toBe(0);
+      expect(edge).toEqual({ source_id: '1', target_id: '2' });
+    });
   });
 
   describe('runEntityLinkingForMemory', () => {
@@ -877,6 +915,17 @@ describe('S8 Entity Linker', () => {
       expect(typeof __testables.sanitizeDensityThreshold).toBe('function');
       expect(typeof __testables.getEntityLinkingDensityThreshold).toBe('function');
       expect(typeof __testables.getGlobalEdgeDensityStats).toBe('function');
+    });
+
+    it('prunes stale entity-linking rows', () => {
+      insertMemory(db, 1, 'specs/001-test');
+      insertEntity(db, 1, 'Live Entity');
+      insertEntity(db, 999, 'Stale Entity');
+      db.prepare(`INSERT INTO entity_catalog (canonical_name, memory_count) VALUES ('empty catalog', 0)`).run();
+
+      const result = __testables.pruneEntityLinkingRows(db);
+      expect(result.memoryEntitiesDeleted).toBe(1);
+      expect(result.catalogDeleted).toBe(1);
     });
 
     it('exposes getEdgeCount function', () => {

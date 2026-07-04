@@ -5,6 +5,7 @@ import Database from 'better-sqlite3';
 import {
   __testables,
   detectCommunities,
+  rebuildCommunityArtifactsIfStale,
   resetCommunityDetectionState,
 } from '../lib/graph/community-detection.js';
 import { generateCommunitySummaries } from '../lib/graph/community-summaries.js';
@@ -17,7 +18,8 @@ function createDb(): Database.Database {
       id INTEGER PRIMARY KEY,
       title TEXT,
       spec_folder TEXT,
-      importance_tier TEXT DEFAULT 'normal'
+      importance_tier TEXT DEFAULT 'normal',
+      deleted_at TEXT
     );
 
     CREATE TABLE causal_edges (
@@ -76,6 +78,7 @@ describe('community detection (Phase A)', () => {
   afterEach(() => {
     db.close();
     resetCommunityDetectionState();
+    delete process.env.SPECKIT_COMMUNITY_REBUILD_INTERVAL_MS;
     if (previousFlag === undefined) {
       delete process.env.SPECKIT_COMMUNITY_SUMMARIES;
     } else {
@@ -194,5 +197,81 @@ describe('community detection (Phase A)', () => {
         density: 1,
       },
     ]);
+  });
+
+  it('keeps stable community ids across unchanged rebuilds', () => {
+    insertEdge(db, 1, 2);
+    insertEdge(db, 2, 3);
+    insertEdge(db, 3, 1);
+
+    const first = detectCommunities(db);
+    resetCommunityDetectionState();
+    const second = detectCommunities(db);
+
+    expect(second).toEqual(first);
+    expect(first[0]?.communityId).toBe(1);
+  });
+
+  it('refreshes community artifacts on live cadence and keeps community ids stable', () => {
+    process.env.SPECKIT_COMMUNITY_REBUILD_INTERVAL_MS = '0';
+    insertEdge(db, 1, 2);
+    insertEdge(db, 2, 3);
+    insertEdge(db, 3, 1);
+
+    const first = rebuildCommunityArtifactsIfStale(db);
+    expect(first).toMatchObject({ rebuilt: true, communities: 1, assignments: 3, summaries: 1 });
+    const initialAssignments = db.prepare(`
+      SELECT memory_id, community_id
+      FROM community_assignments
+      ORDER BY memory_id
+    `).all() as Array<{ memory_id: number; community_id: number }>;
+
+    db.prepare(`UPDATE community_assignments SET community_id = 99`).run();
+
+    const second = rebuildCommunityArtifactsIfStale(db);
+    const refreshedAssignments = db.prepare(`
+      SELECT memory_id, community_id
+      FROM community_assignments
+      ORDER BY memory_id
+    `).all() as Array<{ memory_id: number; community_id: number }>;
+
+    expect(second.rebuilt).toBe(true);
+    expect(refreshedAssignments).toEqual(initialAssignments);
+    expect(refreshedAssignments.map((row) => row.community_id)).toEqual([1, 1, 1]);
+  });
+
+  it('does not reuse cached communities across DB instances', () => {
+    insertEdge(db, 1, 2);
+    insertEdge(db, 2, 3);
+    insertEdge(db, 3, 1);
+    const first = detectCommunities(db);
+
+    const otherDb = createDb();
+    try {
+      process.env.SPECKIT_COMMUNITY_SUMMARIES = 'true';
+      for (let id = 10; id <= 12; id += 1) {
+        insertMemory(otherDb, id, `Memory ${id}`, 'specs/other');
+      }
+      insertEdge(otherDb, 10, 11);
+      insertEdge(otherDb, 11, 12);
+      insertEdge(otherDb, 12, 10);
+
+      const second = detectCommunities(otherDb);
+      expect(first[0]?.memberIds).toEqual([1, 2, 3]);
+      expect(second[0]?.memberIds).toEqual([10, 11, 12]);
+    } finally {
+      otherDb.close();
+    }
+  });
+
+  it('filters deleted memories from detected and injected community members', () => {
+    insertEdge(db, 1, 2);
+    insertEdge(db, 2, 3);
+    insertEdge(db, 3, 1);
+    db.prepare(`UPDATE memory_index SET deleted_at = datetime('now') WHERE id = 3`).run();
+
+    const communities = detectCommunities(db);
+
+    expect(communities).toEqual([]);
   });
 });

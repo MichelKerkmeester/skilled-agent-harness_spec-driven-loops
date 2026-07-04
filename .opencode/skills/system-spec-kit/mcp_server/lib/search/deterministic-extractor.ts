@@ -43,6 +43,8 @@ export interface DeterministicEdge {
 export interface WriteEdgePayload {
   /** IDs of nodes involved in the write (source, target, or affected). */
   nodeIds: string[];
+  /** Number of rows newly inserted by the write path, when known. */
+  inserted?: number;
 }
 
 /**
@@ -222,7 +224,7 @@ export function createTypedEdges(
 
     // Trigger graph refresh for the newly inserted edges
     const nodeIds = edges.flatMap((e) => [e.sourceId, e.targetId]);
-    onWriteFn(db, { nodeIds });
+    onWriteFn(db, { nodeIds, inserted });
 
     return inserted;
   } catch (error: unknown) {

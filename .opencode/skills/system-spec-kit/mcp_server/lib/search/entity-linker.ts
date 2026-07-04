@@ -10,8 +10,10 @@
 // Extracts noun phrases from a query and matches them against a concept alias
 // table, returning the matched canonical concept names for graph channel routing.
 import { isEntityLinkingEnabled } from './search-flags.js';
+import { clearGraphSignalsCache } from '../graph/graph-signals.js';
 import { createLogger } from '../utils/logger.js';
 import type Database from 'better-sqlite3';
+import { clearDegreeCacheForDb } from './graph-search-fn.js';
 
 // ───────────────────────────────────────────────────────────────
 // 1. CONSTANTS
@@ -22,6 +24,7 @@ const MAX_EDGES_PER_NODE = 20;
 
 /** density guard default: skip entity linking when projected density exceeds this threshold. */
 const DEFAULT_MAX_EDGE_DENSITY = 1.0;
+const ENTITY_LINKER_SUPPORT_STRENGTH = 0.05;
 
 /** Environment variable for overriding density guard threshold. */
 const ENTITY_LINKING_MAX_DENSITY_ENV = 'SPECKIT_ENTITY_LINKING_MAX_DENSITY';
@@ -64,6 +67,10 @@ interface RelatedMemoryEntityRow {
 interface CatalogAliasRow {
   canonical_name: string;
   aliases: string;
+}
+
+interface TableColumnRow {
+  name?: string;
 }
 
 export interface EntityLinkStats {
@@ -281,7 +288,7 @@ export function loadConceptAliasTable(
       if (!altHasEntityText) return {};
 
       const rows = (db.prepare(
-        `SELECT entity_text FROM entity_catalog LIMIT 500`,
+        `SELECT entity_text FROM entity_catalog ORDER BY lower(entity_text), id LIMIT 500`,
       ) as Database.Statement).all() as Array<{ entity_text: string }>;
 
       const result: Record<string, string> = {};
@@ -297,7 +304,7 @@ export function loadConceptAliasTable(
     }
 
     const rows = (db.prepare(
-      `SELECT alias_text, canonical_name FROM entity_catalog LIMIT 500`,
+      `SELECT alias_text, canonical_name FROM entity_catalog ORDER BY lower(canonical_name), lower(alias_text), id LIMIT 500`,
     ) as Database.Statement).all() as Array<{ alias_text: string; canonical_name: string }>;
 
     const result: Record<string, string> = {};
@@ -311,6 +318,48 @@ export function loadConceptAliasTable(
     const message = error instanceof Error ? error.message : String(error);
     console.warn(`[entity-linker] loadConceptAliasTable failed: ${message}`);
     return {};
+  }
+}
+
+function isNumericNodeId(nodeId: string): boolean {
+  return /^[0-9]+$/.test(nodeId);
+}
+
+function getTableColumns(db: Database.Database, tableName: string): Set<string> {
+  try {
+    const rows = (db.prepare(`PRAGMA table_info(${tableName})`) as Database.Statement).all() as TableColumnRow[];
+    return new Set(rows.map((row) => row.name).filter((name): name is string => typeof name === 'string'));
+  } catch (_error: unknown) {
+    return new Set<string>();
+  }
+}
+
+function memoryIndexActiveClauses(alias: string, columns: Set<string>): string[] {
+  const clauses: string[] = [];
+  if (columns.has('deleted_at')) clauses.push(`${alias}.deleted_at IS NULL`);
+  if (columns.has('importance_tier')) clauses.push(`COALESCE(${alias}.importance_tier, 'normal') != 'deprecated'`);
+  if (columns.has('parent_id')) clauses.push(`${alias}.parent_id IS NULL`);
+  if (columns.has('chunk_parent_id')) clauses.push(`${alias}.chunk_parent_id IS NULL`);
+  return clauses;
+}
+
+function numericEndpointWhere(): string {
+  return `source_id != '' AND target_id != ''
+    AND source_id NOT GLOB '*[^0-9]*'
+    AND target_id NOT GLOB '*[^0-9]*'`;
+}
+
+function invalidateEntityLinkCaches(db: Database.Database): void {
+  try {
+    clearDegreeCacheForDb(db);
+  } catch (_error: unknown) {
+    // Cache invalidation is best-effort after graph mutations.
+  }
+
+  try {
+    clearGraphSignalsCache();
+  } catch (_error: unknown) {
+    // Cache invalidation is best-effort after graph mutations.
   }
 }
 
@@ -453,6 +502,9 @@ export function buildEntityCatalog(
   const catalogSets = new Map<string, { memoryIdSet: Set<number>; specFolderSet: Set<string> }>();
 
   try {
+    const memoryIndexColumns = getTableColumns(db, 'memory_index');
+    const activeClauses = memoryIndexActiveClauses('mi', memoryIndexColumns);
+    const activeWhere = activeClauses.length > 0 ? `AND ${activeClauses.join(' AND ')}` : '';
     // Data integrity: clean stale auto-entities before re-extraction on update
     // Exclude deprecated (superseded) memories from entity catalog to prevent
     // stale entity rows from polluting cross-document linking decisions.
@@ -460,7 +512,8 @@ export function buildEntityCatalog(
       SELECT me.memory_id, me.entity_text, mi.spec_folder
       FROM memory_entities me
       JOIN memory_index mi ON me.memory_id = mi.id
-      WHERE mi.importance_tier != 'deprecated'
+      WHERE 1 = 1
+        ${activeWhere}
     `) as Database.Statement).all() as Array<{
       memory_id: number;
       entity_text: string;
@@ -579,13 +632,15 @@ function loadAliasTermsForCanonicals(
         : '';
       if (canonicalName.length === 0) continue;
 
-      const aliases = new Set<string>([canonicalName]);
+      const aliases = new Set<string>([canonicalName, normalizeEntityName(canonicalName)]);
       try {
         const parsed = JSON.parse(row.aliases);
         if (Array.isArray(parsed)) {
           for (const alias of parsed) {
             if (typeof alias === 'string' && alias.trim().length > 0) {
               aliases.add(alias.trim());
+              const normalizedAlias = normalizeEntityName(alias);
+              if (normalizedAlias.length > 0) aliases.add(normalizedAlias);
             }
           }
         }
@@ -642,25 +697,27 @@ export function findCrossDocumentMatchesForMemory(
   if (aliasTerms.size === 0) return [];
 
   const orderedAliasTerms = Array.from(aliasTerms);
-  const placeholders = orderedAliasTerms.map(() => '?').join(', ');
+  const normalizedAliasTerms = new Set(orderedAliasTerms.map((term) => normalizeEntityName(term)).filter(Boolean));
 
   try {
+    const memoryIndexColumns = getTableColumns(db, 'memory_index');
+    const activeClauses = memoryIndexActiveClauses('mi', memoryIndexColumns);
+    const activeWhere = activeClauses.length > 0 ? `AND ${activeClauses.join(' AND ')}` : '';
     const rows = (db.prepare(`
       SELECT me.memory_id, me.entity_text, mi.spec_folder
       FROM memory_entities me
       JOIN memory_index mi ON me.memory_id = mi.id
       WHERE me.memory_id != ?
-        AND mi.importance_tier != 'deprecated'
         AND mi.spec_folder != ?
-        AND me.entity_text IN (${placeholders})
+        ${activeWhere}
     `) as Database.Statement).all(
       memoryId,
       currentSpecFolder,
-      ...orderedAliasTerms,
     ) as RelatedMemoryEntityRow[];
 
     for (const row of rows) {
       const canonicalName = normalizeEntityName(row.entity_text);
+      if (!normalizedAliasTerms.has(canonicalName)) continue;
       if (!matchMap.has(canonicalName)) continue;
 
       const entry = matchMap.get(canonicalName);
@@ -695,9 +752,13 @@ export function findCrossDocumentMatchesForMemory(
  * Count current edges for a node (both source and target).
  */
 function getEdgeCount(db: Database.Database, nodeId: string): number {
+  if (!isNumericNodeId(nodeId)) return 0;
   try {
     const row = (db.prepare(
-      `SELECT COUNT(*) AS cnt FROM causal_edges WHERE source_id = ? OR target_id = ?`,
+      `SELECT COUNT(*) AS cnt
+       FROM causal_edges
+       WHERE (${numericEndpointWhere()})
+         AND (source_id = ? OR target_id = ?)`,
     ) as Database.Statement).get(nodeId, nodeId) as { cnt: number } | undefined;
     return row?.cnt ?? 0;
   } catch (error: unknown) {
@@ -773,7 +834,7 @@ function getGlobalEdgeDensityStats(
 ): { totalEdges: number; totalMemories: number; density: number } {
   try {
     const edgeRow = (db.prepare(
-      `SELECT COUNT(*) AS cnt FROM causal_edges`,
+      `SELECT COUNT(*) AS cnt FROM causal_edges WHERE ${numericEndpointWhere()}`,
     ) as Database.Statement).get() as { cnt: number };
     const totalEdges = edgeRow?.cnt ?? 0;
 
@@ -807,10 +868,10 @@ function batchGetEdgeCounts(db: Database.Database, nodeIds: string[]): Map<strin
   // ) GROUP BY id
   const placeholders = nodeIds.map(() => '?').join(', ');
   const sql = `
-    SELECT id, COUNT(*) AS cnt FROM (
-      SELECT source_id AS id FROM causal_edges WHERE source_id IN (${placeholders})
+      SELECT id, COUNT(*) AS cnt FROM (
+      SELECT source_id AS id FROM causal_edges WHERE ${numericEndpointWhere()} AND source_id IN (${placeholders})
       UNION ALL
-      SELECT target_id AS id FROM causal_edges WHERE target_id IN (${placeholders})
+      SELECT target_id AS id FROM causal_edges WHERE ${numericEndpointWhere()} AND target_id IN (${placeholders})
     ) GROUP BY id
   `;
 
@@ -862,7 +923,7 @@ export function createEntityLinks(
 
   const insertStmt = db.prepare(`
     INSERT OR IGNORE INTO causal_edges (source_id, target_id, relation, strength, evidence, created_by)
-    VALUES (?, ?, 'supports', 0.7, ?, 'entity_linker')
+    VALUES (?, ?, 'supports', ?, ?, 'entity_linker')
   `) as Database.Statement;
 
   // --- P3b: Batch edge-count pre-fetch ---
@@ -904,8 +965,9 @@ export function createEntityLinks(
         // Only link memories from different spec folders
         if (folderA === folderB) continue;
 
-        const sourceId = String(idA);
-        const targetId = String(idB);
+        const [sourceId, targetId] = idA <= idB
+          ? [String(idA), String(idB)]
+          : [String(idB), String(idA)];
 
         // Global density guard: skip linking if this insert would push density
         // Above the configured threshold.
@@ -927,7 +989,7 @@ export function createEntityLinks(
         const evidence = `Cross-doc entity: ${match.canonicalName}`;
 
         try {
-          const result = insertStmt.run(sourceId, targetId, evidence);
+          const result = insertStmt.run(sourceId, targetId, ENTITY_LINKER_SUPPORT_STRENGTH, evidence);
           if (result.changes > 0) {
             linksCreated += 1;
             totalEdges += 1;
@@ -944,6 +1006,9 @@ export function createEntityLinks(
   }
 
   const edgeDensity = totalMemories > 0 ? totalEdges / totalMemories : 0;
+  if (linksCreated > 0) {
+    invalidateEntityLinkCaches(db);
+  }
   return {
     linksCreated,
     entitiesProcessed,
@@ -1129,7 +1194,37 @@ export function runEntityLinkingForMemory(
   } catch (error: unknown) {
     const message = error instanceof Error ? error.message : String(error);
     console.warn(`[entity-linker] Incremental pipeline failed for memory #${memoryId}: ${message}`);
-    return runEntityLinking(db);
+    return emptyResult;
+  }
+}
+
+export function pruneEntityLinkingRows(db: Database.Database): { memoryEntitiesDeleted: number; catalogDeleted: number } {
+  try {
+    const memoryIndexColumns = getTableColumns(db, 'memory_index');
+    const activeClauses = memoryIndexActiveClauses('mi', memoryIndexColumns);
+    const activeWhere = activeClauses.length > 0 ? `AND ${activeClauses.join(' AND ')}` : '';
+    const tx = db.transaction(() => {
+      const memoryEntitiesDeleted = (db.prepare(`
+        DELETE FROM memory_entities
+        WHERE memory_id NOT IN (
+          SELECT mi.id
+          FROM memory_index mi
+          WHERE 1 = 1
+            ${activeWhere}
+        )
+      `) as Database.Statement).run().changes;
+      const catalogDeleted = (db.prepare(`
+        DELETE FROM entity_catalog
+        WHERE COALESCE(memory_count, 0) <= 0
+      `) as Database.Statement).run().changes;
+      return { memoryEntitiesDeleted, catalogDeleted };
+    });
+    return tx();
+  } catch (error: unknown) {
+    logger.warn('Failed to prune entity-linking rows', {
+      error: error instanceof Error ? error.message : String(error),
+    });
+    return { memoryEntitiesDeleted: 0, catalogDeleted: 0 };
   }
 }
 
@@ -1146,12 +1241,14 @@ export function runEntityLinkingForMemory(
 export const __testables = {
   MAX_EDGES_PER_NODE,
   DEFAULT_MAX_EDGE_DENSITY,
+  ENTITY_LINKER_SUPPORT_STRENGTH,
   sanitizeDensityThreshold,
   getEntityLinkingDensityThreshold,
   getGlobalEdgeDensityStats,
   normalizeEntityName,
   getEdgeCount,
   getSpecFolder,
+  pruneEntityLinkingRows,
   // Concept routing internals
   BUILTIN_CONCEPT_ALIASES,
   MIN_NOUN_PHRASE_TOKEN_LENGTH,

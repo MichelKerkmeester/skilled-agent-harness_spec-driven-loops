@@ -99,6 +99,15 @@ const RELATION_WEIGHT_MULTIPLIERS: Record<string, number> = {
   supports: 1.0,
 };
 
+function includeEntityLinkerCausalEdges(): boolean {
+  const normalized = process.env.SPECKIT_INCLUDE_ENTITY_LINKER_CAUSAL_EDGES?.trim().toLowerCase();
+  return normalized === 'true' || normalized === '1';
+}
+
+function causalEdgeProvenanceFilter(alias: string): string {
+  return includeEntityLinkerCausalEdges() ? '' : `AND COALESCE(${alias}.created_by, '') != 'entity_linker'`;
+}
+
 interface RankedSearchResult extends Record<string, unknown> {
   id: number;
   score?: number;
@@ -535,9 +544,10 @@ function applyCausalBoost(
           const seedPlaceholders = seedIds.map(() => '?').join(',');
           const seedIdParams = seedIds.map(String);
           const edgeRow = (db.prepare(`
-            SELECT relation FROM causal_edges
-            WHERE (source_id IN (${seedPlaceholders}) AND target_id = ?)
-               OR (target_id IN (${seedPlaceholders}) AND source_id = ?)
+            SELECT relation FROM causal_edges ce
+            WHERE ((ce.source_id IN (${seedPlaceholders}) AND ce.target_id = ?)
+               OR (ce.target_id IN (${seedPlaceholders}) AND ce.source_id = ?))
+              ${causalEdgeProvenanceFilter('ce')}
             LIMIT 1
           `) as Database.Statement).get(
             ...seedIdParams,
@@ -712,6 +722,7 @@ function injectGraphContext(
       END
       WHERE (ce.source_id IN (${seedPlaceholders}) OR ce.target_id IN (${seedPlaceholders}))
         AND ${ACTIVE_ROW_SQL('m')}
+        ${causalEdgeProvenanceFilter('ce')}
       LIMIT 20
     `) as Database.Statement).all(
       ...seedIds,

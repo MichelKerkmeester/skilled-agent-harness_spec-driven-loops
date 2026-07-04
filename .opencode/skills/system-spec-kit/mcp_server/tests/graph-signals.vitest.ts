@@ -11,6 +11,8 @@ import {
   computeDepthScores,
   applyGraphSignals,
   clearGraphSignalsCache,
+  getGraphSignalsDirtyCounts,
+  markGraphSignalsDirty,
   __testables,
 } from '../lib/graph/graph-signals.js';
 import { computeDegreeScores } from '../lib/search/graph-search-fn';
@@ -194,17 +196,14 @@ describe('Graph Signals (S8 — N2a + N2b)', () => {
       expect(rows).toHaveLength(3); // nodes 1, 2, 3
     });
 
-    it('handles non-numeric source_id gracefully (skips it)', () => {
+    it('ignores pseudo-node endpoints when snapshotting degrees', () => {
       // Insert edge with non-numeric ID via raw SQL
       db.prepare(`
         INSERT INTO causal_edges (source_id, target_id, relation) VALUES ('abc', '2', 'caused')
       `).run();
 
       const result = snapshotDegrees(db);
-      // Node 'abc' would be NaN and skipped; node 2 still counted
-      // 'abc' appears once (source), '2' appears once (target)
-      // Only node 2 is finite, so snapshotted = 1
-      expect(result.snapshotted).toBe(1);
+      expect(result.snapshotted).toBe(0);
     });
   });
 
@@ -294,6 +293,24 @@ describe('Graph Signals (S8 — N2a + N2b)', () => {
     it('returns empty map for empty list', () => {
       const scores = computeMomentumScores(db, []);
       expect(scores.size).toBe(0);
+    });
+
+    it('does not share momentum cache entries across DB instances', () => {
+      const otherDb = createTestDb();
+      try {
+        insertEdge(db, 1, 2);
+        const sevenDaysAgo = db.prepare("SELECT date('now', '-7 days') AS d").get() as { d: string };
+        insertSnapshot(db, 1, 0, sevenDaysAgo.d);
+        const otherSevenDaysAgo = otherDb.prepare("SELECT date('now', '-7 days') AS d").get() as { d: string };
+        insertEdge(otherDb, 1, 2);
+        insertEdge(otherDb, 1, 3);
+        insertSnapshot(otherDb, 1, 0, otherSevenDaysAgo.d);
+
+        expect(computeMomentumScores(db, [1]).get(1)).toBe(1);
+        expect(computeMomentumScores(otherDb, [1]).get(1)).toBe(2);
+      } finally {
+        otherDb.close();
+      }
     });
   });
 
@@ -681,6 +698,30 @@ describe('Graph Signals (S8 — N2a + N2b)', () => {
       expect(fresh.get(1)).not.toBe(momentum1);
     });
 
+    it('recomputes dirtied signal rows on next read and drains dirty keys', () => {
+      insertEdge(db, 1, 2);
+      insertEdge(db, 2, 3);
+      const sevenDaysAgo = db
+        .prepare("SELECT date('now', '-7 days') AS d")
+        .get() as { d: string };
+      insertSnapshot(db, 1, 0, sevenDaysAgo.d);
+
+      expect(computeMomentumScores(db, [1]).get(1)).toBe(1);
+      expect(computeDepthScores(db, [1]).get(1)).toBe(0);
+      const depthKey = Array.from(__testables.depthCache.keys())[0];
+      expect(depthKey).toBeDefined();
+      __testables.depthCache.set(depthKey!, 0.75);
+
+      insertEdge(db, 3, 1);
+      markGraphSignalsDirty(db, [1]);
+      expect(getGraphSignalsDirtyCounts()).toEqual({ momentum: 1, depth: 1, total: 2 });
+
+      expect(computeMomentumScores(db, [1]).get(1)).toBe(2);
+      expect(getGraphSignalsDirtyCounts()).toEqual({ momentum: 0, depth: 1, total: 1 });
+      expect(computeDepthScores(db, [1]).get(1)).toBe(0);
+      expect(getGraphSignalsDirtyCounts()).toEqual({ momentum: 0, depth: 0, total: 0 });
+    });
+
     it('is safe to call on already-empty caches', () => {
       // Should not throw
       clearGraphSignalsCache();
@@ -973,10 +1014,9 @@ describe('Graph Signals (S8 — N2a + N2b)', () => {
       expect(__testables.getPastDegree(db, 1)).toBe(5);
     });
 
-    it('getPastDegree returns null when no snapshot at -7 days', () => {
-      // Insert snapshot for a different date (not 7 days ago)
+    it('getPastDegree uses the nearest available snapshot', () => {
       insertSnapshot(db, 1, 5, '2020-01-01');
-      expect(__testables.getPastDegree(db, 1)).toBeNull();
+      expect(__testables.getPastDegree(db, 1)).toBe(5);
     });
 
     it('buildAdjacencyList constructs correct graph structure', () => {

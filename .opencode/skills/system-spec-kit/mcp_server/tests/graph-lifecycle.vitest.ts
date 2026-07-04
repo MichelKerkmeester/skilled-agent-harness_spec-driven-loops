@@ -1,6 +1,5 @@
 // TEST: GRAPH LIFECYCLE
-// REQ-D3-003: Graph Refresh on Write
-// REQ-D3-004: Deterministic Save-Time Enrichment
+// Verifies refresh-on-write and deterministic save-time enrichment behavior.
 import { describe, it, expect, beforeEach, afterEach, vi } from 'vitest';
 import Database from 'better-sqlite3';
 
@@ -25,6 +24,7 @@ import {
   EXPLICIT_ONLY_EVIDENCE,
   __testables,
 } from '../lib/search/graph-lifecycle';
+import { clearGraphSignalsCache, getGraphSignalsDirtyCounts } from '../lib/graph/graph-signals.js';
 import { loadSurrogates } from '../lib/search/surrogate-storage';
 
 import type {
@@ -35,9 +35,13 @@ import type {
   GraphRefreshResult,
 } from '../lib/search/graph-lifecycle';
 
-// ───────────────────────────────────────────────────────────────
+// ---------------------------------------------------------------
 // HELPERS
-// ───────────────────────────────────────────────────────────────
+// ---------------------------------------------------------------
+
+afterEach(() => {
+  clearGraphSignalsCache();
+});
 
 /** Create an in-memory SQLite database with required tables. */
 function createTestDb(): Database.Database {
@@ -298,7 +302,7 @@ describe('recomputeLocal', () => {
     expect(recomputeLocal(db, ['999'])).toBe(0);
   });
 
-  it('updates edge strength for dirty target nodes', () => {
+  it('recomputes edge strength from relation prior and current degree', () => {
     // Insert edges with low initial strength so boost is visible
     db.prepare(`
       INSERT OR IGNORE INTO causal_edges (source_id, target_id, relation, strength, created_by)
@@ -310,16 +314,28 @@ describe('recomputeLocal', () => {
     const updated = recomputeLocal(db, ['2']);
     expect(updated).toBeGreaterThan(0);
 
-    // Verify at least one edge to node '2' had its strength updated
     const row = db.prepare(
       `SELECT strength FROM causal_edges WHERE target_id = '2' ORDER BY strength DESC LIMIT 1`
     ).get() as { strength: number } | undefined;
-    // Strength increased from 0.5 by in-degree boost (should be > 0.5)
-    expect(row?.strength).toBeGreaterThan(0.5);
+    expect(row?.strength).toBeCloseTo(0.7);
   });
 
-  it('strength is bounded at 1.0 (MIN cap)', () => {
-    // Insert edge with strength already at 1.0; SQL MIN(1.0, 1.0 + boost) = 1.0
+  it('local recompute is idempotent across repeated no-op runs', () => {
+    db.prepare(`
+      INSERT OR IGNORE INTO causal_edges (source_id, target_id, relation, strength, created_by)
+      VALUES ('1', '2', 'caused', 0.2, 'test'),
+             ('3', '2', 'supports', 0.2, 'entity_linker')
+    `).run();
+
+    recomputeLocal(db, ['2']);
+    const first = db.prepare(`SELECT id, strength FROM causal_edges ORDER BY id`).all() as Array<{ id: number; strength: number }>;
+    recomputeLocal(db, ['2']);
+    const second = db.prepare(`SELECT id, strength FROM causal_edges ORDER BY id`).all() as Array<{ id: number; strength: number }>;
+
+    expect(second).toEqual(first);
+  });
+
+  it('strength is bounded at 1.0', () => {
     insertEdge(db, '5', '6');
     recomputeLocal(db, ['6']);
     const row = db.prepare(`SELECT strength FROM causal_edges WHERE target_id = '6'`).get() as
@@ -327,6 +343,20 @@ describe('recomputeLocal', () => {
       | undefined;
     // Strength must not exceed 1.0 (the MIN cap)
     expect(row?.strength).toBeLessThanOrEqual(1.0);
+  });
+
+  it('ignores pseudo-node endpoints during local recompute', () => {
+    db.prepare(`
+      INSERT OR IGNORE INTO causal_edges (source_id, target_id, relation, strength, created_by)
+      VALUES ('heading:intro', '2', 'supports', 0.5, 'graph_lifecycle'),
+             ('1', '2', 'supports', 0.5, 'test')
+    `).run();
+
+    const updated = recomputeLocal(db, ['2', 'heading:intro']);
+    const pseudo = db.prepare(`SELECT strength FROM causal_edges WHERE source_id = 'heading:intro'`).get() as { strength: number };
+
+    expect(updated).toBe(1);
+    expect(pseudo.strength).toBe(0.5);
   });
 });
 
@@ -392,6 +422,8 @@ describe('onWrite', () => {
     __testables.clearDirtyNodes();
     cancelScheduledRefresh();
     delete process.env.SPECKIT_GRAPH_REFRESH_MODE;
+    delete process.env.SPECKIT_COMMUNITY_SUMMARIES;
+    delete process.env.SPECKIT_COMMUNITY_REBUILD_INTERVAL_MS;
   });
 
   it('returns skipped=true when mode is off', () => {
@@ -425,12 +457,61 @@ describe('onWrite', () => {
     });
   });
 
+  it('skips refresh when the write path reports zero inserts', () => {
+    withRefreshMode('write_local', () => {
+      const result = onWrite(db, { nodeIds: ['1', '2'], inserted: 0 });
+      expect(result.skipped).toBe(true);
+      expect(result.localRecomputed).toBe(false);
+    });
+  });
+
   it('schedules global refresh in scheduled mode', () => {
     withRefreshMode('scheduled', () => {
       const result = onWrite(db, { nodeIds: ['1', '2'] });
       expect(result.scheduledRefresh).toBe(true);
       expect(isScheduledRefreshPending()).toBe(true);
     });
+  });
+
+  it('marks graph-signal cache rows dirty for affected numeric nodes', () => {
+    withRefreshMode('scheduled', () => {
+      onWrite(db, { nodeIds: ['1', '2', 'concept:ignored'] });
+      expect(getGraphSignalsDirtyCounts()).toEqual({ momentum: 2, depth: 2, total: 4 });
+    });
+  });
+
+  it('runs community artifact rebuilds on the live write cadence with stable ids', () => {
+    process.env.SPECKIT_GRAPH_REFRESH_MODE = 'scheduled';
+    process.env.SPECKIT_COMMUNITY_SUMMARIES = 'true';
+    process.env.SPECKIT_COMMUNITY_REBUILD_INTERVAL_MS = '0';
+    for (const id of [1, 2, 3]) {
+      insertMemory(db, id);
+    }
+    insertEdge(db, '1', '2');
+    insertEdge(db, '2', '3');
+    insertEdge(db, '3', '1');
+
+    onWrite(db, { nodeIds: ['1', '2', '3'] });
+    const initialAssignments = db.prepare(`
+      SELECT memory_id, community_id
+      FROM community_assignments
+      ORDER BY memory_id
+    `).all() as Array<{ memory_id: number; community_id: number }>;
+
+    db.prepare(`UPDATE community_assignments SET community_id = 99`).run();
+    onWrite(db, { nodeIds: ['1', '2', '3'] });
+    const refreshedAssignments = db.prepare(`
+      SELECT memory_id, community_id
+      FROM community_assignments
+      ORDER BY memory_id
+    `).all() as Array<{ memory_id: number; community_id: number }>;
+
+    expect(initialAssignments).toEqual([
+      { memory_id: 1, community_id: 1 },
+      { memory_id: 2, community_id: 1 },
+      { memory_id: 3, community_id: 1 },
+    ]);
+    expect(refreshedAssignments).toEqual(initialAssignments);
   });
 
   it('triggers local recompute when component is small', () => {
@@ -694,6 +775,19 @@ describe('onIndex — Integration', () => {
     expect(stored?.headings).toContain('Recall Strategy');
   });
 
+  it('uses the stored document title for query surrogate questions', () => {
+    process.env.SPECKIT_QUERY_SURROGATES = 'true';
+    const content = '## Recall Strategy\n\nA guide to retrieval scoring.';
+    insertMemory(db, 21, 'specs/021-surrogates', content);
+    db.prepare('UPDATE memory_index SET title = ? WHERE id = ?').run('Recall Strategy Guide', 21);
+
+    onIndex(db, 21, content);
+    const stored = loadSurrogates(db, 21);
+
+    expect(stored?.surrogateQuestions.join(' ')).toContain('recall strategy guide');
+    expect(stored?.surrogateQuestions.join(' ')).not.toContain('memory 21');
+  });
+
   it('creates technology_link edges for code fences', () => {
     const content = 'Using TypeScript:\n```typescript\nconst x = 1;\n```';
     insertMemory(db, 2, 'specs/001-test', content);
@@ -764,9 +858,9 @@ describe('onIndex — Integration', () => {
   });
 });
 
-// ───────────────────────────────────────────────────────────────
-// INTEGRATION: Save triggers dirty-node refresh (REQ-D3-003)
-// ───────────────────────────────────────────────────────────────
+// ---------------------------------------------------------------
+// INTEGRATION: Save triggers dirty-node refresh
+// ---------------------------------------------------------------
 
 describe('Integration: save triggers dirty-node refresh', () => {
   let db: Database.Database;
@@ -819,9 +913,9 @@ describe('Integration: save triggers dirty-node refresh', () => {
   });
 });
 
-// ───────────────────────────────────────────────────────────────
-// INTEGRATION: save-time enrichment creates expected entities (REQ-D3-004)
-// ───────────────────────────────────────────────────────────────
+// ---------------------------------------------------------------
+// INTEGRATION: save-time enrichment creates expected entities
+// ---------------------------------------------------------------
 
 describe('Integration: save-time enrichment entities and edges', () => {
   let db: Database.Database;

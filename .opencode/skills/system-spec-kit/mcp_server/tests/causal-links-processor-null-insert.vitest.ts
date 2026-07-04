@@ -54,7 +54,10 @@ describe('processCausalLinks null-insert handling (F-008-B3-02)', () => {
         spec_folder TEXT NOT NULL DEFAULT '',
         file_path TEXT NOT NULL DEFAULT '',
         canonical_file_path TEXT,
-        title TEXT
+        title TEXT,
+        deleted_at TEXT,
+        importance_tier TEXT DEFAULT 'normal',
+        parent_id INTEGER
       )
     `);
     causalEdges.init(testDb);
@@ -117,5 +120,76 @@ describe('processCausalLinks null-insert handling (F-008-B3-02)', () => {
     expect(result.processed).toBe(1);
     // No skip-reason errors expected.
     expect(result.errors.filter((e) => e.error.includes('edge insert returned null'))).toEqual([]);
+  });
+
+  it('returns unresolved suggestions instead of linking a fuzzy path match', () => {
+    testDb.exec('DELETE FROM causal_edges');
+    testDb.exec('DELETE FROM memory_index');
+    testDb.prepare(`
+      INSERT INTO memory_index (id, spec_folder, file_path, canonical_file_path, title)
+      VALUES (20, 'test/source', 'source.md', 'source.md', 'Source'),
+             (21, 'test/target', 'docs/similar-target.md', 'docs/similar-target.md', 'Similar Target')
+    `).run();
+
+    const result = processCausalLinks(testDb, 20, {
+      caused_by: ['similar-target'],
+      supersedes: [],
+      derived_from: [],
+      blocks: [],
+      related_to: [],
+    });
+
+    expect(result.inserted).toBe(0);
+    expect(result.resolved).toBe(0);
+    expect(result.unresolved[0]).toMatchObject({ type: 'caused_by', reference: 'similar-target' });
+    expect(result.unresolved[0]?.suggestions?.[0]).toContain('Similar Target');
+  });
+
+  it('maps blocks to a non-inverted contradicts edge', () => {
+    testDb.exec('DELETE FROM causal_edges');
+    testDb.exec('DELETE FROM memory_index');
+    testDb.prepare(`
+      INSERT INTO memory_index (id, spec_folder, file_path, title)
+      VALUES (30, 'test/source', 'source.md', 'Source'),
+             (31, 'test/target', 'target.md', 'Target')
+    `).run();
+
+    const result = processCausalLinks(testDb, 30, {
+      caused_by: [],
+      supersedes: [],
+      derived_from: [],
+      blocks: ['31'],
+      related_to: [],
+    });
+    const edge = testDb.prepare(`SELECT source_id, target_id, relation FROM causal_edges`).get() as {
+      source_id: string;
+      target_id: string;
+      relation: string;
+    };
+
+    expect(result.inserted).toBe(1);
+    expect(edge).toEqual({ source_id: '30', target_id: '31', relation: causalEdges.RELATION_TYPES.CONTRADICTS });
+  });
+
+  it('rejects numeric references to deleted or parent rows', () => {
+    testDb.exec('DELETE FROM causal_edges');
+    testDb.exec('DELETE FROM memory_index');
+    testDb.prepare(`
+      INSERT INTO memory_index (id, spec_folder, file_path, title, deleted_at, parent_id)
+      VALUES (40, 'test/source', 'source.md', 'Source', NULL, NULL),
+             (41, 'test/deleted', 'deleted.md', 'Deleted', datetime('now'), NULL),
+             (42, 'test/parent', 'parent.md', 'Parent', NULL, 40)
+    `).run();
+
+    const result = processCausalLinks(testDb, 40, {
+      caused_by: ['41', '42'],
+      supersedes: [],
+      derived_from: [],
+      blocks: [],
+      related_to: [],
+    });
+
+    expect(result.inserted).toBe(0);
+    expect(result.unresolved.map((entry) => entry.reference).sort()).toEqual(['41', '42']);
   });
 });

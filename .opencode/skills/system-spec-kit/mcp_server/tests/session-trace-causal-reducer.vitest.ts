@@ -118,7 +118,7 @@ describe('Session trace causal reducer', () => {
     vi.unstubAllEnvs();
   });
 
-  it('selects deterministic prior same-session sources with same-query preference and target exclusion', () => {
+  it('selects deterministic prior same-session sources while excluding same-query co-retrievals', () => {
     seedEvents(db, [
       makeEvent({ memoryId: 'other-session', queryId: 'query-A', timestamp: BASE_TS + 1, sessionId: 'session-B' }),
       makeEvent({ memoryId: 'source-old-other-query', queryId: 'query-Z', timestamp: BASE_TS + 2 }),
@@ -135,16 +135,15 @@ describe('Session trace causal reducer', () => {
     const result = runSessionTraceCausalReducer(db, { runAt: BASE_TS + 20, windowMs: 100 });
 
     expect(result.candidates.map((candidate) => candidate.sourceId)).toEqual([
-      'source-F',
-      'source-E',
-      'source-D',
-      'source-B',
       'source-recent-other-query',
+      'source-C',
+      'source-old-other-query',
     ]);
-    expect(result.candidates).toHaveLength(5);
+    expect(result.candidates).toHaveLength(3);
     expect(result.candidates.every((candidate) => candidate.sessionId === 'session-A')).toBe(true);
     expect(result.candidates.every((candidate) => candidate.sourceId !== candidate.targetId)).toBe(true);
-    expect(result.edgesInserted).toBe(5);
+    expect(result.edgesInserted).toBe(0);
+    expect(result.skipped.every((skip) => skip.reason === 'insufficient_sessions')).toBe(true);
   });
 
   it('exports source selection as a pure deterministic helper', () => {
@@ -159,11 +158,11 @@ describe('Session trace causal reducer', () => {
 
     const selected = selectPriorSearchSources(prior, citation, 5);
 
-    expect(selected.map((event) => event.memory_id)).toEqual(['B', 'A']);
-    expect(selected[0]?.id).toBe(3);
+    expect(selected.map((event) => event.memory_id)).toEqual(['A']);
+    expect(selected[0]?.id).toBe(1);
   });
 
-  it('keeps a same-query source over a newer same-memory source from another query', () => {
+  it('uses the newest non-same-query source for a repeated memory', () => {
     const citation = { id: 9, type: 'result_cited', memory_id: 'T', query_id: 'q1', confidence: 'strong', timestamp: BASE_TS + 9, session_id: 's1' } as const;
     const prior = [
       { id: 1, type: 'search_shown', memory_id: 'A', query_id: 'q1', confidence: 'weak', timestamp: BASE_TS + 1, session_id: 's1' },
@@ -172,22 +171,22 @@ describe('Session trace causal reducer', () => {
 
     const selected = selectPriorSearchSources(prior, citation, 5);
 
-    expect(selected.map((event) => event.id)).toEqual([1]);
+    expect(selected.map((event) => event.id)).toEqual([2]);
   });
 
   it('writes enabled auto-session edges with weak strength and session/query evidence', () => {
     seedEvents(db, [
-      makeEvent({ memoryId: '1', queryId: 'q1', timestamp: BASE_TS + 1 }),
-      makeEvent({ memoryId: '2', queryId: 'q1', timestamp: BASE_TS + 2 }),
-      makeEvent({ memoryId: '3', queryId: 'q1', timestamp: BASE_TS + 3 }),
-      makeEvent({ type: 'result_cited', memoryId: '9', queryId: 'q1', confidence: 'strong', timestamp: BASE_TS + 4 }),
+      makeEvent({ memoryId: '1', queryId: 'q0', timestamp: BASE_TS + 1, sessionId: 'session-A' }),
+      makeEvent({ type: 'result_cited', memoryId: '9', queryId: 'q1', confidence: 'strong', timestamp: BASE_TS + 2, sessionId: 'session-A' }),
+      makeEvent({ memoryId: '1', queryId: 'q0', timestamp: BASE_TS + 3, sessionId: 'session-B' }),
+      makeEvent({ type: 'result_cited', memoryId: '9', queryId: 'q1', confidence: 'strong', timestamp: BASE_TS + 4, sessionId: 'session-B' }),
     ]);
 
     const result = runSessionTraceCausalReducer(db, { runAt: BASE_TS + 10, windowMs: 100 });
     const edges = getEdges(db);
 
-    expect(result.edgesInserted).toBe(3);
-    expect(edges).toHaveLength(3);
+    expect(result.edgesInserted).toBe(1);
+    expect(edges).toHaveLength(1);
     for (const edge of edges) {
       expect(edge.relation).toBe(causalEdges.RELATION_TYPES.ENABLED);
       expect(edge.strength).toBeCloseTo(SESSION_TRACE_CAUSAL_EDGE_STRENGTH);
@@ -198,27 +197,29 @@ describe('Session trace causal reducer', () => {
 
   it('is idempotent on rerun over the same session', () => {
     seedEvents(db, [
-      makeEvent({ memoryId: '1', queryId: 'q1', timestamp: BASE_TS + 1 }),
-      makeEvent({ memoryId: '2', queryId: 'q1', timestamp: BASE_TS + 2 }),
-      makeEvent({ memoryId: '3', queryId: 'q1', timestamp: BASE_TS + 3 }),
-      makeEvent({ type: 'result_cited', memoryId: '9', queryId: 'q1', confidence: 'strong', timestamp: BASE_TS + 4 }),
+      makeEvent({ memoryId: '1', queryId: 'q0', timestamp: BASE_TS + 1, sessionId: 'session-A' }),
+      makeEvent({ type: 'result_cited', memoryId: '9', queryId: 'q1', confidence: 'strong', timestamp: BASE_TS + 2, sessionId: 'session-A' }),
+      makeEvent({ memoryId: '1', queryId: 'q0', timestamp: BASE_TS + 3, sessionId: 'session-B' }),
+      makeEvent({ type: 'result_cited', memoryId: '9', queryId: 'q1', confidence: 'strong', timestamp: BASE_TS + 4, sessionId: 'session-B' }),
     ]);
 
     const first = runSessionTraceCausalReducer(db, { runAt: BASE_TS + 10, windowMs: 100 });
     const second = runSessionTraceCausalReducer(db, { runAt: BASE_TS + 10, windowMs: 100 });
 
-    expect(first.edgesInserted).toBe(3);
+    expect(first.edgesInserted).toBe(1);
     expect(second.edgesInserted).toBe(0);
-    expect(second.skipped.filter((skip) => skip.reason === 'already_created')).toHaveLength(3);
-    expect(countEdges(db)).toBe(3);
+    expect(second.skipped.filter((skip) => skip.reason === 'already_created')).toHaveLength(2);
+    expect(countEdges(db)).toBe(1);
   });
 
   it('reuses insertEdge manual-edge protection instead of overwriting curated edges', () => {
     const manualId = causalEdges.insertEdge('1', '9', causalEdges.RELATION_TYPES.ENABLED, 0.9, 'curated', true, 'manual');
     expect(manualId).not.toBeNull();
     seedEvents(db, [
-      makeEvent({ memoryId: '1', queryId: 'q1', timestamp: BASE_TS + 1 }),
-      makeEvent({ type: 'result_cited', memoryId: '9', queryId: 'q1', confidence: 'strong', timestamp: BASE_TS + 2 }),
+      makeEvent({ memoryId: '1', queryId: 'q0', timestamp: BASE_TS + 1, sessionId: 'session-A' }),
+      makeEvent({ type: 'result_cited', memoryId: '9', queryId: 'q1', confidence: 'strong', timestamp: BASE_TS + 2, sessionId: 'session-A' }),
+      makeEvent({ memoryId: '1', queryId: 'q0', timestamp: BASE_TS + 3, sessionId: 'session-B' }),
+      makeEvent({ type: 'result_cited', memoryId: '9', queryId: 'q1', confidence: 'strong', timestamp: BASE_TS + 4, sessionId: 'session-B' }),
     ]);
 
     const result = runSessionTraceCausalReducer(db, { runAt: BASE_TS + 10, windowMs: 100 });
@@ -236,8 +237,10 @@ describe('Session trace causal reducer', () => {
       causalEdges.insertEdge('hub', `existing-${i}`, causalEdges.RELATION_TYPES.SUPPORTS, 0.8, null, true, 'manual');
     }
     seedEvents(db, [
-      makeEvent({ memoryId: 'hub', queryId: 'q1', timestamp: BASE_TS + 1 }),
-      makeEvent({ type: 'result_cited', memoryId: 'target', queryId: 'q1', confidence: 'strong', timestamp: BASE_TS + 2 }),
+      makeEvent({ memoryId: 'hub', queryId: 'q0', timestamp: BASE_TS + 1, sessionId: 'session-A' }),
+      makeEvent({ type: 'result_cited', memoryId: 'target', queryId: 'q1', confidence: 'strong', timestamp: BASE_TS + 2, sessionId: 'session-A' }),
+      makeEvent({ memoryId: 'hub', queryId: 'q0', timestamp: BASE_TS + 3, sessionId: 'session-B' }),
+      makeEvent({ type: 'result_cited', memoryId: 'target', queryId: 'q1', confidence: 'strong', timestamp: BASE_TS + 4, sessionId: 'session-B' }),
     ]);
 
     const result = runSessionTraceCausalReducer(db, { runAt: BASE_TS + 10, windowMs: 100 });
@@ -288,18 +291,18 @@ describe('Session trace causal reducer', () => {
 
   it('supports a shadow replay entrypoint without mutating edges', () => {
     seedEvents(db, [
-      makeEvent({ memoryId: '1', queryId: 'q1', timestamp: BASE_TS + 1 }),
-      makeEvent({ memoryId: '2', queryId: 'q1', timestamp: BASE_TS + 2 }),
-      makeEvent({ memoryId: '3', queryId: 'q1', timestamp: BASE_TS + 3 }),
-      makeEvent({ type: 'result_cited', memoryId: '9', queryId: 'q1', confidence: 'strong', timestamp: BASE_TS + 4 }),
+      makeEvent({ memoryId: '1', queryId: 'q0', timestamp: BASE_TS + 1, sessionId: 'session-A' }),
+      makeEvent({ type: 'result_cited', memoryId: '9', queryId: 'q1', confidence: 'strong', timestamp: BASE_TS + 2, sessionId: 'session-A' }),
+      makeEvent({ memoryId: '1', queryId: 'q0', timestamp: BASE_TS + 3, sessionId: 'session-B' }),
+      makeEvent({ type: 'result_cited', memoryId: '9', queryId: 'q1', confidence: 'strong', timestamp: BASE_TS + 4, sessionId: 'session-B' }),
     ]);
 
     const result = runSessionTraceCausalShadowReplay(db, { runAt: BASE_TS + 10, windowMs: 100 });
 
     expect(result.dryRun).toBe(true);
-    expect(result.candidatesEvaluated).toBe(3);
+    expect(result.candidatesEvaluated).toBe(2);
     expect(result.edgesInserted).toBe(0);
-    expect(result.skipped.filter((skip) => skip.reason === 'dry_run')).toHaveLength(3);
+    expect(result.skipped.filter((skip) => skip.reason === 'dry_run')).toHaveLength(2);
     expect(countEdges(db)).toBe(0);
   });
 
@@ -312,10 +315,14 @@ describe('Session trace causal reducer', () => {
     insertSpy.mockClear();
 
     seedEvents(db, [
-      makeEvent({ memoryId: '1', queryId: 'q1', timestamp: BASE_TS + 1 }),
-      makeEvent({ memoryId: '2', queryId: 'q1', timestamp: BASE_TS + 2 }),
-      makeEvent({ memoryId: '3', queryId: 'q1', timestamp: BASE_TS + 3 }),
-      makeEvent({ type: 'result_cited', memoryId: '9', queryId: 'q1', confidence: 'strong', timestamp: BASE_TS + 4 }),
+      makeEvent({ memoryId: '1', queryId: 'q0', timestamp: BASE_TS + 1, sessionId: 'session-A' }),
+      makeEvent({ memoryId: '2', queryId: 'q0', timestamp: BASE_TS + 2, sessionId: 'session-A' }),
+      makeEvent({ memoryId: '3', queryId: 'q0', timestamp: BASE_TS + 3, sessionId: 'session-A' }),
+      makeEvent({ type: 'result_cited', memoryId: '9', queryId: 'q1', confidence: 'strong', timestamp: BASE_TS + 4, sessionId: 'session-A' }),
+      makeEvent({ memoryId: '1', queryId: 'q0', timestamp: BASE_TS + 5, sessionId: 'session-B' }),
+      makeEvent({ memoryId: '2', queryId: 'q0', timestamp: BASE_TS + 6, sessionId: 'session-B' }),
+      makeEvent({ memoryId: '3', queryId: 'q0', timestamp: BASE_TS + 7, sessionId: 'session-B' }),
+      makeEvent({ type: 'result_cited', memoryId: '9', queryId: 'q1', confidence: 'strong', timestamp: BASE_TS + 8, sessionId: 'session-B' }),
     ]);
 
     const result = runSessionTraceCausalShadowReplay(db, { runAt: BASE_TS + 10, windowMs: 100 });

@@ -5,7 +5,7 @@
 import type Database from 'better-sqlite3';
 
 import { isCommunitySummariesEnabled } from '../search/search-flags.js';
-import { ACTIVE_ROW_SQL } from '../search/active-row-predicate.js';
+import { generateCommunitySummaries } from './community-summaries.js';
 import { getCommunities, storeCommunities } from './community-storage.js';
 // CommunityResult now lives in the neutral types seam so the
 // detection/storage/summaries triangle cannot reform a value cycle. The
@@ -22,13 +22,39 @@ const COMMUNITY_BOOST_FACTOR = 0.3;
 const MIN_COMMUNITY_SIZE = 3;
 const MAX_PROPAGATION_ITERATIONS = 20;
 const SCORE_EPSILON = 1e-9;
+const DEFAULT_COMMUNITY_REBUILD_INTERVAL_MS = 5 * 60 * 1000;
 
 let lastFingerprint = '';
 let cachedCommunities: CommunityResult[] = [];
+let nextDbCacheId = 1;
+const dbCacheIds = new WeakMap<Database.Database, number>();
+let lastArtifactRebuildByDb = new WeakMap<Database.Database, number>();
+
+export interface CommunityArtifactRebuildResult {
+  rebuilt: boolean;
+  reason: 'disabled' | 'not_due' | 'rebuilt' | 'failed';
+  communities: number;
+  assignments: number;
+  summaries: number;
+}
 
 export function resetCommunityDetectionState(): void {
   lastFingerprint = '';
   cachedCommunities = [];
+  lastArtifactRebuildByDb = new WeakMap<Database.Database, number>();
+}
+
+function resolveCommunityRebuildIntervalMs(): number {
+  const raw = process.env.SPECKIT_COMMUNITY_REBUILD_INTERVAL_MS?.trim();
+  if (raw === undefined || raw.length === 0) {
+    return DEFAULT_COMMUNITY_REBUILD_INTERVAL_MS;
+  }
+
+  const parsed = Number.parseInt(raw, 10);
+  if (!Number.isFinite(parsed) || parsed < 0) {
+    return DEFAULT_COMMUNITY_REBUILD_INTERVAL_MS;
+  }
+  return parsed;
 }
 
 function tableExists(db: Database.Database, tableName: string): boolean {
@@ -39,6 +65,50 @@ function tableExists(db: Database.Database, tableName: string): boolean {
   `).get(tableName) as { name?: string } | undefined;
 
   return row?.name === tableName;
+}
+
+function getDbCacheId(db: Database.Database): number {
+  let dbId = dbCacheIds.get(db);
+  if (dbId === undefined) {
+    dbId = nextDbCacheId++;
+    dbCacheIds.set(db, dbId);
+  }
+  return dbId;
+}
+
+function getTableColumns(db: Database.Database, tableName: string): Set<string> {
+  try {
+    const rows = db.prepare(`PRAGMA table_info(${tableName})`).all() as Array<{ name?: string }>;
+    return new Set(rows.map((row) => row.name).filter((name): name is string => typeof name === 'string'));
+  } catch (_error: unknown) {
+    return new Set<string>();
+  }
+}
+
+function activeMemoryClauses(alias: string, columns: Set<string>): string[] {
+  const clauses: string[] = [];
+  if (columns.has('deleted_at')) clauses.push(`${alias}.deleted_at IS NULL`);
+  if (columns.has('importance_tier')) clauses.push(`COALESCE(${alias}.importance_tier, 'normal') != 'deprecated'`);
+  return clauses;
+}
+
+function activeMemoryJoin(db: Database.Database): string {
+  if (!tableExists(db, 'memory_index')) return '';
+  const columns = getTableColumns(db, 'memory_index');
+  const sourceClauses = activeMemoryClauses('source_memory', columns);
+  const targetClauses = activeMemoryClauses('target_memory', columns);
+  const sourceWhere = sourceClauses.length > 0 ? `AND ${sourceClauses.join(' AND ')}` : '';
+  const targetWhere = targetClauses.length > 0 ? `AND ${targetClauses.join(' AND ')}` : '';
+  return `
+    JOIN memory_index source_memory ON source_memory.id = CAST(source_id AS INTEGER) ${sourceWhere}
+    JOIN memory_index target_memory ON target_memory.id = CAST(target_id AS INTEGER) ${targetWhere}
+  `;
+}
+
+function numericEndpointWhere(): string {
+  return `source_id != '' AND target_id != ''
+    AND source_id NOT GLOB '*[^0-9]*'
+    AND target_id NOT GLOB '*[^0-9]*'`;
 }
 
 function cloneCommunities(communities: CommunityResult[]): CommunityResult[] {
@@ -57,6 +127,8 @@ function buildAdjacencyList(db: Database.Database): WeightedAdjacencyList {
     const rows = db.prepare(`
       SELECT source_id, target_id, COALESCE(strength, 1.0) AS strength
       FROM causal_edges
+      ${activeMemoryJoin(db)}
+      WHERE ${numericEndpointWhere()}
     `).all() as Array<{
       source_id: string;
       target_id: string;
@@ -120,25 +192,18 @@ function buildLegacyAdjacency(adjacency: WeightedAdjacencyList): LegacyAdjacency
 function buildFingerprint(db: Database.Database): string {
   try {
     const row = db.prepare(`
-      SELECT
-        COUNT(*) AS edge_count,
-        COALESCE(SUM(CAST(source_id AS INTEGER)), 0) AS source_sum,
-        COALESCE(SUM(CAST(target_id AS INTEGER)), 0) AS target_sum,
-        COALESCE(SUM(CAST(COALESCE(strength, 1.0) * 1000 AS INTEGER)), 0) AS strength_sum
-      FROM causal_edges
+      SELECT COALESCE(GROUP_CONCAT(edge_key, '|'), '') AS fingerprint
+      FROM (
+        SELECT source_id || '>' || target_id || ':' || relation || ':' || printf('%.6f', COALESCE(strength, 1.0)) AS edge_key
+        FROM causal_edges
+        WHERE ${numericEndpointWhere()}
+        ORDER BY source_id, target_id, relation, COALESCE(strength, 1.0)
+      )
     `).get() as {
-      edge_count: number;
-      source_sum: number;
-      target_sum: number;
-      strength_sum: number;
+      fingerprint: string;
     } | undefined;
 
-    return [
-      row?.edge_count ?? 0,
-      row?.source_sum ?? 0,
-      row?.target_sum ?? 0,
-      row?.strength_sum ?? 0,
-    ].join(':');
+    return `${getDbCacheId(db)}:${row?.fingerprint ?? ''}`;
   } catch (error: unknown) {
     const message = error instanceof Error ? error.message : String(error);
     console.warn(`[community-detection] Failed to build graph fingerprint: ${message}`);
@@ -352,8 +417,8 @@ function buildCommunityResults(
       }
       return left.length - right.length;
     })
-    .map((memberIds, index) => ({
-      communityId: index + 1,
+    .map((memberIds) => ({
+      communityId: memberIds[0] ?? 0,
       memberIds,
       size: memberIds.length,
       density: computeDensity(memberIds, adjacency),
@@ -376,11 +441,14 @@ function filterActiveMemoryIds(db: Database.Database, ids: number[]): number[] {
   const uniqueIds = Array.from(new Set(ids.filter((id) => Number.isFinite(id))));
   if (uniqueIds.length === 0) return [];
   const placeholders = uniqueIds.map(() => '?').join(',');
+  const columns = getTableColumns(db, 'memory_index');
+  const activeClauses = activeMemoryClauses('memory_index', columns);
+  const activeWhere = activeClauses.length > 0 ? `AND ${activeClauses.join(' AND ')}` : '';
   const rows = db.prepare(`
     SELECT id
     FROM memory_index
     WHERE id IN (${placeholders})
-      AND ${ACTIVE_ROW_SQL('memory_index')}
+      ${activeWhere}
   `).all(...uniqueIds) as Array<{ id: number }>;
   const activeIds = new Set(rows.map((row) => row.id));
   return uniqueIds.filter((id) => activeIds.has(id));
@@ -581,6 +649,50 @@ export function detectCommunities(db: Database.Database): CommunityResult[] {
   }
 }
 
+export function rebuildCommunityArtifacts(db: Database.Database): CommunityArtifactRebuildResult {
+  if (!isCommunitySummariesEnabled()) {
+    return { rebuilt: false, reason: 'disabled', communities: 0, assignments: 0, summaries: 0 };
+  }
+
+  try {
+    const communities = detectCommunities(db);
+    const assignmentResult = storeCommunityAssignments(db, communities);
+    const summaries = generateCommunitySummaries(db, communities);
+    return {
+      rebuilt: true,
+      reason: 'rebuilt',
+      communities: communities.length,
+      assignments: assignmentResult.stored,
+      summaries: summaries.length,
+    };
+  } catch (error: unknown) {
+    const message = error instanceof Error ? error.message : String(error);
+    console.warn(`[community-detection] community artifact rebuild failed: ${message}`);
+    return { rebuilt: false, reason: 'failed', communities: 0, assignments: 0, summaries: 0 };
+  }
+}
+
+export function rebuildCommunityArtifactsIfStale(
+  db: Database.Database,
+  nowMs = Date.now(),
+): CommunityArtifactRebuildResult {
+  if (!isCommunitySummariesEnabled()) {
+    return { rebuilt: false, reason: 'disabled', communities: 0, assignments: 0, summaries: 0 };
+  }
+
+  const intervalMs = resolveCommunityRebuildIntervalMs();
+  const lastRebuildMs = lastArtifactRebuildByDb.get(db) ?? 0;
+  if (lastRebuildMs > 0 && nowMs - lastRebuildMs < intervalMs) {
+    return { rebuilt: false, reason: 'not_due', communities: 0, assignments: 0, summaries: 0 };
+  }
+
+  const result = rebuildCommunityArtifacts(db);
+  if (result.rebuilt) {
+    lastArtifactRebuildByDb.set(db, nowMs);
+  }
+  return result;
+}
+
 export function storeCommunityAssignments(
   db: Database.Database,
   assignmentsOrCommunities: AssignmentInput,
@@ -720,4 +832,7 @@ export const __testables = {
   buildCommunitiesFromAssignments,
   computeDensity,
   mergeSmallCommunities,
+  rebuildCommunityArtifacts,
+  rebuildCommunityArtifactsIfStale,
+  resolveCommunityRebuildIntervalMs,
 };
