@@ -1,0 +1,84 @@
+{
+  "schema_version": 1,
+  "packet_id": "skilled-agent-orchestration/124-sk-code-parent/005-foldin-review",
+  "spec_folder": "skilled-agent-orchestration/124-sk-code-parent/005-foldin-review",
+  "parent_id": "skilled-agent-orchestration/124-sk-code-parent",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [
+      "skilled-agent-orchestration/124-sk-code-parent/004-onboard-implement"
+    ],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "sk-code foldin review",
+      "sk-code-review fold-in",
+      "code-review mode identity",
+      "sk-code review legacy alias",
+      "review doctrine preservation"
+    ],
+    "key_topics": [
+      "sk-code",
+      "parent-hub",
+      "code-review",
+      "sk-code-review",
+      "fold-in",
+      "legacy-alias",
+      "advisor-de-registration",
+      "doctrine-preservation",
+      "mode-registry",
+      "hub-router"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Phase 005 folded the standalone sk-code-review package into the sk-code code-review mode, de-registered the standalone advisor identity by deleting its graph metadata, preserved the review doctrine verbatim, retained sk-code-review as a legacy alias in the registry, router, and hub trigger phrases, and left one pre-existing playbook filename typo untouched per scope lock.",
+    "created_at": "2026-07-04T00:00:00Z",
+    "last_save_at": "2026-07-04T00:00:00Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": null,
+    "source_doc_hashes": {},
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}
