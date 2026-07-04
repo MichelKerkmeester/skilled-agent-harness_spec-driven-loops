@@ -1016,6 +1016,8 @@ workflow:
             - "cli-opencode self-invocation guard: this branch must only run from a non-OpenCode dispatch surface (Claude Code/raw shell). The cli-opencode skill SKILL.md §SELF-INVOCATION PROHIBITED contract is the authoritative gate"
         post_dispatch_validate:
           validator: ".opencode/skills/deep-loop-runtime/lib/deep-loop/post-dispatch-validate.ts#validateIterationOutputs"
+          command: "node .opencode/skills/deep-loop-runtime/scripts/verify-iteration.cjs --loop-type research --artifact-dir {artifact_dir} --iteration {current_iteration}"
+          command_note: "Mechanical leaf-reliability gate: exit 0 = complete; non-zero prints one machine reason (iteration_file_missing|state_record_missing|route_proof_missing|route_proof_mismatch|delta_file_missing). The script enforces the artifact + route-proof contract instead of trusting the leaf to self-report, and a non-zero exit triggers on_failure.redispatch_once."
           assert_exists: "{state_paths.iteration_pattern}"
           assert_appended: "{state_paths.state_log}"
           assert_jsonl_fields: [type, iteration, newInfoRatio, status, focus, mode]
@@ -1038,7 +1040,8 @@ workflow:
           assert_delta_file_has_iteration_record: true
           on_failure:
             action: "emit schema_mismatch canonical conflict event"
-            escalation: "After 3 consecutive failures, trigger stuck_recovery event with diagnostic context"
+            redispatch_once: "On the FIRST failure of the mechanical command check for this iteration, re-run step_dispatch_iteration exactly once for the same iteration number, then re-run the check. If it still fails, record the iteration as error and continue. Never re-dispatch a given iteration more than once."
+            escalation: "After 3 consecutive failures across iterations, trigger stuck_recovery event with diagnostic context"
           failure_reasons_reference:
             - "iteration_file_missing — iteration narrative markdown not written"
             - "iteration_file_empty — iteration narrative markdown is zero bytes"

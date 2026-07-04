@@ -1073,6 +1073,8 @@ workflow:
             - "cli-opencode self-invocation guard: this single-executor branch must only run from a non-OpenCode dispatch surface (Claude Code/raw shell). Explicit parallel-detached cli-opencode fan-out is handled by step_fanout_spawn_cli/fanout-run.cjs, not this branch. The cli-opencode skill SKILL.md §SELF-INVOCATION PROHIBITED contract is the authoritative gate"
         post_dispatch_validate:
           validator: ".opencode/skills/deep-loop-runtime/lib/deep-loop/post-dispatch-validate.ts#validateIterationOutputs"
+          command: "node .opencode/skills/deep-loop-runtime/scripts/verify-iteration.cjs --loop-type review --artifact-dir {artifact_dir} --iteration {current_iteration}"
+          command_note: "Mechanical leaf-reliability gate: exit 0 = complete; non-zero prints one machine reason (iteration_file_missing|iteration_verdict_missing|state_record_missing|route_proof_missing|route_proof_mismatch|delta_file_missing). The script enforces the artifact + route-proof contract instead of trusting the leaf to self-report, and a non-zero exit triggers on_failure.redispatch_once."
           assert_exists: "{state_paths.iteration_pattern}"
           assert_appended: "{state_paths.state_log}"
           assert_jsonl_fields: [type, iteration, mode, run, status, focus, dimensions, filesReviewed, findingsCount, findingsSummary, findingsNew, findingDetails, newFindingsRatio, sessionId, generation, lineageMode, timestamp, durationMs]
@@ -1115,7 +1117,8 @@ workflow:
             note: "Warnings do not fail dispatch. Hard failures still emit schema_mismatch through on_failure."
           on_failure:
             action: "emit schema_mismatch canonical conflict event"
-            escalation: "After 3 consecutive failures, trigger stuck_recovery event with diagnostic context"
+            redispatch_once: "On the FIRST failure of the mechanical command check for this iteration, re-run step_dispatch_iteration exactly once for the same iteration number, then re-run the check. If it still fails, record the iteration as error (per step_evaluate_results.on_missing_outputs) and continue. Never re-dispatch a given iteration more than once."
+            escalation: "After 3 consecutive failures across iterations, trigger stuck_recovery event with diagnostic context"
         record_executor_audit:
           skip_when: "config.executor.kind == 'native'"
           target: "{state_paths.state_log}"
