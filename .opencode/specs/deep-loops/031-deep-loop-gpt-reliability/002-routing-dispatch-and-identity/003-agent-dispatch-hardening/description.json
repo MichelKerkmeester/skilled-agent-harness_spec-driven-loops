@@ -1,0 +1,28 @@
+{
+  "level": "2",
+  "specFolder": "deep-loops/031-deep-loop-gpt-reliability/002-routing-dispatch-and-identity/003-agent-dispatch-hardening",
+  "description": "The research (§1, §2) established that `subagenttype` is normalized to `\"general\"` with identity prompt-injected, so a DEEP agent file buys",
+  "keywords": [
+    "research",
+    "established",
+    "subagenttype",
+    "normalized",
+    "general",
+    "identity",
+    "prompt-injected",
+    "deep",
+    "agent",
+    "file",
+    "buys"
+  ],
+  "lastUpdated": "2026-07-04T19:02:56.356Z",
+  "specId": "003",
+  "folderSlug": "agent-dispatch-hardening",
+  "parentChain": [
+    "deep-loops",
+    "031-deep-loop-gpt-reliability",
+    "002-routing-dispatch-and-identity"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}
