@@ -117,3 +117,37 @@ Diagnosed the round-2 residual precisely: every fix run scored `D3=1` (delegatio
 ### Recommendation
 
 **Proceed to the P7 retrofit** — the compiled-contract mechanism is validated and tightened to produce passes. Carry the leaf-completion reliability as a distinct, non-contract concern for the acceptance pass: raise the leaf pass rate via a more capable leaf model, a leaf-level completion watchdog/retry, or the leaf's own prompt-pack contract — not via more executor-contract text. The four committed 036 fixes — the compiler + renderer (P1/P4), the front-loaded autonomous directive, the surfaced invocation message, and the DISPATCH-ONLY + ROUTE-PROOF rules — are the validated foundation to roll out.
+
+---
+
+## P7 retrofit + generalization verdict (context, council, leaf-reliability)
+
+The retrofit extended the validated mechanism to the remaining modes and added the two reliability tracks. Full scored tables live in `../003-generalization-probes/results.md`; this is the verdict recorded against the P7 gate.
+
+### What was built (all committed; Sonnet-verified per piece)
+
+- **context + ai-council compiled contracts** — compiler + renderer extended to `deep/context` and `deep/ai-council`, byte-identical fallback (comparator green). Council is a seat-mode: its directive convenes ≥3 in-CLI seats with seat-artifact proof rather than leaf-dispatch. Its authority chain enumerates the full `references/` tree including the seat-diversity/anti-patterns/command-wiring hubs.
+- **drift guard (P2)** — CI-runnable checker over all four compiled contracts: stale source digest, stale compiled body, unresolved markers, tool-allowlist overflow, and the enumerated-source gap. The authority derivation is data-driven (no per-mode hardcode, no over-flag — Sonnet-confirmed). `--accept-compiled-drift` for an intentional regenerate.
+- **leaf-reliability check** — `verify-iteration.cjs`, a mechanical gate wired into the review/research/context `post_dispatch_validate` step: verifies the three required iteration artifacts + the route-proof record, exits with one machine reason, and `on_failure` re-dispatches the iteration once. (Sonnet caught, and I fixed, an append-only `find`→`findLast` false-negative.)
+
+### Generalization probes (gpt-fast-med, fix vs fallback, N=1 focused set)
+
+| Cell / mode | fix | fallback | Read |
+|---|---|---|---|
+| **ACB-005 council** | `pass` (D3=2, seats converged) | `stuck_no_progress` (D3=0) | Flip generalizes decisively to the seat-mode |
+| **CXB-004 context** | `setup_misbind` (dispatched `deep-context`) | `setup_misbind` | Mechanism bites; the should-halt cell confounds the score |
+| **RVB-REPROBE review** | `missing_artifact` (D3=1) | — | Leaf-reliability lift NOT demonstrated |
+
+### Verdict
+
+- **Does the flip generalize beyond review/research?** **Council: yes, decisively** (silent stall → converged seats). **Context: mechanism yes** — under fix GPT autonomously dispatches the `deep-context` leaf — but CXB-004 is a should-halt cell, so autonomous-precedence over-rides a legitimately-ambiguous ask and both modes score `setup_misbind`; the delegation trace proves the mechanism works even though classification cannot separate the modes.
+- **Did the leaf-reliability check lift the pass rate?** **No — honest negative.** The review re-probe under fix is `missing_artifact` (D3=1): the leaf is now dispatched (progress over the `refused`/0-event baseline) but its iteration artifact + route-proof came back incomplete. The mechanical gate DETECTS this exact failure (`route_proof_missing`), but its re-dispatch is model-followed in the single-executor loop, so it did not mechanically rescue the run.
+
+### Recommendation
+
+- **Promotion readiness:** council and the task_dispatch modes flip cleanly under the compiled contract — promoting them to `fix` by default is justified. The leaf-reliability gate should ship (it converts a silent leaf failure into a detectable one) but is best-effort until a runner owns the retry.
+- **Follow-ups (out of this goal — propose as a new phase):**
+  1. **should-halt carve-out** for autonomous-precedence (context CXB-004 over-trigger).
+  2. **runner-owned mechanical re-dispatch** in `fanout-run.cjs` — the single-executor loop is model-driven, so `redispatch_once` cannot be mechanically enforced there.
+  3. The **14-agent pointer rewrite + AGENTS.md thinning** remains explicitly deferred.
+- **Adjacent, shipped this session:** the now-dead **deep-loop primary router** agent was deprecated (full delete + orchestrate reword — phase 002) now that the compiled contracts carry routing directly.
