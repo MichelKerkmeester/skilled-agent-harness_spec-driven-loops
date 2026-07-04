@@ -18,10 +18,12 @@
     "block",
     "double-emitted"
   ],
-  "lastUpdated": "2026-07-03T12:02:35.481Z",
+  "lastUpdated": "2026-07-04T12:43:26.378Z",
   "specId": "012",
   "folderSlug": "envelope-presentation-and-command-doc-alignment",
   "parentChain": [
+    ".opencode",
+    "specs",
     "system-speckit",
     "028-memory-search-intelligence",
     "016-fix-deep-dive-p0-p2-findings-for-mk-spec-memory"

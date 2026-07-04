@@ -243,7 +243,7 @@ describe('T019: Context summary (DB-dependent)', () => {
 
 describe('T020: Quick resume command (DB-dependent)', () => {
 
-  it('T020-01: Generates /spec_kit:resume command when specFolder is provided', () => {
+  it('T020-01: Generates /speckit:resume command when specFolder is provided', () => {
     expect(true).toBe(true);
   });
 

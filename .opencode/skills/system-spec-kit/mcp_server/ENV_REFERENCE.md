@@ -689,7 +689,7 @@ Detailed operator guidance lives in `references/hooks/goal_plugin.md`.
 
 ## CLI FRONT DOOR (DUAL-STACK)
 
-Environment variables for the daemon-backed CLIs shipped by the MCP-to-CLI transition: `node .opencode/bin/spec-memory.cjs` (39 tools), `node .opencode/bin/code-index.cjs` (8 tools) and `node .opencode/bin/skill-advisor.cjs` (9 tools). The CLIs run over the unchanged daemons. MCP registrations stay as they were (the CLI is additive). All three share the exit taxonomy `0` success / `1` runtime / `64` usage-schema / `69` protocol-or-dist mismatch / `75` retryable daemon error.
+Environment variables for the daemon-backed CLIs shipped by the MCP-to-CLI transition: `node .opencode/bin/spec-memory.cjs` (41 tools), `node .opencode/bin/code-index.cjs` (8 tools) and `node .opencode/bin/skill-advisor.cjs` (9 tools). The CLIs run over the unchanged daemons. MCP registrations stay as they were (the CLI is additive). All three share the exit taxonomy `0` success / `1` runtime / `64` usage-schema / `69` protocol-or-dist mismatch / `75` retryable daemon error.
 
 Warm-only and prompt-time flags accept `1`, `true`, `yes` or `on`. When any of them is set, the CLI defaults to `--warm-only`: it probes the daemon socket and exits `75` instead of cold-spawning the launcher, which is the contract prompt-time hooks rely on. `--no-warm-only` on the command line overrides the env default. Without warm-only, a cold daemon is auto-spawned through the matching `mk-*-launcher.cjs`.
 

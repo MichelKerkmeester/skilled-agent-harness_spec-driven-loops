@@ -194,7 +194,7 @@ describe('Gate D regression embedding semantic search', () => {
     });
   });
 
-  it('surfaces embedder_available=false when the pipeline degraded to lexical recall', async () => {
+  it('surfaces embedderAvailable=false when the pipeline degraded to lexical recall', async () => {
     vi.mocked(pipeline.executePipeline).mockResolvedValueOnce({
       results: [
         {
@@ -249,9 +249,7 @@ describe('Gate D regression embedding semantic search', () => {
     const results = data.results as Array<Record<string, unknown>>;
 
     expect(results.map((row) => row.id)).toEqual([2201]);
-    expect(data.embedder_available).toBe(false);
     expect(data.embedderAvailable).toBe(false);
-    expect(data.vector_search_skipped).toBe(true);
     expect(data.vectorSearchSkipped).toBe(true);
   });
 });

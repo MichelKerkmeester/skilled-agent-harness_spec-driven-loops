@@ -36,7 +36,7 @@ This scenario validates /memory:search command routing for `185`. It focuses on 
 
 1. Invoke `/memory:search` with no arguments and verify the interactive intent selection prompt appears (Add feature, Fix bug, Refactor, Security audit, Understand, Find spec, Find decision, Analysis tools)
 2. Invoke `/memory:search "implement auth"` and verify retrieval mode activates with auto-detected `add_feature` intent and appropriate weight boosts (implementation 1.5x, architecture 1.3x, patterns 1.2x)
-3. Invoke `/memory:search "auth bug" --intent:fix_bug` and verify the explicit intent override is respected
+3. Invoke `/memory:search "auth bug" --intent fix_bug` and verify the explicit intent override is respected
 4. Invoke `/memory:search preflight specs/007-test T1` and verify `task_preflight()` is called
 5. Invoke `/memory:search postflight specs/007-test T1` and verify `task_postflight()` is called
 6. Invoke `/memory:search history specs/007-test` and verify `memory_get_learning_history()` is called

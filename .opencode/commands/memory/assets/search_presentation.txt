@@ -114,7 +114,7 @@ STATUS=OK RESULTS=<count> INTENT=<detected_intent>
 ```
 
 - Use these exact field names, never an unnamed, renamed, or ad-hoc metric, and never folded into the `<score>` slot.
-- Under the default contract their absence is valid. When `SPECKIT_ENVELOPE_FIDELITY` is set the two fields are conditionally-mandatory render slots, required-when-present: a verdict field the tool response carries MUST appear unaltered in the rendered block. The tool ships a ready-to-paste `data.envelopeRender` fragment carrying these exact two lines, so the render pastes it verbatim instead of transcribing the fields. Re-emit from `data.envelopeRender` any verdict field the tool shipped but the render dropped. The flag is default-OFF, so the legacy absence-is-valid rule stays the default until the grandfather report is clean.
+- Under the default contract their absence is valid. `SPECKIT_ENVELOPE_FIDELITY` is default-ON; set it to `false`, `0`, or `off` to opt out. When enabled, the two fields are conditionally-mandatory render slots, required-when-present: a verdict field the tool response carries MUST appear unaltered in the rendered block. The tool ships a ready-to-paste `data.envelopeRender` fragment carrying these exact two lines, so the render pastes it verbatim instead of transcribing the fields. Re-emit from `data.envelopeRender` any verdict field the tool shipped but the render dropped.
 
 Folder display rules:
 - Group by spec folder.

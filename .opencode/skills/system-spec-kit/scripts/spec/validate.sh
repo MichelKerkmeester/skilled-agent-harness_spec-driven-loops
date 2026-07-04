@@ -30,6 +30,7 @@ readonly GENERATED_METADATA_INTEGRITY_TS="$SCRIPT_DIR/../validation/generated-me
 readonly GENERATED_METADATA_INTEGRITY_JS="$SCRIPT_DIR/../dist/validation/generated-metadata-integrity.js"
 readonly GENERATED_METADATA_DRIFT_TS="$SCRIPT_DIR/../validation/generated-metadata-drift.ts"
 readonly GENERATED_METADATA_DRIFT_JS="$SCRIPT_DIR/../dist/validation/generated-metadata-drift.js"
+readonly COMMAND_TREE_PARITY_SH="$SCRIPT_DIR/../validate-command-tree-parity.sh"
 readonly VERSION="2.0.0"
 
 # Source shared libraries
@@ -954,6 +955,20 @@ run_generated_metadata_drift_check() {
     fi
 }
 
+run_command_tree_parity_check() {
+    local rule_name="COMMAND_TREE_PARITY"
+    [[ -x "$COMMAND_TREE_PARITY_SH" ]] || { log_warn "$rule_name" "Command tree parity script is missing or not executable"; return 0; }
+    local output=""
+    local rc=0
+    output=$("$COMMAND_TREE_PARITY_SH" --quiet 2>&1) || rc=$?
+    if [[ "$rc" -eq 0 ]]; then
+        log_pass "$rule_name" "OpenCode and Claude command trees are byte-identical"
+    else
+        log_error "$rule_name" "OpenCode and Claude command trees differ"
+        [[ -n "$output" ]] && log_detail "$output"
+    fi
+}
+
 run_strict_validators() {
     local folder="$1"
     $STRICT_MODE || return 0
@@ -963,6 +978,7 @@ run_strict_validators() {
     should_run_rule "EVIDENCE_MARKER_LINT" && run_evidence_marker_lint_check "$folder"
     should_run_rule "GENERATED_METADATA_INTEGRITY" && run_generated_metadata_integrity_check "$folder"
     should_run_rule "GENERATED_METADATA_DRIFT" && run_generated_metadata_drift_check "$folder"
+    should_run_rule "COMMAND_TREE_PARITY" && run_command_tree_parity_check
     return 0
 }
 
@@ -1028,6 +1044,12 @@ run_node_orchestrator() {
             local child_rc=$?
             (( child_rc > rc )) && rc=$child_rc
         done
+    fi
+
+    if $STRICT_MODE && should_run_rule "COMMAND_TREE_PARITY"; then
+        local parity_rc=0
+        "$COMMAND_TREE_PARITY_SH" --quiet >/dev/null 2>&1 || parity_rc=$?
+        (( parity_rc > rc )) && rc=2
     fi
 
     exit $rc

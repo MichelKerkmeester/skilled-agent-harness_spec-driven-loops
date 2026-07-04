@@ -370,7 +370,7 @@ function applyClassificationDecay(
 }
 
 /* --- 4b. HYBRID DECAY POLICY ---
-   Gated by SPECKIT_HYBRID_DECAY_POLICY env var (default OFF).
+   Gated by SPECKIT_HYBRID_DECAY_POLICY env var (default ON).
    Distinguishes two classes of memory:
 
    1. NO-DECAY documents — context_type in {decision, constitutional, critical}
@@ -383,7 +383,7 @@ function applyClassificationDecay(
 
    This is intentionally SEPARATE from applyClassificationDecay, which
    uses a combined context_type × importance_tier multiplier and is default-ON.
-   SPECKIT_HYBRID_DECAY_POLICY is default-OFF and must be opted into explicitly.
+   SPECKIT_HYBRID_DECAY_POLICY can be disabled explicitly with false or 0.
    DO NOT combine both policies on the same memory. */
 
 /**
@@ -442,10 +442,10 @@ function getHybridDecayMultiplier(contextType: string, _importanceTier?: string)
 /**
  * Apply the hybrid decay policy to a stability value.
  *
- * When SPECKIT_HYBRID_DECAY_POLICY is OFF (default), returns stability unchanged.
- * When ON:
+ * When SPECKIT_HYBRID_DECAY_POLICY is ON (default):
  *   - decision / constitutional / critical → returns Infinity (no decay)
  *   - all others → returns stability unchanged (normal FSRS schedule)
+ * When OFF, returns stability unchanged for all rows.
  *
  * @param stability    Base FSRS stability value
  * @param contextType  Continuity-row context_type field (classified at save time)

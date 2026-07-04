@@ -524,6 +524,45 @@ describe('formatSearchResults', () => {
     expect(content).toContain(`&lt;/${RECALLED_MEMORY_CONTEXT_TAG}&gt;`);
   });
 
+  it('C15e: caps includeContent per result with an explicit marker', async () => {
+    const mockResults = [{
+      id: 513,
+      spec_folder: 'specs/013-test',
+      file_path: '/nonexistent/path.md',
+      title: 'Large Chunk',
+      contentSource: 'reassembled_chunks',
+      precomputedContent: 'x'.repeat(2500),
+    }];
+
+    const res = await formatSearchResults(mockResults, 'semantic', true);
+    const envelope = parseEnvelope(res);
+    const result = envelope.data.results[0];
+
+    expect(result.contentTruncated).toBe(true);
+    expect(result.content).toContain('[...content truncated per result]');
+    expect(result.content?.length ?? 0).toBeLessThan(2300);
+  });
+
+  it('C15f: passes canonical source, document type, and community fallback fields through', async () => {
+    const mockResults = [{
+      id: 514,
+      spec_folder: 'specs/014-test',
+      file_path: '/tmp/source.md',
+      title: 'Source Fields',
+      canonicalSource: 'spec_doc',
+      documentType: 'plan',
+      _communityFallback: true,
+    }];
+
+    const res = await formatSearchResults(mockResults, 'semantic');
+    const envelope = parseEnvelope(res);
+    expect(envelope.data.results[0]).toMatchObject({
+      canonicalSource: 'spec_doc',
+      documentType: 'plan',
+      _communityFallback: true,
+    });
+  });
+
   it('C15d: recall render probe set is non-empty and keeps every breakout inside the frame', () => {
     const probes = [
       {
@@ -651,6 +690,35 @@ describe('formatSearchResults', () => {
       fts: 0.2,
       graph: 0.05,
     });
+  });
+
+  it('C20: semantic_match only appears for vector-attributed rows', async () => {
+    process.env.SPECKIT_RESULT_EXPLAIN = 'true';
+    const mockResults = [{
+      id: 56,
+      spec_folder: 'specs/014-test',
+      file_path: '/tmp/lexical.md',
+      title: 'Lexical Only',
+      score: 0.8,
+      channelAttribution: ['fts'],
+    }];
+
+    const res = await formatSearchResults(
+      mockResults,
+      'hybrid',
+      false,
+      null,
+      null,
+      null,
+      {},
+      false,
+      'lexical only',
+      null,
+      { enabled: true },
+    );
+    const envelope = parseEnvelope(res);
+    expect(envelope.data.results[0]?.why?.topSignals).not.toContain('semantic_match');
+    expect(envelope.data.results[0]?.why?.topSignals).toContain('lexical_match');
   });
 });
 

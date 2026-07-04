@@ -144,7 +144,7 @@ node .opencode/bin/mk-code-index-launcher.cjs --help
 
 The native MCP servers (`mk-spec-memory`, `mk_skill_advisor`, `mk_code_index`) ship as committed launcher binaries under `.opencode/bin/`. They self-vendor their dependencies on first run and the checked-in runtime configs already point at them, so there is no separate build step. Launcher reliability (owner-disposal relaunch, lease-probe reap, mk-code-index reconnect, default-on daemon re-election and a single-writer database lock with `SPECKIT_DB_LOCK_DISABLE=1` as the kill switch) is operator-tunable and documented in [`ENV_REFERENCE.md`](.opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md).
 
-The three daemons also expose full-parity CLI front doors (`spec-memory.cjs` 39 tools, `code-index.cjs` 8, `skill-advisor.cjs` 9, mutations gated behind `--trusted`): use MCP as the primary in-session transport and the CLIs for hooks, cron, CI and shell diagnostics, per [`daemon_cli_reference.md`](.opencode/skills/system-spec-kit/references/cli/daemon_cli_reference.md). Idle self-exit, a dry-run-first orphan-process sweeper and worktree-per-session isolation scripts (each session gets its own `SPEC_KIT_DB_DIR`, `SPECKIT_CODE_GRAPH_DB_DIR` and `SPECKIT_IPC_SOCKET_DIR`) live under `.opencode/bin/` and `.opencode/scripts/`; see the [Repo Scripts Runbook](.opencode/scripts/README.md).
+The three daemons also expose full-parity CLI front doors (`spec-memory.cjs` 41 tools, `code-index.cjs` 8, `skill-advisor.cjs` 9, mutations gated behind `--trusted`): use MCP as the primary in-session transport and the CLIs for hooks, cron, CI and shell diagnostics, per [`daemon_cli_reference.md`](.opencode/skills/system-spec-kit/references/cli/daemon_cli_reference.md). Idle self-exit, a dry-run-first orphan-process sweeper and worktree-per-session isolation scripts (each session gets its own `SPEC_KIT_DB_DIR`, `SPECKIT_CODE_GRAPH_DB_DIR` and `SPECKIT_IPC_SOCKET_DIR`) live under `.opencode/bin/` and `.opencode/scripts/`; see the [Repo Scripts Runbook](.opencode/scripts/README.md).
 
 ### Set Up Embedding Provider
 
@@ -393,9 +393,9 @@ The `mk-spec-memory` tools are organized into a layered architecture. Code graph
 | **L8** | Embedder        | 3      | 400          | Embedder list, set and status                                                |
 | **L9** | Task            | 2      | 300          | Task preflight and postflight                                                |
 | **—**  | Moved Surfaces  | 0      | -            | Code graph → `mk_code_index`; advisor + skill graph → `mk_skill_advisor`; coverage + council graph → `deep-loop-runtime` CLI scripts (not MCP tools) |
-|        | **Total**       | **39** | **~8,300**   |                                                                              |
+|        | **Total**       | **41** | **~8,300**   |                                                                              |
 
-Lower layers load only when needed. L1 is always available. L2 loads for any search. L3-L7 load based on the specific command being used. The same 39 tools are also exposed 1:1 by the `spec-memory.cjs` daemon-backed CLI front door for hooks, cron, CI and shell diagnostics.
+Lower layers load only when needed. L1 is always available. L2 loads for any search. L3-L7 load based on the specific command being used. The same 41 tools are also exposed 1:1 by the `spec-memory.cjs` daemon-backed CLI front door for hooks, cron, CI and shell diagnostics.
 
 &nbsp;
 #### Hybrid Search
@@ -878,7 +878,7 @@ For details, see the [Deep Loop Runtime README](.opencode/skills/deep-loop-runti
 **system-spec-kit**
 - Mandatory orchestrator for all file modifications - activates automatically for any code file change
 - Creates numbered spec folders with manifest templates rendered through Level contracts across 4 levels (1-3+)
-- Integrates the 39-tool memory surface with constitutional-tier support, session bootstrap and hybrid 5-channel retrieval
+- Integrates the 41-tool memory surface with constitutional-tier support, session bootstrap and hybrid 5-channel retrieval
 - Manages the manifest template source, 38 validation rules, the spec-kit script suite and the feature-catalog / testing-playbook documentation surfaces
 
 **system-code-graph**

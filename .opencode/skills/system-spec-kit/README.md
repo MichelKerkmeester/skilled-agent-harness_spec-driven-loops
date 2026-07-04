@@ -130,7 +130,7 @@ Check that Spec Kit Memory tools are available:
 
 The response should return `status: "ok"` and database table counts. If it returns an error, see [Troubleshooting](#7-troubleshooting).
 
-The same check works from a shell through the daemon-backed CLI, which fronts the identical 39-tool surface:
+The same check works from a shell through the daemon-backed CLI, which fronts the identical 41-tool surface:
 
 ```bash
 # Enumerate the tools without touching the daemon
@@ -252,11 +252,11 @@ The indexed-continuity store lives in an MCP server that gives AI assistants per
 
 Think of it like a personal librarian that keeps notes on every conversation, files them by topic and hands you the right ones when you start a new task. Switch from Claude to GPT and back. The spec-doc record stays the same because it lives on your machine, not inside any AI's context window.
 
-For full architecture details, the 39-tool API reference, search pipeline internals and configuration, see [`mcp_server/README.md`](./mcp_server/README.md).
+For full architecture details, the 41-tool API reference, search pipeline internals and configuration, see [`mcp_server/README.md`](./mcp_server/README.md).
 
 #### Dual-Stack Access: MCP and CLI
 
-The memory surface is dual-stack. The `mk-spec-memory` MCP registration stays the native in-session path today, and `node .opencode/bin/spec-memory.cjs` is a full-parity CLI front door over the **same daemon** with the identical 39 tools — nothing about the daemon changed, only the IPC transport. Use MCP for live in-session calls. Use the CLI for hooks, cron jobs, CI, operator shell diagnostics and transport-down recovery: when an MCP transport drops mid-session and the client never reconnects it, the CLI still reaches every tool. Prompt-time callers must probe warm-only first; exit `75` means retryable daemon or IPC unavailability. `list-tools` answers offline; every other command speaks JSON-RPC to the daemon over the IPC socket. Shared exit taxonomy across the three sibling CLIs (`spec-memory`, `code-index`, `skill-advisor`): `0`/`1`/`64`/`69`/`75`. The shim refuses to run a stale build (exit `69`; `SPECKIT_SPEC_MEMORY_CLI_DEV_ALLOW_STALE=1` for dev loops), and `--warm-only` plus the prompt-time env flags keep prompt-time hooks from ever cold-spawning the daemon. Because this CLI already has full parity, a later evolution could make the CLI the primary or sole transport without breaking existing MCP workflows; that is a possible direction, not a committed plan. See [`mcp_server/ENV_REFERENCE.md`](./mcp_server/ENV_REFERENCE.md) for the CLI env-flag table.
+The memory surface is dual-stack. The `mk-spec-memory` MCP registration stays the native in-session path today, and `node .opencode/bin/spec-memory.cjs` is a full-parity CLI front door over the **same daemon** with the identical 41 tools — nothing about the daemon changed, only the IPC transport. Use MCP for live in-session calls. Use the CLI for hooks, cron jobs, CI, operator shell diagnostics and transport-down recovery: when an MCP transport drops mid-session and the client never reconnects it, the CLI still reaches every tool. Prompt-time callers must probe warm-only first; exit `75` means retryable daemon or IPC unavailability. `list-tools` answers offline; every other command speaks JSON-RPC to the daemon over the IPC socket. Shared exit taxonomy across the three sibling CLIs (`spec-memory`, `code-index`, `skill-advisor`): `0`/`1`/`64`/`69`/`75`. The shim refuses to run a stale build (exit `69`; `SPECKIT_SPEC_MEMORY_CLI_DEV_ALLOW_STALE=1` for dev loops), and `--warm-only` plus the prompt-time env flags keep prompt-time hooks from ever cold-spawning the daemon. Because this CLI already has full parity, a later evolution could make the CLI the primary or sole transport without breaking existing MCP workflows; that is a possible direction, not a committed plan. See [`mcp_server/ENV_REFERENCE.md`](./mcp_server/ENV_REFERENCE.md) for the CLI env-flag table.
 
 #### Hybrid Search
 
@@ -604,7 +604,7 @@ Template changes flow through the manifest source, Level contract resolver and i
 | [`SKILL.md`](./SKILL.md)                                                     | AI agent instructions: routing rules, gates, validation procedures, template application             |
 | [`README.md`](./README.md)                                                   | This file: what Spec Kit does, how to use it, where to find things                                 |
 | [`ARCHITECTURE.md`](./ARCHITECTURE.md)                                       | API boundary contract between `scripts/` and `mcp_server/`                                           |
-| [`mcp_server/README.md`](./mcp_server/README.md)                             | Full MCP architecture: 39-tool API reference, search pipeline, graph intelligence and configuration |
+| [`mcp_server/README.md`](./mcp_server/README.md)                             | Full MCP architecture: 41-tool API reference, search pipeline, graph intelligence and configuration |
 | [`mcp_server/INSTALL_GUIDE.md`](./mcp_server/INSTALL_GUIDE.md)               | Step-by-step installation with embedding providers and environment                                   |
 | [`scripts/spec/create.sh`](./scripts/spec/create.sh)                         | Create spec folders with level-appropriate template files                                            |
 | [`scripts/spec/validate.sh`](./scripts/spec/validate.sh)                     | Run 38-rule validation on any spec folder                                                            |
@@ -1029,7 +1029,7 @@ A: The indexed-continuity store can index any markdown file, beyond spec folder 
 
 **Q: What is the difference between this README and the MCP server README?**
 
-A: This README covers the whole skill: spec folders, documentation levels, commands, templates, scripts and a high-level summary of the indexed-continuity store. The MCP server README (`mcp_server/README.md`) goes deep on the indexed-continuity store: the 39-tool API reference, 5 core retrieval channels, session lifecycle tooling, canonical resume and bootstrap behavior, save pipeline, causal graph, query intelligence and evaluation infrastructure.
+A: This README covers the whole skill: spec folders, documentation levels, commands, templates, scripts and a high-level summary of the indexed-continuity store. The MCP server README (`mcp_server/README.md`) goes deep on the indexed-continuity store: the 41-tool API reference, 5 core retrieval channels, session lifecycle tooling, canonical resume and bootstrap behavior, save pipeline, causal graph, query intelligence and evaluation infrastructure.
 
 ---
 
@@ -1064,7 +1064,7 @@ bash .opencode/skills/system-spec-kit/scripts/spec/upgrade-level.sh \
 | ------------------------------------------------------------------------------------------------ | ---------------------------------------------------------------------------------------------------- |
 | [`SKILL.md`](./SKILL.md)                                                                         | AI agent instructions: routing, gates, validation, template application                              |
 | [`ARCHITECTURE.md`](./ARCHITECTURE.md)                                                           | API boundary contract between `scripts/` and `mcp_server/`                                           |
-| [`mcp_server/README.md`](./mcp_server/README.md)                                                 | Full MCP architecture: 39-tool API reference, search pipeline, graph intelligence and configuration |
+| [`mcp_server/README.md`](./mcp_server/README.md)                                                 | Full MCP architecture: 41-tool API reference, search pipeline, graph intelligence and configuration |
 | [`mcp_server/INSTALL_GUIDE.md`](./mcp_server/INSTALL_GUIDE.md)                                   | Step-by-step installation with embedding providers and environment variables                         |
 | [`references/memory/memory_system.md`](./references/memory/memory_system.md)                     | Detailed memory system reference                                                                     |
 | [`references/memory/embedder_architecture.md`](./references/memory/embedder_architecture.md)     | Active embedder pointer, vector shard, dim-table and swap architecture                              |

@@ -33,7 +33,7 @@ You rarely touch this server directly. Seven surfaces drive it for you:
 - **Slash commands.** `/memory:save`, `/memory:search`, `/memory:learn`, `/memory:manage`, `/speckit:resume` are the everyday entrypoints.
 - **Runtime hooks.** Each supported CLI ships a hook that injects the session brief at startup or prompt-submit time, populated by handlers in `hooks/`. The Claude and OpenCode adapters carry a warm-only CLI fallback (`hooks/spec-memory-cli-fallback.ts`, `hooks/code-index-cli-fallback.ts`) that recovers a dropped MCP transport through the daemon CLI without ever cold-spawning at prompt time.
 - **The `mcp_*` tool surface.** Direct MCP callers (other agents, scripts, tests) reach the tools through `mcp__mk_spec_memory__*` after the server registers them.
-- **The daemon-backed CLI.** `node .opencode/bin/spec-memory.cjs <tool>` fronts all 39 tools over the daemon's IPC socket — the dual-stack surface for hooks, cron, CI and transport-down recovery. Exit taxonomy `0`/`1`/`64`/`69`/`75`; `--warm-only` probes instead of spawning; `list-tools` answers offline. Source: `spec-memory-cli.ts`.
+- **The daemon-backed CLI.** `node .opencode/bin/spec-memory.cjs <tool>` fronts all 41 tools over the daemon's IPC socket — the dual-stack surface for hooks, cron, CI and transport-down recovery. Exit taxonomy `0`/`1`/`64`/`69`/`75`; `--warm-only` probes instead of spawning; `list-tools` answers offline. Source: `spec-memory-cli.ts`.
 - **The plugin bridge.** The OpenCode plugin (`.opencode/plugins/mk-spec-memory.js`) routes through `plugin_bridges/mk-spec-memory-bridge.mjs` using CLI transport only — it shells the same `spec-memory.cjs` front door rather than holding a second MCP connection.
 - **CLI scripts.** Maintenance, evaluation, and migration scripts live under `scripts/`.
 - **The compiled backend artifact.** `dist/context-server.js` is built by `npm run build` and spawned by the launcher. MCP client configs point at `.opencode/bin/mk-spec-memory-launcher.cjs`, which supervises the backend and owns the client-facing transport. The MCP registrations themselves are unchanged by the CLI: dual-stack means the CLI is additive.
@@ -163,7 +163,7 @@ mcp_server/
 | File | Responsibility |
 |---|---|
 | `context-server.ts` | Starts the MCP server, wires transport to the dispatcher, and enforces response token budgets. If first-call `meta.sessionPriming` pushes an envelope over budget, the server slims that metadata before dropping result rows. |
-| `spec-memory-cli.ts` | Daemon-backed CLI over the same 39 tools (built to `dist/spec-memory-cli.js`, fronted by `.opencode/bin/spec-memory.cjs`). Parses per-tool flags against `tool-schemas.ts`, probes the daemon (warm-only honors exit `75`), auto-spawns the launcher otherwise, and maps errors to the `0`/`1`/`64`/`69`/`75` exit taxonomy. |
+| `spec-memory-cli.ts` | Daemon-backed CLI over the same 41 tools (built to `dist/spec-memory-cli.js`, fronted by `.opencode/bin/spec-memory.cjs`). Parses per-tool flags against `tool-schemas.ts`, probes the daemon (warm-only honors exit `75`), auto-spawns the launcher otherwise, and maps errors to the `0`/`1`/`64`/`69`/`75` exit taxonomy. |
 | `hooks/spec-memory-cli-fallback.ts` | Shared hook helper for bounded warm-only CLI recovery: probes the IPC socket first and calls the CLI only when the daemon is already warm, failing open otherwise. |
 | `hooks/code-index-cli-fallback.ts` | Same warm-only fallback contract for the mk-code-index CLI, used by the Claude/OpenCode hook adapters. |
 | `tool-schemas.ts` | Defines the public MCP tool registry and schema metadata. |
@@ -239,7 +239,7 @@ Main tool flow:
 |---|---|---|
 | `context-server.ts` | Module | Starts the MCP server from source or compiled output. |
 | `dist/context-server.js` | Runtime artifact | Compiled backend server spawned and supervised by the launcher. Client configuration points at `.opencode/bin/mk-spec-memory-launcher.cjs`. |
-| `node .opencode/bin/spec-memory.cjs <tool>` | CLI | Daemon-backed front door for all 39 tools (shim guards dist freshness, exit `69`; runs `dist/spec-memory-cli.js`). |
+| `node .opencode/bin/spec-memory.cjs <tool>` | CLI | Daemon-backed front door for all 41 tools (shim guards dist freshness, exit `69`; runs `dist/spec-memory-cli.js`). |
 | `tool-schemas.ts` | Module | Source of MCP tool schema definitions. |
 | `handlers/*` | Modules | Execute memory, graph, advisor, evaluation, and maintenance tools. |
 | `hooks/*` | Modules | Produce startup, prompt, and compact-context payloads for runtime integrations. |

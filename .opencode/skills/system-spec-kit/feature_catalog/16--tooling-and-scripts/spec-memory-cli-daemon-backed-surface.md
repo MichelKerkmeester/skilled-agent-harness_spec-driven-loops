@@ -1,6 +1,6 @@
 ---
 title: "Daemon-backed spec-memory CLI surface"
-description: "Dual-stack CLI over the unchanged mk-spec-memory daemon: all 39 tools generated from TOOL_DEFINITIONS, a stable shim with dist-freshness and socket-path guards, the shared 0/1/64/69/75 exit taxonomy, warm-only no-spawn probing, and IPC auto-spawn through the launcher."
+description: "Dual-stack CLI over the unchanged mk-spec-memory daemon: all 41 tools generated from TOOL_DEFINITIONS, a stable shim with dist-freshness and socket-path guards, the shared 0/1/64/69/75 exit taxonomy, warm-only no-spawn probing, and IPC auto-spawn through the launcher."
 trigger_phrases:
   - "spec-memory cli"
   - "daemon-backed cli surface"
@@ -57,7 +57,7 @@ The automation surface also supports `list-tools --compact` and `list-tools --na
 | File | Type | Role |
 |---|---|---|
 | `mcp_server/tests/spec-memory-cli.vitest.ts` | Automated test | Parser, IPC, retryable, and protocol-drift coverage |
-| `mcp_server/tests/spec-memory-cli-parity-and-help.vitest.ts` | Automated test | Locks 39-tool parity and CLI help behavior |
+| `mcp_server/tests/spec-memory-cli-parity-and-help.vitest.ts` | Automated test | Locks 41-tool parity and CLI help behavior |
 | `mcp_server/tests/spec-memory-cli-help-aliases-errors.vitest.ts` | Automated test | Compact/names-only list-tools and generated completion coverage for spec-memory |
 | `.opencode/skills/system-code-graph/mcp_server/tests/code-index-cli-help-aliases-errors.vitest.ts` | Automated test | Compact/names-only list-tools and generated completion coverage for code-index |
 | `.opencode/skills/system-skill-advisor/mcp_server/tests/skill-advisor-cli-help-aliases-errors.vitest.ts` | Automated test | Compact/names-only list-tools and generated completion coverage for skill-advisor |

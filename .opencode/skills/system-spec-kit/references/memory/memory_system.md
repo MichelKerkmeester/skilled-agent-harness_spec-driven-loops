@@ -24,7 +24,7 @@ Current baseline: schema v41 (`document_type`, `spec_level`, trigger embeddings,
 
 The Spec Kit Memory system provides context preservation across sessions through vector-based semantic search and packet-first continuity. Phase 018 makes `handover.md -> _memory.continuity -> spec docs` the canonical recovery chain; retired `[spec]/memory/*.md` artifacts are no longer produced at save time and only matter when older packets still contain them. This reference covers MCP tool behavior, importance tiers, decay scoring, and configuration.
 
-When a save mutates indexed state, the runtime also updates the `DB_UPDATED_FILE` marker from `mcp_server/Level sourceconfig.ts`. Long-lived MCP processes poll that marker with `checkDatabaseUpdated()` so canonical-doc writes become visible without restarting the server.
+When a save mutates indexed state, the runtime also updates the `DB_UPDATED_FILE` marker from `mcp_server/core/config.ts`. Long-lived MCP processes poll that marker with `checkDatabaseUpdated()` so canonical-doc writes become visible without restarting the server.
 
 ### Architecture
 
@@ -105,9 +105,9 @@ Six-tier system for prioritizing memory relevance:
 
 > **Note:** MCP tool names use plain names such as `memory_search`, `memory_save`, and `checkpoint_create`.
 
-### Tool Reference (39 `mk-spec-memory` MCP tools)
+### Tool Reference (41 `mk-spec-memory` MCP tools)
 
-The public MCP surface is 39 local descriptors in `TOOL_DEFINITIONS` from `mcp_server/tool-schemas.ts`.
+The public MCP surface is 41 local descriptors in `TOOL_DEFINITIONS` from `mcp_server/tool-schemas.ts`.
 Code Graph and Skill Advisor descriptors are exposed by their own MCP servers, not this registry.
 
 | Layer | Tool | Purpose | Example Use |
@@ -128,6 +128,8 @@ Code Graph and Skill Advisor descriptors are exposed by their own MCP servers, n
 | L4: Mutation | `memory_validate()` | Mark memory as useful/not useful | Confidence scoring |
 | L4: Mutation | `memory_bulk_delete()` | Bulk delete memories by spec folder with confirmation | Clean up entire spec folder memories |
 | L4: Mutation | `memory_retention_sweep()` | Audit or delete expired governed spec-doc records | Retention cleanup with dry-run evidence |
+| L4: Mutation | `memory_learned_expire()` | Expire stale learned trigger terms | Preview or remove old learned terms |
+| L4: Mutation | `memory_learned_clear()` | Clear learned trigger terms after confirmation | Reset learned trigger feedback |
 | L4: Mutation | `memory_embedding_reconcile()` | Reconcile embedding status against active vector coverage | Repair stale pending/failed vector rows |
 | L5: Lifecycle | `checkpoint_create()` | Save named state snapshot | Before risky changes |
 | L5: Lifecycle | `checkpoint_list()` | List available checkpoints | Find restore points |
@@ -151,10 +153,6 @@ Code Graph and Skill Advisor descriptors are exposed by their own MCP servers, n
 | L7: Maintenance | `embedder_list()` | List available embedder profiles | Inspect local/cloud embedding options |
 | L7: Maintenance | `embedder_set()` | Change the active embedder profile | Controlled embedder swap |
 | L7: Maintenance | `embedder_status()` | Report active embedder health and profile | Diagnose embedding readiness |
-| L7: Maintenance | `session_health()` | Report session priming and freshness status | Detect context drift during long sessions |
-| L7: Maintenance | `session_resume()` | Resume memory and structural readiness context | Detailed recovery payload after reconnect |
-| L7: Maintenance | `session_bootstrap()` | Composite bootstrap for resume and health checks | Fresh-session readiness bundle |
-
 Code-graph implementation and package docs are owned by `.opencode/skills/system-code-graph/`; use `mk-code-index` for structural `code_graph_*` tools.
 
 ### memory_index_scan() Parameters

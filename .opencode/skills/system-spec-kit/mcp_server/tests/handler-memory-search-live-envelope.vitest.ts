@@ -165,8 +165,7 @@ function responseEnvelope(response: MCPResponse): SearchDecisionEnvelope {
   const parsed = parseResponse(response);
   const data = parsed.data ?? {};
   expect(data.searchDecisionEnvelope).toBeDefined();
-  expect(data.search_decision_envelope).toBeDefined();
-  expect(data.searchDecisionEnvelope).toEqual(data.search_decision_envelope);
+  expect(data.search_decision_envelope).toBeUndefined();
   return data.searchDecisionEnvelope as SearchDecisionEnvelope;
 }
 
@@ -222,7 +221,7 @@ describe('handleMemorySearch live SearchDecisionEnvelope seam', () => {
     }
   });
 
-  it('TC-1 attaches camelCase and snake_case SearchDecisionEnvelope payloads', async () => {
+  it('TC-1 attaches a single camelCase SearchDecisionEnvelope payload', async () => {
     const response = await callHandler();
     const envelope = responseEnvelope(response);
 

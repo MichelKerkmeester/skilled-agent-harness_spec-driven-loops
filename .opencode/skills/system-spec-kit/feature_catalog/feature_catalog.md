@@ -47,7 +47,7 @@ Code-graph hook docs now point at the extracted `system-code-graph` skill for gr
 
 ### Command-Surface Contract
 
-The Spec Kit Memory MCP server exposes **39 tools** overall across the 7-layer MCP surface (canonical source: `TOOL_DEFINITIONS.length` in `mcp_server/tool-schemas.ts`; deferred / internal-only handlers do NOT count), matching the README's 39-tool API reference. The command layer wraps the spec-doc record-focused subset under **4 top-level memory slash commands**, with session recovery still owned by `/speckit:resume` as a spec-folder workflow using the spec-doc record/session recovery stack. Each command declares its allowed tools in frontmatter; tools not listed are inaccessible to that command. The canonical source for primary tool ownership is the coverage matrix in `.opencode/commands/memory/README.txt`, while each command file's `allowed-tools` frontmatter shows the full operational surface. Recovery behavior is documented in `.opencode/commands/speckit/resume.md`.
+The Spec Kit Memory MCP server exposes **41 tools** overall across the 7-layer MCP surface (canonical source: `TOOL_DEFINITIONS.length` in `mcp_server/tool-schemas.ts`; deferred / internal-only handlers do NOT count), matching the README's 41-tool API reference. The command layer wraps the spec-doc record-focused subset under **4 top-level memory slash commands**, with session recovery still owned by `/speckit:resume` as a spec-folder workflow using the spec-doc record/session recovery stack. Each command declares its allowed tools in frontmatter; tools not listed are inaccessible to that command. The canonical source for primary tool ownership is the coverage matrix in `.opencode/commands/memory/README.txt`, while each command file's `allowed-tools` frontmatter shows the full operational surface. Recovery behavior is documented in `.opencode/commands/speckit/resume.md`.
 
 | Command | Tools | Ownership | Tool Names |
 |---------|-------|-----------|------------|
@@ -59,7 +59,7 @@ The Spec Kit Memory MCP server exposes **39 tools** overall across the 7-layer M
 
 **Owns** means the command is the primary home for those tools. **Shared** means the command borrows tools whose primary home is another command (typically `/memory:search` or `/memory:manage`).
 
-Current catalog entries include surfaced runtime and tooling features such as `memory_retention_sweep` for governed `delete_after` closure, CLI matrix adapter runners under `mcp_server/matrix_runners/`, the OpenCode `freshness-smoke-check` helper, orphan MCP sweeper documentation, and the launcher idle-timeout knob. The Skill Advisor catalog owns the detailed `advisor_rebuild` MCP entry; it belongs to the separate Skill Advisor server and is NOT part of the mk-spec-memory 39-tool `TOOL_DEFINITIONS` surface counted above.
+Current catalog entries include surfaced runtime and tooling features such as `memory_retention_sweep` for governed `delete_after` closure, CLI matrix adapter runners under `mcp_server/matrix_runners/`, the OpenCode `freshness-smoke-check` helper, orphan MCP sweeper documentation, and the launcher idle-timeout knob. The Skill Advisor catalog owns the detailed `advisor_rebuild` MCP entry; it belongs to the separate Skill Advisor server and is NOT part of the mk-spec-memory 41-tool `TOOL_DEFINITIONS` surface counted above.
 
 ---
 
@@ -4035,7 +4035,7 @@ See [`16--tooling-and-scripts/standalone-admin-cli.md`](16--tooling-and-scripts/
 
 #### Description
 
-The 028 MCP-to-CLI program shipped `node .opencode/bin/spec-memory.cjs` as a second IPC client over the unchanged mk-spec-memory daemon: all 39 tools become CLI commands generated at runtime from `TOOL_DEFINITIONS`, so the surface cannot drift from the MCP registration. The CLI is the resilience and universal surface for hooks, cron, CI, and transport-down recovery; the MCP registration stays untouched through the dual-stack window. Sibling skills ship the same pattern (`code-index.cjs`, 8 tools; `skill-advisor.cjs`, 9 tools with a fail-closed trusted-mutation gate).
+The MCP-to-CLI program shipped `node .opencode/bin/spec-memory.cjs` as a second IPC client over the unchanged mk-spec-memory daemon: all 41 tools become CLI commands generated at runtime from `TOOL_DEFINITIONS`, so the surface cannot drift from the MCP registration. The CLI is the resilience and universal surface for hooks, cron, CI, and transport-down recovery; the MCP registration stays untouched through the dual-stack window. Sibling skills ship the same pattern (`code-index.cjs`, 8 tools; `skill-advisor.cjs`, 9 tools with a fail-closed trusted-mutation gate).
 
 #### How It Works
 
@@ -4423,7 +4423,7 @@ See [`16--tooling-and-scripts/markdown-link-integrity-guard.md`](16--tooling-and
 
 #### Description
 
-The memory health surface now reports read-only hard-exclusion audit metadata, and pre-commit tooling can fail on drift in the 39-tool ownership map. Recall behavior and stored data are unchanged; the feature exists to expose silent-risk exclusions and keep command/tool ownership documentation synchronized with the registered tool definitions.
+The memory health surface now reports read-only hard-exclusion audit metadata, and pre-commit tooling can fail on drift in the 41-tool ownership map. Recall behavior and stored data are unchanged; the feature exists to expose silent-risk exclusions and keep command/tool ownership documentation synchronized with the registered tool definitions.
 
 #### How It Works
 

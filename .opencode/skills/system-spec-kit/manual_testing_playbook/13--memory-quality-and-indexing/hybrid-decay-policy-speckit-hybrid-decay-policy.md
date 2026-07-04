@@ -59,8 +59,8 @@ Command 1: `rg -n "SPECKIT_HYBRID_DECAY_POLICY|SPECKIT_CLASSIFICATION_DECAY|HYBR
 .opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:351:  if (isHybridDecayPolicyEnabled() && HYBRID_NO_DECAY_CONTEXT_TYPES.has(contextType)) {
 .opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:355:  // Graduated: default-ON. Set SPECKIT_CLASSIFICATION_DECAY=false to disable.
 .opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:356:  const flag = process.env.SPECKIT_CLASSIFICATION_DECAY?.toLowerCase();
-.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:370:   Gated by SPECKIT_HYBRID_DECAY_POLICY env var (default OFF).
-.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:383:   SPECKIT_HYBRID_DECAY_POLICY is default-OFF and must be opted into explicitly.
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:370:   Gated by SPECKIT_HYBRID_DECAY_POLICY env var (default ON).
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:383:   SPECKIT_HYBRID_DECAY_POLICY can be disabled explicitly with false or 0.
 .opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:390:const HYBRID_NO_DECAY_CONTEXT_TYPES: ReadonlySet<string> = new Set([
 .opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:409: * Default: TRUE (graduated). Set SPECKIT_HYBRID_DECAY_POLICY=false to disable.
 .opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:411:function isHybridDecayPolicyEnabled(): boolean {
@@ -70,7 +70,7 @@ Command 1: `rg -n "SPECKIT_HYBRID_DECAY_POLICY|SPECKIT_CLASSIFICATION_DECAY|HYBR
 .opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:432:function getHybridDecayMultiplier(contextType: string, _importanceTier?: string): number {
 .opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:433:  if (!isHybridDecayPolicyEnabled()) {
 .opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:436:  return HYBRID_NO_DECAY_CONTEXT_TYPES.has(contextType) ? NO_DECAY : 1;
-.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:442: * When SPECKIT_HYBRID_DECAY_POLICY is OFF (default), returns stability unchanged.
+.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:442: * When SPECKIT_HYBRID_DECAY_POLICY is ON (default):
 .opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:451:function applyHybridDecayPolicy(stability: number, contextType: string, importanceTier?: string): number {
 .opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:452:  const multiplier = getHybridDecayMultiplier(contextType, importanceTier);
 .opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:482:  HYBRID_NO_DECAY_CONTEXT_TYPES,

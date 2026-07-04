@@ -61,6 +61,20 @@ export interface WarmSpecMemoryCliOptions {
 
 type WarmSpecMemoryCliObserver = (result: WarmSpecMemoryCliResult) => void;
 
+export function buildWarmMemoryContextArgs(input: string): Record<string, unknown> | null {
+  const trimmedInput = input.trim();
+  if (trimmedInput.length < 3) {
+    return null;
+  }
+  return {
+    input: trimmedInput.slice(0, 4000),
+    mode: 'quick',
+    limit: 5,
+    includeContent: false,
+    includeConstitutional: false,
+  };
+}
+
 function sanitizeFallbackReason(reason: string | null | undefined): string {
   return (reason ?? 'unknown')
     .replace(/[\r\n\t]+/g, ' ')
@@ -425,6 +439,7 @@ export function renderSpecMemoryCliBrief(payload: unknown, maxChars = 2000): str
 
   const hints = arrayField(data, 'hints')
     .filter((hint): hint is string => typeof hint === 'string' && hint.trim().length > 0)
+    .filter((hint) => !sections.includes(hint.trim()))
     .slice(0, 3);
   if (hints.length > 0) {
     sections.push(`Hints:\n${hints.map((hint) => `- ${hint.trim()}`).join('\n')}`);
@@ -481,16 +496,10 @@ export async function buildWarmMemoryContextSection(options: {
   readonly timeoutMs: number;
   readonly onResult?: WarmSpecMemoryCliObserver;
 }): Promise<{ title: string; content: string } | null> {
-  const trimmedInput = options.input.trim();
-  if (trimmedInput.length < 3) {
+  const args = buildWarmMemoryContextArgs(options.input);
+  if (!args) {
     return null;
   }
-  const args: Record<string, unknown> = {
-    input: trimmedInput.slice(0, 4000),
-    mode: 'quick',
-    limit: 5,
-    includeContent: false,
-  };
   if (options.sessionId) {
     args.sessionId = options.sessionId;
   }

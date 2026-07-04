@@ -43,15 +43,9 @@ The memory backend is dual-stack: when the MCP tools are missing from the runtim
 
 ### Canonical Section Order
 
-All 4 memory commands follow a consistent user-first section order:
+All 4 memory commands keep routing prose above presentation appendices: purpose or assets first, then router/workflow contract, hard rules, presentation boundary, and related commands.
 
-```text
-GATE -> TITLE -> §1 PURPOSE -> §2 CONTRACT -> §3 QUICK REFERENCE
--> §4 ARGUMENT ROUTING -> [MODE/WORKFLOW HANDLERS] -> ERROR HANDLING
--> RELATED COMMANDS -> APPENDIX A: MCP TOOL REFERENCE -> [APPENDIX B+]
-```
-
-Everything above the `---` divider is for users. Appendices below are AI agent reference material.
+Visible dashboards, prompts, examples, and errors live in each command's presentation asset so routers stay thin.
 
 <!-- /ANCHOR:overview -->
 
@@ -62,7 +56,7 @@ Everything above the `---` divider is for users. Appendices below are AI agent r
 
 | Command | Invocation | Description |
 |---------|------------|-------------|
-| **search** | `/memory:search <query> [--intent:<type>]` or `/memory:search <subcommand>` | Unified retrieval and analysis: intent-aware search, epistemic baselines, causal graph, ablation, dashboard |
+| **search** | `/memory:search <query> [--intent <type>\|--intent=<type>]` or `/memory:search <subcommand>` | Unified retrieval and analysis: intent-aware search, epistemic baselines, causal graph, ablation, dashboard |
 | **learn** | `/memory:learn [rule] \| list \| edit \| remove \| budget` | Create and manage constitutional memories (always-surface rules) |
 | **manage** | `/memory:manage <subcommand>` | Database operations (scan, cleanup, tier, health, checkpoint, ingest) |
 | **save** | `/memory:save <spec-folder>` | Update packet continuity with semantic indexing |
@@ -119,7 +113,7 @@ memory/
 └── save.md         # /memory:save - Context saving
 ```
 
-No `assets/` folder exists for memory commands. Workflows are defined inline within each command file.
+The `assets/` folder contains the presentation contracts for memory commands. Workflows are defined inline within each command file until a separate workflow asset is introduced.
 
 <!-- /ANCHOR:structure -->
 
@@ -136,7 +130,7 @@ No `assets/` folder exists for memory commands. Workflows are defined inline wit
 /memory:search "how does the auth system work"
 
 # Retrieve context with explicit intent
-/memory:search "auth flow" --intent:fix_bug
+/memory:search "auth flow" --intent fix_bug
 
 # Recover from a crashed or interrupted session
 /speckit:resume
@@ -216,7 +210,7 @@ The `/memory:manage` command accepts these subcommands:
 | `bulk-delete` | `<tier> [--older-than <days>] [--folder <spec>]` | Bulk delete by tier |
 | `tier` | `<id> <tier>` | Change importance tier of a memory |
 | `triggers` | `<id>` | View trigger phrases for a memory |
-| `validate` | `<id> <useful\|not>` | Record validation feedback for a memory |
+| `validate` | `<id> <true\|false>` | Record validation feedback for a memory |
 | `delete` | `<id>` | Delete a specific memory |
 | `health` | (none) | Check memory system health status |
 | `checkpoint` | `create\|list\|restore\|delete` | Manage named checkpoints of memory state |
@@ -230,7 +224,7 @@ The `/memory:manage` command accepts these subcommands:
 
 Primary MCP tools mapped to their command home:
 
-> **026 Note:** The matrix lists the current 39 public Spec Kit Memory tools plus the 4 code-graph tools used by memory/search workflows. Graph-first retrieval routing (026) means `code_graph_query` is now the preferred first channel for structural code search before vector or FTS5/BM25 fallback. Phase 005 moved code-graph implementation/docs ownership to `.opencode/skills/system-code-graph/` while preserving tool IDs.
+> **Note:** The matrix lists the current 41 public Spec Kit Memory tools plus the 4 code-graph tools used by memory/search workflows. Graph-first retrieval routing means `code_graph_query` is the preferred first channel for structural code search before vector or FTS5/BM25 fallback. Code-graph implementation and package docs are owned by `.opencode/skills/system-code-graph/` while preserving tool IDs.
 
 | # | Tool | Layer | Primary Command |
 |---|------|-------|-----------------|
@@ -247,36 +241,38 @@ Primary MCP tools mapped to their command home:
 | 11 | `memory_validate` | L4 | `/memory:manage` |
 | 12 | `memory_bulk_delete` | L4 | `/memory:manage` |
 | 13 | `memory_retention_sweep` | L4 | `/memory:manage` |
-| 14 | `memory_embedding_reconcile` | L4 | `/memory:manage` |
-| 15 | `checkpoint_create` | L5 | `/memory:manage` |
-| 16 | `checkpoint_list` | L5 | `/memory:manage` |
-| 17 | `checkpoint_restore` | L5 | `/memory:manage` |
-| 18 | `checkpoint_delete` | L5 | `/memory:manage` |
-| 19 | `task_preflight` | L6 | `/memory:search` |
-| 20 | `task_postflight` | L6 | `/memory:search` |
-| 21 | `memory_drift_why` | L6 | `/memory:search` |
-| 22 | `memory_causal_link` | L6 | `/memory:search` |
-| 23 | `memory_causal_stats` | L6 | `/memory:search` |
-| 24 | `memory_causal_unlink` | L6 | `/memory:search` |
-| 25 | `eval_run_ablation` | L6 | `/memory:search` |
-| 26 | `eval_reporting_dashboard` | L6 | `/memory:search` |
-| 27 | `memory_index_scan` | L7 | `/memory:manage` |
-| 28 | `memory_index_scan_status` | L7 | `/memory:manage scan` |
-| 29 | `memory_index_scan_cancel` | L7 | `/memory:manage scan` |
-| 30 | `memory_get_learning_history` | L7 | `/memory:search` |
-| 31 | `memory_ingest_start` | L7 | `/memory:manage ingest` |
-| 32 | `memory_ingest_status` | L7 | `/memory:manage ingest` |
-| 33 | `memory_ingest_cancel` | L7 | `/memory:manage ingest` |
-| 34 | `embedder_list` | L7 | MCP direct (maintenance) |
-| 35 | `embedder_set` | L7 | MCP direct (maintenance) |
-| 36 | `embedder_status` | L7 | `/doctor embeddings` |
-| 37 | `session_bootstrap` | L1 | `/speckit:resume` |
-| 38 | `session_health` | L3 | `/memory:manage` |
-| 39 | `session_resume` | L1 | `/speckit:resume` |
-| 40 | `code_graph_query` | L2 | `/memory:search` |
-| 41 | `code_graph_scan` | L7 | `/memory:manage` |
-| 42 | `code_graph_status` | L3 | `/memory:manage` |
-| 43 | `code_graph_context` | L2 | `/memory:search` |
+| 14 | `memory_learned_expire` | L4 | `/memory:manage` |
+| 15 | `memory_learned_clear` | L4 | `/memory:manage` |
+| 16 | `memory_embedding_reconcile` | L4 | MCP direct (maintenance) |
+| 17 | `checkpoint_create` | L5 | `/memory:manage` |
+| 18 | `checkpoint_list` | L5 | `/memory:manage` |
+| 19 | `checkpoint_restore` | L5 | `/memory:manage` |
+| 20 | `checkpoint_delete` | L5 | `/memory:manage` |
+| 21 | `task_preflight` | L6 | `/memory:search` |
+| 22 | `task_postflight` | L6 | `/memory:search` |
+| 23 | `memory_drift_why` | L6 | `/memory:search` |
+| 24 | `memory_causal_link` | L6 | `/memory:search` |
+| 25 | `memory_causal_stats` | L6 | `/memory:search` |
+| 26 | `memory_causal_unlink` | L6 | `/memory:search` |
+| 27 | `eval_run_ablation` | L6 | `/memory:search` |
+| 28 | `eval_reporting_dashboard` | L6 | `/memory:search` |
+| 29 | `memory_index_scan` | L7 | `/memory:manage` |
+| 30 | `memory_index_scan_status` | L7 | MCP direct (maintenance) |
+| 31 | `memory_index_scan_cancel` | L7 | MCP direct (maintenance) |
+| 32 | `memory_get_learning_history` | L7 | `/memory:search` |
+| 33 | `memory_ingest_start` | L7 | `/memory:manage ingest` |
+| 34 | `memory_ingest_status` | L7 | `/memory:manage ingest` |
+| 35 | `memory_ingest_cancel` | L7 | `/memory:manage ingest` |
+| 36 | `embedder_list` | L7 | MCP direct (maintenance) |
+| 37 | `embedder_set` | L7 | MCP direct (maintenance) |
+| 38 | `embedder_status` | L7 | `/doctor embeddings` |
+| 39 | `session_bootstrap` | L1 | `/speckit:resume` |
+| 40 | `session_health` | L3 | `/memory:manage` |
+| 41 | `session_resume` | L1 | MCP direct (session recovery) |
+| 42 | `code_graph_query` | L2 | `/memory:search` |
+| 43 | `code_graph_scan` | L7 | MCP direct (code graph maintenance) |
+| 44 | `code_graph_status` | L3 | MCP direct (code graph maintenance) |
+| 45 | `code_graph_context` | L2 | `/memory:search` |
 
 ### Coverage by Command
 
@@ -284,12 +280,13 @@ Primary MCP tools mapped to their command home:
 |---------|-------------|--------------|--------|
 | `/memory:search` | 15 | (none) | L1, L2, L6, L7 |
 | `/memory:save` | 1 | 3 (index_scan, stats, update) | L2 |
-| `/memory:manage` | 22 | 1 (search) | L3, L4, L5, L7 |
+| `/memory:manage` | 23 | 1 (search) | L3, L4, L5, L7 |
 | `/memory:learn` | 0 | uses manage/save tools | (none) |
 | `/doctor embeddings` | 1 | (none) | L7 |
-| MCP direct maintenance | 2 | (none) | L7 |
-| `/speckit:resume` | 2 | uses search/manage tools | L1 |
-| **Total** | **43 listed** | | **L1-L7** |
+| MCP direct maintenance | 5 | (none) | L4, L7 |
+| `/speckit:resume` | 1 | uses search/manage tools | L1 |
+| MCP direct session recovery | 1 | (none) | L1 |
+| **Total** | **45 listed** | | **L1-L7** |
 
 > **Note:** Commands may include helper tools in their `allowed-tools` frontmatter beyond their primary ownership. Helper tools are borrowed from other command scopes for operational needs (e.g., `/memory:save` uses `memory_index_scan` from `/memory:manage` for post-save indexing). The coverage matrix above shows primary ownership. Each command file's `allowed-tools` shows the full operational set.
 
@@ -344,7 +341,7 @@ The scan re-indexes all previously indexed continuity artifacts and canonical sp
 | [Parent: OpenCode Commands](../README.txt) | Overview of all command groups |
 | [system-spec-kit SKILL.md](../../skills/system-spec-kit/SKILL.md) | Memory system architecture and spec folder workflow |
 | [Spec Kit Memory MCP](../../skills/system-spec-kit/mcp_server/) | MCP server implementation for memory operations |
-| [Tool Schemas](../../skills/system-spec-kit/mcp_server/tool-schemas.ts) | Canonical 39-tool inventory and property definitions |
+| [Tool Schemas](../../skills/system-spec-kit/mcp_server/tool-schemas.ts) | Canonical 41-tool inventory and property definitions |
 | [Tool Input Schemas](../../skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts) | Zod validation schemas and ALLOWED_PARAMETERS |
 
 <!-- /ANCHOR:related-documents -->

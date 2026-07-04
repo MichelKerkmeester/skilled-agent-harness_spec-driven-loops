@@ -88,17 +88,19 @@ export { isResultExplainEnabled };
 function extractSignals(row: PipelineRow): SignalLabel[] {
   const signals: SignalLabel[] = [];
 
-  // Semantic match: the primary similarity score
-  const score = resolveEffectiveScore(row);
-  if (score > 0) {
-    signals.push('semantic_match');
-  }
-
   // Lexical match: only present if the row came through FTS channel
   // We detect this via channelAttribution on the row (Stage 4 annotation)
   const channelAttribution = Array.isArray(row.channelAttribution)
     ? row.channelAttribution as string[]
     : [];
+  const vectorAttributed = channelAttribution.includes('vector')
+    || channelAttribution.includes('semantic')
+    || typeof row.vectorScore === 'number'
+    || typeof row.similarity === 'number'
+    || typeof row.averageSimilarity === 'number';
+  if (vectorAttributed && resolveEffectiveScore(row) > 0) {
+    signals.push('semantic_match');
+  }
   if (channelAttribution.includes('fts') || channelAttribution.includes('bm25')) {
     signals.push('lexical_match');
   }

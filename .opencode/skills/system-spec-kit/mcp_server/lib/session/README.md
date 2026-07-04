@@ -20,7 +20,7 @@ trigger_phrases:
 Current state:
 
 - `session-manager.ts` is the only implementation file in this folder.
-- Session state supports `/spec_kit:resume`, but the canonical recovery ladder remains `handover.md` → `_memory.continuity` → spec docs.
+- Session state supports `/speckit:resume`, but the canonical recovery ladder remains `handover.md` → `_memory.continuity` → spec docs.
 - Session deduplication writes to `session_sent_memories` and session recovery state writes to `session_state`.
 - Cleanup also touches `working_memory` through `../cognitive/working-memory.js` and governed retention through `../governance/memory-retention-sweep.js`.
 
@@ -45,7 +45,7 @@ Current state:
                          └─────────────────────┘       └───────────────────┘
 
 Canonical recovery ladder:
-session_state → /spec_kit:resume → handover.md → _memory.continuity → spec docs
+session_state → /speckit:resume → handover.md → _memory.continuity → spec docs
 ```
 
 Dependency direction: callers → `session-manager.ts` → SQLite, working memory, retention sweep.

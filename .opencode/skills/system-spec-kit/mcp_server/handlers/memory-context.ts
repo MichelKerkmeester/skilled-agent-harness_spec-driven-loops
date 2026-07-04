@@ -96,6 +96,7 @@ interface ContextOptions {
   sessionId?: string;
   enableDedup?: boolean;
   includeContent?: boolean;
+  includeConstitutional?: boolean;
   includeTrace?: boolean; // Forward to internal memory_search calls
   anchors?: string[];
   profile?: string;
@@ -132,6 +133,7 @@ interface ContextArgs {
   sessionId?: string;
   enableDedup?: boolean;
   includeContent?: boolean;
+  includeConstitutional?: boolean;
   includeTrace?: boolean; // Forward to internal memory_search calls
   tokenUsage?: number;
   anchors?: string[];
@@ -264,7 +266,7 @@ interface ResumeRow extends Record<string, unknown> {
   similarity: number;
   fingerprint: string;
   fingerprintExpected: string | null;
-  fingerprintStatus: 'verified';
+  fingerprintStatus: 'verified' | 'unverified' | 'mismatch';
   content: string;
 }
 
@@ -309,6 +311,38 @@ function extractResultRowsFromContextResponse(responseText: string): Array<Recor
       : [];
   } catch {
     return [];
+  }
+}
+
+function denestDelegatedSearchEnvelope(result: ContextResult): ContextResult {
+  const content = Array.isArray((result as Record<string, unknown>).content)
+    ? (result as Record<string, unknown>).content as Array<{ type?: string; text?: string }>
+    : [];
+  const responseText = content[0]?.text;
+  if (typeof responseText !== 'string' || responseText.length === 0) {
+    return result;
+  }
+
+  try {
+    const nestedEnvelope = JSON.parse(responseText) as Record<string, unknown>;
+    const nestedData = nestedEnvelope.data && typeof nestedEnvelope.data === 'object' && !Array.isArray(nestedEnvelope.data)
+      ? nestedEnvelope.data as Record<string, unknown>
+      : null;
+    if (!nestedData) {
+      return result;
+    }
+    const { content: _content, ...rest } = result as Record<string, unknown>;
+    return {
+      ...rest,
+      ...nestedData,
+      delegatedSearch: {
+        summary: typeof nestedEnvelope.summary === 'string' ? nestedEnvelope.summary : null,
+        hints: Array.isArray(nestedEnvelope.hints) ? nestedEnvelope.hints : [],
+        meta: nestedEnvelope.meta && typeof nestedEnvelope.meta === 'object' ? nestedEnvelope.meta : null,
+      },
+    } as unknown as ContextResult;
+  } catch {
+    return result;
   }
 }
 
@@ -481,7 +515,7 @@ function convertResumeLadderToRows(result: ResumeLadderResult, limit: number): R
       similarity: 1,
       fingerprint: document.fingerprint,
       fingerprintExpected: null,
-      fingerprintStatus: 'verified',
+      fingerprintStatus: 'unverified',
       content: '',
     };
 
@@ -605,25 +639,6 @@ function enforceTokenBudget(result: ContextResult, budgetTokens: number): { resu
     };
   }
 
-  // Sanity guard: when reported usage is far below budget but
-  // we somehow entered enforcement (e.g. estimator ran twice on already-truncated
-  // payload, or budget was passed in as a tiny number), short-circuit and return
-  // the unmodified result. This prevents the historical regression where a
-  // 71-token payload against a 3000-token budget was nuked to count:0,results:[].
-  if (budgetTokens > 0 && preEnforcementTokens / budgetTokens < 0.50) {
-    return {
-      result,
-      enforcement: {
-        budgetTokens,
-        preEnforcementTokens,
-        returnedTokens: preEnforcementTokens,
-        actualTokens: preEnforcementTokens,
-        enforced: false,
-        truncated: false,
-      }
-    };
-  }
-
   // Over budget — attempt to truncate embedded results
   // Strategy results contain an embedded MCPResponse with content[0].text as JSON
   // That JSON has a .data.results array we can truncate
@@ -632,6 +647,100 @@ function enforceTokenBudget(result: ContextResult, budgetTokens: number): { resu
   let originalResultCount: number | undefined;
   let returnedResultCount: number | undefined;
   let droppedAllResultsReason: DroppedAllResultsReason | undefined;
+
+  const compactDirectResult = (): { result: ContextResult; actualTokens: number; returnedResultCount?: number } | null => {
+    const directResults = Array.isArray((truncatedResult as Record<string, unknown>).results)
+      ? (truncatedResult as Record<string, unknown>).results as Array<Record<string, unknown>>
+      : null;
+    if (!directResults) {
+      return null;
+    }
+
+    const candidate = { ...truncatedResult } as ContextResult;
+    const metadataDropOrder = [
+      'graphContext',
+      'queryIntentRouting',
+      'searchDecisionEnvelope',
+      'structuralRoutingNudge',
+      'delegatedSearch',
+      'pipelineMetadata',
+      'progressiveDisclosure',
+      'retrievalTrace',
+      'sourceContract',
+    ];
+    for (const key of metadataDropOrder) {
+      if (estimateTokens(JSON.stringify(candidate)) <= budgetTokens) {
+        return {
+          result: candidate,
+          actualTokens: estimateTokens(JSON.stringify(candidate)),
+          returnedResultCount: directResults.length,
+        };
+      }
+      delete (candidate as Record<string, unknown>)[key];
+    }
+
+    const compactRows = directResults.map((row) => {
+      const snippetSource = typeof row.snippet === 'string'
+        ? row.snippet
+        : typeof row.summary === 'string'
+          ? row.summary
+          : typeof row.content === 'string'
+            ? row.content
+            : '';
+      const snippet = snippetSource.length > 120
+        ? `${snippetSource.slice(0, 120)}... [truncated]`
+        : snippetSource;
+      return {
+        id: row.id,
+        title: row.title,
+        filePath: row.filePath ?? row.file_path,
+        score: row.score ?? row.similarity,
+        importanceTier: row.importanceTier ?? row.importance_tier,
+        snippet,
+      };
+    });
+    (candidate as Record<string, unknown>).results = compactRows;
+    (candidate as Record<string, unknown>).count = compactRows.length;
+
+    if (estimateTokens(JSON.stringify(candidate)) <= budgetTokens) {
+      return {
+        result: candidate,
+        actualTokens: estimateTokens(JSON.stringify(candidate)),
+        returnedResultCount: compactRows.length,
+      };
+    }
+
+    while (compactRows.length > 1 && estimateTokens(JSON.stringify(candidate)) > budgetTokens) {
+      compactRows.pop();
+      (candidate as Record<string, unknown>).results = compactRows;
+      (candidate as Record<string, unknown>).count = compactRows.length;
+    }
+
+    const candidateTokens = estimateTokens(JSON.stringify(candidate));
+    return candidateTokens <= budgetTokens
+      ? { result: candidate, actualTokens: candidateTokens, returnedResultCount: compactRows.length }
+      : null;
+  };
+
+  const directCompacted = compactDirectResult();
+  if (directCompacted) {
+    const directOriginalCount = Array.isArray((truncatedResult as Record<string, unknown>).results)
+      ? ((truncatedResult as Record<string, unknown>).results as unknown[]).length
+      : undefined;
+    return {
+      result: directCompacted.result,
+      enforcement: {
+        budgetTokens,
+        preEnforcementTokens,
+        returnedTokens: directCompacted.actualTokens,
+        actualTokens: directCompacted.actualTokens,
+        enforced: true,
+        truncated: true,
+        originalResultCount: directOriginalCount,
+        returnedResultCount: directCompacted.returnedResultCount,
+      }
+    };
+  }
 
   const extractNestedResultCount = (candidate: ContextResult): number | undefined => {
     try {
@@ -1095,7 +1204,7 @@ async function executeDeepStrategy(input: string, intent: string | null, options
     userId: options.userId,
     agentId: options.agentId,
     limit: options.limit || 10,
-    includeConstitutional: true,
+    includeConstitutional: options.includeConstitutional !== false,
     includeContent: options.includeContent || false,
     includeTrace: options.includeTrace || false, // Forward to internal memory_search calls
     anchors: options.anchors,
@@ -1125,7 +1234,7 @@ async function executeFocusedStrategy(input: string, intent: string | null, opti
     userId: options.userId,
     agentId: options.agentId,
     limit: options.limit || 8,
-    includeConstitutional: true,
+    includeConstitutional: options.includeConstitutional !== false,
     includeContent: options.includeContent || false,
     includeTrace: options.includeTrace || false, // Forward to internal memory_search calls
     anchors: options.anchors,
@@ -1466,7 +1575,6 @@ function buildResponseMeta(params: BuildResponseMetaParams): Record<string, unkn
     tokenUsageSource: pressurePolicy.source,
     tokenUsagePressure: pressurePolicy.ratio,
     pressureLevel: pressurePolicy.level,
-    pressure_level: pressurePolicy.level,
     pressurePolicy: {
       applied: pressureOverrideApplied,
       overrideMode: pressureOverrideApplied ? pressureOverrideTargetMode : null,
@@ -1700,6 +1808,7 @@ async function handleMemoryContext(args: ContextArgs): Promise<MCPResponse> {
       limit,
       enableDedup: enableDedup,
       includeContent: include_content,
+      includeConstitutional: args.includeConstitutional,
       includeTrace: (args as unknown as Record<string, unknown>).includeTrace === true || debugProfileRequested,
       anchors,
       profile: args.profile,
@@ -1882,9 +1991,6 @@ async function handleMemoryContext(args: ContextArgs): Promise<MCPResponse> {
       }
     }
 
-    // Enforce token budget AFTER all context injection
-    const { result: budgetedResult, enforcement } = enforceTokenBudget(tracedResult0, effectiveBudget);
-    const tracedResult = budgetedResult;
     const intentTelemetry = detectedIntent ? intentClassifier.emitIntentTelemetry(normalizedInput, {
       taskIntent: {
         intent: detectedIntent,
@@ -1897,8 +2003,10 @@ async function handleMemoryContext(args: ContextArgs): Promise<MCPResponse> {
       },
     }) : null;
 
-    // Attach graph context and query-intent routing metadata
-    const responseData: ContextResult & Record<string, unknown> = { ...tracedResult };
+    // Attach graph context and query-intent routing metadata before budget enforcement.
+    const responseData: ContextResult & Record<string, unknown> = {
+      ...denestDelegatedSearchEnvelope(tracedResult0),
+    };
     if (graphContextResult) {
       responseData.graphContext = graphContextResult;
     }
@@ -1966,7 +2074,9 @@ async function handleMemoryContext(args: ContextArgs): Promise<MCPResponse> {
       latencyMs: Date.now() - _contextStartTime,
     });
     responseData.searchDecisionEnvelope = searchDecisionEnvelope;
-    responseData.search_decision_envelope = searchDecisionEnvelope;
+
+    const { result: budgetedResult, enforcement } = enforceTokenBudget(responseData, effectiveBudget);
+    const tracedResult = budgetedResult;
 
     // Build response with layer metadata
     const _contextResponse = createMCPResponse({
@@ -1974,7 +2084,7 @@ async function handleMemoryContext(args: ContextArgs): Promise<MCPResponse> {
       summary: enforcement.truncated
         ? `Context retrieved via ${effectiveMode} mode (${tracedResult.strategy} strategy) [truncated${enforcement.originalResultCount !== undefined ? `: ${enforcement.originalResultCount} → ${enforcement.returnedResultCount} results` : ''} to fit ${effectiveBudget} token budget]`
         : `Context retrieved via ${effectiveMode} mode (${tracedResult.strategy} strategy)`,
-      data: responseData,
+      data: tracedResult,
       hints: [
         `Mode: ${CONTEXT_MODES[effectiveMode].description}`,
         `For more granular control, use L2 tools: memory_search, memory_match_triggers`,

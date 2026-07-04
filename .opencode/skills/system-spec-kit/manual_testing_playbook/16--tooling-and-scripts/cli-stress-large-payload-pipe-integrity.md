@@ -8,7 +8,7 @@ version: 3.6.0.1
 
 ## 1. OVERVIEW
 
-This stress scenario is part of the 028 CLI stress set (434-438). It verifies that payloads larger than the classic 64KB pipe-buffer threshold cross the CLI boundary intact. The spec-memory `list-tools --format json` envelope is already over 64KB (the 39 tools carry their full schemas), is fully deterministic, and needs no daemon — making it a host-safe large-payload fixture. The scenario asserts the payload parses as valid JSON, exceeds 65,536 bytes, and is byte-identical (same SHA-256) across ten repetitions, in both `json` and single-line `jsonl` renderings.
+This stress scenario verifies that payloads larger than the classic 64KB pipe-buffer threshold cross the CLI boundary intact. The spec-memory `list-tools --format json` envelope is already over 64KB (the 41 tools carry their full schemas), is fully deterministic, and needs no daemon — making it a host-safe large-payload fixture. The scenario asserts the payload parses as valid JSON, exceeds 65,536 bytes, and is byte-identical (same SHA-256) across ten repetitions, in both `json` and single-line `jsonl` renderings.
 
 Pipe truncation classically shows up as nondeterministic tail loss under load, which the hash-stability loop would catch immediately. IPC socket-frame integrity for daemon-backed large responses is locked by the dual-client hardening suites, which round-trip real frames over `daemon-ipc.sock`.
 

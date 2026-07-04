@@ -260,8 +260,8 @@ describe('memory_search UX hook integration', () => {
     const resumedEnvelope = parseEnvelope(resumed);
     const resumedData = resumedEnvelope.data as Record<string, unknown>;
 
-    expect(resumedEnvelope.summary).toBe('Error: Cursor is invalid, expired, or out of scope');
-    expect(resumedData.error).toBe('Cursor is invalid, expired, or out of scope');
+    expect(resumedEnvelope.summary).toBe('Error: Cursor is invalid or out of scope');
+    expect(resumedData.error).toBe('Cursor is invalid or out of scope');
   });
 
   it('filters legacy memory rows and reports canonical source counts', async () => {
@@ -333,9 +333,9 @@ describe('memory_search UX hook integration', () => {
     expect(results.map((row) => row.id)).toEqual([101, 102, 104]);
     expect(results.some((row) => row.id === 103)).toBe(false);
     expect(sourceContract).toMatchObject({
-      archivedTierEnabled: false,
+      archivedTierEnabled: true,
       legacyFallbackEnabled: false,
-      includeArchivedCompatibility: 'ignored',
+      includeArchivedCompatibility: 'honored',
       retainedResults: 3,
       droppedNonCanonicalResults: 1,
     });

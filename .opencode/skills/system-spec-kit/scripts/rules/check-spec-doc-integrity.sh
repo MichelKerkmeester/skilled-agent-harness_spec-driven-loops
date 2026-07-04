@@ -161,7 +161,7 @@ run_check() {
             fi
 
             local resume_path=""
-            resume_path=$(sed -n 's|^/spec_kit:resume[[:space:]]\+\(.*\)$|\1|p' "$markdown_file" | head -1)
+            resume_path=$(sed -n 's|^/speckit:resume[[:space:]]\+\(.*\)$|\1|p' "$markdown_file" | head -1)
             if [[ -n "$resume_path" ]]; then
                 local resolved_resume
                 resolved_resume=$(resolve_target_path "$resume_path" "$repo_root")

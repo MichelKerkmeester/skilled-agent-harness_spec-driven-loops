@@ -250,7 +250,7 @@ Continue work on a feature from a previous session where context was saved.
 **Phase 1: Resume Command**
 
 ```bash
-User: /spec_kit:resume specs/009-notification-system/
+User: /speckit:resume specs/009-notification-system/
 ```
 
 **Phase 2: Context Recovery**
@@ -302,10 +302,10 @@ AI: Loading context for specs/009-notification-system/
 
 | Command | Purpose |
 |---------|---------|
-| `/spec_kit:complete` | Full workflow (plan + implement) |
-| `/spec_kit:plan` | Planning phase only |
-| `/spec_kit:implement` | Implementation with existing plan |
-| `/spec_kit:resume` | Continue from previous session |
+| `/speckit:complete` | Full workflow (plan + implement) |
+| `/speckit:plan` | Planning phase only |
+| `/speckit:implement` | Implementation with existing plan |
+| `/speckit:resume` | Continue from previous session |
 | `/memory:save` | Save context before ending session |
 
 ### Level Selection Guide
@@ -319,4 +319,3 @@ AI: Loading context for specs/009-notification-system/
 > **Note**: Risk and complexity can override LOC thresholds. When in doubt, choose the higher level.
 
 ---
-

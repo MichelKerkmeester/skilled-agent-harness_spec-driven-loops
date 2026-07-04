@@ -12,10 +12,10 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-speckit/028-memory-search-intelligence/016-fix-deep-dive-p0-p2-findings-for-mk-spec-memory/012-envelope-presentation-and-command-doc-alignment"
-    last_updated_at: "2026-07-03T09:58:00Z"
+    last_updated_at: "2026-07-04T12:40:57Z"
     last_updated_by: "planning-author"
-    recent_action: "Authored Level 2 planning docs (spec/plan/tasks/checklist)"
-    next_safe_action: "Run T001 live envelope baseline capture before any code change"
+    recent_action: "12 REQs shipped; single-casing + cursor tenant-leak fix + dual-tree docs; live bytes daemon-side"
+    next_safe_action: "Phase 013 absorb-028-006-review-remediation-closeout"
     blockers: []
     key_files:
       - ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts"
@@ -26,7 +26,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "scaffold-scaffold/012-envelope-presentation-and-command-doc-alignment"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions:
       - "Which casing survives the envelope de-duplication (camelCase vs snake_case) — pending T007 consumer inventory"
       - "Substitute-vs-drop for the additive progressive-disclosure block — decided in T025, recorded in implementation-summary.md"

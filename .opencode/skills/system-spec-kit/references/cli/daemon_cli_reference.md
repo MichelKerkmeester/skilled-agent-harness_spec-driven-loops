@@ -24,7 +24,7 @@ Run the repo-relative examples from the repository root. If the caller is in ano
 
 | CLI shim | MCP daemon | Tool count | Primary use |
 | --- | --- | ---: | --- |
-| `node .opencode/bin/spec-memory.cjs` | `mk-spec-memory` | 39 | Memory context, search, health, indexing, checkpoint, and session recovery fallback. |
+| `node .opencode/bin/spec-memory.cjs` | `mk-spec-memory` | 41 | Memory context, search, health, indexing, checkpoint, and session recovery fallback. |
 | `node .opencode/bin/code-index.cjs` | `mk-code-index` | 8 | Code graph status, scan, verify, query, context, apply-mode recovery, and diff impact fallback. |
 | `node .opencode/bin/skill-advisor.cjs` | `mk_skill_advisor` | 9 | Advisor recommendations, advisor health, skill graph diagnostics, and trusted maintainer mutations. |
 
@@ -34,7 +34,7 @@ Launcher supervision is not uniform by design. The spec-memory launcher supervis
 
 ## CLI vs MCP — when to use which
 
-The CLI shims expose count-locked daemon surfaces: `spec-memory.cjs` exposes the 37-tool CLI front-door surface while `mk-spec-memory` retains a 39-tool MCP surface; `code-index.cjs` exposes the same 8 tools as `mk-code-index`; and `skill-advisor.cjs` exposes the same 9 tools as `mk_skill_advisor`. Use MCP as the primary in-session transport today. Use the CLIs when MCP transport is missing, failed or not reconnecting while the daemon is warm, and for hooks, cron, CI and operator shell diagnostics. Prompt-time callers must probe warm-only first; exit `75` means retryable daemon or IPC unavailability.
+The CLI shims expose count-locked daemon surfaces: `spec-memory.cjs` exposes the same 41-tool surface as `mk-spec-memory`; `code-index.cjs` exposes the same 8 tools as `mk-code-index`; and `skill-advisor.cjs` exposes the same 9 tools as `mk_skill_advisor`. Use MCP as the primary in-session transport today. Use the CLIs when MCP transport is missing, failed or not reconnecting while the daemon is warm, and for hooks, cron, CI and operator shell diagnostics. Prompt-time callers must probe warm-only first; exit `75` means retryable daemon or IPC unavailability.
 
 Because the CLIs already use the same daemon IPC path and expose stable count-locked surfaces, a later evolution could consolidate them as the primary or sole transport, replacing MCP servers without breaking existing MCP workflows. Treat that as a possible direction, not a committed migration plan.
 

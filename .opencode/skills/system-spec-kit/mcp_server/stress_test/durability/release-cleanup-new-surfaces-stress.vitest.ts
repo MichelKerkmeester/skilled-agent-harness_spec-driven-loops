@@ -374,7 +374,7 @@ describe('release-cleanup stress coverage for new memory and CLI surfaces', () =
     expectListTools(cliShims.codeIndex, CODE_GRAPH_TOOL_SCHEMAS.map((tool) => tool.name), 'code-index-cli-stress');
     expectListTools(cliShims.skillAdvisor, SKILL_ADVISOR_CLI_TOOL_MANIFEST.map((tool) => tool.name), 'skill-advisor-cli-stress');
 
-    expect(TOOL_DEFINITIONS).toHaveLength(39);
+    expect(TOOL_DEFINITIONS).toHaveLength(41);
     expect(CODE_GRAPH_TOOL_SCHEMAS).toHaveLength(8);
     expect(SKILL_ADVISOR_CLI_TOOL_MANIFEST).toHaveLength(9);
 

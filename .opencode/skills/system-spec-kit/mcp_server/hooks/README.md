@@ -60,7 +60,6 @@ Dependency direction: runtime folders ───▶ shared helpers ───▶ M
 ```text
 mcp_server/hooks/
 ├── claude/                        # Claude session, prompt, compaction, and transcript hooks
-├── opencode/                         # OpenCode session, prompt, pre-tool, and wrapper hooks
 ├── code-index-cli-fallback.ts      # Warm-only code-index CLI fallback helper
 ├── index.ts                       # Public helper exports
 ├── memory-surface.ts              # Context extraction and constitutional cache helpers
@@ -79,7 +78,6 @@ mcp_server/hooks/
 | File or directory | Responsibility |
 |---|---|
 | `claude/` | Claude runtime hook scripts and README. |
-| `opencode/` | OpenCode native hook scripts plus prompt-wrapper fallback. |
 | `code-index-cli-fallback.ts` | Bounded warm-only CLI recovery for code-index hook contexts. |
 | `index.ts` | Public export barrel for in-process helper modules. |
 | `memory-surface.ts` | Extracts context hints and surfaces constitutional or triggered memory. |

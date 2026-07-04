@@ -57,7 +57,7 @@ rm -rf "$SANDBOX"
 ### Expected
 
 - `spec-memory: ok 39`, `code-index: ok 8`, `skill-advisor: ok 9`.
-- All three parity suites pass (spec-memory locks 39 tools against `TOOL_DEFINITIONS`; code-index locks 8 against `CODE_GRAPH_TOOL_SCHEMAS`; skill-advisor locks 9 with byte-identical schemas).
+- All three parity suites pass (spec-memory locks 41 tools against `TOOL_DEFINITIONS`; code-index locks 8 against `CODE_GRAPH_TOOL_SCHEMAS`; skill-advisor locks 9 with byte-identical schemas).
 - No daemon is spawned: `list-tools` answers from local definitions and `$SANDBOX/sock` stays empty.
 
 ### Evidence
@@ -165,7 +165,7 @@ A count drift means a tool was added or removed in the schema source without the
 | `.opencode/bin/spec-memory.cjs` | spec-memory shim |
 | `.opencode/bin/code-index.cjs` | code-index shim |
 | `.opencode/bin/skill-advisor.cjs` | skill-advisor shim |
-| `mcp_server/tests/spec-memory-cli-parity-and-help.vitest.ts` | 39-tool parity lock |
+| `mcp_server/tests/spec-memory-cli-parity-and-help.vitest.ts` | 41-tool parity lock |
 | `.opencode/skills/system-code-graph/mcp_server/tests/code-index-cli-parity.vitest.ts` | 8-tool parity lock |
 | `.opencode/skills/system-skill-advisor/mcp_server/tests/skill-advisor-cli-parity.vitest.ts` | 9-tool parity lock |
 

@@ -34,6 +34,8 @@ const expectedToolNames = [
   'memory_validate',
   'memory_bulk_delete',
   'memory_retention_sweep',
+  'memory_learned_expire',
+  'memory_learned_clear',
   'memory_embedding_reconcile',
   'checkpoint_create',
   'checkpoint_list',
@@ -119,12 +121,12 @@ afterAll(() => {
 });
 
 describe('spec-memory CLI tool parity and help recovery docs', () => {
-  it('enumerates the canonical tool surface at exactly 39 tools', () => {
+  it('enumerates the canonical tool surface at exactly 41 tools', () => {
     createRuntimeScope();
     const toolNames = TOOL_DEFINITIONS.map((tool) => tool.name);
 
-    expect(toolNames).toHaveLength(39);
-    expect(new Set(toolNames).size).toBe(39);
+    expect(toolNames).toHaveLength(41);
+    expect(new Set(toolNames).size).toBe(41);
     expect(toolNames).toEqual(expectedToolNames);
   });
 

@@ -185,6 +185,44 @@ describe('spec-memory daemon-backed CLI', () => {
     }
   });
 
+  it('renders memory_search text output with one minimal row per result and an omission notice', async () => {
+    const socketDir = createSocketDir();
+    const daemon = await startFakeDaemon(socketDir, {
+      toolPayload: {
+        summary: 'Found 2 memories',
+        data: {
+          results: [
+            { title: 'Alpha', filePath: 'specs/a/spec.md', score: 0.91 },
+            { title: 'Beta', file_path: 'specs/b/plan.md', similarity: 0.82 },
+          ],
+          graphContribution: { totalDelta: 1 },
+        },
+        meta: { tool: 'memory_search', tokenCount: 100, cacheHit: false },
+      },
+    });
+    const io = captureIo();
+
+    try {
+      const exitCode = await runSpecMemoryCli([
+        'memory_search',
+        '--json',
+        '{"query":"alpha"}',
+        '--format',
+        'text',
+        '--timeout-ms',
+        '1000',
+      ], io);
+      const output = io.output().stdout;
+
+      expect(exitCode).toBe(0);
+      expect(output).toContain('1. Alpha | specs/a/spec.md | score 0.910');
+      expect(output).toContain('2. Beta | specs/b/plan.md | score 0.820');
+      expect(output).toContain('detailed telemetry, routing blocks, snippets, and metadata are omitted');
+    } finally {
+      await closeServer(daemon.server);
+    }
+  });
+
   it('maps retryable backend JSON-RPC errors to exit 75', async () => {
     const socketDir = createSocketDir();
     const daemon = await startFakeDaemon(socketDir, {

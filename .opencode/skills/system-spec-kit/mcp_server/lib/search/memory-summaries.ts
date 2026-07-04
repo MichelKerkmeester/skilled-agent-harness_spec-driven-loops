@@ -480,6 +480,7 @@ export function buildWorldSummaryPrelude(
       JOIN memory_index m ON m.id = s.memory_id
       ${projectionJoin}
       WHERE ${whereClauses.join(' AND ')}
+      ORDER BY COALESCE(m.created_at, '') DESC, s.memory_id ASC
       LIMIT ?
     `).all(...params) as Array<{
       memory_id: number;

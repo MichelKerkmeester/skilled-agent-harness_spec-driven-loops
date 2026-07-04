@@ -86,10 +86,7 @@ function buildContinuityMarkdown(title: string, body: string): string {
 }
 
 function parseResumeEnvelope(result: Awaited<ReturnType<typeof handleMemoryContext>>): Record<string, unknown> {
-  const outer = JSON.parse(result.content[0].text) as Record<string, unknown>;
-  const outerData = outer.data as Record<string, unknown>;
-  const nestedContent = outerData.content as Array<{ text: string }>;
-  return JSON.parse(nestedContent[0].text) as Record<string, unknown>;
+  return JSON.parse(result.content[0].text) as Record<string, unknown>;
 }
 
 describe('Gate D resume ladder in memory-context', () => {
@@ -147,6 +144,8 @@ describe('Gate D resume ladder in memory-context', () => {
     expect(resumeLadder.legacyMemoryFallback).toBe(false);
     expect(results).toHaveLength(1);
     expect(results[0].documentType).toBe('handover');
+    expect(results[0].fingerprintExpected).toBeNull();
+    expect(results[0].fingerprintStatus).not.toBe('verified');
     expect(results[0].filePath).toContain('handover.md');
     expect(memorySearchSpy).not.toHaveBeenCalled();
   });

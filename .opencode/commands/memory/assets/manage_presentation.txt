@@ -65,7 +65,7 @@ Field mapping:
 
 | Source field | Template slot |
 | --- | --- |
-| `memory_stats.totalRecords` or total indexed record count | `Total <count>` |
+| `memory_stats.totalMemories` or total indexed record count | `Total <count>` |
 | `memory_stats.dbSize`, `dbFileSize`, or formatted store size | `Size <size>` |
 | `memory_stats.lastIndexed`, `lastScanAt`, or latest indexed timestamp | `Indexed <date>` |
 | `memory_stats.byTier.constitutional` | `constitutional <count>` |
@@ -191,7 +191,7 @@ STATUS=OK ID=<id> TRIGGERS=<count>
 MEMORY:VALIDATE
 --------------------------------------------------
 Record      #<id> "<title>"
-Feedback    <useful|not useful>
+Feedback    <true|false>
 Confidence  <old> -> <new>
 
 STATUS=OK ID=<id> USEFUL=<true|false>
@@ -220,7 +220,7 @@ STATUS=OK DELETED=<id>
 ```text
 MEMORY:HEALTH
 --------------------------------------------------
-Status      <healthy|degraded|error>
+Status      <healthy|degraded>
 Schema      v<version>
 Total       <count>
 

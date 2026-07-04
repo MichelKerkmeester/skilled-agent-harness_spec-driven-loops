@@ -329,7 +329,7 @@ Full routing + FTS fallback chain: `constitutional/gate-tool-routing.md`
 
 1. **Native MCP** (`opencode.json`) - Direct tools, called natively. **5 servers registered:**
    - Sequential Thinking
-   - Spec Kit Memory (`mk-spec-memory`, 39 tools)
+   - Spec Kit Memory (`mk-spec-memory`, 41 tools)
    - Skill Advisor (`mk_skill_advisor`, 9 tools — 4 advisor + 5 skill_graph)
    - Code Graph (`mk_code_index`, 8 tools)
    - Code Mode

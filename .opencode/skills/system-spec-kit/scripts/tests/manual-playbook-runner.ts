@@ -1520,7 +1520,7 @@ async function executeScenario(
       }
 
       if (step.kind === 'slash') {
-        if (step.raw.startsWith('/spec_kit:resume')) {
+        if (step.raw.startsWith('/speckit:resume')) {
           const args = { specFolder: fixture.targetSpecFolder };
           handlerCalls.push({ name: 'session_resume', args });
           const outcome = await invokeTool('session_resume', args, handlers);

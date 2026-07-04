@@ -97,7 +97,7 @@ import {
   type DisclosureResult,
   extractSnippets,
   isProgressiveDisclosureEnabled,
-  resolveCursor,
+  resolveCursorDetailed,
 } from '../lib/search/progressive-disclosure.js';
 import {
   SPEC_DOCUMENT_FILENAMES,
@@ -565,10 +565,19 @@ function buildSearchResponseFromPayload(
   startTime: number,
   cacheHit: boolean,
 ): MCPResponse {
+  const data = { ...payload.data };
+  const progressiveDisclosure = data.progressiveDisclosure;
+  if (cacheHit && isPlainRecord(progressiveDisclosure)) {
+    data.progressiveDisclosure = {
+      ...progressiveDisclosure,
+      continuation: null,
+      continuationOmitted: 'cached_response',
+    };
+  }
   return createMCPSuccessResponse({
     tool: 'memory_search',
     summary: payload.summary,
-    data: payload.data,
+    data,
     hints: payload.hints,
     startTime,
     cacheHit,
@@ -929,10 +938,6 @@ function applySessionDedup(results: MemorySearchRow[], sessionId: string, enable
 
   const { filtered, dedupStats } = sessionManager.filterSearchResults(sessionId, results as Parameters<typeof sessionManager.filterSearchResults>[1]);
 
-  if (filtered.length > 0) {
-    sessionManager.markResultsSent(sessionId, filtered as Parameters<typeof sessionManager.markResultsSent>[1]);
-  }
-
   return {
     results: filtered as MemorySearchRow[],
     dedupStats: {
@@ -940,6 +945,19 @@ function applySessionDedup(results: MemorySearchRow[], sessionId: string, enable
       sessionId
     }
   };
+}
+
+function markEmittedSessionResultsSent(response: MCPResponse, sessionId: string | undefined, enableDedup: boolean): void {
+  if (!sessionId || !enableDedup || !sessionManager.isEnabled()) {
+    return;
+  }
+
+  const emittedResults = extractResponseResults(response);
+  if (emittedResults.length === 0) {
+    return;
+  }
+
+  sessionManager.markResultsSent(sessionId, emittedResults as Parameters<typeof sessionManager.markResultsSent>[1]);
 }
 
 /* ───────────────────────────────────────────────────────────────
@@ -1065,17 +1083,40 @@ async function handleMemorySearch(args: SearchArgs): Promise<MCPResponse> {
     }
   }
   if (!hasCursor && !hasQuery && !hasConcepts) {
-    return { content: [{ type: 'text', text: JSON.stringify({ error: 'Either "query" (string), "concepts" (array with 2-5 items), or "cursor" (string) is required.' }) }] };
+    return createMCPErrorResponse({
+      tool: 'memory_search',
+      error: 'Either query (string), concepts (array of 2-5 strings), or cursor (string) is required',
+      code: 'E_VALIDATION',
+      details: { parameter: 'query' },
+      recovery: {
+        hint: 'Provide a query string, concepts array with 2-5 entries, or a continuation cursor',
+      },
+    });
   }
 
   if (hasCursor) {
-    const resolved = resolveCursor(cursor.trim(), undefined, { scopeKey: progressiveScopeKey });
-    if (!resolved) {
+    const resolved = resolveCursorDetailed(cursor.trim(), undefined, { scopeKey: progressiveScopeKey });
+    if (resolved.status === 'exhausted') {
+      return createMCPSuccessResponse({
+        tool: 'memory_search',
+        summary: 'Cursor exhausted',
+        data: {
+          count: 0,
+          results: [],
+          continuation: null,
+          cursorStatus: 'exhausted',
+        },
+        startTime: _searchStartTime,
+        cacheHit: false,
+      });
+    }
+    if (resolved.status !== 'ok') {
+      const expired = resolved.status === 'expired';
       return createMCPErrorResponse({
         tool: 'memory_search',
-        error: 'Cursor is invalid, expired, or out of scope',
-        code: 'E_VALIDATION',
-        details: { parameter: 'cursor' },
+        error: expired ? 'Cursor is expired' : 'Cursor is invalid or out of scope',
+        code: expired ? 'E_CURSOR_EXPIRED' : 'E_CURSOR_INVALID',
+        details: { parameter: 'cursor', cursorStatus: resolved.status },
         recovery: {
           hint: 'Retry the original search to generate a fresh continuation cursor',
         },
@@ -1090,6 +1131,7 @@ async function handleMemorySearch(args: SearchArgs): Promise<MCPResponse> {
         count: snippetResults.length,
         results: snippetResults,
         continuation: resolved.continuation,
+        cursorStatus: resolved.status,
       },
       startTime: _searchStartTime,
       cacheHit: false,
@@ -1517,9 +1559,7 @@ async function handleMemorySearch(args: SearchArgs): Promise<MCPResponse> {
     }
     if (pipelineResult.metadata.stage1.embedderAvailable === false) {
       extraData.embedderAvailable = false;
-      extraData.embedder_available = false;
       extraData.vectorSearchSkipped = pipelineResult.metadata.stage1.vectorSearchSkipped === true;
-      extraData.vector_search_skipped = extraData.vectorSearchSkipped;
     }
 
     if (pipelineResult.annotations.evidenceGapWarning) {
@@ -1547,17 +1587,14 @@ async function handleMemorySearch(args: SearchArgs): Promise<MCPResponse> {
 
     if (artifactRouting) {
       extraData.artifactRouting = artifactRouting;
-      extraData.artifact_routing = artifactRouting;
     }
 
     if (pipelineResult.metadata.stage2.feedbackSignalsApplied === 'applied') {
       extraData.feedbackSignals = { applied: true };
-      extraData.feedback_signals = { applied: true };
     }
 
     if (pipelineResult.metadata.stage2.graphContribution) {
       extraData.graphContribution = pipelineResult.metadata.stage2.graphContribution;
-      extraData.graph_contribution = pipelineResult.metadata.stage2.graphContribution;
     }
 
     if (pipelineResult.metadata.stage3.rerankApplied) {
@@ -1570,7 +1607,6 @@ async function handleMemorySearch(args: SearchArgs): Promise<MCPResponse> {
 
     if (pipelineResult.metadata.stage3.chunkReassemblyStats.chunkParents > 0) {
       extraData.chunkReassembly = pipelineResult.metadata.stage3.chunkReassemblyStats;
-      extraData.chunk_reassembly = pipelineResult.metadata.stage3.chunkReassemblyStats;
     }
     extraData.sourceContract = {
       version: CANONICAL_READER_CACHE_VERSION,
@@ -1586,7 +1622,6 @@ async function handleMemorySearch(args: SearchArgs): Promise<MCPResponse> {
     if (includeTrace && pipelineResult.trace) {
       extraData.retrievalTrace = pipelineResult.trace;
       extraData.vectorDegradation = buildVectorDegradationSignal(vectorIndex.isVectorSearchAvailable());
-      extraData.vector_degradation = extraData.vectorDegradation;
     }
     const degradedReadiness = mapGraphReadinessToTelemetry(
       getGraphReadinessSnapshotFromMarker(),
@@ -1609,7 +1644,6 @@ async function handleMemorySearch(args: SearchArgs): Promise<MCPResponse> {
       latencyMs: Date.now() - _searchStartTime,
     });
     extraData.searchDecisionEnvelope = searchDecisionEnvelope;
-    extraData.search_decision_envelope = searchDecisionEnvelope;
     try {
       const adaptiveShadow = buildAdaptiveShadowProposal(
         requireDb(),
@@ -1618,7 +1652,6 @@ async function handleMemorySearch(args: SearchArgs): Promise<MCPResponse> {
       );
       if (adaptiveShadow) {
         extraData.adaptiveShadow = adaptiveShadow;
-        extraData.adaptive_shadow = adaptiveShadow;
       }
     } catch (_error: unknown) {
       // Adaptive proposal logging is best-effort only
@@ -1635,7 +1668,6 @@ async function handleMemorySearch(args: SearchArgs): Promise<MCPResponse> {
       appliedBoosts.communityFallback = { applied: true, retrievalLevel };
     }
     extraData.appliedBoosts = appliedBoosts;
-    extraData.applied_boosts = appliedBoosts;
 
     let formatted = await formatSearchResults(
       resultsForFormatting as RawSearchResult[],
@@ -1953,7 +1985,9 @@ async function handleMemorySearch(args: SearchArgs): Promise<MCPResponse> {
     getLastLexicalCapabilitySnapshot(),
   );
 
-  return finalizeResponseEnvelope(responseToReturn);
+  responseToReturn = finalizeResponseEnvelope(responseToReturn);
+  markEmittedSessionResultsSent(responseToReturn, sessionId, enableDedup);
+  return responseToReturn;
 }
 
 /* ───────────────────────────────────────────────────────────────
@@ -1966,6 +2000,8 @@ export {
 
 export const __testables = {
   filterByMinQualityScore,
+  applySessionDedup,
+  markEmittedSessionResultsSent,
   resolveQualityThreshold,
   buildCacheArgs,
   resolveRowContextType,

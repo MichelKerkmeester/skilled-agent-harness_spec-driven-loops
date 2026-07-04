@@ -20,9 +20,9 @@
       "command doc drift battery",
       "format text renderer",
       "verification checklist",
-      "implementation",
-      "summary",
-      "template"
+      "envelope presentation",
+      "command doc alignment",
+      "envelope single casing"
     ],
     "key_topics": [
       "envelope",
@@ -177,12 +177,6 @@
         "source": "derived"
       },
       {
-        "name": "Authored Level",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "Parent Spec",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -195,13 +189,19 @@
         "source": "derived"
       },
       {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
         "name": "Implementation Plan",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
       },
       {
-        "name": "Technical Context",
+        "name": "Authored Level",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -209,7 +209,7 @@
     ],
     "causal_summary": "Live-measured (deep-dive report §5, ledger L7 🟢): a 5-result `memorysearch` returns a 17.6KB envelope because every telemetry block is double-emitted in camelCase AND snakecase (`artifactRouting`/`artifactrouting`, `graphContribution`/`graphcontribution`, `searchDecisionEnvelope`/`searchdecisionenvelope`, `appliedBoosts`/`appliedboosts`), while the token budget is enforced BEFORE graphContext/routing/envelope attach — so results get compacted to empty snippets while metadata survives, and `meta.tokenCount` reports 6,455 against an \"enforced\" budget of 3,500",
     "created_at": "2026-07-03T09:44:26Z",
-    "last_save_at": "2026-07-03T12:02:35.670Z",
+    "last_save_at": "2026-07-04T12:44:07.482Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -219,13 +219,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:bfa7745e0fc830a45fc7e3b3ab9a7871fc193d14736c8f0d0e04b23742bdabd6",
+    "source_fingerprint": "sha256:417ecd718ae6ea0d5c327e83ee9b126270e5ba2e1b1a502d723967e06808839c",
     "source_doc_hashes": {
-      "spec.md": "4742d62befd133139d30532878fea960ab801b15463e5f5916c13decd0279730",
+      "spec.md": "0703e309aeef12c2ff1401b74347d15eb17a386b9f4b9c2a5de1209d161cb9fc",
       "plan.md": "7ba45cb6c23c40e22d04fe3fce79d8755e6fbd746910436aef6800da9dfe72c5",
-      "tasks.md": "662145063741c3abada792e0f8dad28202365c526a55f262bf0af5c9c20d8788",
-      "checklist.md": "4cc93e4b1a82c0e11469502629cc4f86f56995c3edbef91db2dd41327974d2a2",
-      "implementation-summary.md": "482f91f65970dadc122395181976f5fa8145efc70ab32acd110e48934a6d11c4"
+      "tasks.md": "68018f3f0b59b152360199049117d90b5796a192718f47f81abfdf31459f5b72",
+      "checklist.md": "00f36afe80a17aa68513a05a14835fd739e8000ef144656947f56b6c9f359b4b",
+      "implementation-summary.md": "ecc69a234a5a8a9a725a3079b4391980e1ef84a2149b74cb9488f1cf2418d2cd"
     },
     "last_active_child_id": null,
     "last_active_at": null

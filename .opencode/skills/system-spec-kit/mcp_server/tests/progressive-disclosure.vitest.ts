@@ -10,6 +10,7 @@ import {
   extractSnippets,
   createCursor,
   resolveCursor,
+  resolveCursorDetailed,
   buildProgressiveResponse,
   isProgressiveDisclosureEnabled,
   clearCursorStore,
@@ -258,13 +259,13 @@ describe('createCursor()', () => {
     expect(parsed).toHaveProperty('timestamp');
   });
 
-  it('stores scope metadata in cursor payloads when provided', () => {
+  it('does not expose scope metadata in cursor payloads when provided', () => {
     const results = makeResults(10);
     const cursorInfo = createCursor(results, 5, 'scoped query', { scopeKey: 'tenant:user' });
     expect(cursorInfo).not.toBeNull();
 
     const payload = decodeCursor(cursorInfo!.cursor);
-    expect(payload?.scopeKey).toBe('tenant:user');
+    expect(payload).not.toHaveProperty('scopeKey');
   });
 
   it('reports correct remaining count', () => {
@@ -312,6 +313,7 @@ describe('resolveCursor()', () => {
 
     const resolved = resolveCursor(expiredCursor, 5);
     expect(resolved).toBeNull();
+    expect(resolveCursorDetailed(expiredCursor, 5).status).toBe('expired');
   });
 
   it('returns continuation cursor when more pages remain', () => {
@@ -377,6 +379,36 @@ describe('resolveCursor()', () => {
 
     const resolved = resolveCursor(cursorInfo!.cursor, 5, { scopeKey: 'tenant-b:user-a' });
     expect(resolved).toBeNull();
+    expect(resolveCursorDetailed(cursorInfo!.cursor, 5, { scopeKey: 'tenant-b:user-a' }).status).toBe('invalid');
+  });
+
+  it('distinguishes malformed cursors from invalid tampered cursors', () => {
+    const malformed = resolveCursorDetailed('not-valid-base64!!!');
+    expect(malformed.status).toBe('malformed');
+
+    const results = makeResults(6);
+    const cursorInfo = createCursor(results, 5, 'small page');
+    const payload = decodeCursor(cursorInfo!.cursor)!;
+    payload.offset = 99;
+    const tampered = resolveCursorDetailed(encodeCursor(payload), 5);
+    expect(tampered.status).toBe('invalid');
+  });
+
+  it('denies valid-looking forged cursors and tampered offsets', () => {
+    const results = makeResults(12);
+    const cursorInfo = createCursor(results, 5, 'scoped query', { scopeKey: 'tenant-a:user-a' });
+    expect(cursorInfo).not.toBeNull();
+
+    const issuedPayload = decodeCursor(cursorInfo!.cursor)!;
+    const forgedCursor = encodeCursor({
+      offset: 5,
+      queryHash: issuedPayload.queryHash,
+      timestamp: issuedPayload.timestamp,
+    });
+    const tamperedCursor = encodeCursor({ ...issuedPayload, offset: 10 });
+
+    expect(resolveCursorDetailed(forgedCursor, 5, { scopeKey: 'tenant-a:user-a' }).status).toBe('invalid');
+    expect(resolveCursorDetailed(tamperedCursor, 5, { scopeKey: 'tenant-a:user-a' }).status).toBe('invalid');
   });
 });
 

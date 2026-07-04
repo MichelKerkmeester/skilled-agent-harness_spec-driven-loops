@@ -169,6 +169,20 @@ describe('session-prime hook', () => {
       expect(truncated.length / 4).toBeLessThanOrEqual(SESSION_PRIME_TOKEN_BUDGET);
     });
 
+    it('truncates startup output at a section boundary', () => {
+      const output = formatHookOutput([
+        { title: 'First Section', content: 'A'.repeat(120) },
+        { title: 'Second Section', content: 'B'.repeat(120) },
+        { title: 'Third Section', content: 'C'.repeat(120) },
+      ]);
+      const truncated = truncateToTokenBudget(output, 45);
+
+      expect(truncated).toContain('## First Section');
+      expect(truncated).not.toContain('## Second Section');
+      expect(truncated).not.toContain('B'.repeat(20));
+      expect(truncated).toMatch(/\n\[\.\.\.truncated to fit token budget\]$/);
+    });
+
     it('compact output uses larger budget', () => {
       const longPayload = 'x'.repeat(12000);
       const truncated = truncateToTokenBudget(longPayload, COMPACTION_TOKEN_BUDGET);

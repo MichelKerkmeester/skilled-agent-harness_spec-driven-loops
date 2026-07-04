@@ -412,7 +412,7 @@ Quick reference for common recovery scenarios with symptoms and actions.
 
 | Scenario | Symptoms | Recovery Action |
 |----------|----------|-----------------|
-| **Context Loss** | Agent doesn't remember prior work | Run `/spec_kit:resume [spec-folder]` |
+| **Context Loss** | Agent doesn't remember prior work | Run `/speckit:resume [spec-folder]` |
 | **State Mismatch** | Files don't match expected state | Verify with `git status` and `git diff` |
 | **Memory Not Found** | Search returns no results | Check `memory_search({ query: "<keyword>", specFolder: "..." })` |
 | **Stale Context** | Information seems outdated | Check recent `updated_at` values in `memory_list({ specFolder: "...", sortBy: "updated_at" })` |
@@ -426,7 +426,7 @@ Quick reference for common recovery scenarios with symptoms and actions.
 **Context Loss Recovery:**
 ```javascript
 // Resume from saved context
-// Command: /spec_kit:resume specs/###-feature-name
+// Command: /speckit:resume specs/###-feature-name
 // Or via MCP:
 memory_search({
   query: "session context",
@@ -497,4 +497,3 @@ memory_delete({ id: <memory_id> })
 - `system-spec-kit` - Spec folder creation and template management
 
 ---
-

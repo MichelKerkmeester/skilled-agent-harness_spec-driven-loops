@@ -1,6 +1,6 @@
 ---
 title: "448 -- Stale-Exclusion Audit and Tool-Ownership Lint"
-description: "Manual check that memory_health surfaces hard-exclusion audit metadata and the tool-ownership lint fails closed on drift from the registered 39-tool schema."
+description: "Manual check that memory_health surfaces hard-exclusion audit metadata and the tool-ownership lint fails closed on drift from the registered 41-tool schema."
 version: 3.6.0.2
 ---
 
@@ -8,7 +8,7 @@ version: 3.6.0.2
 
 ## 1. OVERVIEW
 
-This scenario validates two read-only governance surfaces: stale-exclusion audit metadata and source-derived tool-ownership linting. The audit must classify intended archived exclusions separately from deprecated-tier silent-risk rows. The lint must derive the 39-tool ownership map from `TOOL_DEFINITIONS` and fail closed on missing tools, extra tools, malformed maps, field drift, or unreadable definitions.
+This scenario validates two read-only governance surfaces: stale-exclusion audit metadata and source-derived tool-ownership linting. The audit must classify intended archived exclusions separately from deprecated-tier silent-risk rows. The lint must derive the 41-tool ownership map from `TOOL_DEFINITIONS` and fail closed on missing tools, extra tools, malformed maps, field drift, or unreadable definitions.
 
 ---
 
@@ -18,7 +18,7 @@ This scenario validates two read-only governance surfaces: stale-exclusion audit
 - Real user request: `Validate memory health stale-exclusion audit and prove the tool-ownership map blocks drift from the registered tool schema.`
 - Prompt: `Validate stale-exclusion audit through memory_health and tool-ownership lint drift detection through the committed runner.`
 - Expected execution process: Seed or use a sandbox with archived and deprecated rows, run `memory_health`, run the focused stale-audit/tool-ownership suite, then run the clean source-derived lint runner. Use the runner's env override to prove unreadable definitions fail closed without changing source files.
-- Expected signals: `memory_health` exposes hard-exclusion audit metadata and hints; focused suite proves deprecated risk, archived intended exclusion, malformed policy handling, missing/extra ownership drift, and byte-identical clean serialization; clean lint reports a 39-tool map; unreadable definitions fail closed; source tree remains unchanged after temporary checks.
+- Expected signals: `memory_health` exposes hard-exclusion audit metadata and hints; focused suite proves deprecated risk, archived intended exclusion, malformed policy handling, missing/extra ownership drift, and byte-identical clean serialization; clean lint reports a 41-tool map; unreadable definitions fail closed; source tree remains unchanged after temporary checks.
 - Desired user-visible outcome: The operator can cite health audit classifications and prove the ownership lint blocks stale tool maps.
 - Pass/fail: PASS only when health audit classifications are visible and the lint passes clean state while failing each drift simulation.
 
@@ -45,7 +45,7 @@ Validate stale-exclusion audit through memory_health and tool-ownership lint dri
 
 - `memory_health` separates intended archived exclusions from deprecated-tier silent-risk rows and includes operator hints.
 - Focused suite passes stale-exclusion and ownership drift cases.
-- Clean lint reports `tool-ownership map clean` for the valid 39-tool ownership map.
+- Clean lint reports `tool-ownership map clean` for the valid 41-tool ownership map.
 - Unreadable definitions fail closed with an actionable message.
 - The committed fixture and lint runner remain unchanged after temporary drift checks.
 

@@ -295,7 +295,7 @@ When the save target is a phase parent (detected via `isPhaseParent()` from `.op
 - **At a phase parent**: skip the `implementation-summary.md` continuity write at parent (parents do not require that file at all). Instead, atomically update the parent's `graph-metadata.json` `derived.last_active_child_id = null` and `derived.last_active_at = ISO_8601_NOW`. Logic at `.opencode/skills/system-spec-kit/scripts/memory/generate-context.ts:493` (`updatePhaseParentPointersAfterSave`).
 - **At a child of a phase parent**: write the child's normal `_memory.continuity` to its `implementation-summary.md` AND atomically update the parent's `graph-metadata.json` `derived.last_active_child_id` to the child's `packet_id` plus a fresh `last_active_at`. The bubble-up uses the same atomic write helper.
 - **Atomic write**: same-directory temp file + `fs.renameSync` (POSIX-atomic). Helper at `.opencode/skills/system-spec-kit/scripts/memory/generate-context.ts:387` (`atomicWriteJson`). Prevents torn JSON state under concurrent saves.
-- **Resume integration**: `/spec_kit:resume` reads `derived.last_active_child_id` first when the target is a phase parent. If non-null and `last_active_at` is within 24 hours, recurse directly into that child. Otherwise fall back to listing children with statuses. `--no-redirect` bypasses the pointer entirely.
+- **Resume integration**: `/speckit:resume` reads `derived.last_active_child_id` first when the target is a phase parent. If non-null and `last_active_at` is within 24 hours, recurse directly into that child. Otherwise fall back to listing children with statuses. `--no-redirect` bypasses the pointer entirely.
 
 #### Phase Parent Output Location (lean trio)
 
@@ -367,7 +367,7 @@ The canonical save path updates packet docs first. During `memory_index_scan()`,
 | Constitutional rules | `.opencode/skills/*/constitutional/*.md` | 1.0 | `findConstitutionalFiles()` |
 | Graph metadata | `graph-metadata.json` adjacent to spec docs | Packet metadata weighting | Graph metadata parser + scan pipeline |
 
-Spec documents are controlled by the `includeSpecDocs` parameter (default: `true`) or the `SPECKIT_INDEX_SPEC_DOCS` environment variable. Spec documents use per-document scoring multipliers (e.g., spec: 1.4x, plan: 1.3x, constitutional: 2.0x) on the current vector index schema v37 fields (`document_type`, `spec_level`).
+Spec documents are controlled by the `includeSpecDocs` parameter (default: `true`) or the `SPECKIT_INDEX_SPEC_DOCS` environment variable. Spec documents use per-document scoring multipliers (e.g., spec: 1.4x, plan: 1.3x, constitutional: 2.0x) on the current vector index schema v41 fields (`document_type`, `spec_level`).
 
 For retrieval, `memory_context()` routes queries across 7 intents (including `find_spec` and `find_decision`) and applies intent-aware weighting.
 

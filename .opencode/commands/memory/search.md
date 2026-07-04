@@ -12,7 +12,7 @@ Thin router for memory retrieval and analysis.
 
 ## 0. PURPOSE AND ARGUMENT RESOLUTION (deterministic, read this first)
 
-The shell line below is evaluated before you read any policy. It is the ground truth for this invocation. The renderer substitutes the raw query text where `$ARGUMENTS` appears, so it is single-quoted in the command below: this keeps shell metacharacters in the query (`*`, `$(…)`, backticks, `;`, `|`) literal instead of letting the outer shell expand them before the protective `bash -c` runs. The wrapper then joins the query into one string and reports whether any argument was supplied.
+The shell line below is evaluated before you read any policy. It is the ground truth for this invocation. The renderer substitutes the raw query text where `$ARGUMENTS` appears as one positional argument after `--`, so the wrapper treats shell metacharacters in the query (`*`, `$(…)`, backticks, `;`, `|`) as literal query text. The wrapper then joins the provided positional argument into one string and reports whether any argument was supplied.
 
 !`bash -c 'if [ "$#" -gt 0 ]; then q="$*"; q="${q//\"/\\\"}"; printf "ARGS_PRESENT=true\nQUERY=\"%s\"\n" "$q"; else printf "ARGS_PRESENT=false\nQUERY=\"\"\n"; fi' -- '$ARGUMENTS'`
 
@@ -75,9 +75,9 @@ Surface-parity clause: the five core slots and the similarity 0–1 / two-decima
 
 Verdict render slots: `requestQuality` and `citationPolicy` are the only sanctioned extras beyond the core slots. When present, render each as a named trailing field per the presentation asset, never as an unnamed, renamed, or ad-hoc metric, and their presence must be unambiguous.
 
-Under the default contract their absence is valid. When `SPECKIT_ENVELOPE_FIDELITY` is set the two fields become conditionally-mandatory render slots, required-when-present: a verdict field the tool response carries MUST appear unaltered in the rendered block, and the tool ships a ready-to-paste `data.envelopeRender` fragment the render pastes verbatim instead of transcribing the fields. The flag is default-OFF, so the legacy absence-is-valid rule stays the default until the grandfather report is clean.
+Under the default contract their absence is valid. `SPECKIT_ENVELOPE_FIDELITY` is default-ON; set it to `false`, `0`, or `off` to opt out. When enabled, the two fields become conditionally-mandatory render slots, required-when-present: a verdict field the tool response carries MUST appear unaltered in the rendered block, and the tool ships a ready-to-paste `data.envelopeRender` fragment the render pastes verbatim instead of transcribing the fields.
 
-Self-check: before finishing, verify the emitted block includes the `MEMORY:SEARCH` header, all five core slots, and the `STATUS` footer, and that no row carries `confidence` or a percentage score. When `SPECKIT_ENVELOPE_FIDELITY` is set, also verify that every verdict field the tool response carries (`requestQuality` and `citationPolicy`) is present in the rendered block, and re-emit from `data.envelopeRender` any verdict field the tool shipped but the render dropped.
+Self-check: before finishing, verify the emitted block includes the `MEMORY:SEARCH` header, all five core slots, and the `STATUS` footer, and that no row carries `confidence` or a percentage score. When envelope fidelity is enabled, also verify that every verdict field the tool response carries (`requestQuality` and `citationPolicy`) is present in the rendered block, and re-emit from `data.envelopeRender` any verdict field the tool shipped but the render dropped.
 
 Supported intents:
 - `add_feature`

@@ -17,8 +17,17 @@ const result = spawnSync(process.execPath, [TARGET, ...process.argv.slice(2)], {
   env: process.env,
 });
 
-if (result.stdout) process.stdout.write(result.stdout);
 if (result.stderr) process.stderr.write(result.stderr);
-if (result.error || result.status !== 0) process.stdout.write('{}\n');
+const stdout = typeof result.stdout === 'string' ? result.stdout.trim() : '';
+let output = '{}';
+if (!result.error && result.status === 0 && stdout.length > 0) {
+  try {
+    JSON.parse(stdout);
+    output = stdout;
+  } catch {
+    output = '{}';
+  }
+}
+process.stdout.write(`${output}\n`);
 
 process.exit(0);

@@ -23,7 +23,7 @@ Routing keeps the retrieval and analysis surfaces discoverable from a single ent
 
 ## 2. HOW IT WORKS
 
-The command file under `.opencode/commands/memory/search.md` defines the routing contract. Argument parsing is first-token oriented: a recognized analysis verb invokes its specific tool, an explicit `--intent:<name>` flag overrides auto-detection, and any other input is treated as a retrieval query. Intent detection applies multiplicative weight boosts to implementation, architecture, and pattern channels for the `add_feature` intent and equivalent boosts for the other intent labels.
+The command file under `.opencode/commands/memory/search.md` defines the routing contract. Argument parsing is first-token oriented: a recognized analysis verb invokes its specific tool, an explicit `--intent <name>` or `--intent=<name>` flag overrides auto-detection, and any other input is treated as a retrieval query. Intent detection applies multiplicative weight boosts to implementation, architecture, and pattern channels for the `add_feature` intent and equivalent boosts for the other intent labels.
 
 - No-args path: interactive intent menu, then dispatch to retrieval with the chosen intent
 - Retrieval path: `memory_search` with auto or explicit intent weighting

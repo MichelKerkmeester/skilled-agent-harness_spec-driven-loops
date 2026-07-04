@@ -450,6 +450,32 @@ describe('Post-format session dedup trace consistency', () => {
     expect(data?.inlineWarnings).toBeUndefined();
     expect(data?.retrievalWarnings).toBeUndefined();
   });
+
+  it('marks only rows that survive into the emitted payload', () => {
+    const firstRow = { id: 501, title: 'Emitted row', filePath: '/tmp/emitted.md' };
+    const trimmedRow = { id: 502, title: 'Trimmed row', filePath: '/tmp/trimmed.md' };
+    vi.spyOn(sessionManager, 'filterSearchResults').mockReturnValue({
+      filtered: [firstRow, trimmedRow],
+      dedupStats: { enabled: true, filtered: 0, total: 2 },
+    } as ReturnType<typeof sessionManager.filterSearchResults>);
+
+    const deduped = handler.__testables.applySessionDedup(
+      [firstRow, trimmedRow] as never,
+      'dedup-trace-session',
+      true,
+    );
+
+    expect(deduped.results.map((row: Record<string, unknown>) => row.id)).toEqual([501, 502]);
+    expect(sessionManager.markResultsSent).not.toHaveBeenCalled();
+
+    handler.__testables.markEmittedSessionResultsSent({
+      content: [{ type: 'text', text: JSON.stringify({ data: { results: [firstRow] } }) }],
+      isError: false,
+    }, 'dedup-trace-session', true);
+
+    expect(sessionManager.markResultsSent).toHaveBeenCalledTimes(1);
+    expect(sessionManager.markResultsSent).toHaveBeenCalledWith('dedup-trace-session', [firstRow]);
+  });
 });
 
 /* ───────────────────────────────────────────────────────────────

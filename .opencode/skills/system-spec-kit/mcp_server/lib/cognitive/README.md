@@ -14,7 +14,7 @@ Memory lifecycle and attention logic for Spec Kit Memory. This folder turns memo
 
 ## 1. OVERVIEW
 
-Use this folder when code needs to classify memories, decay attention, spread activation, track session working memory, or monitor context pressure. It supports retrieval decisions, but canonical recovery still starts with `/spec_kit:resume` and the continuity chain in spec documents.
+Use this folder when code needs to classify memories, decay attention, spread activation, track session working memory, or monitor context pressure. It supports retrieval decisions, but canonical recovery still starts with `/speckit:resume` and the continuity chain in spec documents.
 
 ## 2. STRUCTURE
 

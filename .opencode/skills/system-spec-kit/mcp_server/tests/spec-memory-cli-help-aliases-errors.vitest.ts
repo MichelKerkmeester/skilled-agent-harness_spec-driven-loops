@@ -72,7 +72,7 @@ describe('spec-memory CLI help, aliases, and unknown command recovery', () => {
     }
   });
 
-  it('adds camel aliases to list-tools while preserving the 39-tool count', async () => {
+  it('adds camel aliases to list-tools while preserving the 41-tool count', async () => {
     const io = captureIo();
 
     const exitCode = await runSpecMemoryCli(['list-tools', '--format', 'json'], io);
@@ -81,7 +81,7 @@ describe('spec-memory CLI help, aliases, and unknown command recovery', () => {
     };
 
     expect(exitCode).toBe(0);
-    expect(payload.data.count).toBe(39);
+    expect(payload.data.count).toBe(41);
     expect(payload.data.tools.find((tool) => tool.name === 'memory_search')?.camelCommand).toBe('memorySearch');
     expect(payload.data.tools.find((tool) => tool.name === 'memory_search')?.inputSchema).toBeTruthy();
   });
@@ -101,11 +101,11 @@ describe('spec-memory CLI help, aliases, and unknown command recovery', () => {
 
     expect(compactExit).toBe(0);
     expect(namesExit).toBe(0);
-    expect(compact.data.count).toBe(39);
+    expect(compact.data.count).toBe(41);
     expect(compact.data.mode).toBe('compact');
     expect(compact.data.tools.find((tool) => tool.name === 'memory_search')?.description).toContain('Search indexed spec-doc');
     expect(compact.data.tools.some((tool) => Object.prototype.hasOwnProperty.call(tool, 'inputSchema'))).toBe(false);
-    expect(names.data.count).toBe(39);
+    expect(names.data.count).toBe(41);
     expect(names.data.mode).toBe('names-only');
     expect(names.data.names).toContain('memory_search');
     expect(compactIo.output().stdout.length).toBeLessThan(fullIo.output().stdout.length / 2);

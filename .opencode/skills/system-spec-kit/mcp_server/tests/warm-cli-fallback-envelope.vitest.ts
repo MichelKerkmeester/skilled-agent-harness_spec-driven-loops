@@ -18,6 +18,7 @@ describe('warm CLI fallback envelope', () => {
         reason: expect.any(String),
         exitCode: expect.toBeOneOf([expect.any(Number), null]),
         retryable: expect.any(Boolean),
+        timedOut: expect.any(Boolean),
       });
     }
     expect(ok).toMatchObject({ reason: 'ok', retryable: false });

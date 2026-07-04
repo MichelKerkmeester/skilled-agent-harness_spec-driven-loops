@@ -96,7 +96,9 @@ export function truncateToTokenBudget(text: string, maxTokens: number): string {
   const estimatedTokens = Math.ceil(text.length / 4);
   if (estimatedTokens <= maxTokens) return text;
   const maxChars = maxTokens * 4;
-  return text.slice(0, maxChars) + '\n[...truncated to fit token budget]';
+  const boundary = text.lastIndexOf('\n\n## ', maxChars);
+  const cutAt = boundary > 0 ? boundary : maxChars;
+  return text.slice(0, cutAt).trimEnd() + '\n[...truncated to fit token budget]';
 }
 
 // Provenance helpers (escapeProvenanceField, sanitizeRecoveredPayload,

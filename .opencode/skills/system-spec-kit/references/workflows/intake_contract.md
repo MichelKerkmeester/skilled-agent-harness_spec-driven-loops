@@ -1,6 +1,6 @@
 ---
 title: Intake Contract Reference
-description: Canonical spec-folder intake contract shared by /spec_kit:plan and /spec_kit:complete. Defines folder classification, repair-mode routing, staged trio publication, relationship capture, resume semantics, and the intake lock.
+description: Canonical spec-folder intake contract shared by /speckit:plan and /speckit:complete. Defines folder classification, repair-mode routing, staged trio publication, relationship capture, resume semantics, and the intake lock.
 trigger_phrases:
   - "intake contract"
   - "folder state classification"
@@ -15,7 +15,7 @@ version: 3.6.0.17
 
 # Intake Contract Reference
 
-This reference module defines the single canonical intake contract used by any SpecKit command that needs to create, repair, or resume a spec folder. Callers execute this contract inline rather than invoking a separate command — the workflow runs as Step 1 of `/spec_kit:plan` and Section 0 of `/spec_kit:complete`.
+This reference module defines the single canonical intake contract used by any SpecKit command that needs to create, repair, or resume a spec folder. Callers execute this contract inline rather than invoking a separate command — the workflow runs as Step 1 of `/speckit:plan` and Section 0 of `/speckit:complete`.
 
 ---
 
@@ -36,7 +36,7 @@ All intake surfaces return the same `start_state`, `repair_mode`, relationship d
 ### Source Marker
 
 <!-- SPECKIT_REFERENCE_SOURCE: intake-contract | v1.0 -->
-`/spec_kit:plan --intake-only` exposes intake as a standalone surface (halts after the Emit phase); `/spec_kit:resume` redirects re-entry for `reentry_reason in {incomplete-interview, placeholder-upgrade, metadata-repair}` to `/spec_kit:plan --intake-only` with prefilled state.
+`/speckit:plan --intake-only` exposes intake as a standalone surface (halts after the Emit phase); `/speckit:resume` redirects re-entry for `reentry_reason in {incomplete-interview, placeholder-upgrade, metadata-repair}` to `/speckit:plan --intake-only` with prefilled state.
 
 ### Contract Interface
 
@@ -192,11 +192,11 @@ When a session is interrupted mid-intake, `resume_question_id` and `reentry_reas
 | reentry_reason | Meaning | Re-entry path |
 |----------------|---------|---------------|
 | `none` | Clean state | Not a re-entry |
-| `incomplete-interview` | User abandoned mid-prompt | `/spec_kit:plan --intake-only` with prefilled state |
-| `placeholder-upgrade` | Seed marker resolution was pending | `/spec_kit:plan --intake-only` with `--repair-mode=resolve-placeholders` |
-| `metadata-repair` | Trio schema validation failed | `/spec_kit:plan --intake-only` with `--repair-mode=repair-metadata` |
+| `incomplete-interview` | User abandoned mid-prompt | `/speckit:plan --intake-only` with prefilled state |
+| `placeholder-upgrade` | Seed marker resolution was pending | `/speckit:plan --intake-only` with `--repair-mode=resolve-placeholders` |
+| `metadata-repair` | Trio schema validation failed | `/speckit:plan --intake-only` with `--repair-mode=repair-metadata` |
 
-`/spec_kit:resume` reads these fields from handover state and routes accordingly.
+`/speckit:resume` reads these fields from handover state and routes accordingly.
 
 ---
 
@@ -204,7 +204,7 @@ When a session is interrupted mid-intake, `resume_question_id` and `reentry_reas
 
 An advisory lock file prevents concurrent trio publication on the same folder.
 
-**Scope:** Step 1 (intake) only. Release on Emit success OR on cancel/abort. Do NOT hold the lock across planning Steps 2–8 of `/spec_kit:plan`.
+**Scope:** Step 1 (intake) only. Release on Emit success OR on cancel/abort. Do NOT hold the lock across planning Steps 2–8 of `/speckit:plan`.
 
 **Fail-closed behavior:**
 - Stale lock (older than a conservative timeout): surface exact cleanup command (`rm <path>.intake.lock`)
@@ -243,7 +243,7 @@ Report save result independently from trio success — a failed save never inval
 
 ## 12. CONSUMER INTEGRATION
 
-### `/spec_kit:plan`
+### `/speckit:plan`
 
 Step 1 (Intake) references this module. Plan's consolidated setup prompt (Section 0) detects folder state early:
 
@@ -251,16 +251,16 @@ Step 1 (Intake) references this module. Plan's consolidated setup prompt (Sectio
 - `populated-folder` + `--intake-only` → no-op exit with informational message
 - Any non-`populated` state → execute Phases 1–5 of this contract, then proceed OR halt if `--intake-only`
 
-### `/spec_kit:complete`
+### `/speckit:complete`
 
 Section 0 references this module with identical semantics:
 
 - `populated-folder` → skip intake; proceed to plan + implement + verify pipeline
 - Any non-`populated` state → execute Phases 1–5, then proceed through full completion workflow
 
-### `/spec_kit:resume`
+### `/speckit:resume`
 
-Reads `handover.md` and `_memory.continuity` for `reentry_reason` and `resume_question_id`. Routes intake re-entry to `/spec_kit:plan --intake-only` with appropriate `--repair-mode` and `--start-state` prefilled from saved state.
+Reads `handover.md` and `_memory.continuity` for `reentry_reason` and `resume_question_id`. Routes intake re-entry to `/speckit:plan --intake-only` with appropriate `--repair-mode` and `--start-state` prefilled from saved state.
 
 ---
 

@@ -39,6 +39,10 @@ interface Snippet {
   snippet: string;
   detailAvailable: boolean;
   resultId: string;
+  title?: string | null;
+  path?: string | null;
+  score?: number | null;
+  tier?: string | null;
 }
 
 /** Decoded cursor payload. */
@@ -47,7 +51,6 @@ interface CursorPayload {
   offset: number;
   queryHash: string;
   timestamp: number;
-  scopeKey?: string;
 }
 
 /** Cursor with remaining count metadata. */
@@ -81,13 +84,28 @@ interface CursorOptions {
   scopeKey?: string;
 }
 
+type CursorResolveStatus = 'ok' | 'malformed' | 'expired' | 'invalid' | 'exhausted';
+
+interface CursorResolveResult {
+  status: CursorResolveStatus;
+  results: DisclosureResult[];
+  continuation: CursorInfo | null;
+}
+
+interface CursorStoreEntry {
+  results: DisclosureResult[];
+  storedAt: number;
+  nextOffset: number;
+  scopeKey?: string;
+}
+
 // -- Internal: Cursor Store --
 
 /**
  * In-memory cache of result sets keyed by an opaque cursor identifier.
  * Used for cursor resolution (pagination).
  */
-const cursorStore = new Map<string, { results: DisclosureResult[]; storedAt: number }>();
+const cursorStore = new Map<string, CursorStoreEntry>();
 
 // -- Internal Helpers --
 
@@ -192,6 +210,29 @@ function pruneExpiredCursorEntries(
   }
 }
 
+function resolveText(value: unknown): string | null {
+  return typeof value === 'string' && value.trim().length > 0 ? value : null;
+}
+
+function resolveNumber(value: unknown): number | null {
+  return typeof value === 'number' && Number.isFinite(value) ? value : null;
+}
+
+function compactResultForCursor(result: DisclosureResult): DisclosureResult {
+  const content = resolveText(result.content) ?? resolveText(result.snippet) ?? '';
+  const snippet = content.length > SNIPPET_MAX_LENGTH
+    ? content.slice(0, SNIPPET_MAX_LENGTH) + '...'
+    : content;
+  return {
+    id: result.id,
+    snippet,
+    title: resolveText(result.title),
+    path: resolveText(result.filePath) ?? resolveText(result.file_path) ?? resolveText(result.path),
+    score: resolveNumber(result.score) ?? resolveNumber(result.similarity) ?? undefined,
+    tier: resolveText(result.importanceTier) ?? resolveText(result.importance_tier),
+  };
+}
+
 /**
  * Build a human-readable digest string from confidence distribution.
  * Format: "3 strong, 2 weak, 1 conflict" style.
@@ -271,7 +312,9 @@ function extractSnippets(results: DisclosureResult[]): Snippet[] {
   if (!Array.isArray(results)) return [];
 
   return results.map((result): Snippet => {
-    const content = typeof result.content === 'string' ? result.content : '';
+    const content = typeof result.content === 'string'
+      ? result.content
+      : (typeof result.snippet === 'string' ? result.snippet : '');
     const hasFullContent = content.length > 0;
     const truncated = content.length > SNIPPET_MAX_LENGTH
       ? content.slice(0, SNIPPET_MAX_LENGTH) + '...'
@@ -281,6 +324,10 @@ function extractSnippets(results: DisclosureResult[]): Snippet[] {
       snippet: truncated,
       detailAvailable: hasFullContent,
       resultId: String(result.id),
+      title: resolveText(result.title),
+      path: resolveText(result.filePath) ?? resolveText(result.file_path) ?? resolveText(result.path),
+      score: resolveNumber(result.score) ?? resolveNumber(result.similarity),
+      tier: resolveText(result.importanceTier) ?? resolveText(result.importance_tier),
     };
   });
 }
@@ -314,8 +361,14 @@ function createCursor(
 
   pruneExpiredCursorEntries(options?.ttlMs ?? DEFAULT_CURSOR_TTL_MS, now);
 
-  // Store the full result set for later resolution
-  cursorStore.set(cursorKey, { results: resultSet, storedAt: now });
+  cursorStore.set(cursorKey, {
+    results: resultSet.map(compactResultForCursor),
+    storedAt: now,
+    nextOffset: pageSize,
+    scopeKey: typeof options?.scopeKey === 'string' && options.scopeKey.length > 0
+      ? options.scopeKey
+      : undefined,
+  });
 
   // Evict oldest cursors when exceeding max capacity
   if (cursorStore.size > MAX_CURSORS) {
@@ -331,9 +384,6 @@ function createCursor(
     offset: pageSize,
     queryHash,
     timestamp: now,
-    scopeKey: typeof options?.scopeKey === 'string' && options.scopeKey.length > 0
-      ? options.scopeKey
-      : undefined,
   };
 
   return {
@@ -354,23 +404,17 @@ function createCursor(
  * const page = resolveCursor(cursor, 5);
  * ```
  */
-function resolveCursor(
+function resolveCursorDetailed(
   cursor: string,
   pageSize: number = DEFAULT_PAGE_SIZE,
   options?: CursorOptions,
-): { results: DisclosureResult[]; continuation: CursorInfo | null } | null {
+): CursorResolveResult {
   const ttlMs = options?.ttlMs ?? DEFAULT_CURSOR_TTL_MS;
   const payload = decodeCursor(cursor);
-  if (!payload) return null;
-  const storeKey = payload.cursorKey ?? payload.queryHash;
-
-  if (
-    typeof payload.scopeKey === 'string'
-    && payload.scopeKey.length > 0
-    && payload.scopeKey !== options?.scopeKey
-  ) {
-    return null;
+  if (!payload) {
+    return { status: 'malformed', results: [], continuation: null };
   }
+  const storeKey = payload.cursorKey ?? payload.queryHash;
 
   pruneExpiredCursorEntries(ttlMs);
 
@@ -379,26 +423,37 @@ function resolveCursor(
   if (now - payload.timestamp > ttlMs) {
     // Expired cursor — clean up stored data
     cursorStore.delete(storeKey);
-    return null;
+    return { status: 'expired', results: [], continuation: null };
   }
 
   // Retrieve stored result set
   const stored = cursorStore.get(storeKey);
-  if (!stored) return null;
+  if (!stored) {
+    return { status: 'invalid', results: [], continuation: null };
+  }
+
+  if (stored.scopeKey !== options?.scopeKey) {
+    return { status: 'invalid', results: [], continuation: null };
+  }
+
+  if (payload.offset !== stored.nextOffset) {
+    return { status: 'invalid', results: [], continuation: null };
+  }
 
   // Extract the requested page
-  const start = payload.offset;
+  const start = stored.nextOffset;
   const end = start + pageSize;
   const pageResults = stored.results.slice(start, end);
 
   if (pageResults.length === 0) {
     cursorStore.delete(storeKey);
-    return null;
+    return { status: 'exhausted', results: [], continuation: null };
   }
 
   // Create a new cursor for the next page if there are more results
   let continuation: CursorInfo | null = null;
   if (end < stored.results.length) {
+    stored.nextOffset = end;
     const nextPayload: CursorPayload = {
       cursorKey: payload.cursorKey,
       offset: end,
@@ -409,9 +464,22 @@ function resolveCursor(
       cursor: encodeCursor(nextPayload),
       remainingCount: stored.results.length - end,
     };
+  } else {
+    cursorStore.delete(storeKey);
   }
 
-  return { results: pageResults, continuation };
+  return { status: 'ok', results: pageResults, continuation };
+}
+
+function resolveCursor(
+  cursor: string,
+  pageSize: number = DEFAULT_PAGE_SIZE,
+  options?: CursorOptions,
+): { results: DisclosureResult[]; continuation: CursorInfo | null } | null {
+  const resolved = resolveCursorDetailed(cursor, pageSize, options);
+  return resolved.status === 'ok'
+    ? { results: resolved.results, continuation: resolved.continuation }
+    : null;
 }
 
 /**
@@ -507,6 +575,7 @@ export {
   extractSnippets,
   createCursor,
   resolveCursor,
+  resolveCursorDetailed,
   buildProgressiveResponse,
 
   // Testing utilities

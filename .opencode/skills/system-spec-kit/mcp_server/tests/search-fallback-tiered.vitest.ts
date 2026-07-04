@@ -97,6 +97,7 @@ function createTestDb(): Database.Database {
       importance_weight REAL DEFAULT 0.5,
       spec_folder TEXT,
       is_archived INTEGER DEFAULT 0,
+      deleted_at TEXT,
       created_at TEXT DEFAULT (datetime('now'))
     )
   `);
@@ -206,19 +207,18 @@ describe('PI-A2: structuralSearch', () => {
   it('T045-07: returns results ordered by importance tier', () => {
     const results = structuralSearch({ limit: 10 });
 
-    expect(results.length).toBe(5);
-    // Constitutional first, then critical, important, normal, temporary
-    expect(results[0].title).toBe('Auth Config');
-    expect(results[1].title).toBe('DB Setup');
-    expect(results[2].title).toBe('Logging');
-    expect(results[3].title).toBe('Normal Item');
-    expect(results[4].title).toBe('Temp Note');
+    expect(results.length).toBe(4);
+    // Active searchable rows exclude constitutional docs by default.
+    expect(results[0].title).toBe('DB Setup');
+    expect(results[1].title).toBe('Logging');
+    expect(results[2].title).toBe('Normal Item');
+    expect(results[3].title).toBe('Temp Note');
   });
 
   it('T045-08: respects specFolder filter', () => {
     const results = structuralSearch({ specFolder: 'specs/auth', limit: 10 });
 
-    expect(results.length).toBe(2);
+    expect(results.length).toBe(1);
     expect(results.every(r => (r as Record<string, unknown>).spec_folder === 'specs/auth')).toBe(true);
   });
 
@@ -234,7 +234,6 @@ describe('PI-A2: structuralSearch', () => {
     expect(results[1].score).toBeCloseTo(0.95);
     expect(results[2].score).toBeCloseTo(0.90);
     expect(results[3].score).toBeCloseTo(0.85);
-    expect(results[4].score).toBeCloseTo(0.80);
   });
 
   it('T045-11: all results have source="structural"', () => {

@@ -58,6 +58,6 @@ Set `SPECKIT_SKILL_ADVISOR_HOOK_DISABLED=1` to skip the advisor path for the cur
 ## 5. DESIGN PRINCIPLE
 
 Hooks are transport reliability, not separate business logic. They call the same retrieval primitives (`memory_match_triggers`, `memory_context`) that other runtimes call explicitly.
-For packet work, the operator-facing recovery surface remains `/spec_kit:resume`, with continuity rebuilt from `handover.md -> _memory.continuity -> spec docs`.
+For packet work, the operator-facing recovery surface remains `/speckit:resume`, with continuity rebuilt from `handover.md -> _memory.continuity -> spec docs`.
 
 The prompt-time advisor contract lives at `../../../references/hooks/skill_advisor_hook.md`.

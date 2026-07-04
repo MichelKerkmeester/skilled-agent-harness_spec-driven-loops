@@ -640,6 +640,10 @@ function isErrorPayload(payload: unknown): boolean {
     && (payload as { readonly status?: unknown }).status === 'error';
 }
 
+function isRecord(value: unknown): value is Record<string, unknown> {
+  return Boolean(value) && typeof value === 'object' && !Array.isArray(value);
+}
+
 function extractToolPayload(toolName: string, result: unknown): { readonly payload: unknown; readonly isError: boolean } {
   const toolResult = result && typeof result === 'object' ? result as ToolResult : null;
   const firstText = toolResult?.content?.find((entry) => typeof entry.text === 'string')?.text;
@@ -670,10 +674,50 @@ function extractToolPayload(toolName: string, result: unknown): { readonly paylo
   };
 }
 
-function renderPayload(payload: unknown, format: OutputFormat): string {
+function formatScore(value: unknown): string {
+  return typeof value === 'number' && Number.isFinite(value) ? value.toFixed(3) : 'n/a';
+}
+
+function renderMemorySearchText(record: Record<string, unknown>): string | null {
+  const data = isRecord(record.data) ? record.data : null;
+  const results = Array.isArray(data?.results) ? data.results : [];
+  if (results.length === 0) {
+    return typeof record.summary === 'string' ? record.summary : null;
+  }
+
+  const lines: string[] = [];
+  if (typeof record.summary === 'string') {
+    lines.push(record.summary);
+  }
+  results.forEach((result, index) => {
+    if (!isRecord(result)) {
+      return;
+    }
+    const title = typeof result.title === 'string' && result.title.trim().length > 0
+      ? result.title.trim()
+      : `(result ${index + 1})`;
+    const path = typeof result.filePath === 'string'
+      ? result.filePath
+      : typeof result.file_path === 'string'
+        ? result.file_path
+        : typeof result.path === 'string'
+          ? result.path
+          : 'unknown-path';
+    lines.push(`${index + 1}. ${title} | ${path} | score ${formatScore(result.score ?? result.similarity)}`);
+  });
+  lines.push('Notice: detailed telemetry, routing blocks, snippets, and metadata are omitted in text format; use --format json for the full envelope.');
+  return lines.join('\n');
+}
+
+function renderPayload(payload: unknown, format: OutputFormat, toolName?: string): string {
   if (format === 'json' || format === 'jsonl') return renderJson(payload, format);
-  if (payload && typeof payload === 'object' && !Array.isArray(payload)) {
-    const record = payload as Record<string, unknown>;
+  if (isRecord(payload)) {
+    const record = payload;
+    const meta = isRecord(record.meta) ? record.meta : null;
+    if ((toolName === 'memory_search' || meta?.tool === 'memory_search')) {
+      const rendered = renderMemorySearchText(record);
+      if (rendered) return rendered;
+    }
     if (typeof record.summary === 'string') return record.summary;
     if (typeof record.error === 'string') return record.error;
     if (typeof record.message === 'string') return record.message;
@@ -1018,7 +1062,7 @@ export async function runSpecMemoryCli(argv: string[], io: CliIo = { stdout: pro
     }
     const result = await callTool(validated.tool.name, validated.args, parsed.timeoutMs, parsed.warmOnly);
     const { payload, isError } = extractToolPayload(validated.tool.name, result);
-    await writeLine(io.stdout, renderPayload(payload, parsed.format));
+    await writeLine(io.stdout, renderPayload(payload, parsed.format, validated.tool.name));
     return isError || isErrorPayload(payload) ? EXIT_RUNTIME : EXIT_SUCCESS;
   } catch (error: unknown) {
     const exitCode = exitCodeForError(error);

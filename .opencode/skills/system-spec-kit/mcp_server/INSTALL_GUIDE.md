@@ -151,7 +151,7 @@ The repo contains checked-in MCP wiring for OpenCode, Claude Code, OpenCode, and
 |---|---|---|
 | OpenCode | `opencode.json` | MCP wiring is checked in. A plugin-based startup digest implementation exists under `.opencode/plugins/`, but repo registration of that plugin is runtime-dependent and not shown in `opencode.json`. |
 | Claude Code | `.claude/mcp.json` | Checked-in SessionStart / PreCompact / Stop hooks in `.claude/settings.local.json`. |
-| OpenCode | `opencode.json` | Checked-in MCP config plus native `SessionStart` and `UserPromptSubmit` hooks when `[features].opencode_hooks = true` in `~/opencode.json` and `~/.opencode/hooks.json` is wired. When those hooks are unavailable, recover via `/spec_kit:resume` or `session_bootstrap`. |
+| OpenCode | `opencode.json` | Checked-in MCP config plus native `SessionStart` and `UserPromptSubmit` hooks when `[features].opencode_hooks = true` in `~/opencode.json` and `~/.opencode/hooks.json` is wired. When those hooks are unavailable, recover via `/speckit:resume` or `session_bootstrap`. |
 | Copilot | `.vscode/mcp.json` | Checked-in MCP wrapper config plus merged `.claude/settings.local.json` matcher wrappers. Copilot reads the top-level `type` / `bash` / `timeoutSec` fields there, with writer-backed `UserPromptSubmit` and `SessionStart` commands handling managed custom-instructions refresh. |
 
 `Claude Desktop` remains documented here as a generic MCP configuration example, but it is outside the repo-checked runtime set above. Treat this table as repository configuration evidence, not as a blanket claim of live startup parity in every client.
@@ -847,7 +847,7 @@ Ask your AI assistant:
 Load context from spec folder 012-authentication and show me what we were working on
 ```
 
-**Behind the scenes:** The AI uses `/spec_kit:resume` as the canonical recovery surface. That flow reconstructs packet context from `handover.md`, then `_memory.continuity`, then the canonical spec docs before it falls through to deeper MCP retrieval.
+**Behind the scenes:** The AI uses `/speckit:resume` as the canonical recovery surface. That flow reconstructs packet context from `handover.md`, then `_memory.continuity`, then the canonical spec docs before it falls through to deeper MCP retrieval.
 
 ### Example 4: Intent-Aware Context Loading
 

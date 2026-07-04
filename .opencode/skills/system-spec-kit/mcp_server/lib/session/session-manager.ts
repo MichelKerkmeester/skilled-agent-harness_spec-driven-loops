@@ -931,8 +931,7 @@ function filterSearchResults(sessionId: string, results: MemoryInput[]): FilterR
     };
   }
 
-  // Reserve unsent hashes while filtering so concurrent searches cannot both inject.
-  const shouldSendMap = shouldSendMemoriesBatch(sessionId, results, true);
+  const shouldSendMap = shouldSendMemoriesBatch(sessionId, results, false);
   const seenBatchHashes = new Set<string>();
   const filtered = results.filter((r) => {
     if (r.id != null && shouldSendMap.get(r.id) === false) {
@@ -1286,7 +1285,7 @@ function generateContinueSessionMd(sessionState: ContinueSessionInput): string {
   });
 
   const resumeCommand = specFolder
-    ? `/spec_kit:resume ${specFolder}`
+    ? `/speckit:resume ${specFolder}`
     : sessionId
       ? `memory_search({ sessionId: "${sessionId}" })`
       : 'memory_search({ query: "last session" })';

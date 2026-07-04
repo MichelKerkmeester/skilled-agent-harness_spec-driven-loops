@@ -13,7 +13,7 @@ Shared error-handling code for the Spec Kit Memory MCP server. This folder conve
 
 ## 1. OVERVIEW
 
-Use this folder when MCP tools need consistent failure responses. Recovery hints should be actionable and should re-anchor packet-scoped work on `/spec_kit:resume` when continuity context is missing.
+Use this folder when MCP tools need consistent failure responses. Recovery hints should be actionable and should re-anchor packet-scoped work on `/speckit:resume` when continuity context is missing.
 
 ## 2. STRUCTURE
 

@@ -122,6 +122,7 @@ export interface FormattedSearchResult {
   createdAt?: string;
   sourceKind?: string | null;
   content?: string | null;
+  contentTruncated?: boolean;
   contentError?: string;
   tokenMetrics?: AnchorTokenMetrics;
   isChunk?: boolean;
@@ -130,6 +131,9 @@ export interface FormattedSearchResult {
   chunkLabel?: string | null;
   chunkCount?: number | null;
   contentSource?: 'reassembled_chunks' | 'file_read_fallback';
+  canonicalSource?: string | null;
+  documentType?: string | null;
+  _communityFallback?: boolean;
   /**
    * Marks a row that the additive tail-append stage added past the requested
    * limit (deterministic multi-hop or lane-champion backfill). The downstream
@@ -251,6 +255,8 @@ export type CitationPolicy = 'cite_results' | 'cite_with_caveat' | 'do_not_cite_
 // the weak-verdict relevance floor, so a hit that is grounded and clears the weak
 // band is hedged with a caveat rather than dropped, while a lower hit still drops.
 const CITE_CAVEAT_MIN_RELEVANCE = 0.4;
+const INCLUDE_CONTENT_MAX_CHARS = 2000;
+const INCLUDE_CONTENT_TRUNCATION_MARKER = '\n[...content truncated per result]';
 
 interface ResponsePolicy {
   requiredAction: ResponsePolicyAction;
@@ -1035,7 +1041,14 @@ export async function formatSearchResults(
       contentSource: (rawResult.contentSource === 'reassembled_chunks' || rawResult.contentSource === 'file_read_fallback')
         ? rawResult.contentSource
         : undefined,
+      canonicalSource: typeof rawResult.canonicalSource === 'string' ? rawResult.canonicalSource : null,
+      documentType: typeof rawResult.documentType === 'string'
+        ? rawResult.documentType
+        : (typeof rawResult.document_type === 'string' ? rawResult.document_type : null),
     };
+    if (rawResult._communityFallback === true) {
+      formattedResult._communityFallback = true;
+    }
     if (rawResult.compact === true) {
       formattedResult.compact = true;
     }
@@ -1209,7 +1222,11 @@ export async function formatSearchResults(
           }
         }
 
-        const contentWithContext = applyContextualTreeHeader(content, rawResult);
+        let contentWithContext = applyContextualTreeHeader(content, rawResult);
+        if (contentWithContext.length > INCLUDE_CONTENT_MAX_CHARS) {
+          contentWithContext = `${contentWithContext.slice(0, INCLUDE_CONTENT_MAX_CHARS)}${INCLUDE_CONTENT_TRUNCATION_MARKER}`;
+          formattedResult.contentTruncated = true;
+        }
         formattedResult.content = renderRecalledMemoryContent(
           contentWithContext,
           rawResult.source_kind ?? rawResult.sourceKind,
@@ -1315,7 +1332,11 @@ export async function formatSearchResults(
     (r, i): Record<string, unknown> => {
       const explainedWhy = explainedRawResults?.[i]?.why;
       const base = explainedWhy
-        ? { ...(r as unknown as Record<string, unknown>), why: explainedWhy }
+        ? {
+          ...(r as unknown as Record<string, unknown>),
+          why: explainedWhy,
+          whySuffix: explainedWhy.topSignals[0] ?? 'composite',
+        }
         : r as unknown as Record<string, unknown>;
       if (!confidenceData) return base;
       const conf = confidenceData[i];

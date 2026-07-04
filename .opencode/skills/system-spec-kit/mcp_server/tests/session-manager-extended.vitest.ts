@@ -612,7 +612,7 @@ describe('Session Manager Extended Tests', () => {
       expect(md).toContain('Testing session manager');
       expect(md).toContain('Need edge case tests');
       expect(md).toContain('"priority": "high"');
-      expect(md).toContain('/spec_kit:resume specs/005');
+      expect(md).toContain('/speckit:resume specs/005');
     });
 
     it('handles minimal input with N/A defaults', () => {

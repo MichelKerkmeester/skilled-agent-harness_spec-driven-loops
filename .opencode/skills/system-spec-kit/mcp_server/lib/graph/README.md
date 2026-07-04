@@ -19,7 +19,7 @@ trigger_phrases:
 
 The graph module operates on the `causal_edges` and `memory_index` tables to detect communities, compute scoring signals, manage temporal edge validity, detect contradictions, track usage, and generate community summaries. All features are independently gated behind `SPECKIT_*` feature flags.
 
-In Gate E, these graph signals support retrieval after `/spec_kit:resume` restores context from `handover.md` -> `_memory.continuity` -> spec docs. Generated memory artifacts remain supporting only.
+In Gate E, these graph signals support retrieval after `/speckit:resume` restores context from `handover.md` -> `_memory.continuity` -> spec docs. Generated memory artifacts remain supporting only.
 
 ### What It Does
 
