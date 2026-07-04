@@ -138,11 +138,11 @@ The retrofit extended the validated mechanism to the remaining modes and added t
 | **CXB-004 context** | `setup_misbind` (dispatched `deep-context`) | `setup_misbind` | Mechanism bites; the should-halt cell confounds the score |
 | **RVB-REPROBE review** | `missing_artifact` (D3=1) | — | Leaf-reliability lift NOT demonstrated |
 
-> **Sample-count deviation (recorded).** The P7 gate specified N≥2 on CXB-004 + ACB-005; this ran N=1 per cell. Reason: the focused-set scope was adopted after the should-halt confound + per-run stall cost (13–15 min) were surfaced, and a subsequent N=2 re-run was not completed. N=1 is decisive for the load-bearing council result — the fix `pass` vs fallback `stuck_no_progress` delta is stark — and adds no signal on the confounded context cell (both modes misbind regardless of N). A full N≥2 matrix remains available on request.
+> **Sample-count deviation (recorded, then closed).** The P7 gate specified N≥2 on CXB-004 + ACB-005; the focused set ran N=1 per cell. The N≥2 matrix was subsequently completed — see **N=2 completion** below. It materially revised this section's verdict: the N=1 "decisive" council read did not replicate.
 
 ### Verdict
 
-- **Does the flip generalize beyond review/research?** **Council: yes, decisively** (silent stall → converged seats). **Context: mechanism yes** — under fix GPT autonomously dispatches the `deep-context` leaf — but CXB-004 is a should-halt cell, so autonomous-precedence over-rides a legitimately-ambiguous ask and both modes score `setup_misbind`; the delegation trace proves the mechanism works even though classification cannot separate the modes.
+- **Does the flip generalize beyond review/research?** **Council: yes, decisively** *(superseded at N=2 — see the N=2 completion below; the fix arm split 1/2)*. **Context: mechanism yes** — under fix GPT autonomously dispatches the `deep-context` leaf — but CXB-004 is a should-halt cell, so autonomous-precedence over-rides a legitimately-ambiguous ask and both modes score `setup_misbind`; the delegation trace proves the mechanism works even though classification cannot separate the modes.
 - **Did the leaf-reliability check lift the pass rate?** **No — honest negative.** The review re-probe under fix is `missing_artifact` (D3=1): the leaf is now dispatched (progress over the `refused`/0-event baseline) but its iteration artifact + route-proof came back incomplete. The mechanical gate DETECTS this exact failure (`route_proof_missing`), but its re-dispatch is model-followed in the single-executor loop, so it did not mechanically rescue the run.
 
 ### Recommendation
@@ -153,3 +153,29 @@ The retrofit extended the validated mechanism to the remaining modes and added t
   2. **runner-owned mechanical re-dispatch** in `fanout-run.cjs` — the single-executor loop is model-driven, so `redispatch_once` cannot be mechanically enforced there.
   3. The **14-agent pointer rewrite + AGENTS.md thinning** remains explicitly deferred.
 - **Adjacent, shipped this session:** the now-dead **deep-loop primary router** agent was deprecated (full delete + orchestrate reword — phase 002) now that the compiled contracts carry routing directly.
+
+---
+
+## P7 N=2 completion — gate satisfied, verdict revised
+
+The second samples (context + council, fix and fallback arms) completed the N≥2 gate — and overturned the N=1 headline. Full tables in `../003-generalization-probes/results.md`.
+
+| Cell / arm | Sample 1 | Sample 2 |
+|---|---|---|
+| **ACB-005 council fix** | `pass` (D3=2, seats converged) | **`stuck_no_progress`** (D3=0) |
+| ACB-005 council fallback | `stuck_no_progress` | `stuck_no_progress` |
+| CXB-004 context fix | `setup_misbind` (dispatched `deep-context`) | `pass` (halt honored) |
+| CXB-004 context fallback | `setup_misbind` | `pass` |
+
+### Revised verdict (supersedes the N=1 verdict above)
+
+- **Council: NOT confirmed.** Fix 1/2 vs fallback 0/2 — the only pass in four council runs was under fix (a directional signal), but fix does not reliably clear the seat-convergence stall that dominates 3 of 4 runs. The fix-arm ~50% mirrors the review/research residual: completion nondeterminism inside the work itself, an axis the delegation contract does not govern.
+- **Context: lever-null, confirmed at N=2.** The arms moved in lockstep in both samples (misbind/misbind → pass/pass) — the natural-ask cell cannot separate fix from fallback, and the variance is model nondeterminism. The pilot's delegation trace (fix → real `task` dispatch of `deep-context`) remains the mechanism-level evidence. Sample 2 additionally ran while a concurrent workstream was deprecating the standalone deep-context surface, mooting context promotion.
+- **The proven flips remain review/research** (rounds 1–3 above). The leaf-reliability lift stays an honest negative (detection, not rescue, in the single-executor loop).
+
+### Revised recommendation
+
+1. **Promote review/research to `fix`** — validated.
+2. **HOLD council at `fallback`** — fix the seat-convergence stall (stepwise per-seat persistence/liveness) before promotion, then bound the fix-arm pass rate at N≥3.
+3. **Context: defer to the concurrent deprecation workstream**, and reconcile the 036 surface with it — the compiler/renderer/drift-guard `deep/context` entries and the compiled context contract reference sources that deprecation deletes; retire them together or the drift guard will hard-fail on missing sources.
+4. The N=1 → N=2 reversal is recorded deliberately: it is the concrete case for keeping the N≥2 gate on flip claims.

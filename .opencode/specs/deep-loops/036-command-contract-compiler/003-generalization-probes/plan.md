@@ -9,7 +9,7 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "deep-loops/036-command-contract-compiler/003-generalization-probes"
-    last_updated_at: "2026-07-04T15:24:43Z"
+    last_updated_at: "2026-07-04T16:07:46Z"
     last_updated_by: "claude-code"
     recent_action: "Probes complete; plan reflects the focused-set method"
     next_safe_action: "None -- phase complete"
@@ -62,6 +62,7 @@ Run behavior-benchmark cells fix-vs-fallback on `gpt-fast-med` to test whether t
 2. **Pilot** — CXB-004 fix N=1 to test whether the lever bites on a natural cell.
 3. **Focused set** — CXB-004 fallback, ACB-005 fix + fallback, review re-probe fix (N=1), given the should-halt confound the pilot surfaced.
 4. **Verdict** — score deltas; write the generalization verdict + follow-ups.
+5. **N=2 completion** — second samples for both cells' arms (paired parallel waves: fix arms together, then fallback arms) to satisfy the N≥2 gate; revise the verdict on the aggregate.
 <!-- /ANCHOR:phases -->
 
 ---

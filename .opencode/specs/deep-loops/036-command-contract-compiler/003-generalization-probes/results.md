@@ -1,91 +1,92 @@
 # Generalization Probe Results
 
 Compiled-command-contract flip generalization beyond review/research, plus the
-leaf-reliability check's effect. Leg: `gpt-fast-med`, N=1 per cell (focused set;
-the natural should-halt cells confound N-scaling — see method note). Lever:
-per-command `command-injection-rollout.json` (`fix` = compiled contract prepended;
-`fallback` = legacy body). Fixtures restored between runs; lever reset to `fallback`.
+leaf-reliability check's effect. Leg: `gpt-fast-med`, **N=2 per cell/arm** (the
+first sample as a focused set, the second as a completion run). Lever: per-command
+`command-injection-rollout.json` (`fix` = compiled contract prepended; `fallback`
+= legacy body). Fixtures restored between runs; lever reset to `fallback` after.
 
-## Method note — the natural-invocation + should-halt confound
+## Method notes
 
-CXB-004 and ACB-005 are `natural`-invocation cells (no `--command`), so the render
-lever only bites when the model self-routes to the slash command. RVB-REPROBE is
-`command`-kind, so its lever bites directly. Cell *expectations* also matter:
-CXB-004 is a **should-halt** cell (`expected_interaction: question_halt`), so the
-compiled contract's autonomous-precedence scores as a misbind even when the
-mechanism works. This is why the focused set (not a full N=2 matrix on the
-confounded cells) was run.
+- **Natural-invocation confound.** CXB-004 and ACB-005 are `natural` cells (no
+  `--command`), so the render lever only bites when the model self-routes to the
+  slash command. RVB-REPROBE is `command`-kind, so its lever bites directly.
+- **Cell expectation.** CXB-004 is a **should-halt** cell
+  (`expected_interaction: question_halt`): an autonomous proceed scores as
+  `setup_misbind` even when delegation works.
+- **Sample-2 environment caveat.** The second samples ran while a concurrent
+  workstream was actively deprecating the standalone deep-context surface
+  (command stubbed, mode skill tree removed in the working tree). This
+  contaminates s2 context comparability and moots context promotion regardless.
 
-## Runs
-
-### Context — CXB-004 (should-halt cell)
-
-| Mode | Classification | D1..D5 | Delegation | Note |
-|---|---|---|---|---|
-| fix | `setup_misbind` | 1/2/·/2/· | **dispatched `deep-context`** (real `task` tool-call, `subagent_type: deep-context`) | The flip BIT: fix made GPT autonomously dispatch the context leaf. |
-| fallback | `setup_misbind` | 1/2/·/2/· | 2 task events | Also misbinds — fix and fallback are classification-indistinguishable here. |
-
-**Read:** the mechanism generalizes to context — under fix GPT routes to and
-dispatches the `deep-context` leaf. But the should-halt cell scores both modes as
-misbind (autonomous-precedence over-rides a legitimately-ambiguous ask that
-warrants a setup-confirm). Mechanism confirmed; the *policy* needs a should-halt
-carve-out.
+## Runs (N=2)
 
 ### Council — ACB-005 (autonomous-expecting, seat_artifacts — the novel case)
 
-| Mode | Classification | D1..D5 | Note |
-|---|---|---|---|
-| **fix** | **`pass`** | **2/2/2/2/·** | Seats convened in-CLI (D3=2 via seat_artifacts; 0 task events is NORMAL for council). |
-| fallback | `stuck_no_progress` | 0/2/0/0/· | Silent stall — matches the 033 baseline. |
+| Arm | Sample 1 | Sample 2 |
+|---|---|---|
+| **fix** | `pass` (D1=2 D2=2 D3=2 D4=2 — seats converged in-CLI) | `stuck_no_progress` (D1=0 D3=0 D4=0) |
+| fallback | `stuck_no_progress` | `stuck_no_progress` |
 
-**Read:** the clearest result. The compiled contract converts the council silent
-stall (`stuck_no_progress`, D3=0) into a clean, converged seat run (`pass`, D3=2).
-This is the genuinely-new generalization — the seat-mode is structurally unlike the
-task_dispatch modes — and it holds decisively.
+**Read:** fix 1/2 vs fallback 0/2. The only pass in four council runs was under
+fix — a directional signal — but fix does **not** reliably clear the council
+stall: 3 of 4 runs reproduce the silent seat-convergence stall the 033 benchmark
+documented. The fix-arm ~50% rate mirrors the review/research residual —
+completion nondeterminism inside the work itself (here, in-CLI seat
+convergence), an axis the delegation contract does not govern.
+
+### Context — CXB-004 (should-halt cell)
+
+| Arm | Sample 1 | Sample 2 |
+|---|---|---|
+| fix | `setup_misbind` (dispatched `deep-context` — mechanism bit) | `pass` (question-halt honored) |
+| fallback | `setup_misbind` | `pass` |
+
+**Read:** the arms moved in lockstep in both samples — **lever-null on this
+natural cell, confirmed at N=2**. The outcome variance (misbind→halt) is model
+nondeterminism, not the contract. The pilot's delegation trace (fix → real
+`task` dispatch of `deep-context`) remains the mechanism-level evidence that the
+compiled contract reaches context. Given the concurrent deprecation of the
+standalone surface, no further context probes are warranted.
 
 ### Review re-probe — RVB-REPROBE (command-kind, route-proof) — leaf-reliability lift
 
 | Mode | Classification | D1..D5 | Note |
 |---|---|---|---|
-| fix | `missing_artifact` | 2/2/1/1/· | Leaf dispatched (1 task event) but produced an incomplete artifact (D3=1: route-proof record missing/partial). |
+| fix | `missing_artifact` | 2/2/1/1/· | Leaf dispatched (1 task event) but the iteration artifact + route-proof record came back incomplete. |
 
 **Read:** an honest negative on the *lift*. Baseline RVB-007 at gpt-fast-med was
-`refused` (0 task events); under fix the leaf IS now dispatched (progress), but the
-iteration artifact + route-proof record came back incomplete (`missing_artifact`,
-D3=1). The mechanical `verify-iteration` gate would DETECT this exact failure
-(`route_proof_missing`), but its `redispatch_once` is model-followed — no runner
-owns the single-executor loop — so the model did not execute the retry in this run.
-The check improves *detectability* of the incomplete leaf; it does not mechanically
-*guarantee* a rescue in single-executor mode.
+`refused` (0 task events); under fix the leaf IS dispatched (progress), but the
+output is incomplete. The mechanical `verify-iteration` gate detects exactly this
+failure (`route_proof_missing`), but its `redispatch_once` is model-followed in
+the single-executor loop — it did not mechanically rescue this run.
 
-## Verdict
+## Verdict (N=2)
 
-**Does the flip generalize beyond review/research?**
+- **Council: NOT confirmed.** Directional signal for fix (the only observed pass),
+  unreliable at N=2. The dominant failure in both arms is the pre-existing council
+  seat-convergence stall — a work-completion axis, not a delegation axis.
+- **Context: method-moot.** Lever-null at N=2 on the natural cell; mechanism-level
+  dispatch evidence exists (pilot trace); the standalone surface is being
+  deprecated concurrently.
+- **The proven flips remain review/research** (rounds 1–3 in
+  `../001-contract-compiler-design/early-signal-results.md`).
+- **Leaf-reliability lift: honest negative** — detection, not rescue, in the
+  single-executor loop.
+- **Correction note:** the interim N=1 report called the council flip "decisive";
+  the N=2 completion revised it. Recorded deliberately — this is why the N≥2 gate
+  exists.
 
-- **Council (seat_artifacts): YES, decisively.** fix `pass` (D3=2, seats converged)
-  vs fallback `stuck_no_progress` (D3=0). The compiled contract fixes the council
-  silent-stall the 033 benchmark documented.
-- **Context (task_dispatch): mechanism YES, cell scoring confounded.** Under fix GPT
-  autonomously dispatches the `deep-context` leaf (delegation evidence), exactly like
-  review/research. CXB-004's should-halt expectation makes both fix and fallback score
-  `setup_misbind`, so classification cannot separate them — but the delegation trace
-  shows the mechanism works.
+## Recommendations
 
-**Did the leaf-reliability check lift the pass rate?** Not on RVB-REPROBE. It makes an
-incomplete leaf *detectable* (the gate fires `route_proof_missing`/`missing_artifact`),
-but the re-dispatch is model-followed in the single-executor loop, so it did not
-mechanically rescue this run.
-
-## Recommendations / follow-ups
-
-1. **Should-halt carve-out for autonomous-precedence.** Context CXB-004 shows the
-   contract over-rides a legitimately-ambiguous ask. The autonomous-precedence rule
-   should exempt genuine setup-confirm cases.
-2. **Mechanical re-dispatch needs a runner.** In single-executor mode the loop is
-   model-driven, so `redispatch_once` is model-followed. A future mechanical retry
-   belongs in the fan-out runner (`fanout-run.cjs`), the only place a runner owns the
-   loop — at whole-lineage granularity.
-3. **Promotion readiness.** Council and the task_dispatch modes flip cleanly under the
-   compiled contract; promoting them to `fix` by default is justified. The
-   leaf-reliability gate adds observability and should ship, but its re-dispatch is a
-   best-effort model instruction until a runner-owned retry exists.
+1. **Promote review/research to `fix`** — validated across rounds 1–3.
+2. **HOLD council at `fallback`.** Before promotion, fix the seat-convergence
+   stall (stepwise per-seat persistence/liveness per the design's council items),
+   then re-probe the fix arm at N≥3 to bound the pass rate.
+3. **Context: defer to the deprecation workstream** (@context / research / review /
+   plan absorb the use case). Reconcile the 036 contract surface with that
+   deprecation: the compiler/renderer/drift-guard `deep/context` entries and the
+   compiled context contract reference sources the deprecation deletes — they must
+   be retired together or the drift guard will hard-fail on missing sources.
+4. **Runner-owned mechanical re-dispatch** (fan-out granularity) and the
+   **should-halt carve-out** for autonomous-precedence stand as before.
