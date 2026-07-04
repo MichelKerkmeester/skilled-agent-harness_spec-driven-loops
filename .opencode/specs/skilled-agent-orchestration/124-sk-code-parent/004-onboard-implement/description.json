@@ -1,0 +1,25 @@
+{
+  "level": "1",
+  "specFolder": "skilled-agent-orchestration/124-sk-code-parent/004-onboard-implement",
+  "description": "The flat sk-code references, assets, and scripts needed relocation into the parent-hub packet layout with internal links repointed",
+  "keywords": [
+    "sk-code",
+    "parent",
+    "hub",
+    "relocation",
+    "onboard",
+    "implement",
+    "shared",
+    "link",
+    "repoint"
+  ],
+  "lastUpdated": "2026-07-04T00:00:00.000Z",
+  "specId": "004",
+  "folderSlug": "onboard-implement",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "124-sk-code-parent"
+  ],
+  "memorySequence": 4,
+  "memoryNameHistory": []
+}

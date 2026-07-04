@@ -1,0 +1,93 @@
+{
+  "schema_version": 1,
+  "packet_id": "skilled-agent-orchestration/124-sk-code-parent/004-onboard-implement",
+  "spec_folder": "skilled-agent-orchestration/124-sk-code-parent/004-onboard-implement",
+  "parent_id": "skilled-agent-orchestration/124-sk-code-parent",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [
+      "skilled-agent-orchestration/124-sk-code-parent/003-scaffold-hub"
+    ],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "sk-code onboard implement",
+      "sk-code content relocation",
+      "sk-code parent hub relocation",
+      "sk-code deterministic link repair",
+      "sk-code mode packet onboarding"
+    ],
+    "key_topics": [
+      "sk-code",
+      "content-relocation",
+      "parent-hub",
+      "shared",
+      "code-implement",
+      "code-quality",
+      "code-debug",
+      "code-verify",
+      "git-mv",
+      "link-resolution",
+      "deterministic-repair"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "relocation-map.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "relocation-map.md",
+        "kind": "doc",
+        "path": "relocation-map.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Phase 004 relocated 128 flat sk-code references, assets, and scripts into shared and mode-packet destinations, repaired 111 internal links across 43 files with a deterministic old-structure-aware pass, and verified zero broken content links after relocation. Contract authoring remains deferred to phase 006 and sk-code-review fold-in to phase 005.",
+    "created_at": "2026-07-04T00:00:00Z",
+    "last_save_at": "2026-07-04T00:00:00Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "relocation-map.md"
+    ],
+    "source_fingerprint": null,
+    "source_doc_hashes": {},
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}
