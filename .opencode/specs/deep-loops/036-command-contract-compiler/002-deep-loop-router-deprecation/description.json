@@ -1,4 +1,5 @@
 {
+  "level": "1",
   "specFolder": "deep-loops/036-command-contract-compiler/002-deep-loop-router-deprecation",
   "description": "Phase 002 of packet 036 (command contract compiler). Retire the now-dead deep-loop primary router agent: the compiled-command-contract mechanism",
   "keywords": [
@@ -18,16 +19,13 @@
     "compiled-command-contract",
     "mechanism"
   ],
-  "lastUpdated": "2026-07-04T12:46:08.226Z",
+  "lastUpdated": "2026-07-04T14:39:14.219Z",
   "specId": "002",
   "folderSlug": "deep-loop-router-deprecation",
   "parentChain": [
-    ".opencode",
-    "specs",
     "deep-loops",
     "036-command-contract-compiler"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }
