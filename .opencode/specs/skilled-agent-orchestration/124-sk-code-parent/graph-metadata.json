@@ -8,7 +8,8 @@
     "skilled-agent-orchestration/124-sk-code-parent/002-architecture-decision",
     "skilled-agent-orchestration/124-sk-code-parent/003-scaffold-hub",
     "skilled-agent-orchestration/124-sk-code-parent/004-onboard-implement",
-    "skilled-agent-orchestration/124-sk-code-parent/005-foldin-review"
+    "skilled-agent-orchestration/124-sk-code-parent/005-foldin-review",
+    "skilled-agent-orchestration/124-sk-code-parent/006-build-remaining-modes"
   ],
   "manual": {
     "depends_on": [
@@ -83,7 +84,7 @@
     ],
     "source_fingerprint": null,
     "source_doc_hashes": {},
-    "last_active_child_id": "skilled-agent-orchestration/124-sk-code-parent/005-foldin-review",
+    "last_active_child_id": "skilled-agent-orchestration/124-sk-code-parent/006-build-remaining-modes",
     "last_active_at": "2026-07-03T00:00:00Z"
   }
 }

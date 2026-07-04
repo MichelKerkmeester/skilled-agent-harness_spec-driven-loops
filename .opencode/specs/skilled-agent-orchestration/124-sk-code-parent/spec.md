@@ -13,15 +13,15 @@ _memory:
     packet_pointer: "skilled-agent-orchestration/124-sk-code-parent"
     last_updated_at: "2026-07-03T00:00:00Z"
     last_updated_by: "claude-opus"
-    recent_action: "Completed 005 foldin-review — folded sk-code-review into code-review (cohesive move), deleted its graph-metadata (de-registered), doctrine preserved verbatim, legacy alias kept; verified"
-    next_safe_action: "Proceed to 006 build-remaining-modes (author code-implement/quality/debug/verify mode SKILL.md contracts) — worktree-isolated; hard-stop before 007"
+    recent_action: "Completed 006 build-remaining-modes — authored + verified the four code-* mode contracts (implement/quality/debug/verify) from the distributed pre-hub doctrine; registry-exact tool surfaces, one-identity preserved, 206 links resolve, hygiene clean"
+    next_safe_action: "Proceed to 007 advisor-and-integration (merge review keywords into hub node, regenerate advisor skill-graph, repoint agents/speckit/governance, clean dangling sk-code-review edges) — HARD-STOP checkpoint: main-side + concurrent-028 scope"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "bootstrap-session"
       parent_session_id: null
-    completion_pct: 55
+    completion_pct: 65
     open_questions: []
     answered_questions: []
 ---
@@ -108,7 +108,7 @@ Per-phase detail lives in each child's `plan.md`; the authoritative blast-radius
 | 003 | `003-scaffold-hub/` | Stand up the `sk-code` hub shell (thin `SKILL.md`, `mode-registry.json`, `hub-router.json`, `shared/`, changelog, 5 mode-packet skeletons) + one preserved advisor identity. `command-metadata.json` deferred to 007 (no `/code:*` command surface yet). No content moved yet. | **complete** |
 | 004 | `004-onboard-implement/` | Relocate flat `sk-code` content (128 files) into `shared/` + the four `code-*` mode packets; repoint internal links (deterministic pass, 0 broken). Mode contracts authored in 006. | **complete** |
 | 005 | `005-foldin-review/` | Fold `sk-code-review` into the `code-review` mode (cohesive move); DELETE its `graph-metadata.json` (de-register); doctrine preserved verbatim; legacy `sk-code-review` alias kept in registry/router/graph-metadata until 009. | **complete** |
-| 006 | `006-build-remaining-modes/` | Author any net-new modes the research finalizes (e.g., `verify` / `debug`) + complete every mode's `SKILL.md`, README, references, playbook. | planned |
+| 006 | `006-build-remaining-modes/` | Distribute the pre-hub flat doctrine into the four `code-*` mode contracts (implement=Phase 0/1, quality=Phase 1.5, debug=Phase 2, verify=Phase 3 non-mutating); mirror sk-design shape; registry-exact tool surfaces; consume shared detection. Per-mode playbooks/changelogs deferred. | **complete** |
 | 007 | `007-advisor-and-integration/` | Wire the advisor DB/metadata to the single hub identity; repoint commands, agents, YAMLs, governance, feature catalogs, deep-loop references. | planned |
 | 008 | `008-routing-benchmark-and-review/` | Routing-efficiency benchmark across modes + family deep-review; remediate P0/P1. | planned |
 | 009 | `009-cutover-and-rollout/` | Final recursive validation, native-invocability regression, back-compat aliases, version/changelog bumps, rollout + rollback readiness. | planned |

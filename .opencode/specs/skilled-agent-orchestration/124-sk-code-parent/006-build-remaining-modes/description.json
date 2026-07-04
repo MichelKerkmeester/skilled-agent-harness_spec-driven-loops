@@ -1,0 +1,26 @@
+{
+  "level": "1",
+  "specFolder": "skilled-agent-orchestration/124-sk-code-parent/006-build-remaining-modes",
+  "description": "The four remaining sk-code mode packets needed full contracts built by distributing the pre-hub doctrine into implement, quality, debug, and verify while pinning each registry tool surface and consuming shared surface detection",
+  "keywords": [
+    "sk-code",
+    "parent",
+    "hub",
+    "mode-contract",
+    "code-implement",
+    "code-quality",
+    "code-debug",
+    "code-verify",
+    "doctrine-distribution",
+    "tool-surface"
+  ],
+  "lastUpdated": "2026-07-04T00:00:00.000Z",
+  "specId": "006",
+  "folderSlug": "build-remaining-modes",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "124-sk-code-parent"
+  ],
+  "memorySequence": 6,
+  "memoryNameHistory": []
+}
