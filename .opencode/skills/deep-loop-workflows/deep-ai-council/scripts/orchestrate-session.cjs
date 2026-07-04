@@ -11,11 +11,14 @@
 // ─────────────────────────────────────────────────────────────────────────────
 
 const path = require('node:path');
+const fs = require('node:fs');
+const { spawn } = require('node:child_process');
 const { appendRoundStateRecord } = require('../../../deep-loop-runtime/lib/council/round-state-jsonl.cjs');
 const { evaluateCouncilCostGuards, normalizeCostGuards } = require('../../../deep-loop-runtime/lib/council/cost-guards.cjs');
 const { validateSessionStateHierarchy } = require('../../../deep-loop-runtime/lib/council/session-state-hierarchy.cjs');
 const { orchestrateTopic } = require('./orchestrate-topic.cjs');
 const { appendFinding, getCrossTopicPriors } = require('./lib/findings-registry.cjs');
+const { persistSeatStepwise } = require('./lib/persist-artifacts.cjs');
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 2. CONSTANTS
@@ -30,6 +33,11 @@ const COUNCIL_ROUTE_FIELDS = Object.freeze({
   depth_aware: true,
   do_not_switch_mode: true,
 });
+const DEFAULT_HEARTBEAT_INTERVAL_MS = 45_000;
+const DEFAULT_SEAT_TIMEOUT_MS = 600_000;
+const DEFAULT_EXECUTOR_MODEL = 'openai/gpt-5.5-fast';
+const PROMPT_PACK_PATH = path.join(__dirname, '..', 'assets', 'prompt_pack_round.md');
+const COUNCIL_CONFIG_PATH = path.join(__dirname, '..', 'assets', 'deep_ai_council_config.json');
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 3. HELPERS
@@ -37,6 +45,288 @@ const COUNCIL_ROUTE_FIELDS = Object.freeze({
 
 function isRecord(value) {
   return value !== null && typeof value === 'object' && !Array.isArray(value);
+}
+
+function readJsonValue(value, label) {
+  if (typeof value !== 'string' || value.trim() === '') {
+    throw new TypeError(`${label} must be a path or inline JSON string`);
+  }
+  const trimmed = value.trim();
+  const source = fs.existsSync(trimmed) ? fs.readFileSync(trimmed, 'utf8') : trimmed;
+  return JSON.parse(source);
+}
+
+function parseArgs(argv = []) {
+  const args = {
+    sessionState: null,
+    executorConfig: null,
+    packetSpecFolder: null,
+  };
+  const rest = [...argv];
+  while (rest.length) {
+    const flag = rest.shift();
+    if (flag === '--session-state') args.sessionState = rest.shift() || null;
+    else if (flag === '--executor-config') args.executorConfig = rest.shift() || null;
+    else if (flag === '--packet-spec-folder') args.packetSpecFolder = rest.shift() || null;
+    else throw new Error(`[ai-council] Unknown argument: ${flag}`);
+  }
+  if (!args.sessionState || !args.executorConfig) {
+    throw new Error('Usage: node orchestrate-session.cjs --session-state <path-or-json> --executor-config <path-or-json> [--packet-spec-folder <path>]');
+  }
+  return args;
+}
+
+function loadCouncilConfig(configPath = COUNCIL_CONFIG_PATH) {
+  return fs.existsSync(configPath) ? JSON.parse(fs.readFileSync(configPath, 'utf8')) : {};
+}
+
+function loadPromptTemplate(promptPath = PROMPT_PACK_PATH) {
+  return fs.readFileSync(promptPath, 'utf8');
+}
+
+function stringifyForPrompt(value) {
+  if (value === undefined || value === null) return 'n/a';
+  if (typeof value === 'string') return value;
+  return JSON.stringify(value, null, 2);
+}
+
+function resolveSeatId(seatInput, seatIndex) {
+  if (seatInput && typeof seatInput.id === 'string' && seatInput.id.trim() !== '') {
+    return seatInput.id.trim();
+  }
+  return `seat-${pad3(seatIndex + 1)}`;
+}
+
+function resolveSeatLens(seatInput) {
+  return seatInput.lens || seatInput.role || seatInput.strategy_lens || seatInput.strategyLens || 'council';
+}
+
+function topicTitle(topicBrief) {
+  if (!isRecord(topicBrief)) return stringifyForPrompt(topicBrief);
+  return topicBrief.title || topicBrief.topic_id || stringifyForPrompt(topicBrief);
+}
+
+function planningBoundary(config) {
+  return config && config.boundaries && config.boundaries.planning_only
+    ? 'planning-only; produce recommendation text without implementation writes'
+    : 'planning recommendation';
+}
+
+function priorStateSummary(topicBrief) {
+  if (!isRecord(topicBrief)) return 'n/a';
+  const priors = {
+    prior_fingerprints: topicBrief.prior_fingerprints || [],
+    prior_findings: topicBrief.prior_findings || [],
+  };
+  return stringifyForPrompt(priors);
+}
+
+function knownDisagreements(topicBrief) {
+  if (!isRecord(topicBrief)) return 'n/a';
+  return stringifyForPrompt(topicBrief.known_disagreements || topicBrief.blocking_disagreements || []);
+}
+
+function replaceTemplateSlot(template, name, value) {
+  return template.replaceAll(`{{${name}}}`, stringifyForPrompt(value));
+}
+
+function renderSeatPrompt(seatInput, dispatchContext, options = {}) {
+  const context = dispatchContext.context || {};
+  const executorConfig = options.executorConfig || context.executor_config || {};
+  const councilConfig = options.councilConfig || loadCouncilConfig();
+  const template = options.promptTemplate || loadPromptTemplate();
+  const seatIndex = Number.isInteger(dispatchContext.seatIndex) ? dispatchContext.seatIndex : 0;
+  const seatId = resolveSeatId(seatInput, seatIndex);
+  const topicBrief = context.topic_brief || executorConfig.topic_brief || {};
+  const routeFields = context.route_fields || executorConfig.route_fields || {};
+  const replacements = {
+    seat_name: seatInput.name || seatInput.label || seatId,
+    seat_lens: resolveSeatLens(seatInput),
+    spec_folder: options.packetSpecFolder || executorConfig.packet_spec_folder || executorConfig.packetSpecFolder || 'n/a',
+    topic: topicTitle(topicBrief),
+    round: context.round_number || 1,
+    execution_mode: executorConfig.execution_mode || councilConfig.execution_mode || 'in-cli',
+    planning_boundary: planningBoundary(councilConfig),
+    prior_state_summary: priorStateSummary(topicBrief),
+    known_disagreements: knownDisagreements(topicBrief),
+  };
+  let prompt = Object.entries(replacements).reduce(
+    (rendered, [name, value]) => replaceTemplateSlot(rendered, name, value),
+    template,
+  );
+  prompt += `\n\n## Resolved Route\n${context.resolved_route_header || executorConfig.resolved_route_header || COUNCIL_RESOLVED_ROUTE_HEADER}\n`;
+  prompt += `\n## Route Fields\n\`\`\`json\n${JSON.stringify(routeFields, null, 2)}\n\`\`\`\n`;
+  prompt += `\n## Seat Input\n\`\`\`json\n${JSON.stringify(seatInput, null, 2)}\n\`\`\`\n`;
+  prompt += `\n## Topic Brief\n\`\`\`json\n${JSON.stringify(topicBrief, null, 2)}\n\`\`\`\n`;
+  return prompt;
+}
+
+function firstModelFromSet(modelSet) {
+  if (!Array.isArray(modelSet) || modelSet.length === 0) return null;
+  const first = modelSet[0];
+  if (typeof first === 'string' && first.trim() !== '') return first.trim();
+  if (isRecord(first)) return first.model || first.model_id || first.modelId || null;
+  return null;
+}
+
+function resolveExecutorModel(executorConfig = {}, councilConfig = {}) {
+  const executor = executorConfig.executor;
+  if (typeof executor === 'string' && executor.trim() !== '') return executor.trim();
+  if (isRecord(executor)) {
+    const model = executor.model || executor.model_id || executor.modelId || firstModelFromSet(executor.model_set || executor.modelSet);
+    if (typeof model === 'string' && model.trim() !== '') return model.trim();
+  }
+  const directModel = executorConfig.model || executorConfig.model_id || executorConfig.modelId;
+  if (typeof directModel === 'string' && directModel.trim() !== '') return directModel.trim();
+  const configExecutor = councilConfig.executor || {};
+  if (isRecord(configExecutor)) {
+    const configModel = configExecutor.model || configExecutor.model_id || configExecutor.modelId || firstModelFromSet(configExecutor.model_set || configExecutor.modelSet);
+    if (typeof configModel === 'string' && configModel.trim() !== '') return configModel.trim();
+  }
+  return DEFAULT_EXECUTOR_MODEL;
+}
+
+function seatTimeoutMs(executorConfig) {
+  const configured = executorConfig.seat_timeout_ms || executorConfig.seatTimeoutMs;
+  return Number.isFinite(Number(configured)) && Number(configured) > 0
+    ? Number(configured)
+    : DEFAULT_SEAT_TIMEOUT_MS;
+}
+
+function opencodeSeatArgs(model, seatPrompt) {
+  return ['run', '--model', model, '--dangerously-skip-permissions', seatPrompt];
+}
+
+function runSeatSubprocess(seatPrompt, options) {
+  const spawnFn = options.spawn || spawn;
+  const model = options.model;
+  const timeoutMs = options.timeoutMs;
+  return new Promise((resolve, reject) => {
+    const child = spawnFn('opencode', opencodeSeatArgs(model, seatPrompt), {
+      cwd: options.cwd || process.cwd(),
+      env: options.env || process.env,
+      stdio: ['ignore', 'pipe', 'pipe'],
+    });
+    let stdout = '';
+    let stderr = '';
+    let settled = false;
+    const done = (error, output) => {
+      if (settled) return;
+      settled = true;
+      clearTimeout(timer);
+      if (error) reject(error);
+      else resolve(output);
+    };
+    const timer = setTimeout(() => {
+      if (child && typeof child.kill === 'function') child.kill('SIGTERM');
+      done(new Error(`[ai-council] Seat dispatch timed out after ${timeoutMs}ms`));
+    }, timeoutMs);
+    if (child.stdout && typeof child.stdout.on === 'function') {
+      child.stdout.on('data', (chunk) => { stdout += chunk.toString(); });
+    }
+    if (child.stderr && typeof child.stderr.on === 'function') {
+      child.stderr.on('data', (chunk) => { stderr += chunk.toString(); });
+    }
+    child.on('error', (error) => done(error));
+    child.on('close', (code, signal) => {
+      if (code === 0) {
+        done(null, stdout);
+        return;
+      }
+      const error = new Error(`[ai-council] Seat dispatch failed with code ${code === null ? 'null' : code}${signal ? ` signal ${signal}` : ''}`);
+      error.stdout = stdout;
+      error.stderr = stderr;
+      done(error);
+    });
+  });
+}
+
+function seatVerdictFromOutput(output) {
+  const match = String(output || '').match(/Council seat verdict:\s*(SUPPORT_WITH_RISKS|SUPPORT|BLOCK)/i);
+  const recommended = match ? match[1].toUpperCase() : 'UNDECIDED';
+  return {
+    recommended_option: recommended.toLowerCase(),
+    confidence: null,
+    blocking_disagreements: recommended === 'BLOCK' ? ['seat blocked the proposal'] : [],
+    material_risks: recommended === 'SUPPORT_WITH_RISKS' ? ['seat supported with risks'] : [],
+    decision_axes: {},
+  };
+}
+
+async function dispatchSeat(seatInput, dispatchContext = {}, options = {}) {
+  const context = dispatchContext.context || {};
+  const executorConfig = options.executorConfig || context.executor_config || {};
+  const councilConfig = options.councilConfig || loadCouncilConfig();
+  const packetSpecFolder = options.packetSpecFolder || resolvePacketSpecFolder(context.session_state, executorConfig);
+  const seatIndex = Number.isInteger(dispatchContext.seatIndex) ? dispatchContext.seatIndex : 0;
+  const seatId = resolveSeatId(seatInput, seatIndex);
+  const model = resolveExecutorModel(executorConfig, councilConfig);
+  const seatPrompt = renderSeatPrompt(seatInput, dispatchContext, {
+    ...options,
+    packetSpecFolder,
+    executorConfig,
+    councilConfig,
+  });
+  const deliberation = await runSeatSubprocess(seatPrompt, {
+    spawn: options.spawn,
+    cwd: options.cwd,
+    env: options.env,
+    model,
+    timeoutMs: seatTimeoutMs(executorConfig),
+  });
+  const persistedSeat = {
+    id: seatId,
+    ...seatInput,
+    id: seatId,
+    content: deliberation,
+    deliberation,
+  };
+  const persistSeat = options.persistSeatStepwise || persistSeatStepwise;
+  const persisted = persistSeat(packetSpecFolder, persistedSeat, { round: context.round_number || 1 });
+  return {
+    seat_id: seatId,
+    id: seatId,
+    lens: persistedSeat.lens,
+    role: persistedSeat.role,
+    vantage: persistedSeat.vantage,
+    deliberation,
+    content: deliberation,
+    persisted,
+    verdict: seatVerdictFromOutput(deliberation),
+  };
+}
+
+function heartbeatIntervalMs(executorConfig) {
+  const configured = executorConfig.heartbeat_interval_ms || executorConfig.heartbeatIntervalMs;
+  return Number.isFinite(Number(configured)) && Number(configured) > 0
+    ? Number(configured)
+    : DEFAULT_HEARTBEAT_INTERVAL_MS;
+}
+
+function writeSessionHeartbeat(packetSpecFolder, options = {}) {
+  const appendRecord = options.appendRoundStateRecord || appendRoundStateRecord;
+  return appendRecord(sessionStatePath(packetSpecFolder), {
+    type: 'progress_record',
+    event: 'session_heartbeat',
+    progress_delta: 0,
+    ts: new Date().toISOString(),
+  });
+}
+
+function startSessionHeartbeat(packetSpecFolder, options = {}) {
+  const intervalMs = options.intervalMs || DEFAULT_HEARTBEAT_INTERVAL_MS;
+  const setIntervalFn = options.setInterval || setInterval;
+  const timer = setIntervalFn(() => {
+    try {
+      writeSessionHeartbeat(packetSpecFolder, options);
+    } catch (error) {
+      const message = error instanceof Error ? error.message : String(error);
+      const stderr = options.stderr || process.stderr;
+      stderr.write(`[ai-council] Session heartbeat failed: ${message}\n`);
+    }
+  }, intervalMs);
+  if (timer && typeof timer.unref === 'function') timer.unref();
+  return timer;
 }
 
 function normalizeOptions(input = {}) {
@@ -320,6 +610,54 @@ async function orchestrateSession(options = {}) {
   };
 }
 
+async function main(argv = process.argv.slice(2), options = {}) {
+  try {
+    const args = parseArgs(argv);
+    const sessionState = readJsonValue(args.sessionState, '--session-state');
+    const executorConfig = readJsonValue(args.executorConfig, '--executor-config');
+    const packetSpecFolder = path.resolve(args.packetSpecFolder || resolvePacketSpecFolder(sessionState, executorConfig));
+    const councilConfig = options.councilConfig || loadCouncilConfig(options.configPath);
+    const promptTemplate = options.promptTemplate || loadPromptTemplate(options.promptPath);
+    const runtimeExecutorConfig = {
+      ...executorConfig,
+      packet_spec_folder: packetSpecFolder,
+    };
+    runtimeExecutorConfig.dispatchSeat = options.dispatchSeat || ((seatInput, dispatchContext) => dispatchSeat(seatInput, dispatchContext, {
+      packetSpecFolder,
+      executorConfig: runtimeExecutorConfig,
+      councilConfig,
+      promptTemplate,
+      spawn: options.spawn,
+      cwd: options.cwd,
+      env: options.env,
+      persistSeatStepwise: options.persistSeatStepwise,
+    }));
+    const heartbeat = startSessionHeartbeat(packetSpecFolder, {
+      intervalMs: options.heartbeatIntervalMs || heartbeatIntervalMs(runtimeExecutorConfig),
+      appendRoundStateRecord: options.appendRoundStateRecord,
+      setInterval: options.setInterval,
+      stderr: options.stderr,
+    });
+    try {
+      const runSession = options.orchestrateSession || orchestrateSession;
+      const sessionResult = await runSession({
+        session_state: sessionState,
+        executor_config: runtimeExecutorConfig,
+      });
+      const stdout = options.stdout || process.stdout;
+      stdout.write(`${JSON.stringify(sessionResult, null, 2)}\n`);
+      return 0;
+    } finally {
+      const clearIntervalFn = options.clearInterval || clearInterval;
+      clearIntervalFn(heartbeat);
+    }
+  } catch (error) {
+    const stderr = options.stderr || process.stderr;
+    stderr.write(`${error instanceof Error ? error.stack || error.message : String(error)}\n`);
+    return 1;
+  }
+}
+
 // ─────────────────────────────────────────────────────────────────────────────
 // 5. EXPORTS
 // ─────────────────────────────────────────────────────────────────────────────
@@ -327,4 +665,18 @@ async function orchestrateSession(options = {}) {
 module.exports = {
   orchestrateSession,
   sessionStatePath,
+  main,
+  parseArgs,
+  readJsonValue,
+  dispatchSeat,
+  renderSeatPrompt,
+  resolveExecutorModel,
+  startSessionHeartbeat,
+  writeSessionHeartbeat,
 };
+
+if (require.main === module) {
+  main().then((exitCode) => {
+    process.exitCode = exitCode;
+  });
+}
