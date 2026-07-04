@@ -81,6 +81,16 @@ Relocated from packet-028 top-level `008-012` to their subject parent and renumb
 
 ---
 
+## 050: Re-nested validate.sh Dist-Freshness Phase (from packet-028 top-level)
+
+Relocated from packet-028 top-level `013` (adopted from standalone packet 030) to its subject parent and renumbered `050` on 2026-07-04. Unlike 045-049 (leaves), this is a phase parent that keeps its two children.
+
+| Phase | Folder | Status | Focus |
+|-------|--------|--------|-------|
+| 050 | `050-validate-sh-dist-freshness-and-repo-remediation/` | In Progress | validate.sh dist-freshness enforcement (child 001) and the repo-wide `--strict --recursive` remediation sweep (child 002); formerly top-level `013`. |
+
+---
+
 ## Count and Source Notes
 
-The verified disk inventory is 44 child folders `001-*` through `044-*`, plus five phases `045-*` through `049-*` re-nested from packet-028 top-level (former `008-012`) on 2026-07-04. Earlier summaries asserting no `045-*` folder exists predate that re-nest. For detailed evidence, read the per-phase child specs and the rollup changelog before relying on older summaries.
+The verified disk inventory is 44 child folders `001-*` through `044-*`, plus five leaf phases `045-*` through `049-*` (re-nested from former top-level `008-012`) and one parent phase `050-*` (re-nested from former top-level `013`, keeping its two children), all relocated on 2026-07-04. Earlier summaries asserting no `045-*`/`050-*` folder exists predate that re-nest. For detailed evidence, read the per-phase child specs and the rollup changelog before relying on older summaries.

@@ -1,6 +1,6 @@
 {
   "level": "1",
-  "specFolder": "system-speckit/028-memory-search-intelligence/013-validate-sh-dist-freshness-and-repo-remediation/001-dist-freshness-enforcement",
+  "specFolder": "system-speckit/028-memory-search-intelligence/005-spec-data-quality/050-validate-sh-dist-freshness-and-repo-remediation/001-dist-freshness-enforcement",
   "description": "`validate.sh`'s default path (`runnodeorchestrator()`, `scripts/spec/validate.sh:975-989`) only checks `[[ -f \"$orchestratorjs\" ]]` -- file existence",
   "keywords": [
     "validate",
@@ -16,13 +16,14 @@
     "file",
     "existence"
   ],
-  "lastUpdated": "2026-07-03T07:43:37.465Z",
+  "lastUpdated": "2026-07-04T16:28:59.863Z",
   "specId": "001",
   "folderSlug": "dist-freshness-enforcement",
   "parentChain": [
     "system-speckit",
     "028-memory-search-intelligence",
-    "013-validate-sh-dist-freshness-and-repo-remediation"
+    "005-spec-data-quality",
+    "050-validate-sh-dist-freshness-and-repo-remediation"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

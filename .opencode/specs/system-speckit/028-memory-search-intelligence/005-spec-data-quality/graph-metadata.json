@@ -14,7 +14,8 @@
     "system-speckit/028-memory-search-intelligence/005-spec-data-quality/046-drift-audit-deep-history-correction",
     "system-speckit/028-memory-search-intelligence/005-spec-data-quality/047-generated-metadata-status-integrity",
     "system-speckit/028-memory-search-intelligence/005-spec-data-quality/048-create-sh-parent-corruption-fix",
-    "system-speckit/028-memory-search-intelligence/005-spec-data-quality/049-derive-status-explicit-bypass-fix"
+    "system-speckit/028-memory-search-intelligence/005-spec-data-quality/049-derive-status-explicit-bypass-fix",
+    "system-speckit/028-memory-search-intelligence/005-spec-data-quality/050-validate-sh-dist-freshness-and-repo-remediation"
   ],
   "manual": {
     "depends_on": [],

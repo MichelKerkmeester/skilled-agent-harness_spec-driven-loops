@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-speckit/028-memory-search-intelligence/013-validate-sh-dist-freshness-and-repo-remediation/002-repo-wide-remediation-sweep",
-  "spec_folder": "system-speckit/028-memory-search-intelligence/013-validate-sh-dist-freshness-and-repo-remediation/002-repo-wide-remediation-sweep",
-  "parent_id": "system-speckit/028-memory-search-intelligence/013-validate-sh-dist-freshness-and-repo-remediation",
+  "packet_id": "system-speckit/028-memory-search-intelligence/005-spec-data-quality/050-validate-sh-dist-freshness-and-repo-remediation/002-repo-wide-remediation-sweep",
+  "spec_folder": "system-speckit/028-memory-search-intelligence/005-spec-data-quality/050-validate-sh-dist-freshness-and-repo-remediation/002-repo-wide-remediation-sweep",
+  "parent_id": "system-speckit/028-memory-search-intelligence/005-spec-data-quality/050-validate-sh-dist-freshness-and-repo-remediation",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -189,7 +189,7 @@
     ],
     "causal_summary": "`validate.sh --strict --recursive` currently fails on all 43 packet roots repo-wide (257 folders, 0 passing), spanning `ai-systems` (9), `anobel.com` (5), `barter` (6), `deep-loops` (4), `design` (8), `skilled-agent-orchestration` (7), `system-speckit` (4)",
     "created_at": "2026-07-02T03:37:12.946Z",
-    "last_save_at": "2026-07-03T07:44:08.464Z",
+    "last_save_at": "2026-07-04T16:29:00.486Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -198,12 +198,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:83397ae232d7d2b5f921f86b9ba712fd442e0e81c1d5c76377cc2fc7bcc3054f",
+    "source_fingerprint": "sha256:510c2655805c59743bfa300df24884149522b303108871b397f297d9c42aeb7a",
     "source_doc_hashes": {
-      "spec.md": "fc48d660a3d3564b19283cd965ee8d5c4ab90e3bc11692529aaa7ffe7e466c14",
-      "plan.md": "464838bde856534a9ca4daf83c71bebc3eb20c3ce0be9b9fdb77168bfaacb093",
-      "tasks.md": "9d57f4d32f7ffcc10aad47e7c1f0bf07a64ab4a0f73a039ca14ecf20dd2b15e5",
-      "implementation-summary.md": "1d38b39ebef88105fe7dcdd6f5aa02193524d8f4edc8cc2d47f7b33293e72b61"
+      "spec.md": "70ca24b44630c77c54daf0caefce036379d6dcc4d0ce08411f3a32d7387a5bff",
+      "plan.md": "a782ad54655cedf95e6d2f362ff8247e2d95e80218f5e5c55266bf625d7e1175",
+      "tasks.md": "6cc497fedd11f19e5622975072f16f9b0ff32c7ca150359e65be047c7117d94c",
+      "implementation-summary.md": "034b177cb284be6e7548aa6c895e1d4ee5c7b2e5cc9887e5fae7a0338acac675"
     },
     "last_active_child_id": null,
     "last_active_at": null

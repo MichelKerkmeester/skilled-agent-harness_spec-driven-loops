@@ -1,11 +1,11 @@
 {
   "schema_version": 1,
-  "packet_id": "system-speckit/028-memory-search-intelligence/013-validate-sh-dist-freshness-and-repo-remediation",
-  "spec_folder": "system-speckit/028-memory-search-intelligence/013-validate-sh-dist-freshness-and-repo-remediation",
-  "parent_id": "system-speckit/028-memory-search-intelligence",
+  "packet_id": "system-speckit/028-memory-search-intelligence/005-spec-data-quality/050-validate-sh-dist-freshness-and-repo-remediation",
+  "spec_folder": "system-speckit/028-memory-search-intelligence/005-spec-data-quality/050-validate-sh-dist-freshness-and-repo-remediation",
+  "parent_id": "system-speckit/028-memory-search-intelligence/005-spec-data-quality",
   "children_ids": [
-    "system-speckit/028-memory-search-intelligence/013-validate-sh-dist-freshness-and-repo-remediation/001-dist-freshness-enforcement",
-    "system-speckit/028-memory-search-intelligence/013-validate-sh-dist-freshness-and-repo-remediation/002-repo-wide-remediation-sweep"
+    "system-speckit/028-memory-search-intelligence/005-spec-data-quality/050-validate-sh-dist-freshness-and-repo-remediation/001-dist-freshness-enforcement",
+    "system-speckit/028-memory-search-intelligence/005-spec-data-quality/050-validate-sh-dist-freshness-and-repo-remediation/002-repo-wide-remediation-sweep"
   ],
   "manual": {
     "depends_on": [],
@@ -98,15 +98,15 @@
     ],
     "causal_summary": "While closing packet `030-agent-loops-improved` phase 011's child 006 (a `validate.sh` registry bridge), a rebuild of `system-spec-kit/mcpserver`'s compiled `dist/` output (required because `validate.sh` executes compiled JS, not TypeScript source directly) revealed two compounding problems: (1) `validate.sh`'s default path (`runnodeorchestrator()`, `scripts/spec/validate.sh:975-989`) only checks that the compiled orchestrator file exists, never whether it is fresh relative to its source -- `dist/` had silently been ~2 weeks stale, meaning several already-committed, already-graduated validator",
     "created_at": "2026-07-02T03:37:12.935Z",
-    "last_save_at": "2026-07-03T07:44:07.438Z",
+    "last_save_at": "2026-07-04T16:28:59.600Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:5bff48926d7681c6748b01addceb6a2e136e42c8b29524628f9472d1aafeda26",
+    "source_fingerprint": "sha256:7f3bafd68f127c687f2adad99ee889eee4935d8102d4524ec8204038d6e443a1",
     "source_doc_hashes": {
-      "spec.md": "41cc3ba11cc345aa81ed3577d64ae8792e0a161af3c89a55fcc426758f0ab562"
+      "spec.md": "f2e774b14f54714c70eea69bee8af0832216b488239396851d66d9d9655c6654"
     },
     "last_active_child_id": null,
     "last_active_at": null

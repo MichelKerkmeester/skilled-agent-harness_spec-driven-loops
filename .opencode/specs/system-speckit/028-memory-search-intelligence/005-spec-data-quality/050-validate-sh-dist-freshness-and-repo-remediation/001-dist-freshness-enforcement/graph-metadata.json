@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-speckit/028-memory-search-intelligence/013-validate-sh-dist-freshness-and-repo-remediation/001-dist-freshness-enforcement",
-  "spec_folder": "system-speckit/028-memory-search-intelligence/013-validate-sh-dist-freshness-and-repo-remediation/001-dist-freshness-enforcement",
-  "parent_id": "system-speckit/028-memory-search-intelligence/013-validate-sh-dist-freshness-and-repo-remediation",
+  "packet_id": "system-speckit/028-memory-search-intelligence/005-spec-data-quality/050-validate-sh-dist-freshness-and-repo-remediation/001-dist-freshness-enforcement",
+  "spec_folder": "system-speckit/028-memory-search-intelligence/005-spec-data-quality/050-validate-sh-dist-freshness-and-repo-remediation/001-dist-freshness-enforcement",
+  "parent_id": "system-speckit/028-memory-search-intelligence/005-spec-data-quality/050-validate-sh-dist-freshness-and-repo-remediation",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -47,7 +47,6 @@
       ".opencode/skills/system-spec-kit/scripts/tests/test-dist-freshness.sh",
       ".opencode/plugins/tests/mk-dist-freshness-guard.test.cjs",
       ".opencode/skills/system-spec-kit/scripts/tests/test-validation-extended.sh",
-      "mcp_server/dist/lib/validation/orchestrator.js",
       "scripts/spec/validate.sh",
       "spec.md",
       "plan.md",
@@ -122,12 +121,6 @@
         "source": "derived"
       },
       {
-        "name": "orchestrator.js",
-        "kind": "code",
-        "path": "mcp_server/dist/lib/validation/orchestrator.js",
-        "source": "derived"
-      },
-      {
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
@@ -198,11 +191,17 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Overview Extract",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "`validate.sh`'s default path (`runnodeorchestrator()`, `scripts/spec/validate.sh:975-989`) only checks `[[ -f \"$orchestratorjs\" ]]` -- file existence -- before trusting the compiled `mcpserver/dist/lib/validation/orchestrator.js`",
     "created_at": "2026-07-02T03:37:12.940Z",
-    "last_save_at": "2026-07-03T07:44:07.894Z",
+    "last_save_at": "2026-07-04T16:29:00.013Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -211,12 +210,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:bd7cd9006bae23414c4bf7962f739342b6cc544726b2a6454a384cfa3405a9c4",
+    "source_fingerprint": "sha256:5898b3dc23ff049a3d2e2625e66dbaee5558863fdba42554d8f5a045fac6702b",
     "source_doc_hashes": {
-      "spec.md": "8a38daf5af2feee30493faab731b95668d364b254801c970094bd4729a8ed905",
-      "plan.md": "1372dc987cc5fdb28876f0a2b0e7799922ff83d9798156ef9aa2f83d988e2618",
-      "tasks.md": "326b0cb8fa2ecd31f3b210e19af75548e3b7e6b5c8de291fdc5d3cf8cad2123e",
-      "implementation-summary.md": "db07fbfff2dba98c392c132bd5600efbf302b837abd64d7e6c7dbf54184cad43"
+      "spec.md": "178380a8b01dea7c6f952989de8615e009940a4a6ed193eaa00754b7295bc70a",
+      "plan.md": "89df4d651bba97ee499ce816c5bfed2d206d73980db6bcc30f6a5106fcacac2d",
+      "tasks.md": "ebc188ad236d253234376c7f3c539bcd2ce19cab7dbd203345706c345fc59979",
+      "implementation-summary.md": "f8cee15b9dad20bf9ed68aad765d4612c55d601b28ce2445df553be8d1521d91"
     },
     "last_active_child_id": null,
     "last_active_at": null
