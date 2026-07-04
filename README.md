@@ -15,9 +15,9 @@
 [![License](https://img.shields.io/github/license/MichelKerkmeester/opencode--spec-kit-skilled-agent-orchestration?style=for-the-badge&color=7bd88f&labelColor=222222)](LICENSE)
 [![Latest Release](https://img.shields.io/github/v/release/MichelKerkmeester/opencode--spec-kit-skilled-agent-orchestration?style=for-the-badge&color=5ad4e6&labelColor=222222)](https://github.com/MichelKerkmeester/opencode--spec-kit-skilled-agent-orchestration/releases)
 
-- Works with **OpenCode** and **Claude Code**
-- Supports external CLI agent orchestration without unnecessary MCPs or proxies
-- Designed to be modular, readable, and easy to adapt to your own stack
+- **Memory that survives context resets:** decisions, architecture and history persist across sessions, crashes and compactions
+- **Verification, not vibes:** nothing counts as "done" without fresh evidence, and code-review findings get re-challenged before they stick
+- **Works the same in OpenCode and Claude Code**, with cross-CLI dispatch to five more model providers on top
 
 > Don't buy me unwanted coffee: https://buymeacoffee.com/michelkerkmeester
 
@@ -417,7 +417,7 @@ Every search passes through 4 stages:
 
 - **Candidate generation** - Parallel retrieval from the active channels plus constitutional injection where applicable.
 - **Fusion** - RRF-based scoring with post-fusion signals such as co-activation, FSRS decay, interference control, intent weights and graph/session boosts when enabled.
-- **Rerank** - MMR diversity reranking (algorithmic, gated by `SPECKIT_MMR`) with MPAB chunk reassembly and compatibility-only length-penalty wiring that resolves to a neutral `1.0` multiplier.
+- **Rerank** - MMR diversity reranking (algorithmic, gated by `SPECKIT_MMR`) with MPAB chunk reassembly.
 - **Filtering** - State/quality filtering, confidence annotation, token-budget enforcement and final response shaping without mutating post-rerank scores.
 
 &nbsp;
@@ -529,7 +529,7 @@ Preview all checks without saving using `dryRun: true`. Learned relevance feedba
 - **Embedding retry** - Background worker retries failed embeddings
 - **Single-writer database lock** - Exactly one daemon writer per database, enforced by a kernel-level lock that self-releases even on `kill -9`. A losing cold-spawn exits with a dedicated code and the launcher bridges it to the live holder, structurally eliminating the dual-writer corruption class
 - **Vector shard self-heal, durably** - A malformed vector shard is detected, quarantined and rebuilt, and the repair intent survives a process restart: boot compares vector rowcount against the index success count to resume a real repair instead of silently attaching an empty shard
-- **Memory-safe lexical fallback** - The packed in-memory BM25 engine uses typed-array postings with BM25F per-field weighting (title and trigger matches rank above body noise) inside a 150MB RSS budget, and resolves spec-folder and tier filters before truncating so scoped searches return their real results
+- **Memory-safe lexical fallback** - An in-memory BM25 engine (title and trigger matches rank above body noise) runs inside a bounded memory budget, resolving spec-folder and tier filters before truncating so scoped searches return their real results
 - **Lexical fallback** - Text-searchable when embedding services are down
 - **Atomic writes** - Crash-safe with pending-file recovery on startup
 - **`memory_index_scan` self-maintaining** - Overlapping scans return a `coalesced:true` success envelope instead of a raw error. Rows become BM25/FTS-searchable immediately as `pending` while vectors drain (`complete_with_pending_vectors` status with `pendingVectors` count). Move reconciliation heals renamed spec folders by packet identity without re-embedding. A bounded global orphan sweep runs per scan. `memory_health` gains an `index` block with a summary enum (`healthy_fresh`, `healthy_lagging_vectors`, `stale_needs_scan`, `degraded_needs_repair`, `unavailable`) plus `indexed`, `pending` and `failed` counts.
@@ -913,13 +913,7 @@ For details, see the [Deep Loop Runtime README](.opencode/skills/deep-loop-runti
 &nbsp;
 #### DEEP LOOP
 
-The shared runtime plus the `deep-loop-workflows` parent skill behind the autonomous loops. See the [Deep Loop](#deep-loop) section above for how they run.
-
-**deep-loop-runtime**
-- Self-contained, MCP-free runtime under every deep loop: executor config, state safety, scoring, fallback routing, coverage-graph scripts and `database/deep-loop-graph.sqlite`. Declares its own dependency manifest and resolves `zod`, `better-sqlite3` and `tsx` from its own `node_modules`. See [Deep Loop](#deep-loop).
-
-**deep-loop-workflows**
-- A formalized parent skill with nested mode packets: one routing-only `SKILL.md` and a single hub `graph-metadata.json` give it one advisor identity, while `mode-registry.json` is the declarative source of truth the modes project from, and a non-discoverable `shared/` holds cross-mode helpers. The nested packets are `deep-context`, `deep-research`, `deep-review`, `ai-council` and `deep-improvement` (folder names carry the `deep-` prefix except `ai-council`), routing one request to one of five modes over the shared runtime: **context** (codebase-context by-model sweep, `/deep:context`), **research** (autonomous research loop with 3-signal convergence, `/deep:research`), **review** (P0/P1/P2 code-review loop across 4 dimensions, `/deep:review`), **ai-council** (multi-seat planning to packet-local `ai-council/**` artifacts, `/deep:ai-council`), and **improvement** (four co-equal lanes: agent-improvement, model-benchmark, skill-benchmark and non-dev-ai-system). The five native agent names (`@deep-context`, `@deep-research`, `@deep-review`, `@ai-council`, `@deep-improvement`) and all eight `/deep:*` commands are unchanged. This parent-nested-skill pattern is the reusable, documented standard, scaffolded with `/create:sk-skill-parent` and described in `sk-doc`. See [Deep Loop](#deep-loop).
+Two skills power the autonomous loops described in [Deep Loop](#deep-loop) above: **`deep-loop-runtime`**, the shared MCP-free execution engine every loop runs on, and **`deep-loop-workflows`**, the parent skill routing to five nested modes (`deep-context`, `deep-research`, `deep-review`, `ai-council`, `deep-improvement`). This parent-nested-skill pattern is the reusable standard behind `/create:sk-skill-parent`.
 
 &nbsp;
 #### CROSS-AI CLI
@@ -1030,24 +1024,19 @@ These skills let you run **cross-CLI agent teams from supported runtimes**. Clau
 #### DEEP LOOP
 
 **AI Council**
-- **Several AI strategies, one vetted plan.** Dispatches distinct reasoning lenses across cli-opencode, cli-claude-code and native, then deliberates over multiple rounds
-- Planning-only, scored on a 5-dimension rubric. See [Deep Loop](#deep-loop)
+- **Several AI strategies, one vetted plan.** Dispatches distinct reasoning lenses across cli-opencode, cli-claude-code and native for multi-round deliberation. Planning-only. See [Deep Loop](#deep-loop)
 
 **Deep Research**
-- **One research iteration at a time, state on disk.** Executes a single LEAF pass. The `/deep:research` command owns the loop
-- Writes `research.md` and `scratch/`, keeps negative knowledge, and stops only when the 3-signal convergence and graph guards agree. See [Deep Loop](#deep-loop)
+- **One research iteration at a time, state on disk.** Executes a single LEAF pass; the `/deep:research` command owns the loop. See [Deep Loop](#deep-loop)
 
 **Deep Review**
-- **Audits one review pass, read-only on code.** Produces P0/P1/P2 findings with `file:line` evidence across 4 dimensions. The `/deep:review` command owns the loop
-- Any open P0 forces another pass and faces a Hunter/Skeptic/Referee check before it stands. See [Deep Loop](#deep-loop)
+- **Audits one review pass, read-only on code.** Produces `file:line` findings; the `/deep:review` command owns the loop. See [Deep Loop](#deep-loop)
 
 **Deep Context**
-- **Maps one slice of the codebase, read-only.** A LEAF seat in the heterogeneous by-model parallel sweep, returning a reuse-first set of verified `file:symbol` findings. The `/deep:context` command owns the loop
-- Agreement across models drives confidence; the loop converges on relevance-gated coverage saturation. See [Deep Loop](#deep-loop)
+- **Maps one slice of the codebase, read-only.** A LEAF seat in the by-model parallel sweep; the `/deep:context` command owns the loop. See [Deep Loop](#deep-loop)
 
 **Deep Improvement**
-- **Proposes one agent improvement, safely.** Reads the target's charter, manifest and integration surface, then writes a single candidate to packet-local runtime
-- Never scores, promotes or edits the canonical target. The `/deep:agent-improvement` command handles scoring and promotion. See [Deep Loop](#deep-loop)
+- **Proposes one agent improvement, safely.** Writes a single candidate to packet-local runtime; never scores or promotes it. The `/deep:agent-improvement` command handles that. See [Deep Loop](#deep-loop)
 
 ---
 
@@ -1166,28 +1155,28 @@ The MCP server also ships explicit stress and matrix execution surfaces. Run `np
 The five autonomous loop families (the improvement family carries four lanes). See the [Deep Loop](#deep-loop) section for how they run.
 
 **Deep Context** (`/deep:context`)
-- Maps the existing codebase before you plan: a heterogeneous by-model parallel sweep over a shared scope, cross-executor-agreement convergence, and a reuse-first Context Report of verified `file:symbol` pointers. Optional `:with-context` pre-step on `/speckit:plan` and `/speckit:complete`. Modes: `:auto`, `:confirm`
+- Maps the existing codebase before you plan. Optional `:with-context` pre-step on `/speckit:plan` and `/speckit:complete`. See [Deep Loop](#deep-loop). Modes: `:auto`, `:confirm`
 
 **AI Council** (`/deep:ai-council`)
-- Multi-seat planning for complex decisions. Produces packet-local `ai-council/**` artifacts and convergence evidence, planning-only. Modes: `:auto`, `:confirm`
+- Multi-seat planning for complex decisions, planning-only. See [Deep Loop](#deep-loop). Modes: `:auto`, `:confirm`
 
 **Deep Research** (`/deep:research`)
-- Iterative research until convergence, anchored to a real `spec.md`. Externalized JSONL state pauses and resumes across sessions, with `new`/`resume`/`restart` lifecycle. Modes: `:auto`, `:confirm`
+- Iterative research until convergence, anchored to a real `spec.md`, with `new`/`resume`/`restart` lifecycle. See [Deep Loop](#deep-loop). Modes: `:auto`, `:confirm`
 
 **Deep Review** (`/deep:review`)
-- Iterative code audit until convergence. Severity-weighted P0/P1/P2 findings across 4 dimensions, a PASS/CONDITIONAL/FAIL verdict and an adversarial P0 self-check. Modes: `:auto`, `:confirm`
+- Iterative code audit until convergence, ending in a PASS/CONDITIONAL/FAIL verdict. See [Deep Loop](#deep-loop). Modes: `:auto`, `:confirm`
 
 **Agent Improvement** (`/deep:agent-improvement`)
-- Evaluates and improves any agent across 5 deterministic dimensions. Proposal-first with guarded promotion (scoring, benchmark, repeatability, operator approval) and rollback. Modes: `:auto`, `:confirm`
+- Evaluates and improves any agent, with guarded promotion and rollback. See [Deep Loop](#deep-loop). Modes: `:auto`, `:confirm`
 
 **Model Benchmark** (`/deep:model-benchmark`)
-- Benchmarks a model or prompt framework against fixtures. Pattern or 5-dimension scoring, deterministic or graded runs, with mode-aware records and optional promotion. Modes: `:auto`, `:confirm`
+- Benchmarks a model or prompt framework against fixtures. See [Deep Loop](#deep-loop). Modes: `:auto`, `:confirm`
 
 **Skill Benchmark** (`/deep:skill-benchmark`)
-- Diagnoses a skill's real-world behavior: routing accuracy, discovery, efficiency and usefulness, scored against repeatable scenarios. Modes: `:auto`, `:confirm`
+- Diagnoses a skill's real-world routing, discovery and usefulness. See [Deep Loop](#deep-loop). Modes: `:auto`, `:confirm`
 
 **Non-Dev AI System** (`/deep:ai-system-improvement`)
-- Benchmarks an AI-system packaging and auto-refines its technique docs behind hard guardrails, with correctness as a gate so saturation can never crown a winner. Modes: `:auto`, `:confirm`
+- Benchmarks an AI-system packaging with correctness-gated auto-refinement. See [Deep Loop](#deep-loop). Modes: `:auto`, `:confirm`
 
 &nbsp;
 #### DOCTOR
@@ -1380,7 +1369,7 @@ Feature flags control search channels, scoring signals, save-time enforcement an
 - **Search Pipeline** - 5-channel retrieval, fallback routing, reranking, graph-walk rollout, confidence and token-budget policies.
 - **Session/Cache** - Working memory, cache invalidation on DB rebind, session deduplication, recovery helpers.
 - **Memory/Storage** - Save quality gate, reconsolidation, governed scopes, causal graph maintenance, projection cleanup.
-- **Runtime Lifecycle** - MCP idle self-exit through `SPECKIT_LAUNCHER_IDLE_TIMEOUT_MIN`; orphan sweeper rollout remains dry-run-first until explicitly installed. Non-destructive incremental `tsc` build keeps a running daemon alive across rebuilds (use `npm run rebuild` for a from-scratch compile). WAL durability: `PRAGMA wal_checkpoint TRUNCATE` on close, `wal_autocheckpoint=256` on the main DB and active vector shard, plus a five-minute periodic checkpoint. FTS5 integrity-check on boot is gated on an unclean-shutdown crash marker (`health` can report `corrupt`; detect-only, no auto-rebuild). Opt-in RSS-ceiling watchdog (`SPECKIT_LAUNCHER_RSS_SELF_EXIT=1`) with crash-loop backoff.
+- **Runtime Lifecycle** - MCP idle self-exit, a dry-run-first orphan sweeper, non-destructive incremental rebuilds, WAL durability checkpointing, boot-time FTS5 integrity checks and an opt-in RSS-ceiling watchdog with crash-loop backoff. Full flag list in `ENV_REFERENCE.md` below.
 - **Embedding/API** - Startup provider resolution, fail-fast dimension checks, structured fallback metadata for effective vs requested provider.
 - **Evaluation/Debug** - Trace mode, eval logging, ablation/reporting guardrails, feedback evaluation and proposal diagnostics that observe candidates without reordering live results.
 
@@ -1447,20 +1436,13 @@ SPECKIT_CODE_GRAPH_DB_DIR          (optional code-graph SQLite directory overrid
 <a id="git-clean-filter--maintainer-mode-stays-local"></a>
 #### Git clean filter: maintainer mode stays local
 
-The repo ships a `.gitattributes` rule that runs an idempotent sed-based clean filter on the supported config files: every `"true"` for these flags is rewritten to `"false"` when the file enters the git index. The smudge filter rewrites `"false"` → `"true"` on checkout/pull/clone for installed maintainers. Net effect:
-
-- **End users cloning the template** → supported configs show `"false"` (framework default, correct out of box)
-- **Maintainers after running `./scripts/setup-maintainer-filters.sh`** → supported configs show `"true"` locally. Commits + pushes still ship `"false"` to the remote
-
-To opt into maintainer mode on a fresh clone (only relevant if you're contributing upstream):
+A `.gitattributes` clean/smudge filter keeps these flags `"false"` in every commit while letting maintainers run with `"true"` locally. End users never need to touch this. Maintainers contributing upstream can opt in on a fresh clone:
 
 ```bash
 ./scripts/setup-maintainer-filters.sh
 git rm --cached opencode.json .claude/mcp.json .vscode/mcp.json
 git checkout -- opencode.json .claude/mcp.json .vscode/mcp.json
 ```
-
-After that, `cat opencode.json` shows `"true"`. `git show HEAD:opencode.json` shows `"false"` (what the remote sees).
 
 <!-- /ANCHOR:configuration -->
 
@@ -1551,4 +1533,4 @@ A: The feature catalog is the current technical reference documenting the memory
 <!-- /ANCHOR:related-documents -->
 
 
-*Documentation version: 4.16 | Last updated: 2026-06-14 | Framework: 12 agents, 20 skills, 28 commands, 62 MCP tools (37 mk-spec-memory + 9 mk_skill_advisor + 8 mk_code_index + 7 code mode + 1 sequential thinking. Deferred / internal-only handlers do NOT count).*
+*Documentation version: 4.16 | Last updated: 2026-07-04 | Framework: 12 agents, 20 skills, 28 commands, 64 MCP tools (39 mk-spec-memory + 9 mk_skill_advisor + 8 mk_code_index + 7 code mode + 1 sequential thinking. Deferred / internal-only handlers do NOT count).*
