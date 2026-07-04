@@ -8,8 +8,8 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/028-memory-search-intelligence/000-release-cleanup/005-manual-testing-playbooks"
-    last_updated_at: "2026-06-19T00:00:00Z"
+    packet_pointer: "system-speckit/028-memory-search-intelligence/000-release-cleanup/005-manual-testing-playbooks"
+    last_updated_at: "2026-07-04T17:31:30.637Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "Executed cleanup: fixed 14 stale source anchors in 10 scenario files"
     next_safe_action: "Phase complete. Successor phase is ../006-commands"
@@ -46,7 +46,7 @@ _memory:
 | **Created** | 2026-06-19 |
 | **Completed** | 2026-06-19 |
 | **Parent Spec** | ../spec.md |
-| **Parent Packet** | `system-spec-kit/028-memory-search-intelligence/000-release-cleanup` |
+| **Parent Packet** | `system-speckit/028-memory-search-intelligence/000-release-cleanup` |
 | **Phase** | 005 of 012 |
 | **Predecessor** | ../004-feature-catalogs/spec.md |
 | **Successor** | ../006-commands/spec.md |
@@ -134,7 +134,7 @@ Scenarios match current behavior, source-file anchors are valid, file-count self
 - Source-file anchors resolve
 - File-count self-checks match discovery output
 - Scenario identifiers are sequential
-- `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-spec-kit/028-memory-search-intelligence/000-release-cleanup/005-manual-testing-playbooks --strict` exits 0 after cleanup.
+- `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-speckit/028-memory-search-intelligence/000-release-cleanup/005-manual-testing-playbooks --strict` exits 0 after cleanup.
 <!-- /ANCHOR:success-criteria -->
 
 ---

@@ -48,7 +48,7 @@ _memory:
 
 Triage wave.
 
-- [x] T001 Enumerate the 41 in-scope packet roots (43 total minus `system-speckit/028-*` minus `deep-loops/030-agent-loops-improved`; discovered and excluded `system-speckit/028-memory-search-intelligence/014-manual-playbook-execution-sweep` mid-sweep as a live concurrent session).
+- [x] T001 Enumerate the 41 in-scope packet roots (43 total minus `system-speckit/028-*` minus `deep-loops/030-agent-loops-improved`; discovered and excluded `system-speckit/028-memory-search-intelligence/000-release-cleanup/015-manual-playbook-execution-sweep` mid-sweep as a live concurrent session).
 - [x] T002 Run a mechanical (script-based, not LLM-dispatch) triage classifying every failing folder into bucket 1 (mechanical), bucket 2 (grounded content), bucket 3 (no reliable grounding). Evidence: `triage_phase_c.py`, 165 folders classified.
 - [x] T003 Aggregate triage results into bucket 1 / 2 / 3 lists. Evidence: 106 bucket-1, 7 bucket-2, 52 bucket-3 (+2 from a separately-run `design/008-sk-design-parent` due to its size).
 <!-- /ANCHOR:phase-1 -->

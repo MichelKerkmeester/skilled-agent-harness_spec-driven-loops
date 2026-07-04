@@ -9,8 +9,8 @@ importance_tier: "important"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/028-memory-search-intelligence/000-release-cleanup/012-playbook-findings-remediation"
-    last_updated_at: "2026-06-25T00:00:00Z"
+    packet_pointer: "system-speckit/028-memory-search-intelligence/000-release-cleanup/012-playbook-findings-remediation"
+    last_updated_at: "2026-07-04T17:31:28.233Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "Documented the cluster-by-cluster approach and the per-cluster verification gate"
     next_safe_action: "Run the whole suite across all clusters together before the 028 review branch merges to main"

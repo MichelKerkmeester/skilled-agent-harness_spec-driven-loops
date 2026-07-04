@@ -1,7 +1,7 @@
 {
   "level": "2",
   "specFolder": "system-speckit/028-memory-search-intelligence/000-release-cleanup/004-feature-catalogs",
-  "description": "The every feature catalog document, including the system-spec-kit catalog and any sibling catalogs needs a release-readiness cleanup contract before a",
+  "description": "The every feature catalog document, including the system-spec-kit catalog and any sibling catalogs needs a release-readiness cleanup contract before",
   "keywords": [
     "every",
     "feature",
@@ -16,7 +16,7 @@
     "cleanup",
     "contract"
   ],
-  "lastUpdated": "2026-06-30T12:42:37.631Z",
+  "lastUpdated": "2026-07-04T17:31:33.261Z",
   "specId": "004",
   "folderSlug": "feature-catalogs",
   "parentChain": [

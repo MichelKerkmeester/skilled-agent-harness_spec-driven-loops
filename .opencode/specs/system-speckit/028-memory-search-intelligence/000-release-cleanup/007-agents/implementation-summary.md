@@ -8,8 +8,8 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/028-memory-search-intelligence/000-release-cleanup/007-agents"
-    last_updated_at: "2026-06-19T12:00:00Z"
+    packet_pointer: "system-speckit/028-memory-search-intelligence/000-release-cleanup/007-agents"
+    last_updated_at: "2026-07-04T17:31:29.256Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "Executed agent-definition cleanup and recorded evidence"
     next_safe_action: "Proceed to phase 008-agents-md cleanup"
@@ -37,7 +37,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | system-spec-kit/028-memory-search-intelligence/000-release-cleanup/007-agents |
+| **Spec Folder** | system-speckit/028-memory-search-intelligence/000-release-cleanup/007-agents |
 | **Completed** | 2026-06-19 |
 | **Level** | 2 |
 <!-- /ANCHOR:metadata -->
@@ -103,7 +103,7 @@ Discovery ran `rg --files` over the three agent directories. Review used paralle
 | Oxford comma scan on edited READMEs | 0 hits |
 | Stale-reference scan on agent docs | 0 actionable hits |
 | Path resolution on agent bodies | All references resolve |
-| Strict validation | PASSED, 0 errors and 0 warnings via `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-spec-kit/028-memory-search-intelligence/000-release-cleanup/007-agents --strict` |
+| Strict validation | PASSED, 0 errors and 0 warnings via `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-speckit/028-memory-search-intelligence/000-release-cleanup/007-agents --strict` |
 <!-- /ANCHOR:verification -->
 
 ---

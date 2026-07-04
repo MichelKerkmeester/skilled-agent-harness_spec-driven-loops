@@ -1,7 +1,7 @@
 # Deep Review Strategy - Session Tracking
 
 ## 1. REVIEW CHARTER
-- **Target:** `.opencode/specs/system-spec-kit/028-memory-search-intelligence/000-release-cleanup` (spec-folder, phase parent)
+- **Target:** `.opencode/specs/system-speckit/028-memory-search-intelligence/000-release-cleanup` (spec-folder, phase parent)
 - **Topic:** Release Cleanup Phase Parent — 12 child phases covering release-readiness documentation sweep
 - **Dimensions:** correctness, security, traceability, maintainability
 - **Convergence threshold:** 0.10 (weighted P0/P1/P2 severity ratio)

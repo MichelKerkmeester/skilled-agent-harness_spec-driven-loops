@@ -9,8 +9,8 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/028-memory-search-intelligence/000-release-cleanup/011-daemon-skills-playbook-validation"
-    last_updated_at: "2026-06-25T00:00:00Z"
+    packet_pointer: "system-speckit/028-memory-search-intelligence/000-release-cleanup/011-daemon-skills-playbook-validation"
+    last_updated_at: "2026-07-04T17:31:28.734Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "Authored the salvaged results and findings report with 14 findings and remediation"
     next_safe_action: "Operator decides whether to re-run the remaining 249 spec-kit scenarios"
@@ -37,7 +37,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | system-spec-kit/028-memory-search-intelligence/000-release-cleanup/011-daemon-skills-playbook-validation |
+| **Spec Folder** | system-speckit/028-memory-search-intelligence/000-release-cleanup/011-daemon-skills-playbook-validation |
 | **Completed** | 2026-06-25 |
 | **Level** | 2 |
 | **Status** | Complete, salvaged, partial coverage (222 of 471) |
@@ -193,7 +193,7 @@ Stress ran directly through vitest per skill. Playbook scenarios ran through a s
 | Real repo cleanliness | Held at 0 benchmark changes through the run, including descriptions.json, verified each poll |
 | F11 schema claim | Confirmed against the live DB: source_kind absent from memories, memory_records, causal_edges |
 | F12 schema claim | Confirmed against the live DB: consumption_log has query_hash, no query_text |
-| Strict validation | `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-spec-kit/028-memory-search-intelligence/000-release-cleanup/011-daemon-skills-playbook-validation --strict` |
+| Strict validation | `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-speckit/028-memory-search-intelligence/000-release-cleanup/011-daemon-skills-playbook-validation --strict` |
 <!-- /ANCHOR:verification -->
 
 ---

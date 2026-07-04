@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/028-memory-search-intelligence/000-release-cleanup/008-agents-md",
-  "spec_folder": "system-spec-kit/028-memory-search-intelligence/000-release-cleanup/008-agents-md",
-  "parent_id": "system-spec-kit/028-memory-search-intelligence/000-release-cleanup",
+  "packet_id": "system-speckit/028-memory-search-intelligence/000-release-cleanup/008-agents-md",
+  "spec_folder": "system-speckit/028-memory-search-intelligence/000-release-cleanup/008-agents-md",
+  "parent_id": "system-speckit/028-memory-search-intelligence/000-release-cleanup",
   "children_ids": [],
   "migrated": true,
   "migration_source": "legacy",
@@ -41,27 +41,15 @@
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
-      ".codex/AGENTS.md",
-      ".claude/CLAUDE.md",
       "spec.md",
       "plan.md",
       "tasks.md",
       "checklist.md",
+      ".codex/AGENTS.md",
+      ".claude/CLAUDE.md",
       "implementation-summary.md"
     ],
     "entities": [
-      {
-        "name": "AGENTS.md",
-        "kind": "doc",
-        "path": ".codex/AGENTS.md",
-        "source": "derived"
-      },
-      {
-        "name": "CLAUDE.md",
-        "kind": "doc",
-        "path": ".claude/CLAUDE.md",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -84,6 +72,18 @@
         "name": "checklist.md",
         "kind": "doc",
         "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "AGENTS.md",
+        "kind": "doc",
+        "path": ".codex/AGENTS.md",
+        "source": "derived"
+      },
+      {
+        "name": "CLAUDE.md",
+        "kind": "doc",
+        "path": ".claude/CLAUDE.md",
         "source": "derived"
       },
       {
@@ -197,7 +197,7 @@
     ],
     "causal_summary": "The root AGENTS.md plus CLAUDE.md runtime-routing mirrors needs a release-readiness cleanup contract before any document edits begin",
     "created_at": "2026-06-19T00:00:00Z",
-    "last_save_at": "2026-06-26T17:51:32.509Z",
+    "last_save_at": "2026-07-04T17:31:30.171Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,13 +207,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:c81d3b3726e6050de942e1b85f1958aaa5ac5c1527f71a9c70bad3bcb8932ae8",
+    "source_fingerprint": "sha256:8a317969d0d4b0f057d20cfb63d4a1e60ba34b4e8a6b7798bd20bc52bd18ec6b",
     "source_doc_hashes": {
-      "spec.md": "e872995943d614c797d637c6fde5bea1e0769ec29c4b72feced09c5e0d66e65d",
-      "plan.md": "a4b61a6a404b72430fdd1b901ea8d7183c77a9cbf732886ae67774aef471cfc5",
-      "tasks.md": "d643588ab11aec01db32697d90789553821eea8961a8566efe7ebc7d8d425a9f",
-      "checklist.md": "9ce3d2afd9684be1429f4f8c56c971cdaf186d67b9ac05dfa2246a02cc0aed86",
-      "implementation-summary.md": "f200075a5784ca5989b5ee464947264f0469b4cb4e22c1624b6550907a591809"
+      "spec.md": "42afed52394b2227aa1fc2f78350077cc7bf8d549f898ba2cc7fbe80f2514168",
+      "plan.md": "9515c620c0e440b622cdc5bf0b59f463722c572ea65253d8c52fe657dcd062ae",
+      "tasks.md": "9ae227d28d11d6a613a53ac772cc7ef5ad809cb697980dc66200ee6884f9f768",
+      "checklist.md": "1b4cebb0ad87482570005008cec2ce3de9b0c5b30287077df52696708717c5be",
+      "implementation-summary.md": "1169c4a1bef30c75a48f69a4a3c9efc35e82ff4cf6f0a45c6d4f71235c99c590"
     },
     "last_active_child_id": null,
     "last_active_at": null

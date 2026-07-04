@@ -47,7 +47,7 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-Triaged and remediated `validate.sh --strict --recursive` failures across all 41 in-scope packet roots (43 total repo-wide, minus `deep-loops/030-agent-loops-improved` which is the sibling packet's own scope, minus `system-speckit/028-memory-search-intelligence` and `system-speckit/028-memory-search-intelligence/014-manual-playbook-execution-sweep`, both confirmed live concurrent sessions -- excluded throughout, zero file modifications to either).
+Triaged and remediated `validate.sh --strict --recursive` failures across all 41 in-scope packet roots (43 total repo-wide, minus `deep-loops/030-agent-loops-improved` which is the sibling packet's own scope, minus `system-speckit/028-memory-search-intelligence` and `system-speckit/028-memory-search-intelligence/000-release-cleanup/015-manual-playbook-execution-sweep`, both confirmed live concurrent sessions -- excluded throughout, zero file modifications to either).
 
 Of 165 originally-failing folders classified by a mechanical triage script (not an LLM dispatch, since the classification is deterministic):
 - **106 folders** needed only mechanical fixes: 41 had a stale `source_fingerprint` (`GENERATED_METADATA_INTEGRITY`/`DRIFT`/shape checks) resolved by the standard `generate-description.js`/`backfill-graph-metadata.js` regen; 65 had a literal `**Spec Folder**` metadata-table value mismatch in `implementation-summary.md` (comparing a full path instead of the bare folder basename against `check-spec-doc-integrity.sh`'s `basename()` compare) fixed by a scripted correction. One additional folder (`system-speckit/027-xce-research-based-refinement`) had a genuinely broken changelog link (`sk-prompt-models.md` vs. the actual `sk-prompt-small-model.md`) fixed as a one-line correction; one more (`anobel.com/004-bento-visuals`) needed a `description.json` regen.
@@ -82,7 +82,7 @@ A mechanical Python triage script (not an LLM dispatch) ran `validate.sh --stric
 | Decision | Rationale |
 |----------|-----------|
 | Triage done by script, not LLM dispatch | The classification (which rules failed, whether `spec.md` is real/complete) is fully deterministic from `validate.sh` output and file content -- an LLM dispatch would have added cost and latency for no accuracy gain |
-| `system-speckit/028-memory-search-intelligence/014-manual-playbook-execution-sweep` excluded mid-sweep | Discovered as a brand-new, actively-written packet (last file touched ~90 seconds before discovery) partway through this session -- confirms the repo-wide picture can shift during a long-running remediation and re-checking for live concurrent work before each write pass is necessary, not a one-time check |
+| `system-speckit/028-memory-search-intelligence/000-release-cleanup/015-manual-playbook-execution-sweep` excluded mid-sweep | Discovered as a brand-new, actively-written packet (last file touched ~90 seconds before discovery) partway through this session -- confirms the repo-wide picture can shift during a long-running remediation and re-checking for live concurrent work before each write pass is necessary, not a one-time check |
 | Bucket 3 reported, not auto-authored | 54 folders across 17 packets have no reliable grounding truth (see below) -- fabricating plausible-sounding content for packets with zero session context would violate the explicit "never fabricate" constraint |
 
 <!-- /ANCHOR:decisions -->

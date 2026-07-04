@@ -9,8 +9,8 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/028-memory-search-intelligence/000-release-cleanup/012-playbook-findings-remediation"
-    last_updated_at: "2026-06-25T00:00:00Z"
+    packet_pointer: "system-speckit/028-memory-search-intelligence/000-release-cleanup/012-playbook-findings-remediation"
+    last_updated_at: "2026-07-04T17:31:28.233Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "Authored the results report with the eight clusters, the excluded artifacts and the commit list"
     next_safe_action: "Run the whole suite across all clusters together before the 028 review branch merges to main"
@@ -37,7 +37,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | system-spec-kit/028-memory-search-intelligence/000-release-cleanup/012-playbook-findings-remediation |
+| **Spec Folder** | system-speckit/028-memory-search-intelligence/000-release-cleanup/012-playbook-findings-remediation |
 | **Completed** | 2026-06-25 |
 | **Level** | 2 |
 | **Status** | Complete, code verified per cluster, landed on the 028 review-branch mainline; whole-suite run before the branch merges to main remains open |
@@ -174,7 +174,7 @@ The findings were triaged into eight clusters by failure mode, then gpt-5.5-fast
 | Cluster F | 3 files, 63 passed, retry-manager 60/60, F1 and F2 True-RED, typecheck exit 0 |
 | Clusters G and H | spec-kit 11 files 421 passed, code-graph ensure-ready 17 passed, typecheck exit 0 both surfaces |
 | Comment hygiene and alignment drift | Clean on every touched surface |
-| Strict validation | `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-spec-kit/028-memory-search-intelligence/000-release-cleanup/012-playbook-findings-remediation --strict` |
+| Strict validation | `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-speckit/028-memory-search-intelligence/000-release-cleanup/012-playbook-findings-remediation --strict` |
 <!-- /ANCHOR:verification -->
 
 ---

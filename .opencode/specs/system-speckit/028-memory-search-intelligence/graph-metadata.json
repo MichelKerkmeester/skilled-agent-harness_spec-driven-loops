@@ -12,7 +12,6 @@
     "system-speckit/028-memory-search-intelligence/005-spec-data-quality",
     "system-speckit/028-memory-search-intelligence/006-review-remediation",
     "system-speckit/028-memory-search-intelligence/007-dark-flag-graduation",
-    "system-speckit/028-memory-search-intelligence/014-manual-playbook-execution-sweep",
     "system-speckit/028-memory-search-intelligence/016-fix-deep-dive-p0-p2-findings-for-mk-spec-memory"
   ],
   "migrated": true,

@@ -7,8 +7,8 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/028-memory-search-intelligence/014-manual-playbook-execution-sweep"
-    last_updated_at: "2026-07-02T06:10:00.000Z"
+    packet_pointer: "system-speckit/028-memory-search-intelligence/000-release-cleanup/015-manual-playbook-execution-sweep"
+    last_updated_at: "2026-07-04T17:31:31.098Z"
     last_updated_by: "claude-sonnet-5"
     recent_action: "Authored tasks.md"
     next_safe_action: "Build manifest.tsv, run provider pre-flight, launch wave 1"

@@ -11,8 +11,8 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/028-memory-search-intelligence/000-release-cleanup/013-drift-remediation/004-tool-grant-reconciliation"
-    last_updated_at: "2026-06-27T13:53:16Z"
+    packet_pointer: "system-speckit/028-memory-search-intelligence/000-release-cleanup/013-drift-remediation/004-tool-grant-reconciliation"
+    last_updated_at: "2026-07-04T17:31:35.265Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "Completed and verified all phase findings against the remediation ledger"
     next_safe_action: "None — phase terminal"
@@ -20,7 +20,7 @@ _memory:
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "scaffold-system-spec-kit/028-memory-search-intelligence/000-release-cleanup/013-drift-remediation/004-tool-grant-reconciliation"
+      session_id: "scaffold-system-speckit/028-memory-search-intelligence/000-release-cleanup/013-drift-remediation/004-tool-grant-reconciliation"
       parent_session_id: null
     completion_pct: 100
     open_questions: []
@@ -49,7 +49,7 @@ FAILURE MODES:
 | **Priority** | mixed (P0-P2) |
 | **Status** | Complete |
 | **Created** | 2026-06-27 |
-| **Branch** | `system-spec-kit/028-memory-search-intelligence/000-release-cleanup/013-drift-remediation/004-tool-grant-reconciliation` |
+| **Branch** | `system-speckit/028-memory-search-intelligence/000-release-cleanup/013-drift-remediation/004-tool-grant-reconciliation` |
 <!-- /ANCHOR:metadata -->
 
 ---

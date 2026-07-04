@@ -20,7 +20,7 @@ _memory:
     key_files:
       - "../../006-review-remediation/002-memory-schema-and-concurrency/tasks.md"
       - "../../006-review-remediation/004-p2-triage/spec.md"
-      - "../../014-manual-playbook-execution-sweep/001-findings-remediation/tasks.md"
+      - "../../000-release-cleanup/015-manual-playbook-execution-sweep/001-findings-remediation/tasks.md"
       - "../../spec.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"

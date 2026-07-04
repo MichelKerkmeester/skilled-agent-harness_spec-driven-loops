@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-speckit/028-memory-search-intelligence/014-manual-playbook-execution-sweep/001-findings-remediation",
-  "spec_folder": "system-speckit/028-memory-search-intelligence/014-manual-playbook-execution-sweep/001-findings-remediation",
-  "parent_id": "system-speckit/028-memory-search-intelligence/014-manual-playbook-execution-sweep",
+  "packet_id": "system-speckit/028-memory-search-intelligence/000-release-cleanup/015-manual-playbook-execution-sweep/001-findings-remediation",
+  "spec_folder": "system-speckit/028-memory-search-intelligence/000-release-cleanup/015-manual-playbook-execution-sweep/001-findings-remediation",
+  "parent_id": "system-speckit/028-memory-search-intelligence/000-release-cleanup/015-manual-playbook-execution-sweep",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -206,7 +206,7 @@
     ],
     "causal_summary": "The 485-scenario manual testing playbook sweep (packet `031-manual-playbook-execution-sweep`) is confirming real, reproducible bugs across the spec-kit/code-graph/skill-advisor stack — feature-flag kill-switches that don't disable their feature, a \"read-only\" indexing path that mutates data, scoring-pipeline synchronization gaps, and more",
     "created_at": "2026-07-02T11:57:47.283Z",
-    "last_save_at": "2026-07-03T13:39:41.806Z",
+    "last_save_at": "2026-07-04T17:31:34.862Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -216,13 +216,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:7ece9b9cd1226543d286f4cbfd3046d9b2e4c1450ae7102782590cb0e04e5bdc",
+    "source_fingerprint": "sha256:cffd935bc078faf58a72e85252fa1790d7f1d7ee7a7b43858686a5199c7e29bb",
     "source_doc_hashes": {
-      "spec.md": "a437f84eeadc495fd8cac3eb575ab1066469c388d8bf4514feab47766ab7cf62",
+      "spec.md": "d5cb8aa8b280f3983fba7ad12bca646179bdb80a8d4bbd661730e00663da220b",
       "plan.md": "e5b1686eafae921bc1f8e2181ee2d7c46fc02b970d1597e6bd91f806dbbb64d9",
-      "tasks.md": "378e93c922afee3fbc60393d9a39d871997a7ce7f04559f9f2fb522d9bed7302",
-      "checklist.md": "71e0a8318ca4066e9460efd02bb826456beced26c4a8420e1e277c2caad17490",
-      "implementation-summary.md": "eb470e8e0b0187ee029bc61c912231ae0d57cc8d92be9e0d8e78ef5eba42aa16"
+      "tasks.md": "69b9452ad969ca84aec2419ffbe8ea3eac6095649b12e0265bfee9246179db7b",
+      "checklist.md": "7718efd51b08af488ea5165bd18afc615342544f76d514f802d6ea23bccbf1d2",
+      "implementation-summary.md": "9178e0be86047ed71535227828ba0a0d5cd9ba151c922fd22cb81bb67c17862b"
     },
     "last_active_child_id": null,
     "last_active_at": null

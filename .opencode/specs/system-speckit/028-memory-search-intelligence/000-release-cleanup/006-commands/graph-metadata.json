@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/028-memory-search-intelligence/000-release-cleanup/006-commands",
-  "spec_folder": "system-spec-kit/028-memory-search-intelligence/000-release-cleanup/006-commands",
-  "parent_id": "system-spec-kit/028-memory-search-intelligence/000-release-cleanup",
+  "packet_id": "system-speckit/028-memory-search-intelligence/000-release-cleanup/006-commands",
+  "spec_folder": "system-speckit/028-memory-search-intelligence/000-release-cleanup/006-commands",
+  "parent_id": "system-speckit/028-memory-search-intelligence/000-release-cleanup",
   "children_ids": [],
   "migrated": true,
   "migration_source": "legacy",
@@ -41,20 +41,14 @@
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
-      ".opencode/commands/doctor/speckit.md",
       "spec.md",
       "plan.md",
       "tasks.md",
       "checklist.md",
+      ".opencode/commands/doctor/speckit.md",
       "implementation-summary.md"
     ],
     "entities": [
-      {
-        "name": "speckit.md",
-        "kind": "doc",
-        "path": ".opencode/commands/doctor/speckit.md",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -77,6 +71,12 @@
         "name": "checklist.md",
         "kind": "doc",
         "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "speckit.md",
+        "kind": "doc",
+        "path": ".opencode/commands/doctor/speckit.md",
         "source": "derived"
       },
       {
@@ -196,7 +196,7 @@
     ],
     "causal_summary": "The every command doc in .opencode plus the .claude and .codex runtime mirrors needs a release-readiness cleanup contract before any document edits begin",
     "created_at": "2026-06-19T00:00:00Z",
-    "last_save_at": "2026-06-26T17:51:32.152Z",
+    "last_save_at": "2026-07-04T17:31:33.022Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,13 +206,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:a3855f6dae6fbcf260ba4f57be3a5f5f707afa19b1c72f35c2b0746d5d65106c",
+    "source_fingerprint": "sha256:347a68a7a22041750a041ba08c7ba0e17db68aa5d2eeeaa5e5175983f7e8a697",
     "source_doc_hashes": {
-      "spec.md": "fb8d373153409b051091afd9ea74b79c8fd859cf7f0054d50319b7ab5b914eb4",
-      "plan.md": "15e0544e513b2dae78c1a8aed6aa6415f3d39cf3fff1a0d337da345a6261da94",
-      "tasks.md": "12dde8b344bd0c3d8a3128e7b8e2ec830ff0709d248dbc99f5780566552896ce",
-      "checklist.md": "8ece9d535ecfdc12f59dac79eedcd135211722a54e54048f10572b67100e23f7",
-      "implementation-summary.md": "d90d6ce170533ba8f8efa9c15ebdd955e6c54f30aaeef35e53856619667ab530"
+      "spec.md": "2fd853fab9f64c5a1e04a5b7ba5999202c22425c6573feb6fcb0d379093315fe",
+      "plan.md": "7116c0c3d46c1bb4f6796dbad6b5ddd919f468ea542bd83128900bc48b2719ce",
+      "tasks.md": "4fffdb992cee4321f49b817c263ddb652543271528323c092c5460df1e5bc0a1",
+      "checklist.md": "08de81a8e8cc53db1de6ed3f29062ca969052a6047da00324b189c32f349c6a9",
+      "implementation-summary.md": "b91b200e21287a690479c09b61b6c7775fe8126b819476c0b4807ef0377df46b"
     },
     "last_active_child_id": null,
     "last_active_at": null

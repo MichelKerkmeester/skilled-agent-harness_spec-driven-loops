@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/028-memory-search-intelligence/000-release-cleanup/004-feature-catalogs",
-  "spec_folder": "system-spec-kit/028-memory-search-intelligence/000-release-cleanup/004-feature-catalogs",
-  "parent_id": "system-spec-kit/028-memory-search-intelligence/000-release-cleanup",
+  "packet_id": "system-speckit/028-memory-search-intelligence/000-release-cleanup/004-feature-catalogs",
+  "spec_folder": "system-speckit/028-memory-search-intelligence/000-release-cleanup/004-feature-catalogs",
+  "parent_id": "system-speckit/028-memory-search-intelligence/000-release-cleanup",
   "children_ids": [],
   "migrated": true,
   "migration_source": "legacy",
@@ -195,7 +195,7 @@
     ],
     "causal_summary": "The every feature catalog document, including the system-spec-kit catalog and any sibling catalogs needs a release-readiness cleanup contract before any document edits begin",
     "created_at": "2026-06-19T00:00:00Z",
-    "last_save_at": "2026-06-26T16:28:46.433Z",
+    "last_save_at": "2026-07-04T17:31:33.485Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,13 +205,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:538f9730427920251b962cb1e426ffc1123fad01ae8230fa481d9336dce85349",
+    "source_fingerprint": "sha256:6a480d15bf2f298e24bdd4da8001d3f5408354774026458d1927578ccbfe7e82",
     "source_doc_hashes": {
-      "spec.md": "34c25c501fd933a31a14813e99acb55a273076d7da55b4c3c7b9670a9ca6727e",
-      "plan.md": "d9756523f839856d2e8f2b3b5d0b6e50d357b3e754e34f3d53af301df3718c9a",
-      "tasks.md": "69013d4877045cd47344a639bbaacd78cb0bb04ceaade297d34ea51bdfb657e0",
-      "checklist.md": "4cd961d9aea87718b217358f735ec1e699c74e4d2ff98bffece9722658ecab89",
-      "implementation-summary.md": "8fa14b085554eba2d67281b417f40ec439c3d8dff04702f34ff9498e40fed498"
+      "spec.md": "5728661d4f2d1231deed7f5b9bffcfe4fbe7fa2cdb80e523817e3255e35842db",
+      "plan.md": "4a469626c6d6c9d0f8ab4ee04ac598b22c6cdacae664704f3fd46b9ee2efb426",
+      "tasks.md": "2fdaafe117e877c71c8aaaa06534abdd24cb6e6917d0bb3378a31cf14a9e867d",
+      "checklist.md": "9d012c5d8592d80df474b58236d8e830d32df079a8617f71d59f8bf168d53f34",
+      "implementation-summary.md": "229af7fd6d2d528bbe0903028f95750734178cc39d6c5fc23b672b6a8b01d8e9"
     },
     "last_active_child_id": null,
     "last_active_at": null

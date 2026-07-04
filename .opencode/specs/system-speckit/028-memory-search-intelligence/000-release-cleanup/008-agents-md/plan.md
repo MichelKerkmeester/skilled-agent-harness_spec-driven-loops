@@ -8,8 +8,8 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/028-memory-search-intelligence/000-release-cleanup/008-agents-md"
-    last_updated_at: "2026-06-19T00:00:00Z"
+    packet_pointer: "system-speckit/028-memory-search-intelligence/000-release-cleanup/008-agents-md"
+    last_updated_at: "2026-07-04T17:31:30.171Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "Executed cleanup, fixed mk-spec-memory tool count 37 to 39"
     next_safe_action: "Phase complete, proceed to phase 009"

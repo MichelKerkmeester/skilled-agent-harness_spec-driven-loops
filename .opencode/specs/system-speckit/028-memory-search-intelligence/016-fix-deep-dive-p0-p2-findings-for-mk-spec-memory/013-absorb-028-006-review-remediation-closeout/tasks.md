@@ -58,7 +58,7 @@ Each task carries a metadata comment citing its source: report finding numbers (
 
 - [x] T001 Read the final status of every program phase 001-012 from its child folder (spec status + checklist state) and note any phase that closed differently than planned (`../0NN-*/`)
   <!-- meta: source=phase-decomposition.md execution order; gate for all covered-by-phase-NNN dispositions -->
-- [x] T002 Re-read the three tracker folders and run `git status` on every target file before editing; halt on uncommitted concurrent-session changes (`../../006-review-remediation/`, `../../014-manual-playbook-execution-sweep/001-findings-remediation/`)
+- [x] T002 Re-read the three tracker folders and run `git status` on every target file before editing; halt on uncommitted concurrent-session changes (`../../006-review-remediation/`, `../../000-release-cleanup/015-manual-playbook-execution-sweep/001-findings-remediation/`)
   <!-- meta: source=finding-is-a-hypothesis rule + 014 tasks.md process note on concurrent-session file collisions -->
 - [x] T003 Capture baseline: `validate.sh --strict` on the 016 parent and the three tracker folders before any edit; record exit codes (`scratch/baseline-validation.txt`)
   <!-- meta: source=baseline-before-no-regressions constitutional rule -->
@@ -84,9 +84,9 @@ Each task carries a metadata comment citing its source: report finding numbers (
 
 ### Group B — ex-031 tracker (028/014/001-findings-remediation)
 
-- [x] T009 Mark Group-A rows absorbed → `../007-ranking-filter-bypass-and-score-scale-fixes/`: tasks.md rows T-0211 and T-0212 lose their "queued" wording, and the REQ-214 context-headers requirement row in that packet's spec.md gets the same pointer (`../../014-manual-playbook-execution-sweep/001-findings-remediation/`)
+- [x] T009 Mark Group-A rows absorbed → `../007-ranking-filter-bypass-and-score-scale-fixes/`: tasks.md rows T-0211 and T-0212 lose their "queued" wording, and the REQ-214 context-headers requirement row in that packet's spec.md gets the same pointer (`../../000-release-cleanup/015-manual-playbook-execution-sweep/001-findings-remediation/`)
   <!-- meta: source=deep-dive-report.md §6 (T-0211 causal boost, T-0212 community fallback, REQ-214 context headers; shared Group-A per-request flag-read root cause); decomposition §007 -->
-- [x] T010 Sweep the remaining open rows of that tasks.md and annotate each with exactly one disposition — covered by phase NNN, stays in 014, or obsolete: T003 (recurring append), T-0032 (session_health), T-0056 (causal_stats scope), T-0062 (evidence re-run), T-0087 (int8 decision record), T-0193/T-0194 (lineage evidence), T-0208 (tri-daemon lifecycle), T-0240 (lint backlog), T-0372 (session_resume strict), T-0381 (deep-loop convergence signals), T900-T902 (its own verification rows) (`../../014-manual-playbook-execution-sweep/001-findings-remediation/tasks.md`)
+- [x] T010 Sweep the remaining open rows of that tasks.md and annotate each with exactly one disposition — covered by phase NNN, stays in 014, or obsolete: T003 (recurring append), T-0032 (session_health), T-0056 (causal_stats scope), T-0062 (evidence re-run), T-0087 (int8 decision record), T-0193/T-0194 (lineage evidence), T-0208 (tri-daemon lifecycle), T-0240 (lint backlog), T-0372 (session_resume strict), T-0381 (deep-loop convergence signals), T900-T902 (its own verification rows) (`../../000-release-cleanup/015-manual-playbook-execution-sweep/001-findings-remediation/tasks.md`)
   <!-- meta: source=deep-dive-report.md §6 (~22 Phase-2 appendix items, T-0372, T-0444 already closed in-tracker); candidates: T-0032/T-0208 relate to phase 011 health/daemon scope — confirm before pointing -->
 
 ### Group C — findings-completeness sweep
@@ -202,5 +202,5 @@ Sweep notes recorded at execution time go below this line (itemized splits, acce
 - **Checklist**: See `checklist.md`
 - **Program parent**: See `../spec.md`
 - **Evidence corpus**: `../research/phase-decomposition.md`, `../research/deep-dive-report.md` (§6), `../research/findings-ledger.md`
-- **Absorbed trackers**: `../../006-review-remediation/002-memory-schema-and-concurrency/`, `../../006-review-remediation/004-p2-triage/`, `../../014-manual-playbook-execution-sweep/001-findings-remediation/`
+- **Absorbed trackers**: `../../006-review-remediation/002-memory-schema-and-concurrency/`, `../../006-review-remediation/004-p2-triage/`, `../../000-release-cleanup/015-manual-playbook-execution-sweep/001-findings-remediation/`
 <!-- /ANCHOR:cross-refs -->

@@ -8,8 +8,8 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/028-memory-search-intelligence/014-manual-playbook-execution-sweep/001-findings-remediation"
-    last_updated_at: "2026-07-02T13:45:00.000Z"
+    packet_pointer: "system-speckit/028-memory-search-intelligence/000-release-cleanup/015-manual-playbook-execution-sweep/001-findings-remediation"
+    last_updated_at: "2026-07-04T17:31:34.862Z"
     last_updated_by: "claude-sonnet-5"
     recent_action: "Scaffolded remediation packet with fix plans for 26 findings confirmed so far"
     next_safe_action: "Append new finding entries to spec.md/plan.md/tasks.md as the sweep confirms more FAILs; begin implementation once sweep completes"
@@ -39,7 +39,7 @@ _memory:
 | **Priority** | P1 |
 | **Status** | In Progress (growing dynamically) |
 | **Created** | 2026-07-02 |
-| **Parent packet** | `system-speckit/028-memory-search-intelligence/014-manual-playbook-execution-sweep` |
+| **Parent packet** | `system-speckit/028-memory-search-intelligence/000-release-cleanup/015-manual-playbook-execution-sweep` |
 
 <!-- /ANCHOR:metadata -->
 ---

@@ -87,7 +87,7 @@ contextType: "implementation"
 ## File Organization
 
 - [x] CHK-050 [P1] Packet lives at the agreed location (phase child under 031)
-  - **Evidence**: `.opencode/specs/system-speckit/028-memory-search-intelligence/014-manual-playbook-execution-sweep/001-findings-remediation/`
+  - **Evidence**: `.opencode/specs/system-speckit/028-memory-search-intelligence/000-release-cleanup/015-manual-playbook-execution-sweep/001-findings-remediation/`
 - [x] CHK-051 [P1] No sweep-execution files (031's own plan.md/tasks.md/checklist.md/manifest.tsv) modified by this packet
   - **Evidence**: only new files created under `001-findings-remediation/`, parent 031 files untouched
 

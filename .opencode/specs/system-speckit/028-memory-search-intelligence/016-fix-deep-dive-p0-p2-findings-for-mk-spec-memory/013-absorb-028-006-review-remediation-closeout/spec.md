@@ -79,7 +79,7 @@ This is **Phase 13** of the Deep dive remediation phase children specification.
 - Operator absorption decision (recorded in ../spec.md): Group-A → phase 007; 028/006/002 items → phases 008/009; 028/006/004 P2 triage → this phase's mapping table.
 
 **Deliverables**:
-- Absorbed trackers updated in place with pointers: `../../006-review-remediation/002-memory-schema-and-concurrency/`, `../../006-review-remediation/004-p2-triage/`, `../../014-manual-playbook-execution-sweep/001-findings-remediation/tasks.md`.
+- Absorbed trackers updated in place with pointers: `../../006-review-remediation/002-memory-schema-and-concurrency/`, `../../006-review-remediation/004-p2-triage/`, `../../000-release-cleanup/015-manual-playbook-execution-sweep/001-findings-remediation/tasks.md`.
 - 028/006 parent spec + graph metadata refreshed so packet 028's blocker status is accurate; 028 packet-parent phase-map rows synchronized.
 - Findings-completeness mapping table in this phase's `tasks.md` — every ledger finding mapped to a phase task or accepted-as-is with a reason.
 - Three new tooling findings recorded with repro (create.sh child-level bug, upgrade-level.sh broken upgrade path, generate-description.js ignored `--level`).
@@ -135,7 +135,7 @@ Close the program's books: every absorbed tracker row points at its owning phase
 | `../../006-review-remediation/graph-metadata.json` | Regenerate | Derived status refresh after the parent spec update |
 | `../../spec.md` | Modify | 028 packet-parent phase-map row for 006 (blocker accuracy) and 016 status |
 | `../../graph-metadata.json` | Regenerate | 028 packet-parent derived status refresh |
-| `../../014-manual-playbook-execution-sweep/001-findings-remediation/tasks.md` | Modify | Group-A rows marked absorbed → phase 007; open-row sweep dispositions |
+| `../../000-release-cleanup/015-manual-playbook-execution-sweep/001-findings-remediation/tasks.md` | Modify | Group-A rows marked absorbed → phase 007; open-row sweep dispositions |
 | `tasks.md` | Modify | Findings-completeness mapping table filled during execution |
 | `../spec.md` | Modify | 016 program-parent phase-map final statuses at closeout |
 | `../graph-metadata.json` | Regenerate | Program-parent derived status refresh |

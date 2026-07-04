@@ -112,7 +112,7 @@ This phase edits spec docs, not code, so the addendum inventories documentation 
 | This phase's `tasks.md` mapping table | Ledger completeness audit surface | Update: fill dispositions during execution | Zero rows left Pending at completion |
 
 Required inventories:
-- Stale open-state strings: `rg -n 'PENDING, scaffold only|queued for next fix-dispatch round' .opencode/specs/system-speckit/028-memory-search-intelligence/006-review-remediation .opencode/specs/system-speckit/028-memory-search-intelligence/014-manual-playbook-execution-sweep` — must return zero hits after the pass.
+- Stale open-state strings: `rg -n 'PENDING, scaffold only|queued for next fix-dispatch round' .opencode/specs/system-speckit/028-memory-search-intelligence/006-review-remediation .opencode/specs/system-speckit/028-memory-search-intelligence/000-release-cleanup/015-manual-playbook-execution-sweep` — must return zero hits after the pass.
 - Absorbed-row consumers: `rg -n 'T-0211|T-0212|REQ-214|P1-2|P1-4|P1-5' .opencode/specs/system-speckit/028-memory-search-intelligence --glob '*.md'` — every hit outside frozen archives carries or cites a disposition.
 - Matrix axes: tracker (3) × row class (absorbed / open-swept / frozen-done) × status surface (child doc, parent map, graph metadata) — each cell either edited or explicitly not-a-consumer.
 - Invariant: a tracker row never has two dispositions, and no status surface tells a different story than the child doc that owns the row.

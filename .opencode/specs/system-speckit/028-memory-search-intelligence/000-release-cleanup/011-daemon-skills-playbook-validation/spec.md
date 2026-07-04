@@ -9,8 +9,8 @@ importance_tier: "important"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/028-memory-search-intelligence/000-release-cleanup/011-daemon-skills-playbook-validation"
-    last_updated_at: "2026-06-25T00:00:00Z"
+    packet_pointer: "system-speckit/028-memory-search-intelligence/000-release-cleanup/011-daemon-skills-playbook-validation"
+    last_updated_at: "2026-07-04T17:31:28.734Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "Salvaged the benchmark results into a packet after the workspace was wiped"
     next_safe_action: "Operator decides whether to re-run the remaining 249 spec-kit scenarios"

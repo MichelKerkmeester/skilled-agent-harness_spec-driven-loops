@@ -9,8 +9,8 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/028-memory-search-intelligence/000-release-cleanup"
-    last_updated_at: "2026-06-19T12:00:00Z"
+    packet_pointer: "system-speckit/028-memory-search-intelligence/000-release-cleanup"
+    last_updated_at: "2026-07-04T17:31:27.800Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "All thirteen child cleanup and validation phases executed"
     next_safe_action: "Parent complete, 003 and 006 subsets deferred to concurrent session"
@@ -45,7 +45,7 @@ _memory:
 | **Status** | complete|
 | **Created** | 2026-06-19 |
 | **Parent Spec** | `../spec.md` |
-| **Parent Packet** | `system-spec-kit/028-memory-search-intelligence` |
+| **Parent Packet** | `system-speckit/028-memory-search-intelligence` |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -98,6 +98,7 @@ Define the release-cleanup root purpose and executed child phase map. Each child
 | `012-playbook-findings-remediation/spec.md` | Executed | 012 | Playbook findings remediation |
 | `013-drift-remediation/spec.md` | Executed | 013 | Drift-remediation findings closure |
 | `014-spec-regrouping-renumber-reindex/spec.md` | In Progress | 014 | Spec regrouping, renumbering and reindex sweep |
+| `015-manual-playbook-execution-sweep/spec.md` | In Progress | 015 | Manual playbook execution sweep with its findings-remediation child, re-nested from former top-level 014 |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -121,6 +122,7 @@ Define the release-cleanup root purpose and executed child phase map. Each child
 | 012 | `012-playbook-findings-remediation/` | Playbook findings remediation | COMPLETE |
 | 013 | `013-drift-remediation/` | Drift-audit findings remediation relocated from the former 028/008 track | COMPLETE |
 | 014 | `014-spec-regrouping-renumber-reindex/` | Spec regrouping, renumbering and reindex sweep | In Progress |
+| 015 | `015-manual-playbook-execution-sweep/` | Manual playbook execution sweep, re-nested from former top-level 014 on 2026-07-04 (keeps its findings-remediation child) | In Progress |
 
 ### Phase Transition Rules
 
@@ -151,4 +153,4 @@ Define the release-cleanup root purpose and executed child phase map. Each child
 
 - **Packet parent**: `../spec.md`
 - **Graph metadata**: `graph-metadata.json`
-- **Child phases**: `001-code-readmes/` through `013-drift-remediation/`
+- **Child phases**: `001-code-readmes/` through `015-manual-playbook-execution-sweep/`

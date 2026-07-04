@@ -119,7 +119,7 @@ None.
 - **skill_agent** (overlay): Deferred — these are spec docs only; no skill agent code touched.
 
 ## Integration Evidence
-- Parent packet: `system-spec-kit/028-memory-search-intelligence` — referenced consistently in all child metadata.
+- Parent packet: `system-speckit/028-memory-search-intelligence` — referenced consistently in all child metadata.
 - Config (`deep-review-config.json`): review scope correctly enumerates all 15 files (3 parent + 12 child spec.md). No stale references.
 - Strategy (`deep-review-strategy.md`): Known context (line 72) correctly notes "3 additional children (010-012) exist in graph-metadata.json beyond spec.md's documented 9."
 

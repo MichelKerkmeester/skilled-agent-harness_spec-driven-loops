@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/028-memory-search-intelligence/000-release-cleanup/013-drift-remediation/004-tool-grant-reconciliation",
-  "spec_folder": "system-spec-kit/028-memory-search-intelligence/000-release-cleanup/013-drift-remediation/004-tool-grant-reconciliation",
-  "parent_id": "system-spec-kit/028-memory-search-intelligence/000-release-cleanup/013-drift-remediation",
+  "packet_id": "system-speckit/028-memory-search-intelligence/000-release-cleanup/013-drift-remediation/004-tool-grant-reconciliation",
+  "spec_folder": "system-speckit/028-memory-search-intelligence/000-release-cleanup/013-drift-remediation/004-tool-grant-reconciliation",
+  "parent_id": "system-speckit/028-memory-search-intelligence/000-release-cleanup/013-drift-remediation",
   "children_ids": [],
   "migrated": true,
   "migration_source": "legacy",
@@ -197,7 +197,7 @@
     ],
     "causal_summary": "The 2026-06-27 drift audit converged 44 findings in this phase covering agent MCP grants across .claude/.opencode/.codex and command allowed-tools versus workflow needs",
     "created_at": "2026-06-27T17:00:00Z",
-    "last_save_at": "2026-06-27T13:56:32.644Z",
+    "last_save_at": "2026-07-04T17:31:35.265Z",
     "save_lineage": "graph_only",
     "last_accessed_at": "2026-06-27T17:00:00Z",
     "source_docs": [
@@ -207,13 +207,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:1096f2ac9bdecc0eb1099631ef0ec36afaed11f880451ebad1e524e26b43b43f",
+    "source_fingerprint": "sha256:235977db180bea4b99d682f51a3969b304fe1efdd767da8dfde2c8d6d0374d66",
     "source_doc_hashes": {
-      "spec.md": "33dcee40a4b390a6d8b369e31c150904da2a7f18801690e81443e28cc512a2d4",
-      "plan.md": "16912d2b3a79c8c36214c57f16a8bab1955e7e8267ec7444949a29fef2c008d9",
-      "tasks.md": "027b2ad227cb1bd9b4b6c2583e16fea3e8aab9e70c4bad2a1ffa9517c69ff7b4",
-      "checklist.md": "ef844b4b1c2aa368a768cdfcaeb436b0be2deb83758033d015d8182f592fbe14",
-      "implementation-summary.md": "6ab4b6e0c06cb8a656a5addf946b1ee96f7eee57404be092e677a1f44c68ffbb"
+      "spec.md": "e3a174a31d9870996dcd35076b8f12465e1c9d7e2a0ffc4428e2d02b338ec7ee",
+      "plan.md": "767c9a8d22d319d997221a64d6c654cbfb03d70025590d958d8f49137c6920bf",
+      "tasks.md": "3c5d67efb6e1913b9c43422c8287ca6a3f7dc5645b9d7e20e4cbcfd69cdb59ff",
+      "checklist.md": "3940c1317c1fb230931d9eb5fb9fd654c69c0e02e6e498419b24f9495b661441",
+      "implementation-summary.md": "003195d538b939f8e0ee96287f87f98c3b6fb902fa1217dfd6adf427ed7697c3"
     },
     "last_active_child_id": null,
     "last_active_at": null

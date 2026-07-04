@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/028-memory-search-intelligence/000-release-cleanup/011-daemon-skills-playbook-validation",
-  "spec_folder": "system-spec-kit/028-memory-search-intelligence/000-release-cleanup/011-daemon-skills-playbook-validation",
-  "parent_id": "system-spec-kit/028-memory-search-intelligence/000-release-cleanup",
+  "packet_id": "system-speckit/028-memory-search-intelligence/000-release-cleanup/011-daemon-skills-playbook-validation",
+  "spec_folder": "system-speckit/028-memory-search-intelligence/000-release-cleanup/011-daemon-skills-playbook-validation",
+  "parent_id": "system-speckit/028-memory-search-intelligence/000-release-cleanup",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -41,23 +41,23 @@
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
-      "plan.md",
       "implementation-summary.md",
+      "plan.md",
       "spec.md",
       "checklist.md",
       "tasks.md"
     ],
     "entities": [
       {
-        "name": "plan.md",
-        "kind": "doc",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
         "source": "derived"
       },
       {
@@ -195,7 +195,7 @@
     ],
     "causal_summary": "Packet 028 shipped a large body of work into three daemon-backed system skills (system-spec-kit, system-skill-advisor and system-code-graph)",
     "created_at": "2026-06-22T04:40:16.647Z",
-    "last_save_at": "2026-06-26T17:51:33.081Z",
+    "last_save_at": "2026-07-04T17:31:28.734Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,13 +205,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:333af1cd8404207dc092d9a1094bf3d6712d0693538ce5de5cdab15146972be4",
+    "source_fingerprint": "sha256:8625d49a826ac156d5a03c309706c926ea2500e6b0afcddb7cde272014bd59bc",
     "source_doc_hashes": {
-      "spec.md": "b0b1c50357d2ef5fc8f3268998837b1c9f256106a49482d96fe20ef11ffbc03d",
-      "plan.md": "3a9d06136693e980f216cfa6918140b7948ecedd98b817196646ff65545b10cf",
-      "tasks.md": "2d58f3a6cd38328b301af0ab5ac39e89b6236b6e35b7e6507323ef458beb10ed",
-      "checklist.md": "05448081f9f8f123333711b59125831aa03e7d64a5259cb88372c1b86121afb4",
-      "implementation-summary.md": "56a99ec2f39e6bf91bb403ace2475e40d69b2b1a1eecbd97b14111f4f4991f03"
+      "spec.md": "4ba102e428a3ba8cd469dc2cf467f484445e51937248d1a4aba5690b959a2f52",
+      "plan.md": "cc6186c0c3a587650402f79b945e41dd59202f8c69f519a69e1be09338f20865",
+      "tasks.md": "16e4764c87a77600a7f81e17fd7113acb011f078e83b83b509f147a9105530cb",
+      "checklist.md": "df0316bbf16f55639b93e86d76460527ee9fa7901d87212147ff38d5f1868143",
+      "implementation-summary.md": "3099c616b05ba45689300c6a1ab192a6e052961ff02c4ba5271aefeffbe63b1f"
     },
     "last_active_child_id": null,
     "last_active_at": null

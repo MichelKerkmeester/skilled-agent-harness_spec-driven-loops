@@ -1,10 +1,10 @@
 {
   "schema_version": 1,
-  "packet_id": "system-speckit/028-memory-search-intelligence/014-manual-playbook-execution-sweep",
-  "spec_folder": "system-speckit/028-memory-search-intelligence/014-manual-playbook-execution-sweep",
-  "parent_id": "system-speckit/028-memory-search-intelligence",
+  "packet_id": "system-speckit/028-memory-search-intelligence/000-release-cleanup/015-manual-playbook-execution-sweep",
+  "spec_folder": "system-speckit/028-memory-search-intelligence/000-release-cleanup/015-manual-playbook-execution-sweep",
+  "parent_id": "system-speckit/028-memory-search-intelligence/000-release-cleanup",
   "children_ids": [
-    "system-speckit/028-memory-search-intelligence/014-manual-playbook-execution-sweep/001-findings-remediation"
+    "system-speckit/028-memory-search-intelligence/000-release-cleanup/015-manual-playbook-execution-sweep/001-findings-remediation"
   ],
   "manual": {
     "depends_on": [],
@@ -193,7 +193,7 @@
     ],
     "causal_summary": "Automated stress tests confirm code-level behavior under load, but manual testing playbooks exist specifically to validate operator-facing, end-to-end scenarios (MCP tool call sequences, CLI invocations, degraded-mode behavior) that stress tests don't cover",
     "created_at": "2026-07-02T04:40:48.870Z",
-    "last_save_at": "2026-07-03T13:39:59.230Z",
+    "last_save_at": "2026-07-04T17:31:31.098Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,15 +203,15 @@
       "checklist.md",
       "decision-record.md"
     ],
-    "source_fingerprint": "sha256:8eed29963abc5db4b6424405c07dd4d0ff50fd73667106adeabfd44320ae94d6",
+    "source_fingerprint": "sha256:e1007c098c500e65b09e9f3108085e4a7984bb74463352c85d6f966d42080da4",
     "source_doc_hashes": {
-      "spec.md": "6f8f20063a4267f1b18c763026a7da058057547b090c6cad752c59931cb63fc3",
-      "plan.md": "ae24ddee2b3f4c2477bb3cb0668e05975b1a8ed8e0412d20f7969411da8c4b38",
-      "tasks.md": "290abbc04493b9a24a8b2eba7b3dfc7fd5d395a1dc6b461a45bfe33ef301d81c",
-      "checklist.md": "482ca0398ab629514f301f10315682a43e0ca1520ea6503a7c67d927abeeb2ae",
-      "decision-record.md": "dbd178c4d4e6aab159d6f597bae5dc14b5c8da605c318364acab1af906257f17"
+      "spec.md": "d5304eab422f0f312f3a9b2d2712cc87ccc0d47e980be5c60ff3ca6249b2cf31",
+      "plan.md": "3d720cba7c5c6c64034366a16f93b54bf3edeae749dfdc1504ea5a156946f740",
+      "tasks.md": "a26fc85002762f81320f1efc9437543f8319a140eb0f77a314abdb70bdb496ce",
+      "checklist.md": "43f8d170ef0d3e1790ca9567748952a1cd36dd21904244fc91ecacd77d034ade",
+      "decision-record.md": "367290cb8eb0403a9f0dfadfdb9b2ee60cee9dcb764e89b9db407d206db1143d"
     },
-    "last_active_child_id": "system-speckit/028-memory-search-intelligence/014-manual-playbook-execution-sweep/001-findings-remediation",
+    "last_active_child_id": "system-speckit/028-memory-search-intelligence/000-release-cleanup/015-manual-playbook-execution-sweep/001-findings-remediation",
     "last_active_at": "2026-07-03T13:39:59.230Z"
   }
 }

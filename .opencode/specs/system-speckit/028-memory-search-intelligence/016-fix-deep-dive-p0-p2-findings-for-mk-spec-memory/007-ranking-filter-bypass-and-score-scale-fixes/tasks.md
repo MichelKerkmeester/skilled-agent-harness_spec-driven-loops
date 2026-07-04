@@ -184,7 +184,7 @@ Routed from the plan-review Systemic #4 drop list. Each keeps a verify-first con
 - **Plan**: See `plan.md`
 - **Decisions**: See `decision-record.md` (ADR-001 headroom, ADR-002 trigger weight, ADR-003 flags/rollout)
 - **Research**: `../research/deep-dive-report.md`, `../research/findings-ledger.md`, `../research/phase-decomposition.md`
-- **Absorbed tracker**: `../../014-manual-playbook-execution-sweep/001-findings-remediation/` (T-0211, T-0212, REQ-214; pointers updated by phase 013)
+- **Absorbed tracker**: `../../000-release-cleanup/015-manual-playbook-execution-sweep/001-findings-remediation/` (T-0211, T-0212, REQ-214; pointers updated by phase 013)
 <!-- /ANCHOR:cross-refs -->
 
 ---

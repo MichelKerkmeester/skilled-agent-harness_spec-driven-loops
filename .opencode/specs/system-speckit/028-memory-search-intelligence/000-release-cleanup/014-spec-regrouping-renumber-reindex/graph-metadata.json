@@ -3,52 +3,92 @@
   "packet_id": "system-speckit/028-memory-search-intelligence/000-release-cleanup/014-spec-regrouping-renumber-reindex",
   "spec_folder": "system-speckit/028-memory-search-intelligence/000-release-cleanup/014-spec-regrouping-renumber-reindex",
   "parent_id": "system-speckit/028-memory-search-intelligence/000-release-cleanup",
-  "children_ids": [
-
-  ],
+  "children_ids": [],
   "manual": {
-    "depends_on": [
-
-    ],
-    "supersedes": [
-
-    ],
-    "related_to": [
-
-    ]
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
   },
   "derived": {
     "trigger_phrases": [
       "spec regrouping",
       "renumber specs",
       "path references",
-      "reindex specs"
+      "reindex specs",
+      "implementation",
+      "tasks",
+      "verification",
+      "checklist"
     ],
     "key_topics": [
       "spec",
       "regrouping",
       "renumber",
+      "specs",
       "path",
       "references",
       "reindex",
-      "design",
-      "deep-loops",
-      "skilled-agent-orchestration"
+      "implementation",
+      "tasks",
+      "verification",
+      "checklist",
+      "selected"
     ],
     "importance_tier": "normal",
     "status": "in_progress",
     "key_files": [
+      ".opencode/specs/skilled-agent-orchestration/graph-metadata.json",
       "spec.md",
       "plan.md",
       "tasks.md",
       "checklist.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      "specs/design/description.json",
+      "specs/design/graph-metadata.json",
+      "specs/deep-loops/description.json",
+      "specs/deep-loops/graph-metadata.json"
     ],
     "entities": [
+      {
+        "name": "graph-metadata.json",
+        "kind": "config",
+        "path": ".opencode/specs/skilled-agent-orchestration/graph-metadata.json",
+        "source": "derived"
+      },
       {
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "description.json",
+        "kind": "config",
+        "path": "specs/design/description.json",
         "source": "derived"
       },
       {
@@ -62,23 +102,117 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Renumber",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Kit Memory",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Bounded",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Run Spec Kit Memory",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "user",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The selected spec tracks were manually moved and regrouped, leaving gaps, duplicate numeric prefixes, and stale path references in spec metadata and markdown",
     "created_at": "2026-06-30T12:13:28.471Z",
-    "last_save_at": "2026-06-30T12:40:10.395Z",
+    "last_save_at": "2026-07-04T17:31:31.478Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
-      "spec.md"
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:b1306603601d15a201bcdf6fbd1e557799a8aa328c6e9671ad581733a949bd8a",
+    "source_fingerprint": "sha256:063d83578fbce0bc45707c0e08dcac68d34681955661bb40f669862b06bd9928",
     "source_doc_hashes": {
       "spec.md": "b5f39d18043de0e88e6bbe02cf2661f708b7540d6d20ff458e5026165ff97f8a",
       "plan.md": "89d73b1fcbf6505b26fc693d8234982fd55efdd98fc4114b8e7f8eb59c8f8dfc",
       "tasks.md": "4eb9775ab673bcc38ffc7118e00aa8ce4515a43efefdbcd940d198b36d9af338",
-      "checklist.md": "0de0d96f0b64aade636af1f6163b96010abbe0d443fe729004750f41756f89c3",
-      "implementation-summary.md": "3af1126cb6c89fb940c69ff767ccea343e56ba00d4b590232a3ad50e37a3665e"
+      "checklist.md": "8bbdde12ade328cdde6c6f165c86cb8360110698837b522da625b956c805a82b",
+      "implementation-summary.md": "35c1ff1570d290c66c31477697511b2b17480e6bb1c41a6bee66969475bc3810"
     },
     "last_active_child_id": null,
     "last_active_at": null

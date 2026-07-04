@@ -8,8 +8,8 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/028-memory-search-intelligence/000-release-cleanup/007-agents"
-    last_updated_at: "2026-06-19T12:00:00Z"
+    packet_pointer: "system-speckit/028-memory-search-intelligence/000-release-cleanup/007-agents"
+    last_updated_at: "2026-07-04T17:31:29.256Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "Verified agent-definition cleanup checklist items"
     next_safe_action: "Proceed to phase 008-agents-md cleanup"

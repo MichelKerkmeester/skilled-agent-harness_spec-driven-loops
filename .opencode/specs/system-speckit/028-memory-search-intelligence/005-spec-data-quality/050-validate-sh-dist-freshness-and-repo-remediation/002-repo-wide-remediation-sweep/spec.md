@@ -26,7 +26,7 @@ _memory:
       - "Should a formal template-compliance grandfather mechanism be built for the 54 pre-contract bucket-3 folders?"
     answered_questions:
       - "User confirmed: fix everything reachable now via a parallel agent swarm, excluding packet 028."
-      - "Discovered mid-sweep and also excluded: system-speckit/028-memory-search-intelligence/014-manual-playbook-execution-sweep (live concurrent session)."
+      - "Discovered mid-sweep and also excluded: system-speckit/028-memory-search-intelligence/000-release-cleanup/015-manual-playbook-execution-sweep (live concurrent session)."
 ---
 # Feature Specification: Repo-Wide validate.sh Remediation Sweep
 
@@ -85,7 +85,7 @@ Fix everything that can be fixed safely and accurately -- mechanical metadata re
 - [x] Every failing folder across the 41 in-scope packet roots is classified into bucket 1, 2, or 3. Evidence: 165 folders classified, 106 bucket 1, 7 bucket 2, 52 bucket 3 (+2 from `design/008-sk-design-parent`).
 - [x] All bucket 1 + bucket 2 folders pass `validate.sh --strict --recursive` after the fix wave, independently re-verified (not trusting dispatch self-reports).
 - [x] Bucket 3 folders are explicitly enumerated in `implementation-summary.md` with a grandfather-mechanism recommendation, not silently left failing.
-- [x] `system-speckit/028-*` shows zero file modifications throughout. Also excluded `system-speckit/028-memory-search-intelligence/014-manual-playbook-execution-sweep`, discovered live mid-sweep.
+- [x] `system-speckit/028-*` shows zero file modifications throughout. Also excluded `system-speckit/028-memory-search-intelligence/000-release-cleanup/015-manual-playbook-execution-sweep`, discovered live mid-sweep.
 <!-- /ANCHOR:acceptance -->
 
 ---

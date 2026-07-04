@@ -104,7 +104,7 @@ After this phase, every result row passes the same gate battery regardless of en
 
 ### Absorbed Group-A Scope (ex-031 tracker)
 
-This phase absorbs the flag-read cluster tracked open in `../../014-manual-playbook-execution-sweep/001-findings-remediation/`:
+This phase absorbs the flag-read cluster tracked open in `../../000-release-cleanup/015-manual-playbook-execution-sweep/001-findings-remediation/`:
 
 | Tracker Row | Location | Item |
 |-------------|----------|------|
@@ -339,7 +339,7 @@ These were traced to no phase owner by the program-coherence reviewer and routed
 - **Verification Checklist**: See `checklist.md`
 - **Decision Records**: See `decision-record.md`
 - **Research Sources**: `../research/deep-dive-report.md` (section 3 P1 items #5-#14, section 6 known-open Group-A), `../research/findings-ledger.md` (Agent C and D sections; Agent B pending), `../research/phase-decomposition.md` (section 007)
-- **Absorbed Tracker**: `../../014-manual-playbook-execution-sweep/001-findings-remediation/` (T-0211, T-0212, REQ-214; pointer updates owned by phase 013)
+- **Absorbed Tracker**: `../../000-release-cleanup/015-manual-playbook-execution-sweep/001-findings-remediation/` (T-0211, T-0212, REQ-214; pointer updates owned by phase 013)
 
 ---
 

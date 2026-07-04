@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/028-memory-search-intelligence/000-release-cleanup/012-playbook-findings-remediation",
-  "spec_folder": "system-spec-kit/028-memory-search-intelligence/000-release-cleanup/012-playbook-findings-remediation",
-  "parent_id": "system-spec-kit/028-memory-search-intelligence/000-release-cleanup",
+  "packet_id": "system-speckit/028-memory-search-intelligence/000-release-cleanup/012-playbook-findings-remediation",
+  "spec_folder": "system-speckit/028-memory-search-intelligence/000-release-cleanup/012-playbook-findings-remediation",
+  "parent_id": "system-speckit/028-memory-search-intelligence/000-release-cleanup",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -41,6 +41,7 @@
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
+      "implementation-summary.md",
       "lib/storage/lineage-state.ts",
       "lib/scoring/composite-scoring.ts",
       "handlers/memory-search.ts",
@@ -58,11 +59,16 @@
       "lib/extraction/entity-extractor.ts",
       "spec.md",
       "plan.md",
-      "implementation-summary.md",
       "checklist.md",
       "tasks.md"
     ],
     "entities": [
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
       {
         "name": "lineage-state.ts",
         "kind": "code",
@@ -166,12 +172,6 @@
         "source": "derived"
       },
       {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
         "name": "checklist.md",
         "kind": "doc",
         "path": "checklist.md",
@@ -210,7 +210,7 @@
     ],
     "causal_summary": "The daemon-skills playbook validation (packet 011) plus the core memory-search-intelligence re-run surfaced about twenty-two real product findings across the four subsystems",
     "created_at": "2026-06-25T18:18:49.997Z",
-    "last_save_at": "2026-06-26T17:51:33.271Z",
+    "last_save_at": "2026-07-04T17:31:28.233Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -220,13 +220,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:88d898c76d9b62dc328e8e8f71f6720f93db41521daeba709b2c273b1e5a7c41",
+    "source_fingerprint": "sha256:1238a7b98471d5d1d53125cb08aa948c20532499a947d5f8ba7597bee04d97c0",
     "source_doc_hashes": {
-      "spec.md": "199125d188e7d6c3b33abbcb97641ea262530e6577db6260cc814252baa0b4b6",
-      "plan.md": "5215a22d4a3ca93c53a094aee05d6693701cea0c344d5bbd3542f71252c298f0",
-      "tasks.md": "05965755b96074e1c8e37027691255e7ea6db7ff00bd75b22b7e50fccf382e62",
-      "checklist.md": "1033fc02c3c5b3e8ad5a8dea19f651a60782e13153dd2c4d9b382b43b2d3476c",
-      "implementation-summary.md": "3d10aa6e56491e9962947ab71bec8f86f7990b6b25c2a34d2a25c658ba295c1c"
+      "spec.md": "952aacb5a02ab4637767bc0744f73ce36340424f24eb79903bb4ebcac62f3be4",
+      "plan.md": "a52ef7c0c56beb4d7076c584daf4b706af7e76665070f4c723024218e685fb9a",
+      "tasks.md": "fb61d990ff4c6c44e2c5455e89a011f4440025747d631a685861ea96edac52aa",
+      "checklist.md": "ace9631784b6d9d6738e27e3977d47d5de09d353467d63d6d9f24429c481717d",
+      "implementation-summary.md": "4fd9dd274f9662a66edaff971e26ba870c1d2395e1e0fa7c48819b38efdae54c"
     },
     "last_active_child_id": null,
     "last_active_at": null

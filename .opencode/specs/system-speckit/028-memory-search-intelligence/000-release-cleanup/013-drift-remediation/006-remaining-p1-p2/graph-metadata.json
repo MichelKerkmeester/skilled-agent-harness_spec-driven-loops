@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/028-memory-search-intelligence/000-release-cleanup/013-drift-remediation/006-remaining-p1-p2",
-  "spec_folder": "system-spec-kit/028-memory-search-intelligence/000-release-cleanup/013-drift-remediation/006-remaining-p1-p2",
-  "parent_id": "system-spec-kit/028-memory-search-intelligence/000-release-cleanup/013-drift-remediation",
+  "packet_id": "system-speckit/028-memory-search-intelligence/000-release-cleanup/013-drift-remediation/006-remaining-p1-p2",
+  "spec_folder": "system-speckit/028-memory-search-intelligence/000-release-cleanup/013-drift-remediation/006-remaining-p1-p2",
+  "parent_id": "system-speckit/028-memory-search-intelligence/000-release-cleanup/013-drift-remediation",
   "children_ids": [],
   "migrated": true,
   "migration_source": "legacy",
@@ -197,7 +197,7 @@
     ],
     "causal_summary": "The 2026-06-27 drift audit converged 46 findings in this phase covering env-var documentation, code/doc drift, the CI drift-guard, memory commands, and agent metadata",
     "created_at": "2026-06-27T17:00:00Z",
-    "last_save_at": "2026-06-27T14:02:25.002Z",
+    "last_save_at": "2026-07-04T17:31:36.014Z",
     "save_lineage": "graph_only",
     "last_accessed_at": "2026-06-27T17:00:00Z",
     "source_docs": [
@@ -207,13 +207,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:37a61fac6d2e55b04f8713c62677cbfd537ee1a08ca32deb7036e594f0be4e77",
+    "source_fingerprint": "sha256:9f4dc9f776d988ce97aab397ddd95113f9d7c1a0a1f25f9088804f5d06d301c6",
     "source_doc_hashes": {
-      "spec.md": "c0eb5434d5bf36359c17a0f2f459661fee11348f20b22dfe7e0c1cbcf24fc9a3",
-      "plan.md": "3112aa9f31c5db961cfce92381de677377f17f803f7e8a56906cd7c2b1efd156",
-      "tasks.md": "00e7a36c5e4a1fb31d2a36c7c7042a8daa32c6b3cab8024f214ea0588a7a9bd0",
-      "checklist.md": "95ea59f3ecdb5cea0e42cf791edeb44b4723ffc4210f741e8528ec8bd14abcbe",
-      "implementation-summary.md": "3140adb0d91f0a88379ec5adc655b5825c82ae3e72c8e936e0f2ec1180dd5711"
+      "spec.md": "a8100b895c4532e52ec440a5de3e32276169acaa67cc12b8060520a182b034bb",
+      "plan.md": "86c078c79757a818c0565e21cb8340b170b18ebc460b7a5d1ea316a38c3141d0",
+      "tasks.md": "db26b2c3f70567a1142b24b8540f83384eb5935664c7011f2e92d57aa31f0764",
+      "checklist.md": "bc9b28ece4d2ffd4f2ad822f2ec32151ae5469704ed7061b441f0a0bac1f64a8",
+      "implementation-summary.md": "61ee601a0d83f953c70d91db7a5876deb30fe41a8695233940109ccf2a3025b0"
     },
     "last_active_child_id": null,
     "last_active_at": null

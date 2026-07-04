@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/028-memory-search-intelligence/000-release-cleanup/013-drift-remediation/005-spec-housekeeping",
-  "spec_folder": "system-spec-kit/028-memory-search-intelligence/000-release-cleanup/013-drift-remediation/005-spec-housekeeping",
-  "parent_id": "system-spec-kit/028-memory-search-intelligence/000-release-cleanup/013-drift-remediation",
+  "packet_id": "system-speckit/028-memory-search-intelligence/000-release-cleanup/013-drift-remediation/005-spec-housekeeping",
+  "spec_folder": "system-speckit/028-memory-search-intelligence/000-release-cleanup/013-drift-remediation/005-spec-housekeeping",
+  "parent_id": "system-speckit/028-memory-search-intelligence/000-release-cleanup/013-drift-remediation",
   "children_ids": [],
   "migrated": true,
   "migration_source": "legacy",
@@ -197,7 +197,7 @@
     ],
     "causal_summary": "The 2026-06-27 drift audit converged 37 findings in this phase covering graph-metadata path normalization, phase-parent migrated/level metadata, and stale Pending child checklists",
     "created_at": "2026-06-27T17:00:00Z",
-    "last_save_at": "2026-06-27T13:56:35.164Z",
+    "last_save_at": "2026-07-04T17:31:37.425Z",
     "save_lineage": "graph_only",
     "last_accessed_at": "2026-06-27T17:00:00Z",
     "source_docs": [
@@ -207,13 +207,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:50fc3790fadba391879e0bde9e39e6b5b56a87e1750c6aaf0b6f143b32b7d453",
+    "source_fingerprint": "sha256:bbb82b5877a3b4b3d26ce0308b04fe3231885929db69f400282a1b89e40d3230",
     "source_doc_hashes": {
-      "spec.md": "9cdd86294c50d671b3f3918b04085ad5c70993ad6fc310f80a99d4cd07e1d20f",
-      "plan.md": "24a6909c9d5fa4a97197bbe32ff376c1f562c72e31e8da1aa9787055a4eefcd6",
-      "tasks.md": "42bdd900f67530b677d237bbf7ce1c4615609ca8ad08218eb6f0d163ace7f79f",
-      "checklist.md": "ce900e3dba78ea9d8a4ee97898784bf709879d119ea7d4f0e693c129dab1d903",
-      "implementation-summary.md": "01ad0edbfeee92f9a8148838371a48dca6365004a8e9d0c56e5f410405077548"
+      "spec.md": "6c97d451535bedd9d9bc01e4212ee5052d7dc2c07c3f3eafb9c1e86d8f72d111",
+      "plan.md": "63c4afdef42fc5e45590d332677aea21cb9d6cb0bf53d53c6f45f93dbe745bf2",
+      "tasks.md": "ecabe0e1a1e4b7c9edaec0a9dd4b29e648ffbb7850bab36fd4dcded732130337",
+      "checklist.md": "70bfb5eecb6638b0ffe7e94d1340f00744debf483ae62d845bd00754fc17b946",
+      "implementation-summary.md": "9907f802fbacde04181b8bc4d025bcf922e8588f476605df2aa5f5b5191aefa4"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -8,8 +8,8 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/028-memory-search-intelligence/000-release-cleanup/003-skill-references-assets-and-skillmd"
-    last_updated_at: "2026-06-19T12:00:00Z"
+    packet_pointer: "system-speckit/028-memory-search-intelligence/000-release-cleanup/003-skill-references-assets-and-skillmd"
+    last_updated_at: "2026-07-04T17:31:34.024Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "Executed SKILL.md, references and assets cleanup, recorded evidence"
     next_safe_action: "Concurrent session owns the deferred deep-research skill subset"
@@ -37,7 +37,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | system-spec-kit/028-memory-search-intelligence/000-release-cleanup/003-skill-references-assets-and-skillmd |
+| **Spec Folder** | system-speckit/028-memory-search-intelligence/000-release-cleanup/003-skill-references-assets-and-skillmd |
 | **Completed** | 2026-06-19 (commit bb038e19ab) |
 | **Level** | 2 |
 <!-- /ANCHOR:metadata -->
@@ -92,7 +92,7 @@ Discovery enumerated the SKILL.md, references and assets docs across the in-scop
 |-------|--------|
 | Cleanup execution | Executed at bb038e19ab, 14 docs aligned, deep-research subset deferred |
 | Path resolution | All committed corrected paths resolve |
-| Strict validation | PASSED, 0 errors and 0 warnings via `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-spec-kit/028-memory-search-intelligence/000-release-cleanup/003-skill-references-assets-and-skillmd --strict` |
+| Strict validation | PASSED, 0 errors and 0 warnings via `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-speckit/028-memory-search-intelligence/000-release-cleanup/003-skill-references-assets-and-skillmd --strict` |
 <!-- /ANCHOR:verification -->
 
 ---

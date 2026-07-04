@@ -8,8 +8,8 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/028-memory-search-intelligence/000-release-cleanup/005-manual-testing-playbooks"
-    last_updated_at: "2026-06-19T00:00:00Z"
+    packet_pointer: "system-speckit/028-memory-search-intelligence/000-release-cleanup/005-manual-testing-playbooks"
+    last_updated_at: "2026-07-04T17:31:30.637Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "Executed cleanup of the system-spec-kit manual_testing_playbook package"
     next_safe_action: "Phase complete. Successor phase is ../006-commands"
@@ -37,7 +37,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | system-spec-kit/028-memory-search-intelligence/000-release-cleanup/005-manual-testing-playbooks |
+| **Spec Folder** | system-speckit/028-memory-search-intelligence/000-release-cleanup/005-manual-testing-playbooks |
 | **Completed** | 2026-06-19 |
 | **Level** | 2 |
 <!-- /ANCHOR:metadata -->
@@ -106,7 +106,7 @@ Each fix was confirmed against the live tree before editing: the successor path 
 |-------|--------|
 | Cleanup execution | Executed at ab405fa052, 14 anchors fixed across 10 scenario files |
 | Count self-check | Reproduced against the live tree, all hard-coded counts match |
-| Strict validation | PASSED, 0 errors and 0 warnings via `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-spec-kit/028-memory-search-intelligence/000-release-cleanup/005-manual-testing-playbooks --strict` |
+| Strict validation | PASSED, 0 errors and 0 warnings via `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-speckit/028-memory-search-intelligence/000-release-cleanup/005-manual-testing-playbooks --strict` |
 <!-- /ANCHOR:verification -->
 
 ---

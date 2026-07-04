@@ -8,8 +8,8 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/028-memory-search-intelligence/000-release-cleanup/006-commands"
-    last_updated_at: "2026-06-19T00:00:00Z"
+    packet_pointer: "system-speckit/028-memory-search-intelligence/000-release-cleanup/006-commands"
+    last_updated_at: "2026-07-04T17:31:33.022Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "Reviewed 19 command docs, fixed fable-mode route drift in doctor/speckit.md"
     next_safe_action: "Concurrent session owns deep/ and agent_router.md doc edits"
@@ -47,7 +47,7 @@ _memory:
 | **Completed** | 2026-06-19 |
 | **Created** | 2026-06-19 |
 | **Parent Spec** | ../spec.md |
-| **Parent Packet** | `system-spec-kit/028-memory-search-intelligence/000-release-cleanup` |
+| **Parent Packet** | `system-speckit/028-memory-search-intelligence/000-release-cleanup` |
 | **Phase** | 006 of 012 |
 | **Predecessor** | ../005-manual-testing-playbooks/spec.md |
 | **Successor** | ../007-agents/spec.md |
@@ -136,7 +136,7 @@ Command contracts, routes and flags are current and runtime mirrors stay in sync
 - Routes, flags and examples are current
 - Runtime mirrors have matching bodies where mirrors exist
 - No orphaned command doc remains
-- `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-spec-kit/028-memory-search-intelligence/000-release-cleanup/006-commands --strict` exits 0 after cleanup.
+- `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-speckit/028-memory-search-intelligence/000-release-cleanup/006-commands --strict` exits 0 after cleanup.
 <!-- /ANCHOR:success-criteria -->
 
 ---

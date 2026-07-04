@@ -8,8 +8,8 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/028-memory-search-intelligence/000-release-cleanup/007-agents"
-    last_updated_at: "2026-06-19T12:00:00Z"
+    packet_pointer: "system-speckit/028-memory-search-intelligence/000-release-cleanup/007-agents"
+    last_updated_at: "2026-07-04T17:31:29.256Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "Cleaned agent READMEs and localized claude path-convention lines"
     next_safe_action: "Proceed to phase 008-agents-md cleanup"
@@ -46,7 +46,7 @@ _memory:
 | **Completed** | 2026-06-19 |
 | **Created** | 2026-06-19 |
 | **Parent Spec** | ../spec.md |
-| **Parent Packet** | `system-spec-kit/028-memory-search-intelligence/000-release-cleanup` |
+| **Parent Packet** | `system-speckit/028-memory-search-intelligence/000-release-cleanup` |
 | **Phase** | 007 of 012 |
 | **Predecessor** | ../006-commands/spec.md |
 | **Successor** | ../008-agents-md/spec.md |
@@ -134,7 +134,7 @@ Agent roles, tools and dispatch language are accurate, three runtime mirrors are
 - Tool permissions and dispatch notes are accurate
 - Mirror bodies match across the three runtimes
 - No orphaned agent remains in one runtime only
-- `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-spec-kit/028-memory-search-intelligence/000-release-cleanup/007-agents --strict` exits 0 after cleanup.
+- `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-speckit/028-memory-search-intelligence/000-release-cleanup/007-agents --strict` exits 0 after cleanup.
 <!-- /ANCHOR:success-criteria -->
 
 ---

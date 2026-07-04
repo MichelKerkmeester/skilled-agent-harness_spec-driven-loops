@@ -8,8 +8,8 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/028-memory-search-intelligence/000-release-cleanup/006-commands"
-    last_updated_at: "2026-06-19T00:00:00Z"
+    packet_pointer: "system-speckit/028-memory-search-intelligence/000-release-cleanup/006-commands"
+    last_updated_at: "2026-07-04T17:31:33.022Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "Cleanup executed, factual-drift route fix applied, strict validation passed"
     next_safe_action: "Concurrent session owns deep/ and agent_router.md doc edits"

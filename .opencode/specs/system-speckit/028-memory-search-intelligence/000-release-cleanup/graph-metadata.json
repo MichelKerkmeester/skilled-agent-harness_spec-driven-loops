@@ -1,23 +1,24 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/028-memory-search-intelligence/000-release-cleanup",
-  "spec_folder": "system-spec-kit/028-memory-search-intelligence/000-release-cleanup",
-  "parent_id": "system-spec-kit/028-memory-search-intelligence",
+  "packet_id": "system-speckit/028-memory-search-intelligence/000-release-cleanup",
+  "spec_folder": "system-speckit/028-memory-search-intelligence/000-release-cleanup",
+  "parent_id": "system-speckit/028-memory-search-intelligence",
   "children_ids": [
-    "system-spec-kit/028-memory-search-intelligence/000-release-cleanup/001-code-readmes",
-    "system-spec-kit/028-memory-search-intelligence/000-release-cleanup/002-skill-and-repo-readmes",
-    "system-spec-kit/028-memory-search-intelligence/000-release-cleanup/003-skill-references-assets-and-skillmd",
-    "system-spec-kit/028-memory-search-intelligence/000-release-cleanup/004-feature-catalogs",
-    "system-spec-kit/028-memory-search-intelligence/000-release-cleanup/005-manual-testing-playbooks",
-    "system-spec-kit/028-memory-search-intelligence/000-release-cleanup/006-commands",
-    "system-spec-kit/028-memory-search-intelligence/000-release-cleanup/007-agents",
-    "system-spec-kit/028-memory-search-intelligence/000-release-cleanup/008-agents-md",
-    "system-spec-kit/028-memory-search-intelligence/000-release-cleanup/009-changelogs-constitutional-and-templates",
-    "system-spec-kit/028-memory-search-intelligence/000-release-cleanup/010-catalog-playbook-coverage-audit",
-    "system-spec-kit/028-memory-search-intelligence/000-release-cleanup/011-daemon-skills-playbook-validation",
-    "system-spec-kit/028-memory-search-intelligence/000-release-cleanup/012-playbook-findings-remediation",
-    "system-spec-kit/028-memory-search-intelligence/000-release-cleanup/013-drift-remediation",
-    "system-spec-kit/028-memory-search-intelligence/000-release-cleanup/014-spec-regrouping-renumber-reindex"
+    "system-speckit/028-memory-search-intelligence/000-release-cleanup/001-code-readmes",
+    "system-speckit/028-memory-search-intelligence/000-release-cleanup/002-skill-and-repo-readmes",
+    "system-speckit/028-memory-search-intelligence/000-release-cleanup/003-skill-references-assets-and-skillmd",
+    "system-speckit/028-memory-search-intelligence/000-release-cleanup/004-feature-catalogs",
+    "system-speckit/028-memory-search-intelligence/000-release-cleanup/005-manual-testing-playbooks",
+    "system-speckit/028-memory-search-intelligence/000-release-cleanup/006-commands",
+    "system-speckit/028-memory-search-intelligence/000-release-cleanup/007-agents",
+    "system-speckit/028-memory-search-intelligence/000-release-cleanup/008-agents-md",
+    "system-speckit/028-memory-search-intelligence/000-release-cleanup/009-changelogs-constitutional-and-templates",
+    "system-speckit/028-memory-search-intelligence/000-release-cleanup/010-catalog-playbook-coverage-audit",
+    "system-speckit/028-memory-search-intelligence/000-release-cleanup/011-daemon-skills-playbook-validation",
+    "system-speckit/028-memory-search-intelligence/000-release-cleanup/012-playbook-findings-remediation",
+    "system-speckit/028-memory-search-intelligence/000-release-cleanup/013-drift-remediation",
+    "system-speckit/028-memory-search-intelligence/000-release-cleanup/014-spec-regrouping-renumber-reindex",
+    "system-speckit/028-memory-search-intelligence/000-release-cleanup/015-manual-playbook-execution-sweep"
   ],
   "migrated": true,
   "migration_source": "legacy",
@@ -51,6 +52,7 @@
     "key_files": [
       "spec.md",
       "001-code-readmes/spec.md",
+      "009-changelogs-constitutional-and-templates/spec.md",
       "002-skill-and-repo-readmes/spec.md",
       "003-skill-references-assets-and-skillmd/spec.md",
       "004-feature-catalogs/spec.md",
@@ -58,12 +60,12 @@
       "006-commands/spec.md",
       "007-agents/spec.md",
       "008-agents-md/spec.md",
-      "009-changelogs-constitutional-and-templates/spec.md",
       "010-catalog-playbook-coverage-audit/spec.md",
       "011-daemon-skills-playbook-validation/spec.md",
       "012-playbook-findings-remediation/spec.md",
       "013-drift-remediation/spec.md",
-      "014-spec-regrouping-renumber-reindex/spec.md"
+      "014-spec-regrouping-renumber-reindex/spec.md",
+      "015-manual-playbook-execution-sweep/spec.md"
     ],
     "entities": [
       {
@@ -111,15 +113,15 @@
     ],
     "causal_summary": "Packet 028's release-cleanup track has executed across its documentation surfaces and follow-on validation phases",
     "created_at": "2026-06-19T00:00:00Z",
-    "last_save_at": "2026-06-27T15:51:54.386Z",
+    "last_save_at": "2026-07-04T17:31:27.800Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:9798ff23f9c0117b1de17a42f1829ae6db35b5d8dbbf59f25b05f09913d87b08",
+    "source_fingerprint": "sha256:5197669dbf7c0bd1bb6573a61a737f0594160c57914eaaf575156af4ccf336fc",
     "source_doc_hashes": {
-      "spec.md": "0fcf41a2129c5f05c9bbc5bd880bda755cacb984c5e63ae9ca5c3a1fac2d3167"
+      "spec.md": "47123d9c4bd820dc3304ca398a521f869941cc67c1fcc46cc488ee85dd74f4c8"
     },
     "last_active_child_id": null,
     "last_active_at": null

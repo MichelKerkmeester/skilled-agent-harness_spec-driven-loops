@@ -8,8 +8,8 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/028-memory-search-intelligence/000-release-cleanup/004-feature-catalogs"
-    last_updated_at: "2026-06-19T12:00:00Z"
+    packet_pointer: "system-speckit/028-memory-search-intelligence/000-release-cleanup/004-feature-catalogs"
+    last_updated_at: "2026-07-04T17:31:33.485Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "Executed cleanup: fixed source-reference drift in 12 catalog files"
     next_safe_action: "Phase complete, successor is ../005-manual-testing-playbooks"
@@ -46,7 +46,7 @@ _memory:
 | **Created** | 2026-06-19 |
 | **Completed** | 2026-06-19 |
 | **Parent Spec** | ../spec.md |
-| **Parent Packet** | `system-spec-kit/028-memory-search-intelligence/000-release-cleanup` |
+| **Parent Packet** | `system-speckit/028-memory-search-intelligence/000-release-cleanup` |
 | **Phase** | 004 of 012 |
 | **Predecessor** | ../003-skill-references-assets-and-skillmd/spec.md |
 | **Successor** | ../005-manual-testing-playbooks/spec.md |
@@ -134,7 +134,7 @@ Catalog entries match shipped features, source-file paths are grep-traceable and
 - Source-file paths resolve through grep
 - Index totals match entry files
 - Feature identifiers stay sequential within each catalog
-- `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-spec-kit/028-memory-search-intelligence/000-release-cleanup/004-feature-catalogs --strict` exits 0 after cleanup.
+- `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-speckit/028-memory-search-intelligence/000-release-cleanup/004-feature-catalogs --strict` exits 0 after cleanup.
 <!-- /ANCHOR:success-criteria -->
 
 ---

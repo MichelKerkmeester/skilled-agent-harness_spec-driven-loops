@@ -1,15 +1,15 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/028-memory-search-intelligence/000-release-cleanup/013-drift-remediation",
-  "spec_folder": "system-spec-kit/028-memory-search-intelligence/000-release-cleanup/013-drift-remediation",
-  "parent_id": "system-spec-kit/028-memory-search-intelligence/000-release-cleanup",
+  "packet_id": "system-speckit/028-memory-search-intelligence/000-release-cleanup/013-drift-remediation",
+  "spec_folder": "system-speckit/028-memory-search-intelligence/000-release-cleanup/013-drift-remediation",
+  "parent_id": "system-speckit/028-memory-search-intelligence/000-release-cleanup",
   "children_ids": [
-    "system-spec-kit/028-memory-search-intelligence/000-release-cleanup/013-drift-remediation/001-p0-fixes",
-    "system-spec-kit/028-memory-search-intelligence/000-release-cleanup/013-drift-remediation/002-stale-db-and-tool-count-sweep",
-    "system-spec-kit/028-memory-search-intelligence/000-release-cleanup/013-drift-remediation/003-opencode-go-and-codex-pins",
-    "system-spec-kit/028-memory-search-intelligence/000-release-cleanup/013-drift-remediation/004-tool-grant-reconciliation",
-    "system-spec-kit/028-memory-search-intelligence/000-release-cleanup/013-drift-remediation/005-spec-housekeeping",
-    "system-spec-kit/028-memory-search-intelligence/000-release-cleanup/013-drift-remediation/006-remaining-p1-p2"
+    "system-speckit/028-memory-search-intelligence/000-release-cleanup/013-drift-remediation/001-p0-fixes",
+    "system-speckit/028-memory-search-intelligence/000-release-cleanup/013-drift-remediation/002-stale-db-and-tool-count-sweep",
+    "system-speckit/028-memory-search-intelligence/000-release-cleanup/013-drift-remediation/003-opencode-go-and-codex-pins",
+    "system-speckit/028-memory-search-intelligence/000-release-cleanup/013-drift-remediation/004-tool-grant-reconciliation",
+    "system-speckit/028-memory-search-intelligence/000-release-cleanup/013-drift-remediation/005-spec-housekeeping",
+    "system-speckit/028-memory-search-intelligence/000-release-cleanup/013-drift-remediation/006-remaining-p1-p2"
   ],
   "manual": {
     "depends_on": [],
@@ -39,8 +39,7 @@
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
-      "spec.md",
-      "remediation-ledger.jsonl"
+      "spec.md"
     ],
     "entities": [
       {
@@ -88,15 +87,15 @@
     ],
     "causal_summary": "The 028 drift audit produced 175 converged findings (6 P0 / 91 P1 / 78 P2)",
     "created_at": "2026-06-27T08:02:59.187Z",
-    "last_save_at": "2026-06-27T13:44:16.291Z",
+    "last_save_at": "2026-07-04T17:31:29.681Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:2071458cdf869d5267f0bddee54137520bee7d268c203ae2033a338c1e1a925e",
+    "source_fingerprint": "sha256:d593c1b461dd1efeafec6f4c9327c0a54fe12fff93831196ec9255b2627579fe",
     "source_doc_hashes": {
-      "spec.md": "771d6f2e159823e5bc9c1952c2ce57b746fa2b57cdadd7f00b5fc9ea78920382"
+      "spec.md": "a3eac736700acdf60cfcef9102df5bf96d6eeb5a4de736f68b85a2a2d21e6670"
     },
     "last_active_child_id": null,
     "last_active_at": null

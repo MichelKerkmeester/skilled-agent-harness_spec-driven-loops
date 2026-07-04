@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/028-memory-search-intelligence/000-release-cleanup/010-catalog-playbook-coverage-audit",
-  "spec_folder": "system-spec-kit/028-memory-search-intelligence/000-release-cleanup/010-catalog-playbook-coverage-audit",
-  "parent_id": "system-spec-kit/028-memory-search-intelligence/000-release-cleanup",
+  "packet_id": "system-speckit/028-memory-search-intelligence/000-release-cleanup/010-catalog-playbook-coverage-audit",
+  "spec_folder": "system-speckit/028-memory-search-intelligence/000-release-cleanup/010-catalog-playbook-coverage-audit",
+  "parent_id": "system-speckit/028-memory-search-intelligence/000-release-cleanup",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -46,7 +46,7 @@
       "plan.md",
       "tasks.md",
       "checklist.md",
-      ".opencode/specs/system-spec-kit/028-memory-search-intelligence/before-vs-after.md",
+      ".opencode/specs/system-speckit/028-memory-search-intelligence/before-vs-after.md",
       "implementation-summary.md"
     ],
     "entities": [
@@ -83,7 +83,7 @@
       {
         "name": "before-vs-after.md",
         "kind": "doc",
-        "path": ".opencode/specs/system-spec-kit/028-memory-search-intelligence/before-vs-after.md",
+        "path": ".opencode/specs/system-speckit/028-memory-search-intelligence/before-vs-after.md",
         "source": "derived"
       },
       {
@@ -197,7 +197,7 @@
     ],
     "causal_summary": "Packet 028 shipped many features into three daemon-backed system skills (system-spec-kit, system-code-graph and system-skill-advisor), but the release-cleanup that aligned feature catalogs and testing playbooks only ever touched system-spec-kit, and even there it ran edits-only",
     "created_at": "2026-06-22T04:40:16.647Z",
-    "last_save_at": "2026-06-26T17:51:32.899Z",
+    "last_save_at": "2026-07-04T17:31:32.246Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,14 +208,14 @@
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:2fe4f9a40db26200f8d0c50a40dba1217610c5df17a25a25dfd8e300995be113",
+    "source_fingerprint": "sha256:ecfdccf33c7a174a29883f384182743d44919ba97b0553b59a083d18fb8bf1c1",
     "source_doc_hashes": {
-      "spec.md": "7cc3fc46897efbea6558c807aa1fe9a293f62f385941777c9b709d4219e39521",
-      "plan.md": "44d5cb3fdcb760ed8aa335c15d4a554a82698aed96992b89ff81e1642044ceb9",
-      "tasks.md": "1e1b13086c9b9a18244972071895e1b71858d3f2b875963dd300c1158070bf2e",
-      "checklist.md": "e7ed99569a363c24c9f8f58041d7f764ba7a22cfc2d8f3f53040f08847dd490f",
-      "implementation-summary.md": "0f0d475eb6292f50b326b3fa4535775de0a3f7646679a5eefced32055176a8a1",
-      "research/research.md": "1a1b1bca52ecbc8201fe766c25e628aae85028ab7caab9c7a7174de573c3e64c"
+      "spec.md": "06d19fd9f846ed00af30e6e828dbdd837e8745353364a93e57626bfbad3b4f91",
+      "plan.md": "0fc0573bd34b287bdf8c8452480808f745e3bc81e75638cc846f892ae7e7da7c",
+      "tasks.md": "dd4817c1fed91d839c040f77a635645f5f1b2ab6aa9582602fd7ef9538fe95ca",
+      "checklist.md": "ffe3c20af93f440aa25b6bf43eb418a5e649f08d228ee1281155ef6e91a259c0",
+      "implementation-summary.md": "6a8f9107d3ec5355ebf8674343c036f25e60cd43a00724439a0b89427741f59c",
+      "research/research.md": "2249f7c5c9848ab8da97793eee1ff22c80029947b53221b658beecea657f04e4"
     },
     "last_active_child_id": null,
     "last_active_at": null

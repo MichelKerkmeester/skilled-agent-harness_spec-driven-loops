@@ -11,7 +11,7 @@ importance_tier: "important"
 contextType: "research"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/028-memory-search-intelligence/000-release-cleanup/010-catalog-playbook-coverage-audit"
+    packet_pointer: "system-speckit/028-memory-search-intelligence/000-release-cleanup/010-catalog-playbook-coverage-audit"
     last_updated_at: "2026-06-22T00:00:00Z"
     last_updated_by: "orchestrator"
     recent_action: "Synthesized 20-iteration catalog/playbook coverage audit research"
@@ -146,8 +146,8 @@ This is research only. No catalog or playbook was modified by this audit. The ne
 <!-- ANCHOR:references -->
 ## 7. REFERENCES
 
-- `.opencode/specs/system-spec-kit/028-memory-search-intelligence/before-vs-after.md` sections 1-6, the canonical 028 shipped-feature inventory.
-- `.opencode/specs/system-spec-kit/028-memory-search-intelligence/000-release-cleanup/` phases 004-feature-catalogs and 005-manual-testing-playbooks, the edits-only spec-kit-only cleanup.
+- `.opencode/specs/system-speckit/028-memory-search-intelligence/before-vs-after.md` sections 1-6, the canonical 028 shipped-feature inventory.
+- `.opencode/specs/system-speckit/028-memory-search-intelligence/000-release-cleanup/` phases 004-feature-catalogs and 005-manual-testing-playbooks, the edits-only spec-kit-only cleanup.
 - `.opencode/skills/system-code-graph/feature_catalog/` and `manual_testing_playbook/`, the un-synced code-graph surfaces.
 - `.opencode/skills/system-skill-advisor/feature_catalog/` and `manual_testing_playbook/`, the un-synced skill-advisor surfaces.
 - `.opencode/skills/system-spec-kit/feature_catalog/` and `manual_testing_playbook/`, the edits-only-synced spec-kit surfaces.
