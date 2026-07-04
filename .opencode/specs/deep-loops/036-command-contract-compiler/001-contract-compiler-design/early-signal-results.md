@@ -90,3 +90,30 @@ Fixed the renderer to prepend an `ARGS_PRESENT` + raw MESSAGE + "bind setup from
 ### Recommendation
 
 **Proceed to the retrofit (P7) — the mechanism is proven.** Carry these as iteration targets, not blockers: (a) close the `partial`→`pass` dimension gap (inspect D3 route-proof/receipt scoring under the compiled contract); (b) the 1/4 `route_mismatch` shows gpt still sometimes mixes inline work with dispatch — a sharper "dispatch ONLY, do not read/edit the target yourself" line in the contract may tighten it; (c) widen to the gpt-fast-high leg + more cells during the retrofit's acceptance pass. The two committed fixes (front-loaded directive + surfaced message) are the load-bearing wins.
+
+---
+
+## Refinement round 3: DISPATCH-ONLY + ROUTE-PROOF — first clean passes
+
+Diagnosed the round-2 residual precisely: every fix run scored `D3=1` (delegation) because the dispatched leaf wrote iteration state records WITHOUT the route-proof fields, so the benchmark's `collectRouteProof` (which reads `mode`/`target_agent`/`agent_definition_loaded`/`resolved_route` from the fixture JSONL) found none. Added two front-loaded, command-specific contract rules: **DISPATCH ONLY** (dispatch the leaf; do not read/edit/patch/run the loop yourself — inline work is a route violation) and **ROUTE PROOF** (dispatch through the prompt pack so each iteration record carries the four route-proof fields). Sonnet-verified the demanded fields exactly match the scorer + the prompt-pack schema. Committed; byte-identical body invariant intact; 6/6 tests.
+
+### Re-probe (fix mode, gpt-fast-med, N=3 each)
+
+| Cell | r1 | r2 | r3 | pass rate |
+|------|----|----|----|-----------|
+| RVB-007 | `pass` (D3=2,D4=2) | `missing_artifact` (D3=1,D4=1) | `pass` (D3=2,D4=2) | **2/3** |
+| RSB-007 | `pass` (D3=2,D4=2) | `missing_artifact` (D3=1,D4=1) | `missing_artifact` (D3=1,D4=1) | **1/3** |
+
+### Findings
+
+1. **DISPATCH-ONLY fully eliminated the route_mismatch / inline tail.** `inline=0` on every one of the 6 runs (zero read/bash/apply_patch on the target) — the executor now delegates cleanly and never mixes its own work with the dispatch. The round-2 `route_mismatch` is gone.
+2. **ROUTE-PROOF enabled the first-ever clean passes.** 3 of 6 runs reached `pass` with `D3=2`, where the pre-tighten contract had ZERO passes (was capped at `partial`/`D3=1`). When the leaf completes, the iteration record now carries the route-proof fields the scorer needs.
+3. **The residual relocated to the leaf, not the contract.** When a run isn't a pass it is `missing_artifact` with coupled `D3=1 + D4=1`: the executor dispatched cleanly, but the dispatched leaf (itself gpt-fast) produced an INCOMPLETE iteration (no artifacts → no route-proof fields). The nondeterminism moved from the *executor* (which the contract fixed) to the *leaf-completion* (which the contract cannot control).
+
+### Verdict (round 3)
+
+**The tightening succeeded at both of its goals** — it removed the inline/route_mismatch behavior entirely and raised the ceiling from `partial` to a clean `pass` (~50% overall pass rate, up from 0%). The remaining variance is **leaf-completion nondeterminism**: whether the dispatched gpt-fast leaf finishes a full iteration. That is a separate axis from the compiled contract — the contract governs the *executor's* delegation (now clean and route-proofed); it cannot make the *leaf* deterministic.
+
+### Recommendation
+
+**Proceed to the P7 retrofit** — the compiled-contract mechanism is validated and tightened to produce passes. Carry the leaf-completion reliability as a distinct, non-contract concern for the acceptance pass: raise the leaf pass rate via a more capable leaf model, a leaf-level completion watchdog/retry, or the leaf's own prompt-pack contract — not via more executor-contract text. The four committed 036 fixes — the compiler + renderer (P1/P4), the front-loaded autonomous directive, the surfaced invocation message, and the DISPATCH-ONLY + ROUTE-PROOF rules — are the validated foundation to roll out.
