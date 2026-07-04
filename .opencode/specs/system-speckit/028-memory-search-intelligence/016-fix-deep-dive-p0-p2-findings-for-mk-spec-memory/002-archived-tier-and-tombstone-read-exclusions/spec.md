@@ -12,10 +12,10 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "scaffold/002-archived-tier-and-tombstone-read-exclusions"
-    last_updated_at: "2026-07-03T13:30:00Z"
+    last_updated_at: "2026-07-04T14:08:36.497Z"
     last_updated_by: "plan-remediation"
     recent_action: "Remediated REWORK: corrected predicate SQL, fixed FTS/BM25 premise, added logic-sync gate"
-    next_safe_action: "Run T-001..T-004a confirm + logic-sync decision, then T-006 baseline before code changes"
+    next_safe_action: "Program complete (016 shipped + pushed)"
     blockers: []
     key_files:
       - ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-delete.ts"
@@ -25,7 +25,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "scaffold-scaffold/002-archived-tier-and-tombstone-read-exclusions"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---

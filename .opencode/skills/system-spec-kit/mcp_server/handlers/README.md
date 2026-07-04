@@ -76,6 +76,7 @@ mcp_server/handlers/
 ├── memory-crud-types.ts           # Shared CRUD types
 ├── memory-bulk-delete.ts          # Bulk delete by importance tier
 ├── memory-retention-sweep.ts      # Expired record retention enforcement
+├── memory-learned-maintenance.ts  # memory_learned_expire / memory_learned_clear (learned-trigger maintenance)
 ├── memory-index.ts                # Scan and re-index with coalescing and orphan sweep
 ├── memory-index-scan-jobs.ts      # Background memory_index_scan status/cancel handlers
 ├── memory-index-discovery.ts      # Spec document discovery and spec-level detection
@@ -124,6 +125,9 @@ mcp_server/handlers/
 | `memory-embedding-reconcile.ts` | `memory_embedding_reconcile` tool handler. Reconciles stored embeddings against the active embedder shard. |
 | `embedder-list.ts`, `embedder-set.ts`, `embedder-status.ts` | `embedder_list`, `embedder_set`, and `embedder_status` tool handlers for embedder selection and health. |
 | `session-bootstrap.ts`, `session-health.ts`, `session-resume.ts` | `session_bootstrap`, `session_health`, and `session_resume` tool handlers for session context and continuity recovery. |
+| `memory-learned-maintenance.ts` | Backs the `memory_learned_expire` and `memory_learned_clear` maintenance tools, expiring TTL-lapsed learned triggers or clearing all learned-trigger state. |
+| `pe-gating.ts` | Prediction-error save arbitration: duplicate, linked-memory, and contradiction gating before a memory is committed. |
+| `quality-loop.ts` | Verify-fix-verify pre-storage quality scoring loop over triggers, anchors, budget, and coherence. |
 | `save/` | Contains the decomposed save pipeline modules. |
 
 ---

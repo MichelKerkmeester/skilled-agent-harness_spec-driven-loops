@@ -11,10 +11,10 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "anobel.com/004-bento-visuals"
-    last_updated_at: "2026-06-22T19:15:00Z"
+    last_updated_at: "2026-07-04T10:05:00Z"
     last_updated_by: "claude"
-    recent_action: "Pushed all 233 visuals to OD 2078899e: 9 new -3 created, 18 overwritten, aggregate synced"
-    next_safe_action: "Refresh project in Open Design app to view; pick strongest -3 per feature"
+    recent_action: "Fixed bestellimieten-dash.html (was a euro spend-limit model; the feature is an order-COUNT cap per period) and built 9 corrected visual-form variants total: -v2..-v5 (compact dashboard-panel family) plus -hero-h1/h2/h3 and -flow-f1/f2 (larger blue-canvas/flow-narrative family, calibrated against 2 user-supplied premium reference images). All 9 pushed to OD 2078899e and confirmed live via the daemon file API"
+    next_safe_action: "User picks a preferred form across bestellimieten-dash / -v2..-v5 / -hero-h1..h3 / -flow-f1/f2; Refero (Code Mode MCP) was requested for further reference research but needs a Claude Code session restart to connect (re-enabled in .claude/settings.local.json, not yet reconnected) before that continues; the other 3 wrong-concept bestellimieten files (bestellimieten.html, -2.html, -3.html) remain unfixed, out of scope until requested"
     blockers: []
     key_files:
       - "OD project: 2078899e-aa23-41a8-a0ef-6bfcef9bebc5 (Anobel — Faithful Prototypes, 15 files)"
@@ -396,3 +396,85 @@ key overwrites `diff`-identical to `dist/`; project `aggregation.html` carries t
 **Note:** overwrites were direct disk writes, so the running app may serve cached copies until the
 project is refreshed/reopened; the new `-3` files (daemon-created) appear immediately. `build-faithful.mjs`
 is retired (would clobber agent refinements) — `dist/` + the OD project are the source of truth now.
+
+---
+
+## Concept fix — 2026-07-04: bestellimieten was modeling the wrong metric
+
+User caught a modeling error while reviewing `bestellimieten-dash.html`: it showed a **euro spending
+cap** ("Weeklimiet €11.454" vs "Besteed €9.730", a 24-segment currency bar with a flag marker at the
+cap). The actual Bestellimieten feature caps how many **orders** a ship or location may place per
+week/month/year — a discrete count, not a currency amount. The same wrong framing is present in the
+other three bestellimieten pages too (`bestellimieten.html` gauge, `-2.html` "MAX €" gauge, `-3.html`
+minimal "€500" cards) — left unfixed for now, out of the agreed scope for this pass.
+
+- **Fixed `bestellimieten-dash.html`**: replaced the 24-segment currency bar + flag/marker widget with
+  5 fixed-size order-slot chips (one per allowed order that period), removed the now-meaningless
+  marker apparatus (a discrete cap has no separate "where's the limit" position — the last chip IS
+  the limit), changed the readout to "5 bestellingen / week" / "Geplaatst: 5 van 5", and switched the
+  footnote to the alert state "Limiet bereikt · volgende bestelling wordt geblokkeerd" (the dot and one
+  chip use the existing brand orange, consistent with this packet's "orange = alert only" rule).
+  Copy aligned to the sibling dash cards' "Stel ... in per schip of locatie" register.
+- **Built 4 more forms of the same corrected concept** (`-v2` through `-v5`), each isolating a
+  different way to show order-count-vs-limit so the count-based model reads unambiguously regardless
+  of visual idiom: `-v2` ascending step-bar meter (numbered 1-5 ticks), `-v3` Ma-Zo weekly day-ledger
+  (which days used a slot, cap reached on Saturday), `-v4` a stacked order-ticket illustration (top
+  ticket = the one that hit the cap), `-v5` an editorial hero number reframed around remaining
+  capacity ("0 open plekken deze week"). All 5 share the same data (5 van 5, limit reached) so they're
+  a true form-only comparison set.
+- **Verified**: each rendered via a real headless-Chrome screenshot (bdg) before push — no overflow,
+  no distorted chips, legible at every size. Pushed to OD project `2078899e`: `bestellimieten-dash.html`
+  overwritten via direct disk write (existing manifest, no content hash — same method prior sessions
+  used since `od artifacts create`/MCP write tools return `fetch failed`/`{}`); `-v2`/`-v3`/`-v4`/`-v5`
+  added as new artifacts (disk write + hand-authored `.artifact.json` manifest, `status: complete`,
+  matching the schema of existing manifests, since `od artifacts create` also hit `fetch failed` live).
+  Confirmed live (not just on disk) via `GET /api/projects/2078899e.../files` against the running
+  daemon — all 5 present with `status: complete`.
+
+**Not done (flagged, not silently skipped):** `bestellimieten.html`, `-2.html`, `-3.html` still encode
+the euro-amount model and were left untouched per the agreed scope; `index.html`/`aggregation.html`
+were not updated to link the new `-v2..-v5` pages (they're reachable directly in the OD project, not
+yet wired into the navigator).
+
+---
+
+## High-end pass — 2026-07-04: hero-canvas and flow-narrative forms
+
+User pushed back on the compact `-dash`/`-v2..-v5` family as not "high-end" enough, and supplied two
+reference images to calibrate against: Reference A, a large blue-canvas hero shot (bold brand-blue
+fill, oversized numerals, a floating limit tag on a connector line); Reference B, a white-canvas
+flow shot inside the same blue frame — floating cards connected by curved dashed lines telling a
+search-then-result sequence with a loading spinner pill.
+
+- **Register read via sk-design**: these are feature-showcase/marketing graphics, not literal
+  in-app screenshots, so a bolder Brand-committed color strategy (blue fills ~60%+ of the canvas)
+  is the correct calibration here — a deliberate departure from the earlier compact family's
+  Product-restrained palette, not a contradiction of it.
+- **3 hero-canvas forms** (`bestellimieten-hero-h1/h2/h3.html`, 1240px-wide blue-framed cards,
+  auto height): h1 is the order-slot chip row blown up to hero scale with the floating "Limiet"
+  tag + connector reused from Reference A (relocated to sit over the actual cap slot, since a
+  discrete count's limit is always its last slot, not a computed position); h2 is a nautical
+  porthole/instrument dial — a 5-segment ring gauge with rivet details — grounded in the
+  maritime/fleet subject rather than a generic hero-number card; h3 is the weekly day-ledger
+  blown up with a connecting track line. The generic "big number + small label" hero-metric
+  template was named and deliberately avoided as the median default.
+- **2 flow-narrative forms** (`bestellimieten-flow-f1/f2.html`, white canvas inside a blue picture
+  frame, floating cards + dashed SVG connectors + a reduced-motion-guarded spinner pill): f1
+  dramatizes the enforcement moment (a 6th order attempted, checked, blocked, reused-motion-guarded
+  spinner); f2 dramatizes a proactive last-slot warning (5th order, calmer blue "last available"
+  framing instead of an orange block) — two different narrative beats on the same underlying data,
+  not a palette-swapped reskin of one idea.
+- **Verified**: each rendered via a real headless-Chrome screenshot (bdg) before push; fixed one bug
+  found this way (a malformed `class="tag .lbl"` attribute on h1 that duplicated/mispositioned the
+  floating limit label — corrected to nest the label inside `.tag`'s flex column).
+- **Pushed to OD `2078899e`** via the same direct-disk-write + hand-authored `.artifact.json`
+  manifest method as the `-v2..-v5` batch (`od artifacts create` still returns `fetch failed` live).
+  Confirmed live via `GET /api/projects/2078899e.../files` — all 5 present, `status: complete`,
+  project now at 76 files total.
+- **Refero blocked mid-task**: user asked to ground further references in Refero (Code Mode MCP,
+  `.utcp_config.json` manual `refero`). Diagnosed live: `code_mode` (and 4 sibling local MCP
+  servers) were disabled in `.claude/settings.local.json` — `claude mcp list` confirmed only the
+  claude.ai web connectors were connected this session, none of the project's local `.mcp.json`
+  servers. Re-enabled only `code_mode` (left the other 4 disabled — they have working CLI daemon
+  fallbacks already allowlisted; `code_mode` has none). Requires a Claude Code session
+  restart/reconnect to actually come online — not yet done as of this note.

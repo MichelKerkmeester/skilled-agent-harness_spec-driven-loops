@@ -189,7 +189,7 @@ This category validates cli hooks and plugin scenarios `CL-001`, `CL-004..CL-007
 | CL-004 | OpenCode Native Hooks And Wrapper Fallback | [004-opencode-hook-and-wrapper.md](02--cli-hooks-and-plugin/opencode-hook-and-wrapper.md) |
 | CL-005 | OpenCode Plugin Bridge | [005-opencode-plugin-bridge.md](02--cli-hooks-and-plugin/opencode-plugin-bridge.md) |
 | CL-006 | skill-advisor CLI Fallback Surface (028) | [006-skill-advisor-cli-fallback.md](02--cli-hooks-and-plugin/skill-advisor-cli-fallback.md) |
-| CL-007 | Goal OpenCode Plugin | [007-goal-opencode-plugin.md](02--cli-hooks-and-plugin/goal-opencode-plugin.md) |
+| CL-007 | Goal OpenCode Plugin | [goal-opencode-plugin.md](02--cli-hooks-and-plugin/goal-opencode-plugin.md) |
 
 ---
 

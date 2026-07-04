@@ -1,6 +1,6 @@
 ---
 title: "Feature Specification: 028 Review Remediation Phase Parent"
-description: "Phase parent for the six-child 028 review-remediation track, with four executed scopes and two pending remediation contracts."
+description: "Phase parent for the six-child 028 review-remediation track, with four executed scopes and two scopes absorbed into the 016 program."
 trigger_phrases:
   - "028 review remediation"
   - "memory search intelligence review remediation"
@@ -10,10 +10,10 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/028-memory-search-intelligence/006-review-remediation"
-    last_updated_at: "2026-06-19T00:00:00Z"
+    last_updated_at: "2026-07-04T14:11:00Z"
     last_updated_by: "claude-opus-4-8"
-    recent_action: "Reconciled the review-remediation parent to the six-child executed and pending state"
-    next_safe_action: "Execute 002 and finalize 004 in their owning child phases"
+    recent_action: "002/004 absorbed into 016 (008/009+013); parent rolled up complete"
+    next_safe_action: "Complete; 002/004 absorbed + closed by 016"
     blockers: []
     key_files:
       - "spec.md"
@@ -27,11 +27,11 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-06-19-028-006-review-remediation-parent"
       parent_session_id: null
-    completion_pct: 67
+    completion_pct: 100
     open_questions: []
     answered_questions:
       - "001, 003, 005 and 006 executed their scopes."
-      - "002 and 004 remain pending remediation contracts."
+      - "002 and 004 absorbed into 016 (008/009 + 013), closed 2026-07-04."
 ---
 
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
@@ -46,7 +46,7 @@ _memory:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | in_progress|
+| **Status** | complete |
 | **Created** | 2026-06-19 |
 | **Parent Spec** | `../spec.md` |
 | **Parent Packet** | `system-spec-kit/028-memory-search-intelligence` |
@@ -59,7 +59,7 @@ _memory:
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
-The original source-review context closed with a NOT CONVERGED verdict: 0 P0, 6 confirmed P1 and 91 P2. That source review remains the frozen input for the first four remediation families, but the track has since progressed. Phases 001 and 003 executed their source-review remediation scopes, phases 002 and 004 remain pending contracts, and phases 005 and 006 later shipped the ENV-documentation audit/remediation and marker-gated review packet type work.
+The original source-review context closed with a NOT CONVERGED verdict: 0 P0, 6 confirmed P1 and 91 P2. That source review remains the frozen input for the first four remediation families, but the track has since progressed. Phases 001 and 003 executed their source-review remediation scopes, phases 002 and 004 were absorbed into the 016 program (008/009 execute the fixes, 013 closes the trackers), and phases 005 and 006 later shipped the ENV-documentation audit/remediation and marker-gated review packet type work.
 
 ### Purpose
 Keep the parent as the six-child review-remediation rollup. The child folders own implementation detail, evidence and verification; `../changelog/006-review-remediation/changelog-006-root.md` is the current status source and `../archive/review-report.md` is source-review context for the first four children.
@@ -117,16 +117,16 @@ Keep the parent as the six-child review-remediation rollup. The child folders ow
 
 ### Source-Review Context
 
-The old deep-review detail is source-review context for the first four children, not the current parent status. That source review was NOT CONVERGED and required a clean re-review after the confirmed P1 fixes and fix-now P2 set closed. The current rollup records that 001 and 003 executed, 002 and 004 remain pending, and 005 and 006 completed later scoped work.
+The old deep-review detail is source-review context for the first four children, not the current parent status. That source review was NOT CONVERGED and required a clean re-review after the confirmed P1 fixes and fix-now P2 set closed. The current rollup records that 001 and 003 executed, 002 and 004 were absorbed into the 016 program and closed 2026-07-04, and 005 and 006 completed later scoped work.
 
 ### Phase Transition Rules
 
 - Children 001, 003, 005 and 006 are executed scopes.
-- Children 002 and 004 remain pending remediation contracts.
+- Children 002 and 004 were absorbed into the 016 program (verify-first-then-close), closed 2026-07-04.
 - A separate seat executes each remaining fix inside one child phase at a time.
 - Parent status follows the per-child changelog rollup.
 - The concurrent session's files and packet 030 remain out of scope.
-- After 002 executes and 004 closes its fix-now set, re-run `/deep:review` on 028 until a clean round before closing the source-review remediation loop.
+- 002 and 004 were absorbed into the 016 program and closed 2026-07-04; the source-review remediation loop is closed.
 
 ### Phase Handoff Criteria
 

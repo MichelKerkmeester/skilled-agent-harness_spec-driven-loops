@@ -1,0 +1,19 @@
+{
+  "openQuestions": [
+    "Which live command, YAML, agent, nested skill, registry, advisor, runtime, test, and docs surfaces still expose or depend on standalone deep-context?",
+    "Which references are active runtime behavior versus generated metadata, tests/fixtures, mirrors, historical archives, or false positives?",
+    "What unique deep-context capabilities must be migrated into deep-research and what artifact/schema changes would carry them safely?",
+    "What unique deep-context capabilities must be migrated into deep-review and what verdict/report changes would carry them safely?",
+    "Which cleanup steps are safe now, which should be staged as redirect/archive, and which internal runtime cleanup should be deferred behind tests?"
+  ],
+  "resolvedQuestions": [],
+  "keyFindings": [],
+  "ruledOutDirections": [],
+  "coverageBySources": {},
+  "convergenceScore": 0,
+  "blockedStopHistory": [],
+  "graphConvergenceScore": null,
+  "graphDecision": null,
+  "graphBlockers": [],
+  "lastUpdated": "2026-07-04T11:20:19Z"
+}

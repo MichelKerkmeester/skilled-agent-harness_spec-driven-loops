@@ -11,7 +11,7 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-speckit/028-memory-search-intelligence/016-fix-deep-dive-p0-p2-findings-for-mk-spec-memory/007-ranking-filter-bypass-and-score-scale-fixes"
-    last_updated_at: "2026-07-04T04:35:40Z"
+    last_updated_at: "2026-07-04T14:08:38.605Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "Integrated 007 (14 REQs) + fixed a db-state circular-import TDZ; 338 tests green"
     next_safe_action: "Phase 008 causal-graph-hygiene-and-entity-linker-noise"

@@ -1,6 +1,6 @@
 {
   "level": "phase",
-  "specFolder": "system-spec-kit/028-memory-search-intelligence/006-review-remediation",
+  "specFolder": "system-speckit/028-memory-search-intelligence/006-review-remediation",
   "description": "The original source-review context closed with a NOT CONVERGED verdict: 0 P0, 6 confirmed P1 and 91 P2",
   "keywords": [
     "original",
@@ -11,11 +11,13 @@
     "verdict",
     "confirmed"
   ],
-  "lastUpdated": "2026-06-28T14:23:06.920Z",
+  "lastUpdated": "2026-07-04T14:11:00.720Z",
   "specId": "006",
   "folderSlug": "review-remediation",
   "parentChain": [
-    "system-spec-kit",
+    ".opencode",
+    "specs",
+    "system-speckit",
     "028-memory-search-intelligence"
   ],
   "memorySequence": 0,

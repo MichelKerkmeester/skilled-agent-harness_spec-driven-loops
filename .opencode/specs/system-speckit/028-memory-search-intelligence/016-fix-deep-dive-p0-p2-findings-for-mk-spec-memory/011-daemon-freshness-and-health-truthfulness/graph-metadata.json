@@ -39,7 +39,7 @@
       "cli"
     ],
     "importance_tier": "important",
-    "status": "draft",
+    "status": "in_progress",
     "key_files": [
       ".opencode/skills/system-spec-kit/scripts/lib/dist-freshness.cjs",
       ".opencode/skills/system-spec-kit/mcp_server/scripts/finalize-dist.mjs",
@@ -166,12 +166,6 @@
         "source": "derived"
       },
       {
-        "name": "Start Phase",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "Parent Spec",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -196,6 +190,12 @@
         "source": "derived"
       },
       {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
         "name": "Implementation Plan",
         "kind": "proper_noun",
         "path": "plan.md",
@@ -210,7 +210,7 @@
     ],
     "causal_summary": "The entire memory surface was down at session start on 2026-07-03 and the loss was silent: a dist-freshness bootstrap deadlock that `npm run build` (exit 0) cannot clear blocked the CLI shim (live-reproduced twice, deep-dive Chain C), the stale condition was misclassified as retryable exit 75 while hooks fail open, and the daemon's context-server had been crash-looping with SIGBUS earlier that morning (launcher log 05:52-06:07)",
     "created_at": "2026-07-03T09:44:25Z",
-    "last_save_at": "2026-07-03T14:02:21.631Z",
+    "last_save_at": "2026-07-04T14:08:39.004Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -220,11 +220,11 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:bc1f326b1783157e3247daaa8de0f82729866bd22ce906a155883840c63e3af9",
+    "source_fingerprint": "sha256:c3be85a1183b04aa95cf016278bfed28a4ed9ff9158af0a5c08df2551bfe6e29",
     "source_doc_hashes": {
-      "spec.md": "4e3168abfd2f1126c4419580084e29bae3531b10b68127baa6a183edbbc12c17",
+      "spec.md": "8460cb3a16fb01b5cda29882844ab06f923409279f9d29ef5a321768b70d097a",
       "plan.md": "66f0f95bc23484a042117be14a7a23509751eb5e1d0e05016222cba5e82d12ef",
-      "tasks.md": "c6fd0379c1b993912e0b09fc057cc8cf80517aa169f3ba3ce92e08a8d74a984c",
+      "tasks.md": "e27fb865809f64b742ef6c0075cba91032aa2d55feadb38162f31232dd505fea",
       "checklist.md": "f547725fafb5c8e60f9e7789b9f79c4ad7ac9711d35282a136e6032936a0ea84",
       "implementation-summary.md": "decc71e08a408358c3642fe2db0f4f6aaaa6f3c897883c5e0e81f2a6e54ec30b"
     },

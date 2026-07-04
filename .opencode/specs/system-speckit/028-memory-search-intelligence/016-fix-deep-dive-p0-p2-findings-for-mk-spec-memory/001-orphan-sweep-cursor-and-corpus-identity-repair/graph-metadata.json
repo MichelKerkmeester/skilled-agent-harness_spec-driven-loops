@@ -39,7 +39,7 @@
       "heal"
     ],
     "importance_tier": "important",
-    "status": "draft",
+    "status": "in_progress",
     "key_files": [
       ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-index.ts",
       ".opencode/skills/system-spec-kit/mcp_server/lib/storage/incremental-index.ts",
@@ -172,13 +172,13 @@
         "source": "derived"
       },
       {
-        "name": "Run Phase",
+        "name": "Key Decisions",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "Key Decisions",
+        "name": "Critical Dependencies",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -210,7 +210,7 @@
     ],
     "causal_summary": "`handlers/memory-index.ts:684` calls `sweepOrphanIndexRows({ limit: 200 })` with no cursor; the function defaults cursor=0 and returns `nextCursor`, which is echoed in scan results but never persisted or fed back, so every scan re-checks the same ~200 lowest-id rows forever (report §2 Chain B; ledger L2, live-verified 🟢)",
     "created_at": "2026-07-03T09:44:17Z",
-    "last_save_at": "2026-07-03T15:59:48.854Z",
+    "last_save_at": "2026-07-04T14:08:36.105Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -221,11 +221,11 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:e6cc87e04b99bbfa09e0fbd4d40d07b0c45d5dcc21bec07bf36f81b2240711be",
+    "source_fingerprint": "sha256:c24bed994e01283422cac6105bffc43ef039129110b5214beec443bd091b5e12",
     "source_doc_hashes": {
-      "spec.md": "00c7137fc12ee76f0da846a83620441154f72954cd37d3df802b983bb30e3195",
+      "spec.md": "95536213d553fcd0a58ebc0626f407864686e2ec364adcc26410f4106afd6a00",
       "plan.md": "d529f6264ad7c21138b8c5032d43a9cfddd909d199f3db368d2e4a6b833ba334",
-      "tasks.md": "8595d3b2039962d487cf2a609d3fe86edec061b5b90c6d0aa18d10c4534e9ee5",
+      "tasks.md": "522d2a39546d5c9d1ab4e4716461be07faadcc3e31e9d50d596fe3fbec79b402",
       "checklist.md": "a7b6e50d387b2a737d53b34e768fc61847e8f26fc4c0626307675f7ab7d72e53",
       "decision-record.md": "3aa67cf4fa2710d5a838ce211f2adcddef0f42ad8f381561ee6c09d032bdf74d",
       "implementation-summary.md": "c6935a5919d55be1717e1a0255fa410c46a574cb66287dc1d8bb9098a598ecea"

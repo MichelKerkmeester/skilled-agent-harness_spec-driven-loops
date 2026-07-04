@@ -12,10 +12,10 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "016-fix-deep-dive-p0-p2-findings-for-mk-spec-memory/005-trigger-phrase-quality-and-matcher-guards"
-    last_updated_at: "2026-07-03T12:15:00Z"
+    last_updated_at: "2026-07-04T14:08:37.746Z"
     last_updated_by: "markdown-agent"
     recent_action: "Authored spec/plan/tasks/checklist planning docs from deep-dive research"
-    next_safe_action: "Start T001 confirm-before-fix verification of the agent-reported findings"
+    next_safe_action: "Program complete (016 shipped + pushed)"
     blockers: []
     key_files:
       - ".opencode/skills/system-spec-kit/mcp_server/lib/parsing/trigger-matcher.ts"
@@ -26,7 +26,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "scaffold-scaffold/005-trigger-phrase-quality-and-matcher-guards"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions:
       - "Should constitutional rows become visible to the trigger cache, or stay excluded with the exclusion documented?"
       - "What IDF floor / min-length keeps rare-but-real single-token triggers (allowlist needed?)"

@@ -4,12 +4,6 @@
   "spec_folder": "system-speckit/028-memory-search-intelligence/006-review-remediation",
   "parent_id": "system-speckit/028-memory-search-intelligence",
   "children_ids": [
-    "system-spec-kit/028-memory-search-intelligence/006-review-remediation/001-eval-benchmark-fidelity",
-    "system-spec-kit/028-memory-search-intelligence/006-review-remediation/002-memory-schema-and-concurrency",
-    "system-spec-kit/028-memory-search-intelligence/006-review-remediation/003-doc-accuracy",
-    "system-spec-kit/028-memory-search-intelligence/006-review-remediation/004-p2-triage",
-    "system-spec-kit/028-memory-search-intelligence/006-review-remediation/005-env-documentation-audit",
-    "system-spec-kit/028-memory-search-intelligence/006-review-remediation/006-review-record-packet-type",
     "system-speckit/028-memory-search-intelligence/006-review-remediation/001-eval-benchmark-fidelity",
     "system-speckit/028-memory-search-intelligence/006-review-remediation/002-memory-schema-and-concurrency",
     "system-speckit/028-memory-search-intelligence/006-review-remediation/003-doc-accuracy",
@@ -108,15 +102,15 @@
     ],
     "causal_summary": "The original source-review context closed with a NOT CONVERGED verdict: 0 P0, 6 confirmed P1 and 91 P2",
     "created_at": "2026-06-19T00:00:00Z",
-    "last_save_at": "2026-07-04T13:16:52.578Z",
+    "last_save_at": "2026-07-04T14:11:00.937Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:01c26e39c58e03949f0d4d202d9195eae1f71b94c00194959808c312746513e0",
+    "source_fingerprint": "sha256:f2343b057ff050e65dde67a9efa189186b810d90ac4c4365e23915173ab65cd3",
     "source_doc_hashes": {
-      "spec.md": "1a6e29914b3b367289c9412bcbdf0ea1f5b02b637045d84869a2a602f50f6031"
+      "spec.md": "ae51c99d67d0e73a56d2136c0b092e6bee5cda4350b6bd1e462ae50275051e94"
     },
     "last_active_child_id": null,
     "last_active_at": null

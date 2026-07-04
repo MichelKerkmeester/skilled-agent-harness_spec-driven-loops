@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/028-memory-search-intelligence/006-review-remediation/002-memory-schema-and-concurrency",
-  "spec_folder": "system-spec-kit/028-memory-search-intelligence/006-review-remediation/002-memory-schema-and-concurrency",
-  "parent_id": "system-spec-kit/028-memory-search-intelligence/006-review-remediation",
+  "packet_id": "system-speckit/028-memory-search-intelligence/006-review-remediation/002-memory-schema-and-concurrency",
+  "spec_folder": "system-speckit/028-memory-search-intelligence/006-review-remediation/002-memory-schema-and-concurrency",
+  "parent_id": "system-speckit/028-memory-search-intelligence/006-review-remediation",
   "children_ids": [],
   "migrated": true,
   "migration_source": "legacy",
@@ -43,19 +43,43 @@
     "importance_tier": "important",
     "status": "in_progress",
     "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
       "shared/algorithms/rrf-fusion.ts",
       "mcp_server/lib/search/vector-index-schema.ts",
       "mcp_server/lib/content-id.ts",
       "mcp_server/lib/storage/causal-edges.ts",
       "mcp_server/lib/storage/consolidation.ts",
       "mcp_server/lib/governance/memory-retention-sweep.ts",
-      "spec.md",
-      "plan.md",
-      "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
     "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
       {
         "name": "rrf-fusion.ts",
         "kind": "code",
@@ -90,30 +114,6 @@
         "name": "memory-retention-sweep.ts",
         "kind": "code",
         "path": "mcp_server/lib/governance/memory-retention-sweep.ts",
-        "source": "derived"
-      },
-      {
-        "name": "spec.md",
-        "kind": "doc",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "plan.md",
-        "kind": "doc",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "tasks.md",
-        "kind": "doc",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -203,7 +203,7 @@
     ],
     "causal_summary": "Three confirmed P1 defects sit in the memory schema and storage layer: a content-addressed identity that splits across the migration versus live-write boundary, a semantic-edge embedding pass that runs inside a write lock without refreshing its maintenance marker and a retention sweep that applies stale pre-transaction delete decisions on its new spare axes",
     "created_at": "2026-06-19T00:00:00Z",
-    "last_save_at": "2026-06-23T03:49:58.819Z",
+    "last_save_at": "2026-07-04T14:10:00.993Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -213,11 +213,11 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:cb3b424f518fbf676b732fdb2e11df7c9c5617ac4e01730cebb7c98d3be1f8d6",
+    "source_fingerprint": "sha256:a6b02450a1b04eafd4b6905cdd22e16feb3caf5749a39bc26c9fed8047ba135f",
     "source_doc_hashes": {
-      "spec.md": "4e298b4d84dfde0012e4854793e9ae31a318b97b23d8a9b794dbc4a60c0f2169",
+      "spec.md": "56870645ea8c93ae3fae576d16bc700443e064241e9295d10d59d894737145ec",
       "plan.md": "aaf0ab4edad956ee9c02c0595efd8e6f24dc5f50f5dd036f118ce8e0da98b8c2",
-      "tasks.md": "1967b06deb376868472718d54bc3b735be0cf8f339a9741074b0d3e0175b91d0",
+      "tasks.md": "cc8d0b2baa0c2da02a262beb20aa68502a48f831a176eb31ad69c7728cff6f46",
       "checklist.md": "c7c1b010827e4f331d1351aa15e52e782b2935ee297a57a5f7c33ba088f2c312",
       "implementation-summary.md": "8759e2ea62ba3badb96fc199e17fc43b5ff15d08ccd5f5f2aa635ebfd61f0754"
     },

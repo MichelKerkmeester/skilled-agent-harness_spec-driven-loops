@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/028-memory-search-intelligence/006-review-remediation/004-p2-triage",
-  "spec_folder": "system-spec-kit/028-memory-search-intelligence/006-review-remediation/004-p2-triage",
-  "parent_id": "system-spec-kit/028-memory-search-intelligence/006-review-remediation",
+  "packet_id": "system-speckit/028-memory-search-intelligence/006-review-remediation/004-p2-triage",
+  "spec_folder": "system-speckit/028-memory-search-intelligence/006-review-remediation/004-p2-triage",
+  "parent_id": "system-speckit/028-memory-search-intelligence/006-review-remediation",
   "children_ids": [],
   "migrated": true,
   "migration_source": "legacy",
@@ -196,7 +196,7 @@
     ],
     "causal_summary": "The review surfaced 91 P2 findings",
     "created_at": "2026-06-19T00:00:00Z",
-    "last_save_at": "2026-06-23T03:49:58.831Z",
+    "last_save_at": "2026-07-04T14:10:01.439Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,11 +206,11 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:2788b1f73c95b36c74326be7f569a4e5a49e79d8879fd1ae3026a94d37cca9af",
+    "source_fingerprint": "sha256:6fab2cbee85f5451d54c1d7d3f6ed7559f5a69a3527f85e0975f6bb0c08ff63b",
     "source_doc_hashes": {
-      "spec.md": "dfbfe1bf762345d2f5e87922a3763033c3da352c3253f441790feab56b778513",
-      "plan.md": "7d1e299991d904dbaf9d72cd15e69601d448c0b31061f72692375ab489ef902e",
-      "tasks.md": "45466fa392e3ac2cf9909bb3aac5c53a8f1aaf2cf4514e5e4f315665e6a29e7f",
+      "spec.md": "ef71a1c59f68651a37ad7d42fd745e66ee288401b630dc1f3130711cbb0c125f",
+      "plan.md": "0b3529e353064f6b6b80cf2574999450ff5376b578cc0c7a9c4409c0ca285c7d",
+      "tasks.md": "d3f7aa4c59e8bbe02962989ea3559e5e30b209a267f69b9eec9f1a38a71ebca4",
       "checklist.md": "b10973285bc5cd04324692a5c3f21a27d564154e643b0e04fe388e86d0e54db7",
       "implementation-summary.md": "11df5608db615f1532963bd357178c56199cbcd6ed9b7111f1ac27d163c637d2"
     },

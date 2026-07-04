@@ -11,7 +11,7 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-speckit/028-memory-search-intelligence/016-fix-deep-dive-p0-p2-findings-for-mk-spec-memory/002-archived-tier-and-tombstone-read-exclusions"
-    last_updated_at: "2026-07-03T17:26:54Z"
+    last_updated_at: "2026-07-04T14:08:36.497Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "Rebuilt memory_index for archived CHECK; marked 6,090 z_archive rows; integrity+FK ok"
     next_safe_action: "Daemon restart applies the search-level archived exclusion; then phase 003"

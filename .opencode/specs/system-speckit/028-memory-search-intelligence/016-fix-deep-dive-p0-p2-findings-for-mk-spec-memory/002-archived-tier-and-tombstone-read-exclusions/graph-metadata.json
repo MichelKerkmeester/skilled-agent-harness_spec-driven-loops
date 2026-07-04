@@ -39,7 +39,7 @@
       "predicate"
     ],
     "importance_tier": "normal",
-    "status": "draft",
+    "status": "in_progress",
     "key_files": [
       ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-delete.ts",
       ".opencode/skills/system-spec-kit/mcp_server/lib/search/causal-boost.ts",
@@ -210,7 +210,7 @@
     ],
     "causal_summary": "Non-active rows dominate search results because read exclusion is channel-inconsistent",
     "created_at": "2026-07-03T09:44:18Z",
-    "last_save_at": "2026-07-03T17:28:35.370Z",
+    "last_save_at": "2026-07-04T14:08:36.497Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -221,11 +221,11 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:46a8f55c58e0d14978be392c3551c687b7b24354fcf634834714ec1ea4ba7250",
+    "source_fingerprint": "sha256:f30fb3ed8f90c4d0bd959e5b82cff5b624b3b010fab25c2b269685eace8e4873",
     "source_doc_hashes": {
-      "spec.md": "5568cbba8fe246d4611070f24aca23010e7072f0155d0188004ce372fc9b3cdb",
+      "spec.md": "1dcc63e6bb3b7c6594031d4976d6829486696b2dfec41d38d3458f68ca5b1cd7",
       "plan.md": "3169edc97138d0dce8f52d3828da9718d8be8330cad3c24c768fb19ca3cb5c87",
-      "tasks.md": "594e43cc8d084203b3f33b00b66267557ca6747697f7f220f6a53847693086d4",
+      "tasks.md": "a59ea61bebd14ff80d5268579e9ed186295277cb06f0a0f3b3c6426bcdbc22f8",
       "checklist.md": "61b1f41d2b6060abaf6d505d64c5f0b643636f407ed1adcf2f35cababf129803",
       "decision-record.md": "0ba4a4a6633ab2e9631d98b08fa4e1b66ae5e64c0bc9f37cf3f953c95fb6a733",
       "implementation-summary.md": "289b9f8c0d525259a0558d8e38b6730303a7d0c14dddc456adfd45d94b81d300"

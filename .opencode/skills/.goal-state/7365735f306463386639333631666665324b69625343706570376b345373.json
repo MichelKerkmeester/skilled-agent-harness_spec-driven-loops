@@ -1,0 +1,69 @@
+{
+  "sessionId": "ses_0dc8f9361ffe2KibSCpep7k4Ss",
+  "goalId": "goal-6c740397-f373-4fde-be34-52cfe0d6bfde",
+  "objective": "Fix finding 0156 by investigating indexMemoryDeferred and making the minimal allowed TypeScript change so existing encoding_intent is not overwritten on subsequent indexing passes.",
+  "goalPrompt": "Role: Focused OpenCode execution agent operating under the active session goal.\nObjective: Fix finding 0156 by investigating indexMemoryDeferred and making the minimal allowed TypeScript change so existing encoding_intent is not overwritten on subsequent indexing passes.\nContext: Use the current conversation, repository files, tests, and active spec constraints as source of truth. Preserve unrelated worktree changes and do not broaden scope.\nMethod:\n- Restate the concrete completion condition from available evidence before acting.\n- Find the root cause before changing code; verify the fix against the failing symptom.\n- Make the smallest correct implementation that satisfies the requested behavior.\n- Prefer direct, reversible changes; ask only when blocked by missing information, permissions, or contradictory requirements.\nSuccess Criteria:\n- The requested outcome is materially complete, not merely analyzed or partially prepared.\n- Required verification has run, or any inability to run it is reported with the exact blocker.\n- Status output distinguishes confirmed evidence from inference.\nStop Conditions:\n- Stop only when the goal verifier can mark the goal met, when the user changes or clears the goal, or when progress is blocked by a decision the user must make.\n- If blocked, preserve state and name the next safe action.",
+  "promptEnhancement": {
+    "version": "sk-prompt-goal-v1",
+    "methodology": "DEPTH",
+    "mode": "standard",
+    "framework": "CRAFT+TIDD-EC",
+    "ricce": {
+      "name": "RICCE",
+      "structure": [
+        "Role",
+        "Objective",
+        "Context",
+        "Method",
+        "Success Criteria",
+        "Stop Conditions"
+      ]
+    },
+    "perspectives": [
+      "prompt_engineering",
+      "ai_interpretation",
+      "user_clarity",
+      "framework_fit",
+      "token_efficiency"
+    ],
+    "clearScore": 44,
+    "clearBreakdown": {
+      "correctness": 9,
+      "logic": 9,
+      "expression": 13,
+      "arrangement": 9,
+      "reusability": 4
+    },
+    "maxChars": 4000,
+    "charCount": 1342
+  },
+  "status": "active",
+  "tokenBudget": null,
+  "tokensUsed": 0,
+  "timeUsedSeconds": 0,
+  "createdAtMs": 1783006069036,
+  "updatedAtMs": 1783006482618,
+  "createdAt": "2026-07-02T15:27:49.036Z",
+  "updatedAt": "2026-07-02T15:34:42.618Z",
+  "continuationSuppressed": false,
+  "autoTurnsUsed": 0,
+  "maxAutoTurns": 8,
+  "startedAtMs": 1783006069036,
+  "lastActivityAtMs": 1783006482617,
+  "lastActivityMessageID": "evt_f2377d082001Zz03BdhD6SVU3N",
+  "lastContinuationAtMs": 0,
+  "lastContinuationMessageId": null,
+  "lastContinuationError": null,
+  "continuationSuppressedReason": null,
+  "blockedByPrompt": false,
+  "iterations": 1,
+  "lastCheckAtMs": 1783006482551,
+  "lastVerifierVerdict": "not_met",
+  "lastVerifierReason": "No verifier evidence is available",
+  "lastVerifierConfidence": 0,
+  "lastEvidence": null,
+  "completionSource": null,
+  "verifierRunID": "verifier-1252403f-c93b-4466-b6af-5834bf0540f7",
+  "lastAccountedMessageID": null,
+  "usageSource": "unavailable"
+}

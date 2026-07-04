@@ -39,7 +39,7 @@
       "cursor"
     ],
     "importance_tier": "normal",
-    "status": "draft",
+    "status": "complete",
     "key_files": [
       ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts",
       ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts",
@@ -209,7 +209,7 @@
     ],
     "causal_summary": "Live-measured (deep-dive report §5, ledger L7 🟢): a 5-result `memorysearch` returns a 17.6KB envelope because every telemetry block is double-emitted in camelCase AND snakecase (`artifactRouting`/`artifactrouting`, `graphContribution`/`graphcontribution`, `searchDecisionEnvelope`/`searchdecisionenvelope`, `appliedBoosts`/`appliedboosts`), while the token budget is enforced BEFORE graphContext/routing/envelope attach — so results get compacted to empty snippets while metadata survives, and `meta.tokenCount` reports 6,455 against an \"enforced\" budget of 3,500",
     "created_at": "2026-07-03T09:44:26Z",
-    "last_save_at": "2026-07-04T12:44:07.482Z",
+    "last_save_at": "2026-07-04T14:09:14.102Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -219,9 +219,9 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:417ecd718ae6ea0d5c327e83ee9b126270e5ba2e1b1a502d723967e06808839c",
+    "source_fingerprint": "sha256:a3077d6b1fdd39e7417c6c36a5d87801934161543b9aafd70c1cef08a8efa0d7",
     "source_doc_hashes": {
-      "spec.md": "0703e309aeef12c2ff1401b74347d15eb17a386b9f4b9c2a5de1209d161cb9fc",
+      "spec.md": "1791ea2c0cc7200eb0fd95c9e82edd2830de80a826459fcbf094b2f88312c6e4",
       "plan.md": "7ba45cb6c23c40e22d04fe3fce79d8755e6fbd746910436aef6800da9dfe72c5",
       "tasks.md": "68018f3f0b59b152360199049117d90b5796a192718f47f81abfdf31459f5b72",
       "checklist.md": "00f36afe80a17aa68513a05a14835fd739e8000ef144656947f56b6c9f359b4b",

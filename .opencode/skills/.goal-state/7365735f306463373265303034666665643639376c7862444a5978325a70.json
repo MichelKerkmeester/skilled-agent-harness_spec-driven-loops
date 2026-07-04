@@ -1,0 +1,69 @@
+{
+  "sessionId": "ses_0dc72e004ffed697lxbDJYx2Zp",
+  "goalId": "goal-5353d45a-8d60-4616-8e26-594d63c4074a",
+  "objective": "Fix finding 0200 by verifying and minimally correcting ENABLE_BM25 default behavior only in allowed bm25-index.ts paths, then run focused verification without destructive operations.",
+  "goalPrompt": "Role: Focused OpenCode execution agent operating under the active session goal.\nObjective: Fix finding 0200 by verifying and minimally correcting ENABLE_BM25 default behavior only in allowed bm25-index.ts paths, then run focused verification without destructive operations.\nContext: Use the current conversation, repository files, tests, and active spec constraints as source of truth. Preserve unrelated worktree changes and do not broaden scope.\nMethod:\n- Restate the concrete completion condition from available evidence before acting.\n- Find the root cause before changing code; verify the fix against the failing symptom.\n- Prefer direct, reversible changes; ask only when blocked by missing information, permissions, or contradictory requirements.\nSuccess Criteria:\n- The requested outcome is materially complete, not merely analyzed or partially prepared.\n- Required verification has run, or any inability to run it is reported with the exact blocker.\n- Status output distinguishes confirmed evidence from inference.\nStop Conditions:\n- Stop only when the goal verifier can mark the goal met, when the user changes or clears the goal, or when progress is blocked by a decision the user must make.\n- If blocked, preserve state and name the next safe action.",
+  "promptEnhancement": {
+    "version": "sk-prompt-goal-v1",
+    "methodology": "DEPTH",
+    "mode": "standard",
+    "framework": "CRAFT+TIDD-EC",
+    "ricce": {
+      "name": "RICCE",
+      "structure": [
+        "Role",
+        "Objective",
+        "Context",
+        "Method",
+        "Success Criteria",
+        "Stop Conditions"
+      ]
+    },
+    "perspectives": [
+      "prompt_engineering",
+      "ai_interpretation",
+      "user_clarity",
+      "framework_fit",
+      "token_efficiency"
+    ],
+    "clearScore": 44,
+    "clearBreakdown": {
+      "correctness": 9,
+      "logic": 9,
+      "expression": 13,
+      "arrangement": 9,
+      "reusability": 4
+    },
+    "maxChars": 4000,
+    "charCount": 1262
+  },
+  "status": "complete",
+  "tokenBudget": null,
+  "tokensUsed": 0,
+  "timeUsedSeconds": 0,
+  "createdAtMs": 1783007954594,
+  "updatedAtMs": 1783008182675,
+  "createdAt": "2026-07-02T15:59:14.594Z",
+  "updatedAt": "2026-07-02T16:03:02.675Z",
+  "continuationSuppressed": true,
+  "autoTurnsUsed": 0,
+  "maxAutoTurns": 8,
+  "startedAtMs": 1783007954594,
+  "lastActivityAtMs": 1783008182675,
+  "lastActivityMessageID": "evt_f2391c15c001d55nD1vJOVbZh8",
+  "lastContinuationAtMs": 0,
+  "lastContinuationMessageId": null,
+  "lastContinuationError": null,
+  "continuationSuppressedReason": null,
+  "blockedByPrompt": false,
+  "iterations": 0,
+  "lastCheckAtMs": 0,
+  "lastVerifierVerdict": "not_evaluated",
+  "lastVerifierReason": null,
+  "lastVerifierConfidence": null,
+  "lastEvidence": null,
+  "completionSource": "manual",
+  "verifierRunID": null,
+  "lastAccountedMessageID": null,
+  "usageSource": "unavailable"
+}

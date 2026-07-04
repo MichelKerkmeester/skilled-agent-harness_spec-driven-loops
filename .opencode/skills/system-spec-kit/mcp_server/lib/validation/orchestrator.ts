@@ -72,7 +72,7 @@ const VALIDATE_SCRIPT_DIR = path.join(SKILL_ROOT, 'scripts', 'spec');
 const VALID_LEVELS = new Set<SpecKitLevel>(['1', '2', '3', '3+', 'phase', 'review']);
 const REQUIRED_FRONTMATTER_KEYS = ['packet_pointer', 'last_updated_at', 'last_updated_by', 'recent_action', 'next_safe_action'];
 const OPTIONAL_TEMPLATE_HEADER_RE = /^(?:L(?:2|3\+?)|FIX ADDENDUM)\s*:/iu;
-const OPTIONAL_TEMPLATE_ANCHORS = new Set(['affected-surfaces']);
+const OPTIONAL_TEMPLATE_ANCHORS = new Set(['affected-surfaces', 'nfr', 'edge-cases', 'complexity', 'phase-deps', 'effort', 'enhanced-rollback']);
 
 export type RegistrySeverity = 'error' | 'warn' | 'info' | 'skip';
 

@@ -12,10 +12,10 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/028-memory-search-intelligence"
-    last_updated_at: "2026-06-23T00:00:00Z"
+    last_updated_at: "2026-07-04T14:16:12Z"
     last_updated_by: "claude-opus-4-8"
-    recent_action: "Logged the 005 build, migration and flag-graduation phases"
-    next_safe_action: "Track complete, twelve flags graduated and one deleted"
+    recent_action: "016 deep-dive program complete (13/13 shipped); 006/002+006/004 absorbed"
+    next_safe_action: "016 complete; daemon-side captures pending a daemon restart"
     blockers: []
     key_files:
       - "spec.md"
@@ -140,7 +140,7 @@ Provide the root purpose, child map and cross-packet boundary for packet 028. Th
 - Children 001 through 004 are subsystem phase parents. Their direct child folders own implementation specs, plans, tasks and validation evidence.
 - Child 000 is an executed release-cleanup phase parent. Its direct child folders record the cleanup, validation and drift-remediation scopes.
 - Child 005 is the data-quality lineage. Its first 28 children remain the planned research scaffold and children 029 through 044 record the shipped benchmark, generated-metadata, migration and search-quality tail.
-- Child 006 is the review-remediation rollup, with four executed children and two pending remediation contracts.
+- Child 006 is the review-remediation rollup, with four executed children and two scopes (002/004) absorbed into the 016 program and closed 2026-07-04.
 - Child 007 is the dark-flag graduation suite, with twelve benchmark, cleanup, validation, follow-up and review children.
 - Children 013 through 015 were adopted from standalone packets 030 through 032 on 2026-07-03 by operator restructure.
 - Research-only material from earlier rounds lives under subsystem `research/from-*` archives.

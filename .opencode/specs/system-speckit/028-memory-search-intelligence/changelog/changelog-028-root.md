@@ -83,3 +83,21 @@ A GPT-5.5-fast (high) audit of the packet had surfaced 75 findings across 63 fil
 
 - No further seeded-PPR revisit is planned, the open question is now answered.
 - Nothing has been committed to git, every change described above is an uncommitted diff in the live tree pending operator review.
+
+---
+
+## 2026-07-04
+
+### Summary
+
+The 016 deep-dive remediation program shipped. Thirteen phases fixed the P0 through P2 findings from the mk-spec-memory deep dive, running from corpus identity and read-exclusions through save-dedup, embedding coverage, trigger quality, the eval-production parity harness, ranking gates, causal-graph hygiene, the learning loop, search hot-path performance, daemon freshness, envelope and command-doc alignment and a doc-only closeout. Every phase was implemented, adversarially reviewed at xhigh, remediated and Opus final-verified. Six phases ran live data migrations under atomic backups. Recursive `validate.sh --strict` across the program returned 14 folders clean and 0 errors. About 2,500 tests passed across the phases. All 13 are complete, committed and pushed. See the [016 program rollup](./016-fix-deep-dive-p0-p2-findings-for-mk-spec-memory/changelog-016-root.md).
+
+### Included Phases
+
+| Phase | Status | Summary |
+|---|---|---|
+| `016-fix-deep-dive-p0-p2-findings-for-mk-spec-memory` | Phase Parent (13/13 Complete) | The deep-dive remediation program. Thirteen phases that fixed the mk-spec-memory P0 through P2 findings across corpus identity, read-exclusions, save-dedup, embeddings, trigger quality, ranking, causal-graph hygiene, the learning loop, search performance, daemon health, envelope presentation and the review-remediation closeout. Rollup: [changelog-016-root.md](./016-fix-deep-dive-p0-p2-findings-for-mk-spec-memory/changelog-016-root.md). |
+
+### Follow-Ups
+
+- Several daemon-side captures are pending a daemon restart: the live p50 from phase 010, the live envelope bytes from phase 012, the embedding reconcile from phase 004, the eval-delta from phases 006 and 007, trackAccess production enablement from phase 009 and the memory-index of the phase 013 closeout.

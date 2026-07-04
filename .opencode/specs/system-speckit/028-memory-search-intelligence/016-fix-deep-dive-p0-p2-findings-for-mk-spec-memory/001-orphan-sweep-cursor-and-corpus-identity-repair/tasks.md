@@ -11,10 +11,10 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "016-fix-deep-dive-p0-p2-findings-for-mk-spec-memory/001-orphan-sweep-cursor-and-corpus-identity-repair"
-    last_updated_at: "2026-07-03T15:04:09Z"
+    last_updated_at: "2026-07-04T14:08:36.105Z"
     last_updated_by: "markdown-agent"
     recent_action: "Authored task breakdown with confirm-before-fix group and per-task metadata"
-    next_safe_action: "Start T001 (confirm active_memory_projection non-repoint) before any code change"
+    next_safe_action: "Program complete (016 shipped + pushed)"
     blockers: []
     key_files:
       - ".opencode/skills/system-spec-kit/mcp_server/lib/storage/incremental-index.ts"
@@ -23,7 +23,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "scaffold-scaffold/001-orphan-sweep-cursor-and-corpus-identity-repair"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---

@@ -12,7 +12,7 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-speckit/028-memory-search-intelligence/016-fix-deep-dive-p0-p2-findings-for-mk-spec-memory/008-causal-graph-hygiene-and-entity-linker-noise"
-    last_updated_at: "2026-07-04T06:08:02Z"
+    last_updated_at: "2026-07-04T14:09:12.826Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "Integrated 008 (13 REQs); applied 2 live migrations (31644 edges, 3787 titles); 225 tests green"
     next_safe_action: "Phase 009 learning-feedback-loop-repair"

@@ -11,7 +11,7 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-speckit/028-memory-search-intelligence/016-fix-deep-dive-p0-p2-findings-for-mk-spec-memory/006-rescue-layer-ranking-authority-decision"
-    last_updated_at: "2026-07-04T02:19:52Z"
+    last_updated_at: "2026-07-04T14:08:38.199Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "Built eval-parity harness + benchmarkable rescue modes; operator deferred ADR-002"
     next_safe_action: "Phase 007 ranking-filter-bypass (parity harness now unblocks 007/008)"

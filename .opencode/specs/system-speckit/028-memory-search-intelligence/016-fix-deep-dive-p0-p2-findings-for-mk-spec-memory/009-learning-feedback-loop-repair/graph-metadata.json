@@ -210,7 +210,7 @@
     ],
     "causal_summary": "The memory learning loop is starved of usage signal: only 65 of 33,101 index rows have ever recorded an access, and `trackAccess` is default-off (`memory-search.ts:909`) with zero production enablers, so the loop receives almost no fuel today",
     "created_at": "2026-07-03T09:44:23Z",
-    "last_save_at": "2026-07-04T08:16:04.862Z",
+    "last_save_at": "2026-07-04T14:09:13.269Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -221,14 +221,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:a78589e577ae173bdceb704950adb25883914eb1bc24b291d2cf77c70bbd78c2",
+    "source_fingerprint": "sha256:bfe508ed016ef736b79c1679c63ff072a87d34d659b0bef04e3de1082092011b",
     "source_doc_hashes": {
-      "spec.md": "235d4d2c9c63cf733b7fdaacd45ca70e52b93620c01fbf8280fefb686df37af8",
+      "spec.md": "c8f991ed5d686a5b75995b98a0eff0d3ce49f3af7a83c58bf09f24cebe7a06aa",
       "plan.md": "0c26e4d93b8ffb806e1907b0bdc9c6bfcd9e1bf6f346e5cb7a449ddfa30f15f9",
       "tasks.md": "50931ac296f39abbad0ac4e34b666c6bb3fff3a5df1e23c2f84146278a325061",
       "checklist.md": "991a94b37d5d26fc49fb23604cf6cb6df3e2cc5cd0db3c6bcfd8f7db33ec8a3d",
       "decision-record.md": "c2764d497110ac44b9533540ab5205cc9bca431fa55495f237c4a53ab7631269",
-      "implementation-summary.md": "ea82eae8e9068e34a6b6bcc21a8ce646b840fb6f4fcb986ada7ac0143fbfede1"
+      "implementation-summary.md": "947933b891312bfc9b7d21626ec5e247c82bb04a1f35f8467470a161efee7700"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -16,7 +16,7 @@ version: 3.6.0.3
 
 ## 1. OVERVIEW
 
-The 028 MCP-to-CLI program shipped `node .opencode/bin/spec-memory.cjs` as a second IPC client over the unchanged mk-spec-memory daemon. The CLI generates its command map at runtime from `TOOL_DEFINITIONS`, so all 39 MCP tools are CLI commands with no generated manifest to drift. It validates argv-derived arguments with the existing Zod schemas, sends `tools/call` JSON-RPC frames over `daemon-ipc.sock`, auto-spawns via `mk-spec-memory-launcher.cjs` when the daemon probe fails, and renders `json`, `jsonl`, or text output.
+The 028 MCP-to-CLI program shipped `node .opencode/bin/spec-memory.cjs` as a second IPC client over the unchanged mk-spec-memory daemon. The CLI generates its command map at runtime from `TOOL_DEFINITIONS`, so all 41 MCP tools are CLI commands with no generated manifest to drift. It validates argv-derived arguments with the existing Zod schemas, sends `tools/call` JSON-RPC frames over `daemon-ipc.sock`, auto-spawns via `mk-spec-memory-launcher.cjs` when the daemon probe fails, and renders `json`, `jsonl`, or text output.
 
 The MCP registration stays untouched through the dual-stack window. The CLI is the resilience and universal surface for hooks, cron, CI, and transport-down recovery. Sibling skills ship the same pattern: `code-index.cjs` (8 tools, system-code-graph) and `skill-advisor.cjs` (9 tools plus a trusted-mutation gate, system-skill-advisor).
 
@@ -36,9 +36,9 @@ The MCP registration stays untouched through the dual-stack window. The CLI is t
 
 ### list-tools as the parity anchor
 
-`spec-memory list-tools --format json` enumerates the generated surface as `{ status: "ok", data: { count: 39, tools: [...] } }` straight from `TOOL_DEFINITIONS`, so surface parity against the MCP registration is a one-command check.
+`spec-memory list-tools --format json` enumerates the generated surface as `{ status: "ok", data: { count: 41, tools: [...] } }` straight from `TOOL_DEFINITIONS`, so surface parity against the MCP registration is a one-command check.
 
-The automation surface also supports `list-tools --compact` and `list-tools --names-only` across the three daemon CLIs. Compact mode keeps names, aliases, descriptions, and counts while omitting schemas; names-only mode keeps canonical tool names and counts only. Both modes preserve the 39 / 8 / 9 counts and return zero `inputSchema` fields. `completion bash|zsh` emits generated shell completion from the same registries for `spec-memory`, `code-index`, and `skill-advisor`.
+The automation surface also supports `list-tools --compact` and `list-tools --names-only` across the three daemon CLIs. Compact mode keeps names, aliases, descriptions, and counts while omitting schemas; names-only mode keeps canonical tool names and counts only. Both modes preserve the 41 / 8 / 9 counts and return zero `inputSchema` fields. `completion bash|zsh` emits generated shell completion from the same registries for `spec-memory`, `code-index`, and `skill-advisor`.
 
 ## 3. SOURCE FILES
 

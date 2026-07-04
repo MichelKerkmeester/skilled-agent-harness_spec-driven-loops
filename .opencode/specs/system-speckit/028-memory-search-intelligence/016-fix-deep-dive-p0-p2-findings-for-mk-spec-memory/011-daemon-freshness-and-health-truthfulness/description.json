@@ -18,10 +18,12 @@
     "run",
     "build"
   ],
-  "lastUpdated": "2026-07-03T10:51:47.117Z",
+  "lastUpdated": "2026-07-04T14:08:38.804Z",
   "specId": "011",
   "folderSlug": "daemon-freshness-and-health-truthfulness",
   "parentChain": [
+    ".opencode",
+    "specs",
     "system-speckit",
     "028-memory-search-intelligence",
     "016-fix-deep-dive-p0-p2-findings-for-mk-spec-memory"

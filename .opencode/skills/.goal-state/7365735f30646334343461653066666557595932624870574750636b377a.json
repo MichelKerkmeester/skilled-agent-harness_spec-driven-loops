@@ -1,0 +1,69 @@
+{
+  "sessionId": "ses_0dc444ae0ffeWYY2bHpWGPck7z",
+  "goalId": "goal-ca822004-6056-4dc5-8c30-a268bb294ded",
+  "objective": "Run /deep:context:auto for .opencode/specs/deep-loops/033-deep-loop-behavior-benchmarks/fixtures/fx-001-review-target with maxIterations=1, following the owned YAML workflow and producing/verifying context artifacts without hand-rolling a substitute.",
+  "goalPrompt": "Role: Focused OpenCode execution agent operating under the active session goal.\nObjective: Run /deep:context:auto for .opencode/specs/deep-loops/033-deep-loop-behavior-benchmarks/fixtures/fx-001-review-target with maxIterations=1, following the owned YAML workflow and producing/verifying context artifacts without hand-rolling a substitute.\nContext: Use the current conversation, repository files, tests, and active spec constraints as source of truth. Preserve unrelated worktree changes and do not broaden scope.\nMethod:\n- Restate the concrete completion condition from available evidence before acting.\n- Ground conclusions in concrete files, outputs, or cited evidence.\n- Prefer direct, reversible changes; ask only when blocked by missing information, permissions, or contradictory requirements.\nSuccess Criteria:\n- The requested outcome is materially complete, not merely analyzed or partially prepared.\n- Required verification has run, or any inability to run it is reported with the exact blocker.\n- Status output distinguishes confirmed evidence from inference.\nStop Conditions:\n- Stop only when the goal verifier can mark the goal met, when the user changes or clears the goal, or when progress is blocked by a decision the user must make.\n- If blocked, preserve state and name the next safe action.",
+  "promptEnhancement": {
+    "version": "sk-prompt-goal-v1",
+    "methodology": "DEPTH",
+    "mode": "standard",
+    "framework": "CRAFT+TIDD-EC",
+    "ricce": {
+      "name": "RICCE",
+      "structure": [
+        "Role",
+        "Objective",
+        "Context",
+        "Method",
+        "Success Criteria",
+        "Stop Conditions"
+      ]
+    },
+    "perspectives": [
+      "prompt_engineering",
+      "ai_interpretation",
+      "user_clarity",
+      "framework_fit",
+      "token_efficiency"
+    ],
+    "clearScore": 44,
+    "clearBreakdown": {
+      "correctness": 9,
+      "logic": 9,
+      "expression": 13,
+      "arrangement": 9,
+      "reusability": 4
+    },
+    "maxChars": 4000,
+    "charCount": 1310
+  },
+  "status": "complete",
+  "tokenBudget": null,
+  "tokensUsed": 0,
+  "timeUsedSeconds": 0,
+  "createdAtMs": 1783011026516,
+  "updatedAtMs": 1783011302763,
+  "createdAt": "2026-07-02T16:50:26.516Z",
+  "updatedAt": "2026-07-02T16:55:02.763Z",
+  "continuationSuppressed": true,
+  "autoTurnsUsed": 0,
+  "maxAutoTurns": 8,
+  "startedAtMs": 1783011026516,
+  "lastActivityAtMs": 1783011302763,
+  "lastActivityMessageID": "evt_f23c15d33001yCe9dRQ4on1QcE",
+  "lastContinuationAtMs": 0,
+  "lastContinuationMessageId": null,
+  "lastContinuationError": null,
+  "continuationSuppressedReason": null,
+  "blockedByPrompt": false,
+  "iterations": 0,
+  "lastCheckAtMs": 0,
+  "lastVerifierVerdict": "not_evaluated",
+  "lastVerifierReason": null,
+  "lastVerifierConfidence": null,
+  "lastEvidence": null,
+  "completionSource": "manual",
+  "verifierRunID": null,
+  "lastAccountedMessageID": null,
+  "usageSource": "unavailable"
+}

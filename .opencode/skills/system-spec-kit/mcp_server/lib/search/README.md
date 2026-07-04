@@ -169,6 +169,12 @@ lib/search/
 | `routing-telemetry.ts` | In-process rolling 200-decision window tracking which channels routed per query. `getSnapshot()` returns per-channel counts and rates including `graphChannelInvocationRate`. |
 | `intent-classifier.ts` | Maps query text to task intent. |
 | `search-types.ts` | Defines shared search result and option types. |
+| `entity-linker.ts` | Creates causal edges between memories that share entities across spec folders, and provides query-time concept routing for graph-channel selection. Gated by `SPECKIT_ENTITY_LINKING`. Its co-occurrence "supports" edges are written at strength 0.05, down-weighted from 0.7 in phase 008, so weak entity co-occurrence no longer drowns real causal edges. |
+| `progressive-disclosure.ts` | Replaces hard tail-truncation with a multi-layer response: a quality-distribution summary, snippet previews with detail-available flags, and opaque continuation cursors for pagination. Flag `SPECKIT_PROGRESSIVE_DISCLOSURE`, default on. |
+| `auto-promotion.ts` | Adjusts memory importance tier from validation signals: five or more positive validations promote `normal` to `important`, ten or more promote `important` to `critical`, and sustained negative validations step `important`/`critical` down one tier. |
+| `retrieval-directives.ts` | Adds a `retrieval_directive` metadata field to constitutional-tier memories, formatted as instruction prefixes ("Always surface when:", "Prioritize when:"). Pure content transformation; ranking and scoring are untouched. |
+| `deterministic-extractor.ts` | Rule-based, no-LLM save-time graph enrichment extractors (heading, alias, and relation-phrase links) that emit edges carrying `explicit_only` evidence. |
+| `learned-feedback.ts` | Learns terms from user memory selections into a separate `learned_triggers` column (not the FTS5 index), weighted 0.7x with a 30-day TTL and ten safeguards. Flag `SPECKIT_LEARN_FROM_SELECTION`, default on. |
 
 ### Graph-Channel Preservation Overrides
 

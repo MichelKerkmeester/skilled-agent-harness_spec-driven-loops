@@ -19,10 +19,12 @@
     "versus",
     "live-write"
   ],
-  "lastUpdated": "2026-06-30T12:42:37.777Z",
+  "lastUpdated": "2026-07-04T14:10:00.787Z",
   "specId": "002",
   "folderSlug": "memory-schema-and-concurrency",
   "parentChain": [
+    ".opencode",
+    "specs",
     "system-speckit",
     "028-memory-search-intelligence",
     "006-review-remediation"

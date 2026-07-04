@@ -1,0 +1,69 @@
+{
+  "sessionId": "ses_0d9a5b1d1ffeRzAKWBvlnJ0tm0",
+  "goalId": "goal-0a73accc-6abd-45aa-a5c1-92913629a77d",
+  "objective": "Fix finding 0232 by making matrix-adapter-runner persist aggregate summary rows within allowed script paths only, then verify without destructive git operations.",
+  "goalPrompt": "Role: Focused OpenCode execution agent operating under the active session goal.\nObjective: Fix finding 0232 by making matrix-adapter-runner persist aggregate summary rows within allowed script paths only, then verify without destructive git operations.\nContext: Use the current conversation, repository files, tests, and active spec constraints as source of truth. Preserve unrelated worktree changes and do not broaden scope.\nMethod:\n- Restate the concrete completion condition from available evidence before acting.\n- Find the root cause before changing code; verify the fix against the failing symptom.\n- Run the relevant verification commands and report exact pass/fail evidence.\n- Prefer direct, reversible changes; ask only when blocked by missing information, permissions, or contradictory requirements.\nSuccess Criteria:\n- The requested outcome is materially complete, not merely analyzed or partially prepared.\n- Required verification has run, or any inability to run it is reported with the exact blocker.\n- Status output distinguishes confirmed evidence from inference.\nStop Conditions:\n- Stop only when the goal verifier can mark the goal met, when the user changes or clears the goal, or when progress is blocked by a decision the user must make.\n- If blocked, preserve state and name the next safe action.",
+  "promptEnhancement": {
+    "version": "sk-prompt-goal-v1",
+    "methodology": "DEPTH",
+    "mode": "standard",
+    "framework": "CRAFT+TIDD-EC",
+    "ricce": {
+      "name": "RICCE",
+      "structure": [
+        "Role",
+        "Objective",
+        "Context",
+        "Method",
+        "Success Criteria",
+        "Stop Conditions"
+      ]
+    },
+    "perspectives": [
+      "prompt_engineering",
+      "ai_interpretation",
+      "user_clarity",
+      "framework_fit",
+      "token_efficiency"
+    ],
+    "clearScore": 44,
+    "clearBreakdown": {
+      "correctness": 9,
+      "logic": 9,
+      "expression": 13,
+      "arrangement": 9,
+      "reusability": 4
+    },
+    "maxChars": 4000,
+    "charCount": 1319
+  },
+  "status": "paused",
+  "tokenBudget": null,
+  "tokensUsed": 0,
+  "timeUsedSeconds": 0,
+  "createdAtMs": 1783054942435,
+  "updatedAtMs": 1783055095282,
+  "createdAt": "2026-07-03T05:02:22.435Z",
+  "updatedAt": "2026-07-03T05:04:55.282Z",
+  "continuationSuppressed": true,
+  "autoTurnsUsed": 0,
+  "maxAutoTurns": 8,
+  "startedAtMs": 1783054942435,
+  "lastActivityAtMs": 1783055095282,
+  "lastActivityMessageID": "evt_f265d95b3001oIj0c60hf35M0a",
+  "lastContinuationAtMs": 0,
+  "lastContinuationMessageId": null,
+  "lastContinuationError": null,
+  "continuationSuppressedReason": "Blocked: confirmed root-cause file is .opencode/skills/system-spec-kit/mcp_server/matrix_runners/run-matrix.ts, which is outside the user-approved write glob .opencode/skills/system-spec-kit/scripts/**/*.{ts,js,sh}.",
+  "blockedByPrompt": false,
+  "iterations": 0,
+  "lastCheckAtMs": 0,
+  "lastVerifierVerdict": "not_evaluated",
+  "lastVerifierReason": null,
+  "lastVerifierConfidence": null,
+  "lastEvidence": null,
+  "completionSource": null,
+  "verifierRunID": null,
+  "lastAccountedMessageID": null,
+  "usageSource": "unavailable"
+}

@@ -29,6 +29,7 @@ Use this folder when code needs to classify memories, decay attention, spread ac
 | `temporal-contiguity.ts` | Time-window neighbors, boosted search rows, and timelines. |
 | `pressure-monitor.ts` | Token pressure checks for context-window policy. |
 | `rollout-policy.ts` | Feature-flag rollout helpers. |
+| `adaptive-ranking.ts` | Shadow-mode adaptive ranking with bounded feedback loops, signal aggregation, threshold tuning, and promotion/rollback gates. |
 
 ## 3. FLOW
 

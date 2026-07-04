@@ -48,6 +48,7 @@ In Gate E, these graph signals support retrieval after `/speckit:resume` restore
 
 ```
 graph/
+  bfs-traversal.ts            # Reusable hop-capped weighted BFS walk utility (distinct from community-detection's internal BFS)
   community-detection.ts      # BFS + Louvain community detection, persistence, co-retrieval boost
   community-summaries.ts      # Template-based community summary generation
   community-storage.ts        # Community persistence and retrieval
@@ -65,6 +66,7 @@ graph/
 
 | File | Purpose | Flag |
 |------|---------|------|
+| `bfs-traversal.ts` | Reusable hop-capped weighted BFS graph traversal (seeds, per-node min-hop and max walk score); an extracted utility distinct from community-detection's internal component BFS | Always on |
 | `community-detection.ts` | BFS connected-component labelling, Louvain escalation, community co-member injection | `SPECKIT_COMMUNITY_DETECTION` |
 | `community-summaries.ts` | Generates text summaries per community from member titles/topics, stores in `community_summaries` table | `SPECKIT_COMMUNITY_SUMMARIES` |
 | `community-storage.ts` | Stores and retrieves community data (assignments, membership) | `SPECKIT_COMMUNITY_SUMMARIES` |

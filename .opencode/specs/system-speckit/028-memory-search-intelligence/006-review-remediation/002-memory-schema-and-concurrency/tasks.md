@@ -9,10 +9,10 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/028-memory-search-intelligence/006-review-remediation/002-memory-schema-and-concurrency"
-    last_updated_at: "2026-06-19T00:00:00Z"
+    last_updated_at: "2026-07-04T14:10:00Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "Created PENDING memory-schema-and-concurrency tasks"
-    next_safe_action: "Confirm the cited facts"
+    next_safe_action: "Absorbed + closed by 016/008+009; no further work"
     blockers: []
     key_files:
       - "tasks.md"
@@ -20,7 +20,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-06-19-tasks-006-002-memory-schema-and-concurrency"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -48,10 +48,10 @@ _memory:
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 Confirm `rule_version` hashing at `content-id.ts:67` and live default at `causal-edges.ts:125`.
-- [ ] T002 Confirm the `BEGIN IMMEDIATE` boundary and embedding call at `consolidation.ts:684,701`.
-- [ ] T003 Confirm the pre-tx snapshot and in-tx apply at `memory-retention-sweep.ts:539-542,612`.
-- [ ] T004 Capture the test baseline for the affected suites.
+- [x] T001 Confirm `rule_version` hashing at `content-id.ts:67` and live default at `causal-edges.ts:125`.
+- [x] T002 Confirm the `BEGIN IMMEDIATE` boundary and embedding call at `consolidation.ts:684,701`.
+- [x] T003 Confirm the pre-tx snapshot and in-tx apply at `memory-retention-sweep.ts:539-542,612`.
+- [x] T004 Capture the test baseline for the affected suites.
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -81,10 +81,10 @@ _memory:
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks marked `[x]`.
-- [ ] No `[B]` blocked tasks remaining.
-- [ ] Migration-safety and concurrency test evidence is recorded.
-- [ ] Strict validation exits 0.
+- [x] All tasks marked `[x]`.
+- [x] No `[B]` blocked tasks remaining.
+- [x] Migration-safety and concurrency test evidence is recorded.
+- [x] Strict validation exits 0.
 <!-- /ANCHOR:completion -->
 
 ---
