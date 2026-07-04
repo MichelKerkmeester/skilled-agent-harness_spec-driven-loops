@@ -32,12 +32,12 @@ Severity tiers exist so reviewers and authors agree on what blocks "done". A rul
 - Before claiming Phase 1 (Implementation) complete — the Phase 1.5 Code Quality Gate.
 - When authoring or reviewing surface quality checklists.
 - When deciding whether a finding blocks merge or can ship as a follow-up.
-- When `sk-code-review` produces severity-ranked findings — the contract here aligns those tiers.
+- When `sk-code`'s code-review mode produces severity-ranked findings — the contract here aligns those tiers.
 
 ### Key Sources
 
 - Surface checklists: `assets/webflow/checklists/code_quality_checklist.md` and `assets/opencode/checklists/`.
-- Findings-first review baseline: `sk-code-review` skill (severity model and review output contract).
+- Findings-first review baseline: `sk-code`'s code-review mode (severity model and review output contract).
 
 ### Design Restraint Ladder (pre-write)
 
@@ -144,11 +144,11 @@ When you reach Phase 1.5 Code Quality Gate:
 
 ---
 
-## 8. RELATIONSHIP TO `sk-code-review`
+## 8. RELATIONSHIP TO `sk-code`'s CODE-REVIEW MODE
 
-This skill (`sk-code`) produces **surface compliance evidence** at Phase 1.5. The formal **findings-first review output** (severity-ranked findings list, security/correctness/test minimums, risk reporting) belongs to `sk-code-review`.
+This skill (`sk-code`) produces **surface compliance evidence** at Phase 1.5. The formal **findings-first review output** (severity-ranked findings list, security/correctness/test minimums, risk reporting) belongs to `sk-code`'s code-review mode.
 
-Use `sk-code-review` when:
+Use `sk-code`'s code-review mode when:
 
 - A PR needs a structured review report.
 - Stakeholders need a severity-ranked findings list.
@@ -159,7 +159,7 @@ Use this skill (`sk-code`) when:
 - You are the author validating your own implementation against the quality bar before claiming done.
 - You need surface-specific quality rules applied during development.
 
-The two skills compose: `sk-code` surface evidence + `sk-code-review` baseline = full quality story.
+The two facets compose: `sk-code` surface evidence + its code-review mode baseline = full quality story.
 
 ---
 

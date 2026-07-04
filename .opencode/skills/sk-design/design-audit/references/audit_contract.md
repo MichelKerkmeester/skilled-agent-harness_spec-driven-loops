@@ -13,7 +13,7 @@ version: 1.0.0.0
 
 # Audit Contract
 
-This is the output contract for `audit`. It is aligned in spirit with `sk-code-review`: findings first, evidence-backed, severity ordered, and actionable.
+This is the output contract for `audit`. It is aligned in spirit with `sk-code`'s code-review mode: findings first, evidence-backed, severity ordered, and actionable.
 
 ---
 

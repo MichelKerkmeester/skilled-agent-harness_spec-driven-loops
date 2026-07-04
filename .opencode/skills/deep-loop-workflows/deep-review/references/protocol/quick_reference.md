@@ -57,7 +57,7 @@ Use this quick reference when you need the command shape, artifact names, conver
 | Scenario | Use |
 |----------|-----|
 | Multi-pass code quality audit | `/deep:review` |
-| Simple single-pass code review | `sk-code-review` |
+| Simple single-pass code review | `sk-code` (code-review mode) |
 | Pre-release readiness check | `/deep:review:auto "spec folder"` |
 | Spec/implementation alignment check | `/deep:review:auto "skill sk-name"` |
 | Deep technical investigation | `/deep:research` (different skill) |
@@ -221,7 +221,7 @@ Each @deep-review iteration:
 | Resource | Purpose |
 |----------|---------|
 | `deep-research` | Investigation/research (not review) |
-| `sk-code-review` | Single-pass code review |
+| `sk-code` (code-review mode) | Single-pass code review |
 | `@deep-review` | Single review iteration agent (LEAF) |
 | `@context` | Single-pass codebase search |
 | `generate-context.js` | Memory save script |

@@ -41,10 +41,10 @@ Validate code against style standards before claiming implementation is complete
 
 ### Review Baseline Handoff
 
-For formal findings-first review output, run `sk-code-review` as the baseline and use this checklist as the web overlay.
+For formal findings-first review output, run `sk-code`'s code-review mode as the baseline and use this checklist as the web overlay.
 
-- Severity model and review output contract: `sk-code-review/references/quick_reference.md`
-- Baseline security/quality/test review checks: `sk-code-review` references
+- Severity model and review output contract: `sk-code/code-review/references/quick_reference.md`
+- Baseline security/quality/test review checks: `sk-code`'s code-review mode references
 - This checklist: web-specific JavaScript/CSS standards evidence
 
 ### Source Standards (per-language tree)

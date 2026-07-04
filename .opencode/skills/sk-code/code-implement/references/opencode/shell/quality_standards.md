@@ -475,14 +475,14 @@ fi
 
 ---
 
-## 9. REVIEW HANDOFF (SK-CODE--REVIEW BASELINE)
+## 9. REVIEW HANDOFF (SK-CODE CODE-REVIEW MODE BASELINE)
 
-Use `sk-code-review` for formal findings-first review output and severity handling. Keep this file focused on shell technical standards.
+Use `sk-code`'s code-review mode for formal findings-first review output and severity handling. Keep this file focused on shell technical standards.
 
 For review runs:
 
-1. Use `sk-code-review/references/quick_reference.md` for severity model and output contract.
-2. Use `sk-code-review/assets/code_quality_checklist.md`, `security_checklist.md`, and `test_quality_checklist.md` for baseline risk checks.
+1. Use `sk-code/code-review/references/quick_reference.md` for severity model and output contract.
+2. Use `sk-code/code-review/assets/code_quality_checklist.md`, `security_checklist.md`, and `test_quality_checklist.md` for baseline risk checks.
 3. Cite this shell standards file as the overlay source for shell-specific findings.
 
 ---

@@ -90,7 +90,7 @@ Traversal uses BFS with `maxDepth=2` and `maxBreadth=4`, decaying signal by `1/(
 
 The explicit author lane uses curated `TOKEN_BOOSTS` and `PHRASE_BOOSTS` mappings for high-confidence routing, plus pattern-based disambiguation rules. Token boosts map single tokens to skill scores (e.g., `git` to sk-git at 1.0, `readme` to sk-doc at 0.95) defined in `mcp_server/lib/scorer/lanes/explicit.ts:8-90`.
 
-Phrase boosts handle multi-word patterns (e.g., `deep research` to deep-research at 1.3, `chrome devtools` to mcp-chrome-devtools at 1.0) defined in `mcp_server/lib/scorer/lanes/explicit.ts:92-186`. Review-plus-write disambiguation applies +3.0 to sk-code and -2.0 to sk-code-review when both `review` and write verbs appear together (`mcp_server/lib/scorer/lanes/explicit.ts:230-245`).
+Phrase boosts handle multi-word patterns (e.g., `deep research` to deep-research at 1.3, `chrome devtools` to mcp-chrome-devtools at 1.0) defined in `mcp_server/lib/scorer/lanes/explicit.ts:92-186`. Review-plus-write disambiguation applies +3.0 to sk-code when both `review` and write verbs appear together, anchoring the explicit lane on the code hub so its router selects the implement mode rather than the code-review mode (`mcp_server/lib/scorer/lanes/explicit.ts:295-303`).
 
 ---
 

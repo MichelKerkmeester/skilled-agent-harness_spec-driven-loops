@@ -260,7 +260,7 @@ Before claiming "done" or "complete" on **JavaScript or CSS** implementation:
 9. **Document** P2 deferrals with reasons
 10. **Only then** claim completion
 
-For formal findings-first review output, run `sk-code-review` baseline and use this workflow as web overlay evidence.
+For formal findings-first review output, run `sk-code`'s code-review mode as baseline and use this workflow as web overlay evidence.
 
 ### Language-Specific Gate Selection
 
@@ -291,7 +291,7 @@ If you cannot resolve a violation:
 1. Document the specific violation
 2. Explain why it cannot be fixed
 3. Ask for guidance or approval to deviate
-4. Route unresolved findings through `sk-code-review` for severity-ranked reporting
+4. Route unresolved findings through `sk-code`'s code-review mode for severity-ranked reporting
 
 ---
 

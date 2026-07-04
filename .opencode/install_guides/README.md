@@ -890,7 +890,6 @@ Skills are automatically discovered from:
 | cli-opencode            | v1.2.0     | OpenCode CLI orchestration for code and research |
 | cli-claude-code      | v1.0.0     | Claude Code CLI orchestration                        |
 | sk-code  | v1.1.0.0   | Stack-aware code workflow + quality standard (customizable per project) |
-| sk-code-review      | v1.2.0.0   | Findings-first baseline code review standards        |
 | sk-doc               | v1.1.2.0   | Unified markdown and skill management                |
 | sk-git               | v1.1.0.0   | Git workflow orchestrator                            |
 | sk-prompt   | v1.2.0.0   | Prompt engineering frameworks and scoring            |
@@ -1202,7 +1201,7 @@ cat opencode.json | jq '.mcp | keys'  # MCP servers configured
 
 After installing OpenCode components, customize the AI agent configuration for your project.
 
-> **🎯 This is a public repo template.** Of the shipped skills, `sk-code` is the one that carries stack-specific patterns — start there when adapting to your project. The other shipped skills (`sk-doc`, `sk-git`, `sk-code-review`, `system-spec-kit`, the deep-research/deep-review loops, the `cli-*` orchestrators) are codebase-agnostic out of the box and work for any project regardless of frontend stack, animation library, CMS, or backend language. Many teams will also add their own skills on top of the shipped set — that's expected. See §15.5 below for the customization map.
+> **🎯 This is a public repo template.** Of the shipped skills, `sk-code` is the one that carries stack-specific patterns — start there when adapting to your project. The other shipped skills (`sk-doc`, `sk-git`, `system-spec-kit`, the deep-research/deep-review loops, the `cli-*` orchestrators) are codebase-agnostic out of the box and work for any project regardless of frontend stack, animation library, CMS, or backend language. Many teams will also add their own skills on top of the shipped set — that's expected. See §15.5 below for the customization map.
 
 ### 15.1 AGENTS.md Customization
 
@@ -1278,7 +1277,7 @@ This template ships with `sk-code` configured for Webflow + OpenCode + cross-sta
 | Skill / Surface | Out-of-the-box | Notes |
 |---|---|---|
 | **`sk-code`** | 🎨 Stack-specific (the customization point) | Surface-aware code-quality patterns. Replace shipped surfaces with your own (e.g., Next.js + Tailwind + Postgres, React Native + Reanimated, Go + sqlc). |
-| Every other shipped skill | ✅ Codebase-agnostic | `sk-doc`, `sk-git`, `sk-code-review`, `system-spec-kit`, `mcp-code-mode`, `deep-research`, `deep-review`, `sk-prompt`, `deep-improvement`, `cli-*`, `mcp-chrome-devtools` all work for any project unmodified. |
+| Every other shipped skill | ✅ Codebase-agnostic | `sk-doc`, `sk-git`, `system-spec-kit`, `mcp-code-mode`, `deep-research`, `deep-review`, `sk-prompt`, `deep-improvement`, `cli-*`, `mcp-chrome-devtools` all work for any project unmodified. |
 
 **What "adapting `sk-code`" looks like:**
 1. Replace `references/{webflow,opencode,motion_dev}/` with your stack's references (e.g., `references/nextjs/`, `references/postgres/`).
@@ -1559,7 +1558,7 @@ bash .opencode/commands/doctor/scripts/mcp-doctor.sh --fix
 | Category           | Count | Items                                                                                                                    |
 | ------------------ | ----- | ------------------------------------------------------------------------------------------------------------------------ |
 | Native MCP Servers | 5     | code_mode, mk-spec-memory, mk_skill_advisor, mk_code_index, sequential_thinking                                          |
-| Skills             | 14    | cli-claude-code, cli-opencode, mcp-chrome-devtools, mcp-code-mode, sk-code, sk-code-review, deep-research, deep-review, sk-doc, sk-git, deep-improvement, sk-prompt, system-spec-kit |
+| Skills             | 14    | cli-claude-code, cli-opencode, mcp-chrome-devtools, mcp-code-mode, sk-code, deep-research, deep-review, sk-doc, sk-git, deep-improvement, sk-prompt, system-spec-kit |
 | Commands           | 22    | /create:* (7), /memory:* (6), /speckit:* (8), agent_router (1)                                                         |
 | CLI Tools          | 1     | Chrome DevTools (bdg)                                                                                                    |
 | Plugins            | 2     | Antigravity Auth, OpenAI Codex Auth                                                                                      |

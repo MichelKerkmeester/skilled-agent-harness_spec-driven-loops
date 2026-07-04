@@ -356,15 +356,15 @@ interface SearchConfig {
 
 ## 5. CHECKLIST TEMPLATE
 
-For formal findings-first review output, use `sk-code-review` as the baseline and treat this file as TypeScript surface evidence.
+For formal findings-first review output, use `sk-code`'s code-review mode as the baseline and treat this file as TypeScript surface evidence.
 
 ```markdown
 ## TypeScript Standards Surface Evidence
 
 - [ ] TypeScript standards validated in `typescript_checklist.md`
 - [ ] Universal standards validated in `universal_checklist.md`
-- [ ] Findings severity/order produced with `sk-code-review/references/quick_reference.md`
-- [ ] Baseline security, quality, and test checks sourced from `sk-code-review`
+- [ ] Findings severity/order produced with `sk-code/code-review/references/quick_reference.md`
+- [ ] Baseline security, quality, and test checks sourced from `sk-code`'s code-review mode
 - [ ] Surface-specific deviations documented with file:line evidence
 ```
 

@@ -8,7 +8,7 @@ metadata:
   family: sk-code
 ---
 
-<!-- Keywords: sk-code-review, legacy-alias-sk-code-review, code-review, review, findings-first, pull-request, security-review, quality-gate, stack-agnostic, baseline-surface, sk-code -->
+<!-- Keywords: code-review, review, findings-first, pull-request, security-review, quality-gate, stack-agnostic, baseline-surface, sk-code -->
 
 # code-review Mode - Stack-Agnostic Findings-First Review
 
@@ -469,7 +469,7 @@ signature         = sha256(commit_subject + "\u001f" + diff_content_hash)
 Where `commit_subject` is the first line of `git log <base-ref>...HEAD --format=%s` (latest commit subject).
 
 **Cache storage:**
-- Path: `.opencode/.sk-code-review-cache/<repo-ref>.jsonl`
+- Path: `.opencode/.code-review-cache/<repo-ref>.jsonl`
 - `<repo-ref>` is computed as `sha256(git remote get-url origin).slice(0, 12)`
 - Each line is a JSON object: `{"signature": "<sha256-hex>", "timestamp": "<ISO-8601>", "prev_sha": "<commit-sha>"}`
 - Retention: keep last **100 entries** per repo-ref, prune older entries on write

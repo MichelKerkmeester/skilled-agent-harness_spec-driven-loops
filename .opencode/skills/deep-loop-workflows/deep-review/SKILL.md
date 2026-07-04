@@ -34,7 +34,7 @@ Use this skill when:
 
 ### When NOT to Use
 
-- Simple single-pass code review (use `sk-code-review` instead)
+- Simple single-pass code review (use `sk-code`'s code-review mode instead)
 - Known issues that just need fixing (go directly to implementation)
 - Implementation tasks (use `sk-code` or `/speckit:implement`)
 - Quick one-file checks (use direct Grep/Read)
@@ -431,7 +431,7 @@ Scripts: `scripts/reduce-state.cjs`, `scripts/runtime-capabilities.cjs`.
 
 Detailed contracts: `references/protocol/loop_protocol.md` (executor invariants, failure modes, config surface) and `references/state/state_reducer_registry.md` (two-tier content-hash dedup).
 
-Related skills: `deep-research` for investigation loops, `sk-code-review` for single-pass review doctrine, and `system-spec-kit` for command-owned state and continuity saves.
+Related skills: `deep-research` for investigation loops, `sk-code`'s code-review mode for single-pass review doctrine, and `system-spec-kit` for command-owned state and continuity saves.
 
 ---
 

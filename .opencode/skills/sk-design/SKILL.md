@@ -109,7 +109,7 @@ The four doc-guidance modes (interface, foundations, motion, audit) consume the 
 - Shared reference base: `shared/anti_slop_principles.md`, `shared/cognitive_laws.md`, `shared/design_token_vocabulary.md` (cited by every doc-guidance mode).
 - Mode packets: `design-interface/SKILL.md`, `design-foundations/SKILL.md`, `design-motion/SKILL.md`, `design-audit/SKILL.md`, `design-md-generator/SKILL.md` (per-mode detail).
 - Registry: `mode-registry.json` (the routing contract).
-- Implementation handoff: `sk-code` consumes the design output; `sk-code-review` can audit it after build.
+- Implementation handoff: `sk-code` consumes the design output; its code-review mode can audit it after build.
 
 ---
 
@@ -134,7 +134,7 @@ The four doc-guidance modes (interface, foundations, motion, audit) consume the 
 ### Transports and Consumers
 - `mcp-figma` and `mcp-open-design` are transports. Use them after the design mode is chosen.
 - `sk-code` consumes design output and implements it in the detected code surface.
-- `sk-code-review` can audit implementation quality after design and build work converge.
+- `sk-code`'s code-review mode can audit implementation quality after design and build work converge.
 
 ---
 

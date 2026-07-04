@@ -189,7 +189,7 @@ This creates a spec folder, runs research, builds a plan and begins implementati
 
 ### Adapting to Your Stack
 
-This repo ships as a public template. Of the shipped skills, `sk-code` carries the stack-specific patterns (frontend framework, animation library, CMS, backend language). Start there when forking. The other shipped skills (`system-spec-kit`, `sk-doc`, `sk-git`, `sk-code-review`, the `deep-loop-workflows` loops, `deep-loop-runtime`, the `cli-*` orchestrators) are codebase-agnostic out of the box and work for any project without modification. Most teams will also add their own skills on top. Drop them into `.opencode/skills/<your-skill>/` and they'll be picked up automatically.
+This repo ships as a public template. Of the shipped skills, `sk-code` carries the stack-specific patterns (frontend framework, animation library, CMS, backend language). Start there when forking. The other shipped skills (`system-spec-kit`, `sk-doc`, `sk-git`, the `deep-loop-workflows` loops, `deep-loop-runtime`, the `cli-*` orchestrators) are codebase-agnostic out of the box and work for any project without modification. Most teams will also add their own skills on top. Drop them into `.opencode/skills/<your-skill>/` and they'll be picked up automatically.
 
 See [§4 Customizing for Your Stack](#customizing-for-your-stack) for the full customization map and step-by-step adaptation guide.
 
@@ -588,7 +588,7 @@ Per-call args override env vars when provided. Env vars apply only for fields om
 
 ```ts
 code_graph_scan({
-  includeSkills: ['sk-code-review', 'sk-doc'], // granular: only these skills
+  includeSkills: ['sk-code', 'sk-doc'], // granular: only these skills
   includeAgents: true,                         // all .opencode/agents/**
 })
 ```
@@ -898,11 +898,7 @@ For details, see the [Deep Loop Runtime README](.opencode/skills/deep-loop-runti
 - **Write code that fits the stack you're in.** Loads surface-aware patterns, checklists and verification recipes per surface, and detects the active stack from paths and library markers. Unsupported stacks (Go, React/Next.js, generic Node.js, React Native, Swift) trigger a quick disambiguation question
 - **Two ready surfaces:** WEBFLOW (Webflow and vanilla HTML/CSS/JS animation, CDN deploy, Lighthouse/TBT/INP targets) and OPENCODE (`.opencode/` system code across JS/TS/Python/Shell/JSON, MCP servers, agents, commands, skills)
 - **Verifies before it claims done:** three mandatory phases run implementation, then testing and debugging, then verification
-
-**sk-code-review**
-- **Catch problems before they ship.** A stack-agnostic review baseline that reuses `sk-code` surface evidence where it applies
-- **Safety floor never drops:** the security, correctness, SOLID and threat-model checklists always run first, and the security and correctness minimums are never relaxed by surface evidence
-- **Findings come ranked** P0/P1/P2
+- **Reviews before you ship (`code-review` mode).** A stack-agnostic findings-first review baseline that reuses the surface evidence above; the security, correctness, SOLID and threat-model checklists always run first and their minimums are never relaxed, and findings come ranked P0/P1/P2
 
 **sk-git**
 - **One clean path from change to PR.** Orchestrates three sub-skills so branches and commits stay tidy
@@ -1004,7 +1000,7 @@ These skills let you run **cross-CLI agent teams from supported runtimes**. Clau
 - **Returns a Context Package** that combines memory findings with codebase evidence, drawing on the 5-channel memory system and Code Graph lookups. Read-only
 
 **Review**
-- **Guards code quality, never edits.** Strict read-only, loading the `sk-code-review` baseline first and then layering `sk-code` surface standards
+- **Guards code quality, never edits.** Strict read-only, loading `sk-code`'s `code-review` mode (the findings-first baseline) and layering its router-selected surface standards
 - **Safety floor holds:** security and correctness minimums are never relaxed. Output is findings-first severity with quality scoring
 
 **Debug**
@@ -1306,10 +1302,9 @@ This repo ships as a **public template**. Of the skills it ships with, only one 
 
 | Skill / Surface                                     | Out-of-the-box                             | Notes                                                                                                                                                                                                    |
 | --------------------------------------------------- | ------------------------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **`sk-code`**                                       | 🎨 Stack-specific (the customization point) | Surface-aware code-quality patterns. Replace the shipped Webflow + OpenCode + Motion.dev surfaces with your own (e.g., Next.js + Tailwind + Postgres or React Native + Reanimated or Go + sqlc, etc.).   |
+| **`sk-code`**                                       | 🎨 Stack-specific (the customization point) | Surface-aware code-quality patterns. Replace the shipped Webflow + OpenCode + Motion.dev surfaces with your own (e.g., Next.js + Tailwind + Postgres or React Native + Reanimated or Go + sqlc, etc.). Includes the findings-first `code-review` mode that reuses these surfaces as review evidence.   |
 | `sk-doc`                                            | ✅ Codebase-agnostic                        | Markdown quality + component creation. Works for any project.                                                                                                                                            |
 | `sk-git`                                            | ✅ Codebase-agnostic                        | Worktree + commit + PR workflow. Works for any project.                                                                                                                                                  |
-| `sk-code-review`                                    | ✅ Codebase-agnostic baseline               | Pulls surface evidence FROM `sk-code`. Customize `sk-code` and the review baseline auto-adapts.                                                                                                          |
 | `sk-design (md-generator mode)`                            | ✅ Codebase-agnostic                        | Extracts a live website's real CSS into a v3 Style Reference `DESIGN.md` (named tokens, Type Scale, Components, Surfaces, Quick Start CSS/Tailwind) via an embedded extract→write→validate pipeline (every value verbatim, script-validated against `tokens.json`). The capture engine of the `sk-design-*` family; pairs with `sk-design`. Works for any project. |
 | `sk-design`                               | ✅ Codebase-agnostic                        | Visual-design direction (palette, typography, layout, motion) that avoids templated AI defaults; grounds against real design systems (`mcp-open-design`) and shipped-UI references (Mobbin/Refero via Code Mode). Pairs with `sk-code` for the build. Works for any project. |
 | `system-spec-kit`                                   | ✅ Codebase-agnostic                        | Spec folder workflow + validator + memory. Works for any project.                                                                                                                                        |
@@ -1331,7 +1326,7 @@ This repo ships as a **public template**. Of the skills it ships with, only one 
 - Update the `RESOURCE_MAP` intent → file paths to point at your renamed references/assets.
 - Bump `sk-code` version + ship a changelog. Use the `assets/opencode/checklists/skill_authoring.md` checklist as your guide.
 
-The other shipped skills will continue working unchanged: `sk-doc` will still validate your markdown, `sk-git` will still manage your branches, `system-spec-kit` will still spec your work and `sk-code-review` will surface YOUR `sk-code` evidence at review time.
+The other shipped skills will continue working unchanged: `sk-doc` will still validate your markdown, `sk-git` will still manage your branches, `system-spec-kit` will still spec your work. `sk-code`'s `code-review` mode auto-adapts to your customized surfaces at review time.
 
 &nbsp;
 ### Core Configuration Files

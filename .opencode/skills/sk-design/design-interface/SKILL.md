@@ -265,7 +265,7 @@ Manual testing scenarios live in `manual_testing_playbook/manual_testing_playboo
 ### Related Skills
 
 - **`sk-code`** owns implementation. This skill decides the look, and sk-code builds it to the detected web surface's standards and verifies it.
-- **`sk-code-review`** can audit the built UI against the standards sk-code enforces.
+- **`sk-code`'s code-review mode** can audit the built UI against the standards sk-code enforces.
 - **`mcp-chrome-devtools`** drives a real browser to screenshot the build for the self-critique step.
 - **`mcp-figma`** is the sibling transport to Figma Desktop. This skill's judgment applies whenever a Figma read or export feeds a design decision.
 - **Mobbin and Refero** (via Code Mode, `mobbin.*` / `refero.*`) are optional real-world UI reference libraries for naming the category's real-world default so a design can deviate from it deliberately. Read live, one reference, never a chooser, never copied. `references/design-grounding/design_references_mcp.md` owns the discipline.

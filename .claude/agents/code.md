@@ -84,7 +84,7 @@ If any required handoff field is missing, empty, or unsupported by the native de
 | Layer | Skill | When | Precedence |
 | --- | --- | --- | --- |
 | **Router** | `sk-code` | Always | Smart detection, intent routing, router-selected standards, security/correctness minimums, verification commands |
-| **Excluded** | `sk-code-review` | Always excluded inside @code | Review-side only; @orchestrate dispatches @review separately |
+| **Excluded** | `sk-code`'s code-review mode | Always excluded inside @code | Review-side only; @orchestrate dispatches @review separately |
 | **Fallback** | none | Route cannot be determined | Return `UNKNOWN_ROUTE`; do not silently pick a default route |
 
 **Precedence rules:**

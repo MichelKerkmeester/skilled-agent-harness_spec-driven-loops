@@ -176,7 +176,7 @@ No. A valid `SKILL.md` frontmatter and `graph-metadata.json` are enough. The adv
 
 **Q: Can I use more than one skill in the same task?**
 
-Yes. The advisor returns a ranked list. A review task might load `sk-code-review` as the primary skill and `sk-code` as a secondary when findings need surface-specific evidence. The calling agent decides which sections apply.
+Yes. The advisor returns a ranked list. A review task might load `sk-code`'s code-review mode as the primary standard and its router-selected surface evidence as a secondary layer when findings need surface-specific detail. The calling agent decides which sections apply.
 
 **Q: What is the difference between skill-local scripts and the shared advisor scripts?**
 

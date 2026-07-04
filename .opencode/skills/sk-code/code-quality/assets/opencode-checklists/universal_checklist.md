@@ -304,15 +304,15 @@ python -m json.tool config.json
 
 ## 6. CHECKLIST TEMPLATE
 
-For formal findings-first review output, use `sk-code-review` as the baseline and treat this file as cross-language surface evidence.
+For formal findings-first review output, use `sk-code`'s code-review mode as the baseline and treat this file as cross-language surface evidence.
 
 ```markdown
 ## Cross-Language Standards Surface Evidence
 
 - [ ] Universal standards validated in `universal_checklist.md`
 - [ ] Language checklist validated for changed files
-- [ ] Findings severity/order produced with `sk-code-review/references/quick_reference.md`
-- [ ] Baseline risk checks sourced from `sk-code-review` references
+- [ ] Findings severity/order produced with `sk-code/code-review/references/quick_reference.md`
+- [ ] Baseline risk checks sourced from `sk-code`'s code-review mode references
 - [ ] Surface-specific deviations documented with file:line evidence
 ```
 

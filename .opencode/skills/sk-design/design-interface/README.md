@@ -116,7 +116,7 @@ Reach for it whenever a task has a visual surface and the look should feel inten
 | Skill | Relationship |
 |---|---|
 | `sk-code` | Owns implementation. This skill sets the look, and sk-code builds it to the detected web surface's standards and verifies it. |
-| `sk-code-review` | Audits the built UI against the standards sk-code enforces. |
+| `sk-code` (code-review mode) | Audits the built UI against the standards sk-code enforces. |
 | `mcp-chrome-devtools` | Drives a real browser to screenshot the build for the self-critique step. |
 | `mcp-code-mode` | Transport for the optional Mobbin/Refero real-world reference lookups (`mobbin.*` / `refero.*`). Co-load it before any lookup; this skill does not call Code Mode directly. |
 

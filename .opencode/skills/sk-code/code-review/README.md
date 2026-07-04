@@ -121,7 +121,7 @@ All findings publish in one message with a next-action prompt. Findings never dr
 
 ### PR-State Efficiency
 
-Two optional gates reduce redundant work. The content-hash dedup gate skips a re-review when the diff has not changed since the last one, writing a signature into `.opencode/.sk-code-review-cache/`. The minimum-evidence gate skips full review for trivially small diffs when enabled through `SK_CODE_REVIEW_MIN_CHANGED_LINES`, but it never skips diffs that touch auth, config, persistence, dependencies, sandboxing or public-facing response paths. Both gates are opt-in and never change the baseline findings. The optional `SK_CODE_REVIEW_DEPTH=lite|full|ultra` alias names and persists this routing for a session: `ultra` biases toward the deep-dive reference set, `lite` maps to the conservative skip, and neither relaxes the security and correctness floor.
+Two optional gates reduce redundant work. The content-hash dedup gate skips a re-review when the diff has not changed since the last one, writing a signature into `.opencode/.code-review-cache/`. The minimum-evidence gate skips full review for trivially small diffs when enabled through `SK_CODE_REVIEW_MIN_CHANGED_LINES`, but it never skips diffs that touch auth, config, persistence, dependencies, sandboxing or public-facing response paths. Both gates are opt-in and never change the baseline findings. The optional `SK_CODE_REVIEW_DEPTH=lite|full|ultra` alias names and persists this routing for a session: `ultra` biases toward the deep-dive reference set, `lite` maps to the conservative skip, and neither relaxes the security and correctness floor.
 
 ---
 

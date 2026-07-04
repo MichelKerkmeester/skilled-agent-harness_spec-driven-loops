@@ -507,7 +507,6 @@ Discovery: search_tools(), list_tools(), or read .utcp_config.json
 | `mcp-chrome-devtools`  | v1.0.7.0 | "screenshot", "bdg", "browser debug", "DOM"               | Chrome DevTools Protocol debugging               |
 | `mcp-code-mode`        | v1.0.7.0 | "Webflow", "external tool"                                | MCP orchestration for external tools             |
 | `sk-code`              | v2.0.0   | "implement", "debug", "verify", "opencode", "webflow"    | Webflow frontend and OpenCode system code router |
-| `sk-code-review`       | v1.2.0.0 | "review", "audit", "PR"                                   | Findings-first code review                       |
 | `deep-research`     | v1.6.2.0 | "deep research", "research loop", "convergence"           | Iterative research workflow                      |
 | `deep-review`       | v1.3.2.0 | "deep review", "review loop", "quality audit"             | Iterative review workflow                        |
 | `sk-doc`               | v1.3.0.0 | "skill", "markdown", "flowchart", "documentation"         | Unified markdown and skill management            |
@@ -1197,7 +1196,7 @@ Update AGENTS.md to reference only the commands that exist in your `.opencode/co
 
 | Category          | Count  | Items                                                                                                                       |
 | ----------------- | ------ | --------------------------------------------------------------------------------------------------------------------------- |
-| **Skills**        | 13     | mcp-chrome-devtools, mcp-code-mode, system-spec-kit, cli-opencode, cli-claude-code, sk-code, sk-code-review, deep-research, sk-doc, sk-git, sk-prompt |
+| **Skills**        | 13     | mcp-chrome-devtools, mcp-code-mode, system-spec-kit, cli-opencode, cli-claude-code, sk-code, deep-research, sk-doc, sk-git, sk-prompt |
 | **MCP Servers**   | 3      | sequential-thinking, mk-spec-memory, code-mode                                                                             |
 | **Commands**      | 22     | /create:* (7), /memory:* (6), /speckit:* (8), agent_router (1)                                                             |
 | **Gates + Rules** | 3 + 3  | Gate 1-3 (Understanding, Skill Routing, Spec Folder) + Behavioral Rules (Memory Context Loading, Memory Save Rule, Completion Verification) |

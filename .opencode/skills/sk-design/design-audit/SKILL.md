@@ -37,7 +37,7 @@ Skip this skill when:
 - The user wants a static token system, palette, typography, or layout plan. Use `foundations`.
 - The user wants to create motion choreography. Use `motion`.
 - The user wants implementation after findings are accepted. Hand off to `sk-code`.
-- The user asks for a code review outside design/UI concerns. Use `sk-code-review`.
+- The user asks for a code review outside design/UI concerns. Use `sk-code`'s code-review mode.
 
 ### Family Boundary
 
@@ -47,7 +47,7 @@ Pairs well with:
 - `interface` after a direction or build needs critique.
 - `foundations` when token/theming/layout findings need a system fix.
 - `motion` when motion-performance findings need choreography repair.
-- `sk-code-review` when the UI change also needs code correctness/security review.
+- `sk-code`'s code-review mode when the UI change also needs code correctness/security review.
 
 ---
 
@@ -109,7 +109,7 @@ DESIGN QA TASK
 | CONDITIONAL | Producing the audit report | `assets/audit_report_template.md` (fill-in 5-dimension score plus P0-P3 findings) |
 | CONDITIONAL | Citing the snippet-level accessibility fix | `assets/a11y_quick_fixes.md` (accessible names, keyboard, focus, semantics, forms, announcements, contrast, motion) |
 | CONDITIONAL | Routing accepted findings to sk-code | `../shared/sk_code_handoff.md` (backlog handoff card, routes only and applies nothing) |
-| ON_DEMAND | Code correctness beyond UI quality | `sk-code-review` plus `sk-code` surface evidence |
+| ON_DEMAND | Code correctness beyond UI quality | `sk-code` code-review mode (findings-first baseline + router-selected surface evidence) |
 
 ### Smart Router Pseudocode
 
@@ -287,7 +287,7 @@ When accepted findings move to implementation, emit the shared handoff envelope 
 
 ### Severity Model
 
-Use the same findings-first spirit as `sk-code-review`: concrete evidence, severity order, impact, and recommended fix.
+Use the same findings-first spirit as `sk-code`'s code-review mode: concrete evidence, severity order, impact, and recommended fix.
 
 | Severity | Meaning | Release effect |
 | --- | --- | --- |
@@ -390,7 +390,7 @@ Use, do not duplicate, the parent references for shared vocabulary:
 - `foundations` owns color, type, layout, responsive, and theming fixes.
 - `motion` owns motion choreography fixes.
 - `sk-code` implements accepted fixes.
-- `sk-code-review` handles broader code correctness, security, and test-quality review.
+- `sk-code`'s code-review mode handles broader code correctness, security, and test-quality review.
 
 ---
 

@@ -362,14 +362,14 @@ agent_availability:
     condition: "ONLY dispatch when Step 11 is actively executing and all prior steps are completed"
     agent_file: "[runtime_agent_path]/review.md"
     standards_contract:
-      baseline: "sk-code-review"
+      baseline: "sk-code"
       overlay: "Load sk-code router-selected evidence"
       precedence: "Router-selected style/process/build/test conventions override generic baseline guidance; baseline security/correctness minimums remain mandatory."
     fallback: "general"
     blocking: true
     on_block: "P0 items incomplete. Address before completion."
     dual_phase:
-      phase_a: { mode: 2, name: "Pre-Commit code review (sk-code-review baseline + sk-code router-selected evidence)", blocking: false }
+      phase_a: { mode: 2, name: "Pre-Commit code review (sk-code code-review mode: findings-first baseline + router-selected surface evidence)", blocking: false }
       phase_b: { mode: 4, name: "Gate Validation", blocking: true }
     not_for: "reviewing this workflow prompt, reviewing the command, or any pre-step validation"
   cross_skill_authoring_load:
@@ -379,7 +379,7 @@ agent_availability:
     resources:
       - "sk-code/assets/opencode/checklists/{matching_target}_authoring.md"
       - "sk-code/assets/opencode/recipes/spec_folder_write.md (when target is under .opencode/specs/)"
-    precedence: "Authoring-time guidance is consulted BEFORE writes; review-time overlay (sk-code-review baseline + sk-code router-selected evidence) runs at Step 11 and remains unchanged."
+    precedence: "Authoring-time guidance is consulted BEFORE writes; review-time overlay (sk-code code-review mode: findings-first baseline + router-selected surface evidence) runs at Step 11 and remains unchanged."
     not_for: "Webflow stack writes (separate path), motion_dev work (cross-stack), or non-.opencode/ targets."
   debug:
     available_at_step: 10

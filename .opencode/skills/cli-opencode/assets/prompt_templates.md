@@ -204,7 +204,7 @@ Instructions:
 
 Do's:
 - Apply the project's sk-code baseline.
-- Layer `sk-code` surface-specific evidence selected from codebase signals; add `sk-code-review` for findings-first review output.
+- Layer `sk-code` surface-specific evidence selected from codebase signals; add its code-review mode for findings-first review output.
 
 Don'ts:
 - Do not propose fixes — leave that for a follow-up dispatch.

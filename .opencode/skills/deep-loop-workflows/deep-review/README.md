@@ -38,7 +38,7 @@ A single-pass review reads the diff once and calls it done. Whichever dimension 
 
 `deep-review` runs an autonomous multi-iteration review loop through `/deep:review:auto`. Each iteration dispatches a fresh `@deep-review` LEAF agent that reads accumulated state from disk, audits one review dimension, writes findings to an iteration file and appends a JSONL delta record. A reducer updates the strategy, findings registry and dashboard after each pass. The loop stops when a composite convergence signal clears and nine legal-stop gates pass, producing a release-readiness verdict. PASS routes to changelog creation. FAIL and CONDITIONAL route to remediation planning.
 
-It does not investigate outward knowledge (`deep-research`), map inward code before planning (`deep-context`), compare competing plans (`deep-ai-council`) or run evaluator-first improvement lanes (`deep-improvement`). A single-pass review is `sk-code-review`. The five top-level deep-loop personas share the `deep-loop-runtime` for executors, state handling and coverage graphs.
+It does not investigate outward knowledge (`deep-research`), map inward code before planning (`deep-context`), compare competing plans (`deep-ai-council`) or run evaluator-first improvement lanes (`deep-improvement`). A single-pass review is `sk-code`'s code-review mode. The five top-level deep-loop personas share the `deep-loop-runtime` for executors, state handling and coverage graphs.
 
 ---
 
@@ -111,7 +111,7 @@ Every P0 finding runs through a Hunter, Skeptic, Referee re-read before it enter
 
 Run `deep-review` when you need a multi-pass audit where each dimension gets a dedicated agent and the stop condition is gated rather than guessed. Run it before a release to get a verdict you can ship against. Run it when you want the review to run unattended. Run it after `deep-context` mapped the codebase and `speckit:plan` produced a plan, to audit code against that plan. Run it when you want a convergence-gated review loop that stops when findings run dry instead of when you decide to call it.
 
-Skip it for a single-pass review, where `sk-code-review` is faster. Skip it for external investigation (`deep-research`), inward code mapping (`deep-context`) or strategy comparison (`deep-ai-council`).
+Skip it for a single-pass review, where `sk-code`'s code-review mode is faster. Skip it for external investigation (`deep-research`), inward code mapping (`deep-context`) or strategy comparison (`deep-ai-council`).
 
 ### Sibling Deep Loops
 
@@ -124,7 +124,7 @@ Skip it for a single-pass review, where `sk-code-review` is faster. Skip it for 
 | `deep-ai-council` | Compares competing plans with structured disagreement. Run it before implementation, then `deep-review` after. |
 | `deep-improvement` | Runs evaluator-first improvement across four lanes: agent improvement, model benchmark, skill benchmark and AI-system improvement. |
 
-`sk-code-review` handles a single-pass review with no convergence gating. `deep-review` is the multi-iteration loop. `system-spec-kit` owns the spec folder, validation and memory continuity.
+`sk-code`'s code-review mode handles a single-pass review with no convergence gating. `deep-review` is the multi-iteration loop. `system-spec-kit` owns the spec folder, validation and memory continuity.
 
 ---
 
@@ -144,9 +144,9 @@ Skip it for a single-pass review, where `sk-code-review` is faster. Skip it for 
 
 ## 7. FAQ
 
-**Q: How does deep-review differ from sk-code-review?**
+**Q: How does deep-review differ from sk-code's code-review mode?**
 
-A: `sk-code-review` is a single-pass review that reads the diff once and reports findings with no convergence gating. `deep-review` runs multiple iterations, each with a fresh agent auditing one dimension, and stops only when the convergence signal clears and every legal-stop gate passes. It produces a full findings registry, a dashboard and a release-readiness verdict. Use `sk-code-review` for a quick PR check. Use `deep-review` when you need a gated audit with a verdict.
+A: `sk-code`'s code-review mode is a single-pass review that reads the diff once and reports findings with no convergence gating. `deep-review` runs multiple iterations, each with a fresh agent auditing one dimension, and stops only when the convergence signal clears and every legal-stop gate passes. It produces a full findings registry, a dashboard and a release-readiness verdict. Use `sk-code`'s code-review mode for a quick PR check. Use `deep-review` when you need a gated audit with a verdict.
 
 **Q: What does FAIL mean and what do I do next?**
 

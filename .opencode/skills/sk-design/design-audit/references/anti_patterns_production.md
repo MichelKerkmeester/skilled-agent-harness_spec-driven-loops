@@ -124,4 +124,4 @@ Release-hardening detectors:
 | Choreography, micro-interactions, reduced motion | `motion` |
 | Overall direction or signature visual concept | `interface` |
 | Implementation changes | `sk-code` |
-| Broader correctness/security/test review | `sk-code-review` |
+| Broader correctness/security/test review | `sk-code` (code-review mode) |

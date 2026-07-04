@@ -64,7 +64,7 @@ Steps 1-4 and 9-10 run linear; step 5 (CWB CHECK) branches to parallel or sequen
 | 3        | Evidence / iterative investigation                                        | `@deep-research`       | LEAF | `system-spec-kit`, `deep-research`                                             | `"general"`   |
 | 4        | Multi-strategy planning and architecture synthesis                        | `@ai-council`         | LEAF | Multi-lens planning rubric (planning-only)                                        | `"general"`   |
 | 5        | `/create:*` documentation and component creation command execution        | `@markdown`        | LEAF | `sk-doc`, `system-spec-kit` when spec tracking applies                            | `"general"`   |
-| 6        | Code review / security                                                    | `@review`              | LEAF | `sk-code-review` baseline + `sk-code` router-selected evidence    | `"general"`   |
+| 6        | Code review / security                                                    | `@review`              | LEAF | `sk-code` code-review mode (findings-first baseline + router-selected surface evidence)    | `"general"`   |
 | 7        | Deep-loop iterative code-audit pass (`/deep:review` only — explicit deep-loop convergence request, not a one-shot review) | `@deep-review` | LEAF | `system-spec-kit`, `deep-review` | `"general"` |
 | 8        | Implementation / testing                                                  | `@code`                | LEAF | `sk-code` (stack-agnostic; sk-code performs detection at dispatch time); orchestrator dispatches `@review` separately for formal review | `"general"`   |
 | 9        | Debugging when `failure_count >= 3` — workflow surfaces a prompted offer; user opts in via Task tool. Never auto-dispatched. | `@debug`               | LEAF | Code analysis tools                                                               | `"general"`   |
@@ -357,7 +357,7 @@ TASK #1: Explore Toast Patterns
 TASK #2: Implement Notification System
 ├─ Scope: Build new system using patterns from Task #1
 ├─ Agent: @code
-├─ Skills: sk-code-review baseline + sk-code router-selected evidence
+├─ Skills: sk-code code-review mode (findings-first baseline + router-selected surface evidence)
 ├─ Output: Functional notification system
 ├─ Success: Works in browser, tests pass
 └─ Depends: Task #1
