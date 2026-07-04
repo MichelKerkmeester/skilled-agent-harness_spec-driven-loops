@@ -21,6 +21,9 @@ type RescueOptions = {
   // re-query the index and would otherwise smuggle cross-scope rows back in.
   scopeFilter?: ScopeContext;
   specFolder?: string;
+  tier?: string;
+  contextType?: string;
+  qualityThreshold?: number;
 };
 
 type RescueRankingMode = 'overwrite' | 'additive' | 'floor';
@@ -76,6 +79,7 @@ const RESCUE_SCORE_CAP = 1.0;
 const RESCUE_TOP_K = 10;
 const RESCUE_ADDITIVE_WEIGHT = 0.12;
 const RESCUE_FLOOR_BASE_THRESHOLD = 0.24;
+const RESCUE_SOFT_GATE_PENALTY = 0.7;
 const logger = createLogger('retrieval-rescue');
 
 const telemetryCounters = {
@@ -289,6 +293,36 @@ function syncScore(row: PipelineRow, score: number): ScoredRow {
   };
 }
 
+function resolveContextType(row: PipelineRow): string | undefined {
+  if (typeof row.contextType === 'string' && row.contextType.length > 0) return row.contextType;
+  if (typeof row.context_type === 'string' && row.context_type.length > 0) return row.context_type;
+  return undefined;
+}
+
+function isExpired(row: PipelineRow): boolean {
+  const raw = row.expires_at ?? row.delete_after;
+  if (typeof raw !== 'string' || raw.trim().length === 0) return false;
+  const timestamp = new Date(raw).getTime();
+  return Number.isFinite(timestamp) && timestamp <= Date.now();
+}
+
+function computeResidualGatePenalty(row: PipelineRow, options: RescueOptions): number {
+  let penalty = 1;
+  if (options.tier && row.importance_tier !== options.tier) penalty *= RESCUE_SOFT_GATE_PENALTY;
+  if (options.contextType && resolveContextType(row) !== options.contextType) penalty *= RESCUE_SOFT_GATE_PENALTY;
+  if (typeof options.qualityThreshold === 'number' && Number.isFinite(options.qualityThreshold)) {
+    const quality = typeof row.quality_score === 'number' && Number.isFinite(row.quality_score)
+      ? row.quality_score
+      : 0;
+    if (quality < options.qualityThreshold) penalty *= RESCUE_SOFT_GATE_PENALTY;
+  }
+  if (isExpired(row)) penalty *= RESCUE_SOFT_GATE_PENALTY;
+  if (typeof row.embedding_status === 'string' && row.embedding_status !== 'success') {
+    penalty *= RESCUE_SOFT_GATE_PENALTY;
+  }
+  return penalty;
+}
+
 function fetchSiblingRows(db: Database.Database, rows: PipelineRow[], maxPerFolder: number): PipelineRow[] {
   const folders = Array.from(new Set(
     rows
@@ -449,12 +483,17 @@ export function applyRetrievalRescueLayer(
     // Rescue candidates should compete after the outer normalization
     // clamp, not be held below original-lane candidates by a local 0.82 cap.
     const score = computeRescueLayerScore(baseScore, rescue.score, mode);
-    const boost = Math.max(0, score - baseScore);
+    const penalty = row.retrievalRescueSibling === true
+      ? computeResidualGatePenalty(row, options)
+      : 1;
+    const gatedScore = Math.max(0, Math.min(1, score * penalty));
+    const boost = Math.max(0, gatedScore - baseScore);
     return {
-      ...syncScore(row, score),
+      ...syncScore(row, gatedScore),
       retrievalRescueScore: rescue.score,
       retrievalRescueBoost: boost,
       retrievalRescueSignals: rescue.signals,
+      ...(penalty < 1 ? { retrievalRescueSoftGatePenalty: penalty } : {}),
     };
   });
 

@@ -103,6 +103,23 @@ describe('T038-T044 causal boost', () => {
     expect(idList.includes(3)).toBe(true);
   });
 
+  it('assigns a non-zero causal boost to injected neighbors under default traversal', () => {
+    db?.prepare(`
+      INSERT INTO causal_edges (source_id, target_id, relation, strength)
+      VALUES ('1', '3', 'caused', 1.0)
+    `).run();
+
+    const { results, metadata } = causalBoost.applyCausalBoost([
+      { id: 1, score: 0.8 },
+    ] as RankedSearchResult[]);
+    const injected = results.find((item) => item.id === 3);
+
+    expect(metadata.applied).toBe(true);
+    expect(metadata.injectedCount).toBe(1);
+    expect(injected?.injectedByCausalBoost).toBe(true);
+    expect(injected?.causalBoost).toBeGreaterThan(0);
+  });
+
   it('T043: handles no edges and cyclic edges without duplication', () => {
     const empty = causalBoost.getNeighborBoosts([4]);
     expect(empty.size).toBe(0);

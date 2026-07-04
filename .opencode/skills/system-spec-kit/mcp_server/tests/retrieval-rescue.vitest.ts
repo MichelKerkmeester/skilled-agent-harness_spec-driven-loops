@@ -129,6 +129,37 @@ describe('retrieval rescue layer', () => {
     expect(ranked.find((row) => row.id === 1)?.score).toBeLessThan(0.4);
   });
 
+  it('applies residual gate penalties to rescued sibling rows', () => {
+    const query = 'specific rescue phrase';
+    const rows: PipelineRow[] = [
+      {
+        id: 1,
+        title: 'Specific rescue phrase',
+        trigger_phrases: '[]',
+        content: 'specific rescue phrase',
+        score: 0.2,
+        rrfScore: 0.2,
+        intentAdjustedScore: 0.2,
+        retrievalRescueSibling: true,
+        importance_tier: 'low',
+        context_type: 'note',
+        quality_score: 0.1,
+        embedding_status: 'pending',
+      },
+    ];
+
+    const ranked = applyRetrievalRescueLayer(query, rows, {
+      tier: 'high',
+      contextType: 'task',
+      qualityThreshold: 0.8,
+    });
+
+    const rescued = ranked[0] as PipelineRow & { retrievalRescueSoftGatePenalty?: number };
+    expect(rescued.retrievalRescueSoftGatePenalty).toBeCloseTo(0.7 ** 4, 9);
+    expect(rescued.score).toBeLessThan(0.2);
+    expect(rescued.retrievalRescueBoost).toBe(0);
+  });
+
   it('scores specific decision records above sibling specs for ADR-shaped queries', () => {
     const query = 'ADR about consolidating spec-kit templates into the level and addendum generator instead of leaving compose scripts separate';
     const specScore = __testables.lexicalScore(query, {

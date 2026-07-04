@@ -236,12 +236,15 @@ interface ShadowMetaArray {
 function toHybridResult(result: FusionResult): HybridSearchResult {
   const sourceCandidate = (result as { source?: unknown }).source;
   const primarySource = result.sources[0] ?? 'hybrid';
-  const scoreCandidate = (result as { score?: unknown }).score;
+  const fusedScore = typeof result.rrfScore === 'number' && Number.isFinite(result.rrfScore)
+    ? Math.max(0, Math.min(1, result.rrfScore))
+    : 0;
 
   return {
     ...result,
     id: result.id,
-    score: typeof scoreCandidate === 'number' ? scoreCandidate : result.rrfScore,
+    score: fusedScore,
+    rrfScore: fusedScore,
     source: typeof sourceCandidate === 'string' ? sourceCandidate : primarySource,
   };
 }
@@ -1442,9 +1445,7 @@ async function collectAndFuseHybridResults(
     if (activeChannels.has('fts')) {
       ftsChannelResults = ftsSearch(query, options);
       if (ftsChannelResults.length > 0) {
-        // FTS weight reduced to 0.3 after ablation showed 0.8 was harmful,
-        // flooding top-K with noisy lexical matches despite its exact-match value.
-        lists.push({ source: 'fts', results: ftsChannelResults, weight: 0.3 });
+        lists.push({ source: 'fts', results: ftsChannelResults });
       }
     }
 
@@ -1452,9 +1453,7 @@ async function collectAndFuseHybridResults(
     if (activeChannels.has('bm25')) {
       bm25ChannelResults = bm25Search(query, options);
       if (bm25ChannelResults.length > 0) {
-        // BM25 weight 0.6 is lowest lexical channel — in-memory BM25 index
-        // Has less precise scoring than SQLite FTS5 BM25; kept for coverage breadth.
-        lists.push({ source: 'bm25', results: bm25ChannelResults, weight: 0.6 });
+        lists.push({ source: 'bm25', results: bm25ChannelResults });
       }
     }
 
@@ -1538,10 +1537,10 @@ async function collectAndFuseHybridResults(
     }
 
     // Merge keyword results after all channels complete
-    const keywordResults: Array<{ id: number | string; source: string; [key: string]: unknown }> = [
+    const keywordResults: Array<{ id: number | string; source: string; [key: string]: unknown }> = dedupeKeywordResults([
       ...ftsChannelResults,
       ...bm25ChannelResults,
-    ];
+    ]);
 
     if (options.skipFusion) {
       return {
@@ -2053,7 +2052,10 @@ async function enrichFusedResults(
       if (numericIds.length > 0) {
         const folderMap = lookupFolders(db, numericIds);
         if (folderMap.size > 0) {
-          const folderScores = computeFolderRelevanceScores(reranked, folderMap);
+          const folderScores = computeFolderRelevanceScores(
+            reranked.map((row) => ({ ...row, score: folderAggregationScore(row) })),
+            folderMap,
+          );
           const rawTopK = process.env.SPECKIT_FOLDER_TOP_K;
           const parsedTopK = rawTopK ? parseInt(rawTopK, 10) : NaN;
           const topK = Number.isFinite(parsedTopK) && parsedTopK > 0 ? parsedTopK : 5;
@@ -2567,7 +2569,7 @@ function injectContextualTree(row: HybridSearchResult, descCache: Map<string, st
   const content = rowData.content;
   const filePath = typeof rowData.file_path === 'string' ? rowData.file_path : null;
 
-  if (typeof content !== 'string' || content.length === 0 || !filePath) {
+  if (!filePath) {
     return row;
   }
 
@@ -2585,8 +2587,46 @@ function injectContextualTree(row: HybridSearchResult, descCache: Map<string, st
   return {
     ...row,
     contextualTreeHeader: header,
-    content: `${header}\n${content}`,
+    content: typeof content === 'string' && content.length > 0 ? `${header}\n${content}` : header,
   };
+}
+
+function dedupeKeywordResults(
+  results: Array<{ id: number | string; source: string; [key: string]: unknown }>,
+): Array<{ id: number | string; source: string; [key: string]: unknown }> {
+  const merged = new Map<string, { id: number | string; source: string; [key: string]: unknown }>();
+  for (const result of results) {
+    const key = canonicalResultId(result.id);
+    const existing = merged.get(key);
+    if (!existing) {
+      merged.set(key, result);
+      continue;
+    }
+    const existingScore = typeof existing.score === 'number' && Number.isFinite(existing.score) ? existing.score : 0;
+    const resultScore = typeof result.score === 'number' && Number.isFinite(result.score) ? result.score : 0;
+    const winner = resultScore > existingScore ? result : existing;
+    const sources = new Set<string>();
+    for (const candidate of [existing, result]) {
+      if (typeof candidate.source === 'string') sources.add(candidate.source);
+      const existingSources = Array.isArray(candidate.sources) ? candidate.sources : [];
+      for (const source of existingSources) {
+        if (typeof source === 'string') sources.add(source);
+      }
+    }
+    merged.set(key, {
+      ...winner,
+      sources: Array.from(sources),
+    });
+  }
+  return Array.from(merged.values());
+}
+
+function folderAggregationScore(row: HybridSearchResult): number {
+  const similarity = (row as Record<string, unknown>).similarity;
+  if (typeof similarity === 'number' && Number.isFinite(similarity)) {
+    return similarity > 1 ? Math.max(0, Math.min(1, similarity / 100)) : Math.max(0, similarity);
+  }
+  return typeof row.score === 'number' && Number.isFinite(row.score) ? row.score : 0;
 }
 
 function dedupeResultsByCanonicalId(results: HybridSearchResult[]): HybridSearchResult[] {
@@ -2684,7 +2724,7 @@ function calibrateTier3Scores(
  */
 function checkDegradation(results: HybridSearchResult[]): DegradationTrigger | null {
   const scores = results
-    .map(r => r.score)
+    .map(r => typeof r.rrfScore === 'number' && Number.isFinite(r.rrfScore) ? r.rrfScore : r.score)
     .filter((score): score is number => typeof score === 'number' && Number.isFinite(score))
     .sort((a, b) => b - a);
 
@@ -3136,6 +3176,8 @@ export const __testables = {
   truncateChars,
   extractSpecSegments,
   injectContextualTree,
+  toHybridResult,
+  dedupeKeywordResults,
   ensureLlmBackfillRegistered,
   applyResultLimit,
   reorderTopNByCosine,

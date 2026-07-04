@@ -1780,7 +1780,7 @@ async function executeStage1Core(input: Stage1Input, startTime: number): Promise
               generatedAt: surrogates.generatedAt,
             });
 
-            if (matchResult.score > 0) {
+            if (matchResult.score > 0 && matchResult.matchedSurrogates.length > 0) {
               boostedCount++;
               // Use resolveEffectiveScore() as the base instead of
               // raw row.score. For vector-only rows with only `similarity`,
@@ -1794,7 +1794,6 @@ async function executeStage1Core(input: Stage1Input, startTime: number): Promise
                 ...row,
                 score: boostedScore,
                 rrfScore: boostedScore,
-                intentAdjustedScore: boostedScore,
                 surrogateBoost: boost,
                 surrogateMatches: matchResult.matchedSurrogates,
               };

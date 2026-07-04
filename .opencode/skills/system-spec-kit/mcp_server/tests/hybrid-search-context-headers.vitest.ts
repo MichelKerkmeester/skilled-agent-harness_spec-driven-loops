@@ -37,7 +37,7 @@ describe('Contextual tree injection', () => {
     expect(header.length).toBeLessThanOrEqual(100);
   });
 
-  it('T064: skips injection when content is null/undefined (includeContent=false mode)', () => {
+  it('T064: injects a contextual header when content is null/undefined', () => {
     const row: InjectContextualTreeInput = {
       id: 2,
       score: 1,
@@ -51,8 +51,8 @@ describe('Contextual tree injection', () => {
     ]);
 
     const injected = __testables.injectContextualTree(row, cache);
-    expect(injected).toBe(row);
-    expect(getContent(injected)).toBeUndefined();
+    expect(injected).not.toBe(row);
+    expect(getContent(injected)).toBe('[022-hybrid-rag-fusion > 019-sprint-9-extra-features — Description]');
   });
 
   it('T065: preserves post-truncation ordering after contextual headers are injected', () => {

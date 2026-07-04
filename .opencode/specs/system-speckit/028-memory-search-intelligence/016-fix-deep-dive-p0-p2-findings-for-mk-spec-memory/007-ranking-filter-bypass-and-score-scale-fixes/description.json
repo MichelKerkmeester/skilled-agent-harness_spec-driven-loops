@@ -17,10 +17,12 @@
     "recorded",
     "telemetry"
   ],
-  "lastUpdated": "2026-07-03T10:31:44.855Z",
+  "lastUpdated": "2026-07-04T04:35:40.410Z",
   "specId": "007",
   "folderSlug": "ranking-filter-bypass-and-score-scale-fixes",
   "parentChain": [
+    ".opencode",
+    "specs",
     "system-speckit",
     "028-memory-search-intelligence",
     "016-fix-deep-dive-p0-p2-findings-for-mk-spec-memory"

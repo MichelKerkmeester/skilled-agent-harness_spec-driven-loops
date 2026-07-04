@@ -517,6 +517,19 @@ describe('matchSurrogates', () => {
     expect(result.matchedSurrogates).toEqual([]);
   });
 
+  it('does not score single-token overlap below the match threshold', () => {
+    const surrogates = makeSurrogates({
+      aliases: ['alpha omega'],
+      headings: [],
+      summary: '',
+      surrogateQuestions: [],
+    });
+    const result = matchSurrogates('alpha beta gamma delta epsilon zeta eta theta iota kappa', surrogates);
+
+    expect(result.score).toBe(0);
+    expect(result.matchedSurrogates).toEqual([]);
+  });
+
   it('normalizes score to [0, 1]', () => {
     const surrogates = makeSurrogates();
     const result = matchSurrogates('RRF Reciprocal Rank Fusion configuration usage', surrogates);

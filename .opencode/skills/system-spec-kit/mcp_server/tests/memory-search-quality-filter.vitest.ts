@@ -132,6 +132,56 @@ describe('C136-09: artifact routing integration helpers', () => {
 });
 
 describe('C138: memory-search cache args include behavior-changing parameters', () => {
+  function makeCacheArgs(): Record<string, unknown> {
+    return buildCacheArgs({
+      normalizedQuery: 'graph flag query',
+      hasValidConcepts: false,
+      concepts: undefined,
+      specFolder: 'system-spec-kit',
+      limit: 10,
+      mode: undefined,
+      tier: undefined,
+      contextType: undefined,
+      useDecay: true,
+      includeArchived: false,
+      qualityThreshold: undefined,
+      applyStateLimits: false,
+      includeContiguity: false,
+      includeConstitutional: true,
+      includeContent: false,
+      anchors: undefined,
+      detectedIntent: null,
+      minState: 'hot',
+      rerank: false,
+      applyLengthPenalty: false,
+      sessionId: undefined,
+      enableSessionBoost: false,
+      enableCausalBoost: false,
+    });
+  }
+
+  it('resolves graph flag state for each cache-key build in the same process', () => {
+    const previous = process.env.SPECKIT_GRAPH_UNIFIED;
+
+    try {
+      process.env.SPECKIT_GRAPH_UNIFIED = 'false';
+      const disabled = makeCacheArgs();
+
+      process.env.SPECKIT_GRAPH_UNIFIED = 'true';
+      const enabled = makeCacheArgs();
+
+      expect(disabled.graphUnifiedEnabled).toBe(false);
+      expect(enabled.graphUnifiedEnabled).toBe(true);
+      expect(disabled).not.toEqual(enabled);
+    } finally {
+      if (previous === undefined) {
+        delete process.env.SPECKIT_GRAPH_UNIFIED;
+      } else {
+        process.env.SPECKIT_GRAPH_UNIFIED = previous;
+      }
+    }
+  });
+
   it('includes deep-mode and archival/quality/state-limit controls in cache args', () => {
     const args = buildCacheArgs({
       normalizedQuery: 'test query',

@@ -60,6 +60,8 @@ const STATE_PRIORITY: Record<string, number> = {
   ARCHIVED: 1,
 };
 
+const MIN_STATE_UNSET_PRIORITY = 0;
+
 /**
  * Per-tier hard limits applied when `applyStateLimits` is true.
  * Prevents any single tier from monopolising the result window.
@@ -141,7 +143,9 @@ export function filterByMemoryState(
   applyStateLimits: boolean,
 ): FilterResult {
   const normalizedMinState = normalizeStateValue(minState);
-  const minPriority = STATE_PRIORITY[normalizedMinState ?? ''] ?? UNKNOWN_STATE_PRIORITY;
+  const minPriority = normalizedMinState === null
+    ? MIN_STATE_UNSET_PRIORITY
+    : STATE_PRIORITY[normalizedMinState];
 
   // -- 3a. Tally states before filtering --
   const statsBefore: StateStats = {};

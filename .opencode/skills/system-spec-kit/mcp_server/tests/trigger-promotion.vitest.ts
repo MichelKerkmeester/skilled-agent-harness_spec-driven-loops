@@ -77,7 +77,7 @@ function createConfig(overrides: Partial<PipelineConfig> = {}): PipelineConfig {
   };
 }
 
-function row(id: number, source: string, score: number): PipelineRow {
+function row(id: number, source: string, score: number, overrides: Partial<PipelineRow> = {}): PipelineRow {
   return {
     id,
     title: `${source} ${id}`,
@@ -86,65 +86,70 @@ function row(id: number, source: string, score: number): PipelineRow {
     source,
     sources: [source],
     score,
+    ...overrides,
   };
+}
+
+function mockPipelineWith(semanticRows: PipelineRow[], triggerRows: PipelineRow[]): void {
+  const candidates = attachLaneLists([...semanticRows, ...triggerRows], [
+    { source: 'trigger', lane: 'trigger', results: triggerRows },
+  ]);
+
+  mockStage1.mockResolvedValue({
+    candidates,
+    metadata: {
+      searchType: 'hybrid',
+      channelCount: 2,
+      candidateCount: candidates.length,
+      constitutionalInjected: 0,
+      durationMs: 1,
+    },
+  } satisfies Stage1Output);
+  mockStage2.mockResolvedValue({
+    scored: semanticRows,
+    metadata: {
+      sessionBoostApplied: 'off',
+      causalBoostApplied: 'off',
+      intentWeightsApplied: 'off',
+      artifactRoutingApplied: 'off',
+      feedbackSignalsApplied: 'off',
+      qualityFiltered: 0,
+      durationMs: 1,
+    },
+  } satisfies Stage2Output);
+  mockStage3.mockResolvedValue({
+    reranked: semanticRows,
+    metadata: {
+      rerankApplied: false,
+      chunkReassemblyStats: {
+        collapsedChunkHits: 0,
+        chunkParents: 0,
+        reassembled: 0,
+        fallback: 0,
+      },
+      durationMs: 1,
+    },
+  } satisfies Stage3Output);
+  mockStage4.mockResolvedValue({
+    final: semanticRows,
+    metadata: {
+      stateFiltered: 0,
+      constitutionalInjected: 0,
+      evidenceGapDetected: true,
+      durationMs: 1,
+    },
+    annotations: {
+      stateStats: {},
+      featureFlags: {},
+    },
+  } satisfies Stage4Output);
 }
 
 describe('trigger recall promotion', () => {
   it('promotes trigger-lane matches into weak surfaced results up to the display floor', async () => {
     const semanticRows = [row(1, 'vector', 0.21), row(2, 'fts', 0.18)];
     const triggerRows = Array.from({ length: 8 }, (_, index) => row(index + 3, 'trigger', 0.12 - index * 0.001));
-    const candidates = attachLaneLists([...semanticRows, ...triggerRows], [
-      { source: 'trigger', lane: 'trigger', results: triggerRows },
-    ]);
-
-    mockStage1.mockResolvedValue({
-      candidates,
-      metadata: {
-        searchType: 'hybrid',
-        channelCount: 2,
-        candidateCount: candidates.length,
-        constitutionalInjected: 0,
-        durationMs: 1,
-      },
-    } satisfies Stage1Output);
-    mockStage2.mockResolvedValue({
-      scored: semanticRows,
-      metadata: {
-        sessionBoostApplied: 'off',
-        causalBoostApplied: 'off',
-        intentWeightsApplied: 'off',
-        artifactRoutingApplied: 'off',
-        feedbackSignalsApplied: 'off',
-        qualityFiltered: 0,
-        durationMs: 1,
-      },
-    } satisfies Stage2Output);
-    mockStage3.mockResolvedValue({
-      reranked: semanticRows,
-      metadata: {
-        rerankApplied: false,
-        chunkReassemblyStats: {
-          collapsedChunkHits: 0,
-          chunkParents: 0,
-          reassembled: 0,
-          fallback: 0,
-        },
-        durationMs: 1,
-      },
-    } satisfies Stage3Output);
-    mockStage4.mockResolvedValue({
-      final: semanticRows,
-      metadata: {
-        stateFiltered: 0,
-        constitutionalInjected: 0,
-        evidenceGapDetected: true,
-        durationMs: 1,
-      },
-      annotations: {
-        stateStats: {},
-        featureFlags: {},
-      },
-    } satisfies Stage4Output);
+    mockPipelineWith(semanticRows, triggerRows);
 
     const result = await executePipeline(createConfig());
 
@@ -156,5 +161,27 @@ describe('trigger recall promotion', () => {
       triggerCandidateCount: 8,
       targetCount: 10,
     });
+  });
+
+  it('blocks cross-scope trigger promotion and soft-penalizes weaker gated rows', async () => {
+    const semanticRows = [row(1, 'vector', 0.21)];
+    const triggerRows = [
+      row(2, 'trigger', 0.5, { tenant_id: 'tenant-a', importance_tier: 'low', context_type: 'note', quality_score: 0.1 }),
+      row(3, 'trigger', 0.5, { tenant_id: 'tenant-b', importance_tier: 'high', context_type: 'task', quality_score: 0.9 }),
+    ];
+    mockPipelineWith(semanticRows, triggerRows);
+
+    const result = await executePipeline(createConfig({
+      tenantId: 'tenant-a',
+      tier: 'high',
+      contextType: 'task',
+      qualityThreshold: 0.8,
+    }));
+
+    const promoted = result.results.find((candidate) => candidate.id === 2);
+    expect(result.results.some((candidate) => candidate.id === 3)).toBe(false);
+    expect(promoted).toBeDefined();
+    expect(promoted?.score).toBeCloseTo(0.5 * 0.7 * 0.7 * 0.7, 9);
+    expect((promoted?.traceMetadata as Record<string, unknown>).triggerSoftGatePenalty).toBeCloseTo(0.343, 9);
   });
 });

@@ -1361,7 +1361,33 @@ describe('P1 fallback threshold and channel gating regressions', () => {
 });
 
 describe('P1-002-1 raw candidate merge scoring', () => {
-  const { mergeRawCandidate } = hybridSearch.__testables;
+  const { mergeRawCandidate, toHybridResult, dedupeKeywordResults } = hybridSearch.__testables;
+
+  it('maps fused results onto the RRF score scale', () => {
+    const result = toHybridResult({
+      id: 7,
+      title: 'raw scorer',
+      score: 42,
+      rrfScore: 0.37,
+      sources: ['vector'],
+    } as Parameters<typeof toHybridResult>[0]);
+
+    expect(result.score).toBeCloseTo(0.37, 9);
+    expect(result.rrfScore).toBeCloseTo(0.37, 9);
+  });
+
+  it('dedupes FTS and BM25 keyword rows for the same memory id', () => {
+    const results = dedupeKeywordResults([
+      { id: 9, source: 'fts', score: 0.2 },
+      { id: 9, source: 'bm25', score: 0.5 },
+      { id: 10, source: 'fts', score: 0.1 },
+    ]);
+
+    expect(results).toHaveLength(2);
+    const merged = results.find((row) => row.id === 9);
+    expect(merged?.score).toBe(0.5);
+    expect(merged?.sources).toEqual(expect.arrayContaining(['fts', 'bm25']));
+  });
 
   it('keeps the base score unchanged for a single-channel candidate and records channelCount', () => {
     const incoming = {

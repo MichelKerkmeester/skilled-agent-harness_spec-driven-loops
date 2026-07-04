@@ -621,13 +621,17 @@ export function multi_concept_search(
 
   const rows = database.prepare(sql).all(...params);
 
-  return (rows as MemoryRow[]).map((row: MemoryRow) => {
-    row.trigger_phrases = parse_trigger_phrases(row.trigger_phrases);
-    row.concept_similarities = concept_buffers.map((_, i) => Number(row[`similarity_${i}`] ?? 0));
-    row.avg_similarity = (row.concept_similarities as number[]).reduce((a, b) => a + b, 0) / concepts.length;
-    row.isConstitutional = row.importance_tier === 'constitutional';
-    return row;
-  });
+  return (rows as MemoryRow[]).map((row: MemoryRow) => hydrateMultiConceptRow(row, concepts.length));
+}
+
+function hydrateMultiConceptRow(row: MemoryRow, conceptCount: number): MemoryRow {
+  row.trigger_phrases = parse_trigger_phrases(row.trigger_phrases);
+  row.concept_similarities = Array.from({ length: conceptCount }, (_, i) => Number(row[`similarity_${i}`] ?? 0));
+  row.avg_similarity = (row.concept_similarities as number[]).reduce((a, b) => a + b, 0) / conceptCount;
+  row.similarity = row.avg_similarity;
+  row.score = Math.max(0, Math.min(1, row.avg_similarity / 100));
+  row.isConstitutional = row.importance_tier === 'constitutional';
+  return row;
 }
 
 /* ───────────────────────────────────────────────────────────────
@@ -1782,3 +1786,7 @@ export { get_usage_stats as getUsageStats };
 export { find_cleanup_candidates as findCleanupCandidates };
 export { get_memory_preview as getMemoryPreview };
 export { verify_integrity as verifyIntegrity };
+
+export const __testables = {
+  hydrateMultiConceptRow,
+};

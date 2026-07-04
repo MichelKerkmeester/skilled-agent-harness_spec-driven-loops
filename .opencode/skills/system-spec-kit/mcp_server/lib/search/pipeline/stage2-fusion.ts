@@ -376,7 +376,14 @@ function withGraphContribution(
 function countGraphContribution(rows: PipelineRow[], key: GraphContributionKey): number {
   return rows.filter((row) => {
     const graphContribution = row.graphContribution as Record<string, unknown> | undefined;
-    return typeof graphContribution?.[key] === 'number' && Math.abs(graphContribution[key] as number) > 0;
+    const contribution = graphContribution?.[key];
+    if (typeof contribution === 'number' && Math.abs(contribution) > 0) {
+      return true;
+    }
+    if (key === 'causalDelta' && row.injectedByCausalBoost === true) {
+      return typeof row.causalBoost === 'number' && row.causalBoost > 0;
+    }
+    return false;
   }).length;
 }
 
@@ -1136,10 +1143,13 @@ export async function executeStage2(input: Stage2Input): Promise<Stage2Output> {
       const beforeScores = new Map(results.map((row) => [row.id, resolveBaseScore(row)]));
       const { results: boosted, metadata: cbMeta } = causalBoost.applyCausalBoost(results);
       results = (boosted as PipelineRow[]).map((row) => {
-        const previous = beforeScores.get(row.id) ?? resolveBaseScore(row);
+        const previous = beforeScores.get(row.id) ?? 0;
         const next = resolveBaseScore(row);
-        return next !== previous
-          ? withGraphContribution(row, 'causalDelta', next - previous, 'causal', row.injectedByCausalBoost === true)
+        const causalDelta = row.injectedByCausalBoost === true && typeof row.causalBoost === 'number'
+          ? Math.max(0, row.causalBoost)
+          : next - previous;
+        return causalDelta !== 0
+          ? withGraphContribution(row, 'causalDelta', causalDelta, 'causal', row.injectedByCausalBoost === true)
           : row;
       });
       // FIX #4: Sync aliases immediately after causal boost score mutations.
@@ -1444,6 +1454,9 @@ export async function executeStage2(input: Stage2Input): Promise<Stage2Output> {
           agentId: config.agentId,
         },
         specFolder: config.specFolder,
+        tier: config.tier,
+        contextType: config.contextType,
+        qualityThreshold: config.qualityThreshold,
       });
       logger.debug('retrieval rescue layer completed', {
         event: 'stage2_retrieval_rescue_success',

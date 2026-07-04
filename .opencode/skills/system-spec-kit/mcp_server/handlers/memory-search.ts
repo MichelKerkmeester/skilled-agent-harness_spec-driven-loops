@@ -45,6 +45,7 @@ import {
   resolveArtifactRoutingQuery,
   applyArtifactRouting,
 } from '../lib/search/search-utils.js';
+import { isGraphUnifiedEnabled } from '../lib/search/graph-flags.js';
 // CacheArgsInput used internally by buildCacheArgs (lib/search/search-utils.ts)
 // Eval channel tracking (extracted from this file)
 import {
@@ -1186,6 +1187,9 @@ async function handleMemorySearch(args: SearchArgs): Promise<MCPResponse> {
     ? causalEdges.getCausalEdgesGeneration()
     : undefined;
 
+  // Snapshot live flags inside the request so same-process flips cannot reuse stale cache entries.
+  const graphUnifiedEnabled = isGraphUnifiedEnabled();
+
   // Build cache key args
   const cacheArgs = buildCacheArgs({
     normalizedQuery,
@@ -1219,6 +1223,7 @@ async function handleMemorySearch(args: SearchArgs): Promise<MCPResponse> {
     resultExplainEnabled,
     resultExplainDebugEnabled,
     retrievalLevel,
+    graphUnifiedEnabled,
     cacheVersion: CANONICAL_READER_CACHE_VERSION,
     causalEdgesGeneration: causalEdgesGenerationForCache,
     folderBoost,

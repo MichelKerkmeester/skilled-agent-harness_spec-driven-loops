@@ -67,42 +67,42 @@ describe('C136-10 Adaptive Fusion', () => {
   // ---- Weight profiles per intent ----
   it('T1: returns correct weights for understand intent', () => {
     const w = getAdaptiveWeights('understand');
-    expect(w.semanticWeight).toBeCloseTo(0.7 / 1.15, 9);
-    expect(w.keywordWeight).toBeCloseTo(0.2 / 1.15, 9);
-    expect(w.recencyWeight).toBeCloseTo(0.1 / 1.15, 9);
-    expect(w.graphWeight).toBeCloseTo(0.15 / 1.15, 9);
+    expect(w.semanticWeight).toBeCloseTo(0.7, 9);
+    expect(w.keywordWeight).toBeCloseTo(0.2, 9);
+    expect(w.recencyWeight).toBeCloseTo(0.1, 9);
+    expect(w.graphWeight).toBeCloseTo(0.15, 9);
   });
 
   it('T2: returns correct weights for fix_bug intent', () => {
     const w = getAdaptiveWeights('fix_bug');
-    expect(w.semanticWeight).toBeCloseTo(0.4 / 1.1, 9);
-    expect(w.keywordWeight).toBeCloseTo(0.4 / 1.1, 9);
-    expect(w.recencyWeight).toBeCloseTo(0.2 / 1.1, 9);
-    expect(w.graphWeight).toBeCloseTo(0.1 / 1.1, 9);
+    expect(w.semanticWeight).toBeCloseTo(0.4, 9);
+    expect(w.keywordWeight).toBeCloseTo(0.4, 9);
+    expect(w.recencyWeight).toBeCloseTo(0.2, 9);
+    expect(w.graphWeight).toBeCloseTo(0.1, 9);
   });
 
   it('T3: returns correct weights for add_feature intent', () => {
     const w = getAdaptiveWeights('add_feature');
-    expect(w.semanticWeight).toBeCloseTo(0.5 / 1.2, 9);
-    expect(w.keywordWeight).toBeCloseTo(0.3 / 1.2, 9);
-    expect(w.recencyWeight).toBeCloseTo(0.2 / 1.2, 9);
-    expect(w.graphWeight).toBeCloseTo(0.2 / 1.2, 9);
+    expect(w.semanticWeight).toBeCloseTo(0.5, 9);
+    expect(w.keywordWeight).toBeCloseTo(0.3, 9);
+    expect(w.recencyWeight).toBeCloseTo(0.2, 9);
+    expect(w.graphWeight).toBeCloseTo(0.2, 9);
   });
 
   it('T4: returns correct weights for refactor intent', () => {
     const w = getAdaptiveWeights('refactor');
-    expect(w.semanticWeight).toBeCloseTo(0.6 / 1.15, 9);
-    expect(w.keywordWeight).toBeCloseTo(0.3 / 1.15, 9);
-    expect(w.recencyWeight).toBeCloseTo(0.1 / 1.15, 9);
-    expect(w.graphWeight).toBeCloseTo(0.15 / 1.15, 9);
+    expect(w.semanticWeight).toBeCloseTo(0.6, 9);
+    expect(w.keywordWeight).toBeCloseTo(0.3, 9);
+    expect(w.recencyWeight).toBeCloseTo(0.1, 9);
+    expect(w.graphWeight).toBeCloseTo(0.15, 9);
   });
 
   it('T5: returns default weights for unknown intent', () => {
     const w = getAdaptiveWeights('unknown_intent_xyz' as string);
-    expect(w.semanticWeight).toBeCloseTo(DEFAULT_WEIGHTS.semanticWeight / 1.15, 9);
-    expect(w.keywordWeight).toBeCloseTo(DEFAULT_WEIGHTS.keywordWeight / 1.15, 9);
-    expect(w.recencyWeight).toBeCloseTo(DEFAULT_WEIGHTS.recencyWeight / 1.15, 9);
-    expect(w.graphWeight).toBeCloseTo((DEFAULT_WEIGHTS.graphWeight ?? 0) / 1.15, 9);
+    expect(w.semanticWeight).toBeCloseTo(DEFAULT_WEIGHTS.semanticWeight, 9);
+    expect(w.keywordWeight).toBeCloseTo(DEFAULT_WEIGHTS.keywordWeight, 9);
+    expect(w.recencyWeight).toBeCloseTo(DEFAULT_WEIGHTS.recencyWeight, 9);
+    expect(w.graphWeight).toBeCloseTo(DEFAULT_WEIGHTS.graphWeight ?? 0, 9);
   });
 
   it('T5b: returns the dedicated internal continuity weights unchanged', () => {
@@ -113,28 +113,28 @@ describe('C136-10 Adaptive Fusion', () => {
     expect(w.graphWeight).toBeCloseTo(0.23, 9);
   });
 
-  // ---- Weights sum <= 1.0 ----
-  it('T6: all weight profiles sum to <= 1.0', () => {
+  // ---- Weight profile sanity ----
+  it('T6: all weight profiles expose positive bounded channels', () => {
     const allProfiles = { ...INTENT_WEIGHT_PROFILES, default: DEFAULT_WEIGHTS };
     for (const [name] of Object.entries(allProfiles)) {
-      const normalized = getAdaptiveWeights(name === 'default' ? 'unknown_intent_xyz' : name);
-      const sum =
-        normalized.semanticWeight +
-        normalized.keywordWeight +
-        normalized.recencyWeight +
-        (normalized.graphWeight ?? 0);
-      expect(sum, `Profile "${name}" sums to ${sum}`).toBeLessThanOrEqual(1.0 + 1e-9);
-      expect(sum, `Profile "${name}" sums to ${sum}`).toBeGreaterThan(0);
+      const weights = getAdaptiveWeights(name === 'default' ? 'unknown_intent_xyz' : name);
+      for (const value of [weights.semanticWeight, weights.keywordWeight, weights.recencyWeight, weights.graphWeight ?? 0]) {
+        expect(value, `Profile "${name}" has bounded weight ${value}`).toBeGreaterThanOrEqual(0);
+        expect(value, `Profile "${name}" has bounded weight ${value}`).toBeLessThanOrEqual(1.0);
+      }
+      expect(weights.semanticWeight + weights.keywordWeight + (weights.graphWeight ?? 0)).toBeGreaterThan(0);
     }
   });
 
-  // ---- Document type adjustments keep sum <= 1.0 ----
-  it('T7: document type adjustments keep weights sum <= 1.0', () => {
+  // ---- Document type adjustments remain bounded ----
+  it('T7: document type adjustments keep weights bounded', () => {
     for (const docType of ['decision', 'implementation', 'research']) {
       for (const intent of ['understand', 'fix_bug', 'add_feature', 'refactor']) {
         const w = getAdaptiveWeights(intent, docType);
-        const sum = w.semanticWeight + w.keywordWeight + w.recencyWeight + (w.graphWeight ?? 0);
-        expect(sum, `${intent}+${docType} sums to ${sum}`).toBeLessThanOrEqual(1.0 + 1e-9);
+        for (const value of [w.semanticWeight, w.keywordWeight, w.recencyWeight, w.graphWeight ?? 0]) {
+          expect(value, `${intent}+${docType} weight ${value}`).toBeGreaterThanOrEqual(0);
+          expect(value, `${intent}+${docType} weight ${value}`).toBeLessThanOrEqual(1.0);
+        }
       }
     }
   });
@@ -178,8 +178,8 @@ describe('C136-10 Adaptive Fusion', () => {
     const standard = standardFuse(semantic, keyword);
     const adaptive = adaptiveFuse(semantic, keyword, getAdaptiveWeights('understand'));
     // Weights should reflect understand intent
-    expect(result.weights.semanticWeight).toBeCloseTo(0.7 / 1.15, 9);
-    expect(result.weights.keywordWeight).toBeCloseTo(0.2 / 1.15, 9);
+    expect(result.weights.semanticWeight).toBeCloseTo(0.7, 9);
+    expect(result.weights.keywordWeight).toBeCloseTo(0.2, 9);
     expect(result.results.map(r => r.id)).toEqual(adaptive.map(r => r.id));
     expect(result.results.map(r => r.id)).not.toEqual(standard.map(r => r.id));
   });
@@ -214,8 +214,8 @@ describe('C136-10 Adaptive Fusion', () => {
     const standard = standardFuse(semantic, keyword);
 
     expect(outOfBucket.results.map(r => r.id)).toEqual(standard.map(r => r.id));
-    expect(inBucket.weights.semanticWeight).toBeCloseTo(0.7 / 1.15, 9);
-    expect(inBucket.weights.keywordWeight).toBeCloseTo(0.2 / 1.15, 9);
+    expect(inBucket.weights.semanticWeight).toBeCloseTo(0.7, 9);
+    expect(inBucket.weights.keywordWeight).toBeCloseTo(0.2, 9);
   });
 
   // ---- Dark-run mode computes diff ----
@@ -272,8 +272,8 @@ describe('C136-10 Adaptive Fusion', () => {
       confidenceImpact: 0.3,
       retryRecommendation: 'none',
     });
-    expect(result.weights.semanticWeight).toBeCloseTo(0.7 / 1.15, 9);
-    expect(result.weights.keywordWeight).toBeCloseTo(0.2 / 1.15, 9);
+    expect(result.weights.semanticWeight).toBeCloseTo(0.7, 9);
+    expect(result.weights.keywordWeight).toBeCloseTo(0.2, 9);
   });
 
   // ---- Empty inputs return empty ----
@@ -298,9 +298,9 @@ describe('C136-10 Adaptive Fusion', () => {
     const wFindSpec = getAdaptiveWeights('find_spec');
     const wUnderstand = getAdaptiveWeights('understand');
 
-    expect(wFindSpec.semanticWeight).toBeLessThan(wUnderstand.semanticWeight);
-    expect(wFindSpec.keywordWeight).toBeLessThan(wUnderstand.keywordWeight);
-    expect(wFindSpec.recencyWeight).toBeLessThan(wUnderstand.recencyWeight);
+    expect(wFindSpec.semanticWeight).toBe(wUnderstand.semanticWeight);
+    expect(wFindSpec.keywordWeight).toBe(wUnderstand.keywordWeight);
+    expect(wFindSpec.recencyWeight).toBe(wUnderstand.recencyWeight);
     expect((wFindSpec.graphWeight ?? 0)).toBeGreaterThan(wUnderstand.graphWeight ?? 0);
   });
 
@@ -345,10 +345,46 @@ describe('C136-10 Adaptive Fusion', () => {
       const intents = ['understand', 'find_spec', 'find_decision', 'fix_bug', 'add_feature', 'refactor', 'debug'];
       for (const intent of intents) {
         const w = getAdaptiveWeights(intent as string);
-        const sum = w.semanticWeight + w.keywordWeight + w.recencyWeight;
-        expect(sum, `${intent} weights sum to ${sum}`).toBeLessThanOrEqual(1.0 + 1e-9);
-        expect(sum).toBeGreaterThan(0);
+        const activeSum = w.semanticWeight + w.keywordWeight + (w.graphWeight ?? 0);
+        expect(activeSum).toBeGreaterThan(0);
+        expect(w.recencyWeight).toBeGreaterThanOrEqual(0);
+        expect(w.recencyWeight).toBeLessThanOrEqual(1);
       }
+    });
+
+    it('normalizes retrieval-list weights separately from recency boost weight', async () => {
+      vi.resetModules();
+      const capturedWeights: number[][] = [];
+      vi.doMock('@spec-kit/shared/algorithms/rrf-fusion', async () => {
+        const actual = await vi.importActual<typeof import('@spec-kit/shared/algorithms/rrf-fusion')>(
+          '@spec-kit/shared/algorithms/rrf-fusion'
+        );
+        return {
+          ...actual,
+          fuseResultsMulti: vi.fn((lists) => {
+            capturedWeights.push(lists.map((list) => list.weight ?? 1));
+            return actual.fuseResultsMulti(lists);
+          }),
+        };
+      });
+
+      const dynamicFusion = await import('@spec-kit/shared/algorithms/adaptive-fusion');
+      dynamicFusion.adaptiveFuse(
+        makeItems(1, 'sem'),
+        makeItems(1, 'kw'),
+        { semanticWeight: 0.7, keywordWeight: 0.2, recencyWeight: 0.1, graphWeight: 0.3 },
+        {
+          graphResults: makeItems(1, 'graph'),
+          additionalLists: [{ source: 'trigger', results: makeItems(1, 'trigger'), weight: 1.4 }],
+        },
+      );
+
+      const [weights] = capturedWeights;
+      expect(weights.reduce((sum, weight) => sum + weight, 0)).toBeCloseTo(1, 9);
+      expect(weights[0]).toBeCloseTo(0.7 / 2.6, 9);
+      expect(weights[1]).toBeCloseTo(0.2 / 2.6, 9);
+      expect(weights[2]).toBeCloseTo(0.3 / 2.6, 9);
+      expect(weights[3]).toBeCloseTo(1.4 / 2.6, 9);
     });
   });
 

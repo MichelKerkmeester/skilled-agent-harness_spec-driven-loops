@@ -502,6 +502,35 @@ describe('Stage 2 fusion regression coverage', () => {
     expect(result.metadata.causalBoostApplied).toBe('enabled');
   });
 
+  it('records causal graph contribution for injected rows without a previous score', async () => {
+    vi.doMock('../lib/search/causal-boost', () => ({
+      applyCausalBoost: <T extends Array<Record<string, unknown>>>(rows: T) => ({
+        results: [
+          ...rows,
+          { id: 2, score: 0.42, rrfScore: 0.42, intentAdjustedScore: 0.42, causalBoost: 0.42, injectedByCausalBoost: true },
+        ],
+        metadata: { applied: true, enabled: true, boostedCount: 0, injectedCount: 1, maxBoostApplied: 0.42, traversalDepth: 2 },
+      }),
+    }));
+
+    const { executeStage2 } = await import('../lib/search/pipeline/stage2-fusion');
+    const input = createStage2Input([
+      { id: 1, score: 0.5, similarity: 50 },
+    ]);
+    input.config.searchType = 'hybrid';
+    input.config.enableCausalBoost = true;
+
+    const result = await executeStage2(input);
+    const injected = result.scored.find((row) => row.id === 2);
+    const contribution = injected?.graphContribution as Record<string, unknown> | undefined;
+
+    expect(injected).toBeDefined();
+    expect(contribution?.causalDelta).toBeGreaterThan(0);
+    expect(contribution?.totalDelta).toBeGreaterThan(0);
+    expect(contribution?.injected).toBe(true);
+    expect(result.metadata.graphContribution?.causalBoosted).toBeGreaterThan(0);
+  });
+
   it('reports sessionBoostApplied as "off" when feature is disabled', async () => {
     const { executeStage2 } = await import('../lib/search/pipeline/stage2-fusion');
     const input = createStage2Input([

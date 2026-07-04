@@ -461,11 +461,9 @@ export function matchSurrogates(
       break;
     }
     const overlap = keywordOverlap(queryTokens, alias);
-    if (overlap > aliasScore) {
+    if (overlap >= MIN_MATCH_THRESHOLD && overlap > aliasScore) {
       aliasScore = overlap;
-      if (overlap >= MIN_MATCH_THRESHOLD) {
-        matched.push(`alias:${alias}`);
-      }
+      matched.push(`alias:${alias}`);
     }
   }
 
@@ -473,22 +471,21 @@ export function matchSurrogates(
   let questionScore = 0;
   for (const question of surrogates.surrogateQuestions) {
     const overlap = keywordOverlap(queryTokens, question);
-    if (overlap > questionScore) {
+    if (overlap >= MIN_MATCH_THRESHOLD && overlap > questionScore) {
       questionScore = overlap;
-      if (overlap >= MIN_MATCH_THRESHOLD) {
-        // Replace previous question match
-        const idx = matched.findIndex((m) => m.startsWith('question:'));
-        if (idx >= 0) matched.splice(idx, 1);
-        matched.push(`question:${question}`);
-      }
+      // Replace previous question match.
+      const idx = matched.findIndex((m) => m.startsWith('question:'));
+      if (idx >= 0) matched.splice(idx, 1);
+      matched.push(`question:${question}`);
     }
   }
 
   // Channel 3: Summary match
   let summaryScore = 0;
   if (surrogates.summary.length > 0) {
-    summaryScore = keywordOverlap(queryTokens, surrogates.summary);
-    if (summaryScore >= MIN_MATCH_THRESHOLD) {
+    const overlap = keywordOverlap(queryTokens, surrogates.summary);
+    if (overlap >= MIN_MATCH_THRESHOLD) {
+      summaryScore = overlap;
       matched.push('summary');
     }
   }
@@ -497,13 +494,11 @@ export function matchSurrogates(
   let headingScore = 0;
   for (const heading of surrogates.headings) {
     const overlap = keywordOverlap(queryTokens, heading);
-    if (overlap > headingScore) {
+    if (overlap >= MIN_MATCH_THRESHOLD && overlap > headingScore) {
       headingScore = overlap;
-      if (overlap >= MIN_MATCH_THRESHOLD) {
-        const idx = matched.findIndex((m) => m.startsWith('heading:'));
-        if (idx >= 0) matched.splice(idx, 1);
-        matched.push(`heading:${heading}`);
-      }
+      const idx = matched.findIndex((m) => m.startsWith('heading:'));
+      if (idx >= 0) matched.splice(idx, 1);
+      matched.push(`heading:${heading}`);
     }
   }
 

@@ -206,6 +206,11 @@ describe('R6: Stage 4 — Filter + Annotate', () => {
       }
     });
 
+    it('does not treat an empty minState as stricter than HOT', () => {
+      const result = filterByMemoryState(testRows, '', false);
+      expect(result.filtered.map(r => r.id)).toEqual([1, 2, 3, 4, 5]);
+    });
+
     it('R6-T16: missing memoryState rows are treated as UNKNOWN and pass all filters (priority above HOT)', () => {
       const rowsWithMissing: Stage4ReadonlyRow[] = [
         { id: 1, similarity: 90, memoryState: 'HOT' },

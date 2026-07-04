@@ -68,14 +68,16 @@ describe('computeMPAB', () => {
     // N = 10, bonus = 0.3 * 4.45 / sqrt(10) = 1.335 / 3.16227766... = 0.42213203...
     // Result = 0.9 + 0.42213203... = 1.32213203...
     const sumRemaining = 0.85 + 0.8 + 0.7 + 0.6 + 0.5 + 0.4 + 0.3 + 0.2 + 0.1;
-    const expected = 0.9 + (0.3 * sumRemaining) / Math.sqrt(10);
+    const aggregated = 0.9 + (0.3 * sumRemaining) / Math.sqrt(10);
+    const expected = 1 + Math.log1p(aggregated - 1);
     expect(computeMPAB(scores)).toBeCloseTo(expected, 10);
   });
 
-  it('N=10: result can exceed 1.0 for multi-chunk documents', () => {
+  it('N=10: result can exceed 1.0 for multi-chunk documents with compression', () => {
     const scores = [0.9, 0.85, 0.8, 0.7, 0.6, 0.5, 0.4, 0.3, 0.2, 0.1];
     const result = computeMPAB(scores);
     expect(result).toBeGreaterThan(1.0);
+    expect(result).toBeLessThan(1.32213203);
   });
 
   it('index-based max removal: tied scores handled correctly', () => {
@@ -100,7 +102,8 @@ describe('computeMPAB', () => {
     // Remaining = [0.9, 0.3] (the second 0.9 stays)
     // N = 3, bonus = 0.3 * 1.2 / sqrt(3) = 0.36 / 1.73205... = 0.20784609...
     // Result = 0.9 + 0.20784609... = 1.10784609...
-    const expected = 0.9 + (0.3 * (0.9 + 0.3)) / Math.sqrt(3);
+    const aggregated = 0.9 + (0.3 * (0.9 + 0.3)) / Math.sqrt(3);
+    const expected = 1 + Math.log1p(aggregated - 1);
     expect(computeMPAB(scores)).toBeCloseTo(expected, 10);
   });
 

@@ -121,7 +121,9 @@ export function computeMPAB(scores: number[]): number {
   const bonus = MPAB_BONUS_COEFFICIENT * sumRemaining / Math.sqrt(N);
 
   const aggregated = sMax + bonus;
-  return Number.isFinite(aggregated) ? aggregated : 0;
+  if (!Number.isFinite(aggregated)) return 0;
+  if (aggregated <= 1) return aggregated;
+  return 1 + Math.log1p(aggregated - 1);
 }
 
 /* --- 5. CHUNK COLLAPSE & REASSEMBLY --- */

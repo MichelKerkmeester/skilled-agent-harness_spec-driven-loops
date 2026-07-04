@@ -173,24 +173,22 @@ export function getAdaptiveWeights(
     }
   }
 
-  const activeGraphWeight = typeof weights.graphWeight === 'number' && Number.isFinite(weights.graphWeight) && weights.graphWeight > 0
-    ? weights.graphWeight
-    : 0;
-  const activeSum =
-    weights.semanticWeight +
-    weights.keywordWeight +
-    weights.recencyWeight +
-    activeGraphWeight;
-  if (activeSum > 0 && Math.abs(activeSum - 1.0) > 0.001) {
-    weights.semanticWeight /= activeSum;
-    weights.keywordWeight /= activeSum;
-    weights.recencyWeight /= activeSum;
-    if (activeGraphWeight > 0) {
-      weights.graphWeight = activeGraphWeight / activeSum;
-    }
-  }
-
   return weights;
+}
+
+function normalizeRankedListWeights(lists: RankedList[]): RankedList[] {
+  const total = lists.reduce((sum, list) => {
+    const weight = typeof list.weight === 'number' && Number.isFinite(list.weight) ? list.weight : 1;
+    return weight > 0 ? sum + weight : sum;
+  }, 0);
+  if (total <= 0) return lists;
+  return lists.map((list) => {
+    const weight = typeof list.weight === 'number' && Number.isFinite(list.weight) ? list.weight : 1;
+    return {
+      ...list,
+      weight: Math.max(0, weight) / total,
+    };
+  });
 }
 
 /* --- 5. ADAPTIVE FUSION --- */
@@ -260,7 +258,7 @@ export function adaptiveFuse(
     return [];
   }
 
-  const fused = fuseResultsMulti(lists);
+  const fused = fuseResultsMulti(normalizeRankedListWeights(lists));
 
   // Apply recency boost if recencyWeight > 0, then re-normalize to [0,1]
   // Boost MUST be followed by normalization to keep scores in [0,1]

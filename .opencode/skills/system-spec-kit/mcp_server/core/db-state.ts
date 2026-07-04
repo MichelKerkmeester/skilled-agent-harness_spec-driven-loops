@@ -110,7 +110,16 @@ const dbConsumersRef: DatabaseConsumerLike[] = [];
 let vectorIndexListenerCleanup: (() => void) | null = null;
 let subscribedVectorIndex: VectorIndexLike | null = null;
 let suppressVectorIndexListener = false;
-const databaseRebindListeners = new Set<DatabaseRebindListener>();
+// graph-search-fn registers a rebind listener at its own module top level and
+// db-state imports it, so the backing store must be reachable while this module
+// is still mid-load. `var` hoists and initializes to undefined at scope entry
+// (no temporal dead zone), unlike let/const; the set is then created on first use.
+// eslint-disable-next-line no-var
+var rebindListenerSet: Set<DatabaseRebindListener> | undefined;
+function rebindListeners(): Set<DatabaseRebindListener> {
+  if (!rebindListenerSet) rebindListenerSet = new Set<DatabaseRebindListener>();
+  return rebindListenerSet;
+}
 let activeDatabaseReaders = 0;
 let databaseWriterActive = false;
 const pendingDatabaseReaders: Array<() => void> = [];
@@ -169,15 +178,15 @@ export async function withDatabaseWriteLock<T>(run: () => Promise<T>): Promise<T
 }
 
 export function registerDatabaseRebindListener(listener: DatabaseRebindListener): () => void {
-  databaseRebindListeners.add(listener);
+  rebindListeners().add(listener);
   return () => {
-    databaseRebindListeners.delete(listener);
+    rebindListeners().delete(listener);
   };
 }
 
 function notifyDatabaseRebindListeners(database: DatabaseLike): boolean {
   let succeeded = true;
-  for (const listener of databaseRebindListeners) {
+  for (const listener of rebindListeners()) {
     try {
       listener(database);
     } catch (error: unknown) {

@@ -62,6 +62,7 @@ import type {
 /** Per-stage timeout in milliseconds. */
 const STAGE_TIMEOUT_MS = 10_000;
 const TRIGGER_PROMOTION_FLOOR = 10;
+const SOFT_GATE_PENALTY = 0.7;
 
 interface TriggerPromotionResult {
   results: Stage4ReadonlyRow[];
@@ -123,10 +124,65 @@ function findTriggerLaneRows(laneLists: LaneCandidateList[] | undefined): Pipeli
     .filter((row): row is PipelineRow => typeof row.id === 'number' && Number.isFinite(row.id));
 }
 
+function rowString(row: Stage4ReadonlyRow, ...keys: string[]): string | undefined {
+  const record = row as unknown as Record<string, unknown>;
+  for (const key of keys) {
+    const value = record[key];
+    if (typeof value === 'string' && value.length > 0) return value;
+  }
+  return undefined;
+}
+
+function passesRequestedScope(row: Stage4ReadonlyRow, config: PipelineConfig): boolean {
+  const record = row as unknown as Record<string, unknown>;
+  const checks: Array<[string | undefined, unknown]> = [
+    [config.tenantId, record.tenant_id],
+    [config.userId, record.user_id],
+    [config.agentId, record.agent_id],
+  ];
+  return checks.every(([requested, actual]) => !requested || actual === requested);
+}
+
+function computeSoftGatePenalty(row: Stage4ReadonlyRow, config: PipelineConfig): number {
+  let penalty = 1;
+  if (config.tier && row.importance_tier !== config.tier) penalty *= SOFT_GATE_PENALTY;
+  const rowContextType = rowString(row, 'contextType', 'context_type');
+  if (config.contextType && rowContextType !== config.contextType) penalty *= SOFT_GATE_PENALTY;
+  if (typeof config.qualityThreshold === 'number' && Number.isFinite(config.qualityThreshold)) {
+    const quality = typeof row.quality_score === 'number' && Number.isFinite(row.quality_score)
+      ? row.quality_score
+      : 0;
+    if (quality < config.qualityThreshold) penalty *= SOFT_GATE_PENALTY;
+  }
+  return penalty;
+}
+
+function applySoftGatePenalty(row: Stage4ReadonlyRow, penalty: number): Stage4ReadonlyRow {
+  if (penalty >= 1) return row;
+  const score = Math.max(0, Math.min(1, resolveEffectiveScore(row as PipelineRow) * penalty));
+  const record = row as unknown as Record<string, unknown>;
+  return {
+    ...row,
+    score,
+    rrfScore: score,
+    intentAdjustedScore: score,
+    traceMetadata: {
+      ...(
+        row.traceMetadata && typeof row.traceMetadata === 'object' && !Array.isArray(row.traceMetadata)
+          ? row.traceMetadata
+          : {}
+      ),
+      triggerSoftGatePenalty: penalty,
+      triggerOriginalScore: record.score,
+    },
+  };
+}
+
 function promoteTriggerLaneRows(
   results: Stage4ReadonlyRow[],
   laneLists: LaneCandidateList[] | undefined,
   limit: number,
+  config: PipelineConfig,
 ): TriggerPromotionResult {
   if (!Number.isFinite(limit) || limit <= 0 || results.length >= Math.min(limit, TRIGGER_PROMOTION_FLOOR)) {
     return { results };
@@ -138,8 +194,10 @@ function promoteTriggerLaneRows(
   const seenTriggerIds = new Set<number>();
   for (const row of triggerRows) {
     if (existingIds.has(row.id) || seenTriggerIds.has(row.id)) continue;
+    if (!passesRequestedScope(row as unknown as Stage4ReadonlyRow, config)) continue;
     seenTriggerIds.add(row.id);
-    missingTriggerRows.push(row as unknown as Stage4ReadonlyRow);
+    const triggerRow = row as unknown as Stage4ReadonlyRow;
+    missingTriggerRows.push(applySoftGatePenalty(triggerRow, computeSoftGatePenalty(triggerRow, config)));
   }
 
   if (missingTriggerRows.length === 0) {
@@ -324,6 +382,7 @@ async function executePipelineUnlocked(config: PipelineConfig): Promise<Pipeline
     stage4Result.final,
     laneListsForBackfill,
     config.limit,
+    config,
   );
   let finalResults: Stage4ReadonlyRow[] = triggerPromotion.results;
   let tailAppendsMeta: PipelineResult['metadata']['tailAppends'];
