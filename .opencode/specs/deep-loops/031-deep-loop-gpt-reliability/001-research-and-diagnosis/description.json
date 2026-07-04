@@ -1,0 +1,24 @@
+{
+  "specFolder": "deep-loops/031-deep-loop-gpt-reliability/001-research-and-diagnosis",
+  "description": "GPT-backed OpenCode mis-handled deep-loop routing, host identity, and orchestration",
+  "keywords": [
+    "gpt-backed",
+    "opencode",
+    "mis-handled",
+    "deep-loop",
+    "routing",
+    "host",
+    "identity",
+    "orchestration"
+  ],
+  "lastUpdated": "2026-07-04T18:47:57.175Z",
+  "specId": "001",
+  "folderSlug": "research-and-diagnosis",
+  "parentChain": [
+    "deep-loops",
+    "031-deep-loop-gpt-reliability"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}
