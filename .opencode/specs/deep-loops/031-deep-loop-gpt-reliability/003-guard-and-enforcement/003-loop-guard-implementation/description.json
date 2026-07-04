@@ -1,5 +1,5 @@
 {
-  "specFolder": "deep-loops/031-deep-loop-issues-with-gpt-opencode/017-loop-guard-implementation",
+  "specFolder": "deep-loops/031-deep-loop-gpt-reliability/003-guard-and-enforcement/003-loop-guard-implementation",
   "description": "Phase 016's research confirmed two real gaps in the phase-011 `mk-deep-loop-guard.js` plugin: (1) it has no mechanism to detect loop-like repeated",
   "keywords": [
     "phase",
@@ -17,14 +17,13 @@
     "loop-like",
     "repeated"
   ],
-  "lastUpdated": "2026-07-04T13:02:04.942Z",
-  "specId": "017",
+  "lastUpdated": "2026-07-04T19:09:00.391Z",
+  "specId": "003",
   "folderSlug": "loop-guard-implementation",
   "parentChain": [
-    ".opencode",
-    "specs",
     "deep-loops",
-    "031-deep-loop-issues-with-gpt-opencode"
+    "031-deep-loop-gpt-reliability",
+    "003-guard-and-enforcement"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

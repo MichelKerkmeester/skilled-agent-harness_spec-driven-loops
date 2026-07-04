@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "deep-loops/031-deep-loop-issues-with-gpt-opencode/011-deep-route-guard-plugin",
-  "spec_folder": "deep-loops/031-deep-loop-issues-with-gpt-opencode/011-deep-route-guard-plugin",
-  "parent_id": "deep-loops/031-deep-loop-issues-with-gpt-opencode",
+  "packet_id": "deep-loops/031-deep-loop-gpt-reliability/003-guard-and-enforcement/003-loop-guard-implementation",
+  "spec_folder": "deep-loops/031-deep-loop-gpt-reliability/003-guard-and-enforcement/003-loop-guard-implementation",
+  "parent_id": "deep-loops/031-deep-loop-gpt-reliability/003-guard-and-enforcement",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -11,10 +11,9 @@
   },
   "derived": {
     "trigger_phrases": [
-      "deep route guard plugin",
-      "tool execute before hook",
-      "sub-agent enforcement plugin",
-      "detection only enforcement",
+      "mk-deep-loop-guard hardening implementation",
+      "loop-repeat detection plugin",
+      "subagent_type general identity fix",
       "implementation",
       "plan",
       "tasks",
@@ -23,39 +22,34 @@
       "summary"
     ],
     "key_topics": [
-      "deep",
-      "route",
-      "guard",
-      "plugin",
-      "tool",
-      "execute",
-      "hook",
-      "sub-agent",
-      "enforcement",
+      "mk-deep-loop-guard",
+      "hardening",
+      "implementation",
+      "loop-repeat",
       "detection",
-      "only",
-      "implementation"
+      "plugin",
+      "general",
+      "identity",
+      "fix",
+      "plan",
+      "tasks",
+      "verification"
     ],
     "importance_tier": "high",
     "status": "complete",
     "key_files": [
-      ".opencode/skills/deep-loop-workflows/mode-registry.json",
       ".opencode/plugins/mk-deep-loop-guard.js",
       ".opencode/plugins/tests/mk-deep-loop-guard.test.cjs",
       "spec.md",
       ".opencode/plugins/README.md",
-      "implementation-summary.md",
+      ".opencode/skills/deep-loop-runtime/feature_catalog/03--validation/mk-deep-loop-guard.md",
+      ".opencode/skills/deep-loop-runtime/manual_testing_playbook/03--validation/mk-deep-loop-guard.md",
       "plan.md",
+      "implementation-summary.md",
       "tasks.md",
       "checklist.md"
     ],
     "entities": [
-      {
-        "name": "mode-registry.json",
-        "kind": "config",
-        "path": ".opencode/skills/deep-loop-workflows/mode-registry.json",
-        "source": "derived"
-      },
       {
         "name": "mk-deep-loop-guard.js",
         "kind": "code",
@@ -81,15 +75,21 @@
         "source": "derived"
       },
       {
-        "name": "implementation-summary.md",
+        "name": "mk-deep-loop-guard.md",
         "kind": "doc",
-        "path": "implementation-summary.md",
+        "path": ".opencode/skills/deep-loop-runtime/feature_catalog/03--validation/mk-deep-loop-guard.md",
         "source": "derived"
       },
       {
         "name": "plan.md",
         "kind": "doc",
         "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -111,13 +111,13 @@
         "source": "derived"
       },
       {
-        "name": "Layer Sub",
+        "name": "Resolution Hardening",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "Routing Enforcement Plugin",
+        "name": "Design Option",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -129,13 +129,13 @@
         "source": "derived"
       },
       {
-        "name": "Problem Statement Phases",
+        "name": "Problem Statement Phase",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "Purpose Build",
+        "name": "Purpose Implement Design Option",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -147,19 +147,19 @@
         "source": "derived"
       },
       {
+        "name": "Deep Route",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
         "name": "Technical Context",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
       },
       {
-        "name": "Overview Detection",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Pattern Detection",
+        "name": "Overview Extends",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -177,13 +177,13 @@
         "source": "derived"
       },
       {
-        "name": "Key Decisions",
+        "name": "Rewired Check",
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
       },
       {
-        "name": "Completion Criteria",
+        "name": "Implemented Check",
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
@@ -195,9 +195,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Phases 008-010 fix routing identity (correct table rows, correct registry values, correct reachability) but do nothing to enforce it at the moment of dispatch — a model can still construct a Task-tool call with a mismatched `mode`/`targetagent` pair and nothing currently stops it before the dispatch happens",
-    "created_at": "2026-07-01T10:56:27.071Z",
-    "last_save_at": "2026-07-02T05:31:05.445Z",
+    "causal_summary": "Phase 016's research confirmed two real gaps in the phase-011 `mk-deep-loop-guard.js` plugin: (1) it has no mechanism to detect loop-like repeated `orchestrate`-to-command-owned-loop-executor dispatches within a session (phase 012's benchmark measured GPT-5.5 inconsistently refusing one direct dispatch while allowing an identical one); (2) its existing mode-mismatch check resolves the dispatch target via `registry.get(args.subagenttype)`, but `orchestrate.md`'s own dispatch convention sets `subagenttype: \"general\"` on every Task call (independently re-verified against `orchestrate.md`'s real",
+    "created_at": "2026-07-01T17:42:33.780Z",
+    "last_save_at": "2026-07-04T19:09:00.590Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,13 +207,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:88cb40a0686be7ffbc29e7bb7cc11c6bbc5ceb106ca54ac053d84c17d8cfae7b",
+    "source_fingerprint": "sha256:23b4e7d7ff1328f5a4a9d7801d4f4f3d1162ad2b0d9896ae7944dd4eb630fa85",
     "source_doc_hashes": {
-      "spec.md": "fddf96c972b6542678d0d7d395f63b1dd553539a5141e0f82d3b1929aea69309",
-      "plan.md": "9009d29036bef14f4d197e4ffd2e67818a822d4b90e74c5aa550307d4c520023",
-      "tasks.md": "5078d9c07edd65e6c1fd76cfe114c1ee3f3ac5500780bbf7d2c121533004b2bf",
-      "checklist.md": "dc947d2352156a121d201aa88e36baf2b1ca5b35128522bb352de0fed3298f1f",
-      "implementation-summary.md": "cf5feaec26c6c041b73979e4fbf20597b1823b090ac5e25c8f6575c00adf1517"
+      "spec.md": "9cd47fc972e5de71febd78e2dea51a6673ce31e2cecdc58fd2b6850e00de828c",
+      "plan.md": "6439b90b9fc98e494468e45472dbbc79516a97a53e4eb2e1459fc58d6675db13",
+      "tasks.md": "78d3ceec451de96c3f9850c48ac1996e20fee999ee482c19b266aeb7e4228c13",
+      "checklist.md": "2f86d560a2b65a5cc92d41e80b1ad013f9f500dbde750d5aa66017f413d2522c",
+      "implementation-summary.md": "7db3c27ad9453e7d741370729cf2ca0ae384f3a3ddde01f20f5574bff60cf452"
     },
     "last_active_child_id": null,
     "last_active_at": null

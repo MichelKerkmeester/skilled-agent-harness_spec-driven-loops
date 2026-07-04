@@ -9,7 +9,7 @@ importance_tier: "high"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "deep-loops/031-deep-loop-issues-with-gpt-opencode/017-loop-guard-implementation"
+    packet_pointer: "deep-loops/031-deep-loop-gpt-reliability/003-guard-and-enforcement/003-loop-guard-implementation"
     last_updated_at: "2026-07-01T21:15:00Z"
     last_updated_by: "claude-code"
     recent_action: "Implementation, hermetic tests, and live re-verification complete"
@@ -36,7 +36,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 017-loop-guard-implementation |
+| **Spec Folder** | 003-loop-guard-implementation |
 | **Completed** | 2026-07-01 |
 | **Level** | 2 |
 <!-- /ANCHOR:metadata -->

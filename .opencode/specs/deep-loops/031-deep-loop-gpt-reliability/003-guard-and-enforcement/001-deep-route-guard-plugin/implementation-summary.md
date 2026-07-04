@@ -9,7 +9,7 @@ importance_tier: "high"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "deep-loops/031-deep-loop-issues-with-gpt-opencode/011-deep-route-guard-plugin"
+    packet_pointer: "deep-loops/031-deep-loop-gpt-reliability/003-guard-and-enforcement/001-deep-route-guard-plugin"
     last_updated_at: "2026-07-01T20:00:00Z"
     last_updated_by: "claude-code"
     recent_action: "Renamed plugin to mk-deep-loop-guard.js; added tests; integrated F050/DLR-052"
@@ -35,7 +35,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 011-deep-route-guard-plugin |
+| **Spec Folder** | 001-deep-route-guard-plugin |
 | **Completed** | 2026-07-01 |
 | **Level** | 2 |
 <!-- /ANCHOR:metadata -->

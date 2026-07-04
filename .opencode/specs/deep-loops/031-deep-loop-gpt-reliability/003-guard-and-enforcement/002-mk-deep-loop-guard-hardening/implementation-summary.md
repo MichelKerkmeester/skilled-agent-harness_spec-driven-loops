@@ -9,7 +9,7 @@ importance_tier: "high"
 contextType: "research"
 _memory:
   continuity:
-    packet_pointer: "deep-loops/031-deep-loop-issues-with-gpt-opencode/016-mk-deep-loop-guard-hardening"
+    packet_pointer: "deep-loops/031-deep-loop-gpt-reliability/003-guard-and-enforcement/002-mk-deep-loop-guard-hardening"
     last_updated_at: "2026-07-01T20:30:00Z"
     last_updated_by: "claude-code"
     recent_action: "Research complete and synthesized; awaiting operator decision"
@@ -36,7 +36,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 016-mk-deep-loop-guard-hardening |
+| **Spec Folder** | 002-mk-deep-loop-guard-hardening |
 | **Completed** | 2026-07-01 |
 | **Level** | 1 (research-only) |
 <!-- /ANCHOR:metadata -->

@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "deep-loops/031-deep-loop-issues-with-gpt-opencode/016-mk-deep-loop-guard-hardening",
-  "spec_folder": "deep-loops/031-deep-loop-issues-with-gpt-opencode/016-mk-deep-loop-guard-hardening",
-  "parent_id": "deep-loops/031-deep-loop-issues-with-gpt-opencode",
+  "packet_id": "deep-loops/031-deep-loop-gpt-reliability/003-guard-and-enforcement/002-mk-deep-loop-guard-hardening",
+  "spec_folder": "deep-loops/031-deep-loop-gpt-reliability/003-guard-and-enforcement/002-mk-deep-loop-guard-hardening",
+  "parent_id": "deep-loops/031-deep-loop-gpt-reliability/003-guard-and-enforcement",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -193,7 +193,7 @@
     ],
     "causal_summary": "`cli-opencode/SKILL.md` now correctly documents that `orchestrate` may perform exactly one bounded hand-off dispatch to a command-owned loop executor (`deep-research`, `deep-review`, `deep-improvement`, `prompt-improver`), but never re-implement the loop itself",
     "created_at": "2026-07-01T17:22:22.549Z",
-    "last_save_at": "2026-07-02T05:31:05.468Z",
+    "last_save_at": "2026-07-04T19:09:00.129Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -202,12 +202,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:d9c246ec484d277640288d97c13f0fbcefdb35c60fc77b06ae3ddc4e83fe7f34",
+    "source_fingerprint": "sha256:2b7b6a41111ae2ca288e8174fd2a00e8bc8394051690b352094323aa6aef6e8d",
     "source_doc_hashes": {
-      "spec.md": "7c6674283a9ddd6e5106e834a5d0df54761a95aab47863596621b6ea5d51eb5b",
-      "plan.md": "16b6696eb0fdc88487d70ce7bf233176165094275799f6dc41a7afd5e2a55675",
-      "tasks.md": "02d14475090b40fec429dbac66f0d1ebe78ae39026260523f501d296d6549797",
-      "implementation-summary.md": "d5af7cddd6035b98e5817b5e440eebb99c2b85bfa004d24733d2a4be604f9e3e"
+      "spec.md": "f8955949c615a44ddba62d3b3e289843274c3087a4c220c81155a4704749cbec",
+      "plan.md": "de01b962fcb968e59718f1405b0ac1a66d44f8eb0c3686587004ec6ea15c2814",
+      "tasks.md": "28822e004dac2f338472f05c028c572aa57e96d0fc7adc9d23c52f744d0fb492",
+      "implementation-summary.md": "11d4d99664066ce6ed32e33f12235641e09aa9a6f0a50d28c217216f954c4a71"
     },
     "last_active_child_id": null,
     "last_active_at": null

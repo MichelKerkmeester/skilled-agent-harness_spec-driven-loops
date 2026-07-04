@@ -1,5 +1,6 @@
 {
-  "specFolder": "deep-loops/031-deep-loop-issues-with-gpt-opencode/018-fanout-stopreason-tolerance",
+  "level": 1,
+  "specFolder": "deep-loops/031-deep-loop-gpt-reliability/003-guard-and-enforcement/004-fanout-stopreason-tolerance",
   "description": "`findMaxIterationsPolicyViolation` (fanout-run.cjs:~619) rejects a lineage whenever `synthesis.stopReason !== 'maxIterationsReached'`",
   "keywords": [
     "findmaxiterationspolicyviolation",
@@ -13,14 +14,14 @@
     "stopreason",
     "maxiterationsreached"
   ],
-  "lastUpdated": "2026-07-04T10:55:58.090Z",
-  "specId": "018",
+  "lastUpdated": "2026-07-04T19:09:00.849Z",
+  "specId": "004",
   "folderSlug": "fanout-stopreason-tolerance",
   "parentChain": [
     "deep-loops",
-    "031-deep-loop-issues-with-gpt-opencode"
+    "031-deep-loop-gpt-reliability",
+    "003-guard-and-enforcement"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": 1
+  "memoryNameHistory": []
 }
