@@ -86,7 +86,7 @@
       "section": "full"
     }
   ],
-  "compiledBodyDigest": "47f371d3f4b3f9e5b80154c51e5ddef159707399e0eb899ab6da584f5db3e7fe"
+  "compiledBodyDigest": "d10af6a798156fde6df665f55d1c607accd9e881573f5648f35eb2ceca381f9b"
 }
 GENERATED_COMMAND_CONTRACT_HEADER_END -->
 # Compiled Command Contract: /deep:review
@@ -102,8 +102,10 @@ You were invoked via `opencode run --command deep/review` with the `:auto` suffi
 - DO NOT emit the consolidated setup question (target/mode, research topic, Spec Folder A/B/C/D/E, execution mode, max iterations, executor). The bound spec_folder is your write authority; do not ask which spec folder should own the writes.
 - DO NOT halt for the repo-wide `CLAUDE.md` Gate-3 documentation gate. Under AUTONOMOUS execution with a validated prebound spec folder, Gate 3 is already satisfied by that folder (see gate3Precedence below).
 - PROCEED immediately: load the auto workflow YAML and dispatch the `deep-review` agent to run the review loop over the bound target.
+- DISPATCH ONLY: you dispatch `deep-review` to run the loop; you do NOT read, edit, patch, or run the review loop over the target yourself. The `deep-review` leaf owns the loop and every artifact write — mixing your own inline work with the dispatch is a route violation.
+- ROUTE PROOF: dispatch through the auto workflow with its prompt pack so `deep-review` writes each iteration state record with the route-proof fields present — `target_agent: "deep-review"`, `resolved_route`, `agent_definition_loaded: true`, and `mode: "review"`. A completed run whose iteration state records omit these fields is an incomplete delegation and does not pass.
 
-Your task is to RUN THE REVIEW LOOP over the bound target — NOT to review, analyze, or summarize this contract. This contract is your instruction set; the review target is the bound spec_folder/target named in your message, never this document.
+Your job is to DISPATCH `deep-review` to run the review loop over the bound target — NOT to run the loop yourself, and NOT to review, analyze, or summarize this contract. This contract is your instruction set; the review target is the bound spec_folder/target named in your message, never this document.
 
 ## sourceAuthority
 
