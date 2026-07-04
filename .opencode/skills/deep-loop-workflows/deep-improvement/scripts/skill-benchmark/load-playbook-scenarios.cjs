@@ -141,6 +141,23 @@ function extractPaths(block) {
   return out;
 }
 
+// Forbidden ("Expected NOT loaded") paths are usually glob prefixes
+// (`references/webflow/*`), not extension-terminated files, so extractPaths
+// misses them. Capture the backtick-quoted path prefixes and drop any trailing
+// glob so a routed resource can be prefix-matched against them.
+function extractForbiddenPrefixes(block) {
+  if (!block) return [];
+  const out = [];
+  const seen = new Set();
+  const re = /`((?:references|assets|\.\.\/shared)\/[A-Za-z0-9_./*-]+)`/g;
+  let m;
+  while ((m = re.exec(block)) !== null) {
+    const prefix = m[1].replace(/\*+$/, '');
+    if (prefix && !seen.has(prefix)) { seen.add(prefix); out.push(prefix); }
+  }
+  return out;
+}
+
 // Grab the text between a `**Label**` marker and the next bold marker / heading.
 function sectionAfter(text, labelRe) {
   const start = text.search(labelRe);
@@ -204,6 +221,8 @@ function parseFeatureFile(absPath, scenarioId, category, critical, rootEntry) {
   const expectedSurface = KNOWN_SURFACES.has(surfaceRaw) ? surfaceRaw : null;
   const expectedResources = extractPaths(refBlock);
   const expectedAssets = extractPaths(assetBlock);
+  const notLoadedBlock = sectionAfter(text, /\*\*Expected NOT loaded\*\*/i);
+  const forbiddenResources = extractForbiddenPrefixes(notLoadedBlock);
   const expectedRankBelowSkillIds = parseExpectedRankBelowSkillIds(text);
 
   // Negative activation: the skill should NOT route here (UNKNOWN surface,
@@ -225,6 +244,7 @@ function parseFeatureFile(absPath, scenarioId, category, critical, rootEntry) {
     expectedIntent: null,
     expectedResources,
     expectedAssets,
+    forbiddenResources,
     expectedRankBelowSkillIds,
     expected: expectedRankBelowSkillIds.length ? { rankBelowSkillIds: expectedRankBelowSkillIds } : undefined,
     passCriteria,

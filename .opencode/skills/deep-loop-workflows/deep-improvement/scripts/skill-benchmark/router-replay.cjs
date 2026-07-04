@@ -358,6 +358,90 @@ function detectOpencodeLanguage(taskLower) {
 // 4. CORE LOGIC
 // ─────────────────────────────────────────────────────────────────────────────
 
+// A parent hub selects the MODE in hub-router.json but keeps the flat
+// surface/phase router (INTENT_SIGNALS + RESOURCE_MAP over the deep per-surface
+// reference paths) as a retained shared doc. Resource recall must be replayed
+// against THAT router: the hub router only emits packet pointers (a mode's
+// SKILL.md), not the per-surface resource gold the scenarios assert. Probe the
+// conventional locations; a skill with no such doc (every flat skill, and sibling
+// hubs without one) yields null and is left on the normal path unchanged.
+function loadSurfaceRouter(skillRoot) {
+  const candidates = [
+    path.join(skillRoot, 'shared', 'references', 'smart_routing.md'),
+    path.join(skillRoot, 'references', 'smart_routing.md'),
+  ];
+  for (const doc of candidates) {
+    if (!fs.existsSync(doc)) continue;
+    const text = fs.readFileSync(doc, 'utf8');
+    const intentSignals = parseIntentSignals(extractDictBody(text, 'INTENT_SIGNALS'));
+    const resourceMap = parseResourceMap(extractDictBody(text, 'RESOURCE_MAP'));
+    const defaultResource = parseDefaultResource(text);
+    if (Object.keys(intentSignals).length > 0 || Object.keys(resourceMap).length > 0) {
+      return { intentSignals, resourceMap, defaultResource, sourceRel: path.relative(skillRoot, doc) };
+    }
+  }
+  return null;
+}
+
+// The roots a hub's surface resources resolve under, for the missing-resource
+// report: the surface router's paths are relative to the shared preamble tier
+// (stack/phase detection, universal baseline) or a mode packet (post-relocation),
+// not the hub root. Returns [] for a non-hub skill (no registry).
+function registryPacketRoots(skillRoot) {
+  const byMode = buildRegistryIndex(skillRoot);
+  const roots = Object.keys(byMode).length ? [path.join(skillRoot, 'shared')] : [];
+  for (const mode of Object.values(byMode)) {
+    if (mode && mode.packet) roots.push(path.join(skillRoot, String(mode.packet)));
+  }
+  return roots;
+}
+
+// Union the default preamble with each selected intent's resources, then apply
+// surface-aware slicing when the map uses a per-surface layout (sk-code): keep the
+// universal tier + Motion.dev overlay + only the DETECTED surface's slice, drop
+// the other surface's resources (the documented over-routing source). Assets are
+// deferred — never the routing gold. A MIXED task keeps both surfaces; UNKNOWN
+// falls back to the universal + Motion tier only. Existence is checked against the
+// skill root plus any extra roots (a hub's packet roots), since a hub's surface
+// paths resolve under a packet rather than the hub root.
+function assembleResources({ skillRoot, taskLower, intents, router, extraRoots = [] }) {
+  const resourceSet = new Set();
+  for (const r of router.defaultResource || []) resourceSet.add(r);
+  for (const intent of intents) {
+    for (const r of router.resourceMap[intent] || []) resourceSet.add(r);
+  }
+  let resources = [...resourceSet];
+
+  const mapResources = Object.values(router.resourceMap).flat();
+  const hasSurfaceLayout = mapResources.some((r) => r.startsWith('references/webflow/'))
+    && mapResources.some((r) => r.startsWith('references/opencode/'));
+  let surface;
+  if (hasSurfaceLayout) {
+    surface = detectSurface(taskLower);
+    // Within OpenCode, slice further to the detected language so a TypeScript task
+    // does not also pull the Python/shell/config guides. Non-language OpenCode
+    // folders (e.g. `shared/`) are always kept.
+    const ocLang = surface === 'OPENCODE' ? detectOpencodeLanguage(taskLower) : null;
+    resources = resources.filter((r) => {
+      if (r.startsWith('assets/')) return false;
+      const rs = resourceSurface(r);
+      if (rs === 'UNIVERSAL' || rs === 'MOTION') return true;
+      if (surface === 'MIXED') return true;
+      if (surface === 'UNKNOWN') return false;
+      if (rs !== surface) return false;
+      if (ocLang) {
+        const m = /^references\/opencode\/([^/]+)\//.exec(r);
+        if (m && OPENCODE_LANGUAGES.includes(m[1]) && m[1] !== ocLang) return false;
+      }
+      return true;
+    });
+  }
+
+  const roots = [skillRoot, ...extraRoots];
+  const missingResources = resources.filter((r) => !roots.some((root) => fs.existsSync(path.join(root, r))));
+  return { resources, missingResources, surface };
+}
+
 /**
  * Replay the in-skill router for a task and return the routed resources.
  *
@@ -384,55 +468,51 @@ function routeSkillResources({ skillRoot, taskText }) {
   const scores = scoreIntents(taskLower, router.intentSignals);
   const intents = selectIntents(scores);
   const routeTelemetry = buildHubRouteTelemetry({ skillRoot, intents, router, taskLower });
-  const resourceSet = new Set();
-  for (const r of router.defaultResource || []) resourceSet.add(r);
-  for (const intent of intents) {
-    for (const r of router.resourceMap[intent] || []) resourceSet.add(r);
-  }
-  let resources = [...resourceSet];
 
-  // Surface-aware slicing (only for skills with a per-surface resource layout,
-  // e.g. sk-code; a no-op for skills whose resources are all surface-agnostic).
-  // Load the universal tier + the Motion.dev overlay + only the DETECTED surface's
-  // slice, dropping the other surface's resources (the documented over-routing
-  // source). Assets are deferred — they are never the routing gold. A MIXED task
-  // keeps both surfaces (cross-surface non-starvation); UNKNOWN falls back to the
-  // universal + Motion tier only.
-  const mapResources = Object.values(router.resourceMap).flat();
-  const hasSurfaceLayout = mapResources.some((r) => r.startsWith('references/webflow/'))
-    && mapResources.some((r) => r.startsWith('references/opencode/'));
-  if (hasSurfaceLayout) {
-    const surface = detectSurface(taskLower);
-    // Within OpenCode, slice further to the detected language so a TypeScript task
-    // does not also pull the Python/shell/config guides. Non-language OpenCode
-    // folders (e.g. `shared/`) are always kept.
-    const ocLang = surface === 'OPENCODE' ? detectOpencodeLanguage(taskLower) : null;
-    resources = resources.filter((r) => {
-      if (r.startsWith('assets/')) return false;
-      const rs = resourceSurface(r);
-      if (rs === 'UNIVERSAL' || rs === 'MOTION') return true;
-      if (surface === 'MIXED') return true;
-      if (surface === 'UNKNOWN') return false;
-      if (rs !== surface) return false;
-      if (ocLang) {
-        const m = /^references\/opencode\/([^/]+)\//.exec(r);
-        if (m && OPENCODE_LANGUAGES.includes(m[1]) && m[1] !== ocLang) return false;
-      }
-      return true;
-    });
-    const missingResources = resources.filter((r) => !fs.existsSync(path.join(skillRoot, r)));
-    return { parseable: true, intents, resources, missingResources, scores, surface, routeTelemetry };
+  // Parent-hub two-layer routing: the hub router chose the mode (telemetry above);
+  // replay the retained surface router for the resource gold, which lives at the
+  // surface layer. No-op unless a surface router is present, so every flat skill
+  // and any sibling hub without one keeps the exact prior behavior.
+  if (router.routerSource === 'hub-router.json') {
+    const surfaceRouter = loadSurfaceRouter(skillRoot);
+    if (surfaceRouter) {
+      const surfaceIntents = selectIntents(scoreIntents(taskLower, surfaceRouter.intentSignals));
+      const asm = assembleResources({
+        skillRoot,
+        taskLower,
+        intents: surfaceIntents,
+        router: surfaceRouter,
+        extraRoots: registryPacketRoots(skillRoot),
+      });
+      return {
+        parseable: true,
+        intents,
+        resources: asm.resources,
+        missingResources: asm.missingResources,
+        scores,
+        ...(asm.surface ? { surface: asm.surface } : {}),
+        routeTelemetry,
+      };
+    }
   }
 
-  const missingResources = resources.filter((r) => !fs.existsSync(path.join(skillRoot, r)));
-  return { parseable: true, intents, resources, missingResources, scores, routeTelemetry };
+  const asm = assembleResources({ skillRoot, taskLower, intents, router });
+  return {
+    parseable: true,
+    intents,
+    resources: asm.resources,
+    missingResources: asm.missingResources,
+    scores,
+    ...(asm.surface ? { surface: asm.surface } : {}),
+    routeTelemetry,
+  };
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 5. EXPORTS
 // ─────────────────────────────────────────────────────────────────────────────
 
-module.exports = { routeSkillResources, parseRouter, scoreIntents, selectIntents, buildHubRouteTelemetry };
+module.exports = { routeSkillResources, parseRouter, scoreIntents, selectIntents, buildHubRouteTelemetry, loadSurfaceRouter, registryPacketRoots };
 
 if (require.main === module) {
   const args = require('./_args.cjs').parse(process.argv.slice(2));

@@ -543,7 +543,7 @@ Desired user-visible outcome: A findings-first review artifact that preserves sc
 
 #### Test Execution
 
-> **Feature File:** [CR-018](06--cross-cli-orchestration/cli-opencode-and-cli-opencode-handback.md)
+> **Feature File:** [CR-018](06--cross-cli-orchestration/cli-opencode-and-cli-claude-code-handback.md)
 
 ---
 

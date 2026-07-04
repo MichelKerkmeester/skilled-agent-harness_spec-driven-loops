@@ -113,6 +113,10 @@ function expectedFromScenario(scenario, obs, arg) {
     // (sk-doc's expectedIntent); surface correctness is scored separately.
     intentKeys: scenario.expectedIntent ? [scenario.expectedIntent] : [],
     resources: scenario.expectedResources || [],
+    // Paths (usually glob prefixes) a scenario asserts must NOT be routed. Only
+    // meaningful once the router actually emits per-surface resources; before
+    // that a suppression scenario passed trivially by routing nothing at all.
+    forbiddenResources: scenario.forbiddenResources || [],
     // Assets are gold too, but scored on their own lane (assetRecall) — the
     // router defers assets/* on demand, so folding them into resource recall
     // would distort D2/D3.
@@ -167,8 +171,24 @@ function computeSurfaceMatch(scenario, obs) {
 
 function scoreD1Intra({ expected, routerResult, negative, surfaceMatch, intentRecall, resourceRecall }) {
   if (negative) {
-    const leakedExpected = (expected.resources || []).some((r) => routerResult.resources.includes(r));
-    return { score: leakedExpected ? 0 : 1, intentRecall, resourceRecall, negative: true };
+    // A suppression scenario fails when a FORBIDDEN resource is routed — matched
+    // by prefix, since the gold is usually a glob (`references/webflow/*`). The
+    // positive "should-load" set is NOT the forbidden set: a scenario can require
+    // the universal tier while forbidding a surface. When a positive set is named
+    // (e.g. an UNKNOWN stack that still loads the universal refs), score it on
+    // recall and hard-cap only if a forbidden resource leaked; with no positive
+    // set, fall back to "any routing is over-activation" (a route-nothing gold).
+    const forbidden = expected.forbiddenResources || [];
+    const leaked = forbidden.some((f) => (routerResult.resources || []).some((r) => r.startsWith(f)));
+    if ((expected.resources || []).length > 0) {
+      const rr = resourceRecall == null ? 1 : resourceRecall;
+      return { score: leaked ? Math.min(0.3, rr) : rr, intentRecall, resourceRecall, negative: true, forbiddenLeaked: leaked };
+    }
+    // No positive set: only a declared-forbidden leak fails the scenario. In
+    // router mode the skill is already selected, so "routed something" is not
+    // itself over-activation (that is an advisor-lane concern); a disambiguation
+    // scenario that names neither a positive nor a forbidden set stays neutral.
+    return { score: leaked ? 0 : 1, intentRecall, resourceRecall, negative: true, forbiddenLeaked: leaked };
   }
   const ir = intentRecall == null ? 1 : intentRecall;
   const rr = resourceRecall == null ? 1 : resourceRecall;

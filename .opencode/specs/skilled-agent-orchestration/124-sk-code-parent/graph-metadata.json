@@ -10,7 +10,8 @@
     "skilled-agent-orchestration/124-sk-code-parent/004-onboard-implement",
     "skilled-agent-orchestration/124-sk-code-parent/005-foldin-review",
     "skilled-agent-orchestration/124-sk-code-parent/006-build-remaining-modes",
-    "skilled-agent-orchestration/124-sk-code-parent/007-advisor-and-integration"
+    "skilled-agent-orchestration/124-sk-code-parent/007-advisor-and-integration",
+    "skilled-agent-orchestration/124-sk-code-parent/008-routing-benchmark-and-review"
   ],
   "manual": {
     "depends_on": [
@@ -85,7 +86,7 @@
     ],
     "source_fingerprint": null,
     "source_doc_hashes": {},
-    "last_active_child_id": "skilled-agent-orchestration/124-sk-code-parent/007-advisor-and-integration",
-    "last_active_at": "2026-07-03T00:00:00Z"
+    "last_active_child_id": "skilled-agent-orchestration/124-sk-code-parent/008-routing-benchmark-and-review",
+    "last_active_at": "2026-07-04T00:00:00Z"
   }
 }

@@ -19,7 +19,7 @@ The deep-improvement Lane C harness benchmarks `sk-code` against its own `manual
 
 Two trace modes score the same playbook corpus:
 
-- **router** is deterministic and offline. It replays the machine-readable router in `sk-code/references/smart_routing.md`. This is the CI gate.
+- **router** is deterministic and offline. For a hub skill it replays `hub-router.json` + `mode-registry.json`; for a flat skill it replays the machine-readable router in `sk-code/shared/references/smart_routing.md`. This is the CI gate.
 - **live** dispatches each scenario through `cli-opencode` to a real model and grades the model's stated routing plus observed activation. This is the operator default for a true routing verdict.
 
 ### Key Statistics
@@ -128,5 +128,5 @@ Start with the `.md` file for the verdict and the ranked bottlenecks. Open the `
 
 | Document | Purpose |
 |---|---|
-| [`smart_routing.md`](../references/smart_routing.md) | The machine-readable router the benchmark replays |
+| [`smart_routing.md`](../shared/references/smart_routing.md) | The machine-readable router the benchmark replays for a flat skill (a hub replays `hub-router.json`) |
 | [`/deep:skill-benchmark`](../../../commands/deep/skill-benchmark.md) | The command that drives a benchmark run |

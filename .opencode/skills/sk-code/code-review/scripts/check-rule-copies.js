@@ -57,11 +57,13 @@ const EXACT_INVARIANTS = [
   },
 ];
 
-// (b) IRON LAW invariant: the single line carrying "Iron Law" must, lowercased,
-// contain BOTH concepts. This locks the safety invariant without forcing the two
-// files to identical wording (one says "surface", the other "stack").
+// (b) IRON LAW invariant: at least one line mentioning "Iron Law" must, lowercased,
+// carry BOTH concepts. This locks the safety wording without forcing every
+// incidental mention (a heading, a keyword list) to restate it, and without
+// forcing files to identical wording (one says "surface", another "stack").
+// The full statement lives in the verify mode packet; the hub only routes to it.
 const IRON_LAW_FILES = [
-  '.opencode/skills/sk-code/SKILL.md',
+  '.opencode/skills/sk-code/code-verify/SKILL.md',
   'CLAUDE.md',
   'AGENTS.md',
 ];
@@ -116,9 +118,11 @@ for (const relPath of IRON_LAW_FILES) {
     failures.push(`${relPath}: file missing — cannot verify Iron Law invariant`);
     continue;
   }
-  // A file may state the Iron Law more than once (e.g. a heading + a phase
-  // diagram). Every copy must carry the invariant, so validate ALL law lines —
-  // checking only the first would let a later copy drift undetected.
+  // A file may mention "Iron Law" more than once (a heading, a keyword list, the
+  // full statement). The invariant is satisfied when AT LEAST ONE line carries
+  // every required concept — that proves the load-bearing wording is present
+  // without failing on incidental headings or keyword mentions that legitimately
+  // do not restate the whole rule.
   const lawLines = content
     .split(/\r?\n/)
     .filter((line) => line.toLowerCase().includes('iron law'));
@@ -126,15 +130,14 @@ for (const relPath of IRON_LAW_FILES) {
     failures.push(`${relPath}: no "Iron Law" line found`);
     continue;
   }
-  for (const lawLine of lawLines) {
+  const hasCompleteLawLine = lawLines.some((lawLine) => {
     const lower = lawLine.toLowerCase();
-    for (const concept of IRON_LAW_REQUIRED) {
-      if (!lower.includes(concept)) {
-        failures.push(
-          `${relPath}: Iron Law line missing required concept "${concept}" — line: ${lawLine.trim()}`
-        );
-      }
-    }
+    return IRON_LAW_REQUIRED.every((concept) => lower.includes(concept));
+  });
+  if (!hasCompleteLawLine) {
+    failures.push(
+      `${relPath}: no "Iron Law" line carries all required concepts (${IRON_LAW_REQUIRED.join(', ')})`
+    );
   }
 }
 

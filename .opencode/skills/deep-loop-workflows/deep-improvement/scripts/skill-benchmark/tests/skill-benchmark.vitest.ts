@@ -440,10 +440,18 @@ describe('Lane C — commandRecipe validity lane', () => {
 
 describe('Lane C — negative-activation scoring', () => {
   it('does not credit D3 for routing a resource that should be suppressed', () => {
-    const routerResult = { parseable: true, intents: ['X'], resources: ['references/leak.md'], missingResources: [], scores: [] };
-    const row = scoreScenario({ scenarioId: 'neg', tier: 'T3', routerResult, expected: { negativeActivation: true, resources: ['references/leak.md'] } });
-    expect(row.dims.d1intra.score).toBe(0); // leaked the suppressed resource
+    const routerResult = { parseable: true, intents: ['X'], resources: ['references/webflow/leak.md'], missingResources: [], scores: [] };
+    const row = scoreScenario({ scenarioId: 'neg', tier: 'T3', routerResult, expected: { negativeActivation: true, forbiddenResources: ['references/webflow/'] } });
+    expect(row.dims.d1intra.score).toBe(0); // leaked a forbidden (suppressed) resource
     expect(row.dims.d3.score).toBe(0);      // D3 tracks the suppression failure, not over-routing
+  });
+
+  it('scores a suppression scenario on recall of its positive should-load set (not as a leak)', () => {
+    // An UNKNOWN-stack scenario legitimately loads the universal tier while
+    // forbidding a surface: routing the required resource must NOT read as a leak.
+    const routerResult = { parseable: true, intents: ['X'], resources: ['references/universal/a.md'], missingResources: [], scores: [] };
+    const row = scoreScenario({ scenarioId: 'neg2', tier: 'T3', routerResult, expected: { negativeActivation: true, resources: ['references/universal/a.md'], forbiddenResources: ['references/webflow/'] } });
+    expect(row.dims.d1intra.score).toBe(1); // full recall of the required ref, nothing forbidden leaked
   });
 });
 

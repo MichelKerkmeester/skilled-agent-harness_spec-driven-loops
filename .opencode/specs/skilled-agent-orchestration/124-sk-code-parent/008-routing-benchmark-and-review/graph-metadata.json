@@ -1,0 +1,92 @@
+{
+  "schema_version": 1,
+  "packet_id": "skilled-agent-orchestration/124-sk-code-parent/008-routing-benchmark-and-review",
+  "spec_folder": "skilled-agent-orchestration/124-sk-code-parent/008-routing-benchmark-and-review",
+  "parent_id": "skilled-agent-orchestration/124-sk-code-parent",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [
+      "skilled-agent-orchestration/124-sk-code-parent/007-advisor-and-integration"
+    ],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "sk-code routing benchmark",
+      "sk-code family deep-review",
+      "skill-benchmark hub re-layer",
+      "negative-activation scoring fix",
+      "iron-law canary regression"
+    ],
+    "key_topics": [
+      "sk-code",
+      "parent-hub",
+      "routing-benchmark",
+      "skill-benchmark",
+      "family-deep-review",
+      "harness-re-layer",
+      "negative-scoring",
+      "surface-router",
+      "canary-gate",
+      "measurement-artifact"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Phase 008 benchmarked the hub's routing (deep-improvement Lane C, router mode) and ran a three-lens family deep-review. The review found zero real router defects: in 9/10 apparent benchmark failures the router selected the correct mode, and the low first-run aggregate (51) was a measurement artifact of scoring a thin hub at the abandoned flat layer plus a scorer that inverted the negative-activation gold. The shared skill-benchmark harness was re-layered (add-only, presence-gated) so a thin hub's resource recall is measured at the surface-router layer, and its negative-scoring was corrected to score suppression scenarios against a real forbidden set while crediting positive-set recall. This took the honest router-mode verdict from a flat-era 44 to 71 (D1-intra 87, D2 79, D3 47, D5 100) with zero net-new test failures versus a pristine-harness baseline. One real P1 merge-blocker was found and fixed: the Iron-Law canary (check-rule-copies.js, CI-wired on PR->main) still pointed at the thin hub SKILL.md and was failing closed; it was repointed to code-verify and its matcher relaxed. Four cheap defects were also fixed. Eight pre-existing flat-layout harness-test failures, the parent-hub-vocab-sync generalization, and the CS-003 matcher are deferred to 009; advisor rebuild + reindex remain deferred to main.",
+    "created_at": "2026-07-04T00:00:00Z",
+    "last_save_at": "2026-07-04T00:00:00Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": null,
+    "source_doc_hashes": {},
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

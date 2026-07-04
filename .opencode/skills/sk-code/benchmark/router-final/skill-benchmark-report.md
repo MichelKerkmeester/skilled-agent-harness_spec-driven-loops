@@ -2,51 +2,55 @@
 
 > Rendered from report.json (do not hand-edit). Scoring: `mode-a-router-replay` · trace mode: `router`.
 
-**Verdict: FAIL** · aggregate 44/100
+**Verdict: CONDITIONAL** · aggregate 71/100
 
 ## Coverage
 
-- Scored (text executors): **17** · routed out to browser harness: **7**
-- By class — routing: 15 · advisor: 2 · browser: 7
+- Scored (text executors): **22** · routed out to browser harness: **7**
+- By class — routing: 20 · advisor: 2 · browser: 7
 
 ## Dimension scores
 
 | Dimension | Weight | Score |
 | --------- | ------ | ----- |
 | D1 inter (advisor) | 12pts | _unscored-mode-a_ |
-| D1 intra (router) | 13pts | 57/100 |
-| D2 discovery | 20pts | 44/100 |
-| D3 efficiency | 15pts | 33/100 |
+| D1 intra (router) | 13pts | 87/100 |
+| D2 discovery | 20pts | 79/100 |
+| D3 efficiency | 15pts | 47/100 |
 | D4 usefulness | 25pts | _unscored-mode-a_ |
 | D5 connectivity (hard gate) | 15pts | 100/100 |
 
 _Unscored in this run (need live mode): D1inter, D4._
 
+### Advisory signals (NOT in the weighted aggregate)
+
+- **D4 task-outcome** — routine-task usefulness (skill-on vs off), separate from D4 hallucination: _unscored (run --d4 in live mode)_
+- **Asset support recall** — deferred `assets/*` gold (router defers these on demand): _deferred (router) or no asset gold_
+
 ## Funnel
 
-- discovered: 4
-- passed: 8
-- routed-intra: 5
+- passed: 20
+- discovered: 2
 
-**Headline bottleneck: routed-intra**
+**Headline bottleneck: discovered**
 
 ## Ranked bottlenecks
 
 | Severity | Class | Locus | Finding |
 | -------- | ----- | ----- | ------- |
-| P1 | funnel_attrition | routed-intra | 5 scenario(s) first fail at stage 'routed-intra' |
+| P1 | funnel_attrition | discovered | 2 scenario(s) first fail at stage 'discovered' |
 
 ## Scenarios
 
 | Scenario | Class | Score | First failing stage |
 | -------- | ----- | ----- | ------------------- |
-| SD-001 | routing | 63/100 | discovered |
+| SD-001 | routing | 63/100 | passed |
 | SD-002 | routing | 81/100 | passed |
-| SD-003 | routing | 0/100 | routed-intra |
+| SD-003 | routing | 100/100 | passed |
 | LS-001 | routing | 59/100 | passed |
 | LS-002 | routing | 59/100 | passed |
 | LS-003 | routing | 59/100 | passed |
-| LS-004 | routing | 11/100 | routed-intra |
+| LS-004 | routing | 59/100 | passed |
 | RD-001 | routing | 100/100 | passed |
 | RD-002 | advisor | 69/100 | passed |
 | SA-001 | advisor | 69/100 | passed |
@@ -57,33 +61,44 @@ _Unscored in this run (need live mode): D1inter, D4._
 | CB-001 | browser | _routed-out_ | browser scenario — run in live mode (needs bdg) |
 | CB-002 | browser | _routed-out_ | browser scenario — run in live mode (needs bdg) |
 | CB-003 | browser | _routed-out_ | browser scenario — run in live mode (needs bdg) |
-| CS-001 | routing | 31/100 | discovered |
-| CS-002 | routing | 0/100 | routed-intra |
+| CS-001 | routing | 58/100 | passed |
+| CS-002 | routing | 100/100 | passed |
 | CS-003 | routing | 62/100 | passed |
-| CS-004 | routing | 0/100 | routed-intra |
-| CS-005 | routing | 0/100 | routed-intra |
-| CS-006 | routing | 43/100 | discovered |
-| CS-007 | routing | 46/100 | discovered |
+| CS-004 | routing | 80/100 | passed |
+| CS-005 | routing | 83/100 | passed |
+| CS-006 | routing | 42/100 | discovered |
+| CS-007 | routing | 45/100 | discovered |
+| DR-001 | routing | 100/100 | passed |
+| DR-002 | routing | 69/100 | passed |
+| DR-003 | routing | 69/100 | passed |
+| DR-004 | routing | 69/100 | passed |
+| TH-001 | routing | 69/100 | passed |
 
 ## Contamination findings (router mode — drift, not failures)
 
 _Playbook prompts intentionally carry trigger words; these are reported as drift signals, not scenario failures._
-- SD-001: lenis, javascript
-- SD-002: typescript, .ts, opencode
-- LS-001: config, .ts, opencode
-- LS-002: .py, opencode, scripts
-- LS-003: .sh, opencode, scripts
-- RD-001: lenis, opencode, scripts
-- RD-002: sk-code
-- CS-001: cdn, animation, webflow, javascript
-- CS-002: sk-code, motion.dev, references, webflow, snippets
-- CS-003: sk-code, .ts, opencode, scripts
-- CS-004: implementation, implement, motion.dev, references
-- CS-005: sk-code, naming, references, webflow
-- CS-006: sk-code, motion.dev, references, webflow, javascript
-- CS-007: sk-code, motion.dev, webflow, javascript
+- SD-001: javascript, src/2_javascript, lenis, intersectionobserver, lenis smooth-scroll
+- SD-002: opencode, mcp, skill, typescript, console.error fallback, handle empty
+- LS-001: refactor, refactor the, throw on missing, opencode, mcp, skill
+- LS-002: argparse block, opencode, mcp, skill, json
+- LS-003: opencode, skill, add set -euo pipefail
+- LS-004: json
+- RD-001: lenis, opencode, skill, lenis smooth-scroll, review
+- RD-002: sk-code, skill, skill.md
+- CS-001: webflow, javascript, cdn, src/2_javascript, animation
+- CS-002: sk-code, webflow, motion.dev, references
+- CS-003: sk-code, opencode, skill, review
+- CS-004: implement, implementation, css, motion.dev, references
+- CS-005: sk-code, webflow, references
+- CS-006: sk-code, webflow, javascript, src/2_javascript, motion.dev, references
+- CS-007: sk-code, webflow, javascript, src/2_javascript, motion.dev
+- DR-001: opencode, mcp, skill
+- DR-002: opencode, mcp, skill
+- DR-003: opencode, skill, review
+- DR-004: fails
+- TH-001: opencode, mcp, skill, validation
 
 ## Methodology / caveats
 
-- Mode A is the deterministic CI gate; D1-inter (advisor) + D4 (ablation) need live mode.
-- Scenario count: 24.
+- Mode A is the deterministic CI gate; D1-inter (advisor) + D4 (ablation) need live mode. Advisory signals: mode precision unscored; relative ranking unscored (no advisor probe or no rank-below gold); route gold rows 0; telemetry missing n/a (0/0); route misses n/a (0/0); alias misses n/a (0/0); bundle misses n/a (0/0); recipe misses n/a (0/0).
+- Scenario count: 29.
