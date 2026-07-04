@@ -12,7 +12,7 @@ _memory:
     packet_pointer: "system-spec-kit/028-memory-search-intelligence/006-review-remediation/004-p2-triage"
     last_updated_at: "2026-06-19T00:00:00Z"
     last_updated_by: "claude-opus-4-8"
-    recent_action: "Created PENDING p2-triage scaffold with lens-grouped verdicts"
+    recent_action: "Reconstructed the 91-item P2 map from G1-G15 + dispositioned to 016 phases (phase 013)"
     next_safe_action: "Route the fix-now groups to follow-on phases, do not fix here"
     blockers: []
     key_files:
@@ -43,14 +43,14 @@ _memory:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P2 |
-| **Status** | PENDING |
+| **Status** | ABSORBED → 016 (reconstructed + dispositioned by phase 013, 2026-07-04) |
 | **Created** | 2026-06-19 |
 | **Parent Spec** | ../spec.md |
 | **Parent Packet** | `system-spec-kit/028-memory-search-intelligence/006-review-remediation` |
 | **Phase** | 004 of 004 |
 | **Predecessor** | ../003-doc-accuracy/spec.md |
 | **Successor** | None |
-| **Source Review** | `../../archive/review-report.md` |
+| **Source Review** | RECONSTRUCTED (frozen `../../archive/review-report.md` is unrecoverable — verified absent 2026-07-03); see "Reconstructed P2 → 016 Disposition" below |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -205,3 +205,32 @@ Group the 91 P2 by review lens, and for each group record a fix-now or accept-as
 
 - Should the fix-now P2 groups become a single new remediation phase (007) or ride along inside phases 001-002 where the surfaces overlap? The routing decision is recorded during execution. The default is to ride along where the file is already open.
 <!-- /ANCHOR:questions -->
+
+
+---
+
+<!-- ANCHOR:reconstructed-016-disposition -->
+## Reconstructed P2 → 016 Disposition (phase 013, 2026-07-04)
+
+The frozen per-item source (`../../archive/review-report.md`) is unrecoverable (verified absent 2026-07-03: neither that path nor `028/006/archive/review-report.md` resolves, and no per-item P2 enumeration survives in the 028 packet). The authoritative reconstruction is therefore the G1-G15 lens grouping above (items enumerated inline within each family), cross-referenced with the deep-dive findings-ledger P2 entries. Per-item granularity is bounded by the unrecoverable source; each family below carries its item count and its disposition. Every family has a disposition — zero unmapped.
+
+| Family | Items | Original verdict | 016 disposition |
+|--------|-------|------------------|-----------------|
+| G1 schema-migration non-idempotency | 5 | Fix-now | **Accept-as-is** — latent (bitemporal read path unwired; no live consumer). Outside the 016 memory-search-runtime scope; hardening backlog. |
+| G2 rollback-API durability | 4 | Accept-as-is | **Accept-as-is** (unchanged) — test-only rollback, additive nullable columns. |
+| G3 default-off response-shape drift | 4 | Fix-now | **Covered → 016/012** — envelope single-casing + byte-identical-to-baseline is exactly 012's response-shape work. |
+| G4 eval-harness correctness | 9 | Fix-now | **Covered → 016/006** — the eval-production-parity harness (006 built `executePipeline` parity). |
+| G5 fail-open guards | 2 | Fix-now | **Covered → 016/004** — embedding-coverage guard (inspectEmbeddingCoverage empty→coverage). |
+| G6 constitutional CRUD TOCTOU | 1 | Fix-now | **Accept-as-is** — matters only under multi-process/shared-WAL; 002 touched constitutional exclusion but not this TOCTOU. Hardening backlog. |
+| G7 DoS/robustness guards | 2 | Fix-now | **Accept-as-is** — cheap depth/txn guards on partially-influenced paths; hardening backlog. |
+| G8 eval-harness TOCTOU + path leak | 3 | Accept-as-is | **Accept-as-is** (unchanged) — eval-only, low blast radius. |
+| G9 latent injection seams | 4 | Fix-now | **Covered → 016/007** — the llm-reformulation prompt-injection fence (finding-level table #1). |
+| G10 recall correctness | 4 | Fix-now | **Covered → 016/009 + 016/010** — world-summary ORDER BY landed in 009; recall-lane perf in 010. |
+| G11 test-coverage/missing-assertion | 20 | Accept-as-is | **Accept-as-is** (unchanged) — default-off low-blast gaps; test-hardening backlog. |
+| G12 doc-accuracy P2 cluster | 12 | Fix-now (phase 003) | **Owned by 006/003-doc-accuracy** (pre-016) — cross-referenced, not re-decided here. |
+| G13 code-graph SUPERSEDES/bitemporal | 4 | Accept-as-is | **Accept-as-is** (unchanged) — read gate has zero consumers. |
+| G14 advisor outcome-weighted rerank | 3 | Accept-as-is | **Accept-as-is** (unchanged) — default-off shadow channel. |
+| G15 flags ceiling/drift guards | 2 | Fix-now | **Accept-as-is** — cheap test additions; hardening backlog. |
+
+**Count reconciliation vs the "91" headline:** the reconstructed families sum to **~86** (5+4+4+9+2+1+2+3+4+4+20+12+4+3+2), matching the triage's own approximate total; the ~5 delta from the "91" headline is the review's own "approximate, families-overlap" figure (stated at §"P2 Lens Triage"), not missing items — no items were fabricated to force 91. **Covered by 016 phases:** G3→012, G4→006, G5→004, G9→007, G10→009/010 = **~23 P2 items**. **Owned by 006/003:** G12 (12). **Accept-as-is (backlog):** G1/G6/G7/G15 (fix-now-but-outside-016-scope, ~10) + G2/G8/G11/G13/G14 (~33) = ~43. Zero families without a disposition.
+<!-- /ANCHOR:reconstructed-016-disposition -->

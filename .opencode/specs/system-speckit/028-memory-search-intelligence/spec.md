@@ -123,7 +123,7 @@ Provide the root purpose, child map and cross-packet boundary for packet 028. Th
 | 003 | `003-skill-advisor/` | Skill Advisor research plus 8 implementation child plans | Phase parent |
 | 004 | `004-deep-loop/` | Deep Loop Runtime research plus 6 implementation child plans | Phase parent |
 | 005 | `005-spec-data-quality/` | Spec-kit data-quality research that then shipped: 44 child phases spanning the go/no-go research scaffold, benchmark and generated-JSON bridge, generated-metadata build, full-repo JSON migration, flag-graduation benchmark and search-quality/evidence-gap wave | Complete |
-| 006 | `006-review-remediation/` | Six-child review-remediation track: 001, 003, 005 and 006 executed, 002 and 004 pending | Phase parent |
+| 006 | `006-review-remediation/` | Six-child review-remediation track: 001, 003, 005, 006 executed; 002 and 004 ABSORBED into 016 (verify-first-then-close, closed by phase 013 2026-07-04) | Phase parent |
 | 007 | `007-dark-flag-graduation/` | Twelve-child dark-flag graduation suite that benchmarked built-but-default-off capabilities, returned graduate, refine or cut verdicts and closed follow-up validation | Phase parent |
 | 008 | `008-drift-audit-remediation/` | Fixed all 75 findings from a GPT-5.5-fast drift audit spanning this packet's other seven children (24 confirmed + 51 unverified, 42 directories corrected) | Complete |
 | 009 | `009-drift-audit-deep-history-correction/` | Second-pass doc correction: git history shows the 4 code-gap findings from 008 were built, shadow-shipped, benchmarked and deliberately deleted for cause, not abandoned | Complete |
@@ -133,7 +133,7 @@ Provide the root purpose, child map and cross-packet boundary for packet 028. Th
 | 013 | `013-validate-sh-dist-freshness-and-repo-remediation/` | validate.sh dist-freshness enforcement and repo remediation, adopted from standalone packet 030 | In Progress |
 | 014 | `014-manual-playbook-execution-sweep/` | Manual playbook execution sweep; findings-remediation waves 1-7 shipped with Phase-2 appendix items open, adopted from standalone packet 031 | In Progress |
 | 015 | `015-deep-review-followup-hardening/` | Deep-review follow-up hardening; children 002-004 complete and 001 not started, adopted from standalone packet 032 | In Progress |
-| 016 | `016-fix-deep-dive-p0-p2-findings-for-mk-spec-memory/` | 13-phase remediation program for every P0/P1/P2 finding from the 2026-07-03 memory search deep dive; absorbs the Group-A flag cluster and the 006/002 + 006/004 pending scopes | Planned |
+| 016 | `016-fix-deep-dive-p0-p2-findings-for-mk-spec-memory/` | 13-phase remediation program for every P0/P1/P2 finding from the 2026-07-03 memory search deep dive; absorbs the Group-A flag cluster and the 006/002 + 006/004 scopes | Complete — 13/13 phases shipped + pushed 2026-07-04 (live-latency/eval/reconcile gates are daemon-side captures) |
 
 ### Phase Transition Rules
 

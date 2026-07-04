@@ -48,7 +48,7 @@ _memory:
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 Read all 91 P2 findings from `../../archive/review-report.md`.
+- [x] T001 Read all 91 P2 findings from `../../archive/review-report.md`. **SOURCE UNRECOVERABLE (verified absent 2026-07-03) — reconstructed from the G1-G15 lens grouping + findings-ledger P2 in spec.md "Reconstructed P2 → 016 Disposition" (phase 013).**
 - [ ] T002 Confirm the 15 lens families cover every finding.
 - [ ] T003 Note the lineage re-root and bitemporal zero-callers caveats.
 <!-- /ANCHOR:phase-1 -->

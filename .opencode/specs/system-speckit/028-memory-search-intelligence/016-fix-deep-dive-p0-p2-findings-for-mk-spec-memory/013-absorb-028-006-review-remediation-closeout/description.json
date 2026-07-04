@@ -16,10 +16,12 @@
     "pre-absorption",
     "state"
   ],
-  "lastUpdated": "2026-07-03T12:02:24.787Z",
+  "lastUpdated": "2026-07-04T13:22:16.303Z",
   "specId": "013",
   "folderSlug": "absorb-028-006-review-remediation-closeout",
   "parentChain": [
+    ".opencode",
+    "specs",
     "system-speckit",
     "028-memory-search-intelligence",
     "016-fix-deep-dive-p0-p2-findings-for-mk-spec-memory"

@@ -32,7 +32,11 @@ contextType: "implementation"
 
 - [x] T001 Scaffold this remediation packet (spec.md, plan.md, tasks.md, checklist.md)
 - [x] T002 Draft root-cause hypothesis + fix direction for the 26 findings confirmed as of manifest 170/485 done
-- [ ] T003 [P] Append new finding entries as the sweep confirms more FAILs (recurring, not a one-time task)
+- [ ] T003 [P] Append new finding entries as the sweep confirms more FAILs (recurring, not a one-time task) — **DISPOSITION (016 phase 013): STAYS IN 014 — recurring housekeeping, not an unowned contract.**
+
+<!-- ANCHOR:016-program-reconciliation -->
+> **016 program reconciliation (phase 013 REQ-003 + REQ-007, 2026-07-04):** The ex-031 Group-A flag cluster — **T-0211** (causal boost), **T-0212** (community fallback), and the **REQ-214** context-headers requirement (spec.md) — was resolved directly in this 014 tracker (T-0211 already-correct/verified, T-0212 fixed/verified) AND its shared root cause (the per-request flag read that stopped default-on flags from applying) was hardened in **016/007-ranking-filter-bypass-and-score-scale-fixes**; the two are complementary, not duplicate. Remaining genuinely-open rows are dispositioned: **T003, T900, T901, T902** → STAYS IN 014 (recurring sweep + the packet's own verification rows); **T-0240** (repo-wide lint backlog) → STAYS IN 014, deferred with reason (pre-existing debt, needs its own cleanup packet); every other T-0NNN row is already resolved `[x]` in place by the 014 session. No row remains an unowned pending contract.
+<!-- /ANCHOR:016-program-reconciliation -->
 
 <!-- /ANCHOR:phase-1 -->
 ---

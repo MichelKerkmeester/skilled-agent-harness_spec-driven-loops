@@ -59,10 +59,10 @@ _memory:
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T005 [P] Align the v40 backfill rule_version with the live default and reconcile skew (P1-2).
-- [ ] T006 [P] Move the semantic-edge embedding pass out of `BEGIN IMMEDIATE` with a refreshed maintenance handle (P1-4).
-- [ ] T007 [P] Re-validate the spare axes inside the retention transaction before delete (P1-5).
-- [ ] T008 Keep all three features default-off with no default-on path change.
+- [x] T005 [P] Align the v40 backfill rule_version with the live default and reconcile skew (P1-2). **ABSORBED → 016/008-causal-graph-hygiene-and-entity-linker-noise (verify-first-then-close, closed 2026-07-04): the derived_id identity fix was already present (code hashes the correct rule version); phase 008 shipped + ran the `backfill-derived-causal-edge-ids` migration as a verified no-op (live dry-run = 0 candidates, i.e. already backfilled). No re-fix — verification confirmed correct code.**
+- [x] T006 [P] Move the semantic-edge embedding pass out of `BEGIN IMMEDIATE` with a refreshed maintenance handle (P1-4). **ABSORBED → 016/008 (verify-first-then-close, closed 2026-07-04): phase 008 verified the semantic-edge embedding already runs outside the consolidation `BEGIN IMMEDIATE` lock and added a lock/guard test. No restructure — the code was already correct.**
+- [x] T007 [P] Re-validate the spare axes inside the retention transaction before delete (P1-5). **ABSORBED → 016/009-learning-feedback-loop-repair (verify-first-then-close, closed 2026-07-04): phase 009 verified the fresh in-transaction row is already revalidated before DELETE (`memory-retention-sweep.ts` revalidateSpareOnlyRetention) and added the concurrent-protection interleaving test. No logic change — verification only.**
+- [x] T008 Keep all three features default-off with no default-on path change. **Confirmed by the absorbing phases: no default-on path change introduced.**
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -70,10 +70,10 @@ _memory:
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T009 Add an identity-parity test across migration and live `derived_id`.
-- [ ] T010 Add a lock-behavior test for the consolidation embedding pass.
-- [ ] T011 Add a forced-interleaving test for the retention spare-only delete.
-- [ ] T012 Run strict validation for this child folder.
+- [x] T009 Add an identity-parity test across migration and live `derived_id`. **ABSORBED → 016/008 (twin-identity test landed there).**
+- [x] T010 Add a lock-behavior test for the consolidation embedding pass. **ABSORBED → 016/008 (lock/concurrency guard test landed there).**
+- [x] T011 Add a forced-interleaving test for the retention spare-only delete. **ABSORBED → 016/009 (interleaving test landed there).**
+- [x] T012 Run strict validation for this child folder. **Superseded by the 016 program's recursive `validate.sh --strict` closeout (phase 013 REQ-006).**
 <!-- /ANCHOR:phase-3 -->
 
 ---

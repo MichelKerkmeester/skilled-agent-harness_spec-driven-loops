@@ -13,7 +13,7 @@ _memory:
     packet_pointer: "system-spec-kit/028-memory-search-intelligence/006-review-remediation/002-memory-schema-and-concurrency"
     last_updated_at: "2026-06-19T00:00:00Z"
     last_updated_by: "claude-opus-4-8"
-    recent_action: "Created PENDING memory-schema-and-concurrency remediation scaffold"
+    recent_action: "Absorbed into 016/008 + 009 as verify-first-then-close; all rows closed"
     next_safe_action: "Confirm the three cited concurrency and identity facts before changing code"
     blockers: []
     key_files:
@@ -44,7 +44,7 @@ _memory:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | PENDING |
+| **Status** | ABSORBED → 016 phases 008/009 (verify-first-then-close, closed 2026-07-04) |
 | **Created** | 2026-06-19 |
 | **Parent Spec** | ../spec.md |
 | **Parent Packet** | `system-spec-kit/028-memory-search-intelligence/006-review-remediation` |

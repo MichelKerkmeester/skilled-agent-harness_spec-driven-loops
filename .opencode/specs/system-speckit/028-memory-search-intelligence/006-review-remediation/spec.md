@@ -92,9 +92,9 @@ Keep the parent as the six-child review-remediation rollup. The child folders ow
 | `description.json` | Generator-owned | parent | Search metadata for this phase parent |
 | `graph-metadata.json` | Generator-owned | parent | Child identity and phase graph metadata |
 | `001-eval-benchmark-fidelity/spec.md` | Executed | 001 | P1-1 + P1-3 eval-driver fidelity remediation scope |
-| `002-memory-schema-and-concurrency/spec.md` | Pending | 002 | P1-2 + P1-4 + P1-5 schema and concurrency remediation scope |
+| `002-memory-schema-and-concurrency/spec.md` | Absorbed → 016/008+009 | 002 | P1-2/P1-4/P1-5 verify-first-then-close (already correct in live code; verified + tested by phases 008/009) |
 | `003-doc-accuracy/spec.md` | Executed | 003 | P1-6 + the iteration-9 doc staleness cluster remediation scope |
-| `004-p2-triage/spec.md` | Pending | 004 | 91 P2 grouped by lens, fix-now versus accept-as-is triage |
+| `004-p2-triage/spec.md` | Absorbed → 016 | 004 | 91-item P2 map reconstructed + dispositioned in 016 phase 013 (frozen per-item source was unrecoverable) |
 | `005-env-documentation-audit/spec.md` | Executed | 005 | ENV-documentation review and remediation |
 | `006-review-record-packet-type/spec.md` | Executed | 006 | Marker-gated review packet type validation |
 <!-- /ANCHOR:scope -->
@@ -109,9 +109,9 @@ Keep the parent as the six-child review-remediation rollup. The child folders ow
 | Phase | Folder | Focus | Status |
 |-------|--------|-------|--------|
 | 001 | `001-eval-benchmark-fidelity/` | Corrected the per-flag benchmark driver to production routing, dropped the no-op trigger-ablation row and re-ran criterion 4 | Shipped |
-| 002 | `002-memory-schema-and-concurrency/` | Derived-id split, in-lock embedding and retention spare-axis fixes scoped from source-review findings | PENDING, scaffold only |
+| 002 | `002-memory-schema-and-concurrency/` | Derived-id split, in-lock embedding and retention spare-axis fixes | ABSORBED → 016 phases 008/009 (verify-first-then-close, closed 2026-07-04) |
 | 003 | `003-doc-accuracy/` | Reclassified the shipped-default-off rollup and reconciled timeline, before-vs-after and benchmark-status staleness | Shipped, parent-dispatched scope |
-| 004 | `004-p2-triage/` | 91 P2 grouped into 15 lens families with fix-now versus accept-as-is routing still open | PENDING, scaffold only |
+| 004 | `004-p2-triage/` | 91 P2 grouped into 15 lens families | ABSORBED → 016 (P2 map reconstructed + dispositioned in phase 013, closed 2026-07-04) |
 | 005 | `005-env-documentation-audit/` | ENV-documentation deep review and remediation across stale dist, flag defaults and structure gaps | Complete |
 | 006 | `006-review-record-packet-type/` | Marker-gated review packet type that validates lean review records without the full Level 1 doc set | Complete |
 
