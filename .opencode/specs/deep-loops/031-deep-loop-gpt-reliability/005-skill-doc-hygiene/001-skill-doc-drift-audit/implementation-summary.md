@@ -9,7 +9,7 @@ importance_tier: "high"
 contextType: "review"
 _memory:
   continuity:
-    packet_pointer: "deep-loops/031-deep-loop-issues-with-gpt-opencode/014-skill-doc-drift-audit"
+    packet_pointer: "deep-loops/031-deep-loop-gpt-reliability/005-skill-doc-hygiene/001-skill-doc-drift-audit"
     last_updated_at: "2026-07-01T19:00:00Z"
     last_updated_by: "claude-code"
     recent_action: "Follow-up fix phase 015-skill-doc-drift-remediation completed"
@@ -36,7 +36,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 014-skill-doc-drift-audit |
+| **Spec Folder** | 001-skill-doc-drift-audit |
 | **Completed** | 2026-07-01 |
 | **Level** | 2 |
 <!-- /ANCHOR:metadata -->

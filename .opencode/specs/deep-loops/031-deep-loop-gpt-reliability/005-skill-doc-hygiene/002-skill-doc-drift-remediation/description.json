@@ -1,5 +1,5 @@
 {
-  "specFolder": "deep-loops/031-deep-loop-issues-with-gpt-opencode/015-skill-doc-drift-remediation",
+  "specFolder": "deep-loops/031-deep-loop-gpt-reliability/005-skill-doc-hygiene/002-skill-doc-drift-remediation",
   "description": "Phase 014's deep-review + deep-research audit (20 iterations, independently re-verified by fresh Claude Sonnet 5 agents) confirmed 6 real drift",
   "keywords": [
     "phase",
@@ -18,14 +18,13 @@
     "real",
     "drift"
   ],
-  "lastUpdated": "2026-07-01T17:19:14.828Z",
-  "specId": "015",
+  "lastUpdated": "2026-07-04T19:10:58.913Z",
+  "specId": "002",
   "folderSlug": "skill-doc-drift-remediation",
   "parentChain": [
-    ".opencode",
-    "specs",
     "deep-loops",
-    "031-deep-loop-issues-with-gpt-opencode"
+    "031-deep-loop-gpt-reliability",
+    "005-skill-doc-hygiene"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

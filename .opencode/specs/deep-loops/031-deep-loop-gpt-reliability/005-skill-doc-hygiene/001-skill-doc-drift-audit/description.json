@@ -1,5 +1,5 @@
 {
-  "specFolder": "deep-loops/031-deep-loop-issues-with-gpt-opencode/014-skill-doc-drift-audit",
+  "specFolder": "deep-loops/031-deep-loop-gpt-reliability/005-skill-doc-hygiene/001-skill-doc-drift-audit",
   "description": "Packet 031 (phases 008-013) changed real runtime behavior: `ai-council.md` converted from `mode: all` to `mode: subagent`, `orchestrate.md` gained",
   "keywords": [
     "packet",
@@ -17,12 +17,13 @@
     "orchestrate",
     "gained"
   ],
-  "lastUpdated": "2026-07-02T03:38:03.227Z",
-  "specId": "014",
+  "lastUpdated": "2026-07-04T19:10:58.511Z",
+  "specId": "001",
   "folderSlug": "skill-doc-drift-audit",
   "parentChain": [
     "deep-loops",
-    "031-deep-loop-issues-with-gpt-opencode"
+    "031-deep-loop-gpt-reliability",
+    "005-skill-doc-hygiene"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []
