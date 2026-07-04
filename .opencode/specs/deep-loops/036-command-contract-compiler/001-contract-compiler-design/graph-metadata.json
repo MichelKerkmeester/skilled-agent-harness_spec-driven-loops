@@ -147,6 +147,12 @@
         "source": "derived"
       },
       {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
         "name": "Implementation Summary",
         "kind": "proper_noun",
         "path": "implementation-summary.md",
@@ -159,19 +165,19 @@
         "source": "derived"
       },
       {
-        "name": "What Was Built Nothing",
+        "name": "What Was Built",
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "How It Was Delivered Not",
+        "name": "Files Changed",
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "Key Decisions",
+        "name": "How It Was Delivered Orchestrated",
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
@@ -179,7 +185,7 @@
     ],
     "causal_summary": "Phase 001 of packet 036 (command contract compiler, carved from 035). Design-first: verify and expand the seed design (design.md, produced during the 035 phase-003 pass and grounded in the real /deep:review 14-file authority chain) into an implementable spec, resolving the three named unknowns — the OpenCode prompt-injection insertion point, checksum ownership over generated markdown, and CLI-executor receipt/progress parity under fan-out — then decompose the build and retrofit phases.",
     "created_at": "2026-07-03T17:04:53.763Z",
-    "last_save_at": "2026-07-03T17:04:53.763Z",
+    "last_save_at": "2026-07-04T05:26:08.128Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -188,12 +194,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:b22a80c9250292d0f6312774c48a1b7bde17e48e75574ece2d66dc383a5bb501",
+    "source_fingerprint": "sha256:cfbe313a3b9c9af44874e96836e70449929bcaeb4e701a87a87ffbb82797e2ee",
     "source_doc_hashes": {
       "spec.md": "5a49a9f2f0d695bfc8362672b6e45e34515c0064bc77121bac556be77d88042b",
       "plan.md": "f7b557afa7195b9347498a87ebcdd4a463de8fe9bd33bddb50c0bd2158012cfe",
-      "tasks.md": "730e83c4f47160500467631d1c151af3e628c191a0c0c8dda173f128775b9b7d",
-      "implementation-summary.md": "e81b30518669857ba2a69d3fabf5611b1ef1812c48d53d1b5295139ac2b5a624"
+      "tasks.md": "515c6aa0e38f114202b070e5cc96296647dd31882a3c46234c4a459147c53161",
+      "implementation-summary.md": "c7069d3a26e6ead8404259449649d10910c3c32c4ff53a19858bfa5007947d17"
     },
     "last_active_child_id": null,
     "last_active_at": null
