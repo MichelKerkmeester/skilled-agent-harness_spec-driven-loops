@@ -67,6 +67,29 @@ function renderPayload(definition, mode) {
   throw new Error(`Unsupported injection mode ${mode} for ${definition.command}`);
 }
 
+// The command reaches the executor as rendered markdown; the raw invocation message
+// (target, :auto suffix, spec_folder, topic, flags) arrives only via this prelude's
+// argv and must be echoed back, or the model never sees it and re-asks for setup.
+// This mirrors the memory-search command's ARGS_PRESENT/QUERY surface.
+function buildInvocationPrefix(argsText) {
+  const present = argsText.trim().length > 0;
+  const lines = [
+    '<!-- INVOCATION MESSAGE (the user input for this run) -->',
+    `ARGS_PRESENT=${present}`,
+  ];
+  if (present) {
+    lines.push('MESSAGE:', argsText, '');
+    lines.push(
+      'Bind setup from the MESSAGE above — the target, the `:auto`/`:confirm` suffix, `--spec-folder`, the research topic, and other flags are there. When ARGS_PRESENT=true you MUST proceed on that MESSAGE now: do NOT ask the setup question, and do NOT treat a populated MESSAGE as empty.',
+    );
+  } else {
+    lines.push('MESSAGE: (none supplied)', '');
+    lines.push('ARGS_PRESENT=false: no invocation message was supplied; follow the command body below for setup routing.');
+  }
+  lines.push('', '<!-- END INVOCATION MESSAGE -->', '');
+  return Buffer.from(lines.join('\n'), 'utf8');
+}
+
 function buildManifestRow(definition, mode, argsText, output) {
   const legacyBody = readBuffer(definition.legacyBodyPath);
   const compiledContract = readBuffer(definition.compiledContractPath);
@@ -89,14 +112,16 @@ function renderCommandContract(command, options = {}) {
   const definition = getCommandDefinition(command);
   const mode = resolveMode(definition.command);
   const argsText = options.argsText ?? '';
-  const output = renderPayload(definition, mode);
+  const body = renderPayload(definition, mode);
+  const prefix = buildInvocationPrefix(argsText);
+  const output = Buffer.concat([prefix, body]);
   const manifestRow = buildManifestRow(definition, mode, argsText, output);
 
   if (options.writeManifest !== false) {
     appendManifestRow(manifestRow, options.manifestPath ? path.resolve(options.manifestPath) : undefined);
   }
 
-  return { command: definition.command, mode, output, manifestRow };
+  return { command: definition.command, mode, output, body, prefix, manifestRow };
 }
 
 function firstByteDiff(left, right) {
@@ -204,6 +229,7 @@ module.exports = {
   MANIFEST_PATH,
   WORKSPACE_ROOT,
   appendManifestRow,
+  buildInvocationPrefix,
   buildManifestRow,
   compareFallback,
   getCommandDefinition,

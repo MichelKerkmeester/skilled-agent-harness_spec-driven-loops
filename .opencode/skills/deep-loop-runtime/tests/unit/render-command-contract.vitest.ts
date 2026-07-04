@@ -22,11 +22,12 @@ type ManifestRow = {
 const renderer = require('../../scripts/render-command-contract.cjs') as {
   COMMANDS: Record<Command, { legacyBodyPath: string; compiledContractPath: string }>;
   WORKSPACE_ROOT: string;
+  buildInvocationPrefix: (argsText: string) => Buffer;
   compareFallback: (command: Command) => { equal: boolean; renderedLength: number; legacyBodyLength: number };
   renderCommandContract: (
     command: Command,
     options?: { argsText?: string; manifestPath?: string; writeManifest?: boolean },
-  ) => { command: Command; mode: 'fallback' | 'fix'; output: Buffer; manifestRow: ManifestRow };
+  ) => { command: Command; mode: 'fallback' | 'fix'; output: Buffer; body: Buffer; prefix: Buffer; manifestRow: ManifestRow };
   resolveMode: (command: Command) => 'fallback' | 'fix';
   sha256: (input: string | Buffer) => string;
 };
@@ -78,14 +79,16 @@ afterEach(() => {
 });
 
 describe('render-command-contract', () => {
-  it.each(commands)('proves fallback stdout is byte-identical for %s', (command) => {
+  it.each(commands)('keeps the fallback BODY byte-identical to the legacy body for %s', (command) => {
     const result = withInjectionMode(undefined, () => renderer.renderCommandContract(command, {
       argsText: 'sample args',
       manifestPath: tempManifestPath(),
     }));
 
     expect(result.mode).toBe('fallback');
-    expect(Buffer.compare(result.output, legacyBody(command))).toBe(0);
+    // The static body is the byte-identical invariant target; the message prefix is additive.
+    expect(Buffer.compare(result.body, legacyBody(command))).toBe(0);
+    expect(Buffer.compare(result.output, Buffer.concat([result.prefix, result.body]))).toBe(0);
     expect(renderer.compareFallback(command)).toMatchObject({
       equal: true,
       renderedLength: legacyBody(command).length,
@@ -93,7 +96,7 @@ describe('render-command-contract', () => {
     });
   });
 
-  it.each(commands)('renders fix mode as compiled contract followed by legacy body for %s', (command) => {
+  it.each(commands)('renders fix BODY as compiled contract followed by legacy body for %s', (command) => {
     const result = withInjectionMode(`${command}:fix`, () => renderer.renderCommandContract(command, {
       argsText: 'sample args',
       manifestPath: tempManifestPath(),
@@ -102,8 +105,31 @@ describe('render-command-contract', () => {
     const body = legacyBody(command);
 
     expect(result.mode).toBe('fix');
-    expect(Buffer.compare(result.output.subarray(0, contract.length), contract)).toBe(0);
-    expect(result.output.includes(body)).toBe(true);
+    expect(Buffer.compare(result.body.subarray(0, contract.length), contract)).toBe(0);
+    expect(result.body.includes(body)).toBe(true);
+    expect(Buffer.compare(result.output, Buffer.concat([result.prefix, result.body]))).toBe(0);
+  });
+
+  it.each(commands)('surfaces the invocation message to the model for %s', (command) => {
+    const marker = 'ZZTARGET_MARKER_9 :auto --spec-folder=/tmp/x';
+    const withArgs = withInjectionMode(undefined, () => renderer.renderCommandContract(command, {
+      argsText: marker,
+      manifestPath: tempManifestPath(),
+    }));
+    const text = withArgs.output.toString('utf8');
+    expect(text).toContain('ARGS_PRESENT=true');
+    expect(text).toContain(marker);
+    expect(text).toContain('do NOT ask the setup question');
+    // The message prefix precedes the command body (model reads the bound setup first).
+    expect(withArgs.output.indexOf(Buffer.from('ARGS_PRESENT=true'))).toBeLessThan(withArgs.output.indexOf(withArgs.body));
+
+    const noArgs = withInjectionMode(undefined, () => renderer.renderCommandContract(command, {
+      argsText: '',
+      manifestPath: tempManifestPath(),
+    }));
+    expect(noArgs.output.toString('utf8')).toContain('ARGS_PRESENT=false');
+    // The body is unaffected by whether a message was supplied.
+    expect(Buffer.compare(noArgs.body, withArgs.body)).toBe(0);
   });
 
   it.each(commands)('appends a manifest row with render hashes for %s', (command) => {
