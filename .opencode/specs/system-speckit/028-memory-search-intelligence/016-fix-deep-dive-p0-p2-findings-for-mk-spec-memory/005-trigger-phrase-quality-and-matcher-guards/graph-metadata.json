@@ -39,7 +39,7 @@
       "stopword"
     ],
     "importance_tier": "normal",
-    "status": "in_progress",
+    "status": "draft",
     "key_files": [
       ".opencode/skills/system-spec-kit/mcp_server/lib/parsing/trigger-matcher.ts",
       ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts",
@@ -208,7 +208,7 @@
     ],
     "causal_summary": "The trigger-phrase corpus is dominated by junk: 45% of 165,979 phrase occurrences are single words (\"feature\" x2,072, \"specification\" x2,034, \"system-spec-kit\" x1,922, even \"zarchive\" x848), and a live resume-style prompt returned 5/5 zarchive hits via single-word matches at weight 0.8 (deep-dive report §1; findings ledger L4)",
     "created_at": "2026-07-03T09:44:20Z",
-    "last_save_at": "2026-07-04T14:08:37.746Z",
+    "last_save_at": "2026-07-04T14:25:44.087Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -219,14 +219,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:b9017738928255c7779c42555fea45a460dbc74e9fce7095bef60fa2ee6bbe6e",
+    "source_fingerprint": "sha256:265f2a5a30f4cceb051962359950152f8dfcdc86d95252a4326ce665410366af",
     "source_doc_hashes": {
-      "spec.md": "b9411be319944de946a1cb0d455a8e08efdaf90de0df581add857afbcdb10164",
+      "spec.md": "2852d135a3642d49bfb32d0a79a093ce0f454c6d428e72a23f9262b61ed1963b",
       "plan.md": "4199d357e87fd98e7172a155348821ba90bc343fd05099502eabdad3c9a69de9",
-      "tasks.md": "1411bdab619fc54f97aafea96d3d8299dd40b9625a8b337747ec473bc9e04bf7",
+      "tasks.md": "750407f17427fbcb50449e17aac2a3fdb7c8c6e55819d5325a37621b073b26d7",
       "checklist.md": "296830c2b423b40fdccbddfa6c2afb3fe63998f29df528476793b7368cf3e41e",
       "decision-record.md": "166962f99f7878dbdfdc802dd3f2589f003e945d29da3a41aadea6952987da48",
-      "implementation-summary.md": "1387ae45ac00bd0abd78f5b46f915bec35266c05ca244fdbd8969a992d9874f8"
+      "implementation-summary.md": "1950fbb949eb352bd4544871b02200c136c013f4adb95953960b6119a600bac5"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -39,7 +39,7 @@
       "chunking"
     ],
     "importance_tier": "normal",
-    "status": "in_progress",
+    "status": "draft",
     "key_files": [
       "plan.md",
       "tasks.md",
@@ -201,7 +201,7 @@
     ],
     "causal_summary": "43% of the 33,101-row memory corpus is invisible to vector search: 8,761 rows are pending, 4,247 failed, and 1,260 sit in retry, while 367 rows report embedding success with no stored vector",
     "created_at": "2026-07-03T09:44:20Z",
-    "last_save_at": "2026-07-04T14:08:37.334Z",
+    "last_save_at": "2026-07-04T14:25:43.767Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -212,14 +212,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:a75307781629df6ed5faa770e44b4587e467971bc5095ca1315be2bae51579e1",
+    "source_fingerprint": "sha256:4b58b36c15edfc55bc45cf87427a0ec2878c849cad61b684d1625deb46f99861",
     "source_doc_hashes": {
-      "spec.md": "9eb81e1798d96d7873e17ad2356e3e0d1aba5e59863368ba941c9785b3d9a092",
+      "spec.md": "e9def8ce3e86c464122aa956135a903679061d6d879184d0d8e04e43ae637374",
       "plan.md": "869b4f1698276558f2a7fc466b18987526c242e1f21efc64ab007a1973bd4c34",
-      "tasks.md": "249a9f43a675b6dd99609ee40f013bfa447974c3b56c04e5bac2b080fd8f4a9e",
+      "tasks.md": "d3fa25cff00eab137d2f0771a7485868fbfc51571556d70471f164beb14f667d",
       "checklist.md": "d67af27453fcfe6dbdd5e364ce72171944866a6939458a2fcac5c449f8c4bb6b",
       "decision-record.md": "df3e74f505faf2af21ae2c37f0fd0b35968dcd135ad9858f8c8814a368660173",
-      "implementation-summary.md": "f4f3beb0e68a31561535c1afafefe11b169173f8f96312fb328f78180de695a1"
+      "implementation-summary.md": "9656b78f1509e7cfa027bbe6ce180619a16314b5c9196c3451cd12b066ba93b0"
     },
     "last_active_child_id": null,
     "last_active_at": null

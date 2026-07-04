@@ -11,7 +11,7 @@ contextType: "implementation"
 
 # Spec 028 Changelog Index
 
-Spec 028 (memory-search-intelligence) turned a long external memory-system research campaign into shipped retrieval intelligence across four subsystems plus a release-readiness track. A sixth track, 005-spec-data-quality, began as a research scaffold and then shipped. It holds forty phase changelogs spanning the tiered go or no-go research, the generated-metadata build, the full-repo JSON migration and the flag-graduation benchmark that kept twelve flags and deleted one. A seventh track, 006-review-remediation, holds the six-child remediation of the epic deep review. An eighth track, 007-dark-flag-graduation, holds the twelve-child dark-flag graduation program that benchmarked eight default-off flag families on the production path and returned four graduates, three cuts and one refine, then cleaned up flag names, validated byte-identity and closed a follow-up deep review. The changelog mirrors the spec tree: one directory per track, flat per track, with phase changelogs named `changelog-<track>-<leaf>-<short-name>.md` and one per-track rollup named `changelog-<track>-root.md`. The packet root rollup is [changelog-028-root.md](./changelog-028-root.md) in this directory. The chronological view of the same work lives in [`../timeline.md`](../timeline.md) and the before-and-after narrative in [`../before-vs-after.md`](../before-vs-after.md). The flat Wave-0 done-evidence is recorded separately under the Wave-0 implementation record.
+Spec 028 (memory-search-intelligence) turned a long external memory-system research campaign into shipped retrieval intelligence across four subsystems plus a release-readiness track. A sixth track, 005-spec-data-quality, began as a research scaffold and then shipped. It holds forty phase changelogs spanning the tiered go or no-go research, the generated-metadata build, the full-repo JSON migration and the flag-graduation benchmark that kept twelve flags and deleted one. A seventh track, 006-review-remediation, holds the six-child remediation of the epic deep review. An eighth track, 007-dark-flag-graduation, holds the twelve-child dark-flag graduation program that benchmarked eight default-off flag families on the production path and returned four graduates, three cuts and one refine, then cleaned up flag names, validated byte-identity and closed a follow-up deep review. A further track, 016-fix-deep-dive-p0-p2-findings-for-mk-spec-memory, holds the deep-dive remediation program, thirteen phases that fixed the mk-spec-memory P0 through P2 findings and shipped end to end. The spec tree also grew sub-packets 008 through 015 between the dark-flag work and that program. Those carry their own spec-folder docs rather than changelog tracks here. The changelog mirrors the spec tree: one directory per track, flat per track, with phase changelogs named `changelog-<track>-<leaf>-<short-name>.md` and one per-track rollup named `changelog-<track>-root.md`. The packet root rollup is [changelog-028-root.md](./changelog-028-root.md) in this directory. The chronological view of the same work lives in [`../timeline.md`](../timeline.md) and the before-and-after narrative in [`../before-vs-after.md`](../before-vs-after.md). The flat Wave-0 done-evidence is recorded separately under the Wave-0 implementation record.
 
 ## Tracks
 
@@ -25,6 +25,7 @@ Spec 028 (memory-search-intelligence) turned a long external memory-system resea
 | 005 spec data quality | 40 | [changelog-005-root.md](./005-spec-data-quality/changelog-005-root.md) |
 | 006 review remediation | 6 | [changelog-006-root.md](./006-review-remediation/changelog-006-root.md) |
 | 007 dark flag graduation | 12 | [changelog-007-root.md](./007-dark-flag-graduation/changelog-007-root.md) |
+| 016 deep-dive remediation | 13 | [changelog-016-root.md](./016-fix-deep-dive-p0-p2-findings-for-mk-spec-memory/changelog-016-root.md) |
 
 ## How to read these
 
@@ -32,7 +33,7 @@ Each track's top rollup is its phase parent's Included Phases table, listing eve
 
 ## Conventions
 
-- File names use the pattern `changelog-<track>-<leaf>-<short-name>.md`. Per-track rollups use the `-root.md` suffix and the packet rollup is `changelog-028-root.md`. Numbers reflect the current eight-track spec-tree position.
+- File names use the pattern `changelog-<track>-<leaf>-<short-name>.md`. Per-track rollups use the `-root.md` suffix and the packet rollup is `changelog-028-root.md`. Numbers reflect each track's spec-tree position. The original eight tracks 000 through 007 are joined by the later 016 deep-dive remediation program. Sub-packets 008 through 015 exist in the spec tree without their own changelog tracks here.
 - One changelog per shipped phase. Multi-candidate phases collapse their candidates into one entry.
 - Voice rules are non-negotiable: no em-dashes, no semicolons in narrative, no Oxford commas.
 - PENDING and gated phases are shown as planned with their gate named, never disguised as shipped.

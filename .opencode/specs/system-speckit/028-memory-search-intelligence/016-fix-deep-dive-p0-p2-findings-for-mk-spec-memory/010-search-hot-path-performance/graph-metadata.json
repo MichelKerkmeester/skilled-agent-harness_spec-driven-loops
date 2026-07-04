@@ -39,7 +39,7 @@
       "memory"
     ],
     "importance_tier": "normal",
-    "status": "complete",
+    "status": "draft",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -203,7 +203,7 @@
     ],
     "causal_summary": "Warm `memorysearch` takes 2.0-2.9s at 33,101 rows (stage1 0.5-1.5s, stage2 ~1.2s constant even for 15-19 candidates), with +3.9s on the first-call auto-surface, ~15s cold runtime init, and ~492MB RSS at 9s uptime (deep-dive report §1/§4, measured 🟢 2026-07-03)",
     "created_at": "2026-07-03T09:44:24Z",
-    "last_save_at": "2026-07-04T14:09:13.668Z",
+    "last_save_at": "2026-07-04T14:25:45.782Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -213,13 +213,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:cef7ac33cf1a43eb0df34615a21b304fb43c8ad5ec71a6f8cb60c3a36761cdec",
+    "source_fingerprint": "sha256:c998ce33a4c30d924cd796b5fe88b84488682b2d953cede37ff96f60ec781f79",
     "source_doc_hashes": {
-      "spec.md": "25b683528133877282c1d180a60bf2a99a3e85e2967be144bba972a191148da3",
+      "spec.md": "0dab78dc4e78ca4eeb11611e7180073a7592324fd2eac593acd32b11119eee95",
       "plan.md": "cdff37c65b1e83228c474ecb01c8e7597a70a4f9c62e0900b1e766c0d2a278eb",
-      "tasks.md": "a04765102026878401c62b54640316aa3a099e0c4cfb2b5c45e1eec95a07c83e",
+      "tasks.md": "3029c468e14dc0e75b9c7010ec3483685475b92e549522a5d8a4b38f6e84daab",
       "checklist.md": "4e86406efbccc0855825e94c784e7c8f5a86ba7e1b340d7564e3e410c8c3c53f",
-      "implementation-summary.md": "8aebd12b320eb93550c1d7d22cb6bebf7632c00599e60f41a1ece715b167ee38"
+      "implementation-summary.md": "c07d72f1a9f33cfb180f669e869a68c5c39b56db46eeec9206d5656946e502e2"
     },
     "last_active_child_id": null,
     "last_active_at": null

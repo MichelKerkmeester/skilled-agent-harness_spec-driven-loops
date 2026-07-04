@@ -39,7 +39,7 @@
       "reinforce"
     ],
     "importance_tier": "important",
-    "status": "in_progress",
+    "status": "draft",
     "key_files": [
       ".opencode/skills/system-spec-kit/mcp_server/lib/parsing/memory-parser.ts",
       ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts",
@@ -209,7 +209,7 @@
     ],
     "causal_summary": "`contenthash` is a raw sha256 with no normalization (`memory-parser.ts:914`; deep-dive-report Chain A step 1 cites :913), so any CRLF/trailing-whitespace or `memory.continuity.lastupdatedat` churn registers as new content; each same-path re-save then retires the predecessor to `tier='deprecated'` and inserts a new row, accumulating snapshots unboundedly (Chain A steps 2-3)",
     "created_at": "2026-07-03T09:44:19Z",
-    "last_save_at": "2026-07-04T14:08:36.883Z",
+    "last_save_at": "2026-07-04T14:25:43.427Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -220,14 +220,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:cd1ae88f609940dc07267784244221bd407627bcf3336477da181ebd3628e196",
+    "source_fingerprint": "sha256:b3dbb7935c2771e0507bf644f4a43408aa1c8789b11ff52277e7585609011648",
     "source_doc_hashes": {
-      "spec.md": "85bcb8e34f2e51b2a3a8c2cd177fe5b8f0f93bd66987ed145cb3968a35e09bba",
+      "spec.md": "d65a29afb95b402ac4d399a19df3db14731eb855d2352b344a57635b464b01c0",
       "plan.md": "facd2e0dcb6bcac1892ff1fc6cb58f5b40362c7c9d6db36d70a4a8f9e7a7e4b7",
-      "tasks.md": "09c7effee851e0accf48f089a10af05ed5e65af37a1218de4923058031ba5927",
+      "tasks.md": "1d1e193bbf8b44adf3dc807fc66987d66dd97d394fed6a2a72eecdc5330de653",
       "checklist.md": "c3da584a563890fabf31b9b1e5a802c158e99ad218e0cb1f2f33ed6aa0877a6f",
       "decision-record.md": "d0459f21969c8b014fa5f11e7c26e13f197c37478d41faeaa173a59ffd0d83b9",
-      "implementation-summary.md": "760f50b22f5eba863708628a5df3f6ad651508343b09456a61c88f4be9bf67c5"
+      "implementation-summary.md": "1a15f871ede723df841dc03aa11e1054d6c1797955231b64a69511285f5c1acb"
     },
     "last_active_child_id": null,
     "last_active_at": null

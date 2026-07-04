@@ -39,7 +39,7 @@
       "heal"
     ],
     "importance_tier": "important",
-    "status": "in_progress",
+    "status": "draft",
     "key_files": [
       ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-index.ts",
       ".opencode/skills/system-spec-kit/mcp_server/lib/storage/incremental-index.ts",
@@ -210,7 +210,7 @@
     ],
     "causal_summary": "`handlers/memory-index.ts:684` calls `sweepOrphanIndexRows({ limit: 200 })` with no cursor; the function defaults cursor=0 and returns `nextCursor`, which is echoed in scan results but never persisted or fed back, so every scan re-checks the same ~200 lowest-id rows forever (report §2 Chain B; ledger L2, live-verified 🟢)",
     "created_at": "2026-07-03T09:44:17Z",
-    "last_save_at": "2026-07-04T14:08:36.105Z",
+    "last_save_at": "2026-07-04T14:25:42.713Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -221,14 +221,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:c24bed994e01283422cac6105bffc43ef039129110b5214beec443bd091b5e12",
+    "source_fingerprint": "sha256:8d5390169193e8e23ec4e875d9ec08255d0390d50b90d7a09419d6fa47e3a117",
     "source_doc_hashes": {
-      "spec.md": "95536213d553fcd0a58ebc0626f407864686e2ec364adcc26410f4106afd6a00",
+      "spec.md": "2a9c78a60c7d5e86aa3bd1e31060548bae7f6a134c7c016db254680b50247d74",
       "plan.md": "d529f6264ad7c21138b8c5032d43a9cfddd909d199f3db368d2e4a6b833ba334",
-      "tasks.md": "522d2a39546d5c9d1ab4e4716461be07faadcc3e31e9d50d596fe3fbec79b402",
+      "tasks.md": "3241ffeedb7201fffb315abb1346bd83d6c17ba7f20573030a10797a8224b4c3",
       "checklist.md": "a7b6e50d387b2a737d53b34e768fc61847e8f26fc4c0626307675f7ab7d72e53",
       "decision-record.md": "3aa67cf4fa2710d5a838ce211f2adcddef0f42ad8f381561ee6c09d032bdf74d",
-      "implementation-summary.md": "c6935a5919d55be1717e1a0255fa410c46a574cb66287dc1d8bb9098a598ecea"
+      "implementation-summary.md": "f1d0cd82958aa2fb3c51ff636dbe311f7d858ac0c6f540569180b2716d3df015"
     },
     "last_active_child_id": null,
     "last_active_at": null

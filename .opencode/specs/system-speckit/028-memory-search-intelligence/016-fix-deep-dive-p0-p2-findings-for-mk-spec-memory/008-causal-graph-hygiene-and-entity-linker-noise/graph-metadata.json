@@ -39,7 +39,7 @@
       "relation"
     ],
     "importance_tier": "important",
-    "status": "complete",
+    "status": "planned",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -210,7 +210,7 @@
     ],
     "causal_summary": "The causal graph is 94% entity-linker noise and every save ratchets edge strengths toward 1.0, so graph signals cannot rank real causality",
     "created_at": "2026-07-03T09:44:23Z",
-    "last_save_at": "2026-07-04T14:09:12.826Z",
+    "last_save_at": "2026-07-04T14:25:45.138Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -221,14 +221,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:58034d2d3d030317f79df2e2142476e14f514b1e01d75c82a672a80a47cdc9c3",
+    "source_fingerprint": "sha256:91d1d59552ba178b34dc5f562546ccb8b657e625c144559f741b3ecc47d65ba3",
     "source_doc_hashes": {
-      "spec.md": "b890e51b8b2bf87541410daa70d183de4499fe323f4bfbe05a6051e5344d6903",
+      "spec.md": "5e05b471ec0a73dfbb6d37a6299ae99a88da6837623c240d873d6c82b49ee9b6",
       "plan.md": "5f526bbba060bf2b6ad3fb8aa27f7633de0fd6f82147281be2d4813d72313613",
-      "tasks.md": "87d82d5830b0096e476814d7a2c95cb7cfd635bc59e4377be971ec8c06937c36",
+      "tasks.md": "be47ab0daf94e8987ac4ece133b9d4787a1ac7a5c325353aca7b2fb7ef261262",
       "checklist.md": "808a8651db308c92927a903252c36e6deb31a12b9f1e2724a6ab86491316b45f",
       "decision-record.md": "f7048e2d0f3b02251b8866b834d83b9bbdef5937e74c9be107de09704834818a",
-      "implementation-summary.md": "f094012a5a922b99b53d8a7f61c62a02c2c4bdb5aa84e914cdfc62186422d28b"
+      "implementation-summary.md": "ed51e6d982dcc0269915e632299302782ce5024aecd3e08f8dd50e96e66852c0"
     },
     "last_active_child_id": null,
     "last_active_at": null

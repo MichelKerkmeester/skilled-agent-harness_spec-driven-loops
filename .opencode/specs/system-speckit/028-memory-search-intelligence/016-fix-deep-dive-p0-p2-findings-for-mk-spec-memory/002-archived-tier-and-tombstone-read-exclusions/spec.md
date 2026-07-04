@@ -12,7 +12,7 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "scaffold/002-archived-tier-and-tombstone-read-exclusions"
-    last_updated_at: "2026-07-04T14:08:36.497Z"
+    last_updated_at: "2026-07-04T14:25:43.046Z"
     last_updated_by: "plan-remediation"
     recent_action: "Remediated REWORK: corrected predicate SQL, fixed FTS/BM25 premise, added logic-sync gate"
     next_safe_action: "Program complete (016 shipped + pushed)"

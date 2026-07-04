@@ -11,7 +11,7 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-speckit/028-memory-search-intelligence/016-fix-deep-dive-p0-p2-findings-for-mk-spec-memory/001-orphan-sweep-cursor-and-corpus-identity-repair"
-    last_updated_at: "2026-07-04T14:08:36.105Z"
+    last_updated_at: "2026-07-04T14:25:42.713Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "Ran corpus-repair migration under checkpoint; SQL invariant 0 violations, integrity ok"
     next_safe_action: "Phase 002 completes the search-level exclusion of the deprecated rows"

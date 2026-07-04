@@ -105,6 +105,12 @@
         "source": "derived"
       },
       {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
         "name": "Parent Packet",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -121,25 +127,19 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
-      },
-      {
-        "name": "In Scope",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The 2026-07-03 deep dive (live production probing + eight code audits over ~96k lines) found ~150 defects across the mk-spec-memory search stack",
     "created_at": "2026-07-03T09:43:59Z",
-    "last_save_at": "2026-07-04T14:07:59.038Z",
+    "last_save_at": "2026-07-04T14:25:42.375Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:5a2d0286d422c8421b2f1f85964ae79cbc54c22a97465961b431ff2f3fea4a70",
+    "source_fingerprint": "sha256:52179e7f4c2f9d1cbb75aca00da308e8f71650e0b008df8e63a57150bc412774",
     "source_doc_hashes": {
-      "spec.md": "e742f032e0b14f792711a376b026c5fb70fde516d6c01a8f62f54a02dfb9c18d"
+      "spec.md": "b97b0b33724c91aab61a09612911fa36a3836664f9c2dd3ee1a15086f434a41a"
     },
     "last_active_child_id": null,
     "last_active_at": null

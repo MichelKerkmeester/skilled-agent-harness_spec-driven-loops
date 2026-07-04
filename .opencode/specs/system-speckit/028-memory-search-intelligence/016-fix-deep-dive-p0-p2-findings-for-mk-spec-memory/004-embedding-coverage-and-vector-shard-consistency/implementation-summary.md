@@ -11,7 +11,7 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-speckit/028-memory-search-intelligence/016-fix-deep-dive-p0-p2-findings-for-mk-spec-memory/004-embedding-coverage-and-vector-shard-consistency"
-    last_updated_at: "2026-07-04T14:08:37.334Z"
+    last_updated_at: "2026-07-04T14:25:43.767Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "Integrated + verified 004; ran model backfill under backup; 122 tests green"
     next_safe_action: "Daemon-side embedding reconcile re-embeds the missing-vector rows; then phase 005"

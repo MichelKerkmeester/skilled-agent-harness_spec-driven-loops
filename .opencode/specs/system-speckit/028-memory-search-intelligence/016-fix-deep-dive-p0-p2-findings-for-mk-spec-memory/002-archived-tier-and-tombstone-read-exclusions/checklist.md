@@ -11,7 +11,7 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "scaffold/002-archived-tier-and-tombstone-read-exclusions"
-    last_updated_at: "2026-07-03T17:26:54Z"
+    last_updated_at: "2026-07-04T14:25:43.046Z"
     last_updated_by: "plan-remediation"
     recent_action: "Remediated REWORK: added CHK-006 logic-sync gate and widened CHK-020 to REQ-000"
     next_safe_action: "Fill evidence slots as tasks complete; no [x] without evidence"

@@ -11,7 +11,7 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "016-fix-deep-dive-p0-p2-findings-for-mk-spec-memory/001-orphan-sweep-cursor-and-corpus-identity-repair"
-    last_updated_at: "2026-07-03T15:54:02Z"
+    last_updated_at: "2026-07-04T14:25:42.713Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "Verified live-DB SQL gates 0/0/0 + integrity ok; marked P0/P1 with evidence"
     next_safe_action: "Phase 002 read-exclusion for the deprecated rows"

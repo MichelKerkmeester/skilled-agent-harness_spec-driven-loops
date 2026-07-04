@@ -12,7 +12,7 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-speckit/028-memory-search-intelligence/016-fix-deep-dive-p0-p2-findings-for-mk-spec-memory/012-envelope-presentation-and-command-doc-alignment"
-    last_updated_at: "2026-07-03T09:58:00Z"
+    last_updated_at: "2026-07-04T14:25:46.520Z"
     last_updated_by: "planning-author"
     recent_action: "Authored Level 2 planning docs (spec/plan/tasks/checklist)"
     next_safe_action: "Run T001 live envelope baseline capture before any code change"

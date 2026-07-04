@@ -13,7 +13,7 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-speckit/028-memory-search-intelligence/016-fix-deep-dive-p0-p2-findings-for-mk-spec-memory/010-search-hot-path-performance"
-    last_updated_at: "2026-07-04T14:09:13.668Z"
+    last_updated_at: "2026-07-04T14:25:45.782Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "12 hot-path REQs batched/cached/gated; parity + FTS proven; p50 daemon-side"
     next_safe_action: "Phase 012 envelope-presentation-and-command-doc-alignment"

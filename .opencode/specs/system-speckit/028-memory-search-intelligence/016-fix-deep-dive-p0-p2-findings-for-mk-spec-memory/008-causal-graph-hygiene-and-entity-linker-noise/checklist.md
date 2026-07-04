@@ -11,7 +11,7 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-speckit/028-memory-search-intelligence/016-fix-deep-dive-p0-p2-findings-for-mk-spec-memory/008-causal-graph-hygiene-and-entity-linker-noise"
-    last_updated_at: "2026-07-03T13:00:00Z"
+    last_updated_at: "2026-07-04T14:25:45.138Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "Remediated REWORK: CHK-020 verify-first P1-2/P1-4, session-trace producer + flag updates"
     next_safe_action: "Execute tasks.md Phase 1 before checking any item"
