@@ -1,6 +1,6 @@
 ---
 description: Scaffold a parent skill with nested mode packets (one hub identity, registry source of truth). Modes :auto, :confirm.
-argument-hint: "<skill-name> [create|update] [--modes <mode1,mode2,...>] [--path <dir>] [:auto|:confirm] (:auto supports PRE-BOUND SETUP ANSWERS: prompt-body block for non-interactive setup)"
+argument-hint: "<skill-name> [create|update] [--modes <mode1,mode2,...>] [--surfaces <s1,s2,...>] [--path <dir>] [:auto|:confirm] (:auto supports PRE-BOUND SETUP ANSWERS: prompt-body block for non-interactive setup)"
 allowed-tools: Read, Write, Edit, Bash, Glob, Grep, TodoWrite
 ---
 
@@ -30,15 +30,18 @@ This command is a thin router. It separates execution routing from user-facing p
 
 ## What This Scaffolds
 
-This command generates the "parent skill with nested mode packets" pattern. The canonical example is `deep-loop-workflows`; the pattern is standardized in `.opencode/skills/sk-doc/references/skill_creation/parent_skills_nested_packets.md`. The hub and registry templates are `.opencode/skills/sk-doc/assets/skill/parent_skill_hub_template.md` and `.opencode/skills/sk-doc/assets/skill/parent_skill_registry_template.json`.
+This command generates the "parent skill with nested mode packets" pattern following the two-axis hub canon. The canonical example is `sk-code` (workflow modes plus read-only surface packets); `deep-loop-workflows` is the runtime-loop variant that expresses its extra machinery as named `extensions`. The pattern is standardized in `.opencode/skills/sk-doc/references/skill_creation/parent_skills_nested_packets.md`, and the hub-router contract in `.opencode/skills/sk-doc/references/skill_creation/parent_hub_router_schema.md`. The templates are `parent_skill_hub_template.md`, `parent_skill_registry_template.json`, `parent_skill_hub_router_template.json`, `parent_skill_description_template.json`, and `parent_skill_graph_metadata_template.json` under `.opencode/skills/sk-doc/assets/skill/`.
 
 The generated package is:
 
 - A thin hub `SKILL.md` (routing only, no per-mode logic).
-- A declarative `mode-registry.json` with one `advisorRouting` block per mode (`routingClass`, `legacyAdvisorId` for lexical/alias-fold modes, optional `advisorDefaultMode`, `legacyAliases`, `packetSkillName`). The registry is the single source of truth; routers and tests read it, none re-derive it.
+- A declarative `mode-registry.json` where every mode carries the two-axis discriminator — `workflowMode` + `packetKind` (`workflow` | `surface`) + `backendKind` — plus `toolSurface`, `grandfatheredFolderMismatch`, and one `advisorRouting` block (`routingClass`, `legacyAdvisorId` for lexical/alias-fold modes, optional `advisorDefaultMode`, `legacyAliases`, `packetSkillName`). The registry is the single source of truth; routers and tests read it, none re-derive it.
+- A `hub-router.json` describing how a prompt selects and bundles modes (routerSignals, typed vocabularyClasses, tieBreak, and a `surfaceBundle` outcome when surfaces exist), and a `description.json`.
 - Exactly one hub `graph-metadata.json` — the one hard invariant.
-- N mode packets, each self-contained with its own `SKILL.md`, where `folder == packetSkillName == deep-<mode>`, and with NO per-packet `graph-metadata.json`.
-- A non-discoverable `shared/` directory for packet-shared workflow-layer helpers.
+- N workflow mode packets, each self-contained with its own `SKILL.md`, `README.md`, and `changelog/`, where `folder == packetSkillName == [hub-prefix]-<mode>`, and with NO per-packet `graph-metadata.json`.
+- Optional read-only `surface` packets (bare-noun folders, `packetKind: surface`, `backendKind: evidence-base`, read-only `toolSurface`, advisor-invisible `metadata` routing) carrying domain evidence rather than process.
+- A hub `changelog/` and `manual_testing_playbook/` (changelog entries are real files, never symlinks).
+- A non-discoverable `shared/` directory (with `shared/README.md`) for packet-shared workflow-layer helpers.
 
 ## Routing Rules
 

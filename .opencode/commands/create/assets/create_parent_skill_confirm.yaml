@@ -108,6 +108,7 @@ input_contract:
     - execution_mode
   optional:
     - skill_path
+    - surfaces
     - spec_choice
     - spec_path
     - memory_choice
@@ -120,8 +121,11 @@ field_handling:
     validation: "must be one of: create, update"
     required: true
   modes:
-    validation: "comma-separated hyphen-case mode names; one packet per mode"
+    validation: "comma-separated hyphen-case mode names; one workflow packet per mode"
     required: true
+  surfaces:
+    validation: "optional comma-separated bare-noun names, one read-only evidence-base surface packet each (packetKind: surface)"
+    required: false
   execution_mode:
     validation: "must be :confirm"
     required: true
@@ -138,9 +142,12 @@ documentation_level:
 defaults:
   skill_path: .opencode/skills/
   registry_filename: mode-registry.json
+  hub_router_filename: hub-router.json
+  description_filename: description.json
   graph_metadata_filename: graph-metadata.json
   shared_dirname: shared
-  packet_prefix: deep-
+  packet_prefix: "[hub-prefix]-  # derived from the hub (e.g. deep- for deep-loop-workflows, code- for sk-code); NEVER hardcode deep-"
+  surface_packet_naming: "bare noun, no prefix (e.g. webflow)"
   execution_mode: :confirm
   dqi_hard_minimum: 75
 
@@ -150,28 +157,42 @@ operation_router:
     output_scope:
       - SKILL.md
       - mode-registry.json
+      - hub-router.json
+      - description.json
       - graph-metadata.json
-      - deep-<mode>/SKILL.md
+      - changelog/
+      - manual_testing_playbook/
+      - "[hub-prefix]-<mode>/SKILL.md"
+      - "[hub-prefix]-<mode>/README.md"
+      - "[hub-prefix]-<mode>/changelog/"
+      - "<surface>/{SKILL.md,README.md,changelog/}  (when --surfaces)"
       - shared/
+      - shared/README.md
   update:
     requires_existing_skill: true
     output_scope:
       - SKILL.md
       - mode-registry.json
+      - hub-router.json
+      - description.json
       - graph-metadata.json
-      - deep-<mode>/SKILL.md
+      - changelog/
+      - "[hub-prefix]-<mode>/SKILL.md"
       - shared/
 
 reference_sources:
   specific_creation: .opencode/skills/sk-doc/references/skill_creation.md
   pattern_section: "Parent Skills with Nested Mode Packets"
+  hub_router_schema: .opencode/skills/sk-doc/references/skill_creation/parent_hub_router_schema.md
   core_standards: .opencode/skills/sk-doc/references/global/core_standards.md
   validation: .opencode/skills/sk-doc/references/global/validation.md
-  canonical_example: .opencode/skills/deep-loop-workflows
+  canonical_example: .opencode/skills/sk-code
 
 template_sources:
   hub_skill: .opencode/skills/sk-doc/assets/skill/parent_skill_hub_template.md
   mode_registry: .opencode/skills/sk-doc/assets/skill/parent_skill_registry_template.json
+  hub_router: .opencode/skills/sk-doc/assets/skill/parent_skill_hub_router_template.json
+  description: .opencode/skills/sk-doc/assets/skill/parent_skill_description_template.json
   hub_graph_metadata: .opencode/skills/sk-doc/assets/skill/parent_skill_graph_metadata_template.json
 
 validation_scripts:
@@ -185,15 +206,20 @@ quality_standards:
     - thin routing-only SKILL.md (no per-mode logic)
     - "exactly one graph-metadata.json at the hub root (from parent_skill_graph_metadata_template.json) with skill_id == hub folder name and family in {cli, mcp, sk-code, deep-loop, sk-util, system}"
     - mode-registry.json present and valid JSON
+    - "hub-router.json present and valid (routerSignals cover every workflowMode, typed vocabularyClasses, tieBreak covers all modes; surface packets get metadata routerSignals plus a surfaceBundle outcome)"
+    - description.json present
+    - "changelog/ with real files (no symlinks) at the hub root and in every packet"
   registry_requirements:
-    - "each mode carries the 3-tier discriminator: workflowMode (string), runtimeLoopType (present, may be null, NEVER inferred from workflowMode), backendKind (one of runtime-loop-type | improvement-host | external-adapter)"
+    - "each mode carries the two-axis discriminator: workflowMode (string) + packetKind (\"workflow\" | \"surface\") + backendKind; runtimeLoopType is present ONLY for workflow modes on a runtime-loop backend (when the runtime-loop extension is declared), otherwise omitted"
+    - "each mode carries toolSurface (allowed, forbidden, mutatesWorkspace, bashAllowlist) and grandfatheredFolderMismatch (boolean, false unless a legacy folder/name mismatch is intentionally preserved)"
+    - "surface packets (packetKind: surface) are read-only evidence bases: backendKind evidence-base, toolSurface allowed subset of {Read, Bash, Grep, Glob} with {Write, Edit, Task} forbidden and mutatesWorkspace false, advisorRouting.routingClass metadata (advisor-invisible)"
     - "each mode has a top-level packet field naming its packet sub-directory (a direct child of the hub)"
     - one advisorRouting block per mode
-    - "advisorRouting fields: routingClass (lexical | alias-fold | metadata | command-bridge), legacyAdvisorId (lexical + alias-fold modes only), advisorDefaultMode (optional, alias-fold default), legacyAliases (system-id alias set, lexical + alias-fold only), packetSkillName"
-    - "registry keys (mode.packet) match packet folder names; canonical default folder == packetSkillName == deep-<mode>, grandfathered mismatches recorded via packetSkillName"
-    - "runtimeLoopType allowed set when non-null: research | review | council | context"
+    - "advisorRouting fields: routingClass (lexical | alias-fold | metadata | command-bridge), legacyAdvisorId (lexical + alias-fold modes only), advisorDefaultMode (optional, alias-fold default), legacyAliases (lexical + alias-fold only), packetSkillName"
+    - "registry keys (mode.packet) match packet folder names; canonical workflow folder == packetSkillName == [hub-prefix]-<mode>, surface folder == packetSkillName == bare noun; grandfathered mismatches recorded via grandfatheredFolderMismatch + packetSkillName"
+    - "runtimeLoopType allowed set when present and non-null: research | review | council | context (or the hub's declared runtime-loop types)"
   packet_requirements:
-    - "RECOMMENDED DEFAULT for a net-new single-mode packet: folder == packetSkillName == deep-<mode> (soft guidance, not a hard gate)"
+    - "RECOMMENDED DEFAULT for a net-new single-mode workflow packet: folder == packetSkillName == [hub-prefix]-<mode> (soft guidance, not a hard gate); surface packets use a bare-noun folder"
     - "ALLOWED: many modes mapping to one packet folder (canonical: 4 improvement modes -> deep-improvement)"
     - "ALLOWED: grandfathered packets where folder != packetSkillName (rare; record the rationale in the packet's decision record)"
     - each packet has its own SKILL.md
@@ -229,7 +255,7 @@ gate_logic:
       fail_action: "Run fix-and-revalidate loop"
   soft:
     S1_packet_naming:
-      description: "DEFAULT for a net-new single-mode packet: folder == packetSkillName == deep-<mode>. NOT a hard gate. Many-modes-to-one-packet and grandfathered folder!=packetSkillName names are valid (canonical: 4 modes -> deep-improvement)."
+      description: "DEFAULT for a net-new single-mode workflow packet: folder == packetSkillName == [hub-prefix]-<mode> (surfaces use a bare-noun folder). NOT a hard gate. Many-modes-to-one-packet and grandfathered folder!=packetSkillName names are valid (canonical: 4 modes -> deep-improvement)."
       fail_action: "Proceed with a logged assumption when grandfathering an existing packet or mapping several modes to one packet"
 
 interactive_execution:
@@ -280,9 +306,9 @@ workflow:
   step_2_mode_planning:
     purpose: Resolve and propose the per-packet plan
     activities:
-      - "For a net-new single-mode packet, default packetSkillName = \"deep-[mode]\" and a packet folder of the same name (recommended, not enforced)"
-      - "Allow several modes to share one packet folder (canonical: 4 improvement modes -> deep-improvement); allow a grandfathered packet whose folder != packetSkillName (rare; record the rationale)"
-      - "Set each mode's top-level packet field to its packet sub-directory and plan the 3-tier discriminator (workflowMode, runtimeLoopType may be null, backendKind)"
+      - "For a net-new single-mode workflow packet, default packetSkillName = \"[hub-prefix]-[mode]\" and a packet folder of the same name (recommended, not enforced); plan any --surfaces as bare-noun surface packets"
+      - "Allow several modes to share one packet folder (canonical: 4 improvement modes -> deep-improvement); allow a grandfathered packet whose folder != packetSkillName (rare; record the rationale via grandfatheredFolderMismatch)"
+      - "Set each mode's top-level packet field to its packet sub-directory and plan the two-axis discriminator (workflowMode + packetKind + backendKind; runtimeLoopType only for runtime-loop workflow modes) plus toolSurface and grandfatheredFolderMismatch"
       - Plan the advisorRouting block per mode (routingClass, legacyAdvisorId for lexical/alias-fold, advisorDefaultMode, legacyAliases, packetSkillName)
       - Preserve existing packet names, registry keys, and routing blocks when update mode
       - "When several modes intentionally share one packet folder, log it as an assumption — do not treat it as a duplicate-folder failure"
@@ -301,22 +327,29 @@ workflow:
     purpose: Load references and templates
     activities:
       - Read skill_creation/parent_skills_nested_packets.md for the Parent Skills with Nested Mode Packets pattern
+      - Read references/skill_creation/parent_hub_router_schema.md for the hub-router.json contract
       - Read parent_skill_hub_template.md
       - Read parent_skill_registry_template.json
+      - Read parent_skill_hub_router_template.json
+      - Read parent_skill_description_template.json
       - Read parent_skill_graph_metadata_template.json
-      - Extract the hub SKILL.md, registry, and hub graph-metadata contracts
+      - Extract the hub SKILL.md, registry, hub-router, description, and hub graph-metadata contracts
     outputs:
       - template_contract_loaded
 
   step_4_package_generation:
-    purpose: Draft the hub, registry, packets, and shared dir
+    purpose: Draft the hub, registry, router, packets, and shared dir
     activities:
       - Ensure skill_root exists
       - Create or update the thin hub SKILL.md (routing only)
-      - Create or update mode-registry.json with the 3-tier discriminator, a top-level packet, and one advisorRouting block per mode
+      - "Create or update mode-registry.json with the two-axis discriminator (workflowMode + packetKind + backendKind), toolSurface and grandfatheredFolderMismatch per mode, a top-level packet, and one advisorRouting block per mode"
+      - "Create or update hub-router.json from parent_skill_hub_router_template.json (routerSignals for every mode, typed vocabularyClasses, tieBreak covering all modes; surface packets get metadata routerSignals plus a surfaceBundle outcome)"
+      - "Create or update description.json from parent_skill_description_template.json"
       - "Create or update exactly one hub graph-metadata.json from parent_skill_graph_metadata_template.json (skill_id == hub folder, family in the allowed set)"
-      - "Create or update one packet dir per distinct packet value (default folder == packetSkillName == deep-<mode>; reuse a shared packet folder when several modes map to one), each with its own SKILL.md"
-      - Create the non-discoverable shared/ dir
+      - "Create or update one workflow packet dir per distinct packet value (default folder == packetSkillName == [hub-prefix]-<mode>; reuse a shared packet folder when several modes map to one), each with its own SKILL.md, README.md, and changelog/"
+      - "When --surfaces <names> is given, generate each surface as a read-only evidence-base packet: bare-noun folder, packetKind surface, backendKind evidence-base, read-only toolSurface, routingClass metadata, with its own SKILL.md, README.md, and changelog/"
+      - "Create the hub changelog/ and manual_testing_playbook/ (changelog files are real files, never symlinks)"
+      - Create the non-discoverable shared/ dir with a shared/README.md
       - Never write a graph-metadata.json inside any packet or inside shared/
     outputs:
       - generated_hub_preview
@@ -330,17 +363,20 @@ workflow:
         - abort
 
   step_5_validation:
-    purpose: Validate generated package and identity (success gate == the /doctor parent-skill-check gate)
+    purpose: Validate the generated package against the canonical structural gate (success gate == the /doctor parent-skill-check gate)
     activities:
       - Run validate_document.py on the hub SKILL.md
-      - "Assert the hub graph-metadata.json has skill_id == hub folder name AND family in {cli, mcp, sk-code, deep-loop, sk-util, system} (else the hub is undiscoverable and fails /doctor)"
+      - "Run the canonical structural gate and REQUIRE exit 0: node .opencode/commands/doctor/scripts/parent-skill-check.cjs [skill_root] — the same gate /doctor parent-skill runs, owning hub identity, the two-axis discriminator, toolSurface, hub-router validity, description.json, changelog shape, and registry/directory reverse consistency"
+      - "For a net-new hub (create), also run PARENT_HUB_CHECK_STRICT=1 node .opencode/commands/doctor/scripts/parent-skill-check.cjs [skill_root] and surface any checks 5-9 findings; a fresh hub should carry no canon gaps (strict findings are advisory during the migration window, blocking once the canon promotes them)"
+      - "Assert the hub graph-metadata.json has skill_id == hub folder name AND family in {cli, mcp, sk-code, deep-loop, sk-util, system}"
       - Check mode-registry.json is valid JSON and has one advisorRouting block per mode
-      - "Per mode, assert the 3-tier discriminator: workflowMode is a non-empty string; runtimeLoopType key is present and is null or one of {research, review, council, context}; backendKind is one of {runtime-loop-type, improvement-host, external-adapter}"
+      - "Per mode, assert the two-axis discriminator: workflowMode is a non-empty string; packetKind is \"workflow\" or \"surface\"; backendKind is present; runtimeLoopType appears only for runtime-loop workflow modes; toolSurface and grandfatheredFolderMismatch are present; surface packets are read-only evidence-base"
       - "Per mode, assert an advisorRouting block with routingClass in {lexical, alias-fold, metadata, command-bridge}"
-      - "Check each mode's top-level packet resolves to an existing direct-child sub-directory (no absolute or ../ paths) that contains its own SKILL.md; the default folder == packetSkillName == deep-<mode> is recommended, NOT required (allow many-modes-to-one-packet and grandfathered folder!=packetSkillName)"
+      - "Check each mode's top-level packet resolves to an existing direct-child sub-directory (no absolute or ../ paths) that contains its own SKILL.md; workflow folder == [hub-prefix]-<mode> and surface folder == bare noun are recommended, grandfathered mismatches allowed via grandfatheredFolderMismatch"
       - Count graph-metadata.json files under skill_root; assert exactly 1 (the hub) and 0 inside packets/shared
     outputs:
       - hub_validation_passed
+      - parent_skill_check_passed
       - hub_identity_passed
       - registry_coverage_passed
       - discriminator_passed
@@ -403,10 +439,12 @@ completion_report_template: |
   - Per-packet graph-metadata.json count: [count, must be 0]
 
   Validation:
+  - parent-skill-check.cjs (canonical gate): [exit 0 / FAIL]
   - Hub structure: [passed/failed]
   - Hub identity (skill_id == folder, family in allowed set): [passed/failed]
+  - Canon files (hub-router.json, description.json, changelogs): [present/missing]
   - Registry advisorRouting: registry-declared (advisor map sync required) [present/missing per mode]
-  - Mode discriminator (workflowMode/runtimeLoopType/backendKind): [passed/failed]
+  - Mode discriminator (workflowMode/packetKind/backendKind + toolSurface): [passed/failed]
   - Per-packet structure: [passed/failed]
   - One-identity invariant: [passed/failed]
 
@@ -423,12 +461,16 @@ termination:
 
 rules:
   must:
-    - "Load the creation reference and both templates before writing"
+    - "Load the creation reference and all canon templates (hub, registry, hub-router, description, graph-metadata) before writing"
     - "Keep the hub SKILL.md thin and routing-only"
     - "Resolve modes through the registry; keep per-mode contracts in packets"
+    - "Emit the full canon set: mode-registry.json, hub-router.json, description.json, graph-metadata.json, and changelogs (real files) at hub and packet level"
+    - "Gate completion on parent-skill-check.cjs exit 0"
     - "Keep exactly one graph-metadata.json (the hub's)"
   must_not:
     - "Add a graph-metadata.json inside a packet or inside shared/"
-    - "Infer runtimeLoopType from workflowMode"
+    - "Emit runtimeLoopType for a mode that is not a runtime-loop workflow mode"
+    - "Give a surface packet write or mutate tools — surfaces are read-only evidence bases"
+    - "Use symlinks for changelog files"
     - "Move synthesis helpers into the execution backend"
     - "Widen the behavior-parity contract to chase coverage"

@@ -23,18 +23,31 @@ operating_mode:
 parent_skill_doctor_invariant: |
   Parent-skill doctor is strictly read-only. It inspects a parent skill that
   routes to nested mode packets and asserts the structure that keeps the hub a
-  single advisor identity:
+  single advisor identity. The audit runs the full canon on every parent hub
+  (no basename gating):
     1. EXACTLY ONE graph-metadata.json (the hub's), whose skill_id equals the
        directory name and whose family is in the allowed set.
     2. NO graph-metadata.json inside any mode packet or shared/.
     3. mode-registry.json exists; every mode's packet resolves to a sub-dir and
-       carries the 3-tier discriminator (workflowMode / runtimeLoopType / backendKind)
-       plus an advisorRouting block with a valid routingClass.
+       carries the two-axis discriminator — workflowMode plus packetKind
+       ("workflow" | "surface") plus backendKind — with runtimeLoopType present
+       only when the runtime-loop extension is declared. Every mode carries a
+       toolSurface and grandfatheredFolderMismatch; workflow modes carry an
+       advisorRouting block with a valid routingClass; surface packets are
+       read-only evidence-base with a metadata routingClass.
     4. The CI drift-guard test (registry projection == hardcoded advisor maps)
-       is wired; optionally the registry's lexical projection is cross-checked
-       against the advisor's live DEEP_ROUTING_MODE_BY_KEY.
+       is wired when any mode routes lexically or via alias-fold; optionally the
+       registry's lexical projection is cross-checked against the advisor's live
+       DEEP_ROUTING_MODE_BY_KEY.
+    5-9. Migration-gated (WARN by default, FAIL under PARENT_HUB_CHECK_STRICT):
+       hub-router.json validity (routerSignals ↔ registry workflowModes, typed
+       classes and resource paths resolve, tieBreak covers every mode);
+       registry ↔ directory reverse consistency; changelog shape (real files,
+       no symlinks) at both hub and packet level; description.json presence; and
+       a hub playbook plus a benchmark baseline.
   It NEVER writes files, mutates graph metadata, re-indexes the advisor, or
-  edits the audited skill. Exit code is non-zero only when an invariant fails.
+  edits the audited skill. Exit code is non-zero only when an invariant fails —
+  and for checks 5-9 only when PARENT_HUB_CHECK_STRICT is set.
 
 # ─────────────────────────────────────────────────────────────────
 # UPSTREAM ASSETS

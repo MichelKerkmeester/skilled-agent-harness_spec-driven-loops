@@ -74,4 +74,42 @@ describe('parent-hub vocab sync — classified projection vs family copies', () 
     expect(result.driftDetected).toBe(false);
     expect(result.verdict).toBeNull();
   });
+
+  it('fails loud with a P0 when a registry-bearing hub is missing its hub-router', () => {
+    const root = syntheticFamily();
+    rmSync(join(root, 'hub-router.json'), { force: true });
+
+    const result = checkVocabSync({ skillRoot: root });
+
+    expect(result.familyPresent).toBe(true);
+    expect(result.score).toBeLessThan(100);
+    expect(result.findings).toEqual(
+      expect.arrayContaining([
+        expect.objectContaining({
+          class: 'missing-hub-router',
+          severity: 'P0',
+          locus: 'hub-router.json',
+        }),
+      ]),
+    );
+  });
+
+  it('fails loud with a P0 when a router-bearing hub is missing its mode-registry', () => {
+    const root = syntheticFamily();
+    rmSync(join(root, 'mode-registry.json'), { force: true });
+
+    const result = checkVocabSync({ skillRoot: root });
+
+    expect(result.familyPresent).toBe(true);
+    expect(result.score).toBeLessThan(100);
+    expect(result.findings).toEqual(
+      expect.arrayContaining([
+        expect.objectContaining({
+          class: 'missing-mode-registry',
+          severity: 'P0',
+          locus: 'mode-registry.json',
+        }),
+      ]),
+    );
+  });
 });
