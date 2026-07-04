@@ -431,6 +431,59 @@ describe('fanout-run.cjs — computeLineageTimeoutMs lineage timeout override', 
   });
 });
 
+describe('fanout-run.cjs — max-iterations stop-reason tolerance', () => {
+  const { isMaxIterationsStopReason, findMaxIterationsPolicyViolation } = requireCjs(fanoutRunScript) as {
+    isMaxIterationsStopReason: (stopReason: unknown) => boolean;
+    findMaxIterationsPolicyViolation: (input: {
+      loopType: string;
+      stopPolicy: string;
+      lineage: { iterations: number };
+      stateRead: { missing?: boolean; parseError?: string | null; records: Array<Record<string, unknown>> };
+    }) => string | null;
+  };
+
+  const stateReadFor = (stopReason: unknown, iterations = 10) => ({
+    missing: false,
+    parseError: null,
+    records: [
+      ...Array.from({ length: iterations }, (_, index) => ({ type: 'iteration', iteration: index + 1 })),
+      { type: 'event', event: 'synthesis_complete', totalIterations: iterations, stopReason },
+    ],
+  });
+
+  it('accepts every formatting variant of the max-iterations family', () => {
+    for (const variant of ['maxIterationsReached', 'max-iterations (10/10)', 'maxIterations', 'max_iterations_reached']) {
+      expect(isMaxIterationsStopReason(variant)).toBe(true);
+    }
+  });
+
+  it('rejects genuinely different or malformed stop reasons', () => {
+    for (const other of ['converged', 'manualStop', 'error', 'userPaused', '', 'iterations-max', null, undefined, 42]) {
+      expect(isMaxIterationsStopReason(other as unknown as string)).toBe(false);
+    }
+  });
+
+  it('does not fail a completed lineage whose stopReason is a non-canonical max-iterations variant', () => {
+    const violation = findMaxIterationsPolicyViolation({
+      loopType: 'review',
+      stopPolicy: 'max-iterations',
+      lineage: { iterations: 10 },
+      stateRead: stateReadFor('max-iterations (10/10)'),
+    });
+    expect(violation).toBeNull();
+  });
+
+  it('still fails a completed lineage whose stopReason indicates a different outcome', () => {
+    const violation = findMaxIterationsPolicyViolation({
+      loopType: 'review',
+      stopPolicy: 'max-iterations',
+      lineage: { iterations: 10 },
+      stateRead: stateReadFor('converged'),
+    });
+    expect(violation).toBe('expected stopReason=maxIterationsReached, got converged');
+  });
+});
+
 describe('fanout-run.cjs — observability status mapping', () => {
   const { statusForLedgerEvent } = requireCjs(fanoutRunScript) as {
     statusForLedgerEvent: (entry: Record<string, unknown>) => string;

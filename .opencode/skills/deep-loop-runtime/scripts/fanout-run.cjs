@@ -588,6 +588,16 @@ function readLineageStateRecords(loopType, lineageDir) {
   }
 }
 
+// A lineage's synthesis stopReason is written by its model and cannot be held to an exact
+// spelling. The iteration-count check above already proves the lineage ran every iteration,
+// so this only needs to confirm the reason belongs to the max-iterations family (e.g.
+// "maxIterationsReached", "max-iterations (10/10)") and is not a genuinely different outcome
+// such as convergence, a manual stop, or an error.
+function isMaxIterationsStopReason(stopReason) {
+  if (typeof stopReason !== 'string') return false;
+  return stopReason.toLowerCase().replace(/[^a-z]/g, '').startsWith('maxiteration');
+}
+
 function findMaxIterationsPolicyViolation({ loopType, stateRead, lineage, stopPolicy }) {
   if (loopType !== 'review' || stopPolicy !== 'max-iterations') return null;
   if (typeof lineage.iterations !== 'number' || lineage.iterations <= 0) {
@@ -616,7 +626,7 @@ function findMaxIterationsPolicyViolation({ loopType, stateRead, lineage, stopPo
   if (totalIterations !== lineage.iterations) {
     return `expected ${lineage.iterations} iterations, got ${totalIterations}`;
   }
-  if (synthesis.stopReason !== 'maxIterationsReached') {
+  if (!isMaxIterationsStopReason(synthesis.stopReason)) {
     return `expected stopReason=maxIterationsReached, got ${synthesis.stopReason || 'unknown'}`;
   }
   return null;
@@ -1826,6 +1836,8 @@ if (require.main === module && isTsxLoaded) {
 module.exports = {
   buildLineageCommand,
   buildLoopPrompt,
+  findMaxIterationsPolicyViolation,
+  isMaxIterationsStopReason,
   computeLineageTimeoutMs,
   computeLineageBudgetUpperBound,
   evaluateLineageBudgetCap,
