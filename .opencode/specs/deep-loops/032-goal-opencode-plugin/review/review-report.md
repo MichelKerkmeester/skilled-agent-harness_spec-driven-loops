@@ -1,306 +1,138 @@
----
-title: "Review: Goal-OpenCode-Plugin Documentation Staleness Audit (Independent Audit of Companion Research)"
-description: "10-iteration forced-depth deep-review independently auditing the companion 10-iteration deep-research pass's 6 findings on /goal OpenCode plugin documentation staleness, plus 3 additional findings the research pass missed."
-trigger_phrases:
-  - "goal plugin documentation review"
-  - "goal opencode plugin doc audit review"
-  - "mk-goal.js documentation gaps review"
-  - "companion research independent audit"
-importance_tier: important
-contextType: review
----
+# Review Report — OpenCode /goal Plugin (packet 032, full scope, phases 001–021)
 
-<!-- SPECKIT_TEMPLATE_SOURCE: deep-review-output | v1.0 -->
-
-# Review: Goal-OpenCode-Plugin Documentation Staleness Audit
+> Merged from a 2-lineage fan-out: `minimax-review` (executor `cli-opencode model=minimax/MiniMax-M3`) and
+> `kimi-review` (executor `cli-opencode model=kimi-for-coding/k2p7`), each running its own independent
+> 10-iteration deep-review loop against the same target (`.opencode/specs/deep-loops/032-goal-opencode-plugin`,
+> all dimensions). Generated 2026-07-04. Full per-lineage detail lives in
+> `lineages/minimax-review/review-report.md` and `lineages/kimi-review/review-report.md`.
 
 ## 1. Executive Summary
 
-**Overall verdict: CONDITIONAL** (hasAdvisories: not applicable — verdict is CONDITIONAL, not PASS)
+| Field | Value |
+|-------|-------|
+| **Merged verdict** | **CONDITIONAL** (strongest-restriction: neither lineage found a P0) |
+| **Merged active findings** | P0=0, P1=17, P2=51 as reported (68 total; after orchestrator adjudication: 1 P1 refuted, 2 P1 downgraded, 1 known overlap — see §10) |
+| **Iterations** | 10/10 per lineage (20 total), stop-policy `max-iterations` (forced full depth, no early convergence stop) |
+| **Release-readiness** | `release-blocking` (P1 > 0) |
+| **Test-suite ground truth (empirical, minimax-review iteration 010)** | 101 tests / 101 pass / 0 fail (8 `.cjs` files, 2.18s) |
 
-**Active findings: P0=0, P1=3, P2=6** (9 total active findings across 10 forced iterations, 0 refuted, 0 duplicates after ID reconciliation)
+Both independently-run reviewer models agree: **no P0 (blocker) findings** — the shipped `mk-goal.js` plugin's security surface (prompt-injection sanitizer, secret redaction) and completion-verifier fail-closed behavior hold up under adversarial re-check, and the test suite is fully green. Both also agree on **CONDITIONAL**, driven by P1-level issues. Where they diverge is *what kind* of P1:
 
-**Review scope:** Independent audit of whether related skill documentation (`SKILL.md`, `references/`, `assets/`) and README files (skill READMEs, code READMEs) across the repo describe now-stale behavior for the `/goal` OpenCode plugin, following the phases 010-014 remediation and the `goal_opencode.md` filename correction. Executor: `cli-opencode`, model `openai/gpt-5.5-fast`, reasoning effort `high`, 10 forced iterations (`stopPolicy=max-iterations`, `antiConvergence.minIterations=10`) per operator directive to not converge early. Dimensions: correctness, security, traceability, maintainability — all 4 received genuine multi-iteration coverage (not nominal touches).
+- **minimax-review (14 P1)** is almost entirely **spec/doc bookkeeping drift** — three-way status disagreements between `spec.md`/`graph-metadata.json`/`implementation-summary.md` for phases 009 and 012, a stale "6-file test suite" narrative (actual: 8 files / 101 tests), a stale "16-seam" test-contract narrative (actual: 17 seams), an orphaned `009-diagnostic-review/` folder with no spec docs, and an audit dossier (`scratch/2026-07-03-four-reviewer-audit-findings.md`) that documents pre-fix state as if still current.
+- **kimi-review (3 P1)** is almost entirely **runtime correctness/security** — two genuine race conditions in `mk-goal.js` (a continuation in-flight lock race reachable from `session.idle`, and a sweep/archive path that can resurrect an active goal file written mid-sweep by a queued mutator) plus one checklist-overclaim finding shared in spirit with minimax's status-drift cluster.
 
-**Companion research packet audited:** `.opencode/specs/deep-loops/032-goal-opencode-plugin/research/research.md` (10-iteration deep-research pass, same executor/model). All 6 of its numbered findings were independently re-verified against live code/docs (not re-cited) — **all 6 CONFIRMED** at the same or an adjusted severity (see §1.5). Three additional findings not present in the research packet were discovered (§1.5, item "New").
+**Read together, these are complementary, not contradictory**: the packet's *documentation* is more out of sync with reality than its *code*, and the *code* has two narrow but real concurrency bugs that a pure doc-focused pass wouldn't have caught. Kimi's 34 P2 findings also add a long tail of smaller code-quality items (error-swallowing in `appendGoalJsonl`/`sweepOrphanedActiveStates`, incomplete secret-redaction patterns, budget/retry edge cases) that minimax's 17 P2 findings didn't surface, and vice versa (minimax's P2s lean toward catalog/playbook parity and template boilerplate).
 
-**Live command filename re-confirmed independently in iterations 1, 6, 10:** `.opencode/commands/goal_opencode.md` is the only file matching `.opencode/commands/*goal*.md`; `.opencode/commands/goal.md` does not exist.
+## 2. Process Notes (read before acting on lineage-level "failed" status)
 
----
+- **minimax-review's process-level status is misleading — its content is complete and valid.** The fan-out orchestrator (`fanout-run.cjs`) classified `minimax-review` as `failed` (`orchestration-summary.json`) solely because MiniMax's `synthesis_complete` event wrote `"stopReason":"max-iterations (10/10)"` instead of the canonical enum literal `"maxIterationsReached"` that the harness's post-run invariant check requires. All 10 iterations, the full findings registry, dashboard, and `review-report.md` were written correctly and are used in this merge. This is a **format-contract miss by the MiniMax dispatch, not a review failure** — worth a follow-up fix to the deep-review SKILL.md's stop-reason instruction wording for cli-opencode lineages, since kimi-review wrote the correct value.
+- **Kimi's lineage genuinely ran on `kimi-for-coding/k2p7`, not a silent swap.** Its report's "Executor note" ("the configured cli-opencode executor was not available; fallback to native Read/Grep/Glob") describes the deep-review protocol's own per-*iteration* sub-dispatch concept (irrelevant inside a single detached CLI session, which cannot recursively spawn further executors) — not the top-level model. `ps aux` confirmed a single `opencode run --model kimi-for-coding/k2p7` process alive for the full ~28-minute run, and it is the one that produced all 10 iterations directly.
+- **Kimi's JSONL timestamps are unreliable.** `orchestration-summary.json` flagged 12 of 13 timestamped events as `after_window` (some 2+ hours in the future relative to real wall-clock, in suspiciously round 10-minute increments) — Kimi appears to have fabricated round timestamps rather than reading the real clock. This affects only the *provenance timestamp field*, not the substance of its findings.
 
-## 1.5 Independent Audit Verdict vs. Companion Research (operator-requested)
+## 3. Merged Active Finding Registry
 
-Per the operator's explicit instruction, each companion-research finding was independently re-verified (not re-cited) and assigned this review's own P0/P1/P2 verdict:
+Full per-finding detail (file:line, evidence, dimension) is in the two lineage reports. Summary by theme:
 
-| # | Companion Research Finding | Research's Severity | This Review's Verdict | Evidence |
-|---|---|---|---|---|
-| 1 | `ENV_REFERENCE.md` omits the 3 new `MK_GOAL_STATE_*` env vars | P1 | **CONFIRMED-P1** (`P1-001`) | Independently re-read `mk-goal.js:33-42` vs `ENV_REFERENCE.md:646-660` in iteration 1; re-verified in iteration 9's adversarial pass |
-| 2 | `references/hooks/goal_plugin.md` (already updated this session) still lacks the same 3 env vars + `store_health`/`mutation=` coverage | P1 | **CONFIRMED-P1** (`P1-002`) | Full-file read in iteration 3; the "already updated, still wrong" pattern independently reproduced |
-| 3 | `.opencode/plugins/README.md` too thin to be the "plugin contract" the root README delegates to it as | P1 | **CONFIRMED-P1** (`P1-003`) | Both files read in full in iteration 4; root cause elaborated as a doc-topology issue in iteration 8 (`I8-P2-1`) |
-| 4 | `system-skill-advisor/README.md:85` contradicts its own feature catalog on live-tool verification status | P2 | **CONFIRMED-P2** (`P2-001`) | Both docs read in iteration 4; contradiction holds exactly as described |
-| 5 | Manual testing playbooks don't validate `store_health=`/`mutation=` output | P2 | **CONFIRMED-P2** (`P2-002`) | Both playbooks read in full in iteration 5; exact-string sweep confirms no coverage; cross-playbook asymmetry noted (system-skill-advisor has partial generic mutation-response coverage, system-spec-kit has none) |
-| 6 | Stale `goal.md` filename references in phase 009/011/003 docs + archived review README | P3 (operator's call, "lower priority") | **CONFIRMED-P2 for the operational subset, REFUTED-AS-ACTIONABLE for the historical subset** (`DR-006-P2-001`) | Iteration 6 classified each of the 4 cited locations individually: phase 009 `handover.md:95` and phase 011 `tasks.md:66,109` are **current-and-wrong** operational claims (upgraded from research's P3 framing because they instruct a live cold-read/task action against an absent file, not just narrate history); phase 003 changelog and the archived review README are correctly historical narrative (no action needed, consistent with research's own framing) |
+### P0 — none (both lineages agree)
 
-**New findings not in the companion research packet** (research's reducer stalled on repeated ground for its own iterations 4-9, so its coverage was treated as incomplete per the operator's brief — these 3 were found by actively broadening past research's scope):
+### P1 (17 total: 14 minimax + 3 kimi, no overlap)
 
-| ID | Severity | Title | Iteration |
-|---|---|---|---|
-| `I8-P2-1` | P2 | Goal-plugin docs lack a single contract owner and canonical output-field schema (structural root-cause finding explaining *why* 3+ docs independently drifted after the same code change) | 8 |
-| `I9-P2-1` | P2 | `ENV_REFERENCE.md` carries a stale "generated from source analysis, last updated 2026-06-10" marker while missing env vars shipped and documented as of phase 014 (2026-07-01) | 9 |
-| `I10-P2-1` | P2 | Registered tool-path tests (`mk-goal-tool-path.test.cjs`) assert only `mutation=created`; `mutation=refreshed` and `mutation=replaced` are unpinned | 10 |
+| Theme | Count | Source | Key IDs |
+|-------|-------|--------|---------|
+| Spec/graph/impl-summary status drift (phases 009, 012, 015, 016) | 6 | minimax F006/F014/F015, kimi F008 (checklist overclaim) | — |
+| Stale packet narrative (test-suite count, seam-pin count) | 2 | minimax F030, F018 | — |
+| Orphan/undocumented phase folder (`009-diagnostic-review/`) | 1 | minimax F001 | — |
+| Audit-dossier staleness (pre-fix state presented as current) | 4 | minimax F010, F012, F026, F009 | — |
+| Catalog/playbook parity gaps | 2 | minimax F021, F024/F025 | — |
+| `description.json`/`graph-metadata.json` field drift | 2 | minimax F002, F007 | — |
+| **Continuation lock race** (session.idle can double-fire continuation) | 1 | kimi F009 | `mk-goal.js:2091` |
+| **Sweep/archive resurrection race** (queued mutator write after sweep read) | 1 | kimi F010 | `mk-goal.js:1231` |
 
-**Traceability re-verification (iteration 7 + iteration 9):** research's own negative-sweep claims — that no OTHER skill besides `system-spec-kit` and `system-skill-advisor` has a stray goal-plugin `feature_catalog`/`manual_testing_playbook`/`constitutional` entry, and that `cli-opencode`/`cli-claude-code`/`sk-code`/`sk-prompt-models`/`deep-loop-workflows` have zero goal-plugin mentions — were independently re-run (not trusted) in iteration 7 (full re-sweep + `assets/` directories, which research's brief flagged as a possible gap) and iteration 9 (config manifests, `.env.example`, `docs/`, `CHANGELOG.md`, `.opencode/AGENTS.md`). Both iterations **CONFIRM** research's negative claims hold; no additional stray doc-class was found anywhere in the repo.
+### P2 (51 total: 17 minimax + 34 kimi, no overlap)
 
----
+Kimi's 34 P2s skew toward runtime hardening (error-swallowing, secret-redaction gaps, retry/budget parsing edge cases, magic constants, dead-code branches). Minimax's 17 P2s skew toward doc/template hygiene (changelog placeholder rows, stale `lastUpdated`, playbook depth disparity). Full lists in the per-lineage reports.
 
-## 2. Planning Trigger
+## 4. Planning Trigger
 
-`/speckit:plan` is **required** — 3 active P1 findings block a clean PASS.
+CONDITIONAL routes to `/speckit:plan`. Recommended grouping for a remediation phase:
 
-```json Planning Packet
-{
-  "triggered": true,
-  "verdict": "CONDITIONAL",
-  "hasAdvisories": false,
-  "activeFindings": [
-    { "id": "P1-001", "severity": "P1", "title": "ENV_REFERENCE.md omits 3 MK_GOAL_STATE_* env vars" },
-    { "id": "P1-002", "severity": "P1", "title": "goal_plugin.md (already updated) still omits the 3 env vars plus store_health/mutation output coverage" },
-    { "id": "P1-003", "severity": "P1", "title": "Root README delegates the /goal plugin contract to .opencode/plugins/README.md, which does not define it" },
-    { "id": "P2-001", "severity": "P2", "title": "system-skill-advisor/README.md contradicts its own feature catalog on live-tool verification status" },
-    { "id": "P2-002", "severity": "P2", "title": "Manual testing playbooks do not validate store_health=/mutation= output" },
-    { "id": "DR-006-P2-001", "severity": "P2", "title": "Packet-history docs (phase 009/011) contain current-and-wrong stale goal.md operational claims" },
-    { "id": "I8-P2-1", "severity": "P2", "title": "Goal-plugin docs lack a single contract owner and canonical output-field schema" },
-    { "id": "I9-P2-1", "severity": "P2", "title": "ENV_REFERENCE.md carries a stale generated-date marker while missing shipped env vars" },
-    { "id": "I10-P2-1", "severity": "P2", "title": "Registered tool-path tests do not pin mutation=refreshed or mutation=replaced" }
-  ],
-  "remediationWorkstreams": [
-    "P1: fix env-var + output-field documentation gaps (P1-001, P1-002)",
-    "P1: fix or retarget the plugin-contract delegation (P1-003)",
-    "P2: fix contradiction, playbook coverage, structural doc ownership, stale marker, and test coverage (P2-001, P2-002, DR-006-P2-001, I8-P2-1, I9-P2-1, I10-P2-1)"
-  ],
-  "specSeed": [
-    "Add MK_GOAL_STATE_ARCHIVE_RETENTION_DAYS / MK_GOAL_STATE_ACTIVE_RETENTION_DAYS / MK_GOAL_STATE_SWEEP_INTERVAL_MS rows to ENV_REFERENCE.md and references/hooks/goal_plugin.md",
-    "Add an Output Fields section (store_health=, mutation=) to references/hooks/goal_plugin.md",
-    "Decide and implement one of: expand .opencode/plugins/README.md with a real mk-goal contract subsection, OR retarget root README's pointer to references/hooks/goal_plugin.md",
-    "Designate references/hooks/goal_plugin.md as the single canonical operator contract; convert ENV_REFERENCE.md/root README/plugins README/feature catalogs/playbooks to pointers where practical"
-  ],
-  "planSeed": [
-    "T-ENV-01: Add 3 env var rows (defaults 90d/30d/1h) + regenerate/update the generated-date marker in ENV_REFERENCE.md",
-    "T-HOOK-01: Add the same 3 env vars plus an Output Fields table (store_health, mutation) to references/hooks/goal_plugin.md",
-    "T-CONTRACT-01: Resolve the plugins/README.md vs root README delegation gap (expand or retarget)",
-    "T-ADVISOR-01: Fix system-skill-advisor/README.md:85 wording to match the verified feature catalog status",
-    "T-PLAYBOOK-01: Add store_health=/mutation= verification steps to both manual testing playbooks",
-    "T-HIST-01 (optional, operator's call): annotate phase 009 handover.md:95 and phase 011 tasks.md:66,109 as historical/superseded",
-    "T-TEST-01: Add registered tool-path test assertions for mutation=refreshed and mutation=replaced"
-  ],
-  "findingClasses": ["cross-consumer", "instance-only", "matrix/evidence", "test-isolation", "cross-consumer documentation maintainability"],
-  "affectedSurfacesSeed": [
-    ".opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md",
-    ".opencode/skills/system-spec-kit/references/hooks/goal_plugin.md",
-    "README.md",
-    ".opencode/plugins/README.md",
-    ".opencode/skills/system-skill-advisor/README.md",
-    ".opencode/skills/system-spec-kit/manual_testing_playbook/18--ux-hooks/goal-opencode-plugin.md",
-    ".opencode/skills/system-skill-advisor/manual_testing_playbook/02--cli-hooks-and-plugin/goal-opencode-plugin.md",
-    ".opencode/specs/deep-loops/032-goal-opencode-plugin/009-speckit-command-goal-prompt-offer/handover.md",
-    ".opencode/specs/deep-loops/032-goal-opencode-plugin/011-command-surface-normalization/tasks.md",
-    ".opencode/plugins/tests/mk-goal-tool-path.test.cjs"
-  ],
-  "fixCompletenessRequired": false
-}
-```
+1. **Status reconciliation** (spec.md / graph-metadata.json / implementation-summary.md three-way alignment for phases 009, 012, 015, 016) — minimax F006/F014/F015 + kimi F008/F025/F026.
+2. **Concurrency fixes in `mk-goal.js`** (highest real-risk item in this review) — kimi F009 (continuation lock race) and F010 (sweep/archive resurrection race); both are narrow, well-localized fixes with clear file:line evidence.
+3. **Audit-dossier refresh** — `scratch/2026-07-03-four-reviewer-audit-findings.md` documents several already-fixed items (F4/F5/DOC-2/e-2.2) as open; refresh before any future phase reads it as ground truth.
+4. **Narrative/count corrections** — "6-file/97-test" → "8-file/101-test", "16-seam" → "17-seam", orphan folder documented or removed.
+5. **Security/quality tail** — Kimi's P2 cluster (redaction gaps, error-swallowing, budget-parsing edge cases) as a lower-priority hardening pass.
 
-`fixCompletenessRequired` is `false` because no active finding is in security-sensitive fix scope (iteration 2's dedicated security pass found zero doc drift on sanitizer/redaction claims; no P0 exists anywhere in this review).
+## 5. Traceability Status
 
----
+| Protocol | minimax-review | kimi-review |
+|----------|-----------------|-------------|
+| `spec_code` | partial (4 iterations) | partial |
+| `checklist_evidence` | n/a (only phase 016 has checklist.md) | fail (phase 016 checklist overclaim) |
+| `skill_agent` | partial | not exercised |
+| `agent_cross_runtime` | partial (9 surface points, 1 translation) | not exercised |
+| `feature_catalog_code` | partial | pass |
+| `playbook_capability` | partial | pending (not exercised) |
 
-## 3. Active Finding Registry
+## 6. Deferred Items
 
-| ID | Sev | Title | Dimension | File:Line | Disposition |
-|---|---|---|---|---|---|
-| P1-001 | P1 | ENV_REFERENCE.md omits 3 new env vars | correctness | `.opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md:646-660` | open |
-| P1-002 | P1 | goal_plugin.md (already updated) still omits same 3 env vars + store_health/mutation | correctness, traceability | `.opencode/skills/system-spec-kit/references/hooks/goal_plugin.md:33-52` | open |
-| P1-003 | P1 | Root README delegates /goal plugin contract to an inventory that doesn't define it | traceability, maintainability | `README.md:1230-1233` → `.opencode/plugins/README.md` | open |
-| P2-001 | P2 | Skill Advisor README contradicts feature catalog on live-tool verification | traceability | `.opencode/skills/system-skill-advisor/README.md:85` | open |
-| P2-002 | P2 | Manual playbooks don't validate store_health=/mutation= output | traceability | `.opencode/skills/system-spec-kit/manual_testing_playbook/18--ux-hooks/goal-opencode-plugin.md:19-25` (+ skill-advisor sibling) | open |
-| DR-006-P2-001 | P2 | Packet-history docs contain current-and-wrong stale goal.md claims | correctness, traceability | `009-.../handover.md:95`, `011-.../tasks.md:66,109` | open |
-| I8-P2-1 | P2 | Goal-plugin docs lack a single contract owner / canonical output-field schema | maintainability | multiple (see below) | open |
-| I9-P2-1 | P2 | ENV_REFERENCE.md carries a stale generated-date marker | traceability | `.opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md:772` | open |
-| I10-P2-1 | P2 | Tool-path tests don't pin mutation=refreshed/replaced | correctness (test coverage) | `.opencode/plugins/tests/mk-goal-tool-path.test.cjs:49-68` | open |
+- Resource-map coverage gate skipped in both lineages (`resource-map.md` absent at spec-folder root).
+- `playbook_capability` protocol not exercised by kimi-review.
+- Full P2 lists (51 items) deferred to the per-lineage reports rather than duplicated here.
 
-### P1-001 — ENV_REFERENCE.md omits 3 new env vars
+## 7. Audit Appendix
 
-- **Evidence:** `mk-goal.js:33-42` defines and consumes `MK_GOAL_STATE_ARCHIVE_RETENTION_DAYS` (default 90d), `MK_GOAL_STATE_ACTIVE_RETENTION_DAYS` (default 30d), `MK_GOAL_STATE_SWEEP_INTERVAL_MS` (default 1h) in `archiveGoalStateFile()`/`pruneArchive()`/`sweepOrphanedActiveStates()` (`mk-goal.js:825-899`, `:1758-1761`, `:1824-1828`); `ENV_REFERENCE.md:646-660`'s goal-plugin table has no rows for any of the three.
-- **Impact:** operators cannot discover shipped retention/sweep controls via the central env reference.
-- **Fix recommendation:** add all 3 rows with defaults and source references.
-- **Finding class:** cross-consumer. **Scope proof:** source-side definitions + central-doc gap both independently re-read (iterations 1, 9).
-- **Affected surfaces:** `ENV_REFERENCE.md`, operator configuration docs.
+- `deep-review-findings-registry.json` (this directory): merged registry, 68 open findings, `mergedVerdict: CONDITIONAL`, produced by `fanout-merge.cjs`.
+- `fanout-attribution.md` (this directory): per-lineage iteration/convergence/salvage summary.
+- `orchestration-summary.json` (this directory): fan-out process-level result — `succeeded: 1, failed: 1` (see §2 for why `minimax-review`'s process classification should not be read as a content failure).
+- Prior lineage (documentation-staleness audit, 10 iterations, GPT-5.5-fast, superseded by this broader-scope run) archived at `review_archive/2026-07-04-documentation-staleness-audit/`.
 
-### P1-002 — goal_plugin.md still omits env vars + output fields (the "already updated, still wrong" finding)
+## 8. Lineage Metadata
 
-- **Evidence:** `references/hooks/goal_plugin.md` was touched this session for the filename fix (`goal_plugin.md:29`) but its env table (`:43-52`) still has no rows for the 3 env vars, and it has no output-field section documenting `store_health=` (`mk-goal.js:1605-1637`) or `mutation=<created|refreshed|replaced>` (`mk-goal.js:1668-1675`).
-- **Impact:** the operator contract doc for this plugin is incomplete despite being the doc most recently touched; this is a genuine "believed complete, actually isn't" gap, independently re-confirmed in iteration 9's adversarial pass.
-- **Fix recommendation:** add the 3 env rows + an Output Fields table.
-- **Finding class:** cross-consumer. **Scope proof:** full-file read, sibling-doc consistency check against `ENV_REFERENCE.md` (both omit the same vars — no naming/default disagreement exists because neither documents them at all).
-- **Affected surfaces:** `references/hooks/goal_plugin.md`.
+| Field | minimax-review | kimi-review |
+|-------|-----------------|-------------|
+| Model | `minimax/MiniMax-M3` | `kimi-for-coding/k2p7` |
+| Session ID | `fanout-minimax-review-1783146823455-7q45s6` | `fanout-kimi-review-1783146823455-7q45s6` |
+| Iterations | 10/10 | 10/10 |
+| Stop reason (as written) | `max-iterations (10/10)` (non-canonical string — see §2) | `maxIterationsReached` (canonical) |
+| Wall-clock duration | ~25.6 min | ~27.5 min |
 
-### P1-003 — Root README delegates the plugin contract to a document that doesn't define it
+## 9. Next Steps
 
-- **Evidence:** root `README.md:1230-1233` says "See `.opencode/plugins/README.md` for the plugin contract"; `.opencode/plugins/README.md`'s `mk-goal.js` coverage (`:42-51`) is a single inventory row, and its config/contract subsections (`:69-130`) cover only `mk-skill-advisor` and `mk-code-graph` — no mk-goal config/env/output subsection exists.
-- **Impact:** operators following the root README's own pointer for the goal-plugin contract land on a document that does not contain it.
-- **Fix recommendation (two options surfaced, not adjudicated per review's read-only mandate):** (a) expand `.opencode/plugins/README.md` with a real `mk-goal` contract subsection, or (b) retarget the root README pointer to `references/hooks/goal_plugin.md`.
-- **Finding class:** cross-consumer. **Root cause (iteration 8):** the doc topology itself — env vars and output fields are split across `ENV_REFERENCE.md`, `goal_plugin.md`, root README, and `.opencode/plugins/README.md` with no single canonical owner — is the structural reason this and the two P1s above co-occurred (see `I8-P2-1`).
-- **Affected surfaces:** `README.md`, `.opencode/plugins/README.md`, `references/hooks/goal_plugin.md`.
+- `/speckit:plan` against the 5 remediation groups in §4, reusing the merged registry (`deep-review-findings-registry.json`) as ground truth, **filtered through the §10 adjudication** (skip the refuted finding; treat downgrades at their adjudicated severity).
+- Do not open `/create:changelog` until the adjudicated P1 count reaches 0 (currently 14–15 after adjudication).
 
-### P2-001 — Skill Advisor README self-contradiction
+## 10. Orchestrator Adjudication (independent verification pass, 2026-07-04)
 
-- **Evidence:** `.opencode/skills/system-skill-advisor/README.md:85` says `/goal` live OpenCode-tool invocation is "still under investigation"; the sibling `feature_catalog/07--hooks-and-plugin/goal-opencode-plugin.md:41` states a real `opencode serve` run listed `mk_goal`/`mk_goal_status` and a live model turn persisted state.
-- **Impact:** internal contradiction within the same skill's own documentation set on a verification-status claim.
-- **Fix recommendation:** update `README.md:85` to match the feature catalog's verified status (or narrow the wording to a more specific unverified sub-claim, if one exists).
-- **Finding class:** instance-only. **Affected surfaces:** `system-skill-advisor/README.md`, its feature catalog.
+Every P1 was re-verified against the live code/docs before acceptance; high-signal P2s were spot-checked. Findings are hypotheses until confirmed.
 
-### P2-002 — Manual testing playbooks don't validate the new output fields
+### Refuted (1 P1)
 
-- **Evidence:** neither `system-spec-kit/manual_testing_playbook/18--ux-hooks/goal-opencode-plugin.md` nor `system-skill-advisor/manual_testing_playbook/02--cli-hooks-and-plugin/goal-opencode-plugin.md` names `store_health=` or `mutation=<created|refreshed|replaced>` as a pass criterion; exact-string sweep confirms zero hits.
-- **Impact:** a manual test run can currently pass without ever exercising these newly-shipped status surfaces.
-- **Asymmetry noted (iteration 5):** the system-skill-advisor playbook has a generic post-mutation-state check that could catch some regressions incidentally; the system-spec-kit playbook has no equivalent step at all.
-- **Fix recommendation:** add explicit `store_health=` and `mutation=` pass criteria to both playbooks.
-- **Finding class:** matrix/evidence. **Affected surfaces:** both manual testing playbooks.
+- **kimi F009 (continuation lock race) — REFUTED.** The claimed check-then-act race at `mk-goal.js:2091-2095` requires an `await` between `continuationLocks.has()` and `.add()`; there is none — the pair is synchronous and cannot interleave in single-threaded Node. The only `await` (`recoverProviderUsageLimitIfDue`) sits *before* the check, which is safe. The lock set is initialized at plugin construction (`mk-goal.js:2474`) and passed by both production call sites. No double-fire path exists as described.
 
-### DR-006-P2-001 — Packet-history docs with current-and-wrong stale filename claims
+### Downgraded (2 P1 → P2)
 
-- **Evidence (per-location classification, iteration 6):**
-  - `009-speckit-command-goal-prompt-offer/handover.md:95` — **current-and-wrong**: a cold-read order still literally points at the absent `goal.md`.
-  - `011-command-surface-normalization/tasks.md:66,109` — **current-and-wrong**: body text/completion-criteria claim of "zero stale-reference hits" that is no longer literally true; `tasks.md:53` is mixed historical completed-task wording (lower concern).
-  - `changelog/changelog-032-003-goal-command.md:26,56` — **historical narrative**, correctly describes the original bug being fixed; no action needed.
-  - `review_archive/2026-07-01-plugin-implementation-review/README.md:12` — **current-and-wrong** scope table; `:17` is historical (no action).
-  - Independent repo-wide sweep (iteration 6) found no additional active-scope `goal.md` hits beyond these.
-- **Severity note:** research framed this class as P3 ("operator's call, lower priority"); this review upgrades the *operational* subset (handover.md, tasks.md) to P2 because those specific lines instruct a live action against a nonexistent file rather than merely narrating history. The historical subset (changelog, archived README) is correctly historical and needs no fix.
-- **Fix recommendation:** annotate or update the current-and-wrong lines only; preserve historical narrative untouched. Operator's call per original brief.
-- **Finding class:** instance-only. **Affected surfaces:** phase 009 `handover.md`, phase 011 `tasks.md`.
+- **minimax F011 (duplicate `tokens_used`/`budget_tokens_used` etc.) — real but P2 maintainability, not P1 security.** Verified at `mk-goal.js:2319-2329`: canonical fields plus `budget_`-prefixed aliases are both emitted. It is a back-compat/transition artifact with no security consequence. **This is also the one confirmed overlap between lineages** — kimi F013 is the same finding (the "zero overlap" note in earlier drafts of §1 was wrong).
+- **minimax F007 (`last_active_child_id` points at Planned phase 018) — premise no longer true.** Current `graph-metadata.json` has `last_active_child_id: null`, which is legal (resume falls back to listing children). At most a P2 advisory to set it to a real Complete child.
 
-### I8-P2-1 — Doc topology lacks a single contract owner (NEW, structural root-cause finding)
+### Confirmed with reframed direction (the status-drift cluster)
 
-- **Evidence:** the goal-plugin operator contract is split across `ENV_REFERENCE.md` (env vars), `goal_plugin.md` (partial contract + filename history), root `README.md` (pointer), `.opencode/plugins/README.md` (inventory only), feature catalogs, and two playbooks — with no canonical "Output Fields" schema section anywhere, even though `mk-goal.js`'s status renderer (`:1598-1647`) is itself clear and self-documenting.
-- **Impact:** this structural fragmentation is the most plausible root cause for why the SAME code change (phases 010-014) independently drifted across 3+ separate documents rather than one.
-- **Fix recommendation:** designate `references/hooks/goal_plugin.md` as the single canonical operator contract (add the missing Output Fields table there), and convert the other docs into pointers or narrower validation-only references rather than each owning partial contract text.
-- **Finding class:** cross-consumer documentation maintainability.
+Phases 009, 012, 015, 016 all show spec.md/graph-metadata = `Planned`/`Draft` while implementation-summary = `Complete` (verified in all four). Both models reported the *disagreement* correctly, but their remediation framings point opposite ways: minimax F008 assumes the impl-summaries are scaffold boilerplate; kimi F008 frames phase 016's checklist as an "overclaim." **Both directions are wrong: the work shipped** (103/103 tests pass, fresh run 2026-07-04; the phase deliverables exist in code). The correct fix is to flip spec.md Status rows and regenerate graph metadata to `Complete` — do not revert checklists or impl-summaries.
 
-### I9-P2-1 — Stale generated-date marker on ENV_REFERENCE.md (NEW)
+### Confirmed as reported
 
-- **Evidence:** `ENV_REFERENCE.md:772` states the file was generated from source-code analysis and last updated `2026-06-10`; phase 014 (completed `2026-07-01`, see `014-goal-state-cleanup-and-archive/implementation-summary.md:61-65`) shipped the 3 new env vars afterward, but the marker was never refreshed.
-- **Impact:** the stale marker implies the table reflects current source analysis when it does not — compounds P1-001 by giving readers false confidence in completeness.
-- **Fix recommendation:** regenerate or update the marker as part of the P1-001 fix.
-- **Finding class:** instance-only.
+- **kimi F010 (sweep/archive resurrection TOCTOU) — CONFIRMED; the one real runtime bug in this review.** `sweepOrphanedActiveStates` (`mk-goal.js:1231`) makes its staleness decision (stat + readFile + `updatedAtMs` check) *outside* the per-session mutation queue, then calls `archiveGoalStateFile`, which enqueues a rename **without re-validating staleness inside the queue**. A goal-write queued between the read and the rename gets archived while active. Window is narrow (file must already be ≥30 days stale and receive a write mid-sweep), and the goal is recoverable from archive — P1/P2 boundary, but the fix is trivial: re-check `updatedAtMs` inside the enqueued operation.
+- **minimax F030/F018 (stale counts)** — verified: 8 goal test files (not 6); `__test` exposes 17 seams (not 16); full suite currently 103/103 (includes 2 non-goal guard tests).
+- **minimax F001 (orphan `009-diagnostic-review/`)** — verified: contains only review-loop artifacts, no spec.md/description.json, yet its name matches the phase-child pattern, so it pollutes phase discovery.
+- **minimax F002 (`description.json` level)** — verified: `"level": "phase"` vs spec.md `phase parent`.
+- **minimax F010/F012/F026 (audit-dossier staleness)** — verified: dossier F4 is mitigated (`handleEvent` gates on `enabled`, `mk-goal.js:2496`); dossier F5 is mitigated (unicode-aware role folding, `mk-goal.js:339-347`); dossier e-2.2's raw-`Date.now()` claim no longer holds (sole remaining `Date.now()` is the `nowMs()` fallback at line 265).
+- **minimax F024/F025 (catalog gaps)** — verified: `speckit-goal-offer-contract.test.cjs` appears in neither feature catalog (grep count 0 in both); the two catalogs carry different descriptions for `mk-goal-state.test.cjs`.
+- **minimax F021 (SKILL.md `Task` drift)** — verified: `deep-review/SKILL.md` `allowed-tools` includes `Task` while the agent contract forbids it. Note: this is a finding about the deep-review skill itself, outside packet 032's scope — track it separately.
+- **kimi P2 spot-checks** — F024 (wall-clock cap measured from `startedAtMs`, never reset on resume: confirmed at `mk-goal.js:1394/1032/1976`), F005 (redaction misses Google `AIza` keys, PEM blocks, raw hex: confirmed by inspection of `mk-goal.js:380-389`), F006 (role sanitizer requires a colon delimiter: confirmed), F022 (smoke mode returns `would_fire` before the `promptAsync` availability check: confirmed as written; arguably intentional for a dry-run signal).
 
-### I10-P2-1 — Tool-path tests don't pin all 3 mutation states (NEW)
+### Adjudicated totals
 
-- **Evidence:** `mk-goal.js:1668-1675` selects `mutation=created|refreshed|replaced`; `.opencode/plugins/tests/mk-goal-tool-path.test.cjs:49-68` (grep-confirmed) only asserts `mutation=created` (line 56).
-- **Impact:** output regression risk for the `refreshed`/`replaced` branches is untested at the tool-path level (state-level and lifecycle tests cover adjacent but different behavior).
-- **Fix recommendation:** add tool-path assertions for same-objective set (`refreshed`) and changed-objective set (`replaced`).
-- **Finding class:** test-isolation.
+**P0=0, P1≈14 (17 reported − 1 refuted − 2 downgraded), P2≈53.** Verdict remains **CONDITIONAL**. The dominant remediation is one status-reconciliation + dossier-refresh + catalog-sync documentation sweep; the only code fix that must land is the kimi F010 sweep TOCTOU re-validation, followed by the P2 hardening tail at leisure.
 
 ---
 
-## 4. Remediation Workstreams
-
-**P1 (blocking clean PASS):**
-1. Add the 3 `MK_GOAL_STATE_*` env var rows to `ENV_REFERENCE.md` (P1-001) — bundle with the I9-P2-1 marker refresh.
-2. Add the same 3 env vars plus an Output Fields table (`store_health=`, `mutation=`) to `references/hooks/goal_plugin.md` (P1-002) — this can double as the I8-P2-1 canonical-contract fix.
-3. Resolve the plugin-contract delegation gap: expand `.opencode/plugins/README.md` or retarget the root README pointer (P1-003).
-
-**P2 (advisory, does not block PASS but should be tracked):**
-4. Fix `system-skill-advisor/README.md:85` wording (P2-001).
-5. Add `store_health=`/`mutation=` checks to both manual testing playbooks (P2-002).
-6. Annotate/update the current-and-wrong stale-filename lines in phase 009/011 docs, operator's call (DR-006-P2-001).
-7. Add tool-path test assertions for `mutation=refreshed`/`replaced` (I10-P2-1).
-
----
-
-## 5. Spec Seed
-
-- `ENV_REFERENCE.md` goal-plugin table needs 3 new rows (`MK_GOAL_STATE_ARCHIVE_RETENTION_DAYS`=90d, `MK_GOAL_STATE_ACTIVE_RETENTION_DAYS`=30d, `MK_GOAL_STATE_SWEEP_INTERVAL_MS`=1h) plus a refreshed generated-date marker.
-- `references/hooks/goal_plugin.md` needs the same 3 env rows plus a new Output Fields section (`store_health`, `mutation`).
-- A decision is needed on plugin-contract ownership: expand `.opencode/plugins/README.md` vs. retarget the root README pointer to `goal_plugin.md`.
-- Both manual testing playbooks need explicit pass criteria for the 2 new output fields.
-- `mk-goal-tool-path.test.cjs` needs 2 additional assertions (`refreshed`, `replaced`).
-
----
-
-## 6. Plan Seed
-
-- T-ENV-01: Add 3 env var rows + refresh generated-date marker in `ENV_REFERENCE.md`.
-- T-HOOK-01: Add 3 env var rows + Output Fields table to `references/hooks/goal_plugin.md`.
-- T-CONTRACT-01: Resolve plugins/README.md vs. root README delegation (pick one option, implement).
-- T-ADVISOR-01: Fix `system-skill-advisor/README.md:85` wording.
-- T-PLAYBOOK-01: Add `store_health=`/`mutation=` steps to both playbooks.
-- T-HIST-01 (optional): annotate phase 009/011 current-and-wrong lines.
-- T-TEST-01: Add `mutation=refreshed`/`replaced` tool-path test assertions.
-
----
-
-## 7. Traceability Status
-
-**Core protocols:**
-
-| Protocol | Status | Evidence |
-|---|---|---|
-| `spec_code` | partial-pass | Doc claims cross-checked against live `mk-goal.js` source across iterations 1, 2, 3, 9, 10; 3 P1 + several P2 mismatches confirmed, no correctness defect found in the plugin code itself |
-| `checklist_evidence` | not_applicable | Review target type is `files` (repo-wide doc audit), not a spec-folder's own checklist |
-
-**Overlay protocols:**
-
-| Protocol | Status | Evidence |
-|---|---|---|
-| `skill_agent` | pass | `deep-review` workflow + `sk-code-review` severity doctrine loaded every iteration before severity calls |
-| `agent_cross_runtime` | partial | `constitutional/goal-prompting-runtime-specific.md`'s Claude-vs-OpenCode distinction re-verified as accurate (iteration 1); no `.opencode/AGENTS.md` goal-plugin mention found (iteration 10) |
-| `feature_catalog_code` | pass | Both feature catalogs (system-spec-kit, system-skill-advisor) checked against code; system-skill-advisor's contradicts its own README (P2-001); system-spec-kit's is accurate |
-| `playbook_capability` | fail-advisory | Both manual playbooks checked; neither validates the 2 new output fields (P2-002) |
-
-**AC_COVERAGE:** exempt (review target type is `files`, not a lifecycle-active spec-folder target).
-
----
-
-## 8. Deferred Items
-
-- Whether to fix `.opencode/plugins/README.md` by expansion or by retargeting the root README pointer (P1-003) is a genuine either/or design decision, not adjudicated by this review (read-only mandate) — flag for `/speckit:plan` to decide.
-- Annotating vs. leaving the historical-narrative subset of stale `goal.md` references (phase 003 changelog, archived review README) is explicitly the operator's call per the original brief; no fix required.
-- The `.opencode/plugins/README.md:~70` "Both plugins support" wording mismatch against its own 5-6-entrypoint table (research's P3, iteration 4's brief confirmation) was not filed as a separate formal finding this iteration — it's subordinate to P1-003 and can be corrected in the same pass.
-
----
-
-## 9. Search Ledger
-
-*No search-depth state captured (legacy v1 record).* All 10 iterations used the v1 JSONL schema (no `reviewDepthSchemaVersion: 2` records); `searchCoverage`, `candidateCoverage`, `searchDebt`, `ruledOutCandidates`, and `cleanSearchProof` are not populated in the reducer-owned registry for this run.
-
----
-
-## 10. Audit Appendix
-
-### Convergence Summary
-
-10 iterations forced to completion per `stopPolicy=max-iterations` / `antiConvergence.minIterations=10` (operator directive: "target exactly 10 iterations; do not converge early unless every doc class is genuinely covered"). Iterations 4-7 and 8-10 ran as two concurrent parallel batches (narrowed per-iteration write paths, orchestrator-merged into canonical state after each batch) per a mid-session operator instruction to parallelize remaining iterations; iterations 1-3 ran sequentially. `newFindingsRatio` per iteration: 1.0, 0.0, 1.0, 0.67, 0.25, 0.14, 0.0, ~0.14, ~0.14, ~0.11 — genuine broadening occurred (iteration 10's own self-assessment: "correctness, security, traceability, and maintainability each received real, evidence-backed coverage rather than repeated citation").
-
-### Coverage Summary
-
-Dimension coverage: 4/4 (correctness: iterations 1, 3, 6, 9, 10; security: iteration 2 + spot-checks in 9/10; traceability: iterations 3, 4, 5, 7, 9, 10; maintainability: iteration 8, 10). Doc-class coverage: `ENV_REFERENCE.md`, `references/hooks/goal_plugin.md`, root `README.md`, `.opencode/plugins/README.md`, `system-skill-advisor/README.md` + feature catalog, both manual testing playbooks, `constitutional/goal-prompting-runtime-specific.md`, `plugin_bridges/README.md`, `ARCHITECTURE.md`, packet-history docs (phases 009/011/003, archived review), a targeted negative sweep of 5 sibling skills' `SKILL.md`/`references/`/`assets/`, a repo-wide sweep of ALL skills' `feature_catalog/`/`manual_testing_playbook/`/`constitutional/`/`assets/` directories, config manifests (`opencode.json`), `.env.example`, top-level `CHANGELOG.md`, and `.opencode/AGENTS.md`.
-
-### Ruled-Out Claims
-
-- `.opencode/commands/goal.md` does not exist as a live file (re-confirmed independently 3 times: iterations 1, 6, 10).
-- No live/current doc anywhere claims `usage_limited` is dead/unimplemented, or that goal-state is never cleaned up (consistent with research's own negative sweep; not independently re-swept exhaustively by this review since research's confirmation on this specific point was strong and multiply-replicated, but no contradicting evidence surfaced in any of the 10 iterations).
-- `.opencode/plugins/mk-goal.js`'s sanitizer/redaction hardening claims: no in-scope doc over- or under-claims this security property (iteration 2, dedicated security pass, clean negative).
-- Research's negative-sweep claims (no stray goal-plugin doc in any skill besides system-spec-kit/system-skill-advisor; no goal-plugin mention in cli-opencode/cli-claude-code/sk-code/sk-prompt-models/deep-loop-workflows) — independently re-verified TRUE in iterations 7 and 9, including the `assets/` directory class research's brief flagged as a possible gap.
-- `.opencode/plugins/README.md`'s "Both plugins support" wording mismatch — confirmed as a real but minor (P3-equivalent) inconsistency, subordinate to P1-003, not filed separately.
-
-### Sources Reviewed (representative, not exhaustive — see individual iteration files for full lists)
-
-`.opencode/plugins/mk-goal.js`, `.opencode/commands/goal_opencode.md`, `.opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md`, `.opencode/skills/system-spec-kit/references/hooks/goal_plugin.md`, `.opencode/plugins/README.md`, `README.md`, `.opencode/skills/system-skill-advisor/README.md`, `.opencode/skills/system-skill-advisor/feature_catalog/07--hooks-and-plugin/goal-opencode-plugin.md`, `.opencode/skills/system-spec-kit/manual_testing_playbook/18--ux-hooks/goal-opencode-plugin.md`, `.opencode/skills/system-skill-advisor/manual_testing_playbook/02--cli-hooks-and-plugin/goal-opencode-plugin.md`, `.opencode/skills/system-spec-kit/constitutional/goal-prompting-runtime-specific.md`, `.opencode/skills/system-spec-kit/mcp_server/plugin_bridges/README.md`, `.opencode/skills/system-spec-kit/ARCHITECTURE.md`, `.opencode/plugins/tests/mk-goal-tool-path.test.cjs`, phase 009/011/003 packet docs, `review_archive/2026-07-01-plugin-implementation-review/README.md`, and the companion `research/research.md` packet.
-
-**Iteration artifacts:** `review/iterations/iteration-{001..010}.md`, `review/deltas/iter-{001..010}.jsonl`, `review/deep-review-state.jsonl`, `review/deep-review-findings-registry.json`, `review/deep-review-dashboard.md`, `review/deep-review-strategy.md`.
-
-**Orchestration note (non-finding, for maintainers of this deep-review runtime, not a finding about the reviewed docs):** the shared `reduce-state.cjs` reducer's fallback deduplication (used when a finding's `findingDetails` entry lacks a `contentHash`) appears to conflate two distinct P2 findings emitted in the same batch under coincidentally-adjacent conditions (iteration 4's `P2-001` and iteration 5's finding, after ID-collision remediation renamed to `P2-002`, were merged into a single `repeatedFindings` entry under the `P2-001` id/title on every reducer run). This review report's Active Finding Registry (§3) was reconciled directly from the raw per-iteration JSONL records rather than the auto-generated registry to avoid propagating this artifact into the final findings; both P2-001 and P2-002 are genuine, distinct, independently-evidenced findings.
-
----
-
-**STATUS=OK PATH=.opencode/specs/deep-loops/032-goal-opencode-plugin**
+**END OF REPORT**

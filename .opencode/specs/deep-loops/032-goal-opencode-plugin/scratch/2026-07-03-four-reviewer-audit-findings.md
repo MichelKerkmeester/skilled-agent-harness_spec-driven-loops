@@ -4,6 +4,8 @@
 > (plugin code, documentation surfaces, spec packet, speckit integration) run 2026-07-03.
 > Every phase's spec/plan/tasks MUST trace its requirements back to finding IDs in this file.
 
+Refresh note 2026-07-04: F4, F5, DOC-2, and e-2.2 were re-checked against live code/catalogs during phase 022 and are now marked RESOLVED below with current file-line evidence.
+
 ## Phase Allocation
 
 | Phase | Findings covered |
@@ -41,16 +43,18 @@ green between phases. 018 (test restructure) after 016 so new regression tests g
   can interleave with a queued `accountUsage`/`refreshGoalActivity` mutation whose `writeGoalAtomic`
   re-creates the state file after the rename → deleted session resurrects a divergent active goal
   until the 30-day sweep. Remedy shape: route archive + sweep through mutationQueues (e-2.6).
-- **F4 | P2 | mk-goal.js:1752-1839** — `MK_GOAL_PLUGIN_DISABLED=1` does not disable event-driven
+- **F4 | P2 | mk-goal.js:1752-1839 | RESOLVED 2026-07-04** — `MK_GOAL_PLUGIN_DISABLED=1` does not disable event-driven
   writes. Tools (1665), status (1702), injection (1852), continuation (1432) are gated, but
   `handleEvent` performs reads, usage-accounting writes, blocked-by-prompt writes, archive renames,
   directory sweeps regardless of `options.enabled`. Contract decision: disabled = fully inert.
-- **F5 | P2 | mk-goal.js:199-202 (+192)** — Role-label neutralizer prefix class too narrow: regex
+  Current evidence: .opencode/plugins/mk-goal.js:2511-.opencode/plugins/mk-goal.js:2513 gates `handleEvent` on `eventOptions.enabled` before event reads, writes, sweeps, or archives.
+- **F5 | P2 | mk-goal.js:199-202 (+192) | RESOLVED 2026-07-04** — Role-label neutralizer prefix class too narrow: regex
   requires `(^|[\s\n>])` so punctuation-prefixed labels survive (`(system: do X)`, `"system: ..."`).
   NFKC (192) does not fold Cyrillic/Greek homoglyphs (`ѕystem:` with Cyrillic ѕ bypasses). Existing
   test fixtures only cover whitespace-prefixed forms. Remedy: non-word-boundary prefix class +
   homoglyph folding map for role tokens; also extend `redactEvidence` (230-234) with Bearer/JWT
   patterns while touching it (e-2.7).
+  Current evidence: .opencode/plugins/mk-goal.js:327-.opencode/plugins/mk-goal.js:343 folds role-token homoglyphs and rewrites punctuation-prefixed role labels with a Unicode-aware boundary.
 - **F6 | P2 | mk-goal.js:1074-1104 (dedupe 1078)** — Usage accounting single-slot dedupe
   (`lastAccountedMessageID === messageID`) mis-charges under interleaved `message.updated` streams.
   Undercount: msg-1 partial charged, msg-1 final skipped as dup. Overcount: msg-1 charged → msg-2
@@ -131,8 +135,9 @@ green between phases. 018 (test restructure) after 016 so new regression tests g
    (673, 1064, 1319, 1338, 1355, 1372; near-variant 448).
 2. Collapse `recordContinuationReason`/`recordContinuationBudgetStop`/`recordProviderUsageLimit`
    (1318-1369) into one `patchGoalIfCurrent(sessionID, goalID, patch)`.
-3. Unify clocks — `nowMs()` (132-134), `retentionNowMs()` (820-823), raw `Date.now()` (877-878) —
+3. **RESOLVED 2026-07-04** Unify clocks — `nowMs()` (132-134), `retentionNowMs()` (820-823), raw `Date.now()` (877-878) —
    behind one injected clock.
+   Current evidence: .opencode/plugins/mk-goal.js:265 is the only raw `Date.now()` occurrence, inside the `nowMs` fallback; grep `Date.now(` against .opencode/plugins/mk-goal.js returns only that line.
 4. Explicit status-transition map for `markGoalStatus` (1029-1047) — currently accepts any
    VALID_STATUSES target from any state (complete→active resurrect representable).
 5. Normalize `maybeVerifyGoal` envelope: early-return path (1228-1230) omits keys present in the
@@ -180,8 +185,9 @@ keep them that way).
 - **DOC-1** — hook_system.md:125 claims mk-goal lifecycle event handlers cover "compaction"; the
   plugin handles session.created/status/idle/deleted, message.updated, permission.*, question.*,
   *.disposed (1758-1837) — no compaction-specific event. Remove/qualify the word.
-- **DOC-2** — skill-advisor manual_testing_playbook.md:192 link TEXT reads
+- **DOC-2 | RESOLVED 2026-07-04** — skill-advisor manual_testing_playbook.md:192 link TEXT reads
   `007-goal-opencode-plugin.md` while the file is `goal-opencode-plugin.md` (href resolves). Fix text.
+  Current evidence: .opencode/skills/system-spec-kit/feature_catalog/18--ux-hooks/goal-opencode-plugin.md:60 and .opencode/skills/system-skill-advisor/feature_catalog/07--hooks-and-plugin/goal-opencode-plugin.md:62 list `mk-goal-export-contract.test.cjs` in the validation catalogs.
 - (minor, optional with DOC work) skill-advisor feature catalog validation table (07--hooks-and-plugin/
   goal-opencode-plugin.md:58-66) omits mk-goal-export-contract.test.cjs from its test list.
 

@@ -1203,8 +1203,20 @@ async function maybePruneArchive(rawOptions = {}) {
 }
 
 async function archiveGoalStateFile(sessionID, rawOptions = {}) {
+  const sweepArchiveStaleBeforeMs = Number.isFinite(rawOptions.sweepArchiveStaleBeforeMs)
+    ? Math.trunc(rawOptions.sweepArchiveStaleBeforeMs)
+    : null;
   return enqueueGoalMutation(sessionID, rawOptions, async (normalizedSessionID, options) => {
     const sourcePath = goalPathForSession(normalizedSessionID, options);
+    if (sweepArchiveStaleBeforeMs !== null) {
+      try {
+        const raw = await readFile(sourcePath, 'utf8');
+        const updatedAtMs = Number(JSON.parse(raw)?.updatedAtMs);
+        if (!Number.isFinite(updatedAtMs) || updatedAtMs >= sweepArchiveStaleBeforeMs) return null;
+      } catch {
+        return null;
+      }
+    }
     const archiveDir = await ensureGoalArchiveDir(options);
     const archivePath = join(archiveDir, `${sessionKeyForSession(normalizedSessionID)}.json`);
     try {
@@ -1251,7 +1263,12 @@ async function sweepOrphanedActiveStates(rawOptions = {}, runtimeState = {}) {
         const updatedAtMs = Number(JSON.parse(raw)?.updatedAtMs);
         if (!Number.isFinite(updatedAtMs) || timestamp - updatedAtMs <= retentionMs) return;
         const archivedSessionID = sessionIDFromStateFilename(entry.name);
-        if (archivedSessionID) await archiveGoalStateFile(archivedSessionID, options);
+        if (archivedSessionID) {
+          await archiveGoalStateFile(archivedSessionID, {
+            ...options,
+            sweepArchiveStaleBeforeMs: timestamp - retentionMs,
+          });
+        }
       } catch {
         return;
       }

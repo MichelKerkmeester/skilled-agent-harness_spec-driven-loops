@@ -41,7 +41,7 @@
       "tasks"
     ],
     "importance_tier": "important",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
       ".opencode/commands/goal_opencode.md",
       ".opencode/commands/speckit/assets/speckit_plan_presentation.txt",
@@ -212,7 +212,7 @@
     ],
     "causal_summary": "Finding INT-1 (dossier §E, verbatim): the `/speckit:` goal-prompt offer — this phase's whole original purpose — is NOT implemented",
     "created_at": "2026-07-02T05:31:05.812Z",
-    "last_save_at": "2026-07-03T17:45:45.982Z",
+    "last_save_at": "2026-07-04T08:33:05.702Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -222,9 +222,9 @@
       "implementation-summary.md",
       "handover.md"
     ],
-    "source_fingerprint": "sha256:2be98b197d34d8f7e4f214efba3ab62c2d98af393fe259a48eabb015c99df877",
+    "source_fingerprint": "sha256:78ce387ca01c199278b64700605a0702ad97ba810e5cd00721687dff7a1309d7",
     "source_doc_hashes": {
-      "spec.md": "351367b246ac426dfb52434c15c589ff6254878db0f5423aa34e123d597744da",
+      "spec.md": "c5f1e000e552c312dad843df86df3ddfdcb8eeb20365132f1f703d5eda28c9b2",
       "plan.md": "e9a6fbc7e4fcfb51dd972f8c33078bce3fec1a93bb110d4899043e54b0197365",
       "tasks.md": "e9b5f75aed313b71d5effe1d33094c6d924bc935e0a970d0d291519beed16218",
       "implementation-summary.md": "e4e04316a48833f1a9ea4477286ce24441240932a8a8540fcc6cab92a3235f02",

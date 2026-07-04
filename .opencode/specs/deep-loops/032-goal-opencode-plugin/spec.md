@@ -59,7 +59,7 @@ _memory:
 <!-- ANCHOR:phase-context -->
 ## Phase Context
 
-This packet owns the OpenCode session-goal capability. It combines the dedicated design research with six implementation sub-phases for state, injection, command routing, lifecycle tracking, completion supervision and guarded continuation.
+This packet owns the OpenCode session-goal capability. It combines the dedicated design research with implementation phases for state, injection, command routing, lifecycle tracking, completion supervision, guarded continuation, and post-ship remediation.
 
 **Scope Boundary**: this packet covers the `/goal` OpenCode plugin and command only. Loop-runtime and workflow improvements live in the separate loop-system packet.
 
@@ -177,19 +177,20 @@ REQ-005
 | 6 | 006-active-continuation/ | Guarded session.idle continuation (default-off, caps + kill-switch) | Complete |
 | 7 | 007-sk-prompt-goal-enhancement/ | Transform raw `/goal set` input into a deterministic sk-prompt-style `goalPrompt` under 4000 chars | Complete |
 | 8 | 008-system-spec-kit-integration/ | Integrate `mk-goal` into system-spec-kit routing, references, catalog assets, manual playbook, and env docs | Complete |
-| 9 | 009-speckit-command-goal-prompt-offer/ | Offer goal creation in /speckit:* setup prompts via a goal_prompt_choice field across all 8 workflow YAMLs, with mk_goal/mk_goal_status added to router allowed-tools | In Progress (separate session) |
+| 9 | 009-speckit-command-goal-prompt-offer/ | Offer goal creation in /speckit:* setup prompts via a goal_prompt_choice field across all 8 workflow YAMLs, with mk_goal/mk_goal_status added to router allowed-tools | Complete |
 | 10 | 010-security-and-correctness-fixes/ | Fix 5 confirmed P1 security/correctness defects (DR-001 injection clamp, DR-003 stale-verifier race, DR-004-P1 RICCE metadata, DR-005 sanitizer hardening, DR-006 secret redaction) in mk-goal.js | Complete |
 | 11 | 011-command-surface-normalization/ | Normalize the twice-renamed /goal command filename to its final evidence-backed name and sweep all referencing surfaces (specs, catalogs, playbooks, env docs); resolve DR-004-P2/DR-010-P1/P2 | Complete |
 | 12 | 012-regression-test-backfill/ | Backfill regression tests pinning phases 010/011 fixes plus research's untested code paths (transform hook, event branches, autonomy smoke, export contract, tool-registration) | Complete |
 | 13 | 013-design-fidelity-and-polish/ | Wire a real usage_limited detector (operator chose wire over collapse); fix phases 001-008 fingerprint placeholders, phase 006 completion overclaim, fsync error logging, store-health status field | Complete |
 | 14 | 014-goal-state-cleanup-and-archive/ | Archive-then-prune goal state on session.deleted plus a throttled orphan sweep on session.created, so .goal-state/ stops growing unboundedly | Complete |
-| 15 | 015-packet-hygiene-and-narrative-integrity/ | Recalibrate the two miscalibrated shared validators (SECTION_COUNTS, ANCHORS_VALID), reconcile phases 010-014 status/metadata, and correct the packet's rename narrative, fingerprint overclaims and dangling cross-references found by a four-reviewer audit | Planned |
-| 16 | 016-plugin-correctness-fixes/ | Fix 12 new post-ship defects (F1-F12) plus 3 command-doc contract mismatches (D1-D3) in mk-goal.js found by an adversarial follow-up review, each with a regression test | Planned |
-| 17 | 017-hot-path-optimization/ | Behavior-preserving performance fixes to mk-goal.js's every-message injection path and per-message write cycles, proven by fs-call-count spy tests | Planned |
-| 18 | 018-test-architecture-restructure/ | Convert the 6 monolithic goal-plugin test scripts to node:test subtests and reconcile the export-contract's seam-count narrative to 16 (phase 016 grew it from 15) against stale 14/15 claims | Planned |
-| 19 | 019-code-refinements/ | Behavior-preserving refactors closing the duplication and implicit contracts that enabled the F-series bugs (shared goal-ID helper, unified clock, explicit status-transition map) | Planned |
-| 20 | 020-capability-additions/ | Ship the improvement backlog's small/medium capability additions (goal history, doctor/health subcommand, resume verb, budget routing, configurable autonomy caps, broader provider-limit detection) with synchronized docs | Planned |
-| 21 | 021-completion-verifier-wiring/ | Wire a production completion verifier so goals can auto-complete instead of always resolving not_met - gated on an explicit operator design-fork decision (LLM vs heuristic vs hybrid) before implementation | Planned |
+| 15 | 015-packet-hygiene-and-narrative-integrity/ | Recalibrate the two miscalibrated shared validators (SECTION_COUNTS, ANCHORS_VALID), reconcile phases 010-014 status/metadata, and correct the packet's rename narrative, fingerprint overclaims and dangling cross-references found by a four-reviewer audit | Complete |
+| 16 | 016-plugin-correctness-fixes/ | Fix 12 new post-ship defects (F1-F12) plus 3 command-doc contract mismatches (D1-D3) in mk-goal.js found by an adversarial follow-up review, each with a regression test | Complete |
+| 17 | 017-hot-path-optimization/ | Behavior-preserving performance fixes to mk-goal.js's every-message injection path and per-message write cycles, proven by fs-call-count spy tests | Complete |
+| 18 | 018-test-architecture-restructure/ | Convert the goal-plugin tests to node:test subtests and reconcile the export-contract seam-count narrative to 17 against stale lower-count claims | Complete |
+| 19 | 019-code-refinements/ | Behavior-preserving refactors closing the duplication and implicit contracts that enabled the F-series bugs (shared goal-ID helper, unified clock, explicit status-transition map) | Complete |
+| 20 | 020-capability-additions/ | Ship the improvement backlog's small/medium capability additions (goal history, doctor/health subcommand, resume verb, budget routing, configurable autonomy caps, broader provider-limit detection) with synchronized docs | Complete |
+| 21 | 021-completion-verifier-wiring/ | Wire a production completion verifier so goals can auto-complete instead of always resolving not_met - gated on an explicit operator design-fork decision (LLM vs heuristic vs hybrid) before implementation | Complete |
+| 22 | 022-review-remediation/ | Fix the sweep/archive stale-read race with RED/GREEN proof, reconcile shipped phase statuses, refresh the audit dossier, correct suite/seam counts, and sync feature catalogs | Complete |
 
 ### Phase Transition Rules
 
@@ -213,15 +214,15 @@ REQ-005
 | 008-system-spec-kit-integration | Complete | `mk-goal` is discoverable from system-spec-kit references and does not masquerade as a daemon bridge | Docs checks plus strict parent validation pass |
 | 008-system-spec-kit-integration | 009-speckit-command-goal-prompt-offer | N/A — phase 009 is independent of phase 008; no handoff dependency | N/A |
 | 009-speckit-command-goal-prompt-offer | 010-security-and-correctness-fixes | N/A — phase 010 is independent of phase 009 (originally a separate in-flight session, now taken over by this remediation program per phase 015); no handoff dependency, phase 010 already shipped without phase 009 completing | N/A |
-| 010-security-and-correctness-fixes | 011-command-surface-normalization | All 5 phase-010 fixes land with the existing 6-file test suite passing | Fresh `node` execution evidence (not cited) in phase 010's implementation-summary.md |
+| 010-security-and-correctness-fixes | 011-command-surface-normalization | All 5 phase-010 fixes land with the existing goal test suite passing | Fresh `node` execution evidence in phase 010's implementation-summary.md |
 | 011-command-surface-normalization | 012-regression-test-backfill | Command filename normalized to its final form; zero stale references to retired filenames outside historical changelogs/research archives | Repo-wide grep for retired filenames returns zero hits outside historical docs |
 | 012-regression-test-backfill | 013-design-fidelity-and-polish | Regression suite (existing + backfilled) passes fresh, with at least one new test proven capable of failing against pre-fix behavior | Full suite run plus T014 revert-and-fail spot-check evidence in phase 012's implementation-summary.md |
 | 013-design-fidelity-and-polish | 014-goal-state-cleanup-and-archive | N/A — phase 014 is independent of phase 013; no handoff dependency, either order works | N/A |
 | 014-goal-state-cleanup-and-archive | 015-packet-hygiene-and-narrative-integrity | N/A — phase 015 is independent of phase 014; no handoff dependency, it opens a new four-reviewer-audit remediation program | N/A |
 | 015-packet-hygiene-and-narrative-integrity | 016-plugin-correctness-fixes | `check-section-counts.sh`/`orchestrator.ts` recalibrated and rebuilt; phases 010-014 status/metadata reconciled; rename narrative, fingerprints and cross-references corrected | `validate.sh --strict` returns Errors: 0 across all existing 032 phase folders |
-| 016-plugin-correctness-fixes | 017-hot-path-optimization | All 12 F-findings fixed with regression tests; D1-D3 contract aligned; full plugin suite green | Fresh 6-file test suite run pasted in phase 016's implementation-summary.md |
+| 016-plugin-correctness-fixes | 017-hot-path-optimization | All 12 F-findings fixed with regression tests; D1-D3 contract aligned; full plugin suite green | Fresh goal-suite run pasted in phase 016's implementation-summary.md |
 | 017-hot-path-optimization | 018-test-architecture-restructure | Every e-1 optimization proven behavior-preserving by an fs-spy test or benchmark; full suite green | fs-call-count spy test evidence pasted in phase 017's implementation-summary.md |
-| 018-test-architecture-restructure | 019-code-refinements | All 6 test files converted to `node:test` subtests with per-scenario counts; 16-seam pin reconciled; full suite green | `node --test` subtest-count output pasted in phase 018's implementation-summary.md |
+| 018-test-architecture-restructure | 019-code-refinements | Goal test files converted to `node:test` subtests with per-scenario counts; 17-seam pin reconciled; full suite green | `node --test` subtest-count output pasted in phase 018's implementation-summary.md |
 | 019-code-refinements | 020-capability-additions | Every in-scope e-2 refactor verified by a structural grep invariant; full suite green | Grep evidence + full suite run pasted in phase 019's implementation-summary.md |
 | 020-capability-additions | 021-completion-verifier-wiring | All seven e-3 capability items shipped with tests green; e-3.10 deferral recorded; docs synchronized | Full suite run plus doc-sync grep evidence pasted in phase 020's implementation-summary.md |
 <!-- /ANCHOR:phase-map -->

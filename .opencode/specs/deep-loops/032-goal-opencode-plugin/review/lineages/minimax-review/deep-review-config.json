@@ -1,0 +1,99 @@
+{
+  "topic": "Deep review of OpenCode /goal plugin spec packet (032-goal-opencode-plugin) — fan-out lineage (minimax-review)",
+  "mode": "review",
+  "reviewTarget": ".opencode/specs/deep-loops/032-goal-opencode-plugin",
+  "reviewTargetType": "spec-folder",
+  "reviewDimensions": [
+    "correctness",
+    "security",
+    "traceability",
+    "maintainability"
+  ],
+  "resource_map_present": false,
+  "sessionId": "fanout-minimax-review-1783146823455-7q45s6",
+  "parentSessionId": null,
+  "lineageMode": "new",
+  "generation": 1,
+  "continuedFromRun": null,
+  "maxIterations": 10,
+  "convergenceThreshold": 0.10,
+  "stuckThreshold": 2,
+  "severityThreshold": "P2",
+  "stopPolicy": "max-iterations",
+  "crossReference": {
+    "core": [
+      "spec_code",
+      "checklist_evidence"
+    ],
+    "overlay": [
+      "skill_agent",
+      "agent_cross_runtime",
+      "feature_catalog_code",
+      "playbook_capability"
+    ]
+  },
+  "qualityGateThreshold": true,
+  "releaseReadinessState": "release-blocking",
+  "specFolder": ".opencode/specs/deep-loops/032-goal-opencode-plugin",
+  "createdAt": "2026-07-04T06:33:43Z",
+  "completedAt": "2026-07-04T07:15:00Z",
+  "verdict": "CONDITIONAL",
+  "activeP0": 0,
+  "activeP1": 14,
+  "activeP2": 17,
+  "status": "complete",
+  "executionMode": "auto",
+  "lineage_role": "fanout-detached",
+  "fanout_meta": {
+    "fanout_lineage_artifact_dir": ".opencode/specs/deep-loops/032-goal-opencode-plugin/review/lineages/minimax-review",
+    "session_id": "fanout-minimax-review-1783146823455-7q45s6",
+    "executor": "cli-opencode model=minimax/MiniMax-M3",
+    "loop_type": "review",
+    "config_stop_policy": "max-iterations",
+    "config_max_iterations": 10,
+    "config_convergence_threshold": 0.1,
+    "parallel_lineage": "kimi-review"
+  },
+  "executor": {
+    "kind": "native-detached",
+    "model": "minimax/MiniMax-M3",
+    "reasoningEffort": "default",
+    "serviceTier": null,
+    "sandboxMode": null,
+    "timeoutSeconds": null
+  },
+  "fileProtection": {
+    "deep-review-config.json": "immutable",
+    "deep-review-state.jsonl": "append-only",
+    "deep-review-findings-registry.json": "auto-generated",
+    "deep-review-strategy.md": "mutable",
+    "deep-review-dashboard.md": "auto-generated",
+    ".deep-review-pause": "operator-controlled",
+    "review-report.md": "mutable",
+    "review-report-v*.md": "write-once",
+    "iteration-*.md": "write-once"
+  },
+  "reducer": {
+    "enabled": true,
+    "inputs": [
+      "latestJSONLDelta",
+      "newIterationFile",
+      "priorReducedState"
+    ],
+    "outputs": [
+      "findingsRegistry",
+      "dashboardMetrics",
+      "strategyUpdates"
+    ],
+    "metrics": [
+      "dimensionsCovered",
+      "findingsBySeverity",
+      "openFindings",
+      "resolvedFindings",
+      "convergenceScore"
+    ]
+  },
+  "resource_map": {
+    "emit": false
+  }
+}

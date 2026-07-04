@@ -58,8 +58,9 @@ Live verification: the plugin is registered and driven end-to-end in a real Open
 
 | File | Type | Role |
 |---|---|---|
-| `.opencode/plugins/tests/mk-goal-state.test.cjs` | Automated test | Session-keyed persistence, tool output and passive injection |
+| `.opencode/plugins/tests/mk-goal-state.test.cjs` | Automated test | State persistence, generated prompt fields, injection, caps, sanitization, redaction, and status output. |
 | `.opencode/plugins/tests/mk-goal-export-contract.test.cjs` | Automated test | Export surface contract and full test helper key list |
+| `.opencode/plugins/tests/speckit-goal-offer-contract.test.cjs` | Automated test | Speckit goal-offer presentation and router contract. |
 | `.opencode/plugins/tests/mk-goal-capabilities.test.cjs` | Automated test | History, doctor/health, resume, budget, env caps, provider-limit detection and retry-after recovery |
 | `.opencode/plugins/tests/mk-goal-tool-path.test.cjs` | Automated test | Real tool execute path and ToolContext session resolution |
 | `.opencode/plugins/tests/mk-goal-supervisor.test.cjs` | Automated test | Supervisor verdict mapping, injected precedence, default verifier safety matrix, LLM verifier mode and provenance |

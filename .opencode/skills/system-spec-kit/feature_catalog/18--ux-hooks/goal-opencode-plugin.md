@@ -55,9 +55,10 @@ State does not grow unboundedly: on `session.deleted` the goal-state file is arc
 
 | File | Type | Role |
 |---|---|---|
-| `.opencode/plugins/tests/mk-goal-state.test.cjs` | Automated test | State, generated prompt fields, injection, caps, and sanitization. |
+| `.opencode/plugins/tests/mk-goal-state.test.cjs` | Automated test | State persistence, generated prompt fields, injection, caps, sanitization, redaction, and status output. |
 | `.opencode/plugins/tests/mk-goal-tool-path.test.cjs` | Automated test | Plugin tool context persistence and status output. |
 | `.opencode/plugins/tests/mk-goal-export-contract.test.cjs` | Automated test | Export contract. |
+| `.opencode/plugins/tests/speckit-goal-offer-contract.test.cjs` | Automated test | Speckit goal-offer presentation and router contract. |
 | `.opencode/plugins/tests/mk-goal-capabilities.test.cjs` | Automated test | History, doctor/health, resume, budget, env caps, provider-limit detection, and retry-after recovery. |
 | `.opencode/plugins/tests/mk-goal-lifecycle.test.cjs` | Automated test | Event/lifecycle behavior. |
 | `.opencode/plugins/tests/mk-goal-supervisor.test.cjs` | Automated test | Injected verifier precedence, default heuristic positive/negative matrix, LLM verifier mode, provenance, and evidence redaction. |

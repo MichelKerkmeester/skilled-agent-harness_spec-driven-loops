@@ -1,0 +1,71 @@
+{
+  "run_id": "1783146823455-7q45s6",
+  "loop_type": "review",
+  "spec_folder": ".opencode/specs/deep-loops/032-goal-opencode-plugin",
+  "base_artifact_dir": ".opencode/specs/deep-loops/032-goal-opencode-plugin/review",
+  "total_cli_lineages": 2,
+  "orphaned_lineages": [],
+  "total": 2,
+  "succeeded": 1,
+  "failed": 1,
+  "all_failed": false,
+  "gauges": {
+    "lag": 0,
+    "pending": 0,
+    "failed": 1
+  },
+  "failure_classes": {
+    "timeout": 0,
+    "exit": 1,
+    "salvage_miss": 0
+  },
+  "timestamp_anomalies": [
+    {
+      "label": "kimi-review",
+      "state_log": ".opencode/specs/deep-loops/032-goal-opencode-plugin/review/lineages/kimi-review/deep-review-state.jsonl",
+      "window": {
+        "start_at_iso": "2026-07-04T06:33:43.461Z",
+        "end_at_iso": "2026-07-04T07:01:12.292Z",
+        "tolerance_ms": 120000
+      },
+      "counts": {
+        "anomalous": 12,
+        "untimestamped": 0,
+        "unparseable": 0,
+        "total": 13
+      },
+      "sample": [
+        {
+          "index": 0,
+          "reason": "after_window",
+          "timestamp": "2026-07-04T08:33:43Z",
+          "deltaMs": 5430708
+        },
+        {
+          "index": 1,
+          "reason": "after_window",
+          "timestamp": "2026-07-04T08:40:00Z",
+          "deltaMs": 5807708
+        },
+        {
+          "index": 2,
+          "reason": "after_window",
+          "timestamp": "2026-07-04T08:50:00Z",
+          "deltaMs": 6407708
+        },
+        {
+          "index": 3,
+          "reason": "after_window",
+          "timestamp": "2026-07-04T09:00:00Z",
+          "deltaMs": 7007708
+        },
+        {
+          "index": 4,
+          "reason": "after_window",
+          "timestamp": "2026-07-04T09:10:00Z",
+          "deltaMs": 7607708
+        }
+      ]
+    }
+  ]
+}

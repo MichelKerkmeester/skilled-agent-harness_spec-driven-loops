@@ -35,7 +35,7 @@
       "implementation"
     ],
     "importance_tier": "important",
-    "status": "draft",
+    "status": "complete",
     "key_files": [
       ".opencode/plugins/tests/mk-goal-state.test.cjs",
       ".opencode/plugins/tests/mk-goal-export-contract.test.cjs",
@@ -199,7 +199,7 @@
     ],
     "causal_summary": "Research (F-018/019/021) found the `experimental.chat.system.transform` hook — the actual mechanism that injects `[activegoal]` into every turn — is never invoked by any test; the `event()` handler swallows all exceptions with no test asserting on the error path; and 7 of 9 wired events (`session.created`, `message.updated`, permission/question asked+replied, `session.deleted`, `.disposed`) have zero coverage through the real entrypoint (tests bypass the state machine by writing state directly)",
     "created_at": "2026-07-01T10:04:52Z",
-    "last_save_at": "2026-07-03T13:21:41.785Z",
+    "last_save_at": "2026-07-04T08:33:05.868Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,9 +208,9 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:05728af9ad09511e880ac0ec9fd9bc43e07fc1a5f96571e25438f39bb1e7e8c8",
+    "source_fingerprint": "sha256:d8511d5c5e6f44677f1d50b23f17b7dd76a89cd2e7b2d3cfcb9654cb24ca29d9",
     "source_doc_hashes": {
-      "spec.md": "bee1866a51828670c9c4ab54d7d6d1e212c50572339ad815061030377292e804",
+      "spec.md": "62e4fce399d4fbf5cba27074f6cc49852187fc5d7d3acfaa495af5bfba72a8ce",
       "plan.md": "fac7bf4f9274c7ee627214f5ce846850f5c93ee13d6a69df690f797eadffcf3f",
       "tasks.md": "137fcf7f51f3a538086e0a567c86a78848be1b5c0d87ce31dd5b12efd420f698",
       "implementation-summary.md": "4e47e9ddc3d2bdca839bb4c4a9686a12135d2b80c7983b86ba83f98154550d12"

@@ -25,7 +25,8 @@
     "deep-loops/032-goal-opencode-plugin/018-test-architecture-restructure",
     "deep-loops/032-goal-opencode-plugin/019-code-refinements",
     "deep-loops/032-goal-opencode-plugin/020-capability-additions",
-    "deep-loops/032-goal-opencode-plugin/021-completion-verifier-wiring"
+    "deep-loops/032-goal-opencode-plugin/021-completion-verifier-wiring",
+    "deep-loops/032-goal-opencode-plugin/022-review-remediation"
   ],
   "manual": {
     "depends_on": [],
@@ -229,19 +230,19 @@
     ],
     "causal_summary": "OpenCode has no goal/completion-condition system",
     "created_at": "2026-06-28T14:00:33Z",
-    "last_save_at": "2026-07-03T15:55:15.231Z",
+    "last_save_at": "2026-07-04T08:33:05.529Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:5f07060af823681e667cc9be26b203a63f47afdea075b22ec880f9ee4194d215",
+    "source_fingerprint": "sha256:8313333b0a98687a1b070b6814e1f5f0f79e46c906bb03f4764360fe751f56c0",
     "source_doc_hashes": {
-      "spec.md": "39cf97980030bc24957b6f3ee4fd773cd33aa2c41a0bd892c5ce32fa07765746",
+      "spec.md": "0a567a866a0f73d08bba1011c4dd74f29f68d255150abbc0e2b0712c4770a775",
       "research/research.md": "e605621d84837840c64727d30b15da5a33fc3cef532236e825b8cae0d597a18c"
     },
-    "last_active_child_id": "deep-loops/032-goal-opencode-plugin/018-test-architecture-restructure",
-    "last_active_at": "2026-07-03T15:55:15.231Z"
+    "last_active_child_id": null,
+    "last_active_at": "2026-07-04T06:58:43.153Z"
   }
 }

@@ -1,0 +1,686 @@
+{
+  "sessionId": "fanout-minimax-review-1783146823455-7q45s6",
+  "generation": 1,
+  "lineageMode": "new",
+  "artifactDir": ".opencode/specs/deep-loops/032-goal-opencode-plugin/review/lineages/minimax-review",
+  "openFindings": [
+    {
+      "findingId": "F001",
+      "severity": "P1",
+      "category": "traceability",
+      "status": "active",
+      "dimension": "traceability",
+      "title": "Orphan phase folder 009-diagnostic-review/ has no spec.md/plan.md/tasks.md/impl-summary.md",
+      "file": ".opencode/specs/deep-loops/032-goal-opencode-plugin/009-diagnostic-review/",
+      "line": 0,
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (inventory + scope discovery)"
+        }
+      ],
+      "content_hash": "sha256:f001-orphan-009-diagnostic-review-2026-07-04"
+    },
+    {
+      "findingId": "F002",
+      "severity": "P1",
+      "category": "correctness",
+      "status": "active",
+      "dimension": "correctness",
+      "title": "description.json level='phase' but spec.md declares 'phase parent'",
+      "file": ".opencode/specs/deep-loops/032-goal-opencode-plugin/description.json",
+      "line": 2,
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (level-field drift)"
+        }
+      ],
+      "content_hash": "sha256:f002-level-mismatch-2026-07-04"
+    },
+    {
+      "findingId": "F003",
+      "severity": "P2",
+      "category": "traceability",
+      "status": "active",
+      "dimension": "traceability",
+      "title": "Only phase 016 ships a checklist.md across all 22 phase folders",
+      "file": ".opencode/specs/deep-loops/032-goal-opencode-plugin/",
+      "line": 0,
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (advisory; consistent with lean Level 1 design)"
+        }
+      ],
+      "content_hash": "sha256:f003-checklist-coverage-2026-07-04"
+    },
+    {
+      "findingId": "F004",
+      "severity": "P2",
+      "category": "maintainability",
+      "status": "active",
+      "dimension": "maintainability",
+      "title": "changelog README does not list 015-021 placeholder rows",
+      "file": ".opencode/specs/deep-loops/032-goal-opencode-plugin/changelog/README.md",
+      "line": 30,
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (advisory; absence is intentional)"
+        }
+      ],
+      "content_hash": "sha256:f004-changelog-placeholders-2026-07-04"
+    },
+    {
+      "findingId": "F005",
+      "severity": "P2",
+      "category": "maintainability",
+      "status": "active",
+      "dimension": "maintainability",
+      "title": "description.json lastUpdated is stale (2026-07-01)",
+      "file": ".opencode/specs/deep-loops/032-goal-opencode-plugin/description.json",
+      "line": 11,
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (advisory; freshness marker)"
+        }
+      ],
+      "content_hash": "sha256:f005-description-staleness-2026-07-04"
+    },
+    {
+      "findingId": "F006",
+      "severity": "P1",
+      "category": "correctness",
+      "status": "active",
+      "dimension": "correctness",
+      "title": "Phase 012 has a three-way status disagreement (spec=Draft, graph=draft, impl=Complete)",
+      "file": ".opencode/specs/deep-loops/032-goal-opencode-plugin/012-regression-test-backfill/spec.md",
+      "line": 43,
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (three-way status disagreement, missed by four-reviewer audit)"
+        }
+      ],
+      "content_hash": "sha256:f006-012-status-disagreement-2026-07-04"
+    },
+    {
+      "findingId": "F007",
+      "severity": "P1",
+      "category": "correctness",
+      "status": "active",
+      "dimension": "correctness",
+      "title": "Parent last_active_child_id points at Planned phase 018 (resume misroute risk)",
+      "file": ".opencode/specs/deep-loops/032-goal-opencode-plugin/graph-metadata.json",
+      "line": 244,
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (resume target misroute)"
+        }
+      ],
+      "content_hash": "sha256:f007-last-active-child-misroute-2026-07-04"
+    },
+    {
+      "findingId": "F008",
+      "severity": "P2",
+      "category": "correctness",
+      "status": "active",
+      "dimension": "correctness",
+      "title": "Planned phase 015-021 implementation-summary.md templates carry 'Status: Complete' boilerplate",
+      "file": ".opencode/specs/deep-loops/032-goal-opencode-plugin/015-packet-hygiene-and-narrative-integrity/implementation-summary.md",
+      "line": 0,
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (template voice leak in Planned phase docs)"
+        }
+      ],
+      "content_hash": "sha256:f008-planned-template-status-leak-2026-07-04"
+    },
+    {
+      "findingId": "F009",
+      "severity": "P2",
+      "category": "traceability",
+      "status": "active",
+      "dimension": "traceability",
+      "title": "Phase 015 REQ-003 redundantly targets 014's now-present Status row",
+      "file": ".opencode/specs/deep-loops/032-goal-opencode-plugin/014-goal-state-cleanup-and-archive/spec.md",
+      "line": 43,
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (audit-dossier / REQ-003 now redundant)"
+        }
+      ],
+      "content_hash": "sha256:f009-014-status-row-redundant-2026-07-04"
+    },
+    {
+      "findingId": "F010",
+      "severity": "P1",
+      "category": "traceability",
+      "status": "active",
+      "dimension": "security",
+      "title": "Audit dossier F4/F5 already mitigated in current code (dossier drift)",
+      "file": ".opencode/specs/deep-loops/032-goal-opencode-plugin/scratch/2026-07-03-four-reviewer-audit-findings.md",
+      "line": 0,
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (audit-dossier drift; phase 016 will over-fix)"
+        }
+      ],
+      "content_hash": "sha256:f010-audit-dossier-f4f5-drift-2026-07-04"
+    },
+    {
+      "findingId": "F011",
+      "severity": "P1",
+      "category": "security",
+      "status": "active",
+      "dimension": "security",
+      "title": "goalStateLines emits duplicate tokens_used/budget_tokens_used + usage_source/budget_usage_source",
+      "file": ".opencode/plugins/mk-goal.js",
+      "line": 2319,
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (e-2.8 confirmed at lines 2319, 2326-2329)"
+        }
+      ],
+      "content_hash": "sha256:f011-goal-state-lines-duplicate-pairs-2026-07-04"
+    },
+    {
+      "findingId": "F012",
+      "severity": "P2",
+      "category": "traceability",
+      "status": "active",
+      "dimension": "security",
+      "title": "Audit e-2.2 Date.now() claim is FALSE for current state",
+      "file": ".opencode/specs/deep-loops/032-goal-opencode-plugin/scratch/2026-07-03-four-reviewer-audit-findings.md",
+      "line": 0,
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (audit-dossier captured pre-fix state)"
+        }
+      ],
+      "content_hash": "sha256:f012-audit-e2-2-dossier-drift-2026-07-04"
+    },
+    {
+      "findingId": "F013",
+      "severity": "P2",
+      "category": "security",
+      "status": "active",
+      "dimension": "security",
+      "title": "redactEvidence regex false-positives on legitimate API_KEY mentions",
+      "file": ".opencode/plugins/mk-goal.js",
+      "line": 388,
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (advisory; over-redaction is a UX concern not a security leak)"
+        }
+      ],
+      "content_hash": "sha256:f013-redact-evidence-false-positives-2026-07-04"
+    },
+    {
+      "findingId": "F014",
+      "severity": "P1",
+      "category": "traceability",
+      "status": "active",
+      "dimension": "traceability",
+      "title": "Phase 009 has three-way status disagreement (spec=Planned, graph=planned, impl=Complete)",
+      "file": ".opencode/specs/deep-loops/032-goal-opencode-plugin/009-speckit-command-goal-prompt-offer/spec.md",
+      "line": 40,
+      "firstSeen": 4,
+      "lastSeen": 4,
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (three-way status disagreement, missed by four-reviewer audit)"
+        }
+      ],
+      "content_hash": "sha256:f014-009-status-disagreement-2026-07-04"
+    },
+    {
+      "findingId": "F015",
+      "severity": "P1",
+      "category": "traceability",
+      "status": "active",
+      "dimension": "traceability",
+      "title": "Parent handoff table annotates phase 010 verification as 'not cited' but impl-summary now has full citations",
+      "file": ".opencode/specs/deep-loops/032-goal-opencode-plugin/spec.md",
+      "line": 216,
+      "firstSeen": 4,
+      "lastSeen": 4,
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (parent handoff table stale annotation)"
+        }
+      ],
+      "content_hash": "sha256:f015-parent-handoff-stale-annotation-2026-07-04"
+    },
+    {
+      "findingId": "F016",
+      "severity": "P2",
+      "category": "traceability",
+      "status": "active",
+      "dimension": "traceability",
+      "title": "Phase 012 impl-summary lacks the T014 revert-and-fail spot-check cited in spec.md:218",
+      "file": ".opencode/specs/deep-loops/032-goal-opencode-plugin/012-regression-test-backfill/implementation-summary.md",
+      "line": 0,
+      "firstSeen": 4,
+      "lastSeen": 4,
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (advisory; missing spot-check in impl-summary)"
+        }
+      ],
+      "content_hash": "sha256:f016-012-t014-spotcheck-missing-2026-07-04"
+    },
+    {
+      "findingId": "F017",
+      "severity": "P1",
+      "category": "maintainability",
+      "status": "active",
+      "dimension": "maintainability",
+      "title": "loadPluginModule/withState helpers duplicated across 7 of 8 goal test files",
+      "file": ".opencode/plugins/tests/mk-goal-capabilities.test.cjs",
+      "line": 20,
+      "firstSeen": 5,
+      "lastSeen": 5,
+      "transitions": [
+        {
+          "iteration": 5,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (helper duplication pre-phase-018)"
+        }
+      ],
+      "content_hash": "sha256:f017-test-helper-duplication-2026-07-04"
+    },
+    {
+      "findingId": "F018",
+      "severity": "P1",
+      "category": "traceability",
+      "status": "active",
+      "dimension": "maintainability",
+      "title": "Phase 018 '16-seam pin' narrative is stale; current __test has 17 seams",
+      "file": ".opencode/plugins/mk-goal.js",
+      "line": 2637,
+      "firstSeen": 5,
+      "lastSeen": 5,
+      "transitions": [
+        {
+          "iteration": 5,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (seam count narrative drift)"
+        }
+      ],
+      "content_hash": "sha256:f018-16-seam-pin-stale-2026-07-04"
+    },
+    {
+      "findingId": "F019",
+      "severity": "P2",
+      "category": "maintainability",
+      "status": "active",
+      "dimension": "maintainability",
+      "title": "export-contract uses non-destructured node:test import",
+      "file": ".opencode/plugins/tests/mk-goal-export-contract.test.cjs",
+      "line": 9,
+      "firstSeen": 5,
+      "lastSeen": 5,
+      "transitions": [
+        {
+          "iteration": 5,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (advisory; import style inconsistency)"
+        }
+      ],
+      "content_hash": "sha256:f019-node-test-import-style-2026-07-04"
+    },
+    {
+      "findingId": "F020",
+      "severity": "P2",
+      "category": "maintainability",
+      "status": "active",
+      "dimension": "maintainability",
+      "title": "tests/helpers/ has only one file; helper extraction is partial",
+      "file": ".opencode/plugins/tests/helpers/",
+      "line": 0,
+      "firstSeen": 5,
+      "lastSeen": 5,
+      "transitions": [
+        {
+          "iteration": 5,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (advisory; partial helper extraction)"
+        }
+      ],
+      "content_hash": "sha256:f020-helper-extraction-partial-2026-07-04"
+    },
+    {
+      "findingId": "F021",
+      "severity": "P1",
+      "category": "traceability",
+      "status": "active",
+      "dimension": "traceability",
+      "title": "SKILL.md allowed-tools includes Task but runtime agents deny Task (LEAF-only contract drift)",
+      "file": ".opencode/skills/deep-loop-workflows/deep-review/SKILL.md",
+      "line": 4,
+      "firstSeen": 6,
+      "lastSeen": 6,
+      "transitions": [
+        {
+          "iteration": 6,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (skill_agent overlay observation)"
+        }
+      ],
+      "content_hash": "sha256:f021-skill-md-task-allowed-tools-drift-2026-07-04"
+    },
+    {
+      "findingId": "F022",
+      "severity": "P2",
+      "category": "traceability",
+      "status": "active",
+      "dimension": "traceability",
+      "title": "OpenCode/Codex deep-review agents are byte-identical; Claude differs in 4 lines",
+      "file": ".opencode/agents/deep-review.md",
+      "line": 0,
+      "firstSeen": 6,
+      "lastSeen": 6,
+      "transitions": [
+        {
+          "iteration": 6,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (cross-runtime parity observation)"
+        }
+      ],
+      "content_hash": "sha256:f022-opencode-codex-agent-parity-2026-07-04"
+    },
+    {
+      "findingId": "F023",
+      "severity": "P2",
+      "category": "traceability",
+      "status": "active",
+      "dimension": "traceability",
+      "title": "SKILL.md allowed-tools missing MCP allowlist specifics (mcp__mk_code_index__*, mcp__mk_spec_memory__*)",
+      "file": ".opencode/skills/deep-loop-workflows/deep-review/SKILL.md",
+      "line": 4,
+      "firstSeen": 6,
+      "lastSeen": 6,
+      "transitions": [
+        {
+          "iteration": 6,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (MCP allowlist drift)"
+        }
+      ],
+      "content_hash": "sha256:f023-skill-md-mcp-allowlist-drift-2026-07-04"
+    },
+    {
+      "findingId": "F024",
+      "severity": "P1",
+      "category": "traceability",
+      "status": "active",
+      "dimension": "traceability",
+      "title": "Both feature catalogs miss speckit-goal-offer-contract.test.cjs (8th goal test file)",
+      "file": ".opencode/skills/system-spec-kit/feature_catalog/18--ux-hooks/goal-opencode-plugin.md",
+      "line": 58,
+      "firstSeen": 7,
+      "lastSeen": 7,
+      "transitions": [
+        {
+          "iteration": 7,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (feature_catalog_code overlay)"
+        }
+      ],
+      "content_hash": "sha256:f024-feature-catalog-missing-test-file-2026-07-04"
+    },
+    {
+      "findingId": "F025",
+      "severity": "P1",
+      "category": "traceability",
+      "status": "active",
+      "dimension": "traceability",
+      "title": "Two catalog rows describe mk-goal-state.test.cjs with different scopes (description parity broken)",
+      "file": ".opencode/skills/system-skill-advisor/feature_catalog/07--hooks-and-plugin/goal-opencode-plugin.md",
+      "line": 61,
+      "firstSeen": 7,
+      "lastSeen": 7,
+      "transitions": [
+        {
+          "iteration": 7,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (catalog description parity drift)"
+        }
+      ],
+      "content_hash": "sha256:f025-catalog-description-parity-broken-2026-07-04"
+    },
+    {
+      "findingId": "F026",
+      "severity": "P2",
+      "category": "traceability",
+      "status": "active",
+      "dimension": "traceability",
+      "title": "Audit dossier DOC-2 (missing export-contract row) is now obsolete; row is present",
+      "file": ".opencode/skills/system-spec-kit/feature_catalog/18--ux-hooks/goal-opencode-plugin.md",
+      "line": 60,
+      "firstSeen": 7,
+      "lastSeen": 7,
+      "transitions": [
+        {
+          "iteration": 7,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (audit dossier drift; F010/F012 same family)"
+        }
+      ],
+      "content_hash": "sha256:f026-audit-doc2-obsolete-2026-07-04"
+    },
+    {
+      "findingId": "F027",
+      "severity": "P2",
+      "category": "maintainability",
+      "status": "active",
+      "dimension": "traceability",
+      "title": "system-spec-kit playbook is 196 lines / 5 sections vs system-skill-advisor's 503 lines / 8 sections (depth disparity)",
+      "file": ".opencode/skills/system-spec-kit/manual_testing_playbook/18--ux-hooks/goal-opencode-plugin.md",
+      "line": 0,
+      "firstSeen": 8,
+      "lastSeen": 8,
+      "transitions": [
+        {
+          "iteration": 8,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (playbook depth disparity)"
+        }
+      ],
+      "content_hash": "sha256:f027-playbook-depth-disparity-2026-07-04"
+    },
+    {
+      "findingId": "F028",
+      "severity": "P2",
+      "category": "traceability",
+      "status": "active",
+      "dimension": "traceability",
+      "title": "system-spec-kit playbook omits mk-goal-continuation.test.cjs from fallback path",
+      "file": ".opencode/skills/system-spec-kit/manual_testing_playbook/18--ux-hooks/goal-opencode-plugin.md",
+      "line": 48,
+      "firstSeen": 8,
+      "lastSeen": 8,
+      "transitions": [
+        {
+          "iteration": 8,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (playbook test file coverage)"
+        }
+      ],
+      "content_hash": "sha256:f028-playbook-missing-continuation-test-2026-07-04"
+    },
+    {
+      "findingId": "F029",
+      "severity": "P2",
+      "category": "traceability",
+      "status": "active",
+      "dimension": "traceability",
+      "title": "Cross-runtime parity for the deep-review skill is strong (3 SKILL.md + 3 commands byte-identical; 3 agents with 1 per-runtime translation)",
+      "file": ".opencode/skills/deep-loop-workflows/deep-review/SKILL.md",
+      "line": 0,
+      "firstSeen": 9,
+      "lastSeen": 9,
+      "transitions": [
+        {
+          "iteration": 9,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (cross-runtime parity confirmation)"
+        }
+      ],
+      "content_hash": "sha256:f029-cross-runtime-parity-strong-2026-07-04"
+    },
+    {
+      "findingId": "F030",
+      "severity": "P1",
+      "category": "traceability",
+      "status": "active",
+      "dimension": "correctness",
+      "title": "Parent '6-file test suite' narrative is wrong; actual is 8 files / 101 tests",
+      "file": ".opencode/specs/deep-loops/032-goal-opencode-plugin/spec.md",
+      "line": 216,
+      "firstSeen": 10,
+      "lastSeen": 10,
+      "transitions": [
+        {
+          "iteration": 10,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (test count narrative drift, grounded in empirical run)"
+        }
+      ],
+      "content_hash": "sha256:f030-6-file-narrative-wrong-2026-07-04"
+    },
+    {
+      "findingId": "F031",
+      "severity": "P2",
+      "category": "traceability",
+      "status": "active",
+      "dimension": "traceability",
+      "title": "Combined F024+F026: phase 015 REQ-010 partially redundant; 8th test file still missing from catalogs",
+      "file": ".opencode/specs/deep-loops/032-goal-opencode-plugin/spec.md",
+      "line": 216,
+      "firstSeen": 10,
+      "lastSeen": 10,
+      "transitions": [
+        {
+          "iteration": 10,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (combined drift)"
+        }
+      ],
+      "content_hash": "sha256:f031-req010-partial-redundant-2026-07-04"
+    }
+  ],
+  "resolvedFindings": [],
+  "blockedStopHistory": [],
+  "persistentSameSeverity": [],
+  "severityChanged": [],
+  "repeatedFindings": [],
+  "dimensionCoverage": {
+    "correctness": true,
+    "security": true,
+    "traceability": true,
+    "maintainability": true
+  },
+  "findingsBySeverity": {
+    "P0": 0,
+    "P1": 14,
+    "P2": 17
+  },
+  "openFindingsCount": 31,
+  "resolvedFindingsCount": 0,
+  "convergenceScore": 0.65,
+  "graphConvergenceScore": 0,
+  "graphDecision": null,
+  "graphBlockers": [],
+  "corruptionWarnings": [],
+  "status": "complete",
+  "verdict": "CONDITIONAL",
+  "releaseReadinessState": "release-blocking",
+  "completedAt": "2026-07-04T07:15:00Z"
+}

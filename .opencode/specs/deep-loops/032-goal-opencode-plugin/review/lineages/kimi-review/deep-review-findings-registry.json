@@ -1,0 +1,642 @@
+{
+  "sessionId": "fanout-kimi-review-1783146823455-7q45s6",
+  "generation": 1,
+  "lineageMode": "new",
+  "openFindings": [
+    {
+      "findingId": "F001",
+      "severity": "P2",
+      "category": "traceability",
+      "status": "active",
+      "dimension": "correctness",
+      "title": "Command surface expanded beyond original spec verbs",
+      "file": ".opencode/commands/goal_opencode.md",
+      "line": 3,
+      "description": "Parent spec scoped /goal to set/show/clear/complete/pause; shipped command adds history/doctor/health/resume.",
+      "content_hash": "9d4cd4d55a0b78e6aaf819ecc788bd6d5f11af386a6b7e6fb6ea4654c1ec61cb",
+      "findingClass": "spec-drift",
+      "evidenceRefs": [
+        ".opencode/specs/deep-loops/032-goal-opencode-plugin/spec.md:89-92",
+        ".opencode/commands/goal_opencode.md:3,30-33"
+      ]
+    },
+    {
+      "findingId": "F002",
+      "severity": "P2",
+      "category": "traceability",
+      "status": "active",
+      "dimension": "correctness",
+      "title": "Phase map omits 009-diagnostic-review sibling folder",
+      "file": ".opencode/specs/deep-loops/032-goal-opencode-plugin/spec.md",
+      "line": 166,
+      "description": "Directory listing contains 009-diagnostic-review but phase map only lists 009-speckit-command-goal-prompt-offer.",
+      "content_hash": "5dec906c61bea655d64e8db0ab9da099fa98aa6f23b3a83322089a2b2b7cd986",
+      "findingClass": "coverage-gap",
+      "evidenceRefs": [
+        ".opencode/specs/deep-loops/032-goal-opencode-plugin/spec.md:166-193"
+      ]
+    },
+    {
+      "findingId": "F003",
+      "severity": "P2",
+      "category": "traceability",
+      "status": "active",
+      "dimension": "correctness",
+      "title": "State directory resolved relative to plugin file",
+      "file": ".opencode/plugins/mk-goal.js",
+      "line": 25,
+      "description": "Spec names .opencode/skills/.goal-state/; plugin resolves ../skills/.goal-state/ from its own file URL.",
+      "content_hash": "36ce138ce689238ef8374eb2b9f90ac8c781b7f0d848336789fb4a4c86271c3f",
+      "findingClass": "spec-drift",
+      "evidenceRefs": [
+        ".opencode/plugins/mk-goal.js:25"
+      ]
+    },
+    {
+      "findingId": "F004",
+      "severity": "P2",
+      "category": "security",
+      "status": "active",
+      "dimension": "security",
+      "title": "appendGoalJsonl swallows all errors silently",
+      "file": ".opencode/plugins/mk-goal.js",
+      "line": 696,
+      "description": "Audit and debug log append failures are silently dropped, removing observability signals for disk/permission problems.",
+      "content_hash": "1ed47dc180f060f2e27b5f578c079eb66da314e38efac13b4f15fac8e5e11752",
+      "findingClass": "observability",
+      "evidenceRefs": [
+        ".opencode/plugins/mk-goal.js:696-709"
+      ]
+    },
+    {
+      "findingId": "F005",
+      "severity": "P2",
+      "category": "security",
+      "status": "active",
+      "dimension": "security",
+      "title": "redactEvidence misses common secret formats",
+      "file": ".opencode/plugins/mk-goal.js",
+      "line": 380,
+      "description": "Regex set omits Google API keys, PEM private key blocks, and hex high-entropy secrets from evidence redaction.",
+      "content_hash": "7e8d6feaa142ada9e6c7762f045dd1197ef26e75aef634b3cce0c8a781ea528c",
+      "findingClass": "secret-redaction",
+      "evidenceRefs": [
+        ".opencode/plugins/mk-goal.js:380-389"
+      ]
+    },
+    {
+      "findingId": "F006",
+      "severity": "P2",
+      "category": "security",
+      "status": "active",
+      "dimension": "security",
+      "title": "role marker sanitizer only handles colon delimiter",
+      "file": ".opencode/plugins/mk-goal.js",
+      "line": 339,
+      "description": "Role label rewrite requires a colon; equals or arrow delimiters around system/developer/etc. are not neutralized.",
+      "content_hash": "79b09b089e269accdf9a23cf439ef4616c488601e1a65238a21fade5e97ab0f6",
+      "findingClass": "input-sanitization",
+      "evidenceRefs": [
+        ".opencode/plugins/mk-goal.js:339-347"
+      ]
+    },
+    {
+      "findingId": "F007",
+      "severity": "P2",
+      "category": "security",
+      "status": "active",
+      "dimension": "security",
+      "title": "sweepOrphanedActiveStates swallows all errors",
+      "file": ".opencode/plugins/mk-goal.js",
+      "line": 1231,
+      "description": "Orphan sweep catches and discards every exception, hiding permission, disk, or integrity failures in state management.",
+      "content_hash": "e8aea2df077de090d279fba079a9acd7083427d785081ceefc7a468464ed6e95",
+      "findingClass": "observability",
+      "evidenceRefs": [
+        ".opencode/plugins/mk-goal.js:1231-1262"
+      ]
+    },
+    {
+      "findingId": "F008",
+      "severity": "P1",
+      "category": "traceability",
+      "status": "active",
+      "dimension": "traceability",
+      "title": "Phase 016 checklist overclaims completion while live code still contains F2 and F3 defects",
+      "file": ".opencode/specs/deep-loops/032-goal-opencode-plugin/016-plugin-correctness-fixes/checklist.md",
+      "line": 40,
+      "description": "CHK-F2 and CHK-F3 are marked complete with RED/GREEN evidence, but mk-goal.js still exhibits the check-then-act race and queue-bypass sweep. Phase spec says Planned while checklist claims 100% complete.",
+      "content_hash": "6d174f2630486f0374540257bebfbb893d6708ddce0ec811be6689f2adafb607",
+      "findingClass": "checklist-overclaim",
+      "evidenceRefs": [
+        ".opencode/specs/deep-loops/032-goal-opencode-plugin/016-plugin-correctness-fixes/checklist.md:40-90",
+        ".opencode/specs/deep-loops/032-goal-opencode-plugin/016-plugin-correctness-fixes/spec.md:52",
+        ".opencode/plugins/mk-goal.js:2091-2095",
+        ".opencode/plugins/mk-goal.js:1231-1262"
+      ]
+    },
+    {
+      "findingId": "F009",
+      "severity": "P1",
+      "category": "correctness",
+      "status": "active",
+      "dimension": "traceability",
+      "title": "Continuation in-flight lock is a check-then-act race",
+      "file": ".opencode/plugins/mk-goal.js",
+      "line": 2091,
+      "description": "Two concurrent session.idle events can both pass the has check before either add, causing double promptAsync dispatch and double auto-turn charges.",
+      "content_hash": "4033f22349382a6a089882875c659194e14c44c60f867e7abc3aaa6ebafae389",
+      "findingClass": "race-condition",
+      "evidenceRefs": [
+        ".opencode/plugins/mk-goal.js:2091-2095"
+      ]
+    },
+    {
+      "findingId": "F010",
+      "severity": "P1",
+      "category": "correctness",
+      "status": "active",
+      "dimension": "traceability",
+      "title": "Sweep/archive path can resurrect active goals",
+      "file": ".opencode/plugins/mk-goal.js",
+      "line": 1231,
+      "description": "sweepOrphanedActiveStates reads outside the mutation queue and can archive a file while a queued mutator writes a new active file afterward.",
+      "content_hash": "533052ee1a2c9da725ed688735c9dd855cfb09e35078893ac779975dbe2220ea",
+      "findingClass": "race-condition",
+      "evidenceRefs": [
+        ".opencode/plugins/mk-goal.js:1231-1262"
+      ]
+    },
+    {
+      "findingId": "F011",
+      "severity": "P2",
+      "category": "maintainability",
+      "status": "active",
+      "dimension": "traceability",
+      "title": "goal-events.log grows unbounded under DEBUG",
+      "file": ".opencode/plugins/mk-goal.js",
+      "line": 735,
+      "description": "logDebugEvent appends one line per event when MK_GOAL_DEBUG=1 with no rotation or size cap.",
+      "content_hash": "7a0d2f29a774ebe5b2e8fe2e2d59f1bf40772beba93402e3ced397c3d85efaa5",
+      "findingClass": "resource-exhaustion",
+      "evidenceRefs": [
+        ".opencode/plugins/mk-goal.js:735-742"
+      ]
+    },
+    {
+      "findingId": "F012",
+      "severity": "P2",
+      "category": "maintainability",
+      "status": "active",
+      "dimension": "maintainability",
+      "title": "executeGoalAction default show action is dead code",
+      "file": ".opencode/plugins/mk-goal.js",
+      "line": 2391,
+      "description": "Unknown actions fallback to show, but command router never dispatches unknown actions.",
+      "content_hash": "6ccd6ce408ee6a9f3360b5cbbf17f4c5f0721259fa03dded42fac00449fa0ac4",
+      "findingClass": "dead-code",
+      "evidenceRefs": [
+        ".opencode/plugins/mk-goal.js:2391",
+        ".opencode/commands/goal_opencode.md:55-74"
+      ]
+    },
+    {
+      "findingId": "F013",
+      "severity": "P2",
+      "category": "maintainability",
+      "status": "active",
+      "dimension": "maintainability",
+      "title": "Duplicate budget-prefixed status aliases",
+      "file": ".opencode/plugins/mk-goal.js",
+      "line": 2327,
+      "description": "goalStateLines emits both canonical and budget-prefixed aliases for the same token values.",
+      "content_hash": "fb0ae7bbc07864cb8deb7850ece95aca0679a5e674ea855d64932b4d92c10fbb",
+      "findingClass": "output-clutter",
+      "evidenceRefs": [
+        ".opencode/plugins/mk-goal.js:2327-2329",
+        ".opencode/skills/system-spec-kit/references/hooks/goal_plugin.md:83-87"
+      ]
+    },
+    {
+      "findingId": "F014",
+      "severity": "P2",
+      "category": "maintainability",
+      "status": "active",
+      "dimension": "maintainability",
+      "title": "executeGoalStatus lacks includeInjectionPreview option",
+      "file": ".opencode/plugins/mk-goal.js",
+      "line": 2441,
+      "description": "executeGoalAction accepts includeInjectionPreview but executeGoalStatus always renders the preview.",
+      "content_hash": "175785f0fa797b4acb31d87805367f4e2efdcdc416037251679c13a5966f8471",
+      "findingClass": "api-inconsistency",
+      "evidenceRefs": [
+        ".opencode/plugins/mk-goal.js:2441-2453",
+        ".opencode/plugins/mk-goal.js:2390-2394"
+      ]
+    },
+    {
+      "findingId": "F015",
+      "severity": "P2",
+      "category": "maintainability",
+      "status": "active",
+      "dimension": "maintainability",
+      "title": "goal_plugin.md verification list is stale",
+      "file": ".opencode/skills/system-spec-kit/references/hooks/goal_plugin.md",
+      "line": 99,
+      "description": "Verification section lists 7 test files; the suite now has 10 files.",
+      "content_hash": "3716750e28fe728ad7912ee86bc956c028dd0bad04dcc996add956020076708c",
+      "findingClass": "doc-drift",
+      "evidenceRefs": [
+        ".opencode/skills/system-spec-kit/references/hooks/goal_plugin.md:99-111",
+        ".opencode/plugins/tests/"
+      ]
+    },
+    {
+      "findingId": "F016",
+      "severity": "P2",
+      "category": "maintainability",
+      "status": "active",
+      "dimension": "maintainability",
+      "title": "Command budget parsing relies on AI instruction",
+      "file": ".opencode/commands/goal_opencode.md",
+      "line": 63,
+      "description": "--budget N parsing and validation are described as instructions to the executing agent rather than a deterministic parser.",
+      "content_hash": "2bea445298bf2693f0b913f3b6b02d60efd083390b0629f4bd5ce8db9620f973",
+      "findingClass": "contract-fragility",
+      "evidenceRefs": [
+        ".opencode/commands/goal_opencode.md:63-66"
+      ]
+    },
+    {
+      "findingId": "F017",
+      "severity": "P2",
+      "category": "maintainability",
+      "status": "active",
+      "dimension": "maintainability",
+      "title": "GOAL_ACTIONS includes later-phase verbs without provenance",
+      "file": ".opencode/plugins/mk-goal.js",
+      "line": 156,
+      "description": "history/doctor/health/resume were added after original spec scope but carry no comment or deprecation path.",
+      "content_hash": "855a7605d930c4a15ae28b2b4b86c2633f7de57b2b7eab496de5906caf0a84ea",
+      "findingClass": "traceability",
+      "evidenceRefs": [
+        ".opencode/plugins/mk-goal.js:156",
+        ".opencode/specs/deep-loops/032-goal-opencode-plugin/spec.md:89-92"
+      ]
+    },
+    {
+      "findingId": "F018",
+      "severity": "P2",
+      "category": "correctness",
+      "status": "active",
+      "dimension": "correctness",
+      "title": "session.idle handler calls continuation with missing sessionID",
+      "file": ".opencode/plugins/mk-goal.js",
+      "line": 2541,
+      "description": "When sessionID is falsy the branch still invokes maybeContinueGoal(null), logging a misleading missing_session_id reason.",
+      "content_hash": "f44146e53d929953a4d9eb01fc81b908f114186a01225d45a08675b5d046497b",
+      "findingClass": "telemetry-noise",
+      "evidenceRefs": [
+        ".opencode/plugins/mk-goal.js:2541-2548"
+      ]
+    },
+    {
+      "findingId": "F019",
+      "severity": "P2",
+      "category": "correctness",
+      "status": "active",
+      "dimension": "correctness",
+      "title": "recoverProviderUsageLimitIfDue does not recover budget_limited goals",
+      "file": ".opencode/plugins/mk-goal.js",
+      "line": 1520,
+      "description": "Only usage_limited goals are resumed; budget_limited remains terminal even if the budget constraint changes.",
+      "content_hash": "f5cf97ea3b451886a7df1d06380ca60b2499d6c7bf83d190e27db4c9fd78b62e",
+      "findingClass": "state-machine-gap",
+      "evidenceRefs": [
+        ".opencode/plugins/mk-goal.js:1520-1527"
+      ]
+    },
+    {
+      "findingId": "F020",
+      "severity": "P2",
+      "category": "correctness",
+      "status": "active",
+      "dimension": "correctness",
+      "title": "retryAfterDeadlineFromValue misinterprets large second values",
+      "file": ".opencode/plugins/mk-goal.js",
+      "line": 867,
+      "description": "Numeric values above 1e12 are treated as absolute ms without unit validation, so large Retry-After seconds become distant epoch timestamps.",
+      "content_hash": "706fd788e6091276c76e6dbf8ede3f08a672f4917068ac91ba1a60ccf4c891a8",
+      "findingClass": "timestamp-handling",
+      "evidenceRefs": [
+        ".opencode/plugins/mk-goal.js:867-878"
+      ]
+    },
+    {
+      "findingId": "F021",
+      "severity": "P2",
+      "category": "correctness",
+      "status": "active",
+      "dimension": "correctness",
+      "title": "buildPromptAsyncOptions uses statSync in async path",
+      "file": ".opencode/plugins/mk-goal.js",
+      "line": 2034,
+      "description": "An async continuation path performs a blocking synchronous filesystem stat, stalling the event loop.",
+      "content_hash": "0f1ebf68099fdd24062bd801b8d81dc42b8c44c16a4964f8b40bcd23e4d730a2",
+      "findingClass": "blocking-io",
+      "evidenceRefs": [
+        ".opencode/plugins/mk-goal.js:2034-2056"
+      ]
+    },
+    {
+      "findingId": "F022",
+      "severity": "P2",
+      "category": "security",
+      "status": "active",
+      "dimension": "security",
+      "title": "Smoke mode reports would_fire without promptAsync check",
+      "file": ".opencode/plugins/mk-goal.js",
+      "line": 2143,
+      "description": "autonomyMode === smoke returns would_fire before verifying client.session.promptAsync exists.",
+      "content_hash": "833eba63ad17b6eb5518472988148f019bcf10d82da29e28f76ab532bd2b708f",
+      "findingClass": "autonomy-safety",
+      "evidenceRefs": [
+        ".opencode/plugins/mk-goal.js:2143-2149"
+      ]
+    },
+    {
+      "findingId": "F023",
+      "severity": "P2",
+      "category": "security",
+      "status": "active",
+      "dimension": "security",
+      "title": "Autonomy kill switch is global env only",
+      "file": ".opencode/plugins/mk-goal.js",
+      "line": 660,
+      "description": "No per-session emergency stop exists beyond goal-level paused; runaway sessions require global env change or goal clear.",
+      "content_hash": "c7735ee7a18f944bfea83b3d9d0c131ce1fa41dd11e8164a9c6d6ac53a979d3d",
+      "findingClass": "autonomy-safety",
+      "evidenceRefs": [
+        ".opencode/plugins/mk-goal.js:660-666"
+      ]
+    },
+    {
+      "findingId": "F024",
+      "severity": "P2",
+      "category": "security",
+      "status": "active",
+      "dimension": "security",
+      "title": "Wall clock cap measures from goal creation not resume",
+      "file": ".opencode/plugins/mk-goal.js",
+      "line": 1972,
+      "description": "continuationCapReason uses startedAtMs, so paused-and-resumed goals resume with already-depleted wall budget.",
+      "content_hash": "d3e5a8d620c45b51ee20cd238e97cc9face09bfa41b7d03b717a99343c93a5e5",
+      "findingClass": "autonomy-safety",
+      "evidenceRefs": [
+        ".opencode/plugins/mk-goal.js:1972-1978"
+      ]
+    },
+    {
+      "findingId": "F025",
+      "severity": "P2",
+      "category": "traceability",
+      "status": "active",
+      "dimension": "traceability",
+      "title": "Phase 015 status inconsistent between spec and implementation summary",
+      "file": ".opencode/specs/deep-loops/032-goal-opencode-plugin/015-packet-hygiene-and-narrative-integrity/spec.md",
+      "line": 52,
+      "description": "Child spec says Planned while implementation-summary says Complete and 100% completion.",
+      "content_hash": "901969df1ade03d877b5328da4229aa25f49fdf4b064f65c010dd74f8432ad0f",
+      "findingClass": "status-drift",
+      "evidenceRefs": [
+        ".opencode/specs/deep-loops/032-goal-opencode-plugin/015-packet-hygiene-and-narrative-integrity/spec.md:52",
+        ".opencode/specs/deep-loops/032-goal-opencode-plugin/015-packet-hygiene-and-narrative-integrity/implementation-summary.md:35"
+      ]
+    },
+    {
+      "findingId": "F026",
+      "severity": "P2",
+      "category": "traceability",
+      "status": "active",
+      "dimension": "traceability",
+      "title": "Parent phase map does not reflect phase 015 completion",
+      "file": ".opencode/specs/deep-loops/032-goal-opencode-plugin/spec.md",
+      "line": 186,
+      "description": "Parent map lists phase 015 Planned, matching the child spec but conflicting with the child implementation summary.",
+      "content_hash": "1188066a7f67c704bdd9133cf719017f39686fd13986935aa5138e7f59d01d13",
+      "findingClass": "status-drift",
+      "evidenceRefs": [
+        ".opencode/specs/deep-loops/032-goal-opencode-plugin/spec.md:186",
+        ".opencode/specs/deep-loops/032-goal-opencode-plugin/015-packet-hygiene-and-narrative-integrity/implementation-summary.md:35"
+      ]
+    },
+    {
+      "findingId": "F027",
+      "severity": "P2",
+      "category": "maintainability",
+      "status": "active",
+      "dimension": "maintainability",
+      "title": "__test seam list is duplicated",
+      "file": ".opencode/plugins/tests/mk-goal-export-contract.test.cjs",
+      "line": 28,
+      "description": "Export-contract test hard-codes expected __test keys; adding a seam requires editing two files.",
+      "content_hash": "159bf1543103674ba981fe48272d6056ce0792b48f14b8f85d0ebd1c8b258277",
+      "findingClass": "test-maintenance",
+      "evidenceRefs": [
+        ".opencode/plugins/tests/mk-goal-export-contract.test.cjs:28-48",
+        ".opencode/plugins/mk-goal.js:2637-2655"
+      ]
+    },
+    {
+      "findingId": "F028",
+      "severity": "P2",
+      "category": "maintainability",
+      "status": "active",
+      "dimension": "maintainability",
+      "title": "speckit-goal-offer-contract test not matched by documented glob",
+      "file": ".opencode/plugins/tests/",
+      "line": 1,
+      "description": "Verification docs cite mk-goal-*.test.cjs which excludes speckit-goal-offer-contract.test.cjs.",
+      "content_hash": "f0f0a55f9a2362fce832ecd05233b5cb6aaca79bce398d08c439ffc0d8b17d8e",
+      "findingClass": "test-discovery",
+      "evidenceRefs": [
+        ".opencode/plugins/tests/speckit-goal-offer-contract.test.cjs",
+        ".opencode/skills/system-spec-kit/references/hooks/goal_plugin.md:99-111"
+      ]
+    },
+    {
+      "findingId": "F029",
+      "severity": "P2",
+      "category": "maintainability",
+      "status": "active",
+      "dimension": "maintainability",
+      "title": "Verification commands use per-file node invocation",
+      "file": ".opencode/skills/system-spec-kit/references/hooks/goal_plugin.md",
+      "line": 99,
+      "description": "Docs list individual node <file> commands instead of node --test runner, losing aggregated output.",
+      "content_hash": "410a7c53b0f996c674468fd9e3ee73ff4e9329fbc1ccc2df06f2f419090ba285",
+      "findingClass": "doc-drift",
+      "evidenceRefs": [
+        ".opencode/skills/system-spec-kit/references/hooks/goal_plugin.md:99-111"
+      ]
+    },
+    {
+      "findingId": "F030",
+      "severity": "P2",
+      "category": "maintainability",
+      "status": "active",
+      "dimension": "maintainability",
+      "title": "GoalError codes are string literals without centralized enum",
+      "file": ".opencode/plugins/mk-goal.js",
+      "line": 166,
+      "description": "Error codes appear as inline strings across the file instead of a single const enum.",
+      "content_hash": "599d3840768bf8bc77f089f9a64308b30a23ca10b829abe4c8dc36d885f1c984",
+      "findingClass": "naming",
+      "evidenceRefs": [
+        ".opencode/plugins/mk-goal.js:166-173",
+        ".opencode/plugins/mk-goal.js:289-292",
+        ".opencode/plugins/mk-goal.js:1430-1432"
+      ]
+    },
+    {
+      "findingId": "F031",
+      "severity": "P2",
+      "category": "correctness",
+      "status": "active",
+      "dimension": "correctness",
+      "title": "Command budget parsing only handles trailing --budget N",
+      "file": ".opencode/commands/goal_opencode.md",
+      "line": 63,
+      "description": "Mid-string --budget N is parsed as the budget value and fails validation instead of extracting the suffix.",
+      "content_hash": "98835ca08d7768883628a5c015ab4340debf0bd30c82974f26c39eb0f11efed5",
+      "findingClass": "routing-edge-case",
+      "evidenceRefs": [
+        ".opencode/commands/goal_opencode.md:63-66"
+      ]
+    },
+    {
+      "findingId": "F032",
+      "severity": "P2",
+      "category": "correctness",
+      "status": "active",
+      "dimension": "correctness",
+      "title": "Command output contract summary omits show from ACTION list",
+      "file": ".opencode/commands/goal_opencode.md",
+      "line": 30,
+      "description": "The summary ACTION list should explicitly include show or clarify it is the default path.",
+      "content_hash": "9266f9bd748deb2c055e04d8336eeee9610527a5b8500297f771af91b29e2da4",
+      "findingClass": "doc-clarity",
+      "evidenceRefs": [
+        ".opencode/commands/goal_opencode.md:30-33"
+      ]
+    },
+    {
+      "findingId": "F033",
+      "severity": "P2",
+      "category": "correctness",
+      "status": "active",
+      "dimension": "correctness",
+      "title": "Failure envelope normalizes unknown action to show",
+      "file": ".opencode/plugins/mk-goal.js",
+      "line": 2380,
+      "description": "failureLines maps unrecognized actions to show, which is misleading if a different action failed.",
+      "content_hash": "363051c08630ff8ee5b6c825854597be61bf2ef631966105fa5fb61e0bff2d43",
+      "findingClass": "telemetry-noise",
+      "evidenceRefs": [
+        ".opencode/plugins/mk-goal.js:2380-2388"
+      ]
+    },
+    {
+      "findingId": "F034",
+      "severity": "P2",
+      "category": "maintainability",
+      "status": "active",
+      "dimension": "maintainability",
+      "title": "goal_plugin.md output field table omits emitted fields",
+      "file": ".opencode/skills/system-spec-kit/references/hooks/goal_plugin.md",
+      "line": 64,
+      "description": "blocked_by_prompt, continuation_suppressed, continuation_attempts, and continuation_suppressed_reason are emitted but not documented.",
+      "content_hash": "d3f7901bdb0bb983c92c382400dabebcf45b2d0ffb43998ce3fa74d263e5a635",
+      "findingClass": "doc-drift",
+      "evidenceRefs": [
+        ".opencode/skills/system-spec-kit/references/hooks/goal_plugin.md:64-78",
+        ".opencode/plugins/mk-goal.js:2337-2340"
+      ]
+    },
+    {
+      "findingId": "F035",
+      "severity": "P2",
+      "category": "maintainability",
+      "status": "active",
+      "dimension": "maintainability",
+      "title": "goal_opencode.md output summary omits mutation= field",
+      "file": ".opencode/commands/goal_opencode.md",
+      "line": 49,
+      "description": "mutation= is described in prose but missing from the STATUS/ACTION envelope summary lines.",
+      "content_hash": "9744f540da747deb18f1f9e01298951e4fa4e34daec8f9dcf29a50c2d4567eeb",
+      "findingClass": "doc-clarity",
+      "evidenceRefs": [
+        ".opencode/commands/goal_opencode.md:30-33",
+        ".opencode/commands/goal_opencode.md:49",
+        ".opencode/commands/goal_opencode.md:80-84"
+      ]
+    },
+    {
+      "findingId": "F036",
+      "severity": "P2",
+      "category": "maintainability",
+      "status": "active",
+      "dimension": "maintainability",
+      "title": "PROMPT_OVERHEAD_CHARS magic constant lacks derivation",
+      "file": ".opencode/plugins/mk-goal.js",
+      "line": 38,
+      "description": "Value 1900 determines objective budget in buildEnhancedGoalPrompt but has no derivation comment.",
+      "content_hash": "d5ba7fee83f67869924e438ea061e66c51cc2b4019cb795023808703dae358b6",
+      "findingClass": "magic-constant",
+      "evidenceRefs": [
+        ".opencode/plugins/mk-goal.js:38",
+        ".opencode/plugins/mk-goal.js:445"
+      ]
+    },
+    {
+      "findingId": "F037",
+      "severity": "P2",
+      "category": "maintainability",
+      "status": "active",
+      "dimension": "maintainability",
+      "title": "maxAutoTurns clamping to env value is undocumented",
+      "file": ".opencode/plugins/mk-goal.js",
+      "line": 2015,
+      "description": "reserveContinuationTurn clamps stored maxAutoTurns to the current env cap, but docs describe the env var only as a default for new goals.",
+      "content_hash": "2f022a94078df995a320daf98ed6c2f6faaca6fa3083788b2f2e7de90faa850c",
+      "findingClass": "doc-drift",
+      "evidenceRefs": [
+        ".opencode/plugins/mk-goal.js:2015",
+        ".opencode/skills/system-spec-kit/references/hooks/goal_plugin.md:45-62"
+      ]
+    }
+  ],
+  "resolvedFindings": [],
+  "blockedStopHistory": [],
+  "persistentSameSeverity": [],
+  "severityChanged": [],
+  "repeatedFindings": [],
+  "dimensionCoverage": {
+    "correctness": true,
+    "security": true,
+    "traceability": true,
+    "maintainability": true
+  },
+  "findingsBySeverity": {
+    "P0": 0,
+    "P1": 3,
+    "P2": 34
+  },
+  "openFindingsCount": 37,
+  "resolvedFindingsCount": 0,
+  "convergenceScore": 0,
+  "graphConvergenceScore": 0,
+  "graphDecision": null,
+  "graphBlockers": [],
+  "corruptionWarnings": []
+}

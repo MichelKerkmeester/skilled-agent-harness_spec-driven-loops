@@ -36,7 +36,7 @@
       "plan"
     ],
     "importance_tier": "normal",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
       ".opencode/plugins/mk-goal.js",
       ".opencode/skills/system-spec-kit/references/hooks/goal_plugin.md",
@@ -197,7 +197,7 @@
     ],
     "causal_summary": "`mk-goal.js` contains duplication and implicit contracts that made the F-series correctness bugs (fixed in phase 016) possible in the first place: the `sanitizeInlineText(x,160).replace(/\\s+/g,'-')` goal-ID normalization idiom is copy-pasted 7 times as of this phase starting (re-confirmed at mk-goal.js:1265, 1353, 1579, 1598, 1615, 1632, 1823 - grew from the originally-documented 6 sites after phases 016/017 added a 7th; re-verify via `rg` before implementing since this may have shifted further), plus a near-variant at `goalIdFromFactory` (mk-goal.js:487) using the same idiom internally",
     "created_at": "2026-07-03T07:30:49Z",
-    "last_save_at": "2026-07-03T16:30:11.493Z",
+    "last_save_at": "2026-07-04T08:33:06.800Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,9 +206,9 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:1d24309cdebca75730c9213f835f5724117e91edc3e4c7a3ae98e051b14adda0",
+    "source_fingerprint": "sha256:14bfbe17d9cbd960988594b344c1ab7a266ad579ff829fd60dc92ab29bb5689c",
     "source_doc_hashes": {
-      "spec.md": "5ecc1d7c99970bb65b5f2ea073e76ce83a9823393d6a2ddc64b09e5151a77fd2",
+      "spec.md": "465e3cfca776fd16e708f5a8eeb1f1203e02b01a260f735fcde5202dd8f6166d",
       "plan.md": "45059ce13202db6d92e730f81579bfae729099247b949304bf33b21f051eee36",
       "tasks.md": "5c60eaa7dff78e886d1a0dabb9705ec1ec7152eacd350844497e0e7001d646eb",
       "implementation-summary.md": "0210f190a00f1f86d0e090ab04286971e93271f5b96a4fae83cfec1f4796a058"

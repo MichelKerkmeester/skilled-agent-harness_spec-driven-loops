@@ -1,414 +1,2293 @@
 {
-  "sessionId": "rv-goal-docs-audit-032-20260701-161615",
-  "parentSessionId": null,
-  "generation": 1,
-  "lineageMode": "new",
-  "continuedFromRun": null,
-  "terminalStop": null,
-  "status": "INITIALIZED",
+  "mergedFrom": [
+    "kimi-review",
+    "minimax-review"
+  ],
+  "mergedVerdict": "CONDITIONAL",
   "openFindings": [
     {
-      "findingId": "P1-001",
-      "severity": "P1",
-      "title": "Central env reference omits active goal-state cleanup controls",
-      "file": null,
-      "line": null,
-      "description": "",
-      "findingClass": null,
-      "deltaStatus": "open",
-      "scopeProof": null,
-      "affectedSurfaceHints": [],
-      "contentHash": null,
-      "dimension": "correctness",
-      "firstSeen": 1,
-      "lastSeen": 1,
+      "findingId": "F027--8ee40e8a0056",
+      "severity": "P2",
+      "category": "maintainability",
       "status": "active",
-      "transitions": [
+      "dimension": "maintainability",
+      "title": "__test seam list is duplicated",
+      "file": ".opencode/plugins/tests/mk-goal-export-contract.test.cjs",
+      "line": 28,
+      "description": "Export-contract test hard-codes expected __test keys; adding a seam requires editing two files.",
+      "content_hash": "159bf1543103674ba981fe48272d6056ce0792b48f14b8f85d0ebd1c8b258277",
+      "findingClass": "test-maintenance",
+      "evidenceRefs": [
+        ".opencode/plugins/tests/mk-goal-export-contract.test.cjs:28-48",
+        ".opencode/plugins/mk-goal.js:2637-2655"
+      ],
+      "_lineages": [
+        "kimi-review"
+      ],
+      "_conflictOf": "F027",
+      "_conflict_id": "F027--8ee40e8a0056",
+      "_conflicts": [
         {
-          "iteration": 1,
-          "from": null,
-          "to": "P1",
-          "reason": "Initial discovery (delta)"
+          "relation": "CONTRADICTS",
+          "originalId": "F027",
+          "peerId": "F027--b8637e960d0c",
+          "peerLineages": [
+            "minimax-review"
+          ],
+          "basis": "same-id-different-content"
         }
-      ],
-      "dimensions": [
-        "correctness"
-      ],
-      "mergedFindingIds": []
+      ]
     },
     {
-      "findingId": "P1-002",
-      "severity": "P1",
-      "title": "Already-updated goal plugin hook reference still omits live cleanup env vars and output fields",
-      "file": null,
-      "line": null,
-      "description": ".opencode/skills/system-spec-kit/references/hooks/goal_plugin.md was updated for goal_opencode.md but still omits MK_GOAL_STATE_ARCHIVE_RETENTION_DAYS, MK_GOAL_STATE_ACTIVE_RETENTION_DAYS, MK_GOAL_STATE_SWEEP_INTERVAL_MS, store_health, and mutation= coverage.",
-      "findingClass": "cross-consumer",
-      "deltaStatus": null,
-      "scopeProof": "The hook reference and central ENV_REFERENCE sibling were both checked against mk-goal.js source-of-truth definitions/emission paths.",
-      "affectedSurfaceHints": [
-        "system-spec-kit hook reference",
-        "goal plugin env controls",
-        "goal plugin output contract",
-        "operator docs"
+      "findingId": "F004--189cded7ec08",
+      "severity": "P2",
+      "category": "security",
+      "status": "active",
+      "dimension": "security",
+      "title": "appendGoalJsonl swallows all errors silently",
+      "file": ".opencode/plugins/mk-goal.js",
+      "line": 696,
+      "description": "Audit and debug log append failures are silently dropped, removing observability signals for disk/permission problems.",
+      "content_hash": "1ed47dc180f060f2e27b5f578c079eb66da314e38efac13b4f15fac8e5e11752",
+      "findingClass": "observability",
+      "evidenceRefs": [
+        ".opencode/plugins/mk-goal.js:696-709"
       ],
-      "contentHash": null,
-      "dimension": "correctness",
+      "_lineages": [
+        "kimi-review"
+      ],
+      "_conflictOf": "F004",
+      "_conflict_id": "F004--189cded7ec08",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "F004",
+          "peerId": "F004--6bc16df344b4",
+          "peerLineages": [
+            "minimax-review"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "findingId": "F026--3e94ff4d976a",
+      "severity": "P2",
+      "category": "traceability",
+      "status": "active",
+      "dimension": "traceability",
+      "title": "Audit dossier DOC-2 (missing export-contract row) is now obsolete; row is present",
+      "file": ".opencode/skills/system-spec-kit/feature_catalog/18--ux-hooks/goal-opencode-plugin.md",
+      "line": 60,
+      "firstSeen": 7,
+      "lastSeen": 7,
+      "transitions": [
+        {
+          "iteration": 7,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (audit dossier drift; F010/F012 same family)"
+        }
+      ],
+      "content_hash": "sha256:f026-audit-doc2-obsolete-2026-07-04",
+      "_lineages": [
+        "minimax-review"
+      ],
+      "_conflictOf": "F026",
+      "_conflict_id": "F026--3e94ff4d976a",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "F026",
+          "peerId": "F026--456d27aeca0d",
+          "peerLineages": [
+            "kimi-review"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "findingId": "F010--40b7d780739a",
+      "severity": "P1",
+      "category": "traceability",
+      "status": "active",
+      "dimension": "security",
+      "title": "Audit dossier F4/F5 already mitigated in current code (dossier drift)",
+      "file": ".opencode/specs/deep-loops/032-goal-opencode-plugin/scratch/2026-07-03-four-reviewer-audit-findings.md",
+      "line": 0,
       "firstSeen": 3,
       "lastSeen": 3,
-      "status": "active",
       "transitions": [
         {
           "iteration": 3,
           "from": null,
           "to": "P1",
-          "reason": "Initial discovery (delta)"
+          "reason": "Initial discovery (audit-dossier drift; phase 016 will over-fix)"
         }
       ],
-      "dimensions": [
-        "correctness"
+      "content_hash": "sha256:f010-audit-dossier-f4f5-drift-2026-07-04",
+      "_lineages": [
+        "minimax-review"
       ],
-      "mergedFindingIds": []
-    },
-    {
-      "findingId": "P1-003",
-      "severity": "P1",
-      "title": "Root README delegates the /goal plugin contract to an entrypoint inventory that does not define that contract",
-      "file": null,
-      "line": null,
-      "description": "",
-      "findingClass": null,
-      "deltaStatus": null,
-      "scopeProof": null,
-      "affectedSurfaceHints": [],
-      "contentHash": "sha256:e80e260116b0bf49ce90d1b4547345935ecf3f60515b9d19eaf7ccc4bb21f457",
-      "dimension": "correctness",
-      "firstSeen": 4,
-      "lastSeen": 4,
-      "status": "active",
-      "transitions": [
+      "_conflictOf": "F010",
+      "_conflict_id": "F010--40b7d780739a",
+      "_conflicts": [
         {
-          "iteration": 4,
-          "from": null,
-          "to": "P1",
-          "reason": "Initial discovery (delta)"
+          "relation": "CONTRADICTS",
+          "originalId": "F010",
+          "peerId": "F010--94fce7ec0ab8",
+          "peerLineages": [
+            "kimi-review"
+          ],
+          "basis": "same-id-different-content"
         }
-      ],
-      "dimensions": [
-        "correctness"
-      ],
-      "mergedFindingIds": []
+      ]
     },
     {
-      "findingId": "DR-006-P2-001",
+      "findingId": "F012--e8ca5344268c",
       "severity": "P2",
-      "title": "Packet-history docs still contain current stale goal.md operational claims",
-      "file": null,
-      "line": null,
-      "description": "A small number of packet-history docs still present .opencode/commands/goal.md as a current operational target or assert stale-reference cleanliness that is no longer literally true.",
-      "findingClass": "instance-only",
-      "deltaStatus": null,
-      "scopeProof": "Glob .opencode/commands/*goal*.md returned only .opencode/commands/goal_opencode.md; narrowed rg excluding review/research/changelog/archive folders found active hits only in phase 009 handover and phase 011 docs plus explicit historical rename narrative.",
-      "affectedSurfaceHints": [],
-      "contentHash": null,
-      "dimension": "correctness",
-      "firstSeen": 6,
-      "lastSeen": 6,
+      "category": "traceability",
       "status": "active",
+      "dimension": "security",
+      "title": "Audit e-2.2 Date.now() claim is FALSE for current state",
+      "file": ".opencode/specs/deep-loops/032-goal-opencode-plugin/scratch/2026-07-03-four-reviewer-audit-findings.md",
+      "line": 0,
+      "firstSeen": 3,
+      "lastSeen": 3,
       "transitions": [
         {
-          "iteration": 6,
+          "iteration": 3,
           "from": null,
           "to": "P2",
-          "reason": "Initial discovery (iteration summary)"
+          "reason": "Initial discovery (audit-dossier captured pre-fix state)"
         }
       ],
-      "dimensions": [
-        "correctness"
+      "content_hash": "sha256:f012-audit-e2-2-dossier-drift-2026-07-04",
+      "_lineages": [
+        "minimax-review"
       ],
-      "mergedFindingIds": []
+      "_conflictOf": "F012",
+      "_conflict_id": "F012--e8ca5344268c",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "F012",
+          "peerId": "F012--0303f371207d",
+          "peerLineages": [
+            "kimi-review"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
     },
     {
-      "findingId": "I10-P2-1",
+      "findingId": "F023--0781442fc590",
       "severity": "P2",
-      "title": "Registered tool-path tests do not pin mutation=refreshed or mutation=replaced",
-      "file": null,
-      "line": null,
-      "description": "",
-      "findingClass": "test-isolation",
-      "deltaStatus": "open",
-      "scopeProof": null,
-      "affectedSurfaceHints": [],
-      "contentHash": null,
+      "category": "security",
+      "status": "active",
+      "dimension": "security",
+      "title": "Autonomy kill switch is global env only",
+      "file": ".opencode/plugins/mk-goal.js",
+      "line": 660,
+      "description": "No per-session emergency stop exists beyond goal-level paused; runaway sessions require global env change or goal clear.",
+      "content_hash": "c7735ee7a18f944bfea83b3d9d0c131ce1fa41dd11e8164a9c6d6ac53a979d3d",
+      "findingClass": "autonomy-safety",
+      "evidenceRefs": [
+        ".opencode/plugins/mk-goal.js:660-666"
+      ],
+      "_lineages": [
+        "kimi-review"
+      ],
+      "_conflictOf": "F023",
+      "_conflict_id": "F023--0781442fc590",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "F023",
+          "peerId": "F023--eb05c4d67e9e",
+          "peerLineages": [
+            "minimax-review"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "findingId": "F024--1248728e8511",
+      "severity": "P1",
+      "category": "traceability",
+      "status": "active",
+      "dimension": "traceability",
+      "title": "Both feature catalogs miss speckit-goal-offer-contract.test.cjs (8th goal test file)",
+      "file": ".opencode/skills/system-spec-kit/feature_catalog/18--ux-hooks/goal-opencode-plugin.md",
+      "line": 58,
+      "firstSeen": 7,
+      "lastSeen": 7,
+      "transitions": [
+        {
+          "iteration": 7,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (feature_catalog_code overlay)"
+        }
+      ],
+      "content_hash": "sha256:f024-feature-catalog-missing-test-file-2026-07-04",
+      "_lineages": [
+        "minimax-review"
+      ],
+      "_conflictOf": "F024",
+      "_conflict_id": "F024--1248728e8511",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "F024",
+          "peerId": "F024--b7e9e804517b",
+          "peerLineages": [
+            "kimi-review"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "findingId": "F021--bad7ff610b5f",
+      "severity": "P2",
+      "category": "correctness",
+      "status": "active",
       "dimension": "correctness",
+      "title": "buildPromptAsyncOptions uses statSync in async path",
+      "file": ".opencode/plugins/mk-goal.js",
+      "line": 2034,
+      "description": "An async continuation path performs a blocking synchronous filesystem stat, stalling the event loop.",
+      "content_hash": "0f1ebf68099fdd24062bd801b8d81dc42b8c44c16a4964f8b40bcd23e4d730a2",
+      "findingClass": "blocking-io",
+      "evidenceRefs": [
+        ".opencode/plugins/mk-goal.js:2034-2056"
+      ],
+      "_lineages": [
+        "kimi-review"
+      ],
+      "_conflictOf": "F021",
+      "_conflict_id": "F021--bad7ff610b5f",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "F021",
+          "peerId": "F021--b129e947ab8f",
+          "peerLineages": [
+            "minimax-review"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "findingId": "F004--6bc16df344b4",
+      "severity": "P2",
+      "category": "maintainability",
+      "status": "active",
+      "dimension": "maintainability",
+      "title": "changelog README does not list 015-021 placeholder rows",
+      "file": ".opencode/specs/deep-loops/032-goal-opencode-plugin/changelog/README.md",
+      "line": 30,
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (advisory; absence is intentional)"
+        }
+      ],
+      "content_hash": "sha256:f004-changelog-placeholders-2026-07-04",
+      "_lineages": [
+        "minimax-review"
+      ],
+      "_conflictOf": "F004",
+      "_conflict_id": "F004--6bc16df344b4",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "F004",
+          "peerId": "F004--189cded7ec08",
+          "peerLineages": [
+            "kimi-review"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "findingId": "F031--25399f8ae626",
+      "severity": "P2",
+      "category": "traceability",
+      "status": "active",
+      "dimension": "traceability",
+      "title": "Combined F024+F026: phase 015 REQ-010 partially redundant; 8th test file still missing from catalogs",
+      "file": ".opencode/specs/deep-loops/032-goal-opencode-plugin/spec.md",
+      "line": 216,
       "firstSeen": 10,
       "lastSeen": 10,
-      "status": "active",
       "transitions": [
         {
           "iteration": 10,
           "from": null,
           "to": "P2",
-          "reason": "Initial discovery (delta)"
+          "reason": "Initial discovery (combined drift)"
         }
       ],
-      "dimensions": [
-        "correctness"
+      "content_hash": "sha256:f031-req010-partial-redundant-2026-07-04",
+      "_lineages": [
+        "minimax-review"
       ],
-      "mergedFindingIds": []
-    },
-    {
-      "findingId": "I8-P2-1",
-      "severity": "P2",
-      "title": "Goal-plugin docs lack a single contract owner and canonical output-field schema",
-      "file": null,
-      "line": null,
-      "description": "",
-      "findingClass": null,
-      "deltaStatus": "new",
-      "scopeProof": null,
-      "affectedSurfaceHints": [],
-      "contentHash": null,
-      "dimension": "correctness",
-      "firstSeen": 8,
-      "lastSeen": 8,
-      "status": "active",
-      "transitions": [
+      "_conflictOf": "F031",
+      "_conflict_id": "F031--25399f8ae626",
+      "_conflicts": [
         {
-          "iteration": 8,
-          "from": null,
-          "to": "P2",
-          "reason": "Initial discovery (delta)"
+          "relation": "CONTRADICTS",
+          "originalId": "F031",
+          "peerId": "F031--fe596b600d18",
+          "peerLineages": [
+            "kimi-review"
+          ],
+          "basis": "same-id-different-content"
         }
-      ],
-      "dimensions": [
-        "correctness"
-      ],
-      "mergedFindingIds": []
+      ]
     },
     {
-      "findingId": "I9-P2-1",
+      "findingId": "F031--fe596b600d18",
       "severity": "P2",
-      "title": "Central env reference carries a stale generated-date marker while missing shipped goal-state env vars",
-      "file": null,
-      "line": null,
-      "description": "ENV_REFERENCE.md says it was generated from source analysis and last updated on 2026-06-10, but its goal-plugin env table omits state cleanup env vars shipped and documented on 2026-07-01.",
-      "findingClass": "instance-only",
-      "deltaStatus": null,
-      "scopeProof": null,
-      "affectedSurfaceHints": [],
-      "contentHash": null,
+      "category": "correctness",
+      "status": "active",
       "dimension": "correctness",
+      "title": "Command budget parsing only handles trailing --budget N",
+      "file": ".opencode/commands/goal_opencode.md",
+      "line": 63,
+      "description": "Mid-string --budget N is parsed as the budget value and fails validation instead of extracting the suffix.",
+      "content_hash": "98835ca08d7768883628a5c015ab4340debf0bd30c82974f26c39eb0f11efed5",
+      "findingClass": "routing-edge-case",
+      "evidenceRefs": [
+        ".opencode/commands/goal_opencode.md:63-66"
+      ],
+      "_lineages": [
+        "kimi-review"
+      ],
+      "_conflictOf": "F031",
+      "_conflict_id": "F031--fe596b600d18",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "F031",
+          "peerId": "F031--25399f8ae626",
+          "peerLineages": [
+            "minimax-review"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "findingId": "F016--52d722f06835",
+      "severity": "P2",
+      "category": "maintainability",
+      "status": "active",
+      "dimension": "maintainability",
+      "title": "Command budget parsing relies on AI instruction",
+      "file": ".opencode/commands/goal_opencode.md",
+      "line": 63,
+      "description": "--budget N parsing and validation are described as instructions to the executing agent rather than a deterministic parser.",
+      "content_hash": "2bea445298bf2693f0b913f3b6b02d60efd083390b0629f4bd5ce8db9620f973",
+      "findingClass": "contract-fragility",
+      "evidenceRefs": [
+        ".opencode/commands/goal_opencode.md:63-66"
+      ],
+      "_lineages": [
+        "kimi-review"
+      ],
+      "_conflictOf": "F016",
+      "_conflict_id": "F016--52d722f06835",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "F016",
+          "peerId": "F016--801b7fe81da2",
+          "peerLineages": [
+            "minimax-review"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "findingId": "F032",
+      "severity": "P2",
+      "category": "correctness",
+      "status": "active",
+      "dimension": "correctness",
+      "title": "Command output contract summary omits show from ACTION list",
+      "file": ".opencode/commands/goal_opencode.md",
+      "line": 30,
+      "description": "The summary ACTION list should explicitly include show or clarify it is the default path.",
+      "content_hash": "9266f9bd748deb2c055e04d8336eeee9610527a5b8500297f771af91b29e2da4",
+      "findingClass": "doc-clarity",
+      "evidenceRefs": [
+        ".opencode/commands/goal_opencode.md:30-33"
+      ],
+      "_lineages": [
+        "kimi-review"
+      ]
+    },
+    {
+      "findingId": "F001--d868afdcabae",
+      "severity": "P2",
+      "category": "traceability",
+      "status": "active",
+      "dimension": "correctness",
+      "title": "Command surface expanded beyond original spec verbs",
+      "file": ".opencode/commands/goal_opencode.md",
+      "line": 3,
+      "description": "Parent spec scoped /goal to set/show/clear/complete/pause; shipped command adds history/doctor/health/resume.",
+      "content_hash": "9d4cd4d55a0b78e6aaf819ecc788bd6d5f11af386a6b7e6fb6ea4654c1ec61cb",
+      "findingClass": "spec-drift",
+      "evidenceRefs": [
+        ".opencode/specs/deep-loops/032-goal-opencode-plugin/spec.md:89-92",
+        ".opencode/commands/goal_opencode.md:3,30-33"
+      ],
+      "_lineages": [
+        "kimi-review"
+      ],
+      "_conflictOf": "F001",
+      "_conflict_id": "F001--d868afdcabae",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "F001",
+          "peerId": "F001--fa0b42fb62c2",
+          "peerLineages": [
+            "minimax-review"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "findingId": "F009--65edbf98df2c",
+      "severity": "P1",
+      "category": "correctness",
+      "status": "active",
+      "dimension": "traceability",
+      "title": "Continuation in-flight lock is a check-then-act race",
+      "file": ".opencode/plugins/mk-goal.js",
+      "line": 2091,
+      "description": "Two concurrent session.idle events can both pass the has check before either add, causing double promptAsync dispatch and double auto-turn charges.",
+      "content_hash": "4033f22349382a6a089882875c659194e14c44c60f867e7abc3aaa6ebafae389",
+      "findingClass": "race-condition",
+      "evidenceRefs": [
+        ".opencode/plugins/mk-goal.js:2091-2095"
+      ],
+      "_lineages": [
+        "kimi-review"
+      ],
+      "_conflictOf": "F009",
+      "_conflict_id": "F009--65edbf98df2c",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "F009",
+          "peerId": "F009--f1123b6a763f",
+          "peerLineages": [
+            "minimax-review"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "findingId": "F029--ecd2f8dbb913",
+      "severity": "P2",
+      "category": "traceability",
+      "status": "active",
+      "dimension": "traceability",
+      "title": "Cross-runtime parity for the deep-review skill is strong (3 SKILL.md + 3 commands byte-identical; 3 agents with 1 per-runtime translation)",
+      "file": ".opencode/skills/deep-loop-workflows/deep-review/SKILL.md",
+      "line": 0,
       "firstSeen": 9,
       "lastSeen": 9,
-      "status": "active",
       "transitions": [
         {
           "iteration": 9,
           "from": null,
           "to": "P2",
-          "reason": "Initial discovery (iteration summary)"
+          "reason": "Initial discovery (cross-runtime parity confirmation)"
         }
       ],
-      "dimensions": [
-        "correctness"
+      "content_hash": "sha256:f029-cross-runtime-parity-strong-2026-07-04",
+      "_lineages": [
+        "minimax-review"
       ],
-      "mergedFindingIds": []
+      "_conflictOf": "F029",
+      "_conflict_id": "F029--ecd2f8dbb913",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "F029",
+          "peerId": "F029--77cbc9efaccc",
+          "peerLineages": [
+            "kimi-review"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
     },
     {
-      "findingId": "P2-001",
+      "findingId": "F005--717fcced61f4",
       "severity": "P2",
-      "title": "Skill Advisor README contradicts the feature catalog's verified /goal live-tool status",
-      "file": null,
-      "line": null,
-      "description": "",
-      "findingClass": null,
-      "deltaStatus": null,
-      "scopeProof": null,
-      "affectedSurfaceHints": [],
-      "contentHash": "sha256:016d482d6029e467ba94c1f63cf012e09999b684c8ff5e8f383de27f05b82f56",
-      "dimension": "correctness",
-      "firstSeen": 4,
-      "lastSeen": 5,
+      "category": "maintainability",
       "status": "active",
+      "dimension": "maintainability",
+      "title": "description.json lastUpdated is stale (2026-07-01)",
+      "file": ".opencode/specs/deep-loops/032-goal-opencode-plugin/description.json",
+      "line": 11,
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (advisory; freshness marker)"
+        }
+      ],
+      "content_hash": "sha256:f005-description-staleness-2026-07-04",
+      "_lineages": [
+        "minimax-review"
+      ],
+      "_conflictOf": "F005",
+      "_conflict_id": "F005--717fcced61f4",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "F005",
+          "peerId": "F005--1f42fb689a8b",
+          "peerLineages": [
+            "kimi-review"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "findingId": "F002--44c90a75d71a",
+      "severity": "P1",
+      "category": "correctness",
+      "status": "active",
+      "dimension": "correctness",
+      "title": "description.json level='phase' but spec.md declares 'phase parent'",
+      "file": ".opencode/specs/deep-loops/032-goal-opencode-plugin/description.json",
+      "line": 2,
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (level-field drift)"
+        }
+      ],
+      "content_hash": "sha256:f002-level-mismatch-2026-07-04",
+      "_lineages": [
+        "minimax-review"
+      ],
+      "_conflictOf": "F002",
+      "_conflict_id": "F002--44c90a75d71a",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "F002",
+          "peerId": "F002--8996bd99ab98",
+          "peerLineages": [
+            "kimi-review"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "findingId": "F013--62eb2b3461cd",
+      "severity": "P2",
+      "category": "maintainability",
+      "status": "active",
+      "dimension": "maintainability",
+      "title": "Duplicate budget-prefixed status aliases",
+      "file": ".opencode/plugins/mk-goal.js",
+      "line": 2327,
+      "description": "goalStateLines emits both canonical and budget-prefixed aliases for the same token values.",
+      "content_hash": "fb0ae7bbc07864cb8deb7850ece95aca0679a5e674ea855d64932b4d92c10fbb",
+      "findingClass": "output-clutter",
+      "evidenceRefs": [
+        ".opencode/plugins/mk-goal.js:2327-2329",
+        ".opencode/skills/system-spec-kit/references/hooks/goal_plugin.md:83-87"
+      ],
+      "_lineages": [
+        "kimi-review"
+      ],
+      "_conflictOf": "F013",
+      "_conflict_id": "F013--62eb2b3461cd",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "F013",
+          "peerId": "F013--3b0f2d11daf9",
+          "peerLineages": [
+            "minimax-review"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "findingId": "F012--0303f371207d",
+      "severity": "P2",
+      "category": "maintainability",
+      "status": "active",
+      "dimension": "maintainability",
+      "title": "executeGoalAction default show action is dead code",
+      "file": ".opencode/plugins/mk-goal.js",
+      "line": 2391,
+      "description": "Unknown actions fallback to show, but command router never dispatches unknown actions.",
+      "content_hash": "6ccd6ce408ee6a9f3360b5cbbf17f4c5f0721259fa03dded42fac00449fa0ac4",
+      "findingClass": "dead-code",
+      "evidenceRefs": [
+        ".opencode/plugins/mk-goal.js:2391",
+        ".opencode/commands/goal_opencode.md:55-74"
+      ],
+      "_lineages": [
+        "kimi-review"
+      ],
+      "_conflictOf": "F012",
+      "_conflict_id": "F012--0303f371207d",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "F012",
+          "peerId": "F012--e8ca5344268c",
+          "peerLineages": [
+            "minimax-review"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "findingId": "F014--13bcad7ef0d1",
+      "severity": "P2",
+      "category": "maintainability",
+      "status": "active",
+      "dimension": "maintainability",
+      "title": "executeGoalStatus lacks includeInjectionPreview option",
+      "file": ".opencode/plugins/mk-goal.js",
+      "line": 2441,
+      "description": "executeGoalAction accepts includeInjectionPreview but executeGoalStatus always renders the preview.",
+      "content_hash": "175785f0fa797b4acb31d87805367f4e2efdcdc416037251679c13a5966f8471",
+      "findingClass": "api-inconsistency",
+      "evidenceRefs": [
+        ".opencode/plugins/mk-goal.js:2441-2453",
+        ".opencode/plugins/mk-goal.js:2390-2394"
+      ],
+      "_lineages": [
+        "kimi-review"
+      ],
+      "_conflictOf": "F014",
+      "_conflict_id": "F014--13bcad7ef0d1",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "F014",
+          "peerId": "F014--45e206d4060b",
+          "peerLineages": [
+            "minimax-review"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "findingId": "F019--ef4d3671c851",
+      "severity": "P2",
+      "category": "maintainability",
+      "status": "active",
+      "dimension": "maintainability",
+      "title": "export-contract uses non-destructured node:test import",
+      "file": ".opencode/plugins/tests/mk-goal-export-contract.test.cjs",
+      "line": 9,
+      "firstSeen": 5,
+      "lastSeen": 5,
+      "transitions": [
+        {
+          "iteration": 5,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (advisory; import style inconsistency)"
+        }
+      ],
+      "content_hash": "sha256:f019-node-test-import-style-2026-07-04",
+      "_lineages": [
+        "minimax-review"
+      ],
+      "_conflictOf": "F019",
+      "_conflict_id": "F019--ef4d3671c851",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "F019",
+          "peerId": "F019--6644990d37f0",
+          "peerLineages": [
+            "kimi-review"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "findingId": "F033",
+      "severity": "P2",
+      "category": "correctness",
+      "status": "active",
+      "dimension": "correctness",
+      "title": "Failure envelope normalizes unknown action to show",
+      "file": ".opencode/plugins/mk-goal.js",
+      "line": 2380,
+      "description": "failureLines maps unrecognized actions to show, which is misleading if a different action failed.",
+      "content_hash": "363051c08630ff8ee5b6c825854597be61bf2ef631966105fa5fb61e0bff2d43",
+      "findingClass": "telemetry-noise",
+      "evidenceRefs": [
+        ".opencode/plugins/mk-goal.js:2380-2388"
+      ],
+      "_lineages": [
+        "kimi-review"
+      ]
+    },
+    {
+      "findingId": "F011--87af84833f23",
+      "severity": "P2",
+      "category": "maintainability",
+      "status": "active",
+      "dimension": "traceability",
+      "title": "goal-events.log grows unbounded under DEBUG",
+      "file": ".opencode/plugins/mk-goal.js",
+      "line": 735,
+      "description": "logDebugEvent appends one line per event when MK_GOAL_DEBUG=1 with no rotation or size cap.",
+      "content_hash": "7a0d2f29a774ebe5b2e8fe2e2d59f1bf40772beba93402e3ced397c3d85efaa5",
+      "findingClass": "resource-exhaustion",
+      "evidenceRefs": [
+        ".opencode/plugins/mk-goal.js:735-742"
+      ],
+      "_lineages": [
+        "kimi-review"
+      ],
+      "_conflictOf": "F011",
+      "_conflict_id": "F011--87af84833f23",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "F011",
+          "peerId": "F011--745720db29ed",
+          "peerLineages": [
+            "minimax-review"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "findingId": "F017--21764caea4ae",
+      "severity": "P2",
+      "category": "maintainability",
+      "status": "active",
+      "dimension": "maintainability",
+      "title": "GOAL_ACTIONS includes later-phase verbs without provenance",
+      "file": ".opencode/plugins/mk-goal.js",
+      "line": 156,
+      "description": "history/doctor/health/resume were added after original spec scope but carry no comment or deprecation path.",
+      "content_hash": "855a7605d930c4a15ae28b2b4b86c2633f7de57b2b7eab496de5906caf0a84ea",
+      "findingClass": "traceability",
+      "evidenceRefs": [
+        ".opencode/plugins/mk-goal.js:156",
+        ".opencode/specs/deep-loops/032-goal-opencode-plugin/spec.md:89-92"
+      ],
+      "_lineages": [
+        "kimi-review"
+      ],
+      "_conflictOf": "F017",
+      "_conflict_id": "F017--21764caea4ae",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "F017",
+          "peerId": "F017--d23879c50aa2",
+          "peerLineages": [
+            "minimax-review"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "findingId": "F035",
+      "severity": "P2",
+      "category": "maintainability",
+      "status": "active",
+      "dimension": "maintainability",
+      "title": "goal_opencode.md output summary omits mutation= field",
+      "file": ".opencode/commands/goal_opencode.md",
+      "line": 49,
+      "description": "mutation= is described in prose but missing from the STATUS/ACTION envelope summary lines.",
+      "content_hash": "9744f540da747deb18f1f9e01298951e4fa4e34daec8f9dcf29a50c2d4567eeb",
+      "findingClass": "doc-clarity",
+      "evidenceRefs": [
+        ".opencode/commands/goal_opencode.md:30-33",
+        ".opencode/commands/goal_opencode.md:49",
+        ".opencode/commands/goal_opencode.md:80-84"
+      ],
+      "_lineages": [
+        "kimi-review"
+      ]
+    },
+    {
+      "findingId": "F034",
+      "severity": "P2",
+      "category": "maintainability",
+      "status": "active",
+      "dimension": "maintainability",
+      "title": "goal_plugin.md output field table omits emitted fields",
+      "file": ".opencode/skills/system-spec-kit/references/hooks/goal_plugin.md",
+      "line": 64,
+      "description": "blocked_by_prompt, continuation_suppressed, continuation_attempts, and continuation_suppressed_reason are emitted but not documented.",
+      "content_hash": "d3f7901bdb0bb983c92c382400dabebcf45b2d0ffb43998ce3fa74d263e5a635",
+      "findingClass": "doc-drift",
+      "evidenceRefs": [
+        ".opencode/skills/system-spec-kit/references/hooks/goal_plugin.md:64-78",
+        ".opencode/plugins/mk-goal.js:2337-2340"
+      ],
+      "_lineages": [
+        "kimi-review"
+      ]
+    },
+    {
+      "findingId": "F015--e073341246d3",
+      "severity": "P2",
+      "category": "maintainability",
+      "status": "active",
+      "dimension": "maintainability",
+      "title": "goal_plugin.md verification list is stale",
+      "file": ".opencode/skills/system-spec-kit/references/hooks/goal_plugin.md",
+      "line": 99,
+      "description": "Verification section lists 7 test files; the suite now has 10 files.",
+      "content_hash": "3716750e28fe728ad7912ee86bc956c028dd0bad04dcc996add956020076708c",
+      "findingClass": "doc-drift",
+      "evidenceRefs": [
+        ".opencode/skills/system-spec-kit/references/hooks/goal_plugin.md:99-111",
+        ".opencode/plugins/tests/"
+      ],
+      "_lineages": [
+        "kimi-review"
+      ],
+      "_conflictOf": "F015",
+      "_conflict_id": "F015--e073341246d3",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "F015",
+          "peerId": "F015--782805161b57",
+          "peerLineages": [
+            "minimax-review"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "findingId": "F030--dcd973606bcc",
+      "severity": "P2",
+      "category": "maintainability",
+      "status": "active",
+      "dimension": "maintainability",
+      "title": "GoalError codes are string literals without centralized enum",
+      "file": ".opencode/plugins/mk-goal.js",
+      "line": 166,
+      "description": "Error codes appear as inline strings across the file instead of a single const enum.",
+      "content_hash": "599d3840768bf8bc77f089f9a64308b30a23ca10b829abe4c8dc36d885f1c984",
+      "findingClass": "naming",
+      "evidenceRefs": [
+        ".opencode/plugins/mk-goal.js:166-173",
+        ".opencode/plugins/mk-goal.js:289-292",
+        ".opencode/plugins/mk-goal.js:1430-1432"
+      ],
+      "_lineages": [
+        "kimi-review"
+      ],
+      "_conflictOf": "F030",
+      "_conflict_id": "F030--dcd973606bcc",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "F030",
+          "peerId": "F030--ad07885ce209",
+          "peerLineages": [
+            "minimax-review"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "findingId": "F011--745720db29ed",
+      "severity": "P1",
+      "category": "security",
+      "status": "active",
+      "dimension": "security",
+      "title": "goalStateLines emits duplicate tokens_used/budget_tokens_used + usage_source/budget_usage_source",
+      "file": ".opencode/plugins/mk-goal.js",
+      "line": 2319,
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (e-2.8 confirmed at lines 2319, 2326-2329)"
+        }
+      ],
+      "content_hash": "sha256:f011-goal-state-lines-duplicate-pairs-2026-07-04",
+      "_lineages": [
+        "minimax-review"
+      ],
+      "_conflictOf": "F011",
+      "_conflict_id": "F011--745720db29ed",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "F011",
+          "peerId": "F011--87af84833f23",
+          "peerLineages": [
+            "kimi-review"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "findingId": "F017--d23879c50aa2",
+      "severity": "P1",
+      "category": "maintainability",
+      "status": "active",
+      "dimension": "maintainability",
+      "title": "loadPluginModule/withState helpers duplicated across 7 of 8 goal test files",
+      "file": ".opencode/plugins/tests/mk-goal-capabilities.test.cjs",
+      "line": 20,
+      "firstSeen": 5,
+      "lastSeen": 5,
+      "transitions": [
+        {
+          "iteration": 5,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (helper duplication pre-phase-018)"
+        }
+      ],
+      "content_hash": "sha256:f017-test-helper-duplication-2026-07-04",
+      "_lineages": [
+        "minimax-review"
+      ],
+      "_conflictOf": "F017",
+      "_conflict_id": "F017--d23879c50aa2",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "F017",
+          "peerId": "F017--21764caea4ae",
+          "peerLineages": [
+            "kimi-review"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "findingId": "F037",
+      "severity": "P2",
+      "category": "maintainability",
+      "status": "active",
+      "dimension": "maintainability",
+      "title": "maxAutoTurns clamping to env value is undocumented",
+      "file": ".opencode/plugins/mk-goal.js",
+      "line": 2015,
+      "description": "reserveContinuationTurn clamps stored maxAutoTurns to the current env cap, but docs describe the env var only as a default for new goals.",
+      "content_hash": "2f022a94078df995a320daf98ed6c2f6faaca6fa3083788b2f2e7de90faa850c",
+      "findingClass": "doc-drift",
+      "evidenceRefs": [
+        ".opencode/plugins/mk-goal.js:2015",
+        ".opencode/skills/system-spec-kit/references/hooks/goal_plugin.md:45-62"
+      ],
+      "_lineages": [
+        "kimi-review"
+      ]
+    },
+    {
+      "findingId": "F003--0e94bae206bc",
+      "severity": "P2",
+      "category": "traceability",
+      "status": "active",
+      "dimension": "traceability",
+      "title": "Only phase 016 ships a checklist.md across all 22 phase folders",
+      "file": ".opencode/specs/deep-loops/032-goal-opencode-plugin/",
+      "line": 0,
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (advisory; consistent with lean Level 1 design)"
+        }
+      ],
+      "content_hash": "sha256:f003-checklist-coverage-2026-07-04",
+      "_lineages": [
+        "minimax-review"
+      ],
+      "_conflictOf": "F003",
+      "_conflict_id": "F003--0e94bae206bc",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "F003",
+          "peerId": "F003--0c822ed0bd7e",
+          "peerLineages": [
+            "kimi-review"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "findingId": "F022--724920821587",
+      "severity": "P2",
+      "category": "traceability",
+      "status": "active",
+      "dimension": "traceability",
+      "title": "OpenCode/Codex deep-review agents are byte-identical; Claude differs in 4 lines",
+      "file": ".opencode/agents/deep-review.md",
+      "line": 0,
+      "firstSeen": 6,
+      "lastSeen": 6,
+      "transitions": [
+        {
+          "iteration": 6,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (cross-runtime parity observation)"
+        }
+      ],
+      "content_hash": "sha256:f022-opencode-codex-agent-parity-2026-07-04",
+      "_lineages": [
+        "minimax-review"
+      ],
+      "_conflictOf": "F022",
+      "_conflict_id": "F022--724920821587",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "F022",
+          "peerId": "F022--d09808740a00",
+          "peerLineages": [
+            "kimi-review"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "findingId": "F001--fa0b42fb62c2",
+      "severity": "P1",
+      "category": "traceability",
+      "status": "active",
+      "dimension": "traceability",
+      "title": "Orphan phase folder 009-diagnostic-review/ has no spec.md/plan.md/tasks.md/impl-summary.md",
+      "file": ".opencode/specs/deep-loops/032-goal-opencode-plugin/009-diagnostic-review/",
+      "line": 0,
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (inventory + scope discovery)"
+        }
+      ],
+      "content_hash": "sha256:f001-orphan-009-diagnostic-review-2026-07-04",
+      "_lineages": [
+        "minimax-review"
+      ],
+      "_conflictOf": "F001",
+      "_conflict_id": "F001--fa0b42fb62c2",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "F001",
+          "peerId": "F001--d868afdcabae",
+          "peerLineages": [
+            "kimi-review"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "findingId": "F030--ad07885ce209",
+      "severity": "P1",
+      "category": "traceability",
+      "status": "active",
+      "dimension": "correctness",
+      "title": "Parent '6-file test suite' narrative is wrong; actual is 8 files / 101 tests",
+      "file": ".opencode/specs/deep-loops/032-goal-opencode-plugin/spec.md",
+      "line": 216,
+      "firstSeen": 10,
+      "lastSeen": 10,
+      "transitions": [
+        {
+          "iteration": 10,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (test count narrative drift, grounded in empirical run)"
+        }
+      ],
+      "content_hash": "sha256:f030-6-file-narrative-wrong-2026-07-04",
+      "_lineages": [
+        "minimax-review"
+      ],
+      "_conflictOf": "F030",
+      "_conflict_id": "F030--ad07885ce209",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "F030",
+          "peerId": "F030--dcd973606bcc",
+          "peerLineages": [
+            "kimi-review"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "findingId": "F015--782805161b57",
+      "severity": "P1",
+      "category": "traceability",
+      "status": "active",
+      "dimension": "traceability",
+      "title": "Parent handoff table annotates phase 010 verification as 'not cited' but impl-summary now has full citations",
+      "file": ".opencode/specs/deep-loops/032-goal-opencode-plugin/spec.md",
+      "line": 216,
+      "firstSeen": 4,
+      "lastSeen": 4,
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (parent handoff table stale annotation)"
+        }
+      ],
+      "content_hash": "sha256:f015-parent-handoff-stale-annotation-2026-07-04",
+      "_lineages": [
+        "minimax-review"
+      ],
+      "_conflictOf": "F015",
+      "_conflict_id": "F015--782805161b57",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "F015",
+          "peerId": "F015--e073341246d3",
+          "peerLineages": [
+            "kimi-review"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "findingId": "F007--4894a5e850df",
+      "severity": "P1",
+      "category": "correctness",
+      "status": "active",
+      "dimension": "correctness",
+      "title": "Parent last_active_child_id points at Planned phase 018 (resume misroute risk)",
+      "file": ".opencode/specs/deep-loops/032-goal-opencode-plugin/graph-metadata.json",
+      "line": 244,
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (resume target misroute)"
+        }
+      ],
+      "content_hash": "sha256:f007-last-active-child-misroute-2026-07-04",
+      "_lineages": [
+        "minimax-review"
+      ],
+      "_conflictOf": "F007",
+      "_conflict_id": "F007--4894a5e850df",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "F007",
+          "peerId": "F007--c3f53fd9be63",
+          "peerLineages": [
+            "kimi-review"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "findingId": "F026--456d27aeca0d",
+      "severity": "P2",
+      "category": "traceability",
+      "status": "active",
+      "dimension": "traceability",
+      "title": "Parent phase map does not reflect phase 015 completion",
+      "file": ".opencode/specs/deep-loops/032-goal-opencode-plugin/spec.md",
+      "line": 186,
+      "description": "Parent map lists phase 015 Planned, matching the child spec but conflicting with the child implementation summary.",
+      "content_hash": "1188066a7f67c704bdd9133cf719017f39686fd13986935aa5138e7f59d01d13",
+      "findingClass": "status-drift",
+      "evidenceRefs": [
+        ".opencode/specs/deep-loops/032-goal-opencode-plugin/spec.md:186",
+        ".opencode/specs/deep-loops/032-goal-opencode-plugin/015-packet-hygiene-and-narrative-integrity/implementation-summary.md:35"
+      ],
+      "_lineages": [
+        "kimi-review"
+      ],
+      "_conflictOf": "F026",
+      "_conflict_id": "F026--456d27aeca0d",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "F026",
+          "peerId": "F026--3e94ff4d976a",
+          "peerLineages": [
+            "minimax-review"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "findingId": "F014--45e206d4060b",
+      "severity": "P1",
+      "category": "traceability",
+      "status": "active",
+      "dimension": "traceability",
+      "title": "Phase 009 has three-way status disagreement (spec=Planned, graph=planned, impl=Complete)",
+      "file": ".opencode/specs/deep-loops/032-goal-opencode-plugin/009-speckit-command-goal-prompt-offer/spec.md",
+      "line": 40,
+      "firstSeen": 4,
+      "lastSeen": 4,
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (three-way status disagreement, missed by four-reviewer audit)"
+        }
+      ],
+      "content_hash": "sha256:f014-009-status-disagreement-2026-07-04",
+      "_lineages": [
+        "minimax-review"
+      ],
+      "_conflictOf": "F014",
+      "_conflict_id": "F014--45e206d4060b",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "F014",
+          "peerId": "F014--13bcad7ef0d1",
+          "peerLineages": [
+            "kimi-review"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "findingId": "F006--0b101076567b",
+      "severity": "P1",
+      "category": "correctness",
+      "status": "active",
+      "dimension": "correctness",
+      "title": "Phase 012 has a three-way status disagreement (spec=Draft, graph=draft, impl=Complete)",
+      "file": ".opencode/specs/deep-loops/032-goal-opencode-plugin/012-regression-test-backfill/spec.md",
+      "line": 43,
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (three-way status disagreement, missed by four-reviewer audit)"
+        }
+      ],
+      "content_hash": "sha256:f006-012-status-disagreement-2026-07-04",
+      "_lineages": [
+        "minimax-review"
+      ],
+      "_conflictOf": "F006",
+      "_conflict_id": "F006--0b101076567b",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "F006",
+          "peerId": "F006--f171fb77628f",
+          "peerLineages": [
+            "kimi-review"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "findingId": "F016--801b7fe81da2",
+      "severity": "P2",
+      "category": "traceability",
+      "status": "active",
+      "dimension": "traceability",
+      "title": "Phase 012 impl-summary lacks the T014 revert-and-fail spot-check cited in spec.md:218",
+      "file": ".opencode/specs/deep-loops/032-goal-opencode-plugin/012-regression-test-backfill/implementation-summary.md",
+      "line": 0,
+      "firstSeen": 4,
+      "lastSeen": 4,
       "transitions": [
         {
           "iteration": 4,
           "from": null,
           "to": "P2",
-          "reason": "Initial discovery (delta)"
+          "reason": "Initial discovery (advisory; missing spot-check in impl-summary)"
         }
       ],
-      "dimensions": [
-        "correctness"
+      "content_hash": "sha256:f016-012-t014-spotcheck-missing-2026-07-04",
+      "_lineages": [
+        "minimax-review"
       ],
-      "mergedFindingIds": []
+      "_conflictOf": "F016",
+      "_conflict_id": "F016--801b7fe81da2",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "F016",
+          "peerId": "F016--52d722f06835",
+          "peerLineages": [
+            "kimi-review"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "findingId": "F009--f1123b6a763f",
+      "severity": "P2",
+      "category": "traceability",
+      "status": "active",
+      "dimension": "traceability",
+      "title": "Phase 015 REQ-003 redundantly targets 014's now-present Status row",
+      "file": ".opencode/specs/deep-loops/032-goal-opencode-plugin/014-goal-state-cleanup-and-archive/spec.md",
+      "line": 43,
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (audit-dossier / REQ-003 now redundant)"
+        }
+      ],
+      "content_hash": "sha256:f009-014-status-row-redundant-2026-07-04",
+      "_lineages": [
+        "minimax-review"
+      ],
+      "_conflictOf": "F009",
+      "_conflict_id": "F009--f1123b6a763f",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "F009",
+          "peerId": "F009--65edbf98df2c",
+          "peerLineages": [
+            "kimi-review"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "findingId": "F025--dba292cc1604",
+      "severity": "P2",
+      "category": "traceability",
+      "status": "active",
+      "dimension": "traceability",
+      "title": "Phase 015 status inconsistent between spec and implementation summary",
+      "file": ".opencode/specs/deep-loops/032-goal-opencode-plugin/015-packet-hygiene-and-narrative-integrity/spec.md",
+      "line": 52,
+      "description": "Child spec says Planned while implementation-summary says Complete and 100% completion.",
+      "content_hash": "901969df1ade03d877b5328da4229aa25f49fdf4b064f65c010dd74f8432ad0f",
+      "findingClass": "status-drift",
+      "evidenceRefs": [
+        ".opencode/specs/deep-loops/032-goal-opencode-plugin/015-packet-hygiene-and-narrative-integrity/spec.md:52",
+        ".opencode/specs/deep-loops/032-goal-opencode-plugin/015-packet-hygiene-and-narrative-integrity/implementation-summary.md:35"
+      ],
+      "_lineages": [
+        "kimi-review"
+      ],
+      "_conflictOf": "F025",
+      "_conflict_id": "F025--dba292cc1604",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "F025",
+          "peerId": "F025--9a77b1f2f1e5",
+          "peerLineages": [
+            "minimax-review"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "findingId": "F008--7ac43284077b",
+      "severity": "P1",
+      "category": "traceability",
+      "status": "active",
+      "dimension": "traceability",
+      "title": "Phase 016 checklist overclaims completion while live code still contains F2 and F3 defects",
+      "file": ".opencode/specs/deep-loops/032-goal-opencode-plugin/016-plugin-correctness-fixes/checklist.md",
+      "line": 40,
+      "description": "CHK-F2 and CHK-F3 are marked complete with RED/GREEN evidence, but mk-goal.js still exhibits the check-then-act race and queue-bypass sweep. Phase spec says Planned while checklist claims 100% complete.",
+      "content_hash": "6d174f2630486f0374540257bebfbb893d6708ddce0ec811be6689f2adafb607",
+      "findingClass": "checklist-overclaim",
+      "evidenceRefs": [
+        ".opencode/specs/deep-loops/032-goal-opencode-plugin/016-plugin-correctness-fixes/checklist.md:40-90",
+        ".opencode/specs/deep-loops/032-goal-opencode-plugin/016-plugin-correctness-fixes/spec.md:52",
+        ".opencode/plugins/mk-goal.js:2091-2095",
+        ".opencode/plugins/mk-goal.js:1231-1262"
+      ],
+      "_lineages": [
+        "kimi-review"
+      ],
+      "_conflictOf": "F008",
+      "_conflict_id": "F008--7ac43284077b",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "F008",
+          "peerId": "F008--faac8a90feb8",
+          "peerLineages": [
+            "minimax-review"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "findingId": "F018--3fa158ffde9c",
+      "severity": "P1",
+      "category": "traceability",
+      "status": "active",
+      "dimension": "maintainability",
+      "title": "Phase 018 '16-seam pin' narrative is stale; current __test has 17 seams",
+      "file": ".opencode/plugins/mk-goal.js",
+      "line": 2637,
+      "firstSeen": 5,
+      "lastSeen": 5,
+      "transitions": [
+        {
+          "iteration": 5,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (seam count narrative drift)"
+        }
+      ],
+      "content_hash": "sha256:f018-16-seam-pin-stale-2026-07-04",
+      "_lineages": [
+        "minimax-review"
+      ],
+      "_conflictOf": "F018",
+      "_conflict_id": "F018--3fa158ffde9c",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "F018",
+          "peerId": "F018--96f468bc090e",
+          "peerLineages": [
+            "kimi-review"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "findingId": "F002--8996bd99ab98",
+      "severity": "P2",
+      "category": "traceability",
+      "status": "active",
+      "dimension": "correctness",
+      "title": "Phase map omits 009-diagnostic-review sibling folder",
+      "file": ".opencode/specs/deep-loops/032-goal-opencode-plugin/spec.md",
+      "line": 166,
+      "description": "Directory listing contains 009-diagnostic-review but phase map only lists 009-speckit-command-goal-prompt-offer.",
+      "content_hash": "5dec906c61bea655d64e8db0ab9da099fa98aa6f23b3a83322089a2b2b7cd986",
+      "findingClass": "coverage-gap",
+      "evidenceRefs": [
+        ".opencode/specs/deep-loops/032-goal-opencode-plugin/spec.md:166-193"
+      ],
+      "_lineages": [
+        "kimi-review"
+      ],
+      "_conflictOf": "F002",
+      "_conflict_id": "F002--8996bd99ab98",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "F002",
+          "peerId": "F002--44c90a75d71a",
+          "peerLineages": [
+            "minimax-review"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "findingId": "F008--faac8a90feb8",
+      "severity": "P2",
+      "category": "correctness",
+      "status": "active",
+      "dimension": "correctness",
+      "title": "Planned phase 015-021 implementation-summary.md templates carry 'Status: Complete' boilerplate",
+      "file": ".opencode/specs/deep-loops/032-goal-opencode-plugin/015-packet-hygiene-and-narrative-integrity/implementation-summary.md",
+      "line": 0,
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (template voice leak in Planned phase docs)"
+        }
+      ],
+      "content_hash": "sha256:f008-planned-template-status-leak-2026-07-04",
+      "_lineages": [
+        "minimax-review"
+      ],
+      "_conflictOf": "F008",
+      "_conflict_id": "F008--faac8a90feb8",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "F008",
+          "peerId": "F008--7ac43284077b",
+          "peerLineages": [
+            "kimi-review"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "findingId": "F036",
+      "severity": "P2",
+      "category": "maintainability",
+      "status": "active",
+      "dimension": "maintainability",
+      "title": "PROMPT_OVERHEAD_CHARS magic constant lacks derivation",
+      "file": ".opencode/plugins/mk-goal.js",
+      "line": 38,
+      "description": "Value 1900 determines objective budget in buildEnhancedGoalPrompt but has no derivation comment.",
+      "content_hash": "d5ba7fee83f67869924e438ea061e66c51cc2b4019cb795023808703dae358b6",
+      "findingClass": "magic-constant",
+      "evidenceRefs": [
+        ".opencode/plugins/mk-goal.js:38",
+        ".opencode/plugins/mk-goal.js:445"
+      ],
+      "_lineages": [
+        "kimi-review"
+      ]
+    },
+    {
+      "findingId": "F019--6644990d37f0",
+      "severity": "P2",
+      "category": "correctness",
+      "status": "active",
+      "dimension": "correctness",
+      "title": "recoverProviderUsageLimitIfDue does not recover budget_limited goals",
+      "file": ".opencode/plugins/mk-goal.js",
+      "line": 1520,
+      "description": "Only usage_limited goals are resumed; budget_limited remains terminal even if the budget constraint changes.",
+      "content_hash": "f5cf97ea3b451886a7df1d06380ca60b2499d6c7bf83d190e27db4c9fd78b62e",
+      "findingClass": "state-machine-gap",
+      "evidenceRefs": [
+        ".opencode/plugins/mk-goal.js:1520-1527"
+      ],
+      "_lineages": [
+        "kimi-review"
+      ],
+      "_conflictOf": "F019",
+      "_conflict_id": "F019--6644990d37f0",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "F019",
+          "peerId": "F019--ef4d3671c851",
+          "peerLineages": [
+            "minimax-review"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "findingId": "F005--1f42fb689a8b",
+      "severity": "P2",
+      "category": "security",
+      "status": "active",
+      "dimension": "security",
+      "title": "redactEvidence misses common secret formats",
+      "file": ".opencode/plugins/mk-goal.js",
+      "line": 380,
+      "description": "Regex set omits Google API keys, PEM private key blocks, and hex high-entropy secrets from evidence redaction.",
+      "content_hash": "7e8d6feaa142ada9e6c7762f045dd1197ef26e75aef634b3cce0c8a781ea528c",
+      "findingClass": "secret-redaction",
+      "evidenceRefs": [
+        ".opencode/plugins/mk-goal.js:380-389"
+      ],
+      "_lineages": [
+        "kimi-review"
+      ],
+      "_conflictOf": "F005",
+      "_conflict_id": "F005--1f42fb689a8b",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "F005",
+          "peerId": "F005--717fcced61f4",
+          "peerLineages": [
+            "minimax-review"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "findingId": "F013--3b0f2d11daf9",
+      "severity": "P2",
+      "category": "security",
+      "status": "active",
+      "dimension": "security",
+      "title": "redactEvidence regex false-positives on legitimate API_KEY mentions",
+      "file": ".opencode/plugins/mk-goal.js",
+      "line": 388,
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (advisory; over-redaction is a UX concern not a security leak)"
+        }
+      ],
+      "content_hash": "sha256:f013-redact-evidence-false-positives-2026-07-04",
+      "_lineages": [
+        "minimax-review"
+      ],
+      "_conflictOf": "F013",
+      "_conflict_id": "F013--3b0f2d11daf9",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "F013",
+          "peerId": "F013--62eb2b3461cd",
+          "peerLineages": [
+            "kimi-review"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "findingId": "F020--8af0f2b35d7b",
+      "severity": "P2",
+      "category": "correctness",
+      "status": "active",
+      "dimension": "correctness",
+      "title": "retryAfterDeadlineFromValue misinterprets large second values",
+      "file": ".opencode/plugins/mk-goal.js",
+      "line": 867,
+      "description": "Numeric values above 1e12 are treated as absolute ms without unit validation, so large Retry-After seconds become distant epoch timestamps.",
+      "content_hash": "706fd788e6091276c76e6dbf8ede3f08a672f4917068ac91ba1a60ccf4c891a8",
+      "findingClass": "timestamp-handling",
+      "evidenceRefs": [
+        ".opencode/plugins/mk-goal.js:867-878"
+      ],
+      "_lineages": [
+        "kimi-review"
+      ],
+      "_conflictOf": "F020",
+      "_conflict_id": "F020--8af0f2b35d7b",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "F020",
+          "peerId": "F020--a5a3d65f5ff9",
+          "peerLineages": [
+            "minimax-review"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "findingId": "F006--f171fb77628f",
+      "severity": "P2",
+      "category": "security",
+      "status": "active",
+      "dimension": "security",
+      "title": "role marker sanitizer only handles colon delimiter",
+      "file": ".opencode/plugins/mk-goal.js",
+      "line": 339,
+      "description": "Role label rewrite requires a colon; equals or arrow delimiters around system/developer/etc. are not neutralized.",
+      "content_hash": "79b09b089e269accdf9a23cf439ef4616c488601e1a65238a21fade5e97ab0f6",
+      "findingClass": "input-sanitization",
+      "evidenceRefs": [
+        ".opencode/plugins/mk-goal.js:339-347"
+      ],
+      "_lineages": [
+        "kimi-review"
+      ],
+      "_conflictOf": "F006",
+      "_conflict_id": "F006--f171fb77628f",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "F006",
+          "peerId": "F006--0b101076567b",
+          "peerLineages": [
+            "minimax-review"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "findingId": "F018--96f468bc090e",
+      "severity": "P2",
+      "category": "correctness",
+      "status": "active",
+      "dimension": "correctness",
+      "title": "session.idle handler calls continuation with missing sessionID",
+      "file": ".opencode/plugins/mk-goal.js",
+      "line": 2541,
+      "description": "When sessionID is falsy the branch still invokes maybeContinueGoal(null), logging a misleading missing_session_id reason.",
+      "content_hash": "f44146e53d929953a4d9eb01fc81b908f114186a01225d45a08675b5d046497b",
+      "findingClass": "telemetry-noise",
+      "evidenceRefs": [
+        ".opencode/plugins/mk-goal.js:2541-2548"
+      ],
+      "_lineages": [
+        "kimi-review"
+      ],
+      "_conflictOf": "F018",
+      "_conflict_id": "F018--96f468bc090e",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "F018",
+          "peerId": "F018--3fa158ffde9c",
+          "peerLineages": [
+            "minimax-review"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "findingId": "F021--b129e947ab8f",
+      "severity": "P1",
+      "category": "traceability",
+      "status": "active",
+      "dimension": "traceability",
+      "title": "SKILL.md allowed-tools includes Task but runtime agents deny Task (LEAF-only contract drift)",
+      "file": ".opencode/skills/deep-loop-workflows/deep-review/SKILL.md",
+      "line": 4,
+      "firstSeen": 6,
+      "lastSeen": 6,
+      "transitions": [
+        {
+          "iteration": 6,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (skill_agent overlay observation)"
+        }
+      ],
+      "content_hash": "sha256:f021-skill-md-task-allowed-tools-drift-2026-07-04",
+      "_lineages": [
+        "minimax-review"
+      ],
+      "_conflictOf": "F021",
+      "_conflict_id": "F021--b129e947ab8f",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "F021",
+          "peerId": "F021--bad7ff610b5f",
+          "peerLineages": [
+            "kimi-review"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "findingId": "F023--eb05c4d67e9e",
+      "severity": "P2",
+      "category": "traceability",
+      "status": "active",
+      "dimension": "traceability",
+      "title": "SKILL.md allowed-tools missing MCP allowlist specifics (mcp__mk_code_index__*, mcp__mk_spec_memory__*)",
+      "file": ".opencode/skills/deep-loop-workflows/deep-review/SKILL.md",
+      "line": 4,
+      "firstSeen": 6,
+      "lastSeen": 6,
+      "transitions": [
+        {
+          "iteration": 6,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (MCP allowlist drift)"
+        }
+      ],
+      "content_hash": "sha256:f023-skill-md-mcp-allowlist-drift-2026-07-04",
+      "_lineages": [
+        "minimax-review"
+      ],
+      "_conflictOf": "F023",
+      "_conflict_id": "F023--eb05c4d67e9e",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "F023",
+          "peerId": "F023--0781442fc590",
+          "peerLineages": [
+            "kimi-review"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "findingId": "F022--d09808740a00",
+      "severity": "P2",
+      "category": "security",
+      "status": "active",
+      "dimension": "security",
+      "title": "Smoke mode reports would_fire without promptAsync check",
+      "file": ".opencode/plugins/mk-goal.js",
+      "line": 2143,
+      "description": "autonomyMode === smoke returns would_fire before verifying client.session.promptAsync exists.",
+      "content_hash": "833eba63ad17b6eb5518472988148f019bcf10d82da29e28f76ab532bd2b708f",
+      "findingClass": "autonomy-safety",
+      "evidenceRefs": [
+        ".opencode/plugins/mk-goal.js:2143-2149"
+      ],
+      "_lineages": [
+        "kimi-review"
+      ],
+      "_conflictOf": "F022",
+      "_conflict_id": "F022--d09808740a00",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "F022",
+          "peerId": "F022--724920821587",
+          "peerLineages": [
+            "minimax-review"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "findingId": "F028--8eb9fd5ec683",
+      "severity": "P2",
+      "category": "maintainability",
+      "status": "active",
+      "dimension": "maintainability",
+      "title": "speckit-goal-offer-contract test not matched by documented glob",
+      "file": ".opencode/plugins/tests/",
+      "line": 1,
+      "description": "Verification docs cite mk-goal-*.test.cjs which excludes speckit-goal-offer-contract.test.cjs.",
+      "content_hash": "f0f0a55f9a2362fce832ecd05233b5cb6aaca79bce398d08c439ffc0d8b17d8e",
+      "findingClass": "test-discovery",
+      "evidenceRefs": [
+        ".opencode/plugins/tests/speckit-goal-offer-contract.test.cjs",
+        ".opencode/skills/system-spec-kit/references/hooks/goal_plugin.md:99-111"
+      ],
+      "_lineages": [
+        "kimi-review"
+      ],
+      "_conflictOf": "F028",
+      "_conflict_id": "F028--8eb9fd5ec683",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "F028",
+          "peerId": "F028--459b1f7b0d98",
+          "peerLineages": [
+            "minimax-review"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "findingId": "F003--0c822ed0bd7e",
+      "severity": "P2",
+      "category": "traceability",
+      "status": "active",
+      "dimension": "correctness",
+      "title": "State directory resolved relative to plugin file",
+      "file": ".opencode/plugins/mk-goal.js",
+      "line": 25,
+      "description": "Spec names .opencode/skills/.goal-state/; plugin resolves ../skills/.goal-state/ from its own file URL.",
+      "content_hash": "36ce138ce689238ef8374eb2b9f90ac8c781b7f0d848336789fb4a4c86271c3f",
+      "findingClass": "spec-drift",
+      "evidenceRefs": [
+        ".opencode/plugins/mk-goal.js:25"
+      ],
+      "_lineages": [
+        "kimi-review"
+      ],
+      "_conflictOf": "F003",
+      "_conflict_id": "F003--0c822ed0bd7e",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "F003",
+          "peerId": "F003--0e94bae206bc",
+          "peerLineages": [
+            "minimax-review"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "findingId": "F010--94fce7ec0ab8",
+      "severity": "P1",
+      "category": "correctness",
+      "status": "active",
+      "dimension": "traceability",
+      "title": "Sweep/archive path can resurrect active goals",
+      "file": ".opencode/plugins/mk-goal.js",
+      "line": 1231,
+      "description": "sweepOrphanedActiveStates reads outside the mutation queue and can archive a file while a queued mutator writes a new active file afterward.",
+      "content_hash": "533052ee1a2c9da725ed688735c9dd855cfb09e35078893ac779975dbe2220ea",
+      "findingClass": "race-condition",
+      "evidenceRefs": [
+        ".opencode/plugins/mk-goal.js:1231-1262"
+      ],
+      "_lineages": [
+        "kimi-review"
+      ],
+      "_conflictOf": "F010",
+      "_conflict_id": "F010--94fce7ec0ab8",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "F010",
+          "peerId": "F010--40b7d780739a",
+          "peerLineages": [
+            "minimax-review"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "findingId": "F007--c3f53fd9be63",
+      "severity": "P2",
+      "category": "security",
+      "status": "active",
+      "dimension": "security",
+      "title": "sweepOrphanedActiveStates swallows all errors",
+      "file": ".opencode/plugins/mk-goal.js",
+      "line": 1231,
+      "description": "Orphan sweep catches and discards every exception, hiding permission, disk, or integrity failures in state management.",
+      "content_hash": "e8aea2df077de090d279fba079a9acd7083427d785081ceefc7a468464ed6e95",
+      "findingClass": "observability",
+      "evidenceRefs": [
+        ".opencode/plugins/mk-goal.js:1231-1262"
+      ],
+      "_lineages": [
+        "kimi-review"
+      ],
+      "_conflictOf": "F007",
+      "_conflict_id": "F007--c3f53fd9be63",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "F007",
+          "peerId": "F007--4894a5e850df",
+          "peerLineages": [
+            "minimax-review"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "findingId": "F027--b8637e960d0c",
+      "severity": "P2",
+      "category": "maintainability",
+      "status": "active",
+      "dimension": "traceability",
+      "title": "system-spec-kit playbook is 196 lines / 5 sections vs system-skill-advisor's 503 lines / 8 sections (depth disparity)",
+      "file": ".opencode/skills/system-spec-kit/manual_testing_playbook/18--ux-hooks/goal-opencode-plugin.md",
+      "line": 0,
+      "firstSeen": 8,
+      "lastSeen": 8,
+      "transitions": [
+        {
+          "iteration": 8,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (playbook depth disparity)"
+        }
+      ],
+      "content_hash": "sha256:f027-playbook-depth-disparity-2026-07-04",
+      "_lineages": [
+        "minimax-review"
+      ],
+      "_conflictOf": "F027",
+      "_conflict_id": "F027--b8637e960d0c",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "F027",
+          "peerId": "F027--8ee40e8a0056",
+          "peerLineages": [
+            "kimi-review"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "findingId": "F028--459b1f7b0d98",
+      "severity": "P2",
+      "category": "traceability",
+      "status": "active",
+      "dimension": "traceability",
+      "title": "system-spec-kit playbook omits mk-goal-continuation.test.cjs from fallback path",
+      "file": ".opencode/skills/system-spec-kit/manual_testing_playbook/18--ux-hooks/goal-opencode-plugin.md",
+      "line": 48,
+      "firstSeen": 8,
+      "lastSeen": 8,
+      "transitions": [
+        {
+          "iteration": 8,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (playbook test file coverage)"
+        }
+      ],
+      "content_hash": "sha256:f028-playbook-missing-continuation-test-2026-07-04",
+      "_lineages": [
+        "minimax-review"
+      ],
+      "_conflictOf": "F028",
+      "_conflict_id": "F028--459b1f7b0d98",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "F028",
+          "peerId": "F028--8eb9fd5ec683",
+          "peerLineages": [
+            "kimi-review"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "findingId": "F020--a5a3d65f5ff9",
+      "severity": "P2",
+      "category": "maintainability",
+      "status": "active",
+      "dimension": "maintainability",
+      "title": "tests/helpers/ has only one file; helper extraction is partial",
+      "file": ".opencode/plugins/tests/helpers/",
+      "line": 0,
+      "firstSeen": 5,
+      "lastSeen": 5,
+      "transitions": [
+        {
+          "iteration": 5,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (advisory; partial helper extraction)"
+        }
+      ],
+      "content_hash": "sha256:f020-helper-extraction-partial-2026-07-04",
+      "_lineages": [
+        "minimax-review"
+      ],
+      "_conflictOf": "F020",
+      "_conflict_id": "F020--a5a3d65f5ff9",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "F020",
+          "peerId": "F020--8af0f2b35d7b",
+          "peerLineages": [
+            "kimi-review"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "findingId": "F025--9a77b1f2f1e5",
+      "severity": "P1",
+      "category": "traceability",
+      "status": "active",
+      "dimension": "traceability",
+      "title": "Two catalog rows describe mk-goal-state.test.cjs with different scopes (description parity broken)",
+      "file": ".opencode/skills/system-skill-advisor/feature_catalog/07--hooks-and-plugin/goal-opencode-plugin.md",
+      "line": 61,
+      "firstSeen": 7,
+      "lastSeen": 7,
+      "transitions": [
+        {
+          "iteration": 7,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (catalog description parity drift)"
+        }
+      ],
+      "content_hash": "sha256:f025-catalog-description-parity-broken-2026-07-04",
+      "_lineages": [
+        "minimax-review"
+      ],
+      "_conflictOf": "F025",
+      "_conflict_id": "F025--9a77b1f2f1e5",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "F025",
+          "peerId": "F025--dba292cc1604",
+          "peerLineages": [
+            "kimi-review"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "findingId": "F029--77cbc9efaccc",
+      "severity": "P2",
+      "category": "maintainability",
+      "status": "active",
+      "dimension": "maintainability",
+      "title": "Verification commands use per-file node invocation",
+      "file": ".opencode/skills/system-spec-kit/references/hooks/goal_plugin.md",
+      "line": 99,
+      "description": "Docs list individual node <file> commands instead of node --test runner, losing aggregated output.",
+      "content_hash": "410a7c53b0f996c674468fd9e3ee73ff4e9329fbc1ccc2df06f2f419090ba285",
+      "findingClass": "doc-drift",
+      "evidenceRefs": [
+        ".opencode/skills/system-spec-kit/references/hooks/goal_plugin.md:99-111"
+      ],
+      "_lineages": [
+        "kimi-review"
+      ],
+      "_conflictOf": "F029",
+      "_conflict_id": "F029--77cbc9efaccc",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "F029",
+          "peerId": "F029--ecd2f8dbb913",
+          "peerLineages": [
+            "minimax-review"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "findingId": "F024--b7e9e804517b",
+      "severity": "P2",
+      "category": "security",
+      "status": "active",
+      "dimension": "security",
+      "title": "Wall clock cap measures from goal creation not resume",
+      "file": ".opencode/plugins/mk-goal.js",
+      "line": 1972,
+      "description": "continuationCapReason uses startedAtMs, so paused-and-resumed goals resume with already-depleted wall budget.",
+      "content_hash": "d3e5a8d620c45b51ee20cd238e97cc9face09bfa41b7d03b717a99343c93a5e5",
+      "findingClass": "autonomy-safety",
+      "evidenceRefs": [
+        ".opencode/plugins/mk-goal.js:1972-1978"
+      ],
+      "_lineages": [
+        "kimi-review"
+      ],
+      "_conflictOf": "F024",
+      "_conflict_id": "F024--b7e9e804517b",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "F024",
+          "peerId": "F024--1248728e8511",
+          "peerLineages": [
+            "minimax-review"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
     }
   ],
   "resolvedFindings": [],
-  "blockedStopHistory": [],
-  "persistentSameSeverity": [
-    {
-      "findingId": "P2-001",
-      "severity": "P2",
-      "title": "Skill Advisor README contradicts the feature catalog's verified /goal live-tool status",
-      "file": null,
-      "line": null,
-      "description": "",
-      "findingClass": null,
-      "deltaStatus": null,
-      "scopeProof": null,
-      "affectedSurfaceHints": [],
-      "contentHash": "sha256:016d482d6029e467ba94c1f63cf012e09999b684c8ff5e8f383de27f05b82f56",
-      "dimension": "correctness",
-      "firstSeen": 4,
-      "lastSeen": 5,
-      "status": "active",
-      "transitions": [
-        {
-          "iteration": 4,
-          "from": null,
-          "to": "P2",
-          "reason": "Initial discovery (delta)"
-        }
-      ],
-      "dimensions": [
-        "correctness"
-      ],
-      "mergedFindingIds": []
-    }
-  ],
-  "severityChanged": [],
-  "repeatedFindings": [
-    {
-      "findingId": "P2-001",
-      "severity": "P2",
-      "title": "Skill Advisor README contradicts the feature catalog's verified /goal live-tool status",
-      "file": null,
-      "line": null,
-      "description": "",
-      "findingClass": null,
-      "deltaStatus": null,
-      "scopeProof": null,
-      "affectedSurfaceHints": [],
-      "contentHash": "sha256:016d482d6029e467ba94c1f63cf012e09999b684c8ff5e8f383de27f05b82f56",
-      "dimension": "correctness",
-      "firstSeen": 4,
-      "lastSeen": 5,
-      "status": "active",
-      "transitions": [
-        {
-          "iteration": 4,
-          "from": null,
-          "to": "P2",
-          "reason": "Initial discovery (delta)"
-        }
-      ],
-      "dimensions": [
-        "correctness"
-      ],
-      "mergedFindingIds": []
-    }
-  ],
-  "dimensionCoverage": {
-    "correctness": true,
-    "security": true,
-    "traceability": true,
-    "maintainability": true
-  },
   "findingsBySeverity": {
     "P0": 0,
-    "P1": 3,
-    "P2": 5
+    "P1": 17,
+    "P2": 51
   },
-  "openFindingsCount": 8,
+  "openFindingsCount": 68,
   "resolvedFindingsCount": 0,
-  "convergenceScore": 0.86,
-  "graphConvergenceScore": 0,
-  "graphDecision": null,
-  "graphBlockers": [],
-  "candidateCoverage": {
-    "covered": [],
-    "ruledOut": [],
-    "deferred": [],
-    "blocked": [],
-    "byBugClass": {}
-  },
-  "searchDebt": [],
-  "ruledOutCandidates": [],
-  "cleanSearchProof": [],
-  "searchCoverage": {
-    "requiredBugClasses": [],
-    "covered": [],
-    "ruledOut": [],
-    "deferred": [],
-    "blocked": [],
-    "graphCoverageMode": null
-  },
-  "traceability": {
-    "summary": {
-      "required": 0,
-      "executed": 0,
-      "pass": 0,
-      "partial": 0,
-      "fail": 0,
-      "blocked": 0,
-      "notApplicable": 0,
-      "gatingFailures": 0
-    },
-    "results": []
-  },
-  "fieldWarnings": [
-    {
-      "index": 1,
-      "rule": "findingsNew-severity-keys",
-      "detail": "findingsNew must contain P0, P1, P2 keys"
-    },
-    {
-      "index": 2,
-      "rule": "findingsNew-severity-keys",
-      "detail": "findingsNew must contain P0, P1, P2 keys"
-    },
-    {
-      "index": 3,
-      "rule": "findingsNew-severity-keys",
-      "detail": "findingsNew must contain P0, P1, P2 keys"
-    },
-    {
-      "index": 4,
-      "rule": "findingsNew-severity-keys",
-      "detail": "findingsNew must contain P0, P1, P2 keys"
-    },
-    {
-      "index": 5,
-      "rule": "findingsNew-severity-keys",
-      "detail": "findingsNew must contain P0, P1, P2 keys"
-    },
-    {
-      "index": 6,
-      "rule": "findingsNew-severity-keys",
-      "detail": "findingsNew must contain P0, P1, P2 keys"
-    },
-    {
-      "index": 7,
-      "rule": "findingsNew-severity-keys",
-      "detail": "findingsNew must contain P0, P1, P2 keys"
-    },
-    {
-      "index": 8,
-      "rule": "findingsNew-severity-keys",
-      "detail": "findingsNew must contain P0, P1, P2 keys"
-    },
-    {
-      "index": 9,
-      "rule": "findingsNew-severity-keys",
-      "detail": "findingsNew must contain P0, P1, P2 keys"
-    },
-    {
-      "index": 10,
-      "rule": "findingsNew-severity-keys",
-      "detail": "findingsNew must contain P0, P1, P2 keys"
-    }
-  ],
-  "corruptionWarnings": []
+  "activeP0": 0,
+  "activeP1": 17,
+  "activeP2": 51
 }

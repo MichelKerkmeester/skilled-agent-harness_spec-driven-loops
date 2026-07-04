@@ -35,7 +35,7 @@
       "count"
     ],
     "importance_tier": "normal",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
       ".opencode/plugins/tests/mk-goal-continuation.test.cjs",
       ".opencode/plugins/tests/mk-goal-lifecycle.test.cjs",
@@ -199,7 +199,7 @@
     ],
     "causal_summary": "All 6 goal-plugin test files under `.opencode/plugins/tests/` are monolithic single-`async function main()` scripts (confirmed: `mk-goal-continuation.test.cjs:42`, `mk-goal-export-contract.test.cjs:12`, `mk-goal-lifecycle.test.cjs:14`, `mk-goal-state.test.cjs:14`, `mk-goal-supervisor.test.cjs:26`, `mk-goal-tool-path.test.cjs:18`), so `node --test` reports exactly 1 test per file; the first `assert` failure inside `main()` throws and aborts the whole file, masking roughly 50 downstream scenarios per file",
     "created_at": "2026-07-03T07:30:49Z",
-    "last_save_at": "2026-07-03T15:55:04.922Z",
+    "last_save_at": "2026-07-04T08:33:06.626Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,9 +208,9 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:3a2f66da6974969d665d8356447327bff23cec8d8c0d18c9fbf2bf4dce3b46b1",
+    "source_fingerprint": "sha256:412679b6be551c98f435af8a84e1c289598a90c6418c31c5bdf937369e0883d0",
     "source_doc_hashes": {
-      "spec.md": "a78fef3c05ca57bfba2ba6dd582c4bdd1c48f6cedd6a5ef6cf4e05ce801dd1af",
+      "spec.md": "605cae2d2b49d14c6de51e546fa2d90e1d861d12d2ef8c541b3a5897f907cdd6",
       "plan.md": "8510cd8dbf4e47affe6c5a694e54a43f4a2f73415386385927a3909d7a0a9434",
       "tasks.md": "37d5636c34c02b224b0617f7e1f09c3a0ce690227cb219a43f97fc72ca131eb4",
       "implementation-summary.md": "4f9d1ccfd07dc7419b9c4fc517b9bd7a8185bf7e5c40c2aff1d776cda014855b"

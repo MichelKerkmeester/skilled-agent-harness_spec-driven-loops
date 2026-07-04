@@ -41,7 +41,7 @@ _memory:
 |-------|-------|
 | **Level** | 1 |
 | **Priority** | P1 |
-| **Status** | Draft |
+| **Status** | Complete |
 | **Created** | 2026-07-01 |
 | **Branch** | `032-goal-opencode-plugin` |
 | **Parent Spec** | ../spec.md |

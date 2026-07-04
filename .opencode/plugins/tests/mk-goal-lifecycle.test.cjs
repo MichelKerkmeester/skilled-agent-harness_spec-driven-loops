@@ -814,6 +814,64 @@ test('orphan sweep archives stale active files and keeps recent files', async ()
   assert.equal(await fileExists(recentActivePath), true);
 }));
 
+test('orphan sweep does not archive a goal refreshed after the stale read', async () => withState(async ({ helpers, pluginModule, stateDir }) => {
+  const archiveDir = join(stateDir, '.archive');
+  await mkdir(archiveDir, { recursive: true, mode: 0o700 });
+  const sessionID = 'session-orphan-refresh-race';
+  const objective = 'Keep refreshed active state';
+  const staleUpdatedAtMs = 1000;
+  const freshUpdatedAtMs = 40 * 24 * 60 * 60 * 1000;
+  const activePath = helpers.goalPathForSession(sessionID, { stateDir });
+  const archivePath = join(archiveDir, `${helpers.sessionKeyForSession(sessionID)}.json`);
+  let refreshPromise = null;
+  const metrics = new Proxy({}, {
+    get(target, property) {
+      return target[property];
+    },
+    set(target, property, value) {
+      target[property] = value;
+      if (property === 'sweepJsonParse' && !refreshPromise) {
+        refreshPromise = helpers.setGoal(sessionID, objective, {
+          stateDir,
+          nowMs: freshUpdatedAtMs,
+          goalIdFactory: () => 'orphan-refresh-race-goal',
+        });
+      }
+      return true;
+    },
+  });
+
+  await writeFile(activePath, JSON.stringify({
+    sessionId: sessionID,
+    goalId: 'orphan-refresh-race-goal',
+    objective,
+    status: 'active',
+    createdAtMs: staleUpdatedAtMs,
+    updatedAtMs: staleUpdatedAtMs,
+  }), 'utf8');
+  const staleActiveDate = new Date(staleUpdatedAtMs);
+  await utimes(activePath, staleActiveDate, staleActiveDate);
+
+  const sweepPlugin = await pluginModule.default({}, {
+    stateDir,
+    nowMs: freshUpdatedAtMs,
+    metrics,
+  });
+  await sweepPlugin.event({
+    event: {
+      type: 'session.created',
+      properties: { sessionID: 'session-sweep-refresh-race-trigger' },
+    },
+  });
+  assert.ok(refreshPromise, 'sweep pre-archive read should trigger the queued fresh write');
+  await refreshPromise;
+  const activeGoal = await helpers.readGoal(sessionID, { stateDir });
+  assert.equal(activeGoal?.status, 'active');
+  assert.equal(activeGoal?.updatedAtMs, freshUpdatedAtMs);
+  assert.equal(await fileExists(activePath), true);
+  assert.equal(await fileExists(archivePath), false);
+}));
+
 test('orphan sweep prefilter avoids parsing fresh active files', async () => {
   const freshPrefilterStateDir = await mkdtemp(join(tmpdir(), 'mk-goal-sweep-prefilter-spy-'));
   try {
