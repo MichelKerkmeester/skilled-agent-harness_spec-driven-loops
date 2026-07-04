@@ -63,3 +63,30 @@ The contract's autonomous-precedence directive is **effective at killing the set
 ### Next (recommended)
 
 Fix the renderer to surface the invocation message to the model in both modes (mirroring `/memory:search`'s ARGS_PRESENT/QUERY echo + "bind setup from these" instruction), and evolve the fallback invariant to "static command body byte-identical, dynamic invocation message surfaced". Then re-probe — this is the likely last blocker to an actual completion/flip.
+
+---
+
+## Refinement round 2: surface the invocation message + the contract flip
+
+Fixed the renderer to prepend an `ARGS_PRESENT` + raw MESSAGE + "bind setup from these; do NOT ask the setup question" block in both modes (the static body stays the byte-identical invariant; the message prefix is additive — `--compare` still verifies body byte-identity). Committed; Sonnet-verified (message surfaced, body invariant not weakened, 11/11 tests).
+
+### Re-probe (RVB-007 + RSB-007, gpt-fast-med, message surfaced)
+
+| Cell | fallback (no contract) | fix (contract) |
+|------|------------------------|-----------------|
+| RVB-007 | **`role_absorption`** — ran the review loop INLINE (26 read/bash/apply_patch, no `task`), full artifacts, natural terminal | **dispatch every run (3/3)**: 2× `partial` (clean `task` dispatch, artifacts), 1× `route_mismatch` (dispatched `task`×2 but mixed heavy inline) |
+| RSB-007 | `route_mismatch` — messy dispatch + heavy inline | **`partial`** — *"Dispatching the bound /deep:research:auto workflow"*, `task`×2, real research result |
+
+### Findings
+
+1. **The message fix root-caused and cured the setup-halt.** With the invocation message surfaced, both cells go from a bare setup-halt to a full run to natural terminal (RVB-007 fallback produced the complete review packet). The setup-halt was the restructure dropping the message, not a gpt gate. It also cleanly re-baselines the cells to their true gpt-fast failure — `role_absorption` (review) / `route_mismatch` (research).
+2. **The compiled contract flips the delegation failure into real delegation.** The single controlled difference between the columns is the injected contract. Review: fallback absorbs (zero `task`); fix dispatches on all 3 runs. Research: fallback route-mismatches; fix dispatches cleanly. The `absorptionAbort` + "dispatch the leaf, don't run it yourself" directive lands.
+3. **Outcome is `partial`, not a full `pass`, and gpt-fast stays nondeterministic.** 3/4 fix runs reach `partial` (real dispatch + artifacts, a residual dimension gap — likely route-proof/receipt); 1/4 is `route_mismatch` (dispatched but mixed inline). This matches the 033 finding that gpt routes inconsistently — the contract raises the floor but does not make gpt-fast deterministic.
+
+### Verdict (round 2)
+
+**The compiled-contract approach is validated on live cells.** Two fixes compound: surfacing the invocation message unblocks completion, and the compiled contract converts gpt-fast's delegation failures (role_absorption, route_mismatch) into proper `task` delegation — consistently (4/4 fix runs dispatch) though not yet to a uniform clean pass. This is the core 035/036 thesis demonstrated end-to-end at the real command surface.
+
+### Recommendation
+
+**Proceed to the retrofit (P7) — the mechanism is proven.** Carry these as iteration targets, not blockers: (a) close the `partial`→`pass` dimension gap (inspect D3 route-proof/receipt scoring under the compiled contract); (b) the 1/4 `route_mismatch` shows gpt still sometimes mixes inline work with dispatch — a sharper "dispatch ONLY, do not read/edit the target yourself" line in the contract may tighten it; (c) widen to the gpt-fast-high leg + more cells during the retrofit's acceptance pass. The two committed fixes (front-loaded directive + surfaced message) are the load-bearing wins.
