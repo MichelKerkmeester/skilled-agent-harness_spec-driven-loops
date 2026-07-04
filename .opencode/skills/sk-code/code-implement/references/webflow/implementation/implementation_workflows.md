@@ -515,10 +515,10 @@ npx terser src/javascript/[folder]/[file].js --compress --mangle \
   -o src/javascript/z_minified/[folder]/[file].min.js
 
 # 3. Verify (AST check)
-node .opencode/skills/sk-code/assets/webflow/scripts/verify-minification.mjs
+node .opencode/skills/sk-code/code-implement/assets/webflow/scripts/verify-minification.mjs
 
 # 4. Test (runtime check)
-node .opencode/skills/sk-code/assets/webflow/scripts/test-minified-runtime.mjs
+node .opencode/skills/sk-code/code-implement/assets/webflow/scripts/test-minified-runtime.mjs
 
 # 5. Update HTML versions
 #    Increment ?v=X.X.X in all referencing HTML files

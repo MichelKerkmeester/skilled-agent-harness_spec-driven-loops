@@ -44,7 +44,7 @@ validation/
 
 ## 4. COMMENT-HYGIENE GUARD
 
-`ephemeral-pointer-audit.mjs` is the runtime arm of the sk-code §4 "No Ephemeral-Artifact Pointers" rule (`.opencode/skills/sk-code/references/universal/code_style_guide.md §4`). It is wired into the pre-commit gate and the write-time comment-hygiene hook.
+`ephemeral-pointer-audit.mjs` is the runtime arm of the sk-code §4 "No Ephemeral-Artifact Pointers" rule (`.opencode/skills/sk-code/shared/references/universal/code_style_guide.md §4`). It is wired into the pre-commit gate and the write-time comment-hygiene hook.
 
 What it flags (inside comment regions only): a tracking word plus a number ("spec 031", "phase 005", "packet 117"), zero-padded spec/sub-phase pairs ("029/003"), spec slugs ("031-embedding-stack-hardening"), task ids ("T043"), checklist ids ("CHK-160"), requirement ids ("REQ-005"), ADR ids ("ADR-004"), review-finding ids ("DR-008", "P0-3", "F-001-005") and GitHub issue refs ("#456").
 

@@ -98,7 +98,7 @@ advisor_recommend({"prompt":"<prompt matching recent skill>","options":{"include
 2026-06-23T11:12:57+0200 .opencode/skills/mcp-code-mode/SKILL.md
 2026-06-28T16:12:27+0200 .opencode/skills/sk-prompt-models/SKILL.md
 2026-06-26T11:22:22+0200 .opencode/skills/mcp-figma/SKILL.md
-2026-06-30T13:36:50+0200 .opencode/skills/sk-code-review/SKILL.md
+2026-06-30T13:36:50+0200 .opencode/skills/sk-code/code-review/SKILL.md
 2026-07-01T15:35:15+0200 .opencode/skills/system-spec-kit/SKILL.md
 2026-06-30T13:36:50+0200 .opencode/skills/sk-prompt/SKILL.md
 2026-06-30T13:36:50+0200 .opencode/skills/cli-claude-code/SKILL.md

@@ -53,7 +53,7 @@ Coverage note (2026-06-13): the playbook covers single-pass review flow, securit
 ## 2. GLOBAL PRECONDITIONS
 
 1. Working directory is the repository root.
-2. `.opencode/skills/sk-code-review/SKILL.md` and all files under `.opencode/skills/sk-code-review/references/` resolve on disk.
+2. `.opencode/skills/sk-code/code-review/SKILL.md` and all files under `.opencode/skills/sk-code/code-review/references/` resolve on disk.
 3. `.opencode/agents/review.md` and `.opencode/agents/deep-review.md` resolve on disk for native and iterative-review consumer checks.
 4. The operator can run `git diff`, `git status`, `rg`, and line-number inspection commands such as `nl -ba`.
 5. External CLI scenarios require the named CLI surface to be installed and authenticated; otherwise use SKIP with the exact missing binary or auth blocker.

@@ -4,7 +4,7 @@
 // ───────────────────────────────────────────────────────────────
 //
 // Usage:
-//   node .opencode/skills/sk-code/assets/webflow/scripts/test-minified-runtime.mjs
+//   node .opencode/skills/sk-code/code-implement/assets/webflow/scripts/test-minified-runtime.mjs
 //
 // Executes each minified script in a mock browser environment to catch:
 // - Syntax errors

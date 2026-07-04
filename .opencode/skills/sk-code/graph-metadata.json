@@ -8,22 +8,12 @@
     "depends_on": [],
     "enhances": [
       {
-        "target": "sk-code-review",
-        "weight": 0.4,
-        "context": "surface-specific standards evidence for findings-first review"
-      },
-      {
         "target": "system-spec-kit",
         "weight": 0.3,
         "context": "opencode standards and verification for spec-kit system code"
       }
     ],
     "siblings": [
-      {
-        "target": "sk-code-review",
-        "weight": 0.4,
-        "context": "review baseline"
-      },
       {
         "target": "sk-design",
         "weight": 0.4,
@@ -36,13 +26,17 @@
         "target": "system-skill-advisor",
         "weight": 0.7,
         "context": "skill advisor routes code work to sk-code surfaces"
+      },
+      {
+        "target": "deep-loop-workflows",
+        "weight": 0.8,
+        "context": "deep-review depends on the sk-code code-review mode baseline"
       }
     ]
   },
   "manual": {
     "depends_on": [],
     "related_to": [
-      "sk-code-review",
       "system-spec-kit",
       "mcp-chrome-devtools",
       "sk-prompt"
@@ -70,7 +64,13 @@
     "json",
     "jsonc",
     "code-quality",
-    "verification"
+    "verification",
+    "review",
+    "audit",
+    "security",
+    "quality-gate",
+    "merge-readiness",
+    "findings"
   ],
   "intent_signals": [
     "code work",
@@ -123,7 +123,15 @@
     "build a tiny script",
     "tiny script that counts",
     "counts how many",
-    "build a script that"
+    "build a script that",
+    "code review",
+    "pr review",
+    "security review",
+    "quality gate",
+    "findings",
+    "audit packet docs",
+    "review packet docs",
+    "merge readiness"
   ],
   "derived": {
     "trigger_phrases": [
@@ -200,20 +208,20 @@
       ".opencode/skills/sk-code/code-debug/SKILL.md",
       ".opencode/skills/sk-code/code-verify/SKILL.md",
       ".opencode/skills/sk-code/code-review/SKILL.md",
-      ".opencode/skills/sk-code/references/stack_detection.md",
-      ".opencode/skills/sk-code/references/smart_routing.md",
-      ".opencode/skills/sk-code/references/smart_routing.md",
-      ".opencode/skills/sk-code/references/phase_detection.md",
-      ".opencode/skills/sk-code/references/motion_dev/quick_start.md",
-      ".opencode/skills/sk-code/references/motion_dev/decision_matrix.md",
-      ".opencode/skills/sk-code/references/motion_dev/integration_patterns.md",
-      ".opencode/skills/sk-code/references/motion_dev/performance_and_pitfalls.md",
-      ".opencode/skills/sk-code/assets/motion_dev/install_card.md",
-      ".opencode/skills/sk-code/assets/motion_dev/playbook_entries.md",
-      ".opencode/skills/sk-code/assets/webflow/patterns/wait_patterns.js",
-      ".opencode/skills/sk-code/references/webflow/implementation/implementation_workflows.md",
-      ".opencode/skills/sk-code/references/opencode/shared/universal_patterns.md",
-      ".opencode/skills/sk-code/assets/scripts/verify_alignment_drift.py"
+      ".opencode/skills/sk-code/shared/references/stack_detection.md",
+      ".opencode/skills/sk-code/shared/references/smart_routing.md",
+      ".opencode/skills/sk-code/shared/references/smart_routing.md",
+      ".opencode/skills/sk-code/shared/references/phase_detection.md",
+      ".opencode/skills/sk-code/code-implement/references/motion_dev/quick_start.md",
+      ".opencode/skills/sk-code/code-implement/references/motion_dev/decision_matrix.md",
+      ".opencode/skills/sk-code/code-implement/references/motion_dev/integration_patterns.md",
+      ".opencode/skills/sk-code/code-implement/references/motion_dev/performance_and_pitfalls.md",
+      ".opencode/skills/sk-code/code-implement/assets/motion_dev/install_card.md",
+      ".opencode/skills/sk-code/code-implement/assets/motion_dev/playbook_entries.md",
+      ".opencode/skills/sk-code/code-implement/assets/webflow/patterns/wait_patterns.js",
+      ".opencode/skills/sk-code/code-implement/references/webflow/implementation/implementation_workflows.md",
+      ".opencode/skills/sk-code/shared/references/opencode-shared/universal_patterns.md",
+      ".opencode/skills/sk-code/code-verify/assets/scripts/verify_alignment_drift.py"
     ],
     "entities": [
       {
@@ -225,19 +233,19 @@
       {
         "name": "motion_dev",
         "kind": "reference",
-        "path": ".opencode/skills/sk-code/references/motion_dev/quick_start.md",
+        "path": ".opencode/skills/sk-code/code-implement/references/motion_dev/quick_start.md",
         "source": "derived"
       },
       {
         "name": "code_surface_detection",
         "kind": "reference",
-        "path": ".opencode/skills/sk-code/references/stack_detection.md",
+        "path": ".opencode/skills/sk-code/shared/references/stack_detection.md",
         "source": "derived"
       },
       {
         "name": "verify_alignment_drift",
         "kind": "script",
-        "path": ".opencode/skills/sk-code/assets/scripts/verify_alignment_drift.py",
+        "path": ".opencode/skills/sk-code/code-verify/assets/scripts/verify_alignment_drift.py",
         "source": "derived"
       }
     ],

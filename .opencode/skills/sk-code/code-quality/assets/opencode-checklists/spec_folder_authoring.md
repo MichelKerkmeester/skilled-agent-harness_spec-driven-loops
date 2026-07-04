@@ -59,7 +59,7 @@ This checklist keeps spec folder writes compatible with the system-spec-kit vali
 - [ ] grep verification: `rg -n "ANCHOR:metadata|ANCHOR:summary|ANCHOR:notation|_memory:|packet_pointer" <path>`.
 - [ ] grep verification: `rg -n "\"title\"|\"contextType\"|\"derived\"" <path>/description.json <path>/graph-metadata.json`.
 - [ ] Cross-runtime mirror parity check if the spec folder changes command or agent mirrors.
-- [ ] Confirm the companion recipe was followed: `.opencode/skills/sk-code/assets/opencode/recipes/spec_folder_write.md`.
+- [ ] Confirm the companion recipe was followed: `.opencode/skills/sk-code/code-implement/assets/opencode/recipes/spec_folder_write.md`.
 
 ---
 
@@ -67,4 +67,4 @@ This checklist keeps spec folder writes compatible with the system-spec-kit vali
 
 - sk-doc templates and system-spec-kit/templates/manifest/ (source-of-truth for document contract rules)
 - Prior example: `<spec-folder>`
-- Verification recipes: `.opencode/skills/sk-code/assets/opencode/recipes/spec_folder_write.md`
+- Verification recipes: `.opencode/skills/sk-code/code-implement/assets/opencode/recipes/spec_folder_write.md`

@@ -43,7 +43,7 @@ Refactor the parseExecutorConfig function in .opencode/skills/system-spec-kit/mc
 ### Preconditions
 
 1. Target file exists: `bash: test -f .opencode/skills/system-spec-kit/mcp_server/lib/deep-loop/executor-config.ts`
-2. TypeScript sub-language reference set intact: `bash: ls .opencode/skills/sk-code/references/opencode/typescript/ | sort` returns exactly `quality_standards.md style_guide.md quick_reference.md` (in some sort order).
+2. TypeScript sub-language reference set intact: `bash: ls .opencode/skills/sk-code/code-implement/references/opencode/typescript/ | sort` returns exactly `quality_standards.md style_guide.md quick_reference.md` (in some sort order).
 
 ### Exact Command Sequence
 
@@ -64,8 +64,8 @@ Refactor the parseExecutorConfig function in .opencode/skills/system-spec-kit/mc
 ## 4. SOURCE FILES
 
 - `.opencode/skills/sk-code/SKILL.md` (lines 78-90 — sub-detection table).
-- `.opencode/skills/sk-code/references/stack_detection.md` (lines 50-62).
-- `.opencode/skills/sk-code/references/opencode/typescript/{style_guide,quality_standards,quick_reference}.md`.
+- `.opencode/skills/sk-code/shared/references/stack_detection.md` (lines 50-62).
+- `.opencode/skills/sk-code/code-implement/references/opencode/typescript/{style_guide,quality_standards,quick_reference}.md`.
 
 ## 5. SOURCE METADATA
 

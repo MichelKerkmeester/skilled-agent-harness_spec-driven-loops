@@ -39,7 +39,7 @@ This reference gives sk-code a decision path for choosing CSS, Motion.dev, GSAP,
 - Official: https://motion.dev/docs/quick-start
 - Official: https://motion.dev/docs/gsap-vs-motion
 - Official: https://motion.dev/docs/improvements-to-the-web-animations-api-dx
-- In-repo: `.opencode/skills/sk-code/references/webflow/implementation/animation_workflows.md`
+- In-repo: `.opencode/skills/sk-code/code-implement/references/webflow/implementation/animation_workflows.md`
 
 ---
 
@@ -61,7 +61,7 @@ Need animation?
         -> Direct WAAPI can be enough.
 ```
 
-This matches the existing local rule: CSS first for simple states; Motion when programmatic control is needed (Repo: `.opencode/skills/sk-code/references/webflow/implementation/animation_workflows.md`). Motion docs support the programmatic side via `animate()`, sequences, `scroll()`, and `inView()` (Sources: https://motion.dev/docs/animate, https://motion.dev/docs/scroll, https://motion.dev/docs/inview).
+This matches the existing local rule: CSS first for simple states; Motion when programmatic control is needed (Repo: `.opencode/skills/sk-code/code-implement/references/webflow/implementation/animation_workflows.md`). Motion docs support the programmatic side via `animate()`, sequences, `scroll()`, and `inView()` (Sources: https://motion.dev/docs/animate, https://motion.dev/docs/scroll, https://motion.dev/docs/inview).
 
 ## 3. MOTION.DEV vs GSAP
 
@@ -125,5 +125,5 @@ Expected response shape: give the smallest-tool recommendation first, then name 
 - Motion spring: https://motion.dev/docs/spring
 - Motion vs GSAP: https://motion.dev/docs/gsap-vs-motion
 - Motion vs WAAPI / improvements: https://motion.dev/docs/improvements-to-the-web-animations-api-dx
-- Local Webflow animation decision rule: `.opencode/skills/sk-code/references/webflow/implementation/animation_workflows.md`
+- Local Webflow animation decision rule: `.opencode/skills/sk-code/code-implement/references/webflow/implementation/animation_workflows.md`
 - Local Motion usage anchors: `a_nobel_en_zn/2_javascript/navigation/nav_dropdown.js`, `a_nobel_en_zn/2_javascript/slider/testimonial.js`

@@ -40,7 +40,7 @@ install-hooks.sh
 git commit
    └─ .git/hooks/pre-commit
         ├─ for each staged file (git diff --cached --diff-filter=ACM)
-        │     └─ run .opencode/skills/sk-code/scripts/check-comment-hygiene.sh <file>
+        │     └─ run .opencode/skills/sk-code/code-quality/scripts/check-comment-hygiene.sh <file>
         ├─ if any file returns rc=1  → print BLOCKED + count → exit 1 (commit aborted)
         └─ else                       → exit 0 (commit proceeds)
 ```
@@ -86,5 +86,5 @@ python3 .opencode/skills/sk-doc/scripts/validate_document.py --type readme .open
 
 ## 7. RELATED
 
-- [`../skills/sk-code/scripts/check-comment-hygiene.sh`](../skills/sk-code/scripts/check-comment-hygiene.sh) — the checker the hook invokes per staged file.
-- [`../skills/sk-code/references/universal/code_style_guide.md`](../skills/sk-code/references/universal/code_style_guide.md) — §4, the comment-hygiene rule this gate enforces.
+- [`../skills/sk-code/code-quality/scripts/check-comment-hygiene.sh`](../skills/sk-code/code-quality/scripts/check-comment-hygiene.sh) — the checker the hook invokes per staged file.
+- [`../skills/sk-code/shared/references/universal/code_style_guide.md`](../skills/sk-code/shared/references/universal/code_style_guide.md) — §4, the comment-hygiene rule this gate enforces.

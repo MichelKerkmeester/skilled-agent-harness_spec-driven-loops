@@ -47,8 +47,8 @@ Add a helper to .opencode/skills/system-spec-kit/mcp_server/lib/util/unique.ts t
 ### Preconditions
 
 1. `.opencode/skills/sk-code/SKILL.md` is at HEAD-of-main and its Phase Overview names the Design Restraint Ladder.
-2. The ladder reference exists: `bash: rg -n "Design Restraint Ladder" .opencode/skills/sk-code/references/universal/code_quality_standards.md`.
-3. The Phase 0 to 1 gate exists: `bash: rg -n "laziest viable" .opencode/skills/sk-code/references/phase_detection.md`.
+2. The ladder reference exists: `bash: rg -n "Design Restraint Ladder" .opencode/skills/sk-code/shared/references/universal/code_quality_standards.md`.
+3. The Phase 0 to 1 gate exists: `bash: rg -n "laziest viable" .opencode/skills/sk-code/shared/references/phase_detection.md`.
 4. Skill advisor callable.
 
 ### Exact Command Sequence
@@ -85,8 +85,8 @@ Add a helper to .opencode/skills/system-spec-kit/mcp_server/lib/util/unique.ts t
 
 ## 4. SOURCE FILES
 
-- `.opencode/skills/sk-code/references/universal/code_quality_standards.md` — The pre-write Design Restraint Ladder.
-- `.opencode/skills/sk-code/references/phase_detection.md` — Phase 0 to 1 gate requiring the laziest viable rung for implementation intent.
+- `.opencode/skills/sk-code/shared/references/universal/code_quality_standards.md` — The pre-write Design Restraint Ladder.
+- `.opencode/skills/sk-code/shared/references/phase_detection.md` — Phase 0 to 1 gate requiring the laziest viable rung for implementation intent.
 - `.opencode/skills/sk-code/SKILL.md` — Phase Overview naming the ladder; surface precedence and Iron Law.
 
 ## 5. SOURCE METADATA

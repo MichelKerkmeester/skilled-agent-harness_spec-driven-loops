@@ -77,10 +77,10 @@ Expected result files:
 
 ## 4. SOURCE FILES
 
-- `.opencode/skills/sk-code/references/stack_detection.md` - WEBFLOW marker block.
-- `.opencode/skills/sk-code/references/smart_routing.md` - WEBFLOW plus MOTION_DEV loading rules.
-- `.opencode/skills/sk-code/references/motion_dev/quick_start.md` - Motion install and import guidance.
-- `.opencode/skills/sk-code/assets/motion_dev/snippets/in_view_reveal.js` - Required snippet.
+- `.opencode/skills/sk-code/shared/references/stack_detection.md` - WEBFLOW marker block.
+- `.opencode/skills/sk-code/shared/references/smart_routing.md` - WEBFLOW plus MOTION_DEV loading rules.
+- `.opencode/skills/sk-code/code-implement/references/motion_dev/quick_start.md` - Motion install and import guidance.
+- `.opencode/skills/sk-code/code-implement/assets/motion_dev/snippets/in_view_reveal.js` - Required snippet.
 
 ---
 

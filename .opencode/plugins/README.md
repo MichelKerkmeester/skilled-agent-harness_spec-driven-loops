@@ -152,4 +152,4 @@ When upgrading OpenCode beyond 1.3.17, rerun the 026/007/009 discovery probe:
 - `.opencode/skills/system-skill-advisor/mcp_server/hooks/` — sibling hook entrypoints (different runtime contract)
 - `.opencode/skills/system-spec-kit/scripts/lib/dist-freshness.cjs` — shared dist-staleness checker used by `mk-dist-freshness-guard.js`, `validate.sh`, and the `sk-code` PostToolUse hook
 - `.opencode/bin/README.md` §6 "Dist freshness" — the full watched-package table and CLI-shim consumer detail
-- `.opencode/skills/sk-code/scripts/hooks/claude-posttooluse.sh` — the Claude Code PostToolUse hook counterpart (warn-only, sibling to this plugin's `tool.execute.before`)
+- `.opencode/skills/sk-code/code-quality/scripts/hooks/claude-posttooluse.sh` — the Claude Code PostToolUse hook counterpart (warn-only, sibling to this plugin's `tool.execute.before`)

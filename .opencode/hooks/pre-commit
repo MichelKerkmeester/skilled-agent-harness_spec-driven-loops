@@ -1,10 +1,10 @@
 #!/usr/bin/env bash
 # Comment hygiene pre-commit gate
 # Blocks commits that add ephemeral-artifact pointers to code comments.
-# See: .opencode/skills/sk-code/references/universal/code_style_guide.md §4
+# See: .opencode/skills/sk-code/shared/references/universal/code_style_guide.md §4
 set -euo pipefail
 
-CHECKER=".opencode/skills/sk-code/scripts/check-comment-hygiene.sh"
+CHECKER=".opencode/skills/sk-code/code-quality/scripts/check-comment-hygiene.sh"
 REPO_ROOT="$(git rev-parse --show-toplevel)"
 CHECKER_PATH="$REPO_ROOT/$CHECKER"
 
@@ -28,7 +28,7 @@ done < <(git diff --cached --name-only --diff-filter=ACM)
 if [[ $VIOLATIONS -gt 0 ]]; then
   echo ""
   echo "BLOCKED: $VIOLATIONS file(s) contain ephemeral-artifact pointers in code comments."
-  echo "See: .opencode/skills/sk-code/references/universal/code_style_guide.md §4"
+  echo "See: .opencode/skills/sk-code/shared/references/universal/code_style_guide.md §4"
   echo "Fix: replace the pointer with the durable WHY. Escape: add '// hygiene-ok' to exempt a line."
   exit 1
 fi

@@ -305,8 +305,8 @@ Per-feature file: see `09--tooling-and-hooks/check-dist-staleness-hook.md`.
 
 The sk-code skill currently has these automated tests:
 
-- `.opencode/skills/sk-code/assets/scripts/test_verify_alignment_drift.py` — Pytest suite for `verify_alignment_drift.py` (OPENCODE alignment verifier).
-- `.opencode/skills/sk-code/assets/scripts/verify_stack_folders.py` — STACK_FOLDERS-to-disk surface validator (deterministic exit-code check; exercised manually by DR-004).
+- `.opencode/skills/sk-code/code-verify/assets/scripts/test_verify_alignment_drift.py` — Pytest suite for `verify_alignment_drift.py` (OPENCODE alignment verifier).
+- `.opencode/skills/sk-code/code-verify/assets/scripts/verify_stack_folders.py` — STACK_FOLDERS-to-disk surface validator (deterministic exit-code check; exercised manually by DR-004).
 
 Tests NOT covered by automation (manual playbook is the only validation):
 - Surface detection routing decisions (SD-001, SD-002, SD-003).

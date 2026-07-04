@@ -66,4 +66,4 @@ This checklist makes new `@<name>` agents safe to dispatch and easy to mirror ac
 
 - sk-doc references/specific/agent_creation.md (source-of-truth for agent content rules)
 - Prior examples: `.opencode/agents/code.md`, `.opencode/agents/review.md`, `.opencode/agents/orchestrate.md`
-- Verification recipes: `.opencode/skills/sk-code/assets/opencode/checklists/universal_checklist.md`
+- Verification recipes: `.opencode/skills/sk-code/code-quality/assets/opencode-checklists/universal_checklist.md`

@@ -83,7 +83,7 @@ Add a request-ID middleware to my Go HTTP server in cmd/api/main.go and return i
 ## 4. SOURCE FILES
 
 - `.opencode/skills/sk-code/SKILL.md` — Multi-Repository Architecture table with "Unsupported / Unknown" row.
-- `.opencode/skills/sk-code/references/stack_detection.md` — Marker definitions (none should match Go).
+- `.opencode/skills/sk-code/shared/references/stack_detection.md` — Marker definitions (none should match Go).
 - `AGENTS.md` (project root) — Multi-Repository Architecture table cross-reference.
 
 ## 5. SOURCE METADATA

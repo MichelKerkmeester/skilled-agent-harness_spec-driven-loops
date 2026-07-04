@@ -72,9 +72,9 @@ Evidence files:
 
 ## 4. SOURCE FILES
 
-- `.opencode/skills/sk-code/references/webflow/performance/cwv_remediation.md` - Required Webflow CWV reference.
-- `.opencode/skills/sk-code/references/motion_dev/performance_and_pitfalls.md` - Required Motion performance reference.
-- `.opencode/skills/sk-code/assets/webflow/checklists/performance_loading_checklist.md` - Expected asset.
+- `.opencode/skills/sk-code/code-implement/references/webflow/performance/cwv_remediation.md` - Required Webflow CWV reference.
+- `.opencode/skills/sk-code/code-implement/references/motion_dev/performance_and_pitfalls.md` - Required Motion performance reference.
+- `.opencode/skills/sk-code/code-verify/assets/performance_loading_checklist.md` - Expected asset.
 
 ---
 

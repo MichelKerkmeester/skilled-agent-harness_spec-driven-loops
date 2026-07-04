@@ -158,8 +158,8 @@ The `?v=1.3.1` query string serves three purposes:
    ```
 3. Verify minification:
    ```bash
-   node .opencode/skills/sk-code/assets/webflow/scripts/verify-minification.mjs
-   node .opencode/skills/sk-code/assets/webflow/scripts/test-minified-runtime.mjs
+   node .opencode/skills/sk-code/code-implement/assets/webflow/scripts/verify-minification.mjs
+   node .opencode/skills/sk-code/code-implement/assets/webflow/scripts/test-minified-runtime.mjs
    ```
 4. Bump version in source: change `?v=1.4.0` → `?v=1.4.1` in BOTH the Custom Code panel AND `src/0_html/global.html` (mirror file)
 5. Upload `[file].min.js` to R2 dashboard (or via `wrangler` CLI)

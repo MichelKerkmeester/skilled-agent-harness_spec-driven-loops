@@ -62,7 +62,7 @@ Add set -euo pipefail and a trap to .opencode/skills/system-spec-kit/scripts/spe
 ## 4. SOURCE FILES
 
 - `.opencode/skills/sk-code/SKILL.md` (sub-detection table).
-- `.opencode/skills/sk-code/references/opencode/shell/{style_guide,quality_standards,quick_reference}.md`.
+- `.opencode/skills/sk-code/code-implement/references/opencode/shell/{style_guide,quality_standards,quick_reference}.md`.
 
 ## 5. SOURCE METADATA
 

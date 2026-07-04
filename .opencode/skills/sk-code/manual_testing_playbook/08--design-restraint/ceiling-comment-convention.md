@@ -37,9 +37,9 @@ Add a small in-memory rate limiter to the sk-doc local preview server at .openco
 
 ### Preconditions
 
-1. `.opencode/skills/sk-code/references/universal/code_style_guide.md` §4 documents the `ceiling:` convention: `bash: rg -n "ceiling:" .opencode/skills/sk-code/references/universal/code_style_guide.md`.
-2. The comment-hygiene checker resolves: `bash: test -f .opencode/skills/sk-code/scripts/check-comment-hygiene.sh`.
-3. `ceiling:` is NOT in the checker's allowed-pattern list: `bash: rg -n "ALLOWED_PATTERN|allowed" .opencode/skills/sk-code/scripts/check-comment-hygiene.sh` returns no `ceiling` entry.
+1. `.opencode/skills/sk-code/shared/references/universal/code_style_guide.md` §4 documents the `ceiling:` convention: `bash: rg -n "ceiling:" .opencode/skills/sk-code/shared/references/universal/code_style_guide.md`.
+2. The comment-hygiene checker resolves: `bash: test -f .opencode/skills/sk-code/code-quality/scripts/check-comment-hygiene.sh`.
+3. `ceiling:` is NOT in the checker's allowed-pattern list: `bash: rg -n "ALLOWED_PATTERN|allowed" .opencode/skills/sk-code/code-quality/scripts/check-comment-hygiene.sh` returns no `ceiling` entry.
 
 ### Exact Command Sequence
 
@@ -47,7 +47,7 @@ Add a small in-memory rate limiter to the sk-doc local preview server at .openco
 2. **Capture the emitted comment**: confirm it is a `ceiling:` comment with shortcut, ceiling, and upgrade trigger.
 3. **Run comment-hygiene** on the produced file:
    ```
-   bash: python3 .opencode/skills/sk-code/scripts/check-comment-hygiene.sh /tmp/skc-DR003-sandbox/preview-server.ts
+   bash: python3 .opencode/skills/sk-code/code-quality/scripts/check-comment-hygiene.sh /tmp/skc-DR003-sandbox/preview-server.ts
    ```
 4. **Verify**: exit 0 (clean), and the checker's allowed-pattern list was not modified.
 5. **Persist evidence** to `/tmp/skc-DR003-hygiene.txt`.
@@ -75,8 +75,8 @@ Add a small in-memory rate limiter to the sk-doc local preview server at .openco
 
 ## 4. SOURCE FILES
 
-- `.opencode/skills/sk-code/references/universal/code_style_guide.md` — §4 neutral `ceiling:` intentional-simplification convention.
-- `.opencode/skills/sk-code/scripts/check-comment-hygiene.sh` — Comment-hygiene checker the convention must pass without an allow-list entry.
+- `.opencode/skills/sk-code/shared/references/universal/code_style_guide.md` — §4 neutral `ceiling:` intentional-simplification convention.
+- `.opencode/skills/sk-code/code-quality/scripts/check-comment-hygiene.sh` — Comment-hygiene checker the convention must pass without an allow-list entry.
 
 ## 5. SOURCE METADATA
 

@@ -14,7 +14,7 @@ jobs:
       - name: Check that load-bearing rule wording has not drifted
         run: |
           set -euo pipefail
-          CANARY=".opencode/skills/sk-code-review/scripts/check-rule-copies.js"
+          CANARY=".opencode/skills/sk-code/code-review/scripts/check-rule-copies.js"
           # Fail closed in CI: a required guard must exist. A PR that deletes or
           # moves the canary must not silently disable its own gate.
           if [ ! -f "$CANARY" ]; then

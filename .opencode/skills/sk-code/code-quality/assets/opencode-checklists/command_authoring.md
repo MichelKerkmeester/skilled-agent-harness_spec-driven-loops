@@ -63,4 +63,4 @@ This checklist keeps `/<command>` workflows consistent across command markdown, 
 
 - sk-doc assets/command/command_template.md (source-of-truth for command document shape)
 - Prior examples: `.opencode/commands/speckit/complete.md`, `.opencode/commands/create/sk-skill.md`
-- Verification recipes: `.opencode/skills/sk-code/assets/opencode/checklists/universal_checklist.md`
+- Verification recipes: `.opencode/skills/sk-code/code-quality/assets/opencode-checklists/universal_checklist.md`

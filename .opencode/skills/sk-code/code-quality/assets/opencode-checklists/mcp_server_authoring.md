@@ -66,4 +66,4 @@ This checklist covers the foundation needed for a new OpenCode MCP server to be 
 
 - sk-doc references/skill_creation.md (source-of-truth for skill packaging around MCP assets)
 - Prior examples: `.opencode/skills/system-spec-kit/mcp_server/`, `.opencode/skills/system-code-graph/mcp_server/`, `.opencode/skills/system-skill-advisor/mcp_server/`
-- Verification recipes: `.opencode/skills/sk-code/assets/opencode/checklists/typescript_checklist.md`, `.opencode/skills/sk-code/assets/opencode/checklists/python_checklist.md`
+- Verification recipes: `.opencode/skills/sk-code/code-quality/assets/opencode-checklists/typescript_checklist.md`, `.opencode/skills/sk-code/code-quality/assets/opencode-checklists/python_checklist.md`

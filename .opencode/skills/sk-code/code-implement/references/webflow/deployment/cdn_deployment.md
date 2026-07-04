@@ -196,8 +196,8 @@ grep -r "script_name.js?v=" src/0_html/
 ```
 □ JavaScript changes made and tested locally
 □ Minified using terser (see minification_guide.md)
-□ AST verification passed (node .opencode/skills/sk-code/assets/webflow/scripts/verify-minification.mjs)
-□ Runtime test passed (node .opencode/skills/sk-code/assets/webflow/scripts/test-minified-runtime.mjs)
+□ AST verification passed (node .opencode/skills/sk-code/code-implement/assets/webflow/scripts/verify-minification.mjs)
+□ Runtime test passed (node .opencode/skills/sk-code/code-implement/assets/webflow/scripts/test-minified-runtime.mjs)
 □ Browser test passed (no console errors)
 ```
 
@@ -224,8 +224,8 @@ grep -r "script_name.js?v=" src/0_html/
 ```
 1. Edit JS      → src/2_javascript/[folder]/[file].js
 2. Minify       → npx terser [source] --compress --mangle -o z_minified/[folder]/[file].min.js
-3. Verify       → node .opencode/skills/sk-code/assets/webflow/scripts/verify-minification.mjs
-4. Test         → node .opencode/skills/sk-code/assets/webflow/scripts/test-minified-runtime.mjs
+3. Verify       → node .opencode/skills/sk-code/code-implement/assets/webflow/scripts/verify-minification.mjs
+4. Test         → node .opencode/skills/sk-code/code-implement/assets/webflow/scripts/test-minified-runtime.mjs
 5. Update HTML  → Increment ?v=X.X.X in all referencing HTML files (use .min.js)
 6. Upload       → Cloudflare Dashboard → R2 → Upload minified .min.js file
 7. Verify live  → Hard refresh, check console, test functionality
@@ -316,9 +316,9 @@ grep -r "script_name.js?v=" src/0_html/
 
 ### Scripts
 
-- `.opencode/skills/sk-code/assets/webflow/scripts/verify-minification.mjs` - AST verification
-- `.opencode/skills/sk-code/assets/webflow/scripts/test-minified-runtime.mjs` - Runtime testing
-- `.opencode/skills/sk-code/assets/webflow/scripts/minify-webflow.mjs` - Batch minification
+- `.opencode/skills/sk-code/code-implement/assets/webflow/scripts/verify-minification.mjs` - AST verification
+- `.opencode/skills/sk-code/code-implement/assets/webflow/scripts/test-minified-runtime.mjs` - Runtime testing
+- `.opencode/skills/sk-code/code-implement/assets/webflow/scripts/minify-webflow.mjs` - Batch minification
 
 ### External
 

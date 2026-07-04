@@ -237,8 +237,8 @@ When OPENCODE intent is `authoring-new-X`, additionally load the matching author
 
 | Surface | Required verification evidence |
 | --- | --- |
-| WEBFLOW | `node .opencode/skills/sk-code/assets/webflow/scripts/minify-webflow.mjs`; `node .opencode/skills/sk-code/assets/webflow/scripts/verify-minification.mjs`; `node .opencode/skills/sk-code/assets/webflow/scripts/test-minified-runtime.mjs`; plus desktop/mobile browser console clean evidence when runtime behavior changes |
-| OPENCODE | `python3 .opencode/skills/sk-code/assets/scripts/verify_alignment_drift.py --root <changed-scope>`; plus targeted language/project tests such as vitest, pytest, shellcheck, JSON validation, or spec validation for changed spec folders |
+| WEBFLOW | `node .opencode/skills/sk-code/code-implement/assets/webflow/scripts/minify-webflow.mjs`; `node .opencode/skills/sk-code/code-implement/assets/webflow/scripts/verify-minification.mjs`; `node .opencode/skills/sk-code/code-implement/assets/webflow/scripts/test-minified-runtime.mjs`; plus desktop/mobile browser console clean evidence when runtime behavior changes |
+| OPENCODE | `python3 .opencode/skills/sk-code/code-verify/assets/scripts/verify_alignment_drift.py --root <changed-scope>`; plus targeted language/project tests such as vitest, pytest, shellcheck, JSON validation, or spec validation for changed spec folders |
 | UNKNOWN | User-selected verification command set before completion claim |
 
 ---
@@ -290,7 +290,7 @@ Returned when intent confidence is low (`max(intent_scores) < 0.5`) OR when the 
 - [`./stack_detection.md`](./stack_detection.md) — surface detection (WEBFLOW/OPENCODE/UNKNOWN) + OPENCODE language sub-detection
 - [`./phase_detection.md`](./phase_detection.md) — Phase 1/2/3 lifecycle and per-phase resource loading
 - `SKILL.md` §2 SMART ROUTING — operator-facing summary of this routing contract
-- Barter equivalent: `barter/.opencode/skills/sk-code/references/smart_routing.md` (different routing key — git-remote project — but same structural pattern)
+- Barter equivalent: `barter/.opencode/skills/sk-code/shared/references/smart_routing.md` (different routing key — git-remote project — but same structural pattern)
 
 ---
 

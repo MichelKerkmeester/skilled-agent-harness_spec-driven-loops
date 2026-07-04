@@ -1,6 +1,6 @@
 ---
 title: "sk code assets motion dev snippets: Code README"
-description: "Code-facing README for .opencode/skills/sk-code/assets/motion_dev/snippets."
+description: "Code-facing README for .opencode/skills/sk-code/code-implement/assets/motion_dev/snippets."
 trigger_phrases:
   - "sk-code assets/motion_dev/snippets"
   - "code README"
@@ -17,7 +17,7 @@ Executable asset scripts shipped with the skill.
 
 ### Purpose
 
-This README documents the code-bearing folder `.opencode/skills/sk-code/assets/motion_dev/snippets` so operators can understand its role without opening every source file first. It follows the sk-doc skill README structure while staying focused on code navigation.
+This README documents the code-bearing folder `.opencode/skills/sk-code/code-implement/assets/motion_dev/snippets` so operators can understand its role without opening every source file first. It follows the sk-doc skill README structure while staying focused on code navigation.
 
 ### Usage
 
@@ -42,7 +42,7 @@ Start with `.opencode/skills/sk-code/SKILL.md` for runtime routing and workflow 
 **Step 2: Inspect the local code.**
 
 ```bash
-rg --files .opencode/skills/sk-code/assets/motion_dev/snippets
+rg --files .opencode/skills/sk-code/code-implement/assets/motion_dev/snippets
 ```
 
 Expected result: the command lists the source files summarized below.
@@ -94,7 +94,7 @@ Load this folder through the owning skill workflow or MCP server entrypoint.
 **Audit this folder**
 
 ```text
-User request: Check .opencode/skills/sk-code/assets/motion_dev/snippets for sk-code and README coverage.
+User request: Check .opencode/skills/sk-code/code-implement/assets/motion_dev/snippets for sk-code and README coverage.
 Skill routing: sk-code plus sk-doc.
 Expected output: Findings recorded in the current release-alignment review evidence.
 ```

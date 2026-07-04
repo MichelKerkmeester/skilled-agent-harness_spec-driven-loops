@@ -195,13 +195,13 @@ npx terser src/javascript/[folder]/[file].js \
 For batch minification of all files:
 
 ```bash
-node .opencode/skills/sk-code/assets/webflow/scripts/minify-webflow.mjs
+node .opencode/skills/sk-code/code-implement/assets/webflow/scripts/minify-webflow.mjs
 ```
 
 ### Step 2: AST Verification
 
 ```bash
-node .opencode/skills/sk-code/assets/webflow/scripts/verify-minification.mjs
+node .opencode/skills/sk-code/code-implement/assets/webflow/scripts/verify-minification.mjs
 ```
 
 **What it checks:**
@@ -232,7 +232,7 @@ Failed: 0/39
 ### Step 3: Runtime Testing
 
 ```bash
-node .opencode/skills/sk-code/assets/webflow/scripts/test-minified-runtime.mjs
+node .opencode/skills/sk-code/code-implement/assets/webflow/scripts/test-minified-runtime.mjs
 ```
 
 **What it checks:**
@@ -280,7 +280,7 @@ bdg stop
 
 ### verify-minification.mjs
 
-**Location:** `.opencode/skills/sk-code/assets/webflow/scripts/verify-minification.mjs`
+**Location:** `.opencode/skills/sk-code/code-implement/assets/webflow/scripts/verify-minification.mjs`
 
 **Purpose:** AST-based comparison of original and minified files
 
@@ -292,7 +292,7 @@ bdg stop
 
 **Usage:**
 ```bash
-node .opencode/skills/sk-code/assets/webflow/scripts/verify-minification.mjs
+node .opencode/skills/sk-code/code-implement/assets/webflow/scripts/verify-minification.mjs
 ```
 
 **Interpreting output:**
@@ -302,7 +302,7 @@ node .opencode/skills/sk-code/assets/webflow/scripts/verify-minification.mjs
 
 ### test-minified-runtime.mjs
 
-**Location:** `.opencode/skills/sk-code/assets/webflow/scripts/test-minified-runtime.mjs`
+**Location:** `.opencode/skills/sk-code/code-implement/assets/webflow/scripts/test-minified-runtime.mjs`
 
 **Purpose:** Execute minified scripts in mock browser environment
 
@@ -320,7 +320,7 @@ node .opencode/skills/sk-code/assets/webflow/scripts/verify-minification.mjs
 
 **Usage:**
 ```bash
-node .opencode/skills/sk-code/assets/webflow/scripts/test-minified-runtime.mjs
+node .opencode/skills/sk-code/code-implement/assets/webflow/scripts/test-minified-runtime.mjs
 ```
 
 **Interpreting output:**
@@ -329,17 +329,17 @@ node .opencode/skills/sk-code/assets/webflow/scripts/test-minified-runtime.mjs
 
 ### minify-webflow.mjs
 
-**Location:** `.opencode/skills/sk-code/assets/webflow/scripts/minify-webflow.mjs`
+**Location:** `.opencode/skills/sk-code/code-implement/assets/webflow/scripts/minify-webflow.mjs`
 
 **Purpose:** Batch minification of all JavaScript files
 
 **Usage:**
 ```bash
 # Normal run (skips if output exists and unchanged)
-node .opencode/skills/sk-code/assets/webflow/scripts/minify-webflow.mjs
+node .opencode/skills/sk-code/code-implement/assets/webflow/scripts/minify-webflow.mjs
 
 # Force re-minification of all files
-node .opencode/skills/sk-code/assets/webflow/scripts/minify-webflow.mjs --force
+node .opencode/skills/sk-code/code-implement/assets/webflow/scripts/minify-webflow.mjs --force
 ```
 
 **Output:**
@@ -449,13 +449,13 @@ window['initHero'] = function() { ... };  // Bracket notation preserves name
 
 ```bash
 # Step 1: Minify all
-node .opencode/skills/sk-code/assets/webflow/scripts/minify-webflow.mjs --force
+node .opencode/skills/sk-code/code-implement/assets/webflow/scripts/minify-webflow.mjs --force
 
 # Step 2: Verify all
-node .opencode/skills/sk-code/assets/webflow/scripts/verify-minification.mjs
+node .opencode/skills/sk-code/code-implement/assets/webflow/scripts/verify-minification.mjs
 
 # Step 3: Test all
-node .opencode/skills/sk-code/assets/webflow/scripts/test-minified-runtime.mjs
+node .opencode/skills/sk-code/code-implement/assets/webflow/scripts/test-minified-runtime.mjs
 
 # Step 4: Browser test key pages
 bdg https://your-project.webflow.io/
@@ -471,10 +471,10 @@ npx terser src/javascript/hero/hero_video.js --compress --mangle \
   -o src/javascript/z_minified/hero/hero_video.min.js
 
 # Step 2: Verify (runs on all, but check specific file in output)
-node .opencode/skills/sk-code/assets/webflow/scripts/verify-minification.mjs
+node .opencode/skills/sk-code/code-implement/assets/webflow/scripts/verify-minification.mjs
 
 # Step 3: Test
-node .opencode/skills/sk-code/assets/webflow/scripts/test-minified-runtime.mjs
+node .opencode/skills/sk-code/code-implement/assets/webflow/scripts/test-minified-runtime.mjs
 
 # Step 4: Browser test
 bdg https://your-project.webflow.io/
@@ -523,9 +523,9 @@ bdg stop
 
 ### Scripts
 
-- `.opencode/skills/sk-code/assets/webflow/scripts/minify-webflow.mjs` - Batch minification
-- `.opencode/skills/sk-code/assets/webflow/scripts/verify-minification.mjs` - AST verification
-- `.opencode/skills/sk-code/assets/webflow/scripts/test-minified-runtime.mjs` - Runtime testing
+- `.opencode/skills/sk-code/code-implement/assets/webflow/scripts/minify-webflow.mjs` - Batch minification
+- `.opencode/skills/sk-code/code-implement/assets/webflow/scripts/verify-minification.mjs` - AST verification
+- `.opencode/skills/sk-code/code-implement/assets/webflow/scripts/test-minified-runtime.mjs` - Runtime testing
 
 ### External
 

@@ -56,7 +56,7 @@ Add Lenis smooth-scroll to src/2_javascript/scroll.js, gated by IntersectionObse
 ### Preconditions
 
 1. `.opencode/skills/sk-code/SKILL.md` is at HEAD-of-main.
-2. `references/stack_detection.md:30-37` contains the WEBFLOW marker block (verify with `head -40 .opencode/skills/sk-code/references/stack_detection.md`).
+2. `references/stack_detection.md:30-37` contains the WEBFLOW marker block (verify with `head -40 .opencode/skills/sk-code/shared/references/stack_detection.md`).
 3. Sandbox: create `/tmp/skc-SD001-sandbox/src/2_javascript/scroll.js` with placeholder content (the AI doesn't need to actually write — we're testing routing).
 4. Skill advisor binary callable: `python3 .opencode/skills/system-skill-advisor/mcp_server/scripts/skill_advisor.py --help` exits 0.
 
@@ -102,9 +102,9 @@ Add Lenis smooth-scroll to src/2_javascript/scroll.js, gated by IntersectionObse
 ## 4. SOURCE FILES
 
 - `.opencode/skills/sk-code/SKILL.md` — Smart router pseudocode (lines 53-68).
-- `.opencode/skills/sk-code/references/stack_detection.md` — WEBFLOW marker definitions (lines 30-37).
-- `.opencode/skills/sk-code/references/smart_routing.md` — Intent → resource-loading mapping.
-- `.opencode/skills/sk-code/references/webflow/implementation/webflow_patterns.md` — Expected-loaded reference.
+- `.opencode/skills/sk-code/shared/references/stack_detection.md` — WEBFLOW marker definitions (lines 30-37).
+- `.opencode/skills/sk-code/shared/references/smart_routing.md` — Intent → resource-loading mapping.
+- `.opencode/skills/sk-code/code-implement/references/webflow/implementation/webflow_patterns.md` — Expected-loaded reference.
 - `.opencode/skills/system-skill-advisor/mcp_server/scripts/skill-graph.json` — sk-code signals + adjacency.
 
 ## 5. SOURCE METADATA

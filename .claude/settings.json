@@ -71,7 +71,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bash -c 'cd \"${CLAUDE_PROJECT_DIR:-$PWD}\" && python3 .opencode/skills/sk-code/scripts/hooks/claude-posttooluse.sh'",
+            "command": "bash -c 'cd \"${CLAUDE_PROJECT_DIR:-$PWD}\" && python3 .opencode/skills/sk-code/code-quality/scripts/hooks/claude-posttooluse.sh'",
             "timeout": 10
           }
         ]

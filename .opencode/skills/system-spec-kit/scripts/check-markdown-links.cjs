@@ -56,7 +56,7 @@ const ALLOWLIST = new Set([
   '.opencode/skills/sk-doc/assets/skill/skill_reference_template.md::../scripts/',
   '.opencode/skills/sk-doc/assets/skill/skill_reference_template.md::../assets/',
   // illustrative client-domain example path
-  '.opencode/skills/sk-code/references/webflow/performance/webflow_constraints.md::/specs/005-example.com/024-performance-optimization/decision-record.md',
+  '.opencode/skills/sk-code/code-implement/references/webflow/performance/webflow_constraints.md::/specs/005-example.com/024-performance-optimization/decision-record.md',
 ]);
 
 function excluded(p) { return EXCLUDE_SEGMENTS.some((seg) => p.includes(seg)); }

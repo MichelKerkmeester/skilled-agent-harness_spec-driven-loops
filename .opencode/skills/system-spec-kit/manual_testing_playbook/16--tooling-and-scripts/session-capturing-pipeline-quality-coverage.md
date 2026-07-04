@@ -146,7 +146,7 @@ Coverage is sourced from the M-007 closure suite, including JSON authority, ship
   ```
 - Alignment drift verifier path points to the existing script location:
   ```text
-  $ python3 .opencode/skills/sk-code/assets/scripts/verify_alignment_drift.py --root .opencode/skills/system-spec-kit/scripts
+  $ python3 .opencode/skills/sk-code/code-verify/assets/scripts/verify_alignment_drift.py --root .opencode/skills/system-spec-kit/scripts
   [alignment-drift] PASS
   Scanned files: 473
   Findings: 0

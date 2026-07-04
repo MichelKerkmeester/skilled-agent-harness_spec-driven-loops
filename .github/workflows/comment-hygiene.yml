@@ -14,7 +14,7 @@ jobs:
       - name: Check changed files for comment hygiene violations
         run: |
           set -euo pipefail
-          CHECKER=".opencode/skills/sk-code/scripts/check-comment-hygiene.sh"
+          CHECKER=".opencode/skills/sk-code/code-quality/scripts/check-comment-hygiene.sh"
           if [ ! -x "$CHECKER" ]; then
             echo "::warning::Comment hygiene checker not found at $CHECKER — skipping"
             exit 0
@@ -34,7 +34,7 @@ jobs:
           if [ "$VIOLATIONS" -gt 0 ]; then
             echo ""
             echo "BLOCKED: $VIOLATIONS file(s) contain ephemeral-artifact pointers in code comments."
-            echo "See: .opencode/skills/sk-code/references/universal/code_style_guide.md §4"
+            echo "See: .opencode/skills/sk-code/shared/references/universal/code_style_guide.md §4"
             echo "Fix: replace the pointer with the durable WHY."
             exit 1
           fi

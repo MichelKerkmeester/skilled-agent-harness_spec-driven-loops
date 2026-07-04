@@ -233,7 +233,7 @@ The closure feature consists of these distinct shipped behaviors:
 - `cd .opencode/skills/system-spec-kit/mcp_server && npm run build`
 - `cd .opencode/skills/system-spec-kit/mcp_server && npm run test:core -- tests/handler-memory-save.vitest.ts tests/recovery-hints.vitest.ts tests/quality-loop.vitest.ts tests/save-quality-gate.vitest.ts tests/preflight.vitest.ts tests/integration-save-pipeline.vitest.ts`
 - `cd .opencode/skills/system-spec-kit/mcp_server && npm run test`
-- `python3 .opencode/skills/sk-code/scripts/verify_alignment_drift.py --root .opencode/skills/system-spec-kit/scripts`
+- `python3 .opencode/skills/sk-code/code-quality/scripts/verify_alignment_drift.py --root .opencode/skills/system-spec-kit/scripts`
 
 ### Latest verification snapshot
 

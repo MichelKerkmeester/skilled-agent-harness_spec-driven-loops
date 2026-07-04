@@ -10,18 +10,18 @@ Always exits 0 (fail-safe): never blocks the tool even if the checker fails.
 Hook entry (settings.local.json):
   { "matcher": "Write|Edit",
     "hooks": [{ "type": "command",
-                "command": "bash -c 'cd \"/...repo...\" && bash .opencode/skills/sk-code/scripts/hooks/claude-posttooluse.sh'",
+                "command": "bash -c 'cd \"/...repo...\" && bash .opencode/skills/sk-code/code-quality/scripts/hooks/claude-posttooluse.sh'",
                 "timeout": 10 }] }
 
-See: .opencode/skills/sk-code/references/universal/code_style_guide.md §4
+See: .opencode/skills/sk-code/shared/references/universal/code_style_guide.md §4
 """
 import sys
 import os
 import json
 import subprocess
 
-COMMENT_CHECKER_REL = ".opencode/skills/sk-code/scripts/check-comment-hygiene.sh"
-DIST_CHECKER_REL = ".opencode/skills/sk-code/scripts/check-dist-staleness.sh"
+COMMENT_CHECKER_REL = ".opencode/skills/sk-code/code-quality/scripts/check-comment-hygiene.sh"
+DIST_CHECKER_REL = ".opencode/skills/sk-code/code-quality/scripts/check-dist-staleness.sh"
 
 def resolve_checker(cwd, checker_rel, fallback_name):
     checker_path = os.path.join(cwd, checker_rel)
@@ -83,7 +83,7 @@ def main():
                 print(f"Violations in {file_path}:")
                 for line in lines:
                     print(f"  {line}")
-                print("See: .opencode/skills/sk-code/references/universal/code_style_guide.md §4")
+                print("See: .opencode/skills/sk-code/shared/references/universal/code_style_guide.md §4")
                 print("Escape: add 'hygiene-ok' to a comment line to suppress the warning for that line.")
                 print()
 

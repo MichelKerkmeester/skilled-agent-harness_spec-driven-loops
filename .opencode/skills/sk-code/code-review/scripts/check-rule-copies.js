@@ -32,7 +32,7 @@ import path from 'node:path';
 // required there.
 const EXACT_INVARIANTS = [
   {
-    file: '.opencode/skills/sk-code-review/SKILL.md',
+    file: '.opencode/skills/sk-code/code-review/SKILL.md',
     strings: [
       'Review status: APPROVED',
       'Review status: REQUESTED_CHANGES',
@@ -40,7 +40,7 @@ const EXACT_INVARIANTS = [
     ],
   },
   {
-    file: '.opencode/skills/sk-code-review/README.md',
+    file: '.opencode/skills/sk-code/code-review/README.md',
     strings: [
       'Review status: APPROVED',
       'Review status: REQUESTED_CHANGES',
@@ -48,11 +48,11 @@ const EXACT_INVARIANTS = [
     ],
   },
   {
-    file: '.opencode/skills/sk-code-review/changelog/v1.3.0.0.md',
+    file: '.opencode/skills/sk-code/code-review/changelog/v1.3.0.0.md',
     strings: ['Review status: COMMENTED'],
   },
   {
-    file: '.opencode/skills/sk-code-review/references/pr_state_dedup.md',
+    file: '.opencode/skills/sk-code/code-review/references/pr_state_dedup.md',
     strings: ['Review status: COMMENTED'],
   },
 ];

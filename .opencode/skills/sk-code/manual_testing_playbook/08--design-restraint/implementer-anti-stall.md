@@ -77,7 +77,7 @@ Add a retry wrapper with exponential backoff, jitter, a circuit breaker, and a p
 ## 4. SOURCE FILES
 
 - `.opencode/skills/sk-code/SKILL.md` — §4 ALWAYS implementer anti-stall bullet and SCOPE-LOCK.
-- `.opencode/skills/sk-code/references/universal/code_quality_standards.md` — Design Restraint Ladder the anti-stall rule complements.
+- `.opencode/skills/sk-code/shared/references/universal/code_quality_standards.md` — Design Restraint Ladder the anti-stall rule complements.
 
 ## 5. SOURCE METADATA
 

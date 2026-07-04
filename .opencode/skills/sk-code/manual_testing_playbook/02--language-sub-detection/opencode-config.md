@@ -62,7 +62,7 @@ Add a derived.last_active_child_id field to the <spec-folder> file with value "0
 ## 4. SOURCE FILES
 
 - `.opencode/skills/sk-code/SKILL.md` (sub-detection table).
-- `.opencode/skills/sk-code/references/opencode/config/{style_guide,quality_standards,quick_reference}.md`.
+- `.opencode/skills/sk-code/code-implement/references/opencode/config/{style_guide,quality_standards,quick_reference}.md`.
 
 ## 5. SOURCE METADATA
 

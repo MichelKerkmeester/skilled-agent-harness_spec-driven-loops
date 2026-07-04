@@ -68,7 +68,7 @@ Add Lenis smooth-scroll to .opencode/skills/sk-doc/scripts/preview-server.js for
 ## 4. SOURCE FILES
 
 - `.opencode/skills/sk-code/SKILL.md` §2 "Code Surface Detection (FIRST)" — post-remediation pseudocode with explicit if/elif/else precedence.
-- `.opencode/skills/sk-code/references/stack_detection.md` §2 "DETECTION ORDER" — post-remediation precedence wording + new mixed-marker test case in §4 TEST CASES.
+- `.opencode/skills/sk-code/shared/references/stack_detection.md` §2 "DETECTION ORDER" — post-remediation precedence wording + new mixed-marker test case in §4 TEST CASES.
 - Internal design notes — F-NEW-001 source (historical gpt-5.5 high adversarial pass).
 
 ## 5. SOURCE METADATA

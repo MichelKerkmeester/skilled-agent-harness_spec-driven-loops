@@ -76,9 +76,9 @@ Local anchor: `a_nobel_en_zn/2_javascript/slider/testimonial.js` uses a dynamic 
 ## 4. WEBFLOW-CDN-SPECIFIC NOTES
 
 For Webflow, link to the existing Webflow references rather than duplicating all Webflow operational detail here:
-- `.opencode/skills/sk-code/references/webflow/implementation/animation_workflows.md`
-- `.opencode/skills/sk-code/references/webflow/implementation/performance_patterns.md`
-- `.opencode/skills/sk-code/references/webflow/javascript/quality_standards.md`
+- `.opencode/skills/sk-code/code-implement/references/webflow/implementation/animation_workflows.md`
+- `.opencode/skills/sk-code/code-implement/references/webflow/implementation/performance_patterns.md`
+- `.opencode/skills/sk-code/code-implement/references/webflow/javascript/quality_standards.md`
 
 Webflow patterns in this repo include:
 - `window.Webflow.push(start)` when available,
@@ -129,7 +129,7 @@ Use the stack's native client-only lifecycle:
 })();
 ```
 
-This mirrors local Webflow safety patterns and keeps Motion optional for non-critical interactions (Repo: `a_nobel_en_zn/2_javascript/navigation/nav_dropdown.js`, `.opencode/skills/sk-code/references/webflow/javascript/quality_standards.md`).
+This mirrors local Webflow safety patterns and keeps Motion optional for non-critical interactions (Repo: `a_nobel_en_zn/2_javascript/navigation/nav_dropdown.js`, `.opencode/skills/sk-code/code-implement/references/webflow/javascript/quality_standards.md`).
 
 ### ESM bootstrap
 

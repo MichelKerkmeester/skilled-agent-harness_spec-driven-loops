@@ -154,7 +154,7 @@ Found 20 matches
   Line 3:   "skill_id": "system-code-graph",
 
 
-/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/sk-code-review/graph-metadata.json:
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/sk-code/code-review/graph-metadata.json:
   Line 3:   "skill_id": "sk-code-review",
 
 

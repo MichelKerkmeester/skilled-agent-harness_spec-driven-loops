@@ -190,7 +190,7 @@ If any hard-block invariant fails before Step 7, do not write partial iteration 
 
 #### Step 6: Classify Findings
 
-- Load `.opencode/skills/sk-code-review/references/review_core.md` before assigning severity.
+- Load `.opencode/skills/sk-code/code-review/references/review_core.md` before assigning severity.
 - Use shared `P0` / `P1` / `P2` definitions and tag each finding with `correctness`, `security`, `traceability`, or `maintainability`.
 - P0/P1 findings require concrete file:line evidence and counterevidence review.
 - P2 findings require actionable evidence and may include documented inference.
@@ -295,7 +295,7 @@ Runtime mirrors are downstream packaging surfaces, not write targets for this ag
 
 ## 3. REVIEW CONTRACT
 
-This agent loads shared review doctrine from `.opencode/skills/sk-code-review/references/review_core.md` for severity definitions, evidence requirements, and baseline check families.
+This agent loads shared review doctrine from `.opencode/skills/sk-code/code-review/references/review_core.md` for severity definitions, evidence requirements, and baseline check families.
 
 ### Review Dimensions
 

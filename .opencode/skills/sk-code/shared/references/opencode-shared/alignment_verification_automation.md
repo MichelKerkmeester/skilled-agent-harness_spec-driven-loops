@@ -27,7 +27,7 @@ Use this reference when tuning recurring checks or interpreting verifier output 
 
 ## 2. SCRIPT
 
-- Path: `.opencode/skills/sk-code/assets/scripts/verify_alignment_drift.py`
+- Path: `.opencode/skills/sk-code/code-verify/assets/scripts/verify_alignment_drift.py`
 - Purpose: run lightweight, deterministic, behavior-neutral checks across OpenCode system languages.
 
 ## 3. WHAT IT CHECKS
@@ -64,13 +64,13 @@ checklists and does not scan markdown prose. These remain manual review gates:
 ## 4. USAGE
 
 ```bash
-python3 .opencode/skills/sk-code/assets/scripts/verify_alignment_drift.py --root .opencode
+python3 .opencode/skills/sk-code/code-verify/assets/scripts/verify_alignment_drift.py --root .opencode
 ```
 
 Strict CI mode:
 
 ```bash
-python3 .opencode/skills/sk-code/assets/scripts/verify_alignment_drift.py --root .opencode --fail-on-warn
+python3 .opencode/skills/sk-code/code-verify/assets/scripts/verify_alignment_drift.py --root .opencode --fail-on-warn
 ```
 
 Notes:
