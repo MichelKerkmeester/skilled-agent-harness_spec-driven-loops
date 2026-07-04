@@ -1,0 +1,27 @@
+{
+  "specFolder": "deep-loops/031-deep-loop-gpt-reliability/003-guard-and-enforcement",
+  "description": "Correct routing and dispatch (track 002) needed a detection layer to enforce it and catch regressions",
+  "keywords": [
+    "correct",
+    "routing",
+    "dispatch",
+    "track",
+    "002",
+    "needed",
+    "detection",
+    "layer",
+    "enforce",
+    "catch",
+    "regressions"
+  ],
+  "lastUpdated": "2026-07-04T19:09:01.225Z",
+  "specId": "003",
+  "folderSlug": "guard-and-enforcement",
+  "parentChain": [
+    "deep-loops",
+    "031-deep-loop-gpt-reliability"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

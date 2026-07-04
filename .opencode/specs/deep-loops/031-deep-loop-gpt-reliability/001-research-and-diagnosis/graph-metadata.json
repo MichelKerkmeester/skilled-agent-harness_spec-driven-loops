@@ -1,0 +1,102 @@
+{
+  "schema_version": 1,
+  "packet_id": "deep-loops/031-deep-loop-gpt-reliability/001-research-and-diagnosis",
+  "spec_folder": "deep-loops/031-deep-loop-gpt-reliability/001-research-and-diagnosis",
+  "parent_id": "deep-loops/031-deep-loop-gpt-reliability",
+  "children_ids": [
+    "deep-loops/031-deep-loop-gpt-reliability/001-research-and-diagnosis/001-gpt-behavioral-hardening-research",
+    "deep-loops/031-deep-loop-gpt-reliability/001-research-and-diagnosis/002-gpt-reliability-research"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "gpt reliability research and diagnosis",
+      "deep-loop gpt behavioral hardening research",
+      "031 research and diagnosis"
+    ],
+    "key_topics": [
+      "gpt",
+      "reliability",
+      "research",
+      "diagnosis",
+      "deep-loop",
+      "behavioral",
+      "hardening",
+      "031",
+      "gpt-backed",
+      "opencode",
+      "mis-handled",
+      "routing"
+    ],
+    "importance_tier": "critical",
+    "status": "planned",
+    "key_files": [
+      "spec.md",
+      "001-gpt-behavioral-hardening-research/research/research.md",
+      "001-gpt-behavioral-hardening-research/spec.md",
+      "002-gpt-reliability-research/spec.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Diagnosis Phase Parent",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Hold",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "GPT-backed OpenCode mis-handled deep-loop routing, host identity, and orchestration",
+    "created_at": "2026-07-04T18:47:57.345Z",
+    "last_save_at": "2026-07-04T18:55:41.012Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "source_fingerprint": "sha256:b6a48c4360cdbb3cc1a907056177639dccca5accf37e665d721083cc05e2c829",
+    "source_doc_hashes": {
+      "spec.md": "d4904abda842b01d000691bf0162440ac190a6c7f53a890e8cc916afde3c1b8a"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

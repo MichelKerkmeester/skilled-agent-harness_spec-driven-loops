@@ -1,0 +1,102 @@
+{
+  "schema_version": 1,
+  "packet_id": "deep-loops/031-deep-loop-gpt-reliability/004-benchmarks-and-verification",
+  "spec_folder": "deep-loops/031-deep-loop-gpt-reliability/004-benchmarks-and-verification",
+  "parent_id": "deep-loops/031-deep-loop-gpt-reliability",
+  "children_ids": [
+    "deep-loops/031-deep-loop-gpt-reliability/004-benchmarks-and-verification/001-gpt-verification-smoke",
+    "deep-loops/031-deep-loop-gpt-reliability/004-benchmarks-and-verification/002-gpt-claude-benchmark"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "gpt verification smoke test",
+      "gpt claude benchmark deep-loop",
+      "031 benchmarks and verification"
+    ],
+    "key_topics": [
+      "gpt",
+      "verification",
+      "smoke",
+      "test",
+      "claude",
+      "benchmark",
+      "deep-loop",
+      "031",
+      "benchmarks",
+      "routing",
+      "dispatch",
+      "identity"
+    ],
+    "importance_tier": "important",
+    "status": "planned",
+    "key_files": [
+      "spec.md",
+      "002-gpt-claude-benchmark/implementation-summary.md",
+      "001-gpt-verification-smoke/spec.md",
+      "002-gpt-claude-benchmark/spec.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Phase Parent",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Hold",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The routing, dispatch, and identity fixes needed empirical confirmation",
+    "created_at": "2026-07-04T19:10:41.589Z",
+    "last_save_at": "2026-07-04T19:10:41.589Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "source_fingerprint": "sha256:4bef227071b522a9818ae726732f045f75d17f6454bc07802e0a697484285fca",
+    "source_doc_hashes": {
+      "spec.md": "aeda93f12fecb857daf90599f74242b1895363d2cc30728466f35056efb77b2e"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}
