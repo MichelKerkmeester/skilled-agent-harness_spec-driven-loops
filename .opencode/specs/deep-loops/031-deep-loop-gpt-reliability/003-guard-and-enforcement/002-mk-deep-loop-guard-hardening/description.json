@@ -1,5 +1,5 @@
 {
-  "specFolder": "deep-loops/031-deep-loop-issues-with-gpt-opencode/016-mk-deep-loop-guard-hardening",
+  "specFolder": "deep-loops/031-deep-loop-gpt-reliability/003-guard-and-enforcement/002-mk-deep-loop-guard-hardening",
   "description": "`cli-opencode/SKILL.md` now correctly documents that `orchestrate` may perform exactly one bounded hand-off dispatch to a command-owned loop executor",
   "keywords": [
     "cli-opencode",
@@ -18,14 +18,13 @@
     "loop",
     "executor"
   ],
-  "lastUpdated": "2026-07-01T17:22:22.418Z",
-  "specId": "016",
+  "lastUpdated": "2026-07-04T19:08:59.952Z",
+  "specId": "002",
   "folderSlug": "mk-deep-loop-guard-hardening",
   "parentChain": [
-    ".opencode",
-    "specs",
     "deep-loops",
-    "031-deep-loop-issues-with-gpt-opencode"
+    "031-deep-loop-gpt-reliability",
+    "003-guard-and-enforcement"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

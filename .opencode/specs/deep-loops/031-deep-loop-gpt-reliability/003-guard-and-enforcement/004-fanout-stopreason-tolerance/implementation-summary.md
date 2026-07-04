@@ -9,7 +9,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "deep-loops/031-deep-loop-issues-with-gpt-opencode/018-fanout-stopreason-tolerance"
+    packet_pointer: "deep-loops/031-deep-loop-gpt-reliability/003-guard-and-enforcement/004-fanout-stopreason-tolerance"
     last_updated_at: "2026-07-04T10:15:00Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "Landed tolerant stop-reason check with mutation-proved test"
@@ -39,7 +39,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 018-fanout-stopreason-tolerance |
+| **Spec Folder** | 004-fanout-stopreason-tolerance |
 | **Status** | Complete |
 | **Completed** | 2026-07-04 |
 | **Level** | 1 |

@@ -9,7 +9,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "deep-loops/031-deep-loop-issues-with-gpt-opencode/018-fanout-stopreason-tolerance"
+    packet_pointer: "deep-loops/031-deep-loop-gpt-reliability/003-guard-and-enforcement/004-fanout-stopreason-tolerance"
     last_updated_at: "2026-07-04T10:00:00Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "Authored spec from the 032 review fan-out false-failure observation"

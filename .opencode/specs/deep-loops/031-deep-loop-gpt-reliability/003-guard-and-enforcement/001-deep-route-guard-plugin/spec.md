@@ -11,7 +11,7 @@ contextType: "implementation"
 predecessor_research: "../007-gpt-behavioral-hardening-research/research/research.md"
 _memory:
   continuity:
-    packet_pointer: "deep-loops/031-deep-loop-issues-with-gpt-opencode/011-deep-route-guard-plugin"
+    packet_pointer: "deep-loops/031-deep-loop-gpt-reliability/003-guard-and-enforcement/001-deep-route-guard-plugin"
     last_updated_at: "2026-07-01T16:00:00Z"
     last_updated_by: "claude-code"
     recent_action: "Implementation complete; validate.sh --strict passing"
