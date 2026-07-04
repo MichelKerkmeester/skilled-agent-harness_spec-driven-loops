@@ -1,4 +1,5 @@
 {
+  "level": "1",
   "specFolder": "deep-loops/036-command-contract-compiler/001-contract-compiler-design",
   "description": "Phase 001 of packet 036 (command contract compiler, carved from 035). Design-first: verify and expand the seed design (design.md, produced during the",
   "keywords": [
@@ -18,7 +19,7 @@
     "design",
     "produced"
   ],
-  "lastUpdated": "2026-07-03T17:04:53.350Z",
+  "lastUpdated": "2026-07-04T15:34:31.910Z",
   "specId": "001",
   "folderSlug": "contract-compiler-design",
   "parentChain": [
@@ -27,7 +28,9 @@
     "deep-loops",
     "036-command-contract-compiler"
   ],
-  "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memorySequence": 2,
+  "memoryNameHistory": [
+    "04-07-26_16-31__gap-closed-the-stop-hook-correctly-flagged-the.md",
+    "04-07-26_16-34__task-tracker-reset-no-matter-the-work-is.md"
+  ]
 }

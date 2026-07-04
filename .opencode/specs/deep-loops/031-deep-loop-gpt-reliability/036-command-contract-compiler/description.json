@@ -1,4 +1,5 @@
 {
+  "level": "phase",
   "specFolder": "deep-loops/036-command-contract-compiler",
   "description": "Design-first structural packet carved from 035 (GPT-reliability fixes) after the phase-003 design pass confirmed the contract compiler is",
   "keywords": [
@@ -16,7 +17,7 @@
     "contract",
     "compiler"
   ],
-  "lastUpdated": "2026-07-03T17:04:53.224Z",
+  "lastUpdated": "2026-07-04T17:19:03.507Z",
   "specId": "036",
   "folderSlug": "command-contract-compiler",
   "parentChain": [
@@ -24,7 +25,10 @@
     "specs",
     "deep-loops"
   ],
-  "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "phase"
+  "memorySequence": 3,
+  "memoryNameHistory": [
+    "04-07-26_17-10__this-is-the-goal-s-designed-terminal-branch-not.md",
+    "04-07-26_17-34__primitives-confirmed-persistseatstepwise.md",
+    "04-07-26_18-19__everything-actionable-on-this-goal-is-done-piece.md"
+  ]
 }
