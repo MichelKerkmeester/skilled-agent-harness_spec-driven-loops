@@ -10,7 +10,6 @@
 // ─────────────────────────────────────────────────────────────────────────────
 
 import { randomUUID } from 'node:crypto';
-import { statSync } from 'node:fs';
 import { appendFile, mkdir, open, readFile, readdir, rename, stat, unlink } from 'node:fs/promises';
 import { join, resolve as resolvePath } from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -148,7 +147,7 @@ const STATUS_TRANSITIONS = Object.freeze({
   paused: new Set(['active', 'paused', 'complete']),
   blocked: new Set(['blocked', 'complete']),
   usage_limited: new Set(['active', 'usage_limited', 'complete']),
-  budget_limited: new Set(['budget_limited', 'complete']),
+  budget_limited: new Set(['active', 'budget_limited', 'complete']),
   complete: new Set(['complete']),
 });
 const VALID_VERIFIER_VERDICTS = new Set(['met', 'not_met', 'blocked']);
@@ -336,7 +335,7 @@ function normalizeUserAuthoredText(value) {
     .replace(/[\u0009\u000a\u000d]+/g, '\n')
     .replace(/\[\/?active_goal[^\]]*\]/gi, '[goal-marker-redacted]')
     .replace(/`{3,}/g, '\'\'\'')
-    .replace(/(^|[^\p{L}\p{N}_-])([\p{L}][\p{L}\p{N}_ -]{0,24})\s*:/giu, (match, prefix, role) => {
+    .replace(/(^|[^\p{L}\p{N}_-])([\p{L}][\p{L}\p{N}_ -]{0,24})\s*(?::|=|->|→)/giu, (match, prefix, role) => {
       const foldedRole = foldRoleToken(role.trim()).toLowerCase();
       if (!/^(system|developer|assistant|tool|user)$/.test(foldedRole)) return match;
       return `${prefix}${foldedRole}-role:`;
@@ -353,6 +352,25 @@ function sanitizeInlineText(value, maxChars = DEFAULT_MAX_OBJECTIVE_CHARS) {
     .replace(/\s+/g, ' ')
     .trim();
   return clampText(text, maxChars);
+}
+
+function entropyScore(value) {
+  const text = String(value || '');
+  if (!text) return 0;
+  const counts = new Map();
+  for (const char of text) counts.set(char, (counts.get(char) || 0) + 1);
+  return Array.from(counts.values()).reduce((score, count) => {
+    const probability = count / text.length;
+    return score - (probability * Math.log2(probability));
+  }, 0);
+}
+
+function looksLikeGenericSecret(value) {
+  const text = String(value || '').replace(/=+$/g, '');
+  if (text.length < 48) return false;
+  if (/^[0-9a-f]{48,}$/i.test(text)) return true;
+  const classes = [/[a-z]/, /[A-Z]/, /[0-9]/, /[+/_-]/].filter((pattern) => pattern.test(text)).length;
+  return classes >= 3 && entropyScore(text) >= 4.5;
 }
 
 function normalizeGoalID(value) {
@@ -378,15 +396,18 @@ function sanitizePromptText(value, maxChars = DEFAULT_MAX_GOAL_PROMPT_CHARS) {
 }
 
 function redactEvidence(value, maxChars = DEFAULT_MAX_EVIDENCE_CHARS) {
-  const text = sanitizeInlineText(value, maxChars)
+  const text = normalizeUserAuthoredText(value)
+    .replace(/-----BEGIN [A-Z ]*PRIVATE KEY-----[\s\S]*?-----END [A-Z ]*PRIVATE KEY-----/g, '[secret-redacted]')
+    .replace(/\bAIza[0-9A-Za-z_-]{35}\b/g, '[secret-redacted]')
     .replace(/\bBearer\s+[A-Za-z0-9._-]{20,}\b/gi, '[secret-redacted]')
     .replace(/\beyJ[A-Za-z0-9_-]*\.[A-Za-z0-9_-]+\.[A-Za-z0-9_-]+\b/g, '[secret-redacted]')
     .replace(/\b(sk-[A-Za-z0-9_-]{8,})\b/g, '[secret-redacted]')
     .replace(/\b(gh[pousr]_[A-Za-z0-9_]{12,})\b/g, '[secret-redacted]')
     .replace(/\b(xox[baprs]-[A-Za-z0-9-]{12,})\b/g, '[secret-redacted]')
     .replace(/\b(AKIA[0-9A-Z]{12,})\b/g, '[secret-redacted]')
+    .replace(/\b[A-Za-z0-9+/_=-]{48,}\b/g, (match) => (looksLikeGenericSecret(match) ? '[secret-redacted]' : match))
     .replace(/\b(api[_-]?key|token|password|secret)\s*[:=]\s*['"]?[^'"\s,;]+/gi, '$1=[secret-redacted]');
-  return clampText(text, maxChars);
+  return sanitizeInlineText(text, maxChars);
 }
 
 function scoreEnhancedGoalPrompt(goalPrompt, rawOptions = {}) {
@@ -703,6 +724,17 @@ async function appendGoalJsonl(filename, payload, rawOptions = {}) {
       ...payload,
     };
     await appendFile(join(stateDir, filename), `${JSON.stringify(entry)}\n`, 'utf8');
+  } catch (error) {
+    writeDebugStderr('appendGoalJsonl', error);
+    return;
+  }
+}
+
+function writeDebugStderr(source, error) {
+  if (!process.env[DEBUG_ENV]) return;
+  try {
+    const message = redactEvidence(error?.message || 'unknown error', DEFAULT_MAX_REASON_CHARS);
+    process.stderr.write(`[mk-goal] ${source}: ${message}\n`);
   } catch {
     return;
   }
@@ -869,7 +901,14 @@ function retryAfterDeadlineFromValue(value, unit, rawOptions = {}) {
   const timestamp = nowMs(rawOptions);
   const numeric = Number(value);
   if (Number.isFinite(numeric) && numeric > 0) {
+    const normalizedUnit = sanitizeInlineText(unit || '', 20).toLowerCase();
     if (unit === 'ms') return Math.trunc(timestamp + numeric);
+    if (normalizedUnit === 'ms' || normalizedUnit === 'millisecond' || normalizedUnit === 'milliseconds') {
+      return Math.trunc(timestamp + numeric);
+    }
+    if (normalizedUnit === 's' || normalizedUnit === 'sec' || normalizedUnit === 'second' || normalizedUnit === 'seconds') {
+      return Math.trunc(timestamp + (numeric * 1000));
+    }
     if (numeric > 1000000000000) return Math.trunc(numeric);
     return Math.trunc(timestamp + (numeric * 1000));
   }
@@ -1030,6 +1069,7 @@ function normalizeStoredGoal(rawGoal, fallbackSessionID, rawOptions = {}) {
       ? Math.max(0, Math.min(options.maxAutoTurns, Math.trunc(rawGoal.maxAutoTurns)))
       : options.maxAutoTurns,
     startedAtMs: Number.isFinite(rawGoal.startedAtMs) ? Math.max(0, Math.trunc(rawGoal.startedAtMs)) : createdAtMs,
+    activeWallMs: Number.isFinite(rawGoal.activeWallMs) ? Math.max(0, Math.trunc(rawGoal.activeWallMs)) : 0,
     lastActivityAtMs: Number.isFinite(rawGoal.lastActivityAtMs) ? Math.max(0, Math.trunc(rawGoal.lastActivityAtMs)) : 0,
     lastActivityMessageID: rawGoal.lastActivityMessageID === null || rawGoal.lastActivityMessageID === undefined
       ? null
@@ -1269,11 +1309,13 @@ async function sweepOrphanedActiveStates(rawOptions = {}, runtimeState = {}) {
             sweepArchiveStaleBeforeMs: timestamp - retentionMs,
           });
         }
-      } catch {
+      } catch (error) {
+        writeDebugStderr('sweepOrphanedActiveStates', error);
         return;
       }
     }));
-  } catch {
+  } catch (error) {
+    writeDebugStderr('sweepOrphanedActiveStates', error);
     return;
   }
 }
@@ -1409,6 +1451,7 @@ function buildNewGoal(sessionID, objective, tokenBudget, rawOptions = {}) {
     autoTurnsUsed: 0,
     maxAutoTurns: options.maxAutoTurns,
     startedAtMs: timestamp,
+    activeWallMs: 0,
     lastActivityAtMs: 0,
     lastActivityMessageID: null,
     lastContinuationAtMs: 0,
@@ -1514,11 +1557,22 @@ async function markGoalStatus(sessionID, status, rawOptions = {}) {
       throw new GoalError('INVALID_STATUS_TRANSITION', `Cannot transition goal status from ${current.status} to ${status}`);
     }
     const timestamp = nowMs(rawOptions);
+    if (current.status === 'budget_limited' && status === 'active' && budgetWasCrossed(current.tokensUsed, current.tokenBudget)) {
+      throw new GoalError('INVALID_STATUS_TRANSITION', 'Cannot resume goal while token budget is still exhausted');
+    }
+    const activeWallMs = current.status !== 'paused' && status === 'paused'
+      ? Math.max(0, (current.activeWallMs || 0) + (timestamp - current.startedAtMs))
+      : current.activeWallMs || 0;
+    const startedAtMs = status === 'active' && current.status !== 'active'
+      ? Math.max(0, timestamp - activeWallMs)
+      : current.startedAtMs;
     return {
       ...current,
       status,
       updatedAtMs: timestamp,
       updatedAt: isoFromMs(timestamp),
+      startedAtMs,
+      activeWallMs: status === 'active' ? 0 : activeWallMs,
       continuationSuppressed: status === 'active' ? false : status === 'paused' || status === 'complete' ? true : current.continuationSuppressed,
       continuationSuppressedReason: status === 'active' ? null : reason || (status === 'paused' ? 'paused' : current.continuationSuppressedReason),
       completionSource: status === 'complete' ? 'manual' : current.completionSource,
@@ -1530,7 +1584,7 @@ async function markGoalStatus(sessionID, status, rawOptions = {}) {
 async function resumeGoal(sessionID, rawOptions = {}) {
   return markGoalStatus(sessionID, 'active', {
     ...rawOptions,
-    allowedFrom: ['paused', 'usage_limited'],
+    allowedFrom: ['paused', 'usage_limited', 'budget_limited'],
   });
 }
 
@@ -2048,13 +2102,13 @@ async function reserveContinuationTurn(sessionID, goalID, rawOptions = {}) {
   return { didReserve, goal, messageID };
 }
 
-function buildPromptAsyncOptions(sessionID, goal, messageID, rawOptions = {}) {
+async function buildPromptAsyncOptions(sessionID, goal, messageID, rawOptions = {}) {
   const rawDirectory = typeof rawOptions.directory === 'string' ? rawOptions.directory.trim() : '';
   let directory = '';
   if (rawDirectory) {
     try {
       const resolvedDirectory = resolvePath(rawDirectory);
-      if (statSync(resolvedDirectory).isDirectory()) directory = resolvedDirectory;
+      if ((await stat(resolvedDirectory)).isDirectory()) directory = resolvedDirectory;
     } catch {
       directory = '';
     }
@@ -2173,7 +2227,7 @@ async function maybeContinueGoal(sessionID, rawOptions = {}) {
     try {
       await promptAsync.call(
         rawOptions.client.session,
-        buildPromptAsyncOptions(normalizedSessionID, reserved.goal, reserved.messageID, rawOptions),
+        await buildPromptAsyncOptions(normalizedSessionID, reserved.goal, reserved.messageID, rawOptions),
       );
       return decision('fired', 'prompt_async_sent', reserved.goal.autoTurnsUsed);
     } catch (error) {

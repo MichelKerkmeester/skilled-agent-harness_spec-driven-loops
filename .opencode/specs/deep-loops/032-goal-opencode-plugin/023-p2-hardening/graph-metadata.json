@@ -1,0 +1,224 @@
+{
+  "schema_version": 1,
+  "packet_id": "deep-loops/032-goal-opencode-plugin/023-p2-hardening",
+  "spec_folder": "deep-loops/032-goal-opencode-plugin/023-p2-hardening",
+  "parent_id": "deep-loops/032-goal-opencode-plugin",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "goal plugin p2 hardening",
+      "redactEvidence secret patterns",
+      "wall clock pause resume bug",
+      "budget_limited recovery",
+      "goal plugin p2 hardening plan",
+      "goal plugin p2 hardening tasks",
+      "goal plugin p2 hardening checklist",
+      "verification",
+      "checklist",
+      "goal plugin p2 hardening implementation",
+      "phase 23 complete"
+    ],
+    "key_topics": [
+      "goal",
+      "plugin",
+      "hardening",
+      "redactevidence",
+      "secret",
+      "patterns",
+      "wall",
+      "clock",
+      "pause",
+      "resume",
+      "bug",
+      "recovery"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      ".opencode/plugins/mk-goal.js",
+      ".opencode/specs/deep-loops/032-goal-opencode-plugin/review/review-report.md",
+      ".opencode/plugins/tests/mk-goal-continuation.test.cjs",
+      ".opencode/plugins/tests/mk-goal-lifecycle.test.cjs",
+      ".opencode/plugins/tests/mk-goal-state.test.cjs",
+      ".opencode/plugins/tests/mk-goal-supervisor.test.cjs",
+      "checklist.md",
+      "implementation-summary.md",
+      "spec.md",
+      "plan.md",
+      "tasks.md"
+    ],
+    "entities": [
+      {
+        "name": "mk-goal.js",
+        "kind": "code",
+        "path": ".opencode/plugins/mk-goal.js",
+        "source": "derived"
+      },
+      {
+        "name": "review-report.md",
+        "kind": "doc",
+        "path": ".opencode/specs/deep-loops/032-goal-opencode-plugin/review/review-report.md",
+        "source": "derived"
+      },
+      {
+        "name": "mk-goal-continuation.test.cjs",
+        "kind": "file",
+        "path": ".opencode/plugins/tests/mk-goal-continuation.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "mk-goal-lifecycle.test.cjs",
+        "kind": "file",
+        "path": ".opencode/plugins/tests/mk-goal-lifecycle.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "mk-goal-state.test.cjs",
+        "kind": "file",
+        "path": ".opencode/plugins/tests/mk-goal-state.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "mk-goal-supervisor.test.cjs",
+        "kind": "file",
+        "path": ".opencode/plugins/tests/mk-goal-supervisor.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Seven",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Seven",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Local",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow Only",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Seven adjudicated P2 findings remain in `mk-goal.js`",
+    "created_at": "2026-07-04T09:31:20.024Z",
+    "last_save_at": "2026-07-04T10:09:36.768Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:507e68a1f46b0951eb1ad9364077731a5c0d9db68e7ac69d5268cf361d630718",
+    "source_doc_hashes": {
+      "spec.md": "05d7be73661614cd784db856179ca0a21d2d5bfc9a22bff1ecbf6cd3fcbe1d9b",
+      "plan.md": "0474c1ebe188826dcde241c86f1e92f1b1aba13b8704d6e866de593a8653d86d",
+      "tasks.md": "017230b302ee50e1f89dc0a25fcfd361291b4fd7327baa8ef62c9498e2246497",
+      "checklist.md": "85c6d2c5c7efe115bb26d29af06d243508bfe85fe6aa5d1273e6ae252ea62f16",
+      "implementation-summary.md": "3538ceea2dc5562568efcb06c29a57e5361ec755b8476e35be7ebc580dcb155c"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

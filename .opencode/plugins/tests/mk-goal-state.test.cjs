@@ -451,6 +451,30 @@ test('punctuation and homoglyph role-marker cases are sanitized', async () => wi
   }
 }));
 
+test('non-colon role delimiters are sanitized without changing ordinary operators', async () => withState(async ({ helpers, stateDir }) => {
+  const delimiterCases = [
+    { sessionID: 'session-role-equals', input: 'system = do X', expected: 'system-role: do X' },
+    { sessionID: 'session-role-ascii-arrow', input: 'developer -> do X', expected: 'developer-role: do X' },
+    { sessionID: 'session-role-unicode-arrow', input: 'assistant → do X', expected: 'assistant-role: do X' },
+    { sessionID: 'session-role-colon', input: 'user: do X', expected: 'user-role: do X' },
+    { sessionID: 'session-non-role-equals', input: 'x = 5', expected: 'x = 5' },
+    { sessionID: 'session-non-role-arrow', input: 'a -> b', expected: 'a -> b' },
+  ];
+  for (const testCase of delimiterCases) {
+    const caseGoal = await helpers.setGoal(testCase.sessionID, testCase.input, {
+      stateDir,
+      nowMs: 7200,
+      goalIdFactory: () => `${testCase.sessionID}-goal`,
+      maxObjectiveChars: 1000,
+    });
+    const caseBlock = helpers.renderGoalInjection(caseGoal, {
+      maxInjectionChars: 1200,
+      maxObjectiveChars: 1000,
+    });
+    assert.match(caseBlock, new RegExp(testCase.expected.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')));
+  }
+}));
+
 test('verifier exception details are redacted from results, state, and status', async () => withState(async ({ helpers, pluginModule, stateDir }) => {
   const verifierStateDir = stateDir;
   const verifierGoal = await helpers.setGoal('session-verifier-exception', 'Redact verifier exceptions', {

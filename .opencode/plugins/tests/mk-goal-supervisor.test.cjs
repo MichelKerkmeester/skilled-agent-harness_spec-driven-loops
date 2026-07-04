@@ -130,6 +130,64 @@ test('met verifier verdict completes the goal and redacts evidence', async () =>
   assert.doesNotMatch(statusOutput, /sk-test/);
 }));
 
+test('verifier evidence redacts common key blocks and high-entropy secrets conservatively', async () => withSupervisor(async ({ helpers, stateDir }) => {
+  const secretCases = [
+    {
+      sessionID: 'session-google-key',
+      leaked: 'AIzaSyD3vRx9ABCDabcdEFGHijklMNOPqrstUVW',
+      pattern: /AIzaSyD3vRx9ABCDabcdEFGHijklMNOPqrstUVW/,
+    },
+    {
+      sessionID: 'session-pem-key',
+      leaked: '-----BEGIN PRIVATE KEY-----\nMIICeAIBADANBgkqhkiG9w0BAQEFAASCAmIwggJe\n-----END PRIVATE KEY-----',
+      pattern: /BEGIN PRIVATE KEY|MIICeAIBADANBgkqhkiG9w0BAQEFAASCAmIwggJe|END PRIVATE KEY/,
+    },
+    {
+      sessionID: 'session-entropy-key',
+      leaked: '0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef',
+      pattern: /0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef/,
+    },
+  ];
+
+  for (const entry of secretCases) {
+    await writeGoalWithEvidence(helpers, entry.sessionID, stateDir, 'Assistant transcript says the checks passed.');
+    await helpers.maybeVerifyGoal(entry.sessionID, {
+      stateDir,
+      nowMs: 2000,
+      supervisorVerifier: async () => ({
+        verdict: 'met',
+        confidence: 0.9,
+        reason: 'Evidence proves completion',
+        evidence: entry.leaked,
+      }),
+    });
+    const goal = await helpers.readGoal(entry.sessionID, { stateDir });
+    assert.equal(goal.status, 'complete');
+    assert.doesNotMatch(goal.lastEvidence, entry.pattern);
+    assert.match(goal.lastEvidence, /\[secret-redacted\]/);
+  }
+
+  await writeGoalWithEvidence(
+    helpers,
+    'session-non-secret-evidence',
+    stateDir,
+    'commit abc1234 updated ordinary prose without secrets',
+  );
+  await helpers.maybeVerifyGoal('session-non-secret-evidence', {
+    stateDir,
+    nowMs: 3000,
+    supervisorVerifier: async () => ({
+      verdict: 'met',
+      confidence: 0.9,
+      reason: 'Evidence proves completion',
+      evidence: 'commit abc1234 updated ordinary prose without secrets',
+    }),
+  });
+  const nonSecretGoal = await helpers.readGoal('session-non-secret-evidence', { stateDir });
+  assert.match(nonSecretGoal.lastEvidence, /commit abc1234 updated ordinary prose without secrets/);
+  assert.doesNotMatch(nonSecretGoal.lastEvidence, /\[secret-redacted\]/);
+}));
+
 test('blocked verifier verdict marks the goal blocked without completion source', async () => withSupervisor(async ({ helpers, plugin, stateDir }) => {
   await writeGoalWithEvidence(
     helpers,

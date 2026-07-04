@@ -46,6 +46,23 @@ async function readGoalEventEntries(stateDir) {
   }
 }
 
+async function captureStderr(fn) {
+  const originalWrite = process.stderr.write;
+  let output = '';
+  process.stderr.write = function patchedWrite(chunk, encoding, callback) {
+    output += Buffer.isBuffer(chunk) ? chunk.toString('utf8') : String(chunk);
+    if (typeof encoding === 'function') encoding();
+    if (typeof callback === 'function') callback();
+    return true;
+  };
+  try {
+    await fn();
+    return output;
+  } finally {
+    process.stderr.write = originalWrite;
+  }
+}
+
 test('default autonomy suppresses continuation without logging', async () => withState(async ({ helpers, stateDir }) => {
   delete process.env.MK_GOAL_AUTONOMY;
   let promptCalls = 0;
@@ -613,6 +630,56 @@ test('wall-clock cap suppresses continuation and records durable state', async (
   assert.equal(goal.continuationSuppressedReason, 'wall_clock_cap_reached');
 }));
 
+test('paused wall-clock time is not charged after resume', async () => withState(async ({ helpers, stateDir }) => {
+  process.env.MK_GOAL_AUTONOMY = 'active';
+  const promptRequests = [];
+  const activeClient = {
+    session: {
+      async promptAsync(request) {
+        promptRequests.push(request);
+      },
+    },
+  };
+  await helpers.setGoal('session-paused-wall-clock', 'Resume without charging paused time', {
+    stateDir,
+    nowMs: 1000,
+    goalIdFactory: () => 'paused-wall-clock-goal',
+    maxWallMs: 10000,
+  });
+  await helpers.markGoalStatus('session-paused-wall-clock', 'paused', {
+    stateDir,
+    nowMs: 9000,
+    maxWallMs: 10000,
+  });
+  await helpers.executeGoalAction(
+    { action: 'resume' },
+    { sessionID: 'session-paused-wall-clock' },
+    { stateDir, nowMs: 100000, maxWallMs: 10000, includeInjectionPreview: false },
+  );
+
+  const result = await helpers.maybeContinueGoal('session-paused-wall-clock', {
+    stateDir,
+    nowMs: 100500,
+    maxWallMs: 10000,
+    client: activeClient,
+    runtimeState: {
+      inFlightContinuations: new Set(),
+      blockedByPromptSessions: new Set(),
+      sessionStatuses: new Map([['session-paused-wall-clock', 'idle']]),
+    },
+  });
+  assert.equal(result.decision, 'fired');
+  assert.equal(result.reason, 'prompt_async_sent');
+  assert.equal(promptRequests.length, 1);
+
+  const status = await helpers.executeGoalStatus(
+    { sessionID: 'session-paused-wall-clock' },
+    { stateDir, nowMs: 100500, maxWallMs: 10000, includeInjectionPreview: false },
+  );
+  assert.match(status, /remaining_wall_ms=1500/);
+  assert.doesNotMatch(status, /wall_clock_cap_reached/);
+}));
+
 test('token budget exhaustion suppresses continuation and logs the reason', async () => withState(async ({ helpers, stateDir }) => {
   process.env.MK_GOAL_AUTONOMY = 'active';
   const activeClient = {
@@ -651,4 +718,30 @@ test('token budget exhaustion suppresses continuation and logs the reason', asyn
   const entries = await readContinuationEntries(stateDir);
   assert.equal(entries.at(-1).reason, 'budget_exhausted');
   assert.equal(entries.at(-1).autoTurnsUsed, 0);
+}));
+
+test('debug mode surfaces swallowed append and orphan sweep errors without throwing', async () => withState(async ({ helpers, pluginModule, stateDir }) => {
+  const blockedStatePath = join(stateDir, 'state-file-blocker');
+  await writeFile(blockedStatePath, 'not a directory', 'utf8');
+  const staleMalformedStatePath = join(stateDir, '6f727068616e.json');
+  await writeFile(staleMalformedStatePath, '{not json', 'utf8');
+  await utimes(staleMalformedStatePath, new Date(0), new Date(0));
+
+  delete process.env.MK_GOAL_DEBUG;
+  const silentOutput = await captureStderr(async () => {
+    await helpers.maybeContinueGoal(null, { stateDir: blockedStatePath, nowMs: 1000 });
+    const plugin = await pluginModule.default({}, { stateDir, nowMs: 3000000000 });
+    await plugin.event({ event: { type: 'session.created', properties: {} } });
+  });
+  assert.equal(silentOutput, '');
+
+  process.env.MK_GOAL_AUTONOMY = 'active';
+  process.env.MK_GOAL_DEBUG = '1';
+  const debugOutput = await captureStderr(async () => {
+    await helpers.maybeContinueGoal(null, { stateDir: blockedStatePath, nowMs: 3000 });
+    const plugin = await pluginModule.default({}, { stateDir, nowMs: 3000000000 });
+    await plugin.event({ event: { type: 'session.created', properties: {} } });
+  });
+  assert.match(debugOutput, /appendGoalJsonl/);
+  assert.match(debugOutput, /sweepOrphanedActiveStates/);
 }));

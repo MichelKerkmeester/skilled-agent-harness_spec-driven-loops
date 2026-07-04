@@ -305,6 +305,48 @@ test('budget-limited goals do not charge later usage updates', async () => withS
   assert.equal(goal.tokensUsed, 105);
 }));
 
+test('budget-limited goals resume only after the budget is raised', async () => withState(async ({ helpers, stateDir }) => {
+  const budgetGoal = await helpers.setGoal('session-budget-resume', 'Resume after budget increases', {
+    stateDir,
+    nowMs: 1000,
+    goalIdFactory: () => 'budget-resume-goal',
+    tokenBudget: 100,
+  });
+  await helpers.writeGoalAtomic({
+    ...budgetGoal,
+    status: 'budget_limited',
+    tokensUsed: 105,
+    continuationSuppressed: true,
+    continuationSuppressedReason: 'token budget reached',
+  }, { stateDir });
+
+  const rejectedResume = await helpers.executeGoalAction(
+    { action: 'resume' },
+    { sessionID: 'session-budget-resume' },
+    { stateDir, nowMs: 2000, includeInjectionPreview: false },
+  );
+  assert.match(rejectedResume, /STATUS=FAIL ACTION=resume/);
+  const stillLimitedGoal = await helpers.readGoal('session-budget-resume', { stateDir });
+  assert.equal(stillLimitedGoal.status, 'budget_limited');
+  assert.equal(stillLimitedGoal.continuationSuppressed, true);
+
+  await helpers.writeGoalAtomic({
+    ...stillLimitedGoal,
+    tokenBudget: 200,
+  }, { stateDir });
+  const resumed = await helpers.executeGoalAction(
+    { action: 'resume' },
+    { sessionID: 'session-budget-resume' },
+    { stateDir, nowMs: 3000, includeInjectionPreview: false },
+  );
+  assert.match(resumed, /STATUS=OK ACTION=resume/);
+  assert.match(resumed, /status=active/);
+  const activeGoal = await helpers.readGoal('session-budget-resume', { stateDir });
+  assert.equal(activeGoal.status, 'active');
+  assert.equal(activeGoal.continuationSuppressed, false);
+  assert.equal(activeGoal.continuationSuppressedReason, null);
+}));
+
 test('same objective after a terminal state creates a reset goal', async () => withState(async ({ helpers, pluginModule, stateDir }) => {
   const plugin = await pluginModule.default({}, {
     stateDir,
@@ -411,6 +453,58 @@ test('retryable provider usage errors mark the goal usage-limited', async () => 
   assert.equal(goal.status, 'usage_limited');
   assert.equal(goal.continuationSuppressed, true);
   assert.equal(goal.continuationSuppressedReason, 'usage_limited');
+}));
+
+test('retry-after parsing honors explicit units before epoch heuristics', async () => withState(async ({ helpers, pluginModule, stateDir }) => {
+  const plugin = await pluginModule.default({}, {
+    stateDir,
+    nowMs: 5000,
+  });
+  await helpers.setGoal('session-retry-seconds', 'Treat explicit seconds as a delta', {
+    stateDir,
+    nowMs: 1000,
+    goalIdFactory: () => 'retry-seconds-goal',
+  });
+  await plugin.event({
+    event: {
+      type: 'message.updated',
+      properties: {
+        sessionID: 'session-retry-seconds',
+        info: {
+          error: {
+            status: 429,
+            retryAfter: 1000000000001,
+            message: 'rate limited',
+          },
+        },
+      },
+    },
+  });
+  const secondsGoal = await helpers.readGoal('session-retry-seconds', { stateDir });
+  assert.equal(secondsGoal.providerRetryAfterMs, 1000000000006000);
+
+  await helpers.setGoal('session-retry-ms', 'Treat explicit milliseconds as a delta', {
+    stateDir,
+    nowMs: 1000,
+    goalIdFactory: () => 'retry-ms-goal',
+  });
+  await plugin.event({
+    event: {
+      type: 'message.updated',
+      properties: {
+        sessionID: 'session-retry-ms',
+        info: {
+          error: {
+            status: 429,
+            retryAfterMs: 1000000000001,
+            message: 'rate limited',
+          },
+        },
+      },
+    },
+  });
+  const msGoal = await helpers.readGoal('session-retry-ms', { stateDir });
+  assert.equal(msGoal.providerRetryAfterMs, 1000000005001);
 }));
 
 test('non-usage provider errors do not suppress an active goal', async () => withState(async ({ helpers, pluginModule, stateDir }) => {
