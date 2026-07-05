@@ -23,6 +23,7 @@ Current state:
 - Tests create temporary directories and clean them up after each case.
 - Files under test live in `../lib/`, including `canonical-db-dir.ts`, `close-db-assertion.ts` and `owner-lease.ts`.
 - Security hardening coverage exercises `lib/ipc/socket-server.ts` and workspace containment helpers.
+- The directory contains 7 top-level Vitest files.
 
 ---
 
@@ -32,6 +33,9 @@ Current state:
 tests/lib/
 +-- canonical-db-dir.vitest.ts  # Canonical DB path and symlink escape behavior
 +-- close-db.vitest.ts          # DB close assertion coverage
++-- ipc-socket-drift.vitest.ts  # IPC socket drift detection
++-- ipc-socket-toctou.vitest.ts # IPC socket time-of-check/time-of-use safety
++-- owner-lease-mutation-lock.vitest.ts # Mutation lock coverage for owner leases
 +-- owner-lease.vitest.ts       # Owner lease acquisition and stale-state behavior
 +-- security-hardening.vitest.ts # IPC and Code Graph path hardening
 `-- README.md
@@ -53,6 +57,9 @@ tests/lib does not depend on the live developer database
 |---|---|
 | `canonical-db-dir.vitest.ts` | Canonicalization, missing-directory creation and symlink escape rejection. |
 | `close-db.vitest.ts` | DB close assertions and failure reporting. |
+| `ipc-socket-drift.vitest.ts` | IPC socket drift detection coverage. |
+| `ipc-socket-toctou.vitest.ts` | IPC socket time-of-check/time-of-use hardening coverage. |
+| `owner-lease-mutation-lock.vitest.ts` | Owner lease mutation lock safety coverage. |
 | `owner-lease.vitest.ts` | Single-owner lease behavior and stale owner recovery. |
 | `security-hardening.vitest.ts` | IPC socket containment and Code Graph binary path safety. |
 

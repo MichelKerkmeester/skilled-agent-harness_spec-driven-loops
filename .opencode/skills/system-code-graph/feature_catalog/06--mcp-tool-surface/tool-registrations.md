@@ -1,6 +1,6 @@
 ---
 title: "Tool registrations"
-description: "MCP registration and dispatch surface for mk-code-index code_graph, detect_changes, structural and deep-loop coverage graph references."
+description: "MCP registration and dispatch surface for mk-code-index code_graph, detect_changes and structural tool references."
 trigger_phrases:
   - "tool registrations"
   - "system-code-graph feature catalog"
@@ -14,13 +14,13 @@ version: 1.2.0.12
 
 ## 1. OVERVIEW
 
-The `mk-code-index` runtime exposes code graph, detect_changes and structural tools through the code graph dispatcher. Deep-loop coverage graph tools still dispatch through the system-spec-kit MCP server.
+The `mk-code-index` runtime exposes code graph, detect_changes and structural tools through the code graph dispatcher. The deep-loop coverage-graph tool family is not MCP-registered; those scripts are invoked through the deep-loop runtime CLI — convergence and upsert fire from the research/review `*_auto.yaml` steps, status from the ai-council workflows, and query is invoked directly.
 
 ## 2. HOW IT WORKS
 
 ### Trigger / Auto-Fire Path
 
-Manual MCP dispatch. Some coverage graph tools are called by command YAML, but the dispatcher itself only routes requested tool names.
+Manual MCP dispatch. Coverage-graph scripts are called by command YAML through CLI invocations, not through the MCP dispatcher.
 
 ### Class
 
@@ -38,9 +38,9 @@ Schema validation rejects malformed tool calls before handler execution for regi
 |---|---|---|
 | `.opencode/skills/system-code-graph/mcp_server/tools/code-graph-tools.ts:20-31` | Tool surface | registers `code_graph_*` and `detect_changes` names |
 | `.opencode/skills/system-code-graph/mcp_server/tools/code-graph-tools.ts:60-100` | Tool surface | dispatches those names to handlers |
-| `.opencode/skills/system-spec-kit/mcp_server/tools/index.ts:30-49` | Tool surface | registers and dispatches deep-loop coverage graph tools |
 | `.opencode/skills/system-code-graph/mcp_server/tool-schemas.ts:19-216` | Schema | defines code graph, detect_changes and structural schemas |
-| `.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:613-705` | Schema | defines deep-loop coverage graph schemas |
+| `.opencode/skills/system-spec-kit/mcp_server/tools/index.ts` | Tool surface | intentionally omits coverage-graph dispatch; this tool family is CLI-invoked and NOT registered as MCP tools |
+| `.opencode/skills/deep-loop-runtime/scripts/*.cjs` | Implementation | deep-loop coverage-graph CLI scripts: convergence/upsert fire from the research/review `*_auto.yaml` steps, status from the ai-council workflows, query is invoked directly |
 
 ### Validation And Tests
 

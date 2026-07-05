@@ -26,6 +26,7 @@ Current state:
 - The database layer stores files, nodes, edges, metadata, diagnostics, parser skip-list rows and verification records. Edge writes use a bitemporal close-and-insert path that stamps `invalid_at` on superseded edges instead of deleting them, so live readers filter on `invalid_at IS NULL` while as-of readers reconstruct a past edge snapshot.
 - Context builders merge structural graph, Spec Kit memory and Code Graph inputs under token budgets.
 - Apply-mode recovery runs pre and post verification before committing graph repair operations.
+- `lib/` contains 38 top-level TypeScript files, including `edge-confidence-flags.ts` for edge-confidence feature gating.
 
 ---
 
@@ -80,6 +81,7 @@ lib/
 +-- apply-metadata.ts           # Apply-mode audit metadata helpers
 +-- recovery-procedures.ts      # Graph recovery operations
 +-- diff-parser.ts              # Unified diff parsing for detect_changes
++-- edge-confidence-flags.ts    # Edge-confidence differentiation feature flag
 +-- edge-drift.ts               # Edge distribution drift checks
 +-- gold-query-verifier.ts      # Verification query execution
 +-- gold-battery-runner.ts      # Verification battery orchestration
@@ -135,6 +137,7 @@ lib/
 +-- config-defaults.ts
 +-- cross-file-edge-resolver.ts
 +-- diff-parser.ts
++-- edge-confidence-flags.ts
 +-- doc-symbol-extractor.ts
 +-- edge-drift.ts
 +-- ensure-ready.ts
@@ -192,6 +195,7 @@ lib/
 | `apply-metadata.ts` | Builds apply-mode audit metadata and log paths. |
 | `recovery-procedures.ts` | Provides repair, rollback and corruption-recovery helpers. |
 | `diff-parser.ts` | Parses unified diffs for `detect_changes`. |
+| `edge-confidence-flags.ts` | Exports `isCodeGraphEdgeConfidenceDifferentiationEnabled` to gate edge-confidence differentiation. |
 | `edge-drift.ts` | Compares edge distributions for graph-quality drift. |
 | `gold-query-verifier.ts` | Executes gold-query assertions against the current graph. |
 | `gold-battery-runner.ts` | Runs and summarizes verification batteries. |

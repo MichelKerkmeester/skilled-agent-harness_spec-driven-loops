@@ -21,7 +21,7 @@ trigger_phrases:
 Current state:
 
 - Covers scan, context, degraded sweep, change detection and manual diagnostics behavior.
-- Covers deep-loop graph scenarios.
+- Contains 10 top-level Vitest files.
 - Exercises walker caps and doctor apply-mode policy in disposable temp workspaces.
 - Exports no runtime code.
 
@@ -36,11 +36,10 @@ code-graph/
 +-- code-graph-degraded-sweep.vitest.ts
 +-- code-graph-scan-stress.vitest.ts
 +-- context-handler-normalization-stress.vitest.ts
-+-- deep-loop-crud-stress.vitest.ts
-+-- deep-loop-graph-convergence-stress.vitest.ts
 +-- detect-changes-preflight-stress.vitest.ts
 +-- doctor-apply-mode-stress.vitest.ts
 +-- manual-diagnostics-stress.vitest.ts
++-- w10-degraded-readiness-integration.vitest.ts
 +-- walker-dos-caps.vitest.ts
 `-- README.md
 ```
@@ -58,6 +57,7 @@ code-graph/
 | `detect-changes-preflight-stress.vitest.ts` | Stresses diff-to-symbol preflight behavior. |
 | `doctor-apply-mode-stress.vitest.ts` | Stresses doctor apply-mode policy and rollback simulation. |
 | `manual-diagnostics-stress.vitest.ts` | Stresses manual diagnostics output. |
+| `w10-degraded-readiness-integration.vitest.ts` | Exercises degraded readiness integration behavior. |
 | `walker-dos-caps.vitest.ts` | Verifies traversal cap behavior under pressure. |
 
 ---
