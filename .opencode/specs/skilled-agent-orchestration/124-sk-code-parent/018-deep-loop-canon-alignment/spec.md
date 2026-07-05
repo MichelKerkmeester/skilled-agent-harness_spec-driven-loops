@@ -11,9 +11,9 @@ _memory:
   continuity:
     packet_pointer: "skilled-agent-orchestration/124-sk-code-parent/018-deep-loop-canon-alignment"
     last_updated_at: "2026-07-05T00:00:00Z"
-    last_updated_by: "gpt-5.5"
-    recent_action: "Phase planned and documented; execution pending"
-    next_safe_action: "Start T001"
+    last_updated_by: "claude-opus"
+    recent_action: "Phase executed; deep-loop STRICT 0/0, benchmark frozen"
+    next_safe_action: "Phase 019: validator WARN->FAIL promotion + 124 rollup"
 ---
 # Feature Specification: Phase 18 deep-loop canon alignment and benchmark
 
@@ -29,7 +29,7 @@ _memory:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P0 |
-| **Status** | Draft |
+| **Status** | Complete |
 | **Created** | 2026-07-05 |
 | **Branch** | `system-speckit/028-memory-search-intelligence` |
 
@@ -105,10 +105,10 @@ Document and later execute a split phase: complete only collision-free deep-loop
 <!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA
 
-- **SC-001**: The 018a additive artifacts land without touching dirty registry, router, or changelog files. Trace: master plan sequencing and audit P0-1.
-- **SC-002**: Parent-hub check failures for missing description, manual playbook, and benchmark are removed once 018a executes. Trace: audit P0-4, P0-5, P0-6.
-- **SC-003**: 018b tasks remain blocked with the gate reason `mode-registry.json dirty — live agent mid-refactor; open only when git-clean`. Trace: user brief and audit P0-1.
-- **SC-004**: Once 018b is unblocked and executed, deep-loop parent-hub strict conformance can close the remaining registry, extension, router, and changelog failures. Trace: master plan 018 verify bullet.
+- **SC-001** — MET: The 018a additive artifacts landed without touching dirty registry, router, or changelog files (blast-radius gate confirmed dir-scoped diffs). Trace: master plan sequencing and audit P0-1.
+- **SC-002** — MET: Parent-hub check failures for missing description, manual playbook, and benchmark cleared after 018a. Trace: audit P0-4, P0-5, P0-6.
+- **SC-003** — MET: 018b work stayed blocked under the gate `mode-registry.json dirty — live agent mid-refactor; open only when git-clean` until the registry returned git-clean; only then did it open. Trace: user brief and audit P0-1.
+- **SC-004** — MET: Once the gate cleared, 018b executed and deep-loop parent-hub STRICT conformance reached 0 failures (registry, extension, router, and changelog checks all pass). Trace: master plan 018 verify bullet.
 
 ### Acceptance Scenarios
 
@@ -180,8 +180,8 @@ Document and later execute a split phase: complete only collision-free deep-loop
 <!-- ANCHOR:questions -->
 ## 9. OPEN QUESTIONS
 
-- Has `mode-registry.json` returned git-clean after the live deep-context/runtime refactor? Until yes, all 018b tasks remain blocked.
-- Has the settled registry confirmed the intended seven-mode set for bidirectional hub-router check 5b?
+- RESOLVED: `mode-registry.json` returned git-clean after the live refactor settled; 018b opened and executed (`e1a266b07c`).
+- RESOLVED: the settled registry confirmed the seven-mode set; bidirectional hub-router check 5b passes (router signals == registry modes).
 
 <!-- /ANCHOR:questions -->
 ---

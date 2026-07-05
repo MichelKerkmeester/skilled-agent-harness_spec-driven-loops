@@ -1,41 +1,33 @@
 ---
 title: "Implementation Summary: Phase 18 deep-loop canon alignment and benchmark"
-description: "Planned, not yet executed summary for the split deep-loop parent-hub canon alignment phase."
+description: "Executed summary for the deep-loop parent-hub canon alignment phase: both 018a additive artifacts and the once-gated 018b registry/router/changelog work shipped after the gate cleared; deep-loop parent-skill-check STRICT is now 0."
 trigger_phrases:
   - "deep-loop canon summary"
-  - "018a 018b blockers"
-  - "deep-loop planned summary"
+  - "018a 018b executed"
+  - "deep-loop parent hub conformance"
 importance_tier: "high"
-contextType: "planning"
+contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "skilled-agent-orchestration/124-sk-code-parent/018-deep-loop-canon-alignment"
-    last_updated_at: "2026-07-05T05:46:26.719Z"
-    last_updated_by: "gpt-5.5"
-    recent_action: "Phase planned and documented; execution pending"
-    next_safe_action: "Start T001"
-    blockers:
-      - "mode-registry.json dirty — live agent mid-refactor; open only when git-clean"
+    last_updated_at: "2026-07-05T09:02:00.516Z"
+    last_updated_by: "claude-opus"
+    recent_action: "Phase executed; deep-loop STRICT 0/0, benchmark frozen"
+    next_safe_action: "Phase 019: validator WARN->FAIL promotion + 124 rollup"
+    blockers: []
     key_files:
       - ".opencode/skills/deep-loop-workflows/description.json"
       - ".opencode/skills/deep-loop-workflows/manual_testing_playbook/"
       - ".opencode/skills/deep-loop-workflows/benchmark/"
       - ".opencode/skills/deep-loop-workflows/mode-registry.json"
       - ".opencode/skills/deep-loop-workflows/hub-router.json"
-      - ".opencode/skills/deep-loop-workflows/changelog/deep-context"
-    session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "phase-018-planning-docs"
-      parent_session_id: null
-    completion_pct: 0
-    open_questions:
-      - "Has mode-registry.json returned git-clean after the live deep-context/runtime refactor?"
-      - "Has the settled seven-mode registry set been confirmed for hub-router bidirectional check 5b?"
+    completion_pct: 100
+    open_questions: []
     answered_questions:
       - question: "Is this phase executed?"
-        answer: "No. The phase is planned and documented; execution is pending."
-      - question: "Which work is safe now?"
-        answer: "Only absent, collision-free artifacts: description.json, manual_testing_playbook/, and benchmark/."
+        answer: "Yes. Both 018a additive artifacts and the once-gated 018b registry/router/changelog work shipped; deep-loop STRICT is 0."
+      - question: "Did the 018b gate clear?"
+        answer: "Yes. mode-registry.json returned git-clean; 018b executed in e1a266b07c (registry canon fields + extensions + hub-router) and a5e81198c9 (changelog symlink removal)."
 ---
 # Implementation Summary
 
@@ -50,9 +42,9 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 018-deep-loop-canon-alignment |
-| **Status** | Planned / not yet executed |
+| **Status** | Complete |
 | **Level** | 2 |
-| **Actual Effort** | Not started; execution pending |
+| **Actual Effort** | Both 018a and 018b executed; deep-loop parent-hub STRICT conformance reached |
 
 <!-- /ANCHOR:metadata -->
 ---
@@ -60,18 +52,18 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-Nothing has been built yet. This document records the planned split for Phase 18 and the active gate that blocks 018b work.
+The deep-loop parent hub now satisfies the parent-hub canon: all 8 P0 findings closed and deep-loop `parent-skill-check` STRICT reports 0 failures, 0 warnings — the third canon-clean parent hub alongside sk-code and sk-design. The phase was planned as a split (018a add-only now, 018b gated on a dirty registry). The gate cleared during execution — `mode-registry.json` returned git-clean and the seven-mode set settled — so both halves shipped.
 
-### Planned Files to Change
+### Files Changed
 
-| File | Planned Action | Purpose | Trace |
-|------|----------------|---------|-------|
-| `.opencode/skills/deep-loop-workflows/description.json` | Create in 018a | Advisor-facing parent-hub description | master plan 018a; audit P0-4 |
-| `.opencode/skills/deep-loop-workflows/manual_testing_playbook/` | Create in 018a | Hub-level manual validation package | master plan 018a; audit P0-5 |
-| `.opencode/skills/deep-loop-workflows/benchmark/` | Create in 018a | Hub-level baseline benchmark package | master plan 018a; audit P0-6 |
-| `.opencode/skills/deep-loop-workflows/mode-registry.json` | Deferred update in 018b | Per-mode canon fields and extension declarations | master plan 018b; audit P0-1, P0-2, P0-3 |
-| `.opencode/skills/deep-loop-workflows/hub-router.json` | Deferred create in 018b | Router policy after the seven-mode set settles | master plan 018b; audit P0-7 |
-| `.opencode/skills/deep-loop-workflows/changelog/deep-context` | Deferred remove in 018b | Dangling symlink removed by live deprecation sweep | master plan 018b; audit P0-8 |
+| File | Action | Purpose | Commit |
+|------|--------|---------|--------|
+| `.opencode/skills/deep-loop-workflows/description.json` | Created | Advisor-facing parent-hub description (name, description, version, keywords, trigger examples, 7 modes, 3 backend kinds) | `e1a266b07c` |
+| `.opencode/skills/deep-loop-workflows/manual_testing_playbook/` | Created | Hub-level manual validation package: 20 scenarios across 5 categories, every route grounded in `mode-registry.json` | `2b03b419a6` |
+| `.opencode/skills/deep-loop-workflows/benchmark/` | Created | Lane-C router-mode baseline package (CONDITIONAL 71/100, D5 hard gate 100/100) + README | `50fbe53094` |
+| `.opencode/skills/deep-loop-workflows/mode-registry.json` | Updated | Per-mode `packetKind`/`grandfatheredFolderMismatch`/`toolSurface` + `extensions.{runtime-loop, advisor-projection}`; top-level `deprecatedModes: []`; `advisorRouting.*` byte-preserved | `e1a266b07c` |
+| `.opencode/skills/deep-loop-workflows/hub-router.json` | Created | Router with one `routerSignals` entry per registry mode, `<mode>-aliases` vocab classes, `tieBreak` over all seven modes | `e1a266b07c` |
+| `.opencode/skills/deep-loop-workflows/changelog/` (5 symlinks) | Removed | Real-files-only changelog policy; the dangling `deep-context` symlink removed with the rest | `a5e81198c9` |
 
 <!-- /ANCHOR:what-built -->
 ---
@@ -79,7 +71,7 @@ Nothing has been built yet. This document records the planned split for Phase 18
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-No implementation has been delivered yet. Planned delivery is 018a first as add-only, collision-free artifact creation; 018b must not open until `mode-registry.json` is git-clean after the live agent's deep-context/runtime refactor and the seven-mode registry set is settled.
+018a additive artifacts landed add-only. 018b was held until `mode-registry.json` was git-clean, then executed: the registry rewrite added the canon fields and extensions while preserving every `advisorRouting` projection block byte-for-byte (the advisor keeps hardcoded projection maps that a CI drift-guard asserts equal to the registry projection). `hub-router.json` was authored only after the seven-mode set settled, so the bidirectional check 5b (router signals == registry modes) holds. The five hub changelog symlinks — including the dangling `deep-context` — were removed under the real-files-only policy. The playbook root index was authored in the canonical 4-column loader shape so the Lane-C harness can score the corpus, and the benchmark baseline was frozen from a deterministic router-mode replay.
 
 <!-- /ANCHOR:how-delivered -->
 ---
@@ -89,11 +81,11 @@ No implementation has been delivered yet. Planned delivery is 018a first as add-
 
 | Decision | Rationale | Trace |
 |----------|-----------|-------|
-| Split the phase into 018a and 018b | The audit identifies safe absent files and dirty live-refactor files in the same hub | master plan 018; audit P0-1 |
-| Execute 018a add-only artifacts first | Missing description, manual playbook, and benchmark are absent and collision-free | master plan 018a; audit P0-4, P0-5, P0-6 |
-| Gate all registry and extension edits | `mode-registry.json` is dirty and owned by a live refactor | master plan 018b; audit P0-1, P0-2, P0-3 |
-| Gate hub-router creation | Router 5b requires stable bidirectional alignment with the settled mode set | master plan 018b; audit P0-7 |
-| Leave dangling changelog symlink to live sweep | The deep-context deprecation owns the deleted target and symlink cleanup | master plan 018b; audit P0-8 |
+| Split the phase into 018a and 018b | The audit identified safe absent files and dirty live-refactor files in the same hub | master plan 018 |
+| Execute 018b once the registry was git-clean | The collision gate cleared during execution; holding longer would have stalled a ready phase | master plan 018b |
+| Declare deprecated modes via top-level `deprecatedModes: []` | There are no deprecated modes; an empty top-level array is the correct representation (no `extensions.deprecated-modes` needed) | audit P0-3 |
+| Freeze the benchmark from router mode | Deterministic replay of `hub-router.json` + `mode-registry.json`; the reproducible CI baseline | master plan 018a |
+| Keep advisor projection maps hardcoded + drift-guarded | Avoids a cross-skill import on the advisor hot path; drift-guard proves parity | master plan 018b |
 
 <!-- /ANCHOR:decisions -->
 ---
@@ -101,9 +93,7 @@ No implementation has been delivered yet. Planned delivery is 018a first as add-
 <!-- ANCHOR:blockers -->
 ## Blockers
 
-| Blocker | Affects | Open When | Trace |
-|---------|---------|-----------|-------|
-| `mode-registry.json dirty — live agent mid-refactor; open only when git-clean` | T007 through T014; registry fields, extensions, hub-router, changelog symlink cleanup | `mode-registry.json` is git-clean and the seven-mode set is settled | user brief; master plan 018b; audit P0-1 |
+None. The one gate (`mode-registry.json dirty — live agent mid-refactor`) cleared during execution and all once-gated 018b work shipped.
 
 <!-- /ANCHOR:blockers -->
 ---
@@ -111,18 +101,21 @@ No implementation has been delivered yet. Planned delivery is 018a first as add-
 <!-- ANCHOR:verification -->
 ## Verification
 
-| Test Type | Status | Coverage | Notes |
-|-----------|--------|----------|-------|
-| Parent skill check strict | Pending | deep-loop-workflows hub | Run after 018a and again after 018b |
-| Artifact existence | Pending | description, playbook, benchmark | Expected to close 3 of 8 P0 findings after 018a |
-| Collision safety | Pending | registry, router, changelog | Must prove 018a did not touch 018b targets |
-| Router bidirectional check | Blocked | future `hub-router.json` | Blocked until registry mode set settles |
+| Test Type | Status | Coverage | Evidence |
+|-----------|--------|----------|----------|
+| `parent-skill-check` STRICT | Pass | deep-loop-workflows hub | All hard invariants pass, 0 warnings (9a + 9b green; 3d-canon/3f/5a-5f/7a/8a all pass) |
+| Advisor drift-guard vitest | Pass | `routing-registry-drift-guard.vitest.ts` | 7/7 GREEN against the pushed registry — `advisorRouting.*` projection byte-preserved |
+| `parent-hub-vocab-sync` | Pass | deep-loop-workflows | exit 0 — no orphan aliases, no collisions, no ownership drift |
+| Lane-C skill-benchmark (router) | Pass (CONDITIONAL) | 20-scenario playbook corpus | aggregate 71/100; D5 connectivity hard gate 100/100; D1-intra + D2 discovery 100/100; loader parses 20/20 with 0 warnings |
+| Playbook path integrity | Pass | 20 scenario files + root | 74 referenced paths resolve; 0 fabrications; no ephemeral artifact labels |
 
 ### Test Coverage Summary
 
-| File | Statements | Branches | Functions |
-|------|------------|----------|-----------|
-| Phase 18 planned work | Pending execution | Pending execution | Pending execution |
+| Area | Result |
+|------|--------|
+| Parent-hub canon (checks 1-9, STRICT) | 0 failures / 0 warnings |
+| Advisor projection parity | 7/7 drift-guard tests pass |
+| Playbook corpus scoring | 16/16 text-scorable scenarios pass; 4 MR route out to live-mode browser class |
 
 <!-- /ANCHOR:verification -->
 ---
@@ -132,9 +125,9 @@ No implementation has been delivered yet. Planned delivery is 018a first as add-
 
 | NFR ID | Target | Actual | Status |
 |--------|--------|--------|--------|
-| NFR-SAF-01 | No gated files opened while dirty | Not executed | Pending |
-| NFR-R01 | Parent-skill-check strict after 018a and 018b | Not executed | Pending |
-| NFR-M01 | Safe-now artifacts mirror sk-code shapes | Not executed | Pending |
+| NFR-SAF-01 | No gated files opened while dirty | 018b opened only after `mode-registry.json` was git-clean | Pass |
+| NFR-R01 | Parent-skill-check strict after 018a and 018b | Run after both; final STRICT 0/0 | Pass |
+| NFR-M01 | Safe-now artifacts mirror sk-code / sk-design hub shapes | description.json, manual_testing_playbook/, and benchmark/ mirror the sibling hub packages | Pass |
 
 <!-- /ANCHOR:nfr-verify -->
 ---
@@ -142,9 +135,9 @@ No implementation has been delivered yet. Planned delivery is 018a first as add-
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. Full deep-loop parent-hub conformance cannot be claimed from 018a alone; 018a is expected to close only 3 of 8 P0 findings.
-2. 018b cannot start until the registry is git-clean and the seven-mode set is settled.
-3. Phase 019 owns benchmark/validator promotion and cross-hub rollup after all three hubs pass.
+1. The Lane-C baseline is router-mode: D1-inter (advisor), D4 (usefulness), and the four MR browser-class scenarios are unscored until a live-mode run. D3 efficiency (6/100) is a router-mode measurement gap, not a routing failure.
+2. Phase 019 owns the validator WARN→FAIL promotion (parent-skill-check checks 5-9), the 3× hub full-pass gate, and the 124 packet rollup.
+3. A full advisor-corpus re-run + re-baseline is deferred to 019, coordinated with the successor remediation goal's advisor work (the drift-guard already proves the projection is unchanged).
 
 <!-- /ANCHOR:limitations -->
 ---
@@ -154,7 +147,7 @@ No implementation has been delivered yet. Planned delivery is 018a first as add-
 
 | Planned | Actual | Reason |
 |---------|--------|--------|
-| Execute Phase 18 | Planned / not yet executed | This packet authoring step documents the plan only |
-| Complete all deep-loop P0s in one phase | Split into 018a and 018b | Live registry refactor creates a hard collision gate |
+| 018b deferred/gated until a later phase | 018b executed in this phase | The collision gate cleared during execution — `mode-registry.json` returned git-clean and the seven-mode set settled |
+| `extensions.deprecated-modes` | Top-level `deprecatedModes: []` | There are no deprecated modes; the empty top-level array is the correct, canon-valid representation |
 
 <!-- /ANCHOR:deviations -->

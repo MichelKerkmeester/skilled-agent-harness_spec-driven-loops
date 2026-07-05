@@ -19,10 +19,10 @@
       "deep-loop parent hub benchmark",
       "deep-loop canon tasks",
       "018a safe-now",
-      "018b deferred gated",
+      "018b executed",
       "deep-loop canon checklist",
       "deep-loop parent hub verification",
-      "018b gate verification"
+      "018 verification complete"
     ],
     "key_topics": [
       "deep-loop",
@@ -39,9 +39,11 @@
       "split"
     ],
     "importance_tier": "high",
-    "status": "draft",
+    "status": "complete",
     "key_files": [
+      ".opencode/skills/deep-loop-workflows/description.json",
       ".opencode/skills/deep-loop-workflows/mode-registry.json",
+      ".opencode/skills/deep-loop-workflows/hub-router.json",
       "tasks.md",
       "plan.md",
       "implementation-summary.md",
@@ -50,9 +52,21 @@
     ],
     "entities": [
       {
+        "name": "description.json",
+        "kind": "config",
+        "path": ".opencode/skills/deep-loop-workflows/description.json",
+        "source": "derived"
+      },
+      {
         "name": "mode-registry.json",
         "kind": "config",
         "path": ".opencode/skills/deep-loop-workflows/mode-registry.json",
+        "source": "derived"
+      },
+      {
+        "name": "hub-router.json",
+        "kind": "config",
+        "path": ".opencode/skills/deep-loop-workflows/hub-router.json",
         "source": "derived"
       },
       {
@@ -180,23 +194,11 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Live Agent Active Refactor Gate",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Registry Canon Fields",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The deep-loop parent hub fails the parent-hub canon with 8 P0 findings and 26 strict invariant failures",
     "created_at": "2026-07-05T05:46:26.719Z",
-    "last_save_at": "2026-07-05T05:46:26.719Z",
+    "last_save_at": "2026-07-05T09:02:00.516Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,13 +208,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:2ef84d988368b228e935314a5a8ca3bc8c7e7e12820ca615879e8a98930c2718",
+    "source_fingerprint": "sha256:9c60d1dbd9d14681609ad5f72e6f7cfa49debcc295a2d5bcf5595b611e129be1",
     "source_doc_hashes": {
-      "spec.md": "a82185f4cabf570e47e5e08a3f237d71887a662d92157ade13c31016d629a20f",
-      "plan.md": "0280b47eb609b50b82eaa572a36c2fa975fb653dc428e6e35603294e8ba1fbc9",
-      "tasks.md": "d0c16b3c8c9c9c4fa12194af8e8f9903ae98ab1d93f557abfcf3271f01fbd581",
-      "checklist.md": "36b17c2831fb6e63cb33285bf037651d0e33ef21f656703d92ed2693af6f58a6",
-      "implementation-summary.md": "77a0952f91b364b74124066a410bd819b2ec748905d2da9ee78ecc0df5757eb3"
+      "spec.md": "41aade72c1fd20ce7a4430c27dbc7ad47cf7b46ff10ddeebfaf381fac40b8c36",
+      "plan.md": "deb6f30526f87039093567273c74b3de0a75846f324c3dd910bf74f361aeab7e",
+      "tasks.md": "361465aff88a629a2da33edc7ef9d255fe45308c4d39751dc72e15e5a3889661",
+      "checklist.md": "5633e9c193cadd162f9ca7e1d4d1533ff1521a1cf7b2ebd5b954cb5583b24bdf",
+      "implementation-summary.md": "86a308a4008a64e030d11b2698424b0d46c10cb024f8f222c7552a10937ff2ac"
     },
     "last_active_child_id": null,
     "last_active_at": null
