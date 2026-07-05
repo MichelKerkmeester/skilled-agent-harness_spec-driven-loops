@@ -111,3 +111,15 @@ Audit command, agent, and skill-reference surfaces for post-016 memory-search re
 ## Next Audit Angle After Iteration 9
 
 Audit deep-loop and spec-kit workflow references for stale assumptions about memory-search reliability, daemon freshness, and repair routing, especially `/speckit:resume`, memory-save/generate-context guidance, and deep-loop prompt packs.
+
+## Findings Added in Iteration 10
+
+1. `/speckit:resume` is aligned with post-016 fallback lessons: it recovers from handover, `_memory.continuity`, supporting spec docs, graph metadata hints, `session_bootstrap()`/`memory_context()`, then anchored `memory_search()`, with MCP enrichment only when the canonical packet is still thin. [SOURCE: .opencode/commands/speckit/assets/speckit_resume_auto.yaml:87] [SOURCE: .opencode/commands/speckit/assets/speckit_resume_auto.yaml:151]
+2. `/speckit:resume` has explicit memory transport/failure fallback: warm-only CLI exit 75 is retryable, the file ladder needs no MCP, and failed memory search proceeds only with essentials already recovered. [SOURCE: .opencode/commands/speckit/assets/speckit_resume_auto.yaml:105] [SOURCE: .opencode/commands/speckit/assets/speckit_resume_auto.yaml:212]
+3. `/memory:save` separates durable continuity saves from retrieval freshness: it routes through `generate-context.js`, may refresh visibility with `memory_index_scan`, and presents deferred indexing honestly. [SOURCE: .opencode/commands/memory/save.md:28] [SOURCE: .opencode/commands/memory/save.md:38] [SOURCE: .opencode/commands/memory/assets/save_presentation.txt:84]
+4. `/deep:research` has a startup-vs-iteration asymmetry: startup `memory_context` handling only distinguishes found/no context in the inspected block, while later per-iteration refresh treats MCP errors/timeouts as non-fatal and the manual playbook expects advisory MCP failures. [SOURCE: .opencode/commands/deep/assets/deep_research_auto.yaml:51] [SOURCE: .opencode/commands/deep/assets/deep_research_auto.yaml:1154] [SOURCE: .opencode/skills/deep-loop-workflows/deep-research/manual_testing_playbook/manual_testing_playbook.md:683]
+5. Deep-research delta-path references are naming-misaligned with this packet's runner contract: YAML declares and validates `deltas/iter-{NNN}.jsonl`, while this packet writes `deltas/iteration-NNN.jsonl`. [SOURCE: .opencode/commands/deep/assets/deep_research_auto.yaml:111] [SOURCE: .opencode/commands/deep/assets/deep_research_auto.yaml:1039] [INFERENCE: based on packet-local `research/deltas/iteration-009.jsonl` and `research/deltas/iteration-010.jsonl`]
+
+## Next Audit Angle After Iteration 10
+
+Audit deep-review and AI-council fallback/staleness contracts for cross-mode consistency: graphless fallback gates, startup `memory_context` failure behavior, stale graph/status recovery payloads, and whether command assets prevent false-safe success when MCP sources are unavailable.
