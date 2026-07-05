@@ -11,7 +11,8 @@
     "system-spec-kit/028-memory-search-intelligence/003-skill-advisor/005-conflict-rerank-query-routing",
     "system-spec-kit/028-memory-search-intelligence/003-skill-advisor/006-provenance-drift-observability",
     "system-spec-kit/028-memory-search-intelligence/003-skill-advisor/007-outcome-weighted-ranking-followon",
-    "system-spec-kit/028-memory-search-intelligence/003-skill-advisor/008-advisor-workspace-root-resolution"
+    "system-spec-kit/028-memory-search-intelligence/003-skill-advisor/008-advisor-workspace-root-resolution",
+    "system-speckit/028-memory-search-intelligence/003-skill-advisor/009-hard-rule-and-dispatch-preflight-hardening"
   ],
   "migrated": true,
   "manual": {
