@@ -220,3 +220,83 @@ describe('T008 — Seed cap and multiplier precedence', () => {
     expect((boosts.get(2)?.boost ?? 0)).toBeGreaterThan(boosts.get(3)?.boost ?? 0);
   });
 });
+
+// Typed-traversal boost must let edge-prior tiers differentiate. The intent
+// traversal score is on a semantic-score scale (~seedScore); consumed raw as a
+// boost it exceeds the combined-boost ceiling for every neighbor, so the ceiling
+// clamp flattens all relations to the same maximum and the prior tiers go inert.
+describe('typed-traversal relation-prior differentiation', () => {
+  let db: Database.Database | null = null;
+  const prevTyped = process.env.SPECKIT_TYPED_TRAVERSAL;
+  const prevCausal = process.env.SPECKIT_CAUSAL_BOOST;
+
+  beforeEach(() => {
+    process.env.SPECKIT_CAUSAL_BOOST = 'true';
+    process.env.SPECKIT_TYPED_TRAVERSAL = 'true';
+    db = createDb();
+    db.prepare(`
+      INSERT INTO memory_index (id, spec_folder, file_path, title, importance_tier, trigger_phrases)
+      VALUES
+      (1, 'spec', '/tmp/seed.md', 'seed', 'important', '[]'),
+      (10, 'spec', '/tmp/high.md', 'high-prior neighbor', 'important', '[]'),
+      (11, 'spec', '/tmp/low.md', 'low-prior neighbor', 'important', '[]')
+    `).run();
+    // For intent 'understand', 'caused' is the top edge-prior tier (1.0) and
+    // 'derived_from' a lower tier (0.5). Both neighbors are 1-hop from the seed
+    // with identical base scores, so any boost gap is purely the prior tier.
+    db.prepare(`
+      INSERT INTO causal_edges (source_id, target_id, relation, strength)
+      VALUES ('1', '10', 'caused', 1.0), ('1', '11', 'derived_from', 1.0)
+    `).run();
+  });
+
+  afterEach(() => {
+    if (db) db.close();
+    if (prevTyped === undefined) delete process.env.SPECKIT_TYPED_TRAVERSAL;
+    else process.env.SPECKIT_TYPED_TRAVERSAL = prevTyped;
+    if (prevCausal === undefined) delete process.env.SPECKIT_CAUSAL_BOOST;
+    else process.env.SPECKIT_CAUSAL_BOOST = prevCausal;
+  });
+
+  it('gives the higher-prior relation a strictly larger sub-ceiling boost', () => {
+    const results = [
+      { id: 1, score: 0.9 },
+      { id: 10, score: 0.5 },
+      { id: 11, score: 0.5 },
+    ];
+    const { results: boosted } = causalBoost.applyCausalBoost(
+      results as RankedSearchResult[],
+      { intent: 'understand' },
+    );
+    const high = boosted.find((r) => r.id === 10)?.causalBoost ?? 0;
+    const low = boosted.find((r) => r.id === 11)?.causalBoost ?? 0;
+
+    expect(high).toBeGreaterThan(0);
+    expect(low).toBeGreaterThan(0);
+    // Priors differentiate rather than both pinning to the combined ceiling.
+    expect(high).toBeGreaterThan(low + 1e-6);
+    // Boost scales with the prior tier ratio (1.0 / 0.5 = 2). Pre-fix both
+    // saturate to 0.20, so the ratio collapses to 1.
+    expect(high / low).toBeCloseTo(2.0, 3);
+    // The strongest prior stays within the documented combined ceiling.
+    expect(high).toBeLessThanOrEqual(0.2 + 1e-9);
+  });
+
+  it('does not flatten distinct priors to an identical saturated boost', () => {
+    const results = [
+      { id: 1, score: 0.9 },
+      { id: 10, score: 0.5 },
+      { id: 11, score: 0.5 },
+    ];
+    const { results: boosted } = causalBoost.applyCausalBoost(
+      results as RankedSearchResult[],
+      { intent: 'understand' },
+    );
+    const high = boosted.find((r) => r.id === 10)?.causalBoost ?? 0;
+    const low = boosted.find((r) => r.id === 11)?.causalBoost ?? 0;
+
+    // avgSeedScore 0.9 x prior x combined-ceiling 0.20: caused=0.18, derived_from=0.09.
+    expect(high).toBeCloseTo(0.18, 6);
+    expect(low).toBeCloseTo(0.09, 6);
+  });
+});

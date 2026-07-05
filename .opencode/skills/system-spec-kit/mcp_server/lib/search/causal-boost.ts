@@ -569,7 +569,14 @@ function applyCausalBoost(
         clampedFreshness,
         intent
       );
-      intentBoosts.set(neighborId, intentScore);
+      // The traversal score is on a semantic-score scale (~seedScore, 0-1). Used
+      // raw as a boost it exceeds the combined ceiling for essentially every
+      // neighbor, so the downstream ceiling clamp flattens all relations to the
+      // same maximum boost and the edge-prior tiers stop differentiating. Map the
+      // score onto the combined-boost band so stronger relations and closer hops
+      // earn proportionally larger — but still sub-ceiling — boosts, keeping the
+      // existing 0.20 maximum while restoring prior differentiation.
+      intentBoosts.set(neighborId, intentScore * MAX_COMBINED_BOOST);
     }
   }
 
