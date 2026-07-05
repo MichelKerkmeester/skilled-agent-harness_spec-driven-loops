@@ -27,7 +27,7 @@ Operators run the exact prompt and command sequence for `CR-006` and confirm the
 - Objective: Confirm committed secrets and sensitive logs are treated as security blockers.
 - Real user request: `Review target may contain credentials or sensitive logging.`
 - Prompt: `Scan the staged diff for hardcoded credentials, private keys, passwords, tokens, and sensitive logs without echoing real secrets.`
-- Expected execution process: Run the deterministic command sequence, capture the transcript, compare the output against sk-code-review references, and record a PASS, PARTIAL, FAIL, or SKIP verdict with rationale.
+- Expected execution process: Run the deterministic command sequence, capture the transcript, compare the output against review references, and record a PASS, PARTIAL, FAIL, or SKIP verdict with rationale.
 - Expected signals: Step 1: staged diff captured; Step 2: secret patterns searched; Step 3: report classifies exposure and remediation
 - Desired user-visible outcome: a severity-ranked secrets review that a real maintainer can act on without asking for missing scope or evidence.
 - Pass/fail: PASS if hardcoded credentials are P0/P1 per assets/security_checklist.md section 4 and no inline secret appears in evidence; FAIL if real secrets are repeated in output
@@ -41,7 +41,7 @@ Operators run the exact prompt and command sequence for `CR-006` and confirm the
 1. Restate the user request in plain review-scope language.
 2. Confirm the review target, changed-file list, and risk lens before invoking the reviewer.
 3. Execute the deterministic steps exactly as written.
-4. Compare the observed report against the cited sk-code-review reference files.
+4. Compare the observed report against the cited review reference files.
 5. Return a concise final verdict that names missing evidence when the scenario fails.
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |

@@ -27,7 +27,7 @@ Operators run the exact prompt and command sequence for `CR-010` and confirm the
 - Objective: Confirm a security-only review still enforces correctness minimums when security impact exists and avoids style drift.
 - Real user request: `User asks for security-only review.`
 - Prompt: `Run a security-only review on the requested diff scope, suppressing style-only advice while keeping security-impact correctness blockers.`
-- Expected execution process: Run the deterministic command sequence, capture the transcript, compare the output against sk-code-review references, and record a PASS, PARTIAL, FAIL, or SKIP verdict with rationale.
+- Expected execution process: Run the deterministic command sequence, capture the transcript, compare the output against review references, and record a PASS, PARTIAL, FAIL, or SKIP verdict with rationale.
 - Expected signals: Step 1: scope file list visible; Step 2: report suppresses generic style; Step 3: security/correctness minimums remain enforced
 - Desired user-visible outcome: a focused security review that a real maintainer can act on without asking for missing scope or evidence.
 - Pass/fail: PASS if baseline minimums from references/review_core.md section 6 remain active and style-only findings are omitted; FAIL if scope is ignored
@@ -41,7 +41,7 @@ Operators run the exact prompt and command sequence for `CR-010` and confirm the
 1. Restate the user request in plain review-scope language.
 2. Confirm the review target, changed-file list, and risk lens before invoking the reviewer.
 3. Execute the deterministic steps exactly as written.
-4. Compare the observed report against the cited sk-code-review reference files.
+4. Compare the observed report against the cited review reference files.
 5. Return a concise final verdict that names missing evidence when the scenario fails.
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |

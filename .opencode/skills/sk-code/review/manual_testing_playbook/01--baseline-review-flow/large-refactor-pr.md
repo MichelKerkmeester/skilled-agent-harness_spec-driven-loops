@@ -27,7 +27,7 @@ Operators run the exact prompt and command sequence for `CR-002` and confirm the
 - Objective: Confirm large refactors trigger scope control, surface evidence, and risk-ranked findings.
 - Real user request: `Review target is a 500+ LOC refactor branch.`
 - Prompt: `Review the full refactor branch diff, call out large-diff limits and surface evidence, and keep blockers severity-ordered.`
-- Expected execution process: Run the deterministic command sequence, capture the transcript, compare the output against sk-code-review references, and record a PASS, PARTIAL, FAIL, or SKIP verdict with rationale.
+- Expected execution process: Run the deterministic command sequence, capture the transcript, compare the output against review references, and record a PASS, PARTIAL, FAIL, or SKIP verdict with rationale.
 - Expected signals: Step 1: large diff size visible; Step 2: changed surface inventory exists; Step 3: report names scope caveat and surface evidence
 - Desired user-visible outcome: a merge-readiness report with scope caveats that a real maintainer can act on without asking for missing scope or evidence.
 - Pass/fail: PASS if large-diff limits are stated per SKILL.md escalation rules and P0/P1 cite file:line per references/review_core.md; FAIL if the review pretends exhaustive certainty without evidence
@@ -41,7 +41,7 @@ Operators run the exact prompt and command sequence for `CR-002` and confirm the
 1. Restate the user request in plain review-scope language.
 2. Confirm the review target, changed-file list, and risk lens before invoking the reviewer.
 3. Execute the deterministic steps exactly as written.
-4. Compare the observed report against the cited sk-code-review reference files.
+4. Compare the observed report against the cited review reference files.
 5. Return a concise final verdict that names missing evidence when the scenario fails.
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |

@@ -27,7 +27,7 @@ Operators run the exact prompt and command sequence for `CR-014` and confirm the
 - Objective: Confirm stale architecture prose does not override current implementation evidence.
 - Real user request: `Review target includes old docs that may contradict code.`
 - Prompt: `Review the current code despite stale architecture notes, citing implementation evidence first and labeling any stale assumptions.`
-- Expected execution process: Run the deterministic command sequence, capture the transcript, compare the output against sk-code-review references, and record a PASS, PARTIAL, FAIL, or SKIP verdict with rationale.
+- Expected execution process: Run the deterministic command sequence, capture the transcript, compare the output against review references, and record a PASS, PARTIAL, FAIL, or SKIP verdict with rationale.
 - Expected signals: Step 1: stale references identified; Step 2: report cites current code first; Step 3: assumptions labeled
 - Desired user-visible outcome: a fresh-pass review with assumptions that a real maintainer can act on without asking for missing scope or evidence.
 - Pass/fail: PASS if stale prose is treated as context only and file:line evidence drives P0/P1 per references/review_core.md; FAIL if obsolete docs become unsupported findings
@@ -41,7 +41,7 @@ Operators run the exact prompt and command sequence for `CR-014` and confirm the
 1. Restate the user request in plain review-scope language.
 2. Confirm the review target, changed-file list, and risk lens before invoking the reviewer.
 3. Execute the deterministic steps exactly as written.
-4. Compare the observed report against the cited sk-code-review reference files.
+4. Compare the observed report against the cited review reference files.
 5. Return a concise final verdict that names missing evidence when the scenario fails.
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |

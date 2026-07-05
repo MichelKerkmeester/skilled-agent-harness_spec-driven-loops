@@ -27,7 +27,7 @@ Operators run the exact prompt and command sequence for `CR-011` and confirm the
 - Objective: Confirm surface conventions override generic process advice while baseline security and correctness remain mandatory.
 - Real user request: `Review target has surface-specific conventions.`
 - Prompt: `Review this diff against detected sk-code surface evidence, letting surface conventions win while baseline security and correctness still block.`
-- Expected execution process: Run the deterministic command sequence, capture the transcript, compare the output against sk-code-review references, and record a PASS, PARTIAL, FAIL, or SKIP verdict with rationale.
+- Expected execution process: Run the deterministic command sequence, capture the transcript, compare the output against review references, and record a PASS, PARTIAL, FAIL, or SKIP verdict with rationale.
 - Expected signals: Step 1: surface markers found; Step 2: report names surface evidence; Step 3: precedence is explicit
 - Desired user-visible outcome: a precedence-aware review that a real maintainer can act on without asking for missing scope or evidence.
 - Pass/fail: PASS if precedence follows references/review_core.md section 5 and SKILL.md precedence matrix; FAIL if generic baseline overrides surface-specific test commands
@@ -41,7 +41,7 @@ Operators run the exact prompt and command sequence for `CR-011` and confirm the
 1. Restate the user request in plain review-scope language.
 2. Confirm the review target, changed-file list, and risk lens before invoking the reviewer.
 3. Execute the deterministic steps exactly as written.
-4. Compare the observed report against the cited sk-code-review reference files.
+4. Compare the observed report against the cited review reference files.
 5. Return a concise final verdict that names missing evidence when the scenario fails.
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |

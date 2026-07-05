@@ -1,18 +1,18 @@
 ---
-title: "sk-code-review: Manual Testing Playbook"
-description: "Operator-facing reference combining the manual testing directory, integrated review and orchestration guidance, execution expectations, and per-feature validation files for the sk-code-review skill."
+title: "review: Manual Testing Playbook"
+description: "Operator-facing reference combining the manual testing directory, integrated review and orchestration guidance, execution expectations, and per-feature validation files for the review skill."
 version: 1.5.0.11
 ---
 
-# sk-code-review: Manual Testing Playbook
+# review: Manual Testing Playbook
 
-> **EXECUTION POLICY**: Every scenario MUST be executed against the live `sk-code-review` skill, `@review`, or the named external CLI surface. No mocks, no stubs, and no "unautomatable" verdicts. Acceptable verdicts are PASS, PARTIAL, FAIL, or SKIP with a concrete sandbox or tool-availability blocker.
+> **EXECUTION POLICY**: Every scenario MUST be executed against the live `review` skill, `@review`, or the named external CLI surface. No mocks, no stubs, and no "unautomatable" verdicts. Acceptable verdicts are PASS, PARTIAL, FAIL, or SKIP with a concrete sandbox or tool-availability blocker.
 
-This document combines the full manual-validation contract for the `sk-code-review` skill into one reference. The root playbook acts as the operator directory, review protocol, and orchestration guide, while the per-feature files carry scenario-specific execution truth for findings-first code-review behavior.
+This document combines the full manual-validation contract for the `review` skill into one reference. The root playbook acts as the operator directory, review protocol, and orchestration guide, while the per-feature files carry scenario-specific execution truth for findings-first code-review behavior.
 
 ---
 
-This playbook package adopts the Feature Catalog split-document pattern for the `sk-code-review` skill. The root document acts as the directory, review surface, and orchestration guide, while per-feature execution detail lives in the numbered category folders at the playbook root.
+This playbook package adopts the Feature Catalog split-document pattern for the `review` skill. The root document acts as the directory, review surface, and orchestration guide, while per-feature execution detail lives in the numbered category folders at the playbook root.
 
 Canonical package artifacts:
 - `manual_testing_playbook.md`
@@ -29,9 +29,9 @@ Canonical package artifacts:
 
 ## 1. OVERVIEW
 
-This playbook provides 24 deterministic scenarios across 8 categories validating the `sk-code-review` skill surface and its review-agent consumers. Each scenario maps to a dedicated per-feature file with exact prompt, command sequence, expected signals, evidence, pass/fail criteria, and failure triage.
+This playbook provides 24 deterministic scenarios across 8 categories validating the `review` skill surface and its review-agent consumers. Each scenario maps to a dedicated per-feature file with exact prompt, command sequence, expected signals, evidence, pass/fail criteria, and failure triage.
 
-Coverage note (2026-06-13): the playbook covers single-pass review flow, security/correctness minimums, severity and evidence discipline, scope and precedence, re-review behavior, stale-context handling, structural-impact preflight degradation, AI-generated-code review, native `@review` invocation, external CLI handbacks through cli-opencode and cli-claude-code, and the v1.4.0.0 efficiency-and-restraint behaviors: reinvent-the-wheel detection, the unrequested-code removal prompt, ceiling-comment downgrade, the `SK_CODE_REVIEW_DEPTH` alias, and the rule-invariant canary. `sk-code-review` does not ship a dedicated feature catalog, so per-feature files anchor directly to `SKILL.md`, `references/`, `scripts/`, and `.opencode/agents/` on disk.
+Coverage note (2026-06-13): the playbook covers single-pass review flow, security/correctness minimums, severity and evidence discipline, scope and precedence, re-review behavior, stale-context handling, structural-impact preflight degradation, AI-generated-code review, native `@review` invocation, external CLI handbacks through cli-opencode and cli-claude-code, and the v1.4.0.0 efficiency-and-restraint behaviors: reinvent-the-wheel detection, the unrequested-code removal prompt, ceiling-comment downgrade, the `SK_CODE_REVIEW_DEPTH` alias, and the rule-invariant canary. `review` does not ship a dedicated feature catalog, so per-feature files anchor directly to `SKILL.md`, `references/`, `scripts/`, and `.opencode/agents/` on disk.
 
 ### Realistic Test Model
 
@@ -105,7 +105,7 @@ For each executed scenario, check:
 2. Prompt and command sequence were executed as written.
 3. Expected signals are present without contradictory evidence.
 4. Evidence is complete and readable.
-5. Pass/fail criteria cite the relevant `sk-code-review` source file.
+5. Pass/fail criteria cite the relevant `review` source file.
 6. Outcome rationale is explicit and merge-decision useful.
 
 Scenario verdict:
@@ -131,7 +131,7 @@ Release is READY only when:
 2. All critical-path scenarios are PASS or explicitly SKIP for environment-only reasons.
 3. Coverage is 100% of playbook scenarios defined by the root index and backed by per-feature files (`COVERED_FEATURES == TOTAL_FEATURES == 24`).
 4. No unresolved blocking triage item remains.
-5. External CLI handbacks preserve sk-code-review severity and evidence contracts.
+5. External CLI handbacks preserve review severity and evidence contracts.
 
 ### Root-vs-Feature Rule
 
@@ -163,10 +163,10 @@ Before declaring this playbook release-ready, confirm:
 4. Every table row has exactly 9 columns.
 5. Every scenario prompt is realistic per the RCAF-vs-natural-human heuristic in sk-doc creation reference §5.
 6. Every SCENARIO CONTRACT prompt equals its table prompt.
-7. Every pass/fail rule cites a real sk-code-review source file.
+7. Every pass/fail rule cites a real review source file.
 8. Every external CLI scenario either ran or recorded an environment-only SKIP.
 9. Every P0/P1 observed while executing scenarios has file:line evidence.
-10. The final report separates playbook defects from sk-code-review product defects.
+10. The final report separates playbook defects from review product defects.
 
 ---
 
@@ -505,7 +505,7 @@ Native @review invocation that checks read-only and findings-first behavior.
 
 #### Scenario Contract
 
-Prompt: `As an orchestrator, dispatch the native review agent against the target diff inside Claude Code or OpenCode. Verify @review stays read-only, loads sk-code-review, and returns findings-first output. Return a native agent review transcript.`
+Prompt: `As an orchestrator, dispatch the native review agent against the target diff inside Claude Code or OpenCode. Verify @review stays read-only, loads review, and returns findings-first output. Return a native agent review transcript.`
 
 Desired user-visible outcome: A findings-first review artifact that preserves scope, severity, evidence, and source-reference discipline.
 
@@ -521,7 +521,7 @@ OpenCode handback that must preserve the review schema without editing files.
 
 #### Scenario Contract
 
-Prompt: `As an external conductor, delegate a code review to cli-opencode against the requested diff scope. Verify OpenCode uses findings-first severity, file:line evidence, and no implementation changes. Return a sk-code-review-compatible handback.`
+Prompt: `As an external conductor, delegate a code review to cli-opencode against the requested diff scope. Verify OpenCode uses findings-first severity, file:line evidence, and no implementation changes. Return a review-compatible handback.`
 
 Desired user-visible outcome: A findings-first review artifact that preserves scope, severity, evidence, and source-reference discipline.
 
@@ -657,12 +657,12 @@ Desired user-visible outcome: A findings-first review artifact that preserves sc
 
 ## 15. AUTOMATED TEST CROSS-REFERENCE
 
-The current repository has no dedicated automated test module for `sk-code-review/manual_testing_playbook/`, and the sk-doc validator currently checks the root playbook only. These adjacent tests and stress fixtures exercise related routing or review-dispatch behavior.
+The current repository has no dedicated automated test module for `review/manual_testing_playbook/`, and the sk-doc validator currently checks the root playbook only. These adjacent tests and stress fixtures exercise related routing or review-dispatch behavior.
 
 | Test Module | Coverage | Playbook Overlap |
 |---|---|---|
-| `.opencode/skills/system-skill-advisor/mcp_server/tests/python/test_skill_advisor.py` | Skill-advisor routing cases for `sk-code-review`, `deep-review`, and review/write disambiguation | CR-016, CR-017, CR-018 |
-| Internal design notes | Stress fixture that maps review channel behavior to `sk-code-review` | CR-016 |
+| `.opencode/skills/system-skill-advisor/mcp_server/tests/python/test_skill_advisor.py` | Skill-advisor routing cases for `review`, `deep-review`, and review/write disambiguation | CR-016, CR-017, CR-018 |
+| Internal design notes | Stress fixture that maps review channel behavior to `review` | CR-016 |
 | Internal design notes | Earlier stress fixture for review channel expectations | CR-016 |
 
 Validator limitation: per-feature file completeness requires the structural sweep described in this playbook until `validate_document.py` recurses into category folders.

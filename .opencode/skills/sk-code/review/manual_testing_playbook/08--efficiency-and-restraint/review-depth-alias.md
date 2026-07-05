@@ -27,7 +27,7 @@ Operators run the exact prompt and command sequence for `CR-023` and confirm the
 - Objective: Confirm SK_CODE_REVIEW_DEPTH resolves env over config over default, ultra biases ON_DEMAND deep-dive refs, lite maps to the M-2 conservative skip, and no value relaxes the floor or skips a sensitive path.
 - Real user request: `Reviewer wants a consistently deep, then consistently light, review without repeating depth wording each run.`
 - Prompt: `Run a review with SK_CODE_REVIEW_DEPTH set to ultra, then lite, and confirm ultra pulls in the on-demand deep-dive references while lite maps to the conservative skip, and that neither lowers the security and correctness floor or skips a sensitive-path diff.`
-- Expected execution process: Run the deterministic command sequence, capture the transcript, compare the output against sk-code-review references, and record a PASS, PARTIAL, FAIL, or SKIP verdict with rationale.
+- Expected execution process: Run the deterministic command sequence, capture the transcript, compare the output against review references, and record a PASS, PARTIAL, FAIL, or SKIP verdict with rationale.
 - Expected signals: Step 1: depth resolves env over config over default; Step 2: ultra biases intent toward the ON_DEMAND deep-dive set and lite maps to the M-2 conservative skip; Step 3: a sensitive-path diff is still reviewed under lite.
 - Desired user-visible outcome: a session whose review depth matches the requested alias without ever dropping a baseline minimum or skipping a sensitive change.
 - Pass/fail: PASS if depth resolution and routing match references-backed SKILL.md section 9.3 and lite never skips a sensitive path or lowers the floor; FAIL if a depth value relaxes a baseline minimum or skips a sensitive diff.
@@ -41,7 +41,7 @@ Operators run the exact prompt and command sequence for `CR-023` and confirm the
 1. Restate the depth request in plain review-scope language.
 2. Confirm the resolution inputs present: SK_CODE_REVIEW_DEPTH env, any config default, and the unset fallback.
 3. Execute the deterministic steps exactly as written.
-4. Compare the observed routing against the cited sk-code-review reference files.
+4. Compare the observed routing against the cited review reference files.
 5. Return a concise final verdict that names any relaxed floor or skipped sensitive path when the scenario fails.
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |

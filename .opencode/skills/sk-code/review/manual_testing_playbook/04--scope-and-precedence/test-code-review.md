@@ -27,7 +27,7 @@ Operators run the exact prompt and command sequence for `CR-012` and confirm the
 - Objective: Confirm test-only changes are reviewed for false confidence, isolation, and meaningful assertions.
 - Real user request: `Review target only changes test files.`
 - Prompt: `Review the staged test-only diff for assertion-free tests, swallowed assertions, over-mocking, flaky state, and cleanup gaps.`
-- Expected execution process: Run the deterministic command sequence, capture the transcript, compare the output against sk-code-review references, and record a PASS, PARTIAL, FAIL, or SKIP verdict with rationale.
+- Expected execution process: Run the deterministic command sequence, capture the transcript, compare the output against review references, and record a PASS, PARTIAL, FAIL, or SKIP verdict with rationale.
 - Expected signals: Step 1: test diff captured; Step 2: test-quality checklist applied; Step 3: findings avoid production-style-only noise
 - Desired user-visible outcome: a test-quality findings report that a real maintainer can act on without asking for missing scope or evidence.
 - Pass/fail: PASS if findings use assets/test_quality_checklist.md severity guidance and cite file:line; FAIL if assertion-free tests are approved
@@ -41,7 +41,7 @@ Operators run the exact prompt and command sequence for `CR-012` and confirm the
 1. Restate the user request in plain review-scope language.
 2. Confirm the review target, changed-file list, and risk lens before invoking the reviewer.
 3. Execute the deterministic steps exactly as written.
-4. Compare the observed report against the cited sk-code-review reference files.
+4. Compare the observed report against the cited review reference files.
 5. Return a concise final verdict that names missing evidence when the scenario fails.
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |

@@ -27,7 +27,7 @@ Operators run the exact prompt and command sequence for `CR-003` and confirm the
 - Objective: Confirm branch review preserves commit lineage and distinguishes PR scope from unrelated churn.
 - Real user request: `Review target is merge-base to HEAD.`
 - Prompt: `Review the branch from merge-base to HEAD, preserving commit lineage and flagging unrelated-change risk.`
-- Expected execution process: Run the deterministic command sequence, capture the transcript, compare the output against sk-code-review references, and record a PASS, PARTIAL, FAIL, or SKIP verdict with rationale.
+- Expected execution process: Run the deterministic command sequence, capture the transcript, compare the output against review references, and record a PASS, PARTIAL, FAIL, or SKIP verdict with rationale.
 - Expected signals: Step 1: merge base resolves; Step 2: commits listed; Step 3: files map to branch scope; Step 4: report flags scope drift when present
 - Desired user-visible outcome: a findings-first branch review that a real maintainer can act on without asking for missing scope or evidence.
 - Pass/fail: PASS if the report ties findings to branch scope and PR guidance from references/review_ux_single_pass.md; FAIL if it ignores commit lineage or reviews unrelated files as in-scope
@@ -41,7 +41,7 @@ Operators run the exact prompt and command sequence for `CR-003` and confirm the
 1. Restate the user request in plain review-scope language.
 2. Confirm the review target, changed-file list, and risk lens before invoking the reviewer.
 3. Execute the deterministic steps exactly as written.
-4. Compare the observed report against the cited sk-code-review reference files.
+4. Compare the observed report against the cited review reference files.
 5. Return a concise final verdict that names missing evidence when the scenario fails.
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |

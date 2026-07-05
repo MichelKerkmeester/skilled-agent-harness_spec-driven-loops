@@ -27,7 +27,7 @@ Operators run the exact prompt and command sequence for `CR-018` and confirm the
 - Objective: Confirm alternate CLI reviewers can hand back findings that preserve severity, evidence, and uncertainty.
 - Real user request: `Review uses two alternate CLI surfaces.`
 - Prompt: `As an external conductor, cross-check a review through cli-opencode and cli-claude-code against the same changed-file list. Verify both handbacks preserve severity buckets, file:line evidence, and explicit uncertainty on disagreements. Return a reconciled review comparison.`
-- Expected execution process: Run the deterministic command sequence, capture the transcript, compare the output against sk-code-review references, and record a PASS, PARTIAL, FAIL, or SKIP verdict with rationale.
+- Expected execution process: Run the deterministic command sequence, capture the transcript, compare the output against review references, and record a PASS, PARTIAL, FAIL, or SKIP verdict with rationale.
 - Expected signals: Step 1: one scope file list; Step 2: both CLI reports cite lines; Step 3: reconciliation separates confirmed findings from disagreements
 - Desired user-visible outcome: a reconciled review comparison that a real maintainer can act on without asking for missing scope or evidence.
 - Pass/fail: PASS if reconciliation keeps P0/P1 only when supported by file:line evidence per references/review_core.md; FAIL if unsupported CLI claims become blockers
@@ -41,12 +41,12 @@ Operators run the exact prompt and command sequence for `CR-018` and confirm the
 1. Restate the user request in plain review-scope language.
 2. Confirm the review target, changed-file list, and risk lens before invoking the reviewer.
 3. Execute the deterministic steps exactly as written.
-4. Compare the observed report against the cited sk-code-review reference files.
+4. Compare the observed report against the cited review reference files.
 5. Return a concise final verdict that names missing evidence when the scenario fails.
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
-| CR-018 | cli-opencode and cli-claude-code handback | Confirm alternate CLI reviewers can hand back findings that preserve severity, evidence, and uncertainty. | `As an external conductor, cross-check a review through cli-opencode and cli-claude-code against the same changed-file list. Verify both handbacks preserve severity buckets, file:line evidence, and explicit uncertainty on disagreements. Return a reconciled review comparison.` | bash: git diff --staged --name-only -> cli-opencode: review same scope with sk-code-review findings only -> cli-claude-code: review same scope with sk-code-review findings only -> agent: reconcile handbacks | Step 1: one scope file list; Step 2: both CLI reports cite lines; Step 3: reconciliation separates confirmed findings from disagreements | Both CLI transcripts and reconciliation report | PASS if reconciliation keeps P0/P1 only when supported by file:line evidence per references/review_core.md; FAIL if unsupported CLI claims become blockers | 1. Check both tools used identical scope; 2. Demand counterevidence for disagreements; 3. Downgrade unsupported claims |
+| CR-018 | cli-opencode and cli-claude-code handback | Confirm alternate CLI reviewers can hand back findings that preserve severity, evidence, and uncertainty. | `As an external conductor, cross-check a review through cli-opencode and cli-claude-code against the same changed-file list. Verify both handbacks preserve severity buckets, file:line evidence, and explicit uncertainty on disagreements. Return a reconciled review comparison.` | bash: git diff --staged --name-only -> cli-opencode: review same scope with review findings only -> cli-claude-code: review same scope with review findings only -> agent: reconcile handbacks | Step 1: one scope file list; Step 2: both CLI reports cite lines; Step 3: reconciliation separates confirmed findings from disagreements | Both CLI transcripts and reconciliation report | PASS if reconciliation keeps P0/P1 only when supported by file:line evidence per references/review_core.md; FAIL if unsupported CLI claims become blockers | 1. Check both tools used identical scope; 2. Demand counterevidence for disagreements; 3. Downgrade unsupported claims |
 
 ### Optional Supplemental Checks
 

@@ -27,7 +27,7 @@ Operators run the exact prompt and command sequence for `CR-020` and confirm the
 - Objective: Confirm the reviewer flags hand-rolled standard-library or native duplication and recommends the built-in primitive.
 - Real user request: `Review target hand-rolls behavior the language or platform already provides for free.`
 - Prompt: `Review this diff for code that re-implements standard-library or native platform behavior, and recommend the built-in primitive where the behavior and edge cases match.`
-- Expected execution process: Run the deterministic command sequence, capture the transcript, compare the output against sk-code-review references, and record a PASS, PARTIAL, FAIL, or SKIP verdict with rationale.
+- Expected execution process: Run the deterministic command sequence, capture the transcript, compare the output against review references, and record a PASS, PARTIAL, FAIL, or SKIP verdict with rationale.
 - Expected signals: Step 1: diff captured; Step 2: review flags the hand-rolled duplication as a §6 maintainability finding; Step 3: recommended fix names the standard or native API.
 - Desired user-visible outcome: a maintainability finding that points the author at an existing standard or native primitive instead of a bespoke re-implementation.
 - Pass/fail: PASS if a reinvented-wheel instance is flagged with the standard or native replacement per assets/code_quality_checklist.md section 6; FAIL if hand-rolled duplication is waved through.
@@ -41,7 +41,7 @@ Operators run the exact prompt and command sequence for `CR-020` and confirm the
 1. Restate the user request in plain review-scope language.
 2. Confirm the review target, changed-file list, and the standard or native primitive the code duplicates.
 3. Execute the deterministic steps exactly as written.
-4. Compare the observed report against the cited sk-code-review reference files.
+4. Compare the observed report against the cited review reference files.
 5. Return a concise final verdict that names the missing primitive when the scenario fails.
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |

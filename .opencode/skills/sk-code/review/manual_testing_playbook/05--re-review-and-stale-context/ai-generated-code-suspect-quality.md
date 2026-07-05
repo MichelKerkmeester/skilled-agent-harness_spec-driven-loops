@@ -27,7 +27,7 @@ Operators run the exact prompt and command sequence for `CR-015` and confirm the
 - Objective: Confirm AI-generated code is reviewed for over-abstraction, missing tests, and invented contracts without biasing severity unfairly.
 - Real user request: `Review target is suspected AI-generated code.`
 - Prompt: `Review this suspected AI-generated diff for over-abstraction, contract safety, and test adequacy based on behavior, not authorship.`
-- Expected execution process: Run the deterministic command sequence, capture the transcript, compare the output against sk-code-review references, and record a PASS, PARTIAL, FAIL, or SKIP verdict with rationale.
+- Expected execution process: Run the deterministic command sequence, capture the transcript, compare the output against review references, and record a PASS, PARTIAL, FAIL, or SKIP verdict with rationale.
 - Expected signals: Step 1: changed size visible; Step 2: suspect patterns checked; Step 3: findings tie to behavior not authorship
 - Desired user-visible outcome: a balanced quality review that a real maintainer can act on without asking for missing scope or evidence.
 - Pass/fail: PASS if over-engineering and missing tests are assessed via assets/code_quality_checklist.md and test_quality_checklist.md; FAIL if report relies on AI-generated label alone
@@ -41,7 +41,7 @@ Operators run the exact prompt and command sequence for `CR-015` and confirm the
 1. Restate the user request in plain review-scope language.
 2. Confirm the review target, changed-file list, and risk lens before invoking the reviewer.
 3. Execute the deterministic steps exactly as written.
-4. Compare the observed report against the cited sk-code-review reference files.
+4. Compare the observed report against the cited review reference files.
 5. Return a concise final verdict that names missing evidence when the scenario fails.
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |

@@ -27,7 +27,7 @@ Operators run the exact prompt and command sequence for `CR-024` and confirm the
 - Objective: Confirm the canary exits 0 when copies agree, its self-test passes, and a tampered Iron Law or verdict copy makes it exit non-zero.
 - Real user request: `Prove the load-bearing review wording cannot silently drift across its copies.`
 - Prompt: `Run the rule-invariant canary and its self-test, confirm a clean pass, then tamper one Iron Law copy and confirm the canary fails loudly.`
-- Expected execution process: Run the deterministic command sequence, capture the transcript, compare the output against sk-code-review references, and record a PASS, PARTIAL, FAIL, or SKIP verdict with rationale.
+- Expected execution process: Run the deterministic command sequence, capture the transcript, compare the output against review references, and record a PASS, PARTIAL, FAIL, or SKIP verdict with rationale.
 - Expected signals: Step 1: canary exits 0 reporting the exact-string and Iron Law file counts; Step 2: the self-test reports all cases pass; Step 3: a tampered copy makes the canary exit 1 and name the drifted phrase, then restore.
 - Desired user-visible outcome: a guard that passes silently when wording agrees and blocks loudly the moment any copy drifts.
 - Pass/fail: PASS if the clean run exits 0, the self-test passes, and a tampered copy exits 1 per scripts/check-rule-copies.js; FAIL if drift is not caught or the clean run errors.
@@ -41,7 +41,7 @@ Operators run the exact prompt and command sequence for `CR-024` and confirm the
 1. Restate the invariant being guarded in plain language.
 2. Confirm the canary, its self-test, and the copies it checks all resolve on disk.
 3. Execute the deterministic steps exactly as written, restoring any tampered copy after.
-4. Compare the observed exit codes against the cited sk-code-review source files.
+4. Compare the observed exit codes against the cited review source files.
 5. Return a concise final verdict that names the uncaught drift when the scenario fails.
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |

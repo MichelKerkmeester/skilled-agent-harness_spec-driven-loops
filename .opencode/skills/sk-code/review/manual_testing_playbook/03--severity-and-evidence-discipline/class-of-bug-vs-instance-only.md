@@ -27,7 +27,7 @@ Operators run the exact prompt and command sequence for `CR-008` and confirm the
 - Objective: Confirm findings classify same-class inventory instead of patching only the cited instance by default.
 - Real user request: `Review target fixes or introduces a repeated validation/error pattern.`
 - Prompt: `Review this repeated bug pattern and inventory same-class producers before accepting an instance-only fix.`
-- Expected execution process: Run the deterministic command sequence, capture the transcript, compare the output against sk-code-review references, and record a PASS, PARTIAL, FAIL, or SKIP verdict with rationale.
+- Expected execution process: Run the deterministic command sequence, capture the transcript, compare the output against review references, and record a PASS, PARTIAL, FAIL, or SKIP verdict with rationale.
 - Expected signals: Step 1: sibling pattern inventory exists; Step 2: report assigns findingClass; Step 3: instance-only opt-out has proof if used
 - Desired user-visible outcome: a finding-class disposition table that a real maintainer can act on without asking for missing scope or evidence.
 - Pass/fail: PASS if finding class follows assets/fix-completeness-checklist.md classification and SKILL.md instance-only opt-out; FAIL if no scopeProof is provided
@@ -41,7 +41,7 @@ Operators run the exact prompt and command sequence for `CR-008` and confirm the
 1. Restate the user request in plain review-scope language.
 2. Confirm the review target, changed-file list, and risk lens before invoking the reviewer.
 3. Execute the deterministic steps exactly as written.
-4. Compare the observed report against the cited sk-code-review reference files.
+4. Compare the observed report against the cited review reference files.
 5. Return a concise final verdict that names missing evidence when the scenario fails.
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
