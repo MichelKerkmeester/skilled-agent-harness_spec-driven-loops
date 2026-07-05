@@ -224,8 +224,9 @@ describe('parseFanoutConfig', () => {
     expect(config.executors).toHaveLength(2);
     expect(config.concurrency).toBe(2);
     expect(config.maxRetries).toBe(5);
-    expect(config.lagCeilingMs).toBe(0);
-    expect(config.progressHeartbeatSeconds).toBe(0);
+    // Stall detection defaults ON so a stalled lineage fails loud instead of hanging.
+    expect(config.lagCeilingMs).toBe(300000);
+    expect(config.progressHeartbeatSeconds).toBe(60);
     expect(config.assignment_model).toBe('flat_pool');
     expect(config.executors[0].count).toBe(1);
     expect(config.executors[0].iterations).toBeNull();

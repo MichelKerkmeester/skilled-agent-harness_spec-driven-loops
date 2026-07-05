@@ -644,12 +644,15 @@ function isRecord(value) {
 }
 
 function normalizeStallWatchdogMs(rawConfig) {
+  // Defaults ON (mirrors the fan-out lagCeilingMs default): without a watchdog a stalled
+  // lineage hangs silently until the hours-scale timeout. Read through the raw alias set
+  // because this knob is intentionally outside fanoutConfigSchema. Set 0 to opt out.
   return readRawConfigNumber(rawConfig, [
     'stallWatchdogMs',
     'stall_watchdog_ms',
     'stallWatchdogMillis',
     'stall_watchdog_millis',
-  ], 'stallWatchdogMs') ?? 0;
+  ], 'stallWatchdogMs') ?? 300000;
 }
 
 function normalizeLineageBudgetGuards(rawConfig = {}) {
