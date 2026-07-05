@@ -7,7 +7,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "deep-loops/037-mk-deep-loop-guard-retention"
+    packet_pointer: "deep-loops/031-deep-loop-gpt-reliability/003-guard-and-enforcement/005-mk-deep-loop-guard-retention"
     last_updated_at: "2026-07-04T20:00:00Z"
     last_updated_by: "claude-sonnet-5"
     recent_action: "Executed and verified the implementation"

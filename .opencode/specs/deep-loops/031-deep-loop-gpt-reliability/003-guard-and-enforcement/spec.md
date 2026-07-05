@@ -1,6 +1,6 @@
 ---
 title: "Guard and Enforcement Phase Parent"
-description: "Phase parent for the detection-layer guard plugins that enforce correct deep-loop routing and dispatch: the route-guard plugin, its hardening, loop-repeat detection, and fanout stopReason tolerance."
+description: "Phase parent for the detection-layer guard plugins that enforce correct deep-loop routing and dispatch: the route-guard plugin, its hardening, loop-repeat detection, fanout stopReason tolerance, and mk-deep-loop-guard state retention."
 trigger_phrases:
   - "deep route guard plugin enforcement"
   - "mk-deep-loop-guard hardening loop detection"
@@ -12,7 +12,7 @@ _memory:
     packet_pointer: "deep-loops/031-deep-loop-gpt-reliability/003-guard-and-enforcement"
     last_updated_at: "2026-07-04T00:00:00.000Z"
     last_updated_by: "claude-opus-4-8"
-    recent_action: "Regrouped the 4 guard/enforcement phases into one track"
+    recent_action: "Regrouped guard/enforcement phases; folded top-level 037 retention in as 005"
     next_safe_action: "Parent complete; benchmarks live in track 004"
     blockers: []
     key_files:
@@ -56,7 +56,7 @@ _memory:
 Correct routing and dispatch (track 002) needed a detection layer to enforce it and catch regressions. This track groups the guard plugins and their hardening.
 
 ### Purpose
-Hold the detection/enforcement phases: the route-guard plugin, its hardening, loop-repeat detection, and fanout stopReason tolerance. Detailed evidence lives in each child phase folder.
+Hold the detection/enforcement phases: the route-guard plugin, its hardening, loop-repeat detection, fanout stopReason tolerance, and mk-deep-loop-guard state retention. Detailed evidence lives in each child phase folder.
 
 > **Phase-parent note:** This spec.md is the only authored document at this parent level. Detailed planning lives in the child phase folders below.
 <!-- /ANCHOR:problem -->
@@ -83,6 +83,7 @@ Hold the detection/enforcement phases: the route-guard plugin, its hardening, lo
 | `graph-metadata.json` | Generator-owned | parent | Child identity and phase graph metadata |
 | `001-deep-route-guard-plugin/spec.md` | Regrouped | 001 | Deep-route guard plugin |
 | `004-fanout-stopreason-tolerance/spec.md` | Regrouped | 004 | Fanout stopReason tolerance |
+| `005-mk-deep-loop-guard-retention/spec.md` | Regrouped | 005 | mk-deep-loop-guard state retention (from top-level 037) |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -96,6 +97,7 @@ Hold the detection/enforcement phases: the route-guard plugin, its hardening, lo
 | 002 | `002-mk-deep-loop-guard-hardening/` | mk-deep-loop-guard hardening (formerly 031/016) | COMPLETE |
 | 003 | `003-loop-guard-implementation/` | Loop-guard implementation, loop-repeat detection (formerly 031/017) | COMPLETE |
 | 004 | `004-fanout-stopreason-tolerance/` | Fanout stopReason tolerance (formerly 031/018) | COMPLETE |
+| 005 | `005-mk-deep-loop-guard-retention/` | mk-deep-loop-guard state retention: sweep/archive/prune (from top-level 037) | COMPLETE |
 
 ### Phase Transition Rules
 
@@ -124,4 +126,4 @@ Hold the detection/enforcement phases: the route-guard plugin, its hardening, lo
 
 - **Packet parent**: `../spec.md`
 - **Graph metadata**: `graph-metadata.json`
-- **Child phases**: `001-deep-route-guard-plugin/` through `004-fanout-stopreason-tolerance/`
+- **Child phases**: `001-deep-route-guard-plugin/` through `005-mk-deep-loop-guard-retention/`

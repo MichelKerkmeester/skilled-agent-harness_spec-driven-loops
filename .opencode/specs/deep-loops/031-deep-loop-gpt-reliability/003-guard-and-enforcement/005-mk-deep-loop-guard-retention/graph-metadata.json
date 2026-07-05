@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "deep-loops/037-mk-deep-loop-guard-retention",
-  "spec_folder": "deep-loops/037-mk-deep-loop-guard-retention",
-  "parent_id": null,
+  "packet_id": "deep-loops/031-deep-loop-gpt-reliability/003-guard-and-enforcement/005-mk-deep-loop-guard-retention",
+  "spec_folder": "deep-loops/031-deep-loop-gpt-reliability/003-guard-and-enforcement/005-mk-deep-loop-guard-retention",
+  "parent_id": "deep-loops/031-deep-loop-gpt-reliability/003-guard-and-enforcement",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -200,7 +200,7 @@
     ],
     "causal_summary": "`mk-deep-loop-guard.js` persists a per-session JSON state file (`recordLoopDispatch`/`writeLoopStateAtomic`) and appends to `guard-warnings.log` on every warning, but registers only a `tool.execute.before` hook -- no lifecycle event handler exists to ever clear, archive, or age out either",
     "created_at": "2026-07-04T17:52:16.734Z",
-    "last_save_at": "2026-07-04T17:56:31.995Z",
+    "last_save_at": "2026-07-05T04:17:19.773Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,12 +209,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:6c06309bc2246b3d763db53a49685397ad2411d4d32b0f01be54741cc15354ba",
+    "source_fingerprint": "sha256:5ee1b11b47bd819b5d66084100731ec640bdc0aad56a5df3f42a25beb825db31",
     "source_doc_hashes": {
-      "spec.md": "355c705aadfbb74763a1aab452068c01dbcdaf9c3a93109cdbf0bad1453a1745",
-      "plan.md": "d2985495b11a8ca5329a7f0ff40d65e343f58bfc7979fcab2109ea220782a088",
-      "tasks.md": "1927f775bb34f82a3ba3db836af3e9ffac7215588d617562d2072878403c1c69",
-      "implementation-summary.md": "fd398e334620fa0f1b8d20210fcdb0e2de953ea8451b902dc76b8e4415535b08"
+      "spec.md": "2e46acc8a3083726addf59230385fb30e572f8ca3b26c2a40a7c4a5b419bbcad",
+      "plan.md": "69ad550c3ac0dbcac3ae4babf409a737a37ee18c9f5300f99c9aafe1f19e233d",
+      "tasks.md": "27b845d7753dcf9283608c96d0b200a98a0d8575d8f831f717002d2df57e63f3",
+      "implementation-summary.md": "3a61c95443ce092b46e271ee4c2928dd4098a97f3e6bfba70169419b3128dec8"
     },
     "last_active_child_id": null,
     "last_active_at": null
