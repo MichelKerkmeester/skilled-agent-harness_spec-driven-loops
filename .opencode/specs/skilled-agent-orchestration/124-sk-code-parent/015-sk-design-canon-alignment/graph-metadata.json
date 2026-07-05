@@ -39,18 +39,25 @@
       "lane-c"
     ],
     "importance_tier": "high",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
+      ".opencode/skills/sk-design/description.json",
       ".opencode/skills/sk-design/mode-registry.json",
       ".opencode/skills/sk-design/design-interface/README.md",
-      "tasks.md",
       "plan.md",
+      "tasks.md",
       "checklist.md",
       ".opencode/skills/sk-design/hub-router.json",
       "implementation-summary.md",
       "spec.md"
     ],
     "entities": [
+      {
+        "name": "description.json",
+        "kind": "config",
+        "path": ".opencode/skills/sk-design/description.json",
+        "source": "derived"
+      },
       {
         "name": "mode-registry.json",
         "kind": "config",
@@ -64,15 +71,15 @@
         "source": "derived"
       },
       {
-        "name": "tasks.md",
-        "kind": "doc",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
         "name": "plan.md",
         "kind": "doc",
         "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
         "source": "derived"
       },
       {
@@ -172,6 +179,12 @@
         "source": "derived"
       },
       {
+        "name": "Bundle Rule",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
         "name": "Task Notation",
         "kind": "proper_noun",
         "path": "tasks.md",
@@ -182,23 +195,11 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Hub Fixes",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Canon Alignment",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The master plan reports that `parent-skill-check` strict mode leaves sk-design with four remaining parent-hub invariant failures after the five-mode `packetKind` repair was already pushed in commit `f8673ff0db`",
     "created_at": "2026-07-05T05:46:25.870Z",
-    "last_save_at": "2026-07-05T05:46:25.870Z",
+    "last_save_at": "2026-07-05T07:21:41.560Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,13 +209,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:ceef3cf7e2e2b306874b3baf015df98c9ca961eb8e47c7b43a37a09feedf0d28",
+    "source_fingerprint": "sha256:7a94a2323edd7a9654528bb06188855299376e0f86ebb8b16d61b50ce0801b4e",
     "source_doc_hashes": {
-      "spec.md": "9b6b91b1a7e3c8d65c1c30e8b8591704a4c68df60a9f27db1a4c020c89568d4e",
+      "spec.md": "8a7ab326d48e713592f3ade7c3243e60882cf6c5382411ffd9d4f94a90222f71",
       "plan.md": "a7a6d8218d3091c233bda9deb7b940de562f5d68019ea1a852fbc99795d7f50d",
-      "tasks.md": "14c0783ed2327bff8769efa808327b181f6a20d543d72754a70f2b529925fcf7",
-      "checklist.md": "2a9a634ebbeb6de1cae66b38169fdd90cd4c2e09e4d86f69049466f7e6781397",
-      "implementation-summary.md": "55ebc0f880f404f3f4bb83c75625f520da7c25db0f6e5f1c0c79a2b6dadaa6e2"
+      "tasks.md": "fdc5eb48bd4ad5b1a24414f1a89562a9dc38910286308165eea2e3457098667d",
+      "checklist.md": "b308b392834a8f30ad6f22e53d03253868a61f776e163392fd109c19f471558c",
+      "implementation-summary.md": "20274f6b5b5a030c22b45bcc0b50ae448d6ee44fd4a6e30e23465b13bfa350f2"
     },
     "last_active_child_id": null,
     "last_active_at": null

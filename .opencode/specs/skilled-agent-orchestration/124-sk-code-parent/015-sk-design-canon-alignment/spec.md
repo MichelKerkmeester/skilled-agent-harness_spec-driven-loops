@@ -10,12 +10,11 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "skilled-agent-orchestration/124-sk-code-parent/015-sk-design-canon-alignment"
-    last_updated_at: "2026-07-05T00:00:00Z"
-    last_updated_by: "gpt-5.5"
-    recent_action: "Phase planned and documented; execution pending"
-    next_safe_action: "Delete five hub changelog symlinks."
-    blockers:
-      - "Declarative bundleRules conversion is blocked on phase 017 canon bundleRules vocabulary reconciliation."
+    last_updated_at: "2026-07-05T09:20:00Z"
+    last_updated_by: "claude-opus"
+    recent_action: "Phase executed; STRICT 0 failures"
+    next_safe_action: "None for this phase — proceed to phase 018 (deep-loop canon alignment)."
+    blockers: []
     key_files:
       - ".opencode/skills/sk-design/changelog/"
       - ".opencode/skills/sk-design/description.json"
@@ -27,12 +26,13 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "phase-015-doc-authoring"
       parent_session_id: null
-    completion_pct: 15
-    open_questions:
-      - "Should phase 015 ship prose-only transform-verb routing before phase 017, or wait to encode declarative bundleRules after phase 017 reconciles the canon shape?"
+    completion_pct: 100
+    open_questions: []
     answered_questions:
       - question: "Is packetKind still in scope?"
         answer: "No. packetKind on all five sk-design modes is already done and pushed in commit f8673ff0db; this phase records it as completed evidence only."
+      - question: "Ship prose-only transform-verb routing before phase 017, or wait for declarative bundleRules?"
+        answer: "Waited: phase 017 landed the canon shape first, then ui-build-bundle was encoded declaratively (whenAll interface+foundations, orderedBundle) in commit 5a6765c9b1; check 5f validates it."
 ---
 # Feature Specification: Phase 15 sk-design canon alignment
 
@@ -48,8 +48,8 @@ _memory:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P0 |
-| **Status** | Draft |
-| **Progress** | In progress, 15% from pushed packetKind repair only |
+| **Status** | Complete |
+| **Progress** | 100% — all canon gaps closed; STRICT parent-skill-check 0 failures |
 | **Created** | 2026-07-05 |
 | **Branch** | `system-speckit/028-memory-search-intelligence` |
 | **Parent** | `.opencode/specs/skilled-agent-orchestration/124-sk-code-parent/` |
