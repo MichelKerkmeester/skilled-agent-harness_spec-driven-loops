@@ -4,21 +4,6 @@
   "spec_folder": "deep-loops/031-deep-loop-gpt-reliability/006-reliability-fixes",
   "parent_id": "deep-loops/031-deep-loop-gpt-reliability",
   "children_ids": [
-    "deep-loops/035-gpt-reliability-fixes/001-benchmark-harness-hardening",
-    "deep-loops/035-gpt-reliability-fixes/002-gate3-precedence",
-    "deep-loops/035-gpt-reliability-fixes/003-presentation-render",
-    "deep-loops/035-gpt-reliability-fixes/004-dispatch-receipts",
-    "deep-loops/035-gpt-reliability-fixes/005-progress-records",
-    "deep-loops/035-gpt-reliability-fixes/006-routing-offer",
-    "deep-loops/035-gpt-reliability-fixes/007-agent-executor-contracts",
-    "deep-loops/035-gpt-reliability-fixes/008-compiled-contract",
-    "deep-loops/035-gpt-reliability-fixes/009-pacing-and-resume",
-    "deep-loops/035-gpt-reliability-fixes/010-injection-slimming",
-    "deep-loops/035-gpt-reliability-fixes/001-acceptance-and-rollout-foundation",
-    "deep-loops/035-gpt-reliability-fixes/002-gate3-precedence-and-validator",
-    "deep-loops/035-gpt-reliability-fixes/003-command-contract-compiler",
-    "deep-loops/035-gpt-reliability-fixes/004-dispatch-receipts-and-progress",
-    "deep-loops/035-gpt-reliability-fixes/005-retrofit-pacing-and-rollout-completion",
     "deep-loops/031-deep-loop-gpt-reliability/006-reliability-fixes/001-acceptance-and-rollout-foundation",
     "deep-loops/031-deep-loop-gpt-reliability/006-reliability-fixes/002-gate3-precedence-and-validator",
     "deep-loops/031-deep-loop-gpt-reliability/006-reliability-fixes/003-dispatch-receipts-and-progress"
@@ -113,8 +98,8 @@
       }
     ],
     "causal_summary": "Implementation packet for the packet-034 research synthesis, restructured per the plan-review (58 verified gaps) into the unified command-contract architecture. Five phases in dependency order: acceptance + rollout foundation, the P0 Gate-3 precedence package with a concrete validator, the build-time compiled command contract (subsuming render + agent-contracts + compiled + injection), dispatch receipts + progress records, then retrofit + pacing + rollout completion. Each phase names the 033 behavior-benchmark cells that must flip to accept it, ships behind a per-command feature flag, and",
-    "created_at": "2026-07-03T11:54:51.159Z",
-    "last_save_at": "2026-07-04T19:14:57.327Z",
+    "created_at": "2026-07-05T02:24:11.224Z",
+    "last_save_at": "2026-07-05T02:24:11.224Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -125,6 +110,6 @@
       "spec.md": "d4cf380c582719fdf1adeb49cf3013ccc523af178efa41b344d1f5921200995d"
     },
     "last_active_child_id": null,
-    "last_active_at": "2026-07-04T11:23:42.847Z"
+    "last_active_at": null
   }
 }

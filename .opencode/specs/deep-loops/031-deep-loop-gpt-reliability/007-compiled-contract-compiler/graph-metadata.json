@@ -4,9 +4,6 @@
   "spec_folder": "deep-loops/031-deep-loop-gpt-reliability/007-compiled-contract-compiler",
   "parent_id": "deep-loops/031-deep-loop-gpt-reliability",
   "children_ids": [
-    "deep-loops/036-command-contract-compiler/001-contract-compiler-design",
-    "deep-loops/036-command-contract-compiler/002-deep-loop-router-deprecation",
-    "deep-loops/036-command-contract-compiler/003-generalization-probes",
     "deep-loops/031-deep-loop-gpt-reliability/007-compiled-contract-compiler/001-contract-compiler-design",
     "deep-loops/031-deep-loop-gpt-reliability/007-compiled-contract-compiler/002-deep-loop-router-deprecation",
     "deep-loops/031-deep-loop-gpt-reliability/007-compiled-contract-compiler/003-generalization-probes"
@@ -37,7 +34,7 @@
       "fixes"
     ],
     "importance_tier": "high",
-    "status": "planned",
+    "status": "in_progress",
     "key_files": [
       "001-contract-compiler-design/design.md",
       "spec.md"
@@ -68,6 +65,12 @@
         "source": "derived"
       },
       {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
         "name": "Parent Packet",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -84,27 +87,21 @@
         "kind": "key_phrase",
         "path": "spec.md",
         "source": "derived"
-      },
-      {
-        "name": "1. METADATA",
-        "kind": "heading",
-        "path": "spec.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Design-first structural packet carved from 035 (GPT-reliability fixes) after the phase-003 design pass confirmed the contract compiler is research-sized, not a single implementation phase. Builds the build-time unified command-contract compiler that collapses the ~14-file resolution chain into one self-contained typed contract per command, plus the deterministic setup loader, the drift-guard contract, the retrofit of all deep commands + 14 agent files to contract pointers, the deferred AGENTS.md autonomous-precedence bridge, the rollout emitter-wiring, and pacing/resume. Phase 001 is the",
-    "created_at": "2026-07-03T17:04:53.888Z",
-    "last_save_at": "2026-07-04T19:18:12.345Z",
+    "created_at": "2026-07-05T02:24:11.411Z",
+    "last_save_at": "2026-07-05T02:28:59.948Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:0d37e7956db71b1f51e595e11e170b5b1468733baa5ddba0c8b35c940101f423",
+    "source_fingerprint": "sha256:60d22f3309b5e984443814032e72adecbd8861f5bff124a7d43c50526dea2bb6",
     "source_doc_hashes": {
-      "spec.md": "17cb88460c24b69c0feac37bb9c880ec2de225c06d21efdbde8fdf1ed59f8969"
+      "spec.md": "2ba0f834ac6b70db3e837e07b46e3fe982ea77aeafede40faa684e6477b58503"
     },
     "last_active_child_id": null,
-    "last_active_at": "2026-07-04T17:19:03.918Z"
+    "last_active_at": null
   }
 }
