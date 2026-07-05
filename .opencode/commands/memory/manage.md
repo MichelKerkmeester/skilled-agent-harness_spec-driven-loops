@@ -86,3 +86,5 @@ The router must not invent visible wording for those surfaces; it only resolves 
 - `/memory:save`: Save conversation context.
 - `/memory:learn`: Constitutional rules.
 - `/speckit:resume`: Session recovery and continuation.
+
+Embedding-status repair is intentionally NOT a `/memory:manage` mode: it is the direct `memory_ln` MCP maintenance tool (`memory_ln({ mode: "apply" })`), which reconciles stored embeddings against the active embedder shard inside one guarded transaction and runs dry-run by default. Run it directly when `memory_health` reports `degraded_needs_repair` — this command manages the continuity-DB lifecycle, not embedding reconciliation.
