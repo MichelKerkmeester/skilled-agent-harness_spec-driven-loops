@@ -77,7 +77,7 @@ TASK CONTEXT
 lib/deep-loop/*.ts            # 10 runtime modules (executor, prompt-pack, validation, state, scoring, routing)
 lib/coverage-graph/*.ts       # 3 schema + query + signals modules
 scripts/*.cjs                 # 4 entry points (convergence, upsert, query, status)
-database/*.sqlite              # runtime-owned SQLite (deep-loop-graph.sqlite)
+database/*.sqlite              # runtime-owned SQLite (deep-loop-graph.sqlite + council-graph.sqlite)
 tests/{unit,integration,lifecycle}/  # 21+ vitest files split by responsibility
 ```
 
@@ -122,7 +122,7 @@ The runtime exposes deep-loop primitives to consumer workflows through two paths
 
 ### Library Structure
 
-**`lib/deep-loop/` (10 modules):**
+**`lib/deep-loop/` (19 modules):**
 - `executor-config.ts` — schema + parsing for per-iteration executor settings
 - `executor-audit.ts` — appends `executor` block to iteration JSONL (provenance)
 - `prompt-pack.ts` — renders the iteration prompt template
@@ -133,6 +133,15 @@ The runtime exposes deep-loop primitives to consumer workflows through two paths
 - `permissions-gate.ts` — permission scope checks
 - `bayesian-scorer.ts` — convergence scoring
 - `fallback-router.ts` — executor fallback decision matrix
+- `artifact-root.cjs` — resolves the canonical review/research artifact root
+- `continuity-thread.cjs` — continuity-thread linkage across runs
+- `evidence-contract.ts` — evidence/citation contract validation
+- `lifecycle-taxonomy.cjs` — lifecycle-mode taxonomy (new/resume/restart)
+- `lineage-timestamp-window.ts` — lineage timestamp-window checks
+- `observability-events.cjs` — observability event emission
+- `receipt-crypto.ts` — engine-held HMAC receipt crypto primitives
+- `runtime-capabilities.cjs` — runtime capability resolver
+- `sleep.ts` — async sleep helper
 
 **`lib/coverage-graph/` (3 modules):**
 - `coverage-graph-db.ts` — SQLite schema + node-kind allow-list + connection lifecycle
@@ -143,12 +152,15 @@ The runtime exposes deep-loop primitives to consumer workflows through two paths
 
 The Runtime Boundary Decision (ADR-001) extends `deep-loop-runtime/lib/` with council-compatible infrastructure primitives while keeping operator-facing and domain workflow semantics in `deep-ai-council`. These primitives are consumed by downstream deep-ai-council orchestration (per-topic multi-round, session-findings registry, command and skill wiring, parity and cost docs) for per-topic orchestration, multi-topic session state, command wiring, parity tests and docs.
 
-**`lib/council/` (5 modules):**
+**`lib/council/` (8 modules):**
 - `multi-seat-dispatch.cjs` — runs seat executors in parallel for one council round, preserves seat result order, and returns fulfilled/rejected per-seat outcomes plus round summary counts.
 - `round-state-jsonl.cjs` — appends per-round JSONL records with a lock-file single-writer guard, repairs corrupt trailing JSONL before append, fsyncs writes, and exposes round-state readers for resume.
 - `adjudicator-verdict-scoring.cjs` — scores Round-N -> Round-N+1 adjudicator verdict deltas using ADR-003 weights for option change, confidence delta, material-risk Jaccard delta, axis flip rate, and blocking-disagreement delta.
 - `cost-guards.cjs` — normalizes and enforces ADR-004 defaults for `max_rounds_per_topic`, `max_topics_per_session`, `saturation_threshold`, and `seats_per_round`, including upper-bound seat-output calculation.
 - `session-state-hierarchy.cjs` — creates and validates the ADR-002 session -> topic -> round state shape, including stable `topic-NNN-slug` and `round-NNN` ids.
+- `convergence.cjs` — council convergence math (Round-N -> Round-N+1 delta scoring).
+- `council-graph-db.ts` — `council-graph.sqlite` schema + connection lifecycle (the second runtime-owned DB).
+- `council-graph-query.ts` — council-graph query builders.
 
 The existing `lib/deep-loop/atomic-state.ts`, `lib/deep-loop/jsonl-repair.ts`, and `lib/deep-loop/loop-lock.ts` remain the sibling runtime contracts. Council modules mirror those durability semantics in a council-scoped CJS surface so downstream `deep-ai-council` phases can consume them without modifying deep-review or deep-research behavior.
 
@@ -175,10 +187,10 @@ Each script: parses argv → opens `database/deep-loop-graph.sqlite` → calls t
 
 ```text
 tests/
-├── unit/         # 13 files — per-module unit tests (atomic-state, executor-config, etc.)
-├── integration/  # 7 files — script invocations + review-depth fixtures
+├── unit/         # 52 files — per-module unit tests (atomic-state, executor-config, etc.)
+├── integration/  # 9 files — script invocations + review-depth fixtures
 ├── lifecycle/    # 1 file — db-open-close pattern verification
-└── _helpers/     # 1 file — spawn-cjs helper for direct-invocation tests
+└── helpers/      # spawn-cjs helper for direct-invocation tests
 ```
 
 The system-spec-kit `mcp_server/vitest.config.ts` includes `'../deep-loop-runtime/tests/**/*.{vitest,test}.ts'` so a single vitest run discovers both surfaces.
@@ -244,10 +256,11 @@ Shipped layout:
 
 | Path | Populated By | Purpose |
 |------|--------------|---------|
-| `lib/deep-loop/` | 10 files | Shared executor config, audit, prompt-pack, validation, state, repair, locking, permissions, scoring, and fallback routing. |
+| `lib/deep-loop/` | 19 files | Executor config/audit, prompt-pack, validation, atomic state, jsonl-repair, locking, permissions, scoring, fallback routing, artifact-root, continuity-thread, evidence/receipt contracts, lifecycle taxonomy, lineage windows, observability, runtime capabilities, sleep. |
 | `lib/coverage-graph/` | 3 files | Coverage-graph schema owner, query helpers, and signal interpretation. |
-| `scripts/` | 8 `.cjs` files | `status`/`query`/`upsert`/`convergence` shims replacing the removed deep-loop MCP tools, plus the fan-out (multi-executor) entry points `fanout-run`/`fanout-pool`/`fanout-salvage`/`fanout-merge`. |
-| `database/` | SQLite | Runtime-owned `deep-loop-graph.sqlite`. |
+| `lib/council/` | 8 files | Council primitives: multi-seat dispatch, round-state JSONL, adjudicator scoring, cost guards, session-state hierarchy, convergence, and the council-graph DB owner + query helpers. |
+| `scripts/` | 13 `.cjs` files | `status`/`query`/`upsert`/`convergence` shims replacing the removed deep-loop MCP tools; the fan-out entry points `fanout-run`/`fanout-pool`/`fanout-salvage`/`fanout-merge`; the command-contract compiler (`compile-command-contracts`/`render-command-contract`/`check-contract-drift`); plus `loop-lock` and `verify-iteration`. |
+| `database/` | SQLite | Runtime-owned `deep-loop-graph.sqlite` (coverage-graph) and `council-graph.sqlite` (council-graph). |
 | `tests/` | Unit, integration, lifecycle | Runtime-owned tests discovered by the system-spec-kit MCP server Vitest config. |
 
 ### Per-runtime agent mirrors (consumer convention)
