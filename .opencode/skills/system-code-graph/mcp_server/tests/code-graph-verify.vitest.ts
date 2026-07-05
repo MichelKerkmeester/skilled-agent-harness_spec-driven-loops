@@ -61,7 +61,7 @@ const VERIFY_FIXTURE_BATTERY_PATH = fileURLToPath(new URL(
 ));
 
 const DEFAULT_VERIFY_BATTERY_PATH = fileURLToPath(new URL(
-  '../../../../specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/005-resilience-and-advisor/002-code-graph-resilience-research/assets/code-graph-gold-queries.json',
+  '../assets/code-graph-gold-queries.json',
   import.meta.url,
 ));
 
@@ -594,7 +594,7 @@ describe('code-graph verify', () => {
     });
 
     // drift: verified against shipped behavior during Unit H
-    it('resolves the default battery path inside the 007 packet', async () => {
+    it('resolves the default battery path from the skill assets dir', async () => {
       const response = await handleCodeGraphVerify({ includeDetails: true });
       const parsed = JSON.parse(response.content[0].text);
 
@@ -606,18 +606,16 @@ describe('code-graph verify', () => {
     });
 
     // drift: verified against shipped behavior during Unit H
-    it('resolves the default gold-battery path correctly without phantom skill/ segment', async () => {
-      // Regression guard: the legacy hardcoded `../../../../../` URL path in
-      // gold-query-verifier.ts resolved correctly from the TS source location
-      // (mcp_server/lib/) but produced `.opencode/skills/specs/...`
-      // when loaded from the compiled dist (mcp_server/dist/lib/),
-      // because dist is one level deeper. The fix walks up to the workspace
-      // root via the .opencode marker, so the resolved DEFAULT path must NEVER
-      // contain `.opencode/skills/specs/`. This test enforces both that the
-      // exported constant has the correct shape AND that handleCodeGraphVerify
-      // succeeds with no batteryPath argument.
+    it('resolves the default gold-battery path inside the skill, never a spec folder', async () => {
+      // Regression guard: the gold battery is a runtime asset and must ship inside
+      // the skill's own mcp_server/assets/ directory. It must never resolve into a
+      // spec folder (ephemeral docs/research that get renamed, re-nested, or
+      // deleted) nor into the phantom `.opencode/skills/specs/` segment the old
+      // dist-relative walk produced. Enforces the resolved DEFAULT path shape AND
+      // that handleCodeGraphVerify succeeds with no batteryPath argument.
       expect(DEFAULT_VERIFY_BATTERY_PATH).not.toContain('.opencode/skills/specs/');
-      expect(DEFAULT_VERIFY_BATTERY_PATH).toContain('.opencode/specs/');
+      expect(DEFAULT_VERIFY_BATTERY_PATH).not.toContain('.opencode/specs/');
+      expect(DEFAULT_VERIFY_BATTERY_PATH).toContain('mcp_server/assets/code-graph-gold-queries.json');
 
       const response = await handleCodeGraphVerify({});
       const parsed = JSON.parse(response.content[0].text);
