@@ -202,13 +202,28 @@ Tests NOT covered by automation here:
 
 ## 8. FEATURE CATALOG CROSS-REFERENCE INDEX
 
-| Category | Scenario Range | Scenario Count |
-|---|---:|---:|
-| Mode Routing | `MR-001..MR-004` | 4 |
-| Improvement Lane Routing | `IL-001..IL-004` | 4 |
-| Advisor Integration | `AI-001..AI-004` | 4 |
-| Runtime and Backend | `RB-001..RB-004` | 4 |
-| State and Convergence Discipline | `SC-001..SC-004` | 4 |
+| Category | Feature ID | Per-Feature File | Critical Path |
+|---|---|---|---|
+| Mode Routing | MR-001 | `01--mode-routing/research-routing.md` | Yes |
+| Mode Routing | MR-002 | `01--mode-routing/review-routing.md` | Yes |
+| Mode Routing | MR-003 | `01--mode-routing/ai-council-routing.md` | Yes |
+| Mode Routing | MR-004 | `01--mode-routing/mode-hint-override.md` | No |
+| Improvement Lane Routing | IL-001 | `02--improvement-lane-routing/agent-improvement.md` | Yes |
+| Improvement Lane Routing | IL-002 | `02--improvement-lane-routing/model-benchmark.md` | Yes |
+| Improvement Lane Routing | IL-003 | `02--improvement-lane-routing/skill-benchmark.md` | Yes |
+| Improvement Lane Routing | IL-004 | `02--improvement-lane-routing/ai-system-improvement.md` | Yes |
+| Advisor Integration | AI-001 | `03--advisor-integration/single-advisor-identity.md` | Yes |
+| Advisor Integration | AI-002 | `03--advisor-integration/lexical-mode-scoring.md` | No |
+| Advisor Integration | AI-003 | `03--advisor-integration/command-bridge-guard.md` | No |
+| Advisor Integration | AI-004 | `03--advisor-integration/no-false-fire-code-edit.md` | Yes |
+| Runtime and Backend | RB-001 | `04--runtime-and-backend/runtime-loop-research.md` | Yes |
+| Runtime and Backend | RB-002 | `04--runtime-and-backend/runtime-loop-council.md` | No |
+| Runtime and Backend | RB-003 | `04--runtime-and-backend/improvement-host.md` | Yes |
+| Runtime and Backend | RB-004 | `04--runtime-and-backend/external-adapter.md` | Yes |
+| State and Convergence Discipline | SC-001 | `05--state-and-convergence-discipline/externalized-state.md` | Yes |
+| State and Convergence Discipline | SC-002 | `05--state-and-convergence-discipline/artifact-root-writes.md` | Yes |
+| State and Convergence Discipline | SC-003 | `05--state-and-convergence-discipline/convergence-stop.md` | No |
+| State and Convergence Discipline | SC-004 | `05--state-and-convergence-discipline/hub-logic-boundary.md` | Yes |
 
 **Total scenarios**: 20
 **Critical-path scenarios**: 15

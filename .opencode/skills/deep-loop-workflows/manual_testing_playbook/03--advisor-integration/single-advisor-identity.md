@@ -14,9 +14,13 @@ This scenario verifies the hub identity rule: positive deep-loop prompts should 
 
 **Realistic user request**: An operator checks that the advisor treats the deep-loop family as one hub, while still preserving mode-level routing inside the hub.
 
-**Exact prompt set**:
+**Exact prompt**:
 ```
 Use deep research to investigate registry drift and write a research summary.
+```
+
+**Additional advisor probes** (each must surface the same `deep-loop-workflows` hub identity):
+```
 Run a deep review and report P0/P1/P2 findings with a verdict.
 Run an AI council deliberation with multiple planning seats and converge on a recommendation.
 Evaluate and score an agent candidate for promotion or rollback.

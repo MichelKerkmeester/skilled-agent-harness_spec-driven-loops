@@ -14,9 +14,13 @@ This scenario verifies that `model-benchmark`, `skill-benchmark`, and `ai-system
 
 **Realistic user request**: An operator checks that the improvement family does not silently route bare benchmark wording into specialized lanes without the command surface.
 
-**Exact prompt set**:
+**Exact prompt**:
 ```
 Benchmark a model against prompt framework candidates.
+```
+
+**Additional advisor probes** (bare wording must not fire a command-bridge lane without its `/deep:*` command):
+```
 Benchmark a skill against routing prompts.
 Package an AI system benchmark for a non-dev AI system.
 ```

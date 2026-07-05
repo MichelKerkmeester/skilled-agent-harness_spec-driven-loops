@@ -14,9 +14,13 @@ This scenario verifies that the three non-improvement workflow families are lexi
 
 **Realistic user request**: An operator runs a small advisor battery to confirm lexical routing remains intact for the three named mode families.
 
-**Exact prompt set**:
+**Exact prompt**:
 ```
 deep-research: run an iterative investigation workflow and summarize findings.
+```
+
+**Additional advisor probes** (each lexical mode family scored through its own `legacyAdvisorId`):
+```
 deep-review: run an iterative code audit and produce severity weighted findings.
 deep-ai-council: run a planning council and converge on a recommendation.
 ```
