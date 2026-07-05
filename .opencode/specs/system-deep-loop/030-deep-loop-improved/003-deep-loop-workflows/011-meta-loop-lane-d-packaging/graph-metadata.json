@@ -1,0 +1,216 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/030-deep-loop-improved/003-deep-loop-workflows/011-meta-loop-lane-d-packaging",
+  "spec_folder": "system-deep-loop/030-deep-loop-improved/003-deep-loop-workflows/011-meta-loop-lane-d-packaging",
+  "parent_id": "system-deep-loop/030-deep-loop-improved/003-deep-loop-workflows",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "meta loop lane D packaging",
+      "deep-loop-runtime self improvement profile",
+      "allowed_diff_relpaths self target",
+      "Lane D packaging deep loop",
+      "011-meta-loop-lane-d-packaging summary",
+      "011-meta-loop-lane-d-packaging"
+    ],
+    "key_topics": [
+      "meta",
+      "loop",
+      "lane",
+      "packaging",
+      "deep-loop-runtime",
+      "self",
+      "improvement",
+      "profile",
+      "target",
+      "deep",
+      "011-meta-loop-lane-d-packaging",
+      "summary"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      ".opencode/skills/deep-loop-workflows/deep-improvement/assets/non_dev_ai_system/profiles/deep-loop-runtime.json",
+      ".opencode/commands/deep/ai-system-improvement.md",
+      ".opencode/skills/deep-loop-workflows/deep-improvement/assets/non_dev_ai_system/packaging_config.schema.json",
+      ".opencode/skills/deep-loop-workflows/deep-improvement/references/non_dev_ai_system/loop_contract.md",
+      ".opencode/skills/deep-loop-runtime/tests/unit/meta-loop-lane-d-packaging.vitest.ts",
+      ".opencode/skills/deep-loop-workflows/deep-improvement/assets/non_dev_ai_system/templates/loop.py.template",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "deep-loop-runtime.json",
+        "kind": "config",
+        "path": ".opencode/skills/deep-loop-workflows/deep-improvement/assets/non_dev_ai_system/profiles/deep-loop-runtime.json",
+        "source": "derived"
+      },
+      {
+        "name": "ai-system-improvement.md",
+        "kind": "doc",
+        "path": ".opencode/commands/deep/ai-system-improvement.md",
+        "source": "derived"
+      },
+      {
+        "name": "packaging_config.schema.json",
+        "kind": "config",
+        "path": ".opencode/skills/deep-loop-workflows/deep-improvement/assets/non_dev_ai_system/packaging_config.schema.json",
+        "source": "derived"
+      },
+      {
+        "name": "loop_contract.md",
+        "kind": "doc",
+        "path": ".opencode/skills/deep-loop-workflows/deep-improvement/references/non_dev_ai_system/loop_contract.md",
+        "source": "derived"
+      },
+      {
+        "name": "meta-loop-lane-d-packaging.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/deep-loop-runtime/tests/unit/meta-loop-lane-d-packaging.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "loop.py.template",
+        "kind": "file",
+        "path": ".opencode/skills/deep-loop-workflows/deep-improvement/assets/non_dev_ai_system/templates/loop.py.template",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Loop Deep",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Runtime Lane",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Improvement Packaging",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The `deep-ai-system-improvement` skill has no packaging profile for `deep-loop-runtime` itself as an improvement target",
+    "created_at": "2026-06-28T14:02:14Z",
+    "last_save_at": "2026-07-04T18:02:12.639Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:0b892dd5d58733cd836cffd4e15dff1ba5bae152920a25f6e9ef50ae62127215",
+    "source_doc_hashes": {
+      "spec.md": "12f7d3425230d7659a2604f63ab939dad03f2796b30a17c9f044db781de7d934",
+      "plan.md": "291bcce9adc490278e57315e88faa0a6012638e8ba22dbd114f69e357062f7a8",
+      "tasks.md": "e6f5f6e6940ef44ac5e62ae327b45b28f46fc10d59c8a3418869ad40778e9c4d",
+      "implementation-summary.md": "459e275c1ed8a6cdf1691dd4f1850f967f8d7932f521e624efca2e44cd574cb4"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

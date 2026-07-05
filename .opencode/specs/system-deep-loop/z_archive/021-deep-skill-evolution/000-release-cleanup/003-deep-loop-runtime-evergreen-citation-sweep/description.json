@@ -1,0 +1,36 @@
+{
+  "specFolder": "system-deep-loop/z_archive/021-deep-skill-evolution/000-release-cleanup/003-deep-loop-runtime-evergreen-citation-sweep",
+  "description": "Rewrites every transient packet/arc/phase/spec-path citation in the runtime docs, code comments, feature catalogs, playbooks, and tests of deep-loop-r",
+  "keywords": [
+    "rewrites",
+    "every",
+    "transient",
+    "packet",
+    "arc",
+    "phase",
+    "spec-path",
+    "citation",
+    "runtime",
+    "docs",
+    "code",
+    "comments",
+    "feature",
+    "catalogs",
+    "playbooks",
+    "tests",
+    "deep-loop-r"
+  ],
+  "lastUpdated": "2026-06-23T03:49:50.594Z",
+  "specId": "003",
+  "folderSlug": "deep-loop-runtime-evergreen-citation-sweep",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "z_archive",
+    "116-deep-skill-evolution",
+    "000-release-cleanup"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [
+    "skilled-agent-orchestration/116-deep-skill-evolution/000-release-cleanup/001-deep-loop-runtime/002-evergreen-citation-sweep"
+  ]
+}

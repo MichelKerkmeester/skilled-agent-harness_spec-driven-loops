@@ -1,0 +1,229 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/z_archive/010-sk-recursive-agent-loop/004-sk-recursive-agent-promotion-verification",
+  "spec_folder": "system-deep-loop/z_archive/010-sk-recursive-agent-loop/004-sk-recursive-agent-promotion-verification",
+  "parent_id": "system-deep-loop/z_archive/010-sk-recursive-agent-loop",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "recursive agent promotion verification",
+      "041 phase 004",
+      "context-prime repeatability",
+      "recursive agent promotion verification plan",
+      "041 phase 004 plan",
+      "041 phase 004 tasks",
+      "recursive agent promotion verification tasks",
+      "041 phase 004 checklist",
+      "recursive agent promotion verification checklist",
+      "041 phase 004 implementation summary",
+      "recursive agent promotion verification summary"
+    ],
+    "key_topics": [
+      "recursive",
+      "agent",
+      "promotion",
+      "verification",
+      "041",
+      "phase",
+      "004",
+      "context-prime",
+      "repeatability",
+      "plan",
+      "tasks",
+      "checklist"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "improvement/score-handover-candidate-002.json",
+      "improvement/benchmark-runs/handover/run-001.json",
+      "improvement/benchmark-runs/handover/run-002.json",
+      "improvement/benchmark-runs/handover/repeatability.json",
+      "improvement/benchmark-runs/context-prime/run-001.json",
+      "improvement/benchmark-runs/context-prime/run-002.json",
+      "improvement/benchmark-runs/context-prime/repeatability.json",
+      "improvement/promotion-001.json",
+      "improvement/rollback-001.json",
+      "improvement/post-rollback-compare.txt",
+      ".opencode/specs/descriptions.json",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "score-handover-candidate-002.json",
+        "kind": "config",
+        "path": "improvement/score-handover-candidate-002.json",
+        "source": "derived"
+      },
+      {
+        "name": "run-001.json",
+        "kind": "config",
+        "path": "improvement/benchmark-runs/handover/run-001.json",
+        "source": "derived"
+      },
+      {
+        "name": "run-002.json",
+        "kind": "config",
+        "path": "improvement/benchmark-runs/handover/run-002.json",
+        "source": "derived"
+      },
+      {
+        "name": "repeatability.json",
+        "kind": "config",
+        "path": "improvement/benchmark-runs/handover/repeatability.json",
+        "source": "derived"
+      },
+      {
+        "name": "promotion-001.json",
+        "kind": "config",
+        "path": "improvement/promotion-001.json",
+        "source": "derived"
+      },
+      {
+        "name": "rollback-001.json",
+        "kind": "config",
+        "path": "improvement/rollback-001.json",
+        "source": "derived"
+      },
+      {
+        "name": "post-rollback-compare.txt",
+        "kind": "file",
+        "path": "improvement/post-rollback-compare.txt",
+        "source": "derived"
+      },
+      {
+        "name": "descriptions.json",
+        "kind": "config",
+        "path": ".opencode/specs/descriptions.json",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Recursive Agent Promotion Verification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement After",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Create",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Verification",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "After phase `003`, the agent-improver package and packet hierarchy were clean, but two important proof points were still missing: a successful guarded promotion path for the canonical handover target, and explicit repeatability evidence for the second target `context-prime`",
+    "created_at": "2026-04-12T09:02:50.187Z",
+    "last_save_at": "2026-06-23T03:49:49.165Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:bf777649ec980b53dddcef13ade0994eb396f92f6fccb811a048ef69e90585af",
+    "source_doc_hashes": {
+      "spec.md": "b06d3a88a848ed9a625fe3151106d82807ec4b013252a6527b48c4a5d75a3aa2",
+      "plan.md": "7c74c37b5fe4c369a1fb52824a8b6ae056d4da6d55d56928ad0f7912db191d4a",
+      "tasks.md": "66baf16fce40b6059d0592d4cb91dee115bd7beb680b7ea8b2b87ad333e0f9cc",
+      "checklist.md": "08f87adfc5db5607b8caaa33a3c72c863816ee383749577fd3834dd970ead27b",
+      "implementation-summary.md": "04d0306a2c8ad4b8c0f8c8592430ca2b9682641d5c0ef0acf5af387a54305549"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

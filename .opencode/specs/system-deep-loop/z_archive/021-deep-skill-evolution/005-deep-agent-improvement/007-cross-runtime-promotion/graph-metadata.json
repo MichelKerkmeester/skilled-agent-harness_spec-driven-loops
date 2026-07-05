@@ -1,0 +1,223 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/z_archive/021-deep-skill-evolution/005-deep-agent-improvement/007-cross-runtime-promotion",
+  "spec_folder": "system-deep-loop/z_archive/021-deep-skill-evolution/005-deep-agent-improvement/007-cross-runtime-promotion",
+  "parent_id": "system-deep-loop/z_archive/021-deep-skill-evolution/005-deep-agent-improvement",
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "packet 127",
+      "deep-agent-improvement cross-runtime promotion",
+      "mirror sync gate",
+      "DAI-006",
+      "packet 127 plan",
+      "cross-runtime promotion plan",
+      "packet 127 tasks",
+      "packet 127 checklist",
+      "packet 127 ADR",
+      "Cross-Runtime Promotion Gate Contract",
+      "packet 127 implementation summary"
+    ],
+    "key_topics": [
+      "packet",
+      "127",
+      "deep-agent-improvement",
+      "cross-runtime",
+      "promotion",
+      "mirror",
+      "sync",
+      "gate",
+      "dai-006",
+      "plan",
+      "tasks",
+      "checklist"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Runtime Promotion Gate Contract",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Target Skill",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Source Roadmap",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Rerun Vitest",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Implement",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "New Vitest",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Reusable",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task List",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implement Markdown",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Add Vitest",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Level 3 specification for hard four-runtime agent mirror verification and partial mirror recovery semantics.",
+    "created_at": "2026-05-23T00:00:00.000Z",
+    "last_save_at": "2026-06-23T03:49:50.970Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:273769c2b38f940a8686c63d3351ac595173776302d8f02a17cd87caa3e0e31d",
+    "source_doc_hashes": {
+      "spec.md": "b526cfe41d3a4891c8526b52f5063d49dd359f4fbffe994ecb604f6b81d66f99",
+      "plan.md": "12ad72d0bc530c9735555d590671157a3f2b6b9a8fc80fc4cf4378db2165071f",
+      "tasks.md": "9f6eaf76ecddcc0bbcc4c715468c999e4df23e60f633de9b8aec2b7125491fc1",
+      "checklist.md": "5e167834a241e6dcbc9e99030c257bc2f83962f80029bb70c4383558b5730a45",
+      "decision-record.md": "5e66c71639d0176effde820ca4de7cc585c3d21be6a6b8cdbf3aff849d86d124",
+      "implementation-summary.md": "6f083f37249ae601e41c2f5df33bb04bd81a2b57bf2cd3acb424fe578694e43f"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

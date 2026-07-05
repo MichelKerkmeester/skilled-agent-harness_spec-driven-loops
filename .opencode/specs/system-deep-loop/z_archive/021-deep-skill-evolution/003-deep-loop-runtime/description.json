@@ -1,0 +1,24 @@
+{
+  "level": "2",
+  "specFolder": "system-deep-loop/z_archive/021-deep-skill-evolution/003-deep-loop-runtime",
+  "description": "This cluster groups 9 sub-phases that share a single thematic focus",
+  "keywords": [
+    "cluster",
+    "groups",
+    "sub-phases",
+    "share",
+    "single",
+    "thematic",
+    "focus"
+  ],
+  "lastUpdated": "2026-06-23T03:49:50.841Z",
+  "specId": "003",
+  "folderSlug": "deep-loop-runtime",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "z_archive",
+    "116-deep-skill-evolution"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

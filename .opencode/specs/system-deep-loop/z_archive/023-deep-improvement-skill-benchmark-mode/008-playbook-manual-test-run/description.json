@@ -1,0 +1,24 @@
+{
+  "specFolder": "system-deep-loop/z_archive/023-deep-improvement-skill-benchmark-mode/008-playbook-manual-test-run",
+  "description": "008 — Deep-Improvement Playbook Manual Test Run",
+  "keywords": [
+    "008",
+    "deep-improvement",
+    "playbook",
+    "manual",
+    "test",
+    "run"
+  ],
+  "lastUpdated": "2026-06-22T18:55:01.074Z",
+  "specId": "008",
+  "folderSlug": "playbook-manual-test-run",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "z_archive",
+    "122-deep-improvement-skill-benchmark-mode"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "31-05-26_18-50__executed-the-full-48-scenario-deep-improvement.md"
+  ]
+}

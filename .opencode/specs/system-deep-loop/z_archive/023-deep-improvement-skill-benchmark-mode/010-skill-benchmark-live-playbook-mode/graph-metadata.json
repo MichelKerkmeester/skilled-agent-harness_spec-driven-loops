@@ -1,0 +1,222 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/z_archive/023-deep-improvement-skill-benchmark-mode/010-skill-benchmark-live-playbook-mode",
+  "spec_folder": "system-deep-loop/z_archive/023-deep-improvement-skill-benchmark-mode/010-skill-benchmark-live-playbook-mode",
+  "parent_id": "system-deep-loop/z_archive/023-deep-improvement-skill-benchmark-mode",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "skill-benchmark live playbook mode",
+      "Lane C mode B",
+      "playbook corpus benchmark",
+      "cli-opencode live skill benchmark",
+      "Lane C mode B plan",
+      "skill-benchmark live playbook plan",
+      "Lane C mode B tasks",
+      "Lane C mode B checklist",
+      "Lane C mode B decisions",
+      "skill-benchmark dual-mode decision",
+      "skill-benchmark live playbook mode summary",
+      "Lane C mode B progress"
+    ],
+    "key_topics": [
+      "skill-benchmark",
+      "live",
+      "playbook",
+      "mode",
+      "lane",
+      "corpus",
+      "benchmark",
+      "cli-opencode",
+      "skill",
+      "plan",
+      "tasks",
+      "checklist"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "checklist.md",
+      "decision-record.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Benchmark Live Playbook Mode",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Redesign Lane",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Shipped Phase",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Build Phase",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Live Playbook Mode",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview One",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Live Mode",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Additive",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "gpt-5.5-fast",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The Lane C benchmark grades skills with hand-invented, keyword-stripped fixtures and a pure-function router replay — not the skill being used",
+    "created_at": "2026-06-01T14:22:41.913Z",
+    "last_save_at": "2026-06-23T03:49:51.333Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:80370c7ea929ffc8e31e60d775bf56c9cb597f398322690a3e97e32ba25d3516",
+    "source_doc_hashes": {
+      "spec.md": "7530ae2f1380c52bc61ee16baa36761a5078847160137109b2aba3098e2a42a6",
+      "plan.md": "a7d5411308a55ee31343ce2c3b22e7eafb4f4e77ba94ec2dbc350096f97dddad",
+      "tasks.md": "58f5cb72b48e2bb7550db8896e1759c4da6cda82a2cb79ca89fe55868a2f5d4b",
+      "checklist.md": "5980c6f827a5a39a4fe0054a98d01234003b27b890782e29d822ac7e209dbf94",
+      "decision-record.md": "25c1f9d58209e7fb950bcf0ce20783e178ef70fdc03aa14c429cf1cebe7577f6",
+      "implementation-summary.md": "cc25092315feeea5b870e97a60fd9e354250c5fa4bed6c997407c0b7cb688f5a"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

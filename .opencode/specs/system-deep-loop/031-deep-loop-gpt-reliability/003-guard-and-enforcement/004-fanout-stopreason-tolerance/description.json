@@ -1,0 +1,27 @@
+{
+  "level": 1,
+  "specFolder": "system-deep-loop/031-deep-loop-gpt-reliability/003-guard-and-enforcement/004-fanout-stopreason-tolerance",
+  "description": "`findMaxIterationsPolicyViolation` (fanout-run.cjs:~619) rejects a lineage whenever `synthesis.stopReason !== 'maxIterationsReached'`",
+  "keywords": [
+    "findmaxiterationspolicyviolation",
+    "fanout-run",
+    "cjs",
+    "619",
+    "rejects",
+    "lineage",
+    "whenever",
+    "synthesis",
+    "stopreason",
+    "maxiterationsreached"
+  ],
+  "lastUpdated": "2026-07-04T19:09:00.849Z",
+  "specId": "004",
+  "folderSlug": "fanout-stopreason-tolerance",
+  "parentChain": [
+    "system-deep-loop",
+    "031-deep-loop-gpt-reliability",
+    "003-guard-and-enforcement"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

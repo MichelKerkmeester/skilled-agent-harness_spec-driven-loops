@@ -1,0 +1,30 @@
+{
+  "level": "3",
+  "specFolder": "system-deep-loop/035-deprecate-deep-context-integrate-capabilities/002-public-redirect-and-replacement-contracts",
+  "description": "Standalone `deep-context` still has an executable asset chain: presentation text, auto YAML, confirm YAML, a compiled command contract, deep-context",
+  "keywords": [
+    "standalone",
+    "deep-context",
+    "still",
+    "executable",
+    "asset",
+    "chain",
+    "presentation",
+    "text",
+    "auto",
+    "yaml",
+    "confirm",
+    "compiled",
+    "command",
+    "contract"
+  ],
+  "lastUpdated": "2026-07-05T12:13:05.607Z",
+  "specId": "002",
+  "folderSlug": "public-redirect-and-replacement-contracts",
+  "parentChain": [
+    "system-deep-loop",
+    "035-deprecate-deep-context-integrate-capabilities"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

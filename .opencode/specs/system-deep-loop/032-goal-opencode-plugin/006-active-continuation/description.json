@@ -1,0 +1,27 @@
+{
+  "level": "1",
+  "specFolder": "system-deep-loop/032-goal-opencode-plugin/006-active-continuation",
+  "description": "The goal plugin could verify goals on idle, but it could not continue active work after a `notmet` verifier result",
+  "keywords": [
+    "goal",
+    "plugin",
+    "verify",
+    "goals",
+    "idle",
+    "continue",
+    "active",
+    "work",
+    "notmet",
+    "verifier",
+    "result"
+  ],
+  "lastUpdated": "2026-07-05T12:13:05.498Z",
+  "specId": "006",
+  "folderSlug": "active-continuation",
+  "parentChain": [
+    "system-deep-loop",
+    "032-goal-opencode-plugin"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

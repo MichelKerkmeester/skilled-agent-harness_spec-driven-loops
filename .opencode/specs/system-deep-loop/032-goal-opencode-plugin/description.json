@@ -1,0 +1,26 @@
+{
+  "level": "phase",
+  "specFolder": "system-deep-loop/032-goal-opencode-plugin",
+  "description": "OpenCode has no goal/completion-condition system",
+  "keywords": [
+    "opencode",
+    "goal",
+    "completion-condition",
+    "system"
+  ],
+  "lastUpdated": "2026-07-05T12:13:05.473Z",
+  "specId": "032",
+  "folderSlug": "goal-opencode-plugin",
+  "parentChain": [
+    "system-deep-loop"
+  ],
+  "memorySequence": 6,
+  "memoryNameHistory": [
+    "01-07-26_09-56__deep-review-cli-opencode-openai-gpt-5-5-fast-13.md",
+    "01-07-26_10-40__deep-review-cli-opencode-openai-gpt-5-5-fast-of.md",
+    "01-07-26_17-10__deep-research-10-forced-iterations-cli-opencode.md",
+    "01-07-26_17-10__deep-research-10-forced-iterations-cli-opencode.md",
+    "01-07-26_18-23__deep-review-10-forced-iterations-cli-opencode.md",
+    "04-07-26_07-58__deep-review-completed-for-kimi-review-lineage.md"
+  ]
+}

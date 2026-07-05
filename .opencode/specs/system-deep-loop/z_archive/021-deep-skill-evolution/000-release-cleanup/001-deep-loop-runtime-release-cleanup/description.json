@@ -1,0 +1,34 @@
+{
+  "specFolder": "system-deep-loop/z_archive/021-deep-skill-evolution/000-release-cleanup/001-deep-loop-runtime-release-cleanup",
+  "description": "The `deep-loop-runtime` skill carries 266 lines of SKILL.md, 174 lines of README, 4 references (732 lines), 18 feature-catalog files plus 1 index (101",
+  "keywords": [
+    "deep-loop-runtime",
+    "skill",
+    "carries",
+    "266",
+    "lines",
+    "174",
+    "readme",
+    "references",
+    "732",
+    "feature-catalog",
+    "files",
+    "plus",
+    "index",
+    "101"
+  ],
+  "lastUpdated": "2026-06-23T03:49:50.580Z",
+  "specId": "001",
+  "folderSlug": "deep-loop-runtime-release-cleanup",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "z_archive",
+    "116-deep-skill-evolution",
+    "000-release-cleanup"
+  ],
+  "memorySequence": 2,
+  "memoryNameHistory": [
+    "23-05-26_21-14__shipped-deep-loop-runtime-v1-3-0-and-verified-the.md",
+    "skilled-agent-orchestration/116-deep-skill-evolution/000-release-cleanup/001-deep-loop-runtime"
+  ]
+}

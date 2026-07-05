@@ -1,0 +1,31 @@
+{
+  "level": "3",
+  "specFolder": "system-deep-loop/035-deprecate-deep-context-integrate-capabilities/004-fixtures-benchmarks-and-runtime-cleanup",
+  "description": "Even after public and discoverability cleanup, test fixtures, behavior benchmarks, generated source lists, and shared runtime branches can keep",
+  "keywords": [
+    "even",
+    "public",
+    "discoverability",
+    "cleanup",
+    "test",
+    "fixtures",
+    "behavior",
+    "benchmarks",
+    "generated",
+    "source",
+    "lists",
+    "shared",
+    "runtime",
+    "branches",
+    "keep"
+  ],
+  "lastUpdated": "2026-07-05T12:13:05.616Z",
+  "specId": "004",
+  "folderSlug": "fixtures-benchmarks-and-runtime-cleanup",
+  "parentChain": [
+    "system-deep-loop",
+    "035-deprecate-deep-context-integrate-capabilities"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

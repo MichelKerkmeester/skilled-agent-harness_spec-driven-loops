@@ -1,0 +1,30 @@
+{
+  "level": "phase-parent",
+  "specFolder": "system-deep-loop/035-deprecate-deep-context-integrate-capabilities",
+  "description": "The deep-loop framework still exposes a standalone `deep-context` route through command, agent, nested skill, registry, advisor, generated contract,",
+  "keywords": [
+    "deep-loop",
+    "framework",
+    "still",
+    "exposes",
+    "standalone",
+    "deep-context",
+    "route",
+    "command",
+    "agent",
+    "nested",
+    "skill",
+    "registry",
+    "advisor",
+    "generated",
+    "contract"
+  ],
+  "lastUpdated": "2026-07-05T12:13:05.596Z",
+  "specId": "035",
+  "folderSlug": "deprecate-deep-context-integrate-capabilities",
+  "parentChain": [
+    "system-deep-loop"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

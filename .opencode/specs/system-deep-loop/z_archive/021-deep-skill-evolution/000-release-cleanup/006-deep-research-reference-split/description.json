@@ -1,0 +1,26 @@
+{
+  "specFolder": "system-deep-loop/z_archive/021-deep-skill-evolution/000-release-cleanup/006-deep-research-reference-split",
+  "description": "`deep-research/references/convergence.md` and `deep-research/references/stateformat.md` have become long monoliths",
+  "keywords": [
+    "deep-research",
+    "references",
+    "convergence",
+    "stateformat",
+    "become",
+    "long",
+    "monoliths"
+  ],
+  "lastUpdated": "2026-06-23T03:49:50.615Z",
+  "specId": "006",
+  "folderSlug": "deep-research-reference-split",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "z_archive",
+    "116-deep-skill-evolution",
+    "000-release-cleanup"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [
+    "skilled-agent-orchestration/116-deep-skill-evolution/000-release-cleanup/002-deep-research/001-reference-split"
+  ]
+}

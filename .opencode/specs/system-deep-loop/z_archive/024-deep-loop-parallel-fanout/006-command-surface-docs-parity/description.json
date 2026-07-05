@@ -1,0 +1,27 @@
+{
+  "specFolder": "system-deep-loop/z_archive/024-deep-loop-parallel-fanout/006-command-surface-docs-parity",
+  "description": "Expose fan-out via the command entrypoints (opt-in), document it for both consumers, and prove single-executor parity",
+  "keywords": [
+    "expose",
+    "fan-out",
+    "via",
+    "command",
+    "entrypoints",
+    "opt-in",
+    "document",
+    "consumers",
+    "prove",
+    "single-executor",
+    "parity"
+  ],
+  "lastUpdated": "2026-06-23T03:49:51.404Z",
+  "specId": "006",
+  "folderSlug": "command-surface-docs-parity",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "z_archive",
+    "123-deep-loop-parallel-fanout"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

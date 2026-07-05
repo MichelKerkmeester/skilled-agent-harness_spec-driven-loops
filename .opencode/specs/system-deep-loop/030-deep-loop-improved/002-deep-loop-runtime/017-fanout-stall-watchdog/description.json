@@ -1,0 +1,34 @@
+{
+  "level": "1",
+  "specFolder": "system-deep-loop/030-deep-loop-improved/002-deep-loop-runtime/017-fanout-stall-watchdog",
+  "description": "A hung lineage blocks all queued work until the child timeout expires; no mechanism exists to detect a stall and free the slot sooner than the hard",
+  "keywords": [
+    "hung",
+    "lineage",
+    "blocks",
+    "queued",
+    "work",
+    "until",
+    "child",
+    "timeout",
+    "expires",
+    "mechanism",
+    "exists",
+    "detect",
+    "stall",
+    "free",
+    "slot",
+    "sooner",
+    "hard"
+  ],
+  "lastUpdated": "2026-07-04T18:02:06.961Z",
+  "specId": "017",
+  "folderSlug": "fanout-stall-watchdog",
+  "parentChain": [
+    "system-deep-loop",
+    "030-deep-loop-improved",
+    "002-deep-loop-runtime"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

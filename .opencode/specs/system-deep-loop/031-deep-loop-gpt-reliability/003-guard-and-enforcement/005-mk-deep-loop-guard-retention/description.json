@@ -1,0 +1,28 @@
+{
+  "level": 1,
+  "specFolder": "system-deep-loop/031-deep-loop-gpt-reliability/003-guard-and-enforcement/005-mk-deep-loop-guard-retention",
+  "description": "`mk-deep-loop-guard.js` persists a per-session JSON state file (`recordLoopDispatch`/`writeLoopStateAtomic`) and appends to `guard-warnings.log` on",
+  "keywords": [
+    "mk-deep-loop-guard",
+    "persists",
+    "per-session",
+    "json",
+    "state",
+    "file",
+    "recordloopdispatch",
+    "writeloopstateatomic",
+    "appends",
+    "guard-warnings",
+    "log"
+  ],
+  "lastUpdated": "2026-07-05T12:13:05.450Z",
+  "specId": "005",
+  "folderSlug": "mk-deep-loop-guard-retention",
+  "parentChain": [
+    "system-deep-loop",
+    "031-deep-loop-gpt-reliability",
+    "003-guard-and-enforcement"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

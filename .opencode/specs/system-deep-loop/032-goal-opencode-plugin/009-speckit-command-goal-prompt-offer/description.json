@@ -1,0 +1,28 @@
+{
+  "level": "1",
+  "specFolder": "system-deep-loop/032-goal-opencode-plugin/009-speckit-command-goal-prompt-offer",
+  "description": "Finding INT-1 (dossier §E, verbatim): the `/speckit:` goal-prompt offer — this phase's whole original purpose — is NOT implemented",
+  "keywords": [
+    "finding",
+    "int-1",
+    "dossier",
+    "verbatim",
+    "speckit",
+    "goal-prompt",
+    "offer",
+    "phase",
+    "whole",
+    "original",
+    "purpose",
+    "implemented"
+  ],
+  "lastUpdated": "2026-07-05T12:13:05.509Z",
+  "specId": "009",
+  "folderSlug": "speckit-command-goal-prompt-offer",
+  "parentChain": [
+    "system-deep-loop",
+    "032-goal-opencode-plugin"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

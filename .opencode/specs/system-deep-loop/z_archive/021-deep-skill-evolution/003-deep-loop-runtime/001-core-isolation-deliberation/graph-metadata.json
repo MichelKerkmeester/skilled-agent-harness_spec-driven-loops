@@ -1,0 +1,230 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/z_archive/021-deep-skill-evolution/003-deep-loop-runtime/001-core-isolation-deliberation",
+  "spec_folder": "system-deep-loop/z_archive/021-deep-skill-evolution/003-deep-loop-runtime/001-core-isolation-deliberation",
+  "parent_id": "system-deep-loop/z_archive/021-deep-skill-evolution/003-deep-loop-runtime",
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "deep-loop core isolation",
+      "coverage-graph relocation",
+      "deep-* skill ownership",
+      "ai council deep-loop",
+      "deep-loop isolation plan",
+      "ai council deliberation plan",
+      "deep-loop isolation tasks",
+      "117 deliberation tasks",
+      "deep-loop isolation checklist",
+      "deep-loop isolation decision",
+      "ADR-001 deep-loop relocation",
+      "deep-loop-runtime peer skill"
+    ],
+    "key_topics": [
+      "deep-loop",
+      "core",
+      "isolation",
+      "coverage-graph",
+      "relocation",
+      "deep",
+      "skill",
+      "ownership",
+      "council",
+      "plan",
+      "deliberation",
+      "tasks"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      "ai-council/deliberations/round-001.md",
+      "ai-council/council-report.md",
+      "decision-record.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "ai-council/ai-council-strategy.md",
+      "implementation-summary.md",
+      "spec.md",
+      "mcp_server/tools/index.ts",
+      "schemas/tool-input-schemas.ts",
+      "ai-council/seats/round-001/seat-D-adjudicator.md"
+    ],
+    "entities": [
+      {
+        "name": "round-001.md",
+        "kind": "doc",
+        "path": "ai-council/deliberations/round-001.md",
+        "source": "derived"
+      },
+      {
+        "name": "council-report.md",
+        "kind": "doc",
+        "path": "ai-council/council-report.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "ai-council-strategy.md",
+        "kind": "doc",
+        "path": "ai-council/ai-council-strategy.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "index.ts",
+        "kind": "code",
+        "path": "mcp_server/tools/index.ts",
+        "source": "derived"
+      },
+      {
+        "name": "tool-input-schemas.ts",
+        "kind": "code",
+        "path": "schemas/tool-input-schemas.ts",
+        "source": "derived"
+      },
+      {
+        "name": "seat-D-adjudicator.md",
+        "kind": "doc",
+        "path": "ai-council/seats/round-001/seat-D-adjudicator.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Loop Core Script Isolation Deliberation",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Dependencies",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Run",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Council Deliberation",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Loop Core Isolation",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Run",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Isolation Architect",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The deep-review and deep-research skills are consumers; system-spec-kit/mcpserver is the producer",
+    "created_at": "2026-05-22T17:50:00Z",
+    "last_save_at": "2026-06-23T03:49:50.845Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:f6c5b772cf3b6f37355507ca45628bad837fdb09a5c685946f7f040714ac841e",
+    "source_doc_hashes": {
+      "spec.md": "b9b743eddc8160af054dbd499c5f728c1c09d3bb7af73cdf8f071e6b79c0d22b",
+      "plan.md": "8e4a73a330f4e70823df089cca0f404490aa6adf51d38e945c8adea084f895c0",
+      "tasks.md": "cb275c4d1c4d61c778f083bcb3d73778e26a794a83c629ffe8948fb502ada160",
+      "checklist.md": "fb907a54cc37bda4e2e82f8618292bff47b02a4daef5cedad4257702fbcfe66f",
+      "decision-record.md": "36b4eedf59af7b9ebd7b131b6b42f159a4732d7cfd5639ea4867a951e2c5a6d3",
+      "implementation-summary.md": "790b231f2b40a505d77587ac09a714ce24f64a67bcb1a5451b2220f8073cd4bf"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

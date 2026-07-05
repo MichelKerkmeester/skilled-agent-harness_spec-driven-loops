@@ -1,0 +1,30 @@
+{
+  "level": "1",
+  "specFolder": "system-deep-loop/030-deep-loop-improved/009-research-backlog-remediation/011-synthesis-integrity-and-orchestrator-watchdog",
+  "description": "Generation-2 forced-depth research (35 iterations/lineage) against this exact packet directly reproduced two critical bugs in the",
+  "keywords": [
+    "generation-2",
+    "forced-depth",
+    "research",
+    "iterations",
+    "lineage",
+    "against",
+    "exact",
+    "packet",
+    "directly",
+    "reproduced",
+    "two",
+    "critical",
+    "bugs"
+  ],
+  "lastUpdated": "2026-07-04T18:02:27.332Z",
+  "specId": "011",
+  "folderSlug": "synthesis-integrity-and-orchestrator-watchdog",
+  "parentChain": [
+    "system-deep-loop",
+    "030-deep-loop-improved",
+    "009-research-backlog-remediation"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

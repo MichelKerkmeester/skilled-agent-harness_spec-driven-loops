@@ -1,0 +1,177 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/z_archive/010-sk-recursive-agent-loop/010-sk-agent-improver-self-test-fixes",
+  "spec_folder": "system-deep-loop/z_archive/010-sk-recursive-agent-loop/010-sk-agent-improver-self-test-fixes",
+  "parent_id": "system-deep-loop/z_archive/010-sk-recursive-agent-loop",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "spec",
+      "self",
+      "test",
+      "010",
+      "agent",
+      "plan",
+      "tasks",
+      "phase",
+      "checklist"
+    ],
+    "key_topics": [
+      "spec",
+      "self",
+      "test",
+      "010",
+      "agent",
+      "plan",
+      "tasks",
+      "phase",
+      "checklist",
+      "009",
+      "self-test",
+      "found"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Test Fixes",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Reducer Improvements",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Phase",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Solution Fix",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Acceptance Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Fix Stale Command Path",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Bug Fix",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Promote Candidate Improvements Cherry",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Reorder Required Inputs",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Stale Command Path",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Candidate Promotion",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Hard Blockers",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Reducer Scripts",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Phase 009 (self-test) found 5 issues",
+    "created_at": "2026-04-13T04:55:07.906Z",
+    "last_save_at": "2026-06-23T03:49:49.201Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md"
+    ],
+    "source_fingerprint": "sha256:08defb67d38d8f349fee0fd810e120aca32907e172eeb51a3ca7bb9be3494f5f",
+    "source_doc_hashes": {
+      "spec.md": "603d7e790cf9a34cddd8c5ec86755de3505ed2aed543c0a51a3883719bff0c23",
+      "plan.md": "4176e1f99fdc94ce5008af9226c19d6f73a70931c0896cd1eeb89b59a2a6610f",
+      "tasks.md": "128e2e999c9d59cb0bba5db783e558433231a55e9e521498948755d77d38dc9d",
+      "checklist.md": "6ff5560dd773c80449eec3f686878743e510656c0d9c98b76b803e31901459c4"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

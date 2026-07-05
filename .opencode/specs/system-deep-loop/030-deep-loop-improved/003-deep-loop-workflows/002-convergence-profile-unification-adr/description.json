@@ -1,0 +1,27 @@
+{
+  "level": "3",
+  "specFolder": "system-deep-loop/030-deep-loop-improved/003-deep-loop-workflows/002-convergence-profile-unification-adr",
+  "description": "Convergence math is spread across `convergence.cjs`, `lib/council/convergence.cjs`, and `lib/coverage-graph/coverage-graph-signals.ts` with no shared",
+  "keywords": [
+    "convergence",
+    "math",
+    "spread",
+    "across",
+    "cjs",
+    "lib",
+    "council",
+    "coverage-graph",
+    "coverage-graph-signals",
+    "shared"
+  ],
+  "lastUpdated": "2026-07-04T18:02:08.571Z",
+  "specId": "002",
+  "folderSlug": "convergence-profile-unification-adr",
+  "parentChain": [
+    "system-deep-loop",
+    "030-deep-loop-improved",
+    "003-deep-loop-workflows"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

@@ -1,0 +1,25 @@
+{
+  "specFolder": "system-deep-loop/z_archive/011-sk-deep-research-review-improvement-2/006-graph-testing-and-playbook-alignment",
+  "description": "Phase 002 introduced the coverage-graph runtime, but the supporting verification surface was incomplete",
+  "keywords": [
+    "phase",
+    "002",
+    "introduced",
+    "coverage-graph",
+    "runtime",
+    "supporting",
+    "verification",
+    "surface",
+    "incomplete"
+  ],
+  "lastUpdated": "2026-06-23T03:49:49.253Z",
+  "specId": "006",
+  "folderSlug": "graph-testing-and-playbook-alignment",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "z_archive",
+    "042-sk-deep-research-review-improvement-2"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

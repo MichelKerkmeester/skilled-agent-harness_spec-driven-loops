@@ -1,0 +1,110 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/z_archive/021-deep-skill-evolution/003-deep-loop-runtime",
+  "spec_folder": "system-deep-loop/z_archive/021-deep-skill-evolution/003-deep-loop-runtime",
+  "parent_id": "system-deep-loop/z_archive/021-deep-skill-evolution",
+  "children_ids": [
+    "system-deep-loop/z_archive/021-deep-skill-evolution/003-deep-loop-runtime/001-core-isolation-deliberation",
+    "system-deep-loop/z_archive/021-deep-skill-evolution/003-deep-loop-runtime/002-skill-scaffold",
+    "system-deep-loop/z_archive/021-deep-skill-evolution/003-deep-loop-runtime/003-lib-runtime-migration",
+    "system-deep-loop/z_archive/021-deep-skill-evolution/003-deep-loop-runtime/004-script-shim-db-relocation",
+    "system-deep-loop/z_archive/021-deep-skill-evolution/003-deep-loop-runtime/005-mcp-tool-surface-removal",
+    "system-deep-loop/z_archive/021-deep-skill-evolution/003-deep-loop-runtime/006-yaml-workflow-update",
+    "system-deep-loop/z_archive/021-deep-skill-evolution/003-deep-loop-runtime/007-collateral-doctor-playbook",
+    "system-deep-loop/z_archive/021-deep-skill-evolution/003-deep-loop-runtime/008-test-migration",
+    "system-deep-loop/z_archive/021-deep-skill-evolution/003-deep-loop-runtime/009-verification-changelog-closeout",
+    "system-deep-loop/z_archive/021-deep-skill-evolution/003-deep-loop-runtime/010-council-graph-cli-migration",
+    "system-deep-loop/z_archive/021-deep-skill-evolution/003-deep-loop-runtime/011-migration-closeout-cli-verification"
+  ],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "deep-loop runtime isolation",
+      "deep-loop-runtime skill",
+      "deep-loop full isolation no-mcp"
+    ],
+    "key_topics": [
+      "deep-loop",
+      "runtime",
+      "isolation",
+      "deep-loop-runtime",
+      "skill",
+      "full",
+      "no-mcp",
+      "cluster",
+      "groups",
+      "sub-phases",
+      "share",
+      "single"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Deep Loop",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Last Updated",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "This cluster groups 9 sub-phases that share a single thematic focus",
+    "created_at": "2026-05-23T09:52:56.265976Z",
+    "last_save_at": "2026-06-23T03:49:50.840Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "source_fingerprint": "sha256:0ce48a4585fb4227775eebf1ba32872455f6790cd61940691a47279fc4b285d5",
+    "source_doc_hashes": {
+      "spec.md": "e6de65a8b2b68bd5f76c213d1e14268e316ff6a7197a5d610a8b0ae1301ec51a"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

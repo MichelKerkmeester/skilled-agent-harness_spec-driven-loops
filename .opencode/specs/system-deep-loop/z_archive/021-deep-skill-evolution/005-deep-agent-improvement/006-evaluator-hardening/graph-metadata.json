@@ -1,0 +1,224 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/z_archive/021-deep-skill-evolution/005-deep-agent-improvement/006-evaluator-hardening",
+  "spec_folder": "system-deep-loop/z_archive/021-deep-skill-evolution/005-deep-agent-improvement/006-evaluator-hardening",
+  "parent_id": "system-deep-loop/z_archive/021-deep-skill-evolution/005-deep-agent-improvement",
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "packet 126",
+      "deep-agent-improvement evaluator hardening",
+      "DAI-001",
+      "DAI-005",
+      "DAI-012",
+      "DAI-022",
+      "packet 126 plan",
+      "DAI evaluator hardening plan",
+      "packet 126 tasks",
+      "packet 126 checklist",
+      "packet 126 ADR",
+      "Evaluator Reproducibility Contract"
+    ],
+    "key_topics": [
+      "packet",
+      "126",
+      "deep-agent-improvement",
+      "evaluator",
+      "hardening",
+      "dai-001",
+      "dai-005",
+      "dai-012",
+      "dai-022",
+      "plan",
+      "dai",
+      "tasks"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "implementation-summary.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Evaluator Reproducibility Contract",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Target Skill",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Source Roadmap",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Implement",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Local",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Milestone Reference",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Author Level",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Write Commit Handoff",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Architecture Tasks",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Level 3 specification for scorer reproducibility, promotion gates, dedup hardening, mirror coverage, and dashboard transparency.",
+    "created_at": "2026-05-23T00:00:00.000Z",
+    "last_save_at": "2026-06-23T03:49:50.964Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:30ce33739ec70560efa9bf106214c14f9455a1d82aba3298b09c8135736091b4",
+    "source_doc_hashes": {
+      "spec.md": "960c92d77d46d12d495fa2dd18d59fa31753813eb7ce77307fe0245d0da5c99a",
+      "plan.md": "517100c07330b4281492a492ab477ff10578aae4cc1275ee558b263e5b432a1f",
+      "tasks.md": "2cbfbf1415783c0530e44aac83ea384f454ebd4c399b06de8c428390ab69c965",
+      "checklist.md": "e8d90d2c244d800c91851a04fa41ea20552aace0eb504103427a9dd31c436d84",
+      "decision-record.md": "57975765a02debcf1906b1eadc119d23b67aaa547eaba7c372d8e420b6f138bc",
+      "implementation-summary.md": "3e80cc5c6bc3a5b07ccfd99d178514c451a9f57d6e7209af42fc5503e633c462"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

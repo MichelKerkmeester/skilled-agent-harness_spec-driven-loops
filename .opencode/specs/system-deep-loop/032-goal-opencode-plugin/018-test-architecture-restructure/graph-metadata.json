@@ -1,0 +1,221 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/032-goal-opencode-plugin/018-test-architecture-restructure",
+  "spec_folder": "system-deep-loop/032-goal-opencode-plugin/018-test-architecture-restructure",
+  "parent_id": "system-deep-loop/032-goal-opencode-plugin",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "goal plugin test architecture restructure",
+      "node test subtests conversion",
+      "export contract seam count reconciliation",
+      "goal plugin test architecture restructure plan",
+      "goal plugin test architecture restructure tasks",
+      "goal plugin test architecture restructure complete",
+      "mk-goal node test subtests complete",
+      "mk-goal 16 seams verification"
+    ],
+    "key_topics": [
+      "goal",
+      "plugin",
+      "test",
+      "architecture",
+      "restructure",
+      "node",
+      "subtests",
+      "conversion",
+      "export",
+      "contract",
+      "seam",
+      "count"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      ".opencode/plugins/tests/mk-goal-continuation.test.cjs",
+      ".opencode/plugins/tests/mk-goal-lifecycle.test.cjs",
+      ".opencode/plugins/tests/mk-goal-state.test.cjs",
+      ".opencode/plugins/tests/mk-goal-tool-path.test.cjs",
+      ".opencode/plugins/tests/mk-goal-supervisor.test.cjs",
+      ".opencode/plugins/tests/mk-goal-export-contract.test.cjs",
+      ".opencode/plugins/tests/helpers/continuation-log.cjs",
+      ".opencode/specs/system-deep-loop/032-goal-opencode-plugin/018-test-architecture-restructure/tasks.md",
+      ".opencode/specs/system-deep-loop/032-goal-opencode-plugin/018-test-architecture-restructure/implementation-summary.md",
+      "implementation-summary.md",
+      "tasks.md",
+      "spec.md",
+      "plan.md"
+    ],
+    "entities": [
+      {
+        "name": "mk-goal-continuation.test.cjs",
+        "kind": "file",
+        "path": ".opencode/plugins/tests/mk-goal-continuation.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "mk-goal-lifecycle.test.cjs",
+        "kind": "file",
+        "path": ".opencode/plugins/tests/mk-goal-lifecycle.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "mk-goal-state.test.cjs",
+        "kind": "file",
+        "path": ".opencode/plugins/tests/mk-goal-state.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "mk-goal-tool-path.test.cjs",
+        "kind": "file",
+        "path": ".opencode/plugins/tests/mk-goal-tool-path.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "mk-goal-supervisor.test.cjs",
+        "kind": "file",
+        "path": ".opencode/plugins/tests/mk-goal-supervisor.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "mk-goal-export-contract.test.cjs",
+        "kind": "file",
+        "path": ".opencode/plugins/tests/mk-goal-export-contract.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "continuation-log.cjs",
+        "kind": "file",
+        "path": ".opencode/plugins/tests/helpers/continuation-log.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": ".opencode/specs/system-deep-loop/032-goal-opencode-plugin/018-test-architecture-restructure/tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": ".opencode/specs/system-deep-loop/032-goal-opencode-plugin/018-test-architecture-restructure/implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement All",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Each",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Test",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow No",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "All 6 goal-plugin test files under `.opencode/plugins/tests/` are monolithic single-`async function main()` scripts (confirmed: `mk-goal-continuation.test.cjs:42`, `mk-goal-export-contract.test.cjs:12`, `mk-goal-lifecycle.test.cjs:14`, `mk-goal-state.test.cjs:14`, `mk-goal-supervisor.test.cjs:26`, `mk-goal-tool-path.test.cjs:18`), so `node --test` reports exactly 1 test per file; the first `assert` failure inside `main()` throws and aborts the whole file, masking roughly 50 downstream scenarios per file",
+    "created_at": "2026-07-03T07:30:49Z",
+    "last_save_at": "2026-07-04T08:33:06.626Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:412679b6be551c98f435af8a84e1c289598a90c6418c31c5bdf937369e0883d0",
+    "source_doc_hashes": {
+      "spec.md": "605cae2d2b49d14c6de51e546fa2d90e1d861d12d2ef8c541b3a5897f907cdd6",
+      "plan.md": "8510cd8dbf4e47affe6c5a694e54a43f4a2f73415386385927a3909d7a0a9434",
+      "tasks.md": "37d5636c34c02b224b0617f7e1f09c3a0ce690227cb219a43f97fc72ca131eb4",
+      "implementation-summary.md": "4f9d1ccfd07dc7419b9c4fc517b9bd7a8185bf7e5c40c2aff1d776cda014855b"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

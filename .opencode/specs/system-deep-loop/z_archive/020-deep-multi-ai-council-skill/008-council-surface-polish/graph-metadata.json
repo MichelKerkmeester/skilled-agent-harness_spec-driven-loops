@@ -1,0 +1,221 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/z_archive/020-deep-multi-ai-council-skill/008-council-surface-polish",
+  "spec_folder": "system-deep-loop/z_archive/020-deep-multi-ai-council-skill/008-council-surface-polish",
+  "parent_id": "system-deep-loop/z_archive/020-deep-multi-ai-council-skill",
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "council surface polish",
+      "deep-ai-council changelog v1.1",
+      "council helpers smoke vitest",
+      "101/008",
+      "101/008 plan",
+      "101/008 tasks",
+      "101/008 summary",
+      "deep-ai-council surface polish summary"
+    ],
+    "key_topics": [
+      "council",
+      "surface",
+      "polish",
+      "deep-ai-council",
+      "changelog",
+      "helpers",
+      "smoke",
+      "vitest",
+      "101",
+      "008",
+      "plan",
+      "tasks"
+    ],
+    "importance_tier": "normal",
+    "status": "in_progress",
+    "key_files": [
+      "tests/council-helpers-smoke.vitest.ts",
+      ".opencode/skills/sk-doc/assets/llmstxt_templates.md",
+      ".opencode/skills/sk-doc/references/global/optimization.md",
+      ".opencode/skills/system-spec-kit/mcp_server/tests/council-helpers-smoke.vitest.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/package.json",
+      "spec.md",
+      "mcp_server/tests/council-helpers-smoke.vitest.ts",
+      "mcp_server/package.json",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "council-helpers-smoke.vitest.ts",
+        "kind": "test",
+        "path": "tests/council-helpers-smoke.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "llmstxt_templates.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/assets/llmstxt_templates.md",
+        "source": "derived"
+      },
+      {
+        "name": "optimization.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/references/global/optimization.md",
+        "source": "derived"
+      },
+      {
+        "name": "package.json",
+        "kind": "config",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/package.json",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Council Surface Polish",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement After",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Direct",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Additive",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Resource Discovery",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Resources",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "After 101/007 closed the six earlier residual gaps, three smaller items remained: (1) SKILL.md does not reference the new artifacts shipped in 007 (`CONTRIBUTING.md`, `featurecatalog/`, `scripts/replay-graph-from-artifacts.cjs`), so a fresh consumer reading the skill entry point wouldn't discover them; (2) the `changelog/` directory only carries `v1.0.0.0.md` covering 101/001 and 101/003 — there's no published changelog entry for the 101/001..007 series as a whole; (3) the replay helper and bash matrix runner have no automated regression tests, so JSONL-mapping or shell-command-shape regressio",
+    "created_at": "2026-05-11T11:35:00Z",
+    "last_save_at": "2026-06-23T03:49:50.246Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:ceca4dc36ec5663d4b1e2f434df7d3388321a37359e89823da10991e3e5b69b0",
+    "source_doc_hashes": {
+      "spec.md": "0ba26c730b861262285b9f14392ab3bc0c9136a10418505e3e3e450a77b2cc9a",
+      "plan.md": "53d0e4598296791d92b204eea305a93fd4045dff1770269caf7f696236dcafca",
+      "tasks.md": "791399811b0a4cba613f97bf86ebc7ffec7c3d833477e186545f262689c0461e",
+      "implementation-summary.md": "c1f4d06496a5d0243bbdccfb0252055056e04396a03d5d337ba1f754e7740308"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

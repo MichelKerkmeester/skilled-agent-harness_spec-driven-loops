@@ -1,0 +1,25 @@
+{
+  "level": "1",
+  "specFolder": "system-deep-loop/030-deep-loop-improved/003-deep-loop-workflows/011-meta-loop-lane-d-packaging",
+  "description": "The `deep-ai-system-improvement` skill has no packaging profile for `deep-loop-runtime` itself as an improvement target",
+  "keywords": [
+    "deep-ai-system-improvement",
+    "skill",
+    "packaging",
+    "profile",
+    "deep-loop-runtime",
+    "itself",
+    "improvement",
+    "target"
+  ],
+  "lastUpdated": "2026-07-04T18:02:12.406Z",
+  "specId": "011",
+  "folderSlug": "meta-loop-lane-d-packaging",
+  "parentChain": [
+    "system-deep-loop",
+    "030-deep-loop-improved",
+    "003-deep-loop-workflows"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

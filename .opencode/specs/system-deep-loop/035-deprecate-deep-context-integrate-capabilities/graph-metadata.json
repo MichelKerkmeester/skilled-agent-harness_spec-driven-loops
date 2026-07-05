@@ -1,0 +1,107 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/035-deprecate-deep-context-integrate-capabilities",
+  "spec_folder": "system-deep-loop/035-deprecate-deep-context-integrate-capabilities",
+  "parent_id": null,
+  "children_ids": [
+    "system-deep-loop/035-deprecate-deep-context-integrate-capabilities/001-research-baseline-and-inventory",
+    "system-deep-loop/035-deprecate-deep-context-integrate-capabilities/002-public-redirect-and-replacement-contracts",
+    "system-deep-loop/035-deprecate-deep-context-integrate-capabilities/003-discoverability-docs-mirrors-and-index",
+    "system-deep-loop/035-deprecate-deep-context-integrate-capabilities/004-fixtures-benchmarks-and-runtime-cleanup"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "deep-context deprecation",
+      "deprecate /deep:context",
+      "integrate context report into deep research",
+      "integrate context report into deep review"
+    ],
+    "key_topics": [
+      "deep-context",
+      "deprecation",
+      "deprecate",
+      "deep",
+      "context",
+      "integrate",
+      "report",
+      "research",
+      "review",
+      "deep-loop",
+      "framework",
+      "still"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      "001-research-baseline-and-inventory/spec.md",
+      "002-public-redirect-and-replacement-contracts/spec.md",
+      "003-discoverability-docs-mirrors-and-index/spec.md",
+      "004-fixtures-benchmarks-and-runtime-cleanup/spec.md",
+      "001-research-baseline-and-inventory/research/research.md",
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Deprecate Standalone Deep Context",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Coordinate",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The deep-loop framework still exposes a standalone `deep-context` route through command, agent, nested skill, registry, advisor, generated contract, documentation, fixture, and benchmark surfaces",
+    "created_at": "2026-07-04T10:46:17Z",
+    "last_save_at": "2026-07-04T17:51:06.486Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "source_fingerprint": "sha256:1caa4e4487001bc77659104df5fbd472cf3c970d5cbde1695552b153a48dfc36",
+    "source_doc_hashes": {
+      "spec.md": "43d7e1761a7ff04d806c04d356a31a5f13a0cb5190a936d78762e8e0c3df9ffe"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

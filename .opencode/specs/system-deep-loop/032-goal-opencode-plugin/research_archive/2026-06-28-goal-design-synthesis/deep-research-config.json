@@ -1,0 +1,87 @@
+{
+  "topic": "Design a /goal capability for OpenCode that mirrors Claude Code's /goal (v2.1.139): set a session-level completion condition, persist it, inject it into the model's context every turn until met, and support show/clear/complete/pause. Produce a concrete, buildable design, NOT a survey.\n\nMINE THESE REFERENCES (read-only):\n- Codex goals: ~/.codex/goals_1.sqlite (thread_goals schema: objective, status active|paused|blocked|usage_limited|budget_limited|complete, token_budget, tokens_used, time_used_seconds, per-thread key).\n- Claude Code /goal behavior (completion condition + autonomous continue-until-met + independent supervisor verification + status-line overlay).\n- Vendored reference: .opencode/specs/z_future/openhuman/external (thread_goals + goalsApi + ThreadGoalChip UI/state model).\n\nMAP ONTO OUR OPENCODE SURFACE (cite exact files):\n- Plugin injection: .opencode/plugins/mk-goal.js (new), modeled on .opencode/plugins/mk-spec-memory.js — inject the active goal via the experimental.chat.system.transform hook (push to output.system) every turn; lifecycle via the event hook (session.created/idle/deleted, message.updated); session.idle is the \"keep working until done\" autonomy seam.\n- Command: .opencode/commands/goal.md (new), thin-router modeled on .opencode/commands/memory/learn.md — $ARGUMENTS subcommands: <objective> | show | clear | complete | pause.\n- State store: choose among flat JSON (.opencode/skills/.goal-state, porting thread_goals, keyed by sessionID), sqlite (Codex-exact), or the spec-kit memory MCP.\n\nRESOLVE THE 9 DESIGN FORKS, each with a recommendation + rationale:\n1 autonomy tier (passive inject / active continuation via session.idle->session.prompt / +supervisor); 2 scope/keying (per-session vs global); 3 state store; 4 budget governance (token/time caps + usage_limited/budget_limited); 5 completion detection (self-report vs shell gate vs supervisor); 6 status set; 7 surfacing substitute for the status-line overlay; 8 command style (root /goal vs /goal:* namespace); 9 reuse vs standalone.\n\nOUTPUT per iteration: a finding with reference file:line evidence + the exact OUR target file/mechanism + a design decision + risk. ANTI-CONVERGENCE: do not stop early; target 10 proper iterations, each adding genuine novelty; on convergence, rotate to a different fork/reference/mechanism. Final research.md: the recommended end-to-end design (files, injection mechanism, lifecycle, chosen autonomy tier with guardrails) + ordered build sub-phases. Executor: cli-codex gpt-5.5 xhigh fast.",
+  "maxIterations": 12,
+  "convergenceThreshold": 0.05,
+  "stuckThreshold": 3,
+  "maxDurationMinutes": 120,
+  "maxToolCallsPerIteration": 12,
+  "maxMinutesPerIteration": 10,
+  "progressiveSynthesis": true,
+  "specFolder": ".opencode/specs/system-deep-loop/032-goal-opencode-plugin",
+  "createdAt": "2026-06-28T14:40:19Z",
+  "status": "initialized",
+  "executionMode": "auto",
+  "executor": {
+    "kind": "cli-codex",
+    "model": "gpt-5.5",
+    "reasoningEffort": "xhigh",
+    "serviceTier": "fast",
+    "sandboxMode": null,
+    "timeoutSeconds": 900
+  },
+  "lineage": {
+    "sessionId": "dr-goal-001-20260628-164019",
+    "parentSessionId": null,
+    "lineageMode": "new",
+    "allowedModes": [
+      "new",
+      "resume",
+      "restart"
+    ],
+    "deferredModes": [
+      "fork",
+      "completed-continue"
+    ],
+    "generation": 1,
+    "continuedFromRun": null
+  },
+  "reducer": {
+    "enabled": true,
+    "version": "1.0",
+    "registryFile": "research/findings-registry.json",
+    "dashboardFile": "research/deep-research-dashboard.md",
+    "strategyFile": "research/deep-research-strategy.md",
+    "machineOwnedSections": [
+      "key-questions",
+      "answered-questions",
+      "what-worked",
+      "what-failed",
+      "exhausted-approaches",
+      "ruled-out-directions",
+      "next-focus"
+    ]
+  },
+  "capabilityMatrixPath": ".opencode/skills/deep-loop-workflows/deep-research/assets/runtime_capabilities.json",
+  "capabilityMatrixDocPath": ".opencode/skills/deep-loop-workflows/deep-research/references/guides/capability_matrix.md",
+  "runtimeCapabilityResolver": ".opencode/skills/deep-loop-workflows/deep-research/scripts/runtime-capabilities.cjs",
+  "reducerScriptPath": ".opencode/skills/deep-loop-workflows/deep-research/scripts/reduce-state.cjs",
+  "pauseSentinelPath": "research/.deep-research-pause",
+  "archiveRoot": "research_archive",
+  "migrationWindowDays": 28,
+  "fileProtection": {
+    "deep-research-config.json": "immutable",
+    "deep-research-state.jsonl": "append-only",
+    "deep-research-strategy.md": "mutable",
+    "deep-research-dashboard.md": "auto-generated",
+    "findings-registry.json": "auto-generated",
+    "iteration-*.md": "write-once",
+    "research/research.md": "mutable"
+  },
+  "_optimizerManaged": {
+    "description": "Fields managed by the offline loop optimizer (042.004). See optimizer-manifest.json for the canonical tunable/locked field registry.",
+    "manifestPath": ".opencode/skills/system-spec-kit/scripts/optimizer/optimizer-manifest.json",
+    "tunableFields": [
+      "convergenceThreshold",
+      "stuckThreshold",
+      "maxIterations"
+    ],
+    "lockedFields": [
+      "lineage",
+      "reducer",
+      "fileProtection",
+      "sessionId",
+      "status"
+    ],
+    "promotionMode": "advisory-only"
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "level": 2,
+  "specFolder": "system-deep-loop/032-goal-opencode-plugin/023-p2-hardening",
+  "description": "Seven adjudicated P2 findings remain in `mk-goal.js`",
+  "keywords": [
+    "seven",
+    "adjudicated",
+    "findings",
+    "remain",
+    "mk-goal"
+  ],
+  "lastUpdated": "2026-07-05T12:13:05.573Z",
+  "specId": "023",
+  "folderSlug": "p2-hardening",
+  "parentChain": [
+    "system-deep-loop",
+    "032-goal-opencode-plugin"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

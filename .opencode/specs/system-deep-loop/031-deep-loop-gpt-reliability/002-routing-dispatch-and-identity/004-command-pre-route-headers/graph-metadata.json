@@ -1,0 +1,228 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/031-deep-loop-gpt-reliability/002-routing-dispatch-and-identity/004-command-pre-route-headers",
+  "spec_folder": "system-deep-loop/031-deep-loop-gpt-reliability/002-routing-dispatch-and-identity/004-command-pre-route-headers",
+  "parent_id": "system-deep-loop/031-deep-loop-gpt-reliability/002-routing-dispatch-and-identity",
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "resolved route header",
+      "deep pre-route",
+      "deep prompt header",
+      "gpt role negotiation",
+      "plan",
+      "command-pre-route-headers",
+      "tasks",
+      "verification",
+      "checklist"
+    ],
+    "key_topics": [
+      "resolved",
+      "route",
+      "header",
+      "deep",
+      "pre-route",
+      "prompt",
+      "gpt",
+      "role",
+      "negotiation",
+      "plan",
+      "command-pre-route-headers",
+      "tasks"
+    ],
+    "importance_tier": "critical",
+    "status": "complete",
+    "key_files": [
+      ".opencode/skills/deep-loop-workflows/deep-research/assets/prompt_pack_iteration.md.tmpl",
+      ".opencode/skills/deep-loop-workflows/deep-review/assets/prompt_pack_iteration.md.tmpl",
+      ".opencode/commands/deep/assets/deep_research_auto.yaml",
+      ".opencode/commands/deep/assets/deep_review_auto.yaml",
+      ".opencode/skills/deep-loop-workflows/deep-ai-council/assets/prompt_pack_round.md",
+      ".opencode/commands/deep/assets/deep_ai-council_auto.yaml",
+      ".opencode/skills/deep-loop-workflows/deep-ai-council/scripts/orchestrate-session.cjs",
+      ".opencode/skills/deep-loop-workflows/deep-ai-council/scripts/orchestrate-topic.cjs",
+      ".opencode/skills/deep-loop-workflows/deep-ai-council/scripts/tests/orchestrate-topic.vitest.ts",
+      ".opencode/skills/deep-loop-workflows/deep-ai-council/scripts/tests/orchestrate-session.vitest.ts",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md",
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "prompt_pack_iteration.md.tmpl",
+        "kind": "file",
+        "path": ".opencode/skills/deep-loop-workflows/deep-research/assets/prompt_pack_iteration.md.tmpl",
+        "source": "derived"
+      },
+      {
+        "name": "deep_research_auto.yaml",
+        "kind": "config",
+        "path": ".opencode/commands/deep/assets/deep_research_auto.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "deep_review_auto.yaml",
+        "kind": "config",
+        "path": ".opencode/commands/deep/assets/deep_review_auto.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "prompt_pack_round.md",
+        "kind": "doc",
+        "path": ".opencode/skills/deep-loop-workflows/deep-ai-council/assets/prompt_pack_round.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep_ai-council_auto.yaml",
+        "kind": "config",
+        "path": ".opencode/commands/deep/assets/deep_ai-council_auto.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "orchestrate-session.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/deep-loop-workflows/deep-ai-council/scripts/orchestrate-session.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "orchestrate-topic.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/deep-loop-workflows/deep-ai-council/scripts/orchestrate-topic.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "orchestrate-topic.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/deep-loop-workflows/deep-ai-council/scripts/tests/orchestrate-topic.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "orchestrate-session.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/deep-loop-workflows/deep-ai-council/scripts/tests/orchestrate-session.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Command Pre",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Route Headers",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Primary Risk",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Focused Vitest",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The research evidence identifies role-resolution overhead as the dominant GPT-slow mechanism",
+    "created_at": "2026-06-30T15:15:00Z",
+    "last_save_at": "2026-07-05T06:46:00.371Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:20b200fe1cd88a724187fec5363f57bd8e2b76ff21eaaa54e60ef7b9f475a5b5",
+    "source_doc_hashes": {
+      "spec.md": "984051d7f6c03af07a54b9184f206d97eb688fe5f965b1748ba6e25a34819279",
+      "plan.md": "3e7b914a0e21c624a7ce50a06c0af73d6320883c2d045ac1cfb9542f3fea6187",
+      "tasks.md": "cc480ac465561141fdac08f41dd70a484e8d20f8f92f1a65dc564afdbb8f85bd",
+      "checklist.md": "a005bc067d1f2f3afa9c78a951d347d102ea02af296c72b9cbdbd00a697228ce",
+      "implementation-summary.md": "40c321a54911d8183bf90e951782a525afb0f525b053ea05dbd291b17bb2bd07"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}
