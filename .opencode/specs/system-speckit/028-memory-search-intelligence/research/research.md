@@ -99,3 +99,15 @@ Audit feature-catalog and README coverage for the post-016 memory-search repair 
 ## Next Audit Angle After Iteration 8
 
 Audit command, agent, and skill-reference surfaces for post-016 memory-search repair awareness: `memory_search`, `memory_health`, `memory_embedding_reconcile`, daemon lifecycle/freshness guidance, and whether user-facing commands expose the corrected contracts without stale pre-016 assumptions.
+
+## Findings Added in Iteration 9
+
+1. `/memory:search` is current for the inspected search contract: it routes general discovery to `memory_context`/`memory_quick_search`, reserves `memory_search` for fine-grained parameters, and presents `requestQuality`, `citationPolicy`, and default-ON `SPECKIT_ENVELOPE_FIDELITY` as sanctioned verdict/envelope extras. [SOURCE: .opencode/commands/memory/search.md:46] [SOURCE: .opencode/commands/memory/search.md:68] [SOURCE: .opencode/commands/memory/assets/search_presentation.txt:102]
+2. `/memory:search` also names the recovery bridge for ablation guard failures: corpus reindex plus embedding reconcile, followed by ground-truth remap if alignment still drifts. [SOURCE: .opencode/commands/memory/search.md:118]
+3. `/memory:manage` does not expose `memory_embedding_reconcile` as a first-class presentation/action route in the inspected surfaces, despite command README and system-spec-kit skill coverage for the MCP maintenance tool. [SOURCE: .opencode/commands/memory/manage.md:45] [SOURCE: .opencode/commands/memory/assets/manage_presentation.txt:34] [SOURCE: .opencode/commands/memory/README.txt:246] [SOURCE: .opencode/skills/system-spec-kit/SKILL.md:418]
+4. `/doctor speckit` memory diagnostics are intentionally read-only and freshness-aware; repair ownership is routed elsewhere, and the inspected doctor command allowed-tool list omits `memory_embedding_reconcile`. [SOURCE: .opencode/commands/doctor/assets/doctor_memory.yaml:21] [SOURCE: .opencode/commands/doctor/assets/doctor_memory.yaml:42] [SOURCE: .opencode/commands/doctor/assets/doctor_memory.yaml:118] [SOURCE: .opencode/commands/doctor/speckit.md:4]
+5. The context agent's inspected guidance is aligned with direct-read-first fallback: it prioritizes packet docs and direct reads, leaving memory search as supporting history rather than an unconditional primary source. [SOURCE: .opencode/agents/context.md:101] [SOURCE: .opencode/agents/context.md:110]
+
+## Next Audit Angle After Iteration 9
+
+Audit deep-loop and spec-kit workflow references for stale assumptions about memory-search reliability, daemon freshness, and repair routing, especially `/speckit:resume`, memory-save/generate-context guidance, and deep-loop prompt packs.
