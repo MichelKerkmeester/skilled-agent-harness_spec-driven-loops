@@ -29,3 +29,14 @@ Iteration 1 completed a first-pass top-down inventory for packet 028 memory-sear
 - Audit manual-testing scenarios for the late-028 flag and verdict set.
 - Audit benchmark index/promotion flow against packet 028's corrected benchmark and phase-040 graduation evidence.
 - Audit command presentation assets for envelope fidelity, requestQuality, citationPolicy, and ablation/dashboard render contracts.
+
+## Findings Added in Iteration 3
+
+1. Manual playbook coverage is aware of the flag drift but records it as a failure: `feature-flag-governance.md` found 17 source flags missing from the feature-flags table, including many late-028 flags. [SOURCE: .opencode/skills/system-spec-kit/manual_testing_playbook/17--governance/feature-flag-governance.md:57]
+2. The EX-028 search-pipeline flag scenario is too generic to prove late-028 survivor, held, deleted, generated-metadata, or verdict-flag behavior. [SOURCE: .opencode/skills/system-spec-kit/manual_testing_playbook/19--feature-flag-reference/1-search-pipeline-features-speckit.md:19]
+3. The release-hardening playbook index lists scenarios 439-453 but does not directly name deterministic multihop, lane champion backfill, true citation emitter, retention forgetting, or generated-metadata enforcement. [SOURCE: .opencode/skills/system-spec-kit/manual_testing_playbook/manual_testing_playbook.md:3865]
+4. The ablation/reporting scenario is a broad channel-off/dashboard check and does not encode packet-028 corrected-driver details, default-routing fidelity, trigger-noise deletion, or path-specific flag-eval caveats. [SOURCE: .opencode/skills/system-spec-kit/manual_testing_playbook/09--evaluation-and-measurement/full-reporting-and-ablation-study-framework-r13-s3.md:36] [SOURCE: .opencode/specs/system-speckit/028-memory-search-intelligence/benchmark-status.md:20]
+
+## Next Audit Angle
+
+Command presentation assets for `/memory:search` and eval/dashboard rendering should be checked next because packet 028 graduated `requestQuality`, `citationPolicy`, and `data.envelopeRender` behavior through envelope-fidelity evidence.
