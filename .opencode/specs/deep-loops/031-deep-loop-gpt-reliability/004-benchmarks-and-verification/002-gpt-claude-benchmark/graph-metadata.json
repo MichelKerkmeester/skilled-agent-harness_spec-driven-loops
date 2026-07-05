@@ -193,7 +193,7 @@
     ],
     "causal_summary": "Every prior attempt to get decisive GPT-backed dispatch evidence has been blocked upstream: phase 005 (the packet's original acceptance-gate smoke) never reached a clean pass or disproof because every command-owned smoke was blocked by `cli-opencode`'s self-invocation guard before real leaf-dispatch behavior could be observed",
     "created_at": "2026-07-01T10:56:27.228Z",
-    "last_save_at": "2026-07-04T19:10:41.144Z",
+    "last_save_at": "2026-07-05T06:46:05.774Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,9 +203,9 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:743ef6754dcf5684d41171c63d25450ed42cf64c4062e307d4a345e451c3d437",
+    "source_fingerprint": "sha256:c64b22ef2f001870d1709de3e2e06c436e60af04ba468b301754b06a7447b9c4",
     "source_doc_hashes": {
-      "spec.md": "e777d12d1fac1e072400b4a804712513a8c6af05f9a49236fb0df642486c7971",
+      "spec.md": "6914a7874a21e349a3ff2b34800b0c4532a29fcf9060348b790386fd77075252",
       "plan.md": "c779a21367b4216afce6a9cbcde8aa2bb7ec9057e799710890b51cbe435f61bc",
       "tasks.md": "7fa5b0021eb33f9b5b7f38d0f6fea17d4b4ba412d27c427e383d600192f73721",
       "checklist.md": "e6703c2254533013676bf9ebfc7c5caaad7426421194125b0b3edd37b64ad8ef",

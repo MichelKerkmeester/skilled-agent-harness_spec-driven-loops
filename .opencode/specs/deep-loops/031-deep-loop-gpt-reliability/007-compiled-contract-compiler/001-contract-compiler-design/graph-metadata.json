@@ -19,7 +19,7 @@
       "036 001 tasks",
       "implementation",
       "summary",
-      "036 001"
+      "031 007 001"
     ],
     "key_topics": [
       "036",
@@ -32,8 +32,8 @@
       "tasks",
       "implementation",
       "summary",
-      "packet",
-      "command"
+      "031",
+      "007"
     ],
     "importance_tier": "high",
     "status": "planned",
@@ -185,7 +185,7 @@
     ],
     "causal_summary": "Phase 001 of packet 036 (command contract compiler, carved from 035). Design-first: verify and expand the seed design (design.md, produced during the 035 phase-003 pass and grounded in the real /deep:review 14-file authority chain) into an implementable spec, resolving the three named unknowns — the OpenCode prompt-injection insertion point, checksum ownership over generated markdown, and CLI-executor receipt/progress parity under fan-out — then decompose the build and retrofit phases.",
     "created_at": "2026-07-03T17:04:53.763Z",
-    "last_save_at": "2026-07-04T19:18:11.197Z",
+    "last_save_at": "2026-07-05T06:46:09.481Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -194,12 +194,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:1cea29e06a54d76b38ed5da35f49901a43f17b2d80d1a8094754b42c8debbc07",
+    "source_fingerprint": "sha256:0c13325061162d32ad5509de5b780bf6d2e7beafd5d2d5e4e8b70ba108d2b617",
     "source_doc_hashes": {
       "spec.md": "4887ed5356ae6b9349e021d45606d758cbfba80f4889a9880ad6dd132bdec4bc",
       "plan.md": "0c1388155150c5e0d5e8b73783d4d0f9e06a9bd4a29a64064d4701f78e4c7285",
       "tasks.md": "0f4b15aafb844161d5aaaf09ac37b7e29a2311b7d55d4e3fa882844b2dff6681",
-      "implementation-summary.md": "bf6976e103416913adf03b715e9b8f5bf7886b5c7444ebe31195f721c68562a9"
+      "implementation-summary.md": "533b7eba7a468927c6fc5f1909d2336cf653fa0b5636a5cd7f49076401abf732"
     },
     "last_active_child_id": null,
     "last_active_at": null

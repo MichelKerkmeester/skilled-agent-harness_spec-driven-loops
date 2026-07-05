@@ -1,7 +1,7 @@
 ---
 title: "Implementation Summary: Contract Compiler Design"
-description: "Phase 001 of packet 036 delivered a verified, implementable design for the build-time command-contract compiler plus an 8-phase build/retrofit decomposition. Three bounded design passes (GPT-5.5-fast), each independently Sonnet-verified; consolidated and re-verified. Design-only — no build."
-trigger_phrases: ["implementation", "summary", "036 001"]
+description: "Phase 001 of the compiled-contract-compiler track (007) delivered a verified, implementable design for the build-time command-contract compiler plus an 8-phase build/retrofit decomposition. Three bounded design passes (GPT-5.5-fast), each independently Sonnet-verified; consolidated and re-verified. Design-only — no build."
+trigger_phrases: ["implementation", "summary", "031 007 001"]
 importance_tier: "high"
 contextType: "implementation"
 _memory:

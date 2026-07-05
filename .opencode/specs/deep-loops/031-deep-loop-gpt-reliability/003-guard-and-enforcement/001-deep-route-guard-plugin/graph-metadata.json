@@ -197,7 +197,7 @@
     ],
     "causal_summary": "Phases 008-010 fix routing identity (correct table rows, correct registry values, correct reachability) but do nothing to enforce it at the moment of dispatch — a model can still construct a Task-tool call with a mismatched `mode`/`targetagent` pair and nothing currently stops it before the dispatch happens",
     "created_at": "2026-07-01T10:56:27.071Z",
-    "last_save_at": "2026-07-04T19:08:59.518Z",
+    "last_save_at": "2026-07-05T06:46:03.117Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,9 +207,9 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:6a304669ed4c337e23cf9b5cfb2e04e2121752d7c395c1491398dc42d84b8c44",
+    "source_fingerprint": "sha256:4c3e0b89a4a313d761e44a91bd60b216852dc1371ea8418ebbdd85dfd5037f48",
     "source_doc_hashes": {
-      "spec.md": "c2729edde8527e3d369aaea56809095a410e02163550fd4cf4517bea2c830723",
+      "spec.md": "45d4feb40b6a19697011028e98a4588d796e46ae86e73e1367c68d68ce34da08",
       "plan.md": "732a362f8d9634daf8682615f28a2d57fb58c5b5ec2056fb053cb337ce57b963",
       "tasks.md": "1c83a10bc28486036f8bf83833910e59f5199f3f702e5562e516c2e5c76e58e8",
       "checklist.md": "0b87b3c0a5ddea18239811d0582b43e2810a58ff81977a50facc5627356e30f8",

@@ -45,7 +45,7 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-This closes out the last open question in the whole `031-deep-loop-issues-with-gpt-opencode` packet: whether the cheaper, agent-layer fixes (phases 001-004, 008-011) are sufficient, or whether FIX-5's host-runtime hard identity / process isolation actually needs building. Applied research's cross-validated negative gate against phase 012's real benchmark results and closed phase 006 as unnecessary.
+This closes out the last open question in the whole `031-deep-loop-gpt-reliability` packet: whether the cheaper, agent-layer fixes (phases 001-004, 008-011) are sufficient, or whether FIX-5's host-runtime hard identity / process isolation actually needs building. Applied research's cross-validated negative gate against phase 012's real benchmark results and closed phase 006 as unnecessary.
 
 ### The Gate, Applied
 

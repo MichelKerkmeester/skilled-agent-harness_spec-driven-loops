@@ -208,7 +208,7 @@
     ],
     "causal_summary": "Packet 031 (phases 008-013) changed real runtime behavior: `ai-council.md` converted from `mode: all` to `mode: subagent`, `orchestrate.md` gained deep-mode routing rows and was later bloat-reduced, a new `mk-deep-loop-guard.js` plugin was added and later renamed (from `deep-route-guard.js`), and `.opencode/agents/.toml` mirrors were removed as an obsolete requirement",
     "created_at": "2026-07-01T15:17:20.938Z",
-    "last_save_at": "2026-07-04T19:10:58.672Z",
+    "last_save_at": "2026-07-05T06:46:06.599Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -218,11 +218,11 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:687cf5e87c7c44a551dd0f1535d6d749b02bca394bc4d9052d2a9e483e7c47ba",
+    "source_fingerprint": "sha256:5085fbdfc104d222fa48703aa0bea771eaf51cea96934ab1c809bab5568eb537",
     "source_doc_hashes": {
-      "spec.md": "dc65288bf155f8003910ceb3035b8360ff733243c14a3d693afaa7f0e7f922dc",
+      "spec.md": "c37668130b1a040e4835f5c8aacaffe1e48c42446a761f5f493891f94cac45e8",
       "plan.md": "0e5ea8cf3413601e96fc91df4b1d082ef3681b57b52ac111765da8982a7cc87d",
-      "tasks.md": "ded254cd73a984dbb4c94b4a5ad3eb67e98fc0410011c93b4199ca1171c1f3ad",
+      "tasks.md": "793bc2beafa4d1fe66109d863285d17c3cb2e0ee6bba9adfe06d135b842e40e7",
       "checklist.md": "c7dc790c3b2582f054a0be716a83a389d8b5f9e79a0e848a4b92c7ac25e3ee4f",
       "implementation-summary.md": "4460b0c07353631c43863ddd31024265733c9dd23f7d2b117a1ec9e517b6fed3"
     },

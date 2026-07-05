@@ -48,7 +48,7 @@ _memory:
 | **Priority** | P0 |
 | **Status** | Complete |
 | **Created** | 2026-07-01 |
-| **Parent Packet** | `031-deep-loop-issues-with-gpt-opencode` |
+| **Parent Packet** | `031-deep-loop-gpt-reliability` |
 | **Predecessor** | `../008-mode-d-ai-council-identity-fix/` (must land first) |
 | **Successor** | `../010-ai-council-subagent-only/` |
 <!-- /ANCHOR:metadata -->

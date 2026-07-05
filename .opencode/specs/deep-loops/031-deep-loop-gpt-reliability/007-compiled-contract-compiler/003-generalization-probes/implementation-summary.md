@@ -1,6 +1,6 @@
 ---
 title: "Implementation Summary: Compiled-Contract Generalization Probes"
-description: "Phase 003 of packet 036 — fix-vs-fallback probes on gpt-fast-med at N=2. Council NOT confirmed (fix arm split 1/2 vs fallback 0/2; seat-convergence stall dominates); context lever-null on the natural cell and method-moot (surface deprecated concurrently); leaf-reliability lift an honest negative on the review re-probe."
+description: "Phase 003 of the compiled-contract-compiler track (007) — fix-vs-fallback probes on gpt-fast-med at N=2. Council NOT confirmed (fix arm split 1/2 vs fallback 0/2; seat-convergence stall dominates); context lever-null on the natural cell and method-moot (surface deprecated concurrently); leaf-reliability lift an honest negative on the review re-probe."
 trigger_phrases:
   - "036 phase 003 summary"
   - "generalization probe results"

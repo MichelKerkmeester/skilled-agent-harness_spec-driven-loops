@@ -90,5 +90,5 @@ _memory:
 
 - **Specification**: See `spec.md`
 - **Plan**: See `plan.md`
-- **Research Source**: See `../../031-deep-loop-issues-with-gpt-opencode/001-gpt-deep-agent-routing/research/research.md`
+- **Research Source**: See `../../031-deep-loop-gpt-reliability/001-gpt-deep-agent-routing/research/research.md`
 <!-- /ANCHOR:cross-refs -->

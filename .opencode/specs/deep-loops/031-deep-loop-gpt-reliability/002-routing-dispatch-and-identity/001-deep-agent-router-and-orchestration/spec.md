@@ -47,7 +47,7 @@ _memory:
 | **Priority** | P0 |
 | **Status** | Complete (research) — implementation lives in flat sibling phases 002-006 under the 031 parent, not nested under this folder |
 | **Created** | 2026-06-30 |
-| **Parent Packet** | `deep-loops/031-deep-loop-issues-with-gpt-opencode` |
+| **Parent Packet** | `deep-loops/031-deep-loop-gpt-reliability` |
 | **Research** | COMPLETE — `research/research.md` (v2, 6 iterations, 10/10 KQs) |
 <!-- /ANCHOR:metadata -->
 
@@ -62,7 +62,7 @@ GPT-backed models running inside OpenCode do not properly invoke deep skills (de
 
 ### Purpose
 
-Make GPT-backed OpenCode reliably invoke the correct deep agent on the first dispatch — correctly, quickly, and without sacrificing Claude's flexibility — via an agent-layer structural fix (smaller blast radius than FIX-5). The completed research (`research/research.md` v2) produced the design + a concrete `deep.md` draft + a 4-mode pre-route edit map + a FIX-5 trigger (with a documented false-negative) + a verification approach. This research phase informed the implementation, which was decomposed into single-concern phases 002-006 living as flat siblings of this folder directly under the `031-deep-loop-issues-with-gpt-opencode` parent (not nested here).
+Make GPT-backed OpenCode reliably invoke the correct deep agent on the first dispatch — correctly, quickly, and without sacrificing Claude's flexibility — via an agent-layer structural fix (smaller blast radius than FIX-5). The completed research (`research/research.md` v2) produced the design + a concrete `deep.md` draft + a 4-mode pre-route edit map + a FIX-5 trigger (with a documented false-negative) + a verification approach. This research phase informed the implementation, which was decomposed into single-concern phases 002-006 living as flat siblings of this folder directly under the `031-deep-loop-gpt-reliability` parent (not nested here).
 
 > **Structural note (corrected 2026-07-01):** this folder is a regular completed phase, not a nested phase-parent — the `031` root is the packet's sole phase parent, with 001-006 (and 007, pending) as its flat children. Prior versions of this doc described a `001/00N-*` nested layout that never matched the actual filesystem; that description has been corrected packet-wide (see `031/spec.md` §3 and each phase's `graph-metadata.json`).
 <!-- /ANCHOR:problem -->

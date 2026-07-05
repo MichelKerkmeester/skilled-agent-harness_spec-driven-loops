@@ -1,6 +1,6 @@
 ---
 title: "Feature Specification: Skill Documentation Drift Audit (Packet 031 Follow-Up)"
-description: "Deep-review + deep-research investigation into whether SKILL.md files, references/, assets/, and READMEs across the repo went stale as a result of the 031-deep-loop-issues-with-gpt-opencode packet's changes (phases 008-013 plus the mk-deep-loop-guard rename/integration)."
+description: "Deep-review + deep-research investigation into whether SKILL.md files, references/, assets/, and READMEs across the repo went stale as a result of the 031-deep-loop-gpt-reliability packet's changes (phases 008-013 plus the mk-deep-loop-guard rename/integration)."
 trigger_phrases:
   - "skill doc drift audit"
   - "stale skill docs"
@@ -44,7 +44,7 @@ _memory:
 | **Priority** | P2 |
 | **Status** | Complete |
 | **Created** | 2026-07-01 |
-| **Parent Packet** | `../` (deep-loops/031-deep-loop-issues-with-gpt-opencode) |
+| **Parent Packet** | `../` (deep-loops/031-deep-loop-gpt-reliability) |
 
 <!-- /ANCHOR:metadata -->
 ---

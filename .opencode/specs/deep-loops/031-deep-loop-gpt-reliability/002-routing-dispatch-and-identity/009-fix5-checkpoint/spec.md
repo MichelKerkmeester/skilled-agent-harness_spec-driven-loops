@@ -46,7 +46,7 @@ _memory:
 | **Priority** | P2 (conditional — not actionable until phase 012 completes) |
 | **Status** | Complete — FIX-5 closed |
 | **Created** | 2026-07-01 |
-| **Parent Packet** | `031-deep-loop-issues-with-gpt-opencode` |
+| **Parent Packet** | `031-deep-loop-gpt-reliability` |
 | **Predecessor** | `../012-gpt-claude-benchmark/` |
 | **Successor** | None — this is the final phase in the current chain. If triggered, its output is an updated `../006-host-hard-identity-fix5/decision-record.md`, which would then need its own follow-on implementation phase. |
 <!-- /ANCHOR:metadata -->

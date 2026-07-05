@@ -41,7 +41,7 @@ _memory:
 | **Priority** | P0 |
 | **Status** | Complete |
 | **Created** | 2026-06-30 |
-| **Parent Packet** | `031-deep-loop-issues-with-gpt-opencode` |
+| **Parent Packet** | `031-deep-loop-gpt-reliability` |
 | **Predecessor** | `../003-agent-dispatch-hardening` |
 | **Successor** | `../005-gpt-verification-smoke` |
 | **Handoff Criteria** | All four deep modes carry pre-resolved route headers; native agent fields preserved; existing prompt bodies intact |

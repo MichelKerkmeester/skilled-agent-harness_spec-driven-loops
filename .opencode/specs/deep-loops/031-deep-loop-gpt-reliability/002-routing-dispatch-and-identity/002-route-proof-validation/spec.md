@@ -42,7 +42,7 @@ _memory:
 | **Priority** | P0 |
 | **Status** | Complete |
 | **Created** | 2026-06-30 |
-| **Parent Packet** | `031-deep-loop-issues-with-gpt-opencode` |
+| **Parent Packet** | `031-deep-loop-gpt-reliability` |
 | **Predecessor** | `../001-deep-agent-router-and-orchestration/research/research.md` (v2) |
 | **Successor** | `../003-agent-dispatch-hardening` |
 | **Handoff Criteria** | Route-proof validator fields reject schema-valid-but-wrong-mode artifacts; prior-research evidence base resolved; citation drift fixed |

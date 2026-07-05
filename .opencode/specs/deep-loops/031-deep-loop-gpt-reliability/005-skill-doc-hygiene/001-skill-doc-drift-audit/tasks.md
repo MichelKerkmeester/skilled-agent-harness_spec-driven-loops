@@ -50,7 +50,7 @@ _memory:
 
 - [x] T001 Confirmed packet 031 phases 008-013 complete (real behavior exists to audit against).
 - [x] T002 Enumerated 45 candidate skill-doc files via targeted grep across `.opencode/skills` for 031-relevant keywords; recorded in `spec.md` §3.
-- [x] T003 Resolved Gate 3 spec-folder placement with operator: new phase `014-skill-doc-drift-audit` under `031-deep-loop-issues-with-gpt-opencode`.
+- [x] T003 Resolved Gate 3 spec-folder placement with operator: new phase `014-skill-doc-drift-audit` under `031-deep-loop-gpt-reliability`.
 - [x] T004 Resolved verification-timing design with operator: continuous 10-iteration fan-out runs (loop-owned state/locks), not hand-simulated single-iteration mode.
 <!-- /ANCHOR:phase-1 -->
 

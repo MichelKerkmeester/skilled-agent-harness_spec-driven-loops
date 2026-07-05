@@ -47,7 +47,7 @@ _memory:
 | **Priority** | P0 |
 | **Status** | Failed/blocked after command-owned GPT smoke attempts |
 | **Created** | 2026-06-30 |
-| **Parent Packet** | `031-deep-loop-issues-with-gpt-opencode` |
+| **Parent Packet** | `031-deep-loop-gpt-reliability` |
 | **Predecessor** | `../004-command-pre-route-headers` |
 | **Successor** | `../006-host-hard-identity-fix5` only if the full smoke trigger fires |
 | **Handoff Criteria** | GPT first-dispatch passes route-proof validation per mode; FIX-5 escalation decision recorded |

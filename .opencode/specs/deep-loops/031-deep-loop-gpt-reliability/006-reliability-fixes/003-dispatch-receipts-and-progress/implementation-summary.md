@@ -4,7 +4,7 @@ description: "Phase 004 shipped: dispatch-receipt engine (GAP-23 key-leak blocke
 trigger_phrases:
   - "implementation"
   - "summary"
-  - "035 004"
+  - "031 006 003"
 importance_tier: "high"
 contextType: "implementation"
 _memory:
@@ -13,7 +13,7 @@ _memory:
     last_updated_at: "2026-07-03T18:00:00Z"
     last_updated_by: "claude-code"
     recent_action: "Shipped all six tasks; each Sonnet-verified and committed"
-    next_safe_action: "Re-run the live acceptance cells after packet 036 wires the fixes"
+    next_safe_action: "Re-run live acceptance cells once track 007 wires the fixes"
     blockers: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
@@ -91,7 +91,7 @@ Orchestrator-hosted loop: GLM-5.2-max implemented each bounded, scope-locked tas
 | Council persist tests | 16/16 pass (4 new stepwise tests); stash/restore baseline confirms the pre-existing persist-artifacts failure is not caused by this change |
 | Comment hygiene | Exit 0 on every touched code file |
 | `validate.sh --strict` | See closeout run below |
-| Live acceptance cells (RVB-007, RSB-005, RSB-007, ACB-004-high, ACB-005, CXB-004) on gpt-fast | **NOT re-run — deferred to packet 036**; see Known Limitations for why the pre-036 result would not be meaningful |
+| Live acceptance cells (RVB-007, RSB-005, RSB-007, ACB-004-high, ACB-005, CXB-004) on gpt-fast | **NOT re-run — deferred to the compiled-contract-compiler track (007)**; see Known Limitations for why the pre-036 result would not be meaningful |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -99,7 +99,7 @@ Orchestrator-hosted loop: GLM-5.2-max implemented each bounded, scope-locked tas
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **Live acceptance-cell validation is deferred to packet 036.** The 033 behavior-benchmark cells this phase is meant to flip (RVB-007, RSB-005, RSB-007, ACB-004-high, ACB-005, CXB-004) were not re-run against live gpt-fast. A wiring audit found that only part of the fix set is hard-wired into the live dispatch path: the progress-record reducer (`filterCompletionBearingRecords`, called by all three `reduce-state.cjs` reducers) and the route-field asserts in `deep_*_auto.yaml`. The receipt-audit behavior and the Gate-3 autonomous-precedence bridge reach GPT only as **instruction-level prose** in the YAML and root policy — precisely the distributed-instruction fragility that packet 036's unified contract compiler is built to remove. Running the ~24-run live matrix now would mostly re-confirm "036 needed" rather than validate a flip, so the validation is deferred until 036 wires the fixes into the compiled per-command contract.
+1. **Live acceptance-cell validation is deferred to the compiled-contract-compiler track (007).** The 033 behavior-benchmark cells this phase is meant to flip (RVB-007, RSB-005, RSB-007, ACB-004-high, ACB-005, CXB-004) were not re-run against live gpt-fast. A wiring audit found that only part of the fix set is hard-wired into the live dispatch path: the progress-record reducer (`filterCompletionBearingRecords`, called by all three `reduce-state.cjs` reducers) and the route-field asserts in `deep_*_auto.yaml`. The receipt-audit behavior and the Gate-3 autonomous-precedence bridge reach GPT only as **instruction-level prose** in the YAML and root policy — precisely the distributed-instruction fragility that the compiled-contract-compiler track (007)'s unified contract compiler is built to remove. Running the ~24-run live matrix now would mostly re-confirm "036 needed" rather than validate a flip, so the validation is deferred until 036 wires the fixes into the compiled per-command contract.
 2. **The phase-001 rollout flag is not yet consumed on the live path.** `resolveInjectionMode` / `SPECKIT_COMMAND_INJECTION_MODE` exists as a config resolver but is called nowhere in the live command dispatch (only its own README). The staged manifest-capture / comparator / plugin wiring that would make the flag gate live behavior was carved to 036. An earlier draft of this summary claimed the changes "sit behind the phase-001 feature flag"; that is corrected here — the flag decision function exists, but its live consumer does not yet.
 <!-- /ANCHOR:limitations -->
 
@@ -108,5 +108,5 @@ Orchestrator-hosted loop: GLM-5.2-max implemented each bounded, scope-locked tas
 <!-- ANCHOR:followup -->
 ## Recommended Follow-Up
 
-After packet 036 wires the fixes into the compiled per-command contract and makes the phase-001 rollout flag a live consumer, run the acceptance-cell benchmark (T002) on gpt-fast-med + gpt-fast-high: confirm the six cells reach their expected verdict and the baseline leg does not regress. That closes the phase's own acceptance criterion. Running it before 036 would measure distributed-instruction prose, not the intended mechanism.
+After the compiled-contract-compiler track (007) wires the fixes into the compiled per-command contract and makes the phase-001 rollout flag a live consumer, run the acceptance-cell benchmark (T002) on gpt-fast-med + gpt-fast-high: confirm the six cells reach their expected verdict and the baseline leg does not regress. That closes the phase's own acceptance criterion. Running it before 036 would measure distributed-instruction prose, not the intended mechanism.
 <!-- /ANCHOR:followup -->

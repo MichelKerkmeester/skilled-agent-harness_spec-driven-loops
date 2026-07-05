@@ -41,7 +41,7 @@ _memory:
 | **Priority** | P0 |
 | **Status** | Complete |
 | **Created** | 2026-06-30 |
-| **Parent Packet** | `031-deep-loop-issues-with-gpt-opencode` |
+| **Parent Packet** | `031-deep-loop-gpt-reliability` |
 | **Predecessor** | `../002-route-proof-validation` (must land first) |
 | **Successor** | `../004-command-pre-route-headers` |
 | **Artifact Source** | `../001-deep-agent-router-and-orchestration/research/iterations/iteration-004.md` (concrete deep.md draft) |
