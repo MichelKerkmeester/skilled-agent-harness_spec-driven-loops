@@ -1,0 +1,56 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/028-memory-search-intelligence/008-speckit-surface-alignment/011-fix-code-graph-docs",
+  "spec_folder": "system-speckit/028-memory-search-intelligence/008-speckit-surface-alignment/011-fix-code-graph-docs",
+  "parent_id": "system-speckit/028-memory-search-intelligence/008-speckit-surface-alignment",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "code graph docs",
+      "doc alignment",
+      "system-code-graph",
+      "parser skip list",
+      "doc-symbol lane"
+    ],
+    "key_topics": [
+      "system-code-graph documentation alignment",
+      "doc-symbol lane",
+      "parser skip-list retry",
+      "handler topology"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [],
+    "causal_summary": "The read-only audit at `011-code-graph-doc-audit/review-report.md` confirmed six documentation-alignment defects in `.opencode/skills/system-code-graph/`",
+    "created_at": "2026-07-05T00:00:00Z",
+    "last_save_at": "2026-07-05T00:00:00Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:b4e177c5870c5fbf8afdb2685f78617c1353f5a1f3dfa4a839788f5daf0b15b2",
+    "source_doc_hashes": {
+      "spec.md": "0000000000000000000000000000000000000000000000000000000000000000",
+      "plan.md": "0000000000000000000000000000000000000000000000000000000000000000",
+      "tasks.md": "0000000000000000000000000000000000000000000000000000000000000000",
+      "implementation-summary.md": "0000000000000000000000000000000000000000000000000000000000000000"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

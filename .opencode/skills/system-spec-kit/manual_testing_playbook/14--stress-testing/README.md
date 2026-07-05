@@ -1,24 +1,26 @@
 ---
 title: "Stress Testing Manual Playbook"
-description: "Section index and ownership guide for stress-test manual playbooks in system-spec-kit."
+description: "Section index and ownership guide for manual stress cycles plus automated stress harness cross-references in system-spec-kit."
 audited_post_018: true
-version: 3.6.0.8
+version: 3.7.1.0
 ---
 
 # Stress Testing Manual Playbook
 
-> Package map for the stress-test manual playbook, execution file, template pack and catalog cross-reference.
+> Package map for the stress-test manual playbook, execution file, automated harness cross-reference, template pack and catalog cross-reference.
 
 ---
 
 ## 1. OVERVIEW
 
-`manual_testing_playbook/14--stress-testing/` owns operator-facing stress-test steps for `system-spec-kit`. Use it when a release, remediation set, or subsystem change needs a reproducible stress cycle with a frozen corpus, scored cells, narrative findings, a rubric sidecar, comparison deltas and optional telemetry samples.
+`manual_testing_playbook/14--stress-testing/` owns operator-facing stress-test steps for `system-spec-kit`. Use it when a release, remediation set, or subsystem change needs a reproducible manual stress cycle with a frozen corpus, scored cells, narrative findings, a rubric sidecar, comparison deltas and optional telemetry samples. Pair it with the automated `mcp_server/stress_test/` Vitest harness when the change needs code-level stress evidence.
 
 Current state:
 
 - One execution playbook covers stress-cycle setup, scoring, findings and telemetry capture.
 - The folder links to the current feature catalog entry and stress-test template pack.
+- The automated harness has six domains: `durability/`, `matrix/`, `memory/`, `search-quality/`, `session/`, and `substrate/`.
+- The confirmed npm stress scripts are `stress`, `stress:harness`, `stress:matrix`, `stress:substrate`, and `stress:durability` in `mcp_server/package.json`.
 - This README is the package map. The execution procedure stays in `run-stress-cycle.md`.
 
 ---
@@ -50,6 +52,8 @@ Current state:
 | `../../templates/stress_test/findings-rubric.template.json` | Machine-readable sidecar scaffold copied as `findings-rubric.json`. |
 | `../../templates/stress_test/findings-rubric.schema.md` | Field contract for rubric metadata, cells, aggregate math and comparison data. |
 | `../../feature_catalog/14--pipeline-architecture/stress-test-cycle.md` | Current catalog entry for the stress-test cycle operator flow. |
+| `../../mcp_server/stress_test/README.md` | Automated Vitest stress harness root, domain map and entrypoint list. |
+| `../../mcp_server/package.json` | Source for the `npm run stress*` command surface. |
 
 ---
 
@@ -68,7 +72,7 @@ Stress-test scenarios must identify the active corpus, target packet, scoring di
 
 ## 6. TEST EXECUTION
 
-Use [01 - Run stress cycle](run-stress-cycle.md) as the execution source. This README only lists the available scenario entry and ownership rules.
+Use [01 - Run stress cycle](run-stress-cycle.md) as the manual execution source. This README lists the available manual scenario entry, ownership rules and automated harness cross-reference.
 
 Execution order:
 
@@ -77,6 +81,16 @@ Execution order:
 3. Write `findings.md`, emit `findings-rubric.json` and record any `measurements/` samples.
 4. Compare with the prior sidecar when one exists.
 5. Run the owning packet's strict validator before publishing the verdict.
+
+Automated harness entrypoints, run from `.opencode/skills/system-spec-kit/mcp_server`:
+
+```bash
+npm run stress
+npm run stress:harness
+npm run stress:matrix
+npm run stress:substrate
+npm run stress:durability
+```
 
 ---
 
@@ -87,6 +101,7 @@ Execution order:
 | Ownership | Keep execution steps in `run-stress-cycle.md`. |
 | Templates | Keep reusable findings files in `templates/stress_test/`. |
 | Catalog links | Keep current feature ownership in `feature_catalog/14--pipeline-architecture/stress-test-cycle.md`. |
+| Automated harness | Keep code-level stress details in `mcp_server/stress_test/**/README.md`; this playbook only points operators to the harness and scripts. |
 | Validator scope | Treat `validate_document.py` as README-focused. It does not prove that every playbook link or packet artifact exists. |
 
 ---
@@ -98,6 +113,7 @@ Execution order:
 | Playbook root | `.opencode/skills/system-spec-kit/manual_testing_playbook/14--stress-testing/` |
 | Feature catalog | `.opencode/skills/system-spec-kit/feature_catalog/14--pipeline-architecture/stress-test-cycle.md` |
 | Template bundle | `.opencode/skills/system-spec-kit/templates/stress_test/` |
+| Automated harness | `.opencode/skills/system-spec-kit/mcp_server/stress_test/` |
 
 ---
 
@@ -124,3 +140,4 @@ python3 .opencode/skills/sk-doc/scripts/extract_structure.py .opencode/skills/sy
 - [Run stress cycle](run-stress-cycle.md)
 - [Stress test templates](../../templates/stress_test/README.md)
 - [Stress test feature catalog entry](../../feature_catalog/14--pipeline-architecture/stress-test-cycle.md)
+- [MCP server stress test harness](../../mcp_server/stress_test/README.md)

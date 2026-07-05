@@ -1,0 +1,33 @@
+{
+  "specFolder": "system-speckit/028-memory-search-intelligence/008-speckit-surface-alignment/002-false-now-doc-corrections",
+  "description": "False-now documentation corrections for retention flag naming, Track-C supersession, soft-delete active-row wording, and envelope fidelity comment wor",
+  "keywords": [
+    "false-now",
+    "documentation",
+    "corrections",
+    "retention",
+    "flag",
+    "naming",
+    "track-c",
+    "supersession",
+    "soft-delete",
+    "active-row",
+    "wording",
+    "envelope",
+    "fidelity",
+    "comment"
+  ],
+  "lastUpdated": "2026-07-05T08:50:01.431Z",
+  "specId": "002",
+  "folderSlug": "false-now-doc-corrections",
+  "parentChain": [
+    ".opencode",
+    "specs",
+    "system-speckit",
+    "028-memory-search-intelligence",
+    "008-speckit-surface-alignment"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

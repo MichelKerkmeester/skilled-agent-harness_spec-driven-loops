@@ -50,14 +50,14 @@ Detail per tool lives in `feature_catalog/feature_catalog.md`. Readiness state d
 │           │                                                     │
 │  ┌────────▼──────────────────────────────────────────────────┐  │
 │  │                       mcp_server/                         │  │
-│  │  ┌──────────┐ ┌──────────┐ ┌──────────────────────────┐   │  │
-│  │  │ parser/  │ │handlers/ │ │           lib/           │   │  │
-│  │  │ tree-    │ │scan      │ │ readiness contract       │   │  │
-│  │  │ sitter   │ │query     │ │ apply-mode recovery      │   │  │
-│  │  │ WASM     │ │context   │ │ gold-query verifier      │   │  │
-│  │  │ grammars │ │status    │ │ blast-radius + change detection  │   │  │
-│  │  │          │ │verify    │ │                          │   │  │
-│  │  └──────────┘ └──────────┘ └──────────────────────────┘   │  │
+│  │  ┌──────────┐ ┌──────────────────────────────────────┐   │  │
+│  │  │handlers/ │ │                lib/                  │   │  │
+│  │  │scan      │ │ tree-sitter parser adapter           │   │  │
+│  │  │query     │ │ readiness contract                   │   │  │
+│  │  │context   │ │ apply-mode recovery                  │   │  │
+│  │  │status    │ │ gold-query verifier                  │   │  │
+│  │  │verify    │ │ blast-radius + change detection      │   │  │
+│  │  └──────────┘ └──────────────────────────────────────┘   │  │
 │  │  plugin_bridges/         tests/                           │  │
 │  └─────────────────────────┬─────────────────────────────────┘  │
 │                            │                                    │
@@ -68,7 +68,7 @@ Detail per tool lives in `feature_catalog/feature_catalog.md`. Readiness state d
 │                         └─────────────────┘                     │
 │                                                                 │
 │  Dependency direction: handlers/ ──▶ lib/                       │
-│                        lib/ ──▶ parser/                         │
+│                        parser adapter lives inside lib/          │
 │                        lib/ ──▶ database/                       │
 │                        plugin_bridges/ ──▶ lib/                 │
 │                                                                 │
@@ -101,11 +101,11 @@ system-code-graph/
 Allowed dependency direction:
 
 - `handlers/ ──▶ lib/`
-- `lib/ ──▶ parser/`
+- parser logic lives in `lib/tree-sitter-parser.ts`; there is no separate `parser/` package.
 - `lib/ ──▶ database/`
 - `plugin_bridges/ ──▶ lib/`
 
-Reverse imports are blocked by lint and CI.
+Reverse imports should be treated as boundary violations during review and CI.
 
 ---
 

@@ -1,0 +1,30 @@
+{
+  "level": "1",
+  "specFolder": "system-speckit/028-memory-search-intelligence/008-speckit-surface-alignment/012-fix-stress-docs",
+  "description": "The stress-test documentation had five confirmed drifts from the shipped `mcpserver/stresstest/` harness",
+  "keywords": [
+    "repair",
+    "confirmed",
+    "stress-test",
+    "documentation",
+    "drift",
+    "across",
+    "catalog",
+    "playbook",
+    "automated",
+    "stress",
+    "harness",
+    "readme",
+    "surfaces"
+  ],
+  "lastUpdated": "2026-07-05T10:00:08.658Z",
+  "specId": "012",
+  "folderSlug": "fix-stress-docs",
+  "parentChain": [
+    "system-speckit",
+    "028-memory-search-intelligence",
+    "008-speckit-surface-alignment"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

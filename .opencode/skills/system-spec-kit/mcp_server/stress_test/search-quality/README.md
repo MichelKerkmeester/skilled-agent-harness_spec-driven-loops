@@ -1,6 +1,6 @@
 ---
 title: "Search Quality Stress Tests: Retrieval Metrics And Degraded Modes"
-description: "Stress harness, fixtures and Vitest coverage for search quality metrics, degraded readiness, reranking and calibration behavior."
+description: "Stress harness, fixtures and Vitest coverage for search quality metrics, degraded readiness, reranking, learned weights and decision behavior."
 trigger_phrases:
   - "search quality stress"
   - "retrieval metrics"
@@ -13,7 +13,7 @@ trigger_phrases:
 
 ## 1. OVERVIEW
 
-`stress_test/search-quality/` contains stress coverage for retrieval quality measurement, degraded readiness, reranking, Code Graph calibration, decision envelopes and metric output. It combines a harness, fixtures, metrics helpers and many targeted Vitest suites.
+`stress_test/search-quality/` contains stress coverage for retrieval quality measurement, degraded readiness, reranking, learned weights, decision envelopes and metric output. It combines a harness, fixtures, metrics helpers and many targeted Vitest suites.
 
 Current state:
 
@@ -55,6 +55,7 @@ search-quality/
 +-- measurement-fixtures.ts           # Measurement fixture data
 +-- metrics.ts                        # Metric helpers
 +-- baseline.vitest.ts                # Baseline coverage
++-- bm25-scope-then-limit-stress.vitest.ts # BM25 scope-before-limit stress coverage
 +-- ndcg-mrr.vitest.ts                # Metric coverage
 +-- w*-*.vitest.ts                    # Targeted stress waves
 +-- query-surrogates-stress.vitest.ts # Query surrogate stress coverage
@@ -76,16 +77,18 @@ stress suites -> search pipeline under test
 ```text
 search-quality/
 +-- baseline.vitest.ts
++-- bm25-scope-then-limit-stress.vitest.ts
 +-- harness-telemetry-export.vitest.ts
 +-- measurement-output.vitest.ts
 +-- ndcg-mrr.vitest.ts
 +-- query-surrogates-stress.vitest.ts
++-- w3-trust-tree.vitest.ts
++-- w5-shadow-learned-weights.vitest.ts
 +-- w7-degraded-empty.vitest.ts
 +-- w7-degraded-full-scan.vitest.ts
 +-- w7-degraded-stale.vitest.ts
 +-- w7-degraded-unavailable.vitest.ts
 +-- w8-search-decision-envelope.vitest.ts
-+-- w11-code_graph-calibration-telemetry.vitest.ts
 +-- w13-decision-audit.vitest.ts
 `-- README.md
 ```
@@ -99,7 +102,10 @@ search-quality/
 | `harness.ts` | Runs search quality measurement scenarios. |
 | `metrics.ts` | Computes retrieval metrics used by stress assertions. |
 | `measurement-fixtures.ts` | Provides measurement fixtures. |
+| `bm25-scope-then-limit-stress.vitest.ts` | Covers BM25 scope-then-limit ordering under stress. |
 | `ndcg-mrr.vitest.ts` | Covers NDCG and MRR metric behavior. |
+| `w3-trust-tree.vitest.ts` | Covers trust-tree search-quality behavior. |
+| `w5-shadow-learned-weights.vitest.ts` | Covers learned-weight shadow behavior. |
 | `w7-degraded-stale.vitest.ts` | Covers stale degraded-readiness behavior. |
 | `w8-search-decision-envelope.vitest.ts` | Covers decision envelope behavior. |
 
