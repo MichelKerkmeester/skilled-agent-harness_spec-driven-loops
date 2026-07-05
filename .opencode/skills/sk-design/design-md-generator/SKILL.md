@@ -118,7 +118,7 @@ assets/source_of_truth_router_card.md  # fill-in provenance card
 
 ### Smart Router Pseudocode
 
-> Resilience pattern: see [sk-doc smart-router template](../sk-doc/assets/skill/skill_smart_router.md). Guard paths, discover at runtime, score intents, fall back to the full extract-write-validate pipeline when unsure.
+> Resilience pattern: see [sk-doc smart-router template](../../sk-doc/assets/skill/skill_smart_router.md). Guard paths, discover at runtime, score intents, fall back to the full extract-write-validate pipeline when unsure.
 
 ```python
 from pathlib import Path

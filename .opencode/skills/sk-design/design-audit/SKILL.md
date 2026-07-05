@@ -115,7 +115,7 @@ DESIGN QA TASK
 
 #### Smart Router (Resilience Pattern)
 
-> Pattern: see [sk-doc smart-router resilience template](../sk-doc/assets/skill/skill_smart_router.md) for the full runtime discovery, guarded load, routing-key, and fallback reference.
+> Pattern: see [sk-doc smart-router resilience template](../../sk-doc/assets/skill/skill_smart_router.md) for the full runtime discovery, guarded load, routing-key, and fallback reference.
 
 The router fills in this skill's a11y/perf/critique/harden `INTENT_SIGNALS`, `RESOURCE_MAP`, loading levels, and routing key while keeping the resilience mechanics unchanged: discover resources at runtime, guard every path before loading, derive a routing key from the audit mode or task, and return an `UNKNOWN_FALLBACK` checklist when confidence is too low.
 
