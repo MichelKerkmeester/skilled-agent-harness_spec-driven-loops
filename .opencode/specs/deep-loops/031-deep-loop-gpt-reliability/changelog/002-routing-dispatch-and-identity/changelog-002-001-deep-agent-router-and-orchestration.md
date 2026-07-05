@@ -1,5 +1,5 @@
 ---
-title: "Changelog: Deep-Agent Router & Orchestration Research Decomposition [031-deep-loop-issues-with-gpt-opencode/001-deep-agent-router-and-orchestration]"
+title: "Changelog: Deep-Agent Router & Orchestration Research Decomposition [031-deep-loop-gpt-reliability/002-routing-dispatch-and-identity/001-deep-agent-router-and-orchestration]"
 description: "Chronological changelog for the Deep-Agent Router & Orchestration research-decomposition phase."
 trigger_phrases:
   - "phase changelog"
@@ -14,8 +14,8 @@ contextType: "implementation"
 
 ## 2026-06-30
 
-> Spec folder: `.opencode/specs/deep-loops/031-deep-loop-issues-with-gpt-opencode/001-deep-agent-router-and-orchestration` (Level 1, research)
-> Parent packet: `.opencode/specs/deep-loops/031-deep-loop-issues-with-gpt-opencode`
+> Spec folder: `.opencode/specs/deep-loops/031-deep-loop-gpt-reliability/002-routing-dispatch-and-identity/001-deep-agent-router-and-orchestration` (Level 1, research)
+> Parent packet: `.opencode/specs/deep-loops/031-deep-loop-gpt-reliability`
 
 ### Summary
 

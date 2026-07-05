@@ -1,5 +1,5 @@
 ---
-title: "Changelog: GPT-vs-Claude Benchmark [031-deep-loop-issues-with-gpt-opencode/012-gpt-claude-benchmark]"
+title: "Changelog: GPT-vs-Claude Benchmark [031-deep-loop-gpt-reliability/004-benchmarks-and-verification/002-gpt-claude-benchmark]"
 description: "Chronological changelog for the GPT-vs-Claude Benchmark phase."
 trigger_phrases:
   - "phase changelog"
@@ -14,8 +14,8 @@ contextType: "implementation"
 
 ## 2026-07-01
 
-> Spec folder: `.opencode/specs/deep-loops/031-deep-loop-issues-with-gpt-opencode/012-gpt-claude-benchmark` (Level 2)
-> Parent packet: `.opencode/specs/deep-loops/031-deep-loop-issues-with-gpt-opencode`
+> Spec folder: `.opencode/specs/deep-loops/031-deep-loop-gpt-reliability/004-benchmarks-and-verification/002-gpt-claude-benchmark` (Level 2)
+> Parent packet: `.opencode/specs/deep-loops/031-deep-loop-gpt-reliability`
 
 ### Summary
 

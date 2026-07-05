@@ -1,5 +1,5 @@
 ---
-title: "Changelog: Host-Hard-Identity FIX-5 [031-deep-loop-issues-with-gpt-opencode/006-host-hard-identity-fix5]"
+title: "Changelog: Host-Hard-Identity FIX-5 [031-deep-loop-gpt-reliability/002-routing-dispatch-and-identity/005-host-hard-identity-fix5]"
 description: "Chronological changelog for the Host-Hard-Identity FIX-5 phase (parked, then closed unimplemented)."
 trigger_phrases:
   - "phase changelog"
@@ -14,8 +14,8 @@ contextType: "implementation"
 
 ## 2026-07-01
 
-> Spec folder: `.opencode/specs/deep-loops/031-deep-loop-issues-with-gpt-opencode/006-host-hard-identity-fix5` (Level 1)
-> Parent packet: `.opencode/specs/deep-loops/031-deep-loop-issues-with-gpt-opencode`
+> Spec folder: `.opencode/specs/deep-loops/031-deep-loop-gpt-reliability/002-routing-dispatch-and-identity/005-host-hard-identity-fix5` (Level 1)
+> Parent packet: `.opencode/specs/deep-loops/031-deep-loop-gpt-reliability`
 
 ### Summary
 

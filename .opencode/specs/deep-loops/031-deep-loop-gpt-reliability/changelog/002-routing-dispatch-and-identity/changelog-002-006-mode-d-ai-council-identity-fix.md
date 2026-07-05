@@ -1,5 +1,5 @@
 ---
-title: "Changelog: Mode-D + AI-Council Identity Fix [031-deep-loop-issues-with-gpt-opencode/008-mode-d-ai-council-identity-fix]"
+title: "Changelog: Mode-D + AI-Council Identity Fix [031-deep-loop-gpt-reliability/002-routing-dispatch-and-identity/006-mode-d-ai-council-identity-fix]"
 description: "Chronological changelog for the Mode-D + AI-Council Identity Fix phase."
 trigger_phrases:
   - "phase changelog"
@@ -14,8 +14,8 @@ contextType: "implementation"
 
 ## 2026-07-01
 
-> Spec folder: `.opencode/specs/deep-loops/031-deep-loop-issues-with-gpt-opencode/008-mode-d-ai-council-identity-fix` (Level 2)
-> Parent packet: `.opencode/specs/deep-loops/031-deep-loop-issues-with-gpt-opencode`
+> Spec folder: `.opencode/specs/deep-loops/031-deep-loop-gpt-reliability/002-routing-dispatch-and-identity/006-mode-d-ai-council-identity-fix` (Level 2)
+> Parent packet: `.opencode/specs/deep-loops/031-deep-loop-gpt-reliability`
 
 ### Summary
 

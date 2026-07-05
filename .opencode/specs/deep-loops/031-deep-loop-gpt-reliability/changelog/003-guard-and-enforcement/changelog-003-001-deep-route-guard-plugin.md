@@ -1,5 +1,5 @@
 ---
-title: "Changelog: Deep-Route-Guard Enforcement Plugin [031-deep-loop-issues-with-gpt-opencode/011-deep-route-guard-plugin]"
+title: "Changelog: Deep-Route-Guard Enforcement Plugin [031-deep-loop-gpt-reliability/003-guard-and-enforcement/001-deep-route-guard-plugin]"
 description: "Chronological changelog for the Deep-Route-Guard Enforcement Plugin phase."
 trigger_phrases:
   - "phase changelog"
@@ -14,8 +14,8 @@ contextType: "implementation"
 
 ## 2026-07-01
 
-> Spec folder: `.opencode/specs/deep-loops/031-deep-loop-issues-with-gpt-opencode/011-deep-route-guard-plugin` (Level 2)
-> Parent packet: `.opencode/specs/deep-loops/031-deep-loop-issues-with-gpt-opencode`
+> Spec folder: `.opencode/specs/deep-loops/031-deep-loop-gpt-reliability/003-guard-and-enforcement/001-deep-route-guard-plugin` (Level 2)
+> Parent packet: `.opencode/specs/deep-loops/031-deep-loop-gpt-reliability`
 
 ### Summary
 
