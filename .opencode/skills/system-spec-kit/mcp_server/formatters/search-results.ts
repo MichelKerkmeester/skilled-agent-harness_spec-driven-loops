@@ -1347,9 +1347,9 @@ export async function formatSearchResults(
 
   const responsePolicy = deriveResponsePolicy(requestQualityData, recoveryPayload);
   const citationPolicy = deriveCitationPolicy(requestQualityData, groundingData);
-  // Pre-rendered verdict fragment, gated dark. Built from the same verdict pair
-  // shipped below so a label change propagates without a second edit. Off by
-  // default keeps the response shape byte-for-byte the shipped behavior.
+  // Pre-rendered verdict fragment. Built from the same verdict pair shipped below
+  // so a label change propagates without a second edit. Default-ON; set
+  // SPECKIT_ENVELOPE_FIDELITY=false to opt out and keep the prior response shape.
   const envelopeRender = isEnvelopeFidelityEnabled()
     ? buildEnvelopeRenderFragment(requestQualityData, citationPolicy)
     : null;
