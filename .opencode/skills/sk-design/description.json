@@ -1,7 +1,7 @@
 {
   "name": "sk-design",
   "description": "Design-family parent hub: the single advisor-routable home for distinctive, intentional UI design and the full design surface. Routes any design query to five modes via mode-registry.json — interface (visual direction, taste, and interface build judgment), foundations (color, typography, layout, spacing, hierarchy, design tokens, theming), motion (animation, transitions, micro-interactions, reduced motion), audit (accessibility, performance, responsive, anti-slop detection, design quality scoring), and md-generator (extract a live site's real CSS into a v3 Style Reference DESIGN.md via an embedded Playwright pipeline). The hub holds no per-mode logic; each mode keeps its own contract and cites the shared design reference base.",
-  "version": "1.0.0.3",
+  "version": "1.1.0.0",
   "importance_tier": "high",
   "keywords": [
     "sk-design",
