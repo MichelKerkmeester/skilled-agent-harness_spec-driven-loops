@@ -73,10 +73,10 @@ Evidence files:
 
 ## 4. SOURCE FILES
 
-- `.opencode/skills/sk-code/animation/references/performance_and_pitfalls.md` - Motion reduced-motion guidance.
-- `.opencode/skills/sk-code/webflow/references/implementation/animation_workflows.md` - Webflow animation accessibility guidance.
-- `.opencode/skills/sk-code/webflow/references/verification/verification_workflows.md` - Browser evidence expectations.
-- `.opencode/skills/sk-code/animation/assets/snippets/hover_gesture.js` - Reduced-motion snippet pattern.
+- `.opencode/skills/sk-code/code-animation/references/performance_and_pitfalls.md` - Motion reduced-motion guidance.
+- `.opencode/skills/sk-code/code-webflow/references/implementation/animation_workflows.md` - Webflow animation accessibility guidance.
+- `.opencode/skills/sk-code/code-webflow/references/verification/verification_workflows.md` - Browser evidence expectations.
+- `.opencode/skills/sk-code/code-animation/assets/snippets/hover_gesture.js` - Reduced-motion snippet pattern.
 
 ---
 

@@ -4,7 +4,7 @@
   "routerPolicy": {
     "defaultMode": "implement",
     "ambiguityDelta": 1,
-    "tieBreak": ["implement", "quality", "debug", "verify", "review", "webflow", "opencode", "animation"],
+    "tieBreak": ["implement", "quality", "debug", "verify", "code-review", "code-webflow", "code-opencode", "code-animation"],
     "outcomes": {
       "single": "one dominant code intent routes to one workflow mode",
       "orderedBundle": "clearly separate code intents route to an ordered workflow-mode list",
@@ -34,25 +34,25 @@
       "classes": ["verify-aliases", "verify-evidence", "verify-mutation", "hub-identity"],
       "resources": ["code-verify/SKILL.md"]
     },
-    "review": {
+    "code-review": {
       "weight": 4,
-      "classes": ["review-aliases", "review-findings", "review-security", "review-pr", "hub-identity"],
-      "resources": ["review/SKILL.md"]
+      "classes": ["code-review-aliases", "code-review-findings", "code-review-security", "code-review-pr", "hub-identity"],
+      "resources": ["code-review/SKILL.md"]
     },
-    "webflow": {
+    "code-webflow": {
       "weight": 4,
-      "classes": ["webflow-aliases", "webflow-runtime", "hub-identity"],
-      "resources": ["webflow/SKILL.md"]
+      "classes": ["code-webflow-aliases", "code-webflow-runtime", "hub-identity"],
+      "resources": ["code-webflow/SKILL.md"]
     },
-    "opencode": {
+    "code-opencode": {
       "weight": 4,
-      "classes": ["opencode-aliases", "opencode-runtime", "opencode-authoring", "hub-identity"],
-      "resources": ["opencode/SKILL.md"]
+      "classes": ["code-opencode-aliases", "code-opencode-runtime", "code-opencode-authoring", "hub-identity"],
+      "resources": ["code-opencode/SKILL.md"]
     },
-    "animation": {
+    "code-animation": {
       "weight": 4,
-      "classes": ["animation-aliases", "hub-identity"],
-      "resources": ["animation/SKILL.md"]
+      "classes": ["code-animation-aliases", "hub-identity"],
+      "resources": ["code-animation/SKILL.md"]
     }
   },
   "vocabularyClasses": {
@@ -89,34 +89,34 @@
     "verify-mutation": {
       "keywords": ["mutation test", "claim-falsifier", "true-red", "compile-red", "verification ladder", "fresh evidence", "surface-appropriate verification"]
     },
-    "review-aliases": {
+    "code-review-aliases": {
       "keywords": ["review", "reviewer", "code review", "findings-first review", "security review", "pr review", "review baseline", "review mode", "code-review"]
     },
-    "review-findings": {
+    "code-review-findings": {
       "keywords": ["findings first", "findings-first", "severity", "output contract", "checklists", "correctness baseline", "test quality review", "correctness review", "review output contract"]
     },
-    "review-security": {
+    "code-review-security": {
       "keywords": ["security", "security review", "correctness", "vulnerability", "unsafe", "filesystem behavior", "validation"]
     },
-    "review-pr": {
+    "code-review-pr": {
       "keywords": ["pr review", "pull request review", "pr-state gates", "review-result cache", "review output cache"]
     },
-    "webflow-aliases": {
+    "code-webflow-aliases": {
       "keywords": ["webflow implementation", "frontend implementation standards", "webflow frontend workflow", "webflow", "frontend", "webflow.js", "src/2_javascript"]
     },
-    "webflow-runtime": {
+    "code-webflow-runtime": {
       "keywords": ["html", "css", "javascript", "cdn", "gsap", "lenis", "swiper", "hls.js", "filepond", "intersectionobserver", "browser"]
     },
-    "opencode-aliases": {
+    "code-opencode-aliases": {
       "keywords": ["opencode system code", "opencode system code workflow", "opencode typescript verification", "opencode", "system code", "system-code", "mcp"]
     },
-    "opencode-runtime": {
+    "code-opencode-runtime": {
       "keywords": ["typescript", "python", "shell", "json", "jsonc", "config"]
     },
-    "opencode-authoring": {
+    "code-opencode-authoring": {
       "keywords": ["skill authoring", "agent authoring", "command authoring", "mcp server authoring"]
     },
-    "animation-aliases": {
+    "code-animation-aliases": {
       "keywords": ["motion.dev animation", "motion animation integration", "cross-stack animation", "motion.dev", "motion-dev", "motion_dev", "motion api", "animation", "motion snippets", "motion decision matrix", "motion.dev integration", "cross-stack-animation", "gsap timeline", "lenis smooth-scroll"]
     }
   }

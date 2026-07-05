@@ -43,17 +43,17 @@ Validate code against style standards before claiming implementation is complete
 
 For formal findings-first review output, run `sk-code`'s code-review mode as the baseline and use this checklist as the web overlay.
 
-- Severity model and review output contract: `sk-code/review/references/quick_reference.md`
+- Severity model and review output contract: `sk-code/code-review/references/quick_reference.md`
 - Baseline security/quality/test review checks: `sk-code`'s code-review mode references
 - This checklist: web-specific JavaScript/CSS standards evidence
 
 ### Source Standards (per-language tree)
 
-- [shared/cross_language_rules.md](../../webflow/references/shared/cross_language_rules.md) - Cross-language rules (file naming, comment WHY-not-WHAT, banner format, platform prefixes)
-- [javascript/style_guide.md](../../webflow/references/javascript/style_guide.md) - JS naming (`snake_case`), file structure, formatting, JSDoc, debug logging
-- [javascript/quality_standards.md](../../webflow/references/javascript/quality_standards.md) - JS defensive patterns + JS naming/init enforcement
-- [css/style_guide.md](../../webflow/references/css/style_guide.md) - CSS naming (BEM), custom properties, attribute selectors, animation CSS, file org
-- [css/quality_standards.md](../../webflow/references/css/quality_standards.md) - CSS quality patterns + CSS enforcement subsections
+- [shared/cross_language_rules.md](../../code-webflow/references/shared/cross_language_rules.md) - Cross-language rules (file naming, comment WHY-not-WHAT, banner format, platform prefixes)
+- [javascript/style_guide.md](../../code-webflow/references/javascript/style_guide.md) - JS naming (`snake_case`), file structure, formatting, JSDoc, debug logging
+- [javascript/quality_standards.md](../../code-webflow/references/javascript/quality_standards.md) - JS defensive patterns + JS naming/init enforcement
+- [css/style_guide.md](../../code-webflow/references/css/style_guide.md) - CSS naming (BEM), custom properties, attribute selectors, animation CSS, file org
+- [css/quality_standards.md](../../code-webflow/references/css/quality_standards.md) - CSS quality patterns + CSS enforcement subsections
 
 ---
 
@@ -61,7 +61,7 @@ For formal findings-first review output, run `sk-code`'s code-review mode as the
 
 **Applies to:** JavaScript (`.js`)
 
-**Reference:** [code_style_guide.md Section 3](../../webflow/references/javascript/style_guide.md)
+**Reference:** [code_style_guide.md Section 3](../../code-webflow/references/javascript/style_guide.md)
 
 ### File Header Format
 
@@ -104,7 +104,7 @@ For formal findings-first review output, run `sk-code`'s code-review mode as the
 
 **Applies to:** JavaScript (`.js`)
 
-**Reference:** [code_style_guide.md Section 3](../../webflow/references/javascript/style_guide.md)
+**Reference:** [code_style_guide.md Section 3](../../code-webflow/references/javascript/style_guide.md)
 
 ### Section Headers
 
@@ -165,7 +165,7 @@ const INIT_FLAG = '__componentNameInit';
 
 **Applies to:** JavaScript (`.js`)
 
-**Reference:** [code_style_guide.md Section 5](../../webflow/references/javascript/style_guide.md)
+**Reference:** [code_style_guide.md Section 5](../../code-webflow/references/javascript/style_guide.md)
 
 ### Comment Principles
 
@@ -174,7 +174,7 @@ const INIT_FLAG = '__componentNameInit';
 - [ ] **[P1] CHK-CMT-03**: Maximum 5 comments per 10 lines of code (not over-commented)
 - [ ] **[P1] CHK-CMT-04**: Platform constraints documented (WEBFLOW, MOTION, LENIS, HLS.JS)
 
-> **Cross-stack motion.dev reference**: For motion.dev API surface, decision matrix, and integration patterns that apply across stacks (not just Webflow), see [`../../../references/motion_dev/quick_start.md`](../../animation/references/quick_start.md) and the documents in [`references/motion_dev/`](../../animation/references). The MOTION constraint above remains a Webflow-CDN-specific platform marker.
+> **Cross-stack motion.dev reference**: For motion.dev API surface, decision matrix, and integration patterns that apply across stacks (not just Webflow), see [`../../../references/motion_dev/quick_start.md`](../../code-animation/references/quick_start.md) and the documents in [`references/motion_dev/`](../../code-animation/references). The MOTION constraint above remains a Webflow-CDN-specific platform marker.
 
 ### Function Comments
 
@@ -218,7 +218,7 @@ if (element) { }
 
 **Applies to:** JavaScript (`.js`)
 
-**Reference:** [code_style_guide.md Section 2](../../webflow/references/javascript/style_guide.md)
+**Reference:** [code_style_guide.md Section 2](../../code-webflow/references/javascript/style_guide.md)
 
 ### Variable Naming
 
@@ -278,7 +278,7 @@ function data(form) { }    // Should be: get_form_data
 
 **Applies to:** JavaScript (`.js`)
 
-**Reference:** [code_quality_standards.md Section 2](../../webflow/references/javascript/quality_standards.md)
+**Reference:** [code_quality_standards.md Section 2](../../code-webflow/references/javascript/quality_standards.md)
 
 ### CDN-Safe Initialization
 
@@ -328,7 +328,7 @@ if (window.Webflow?.push) {
 
 **Applies to:** JavaScript (`.js`)
 
-**Reference:** [code_style_guide.md Section 4](../../webflow/references/javascript/style_guide.md)
+**Reference:** [code_style_guide.md Section 4](../../code-webflow/references/javascript/style_guide.md)
 
 ### Basic Formatting
 
@@ -345,7 +345,7 @@ if (window.Webflow?.push) {
 
 **Applies to:** CSS (`.css`)
 
-**Reference:** [css/style_guide.md](../../webflow/references/css/style_guide.md) — full CSS conventions (BEM naming, custom property prefixes, attribute selectors, animation CSS, file organization)
+**Reference:** [css/style_guide.md](../../code-webflow/references/css/style_guide.md) — full CSS conventions (BEM naming, custom property prefixes, attribute selectors, animation CSS, file organization)
 
 ### Custom Property Naming
 
@@ -527,15 +527,15 @@ After completing validation, document the results using the appropriate template
 
 ### Per-language source standards
 
-- [shared/cross_language_rules.md](../../webflow/references/shared/cross_language_rules.md) - File naming, comment principles, file-header banner, platform prefixes
-- [javascript/style_guide.md](../../webflow/references/javascript/style_guide.md) - JS naming + file structure + formatting + JSDoc
-- [javascript/quality_standards.md](../../webflow/references/javascript/quality_standards.md) - JS defensive patterns + naming/init enforcement
-- [css/style_guide.md](../../webflow/references/css/style_guide.md) - CSS naming + custom properties + animation CSS
-- [css/quality_standards.md](../../webflow/references/css/quality_standards.md) - CSS quality patterns + enforcement subsections
+- [shared/cross_language_rules.md](../../code-webflow/references/shared/cross_language_rules.md) - File naming, comment principles, file-header banner, platform prefixes
+- [javascript/style_guide.md](../../code-webflow/references/javascript/style_guide.md) - JS naming + file structure + formatting + JSDoc
+- [javascript/quality_standards.md](../../code-webflow/references/javascript/quality_standards.md) - JS defensive patterns + naming/init enforcement
+- [css/style_guide.md](../../code-webflow/references/css/style_guide.md) - CSS naming + custom properties + animation CSS
+- [css/quality_standards.md](../../code-webflow/references/css/quality_standards.md) - CSS quality patterns + enforcement subsections
 
 ### Enforcement Reference
 
-- [code_style_enforcement.md](../../webflow/references/shared/enforcement.md) - Validation prompts, examples, remediation
+- [code_style_enforcement.md](../../code-webflow/references/shared/enforcement.md) - Validation prompts, examples, remediation
 
 ### Parent Skill
 

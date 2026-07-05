@@ -79,8 +79,8 @@ Expected result files:
 
 - `.opencode/skills/sk-code/shared/references/stack_detection.md` - WEBFLOW marker block.
 - `.opencode/skills/sk-code/shared/references/smart_routing.md` - WEBFLOW plus MOTION_DEV loading rules.
-- `.opencode/skills/sk-code/animation/references/quick_start.md` - Motion install and import guidance.
-- `.opencode/skills/sk-code/animation/assets/snippets/in_view_reveal.js` - Required snippet.
+- `.opencode/skills/sk-code/code-animation/references/quick_start.md` - Motion install and import guidance.
+- `.opencode/skills/sk-code/code-animation/assets/snippets/in_view_reveal.js` - Required snippet.
 
 ---
 

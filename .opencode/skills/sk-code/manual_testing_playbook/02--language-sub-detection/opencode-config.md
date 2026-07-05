@@ -62,7 +62,7 @@ Add a derived.last_active_child_id field to the graph-metadata.json file with va
 ## 4. SOURCE FILES
 
 - `.opencode/skills/sk-code/SKILL.md` (sub-detection table).
-- `.opencode/skills/sk-code/opencode/references/config/{style_guide,quality_standards,quick_reference}.md`.
+- `.opencode/skills/sk-code/code-opencode/references/config/{style_guide,quality_standards,quick_reference}.md`.
 
 ## 5. SOURCE METADATA
 

@@ -227,7 +227,7 @@ Per-feature file: see `04--skill-advisor-integration/advisor-probe-battery.md`.
 
 ## 11. MOTION.DEV AND ANIMATION REGRESSION (`MR-001..MR-004`)
 
-> Motion.dev API surface and full reference docs are documented in [../references/motion_dev/](../animation/references) (populated in Packet 2 of this rework). The scenarios below test motion.dev integration points; consult the canonical motion.dev docs for full API details.
+> Motion.dev API surface and full reference docs are documented in [../references/motion_dev/](../code-animation/references) (populated in Packet 2 of this rework). The scenarios below test motion.dev integration points; consult the canonical motion.dev docs for full API details.
 
 Motion.dev install and API behavior referenced in these scenarios is anchored to the official Motion docs, especially `https://motion.dev/docs/quick-start`, plus API subpages such as `https://motion.dev/docs/animate`, `https://motion.dev/docs/inview`, `https://motion.dev/docs/spring`, and `https://motion.dev/docs/performance`.
 

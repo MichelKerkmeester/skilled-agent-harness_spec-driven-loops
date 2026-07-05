@@ -48,7 +48,7 @@ Run all of these from the project root. ALL must exit 0 before claiming done.
 
 | Surface | Test | Lint | Build |
 |---|---|---|---|
-| WEBFLOW | (see browser matrix in Section 4) | n/a (style enforced via checklist) | `node .opencode/skills/sk-code/webflow/assets/scripts/minify-webflow.mjs && node .opencode/skills/sk-code/webflow/assets/scripts/verify-minification.mjs && node .opencode/skills/sk-code/webflow/assets/scripts/test-minified-runtime.mjs` |
+| WEBFLOW | (see browser matrix in Section 4) | n/a (style enforced via checklist) | `node .opencode/skills/sk-code/code-webflow/assets/scripts/minify-webflow.mjs && node .opencode/skills/sk-code/code-webflow/assets/scripts/verify-minification.mjs && node .opencode/skills/sk-code/code-webflow/assets/scripts/test-minified-runtime.mjs` |
 | OPENCODE | Targeted tests for touched package or script | `python3 .opencode/skills/sk-code/code-verify/assets/scripts/verify_alignment_drift.py --root <changed-path>` | Package-specific build/typecheck where available |
 | UNKNOWN | sk-code does not own this surface — surface a disambiguation prompt instead | n/a | n/a |
 

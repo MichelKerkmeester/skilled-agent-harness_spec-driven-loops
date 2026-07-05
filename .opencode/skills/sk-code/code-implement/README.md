@@ -41,7 +41,7 @@ It does not own final quality, debugging, review, or completion evidence. After 
 2. Read target files before editing.
 3. Load packet-owned references for the resolved surface: `references/webflow/`, `references/opencode/`, and `references/motion_dev/` only when Motion.dev intent is present.
 4. For OPENCODE, detect the language sub-key and load the matching `references/opencode/<language>/` set.
-5. For skills, agents, commands, MCP servers, or spec-folder docs, load the write-time checklist from `../opencode/assets/checklists/` before writing.
+5. For skills, agents, commands, MCP servers, or spec-folder docs, load the write-time checklist from `../code-opencode/assets/checklists/` before writing.
 6. Apply the Design Restraint Ladder, implement the smallest correct change, and hand off to quality and verification.
 
 ---
@@ -53,7 +53,7 @@ It does not own final quality, debugging, review, or completion evidence. After 
 | Surface routing | Surface identity is decided once in `../shared/`; this packet consumes it and does not re-detect |
 | Read first | Target files must be read before editing |
 | OPENCODE language | JavaScript, TypeScript, Python, Shell, and Config resources are selected by extension first |
-| OpenCode authoring | Authoring checklists live in `../opencode/assets/checklists/` and load at write-time |
+| OpenCode authoring | Authoring checklists live in `../code-opencode/assets/checklists/` and load at write-time |
 | Motion.dev | Motion.dev is an overlay, not a surface |
 | Completion | This mode never claims done; `code-verify` owns Iron Law evidence |
 | Metadata | Mode packets do not get packet-local `graph-metadata.json` files |
@@ -70,10 +70,10 @@ It does not own final quality, debugging, review, or completion evidence. After 
 | [`../shared/references/stack_detection.md`](../shared/references/stack_detection.md) | Shared surface and language detection |
 | [`../shared/references/smart_routing.md`](../shared/references/smart_routing.md) | Shared intent and resource routing |
 | [`../shared/references/phase_detection.md`](../shared/references/phase_detection.md) | Shared lifecycle map |
-| [`references/webflow/implementation/implementation_workflows.md`](../webflow/references/implementation/implementation_workflows.md) | Webflow implementation entry point |
-| [`references/opencode/typescript/quick_reference.md`](../opencode/references/typescript/quick_reference.md) | Example OpenCode language entry point |
-| [`references/motion_dev/quick_start.md`](../animation/references/quick_start.md) | Motion.dev overlay entry point |
-| [`../opencode/assets/checklists/skill_authoring.md`](../opencode/assets/checklists/skill_authoring.md) | Write-time OpenCode skill authoring checklist |
+| [`references/webflow/implementation/implementation_workflows.md`](../code-webflow/references/implementation/implementation_workflows.md) | Webflow implementation entry point |
+| [`references/opencode/typescript/quick_reference.md`](../code-opencode/references/typescript/quick_reference.md) | Example OpenCode language entry point |
+| [`references/motion_dev/quick_start.md`](../code-animation/references/quick_start.md) | Motion.dev overlay entry point |
+| [`../code-opencode/assets/checklists/skill_authoring.md`](../code-opencode/assets/checklists/skill_authoring.md) | Write-time OpenCode skill authoring checklist |
 
 ---
 

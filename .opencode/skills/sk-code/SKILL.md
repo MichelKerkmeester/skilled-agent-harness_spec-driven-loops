@@ -1,6 +1,6 @@
 ---
 name: sk-code
-description: "Unified two-axis code skill: routes to five WORKFLOW modes (implement, quality, debug, verify, review) and bundles three read-only SURFACE evidence packets (webflow, opencode, animation) over shared surface-detection; holds no per-mode logic; dispatches by workflowMode through mode-registry.json."
+description: "Unified two-axis code skill: routes to five WORKFLOW modes (implement, quality, debug, verify, code-review) and bundles three read-only SURFACE evidence packets (code-webflow, code-opencode, code-animation) over shared surface-detection; holds no per-mode logic; dispatches by workflowMode through mode-registry.json."
 allowed-tools: [Read, Write, Edit, Bash, Grep, Glob, Task]
 version: 4.1.0.0
 metadata:
@@ -12,7 +12,7 @@ metadata:
 
 # Code Family Hub (sk-code)
 
-One skill, two axes, one shared surface-detection router, and one advisor identity. The **workflow axis** is five code modes that act (implement, quality, debug, verify, review); the **surface axis** is three read-only evidence packets the hub bundles alongside a workflow mode (webflow, opencode, animation). This hub holds NO per-mode logic: it routes by `workflowMode` through `mode-registry.json`, and each mode or surface keeps its own contract in its packet.
+One skill, two axes, one shared surface-detection router, and one advisor identity. The **workflow axis** is five code modes that act (implement, quality, debug, verify, code-review); the **surface axis** is three read-only evidence packets the hub bundles alongside a workflow mode (code-webflow, code-opencode, code-animation). This hub holds NO per-mode logic: it routes by `workflowMode` through `mode-registry.json`, and each mode or surface keeps its own contract in its packet.
 
 ---
 
@@ -28,15 +28,15 @@ Use this skill for code-family workflows. Invoke it as `sk-code` with an optiona
 | **quality** | Quality gate; P0/P1/P2 author checks; comment hygiene; surface checklists. | `sk-code/code-quality/` |
 | **debug** | Root-cause debugging; error recovery; escalation discipline. | `sk-code/code-debug/` |
 | **verify** | Verification; Iron Law evidence; mutation/falsifier ritual. | `sk-code/code-verify/` |
-| **review** | Findings-first review; security/correctness baseline; checklists; output contract; PR-state gates. | `sk-code/review/` |
+| **code-review** | Findings-first review; security/correctness baseline; checklists; output contract; PR-state gates. | `sk-code/code-review/` |
 
 **Surface axis** (read-only evidence the hub bundles alongside the primary mode — never a primary, advisor-invisible):
 
 | Surface | Carries | Packet |
 |---------|---------|--------|
-| **webflow** | Frontend evidence: CSS/HTML/JS standards, implementation and performance patterns, CDN deployment, browser debug/verify. | `sk-code/webflow/` |
-| **opencode** | System-code evidence: TypeScript/Python/shell/config standards, hooks, alignment verification, authoring checklists. | `sk-code/opencode/` |
-| **animation** | Motion.dev evidence: principles, the animate/timeline/scroll API, a decision matrix, and copy-ready snippets (a cross-stack overlay). | `sk-code/animation/` |
+| **code-webflow** | Frontend evidence: CSS/HTML/JS standards, implementation and performance patterns, CDN deployment, browser debug/verify. | `sk-code/code-webflow/` |
+| **code-opencode** | System-code evidence: TypeScript/Python/shell/config standards, hooks, alignment verification, authoring checklists. | `sk-code/code-opencode/` |
+| **code-animation** | Motion.dev evidence: principles, the animate/timeline/scroll API, a decision matrix, and copy-ready snippets (a cross-stack overlay). | `sk-code/code-animation/` |
 
 ### When NOT to Use
 - Documentation-only changes with no code-work contract - use `sk-doc`.
@@ -52,11 +52,11 @@ Use this skill for code-family workflows. Invoke it as `sk-code` with an optiona
 Routing is **registry-driven**. `mode-registry.json` is the single source of truth; the hub reads it and does not re-derive the mapping. The advisor routes any code query to the single identity `sk-code`; the hub then picks the mode.
 
 ### The discriminator
-- **`workflowMode`** - the public mode/packet key: `implement`, `quality`, `debug`, `verify`, `review` (workflow) or `webflow`, `opencode`, `animation` (surface).
+- **`workflowMode`** - the public mode/packet key: `implement`, `quality`, `debug`, `verify`, `code-review` (workflow) or `code-webflow`, `code-opencode`, `code-animation` (surface).
 - **`packetKind`** - the axis: `workflow` (a mode that acts) or `surface` (read-only evidence bundled alongside a mode).
 - **`backendKind`** - which backend runs the packet: `surface-router` or `review-cache` for workflow modes, `evidence-base` for surface packets.
 
-Surface packets are advisor-invisible (`routingClass: metadata`, read-only `toolSurface`): the advisor still routes the single identity `sk-code`, and the hub bundles zero-or-more surfaces as evidence via `routerPolicy.outcomes.surfaceBundle` (workflow mode ordered first, surfaces after). "review my webflow animation for jank" → `[review, webflow, animation]`.
+Surface packets are advisor-invisible (`routingClass: metadata`, read-only `toolSurface`): the advisor still routes the single identity `sk-code`, and the hub bundles zero-or-more surfaces as evidence via `routerPolicy.outcomes.surfaceBundle` (workflow mode ordered first, surfaces after). "review my webflow animation for jank" → `[code-review, code-webflow, code-animation]`.
 
 ### Routing rule
 ```
@@ -87,17 +87,17 @@ sk-code/
   code-quality/          # quality mode packet     (workflow)
   code-debug/            # debug mode packet       (workflow)
   code-verify/           # verify mode packet      (workflow)
-  review/                # review mode packet      (workflow)
-  webflow/               # webflow surface packet  (read-only evidence)
-  opencode/              # opencode surface packet (read-only evidence)
-  animation/             # animation surface packet (read-only evidence)
+  code-review/           # review mode packet      (workflow)
+  code-webflow/          # webflow surface packet  (read-only evidence)
+  code-opencode/         # opencode surface packet (read-only evidence)
+  code-animation/        # animation surface packet (read-only evidence)
   shared/                # shared surface-detection router and cross-mode helpers
 ```
 
 Each mode or surface packet is self-contained and carries no per-packet `graph-metadata.json`; only this hub carries one, so the advisor discovers exactly one code skill identity.
 
 ### Backend
-The `surface-router` backend is the shared surface-detection router under `shared/`. It centralizes WEBFLOW, OPENCODE, and MOTION_DEV detection and precedence for every authoring, quality, debugging, and verification mode. The `review-cache` backend supports the review mode's non-mutating review output cache. The `evidence-base` backend serves the surface packets: read-only domain evidence (`webflow/`, `opencode/`, `animation/`) the hub bundles alongside the primary mode — it mutates nothing and never carries process. Shared backend material provides surface identity and cross-mode helpers; it must never gain per-mode workflow contracts.
+The `surface-router` backend is the shared surface-detection router under `shared/`. It centralizes WEBFLOW, OPENCODE, and MOTION_DEV detection and precedence for every authoring, quality, debugging, and verification mode. The `review-cache` backend supports the code-review mode's non-mutating review output cache. The `evidence-base` backend serves the surface packets: read-only domain evidence (`code-webflow/`, `code-opencode/`, `code-animation/`) the hub bundles alongside the primary mode — it mutates nothing and never carries process. Shared backend material provides surface identity and cross-mode helpers; it must never gain per-mode workflow contracts.
 
 ---
 
@@ -122,8 +122,8 @@ The `surface-router` backend is the shared surface-detection router under `share
 
 ## 5. REFERENCES
 
-- Workflow mode packets: `code-implement/SKILL.md`, `code-quality/SKILL.md`, `code-debug/SKILL.md`, `code-verify/SKILL.md`, `review/SKILL.md`.
-- Surface evidence packets: `webflow/SKILL.md`, `opencode/SKILL.md`, `animation/SKILL.md`.
+- Workflow mode packets: `code-implement/SKILL.md`, `code-quality/SKILL.md`, `code-debug/SKILL.md`, `code-verify/SKILL.md`, `code-review/SKILL.md`.
+- Surface evidence packets: `code-webflow/SKILL.md`, `code-opencode/SKILL.md`, `code-animation/SKILL.md`.
 - Registry: `mode-registry.json` (two-axis: `packetKind` discriminates workflow vs surface).
 - Hub router signals + surface bundling: `hub-router.json`.
 - Parent-skill pattern: `.opencode/skills/sk-doc/references/skill_creation/parent_skills_nested_packets.md`.
