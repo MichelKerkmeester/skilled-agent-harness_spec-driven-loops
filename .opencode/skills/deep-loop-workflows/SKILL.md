@@ -93,7 +93,7 @@ All modes consume `deep-loop-runtime` (frozen, MCP-free): executor config, promp
 - **NEVER** add a `graph-metadata.json` or a discoverable skill marker inside a mode packet or `shared/`.
 
 ### ESCALATE IF
-- A new mode is needed beyond the eight registered — extend `mode-registry.json` and open a packet, do not bolt logic onto the hub.
+- A new mode is needed beyond the seven registered — extend `mode-registry.json` and open a packet, do not bolt logic onto the hub.
 - A change would require the runtime to gain MCP tools or an improvement loopType — that contradicts the architecture; escalate.
 
 ---
