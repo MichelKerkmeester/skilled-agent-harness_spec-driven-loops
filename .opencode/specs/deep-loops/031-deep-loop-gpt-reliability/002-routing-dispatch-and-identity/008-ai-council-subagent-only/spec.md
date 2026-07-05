@@ -47,7 +47,7 @@ _memory:
 | **Priority** | P1 |
 | **Status** | Complete |
 | **Created** | 2026-07-01 |
-| **Parent Packet** | `031-deep-loop-issues-with-gpt-opencode` |
+| **Parent Packet** | `031-deep-loop-gpt-reliability` |
 | **Predecessor** | `../009-orchestrate-universal-routing/` (must land first) |
 | **Successor** | `../011-deep-route-guard-plugin/` |
 <!-- /ANCHOR:metadata -->

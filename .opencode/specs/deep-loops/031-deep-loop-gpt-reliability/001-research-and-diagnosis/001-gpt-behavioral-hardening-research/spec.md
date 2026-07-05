@@ -52,7 +52,7 @@ _memory:
 | **Priority** | P0 |
 | **Status** | Complete (research) — see `research/research.md` for the consolidated synthesis and recommended phase 008-012 breakdown |
 | **Created** | 2026-07-01 |
-| **Parent Packet** | `031-deep-loop-issues-with-gpt-opencode` |
+| **Parent Packet** | `031-deep-loop-gpt-reliability` |
 | **Predecessor** | `../005-gpt-verification-smoke/` (inconclusive acceptance-gate result) + `../006-host-hard-identity-fix5/` (parked, interim) |
 | **Successor** | TBD — this research's own synthesis proposes the next phase breakdown |
 <!-- /ANCHOR:metadata -->

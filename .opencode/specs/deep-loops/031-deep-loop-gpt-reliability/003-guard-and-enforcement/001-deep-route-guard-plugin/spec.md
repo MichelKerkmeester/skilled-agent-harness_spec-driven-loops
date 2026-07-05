@@ -48,7 +48,7 @@ _memory:
 | **Priority** | P1 |
 | **Status** | Complete |
 | **Created** | 2026-07-01 |
-| **Parent Packet** | `031-deep-loop-issues-with-gpt-opencode` |
+| **Parent Packet** | `031-deep-loop-gpt-reliability` |
 | **Predecessor** | `../010-ai-council-subagent-only/` (routing identity must be correct first) |
 | **Successor** | `../012-gpt-claude-benchmark/` |
 <!-- /ANCHOR:metadata -->

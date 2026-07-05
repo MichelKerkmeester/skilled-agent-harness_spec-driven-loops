@@ -4,7 +4,7 @@ description: "PLANNING ONLY — phase 002 not started. Closes F-001, F-002, F-00
 trigger_phrases:
   - "implementation"
   - "summary"
-  - "035 002"
+  - "031 006 002"
 importance_tier: "high"
 contextType: "implementation"
 _memory:

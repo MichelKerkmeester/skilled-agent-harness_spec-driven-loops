@@ -204,7 +204,7 @@
     ],
     "causal_summary": "The research evidence identifies role-resolution overhead as the dominant GPT-slow mechanism",
     "created_at": "2026-06-30T15:15:00Z",
-    "last_save_at": "2026-07-04T19:02:57.088Z",
+    "last_save_at": "2026-07-05T06:46:00.371Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -214,9 +214,9 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:a83ac804c65bc582bd79aad872c5a63c0a118ad8fedb00cd4a43bb016e09f563",
+    "source_fingerprint": "sha256:20b200fe1cd88a724187fec5363f57bd8e2b76ff21eaaa54e60ef7b9f475a5b5",
     "source_doc_hashes": {
-      "spec.md": "7470ac64587d210a773ce65045acd38ccb3eb724a8a9bdd643c28faf76c743d5",
+      "spec.md": "984051d7f6c03af07a54b9184f206d97eb688fe5f965b1748ba6e25a34819279",
       "plan.md": "3e7b914a0e21c624a7ce50a06c0af73d6320883c2d045ac1cfb9542f3fea6187",
       "tasks.md": "cc480ac465561141fdac08f41dd70a484e8d20f8f92f1a65dc564afdbb8f85bd",
       "checklist.md": "a005bc067d1f2f3afa9c78a951d347d102ea02af296c72b9cbdbd00a697228ce",

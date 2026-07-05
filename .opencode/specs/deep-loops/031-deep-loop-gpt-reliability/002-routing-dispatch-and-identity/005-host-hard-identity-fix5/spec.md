@@ -41,7 +41,7 @@ _memory:
 | **Priority** | P2 (deferred) |
 | **Status** | **Closed** (2026-07-01) — agent-layer fix sufficient; see `decision-record.md` Final Resolution |
 | **Created** | 2026-06-30 |
-| **Parent Packet** | `031-deep-loop-issues-with-gpt-opencode` |
+| **Parent Packet** | `031-deep-loop-gpt-reliability` |
 | **Predecessor** | `../005-gpt-verification-smoke` (gates this phase's activation) |
 | **Successor** | None (ceiling) |
 | **Handoff Criteria** | N/A — no plan.md/tasks.md until unparked. Activation gated on the trigger in `decision-record.md`. |

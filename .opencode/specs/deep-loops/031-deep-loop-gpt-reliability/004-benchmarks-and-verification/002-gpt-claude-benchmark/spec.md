@@ -49,7 +49,7 @@ _memory:
 | **Priority** | P0 |
 | **Status** | Complete |
 | **Created** | 2026-07-01 |
-| **Parent Packet** | `031-deep-loop-issues-with-gpt-opencode` |
+| **Parent Packet** | `031-deep-loop-gpt-reliability` |
 | **Predecessor** | `../011-deep-route-guard-plugin/` (and 008-010; benchmark measures the post-fix system) |
 | **Successor** | `../013-fix5-checkpoint/` |
 <!-- /ANCHOR:metadata -->

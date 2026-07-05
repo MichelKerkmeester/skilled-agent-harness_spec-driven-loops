@@ -203,7 +203,7 @@
     ],
     "causal_summary": "Two independent, confirmed-by-code-trace defects, both cross-validated across research/research.md's 6 lineages:",
     "created_at": "2026-07-01T10:50:58.996Z",
-    "last_save_at": "2026-07-04T19:02:58.019Z",
+    "last_save_at": "2026-07-05T06:46:01.297Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -213,9 +213,9 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:0c4b86cf1f3c15fefc0f871c05697c1f8264784a6322e86c53b0162d6f4fc825",
+    "source_fingerprint": "sha256:47b40d0fe888e182989284182db616a4c65094cc84226050e358cf618912e211",
     "source_doc_hashes": {
-      "spec.md": "c67859f741f2528a90ed5c333343f2a6c33f4e11097d9c24ad9f00d8f625b70d",
+      "spec.md": "2fee2c56305784ed9177f48c072e232cbf7a87285b9eef4fafba45112f064486",
       "plan.md": "2ab84405a568b71ebe8fbc406a491b12eeecc1e63e829583d3236b996d35d097",
       "tasks.md": "3dc61188e771ef6ee06f0301dec556518abef8c69f6000acd6ff48bcac410fb5",
       "checklist.md": "3f1090d6149eee9b33c7600f8325453ebebe7fee3644845e6f612daa41c73362",

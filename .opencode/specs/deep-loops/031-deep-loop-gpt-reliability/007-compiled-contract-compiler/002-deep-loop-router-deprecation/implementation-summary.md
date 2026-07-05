@@ -1,6 +1,6 @@
 ---
 title: "Implementation Summary: Deep-Loop Router Agent Deprecation"
-description: "Phase 002 of packet 036 — deleted the dead deep-loop primary router agent (3 mirrors) and reworded the orchestrate boundary lines that named it; parity + mirror-sync + reference sweep green."
+description: "Phase 002 of the compiled-contract-compiler track (007) — deleted the dead deep-loop primary router agent (3 mirrors) and reworded the orchestrate boundary lines that named it; parity + mirror-sync + reference sweep green."
 trigger_phrases:
   - "036 phase 002 summary"
   - "deep-loop router deprecation summary"

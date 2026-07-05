@@ -42,6 +42,7 @@
       ".opencode/plugins/tests/mk-deep-loop-guard.test.cjs",
       "spec.md",
       ".opencode/plugins/README.md",
+      ".opencode/skills/.loop-guard-state/guard-warnings.log",
       ".opencode/skills/deep-loop-runtime/feature_catalog/03--validation/mk-deep-loop-guard.md",
       ".opencode/skills/deep-loop-runtime/manual_testing_playbook/03--validation/mk-deep-loop-guard.md",
       "plan.md",
@@ -72,6 +73,12 @@
         "name": "README.md",
         "kind": "doc",
         "path": ".opencode/plugins/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "guard-warnings.log",
+        "kind": "file",
+        "path": ".opencode/skills/.loop-guard-state/guard-warnings.log",
         "source": "derived"
       },
       {
@@ -187,17 +194,11 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Phase 016's research confirmed two real gaps in the phase-011 `mk-deep-loop-guard.js` plugin: (1) it has no mechanism to detect loop-like repeated `orchestrate`-to-command-owned-loop-executor dispatches within a session (phase 012's benchmark measured GPT-5.5 inconsistently refusing one direct dispatch while allowing an identical one); (2) its existing mode-mismatch check resolves the dispatch target via `registry.get(args.subagenttype)`, but `orchestrate.md`'s own dispatch convention sets `subagenttype: \"general\"` on every Task call (independently re-verified against `orchestrate.md`'s real",
     "created_at": "2026-07-01T17:42:33.780Z",
-    "last_save_at": "2026-07-04T19:09:00.590Z",
+    "last_save_at": "2026-07-05T06:46:03.731Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,9 +208,9 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:23b4e7d7ff1328f5a4a9d7801d4f4f3d1162ad2b0d9896ae7944dd4eb630fa85",
+    "source_fingerprint": "sha256:e5952db3d177b886e08ef152e82c26568f1da1f3a4c859db60db325403d470bf",
     "source_doc_hashes": {
-      "spec.md": "9cd47fc972e5de71febd78e2dea51a6673ce31e2cecdc58fd2b6850e00de828c",
+      "spec.md": "2700f22ef786cf2c70bf2e1c7f5054a3941cd4dc84480b438d13577837f2494d",
       "plan.md": "6439b90b9fc98e494468e45472dbbc79516a97a53e4eb2e1459fc58d6675db13",
       "tasks.md": "78d3ceec451de96c3f9850c48ac1996e20fee999ee482c19b266aeb7e4228c13",
       "checklist.md": "2f86d560a2b65a5cc92d41e80b1ad013f9f500dbde750d5aa66017f413d2522c",
