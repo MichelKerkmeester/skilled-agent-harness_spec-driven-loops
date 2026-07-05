@@ -15,11 +15,17 @@
     "defaultResource": ["[shared-or-workflow-resource].md"],
     "bundleRules": [
       {
-        "_example": "Optional rule that references real modes from mode-registry.json.",
-        "when": "[condition phrase or class combination]",
-        "primary": "[workflow-mode-a]",
-        "surfaces": ["[surface-name]"],
+        "_example": "Optional surfaceBundle rule: when whenPrimary routes, attach includeSurfaces as read-only evidence. Every named mode must be a real mode-registry.json entry.",
+        "name": "[workflow-mode-a]-with-surface-evidence",
+        "whenPrimary": "[workflow-mode-a]",
+        "includeSurfaces": ["[surface-name]"],
         "outcome": "surfaceBundle"
+      },
+      {
+        "_example": "Optional orderedBundle rule: when whenAll workflow modes co-occur, emit them as one ordered bundle.",
+        "name": "[workflow-mode-a]-then-[workflow-mode-b]",
+        "whenAll": ["[workflow-mode-a]", "[workflow-mode-b]"],
+        "outcome": "orderedBundle"
       }
     ]
   },

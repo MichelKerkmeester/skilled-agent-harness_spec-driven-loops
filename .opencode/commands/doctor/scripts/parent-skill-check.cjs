@@ -592,7 +592,15 @@ function main() {
       const bundleRules = router.routerPolicy && Array.isArray(router.routerPolicy.bundleRules) ? router.routerPolicy.bundleRules : [];
       const badRefs = [];
       for (const rule of bundleRules) {
-        const refs = [].concat(rule.modes || [], rule.primary || [], rule.evidence || []).filter((x) => typeof x === 'string');
+        // A bundle rule names the modes it binds: whenPrimary (the primary workflow
+        // mode), includeSurfaces (surface packets attached as evidence), and whenAll
+        // (co-required workflow modes for an ordered bundle). Every named mode must be
+        // a real registry mode, else the rule silently binds nothing.
+        const refs = [].concat(
+          typeof rule.whenPrimary === 'string' ? [rule.whenPrimary] : [],
+          Array.isArray(rule.includeSurfaces) ? rule.includeSurfaces : [],
+          Array.isArray(rule.whenAll) ? rule.whenAll : [],
+        ).filter((x) => typeof x === 'string');
         for (const m of refs) if (!registryModeSet.has(m)) badRefs.push(m);
       }
       if (badRefs.length > 0) {
