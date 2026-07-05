@@ -27,7 +27,7 @@ _memory:
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 # Phase Parent: Command Contract Compiler (carved from 035)
 
-<!-- SPECKIT_LEVEL: phase -->
+<!-- SPECKIT_LEVEL: 2 -->
 
 ---
 
@@ -36,7 +36,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Level** | phase |
+| **Level** | 2 |
 | **Priority** | P2 |
 | **Status** | In Progress |
 | **Created** | 2026-07-03 |

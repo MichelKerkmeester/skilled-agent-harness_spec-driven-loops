@@ -91,15 +91,15 @@
     ],
     "causal_summary": "Design-first structural packet carved from 035 (GPT-reliability fixes) after the phase-003 design pass confirmed the contract compiler is research-sized, not a single implementation phase. Builds the build-time unified command-contract compiler that collapses the ~14-file resolution chain into one self-contained typed contract per command, plus the deterministic setup loader, the drift-guard contract, the retrofit of all deep commands + 14 agent files to contract pointers, the deferred AGENTS.md autonomous-precedence bridge, the rollout emitter-wiring, and pacing/resume. Phase 001 is the",
     "created_at": "2026-07-05T02:24:11.411Z",
-    "last_save_at": "2026-07-05T02:28:59.948Z",
+    "last_save_at": "2026-07-05T03:39:01.173Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:60d22f3309b5e984443814032e72adecbd8861f5bff124a7d43c50526dea2bb6",
+    "source_fingerprint": "sha256:b6a89cc67a5406c6bf924026f3406c7cbac2f599cf414fbaace82f9b7d383350",
     "source_doc_hashes": {
-      "spec.md": "2ba0f834ac6b70db3e837e07b46e3fe982ea77aeafede40faa684e6477b58503"
+      "spec.md": "333894748d3068f2fbc724116036a57d8b0cd341b8320397c770176bbc138c0c"
     },
     "last_active_child_id": null,
     "last_active_at": null

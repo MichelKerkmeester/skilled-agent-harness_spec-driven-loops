@@ -30,7 +30,7 @@ _memory:
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 # Phase Parent: GPT Reliability Fixes — Unified Command-Contract Architecture
 
-<!-- SPECKIT_LEVEL: phase -->
+<!-- SPECKIT_LEVEL: 2 -->
 
 ---
 
@@ -39,7 +39,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Level** | phase |
+| **Level** | 2 |
 | **Priority** | P1 |
 | **Status** | Planned |
 | **Created** | 2026-07-03 |
