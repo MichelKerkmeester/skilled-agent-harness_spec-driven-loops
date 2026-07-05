@@ -10,7 +10,11 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "skilled-agent-orchestration/124-sk-code-parent/021-playbook-gold-and-lane-c-rebaseline"
+<<<<<<< HEAD
     last_updated_at: "2026-07-05T19:55:28.879Z"
+=======
+    last_updated_at: "2026-07-05T19:09:55.824Z"
+>>>>>>> origin/system-speckit/028-memory-search-intelligence
     last_updated_by: "claude-opus"
     recent_action: "Gold translated; router-final CONDITIONAL 71 recorded"
     next_safe_action: "Run close-out validation; push remains pending"

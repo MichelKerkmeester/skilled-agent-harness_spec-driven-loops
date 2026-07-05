@@ -1,7 +1,17 @@
 {
   "schema_version": 1,
+<<<<<<< HEAD
+<<<<<<<< HEAD:.opencode/specs/skilled-agent-orchestration/124-sk-code-parent/021-playbook-gold-and-lane-c-rebaseline/graph-metadata.json
   "packet_id": "skilled-agent-orchestration/124-sk-code-parent/021-playbook-gold-and-lane-c-rebaseline",
   "spec_folder": "skilled-agent-orchestration/124-sk-code-parent/021-playbook-gold-and-lane-c-rebaseline",
+========
+  "packet_id": "skilled-agent-orchestration/124-sk-code-parent/014-close-out-and-tail",
+  "spec_folder": "skilled-agent-orchestration/124-sk-code-parent/014-close-out-and-tail",
+>>>>>>>> origin/system-speckit/028-memory-search-intelligence:.opencode/specs/skilled-agent-orchestration/124-sk-code-parent/014-close-out-and-tail/graph-metadata.json
+=======
+  "packet_id": "skilled-agent-orchestration/124-sk-code-parent/021-playbook-gold-and-lane-c-rebaseline",
+  "spec_folder": "skilled-agent-orchestration/124-sk-code-parent/021-playbook-gold-and-lane-c-rebaseline",
+>>>>>>> origin/system-speckit/028-memory-search-intelligence
   "parent_id": "skilled-agent-orchestration/124-sk-code-parent",
   "children_ids": [],
   "manual": {
@@ -11,6 +21,10 @@
   },
   "derived": {
     "trigger_phrases": [
+<<<<<<< HEAD
+<<<<<<<< HEAD:.opencode/specs/skilled-agent-orchestration/124-sk-code-parent/021-playbook-gold-and-lane-c-rebaseline/graph-metadata.json
+=======
+>>>>>>> origin/system-speckit/028-memory-search-intelligence
       "sk-code playbook gold rebaseline",
       "lane-c router-final regenerate",
       "playbook gold code-surface translation",
@@ -45,6 +59,46 @@
       ".opencode/skills/sk-code/benchmark/router-final/skill-benchmark-report.json",
       ".opencode/skills/sk-code/benchmark/router-final/skill-benchmark-report.md",
       ".opencode/skills/sk-code/benchmark/README.md",
+<<<<<<< HEAD
+========
+      "sk-code close-out",
+      "review identity cleanup",
+      "advisor scorer tail",
+      "rename invariants",
+      "sk-code close-out plan",
+      "advisor scorer repair plan",
+      "review identity cleanup plan",
+      "sk-code close-out tasks",
+      "advisor scorer repair tasks",
+      "review identity cleanup tasks",
+      "sk-code close-out checklist",
+      "advisor scorer verification"
+    ],
+    "key_topics": [
+      "sk-code",
+      "close-out",
+      "review",
+      "identity",
+      "cleanup",
+      "advisor",
+      "scorer",
+      "tail",
+      "rename",
+      "invariants",
+      "plan",
+      "repair"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      ".opencode/skills/sk-code/review/SKILL.md",
+      ".opencode/skills/system-skill-advisor/mcp_server/tests/rename-invariants.vitest.ts",
+      ".opencode/skills/system-skill-advisor/mcp_server/lib/scorer/lanes/explicit.ts",
+      ".opencode/skills/system-skill-advisor/mcp_server/tests/scorer/advisor-quality-049-003.vitest.ts",
+      ".opencode/skills/system-skill-advisor/mcp_server/tests/scorer/native-scorer.vitest.ts",
+>>>>>>>> origin/system-speckit/028-memory-search-intelligence:.opencode/specs/skilled-agent-orchestration/124-sk-code-parent/014-close-out-and-tail/graph-metadata.json
+=======
+>>>>>>> origin/system-speckit/028-memory-search-intelligence
       "plan.md",
       "tasks.md",
       "checklist.md",
@@ -53,6 +107,10 @@
     ],
     "entities": [
       {
+<<<<<<< HEAD
+<<<<<<<< HEAD:.opencode/specs/skilled-agent-orchestration/124-sk-code-parent/021-playbook-gold-and-lane-c-rebaseline/graph-metadata.json
+=======
+>>>>>>> origin/system-speckit/028-memory-search-intelligence
         "name": "spec.md",
         "kind": "doc",
         "path": ".opencode/specs/skilled-agent-orchestration/124-sk-code-parent/021-playbook-gold-and-lane-c-rebaseline/spec.md",
@@ -74,6 +132,38 @@
         "name": "README.md",
         "kind": "doc",
         "path": ".opencode/skills/sk-code/benchmark/README.md",
+<<<<<<< HEAD
+========
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-code/review/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "rename-invariants.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-skill-advisor/mcp_server/tests/rename-invariants.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "explicit.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-skill-advisor/mcp_server/lib/scorer/lanes/explicit.ts",
+        "source": "derived"
+      },
+      {
+        "name": "advisor-quality-049-003.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-skill-advisor/mcp_server/tests/scorer/advisor-quality-049-003.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "native-scorer.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-skill-advisor/mcp_server/tests/scorer/native-scorer.vitest.ts",
+>>>>>>>> origin/system-speckit/028-memory-search-intelligence:.opencode/specs/skilled-agent-orchestration/124-sk-code-parent/014-close-out-and-tail/graph-metadata.json
+=======
+>>>>>>> origin/system-speckit/028-memory-search-intelligence
         "source": "derived"
       },
       {
@@ -107,13 +197,33 @@
         "source": "derived"
       },
       {
+<<<<<<< HEAD
+<<<<<<<< HEAD:.opencode/specs/skilled-agent-orchestration/124-sk-code-parent/021-playbook-gold-and-lane-c-rebaseline/graph-metadata.json
+========
+        "name": "Backfilled Level",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+>>>>>>>> origin/system-speckit/028-memory-search-intelligence:.opencode/specs/skilled-agent-orchestration/124-sk-code-parent/014-close-out-and-tail/graph-metadata.json
+=======
+>>>>>>> origin/system-speckit/028-memory-search-intelligence
         "name": "Problem Statement The",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
+<<<<<<< HEAD
+<<<<<<<< HEAD:.opencode/specs/skilled-agent-orchestration/124-sk-code-parent/021-playbook-gold-and-lane-c-rebaseline/graph-metadata.json
         "name": "Purpose Translate",
+========
+        "name": "Purpose Finish",
+>>>>>>>> origin/system-speckit/028-memory-search-intelligence:.opencode/specs/skilled-agent-orchestration/124-sk-code-parent/014-close-out-and-tail/graph-metadata.json
+=======
+        "name": "Purpose Translate",
+>>>>>>> origin/system-speckit/028-memory-search-intelligence
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -125,12 +235,21 @@
         "source": "derived"
       },
       {
+<<<<<<< HEAD
+<<<<<<<< HEAD:.opencode/specs/skilled-agent-orchestration/124-sk-code-parent/021-playbook-gold-and-lane-c-rebaseline/graph-metadata.json
+=======
+>>>>>>> origin/system-speckit/028-memory-search-intelligence
         "name": "Change During Execution",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
+<<<<<<< HEAD
+========
+>>>>>>>> origin/system-speckit/028-memory-search-intelligence:.opencode/specs/skilled-agent-orchestration/124-sk-code-parent/014-close-out-and-tail/graph-metadata.json
+=======
+>>>>>>> origin/system-speckit/028-memory-search-intelligence
         "name": "File Path",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -155,7 +274,15 @@
         "source": "derived"
       },
       {
+<<<<<<< HEAD
+<<<<<<<< HEAD:.opencode/specs/skilled-agent-orchestration/124-sk-code-parent/021-playbook-gold-and-lane-c-rebaseline/graph-metadata.json
         "name": "Pattern Deterministic",
+========
+        "name": "Pattern Post",
+>>>>>>>> origin/system-speckit/028-memory-search-intelligence:.opencode/specs/skilled-agent-orchestration/124-sk-code-parent/014-close-out-and-tail/graph-metadata.json
+=======
+        "name": "Pattern Deterministic",
+>>>>>>> origin/system-speckit/028-memory-search-intelligence
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -185,6 +312,10 @@
         "source": "derived"
       },
       {
+<<<<<<< HEAD
+<<<<<<<< HEAD:.opencode/specs/skilled-agent-orchestration/124-sk-code-parent/021-playbook-gold-and-lane-c-rebaseline/graph-metadata.json
+=======
+>>>>>>> origin/system-speckit/028-memory-search-intelligence
         "name": "Promotion Gate",
         "kind": "proper_noun",
         "path": "tasks.md",
@@ -192,14 +323,32 @@
       },
       {
         "name": "Severity Promotion",
+<<<<<<< HEAD
+========
+        "name": "Stale Test Repairs",
+>>>>>>>> origin/system-speckit/028-memory-search-intelligence:.opencode/specs/skilled-agent-orchestration/124-sk-code-parent/014-close-out-and-tail/graph-metadata.json
+=======
+>>>>>>> origin/system-speckit/028-memory-search-intelligence
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
       }
     ],
+<<<<<<< HEAD
+<<<<<<<< HEAD:.opencode/specs/skilled-agent-orchestration/124-sk-code-parent/021-playbook-gold-and-lane-c-rebaseline/graph-metadata.json
     "causal_summary": "The sk-code `manualtestingplaybook` scenarios assert an expected-resource gold — the references and assets a correct route should load for each prompt",
     "created_at": "2026-07-05T19:09:55.824Z",
     "last_save_at": "2026-07-05T19:56:02.715Z",
+========
+    "causal_summary": "The sk-code parent program had shipped its two-axis restructure, but the tail still carried stale identity labels, scorer tests from the pre-fold two-skill world, one real cli-opencode routing regression, and a committed parse error in rename-invariant tests",
+    "created_at": "2026-07-05T04:34:34.172Z",
+    "last_save_at": "2026-07-05T10:12:40.710Z",
+>>>>>>>> origin/system-speckit/028-memory-search-intelligence:.opencode/specs/skilled-agent-orchestration/124-sk-code-parent/014-close-out-and-tail/graph-metadata.json
+=======
+    "causal_summary": "The sk-code `manualtestingplaybook` scenarios assert an expected-resource gold — the references and assets a correct route should load for each prompt",
+    "created_at": "2026-07-05T19:09:55.824Z",
+    "last_save_at": "2026-07-05T19:55:28.879Z",
+>>>>>>> origin/system-speckit/028-memory-search-intelligence
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,13 +358,30 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+<<<<<<< HEAD
+<<<<<<<< HEAD:.opencode/specs/skilled-agent-orchestration/124-sk-code-parent/021-playbook-gold-and-lane-c-rebaseline/graph-metadata.json
+=======
+>>>>>>> origin/system-speckit/028-memory-search-intelligence
     "source_fingerprint": "sha256:09335684b410124fa9c68b22c3e2e4743d5f1a23125a10bac1ed63b6f084cb14",
     "source_doc_hashes": {
       "spec.md": "022400860d75c28f89563e22da9f71b9a8edec77bf5e93a6917b66a8fe15643d",
       "plan.md": "3d6648439297f1a57f7544a2ddc2ce51b5549132b2c29a9bfa4d2ca5dd024f0c",
       "tasks.md": "c7dc62dea7fd0588c6023882859f47f125fd0f194a55c8e22e0b54b5d8ab791b",
       "checklist.md": "f5ad9467ce266370b6b785c8fa1232242aec26839f7e73ddb914353ecc008d7a",
+<<<<<<< HEAD
       "implementation-summary.md": "efb1fd1f593e93018c34bc8545a746ebc9cfdea0d17ffa237f657cb036ba33a0"
+========
+    "source_fingerprint": "sha256:7fbcbe9da041d67daa53c97f7c602bcefca379593150abcb7745a827a9b8651c",
+    "source_doc_hashes": {
+      "spec.md": "a92bbc431e27a7ee8860cbe9ddb14ce7fbaee72cffbadb16bfb29774d89041d0",
+      "plan.md": "613e8fc466d324aa6e5bf7b062282c2cff4dcf49a8f14020c230f4b85a788c33",
+      "tasks.md": "1f2e921058c8612ac6b70c212f1e524faff2104bd865c2b1fe8f397dc683a748",
+      "checklist.md": "9144412880c48919217a0ad589e3870c9bb65c54d3efcaed82396424a756a3a1",
+      "implementation-summary.md": "58a404e4c41417930369e6b7f2dbb9101986a2a78b262bf585712cb2e87e4ef4"
+>>>>>>>> origin/system-speckit/028-memory-search-intelligence:.opencode/specs/skilled-agent-orchestration/124-sk-code-parent/014-close-out-and-tail/graph-metadata.json
+=======
+      "implementation-summary.md": "2777507db472588355a4372f451caeaf861cf32bfaef62042428694c7aa5f2a5"
+>>>>>>> origin/system-speckit/028-memory-search-intelligence
     },
     "last_active_child_id": null,
     "last_active_at": null
