@@ -262,7 +262,7 @@ function parseRoutedDeclaration(text) {
 function proseRoutingFallback(text) {
   const s = String(text);
   const surfM = /\b(WEBFLOW|OPENCODE|UNKNOWN|MOTION_DEV)\b/.exec(s.toUpperCase());
-  const resources = [...new Set((s.match(/(?:references|assets)\/[A-Za-z0-9_./-]+\.[a-z]{1,4}/g) || []))];
+  const resources = [...new Set((s.match(/(?:code-[a-z]+|references|assets)\/[A-Za-z0-9_./-]+\.[a-z]{1,4}/g) || []))];
   if (!surfM && resources.length === 0) return null;
   return { surface: surfM ? surfM[1] : null, resources, assets: [], _recovered: 'prose' };
 }
@@ -293,7 +293,7 @@ function parseLiveResult(stdout, { skillId, requireRouteDeclaration = false } = 
       if (/^(read|glob|grep|bash)$/i.test(p.tool)) {
         const blob = JSON.stringify(input);
         if (skillId && blob.includes(skillId)) {
-          const m = blob.match(/(?:references|assets)\/[A-Za-z0-9_./*-]+/g);
+          const m = blob.match(/(?:code-[a-z]+|references|assets)\/[A-Za-z0-9_./*-]+/g);
           if (m) observedReads.push(...m);
         }
       }

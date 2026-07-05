@@ -132,7 +132,9 @@ function extractPaths(block) {
   if (!block) return [];
   const out = [];
   const seen = new Set();
-  const re = /(?:references|assets|\.\.\/shared)\/[A-Za-z0-9_./-]+\.[a-z]{1,4}/g;
+  // code-<surface>/ packet paths (post two-axis split) sit alongside the
+  // universal references/ + assets/ + sibling ../shared/ tiers the gold names.
+  const re = /(?:code-[a-z]+|references|assets|\.\.\/shared)\/[A-Za-z0-9_./-]+\.[a-z]{1,4}/g;
   let m;
   while ((m = re.exec(block)) !== null) {
     const p = m[0];
@@ -142,14 +144,14 @@ function extractPaths(block) {
 }
 
 // Forbidden ("Expected NOT loaded") paths are usually glob prefixes
-// (`references/webflow/*`), not extension-terminated files, so extractPaths
+// (`code-webflow/references/*`), not extension-terminated files, so extractPaths
 // misses them. Capture the backtick-quoted path prefixes and drop any trailing
 // glob so a routed resource can be prefix-matched against them.
 function extractForbiddenPrefixes(block) {
   if (!block) return [];
   const out = [];
   const seen = new Set();
-  const re = /`((?:references|assets|\.\.\/shared)\/[A-Za-z0-9_./*-]+)`/g;
+  const re = /`((?:code-[a-z]+|references|assets|\.\.\/shared)\/[A-Za-z0-9_./*-]+)`/g;
   let m;
   while ((m = re.exec(block)) !== null) {
     const prefix = m[1].replace(/\*+$/, '');
@@ -379,7 +381,7 @@ function loadPlaybookScenarios({ skillRoot, playbookDir } = {}) {
 // 5. EXPORTS
 // ─────────────────────────────────────────────────────────────────────────────
 
-module.exports = { loadPlaybookScenarios, classifyKind, extractPaths, parseRootIndex };
+module.exports = { loadPlaybookScenarios, classifyKind, extractPaths, extractForbiddenPrefixes, parseRootIndex };
 
 if (require.main === module) {
   const args = require('./_args.cjs').parse(process.argv.slice(2));
