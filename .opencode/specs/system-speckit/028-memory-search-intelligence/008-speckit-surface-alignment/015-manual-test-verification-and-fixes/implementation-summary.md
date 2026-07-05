@@ -67,6 +67,8 @@ This documentation phase records the completed manual verification-and-fixes arc
 | `tsc` | Clean | TypeScript validation green. |
 | Regression baseline delta | 0 | No new regression beyond the fixed fill-limit behavior. |
 
+**Affected path (scope correction):** the fix lands in the legacy in-memory `bm25Search` resolution — the fallback lexical engine. Production defaults to `SPECKIT_BM25_ENGINE=auto`, which routes to SQLite FTS5 (`fts5Bm25Search`, which filters scope/tier in SQL before `LIMIT`) whenever `memory_fts` exists, so the FTS5 default was never affected by this over-fetch regression. The legacy path runs only on explicit `legacy-inmemory` config or when FTS5/`memory_fts` is unavailable; the stress suite forces `legacy-inmemory` to exercise it. The fix restores scoped fill-limit for that fallback path, not the FTS5 default — a reliability fix for the degraded-FTS scenario rather than a production-default hot-path fix.
+
 ### Recovery Actions
 
 | Action | Result | Notes |
