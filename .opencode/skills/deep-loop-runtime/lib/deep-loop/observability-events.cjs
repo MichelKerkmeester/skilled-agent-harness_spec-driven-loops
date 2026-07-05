@@ -119,6 +119,10 @@ function normalizeObservabilityEvent(payload, meta = {}) {
  * @returns {Object} The appended observability envelope.
  * @throws {TypeError} If eventPath is invalid or normalization fails.
  */
+// Lifecycle events severe enough to mirror to stderr — the JSONL ledger is otherwise pull-only,
+// so a stall/abort/requeue would only be visible to something actively tailing the file.
+const LOUD_OBSERVABILITY_EVENTS = new Set(['stall_detected', 'orphan_requeued', 'aborted']);
+
 function appendObservabilityEvent(eventPath, payload, meta = {}) {
   if (typeof eventPath !== 'string' || eventPath.trim() === '') {
     throw new TypeError('eventPath must be a non-empty string');
@@ -127,6 +131,12 @@ function appendObservabilityEvent(eventPath, payload, meta = {}) {
   const envelope = normalizeObservabilityEvent(payload, meta);
   fs.mkdirSync(path.dirname(eventPath), { recursive: true });
   fs.appendFileSync(eventPath, `${JSON.stringify(envelope)}\n`, 'utf8');
+  if (LOUD_OBSERVABILITY_EVENTS.has(envelope.event)) {
+    try {
+      const label = envelope.payload && envelope.payload.label;
+      process.stderr.write(`[deep-loop] ${envelope.event}${label ? ` lineage=${label}` : ''}\n`);
+    } catch { /* a stderr write must never break event persistence */ }
+  }
   return envelope;
 }
 
