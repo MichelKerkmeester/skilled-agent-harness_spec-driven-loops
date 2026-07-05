@@ -1,0 +1,229 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/028-memory-search-intelligence/003-skill-advisor/009-hard-rule-and-dispatch-preflight-hardening",
+  "spec_folder": "system-speckit/028-memory-search-intelligence/003-skill-advisor/009-hard-rule-and-dispatch-preflight-hardening",
+  "parent_id": "system-speckit/028-memory-search-intelligence/003-skill-advisor",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "hard rule enforcement",
+      "dispatch preflight linter",
+      "dev null stdin redirect rule",
+      "fanout stall watchdog default",
+      "skill advisor hard rules frontmatter",
+      "opencode run hang 0 cpu",
+      "dispatch preflight linter design",
+      "hard rules frontmatter contract",
+      "fanout stall detector defaults",
+      "stdin redirect enforcement design",
+      "hardening implementation tasks",
+      "dispatch linter task list"
+    ],
+    "key_topics": [
+      "hard",
+      "rule",
+      "enforcement",
+      "dispatch",
+      "preflight",
+      "linter",
+      "dev",
+      "null",
+      "stdin",
+      "redirect",
+      "fanout",
+      "stall"
+    ],
+    "importance_tier": "high",
+    "status": "in_progress",
+    "key_files": [
+      ".opencode/skills/deep-loop-runtime/lib/deep-loop/executor-config.ts",
+      ".opencode/skills/deep-loop-runtime/scripts/fanout-run.cjs",
+      ".opencode/skills/cli-opencode/SKILL.md",
+      ".opencode/skills/system-skill-advisor/mcp_server/lib/render.ts",
+      "plan.md",
+      "decision-record.md",
+      "tasks.md",
+      "constitutional/cli-dispatch-skill-preload.md",
+      ".opencode/commands/deep/assets/deep_review_auto.yaml",
+      ".claude/settings.json",
+      "spec.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "executor-config.ts",
+        "kind": "code",
+        "path": ".opencode/skills/deep-loop-runtime/lib/deep-loop/executor-config.ts",
+        "source": "derived"
+      },
+      {
+        "name": "fanout-run.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/deep-loop-runtime/scripts/fanout-run.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/cli-opencode/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "render.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-skill-advisor/mcp_server/lib/render.ts",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "cli-dispatch-skill-preload.md",
+        "kind": "doc",
+        "path": "constitutional/cli-dispatch-skill-preload.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep_review_auto.yaml",
+        "kind": "config",
+        "path": ".opencode/commands/deep/assets/deep_review_auto.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "settings.json",
+        "kind": "config",
+        "path": ".claude/settings.json",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Claude Code",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "The Gate",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "no",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "stdin",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context Both",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Ship",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Testing Strategy",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Two dispatch-path failures — a manual opencode run with no stdin redirect that hung at 0% CPU, and a fanout lineage that stalled at 0 iterations with no terminal event — both trace to the same shape: a machine check that would have caught it exists or is nearly free, but nothing in the execution path runs it before the risky action. This is a plan-only design for wiring those checks in.",
+    "created_at": "2026-07-05T05:43:02.602Z",
+    "last_save_at": "2026-07-05T05:56:04.453Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:c662a33230ddbda76838d39e079ad3f0ed33dfebc4d0d5e2721840873cba2fb1",
+    "source_doc_hashes": {
+      "spec.md": "f87b17e158ed4a3b0a8dde29bbcc68bbd38c7174e82ed2b6966812bbff02c37d",
+      "plan.md": "ba9f5283cfa4152ba6da7eb3f3d3252dd2e260467fafab592780e190ccc5e2ca",
+      "tasks.md": "4db6e6baaa143ca4d279913f034bbec0c6f5ce6e26d28ef5713c8b6f3aa75aff",
+      "checklist.md": "1e8cf2670f3f8a10c6c0c96bfed895b41354aa79521f782c62ab5328c46aadee",
+      "decision-record.md": "8c41f207a13af02c5ba8402b1a3e15d132f9c432a77b04a8356e0386e188d0d7",
+      "implementation-summary.md": "20e842005791f9f1d1878614d523dc7f63f6b1403425dbff6103c3300964dc1e"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

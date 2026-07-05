@@ -1,0 +1,31 @@
+{
+  "level": "2",
+  "specFolder": "system-speckit/028-memory-search-intelligence/003-skill-advisor/009-hard-rule-and-dispatch-preflight-hardening",
+  "description": "Two dispatch-path failures — a manual opencode run with no stdin redirect that hung at 0% CPU, and a fanout lineage that stalled at 0 iterations with",
+  "keywords": [
+    "two",
+    "dispatch-path",
+    "failures",
+    "manual",
+    "opencode",
+    "run",
+    "stdin",
+    "redirect",
+    "hung",
+    "cpu",
+    "fanout",
+    "lineage",
+    "stalled",
+    "iterations"
+  ],
+  "lastUpdated": "2026-07-05T05:51:38.917Z",
+  "specId": "009",
+  "folderSlug": "hard-rule-and-dispatch-preflight-hardening",
+  "parentChain": [
+    "system-speckit",
+    "028-memory-search-intelligence",
+    "003-skill-advisor"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}
