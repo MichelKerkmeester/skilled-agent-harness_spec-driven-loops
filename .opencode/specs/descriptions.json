@@ -2665,27 +2665,95 @@
       "lastUpdated": "2026-07-04T14:39:13.799Z"
     },
     {
-      "specFolder": "deep-loops/031-deep-loop-issues-with-gpt-opencode",
-      "description": "Parent packet for fixing deep-skill invocation, routing, and orchestration under GPT-backed OpenCode. Children implement research, validator",
+      "specFolder": "deep-loops/031-deep-loop-gpt-reliability",
+      "description": "GPT-backed OpenCode mis-handled deep-loop routing, dispatch, host identity, and orchestration — deep skills were mis-invoked, routes were mismatched,",
       "keywords": [
-        "parent",
-        "packet",
-        "fixing",
-        "deep-skill",
-        "invocation",
-        "routing",
-        "orchestration",
         "gpt-backed",
         "opencode",
-        "children",
-        "implement",
-        "research",
-        "validator"
+        "mis-handled",
+        "deep-loop",
+        "routing",
+        "dispatch",
+        "host",
+        "identity",
+        "orchestration",
+        "deep",
+        "skills",
+        "mis-invoked",
+        "routes",
+        "mismatched"
       ],
-      "lastUpdated": "2026-07-04T14:39:13.799Z"
+      "lastUpdated": "2026-07-05T12:13:05.373Z"
     },
     {
-      "specFolder": "deep-loops/031-deep-loop-issues-with-gpt-opencode/001-deep-agent-router-and-orchestration",
+      "specFolder": "deep-loops/031-deep-loop-gpt-reliability/001-research-and-diagnosis",
+      "description": "GPT-backed OpenCode mis-handled deep-loop routing, host identity, and orchestration",
+      "keywords": [
+        "gpt-backed",
+        "opencode",
+        "mis-handled",
+        "deep-loop",
+        "routing",
+        "host",
+        "identity",
+        "orchestration"
+      ],
+      "lastUpdated": "2026-07-05T12:13:05.380Z"
+    },
+    {
+      "specFolder": "deep-loops/031-deep-loop-gpt-reliability/001-research-and-diagnosis/001-gpt-behavioral-hardening-research",
+      "description": "Phases 002-004 landed and were independently re-verified as code-complete",
+      "keywords": [
+        "phases",
+        "002-004",
+        "landed",
+        "independently",
+        "re-verified",
+        "code-complete"
+      ],
+      "lastUpdated": "2026-07-05T12:13:05.385Z"
+    },
+    {
+      "specFolder": "deep-loops/031-deep-loop-gpt-reliability/001-research-and-diagnosis/002-gpt-reliability-research",
+      "description": "30-iteration orchestrator-hosted deep-research campaign using GPT-5.5-fast xhigh as the researcher: identify which parts of our commands, gates,",
+      "keywords": [
+        "30-iteration",
+        "orchestrator-hosted",
+        "deep-research",
+        "campaign",
+        "using",
+        "gpt-5",
+        "5-fast",
+        "xhigh",
+        "researcher",
+        "identify",
+        "parts",
+        "commands",
+        "gates"
+      ],
+      "lastUpdated": "2026-07-05T12:13:05.390Z"
+    },
+    {
+      "specFolder": "deep-loops/031-deep-loop-gpt-reliability/002-routing-dispatch-and-identity",
+      "description": "GPT-backed OpenCode mis-routed and mis-dispatched deep-loop work and could not hold a hard host identity (the FIX-5 problem)",
+      "keywords": [
+        "gpt-backed",
+        "opencode",
+        "mis-routed",
+        "mis-dispatched",
+        "deep-loop",
+        "work",
+        "hold",
+        "hard",
+        "host",
+        "identity",
+        "fix-5",
+        "problem"
+      ],
+      "lastUpdated": "2026-07-04T19:02:59.644Z"
+    },
+    {
+      "specFolder": "deep-loops/031-deep-loop-gpt-reliability/002-routing-dispatch-and-identity/001-deep-agent-router-and-orchestration",
       "description": "GPT-backed models running inside OpenCode do not properly invoke deep skills (deep-research, deep-review, deep-context, deep-ai-council)",
       "keywords": [
         "gpt-backed",
@@ -2702,11 +2770,11 @@
         "deep-context",
         "deep-ai-council"
       ],
-      "lastUpdated": "2026-07-01T10:41:58.834Z"
+      "lastUpdated": "2026-07-05T12:13:05.394Z"
     },
     {
-      "specFolder": "deep-loops/031-deep-loop-issues-with-gpt-opencode/002-route-proof-validation",
-      "description": "The research (`../../research/research.md` §5) found a critical false-negative (F27): a GPT mis-dispatch can PASS every existing FIX-5 validator signa",
+      "specFolder": "deep-loops/031-deep-loop-gpt-reliability/002-routing-dispatch-and-identity/002-route-proof-validation",
+      "description": "The research (`../../research/research.md` §5) found a critical false-negative (F27): a GPT mis-dispatch can PASS every existing FIX-5 validator",
       "keywords": [
         "research",
         "found",
@@ -2719,14 +2787,13 @@
         "every",
         "existing",
         "fix-5",
-        "validator",
-        "signa"
+        "validator"
       ],
-      "lastUpdated": "2026-07-01T05:32:33.121Z"
+      "lastUpdated": "2026-07-05T12:13:05.400Z"
     },
     {
-      "specFolder": "deep-loops/031-deep-loop-issues-with-gpt-opencode/003-agent-dispatch-hardening",
-      "description": "The research (§1, §2) established that `subagenttype` is normalized to `\"general\"` with identity prompt-injected, so a DEEP agent file buys first-disp",
+      "specFolder": "deep-loops/031-deep-loop-gpt-reliability/002-routing-dispatch-and-identity/003-agent-dispatch-hardening",
+      "description": "The research (§1, §2) established that `subagenttype` is normalized to `\"general\"` with identity prompt-injected, so a DEEP agent file buys",
       "keywords": [
         "research",
         "established",
@@ -2738,13 +2805,12 @@
         "deep",
         "agent",
         "file",
-        "buys",
-        "first-disp"
+        "buys"
       ],
-      "lastUpdated": "2026-07-01T05:32:33.125Z"
+      "lastUpdated": "2026-07-05T12:13:05.405Z"
     },
     {
-      "specFolder": "deep-loops/031-deep-loop-issues-with-gpt-opencode/004-command-pre-route-headers",
+      "specFolder": "deep-loops/031-deep-loop-gpt-reliability/002-routing-dispatch-and-identity/004-command-pre-route-headers",
       "description": "The research evidence identifies role-resolution overhead as the dominant GPT-slow mechanism",
       "keywords": [
         "research",
@@ -2756,10 +2822,237 @@
         "gpt-slow",
         "mechanism"
       ],
-      "lastUpdated": "2026-07-04T14:39:13.799Z"
+      "lastUpdated": "2026-07-05T12:13:05.410Z"
     },
     {
-      "specFolder": "deep-loops/031-deep-loop-issues-with-gpt-opencode/005-gpt-verification-smoke",
+      "specFolder": "deep-loops/031-deep-loop-gpt-reliability/002-routing-dispatch-and-identity/005-host-hard-identity-fix5",
+      "description": "The research (§8b) found that hard per-agent `subagenttype` identity requires a host-runtime dispatch-primitive change (bind `agentslug` at the Task",
+      "keywords": [
+        "research",
+        "found",
+        "hard",
+        "per-agent",
+        "subagenttype",
+        "identity",
+        "requires",
+        "host-runtime",
+        "dispatch-primitive",
+        "change",
+        "bind",
+        "agentslug",
+        "task"
+      ],
+      "lastUpdated": "2026-07-05T12:13:05.415Z"
+    },
+    {
+      "specFolder": "deep-loops/031-deep-loop-gpt-reliability/002-routing-dispatch-and-identity/006-mode-d-ai-council-identity-fix",
+      "description": "Two independent, confirmed-by-code-trace defects, both cross-validated across research/research.md's 6 lineages:",
+      "keywords": [
+        "two",
+        "independent",
+        "confirmed-by-code-trace",
+        "defects",
+        "cross-validated",
+        "across",
+        "research",
+        "lineages"
+      ],
+      "lastUpdated": "2026-07-05T12:13:05.420Z"
+    },
+    {
+      "specFolder": "deep-loops/031-deep-loop-gpt-reliability/002-routing-dispatch-and-identity/007-orchestrate-universal-routing",
+      "description": "`orchestrate.md`'s \"Agent Selection (Priority Order)\" table (`.opencode/agents/orchestrate.md:97-105`) is the single deterministic routing surface for",
+      "keywords": [
+        "orchestrate",
+        "agent",
+        "selection",
+        "priority",
+        "order",
+        "table",
+        "opencode",
+        "agents",
+        "97-105",
+        "single",
+        "deterministic",
+        "routing",
+        "surface"
+      ],
+      "lastUpdated": "2026-07-05T12:13:05.425Z"
+    },
+    {
+      "specFolder": "deep-loops/031-deep-loop-gpt-reliability/002-routing-dispatch-and-identity/008-ai-council-subagent-only",
+      "description": "`.opencode/agents/ai-council.md:4` currently declares `mode: all`, meaning it is dual-reachable: directly selectable as a top-level agent in OpenCode",
+      "keywords": [
+        "opencode",
+        "agents",
+        "ai-council",
+        "currently",
+        "declares",
+        "mode",
+        "meaning",
+        "dual-reachable",
+        "directly",
+        "selectable",
+        "top-level",
+        "agent"
+      ],
+      "lastUpdated": "2026-07-05T12:13:05.430Z"
+    },
+    {
+      "specFolder": "deep-loops/031-deep-loop-gpt-reliability/002-routing-dispatch-and-identity/009-fix5-checkpoint",
+      "description": "Phase 006 parked FIX-5 (host hard identity / process-isolation) behind a trigger defined before this packet's follow-up research existed",
+      "keywords": [
+        "phase",
+        "006",
+        "parked",
+        "fix-5",
+        "host",
+        "hard",
+        "identity",
+        "process-isolation",
+        "behind",
+        "trigger",
+        "defined",
+        "packet",
+        "follow-up",
+        "research",
+        "existed"
+      ],
+      "lastUpdated": "2026-07-05T12:13:05.433Z"
+    },
+    {
+      "specFolder": "deep-loops/031-deep-loop-gpt-reliability/003-guard-and-enforcement",
+      "description": "Correct routing and dispatch (track 002) needed a detection layer to enforce it and catch regressions",
+      "keywords": [
+        "correct",
+        "routing",
+        "dispatch",
+        "track",
+        "002",
+        "needed",
+        "detection",
+        "layer",
+        "enforce",
+        "catch",
+        "regressions"
+      ],
+      "lastUpdated": "2026-07-05T12:13:05.438Z"
+    },
+    {
+      "specFolder": "deep-loops/031-deep-loop-gpt-reliability/003-guard-and-enforcement/001-deep-route-guard-plugin",
+      "description": "Phases 008-010 fix routing identity (correct table rows, correct registry values, correct reachability) but do nothing to enforce it at the moment of",
+      "keywords": [
+        "phases",
+        "008-010",
+        "fix",
+        "routing",
+        "identity",
+        "correct",
+        "table",
+        "rows",
+        "registry",
+        "values",
+        "reachability",
+        "nothing",
+        "enforce",
+        "moment"
+      ],
+      "lastUpdated": "2026-07-05T12:13:05.442Z"
+    },
+    {
+      "specFolder": "deep-loops/031-deep-loop-gpt-reliability/003-guard-and-enforcement/002-mk-deep-loop-guard-hardening",
+      "description": "`cli-opencode/SKILL.md` now correctly documents that `orchestrate` may perform exactly one bounded hand-off dispatch to a command-owned loop executor",
+      "keywords": [
+        "cli-opencode",
+        "skill",
+        "now",
+        "correctly",
+        "documents",
+        "orchestrate",
+        "perform",
+        "exactly",
+        "one",
+        "bounded",
+        "hand-off",
+        "dispatch",
+        "command-owned",
+        "loop",
+        "executor"
+      ],
+      "lastUpdated": "2026-07-04T19:08:59.952Z"
+    },
+    {
+      "specFolder": "deep-loops/031-deep-loop-gpt-reliability/003-guard-and-enforcement/003-loop-guard-implementation",
+      "description": "Phase 016's research confirmed two real gaps in the phase-011 `mk-deep-loop-guard.js` plugin: (1) it has no mechanism to detect loop-like repeated",
+      "keywords": [
+        "phase",
+        "016",
+        "research",
+        "confirmed",
+        "two",
+        "real",
+        "gaps",
+        "phase-011",
+        "mk-deep-loop-guard",
+        "plugin",
+        "mechanism",
+        "detect",
+        "loop-like",
+        "repeated"
+      ],
+      "lastUpdated": "2026-07-05T12:13:05.446Z"
+    },
+    {
+      "specFolder": "deep-loops/031-deep-loop-gpt-reliability/003-guard-and-enforcement/004-fanout-stopreason-tolerance",
+      "description": "`findMaxIterationsPolicyViolation` (fanout-run.cjs:~619) rejects a lineage whenever `synthesis.stopReason !== 'maxIterationsReached'`",
+      "keywords": [
+        "findmaxiterationspolicyviolation",
+        "fanout-run",
+        "cjs",
+        "619",
+        "rejects",
+        "lineage",
+        "whenever",
+        "synthesis",
+        "stopreason",
+        "maxiterationsreached"
+      ],
+      "lastUpdated": "2026-07-04T19:09:00.849Z"
+    },
+    {
+      "specFolder": "deep-loops/031-deep-loop-gpt-reliability/003-guard-and-enforcement/005-mk-deep-loop-guard-retention",
+      "description": "`mk-deep-loop-guard.js` persists a per-session JSON state file (`recordLoopDispatch`/`writeLoopStateAtomic`) and appends to `guard-warnings.log` on",
+      "keywords": [
+        "mk-deep-loop-guard",
+        "persists",
+        "per-session",
+        "json",
+        "state",
+        "file",
+        "recordloopdispatch",
+        "writeloopstateatomic",
+        "appends",
+        "guard-warnings",
+        "log"
+      ],
+      "lastUpdated": "2026-07-05T12:13:05.450Z"
+    },
+    {
+      "specFolder": "deep-loops/031-deep-loop-gpt-reliability/004-benchmarks-and-verification",
+      "description": "The routing, dispatch, and identity fixes needed empirical confirmation",
+      "keywords": [
+        "routing",
+        "dispatch",
+        "identity",
+        "fixes",
+        "needed",
+        "empirical",
+        "confirmation"
+      ],
+      "lastUpdated": "2026-07-04T19:10:41.375Z"
+    },
+    {
+      "specFolder": "deep-loops/031-deep-loop-gpt-reliability/004-benchmarks-and-verification/001-gpt-verification-smoke",
       "description": "Existing provenance can verify GPT first-dispatch correctness without new benchmark tooling, but the smoke must include route-proof assertions",
       "keywords": [
         "existing",
@@ -2778,118 +3071,10 @@
         "route-proof",
         "assertions"
       ],
-      "lastUpdated": "2026-07-04T14:39:13.799Z"
+      "lastUpdated": "2026-07-05T12:13:05.455Z"
     },
     {
-      "specFolder": "deep-loops/031-deep-loop-issues-with-gpt-opencode/006-host-hard-identity-fix5",
-      "description": "The research (§8b) found that hard per-agent `subagenttype` identity requires a host-runtime dispatch-primitive change (bind `agentslug` at the Task",
-      "keywords": [
-        "research",
-        "found",
-        "hard",
-        "per-agent",
-        "subagenttype",
-        "identity",
-        "requires",
-        "host-runtime",
-        "dispatch-primitive",
-        "change",
-        "bind",
-        "agentslug",
-        "task"
-      ],
-      "lastUpdated": "2026-07-04T14:39:13.799Z"
-    },
-    {
-      "specFolder": "deep-loops/031-deep-loop-issues-with-gpt-opencode/007-gpt-behavioral-hardening-research",
-      "description": "Phases 002-004 landed and were independently re-verified as code-complete",
-      "keywords": [
-        "phases",
-        "002-004",
-        "landed",
-        "independently",
-        "re-verified",
-        "code-complete"
-      ],
-      "lastUpdated": "2026-07-04T14:39:13.799Z"
-    },
-    {
-      "specFolder": "deep-loops/031-deep-loop-issues-with-gpt-opencode/008-mode-d-ai-council-identity-fix",
-      "description": "Two independent, confirmed-by-code-trace defects, both cross-validated across research/research.md's 6 lineages:",
-      "keywords": [
-        "two",
-        "independent",
-        "confirmed-by-code-trace",
-        "defects",
-        "cross-validated",
-        "across",
-        "research",
-        "lineages"
-      ],
-      "lastUpdated": "2026-07-04T14:39:13.799Z"
-    },
-    {
-      "specFolder": "deep-loops/031-deep-loop-issues-with-gpt-opencode/009-orchestrate-universal-routing",
-      "description": "`orchestrate.md`'s \"Agent Selection (Priority Order)\" table (`.opencode/agents/orchestrate.md:97-105`) is the single deterministic routing surface for",
-      "keywords": [
-        "orchestrate",
-        "agent",
-        "selection",
-        "priority",
-        "order",
-        "table",
-        "opencode",
-        "agents",
-        "97-105",
-        "single",
-        "deterministic",
-        "routing",
-        "surface"
-      ],
-      "lastUpdated": "2026-07-04T14:39:13.799Z"
-    },
-    {
-      "specFolder": "deep-loops/031-deep-loop-issues-with-gpt-opencode/010-ai-council-subagent-only",
-      "description": "`.opencode/agents/ai-council.md:4` currently declares `mode: all`, meaning it is dual-reachable: directly selectable as a top-level agent in OpenCode",
-      "keywords": [
-        "opencode",
-        "agents",
-        "ai-council",
-        "currently",
-        "declares",
-        "mode",
-        "meaning",
-        "dual-reachable",
-        "directly",
-        "selectable",
-        "top-level",
-        "agent"
-      ],
-      "lastUpdated": "2026-07-04T14:39:13.799Z"
-    },
-    {
-      "specFolder": "deep-loops/031-deep-loop-issues-with-gpt-opencode/011-deep-route-guard-plugin",
-      "description": "Phases 008-010 fix routing identity (correct table rows, correct registry values, correct reachability) but do nothing to enforce it at the moment of",
-      "keywords": [
-        "phases",
-        "008-010",
-        "fix",
-        "routing",
-        "identity",
-        "correct",
-        "table",
-        "rows",
-        "registry",
-        "values",
-        "reachability",
-        "nothing",
-        "enforce",
-        "moment"
-      ],
-      "lastUpdated": "2026-07-01T14:53:26.976Z"
-    },
-    {
-      "specFolder": "deep-loops/031-deep-loop-issues-with-gpt-opencode/012-gpt-claude-benchmark",
+      "specFolder": "deep-loops/031-deep-loop-gpt-reliability/004-benchmarks-and-verification/002-gpt-claude-benchmark",
       "description": "Every prior attempt to get decisive GPT-backed dispatch evidence has been blocked upstream: phase 005 (the packet's original acceptance-gate smoke)",
       "keywords": [
         "every",
@@ -2909,32 +3094,27 @@
         "acceptance-gate",
         "smoke"
       ],
-      "lastUpdated": "2026-07-01T13:09:56.009Z"
+      "lastUpdated": "2026-07-05T12:13:05.459Z"
     },
     {
-      "specFolder": "deep-loops/031-deep-loop-issues-with-gpt-opencode/013-fix5-checkpoint",
-      "description": "Phase 006 parked FIX-5 (host hard identity / process-isolation) behind a trigger defined before this packet's follow-up research existed",
+      "specFolder": "deep-loops/031-deep-loop-gpt-reliability/005-skill-doc-hygiene",
+      "description": "The routing and identity refactors left the deep-loop skill docs describing stale behavior",
       "keywords": [
-        "phase",
-        "006",
-        "parked",
-        "fix-5",
-        "host",
-        "hard",
+        "routing",
         "identity",
-        "process-isolation",
-        "behind",
-        "trigger",
-        "defined",
-        "packet",
-        "follow-up",
-        "research",
-        "existed"
+        "refactors",
+        "left",
+        "deep-loop",
+        "skill",
+        "docs",
+        "describing",
+        "stale",
+        "behavior"
       ],
-      "lastUpdated": "2026-07-04T14:39:13.799Z"
+      "lastUpdated": "2026-07-04T19:10:59.264Z"
     },
     {
-      "specFolder": "deep-loops/031-deep-loop-issues-with-gpt-opencode/014-skill-doc-drift-audit",
+      "specFolder": "deep-loops/031-deep-loop-gpt-reliability/005-skill-doc-hygiene/001-skill-doc-drift-audit",
       "description": "Packet 031 (phases 008-013) changed real runtime behavior: `ai-council.md` converted from `mode: all` to `mode: subagent`, `orchestrate.md` gained",
       "keywords": [
         "packet",
@@ -2952,10 +3132,10 @@
         "orchestrate",
         "gained"
       ],
-      "lastUpdated": "2026-07-02T03:38:03.227Z"
+      "lastUpdated": "2026-07-05T12:13:05.463Z"
     },
     {
-      "specFolder": "deep-loops/031-deep-loop-issues-with-gpt-opencode/015-skill-doc-drift-remediation",
+      "specFolder": "deep-loops/031-deep-loop-gpt-reliability/005-skill-doc-hygiene/002-skill-doc-drift-remediation",
       "description": "Phase 014's deep-review + deep-research audit (20 iterations, independently re-verified by fresh Claude Sonnet 5 agents) confirmed 6 real drift",
       "keywords": [
         "phase",
@@ -2974,67 +3154,180 @@
         "real",
         "drift"
       ],
-      "lastUpdated": "2026-07-01T17:19:14.828Z"
+      "lastUpdated": "2026-07-04T19:10:58.913Z"
     },
     {
-      "specFolder": "deep-loops/031-deep-loop-issues-with-gpt-opencode/016-mk-deep-loop-guard-hardening",
-      "description": "`cli-opencode/SKILL.md` now correctly documents that `orchestrate` may perform exactly one bounded hand-off dispatch to a command-owned loop executor",
+      "specFolder": "deep-loops/031-deep-loop-gpt-reliability/006-reliability-fixes",
+      "description": "Implementation packet for the packet-034 research synthesis, restructured per the plan-review (58 verified gaps) into the unified command-contract",
       "keywords": [
-        "cli-opencode",
-        "skill",
-        "now",
-        "correctly",
-        "documents",
-        "orchestrate",
-        "perform",
-        "exactly",
-        "one",
-        "bounded",
-        "hand-off",
-        "dispatch",
-        "command-owned",
-        "loop",
-        "executor"
+        "implementation",
+        "packet",
+        "packet-034",
+        "research",
+        "synthesis",
+        "restructured",
+        "per",
+        "plan-review",
+        "verified",
+        "gaps",
+        "unified",
+        "command-contract"
       ],
-      "lastUpdated": "2026-07-01T17:22:22.418Z"
+      "lastUpdated": "2026-07-05T03:41:44.872Z"
     },
     {
-      "specFolder": "deep-loops/031-deep-loop-issues-with-gpt-opencode/017-loop-guard-implementation",
-      "description": "Phase 016's research confirmed two real gaps in the phase-011 `mk-deep-loop-guard.js` plugin: (1) it has no mechanism to detect loop-like repeated",
+      "specFolder": "deep-loops/031-deep-loop-gpt-reliability/006-reliability-fixes/001-acceptance-and-rollout-foundation",
+      "description": "Phase 001 of packet 035 (unified command-contract architecture). Closes F-014, F-025 and builds the rollout mechanism (plan-review GAP-47). Two jobs,",
       "keywords": [
         "phase",
-        "016",
-        "research",
-        "confirmed",
-        "two",
-        "real",
-        "gaps",
-        "phase-011",
-        "mk-deep-loop-guard",
-        "plugin",
+        "001",
+        "packet",
+        "035",
+        "unified",
+        "command-contract",
+        "architecture",
+        "closes",
+        "f-014",
+        "f-025",
+        "builds",
+        "rollout",
         "mechanism",
-        "detect",
-        "loop-like",
-        "repeated"
+        "plan-review",
+        "gap-47",
+        "two",
+        "jobs"
       ],
-      "lastUpdated": "2026-07-04T13:02:04.942Z"
+      "lastUpdated": "2026-07-04T19:14:56.059Z"
     },
     {
-      "specFolder": "deep-loops/031-deep-loop-issues-with-gpt-opencode/018-fanout-stopreason-tolerance",
-      "description": "`findMaxIterationsPolicyViolation` (fanout-run.cjs:~619) rejects a lineage whenever `synthesis.stopReason !== 'maxIterationsReached'`",
+      "specFolder": "deep-loops/031-deep-loop-gpt-reliability/006-reliability-fixes/002-gate3-precedence-and-validator",
+      "description": "Phase 002 of packet 035 (unified command-contract architecture). The P0 fix: kill the most-replicated GPT failure — the Gate-3 spec-folder halt on",
       "keywords": [
-        "findmaxiterationspolicyviolation",
-        "fanout-run",
-        "cjs",
-        "619",
-        "rejects",
-        "lineage",
-        "whenever",
-        "synthesis",
-        "stopreason",
-        "maxiterationsreached"
+        "phase",
+        "002",
+        "packet",
+        "035",
+        "unified",
+        "command-contract",
+        "architecture",
+        "fix",
+        "kill",
+        "most-replicated",
+        "gpt",
+        "failure",
+        "gate-3",
+        "spec-folder",
+        "halt"
       ],
-      "lastUpdated": "2026-07-04T10:55:58.090Z"
+      "lastUpdated": "2026-07-05T12:13:05.468Z"
+    },
+    {
+      "specFolder": "deep-loops/031-deep-loop-gpt-reliability/006-reliability-fixes/003-dispatch-receipts-and-progress",
+      "description": "Phase 004 of packet 035 (the last acute-fix phase). Two standalone dispatch-integrity mechanisms (packet 036's compiled contract will reference them):",
+      "keywords": [
+        "phase",
+        "004",
+        "packet",
+        "035",
+        "last",
+        "acute-fix",
+        "two",
+        "standalone",
+        "dispatch-integrity",
+        "mechanisms",
+        "036",
+        "compiled",
+        "contract",
+        "reference",
+        "them"
+      ],
+      "lastUpdated": "2026-07-04T19:14:56.870Z"
+    },
+    {
+      "specFolder": "deep-loops/031-deep-loop-gpt-reliability/007-compiled-contract-compiler",
+      "description": "Design-first structural packet carved from 035 (GPT-reliability fixes) after the phase-003 design pass confirmed the contract compiler is",
+      "keywords": [
+        "design-first",
+        "structural",
+        "packet",
+        "carved",
+        "035",
+        "gpt-reliability",
+        "fixes",
+        "phase-003",
+        "design",
+        "pass",
+        "confirmed",
+        "contract",
+        "compiler"
+      ],
+      "lastUpdated": "2026-07-05T03:41:45.196Z"
+    },
+    {
+      "specFolder": "deep-loops/031-deep-loop-gpt-reliability/007-compiled-contract-compiler/001-contract-compiler-design",
+      "description": "Phase 001 of packet 036 (command contract compiler, carved from 035). Design-first: verify and expand the seed design (design.md, produced during the",
+      "keywords": [
+        "phase",
+        "001",
+        "packet",
+        "036",
+        "command",
+        "contract",
+        "compiler",
+        "carved",
+        "035",
+        "design-first",
+        "verify",
+        "expand",
+        "seed",
+        "design",
+        "produced"
+      ],
+      "lastUpdated": "2026-07-04T19:18:11.020Z"
+    },
+    {
+      "specFolder": "deep-loops/031-deep-loop-gpt-reliability/007-compiled-contract-compiler/002-deep-loop-router-deprecation",
+      "description": "Phase 002 of packet 036 (command contract compiler). Retire the now-dead deep-loop primary router agent: the compiled-command-contract mechanism",
+      "keywords": [
+        "phase",
+        "002",
+        "packet",
+        "036",
+        "command",
+        "contract",
+        "compiler",
+        "retire",
+        "now-dead",
+        "deep-loop",
+        "primary",
+        "router",
+        "agent",
+        "compiled-command-contract",
+        "mechanism"
+      ],
+      "lastUpdated": "2026-07-04T19:18:11.386Z"
+    },
+    {
+      "specFolder": "deep-loops/031-deep-loop-gpt-reliability/007-compiled-contract-compiler/003-generalization-probes",
+      "description": "Phase 003 of packet 036. Prove the compiled-command-contract behavior flip generalizes beyond review/research to the context and council modes, and",
+      "keywords": [
+        "phase",
+        "003",
+        "packet",
+        "036",
+        "prove",
+        "compiled-command-contract",
+        "behavior",
+        "flip",
+        "generalizes",
+        "beyond",
+        "review",
+        "research",
+        "context",
+        "council",
+        "modes"
+      ],
+      "lastUpdated": "2026-07-04T19:18:11.818Z"
     },
     {
       "specFolder": "deep-loops/032-goal-opencode-plugin",
