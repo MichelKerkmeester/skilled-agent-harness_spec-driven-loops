@@ -12,14 +12,14 @@ _memory:
     packet_pointer: "deep-loops/031-deep-loop-gpt-reliability/007-compiled-contract-compiler"
     last_updated_at: "2026-07-03T19:00:00Z"
     last_updated_by: "claude-code"
-    recent_action: "Packet carved from 035 phase-003; design seed captured"
-    next_safe_action: "Verify + expand the 001 design, then decompose the build/retrofit phases"
+    recent_action: "002 router-deprecation + 003 generalization-probes complete; 001 design pending"
+    next_safe_action: "Verify + expand the 001 contract-compiler design"
     blockers: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "036-parent-init"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 67
     open_questions: []
     answered_questions:
       - "Why a separate packet? The 035 phase-003 design pass returned a feasibility verdict of research-sized (schema+compiler M, loader L, drift-CI M-L, retrofit L), matching the plan-review's GAP-53/54. Forcing it into one 035 phase was rejected; it is carved here."
@@ -38,7 +38,7 @@ _memory:
 |-------|-------|
 | **Level** | phase |
 | **Priority** | P2 |
-| **Status** | Planned |
+| **Status** | In Progress |
 | **Created** | 2026-07-03 |
 | **Parent Packet** | None (top-level under deep-loops; carved from 035-gpt-reliability-fixes) |
 <!-- /ANCHOR:metadata -->
@@ -110,7 +110,9 @@ GPT executors don't reliably see a command's contract because it's distributed a
 
 | Phase | Status | Purpose |
 |-------|--------|---------|
-| [`001-contract-compiler-design`](./001-contract-compiler-design/spec.md) | Planned | Verify + expand the seed design (`design.md`) into an implementable spec; resolve the injection-insertion-point, checksum-ownership, and CLI-parity unknowns. Then decompose the build/retrofit phases. |
+| [`001-contract-compiler-design`](./001-contract-compiler-design/spec.md) | Planned | Verify + expand the seed design (`design.md`) into an implementable spec; resolve the injection-insertion-point, checksum-ownership, and CLI-parity unknowns. Then decompose the compiler build/retrofit phases. |
+| [`002-deep-loop-router-deprecation`](./002-deep-loop-router-deprecation/spec.md) | Complete | Deep-loop router agent deprecation — an adjacent GPT-reliability follow-up folded into this packet. |
+| [`003-generalization-probes`](./003-generalization-probes/spec.md) | Complete | Compiled-contract generalization probes — validating whether the contract-flip generalizes across modes. |
 <!-- /ANCHOR:phases -->
 
 ---
@@ -120,5 +122,5 @@ GPT executors don't reliably see a command's contract because it's distributed a
 
 - `context-index.md` — how this packet was carved from 035.
 - `001-contract-compiler-design/design.md` — the seed design (GPT-produced, grounded in the real `/deep:review` chain).
-- `../035-gpt-reliability-fixes/` — the parent effort; its receipts + progress mechanisms are referenced here.
+- `../006-reliability-fixes/` — the parent effort (regrouped here from 035); its receipts + progress mechanisms are referenced here.
 <!-- /ANCHOR:related -->

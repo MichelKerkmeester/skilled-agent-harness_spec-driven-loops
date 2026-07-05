@@ -13,7 +13,7 @@ _memory:
     last_updated_at: "2026-07-04T00:00:00.000Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "Regrouped 21 flat phases into 7 themed L1 tracks; renumbered per track"
-    next_safe_action: "Packet complete; see context-index.md for the old-to-new remap"
+    next_safe_action: "Complete track 006 and 007's 001-contract-compiler-design phase"
     blockers: []
     key_files:
       - "spec.md"
@@ -24,12 +24,13 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "031-parent-reorg-7-tracks"
       parent_session_id: null
-    completion_pct: 100
+    completion_pct: 80
     open_questions: []
     answered_questions:
       - "The GPT-reliability work is the packet's own phases plus the moved 034/035/036 packets, regrouped into 7 themed tracks."
       - "The routing and FIX-5 identity work stays one track (002) as a single core-fixes story."
       - "The old-number to new-track-number remap is recorded in context-index.md for cross-reference traceability."
+      - "The 7-track reorg is structurally complete (paths + metadata reconciled); tracks 001-005 are complete while 006 (Planned) and 007 (In Progress; 001 design pending) carry their own pre-existing implementation status."
 ---
 
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
@@ -44,7 +45,7 @@ _memory:
 |-------|-------|
 | **Level** | phase |
 | **Priority** | P0 |
-| **Status** | complete |
+| **Status** | In Progress |
 | **Created** | 2026-06-30 |
 | **Parent Packet** | `deep-loops` |
 <!-- /ANCHOR:metadata -->
@@ -100,8 +101,8 @@ Root of the GPT-reliability program. Groups the research, core fixes, enforcemen
 | 003 | `003-guard-and-enforcement/` | Route-guard plugin, hardening, loop detection, fanout tolerance | COMPLETE |
 | 004 | `004-benchmarks-and-verification/` | Verification smoke + GPT/Claude benchmark | COMPLETE |
 | 005 | `005-skill-doc-hygiene/` | Skill-doc drift audit + remediation | COMPLETE |
-| 006 | `006-reliability-fixes/` | Acute reliability fixes (from 035) | COMPLETE |
-| 007 | `007-compiled-contract-compiler/` | Command-contract compiler (from 036) | COMPLETE |
+| 006 | `006-reliability-fixes/` | Acute reliability fixes (from 035) | PLANNED |
+| 007 | `007-compiled-contract-compiler/` | Command-contract compiler (from 036) | IN PROGRESS |
 
 ### Phase Transition Rules
 
