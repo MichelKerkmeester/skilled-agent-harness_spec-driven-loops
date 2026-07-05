@@ -183,3 +183,15 @@ Audit cross-skill test-reference labeling patterns: feature catalogs and playboo
 ## Next Audit Angle After Iteration 15
 
 Audit feature-catalog generation/scaffolding sources for test-label taxonomy: templates, create-feature-catalog command assets, and any scripts that emit `Automated test`, `Integration`, or manual scenario rows.
+
+## Findings Added in Iteration 16
+
+1. `/create:feature-catalog` is wired to sk-doc feature-catalog creation guidance and both root/per-feature templates, making that template bundle the intended taxonomy authority for generated or updated catalogs. [SOURCE: .opencode/commands/create/assets/create_feature_catalog_auto.yaml:144] [SOURCE: .opencode/commands/create/assets/create_feature_catalog_auto.yaml:149] [SOURCE: .opencode/commands/create/assets/create_feature_catalog_auto.yaml:235]
+2. The sk-doc per-feature template defines validation/test `Type` values as `Automated test` or `Manual playbook`; it does not define `Integration`, `Manual scenario contract`, or placeholder automated-test rows as valid type taxonomy. [SOURCE: .opencode/skills/sk-doc/assets/feature_catalog/feature_catalog_snippet_template.md:118] [SOURCE: .opencode/skills/sk-doc/assets/feature_catalog/feature_catalog_snippet_template.md:158]
+3. The root feature-catalog template mirrors the same validation table shape and type choices, so observed broader labels are not explained by an alternate root-template taxonomy. [SOURCE: .opencode/skills/sk-doc/assets/feature_catalog/feature_catalog_template.md:226] [SOURCE: .opencode/skills/sk-doc/assets/feature_catalog/feature_catalog_template.md:230]
+4. The create-feature-catalog workflow validation gate checks root validation, linked files, category names, section headers, and count consistency, while source-anchor correctness remains a manual-review requirement. [SOURCE: .opencode/commands/create/assets/create_feature_catalog_auto.yaml:258] [SOURCE: .opencode/commands/create/assets/create_feature_catalog_auto.yaml:261] [SOURCE: .opencode/skills/sk-doc/references/feature_catalog_creation.md:179]
+5. A separate scaffolding mismatch exists: create-command quality standards still name `CURRENT REALITY` as a required per-feature section, while the current templates use `HOW IT WORKS`. [SOURCE: .opencode/commands/create/assets/create_feature_catalog_auto.yaml:163] [SOURCE: .opencode/commands/create/assets/create_feature_catalog_auto.yaml:166] [SOURCE: .opencode/skills/sk-doc/assets/feature_catalog/feature_catalog_snippet_template.md:87]
+
+## Next Audit Angle After Iteration 16
+
+Audit sk-doc and system-spec-kit validation/test surfaces for documentation-quality enforcement gaps: `validate_document.py`, markdown link checks, catalog/playbook tests, and whether any gate can detect placeholder test paths, invalid Type values, or template/command section-name drift.
