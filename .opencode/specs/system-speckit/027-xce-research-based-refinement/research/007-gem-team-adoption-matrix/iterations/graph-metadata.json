@@ -1,39 +1,9 @@
-{
-  "schema_version": 1,
-  "packet_id": "system-spec-kit/027-xce-research-based-refinement/research/007-gem-team-adoption-matrix/iterations",
-  "spec_folder": "system-spec-kit/027-xce-research-based-refinement/research/007-gem-team-adoption-matrix/iterations",
-  "parent_id": "system-spec-kit/027-xce-research-based-refinement/research/007-gem-team-adoption-matrix",
-  "children_ids": [],
-  "migrated": true,
-  "migration_source": "legacy",
-  "manual": {
-    "depends_on": [],
-    "supersedes": [],
-    "related_to": []
-  },
-  "derived": {
-    "trigger_phrases": [],
-    "key_topics": [
-      "packet",
-      "metadata",
-      "derived",
-      "canonical",
-      "spec",
-      "documents"
-    ],
-    "importance_tier": "important",
-    "status": "planned",
-    "key_files": [],
-    "entities": [],
-    "causal_summary": "Packet metadata derived from canonical spec documents.",
-    "created_at": "2026-06-22T18:55:03.593Z",
-    "last_save_at": "2026-06-23T03:49:58.045Z",
-    "save_lineage": "graph_only",
-    "last_accessed_at": null,
-    "source_docs": [],
-    "source_fingerprint": "sha256:4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
-    "source_doc_hashes": {},
-    "last_active_child_id": null,
-    "last_active_at": null
-  }
-}
+Packet: system-spec-kit/027-xce-research-based-refinement/research/007-gem-team-adoption-matrix/iterations
+Spec Folder: system-spec-kit/027-xce-research-based-refinement/research/007-gem-team-adoption-matrix/iterations
+Status: planned
+Importance Tier: important
+Summary: Packet metadata derived from canonical spec documents.
+Parent: system-spec-kit/027-xce-research-based-refinement/research/007-gem-team-adoption-matrix
+Migrated: true
+Migration Source: legacy
+Key Topics: packet, metadata, derived, canonical, spec, documents

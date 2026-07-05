@@ -1,0 +1,233 @@
+{
+  "schema_version": 1,
+  "packet_id": "deep-loops/035-deprecate-deep-context-integrate-capabilities/004-fixtures-benchmarks-and-runtime-cleanup",
+  "spec_folder": "deep-loops/035-deprecate-deep-context-integrate-capabilities/004-fixtures-benchmarks-and-runtime-cleanup",
+  "parent_id": "deep-loops/035-deprecate-deep-context-integrate-capabilities",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "deep-context fixture cleanup",
+      "deep-context benchmark cleanup",
+      "deep-context runtime cleanup",
+      "archive deep-context packet",
+      "deep-context runtime cleanup plan",
+      "deep-context fixture cleanup plan",
+      "deep-context benchmark cleanup plan",
+      "deep-context runtime cleanup tasks",
+      "deep-context fixture cleanup tasks",
+      "deep-context runtime checklist",
+      "deep-context fixture benchmark verification",
+      "deep-context runtime cleanup decision"
+    ],
+    "key_topics": [
+      "deep-context",
+      "fixture",
+      "cleanup",
+      "benchmark",
+      "runtime",
+      "archive",
+      "packet",
+      "plan",
+      "tasks",
+      "checklist",
+      "verification",
+      "decision"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      ".opencode/skills/deep-loop-runtime/scripts/compile-command-contracts.cjs",
+      ".opencode/skills/deep-loop-runtime/scripts/convergence.cjs",
+      ".opencode/skills/deep-loop-runtime/scripts/fanout-run.cjs",
+      ".opencode/skills/deep-loop-runtime/scripts/fanout-merge.cjs",
+      ".opencode/skills/deep-loop-runtime/scripts/verify-iteration.cjs",
+      ".opencode/skills/deep-loop-runtime/scripts/query.cjs",
+      ".opencode/skills/deep-loop-runtime/scripts/status.cjs",
+      ".opencode/skills/deep-loop-runtime/scripts/upsert.cjs",
+      ".opencode/skills/deep-loop-workflows/shared/behavior-benchmark/framework.md",
+      ".opencode/skills/deep-loop-workflows/deep-improvement/assets/skill_benchmark/fixtures/deep-loop-workflows/dlw-context-001.private.json",
+      ".opencode/skills/deep-loop-workflows/README.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "compile-command-contracts.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/deep-loop-runtime/scripts/compile-command-contracts.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "convergence.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/deep-loop-runtime/scripts/convergence.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "fanout-run.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/deep-loop-runtime/scripts/fanout-run.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "fanout-merge.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/deep-loop-runtime/scripts/fanout-merge.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "verify-iteration.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/deep-loop-runtime/scripts/verify-iteration.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "query.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/deep-loop-runtime/scripts/query.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "status.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/deep-loop-runtime/scripts/status.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "upsert.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/deep-loop-runtime/scripts/upsert.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "framework.md",
+        "kind": "doc",
+        "path": ".opencode/skills/deep-loop-workflows/shared/behavior-benchmark/framework.md",
+        "source": "derived"
+      },
+      {
+        "name": "dlw-context-001.private.json",
+        "kind": "config",
+        "path": ".opencode/skills/deep-loop-workflows/deep-improvement/assets/skill_benchmark/fixtures/deep-loop-workflows/dlw-context-001.private.json",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/skills/deep-loop-workflows/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Fixtures Benchmarks Archive And Runtime Cleanup",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Memory",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Dependencies",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Even after public and discoverability cleanup, test fixtures, behavior benchmarks, generated source lists, and shared runtime branches can keep standalone `deep-context` alive as an active compatibility path",
+    "created_at": "2026-07-04T14:32:37Z",
+    "last_save_at": "2026-07-04T18:36:44.915Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:3daf570641e7030f6fdeb3b7f9bc075dacdb36e5061bac733d07929be670ada1",
+    "source_doc_hashes": {
+      "spec.md": "4fb2ae82e60d913c7fd69e9cdbb3e6b7cb10a1832c74a3f9c77934aa01185a2d",
+      "plan.md": "7e69e30a0265f9b9987bda16180f777925b903c6124c024be0b4a5361c34e043",
+      "tasks.md": "9500686ce776ec9dfa0152a88dd49ac8c25ed80332f67452c54440ed0659b7d0",
+      "checklist.md": "6a49706cdf053cd3fcd454d242677cd585604b85442b92098973338f2cd96fd9",
+      "decision-record.md": "a93b96962f084577ce8521f65b52b557237fa92ccd0b9de6e2ffd3f7d45cddcc",
+      "implementation-summary.md": "cf02d5f2a1075deb93c578d370a5280c5d80d1da22839517d6d5cdfda61402d8"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

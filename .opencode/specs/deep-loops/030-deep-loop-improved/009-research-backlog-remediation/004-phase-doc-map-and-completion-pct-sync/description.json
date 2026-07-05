@@ -1,0 +1,34 @@
+{
+  "level": "1",
+  "specFolder": "deep-loops/030-deep-loop-improved/009-research-backlog-remediation/004-phase-doc-map-and-completion-pct-sync",
+  "description": "Every phase-parent 002-007 has a \"Phase Documentation Map\" table in its `spec.md` whose Status column still reads \"Draft\" for every child row, even",
+  "keywords": [
+    "every",
+    "phase-parent",
+    "002-007",
+    "phase",
+    "documentation",
+    "map",
+    "table",
+    "spec",
+    "whose",
+    "status",
+    "column",
+    "still",
+    "reads",
+    "draft",
+    "child",
+    "row",
+    "even"
+  ],
+  "lastUpdated": "2026-07-04T18:02:24.142Z",
+  "specId": "004",
+  "folderSlug": "phase-doc-map-and-completion-pct-sync",
+  "parentChain": [
+    "deep-loops",
+    "030-deep-loop-improved",
+    "009-research-backlog-remediation"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

@@ -69,30 +69,6 @@ describe('verify-iteration leaf-reliability check', () => {
     expect(r.reason).toBe(REASONS.ITERATION_VERDICT_MISSING);
   });
 
-  it('does NOT require a verdict line for context (different closing shape)', () => {
-    const nnn = '001';
-    fs.mkdirSync(path.join(dir, 'iterations'), { recursive: true });
-    fs.mkdirSync(path.join(dir, 'deltas'), { recursive: true });
-    fs.writeFileSync(path.join(dir, 'iterations', `iteration-${nnn}.md`), '# Context iteration\n\nContext gathered.\n');
-    const rec = { type: 'iteration', iteration: 1, mode: 'context', target_agent: 'deep-context', agent_definition_loaded: true, resolved_route: 'Resolved route: mode=context target_agent=deep-context' };
-    fs.writeFileSync(path.join(dir, 'deep-context-state.jsonl'), `${JSON.stringify(rec)}\n`);
-    fs.writeFileSync(path.join(dir, 'deltas', `iter-${nnn}.jsonl`), `${JSON.stringify(rec)}\n`);
-    const r = verify('context', dir, 1);
-    expect(r.ok).toBe(true);
-  });
-
-  it('matches a context record keyed by run instead of iteration', () => {
-    const nnn = '001';
-    fs.mkdirSync(path.join(dir, 'iterations'), { recursive: true });
-    fs.mkdirSync(path.join(dir, 'deltas'), { recursive: true });
-    fs.writeFileSync(path.join(dir, 'iterations', `iteration-${nnn}.md`), '# Context\n\nGathered.\n');
-    const rec = { type: 'iteration', run: 1, mode: 'context', target_agent: 'deep-context', agent_definition_loaded: true, resolved_route: 'Resolved route: mode=context target_agent=deep-context' };
-    fs.writeFileSync(path.join(dir, 'deep-context-state.jsonl'), `${JSON.stringify(rec)}\n`);
-    fs.writeFileSync(path.join(dir, 'deltas', `iter-${nnn}.jsonl`), `${JSON.stringify(rec)}\n`);
-    const r = verify('context', dir, 1);
-    expect(r.ok).toBe(true);
-  });
-
   it('fails state_record_missing when no matching iteration record exists', () => {
     writeComplete(dir, 1);
     fs.writeFileSync(path.join(dir, 'deep-review-state.jsonl'), `${JSON.stringify(reviewRecord(2))}\n`);

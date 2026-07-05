@@ -28,8 +28,8 @@ probe "deliberate across multi-seat strategy options until the architecture deci
 ## Coverage note
 
 The corpus ships 5 scenario pairs. Only the 3 **lexical** modes (research,
-review, ai-council) are scored by this probe. `dlw-context-001` (context =
-metadata-routed) and `dlw-agentimprove-001` (agent-improvement = alias-fold)
-carry **skill-level gold only** — their mode routing is not exercised by the
-deep-skill-routing probe (context has no advisor map entry; agent-improvement
-is a TS-only fold), so they are intentionally not counted in the "3/3".
+review, ai-council) are scored by this probe. `dlw-context-001` is now a
+deprecated-route suppression fixture, and `dlw-agentimprove-001`
+(agent-improvement = alias-fold) carries skill-level gold only. Their mode
+routing is not exercised by the deep-skill-routing probe, so they are
+intentionally not counted in the "3/3".

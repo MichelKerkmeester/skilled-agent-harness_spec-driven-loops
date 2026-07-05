@@ -123,14 +123,13 @@ Skip it for open-ended prompt rewrites across many agent families at once. Skip 
 
 ### Sibling Deep Loops
 
-`deep-improvement` shares the `deep-loop-runtime` with four sibling skills. Each owns a different phase and none crosses into another's territory.
+`deep-improvement` shares the `deep-loop-runtime` with the other active deep-loop families. Each owns a different phase and none crosses into another's territory.
 
 | Skill | Relationship |
 |---|---|
 | `deep-research` | Investigates outward web knowledge. `deep-improvement` tests inward agent quality. |
 | `deep-review` | Audits code for bugs and security gaps. Run it after implementation, not during improvement. |
-| `deep-context` | Maps existing code for reuse before planning. Run it before you plan, not during improvement. |
-| `deep-ai-council` | Compares competing plans with structured disagreement. Feed it the Context Report, not an agent file. |
+| `deep-ai-council` | Compares competing plans with structured disagreement. Feed it context from `@context` or `/speckit:plan`, not an agent file. |
 
 `deep-improvement` is the only deep loop that can mutate a file. Every other deep loop is read-only or advisory. This one writes only when the promotion gate opens, and even then it records a rollback path. `system-spec-kit` owns the spec folder, validation and memory continuity for the run. `deep-loop-runtime` provides the shared coverage graph and atomic-state layer. `sk-prompt-models` owns the benchmark output tree that Lane B writes into.
 

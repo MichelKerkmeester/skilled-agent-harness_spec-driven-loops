@@ -1,0 +1,215 @@
+{
+  "schema_version": 1,
+  "packet_id": "deep-loops/030-deep-loop-improved/009-research-backlog-remediation/010-validate-sh-template-detection",
+  "spec_folder": "deep-loops/030-deep-loop-improved/009-research-backlog-remediation/010-validate-sh-template-detection",
+  "parent_id": "deep-loops/030-deep-loop-improved/009-research-backlog-remediation",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "validate.sh template detection",
+      "scaffold never touched check",
+      "template author last_updated_by",
+      "validate.sh template detection plan",
+      "validate.sh template detection tasks",
+      "validate.sh template detection implementation summary"
+    ],
+    "key_topics": [
+      "validate",
+      "template",
+      "detection",
+      "scaffold",
+      "never",
+      "touched",
+      "check",
+      "author",
+      "plan",
+      "tasks",
+      "implementation",
+      "summary"
+    ],
+    "importance_tier": "medium",
+    "status": "complete",
+    "key_files": [
+      ".opencode/skills/system-spec-kit/scripts/spec/validate.sh",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "spec.md",
+      ".opencode/skills/system-spec-kit/scripts/rules/check-scaffold-never-touched.sh",
+      ".opencode/skills/system-spec-kit/scripts/lib/validator-registry.json",
+      ".opencode/skills/system-spec-kit/scripts/tests/test-validation-extended.sh",
+      "mcp_server/lib/validation/orchestrator.ts"
+    ],
+    "entities": [
+      {
+        "name": "validate.sh",
+        "kind": "script",
+        "path": ".opencode/skills/system-spec-kit/scripts/spec/validate.sh",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "check-scaffold-never-touched.sh",
+        "kind": "script",
+        "path": ".opencode/skills/system-spec-kit/scripts/rules/check-scaffold-never-touched.sh",
+        "source": "derived"
+      },
+      {
+        "name": "validator-registry.json",
+        "kind": "config",
+        "path": ".opencode/skills/system-spec-kit/scripts/lib/validator-registry.json",
+        "source": "derived"
+      },
+      {
+        "name": "test-validation-extended.sh",
+        "kind": "script",
+        "path": ".opencode/skills/system-spec-kit/scripts/tests/test-validation-extended.sh",
+        "source": "derived"
+      },
+      {
+        "name": "orchestrator.ts",
+        "kind": "code",
+        "path": "mcp_server/lib/validation/orchestrator.ts",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scaffold Detection",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Several",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Add",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context Read",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "cli-opencode",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. SUMMARY",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria All",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Several folders in this packet carried `Status: Complete` while their `plan.md`/`tasks.md`/`implementation-summary.md` were still byte-identical, untouched scaffold templates — confirmed directly for `008-loop-systems-remediation/tasks.md` and `implementation-summary.md` (title literally `\"[template:level1/tasks.md]\"`, `packetpointer: \"scaffold/008-loop-systems-remediation\"`, `lastupdatedby: \"template-author\"`), and for 3 other folders per `research/researcharchive/20260701T071133Z-gen1/research.md` §4.2 (F-010)",
+    "created_at": "2026-07-01T07:28:44.272Z",
+    "last_save_at": "2026-07-04T18:02:27.144Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:e1a1fd96756e4b8d403e89ea9f6205dad12bd8249114d590018ebb386382a980",
+    "source_doc_hashes": {
+      "spec.md": "e163cac22c9a332f0fe03aa34158ac5ecec6a019c812ed13e32e7646b5542baf",
+      "plan.md": "5745d250b2e0f8a08f26c033c56a7d81d797b26be3571f26da3bed6cc495c7a4",
+      "tasks.md": "b9f51d946404c937d005d43d01ad52e4d42db95c160afc8b50fd41613496cf8f",
+      "implementation-summary.md": "76463446416c12e4c29e37bf87dde1306eec0eeada8933e2e96ec5e04fc1fdbd"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

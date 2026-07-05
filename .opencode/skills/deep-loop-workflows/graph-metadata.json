@@ -22,7 +22,7 @@
       {
         "target": "system-spec-kit",
         "weight": 0.6,
-        "context": "context and research modes feed /speckit:plan and /speckit:implement"
+        "context": "research and review modes provide bounded context outputs for spec-kit planning and implementation workflows"
       }
     ],
     "siblings": [
@@ -47,7 +47,6 @@
   "domains": [
     "deep-loop",
     "workflow",
-    "context-gathering",
     "research",
     "code-review",
     "ai-council",
@@ -58,12 +57,10 @@
   ],
   "intent_signals": [
     "deep loop workflow",
-    "deep-context",
     "deep-research",
     "deep-review",
     "deep-ai-council",
     "deep-improvement",
-    "context gathering loop",
     "research loop",
     "code review loop",
     "ai council deliberation",
@@ -73,11 +70,6 @@
     "trigger_phrases": [
       "deep-loop-workflows",
       "deep loop workflows",
-      "deep context",
-      "context loop",
-      "gather codebase context",
-      "reuse catalog",
-      "deep-context",
       "deep research",
       "research loop",
       "iterative investigation workflow",
@@ -109,7 +101,6 @@
       "workflowMode",
       "runtimeLoopType",
       "backendKind",
-      "context-mode",
       "research-mode",
       "review-mode",
       "ai-council-mode",
@@ -122,7 +113,6 @@
     "key_files": [
       ".opencode/skills/deep-loop-workflows/SKILL.md",
       ".opencode/skills/deep-loop-workflows/mode-registry.json",
-      ".opencode/skills/deep-loop-workflows/deep-context/SKILL.md",
       ".opencode/skills/deep-loop-workflows/deep-research/SKILL.md",
       ".opencode/skills/deep-loop-workflows/deep-review/SKILL.md",
       ".opencode/skills/deep-loop-workflows/deep-ai-council/SKILL.md",
@@ -149,18 +139,17 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "deep-loop-workflows is the single public skill that merges the five former deep-loop persona skills (deep-context, deep-research, deep-review, deep-ai-council, deep-improvement) into one advisor identity with five verbatim mode packets, routed by workflowMode through mode-registry.json over the frozen MCP-free deep-loop-runtime backend. Per-mode convergence, state, artifacts, and tool-permission contracts are preserved unflattened; the three-tier discriminator (workflowMode / runtimeLoopType / backendKind) keeps graph-backed modes and improvement-host/external-adapter modes distinct.",
+    "causal_summary": "deep-loop-workflows is the single public skill that merges active deep-loop persona modes (deep-research, deep-review, deep-ai-council, deep-improvement) into one advisor identity with active mode packets, routed by workflowMode through mode-registry.json over the frozen MCP-free deep-loop-runtime backend. @context owns one-shot retrieval while research and review carry bounded context snapshots. Per-mode convergence, state, artifacts, and tool-permission contracts are preserved unflattened; the three-tier discriminator (workflowMode / runtimeLoopType / backendKind) keeps graph-backed modes and improvement-host/external-adapter modes distinct.",
     "source_docs": [
       "SKILL.md",
       "README.md",
       "mode-registry.json",
-      "deep-context/SKILL.md",
       "deep-research/SKILL.md",
       "deep-review/SKILL.md",
       "deep-ai-council/SKILL.md",
       "deep-improvement/SKILL.md"
     ],
     "created_at": "2026-06-15T00:00:00Z",
-    "last_updated_at": "2026-06-15T06:50:00Z"
+    "last_updated_at": "2026-07-04T16:30:21Z"
   }
 }

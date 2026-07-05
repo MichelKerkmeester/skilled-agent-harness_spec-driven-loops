@@ -121,6 +121,17 @@ Serves as the "persistent brain" for a deep review session. Records which dimens
 ## 13. KNOWN CONTEXT
 [Populated during initialization from memory_context() results, if any prior work exists]
 
+### Bounded Context Snapshot
+
+Populate during initialization before the first review dimension runs. Keep this pointer-based and scoped to the declared review target:
+
+- Target pointers: files, specs, symbols, or resource-map entries under review.
+- Behavior claims: acceptance criteria, public contracts, or docs to verify.
+- Reuse and conventions: existing patterns that define expected implementation shape.
+- Review risks and gaps: stale graph or memory caveats, missing files, and out-of-scope areas.
+
+Do not inline full source bodies. Do not dispatch the retired standalone context loop. Use this snapshot only to seed review dimensions and final traceability.
+
 ---
 
 ## 14. CROSS-REFERENCE STATUS

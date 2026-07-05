@@ -1,0 +1,31 @@
+{
+  "level": "1",
+  "specFolder": "deep-loops/030-deep-loop-improved/003-deep-loop-workflows/007-ideas-backlog-lifecycle",
+  "description": "The deep-research loop has no threshold-gated idea promotion; ideas surface in one iteration and disappear in the next without any canonical lifecycle",
+  "keywords": [
+    "deep-research",
+    "loop",
+    "threshold-gated",
+    "idea",
+    "promotion",
+    "ideas",
+    "surface",
+    "one",
+    "iteration",
+    "disappear",
+    "next",
+    "without",
+    "canonical",
+    "lifecycle"
+  ],
+  "lastUpdated": "2026-07-04T18:02:10.725Z",
+  "specId": "007",
+  "folderSlug": "ideas-backlog-lifecycle",
+  "parentChain": [
+    "deep-loops",
+    "030-deep-loop-improved",
+    "003-deep-loop-workflows"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

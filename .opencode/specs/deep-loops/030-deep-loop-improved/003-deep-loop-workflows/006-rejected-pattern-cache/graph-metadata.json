@@ -1,0 +1,215 @@
+{
+  "schema_version": 1,
+  "packet_id": "deep-loops/030-deep-loop-improved/003-deep-loop-workflows/006-rejected-pattern-cache",
+  "spec_folder": "deep-loops/030-deep-loop-improved/003-deep-loop-workflows/006-rejected-pattern-cache",
+  "parent_id": "deep-loops/030-deep-loop-improved/003-deep-loop-workflows",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "rejected pattern cache",
+      "ideaRejected event deep research",
+      "pattern suppression bounded index",
+      "rejected ideas loop",
+      "006-rejected-pattern-cache summary",
+      "006-rejected-pattern-cache"
+    ],
+    "key_topics": [
+      "rejected",
+      "pattern",
+      "cache",
+      "idearejected",
+      "event",
+      "deep",
+      "research",
+      "suppression",
+      "bounded",
+      "index",
+      "ideas",
+      "loop"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      ".opencode/skills/deep-loop-workflows/deep-research/references/state/state_jsonl.md",
+      ".opencode/skills/deep-loop-workflows/deep-research/scripts/reduce-state.cjs",
+      ".opencode/skills/deep-loop-workflows/deep-research/references/protocol/loop_protocol.md",
+      ".opencode/commands/deep/assets/deep_research_auto.yaml",
+      ".opencode/skills/deep-loop-runtime/tests/unit/deep-research-reduce-state.vitest.ts",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "state_jsonl.md",
+        "kind": "doc",
+        "path": ".opencode/skills/deep-loop-workflows/deep-research/references/state/state_jsonl.md",
+        "source": "derived"
+      },
+      {
+        "name": "reduce-state.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/deep-loop-workflows/deep-research/scripts/reduce-state.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "loop_protocol.md",
+        "kind": "doc",
+        "path": ".opencode/skills/deep-loop-workflows/deep-research/references/protocol/loop_protocol.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep_research_auto.yaml",
+        "kind": "config",
+        "path": ".opencode/commands/deep/assets/deep_research_auto.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-reduce-state.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/deep-loop-runtime/tests/unit/deep-research-reduce-state.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Cache",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Research State",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Event",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec-grounded",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The deep-research loop has no memory of rejected ideas across iterations; a pattern that was explicitly surfaced and rejected can re-emerge in the very next iteration's next-focus candidates, wasting an iteration slot and polluting the convergence signal",
+    "created_at": "2026-06-28T14:02:10Z",
+    "last_save_at": "2026-07-04T18:02:10.494Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:8a24e6420d22ab31c31f4cffd9a7e47a4cb508a9e0d073b0fa3a1b7511663aec",
+    "source_doc_hashes": {
+      "spec.md": "7b8b46df19e134d298e0b589f48b6027b3958bbfea993bc2f163461e20af935b",
+      "plan.md": "9932b6bf46583ed78db112b044c66c1a5d7446f2b5edcd22ab1c03347627a7ab",
+      "tasks.md": "784266ae9ad6f93c2087bd3f6a65e3581117a829cb0e6e9fae30e102d862064d",
+      "implementation-summary.md": "40b46dd9c44f5ec25a753da22f793e75af3fb1c1307c7065292d8f5bbb65ac80"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

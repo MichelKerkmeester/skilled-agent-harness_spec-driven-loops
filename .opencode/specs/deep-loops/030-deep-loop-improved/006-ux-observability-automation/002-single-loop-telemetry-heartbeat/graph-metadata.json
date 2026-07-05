@@ -1,0 +1,216 @@
+{
+  "schema_version": 1,
+  "packet_id": "deep-loops/030-deep-loop-improved/006-ux-observability-automation/002-single-loop-telemetry-heartbeat",
+  "spec_folder": "deep-loops/030-deep-loop-improved/006-ux-observability-automation/002-single-loop-telemetry-heartbeat",
+  "parent_id": "deep-loops/030-deep-loop-improved/006-ux-observability-automation",
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "single loop telemetry",
+      "telemetry heartbeat",
+      "single executor telemetry",
+      "002 single loop telemetry",
+      "orchestration status parity",
+      "002-single-loop-telemetry-heartbeat summary",
+      "002-single-loop-telemetry-heartbeat"
+    ],
+    "key_topics": [
+      "single",
+      "loop",
+      "telemetry",
+      "heartbeat",
+      "executor",
+      "002",
+      "orchestration",
+      "status",
+      "parity",
+      "002-single-loop-telemetry-heartbeat",
+      "summary",
+      "deep-loop"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      ".opencode/commands/deep/assets/deep_research_auto.yaml",
+      ".opencode/skills/deep-loop-runtime/lib/deep-loop/atomic-state.ts",
+      ".opencode/skills/deep-loop-runtime/tests/unit/atomic-state.vitest.ts",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "deep_research_auto.yaml",
+        "kind": "config",
+        "path": ".opencode/commands/deep/assets/deep_research_auto.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "atomic-state.ts",
+        "kind": "code",
+        "path": ".opencode/skills/deep-loop-runtime/lib/deep-loop/atomic-state.ts",
+        "source": "derived"
+      },
+      {
+        "name": "atomic-state.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/deep-loop-runtime/tests/unit/atomic-state.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Loop Telemetry Heartbeat",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Producer",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec-grounded",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "fan-out-shaped",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The deep-loop dashboard and status tooling reads `orchestration-status.log` rows emitted by fan-out runs",
+    "created_at": "2026-06-28T17:09:26.615Z",
+    "last_save_at": "2026-07-04T18:02:16.115Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:8ba398774dc358ac8f743dda5c293b0a20d389c960a7d5297b91f0da81fd7040",
+    "source_doc_hashes": {
+      "spec.md": "3b51b28aa2d9790abbb6599e7cb6520fa105080c6096981428028d1560af442e",
+      "plan.md": "ec2131fae5eefb298c725d549ba3eba8f144a8b4bd7885a048dd3df09453f5b2",
+      "tasks.md": "2b63a51eaeebffe78d4e30e7cd0127a1f7e2ad633b185e64468568f9a5dc31ee",
+      "implementation-summary.md": "b437b5192ee5862781bd46deee6c4126d6e43b595752ba9cdb861d81a4561b78"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

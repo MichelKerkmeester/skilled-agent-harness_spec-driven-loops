@@ -26,7 +26,7 @@ const runtimeRequire = createRequire(resolve(runtimeRoot, 'lib', 'index.cjs'));
 const PINNED = {
   'better-sqlite3': '12.10.0',
   zod: '4.4.3',
-  tsx: '4.21.0',
+  tsx: '4.22.4',
 } as const;
 
 function packageVersionFor(specifier: string): string {

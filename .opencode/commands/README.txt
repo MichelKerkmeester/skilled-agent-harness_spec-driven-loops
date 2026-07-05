@@ -152,7 +152,6 @@ Run long-form, stateful deep-loop workflows. Each command supports `:auto` and `
 | Model Benchmark | `/deep:model-benchmark [profile] [:auto\|:confirm]` | Benchmark and optimize a model or prompt framework against fixtures |
 | Research Loop | `/deep:research <topic> [:auto\|:confirm]` | Iterative technical investigation with convergence |
 | Review Loop | `/deep:review <target> [:auto\|:confirm]` | Iterative code review with severity-weighted findings |
-| Context | `/deep:context [scope] [:auto\|:confirm]` | Heterogeneous by-model parallel codebase-context sweep |
 | AI System Improvement | `/deep:ai-system-improvement <target> [:auto\|:confirm]` | Benchmark and refine an AI-system packaging behind guardrails |
 | Skill Benchmark | `/deep:skill-benchmark <skill> [:auto\|:confirm]` | Benchmark a skill routing, discovery, efficiency and usefulness |
 

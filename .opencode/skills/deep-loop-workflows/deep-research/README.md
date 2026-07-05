@@ -38,7 +38,7 @@ Long-form investigation inside a conversation degrades as findings pile up in th
 
 `deep-research` runs an autonomous multi-iteration research loop through `/deep:research:auto`. Each iteration dispatches a fresh `@deep-research` LEAF agent that reads the accumulated state from disk, investigates one focus area, writes findings to an iteration file and appends a JSONL record with a new-information ratio. A reducer updates the strategy, registry and dashboard after each pass. The loop stops when the new-information ratio falls below the convergence threshold for long enough, or when all research questions are answered.
 
-It does not map code (`deep-context` does that), audit code (`deep-review`) or compare competing plans (`deep-ai-council`). The current deep-loop workflow roster has five top-level personas: `deep-context`, `deep-research`, `deep-review`, `deep-ai-council`, and `deep-improvement`; the improvement persona includes four command lanes. The runtime-backed personas share `deep-loop-runtime` for executors, state handling and coverage graphs, while improvement remains host-driven.
+It does not perform one-shot codebase lookup (`@context` does that), audit code (`deep-review`) or compare competing plans (`deep-ai-council`). The current deep-loop workflow roster has four active families: `deep-research`, `deep-review`, `deep-ai-council`, and `deep-improvement`; the improvement family includes four command lanes. The runtime-backed families share `deep-loop-runtime` for executors, state handling and coverage graphs, while improvement remains host-driven.
 
 ---
 
@@ -105,17 +105,17 @@ The minimum-iteration behavior is documented as the [anti-convergence floor](./f
 
 Run `deep-research` when a topic demands three or more rounds of investigation and the findings from one round should shape the next. Run it when you want the research to run overnight or unattended. Run it when you need a convergence-gated investigation that stops itself rather than running until you manually call it. Once the loop completes, save continuity to the memory index with `generate-context.js` and use `/speckit:resume` to rebuild context before extending or reviewing a completed run.
 
-Skip it for a single-question lookup, where a direct web search or the `@context` agent is faster. Skip it for inward code mapping (`deep-context`), code audits (`deep-review`) or strategy comparison (`deep-ai-council`).
+Skip it for a single-question lookup, where a direct web search or the `@context` agent is faster. Skip it for implementation planning, where `/speckit:plan` owns the plan after context is gathered. Skip it for code audits (`deep-review`) or strategy comparison (`deep-ai-council`).
 
 ### Sibling Deep Loops
 
-`deep-research` shares the `deep-loop-runtime` with three sibling skills. Each owns a different phase and none crosses into another's territory.
+`deep-research` shares the `deep-loop-runtime` with the other active deep-loop families. Each owns a different phase and none crosses into another's territory.
 
 | Skill | Relationship |
 |---|---|
-| `deep-context` | Maps inward code before planning. `deep-research` investigates outward knowledge. |
 | `deep-review` | Audits code for bugs, security gaps and quality issues. Run it after implementation. |
 | `deep-ai-council` | Compares competing plans with structured disagreement. Run `deep-research` first when the council needs an evidence base. |
+| `deep-improvement` | Runs evaluator-first improvement across agents, models, skills and packaged AI systems. |
 
 `/speckit:plan` and `/speckit:implement` consume the research report. `system-spec-kit` owns the spec folder, validation and memory continuity. `deep-loop-runtime` provides the shared executor, state layer and coverage graph.
 

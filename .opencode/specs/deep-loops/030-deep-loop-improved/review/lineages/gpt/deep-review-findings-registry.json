@@ -1,0 +1,136 @@
+{
+  "schema_version": "1.0",
+  "lineage": "gpt",
+  "sessionId": "fanout-gpt-1782998103426-5a2g5w",
+  "generation": 1,
+  "lineageMode": "new",
+  "executor": "cli-opencode model=openai/gpt-5.5-fast",
+  "spec_folder": ".opencode/specs/deep-loops/030-deep-loop-improved",
+  "stopReason": "maxIterationsReached",
+  "iterationsVerified": 10,
+  "mergedVerdict": "CONDITIONAL",
+  "openFindings": [
+    {
+      "findingId": "GPT-F001",
+      "severity": "P1",
+      "status": "active",
+      "category": "traceability",
+      "title": "Phase 011 resume/status metadata still points at the pre-remediation start state",
+      "file": ".opencode/specs/deep-loops/030-deep-loop-improved/011-followup-remediation/spec.md:101",
+      "evidence": [
+        ".opencode/specs/deep-loops/030-deep-loop-improved/spec.md:14",
+        ".opencode/specs/deep-loops/030-deep-loop-improved/011-followup-remediation/spec.md:101",
+        ".opencode/specs/deep-loops/030-deep-loop-improved/011-followup-remediation/graph-metadata.json:123",
+        ".opencode/specs/deep-loops/030-deep-loop-improved/011-followup-remediation/007-sliding-window-convergence-mode/tasks.md:48"
+      ],
+      "recommendation": "Reconcile phase 011 spec, root continuity, and graph metadata: mark children 001-006 Complete, keep 007 as the active child, update completion percentage and next_safe_action, then regenerate metadata.",
+      "finding_class": "spec-code-drift",
+      "content_hash": "sha256:gpt-f001-phase-011-stale-status"
+    },
+    {
+      "findingId": "GPT-F002",
+      "severity": "P1",
+      "status": "active",
+      "category": "validation",
+      "title": "Root recursive validation evidence does not cover nested phase-011 children",
+      "file": ".opencode/skills/system-spec-kit/scripts/spec/validate.sh:1021",
+      "evidence": [
+        ".opencode/specs/deep-loops/030-deep-loop-improved/011-followup-remediation/spec.md:48",
+        ".opencode/specs/deep-loops/030-deep-loop-improved/011-followup-remediation/spec.md:111",
+        ".opencode/skills/system-spec-kit/scripts/spec/validate.sh:1021",
+        ".opencode/specs/deep-loops/030-deep-loop-improved/011-followup-remediation/006-validate-sh-registry-bridge/implementation-summary.md:91",
+        "verification: validate.sh 011-followup-remediation --strict --recursive exits 2; children 001-005 fail SPEC_DOC_INTEGRITY stale Spec Folder metadata and child 007 is missing implementation-summary.md"
+      ],
+      "recommendation": "Either run and record recursive validation on the 011 phase parent specifically, or extend the root close-out gate to traverse nested phase parents when the acceptance claim names grandchildren.",
+      "finding_class": "verification-gap",
+      "content_hash": "sha256:gpt-f002-root-recursive-misses-nested-children"
+    },
+    {
+      "findingId": "GPT-F003",
+      "severity": "P1",
+      "status": "active",
+      "category": "validation",
+      "title": "Default Node validation path still skips strict-only evidence and continuity lint rules",
+      "file": ".opencode/skills/system-spec-kit/scripts/spec/validate.sh:1194",
+      "evidence": [
+        ".opencode/skills/system-spec-kit/scripts/spec/validate.sh:1014",
+        ".opencode/skills/system-spec-kit/scripts/spec/validate.sh:1194",
+        ".opencode/skills/system-spec-kit/mcp_server/lib/validation/orchestrator.ts:268",
+        ".opencode/skills/system-spec-kit/scripts/lib/validator-registry.json:312",
+        ".opencode/skills/system-spec-kit/scripts/spec/validate.sh:957"
+      ],
+      "recommendation": "Mirror CONTINUITY_FRESHNESS and EVIDENCE_MARKER_LINT in the Node orchestrator strict path or run the shell strict validators after the Node report instead of exiting early.",
+      "finding_class": "validation-coverage-gap",
+      "content_hash": "sha256:gpt-f003-node-path-skips-strict-only-rules"
+    },
+    {
+      "findingId": "GPT-F004",
+      "severity": "P1",
+      "status": "active",
+      "category": "fanout-parity",
+      "title": "Context and research fan-out configs still ignore the supplied detached session id",
+      "file": ".opencode/commands/deep/assets/deep_context_auto.yaml:265",
+      "evidence": [
+        ".opencode/skills/deep-loop-runtime/scripts/fanout-run.cjs:891",
+        ".opencode/commands/deep/assets/deep_context_auto.yaml:265",
+        ".opencode/commands/deep/assets/deep_context_auto.yaml:274",
+        ".opencode/commands/deep/assets/deep_research_auto.yaml:307",
+        ".opencode/commands/deep/assets/deep_research_auto.yaml:319",
+        ".opencode/specs/deep-loops/030-deep-loop-improved/011-followup-remediation/001-fanout-session-id-propagation/implementation-summary.md:87"
+      ],
+      "recommendation": "Apply the review workflow's session_id_init pattern to context and research, include sessionId in config/state records, and add parity tests for all three loop types.",
+      "finding_class": "cross-consumer",
+      "content_hash": "sha256:gpt-f004-context-research-session-id-parity"
+    },
+    {
+      "findingId": "GPT-F005",
+      "severity": "P1",
+      "status": "active",
+      "category": "release-readiness",
+      "title": "The sliding-window convergence follow-up remains unimplemented",
+      "file": ".opencode/specs/deep-loops/030-deep-loop-improved/011-followup-remediation/007-sliding-window-convergence-mode/tasks.md:48",
+      "evidence": [
+        ".opencode/specs/deep-loops/030-deep-loop-improved/timeline.md:217",
+        ".opencode/specs/deep-loops/030-deep-loop-improved/011-followup-remediation/007-sliding-window-convergence-mode/spec.md:56",
+        ".opencode/specs/deep-loops/030-deep-loop-improved/011-followup-remediation/007-sliding-window-convergence-mode/tasks.md:48",
+        ".opencode/skills/deep-loop-runtime/lib/coverage-graph/coverage-graph-signals.ts:711",
+        ".opencode/skills/deep-loop-runtime/scripts/convergence.cjs:438"
+      ],
+      "recommendation": "Complete child 007 before closing phase 011 or the parent packet; keep this release-blocking finding open until the opt-in sliding-window mode and denominator-drag fixture land.",
+      "finding_class": "incomplete-required-child",
+      "content_hash": "sha256:gpt-f005-sliding-window-child-open"
+    },
+    {
+      "findingId": "GPT-F006",
+      "severity": "P2",
+      "status": "active",
+      "category": "test-adequacy",
+      "title": "Registry bridge has no direct TypeScript unit coverage",
+      "file": ".opencode/specs/deep-loops/030-deep-loop-improved/011-followup-remediation/006-validate-sh-registry-bridge/implementation-summary.md:104",
+      "evidence": [
+        ".opencode/specs/deep-loops/030-deep-loop-improved/011-followup-remediation/006-validate-sh-registry-bridge/implementation-summary.md:104",
+        ".opencode/skills/system-spec-kit/mcp_server/lib/validation/orchestrator.ts:598"
+      ],
+      "recommendation": "Add direct unit coverage for validateFolder/runRegistryShellRules filtering and status mapping so future Node-path bridge regressions fail before the bash harness.",
+      "finding_class": "test-gap",
+      "content_hash": "sha256:gpt-f006-registry-bridge-unit-test-gap"
+    }
+  ],
+  "resolvedFindings": [],
+  "repeatedFindings": [],
+  "dimensionCoverage": {
+    "correctness": true,
+    "security": true,
+    "traceability": true,
+    "maintainability": true
+  },
+  "findingsBySeverity": {
+    "P0": 0,
+    "P1": 5,
+    "P2": 1
+  },
+  "openFindingsCount": 6,
+  "resolvedFindingsCount": 0,
+  "convergenceScore": 0.82,
+  "hasAdvisories": true
+}

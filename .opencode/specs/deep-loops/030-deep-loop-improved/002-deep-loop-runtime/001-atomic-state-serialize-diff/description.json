@@ -1,0 +1,31 @@
+{
+  "level": "1",
+  "specFolder": "deep-loops/030-deep-loop-improved/002-deep-loop-runtime/001-atomic-state-serialize-diff",
+  "description": "All reducers and fan-out callers invoke the atomic write unconditionally, producing redundant whole-snapshot rewrites even when state has not changed",
+  "keywords": [
+    "reducers",
+    "fan-out",
+    "callers",
+    "invoke",
+    "atomic",
+    "write",
+    "unconditionally",
+    "producing",
+    "redundant",
+    "whole-snapshot",
+    "rewrites",
+    "even",
+    "state",
+    "changed"
+  ],
+  "lastUpdated": "2026-07-04T18:02:00.491Z",
+  "specId": "001",
+  "folderSlug": "atomic-state-serialize-diff",
+  "parentChain": [
+    "deep-loops",
+    "030-deep-loop-improved",
+    "002-deep-loop-runtime"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

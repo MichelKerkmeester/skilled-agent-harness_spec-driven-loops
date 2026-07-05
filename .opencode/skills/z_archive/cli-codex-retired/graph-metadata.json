@@ -1,6 +1,6 @@
 {
   "schema_version": 2,
-  "skill_id": "cli-codex",
+  "skill_id": "cli-codex-retired",
   "family": "cli",
   "category": "cli-orchestrator",
   "edges": {

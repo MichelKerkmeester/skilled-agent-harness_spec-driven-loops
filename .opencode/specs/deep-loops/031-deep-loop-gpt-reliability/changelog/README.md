@@ -1,72 +1,60 @@
 ---
 title: "Packet 031 Changelog Index"
-description: "Program-level index of all phase changelogs for packet 031 (031-deep-loop-gpt-reliability), the GPT-reliability deep-loop program regrouped into seven themed tracks. Each phase links to its own changelog under its track subfolder."
+description: "Track-grouped index of all phase-local changelogs for packet 031, deep-loop-gpt-reliability, organized across 7 themed tracks, 22 historical sources and 26 child changelogs."
 trigger_phrases:
   - "031 changelog index"
   - "031 changelog history"
-  - "gpt reliability deep-loop changelogs"
+  - "deep loop gpt reliability changelogs"
 importance_tier: "normal"
 contextType: "implementation"
 ---
 
 # Packet 031 Changelog Index
 
-Packet 031 (031-deep-loop-gpt-reliability) diagnosed and fixed why GPT-backed models running inside OpenCode mis-invoke and mis-route deep skills. The work was originally authored as flat phases and has since been regrouped into **seven themed L1 tracks** (research and diagnosis, routing/dispatch/identity, guard and enforcement, benchmarks and verification, skill-doc hygiene, reliability fixes, and the compiled-contract compiler). The old-to-new phase remap lives in [`../context-index.md`](../context-index.md). Changelogs now follow the track-grouped layout `changelog/<track>/changelog-<trackNN>-<childNN>-<slug>.md`, matching packet 028. The chronological view lives in [`../timeline.md`](../timeline.md) and the before-and-after narrative in [`../before-vs-after.md`](../before-vs-after.md).
+Packet 031 (`031-deep-loop-gpt-reliability`) is now organized as 7 themed tracks with child phase numbers restarted inside each track. The old flat phase numbers remain traceable through [`../context-index.md`](../context-index.md). This index mirrors the packet tree: each track has its own changelog subfolder, and each child changelog uses `changelog-<trackNN>-<childNN>-<slug>.md`.
 
-Tracks 001 through 005 are complete. Track 006 (reliability fixes, from packet 035) is **Planned** and track 007 (compiled-contract compiler, from packet 036) is **In Progress**, so some of their child changelogs are not yet authored.
+Current status truth: tracks 001 through 005 are Complete, track 006 is Planned, and track 007 is In Progress. The packet is not complete and should not be described as a flat seventeen-phase program.
 
-## Phases by track
+The chronological view of the same work lives in [`../timeline.md`](../timeline.md), and the before-and-after narrative lives in [`../before-vs-after.md`](../before-vs-after.md). The packet-level rollup is [`changelog-031-root.md`](./changelog-031-root.md).
 
-### 001 research-and-diagnosis (COMPLETE)
-| Phase | Status | Changelog |
-|-------|--------|-----------|
-| 001-001 gpt-behavioral-hardening-research | Complete (research) | [001-research-and-diagnosis/changelog-001-001-gpt-behavioral-hardening-research.md](./001-research-and-diagnosis/changelog-001-001-gpt-behavioral-hardening-research.md) |
-| 001-002 gpt-reliability-research (from 034) | Complete (research) | [001-research-and-diagnosis/changelog-001-002-gpt-reliability-research.md](./001-research-and-diagnosis/changelog-001-002-gpt-reliability-research.md) |
+## Phases
 
-### 002 routing-dispatch-and-identity (COMPLETE)
-| Phase | Status | Changelog |
-|-------|--------|-----------|
-| 002-001 deep-agent-router-and-orchestration | Complete (research) | [002-routing-dispatch-and-identity/changelog-002-001-deep-agent-router-and-orchestration.md](./002-routing-dispatch-and-identity/changelog-002-001-deep-agent-router-and-orchestration.md) |
-| 002-002 route-proof-validation | Complete | [002-routing-dispatch-and-identity/changelog-002-002-route-proof-validation.md](./002-routing-dispatch-and-identity/changelog-002-002-route-proof-validation.md) |
-| 002-003 agent-dispatch-hardening | Complete | [002-routing-dispatch-and-identity/changelog-002-003-agent-dispatch-hardening.md](./002-routing-dispatch-and-identity/changelog-002-003-agent-dispatch-hardening.md) |
-| 002-004 command-pre-route-headers | Complete | [002-routing-dispatch-and-identity/changelog-002-004-command-pre-route-headers.md](./002-routing-dispatch-and-identity/changelog-002-004-command-pre-route-headers.md) |
-| 002-005 host-hard-identity-fix5 | Closed, never implemented | [002-routing-dispatch-and-identity/changelog-002-005-host-hard-identity-fix5.md](./002-routing-dispatch-and-identity/changelog-002-005-host-hard-identity-fix5.md) |
-| 002-006 mode-d-ai-council-identity-fix | Complete | [002-routing-dispatch-and-identity/changelog-002-006-mode-d-ai-council-identity-fix.md](./002-routing-dispatch-and-identity/changelog-002-006-mode-d-ai-council-identity-fix.md) |
-| 002-007 orchestrate-universal-routing | Complete | [002-routing-dispatch-and-identity/changelog-002-007-orchestrate-universal-routing.md](./002-routing-dispatch-and-identity/changelog-002-007-orchestrate-universal-routing.md) |
-| 002-008 ai-council-subagent-only | Complete | [002-routing-dispatch-and-identity/changelog-002-008-ai-council-subagent-only.md](./002-routing-dispatch-and-identity/changelog-002-008-ai-council-subagent-only.md) |
-| 002-009 fix5-checkpoint | Complete | [002-routing-dispatch-and-identity/changelog-002-009-fix5-checkpoint.md](./002-routing-dispatch-and-identity/changelog-002-009-fix5-checkpoint.md) |
+| Track | Child | Status | Changelog |
+|---|---|---|---|
+| 001 research-and-diagnosis | 001 gpt-behavioral-hardening-research | Complete (research) | [changelog-001-001-gpt-behavioral-hardening-research.md](./001-research-and-diagnosis/changelog-001-001-gpt-behavioral-hardening-research.md) |
+| 001 research-and-diagnosis | 002 gpt-reliability-research | Complete (research) | [changelog-001-002-gpt-reliability-research.md](./001-research-and-diagnosis/changelog-001-002-gpt-reliability-research.md) |
+| 002 routing-dispatch-and-identity | 001 deep-agent-router-and-orchestration | Complete (research) | [changelog-002-001-deep-agent-router-and-orchestration.md](./002-routing-dispatch-and-identity/changelog-002-001-deep-agent-router-and-orchestration.md) |
+| 002 routing-dispatch-and-identity | 002 route-proof-validation | Complete | [changelog-002-002-route-proof-validation.md](./002-routing-dispatch-and-identity/changelog-002-002-route-proof-validation.md) |
+| 002 routing-dispatch-and-identity | 003 agent-dispatch-hardening | Complete | [changelog-002-003-agent-dispatch-hardening.md](./002-routing-dispatch-and-identity/changelog-002-003-agent-dispatch-hardening.md) |
+| 002 routing-dispatch-and-identity | 004 command-pre-route-headers | Complete | [changelog-002-004-command-pre-route-headers.md](./002-routing-dispatch-and-identity/changelog-002-004-command-pre-route-headers.md) |
+| 002 routing-dispatch-and-identity | 005 host-hard-identity-fix5 | Closed, never implemented | [changelog-002-005-host-hard-identity-fix5.md](./002-routing-dispatch-and-identity/changelog-002-005-host-hard-identity-fix5.md) |
+| 002 routing-dispatch-and-identity | 006 mode-d-ai-council-identity-fix | Complete | [changelog-002-006-mode-d-ai-council-identity-fix.md](./002-routing-dispatch-and-identity/changelog-002-006-mode-d-ai-council-identity-fix.md) |
+| 002 routing-dispatch-and-identity | 007 orchestrate-universal-routing | Complete | [changelog-002-007-orchestrate-universal-routing.md](./002-routing-dispatch-and-identity/changelog-002-007-orchestrate-universal-routing.md) |
+| 002 routing-dispatch-and-identity | 008 ai-council-subagent-only | Complete | [changelog-002-008-ai-council-subagent-only.md](./002-routing-dispatch-and-identity/changelog-002-008-ai-council-subagent-only.md) |
+| 002 routing-dispatch-and-identity | 009 fix5-checkpoint | Complete | [changelog-002-009-fix5-checkpoint.md](./002-routing-dispatch-and-identity/changelog-002-009-fix5-checkpoint.md) |
+| 003 guard-and-enforcement | 001 deep-route-guard-plugin | Complete | [changelog-003-001-deep-route-guard-plugin.md](./003-guard-and-enforcement/changelog-003-001-deep-route-guard-plugin.md) |
+| 003 guard-and-enforcement | 002 mk-deep-loop-guard-hardening | Complete (research) | [changelog-003-002-mk-deep-loop-guard-hardening.md](./003-guard-and-enforcement/changelog-003-002-mk-deep-loop-guard-hardening.md) |
+| 003 guard-and-enforcement | 003 loop-guard-implementation | Complete | [changelog-003-003-loop-guard-implementation.md](./003-guard-and-enforcement/changelog-003-003-loop-guard-implementation.md) |
+| 003 guard-and-enforcement | 004 fanout-stopreason-tolerance | Complete | [changelog-003-004-fanout-stopreason-tolerance.md](./003-guard-and-enforcement/changelog-003-004-fanout-stopreason-tolerance.md) |
+| 003 guard-and-enforcement | 005 mk-deep-loop-guard-retention | Complete | [changelog-003-005-mk-deep-loop-guard-retention.md](./003-guard-and-enforcement/changelog-003-005-mk-deep-loop-guard-retention.md) |
+| 004 benchmarks-and-verification | 001 gpt-verification-smoke | Blocked/inconclusive | [changelog-004-001-gpt-verification-smoke.md](./004-benchmarks-and-verification/changelog-004-001-gpt-verification-smoke.md) |
+| 004 benchmarks-and-verification | 002 gpt-claude-benchmark | Complete | [changelog-004-002-gpt-claude-benchmark.md](./004-benchmarks-and-verification/changelog-004-002-gpt-claude-benchmark.md) |
+| 005 skill-doc-hygiene | 001 skill-doc-drift-audit | Complete | [changelog-005-001-skill-doc-drift-audit.md](./005-skill-doc-hygiene/changelog-005-001-skill-doc-drift-audit.md) |
+| 005 skill-doc-hygiene | 002 skill-doc-drift-remediation | Complete | [changelog-005-002-skill-doc-drift-remediation.md](./005-skill-doc-hygiene/changelog-005-002-skill-doc-drift-remediation.md) |
+| 006 reliability-fixes | 001 acceptance-and-rollout-foundation | Planned | [changelog-006-001-acceptance-and-rollout-foundation.md](./006-reliability-fixes/changelog-006-001-acceptance-and-rollout-foundation.md) |
+| 006 reliability-fixes | 002 gate3-precedence-and-validator | Planned | [changelog-006-002-gate3-precedence-and-validator.md](./006-reliability-fixes/changelog-006-002-gate3-precedence-and-validator.md) |
+| 006 reliability-fixes | 003 dispatch-receipts-and-progress | Planned | [changelog-006-003-dispatch-receipts-and-progress.md](./006-reliability-fixes/changelog-006-003-dispatch-receipts-and-progress.md) |
+| 007 compiled-contract-compiler | 001 contract-compiler-design | Planned | [changelog-007-001-contract-compiler-design.md](./007-compiled-contract-compiler/changelog-007-001-contract-compiler-design.md) |
+| 007 compiled-contract-compiler | 002 deep-loop-router-deprecation | Complete | [changelog-007-002-deep-loop-router-deprecation.md](./007-compiled-contract-compiler/changelog-007-002-deep-loop-router-deprecation.md) |
+| 007 compiled-contract-compiler | 003 generalization-probes | Complete | [changelog-007-003-generalization-probes.md](./007-compiled-contract-compiler/changelog-007-003-generalization-probes.md) |
 
-### 003 guard-and-enforcement (COMPLETE)
-| Phase | Status | Changelog |
-|-------|--------|-----------|
-| 003-001 deep-route-guard-plugin | Complete | [003-guard-and-enforcement/changelog-003-001-deep-route-guard-plugin.md](./003-guard-and-enforcement/changelog-003-001-deep-route-guard-plugin.md) |
-| 003-002 mk-deep-loop-guard-hardening | Complete (research) | [003-guard-and-enforcement/changelog-003-002-mk-deep-loop-guard-hardening.md](./003-guard-and-enforcement/changelog-003-002-mk-deep-loop-guard-hardening.md) |
-| 003-003 loop-guard-implementation | Complete | [003-guard-and-enforcement/changelog-003-003-loop-guard-implementation.md](./003-guard-and-enforcement/changelog-003-003-loop-guard-implementation.md) |
-| 003-004 fanout-stopreason-tolerance | Complete | [003-guard-and-enforcement/changelog-003-004-fanout-stopreason-tolerance.md](./003-guard-and-enforcement/changelog-003-004-fanout-stopreason-tolerance.md) |
-| 003-005 mk-deep-loop-guard-retention (from 037) | Complete | [003-guard-and-enforcement/changelog-003-005-mk-deep-loop-guard-retention.md](./003-guard-and-enforcement/changelog-003-005-mk-deep-loop-guard-retention.md) |
+## How To Read These
 
-### 004 benchmarks-and-verification (COMPLETE)
-| Phase | Status | Changelog |
-|-------|--------|-----------|
-| 004-001 gpt-verification-smoke | Blocked/inconclusive | [004-benchmarks-and-verification/changelog-004-001-gpt-verification-smoke.md](./004-benchmarks-and-verification/changelog-004-001-gpt-verification-smoke.md) |
-| 004-002 gpt-claude-benchmark | Complete | [004-benchmarks-and-verification/changelog-004-002-gpt-claude-benchmark.md](./004-benchmarks-and-verification/changelog-004-002-gpt-claude-benchmark.md) |
-
-### 005 skill-doc-hygiene (COMPLETE)
-| Phase | Status | Changelog |
-|-------|--------|-----------|
-| 005-001 skill-doc-drift-audit | Complete | [005-skill-doc-hygiene/changelog-005-001-skill-doc-drift-audit.md](./005-skill-doc-hygiene/changelog-005-001-skill-doc-drift-audit.md) |
-| 005-002 skill-doc-drift-remediation | Complete | [005-skill-doc-hygiene/changelog-005-002-skill-doc-drift-remediation.md](./005-skill-doc-hygiene/changelog-005-002-skill-doc-drift-remediation.md) |
-
-### 006 reliability-fixes (PLANNED, from 035)
-Child changelogs are pending until the phases ship: `006-001-acceptance-and-rollout-foundation`, `006-002-gate3-precedence-and-validator`, `006-003-dispatch-receipts-and-progress`.
-
-### 007 compiled-contract-compiler (IN PROGRESS, from 036)
-`007-001-contract-compiler-design` is Planned. `007-002-deep-loop-router-deprecation` and `007-003-generalization-probes` are Complete and their changelogs are pending authoring.
-
-The packet-level rollup is [changelog-031-root.md](./changelog-031-root.md).
+Each child changelog follows the canonical phase format: Summary, Added, Changed, Fixed, Verification, Files Changed and Follow-Ups. Moved historical changelogs keep their original body content, including old spec-folder references, so the historical record stays intact. New changelogs use the current 7-track path and status truth.
 
 ## Conventions
 
-- File names use the track-grouped pattern `changelog/<track>/changelog-<trackNN>-<childNN>-<slug>.md`, matching packet 028's layout. The packet rollup stays at `changelog-031-root.md`.
-- One changelog per phase, whether it shipped, blocked, or was closed unimplemented. Status is stated plainly in each phase Summary rather than omitted.
-- Voice rules are non-negotiable: no em-dashes, no semicolons in narrative, no Oxford commas.
+- Root files stay at `changelog/README.md` and `changelog/changelog-031-root.md`.
+- Track folders use the same names as the packet's 7 L1 track directories.
+- Child file names use `changelog-<trackNN>-<childNN>-<slug>.md`.
+- One changelog exists for every child phase, whether the child shipped, blocked, closed unimplemented, remains planned, or is part of an in-progress track.

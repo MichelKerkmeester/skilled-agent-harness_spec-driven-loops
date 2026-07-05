@@ -114,7 +114,6 @@ Route to a specialized agent with `--agent <name>`. In this repo, Claude Code ag
 | `code` | Application-code implementation via `sk-code`; orchestrator-only |
 | `context` | Codebase exploration and architecture mapping |
 | `debug` | Systematic debugging and root-cause analysis |
-| `deep-context` | Read-only deep context analysis |
 | `deep-improvement` | Proposal-only deep-improvement candidate generation |
 | `deep-research` | Single-iteration deep research execution |
 | `deep-review` | Single-iteration deep review execution |

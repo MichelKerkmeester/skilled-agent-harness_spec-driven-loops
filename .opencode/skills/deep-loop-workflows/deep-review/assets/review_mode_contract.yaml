@@ -16,6 +16,24 @@ meta:
 contract:
   defaultTargetType: spec-folder
 
+  contextSnapshot:
+    requiredAtInit: true
+    ownerArtifact: deep-review-strategy.md
+    section: Known Context
+    source: bounded-review-context-snapshot
+    bounded: true
+    pointerBased: true
+    includes:
+      - targetPointers
+      - behaviorClaims
+      - reuseAndConventionPointers
+      - riskAreasAndContextGaps
+    forbids:
+      - deepContextDispatch
+      - fullSourceBodyInlining
+      - contextLoopReportCreation
+      - scopeWideningBeyondReviewTarget
+
   # Review target taxonomy.
   targetTypes:
     - id: spec-folder

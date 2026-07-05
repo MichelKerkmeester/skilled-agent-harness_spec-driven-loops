@@ -1,88 +1,11 @@
-{
-  "schema_version": 1,
-  "packet_id": "deep-loops/z_archive/027-deep-improvement-guarded-refine-hardening/002-lane-d-command-and-agent-surface",
-  "spec_folder": "deep-loops/z_archive/027-deep-improvement-guarded-refine-hardening/002-lane-d-command-and-agent-surface",
-  "parent_id": "deep-loops/z_archive/027-deep-improvement-guarded-refine-hardening",
-  "children_ids": [],
-  "migrated": true,
-  "migration_source": "legacy",
-  "manual": {
-    "depends_on": [],
-    "supersedes": [],
-    "related_to": []
-  },
-  "derived": {
-    "trigger_phrases": [],
-    "key_topics": [
-      "phase",
-      "002",
-      "lane",
-      "command",
-      "agent",
-      "surface"
-    ],
-    "importance_tier": "important",
-    "status": "planned",
-    "key_files": [
-      "spec.md"
-    ],
-    "entities": [
-      {
-        "name": "spec.md",
-        "kind": "doc",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Agent Surface",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Goal Give Lane",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Today Lane",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "lanes A",
-        "kind": "key_phrase",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "a",
-        "kind": "key_phrase",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "orchestrate",
-        "kind": "key_phrase",
-        "path": "spec.md",
-        "source": "derived"
-      }
-    ],
-    "causal_summary": "Phase 002: Lane D Command + Agent Surface",
-    "created_at": "2026-06-18T12:37:48.874Z",
-    "last_save_at": "2026-06-23T03:49:52.017Z",
-    "save_lineage": "graph_only",
-    "last_accessed_at": null,
-    "source_docs": [
-      "spec.md"
-    ],
-    "source_fingerprint": "sha256:47c321963741519942fc0d2a49a56c44078055cee06aaa4865899199771c4fd8",
-    "source_doc_hashes": {
-      "spec.md": "7393309da51e2d61ee094f33584c8036c684a5310cb9f626eae9e13c823b5339"
-    },
-    "last_active_child_id": null,
-    "last_active_at": null
-  }
-}
+Packet: deep-loops/z_archive/027-deep-improvement-guarded-refine-hardening/002-lane-d-command-and-agent-surface
+Spec Folder: deep-loops/z_archive/027-deep-improvement-guarded-refine-hardening/002-lane-d-command-and-agent-surface
+Status: planned
+Importance Tier: important
+Summary: Phase 002: Lane D Command + Agent Surface
+Parent: deep-loops/z_archive/027-deep-improvement-guarded-refine-hardening
+Migrated: true
+Migration Source: legacy
+Key Topics: phase, 002, lane, command, agent, surface
+Key Files: spec.md
+Source Docs: spec.md

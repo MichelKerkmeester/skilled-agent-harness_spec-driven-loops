@@ -61,7 +61,7 @@ function envWithBin(hermetic: HermeticEnv, binDir: string, env: NodeJS.ProcessEn
   };
 }
 
-function makeBaseArtifactDir(hermetic: HermeticEnv, specFolder: string, loopType: 'research' | 'review' | 'context'): string {
+function makeBaseArtifactDir(hermetic: HermeticEnv, specFolder: string, loopType: 'research' | 'review'): string {
   const dir = join(hermetic.tmpDir, specFolder, loopType);
   mkdirSync(dir, { recursive: true });
   return dir;
@@ -84,7 +84,7 @@ function canonicalizeFanoutArgs(
   if (specIndex < 0 || loopIndex < 0 || baseIndex < 0) return args;
   const cwd = options.cwd ?? runtimeRoot;
   const specFolder = args[specIndex + 1];
-  const loopType = args[loopIndex + 1] as 'research' | 'review' | 'context';
+  const loopType = args[loopIndex + 1] as 'research' | 'review';
   const rawBaseDir = args[baseIndex + 1];
   if (!specFolder || !loopType || !rawBaseDir) return args;
 
@@ -155,7 +155,6 @@ function writeNativeOpencodeStubBinary(binDir: string): string {
       '  mkdir -p "$lineage_dir"',
       '  printf "ok\\n" > "$lineage_dir/research.md"',
       '  printf "ok\\n" > "$lineage_dir/review-report.md"',
-      '  printf "ok\\n" > "$lineage_dir/context-report.md"',
       'fi',
       'echo "native-stub-done"',
       'exit 0',
@@ -237,7 +236,7 @@ function writeDelayedNodeStubBinary(binDir: string, name: string, delayMs: numbe
       '  const dir = lineageDir();',
       '  if (!dir) return;',
       '  fs.mkdirSync(dir, { recursive: true });',
-      '  for (const file of ["research.md", "review-report.md", "context-report.md"]) fs.writeFileSync(path.join(dir, file), "ok\\n");',
+      '  for (const file of ["research.md", "review-report.md"]) fs.writeFileSync(path.join(dir, file), "ok\\n");',
       '}',
       `setTimeout(() => { writeArtifacts(); console.log('delayed'); process.exit(0); }, ${delayMs});`,
       '',
@@ -264,7 +263,6 @@ function writeFanoutArtifactsShell(): string {
     '  mkdir -p "$lineage_dir"',
     '  printf "ok\\n" > "$lineage_dir/research.md"',
     '  printf "ok\\n" > "$lineage_dir/review-report.md"',
-    '  printf "ok\\n" > "$lineage_dir/context-report.md"',
     'fi',
   ].join('\n');
 }
@@ -544,11 +542,11 @@ describe('fanout-run.cjs — native convergence threshold defaults', () => {
       prompt: string,
       resolvedSandbox: string,
       resolvedPermission: string,
-      options: { loopType: 'research' | 'review' | 'context'; specFolder: string; lineageDir: string; convergenceThreshold?: number },
+      options: { loopType: 'research' | 'review'; specFolder: string; lineageDir: string; convergenceThreshold?: number },
     ) => { command: string; args: string[]; input: string };
   };
 
-  function nativeCommandInput(loopType: 'research' | 'review' | 'context'): string {
+  function nativeCommandInput(loopType: 'research' | 'review'): string {
     const command = buildLineageCommand(
       { kind: 'native' },
       '',
@@ -565,19 +563,17 @@ describe('fanout-run.cjs — native convergence threshold defaults', () => {
     expect(input).toContain('convergenceThreshold: 0.05');
   });
 
-  it('keeps the 0.1 default for review and context native dispatch when no threshold is explicit', () => {
-    for (const loopType of ['review', 'context'] as const) {
-      const input = nativeCommandInput(loopType);
-      expect(input).toContain('--convergence=0.1');
-      expect(input).toContain('convergenceThreshold: 0.1');
-    }
+  it('keeps the 0.1 default for review native dispatch when no threshold is explicit', () => {
+    const input = nativeCommandInput('review');
+    expect(input).toContain('--convergence=0.1');
+    expect(input).toContain('convergenceThreshold: 0.1');
   });
 });
 
 describe('fanout-run.cjs — buildLoopPrompt identity wording', () => {
   const { buildLoopPrompt } = requireCjs(fanoutRunScript) as {
     buildLoopPrompt: (
-      loopType: 'research' | 'review' | 'context',
+      loopType: 'research' | 'review',
       specFolder: string,
       lineageDir: string,
       sessionId: string,
@@ -589,7 +585,6 @@ describe('fanout-run.cjs — buildLoopPrompt identity wording', () => {
 
   it('does not claim LEAF-agent identity while preserving loop phase instructions', () => {
     for (const [loopType, agentName] of [
-      ['context', 'deep-context'],
       ['research', 'deep-research'],
       ['review', 'deep-review'],
     ] as const) {
@@ -611,6 +606,16 @@ describe('fanout-run.cjs — buildLoopPrompt identity wording', () => {
         'Run phase_init, phase_main_loop (to legal convergence), and phase_synthesis.',
       );
     }
+  });
+
+  it('rejects deprecated context fan-out prompt construction', () => {
+    expect(() => buildLoopPrompt(
+      'context' as never,
+      'specs/test-fanout-loop-identity',
+      '/tmp/fanout-context-lineage',
+      'fanout-context-run-123',
+      { kind: 'cli-opencode', label: 'context-seat', model: 'opencode-go/glm-5.1' },
+    )).toThrow(/context fan-out is deprecated/);
   });
 });
 

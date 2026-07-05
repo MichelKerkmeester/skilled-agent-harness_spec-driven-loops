@@ -1,0 +1,28 @@
+{
+  "level": "1",
+  "specFolder": "deep-loops/030-deep-loop-improved/008-loop-systems-remediation/005-tighten-playbook-pass-criteria",
+  "description": "Several high-risk manual testing scenarios used pass criteria that could be satisfied by inspection alone",
+  "keywords": [
+    "several",
+    "high-risk",
+    "manual",
+    "testing",
+    "scenarios",
+    "used",
+    "pass",
+    "criteria",
+    "satisfied",
+    "inspection",
+    "alone"
+  ],
+  "lastUpdated": "2026-07-04T18:02:21.356Z",
+  "specId": "005",
+  "folderSlug": "tighten-playbook-pass-criteria",
+  "parentChain": [
+    "deep-loops",
+    "030-deep-loop-improved",
+    "008-loop-systems-remediation"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

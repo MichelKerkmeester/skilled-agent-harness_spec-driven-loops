@@ -2533,15 +2533,15 @@ def _apply_memory_save_file_operation_cap(
 # iteration prompts can map to loops with different convergence and findings semantics.
 DEEP_ROUTING_CONFIDENCE_THRESHOLD = 0.65
 
-# The five legacy deep-loop skills are folded into one public skill,
+# The active legacy deep-loop modes are folded into one public skill,
 # deep-loop-workflows, discriminated by workflowMode. The Candidate-3 internal
 # discriminator keys below stay spelled as the legacy skill ids because the
 # regex pattern groups and prior-art matchers key off them and match live
 # artifact/agent names still present across the live agent and artifact surfaces;
 # DEEP_ROUTING_MODE_BY_KEY projects each onto the merged skill's workflowMode so
-# the routing contract emits {skill: deep-loop-workflows, mode}. deep-context is
-# intentionally NOT a Candidate-3 discriminator: it stays metadata-routed
-# (resolved from its graph-metadata.json), so DEEP_ROUTING_SKILLS stays 3.
+# the routing contract emits {skill: deep-loop-workflows, mode}. The removed
+# standalone context route is intentionally not a Candidate-3 discriminator, so
+# DEEP_ROUTING_SKILLS stays 3.
 MERGED_DEEP_SKILL_ID = "deep-loop-workflows"
 # BEGIN GENERATED DEEP ROUTING LEXICAL PROJECTION
 DEEP_ROUTING_SKILLS = ("deep-review", "deep-research", "deep-ai-council")

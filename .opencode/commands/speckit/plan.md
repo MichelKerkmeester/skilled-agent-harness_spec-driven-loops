@@ -75,7 +75,7 @@ The following content lives only in `.opencode/commands/speckit/assets/speckit_p
 
 - Startup-question wording and reply format.
 - `:auto` pre-bound setup answer schema, default table, targeted-ask rules, and fail-fast display.
-- Checkpoint and dashboard display templates, including deep-context and phase-decomposition checkpoints.
+- Checkpoint and dashboard display templates, including phase-decomposition checkpoints.
 - Success and failure result templates.
 - Next-step suggestions and final user prompt wording.
 

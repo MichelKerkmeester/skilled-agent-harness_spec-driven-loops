@@ -1,0 +1,213 @@
+{
+  "schema_version": 1,
+  "packet_id": "deep-loops/030-deep-loop-improved/002-deep-loop-runtime/006-jsonl-lock-held-merge",
+  "spec_folder": "deep-loops/030-deep-loop-improved/002-deep-loop-runtime/006-jsonl-lock-held-merge",
+  "parent_id": "deep-loops/030-deep-loop-improved/002-deep-loop-runtime",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "jsonl-lock-held-merge",
+      "jsonl-set-union-merge",
+      "fanout-lock-read-merge",
+      "jsonl-repair-dedup",
+      "006-jsonl-lock-held-merge summary",
+      "006-jsonl-lock-held-merge"
+    ],
+    "key_topics": [
+      "jsonl-lock-held-merge",
+      "jsonl-set-union-merge",
+      "fanout-lock-read-merge",
+      "jsonl-repair-dedup",
+      "006-jsonl-lock-held-merge",
+      "summary",
+      "concurrent",
+      "fan-out",
+      "writers",
+      "salvage",
+      "callers",
+      "append"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      ".opencode/skills/deep-loop-runtime/lib/deep-loop/jsonl-repair.ts",
+      ".opencode/skills/deep-loop-runtime/scripts/fanout-salvage.cjs",
+      ".opencode/skills/deep-loop-runtime/tests/unit/jsonl-repair.vitest.ts",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "jsonl-repair.ts",
+        "kind": "code",
+        "path": ".opencode/skills/deep-loop-runtime/lib/deep-loop/jsonl-repair.ts",
+        "source": "derived"
+      },
+      {
+        "name": "fanout-salvage.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/deep-loop-runtime/scripts/fanout-salvage.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "jsonl-repair.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/deep-loop-runtime/tests/unit/jsonl-repair.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Held Read",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Write Set",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Held Merge",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Lock",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "completed JSONL",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "downstream",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Concurrent fan-out writers and salvage callers append to the same JSONL file without a read-back-under-lock step; when multiple processes race on the same file, some records are written twice and others are lost depending on who wins the append race",
+    "created_at": "2026-06-28T14:01:55Z",
+    "last_save_at": "2026-07-04T18:02:02.563Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:0b89a2fd9336720a2302882fe8561eb6dd700d480278fae373bbd8ffb7ce2095",
+    "source_doc_hashes": {
+      "spec.md": "ffe135a5bcd4e41ba89766ab728353188f291ab17249c61e81985506dd613c76",
+      "plan.md": "d4fe785f2b24a610a0d480cf1e7dc868b8a69c584437f0141a74fa01c12d986a",
+      "tasks.md": "b39b17db17e072c59382c983147f06b89e62f559fc1752da1021278d731cd22f",
+      "implementation-summary.md": "1f65ca4ecafc3b3ff880b29c6712c124e6b4e1cb9f90dba62fafb284be6675df"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

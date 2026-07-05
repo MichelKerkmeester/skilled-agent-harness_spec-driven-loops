@@ -13,7 +13,6 @@ Agents:
   code:             application-code implementation via sk-code, write-capable LEAF dispatched only by orchestrate
   context:          retrieval-first context agent with canonical continuity recovery, read-only
   debug:            user-invoked fresh-perspective debugger, 5-phase root-cause method, never auto-dispatched
-  deep-context:     read-only deep-context analyzer seat, one parallel sweep of a slice
   deep-improvement: proposal-only mutator for bounded agent improvement, evaluator-first
   deep-research:    autonomous deep-research iterations with externalized state
   deep-review:      deep-review iteration agent, one dimension per pass with P0/P1/P2 findings

@@ -7,12 +7,10 @@
     "surfaced",
     "findings"
   ],
-  "lastUpdated": "2026-07-04T14:10:01.246Z",
+  "lastUpdated": "2026-07-04T14:39:14.532Z",
   "specId": "004",
   "folderSlug": "p2-triage",
   "parentChain": [
-    ".opencode",
-    "specs",
     "system-speckit",
     "028-memory-search-intelligence",
     "006-review-remediation"

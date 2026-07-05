@@ -409,7 +409,7 @@ describe('coverage-graph-signals', () => {
     });
   });
 
-  // ───── Context signals (closes the zero-coverage gap on the deep-context path) ─────
+  // ───── Context signals ─────
 
   it('computeContextSignalsFromData vacuous-passes all five signals on an empty graph', () => {
     const s = signalsModule.computeContextSignalsFromData([], []);

@@ -125,7 +125,6 @@ Route to a specialized Codex agent through the repo-local agent surface. `.codex
 | `code` | Application-code implementation | `--sandbox workspace-write` |
 | `context` | Production context retrieval and codebase mapping | `--sandbox read-only` |
 | `debug` | Fresh-perspective debugging | `--sandbox workspace-write` |
-| `deep-context` | Deep context analysis | `--sandbox read-only` |
 | `deep-improvement` | Proposal-only improvement candidates | `--sandbox read-only` |
 | `deep-research` | Iterative technical research | `--search` |
 | `deep-review` | Iterative code review | `--sandbox read-only` |

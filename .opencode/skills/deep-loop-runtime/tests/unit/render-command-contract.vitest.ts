@@ -80,7 +80,7 @@ afterEach(() => {
 
 describe('render-command-contract', () => {
   it.each(commands)('keeps the fallback BODY byte-identical to the legacy body for %s', (command) => {
-    const result = withInjectionMode(undefined, () => renderer.renderCommandContract(command, {
+    const result = withInjectionMode(`${command}:fallback`, () => renderer.renderCommandContract(command, {
       argsText: 'sample args',
       manifestPath: tempManifestPath(),
     }));
@@ -135,7 +135,7 @@ describe('render-command-contract', () => {
   it.each(commands)('appends a manifest row with render hashes for %s', (command) => {
     const argsText = 'target :auto --max-iterations=2';
     const manifestPath = tempManifestPath();
-    const result = withInjectionMode(undefined, () => renderer.renderCommandContract(command, {
+    const result = withInjectionMode(`${command}:fallback`, () => renderer.renderCommandContract(command, {
       argsText,
       manifestPath,
     }));
@@ -157,8 +157,8 @@ describe('render-command-contract', () => {
       manifestPath: tempManifestPath(),
     }));
 
-    expect(renderer.resolveMode('deep/review')).toBe('fallback');
-    expect(result.mode).toBe('fallback');
+    expect(renderer.resolveMode('deep/review')).toBe('fix');
+    expect(result.mode).toBe('fix');
   });
 
   it.each(commands)('exposes a zero-diff compare CLI for %s', (command) => {

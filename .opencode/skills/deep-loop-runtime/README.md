@@ -1,6 +1,6 @@
 ---
 title: "deep-loop-runtime"
-description: "Shared runtime library the deep-loop-workflows skill rides across its five modes: executor dispatch, prompt-pack rendering, atomic state, coverage-graph storage, Bayesian convergence scoring and council durability, consumed through TypeScript imports and direct .cjs script calls."
+description: "Shared runtime library the active deep-loop-workflows modes ride: executor dispatch, prompt-pack rendering, atomic state, coverage-graph storage, Bayesian convergence scoring and council durability, consumed through TypeScript imports and direct .cjs script calls."
 trigger_phrases:
   - "deep-loop runtime"
   - "deep-loop-runtime"
@@ -26,7 +26,7 @@ version: 1.4.0.15
 |---|---|
 | **Use it for** | The runtime infrastructure every deep loop needs: executor dispatch, atomic state, coverage-graph storage, Bayesian convergence scoring and council durability |
 | **Invoke with** | `import` from `lib/` in TypeScript, or `node scripts/<name>.cjs` in a workflow YAML block. No MCP tools, no slash commands. |
-| **Works on** | The one consumer skill that imports it, `deep-loop-workflows`, across its five modes: `context`, `research`, `review`, `ai-council` and `improvement` |
+| **Works on** | The one consumer skill that imports it, `deep-loop-workflows`, across active modes: `research`, `review`, `ai-council` and `improvement`. Legacy `context` parsing remains only for historical artifacts. |
 | **Produces** | Typed convergence decisions, JSONL state logs, session-scoped coverage graphs, multi-seat dispatch outcomes and scored adjudicator verdicts |
 
 ---
@@ -91,7 +91,7 @@ Expected output: the vitest runner discovers the unit, integration and lifecycle
 
 `lib/deep-loop/` holds the loop infrastructure. `executor-config` parses per-iteration executor settings from a shared schema so every consumer calls the same executor shape. `executor-audit` appends a provenance block to each iteration JSONL so you can tell which model and CLI produced each iteration. `prompt-pack` renders the iteration prompt template. `post-dispatch-validate` checks that an iteration produced valid markdown, JSONL and delta outputs before the state log accepts them, stamps seekable log-region offsets, and quarantines failed LLM-judge fallback cards. `atomic-state` writes state logs through a tmpfile-plus-rename pattern, adds compare-before-write, SHA-256 integrity helpers, and a deferred writer, so a crash never leaves a partial line and unchanged snapshots can avoid redundant writes. `jsonl-repair` recovers a corrupt trailing line before append and supports lock-held fan-out salvage merges. `loop-lock` enforces single-writer access around state mutations, with heartbeat metadata and opt-in host-local single-flight acquisition. `permissions-gate` checks permission scope before touching sensitive paths. `bayesian-scorer` exports the small Bayesian helpers `computeScore` and `shouldDemote`; `convergence.cjs` builds the typed loop decisions. `fallback-router` picks a replacement executor when the primary one times out and validates typed reroute graphs before dispatch.
 
-`lib/coverage-graph/` owns the session-scoped evidence graph. `coverage-graph-db` is the sole owner of the SQLite connection at `database/deep-loop-graph.sqlite`, and no other module opens that database. `coverage-graph-query` builds queries for uncovered questions, unverified claims, contradictions and evidence chains. `coverage-graph-signals` extracts typed research, review and context metrics with optional observation thresholds and time-decay weighting, including `questionCoverage`, `claimVerificationRate`, `contradictionDensity`, `sliceCoverage`, `reuseCatalogCoverage` and `agreementRate`, for `convergence.cjs` to evaluate.
+`lib/coverage-graph/` owns the session-scoped evidence graph. `coverage-graph-db` is the sole owner of the SQLite connection at `database/deep-loop-graph.sqlite`, and no other module opens that database. `coverage-graph-query` builds queries for uncovered questions, unverified claims, contradictions and evidence chains. `coverage-graph-signals` extracts typed research and review metrics, plus legacy context metrics for historical artifacts, with optional observation thresholds and time-decay weighting, including `questionCoverage`, `claimVerificationRate`, `contradictionDensity`, `sliceCoverage`, `reuseCatalogCoverage` and `agreementRate`, for `convergence.cjs` to evaluate.
 
 `lib/council/` provides council durability primitives. `multi-seat-dispatch` runs seat executors in parallel for one council round and returns fulfilled or rejected per-seat outcomes. `round-state-jsonl` appends per-round JSONL with the same lock-file single-writer guard the deep-loop family uses. `adjudicator-verdict-scoring` scores round-to-round verdict deltas across five weighted axes. `cost-guards` enforces session and topic budgets. `session-state-hierarchy` creates the stable session-to-topic-to-round state shape. A separate `council-graph-db` and `council-graph-query` pair owns the council-specific graph schema, and a council-layer convergence script drives council stop decisions. The council modules mirror the deep-loop durability contract in a council-scoped surface so the `ai-council` mode can consume them without touching review or research behavior.
 
@@ -111,17 +111,18 @@ Your loop skill needs executor dispatch, atomic state writes, a coverage graph o
 
 Skip this runtime when you are writing a loop's own UX, convergence policy or domain logic. Those live in the consumer skill. The runtime offers primitive contracts, not opinions about how many iterations constitute convergence or what a research finding looks like.
 
-### The One Consumer and Its Five Modes
+### The One Consumer and Its Active Modes
 
-`deep-loop-runtime` is the foundation. The `deep-loop-workflows` skill is the building, and its five modes are the rooms that ride the runtime.
+`deep-loop-runtime` is the foundation. The `deep-loop-workflows` skill is the building, and its active modes are the rooms that ride the runtime.
 
 | Mode | How it consumes the runtime |
 |---|---|
 | `research` | Calls `convergence.cjs`, `upsert.cjs`, `query.cjs` and `status.cjs` from its workflow YAML. Imports `lib/deep-loop/` for prompt-pack rendering, atomic state and executor audit. |
 | `review` | Mirrors the research mode's script calls. Imports `lib/coverage-graph/` for its reducer and uses the Bayesian scorer and coverage signals to decide when a review has converged. |
-| `context` | Runs the fan-out pool to sweep the codebase in parallel. Imports the coverage-graph store and the convergence script, and the agreement merge reads coverage-graph signals. |
 | `ai-council` | Consumes `lib/council/` for multi-seat dispatch, round-state JSONL, adjudicator scoring, cost guards and session-state hierarchy. The operator-facing council semantics stay in the `ai-council` mode. |
 | `improvement` | Imports the deep-loop executor config and the council cost guards. Its evaluator-first pipeline rides the same executor dispatch path the other modes use. |
+
+The deprecated standalone context loop no longer consumes fan-out. Runtime `context` parsing remains for existing artifacts and graph rows until a migration proves it can be removed safely.
 
 `system-spec-kit` owns the spec folder, validation and memory continuity. `sk-code` owns code standards and test verification. This runtime owns the infrastructure the loops ride and nothing else.
 
@@ -132,7 +133,7 @@ Skip this runtime when you are writing a loop's own UX, convergence policy or do
 | What you see | Why | Fix |
 |---|---|---|
 | Script exits with code 2 (DB error) | The SQLite database is missing, corrupt or locked by another writer | Confirm `database/deep-loop-graph.sqlite` exists and is writable. If a stale `database/.deep-loop-graph-writer.lock` survived a crash, remove it after confirming no live writer (`ps aux | grep convergence.cjs`). |
-| Script exits with code 3 (input validation) | Argv parsing rejected the input | Check `--spec-folder` is present, `--loop-type` is exactly `research`, `review`, `council` or `context`, and `--session-id` has no path-traversal characters. `improvement` is host-driven, not a runtime `loopType`. The full contract is in `references/script_interface_contract.md`. |
+| Script exits with code 3 (input validation) | Argv parsing rejected the input | Check `--spec-folder` is present, `--loop-type` is valid for the script, and `--session-id` has no path-traversal characters. Active convergence loop types are `research`, `review` and `council`; fan-out accepts only `research` and `review`; legacy `context` is retained only where a script explicitly documents historical artifact compatibility. `improvement` is host-driven, not a runtime `loopType`. The full contract is in `references/script_interface_contract.md`. |
 | Convergence returns CONTINUE past a high iteration count | The typed convergence signals are not passing the stop thresholds | Check the iteration outputs for corrupt data that injects fake coverage or contradiction signals. If outputs are valid, the loop is genuinely surfacing new evidence and the hard cap is the correct stop. |
 | Loop-lock acquisition times out | A long-running upsert holds the lock, or a stale lock survived a crash | Raise `DEEP_LOOP_WRITER_LOCK_MAX_WAIT_MS` for contended workloads. For a stale lock, remove the writer lockfile after confirming no live writer. |
 | A state log is corrupt mid-line | The crash happened during a write, not at a line boundary | `jsonl-repair` recovers only trailing corruption. For mid-line corruption, inspect the file and delete the broken line. The loop resumes from the last intact record. |
@@ -148,7 +149,7 @@ A: Before the consolidation, executor config, atomic state, coverage-graph stora
 
 **Q: Which skill consumes this runtime?**
 
-A: One: `deep-loop-workflows`, across its five modes (`context`, `research`, `review`, `ai-council` and `improvement`). Each mode imports the modules it needs and calls the `.cjs` scripts from its workflow YAML. The runtime itself has no user-facing command and registers no MCP tools.
+A: One: `deep-loop-workflows`, across active modes (`research`, `review`, `ai-council` and `improvement`). Each mode imports the modules it needs and calls the `.cjs` scripts from its workflow YAML. The deprecated context loop is not an active consumer; retained `context` handling is for historical artifacts only. The runtime itself has no user-facing command and registers no MCP tools.
 
 **Q: What does the coverage graph provide?**
 

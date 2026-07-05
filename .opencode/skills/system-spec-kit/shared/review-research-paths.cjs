@@ -14,13 +14,11 @@ const path = require('node:path');
 const MODE_CONFIG_FILE = {
   research: 'deep-research-config.json',
   review: 'deep-review-config.json',
-  context: 'deep-context-config.json',
 };
 
 const MODE_STATE_FILE = {
   research: 'deep-research-state.jsonl',
   review: 'deep-review-state.jsonl',
-  context: 'deep-context-state.jsonl',
 };
 
 // ─────────────────────────────────────────────────────────────────────────────

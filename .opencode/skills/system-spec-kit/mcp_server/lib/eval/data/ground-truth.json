@@ -462,12 +462,12 @@
     },
     {
       "id": 47,
-      "query": "how was deep-context runtime-robustness parity planned",
+      "query": "how was archived context runtime-robustness parity planned",
       "intentType": "security_audit",
       "complexityTier": "complex",
       "category": "scope_filtered",
       "source": "pattern_derived",
-      "expectedResultDescription": "Known-item lookup for memory 18636: deep-context runtime-robustness parity (../../../specs/skilled-agent-orchestration/z_archive/134-deep-context-gathering/002-runtime-robustness-parity/plan.md).",
+      "expectedResultDescription": "Known-item lookup for memory 18636: archived context runtime-robustness parity (../../../specs/skilled-agent-orchestration/z_archive/134-context-gathering/002-runtime-robustness-parity/plan.md).",
       "notes": "Generated from active parent memory 18636; content length 15171; general / human / important."
     },
     {
@@ -952,12 +952,12 @@
     },
     {
       "id": 96,
-      "query": "the deep-context loop foundation phase for parallel context gathering",
+      "query": "the archived context loop foundation phase for parallel context gathering",
       "intentType": "understand",
       "complexityTier": "moderate",
       "category": "hard_negative",
       "source": "manual",
-      "expectedResultDescription": "deep-context loop foundation (9916). Decoy EXCLUDED: 19258 deep-loop-workflows parity baseline — 'deep' + 'loop' overlap, different program.",
+      "expectedResultDescription": "Archived context loop foundation (9916). Decoy EXCLUDED: 19258 deep-loop-workflows parity baseline — 'deep' + 'loop' overlap, different program.",
       "notes": "eval-v2 multi-target measurability fixture; hand-authored, gold ids live-DB verified."
     },
     {

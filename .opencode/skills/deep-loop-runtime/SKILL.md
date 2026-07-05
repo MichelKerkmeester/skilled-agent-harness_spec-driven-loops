@@ -7,13 +7,13 @@ allowed-tools: [Bash, Read, Glob, Grep]
 
 # Deep Loop Runtime
 
-Shared runtime infrastructure for the deep-review, deep-research, and deep-context loop workflows (and deep-ai-council via the council-scoped modules). The FULL_ISOLATE_NO_MCP consolidation moved the shared runtime libraries, coverage-graph ownership, script entry points, SQLite storage, and runtime tests into this peer skill.
+Shared runtime infrastructure for the active deep-review, deep-research, and deep-ai-council workflows, plus host-driven deep-improvement support. Legacy context parsers remain only for historical artifacts. The FULL_ISOLATE_NO_MCP consolidation moved the shared runtime libraries, coverage-graph ownership, script entry points, SQLite storage, and runtime tests into this peer skill.
 
 ---
 
 ## 1. WHEN TO USE
 
-This skill is consumed by the deep-review, deep-research, and deep-context workflow YAML and script paths (and the deep-ai-council council modules), not invoked directly as a user-facing workflow.
+This skill is consumed by the deep-review and deep-research workflow YAML and script paths, the deep-ai-council council modules, and shared deep-improvement primitives. It is not invoked directly as a user-facing workflow.
 
 Use it when a deep-loop workflow needs shared runtime support for:
 
@@ -265,7 +265,7 @@ Shipped layout:
 
 ### Per-runtime agent mirrors (consumer convention)
 
-This runtime is MCP-free and owns no agents, but every deep loop that consumes it ships a **native agent** that the loop dispatches **by name** (`agent: <name>` in the loop YAML), which each host runtime resolves from its OWN `agents/` dir. Each such agent — `deep-context`, `deep-research`, `deep-review`, `deep-improvement`, `ai-council` — is one canonical source plus one runtime mirror carrying the same body:
+This runtime is MCP-free and owns no agents, but every active deep loop that consumes it ships a **native agent** that the loop dispatches **by name** (`agent: <name>` in the loop YAML), which each host runtime resolves from its OWN `agents/` dir. Each such active agent — `deep-research`, `deep-review`, `deep-improvement`, `ai-council` — is one canonical source plus one runtime mirror carrying the same body:
 
 - `.opencode/agents/<name>.md` — **canonical** (OpenCode frontmatter: `mode: subagent` + `permission:` block)
 - `.claude/agents/<name>.md` — Claude mirror (`tools:` allow-list frontmatter)
@@ -279,6 +279,7 @@ The loop commands and YAML are **shared** across runtimes (the `.claude/`/`.open
 - **ADR-001 (AI Council SPLIT ruling)**: original AI Council SPLIT ruling. Superseded by user directive.
 - **Isolation ADR (FULL_ISOLATE_NO_MCP)**: Moves deep-loop runtime, coverage-graph schema/query/signals, script entry points, storage, and tests into this peer skill while removing the deep-loop MCP tool surface.
 - **Deep-review and deep-research workflow YAML** call this runtime through script entry points after the runtime cutover.
+- **Legacy context compatibility** remains only for historical artifacts and graph rows; active context fan-out is rejected before dispatch.
 - **system-spec-kit/mcp_server/vitest.config.ts** includes `'../deep-loop-runtime/tests/**/*.{vitest,test}.ts'` for cross-package test discovery.
 - **deep-review/scripts/reduce-state.cjs** depends on the moved coverage-graph runtime via lib imports.
 
@@ -303,6 +304,6 @@ The runtime is healthy when:
 
 Related resources:
 
-- Consumer skills: the `deep-review` and `deep-research` workflows call this runtime through the script entry points
+- Consumer skills: the `deep-review` and `deep-research` workflows call this runtime through the script entry points; `deep-ai-council` consumes council modules; `deep-improvement` consumes shared primitives
 - `system-spec-kit/mcp_server/vitest.config.ts` discovers this skill's `tests/`
 - Per-release detail and rationale: this skill's `changelog/` directory

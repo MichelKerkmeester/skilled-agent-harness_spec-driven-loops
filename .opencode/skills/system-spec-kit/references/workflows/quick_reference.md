@@ -107,7 +107,6 @@ If the runtime does not surface command menus clearly, use this compact command 
 - `/speckit:complete` - run the full spec-to-implementation lifecycle
 
 **Deep-loop workflow commands**
-- `/deep:context` - run iterative codebase-context gathering before planning or implementation
 - `/deep:research` - run iterative research before planning
 - `/deep:review` - run iterative review and finding synthesis
 - `/deep:ai-council` - run multi-seat planning deliberation
