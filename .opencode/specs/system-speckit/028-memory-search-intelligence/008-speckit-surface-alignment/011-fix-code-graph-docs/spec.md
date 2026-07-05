@@ -9,6 +9,9 @@ trigger_phrases:
   - "doc-symbol lane"
 importance_tier: "important"
 contextType: "general"
+parent: "../spec.md"
+predecessor: "011-code-graph-doc-audit"
+successor: "012-fix-stress-docs"
 _memory:
   continuity:
     packet_pointer: "system-speckit/028-memory-search-intelligence/008-speckit-surface-alignment/011-fix-code-graph-docs"

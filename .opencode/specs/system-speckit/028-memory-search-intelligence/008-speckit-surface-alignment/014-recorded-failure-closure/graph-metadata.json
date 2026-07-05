@@ -1,0 +1,226 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/028-memory-search-intelligence/008-speckit-surface-alignment/014-recorded-failure-closure",
+  "spec_folder": "system-speckit/028-memory-search-intelligence/008-speckit-surface-alignment/014-recorded-failure-closure",
+  "parent_id": "system-speckit/028-memory-search-intelligence/008-speckit-surface-alignment",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "recorded failure closure",
+      "detector fired nobody acted",
+      "unactioned recorded failure",
+      "deep research cap reconciliation",
+      "recorded failure closure plan",
+      "recorded failure must route",
+      "recorded failure closure tasks",
+      "unactioned recorded failure tasks",
+      "recorded failure must route tasks",
+      "recorded failure closure checklist",
+      "unactioned recorded failure verification",
+      "recorded failure closure summary"
+    ],
+    "key_topics": [
+      "recorded",
+      "failure",
+      "closure",
+      "detector",
+      "fired",
+      "nobody",
+      "acted",
+      "unactioned",
+      "deep",
+      "research",
+      "cap",
+      "reconciliation"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      ".opencode/specs/system-speckit/028-memory-search-intelligence/008-speckit-surface-alignment/014-recorded-failure-closure/spec.md",
+      ".opencode/specs/system-speckit/028-memory-search-intelligence/008-speckit-surface-alignment/014-recorded-failure-closure/implementation-summary.md",
+      ".opencode/specs/system-speckit/028-memory-search-intelligence/research/deep-research-strategy.md",
+      ".opencode/skills/system-spec-kit/constitutional/recorded-failure-must-route.md",
+      ".opencode/skills/system-spec-kit/scripts/validation/unactioned-recorded-failure-audit.mjs",
+      ".opencode/skills/system-spec-kit/scripts/validation/unactioned-recorded-failure-audit.test.mjs",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "checklist.md",
+      ".opencode/skills/system-spec-kit/constitutional/README.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": ".opencode/specs/system-speckit/028-memory-search-intelligence/008-speckit-surface-alignment/014-recorded-failure-closure/spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": ".opencode/specs/system-speckit/028-memory-search-intelligence/008-speckit-surface-alignment/014-recorded-failure-closure/implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-strategy.md",
+        "kind": "doc",
+        "path": ".opencode/specs/system-speckit/028-memory-search-intelligence/research/deep-research-strategy.md",
+        "source": "derived"
+      },
+      {
+        "name": "recorded-failure-must-route.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/constitutional/recorded-failure-must-route.md",
+        "source": "derived"
+      },
+      {
+        "name": "unactioned-recorded-failure-audit.mjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-spec-kit/scripts/validation/unactioned-recorded-failure-audit.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "unactioned-recorded-failure-audit.test.mjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-spec-kit/scripts/validation/unactioned-recorded-failure-audit.test.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/constitutional/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Failure Closure",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Several",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Close",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Record",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Several audit findings were about detectors that fired and were recorded, but nobody acted",
+    "created_at": "2026-07-05T13:17:59.075Z",
+    "last_save_at": "2026-07-05T13:36:40.403Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:b7091b10d352c1dcec2558d756e2ed9740bb1228c54f4c9fe50cc1b34389fcf5",
+    "source_doc_hashes": {
+      "spec.md": "27a6cc1b0ae6aff137ef12024a7fb620af907d45f5d4f37f4aa7d80626b5c034",
+      "plan.md": "6828e1da552e1689ada968ec766ab80fadf53fcd8144313bafed03a0624e5411",
+      "tasks.md": "bb9d199aee4767c256262459dc55788a27bdc202b18588b5cf4c9aabc052b690",
+      "checklist.md": "69299369aa91973e9da43fc8b474d83803b124572755435b2fe62545acca1f0e",
+      "implementation-summary.md": "c184bb04e22ba47f3cbe625af3e7a9cb41fa438e0a38187bd74b106b8ff99dbd"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

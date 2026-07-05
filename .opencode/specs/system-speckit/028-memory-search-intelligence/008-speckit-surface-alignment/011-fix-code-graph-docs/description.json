@@ -1,22 +1,27 @@
 {
-  "specFolder": "011-fix-code-graph-docs",
+  "level": "1",
+  "specFolder": "system-speckit/028-memory-search-intelligence/008-speckit-surface-alignment/011-fix-code-graph-docs",
   "description": "The read-only audit at `011-code-graph-doc-audit/review-report.md` confirmed six documentation-alignment defects in",
   "keywords": [
-    "code-graph",
-    "documentation",
-    "alignment",
-    "doc-symbol",
-    "parser-skip-list"
+    "read-only",
+    "audit",
+    "011-code-graph-doc-audit",
+    "review-report",
+    "confirmed",
+    "six",
+    "documentation-alignment",
+    "defects"
   ],
-  "lastUpdated": "2026-07-05T00:00:00.000Z",
+  "lastUpdated": "2026-07-05T13:32:44.626Z",
   "specId": "011",
   "folderSlug": "fix-code-graph-docs",
   "parentChain": [
+    ".opencode",
+    "specs",
     "system-speckit",
     "028-memory-search-intelligence",
     "008-speckit-surface-alignment"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

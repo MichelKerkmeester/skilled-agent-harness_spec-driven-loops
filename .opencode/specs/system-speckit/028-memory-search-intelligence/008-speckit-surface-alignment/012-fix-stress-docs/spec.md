@@ -9,6 +9,9 @@ trigger_phrases:
   - "search quality stress README"
 importance_tier: "normal"
 contextType: "implementation"
+parent: "../spec.md"
+predecessor: "011-fix-code-graph-docs"
+successor: "012-stress-and-skillmd-audit"
 _memory:
   continuity:
     packet_pointer: "system-speckit/028-memory-search-intelligence/008-speckit-surface-alignment/012-fix-stress-docs"

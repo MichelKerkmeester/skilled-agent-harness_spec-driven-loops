@@ -101,3 +101,51 @@ The 016 deep-dive remediation program shipped. Thirteen phases fixed the P0 thro
 ### Follow-Ups
 
 - Several daemon-side captures are pending a daemon restart: the live p50 from phase 010, the live envelope bytes from phase 012, the embedding reconcile from phase 004, the eval-delta from phases 006 and 007, trackAccess production enablement from phase 009 and the memory-index of the phase 013 closeout.
+
+---
+
+## 2026-07-05
+
+> Spec folder: `.opencode/specs/system-speckit/028-memory-search-intelligence/008-speckit-surface-alignment` (Phase Parent)
+
+### Summary
+
+The 008 surface-alignment remediation converted the audit record into a closed documentation and process arc. The initial surface-alignment audit identified documentation-vs-implementation drift, the Fable review narrowed the record to citation-backed issues, phases 011 and 012 delivered the code-graph and stress/SKILL.md audits, the paired 011 and 012 fix phases shipped the documentation corrections, phase 013 shipped the inert-novelty detector warning for flat-high `newInfoRatio`, and phase 014 shipped recorded-failure closure through cap reconciliation, a constitutional route and a RED/GREEN surfacer.
+
+### Included Phases
+
+| Phase | Status | Summary |
+|---|---|---|
+| `008-speckit-surface-alignment/002-false-now-doc-corrections` | Complete | Corrected false-now doc drift (Track-C supersession pointer + live retention flag name in `benchmark-status.md`); confirmed three cited surfaces already in place. |
+| `008-speckit-surface-alignment/011-code-graph-doc-audit` | Complete | Read-only audit of system-code-graph docs with six confirmed findings and zero inferred findings. |
+| `008-speckit-surface-alignment/011-fix-code-graph-docs` | Complete | Corrected the code-graph documentation findings surfaced by the audit. |
+| `008-speckit-surface-alignment/012-stress-and-skillmd-audit` | Complete | Read-only audit of stress-test docs plus system-spec-kit SKILL.md and changelog surfaces. |
+| `008-speckit-surface-alignment/012-fix-stress-docs` | Complete | Corrected stress catalog, playbook and stress-test README drift against the shipped harness. |
+| `008-speckit-surface-alignment/013-deep-research-loop-instrumentation` | Complete | Shipped the inert-novelty detector warning and focused RED/GREEN coverage. |
+| `008-speckit-surface-alignment/014-recorded-failure-closure` | Complete | Reconciled the cap record and shipped the recorded-failure closure route. |
+
+### Added
+
+- Program-level 008 remediation changelog coverage in the 028 changelog tree.
+
+### Changed
+
+- The 028 root changelog now records the 008 surface-alignment audit, Fable review, audit/fix phases and process-closure phases.
+
+### Fixed
+
+- Closed the changelog gap for the 008 remediation sequence.
+
+### Verification
+
+- Strict validation for `.opencode/specs/system-speckit/028-memory-search-intelligence/008-speckit-surface-alignment` is the acceptance gate for this entry.
+
+### Files Changed
+
+| File | Action | Purpose |
+|------|--------|---------|
+| `changelog/changelog-028-root.md` | Modified | Adds the 2026-07-05 entry for 008 remediation. |
+
+### Follow-Ups
+
+- None recorded.

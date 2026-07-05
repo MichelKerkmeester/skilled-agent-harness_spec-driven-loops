@@ -9,6 +9,8 @@ trigger_phrases:
   - "envelope fidelity comment"
 importance_tier: "normal"
 contextType: "implementation"
+parent: "../spec.md"
+successor: "011-code-graph-doc-audit"
 _memory:
   continuity:
     packet_pointer: "system-speckit/028-memory-search-intelligence/008-speckit-surface-alignment/002-false-now-doc-corrections"

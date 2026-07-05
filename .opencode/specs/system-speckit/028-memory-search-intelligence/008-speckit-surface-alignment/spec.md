@@ -1,4 +1,37 @@
+---
+title: "Feature Specification: SpecKit Surface Alignment Remediation"
+description: "Phase-parent packet for the 028 surface-alignment audit, Fable review narrowing, audit remediation phases, inert-novelty detector, and recorded-failure closure."
+trigger_phrases:
+  - "speckit surface alignment"
+  - "surface-alignment audit"
+  - "Fable review synthesis"
+  - "code graph doc audit"
+  - "stress and skillmd audit"
+  - "recorded failure closure"
+importance_tier: "normal"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "system-speckit/028-memory-search-intelligence/008-speckit-surface-alignment"
+    last_updated_at: "2026-07-05T00:00:00Z"
+    last_updated_by: "opencode"
+    recent_action: "Remediate surface-alignment documentation metadata"
+    next_safe_action: "Run strict validation for the phase parent"
+    blockers: []
+    key_files:
+      - ".opencode/specs/system-speckit/028-memory-search-intelligence/008-speckit-surface-alignment/spec.md"
+      - ".opencode/specs/system-speckit/028-memory-search-intelligence/changelog/changelog-028-root.md"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "speckit-surface-alignment"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions: []
+---
 # 008 — SpecKit Surface Alignment (Remediation)
+
+<!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 
 ## METADATA
 
@@ -25,7 +58,7 @@ The edits themselves land across `sk-doc`, `system-spec-kit`, `system-code-graph
 
 ---
 
-## 3. PHASE MAP
+## PHASE DOCUMENTATION MAP
 
 Executor tags: **FAST** = GPT-5.5-fast `--variant high` mechanical edit (exact old→new strings + self-verify grep supplied); **CAREFUL** = GPT-5.5-fast `--variant xhigh` (or Claude) with a RED/GREEN test gate; **AUDIT** = Claude-led deep-review (cited report, not a mechanical fix — a fast executor would reproduce the audit's own sampling blind spot); **DECISION** = design call recorded before any edit.
 
@@ -33,7 +66,7 @@ Executor tags: **FAST** = GPT-5.5-fast `--variant high` mechanical edit (exact o
 |-------|------|-------|----------|-------|--------|
 | 001 | `feature-catalog-validation-gate` | Keystone. `validate_document.py` feature-catalog doc-type + validation-table taxonomy check (placeholders, allowed `Type`, path resolution). Lands report-mode. | CAREFUL | 2 | Planned |
 | 002 | `false-now-doc-corrections` | Retention `_V1`→unsuffixed + living-doc sweep; Track-C supersession pointer; soft-delete-tombstone contradiction; stale `search-results.ts` comment. Excludes the phase-027 summary. | FAST | 2 | Planned |
-| 003 | `index-freshness-sweep` | Benchmarks README rows (2→8, MPS-HOLD first); playbook root index counts + high-water; MODULE_MAP category count + duplicate `14--` prefix; schema catalog archived-rebuild row + retitle. | FAST | 2 | Planned |
+| 003 | `index-freshness-sweep` | Benchmarks README rows (2 to 8, MPS-HOLD first); playbook root index counts + high-water; MODULE_MAP category count + duplicate `14--` prefix; schema catalog archived-rebuild row + retitle. | FAST | 2 | Planned |
 | 004 | `flag-table-single-source` | Demote the feature-flag catalog table to an ENV_REFERENCE pointer (kills the drift class); re-run + re-record governance scenario 063. | FAST | 2 | Planned |
 | 005 | `template-and-label-contract` | Scaffolder section-name drift; relabel a static-contract fixture; fix catalog rows typing manual-scenario files as "Automated test". | FAST | 1 | Planned |
 | 006 | `deep-loop-yaml-contract` | Startup `context_loading` error/timeout branch in research/review/council YAMLs; `delta_pattern` naming vs runner output. | CAREFUL | 2 | Planned |

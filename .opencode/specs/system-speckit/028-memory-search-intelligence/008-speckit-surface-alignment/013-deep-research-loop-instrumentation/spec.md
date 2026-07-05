@@ -1,25 +1,165 @@
-# 013 — Deep-Research Loop Instrumentation (`newInfoRatio` + evidence labels)
+---
+title: "Feature Specification: Deep-Research Loop Instrumentation"
+description: "Ship the inert newInfoRatio warning and evidence-label cleanup path for the deep-research loop instrumentation finding."
+trigger_phrases:
+  - "deep research loop instrumentation"
+  - "newInfoRatio inert"
+  - "novelty signal inert"
+  - "deep research evidence labels"
+importance_tier: "normal"
+contextType: "implementation"
+parent: "../spec.md"
+predecessor: "012-stress-and-skillmd-audit"
+successor: "014-recorded-failure-closure"
+_memory:
+  continuity:
+    packet_pointer: "system-speckit/028-memory-search-intelligence/008-speckit-surface-alignment/013-deep-research-loop-instrumentation"
+    last_updated_at: "2026-07-05T00:00:00Z"
+    last_updated_by: "opencode"
+    recent_action: "Ship inert novelty detector instrumentation"
+    next_safe_action: "Run strict validation for the instrumentation phase"
+    blockers: []
+    key_files:
+      - ".opencode/specs/system-speckit/028-memory-search-intelligence/008-speckit-surface-alignment/013-deep-research-loop-instrumentation/spec.md"
+      - ".opencode/specs/system-speckit/028-memory-search-intelligence/008-speckit-surface-alignment/013-deep-research-loop-instrumentation/implementation-summary.md"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "deep-research-loop-instrumentation"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions: []
+---
+# Feature Specification: Deep-Research Loop Instrumentation
 
-## METADATA
-- **Status:** Done — inert-novelty detector shipped + RED/GREEN tested (deterministic source-recompute is an optional stronger follow-up)
-- **Level:** 2
-- **Parent:** `008-speckit-surface-alignment`
-- **Source:** `../../research/fable-5-review-synthesis.md` §(d)(ii)
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: spec-core + level2-verify | v2.2 -->
 
-## 1. FINDING
-Across all 20 iterations of the surface-alignment deep-research run, the emitted `newInfoRatio` was exactly `1.0` in every state record — including iterations that verbatim-repeated earlier findings (retention drift in iters 1+2, benchmark README in 1+6, a convergence fixture in 12+13). The convergence/novelty signal never engaged, yet the synthesis cited "every iteration fully novel / corpus not exhausted" as evidence the loop was still productive. That conclusion was unevidenced: ~93 log findings compress to ~18 distinct.
+---
 
-Root cause: `newInfoRatio` is **emitted by the deep-research LEAF agent** (an LLM self-assessment written to `deep-research-state.jsonl`), and `deep-research/scripts/reduce-state.cjs` only *consumes* it (`record.newInfoRatio`). Nothing recomputes it deterministically against the accumulated findings registry, so a leaf that defaults to `1.0` is never corrected.
+<!-- ANCHOR:metadata -->
+## 1. METADATA
 
-Related: the `[INFERENCE]` label in the prompt-pack conflates two evidence classes — genuine unverified inference vs. executed-command-with-output (the *strongest* class) — which the review found mis-tagged as weak.
+| Field | Value |
+|-------|-------|
+| **Level** | 2 |
+| **Priority** | P1 |
+| **Status** | Complete |
+| **Created** | 2026-07-05 |
+| **Branch** | Current worktree, no commit requested |
+| **Parent Spec** | ../spec.md |
+| **Predecessor** | 012-stress-and-skillmd-audit |
+| **Successor** | 014-recorded-failure-closure |
+<!-- /ANCHOR:metadata -->
 
-## 2. FIX APPROACH (recommended: deterministic recompute)
-Prefer a deterministic scorer over an LLM instruction (LLM self-scoring is what failed). In the reducer path (`deep-research/scripts/reduce-state.cjs`) or a sibling scorer, recompute `newInfoRatio` per iteration by comparing that iteration's findings against the accumulated `deep-research-findings-registry.json` (e.g. fraction of findings not already present), and let the reducer's recomputed value — not the leaf's raw emission — drive convergence telemetry. Separately, split the `[INFERENCE]` prompt-pack label into `[INFERENCE]` (unverified) and `[VERIFIED]`/`[COMMAND-OUTPUT]` (executed evidence).
+---
 
-## 3. ACCEPTANCE (RED/GREEN — must be ungameable)
-- Feed the scorer a synthetic iteration whose findings duplicate a prior iteration's → recomputed `newInfoRatio < 1.0` (RED before fix, GREEN after).
-- A fully-novel iteration → `newInfoRatio == 1.0`.
-- The prompt-pack distinguishes inference from executed-command evidence.
+<!-- ANCHOR:problem -->
+## 2. PROBLEM & PURPOSE
 
-## 4. IMPLEMENTATION (shipped)
-The inert-novelty detector is live in `deep-loop-workflows/deep-research/scripts/reduce-state.cjs`: `buildTrendFlatlineAdvisories` now escalates a `newInfoRatio` held flat at a high value from a buried advisory to a `novelty_signal_inert` **warning** carrying an explicit "convergence / not-exhausted claims untrustworthy" note, and `formatTrendAdvisoryEvent` renders it as `WARNING …`. A flat LOW value stays a plain advisory (legitimate stuck-detection). Covered by `deep-loop-runtime/tests/unit/deep-research-novelty-inertness.vitest.ts` (RED/GREEN: flat-high→warning, flat-low→advisory, varied→none); the existing reducer suite still passes (16/16). The full deterministic source-novelty recompute — feasible because the per-iteration `sourcesQueried` IS emitted — remains an optional stronger follow-up.
+### Problem Statement
+
+Across all 20 iterations of the surface-alignment deep-research run, the emitted `newInfoRatio` was exactly `1.0` in every state record, including iterations that repeated earlier findings. The convergence and novelty signal never engaged, yet the synthesis cited full novelty as evidence the loop was still productive.
+
+### Purpose
+
+Ship an unambiguous reducer-side warning for the inert novelty signal so operators cannot treat a flat-high self-assessment as convergence evidence.
+<!-- /ANCHOR:problem -->
+
+---
+
+<!-- ANCHOR:scope -->
+## 3. SCOPE
+
+### In Scope
+
+- Document the inert `newInfoRatio` failure mode from the Fable review.
+- Record the shipped `novelty_signal_inert` warning behavior.
+- Preserve the optional stronger deterministic source-novelty recompute as a follow-up.
+
+### Out of Scope
+
+- Editing reducer code or tests in this remediation pass.
+- Claiming the optional deterministic recompute shipped.
+
+### Files to Change
+
+| File Path | Change Type | Description |
+|-----------|-------------|-------------|
+| `spec.md` | Modify | Bring shipped instrumentation facts under the Level-2 spec contract. |
+| `plan.md` | Existing | Plan and delivered notes for the shipped reducer warning. |
+| `tasks.md` | Existing | Task ledger for the shipped instrumentation. |
+| `checklist.md` | Existing | Verification checklist for the shipped behavior. |
+| `implementation-summary.md` | Existing | Evidence summary for reducer behavior and tests. |
+<!-- /ANCHOR:scope -->
+
+---
+
+<!-- ANCHOR:requirements -->
+## 4. REQUIREMENTS
+
+### P0 - Blockers (MUST complete)
+
+| ID | Requirement | Acceptance Criteria |
+|----|-------------|---------------------|
+| REQ-001 | The inert novelty failure mode is documented. | `spec.md` records the flat-high `newInfoRatio` problem and why it made convergence claims untrustworthy. |
+| REQ-002 | The shipped warning behavior is documented. | `implementation-summary.md:40-46` records `novelty_signal_inert`, warning severity, and focused tests. |
+| REQ-003 | The optional stronger recompute remains separate. | `implementation-summary.md:98-100` records the deterministic recompute as a follow-up, not shipped scope. |
+| REQ-004 | Checklist evidence records the shipped RED/GREEN coverage. | `checklist.md:54-59` cites flat-high, flat-low, varied, and reducer-suite evidence. |
+
+### P1 - Required (complete OR user-approved deferral)
+
+| ID | Requirement | Acceptance Criteria |
+|----|-------------|---------------------|
+| REQ-005 | The phase validates under the strict system-spec-kit gate. | Parent recursive strict validation returns `RESULT: PASSED`. |
+<!-- /ANCHOR:requirements -->
+
+---
+
+<!-- ANCHOR:success-criteria -->
+## 5. SUCCESS CRITERIA
+
+- **SC-001**: The shipped warning is distinguishable from the optional deterministic recompute.
+- **SC-002**: Checklist evidence cites the reducer behavior and RED/GREEN tests.
+- **SC-003**: Recursive strict validation passes for the parent packet.
+<!-- /ANCHOR:success-criteria -->
+
+---
+
+<!-- ANCHOR:risks -->
+## 6. RISKS & DEPENDENCIES
+
+| Type | Item | Impact | Mitigation |
+|------|------|--------|------------|
+| Risk | Overstating the shipped scope | Could imply deterministic recompute exists | The follow-up is labeled optional and not shipped. |
+| Dependency | Existing reducer evidence | Needed for accurate documentation | `implementation-summary.md` records file-line evidence and test evidence. |
+<!-- /ANCHOR:risks -->
+
+---
+
+<!-- ANCHOR:nfr -->
+## 7. NON-FUNCTIONAL REQUIREMENTS
+
+### Evidence Quality
+
+- **NFR-E01**: Shipped claims must cite reducer and test evidence.
+- **NFR-E02**: Optional follow-up claims must not be presented as complete.
+<!-- /ANCHOR:nfr -->
+
+---
+
+<!-- ANCHOR:edge-cases -->
+## 8. EDGE CASES
+
+- **Flat-low ratio**: Remains a plain advisory because it can represent legitimate stuck detection.
+- **Varied ratio**: Emits no flatline event.
+- **Flat-high ratio**: Emits `novelty_signal_inert` with warning severity.
+<!-- /ANCHOR:edge-cases -->
+
+---
+
+<!-- ANCHOR:questions -->
+## 9. OPEN QUESTIONS
+
+- None.
+<!-- /ANCHOR:questions -->
