@@ -33,7 +33,7 @@
       "routing"
     ],
     "importance_tier": "critical",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "001-gpt-behavioral-hardening-research/research/research.md",

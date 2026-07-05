@@ -33,7 +33,7 @@
       "left"
     ],
     "importance_tier": "important",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "002-skill-doc-drift-remediation/implementation-summary.md",

@@ -33,7 +33,7 @@
       "identity"
     ],
     "importance_tier": "important",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "002-gpt-claude-benchmark/implementation-summary.md",

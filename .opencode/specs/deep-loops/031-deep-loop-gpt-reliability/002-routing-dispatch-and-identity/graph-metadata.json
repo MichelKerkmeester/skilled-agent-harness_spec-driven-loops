@@ -40,7 +40,7 @@
       "gpt-backed"
     ],
     "importance_tier": "critical",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "005-host-hard-identity-fix5/decision-record.md",
