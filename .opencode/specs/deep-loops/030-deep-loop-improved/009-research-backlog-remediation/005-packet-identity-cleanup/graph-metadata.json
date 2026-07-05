@@ -1,0 +1,204 @@
+{
+  "schema_version": 1,
+  "packet_id": "deep-loops/030-deep-loop-improved/009-research-backlog-remediation/005-packet-identity-cleanup",
+  "spec_folder": "deep-loops/030-deep-loop-improved/009-research-backlog-remediation/005-packet-identity-cleanup",
+  "parent_id": "deep-loops/030-deep-loop-improved/009-research-backlog-remediation",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "packet identity cleanup",
+      "old packet number cleanup",
+      "stale native review lock",
+      "packet identity cleanup plan",
+      "packet identity cleanup tasks",
+      "packet identity cleanup implementation summary"
+    ],
+    "key_topics": [
+      "packet",
+      "identity",
+      "cleanup",
+      "old",
+      "number",
+      "stale",
+      "native",
+      "review",
+      "lock",
+      "plan",
+      "tasks",
+      "implementation"
+    ],
+    "importance_tier": "medium",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "implementation-summary.md",
+      "tasks.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Packet Identity Cleanup",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Distinguish",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "cli-opencode",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "one",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria All",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "reasoning",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Claude Sonnet",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built Fixed",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Classification Table",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The packet was migrated from `skilled-agent-orchestration/123-agent-loops-improved` to `deep-loops/030-deep-loop-improved` (with an intermediate/parallel name `156-agent-loops-improved` also in circulation per triggerphrases and the native lock file)",
+    "created_at": "2026-07-01T07:22:02.812Z",
+    "last_save_at": "2026-07-04T18:02:24.807Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:7e56e7bdeb503df9fae46fd0685a537ae857abb06f5026459948f7e92a730364",
+    "source_doc_hashes": {
+      "spec.md": "221c689a94b001e40a87af077fe4ad01bf57962d180a5743cc86a76bd2dc9942",
+      "plan.md": "20ddbf960daadfa0769a14ce37f682ae483daa8de200126bbba259e6debf8652",
+      "tasks.md": "bed70bcde5f00ae56b2742c95e3065f50a99e77127bb77dd8798a84b22bd0d56",
+      "implementation-summary.md": "af4cd3988123b6e340c49bfdad35f2e57abdcb317970f2e1ee68399146878d9e"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

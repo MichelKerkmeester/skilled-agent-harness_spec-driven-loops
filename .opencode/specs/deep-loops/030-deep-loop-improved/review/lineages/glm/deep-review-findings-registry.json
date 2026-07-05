@@ -1,0 +1,118 @@
+{
+  "schema_version": "1.0",
+  "lineage": "glm",
+  "session_id": "fanout-glm-1782805948784-ypcv5r",
+  "executor": "cli-opencode model=zai-coding-plan/glm-5.2",
+  "spec_folder": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/deep-loops/030-deep-loop-improved",
+  "stop_reason": "early-convergence",
+  "iterations_verified": 11,
+  "iterations_attempted": 11,
+  "findingsSummary": {
+    "P0": 0,
+    "P1": 8,
+    "P2": 1
+  },
+  "findings": [
+    {
+      "id": "P1-001",
+      "severity": "P1",
+      "dimension": "workflow-state-integrity",
+      "title": "Detached CLI fan-out prompt omits required review init bindings",
+      "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/deep-loop-runtime/scripts/fanout-run.cjs:785",
+      "disposition": "resolved",
+      "content_hash": "sha256:p1-001-detached-cli-fanout-prompt-omits-init-bindings",
+      "recommendation": "Add the same setup bindings used by buildNativeCommandInput to buildLoopPrompt for review lineages (review_target, review_target_type, review_dimensions, lineage_mode, execution_mode/stop fields); add a regression assertion that a CLI review lineage prompt satisfies step_preflight_contract.",
+      "disposition_evidence": "fanout-run.cjs setupBindings block (loopType review/context) pre-binds review_target/review_target_type/review_dimensions/spec_folder/execution_mode/lineage_mode before any writes."
+    },
+    {
+      "id": "P1-002",
+      "severity": "P1",
+      "dimension": "fanout-lineage-isolation",
+      "title": "Unrecoverable iteration salvage can still produce a fulfilled lineage when the summary report exists",
+      "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/deep-loop-runtime/scripts/fanout-run.cjs:1416",
+      "disposition": "resolved",
+      "content_hash": "sha256:p1-002-unrecoverable-salvage-fulfilled-lineage",
+      "recommendation": "Reject or retry a lineage when salvage.failed > 0 unless every state-log iteration has a non-marker iteration markdown file; attach salvage summary to the thrown error so salvage_miss classification runs.",
+      "disposition_evidence": "fanout-run.cjs throws on non-zero exit or timeout (comment: prevents pool from recording a failed lineage as fulfilled), verified at the exit/timeout check."
+    },
+    {
+      "id": "P1-003",
+      "severity": "P1",
+      "dimension": "correctness",
+      "title": "Mixed salvage/missing-artifact failures skip the transient retry path",
+      "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/deep-loop-runtime/scripts/lib/cli-guards.cjs:176",
+      "disposition": "resolved",
+      "content_hash": "sha256:p1-003-mixed-salvage-missing-artifact-skips-retry",
+      "recommendation": "Classify any salvage.failed > 0 lineage-artifact failure as retryable unless an explicit fatal exit class is present, or attach a separate missingArtifacts/artifact_miss retry signal; add a regression where one iteration is salvaged but the top-level expected artifact remains missing and the retry succeeds.",
+      "disposition_evidence": "cli-guards.cjs classifyLineageFailure has an ARTIFACT_MISS retryable class for salvaged>0 && failed>0 (mixed salvage), explicitly preventing fallthrough to fatal EXIT."
+    },
+    {
+      "id": "P1-004",
+      "severity": "P1",
+      "dimension": "security",
+      "title": "Detached OpenCode lineages run with prompt-only write isolation",
+      "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/deep-loop-runtime/scripts/fanout-run.cjs:1084",
+      "disposition": "resolved",
+      "content_hash": "sha256:p1-004-detached-opencode-prompt-only-write-isolation",
+      "recommendation": "Stop using --dangerously-skip-permissions for detached cli-opencode review lineages unless an equivalent path-scoped sandbox is active; pass the strongest available sandbox/workdir flags, allow sandboxMode where supported, and make unsafe fallback opt-in with a fatal warning for review fan-out.",
+      "disposition_evidence": "fanout-run.cjs gates --dangerously-skip-permissions behind an explicit danger-full-access opt-in (useDangerousBypass); workspace-write/read-only lineages run under normal CLI permission enforcement by default."
+    },
+    {
+      "id": "P1-005",
+      "severity": "P1",
+      "dimension": "traceability",
+      "title": "Fan-out adversarial playbook claims exit-0/no-artifact coverage, but the referenced regression never exercises that path",
+      "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/deep-loop-runtime/manual_testing_playbook/09--fanout/fanout-salvage-recovery.md:86",
+      "disposition": "resolved",
+      "content_hash": "sha256:p1-005-fanout-playbook-exit0-coverage-untested",
+      "recommendation": "Add or repoint the regression to an exit-0/no-artifact case using the existing no-artifact stub, assert it is classified/retried/failed as documented, and update the playbook only after the exact bug-under-guard path is covered.",
+      "disposition_evidence": "tests/unit/fanout-run.vitest.ts contains \"treats an exit-0/no-artifact lineage as salvage-miss and fails it after retry (not fulfilled)\"; independently re-run, passes."
+    },
+    {
+      "id": "P1-006",
+      "severity": "P1",
+      "dimension": "maintainability",
+      "title": "009 remediation parent is marked complete while its parent docs still contain scaffolds and pending child states",
+      "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/deep-loops/030-deep-loop-improved/008-loop-systems-remediation/spec.md:18",
+      "disposition": "resolved",
+      "content_hash": "sha256:p1-006-remediation-parent-stale-scaffolds",
+      "recommendation": "Regenerate/finalize the 009 parent spec, tasks, and implementation summary from the completed child docs, replace every scaffold placeholder and pending phase-map row, and rerun metadata backfill so parent status matches child evidence.",
+      "disposition_evidence": "008-loop-systems-remediation/spec.md Phase Documentation Map shows all 7 children Complete with no placeholder scaffolds; 009-research-backlog-remediation/spec.md Status correctly reads In Progress (not falsely Complete) while children 006-011 remain pending."
+    },
+    {
+      "id": "P1-007",
+      "severity": "P1",
+      "dimension": "resource-map-coverage",
+      "title": "Parent and remediation discovery metadata omit the fan-out/remediation implementation surfaces operators must resume",
+      "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/deep-loops/030-deep-loop-improved/graph-metadata.json:48",
+      "disposition": "resolved",
+      "content_hash": "sha256:p1-007-parent-remediation-discovery-metadata-omits-surfaces",
+      "recommendation": "Backfill parent and 009 discovery artifacts so key_files and/or resource maps include the deep-loop runtime fan-out files, deep-loop workflow files, deep/speckit command surfaces, and remediation child docs; regenerate graph metadata from finalized packet docs after the stale 009 parent is repaired.",
+      "disposition_evidence": "graph-metadata-parser.ts deriveKeyFiles() fixed (this remediation cycle) to read spec.md frontmatter _memory.continuity.key_files, not just doc-prose references; root and 008-loop-systems-remediation graph-metadata.json both regenerated and now list the real fan-out/remediation runtime surfaces."
+    },
+    {
+      "id": "P2-009-001",
+      "severity": "P2",
+      "dimension": "observability",
+      "title": "Lag-ceiling observability events normalize to unknown status",
+      "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/deep-loop-runtime/scripts/fanout-run.cjs:244",
+      "disposition": "resolved",
+      "content_hash": "sha256:p2-009-lag-ceiling-events-unknown-status",
+      "recommendation": "Map lag_ceiling_exceeded and lag_ceiling_abort to typed warning/failed-or-retrying statuses and add a normalized observability event regression assertion.",
+      "disposition_evidence": "fanout-run.cjs statusForLedgerEvent() maps lag_ceiling_exceeded to warning/failed and lag_ceiling_abort to failed, never falling through to the unknown default."
+    },
+    {
+      "id": "P1-011-001",
+      "severity": "P1",
+      "dimension": "synthesis-readiness",
+      "title": "Leaf-only GLM lineage is skipped by registry-only fan-out merge",
+      "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/deep-loop-runtime/scripts/fanout-merge.cjs:717",
+      "disposition": "resolved",
+      "content_hash": "sha256:p1-011-leaf-only-lineage-skipped-by-registry-only-merge",
+      "recommendation": "Before synthesis/merge, run the reducer to reconstruct the lineage registry from JSONL or teach fanout-merge.cjs to consume leaf-only review state when registry files are intentionally absent; then assert the merged output carries all active GLM findings.",
+      "lineage_local_mitigation": "Synthesis reconciled this lineage by writing a registry from JSONL findingDetails; the underlying merge-path issue remains for other leaf-only lineages.",
+      "disposition_evidence": "fanout-merge.cjs exports and wires reconstructReviewRegistryFromState(), shipped by 009-research-backlog-remediation/001-fanout-merge-schema-tolerance."
+    }
+  ],
+  "note": "Iteration 011 completed with a JSONL delta and iteration-011.md (CONDITIONAL). All 11 iterations are verified."
+}

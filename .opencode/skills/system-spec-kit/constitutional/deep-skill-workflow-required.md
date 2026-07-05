@@ -8,7 +8,7 @@ triggerPhrases:
   # deep skill
   - deep-loop-workflows
   # deep mode + legacy agent/skill trigger aliases
-  - deep-context
+  - deep-loop-workflows
   - deep-research
   - deep-review
   - deep-ai-council
@@ -33,14 +33,14 @@ triggerPhrases:
   # the anti-pattern
   - manual cli-opencode dispatch
   - hand-roll the gather
-  - deep-context bypass
+  - deep-loop workflow bypass
 ---
 
 # Deep Skills — Use the Workflow, Never Hand-Roll
 
 ## Rule
 
-**When a task calls for a deep workflow (the `deep-loop-workflows` skill's modes: `context`, `research`, `review`, `ai-council`, `improvement`), you MUST invoke its actual command, agent or workflow.** Use `/deep:context`, `/deep:research`, `/deep:review`, `/deep:ai-council`, or `/deep:agent-improvement` (or the `@ai-council` agent at depth). **NEVER hand-roll a manual substitute** — backgrounded `gtimeout ... opencode run --model ... &` dispatches, hand-written seat prompts, hand-extracted JSONL, hand-synthesized iteration or context-report state. If a plan names the deep workflow, it is frozen like scope (see AGENTS.md §1 PLAN-WORKFLOW LOCK).
+**When a task calls for a deep workflow (the `deep-loop-workflows` skill's active modes: `research`, `review`, `ai-council`, `agent-improvement`, `model-benchmark`, `skill-benchmark`, `ai-system-improvement`), you MUST invoke its actual command, agent or workflow.** Use the active `/deep:*` command or the `@ai-council` agent at depth. **NEVER hand-roll a manual substitute** — backgrounded `gtimeout ... opencode run --model ... &` dispatches, hand-written seat prompts, hand-extracted JSONL, or hand-synthesized iteration state. If a plan names the deep workflow, it is frozen like scope (see AGENTS.md §1 PLAN-WORKFLOW LOCK).
 
 ## Why
 
@@ -49,9 +49,9 @@ The deep commands already provide the safety AND the value a manual substitute t
 ## How to apply
 
 1. Before substituting any manual approach for a deep workflow, `Read` its command doc and `SKILL.md` to verify the friction you assume actually exists. A remembered manual pattern is not evidence the proper tool has that limitation.
-2. Run the proper command, for example `/deep:context:auto "<scope>" --spec-folder <packet> --executors='[{"kind":"cli-opencode","model":"deepseek-v4-pro"},{"kind":"cli-opencode","model":"mimo-v2.5-pro"}]'`. Pass cross-AI seats through `--executors`; do not hand-dispatch them.
+2. Run the proper active command, passing cross-AI seats through the command-owned executor flags when supported; do not hand-dispatch them.
 3. If the command genuinely cannot run in the active runtime, STATE the deviation to the user ("plan names X, I propose Y because Z") and get approval before substituting.
-4. The loop executor agents (`@deep-research`, `@deep-review`, `@deep-context`, `@deep-improvement`) are dispatched ONLY by their parent commands. Never dispatch them directly via the Task tool to build your own loop.
+4. The loop executor agents (`@deep-research`, `@deep-review`, `@deep-improvement`) are dispatched ONLY by their parent commands. Never dispatch them directly via the Task tool to build your own loop.
 
 ## When this rule does NOT apply
 

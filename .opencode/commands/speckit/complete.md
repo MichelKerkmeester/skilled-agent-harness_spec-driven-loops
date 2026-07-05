@@ -76,7 +76,7 @@ The following content lives only in `.opencode/commands/speckit/assets/speckit_c
 
 - Startup-question wording and reply format.
 - `:auto` pre-bound setup answer schema, default table, targeted-ask rules, and fail-fast display.
-- Research, deep-context, phase-decomposition, planning-gate, implementation, checklist, and closeout dashboards.
+- Research, phase-decomposition, planning-gate, implementation, checklist, and closeout dashboards.
 - Success and failure result templates.
 - Next-step suggestions and final user prompt wording.
 

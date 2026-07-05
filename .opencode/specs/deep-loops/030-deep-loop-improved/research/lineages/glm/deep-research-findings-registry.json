@@ -1,0 +1,23 @@
+{
+  "schema_version": "1.0",
+  "lineage": "glm",
+  "session_id": "fanout-glm-1782890147566-yg06ab",
+  "loopType": "research",
+  "spec_folder": ".opencode/specs/deep-loops/030-deep-loop-improved",
+  "stopPolicy": "max-iterations",
+  "openQuestions": [
+    { "id": "Q1", "question": "Which round-1 findings are still live vs fixed?", "status": "open" },
+    { "id": "Q2", "question": "Did 009/001 actually fix the merge silent-drop in live code?", "status": "open" },
+    { "id": "Q3", "question": "Is the 4h timeout cap still present?", "status": "open" },
+    { "id": "Q4", "question": "What is the root cause of the salvage naming collision?", "status": "open" },
+    { "id": "Q5", "question": "Does systemic drift share one root cause or need per-file patches?", "status": "open" },
+    { "id": "Q6", "question": "Are there additional latent runtime bugs beyond the 2 confirmed?", "status": "open" },
+    { "id": "Q7", "question": "Does the registry-staleness bug recur beyond glm/codex?", "status": "open" },
+    { "id": "Q8", "question": "What should a consolidated remediation phase contain?", "status": "open" }
+  ],
+  "resolvedQuestions": [],
+  "keyFindings": [],
+  "ruledOutDirections": [],
+  "rejectedPatterns": [],
+  "promotedIdeas": []
+}

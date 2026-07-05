@@ -22,7 +22,7 @@
     },
     {
       "path": ".opencode/commands/deep/assets/deep_review_auto.yaml",
-      "sha256": "79d7d3d9f04b59868b7bff44672d9b264e5639d80e2ea530543eb0890e4af0cb",
+      "sha256": "640375c6c767461e2d869fad812c28d16ffd00e2444fed1325b90c90086a374a",
       "section": "full"
     },
     {
@@ -32,17 +32,17 @@
     },
     {
       "path": ".opencode/skills/deep-loop-workflows/mode-registry.json",
-      "sha256": "0e985397e1f957f0aee15ce5a569b5a7c730a8b83df413fb9e73a883d31e9222",
+      "sha256": "790d462884619d320352d957ada7a6b40be2f79dfc70db7e1ba5830825c846fb",
       "section": "full"
     },
     {
       "path": ".opencode/skills/deep-loop-workflows/SKILL.md",
-      "sha256": "178744c3eaa704e9eccd43abf53f777c025dc1c6c64487ff57ea1f117d81e9dd",
+      "sha256": "75d26ab439f8fab2b9a667e9fab4b1c7a42201e61f2ed823f502ba4be0313a75",
       "section": "full"
     },
     {
       "path": ".opencode/skills/deep-loop-workflows/deep-review/SKILL.md",
-      "sha256": "4c0ae340f7e802e163ce3eb5b9e4119fd0690edf0be00d2d53707311e4e33409",
+      "sha256": "44dbbe7cae5fbf72fdf7694f265ae5533f8cc68474f3de75f451a252cc892065",
       "section": "full"
     },
     {
@@ -57,7 +57,7 @@
     },
     {
       "path": ".opencode/skills/deep-loop-workflows/deep-review/assets/review_mode_contract.yaml",
-      "sha256": "28e484288faddcca07b72fc5463a5a895ab7ed8c5ae5d789e4657ebcba9cb1d4",
+      "sha256": "1c8ebec5333127036af7f4b6b59510a8dcaa3308863fa162a0bdcc5df48a1519",
       "section": "full"
     },
     {
@@ -72,12 +72,12 @@
     },
     {
       "path": ".opencode/skills/deep-loop-workflows/deep-review/assets/prompt_pack_iteration.md.tmpl",
-      "sha256": "af7586fce11678ace3f2265d182077dedabfefece02f05b7562ddef550375ef9",
+      "sha256": "cb2c88a32d68bbc135a0767e7689d42e4289a275d35cac9a25f6511b090ea51b",
       "section": "full"
     },
     {
       "path": ".opencode/agents/deep-review.md",
-      "sha256": "bb5d2f265392d777955ff6f354c4f356691baf2cba4e79365a5edbd6255f6f08",
+      "sha256": "d36a6ea58c997ff8706ea42b392bc8fd5f77ac1b4d6808636e3869161cb684ed",
       "section": "full"
     },
     {

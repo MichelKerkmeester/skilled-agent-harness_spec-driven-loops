@@ -4,7 +4,7 @@
   "description": "Declarative mode registry: the single source of truth for the three-tier discriminator (workflowMode/runtimeLoopType/backendKind) PLUS the advisorRouting projection. The advisor keeps its hardcoded projection maps (Python DEEP_ROUTING_MODE_BY_KEY, TypeScript DEEP_MODE_BY_CANONICAL) in sync with this registry via a CI drift-guard test (maps == registry projection); the advisor does NOT read this file at runtime, which avoids cross-skill import coupling on the advisor hot path.",
   "discriminator": {
     "workflowMode": "Public command/advisor/mode key. Stable identity used in commands, advisor aliases, and this registry. Carried by every mode.",
-    "runtimeLoopType": "The graph-backed convergence loop key consumed by deep-loop-runtime/scripts/convergence.cjs. Validated against exactly research|review|council|context. Explicit null for improvement-host and external-adapter modes; NEVER inferred from workflowMode.",
+    "runtimeLoopType": "The graph-backed convergence loop key consumed by deep-loop-runtime/scripts/convergence.cjs. Validated against exactly research|review|council. Explicit null for improvement-host and external-adapter modes; NEVER inferred from workflowMode.",
     "backendKind": "Which backend actually runs the mode: runtime-loop-type (deep-loop-runtime convergence), improvement-host (deep-improvement/scripts/shared/loop-host.cjs --mode), or external-adapter (loop owned by external packaging)."
   },
   "advisorRoutingContract": {
@@ -15,21 +15,8 @@
     "packetSkillName": "The packet's SKILL.md name. Standard for all parent skills: folder == packetSkillName == deep-<mode>; deep-ai-council follows this (folder 'deep-ai-council', packetSkillName 'deep-ai-council'). The legacy public key 'ai-council' is preserved only on the command/agent surfaces, not on the packet folder/name.",
     "driftGuard": ".opencode/skills/system-skill-advisor/mcp_server/tests/routing-registry-drift-guard.vitest.ts asserts the hardcoded Python + TS maps equal this registry's projection."
   },
+  "deprecatedModes": [],
   "modes": [
-    {
-      "workflowMode": "context",
-      "runtimeLoopType": "context",
-      "backendKind": "runtime-loop-type",
-      "packet": "deep-context",
-      "command": "/deep:context",
-      "agent": "deep-context",
-      "artifactRoot": "context/",
-      "aliases": ["deep-context", "context loop", "gather context", "gather codebase context", "context sweep", "reuse catalog", "pre-plan context", "context-gathering-loop"],
-      "advisorRouting": {
-        "routingClass": "metadata",
-        "packetSkillName": "deep-context"
-      }
-    },
     {
       "workflowMode": "research",
       "runtimeLoopType": "research",

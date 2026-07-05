@@ -305,13 +305,17 @@ export function scoreExplicitLane(
   if (/\b(continue|resume|launch|kick off|overnight|convergence|iteration|iterative|multi-pass|loop)\b/.test(lower) && /\bresearch\b/.test(lower)) {
     push(scores, 'deep-loop-workflows', 0.85, 'research-loop');
   }
-  // Disambiguation: "cli-opencode" / "cli opencode" / "opencode CLI" routes to the
-  // cli-opencode orchestrator skill. Bare "opencode" continues to route to sk-code
-  // (the project's primary opencode-stack code-author skill) via the `opencode` token
-  // boost above. This regex matches the explicit CLI/orchestrator framing.
+  // Disambiguation: an explicit "cli-opencode" / "opencode cli" framing is an
+  // orchestrator-delegation request and must route to cli-opencode, not sk-code.
+  // Bare "opencode" still routes to sk-code (its primary opencode-stack surface)
+  // via the `opencode` token boost above. The sk-code penalty has to be wide: the
+  // explicit lane clamps each skill at 1, and this framing embeds up to two bare
+  // "opencode" tokens (+1 each) plus author matches, which otherwise saturate
+  // sk-code and make a small penalty invisible under the clamp. A penalty large
+  // enough to un-saturate sk-code's explicit lane lets the orchestrator framing win.
   if (/\bcli[-\s]opencode\b|\bopencode[-\s]cli\b/.test(lower)) {
     push(scores, 'cli-opencode', 0.9, 'cli-opencode-orchestrator');
-    push(scores, 'sk-code', -0.5, 'cli-opencode-disambiguation');
+    push(scores, 'sk-code', -3.0, 'cli-opencode-disambiguation');
   }
   if (/\b(continue|resume|launch|start|convergence|iteration|iterative|multi-pass|loop)\b/.test(lower) && /\breview\b/.test(lower)) {
     push(scores, 'deep-loop-workflows', 0.85, 'review-loop');

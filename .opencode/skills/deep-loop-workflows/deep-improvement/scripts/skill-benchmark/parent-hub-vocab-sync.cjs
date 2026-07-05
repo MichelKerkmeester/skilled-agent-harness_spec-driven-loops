@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 // ╔══════════════════════════════════════════════════════════════════════════╗
-// ║ parent-hub-vocab-sync — design family vocabulary drift guard             ║
+// ║ parent-hub-vocab-sync — parent-hub vocabulary drift guard               ║
 // ╚══════════════════════════════════════════════════════════════════════════╝
 'use strict';
 
@@ -254,7 +254,7 @@ function formatCollision(normalized, modes, sources) {
 // ─────────────────────────────────────────────────────────────────────────────
 
 /**
- * Check a parent design hub for vocabulary drift across its user-facing copies.
+ * Check a parent hub for vocabulary drift across its user-facing copies.
  *
  * @param {Object} args - Scan inputs.
  * @param {string} args.skillRoot - Skill root containing hub-router.json.
@@ -275,7 +275,40 @@ function checkVocabSync({ skillRoot }) {
 
   const hubPath = path.join(skillRoot, 'hub-router.json');
   const registryPath = path.join(skillRoot, 'mode-registry.json');
-  if (!fs.existsSync(hubPath) || !fs.existsSync(registryPath)) return emptyResult();
+  const hubExists = fs.existsSync(hubPath);
+  const registryExists = fs.existsSync(registryPath);
+
+  // A skill with neither file is an ordinary (non-hub) skill: benignly out of
+  // scope for a vocabulary-drift check.
+  if (!hubExists && !registryExists) return emptyResult();
+
+  // A skill that declares one half of the hub canon but not the other is a
+  // broken hub. Fail loud with a P0 rather than silently skipping the check —
+  // a missing router used to make this guard a no-op, which hid real drift.
+  if (!hubExists || !registryExists) {
+    const structuralFindings = [];
+    if (!hubExists) {
+      structuralFindings.push({
+        class: 'missing-hub-router',
+        severity: 'P0',
+        locus: 'hub-router.json',
+        detail: 'mode-registry.json declares a hub but hub-router.json is absent; the typed vocabulary projection cannot be verified',
+      });
+    }
+    if (!registryExists) {
+      structuralFindings.push({
+        class: 'missing-mode-registry',
+        severity: 'P0',
+        locus: 'mode-registry.json',
+        detail: 'hub-router.json is present but mode-registry.json is absent; registry alias ownership cannot be verified',
+      });
+    }
+    return emptyResult({
+      familyPresent: true,
+      findings: structuralFindings,
+      score: scoreFromFindings(structuralFindings),
+    });
+  }
 
   const findings = [];
   const hub = readJson(hubPath, findings, 'hub-router.json', true);
@@ -419,7 +452,13 @@ if (require.main === module) {
   try {
     const result = checkVocabSync({ skillRoot: args.skill });
     process.stdout.write(JSON.stringify(result, null, 2) + '\n');
-    if (result.findings.some((finding) => finding.class === 'unparseable-input' || finding.class === 'invalid-input')) {
+    const structuralClasses = new Set([
+      'unparseable-input',
+      'invalid-input',
+      'missing-hub-router',
+      'missing-mode-registry',
+    ]);
+    if (result.findings.some((finding) => structuralClasses.has(finding.class))) {
       process.exit(2);
     }
     process.exit(result.driftDetected ? 1 : 0);

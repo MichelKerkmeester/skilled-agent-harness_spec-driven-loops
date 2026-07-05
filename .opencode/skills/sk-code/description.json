@@ -1,7 +1,7 @@
 {
   "name": "sk-code",
   "description": "Multi-stack coding standards, references, and assets. Provides surface-aware code-quality patterns, checklists, and verification recipes for Webflow frontend (vanilla HTML/CSS/JS animation: motion.dev, GSAP, Lenis, HLS, Swiper, FilePond, CDN deployment), cross-stack motion.dev animation guidance, and OpenCode system code (JavaScript, TypeScript, Python, Shell, JSON/JSONC, MCP server code, agents, commands, skills). Smart-routing internals auto-detect the active stack and load matching standards; unsupported stacks ask for disambiguation.",
-  "version": "3.5.0.0",
+  "version": "4.1.0.0",
   "importance_tier": "high",
   "keywords": [
     "sk-code",
@@ -38,8 +38,6 @@
     "agent_authoring",
     "command_authoring",
     "mcp_server_authoring",
-    "spec_folder_authoring",
-    "spec_folder_write",
     "code-quality",
     "debugging",
     "verification"

@@ -44,7 +44,7 @@ function testEnvOverridePrecedence() {
 
     assert.equal(resolveInjectionMode('deep/review', { configPath, env }), 'fix');
     assert.equal(resolveInjectionMode('/deep:review', { configPath, env }), 'fix');
-    assert.equal(resolveInjectionMode('deep/context', { configPath, env }), 'fallback');
+    assert.equal(resolveInjectionMode('deep/research', { configPath, env }), 'fallback');
   });
 }
 

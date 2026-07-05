@@ -14,11 +14,6 @@ const WORKSPACE_ROOT = path.resolve(__dirname, '..', '..', '..', '..');
 const MANIFEST_PATH = '.opencode/commands/deep/assets/compiled/manifest.jsonl';
 
 const COMMANDS = {
-  'deep/context': {
-    slug: 'deep_context',
-    legacyBodyPath: '.opencode/commands/deep/assets/legacy/deep_context.body.md',
-    compiledContractPath: '.opencode/commands/deep/assets/compiled/deep_context.contract.md',
-  },
   'deep/ai-council': {
     slug: 'deep_ai-council',
     legacyBodyPath: '.opencode/commands/deep/assets/legacy/deep_ai-council.body.md',
@@ -198,7 +193,7 @@ function parseArgs(argv) {
 }
 
 function printHelp() {
-  process.stdout.write('Usage: node render-command-contract.cjs --command deep/context|deep/ai-council|deep/review|deep/research [--compare] -- [arguments]\n');
+  process.stdout.write('Usage: node render-command-contract.cjs --command deep/ai-council|deep/review|deep/research [--compare] -- [arguments]\n');
 }
 
 function main(argv = process.argv.slice(2)) {

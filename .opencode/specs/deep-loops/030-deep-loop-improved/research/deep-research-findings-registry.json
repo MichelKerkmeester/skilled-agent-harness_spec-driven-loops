@@ -1,0 +1,260 @@
+{
+  "mergedFrom": [
+    "glm",
+    "gpt"
+  ],
+  "openQuestions": [
+    {
+      "id": "Q6",
+      "question": "Are there additional latent runtime bugs beyond the 2 confirmed?",
+      "status": "open",
+      "_lineages": [
+        "glm"
+      ]
+    },
+    {
+      "id": "Q2",
+      "question": "Did 009/001 actually fix the merge silent-drop in live code?",
+      "status": "open",
+      "_lineages": [
+        "glm"
+      ]
+    },
+    {
+      "id": "Q5",
+      "question": "Does systemic drift share one root cause or need per-file patches?",
+      "status": "open",
+      "_lineages": [
+        "glm"
+      ]
+    },
+    {
+      "id": "Q7",
+      "question": "Does the registry-staleness bug recur beyond glm/codex?",
+      "status": "open",
+      "_lineages": [
+        "glm"
+      ]
+    },
+    {
+      "id": "Q3",
+      "question": "Is the 4h timeout cap still present?",
+      "status": "open",
+      "_lineages": [
+        "glm"
+      ]
+    },
+    {
+      "id": "Q4",
+      "question": "What is the root cause of the salvage naming collision?",
+      "status": "open",
+      "_lineages": [
+        "glm"
+      ]
+    },
+    {
+      "id": "Q8",
+      "question": "What should a consolidated remediation phase contain?",
+      "status": "open",
+      "_lineages": [
+        "glm"
+      ]
+    },
+    {
+      "id": "Q1",
+      "question": "Which round-1 findings are still live vs fixed?",
+      "status": "open",
+      "_lineages": [
+        "glm"
+      ]
+    }
+  ],
+  "resolvedQuestions": [],
+  "keyFindings": [
+    {
+      "id": "R2-GPT-011",
+      "severity": "P2",
+      "title": "ADR/checklist governance artifacts are missing or partial under Complete workflow phases",
+      "evidence": [
+        ".opencode/specs/deep-loops/030-deep-loop-improved/003-deep-loop-workflows/spec.md:45",
+        ".opencode/specs/deep-loops/030-deep-loop-improved/003-deep-loop-workflows/002-convergence-profile-unification-adr/decision-record.md:2",
+        ".opencode/specs/deep-loops/030-deep-loop-improved/003-deep-loop-workflows/003-cross-mode-anti-convergence-adr/spec.md:2",
+        ".opencode/specs/deep-loops/030-deep-loop-improved/003-deep-loop-workflows/003-cross-mode-anti-convergence-adr/spec.md:44"
+      ],
+      "recommendation": "Make 009/007 add or explicitly waive decision-record/checklist artifacts for ADR-titled and Level 2/3 Complete children.",
+      "_lineages": [
+        "gpt"
+      ]
+    },
+    {
+      "id": "R2-GPT-002",
+      "severity": "P0",
+      "title": "Comment-hygiene violations remain live and extend beyond the six command YAML markers",
+      "evidence": [
+        ".opencode/commands/deep/assets/deep_research_auto.yaml:301",
+        ".opencode/commands/deep/assets/deep_review_auto.yaml:395",
+        ".opencode/skills/cli-opencode/references/agent_delegation.md:225",
+        ".opencode/skills/cli-opencode/SKILL.md:289"
+      ],
+      "recommendation": "Expand 009/003 from command YAML cleanup to a repo-scoped comment-hygiene lint with allowlists for test fixture data.",
+      "_lineages": [
+        "gpt"
+      ]
+    },
+    {
+      "id": "R2-GPT-008",
+      "severity": "P1",
+      "title": "Detached lineage prompts still blur command-host and LEAF-agent responsibilities",
+      "evidence": [
+        ".opencode/skills/deep-loop-runtime/scripts/fanout-run.cjs:827",
+        ".opencode/skills/deep-loop-runtime/scripts/fanout-run.cjs:837",
+        ".opencode/skills/deep-loop-workflows/deep-research/SKILL.md:13",
+        ".opencode/skills/deep-loop-workflows/deep-research/SKILL.md:23"
+      ],
+      "recommendation": "Change generated detached prompts to identify as a command-host lineage executor, not as the LEAF agent, or dispatch through the command surface directly.",
+      "_lineages": [
+        "gpt"
+      ]
+    },
+    {
+      "id": "R2-GPT-004",
+      "severity": "P0",
+      "title": "Lineage timeout override remains unimplemented despite forced-depth requirements",
+      "evidence": [
+        ".opencode/skills/deep-loop-runtime/scripts/fanout-run.cjs:884",
+        ".opencode/skills/deep-loop-runtime/scripts/fanout-run.cjs:887",
+        ".opencode/specs/deep-loops/030-deep-loop-improved/009-research-backlog-remediation/002-fanout-timeout-override/tasks.md:52"
+      ],
+      "recommendation": "Implement 009/002 with a default-preserving `--lineage-timeout-hours` flag and regression tests before another slow high-effort fan-out.",
+      "_lineages": [
+        "gpt"
+      ]
+    },
+    {
+      "id": "R2-GPT-010",
+      "severity": "P1",
+      "title": "Metadata descriptions are still truncated and old packet identity remains live",
+      "evidence": [
+        ".opencode/specs/deep-loops/030-deep-loop-improved/description.json:4",
+        ".opencode/specs/deep-loops/030-deep-loop-improved/009-research-backlog-remediation/description.json:3",
+        ".opencode/specs/deep-loops/030-deep-loop-improved/spec.md:8",
+        ".opencode/specs/deep-loops/030-deep-loop-improved/001-reference-research/spec.md:49"
+      ],
+      "recommendation": "Include description/trigger regeneration and old-id cleanup in 009/005 or 009/006, not as manual one-off edits.",
+      "_lineages": [
+        "gpt"
+      ]
+    },
+    {
+      "id": "R2-GPT-001",
+      "severity": "P0",
+      "title": "Phase 009 exists and partially fixed merge-schema loss, but its own metadata is already stale",
+      "evidence": [
+        ".opencode/specs/deep-loops/030-deep-loop-improved/spec.md:106",
+        ".opencode/specs/deep-loops/030-deep-loop-improved/009-research-backlog-remediation/spec.md:115",
+        ".opencode/specs/deep-loops/030-deep-loop-improved/009-research-backlog-remediation/graph-metadata.json:6",
+        ".opencode/specs/deep-loops/030-deep-loop-improved/009-research-backlog-remediation/graph-metadata.json:124"
+      ],
+      "recommendation": "Keep remediation inside phase 009, but regenerate 009 graph metadata immediately so children 002-004 and active next child are discoverable.",
+      "_lineages": [
+        "gpt"
+      ]
+    },
+    {
+      "id": "R2-GPT-006",
+      "severity": "P1",
+      "title": "Phase maps and completion_pct drift share a never-synced-after-completion root cause",
+      "evidence": [
+        ".opencode/specs/deep-loops/030-deep-loop-improved/007-testing/spec.md:198",
+        ".opencode/specs/deep-loops/030-deep-loop-improved/007-testing/001-hermetic-test-isolation/spec.md:27",
+        ".opencode/specs/deep-loops/030-deep-loop-improved/009-research-backlog-remediation/004-phase-doc-map-and-completion-pct-sync/spec.md:60",
+        ".opencode/specs/deep-loops/030-deep-loop-improved/009-research-backlog-remediation/004-phase-doc-map-and-completion-pct-sync/spec.md:63"
+      ],
+      "recommendation": "Implement 009/004 as script-first, idempotent backfill, then promote the same checks into strict semantic validation.",
+      "_lineages": [
+        "gpt"
+      ]
+    },
+    {
+      "id": "R2-GPT-009",
+      "severity": "P1",
+      "title": "Prompt-only write isolation remains a safety weakness for detached OpenCode lineages",
+      "evidence": [
+        ".opencode/skills/deep-loop-runtime/scripts/fanout-run.cjs:1304",
+        ".opencode/skills/deep-loop-runtime/scripts/fanout-run.cjs:1308",
+        ".opencode/skills/deep-loop-runtime/scripts/fanout-run.cjs:1309"
+      ],
+      "recommendation": "Add path-scoped sandbox enforcement where available, or make unsafe detached write fallback explicit and fatal-by-default for review/research fan-out.",
+      "_lineages": [
+        "gpt"
+      ]
+    },
+    {
+      "id": "R2-GPT-005",
+      "severity": "P1",
+      "title": "Review registries are stale-active after fixes; no adjudication ledger exists",
+      "evidence": [
+        ".opencode/specs/deep-loops/030-deep-loop-improved/review/lineages/glm/deep-review-findings-registry.json:18",
+        ".opencode/specs/deep-loops/030-deep-loop-improved/review/lineages/codex/deep-review-findings-registry.json:11",
+        ".opencode/skills/deep-loop-runtime/scripts/lib/cli-guards.cjs:185",
+        ".opencode/skills/deep-loop-runtime/scripts/fanout-run.cjs:256"
+      ],
+      "recommendation": "Add a 009 child or 009/006 scope item that replays every active review finding and emits `resolved`, `still_active`, or `accepted_risk` with source evidence.",
+      "_lineages": [
+        "gpt"
+      ]
+    },
+    {
+      "id": "R2-GPT-003",
+      "severity": "P0",
+      "title": "Salvage still writes non-padded iteration filenames, preserving the duplicate/placeholder collision class",
+      "evidence": [
+        ".opencode/skills/deep-loop-runtime/scripts/fanout-salvage.cjs:111",
+        ".opencode/skills/deep-loop-runtime/scripts/fanout-salvage.cjs:112",
+        ".opencode/specs/deep-loops/030-deep-loop-improved/009-research-backlog-remediation/003-runtime-hygiene-fixes/tasks.md:53"
+      ],
+      "recommendation": "Implement 009/003 T004-T006 before broad registry replay; otherwise replay may consume ambiguous iteration files again.",
+      "_lineages": [
+        "gpt"
+      ]
+    },
+    {
+      "id": "R2-GPT-007",
+      "severity": "P1",
+      "title": "Stop-policy=max-iterations is internally used but not first-class in research command docs",
+      "evidence": [
+        ".opencode/commands/deep/research.md:112",
+        ".opencode/skills/deep-loop-runtime/scripts/fanout-run.cjs:782",
+        ".opencode/skills/deep-loop-runtime/scripts/fanout-run.cjs:794",
+        ".opencode/commands/deep/assets/deep_review_auto.yaml:557"
+      ],
+      "recommendation": "Add `--stop-policy=max-iterations` to research command parsing/docs and add a contract test that convergence cannot stop before max iterations.",
+      "_lineages": [
+        "gpt"
+      ]
+    },
+    {
+      "id": "R2-GPT-012",
+      "severity": "P2",
+      "title": "Template-default tasks remain under Complete-status folders",
+      "evidence": [
+        ".opencode/specs/deep-loops/030-deep-loop-improved/003-deep-loop-workflows/004-injection-inbox-provenance/tasks.md:53",
+        ".opencode/specs/deep-loops/030-deep-loop-improved/007-testing/002-record-replay-cassette-harness/tasks.md:53",
+        ".opencode/specs/deep-loops/030-deep-loop-improved/009-research-backlog-remediation/004-phase-doc-map-and-completion-pct-sync/tasks.md:43"
+      ],
+      "recommendation": "Add strict `SCAFFOLD_COMPLETION_DRIFT` detection before allowing packet completion claims.",
+      "_lineages": [
+        "gpt"
+      ]
+    }
+  ],
+  "ruledOutDirections": [],
+  "metrics": {
+    "iterationsCompleted": 35,
+    "openQuestions": 8,
+    "resolvedQuestions": 0,
+    "keyFindings": 12,
+    "convergenceScore": 0,
+    "coverageBySources": {}
+  }
+}

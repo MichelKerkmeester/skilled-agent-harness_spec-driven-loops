@@ -30,113 +30,6 @@ const REFS = {
 };
 
 const COMMANDS = {
-  'deep/context': {
-    id: 'deep/context',
-    commandName: '/deep:context',
-    title: 'Deep Context',
-    slug: 'deep_context',
-    mode: 'context',
-    runtimeLoopType: 'context',
-    commandPath: '.opencode/commands/deep/context.md',
-    presentationPath: '.opencode/commands/deep/assets/deep_context_presentation.txt',
-    autoWorkflowPath: '.opencode/commands/deep/assets/deep_context_auto.yaml',
-    confirmWorkflowPath: '.opencode/commands/deep/assets/deep_context_confirm.yaml',
-    modeSkillPath: '.opencode/skills/deep-loop-workflows/deep-context/SKILL.md',
-    agentPath: '.opencode/agents/deep-context.md',
-    sourcePaths: [
-      '.opencode/commands/deep/context.md',
-      '.opencode/commands/deep/assets/deep_context_presentation.txt',
-      SHARED_SOURCES.autoModeContract,
-      '.opencode/commands/deep/assets/deep_context_auto.yaml',
-      '.opencode/commands/deep/assets/deep_context_confirm.yaml',
-      SHARED_SOURCES.modeRegistry,
-      SHARED_SOURCES.hubSkill,
-      '.opencode/skills/deep-loop-workflows/deep-context/SKILL.md',
-      '.opencode/skills/deep-loop-workflows/deep-context/references/protocol/loop_protocol.md',
-      '.opencode/skills/deep-loop-workflows/deep-context/references/state/state_format.md',
-      '.opencode/skills/deep-loop-workflows/deep-context/references/convergence/convergence.md',
-      '.opencode/skills/deep-loop-workflows/deep-context/assets/deep_context_config.json',
-      '.opencode/skills/deep-loop-workflows/deep-context/assets/context_report_template.md',
-      '.opencode/agents/deep-context.md',
-      SHARED_SOURCES.resolveInjectionMode,
-    ],
-    renderMarkers: {
-      autoStart: '### `:auto` Setup Resolution',
-      autoEnd: '### Consolidated Setup Prompt for `:confirm` and No-Suffix Mode',
-      confirmStart: '### Consolidated Setup Prompt for `:confirm` and No-Suffix Mode',
-      confirmEnd: '## 2. Dashboard / Checkpoint Layout',
-    },
-    setup: {
-      mode: 'AUTONOMOUS for :auto, INTERACTIVE for :confirm, ASK when no suffix is supplied',
-      requiredFields: [
-        'scope',
-        'spec_folder',
-        'max_iterations',
-        'convergence_threshold',
-        'executor_pool',
-      ],
-      optionalFields: [
-        'relevance_gate',
-        'agreement_min',
-        'concurrency',
-        'executor',
-        'executor_model',
-        'executor_reasoning',
-        'executor_prompt_framework',
-        'executor_label',
-        'executors',
-      ],
-    },
-    outputTemplate: {
-      requiredArtifacts: [
-        '{state_paths_iteration_pattern} iteration narrative markdown',
-        '{state_paths_state_log} append-only canonical JSONL iteration record',
-        '{state_paths_delta_pattern} per-iteration delta JSONL',
-        '{state_paths_report_output} synthesized Context Report markdown',
-        '{state_paths_report_json_output} synthesized Context Report JSON',
-      ],
-    },
-    writeBoundary: {
-      approvedRoot: '{artifact_dir} resolved from spec_folder for context',
-      allowed: [
-        '{state_paths.config}',
-        '{state_paths.state_log} append only',
-        '{state_paths.strategy} in-place updates only',
-        '{state_paths.registry} reducer-owned in-place updates only',
-        '{state_paths.dashboard} reducer-owned in-place updates only',
-        '{state_paths.prompt_dir} rendered seat prompts',
-        '{state_paths.iteration_pattern}',
-        '{state_paths.delta_pattern}',
-        '{state_paths.seat_pattern} host-collected per-seat findings',
-        '{state_paths.report_output}',
-        '{state_paths.report_json_output}',
-        '{state_paths.lock_file} advisory lock acquire/release',
-        'coverage-graph records for loop_type=context',
-      ],
-      readOnly: [
-        'declared context scope source files',
-        'command Markdown',
-        'workflow YAML assets',
-        'agent definitions',
-        'compiled contracts other than the selected build target',
-        'downstream planning or implementation files',
-      ],
-      banned: [
-        'delete, rename, move, or truncate operations outside the allowed list',
-        'writes outside the resolved context packet',
-        'implementation fixes during context execution',
-        'agent seat writes to merged state or source files',
-      ],
-    },
-    tools: {
-      allowed: ['Read', 'Write', 'Edit', 'Bash', 'Grep', 'Glob', 'Task', 'memory_context', 'memory_search', 'code_graph_query', 'code_graph_context'],
-      permittedByExecutor: {
-        native: ['Read', 'Write', 'Edit', 'Bash', 'Grep', 'Glob', 'Task', 'memory_context', 'memory_search', 'code_graph_query', 'code_graph_context'],
-        'cli-opencode': ['headless command execution through YAML-owned audited dispatch only'],
-        'cli-claude-code': ['headless command execution through YAML-owned audited dispatch only'],
-      },
-    },
-  },
   'deep/ai-council': {
     id: 'deep/ai-council',
     commandName: '/deep:ai-council',
@@ -585,6 +478,33 @@ function buildContractBody(definition) {
   const delegationClosing = delegationKind === 'in_cli_seats'
     ? `Your job is to CONVENE ${minSeats}+ distinct ${mode} seats in-CLI over the bound topic and persist each as it returns — NOT to write a single-lens plan yourself, and NOT to review, analyze, or summarize this contract. This contract is your instruction set; the topic is the bound spec_folder/target named in your message, never this document.`
     : `Your job is to DISPATCH \`${leaf}\` to run the ${mode} loop over the bound target — NOT to run the loop yourself, and NOT to review, analyze, or summarize this contract. This contract is your instruction set; the ${mode} target is the bound spec_folder/target named in your message, never this document.`;
+  const directiveOpening = `You were invoked via \`opencode run --command ${definition.id}\` with the \`:auto\` suffix and a bound spec_folder and target in your message. The \`:auto\` suffix plus the bound spec_folder mean setup is ALREADY resolved. Therefore:`;
+  const setupDirectiveBullets = [
+    '- DO NOT emit the consolidated setup question (target/mode, research topic, Spec Folder A/B/C/D/E, execution mode, max iterations, executor). The bound spec_folder is your write authority; do not ask which spec folder should own the writes.',
+    '- DO NOT halt for the repo-wide `CLAUDE.md` Gate-3 documentation gate. Under AUTONOMOUS execution with a validated prebound spec folder, Gate 3 is already satisfied by that folder (see gate3Precedence below).',
+  ];
+  const gate3PrecedenceBlock = [
+        '## gate3Precedence',
+        '',
+        '```yaml',
+        'block: gate3Precedence',
+        'classifierPath: .opencode/skills/system-spec-kit/shared/gate-3-classifier.ts',
+        'classifierLines:',
+        '  commandContractShape: "67-72"',
+        '  autonomousSatisfaction: "653-680"',
+        `command: ${definition.commandName}`,
+        'executionMode: AUTONOMOUS',
+        'commandContract:',
+        '  declaresAutonomousExecution: true',
+        '  ownsSpecFolderSetup: true',
+        '  allowedSpecFolderSources:',
+        '    - flag',
+        '    - marker',
+        '    - scope_extract',
+        `  writeBoundary: ${JSON.stringify(definition.writeBoundary.approvedRoot)}`,
+        'rule: "When the classifier receives AUTONOMOUS execution, a validated prebound spec folder, and this command contract, Gate 3 is satisfied by the prebound folder before any write."',
+        '```',
+      ];
   return normalizeCompiledBody([
     `# Compiled Command Contract: ${definition.commandName}`,
     '',
@@ -594,10 +514,9 @@ function buildContractBody(definition) {
     '',
     '> Read this first. It is an imperative to you, the executor — not background information.',
     '',
-    `You were invoked via \`opencode run --command ${definition.id}\` with the \`:auto\` suffix and a bound spec_folder and target in your message. The \`:auto\` suffix plus the bound spec_folder mean setup is ALREADY resolved. Therefore:`,
+    directiveOpening,
     '',
-    '- DO NOT emit the consolidated setup question (target/mode, research topic, Spec Folder A/B/C/D/E, execution mode, max iterations, executor). The bound spec_folder is your write authority; do not ask which spec folder should own the writes.',
-    '- DO NOT halt for the repo-wide `CLAUDE.md` Gate-3 documentation gate. Under AUTONOMOUS execution with a validated prebound spec folder, Gate 3 is already satisfied by that folder (see gate3Precedence below).',
+    ...setupDirectiveBullets,
     ...delegationBullets,
     '',
     delegationClosing,
@@ -606,26 +525,7 @@ function buildContractBody(definition) {
     '',
     sourceList,
     '',
-    '## gate3Precedence',
-    '',
-    '```yaml',
-    'block: gate3Precedence',
-    'classifierPath: .opencode/skills/system-spec-kit/shared/gate-3-classifier.ts',
-    'classifierLines:',
-    '  commandContractShape: "67-72"',
-    '  autonomousSatisfaction: "653-680"',
-    `command: ${definition.commandName}`,
-    'executionMode: AUTONOMOUS',
-    'commandContract:',
-    '  declaresAutonomousExecution: true',
-    '  ownsSpecFolderSetup: true',
-    '  allowedSpecFolderSources:',
-    '    - flag',
-    '    - marker',
-    '    - scope_extract',
-    `  writeBoundary: ${JSON.stringify(definition.writeBoundary.approvedRoot)}`,
-    'rule: "When the classifier receives AUTONOMOUS execution, a validated prebound spec folder, and this command contract, Gate 3 is satisfied by the prebound folder before any write."',
-    '```',
+    ...gate3PrecedenceBlock,
     '',
     buildRenderBlocks(definition),
     '',
@@ -789,7 +689,7 @@ function parseArgs(argv) {
 }
 
 function printHelp() {
-  process.stdout.write('Usage: node compile-command-contracts.cjs --command deep/context|deep/ai-council|deep/review|deep/research [--write]\n');
+  process.stdout.write('Usage: node compile-command-contracts.cjs --command deep/ai-council|deep/review|deep/research [--write]\n');
 }
 
 function main(argv = process.argv.slice(2)) {

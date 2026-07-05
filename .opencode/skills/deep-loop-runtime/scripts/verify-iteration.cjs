@@ -18,13 +18,11 @@ const path = require('node:path');
 const LEAF_BY_LOOP = {
   review: 'deep-review',
   research: 'deep-research',
-  context: 'deep-context',
 };
 
 const STATE_LOG_BY_LOOP = {
   review: 'deep-review-state.jsonl',
   research: 'deep-research-state.jsonl',
-  context: 'deep-context-state.jsonl',
 };
 
 const REASONS = {
@@ -174,7 +172,7 @@ function main(argv = process.argv.slice(2)) {
     return 0;
   }
   if (args.error) { process.stderr.write(`${args.error}\n`); return 2; }
-  if (!args.loopType || !LEAF_BY_LOOP[args.loopType]) { process.stderr.write('--loop-type must be one of review|research|context\n'); return 2; }
+  if (!args.loopType || !LEAF_BY_LOOP[args.loopType]) { process.stderr.write('--loop-type must be one of review|research\n'); return 2; }
   if (!args.artifactDir) { process.stderr.write('--artifact-dir is required\n'); return 2; }
   if (!Number.isInteger(args.iteration) || args.iteration < 1) { process.stderr.write('--iteration must be a positive integer\n'); return 2; }
 

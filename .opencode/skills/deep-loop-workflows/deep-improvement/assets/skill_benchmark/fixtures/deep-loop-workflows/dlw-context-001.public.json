@@ -5,7 +5,7 @@
     "prompt": "gather a reuse-first codebase context report before planning the new module",
     "runtime": "deep-loop-workflows",
     "mutationBoundary": "read-only",
-    "outputContract": "routes to deep-loop-workflows context mode"
+    "outputContract": "does not route to deprecated standalone context mode; replacement guidance is @context or /speckit:plan"
   },
   "provenance": {
     "promptAuthor": "pattern-dogfood",

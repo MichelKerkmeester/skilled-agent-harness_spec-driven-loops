@@ -41,23 +41,17 @@ describe('mk_skill_advisor rename invariants', () => {
     const claudeConfig = JSON.parse(readRepoFile('.claude/mcp.json')) as {
       mcpServers?: Record<string, { args?: string[] }>;
     };
-    const opencodeConfig = readRepoFile('opencode.json');
-
     expect(Object.keys(opencodeConfig.mcp ?? {})).toContain('mk_skill_advisor');
     expect(opencodeConfig.mcp?.mk_skill_advisor.command).toContain('.opencode/bin/mk-skill-advisor-launcher.cjs');
 
     expect(Object.keys(claudeConfig.mcpServers ?? {})).toContain('mk_skill_advisor');
     expect(claudeConfig.mcpServers?.mk_skill_advisor.args).toContain('.opencode/bin/mk-skill-advisor-launcher.cjs');
-
-    expect(opencodeConfig).toMatch(/\[mcp_servers\.mk_skill_advisor\]/);
-    expect(opencodeConfig).toContain('args = [".opencode/bin/mk-skill-advisor-launcher.cjs"]');
   });
 
   it('keeps runtime config env blocks aligned on advisor database and hook controls', () => {
     const configs = [
       readRepoFile('opencode.json'),
       readRepoFile('.claude/mcp.json'),
-      readRepoFile('opencode.json'),
     ];
 
     for (const config of configs) {

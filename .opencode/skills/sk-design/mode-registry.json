@@ -26,6 +26,7 @@
   "modes": [
     {
       "workflowMode": "interface",
+      "packetKind": "workflow",
       "backendKind": "reference-base",
       "toolSurface": {
         "allowed": ["Read", "Glob", "Grep"],
@@ -44,6 +45,7 @@
     },
     {
       "workflowMode": "foundations",
+      "packetKind": "workflow",
       "backendKind": "reference-base",
       "toolSurface": {
         "allowed": ["Read", "Glob", "Grep"],
@@ -62,6 +64,7 @@
     },
     {
       "workflowMode": "motion",
+      "packetKind": "workflow",
       "backendKind": "reference-base",
       "toolSurface": {
         "allowed": ["Read", "Glob", "Grep"],
@@ -80,6 +83,7 @@
     },
     {
       "workflowMode": "audit",
+      "packetKind": "workflow",
       "backendKind": "reference-base",
       "toolSurface": {
         "allowed": ["Read", "Glob", "Grep"],
@@ -98,6 +102,7 @@
     },
     {
       "workflowMode": "md-generator",
+      "packetKind": "workflow",
       "backendKind": "playwright-extract",
       "toolSurface": {
         "allowed": ["Read", "Glob", "Grep", "Write", "Edit", "Bash"],

@@ -80,9 +80,10 @@ A) create - scaffold a new parent skill with nested mode packets
 B) update - add or revise modes/packets in an existing parent skill
 
 Q2. Modes (if missing)
-Comma-separated list of mode names (hyphen-case), one packet per mode.
-Each packet folder is named deep-<mode> and packetSkillName == folder.
-Example: research,review,ai-council
+Comma-separated list of workflow mode names (hyphen-case), one packet per mode.
+Each workflow packet folder is named [hub-prefix]-<mode> and packetSkillName == folder.
+Optional --surfaces names become bare-noun read-only surface packets (packetKind: surface).
+Example: modes research,review,ai-council  (optionally --surfaces webflow,animation)
 
 Q3. Spec Folder
 A) Existing
@@ -139,8 +140,10 @@ Identity:
 - Per-packet graph-metadata.json count: [must be 0]
 
 Validation:
-- Hub structure (SKILL.md + mode-registry.json + graph-metadata.json): [PASSED|FAILED]
-- Per-mode packet (folder == packetSkillName == deep-<mode>, own SKILL.md): [PASSED|FAILED]
+- parent-skill-check.cjs canonical gate (exit 0): [PASSED|FAILED]
+- Hub structure (SKILL.md + mode-registry.json + hub-router.json + description.json + graph-metadata.json): [PASSED|FAILED]
+- Canon files (hub-router.json, description.json, changelogs): [PRESENT|MISSING]
+- Per-mode packet (workflow folder == packetSkillName == [hub-prefix]-<mode>, surfaces bare-noun, own SKILL.md): [PASSED|FAILED]
 - Registry advisorRouting coverage (one block per mode): [PASSED|FAILED]
 - One-identity invariant (exactly one graph-metadata.json): [PASSED|FAILED]
 

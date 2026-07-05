@@ -1,0 +1,229 @@
+{
+  "schema_version": 1,
+  "packet_id": "skilled-agent-orchestration/124-sk-code-parent/017-canon-hardening",
+  "spec_folder": "skilled-agent-orchestration/124-sk-code-parent/017-canon-hardening",
+  "parent_id": "skilled-agent-orchestration/124-sk-code-parent",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "phase 017 canon hardening",
+      "bundleRules vocabulary reconciliation",
+      "parent hub canon hardening",
+      "phase 017 implementation plan",
+      "canon hardening plan",
+      "bundleRules validator plan",
+      "phase 017 tasks",
+      "canon hardening tasks",
+      "bundleRules task list",
+      "phase 017 checklist",
+      "canon hardening verification",
+      "bundleRules verification"
+    ],
+    "key_topics": [
+      "phase",
+      "017",
+      "canon",
+      "hardening",
+      "bundlerules",
+      "vocabulary",
+      "reconciliation",
+      "parent",
+      "hub",
+      "implementation",
+      "plan",
+      "validator"
+    ],
+    "importance_tier": "high",
+    "status": "draft",
+    "key_files": [
+      "spec.md",
+      ".opencode/skills/sk-doc/assets/skill/parent_skill_hub_router_template.json",
+      ".opencode/skills/sk-doc/references/skill_creation/parent_hub_router_schema.md",
+      ".opencode/commands/doctor/scripts/parent-skill-check.cjs",
+      ".opencode/skills/sk-code/mode-registry.json",
+      ".opencode/skills/sk-code/hub-router.json",
+      ".opencode/skills/sk-code/description.json",
+      ".opencode/skills/sk-code/graph-metadata.json",
+      "decision-record.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "parent_skill_hub_router_template.json",
+        "kind": "config",
+        "path": ".opencode/skills/sk-doc/assets/skill/parent_skill_hub_router_template.json",
+        "source": "derived"
+      },
+      {
+        "name": "parent_hub_router_schema.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/references/skill_creation/parent_hub_router_schema.md",
+        "source": "derived"
+      },
+      {
+        "name": "parent-skill-check.cjs",
+        "kind": "file",
+        "path": ".opencode/commands/doctor/scripts/parent-skill-check.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "mode-registry.json",
+        "kind": "config",
+        "path": ".opencode/skills/sk-code/mode-registry.json",
+        "source": "derived"
+      },
+      {
+        "name": "hub-router.json",
+        "kind": "config",
+        "path": ".opencode/skills/sk-code/hub-router.json",
+        "source": "derived"
+      },
+      {
+        "name": "description.json",
+        "kind": "config",
+        "path": ".opencode/skills/sk-code/description.json",
+        "source": "derived"
+      },
+      {
+        "name": "graph-metadata.json",
+        "kind": "config",
+        "path": ".opencode/skills/sk-code/graph-metadata.json",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Dependencies",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Plan",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Evidence Base",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Migration",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The parent-hub canon is defined, but its live router template, schema reference, and validator do not speak one `bundleRules` vocabulary",
+    "created_at": "2026-07-05T05:46:26.440Z",
+    "last_save_at": "2026-07-05T05:46:26.440Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:b0bea9ab1356bddec77bf849fed75e6a1120d40be577384a58185ae5e3270f6a",
+    "source_doc_hashes": {
+      "spec.md": "71b86105a353e292e0fcb46493384b94367979734316b5309c52f609bd69c65a",
+      "plan.md": "774c8fc5c267bd34a0f837fa946e0cc7a017478748f77f350b83efabc27a2031",
+      "tasks.md": "f4ff4a819e05397852380a453a94128798e0ba6415376ec1abca42dc1ed52004",
+      "checklist.md": "3c9300f328831fa9523b760c606ac2fa82c333070d1832e1c354b9b76d5451f1",
+      "decision-record.md": "c0021faaa3438813c75312f446a6d719a954e65993c34f425ec35c503ee2c020",
+      "implementation-summary.md": "ea4a75423c857e0263078e8413eaf7f1663599f351ab8a6cde67bc1156ebded8"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

@@ -1,11 +1,11 @@
 ---
 title: sk-code
-description: The single advisor-routable code skill: a hub that routes to five code modes (implement, quality, debug, verify, review).
+description: The single advisor-routable code skill: a two-axis hub that routes to five workflow modes (implement, quality, debug, verify, review) and bundles three read-only surface evidence packets (webflow, opencode, animation).
 trigger_phrases:
   - "code skill"
   - "code mode router"
   - "sk-code hub"
-version: 4.0.0.0
+version: 4.1.0.0
 ---
 
 # sk-code
@@ -47,7 +47,9 @@ A code request resolves through the hub to exactly one primary mode. A request t
 | `code-quality` | Author-side quality gates, comment hygiene, and surface checklists. |
 | `code-debug` | Root-cause debugging, error recovery, and escalation discipline. |
 | `code-verify` | Verification evidence, Iron Law checks, and mutation/falsifier ritual. |
-| `code-review` | Findings-first review, security/correctness baseline, and review output cache. |
+| `review` | Findings-first review, security/correctness baseline, and review output cache. |
+
+Alongside the primary workflow mode, the hub bundles zero-or-more **surface evidence packets** (read-only, advisor-invisible): `webflow/` (frontend), `opencode/` (system code), `animation/` (Motion.dev overlay). "review my webflow animation for jank" resolves to `[review, webflow, animation]`.
 
 ### One advisor identity
 

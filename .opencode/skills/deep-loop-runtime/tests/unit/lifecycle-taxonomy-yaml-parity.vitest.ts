@@ -7,7 +7,7 @@ import { resolve } from 'node:path';
 const nodeRequire = createRequire(import.meta.url);
 
 // The taxonomy module is the single source of truth for terminal stopReasons.
-// The graph-backed command YAMLs (context, research, review) hand-maintain the
+// The graph-backed command YAMLs (research, review) hand-maintain the
 // same enum for emission-time rewriting, so they can silently drift. This guard
 // asserts every enum the YAMLs declare equals the module's stopReason set.
 const TAXONOMY = '../../lib/deep-loop/lifecycle-taxonomy.cjs';
@@ -18,8 +18,6 @@ const ASSETS = resolve(__dirname, '..', '..', '..', '..', 'commands', 'deep', 'a
 // The runtime-loop modes are the only ones that pin a userPaused-bearing enum in
 // their YAML (the improvement-host modes validate via the journal instead).
 const RUNTIME_LOOP_YAMLS = [
-  'deep_context_auto.yaml',
-  'deep_context_confirm.yaml',
   'deep_research_auto.yaml',
   'deep_research_confirm.yaml',
   'deep_review_auto.yaml',
@@ -27,8 +25,8 @@ const RUNTIME_LOOP_YAMLS = [
 ];
 
 // Two declaration shapes coexist: a structured `stop_reasons_enum: [a, b, c]`
-// array (context, research) and a prose `STOP_REASONS enum: a, b, c.` clause
-// (review). Both encode the same frozen set, so the guard reads both.
+// array and a prose `STOP_REASONS enum: a, b, c.` clause. Both encode the same
+// frozen set, so the guard reads both.
 const ARRAY_ENUM_RE = /stop_reasons_enum:\s*\[([^\]]+)\]/g;
 const PROSE_ENUM_RE = /STOP_REASONS enum:\s*([^.)\n]+)/g;
 

@@ -125,13 +125,12 @@ The council is planning only. It recommends a plan and persists the reasoning. I
 
 ### Sibling Deep Loops
 
-The council shares the `deep-loop-runtime` with the other top-level deep-loop personas. The current roster is context, research, review, ai-council and improvement; each owns a different phase of the planning-to-implementation pipeline and none crosses into another's territory.
+The council shares the `deep-loop-runtime` with the other active deep-loop families. The current active roster is research, review, ai-council and improvement; each owns a different phase of the planning-to-implementation pipeline and none crosses into another's territory. Use `@context` or `/speckit:plan` for codebase context before council work.
 
 | Skill | Relationship |
 |---|---|
 | `deep-research` | Investigates evidence and answers research questions. The council uses research seats to gather evidence but does not run deep-research loops itself. |
 | `deep-review` | Audits code for bugs, security gaps and quality issues. The council recommends a plan, and a review checks the result after implementation. |
-| `deep-context` | Maps existing code, conventions and integration points before planning begins. Run it before the council so seats start from shared facts. |
 | `deep-improvement` | Runs evaluator-first improvement across the `agent-improvement`, `model-benchmark`, `skill-benchmark` and `ai-system-improvement` command lanes. |
 
 ### Behavior Benchmark
@@ -143,7 +142,7 @@ The council shares the `deep-loop-runtime` with the other top-level deep-loop pe
 | Skill | Relationship |
 |---|---|
 | `system-spec-kit` | Owns the packet folder where `ai-council/` artifacts live. Validation, resume and continuity all run through it. |
-| `deep-loop-runtime` | Shared runtime for the five top-level deep-loop personas. Council graph support is a derived projection rebuilt from artifacts through the runtime's CLI scripts. |
+| `deep-loop-runtime` | Shared runtime for the active deep-loop families. Council graph support is a derived projection rebuilt from artifacts through the runtime's CLI scripts. |
 
 ---
 

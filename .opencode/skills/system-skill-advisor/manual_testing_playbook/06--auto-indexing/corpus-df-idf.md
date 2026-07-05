@@ -99,7 +99,7 @@ Active `SKILL.md` path check:
 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/sk-git/SKILL.md
 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/cli-opencode/SKILL.md
 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/mcp-click-up/SKILL.md
-/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/deep-loop-workflows/deep-context/SKILL.md
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/deep-loop-workflows/SKILL.md
 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/deep-loop-workflows/deep-research/SKILL.md
 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/mcp-code-mode/SKILL.md
 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/sk-doc/SKILL.md

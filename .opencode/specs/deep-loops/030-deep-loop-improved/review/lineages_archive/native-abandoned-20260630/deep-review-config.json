@@ -1,0 +1,53 @@
+{
+  "topic": "Review: .opencode/specs/deep-loops/030-deep-loop-improved",
+  "mode": "review",
+  "sessionId": "2026-06-30T08:01:03Z",
+  "parentSessionId": null,
+  "lineageMode": "new",
+  "generation": 1,
+  "continuedFromRun": null,
+  "reviewTarget": ".opencode/specs/deep-loops/030-deep-loop-improved",
+  "reviewTargetType": "spec-folder",
+  "reviewDimensions": ["correctness", "security", "traceability", "maintainability"],
+  "resource_map_present": false,
+  "reviewScopeFiles": [
+    ".opencode/skills/deep-loop-runtime/lib/deep-loop/",
+    ".opencode/skills/deep-loop-runtime/lib/council/",
+    ".opencode/skills/deep-loop-runtime/lib/coverage-graph/",
+    ".opencode/skills/deep-loop-runtime/scripts/",
+    ".opencode/skills/deep-loop-workflows/deep-review/scripts/",
+    ".opencode/skills/deep-loop-workflows/deep-research/scripts/",
+    ".opencode/skills/deep-loop-workflows/deep-context/scripts/",
+    ".opencode/skills/deep-loop-workflows/deep-ai-council/scripts/",
+    ".opencode/skills/deep-loop-workflows/deep-improvement/scripts/",
+    ".opencode/skills/deep-loop-workflows/shared/synthesis/",
+    ".opencode/commands/deep/",
+    ".opencode/commands/speckit/",
+    ".opencode/agents/"
+  ],
+  "severityThreshold": "P2",
+  "crossReference": {
+    "core": ["spec_code", "checklist_evidence"],
+    "overlay": ["skill_agent", "agent_cross_runtime", "feature_catalog_code", "playbook_capability"]
+  },
+  "maxIterations": 50,
+  "convergenceThreshold": 0.01,
+  "stopPolicy": "max-iterations",
+  "stuckThreshold": 2,
+  "maxDurationMinutes": 120,
+  "specFolder": ".opencode/specs/deep-loops/030-deep-loop-improved",
+  "resource_map": { "emit": true },
+  "config": {
+    "executor": { "kind": "native", "model": "opus" },
+    "fanout_lineage_artifact_dir": ".opencode/specs/deep-loops/030-deep-loop-improved/review/lineages/native",
+    "lineage": {
+      "sessionId": "2026-06-30T08:01:03Z",
+      "generation": 1,
+      "lineageMode": "new"
+    }
+  },
+  "createdAt": "2026-06-30T08:01:03Z",
+  "status": "initialized",
+  "releaseReadinessState": "in-progress",
+  "executionMode": "auto"
+}

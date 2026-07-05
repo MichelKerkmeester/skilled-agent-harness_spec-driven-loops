@@ -62,9 +62,9 @@ Evidence files:
 
 ## 4. SOURCE FILES
 
-- `.opencode/skills/sk-code/code-implement/references/motion_dev/decision_matrix.md` - Required decision reference.
-- `.opencode/skills/sk-code/code-implement/references/motion_dev/performance_and_pitfalls.md` - Performance and reduced-motion caveats.
-- `.opencode/skills/sk-code/code-implement/assets/motion_dev/snippets/hover_gesture.js` - Hover example when Motion.dev is justified.
+- `.opencode/skills/sk-code/animation/references/decision_matrix.md` - Required decision reference.
+- `.opencode/skills/sk-code/animation/references/performance_and_pitfalls.md` - Performance and reduced-motion caveats.
+- `.opencode/skills/sk-code/animation/assets/snippets/hover_gesture.js` - Hover example when Motion.dev is justified.
 
 ---
 

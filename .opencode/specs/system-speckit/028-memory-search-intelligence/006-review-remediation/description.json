@@ -11,12 +11,10 @@
     "verdict",
     "confirmed"
   ],
-  "lastUpdated": "2026-07-04T14:11:00.720Z",
+  "lastUpdated": "2026-07-04T14:39:14.521Z",
   "specId": "006",
   "folderSlug": "review-remediation",
   "parentChain": [
-    ".opencode",
-    "specs",
     "system-speckit",
     "028-memory-search-intelligence"
   ],

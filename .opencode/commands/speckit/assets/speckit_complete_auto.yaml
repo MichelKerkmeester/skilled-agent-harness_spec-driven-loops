@@ -375,11 +375,11 @@ agent_availability:
   cross_skill_authoring_load:
     purpose: "Load sk-code authoring resources at WRITE-TIME (Step 10), distinct from review-time review.standards_contract overlay."
     available_at_step: 10
-    condition: "Activate when any task in tasks.md targets a path under .opencode/skills/, .opencode/agents/, .opencode/commands/, or <spec-folder> sk-code v3.2.0.0+ ships authoring checklists (skill_authoring.md, agent_authoring.md, command_authoring.md, mcp_server_authoring.md, spec_folder_authoring.md) plus the spec_folder_write recipe."
+    condition: "Activate when any task in tasks.md targets a path under .opencode/skills/, .opencode/agents/, .opencode/commands/, or <spec-folder> sk-code ships authoring checklists (skill_authoring.md, agent_authoring.md, command_authoring.md, mcp_server_authoring.md); spec-folder authoring now lives in system-spec-kit (references/workflows/spec_folder_authoring_checklist.md + spec_folder_write_recipe.md)."
     resources:
-      - "sk-code/assets/opencode/checklists/{matching_target}_authoring.md"
-      - "sk-code/assets/opencode/recipes/spec_folder_write.md (when target is under .opencode/specs/)"
-    precedence: "Authoring-time guidance is consulted BEFORE writes; review-time overlay (sk-code code-review mode: findings-first baseline + router-selected surface evidence) runs at Step 11 and remains unchanged."
+      - "sk-code/opencode/assets/checklists/{matching_target}_authoring.md"
+      - "system-spec-kit/references/workflows/spec_folder_write_recipe.md (when target is under .opencode/specs/)"
+    precedence: "Authoring-time guidance is consulted BEFORE writes; review-time overlay (sk-code review mode: findings-first baseline + router-selected surface evidence) runs at Step 11 and remains unchanged."
     not_for: "Webflow stack writes (separate path), motion_dev work (cross-stack), or non-.opencode/ targets."
   debug:
     available_at_step: 10
@@ -962,7 +962,7 @@ workflow:
         warning: "Development tasks may have dependencies - verify task order"
       fallback: "Proceed with activities below"
     activities:
-    - Load sk-code authoring-time resources for OpenCode targets — when any task in tasks.md targets a path under .opencode/skills/, .opencode/agents/, .opencode/commands/, or .opencode/specs/, load the matching sk-code authoring checklist (assets/opencode/checklists/{skill,agent,command,mcp_server,spec_folder}_authoring.md) AND assets/opencode/recipes/spec_folder_write.md BEFORE the first write. Authoring-time load is distinct from review-time load (see agent_dispatch.review.standards_contract). Skip when no .opencode/ targets are present.
+    - Load sk-code authoring-time resources for OpenCode targets — when any task in tasks.md targets a path under .opencode/skills/, .opencode/agents/, .opencode/commands/, or .opencode/specs/, load the matching sk-code authoring checklist (assets/opencode/checklists/{skill,agent,command,mcp_server}_authoring.md), and for .opencode/specs/ targets the system-spec-kit spec-folder docs (references/workflows/spec_folder_authoring_checklist.md + spec_folder_write_recipe.md), BEFORE the first write. Authoring-time load is distinct from review-time load (see agent_dispatch.review.standards_contract). Skip when no .opencode/ targets are present.
     - Load tasks.md and parse task structure
     - Execute implementation phase by phase
     - Setup first (project structure, dependencies, configuration)

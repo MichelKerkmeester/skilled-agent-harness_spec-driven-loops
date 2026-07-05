@@ -16,7 +16,6 @@ Public Repo (source of truth)
      specs/                     ← Project specs (subfolders gitignored per-project)
      ...
   .claude/                      ← Claude Code runtime adapter (agents, mcp.json)
-  .codex/                       ← Codex CLI runtime adapter (agents, config.toml)
 
 your-project.com (consumer project)
   .opencode -> Public/.opencode  ← SYMLINK (entire framework + specs)

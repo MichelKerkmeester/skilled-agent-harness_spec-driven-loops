@@ -1,0 +1,29 @@
+{
+  "level": "2",
+  "specFolder": "deep-loops/030-deep-loop-improved/003-deep-loop-workflows/010-deep-improvement-accepted-vs-shipped",
+  "description": "The deep-improvement `promote-candidate.cjs` collapses candidate acceptance (verified + preserved) and canonical shipping (overwrite/merge to",
+  "keywords": [
+    "deep-improvement",
+    "promote-candidate",
+    "cjs",
+    "collapses",
+    "candidate",
+    "acceptance",
+    "verified",
+    "preserved",
+    "canonical",
+    "shipping",
+    "overwrite",
+    "merge"
+  ],
+  "lastUpdated": "2026-07-04T18:02:11.975Z",
+  "specId": "010",
+  "folderSlug": "deep-improvement-accepted-vs-shipped",
+  "parentChain": [
+    "deep-loops",
+    "030-deep-loop-improved",
+    "003-deep-loop-workflows"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

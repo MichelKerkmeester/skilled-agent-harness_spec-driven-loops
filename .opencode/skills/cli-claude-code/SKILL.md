@@ -26,7 +26,7 @@ Orchestrate Anthropic's Claude Code CLI from external AI assistants (OpenCode, C
 ### Activation Triggers
 
 - **Deep Reasoning** — extended-thinking architectural decisions, multi-dimensional trade-off analysis, step-by-step algorithm design, root-cause analysis of subtle bugs.
-- **Code Editing** — surgical diff-based edits, pattern-preserving refactors, multi-file coordinated changes, deep-context modifications.
+- **Code Editing** — surgical diff-based edits, pattern-preserving refactors, and multi-file coordinated changes.
 - **Structured Output** — `--json-schema`-validated output, machine-readable analysis, guaranteed-structure data extraction, pipeline integration.
 - **Code Review** — second-AI security audits, extended-thinking architecture review, cross-AI validation, pre-merge quality gates.
 - **Agent-Delegated Tasks** — specialized `.claude/agents/*.md` matches, `--permission-mode plan` read-only exploration, `@ai-council` planning, session continuity (`--continue`, `--resume`).

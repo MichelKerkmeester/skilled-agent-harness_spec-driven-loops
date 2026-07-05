@@ -331,10 +331,17 @@ const WAVE_ASSIGNMENT_MODEL = 'wave';
 const WAVE_ASSIGNMENT_MODEL_REJECTION = 'REJECTED: wave assignment_model requires conflict-safety substrate';
 const WAVE_ASSIGNMENT_METADATA_REJECTION = 'REJECTED: wave assignment metadata requires conflict-safety substrate';
 const STATE_LOG_BY_LOOP_TYPE = {
-  context: 'deep-context-state.jsonl',
   research: 'deep-research-state.jsonl',
   review: 'deep-review-state.jsonl',
 };
+const ACTIVE_FANOUT_LOOP_TYPES = new Set(['research', 'review']);
+const DEPRECATED_CONTEXT_FANOUT_MESSAGE = 'loopType must be "research" or "review"; context fan-out is deprecated. Use @context for one-shot retrieval, /deep:research or /deep:review bounded snapshots for iterative work, or /speckit:plan for implementation planning.';
+
+function assertActiveFanoutLoopType(loopType) {
+  if (!ACTIVE_FANOUT_LOOP_TYPES.has(loopType)) {
+    throw inputError(DEPRECATED_CONTEXT_FANOUT_MESSAGE);
+  }
+}
 
 function hasNonEmptyArrayField(value) {
   return Array.isArray(value) && value.length > 0;
@@ -537,8 +544,8 @@ function terminateLineageProcess(child, signal) {
 }
 
 function expectedLineageArtifactPaths(loopType, lineageDir) {
+  assertActiveFanoutLoopType(loopType);
   if (loopType === 'review') return [path.join(lineageDir, 'review-report.md')];
-  if (loopType === 'context') return [path.join(lineageDir, 'context-report.md')];
   return [path.join(lineageDir, 'research.md')];
 }
 
@@ -926,13 +933,12 @@ async function persistPreDispatchWait({ checkpointPath, ledgerPath, runId, loopT
  * with config.fanout_lineage_artifact_dir overriding step_resolve_artifact_root.
  */
 function buildLoopPrompt(loopType, specFolder, lineageDir, sessionId, lineage, researchTopic, options = {}) {
+  assertActiveFanoutLoopType(loopType);
   const skillFile =
     loopType === 'review'
       ? '.opencode/skills/deep-loop-workflows/deep-review/SKILL.md'
-      : loopType === 'context'
-        ? '.opencode/skills/deep-loop-workflows/deep-context/SKILL.md'
-        : '.opencode/skills/deep-loop-workflows/deep-research/SKILL.md';
-  const agentName = loopType === 'review' ? 'deep-review' : loopType === 'context' ? 'deep-context' : 'deep-research';
+      : '.opencode/skills/deep-loop-workflows/deep-research/SKILL.md';
+  const agentName = loopType === 'review' ? 'deep-review' : 'deep-research';
   const detachedIntro = lineage.kind === 'cli-opencode'
     ? [
         `This is an explicit parallel-detached OpenCode lineage, not a self-invocation of the parent session.`,
@@ -964,7 +970,7 @@ function buildLoopPrompt(loopType, specFolder, lineageDir, sessionId, lineage, r
   if (researchTopic) {
     // A research lineage's phase_init binds research_topic from this line. Without it a
     // fan-out research loop has no question to investigate and degrades to an empty topic.
-    // Review and context loops scope by spec_folder and intentionally pass no topic.
+    // Review loops scope by spec_folder and intentionally pass no topic.
     params.push(`  research_topic: ${researchTopic}`);
   }
   if (hasIterationCap) {
@@ -973,12 +979,12 @@ function buildLoopPrompt(loopType, specFolder, lineageDir, sessionId, lineage, r
   if (options.convergenceThreshold !== null && options.convergenceThreshold !== undefined) {
     params.push(`  config.convergenceThreshold: ${options.convergenceThreshold}`);
   }
-  // Review/context lineages scope by spec_folder but the auto-workflow preflight
+  // Review lineages scope by spec_folder but the auto-workflow preflight
   // still requires the same review setup bindings the native command path pre-binds.
   // Without these, a detached CLI lineage can fail first-run initialization or infer a
   // different setup contract than native lineages.
   const setupBindings =
-    loopType === 'review' || loopType === 'context'
+    loopType === 'review'
       ? [
           ``,
           `Review setup bindings (emit before any writes, same as native PRE-BOUND SETUP ANSWERS):`,
@@ -1010,6 +1016,7 @@ function buildLoopPrompt(loopType, specFolder, lineageDir, sessionId, lineage, r
 }
 
 function buildNativeCommandInput(loopType, specFolder, lineageDir, lineage, options = {}) {
+  assertActiveFanoutLoopType(loopType);
   const maxIterations = lineage.iterations || 12;
   const convergenceThreshold = options.convergenceThreshold ?? (loopType === 'research' ? 0.05 : 0.1);
   const stopPolicy = options.stopPolicy || 'convergence';
@@ -1376,11 +1383,9 @@ async function main() {
   const args = parseArgs();
   const specFolder = validateNamespaceValue(ensureString(args, 'specFolder'), 'specFolder', inputError);
   const loopType = ensureString(args, 'loopType');
-  if (loopType !== 'research' && loopType !== 'review' && loopType !== 'context') {
-    throw inputError('loopType must be "research", "review", or "context"');
-  }
+  assertActiveFanoutLoopType(loopType);
   // Optional shared research question, threaded into each lineage prompt so a research
-  // fan-out can bind research_topic. Absent for review/context, which scope by folder.
+  // fan-out can bind research_topic. Absent for review, which scopes by folder.
   const researchTopic = typeof args.researchTopic === 'string' && args.researchTopic.trim()
     ? args.researchTopic.trim()
     : null;

@@ -1,0 +1,34 @@
+{
+  "run_id": "1782890147566-yg06ab",
+  "loop_type": "research",
+  "spec_folder": ".opencode/specs/deep-loops/030-deep-loop-improved",
+  "base_artifact_dir": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/deep-loops/030-deep-loop-improved/research",
+  "total_cli_lineages": 2,
+  "stopped": true,
+  "stopped_signal": "SIGTERM",
+  "stopped_at_iso": "2026-07-01T09:00:24.138Z",
+  "status": "partial",
+  "total": 2,
+  "succeeded": 1,
+  "failed": 0,
+  "all_failed": false,
+  "gauges": {
+    "lag": 1,
+    "pending": 0,
+    "failed": 0
+  },
+  "results": [
+    {
+      "label": "glm",
+      "status": "running",
+      "started_at_iso": "2026-07-01T07:15:47.568Z"
+    },
+    {
+      "label": "gpt",
+      "status": "fulfilled",
+      "started_at_iso": "2026-07-01T07:15:47.572Z",
+      "completed_at_iso": "2026-07-01T07:39:02.873Z",
+      "duration_ms": 1395301
+    }
+  ]
+}

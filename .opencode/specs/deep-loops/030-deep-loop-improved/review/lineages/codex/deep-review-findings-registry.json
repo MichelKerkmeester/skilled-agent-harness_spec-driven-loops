@@ -1,0 +1,202 @@
+{
+  "sessionId": "fanout-codex-1782805948784-ypcv5r",
+  "generation": 1,
+  "lineageMode": "new",
+  "releaseReadinessState": "in-progress",
+  "openFindings": [
+    {
+      "findingId": "F001",
+      "severity": "P1",
+      "category": "traceability",
+      "status": "resolved",
+      "dimension": "traceability",
+      "title": "Remediation phase is marked complete while retaining scaffold placeholders",
+      "file": ".opencode/specs/deep-loops/030-deep-loop-improved/008-loop-systems-remediation/spec.md",
+      "line": 42,
+      "finding_class": "spec_drift",
+      "content_hash": "ca6dabfcc66fd8678bcdc32c63dfa1d03190f6f72042e8c266ebc34f2e69fcf9",
+      "evidenceRefs": [
+        ".opencode/specs/deep-loops/030-deep-loop-improved/008-loop-systems-remediation/spec.md:42",
+        ".opencode/specs/deep-loops/030-deep-loop-improved/008-loop-systems-remediation/spec.md:50",
+        ".opencode/specs/deep-loops/030-deep-loop-improved/008-loop-systems-remediation/spec.md:66",
+        ".opencode/specs/deep-loops/030-deep-loop-improved/008-loop-systems-remediation/spec.md:139"
+      ],
+      "firstSeen": 1,
+      "lastSeen": 50,
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery"
+        }
+      ],
+      "_lineages": [
+        "codex"
+      ],
+      "disposition": "resolved",
+      "disposition_evidence": "008-loop-systems-remediation/spec.md Phase Documentation Map shows all 7 children Complete with no placeholder scaffolds; matches glm P1-006 disposition."
+    },
+    {
+      "findingId": "F002",
+      "severity": "P1",
+      "category": "correctness",
+      "status": "active",
+      "dimension": "correctness",
+      "title": "Fan-out lineage session id is discarded during review init",
+      "file": ".opencode/commands/deep/assets/deep_review_auto.yaml",
+      "line": 373,
+      "finding_class": "lineage_integrity",
+      "content_hash": "42570ebbbb38410a9b77b9246091e17250ba44fdb5bcd227e4b4d8fe1fe68b9f",
+      "evidenceRefs": [
+        ".opencode/skills/deep-loop-runtime/scripts/fanout-run.cjs:785-789",
+        ".opencode/skills/deep-loop-runtime/scripts/fanout-run.cjs:1281-1282",
+        ".opencode/commands/deep/assets/deep_review_auto.yaml:373",
+        ".opencode/commands/deep/assets/deep_review_auto.yaml:410",
+        ".opencode/commands/deep/assets/deep_review_auto.yaml:415"
+      ],
+      "firstSeen": 2,
+      "lastSeen": 50,
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery"
+        }
+      ],
+      "_lineages": [
+        "codex"
+      ],
+      "disposition": "active",
+      "disposition_evidence": "deep_review_auto.yaml step_create_config always populates sessionId: \"{ISO_8601_NOW}\" (a fresh timestamp) rather than binding the fan-out lineage's own session_id param (present in fanout-run.cjs's general params list but not threaded into the review-specific setupBindings block). Still open."
+    },
+    {
+      "findingId": "F003",
+      "severity": "P1",
+      "category": "traceability",
+      "status": "active",
+      "dimension": "traceability",
+      "title": "CLI fan-out prompt names the LEAF deep-review agent and asks it to run the full loop",
+      "file": ".opencode/skills/deep-loop-runtime/scripts/fanout-run.cjs",
+      "line": 806,
+      "finding_class": "agent_contract_conflict",
+      "content_hash": "415184e5dbfd9608246cf8bb5914bb681551629c69bad110a5ebd75537a7cd45",
+      "evidenceRefs": [
+        ".opencode/skills/deep-loop-runtime/scripts/fanout-run.cjs:806",
+        ".opencode/skills/deep-loop-runtime/scripts/fanout-run.cjs:816",
+        ".opencode/agents/deep-review.md:34",
+        ".opencode/agents/deep-review.md:54-64",
+        ".opencode/commands/deep/review.md:117"
+      ],
+      "firstSeen": 3,
+      "lastSeen": 50,
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery"
+        }
+      ],
+      "_lineages": [
+        "codex"
+      ],
+      "disposition": "active",
+      "disposition_evidence": "fanout-run.cjs sets agentName=\"deep-review\" (the LEAF one-iteration agent) for review loops, and the generated prompt says \"execute the review loop\" (implying the full multi-iteration loop), not just one leaf pass. Still open \u2014 naming/scope mismatch not resolved by this remediation phase."
+    },
+    {
+      "findingId": "F004",
+      "severity": "P1",
+      "category": "correctness",
+      "status": "resolved",
+      "dimension": "correctness",
+      "title": "Focused fan-out regression suite fails after native lineages were folded into the pool",
+      "file": ".opencode/skills/deep-loop-runtime/tests/unit/fanout-run.vitest.ts",
+      "line": 341,
+      "finding_class": "verification_regression",
+      "content_hash": "c840c04b36398b7a465b766cc00ceeffa8cf6d1f0b9966e6ebb6bb8898a8520f",
+      "evidenceRefs": [
+        ".opencode/skills/deep-loop-runtime/tests/unit/fanout-run.vitest.ts:323-341",
+        ".opencode/skills/deep-loop-runtime/tests/unit/fanout-run.vitest.ts:458",
+        ".opencode/skills/deep-loop-runtime/tests/unit/fanout-run.vitest.ts:1342-1343",
+        ".opencode/skills/deep-loop-runtime/scripts/fanout-run.cjs:1174-1177"
+      ],
+      "firstSeen": 4,
+      "lastSeen": 50,
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery"
+        }
+      ],
+      "_lineages": [
+        "codex"
+      ],
+      "disposition": "resolved",
+      "disposition_evidence": "tests/unit/fanout-run.vitest.ts independently re-run: 34/34 pass. The cited suite failure does not reproduce in the current codebase."
+    },
+    {
+      "findingId": "F005",
+      "severity": "P1",
+      "category": "maintainability",
+      "status": "resolved",
+      "dimension": "maintainability",
+      "title": "Workflow YAML carries ephemeral finding-id comments",
+      "file": ".opencode/commands/deep/assets/deep_review_auto.yaml",
+      "line": 395,
+      "finding_class": "comment_hygiene",
+      "content_hash": "e4719a79cd2c8881beeb5648e62c192fa943ee8fbc3edc1af39d5d460cc94f07",
+      "evidenceRefs": [
+        ".opencode/commands/deep/assets/deep_review_auto.yaml:395",
+        ".opencode/commands/deep/assets/deep_review_auto.yaml:408"
+      ],
+      "firstSeen": 5,
+      "lastSeen": 50,
+      "transitions": [
+        {
+          "iteration": 5,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery"
+        }
+      ],
+      "_lineages": [
+        "codex"
+      ],
+      "disposition": "resolved",
+      "disposition_evidence": "deep_review_auto.yaml:395 is now a durable resource-map-flag comment with no F-\\d+-... marker; fixed by 009-research-backlog-remediation/003-runtime-hygiene-fixes. Repo-wide grep confirms zero markers remain in this file."
+    }
+  ],
+  "resolvedFindings": [],
+  "blockedStopHistory": [],
+  "persistentSameSeverity": [
+    "F001",
+    "F002",
+    "F003",
+    "F004",
+    "F005"
+  ],
+  "severityChanged": [],
+  "repeatedFindings": [],
+  "dimensionCoverage": {
+    "correctness": true,
+    "security": true,
+    "traceability": true,
+    "maintainability": true
+  },
+  "findingsBySeverity": {
+    "P0": 0,
+    "P1": 5,
+    "P2": 0
+  },
+  "openFindingsCount": 5,
+  "resolvedFindingsCount": 0,
+  "convergenceScore": 1,
+  "graphConvergenceScore": 0,
+  "graphDecision": null,
+  "graphBlockers": [],
+  "corruptionWarnings": []
+}

@@ -118,7 +118,7 @@
     {
       "key": "anti-convergence-floor",
       "description": "Reject anti-convergence candidates before scoring when the floor exceeds the hard iteration cap.",
-      "products": ["deep-research", "deep-review", "deep-context"],
+      "products": ["deep-research", "deep-review"],
       "rejectBeforeScoring": true,
       "lockedFields": ["antiConvergence.convergenceMode", "convergenceMode"],
       "conditionalTunableFields": [

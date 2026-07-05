@@ -1,0 +1,28 @@
+{
+  "level": "1",
+  "specFolder": "deep-loops/030-deep-loop-improved/009-research-backlog-remediation/008-convergence-threshold-and-forced-depth-flag",
+  "description": "`fanout-run.cjs:846` hardcodes `const convergenceThreshold = options.convergenceThreshold ?? 0.1;` as the fallback when no explicit value is supplied",
+  "keywords": [
+    "fanout-run",
+    "cjs",
+    "846",
+    "hardcodes",
+    "const",
+    "convergencethreshold",
+    "options",
+    "fallback",
+    "explicit",
+    "value",
+    "supplied"
+  ],
+  "lastUpdated": "2026-07-04T18:02:25.807Z",
+  "specId": "008",
+  "folderSlug": "convergence-threshold-and-forced-depth-flag",
+  "parentChain": [
+    "deep-loops",
+    "030-deep-loop-improved",
+    "009-research-backlog-remediation"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

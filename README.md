@@ -838,13 +838,13 @@ Audits your code in passes and never edits it. `/deep:review` runs `@deep-review
 - **Clear verdict:** a `review-report.md` that ends in PASS, CONDITIONAL or FAIL
 
 &nbsp;
-#### Deep Context
+#### Context Retrieval
 
-Maps the existing codebase before you plan, so you extend what's already there instead of rewriting it. `/deep:context` runs `@deep-context`, and `:with-context` adds it to `/speckit:plan` and `/speckit:complete`.
-- **Reuse first:** the top of every Context Report is a catalog of existing `file:symbol` pointers to extend, compose or wrap
-- **Many models, one scope:** a heterogeneous pool (native agents plus cli models) sweeps the same code in parallel, and agreement across models drives confidence
+Maps the existing codebase before you plan, so you extend what's already there instead of rewriting it. Use `@context` for one-shot lookup and continuity recovery. Use `/deep:research` or `/deep:review` when iterative work needs a bounded context snapshot.
+- **Reuse first:** context packages and snapshots point to existing `file:symbol` anchors to extend, compose or wrap
+- **Right-sized:** quick retrieval stays in `@context`; iterative investigation and audit stay in the research/review loops
 - **Pointers, not dumps:** it ships verified references instead of pasted source, so planning context stays sharp rather than bloated
-- **Knows when it's done:** stops on relevance-gated coverage saturation, with cross-model agreement and relevance as blocking guards
+- **Planning-ready:** `/speckit:plan` can consume context packages plus research/review outputs when you are ready to implement
 
 &nbsp;
 #### Multi AI Council
@@ -909,7 +909,7 @@ For details, see the [Deep Loop Runtime README](.opencode/skills/deep-loop-runti
 &nbsp;
 #### DEEP LOOP
 
-Two skills power the autonomous loops described in [Deep Loop](#deep-loop) above: **`deep-loop-runtime`**, the shared MCP-free execution engine every loop runs on, and **`deep-loop-workflows`**, the parent skill routing to five nested modes (`deep-context`, `deep-research`, `deep-review`, `ai-council`, `deep-improvement`). This parent-nested-skill pattern is the reusable standard behind `/create:sk-skill-parent`.
+Two skills power the autonomous loops described in [Deep Loop](#deep-loop) above: **`deep-loop-runtime`**, the shared MCP-free execution engine every active loop runs on, and **`deep-loop-workflows`**, the parent skill routing to active nested modes (`deep-research`, `deep-review`, `ai-council`, `deep-improvement`). Use `@context` separately for one-shot retrieval. This parent-nested-skill pattern is the reusable standard behind `/create:sk-skill-parent`.
 
 &nbsp;
 #### CROSS-AI CLI
@@ -1028,8 +1028,8 @@ These skills let you run **cross-CLI agent teams from supported runtimes**. Clau
 **Deep Review**
 - **Audits one review pass, read-only on code.** Produces `file:line` findings; the `/deep:review` command owns the loop. See [Deep Loop](#deep-loop)
 
-**Deep Context**
-- **Maps one slice of the codebase, read-only.** A LEAF seat in the by-model parallel sweep; the `/deep:context` command owns the loop. See [Deep Loop](#deep-loop)
+**Context Retrieval**
+- **Maps one slice of the codebase, read-only.** `@context` owns direct lookup and continuity recovery; research/review loops add bounded context snapshots when iteration is needed. See [Deep Loop](#deep-loop)
 
 **Deep Improvement**
 - **Proposes one agent improvement, safely.** Writes a single candidate to packet-local runtime; never scores or promotes it. The `/deep:agent-improvement` command handles that. See [Deep Loop](#deep-loop)
@@ -1148,10 +1148,7 @@ The MCP server also ships explicit stress and matrix execution surfaces. Run `np
 &nbsp;
 #### DEEP
 
-The five autonomous loop families (the improvement family carries four lanes). See the [Deep Loop](#deep-loop) section for how they run.
-
-**Deep Context** (`/deep:context`)
-- Maps the existing codebase before you plan. Optional `:with-context` pre-step on `/speckit:plan` and `/speckit:complete`. See [Deep Loop](#deep-loop). Modes: `:auto`, `:confirm`
+The active autonomous loop families (the improvement family carries four lanes). See the [Deep Loop](#deep-loop) section for how they run. Use `@context` for one-shot retrieval before planning.
 
 **AI Council** (`/deep:ai-council`)
 - Multi-seat planning for complex decisions, planning-only. See [Deep Loop](#deep-loop). Modes: `:auto`, `:confirm`

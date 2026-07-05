@@ -71,14 +71,13 @@ Steps 1-4 and 9-10 run linear; step 5 (CWB CHECK) branches to parallel or sequen
 | Priority | Task Type                                                                 | Agent                  | Tier | Skills                                                                            | subagent_type |
 | -------- | ------------------------------------------------------------------------- | ---------------------- | ---- | --------------------------------------------------------------------------------- | ------------- |
 | 1        | ALL codebase exploration, file search, pattern discovery, context loading | `@context`             | LEAF | Memory tools, Glob, Grep, Read                                                    | `"general"`   |
-| 2        | Deep-loop iterative context-gathering sweep (`/deep:context` only — explicit deep-loop convergence request, not general exploration) | `@deep-context` | LEAF | `system-spec-kit`, `deep-context` | `"general"` |
-| 3        | Evidence / iterative investigation                                        | `@deep-research`       | LEAF | `system-spec-kit`, `deep-research`                                             | `"general"`   |
-| 4        | Multi-strategy planning and architecture synthesis                        | `@ai-council`         | LEAF | Multi-lens planning rubric (planning-only)                                        | `"general"`   |
-| 5        | `/create:*` documentation and component creation command execution        | `@markdown`        | LEAF | `sk-doc`, `system-spec-kit` when spec tracking applies                            | `"general"`   |
-| 6        | Code review / security                                                    | `@review`              | LEAF | `sk-code` code-review mode (findings-first baseline + router-selected surface evidence)    | `"general"`   |
-| 7        | Deep-loop iterative code-audit pass (`/deep:review` only — explicit deep-loop convergence request, not a one-shot review) | `@deep-review` | LEAF | `system-spec-kit`, `deep-review` | `"general"` |
-| 8        | Implementation / testing                                                  | `@code`                | LEAF | `sk-code` (stack-agnostic; sk-code performs detection at dispatch time); orchestrator dispatches `@review` separately for formal review | `"general"`   |
-| 9        | Debugging when `failure_count >= 3` — workflow surfaces a prompted offer; user opts in via Task tool. Never auto-dispatched. | `@debug`               | LEAF | Code analysis tools                                                               | `"general"`   |
+| 2        | Evidence / iterative investigation                                        | `@deep-research`       | LEAF | `system-spec-kit`, `deep-research`                                             | `"general"`   |
+| 3        | Multi-strategy planning and architecture synthesis                        | `@ai-council`         | LEAF | Multi-lens planning rubric (planning-only)                                        | `"general"`   |
+| 4        | `/create:*` documentation and component creation command execution        | `@markdown`        | LEAF | `sk-doc`, `system-spec-kit` when spec tracking applies                            | `"general"`   |
+| 5        | Code review / security                                                    | `@review`              | LEAF | `sk-code` code-review mode (findings-first baseline + router-selected surface evidence)    | `"general"`   |
+| 6        | Deep-loop iterative code-audit pass (`/deep:review` only — explicit deep-loop convergence request, not a one-shot review) | `@deep-review` | LEAF | `system-spec-kit`, `deep-review` | `"general"` |
+| 7        | Implementation / testing                                                  | `@code`                | LEAF | `sk-code` (stack-agnostic; sk-code performs detection at dispatch time); orchestrator dispatches `@review` separately for formal review | `"general"`   |
+| 8        | Debugging when `failure_count >= 3` — workflow surfaces a prompted offer; user opts in via Task tool. Never auto-dispatched. | `@debug`               | LEAF | Code analysis tools                                                               | `"general"`   |
 
 ### Nesting Depth Protocol (NDP)
 
@@ -89,7 +88,7 @@ This Copilot profile enforces **single-hop delegation**. Nested sub-agent dispat
 | Tier             | Dispatch Authority               | Who                                                                                   |
 | ---------------- | -------------------------------- | ------------------------------------------------------------------------------------- |
 | **ORCHESTRATOR** | Can dispatch LEAF agents         | Top-level orchestrator only                                                           |
-| **LEAF**         | MUST NOT dispatch any sub-agents | @context, @code, @markdown, @ai-council, @review, @debug, @deep-context, @deep-research, @deep-review |
+| **LEAF**         | MUST NOT dispatch any sub-agents | @context, @code, @markdown, @ai-council, @review, @debug, @deep-research, @deep-review |
 
 #### Absolute Depth Rules
 
@@ -159,7 +158,6 @@ Before every Task tool dispatch, compare the selected route, loaded agent defini
 | --------- | ----------------------------- | -------------------------------------------------------------------------------------- |
 | @context  | `.opencode/agents/context.md`  | Sub-agent with direct retrieval only. Routes ALL exploration tasks                     |
 | @markdown | `.opencode/agents/markdown.md` | Template-first documentation executor for `/create:*`, scoped markdown, and spec-doc authoring |
-| @deep-context | `.opencode/agents/deep-context.md` | LEAF agent; read-only deep-context analyzer seat, one parallel sweep per slice, reuse-first findings |
 | @deep-research | `.opencode/agents/deep-research.md` | LEAF agent; iterative autonomous research loop with externalized state          |
 | @deep-review | `.opencode/agents/deep-review.md` | LEAF agent; iterative code-audit dimension pass, P0/P1/P2 findings, JSONL state |
 | @ai-council | `.opencode/agents/ai-council.md` | Planning-only multi-strategy architect (max 3 strategies). Post-dispatch responsibility: when @orchestrate dispatches at Depth 1, run `node .opencode/skills/deep-loop-workflows/deep-ai-council/scripts/persist-artifacts.cjs <packet>` after the LEAF returns to persist `ai-council/` artifacts (see ai-council persistence protocol). |
@@ -183,7 +181,7 @@ TASK #N: [Descriptive Title]
 ├─ Objective: [WHY this task exists]
 ├─ Scope: [Explicit inclusions AND exclusions]
 ├─ Boundary: [What this agent MUST NOT do]
-├─ Agent: @code | @context | @markdown | @deep-context | @deep-research | @deep-review | @ai-council | @review | @debug
+├─ Agent: @code | @context | @markdown | @deep-research | @deep-review | @ai-council | @review | @debug
 ├─ Deep Route: [for deep routes only: mode=<workflowMode>; target_agent=@<agent>; execution=<single_iteration|loop|session>; source_of_truth=.opencode/skills/deep-loop-workflows/mode-registry.json | none]
 ├─ Subagent Type: "general" (ALL dispatches use "general" — exploration routes through @context)
 ├─ Agent Definition: [.opencode/agents/<name>.md — MUST be read and included in prompt | "built-in" for @general]

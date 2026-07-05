@@ -57,7 +57,7 @@
           "nonce": "boundary-proof-present-nonce",
           "runId": "run_design_boundary_present"
         },
-        "assetDigest": "sha256:3833d34e7175ec1daed9c2cd81d8a89cb1c6299e10cbbbc5bdc9b38788561dd4"
+        "assetDigest": "sha256:bca4bd4af2cf57ef1a289d9d7bce2e7ce3451114954c08e20d8bf7c746c0d7eb"
       }
     }
   },

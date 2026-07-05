@@ -1,0 +1,20 @@
+{
+  "openQuestions": [
+    "Which recent specs and implementation packets define authoritative behavior?",
+    "Which docs/assets are stale or incomplete?",
+    "Where does claimed coverage lack test/benchmark/stress evidence?",
+    "Where does implemented behavior lack docs/assets/tests coverage?",
+    "Which gaps are highest severity for command, MCP, memory, graph, advisor, or deep-loop behavior?"
+  ],
+  "resolvedQuestions": [],
+  "keyFindings": [],
+  "ruledOutDirections": [],
+  "metrics": {
+    "iterationsCompleted": 0,
+    "openQuestions": 5,
+    "resolvedQuestions": 0,
+    "keyFindings": 0,
+    "convergenceScore": 0,
+    "coverageBySources": {}
+  }
+}

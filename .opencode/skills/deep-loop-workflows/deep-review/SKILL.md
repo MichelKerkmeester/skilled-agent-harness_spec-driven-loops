@@ -292,6 +292,19 @@ When `{spec_folder}/resource-map.md` is absent at init:
 - Log `resource-map.md not present. Skipping coverage gate` in `Known Context`.
 - Skip the coverage-gate pass and omit the report section without failing the loop.
 
+### Bounded Context Snapshot Replacement
+
+During initialization, capture a bounded, pointer-based context snapshot in `deep-review-strategy.md` `Known Context` before the first review dimension runs.
+
+The snapshot must include:
+
+- Review target pointers: files, specs, symbols, or resource-map entries in scope.
+- Claimed behavior and relevant acceptance criteria to verify.
+- Reuse or convention pointers that affect review expectations.
+- Risk areas, missing context, stale graph/memory caveats, and explicit out-of-scope areas.
+
+The snapshot must not create a context-loop report or widen review scope beyond the declared target. Use `@context` for quick retrieval and `/speckit:plan` only when review findings require implementation planning.
+
 ### Architecture
 
 `/deep:review` owns the loop. The YAML workflow initializes state, dispatches one LEAF review iteration at a time, evaluates convergence, synthesizes `review-report.md`, and saves continuity. The LEAF agent reads state, reviews one dimension, writes `iteration-NNN.md`, updates strategy, and appends JSONL.

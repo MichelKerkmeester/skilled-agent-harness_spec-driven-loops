@@ -327,6 +327,19 @@ When `{spec_folder}/resource-map.md` is absent at init:
 - Omit the exclusion-set hint from iteration guidance.
 - Continue the loop normally; absence is informational, not a failure.
 
+### Bounded Context Snapshot Replacement
+
+During initialization, capture a bounded, pointer-based context snapshot in `deep-research-strategy.md` `Known Context` when the target is codebase-scoped.
+
+The snapshot must include:
+
+- Relevant source paths or symbols, cited as pointers rather than full file bodies.
+- Known integration points and likely reuse candidates.
+- Existing conventions or constraints that should shape the first iteration.
+- Gaps or unavailable context sources, including stale code graph or memory retrieval.
+
+The snapshot must not create a separate context report loop. If quick lookup is enough, route the user to `@context`; if planning is the real goal, route to `/speckit:plan` after the snapshot is available.
+
 ### Architecture: 3-Layer Integration
 
 `/deep:research` owns the YAML workflow, which initializes state, dispatches one LEAF iteration at a time, evaluates convergence, synthesizes `research/research.md`, and saves continuity. The `@deep-research` agent executes only one research cycle per dispatch.

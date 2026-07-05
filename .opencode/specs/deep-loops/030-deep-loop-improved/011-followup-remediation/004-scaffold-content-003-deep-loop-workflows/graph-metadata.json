@@ -1,0 +1,210 @@
+{
+  "schema_version": 1,
+  "packet_id": "deep-loops/030-deep-loop-improved/011-followup-remediation/004-scaffold-content-003-deep-loop-workflows",
+  "spec_folder": "deep-loops/030-deep-loop-improved/011-followup-remediation/004-scaffold-content-003-deep-loop-workflows",
+  "parent_id": "deep-loops/030-deep-loop-improved/011-followup-remediation",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "scaffold content remediation 003-deep-loop-workflows",
+      "scaffold never touched leaves fix",
+      "003-deep-loop-workflows plan tasks scaffold cleanup",
+      "003-deep-loop-workflows leaf docs complete",
+      "plan tasks scaffold markers removed"
+    ],
+    "key_topics": [
+      "scaffold",
+      "content",
+      "remediation",
+      "003-deep-loop-workflows",
+      "never",
+      "touched",
+      "leaves",
+      "fix",
+      "plan",
+      "tasks",
+      "cleanup",
+      "leaf"
+    ],
+    "importance_tier": "medium",
+    "status": "complete",
+    "key_files": [
+      ".opencode/skills/system-spec-kit/scripts/rules/check-scaffold-never-touched.sh",
+      "plan.md",
+      "tasks.md",
+      "spec.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "check-scaffold-never-touched.sh",
+        "kind": "script",
+        "path": ".opencode/skills/system-spec-kit/scripts/rules/check-scaffold-never-touched.sh",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scaffold Content Remediation",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Author",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Read",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Per",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built All",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Leaf Coverage",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "12 leaf children under `.opencode/specs/deep-loops/030-deep-loop-improved/003-deep-loop-workflows/` (`001-anti-convergence-floor` through `012-push-wave-fanout`) each have a `plan.md` and `tasks.md` whose BODY content, not just frontmatter, is still unmodified scaffold-template placeholder prose (literal text like `[Component 1]: [Purpose]` and unchecked items literally reading `[Implement core feature 1]`)",
+    "created_at": "2026-07-01T19:38:04.140Z",
+    "last_save_at": "2026-07-04T18:02:30.077Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:628dbcb5428a70b2995d01f58a720ec8c9a28a4e762429a597bf8d7aa64b5d4b",
+    "source_doc_hashes": {
+      "spec.md": "59493b49128cd43c51e059a318fd09ff3d7c43a3de80822581bf3d9123f01976",
+      "plan.md": "e0beaa35c10211a7e951b20f40441af23d5f57baaa3050eff7909273eff4a6a5",
+      "tasks.md": "72835a9ea52ae5fa343ef063b109b2ef28c885ee057ebd50c7b7b78ec68db1e5",
+      "implementation-summary.md": "cda2391fa3ea780f41e1bb2b05150befc1965582702159e8e5c6b78a271c5473"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

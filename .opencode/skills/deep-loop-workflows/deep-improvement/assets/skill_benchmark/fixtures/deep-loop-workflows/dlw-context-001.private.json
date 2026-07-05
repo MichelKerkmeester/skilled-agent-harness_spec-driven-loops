@@ -2,24 +2,25 @@
   "scenarioId": "dlw-context-001",
   "expected": {
     "skillId": "deep-loop-workflows",
-    "mode": "context",
-    "advisorLane": "deep-context",
+    "routeOutcome": "defer",
+    "workflowMode": [],
+    "forbiddenWorkflowModes": ["context"],
     "intentKeys": [],
     "resources": [],
-    "negativeActivation": false
+    "negativeActivation": true
   },
   "rubric": {
     "usefulnessChecks": [
-      "routing lands on deep-loop-workflows + context mode"
+      "standalone context prompt is deferred instead of routed to an active workflow mode"
     ],
     "harmChecks": [
-      "does not route to a sibling mode"
+      "does not activate the deprecated context workflow mode"
     ]
   },
   "packetContext": {
     "artifacts": [
-      "context/context-report.md"
+      "No context-loop artifact is expected from this fixture"
     ]
   },
-  "notes": "Parent-skill routing dogfood: skill-level gold is deep-loop-workflows; mode-level precision is additionally enforced by the advisor routing-parity fixtures + the registry drift-guard."
+  "notes": "Deprecated-route suppression dogfood: the fixture remains in the corpus to catch accidental reactivation of standalone context routing."
 }

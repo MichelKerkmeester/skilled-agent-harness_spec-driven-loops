@@ -328,12 +328,15 @@ describe('F-013-C3-01 review-plus-write disambiguation', () => {
       includeAllCandidates: true,
     });
 
-    const skCodeReview = result.recommendations.find((entry) => entry.skill === 'sk-code-review');
-    // Pure review prompt routes to sk-code-review via the existing review:0.85 token boost.
-    expect(skCodeReview).toBeDefined();
-    const explicit = skCodeReview!.laneContributions.find((lane: { lane: ScorerLane }) => lane.lane === 'explicit_author');
+    const skCode = result.recommendations.find((entry) => entry.skill === 'sk-code');
+    // Pure review prompts route to sk-code via the review:0.85 token boost. The
+    // former sk-code-review identity was folded into sk-code's review mode and is
+    // no longer scored as a standalone skill, so the explicit signal lands on
+    // sk-code rather than a separate review candidate.
+    expect(skCode).toBeDefined();
+    const explicit = skCode!.laneContributions.find((lane: { lane: ScorerLane }) => lane.lane === 'explicit_author');
     expect(explicit?.rawScore).toBeGreaterThan(0);
-    // Evidence trail must NOT contain the review-plus-write disambiguation marker.
+    // Without a write verb the review-plus-write disambiguation must NOT fire.
     expect(explicit?.evidence.join(' ')).not.toContain('review-plus-write-disambiguation');
   });
 

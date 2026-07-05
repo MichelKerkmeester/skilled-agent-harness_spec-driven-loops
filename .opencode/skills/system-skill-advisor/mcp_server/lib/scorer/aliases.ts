@@ -92,7 +92,7 @@ export function skillInAliasSet(actual: string, expected: readonly string[]): bo
 // MODULE: Merged Deep-Loop Identity + Mode Layer
 // ───────────────────────────────────────────────────────────────
 //
-// The five legacy deep-loop skills (deep-context, deep-research, deep-review,
+// The active legacy deep-loop modes (deep-research, deep-review,
 // deep-ai-council, deep-improvement) are folded into one public skill,
 // deep-loop-workflows, discriminated by workflowMode (see
 // deep-loop-workflows/mode-registry.json). canonicalSkillId above is
@@ -103,10 +103,9 @@ export function skillInAliasSet(actual: string, expected: readonly string[]): bo
 // deep-loop-workflows with the right mode once the old skill nodes leave the
 // graph.
 //
-// deep-context is intentionally absent from DEEP_MODE_BY_CANONICAL: it has no
-// alias group here and stays metadata-routed (resolved from its
-// graph-metadata.json), mirroring the Python advisor where DEEP_ROUTING_SKILLS
-// excludes it. Its workflowMode ('context') still lives in the mode registry.
+// The removed standalone context route is intentionally absent from
+// DEEP_MODE_BY_CANONICAL and no longer appears in active registry routing.
+// Use @context for retrieval and research/review bounded snapshots for loops.
 export const MERGED_DEEP_SKILL_ID = 'deep-loop-workflows';
 
 const ALIAS_TO_MODE = new Map<string, string>(
@@ -138,8 +137,7 @@ function promptContainsAlias(promptLower: string, alias: string): boolean {
 
 /**
  * Resolve any deep-loop alias (or mode-level legacy id) to its workflowMode, or
- * null when the id is not a folded deep-loop mode. deep-context returns null by
- * design (metadata-routed; not represented in the alias groups).
+ * null when the id is not a folded deep-loop mode.
  */
 export function modeForAlias(skillId: string): string | null {
   return ALIAS_TO_MODE.get(skillId) ?? ALIAS_TO_MODE.get(canonicalSkillId(skillId)) ?? null;

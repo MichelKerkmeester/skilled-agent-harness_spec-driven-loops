@@ -104,7 +104,7 @@ Add Lenis smooth-scroll to src/2_javascript/scroll.js, gated by IntersectionObse
 - `.opencode/skills/sk-code/SKILL.md` — Smart router pseudocode (lines 53-68).
 - `.opencode/skills/sk-code/shared/references/stack_detection.md` — WEBFLOW marker definitions (lines 30-37).
 - `.opencode/skills/sk-code/shared/references/smart_routing.md` — Intent → resource-loading mapping.
-- `.opencode/skills/sk-code/code-implement/references/webflow/implementation/webflow_patterns.md` — Expected-loaded reference.
+- `.opencode/skills/sk-code/webflow/references/implementation/webflow_patterns.md` — Expected-loaded reference.
 - `.opencode/skills/system-skill-advisor/mcp_server/scripts/skill-graph.json` — sk-code signals + adjacency.
 
 ## 5. SOURCE METADATA

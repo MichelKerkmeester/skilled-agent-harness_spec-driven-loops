@@ -1,7 +1,7 @@
 ---
 title: Deep-Loop Behavior Benchmark Framework
 description: >-
-  Single-source measurement contract for the five behavior_benchmark packages
+  Single-source measurement contract for the active behavior_benchmark packages
   that measure executor-model behavior at the deep-loop command surface under
   realistic prompting. All scenario packages link here; this file defines the
   schema, scoring rubric, classification taxonomy, budget, rerun, and package
@@ -17,10 +17,10 @@ contextType: implementation
 
 ## PURPOSE
 
-This document is the single-source measurement contract for the five
+This document is the single-source measurement contract for the active
 `behavior_benchmark` packages carried by the deep-loop workflow sub-skills
-(`deep-ai-council`, `deep-context`, `deep-improvement`, `deep-research`,
-`deep-review`). Each package measures what an executor **model** actually does
+(`deep-ai-council`, `deep-improvement`, `deep-research`, `deep-review`).
+Each active package measures what an executor **model** actually does
 when its command surface is triggered with a realistic user prompt. The unit of
 measurement is a single run of one scenario against one executor, scored on a
 fixed rubric and classified into exactly one terminal bucket. This file is
@@ -189,7 +189,7 @@ The per-scenario hard budget `budget_ms` is derived from the Claude baseline:
 budget_ms = max(3 * claude_baseline_tTerminal, 180000)
 ```
 
-Capped at `900000` ms (15 minutes) for `context`, `research`, and `review`
+Capped at `900000` ms (15 minutes) for `research` and `review`
 scenarios. `ai-council` and `improvement` scenarios cap at `1500000` ms
 (25 minutes), reflecting their multi-seat and evaluator-loop cost.
 
@@ -228,7 +228,7 @@ selects how D3 (delegation) is measured and what counts as `role_absorption`:
 
 | Kind | Modes | Delegation evidence | D3 = 2 when | role_absorption when |
 | --- | --- | --- | --- | --- |
-| `task_dispatch` (default) | research, review, context | Structured `Agent`/`task` tool-call events + route-proof records | task events ≥ `min_task_events` (and route proof matches `leaf_agent` if required) | `role_absorption_forbidden` and `min_task_events > 0` and a work product was produced with ZERO task events |
+| `task_dispatch` (default) | research, review | Structured `Agent`/`task` tool-call events + route-proof records | task events ≥ `min_task_events` (and route proof matches `leaf_agent` if required) | `role_absorption_forbidden` and `min_task_events > 0` and a work product was produced with ZERO task events |
 | `seat_artifacts` | ai-council | Distinct seat ids (`seat-001`, `seat-002`, …) named in the persisted `ai-council/` artifacts (deliberation, council-report, state JSONL) — seats are sections/identifiers WITHIN the artifacts, not separate files | distinct seats ≥ `min_seats` | `role_absorption_forbidden` and a plan/report was produced naming ZERO seats |
 | `candidate_evidence` | improvement | A packet-local candidate (`improvement/candidates/*.md` or `proposals/`) AND an evaluator score (`*score*.json` / `.score-cache/`), counted separately | BOTH a candidate and a score are present (a complete evaluator-first run) | `role_absorption_forbidden` and a work product was produced with NEITHER a candidate nor a score |
 
@@ -244,15 +244,15 @@ seats has evidence and is NOT flagged; a council that emitted a plan without sea
 ## FIXTURE ISOLATION
 
 Fixtures are frozen reference inputs: only `FIXTURE.md`, `spec.md`, `plan.md`,
-`tasks.md`, and `src/` are legitimate. Deep-loop runs write output packets INTO
-the fixture (`context/`, `review/`, `research/`), so the orchestration restores
-the fixture git-clean between cells.
+`tasks.md`, and `src/` are legitimate. Active deep-loop runs write output
+packets INTO the fixture (`review/`, `research/`), so the orchestration restores
+the fixture git-clean between cells. The restore also purges stale `context/`
+output directories left by older benchmark runs.
 
 The restore MUST purge run-output directories with an explicit `rm -rf`, not git
 alone. `git clean` cannot remove a run-output dir once a concurrent session has
-committed it to the shared index — and that has happened (a `deep-context`
-packet was swept into `fx-001` by an unrelated commit, which `git checkout` then
-kept restoring). The durable recipe, per fixture, in a verify loop:
+committed it to the shared index, which `git checkout` can then keep restoring.
+The durable recipe, per fixture, in a verify loop:
 
 ```
 rm -rf "$FIX/context" "$FIX/review" "$FIX/research"   # tracked-or-not
@@ -284,7 +284,6 @@ fixed layout:
 | Prefix | Package |
 | --- | --- |
 | `ACB` | `deep-ai-council` |
-| `CXB` | `deep-context` |
 | `IMB` | `deep-improvement` |
 | `RSB` | `deep-research` |
 | `RVB` | `deep-review` |

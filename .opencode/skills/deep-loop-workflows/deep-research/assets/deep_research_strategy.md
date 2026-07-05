@@ -145,6 +145,17 @@ Generated from the reducer registry. Add external or late questions through `{sp
 ## 12. KNOWN CONTEXT
 [Populated during initialization from memory_context() results, if any prior work exists]
 
+### Bounded Context Snapshot
+
+Populate during initialization when the target is codebase-scoped. Keep this pointer-based and small:
+
+- Source pointers: paths, symbols, or resource-map entries relevant to the topic.
+- Reuse candidates: existing utilities, patterns, docs, or agents worth extending.
+- Integration points: files or contracts the research is likely to touch.
+- Constraints and risks: scope limits, stale graph or memory gaps, and known non-goals.
+
+Do not inline full source bodies. Do not dispatch the retired standalone context loop. Use `@context` for one-shot retrieval, and use this snapshot only to seed the research loop.
+
 ---
 
 ## 13. RESEARCH BOUNDARIES

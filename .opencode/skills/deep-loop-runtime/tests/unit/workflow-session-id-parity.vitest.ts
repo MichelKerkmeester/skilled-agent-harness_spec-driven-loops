@@ -12,7 +12,8 @@ import { describe, expect, it } from 'vitest';
 // 1. TYPE DEFINITIONS
 // ───────────────────────────────────────────────────────────────────
 
-type LoopMode = 'review' | 'context' | 'research';
+type LoopMode = 'review' | 'research';
+type ActiveFanoutMode = 'review' | 'research';
 
 interface ModeContract {
   readonly mode: LoopMode;
@@ -23,7 +24,7 @@ interface ModeContract {
 
 interface FanoutRunExports {
   readonly buildLoopPrompt: (
-    loopType: LoopMode,
+    loopType: ActiveFanoutMode,
     specFolder: string,
     lineageDir: string,
     sessionId: string,
@@ -47,12 +48,6 @@ const MODE_CONTRACTS: readonly ModeContract[] = [
     fileName: 'deep_review_auto.yaml',
     fallback: '{ISO_8601_NOW}',
     configSessionKey: 'sessionId',
-  },
-  {
-    mode: 'context',
-    fileName: 'deep_context_auto.yaml',
-    fallback: '{AUTO_SESSION_ID}',
-    configSessionKey: 'lineage.sessionId',
   },
   {
     mode: 'research',
@@ -177,13 +172,13 @@ describe('deep workflow session id parity', () => {
     }
   });
 
-  it('renders a session_id line in fan-out lineage prompts for all loop types', () => {
+  it('renders a session_id line in fan-out lineage prompts for active fan-out loop types', () => {
     const { buildLoopPrompt } = requireCjs(FANOUT_RUN_SCRIPT) as FanoutRunExports;
 
-    for (const { mode } of MODE_CONTRACTS) {
+    for (const { mode } of MODE_CONTRACTS.filter((contract) => contract.mode !== 'context')) {
       const sessionId = `fanout-${mode}-session`;
       const prompt = buildLoopPrompt(
-        mode,
+        mode as ActiveFanoutMode,
         'specs/test-session-id-parity',
         `/tmp/${mode}-lineage`,
         sessionId,
