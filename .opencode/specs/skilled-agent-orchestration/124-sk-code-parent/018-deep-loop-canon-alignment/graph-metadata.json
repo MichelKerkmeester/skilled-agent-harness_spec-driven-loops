@@ -1,0 +1,220 @@
+{
+  "schema_version": 1,
+  "packet_id": "skilled-agent-orchestration/124-sk-code-parent/018-deep-loop-canon-alignment",
+  "spec_folder": "skilled-agent-orchestration/124-sk-code-parent/018-deep-loop-canon-alignment",
+  "parent_id": "skilled-agent-orchestration/124-sk-code-parent",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "deep-loop canon alignment",
+      "deep-loop benchmark baseline",
+      "deep-loop parent hub conformance",
+      "deep-loop canon plan",
+      "deep-loop safe-now gated split",
+      "deep-loop parent hub benchmark",
+      "deep-loop canon tasks",
+      "018a safe-now",
+      "018b deferred gated",
+      "deep-loop canon checklist",
+      "deep-loop parent hub verification",
+      "018b gate verification"
+    ],
+    "key_topics": [
+      "deep-loop",
+      "canon",
+      "alignment",
+      "benchmark",
+      "baseline",
+      "parent",
+      "hub",
+      "conformance",
+      "plan",
+      "safe-now",
+      "gated",
+      "split"
+    ],
+    "importance_tier": "high",
+    "status": "draft",
+    "key_files": [
+      ".opencode/skills/deep-loop-workflows/mode-registry.json",
+      "tasks.md",
+      "plan.md",
+      "implementation-summary.md",
+      "checklist.md",
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "mode-registry.json",
+        "kind": "config",
+        "path": ".opencode/skills/deep-loop-workflows/mode-registry.json",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Document",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Change Type",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Parent",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow Execution",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Absent Files",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Additive Hub Artifacts",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Live Agent Active Refactor Gate",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Registry Canon Fields",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The deep-loop parent hub fails the parent-hub canon with 8 P0 findings and 26 strict invariant failures",
+    "created_at": "2026-07-05T05:46:26.719Z",
+    "last_save_at": "2026-07-05T05:46:26.719Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:2ef84d988368b228e935314a5a8ca3bc8c7e7e12820ca615879e8a98930c2718",
+    "source_doc_hashes": {
+      "spec.md": "a82185f4cabf570e47e5e08a3f237d71887a662d92157ade13c31016d629a20f",
+      "plan.md": "0280b47eb609b50b82eaa572a36c2fa975fb653dc428e6e35603294e8ba1fbc9",
+      "tasks.md": "d0c16b3c8c9c9c4fa12194af8e8f9903ae98ab1d93f557abfcf3271f01fbd581",
+      "checklist.md": "36b17c2831fb6e63cb33285bf037651d0e33ef21f656703d92ed2693af6f58a6",
+      "implementation-summary.md": "77a0952f91b364b74124066a410bd819b2ec748905d2da9ee78ecc0df5757eb3"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

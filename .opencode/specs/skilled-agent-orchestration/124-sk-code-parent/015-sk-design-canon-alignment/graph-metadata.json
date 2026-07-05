@@ -1,0 +1,222 @@
+{
+  "schema_version": 1,
+  "packet_id": "skilled-agent-orchestration/124-sk-code-parent/015-sk-design-canon-alignment",
+  "spec_folder": "skilled-agent-orchestration/124-sk-code-parent/015-sk-design-canon-alignment",
+  "parent_id": "skilled-agent-orchestration/124-sk-code-parent",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "sk-design canon alignment",
+      "sk-design parent hub benchmark",
+      "transform verbs bundle rules",
+      "sk-design canon plan",
+      "sk-design Lane-C baseline",
+      "sk-design transform verbs",
+      "sk-design canon tasks",
+      "sk-design changelog symlinks",
+      "sk-design benchmark tasks",
+      "sk-design canon checklist",
+      "sk-design strict verification",
+      "sk-design benchmark checklist"
+    ],
+    "key_topics": [
+      "sk-design",
+      "canon",
+      "alignment",
+      "parent",
+      "hub",
+      "benchmark",
+      "transform",
+      "verbs",
+      "bundle",
+      "rules",
+      "plan",
+      "lane-c"
+    ],
+    "importance_tier": "high",
+    "status": "in_progress",
+    "key_files": [
+      ".opencode/skills/sk-design/mode-registry.json",
+      ".opencode/skills/sk-design/design-interface/README.md",
+      "tasks.md",
+      "plan.md",
+      "checklist.md",
+      ".opencode/skills/sk-design/hub-router.json",
+      "implementation-summary.md",
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "mode-registry.json",
+        "kind": "config",
+        "path": ".opencode/skills/sk-design/mode-registry.json",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-design/design-interface/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "hub-router.json",
+        "kind": "config",
+        "path": ".opencode/skills/sk-design/hub-router.json",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Plan",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Evidence Base",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Impact",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Parent",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow Execution",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Hub Fixes",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Canon Alignment",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The master plan reports that `parent-skill-check` strict mode leaves sk-design with four remaining parent-hub invariant failures after the five-mode `packetKind` repair was already pushed in commit `f8673ff0db`",
+    "created_at": "2026-07-05T05:46:25.870Z",
+    "last_save_at": "2026-07-05T05:46:25.870Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:ceef3cf7e2e2b306874b3baf015df98c9ca961eb8e47c7b43a37a09feedf0d28",
+    "source_doc_hashes": {
+      "spec.md": "9b6b91b1a7e3c8d65c1c30e8b8591704a4c68df60a9f27db1a4c020c89568d4e",
+      "plan.md": "a7a6d8218d3091c233bda9deb7b940de562f5d68019ea1a852fbc99795d7f50d",
+      "tasks.md": "14c0783ed2327bff8769efa808327b181f6a20d543d72754a70f2b529925fcf7",
+      "checklist.md": "2a9a634ebbeb6de1cae66b38169fdd90cd4c2e09e4d86f69049466f7e6781397",
+      "implementation-summary.md": "55ebc0f880f404f3f4bb83c75625f520da7c25db0f6e5f1c0c79a2b6dadaa6e2"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}
