@@ -505,19 +505,27 @@ function bm25Search(
     }
 
     const index = getIndex();
-    const candidateLimit = Math.max(limit, limit * 3);
-    // Metadata filters run after in-memory scoring, so fetch the corpus-bounded
-    // candidate set whenever those filters can remove otherwise top-ranked hits.
+    // Both in-memory BM25 engines score and fully sort the entire match set
+    // regardless of k, so a corpus-bounded candidate set costs nothing extra in
+    // the index. Capping the candidate set (e.g. limit*3) only starves the
+    // scope/tier filters that run after scoring: high-ranked out-of-scope hits
+    // crowd out in-scope matches, and a scoped query returns fewer than `limit`
+    // rows even when enough in-scope matches exist. Fetch corpus-bounded whenever
+    // a post-scoring filter (scope or the active-row/tier predicate) can apply.
+    const candidateLimit = (specFolder || db) ? index.getStats().documentCount : limit;
+    // BM25 document IDs are stringified numeric memory IDs (e.g. "42"), not spec
+    // folder paths, so scope and tier must be resolved from DB metadata.
     const results = index.search(query, candidateLimit);
 
-    // BM25 document IDs are stringified
-    // Numeric memory IDs (e.g., "42"), not spec folder paths. The old filter compared
-    // R.id against specFolder which never matched. Use DB lookup to resolve spec_folder.
-
-    // Batch-resolve metadata for all result IDs (was N+1 individual queries)
-    // SECURITY: Spec-folder scope MUST fail closed — any error in scope
-    // resolution returns [] rather than leaking unscoped BM25 candidates.
-    let memoryMetadataMap: Map<number, Bm25MemoryMetadata> | null = null;
+    // Resolve metadata and apply the active-row + scope predicate in BM25 rank
+    // order, stopping as soon as `limit` survivors are found. Resolution is
+    // batched (a single IN (...) with one bind per id would exceed SQLite's
+    // parameter cap) and lazy: the common case fills `limit` from the first
+    // slice or two, while a scope-sparse query keeps widening until it has
+    // enough — trading a deeper corpus walk for correct, fully-filled results.
+    // SECURITY: spec-folder scope MUST fail closed — any DB error returns []
+    // rather than leaking unscoped BM25 candidates.
+    const filtered: Array<{ id: string; score: number }> = [];
     if (results.length > 0) {
       if (!db) {
         if (specFolder) {
@@ -525,27 +533,40 @@ function bm25Search(
           console.warn('[BM25] Spec-folder scope lookup failed, returning empty scoped results:', error);
           return [];
         }
+        // No DB and no scope: metadata cannot be resolved to apply the active-row
+        // filter, so nothing survives (preserves prior observable behavior).
       } else {
         try {
-          const ids = results.map((r: { id: string }) => Number(r.id));
-          memoryMetadataMap = new Map();
-          // Resolve metadata in bounded batches. The candidate set can now be
-          // corpus-sized (over-fetch for scope/tier filtering), and a single
-          // IN (...) with one bind per id would exceed SQLite's parameter limit
-          // and throw — which the catch below turns into an empty result.
           const METADATA_BATCH = 500;
-          for (let offset = 0; offset < ids.length; offset += METADATA_BATCH) {
-            const batch = ids.slice(offset, offset + METADATA_BATCH);
-            const placeholders = batch.map(() => '?').join(',');
+          walk: for (let offset = 0; offset < results.length; offset += METADATA_BATCH) {
+            const slice = results.slice(offset, offset + METADATA_BATCH) as Array<{ id: string; score: number }>;
+            const ids = slice.map((r) => Number(r.id));
+            const placeholders = ids.map(() => '?').join(',');
             const rows = db.prepare(
               `SELECT id, spec_folder, importance_tier, deleted_at FROM memory_index WHERE id IN (${placeholders})`
-            ).all(...batch) as Array<{ id: number; spec_folder: string | null; importance_tier: string | null; deleted_at: string | null }>;
+            ).all(...ids) as Array<{ id: number; spec_folder: string | null; importance_tier: string | null; deleted_at: string | null }>;
+            const batchMeta = new Map<number, Bm25MemoryMetadata>();
             for (const row of rows) {
-              memoryMetadataMap.set(row.id, {
+              batchMeta.set(row.id, {
                 specFolder: row.spec_folder,
                 importanceTier: row.importance_tier,
                 deletedAt: row.deleted_at,
               });
+            }
+            for (const r of slice) {
+              const metadata = batchMeta.get(Number(r.id));
+              if (!metadata) continue;
+              if (!isActiveRow({
+                deleted_at: metadata.deletedAt,
+                importance_tier: metadata.importanceTier,
+              }, { includeArchived, includeCold: includeArchived || isArchivedRetrievalIncludedByDefault() })) continue;
+              if (specFolder) {
+                const folder = metadata.specFolder;
+                if (!folder) continue;
+                if (!(folder === specFolder || folder.startsWith(specFolder + '/'))) continue;
+              }
+              filtered.push(r);
+              if (filtered.length >= limit) break walk;
             }
           }
         } catch (error: unknown) {
@@ -553,35 +574,12 @@ function bm25Search(
           return [];
         }
       }
-
-      // DEFENSE-IN-DEPTH: If specFolder was requested but metadata resolution
-      // is still null after the resolution block, something unexpected happened.
-      // Fail closed rather than falling through to unscoped results.
-      if (specFolder && !memoryMetadataMap) {
-        const error = new Error('memoryMetadataMap unexpectedly null after scope resolution');
-        console.warn('[BM25] Spec-folder scope lookup failed, returning empty scoped results:', error);
-        return [];
-      }
     }
 
-    return results
-      .filter((r: { id: string }) => {
-        const metadata = memoryMetadataMap?.get(Number(r.id));
-        if (!metadata) return false;
-        if (!isActiveRow({
-          deleted_at: metadata.deletedAt,
-          importance_tier: metadata.importanceTier,
-        }, { includeArchived, includeCold: includeArchived || isArchivedRetrievalIncludedByDefault() })) return false;
-        if (!specFolder) return true;
-        const folder = metadata.specFolder;
-        if (!folder) return false;
-        return folder === specFolder || folder.startsWith(specFolder + '/');
-      })
-      .slice(0, limit)
-      .map((r: { id: string; score: number }) => ({
-        ...r,
-        source: 'bm25',
-      }));
+    return filtered.map((r: { id: string; score: number }) => ({
+      ...r,
+      source: 'bm25',
+    }));
   } catch (error: unknown) {
     const msg = error instanceof Error ? error.message : String(error);
     console.warn(`[hybrid-search] BM25 search failed: ${msg}`);
