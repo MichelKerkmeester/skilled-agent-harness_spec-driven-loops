@@ -13,10 +13,12 @@
     "nobody",
     "acted"
   ],
-  "lastUpdated": "2026-07-05T13:43:22.488Z",
+  "lastUpdated": "2026-07-05T16:28:19.112Z",
   "specId": "014",
   "folderSlug": "recorded-failure-closure",
   "parentChain": [
+    ".opencode",
+    "specs",
     "system-speckit",
     "028-memory-search-intelligence",
     "008-speckit-surface-alignment"

@@ -202,7 +202,7 @@
     ],
     "causal_summary": "Several audit findings were about detectors that fired and were recorded, but nobody acted",
     "created_at": "2026-07-05T13:17:59.075Z",
-    "last_save_at": "2026-07-05T13:36:40.403Z",
+    "last_save_at": "2026-07-05T16:28:19.274Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -212,9 +212,9 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:b7091b10d352c1dcec2558d756e2ed9740bb1228c54f4c9fe50cc1b34389fcf5",
+    "source_fingerprint": "sha256:6c11927ea706eefc3a4d8e0d3e401006f95cbb8201e0eb6052ddc9144e58857d",
     "source_doc_hashes": {
-      "spec.md": "27a6cc1b0ae6aff137ef12024a7fb620af907d45f5d4f37f4aa7d80626b5c034",
+      "spec.md": "a2a4e7315c274fe176e35de776c59605e36a5ba0cc6961eb602551ee0086bbd1",
       "plan.md": "6828e1da552e1689ada968ec766ab80fadf53fcd8144313bafed03a0624e5411",
       "tasks.md": "bb9d199aee4767c256262459dc55788a27bdc202b18588b5cf4c9aabc052b690",
       "checklist.md": "69299369aa91973e9da43fc8b474d83803b124572755435b2fe62545acca1f0e",

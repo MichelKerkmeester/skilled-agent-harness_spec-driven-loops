@@ -10,6 +10,7 @@ importance_tier: "normal"
 contextType: "implementation"
 parent: "../spec.md"
 predecessor: "013-deep-research-loop-instrumentation"
+successor: "015-manual-test-verification-and-fixes"
 _memory:
   continuity:
     packet_pointer: "system-speckit/028-memory-search-intelligence/008-speckit-surface-alignment/014-recorded-failure-closure"
@@ -48,7 +49,7 @@ _memory:
 | **Branch** | Current worktree, no commit requested |
 | **Parent Spec** | ../spec.md |
 | **Predecessor** | 013-deep-research-loop-instrumentation |
-| **Successor** | None |
+| **Successor** | 015-manual-test-verification-and-fixes |
 <!-- /ANCHOR:metadata -->
 
 ---

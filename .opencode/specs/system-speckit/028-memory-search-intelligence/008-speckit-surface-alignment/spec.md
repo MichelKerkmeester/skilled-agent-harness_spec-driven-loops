@@ -78,6 +78,7 @@ Executor tags: **FAST** = GPT-5.5-fast `--variant high` mechanical edit (exact o
 | 012 | `stress-and-skillmd-audit` | Coverage gap. Stress-test lane, system-spec-kit SKILL.md, changelog. | AUDIT | 2 | Planned |
 | 013 | `deep-research-loop-instrumentation` | Fix the inert `newInfoRatio` (emitted 1.0 × 20 despite verbatim repeats); repair `[INFERENCE]` vs executed-evidence label semantics. | CAREFUL | 2 | Planned |
 | 014 | `recorded-failure-closure` | "Detector fired, nobody acted" class: fix the exemplar (iteration-cap contradiction) + a closure route (constitutional rule + unactioned-recorded-failure surfacer). | DECISION→CAREFUL | 2 | Planned |
+| 015 | `manual-test-verification-and-fixes` | run refined-feature manual scenarios + fix surfaced defects (gold-battery path, bm25 scoped fill-limit regression) | AUDIT | 2 | Complete |
 
 ---
 
