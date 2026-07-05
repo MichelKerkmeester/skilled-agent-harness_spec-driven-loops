@@ -565,6 +565,7 @@ def validate_feature_catalog_table(content: str, doc_type_rules: Dict[str, Any])
             continue
         if file_cell in dash and role_cell in dash:
             errors.append({
+                'type': 'placeholder_validation_row',
                 'line': i + 1, 'severity': 'blocking', 'auto_fixable': False,
                 'message': (f"Placeholder validation-table row (File and Role are em-dashes, Type "
                             f"'{type_cell}') — replace with a real test file + role, or remove the row."),
@@ -575,6 +576,7 @@ def validate_feature_catalog_table(content: str, doc_type_rules: Dict[str, Any])
         # surface the inconsistency for a normalization decision rather than block a third of catalogs.
         if type_bare and type_bare not in allowed:
             errors.append({
+                'type': 'off_taxonomy_validation_type',
                 'line': i + 1, 'severity': 'warning', 'auto_fixable': False,
                 'message': (f"Off-taxonomy validation Type '{type_bare}' — template canon is "
                             f"{' | '.join(sorted(allowed))} (advisory: taxonomy needs normalization)."),

@@ -45,6 +45,14 @@ def run() -> int:
     # No validation table anywhere -> no errors.
     check("no table -> no errors", validate_feature_catalog_table("# Doc\nprose only\n", RULES) == [])
 
+    # Regression guard: every returned entry MUST carry a non-empty 'type' key, else
+    # validate_document.py's error/warning printer raises KeyError rendering it (it does
+    # `error['type']` / `warning['type']` directly, not `.get`).
+    entries = (validate_feature_catalog_table(HDR + "| — | Automated test | — |\n", RULES)
+               + validate_feature_catalog_table(HDR + "| `tests/x.ts` | Integration | Cover. |\n", RULES))
+    check("every entry carries a non-empty 'type' key (printer guard)",
+          all(isinstance(e.get("type"), str) and e["type"] for e in entries))
+
     print(f"\n{'ALL PASS' if not fails else f'{len(fails)} FAILED'}")
     return 1 if fails else 0
 
