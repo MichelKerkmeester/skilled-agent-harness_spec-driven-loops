@@ -171,3 +171,15 @@ Audit AI-council graph documentation/test-depth claims: compare manual playbook 
 ## Next Audit Angle After Iteration 14
 
 Audit cross-skill test-reference labeling patterns: feature catalogs and playbooks that label manual scenario contracts, runtime integration fixtures, and true automated tests inconsistently across system-spec-kit, deep-loop-runtime, and deep-loop-workflows.
+
+## Findings Added in Iteration 15
+
+1. Deep-ai-council feature catalogs repeatedly label manual playbook scenario files as `Automated test` even when the role text says `Manual scenario contract`. [SOURCE: .opencode/skills/deep-loop-workflows/deep-ai-council/feature_catalog/08--council-graph-integration/council-graph-status-recovery-payload-and-readiness.md:51] [SOURCE: .opencode/skills/deep-loop-workflows/deep-ai-council/feature_catalog/09--council-graph-value-comparison/convergence-safety-under-critical-disagreement-graph-vs-baseline.md:51]
+2. The AI-council root manual playbook is more precise: it separates graph integration tests, value-scenario tests, operator A/B comparisons, and documentation reference validation. [SOURCE: .opencode/skills/deep-loop-workflows/deep-ai-council/manual_testing_playbook/manual_testing_playbook.md:399] [SOURCE: .opencode/skills/deep-loop-workflows/deep-ai-council/manual_testing_playbook/manual_testing_playbook.md:409] [SOURCE: .opencode/skills/deep-loop-workflows/deep-ai-council/manual_testing_playbook/manual_testing_playbook.md:411]
+3. System-spec-kit feature catalogs have localized placeholder `Automated test` rows with no test path, especially in some retrieval-enhancement entries. [SOURCE: .opencode/skills/system-spec-kit/feature_catalog/15--retrieval-enhancements/dual-level-retrieval.md:43] [SOURCE: .opencode/skills/system-spec-kit/feature_catalog/15--retrieval-enhancements/graph-expanded-fallback.md:42] [SOURCE: .opencode/skills/system-spec-kit/feature_catalog/15--retrieval-enhancements/always-on-graph-context-injection.md:42]
+4. System-spec-kit also has many precise automated-test rows that name actual vitest files, so the placeholder rows are localized rather than universal. [SOURCE: .opencode/skills/system-spec-kit/feature_catalog/03--discovery/health-diagnostics-memoryhealth.md:67] [SOURCE: .opencode/skills/system-spec-kit/feature_catalog/15--retrieval-enhancements/cross-document-entity-linking.md:57]
+5. Deep-loop-runtime feature catalogs use broad `Integration` labels for command YAML assets or fixture coverage, which can blur command assets, static fixtures, and true script-spawn tests. [SOURCE: .opencode/skills/deep-loop-runtime/feature_catalog/11--observability/single-loop-telemetry-heartbeat.md:40] [SOURCE: .opencode/skills/deep-loop-runtime/feature_catalog/07--script-entry-points/convergence-script.md:48] [SOURCE: .opencode/skills/deep-loop-runtime/feature_catalog/06--coverage-graph/coverage-graph-signals.md:49]
+
+## Next Audit Angle After Iteration 15
+
+Audit feature-catalog generation/scaffolding sources for test-label taxonomy: templates, create-feature-catalog command assets, and any scripts that emit `Automated test`, `Integration`, or manual scenario rows.
