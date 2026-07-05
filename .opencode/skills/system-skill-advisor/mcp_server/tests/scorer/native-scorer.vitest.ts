@@ -368,7 +368,11 @@ describe('027/003 native scorer units', () => {
       projection,
     });
 
-    expect(['sk-code-review', 'sk-deep-review']).toContain(result.topSkill);
+    // The sk-code-review identity was folded into sk-code's review mode, so
+    // ambiguous code-problem prompts route to sk-code (which now owns review)
+    // rather than a standalone review skill. Confidence stays bounded because the
+    // prompt is ambiguous between implement and review intent.
+    expect(result.topSkill).toBe('sk-code');
     expect(result.recommendations[0].confidence).toBeGreaterThanOrEqual(0.4);
     expect(result.recommendations[0].confidence).toBeLessThanOrEqual(0.85);
   });
