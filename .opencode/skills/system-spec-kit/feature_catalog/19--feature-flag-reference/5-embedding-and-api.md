@@ -31,7 +31,7 @@ These settings pick which embedding and reranking providers the system uses and 
 
 ## 3. SOURCE FILES
 
-Source file references are included in the flag tables above.
+Source file references are listed in the ENV_REFERENCE.md flag table linked above.
 
 ---
 
