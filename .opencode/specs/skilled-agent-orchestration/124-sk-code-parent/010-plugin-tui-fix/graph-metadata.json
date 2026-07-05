@@ -1,0 +1,59 @@
+{
+  "schema_version": 1,
+  "packet_id": "010-plugin-tui-fix",
+  "spec_folder": "skilled-agent-orchestration/124-sk-code-parent/010-plugin-tui-fix",
+  "parent_id": "124-sk-code-parent",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "mk-dist-freshness-guard TUI overlay",
+      "opencode plugin no stdout stderr",
+      "plugin warning over chat input"
+    ],
+    "key_topics": [
+      "mk-dist-freshness-guard",
+      "OpenCode plugin output channels",
+      "TUI overlay prevention",
+      "system-context injection"
+    ],
+    "importance_tier": "high",
+    "status": "complete",
+    "key_files": [
+      ".opencode/plugins/mk-dist-freshness-guard.js",
+      ".opencode/plugins/tests/mk-dist-freshness-guard.test.cjs",
+      ".opencode/plugins/README.md",
+      ".opencode/bin/README.md",
+      ".opencode/specs/skilled-agent-orchestration/124-sk-code-parent/010-plugin-tui-fix/spec.md",
+      ".opencode/specs/skilled-agent-orchestration/124-sk-code-parent/010-plugin-tui-fix/plan.md",
+      ".opencode/specs/skilled-agent-orchestration/124-sk-code-parent/010-plugin-tui-fix/tasks.md",
+      ".opencode/specs/skilled-agent-orchestration/124-sk-code-parent/010-plugin-tui-fix/checklist.md",
+      ".opencode/specs/skilled-agent-orchestration/124-sk-code-parent/010-plugin-tui-fix/implementation-summary.md"
+    ],
+    "entities": [],
+    "causal_summary": "Rechanneled mk-dist-freshness-guard warnings away from OpenCode TUI stdout/stderr while preserving agent-visible and operator-visible stale-dist evidence.",
+    "created_at": "2026-07-04T00:00:00Z",
+    "last_save_at": "2026-07-05T00:00:00Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      ".opencode/specs/skilled-agent-orchestration/124-sk-code-parent/010-plugin-tui-fix/spec.md",
+      ".opencode/specs/skilled-agent-orchestration/124-sk-code-parent/010-plugin-tui-fix/plan.md",
+      ".opencode/specs/skilled-agent-orchestration/124-sk-code-parent/010-plugin-tui-fix/tasks.md",
+      ".opencode/specs/skilled-agent-orchestration/124-sk-code-parent/010-plugin-tui-fix/checklist.md",
+      ".opencode/specs/skilled-agent-orchestration/124-sk-code-parent/010-plugin-tui-fix/implementation-summary.md"
+    ],
+    "source_doc_hashes": {
+      "spec.md": "5ae3065a9d7f313f6d31a4a81824e4f4866ccd58d1368edc51d4c603a90b4894",
+      "plan.md": "621cedb7123b21c23e63a0c03cb278202acdfc6993ed006fc0c238dc778957a0",
+      "tasks.md": "0ae396f265f995c2cb7259827c54c882e402a5f4ee9c9aa1725b70fd5c0dacdf",
+      "checklist.md": "f9705febb3c49e1a814e3a004a703eac6c40612765aef52370e45c251ff3dbc3",
+      "implementation-summary.md": "ecb81bf09e7e999d6dd3c6f9d73aa1e4ed0f746b0b8c52862efed496a6ca8752"
+    },
+    "source_fingerprint": "sha256:d43434a77bed83144bb6d3a5b8f36d658bcdc3515ddd21c2330b6808c913d8c3"
+  }
+}
