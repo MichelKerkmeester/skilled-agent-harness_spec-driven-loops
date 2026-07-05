@@ -231,3 +231,14 @@ Audit generated metadata and skill-advisor/search-index documentation for packet
 ## Next Audit Angle After Iteration 19
 
 Audit system-skill-advisor feature catalogs, manual playbooks, and tests for doc-trigger harvest and `skill_docs` sanitizer-boundary coverage, especially whether the raw-field caveat is represented outside the changelog.
+
+## Findings Added in Iteration 20
+
+1. System-skill-advisor doc-trigger harvest is well represented in maintained surfaces: the feature catalog names flag gating, `skill_docs` lifecycle, capped scoring, sanitized `matchedDocs`, and flag-off invariance, while the manual scenario and dedicated vitest suite validate those runtime/public boundaries. [SOURCE: .opencode/skills/system-skill-advisor/feature_catalog/02--auto-indexing/doc-frontmatter-harvest.md:22] [SOURCE: .opencode/skills/system-skill-advisor/manual_testing_playbook/06--auto-indexing/doc-frontmatter-harvest.md:54] [SOURCE: .opencode/skills/system-skill-advisor/mcp_server/tests/skill-doc-harvest.vitest.ts:155]
+2. The sanitizer feature catalog is over-compressed for the `skill_docs` caveat: it broadly says SQLite daemon writes are sanitized, but inspected source/test anchors do not specifically cover doc-frontmatter `title`, `description`, or `trigger_phrases`, and the DB upsert writes those fields directly. [SOURCE: .opencode/skills/system-skill-advisor/feature_catalog/02--auto-indexing/sanitizer.md:22] [SOURCE: .opencode/skills/system-skill-advisor/feature_catalog/02--auto-indexing/sanitizer.md:45] [SOURCE: .opencode/skills/system-skill-advisor/mcp_server/lib/skill-graph/skill-graph-db.ts:767]
+3. Public matched-doc path sanitization is actively tested, including traversal rejection, dedupe, max-three output, and reference/assets markdown filtering. [SOURCE: .opencode/skills/system-skill-advisor/mcp_server/tests/skill-doc-harvest.vitest.ts:246]
+4. Adjacent sanitizer tests cover graph metadata and affordance attribution, so the remaining risk is narrow rather than global: raw doc-frontmatter fields stored/read through `skill_docs` remain the underrepresented boundary. [SOURCE: .opencode/skills/system-skill-advisor/mcp_server/tests/skill-graph-db.vitest.ts:103] [SOURCE: .opencode/skills/system-skill-advisor/mcp_server/tests/affordance-normalizer.test.ts:98]
+
+## Next Audit Angle After Iteration 20
+
+Audit system-skill-advisor README/SKILL/manual index and release guidance for whether doc-trigger raw-field caveats and sanitizer-boundary limits are visible at operator decision points, not only in changelog/code evidence.
