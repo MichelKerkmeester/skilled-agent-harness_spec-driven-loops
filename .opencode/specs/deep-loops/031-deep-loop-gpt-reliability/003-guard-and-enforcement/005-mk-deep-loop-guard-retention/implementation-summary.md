@@ -8,7 +8,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "deep-loops/037-mk-deep-loop-guard-retention"
+    packet_pointer: "deep-loops/031-deep-loop-gpt-reliability/003-guard-and-enforcement/005-mk-deep-loop-guard-retention"
     last_updated_at: "2026-07-04T20:00:00Z"
     last_updated_by: "claude-sonnet-5"
     recent_action: "Landed sweep/archive/prune with mutation-proved test and doc sync"
@@ -37,7 +37,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 037-mk-deep-loop-guard-retention |
+| **Spec Folder** | 005-mk-deep-loop-guard-retention |
 | **Status** | Complete |
 | **Completed** | 2026-07-04 |
 | **Level** | 1 |
@@ -119,5 +119,5 @@ Implemented directly. Read the full existing plugin and test file first to confi
 
 1. **The live `.loop-guard-state` directory's existing 26 files were not manually migrated.** Unlike the earlier `.goal-state` retention change, no explicit operator request was made to backfill this directory by hand; the automatic sweep will reconcile it the next time any OpenCode session fires `session.created` in this repository.
 2. **`guard-warnings.log`'s whole-file rotation was not independently regression-tested.** It reuses the exact same mtime-gate logic already covered by `mk-goal.js`'s equivalently-structured `pruneJsonlLog`, so a separate test was judged redundant; if this proves wrong in practice, add one.
-3. **This packet was placed as a new top-level `deep-loops/037-...` entry rather than nested under the natural sibling packet**, because that packet was actively being restructured by a concurrent session (uncommitted folder renames/renumbering) at the time of writing. A future cleanup pass may want to re-home this packet once that restructuring settles.
+3. **This packet was initially placed as top-level `deep-loops/037-mk-deep-loop-guard-retention`** because 031 was mid-restructure when it was written. It has since been re-homed into `031-deep-loop-gpt-reliability/003-guard-and-enforcement/005-mk-deep-loop-guard-retention` (2026-07-05) as the guard/enforcement track's retention phase, once that restructuring settled.
 <!-- /ANCHOR:limitations -->

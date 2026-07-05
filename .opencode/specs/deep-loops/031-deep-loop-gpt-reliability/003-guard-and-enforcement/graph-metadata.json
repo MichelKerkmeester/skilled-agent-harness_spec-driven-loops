@@ -7,7 +7,8 @@
     "deep-loops/031-deep-loop-gpt-reliability/003-guard-and-enforcement/001-deep-route-guard-plugin",
     "deep-loops/031-deep-loop-gpt-reliability/003-guard-and-enforcement/002-mk-deep-loop-guard-hardening",
     "deep-loops/031-deep-loop-gpt-reliability/003-guard-and-enforcement/003-loop-guard-implementation",
-    "deep-loops/031-deep-loop-gpt-reliability/003-guard-and-enforcement/004-fanout-stopreason-tolerance"
+    "deep-loops/031-deep-loop-gpt-reliability/003-guard-and-enforcement/004-fanout-stopreason-tolerance",
+    "deep-loops/031-deep-loop-gpt-reliability/003-guard-and-enforcement/005-mk-deep-loop-guard-retention"
   ],
   "manual": {
     "depends_on": [],
@@ -41,7 +42,8 @@
       "001-deep-route-guard-plugin/implementation-summary.md",
       "003-loop-guard-implementation/implementation-summary.md",
       "001-deep-route-guard-plugin/spec.md",
-      "004-fanout-stopreason-tolerance/spec.md"
+      "004-fanout-stopreason-tolerance/spec.md",
+      "005-mk-deep-loop-guard-retention/spec.md"
     ],
     "entities": [
       {
@@ -89,15 +91,15 @@
     ],
     "causal_summary": "Correct routing and dispatch (track 002) needed a detection layer to enforce it and catch regressions",
     "created_at": "2026-07-04T19:09:01.407Z",
-    "last_save_at": "2026-07-04T19:09:01.407Z",
+    "last_save_at": "2026-07-05T04:19:07.921Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:c37bc12284db9fb7a967bc6eb2899384fd97403ebff7dc34c78548916ed95b2c",
+    "source_fingerprint": "sha256:38ea9a81fbb300170f9638b66c5d0a9e1ceea456f1ccbd9458f627f1744868e7",
     "source_doc_hashes": {
-      "spec.md": "1b35a02a864f58ffc7f85b427b3a9426b47e4bd72a3e68157e45b937301472ea"
+      "spec.md": "0bc42e4a6fd9bbe9b01da68be67e2c41baa00068a35958d982a0b9b3c889633a"
     },
     "last_active_child_id": null,
     "last_active_at": null

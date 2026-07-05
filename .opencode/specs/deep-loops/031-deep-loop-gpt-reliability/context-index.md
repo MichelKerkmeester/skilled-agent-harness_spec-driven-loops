@@ -1,8 +1,8 @@
 # Context Index — 031 GPT Reliability (Deep-Loop) reorg
 
 This packet was renamed `031-deep-loop-issues-with-gpt-opencode` →
-`031-deep-loop-gpt-reliability` and regrouped from **21 flat phases** (18 original
-phases + the moved-in packets 034/035/036) into **7 themed L1 tracks**, with child
+`031-deep-loop-gpt-reliability` and regrouped from **22 phases** (18 original
+phases + the moved-in packets 034/035/036/037) into **7 themed L1 tracks**, with child
 numbers restarted per track. This document is the old→new remap so by-number
 cross-references ("see phase 017", "the 004 dispatch phase") stay traceable, and
 preserves the per-phase narrative that previously lived in the root `spec.md`.
@@ -32,6 +32,7 @@ preserved verbatim.
 | `016-mk-deep-loop-guard-hardening` | `003-guard-and-enforcement/002-mk-deep-loop-guard-hardening` | Guard & enforcement |
 | `017-loop-guard-implementation` | `003-guard-and-enforcement/003-loop-guard-implementation` | Guard & enforcement |
 | `018-fanout-stopreason-tolerance` | `003-guard-and-enforcement/004-fanout-stopreason-tolerance` | Guard & enforcement |
+| `037-mk-deep-loop-guard-retention` (moved packet) | `003-guard-and-enforcement/005-mk-deep-loop-guard-retention` | Guard & enforcement |
 | `005-gpt-verification-smoke` | `004-benchmarks-and-verification/001-gpt-verification-smoke` | Benchmarks & verification |
 | `012-gpt-claude-benchmark` | `004-benchmarks-and-verification/002-gpt-claude-benchmark` | Benchmarks & verification |
 | `014-skill-doc-drift-audit` | `005-skill-doc-hygiene/001-skill-doc-drift-audit` | Skill-doc hygiene |
@@ -71,3 +72,4 @@ Moved-in packets:
 - **034 gpt-reliability-research** — 15/15 productive xhigh iterations, 44 verified findings, ranked synthesis. Now `001-research-and-diagnosis/002`.
 - **035 gpt-reliability-fixes** — Acute reliability fixes (acceptance/rollout foundation, Gate-3 precedence + validator, dispatch receipts + progress). Now track `006`.
 - **036 command-contract-compiler** — Command-contract compiler design, deep-loop router deprecation, generalization probes. Now track `007`.
+- **037 mk-deep-loop-guard-retention** — Sweep/archive/prune retention for the mk-deep-loop-guard .loop-guard-state dir. Now `003-guard-and-enforcement/005` (was a top-level packet, re-homed once the reorg settled).

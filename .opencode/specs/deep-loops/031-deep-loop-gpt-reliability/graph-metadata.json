@@ -91,15 +91,15 @@
     ],
     "causal_summary": "GPT-backed OpenCode mis-handled deep-loop routing, dispatch, host identity, and orchestration — deep skills were mis-invoked, routes were mismatched, and the host could not hold a hard identity (FIX-5)",
     "created_at": "2026-07-04T19:23:28.685Z",
-    "last_save_at": "2026-07-05T02:29:00.218Z",
+    "last_save_at": "2026-07-05T04:19:46.507Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:135545e8e9d51cc2461b91933c7e8cf27bf43543c330d98e067ee47a545115b6",
+    "source_fingerprint": "sha256:51f9f2532c30828b70b061dce3d22d0315a552ab7bba7c8f1e93bae8d4e4b9d4",
     "source_doc_hashes": {
-      "spec.md": "e7cde53e7ef38071d738e724ffabaa6f6f946004ed79518db84a84f1424cc351"
+      "spec.md": "f578369550283d9c39f1a1f9893402ee9557773b7a2792e659dda5bed9f5c05d"
     },
     "last_active_child_id": null,
     "last_active_at": null
