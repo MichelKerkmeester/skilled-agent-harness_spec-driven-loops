@@ -141,13 +141,13 @@
         "source": "derived"
       },
       {
-        "name": "Claude Code",
+        "name": "The Gate",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "The Gate",
+        "name": "Claude Code",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -203,7 +203,7 @@
     ],
     "causal_summary": "Two dispatch-path failures — a manual opencode run with no stdin redirect that hung at 0% CPU, and a fanout lineage that stalled at 0 iterations with no terminal event — both trace to the same shape: a machine check that would have caught it exists or is nearly free, but nothing in the execution path runs it before the risky action. This is a plan-only design for wiring those checks in.",
     "created_at": "2026-07-05T05:43:02.602Z",
-    "last_save_at": "2026-07-05T05:56:04.453Z",
+    "last_save_at": "2026-07-05T07:30:57.445Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -214,14 +214,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:c662a33230ddbda76838d39e079ad3f0ed33dfebc4d0d5e2721840873cba2fb1",
+    "source_fingerprint": "sha256:5c2f2313987006df0039821e5d4a291348f08b9219644546b8cd1fb14ab23d8a",
     "source_doc_hashes": {
-      "spec.md": "f87b17e158ed4a3b0a8dde29bbcc68bbd38c7174e82ed2b6966812bbff02c37d",
-      "plan.md": "ba9f5283cfa4152ba6da7eb3f3d3252dd2e260467fafab592780e190ccc5e2ca",
-      "tasks.md": "4db6e6baaa143ca4d279913f034bbec0c6f5ce6e26d28ef5713c8b6f3aa75aff",
-      "checklist.md": "1e8cf2670f3f8a10c6c0c96bfed895b41354aa79521f782c62ab5328c46aadee",
-      "decision-record.md": "8c41f207a13af02c5ba8402b1a3e15d132f9c432a77b04a8356e0386e188d0d7",
-      "implementation-summary.md": "20e842005791f9f1d1878614d523dc7f63f6b1403425dbff6103c3300964dc1e"
+      "spec.md": "d25ced79fc2aed1cbdc4fb2a0f19355e666750440306a579ab96feede5b15c95",
+      "plan.md": "ec7400a26cde0fa0fea2741971ca7b739db1b16d585ea7884b76a4bb31cc45c2",
+      "tasks.md": "9e917c37dcbbb891178f681a0d040af7eaa8f69aaf6a947f9556f1049714cfce",
+      "checklist.md": "4e03656d93e0d742f676e12c3fedb2444fdfa39ff3585b57337b3bb955533d92",
+      "decision-record.md": "6e8bd44aad76813f684f62278c48aa03932381cb87a848ef58a2e3cfa840cf27",
+      "implementation-summary.md": "2e757e9a02c29889787ca4c5df324b122856a9805d8e265c96efae9a4d8eb04c"
     },
     "last_active_child_id": null,
     "last_active_at": null

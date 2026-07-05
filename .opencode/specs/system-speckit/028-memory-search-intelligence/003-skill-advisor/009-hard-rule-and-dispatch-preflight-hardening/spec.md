@@ -13,10 +13,10 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-speckit/028-memory-search-intelligence/003-skill-advisor/009-hard-rule-and-dispatch-preflight-hardening"
-    last_updated_at: "2026-07-05T05:56:04.453Z"
+    last_updated_at: "2026-07-05T07:30:57.445Z"
     last_updated_by: "claude-opus"
-    recent_action: "Authored plan-only design from two-thread deep research"
-    next_safe_action: "Operator resolves 6 open questions in decision-record"
+    recent_action: "Verified Q3 PreToolUse schema + T04 exit-chain; gate now Q2 only"
+    next_safe_action: "Operator confirms Q2 stall default; then run tasks D-config first"
     blockers: []
     key_files:
       - ".opencode/skills/deep-loop-runtime/lib/deep-loop/executor-config.ts"
@@ -31,7 +31,7 @@ _memory:
     open_questions:
       - "Plan-doc home: 003-skill-advisor/009 vs 004-deep-loop/008 vs split twins"
       - "stallWatchdogMs / lagCeilingMs default (proposed 300000ms) needs sign-off"
-      - "PreToolUse hard-block response schema for installed Claude Code version"
+      - "RESOLVED: PreToolUse block schema = hookSpecificOutput.permissionDecision deny"
       - "Burn-in window before warn->block promotion"
       - "A' frontmatter scope at v0 (cli-opencode + cli-claude-code only?)"
       - "Bundle the cli-dispatch-skill-preload.md drift re-verify here or separately"
