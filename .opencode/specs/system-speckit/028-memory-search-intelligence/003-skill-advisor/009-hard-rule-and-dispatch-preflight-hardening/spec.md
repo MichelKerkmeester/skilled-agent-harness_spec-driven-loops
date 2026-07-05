@@ -1,6 +1,6 @@
 ---
-title: "Feature Specification: Hard-rule enforcement + dispatch-reliability hardening (plan only) [template:level_2/spec.md]"
-description: "Two dispatch-path failures — a manual opencode run with no stdin redirect that hung at 0% CPU, and a fanout lineage that stalled at 0 iterations with no terminal event — both trace to the same shape: a machine check that would have caught it exists or is nearly free, but nothing in the execution path runs it before the risky action. This is a plan-only design for wiring those checks in."
+title: "Feature Specification: Hard-rule enforcement + dispatch-reliability hardening [template:level_2/spec.md]"
+description: "Two dispatch-path failures — a manual opencode run with no stdin redirect that hung at 0% CPU, and a fanout lineage that stalled at 0 iterations with no terminal event — both trace to the same shape: a machine check that would have caught it exists or is nearly free, but nothing in the execution path runs it before the risky action. Implemented on-branch 2026-07-05 (Wave D + A′ + B2); both acceptance tests met."
 trigger_phrases:
   - "hard rule enforcement"
   - "dispatch preflight linter"
@@ -13,10 +13,10 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-speckit/028-memory-search-intelligence/003-skill-advisor/009-hard-rule-and-dispatch-preflight-hardening"
-    last_updated_at: "2026-07-05T07:30:57.445Z"
+    last_updated_at: "2026-07-05T08:13:59.253Z"
     last_updated_by: "claude-opus"
-    recent_action: "Verified Q3 PreToolUse schema + T04 exit-chain; gate now Q2 only"
-    next_safe_action: "Operator confirms Q2 stall default; then run tasks D-config first"
+    recent_action: "Shipped Wave D + A'+B2 hardening; both acceptance tests met"
+    next_safe_action: "Follow-up: B1 fan-out guard + burn-in warn->block promotion"
     blockers: []
     key_files:
       - ".opencode/skills/deep-loop-runtime/lib/deep-loop/executor-config.ts"
@@ -27,10 +27,10 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "session-hardrule-dispatch-plan"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 80
     open_questions:
       - "Plan-doc home: 003-skill-advisor/009 vs 004-deep-loop/008 vs split twins"
-      - "stallWatchdogMs / lagCeilingMs default (proposed 300000ms) needs sign-off"
+      - "RESOLVED: Q2 stall default = 300000ms (operator go); Wave D shipped"
       - "RESOLVED: PreToolUse block schema = hookSpecificOutput.permissionDecision deny"
       - "Burn-in window before warn->block promotion"
       - "A' frontmatter scope at v0 (cli-opencode + cli-claude-code only?)"
@@ -41,7 +41,7 @@ _memory:
       - "Research: outsourced to Sonnet-5 max two-thread + synthesis workflow"
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
-# Feature Specification: Hard-rule enforcement + dispatch-reliability hardening (plan only)
+# Feature Specification: Hard-rule enforcement + dispatch-reliability hardening
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!--
@@ -61,10 +61,10 @@ FAILURE MODES:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Planned (design complete; implementation deferred to a future packet) |
+| **Status** | In progress — core shipped (Wave D + A′ + B2, both acceptance tests met); B1 + burn-in follow-up |
 | **Created** | 2026-07-05 |
 | **Branch** | `system-speckit/028-memory-search-intelligence` |
-| **Phase kind** | Design / plan only — no production code is written in this phase |
+| **Phase kind** | Implementation — design shipped on-branch (commits in implementation-summary.md) |
 | **Deliverable** | `plan.md` (design) + `decision-record.md` (decision + open questions) |
 | **Source** | Two-thread Sonnet-5 (max-effort) deep research + synthesis, 2026-07-05 |
 <!-- /ANCHOR:metadata -->
