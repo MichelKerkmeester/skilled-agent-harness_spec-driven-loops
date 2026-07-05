@@ -813,7 +813,8 @@ function ensure_embedding_cache_table(database: Database.Database): void {
 }
 
 function ensure_vector_shard_schema(database: Database.Database, profile: EmbeddingProfile): void {
-  database.pragma(`${ACTIVE_VECTOR_SCHEMA}.journal_mode = WAL`);
+  // Rollback journal, not WAL: the attached vector shard's WAL -shm index has the same SIGBUS exposure.
+  database.pragma(`${ACTIVE_VECTOR_SCHEMA}.journal_mode = DELETE`);
   database.pragma(`${ACTIVE_VECTOR_SCHEMA}.cache_size = -8192`);
   database.pragma(`${ACTIVE_VECTOR_SCHEMA}.mmap_size = 33554432`);
   database.pragma(`${ACTIVE_VECTOR_SCHEMA}.temp_store = DEFAULT`);
@@ -1568,7 +1569,10 @@ export function attachActiveVectorShard(database: Database.Database, profile: Em
   } catch (_error: unknown) {
     sqlite_vec_available_flag = false;
   }
-  database.pragma('journal_mode = WAL');
+  // Rollback journal, not WAL: WAL memory-maps a -shm index that intermittently
+  // SIGBUSes (FS pagein error) on this macOS/better-sqlite3 build; DELETE mode
+  // avoids the shared-memory mapping entirely.
+  database.pragma('journal_mode = DELETE');
   const canonicalPath = get_database_file_path(database);
   const baseDir = resolve_database_base_dir(database);
   const shardPath = get_vector_shard_path(profile, baseDir);
@@ -2122,7 +2126,8 @@ export function initialize_db(custom_path: string | null = null, options: Initia
     console.warn('[vector-index] Install sqlite-vec: brew install sqlite-vec (macOS)');
   }
 
-  new_db.pragma('journal_mode = WAL');
+  // Rollback journal, not WAL: WAL's mmap'd -shm index intermittently SIGBUSes (FS pagein error) on this platform.
+  new_db.pragma('journal_mode = DELETE');
   new_db.pragma('busy_timeout = 10000');
   new_db.pragma('foreign_keys = ON');
   new_db.pragma('cache_size = -64000');
