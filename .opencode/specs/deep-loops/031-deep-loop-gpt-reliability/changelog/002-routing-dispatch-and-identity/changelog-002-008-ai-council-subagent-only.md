@@ -1,5 +1,5 @@
 ---
-title: "Changelog: AI-Council Subagent-Only Conversion [031-deep-loop-issues-with-gpt-opencode/010-ai-council-subagent-only]"
+title: "Changelog: AI-Council Subagent-Only Conversion [031-deep-loop-gpt-reliability/002-routing-dispatch-and-identity/008-ai-council-subagent-only]"
 description: "Chronological changelog for the AI-Council Subagent-Only Conversion phase."
 trigger_phrases:
   - "phase changelog"
@@ -14,8 +14,8 @@ contextType: "implementation"
 
 ## 2026-07-01
 
-> Spec folder: `.opencode/specs/deep-loops/031-deep-loop-issues-with-gpt-opencode/010-ai-council-subagent-only` (Level 2)
-> Parent packet: `.opencode/specs/deep-loops/031-deep-loop-issues-with-gpt-opencode`
+> Spec folder: `.opencode/specs/deep-loops/031-deep-loop-gpt-reliability/002-routing-dispatch-and-identity/008-ai-council-subagent-only` (Level 2)
+> Parent packet: `.opencode/specs/deep-loops/031-deep-loop-gpt-reliability`
 
 ### Summary
 

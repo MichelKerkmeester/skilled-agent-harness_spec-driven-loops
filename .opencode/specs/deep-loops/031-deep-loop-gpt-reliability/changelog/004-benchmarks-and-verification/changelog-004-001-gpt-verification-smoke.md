@@ -1,5 +1,5 @@
 ---
-title: "Changelog: GPT Verification Smoke [031-deep-loop-issues-with-gpt-opencode/005-gpt-verification-smoke]"
+title: "Changelog: GPT Verification Smoke [031-deep-loop-gpt-reliability/004-benchmarks-and-verification/001-gpt-verification-smoke]"
 description: "Chronological changelog for the GPT Verification Smoke phase (blocked, not a clean pass)."
 trigger_phrases:
   - "phase changelog"
@@ -14,8 +14,8 @@ contextType: "implementation"
 
 ## 2026-07-01
 
-> Spec folder: `.opencode/specs/deep-loops/031-deep-loop-issues-with-gpt-opencode/005-gpt-verification-smoke` (Level 1)
-> Parent packet: `.opencode/specs/deep-loops/031-deep-loop-issues-with-gpt-opencode`
+> Spec folder: `.opencode/specs/deep-loops/031-deep-loop-gpt-reliability/004-benchmarks-and-verification/001-gpt-verification-smoke` (Level 1)
+> Parent packet: `.opencode/specs/deep-loops/031-deep-loop-gpt-reliability`
 
 ### Summary
 

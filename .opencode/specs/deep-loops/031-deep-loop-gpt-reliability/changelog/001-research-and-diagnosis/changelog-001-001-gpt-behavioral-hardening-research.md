@@ -1,5 +1,5 @@
 ---
-title: "Changelog: GPT Behavioral Hardening Research [031-deep-loop-issues-with-gpt-opencode/007-gpt-behavioral-hardening-research]"
+title: "Changelog: GPT Behavioral Hardening Research [031-deep-loop-gpt-reliability/001-research-and-diagnosis/001-gpt-behavioral-hardening-research]"
 description: "Chronological changelog for the GPT Behavioral Hardening Research phase."
 trigger_phrases:
   - "phase changelog"
@@ -14,8 +14,8 @@ contextType: "implementation"
 
 ## 2026-07-01
 
-> Spec folder: `.opencode/specs/deep-loops/031-deep-loop-issues-with-gpt-opencode/007-gpt-behavioral-hardening-research` (Level 1, research)
-> Parent packet: `.opencode/specs/deep-loops/031-deep-loop-issues-with-gpt-opencode`
+> Spec folder: `.opencode/specs/deep-loops/031-deep-loop-gpt-reliability/001-research-and-diagnosis/001-gpt-behavioral-hardening-research` (Level 1, research)
+> Parent packet: `.opencode/specs/deep-loops/031-deep-loop-gpt-reliability`
 
 ### Summary
 

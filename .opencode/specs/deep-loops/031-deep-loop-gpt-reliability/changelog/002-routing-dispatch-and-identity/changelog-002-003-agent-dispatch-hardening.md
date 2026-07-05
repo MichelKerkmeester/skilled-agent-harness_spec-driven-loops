@@ -1,5 +1,5 @@
 ---
-title: "Changelog: Agent Dispatch Hardening [031-deep-loop-issues-with-gpt-opencode/003-agent-dispatch-hardening]"
+title: "Changelog: Agent Dispatch Hardening [031-deep-loop-gpt-reliability/002-routing-dispatch-and-identity/003-agent-dispatch-hardening]"
 description: "Chronological changelog for the Agent Dispatch Hardening phase."
 trigger_phrases:
   - "phase changelog"
@@ -14,8 +14,8 @@ contextType: "implementation"
 
 ## 2026-07-01
 
-> Spec folder: `.opencode/specs/deep-loops/031-deep-loop-issues-with-gpt-opencode/003-agent-dispatch-hardening` (Level 2)
-> Parent packet: `.opencode/specs/deep-loops/031-deep-loop-issues-with-gpt-opencode`
+> Spec folder: `.opencode/specs/deep-loops/031-deep-loop-gpt-reliability/002-routing-dispatch-and-identity/003-agent-dispatch-hardening` (Level 2)
+> Parent packet: `.opencode/specs/deep-loops/031-deep-loop-gpt-reliability`
 
 ### Summary
 

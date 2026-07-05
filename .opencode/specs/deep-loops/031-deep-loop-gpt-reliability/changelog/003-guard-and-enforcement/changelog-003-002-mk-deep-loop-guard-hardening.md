@@ -1,5 +1,5 @@
 ---
-title: "Changelog: mk-deep-loop-guard Hardening Research [031-deep-loop-issues-with-gpt-opencode/016-mk-deep-loop-guard-hardening]"
+title: "Changelog: mk-deep-loop-guard Hardening Research [031-deep-loop-gpt-reliability/003-guard-and-enforcement/002-mk-deep-loop-guard-hardening]"
 description: "Chronological changelog for the mk-deep-loop-guard Hardening Research phase."
 trigger_phrases:
   - "phase changelog"
@@ -14,8 +14,8 @@ contextType: "implementation"
 
 ## 2026-07-01
 
-> Spec folder: `.opencode/specs/deep-loops/031-deep-loop-issues-with-gpt-opencode/016-mk-deep-loop-guard-hardening` (Level 1, research)
-> Parent packet: `.opencode/specs/deep-loops/031-deep-loop-issues-with-gpt-opencode`
+> Spec folder: `.opencode/specs/deep-loops/031-deep-loop-gpt-reliability/003-guard-and-enforcement/002-mk-deep-loop-guard-hardening` (Level 1, research)
+> Parent packet: `.opencode/specs/deep-loops/031-deep-loop-gpt-reliability`
 
 ### Summary
 

@@ -1,5 +1,5 @@
 ---
-title: "Changelog: FIX-5 Checkpoint [031-deep-loop-issues-with-gpt-opencode/013-fix5-checkpoint]"
+title: "Changelog: FIX-5 Checkpoint [031-deep-loop-gpt-reliability/002-routing-dispatch-and-identity/009-fix5-checkpoint]"
 description: "Chronological changelog for the FIX-5 Checkpoint phase."
 trigger_phrases:
   - "phase changelog"
@@ -14,8 +14,8 @@ contextType: "implementation"
 
 ## 2026-07-01
 
-> Spec folder: `.opencode/specs/deep-loops/031-deep-loop-issues-with-gpt-opencode/013-fix5-checkpoint` (Level 1)
-> Parent packet: `.opencode/specs/deep-loops/031-deep-loop-issues-with-gpt-opencode`
+> Spec folder: `.opencode/specs/deep-loops/031-deep-loop-gpt-reliability/002-routing-dispatch-and-identity/009-fix5-checkpoint` (Level 1)
+> Parent packet: `.opencode/specs/deep-loops/031-deep-loop-gpt-reliability`
 
 ### Summary
 

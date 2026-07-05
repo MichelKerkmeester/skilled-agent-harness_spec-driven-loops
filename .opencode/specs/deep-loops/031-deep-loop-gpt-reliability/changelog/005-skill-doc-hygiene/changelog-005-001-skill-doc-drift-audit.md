@@ -1,5 +1,5 @@
 ---
-title: "Changelog: Skill-Doc Drift Audit [031-deep-loop-issues-with-gpt-opencode/014-skill-doc-drift-audit]"
+title: "Changelog: Skill-Doc Drift Audit [031-deep-loop-gpt-reliability/005-skill-doc-hygiene/001-skill-doc-drift-audit]"
 description: "Chronological changelog for the Skill-Doc Drift Audit phase."
 trigger_phrases:
   - "phase changelog"
@@ -14,8 +14,8 @@ contextType: "implementation"
 
 ## 2026-07-01
 
-> Spec folder: `.opencode/specs/deep-loops/031-deep-loop-issues-with-gpt-opencode/014-skill-doc-drift-audit` (Level 2)
-> Parent packet: `.opencode/specs/deep-loops/031-deep-loop-issues-with-gpt-opencode`
+> Spec folder: `.opencode/specs/deep-loops/031-deep-loop-gpt-reliability/005-skill-doc-hygiene/001-skill-doc-drift-audit` (Level 2)
+> Parent packet: `.opencode/specs/deep-loops/031-deep-loop-gpt-reliability`
 
 ### Summary
 

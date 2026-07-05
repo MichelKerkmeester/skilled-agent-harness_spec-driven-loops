@@ -1,5 +1,5 @@
 ---
-title: "Changelog: Deep-Loop Issues with GPT-Backed OpenCode [031-deep-loop-issues-with-gpt-opencode/root]"
+title: "Changelog: Deep-Loop Issues with GPT-Backed OpenCode [031-deep-loop-gpt-reliability/root]"
 description: "Packet-level rollup changelog for packet 031, deep-loop-issues-with-gpt-opencode, covering all seventeen phases from initial research through loop-guard hardening implementation."
 trigger_phrases:
   - "031 root changelog"
@@ -14,11 +14,13 @@ contextType: "implementation"
 
 ## 2026-07-01
 
-> Spec folder: `.opencode/specs/deep-loops/031-deep-loop-issues-with-gpt-opencode` (Level phase, phase parent)
+> Spec folder: `.opencode/specs/deep-loops/031-deep-loop-gpt-reliability` (Level phase, phase parent)
 
 ### Summary
 
-Packet 031 investigated and fixed GPT-backed OpenCode's deep-skill mis-routing problem across seventeen phases: research and decomposition, route-proof validation, agent-dispatch and command pre-route hardening, a blocked smoke test, a parked-then-closed host-identity investigation, six-lineage behavioral-hardening research, Mode-D and ai-council identity fixes, universal orchestrate routing, an ai-council reachability conversion, a detection-layer enforcement plugin, a real GPT-vs-Claude benchmark, a FIX-5 closure decision, a skill-doc drift audit and remediation, and a final loop-repeat-detection hardening pass on the enforcement plugin. Fifteen phases shipped real changes; one (005) was blocked/inconclusive without a clean pass; one (006) was parked and ultimately closed unimplemented.
+Packet 031 investigated and fixed
+> **Reorg note (2026-07-05):** the phases below were regrouped into **7 themed L1 tracks** (see `context-index.md` for the old→new remap) and the former top-level packet `037-mk-deep-loop-guard-retention` was folded in as `003-guard-and-enforcement/005`. The packet is **not fully complete**: tracks 001-005 are complete, **006 is Planned** and **007 is In Progress**. The narrative below is preserved by its original flat phase numbers for historical accuracy.
+ GPT-backed OpenCode's deep-skill mis-routing problem across seventeen phases: research and decomposition, route-proof validation, agent-dispatch and command pre-route hardening, a blocked smoke test, a parked-then-closed host-identity investigation, six-lineage behavioral-hardening research, Mode-D and ai-council identity fixes, universal orchestrate routing, an ai-council reachability conversion, a detection-layer enforcement plugin, a real GPT-vs-Claude benchmark, a FIX-5 closure decision, a skill-doc drift audit and remediation, and a final loop-repeat-detection hardening pass on the enforcement plugin. Fifteen phases shipped real changes; one (005) was blocked/inconclusive without a clean pass; one (006) was parked and ultimately closed unimplemented.
 
 ### Before vs After
 

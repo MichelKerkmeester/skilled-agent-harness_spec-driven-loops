@@ -1,5 +1,5 @@
 ---
-title: "Changelog: Command Pre-Route Headers [031-deep-loop-issues-with-gpt-opencode/004-command-pre-route-headers]"
+title: "Changelog: Command Pre-Route Headers [031-deep-loop-gpt-reliability/002-routing-dispatch-and-identity/004-command-pre-route-headers]"
 description: "Chronological changelog for the Command Pre-Route Headers phase."
 trigger_phrases:
   - "phase changelog"
@@ -14,8 +14,8 @@ contextType: "implementation"
 
 ## 2026-07-01
 
-> Spec folder: `.opencode/specs/deep-loops/031-deep-loop-issues-with-gpt-opencode/004-command-pre-route-headers` (Level 2)
-> Parent packet: `.opencode/specs/deep-loops/031-deep-loop-issues-with-gpt-opencode`
+> Spec folder: `.opencode/specs/deep-loops/031-deep-loop-gpt-reliability/002-routing-dispatch-and-identity/004-command-pre-route-headers` (Level 2)
+> Parent packet: `.opencode/specs/deep-loops/031-deep-loop-gpt-reliability`
 
 ### Summary
 

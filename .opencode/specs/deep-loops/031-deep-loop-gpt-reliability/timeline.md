@@ -1,5 +1,5 @@
 ---
-title: "031 Deep-Loop-Issues-With-GPT-OpenCode Chronological Timeline"
+title: "031 GPT Reliability (Deep-Loop) Chronological Timeline"
 description: "Git-commit-ordered timeline of packet 031, from the initial route-and-orchestration research through loop-guard hardening implementation."
 trigger_phrases:
   - "031 timeline"
@@ -12,8 +12,8 @@ _memory:
     packet_pointer: "deep-loops/031-deep-loop-gpt-reliability"
     last_updated_at: "2026-07-01T20:15:00Z"
     last_updated_by: "claude-sonnet-5"
-    recent_action: "Authored full timeline across all 5 epochs with real commit hashes (packet complete, nothing pending commit)"
-    next_safe_action: "None -- packet complete"
+    recent_action: "Regrouped into 7 tracks + folded in 037; timeline framing updated"
+    next_safe_action: "Complete track 006 and 007 001-contract-compiler-design"
     blockers: []
     key_files: []
     session_dedup:
@@ -24,10 +24,12 @@ _memory:
     open_questions: []
     answered_questions: []
 ---
-# 031 Deep-Loop-Issues-With-GPT-OpenCode Chronological Timeline
+# 031 GPT Reliability (Deep-Loop) Chronological Timeline
 
 > **Sort key.** Git commit order, oldest first, for every commit that touched the `031-deep-loop-issues-with-gpt-opencode` packet.
-> **What this packet did.** It diagnosed why GPT-backed models running inside OpenCode mis-invoke and mis-route deep skills, then fixed it across seventeen phases: research, route-proof validation, agent-dispatch and command pre-route hardening, a blocked smoke test, a parked host-identity investigation, six-lineage behavioral research, identity fixes, universal orchestrate routing, an ai-council reachability conversion, a live-verified enforcement plugin, a real GPT-vs-Claude benchmark, a FIX-5 closure decision, a skill-doc drift audit and remediation, and a final loop-repeat-detection hardening pass.
+> **What this packet did.**
+> **Reorg note (2026-07-05):** the phases below were regrouped into **7 themed L1 tracks** (see `context-index.md` for the old→new remap) and the former top-level packet `037-mk-deep-loop-guard-retention` was folded in as `003-guard-and-enforcement/005`. The packet is **not fully complete**: tracks 001-005 are complete, **006 is Planned** and **007 is In Progress**. The narrative below is preserved by its original flat phase numbers for historical accuracy.
+ It diagnosed why GPT-backed models running inside OpenCode mis-invoke and mis-route deep skills, then fixed it across seventeen phases: research, route-proof validation, agent-dispatch and command pre-route hardening, a blocked smoke test, a parked host-identity investigation, six-lineage behavioral research, identity fixes, universal orchestrate routing, an ai-council reachability conversion, a live-verified enforcement plugin, a real GPT-vs-Claude benchmark, a FIX-5 closure decision, a skill-doc drift audit and remediation, and a final loop-repeat-detection hardening pass.
 > **Where the truth lives.** Each commit's detail is in the matching phase changelog under `changelog/`. The before-and-after framing is in `before-vs-after.md`.
 
 ---

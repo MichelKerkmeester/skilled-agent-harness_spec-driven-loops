@@ -1,5 +1,5 @@
 ---
-title: "031 Deep-Loop-Issues-With-GPT-OpenCode Before vs After"
+title: "031 GPT Reliability (Deep-Loop) Before vs After"
 description: "Before-and-after narrative for packet 031, covering ten logical groupings across the seventeen phases: research, routing hardening, the blocked smoke test and parked host-identity spec, identity fixes, universal routing, ai-council reachability, the enforcement plugin, the benchmark and FIX-5 closure, skill-doc drift remediation, and loop-guard hardening."
 trigger_phrases:
   - "031 before vs after"
@@ -9,7 +9,9 @@ contextType: "implementation"
 ---
 # What Changed in Deep-Loop Issues with GPT-Backed OpenCode: The Full 031 Program
 
-> Packet 031 turned an operator-reported symptom, GPT running slowly and mis-invoking deep skills inside OpenCode, into a diagnosed and measured fix. It researched the mis-routing problem, hardened dispatch identity end to end, hit one genuine block and parked one investigation pending evidence, ran a fresh six-lineage behavioral study, fixed the identity gaps that study found, completed orchestrate's routing table, deliberately narrowed ai-council's reachability, shipped a live-verified enforcement plugin, measured the real GPT-vs-Claude gap, closed the parked investigation against that evidence, audited and fixed every skill doc the program's own changes made stale, and finally hardened the enforcement plugin itself against a loop-like failure mode the benchmark had exposed. Fifteen of seventeen phases shipped. One was blocked without a clean pass and one was parked, then closed unimplemented once real evidence said it was unnecessary.
+> Packet 031 turned an operator-reported symptom
+> **Reorg note (2026-07-05):** the phases below were regrouped into **7 themed L1 tracks** (see `context-index.md` for the old→new remap) and the former top-level packet `037-mk-deep-loop-guard-retention` was folded in as `003-guard-and-enforcement/005`. The packet is **not fully complete**: tracks 001-005 are complete, **006 is Planned** and **007 is In Progress**. The narrative below is preserved by its original flat phase numbers for historical accuracy.
+, GPT running slowly and mis-invoking deep skills inside OpenCode, into a diagnosed and measured fix. It researched the mis-routing problem, hardened dispatch identity end to end, hit one genuine block and parked one investigation pending evidence, ran a fresh six-lineage behavioral study, fixed the identity gaps that study found, completed orchestrate's routing table, deliberately narrowed ai-council's reachability, shipped a live-verified enforcement plugin, measured the real GPT-vs-Claude gap, closed the parked investigation against that evidence, audited and fixed every skill doc the program's own changes made stale, and finally hardened the enforcement plugin itself against a loop-like failure mode the benchmark had exposed. Fifteen of seventeen phases shipped. One was blocked without a clean pass and one was parked, then closed unimplemented once real evidence said it was unnecessary.
 
 ---
 

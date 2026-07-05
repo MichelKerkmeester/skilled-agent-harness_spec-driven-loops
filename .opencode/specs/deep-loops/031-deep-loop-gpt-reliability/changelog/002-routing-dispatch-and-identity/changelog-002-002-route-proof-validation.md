@@ -1,5 +1,5 @@
 ---
-title: "Changelog: Route-Proof Validation [031-deep-loop-issues-with-gpt-opencode/002-route-proof-validation]"
+title: "Changelog: Route-Proof Validation [031-deep-loop-gpt-reliability/002-routing-dispatch-and-identity/002-route-proof-validation]"
 description: "Chronological changelog for the Route-Proof Validation phase."
 trigger_phrases:
   - "phase changelog"
@@ -14,8 +14,8 @@ contextType: "implementation"
 
 ## 2026-07-01
 
-> Spec folder: `.opencode/specs/deep-loops/031-deep-loop-issues-with-gpt-opencode/002-route-proof-validation` (Level 2)
-> Parent packet: `.opencode/specs/deep-loops/031-deep-loop-issues-with-gpt-opencode`
+> Spec folder: `.opencode/specs/deep-loops/031-deep-loop-gpt-reliability/002-routing-dispatch-and-identity/002-route-proof-validation` (Level 2)
+> Parent packet: `.opencode/specs/deep-loops/031-deep-loop-gpt-reliability`
 
 ### Summary
 

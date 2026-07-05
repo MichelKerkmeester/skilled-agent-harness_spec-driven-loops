@@ -1,5 +1,5 @@
 ---
-title: "Changelog: Loop-Guard Implementation [031-deep-loop-issues-with-gpt-opencode/017-loop-guard-implementation]"
+title: "Changelog: Loop-Guard Implementation [031-deep-loop-gpt-reliability/003-guard-and-enforcement/003-loop-guard-implementation]"
 description: "Chronological changelog for the Loop-Guard Implementation phase."
 trigger_phrases:
   - "phase changelog"
@@ -14,8 +14,8 @@ contextType: "implementation"
 
 ## 2026-07-01
 
-> Spec folder: `.opencode/specs/deep-loops/031-deep-loop-issues-with-gpt-opencode/017-loop-guard-implementation` (Level 2)
-> Parent packet: `.opencode/specs/deep-loops/031-deep-loop-issues-with-gpt-opencode`
+> Spec folder: `.opencode/specs/deep-loops/031-deep-loop-gpt-reliability/003-guard-and-enforcement/003-loop-guard-implementation` (Level 2)
+> Parent packet: `.opencode/specs/deep-loops/031-deep-loop-gpt-reliability`
 
 ### Summary
 
