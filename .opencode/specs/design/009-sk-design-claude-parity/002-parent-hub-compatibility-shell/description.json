@@ -1,0 +1,48 @@
+{
+  "title": "Phase 002 - Parent Hub Compatibility Shell",
+  "type": "phase",
+  "trigger_phrases": [
+    "parent hub compatibility shell",
+    "sk-design manager shell",
+    "context-first intake",
+    "visible plan",
+    "proof gates",
+    "verifier cadence",
+    "mode registry preservation",
+    "transport-vs-taste separation"
+  ],
+  "path": ".opencode/specs/design/009-sk-design-claude-parity/002-parent-hub-compatibility-shell/",
+  "level": 2,
+  "status": "planned/not-started",
+  "parentPacket": ".opencode/specs/design/009-sk-design-claude-parity/",
+  "specFolder": "design/009-sk-design-claude-parity/002-parent-hub-compatibility-shell",
+  "description": "The parent `sk-design` hub needs the feel of a design manager: it should ask for context first, make the plan visible, enforce proof gates, and run",
+  "keywords": [
+    "parent",
+    "sk-design",
+    "hub",
+    "needs",
+    "feel",
+    "design",
+    "manager",
+    "ask",
+    "context",
+    "first",
+    "make",
+    "plan",
+    "visible",
+    "enforce",
+    "proof",
+    "gates",
+    "run"
+  ],
+  "lastUpdated": "2026-07-05T16:15:10.197Z",
+  "specId": "002",
+  "folderSlug": "parent-hub-compatibility-shell",
+  "parentChain": [
+    "design",
+    "009-sk-design-claude-parity"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

@@ -30,23 +30,23 @@ For a hover state on cards, should I use motion.dev or plain CSS? I need the rou
 - `references/stack_detection.md`
 - `references/smart_routing.md`
 - `references/smart_routing.md`
-- `references/motion_dev/decision_matrix.md`
-- `references/motion_dev/performance_and_pitfalls.md`
-- `references/motion_dev/integration_patterns.md`
+- `code-animation/references/decision_matrix.md`
+- `code-animation/references/performance_and_pitfalls.md`
+- `code-animation/references/integration_patterns.md`
 
 **Expected assets loaded**:
-- `assets/motion_dev/snippets/hover_gesture.js`
+- `code-animation/assets/snippets/hover_gesture.js`
 
 **Expected agent dispatch**: none.
 
 **Pass/fail criteria with binary grading**:
-- **PASS** iff the AI lists `references/motion_dev/decision_matrix.md`, keeps surface as `UNKNOWN` or `N/A`, and its user response compares CSS and Motion.dev with conditions.
+- **PASS** iff the AI lists `code-animation/references/decision_matrix.md`, keeps surface as `UNKNOWN` or `N/A`, and its user response compares CSS and Motion.dev with conditions.
 - **FAIL** iff `decision_matrix.md` is omitted, the AI invents a surface, or it gives an implementation-only answer.
 
 **Failure triage**:
 1. If no decision matrix loads, inspect `CODE_QUALITY / DECISION` in `references/smart_routing.md`.
 2. If `WEBFLOW` is selected, verify the prompt contains no Webflow path, vendor global, or `wrangler.toml`.
-3. If the response is one-sided, compare it against `references/motion_dev/decision_matrix.md`.
+3. If the response is one-sided, compare it against `code-animation/references/decision_matrix.md`.
 
 ---
 

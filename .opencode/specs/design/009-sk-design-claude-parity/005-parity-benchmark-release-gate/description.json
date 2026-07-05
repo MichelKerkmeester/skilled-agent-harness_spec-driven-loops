@@ -1,0 +1,52 @@
+{
+  "title": "Phase 005 - Parity Benchmark Release Gate",
+  "type": "phase",
+  "trigger_phrases": [
+    "parity benchmark release gate",
+    "Claude Design-like behavior",
+    "sk-design release readiness",
+    "golden prompt benchmark",
+    "procedure selection proof",
+    "context manifest proof gates",
+    "anti-slop review lanes",
+    "md-generator preservation tests",
+    "router advisor invariants",
+    "manual playbook scenarios",
+    "negative controls",
+    "baseline delta discipline"
+  ],
+  "path": ".opencode/specs/design/009-sk-design-claude-parity/005-parity-benchmark-release-gate/",
+  "level": 3,
+  "status": "planned/not-started",
+  "parentPacket": ".opencode/specs/design/009-sk-design-claude-parity/",
+  "specFolder": "design/009-sk-design-claude-parity/005-parity-benchmark-release-gate",
+  "description": "The parity refactor can look correct at the router layer while still failing live design usefulness, procedure selection, proof discipline, anti-slop",
+  "keywords": [
+    "parity",
+    "refactor",
+    "look",
+    "correct",
+    "router",
+    "layer",
+    "while",
+    "still",
+    "failing",
+    "live",
+    "design",
+    "usefulness",
+    "procedure",
+    "selection",
+    "proof",
+    "discipline",
+    "anti-slop"
+  ],
+  "lastUpdated": "2026-07-05T16:15:10.222Z",
+  "specId": "005",
+  "folderSlug": "parity-benchmark-release-gate",
+  "parentChain": [
+    "design",
+    "009-sk-design-claude-parity"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

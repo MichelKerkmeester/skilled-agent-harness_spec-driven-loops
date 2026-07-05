@@ -1,4 +1,5 @@
 {
+  "level": "phase",
   "specFolder": "system-speckit/028-memory-search-intelligence/008-speckit-surface-alignment",
   "description": "Phase-parent packet for the 028 surface-alignment audit, Fable review narrowing, audit remediation phases, inert-novelty detector, and",
   "keywords": [
@@ -15,16 +16,13 @@
     "inert-novelty",
     "detector"
   ],
-  "lastUpdated": "2026-07-05T13:17:53.927Z",
+  "lastUpdated": "2026-07-05T19:03:59.363Z",
   "specId": "008",
   "folderSlug": "speckit-surface-alignment",
   "parentChain": [
-    ".opencode",
-    "specs",
     "system-speckit",
     "028-memory-search-intelligence"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "phase"
+  "memoryNameHistory": []
 }

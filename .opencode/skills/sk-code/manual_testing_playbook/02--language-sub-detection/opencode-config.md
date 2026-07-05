@@ -24,24 +24,24 @@ Add a derived.last_active_child_id field to the graph-metadata.json file with va
 - Sub-language: `CONFIG` (target `.json`, signals: `schema`, `descriptor`-style edits)
 
 **Expected references loaded**:
-- `references/opencode/config/style_guide.md`
-- `references/opencode/config/quality_standards.md`
-- `references/opencode/config/quick_reference.md`
-- `references/opencode/shared/code_organization.md`
-- `references/opencode/shared/universal_patterns.md`
+- `code-opencode/references/config/style_guide.md`
+- `code-opencode/references/config/quality_standards.md`
+- `code-opencode/references/config/quick_reference.md`
+- `code-opencode/references/shared/code_organization.md`
+- `code-opencode/references/shared/universal_patterns.md`
 
 **Expected assets loaded**:
-- `assets/opencode/checklists/config_checklist.md`
-- `assets/opencode/checklists/universal_checklist.md`
+- `code-opencode/assets/checklists/config_checklist.md`
+- `code-opencode/assets/checklists/universal_checklist.md`
 
-**Expected NOT loaded**: any `references/opencode/{typescript,python,shell}/*`.
+**Expected NOT loaded**: any `code-opencode/references/{typescript,python,shell}/*`.
 
 ## 3. TEST EXECUTION
 
 ### Preconditions
 
 1. Target file exists at the specified path (or any equivalent `.json` under `.opencode/`).
-2. Config sub-language reference set intact: 3 files under `references/opencode/config/`.
+2. Config sub-language reference set intact: 3 files under `code-opencode/references/config/`.
 
 ### Exact Command Sequence
 

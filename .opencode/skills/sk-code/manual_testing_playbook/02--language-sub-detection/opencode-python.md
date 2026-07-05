@@ -26,24 +26,24 @@ Update the skill_advisor.py argparse block at .opencode/skills/system-skill-advi
 - Sub-language: `PYTHON` (target file `.py`, also Python-specific signal: `argparse`)
 
 **Expected references loaded**:
-- `references/opencode/python/style_guide.md`
-- `references/opencode/python/quality_standards.md`
-- `references/opencode/python/quick_reference.md`
-- `references/opencode/shared/code_organization.md`
-- `references/opencode/shared/universal_patterns.md`
+- `code-opencode/references/python/style_guide.md`
+- `code-opencode/references/python/quality_standards.md`
+- `code-opencode/references/python/quick_reference.md`
+- `code-opencode/references/shared/code_organization.md`
+- `code-opencode/references/shared/universal_patterns.md`
 
 **Expected assets loaded**:
-- `assets/opencode/checklists/python_checklist.md`
-- `assets/opencode/checklists/universal_checklist.md`
+- `code-opencode/assets/checklists/python_checklist.md`
+- `code-opencode/assets/checklists/universal_checklist.md`
 
-**Expected NOT loaded**: any of `references/opencode/{typescript,shell,config}/*`.
+**Expected NOT loaded**: any of `code-opencode/references/{typescript,shell,config}/*`.
 
 ## 3. TEST EXECUTION
 
 ### Preconditions
 
 1. Target file exists: `bash: test -f .opencode/skills/system-skill-advisor/mcp_server/scripts/skill_advisor.py`
-2. Python sub-language reference set intact: 3 files under `references/opencode/python/`.
+2. Python sub-language reference set intact: 3 files under `code-opencode/references/python/`.
 
 ### Exact Command Sequence
 

@@ -6,6 +6,7 @@ import { normalizeContentForBM25 } from '../parsing/content-normalizer.js';
 import {
   normalizeLexicalQueryTokens,
   sanitizeFTS5Query,
+  sanitizeFTS5QueryOr,
   sanitizeQueryTokens,
   simpleStem,
   STOP_WORDS,
@@ -1550,6 +1551,7 @@ export {
   getBm25EngineStatus,
   sanitizeQueryTokens,
   sanitizeFTS5Query,
+  sanitizeFTS5QueryOr,
   normalizeLexicalQueryTokens,
   buildBm25DocumentText,
   buildBm25DocumentFields,

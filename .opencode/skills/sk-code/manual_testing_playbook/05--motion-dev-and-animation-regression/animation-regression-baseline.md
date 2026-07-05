@@ -80,9 +80,9 @@ Record baseline videos for the Motion dropdown and slider flows; compare drift, 
 | File | Role |
 |---|---|
 | `../manual_testing_playbook.md` | Root directory page and scenario summary |
-| `../../references/motion_dev/animate_and_timelines.md` | Local `animate()` and sequence guidance |
-| `../../references/motion_dev/performance_and_pitfalls.md` | Local animation regression and performance risk guidance |
-| `../../assets/motion_dev/snippets/stagger_animation.js` | Local stagger example for list-style regression cases |
+| `../../code-animation/references/animate_and_timelines.md` | Local `animate()` and sequence guidance |
+| `../../code-animation/references/performance_and_pitfalls.md` | Local animation regression and performance risk guidance |
+| `../../code-animation/assets/snippets/stagger_animation.js` | Local stagger example for list-style regression cases |
 | `../../../../../a_nobel_en_zn/2_javascript/navigation/nav_dropdown.js` | Dropdown Motion animation anchor |
 | `../../../../../a_nobel_en_zn/2_javascript/slider/testimonial.js` | Testimonial slider Motion animation anchor |
 | `https://motion.dev/docs/animate` | Official `animate()` behavior reference |

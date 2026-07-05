@@ -77,26 +77,26 @@ _Unscored in this run (need live mode): D1inter, D4._
 ## Contamination findings (router mode — drift, not failures)
 
 _Playbook prompts intentionally carry trigger words; these are reported as drift signals, not scenario failures._
-- SD-001: javascript, src/2_javascript, lenis, intersectionobserver, lenis smooth-scroll
-- SD-002: opencode, mcp, skill, typescript, console.error fallback, handle empty
-- LS-001: refactor, refactor the, throw on missing, opencode, mcp, skill
-- LS-002: argparse block, opencode, mcp, skill, json
-- LS-003: opencode, skill, add set -euo pipefail
+- SD-001: src/2_javascript, javascript, lenis, intersectionobserver, lenis smooth-scroll
+- SD-002: handle empty, console.error fallback, fallback, opencode, mcp, typescript
+- LS-001: refactor, refactor the, throw on missing, missing, opencode, mcp
+- LS-002: argparse block, opencode, mcp, json, skill
+- LS-003: add set -euo pipefail, opencode, skill
 - LS-004: json
-- RD-001: lenis, opencode, skill, lenis smooth-scroll, review
-- RD-002: sk-code, skill, skill.md
-- CS-001: webflow, javascript, cdn, src/2_javascript, animation
+- RD-001: review, lenis, opencode, lenis smooth-scroll, skill
+- RD-002: sk-code, skill.md, skill
+- CS-001: webflow, src/2_javascript, javascript, cdn, animation
 - CS-002: sk-code, webflow, motion.dev, references
-- CS-003: sk-code, opencode, skill, review
+- CS-003: sk-code, review, opencode, skill
 - CS-004: implement, implementation, css, motion.dev, references
 - CS-005: sk-code, webflow, references
-- CS-006: sk-code, webflow, javascript, src/2_javascript, motion.dev, references
-- CS-007: sk-code, webflow, javascript, src/2_javascript, motion.dev
+- CS-006: sk-code, webflow, src/2_javascript, javascript, motion.dev, references
+- CS-007: sk-code, webflow, src/2_javascript, javascript, motion.dev
 - DR-001: opencode, mcp, skill
-- DR-002: opencode, mcp, skill
-- DR-003: opencode, skill, review
+- DR-002: opencode, mcp, config, skill
+- DR-003: review, opencode, skill
 - DR-004: fails
-- TH-001: opencode, mcp, skill, validation
+- TH-001: validation, opencode, mcp, skill
 
 ## Methodology / caveats
 

@@ -24,24 +24,24 @@ Add set -euo pipefail and a trap to .opencode/skills/system-spec-kit/scripts/spe
 - Sub-language: `SHELL` (target `.sh`, signals: `set -euo pipefail`, `trap`)
 
 **Expected references loaded**:
-- `references/opencode/shell/style_guide.md`
-- `references/opencode/shell/quality_standards.md`
-- `references/opencode/shell/quick_reference.md`
-- `references/opencode/shared/code_organization.md`
-- `references/opencode/shared/universal_patterns.md`
+- `code-opencode/references/shell/style_guide.md`
+- `code-opencode/references/shell/quality_standards.md`
+- `code-opencode/references/shell/quick_reference.md`
+- `code-opencode/references/shared/code_organization.md`
+- `code-opencode/references/shared/universal_patterns.md`
 
 **Expected assets loaded**:
-- `assets/opencode/checklists/shell_checklist.md`
-- `assets/opencode/checklists/universal_checklist.md`
+- `code-opencode/assets/checklists/shell_checklist.md`
+- `code-opencode/assets/checklists/universal_checklist.md`
 
-**Expected NOT loaded**: any `references/opencode/{typescript,python,config}/*`.
+**Expected NOT loaded**: any `code-opencode/references/{typescript,python,config}/*`.
 
 ## 3. TEST EXECUTION
 
 ### Preconditions
 
 1. Target file exists: `bash: test -f .opencode/skills/system-spec-kit/scripts/spec/validate.sh`
-2. Shell sub-language reference set intact: 3 files under `references/opencode/shell/`.
+2. Shell sub-language reference set intact: 3 files under `code-opencode/references/shell/`.
 
 ### Exact Command Sequence
 

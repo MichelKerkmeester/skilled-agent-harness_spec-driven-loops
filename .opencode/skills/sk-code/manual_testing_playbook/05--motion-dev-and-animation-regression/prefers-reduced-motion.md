@@ -78,8 +78,8 @@ Test reduced-motion mode on the Motion slider and nav dropdown; return PASS/FAIL
 | File | Role |
 |---|---|
 | `../manual_testing_playbook.md` | Root directory page and scenario summary |
-| `../../references/motion_dev/performance_and_pitfalls.md` | Local reduced-motion and performance pitfalls reference |
-| `../../references/motion_dev/quick_start.md` | Local cross-stack Motion setup reference |
+| `../../code-animation/references/performance_and_pitfalls.md` | Local reduced-motion and performance pitfalls reference |
+| `../../code-animation/references/quick_start.md` | Local cross-stack Motion setup reference |
 | `../../../../../a_nobel_en_zn/2_javascript/slider/testimonial.js` | In-repo reduced-motion media query and slider behavior |
 | `../../../../../a_nobel_en_zn/2_javascript/navigation/nav_dropdown.js` | Motion-driven dropdown behavior to check under reduced motion |
 | `https://motion.dev/docs/react-accessibility` | Official reduced-motion accessibility guidance |

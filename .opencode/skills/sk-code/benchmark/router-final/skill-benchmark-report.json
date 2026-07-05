@@ -6,7 +6,7 @@
   "traceMode": "router",
   "targetSkill": {
     "id": "sk-code",
-    "root": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0014-sk-code-parent/.opencode/skills/sk-code"
+    "root": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/sk-code"
   },
   "verdict": "CONDITIONAL",
   "aggregateScore": 71,
@@ -175,8 +175,8 @@
     {
       "scenarioId": "SD-001",
       "leaks": [
-        "javascript",
         "src/2_javascript",
+        "javascript",
         "lenis",
         "intersectionobserver",
         "lenis smooth-scroll"
@@ -185,13 +185,13 @@
     {
       "scenarioId": "SD-002",
       "leaks": [
+        "handle empty",
+        "console.error fallback",
+        "fallback",
         "opencode",
         "mcp",
-        "skill",
         "typescript",
-        "console.error fallback",
-        "handle empty",
-        "fallback"
+        "skill"
       ]
     },
     {
@@ -200,10 +200,11 @@
         "refactor",
         "refactor the",
         "throw on missing",
+        "missing",
         "opencode",
         "mcp",
-        "skill",
-        "missing"
+        "config",
+        "skill"
       ]
     },
     {
@@ -212,16 +213,16 @@
         "argparse block",
         "opencode",
         "mcp",
-        "skill",
-        "json"
+        "json",
+        "skill"
       ]
     },
     {
       "scenarioId": "LS-003",
       "leaks": [
+        "add set -euo pipefail",
         "opencode",
-        "skill",
-        "add set -euo pipefail"
+        "skill"
       ]
     },
     {
@@ -233,28 +234,28 @@
     {
       "scenarioId": "RD-001",
       "leaks": [
+        "review",
         "lenis",
         "opencode",
-        "skill",
         "lenis smooth-scroll",
-        "review"
+        "skill"
       ]
     },
     {
       "scenarioId": "RD-002",
       "leaks": [
         "sk-code",
-        "skill",
-        "skill.md"
+        "skill.md",
+        "skill"
       ]
     },
     {
       "scenarioId": "CS-001",
       "leaks": [
         "webflow",
+        "src/2_javascript",
         "javascript",
         "cdn",
-        "src/2_javascript",
         "animation"
       ]
     },
@@ -271,9 +272,9 @@
       "scenarioId": "CS-003",
       "leaks": [
         "sk-code",
+        "review",
         "opencode",
-        "skill",
-        "review"
+        "skill"
       ]
     },
     {
@@ -299,8 +300,8 @@
       "leaks": [
         "sk-code",
         "webflow",
-        "javascript",
         "src/2_javascript",
+        "javascript",
         "motion.dev",
         "references"
       ]
@@ -310,8 +311,8 @@
       "leaks": [
         "sk-code",
         "webflow",
-        "javascript",
         "src/2_javascript",
+        "javascript",
         "motion.dev"
       ]
     },
@@ -328,15 +329,16 @@
       "leaks": [
         "opencode",
         "mcp",
+        "config",
         "skill"
       ]
     },
     {
       "scenarioId": "DR-003",
       "leaks": [
+        "review",
         "opencode",
-        "skill",
-        "review"
+        "skill"
       ]
     },
     {
@@ -348,10 +350,10 @@
     {
       "scenarioId": "TH-001",
       "leaks": [
+        "validation",
         "opencode",
         "mcp",
-        "skill",
-        "validation"
+        "skill"
       ]
     }
   ],
@@ -389,8 +391,8 @@
           "score": null,
           "deferred": true,
           "expectedAssets": [
-            "assets/webflow/checklists/code_quality_checklist.md",
-            "assets/webflow/patterns/interaction_gate_patterns.js"
+            "code-webflow/assets/checklists/code_quality_checklist.md",
+            "code-webflow/assets/patterns/interaction_gate_patterns.js"
           ],
           "note": "assets deferred on-demand; not in the first slice (router mode)"
         },
@@ -448,22 +450,21 @@
         "observed": true,
         "source": "hub-router",
         "workflowMode": [
-          "implement"
+          "code-webflow"
         ],
         "matchedAliases": [
-          "javascript",
           "src/2_javascript",
+          "javascript",
           "lenis",
-          "intersectionobserver",
-          "lenis smooth-scroll"
+          "intersectionobserver"
         ],
         "defaultApplied": false,
         "deferReason": null,
         "backendKind": [
-          "surface-router"
+          "evidence-base"
         ],
         "packet": [
-          "code-implement"
+          "code-webflow"
         ]
       }
     },
@@ -500,8 +501,8 @@
           "score": null,
           "deferred": true,
           "expectedAssets": [
-            "assets/opencode/checklists/typescript_checklist.md",
-            "assets/opencode/checklists/universal_checklist.md"
+            "code-opencode/assets/checklists/typescript_checklist.md",
+            "code-opencode/assets/checklists/universal_checklist.md"
           ],
           "note": "assets deferred on-demand; not in the first slice (router mode)"
         },
@@ -559,21 +560,26 @@
         "observed": true,
         "source": "hub-router",
         "workflowMode": [
-          "implement"
+          "debug",
+          "code-opencode"
         ],
         "matchedAliases": [
+          "handle empty",
+          "console.error fallback",
+          "fallback",
           "opencode",
           "mcp",
-          "skill",
           "typescript"
         ],
         "defaultApplied": false,
-        "deferReason": null,
+        "deferReason": "ambiguous-multi-axis",
         "backendKind": [
-          "surface-router"
+          "surface-router",
+          "evidence-base"
         ],
         "packet": [
-          "code-implement"
+          "code-debug",
+          "code-opencode"
         ]
       }
     },
@@ -705,231 +711,8 @@
           "score": null,
           "deferred": true,
           "expectedAssets": [
-            "assets/opencode/checklists/typescript_checklist.md",
-            "assets/opencode/checklists/universal_checklist.md"
-          ],
-          "note": "assets deferred on-demand; not in the first slice (router mode)"
-        },
-        "d1inter": {
-          "score": null,
-          "unscored": "no advisor probe (run with --advisor-mode=python)"
-        },
-        "d4": {
-          "score": null,
-          "unscored": "requires skill-on/off ablation (live mode)"
-        },
-        "modePrecision": {
-          "score": null,
-          "expectedMode": null,
-          "observedMode": null,
-          "advisory": true,
-          "unscored": "fixture carries no expected.mode"
-        },
-        "relativeRanking": {
-          "score": null,
-          "pass": null,
-          "targetRank": null,
-          "violatingSkills": [],
-          "checkedSkillIds": [],
-          "ranks": {},
-          "advisory": true,
-          "unscored": "fixture carries no rankBelowSkillIds"
-        },
-        "hubRoute": {
-          "applicable": false,
-          "pass": true
-        },
-        "toolSurface": {
-          "applicable": false,
-          "pass": true,
-          "firstFailingStage": null,
-          "violations": []
-        }
-      },
-      "firstFailingStage": null,
-      "modeAScore": 59,
-      "applicable": true,
-      "recipeCapped": false,
-      "classKind": "routing",
-      "expectedSurface": "OPENCODE",
-      "observedSurface": null,
-      "surfaceMatch": null,
-      "traceMode": "router",
-      "liveEvidence": {
-        "toolCalls": [],
-        "statedRoutingParsed": false,
-        "responseHead": ""
-      },
-      "routeTelemetry": {
-        "observed": true,
-        "source": "hub-router",
-        "workflowMode": [
-          "implement"
-        ],
-        "matchedAliases": [
-          "refactor",
-          "refactor the",
-          "throw on missing",
-          "opencode",
-          "mcp",
-          "skill"
-        ],
-        "defaultApplied": false,
-        "deferReason": null,
-        "backendKind": [
-          "surface-router"
-        ],
-        "packet": [
-          "code-implement"
-        ]
-      }
-    },
-    {
-      "scenarioId": "LS-002",
-      "tier": "playbook",
-      "dims": {
-        "d1intra": {
-          "score": 0.76,
-          "intentRecall": null,
-          "resourceRecall": 0.6,
-          "negative": false
-        },
-        "commandRecipe": {
-          "applicable": false,
-          "valid": true,
-          "firstFailingStage": null,
-          "firstFailingSubcheck": null,
-          "missReasons": []
-        },
-        "d2": {
-          "score": 0.6,
-          "proxy": "router-replay-recall",
-          "note": "Mode A proxy; live-mode replaces with observed-load Hit@k/Recall@k/MRR"
-        },
-        "d3": {
-          "score": 0.4285714285714286,
-          "routedCount": 7,
-          "wastedCount": 4,
-          "proxy": "router-overload",
-          "note": "Mode A proxy; live-mode replaces with calls/tokens-to-first-expected"
-        },
-        "assetRecall": {
-          "score": null,
-          "deferred": true,
-          "expectedAssets": [
-            "assets/opencode/checklists/python_checklist.md",
-            "assets/opencode/checklists/universal_checklist.md"
-          ],
-          "note": "assets deferred on-demand; not in the first slice (router mode)"
-        },
-        "d1inter": {
-          "score": null,
-          "unscored": "no advisor probe (run with --advisor-mode=python)"
-        },
-        "d4": {
-          "score": null,
-          "unscored": "requires skill-on/off ablation (live mode)"
-        },
-        "modePrecision": {
-          "score": null,
-          "expectedMode": null,
-          "observedMode": null,
-          "advisory": true,
-          "unscored": "fixture carries no expected.mode"
-        },
-        "relativeRanking": {
-          "score": null,
-          "pass": null,
-          "targetRank": null,
-          "violatingSkills": [],
-          "checkedSkillIds": [],
-          "ranks": {},
-          "advisory": true,
-          "unscored": "fixture carries no rankBelowSkillIds"
-        },
-        "hubRoute": {
-          "applicable": false,
-          "pass": true
-        },
-        "toolSurface": {
-          "applicable": false,
-          "pass": true,
-          "firstFailingStage": null,
-          "violations": []
-        }
-      },
-      "firstFailingStage": null,
-      "modeAScore": 59,
-      "applicable": true,
-      "recipeCapped": false,
-      "classKind": "routing",
-      "expectedSurface": "OPENCODE",
-      "observedSurface": null,
-      "surfaceMatch": null,
-      "traceMode": "router",
-      "liveEvidence": {
-        "toolCalls": [],
-        "statedRoutingParsed": false,
-        "responseHead": ""
-      },
-      "routeTelemetry": {
-        "observed": true,
-        "source": "hub-router",
-        "workflowMode": [
-          "implement"
-        ],
-        "matchedAliases": [
-          "argparse block",
-          "opencode",
-          "mcp",
-          "skill",
-          "json"
-        ],
-        "defaultApplied": false,
-        "deferReason": null,
-        "backendKind": [
-          "surface-router"
-        ],
-        "packet": [
-          "code-implement"
-        ]
-      }
-    },
-    {
-      "scenarioId": "LS-003",
-      "tier": "playbook",
-      "dims": {
-        "d1intra": {
-          "score": 0.76,
-          "intentRecall": null,
-          "resourceRecall": 0.6,
-          "negative": false
-        },
-        "commandRecipe": {
-          "applicable": false,
-          "valid": true,
-          "firstFailingStage": null,
-          "firstFailingSubcheck": null,
-          "missReasons": []
-        },
-        "d2": {
-          "score": 0.6,
-          "proxy": "router-replay-recall",
-          "note": "Mode A proxy; live-mode replaces with observed-load Hit@k/Recall@k/MRR"
-        },
-        "d3": {
-          "score": 0.4285714285714286,
-          "routedCount": 7,
-          "wastedCount": 4,
-          "proxy": "router-overload",
-          "note": "Mode A proxy; live-mode replaces with calls/tokens-to-first-expected"
-        },
-        "assetRecall": {
-          "score": null,
-          "deferred": true,
-          "expectedAssets": [
-            "assets/opencode/checklists/shell_checklist.md",
-            "assets/opencode/checklists/universal_checklist.md"
+            "code-opencode/assets/checklists/typescript_checklist.md",
+            "code-opencode/assets/checklists/universal_checklist.md"
           ],
           "note": "assets deferred on-demand; not in the first slice (router mode)"
         },
@@ -988,27 +771,30 @@
         "source": "hub-router",
         "workflowMode": [
           "implement",
-          "quality"
+          "code-opencode"
         ],
         "matchedAliases": [
+          "refactor",
+          "refactor the",
+          "throw on missing",
           "opencode",
-          "skill",
-          "add set -euo pipefail"
+          "mcp",
+          "config"
         ],
         "defaultApplied": false,
         "deferReason": "ambiguous-multi-axis",
         "backendKind": [
           "surface-router",
-          "surface-router"
+          "evidence-base"
         ],
         "packet": [
           "code-implement",
-          "code-quality"
+          "code-opencode"
         ]
       }
     },
     {
-      "scenarioId": "LS-004",
+      "scenarioId": "LS-002",
       "tier": "playbook",
       "dims": {
         "d1intra": {
@@ -1040,8 +826,8 @@
           "score": null,
           "deferred": true,
           "expectedAssets": [
-            "assets/opencode/checklists/config_checklist.md",
-            "assets/opencode/checklists/universal_checklist.md"
+            "code-opencode/assets/checklists/python_checklist.md",
+            "code-opencode/assets/checklists/universal_checklist.md"
           ],
           "note": "assets deferred on-demand; not in the first slice (router mode)"
         },
@@ -1099,7 +885,227 @@
         "observed": true,
         "source": "hub-router",
         "workflowMode": [
-          "implement"
+          "code-opencode"
+        ],
+        "matchedAliases": [
+          "opencode",
+          "mcp",
+          "json"
+        ],
+        "defaultApplied": false,
+        "deferReason": null,
+        "backendKind": [
+          "evidence-base"
+        ],
+        "packet": [
+          "code-opencode"
+        ]
+      }
+    },
+    {
+      "scenarioId": "LS-003",
+      "tier": "playbook",
+      "dims": {
+        "d1intra": {
+          "score": 0.76,
+          "intentRecall": null,
+          "resourceRecall": 0.6,
+          "negative": false
+        },
+        "commandRecipe": {
+          "applicable": false,
+          "valid": true,
+          "firstFailingStage": null,
+          "firstFailingSubcheck": null,
+          "missReasons": []
+        },
+        "d2": {
+          "score": 0.6,
+          "proxy": "router-replay-recall",
+          "note": "Mode A proxy; live-mode replaces with observed-load Hit@k/Recall@k/MRR"
+        },
+        "d3": {
+          "score": 0.4285714285714286,
+          "routedCount": 7,
+          "wastedCount": 4,
+          "proxy": "router-overload",
+          "note": "Mode A proxy; live-mode replaces with calls/tokens-to-first-expected"
+        },
+        "assetRecall": {
+          "score": null,
+          "deferred": true,
+          "expectedAssets": [
+            "code-opencode/assets/checklists/shell_checklist.md",
+            "code-opencode/assets/checklists/universal_checklist.md"
+          ],
+          "note": "assets deferred on-demand; not in the first slice (router mode)"
+        },
+        "d1inter": {
+          "score": null,
+          "unscored": "no advisor probe (run with --advisor-mode=python)"
+        },
+        "d4": {
+          "score": null,
+          "unscored": "requires skill-on/off ablation (live mode)"
+        },
+        "modePrecision": {
+          "score": null,
+          "expectedMode": null,
+          "observedMode": null,
+          "advisory": true,
+          "unscored": "fixture carries no expected.mode"
+        },
+        "relativeRanking": {
+          "score": null,
+          "pass": null,
+          "targetRank": null,
+          "violatingSkills": [],
+          "checkedSkillIds": [],
+          "ranks": {},
+          "advisory": true,
+          "unscored": "fixture carries no rankBelowSkillIds"
+        },
+        "hubRoute": {
+          "applicable": false,
+          "pass": true
+        },
+        "toolSurface": {
+          "applicable": false,
+          "pass": true,
+          "firstFailingStage": null,
+          "violations": []
+        }
+      },
+      "firstFailingStage": null,
+      "modeAScore": 59,
+      "applicable": true,
+      "recipeCapped": false,
+      "classKind": "routing",
+      "expectedSurface": "OPENCODE",
+      "observedSurface": null,
+      "surfaceMatch": null,
+      "traceMode": "router",
+      "liveEvidence": {
+        "toolCalls": [],
+        "statedRoutingParsed": false,
+        "responseHead": ""
+      },
+      "routeTelemetry": {
+        "observed": true,
+        "source": "hub-router",
+        "workflowMode": [
+          "quality",
+          "code-opencode"
+        ],
+        "matchedAliases": [
+          "add set -euo pipefail",
+          "opencode"
+        ],
+        "defaultApplied": false,
+        "deferReason": "ambiguous-multi-axis",
+        "backendKind": [
+          "surface-router",
+          "evidence-base"
+        ],
+        "packet": [
+          "code-quality",
+          "code-opencode"
+        ]
+      }
+    },
+    {
+      "scenarioId": "LS-004",
+      "tier": "playbook",
+      "dims": {
+        "d1intra": {
+          "score": 0.76,
+          "intentRecall": null,
+          "resourceRecall": 0.6,
+          "negative": false
+        },
+        "commandRecipe": {
+          "applicable": false,
+          "valid": true,
+          "firstFailingStage": null,
+          "firstFailingSubcheck": null,
+          "missReasons": []
+        },
+        "d2": {
+          "score": 0.6,
+          "proxy": "router-replay-recall",
+          "note": "Mode A proxy; live-mode replaces with observed-load Hit@k/Recall@k/MRR"
+        },
+        "d3": {
+          "score": 0.4285714285714286,
+          "routedCount": 7,
+          "wastedCount": 4,
+          "proxy": "router-overload",
+          "note": "Mode A proxy; live-mode replaces with calls/tokens-to-first-expected"
+        },
+        "assetRecall": {
+          "score": null,
+          "deferred": true,
+          "expectedAssets": [
+            "code-opencode/assets/checklists/config_checklist.md",
+            "code-opencode/assets/checklists/universal_checklist.md"
+          ],
+          "note": "assets deferred on-demand; not in the first slice (router mode)"
+        },
+        "d1inter": {
+          "score": null,
+          "unscored": "no advisor probe (run with --advisor-mode=python)"
+        },
+        "d4": {
+          "score": null,
+          "unscored": "requires skill-on/off ablation (live mode)"
+        },
+        "modePrecision": {
+          "score": null,
+          "expectedMode": null,
+          "observedMode": null,
+          "advisory": true,
+          "unscored": "fixture carries no expected.mode"
+        },
+        "relativeRanking": {
+          "score": null,
+          "pass": null,
+          "targetRank": null,
+          "violatingSkills": [],
+          "checkedSkillIds": [],
+          "ranks": {},
+          "advisory": true,
+          "unscored": "fixture carries no rankBelowSkillIds"
+        },
+        "hubRoute": {
+          "applicable": false,
+          "pass": true
+        },
+        "toolSurface": {
+          "applicable": false,
+          "pass": true,
+          "firstFailingStage": null,
+          "violations": []
+        }
+      },
+      "firstFailingStage": null,
+      "modeAScore": 59,
+      "applicable": true,
+      "recipeCapped": false,
+      "classKind": "routing",
+      "expectedSurface": "OPENCODE",
+      "observedSurface": null,
+      "surfaceMatch": null,
+      "traceMode": "router",
+      "liveEvidence": {
+        "toolCalls": [],
+        "statedRoutingParsed": false,
+        "responseHead": ""
+      },
+      "routeTelemetry": {
+        "observed": true,
+        "source": "hub-router",
+        "workflowMode": [
+          "code-opencode"
         ],
         "matchedAliases": [
           "json"
@@ -1107,10 +1113,10 @@
         "defaultApplied": false,
         "deferReason": null,
         "backendKind": [
-          "surface-router"
+          "evidence-base"
         ],
         "packet": [
-          "code-implement"
+          "code-opencode"
         ]
       }
     },
@@ -1202,21 +1208,26 @@
         "observed": true,
         "source": "hub-router",
         "workflowMode": [
-          "implement"
+          "code-webflow",
+          "code-opencode",
+          "code-animation"
         ],
         "matchedAliases": [
           "lenis",
           "opencode",
-          "skill",
           "lenis smooth-scroll"
         ],
         "defaultApplied": false,
-        "deferReason": null,
+        "deferReason": "ambiguous-multi-axis",
         "backendKind": [
-          "surface-router"
+          "evidence-base",
+          "evidence-base",
+          "evidence-base"
         ],
         "packet": [
-          "code-implement"
+          "code-webflow",
+          "code-opencode",
+          "code-animation"
         ]
       }
     },
@@ -1307,19 +1318,39 @@
         "observed": true,
         "source": "hub-router",
         "workflowMode": [
-          "implement"
+          "implement",
+          "quality",
+          "debug",
+          "verify",
+          "code-review",
+          "code-webflow",
+          "code-opencode",
+          "code-animation"
         ],
         "matchedAliases": [
-          "skill",
           "sk-code"
         ],
         "defaultApplied": false,
-        "deferReason": null,
+        "deferReason": "ambiguous-multi-axis",
         "backendKind": [
-          "surface-router"
+          "surface-router",
+          "surface-router",
+          "surface-router",
+          "surface-router",
+          "review-cache",
+          "evidence-base",
+          "evidence-base",
+          "evidence-base"
         ],
         "packet": [
-          "code-implement"
+          "code-implement",
+          "code-quality",
+          "code-debug",
+          "code-verify",
+          "code-review",
+          "code-webflow",
+          "code-opencode",
+          "code-animation"
         ]
       }
     },
@@ -1492,11 +1523,11 @@
           "score": null,
           "deferred": true,
           "expectedAssets": [
-            "assets/webflow/checklists/code_quality_checklist.md",
-            "assets/webflow/checklists/verification_checklist.md",
-            "assets/motion_dev/install_card.md",
-            "assets/motion_dev/snippets/in_view_reveal.js",
-            "assets/motion_dev/snippets/cdn_bootstrap.js"
+            "code-webflow/assets/checklists/code_quality_checklist.md",
+            "code-webflow/assets/checklists/verification_checklist.md",
+            "code-animation/assets/install_card.md",
+            "code-animation/assets/snippets/in_view_reveal.js",
+            "code-animation/assets/snippets/cdn_bootstrap.js"
           ],
           "note": "assets deferred on-demand; not in the first slice (router mode)"
         },
@@ -1554,22 +1585,21 @@
         "observed": true,
         "source": "hub-router",
         "workflowMode": [
-          "implement"
+          "code-webflow"
         ],
         "matchedAliases": [
           "webflow",
-          "javascript",
-          "cdn",
           "src/2_javascript",
-          "animation"
+          "javascript",
+          "cdn"
         ],
         "defaultApplied": false,
         "deferReason": null,
         "backendKind": [
-          "surface-router"
+          "evidence-base"
         ],
         "packet": [
-          "code-implement"
+          "code-webflow"
         ]
       }
     },
@@ -1607,9 +1637,9 @@
           "score": null,
           "deferred": true,
           "expectedAssets": [
-            "assets/motion_dev/snippets/hover_gesture.js",
-            "assets/motion_dev/snippets/in_view_reveal.js",
-            "assets/motion_dev/install_card.md"
+            "code-animation/assets/snippets/hover_gesture.js",
+            "code-animation/assets/snippets/in_view_reveal.js",
+            "code-animation/assets/install_card.md"
           ],
           "note": "assets deferred on-demand; not in the first slice (router mode)"
         },
@@ -1667,32 +1697,23 @@
         "observed": true,
         "source": "hub-router",
         "workflowMode": [
-          "implement",
-          "quality",
-          "debug",
-          "verify",
-          "review"
+          "code-webflow",
+          "code-animation"
         ],
         "matchedAliases": [
           "webflow",
-          "motion.dev",
-          "sk-code"
+          "sk-code",
+          "motion.dev"
         ],
         "defaultApplied": false,
         "deferReason": "ambiguous-multi-axis",
         "backendKind": [
-          "surface-router",
-          "surface-router",
-          "surface-router",
-          "surface-router",
-          "review-cache"
+          "evidence-base",
+          "evidence-base"
         ],
         "packet": [
-          "code-implement",
-          "code-quality",
-          "code-debug",
-          "code-verify",
-          "code-review"
+          "code-webflow",
+          "code-animation"
         ]
       }
     },
@@ -1729,9 +1750,9 @@
           "score": null,
           "deferred": true,
           "expectedAssets": [
-            "assets/opencode/checklists/universal_checklist.md",
-            "assets/opencode/checklists/typescript_checklist.md",
-            "assets/motion_dev/snippets/es_module_bootstrap.js"
+            "code-opencode/assets/checklists/universal_checklist.md",
+            "code-opencode/assets/checklists/typescript_checklist.md",
+            "code-animation/assets/snippets/es_module_bootstrap.js"
           ],
           "note": "assets deferred on-demand; not in the first slice (router mode)"
         },
@@ -1789,24 +1810,19 @@
         "observed": true,
         "source": "hub-router",
         "workflowMode": [
-          "implement",
-          "review"
+          "code-opencode"
         ],
         "matchedAliases": [
           "opencode",
-          "skill",
-          "sk-code",
-          "review"
+          "sk-code"
         ],
         "defaultApplied": false,
-        "deferReason": "ambiguous-multi-axis",
+        "deferReason": null,
         "backendKind": [
-          "surface-router",
-          "review-cache"
+          "evidence-base"
         ],
         "packet": [
-          "code-implement",
-          "code-review"
+          "code-opencode"
         ]
       }
     },
@@ -1844,7 +1860,7 @@
           "score": null,
           "deferred": true,
           "expectedAssets": [
-            "assets/motion_dev/snippets/hover_gesture.js"
+            "code-animation/assets/snippets/hover_gesture.js"
           ],
           "note": "assets deferred on-demand; not in the first slice (router mode)"
         },
@@ -1906,9 +1922,7 @@
         ],
         "matchedAliases": [
           "implement",
-          "implementation",
-          "css",
-          "motion.dev"
+          "implementation"
         ],
         "defaultApplied": false,
         "deferReason": null,
@@ -1954,8 +1968,8 @@
           "score": null,
           "deferred": true,
           "expectedAssets": [
-            "assets/motion_dev/snippets/in_view_reveal.js",
-            "assets/motion_dev/snippets/animate_on_scroll.js"
+            "code-animation/assets/snippets/in_view_reveal.js",
+            "code-animation/assets/snippets/animate_on_scroll.js"
           ],
           "note": "assets deferred on-demand; not in the first slice (router mode)"
         },
@@ -2013,31 +2027,19 @@
         "observed": true,
         "source": "hub-router",
         "workflowMode": [
-          "implement",
-          "quality",
-          "debug",
-          "verify",
-          "review"
+          "code-webflow"
         ],
         "matchedAliases": [
           "webflow",
           "sk-code"
         ],
         "defaultApplied": false,
-        "deferReason": "ambiguous-multi-axis",
+        "deferReason": null,
         "backendKind": [
-          "surface-router",
-          "surface-router",
-          "surface-router",
-          "surface-router",
-          "review-cache"
+          "evidence-base"
         ],
         "packet": [
-          "code-implement",
-          "code-quality",
-          "code-debug",
-          "code-verify",
-          "code-review"
+          "code-webflow"
         ]
       }
     },
@@ -2074,8 +2076,8 @@
           "score": null,
           "deferred": true,
           "expectedAssets": [
-            "assets/webflow/checklists/performance_loading_checklist.md",
-            "assets/webflow/patterns/performance_patterns.js"
+            "code-webflow/assets/checklists/performance_loading_checklist.md",
+            "code-webflow/assets/patterns/performance_patterns.js"
           ],
           "note": "assets deferred on-demand; not in the first slice (router mode)"
         },
@@ -2133,22 +2135,21 @@
         "observed": true,
         "source": "hub-router",
         "workflowMode": [
-          "implement"
+          "code-webflow"
         ],
         "matchedAliases": [
           "webflow",
-          "javascript",
           "src/2_javascript",
-          "motion.dev",
+          "javascript",
           "sk-code"
         ],
         "defaultApplied": false,
         "deferReason": null,
         "backendKind": [
-          "surface-router"
+          "evidence-base"
         ],
         "packet": [
-          "code-implement"
+          "code-webflow"
         ]
       }
     },
@@ -2185,10 +2186,10 @@
           "score": null,
           "deferred": true,
           "expectedAssets": [
-            "assets/webflow/checklists/code_quality_checklist.md",
-            "assets/webflow/checklists/verification_checklist.md",
-            "assets/motion_dev/snippets/hover_gesture.js",
-            "assets/motion_dev/snippets/in_view_reveal.js"
+            "code-webflow/assets/checklists/code_quality_checklist.md",
+            "code-webflow/assets/checklists/verification_checklist.md",
+            "code-animation/assets/snippets/hover_gesture.js",
+            "code-animation/assets/snippets/in_view_reveal.js"
           ],
           "note": "assets deferred on-demand; not in the first slice (router mode)"
         },
@@ -2246,22 +2247,21 @@
         "observed": true,
         "source": "hub-router",
         "workflowMode": [
-          "implement"
+          "code-webflow"
         ],
         "matchedAliases": [
           "webflow",
-          "javascript",
           "src/2_javascript",
-          "motion.dev",
+          "javascript",
           "sk-code"
         ],
         "defaultApplied": false,
         "deferReason": null,
         "backendKind": [
-          "surface-router"
+          "evidence-base"
         ],
         "packet": [
-          "code-implement"
+          "code-webflow"
         ]
       }
     },
@@ -2353,20 +2353,19 @@
         "observed": true,
         "source": "hub-router",
         "workflowMode": [
-          "implement"
+          "code-opencode"
         ],
         "matchedAliases": [
           "opencode",
-          "mcp",
-          "skill"
+          "mcp"
         ],
         "defaultApplied": false,
         "deferReason": null,
         "backendKind": [
-          "surface-router"
+          "evidence-base"
         ],
         "packet": [
-          "code-implement"
+          "code-opencode"
         ]
       }
     },
@@ -2457,20 +2456,20 @@
         "observed": true,
         "source": "hub-router",
         "workflowMode": [
-          "implement"
+          "code-opencode"
         ],
         "matchedAliases": [
           "opencode",
           "mcp",
-          "skill"
+          "config"
         ],
         "defaultApplied": false,
         "deferReason": null,
         "backendKind": [
-          "surface-router"
+          "evidence-base"
         ],
         "packet": [
-          "code-implement"
+          "code-opencode"
         ]
       }
     },
@@ -2561,23 +2560,18 @@
         "observed": true,
         "source": "hub-router",
         "workflowMode": [
-          "implement",
-          "review"
+          "code-opencode"
         ],
         "matchedAliases": [
-          "opencode",
-          "skill",
-          "review"
+          "opencode"
         ],
         "defaultApplied": false,
-        "deferReason": "ambiguous-multi-axis",
+        "deferReason": null,
         "backendKind": [
-          "surface-router",
-          "review-cache"
+          "evidence-base"
         ],
         "packet": [
-          "code-implement",
-          "code-review"
+          "code-opencode"
         ]
       }
     },
@@ -2770,20 +2764,19 @@
         "observed": true,
         "source": "hub-router",
         "workflowMode": [
-          "implement"
+          "code-opencode"
         ],
         "matchedAliases": [
           "opencode",
-          "mcp",
-          "skill"
+          "mcp"
         ],
         "defaultApplied": false,
         "deferReason": null,
         "backendKind": [
-          "surface-router"
+          "evidence-base"
         ],
         "packet": [
-          "code-implement"
+          "code-opencode"
         ]
       }
     }

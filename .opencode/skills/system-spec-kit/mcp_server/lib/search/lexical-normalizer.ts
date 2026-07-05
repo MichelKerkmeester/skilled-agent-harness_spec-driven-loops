@@ -131,11 +131,31 @@ function sanitizeFTS5Query(query: string): string {
     .join(' ');
 }
 
+/**
+ * Tolerant FTS5 MATCH string for verbose natural-language queries.
+ *
+ * The strict variant above joins quoted tokens with spaces, which FTS5
+ * treats as implicit AND — one absent token zeroes the whole result set.
+ * This variant drops stop words and ORs the remaining quoted tokens so a
+ * verbose query still matches rows containing any informative token. When
+ * every token is a stop word, the full token set is used instead.
+ */
+function sanitizeFTS5QueryOr(query: string): string {
+  const tokens = sanitizeQueryTokens(query);
+  if (tokens.length === 0) return '';
+
+  const informative = tokens.filter((token) => !STOP_WORDS.has(token.toLowerCase()));
+  const kept = informative.length > 0 ? informative : tokens;
+
+  return Array.from(new Set(kept.map((token) => `"${token}"`))).join(' OR ');
+}
+
 export {
   LEXICAL_QUERY_SYNONYMS,
   STOP_WORDS,
   normalizeLexicalQueryTokens,
   sanitizeFTS5Query,
+  sanitizeFTS5QueryOr,
   sanitizeQueryTokens,
   simpleStem,
   splitLexicalFragments,

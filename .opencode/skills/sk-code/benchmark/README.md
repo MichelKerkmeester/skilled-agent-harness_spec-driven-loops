@@ -28,7 +28,7 @@ Two trace modes score the same playbook corpus:
 |---|---|
 | Corpus | sk-code `manual_testing_playbook` (28 deterministic scenarios across 8 categories, including `DR-001`..`DR-004`) |
 | Trace modes | router (deterministic CI gate), live (real dispatch) |
-| Latest router verdict | FAIL, aggregate 44/100 |
+| Latest router verdict | CONDITIONAL, aggregate 71/100 |
 | Latest live verdict | CONDITIONAL, aggregate 71 |
 | D4 usefulness (approximate) | about 49 |
 

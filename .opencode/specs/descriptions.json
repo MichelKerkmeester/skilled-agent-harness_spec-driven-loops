@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generated": "2026-07-04T14:39:13.799Z",
+  "generated": "2026-07-05T19:04:15.281Z",
   "folders": [
     {
       "specFolder": "ai-systems/001-ai-system-architecture",
@@ -477,229 +477,6 @@
       "lastUpdated": "2026-06-23T03:49:48.271Z"
     },
     {
-      "specFolder": "anobel.com/001-button-text-link-disabled-state",
-      "description": "Text-link buttons currently define enabled, hover, focus and active states, but they do not expose a dedicated disabled override",
-      "keywords": [
-        "text-link",
-        "buttons",
-        "currently",
-        "define",
-        "enabled",
-        "hover",
-        "focus",
-        "active",
-        "states",
-        "expose",
-        "dedicated",
-        "disabled",
-        "override"
-      ],
-      "lastUpdated": "2026-06-23T03:49:48.277Z"
-    },
-    {
-      "specFolder": "anobel.com/002-link-card-button-and-mobile-animation",
-      "description": "The sector-menu link card (`[data-link-card]`) had three original defects, then one follow-up iOS",
-      "keywords": [
-        "sector-menu",
-        "link",
-        "card",
-        "data-link-card",
-        "three",
-        "original",
-        "defects",
-        "one",
-        "follow-up",
-        "ios"
-      ],
-      "lastUpdated": "2026-06-23T03:49:48.285Z"
-    },
-    {
-      "specFolder": "anobel.com/003-slider-refactor",
-      "description": "The carousel slider was named and attributed specifically for testimonials (`testimonial.js`, `data-testimonial-slider`, `--testimonial-slide-x`,",
-      "keywords": [
-        "carousel",
-        "slider",
-        "named",
-        "attributed",
-        "specifically",
-        "testimonials",
-        "testimonial",
-        "data-testimonial-slider",
-        "testimonial-slide-x"
-      ],
-      "lastUpdated": "2026-07-02T06:50:00.821Z"
-    },
-    {
-      "specFolder": "anobel.com/004-bento-visuals",
-      "description": "Four Anobel bento feature-visual prototypes exist as Design Component `.dc.html` files with inline styles and `<sc-for>` templating loops",
-      "keywords": [
-        "four",
-        "anobel",
-        "bento",
-        "feature-visual",
-        "prototypes",
-        "exist",
-        "design",
-        "component",
-        "html",
-        "files",
-        "inline",
-        "styles",
-        "sc-for",
-        "templating",
-        "loops"
-      ],
-      "lastUpdated": "2026-07-02T05:50:04.756Z"
-    },
-    {
-      "specFolder": "anobel.com/005-glm-visual-refinement",
-      "description": "The 45-tile GLM-5.2 vision-to-code run (`../004-bento-visuals`) shipped only 27/45 = 60% SHIP (mean audit 81.1)",
-      "keywords": [
-        "45-tile",
-        "glm-5",
-        "vision-to-code",
-        "run",
-        "004-bento-visuals",
-        "shipped",
-        "only",
-        "ship",
-        "mean",
-        "audit"
-      ],
-      "lastUpdated": "2026-06-29T10:50:18.115Z"
-    },
-    {
-      "specFolder": "anobel.com/005-glm-visual-refinement/001-spatial-contract-and-gate",
-      "description": "The 45-tile GLM-5.2 run (`../../004-bento-visuals`) shipped only 27/45 = 60% SHIP (mean audit 81.1)",
-      "keywords": [
-        "45-tile",
-        "glm-5",
-        "run",
-        "004-bento-visuals",
-        "shipped",
-        "only",
-        "ship",
-        "mean",
-        "audit"
-      ],
-      "lastUpdated": "2026-06-29T10:45:22.023Z"
-    },
-    {
-      "specFolder": "anobel.com/005-glm-visual-refinement/002-primitive-routing",
-      "description": "The 45-tile GLM-5.2 run (`../../004-bento-visuals`) sends every tile down a single generation path, but the score data shows two distinct layout primi",
-      "keywords": [
-        "45-tile",
-        "glm-5",
-        "run",
-        "004-bento-visuals",
-        "sends",
-        "every",
-        "tile",
-        "single",
-        "generation",
-        "path",
-        "score",
-        "data",
-        "shows",
-        "two",
-        "distinct",
-        "layout",
-        "primi"
-      ],
-      "lastUpdated": "2026-06-29T10:45:22.293Z"
-    },
-    {
-      "specFolder": "anobel.com/005-glm-visual-refinement/003-minimax-auditor-in-loop",
-      "description": "In the 45-tile 004 run, MiniMax-M3 (auditor of record) emitted 18 specific, file-grounded FIX findings (panel overflow, eyebrow overlapping a node, to",
-      "keywords": [
-        "45-tile",
-        "004",
-        "run",
-        "minimax-m3",
-        "auditor",
-        "record",
-        "emitted",
-        "specific",
-        "file-grounded",
-        "fix",
-        "findings",
-        "panel",
-        "overflow",
-        "eyebrow",
-        "overlapping",
-        "node"
-      ],
-      "lastUpdated": "2026-06-29T10:48:39.729Z"
-    },
-    {
-      "specFolder": "anobel.com/005-glm-visual-refinement/004-skeleton-first-2d",
-      "description": "2D-positioned bento tiles fail because GLM-5.2 owns the geometry: it places N rows/nodes at fixed pixel heights with no constraint solver, so cumulati",
-      "keywords": [
-        "2d-positioned",
-        "bento",
-        "tiles",
-        "fail",
-        "because",
-        "glm-5",
-        "owns",
-        "geometry",
-        "places",
-        "rows",
-        "nodes",
-        "fixed",
-        "pixel",
-        "heights",
-        "constraint",
-        "solver",
-        "cumulati"
-      ],
-      "lastUpdated": "2026-06-29T10:50:49.090Z"
-    },
-    {
-      "specFolder": "anobel.com/005-glm-visual-refinement/005-gpt5-5-skeleton-author",
-      "description": "The deterministic geometry skeleton (phase 004) recovers many 2D-positioned tiles, but the hardest ones — dense matrix / node-diagram / branch / conne",
-      "keywords": [
-        "deterministic",
-        "geometry",
-        "skeleton",
-        "phase",
-        "004",
-        "recovers",
-        "many",
-        "2d-positioned",
-        "tiles",
-        "hardest",
-        "ones",
-        "dense",
-        "matrix",
-        "node-diagram",
-        "branch",
-        "conne"
-      ],
-      "lastUpdated": "2026-06-29T10:48:48.726Z"
-    },
-    {
-      "specFolder": "anobel.com/005-glm-visual-refinement/006-adoption-gate-and-rerun",
-      "description": "Phases 001-005 implement the seven research angles and the eleven-step pipeline that should close the bento-tile quality gap, but the program's value",
-      "keywords": [
-        "phases",
-        "001-005",
-        "implement",
-        "seven",
-        "research",
-        "angles",
-        "eleven-step",
-        "pipeline",
-        "close",
-        "bento-tile",
-        "quality",
-        "gap",
-        "program",
-        "value"
-      ],
-      "lastUpdated": "2026-06-29T10:48:51.319Z"
-    },
-    {
       "specFolder": "barter/001-reel-video-flicker-expo",
       "description": "In `MediaViewer` reels mode, scrolling down between reels produces an aggressive black-screen flash (~80–130ms) on each transition",
       "keywords": [
@@ -732,7 +509,7 @@
         "css",
         "balance"
       ],
-      "lastUpdated": "2026-07-04T14:39:13.799Z"
+      "lastUpdated": "2026-07-05T19:04:15.281Z"
     },
     {
       "specFolder": "barter/003-feed-v2.5-weighted-ranking",
@@ -784,7 +561,7 @@
         "push",
         "only"
       ],
-      "lastUpdated": "2026-07-04T14:39:13.799Z"
+      "lastUpdated": "2026-07-05T19:04:15.281Z"
     },
     {
       "specFolder": "barter/005-notifications-system/001-research",
@@ -904,7 +681,7 @@
         "language",
         "lets"
       ],
-      "lastUpdated": "2026-07-04T14:39:13.799Z"
+      "lastUpdated": "2026-07-05T19:04:15.281Z"
     },
     {
       "specFolder": "barter/007-barter-deal-page-liquid-glass-bug",
@@ -922,7 +699,7 @@
         "glass",
         "material"
       ],
-      "lastUpdated": "2026-07-04T14:39:13.799Z"
+      "lastUpdated": "2026-07-05T19:04:15.281Z"
     },
     {
       "specFolder": "design/001-sk-design-interface",
@@ -4052,6 +3829,134 @@
       "lastUpdated": "2026-06-30T12:42:36.334Z"
     },
     {
+      "specFolder": "design/009-sk-design-claude-parity",
+      "description": "The research packet found that `sk-design` already has the right OpenCode-native backbone: one advisor-routable hub, five public modes,",
+      "keywords": [
+        "research",
+        "packet",
+        "found",
+        "sk-design",
+        "already",
+        "right",
+        "opencode-native",
+        "backbone",
+        "one",
+        "advisor-routable",
+        "hub",
+        "five",
+        "public",
+        "modes"
+      ],
+      "lastUpdated": "2026-07-05T19:03:59.197Z"
+    },
+    {
+      "specFolder": "design/009-sk-design-claude-parity/001-baseline-ownership-gate",
+      "description": "The sk-design parity refactor must not begin while existing or uncommitted `sk-design` changes have unclear ownership",
+      "keywords": [
+        "sk-design",
+        "parity",
+        "refactor",
+        "must",
+        "begin",
+        "while",
+        "existing",
+        "uncommitted",
+        "changes",
+        "unclear",
+        "ownership"
+      ],
+      "lastUpdated": "2026-07-05T16:15:10.180Z"
+    },
+    {
+      "specFolder": "design/009-sk-design-claude-parity/002-parent-hub-compatibility-shell",
+      "description": "The parent `sk-design` hub needs the feel of a design manager: it should ask for context first, make the plan visible, enforce proof gates, and run",
+      "keywords": [
+        "parent",
+        "sk-design",
+        "hub",
+        "needs",
+        "feel",
+        "design",
+        "manager",
+        "ask",
+        "context",
+        "first",
+        "make",
+        "plan",
+        "visible",
+        "enforce",
+        "proof",
+        "gates",
+        "run"
+      ],
+      "lastUpdated": "2026-07-05T16:15:10.197Z"
+    },
+    {
+      "specFolder": "design/009-sk-design-claude-parity/003-private-procedure-card-layer",
+      "description": "The external Claude procedure set contains useful design-manager behaviors, but exposing those procedures as fourteen public OpenCode skills would",
+      "keywords": [
+        "external",
+        "claude",
+        "procedure",
+        "set",
+        "contains",
+        "useful",
+        "design-manager",
+        "behaviors",
+        "exposing",
+        "procedures",
+        "fourteen",
+        "public",
+        "opencode",
+        "skills"
+      ],
+      "lastUpdated": "2026-07-05T16:15:10.205Z"
+    },
+    {
+      "specFolder": "design/009-sk-design-claude-parity/004-mode-packet-refactor",
+      "description": "The five `sk-design` mode packets currently provide the public execution lanes for design work, but they have not yet been refactored to consume the",
+      "keywords": [
+        "five",
+        "sk-design",
+        "mode",
+        "packets",
+        "currently",
+        "provide",
+        "public",
+        "execution",
+        "lanes",
+        "design",
+        "work",
+        "refactored",
+        "consume"
+      ],
+      "lastUpdated": "2026-07-05T16:15:10.214Z"
+    },
+    {
+      "specFolder": "design/009-sk-design-claude-parity/005-parity-benchmark-release-gate",
+      "description": "The parity refactor can look correct at the router layer while still failing live design usefulness, procedure selection, proof discipline, anti-slop",
+      "keywords": [
+        "parity",
+        "refactor",
+        "look",
+        "correct",
+        "router",
+        "layer",
+        "while",
+        "still",
+        "failing",
+        "live",
+        "design",
+        "usefulness",
+        "procedure",
+        "selection",
+        "proof",
+        "discipline",
+        "anti-slop"
+      ],
+      "lastUpdated": "2026-07-05T16:15:10.222Z"
+    },
+    {
       "specFolder": "skilled-agent-orchestration/117-parent-nested-skill-pattern",
       "description": "The 152 epic merged five deep-loop skills into one `deep-loop-workflows` skill structured as a thin hub `SKILL.md` + `mode-registry.json` + five inter",
       "keywords": [
@@ -4146,7 +4051,7 @@
         "drift-guard",
         "test"
       ],
-      "lastUpdated": "2026-07-04T14:39:13.799Z"
+      "lastUpdated": "2026-07-05T19:04:15.281Z"
     },
     {
       "specFolder": "skilled-agent-orchestration/118-frontmatter-versioning",
@@ -4187,7 +4092,7 @@
         "skill",
         "field"
       ],
-      "lastUpdated": "2026-07-04T14:39:13.799Z"
+      "lastUpdated": "2026-07-05T19:04:15.281Z"
     },
     {
       "specFolder": "skilled-agent-orchestration/118-frontmatter-versioning/002-derivation-engine",
@@ -4202,7 +4107,7 @@
         "infeasible",
         "unsafe"
       ],
-      "lastUpdated": "2026-07-04T14:39:13.799Z"
+      "lastUpdated": "2026-07-05T19:04:15.281Z"
     },
     {
       "specFolder": "skilled-agent-orchestration/118-frontmatter-versioning/003-apply-core-skill-docs",
@@ -4261,7 +4166,7 @@
         "back",
         "version"
       ],
-      "lastUpdated": "2026-07-04T14:39:13.799Z"
+      "lastUpdated": "2026-07-05T19:04:15.281Z"
     },
     {
       "specFolder": "skilled-agent-orchestration/118-frontmatter-versioning/006-fix-deep-review-findings-for-spec-docs",
@@ -4322,7 +4227,7 @@
         "skill",
         "tool"
       ],
-      "lastUpdated": "2026-07-04T14:39:13.799Z"
+      "lastUpdated": "2026-07-05T19:04:15.281Z"
     },
     {
       "specFolder": "skilled-agent-orchestration/119-parent-skill-native-invocability/002-invocability-mechanism",
@@ -4339,7 +4244,7 @@
         "skill",
         "tool"
       ],
-      "lastUpdated": "2026-07-04T14:39:13.799Z"
+      "lastUpdated": "2026-07-05T19:04:15.281Z"
     },
     {
       "specFolder": "skilled-agent-orchestration/119-parent-skill-native-invocability/003-deep-loop-alignment",
@@ -4357,7 +4262,7 @@
         "pattern",
         "beyond"
       ],
-      "lastUpdated": "2026-07-04T14:39:13.799Z"
+      "lastUpdated": "2026-07-05T19:04:15.281Z"
     },
     {
       "specFolder": "skilled-agent-orchestration/120-glm-5-2-support",
@@ -4397,7 +4302,7 @@
         "operator",
         "registered"
       ],
-      "lastUpdated": "2026-07-04T14:39:13.799Z"
+      "lastUpdated": "2026-07-05T19:04:15.281Z"
     },
     {
       "specFolder": "skilled-agent-orchestration/120-glm-5-2-support/002-framework-bakeoff",
@@ -4433,7 +4338,7 @@
         "benchmarks",
         "run-label"
       ],
-      "lastUpdated": "2026-07-04T14:39:13.799Z"
+      "lastUpdated": "2026-07-05T19:04:15.281Z"
     },
     {
       "specFolder": "skilled-agent-orchestration/120-glm-5-2-support/004-discriminating-bakeoff",
@@ -4451,7 +4356,7 @@
         "still",
         "guess"
       ],
-      "lastUpdated": "2026-07-04T14:39:13.799Z"
+      "lastUpdated": "2026-07-05T19:04:15.281Z"
     },
     {
       "specFolder": "skilled-agent-orchestration/120-glm-5-2-support/005-operational-caveats",
@@ -4521,7 +4426,7 @@
         "799",
         "files"
       ],
-      "lastUpdated": "2026-07-04T14:39:13.799Z"
+      "lastUpdated": "2026-07-05T19:04:15.281Z"
     },
     {
       "specFolder": "skilled-agent-orchestration/121-sk-prompt-models-rename/002-core-rename",
@@ -4541,7 +4446,7 @@
         "sk-prompt-small-model",
         "now"
       ],
-      "lastUpdated": "2026-07-04T14:39:13.799Z"
+      "lastUpdated": "2026-07-05T19:04:15.281Z"
     },
     {
       "specFolder": "skilled-agent-orchestration/121-sk-prompt-models-rename/003-cross-skill-and-code-refs",
@@ -4560,7 +4465,7 @@
         "fails",
         "immediately"
       ],
-      "lastUpdated": "2026-07-04T14:39:13.799Z"
+      "lastUpdated": "2026-07-05T19:04:15.281Z"
     },
     {
       "specFolder": "skilled-agent-orchestration/121-sk-prompt-models-rename/004-commands-scripts-data",
@@ -4579,7 +4484,7 @@
         "workflow",
         "writes"
       ],
-      "lastUpdated": "2026-07-04T14:39:13.799Z"
+      "lastUpdated": "2026-07-05T19:04:15.281Z"
     },
     {
       "specFolder": "skilled-agent-orchestration/121-sk-prompt-models-rename/005-specs-history-sweep",
@@ -4598,7 +4503,7 @@
         "700",
         "files"
       ],
-      "lastUpdated": "2026-07-04T14:39:13.799Z"
+      "lastUpdated": "2026-07-05T19:04:15.281Z"
     },
     {
       "specFolder": "skilled-agent-orchestration/121-sk-prompt-models-rename/006-regenerate-verify",
@@ -4680,7 +4585,7 @@
         "changelog",
         "entry"
       ],
-      "lastUpdated": "2026-07-04T14:39:13.799Z"
+      "lastUpdated": "2026-07-05T19:04:15.281Z"
     },
     {
       "specFolder": "skilled-agent-orchestration/122-cli-codex-deprecation",
@@ -4701,6 +4606,444 @@
         "deprecated"
       ],
       "lastUpdated": "2026-07-01T05:32:33.222Z"
+    },
+    {
+      "specFolder": "skilled-agent-orchestration/124-sk-code-parent",
+      "description": "Code capability is split across two mature-but-uncoordinated skills",
+      "keywords": [
+        "code",
+        "capability",
+        "split",
+        "across",
+        "two",
+        "mature-but-uncoordinated",
+        "skills"
+      ],
+      "lastUpdated": "2026-07-05T19:04:15.281Z"
+    },
+    {
+      "specFolder": "skilled-agent-orchestration/124-sk-code-parent/001-research-and-context",
+      "description": "The sk-code family's mode composition and migration path are undecided",
+      "keywords": [
+        "sk-code",
+        "family",
+        "mode",
+        "composition",
+        "migration",
+        "path",
+        "undecided"
+      ],
+      "lastUpdated": "2026-07-05T19:04:15.281Z"
+    },
+    {
+      "specFolder": "skilled-agent-orchestration/124-sk-code-parent/002-architecture-decision",
+      "description": "Phase 001 produced a decision-ready recommendation but nothing binds it; the build phases need a single authoritative contract for the taxonomy,",
+      "keywords": [
+        "phase",
+        "001",
+        "produced",
+        "decision-ready",
+        "recommendation",
+        "nothing",
+        "binds",
+        "build",
+        "phases",
+        "need",
+        "single",
+        "authoritative",
+        "contract",
+        "taxonomy"
+      ],
+      "lastUpdated": "2026-07-05T12:13:05.247Z"
+    },
+    {
+      "specFolder": "skilled-agent-orchestration/124-sk-code-parent/003-scaffold-hub",
+      "description": "The accepted architecture needed a safe intermediate state before content relocation",
+      "keywords": [
+        "accepted",
+        "architecture",
+        "needed",
+        "safe",
+        "intermediate",
+        "state",
+        "content",
+        "relocation"
+      ],
+      "lastUpdated": "2026-07-05T12:13:05.252Z"
+    },
+    {
+      "specFolder": "skilled-agent-orchestration/124-sk-code-parent/004-onboard-implement",
+      "description": "After the parent-hub scaffold existed, the flat top-level `references/`, `assets/`, and `scripts/` directories still held the prior monolithic sk-code",
+      "keywords": [
+        "parent-hub",
+        "scaffold",
+        "existed",
+        "flat",
+        "top-level",
+        "references",
+        "assets",
+        "scripts",
+        "directories",
+        "still",
+        "held",
+        "prior",
+        "monolithic",
+        "sk-code"
+      ],
+      "lastUpdated": "2026-07-05T12:13:05.257Z"
+    },
+    {
+      "specFolder": "skilled-agent-orchestration/124-sk-code-parent/005-foldin-review",
+      "description": "After the review package moved under the `sk-code` parent hub, the runtime docs still carried standalone `sk-code-review` identity",
+      "keywords": [
+        "review",
+        "package",
+        "moved",
+        "sk-code",
+        "parent",
+        "hub",
+        "runtime",
+        "docs",
+        "still",
+        "carried",
+        "standalone",
+        "sk-code-review",
+        "identity"
+      ],
+      "lastUpdated": "2026-07-05T12:13:05.262Z"
+    },
+    {
+      "specFolder": "skilled-agent-orchestration/124-sk-code-parent/006-build-remaining-modes",
+      "description": "The hub is routing-only and the surface detection lives in `shared/`, but the four non-review mode packets were still 57-line placeholders",
+      "keywords": [
+        "hub",
+        "routing-only",
+        "surface",
+        "detection",
+        "lives",
+        "shared",
+        "four",
+        "non-review",
+        "mode",
+        "packets",
+        "still",
+        "57-line",
+        "placeholders"
+      ],
+      "lastUpdated": "2026-07-05T12:13:05.266Z"
+    },
+    {
+      "specFolder": "skilled-agent-orchestration/124-sk-code-parent/007-advisor-and-integration",
+      "description": "The relocation (004) and fold (005) moved or deleted files that external code and docs still referenced by their old paths",
+      "keywords": [
+        "relocation",
+        "004",
+        "fold",
+        "005",
+        "moved",
+        "deleted",
+        "files",
+        "external",
+        "code",
+        "docs",
+        "still",
+        "referenced",
+        "old",
+        "paths"
+      ],
+      "lastUpdated": "2026-07-05T12:13:05.269Z"
+    },
+    {
+      "specFolder": "skilled-agent-orchestration/124-sk-code-parent/008-routing-benchmark-and-review",
+      "description": "The restructured hub had never been benchmarked or reviewed as a family",
+      "keywords": [
+        "restructured",
+        "hub",
+        "never",
+        "benchmarked",
+        "reviewed",
+        "family"
+      ],
+      "lastUpdated": "2026-07-05T12:13:05.273Z"
+    },
+    {
+      "specFolder": "skilled-agent-orchestration/124-sk-code-parent/009-cutover-and-rollout",
+      "description": "Final phase of the sk-code parent conversion. Branch portion landed verified cleanup (8 harness-test migrations, parent-hub-vocab-sync generalization, CS-003 matcher, a 29-path smart_routing content-drift fix) plus two fold-broken live fixes; the load-bearing cutover (sk-code-review scorer removal, skill-graph regen + reindex, 4 alias-site deletions, ~350 NAME-ref repoints, version release) is specified as an atomic main-side advisor-rebuild runbook because the worktree lacks the compiled dist those steps require",
+      "keywords": [
+        "sk-code",
+        "cutover-and-rollout",
+        "sk-code-review",
+        "alias-removal",
+        "advisor-rebuild",
+        "advisor-scorer",
+        "skill-graph-regen",
+        "name-ref-repoint",
+        "harness-migration",
+        "main-side-runbook"
+      ],
+      "lastUpdated": "2026-07-05T06:47:46.999Z"
+    },
+    {
+      "specFolder": "skilled-agent-orchestration/124-sk-code-parent/010-plugin-tui-fix",
+      "description": "The `.opencode/plugins/mk-dist-freshness-guard.js` plugin emitted stale-dist warnings with `console.warn` and `console.error` during",
+      "keywords": [
+        "opencode",
+        "plugins",
+        "mk-dist-freshness-guard",
+        "plugin",
+        "emitted",
+        "stale-dist",
+        "warnings",
+        "console",
+        "warn",
+        "error"
+      ],
+      "lastUpdated": "2026-07-05T10:10:41.418Z"
+    },
+    {
+      "specFolder": "skilled-agent-orchestration/124-sk-code-parent/011-hub-canon",
+      "description": "The repo had competing parent-hub shapes: deep-loop-workflows' 3-tier machinery and the sk-design/sk-code 2-tier shape",
+      "keywords": [
+        "repo",
+        "competing",
+        "parent-hub",
+        "shapes",
+        "deep-loop-workflows",
+        "3-tier",
+        "machinery",
+        "sk-design",
+        "sk-code",
+        "2-tier",
+        "shape"
+      ],
+      "lastUpdated": "2026-07-05T19:04:15.281Z"
+    },
+    {
+      "specFolder": "skilled-agent-orchestration/124-sk-code-parent/012-spec-kit-relocation",
+      "description": "Two spec-folder authoring docs lived under sk-code, but spec-folder authoring is system-spec-kit's domain, not a code surface",
+      "keywords": [
+        "two",
+        "spec-folder",
+        "authoring",
+        "docs",
+        "lived",
+        "sk-code",
+        "system-spec-kit",
+        "domain",
+        "code",
+        "surface"
+      ],
+      "lastUpdated": "2026-07-05T19:04:15.281Z"
+    },
+    {
+      "specFolder": "skilled-agent-orchestration/124-sk-code-parent/013-sk-code-two-axis-restructure",
+      "description": "The 124 cutover merged the sk-code parent hub with a workflow-only decomposition: implement, quality, debug, verify, and review",
+      "keywords": [
+        "124",
+        "cutover",
+        "merged",
+        "sk-code",
+        "parent",
+        "hub",
+        "workflow-only",
+        "decomposition",
+        "implement",
+        "quality",
+        "debug",
+        "verify",
+        "review"
+      ],
+      "lastUpdated": "2026-07-05T19:04:15.281Z"
+    },
+    {
+      "specFolder": "skilled-agent-orchestration/124-sk-code-parent/014-close-out-and-tail",
+      "description": "The sk-code parent program had shipped its two-axis restructure, but the tail still carried stale identity labels, scorer tests from the pre-fold",
+      "keywords": [
+        "sk-code",
+        "parent",
+        "program",
+        "shipped",
+        "two-axis",
+        "restructure",
+        "tail",
+        "still",
+        "carried",
+        "stale",
+        "identity",
+        "labels",
+        "scorer",
+        "tests",
+        "pre-fold"
+      ],
+      "lastUpdated": "2026-07-05T19:04:15.281Z"
+    },
+    {
+      "specFolder": "skilled-agent-orchestration/124-sk-code-parent/015-sk-design-canon-alignment",
+      "description": "The master plan reports that `parent-skill-check` strict mode leaves sk-design with four remaining parent-hub invariant failures after the five-mode",
+      "keywords": [
+        "master",
+        "plan",
+        "reports",
+        "parent-skill-check",
+        "strict",
+        "mode",
+        "leaves",
+        "sk-design",
+        "four",
+        "remaining",
+        "parent-hub",
+        "invariant",
+        "failures",
+        "five-mode"
+      ],
+      "lastUpdated": "2026-07-05T19:04:15.281Z"
+    },
+    {
+      "specFolder": "skilled-agent-orchestration/124-sk-code-parent/016-sk-code-content-coherence",
+      "description": "The master plan identifies sk-code as structurally canonical but content-incoherent after phase 013",
+      "keywords": [
+        "master",
+        "plan",
+        "identifies",
+        "sk-code",
+        "structurally",
+        "canonical",
+        "content-incoherent",
+        "phase",
+        "013"
+      ],
+      "lastUpdated": "2026-07-05T19:04:15.281Z"
+    },
+    {
+      "specFolder": "skilled-agent-orchestration/124-sk-code-parent/017-canon-hardening",
+      "description": "The parent-hub canon is defined, but its live router template, schema reference, and validator do not speak one `bundleRules` vocabulary",
+      "keywords": [
+        "parent-hub",
+        "canon",
+        "defined",
+        "live",
+        "router",
+        "template",
+        "schema",
+        "reference",
+        "validator",
+        "speak",
+        "one",
+        "bundlerules",
+        "vocabulary"
+      ],
+      "lastUpdated": "2026-07-05T19:04:15.281Z"
+    },
+    {
+      "specFolder": "skilled-agent-orchestration/124-sk-code-parent/018-deep-loop-canon-alignment",
+      "description": "The deep-loop parent hub fails the parent-hub canon with 8 P0 findings and 26 strict invariant failures",
+      "keywords": [
+        "deep-loop",
+        "parent",
+        "hub",
+        "fails",
+        "parent-hub",
+        "canon",
+        "findings",
+        "strict",
+        "invariant",
+        "failures"
+      ],
+      "lastUpdated": "2026-07-05T19:04:15.281Z"
+    },
+    {
+      "specFolder": "skilled-agent-orchestration/124-sk-code-parent/019-benchmarks-and-promotion",
+      "description": "The 124 parent-hub program is only complete after all three hub families have fresh, comparable Lane-C benchmark baselines, parent-skill-check",
+      "keywords": [
+        "124",
+        "parent-hub",
+        "program",
+        "only",
+        "complete",
+        "three",
+        "hub",
+        "families",
+        "fresh",
+        "comparable",
+        "lane-c",
+        "benchmark",
+        "baselines",
+        "parent-skill-check"
+      ],
+      "lastUpdated": "2026-07-05T19:04:15.281Z"
+    },
+    {
+      "specFolder": "skilled-agent-orchestration/124-sk-code-parent/020-surface-packet-rename",
+      "description": "Rename the four sk-code surface sub-skill folders (review, webflow, opencode, animation) to the code- prefix and repair every live reference across th",
+      "keywords": [
+        "rename",
+        "four",
+        "sk-code",
+        "surface",
+        "sub-skill",
+        "folders",
+        "review",
+        "webflow",
+        "opencode",
+        "animation",
+        "code",
+        "prefix",
+        "repair",
+        "every",
+        "live",
+        "reference",
+        "across",
+        "repo",
+        "two-axis",
+        "hub",
+        "router",
+        "markdown",
+        "link",
+        "graph",
+        "advisor",
+        "metadata",
+        "resolve"
+      ],
+      "lastUpdated": "2026-07-05T14:35:43.420Z"
+    },
+    {
+      "specFolder": "skilled-agent-orchestration/124-sk-code-parent/021-playbook-gold-and-lane-c-rebaseline",
+      "description": "The sk-code `manualtestingplaybook` scenarios assert an expected-resource gold — the references and assets a correct route should load for each prompt",
+      "keywords": [
+        "sk-code",
+        "manualtestingplaybook",
+        "scenarios",
+        "assert",
+        "expected-resource",
+        "gold",
+        "references",
+        "assets",
+        "correct",
+        "route",
+        "load",
+        "prompt"
+      ],
+      "lastUpdated": "2026-07-05T19:04:15.281Z"
+    },
+    {
+      "specFolder": "skilled-agent-orchestration/126-sk-code-workflow-subskill-research",
+      "description": "The sk-code parent hub exposes four WORKFLOW sub-skills — `code-implement`, `code-quality`, `code-debug`, `code-verify` — that carry the day-to-day",
+      "keywords": [
+        "sk-code",
+        "parent",
+        "hub",
+        "exposes",
+        "four",
+        "workflow",
+        "sub-skills",
+        "code-implement",
+        "code-quality",
+        "code-debug",
+        "code-verify",
+        "carry",
+        "day-to-day"
+      ],
+      "lastUpdated": "2026-07-05T19:04:15.281Z"
     },
     {
       "specFolder": "skilled-agent-orchestration/z_archive/001-cli-gemini-creation",
@@ -5121,7 +5464,7 @@
         "search",
         "capability"
       ],
-      "lastUpdated": "2026-07-04T14:39:13.799Z"
+      "lastUpdated": "2026-07-05T19:04:15.281Z"
     },
     {
       "specFolder": "skilled-agent-orchestration/z_archive/023-cmd-create-feature-catalog",
@@ -5139,7 +5482,7 @@
         "creation",
         "references"
       ],
-      "lastUpdated": "2026-07-04T14:39:13.799Z"
+      "lastUpdated": "2026-07-05T19:04:15.281Z"
     },
     {
       "specFolder": "skilled-agent-orchestration/z_archive/024-cmd-create-manual-testing-playbook",
@@ -5158,7 +5501,7 @@
         "generate",
         "reliably"
       ],
-      "lastUpdated": "2026-07-04T14:39:13.799Z"
+      "lastUpdated": "2026-07-05T19:04:15.281Z"
     },
     {
       "specFolder": "skilled-agent-orchestration/z_archive/025-sk-coco-index-cmd-integration",
@@ -5178,7 +5521,7 @@
         "traceable",
         "spec-kit"
       ],
-      "lastUpdated": "2026-07-04T14:39:13.799Z"
+      "lastUpdated": "2026-07-05T19:04:15.281Z"
     },
     {
       "specFolder": "skilled-agent-orchestration/z_archive/026-sk-doc-readme-hvr-improvements",
@@ -5212,7 +5555,7 @@
         "structure",
         "voice"
       ],
-      "lastUpdated": "2026-07-04T14:39:13.799Z"
+      "lastUpdated": "2026-07-05T19:04:15.281Z"
     },
     {
       "specFolder": "skilled-agent-orchestration/z_archive/028-cmd-merge-spec-kit-phase",
@@ -5248,7 +5591,7 @@
         "files",
         "stops"
       ],
-      "lastUpdated": "2026-07-04T14:39:13.799Z"
+      "lastUpdated": "2026-07-05T19:04:15.281Z"
     },
     {
       "specFolder": "skilled-agent-orchestration/z_archive/030-cmd-spec-kit-codex-skill-routing",
@@ -5266,7 +5609,7 @@
         "command",
         "docs"
       ],
-      "lastUpdated": "2026-07-04T14:39:13.799Z"
+      "lastUpdated": "2026-07-05T19:04:15.281Z"
     },
     {
       "specFolder": "skilled-agent-orchestration/z_archive/031-cli-skill-improved-prompting",
@@ -5286,7 +5629,7 @@
         "quality-check",
         "layer"
       ],
-      "lastUpdated": "2026-07-04T14:39:13.799Z"
+      "lastUpdated": "2026-07-05T19:04:15.281Z"
     },
     {
       "specFolder": "skilled-agent-orchestration/z_archive/032-non-system-playbook-prompts",
@@ -5306,7 +5649,7 @@
         "maturity",
         "levels"
       ],
-      "lastUpdated": "2026-07-04T14:39:13.799Z"
+      "lastUpdated": "2026-07-05T19:04:15.281Z"
     },
     {
       "specFolder": "skilled-agent-orchestration/z_archive/033-sk-doc-changelog-template",
@@ -5383,7 +5726,7 @@
         "testing",
         "playbooks"
       ],
-      "lastUpdated": "2026-07-04T14:39:13.799Z"
+      "lastUpdated": "2026-07-05T19:04:15.281Z"
     },
     {
       "specFolder": "skilled-agent-orchestration/z_archive/037-mcp-testing-playbooks",
@@ -5402,7 +5745,7 @@
         "testing",
         "playbook"
       ],
-      "lastUpdated": "2026-07-04T14:39:13.799Z"
+      "lastUpdated": "2026-07-05T19:04:15.281Z"
     },
     {
       "specFolder": "skilled-agent-orchestration/z_archive/038-agent-debug-integration",
@@ -5470,7 +5813,7 @@
         "skill",
         "decommissioned"
       ],
-      "lastUpdated": "2026-07-04T14:39:13.799Z"
+      "lastUpdated": "2026-07-05T19:04:15.281Z"
     },
     {
       "specFolder": "skilled-agent-orchestration/z_archive/042-sk-code-merger",
@@ -5493,7 +5836,7 @@
         "causing",
         "routing"
       ],
-      "lastUpdated": "2026-07-04T14:39:13.799Z"
+      "lastUpdated": "2026-07-05T19:04:15.281Z"
     },
     {
       "specFolder": "skilled-agent-orchestration/z_archive/043-cli-skill-removal-sk-code-merger-deprecated",
@@ -5526,7 +5869,7 @@
         "stack",
         "webflow"
       ],
-      "lastUpdated": "2026-07-04T14:39:13.799Z"
+      "lastUpdated": "2026-07-05T19:04:15.281Z"
     },
     {
       "specFolder": "skilled-agent-orchestration/z_archive/045-cmd-spec-kit-ux-upgrade",
@@ -5567,7 +5910,7 @@
         "internal",
         "system-spec-kit"
       ],
-      "lastUpdated": "2026-07-04T14:39:13.799Z"
+      "lastUpdated": "2026-07-05T19:04:15.281Z"
     },
     {
       "specFolder": "skilled-agent-orchestration/z_archive/047-agent-implement-code",
@@ -5719,7 +6062,7 @@
         "reality",
         "063b"
       ],
-      "lastUpdated": "2026-07-04T14:39:13.799Z"
+      "lastUpdated": "2026-07-05T19:04:15.281Z"
     },
     {
       "specFolder": "skilled-agent-orchestration/z_archive/050-agent-create",
@@ -5740,7 +6083,7 @@
         "aligned",
         "updated"
       ],
-      "lastUpdated": "2026-07-04T14:39:13.799Z"
+      "lastUpdated": "2026-07-05T19:04:15.281Z"
     },
     {
       "specFolder": "skilled-agent-orchestration/z_archive/051-skill-advisor-reindex-and-stress-test",
@@ -5761,7 +6104,7 @@
         "discovered",
         "campaign"
       ],
-      "lastUpdated": "2026-07-04T14:39:13.799Z"
+      "lastUpdated": "2026-07-05T19:04:15.281Z"
     },
     {
       "specFolder": "skilled-agent-orchestration/z_archive/051-skill-advisor-reindex-and-stress-test/001-baseline-reindex-and-stress-results",
@@ -6137,7 +6480,7 @@
         "library",
         "even"
       ],
-      "lastUpdated": "2026-07-04T14:39:13.799Z"
+      "lastUpdated": "2026-07-05T19:04:15.281Z"
     },
     {
       "specFolder": "skilled-agent-orchestration/z_archive/055-sk-code-motion-dev-and-playbook/001-playbook",
@@ -6275,7 +6618,7 @@
         "inherited",
         "carried"
       ],
-      "lastUpdated": "2026-07-04T14:39:13.799Z"
+      "lastUpdated": "2026-07-05T19:04:15.281Z"
     },
     {
       "specFolder": "skilled-agent-orchestration/z_archive/056-sk-deep-rename/001-discovery-impact-map",
@@ -6579,7 +6922,7 @@
         "tag",
         "examples"
       ],
-      "lastUpdated": "2026-07-04T14:39:13.799Z"
+      "lastUpdated": "2026-07-05T19:04:15.281Z"
     },
     {
       "specFolder": "skilled-agent-orchestration/z_archive/058-stack-agnostic-cleanup/001-remediation",
@@ -6615,7 +6958,7 @@
         "root",
         "skill"
       ],
-      "lastUpdated": "2026-07-04T14:39:13.799Z"
+      "lastUpdated": "2026-07-05T19:04:15.281Z"
     },
     {
       "specFolder": "skilled-agent-orchestration/z_archive/060-sk-doc-router-rerun-refined-extraction",
@@ -6651,7 +6994,7 @@
         "toolchain",
         "issues"
       ],
-      "lastUpdated": "2026-07-04T14:39:13.799Z"
+      "lastUpdated": "2026-07-05T19:04:15.281Z"
     },
     {
       "specFolder": "skilled-agent-orchestration/z_archive/062-test-alignment-validator-esm-migration",
@@ -6672,7 +7015,7 @@
         "type",
         "module"
       ],
-      "lastUpdated": "2026-07-04T14:39:13.799Z"
+      "lastUpdated": "2026-07-05T19:04:15.281Z"
     },
     {
       "specFolder": "skilled-agent-orchestration/z_archive/063-cli-copilot-hallucination-caveat",
@@ -6710,7 +7053,7 @@
         "router",
         "intents"
       ],
-      "lastUpdated": "2026-07-04T14:39:13.799Z"
+      "lastUpdated": "2026-07-05T19:04:15.281Z"
     },
     {
       "specFolder": "skilled-agent-orchestration/z_archive/065-spec-kit-coco-sk-code-research",
@@ -6747,7 +7090,7 @@
         "opencode",
         "side"
       ],
-      "lastUpdated": "2026-07-04T14:39:13.799Z"
+      "lastUpdated": "2026-07-05T19:04:15.281Z"
     },
     {
       "specFolder": "skilled-agent-orchestration/z_archive/066-opencode-authoring-recipe/001-sk-code-authoring",
@@ -6851,7 +7194,7 @@
         "justified",
         "keeping"
       ],
-      "lastUpdated": "2026-07-04T14:39:13.799Z"
+      "lastUpdated": "2026-07-05T19:04:15.281Z"
     },
     {
       "specFolder": "skilled-agent-orchestration/z_archive/068-sk-improve-prompt-rename",
@@ -6872,7 +7215,7 @@
         "dispatcher",
         "command"
       ],
-      "lastUpdated": "2026-07-04T14:39:13.799Z"
+      "lastUpdated": "2026-07-05T19:04:15.281Z"
     },
     {
       "specFolder": "skilled-agent-orchestration/z_archive/068-sk-improve-prompt-rename/001-discovery-impact-map",
@@ -6997,7 +7340,7 @@
         "descriptions",
         "dropped"
       ],
-      "lastUpdated": "2026-07-04T14:39:13.799Z"
+      "lastUpdated": "2026-07-05T19:04:15.281Z"
     },
     {
       "specFolder": "skilled-agent-orchestration/z_archive/070-ambiguity-window-confidence-fix",
@@ -7035,7 +7378,7 @@
         "sk-improve-prompt",
         "sk-prompt"
       ],
-      "lastUpdated": "2026-07-04T14:39:13.799Z"
+      "lastUpdated": "2026-07-05T19:04:15.281Z"
     },
     {
       "specFolder": "skilled-agent-orchestration/z_archive/071-sk-prompt-testing-playbook-and-agent-rename/001-prompt-improver-rename",
@@ -7672,7 +8015,7 @@
         "shell",
         "automation"
       ],
-      "lastUpdated": "2026-07-04T14:39:13.799Z"
+      "lastUpdated": "2026-07-05T19:04:15.281Z"
     },
     {
       "specFolder": "skilled-agent-orchestration/z_archive/081-webflow-per-language-style-guides",
@@ -7695,7 +8038,7 @@
         "831",
         "lines"
       ],
-      "lastUpdated": "2026-07-04T14:39:13.799Z"
+      "lastUpdated": "2026-07-05T19:04:15.281Z"
     },
     {
       "specFolder": "skilled-agent-orchestration/z_archive/082-sk-doc-skill-readme-and-structure",
@@ -7714,7 +8057,7 @@
         "rename",
         "planning"
       ],
-      "lastUpdated": "2026-07-04T14:39:13.799Z"
+      "lastUpdated": "2026-07-05T19:04:15.281Z"
     },
     {
       "specFolder": "skilled-agent-orchestration/z_archive/082-sk-doc-skill-readme-and-structure/001-sk-doc-reference-relocation",
@@ -7824,7 +8167,7 @@
         "002",
         "generalizes"
       ],
-      "lastUpdated": "2026-07-04T14:39:13.799Z"
+      "lastUpdated": "2026-07-05T19:04:15.281Z"
     },
     {
       "specFolder": "skilled-agent-orchestration/z_archive/083-spec-kit-auto-mode-noninteractive-contract/001-deep-review-three-tier-setup",
@@ -7914,7 +8257,7 @@
         "improvement",
         "targets"
       ],
-      "lastUpdated": "2026-07-04T14:39:13.799Z"
+      "lastUpdated": "2026-07-05T19:04:15.281Z"
     },
     {
       "specFolder": "skilled-agent-orchestration/z_archive/086-opencode-auto-review-teachings-research",
@@ -7932,7 +8275,7 @@
         "issue-136-package-auto-review",
         "automatically"
       ],
-      "lastUpdated": "2026-07-04T14:39:13.799Z"
+      "lastUpdated": "2026-07-05T19:04:15.281Z"
     },
     {
       "specFolder": "skilled-agent-orchestration/z_archive/087-auto-review-quick-wins-verdict-markers-logging",
@@ -7951,7 +8294,7 @@
         "auto-review",
         "package"
       ],
-      "lastUpdated": "2026-07-04T14:39:13.799Z"
+      "lastUpdated": "2026-07-05T19:04:15.281Z"
     },
     {
       "specFolder": "skilled-agent-orchestration/z_archive/087-auto-review-quick-wins-verdict-markers-logging/001-h1-final-line-contract",
@@ -8047,7 +8390,7 @@
         "parent-doc",
         "derived"
       ],
-      "lastUpdated": "2026-07-04T14:39:13.799Z"
+      "lastUpdated": "2026-07-05T19:04:15.281Z"
     },
     {
       "specFolder": "skilled-agent-orchestration/z_archive/089-auto-review-stretch-config-dedup-gates",
@@ -8600,7 +8943,7 @@
         "scaffolding",
         "user"
       ],
-      "lastUpdated": "2026-07-04T14:39:13.799Z"
+      "lastUpdated": "2026-07-05T19:04:15.281Z"
     },
     {
       "specFolder": "skilled-agent-orchestration/z_archive/095-skill-anchor-toc-removal/001-standards-templates-config",
@@ -8868,7 +9211,7 @@
         "opencode",
         "skills"
       ],
-      "lastUpdated": "2026-07-04T14:39:13.799Z"
+      "lastUpdated": "2026-07-05T19:04:15.281Z"
     },
     {
       "specFolder": "skilled-agent-orchestration/z_archive/100-feature-catalog-template-improvements",
@@ -9380,7 +9723,7 @@
         "poorly",
         "connected"
       ],
-      "lastUpdated": "2026-07-04T14:39:13.799Z"
+      "lastUpdated": "2026-07-05T19:04:15.281Z"
     },
     {
       "specFolder": "skilled-agent-orchestration/z_archive/105-prompt-knowledge-layering/001-design-architecture-and-data-contract",
@@ -9670,7 +10013,7 @@
         "per-model",
         "dispatch"
       ],
-      "lastUpdated": "2026-07-04T14:39:13.799Z"
+      "lastUpdated": "2026-07-05T19:04:15.281Z"
     },
     {
       "specFolder": "skilled-agent-orchestration/z_archive/107-cli-gemini-deprecation",
@@ -9970,7 +10313,7 @@
         "problem-first",
         "opener"
       ],
-      "lastUpdated": "2026-07-04T14:39:13.799Z"
+      "lastUpdated": "2026-07-05T19:04:15.281Z"
     },
     {
       "specFolder": "skilled-agent-orchestration/z_archive/109-skill-readme-standardization/001-readme-template-and-standard",
@@ -10455,7 +10798,7 @@
         "tool",
         "sets"
       ],
-      "lastUpdated": "2026-07-04T14:39:13.799Z"
+      "lastUpdated": "2026-07-05T19:04:15.281Z"
     },
     {
       "specFolder": "skilled-agent-orchestration/z_archive/111-cli-devin-deprecation",
@@ -10474,7 +10817,7 @@
         "hooks",
         "retired"
       ],
-      "lastUpdated": "2026-07-04T14:39:13.799Z"
+      "lastUpdated": "2026-07-05T19:04:15.281Z"
     },
     {
       "specFolder": "skilled-agent-orchestration/z_archive/111-cli-devin-deprecation/001-canonical-rehome-and-ci-gate",
@@ -11162,7 +11505,7 @@
         "change",
         "behavior"
       ],
-      "lastUpdated": "2026-07-05T13:43:22.593Z"
+      "lastUpdated": "2026-07-05T19:04:15.281Z"
     },
     {
       "specFolder": "system-deep-loop/029-deep-loop-workflows/002-runtime-backend-promotions",
@@ -11182,7 +11525,7 @@
         "cli",
         "adapter"
       ],
-      "lastUpdated": "2026-07-05T13:43:22.593Z"
+      "lastUpdated": "2026-07-05T19:04:15.281Z"
     },
     {
       "specFolder": "system-deep-loop/029-deep-loop-workflows/003-merged-hub-and-mode-packets",
@@ -11270,7 +11613,7 @@
         "phrases",
         "risk"
       ],
-      "lastUpdated": "2026-07-05T13:43:22.593Z"
+      "lastUpdated": "2026-07-05T19:04:15.281Z"
     },
     {
       "specFolder": "system-deep-loop/029-deep-loop-workflows/007-governance-consolidation",
@@ -11291,7 +11634,7 @@
         "schema",
         "lifecycle"
       ],
-      "lastUpdated": "2026-07-05T13:43:22.593Z"
+      "lastUpdated": "2026-07-05T19:04:15.281Z"
     },
     {
       "specFolder": "system-deep-loop/029-deep-loop-workflows/008-framework-docs-sweep",
@@ -11313,7 +11656,7 @@
         "brittle",
         "slash-enumeration"
       ],
-      "lastUpdated": "2026-07-05T13:43:22.593Z"
+      "lastUpdated": "2026-07-05T19:04:15.281Z"
     },
     {
       "specFolder": "system-deep-loop/029-deep-loop-workflows/009-old-skill-deletion-and-validation",
@@ -11392,7 +11735,7 @@
         "safety",
         "interconnection"
       ],
-      "lastUpdated": "2026-07-05T13:43:22.593Z"
+      "lastUpdated": "2026-07-05T19:04:15.281Z"
     },
     {
       "specFolder": "system-deep-loop/030-deep-loop-improved/002-deep-loop-runtime",
@@ -11415,7 +11758,7 @@
         "writes",
         "unguarded"
       ],
-      "lastUpdated": "2026-07-05T13:43:22.593Z"
+      "lastUpdated": "2026-07-05T19:04:15.281Z"
     },
     {
       "specFolder": "system-deep-loop/030-deep-loop-improved/002-deep-loop-runtime/001-atomic-state-serialize-diff",
@@ -11821,7 +12164,7 @@
         "identified",
         "51-iteration"
       ],
-      "lastUpdated": "2026-07-05T13:43:22.593Z"
+      "lastUpdated": "2026-07-05T19:04:15.281Z"
     },
     {
       "specFolder": "system-deep-loop/030-deep-loop-improved/003-deep-loop-workflows/001-anti-convergence-floor",
@@ -12062,7 +12405,7 @@
         "execution",
         "envelope"
       ],
-      "lastUpdated": "2026-07-05T13:43:22.593Z"
+      "lastUpdated": "2026-07-05T19:04:15.281Z"
     },
     {
       "specFolder": "system-deep-loop/030-deep-loop-improved/004-system-spec-kit/001-speckit-autopilot-lifecycle",
@@ -12102,7 +12445,7 @@
         "test",
         "automatically"
       ],
-      "lastUpdated": "2026-07-05T13:43:22.593Z"
+      "lastUpdated": "2026-07-05T19:04:15.281Z"
     },
     {
       "specFolder": "system-deep-loop/030-deep-loop-improved/005-skill-interconnection/001-advisor-routing-projection",
@@ -12147,7 +12490,7 @@
         "invisible",
         "telemetry"
       ],
-      "lastUpdated": "2026-07-05T13:43:22.593Z"
+      "lastUpdated": "2026-07-05T19:04:15.281Z"
     },
     {
       "specFolder": "system-deep-loop/030-deep-loop-improved/006-ux-observability-automation/001-dashboard-sparkline-trend",
@@ -12277,7 +12620,7 @@
         "parallel",
         "execution"
       ],
-      "lastUpdated": "2026-07-05T13:43:22.593Z"
+      "lastUpdated": "2026-07-05T19:04:15.281Z"
     },
     {
       "specFolder": "system-deep-loop/030-deep-loop-improved/007-testing/001-hermetic-test-isolation",
@@ -12335,7 +12678,7 @@
         "benchmark",
         "ledger"
       ],
-      "lastUpdated": "2026-07-05T13:43:22.593Z"
+      "lastUpdated": "2026-07-05T19:04:15.281Z"
     },
     {
       "specFolder": "system-deep-loop/030-deep-loop-improved/008-loop-systems-remediation/001-deep-improvement-rollback-hash-guard",
@@ -12356,7 +12699,7 @@
         "matched",
         "stored"
       ],
-      "lastUpdated": "2026-07-05T13:43:22.593Z"
+      "lastUpdated": "2026-07-05T19:04:15.281Z"
     },
     {
       "specFolder": "system-deep-loop/030-deep-loop-improved/008-loop-systems-remediation/002-deep-improvement-promotion-safety",
@@ -12375,7 +12718,7 @@
         "verifymirrorsync",
         "agentname"
       ],
-      "lastUpdated": "2026-07-05T13:43:22.593Z"
+      "lastUpdated": "2026-07-05T19:04:15.281Z"
     },
     {
       "specFolder": "system-deep-loop/030-deep-loop-improved/008-loop-systems-remediation/003-model-benchmark-reducer-ledger",
@@ -12394,7 +12737,7 @@
         "runlabel",
         "outside"
       ],
-      "lastUpdated": "2026-07-05T13:43:22.593Z"
+      "lastUpdated": "2026-07-05T19:04:15.281Z"
     },
     {
       "specFolder": "system-deep-loop/030-deep-loop-improved/008-loop-systems-remediation/004-adversarial-playbook-scenarios",
@@ -12455,7 +12798,7 @@
         "spawnsync",
         "calls"
       ],
-      "lastUpdated": "2026-07-05T13:43:22.593Z"
+      "lastUpdated": "2026-07-05T19:04:15.281Z"
     },
     {
       "specFolder": "system-deep-loop/030-deep-loop-improved/008-loop-systems-remediation/007-fan-out-hardening",
@@ -12498,7 +12841,7 @@
         "cjs",
         "drops"
       ],
-      "lastUpdated": "2026-07-05T13:43:22.593Z"
+      "lastUpdated": "2026-07-05T19:04:15.281Z"
     },
     {
       "specFolder": "system-deep-loop/030-deep-loop-improved/009-research-backlog-remediation/001-fanout-merge-schema-tolerance",
@@ -12583,7 +12926,7 @@
         "system-deep-loop",
         "030-deep-loop-improved"
       ],
-      "lastUpdated": "2026-07-05T13:43:22.593Z"
+      "lastUpdated": "2026-07-05T19:04:15.281Z"
     },
     {
       "specFolder": "system-deep-loop/030-deep-loop-improved/009-research-backlog-remediation/006-review-registry-and-metadata-backfill",
@@ -12673,7 +13016,7 @@
         "still",
         "byte-identical"
       ],
-      "lastUpdated": "2026-07-05T13:43:22.593Z"
+      "lastUpdated": "2026-07-05T19:04:15.281Z"
     },
     {
       "specFolder": "system-deep-loop/030-deep-loop-improved/009-research-backlog-remediation/011-synthesis-integrity-and-orchestrator-watchdog",
@@ -12716,7 +13059,7 @@
         "merge",
         "behavior"
       ],
-      "lastUpdated": "2026-07-05T13:43:22.593Z"
+      "lastUpdated": "2026-07-05T19:04:15.281Z"
     },
     {
       "specFolder": "system-deep-loop/030-deep-loop-improved/011-followup-remediation",
@@ -12736,7 +13079,7 @@
         "remained",
         "genuinely"
       ],
-      "lastUpdated": "2026-07-05T13:43:22.593Z"
+      "lastUpdated": "2026-07-05T19:04:15.281Z"
     },
     {
       "specFolder": "system-deep-loop/030-deep-loop-improved/011-followup-remediation/001-fanout-session-id-propagation",
@@ -12757,7 +13100,7 @@
         "subprocess",
         "prompt"
       ],
-      "lastUpdated": "2026-07-05T13:43:22.593Z"
+      "lastUpdated": "2026-07-05T19:04:15.281Z"
     },
     {
       "specFolder": "system-deep-loop/030-deep-loop-improved/011-followup-remediation/002-fanout-leaf-identity-conflation",
@@ -12779,7 +13122,7 @@
         "roughly",
         "lines"
       ],
-      "lastUpdated": "2026-07-05T13:43:22.593Z"
+      "lastUpdated": "2026-07-05T19:04:15.281Z"
     },
     {
       "specFolder": "system-deep-loop/030-deep-loop-improved/011-followup-remediation/003-scaffold-content-002-deep-loop-runtime",
@@ -12794,7 +13137,7 @@
         "002-deep-loop-runtime",
         "001-atomic-state-serialize-diff"
       ],
-      "lastUpdated": "2026-07-05T13:43:22.593Z"
+      "lastUpdated": "2026-07-05T19:04:15.281Z"
     },
     {
       "specFolder": "system-deep-loop/030-deep-loop-improved/011-followup-remediation/004-scaffold-content-003-deep-loop-workflows",
@@ -12809,7 +13152,7 @@
         "003-deep-loop-workflows",
         "001-anti-convergence-floor"
       ],
-      "lastUpdated": "2026-07-05T13:43:22.593Z"
+      "lastUpdated": "2026-07-05T19:04:15.281Z"
     },
     {
       "specFolder": "system-deep-loop/030-deep-loop-improved/011-followup-remediation/005-scaffold-content-004-through-007",
@@ -12833,7 +13176,7 @@
         "prose",
         "core"
       ],
-      "lastUpdated": "2026-07-05T13:43:22.593Z"
+      "lastUpdated": "2026-07-05T19:04:15.281Z"
     },
     {
       "specFolder": "system-deep-loop/030-deep-loop-improved/011-followup-remediation/006-validate-sh-registry-bridge",
@@ -12867,7 +13210,7 @@
         "long",
         "loops"
       ],
-      "lastUpdated": "2026-07-05T13:43:22.593Z"
+      "lastUpdated": "2026-07-05T19:04:15.281Z"
     },
     {
       "specFolder": "system-deep-loop/031-deep-loop-gpt-reliability",
@@ -12888,7 +13231,7 @@
         "routes",
         "mismatched"
       ],
-      "lastUpdated": "2026-07-05T13:43:22.593Z"
+      "lastUpdated": "2026-07-05T19:04:15.281Z"
     },
     {
       "specFolder": "system-deep-loop/031-deep-loop-gpt-reliability/001-research-and-diagnosis",
@@ -12903,7 +13246,7 @@
         "identity",
         "orchestration"
       ],
-      "lastUpdated": "2026-07-05T13:43:22.593Z"
+      "lastUpdated": "2026-07-05T19:04:15.281Z"
     },
     {
       "specFolder": "system-deep-loop/031-deep-loop-gpt-reliability/001-research-and-diagnosis/001-gpt-behavioral-hardening-research",
@@ -12916,7 +13259,7 @@
         "re-verified",
         "code-complete"
       ],
-      "lastUpdated": "2026-07-05T13:43:22.593Z"
+      "lastUpdated": "2026-07-05T19:04:15.281Z"
     },
     {
       "specFolder": "system-deep-loop/031-deep-loop-gpt-reliability/001-research-and-diagnosis/002-gpt-reliability-research",
@@ -12936,7 +13279,7 @@
         "commands",
         "gates"
       ],
-      "lastUpdated": "2026-07-05T13:43:22.593Z"
+      "lastUpdated": "2026-07-05T19:04:15.281Z"
     },
     {
       "specFolder": "system-deep-loop/031-deep-loop-gpt-reliability/002-routing-dispatch-and-identity",
@@ -12955,7 +13298,7 @@
         "fix-5",
         "problem"
       ],
-      "lastUpdated": "2026-07-05T13:43:22.593Z"
+      "lastUpdated": "2026-07-05T19:04:15.281Z"
     },
     {
       "specFolder": "system-deep-loop/031-deep-loop-gpt-reliability/002-routing-dispatch-and-identity/001-deep-agent-router-and-orchestration",
@@ -12975,7 +13318,7 @@
         "deep-context",
         "deep-ai-council"
       ],
-      "lastUpdated": "2026-07-05T13:43:22.593Z"
+      "lastUpdated": "2026-07-05T19:04:15.281Z"
     },
     {
       "specFolder": "system-deep-loop/031-deep-loop-gpt-reliability/002-routing-dispatch-and-identity/002-route-proof-validation",
@@ -12994,7 +13337,7 @@
         "fix-5",
         "validator"
       ],
-      "lastUpdated": "2026-07-05T13:43:22.593Z"
+      "lastUpdated": "2026-07-05T19:04:15.281Z"
     },
     {
       "specFolder": "system-deep-loop/031-deep-loop-gpt-reliability/002-routing-dispatch-and-identity/003-agent-dispatch-hardening",
@@ -13012,7 +13355,7 @@
         "file",
         "buys"
       ],
-      "lastUpdated": "2026-07-05T13:43:22.593Z"
+      "lastUpdated": "2026-07-05T19:04:15.281Z"
     },
     {
       "specFolder": "system-deep-loop/031-deep-loop-gpt-reliability/002-routing-dispatch-and-identity/004-command-pre-route-headers",
@@ -13027,7 +13370,7 @@
         "gpt-slow",
         "mechanism"
       ],
-      "lastUpdated": "2026-07-05T13:43:22.593Z"
+      "lastUpdated": "2026-07-05T19:04:15.281Z"
     },
     {
       "specFolder": "system-deep-loop/031-deep-loop-gpt-reliability/002-routing-dispatch-and-identity/005-host-hard-identity-fix5",
@@ -13047,7 +13390,7 @@
         "agentslug",
         "task"
       ],
-      "lastUpdated": "2026-07-05T13:43:22.593Z"
+      "lastUpdated": "2026-07-05T19:04:15.281Z"
     },
     {
       "specFolder": "system-deep-loop/031-deep-loop-gpt-reliability/002-routing-dispatch-and-identity/006-mode-d-ai-council-identity-fix",
@@ -13062,7 +13405,7 @@
         "research",
         "lineages"
       ],
-      "lastUpdated": "2026-07-05T13:43:22.593Z"
+      "lastUpdated": "2026-07-05T19:04:15.281Z"
     },
     {
       "specFolder": "system-deep-loop/031-deep-loop-gpt-reliability/002-routing-dispatch-and-identity/007-orchestrate-universal-routing",
@@ -13082,7 +13425,7 @@
         "routing",
         "surface"
       ],
-      "lastUpdated": "2026-07-05T13:43:22.593Z"
+      "lastUpdated": "2026-07-05T19:04:15.281Z"
     },
     {
       "specFolder": "system-deep-loop/031-deep-loop-gpt-reliability/002-routing-dispatch-and-identity/008-ai-council-subagent-only",
@@ -13101,7 +13444,7 @@
         "top-level",
         "agent"
       ],
-      "lastUpdated": "2026-07-05T13:43:22.593Z"
+      "lastUpdated": "2026-07-05T19:04:15.281Z"
     },
     {
       "specFolder": "system-deep-loop/031-deep-loop-gpt-reliability/002-routing-dispatch-and-identity/009-fix5-checkpoint",
@@ -13123,7 +13466,7 @@
         "research",
         "existed"
       ],
-      "lastUpdated": "2026-07-05T13:43:22.593Z"
+      "lastUpdated": "2026-07-05T19:04:15.281Z"
     },
     {
       "specFolder": "system-deep-loop/031-deep-loop-gpt-reliability/003-guard-and-enforcement",
@@ -13141,7 +13484,7 @@
         "catch",
         "regressions"
       ],
-      "lastUpdated": "2026-07-05T13:43:22.593Z"
+      "lastUpdated": "2026-07-05T19:04:15.281Z"
     },
     {
       "specFolder": "system-deep-loop/031-deep-loop-gpt-reliability/003-guard-and-enforcement/001-deep-route-guard-plugin",
@@ -13162,7 +13505,7 @@
         "enforce",
         "moment"
       ],
-      "lastUpdated": "2026-07-05T13:43:22.593Z"
+      "lastUpdated": "2026-07-05T19:04:15.281Z"
     },
     {
       "specFolder": "system-deep-loop/031-deep-loop-gpt-reliability/003-guard-and-enforcement/002-mk-deep-loop-guard-hardening",
@@ -13205,7 +13548,7 @@
         "loop-like",
         "repeated"
       ],
-      "lastUpdated": "2026-07-05T13:43:22.593Z"
+      "lastUpdated": "2026-07-05T19:04:15.281Z"
     },
     {
       "specFolder": "system-deep-loop/031-deep-loop-gpt-reliability/003-guard-and-enforcement/004-fanout-stopreason-tolerance",
@@ -13240,7 +13583,7 @@
         "guard-warnings",
         "log"
       ],
-      "lastUpdated": "2026-07-05T13:43:22.593Z"
+      "lastUpdated": "2026-07-05T19:04:15.281Z"
     },
     {
       "specFolder": "system-deep-loop/031-deep-loop-gpt-reliability/004-benchmarks-and-verification",
@@ -13254,7 +13597,7 @@
         "empirical",
         "confirmation"
       ],
-      "lastUpdated": "2026-07-05T13:43:22.593Z"
+      "lastUpdated": "2026-07-05T19:04:15.281Z"
     },
     {
       "specFolder": "system-deep-loop/031-deep-loop-gpt-reliability/004-benchmarks-and-verification/001-gpt-verification-smoke",
@@ -13276,7 +13619,7 @@
         "route-proof",
         "assertions"
       ],
-      "lastUpdated": "2026-07-05T13:43:22.593Z"
+      "lastUpdated": "2026-07-05T19:04:15.281Z"
     },
     {
       "specFolder": "system-deep-loop/031-deep-loop-gpt-reliability/004-benchmarks-and-verification/002-gpt-claude-benchmark",
@@ -13299,7 +13642,7 @@
         "acceptance-gate",
         "smoke"
       ],
-      "lastUpdated": "2026-07-05T13:43:22.593Z"
+      "lastUpdated": "2026-07-05T19:04:15.281Z"
     },
     {
       "specFolder": "system-deep-loop/031-deep-loop-gpt-reliability/005-skill-doc-hygiene",
@@ -13316,7 +13659,7 @@
         "stale",
         "behavior"
       ],
-      "lastUpdated": "2026-07-05T13:43:22.593Z"
+      "lastUpdated": "2026-07-05T19:04:15.281Z"
     },
     {
       "specFolder": "system-deep-loop/031-deep-loop-gpt-reliability/005-skill-doc-hygiene/001-skill-doc-drift-audit",
@@ -13337,7 +13680,7 @@
         "orchestrate",
         "gained"
       ],
-      "lastUpdated": "2026-07-05T13:43:22.593Z"
+      "lastUpdated": "2026-07-05T19:04:15.281Z"
     },
     {
       "specFolder": "system-deep-loop/031-deep-loop-gpt-reliability/005-skill-doc-hygiene/002-skill-doc-drift-remediation",
@@ -13543,7 +13886,7 @@
         "completion-condition",
         "system"
       ],
-      "lastUpdated": "2026-07-05T13:43:22.593Z"
+      "lastUpdated": "2026-07-05T19:04:15.281Z"
     },
     {
       "specFolder": "system-deep-loop/032-goal-opencode-plugin/001-state-store",
@@ -13558,7 +13901,7 @@
         "inject",
         "manage"
       ],
-      "lastUpdated": "2026-07-05T13:43:22.593Z"
+      "lastUpdated": "2026-07-05T19:04:15.281Z"
     },
     {
       "specFolder": "system-deep-loop/032-goal-opencode-plugin/002-injection-plugin",
@@ -13573,7 +13916,7 @@
         "receives",
         "turn"
       ],
-      "lastUpdated": "2026-07-05T13:43:22.593Z"
+      "lastUpdated": "2026-07-05T19:04:15.281Z"
     },
     {
       "specFolder": "system-deep-loop/032-goal-opencode-plugin/003-goal-command",
@@ -13603,7 +13946,7 @@
         "lifecycle",
         "events"
       ],
-      "lastUpdated": "2026-07-05T13:43:22.593Z"
+      "lastUpdated": "2026-07-05T19:04:15.281Z"
     },
     {
       "specFolder": "system-deep-loop/032-goal-opencode-plugin/005-completion-supervisor",
@@ -13622,7 +13965,7 @@
         "assistant",
         "self-report"
       ],
-      "lastUpdated": "2026-07-05T13:43:22.593Z"
+      "lastUpdated": "2026-07-05T19:04:15.281Z"
     },
     {
       "specFolder": "system-deep-loop/032-goal-opencode-plugin/006-active-continuation",
@@ -13640,7 +13983,7 @@
         "verifier",
         "result"
       ],
-      "lastUpdated": "2026-07-05T13:43:22.593Z"
+      "lastUpdated": "2026-07-05T19:04:15.281Z"
     },
     {
       "specFolder": "system-deep-loop/032-goal-opencode-plugin/007-sk-prompt-goal-enhancement",
@@ -13656,7 +13999,7 @@
         "user",
         "objective"
       ],
-      "lastUpdated": "2026-07-05T13:43:22.593Z"
+      "lastUpdated": "2026-07-05T19:04:15.281Z"
     },
     {
       "specFolder": "system-deep-loop/032-goal-opencode-plugin/008-system-spec-kit-integration",
@@ -13675,7 +14018,7 @@
         "catalog",
         "explain"
       ],
-      "lastUpdated": "2026-07-05T13:43:22.593Z"
+      "lastUpdated": "2026-07-05T19:04:15.281Z"
     },
     {
       "specFolder": "system-deep-loop/032-goal-opencode-plugin/009-speckit-command-goal-prompt-offer",
@@ -13694,7 +14037,7 @@
         "purpose",
         "implemented"
       ],
-      "lastUpdated": "2026-07-05T13:43:22.593Z"
+      "lastUpdated": "2026-07-05T19:04:15.281Z"
     },
     {
       "specFolder": "system-deep-loop/032-goal-opencode-plugin/010-security-and-correctness-fixes",
@@ -13713,7 +14056,7 @@
         "re-verified",
         "across"
       ],
-      "lastUpdated": "2026-07-05T13:43:22.593Z"
+      "lastUpdated": "2026-07-05T19:04:15.281Z"
     },
     {
       "specFolder": "system-deep-loop/032-goal-opencode-plugin/011-command-surface-normalization",
@@ -13727,7 +14070,7 @@
         "commands",
         "goal"
       ],
-      "lastUpdated": "2026-07-05T13:43:22.593Z"
+      "lastUpdated": "2026-07-05T19:04:15.281Z"
     },
     {
       "specFolder": "system-deep-loop/032-goal-opencode-plugin/012-regression-test-backfill",
@@ -13750,7 +14093,7 @@
         "every",
         "turn"
       ],
-      "lastUpdated": "2026-07-05T13:43:22.593Z"
+      "lastUpdated": "2026-07-05T19:04:15.281Z"
     },
     {
       "specFolder": "system-deep-loop/032-goal-opencode-plugin/013-design-fidelity-and-polish",
@@ -13772,7 +14115,7 @@
         "status",
         "set"
       ],
-      "lastUpdated": "2026-07-05T13:43:22.593Z"
+      "lastUpdated": "2026-07-05T19:04:15.281Z"
     },
     {
       "specFolder": "system-deep-loop/032-goal-opencode-plugin/014-goal-state-cleanup-and-archive",
@@ -13794,7 +14137,7 @@
         "lifecycle",
         "handling"
       ],
-      "lastUpdated": "2026-07-05T13:43:22.593Z"
+      "lastUpdated": "2026-07-05T19:04:15.281Z"
     },
     {
       "specFolder": "system-deep-loop/032-goal-opencode-plugin/015-packet-hygiene-and-narrative-integrity",
@@ -13816,7 +14159,7 @@
         "drifted",
         "reality"
       ],
-      "lastUpdated": "2026-07-05T13:43:22.593Z"
+      "lastUpdated": "2026-07-05T19:04:15.281Z"
     },
     {
       "specFolder": "system-deep-loop/032-goal-opencode-plugin/016-plugin-correctness-fixes",
@@ -13837,7 +14180,7 @@
         "mismatches",
         "none"
       ],
-      "lastUpdated": "2026-07-05T13:43:22.593Z"
+      "lastUpdated": "2026-07-05T19:04:15.281Z"
     },
     {
       "specFolder": "system-deep-loop/032-goal-opencode-plugin/017-hot-path-optimization",
@@ -13881,7 +14224,7 @@
         "scripts",
         "confirmed"
       ],
-      "lastUpdated": "2026-07-05T13:43:22.593Z"
+      "lastUpdated": "2026-07-05T19:04:15.281Z"
     },
     {
       "specFolder": "system-deep-loop/032-goal-opencode-plugin/019-code-refinements",
@@ -13903,7 +14246,7 @@
         "first",
         "place"
       ],
-      "lastUpdated": "2026-07-05T13:43:22.593Z"
+      "lastUpdated": "2026-07-05T19:04:15.281Z"
     },
     {
       "specFolder": "system-deep-loop/032-goal-opencode-plugin/020-capability-additions",
@@ -13925,7 +14268,7 @@
         "828",
         "invisible"
       ],
-      "lastUpdated": "2026-07-05T13:43:22.593Z"
+      "lastUpdated": "2026-07-05T19:04:15.281Z"
     },
     {
       "specFolder": "system-deep-loop/032-goal-opencode-plugin/021-completion-verifier-wiring",
@@ -13945,7 +14288,7 @@
         "plugins",
         "without"
       ],
-      "lastUpdated": "2026-07-05T13:43:22.593Z"
+      "lastUpdated": "2026-07-05T19:04:15.281Z"
     },
     {
       "specFolder": "system-deep-loop/032-goal-opencode-plugin/022-review-remediation",
@@ -13962,7 +14305,7 @@
         "documentation-drift",
         "cluster"
       ],
-      "lastUpdated": "2026-07-05T13:43:22.593Z"
+      "lastUpdated": "2026-07-05T19:04:15.281Z"
     },
     {
       "specFolder": "system-deep-loop/032-goal-opencode-plugin/023-p2-hardening",
@@ -13974,7 +14317,7 @@
         "remain",
         "mk-goal"
       ],
-      "lastUpdated": "2026-07-05T13:43:22.593Z"
+      "lastUpdated": "2026-07-05T19:04:15.281Z"
     },
     {
       "specFolder": "system-deep-loop/032-goal-opencode-plugin/024-retention-tightening",
@@ -14014,7 +14357,7 @@
         "model",
         "actually"
       ],
-      "lastUpdated": "2026-07-05T13:43:22.593Z"
+      "lastUpdated": "2026-07-05T19:04:15.281Z"
     },
     {
       "specFolder": "system-deep-loop/033-deep-loop-behavior-benchmarks/001-framework-and-harness",
@@ -14033,7 +14376,7 @@
         "measurement",
         "substrate"
       ],
-      "lastUpdated": "2026-07-05T13:43:22.593Z"
+      "lastUpdated": "2026-07-05T19:04:15.281Z"
     },
     {
       "specFolder": "system-deep-loop/033-deep-loop-behavior-benchmarks/002-pilot-deep-review",
@@ -14052,7 +14395,7 @@
         "across",
         "five"
       ],
-      "lastUpdated": "2026-07-05T13:43:22.593Z"
+      "lastUpdated": "2026-07-05T19:04:15.281Z"
     },
     {
       "specFolder": "system-deep-loop/033-deep-loop-behavior-benchmarks/003-rollout-research-context",
@@ -14125,7 +14468,7 @@
         "names",
         "category"
       ],
-      "lastUpdated": "2026-07-05T13:43:22.593Z"
+      "lastUpdated": "2026-07-05T19:04:15.281Z"
     },
     {
       "specFolder": "system-deep-loop/033-deep-loop-behavior-benchmarks/fixtures/fx-002-research-target",
@@ -14152,7 +14495,7 @@
         "slug",
         "api"
       ],
-      "lastUpdated": "2026-07-05T13:43:22.593Z"
+      "lastUpdated": "2026-07-05T19:04:15.281Z"
     },
     {
       "specFolder": "system-deep-loop/034-deep-router-agent-rename",
@@ -14165,7 +14508,7 @@
         "named",
         "deep"
       ],
-      "lastUpdated": "2026-07-05T13:43:22.593Z"
+      "lastUpdated": "2026-07-05T19:04:15.281Z"
     },
     {
       "specFolder": "system-deep-loop/035-deprecate-deep-context-integrate-capabilities",
@@ -14187,7 +14530,7 @@
         "generated",
         "contract"
       ],
-      "lastUpdated": "2026-07-05T13:43:22.593Z"
+      "lastUpdated": "2026-07-05T19:04:15.281Z"
     },
     {
       "specFolder": "system-deep-loop/035-deprecate-deep-context-integrate-capabilities/001-research-baseline-and-inventory",
@@ -14200,7 +14543,7 @@
         "historical",
         "references"
       ],
-      "lastUpdated": "2026-07-05T13:43:22.593Z"
+      "lastUpdated": "2026-07-05T19:04:15.281Z"
     },
     {
       "specFolder": "system-deep-loop/035-deprecate-deep-context-integrate-capabilities/002-public-redirect-and-replacement-contracts",
@@ -14221,7 +14564,7 @@
         "command",
         "contract"
       ],
-      "lastUpdated": "2026-07-05T13:43:22.593Z"
+      "lastUpdated": "2026-07-05T19:04:15.281Z"
     },
     {
       "specFolder": "system-deep-loop/035-deprecate-deep-context-integrate-capabilities/003-discoverability-docs-mirrors-and-index",
@@ -14241,7 +14584,7 @@
         "standalone",
         "deep-context"
       ],
-      "lastUpdated": "2026-07-05T13:43:22.593Z"
+      "lastUpdated": "2026-07-05T19:04:15.281Z"
     },
     {
       "specFolder": "system-deep-loop/035-deprecate-deep-context-integrate-capabilities/004-fixtures-benchmarks-and-runtime-cleanup",
@@ -14263,7 +14606,59 @@
         "branches",
         "keep"
       ],
-      "lastUpdated": "2026-07-05T13:43:22.593Z"
+      "lastUpdated": "2026-07-05T19:04:15.281Z"
+    },
+    {
+      "specFolder": "system-deep-loop/037-router-replay-surface-slice-sync",
+      "description": "Sync the Lane-C router-replay surface-slicing prefixes to the code-<surface>/ packet layout so hasSurfaceLayout re-activates and single-surface tasks ",
+      "keywords": [
+        "sync",
+        "lane-c",
+        "router-replay",
+        "surface-slicing",
+        "prefixes",
+        "code",
+        "surface",
+        "packet",
+        "layout",
+        "hassurfacelayout",
+        "re-activates",
+        "single-surface",
+        "tasks",
+        "stop",
+        "over-routing",
+        "add",
+        "regression",
+        "guard"
+      ],
+      "lastUpdated": "2026-07-05T18:13:11.016Z"
+    },
+    {
+      "specFolder": "system-deep-loop/038-scenario-loader-code-surface-sync",
+      "description": "Teach the Lane-C scenario loader + live-result parser the code-<surface>/ packet-path prefix so post-rename gold parses whole instead of being strippe",
+      "keywords": [
+        "teach",
+        "lane-c",
+        "scenario",
+        "loader",
+        "live-result",
+        "parser",
+        "code",
+        "surface",
+        "packet-path",
+        "prefix",
+        "post-rename",
+        "gold",
+        "parses",
+        "whole",
+        "instead",
+        "stripped",
+        "references",
+        "add",
+        "regression",
+        "guard"
+      ],
+      "lastUpdated": "2026-07-05T18:53:23.606Z"
     },
     {
       "specFolder": "system-deep-loop/z_archive/001-sk-deep-research-creation",
@@ -36404,7 +36799,7 @@
         "review",
         "remediation"
       ],
-      "lastUpdated": "2026-07-04T14:16:12.749Z"
+      "lastUpdated": "2026-07-05T12:17:22.492Z"
     },
     {
       "specFolder": "system-speckit/028-memory-search-intelligence/000-release-cleanup",
@@ -36422,7 +36817,7 @@
         "validation",
         "phases"
       ],
-      "lastUpdated": "2026-07-01T10:41:59.065Z"
+      "lastUpdated": "2026-07-05T19:04:15.281Z"
     },
     {
       "specFolder": "system-speckit/028-memory-search-intelligence/000-release-cleanup/001-code-readmes",
@@ -36444,11 +36839,11 @@
         "edits",
         "begin"
       ],
-      "lastUpdated": "2026-07-04T14:39:13.799Z"
+      "lastUpdated": "2026-07-05T19:04:15.281Z"
     },
     {
       "specFolder": "system-speckit/028-memory-search-intelligence/000-release-cleanup/002-skill-and-repo-readmes",
-      "description": "The every skill-level README plus repository and runtime top-level README surfaces needs a release-readiness cleanup contract before any document edit",
+      "description": "The every skill-level README plus repository and runtime top-level README surfaces needs a release-readiness cleanup contract before any document",
       "keywords": [
         "every",
         "skill-level",
@@ -36462,14 +36857,13 @@
         "release-readiness",
         "cleanup",
         "contract",
-        "document",
-        "edit"
+        "document"
       ],
-      "lastUpdated": "2026-06-30T12:42:37.621Z"
+      "lastUpdated": "2026-07-05T19:04:15.281Z"
     },
     {
       "specFolder": "system-speckit/028-memory-search-intelligence/000-release-cleanup/003-skill-references-assets-and-skillmd",
-      "description": "The every skill SKILL.md plus each skill's references and assets documentation needs a release-readiness cleanup contract before any document edits be",
+      "description": "The every skill SKILL.md plus each skill's references and assets documentation needs a release-readiness cleanup contract before any document edits",
       "keywords": [
         "every",
         "skill",
@@ -36484,11 +36878,11 @@
         "document",
         "edits"
       ],
-      "lastUpdated": "2026-06-30T12:42:37.625Z"
+      "lastUpdated": "2026-07-05T19:04:15.281Z"
     },
     {
       "specFolder": "system-speckit/028-memory-search-intelligence/000-release-cleanup/004-feature-catalogs",
-      "description": "The every feature catalog document, including the system-spec-kit catalog and any sibling catalogs needs a release-readiness cleanup contract before a",
+      "description": "The every feature catalog document, including the system-spec-kit catalog and any sibling catalogs needs a release-readiness cleanup contract before",
       "keywords": [
         "every",
         "feature",
@@ -36503,7 +36897,7 @@
         "cleanup",
         "contract"
       ],
-      "lastUpdated": "2026-06-30T12:42:37.631Z"
+      "lastUpdated": "2026-07-05T19:04:15.281Z"
     },
     {
       "specFolder": "system-speckit/028-memory-search-intelligence/000-release-cleanup/005-manual-testing-playbooks",
@@ -36524,11 +36918,11 @@
         "contract",
         "edits"
       ],
-      "lastUpdated": "2026-06-30T12:42:37.635Z"
+      "lastUpdated": "2026-07-05T19:04:15.281Z"
     },
     {
       "specFolder": "system-speckit/028-memory-search-intelligence/000-release-cleanup/006-commands",
-      "description": "The every command doc in .opencode plus the .claude and .codex runtime mirrors needs a release-readiness cleanup contract before any document edits be",
+      "description": "The every command doc in .opencode plus the .claude and .codex runtime mirrors needs a release-readiness cleanup contract before any document edits",
       "keywords": [
         "every",
         "command",
@@ -36546,11 +36940,11 @@
         "document",
         "edits"
       ],
-      "lastUpdated": "2026-06-30T12:42:37.641Z"
+      "lastUpdated": "2026-07-05T19:04:15.281Z"
     },
     {
       "specFolder": "system-speckit/028-memory-search-intelligence/000-release-cleanup/007-agents",
-      "description": "The every agent definition in .opencode plus .claude and .codex runtime mirrors needs a release-readiness cleanup contract before any document edits b",
+      "description": "The every agent definition in .opencode plus .claude and .codex runtime mirrors needs a release-readiness cleanup contract before any document edits",
       "keywords": [
         "every",
         "agent",
@@ -36568,7 +36962,7 @@
         "document",
         "edits"
       ],
-      "lastUpdated": "2026-06-30T12:42:37.645Z"
+      "lastUpdated": "2026-07-05T19:04:15.281Z"
     },
     {
       "specFolder": "system-speckit/028-memory-search-intelligence/000-release-cleanup/008-agents-md",
@@ -36588,11 +36982,11 @@
         "edits",
         "begin"
       ],
-      "lastUpdated": "2026-06-30T12:42:37.650Z"
+      "lastUpdated": "2026-07-05T19:04:15.281Z"
     },
     {
       "specFolder": "system-speckit/028-memory-search-intelligence/000-release-cleanup/009-changelogs-constitutional-and-templates",
-      "description": "The changelog directories, constitutional docs and the system-spec-kit templates package needs a release-readiness cleanup contract before any documen",
+      "description": "The changelog directories, constitutional docs and the system-spec-kit templates package needs a release-readiness cleanup contract before any",
       "keywords": [
         "changelog",
         "directories",
@@ -36604,14 +36998,13 @@
         "needs",
         "release-readiness",
         "cleanup",
-        "contract",
-        "documen"
+        "contract"
       ],
-      "lastUpdated": "2026-06-30T12:42:37.655Z"
+      "lastUpdated": "2026-07-05T19:04:15.281Z"
     },
     {
       "specFolder": "system-speckit/028-memory-search-intelligence/000-release-cleanup/010-catalog-playbook-coverage-audit",
-      "description": "Packet 028 shipped many features into three daemon-backed system skills (system-spec-kit, system-code-graph and system-skill-advisor), but the release",
+      "description": "Packet 028 shipped many features into three daemon-backed system skills (system-spec-kit, system-code-graph and system-skill-advisor), but the",
       "keywords": [
         "packet",
         "028",
@@ -36624,10 +37017,9 @@
         "skills",
         "system-spec-kit",
         "system-code-graph",
-        "system-skill-advisor",
-        "release"
+        "system-skill-advisor"
       ],
-      "lastUpdated": "2026-06-30T12:42:37.661Z"
+      "lastUpdated": "2026-07-05T19:04:15.281Z"
     },
     {
       "specFolder": "system-speckit/028-memory-search-intelligence/000-release-cleanup/011-daemon-skills-playbook-validation",
@@ -36647,11 +37039,11 @@
         "system-skill-advisor",
         "system-code-graph"
       ],
-      "lastUpdated": "2026-06-30T12:42:37.666Z"
+      "lastUpdated": "2026-07-05T19:04:15.281Z"
     },
     {
       "specFolder": "system-speckit/028-memory-search-intelligence/000-release-cleanup/012-playbook-findings-remediation",
-      "description": "The daemon-skills playbook validation (packet 011) plus the core memory-search-intelligence re-run surfaced about twenty-two real product findings acr",
+      "description": "The daemon-skills playbook validation (packet 011) plus the core memory-search-intelligence re-run surfaced about twenty-two real product findings",
       "keywords": [
         "daemon-skills",
         "playbook",
@@ -36667,10 +37059,9 @@
         "twenty-two",
         "real",
         "product",
-        "findings",
-        "acr"
+        "findings"
       ],
-      "lastUpdated": "2026-06-30T12:42:37.670Z"
+      "lastUpdated": "2026-07-05T19:04:15.281Z"
     },
     {
       "specFolder": "system-speckit/028-memory-search-intelligence/000-release-cleanup/013-drift-remediation",
@@ -36684,11 +37075,11 @@
         "converged",
         "findings"
       ],
-      "lastUpdated": "2026-06-28T14:23:06.632Z"
+      "lastUpdated": "2026-07-05T19:04:15.281Z"
     },
     {
       "specFolder": "system-speckit/028-memory-search-intelligence/000-release-cleanup/013-drift-remediation/001-p0-fixes",
-      "description": "The 2026-06-27 drift audit converged 5 findings in this phase covering the six P0 findings: read-only doctor routes carrying mutation flags, the causa",
+      "description": "The 2026-06-27 drift audit converged 5 findings in this phase covering the six P0 findings: read-only doctor routes carrying mutation flags, the",
       "keywords": [
         "2026-06-27",
         "drift",
@@ -36703,14 +37094,13 @@
         "routes",
         "carrying",
         "mutation",
-        "flags",
-        "causa"
+        "flags"
       ],
-      "lastUpdated": "2026-06-27T13:56:22.679Z"
+      "lastUpdated": "2026-07-05T19:04:15.281Z"
     },
     {
       "specFolder": "system-speckit/028-memory-search-intelligence/000-release-cleanup/013-drift-remediation/002-stale-db-and-tool-count-sweep",
-      "description": "The 2026-06-27 drift audit converged 22 findings in this phase covering the retired per-profile context-index.sqlite names (canonicalized to context-i",
+      "description": "The 2026-06-27 drift audit converged 22 findings in this phase covering the retired per-profile context-index.sqlite names (canonicalized to",
       "keywords": [
         "2026-06-27",
         "drift",
@@ -36724,14 +37114,13 @@
         "context-index",
         "sqlite",
         "names",
-        "canonicalized",
-        "context-i"
+        "canonicalized"
       ],
-      "lastUpdated": "2026-06-28T14:23:06.637Z"
+      "lastUpdated": "2026-07-05T19:04:15.281Z"
     },
     {
       "specFolder": "system-speckit/028-memory-search-intelligence/000-release-cleanup/013-drift-remediation/003-opencode-go-and-codex-pins",
-      "description": "The 2026-06-27 drift audit converged 21 findings in this phase covering the removed opencode-go gateway (purged to its last straggler, the matrix-adap",
+      "description": "The 2026-06-27 drift audit converged 21 findings in this phase covering the removed opencode-go gateway (purged to its last straggler, the",
       "keywords": [
         "2026-06-27",
         "drift",
@@ -36745,14 +37134,13 @@
         "gateway",
         "purged",
         "last",
-        "straggler",
-        "matrix-adap"
+        "straggler"
       ],
-      "lastUpdated": "2026-06-28T14:23:06.642Z"
+      "lastUpdated": "2026-07-05T19:04:15.281Z"
     },
     {
       "specFolder": "system-speckit/028-memory-search-intelligence/000-release-cleanup/013-drift-remediation/004-tool-grant-reconciliation",
-      "description": "The 2026-06-27 drift audit converged 44 findings in this phase covering agent MCP grants across .claude/.opencode/.codex and command allowed-tools ver",
+      "description": "The 2026-06-27 drift audit converged 44 findings in this phase covering agent MCP grants across .claude/.opencode/.codex and command allowed-tools",
       "keywords": [
         "2026-06-27",
         "drift",
@@ -36769,14 +37157,13 @@
         "opencode",
         "codex",
         "command",
-        "allowed-tools",
-        "ver"
+        "allowed-tools"
       ],
-      "lastUpdated": "2026-06-28T14:23:06.647Z"
+      "lastUpdated": "2026-07-05T19:04:15.281Z"
     },
     {
       "specFolder": "system-speckit/028-memory-search-intelligence/000-release-cleanup/013-drift-remediation/005-spec-housekeeping",
-      "description": "The 2026-06-27 drift audit converged 37 findings in this phase covering graph-metadata path normalization, phase-parent migrated/level metadata, and s",
+      "description": "The 2026-06-27 drift audit converged 37 findings in this phase covering graph-metadata path normalization, phase-parent migrated/level metadata, and",
       "keywords": [
         "2026-06-27",
         "drift",
@@ -36793,11 +37180,11 @@
         "level",
         "metadata"
       ],
-      "lastUpdated": "2026-06-28T14:23:06.651Z"
+      "lastUpdated": "2026-07-05T19:04:15.281Z"
     },
     {
       "specFolder": "system-speckit/028-memory-search-intelligence/000-release-cleanup/013-drift-remediation/006-remaining-p1-p2",
-      "description": "The 2026-06-27 drift audit converged 46 findings in this phase covering env-var documentation, code/doc drift, the CI drift-guard, memory commands, an",
+      "description": "The 2026-06-27 drift audit converged 46 findings in this phase covering env-var documentation, code/doc drift, the CI drift-guard, memory commands,",
       "keywords": [
         "2026-06-27",
         "drift",
@@ -36814,7 +37201,7 @@
         "memory",
         "commands"
       ],
-      "lastUpdated": "2026-06-28T14:23:06.655Z"
+      "lastUpdated": "2026-07-05T19:04:15.281Z"
     },
     {
       "specFolder": "system-speckit/028-memory-search-intelligence/000-release-cleanup/014-spec-regrouping-renumber-reindex",
@@ -36836,28 +37223,75 @@
         "references",
         "metadata"
       ],
-      "lastUpdated": "2026-07-01T12:31:48.020Z"
+      "lastUpdated": "2026-07-05T19:04:15.281Z"
+    },
+    {
+      "specFolder": "system-speckit/028-memory-search-intelligence/000-release-cleanup/015-manual-playbook-execution-sweep",
+      "description": "Automated stress tests confirm code-level behavior under load, but manual testing playbooks exist specifically to validate operator-facing, end-to-end",
+      "keywords": [
+        "automated",
+        "stress",
+        "tests",
+        "confirm",
+        "code-level",
+        "behavior",
+        "load",
+        "manual",
+        "testing",
+        "playbooks",
+        "exist",
+        "specifically",
+        "validate",
+        "operator-facing",
+        "end-to-end"
+      ],
+      "lastUpdated": "2026-07-05T19:04:15.281Z"
+    },
+    {
+      "specFolder": "system-speckit/028-memory-search-intelligence/000-release-cleanup/015-manual-playbook-execution-sweep/001-findings-remediation",
+      "description": "The 485-scenario manual testing playbook sweep (packet `031-manual-playbook-execution-sweep`) is confirming real, reproducible bugs across the",
+      "keywords": [
+        "485-scenario",
+        "manual",
+        "testing",
+        "playbook",
+        "sweep",
+        "packet",
+        "031-manual-playbook-execution-sweep",
+        "confirming",
+        "real",
+        "reproducible",
+        "bugs",
+        "across"
+      ],
+      "lastUpdated": "2026-07-05T19:04:15.281Z"
     },
     {
       "specFolder": "system-speckit/028-memory-search-intelligence/001-speckit-memory",
-      "description": "Spec-Kit Memory MCP phase parent: 30 child phases covering corpus reindex, determinism, retrieval routing, retention, ranking, summary fusion, and dark-flag graduation research for packet 028.",
+      "description": "The Spec-Kit Memory MCP research surfaced candidate work across recall retrieval, deterministic IDs, currentness, reliability and eval coverage",
       "keywords": [
-        "speckit",
+        "spec-kit",
         "memory",
         "mcp",
-        "phase",
-        "parent",
-        "corpus",
+        "research",
+        "surfaced",
+        "candidate",
+        "work",
+        "across",
+        "recall",
         "retrieval",
-        "ranking",
-        "retention",
-        "graduation"
+        "deterministic",
+        "ids",
+        "currentness",
+        "reliability",
+        "eval",
+        "coverage"
       ],
-      "lastUpdated": "2026-07-02T00:00:00.000Z"
+      "lastUpdated": "2026-07-05T19:04:15.281Z"
     },
     {
       "specFolder": "system-speckit/028-memory-search-intelligence/001-speckit-memory/001-corpus-reindex-gate-zero",
-      "description": "The Spec-Kit Memory MCP index is partly cold: a measurable fraction of indexed rows are un-enriched / un-embedded, and the FTS/vector consistency stat",
+      "description": "The Spec-Kit Memory MCP index is partly cold: a measurable fraction of indexed rows are un-enriched / un-embedded, and the FTS/vector consistency",
       "keywords": [
         "spec-kit",
         "memory",
@@ -36873,14 +37307,13 @@
         "un-embedded",
         "fts",
         "vector",
-        "consistency",
-        "stat"
+        "consistency"
       ],
-      "lastUpdated": "2026-06-23T03:49:58.142Z"
+      "lastUpdated": "2026-07-05T19:04:15.281Z"
     },
     {
       "specFolder": "system-speckit/028-memory-search-intelligence/001-speckit-memory/002-determinism-content-id-foundation",
-      "description": "The Memory MCP fuses ranked signals and renders a result set the downstream agent loop caches against, but its ordering is not reproducible: the candi",
+      "description": "The Memory MCP fuses ranked signals and renders a result set the downstream agent loop caches against, but its ordering is not reproducible: the",
       "keywords": [
         "memory",
         "mcp",
@@ -36896,14 +37329,13 @@
         "caches",
         "against",
         "ordering",
-        "reproducible",
-        "candi"
+        "reproducible"
       ],
-      "lastUpdated": "2026-06-23T03:49:58.150Z"
+      "lastUpdated": "2026-07-05T19:04:15.281Z"
     },
     {
       "specFolder": "system-speckit/028-memory-search-intelligence/001-speckit-memory/003-retrieval-class-routing",
-      "description": "The Memory MCP query router (`mcpserver/lib/search/query-router.ts`) fuses exactly two orthogonal classifiers into `RouteResult`, complexity tier (`si",
+      "description": "The Memory MCP query router (`mcpserver/lib/search/query-router.ts`) fuses exactly two orthogonal classifiers into `RouteResult`, complexity tier",
       "keywords": [
         "memory",
         "mcp",
@@ -36922,7 +37354,7 @@
         "complexity",
         "tier"
       ],
-      "lastUpdated": "2026-06-23T03:49:58.157Z"
+      "lastUpdated": "2026-07-05T19:04:15.281Z"
     },
     {
       "specFolder": "system-speckit/028-memory-search-intelligence/001-speckit-memory/004-graceful-degradation",
@@ -36942,7 +37374,7 @@
         "degrading",
         "lexical"
       ],
-      "lastUpdated": "2026-06-23T03:49:58.165Z"
+      "lastUpdated": "2026-07-05T19:04:15.281Z"
     },
     {
       "specFolder": "system-speckit/028-memory-search-intelligence/001-speckit-memory/005-recall-render-escaper",
@@ -36965,7 +37397,7 @@
         "prompt",
         "loop"
       ],
-      "lastUpdated": "2026-06-23T03:49:58.174Z"
+      "lastUpdated": "2026-07-05T19:04:15.281Z"
     },
     {
       "specFolder": "system-speckit/028-memory-search-intelligence/001-speckit-memory/006-redteam-probe-gate",
@@ -36986,7 +37418,7 @@
         "surface",
         "holds"
       ],
-      "lastUpdated": "2026-06-23T03:49:58.182Z"
+      "lastUpdated": "2026-07-05T19:04:15.281Z"
     },
     {
       "specFolder": "system-speckit/028-memory-search-intelligence/001-speckit-memory/007-bitemporal-window",
@@ -37003,7 +37435,7 @@
         "number",
         "times"
       ],
-      "lastUpdated": "2026-06-30T12:42:37.682Z"
+      "lastUpdated": "2026-07-05T19:04:15.281Z"
     },
     {
       "specFolder": "system-speckit/028-memory-search-intelligence/001-speckit-memory/008-edge-presence-currentness",
@@ -37023,7 +37455,7 @@
         "read",
         "path"
       ],
-      "lastUpdated": "2026-07-04T14:39:13.799Z"
+      "lastUpdated": "2026-07-05T19:04:15.281Z"
     },
     {
       "specFolder": "system-speckit/028-memory-search-intelligence/001-speckit-memory/009-derived-id-provenance",
@@ -37036,7 +37468,7 @@
         "content-addressed",
         "identity"
       ],
-      "lastUpdated": "2026-06-23T03:49:58.207Z"
+      "lastUpdated": "2026-07-05T19:04:15.281Z"
     },
     {
       "specFolder": "system-speckit/028-memory-search-intelligence/001-speckit-memory/010-consolidation-cursor-clock",
@@ -37049,7 +37481,7 @@
         "half-built",
         "crash-safe"
       ],
-      "lastUpdated": "2026-06-23T03:49:58.215Z"
+      "lastUpdated": "2026-07-05T19:04:15.281Z"
     },
     {
       "specFolder": "system-speckit/028-memory-search-intelligence/001-speckit-memory/011-retention-forgetting",
@@ -37067,7 +37499,7 @@
         "result-set",
         "boundary"
       ],
-      "lastUpdated": "2026-06-23T03:49:58.223Z"
+      "lastUpdated": "2026-07-05T19:04:15.281Z"
     },
     {
       "specFolder": "system-speckit/028-memory-search-intelligence/001-speckit-memory/012-procedural-reliability-benchmark",
@@ -37087,11 +37519,11 @@
         "procedure",
         "confirmed"
       ],
-      "lastUpdated": "2026-06-23T03:49:58.232Z"
+      "lastUpdated": "2026-07-05T19:04:15.281Z"
     },
     {
       "specFolder": "system-speckit/028-memory-search-intelligence/001-speckit-memory/013-enrichment-observability",
-      "description": "The Memory MCP splits the write path from background post-insert enrichment: a row commits immediately marked enrichment-pending, then an async, concu",
+      "description": "The Memory MCP splits the write path from background post-insert enrichment: a row commits immediately marked enrichment-pending, then an async,",
       "keywords": [
         "memory",
         "mcp",
@@ -37106,10 +37538,9 @@
         "immediately",
         "marked",
         "enrichment-pending",
-        "async",
-        "concu"
+        "async"
       ],
-      "lastUpdated": "2026-06-30T12:42:37.692Z"
+      "lastUpdated": "2026-07-05T19:04:15.281Z"
     },
     {
       "specFolder": "system-speckit/028-memory-search-intelligence/001-speckit-memory/014-mem0-ranking-tweaks",
@@ -37129,11 +37560,11 @@
         "surfaced",
         "bundle"
       ],
-      "lastUpdated": "2026-07-01T12:31:48.030Z"
+      "lastUpdated": "2026-07-05T19:04:15.281Z"
     },
     {
       "specFolder": "system-speckit/028-memory-search-intelligence/001-speckit-memory/015-summary-fusion-grounding",
-      "description": "The Memory MCP already computes community and per-chunk summaries, but that evidence never participates in the main ranked blend, and there is no coar",
+      "description": "The Memory MCP already computes community and per-chunk summaries, but that evidence never participates in the main ranked blend, and there is no",
       "keywords": [
         "memory",
         "mcp",
@@ -37147,10 +37578,9 @@
         "participates",
         "main",
         "ranked",
-        "blend",
-        "coar"
+        "blend"
       ],
-      "lastUpdated": "2026-06-30T12:42:37.702Z"
+      "lastUpdated": "2026-07-05T19:04:15.281Z"
     },
     {
       "specFolder": "system-speckit/028-memory-search-intelligence/001-speckit-memory/016-iterative-agentic-recall",
@@ -37172,7 +37602,7 @@
         "focused",
         "resume"
       ],
-      "lastUpdated": "2026-06-30T12:42:37.707Z"
+      "lastUpdated": "2026-07-05T19:04:15.281Z"
     },
     {
       "specFolder": "system-speckit/028-memory-search-intelligence/001-speckit-memory/017-semantic-edge-layer",
@@ -37183,7 +37613,7 @@
         "substrate-blind",
         "edge"
       ],
-      "lastUpdated": "2026-07-04T14:39:13.799Z"
+      "lastUpdated": "2026-07-05T19:04:15.281Z"
     },
     {
       "specFolder": "system-speckit/028-memory-search-intelligence/001-speckit-memory/018-sleeptime-consolidation",
@@ -37195,11 +37625,11 @@
         "off-turn",
         "reorganization"
       ],
-      "lastUpdated": "2026-06-30T12:42:37.717Z"
+      "lastUpdated": "2026-07-05T19:04:15.281Z"
     },
     {
       "specFolder": "system-speckit/028-memory-search-intelligence/001-speckit-memory/019-eval-harness-extension",
-      "description": "The Memory MCP ships a live retrieval eval harness that is already ~75-85% built [CONFIRMED: iter-011 \"extend-not-greenfield … honest figure ≈ 75-85%\"",
+      "description": "The Memory MCP ships a live retrieval eval harness that is already ~75-85% built [CONFIRMED: iter-011 \"extend-not-greenfield … honest figure ≈",
       "keywords": [
         "memory",
         "mcp",
@@ -37217,11 +37647,11 @@
         "honest",
         "figure"
       ],
-      "lastUpdated": "2026-06-30T12:42:37.722Z"
+      "lastUpdated": "2026-07-05T19:04:15.281Z"
     },
     {
       "specFolder": "system-speckit/028-memory-search-intelligence/001-speckit-memory/020-eval-calibration-ab",
-      "description": "The Memory MCP ships two classes of unvalidated retrieval intelligence, dormant calibration machinery that cannot be promoted and default-on levers th",
+      "description": "The Memory MCP ships two classes of unvalidated retrieval intelligence, dormant calibration machinery that cannot be promoted and default-on levers",
       "keywords": [
         "memory",
         "mcp",
@@ -37239,7 +37669,7 @@
         "default-on",
         "levers"
       ],
-      "lastUpdated": "2026-06-30T12:42:37.727Z"
+      "lastUpdated": "2026-07-05T19:04:15.281Z"
     },
     {
       "specFolder": "system-speckit/028-memory-search-intelligence/001-speckit-memory/021-residual-correctness",
@@ -37256,7 +37686,7 @@
         "retrieval-evaluation",
         "campaign"
       ],
-      "lastUpdated": "2026-06-30T12:42:37.733Z"
+      "lastUpdated": "2026-07-05T19:04:15.281Z"
     },
     {
       "specFolder": "system-speckit/028-memory-search-intelligence/001-speckit-memory/022-kept-off-flag-resolution",
@@ -37277,11 +37707,11 @@
         "flag",
         "flipped"
       ],
-      "lastUpdated": "2026-06-23T03:49:58.310Z"
+      "lastUpdated": "2026-07-05T19:04:15.281Z"
     },
     {
       "specFolder": "system-speckit/028-memory-search-intelligence/001-speckit-memory/023-new-feature-research-build",
-      "description": "The flag-resolution reckoning deleted ten default-off switches, and each deletion taught something specific about why a lever fails to move live recal",
+      "description": "The flag-resolution reckoning deleted ten default-off switches, and each deletion taught something specific about why a lever fails to move live",
       "keywords": [
         "flag-resolution",
         "reckoning",
@@ -37297,10 +37727,9 @@
         "lever",
         "fails",
         "move",
-        "live",
-        "recal"
+        "live"
       ],
-      "lastUpdated": "2026-06-23T03:49:58.316Z"
+      "lastUpdated": "2026-07-05T19:04:15.281Z"
     },
     {
       "specFolder": "system-speckit/028-memory-search-intelligence/001-speckit-memory/024-reranker-research",
@@ -37313,7 +37742,7 @@
         "architectural",
         "finding"
       ],
-      "lastUpdated": "2026-06-23T03:49:58.323Z"
+      "lastUpdated": "2026-07-05T19:04:15.281Z"
     },
     {
       "specFolder": "system-speckit/028-memory-search-intelligence/001-speckit-memory/025-off-corpus-eval-fixture-gate",
@@ -37330,7 +37759,7 @@
         "off-corpus",
         "term"
       ],
-      "lastUpdated": "2026-06-30T12:42:37.738Z"
+      "lastUpdated": "2026-07-05T19:04:15.281Z"
     },
     {
       "specFolder": "system-speckit/028-memory-search-intelligence/001-speckit-memory/026-lexical-grounding-floor",
@@ -37344,7 +37773,7 @@
         "term",
         "confidence"
       ],
-      "lastUpdated": "2026-06-30T12:42:37.742Z"
+      "lastUpdated": "2026-07-05T19:04:15.281Z"
     },
     {
       "specFolder": "system-speckit/028-memory-search-intelligence/001-speckit-memory/027-envelope-fidelity-enforcement",
@@ -37359,7 +37788,7 @@
         "envelope",
         "fidelity"
       ],
-      "lastUpdated": "2026-06-23T03:49:58.344Z"
+      "lastUpdated": "2026-07-05T19:04:15.281Z"
     },
     {
       "specFolder": "system-speckit/028-memory-search-intelligence/001-speckit-memory/028-scoring-hardening",
@@ -37379,11 +37808,11 @@
         "high-cosine",
         "hit"
       ],
-      "lastUpdated": "2026-06-23T03:49:58.351Z"
+      "lastUpdated": "2026-07-05T19:04:15.281Z"
     },
     {
       "specFolder": "system-speckit/028-memory-search-intelligence/001-speckit-memory/029-substrate-sandbox-cleanup",
-      "description": "The substrate stress harness `run-substrate-stress-harness.mjs` writes its evidence and scratch into `sandbox/24--local-llm-query-intelligence/` at th",
+      "description": "The substrate stress harness `run-substrate-stress-harness.mjs` writes its evidence and scratch into `sandbox/24--local-llm-query-intelligence/` at",
       "keywords": [
         "substrate",
         "stress",
@@ -37396,7 +37825,7 @@
         "sandbox",
         "24-local-llm-query-intelligence"
       ],
-      "lastUpdated": "2026-06-23T06:20:25.363Z"
+      "lastUpdated": "2026-07-05T19:04:15.281Z"
     },
     {
       "specFolder": "system-speckit/028-memory-search-intelligence/001-speckit-memory/030-opencode-temp-worker-reaping",
@@ -37417,7 +37846,294 @@
         "exits",
         "ungracefully"
       ],
-      "lastUpdated": "2026-07-01T10:41:59.078Z"
+      "lastUpdated": "2026-07-05T19:04:15.281Z"
+    },
+    {
+      "specFolder": "system-speckit/028-memory-search-intelligence/001-speckit-memory/031-fix-deep-dive-p0-p2-findings-for-mk-spec-memory",
+      "description": "The 2026-07-03 deep dive (live production probing + eight code audits over ~96k lines) found ~150 defects across the mk-spec-memory search stack",
+      "keywords": [
+        "2026-07-03",
+        "deep",
+        "dive",
+        "live",
+        "production",
+        "probing",
+        "eight",
+        "code",
+        "audits",
+        "96k",
+        "lines",
+        "found",
+        "150",
+        "defects",
+        "across",
+        "mk-spec-memory",
+        "search",
+        "stack"
+      ],
+      "lastUpdated": "2026-07-04T17:46:11.676Z"
+    },
+    {
+      "specFolder": "system-speckit/028-memory-search-intelligence/001-speckit-memory/031-fix-deep-dive-p0-p2-findings-for-mk-spec-memory/001-orphan-sweep-cursor-and-corpus-identity-repair",
+      "description": "`handlers/memory-index.ts:684` calls `sweepOrphanIndexRows({ limit: 200 })` with no cursor; the function defaults cursor=0 and returns `nextCursor`,",
+      "keywords": [
+        "handlers",
+        "memory-index",
+        "684",
+        "calls",
+        "sweeporphanindexrows",
+        "limit",
+        "200",
+        "cursor",
+        "function",
+        "defaults",
+        "returns",
+        "nextcursor"
+      ],
+      "lastUpdated": "2026-07-04T17:46:14.691Z"
+    },
+    {
+      "specFolder": "system-speckit/028-memory-search-intelligence/001-speckit-memory/031-fix-deep-dive-p0-p2-findings-for-mk-spec-memory/002-archived-tier-and-tombstone-read-exclusions",
+      "description": "Non-active rows dominate search results because read exclusion is channel-inconsistent",
+      "keywords": [
+        "non-active",
+        "rows",
+        "dominate",
+        "search",
+        "results",
+        "because",
+        "read",
+        "exclusion",
+        "channel-inconsistent"
+      ],
+      "lastUpdated": "2026-07-04T17:46:13.832Z"
+    },
+    {
+      "specFolder": "system-speckit/028-memory-search-intelligence/001-speckit-memory/031-fix-deep-dive-p0-p2-findings-for-mk-spec-memory/003-content-hash-normalization-and-save-dedup-lanes",
+      "description": "`contenthash` is a raw sha256 with no normalization (`memory-parser.ts:914`; deep-dive-report Chain A step 1 cites :913), so any",
+      "keywords": [
+        "contenthash",
+        "raw",
+        "sha256",
+        "normalization",
+        "memory-parser",
+        "914",
+        "deep-dive-report",
+        "chain",
+        "step",
+        "cites",
+        "913"
+      ],
+      "lastUpdated": "2026-07-04T17:46:12.119Z"
+    },
+    {
+      "specFolder": "system-speckit/028-memory-search-intelligence/001-speckit-memory/031-fix-deep-dive-p0-p2-findings-for-mk-spec-memory/004-embedding-coverage-and-vector-shard-consistency",
+      "description": "43% of the 33,101-row memory corpus is invisible to vector search: 8,761 rows are pending, 4,247 failed, and 1,260 sit in retry, while 367 rows report",
+      "keywords": [
+        "101-row",
+        "memory",
+        "corpus",
+        "invisible",
+        "vector",
+        "search",
+        "761",
+        "rows",
+        "pending",
+        "247",
+        "failed",
+        "260",
+        "sit",
+        "retry",
+        "while",
+        "367",
+        "report"
+      ],
+      "lastUpdated": "2026-07-04T17:46:14.209Z"
+    },
+    {
+      "specFolder": "system-speckit/028-memory-search-intelligence/001-speckit-memory/031-fix-deep-dive-p0-p2-findings-for-mk-spec-memory/005-trigger-phrase-quality-and-matcher-guards",
+      "description": "The trigger-phrase corpus is dominated by junk: 45% of 165,979 phrase occurrences are single words (\"feature\" x2,072, \"specification\" x2,034,",
+      "keywords": [
+        "trigger-phrase",
+        "corpus",
+        "dominated",
+        "junk",
+        "165",
+        "979",
+        "phrase",
+        "occurrences",
+        "single",
+        "words",
+        "feature",
+        "072",
+        "specification",
+        "034"
+      ],
+      "lastUpdated": "2026-07-04T17:46:13.038Z"
+    },
+    {
+      "specFolder": "system-speckit/028-memory-search-intelligence/001-speckit-memory/031-fix-deep-dive-p0-p2-findings-for-mk-spec-memory/006-rescue-layer-ranking-authority-decision",
+      "description": "Retrieval-rescue (default ON) overwrites the final score of every candidate with `0.03base + 0.78lexicalOverlap` (`retrieval-rescue.ts:210`, applied",
+      "keywords": [
+        "retrieval-rescue",
+        "default",
+        "overwrites",
+        "final",
+        "score",
+        "every",
+        "candidate",
+        "03base",
+        "78lexicaloverlap",
+        "210",
+        "applied"
+      ],
+      "lastUpdated": "2026-07-04T17:46:18.269Z"
+    },
+    {
+      "specFolder": "system-speckit/028-memory-search-intelligence/001-speckit-memory/031-fix-deep-dive-p0-p2-findings-for-mk-spec-memory/007-ranking-filter-bypass-and-score-scale-fixes",
+      "description": "The deep-dive report (../research/deep-dive-report.md, Chain D) shows a large fraction of the ranking stack is computed, recorded in telemetry as",
+      "keywords": [
+        "deep-dive",
+        "report",
+        "research",
+        "deep-dive-report",
+        "chain",
+        "shows",
+        "large",
+        "fraction",
+        "ranking",
+        "stack",
+        "computed",
+        "recorded",
+        "telemetry"
+      ],
+      "lastUpdated": "2026-07-04T17:46:19.248Z"
+    },
+    {
+      "specFolder": "system-speckit/028-memory-search-intelligence/001-speckit-memory/031-fix-deep-dive-p0-p2-findings-for-mk-spec-memory/008-causal-graph-hygiene-and-entity-linker-noise",
+      "description": "The causal graph is 94% entity-linker noise and every save ratchets edge strengths toward 1.0, so graph signals cannot rank real causality",
+      "keywords": [
+        "causal",
+        "graph",
+        "entity-linker",
+        "noise",
+        "every",
+        "save",
+        "ratchets",
+        "edge",
+        "strengths",
+        "toward",
+        "signals",
+        "cannot",
+        "rank",
+        "real",
+        "causality"
+      ],
+      "lastUpdated": "2026-07-04T17:46:15.540Z"
+    },
+    {
+      "specFolder": "system-speckit/028-memory-search-intelligence/001-speckit-memory/031-fix-deep-dive-p0-p2-findings-for-mk-spec-memory/009-learning-feedback-loop-repair",
+      "description": "The memory learning loop is starved of usage signal: only 65 of 33,101 index rows have ever recorded an access, and `trackAccess` is default-off",
+      "keywords": [
+        "memory",
+        "learning",
+        "loop",
+        "starved",
+        "usage",
+        "signal",
+        "only",
+        "101",
+        "index",
+        "rows",
+        "ever",
+        "recorded",
+        "access",
+        "trackaccess",
+        "default-off"
+      ],
+      "lastUpdated": "2026-07-04T17:46:13.464Z"
+    },
+    {
+      "specFolder": "system-speckit/028-memory-search-intelligence/001-speckit-memory/031-fix-deep-dive-p0-p2-findings-for-mk-spec-memory/010-search-hot-path-performance",
+      "description": "Warm `memorysearch` takes 2.0-2.9s at 33,101 rows (stage1 0.5-1.5s, stage2 ~1.2s constant even for 15-19 candidates), with +3.9s on the first-call",
+      "keywords": [
+        "warm",
+        "memorysearch",
+        "takes",
+        "0-2",
+        "101",
+        "rows",
+        "stage1",
+        "5-1",
+        "stage2",
+        "constant",
+        "even",
+        "15-19",
+        "candidates",
+        "first-call"
+      ],
+      "lastUpdated": "2026-07-04T17:46:18.751Z"
+    },
+    {
+      "specFolder": "system-speckit/028-memory-search-intelligence/001-speckit-memory/031-fix-deep-dive-p0-p2-findings-for-mk-spec-memory/011-daemon-freshness-and-health-truthfulness",
+      "description": "The entire memory surface was down at session start on 2026-07-03 and the loss was silent: a dist-freshness bootstrap deadlock that `npm run build`",
+      "keywords": [
+        "entire",
+        "memory",
+        "surface",
+        "session",
+        "start",
+        "2026-07-03",
+        "loss",
+        "silent",
+        "dist-freshness",
+        "bootstrap",
+        "deadlock",
+        "npm",
+        "run",
+        "build"
+      ],
+      "lastUpdated": "2026-07-04T17:46:15.119Z"
+    },
+    {
+      "specFolder": "system-speckit/028-memory-search-intelligence/001-speckit-memory/031-fix-deep-dive-p0-p2-findings-for-mk-spec-memory/012-envelope-presentation-and-command-doc-alignment",
+      "description": "Live-measured (deep-dive report §5, ledger L7 🟢): a 5-result `memorysearch` returns a 17.6KB envelope because every telemetry block is double-emitted",
+      "keywords": [
+        "live-measured",
+        "deep-dive",
+        "report",
+        "ledger",
+        "5-result",
+        "memorysearch",
+        "returns",
+        "6kb",
+        "envelope",
+        "because",
+        "every",
+        "telemetry",
+        "block",
+        "double-emitted"
+      ],
+      "lastUpdated": "2026-07-04T17:46:12.570Z"
+    },
+    {
+      "specFolder": "system-speckit/028-memory-search-intelligence/001-speckit-memory/031-fix-deep-dive-p0-p2-findings-for-mk-spec-memory/013-absorb-028-006-review-remediation-closeout",
+      "description": "The operator absorbed three open trackers into this program, but the tracker docs still advertise their pre-absorption state:",
+      "keywords": [
+        "operator",
+        "absorbed",
+        "three",
+        "open",
+        "trackers",
+        "program",
+        "tracker",
+        "docs",
+        "still",
+        "advertise",
+        "pre-absorption",
+        "state"
+      ],
+      "lastUpdated": "2026-07-04T17:46:17.545Z"
     },
     {
       "specFolder": "system-speckit/028-memory-search-intelligence/002-code-graph",
@@ -37440,7 +38156,7 @@
         "doc-symbol",
         "coverage"
       ],
-      "lastUpdated": "2026-07-04T14:39:13.799Z"
+      "lastUpdated": "2026-07-05T19:04:15.281Z"
     },
     {
       "specFolder": "system-speckit/028-memory-search-intelligence/002-code-graph/001-determinism-walk-order",
@@ -37617,7 +38333,7 @@
         "nothing",
         "differentiate"
       ],
-      "lastUpdated": "2026-07-04T14:39:13.799Z"
+      "lastUpdated": "2026-07-05T19:04:15.281Z"
     },
     {
       "specFolder": "system-speckit/028-memory-search-intelligence/002-code-graph/011-edge-confidence-review-remediation",
@@ -37637,7 +38353,7 @@
         "early",
         "audited"
       ],
-      "lastUpdated": "2026-07-04T14:39:13.799Z"
+      "lastUpdated": "2026-07-05T19:04:15.281Z"
     },
     {
       "specFolder": "system-speckit/028-memory-search-intelligence/003-skill-advisor",
@@ -37709,7 +38425,7 @@
         "blind",
         "spot"
       ],
-      "lastUpdated": "2026-07-04T14:39:13.799Z"
+      "lastUpdated": "2026-07-05T19:04:15.281Z"
     },
     {
       "specFolder": "system-speckit/028-memory-search-intelligence/003-skill-advisor/004-c4-shadow-seam-beta-posterior",
@@ -37808,6 +38524,27 @@
       "lastUpdated": "2026-06-23T03:49:58.478Z"
     },
     {
+      "specFolder": "system-speckit/028-memory-search-intelligence/003-skill-advisor/009-hard-rule-and-dispatch-preflight-hardening",
+      "description": "Two dispatch-path failures — a manual opencode run with no stdin redirect that hung at 0% CPU, and a fanout lineage that stalled at 0 iterations with",
+      "keywords": [
+        "two",
+        "dispatch-path",
+        "failures",
+        "manual",
+        "opencode",
+        "run",
+        "stdin",
+        "redirect",
+        "hung",
+        "cpu",
+        "fanout",
+        "lineage",
+        "stalled",
+        "iterations"
+      ],
+      "lastUpdated": "2026-07-05T19:04:15.281Z"
+    },
+    {
       "specFolder": "system-speckit/028-memory-search-intelligence/004-deep-loop",
       "description": "The Deep Loop Runtime research surfaced candidate work across reducer anchoring, fanout determinism, failure recovery, convergence scoring, stop-input",
       "keywords": [
@@ -37829,7 +38566,7 @@
         "scoring",
         "stop-input"
       ],
-      "lastUpdated": "2026-06-30T12:42:37.765Z"
+      "lastUpdated": "2026-07-05T19:04:15.281Z"
     },
     {
       "specFolder": "system-speckit/028-memory-search-intelligence/004-deep-loop/001-reducer-anchor-fix",
@@ -37950,6 +38687,91 @@
       "lastUpdated": "2026-06-23T03:49:58.528Z"
     },
     {
+      "specFolder": "system-speckit/028-memory-search-intelligence/004-deep-loop/007-deep-review-followup-hardening",
+      "description": "The 2026-07-02 10-iteration deep-review of packet `deep-loops/030-agent-loops-improved` (verdict CONDITIONAL, 0 P0 / 5 P1 / 1 P2) and its same-day",
+      "keywords": [
+        "2026-07-02",
+        "10-iteration",
+        "deep-review",
+        "packet",
+        "deep-loops",
+        "030-agent-loops-improved",
+        "verdict",
+        "conditional",
+        "same-day"
+      ],
+      "lastUpdated": "2026-07-05T19:04:15.281Z"
+    },
+    {
+      "specFolder": "system-speckit/028-memory-search-intelligence/004-deep-loop/007-deep-review-followup-hardening/001-orchestrator-validation-parity",
+      "description": "`runRegistryShellRules` filters the validator registry with `rule.strictonly !== true` unconditionally (`orchestrator.ts:269` at time of writing), so",
+      "keywords": [
+        "runregistryshellrules",
+        "filters",
+        "validator",
+        "registry",
+        "rule",
+        "strictonly",
+        "true",
+        "unconditionally",
+        "orchestrator",
+        "269",
+        "time",
+        "writing"
+      ],
+      "lastUpdated": "2026-07-05T19:04:15.281Z"
+    },
+    {
+      "specFolder": "system-speckit/028-memory-search-intelligence/004-deep-loop/007-deep-review-followup-hardening/002-lineage-timestamp-guard",
+      "description": "Lineage subprocesses own their JSONL state writes (`deep-review-state.jsonl` et al.) and the prompt asks for ISO-8601 timestamps, but nothing verifies",
+      "keywords": [
+        "lineage",
+        "subprocesses",
+        "own",
+        "jsonl",
+        "state",
+        "writes",
+        "deep-review-state",
+        "prompt",
+        "asks",
+        "iso-8601",
+        "timestamps",
+        "nothing",
+        "verifies"
+      ],
+      "lastUpdated": "2026-07-05T19:04:15.281Z"
+    },
+    {
+      "specFolder": "system-speckit/028-memory-search-intelligence/004-deep-loop/007-deep-review-followup-hardening/003-session-id-parity-tests",
+      "description": "Cross-mode workflow parity is maintained by discipline, not tests",
+      "keywords": [
+        "cross-mode",
+        "workflow",
+        "parity",
+        "maintained",
+        "discipline",
+        "tests"
+      ],
+      "lastUpdated": "2026-07-05T19:04:15.281Z"
+    },
+    {
+      "specFolder": "system-speckit/028-memory-search-intelligence/004-deep-loop/007-deep-review-followup-hardening/004-section-counts-manifest-fix",
+      "description": "In `check-section-counts.sh`, `sectionexpectedspech2` counts every `sectionGates` entry active at the declared level from `template-structure.js",
+      "keywords": [
+        "check-section-counts",
+        "sectionexpectedspech2",
+        "counts",
+        "every",
+        "sectiongates",
+        "entry",
+        "active",
+        "declared",
+        "level",
+        "template-structure"
+      ],
+      "lastUpdated": "2026-07-05T19:04:15.281Z"
+    },
+    {
       "specFolder": "system-speckit/028-memory-search-intelligence/005-spec-data-quality",
       "description": "Spec-kit writes plain markdown chunks and two metadata JSONs per packet, but none of that is shaped for retrieval recall, for AI instruction adherence",
       "keywords": [
@@ -37970,7 +38792,7 @@
         "instruction",
         "adherence"
       ],
-      "lastUpdated": "2026-07-01T10:41:59.129Z"
+      "lastUpdated": "2026-07-05T19:04:15.281Z"
     },
     {
       "specFolder": "system-speckit/028-memory-search-intelligence/005-spec-data-quality/001-on-write-quality",
@@ -37984,7 +38806,7 @@
         "authored-spec",
         "gates"
       ],
-      "lastUpdated": "2026-06-28T14:23:06.682Z"
+      "lastUpdated": "2026-07-05T19:04:15.281Z"
     },
     {
       "specFolder": "system-speckit/028-memory-search-intelligence/005-spec-data-quality/001-on-write-quality/001-extend-quality-loop-authored",
@@ -38000,7 +38822,7 @@
         "memory-save",
         "path"
       ],
-      "lastUpdated": "2026-06-28T14:23:06.686Z"
+      "lastUpdated": "2026-07-05T19:04:15.281Z"
     },
     {
       "specFolder": "system-speckit/028-memory-search-intelligence/005-spec-data-quality/001-on-write-quality/002-trigger-propagation-description",
@@ -38018,7 +38840,7 @@
         "verbatim",
         "copy"
       ],
-      "lastUpdated": "2026-06-28T14:23:06.690Z"
+      "lastUpdated": "2026-07-05T19:04:15.281Z"
     },
     {
       "specFolder": "system-speckit/028-memory-search-intelligence/005-spec-data-quality/001-on-write-quality/003-enum-constrain-schemas",
@@ -38034,11 +38856,11 @@
         "free",
         "strings"
       ],
-      "lastUpdated": "2026-06-28T14:23:06.694Z"
+      "lastUpdated": "2026-07-05T19:04:15.281Z"
     },
     {
       "specFolder": "system-speckit/028-memory-search-intelligence/005-spec-data-quality/001-on-write-quality/004-schema-warn-to-error",
-      "description": "The two structural JSON-shape rules ship at warn severity and never block, so a malformed `description.json` or `graph-metadata.json` reaches the corp",
+      "description": "The two structural JSON-shape rules ship at warn severity and never block, so a malformed `description.json` or `graph-metadata.json` reaches the",
       "keywords": [
         "two",
         "structural",
@@ -38053,10 +38875,9 @@
         "description",
         "json",
         "graph-metadata",
-        "reaches",
-        "corp"
+        "reaches"
       ],
-      "lastUpdated": "2026-06-28T14:23:06.698Z"
+      "lastUpdated": "2026-07-05T19:04:15.281Z"
     },
     {
       "specFolder": "system-speckit/028-memory-search-intelligence/005-spec-data-quality/001-on-write-quality/005-trigger-coherence-assertion",
@@ -38075,11 +38896,11 @@
         "asserted",
         "agree"
       ],
-      "lastUpdated": "2026-06-28T14:23:06.702Z"
+      "lastUpdated": "2026-07-05T19:04:15.281Z"
     },
     {
       "specFolder": "system-speckit/028-memory-search-intelligence/005-spec-data-quality/001-on-write-quality/006-hvr-style-autofix",
-      "description": "The HVR house voice (no em-dashes, no prose semicolons, no Oxford commas) is a documented authoring rule that no tool enforces, so adherence drifts ev",
+      "description": "The HVR house voice (no em-dashes, no prose semicolons, no Oxford commas) is a documented authoring rule that no tool enforces, so adherence drifts",
       "keywords": [
         "hvr",
         "house",
@@ -38097,11 +38918,11 @@
         "adherence",
         "drifts"
       ],
-      "lastUpdated": "2026-06-28T14:23:06.706Z"
+      "lastUpdated": "2026-07-05T19:04:15.281Z"
     },
     {
       "specFolder": "system-speckit/028-memory-search-intelligence/005-spec-data-quality/001-on-write-quality/007-ears-constraints-req-coverage",
-      "description": "Spec requirement prose has no shared grammar, so requirements are authored in inconsistent free-form sentences that resist linting and machine extract",
+      "description": "Spec requirement prose has no shared grammar, so requirements are authored in inconsistent free-form sentences that resist linting and machine",
       "keywords": [
         "spec",
         "requirement",
@@ -38115,10 +38936,9 @@
         "sentences",
         "resist",
         "linting",
-        "machine",
-        "extract"
+        "machine"
       ],
-      "lastUpdated": "2026-06-28T14:23:06.710Z"
+      "lastUpdated": "2026-07-05T19:04:15.281Z"
     },
     {
       "specFolder": "system-speckit/028-memory-search-intelligence/005-spec-data-quality/001-on-write-quality/008-surface-provenance-fields",
@@ -38142,7 +38962,7 @@
         "first-class",
         "fields"
       ],
-      "lastUpdated": "2026-06-28T14:23:06.715Z"
+      "lastUpdated": "2026-07-05T19:04:15.281Z"
     },
     {
       "specFolder": "system-speckit/028-memory-search-intelligence/005-spec-data-quality/001-on-write-quality/009-content-hash-integrity",
@@ -38161,7 +38981,7 @@
         "idempotency",
         "receipt"
       ],
-      "lastUpdated": "2026-06-28T14:23:06.719Z"
+      "lastUpdated": "2026-07-05T19:04:15.281Z"
     },
     {
       "specFolder": "system-speckit/028-memory-search-intelligence/005-spec-data-quality/001-on-write-quality/010-per-surface-gates",
@@ -38180,7 +39000,7 @@
         "write",
         "time"
       ],
-      "lastUpdated": "2026-06-28T14:23:06.724Z"
+      "lastUpdated": "2026-07-05T19:04:15.281Z"
     },
     {
       "specFolder": "system-speckit/028-memory-search-intelligence/005-spec-data-quality/002-retroactive-automation",
@@ -38197,11 +39017,11 @@
         "stored",
         "metadata"
       ],
-      "lastUpdated": "2026-06-28T14:23:06.728Z"
+      "lastUpdated": "2026-07-05T19:04:15.281Z"
     },
     {
       "specFolder": "system-speckit/028-memory-search-intelligence/005-spec-data-quality/002-retroactive-automation/011-scheduled-dq-sweep",
-      "description": "The eight shipped CI workflows are all `on: pullrequest` with `paths:` filters, and a grep for `schedule:` or `cron:` across `.github/workflows/` retu",
+      "description": "The eight shipped CI workflows are all `on: pullrequest` with `paths:` filters, and a grep for `schedule:` or `cron:` across `.github/workflows/`",
       "keywords": [
         "eight",
         "shipped",
@@ -38213,14 +39033,13 @@
         "schedule",
         "cron",
         "across",
-        "github",
-        "retu"
+        "github"
       ],
-      "lastUpdated": "2026-06-28T14:23:06.732Z"
+      "lastUpdated": "2026-07-05T19:04:15.281Z"
     },
     {
       "specFolder": "system-speckit/028-memory-search-intelligence/005-spec-data-quality/002-retroactive-automation/012-doctor-dq-route",
-      "description": "`/doctor` is an argv router whose route manifest at `.opencode/commands/doctor/routes.yaml` lists nine targets and zero of them inspect or remediate s",
+      "description": "`/doctor` is an argv router whose route manifest at `.opencode/commands/doctor/routes.yaml` lists nine targets and zero of them inspect or remediate",
       "keywords": [
         "doctor",
         "argv",
@@ -38240,7 +39059,7 @@
         "inspect",
         "remediate"
       ],
-      "lastUpdated": "2026-06-28T14:23:06.737Z"
+      "lastUpdated": "2026-07-05T19:04:15.281Z"
     },
     {
       "specFolder": "system-speckit/028-memory-search-intelligence/005-spec-data-quality/002-retroactive-automation/013-retrieval-feedback-edge",
@@ -38254,7 +39073,7 @@
         "selection",
         "edge"
       ],
-      "lastUpdated": "2026-06-28T14:23:06.741Z"
+      "lastUpdated": "2026-07-05T19:04:15.281Z"
     },
     {
       "specFolder": "system-speckit/028-memory-search-intelligence/005-spec-data-quality/003-retrieval-gated-tuning",
@@ -38271,7 +39090,7 @@
         "behind",
         "benchmarks"
       ],
-      "lastUpdated": "2026-06-28T14:23:06.745Z"
+      "lastUpdated": "2026-07-05T19:04:15.281Z"
     },
     {
       "specFolder": "system-speckit/028-memory-search-intelligence/005-spec-data-quality/003-retrieval-gated-tuning/014-chunk-prefix",
@@ -38288,7 +39107,7 @@
         "reaches",
         "vector"
       ],
-      "lastUpdated": "2026-06-28T14:23:06.749Z"
+      "lastUpdated": "2026-07-05T19:04:15.281Z"
     },
     {
       "specFolder": "system-speckit/028-memory-search-intelligence/005-spec-data-quality/003-retrieval-gated-tuning/015-prodmode-recall-gate",
@@ -38305,11 +39124,11 @@
         "measures",
         "gap"
       ],
-      "lastUpdated": "2026-06-28T14:23:06.753Z"
+      "lastUpdated": "2026-07-05T19:04:15.281Z"
     },
     {
       "specFolder": "system-speckit/028-memory-search-intelligence/005-spec-data-quality/003-retrieval-gated-tuning/016-answerable-questions-tags",
-      "description": "A document can carry curated `answerablequestions` and `semanticintent` tags that name the queries it should win and the intent class it serves, but t",
+      "description": "A document can carry curated `answerablequestions` and `semanticintent` tags that name the queries it should win and the intent class it serves, but",
       "keywords": [
         "document",
         "carry",
@@ -38324,11 +39143,11 @@
         "class",
         "serves"
       ],
-      "lastUpdated": "2026-06-28T14:23:06.759Z"
+      "lastUpdated": "2026-07-05T19:04:15.281Z"
     },
     {
       "specFolder": "system-speckit/028-memory-search-intelligence/005-spec-data-quality/003-retrieval-gated-tuning/017-metadata-fusion",
-      "description": "The fusion stage scores a candidate from text similarity and then applies a bounded validation multiplier over that composite (`stage2-fusion.ts:261-2",
+      "description": "The fusion stage scores a candidate from text similarity and then applies a bounded validation multiplier over that composite",
       "keywords": [
         "fusion",
         "stage",
@@ -38340,11 +39159,9 @@
         "bounded",
         "validation",
         "multiplier",
-        "composite",
-        "stage2-fusion",
-        "261-2"
+        "composite"
       ],
-      "lastUpdated": "2026-06-28T14:23:06.766Z"
+      "lastUpdated": "2026-07-05T19:04:15.281Z"
     },
     {
       "specFolder": "system-speckit/028-memory-search-intelligence/005-spec-data-quality/003-retrieval-gated-tuning/018-llm-judge-scorer",
@@ -38361,7 +39178,7 @@
         "composite",
         "score"
       ],
-      "lastUpdated": "2026-06-28T14:23:06.772Z"
+      "lastUpdated": "2026-07-05T19:04:15.281Z"
     },
     {
       "specFolder": "system-speckit/028-memory-search-intelligence/005-spec-data-quality/004-novel-research",
@@ -38375,7 +39192,7 @@
         "data-quality",
         "ideas"
       ],
-      "lastUpdated": "2026-06-28T14:23:06.779Z"
+      "lastUpdated": "2026-07-05T19:04:15.281Z"
     },
     {
       "specFolder": "system-speckit/028-memory-search-intelligence/005-spec-data-quality/004-novel-research/019-novel-contradiction-detection",
@@ -38397,7 +39214,7 @@
         "distinct",
         "docs"
       ],
-      "lastUpdated": "2026-06-28T14:23:06.786Z"
+      "lastUpdated": "2026-07-05T19:04:15.281Z"
     },
     {
       "specFolder": "system-speckit/028-memory-search-intelligence/005-spec-data-quality/004-novel-research/020-novel-embedding-drift-monitor",
@@ -38411,11 +39228,11 @@
         "specified",
         "one"
       ],
-      "lastUpdated": "2026-06-28T14:23:06.792Z"
+      "lastUpdated": "2026-07-05T19:04:15.281Z"
     },
     {
       "specFolder": "system-speckit/028-memory-search-intelligence/005-spec-data-quality/004-novel-research/021-novel-example-test-generation",
-      "description": "Authored spec requirements are prose-only, so adherence to a requirement is unprovable per requirement: there is no worked example showing the intende",
+      "description": "Authored spec requirements are prose-only, so adherence to a requirement is unprovable per requirement: there is no worked example showing the",
       "keywords": [
         "authored",
         "spec",
@@ -38427,10 +39244,9 @@
         "per",
         "worked",
         "example",
-        "showing",
-        "intende"
+        "showing"
       ],
-      "lastUpdated": "2026-06-28T14:23:06.797Z"
+      "lastUpdated": "2026-07-05T19:04:15.281Z"
     },
     {
       "specFolder": "system-speckit/028-memory-search-intelligence/005-spec-data-quality/004-novel-research/022-novel-context-budget-assembler",
@@ -38446,7 +39262,7 @@
         "density",
         "discipline"
       ],
-      "lastUpdated": "2026-06-28T14:23:06.802Z"
+      "lastUpdated": "2026-07-05T19:04:15.281Z"
     },
     {
       "specFolder": "system-speckit/028-memory-search-intelligence/005-spec-data-quality/004-novel-research/023-novel-typed-relation-kg",
@@ -38459,7 +39275,7 @@
         "scaffolded",
         "unwired"
       ],
-      "lastUpdated": "2026-06-28T14:23:06.806Z"
+      "lastUpdated": "2026-07-05T19:04:15.281Z"
     },
     {
       "specFolder": "system-speckit/028-memory-search-intelligence/005-spec-data-quality/004-novel-research/024-novel-freshness-decay-queue",
@@ -38474,7 +39290,7 @@
         "every",
         "read"
       ],
-      "lastUpdated": "2026-06-28T14:23:06.812Z"
+      "lastUpdated": "2026-07-05T19:04:15.281Z"
     },
     {
       "specFolder": "system-speckit/028-memory-search-intelligence/005-spec-data-quality/004-novel-research/025-novel-per-doc-quality-slas",
@@ -38492,11 +39308,11 @@
         "bar",
         "time"
       ],
-      "lastUpdated": "2026-06-28T14:23:06.817Z"
+      "lastUpdated": "2026-07-05T19:04:15.281Z"
     },
     {
       "specFolder": "system-speckit/028-memory-search-intelligence/005-spec-data-quality/005-shared-engine-and-research",
-      "description": "Shared Engine and Research subgroup of the spec-data-quality track: the shared fix engine, the floor experiment, governance rollout, and the vague-que",
+      "description": "Shared Engine and Research subgroup of the spec-data-quality track: the shared fix engine, the floor experiment, governance rollout, and the",
       "keywords": [
         "shared",
         "engine",
@@ -38508,10 +39324,9 @@
         "floor",
         "experiment",
         "governance",
-        "rollout",
-        "vague-que"
+        "rollout"
       ],
-      "lastUpdated": "2026-06-28T14:23:06.822Z"
+      "lastUpdated": "2026-07-05T19:04:15.281Z"
     },
     {
       "specFolder": "system-speckit/028-memory-search-intelligence/005-spec-data-quality/005-shared-engine-and-research/026-shared-safe-fix-engine",
@@ -38528,11 +39343,11 @@
         "research",
         "section"
       ],
-      "lastUpdated": "2026-06-28T14:23:06.827Z"
+      "lastUpdated": "2026-07-05T19:04:15.281Z"
     },
     {
       "specFolder": "system-speckit/028-memory-search-intelligence/005-spec-data-quality/005-shared-engine-and-research/027-retrieval-floor-experiment",
-      "description": "The prod retrieval path guarantees a never-cut-below-3 minimum (`confidence-truncation.ts:35`, `DEFAULTMINRESULTS = 3`, a floor not a cap), then layer",
+      "description": "The prod retrieval path guarantees a never-cut-below-3 minimum (`confidence-truncation.ts:35`, `DEFAULTMINRESULTS = 3`, a floor not a cap), then",
       "keywords": [
         "prod",
         "retrieval",
@@ -38543,10 +39358,9 @@
         "confidence-truncation",
         "defaultminresults",
         "floor",
-        "cap",
-        "layer"
+        "cap"
       ],
-      "lastUpdated": "2026-06-28T14:23:06.832Z"
+      "lastUpdated": "2026-07-05T19:04:15.281Z"
     },
     {
       "specFolder": "system-speckit/028-memory-search-intelligence/005-spec-data-quality/005-shared-engine-and-research/028-governance-rollout",
@@ -38569,7 +39383,7 @@
         "lives",
         "only"
       ],
-      "lastUpdated": "2026-06-28T14:23:06.836Z"
+      "lastUpdated": "2026-07-05T19:04:15.281Z"
     },
     {
       "specFolder": "system-speckit/028-memory-search-intelligence/005-spec-data-quality/005-shared-engine-and-research/029-vague-query-model-benchmark",
@@ -38591,7 +39405,7 @@
         "vague",
         "query"
       ],
-      "lastUpdated": "2026-06-28T14:23:06.841Z"
+      "lastUpdated": "2026-07-05T19:04:15.281Z"
     },
     {
       "specFolder": "system-speckit/028-memory-search-intelligence/005-spec-data-quality/005-shared-engine-and-research/030-vague-query-improvement-research",
@@ -38606,7 +39420,7 @@
         "worth",
         "building"
       ],
-      "lastUpdated": "2026-06-28T14:23:06.845Z"
+      "lastUpdated": "2026-07-05T19:04:15.281Z"
     },
     {
       "specFolder": "system-speckit/028-memory-search-intelligence/005-spec-data-quality/005-shared-engine-and-research/031-generated-metadata-quality-research",
@@ -38621,7 +39435,7 @@
         "over-reach",
         "churn"
       ],
-      "lastUpdated": "2026-06-28T14:23:06.851Z"
+      "lastUpdated": "2026-07-05T19:04:15.281Z"
     },
     {
       "specFolder": "system-speckit/028-memory-search-intelligence/005-spec-data-quality/005-shared-engine-and-research/032-z-future-always-ignored",
@@ -38634,11 +39448,11 @@
         "zfuture",
         "default"
       ],
-      "lastUpdated": "2026-06-28T14:23:06.856Z"
+      "lastUpdated": "2026-07-05T19:04:15.281Z"
     },
     {
       "specFolder": "system-speckit/028-memory-search-intelligence/005-spec-data-quality/006-generated-metadata-build",
-      "description": "Generated-Metadata Build subgroup of the spec-data-quality track: the generated-metadata build, full-repo migration, flag-graduation benchmark and sea",
+      "description": "Generated-Metadata Build subgroup of the spec-data-quality track: the generated-metadata build, full-repo migration, flag-graduation benchmark and",
       "keywords": [
         "generated-metadata",
         "build",
@@ -38648,10 +39462,9 @@
         "full-repo",
         "migration",
         "flag-graduation",
-        "benchmark",
-        "sea"
+        "benchmark"
       ],
-      "lastUpdated": "2026-06-28T14:23:06.861Z"
+      "lastUpdated": "2026-07-05T19:04:15.281Z"
     },
     {
       "specFolder": "system-speckit/028-memory-search-intelligence/005-spec-data-quality/006-generated-metadata-build/033-identity-resolver-merge-safety",
@@ -38672,11 +39485,11 @@
         "loses",
         "lineage"
       ],
-      "lastUpdated": "2026-06-28T14:23:06.865Z"
+      "lastUpdated": "2026-07-05T19:04:15.281Z"
     },
     {
       "specFolder": "system-speckit/028-memory-search-intelligence/005-spec-data-quality/006-generated-metadata-build/034-scoped-backfill-boundary",
-      "description": "The spec-kit generators that produce `graph-metadata.json` and `description.json` over-reach and churn, and the 031 research traced three residual def",
+      "description": "The spec-kit generators that produce `graph-metadata.json` and `description.json` over-reach and churn, and the 031 research traced three residual",
       "keywords": [
         "spec-kit",
         "generators",
@@ -38690,14 +39503,13 @@
         "research",
         "traced",
         "three",
-        "residual",
-        "def"
+        "residual"
       ],
-      "lastUpdated": "2026-06-28T14:23:06.869Z"
+      "lastUpdated": "2026-07-05T19:04:15.281Z"
     },
     {
       "specFolder": "system-speckit/028-memory-search-intelligence/005-spec-data-quality/006-generated-metadata-build/035-idempotent-writes-cache-upsert",
-      "description": "The spec-kit description generators write `description.json` and the aggregate `descriptions.json` cache non-idempotently, so a rerun on unchanged con",
+      "description": "The spec-kit description generators write `description.json` and the aggregate `descriptions.json` cache non-idempotently, so a rerun on unchanged",
       "keywords": [
         "spec-kit",
         "description",
@@ -38709,10 +39521,9 @@
         "cache",
         "non-idempotently",
         "rerun",
-        "unchanged",
-        "con"
+        "unchanged"
       ],
-      "lastUpdated": "2026-06-28T14:23:06.874Z"
+      "lastUpdated": "2026-07-05T19:04:15.281Z"
     },
     {
       "specFolder": "system-speckit/028-memory-search-intelligence/005-spec-data-quality/006-generated-metadata-build/036-metadata-validator-status-enum",
@@ -38729,7 +39540,7 @@
         "catches",
         "them"
       ],
-      "lastUpdated": "2026-06-28T14:23:06.878Z"
+      "lastUpdated": "2026-07-05T19:04:15.281Z"
     },
     {
       "specFolder": "system-speckit/028-memory-search-intelligence/005-spec-data-quality/006-generated-metadata-build/037-drift-gate-synopsis-extractor",
@@ -38747,7 +39558,7 @@
         "proves",
         "otherwise"
       ],
-      "lastUpdated": "2026-06-28T14:23:06.883Z"
+      "lastUpdated": "2026-07-05T19:04:15.281Z"
     },
     {
       "specFolder": "system-speckit/028-memory-search-intelligence/005-spec-data-quality/006-generated-metadata-build/038-generator-hardening",
@@ -38768,11 +39579,11 @@
         "because",
         "fix"
       ],
-      "lastUpdated": "2026-06-28T14:23:06.888Z"
+      "lastUpdated": "2026-07-05T19:04:15.281Z"
     },
     {
       "specFolder": "system-speckit/028-memory-search-intelligence/005-spec-data-quality/006-generated-metadata-build/039-full-repo-json-migration",
-      "description": "The J1 to J4 generator phases harden how the spec-kit writes `description.json` and `graph-metadata.json`, but they ship their new behavior behind def",
+      "description": "The J1 to J4 generator phases harden how the spec-kit writes `description.json` and `graph-metadata.json`, but they ship their new behavior behind",
       "keywords": [
         "generator",
         "phases",
@@ -38785,10 +39596,9 @@
         "ship",
         "new",
         "behavior",
-        "behind",
-        "def"
+        "behind"
       ],
-      "lastUpdated": "2026-06-28T14:23:06.892Z"
+      "lastUpdated": "2026-07-05T19:04:15.281Z"
     },
     {
       "specFolder": "system-speckit/028-memory-search-intelligence/005-spec-data-quality/006-generated-metadata-build/040-flag-graduation-benchmark",
@@ -38810,7 +39620,7 @@
         "shifted",
         "ranking"
       ],
-      "lastUpdated": "2026-06-28T14:23:06.896Z"
+      "lastUpdated": "2026-07-05T19:04:15.281Z"
     },
     {
       "specFolder": "system-speckit/028-memory-search-intelligence/005-spec-data-quality/006-generated-metadata-build/041-search-quality-fixes",
@@ -38829,7 +39639,7 @@
         "memory-search",
         "pipeline"
       ],
-      "lastUpdated": "2026-06-28T14:23:06.900Z"
+      "lastUpdated": "2026-07-05T19:04:15.281Z"
     },
     {
       "specFolder": "system-speckit/028-memory-search-intelligence/005-spec-data-quality/006-generated-metadata-build/042-deterministic-ranking-benchmark",
@@ -38841,7 +39651,7 @@
         "ships",
         "default-off"
       ],
-      "lastUpdated": "2026-06-28T14:23:06.905Z"
+      "lastUpdated": "2026-07-05T19:04:15.281Z"
     },
     {
       "specFolder": "system-speckit/028-memory-search-intelligence/005-spec-data-quality/006-generated-metadata-build/043-gap-threshold-calibration-benchmark",
@@ -38861,7 +39671,7 @@
         "default",
         "threshold"
       ],
-      "lastUpdated": "2026-06-28T14:23:06.910Z"
+      "lastUpdated": "2026-07-05T19:04:15.281Z"
     },
     {
       "specFolder": "system-speckit/028-memory-search-intelligence/005-spec-data-quality/006-generated-metadata-build/044-relevance-aware-evidence-gap",
@@ -38877,7 +39687,166 @@
         "peakedness",
         "relevance"
       ],
-      "lastUpdated": "2026-07-01T10:41:59.139Z"
+      "lastUpdated": "2026-07-05T19:04:15.281Z"
+    },
+    {
+      "specFolder": "system-speckit/028-memory-search-intelligence/005-spec-data-quality/045-drift-audit-remediation",
+      "description": "A GPT-5.5-fast (high) audit dispatched via cli-opencode across the 8 phases of the 028-memory-search-intelligence packet (10 parallel sweeps) surfaced",
+      "keywords": [
+        "gpt-5",
+        "5-fast",
+        "high",
+        "audit",
+        "dispatched",
+        "via",
+        "cli-opencode",
+        "across",
+        "phases",
+        "028-memory-search-intelligence",
+        "packet",
+        "parallel",
+        "sweeps",
+        "surfaced"
+      ],
+      "lastUpdated": "2026-07-05T19:04:15.281Z"
+    },
+    {
+      "specFolder": "system-speckit/028-memory-search-intelligence/005-spec-data-quality/046-drift-audit-deep-history-correction",
+      "description": "Pass 1 of the drift audit corrected four feature docs to say their claimed shipped code was \"GENUINELYABSENT\" from the current tree",
+      "keywords": [
+        "pass",
+        "drift",
+        "audit",
+        "corrected",
+        "four",
+        "feature",
+        "docs",
+        "say",
+        "claimed",
+        "shipped",
+        "code",
+        "genuinelyabsent",
+        "current",
+        "tree"
+      ],
+      "lastUpdated": "2026-07-05T19:04:15.281Z"
+    },
+    {
+      "specFolder": "system-speckit/028-memory-search-intelligence/005-spec-data-quality/047-generated-metadata-status-integrity",
+      "description": "`deriveStatus` (`graph-metadata-parser.ts:1215-1218`) returns `status: 'complete'` whenever `implementation-summary.md` exists and `checklist.md` does",
+      "keywords": [
+        "derivestatus",
+        "graph-metadata-parser",
+        "1215-1218",
+        "returns",
+        "status",
+        "complete",
+        "whenever",
+        "implementation-summary",
+        "exists",
+        "checklist"
+      ],
+      "lastUpdated": "2026-07-05T19:04:15.281Z"
+    },
+    {
+      "specFolder": "system-speckit/028-memory-search-intelligence/005-spec-data-quality/048-create-sh-parent-corruption-fix",
+      "description": "`create.sh --phase --phase-parent <existing-packet> --phase-names <name> ...` rebinds `FEATUREDIR` to the existing parent (`create.sh:1046-1062`) but",
+      "keywords": [
+        "create",
+        "phase",
+        "phase-parent",
+        "existing-packet",
+        "phase-names",
+        "name",
+        "rebinds",
+        "featuredir",
+        "existing",
+        "parent",
+        "1046-1062"
+      ],
+      "lastUpdated": "2026-07-05T19:04:15.281Z"
+    },
+    {
+      "specFolder": "system-speckit/028-memory-search-intelligence/005-spec-data-quality/049-derive-status-explicit-bypass-fix",
+      "description": "`deriveStatus` (`graph-metadata-parser.ts:1185-1195`) reads any doc's own explicit `status:` frontmatter field or `spec.md`'s METADATA table status,",
+      "keywords": [
+        "derivestatus",
+        "graph-metadata-parser",
+        "1185-1195",
+        "reads",
+        "doc",
+        "own",
+        "explicit",
+        "status",
+        "frontmatter",
+        "field",
+        "spec",
+        "metadata",
+        "table"
+      ],
+      "lastUpdated": "2026-07-05T19:04:15.281Z"
+    },
+    {
+      "specFolder": "system-speckit/028-memory-search-intelligence/005-spec-data-quality/050-validate-sh-dist-freshness-and-repo-remediation",
+      "description": "While closing packet `030-agent-loops-improved` phase 011's child 006 (a `validate.sh` registry bridge), a rebuild of `system-spec-kit/mcpserver`'s",
+      "keywords": [
+        "while",
+        "closing",
+        "packet",
+        "030-agent-loops-improved",
+        "phase",
+        "011",
+        "child",
+        "006",
+        "validate",
+        "registry",
+        "bridge",
+        "rebuild",
+        "system-spec-kit",
+        "mcpserver"
+      ],
+      "lastUpdated": "2026-07-05T19:04:15.281Z"
+    },
+    {
+      "specFolder": "system-speckit/028-memory-search-intelligence/005-spec-data-quality/050-validate-sh-dist-freshness-and-repo-remediation/001-dist-freshness-enforcement",
+      "description": "`validate.sh`'s default path (`runnodeorchestrator()`, `scripts/spec/validate.sh:975-989`) only checks `[[ -f \"$orchestratorjs\" ]]` -- file existence",
+      "keywords": [
+        "validate",
+        "default",
+        "path",
+        "runnodeorchestrator",
+        "scripts",
+        "spec",
+        "975-989",
+        "only",
+        "checks",
+        "orchestratorjs",
+        "file",
+        "existence"
+      ],
+      "lastUpdated": "2026-07-05T19:04:15.281Z"
+    },
+    {
+      "specFolder": "system-speckit/028-memory-search-intelligence/005-spec-data-quality/050-validate-sh-dist-freshness-and-repo-remediation/002-repo-wide-remediation-sweep",
+      "description": "`validate.sh --strict --recursive` currently fails on all 43 packet roots repo-wide (257 folders, 0 passing), spanning `ai-systems` (9), `anobel.com`",
+      "keywords": [
+        "validate",
+        "strict",
+        "recursive",
+        "currently",
+        "fails",
+        "packet",
+        "roots",
+        "repo-wide",
+        "257",
+        "folders",
+        "passing",
+        "spanning",
+        "ai-systems",
+        "anobel",
+        "com"
+      ],
+      "lastUpdated": "2026-07-05T19:04:15.281Z"
     },
     {
       "specFolder": "system-speckit/028-memory-search-intelligence/006-review-remediation",
@@ -38891,7 +39860,7 @@
         "verdict",
         "confirmed"
       ],
-      "lastUpdated": "2026-07-04T14:39:13.799Z"
+      "lastUpdated": "2026-07-04T14:39:14.521Z"
     },
     {
       "specFolder": "system-speckit/028-memory-search-intelligence/006-review-remediation/001-eval-benchmark-fidelity",
@@ -38934,7 +39903,7 @@
         "versus",
         "live-write"
       ],
-      "lastUpdated": "2026-07-04T14:39:13.799Z"
+      "lastUpdated": "2026-07-04T14:39:14.527Z"
     },
     {
       "specFolder": "system-speckit/028-memory-search-intelligence/006-review-remediation/003-doc-accuracy",
@@ -38950,7 +39919,7 @@
         "second-to-last",
         "deep-dive"
       ],
-      "lastUpdated": "2026-07-04T14:39:13.799Z"
+      "lastUpdated": "2026-07-05T19:04:15.281Z"
     },
     {
       "specFolder": "system-speckit/028-memory-search-intelligence/006-review-remediation/004-p2-triage",
@@ -38960,7 +39929,7 @@
         "surfaced",
         "findings"
       ],
-      "lastUpdated": "2026-07-04T14:39:13.799Z"
+      "lastUpdated": "2026-07-04T14:39:14.532Z"
     },
     {
       "specFolder": "system-speckit/028-memory-search-intelligence/006-review-remediation/005-env-documentation-audit",
@@ -39312,6 +40281,171 @@
       "lastUpdated": "2026-06-25T18:01:57.375Z"
     },
     {
+      "specFolder": "system-speckit/028-memory-search-intelligence/008-speckit-surface-alignment",
+      "description": "Phase-parent packet for the 028 surface-alignment audit, Fable review narrowing, audit remediation phases, inert-novelty detector, and",
+      "keywords": [
+        "phase-parent",
+        "packet",
+        "028",
+        "surface-alignment",
+        "audit",
+        "fable",
+        "review",
+        "narrowing",
+        "remediation",
+        "phases",
+        "inert-novelty",
+        "detector"
+      ],
+      "lastUpdated": "2026-07-05T19:03:59.363Z"
+    },
+    {
+      "specFolder": "system-speckit/028-memory-search-intelligence/008-speckit-surface-alignment/002-false-now-doc-corrections",
+      "description": "Four false-now surfaces could mislead readers about current packet 028 behavior: a stale retention flag suffix, an earlier Track-C proposed-only",
+      "keywords": [
+        "four",
+        "false-now",
+        "surfaces",
+        "mislead",
+        "readers",
+        "about",
+        "current",
+        "packet",
+        "028",
+        "behavior",
+        "stale",
+        "retention",
+        "flag",
+        "suffix",
+        "earlier",
+        "track-c",
+        "proposed-only"
+      ],
+      "lastUpdated": "2026-07-05T13:32:42.368Z"
+    },
+    {
+      "specFolder": "system-speckit/028-memory-search-intelligence/008-speckit-surface-alignment/011-code-graph-doc-audit",
+      "description": "The 008 parent identified a coverage gap for system-code-graph documentation after the 028 code-graph work",
+      "keywords": [
+        "008",
+        "parent",
+        "identified",
+        "coverage",
+        "gap",
+        "system-code-graph",
+        "documentation",
+        "028",
+        "code-graph",
+        "work"
+      ],
+      "lastUpdated": "2026-07-05T13:17:55.063Z"
+    },
+    {
+      "specFolder": "system-speckit/028-memory-search-intelligence/008-speckit-surface-alignment/011-fix-code-graph-docs",
+      "description": "The read-only audit at `011-code-graph-doc-audit/review-report.md` confirmed six documentation-alignment defects in",
+      "keywords": [
+        "read-only",
+        "audit",
+        "011-code-graph-doc-audit",
+        "review-report",
+        "confirmed",
+        "six",
+        "documentation-alignment",
+        "defects"
+      ],
+      "lastUpdated": "2026-07-05T13:32:44.626Z"
+    },
+    {
+      "specFolder": "system-speckit/028-memory-search-intelligence/008-speckit-surface-alignment/012-fix-stress-docs",
+      "description": "The stress-test documentation had five confirmed drifts from the shipped `mcpserver/stresstest/` harness",
+      "keywords": [
+        "stress-test",
+        "documentation",
+        "five",
+        "confirmed",
+        "drifts",
+        "shipped",
+        "mcpserver",
+        "stresstest",
+        "harness"
+      ],
+      "lastUpdated": "2026-07-05T13:32:45.721Z"
+    },
+    {
+      "specFolder": "system-speckit/028-memory-search-intelligence/008-speckit-surface-alignment/012-stress-and-skillmd-audit",
+      "description": "The 008 parent identified a second audit gap around the system-spec-kit stress-test lane, `SKILL.md`, and changelog coverage",
+      "keywords": [
+        "008",
+        "parent",
+        "identified",
+        "second",
+        "audit",
+        "gap",
+        "around",
+        "system-spec-kit",
+        "stress-test",
+        "lane",
+        "skill",
+        "changelog",
+        "coverage"
+      ],
+      "lastUpdated": "2026-07-05T13:17:56.164Z"
+    },
+    {
+      "specFolder": "system-speckit/028-memory-search-intelligence/008-speckit-surface-alignment/013-deep-research-loop-instrumentation",
+      "description": "Across all 20 iterations of the surface-alignment deep-research run, the emitted `newInfoRatio` was exactly `1.0` in every state record, including",
+      "keywords": [
+        "across",
+        "iterations",
+        "surface-alignment",
+        "deep-research",
+        "run",
+        "emitted",
+        "newinforatio",
+        "exactly",
+        "every",
+        "state",
+        "record",
+        "including"
+      ],
+      "lastUpdated": "2026-07-05T13:43:22.483Z"
+    },
+    {
+      "specFolder": "system-speckit/028-memory-search-intelligence/008-speckit-surface-alignment/014-recorded-failure-closure",
+      "description": "Several audit findings were about detectors that fired and were recorded, but nobody acted",
+      "keywords": [
+        "several",
+        "audit",
+        "findings",
+        "about",
+        "detectors",
+        "fired",
+        "recorded",
+        "nobody",
+        "acted"
+      ],
+      "lastUpdated": "2026-07-05T16:28:19.112Z"
+    },
+    {
+      "specFolder": "system-speckit/028-memory-search-intelligence/008-speckit-surface-alignment/015-manual-test-verification-and-fixes",
+      "description": "The Fable-5-refined surface-alignment features needed a manual verification pass after documentation remediation and automated stress coverage",
+      "keywords": [
+        "fable-5-refined",
+        "surface-alignment",
+        "features",
+        "needed",
+        "manual",
+        "verification",
+        "pass",
+        "documentation",
+        "remediation",
+        "automated",
+        "stress",
+        "coverage"
+      ],
+      "lastUpdated": "2026-07-05T16:13:22.732Z"
+    },
+    {
       "specFolder": "system-speckit/029-headroom-utilization",
       "description": "We have vendored the Headroom project under `external/`",
       "keywords": [
@@ -39455,7 +40589,7 @@
         "living",
         "specification"
       ],
-      "lastUpdated": "2026-07-04T14:39:13.799Z"
+      "lastUpdated": "2026-07-05T19:04:15.281Z"
     },
     {
       "specFolder": "system-speckit/029-headroom-utilization/external/plugins/headroom-oauth2",
@@ -39469,7 +40603,7 @@
         "upstream",
         "auth"
       ],
-      "lastUpdated": "2026-07-04T14:39:13.799Z"
+      "lastUpdated": "2026-07-05T19:04:15.281Z"
     },
     {
       "specFolder": "system-speckit/z_archive/001-fix-command-dispatch",

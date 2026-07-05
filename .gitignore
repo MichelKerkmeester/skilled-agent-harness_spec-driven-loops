@@ -149,10 +149,10 @@ code-graph.sqlite
 # Barter repo at Copywriter/barter-copywriter/; this is a machine-local discovery pointer.
 .opencode/skills/barter-copywriter
 
-.opencode/specs/00--anobel.com
-.claude/specs/00--anobel.com
-.codex/specs/00--anobel.com
-.agents/specs/00--anobel.com
+.opencode/specs/anobel.com
+.claude/specs/anobel.com
+.codex/specs/anobel.com
+.agents/specs/anobel.com
 
 # Apply-pipeline runtime artifacts (audit journals, known-good/bad-apply snapshots,
 # quarantine/recovery triplets) — generated per apply run, database-local only.
@@ -249,28 +249,24 @@ _sandbox
 # Project-specific specs (all providers)
 # ───────────────────────────────────────────
 .opencode/barter
-.opencode/specs/00--ai-systems
-.opencode/specs/00--anobel.com
-.opencode/specs/00--barter
-.opencode/specs/ai-systems/
+.opencode/specs/ai-systems
+.opencode/specs/anobel.com
+.opencode/specs/barter
 .opencode/specs/barter
 
-.claude/specs/00--ai-systems
-.claude/specs/00--anobel.com
-.claude/specs/00--barter
-.claude/specs/ai-systems/
+.claude/specs/ai-systems
+.claude/specs/anobel.com
+.claude/specs/barter
 .claude/specs/barter
 
-.codex/specs/00--ai-systems
-.codex/specs/00--anobel.com
-.codex/specs/00--barter
-.codex/specs/ai-systems/
+.codex/specs/ai-systems
+.codex/specs/anobel.com
+.codex/specs/barter
 .codex/specs/barter
 
-.agents/specs/00--ai-systems
-.agents/specs/00--anobel.com
-.agents/specs/00--barter
-.agents/specs/ai-systems/
+.agents/specs/ai-systems
+.agents/specs/anobel.com
+.agents/specs/barter
 .agents/specs/barter
 
 # ───────────────────────────────────────────

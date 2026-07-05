@@ -33,13 +33,13 @@ Provide a measurable verification pass for deferred-loading work so Lighthouse, 
 
 ## 2. MEASUREMENT TARGETS
 
-| Metric | Target | How to Measure |
-|--------|--------|----------------|
-| Lighthouse mobile | Run 3x in Incognito, use median | Lighthouse or PageSpeed |
-| TBT | Improve by >= 20% on affected pages, or stay <= 200ms | Lighthouse |
-| INP | Do not regress by > 10ms on gated journeys | PageSpeed or interaction trace |
-| Long tasks | No new pre-interaction long task > 50ms | DevTools Performance |
-| First-use latency | <= 200ms desktop p75, <= 350ms mobile p75 | Instrumented interaction timing |
+| Metric            | Target                                                | How to Measure                  |
+| -------------------| -------------------------------------------------------| ---------------------------------|
+| Lighthouse mobile | Run 3x in Incognito, use median                       | Lighthouse or PageSpeed         |
+| TBT               | Improve by >= 20% on affected pages, or stay <= 200ms | Lighthouse                      |
+| INP               | Do not regress by > 10ms on gated journeys            | PageSpeed or interaction trace  |
+| Long tasks        | No new pre-interaction long task > 50ms               | DevTools Performance            |
+| First-use latency | <= 200ms desktop p75, <= 350ms mobile p75             | Instrumented interaction timing |
 
 ---
 

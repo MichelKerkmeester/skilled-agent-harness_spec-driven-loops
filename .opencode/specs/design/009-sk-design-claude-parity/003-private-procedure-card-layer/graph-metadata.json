@@ -1,0 +1,246 @@
+{
+  "schema_version": 1,
+  "packet_id": "design/009-sk-design-claude-parity/003-private-procedure-card-layer",
+  "spec_folder": "design/009-sk-design-claude-parity/003-private-procedure-card-layer",
+  "parent_id": "design/009-sk-design-claude-parity",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [
+      {
+        "packet_id": "design/009-sk-design-claude-parity/002-parent-hub-compatibility-shell",
+        "reason": "Phase 002 parent hub routing assumptions must be available before Phase 003 procedure-card implementation begins",
+        "source": "manual",
+        "spec_folder": "design/009-sk-design-claude-parity/002-parent-hub-compatibility-shell",
+        "title": "Phase 002 - Parent Hub Compatibility Shell"
+      }
+    ],
+    "supersedes": [],
+    "related_to": [
+      {
+        "packet_id": "design/009-sk-design-claude-parity/001-baseline-ownership-gate",
+        "reason": "Phase 001 establishes ownership boundaries that Phase 003 must preserve",
+        "source": "manual",
+        "spec_folder": "design/009-sk-design-claude-parity/001-baseline-ownership-gate",
+        "title": "Phase 001 - Baseline Ownership Gate"
+      }
+    ]
+  },
+  "derived": {
+    "trigger_phrases": [
+      "private procedure card layer",
+      "procedure-card schema",
+      "mode-local procedure cards",
+      "Claude procedure adaptation",
+      "sk-design procedure routing",
+      "private cards not public skills",
+      "phase 003 plan",
+      "procedure-card implementation plan",
+      "mode-local cards",
+      "source adaptation rules",
+      "phase 003 tasks",
+      "procedure-card tasks"
+    ],
+    "key_topics": [
+      "private",
+      "procedure",
+      "card",
+      "layer",
+      "procedure-card",
+      "schema",
+      "mode-local",
+      "cards",
+      "claude",
+      "adaptation",
+      "sk-design",
+      "routing"
+    ],
+    "importance_tier": "high",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      ".opencode/specs/design/009-sk-design-claude-parity/003-private-procedure-card-layer/spec.md",
+      ".opencode/specs/design/009-sk-design-claude-parity/003-private-procedure-card-layer/plan.md",
+      ".opencode/specs/design/009-sk-design-claude-parity/003-private-procedure-card-layer/tasks.md",
+      ".opencode/specs/design/009-sk-design-claude-parity/003-private-procedure-card-layer/checklist.md",
+      ".opencode/specs/design/009-sk-design-claude-parity/003-private-procedure-card-layer/decision-record.md",
+      ".opencode/specs/design/009-sk-design-claude-parity/003-private-procedure-card-layer/implementation-summary.md",
+      ".opencode/specs/design/009-sk-design-claude-parity/003-private-procedure-card-layer/description.json",
+      ".opencode/specs/design/009-sk-design-claude-parity/003-private-procedure-card-layer/graph-metadata.json"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": ".opencode/specs/design/009-sk-design-claude-parity/003-private-procedure-card-layer/spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": ".opencode/specs/design/009-sk-design-claude-parity/003-private-procedure-card-layer/plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": ".opencode/specs/design/009-sk-design-claude-parity/003-private-procedure-card-layer/tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": ".opencode/specs/design/009-sk-design-claude-parity/003-private-procedure-card-layer/checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": ".opencode/specs/design/009-sk-design-claude-parity/003-private-procedure-card-layer/decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": ".opencode/specs/design/009-sk-design-claude-parity/003-private-procedure-card-layer/implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "description.json",
+        "kind": "config",
+        "path": ".opencode/specs/design/009-sk-design-claude-parity/003-private-procedure-card-layer/description.json",
+        "source": "derived"
+      },
+      {
+        "name": "graph-metadata.json",
+        "kind": "config",
+        "path": ".opencode/specs/design/009-sk-design-claude-parity/003-private-procedure-card-layer/graph-metadata.json",
+        "source": "derived"
+      },
+      {
+        "name": "Private Procedure Card Layer",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Created Phase",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Dependencies",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Not Started",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Kit Level",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Decision Record",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The external Claude procedure set contains useful design-manager behaviors, but exposing those procedures as fourteen public OpenCode skills would fragment the `sk-design` surface and create a taxonomy users did not ask for",
+    "created_at": "2026-07-05T00:00:00.000Z",
+    "last_save_at": "2026-07-05T16:15:10.212Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:90d6e0ca08315b121003a3d0b48aea13928aaae41dc5881e66e5066717cb338e",
+    "source_doc_hashes": {
+      "spec.md": "900533b7def24d8cf5927656c66efc405dc18f8241599e1fc13293833ad01957",
+      "plan.md": "c8643139d68d83443f2ef4ac933b6c62922819fa06e544d61361dfa73c4bb90b",
+      "tasks.md": "194239be148077e802cfb984b0de882eb33c920aee1dba62b7407e563b8404b6",
+      "checklist.md": "91bab87d9aa973572e1684a7e93cbc58b45b0ad85442bcd73d48880b758683a7",
+      "decision-record.md": "9864301b6cd435aab8c353584c90eab6b441689c1185925ea894fef4701646cd",
+      "implementation-summary.md": "c6d4cdcbd6394749d5f90a0a5dbdfddcd6ca188285a0c2cee83e4040620ee515"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

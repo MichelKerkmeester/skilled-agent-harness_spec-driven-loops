@@ -1,20 +1,16 @@
 {
   "level": "2",
   "specFolder": "skilled-agent-orchestration/124-sk-code-parent/008-routing-benchmark-and-review",
-  "description": "Benchmarked the hub's routing with the deterministic skill-benchmark and ran a three-lens family deep-review; the review found zero real router defects and root-caused the low first score to a measurement artifact, so the shared harness was re-layered for thin hubs and its negative-scoring corrected (honest router-mode verdict 44 -> 71), a merge-blocking Iron-Law canary was restored, and four cheap defects were fixed",
+  "description": "The restructured hub had never been benchmarked or reviewed as a family",
   "keywords": [
-    "sk-code",
-    "routing-benchmark",
-    "skill-benchmark",
-    "family-deep-review",
-    "harness-re-layer",
-    "negative-scoring",
-    "surface-router",
-    "canary-gate",
-    "measurement-artifact",
-    "thin-hub"
+    "restructured",
+    "hub",
+    "never",
+    "benchmarked",
+    "reviewed",
+    "family"
   ],
-  "lastUpdated": "2026-07-04T00:00:00.000Z",
+  "lastUpdated": "2026-07-05T12:13:05.273Z",
   "specId": "008",
   "folderSlug": "routing-benchmark-and-review",
   "parentChain": [

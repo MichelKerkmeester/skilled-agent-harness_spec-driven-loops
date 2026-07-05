@@ -32,17 +32,17 @@ Handle empty prompts in .opencode/skills/system-spec-kit/mcp_server/lib/scorer/l
 - `references/smart_routing.md`
 - `references/smart_routing.md`
 - `references/universal/code_quality_standards.md`
-- `references/opencode/shared/code_organization.md`
-- `references/opencode/shared/universal_patterns.md`
-- `references/opencode/typescript/style_guide.md`
-- `references/opencode/typescript/quality_standards.md`
-- `references/opencode/typescript/quick_reference.md`
+- `code-opencode/references/shared/code_organization.md`
+- `code-opencode/references/shared/universal_patterns.md`
+- `code-opencode/references/typescript/style_guide.md`
+- `code-opencode/references/typescript/quality_standards.md`
+- `code-opencode/references/typescript/quick_reference.md`
 
 **Expected assets loaded**:
-- `assets/opencode/checklists/typescript_checklist.md`
-- `assets/opencode/checklists/universal_checklist.md`
+- `code-opencode/assets/checklists/typescript_checklist.md`
+- `code-opencode/assets/checklists/universal_checklist.md`
 
-**Expected NOT loaded**: any `references/webflow/*`, `references/opencode/python/*`, `references/opencode/shell/*`, `references/opencode/config/*`.
+**Expected NOT loaded**: any `code-webflow/references/*`, `code-opencode/references/python/*`, `code-opencode/references/shell/*`, `code-opencode/references/config/*`.
 
 **Expected agent dispatch**: `@code` (LEAF) for the edit, via `@orchestrate` (Depth: 1 marker), per the orchestrator-only convention in §0 of `.opencode/agents/code.md`.
 
@@ -76,7 +76,7 @@ Handle empty prompts in .opencode/skills/system-spec-kit/mcp_server/lib/scorer/l
 | 1 | Advisor: top_skill == sk-code, score ≥ 0.80. |
 | 3 | sk-code router emits `SURFACE: OPENCODE`. |
 | 4 | sk-code language sub-detection emits `LANGUAGE: TYPESCRIPT`. |
-| 5 | Loaded refs include `references/opencode/typescript/style_guide.md`, `quality_standards.md`, `quick_reference.md`, `references/opencode/shared/code_organization.md`, `assets/opencode/checklists/typescript_checklist.md`, `assets/opencode/checklists/universal_checklist.md`. NO `references/webflow/*`, NO `references/opencode/python/*`. |
+| 5 | Loaded refs include `code-opencode/references/typescript/style_guide.md`, `quality_standards.md`, `quick_reference.md`, `code-opencode/references/shared/code_organization.md`, `code-opencode/assets/checklists/typescript_checklist.md`, `code-opencode/assets/checklists/universal_checklist.md`. NO `code-webflow/references/*`, NO `code-opencode/references/python/*`. |
 
 ### Pass/Fail Criteria
 
@@ -89,7 +89,7 @@ Handle empty prompts in .opencode/skills/system-spec-kit/mcp_server/lib/scorer/l
 1. If advisor doesn't win sk-code: check `skill-graph.json` for sk-code signals "opencode", "system code", "typescript".
 2. If surface != OPENCODE: verify target path detection in `references/stack_detection.md:39-40`. The path `.opencode/...` should match.
 3. If sub-language != TYPESCRIPT: verify `.ts` extension is in the TYPESCRIPT extension list in SKILL.md sub-detection table (lines 78-90).
-4. If `references/webflow/*` is loaded: the router has a leak — the WEBFLOW markers (motion.dev, GSAP, etc.) MUST NOT match this prompt. Verify the marker grep patterns are anchored correctly.
+4. If `code-webflow/references/*` is loaded: the router has a leak — the WEBFLOW markers (motion.dev, GSAP, etc.) MUST NOT match this prompt. Verify the marker grep patterns are anchored correctly.
 
 ## 4. SOURCE FILES
 

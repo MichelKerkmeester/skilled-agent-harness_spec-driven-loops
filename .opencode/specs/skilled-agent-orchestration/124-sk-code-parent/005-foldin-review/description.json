@@ -1,19 +1,23 @@
 {
   "level": "1",
   "specFolder": "skilled-agent-orchestration/124-sk-code-parent/005-foldin-review",
-  "description": "The standalone sk-code-review package needed identity adaptation after being folded into the sk-code code-review mode while preserving doctrine and retaining a legacy alias",
+  "description": "After the review package moved under the `sk-code` parent hub, the runtime docs still carried standalone `sk-code-review` identity",
   "keywords": [
+    "review",
+    "package",
+    "moved",
     "sk-code",
     "parent",
     "hub",
-    "foldin",
-    "review",
-    "code-review",
+    "runtime",
+    "docs",
+    "still",
+    "carried",
+    "standalone",
     "sk-code-review",
-    "alias",
-    "doctrine"
+    "identity"
   ],
-  "lastUpdated": "2026-07-04T00:00:00.000Z",
+  "lastUpdated": "2026-07-05T12:13:05.262Z",
   "specId": "005",
   "folderSlug": "foldin-review",
   "parentChain": [

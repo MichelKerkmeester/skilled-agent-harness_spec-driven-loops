@@ -36,27 +36,27 @@ grep -lqE "window\.Motion|window\.gsap|gsap\.(to|from|set|timeline|registerPlugi
 - `references/stack_detection.md`
 - `references/smart_routing.md`
 - `references/smart_routing.md`
-- `references/webflow/implementation/animation_workflows.md`
-- `references/webflow/javascript/quality_standards.md`
-- `references/webflow/verification/verification_workflows.md`
-- `references/motion_dev/performance_and_pitfalls.md`
-- `references/motion_dev/integration_patterns.md`
+- `code-webflow/references/implementation/animation_workflows.md`
+- `code-webflow/references/javascript/quality_standards.md`
+- `code-webflow/references/verification/verification_workflows.md`
+- `code-animation/references/performance_and_pitfalls.md`
+- `code-animation/references/integration_patterns.md`
 
 **Expected assets loaded**:
-- `assets/webflow/checklists/code_quality_checklist.md`
-- `assets/webflow/checklists/verification_checklist.md`
-- `assets/motion_dev/snippets/hover_gesture.js`
-- `assets/motion_dev/snippets/in_view_reveal.js`
+- `code-webflow/assets/checklists/code_quality_checklist.md`
+- `code-webflow/assets/checklists/verification_checklist.md`
+- `code-animation/assets/snippets/hover_gesture.js`
+- `code-animation/assets/snippets/in_view_reveal.js`
 
 **Expected agent dispatch**: none.
 
 **Pass/fail criteria with binary grading**:
-- **PASS** iff surface is `WEBFLOW`, `references/motion_dev/performance_and_pitfalls.md` loads, the user response cites Motion.dev reduced-motion guidance, and Webflow verification/a11y guidance is also loaded.
+- **PASS** iff surface is `WEBFLOW`, `code-animation/references/performance_and_pitfalls.md` loads, the user response cites Motion.dev reduced-motion guidance, and Webflow verification/a11y guidance is also loaded.
 - **FAIL** iff Motion.dev reduced-motion guidance is missing, Webflow guidance is missing, surface is not `WEBFLOW`, or an agent is dispatched.
 
 **Failure triage**:
-1. If Motion reduced-motion guidance is missing, inspect `references/motion_dev/performance_and_pitfalls.md`.
-2. If Webflow verification is missing, inspect `references/webflow/verification/verification_workflows.md`.
+1. If Motion reduced-motion guidance is missing, inspect `code-animation/references/performance_and_pitfalls.md`.
+2. If Webflow verification is missing, inspect `code-webflow/references/verification/verification_workflows.md`.
 3. If the response only says "disable animations", check whether it preserves state changes and usability.
 
 ---
