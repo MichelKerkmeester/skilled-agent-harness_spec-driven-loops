@@ -1,6 +1,6 @@
 {
   "topic": "Audit whether all feature catalogs, manual testing playbooks, skill references, skill assets, SKILL.md files, READMEs, code READMEs, benchmarks, and stress tests are fully aligned with the last ~50 specs and implementation work for system-speckit backend code, integration, and commands. Find every misalignment, staleness, and coverage gap; explore multiple angles and broaden them across iterations.",
-  "maxIterations": 20,
+  "maxIterations": 40,
   "convergenceThreshold": 0.05,
   "stopPolicy": "max-iterations",
   "antiConvergence": {

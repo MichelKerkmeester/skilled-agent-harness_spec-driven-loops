@@ -195,3 +195,15 @@ Audit feature-catalog generation/scaffolding sources for test-label taxonomy: te
 ## Next Audit Angle After Iteration 16
 
 Audit sk-doc and system-spec-kit validation/test surfaces for documentation-quality enforcement gaps: `validate_document.py`, markdown link checks, catalog/playbook tests, and whether any gate can detect placeholder test paths, invalid Type values, or template/command section-name drift.
+
+## Findings Added in Iteration 17
+
+1. `validate_document.py` has no feature-catalog document type; feature-catalog leaves under `.opencode/skills/*/feature_catalog/` default to generic README validation. [SOURCE: .opencode/skills/sk-doc/scripts/validate_document.py:119] [SOURCE: .opencode/skills/sk-doc/scripts/validate_document.py:154] [SOURCE: .opencode/skills/sk-doc/assets/template_rules.json:5]
+2. A known placeholder validation row, `| — | Automated test | — |`, passes current sk-doc validation as `document_type: "readme"`, `valid: true`, and `total_issues: 0`. [SOURCE: .opencode/skills/system-spec-kit/feature_catalog/15--retrieval-enhancements/dual-level-retrieval.md:43] [INFERENCE: command output from `python3 .opencode/skills/sk-doc/scripts/validate_document.py .opencode/skills/system-spec-kit/feature_catalog/15--retrieval-enhancements/dual-level-retrieval.md --json`]
+3. `check-markdown-links.cjs` protects relative markdown-link existence but does not inspect non-link table cells, em-dash placeholders, or validation-table `Type` values. [SOURCE: .opencode/skills/system-spec-kit/scripts/check-markdown-links.cjs:7] [SOURCE: .opencode/skills/system-spec-kit/scripts/check-markdown-links.cjs:120] [SOURCE: .opencode/skills/system-spec-kit/scripts/check-markdown-links.cjs:185]
+4. `workflow-invariance.vitest.ts` scans feature catalogs and playbooks for private taxonomy leaks only; its banned words do not include `Automated test`, `Manual playbook`, `Integration`, or placeholder row semantics. [SOURCE: .opencode/skills/system-spec-kit/scripts/tests/workflow-invariance.vitest.ts:12] [SOURCE: .opencode/skills/system-spec-kit/scripts/tests/workflow-invariance.vitest.ts:45] [SOURCE: .opencode/skills/system-spec-kit/scripts/tests/workflow-invariance.vitest.ts:132]
+5. Existing placeholder and manual-playbook tests are adjacent but not sufficient: `validation-utils.ts` checks rendered Mustache placeholders/anchors, while `manual-playbook-runner.vitest.ts` checks scenario parsing and tool-argument schemas, not feature-catalog validation-table taxonomy. [SOURCE: .opencode/skills/system-spec-kit/scripts/utils/validation-utils.ts:8] [SOURCE: .opencode/skills/system-spec-kit/scripts/tests/manual-playbook-runner.vitest.ts:117] [SOURCE: .opencode/skills/system-spec-kit/scripts/tests/manual-playbook-runner.vitest.ts:288]
+
+## Next Audit Angle After Iteration 17
+
+Audit `/create:feature-catalog`, sk-doc README/SKILL, and feature-catalog creation references for overclaims about validation completeness now that table taxonomy and placeholder test rows are known blind spots.
