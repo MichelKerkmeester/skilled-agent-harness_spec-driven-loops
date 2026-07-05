@@ -59,7 +59,6 @@
     "update JSONC config schema for a skill"
   ],
   "lastUpdated": "2026-05-05T08:30:00Z",
-  "merger_spec_folder": "internal design notes",
   "supported_surfaces": [
     "WEBFLOW",
     "OPENCODE"

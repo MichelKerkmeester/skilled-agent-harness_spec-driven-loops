@@ -255,8 +255,6 @@
     "causal_summary": "sk-code is the single public code skill that routes a request to one of five code modes (implement, quality, debug, verify, review) by workflowMode through mode-registry.json over a shared surface-detection router. The shared router centralizes WEBFLOW, OPENCODE, and MOTION_DEV identity and precedence, while each mode packet owns its own workflow contract and tool surface so the advisor sees exactly one code identity.",
     "created_at": "2026-04-30T08:30:00Z",
     "last_updated_at": "2026-07-03T00:00:00Z",
-    "merger_packet": "internal design notes",
-    "motion_dev_packet": "internal design notes",
     "supported_surfaces": [
       "WEBFLOW",
       "OPENCODE"
