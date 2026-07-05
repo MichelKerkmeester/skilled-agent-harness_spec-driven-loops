@@ -1,0 +1,215 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/033-deep-loop-behavior-benchmarks/004-rollout-council-improvement",
+  "spec_folder": "system-deep-loop/033-deep-loop-behavior-benchmarks/004-rollout-council-improvement",
+  "parent_id": "system-deep-loop/033-deep-loop-behavior-benchmarks",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "council improvement behavior benchmark",
+      "deep loop behavior benchmark",
+      "implementation",
+      "plan",
+      "tasks",
+      "verification",
+      "checklist",
+      "summary"
+    ],
+    "key_topics": [
+      "council",
+      "improvement",
+      "behavior",
+      "benchmark",
+      "deep",
+      "loop",
+      "implementation",
+      "plan",
+      "tasks",
+      "verification",
+      "checklist",
+      "summary"
+    ],
+    "importance_tier": "high",
+    "status": "planned",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Rollout Behavioral Benchmarks",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Extend",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Deliver",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Extend",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Contract",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Capture Claude",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "evidence",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Impact",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Extend the calibrated framework to the two non-runtime-loop dispatch shapes: deep-ai-council (multi-seat orchestration; delegation evidence = seat dispatches + round records rather than iteration LEAF dispatches) and deep-improvement (improvement-host backend; loop owned by loop-host.cjs)",
+    "created_at": "2026-07-02T05:53:06.374Z",
+    "last_save_at": "2026-07-02T21:28:35.854Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:c324d0f6621d501ead1bf45aa292debf35ff02942c84475e96e9dcfa1a976afc",
+    "source_doc_hashes": {
+      "spec.md": "104bd02df2eacc7c55f7fefe0573c32c2b3049438f43bdcea85fa0f8f70a2a60",
+      "plan.md": "d28cf5c51ed224643fca5cb073c8cbe5592057f355f1469dcb13e3ebec38351e",
+      "tasks.md": "9bb8d50600c40cb5521a0c4bdfe5ce7f1b6ac695f1bef6c9e5d6e422615a3638",
+      "checklist.md": "d0165954a190f7f22b60ddb072097cb5a62a7eff236a9128a1bb11de70632a0e",
+      "implementation-summary.md": "243ae29c06ad0f10d38a0c34937fbdd936f008586c40bec186d7d1e9a0ffd074"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

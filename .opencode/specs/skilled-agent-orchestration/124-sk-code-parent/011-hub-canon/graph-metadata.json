@@ -206,7 +206,7 @@
     ],
     "causal_summary": "The repo had competing parent-hub shapes: deep-loop-workflows' 3-tier machinery and the sk-design/sk-code 2-tier shape",
     "created_at": "2026-07-05T04:31:30.976Z",
-    "last_save_at": "2026-07-05T04:31:30.976Z",
+    "last_save_at": "2026-07-05T10:12:31.030Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -216,13 +216,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:39a95365ce1dcb94fc3ee3c5443a58bed33ed2c25cd76119eb411aceda05c4c2",
+    "source_fingerprint": "sha256:6ddc3cefb2e44046d093e6d31c22476a19942b154bb8677bf2345dcdea901af9",
     "source_doc_hashes": {
-      "spec.md": "ca248643e2902803bb11484ee3f5d6e8e0d4d6c8fda1167b4cd675b40273c126",
+      "spec.md": "c576b099b437c0d52cc77fac21adace95e590cf62bea224a3b0a03b7c3dca561",
       "plan.md": "cec4024d5e3f2fc96c94db8257b186425dfb053408408cb2c4d065dbf9fda21e",
       "tasks.md": "4878374efd58dc8fe145e7f6e45f8abf81fafccc5415f72167c405b4db8f2344",
       "checklist.md": "cc5975a4b0fa2c7d53d4891da599b3bdc6a928958cfac8074015ff493ab28797",
-      "implementation-summary.md": "757a812369e42f478475d7dc898b612c37a6684b30ca6462c38be0033c4a08fd"
+      "implementation-summary.md": "959e69a79465210e7cca7e4721ae54793e1a52e09acdd1eeeb7dd98d37e3480f"
     },
     "last_active_child_id": null,
     "last_active_at": null

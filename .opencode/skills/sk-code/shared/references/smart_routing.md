@@ -88,7 +88,7 @@ Do not apply this anti-signal when the same request asks to modify executable co
 
 Multi-symptom prompts like `fix Webflow animation flicker` should load both DEBUGGING and ANIMATION. Prompts like `update TypeScript advisor fixture` should load OPENCODE plus LANGUAGE_STANDARDS and CODE_QUALITY.
 
-Motion.dev API or decision prompts should load MOTION_DEV as a resource intent. If the target files are Webflow files, keep the surface as WEBFLOW and add `animation/references/` for cross-stack API/decision context; if the target is `.opencode/`, keep the surface as OPENCODE and load Motion only as reference material.
+Motion.dev API or decision prompts should load MOTION_DEV as a resource intent. If the target files are Webflow files, keep the surface as WEBFLOW and add `code-animation/references/` for cross-stack API/decision context; if the target is `.opencode/`, keep the surface as OPENCODE and load Motion only as reference material.
 
 ### Surface-specific intent notes
 
@@ -104,33 +104,33 @@ Motion.dev API or decision prompts should load MOTION_DEV as a resource intent. 
 | Tier | When | Resources |
 | --- | --- | --- |
 | ALWAYS | Every invocation | Universal code quality + error recovery from `references/universal/` |
-| SURFACE | After WEBFLOW/OPENCODE detection | Surface-specific shared resources (`webflow/references/shared/*` or `opencode/references/shared/*`) |
+| SURFACE | After WEBFLOW/OPENCODE detection | Surface-specific shared resources (`code-webflow/references/shared/*` or `code-opencode/references/shared/*`) |
 | INTENT | After intent classification | Implementation, debugging, verification, performance, etc. matching the top-1 intent (and top-2 when ambiguous) |
-| LANGUAGE | OPENCODE only | JavaScript, TypeScript, Python, Shell, Config standards from the matching `opencode/<lang>/*` folder |
-| ON_DEMAND | Explicit deep-dive keywords | Extended checklists and niche references (e.g. `webflow/references/css/patterns.md` for advanced CSS patterns) |
+| LANGUAGE | OPENCODE only | JavaScript, TypeScript, Python, Shell, Config standards from the matching `code-opencode/<lang>/*` folder |
+| ON_DEMAND | Explicit deep-dive keywords | Extended checklists and niche references (e.g. `code-webflow/references/css/patterns.md` for advanced CSS patterns) |
 
 ---
 
 ## 4. WEBFLOW MAP
 
-WEBFLOW loads from `webflow/references/` and `webflow/assets/`. The per-language sub-tree (`webflow/{javascript,css,html,shared}/`) and topical workflow dirs (`webflow/{implementation,debugging,verification,performance,deployment}/`) coexist; the router selects across both.
+WEBFLOW loads from `code-webflow/references/` and `code-webflow/assets/`. The per-language sub-tree (`code-webflow/{javascript,css,html,shared}/`) and topical workflow dirs (`code-webflow/{implementation,debugging,verification,performance,deployment}/`) coexist; the router selects across both.
 
 | Intent | Resources |
 | --- | --- |
-| IMPLEMENTATION | MUST load the implementation trio: `webflow/references/implementation/animation_workflows.md`, `webflow/references/implementation/implementation_workflows.md`, `webflow/references/implementation/performance_patterns.md`; then add per-language style guides (`webflow/references/javascript/style_guide.md`, `webflow/references/css/style_guide.md`) and focused guides such as forms/vendor refs as needed |
-| CODE_QUALITY | `review/assets/code_quality_checklist.md`, `webflow/references/javascript/quality_standards.md`, `webflow/references/css/quality_standards.md`, `webflow/references/shared/enforcement.md` |
-| DEBUGGING | `webflow/references/debugging/*`, `webflow/references/shared/dev_workflow.md`, universal debugging checklist |
-| VERIFICATION | `webflow/references/verification/verification_workflows.md`, `webflow/references/shared/enforcement.md`, verification checklist |
-| PERFORMANCE | `webflow/references/performance/cwv_remediation.md`, `webflow/references/performance/resource_loading.md`, `webflow/references/performance/interaction_gated_loading.md`, `webflow/references/css/quality_standards.md` (will-change, GPU props), `webflow/references/javascript/quality_standards.md` (RAF, debounce) |
-| DEPLOYMENT | `webflow/references/deployment/cdn_deployment.md`, `webflow/references/deployment/minification_guide.md`, `webflow/references/deployment/webflow_staging_production.md` |
+| IMPLEMENTATION | MUST load the implementation trio: `code-webflow/references/implementation/animation_workflows.md`, `code-webflow/references/implementation/implementation_workflows.md`, `code-webflow/references/implementation/performance_patterns.md`; then add per-language style guides (`code-webflow/references/javascript/style_guide.md`, `code-webflow/references/css/style_guide.md`) and focused guides such as forms/vendor refs as needed |
+| CODE_QUALITY | `code-review/assets/code_quality_checklist.md`, `code-webflow/references/javascript/quality_standards.md`, `code-webflow/references/css/quality_standards.md`, `code-webflow/references/shared/enforcement.md` |
+| DEBUGGING | `code-webflow/references/debugging/*`, `code-webflow/references/shared/dev_workflow.md`, universal debugging checklist |
+| VERIFICATION | `code-webflow/references/verification/verification_workflows.md`, `code-webflow/references/shared/enforcement.md`, verification checklist |
+| PERFORMANCE | `code-webflow/references/performance/cwv_remediation.md`, `code-webflow/references/performance/resource_loading.md`, `code-webflow/references/performance/interaction_gated_loading.md`, `code-webflow/references/css/quality_standards.md` (will-change, GPU props), `code-webflow/references/javascript/quality_standards.md` (RAF, debounce) |
+| DEPLOYMENT | `code-webflow/references/deployment/cdn_deployment.md`, `code-webflow/references/deployment/minification_guide.md`, `code-webflow/references/deployment/webflow_staging_production.md` |
 
 ### Implementation trio contract
 
 Any WEBFLOW surface detection MUST load the implementation trio before intent-specific expansion:
 
-- `webflow/references/implementation/animation_workflows.md`
-- `webflow/references/implementation/implementation_workflows.md`
-- `webflow/references/implementation/performance_patterns.md`
+- `code-webflow/references/implementation/animation_workflows.md`
+- `code-webflow/references/implementation/implementation_workflows.md`
+- `code-webflow/references/implementation/performance_patterns.md`
 
 This is a contract, not a guideline. It prevents SD-001-style partial coverage where the surface is correct but implementation guidance falls below the expected threshold.
 
@@ -140,84 +140,84 @@ After WEBFLOW + intent selection, also load the language overlay matching the ch
 
 | Target language | Overlay resources |
 | --- | --- |
-| JavaScript (`.js`) | `webflow/references/javascript/{style_guide,quality_standards,quick_reference}.md`, `webflow/references/shared/cross_language_rules.md` |
-| CSS (`.css`) | `webflow/references/css/{style_guide,quality_standards,quick_reference,patterns}.md`, `webflow/references/shared/cross_language_rules.md` |
-| HTML (`.html`) | `webflow/html/{style_guide,quality_standards}.md`, `webflow/references/shared/cross_language_rules.md` |
+| JavaScript (`.js`) | `code-webflow/references/javascript/{style_guide,quality_standards,quick_reference}.md`, `code-webflow/references/shared/cross_language_rules.md` |
+| CSS (`.css`) | `code-webflow/references/css/{style_guide,quality_standards,quick_reference,patterns}.md`, `code-webflow/references/shared/cross_language_rules.md` |
+| HTML (`.html`) | `code-webflow/html/{style_guide,quality_standards}.md`, `code-webflow/references/shared/cross_language_rules.md` |
 | Mixed (CSS + JS in same task) | Both per-language sets above |
 
 ---
 
 ## 5. MOTION_DEV MAP
 
-MOTION_DEV loads from `animation/references/` and `animation/assets/` as a peer resource category. It is not a separate code surface; it supplements WEBFLOW, OPENCODE, or future surfaces when the request needs Motion API, integration, or decision guidance.
+MOTION_DEV loads from `code-animation/references/` and `code-animation/assets/` as a peer resource category. It is not a separate code surface; it supplements WEBFLOW, OPENCODE, or future surfaces when the request needs Motion API, integration, or decision guidance.
 
 | Intent | Resources |
 | --- | --- |
-| ANIMATION / MOTION_DEV | `animation/references/quick_start.md`, `animation/references/animation_principles.md`, `animation/references/animate_and_timelines.md`, `animation/references/scroll_and_gestures.md`, `animation/assets/snippets/principled_reveal.js` |
-| PERFORMANCE | `animation/references/performance_and_pitfalls.md` including frame-level visual verification for subtle timing/easing defects |
-| IMPLEMENTATION / API | `animation/references/integration_patterns.md`, exact snippet assets such as `animation/assets/snippets/animate_on_scroll.js` and `animation/assets/snippets/in_view_reveal.js` |
-| CODE_QUALITY / DECISION | `animation/references/decision_matrix.md`, `animation/assets/install_card.md` |
-| TESTING / PLAYBOOK | `animation/assets/playbook_entries.md` plus manual testing playbook Motion scenarios |
+| ANIMATION / MOTION_DEV | `code-animation/references/quick_start.md`, `code-animation/references/animation_principles.md`, `code-animation/references/animate_and_timelines.md`, `code-animation/references/scroll_and_gestures.md`, `code-animation/assets/snippets/principled_reveal.js` |
+| PERFORMANCE | `code-animation/references/performance_and_pitfalls.md` including frame-level visual verification for subtle timing/easing defects |
+| IMPLEMENTATION / API | `code-animation/references/integration_patterns.md`, exact snippet assets such as `code-animation/assets/snippets/animate_on_scroll.js` and `code-animation/assets/snippets/in_view_reveal.js` |
+| CODE_QUALITY / DECISION | `code-animation/references/decision_matrix.md`, `code-animation/assets/install_card.md` |
+| TESTING / PLAYBOOK | `code-animation/assets/playbook_entries.md` plus manual testing playbook Motion scenarios |
 
 When WEBFLOW and MOTION_DEV both match, load Webflow guidance for CDN, `window.Motion`, Designer, and browser verification constraints, then load `motion_dev/` for cross-stack Motion details.
 
-When explicit non-Webflow language and MOTION_DEV both match, do not load `webflow/references/*` or `webflow/assets/*`. Load Motion.dev peer resources by exact path while keeping the surface UNKNOWN or N/A:
+When explicit non-Webflow language and MOTION_DEV both match, do not load `code-webflow/references/*` or `code-webflow/assets/*`. Load Motion.dev peer resources by exact path while keeping the surface UNKNOWN or N/A:
 
-- `animation/references/quick_start.md`
-- `animation/references/animation_principles.md`
-- `animation/references/integration_patterns.md`
-- `animation/references/decision_matrix.md`
-- `animation/references/performance_and_pitfalls.md`
-- `animation/references/animate_and_timelines.md`
-- `animation/references/scroll_and_gestures.md`
-- exact snippet assets under `animation/assets/snippets/` when the prompt asks for examples
+- `code-animation/references/quick_start.md`
+- `code-animation/references/animation_principles.md`
+- `code-animation/references/integration_patterns.md`
+- `code-animation/references/decision_matrix.md`
+- `code-animation/references/performance_and_pitfalls.md`
+- `code-animation/references/animate_and_timelines.md`
+- `code-animation/references/scroll_and_gestures.md`
+- exact snippet assets under `code-animation/assets/snippets/` when the prompt asks for examples
 
-Do not emit directory placeholders such as `animation/references/`, `animation/assets/snippets/`, or `webflow/references/` in playbook result YAML. Name the exact canonical files.
+Do not emit directory placeholders such as `code-animation/references/`, `code-animation/assets/snippets/`, or `code-webflow/references/` in playbook result YAML. Name the exact canonical files.
 
 ### Performance and decision contracts
 
 PERFORMANCE intent with Motion.dev or Webflow animation MUST name these canonical files when relevant:
 
-- `animation/references/performance_and_pitfalls.md`
-- `webflow/references/performance/cwv_remediation.md`
-- `webflow/references/performance/resource_loading.md`
+- `code-animation/references/performance_and_pitfalls.md`
+- `code-webflow/references/performance/cwv_remediation.md`
+- `code-webflow/references/performance/resource_loading.md`
 
 DECISION intent MUST name:
 
-- `animation/references/decision_matrix.md`
-- `webflow/references/implementation/animation_workflows.md` when comparing Motion.dev against Webflow-owned animation patterns
-- `webflow/references/implementation/performance_patterns.md` when the decision depends on performance constraints
+- `code-animation/references/decision_matrix.md`
+- `code-webflow/references/implementation/animation_workflows.md` when comparing Motion.dev against Webflow-owned animation patterns
+- `code-webflow/references/implementation/performance_patterns.md` when the decision depends on performance constraints
 
 ---
 
 ## 6. OPENCODE MAP
 
-OPENCODE loads from `opencode/references/` and `assets/opencode/`.
+OPENCODE loads from `code-opencode/references/` and `assets/code-opencode/`.
 
 ### Always-load (every OPENCODE invocation)
 
-- `opencode/references/shared/universal_patterns.md`
-- `opencode/references/shared/code_organization.md`
+- `code-opencode/references/shared/universal_patterns.md`
+- `code-opencode/references/shared/code_organization.md`
 
 ### Intent overlay
 
 | Intent | Resources |
 | --- | --- |
-| CODE_QUALITY | `opencode/assets/checklists/universal_checklist.md` plus the language-matching checklist |
-| VERIFICATION | `opencode/references/shared/alignment_verification_automation.md`, `assets/scripts/verify_alignment_drift.py` |
-| HOOKS | `opencode/references/shared/hooks.md` |
-| CONFIG | `opencode/references/config/*` |
+| CODE_QUALITY | `code-opencode/assets/checklists/universal_checklist.md` plus the language-matching checklist |
+| VERIFICATION | `code-opencode/references/shared/alignment_verification_automation.md`, `assets/scripts/verify_alignment_drift.py` |
+| HOOKS | `code-opencode/references/shared/hooks.md` |
+| CONFIG | `code-opencode/references/config/*` |
 | LANGUAGE_STANDARDS | Detected language folder's `quick_reference.md`, `style_guide.md`, `quality_standards.md` |
 
 ### Language overlay
 
 | Language | Resources |
 | --- | --- |
-| JAVASCRIPT | `opencode/references/javascript/{style_guide,quality_standards,quick_reference}.md`, `opencode/assets/checklists/javascript_checklist.md` |
-| TYPESCRIPT | `opencode/references/typescript/{style_guide,quality_standards,quick_reference}.md`, `opencode/assets/checklists/typescript_checklist.md` |
-| PYTHON | `opencode/references/python/{style_guide,quality_standards,quick_reference}.md`, `opencode/assets/checklists/python_checklist.md` |
-| SHELL | `opencode/references/shell/{style_guide,quality_standards,quick_reference}.md`, `opencode/assets/checklists/shell_checklist.md` |
-| CONFIG | `opencode/references/config/{style_guide,quality_standards,quick_reference}.md`, `opencode/assets/checklists/config_checklist.md` |
+| JAVASCRIPT | `code-opencode/references/javascript/{style_guide,quality_standards,quick_reference}.md`, `code-opencode/assets/checklists/javascript_checklist.md` |
+| TYPESCRIPT | `code-opencode/references/typescript/{style_guide,quality_standards,quick_reference}.md`, `code-opencode/assets/checklists/typescript_checklist.md` |
+| PYTHON | `code-opencode/references/python/{style_guide,quality_standards,quick_reference}.md`, `code-opencode/assets/checklists/python_checklist.md` |
+| SHELL | `code-opencode/references/shell/{style_guide,quality_standards,quick_reference}.md`, `code-opencode/assets/checklists/shell_checklist.md` |
+| CONFIG | `code-opencode/references/config/{style_guide,quality_standards,quick_reference}.md`, `code-opencode/assets/checklists/config_checklist.md` |
 
 ### Authoring checklist gating
 
@@ -225,10 +225,10 @@ When OPENCODE intent is `authoring-new-X`, additionally load the matching author
 
 | Authoring target | Checklist |
 | --- | --- |
-| New skill | `opencode/assets/checklists/skill_authoring.md` |
-| New agent | `opencode/assets/checklists/agent_authoring.md` |
-| New command | `opencode/assets/checklists/command_authoring.md` |
-| New MCP server | `opencode/assets/checklists/mcp_server_authoring.md` |
+| New skill | `code-opencode/assets/checklists/skill_authoring.md` |
+| New agent | `code-opencode/assets/checklists/agent_authoring.md` |
+| New command | `code-opencode/assets/checklists/command_authoring.md` |
+| New MCP server | `code-opencode/assets/checklists/mcp_server_authoring.md` |
 | Spec folder write | Now in system-spec-kit: `system-spec-kit/references/workflows/spec_folder_authoring_checklist.md` + `system-spec-kit/references/workflows/spec_folder_write_recipe.md` |
 
 ---
@@ -237,7 +237,7 @@ When OPENCODE intent is `authoring-new-X`, additionally load the matching author
 
 | Surface | Required verification evidence |
 | --- | --- |
-| WEBFLOW | `node .opencode/skills/sk-code/code-implement/webflow/assets/scripts/minify-webflow.mjs`; `node .opencode/skills/sk-code/code-implement/webflow/assets/scripts/verify-minification.mjs`; `node .opencode/skills/sk-code/code-implement/webflow/assets/scripts/test-minified-runtime.mjs`; plus desktop/mobile browser console clean evidence when runtime behavior changes |
+| WEBFLOW | `node .opencode/skills/sk-code/code-webflow/assets/scripts/minify-webflow.mjs`; `node .opencode/skills/sk-code/code-webflow/assets/scripts/verify-minification.mjs`; `node .opencode/skills/sk-code/code-webflow/assets/scripts/test-minified-runtime.mjs`; plus desktop/mobile browser console clean evidence when runtime behavior changes |
 | OPENCODE | `python3 .opencode/skills/sk-code/code-verify/assets/scripts/verify_alignment_drift.py --root <changed-scope>`; plus targeted language/project tests such as vitest, pytest, shellcheck, JSON validation, or spec validation for changed spec folders |
 | UNKNOWN | User-selected verification command set before completion claim |
 
@@ -277,7 +277,7 @@ Returned when intent confidence is low (`max(intent_scores) < 0.5`) OR when the 
 
 ### DON'T
 
-- Load all of `webflow/` or all of `opencode/` indiscriminately ("just in case")
+- Load all of `code-webflow/` or all of `code-opencode/` indiscriminately ("just in case")
 - Treat MOTION_DEV as a surface (it's a peer resource category)
 - Load Go/NextJS/React Native resources (those live in the Barter fork)
 - Skip the implementation trio for WEBFLOW
@@ -336,123 +336,123 @@ INTENT_SIGNALS = {
 RESOURCE_MAP = {
     "IMPLEMENTATION": [
         "references/universal/multi_agent_research.md",
-        "webflow/references/implementation/implementation_workflows.md",
-        "webflow/references/implementation/async_patterns.md",
-        "webflow/references/implementation/observer_patterns.md",
-        "webflow/references/implementation/security_patterns.md",
-        "webflow/references/implementation/third_party_integrations.md",
-        "webflow/references/implementation/webflow_patterns.md",
-        "webflow/references/shared/dev_workflow.md",
-        "opencode/references/shared/universal_patterns.md",
-        "opencode/references/shared/code_organization.md",
-        "opencode/assets/checklists/agent_authoring.md",
-        "opencode/assets/checklists/command_authoring.md",
-        "opencode/assets/checklists/skill_authoring.md",
-        "opencode/assets/checklists/mcp_server_authoring.md",
+        "code-webflow/references/implementation/implementation_workflows.md",
+        "code-webflow/references/implementation/async_patterns.md",
+        "code-webflow/references/implementation/observer_patterns.md",
+        "code-webflow/references/implementation/security_patterns.md",
+        "code-webflow/references/implementation/third_party_integrations.md",
+        "code-webflow/references/implementation/webflow_patterns.md",
+        "code-webflow/references/shared/dev_workflow.md",
+        "code-opencode/references/shared/universal_patterns.md",
+        "code-opencode/references/shared/code_organization.md",
+        "code-opencode/assets/checklists/agent_authoring.md",
+        "code-opencode/assets/checklists/command_authoring.md",
+        "code-opencode/assets/checklists/skill_authoring.md",
+        "code-opencode/assets/checklists/mcp_server_authoring.md",
         "shared/assets/patterns/README.md",
-        "webflow/assets/integrations/README.md",
-        "webflow/assets/patterns/README.md",
-        "webflow/assets/templates/README.md"
+        "code-webflow/assets/integrations/README.md",
+        "code-webflow/assets/patterns/README.md",
+        "code-webflow/assets/templates/README.md"
     ],
     "CODE_QUALITY": [
         "references/universal/code_quality_standards.md",
         "references/universal/code_style_guide.md",
-        "webflow/references/shared/cross_language_rules.md",
-        "webflow/references/shared/enforcement.md",
-        "opencode/assets/checklists/universal_checklist.md",
-        "opencode/assets/checklists/javascript_checklist.md",
-        "opencode/assets/checklists/typescript_checklist.md",
-        "opencode/assets/checklists/python_checklist.md",
-        "opencode/assets/checklists/shell_checklist.md",
-        "review/assets/code_quality_checklist.md"
+        "code-webflow/references/shared/cross_language_rules.md",
+        "code-webflow/references/shared/enforcement.md",
+        "code-opencode/assets/checklists/universal_checklist.md",
+        "code-opencode/assets/checklists/javascript_checklist.md",
+        "code-opencode/assets/checklists/typescript_checklist.md",
+        "code-opencode/assets/checklists/python_checklist.md",
+        "code-opencode/assets/checklists/shell_checklist.md",
+        "code-review/assets/code_quality_checklist.md"
     ],
     "DEBUGGING": [
         "references/universal/error_recovery.md",
-        "webflow/references/debugging/debugging_workflows.md",
-        "webflow/references/debugging/error_recovery.md",
+        "code-webflow/references/debugging/debugging_workflows.md",
+        "code-webflow/references/debugging/error_recovery.md",
         "code-debug/assets/universal-debugging_checklist.md",
-        "webflow/assets/webflow-debugging_checklist.md"
+        "code-webflow/assets/webflow-debugging_checklist.md"
     ],
     "VERIFICATION": [
-        "webflow/references/verification/verification_workflows.md",
-        "opencode/references/shared/alignment_verification_automation.md",
+        "code-webflow/references/verification/verification_workflows.md",
+        "code-opencode/references/shared/alignment_verification_automation.md",
         "code-verify/assets/universal-verification_checklist.md",
-        "webflow/assets/webflow-verification_checklist.md",
+        "code-webflow/assets/webflow-verification_checklist.md",
         "assets/scripts/README.md"
     ],
     "TESTING": [
-        "animation/assets/playbook_entries.md"
+        "code-animation/assets/playbook_entries.md"
     ],
     "DEPLOYMENT": [
-        "webflow/references/deployment/cdn_deployment.md",
-        "webflow/references/deployment/minification_guide.md",
-        "webflow/references/deployment/webflow_staging_production.md",
-        "webflow/assets/scripts/README.md"
+        "code-webflow/references/deployment/cdn_deployment.md",
+        "code-webflow/references/deployment/minification_guide.md",
+        "code-webflow/references/deployment/webflow_staging_production.md",
+        "code-webflow/assets/scripts/README.md"
     ],
     "PERFORMANCE": [
-        "webflow/references/performance/cwv_remediation.md",
-        "webflow/references/performance/interaction_gated_loading.md",
-        "webflow/references/performance/resource_loading.md",
-        "webflow/references/performance/third_party.md",
-        "webflow/references/performance/webflow_constraints.md",
-        "webflow/references/verification/performance_checklist.md",
-        "webflow/references/implementation/performance_patterns.md",
-        "animation/references/performance_and_pitfalls.md",
+        "code-webflow/references/performance/cwv_remediation.md",
+        "code-webflow/references/performance/interaction_gated_loading.md",
+        "code-webflow/references/performance/resource_loading.md",
+        "code-webflow/references/performance/third_party.md",
+        "code-webflow/references/performance/webflow_constraints.md",
+        "code-webflow/references/verification/performance_checklist.md",
+        "code-webflow/references/implementation/performance_patterns.md",
+        "code-animation/references/performance_and_pitfalls.md",
         "code-verify/assets/performance_loading_checklist.md"
     ],
     "ANIMATION": [
-        "webflow/references/implementation/animation_workflows.md",
-        "webflow/references/implementation/swiper_patterns.md"
+        "code-webflow/references/implementation/animation_workflows.md",
+        "code-webflow/references/implementation/swiper_patterns.md"
     ],
     "MOTION_DEV": [
-        "animation/references/quick_start.md",
-        "animation/references/animation_principles.md",
-        "animation/references/animate_and_timelines.md",
-        "animation/references/scroll_and_gestures.md",
-        "animation/references/integration_patterns.md",
-        "animation/references/decision_matrix.md",
-        "animation/assets/install_card.md",
-        "animation/assets/snippets/principled_reveal.js",
-        "animation/assets/snippets/README.md"
+        "code-animation/references/quick_start.md",
+        "code-animation/references/animation_principles.md",
+        "code-animation/references/animate_and_timelines.md",
+        "code-animation/references/scroll_and_gestures.md",
+        "code-animation/references/integration_patterns.md",
+        "code-animation/references/decision_matrix.md",
+        "code-animation/assets/install_card.md",
+        "code-animation/assets/snippets/principled_reveal.js",
+        "code-animation/assets/snippets/README.md"
     ],
     "FORMS": [
-        "webflow/references/implementation/form_upload_workflows.md",
-        "webflow/references/implementation/focus_management.md"
+        "code-webflow/references/implementation/form_upload_workflows.md",
+        "code-webflow/references/implementation/focus_management.md"
     ],
     "VIDEO": [
-        "webflow/references/implementation/third_party_integrations.md"
+        "code-webflow/references/implementation/third_party_integrations.md"
     ],
     "HOOKS": [
-        "opencode/references/shared/hooks.md"
+        "code-opencode/references/shared/hooks.md"
     ],
     "CONFIG": [
-        "opencode/references/config/style_guide.md",
-        "opencode/references/config/quality_standards.md",
-        "opencode/references/config/quick_reference.md",
-        "opencode/assets/checklists/config_checklist.md"
+        "code-opencode/references/config/style_guide.md",
+        "code-opencode/references/config/quality_standards.md",
+        "code-opencode/references/config/quick_reference.md",
+        "code-opencode/assets/checklists/config_checklist.md"
     ],
     "LANGUAGE_STANDARDS": [
-        "webflow/references/css/style_guide.md",
-        "webflow/references/css/quality_standards.md",
-        "webflow/references/css/quick_reference.md",
-        "webflow/references/css/patterns.md",
-        "webflow/references/html/style_guide.md",
-        "webflow/references/html/quality_standards.md",
-        "webflow/references/javascript/style_guide.md",
-        "webflow/references/javascript/quality_standards.md",
-        "webflow/references/javascript/quick_reference.md",
-        "opencode/references/javascript/style_guide.md",
-        "opencode/references/javascript/quality_standards.md",
-        "opencode/references/javascript/quick_reference.md",
-        "opencode/references/typescript/style_guide.md",
-        "opencode/references/typescript/quality_standards.md",
-        "opencode/references/typescript/quick_reference.md",
-        "opencode/references/python/style_guide.md",
-        "opencode/references/python/quality_standards.md",
-        "opencode/references/python/quick_reference.md",
-        "opencode/references/shell/style_guide.md",
-        "opencode/references/shell/quality_standards.md",
-        "opencode/references/shell/quick_reference.md"
+        "code-webflow/references/css/style_guide.md",
+        "code-webflow/references/css/quality_standards.md",
+        "code-webflow/references/css/quick_reference.md",
+        "code-webflow/references/css/patterns.md",
+        "code-webflow/references/html/style_guide.md",
+        "code-webflow/references/html/quality_standards.md",
+        "code-webflow/references/javascript/style_guide.md",
+        "code-webflow/references/javascript/quality_standards.md",
+        "code-webflow/references/javascript/quick_reference.md",
+        "code-opencode/references/javascript/style_guide.md",
+        "code-opencode/references/javascript/quality_standards.md",
+        "code-opencode/references/javascript/quick_reference.md",
+        "code-opencode/references/typescript/style_guide.md",
+        "code-opencode/references/typescript/quality_standards.md",
+        "code-opencode/references/typescript/quick_reference.md",
+        "code-opencode/references/python/style_guide.md",
+        "code-opencode/references/python/quality_standards.md",
+        "code-opencode/references/python/quick_reference.md",
+        "code-opencode/references/shell/style_guide.md",
+        "code-opencode/references/shell/quality_standards.md",
+        "code-opencode/references/shell/quick_reference.md"
     ],
 }
 ```
@@ -464,6 +464,6 @@ The router does NOT load the whole matched-intent union. After surface detection
 - the always-loaded `DEFAULT_RESOURCE` preamble (stack/phase detection, the router, the universal quality baseline), plus
 - the surface-agnostic `references/universal/*` tier, plus
 - only the **detected surface's** slice (`<surface>/references/*`) for the matched intents, plus
-- the Motion.dev overlay (`animation/references/*`) when a `MOTION_DEV` intent fires.
+- the Motion.dev overlay (`code-animation/references/*`) when a `MOTION_DEV` intent fires.
 
-It does not load the other surface's resources, and it defers `assets/*` (checklists, recipes, templates) to on-demand rather than the first slice. Within OpenCode it slices once more by the **detected language** (§1 sub-detection): a TypeScript task loads `opencode/references/typescript/*` plus the language-agnostic `opencode/references/shared/*`, not the Python, shell, config, or JavaScript folders. Webflow has no language sub-slice — a frontend task legitimately spans CSS, HTML, and JavaScript together. A task that genuinely spans both surfaces (mixed `.opencode/` and Webflow markers) keeps both surface slices; an `UNKNOWN` surface falls back to the preamble plus the universal tier and the Motion overlay only. This is what stops a routine single-surface task from pulling the full cross-surface set. The deterministic router-replay enforces the same rule, so the benchmark measures it.
+It does not load the other surface's resources, and it defers `assets/*` (checklists, recipes, templates) to on-demand rather than the first slice. Within OpenCode it slices once more by the **detected language** (§1 sub-detection): a TypeScript task loads `code-opencode/references/typescript/*` plus the language-agnostic `code-opencode/references/shared/*`, not the Python, shell, config, or JavaScript folders. Webflow has no language sub-slice — a frontend task legitimately spans CSS, HTML, and JavaScript together. A task that genuinely spans both surfaces (mixed `.opencode/` and Webflow markers) keeps both surface slices; an `UNKNOWN` surface falls back to the preamble plus the universal tier and the Motion overlay only. This is what stops a routine single-surface task from pulling the full cross-surface set. The deterministic router-replay enforces the same rule, so the benchmark measures it.

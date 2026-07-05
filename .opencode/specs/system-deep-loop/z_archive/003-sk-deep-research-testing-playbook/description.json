@@ -1,0 +1,29 @@
+{
+  "specFolder": "system-deep-loop/z_archive/003-sk-deep-research-testing-playbook",
+  "description": "`sk-deep-research` documents a rich operator-visible surface: the consolidated setup prompt, spec-folder choice, `:auto` and `:confirm` modes, initial",
+  "keywords": [
+    "sk-deep-research",
+    "documents",
+    "rich",
+    "operator-visible",
+    "surface",
+    "consolidated",
+    "setup",
+    "prompt",
+    "spec-folder",
+    "choice",
+    "auto",
+    "confirm",
+    "modes",
+    "initial"
+  ],
+  "lastUpdated": "2026-06-23T03:49:49.038Z",
+  "specId": "003",
+  "folderSlug": "sk-deep-research-testing-playbook",
+  "parentChain": [
+    "system-deep-loop",
+    "z_archive"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

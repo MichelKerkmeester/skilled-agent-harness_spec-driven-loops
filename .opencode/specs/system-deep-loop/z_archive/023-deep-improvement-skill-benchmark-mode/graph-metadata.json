@@ -1,0 +1,119 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/z_archive/023-deep-improvement-skill-benchmark-mode",
+  "spec_folder": "system-deep-loop/z_archive/023-deep-improvement-skill-benchmark-mode",
+  "parent_id": null,
+  "children_ids": [
+    "system-deep-loop/z_archive/023-deep-improvement-skill-benchmark-mode/001-skill-benchmark-deep-research",
+    "system-deep-loop/z_archive/023-deep-improvement-skill-benchmark-mode/002-implementation-deep-research",
+    "system-deep-loop/z_archive/023-deep-improvement-skill-benchmark-mode/003-skill-rename-deep-improvement",
+    "system-deep-loop/z_archive/023-deep-improvement-skill-benchmark-mode/004-skill-benchmark-mode",
+    "system-deep-loop/z_archive/023-deep-improvement-skill-benchmark-mode/005-validation-and-docs",
+    "system-deep-loop/z_archive/023-deep-improvement-skill-benchmark-mode/006-deep-review",
+    "system-deep-loop/z_archive/023-deep-improvement-skill-benchmark-mode/007-deep-improvement-3lane-doc-rebuild",
+    "system-deep-loop/z_archive/023-deep-improvement-skill-benchmark-mode/008-playbook-manual-test-run",
+    "system-deep-loop/z_archive/023-deep-improvement-skill-benchmark-mode/009-sk-code-router-benchmarkability",
+    "system-deep-loop/z_archive/023-deep-improvement-skill-benchmark-mode/010-skill-benchmark-live-playbook-mode",
+    "system-deep-loop/z_archive/023-deep-improvement-skill-benchmark-mode/011-sk-code-routing-efficiency-remediation",
+    "system-deep-loop/z_archive/023-deep-improvement-skill-benchmark-mode/012-sk-code-surface-nested-router",
+    "system-deep-loop/z_archive/023-deep-improvement-skill-benchmark-mode/013-skill-benchmark-fidelity-track",
+    "system-deep-loop/z_archive/023-deep-improvement-skill-benchmark-mode/014-d4r-grader-fidelity-remediation",
+    "system-deep-loop/z_archive/023-deep-improvement-skill-benchmark-mode/015-post-remediation-deep-review"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "122-deep-improvement-skill-benchmark-mode",
+      "skill-benchmark mode",
+      "deep-improvement skill rename"
+    ],
+    "key_topics": [
+      "122-deep-improvement-skill-benchmark-mode",
+      "skill-benchmark",
+      "mode",
+      "deep-improvement",
+      "skill",
+      "rename",
+      "phase",
+      "parent",
+      "deep-agent-improvement",
+      "add",
+      "lane",
+      "measuring"
+    ],
+    "importance_tier": "important",
+    "status": "planned",
+    "key_files": [
+      ".opencode/skills/deep-loop-runtime/SKILL.md",
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/deep-loop-runtime/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Evolve",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Add Lane",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Define Lane",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implement Lane",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Skill Benchmark Report",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Phase parent: rename deep-agent-improvement to deep-improvement and add Lane C (skill-benchmark) measuring a skill's real-world routing, unprompted reference/asset discovery, efficiency, and usefulness; multi-model deep research (001) informs rename (002), Lane C build (003), and validation/docs (004).",
+    "created_at": "2026-05-30T07:27:05.678Z",
+    "last_save_at": "2026-06-23T03:49:51.290Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "source_fingerprint": "sha256:0959479f63856c6389d2db0ed8ab1831b28249a77f9c26ae82ce1c882b50830c",
+    "source_doc_hashes": {
+      "spec.md": "f796b4b97770005d1973050ce552e525f0269b0ea772558b548e49155c1d08e7"
+    },
+    "last_active_child_id": "skilled-agent-orchestration/122-deep-improvement-skill-benchmark-mode/013-skill-benchmark-fidelity-track",
+    "last_active_at": "2026-05-31T17:50:44.632Z"
+  }
+}

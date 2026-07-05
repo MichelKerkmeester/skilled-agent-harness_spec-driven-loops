@@ -1,0 +1,212 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/030-deep-loop-improved/002-deep-loop-runtime/015-fallback-router-typed-reroute",
+  "spec_folder": "system-deep-loop/030-deep-loop-improved/002-deep-loop-runtime/015-fallback-router-typed-reroute",
+  "parent_id": "system-deep-loop/030-deep-loop-improved/002-deep-loop-runtime",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "fallback-router typed reroute",
+      "failure-kind routing",
+      "route-trace metadata",
+      "fallback graph preflight",
+      "015-fallback-router-typed-reroute summary",
+      "015-fallback-router-typed-reroute"
+    ],
+    "key_topics": [
+      "fallback-router",
+      "typed",
+      "reroute",
+      "failure-kind",
+      "routing",
+      "route-trace",
+      "metadata",
+      "fallback",
+      "graph",
+      "preflight",
+      "015-fallback-router-typed-reroute",
+      "summary"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      ".opencode/skills/deep-loop-runtime/lib/deep-loop/fallback-router.ts",
+      ".opencode/skills/deep-loop-runtime/tests/unit/fallback-router.vitest.ts",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "fallback-router.ts",
+        "kind": "code",
+        "path": ".opencode/skills/deep-loop-runtime/lib/deep-loop/fallback-router.ts",
+        "source": "derived"
+      },
+      {
+        "name": "fallback-router.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/deep-loop-runtime/tests/unit/fallback-router.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Fallback Router Typed Outcome",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Routed Reroute",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Fallback Router Typed Reroute",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Typed",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "completed",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "a",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "On executor failure the fallback router retries flat without knowing the failure kind, routing all failures identically and producing no trace of the routing decision",
+    "created_at": "2026-06-28T14:02:03Z",
+    "last_save_at": "2026-07-04T18:02:06.351Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:2d37caf18499724e2a2d1cdf671636bf1677f8f0d0030aa924e02fadfe28671f",
+    "source_doc_hashes": {
+      "spec.md": "9f3d136f3559077831afb766e7d5e539499a200bccc77c7c1de9e63490f7b50b",
+      "plan.md": "bce264137706b168a07b6924088fd91cef8102be7aa25c1befea4e09d8c399eb",
+      "tasks.md": "fd3b7cba95f9804856d29f10cc6625a650627401d6769d9f6bf959a937e27d6a",
+      "implementation-summary.md": "03d93c5bc6d78fb9a772cbb19cbc6f5ed01460b717d884848418e633c53e7e02"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

@@ -1,6 +1,6 @@
 {
   "skill": "deep-loop-workflows",
-  "version": "1.1.0",
+  "version": "1.1.0.0",
   "description": "Declarative mode registry: the single source of truth for the three-tier discriminator (workflowMode/runtimeLoopType/backendKind) PLUS the advisorRouting projection. The advisor keeps its hardcoded projection maps (Python DEEP_ROUTING_MODE_BY_KEY, TypeScript DEEP_MODE_BY_CANONICAL) in sync with this registry via a CI drift-guard test (maps == registry projection); the advisor does NOT read this file at runtime, which avoids cross-skill import coupling on the advisor hot path.",
   "discriminator": {
     "workflowMode": "Public command/advisor/mode key. Stable identity used in commands, advisor aliases, and this registry. Carried by every mode.",
@@ -13,7 +13,17 @@
     "advisorDefaultMode": "Marks the default mode a multi-mode legacy id folds to (deep-improvement -> agent-improvement). Never inferred from array order.",
     "legacyAliases": "The TypeScript scorer alias set (aliases.ts SKILL_ALIAS_GROUPS[legacyAdvisorId]) the merged-identity layer keys on; the drift-guard asserts these match it order-insensitive. The Python deep-router uses its own alias set + regex patterns by design (same keys, different values), so the guard only cross-checks that each legacyAdvisorId key also exists in the Python SKILL_ALIAS_GROUPS.",
     "packetSkillName": "The packet's SKILL.md name. Standard for all parent skills: folder == packetSkillName == deep-<mode>; deep-ai-council follows this (folder 'deep-ai-council', packetSkillName 'deep-ai-council'). The legacy public key 'ai-council' is preserved only on the command/agent surfaces, not on the packet folder/name.",
-    "driftGuard": ".opencode/skills/system-skill-advisor/mcp_server/tests/routing-registry-drift-guard.vitest.ts asserts the hardcoded Python + TS maps equal this registry's projection."
+    "driftGuard": ".opencode/skills/system-skill-advisor/mcp_server/tests/routing-registry-drift-guard.vitest.ts"
+  },
+  "extensions": {
+    "runtime-loop": {
+      "description": "Declares the runtime-loop backend: modes with backendKind 'runtime-loop-type' converge over deep-loop-runtime, keyed by runtimeLoopType (research|review|council). runtimeLoopType is explicit null for improvement-host and external-adapter modes and is never inferred from workflowMode.",
+      "runtimeLoopTypes": ["research", "review", "council"]
+    },
+    "advisor-projection": {
+      "description": "Declares that the advisor keeps hardcoded projection maps (Python DEEP_ROUTING_MODE_BY_KEY, TypeScript DEEP_MODE_BY_CANONICAL) in sync with this registry's advisorRouting projection. The advisor does not read this file at runtime; a CI drift-guard asserts maps == registry projection.",
+      "driftGuard": ".opencode/skills/system-skill-advisor/mcp_server/tests/routing-registry-drift-guard.vitest.ts"
+    }
   },
   "deprecatedModes": [],
   "modes": [
@@ -21,6 +31,14 @@
       "workflowMode": "research",
       "runtimeLoopType": "research",
       "backendKind": "runtime-loop-type",
+      "packetKind": "workflow",
+      "grandfatheredFolderMismatch": false,
+      "toolSurface": {
+        "allowed": ["Read", "Write", "Edit", "Bash", "Grep", "Glob", "Task", "WebFetch"],
+        "forbidden": [],
+        "mutatesWorkspace": true,
+        "bashAllowlist": []
+      },
       "packet": "deep-research",
       "command": "/deep:research",
       "agent": "deep-research",
@@ -37,6 +55,14 @@
       "workflowMode": "review",
       "runtimeLoopType": "review",
       "backendKind": "runtime-loop-type",
+      "packetKind": "workflow",
+      "grandfatheredFolderMismatch": false,
+      "toolSurface": {
+        "allowed": ["Read", "Write", "Edit", "Bash", "Grep", "Glob", "Task"],
+        "forbidden": [],
+        "mutatesWorkspace": true,
+        "bashAllowlist": []
+      },
       "packet": "deep-review",
       "command": "/deep:review",
       "agent": "deep-review",
@@ -53,6 +79,14 @@
       "workflowMode": "ai-council",
       "runtimeLoopType": "council",
       "backendKind": "runtime-loop-type",
+      "packetKind": "workflow",
+      "grandfatheredFolderMismatch": false,
+      "toolSurface": {
+        "allowed": ["Read", "Write", "Edit", "Bash", "Grep", "Glob", "Task"],
+        "forbidden": [],
+        "mutatesWorkspace": true,
+        "bashAllowlist": []
+      },
       "packet": "deep-ai-council",
       "command": "/deep:ai-council",
       "agent": "ai-council",
@@ -69,6 +103,14 @@
       "workflowMode": "agent-improvement",
       "runtimeLoopType": null,
       "backendKind": "improvement-host",
+      "packetKind": "workflow",
+      "grandfatheredFolderMismatch": false,
+      "toolSurface": {
+        "allowed": ["Read", "Write", "Edit", "Bash", "Grep", "Glob", "Task"],
+        "forbidden": [],
+        "mutatesWorkspace": true,
+        "bashAllowlist": []
+      },
       "packet": "deep-improvement",
       "loopHostMode": "agent-improvement",
       "command": "/deep:agent-improvement",
@@ -88,6 +130,14 @@
       "workflowMode": "model-benchmark",
       "runtimeLoopType": null,
       "backendKind": "improvement-host",
+      "packetKind": "workflow",
+      "grandfatheredFolderMismatch": false,
+      "toolSurface": {
+        "allowed": ["Read", "Write", "Edit", "Bash", "Grep", "Glob", "Task"],
+        "forbidden": [],
+        "mutatesWorkspace": true,
+        "bashAllowlist": []
+      },
       "packet": "deep-improvement",
       "loopHostMode": "model-benchmark",
       "command": "/deep:model-benchmark",
@@ -103,6 +153,14 @@
       "workflowMode": "skill-benchmark",
       "runtimeLoopType": null,
       "backendKind": "improvement-host",
+      "packetKind": "workflow",
+      "grandfatheredFolderMismatch": false,
+      "toolSurface": {
+        "allowed": ["Read", "Write", "Edit", "Bash", "Grep", "Glob", "Task"],
+        "forbidden": [],
+        "mutatesWorkspace": true,
+        "bashAllowlist": []
+      },
       "packet": "deep-improvement",
       "loopHostMode": "skill-benchmark",
       "command": "/deep:skill-benchmark",
@@ -118,6 +176,14 @@
       "workflowMode": "ai-system-improvement",
       "runtimeLoopType": null,
       "backendKind": "external-adapter",
+      "packetKind": "workflow",
+      "grandfatheredFolderMismatch": false,
+      "toolSurface": {
+        "allowed": ["Read", "Write", "Edit", "Bash", "Grep", "Glob", "Task"],
+        "forbidden": [],
+        "mutatesWorkspace": true,
+        "bashAllowlist": []
+      },
       "packet": "deep-improvement",
       "loopHostMode": "non-dev-ai-system-refine",
       "command": "/deep:ai-system-improvement",

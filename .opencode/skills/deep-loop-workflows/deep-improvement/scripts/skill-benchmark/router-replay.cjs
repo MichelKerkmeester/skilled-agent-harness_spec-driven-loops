@@ -329,13 +329,13 @@ function selectIntents(scores) {
 }
 
 // Which surface a resource belongs to, by its on-disk path prefix. Webflow,
-// OpenCode, and Motion.dev resources live under their own folders, so the prefix
-// IS the surface. Everything else (universal refs, the detection/router preamble)
-// is surface-agnostic.
+// OpenCode, and Motion.dev resources live under their own code-<surface>/ packet
+// folders, so the prefix IS the surface. Everything else (universal refs, the
+// detection/router preamble) is surface-agnostic.
 const SURFACE_PREFIXES = {
-  WEBFLOW: ['webflow/'],
-  OPENCODE: ['opencode/'],
-  MOTION: ['animation/'],
+  WEBFLOW: ['code-webflow/'],
+  OPENCODE: ['code-opencode/'],
+  MOTION: ['code-animation/'],
 };
 function resourceSurface(r) {
   for (const [surface, prefixes] of Object.entries(SURFACE_PREFIXES)) {
@@ -427,8 +427,8 @@ function assembleResources({ skillRoot, taskLower, intents, router, extraRoots =
   let resources = [...resourceSet];
 
   const mapResources = Object.values(router.resourceMap).flat();
-  const hasSurfaceLayout = mapResources.some((r) => r.startsWith('webflow/references/'))
-    && mapResources.some((r) => r.startsWith('opencode/references/'));
+  const hasSurfaceLayout = mapResources.some((r) => r.startsWith('code-webflow/references/'))
+    && mapResources.some((r) => r.startsWith('code-opencode/references/'));
   let surface;
   if (hasSurfaceLayout) {
     surface = detectSurface(taskLower);
@@ -444,7 +444,7 @@ function assembleResources({ skillRoot, taskLower, intents, router, extraRoots =
       if (surface === 'UNKNOWN') return false;
       if (rs !== surface) return false;
       if (ocLang) {
-        const m = /^opencode\/references\/([^/]+)\//.exec(r);
+        const m = /^code-opencode\/references\/([^/]+)\//.exec(r);
         if (m && OPENCODE_LANGUAGES.includes(m[1]) && m[1] !== ocLang) return false;
       }
       return true;

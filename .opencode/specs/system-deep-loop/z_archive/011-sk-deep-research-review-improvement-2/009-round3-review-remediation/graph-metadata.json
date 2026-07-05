@@ -1,0 +1,215 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/z_archive/011-sk-deep-research-review-improvement-2/009-round3-review-remediation",
+  "spec_folder": "system-deep-loop/z_archive/011-sk-deep-research-review-improvement-2/009-round3-review-remediation",
+  "parent_id": "system-deep-loop/z_archive/011-sk-deep-research-review-improvement-2",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "042.009",
+      "round 3 remediation",
+      "copilot review fixes",
+      "042.009 plan",
+      "round 3 fix plan",
+      "042.009 tasks",
+      "042.009 checklist",
+      "round 3 remediation summary"
+    ],
+    "key_topics": [
+      "042",
+      "009",
+      "round",
+      "remediation",
+      "copilot",
+      "review",
+      "fixes",
+      "plan",
+      "fix",
+      "tasks",
+      "checklist",
+      "summary"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Review Remediation",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Fix",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Out of Scope",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Approach Sequential",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Batch Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Correctness Fixes",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Security Fixes",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Breakdo",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Breakdown",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Reference Docs",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Add Lane",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Root Docs",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Must Complete",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Root Phase",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Remediate 54 findings (37 P1, 17 P2) from the 20-iteration Copilot GPT-5.4 Round 3 deep review covering workflow logic, security hardening, traceability alignment, and maintainability cleanup.",
+    "created_at": "2026-04-13T04:55:07.915Z",
+    "last_save_at": "2026-06-23T03:49:49.269Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:69caf6eea0f8692b37a4a2da32663295ef64dac8d8708fe85dc1d261b1b24458",
+    "source_doc_hashes": {
+      "spec.md": "b854cab9381ced1ed8b498c57c28eef5477e239936795abf859e1435f6c6503d",
+      "plan.md": "9fc579717d569d9a4bf1d06275245fc6cd40c915e94d1408cc4fc9fbc4965e52",
+      "tasks.md": "4f99e9a165f6da680b650664c38c6d2446dce41c03310b6203872410f8911065",
+      "checklist.md": "157f77edb772b5abc8847e2a81a25f2d1716ac5089231e2b02b33449c6a488e7",
+      "implementation-summary.md": "ae4ada0693542e5be153e925e99c7d9b0176e351a286437454b05f53d10c35dc"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

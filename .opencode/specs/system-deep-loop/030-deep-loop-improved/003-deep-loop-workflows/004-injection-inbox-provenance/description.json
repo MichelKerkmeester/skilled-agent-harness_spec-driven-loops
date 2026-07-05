@@ -1,0 +1,31 @@
+{
+  "level": "1",
+  "specFolder": "system-deep-loop/030-deep-loop-improved/003-deep-loop-workflows/004-injection-inbox-provenance",
+  "description": "Operators and analyst agents can inject questions mid-run only by editing the `key-questions` markdown block directly, which bypasses the state",
+  "keywords": [
+    "operators",
+    "analyst",
+    "agents",
+    "inject",
+    "questions",
+    "mid-run",
+    "only",
+    "editing",
+    "key-questions",
+    "markdown",
+    "block",
+    "directly",
+    "bypasses",
+    "state"
+  ],
+  "lastUpdated": "2026-07-04T18:02:09.394Z",
+  "specId": "004",
+  "folderSlug": "injection-inbox-provenance",
+  "parentChain": [
+    "system-deep-loop",
+    "030-deep-loop-improved",
+    "003-deep-loop-workflows"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

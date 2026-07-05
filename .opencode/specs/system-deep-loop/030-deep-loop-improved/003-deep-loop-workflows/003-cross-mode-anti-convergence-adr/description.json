@@ -1,0 +1,29 @@
+{
+  "level": "2",
+  "specFolder": "system-deep-loop/030-deep-loop-improved/003-deep-loop-workflows/003-cross-mode-anti-convergence-adr",
+  "description": "The optimizer can propose a config candidate that satisfies individual parameter ranges while violating `minIterations <= maxIterations`; there is no",
+  "keywords": [
+    "optimizer",
+    "propose",
+    "config",
+    "candidate",
+    "satisfies",
+    "individual",
+    "parameter",
+    "ranges",
+    "while",
+    "violating",
+    "miniterations",
+    "maxiterations"
+  ],
+  "lastUpdated": "2026-07-04T18:02:08.998Z",
+  "specId": "003",
+  "folderSlug": "cross-mode-anti-convergence-adr",
+  "parentChain": [
+    "system-deep-loop",
+    "030-deep-loop-improved",
+    "003-deep-loop-workflows"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

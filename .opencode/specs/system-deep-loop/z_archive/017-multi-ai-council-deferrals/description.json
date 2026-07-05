@@ -1,0 +1,27 @@
+{
+  "level": "3",
+  "specFolder": "system-deep-loop/z_archive/017-multi-ai-council-deferrals",
+  "description": "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]",
+  "keywords": [
+    "broken",
+    "missing",
+    "inefficient",
+    "2-3",
+    "sentences",
+    "describing",
+    "specific",
+    "pain",
+    "point"
+  ],
+  "lastUpdated": "2026-06-23T03:49:49.993Z",
+  "specId": "017",
+  "folderSlug": "multi-ai-council-deferrals",
+  "parentChain": [
+    "system-deep-loop",
+    "z_archive"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "06-05-26_18-51__packet-092-shipped-end-to-end-via-spec-kit.md"
+  ]
+}

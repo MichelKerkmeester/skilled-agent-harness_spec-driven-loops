@@ -1,0 +1,114 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/z_archive/021-deep-skill-evolution/007-deep-stack-playbook-validation",
+  "spec_folder": "system-deep-loop/z_archive/021-deep-skill-evolution/007-deep-stack-playbook-validation",
+  "parent_id": "system-deep-loop/z_archive/021-deep-skill-evolution",
+  "children_ids": [
+    "system-deep-loop/z_archive/021-deep-skill-evolution/007-deep-stack-playbook-validation/001-deep-loop-runtime-scenarios",
+    "system-deep-loop/z_archive/021-deep-skill-evolution/007-deep-stack-playbook-validation/002-deep-ai-council-scenarios",
+    "system-deep-loop/z_archive/021-deep-skill-evolution/007-deep-stack-playbook-validation/003-deep-review-scenarios",
+    "system-deep-loop/z_archive/021-deep-skill-evolution/007-deep-stack-playbook-validation/004-deep-research-scenarios",
+    "system-deep-loop/z_archive/021-deep-skill-evolution/007-deep-stack-playbook-validation/005-deep-agent-improvement-scenarios",
+    "system-deep-loop/z_archive/021-deep-skill-evolution/007-deep-stack-playbook-validation/006-release-readiness-synthesis",
+    "system-deep-loop/z_archive/021-deep-skill-evolution/007-deep-stack-playbook-validation/007-cp-sandbox-speckit-path-fix",
+    "system-deep-loop/z_archive/021-deep-skill-evolution/007-deep-stack-playbook-validation/008-dai-rulecoherence-inline-fallback",
+    "system-deep-loop/z_archive/021-deep-skill-evolution/007-deep-stack-playbook-validation/009-cp-copilot-to-opencode-swap",
+    "system-deep-loop/z_archive/021-deep-skill-evolution/007-deep-stack-playbook-validation/010-resolve-all-partials-and-skip"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "deep loop skills playbook validation",
+      "deep-loop manual testing run",
+      "007 deep stack playbook validation"
+    ],
+    "key_topics": [
+      "deep",
+      "loop",
+      "skills",
+      "playbook",
+      "validation",
+      "deep-loop",
+      "manual",
+      "testing",
+      "run",
+      "007",
+      "stack",
+      "five"
+    ],
+    "importance_tier": "important",
+    "status": "planned",
+    "key_files": [
+      "006-release-readiness-synthesis/dispatch-runbook.md",
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "dispatch-runbook.md",
+        "kind": "doc",
+        "path": "006-release-readiness-synthesis/dispatch-runbook.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Loop Skills Playbook Validation",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Parent",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Graph Playbook Validation",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The five deep-loop skills — `deep-loop-runtime` (22), `deep-ai-council` (32), `deep-review` (45), `deep-research` (41), and `deep-agent-improvement` (37) — ship manual testing playbooks totalling 177 scenarios",
+    "created_at": "2026-05-27T07:08:08.383Z",
+    "last_save_at": "2026-06-23T03:49:51.026Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "source_fingerprint": "sha256:da9e4095be090aceb60fd005b0d37f2cd978967d8477093a31dbf3b0c62d0a02",
+    "source_doc_hashes": {
+      "spec.md": "eb00f8ee60ae11e5ebceb7ca3cf5153c9ff24cd625cb8fbda7cf2c8e66efe837"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

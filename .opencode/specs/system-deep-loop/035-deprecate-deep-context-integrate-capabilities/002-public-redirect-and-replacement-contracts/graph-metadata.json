@@ -1,0 +1,236 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/035-deprecate-deep-context-integrate-capabilities/002-public-redirect-and-replacement-contracts",
+  "spec_folder": "system-deep-loop/035-deprecate-deep-context-integrate-capabilities/002-public-redirect-and-replacement-contracts",
+  "parent_id": "system-deep-loop/035-deprecate-deep-context-integrate-capabilities",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "deep-context public redirect",
+      "deep-context replacement context contract",
+      "context snapshot in deep-research",
+      "context snapshot in deep-review",
+      "deep-context redirect plan",
+      "replacement context snapshot plan",
+      "deep-context command contract regeneration",
+      "deep-context redirect tasks",
+      "replacement context contract tasks",
+      "deep-context redirect checklist",
+      "replacement context verification",
+      "deep-context redirect decision"
+    ],
+    "key_topics": [
+      "deep-context",
+      "public",
+      "redirect",
+      "replacement",
+      "context",
+      "contract",
+      "snapshot",
+      "deep-research",
+      "deep-review",
+      "plan",
+      "command",
+      "regeneration"
+    ],
+    "importance_tier": "important",
+    "status": "draft",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      ".opencode/commands/deep/context.md",
+      ".opencode/commands/deep/assets/compiled/deep_context.contract.md",
+      ".opencode/commands/deep/assets/legacy/deep_context.body.md",
+      ".opencode/commands/deep/assets/deep_context_presentation.txt",
+      ".opencode/commands/deep/assets/deep_context_auto.yaml",
+      ".opencode/commands/deep/assets/deep_context_confirm.yaml",
+      ".opencode/commands/deep/assets/compiled/manifest.jsonl",
+      ".opencode/skills/deep-loop-workflows/deep-research/SKILL.md",
+      ".opencode/skills/deep-loop-workflows/deep-research/assets/deep_research_strategy.md",
+      ".opencode/skills/deep-loop-workflows/deep-research/assets/prompt_pack_iteration.md.tmpl",
+      ".opencode/skills/deep-loop-workflows/deep-review/SKILL.md",
+      ".opencode/skills/deep-loop-workflows/deep-review/assets/deep_review_strategy.md",
+      ".opencode/skills/deep-loop-workflows/deep-review/assets/review_mode_contract.yaml",
+      "decision-record.md",
+      "implementation-summary.md",
+      ".opencode/skills/deep-loop-runtime/scripts/compile-command-contracts.cjs"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "context.md",
+        "kind": "doc",
+        "path": ".opencode/commands/deep/context.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep_context.contract.md",
+        "kind": "doc",
+        "path": ".opencode/commands/deep/assets/compiled/deep_context.contract.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep_context.body.md",
+        "kind": "doc",
+        "path": ".opencode/commands/deep/assets/legacy/deep_context.body.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep_context_presentation.txt",
+        "kind": "file",
+        "path": ".opencode/commands/deep/assets/deep_context_presentation.txt",
+        "source": "derived"
+      },
+      {
+        "name": "deep_context_auto.yaml",
+        "kind": "config",
+        "path": ".opencode/commands/deep/assets/deep_context_auto.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "deep_context_confirm.yaml",
+        "kind": "config",
+        "path": ".opencode/commands/deep/assets/deep_context_confirm.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "manifest.jsonl",
+        "kind": "file",
+        "path": ".opencode/commands/deep/assets/compiled/manifest.jsonl",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/deep-loop-workflows/deep-research/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep_research_strategy.md",
+        "kind": "doc",
+        "path": ".opencode/skills/deep-loop-workflows/deep-research/assets/deep_research_strategy.md",
+        "source": "derived"
+      },
+      {
+        "name": "prompt_pack_iteration.md.tmpl",
+        "kind": "file",
+        "path": ".opencode/skills/deep-loop-workflows/deep-research/assets/prompt_pack_iteration.md.tmpl",
+        "source": "derived"
+      },
+      {
+        "name": "deep_review_strategy.md",
+        "kind": "doc",
+        "path": ".opencode/skills/deep-loop-workflows/deep-review/assets/deep_review_strategy.md",
+        "source": "derived"
+      },
+      {
+        "name": "review_mode_contract.yaml",
+        "kind": "config",
+        "path": ".opencode/skills/deep-loop-workflows/deep-review/assets/review_mode_contract.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "compile-command-contracts.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/deep-loop-runtime/scripts/compile-command-contracts.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Public Redirect And Replacement Context Contracts",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Dependencies",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Standalone `deep-context` still has an executable asset chain: presentation text, auto YAML, confirm YAML, a compiled command contract, deep-context packet docs, and a dedicated agent",
+    "created_at": "2026-07-04T14:32:35Z",
+    "last_save_at": "2026-07-04T17:51:07.125Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:530696258a3fb13bbf2b567b8ace246b0d1b02ee97edbc296598575d52da4b1a",
+    "source_doc_hashes": {
+      "spec.md": "1593a09562631c8bb6fd2570a1c7e229dde6a810cbf2982975b5ef8c634deaeb",
+      "plan.md": "d0666712f89e5eb0f2aac0063e5916cae80545e0f29b9a514f0c07f5ea520fd1",
+      "tasks.md": "2ab7663c4f00d7a4f8f3be17baac5895d82cfbfbda6e2051b7eb77cbb311b8bf",
+      "checklist.md": "61261431243b108fb5629bff35304731b9ec51dcfc760825918cc1fc32f5e49f",
+      "decision-record.md": "881113f9cfd013c4e5fcbf2ac8a43f22080053d2309d35bae899092e373a363e",
+      "implementation-summary.md": "533f177c9327bd195b682339759fae7e6536f4ff33281cbaf659eefa916affc2"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

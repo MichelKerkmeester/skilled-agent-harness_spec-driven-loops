@@ -1,0 +1,223 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/030-deep-loop-improved/008-loop-systems-remediation/002-deep-improvement-promotion-safety",
+  "spec_folder": "system-deep-loop/030-deep-loop-improved/008-loop-systems-remediation/002-deep-improvement-promotion-safety",
+  "parent_id": "system-deep-loop/030-deep-loop-improved/008-loop-systems-remediation",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "deep improvement promotion safety",
+      "mirror sync gate canonical baseline",
+      "promote candidate agent definition mirror sync",
+      "deep improvement promotion safety plan",
+      "mirror sync gate canonical baseline plan",
+      "promote candidate mirror sync plan",
+      "deep improvement promotion safety tasks",
+      "mirror sync gate canonical baseline tasks",
+      "promote candidate mirror sync tasks",
+      "deep improvement promotion safety summary",
+      "mirror sync gate canonical baseline summary",
+      "promote candidate mirror sync summary"
+    ],
+    "key_topics": [
+      "deep",
+      "improvement",
+      "promotion",
+      "safety",
+      "mirror",
+      "sync",
+      "gate",
+      "canonical",
+      "baseline",
+      "promote",
+      "candidate",
+      "agent"
+    ],
+    "importance_tier": "high",
+    "status": "complete",
+    "key_files": [
+      ".opencode/skills/deep-loop-workflows/deep-improvement/scripts/shared/promote-candidate.cjs",
+      ".opencode/skills/deep-loop-workflows/deep-improvement/scripts/shared/tests/promote-candidate-mirror-sync.vitest.ts",
+      ".opencode/specs/system-deep-loop/030-deep-loop-improved/008-loop-systems-remediation/002-deep-improvement-promotion-safety/spec.md",
+      ".opencode/specs/system-deep-loop/030-deep-loop-improved/008-loop-systems-remediation/002-deep-improvement-promotion-safety/plan.md",
+      ".opencode/specs/system-deep-loop/030-deep-loop-improved/008-loop-systems-remediation/002-deep-improvement-promotion-safety/tasks.md",
+      ".opencode/specs/system-deep-loop/030-deep-loop-improved/008-loop-systems-remediation/002-deep-improvement-promotion-safety/implementation-summary.md",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      ".opencode/skills/deep-loop-workflows/deep-improvement/scripts/lib/mirror-sync-verify.cjs"
+    ],
+    "entities": [
+      {
+        "name": "promote-candidate.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/deep-loop-workflows/deep-improvement/scripts/shared/promote-candidate.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "promote-candidate-mirror-sync.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/deep-loop-workflows/deep-improvement/scripts/shared/tests/promote-candidate-mirror-sync.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": ".opencode/specs/system-deep-loop/030-deep-loop-improved/008-loop-systems-remediation/002-deep-improvement-promotion-safety/spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": ".opencode/specs/system-deep-loop/030-deep-loop-improved/008-loop-systems-remediation/002-deep-improvement-promotion-safety/plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": ".opencode/specs/system-deep-loop/030-deep-loop-improved/008-loop-systems-remediation/002-deep-improvement-promotion-safety/tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": ".opencode/specs/system-deep-loop/030-deep-loop-improved/008-loop-systems-remediation/002-deep-improvement-promotion-safety/implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "mirror-sync-verify.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/deep-loop-workflows/deep-improvement/scripts/lib/mirror-sync-verify.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Deep Improvement Promotion Safety",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Corrected",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The pre-mutation 4-runtime mirror-sync gate in `promote-candidate.cjs` read the candidate body and called `verifyMirrorSync(agentName, candidateContent, …)`, comparing each runtime mirror against the candidate",
+    "created_at": "2026-06-29T10:43:18Z",
+    "last_save_at": "2026-07-04T18:02:20.307Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:5e0628bf6ff529db130c35ab34b536f190f64df1d529f58148885c9707f8e09b",
+    "source_doc_hashes": {
+      "spec.md": "4e1b4be53d1942b22af208475e5621ade77a123baa32bdb473efb97d23d1a185",
+      "plan.md": "f0c929de0c6e3d16106a43411e859c3a7d24dad9af04273998b9ba91ee4a0d2a",
+      "tasks.md": "f54867ad09931502b381292d0e9ebb8f5cd0ee2f35a1fef96be02a1970b88633",
+      "implementation-summary.md": "a7c97e760e5c11a9accbfa966d227404b198308f486a117d6d15a66bd03386c0"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

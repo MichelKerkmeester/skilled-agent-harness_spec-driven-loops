@@ -1,0 +1,214 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/031-deep-loop-gpt-reliability/006-reliability-fixes/001-acceptance-and-rollout-foundation",
+  "spec_folder": "system-deep-loop/031-deep-loop-gpt-reliability/006-reliability-fixes/001-acceptance-and-rollout-foundation",
+  "parent_id": "system-deep-loop/031-deep-loop-gpt-reliability/006-reliability-fixes",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "035 phase 001",
+      "acceptance and rollout foundation",
+      "benchmark harness rollout",
+      "plan",
+      "035 001 plan",
+      "tasks",
+      "035 001 tasks",
+      "implementation",
+      "summary",
+      "031 006 001"
+    ],
+    "key_topics": [
+      "035",
+      "phase",
+      "001",
+      "acceptance",
+      "rollout",
+      "foundation",
+      "benchmark",
+      "harness",
+      "plan",
+      "tasks",
+      "implementation",
+      "summary"
+    ],
+    "importance_tier": "high",
+    "status": "planned",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Rollout Foundation",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "a",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "no",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. METADATA",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "git",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. SUMMARY",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "2. QUALITY GATES",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "3. ARCHITECTURE",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built Partial",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "How It Was Delivered Not",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Phase 001 of packet 035 (unified command-contract architecture). Closes F-014, F-025 and builds the rollout mechanism (plan-review GAP-47). Two jobs, both prerequisites for safely landing any rewrite: make the 033 behavior-benchmark trustworthy as the acceptance harness, and build the per-command feature-flag rollout kill-switch with a byte-identical pre-035 fallback. Absorbs plan-review gaps GAP-01/03/06/08/14/37/38/39/40/45/47/49.",
+    "created_at": "2026-07-03T14:05:28.028Z",
+    "last_save_at": "2026-07-05T06:46:07.832Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:e0affa75f18349f5aeb6ce7f009e95ee08f2f77c05da5eb3b8f115e61e2ec104",
+    "source_doc_hashes": {
+      "spec.md": "a7dd69270673fb40c1d17920d5409aa38c0f73387b91265d52f58f7f13bf011d",
+      "plan.md": "080c052163937030203ae6faa8eb7bf48ca4ea70e73e4bb64ea3074e45bd6a25",
+      "tasks.md": "4f7b8aa022952cfef2ef9f5e78f32a7114bc5077b3cd851289f479f53d5ebd76",
+      "implementation-summary.md": "d7d44529718d4e226b9e6d120ff3b2da511834bb1a8783726d48dc445b329af0"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

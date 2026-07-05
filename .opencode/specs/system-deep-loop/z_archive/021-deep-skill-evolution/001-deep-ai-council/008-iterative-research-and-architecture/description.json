@@ -1,0 +1,34 @@
+{
+  "level": "3",
+  "status": "complete",
+  "manual": {
+    "depends_on": [],
+    "related_to": [
+      "skilled-agent-orchestration/116-deep-skill-evolution/006-deep-skills-differentiation/001-unique-value-differentiation"
+    ]
+  },
+  "specFolder": "system-deep-loop/z_archive/021-deep-skill-evolution/001-deep-ai-council/008-iterative-research-and-architecture",
+  "description": "`deep-ai-council` had a current single-session, flat round artifact model",
+  "keywords": [
+    "deep-ai-council",
+    "current",
+    "single-session",
+    "flat",
+    "round",
+    "artifact",
+    "model"
+  ],
+  "lastUpdated": "2026-06-23T03:49:50.748Z",
+  "specId": "008",
+  "folderSlug": "iterative-research-and-architecture",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "z_archive",
+    "116-deep-skill-evolution",
+    "001-deep-ai-council"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [
+    "skilled-agent-orchestration/116-deep-skill-evolution/001-ai-council/008-iterative-research-and-architecture"
+  ]
+}

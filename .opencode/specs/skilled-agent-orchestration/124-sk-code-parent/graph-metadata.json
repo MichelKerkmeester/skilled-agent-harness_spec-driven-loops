@@ -12,16 +12,41 @@
     "skilled-agent-orchestration/124-sk-code-parent/006-build-remaining-modes",
     "skilled-agent-orchestration/124-sk-code-parent/007-advisor-and-integration",
     "skilled-agent-orchestration/124-sk-code-parent/008-routing-benchmark-and-review",
-    "skilled-agent-orchestration/124-sk-code-parent/009-cutover-and-rollout"
+    "skilled-agent-orchestration/124-sk-code-parent/009-cutover-and-rollout",
+    "skilled-agent-orchestration/124-sk-code-parent/010-plugin-tui-fix",
+    "skilled-agent-orchestration/124-sk-code-parent/011-hub-canon",
+    "skilled-agent-orchestration/124-sk-code-parent/012-spec-kit-relocation",
+    "skilled-agent-orchestration/124-sk-code-parent/013-sk-code-two-axis-restructure",
+    "skilled-agent-orchestration/124-sk-code-parent/014-close-out-and-tail",
+    "skilled-agent-orchestration/124-sk-code-parent/015-sk-design-canon-alignment",
+    "skilled-agent-orchestration/124-sk-code-parent/016-sk-code-content-coherence",
+    "skilled-agent-orchestration/124-sk-code-parent/017-canon-hardening",
+    "skilled-agent-orchestration/124-sk-code-parent/018-deep-loop-canon-alignment",
+    "skilled-agent-orchestration/124-sk-code-parent/019-benchmarks-and-promotion",
+    "skilled-agent-orchestration/124-sk-code-parent/020-surface-packet-rename"
   ],
+  "migrated": true,
+  "migration_source": "legacy",
   "manual": {
     "depends_on": [
-      "skilled-agent-orchestration/117-parent-nested-skill-pattern",
-      "skilled-agent-orchestration/119-parent-skill-native-invocability"
+      {
+        "packet_id": "skilled-agent-orchestration/117-parent-nested-skill-pattern",
+        "reason": "Governing parent-nested-skill pattern",
+        "source": "manual"
+      },
+      {
+        "packet_id": "skilled-agent-orchestration/119-parent-skill-native-invocability",
+        "reason": "Governing parent-skill native-invocability pattern",
+        "source": "manual"
+      }
     ],
     "supersedes": [],
     "related_to": [
-      "design/008-sk-design-parent"
+      {
+        "packet_id": "design/008-sk-design-parent",
+        "reason": "Reference implementation of the parent-hub pattern",
+        "source": "manual"
+      }
     ]
   },
   "derived": {
@@ -29,37 +54,63 @@
       "sk-code parent skill",
       "code skill family",
       "sk-code sub-skills",
-      "sk-code-review fold-in",
-      "sk-code hub"
+      "sk-code-review fold-in"
     ],
     "key_topics": [
       "sk-code",
       "parent",
-      "hub",
+      "skill",
       "code",
       "family",
       "sub-skills",
-      "modes",
       "sk-code-review",
-      "advisor",
-      "single-identity",
-      "surface",
-      "router"
+      "fold-in",
+      "capability",
+      "split",
+      "across",
+      "two"
     ],
     "importance_tier": "important",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
-      ".opencode/specs/skilled-agent-orchestration/124-sk-code-parent/spec.md"
+      ".opencode/skills/sk-doc/references/skill_creation/parent_skills_nested_packets.md",
+      ".opencode/commands/create/sk-skill-parent.md",
+      ".opencode/commands/doctor/scripts/parent-skill-check.cjs",
+      "spec.md"
     ],
     "entities": [
       {
+        "name": "parent_skills_nested_packets.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/references/skill_creation/parent_skills_nested_packets.md",
+        "source": "derived"
+      },
+      {
+        "name": "sk-skill-parent.md",
+        "kind": "doc",
+        "path": ".opencode/commands/create/sk-skill-parent.md",
+        "source": "derived"
+      },
+      {
+        "name": "parent-skill-check.cjs",
+        "kind": "file",
+        "path": ".opencode/commands/doctor/scripts/parent-skill-check.cjs",
+        "source": "derived"
+      },
+      {
         "name": "spec.md",
         "kind": "doc",
-        "path": ".opencode/specs/skilled-agent-orchestration/124-sk-code-parent/spec.md",
+        "path": "spec.md",
         "source": "derived"
       },
       {
         "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -75,19 +126,33 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
+      },
+      {
+        "name": "Problem Statement Code",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Establish",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
       }
     ],
-    "causal_summary": "Code capability is split across sk-code (v3.5 flat surface-aware router) and sk-code-review (v1.5 standalone findings-first baseline already coupled to sk-code). No parent identity organizes code work, so the two collide in the advisor and the two-axis surface x activity router lives in one monolithic SKILL.md. This packet establishes sk-code as a parent hub with nested code modes, folding sk-code-review in, deciding the taxonomy by research and context evidence first.",
+    "causal_summary": "Code capability is split across two mature-but-uncoordinated skills",
     "created_at": "2026-07-03T00:00:00Z",
-    "last_save_at": "2026-07-03T00:00:00Z",
-    "save_lineage": "same_pass",
+    "last_save_at": "2026-07-05T10:05:41.735Z",
+    "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": null,
-    "source_doc_hashes": {},
-    "last_active_child_id": "skilled-agent-orchestration/124-sk-code-parent/009-cutover-and-rollout",
-    "last_active_at": "2026-07-04T00:00:00Z"
+    "source_fingerprint": "sha256:d20fd0926575180a3586e263e58b9357c849a54e52fb85b2515cfd1e6379fe33",
+    "source_doc_hashes": {
+      "spec.md": "19fdbf0c57cf5b8861e9edf69d3c99a6f3c151fc521610b39c54ad4f22091ff7"
+    },
+    "last_active_child_id": "skilled-agent-orchestration/124-sk-code-parent/020-surface-packet-rename",
+    "last_active_at": "2026-07-05T14:37:02.169Z"
   }
 }

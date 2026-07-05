@@ -274,8 +274,11 @@ export const fanoutConfigSchema = z.object({
   assignment_model: z.enum(FANOUT_ASSIGNMENT_MODELS).default('flat_pool'),
   concurrency: z.number().int().positive().default(2),
   maxRetries: z.number().int().nonnegative().default(5),
-  lagCeilingMs: z.number().int().nonnegative().default(0),
-  progressHeartbeatSeconds: z.number().nonnegative().default(0),
+  // Stall detection defaults ON: a lineage that stops emitting progress is aborted and
+  // requeued within the ceiling and fails loud, instead of hanging silently at 0% CPU
+  // until the hours-scale subprocess timeout. Set 0 to opt out.
+  lagCeilingMs: z.number().int().nonnegative().default(300000),
+  progressHeartbeatSeconds: z.number().nonnegative().default(60),
 });
 
 export type FanoutConfig = z.infer<typeof fanoutConfigSchema>;

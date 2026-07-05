@@ -11,7 +11,8 @@
     "system-speckit/028-memory-search-intelligence/004-deep-loop",
     "system-speckit/028-memory-search-intelligence/005-spec-data-quality",
     "system-speckit/028-memory-search-intelligence/006-review-remediation",
-    "system-speckit/028-memory-search-intelligence/007-dark-flag-graduation"
+    "system-speckit/028-memory-search-intelligence/007-dark-flag-graduation",
+    "system-speckit/028-memory-search-intelligence/008-speckit-surface-alignment"
   ],
   "migrated": true,
   "migration_source": "legacy",
@@ -55,7 +56,15 @@
       "005-spec-data-quality/SUMMARY.md",
       "006-review-remediation/spec.md",
       "007-dark-flag-graduation/spec.md",
-      "changelog/README.md"
+      "changelog/README.md",
+      "mcp_server/benchmarks/README.md",
+      "formatters/search-results.ts",
+      "lib/eval/README.md",
+      "lib/search/README.md",
+      "mcp_server/README.md",
+      "research/deltas/iteration-009.jsonl",
+      "research/deltas/iteration-010.jsonl",
+      "research/research.md"
     ],
     "entities": [
       {
@@ -80,6 +89,30 @@
         "name": "README.md",
         "kind": "doc",
         "path": "changelog/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "search-results.ts",
+        "kind": "code",
+        "path": "formatters/search-results.ts",
+        "source": "derived"
+      },
+      {
+        "name": "iteration-009.jsonl",
+        "kind": "file",
+        "path": "research/deltas/iteration-009.jsonl",
+        "source": "derived"
+      },
+      {
+        "name": "iteration-010.jsonl",
+        "kind": "file",
+        "path": "research/deltas/iteration-010.jsonl",
+        "source": "derived"
+      },
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
         "source": "derived"
       },
       {
@@ -117,21 +150,59 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
+      },
+      {
+        "name": "Deep Research Synthesis",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "System Speckit Alignment Audit",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "Executive Synthesis",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "Current Status Converged",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "Findings Added",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "Open Threads",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Packet 028 owns the planning record that turns external memory-system research into shipped retrieval intelligence, cleanup, review remediation, data-quality generation and dark-flag graduation work",
     "created_at": "2026-06-16T14:27:21.650Z",
-    "last_save_at": "2026-07-04T17:56:26.146Z",
+    "last_save_at": "2026-07-05T12:17:24.510Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
-      "spec.md"
+      "spec.md",
+      "research/research.md"
     ],
-    "source_fingerprint": "sha256:4d81e028e3680d5d29e3d75089f24052834094981d1122ef57a5bc8b428d6755",
+    "source_fingerprint": "sha256:f0bf014c282e567961fb698e01892e392d59a1d2376741bc850a51044f9f03e2",
     "source_doc_hashes": {
-      "spec.md": "e88bd4c0de25a469c62de678387ae99dca96139bd317f58117a58540101ead0b"
+      "spec.md": "f2da945f2e5cffdf73c1862c7747eb8da060b369df9ed1dac3ca803e4ce85d4f",
+      "research/research.md": "f742f9bf6a54975af74dfde54af456e5141393d82c1acb38c339199f170dfdd5"
     },
     "last_active_child_id": null,
-    "last_active_at": "2026-06-26T20:31:34.159Z"
+    "last_active_at": "2026-07-05T12:17:24.510Z"
   }
 }

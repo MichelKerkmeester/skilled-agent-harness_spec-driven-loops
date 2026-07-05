@@ -38,8 +38,9 @@ Current state:
         │                         ▼                          ▼
         │              ┌────────────────────┐       ┌──────────────────┐
         └──────────▶   │ Domain suites      │ ───▶  │ Temp fixtures    │
-                       │ search, memory,    │       │ isolated DB and  │
-                       │ graph, session     │       │ metrics output   │
+                       │ durability, matrix,│       │ isolated DB and  │
+                       │ memory, search,    │       │ metrics output   │
+                       │ session, substrate │       │                  │
                        └─────────┬──────────┘       └──────────────────┘
                                  │
                                  ▼
@@ -76,9 +77,10 @@ mcp_server/stress_test/
 | `vitest.stress.config.ts` | Limits Vitest discovery to stress suites. |
 | `search-quality/` | Runs search-quality test-grid cells, corpus checks, metrics, and baseline comparisons. |
 | `memory/` | Measures memory search and trigger pathway behavior under load. |
+| `durability/` | Exercises checkpoint, lease coalescing, daemon recycle, re-election, persistence, release-cleanup, and embedder-degrade flood cases. |
 | `session/` | Measures session limits and resume latency. |
 | `matrix/` | Runs synthetic matrix routing and latency comparisons. |
-| `substrate/` | Promotes the 045 shared-daemon substrate runner and covers query expansion, token-budget edges, and V-rule save floods. |
+| `substrate/` | Promotes the shared-daemon substrate runner and covers query expansion, token-budget edges, and V-rule save floods. |
 
 ---
 

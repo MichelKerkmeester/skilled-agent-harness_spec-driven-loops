@@ -1,0 +1,255 @@
+{
+  "schema_version": 1,
+  "packet_id": "design/009-sk-design-claude-parity/004-mode-packet-refactor",
+  "spec_folder": "design/009-sk-design-claude-parity/004-mode-packet-refactor",
+  "parent_id": "design/009-sk-design-claude-parity",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [
+      {
+        "packet_id": "design/009-sk-design-claude-parity/003-private-procedure-card-layer",
+        "reason": "Phase 003 defines the private procedure-card layer that Phase 004 mode-packet integration consumes",
+        "source": "manual",
+        "spec_folder": "design/009-sk-design-claude-parity/003-private-procedure-card-layer",
+        "title": "Phase 003 - Private Procedure Card Layer"
+      }
+    ],
+    "supersedes": [],
+    "related_to": [
+      {
+        "packet_id": "design/009-sk-design-claude-parity/002-parent-hub-compatibility-shell",
+        "reason": "Phase 002 parent hub compatibility shell establishes routing behavior that Phase 004 must preserve",
+        "source": "manual",
+        "spec_folder": "design/009-sk-design-claude-parity/002-parent-hub-compatibility-shell",
+        "title": "Phase 002 - Parent Hub Compatibility Shell"
+      },
+      {
+        "packet_id": "design/009-sk-design-claude-parity/001-baseline-ownership-gate",
+        "reason": "Phase 001 ownership boundaries constrain future edits to sk-design mode packets",
+        "source": "manual",
+        "spec_folder": "design/009-sk-design-claude-parity/001-baseline-ownership-gate",
+        "title": "Phase 001 - Baseline Ownership Gate"
+      }
+    ]
+  },
+  "derived": {
+    "trigger_phrases": [
+      "mode packet refactor",
+      "sk-design mode procedures",
+      "Claude-like procedure strategy",
+      "design-interface procedure integration",
+      "design-foundations procedure integration",
+      "design-motion procedure integration",
+      "design-audit procedure integration",
+      "design-md-generator procedure integration",
+      "phase 004 plan",
+      "mode packet refactor plan",
+      "sk-design procedure integration",
+      "five mode packet verification"
+    ],
+    "key_topics": [
+      "mode",
+      "packet",
+      "refactor",
+      "sk-design",
+      "procedures",
+      "claude-like",
+      "procedure",
+      "strategy",
+      "design-interface",
+      "integration",
+      "design-foundations",
+      "design-motion"
+    ],
+    "importance_tier": "high",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      ".opencode/specs/design/009-sk-design-claude-parity/004-mode-packet-refactor/spec.md",
+      ".opencode/specs/design/009-sk-design-claude-parity/004-mode-packet-refactor/plan.md",
+      ".opencode/specs/design/009-sk-design-claude-parity/004-mode-packet-refactor/tasks.md",
+      ".opencode/specs/design/009-sk-design-claude-parity/004-mode-packet-refactor/checklist.md",
+      ".opencode/specs/design/009-sk-design-claude-parity/004-mode-packet-refactor/decision-record.md",
+      ".opencode/specs/design/009-sk-design-claude-parity/004-mode-packet-refactor/implementation-summary.md",
+      ".opencode/specs/design/009-sk-design-claude-parity/004-mode-packet-refactor/description.json",
+      ".opencode/specs/design/009-sk-design-claude-parity/004-mode-packet-refactor/graph-metadata.json",
+      ".opencode/skills/sk-design/SKILL.md",
+      ".opencode/skills/sk-design/README.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": ".opencode/specs/design/009-sk-design-claude-parity/004-mode-packet-refactor/spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": ".opencode/specs/design/009-sk-design-claude-parity/004-mode-packet-refactor/plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": ".opencode/specs/design/009-sk-design-claude-parity/004-mode-packet-refactor/tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": ".opencode/specs/design/009-sk-design-claude-parity/004-mode-packet-refactor/checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": ".opencode/specs/design/009-sk-design-claude-parity/004-mode-packet-refactor/decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": ".opencode/specs/design/009-sk-design-claude-parity/004-mode-packet-refactor/implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "description.json",
+        "kind": "config",
+        "path": ".opencode/specs/design/009-sk-design-claude-parity/004-mode-packet-refactor/description.json",
+        "source": "derived"
+      },
+      {
+        "name": "graph-metadata.json",
+        "kind": "config",
+        "path": ".opencode/specs/design/009-sk-design-claude-parity/004-mode-packet-refactor/graph-metadata.json",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-design/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-design/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "Mode Packet Refactor",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Created Phase",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Dependencies",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Not Started",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Public",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Milestone Reference",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Contract Freeze",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The five `sk-design` mode packets currently provide the public execution lanes for design work, but they have not yet been refactored to consume the Claude-like private procedure strategy from the parent/procedure model",
+    "created_at": "2026-07-05T00:00:00.000Z",
+    "last_save_at": "2026-07-05T16:15:10.219Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:84b9835fb136cbf16effc266396c588663e2b2010d7a628b8e88df56e9559c3c",
+    "source_doc_hashes": {
+      "spec.md": "1a43e501f324a0350af658b50bf2a0fd1db7499590f194fb5a1848e387fc8076",
+      "plan.md": "4a9a0f405f87caf824602fd79e614abba253c74b4023f65dcfec26adf197580b",
+      "tasks.md": "128de14742af636d4da56253491d6e05a429fde4329cd9118b1b920924887bc9",
+      "checklist.md": "2df0681896b9e77ac8318a1a4828b82610b7001a91b4e496be6652cba939b25e",
+      "decision-record.md": "744dda1ef5055f4ddb5d84d5619add1ee49e6aad809482ac035a0cd4b297a287",
+      "implementation-summary.md": "763cabf3e55f4fb3750de19a8072ced90df2a0a2a18fef796f0825283642a054"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

@@ -39,15 +39,17 @@ parent_skill_doctor_invariant: |
        is wired when any mode routes lexically or via alias-fold; optionally the
        registry's lexical projection is cross-checked against the advisor's live
        DEEP_ROUTING_MODE_BY_KEY.
-    5-9. Migration-gated (WARN by default, FAIL under PARENT_HUB_CHECK_STRICT):
-       hub-router.json validity (routerSignals ↔ registry workflowModes, typed
-       classes and resource paths resolve, tieBreak covers every mode);
-       registry ↔ directory reverse consistency; changelog shape (real files,
-       no symlinks) at both hub and packet level; description.json presence; and
-       a hub playbook plus a benchmark baseline.
+    5-9. Canon — FAIL by default now that every hub carries the fields
+       (PARENT_HUB_CHECK_STRICT=0 downgrades these to advisory WARN for a
+       work-in-progress hub): hub-router.json validity (routerSignals ↔ registry
+       workflowModes, typed classes and resource paths resolve, tieBreak covers
+       every mode); registry ↔ directory reverse consistency; changelog shape
+       (real files, no symlinks) at both hub and packet level; description.json
+       presence; and a hub playbook plus a benchmark baseline.
   It NEVER writes files, mutates graph metadata, re-indexes the advisor, or
-  edits the audited skill. Exit code is non-zero only when an invariant fails —
-  and for checks 5-9 only when PARENT_HUB_CHECK_STRICT is set.
+  edits the audited skill. Exit code is non-zero when any invariant fails,
+  including checks 5-9 (canon by default; PARENT_HUB_CHECK_STRICT=0 downgrades
+  5-9 to advisory WARN for a work-in-progress hub still being scaffolded).
 
 # ─────────────────────────────────────────────────────────────────
 # UPSTREAM ASSETS

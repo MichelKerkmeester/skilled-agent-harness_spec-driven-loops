@@ -1,0 +1,234 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/z_archive/021-deep-skill-evolution/003-deep-loop-runtime/003-lib-runtime-migration",
+  "spec_folder": "system-deep-loop/z_archive/021-deep-skill-evolution/003-deep-loop-runtime/003-lib-runtime-migration",
+  "parent_id": "system-deep-loop/z_archive/021-deep-skill-evolution/003-deep-loop-runtime",
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "118/002 lib runtime migration",
+      "deep-loop lib move",
+      "coverage-graph lib move",
+      "deep-loop-runtime lib population",
+      "118/002 plan",
+      "deep-loop lib move plan",
+      "git mv lib runtime",
+      "118/002 tasks",
+      "git mv deep-loop",
+      "git mv coverage-graph",
+      "118/002 checklist",
+      "lib move verification"
+    ],
+    "key_topics": [
+      "118",
+      "002",
+      "lib",
+      "runtime",
+      "migration",
+      "deep-loop",
+      "move",
+      "coverage-graph",
+      "deep-loop-runtime",
+      "population",
+      "plan",
+      "git"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      ".opencode/skills/deep-loop-runtime/lib/deep-loop/executor-config.ts",
+      ".opencode/skills/deep-loop-runtime/lib/deep-loop/executor-audit.ts",
+      ".opencode/skills/deep-loop-runtime/lib/deep-loop/prompt-pack.ts",
+      ".opencode/skills/deep-loop-runtime/lib/deep-loop/post-dispatch-validate.ts",
+      ".opencode/skills/deep-loop-runtime/lib/deep-loop/atomic-state.ts",
+      ".opencode/skills/deep-loop-runtime/lib/deep-loop/jsonl-repair.ts",
+      ".opencode/skills/deep-loop-runtime/lib/deep-loop/loop-lock.ts",
+      ".opencode/skills/deep-loop-runtime/lib/deep-loop/permissions-gate.ts",
+      ".opencode/skills/deep-loop-runtime/lib/deep-loop/bayesian-scorer.ts",
+      ".opencode/skills/deep-loop-runtime/lib/deep-loop/fallback-router.ts",
+      ".opencode/skills/deep-loop-runtime/lib/coverage-graph/coverage-graph-db.ts",
+      ".opencode/skills/deep-loop-runtime/lib/coverage-graph/coverage-graph-query.ts",
+      ".opencode/skills/deep-loop-runtime/lib/coverage-graph/coverage-graph-signals.ts",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "spec.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "executor-config.ts",
+        "kind": "code",
+        "path": ".opencode/skills/deep-loop-runtime/lib/deep-loop/executor-config.ts",
+        "source": "derived"
+      },
+      {
+        "name": "executor-audit.ts",
+        "kind": "code",
+        "path": ".opencode/skills/deep-loop-runtime/lib/deep-loop/executor-audit.ts",
+        "source": "derived"
+      },
+      {
+        "name": "prompt-pack.ts",
+        "kind": "code",
+        "path": ".opencode/skills/deep-loop-runtime/lib/deep-loop/prompt-pack.ts",
+        "source": "derived"
+      },
+      {
+        "name": "post-dispatch-validate.ts",
+        "kind": "code",
+        "path": ".opencode/skills/deep-loop-runtime/lib/deep-loop/post-dispatch-validate.ts",
+        "source": "derived"
+      },
+      {
+        "name": "atomic-state.ts",
+        "kind": "code",
+        "path": ".opencode/skills/deep-loop-runtime/lib/deep-loop/atomic-state.ts",
+        "source": "derived"
+      },
+      {
+        "name": "jsonl-repair.ts",
+        "kind": "code",
+        "path": ".opencode/skills/deep-loop-runtime/lib/deep-loop/jsonl-repair.ts",
+        "source": "derived"
+      },
+      {
+        "name": "loop-lock.ts",
+        "kind": "code",
+        "path": ".opencode/skills/deep-loop-runtime/lib/deep-loop/loop-lock.ts",
+        "source": "derived"
+      },
+      {
+        "name": "permissions-gate.ts",
+        "kind": "code",
+        "path": ".opencode/skills/deep-loop-runtime/lib/deep-loop/permissions-gate.ts",
+        "source": "derived"
+      },
+      {
+        "name": "bayesian-scorer.ts",
+        "kind": "code",
+        "path": ".opencode/skills/deep-loop-runtime/lib/deep-loop/bayesian-scorer.ts",
+        "source": "derived"
+      },
+      {
+        "name": "fallback-router.ts",
+        "kind": "code",
+        "path": ".opencode/skills/deep-loop-runtime/lib/deep-loop/fallback-router.ts",
+        "source": "derived"
+      },
+      {
+        "name": "coverage-graph-db.ts",
+        "kind": "code",
+        "path": ".opencode/skills/deep-loop-runtime/lib/coverage-graph/coverage-graph-db.ts",
+        "source": "derived"
+      },
+      {
+        "name": "coverage-graph-query.ts",
+        "kind": "code",
+        "path": ".opencode/skills/deep-loop-runtime/lib/coverage-graph/coverage-graph-query.ts",
+        "source": "derived"
+      },
+      {
+        "name": "coverage-graph-signals.ts",
+        "kind": "code",
+        "path": ".opencode/skills/deep-loop-runtime/lib/coverage-graph/coverage-graph-signals.ts",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Lib Runtime Migration",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Phase Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Predecessor Phase",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Successor Phase",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Phase",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Phase 001 creates the `.opencode/skills/deep-loop-runtime/` scaffold (SKILL.md + `lib/` + `scripts/` + `storage/` + `tests/`) but leaves the 13 lib .ts files untouched at their old `.opencode/skills/system-spec-kit/mcpserver/lib/{deep-loop,coverage-graph}/` locations",
+    "created_at": "2026-05-22T19:50:00Z",
+    "last_save_at": "2026-06-23T03:49:50.859Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:13630a24e7ffd62b3ef164acf3eebfde8744e0389323b0011d667949b737cdfa",
+    "source_doc_hashes": {
+      "spec.md": "f90d2952f77c958a6be77f46fc8b38e6493db0b75eb5202c82d813dbdd193339",
+      "plan.md": "02575c73fe58cb9b91b4a838f707a9b51f08225b17c65856b4cfe54b97b7d90d",
+      "tasks.md": "37bbabb2f90981c989932a5ed905de9e919aa501fd78f0d45a099d4c75ee444e",
+      "checklist.md": "afb7aaa6b8aa356c9ab1f47a5960dd7b2fd1d5393873bfb64c44e79b415afaf0",
+      "implementation-summary.md": "2b033630f78563c6e6df8c41ae98f3117c7585642d9c9a2cb059c43df7421012"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

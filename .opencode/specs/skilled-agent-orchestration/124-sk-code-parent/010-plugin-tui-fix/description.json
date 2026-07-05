@@ -1,14 +1,4 @@
 {
-  "specFolder": "skilled-agent-orchestration/124-sk-code-parent/010-plugin-tui-fix",
-  "description": "Stop mk-dist-freshness-guard from writing stale-dist warnings to the OpenCode TUI stderr path while preserving the warning through system-context injection and an append-only log.",
-  "keywords": [
-    "mk-dist-freshness-guard",
-    "opencode plugin",
-    "tui overlay",
-    "system-context injection",
-    "level 2"
-  ],
-  "lastUpdated": "2026-07-05T00:00:00Z",
   "title": "Plugin TUI-overlay fix",
   "type": "implementation",
   "trigger_phrases": [
@@ -16,5 +6,28 @@
     "opencode plugin no stdout stderr",
     "plugin warning over chat input"
   ],
-  "level": "2"
+  "level": "2",
+  "specFolder": "skilled-agent-orchestration/124-sk-code-parent/010-plugin-tui-fix",
+  "description": "The `.opencode/plugins/mk-dist-freshness-guard.js` plugin emitted stale-dist warnings with `console.warn` and `console.error` during",
+  "keywords": [
+    "opencode",
+    "plugins",
+    "mk-dist-freshness-guard",
+    "plugin",
+    "emitted",
+    "stale-dist",
+    "warnings",
+    "console",
+    "warn",
+    "error"
+  ],
+  "lastUpdated": "2026-07-05T10:10:41.418Z",
+  "specId": "010",
+  "folderSlug": "plugin-tui-fix",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "124-sk-code-parent"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
 }

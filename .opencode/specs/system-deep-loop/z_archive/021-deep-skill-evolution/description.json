@@ -1,0 +1,26 @@
+{
+  "level": "2",
+  "specFolder": "system-deep-loop/z_archive/021-deep-skill-evolution",
+  "description": "The deep- skill family — `deep-ai-council`, `deep-review`, `deep-loop-runtime`, `deep-research`, and `deep-agent-improvement` — evolved through many i",
+  "keywords": [
+    "deep",
+    "skill",
+    "family",
+    "deep-ai-council",
+    "deep-review",
+    "deep-loop-runtime",
+    "deep-research",
+    "deep-agent-improvement",
+    "evolved",
+    "many"
+  ],
+  "lastUpdated": "2026-06-23T03:49:50.565Z",
+  "specId": "021",
+  "folderSlug": "deep-skill-evolution",
+  "parentChain": [
+    "system-deep-loop",
+    "z_archive"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

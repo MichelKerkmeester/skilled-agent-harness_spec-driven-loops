@@ -84,16 +84,43 @@ function columnExists(db: Database.Database, tableName: string, columnName: stri
   }
 }
 
+const REGEX_SPECIALS = /[.*+?^${}()|[\]\\]/g;
+
+function escapeRegExp(value: string): string {
+  return value.replace(REGEX_SPECIALS, '\\$&');
+}
+
+/**
+ * Word-boundary containment check for a lowercased term in lowercased text.
+ *
+ * Substring containment let short query terms ride along inside longer
+ * unrelated words ("art" matched "start"), pulling whole communities into the
+ * fallback lane. Boundaries are alphanumeric-based, mirroring the FTS5
+ * unicode61 tokenizer where '-' and '_' are separators, so "spec" still
+ * matches inside "spec-kit".
+ */
+function termMatchesAsWord(lowerText: string, term: string): boolean {
+  if (term.length === 0) return false;
+  try {
+    const pattern = new RegExp(`(?<![a-z0-9])${escapeRegExp(term)}(?![a-z0-9])`);
+    return pattern.test(lowerText);
+  } catch {
+    // Fail-open to substring containment if the runtime rejects the pattern.
+    return lowerText.includes(term);
+  }
+}
+
 /**
  * Score a community summary against query terms.
- * Returns 0-1 based on fraction of query terms found in the summary.
+ * Returns 0-1 based on fraction of query terms found in the summary
+ * as standalone words.
  */
 function scoreSummary(summary: string, queryTerms: string[]): number {
   if (queryTerms.length === 0) return 0;
   const lowerSummary = summary.toLowerCase();
   let matches = 0;
   for (const term of queryTerms) {
-    if (lowerSummary.includes(term)) matches++;
+    if (termMatchesAsWord(lowerSummary, term)) matches++;
   }
   return matches / queryTerms.length;
 }

@@ -128,6 +128,50 @@ describe('searchCommunities()', () => {
 
     expect(result.totalMemberIds).toEqual([1, 2, 3, 4]);
   });
+
+  // Summary matching must be word-boundary based: substring containment lets a
+  // short query term ride along inside longer unrelated words and pulls whole
+  // communities into the fallback lane on false matches.
+  describe('word-boundary summary matching', () => {
+    it('does not match a term embedded inside a longer word', () => {
+      seedCommunities([
+        { id: 1, summary: 'start the retrieval engine', memberIds: [1, 2], count: 2 },
+      ]);
+
+      const result = searchCommunities('art', db);
+
+      expect(result.results).toHaveLength(0);
+      expect(result.totalMemberIds).toEqual([]);
+    });
+
+    it('matches the same term when it appears as a standalone word', () => {
+      seedCommunities([
+        { id: 1, summary: 'art history collection notes', memberIds: [7], count: 1 },
+      ]);
+
+      const result = searchCommunities('art', db);
+
+      expect(result.results).toHaveLength(1);
+      expect(result.results[0]).toMatchObject({ communityId: 1, matchScore: 1 });
+    });
+
+    it('matches words adjacent to punctuation', () => {
+      seedCommunities([
+        { id: 1, summary: 'modern art, sculpture and design', memberIds: [3], count: 1 },
+      ]);
+
+      expect(searchCommunities('art', db).results).toHaveLength(1);
+    });
+
+    it('treats hyphen and underscore as word separators', () => {
+      seedCommunities([
+        { id: 1, summary: 'spec-kit memory_search overview', memberIds: [4], count: 1 },
+      ]);
+
+      expect(searchCommunities('spec', db).results).toHaveLength(1);
+      expect(searchCommunities('search', db).results).toHaveLength(1);
+    });
+  });
 });
 
 // B1: the community-search fallback must apply the governed retrieval scope to

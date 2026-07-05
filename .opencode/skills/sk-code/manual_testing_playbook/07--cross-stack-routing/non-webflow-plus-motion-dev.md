@@ -30,19 +30,19 @@ Generic-Node guard: WEBFLOW markers are gated to actual Webflow signals (vendor 
 - `references/stack_detection.md`
 - `references/smart_routing.md`
 - `references/smart_routing.md`
-- `references/motion_dev/quick_start.md`
-- `references/motion_dev/integration_patterns.md`
-- `references/motion_dev/scroll_and_gestures.md`
-- `references/motion_dev/decision_matrix.md`
+- `code-animation/references/quick_start.md`
+- `code-animation/references/integration_patterns.md`
+- `code-animation/references/scroll_and_gestures.md`
+- `code-animation/references/decision_matrix.md`
 
 **Expected assets loaded**:
-- `assets/motion_dev/snippets/hover_gesture.js`
-- `assets/motion_dev/snippets/in_view_reveal.js`
-- `assets/motion_dev/install_card.md`
+- `code-animation/assets/snippets/hover_gesture.js`
+- `code-animation/assets/snippets/in_view_reveal.js`
+- `code-animation/assets/install_card.md`
 
 **Expected NOT loaded**:
-- `references/webflow/implementation/webflow_patterns.md`
-- `assets/webflow/checklists/code_quality_checklist.md`
+- `code-webflow/references/implementation/webflow_patterns.md`
+- `code-webflow/assets/checklists/code_quality_checklist.md`
 
 **Expected agent dispatch**: none.
 
@@ -71,8 +71,8 @@ Evidence files:
 
 - `.opencode/skills/sk-code/shared/references/stack_detection.md` - generic-node guard.
 - `.opencode/skills/sk-code/shared/references/smart_routing.md` - MOTION_DEV signals.
-- `.opencode/skills/sk-code/animation/references/decision_matrix.md` - CSS/Motion/WAAPI trade-offs.
-- `.opencode/skills/sk-code/animation/assets/snippets/hover_gesture.js` - Required snippet.
+- `.opencode/skills/sk-code/code-animation/references/decision_matrix.md` - CSS/Motion/WAAPI trade-offs.
+- `.opencode/skills/sk-code/code-animation/assets/snippets/hover_gesture.js` - Required snippet.
 
 ---
 

@@ -1,0 +1,29 @@
+{
+  "level": "2",
+  "specFolder": "system-deep-loop/031-deep-loop-gpt-reliability/002-routing-dispatch-and-identity/002-route-proof-validation",
+  "description": "The research (`../../research/research.md` §5) found a critical false-negative (F27): a GPT mis-dispatch can PASS every existing FIX-5 validator",
+  "keywords": [
+    "research",
+    "found",
+    "critical",
+    "false-negative",
+    "f27",
+    "gpt",
+    "mis-dispatch",
+    "pass",
+    "every",
+    "existing",
+    "fix-5",
+    "validator"
+  ],
+  "lastUpdated": "2026-07-05T12:13:05.400Z",
+  "specId": "002",
+  "folderSlug": "route-proof-validation",
+  "parentChain": [
+    "system-deep-loop",
+    "031-deep-loop-gpt-reliability",
+    "002-routing-dispatch-and-identity"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

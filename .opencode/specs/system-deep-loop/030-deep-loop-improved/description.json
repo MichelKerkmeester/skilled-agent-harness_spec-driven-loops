@@ -1,0 +1,27 @@
+{
+  "level": "2",
+  "specFolder": "system-deep-loop/030-deep-loop-improved",
+  "description": "Our loop-based systems (deep-loop-runtime, deep-loop-workflows, and the system-spec-kit commands/agents that drive them) carry known gaps in",
+  "keywords": [
+    "loop-based",
+    "systems",
+    "deep-loop-runtime",
+    "deep-loop-workflows",
+    "system-spec-kit",
+    "commands",
+    "agents",
+    "drive",
+    "them",
+    "carry",
+    "known",
+    "gaps"
+  ],
+  "lastUpdated": "2026-07-04T18:02:32.109Z",
+  "specId": "030",
+  "folderSlug": "deep-loop-improved",
+  "parentChain": [
+    "system-deep-loop"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

@@ -33,13 +33,13 @@ Provide a measurable verification pass for deferred-loading work so Lighthouse, 
 
 ## 2. MEASUREMENT TARGETS
 
-| Metric | Target | How to Measure |
-|--------|--------|----------------|
-| Lighthouse mobile | Run 3x in Incognito, use median | Lighthouse or PageSpeed |
-| TBT | Improve by >= 20% on affected pages, or stay <= 200ms | Lighthouse |
-| INP | Do not regress by > 10ms on gated journeys | PageSpeed or interaction trace |
-| Long tasks | No new pre-interaction long task > 50ms | DevTools Performance |
-| First-use latency | <= 200ms desktop p75, <= 350ms mobile p75 | Instrumented interaction timing |
+| Metric            | Target                                                | How to Measure                  |
+| -------------------| -------------------------------------------------------| ---------------------------------|
+| Lighthouse mobile | Run 3x in Incognito, use median                       | Lighthouse or PageSpeed         |
+| TBT               | Improve by >= 20% on affected pages, or stay <= 200ms | Lighthouse                      |
+| INP               | Do not regress by > 10ms on gated journeys            | PageSpeed or interaction trace  |
+| Long tasks        | No new pre-interaction long task > 50ms               | DevTools Performance            |
+| First-use latency | <= 200ms desktop p75, <= 350ms mobile p75             | Instrumented interaction timing |
 
 ---
 
@@ -95,6 +95,6 @@ If any box cannot be checked, stop and remove the deferral.
 
 ## 8. RELATED RESOURCES
 
-- [interaction_gated_loading.md](../../webflow/references/performance/interaction_gated_loading.md) - Gate selection and exclusions
-- [cwv_remediation.md](../../webflow/references/performance/cwv_remediation.md) - TBT and Lighthouse remediation patterns
-- [interaction_gate_patterns.js](../../webflow/assets/patterns/interaction_gate_patterns.js) - Reusable trigger helpers
+- [interaction_gated_loading.md](../../code-webflow/references/performance/interaction_gated_loading.md) - Gate selection and exclusions
+- [cwv_remediation.md](../../code-webflow/references/performance/cwv_remediation.md) - TBT and Lighthouse remediation patterns
+- [interaction_gate_patterns.js](../../code-webflow/assets/patterns/interaction_gate_patterns.js) - Reusable trigger helpers

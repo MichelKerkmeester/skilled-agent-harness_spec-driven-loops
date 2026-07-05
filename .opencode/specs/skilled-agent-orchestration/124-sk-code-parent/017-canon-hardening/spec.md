@@ -7,16 +7,16 @@ trigger_phrases:
   - "parent hub canon hardening"
 importance_tier: "high"
 contextType: "implementation"
-status: "Draft"
+status: "Complete"
 parent: "skilled-agent-orchestration/124-sk-code-parent"
 phase: "017"
 _memory:
   continuity:
     packet_pointer: "skilled-agent-orchestration/124-sk-code-parent/017-canon-hardening"
     last_updated_at: "2026-07-05T00:00:00Z"
-    last_updated_by: "gpt-5.5"
-    recent_action: "Phase planned and documented"
-    next_safe_action: "Start T001 canon source inventory"
+    last_updated_by: "claude-opus"
+    recent_action: "Phase executed; bundleRules canon reconciled, STRICT 0/0"
+    next_safe_action: "124 rollup"
 ---
 # Feature Specification: Phase 17 canon hardening
 
@@ -27,7 +27,7 @@ _memory:
 
 ## EXECUTIVE SUMMARY
 
-Phase 017 plans the shared parent-hub canon hardening pass before downstream hubs copy or enforce conflicting shapes. The phase is moderate risk because it touches the shared parent-skill validator while deep-loop-workflows already has exactly 26 strict failures, so validator changes must be additive and tolerant.
+Phase 017 executed the shared parent-hub canon hardening pass before downstream hubs copy or enforce conflicting shapes. The phase is moderate risk because it touches the shared parent-skill validator while deep-loop-workflows already has exactly 26 strict failures, so validator changes must be additive and tolerant.
 
 **Key Decisions**: use one canonical `bundleRules[]` shape; keep validator migration-safe.
 
@@ -42,7 +42,7 @@ Phase 017 plans the shared parent-hub canon hardening pass before downstream hub
 |-------|-------|
 | **Level** | 3 |
 | **Priority** | P0 |
-| **Status** | Draft |
+| **Status** | Complete |
 | **Created** | 2026-07-05 |
 | **Branch** | `system-speckit/028-memory-search-intelligence` |
 | **Parent** | `skilled-agent-orchestration/124-sk-code-parent` |
@@ -58,7 +58,7 @@ Phase 017 plans the shared parent-hub canon hardening pass before downstream hub
 The parent-hub canon is defined, but its live router template, schema reference, and validator do not speak one `bundleRules` vocabulary. The master plan identifies conflicting shapes: template `when` / `primary` / `surfaces`, schema `whenPrimary` / `includeSurfaces`, and validator `modes` / `primary` / `evidence`; the same section also flags sk-code's stale `surfacePackets` field, 3-part registry/router versions, and three placeholder metadata fields.
 
 ### Purpose
-Plan a narrow canon hardening pass that makes the parent-hub template, schema, validator, and sk-code reference metadata self-consistent while preserving current strict checker outcomes for sk-code and not increasing deep-loop's 26 known failures.
+Execute a narrow canon hardening pass that makes the parent-hub template, schema, validator, and sk-code reference metadata self-consistent while preserving current strict checker outcomes for sk-code and not increasing deep-loop's 26 known failures.
 
 ### Evidence Base
 - Master plan lines 38-47: phase 017 deliverables, collision warning, and verification target.
@@ -128,11 +128,11 @@ Plan a narrow canon hardening pass that makes the parent-hub template, schema, v
 <!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA
 
-- **SC-001**: A future executor can implement the canon hardening without choosing between three incompatible `bundleRules[]` field vocabularies.
-- **SC-002**: sk-code remains the strict green reference hub after the registry/router naming and version cleanup.
-- **SC-003**: deep-loop-workflows does not gain any new parent-skill-check failures from validator hardening.
-- **SC-004**: All three stale `"internal design notes"` placeholders are gone from sk-code metadata.
-- **SC-005**: The docs, template, and validator speak the same surface-bundle terminology.
+- **SC-001** — MET: The canon exposes one `bundleRules[]` vocabulary (`name`/`whenPrimary`/`includeSurfaces`/`whenAll`/`outcome`) across template, schema, and validator (`3a76f99ccb`).
+- **SC-002** — MET: sk-code stays the strict-green reference hub after the `surfaces` rename and 4-part version bump; parent-skill-check STRICT 0/0 (`3a76f99ccb`).
+- **SC-003** — MET: deep-loop-workflows gained no new parent-skill-check failures; its STRICT count held at 26 (no regression).
+- **SC-004** — MET: All three stale `"internal design notes"` placeholders are gone from sk-code metadata (resolved by the 016 metadata refresh, `af1170c663`).
+- **SC-005** — MET: The template, schema, and validator speak the same surface-bundle terminology (`3a76f99ccb`).
 
 ### Acceptance Scenarios
 - **Scenario 1**: Given a surface bundle rule for `review`, when the template, schema, and validator are checked, then all three accept the same fields: `name`, `whenPrimary`, `includeSurfaces`, optional `whenAll`, and `outcome`.
@@ -234,7 +234,7 @@ Plan a narrow canon hardening pass that makes the parent-hub template, schema, v
 <!-- ANCHOR:questions -->
 ## 12. OPEN QUESTIONS
 
-- Should phase 017 encode declarative sk-code bundleRules immediately after reconciling the shape, or leave only the generic canon and let phase 016/015 add concrete hub rules?
+- RESOLVED: Phase 017 reconciled only the generic canon shape across the template, schema, and validator (`3a76f99ccb`); it added no new declarative sk-code bundleRules (the shipped `hub-router.json` change was the 4-part version bump only). Concrete hub rules stay with later phases.
 
 <!-- /ANCHOR:questions -->
 ---

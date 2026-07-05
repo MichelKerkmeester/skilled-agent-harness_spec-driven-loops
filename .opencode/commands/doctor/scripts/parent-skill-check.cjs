@@ -19,12 +19,13 @@
  *
  * Usage:
  *   node parent-skill-check.cjs [parent-skill-dir]
- *   PARENT_HUB_CHECK_STRICT=1 node parent-skill-check.cjs [dir]   # 5-9 as FAIL
+ *   PARENT_HUB_CHECK_STRICT=0 node parent-skill-check.cjs [dir]   # 5-9 as WARN (WIP opt-out)
  *
- * The migration-window checks 5-9 (hub-router validity, registry/directory
- * reverse consistency, changelog shape, description.json, playbook + benchmark
- * baseline) emit WARN by default and FAIL under PARENT_HUB_CHECK_STRICT — the
- * default flips to strict once every hub carries the canon fields.
+ * The canon checks 5-9 (hub-router validity, registry/directory reverse
+ * consistency, changelog shape, description.json, playbook + benchmark
+ * baseline) FAIL by default now that every hub carries the canon fields;
+ * PARENT_HUB_CHECK_STRICT=0 downgrades them to advisory WARN for a
+ * work-in-progress hub still being scaffolded.
  *
  * Exit codes:
  *   0  — every hard invariant passed (warnings allowed)
@@ -88,9 +89,11 @@ const GLOBAL_MAP_OWNER = 'deep-loop-workflows';
 
 const DEFAULT_TARGET = '.opencode/skills/deep-loop-workflows';
 
-// Migration-window checks fail only under strict; the default flips to strict
-// once every hub carries the new canon fields (packetKind, toolSurface, ...).
-const STRICT_HUB_CANON = process.env.PARENT_HUB_CHECK_STRICT === '1';
+// Canon checks are FAIL by default now that every parent hub carries the canon
+// fields (packetKind, toolSurface, grandfatheredFolderMismatch, hub-router,
+// description.json, playbook, benchmark). PARENT_HUB_CHECK_STRICT=0 opts a
+// work-in-progress hub back to advisory WARN while it is being scaffolded.
+const STRICT_HUB_CANON = process.env.PARENT_HUB_CHECK_STRICT !== '0';
 
 const IS_TTY = Boolean(process.stdout.isTTY);
 function color(text, code) {
@@ -117,7 +120,8 @@ function warn(msg) {
 function info(msg) {
   console.log(`${blue('INFO')}: ${msg}`);
 }
-// Migration-window severity: WARN by default, FAIL under strict.
+// Canon severity: FAIL by default (STRICT_HUB_CANON), WARN only when a
+// work-in-progress hub opts out via PARENT_HUB_CHECK_STRICT=0.
 function softFail(msg) {
   (STRICT_HUB_CANON ? fail : warn)(msg);
 }
@@ -192,7 +196,7 @@ function main() {
 
   info(`Parent skill: ${argTarget}`);
   info(`Resolved:     ${target}`);
-  info(`Mode 5-9:     ${STRICT_HUB_CANON ? 'STRICT (FAIL)' : 'migration (WARN)'}`);
+  info(`Mode 5-9:     ${STRICT_HUB_CANON ? 'canon (FAIL)' : 'WIP opt-out (WARN)'}`);
   console.log('');
 
   if (!fs.existsSync(target) || !fs.statSync(target).isDirectory()) {
@@ -284,7 +288,7 @@ function main() {
 
       let packetOk = true;
       let discriminatorOk = true;   // hard: workflowMode + backendKind presence
-      let canonOk = true;           // migration-gated: packetKind, toolSurface, grandfathered, runtimeLoopType
+      let canonOk = true;           // canon (FAIL by default): packetKind, toolSurface, grandfathered, runtimeLoopType
       let routingOk = true;
       let surfaceOk = true;
 
@@ -316,9 +320,9 @@ function main() {
         }
 
         // 3d — two-axis discriminator. HARD: workflowMode + backendKind presence
-        // (every hub already satisfies these, so CI stays green). MIGRATION-GATED
-        // (softFail until every hub carries them and strict becomes the default):
-        // packetKind, toolSurface, grandfatheredFolderMismatch, runtimeLoopType —
+        // (every hub already satisfies these, so CI stays green). CANON (softFail,
+        // now FAIL by default; WARN only under the PARENT_HUB_CHECK_STRICT=0 WIP
+        // opt-out): packetKind, toolSurface, grandfatheredFolderMismatch, runtimeLoopType —
         // the canon fields each hub adds as it migrates to the two-axis shape.
         if (typeof mode.workflowMode !== 'string' || mode.workflowMode.length === 0) {
           fail(`3d: mode "${label}" is missing workflowMode`);
@@ -339,7 +343,7 @@ function main() {
           softFail(`3d: mode "${label}" is missing the grandfatheredFolderMismatch boolean`);
           canonOk = false;
         }
-        // toolSurface shape required on every mode (migration-gated).
+        // toolSurface shape required on every mode (canon: FAIL by default).
         const ts = mode.toolSurface;
         if (!ts || typeof ts !== 'object' || !Array.isArray(ts.allowed) || !Array.isArray(ts.forbidden) ||
             typeof ts.mutatesWorkspace !== 'boolean' || !Array.isArray(ts.bashAllowlist)) {
@@ -521,7 +525,7 @@ function main() {
   }
 
   // ───────────────────────────────────────────────────────────────
-  // 5. hub-router.json validity (migration-window: WARN)
+  // 5. hub-router.json validity (canon: FAIL by default)
   // ───────────────────────────────────────────────────────────────
   const routerPath = path.join(target, 'hub-router.json');
   const registryModeSet = new Set(
@@ -616,7 +620,7 @@ function main() {
   }
 
   // ───────────────────────────────────────────────────────────────
-  // 6. registry ↔ directory reverse consistency (migration-window: WARN)
+  // 6. registry ↔ directory reverse consistency (canon: FAIL by default)
   // ───────────────────────────────────────────────────────────────
   let childDirs = [];
   try {
@@ -634,7 +638,7 @@ function main() {
   }
 
   // ───────────────────────────────────────────────────────────────
-  // 7. changelog shape — real files, no symlinks (migration-window: WARN)
+  // 7. changelog shape — real files, no symlinks (canon: FAIL by default)
   // ───────────────────────────────────────────────────────────────
   const hubChangelog = path.join(target, 'changelog');
   if (!fs.existsSync(hubChangelog)) {
@@ -652,7 +656,7 @@ function main() {
   }
 
   // ───────────────────────────────────────────────────────────────
-  // 8. description.json present + well-formed (migration-window: WARN)
+  // 8. description.json present + well-formed (canon: FAIL by default)
   // ───────────────────────────────────────────────────────────────
   const descPath = path.join(target, 'description.json');
   if (!fs.existsSync(descPath)) {
@@ -672,7 +676,7 @@ function main() {
   }
 
   // ───────────────────────────────────────────────────────────────
-  // 9. manual_testing_playbook/ + benchmark baseline (migration-window: WARN)
+  // 9. manual_testing_playbook/ + benchmark baseline (canon: FAIL by default)
   // ───────────────────────────────────────────────────────────────
   if (fs.existsSync(path.join(target, 'manual_testing_playbook'))) {
     pass('9a: manual_testing_playbook/ present');

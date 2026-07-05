@@ -69,20 +69,20 @@ The code-graph database currently has no automatic `VACUUM` or checkpoint policy
 
 ## 3. HANDLER MAP
 
-Each tool's runtime handler lives under `mcp_server/`:
+Each tool dispatches through `mcp_server/tools/code-graph-tools.ts` into the flat `mcp_server/handlers/*.ts` layer, then into focused `mcp_server/lib/*.ts` modules:
 
 | Tool | Schema | Handler |
 |---|---|---|
-| `code_graph_scan` | `mcp_server/tool-schemas.ts` (`codeGraphScan`) | `mcp_server/tools/code-graph-tools.ts` (dispatch) → `mcp_server/lib/scan/` |
-| `code_graph_query` | `tool-schemas.ts` (`codeGraphQuery`) | `tools/code-graph-tools.ts` → `lib/query/` + `lib/blast-radius/` |
-| `code_graph_classify_query_intent` | `tool-schemas.ts` (`codeGraphClassifyQueryIntent`) | `tools/code-graph-tools.ts` → `lib/query-intent-classifier.ts` |
-| `code_graph_context` | `tool-schemas.ts` (`codeGraphContext`) | `tools/code-graph-tools.ts` → `lib/context/` |
-| `code_graph_status` | `tool-schemas.ts` (`codeGraphStatus`) | `tools/code-graph-tools.ts` → `lib/status/` |
-| `code_graph_verify` | `tool-schemas.ts` (`codeGraphVerify`) | `tools/code-graph-tools.ts` → `lib/verify/` |
-| `code_graph_apply` | `tool-schemas.ts` (`codeGraphApply`) | `tools/code-graph-tools.ts` → `lib/apply/` |
-| `detect_changes` | `tool-schemas.ts` (`detectChanges`) | `tools/code-graph-tools.ts` → `lib/detect-changes/` |
+| `code_graph_scan` | `mcp_server/tool-schemas.ts` (`codeGraphScan`) | `mcp_server/tools/code-graph-tools.ts` → `mcp_server/handlers/scan.ts` → `mcp_server/lib/structural-indexer.ts` |
+| `code_graph_query` | `tool-schemas.ts` (`codeGraphQuery`) | `tools/code-graph-tools.ts` → `handlers/query.ts` → `lib/query-result-adapter.ts` / `lib/code-graph-db.ts` |
+| `code_graph_classify_query_intent` | `tool-schemas.ts` (`codeGraphClassifyQueryIntent`) | `tools/code-graph-tools.ts` → `handlers/classify-query-intent.ts` → `lib/query-intent-classifier.ts` |
+| `code_graph_context` | `tool-schemas.ts` (`codeGraphContext`) | `tools/code-graph-tools.ts` → `handlers/context.ts` → `lib/code-graph-context.ts` |
+| `code_graph_status` | `tool-schemas.ts` (`codeGraphStatus`) | `tools/code-graph-tools.ts` → `handlers/status.ts` → `lib/code-graph-db.ts` / `lib/readiness-contract.ts` |
+| `code_graph_verify` | `tool-schemas.ts` (`codeGraphVerify`) | `tools/code-graph-tools.ts` → `handlers/verify.ts` → `lib/gold-query-verifier.ts` / `lib/gold-battery-runner.ts` |
+| `code_graph_apply` | `tool-schemas.ts` (`codeGraphApply`) | `tools/code-graph-tools.ts` → `handlers/apply.ts` → `lib/apply-orchestrator.ts` / `lib/recovery-procedures.ts` |
+| `detect_changes` | `tool-schemas.ts` (`detectChanges`) | `tools/code-graph-tools.ts` → `handlers/detect-changes.ts` → `lib/diff-parser.ts` / `lib/code-graph-db.ts` |
 
-Library paths (`lib/scan/`, `lib/query/`, etc.) are approximate — see `mcp_server/tools/code-graph-tools.ts` for the actual dispatch table. Names move; the schema-to-handler mapping in `tools/code-graph-tools.ts` is the runtime source of truth.
+The runtime topology is flat: there are no `lib/scan/`, `lib/query/`, `lib/context/`, `lib/status/`, `lib/verify/`, `lib/apply/` or `lib/detect-changes/` directories. The schema registry and dispatch switch in `mcp_server/tools/code-graph-tools.ts`, together with `mcp_server/handlers/index.ts`, are the source of truth for tool-to-handler mapping.
 
 ---
 

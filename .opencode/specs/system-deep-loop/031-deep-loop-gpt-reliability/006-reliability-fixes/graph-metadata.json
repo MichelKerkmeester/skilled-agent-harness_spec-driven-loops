@@ -1,0 +1,115 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/031-deep-loop-gpt-reliability/006-reliability-fixes",
+  "spec_folder": "system-deep-loop/031-deep-loop-gpt-reliability/006-reliability-fixes",
+  "parent_id": "system-deep-loop/031-deep-loop-gpt-reliability",
+  "children_ids": [
+    "system-deep-loop/031-deep-loop-gpt-reliability/006-reliability-fixes/001-acceptance-and-rollout-foundation",
+    "system-deep-loop/031-deep-loop-gpt-reliability/006-reliability-fixes/002-gate3-precedence-and-validator",
+    "system-deep-loop/031-deep-loop-gpt-reliability/006-reliability-fixes/003-dispatch-receipts-and-progress"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "gpt reliability fixes",
+      "implement 034 recommendations",
+      "035 fixes",
+      "command contract architecture"
+    ],
+    "key_topics": [
+      "gpt",
+      "reliability",
+      "fixes",
+      "implement",
+      "034",
+      "recommendations",
+      "035",
+      "command",
+      "contract",
+      "architecture",
+      "implementation",
+      "packet"
+    ],
+    "importance_tier": "high",
+    "status": "planned",
+    "key_files": [
+      "plan-review/gap-synthesis.md",
+      "spec.md",
+      "plan-review/gap-registry.md"
+    ],
+    "entities": [
+      {
+        "name": "gap-synthesis.md",
+        "kind": "doc",
+        "path": "plan-review/gap-synthesis.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "gap-registry.md",
+        "kind": "doc",
+        "path": "plan-review/gap-registry.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Parent",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Reliability Fixes",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Unified Command",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Contract Architecture",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "a",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Implementation packet for the packet-034 research synthesis, restructured per the plan-review (58 verified gaps) into the unified command-contract architecture. Five phases in dependency order: acceptance + rollout foundation, the P0 Gate-3 precedence package with a concrete validator, the build-time compiled command contract (subsuming render + agent-contracts + compiled + injection), dispatch receipts + progress records, then retrofit + pacing + rollout completion. Each phase names the 033 behavior-benchmark cells that must flip to accept it, ships behind a per-command feature flag, and",
+    "created_at": "2026-07-05T02:24:11.224Z",
+    "last_save_at": "2026-07-05T03:39:00.900Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "source_fingerprint": "sha256:43ddfc7cdf2410373ca811788b638d11b2144cf0c3ca6f3768cbd94a5f903855",
+    "source_doc_hashes": {
+      "spec.md": "a1133bc38b799fcfaaf206ee5ead6ac45c2cf3572545b2ff196a3f7c456b8317"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

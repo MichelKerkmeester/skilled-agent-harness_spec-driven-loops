@@ -1,0 +1,31 @@
+{
+  "specFolder": "system-deep-loop/z_archive/021-deep-skill-evolution/007-deep-stack-playbook-validation/006-release-readiness-synthesis",
+  "description": "The validation run spans 177 scenarios across five per-skill children (001-005), each maintaining its own verdict ledger",
+  "keywords": [
+    "validation",
+    "run",
+    "spans",
+    "177",
+    "scenarios",
+    "across",
+    "five",
+    "per-skill",
+    "children",
+    "001-005",
+    "maintaining",
+    "own",
+    "verdict",
+    "ledger"
+  ],
+  "lastUpdated": "2026-06-23T03:49:51.063Z",
+  "specId": "006",
+  "folderSlug": "release-readiness-synthesis",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "z_archive",
+    "116-deep-skill-evolution",
+    "007-deep-stack-playbook-validation"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

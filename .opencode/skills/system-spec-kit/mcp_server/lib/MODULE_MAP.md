@@ -378,7 +378,7 @@ Notes:
 
 ## 3. FEATURE CATALOG MAPPING
 
-Feature-catalog categories referenced here are the 19 top-level directories under `feature_catalog/`:
+Feature-catalog categories referenced here are the 25 top-level directories under `feature_catalog/` (numbered through 24; note the duplicate `14--` prefix on `14--pipeline-architecture` and `14--stress-testing`):
 
 - `01--retrieval`
 - `02--mutation`
@@ -394,11 +394,17 @@ Feature-catalog categories referenced here are the 19 top-level directories unde
 - `12--query-intelligence`
 - `13--memory-quality-and-indexing`
 - `14--pipeline-architecture`
+- `14--stress-testing`
 - `15--retrieval-enhancements`
 - `16--tooling-and-scripts`
 - `17--governance`
 - `18--ux-hooks`
 - `19--feature-flag-reference`
+- `20--remediation-revalidation`
+- `21--implement-and-remove-deprecated-features`
+- `22--context-preservation`
+- `23--doctor-commands`
+- `24--local-llm-query-intelligence`
 
 ### 3.1 `lib/` Directory -> Feature Categories
 

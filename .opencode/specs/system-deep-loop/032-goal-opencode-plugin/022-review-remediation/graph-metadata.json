@@ -1,0 +1,218 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/032-goal-opencode-plugin/022-review-remediation",
+  "spec_folder": "system-deep-loop/032-goal-opencode-plugin/022-review-remediation",
+  "parent_id": "system-deep-loop/032-goal-opencode-plugin",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "goal plugin review remediation",
+      "sweep archive TOCTOU fix",
+      "packet 032 status reconciliation",
+      "audit dossier refresh",
+      "goal plugin review remediation plan",
+      "goal plugin review remediation tasks",
+      "goal plugin review remediation complete",
+      "sweep archive stale read fixed",
+      "goal plugin status reconciliation complete"
+    ],
+    "key_topics": [
+      "goal",
+      "plugin",
+      "review",
+      "remediation",
+      "sweep",
+      "archive",
+      "toctou",
+      "fix",
+      "packet",
+      "032",
+      "status",
+      "reconciliation"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      ".opencode/plugins/mk-goal.js",
+      ".opencode/specs/system-deep-loop/032-goal-opencode-plugin/review/review-report.md",
+      "spec.md",
+      ".opencode/plugins/tests/mk-goal-lifecycle.test.cjs",
+      "tasks.md",
+      ".opencode/skills/system-spec-kit/feature_catalog/18--ux-hooks/goal-opencode-plugin.md",
+      ".opencode/skills/system-skill-advisor/feature_catalog/07--hooks-and-plugin/goal-opencode-plugin.md",
+      "implementation-summary.md",
+      "plan.md"
+    ],
+    "entities": [
+      {
+        "name": "mk-goal.js",
+        "kind": "code",
+        "path": ".opencode/plugins/mk-goal.js",
+        "source": "derived"
+      },
+      {
+        "name": "review-report.md",
+        "kind": "doc",
+        "path": ".opencode/specs/system-deep-loop/032-goal-opencode-plugin/review/review-report.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "mk-goal-lifecycle.test.cjs",
+        "kind": "file",
+        "path": ".opencode/plugins/tests/mk-goal-lifecycle.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal-opencode-plugin.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/feature_catalog/18--ux-hooks/goal-opencode-plugin.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview One",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Targeted",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow No",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "baseline",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The dual-model review confirmed one real runtime defect and a broad documentation-drift cluster",
+    "created_at": "2026-07-04T08:06:24.170Z",
+    "last_save_at": "2026-07-04T08:33:07.309Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:9c864a0ad480a66878273ce0ca2ff2d6b7cc0694ea066ce834afd9313de0f6e0",
+    "source_doc_hashes": {
+      "spec.md": "8175dabcd624beb9066ce2b49f1ba38b5a8a48ee1ba338954ec2805db800f53e",
+      "plan.md": "5f3f6ece5287094762d8835b1f58ed8e6fb1606a3b2062377f9b666b0d211ece",
+      "tasks.md": "51698ef8f295c2b678a274aded0723157856eb70545d1a7bcc6821725117c5ab",
+      "implementation-summary.md": "afdf333d2fcf08a087eea2a0aa957c5db3a0fb71ba705a31d0367c1fe68a004e"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

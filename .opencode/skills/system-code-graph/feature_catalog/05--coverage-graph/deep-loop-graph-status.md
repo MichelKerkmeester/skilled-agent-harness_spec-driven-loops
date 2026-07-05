@@ -38,9 +38,9 @@ Empty graphs return zero counts and null signals. Use upsert-enabled deep loops 
 
 | File | Layer | Role |
 |---|---|---|
-| `.opencode/skills/system-spec-kit/mcp_server/handlers/coverage-graph/status.ts:33-89` | Handler | validates input and returns scoped stats, signals and momentum |
-| `.opencode/skills/system-spec-kit/mcp_server/tools/index.ts:33-49` | Tool surface | registers and dispatches the tool |
-| `.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:678-690` | Schema | defines the public schema |
+| `.opencode/skills/deep-loop-runtime/scripts/status.cjs` | Implementation | CLI script (argv-parsed via `parseArgs`); invoked directly from the deep YAMLs, NOT an MCP tool |
+| `.opencode/commands/deep/assets/deep_ai-council_auto.yaml` and `deep_ai-council_confirm.yaml` | Call site | invoked as the `graph_status` step (`--loop-type council`) in the ai-council workflows |
+| `.opencode/skills/system-spec-kit/mcp_server/tools/index.ts` | Tool surface | intentionally omits coverage-graph dispatch; this tool family is CLI-invoked and NOT registered as MCP tools |
 
 ### Validation And Tests
 

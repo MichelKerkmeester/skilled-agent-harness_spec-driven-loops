@@ -1,0 +1,212 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/030-deep-loop-improved/002-deep-loop-runtime/005-lifecycle-taxonomy-guards",
+  "spec_folder": "system-deep-loop/030-deep-loop-improved/002-deep-loop-runtime/005-lifecycle-taxonomy-guards",
+  "parent_id": "system-deep-loop/030-deep-loop-improved/002-deep-loop-runtime",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "lifecycle-taxonomy-guards",
+      "loop-state-machine-taxonomy",
+      "lifecycle-transition-guards",
+      "loop-status-contract",
+      "005-lifecycle-taxonomy-guards summary",
+      "005-lifecycle-taxonomy-guards"
+    ],
+    "key_topics": [
+      "lifecycle-taxonomy-guards",
+      "loop-state-machine-taxonomy",
+      "lifecycle-transition-guards",
+      "loop-status-contract",
+      "005-lifecycle-taxonomy-guards",
+      "summary",
+      "active",
+      "loop",
+      "statuses",
+      "running",
+      "waiting",
+      "paused"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      ".opencode/skills/deep-loop-runtime/lib/deep-loop/lifecycle-taxonomy.cjs",
+      ".opencode/skills/deep-loop-runtime/tests/unit/lifecycle-taxonomy-guards.vitest.ts",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "lifecycle-taxonomy.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/deep-loop-runtime/lib/deep-loop/lifecycle-taxonomy.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "lifecycle-taxonomy-guards.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/deep-loop-runtime/tests/unit/lifecycle-taxonomy-guards.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Lifecycle State",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Machine Taxonomy",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Transition Guards",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Lifecycle Taxonomy Guards",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Centralized",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "completed",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Active loop statuses (`running`, `waiting`, `paused`, `idle`, `stopped`) and terminal stop reasons are scattered as ad-hoc string literals across multiple files with no single authoritative source",
+    "created_at": "2026-06-28T14:01:54Z",
+    "last_save_at": "2026-07-04T18:02:02.191Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:004730f36f2e13c98170fa9895f95d6a0f0b7c0bbc34e25ad9dd106e70a64ecc",
+    "source_doc_hashes": {
+      "spec.md": "8a9cf64ad9135ce03372eca1a19ed00e34ee0dbad718ec31bee53a775c4a51b9",
+      "plan.md": "d512a3a05aa222e5c9cd82d18b3bc54d7b9d3c220c04cef519b02c4c6552bb3b",
+      "tasks.md": "eec10e7cd291da546f236705df3c33004301f1e9a7850af075b0b2c33a058c46",
+      "implementation-summary.md": "c98500b9ee20fefd265e4df6ac532606f8bb5c28d1bf1c6829c78be5aeee9ffc"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

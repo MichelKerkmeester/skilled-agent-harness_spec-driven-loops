@@ -36,26 +36,26 @@ grep -lqE "window\.Motion|window\.gsap|gsap\.(to|from|set|timeline|registerPlugi
 - `references/stack_detection.md`
 - `references/smart_routing.md`
 - `references/smart_routing.md`
-- `references/webflow/implementation/animation_workflows.md`
-- `references/webflow/implementation/observer_patterns.md`
-- `references/webflow/implementation/third_party_integrations.md`
-- `references/webflow/verification/verification_workflows.md`
-- `references/motion_dev/quick_start.md`
-- `references/motion_dev/integration_patterns.md`
-- `references/motion_dev/scroll_and_gestures.md`
-- `references/motion_dev/performance_and_pitfalls.md`
+- `code-webflow/references/implementation/animation_workflows.md`
+- `code-webflow/references/implementation/observer_patterns.md`
+- `code-webflow/references/implementation/third_party_integrations.md`
+- `code-webflow/references/verification/verification_workflows.md`
+- `code-animation/references/quick_start.md`
+- `code-animation/references/integration_patterns.md`
+- `code-animation/references/scroll_and_gestures.md`
+- `code-animation/references/performance_and_pitfalls.md`
 
 **Expected assets loaded**:
-- `assets/webflow/checklists/code_quality_checklist.md`
-- `assets/webflow/checklists/verification_checklist.md`
-- `assets/motion_dev/install_card.md`
-- `assets/motion_dev/snippets/in_view_reveal.js`
-- `assets/motion_dev/snippets/cdn_bootstrap.js`
+- `code-webflow/assets/checklists/code_quality_checklist.md`
+- `code-webflow/assets/checklists/verification_checklist.md`
+- `code-animation/assets/install_card.md`
+- `code-animation/assets/snippets/in_view_reveal.js`
+- `code-animation/assets/snippets/cdn_bootstrap.js`
 
 **Expected agent dispatch**: none for this read-only routing-analysis harness. If the same prompt were implementation work, `@code` could be dispatched by an orchestrator, but this scenario forbids dispatch.
 
 **Pass/fail criteria with binary grading**:
-- **PASS** iff surface is `WEBFLOW`, at least one `references/webflow/implementation/*` path loads, `references/motion_dev/quick_start.md` and `assets/motion_dev/snippets/in_view_reveal.js` load, and `agent_dispatched` is `none`.
+- **PASS** iff surface is `WEBFLOW`, at least one `code-webflow/references/implementation/*` path loads, `code-animation/references/quick_start.md` and `code-animation/assets/snippets/in_view_reveal.js` load, and `agent_dispatched` is `none`.
 - **FAIL** iff surface is not `WEBFLOW`, Motion.dev peer references are omitted, or any agent is dispatched.
 
 **Failure triage**:
@@ -79,8 +79,8 @@ Expected result files:
 
 - `.opencode/skills/sk-code/shared/references/stack_detection.md` - WEBFLOW marker block.
 - `.opencode/skills/sk-code/shared/references/smart_routing.md` - WEBFLOW plus MOTION_DEV loading rules.
-- `.opencode/skills/sk-code/animation/references/quick_start.md` - Motion install and import guidance.
-- `.opencode/skills/sk-code/animation/assets/snippets/in_view_reveal.js` - Required snippet.
+- `.opencode/skills/sk-code/code-animation/references/quick_start.md` - Motion install and import guidance.
+- `.opencode/skills/sk-code/code-animation/assets/snippets/in_view_reveal.js` - Required snippet.
 
 ---
 

@@ -53,7 +53,7 @@ Audit whether all feature catalogs, manual testing playbooks, skill references, 
 
 ## 5. STOP CONDITIONS
 
-- Hard cap: 40 iterations.
+- Hard cap: 40 iterations (operator-capped and stopped at iteration 20 for this run; synthesis produced at 20).
 - Convergence is telemetry only for this run because stop policy is `max-iterations`.
 - Stop early only for hard blockers, safety violations, or invalid research state that cannot be repaired within the workflow contract.
 
@@ -132,7 +132,7 @@ Memory context for the narrow bound spec folder returned no canonical results an
 
 ## 13. RESEARCH BOUNDARIES
 
-- Max iterations: 40
+- Max iterations: 40 (operator override: run capped and stopped at iteration 20)
 - Convergence threshold: 0.05
 - Stop policy: max-iterations
 - Per-iteration budget: 12 tool calls, 10 minutes

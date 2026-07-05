@@ -1,0 +1,260 @@
+{
+  "schema_version": 1,
+  "packet_id": "design/009-sk-design-claude-parity/005-parity-benchmark-release-gate",
+  "spec_folder": "design/009-sk-design-claude-parity/005-parity-benchmark-release-gate",
+  "parent_id": "design/009-sk-design-claude-parity",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [
+      {
+        "packet_id": "design/009-sk-design-claude-parity/004-mode-packet-refactor",
+        "reason": "Phase 005 benchmarks must run against the refactored mode-packet behavior produced by Phase 004",
+        "source": "manual",
+        "spec_folder": "design/009-sk-design-claude-parity/004-mode-packet-refactor",
+        "title": "Phase 004 - Mode Packet Refactor"
+      }
+    ],
+    "supersedes": [],
+    "related_to": [
+      {
+        "packet_id": "design/009-sk-design-claude-parity/001-baseline-ownership-gate",
+        "reason": "Phase 001 ownership boundaries constrain release-gate evidence and future benchmark artifact writes",
+        "source": "manual",
+        "spec_folder": "design/009-sk-design-claude-parity/001-baseline-ownership-gate",
+        "title": "Phase 001 - Baseline Ownership Gate"
+      },
+      {
+        "packet_id": "design/009-sk-design-claude-parity/002-parent-hub-compatibility-shell",
+        "reason": "Phase 002 parent hub compatibility shell defines routing behavior that release invariants must preserve",
+        "source": "manual",
+        "spec_folder": "design/009-sk-design-claude-parity/002-parent-hub-compatibility-shell",
+        "title": "Phase 002 - Parent Hub Compatibility Shell"
+      },
+      {
+        "packet_id": "design/009-sk-design-claude-parity/003-private-procedure-card-layer",
+        "reason": "Phase 003 private procedure cards are the internal selection layer that Phase 005 proof gates must verify",
+        "source": "manual",
+        "spec_folder": "design/009-sk-design-claude-parity/003-private-procedure-card-layer",
+        "title": "Phase 003 - Private Procedure Card Layer"
+      }
+    ]
+  },
+  "derived": {
+    "trigger_phrases": [
+      "parity benchmark release gate",
+      "Claude Design-like behavior",
+      "sk-design release readiness",
+      "golden prompts",
+      "procedure selection checks",
+      "context manifest proof gates",
+      "anti-slop review",
+      "manual playbook scenarios",
+      "phase 005 plan",
+      "parity benchmark plan",
+      "release gate plan",
+      "golden prompt corpus"
+    ],
+    "key_topics": [
+      "parity",
+      "benchmark",
+      "release",
+      "gate",
+      "claude",
+      "design-like",
+      "behavior",
+      "sk-design",
+      "readiness",
+      "golden",
+      "prompts",
+      "procedure"
+    ],
+    "importance_tier": "high",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      ".opencode/specs/design/009-sk-design-claude-parity/005-parity-benchmark-release-gate/spec.md",
+      ".opencode/specs/design/009-sk-design-claude-parity/005-parity-benchmark-release-gate/plan.md",
+      ".opencode/specs/design/009-sk-design-claude-parity/005-parity-benchmark-release-gate/tasks.md",
+      ".opencode/specs/design/009-sk-design-claude-parity/005-parity-benchmark-release-gate/checklist.md",
+      ".opencode/specs/design/009-sk-design-claude-parity/005-parity-benchmark-release-gate/decision-record.md",
+      ".opencode/specs/design/009-sk-design-claude-parity/005-parity-benchmark-release-gate/implementation-summary.md",
+      ".opencode/specs/design/009-sk-design-claude-parity/005-parity-benchmark-release-gate/description.json",
+      ".opencode/specs/design/009-sk-design-claude-parity/005-parity-benchmark-release-gate/graph-metadata.json"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": ".opencode/specs/design/009-sk-design-claude-parity/005-parity-benchmark-release-gate/spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": ".opencode/specs/design/009-sk-design-claude-parity/005-parity-benchmark-release-gate/plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": ".opencode/specs/design/009-sk-design-claude-parity/005-parity-benchmark-release-gate/tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": ".opencode/specs/design/009-sk-design-claude-parity/005-parity-benchmark-release-gate/checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": ".opencode/specs/design/009-sk-design-claude-parity/005-parity-benchmark-release-gate/decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": ".opencode/specs/design/009-sk-design-claude-parity/005-parity-benchmark-release-gate/implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "description.json",
+        "kind": "config",
+        "path": ".opencode/specs/design/009-sk-design-claude-parity/005-parity-benchmark-release-gate/description.json",
+        "source": "derived"
+      },
+      {
+        "name": "graph-metadata.json",
+        "kind": "config",
+        "path": ".opencode/specs/design/009-sk-design-claude-parity/005-parity-benchmark-release-gate/graph-metadata.json",
+        "source": "derived"
+      },
+      {
+        "name": "Parity Benchmark Release Gate",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Claude Design",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Created Phase",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Dependencies",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Strict Spec Kit",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Confirm Phase",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Kit",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The parity refactor can look correct at the router layer while still failing live design usefulness, procedure selection, proof discipline, anti-slop judgment, accessibility, hierarchy, interaction quality, polish, or md-generator preservation",
+    "created_at": "2026-07-05T00:00:00.000Z",
+    "last_save_at": "2026-07-05T16:15:10.227Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:e7f5af93a35214a97f7d51a6374e453ba61ca1420ac9194a6789444366f6624d",
+    "source_doc_hashes": {
+      "spec.md": "54ef81021d8da8733cc87226094465f9bc5486588427af2fb7acb6f54db6664b",
+      "plan.md": "6487e5860e2021a8c6cb19f6a40d8765404f40723eaa0a9d76df0692e226c1ab",
+      "tasks.md": "6842e10b3dd62170574feb036a374fe61ecb68ae9c5d78bb7b37f3d21adb0a7c",
+      "checklist.md": "f6e637281c5fb3d369b3bb15cda2e1e6fce5518857e198b735b6734b291bdccf",
+      "decision-record.md": "65e10a5b62894b843cb31e35747c71d70640b4af8b9867bea3ad1e3dc302c0a7",
+      "implementation-summary.md": "a9aaf1d8f69a68bec022bd112bb8225115f51849bbb2dd121e87da2a10f1e303"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

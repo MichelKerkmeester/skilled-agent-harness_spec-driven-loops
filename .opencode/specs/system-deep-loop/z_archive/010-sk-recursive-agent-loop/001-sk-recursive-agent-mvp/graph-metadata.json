@@ -1,0 +1,230 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/z_archive/010-sk-recursive-agent-loop/001-sk-recursive-agent-mvp",
+  "spec_folder": "system-deep-loop/z_archive/010-sk-recursive-agent-loop/001-sk-recursive-agent-mvp",
+  "parent_id": "system-deep-loop/z_archive/010-sk-recursive-agent-loop",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "agent improvement loop",
+      "sk-improve-agent",
+      "automatic agent iteration",
+      "evaluator-first",
+      "proposal-only loop",
+      "agent improvement plan",
+      "sk-improve-agent plan",
+      "proposal-only mvp",
+      "agent improvement tasks",
+      "sk-improve-agent tasks",
+      "agent improvement checklist",
+      "verification"
+    ],
+    "key_topics": [
+      "agent",
+      "improvement",
+      "loop",
+      "sk-improve-agent",
+      "automatic",
+      "iteration",
+      "evaluator-first",
+      "proposal-only",
+      "plan",
+      "mvp",
+      "tasks",
+      "checklist"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "improvement/mirror-drift-report.md",
+      ".opencode/specs/descriptions.json",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "spec.md",
+      "improvement/agent-improvement-config.json",
+      "improvement/agent-improvement-state.jsonl",
+      "improvement/agent-improvement-dashboard.md",
+      "improvement/experiment-registry.json",
+      "improvement/score-002.json",
+      "implementation-summary.md",
+      ".opencode/skills/README.md"
+    ],
+    "entities": [
+      {
+        "name": "mirror-drift-report.md",
+        "kind": "doc",
+        "path": "improvement/mirror-drift-report.md",
+        "source": "derived"
+      },
+      {
+        "name": "descriptions.json",
+        "kind": "config",
+        "path": ".opencode/specs/descriptions.json",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "agent-improvement-config.json",
+        "kind": "config",
+        "path": "improvement/agent-improvement-config.json",
+        "source": "derived"
+      },
+      {
+        "name": "agent-improvement-state.jsonl",
+        "kind": "file",
+        "path": "improvement/agent-improvement-state.jsonl",
+        "source": "derived"
+      },
+      {
+        "name": "agent-improvement-dashboard.md",
+        "kind": "doc",
+        "path": "improvement/agent-improvement-dashboard.md",
+        "source": "derived"
+      },
+      {
+        "name": "experiment-registry.json",
+        "kind": "config",
+        "path": "improvement/experiment-registry.json",
+        "source": "derived"
+      },
+      {
+        "name": "score-002.json",
+        "kind": "config",
+        "path": "improvement/score-002.json",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/skills/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Agent Improvement Loop",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Dependencies",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Primary Runtime Surface",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Initial Target Under Test",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "This repo now has enough orchestration, state, and packaging infrastructure to attempt automatic agent iteration, but it does not yet have the one thing that makes such a loop trustworthy: a bounded evaluator contract tied to a single canonical mutation surface",
+    "created_at": "2026-04-12T09:02:50.185Z",
+    "last_save_at": "2026-06-23T03:49:49.143Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:b1b2485c6bcec8e1711b2362e40420abfca4a05e800a1d2539772cc65c18eb57",
+    "source_doc_hashes": {
+      "spec.md": "9a55de6368b1dad499b253cb1b0fec9ca5590281c5b31794dd20b269aa222693",
+      "plan.md": "608fca00bbf7ca9427214e560b687db46940d190661eeb3e64e7acd6968e1cf8",
+      "tasks.md": "a5c7f23c133f13f599940eac80bda9def0b62ddbd77e658ee75d4126a1e5bbdc",
+      "checklist.md": "a64fe1881599787b1d53cee3fd90a94b8e3626f700bd398dedfb83dd59c0c7ed",
+      "decision-record.md": "21d4bd04fbecfe12a5b4e59bf3928601c627ee7b1570ae5e63d80f05685401e1",
+      "implementation-summary.md": "775c7080ff0ab0e71afc12f11cee3e2ed5356f7038bfbc927dd00677246f43bc"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

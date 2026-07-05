@@ -1,0 +1,213 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/z_archive/021-deep-skill-evolution/001-deep-ai-council/011-iterative-session-findings-registry",
+  "spec_folder": "system-deep-loop/z_archive/021-deep-skill-evolution/001-deep-ai-council/011-iterative-session-findings-registry",
+  "parent_id": "system-deep-loop/z_archive/021-deep-skill-evolution/001-deep-ai-council",
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "129 004 multi-topic session and findings registry"
+    ],
+    "key_topics": [
+      "129",
+      "004",
+      "multi-topic",
+      "session",
+      "findings",
+      "registry",
+      "implement",
+      "session-level",
+      "topic",
+      "sequencing",
+      "council-findings-registry",
+      "json"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "decision-record.md",
+      "implementation-summary.md",
+      "spec.md",
+      "plan.md",
+      "checklist.md",
+      "tasks.md"
+    ],
+    "entities": [
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Topic Session",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Findings Registry",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Implement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Implement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Implemented",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implement Multi",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Impact",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Quality",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Implement session-level topic sequencing, council-findings-registry.json, and cross-topic priors",
+    "created_at": "2026-05-23T09:30:00Z",
+    "last_save_at": "2026-06-23T03:49:50.765Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:9f03b11b7d854886e94f8383c5251053f8c5f948a8cb6a32aada451fb631bcc6",
+    "source_doc_hashes": {
+      "spec.md": "64a6870ca3d4bc7b030e6eb05eeb84515bb01863d44722bc56c3e45c386b928f",
+      "plan.md": "00749ace8ec17d08fa7e254ef3eb33b13fe6294a3cca3749acbfc0d46dfc26bc",
+      "tasks.md": "e85f232c35c1650ded6ca62f057278bd98db493558329661cd64724aba3025d9",
+      "checklist.md": "1b5c10390f210bad7df878a86bac35e27436c3410c979369d410bbd7657b0ecc",
+      "decision-record.md": "f7fefe0dd4e483e5bf73a532aa1afde4f0b79cb5990f1be64e5a3152bfa9a7cf",
+      "implementation-summary.md": "8ecca2ccd13b9156377359d512fa16cb6a42c31f92a5e2d90c0d63c4963e06c9"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

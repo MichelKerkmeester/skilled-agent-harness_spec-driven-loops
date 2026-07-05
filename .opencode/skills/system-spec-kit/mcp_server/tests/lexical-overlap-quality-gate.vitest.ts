@@ -86,7 +86,8 @@ function seedGoldenDatabase(): void {
       file_path TEXT,
       spec_folder TEXT,
       importance_tier TEXT DEFAULT NULL,
-      is_archived INTEGER DEFAULT 0
+      is_archived INTEGER DEFAULT 0,
+      deleted_at TEXT
     );
 
     CREATE VIRTUAL TABLE memory_fts USING fts5(

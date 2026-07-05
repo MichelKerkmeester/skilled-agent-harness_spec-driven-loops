@@ -1,0 +1,29 @@
+{
+  "specFolder": "system-deep-loop/031-deep-loop-gpt-reliability/007-compiled-contract-compiler",
+  "description": "Design-first structural packet carved from 035 (GPT-reliability fixes) after the phase-003 design pass confirmed the contract compiler is",
+  "keywords": [
+    "design-first",
+    "structural",
+    "packet",
+    "carved",
+    "035",
+    "gpt-reliability",
+    "fixes",
+    "phase-003",
+    "design",
+    "pass",
+    "confirmed",
+    "contract",
+    "compiler"
+  ],
+  "lastUpdated": "2026-07-05T03:41:45.196Z",
+  "specId": "007",
+  "folderSlug": "compiled-contract-compiler",
+  "parentChain": [
+    "system-deep-loop",
+    "031-deep-loop-gpt-reliability"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

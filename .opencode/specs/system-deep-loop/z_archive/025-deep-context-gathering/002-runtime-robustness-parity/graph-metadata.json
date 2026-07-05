@@ -1,0 +1,222 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/z_archive/025-deep-context-gathering/002-runtime-robustness-parity",
+  "spec_folder": "system-deep-loop/z_archive/025-deep-context-gathering/002-runtime-robustness-parity",
+  "parent_id": "system-deep-loop/z_archive/025-deep-context-gathering",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "runtime robustness parity",
+      "deep-context atomic state",
+      "jsonl repair",
+      "post-dispatch validate",
+      "loop lock",
+      "runtime parity plan",
+      "atomic state plan",
+      "loop lock plan",
+      "post-dispatch validate plan",
+      "executor audit guard",
+      "runtime parity tasks",
+      "atomic state tasks"
+    ],
+    "key_topics": [
+      "runtime",
+      "robustness",
+      "parity",
+      "deep-context",
+      "atomic",
+      "state",
+      "jsonl",
+      "repair",
+      "post-dispatch",
+      "validate",
+      "loop",
+      "lock"
+    ],
+    "importance_tier": "high",
+    "status": "complete",
+    "key_files": [
+      "plan.md",
+      "tasks.md",
+      "decision-record.md",
+      "spec.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Authored Level",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Dependencies",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Bring",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Host",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Decision Records",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Parent",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Date",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The phase-001 deep-context loop is host-driven: the host runs `reduce-state.cjs` to merge seat findings and write the findings registry and dashboard, and the workflow YAMLs run prose-only lock and dispatch steps",
+    "created_at": "2026-06-06T21:32:00.000Z",
+    "last_save_at": "2026-06-23T03:49:51.769Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:2bb00d0a2cec68c28cf16ad07a51075bf39d1b76fc52e12dd96a353df3d5585a",
+    "source_doc_hashes": {
+      "spec.md": "3b46af65ec9693041c438f8477825e25be903ab0a47763e2b92bedddc2c10f40",
+      "plan.md": "290bb843ed90787dd8d16ebdff85843e61751f8de416c0486fa5da80fbaf3e69",
+      "tasks.md": "db103ab87296ca139321e7b945a6d8920b98af9a523db9d58cd2bd326df0aefa",
+      "checklist.md": "66df5f7d1e4d99f5ecae19e624d884a2007fc81beb454a3c494ef9865710c29f",
+      "decision-record.md": "06f7128a08dd0b63c38abc8b4d57bf5c15793fd42f72d01b14ec30f4cded250d",
+      "implementation-summary.md": "89097ba2009c1f8dc02c22d8d9c9aafd19aa973affcb490a5e3c9f40630a73b9"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

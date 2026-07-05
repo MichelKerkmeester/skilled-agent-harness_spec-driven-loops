@@ -111,9 +111,11 @@ metric side.
 
 ## Track C - spec-kit data quality benchmark status: PROPOSED, not run
 
-The Track-C data-quality program (005-spec-data-quality, 28 phases) is research-only and scaffolded. Every
-phase carries a Level-2 doc set marked PLANNED and no code has landed, so NOTHING in the program is measured
-yet. The status below records what each proposed measurement would have to clear, not a result. The honest
+Supersession note: the later "005 data-quality flag benchmarks" section records the landed thirteen-switch build and phase-040 measured verdicts that supersede this earlier proposed-only snapshot.
+
+The proposed Track-C data-quality measurement slate is research-only and scaffolded. Every un-built proposed
+measurement phase carries a Level-2 doc set marked PLANNED and no code has landed for that slate, so NOTHING
+in this proposed Track-C slate is measured yet. The status below records what each proposed measurement would have to clear, not a result. The honest
 buildable-now subset is single-digit: A4 (004), the shared engine (026), A1 (001) and A3 (003). The
 retrieval tier and the thin novel items are deferred until a prod-mode read justifies them. No phase was
 deleted, all 28 scaffolds are kept by operator intent.
@@ -178,7 +180,7 @@ force any flag off with `SPECKIT_<FLAG>=false`.
 |------|--------|----------|---------|
 | SPECKIT_DERIVED_ID_PROVENANCE | isDerivedIdProvenanceEnabled | UNQUALIFIED win: content-addressed identity correctness 4/4 (stability 50/50, replay 3/3, dedup discrimination 50/50, 0 collisions) | KEEP-ON |
 | SPECKIT_CONFIDENCE_CALIBRATION | isConfidenceCalibrationEnabled | UNQUALIFIED win: held-out ECE 0.184 to 0.023 across all folds with a shipped isotonic model resolved by default, so the earlier overfit (fit and eval on the same set) no longer applies | KEEP-ON |
-| SPECKIT_RETENTION_FORGETTING_V1 | isRetentionForgettingEnabled | SAFETY / no-harm: spares 386 keep-set rows the OFF path would delete, with dropRecall delta 0. NOT a precision win - the keep/drop labels are circular (derived from the reducer's own thresholds), so it earns the keep as a no-harm guardrail, not a measured precision gain | KEEP-ON |
+| SPECKIT_RETENTION_FORGETTING | isRetentionForgettingEnabled | SAFETY / no-harm: spares 386 keep-set rows the OFF path would delete, with dropRecall delta 0. NOT a precision win - the keep/drop labels are circular (derived from the reducer's own thresholds), so it earns the keep as a no-harm guardrail, not a measured precision gain | KEEP-ON |
 | SPECKIT_WORLD_SUMMARY_PRELUDE | isWorldSummaryPreludeEnabled | GROUNDING aid: in APPEND placement it recovers 11 targets with 0 regressions by construction (it never displaces a baseline row). NOT a recall-quality win - the gain is partly a self-recall plus an append-by-construction artifact, so it earns the keep as a no-displacement grounding aid, not a ranking improvement | KEEP-ON |
 | SPECKIT_TEMPORAL_EDGES | isTemporalEdgesEnabled | PROD-PATH displacement protection: the +0.083 edge-hop recall is an eval-mode artifact that the 3-result token-budget truncation floor cuts entirely (prod edge-hop recall delta 0.000). The keep is justified upstream of truncation. The graph-additive REORDER in `applyGraphAdditiveRecall` protects the prod top-3 from graph-channel displacement. With it OFF, low-signal graph-only candidates evict higher-scored lexical and vector hits from the truncated top-3, measured on 3 of 12 golden queries with 0 regressions (one case rescued a 64.6-scored lexical hit from eviction by roughly 31-scored graph-only candidates). The within-noise graph-channel harm belongs to the separate pre-028 graph flags `useGraph`, `SPECKIT_GRAPH_SIGNALS` and `SPECKIT_DEGREE_BOOST` (broad-corpus -0.039 at p=0.219), a noted follow-up out of 028 scope | KEEP-ON |
 

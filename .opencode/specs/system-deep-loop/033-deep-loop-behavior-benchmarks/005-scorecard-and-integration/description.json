@@ -1,0 +1,33 @@
+{
+  "level": "2",
+  "specFolder": "system-deep-loop/033-deep-loop-behavior-benchmarks/005-scorecard-and-integration",
+  "description": "Close the program: aggregate every scored run from phases 002-004 into one cross-skill scorecard (5 modes x 3 executors), analyze per-checkpoint",
+  "keywords": [
+    "close",
+    "program",
+    "aggregate",
+    "every",
+    "scored",
+    "run",
+    "phases",
+    "002-004",
+    "one",
+    "cross-skill",
+    "scorecard",
+    "modes",
+    "executors",
+    "analyze",
+    "per-checkpoint"
+  ],
+  "lastUpdated": "2026-07-02T21:33:36.047Z",
+  "specId": "005",
+  "folderSlug": "scorecard-and-integration",
+  "parentChain": [
+    "system-deep-loop",
+    "033-deep-loop-behavior-benchmarks"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "02-07-26_22-33__packet-033-complete-cross-skill-scorecard.md"
+  ]
+}

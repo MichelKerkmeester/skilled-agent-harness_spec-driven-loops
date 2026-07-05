@@ -1,0 +1,166 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/029-deep-loop-workflows",
+  "spec_folder": "system-deep-loop/029-deep-loop-workflows",
+  "parent_id": null,
+  "children_ids": [
+    "system-deep-loop/029-deep-loop-workflows/001-parity-baseline-and-runtime-ownership-adr",
+    "system-deep-loop/029-deep-loop-workflows/002-runtime-backend-promotions",
+    "system-deep-loop/029-deep-loop-workflows/003-merged-hub-and-mode-packets",
+    "system-deep-loop/029-deep-loop-workflows/004-command-surface-repoint",
+    "system-deep-loop/029-deep-loop-workflows/005-agent-mirror-repoint",
+    "system-deep-loop/029-deep-loop-workflows/006-advisor-graph-mode-routing",
+    "system-deep-loop/029-deep-loop-workflows/007-governance-consolidation",
+    "system-deep-loop/029-deep-loop-workflows/008-framework-docs-sweep",
+    "system-deep-loop/029-deep-loop-workflows/009-old-skill-deletion-and-validation",
+    "system-deep-loop/029-deep-loop-workflows/010-deep-loop-skill-system-review"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "deep-loop-workflows skill",
+      "merge deep loop skills",
+      "consolidate deep-research deep-review deep-context deep-improvement deep-ai-council"
+    ],
+    "key_topics": [
+      "deep-loop-workflows",
+      "skill",
+      "merge",
+      "deep",
+      "loop",
+      "skills",
+      "consolidate",
+      "deep-research",
+      "deep-review",
+      "deep-context",
+      "deep-improvement",
+      "deep-ai-council"
+    ],
+    "importance_tier": "important",
+    "status": "planned",
+    "key_files": [
+      "context/context-report.md",
+      "research/research.md",
+      "research/iterations/iteration-001.md",
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "context-report.md",
+        "kind": "doc",
+        "path": "context/context-report.md",
+        "source": "derived"
+      },
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "iteration-001.md",
+        "kind": "doc",
+        "path": "research/iterations/iteration-001.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Parent",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Collapse",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Documentation Map",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Loop Workflow Skills",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "Executive Recommendation Collapse",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "Target Architecture",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "Decision Resolutions",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "Mode Line",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "External Lane",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The deep-loop capability is split across five sibling skills — `deep-ai-council`, `deep-context`, `deep-improvement`, `deep-research`, `deep-review` — that already share one backend (`deep-loop-runtime`, the MCP-free runtime created by the FULLISOLATENOMCP consolidation)",
+    "created_at": "2026-06-14T20:16:09.672Z",
+    "last_save_at": "2026-07-02T05:31:05.000Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "research/research.md"
+    ],
+    "source_fingerprint": "sha256:1f9884e5a3e9b786dca9014e0148d1aa4d6e75eaa5e7311409eaa0829023480d",
+    "source_doc_hashes": {
+      "spec.md": "f6164a757a73bbe897d62daceef1e053c5b1a8cff99acadb9022216c2a960bac",
+      "research/research.md": "356e9b7b968c43474435fdc95c7127b0c588e27fc24817b3b556f658b35ac225"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

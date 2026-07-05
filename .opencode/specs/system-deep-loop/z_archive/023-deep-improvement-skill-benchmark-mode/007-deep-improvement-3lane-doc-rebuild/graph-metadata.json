@@ -1,0 +1,11 @@
+Packet: system-deep-loop/z_archive/023-deep-improvement-skill-benchmark-mode/007-deep-improvement-3lane-doc-rebuild
+Spec Folder: system-deep-loop/z_archive/023-deep-improvement-skill-benchmark-mode/007-deep-improvement-3lane-doc-rebuild
+Status: in_progress
+Importance Tier: important
+Summary: 007 — Deep-Improvement 3-Lane Doc Rebuild
+Parent: system-deep-loop/z_archive/023-deep-improvement-skill-benchmark-mode
+Migrated: true
+Migration Source: legacy
+Key Topics: 007, deep-improvement, 3-lane, doc, rebuild, re-architect, lanes, handover, packet, 122, child
+Key Files: handover.md, spec.md, .opencode/skills/sk-doc/references/feature_catalog_creation.md
+Source Docs: spec.md, handover.md

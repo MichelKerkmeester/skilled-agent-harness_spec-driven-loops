@@ -367,7 +367,7 @@ workflow:
     activities:
       - Run validate_document.py on the hub SKILL.md
       - "Run the canonical structural gate and REQUIRE exit 0: node .opencode/commands/doctor/scripts/parent-skill-check.cjs [skill_root] — the same gate /doctor parent-skill runs, owning hub identity, the two-axis discriminator, toolSurface, hub-router validity, description.json, changelog shape, and registry/directory reverse consistency"
-      - "For a net-new hub (create), also run PARENT_HUB_CHECK_STRICT=1 node .opencode/commands/doctor/scripts/parent-skill-check.cjs [skill_root] and surface any checks 5-9 findings; a fresh hub should carry no canon gaps (strict findings are advisory during the migration window, blocking once the canon promotes them)"
+      - "For a net-new hub (create), the default gate now blocks on checks 5-9 (canon-promoted): node .opencode/commands/doctor/scripts/parent-skill-check.cjs [skill_root] must exit 0, so a fresh hub must carry no canon gaps in hub-router, description.json, changelog shape, playbook, or benchmark baseline"
       - "Assert the hub graph-metadata.json has skill_id == hub folder name AND family in {cli, mcp, sk-code, deep-loop, sk-util, system}"
       - Check mode-registry.json is valid JSON and has one advisorRouting block per mode
       - "Per mode, assert the two-axis discriminator: workflowMode is a non-empty string; packetKind is \"workflow\" or \"surface\"; backendKind is present; runtimeLoopType appears only for runtime-loop workflow modes; toolSurface and grandfatheredFolderMismatch are present; surface packets are read-only evidence-base"

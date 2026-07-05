@@ -1,0 +1,23 @@
+{
+  "level": "1",
+  "specFolder": "system-deep-loop/032-goal-opencode-plugin/004-lifecycle-tracking",
+  "description": "M1 persisted and injected goals, but it did not observe session lifecycle events",
+  "keywords": [
+    "persisted",
+    "injected",
+    "goals",
+    "observe",
+    "session",
+    "lifecycle",
+    "events"
+  ],
+  "lastUpdated": "2026-07-05T12:13:05.488Z",
+  "specId": "004",
+  "folderSlug": "lifecycle-tracking",
+  "parentChain": [
+    "system-deep-loop",
+    "032-goal-opencode-plugin"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

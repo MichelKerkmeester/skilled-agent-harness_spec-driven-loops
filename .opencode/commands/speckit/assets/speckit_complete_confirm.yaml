@@ -350,7 +350,7 @@ agent_availability:
     available_at_step: 10
     condition: "Activate when any task in tasks.md targets a path under .opencode/skills/, .opencode/agents/, .opencode/commands/, or <spec-folder> sk-code ships authoring checklists (skill_authoring.md, agent_authoring.md, command_authoring.md, mcp_server_authoring.md); spec-folder authoring now lives in system-spec-kit (references/workflows/spec_folder_authoring_checklist.md + spec_folder_write_recipe.md)."
     resources:
-      - "sk-code/opencode/assets/checklists/{matching_target}_authoring.md"
+      - "sk-code/code-opencode/assets/checklists/{matching_target}_authoring.md"
       - "system-spec-kit/references/workflows/spec_folder_write_recipe.md (when target is under .opencode/specs/)"
     precedence: "Authoring-time guidance is consulted BEFORE writes; review-time overlay (sk-code review mode: findings-first baseline + router-selected surface evidence) runs at Step 11 and remains unchanged."
     not_for: "Webflow stack writes (separate path), motion_dev work (cross-stack), or non-.opencode/ targets."

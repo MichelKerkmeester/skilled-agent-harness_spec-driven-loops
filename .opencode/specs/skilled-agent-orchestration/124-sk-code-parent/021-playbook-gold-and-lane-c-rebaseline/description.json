@@ -1,0 +1,37 @@
+{
+  "level": "2",
+  "specFolder": "skilled-agent-orchestration/124-sk-code-parent/021-playbook-gold-and-lane-c-rebaseline",
+  "description": "Translate the sk-code playbook gold from the pre-013 references/{motion_dev,webflow,opencode}/ layout to the code-<surface>/ packet layout and regener",
+  "keywords": [
+    "translate",
+    "sk-code",
+    "playbook",
+    "gold",
+    "pre-013",
+    "references",
+    "webflow",
+    "opencode",
+    "layout",
+    "code",
+    "surface",
+    "packet",
+    "regenerate",
+    "deterministic",
+    "lane-c",
+    "router-final",
+    "baseline",
+    "restoring",
+    "honest",
+    "benchmark",
+    "verdict"
+  ],
+  "lastUpdated": "2026-07-05T19:55:28.743Z",
+  "specId": "021",
+  "folderSlug": "playbook-gold-and-lane-c-rebaseline",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "124-sk-code-parent"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

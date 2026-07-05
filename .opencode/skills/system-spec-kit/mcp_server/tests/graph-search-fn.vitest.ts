@@ -338,3 +338,103 @@ describe('createUnifiedGraphSearchFn', () => {
     }
   });
 });
+
+// Verbose natural-language queries must still reach the causal-edge channel.
+// Strict FTS5 matching joins quoted tokens with spaces (implicit AND), so a
+// single absent token zeroes the whole graph channel; the channel needs an
+// OR retry over informative tokens to tolerate verbose queries.
+describe('FTS5 verbose-query tolerance', () => {
+  function createFtsBackedGraphDb(): InstanceType<typeof Database> {
+    const db = new Database(':memory:');
+    db.exec(`
+      CREATE TABLE memory_index (
+        id INTEGER PRIMARY KEY,
+        spec_folder TEXT NOT NULL DEFAULT '',
+        file_path TEXT NOT NULL DEFAULT '',
+        title TEXT,
+        trigger_phrases TEXT,
+        content_text TEXT,
+        created_at TEXT NOT NULL DEFAULT (datetime('now')),
+        importance_tier TEXT DEFAULT 'normal'
+      );
+    `);
+    db.exec(`
+      CREATE VIRTUAL TABLE memory_fts USING fts5(
+        title, trigger_phrases, file_path, content_text,
+        content='memory_index', content_rowid='id'
+      );
+    `);
+    db.exec(`
+      CREATE TABLE causal_edges (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        source_id TEXT NOT NULL,
+        target_id TEXT NOT NULL,
+        relation TEXT NOT NULL,
+        strength REAL DEFAULT 1.0,
+        created_by TEXT DEFAULT 'manual'
+      );
+    `);
+
+    const insert = db.prepare(`
+      INSERT INTO memory_index (id, spec_folder, file_path, title, trigger_phrases, content_text)
+      VALUES (?, 'graph-fts-test', ?, ?, ?, ?)
+    `);
+    insert.run(
+      1, '/mem/1.md', 'Hybrid ranking pipeline', 'hybrid ranking',
+      'fusion stage combines vector and lexical channels to boost relevant results'
+    );
+    insert.run(
+      2, '/mem/2.md', 'Session lifecycle notes', 'session lifecycle',
+      'session start and end bookkeeping'
+    );
+    db.exec(`
+      INSERT INTO memory_fts(rowid, title, trigger_phrases, file_path, content_text)
+      SELECT id, title, trigger_phrases, file_path, content_text FROM memory_index;
+    `);
+
+    db.prepare(`
+      INSERT INTO causal_edges (source_id, target_id, relation, strength)
+      VALUES ('1', '2', 'caused', 0.9)
+    `).run();
+
+    return db;
+  }
+
+  it('returns graph candidates for a verbose multi-token query', () => {
+    const db = createFtsBackedGraphDb();
+    try {
+      const searchFn = createUnifiedGraphSearchFn(db as unknown as import('better-sqlite3').Database);
+      const results = searchFn(
+        'how does the hybrid ranking pipeline decide which results to boost',
+        { limit: 10 }
+      );
+
+      expect(results.length).toBeGreaterThan(0);
+      expect(results.some((row) => row['id'] === 1)).toBe(true);
+    } finally {
+      db.close();
+    }
+  });
+
+  it('keeps strict matching results when every token is present', () => {
+    const db = createFtsBackedGraphDb();
+    try {
+      const searchFn = createUnifiedGraphSearchFn(db as unknown as import('better-sqlite3').Database);
+      const results = searchFn('hybrid ranking pipeline', { limit: 10 });
+
+      expect(results.some((row) => row['id'] === 1)).toBe(true);
+    } finally {
+      db.close();
+    }
+  });
+
+  it('returns no candidates when no token matches the corpus', () => {
+    const db = createFtsBackedGraphDb();
+    try {
+      const searchFn = createUnifiedGraphSearchFn(db as unknown as import('better-sqlite3').Database);
+      expect(searchFn('zebra unicorn dinosaur', { limit: 10 })).toEqual([]);
+    } finally {
+      db.close();
+    }
+  });
+});

@@ -7,16 +7,16 @@ trigger_phrases:
   - "parent hub router decision"
 importance_tier: "high"
 contextType: "implementation"
-status: "Draft"
+status: "Complete"
 parent: "skilled-agent-orchestration/124-sk-code-parent"
 phase: "017"
 _memory:
   continuity:
     packet_pointer: "skilled-agent-orchestration/124-sk-code-parent/017-canon-hardening"
     last_updated_at: "2026-07-05T00:00:00Z"
-    last_updated_by: "gpt-5.5"
-    recent_action: "Phase planned and documented"
-    next_safe_action: "Start T001 canon source inventory"
+    last_updated_by: "claude-opus"
+    recent_action: "Phase executed; bundleRules canon reconciled, STRICT 0/0"
+    next_safe_action: "124 rollup"
 ---
 # Decision Record: Phase 17 bundleRules canonical shape
 
@@ -32,7 +32,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Status** | Proposed for execution |
+| **Status** | Accepted |
 | **Date** | 2026-07-05 |
 | **Deciders** | Phase 017 implementer, operator review |
 

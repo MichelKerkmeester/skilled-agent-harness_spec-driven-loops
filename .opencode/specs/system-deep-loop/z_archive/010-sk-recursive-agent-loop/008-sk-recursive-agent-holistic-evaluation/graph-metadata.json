@@ -1,0 +1,219 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/z_archive/010-sk-recursive-agent-loop/008-sk-recursive-agent-holistic-evaluation",
+  "spec_folder": "system-deep-loop/z_archive/010-sk-recursive-agent-loop/008-sk-recursive-agent-holistic-evaluation",
+  "parent_id": "system-deep-loop/z_archive/010-sk-recursive-agent-loop",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "spec",
+      "holistic",
+      "008",
+      "recursive",
+      "plan",
+      "phase",
+      "tasks",
+      "checklist",
+      "agent",
+      "orchestration",
+      "041",
+      "implementation summary"
+    ],
+    "key_topics": [
+      "spec",
+      "holistic",
+      "008",
+      "recursive",
+      "plan",
+      "phase",
+      "tasks",
+      "checklist",
+      "agent",
+      "orchestration",
+      "041",
+      "implementation"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Holistic Agent Evaluation",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Aware Improvement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Solution Transform",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "What It Measures",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Structural Integrity",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Approach Build",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Execution Order",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Integration Scanner",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Dynamic Profile Generator",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Refactored Scorer",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Foundation Scripts",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Script Refactoring",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Documentation Updates",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Asset Updates",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Manual Testing Playbook",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Hard Blockers",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Quality",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Dimensional Progress",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The sk-improve-agent skill evaluates agents by checking keyword presence in markdown (~15-20% of what a true agent improvement system needs). The scorer tests \"does the file men...",
+    "created_at": "2026-04-13T04:55:07.905Z",
+    "last_save_at": "2026-06-23T03:49:49.189Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:855ec6f9637eb6b235b15a2f6a8a901d03c6260725eb27a9504cb54de3524d8c",
+    "source_doc_hashes": {
+      "spec.md": "baf32ca2f586422b8a50493675273a9c65ac7c19ab8bb89f120b819c138bb66d",
+      "plan.md": "943a80e686251f43ef9331a1b085740fad7ceb55be61dbd132fd868115174f4b",
+      "tasks.md": "952426aa8df9e95e2c6e3d6b7244defa9cc6f88f907bd0fa3b9751a5d6038b34",
+      "checklist.md": "8085e12dd8294a8f09b01d4863a922934c82b7fb69a392e5c0d2633cb674e50f",
+      "implementation-summary.md": "7d3143db12fe2a810d754d508b66ea0dc1d000effbc5112fe55d524e45cc25e8"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

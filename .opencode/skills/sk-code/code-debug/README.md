@@ -45,7 +45,7 @@ Bug fixing fails when it starts with guesses. A failing assertion, console error
 
 **Step 1: Capture the symptom.** Record the command, exit code, stack trace, console output, viewport, or user interaction that demonstrates the failure.
 
-**Step 2: Load the checklist.** Use [`assets/universal-debugging_checklist.md`](./assets/universal-debugging_checklist.md) for every non-trivial debugging session. For Webflow/browser failures, add [`assets/webflow-debugging_checklist.md`](../webflow/assets/webflow-debugging_checklist.md) and [`references/webflow-debugging/debugging_workflows.md`](../webflow/references/debugging/debugging_workflows.md).
+**Step 2: Load the checklist.** Use [`assets/universal-debugging_checklist.md`](./assets/universal-debugging_checklist.md) for every non-trivial debugging session. For Webflow/browser failures, add [`assets/webflow-debugging_checklist.md`](../code-webflow/assets/webflow-debugging_checklist.md) and [`references/webflow-debugging/debugging_workflows.md`](../code-webflow/references/debugging/debugging_workflows.md).
 
 **Step 3: Fix one cause.** State the evidence-tied root cause, edit only the scoped file, and rerun the original reproduction step.
 
@@ -102,8 +102,8 @@ Use it when a concrete failure exists and the cause is not yet proven. Skip it f
 |---|---|
 | [`SKILL.md`](./SKILL.md) | Runtime contract for the debug mode |
 | [`assets/universal-debugging_checklist.md`](./assets/universal-debugging_checklist.md) | Surface-agnostic debugging workflow |
-| [`assets/webflow-debugging_checklist.md`](../webflow/assets/webflow-debugging_checklist.md) | Webflow/browser debugging checklist |
-| [`references/webflow-debugging/debugging_workflows.md`](../webflow/references/debugging/debugging_workflows.md) | Browser and frontend debugging workflows |
-| [`references/webflow-debugging/error_recovery.md`](../webflow/references/debugging/error_recovery.md) | Webflow/frontend recovery patterns |
+| [`assets/webflow-debugging_checklist.md`](../code-webflow/assets/webflow-debugging_checklist.md) | Webflow/browser debugging checklist |
+| [`references/webflow-debugging/debugging_workflows.md`](../code-webflow/references/debugging/debugging_workflows.md) | Browser and frontend debugging workflows |
+| [`references/webflow-debugging/error_recovery.md`](../code-webflow/references/debugging/error_recovery.md) | Webflow/frontend recovery patterns |
 | [`../shared/references/universal/error_recovery.md`](../shared/references/universal/error_recovery.md) | Shared error recovery discipline |
 | [`../shared/references/phase_detection.md`](../shared/references/phase_detection.md) | Lifecycle transitions into and out of debugging |

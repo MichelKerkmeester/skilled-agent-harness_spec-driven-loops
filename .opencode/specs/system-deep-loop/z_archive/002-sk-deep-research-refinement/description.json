@@ -1,0 +1,30 @@
+{
+  "specFolder": "system-deep-loop/z_archive/002-sk-deep-research-refinement",
+  "description": "The sk-deep-research system (v1) is functional but has 18 documented improvement proposals (from spec 023) that need rigorous validation, prioritizati",
+  "keywords": [
+    "sk-deep-research",
+    "system",
+    "functional",
+    "documented",
+    "improvement",
+    "proposals",
+    "spec",
+    "023",
+    "need",
+    "rigorous",
+    "validation",
+    "prioritizati"
+  ],
+  "lastUpdated": "2026-06-23T03:49:49.020Z",
+  "specId": "002",
+  "folderSlug": "sk-deep-research-refinement",
+  "parentChain": [
+    "system-deep-loop",
+    "z_archive"
+  ],
+  "memorySequence": 2,
+  "memoryNameHistory": [
+    "18-03-26_20-18__speckit-plan-setup-no-feature-description-or-mode.md",
+    "18-03-26_21-24__the-current-state-of-the-repository.md"
+  ]
+}

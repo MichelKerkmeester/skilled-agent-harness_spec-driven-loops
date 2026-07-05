@@ -1,0 +1,236 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/035-deprecate-deep-context-integrate-capabilities/001-research-baseline-and-inventory",
+  "spec_folder": "system-deep-loop/035-deprecate-deep-context-integrate-capabilities/001-research-baseline-and-inventory",
+  "parent_id": "system-deep-loop/035-deprecate-deep-context-integrate-capabilities",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "deep-context research baseline",
+      "deep-context active inventory",
+      "context deprecation evidence",
+      "deep-context research baseline plan",
+      "deep-context inventory plan",
+      "context deprecation baseline",
+      "deep-context inventory tasks",
+      "research baseline tasks",
+      "deep-context baseline checklist",
+      "research inventory verification",
+      "deep-context evidence decision",
+      "research baseline decision"
+    ],
+    "key_topics": [
+      "deep-context",
+      "research",
+      "baseline",
+      "active",
+      "inventory",
+      "context",
+      "deprecation",
+      "evidence",
+      "plan",
+      "tasks",
+      "checklist",
+      "verification"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      "research/research.md",
+      "research/deep-research-state.jsonl",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      "research/iterations/iteration-001.md",
+      "research/iterations/iteration-002.md",
+      "research/iterations/iteration-003.md",
+      "research/iterations/iteration-004.md",
+      "research/iterations/iteration-005.md",
+      "research/iterations/iteration-006.md",
+      "research/iterations/iteration-007.md",
+      "research/iterations/iteration-008.md",
+      "research/iterations/iteration-009.md",
+      "research/iterations/iteration-010.md"
+    ],
+    "entities": [
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-state.jsonl",
+        "kind": "file",
+        "path": "research/deep-research-state.jsonl",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "iteration-001.md",
+        "kind": "doc",
+        "path": "research/iterations/iteration-001.md",
+        "source": "derived"
+      },
+      {
+        "name": "iteration-002.md",
+        "kind": "doc",
+        "path": "research/iterations/iteration-002.md",
+        "source": "derived"
+      },
+      {
+        "name": "iteration-003.md",
+        "kind": "doc",
+        "path": "research/iterations/iteration-003.md",
+        "source": "derived"
+      },
+      {
+        "name": "iteration-004.md",
+        "kind": "doc",
+        "path": "research/iterations/iteration-004.md",
+        "source": "derived"
+      },
+      {
+        "name": "iteration-005.md",
+        "kind": "doc",
+        "path": "research/iterations/iteration-005.md",
+        "source": "derived"
+      },
+      {
+        "name": "iteration-006.md",
+        "kind": "doc",
+        "path": "research/iterations/iteration-006.md",
+        "source": "derived"
+      },
+      {
+        "name": "iteration-007.md",
+        "kind": "doc",
+        "path": "research/iterations/iteration-007.md",
+        "source": "derived"
+      },
+      {
+        "name": "iteration-008.md",
+        "kind": "doc",
+        "path": "research/iterations/iteration-008.md",
+        "source": "derived"
+      },
+      {
+        "name": "iteration-009.md",
+        "kind": "doc",
+        "path": "research/iterations/iteration-009.md",
+        "source": "derived"
+      },
+      {
+        "name": "iteration-010.md",
+        "kind": "doc",
+        "path": "research/iterations/iteration-010.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Research Baseline And Inventory",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Dependencies",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Standalone `deep-context` has many active and historical references",
+    "created_at": "2026-07-04T14:32:34Z",
+    "last_save_at": "2026-07-04T17:51:06.794Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      "research/research.md"
+    ],
+    "source_fingerprint": "sha256:5981213b1c608f0047ddc9e835f6bc27107c4889a08268bad591963f9af1098b",
+    "source_doc_hashes": {
+      "spec.md": "9972386cf5b70a2e797c678a62ad368ec564b365203c33e898dcedfb6a736c3d",
+      "plan.md": "2e522acde4037dbe7512e769fce7464c49f1806cb29d25011c19694c7cc8f4f7",
+      "tasks.md": "75bf27060d28d64a9c87314f6d2de67aed49712df0a8f09cedc1156ee2040060",
+      "checklist.md": "4d8ccbd7049714f629806a568e59075fb5f137489ff16b54ea51519e10c6a142",
+      "decision-record.md": "1a58d34ea4d4037ac014308cf075acb0b8a1c1d3fcf868a8b188f07a61a3cf40",
+      "implementation-summary.md": "41a2d8e8b2147b3295c614532307f220958beccbf50255d08c518ada2fbef2f6",
+      "research/research.md": "3977ccc8a84bad3efc9990483e0ca2d84f4eb24c0091ee9b91f953c9eccec488"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

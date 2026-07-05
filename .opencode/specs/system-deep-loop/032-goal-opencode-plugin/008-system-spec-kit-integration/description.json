@@ -1,0 +1,28 @@
+{
+  "level": "1",
+  "specFolder": "system-deep-loop/032-goal-opencode-plugin/008-system-spec-kit-integration",
+  "description": "The `/goal` plugin existed as OpenCode plugin code and a dedicated implementation packet, but `system-spec-kit` did not yet route, catalog, or explain",
+  "keywords": [
+    "goal",
+    "plugin",
+    "existed",
+    "opencode",
+    "code",
+    "dedicated",
+    "implementation",
+    "packet",
+    "system-spec-kit",
+    "route",
+    "catalog",
+    "explain"
+  ],
+  "lastUpdated": "2026-07-05T12:13:05.505Z",
+  "specId": "008",
+  "folderSlug": "system-spec-kit-integration",
+  "parentChain": [
+    "system-deep-loop",
+    "032-goal-opencode-plugin"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

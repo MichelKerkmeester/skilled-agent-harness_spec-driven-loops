@@ -2,7 +2,7 @@
 title: "01 -- Run stress cycle"
 description: "This scenario guides an operator through a full stress test cycle: freeze corpus, score packet x dimension cells, author findings, emit a rubric sidecar, compare deltas, capture telemetry, validate, and update the parent phase map."
 audited_post_018: true
-version: 3.6.0.13
+version: 3.7.1.0
 ---
 
 # 01 -- Run stress cycle
@@ -10,6 +10,8 @@ version: 3.6.0.13
 ## 1. OVERVIEW
 
 This scenario validates a target release, remediation set, or subsystem change with a structured stress test cycle. The operator freezes a representative corpus, scores each packet x dimension cell on a 0-2 rubric, writes narrative findings, emits a machine-readable sidecar, compares against the prior version, and records any telemetry samples needed to reproduce the verdict.
+
+This manual cycle is separate from the automated MCP server stress harness. Use `mcp_server/stress_test/` when the request needs opt-in Vitest stress evidence for durability, matrix, memory, search-quality, session, or substrate behavior.
 
 Preconditions:
 
@@ -38,6 +40,8 @@ Preconditions:
 Use a fixed corpus before dispatch. For search/RAG domains, `.opencode/skills/system-spec-kit/mcp_server/stress_test/search-quality/corpus.ts` is the canonical example: each fixture has an ID, query, expected relevant IDs, expected channels, citation expectations, refusal expectations, and notes.
 
 For non-search domains, freeze representative scenarios as JSON or markdown fixtures. Each scenario should include a stable ID, the user prompt or stimulus, expected outcome, evidence path, and any domain-specific constraints.
+
+If the work maps to the automated harness, use the existing domain fixtures and tests instead of inventing a parallel manual corpus. The current automated domains are `durability/`, `matrix/`, `memory/`, `search-quality/`, `session/`, and `substrate/` under `.opencode/skills/system-spec-kit/mcp_server/stress_test/`.
 
 ### Step 2: Score Each Packet x Dimension
 
@@ -125,6 +129,20 @@ bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh <path> --strict
 
 Use the packet that owns the cycle artifacts as `<path>`. If the validator reports warnings, document whether they are pre-existing or caused by the cycle docs and fix in scope before claiming completion.
 
+### Step 9a: Run Automated Stress Slices When Applicable
+
+Run automated stress slices from `.opencode/skills/system-spec-kit/mcp_server` when the changed subsystem has a matching domain:
+
+```bash
+npm run stress
+npm run stress:harness
+npm run stress:matrix
+npm run stress:substrate
+npm run stress:durability
+```
+
+Use `npm run stress` for the full opt-in harness. Use the domain scripts for targeted evidence: `stress:harness` covers `stress_test/search-quality/`, `stress:matrix` covers `stress_test/matrix/`, `stress:substrate` covers `stress_test/substrate/`, and `stress:durability` covers `stress_test/durability/`. `memory/` and `session/` suites run through the full stress command or direct Vitest file selection.
+
 ### Step 10: Update Parent Packet's PHASE MAP
 
 Add the new cycle to the parent packet's PHASE MAP. Keep the update minimal: folder name, focus, and status. Do not narrate migration history in phase-parent specs.
@@ -132,6 +150,7 @@ Add the new cycle to the parent packet's PHASE MAP. Keep the update minimal: fol
 ## 4. VERIFICATION
 
 - Strict validator exits 0 for the cycle packet.
+- Applicable automated stress command exits with Vitest success or a clear benchmark failure.
 - `findings.md` exists and contains per-packet verdicts plus evidence.
 - `findings-rubric.json` parses as JSON and includes all scored cells.
 - Aggregate percent and rounded percent are calculated from the sidecar values.
@@ -145,6 +164,8 @@ Success criteria: a future investigator can read `findings.md`, `findings-rubric
 
 - Root playbook: [manual_testing_playbook.md](../manual_testing_playbook.md)
 - Feature catalog: [14--stress-testing/category-overview.md](../../feature_catalog/14--stress-testing/category-overview.md)
+- Automated harness: [mcp_server/stress_test/README.md](../../mcp_server/stress_test/README.md)
+- Stress npm scripts: [mcp_server/package.json](../../mcp_server/package.json)
 - Rubric template: [findings-rubric.template.json](../../templates/stress_test/findings-rubric.template.json)
 - Rubric schema: [findings-rubric.schema.md](../../templates/stress_test/findings-rubric.schema.md)
 - Findings template: [findings.template.md](../../templates/stress_test/findings.template.md)

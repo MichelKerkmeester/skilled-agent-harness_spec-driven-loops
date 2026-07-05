@@ -1,0 +1,219 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/030-deep-loop-improved/009-research-backlog-remediation/011-synthesis-integrity-and-orchestrator-watchdog",
+  "spec_folder": "system-deep-loop/030-deep-loop-improved/009-research-backlog-remediation/011-synthesis-integrity-and-orchestrator-watchdog",
+  "parent_id": "system-deep-loop/030-deep-loop-improved/009-research-backlog-remediation",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "synthesis completion invariant",
+      "fanout orchestrator hang watchdog",
+      "lagCeilingMs stall detector",
+      "reconstructResearchRegistryFromState",
+      "synthesis integrity orchestrator watchdog plan",
+      "synthesis integrity orchestrator watchdog tasks",
+      "synthesis integrity orchestrator watchdog implementation summary"
+    ],
+    "key_topics": [
+      "synthesis",
+      "completion",
+      "invariant",
+      "fanout",
+      "orchestrator",
+      "hang",
+      "watchdog",
+      "lagceilingms",
+      "stall",
+      "detector",
+      "reconstructresearchregistryfromstate",
+      "integrity"
+    ],
+    "importance_tier": "high",
+    "status": "complete",
+    "key_files": [
+      ".opencode/skills/deep-loop-runtime/scripts/fanout-run.cjs",
+      ".opencode/skills/deep-loop-runtime/scripts/fanout-merge.cjs",
+      ".opencode/skills/deep-loop-runtime/scripts/fanout-pool.cjs",
+      ".opencode/commands/deep/assets/deep_research_auto.yaml",
+      ".opencode/commands/deep/assets/deep_review_auto.yaml",
+      ".opencode/skills/deep-loop-runtime/tests/unit/run-now-yaml-control.vitest.ts",
+      ".opencode/skills/deep-loop-runtime/tests/unit/fanout-pool.vitest.ts",
+      ".opencode/skills/deep-loop-runtime/tests/unit/fanout-merge.vitest.ts",
+      "implementation-summary.md",
+      "spec.md",
+      "plan.md",
+      "tasks.md"
+    ],
+    "entities": [
+      {
+        "name": "fanout-run.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/deep-loop-runtime/scripts/fanout-run.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "fanout-merge.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/deep-loop-runtime/scripts/fanout-merge.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "fanout-pool.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/deep-loop-runtime/scripts/fanout-pool.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "deep_research_auto.yaml",
+        "kind": "config",
+        "path": ".opencode/commands/deep/assets/deep_research_auto.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "deep_review_auto.yaml",
+        "kind": "config",
+        "path": ".opencode/commands/deep/assets/deep_review_auto.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "run-now-yaml-control.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/deep-loop-runtime/tests/unit/run-now-yaml-control.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "fanout-pool.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/deep-loop-runtime/tests/unit/fanout-pool.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "fanout-merge.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/deep-loop-runtime/tests/unit/fanout-merge.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Synthesis Integrity",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Orchestrator Watchdog",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Generation",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context Three",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "no",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. SUMMARY",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria All",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Generation-2 forced-depth research (35 iterations/lineage) against this exact packet directly reproduced two critical bugs in the deep-research/fan-out runtime itself, discovered only because the orchestrating session cross-checked live process state rather than trusting self-reported completion:",
+    "created_at": "2026-07-01T09:14:13.890Z",
+    "last_save_at": "2026-07-04T18:02:27.517Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:1276daf1dbc40ffee9e722c76ae2c9991be6aa9b4d4a0a3369cd17b2db3fac25",
+    "source_doc_hashes": {
+      "spec.md": "79f9f47a2abe97358a1d055d29d2f5952ae7df6a157921cafcd9a53c71b3dfe8",
+      "plan.md": "e58edb9e3c26d3e38b1c85b2f0f79b77bc789580b173239132f708f978fd90f4",
+      "tasks.md": "392b30681a9479b0f6b8999c3666cf4073cfd3c31f547e147fd601d60e0873dd",
+      "implementation-summary.md": "511027557f4ee9e6ecf541a22db8bb9f3cbdf444f9b6e7d8809d67d6c3f2ff36"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

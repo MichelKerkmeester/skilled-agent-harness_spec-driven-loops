@@ -1,0 +1,24 @@
+{
+  "specFolder": "system-deep-loop/z_archive/024-deep-loop-parallel-fanout/001-schema-config-plumbing",
+  "description": "Add the opt-in multi-executor config representation without changing any behavior",
+  "keywords": [
+    "add",
+    "opt-in",
+    "multi-executor",
+    "config",
+    "representation",
+    "without",
+    "changing",
+    "behavior"
+  ],
+  "lastUpdated": "2026-06-23T03:49:51.378Z",
+  "specId": "001",
+  "folderSlug": "schema-config-plumbing",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "z_archive",
+    "123-deep-loop-parallel-fanout"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

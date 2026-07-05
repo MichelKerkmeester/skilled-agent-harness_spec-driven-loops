@@ -1,0 +1,117 @@
+{
+  "topic": "Review: Audit shipped /goal OpenCode plugin implementation in packet system-deep-loop/032-goal-opencode-plugin (phases 001-008 only; phase 009 excluded)",
+  "sessionId": "2026-07-01T05:41:53Z",
+  "parentSessionId": null,
+  "lineageMode": "new",
+  "generation": 1,
+  "continuedFromRun": null,
+  "migrationWindowEndsAt": "",
+  "maxIterations": 15,
+  "convergenceThreshold": 0.1,
+  "antiConvergence": {
+    "minIterations": 2,
+    "convergenceMode": "default",
+    "stopPolicy": "fail-closed"
+  },
+  "stuckThreshold": 2,
+  "maxDurationMinutes": 120,
+  "maxToolCallsPerIteration": 12,
+  "maxMinutesPerIteration": 10,
+  "progressiveSynthesis": false,
+  "specFolder": ".opencode/specs/system-deep-loop/032-goal-opencode-plugin",
+  "createdAt": "2026-07-01T05:41:53Z",
+  "status": "complete",
+  "releaseReadinessState": "in-progress",
+  "executionMode": "auto",
+  "executor": {
+    "kind": "cli-opencode",
+    "model": "openai/gpt-5.5-fast",
+    "reasoningEffort": "high",
+    "serviceTier": null,
+    "sandboxMode": null,
+    "timeoutSeconds": 900
+  },
+  "mode": "review",
+  "reviewTarget": "Audit the shipped /goal OpenCode plugin implementation in packet system-deep-loop/032-goal-opencode-plugin (phases 001-state-store through 008-system-spec-kit-integration only; EXCLUDE phase 009-speckit-command-goal-prompt-offer, which is actively owned by a separate in-flight OpenCode session). Review dimensions: correctness (does .opencode/plugins/mk-goal.js match its own phase spec/plan claims), security (prompt-injection sanitization, secret redaction in evidence/logs), spec-alignment/traceability (drift between the 8 phase docs and the live .opencode/plugins/mk-goal.js / .opencode/commands/opencode_goal.md / test suite), completeness/maintainability (missing test coverage, dead code, UX gaps, automation/integration gaps).",
+  "reviewTargetType": "spec-folder",
+  "reviewScopeExclusions": [
+    ".opencode/specs/system-deep-loop/032-goal-opencode-plugin/009-speckit-command-goal-prompt-offer/**"
+  ],
+  "reviewDimensions": [
+    "correctness",
+    "security",
+    "traceability",
+    "maintainability"
+  ],
+  "resource_map_present": false,
+  "severityThreshold": "P2",
+  "crossReference": {
+    "core": [
+      "spec_code",
+      "checklist_evidence"
+    ],
+    "overlay": [
+      "skill_agent",
+      "agent_cross_runtime",
+      "feature_catalog_code",
+      "playbook_capability"
+    ]
+  },
+  "resource_map": {
+    "emit": true
+  },
+  "qualityGateThreshold": true,
+  "runtimeCapabilityResolver": ".opencode/skills/deep-loop-workflows/deep-review/scripts/runtime-capabilities.cjs",
+  "reducerScriptPath": ".opencode/skills/deep-loop-workflows/deep-review/scripts/reduce-state.cjs",
+  "fileProtection": {
+    "deep-review-config.json": "immutable",
+    "deep-review-state.jsonl": "append-only",
+    "deep-review-findings-registry.json": "auto-generated",
+    "deep-review-strategy.md": "mutable",
+    "deep-review-dashboard.md": "auto-generated",
+    ".deep-review-pause": "operator-controlled",
+    "review-report.md": "mutable",
+    "review-report-v*.md": "write-once",
+    "iteration-*.md": "write-once"
+  },
+  "reducer": {
+    "enabled": true,
+    "inputs": [
+      "latestJSONLDelta",
+      "newIterationFile",
+      "priorReducedState"
+    ],
+    "outputs": [
+      "findingsRegistry",
+      "dashboardMetrics",
+      "strategyUpdates"
+    ],
+    "metrics": [
+      "dimensionsCovered",
+      "findingsBySeverity",
+      "openFindings",
+      "resolvedFindings",
+      "convergenceScore"
+    ]
+  },
+  "_optimizerManaged": {
+    "description": "Fields managed by the offline loop optimizer (042.004). See optimizer-manifest.json for the canonical tunable/locked field registry.",
+    "manifestPath": ".opencode/skills/system-spec-kit/scripts/optimizer/optimizer-manifest.json",
+    "tunableFields": [
+      "convergenceThreshold",
+      "stuckThreshold",
+      "maxIterations"
+    ],
+    "lockedFields": [
+      "lineageMode",
+      "reducer",
+      "fileProtection",
+      "sessionId",
+      "mode",
+      "reviewDimensions",
+      "antiConvergence.convergenceMode",
+      "antiConvergence.stopPolicy"
+    ],
+    "promotionMode": "advisory-only"
+  }
+}

@@ -1,0 +1,33 @@
+{
+  "level": "1",
+  "specFolder": "system-deep-loop/032-goal-opencode-plugin/017-hot-path-optimization",
+  "description": "The passive injection path runs on every single chat message: `appendGoalBrief` (mk-goal.js:1581-1596) does a disk read plus a full `JSON.parse` plus",
+  "keywords": [
+    "passive",
+    "injection",
+    "path",
+    "runs",
+    "every",
+    "single",
+    "chat",
+    "message",
+    "appendgoalbrief",
+    "mk-goal",
+    "1581-1596",
+    "disk",
+    "read",
+    "plus",
+    "full",
+    "json",
+    "parse"
+  ],
+  "lastUpdated": "2026-07-04T08:25:39.419Z",
+  "specId": "017",
+  "folderSlug": "hot-path-optimization",
+  "parentChain": [
+    "system-deep-loop",
+    "032-goal-opencode-plugin"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

@@ -1,0 +1,214 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/031-deep-loop-gpt-reliability/006-reliability-fixes/002-gate3-precedence-and-validator",
+  "spec_folder": "system-deep-loop/031-deep-loop-gpt-reliability/006-reliability-fixes/002-gate3-precedence-and-validator",
+  "parent_id": "system-deep-loop/031-deep-loop-gpt-reliability/006-reliability-fixes",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "035 phase 002",
+      "gate3 precedence validator",
+      "spec folder binding validator",
+      "plan",
+      "035 002 plan",
+      "tasks",
+      "035 002 tasks",
+      "implementation",
+      "summary",
+      "031 006 002"
+    ],
+    "key_topics": [
+      "035",
+      "phase",
+      "002",
+      "gate3",
+      "precedence",
+      "validator",
+      "spec",
+      "folder",
+      "binding",
+      "plan",
+      "tasks",
+      "implementation"
+    ],
+    "importance_tier": "high",
+    "status": "planned",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "The Gate",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "an",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "a",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "git",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. SUMMARY",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "2. QUALITY GATES",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "3. ARCHITECTURE",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "4. IMPLEMENTATION PHASES",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 3: Verification",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built Partial",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Phase 002 of packet 035 (unified command-contract architecture). The P0 fix: kill the most-replicated GPT failure — the Gate-3 spec-folder halt on autonomous command runs — with an autonomous-precedence bridge AND a concrete validateSpecFolderBinding() the satisfaction rule actually calls (plan-review GAP-16 blocker). Closes F-001/002/003/004/005/028/030/040. Absorbs plan-review gaps GAP-04/07/12/16/17/18/19/20/21/22/48/51.",
+    "created_at": "2026-07-03T14:05:28.198Z",
+    "last_save_at": "2026-07-05T06:46:08.262Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:f0a47199057e3c9692b75cf67568ca79d6e67869a90feac10310e84e29644208",
+    "source_doc_hashes": {
+      "spec.md": "537d0974bf7bcbd1c4587a551698ef4c9791e67963bbce3fc947baf3202514e7",
+      "plan.md": "8f8c3284673f92c2ceaa3ad3c01931fe66b0261b48bdc80d614e6d95ad83fa62",
+      "tasks.md": "c7a4dac69c46a3dee222e2320fa2662ac4fb560ce2efc935dc4846584e961acf",
+      "implementation-summary.md": "3c2f6844394a5902fdd08f97bfc1e9246b3101deab7faf64ad65e8aba323e0b5"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

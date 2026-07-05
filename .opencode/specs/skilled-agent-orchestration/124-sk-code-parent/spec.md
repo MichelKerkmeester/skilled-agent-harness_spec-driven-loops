@@ -11,17 +11,17 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "skilled-agent-orchestration/124-sk-code-parent"
-    last_updated_at: "2026-07-03T00:00:00Z"
+    last_updated_at: "2026-07-05T00:00:00Z"
     last_updated_by: "claude-opus"
-    recent_action: "Landed the 009 branch-side cutover prep (cleanup + fold-fixes + rollout runbook); a post-commit deep review then canonical-scoped parent-skill-check.cjs (it had been failing BOTH non-canonical hubs 10x each, invisibly — all three hubs now pass in-branch), added the reviewer keyword to close a word-boundary false-negative, corrected the runbook ordering (corpora rebaseline after graph regen), and re-verified the benchmark at 71 with zero scenario diffs"
-    next_safe_action: "Merge the branch, then execute the main-side rollout runbook in 009/implementation-summary.md (build dist -> remove advisor scorer identity TS+Python -> rebaseline corpora -> regen skill-graph -> reindex -> delete 4 alias sites -> repoint ~350 NAME refs -> version release -> full verification). Then the parent rollup."
+    recent_action: "124 parent-hub canon program complete; phases 001-019 done, parent rolled up"
+    next_safe_action: "Close the 124 goal; sk-code re-baseline handed to the rename follow-up"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "bootstrap-session"
       parent_session_id: null
-    completion_pct: 93
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -39,7 +39,7 @@ _memory:
 |-------|-------|
 | **Level** | phase |
 | **Priority** | P1 |
-| **Status** | Active |
+| **Status** | Complete |
 | **Created** | 2026-07-03 |
 | **Branch** | `main` (dedicated `system-speckit/124-sk-code-parent` recommended before build phases) |
 | **Parent Spec** | None (root) |
@@ -110,8 +110,18 @@ Per-phase detail lives in each child's `plan.md`; the authoritative blast-radius
 | 005 | `005-foldin-review/` | Fold `sk-code-review` into the `code-review` mode (cohesive move); DELETE its `graph-metadata.json` (de-register); doctrine preserved verbatim; legacy `sk-code-review` alias kept in registry/router/graph-metadata until 009. | **complete** |
 | 006 | `006-build-remaining-modes/` | Distribute the pre-hub flat doctrine into the four `code-*` mode contracts (implement=Phase 0/1, quality=Phase 1.5, debug=Phase 2, verify=Phase 3 non-mutating); mirror sk-design shape; registry-exact tool surfaces; consume shared detection. Per-mode playbooks/changelogs deferred. | **complete** |
 | 007 | `007-advisor-and-integration/` | Repoint all live references broken by the 004 relocation + 005 fold via a ground-truth deterministic sweep (77 files; restored the silently-broken pre-commit hygiene gate); merge review keywords into the hub advisor node + clean dangling sk-code-review edges (alias kept). Advisor-rebuild/reindex → main; alias-covered NAME refs (agent prose + speckit `baseline:`) → 009. | **complete** |
-| 008 | `008-routing-benchmark-and-review/` | Deterministic router-mode benchmark + three-lens family deep-review (zero real router defects); re-layered the shared skill-benchmark harness for thin hubs + fixed its negative-scoring (honest verdict 44→71), restored a merge-blocking Iron-Law canary, fixed four cheap defects. Deferred to 009: 8 pre-existing harness-test migrations, parent-hub-vocab-sync generalization, CS-003 matcher. | **complete** |
+| 008 | `008-routing-benchmark-and-review/` | Deterministic router-mode benchmark + three-lens family deep-review (zero real router defects); re-layered the shared skill-benchmark harness for thin hubs + fixed its negative-scoring (honest verdict 44 to 71), restored a merge-blocking Iron-Law canary, fixed four cheap defects. Deferred to 009: 8 pre-existing harness-test migrations, parent-hub-vocab-sync generalization, CS-003 matcher. | **complete** |
 | 009 | `009-cutover-and-rollout/` | **Branch:** verified cleanup (8 harness migrations, vocab-sync generalization, CS-003 matcher, 29-path smart_routing fix) + 2 fold-broken live fixes. **Review pass:** canonical-scoped `parent-skill-check.cjs` (it failed BOTH non-canonical hubs 10× each; all three hubs now pass in-branch), added the `reviewer` keyword, corrected runbook ordering. **Main-side rollout (runbook in 009/implementation-summary.md):** atomic advisor-rebuild — sk-code-review scorer removal (TS+Python), skill-graph regen + reindex, 4 alias-site deletions, ~350 NAME-ref repoints, version release. Split because the load-bearing cutover can't run in the worktree (no compiled dist). | branch complete · main-side rollout pending |
+| 010 | `010-plugin-tui-fix/` | Fix the goal-plugin TUI regression surfaced during cutover. | complete |
+| 011 | `011-hub-canon/` | Establish the parent-hub canon (checks 1-9): sk-doc templates, `parent_hub_router_schema.md`, fail-loud vocab-sync, doctor YAML, scaffolder gates. | complete |
+| 012 | `012-spec-kit-relocation/` | Relocate spec-kit assets to their canonical home. | complete |
+| 013 | `013-sk-code-two-axis-restructure/` | Restructure sk-code into the two-axis hub (5 workflow modes x 3 surface packets); vocab-sync RED to GREEN. | complete |
+| 014 | `014-close-out-and-tail/` | Close the tractable code tail: review-mode alignment, three scorer fixes, rename-invariants. | complete |
+| 015 | `015-sk-design-canon-alignment/` | Bring sk-design to full canon (packetKind, real-file changelog, description.json, verified playbook, Lane-C baseline). Second canon-clean hub. | complete |
+| 016 | `016-sk-code-content-coherence/` | Verify sk-code content coherence and reference integrity; refresh stale metadata placeholders. | complete |
+| 017 | `017-canon-hardening/` | Harden the canon: bundleRules alignment and placeholder-tail resolution. | complete |
+| 018 | `018-deep-loop-canon-alignment/` | Bring deep-loop-workflows to full canon (description, playbook, benchmark, registry, router, real-file changelog). Third canon-clean hub. | complete |
+| 019 | `019-benchmarks-and-promotion/` | Final gate: cross-hub Lane-C baselines, promote parent-skill-check checks 5-9 WARN to FAIL, roll up the 124 parent. | complete |
 
 ### Phase Transition Rules
 
@@ -141,12 +151,13 @@ Per-phase detail lives in each child's `plan.md`; the authoritative blast-radius
 <!-- ANCHOR:questions -->
 ## 4. OPEN QUESTIONS
 
-- **Mode taxonomy** — activity lanes (`implement` / `review` / `verify` / `debug`) vs surface lanes (`webflow` / `opencode` / `motion`) vs hybrid. Resolved by 001 research. *Seed hypothesis for research to prune/confirm:* activity lanes under a `code-` mode prefix (mirroring sk-design's `design-` prefix), with the existing surface smart-routing retained **inside** `implement`, and `code-review` = the folded `sk-code-review`.
-- **verify / debug** — first-class modes or phases within `implement`? 001 → 002.
-- **Review-mode folder naming** — clean `code-review` (folder == packetSkillName, no grandfather) vs preserve `sk-code-review` as `packetSkillName` and grandfather the mismatch. sk-design chose the clean form. 002 binds; flag to user.
-- **Two-axis mapping** — how the surface × activity router projects onto hub/mode structure (hub-shared surface detection vs per-mode). 002.
-- **`sk-code-review` advisor identity** — fully retired vs aliased for back-compat during rollout. 002 → 007.
-- **Dedicated feature branch** — cut `system-speckit/124-sk-code-parent` before build phases (currently on the 028 branch). Confirm with user.
+All resolved during execution and bound in the phase children:
+
+- **Mode taxonomy / verify + debug lanes** — activity lanes under a `code-` mode prefix, with surface smart-routing retained **inside** `implement`; verify and debug are first-class modes. Bound in 001-002; built in 003-006.
+- **Review-mode folder naming** — the clean `code-review` form (folder == packetSkillName, no grandfather), matching sk-design. Bound in 002; folded in 005.
+- **Two-axis mapping** — hub-shared surface detection with per-mode activity packets; realized in the 013 two-axis restructure.
+- **`sk-code-review` advisor identity** — retired into the single hub identity (legacy alias kept through 009). Bound in 002; landed in 007.
+- **Dedicated feature branch** — work landed on `system-speckit/028-memory-search-intelligence` per operator direction.
 <!-- /ANCHOR:questions -->
 
 ---

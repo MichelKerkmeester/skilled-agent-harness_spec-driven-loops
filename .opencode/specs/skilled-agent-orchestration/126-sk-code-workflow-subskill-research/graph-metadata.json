@@ -1,0 +1,233 @@
+{
+  "schema_version": 1,
+  "packet_id": "skilled-agent-orchestration/126-sk-code-workflow-subskill-research",
+  "spec_folder": "skilled-agent-orchestration/126-sk-code-workflow-subskill-research",
+  "parent_id": null,
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "sk-code workflow subskill research",
+      "refine sk-code sub-skills",
+      "code-implement code-quality code-debug code-verify research",
+      "phase 126 research plan",
+      "sk-code workflow subskill research plan",
+      "workflow sub-skill upgrade research plan",
+      "phase 126 tasks",
+      "sk-code workflow research tasks",
+      "workflow sub-skill research close-out tasks",
+      "phase 126 checklist",
+      "sk-code workflow research checklist",
+      "workflow sub-skill research verification"
+    ],
+    "key_topics": [
+      "sk-code",
+      "workflow",
+      "subskill",
+      "research",
+      "refine",
+      "sub-skills",
+      "code-implement",
+      "code-quality",
+      "code-debug",
+      "code-verify",
+      "phase",
+      "126"
+    ],
+    "importance_tier": "high",
+    "status": "complete",
+    "key_files": [
+      "research/research.md",
+      ".opencode/specs/skilled-agent-orchestration/126-sk-code-workflow-subskill-research/spec.md",
+      ".opencode/specs/skilled-agent-orchestration/126-sk-code-workflow-subskill-research/research/research.md",
+      ".opencode/specs/skilled-agent-orchestration/126-sk-code-workflow-subskill-research/research/iterations/iteration-001.md",
+      ".opencode/specs/skilled-agent-orchestration/126-sk-code-workflow-subskill-research/research/deep-research-strategy.md",
+      ".opencode/specs/skilled-agent-orchestration/126-sk-code-workflow-subskill-research/description.json",
+      ".opencode/specs/skilled-agent-orchestration/126-sk-code-workflow-subskill-research/graph-metadata.json",
+      ".opencode/specs/skilled-agent-orchestration/126-sk-code-workflow-subskill-research/plan.md",
+      ".opencode/specs/skilled-agent-orchestration/126-sk-code-workflow-subskill-research/tasks.md",
+      ".opencode/specs/skilled-agent-orchestration/126-sk-code-workflow-subskill-research/checklist.md",
+      ".opencode/specs/skilled-agent-orchestration/126-sk-code-workflow-subskill-research/implementation-summary.md",
+      "spec.md",
+      "research/iterations/iteration-001.md",
+      "plan.md",
+      "checklist.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": ".opencode/specs/skilled-agent-orchestration/126-sk-code-workflow-subskill-research/spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "iteration-001.md",
+        "kind": "doc",
+        "path": ".opencode/specs/skilled-agent-orchestration/126-sk-code-workflow-subskill-research/research/iterations/iteration-001.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-strategy.md",
+        "kind": "doc",
+        "path": ".opencode/specs/skilled-agent-orchestration/126-sk-code-workflow-subskill-research/research/deep-research-strategy.md",
+        "source": "derived"
+      },
+      {
+        "name": "description.json",
+        "kind": "config",
+        "path": ".opencode/specs/skilled-agent-orchestration/126-sk-code-workflow-subskill-research/description.json",
+        "source": "derived"
+      },
+      {
+        "name": "graph-metadata.json",
+        "kind": "config",
+        "path": ".opencode/specs/skilled-agent-orchestration/126-sk-code-workflow-subskill-research/graph-metadata.json",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": ".opencode/specs/skilled-agent-orchestration/126-sk-code-workflow-subskill-research/plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": ".opencode/specs/skilled-agent-orchestration/126-sk-code-workflow-subskill-research/tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": ".opencode/specs/skilled-agent-orchestration/126-sk-code-workflow-subskill-research/checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": ".opencode/specs/skilled-agent-orchestration/126-sk-code-workflow-subskill-research/implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Run",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Change During Execution",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Bounded",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The sk-code parent hub exposes four WORKFLOW sub-skills — `code-implement`, `code-quality`, `code-debug`, `code-verify` — that carry the day-to-day coding lifecycle",
+    "created_at": "2026-07-05T14:53:44.541Z",
+    "last_save_at": "2026-07-05T16:26:10.869Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md",
+      "research/research.md"
+    ],
+    "source_fingerprint": "sha256:90b50088fc309db6c2f889b1a1ab51e00df0f76fe2ec7faeb94d1777f56c002b",
+    "source_doc_hashes": {
+      "spec.md": "5a04246824131947d6c6f71449d2b2b47a48ed5af65eb760182d4d621198f6bd",
+      "plan.md": "28d888a88c9cef1af8e54ef47bec7d72ec293d2ebdee214a798f9d1d0ecb3114",
+      "tasks.md": "8818ff9ca5117edabb63f001b90318fe026ce2b97145b7ab3ba3b60023210e4c",
+      "checklist.md": "72c50beb5f274d67ca127672de96c61ac56806e8189b6a29a4900e316878fd3b",
+      "implementation-summary.md": "f6149f83af3b46509bcde20d64c7c708c7a3d4197a43a52481ba30765387feed",
+      "research/research.md": "3a19bb126975d04fbdeb96cfec7d4b134bb39a700e57824e283776b28e4204ad"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

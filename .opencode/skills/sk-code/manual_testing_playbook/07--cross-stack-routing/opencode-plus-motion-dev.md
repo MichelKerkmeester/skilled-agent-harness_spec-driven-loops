@@ -31,23 +31,23 @@ Before editing .opencode/skills/sk-doc/scripts/preview-server.ts for a Motion de
 - `references/stack_detection.md`
 - `references/smart_routing.md`
 - `references/smart_routing.md`
-- `references/opencode/shared/universal_patterns.md`
-- `references/opencode/shared/code_organization.md`
-- `references/opencode/typescript/quick_reference.md`
-- `references/opencode/typescript/style_guide.md`
-- `references/opencode/typescript/quality_standards.md`
-- `references/motion_dev/quick_start.md`
-- `references/motion_dev/integration_patterns.md`
-- `references/motion_dev/animate_and_timelines.md`
+- `code-opencode/references/shared/universal_patterns.md`
+- `code-opencode/references/shared/code_organization.md`
+- `code-opencode/references/typescript/quick_reference.md`
+- `code-opencode/references/typescript/style_guide.md`
+- `code-opencode/references/typescript/quality_standards.md`
+- `code-animation/references/quick_start.md`
+- `code-animation/references/integration_patterns.md`
+- `code-animation/references/animate_and_timelines.md`
 
 **Expected assets loaded**:
-- `assets/opencode/checklists/universal_checklist.md`
-- `assets/opencode/checklists/typescript_checklist.md`
-- `assets/motion_dev/snippets/es_module_bootstrap.js`
+- `code-opencode/assets/checklists/universal_checklist.md`
+- `code-opencode/assets/checklists/typescript_checklist.md`
+- `code-animation/assets/snippets/es_module_bootstrap.js`
 
 **Expected NOT loaded as authoritative surface guidance**:
-- `references/webflow/implementation/webflow_patterns.md`
-- `assets/webflow/checklists/verification_checklist.md`
+- `code-webflow/references/implementation/webflow_patterns.md`
+- `code-webflow/assets/checklists/verification_checklist.md`
 
 **Expected agent dispatch**: none.
 
@@ -76,8 +76,8 @@ Evidence files:
 
 - `.opencode/skills/sk-code/shared/references/stack_detection.md` - OPENCODE precedence rule.
 - `.opencode/skills/sk-code/shared/references/smart_routing.md` - OPENCODE and MOTION_DEV maps.
-- `.opencode/skills/sk-code/opencode/references/typescript/quick_reference.md` - Expected TypeScript route.
-- `.opencode/skills/sk-code/animation/assets/snippets/es_module_bootstrap.js` - Supplementary Motion ESM pattern.
+- `.opencode/skills/sk-code/code-opencode/references/typescript/quick_reference.md` - Expected TypeScript route.
+- `.opencode/skills/sk-code/code-animation/assets/snippets/es_module_bootstrap.js` - Supplementary Motion ESM pattern.
 
 ---
 

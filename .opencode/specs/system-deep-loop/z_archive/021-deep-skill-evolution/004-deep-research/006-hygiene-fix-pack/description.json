@@ -1,0 +1,35 @@
+{
+  "level": "2",
+  "specFolder": "system-deep-loop/z_archive/021-deep-skill-evolution/004-deep-research/006-hygiene-fix-pack",
+  "description": "Packet 119 identified three P2 hygiene gaps: duplicate ruled-out directions could accumulate, workflow YAML script references lacked a direct existenc",
+  "keywords": [
+    "packet",
+    "119",
+    "identified",
+    "three",
+    "hygiene",
+    "gaps",
+    "duplicate",
+    "ruled-out",
+    "directions",
+    "accumulate",
+    "workflow",
+    "yaml",
+    "script",
+    "references",
+    "lacked",
+    "direct",
+    "existenc"
+  ],
+  "lastUpdated": "2026-06-23T03:49:50.941Z",
+  "specId": "006",
+  "folderSlug": "hygiene-fix-pack",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "z_archive",
+    "116-deep-skill-evolution",
+    "004-deep-research"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

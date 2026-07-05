@@ -1,0 +1,29 @@
+{
+  "level": "3",
+  "specFolder": "system-deep-loop/z_archive/021-deep-skill-evolution/000-release-cleanup/010-deep-review-phase5-reducer-cluster-remediation",
+  "description": "The `003-deep-review` packet deferred all reducer-behavior gaps under ADR-002 (the reducer was bug-scan only in that packet)",
+  "keywords": [
+    "003-deep-review",
+    "packet",
+    "deferred",
+    "reducer-behavior",
+    "gaps",
+    "adr-002",
+    "reducer",
+    "bug-scan",
+    "only"
+  ],
+  "lastUpdated": "2026-06-23T03:49:50.662Z",
+  "specId": "010",
+  "folderSlug": "deep-review-phase5-reducer-cluster-remediation",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "z_archive",
+    "116-deep-skill-evolution",
+    "000-release-cleanup"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [
+    "skilled-agent-orchestration/116-deep-skill-evolution/000-release-cleanup/003-deep-review/002-phase5-backlog/002-reducer-cluster-remediation"
+  ]
+}

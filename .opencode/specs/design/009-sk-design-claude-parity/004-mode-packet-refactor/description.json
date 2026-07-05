@@ -1,0 +1,43 @@
+{
+  "title": "Phase 004 - Mode Packet Refactor",
+  "type": "phase",
+  "trigger_phrases": [
+    "mode packet refactor",
+    "sk-design mode procedures",
+    "Claude-like procedure strategy",
+    "context and proof cards",
+    "no-subagent fallback",
+    "md-generator backend boundary",
+    "five public design modes"
+  ],
+  "path": ".opencode/specs/design/009-sk-design-claude-parity/004-mode-packet-refactor/",
+  "level": 3,
+  "status": "planned/not-started",
+  "parentPacket": ".opencode/specs/design/009-sk-design-claude-parity/",
+  "specFolder": "design/009-sk-design-claude-parity/004-mode-packet-refactor",
+  "description": "The five `sk-design` mode packets currently provide the public execution lanes for design work, but they have not yet been refactored to consume the",
+  "keywords": [
+    "five",
+    "sk-design",
+    "mode",
+    "packets",
+    "currently",
+    "provide",
+    "public",
+    "execution",
+    "lanes",
+    "design",
+    "work",
+    "refactored",
+    "consume"
+  ],
+  "lastUpdated": "2026-07-05T16:15:10.214Z",
+  "specId": "004",
+  "folderSlug": "mode-packet-refactor",
+  "parentChain": [
+    "design",
+    "009-sk-design-claude-parity"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

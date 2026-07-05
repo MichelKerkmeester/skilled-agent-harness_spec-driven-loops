@@ -1,7 +1,7 @@
 {
   "skill": "sk-code",
   "version": "4.1.0.0",
-  "description": "Declarative two-axis mode registry for the sk-code parent hub. Every packet is a modes[] entry carrying the discriminator (workflowMode/packetKind/backendKind) plus its advisorRouting contract. The WORKFLOW axis (implement/quality/debug/verify/review) is process; the SURFACE axis (webflow/opencode/animation) is read-only domain evidence. The advisor routes the single identity sk-code; the hub resolves the workflow mode and bundles surface packets as evidence.",
+  "description": "Declarative two-axis mode registry for the sk-code parent hub. Every packet is a modes[] entry carrying the discriminator (workflowMode/packetKind/backendKind) plus its advisorRouting contract. The WORKFLOW axis (implement/quality/debug/verify/code-review) is process; the SURFACE axis (code-webflow/code-opencode/code-animation) is read-only domain evidence. The advisor routes the single identity sk-code; the hub resolves the workflow mode and bundles surface packets as evidence.",
   "discriminator": {
     "workflowMode": "Public hub/mode key. Stable identity used by the hub router and this registry. Carried by every mode.",
     "packetKind": "The axis discriminator: 'workflow' for process modes that act, 'surface' for read-only domain-evidence packets bundled alongside a workflow mode.",
@@ -15,7 +15,7 @@
   "extensions": {
     "surface-axis": {
       "description": "Declares the SURFACE axis. packetKind:'surface' entries are read-only domain-evidence packets (backendKind:'evidence-base', routingClass:'metadata', mutatesWorkspace:false) bundled alongside a workflow mode via routerPolicy.outcomes.surfaceBundle. They carry stack knowledge, never process.",
-      "surfaces": ["webflow", "opencode", "animation"]
+      "surfaces": ["code-webflow", "code-opencode", "code-animation"]
     }
   },
   "modes": [
@@ -96,7 +96,7 @@
       }
     },
     {
-      "workflowMode": "review",
+      "workflowMode": "code-review",
       "packetKind": "workflow",
       "backendKind": "review-cache",
       "toolSurface": {
@@ -105,17 +105,17 @@
         "mutatesWorkspace": false,
         "bashAllowlist": []
       },
-      "packet": "review",
-      "packetSkillName": "review",
+      "packet": "code-review",
+      "packetSkillName": "code-review",
       "grandfatheredFolderMismatch": false,
       "aliases": ["code review", "reviewer", "findings-first review", "security review", "pr review", "review baseline", "correctness review", "test quality review", "review output contract", "pr-state gates"],
       "advisorRouting": {
         "routingClass": "metadata",
-        "packetSkillName": "review"
+        "packetSkillName": "code-review"
       }
     },
     {
-      "workflowMode": "webflow",
+      "workflowMode": "code-webflow",
       "packetKind": "surface",
       "backendKind": "evidence-base",
       "toolSurface": {
@@ -124,17 +124,17 @@
         "mutatesWorkspace": false,
         "bashAllowlist": []
       },
-      "packet": "webflow",
-      "packetSkillName": "webflow",
+      "packet": "code-webflow",
+      "packetSkillName": "code-webflow",
       "grandfatheredFolderMismatch": false,
       "aliases": ["webflow implementation", "frontend implementation standards", "webflow frontend workflow"],
       "advisorRouting": {
         "routingClass": "metadata",
-        "packetSkillName": "webflow"
+        "packetSkillName": "code-webflow"
       }
     },
     {
-      "workflowMode": "opencode",
+      "workflowMode": "code-opencode",
       "packetKind": "surface",
       "backendKind": "evidence-base",
       "toolSurface": {
@@ -143,17 +143,17 @@
         "mutatesWorkspace": false,
         "bashAllowlist": []
       },
-      "packet": "opencode",
-      "packetSkillName": "opencode",
+      "packet": "code-opencode",
+      "packetSkillName": "code-opencode",
       "grandfatheredFolderMismatch": false,
       "aliases": ["opencode system code", "opencode system code workflow", "opencode typescript verification"],
       "advisorRouting": {
         "routingClass": "metadata",
-        "packetSkillName": "opencode"
+        "packetSkillName": "code-opencode"
       }
     },
     {
-      "workflowMode": "animation",
+      "workflowMode": "code-animation",
       "packetKind": "surface",
       "backendKind": "evidence-base",
       "toolSurface": {
@@ -162,13 +162,13 @@
         "mutatesWorkspace": false,
         "bashAllowlist": []
       },
-      "packet": "animation",
-      "packetSkillName": "animation",
+      "packet": "code-animation",
+      "packetSkillName": "code-animation",
       "grandfatheredFolderMismatch": false,
       "aliases": ["motion.dev animation", "motion animation integration", "cross-stack animation"],
       "advisorRouting": {
         "routingClass": "metadata",
-        "packetSkillName": "animation"
+        "packetSkillName": "code-animation"
       }
     }
   ]

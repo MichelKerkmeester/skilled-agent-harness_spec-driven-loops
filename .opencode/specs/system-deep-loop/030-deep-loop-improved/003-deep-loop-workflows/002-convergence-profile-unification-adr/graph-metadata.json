@@ -1,0 +1,220 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/030-deep-loop-improved/003-deep-loop-workflows/002-convergence-profile-unification-adr",
+  "spec_folder": "system-deep-loop/030-deep-loop-improved/003-deep-loop-workflows/002-convergence-profile-unification-adr",
+  "parent_id": "system-deep-loop/030-deep-loop-improved/003-deep-loop-workflows",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "convergence profile unification",
+      "convergence math ADR",
+      "unified convergence profile",
+      "convergence fracture deep loop",
+      "convergence profile unification adr",
+      "convergence profile schema",
+      "reject single universal convergence formula",
+      "002-convergence-profile-unification-adr summary",
+      "002-convergence-profile-unification-adr"
+    ],
+    "key_topics": [
+      "convergence",
+      "profile",
+      "unification",
+      "math",
+      "adr",
+      "unified",
+      "fracture",
+      "deep",
+      "loop",
+      "schema",
+      "reject",
+      "single"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      ".opencode/skills/deep-loop-runtime/scripts/convergence.cjs",
+      ".opencode/skills/deep-loop-runtime/lib/council/convergence.cjs",
+      ".opencode/skills/deep-loop-runtime/lib/coverage-graph/coverage-graph-signals.ts",
+      ".opencode/skills/deep-loop-runtime/tests/integration/convergence-script.vitest.ts",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "convergence.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/deep-loop-runtime/scripts/convergence.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "coverage-graph-signals.ts",
+        "kind": "code",
+        "path": ".opencode/skills/deep-loop-runtime/lib/coverage-graph/coverage-graph-signals.ts",
+        "source": "derived"
+      },
+      {
+        "name": "convergence-script.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/deep-loop-runtime/tests/integration/convergence-script.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Convergence Math Unification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Convergence",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Decision",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec-grounded",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Convergence math is spread across `convergence.cjs`, `lib/council/convergence.cjs`, and `lib/coverage-graph/coverage-graph-signals.ts` with no shared shape, no parity test, and no declared contract",
+    "created_at": "2026-06-28T14:02:07Z",
+    "last_save_at": "2026-07-04T18:02:08.789Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:dd6993dbec63c501e5cee282f900d8e83d83d59be7de3981cf64b567d2607f46",
+    "source_doc_hashes": {
+      "spec.md": "6d0dfdaedfc0a21fd623fb9cdb7c517513e759a85e57112fa2ccdcbe72d830c2",
+      "plan.md": "09de3c6de5a28e7cc0264df9e161335ac0a6cb21aee8bfe79c48659b64a4cf47",
+      "tasks.md": "b3b62e6dac934e98b0ffac5167e9281864004b37775837451e2bde9448ff1119",
+      "decision-record.md": "51a701df1545208bc79d48ee7b75eb9551306522e0addd01c4e2d4ecc28a99dd",
+      "implementation-summary.md": "06cf0dadffdd460c774c5daf8ac7ff5dc0bc9dd4aaa80b4e70946ff77fbe0ddd"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

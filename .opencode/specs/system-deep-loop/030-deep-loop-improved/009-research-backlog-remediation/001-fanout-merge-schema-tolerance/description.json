@@ -1,0 +1,26 @@
+{
+  "level": "1",
+  "specFolder": "system-deep-loop/030-deep-loop-improved/009-research-backlog-remediation/001-fanout-merge-schema-tolerance",
+  "description": "`.opencode/skills/deep-loop-runtime/scripts/fanout-merge.cjs:472` — `mergeResearchRegistries` does `if (!registry ||",
+  "keywords": [
+    "opencode",
+    "skills",
+    "deep-loop-runtime",
+    "scripts",
+    "fanout-merge",
+    "cjs",
+    "472",
+    "mergeresearchregistries",
+    "registry"
+  ],
+  "lastUpdated": "2026-07-04T18:02:23.053Z",
+  "specId": "001",
+  "folderSlug": "fanout-merge-schema-tolerance",
+  "parentChain": [
+    "system-deep-loop",
+    "030-deep-loop-improved",
+    "009-research-backlog-remediation"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

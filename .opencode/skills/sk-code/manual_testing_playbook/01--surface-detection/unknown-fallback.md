@@ -33,7 +33,7 @@ Add a request-ID middleware to my Go HTTP server in cmd/api/main.go and return i
 - `references/smart_routing.md`
 - `references/universal/code_quality_standards.md` (universal baseline ALWAYS loads)
 
-**Expected NOT loaded**: any `references/webflow/*`, any `references/opencode/*`, any `assets/webflow/*`, any `assets/opencode/*`. Only universal-tier resources are permitted.
+**Expected NOT loaded**: any `code-webflow/references/*`, any `code-opencode/references/*`, any `code-webflow/assets/*`, any `code-opencode/assets/*`. Only universal-tier resources are permitted.
 
 **Expected agent dispatch**: NONE. sk-code MUST NOT dispatch `@code` for an unsupported stack.
 
@@ -77,8 +77,8 @@ Add a request-ID middleware to my Go HTTP server in cmd/api/main.go and return i
 ### Failure Triage
 
 1. If sk-code silently proceeds (worst case): re-read SKILL.md "Unsupported / Unknown" row in the Multi-Repository Architecture table. The expected behavior is documented as "Ask for explicit runtime surface and verification commands".
-2. If `references/webflow/*` is incorrectly loaded: the router is matching some marker. Check whether `motion`, `gsap`, or `lenis` substrings exist in the prompt unintentionally (they don't here, but always verify).
-3. If `references/opencode/*` is incorrectly loaded: the CWD probably contains `/.opencode/` — but this prompt explicitly targets `cmd/api/main.go` (Go path). Check whether the CWD-based detection is overriding target-path detection (it should not).
+2. If `code-webflow/references/*` is incorrectly loaded: the router is matching some marker. Check whether `motion`, `gsap`, or `lenis` substrings exist in the prompt unintentionally (they don't here, but always verify).
+3. If `code-opencode/references/*` is incorrectly loaded: the CWD probably contains `/.opencode/` — but this prompt explicitly targets `cmd/api/main.go` (Go path). Check whether the CWD-based detection is overriding target-path detection (it should not).
 
 ## 4. SOURCE FILES
 

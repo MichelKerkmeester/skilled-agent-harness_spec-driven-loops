@@ -19,7 +19,7 @@ trigger_phrases:
 
 Current state:
 
-- The folder contains 18 active rule files spanning gate enforcement, tool routing, CLI dispatch, deep-skill workflow adoption, comment hygiene, memory-system and DB-topology rules, completion verification, deep-review, naming conventions, fable governor constraints, automated-writer safety, regression-baseline discipline, finding verification, recursion control, and causal-graph semantics (see §2 Package Topology). It originated with just `gate-enforcement.md` and `gate-tool-routing.md`.
+- The folder contains 19 active rule files spanning gate enforcement, tool routing, CLI dispatch, deep-skill workflow adoption, comment hygiene, memory-system and DB-topology rules, completion verification, deep-review, naming conventions, fable governor constraints, automated-writer safety, regression-baseline discipline, finding verification, recursion control, recorded-failure routing, and causal-graph semantics (see §2 Package Topology). It originated with just `gate-enforcement.md` and `gate-tool-routing.md`.
 - Rule files use frontmatter with `importanceTier: constitutional` and trigger phrases.
 - Constitutional rules are fixed-visibility records: `searchBoost: 3.0`, `alwaysSurface: true`, `decay: false`, `autoExpireDays: null`, and `maxTokens: 2000`.
 - Constitutional rules are permanent until edited or removed from this folder. They are not temporary memories and must not age out through decay.
@@ -46,6 +46,7 @@ constitutional/
 +-- memory-system-spec-kit-only.md                # Use Spec Kit Memory only; never write Claude native memory unprompted
 +-- post-implementation-deep-review.md            # Mandatory deep-review after substantive ships
 +-- recursion-control.md                          # Bound recursive self-improvement and loop dispatch
++-- recorded-failure-must-route.md               # Recorded failures must link to a follow-up route
 +-- regression-baseline-and-delta.md              # Capture baseline and report deltas before no-regression claims
 +-- spec-folder-naming.md                         # Spec-folder naming and rename conventions
 +-- verify-before-completion-claims.md            # Gate completion claims on a positive check you actually read
@@ -108,6 +109,7 @@ constitutional/
 +-- memory-system-spec-kit-only.md                # Use Spec Kit Memory only; never write Claude native memory unprompted
 +-- post-implementation-deep-review.md            # Mandatory deep-review after substantive ships
 +-- recursion-control.md                          # Bound recursive self-improvement and loop dispatch
++-- recorded-failure-must-route.md               # Recorded failures must link to a follow-up route
 +-- regression-baseline-and-delta.md              # Capture baseline and report deltas before no-regression claims
 +-- spec-folder-naming.md                         # Spec-folder naming and rename conventions
 +-- verify-before-completion-claims.md            # Gate completion claims on a positive check you actually read
@@ -137,6 +139,7 @@ Do not document `.DS_Store` or other local machine artifacts as part of the pack
 | `memory-system-spec-kit-only.md` | Use Spec Kit Memory for all saves; never write Claude native memory unless explicitly asked. |
 | `post-implementation-deep-review.md` | Run a deep-review after every substantive implementation phase or when uncertain about shipped code. |
 | `recursion-control.md` | Bound recursive workflows, self-improvement loops, and repeated delegated passes. |
+| `recorded-failure-must-route.md` | A detector that records a FAIL, contradiction, drift, warning, or follow-up must link to a remediation route or accepted-risk decision. |
 | `regression-baseline-and-delta.md` | Capture a baseline before no-regression claims and report the delta after verification. |
 | `spec-folder-naming.md` | `NNN-short-name` convention and the rename/move procedure (`git mv`, never delete + recreate). |
 | `verify-before-completion-claims.md` | Gate every completion claim on a positive check whose result you actually read. |
@@ -189,7 +192,7 @@ Main flow:
 
 | Entrypoint | Type | Purpose |
 |---|---|---|
-| `*.md` rule files (18) | Rule document | Always-surfaced constitutional guidance; see §4 Key Files for the full list. |
+| `*.md` rule files (19) | Rule document | Always-surfaced constitutional guidance; see §4 Key Files for the full list. |
 | `memory_search({ includeConstitutional: true })` | MCP tool behavior | Returns constitutional records before query-relevant records by default. |
 | `memory_match_triggers({ prompt })` | MCP tool behavior | Surfaces matching rules from trigger phrases. |
 | `memory_save({ filePath })` | MCP tool behavior | Indexes a single constitutional rule file. |
@@ -227,5 +230,5 @@ memory_save({ filePath: ".opencode/skills/system-spec-kit/constitutional/gate-en
 - [`../SKILL.md`](../SKILL.md)
 - [`./gate-enforcement.md`](./gate-enforcement.md)
 - [`./gate-tool-routing.md`](./gate-tool-routing.md)
-- The full set of 18 rule files is listed in §4 Key Files.
+- The full set of 19 rule files is listed in §4 Key Files.
 - [`../mcp_server/lib/scoring/importance-tiers.ts`](../mcp_server/lib/scoring/importance-tiers.ts)

@@ -39,21 +39,29 @@
       "checklist"
     ],
     "importance_tier": "high",
-    "status": "draft",
+    "status": "complete",
     "key_files": [
       ".opencode/commands/doctor/scripts/parent-skill-check.cjs",
+      ".opencode/commands/doctor/assets/doctor_parent-skill.yaml",
       ".opencode/specs/skilled-agent-orchestration/124-sk-code-parent/graph-metadata.json",
+      ".opencode/specs/skilled-agent-orchestration/124-sk-code-parent/spec.md",
       "plan.md",
       "tasks.md",
       "checklist.md",
-      "implementation-summary.md",
-      "spec.md"
+      "spec.md",
+      "implementation-summary.md"
     ],
     "entities": [
       {
         "name": "parent-skill-check.cjs",
         "kind": "file",
         "path": ".opencode/commands/doctor/scripts/parent-skill-check.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "doctor_parent-skill.yaml",
+        "kind": "config",
+        "path": ".opencode/commands/doctor/assets/doctor_parent-skill.yaml",
         "source": "derived"
       },
       {
@@ -81,15 +89,15 @@
         "source": "derived"
       },
       {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -187,17 +195,11 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Parent Rollup",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The 124 parent-hub program is only complete after all three hub families have fresh, comparable Lane-C benchmark baselines, parent-skill-check migration checks 5-9 can be promoted from warning posture to failure posture, and the parent phase rollup metadata reflects phases 010-019 instead of the stale 001-009 child list",
     "created_at": "2026-07-05T05:46:27.012Z",
-    "last_save_at": "2026-07-05T05:46:27.012Z",
+    "last_save_at": "2026-07-05T10:21:43.423Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,13 +209,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:d9818244a00727f133e2cf81a427f503a511715cc0a68758e677072ddc26d07b",
+    "source_fingerprint": "sha256:8e3980d864221f524f315c4dc6fbf8a3400528b77407ec45db332327cedb9e2b",
     "source_doc_hashes": {
-      "spec.md": "b43343ff19e06e1fe1d51481bb3d2e15a0b2cdb96f80f79b5fa6148a0412581e",
-      "plan.md": "3bae9f9150a3477c7fba9e5e286442831329878faedb0e0e4955754829342de7",
-      "tasks.md": "422a83f3ab0b70be0848383a761f26e2288d66365f618ab67c9c018b8163972c",
-      "checklist.md": "31fe71b4c5477c13f045b913d83dc778bb31177911a12fc0d451ce18bb247cd5",
-      "implementation-summary.md": "813ce7cae4e10071c39bc7a0145142d7d187de4da68931060dca019c4a5f3004"
+      "spec.md": "b539629d5a36edf0aeda36d5f2e227d9ece34b44bcc569d6e3b0c8f02f81b046",
+      "plan.md": "a271654e2d28c91ac0ba5e605ffc1b17eb2af5b95dc5480c5ca0e6e94427ae65",
+      "tasks.md": "b1fd0e76c34b24b6e6df5df995d085193af2c647bc2bf18a1a6b94e49741974d",
+      "checklist.md": "8165a835e11aa11d8d68558780abbb4ff587661d5c82ff2cd4765072eab1b09c",
+      "implementation-summary.md": "69efd3fe83da14fd1a2e6f531a5fc8fb54940081d26d69dd9a70fdecbdbb37c6"
     },
     "last_active_child_id": null,
     "last_active_at": null

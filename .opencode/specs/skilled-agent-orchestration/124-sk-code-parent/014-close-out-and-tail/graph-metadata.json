@@ -200,7 +200,7 @@
     ],
     "causal_summary": "The sk-code parent program had shipped its two-axis restructure, but the tail still carried stale identity labels, scorer tests from the pre-fold two-skill world, one real cli-opencode routing regression, and a committed parse error in rename-invariant tests",
     "created_at": "2026-07-05T04:34:34.172Z",
-    "last_save_at": "2026-07-05T04:34:34.172Z",
+    "last_save_at": "2026-07-05T10:12:40.710Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,13 +210,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:8bf7addee1f2a5780d288c0204fe4754381a9692865cb29fc43a706714b7be59",
+    "source_fingerprint": "sha256:7fbcbe9da041d67daa53c97f7c602bcefca379593150abcb7745a827a9b8651c",
     "source_doc_hashes": {
-      "spec.md": "ccc5812ba7d87a0a87469dff72c6a824655b128a39b484c17d6355dd3fc4eb77",
+      "spec.md": "a92bbc431e27a7ee8860cbe9ddb14ce7fbaee72cffbadb16bfb29774d89041d0",
       "plan.md": "613e8fc466d324aa6e5bf7b062282c2cff4dcf49a8f14020c230f4b85a788c33",
       "tasks.md": "1f2e921058c8612ac6b70c212f1e524faff2104bd865c2b1fe8f397dc683a748",
       "checklist.md": "9144412880c48919217a0ad589e3870c9bb65c54d3efcaed82396424a756a3a1",
-      "implementation-summary.md": "59faf3052fd6d4e7e5b812d84de79d6fbfaed8993ac0e353cbb42bafd12e3b76"
+      "implementation-summary.md": "58a404e4c41417930369e6b7f2dbb9101986a2a78b262bf585712cb2e87e4ef4"
     },
     "last_active_child_id": null,
     "last_active_at": null

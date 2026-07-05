@@ -1,0 +1,208 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/z_archive/009-sk-deep-research-review-improvement-1",
+  "spec_folder": "system-deep-loop/z_archive/009-sk-deep-research-review-improvement-1",
+  "parent_id": null,
+  "children_ids": [
+    "system-deep-loop/z_archive/009-sk-deep-research-review-improvement-1/001-sk-deep-research-improvements",
+    "system-deep-loop/z_archive/009-sk-deep-research-review-improvement-1/002-sk-deep-review-improvements"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "deep research improvement",
+      "deep review improvement",
+      "040 spec",
+      "lineage reducer parity",
+      "research",
+      "report",
+      "040",
+      "auto",
+      "deep",
+      "resource map",
+      "skilled-agent-orchestration 040-sk-deep-research-review-improvement-1 resource map",
+      "path catalog skilled-agent-orchestration 040-sk-deep-research-review-improvement-1"
+    ],
+    "key_topics": [
+      "deep",
+      "research",
+      "improvement",
+      "review",
+      "040",
+      "spec",
+      "lineage",
+      "reducer",
+      "parity",
+      "report",
+      "auto",
+      "resource"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "research/research.md",
+      "research/recommendations-sk-deep-research.md",
+      "research/recommendations-sk-deep-review.md",
+      "research/deep-research-state.jsonl",
+      "research/iterations/iteration-001.md",
+      "resource-map.md",
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "recommendations-sk-deep-research.md",
+        "kind": "doc",
+        "path": "research/recommendations-sk-deep-research.md",
+        "source": "derived"
+      },
+      {
+        "name": "recommendations-sk-deep-review.md",
+        "kind": "doc",
+        "path": "research/recommendations-sk-deep-review.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-state.jsonl",
+        "kind": "file",
+        "path": "research/deep-research-state.jsonl",
+        "source": "derived"
+      },
+      {
+        "name": "iteration-001.md",
+        "kind": "doc",
+        "path": "research/iterations/iteration-001.md",
+        "source": "derived"
+      },
+      {
+        "name": "resource-map.md",
+        "kind": "doc",
+        "path": "resource-map.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Auto Deep",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "Auto Deep Research",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "Review Improvement",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Make",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Research Report",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "Executive Summary This",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "Internal Systems Analyzed",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "Resource Map",
+        "kind": "proper_noun",
+        "path": "resource-map.md",
+        "source": "derived"
+      },
+      {
+        "name": "Author Instructions",
+        "kind": "proper_noun",
+        "path": "resource-map.md",
+        "source": "derived"
+      },
+      {
+        "name": "Summary",
+        "kind": "heading",
+        "path": "resource-map.md",
+        "source": "derived"
+      },
+      {
+        "name": "2. Documents",
+        "kind": "heading",
+        "path": "resource-map.md",
+        "source": "derived"
+      },
+      {
+        "name": "6. Specs",
+        "kind": "heading",
+        "path": "resource-map.md",
+        "source": "derived"
+      },
+      {
+        "name": "description:",
+        "kind": "quoted",
+        "path": "resource-map.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "`sk-deep-research` and `sk-deep-review` had sound packet-first loop architectures but implicit contracts: lineage and lifecycle branches were undocumented, reducer ownership was ambiguous, artifact naming drifted between research and review modes, and runtime mirrors across Codex/OpenCode/Claude/Gemini could diverge without detection",
+    "created_at": "2026-04-12T09:02:50.183Z",
+    "last_save_at": "2026-06-23T03:49:49.115Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "research/research.md",
+      "resource-map.md"
+    ],
+    "source_fingerprint": "sha256:67b3aa9e9733a108a60cb7cbec2da8b66a5bf1fbe7222a1edd6e1a683bfbe769",
+    "source_doc_hashes": {
+      "spec.md": "627778c5f732d542cdd3b3341dc8930903f783e6cda55ad7265b84d83f2bcd18",
+      "research/research.md": "ea66bee22ba470066ee6dc351a6ec725b906c6f55d7f00dc334dbbf2fa5b92e6",
+      "resource-map.md": "b58857104d4fbef157486b74ce77b98d10e15fd8ff1f6fd99270d423ec9367db"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

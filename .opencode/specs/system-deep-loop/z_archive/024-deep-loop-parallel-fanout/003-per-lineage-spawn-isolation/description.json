@@ -1,0 +1,25 @@
+{
+  "specFolder": "system-deep-loop/z_archive/024-deep-loop-parallel-fanout/003-per-lineage-spawn-isolation",
+  "description": "Run each lineage as the existing command (verbatim loop) into its own isolated sub-packet",
+  "keywords": [
+    "run",
+    "lineage",
+    "existing",
+    "command",
+    "verbatim",
+    "loop",
+    "own",
+    "isolated",
+    "sub-packet"
+  ],
+  "lastUpdated": "2026-06-23T03:49:51.389Z",
+  "specId": "003",
+  "folderSlug": "per-lineage-spawn-isolation",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "z_archive",
+    "123-deep-loop-parallel-fanout"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

@@ -1,0 +1,31 @@
+{
+  "title": "Feature Specification: build model-benchmark mode runtime",
+  "level": "1",
+  "specFolder": "system-deep-loop/z_archive/022-deep-agent-improvement-benchmark-mode/003-build-model-benchmark-mode-runtime",
+  "description": "deep-agent-improvement can improve agent definitions but cannot benchmark models/prompts; the 120/003 benchmark rig is packet-local and one-off",
+  "keywords": [
+    "deep-agent-improvement",
+    "improve",
+    "agent",
+    "definitions",
+    "cannot",
+    "benchmark",
+    "models",
+    "prompts",
+    "120",
+    "003",
+    "rig",
+    "packet-local",
+    "one-off"
+  ],
+  "lastUpdated": "2026-06-23T03:49:51.192Z",
+  "specId": "003",
+  "folderSlug": "build-model-benchmark-mode-runtime",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "z_archive",
+    "121-deep-agent-improvement-benchmark-mode"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

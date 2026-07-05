@@ -1,19 +1,19 @@
 ---
 title: "Verification Checklist: Phase 18 deep-loop canon alignment and benchmark"
-description: "Forward-looking Level 2 verification checklist for the 018a safe-now artifacts and 018b gated deep-loop conformance tasks."
+description: "Executed Level 2 verification checklist: 018a additive artifacts and once-gated 018b registry/router/changelog work all shipped; deep-loop parent-skill-check STRICT is 0."
 trigger_phrases:
   - "deep-loop canon checklist"
   - "deep-loop parent hub verification"
-  - "018b gate verification"
+  - "018 verification complete"
 importance_tier: "high"
-contextType: "planning"
+contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "skilled-agent-orchestration/124-sk-code-parent/018-deep-loop-canon-alignment"
     last_updated_at: "2026-07-05T00:00:00Z"
-    last_updated_by: "gpt-5.5"
-    recent_action: "Phase planned and documented; execution pending"
-    next_safe_action: "Start T001"
+    last_updated_by: "claude-opus"
+    recent_action: "Phase executed; deep-loop STRICT 0/0, benchmark frozen"
+    next_safe_action: "Phase 019: validator WARN->FAIL promotion + 124 rollup"
 ---
 # Verification Checklist: Phase 18 deep-loop canon alignment and benchmark
 
@@ -37,12 +37,9 @@ _memory:
 <!-- ANCHOR:pre-impl -->
 ## Pre-Implementation
 
-- [ ] CHK-001 [P0] Requirements documented in spec.md [trace: user brief; master plan 018]
-  - **Evidence to collect**: `spec.md` status remains Draft and lists 018a safe-now plus 018b deferred/gated requirements.
-- [ ] CHK-002 [P0] Technical approach defined in plan.md [trace: master plan 018; audit P0-1]
-  - **Evidence to collect**: `plan.md` defines safe-now artifact creation and the git-clean gate before registry/router/changelog work.
-- [ ] CHK-003 [P1] Dependencies identified and available [trace: audit P0-4 through P0-8]
-  - **Evidence to collect**: plan dependencies list sk-code shapes, parent-hub templates, dirty registry state, stable seven-mode set, and deprecation sweep ownership.
+- [x] CHK-001 [P0] Requirements documented in spec.md [trace: master plan 018] [EVIDENCE: spec.md status Complete; records 018a safe-now + 018b executed-after-gate requirements]
+- [x] CHK-002 [P0] Technical approach defined in plan.md [trace: audit P0-1] [EVIDENCE: plan.md defines safe-now creation + the git-clean gate before registry/router/changelog work]
+- [x] CHK-003 [P1] Dependencies identified and available [trace: audit P0-4..P0-8] [EVIDENCE: sk-code/sk-design hub shapes + settled seven-mode set available at execution]
 
 <!-- /ANCHOR:pre-impl -->
 ---
@@ -50,14 +47,10 @@ _memory:
 <!-- ANCHOR:code-quality -->
 ## Code Quality
 
-- [ ] CHK-010 [P0] 018a changes are add-only and collision-free [trace: master plan 018a; audit P0-4, P0-5, P0-6]
-  - **Evidence to collect**: Git diff shows only `description.json`, `manual_testing_playbook/`, and `benchmark/` additions under `deep-loop-workflows` for 018a.
-- [ ] CHK-011 [P0] 018b target files are untouched while gate is active [trace: audit P0-1, P0-7, P0-8]
-  - **Evidence to collect**: No diff in `mode-registry.json`, no premature `hub-router.json`, and no changelog symlink removal by this phase while dirty.
-- [ ] CHK-012 [P1] Added artifact shapes mirror sk-code where applicable [trace: master plan 018a; audit P0-5, P0-6]
-  - **Evidence to collect**: Manual playbook and benchmark package structure are comparable to sk-code hub-level packages.
-- [ ] CHK-013 [P1] Documentation preserves the safe-now/deferred split [trace: user brief]
-  - **Evidence to collect**: `tasks.md` has explicit 018a and 018b groups and all 018b tasks carry the required gate reason.
+- [x] CHK-010 [P0] 018a changes are add-only and collision-free [trace: audit P0-4, P0-5, P0-6] [EVIDENCE: description.json, manual_testing_playbook/, benchmark/ landed as additions; blast-radius gate dir-scoped]
+- [x] CHK-011 [P0] 018b target files stayed untouched while the gate was active [trace: audit P0-1, P0-7, P0-8] [EVIDENCE: mode-registry.json edited only after git-clean in `e1a266b07c`; no premature edits]
+- [x] CHK-012 [P1] Added artifact shapes mirror sk-code / sk-design [trace: audit P0-5, P0-6] [EVIDENCE: playbook + benchmark packages mirror sibling hub packages]
+- [x] CHK-013 [P1] Execution records preserve the safe-now/deferred split [trace: user brief] [EVIDENCE: tasks.md keeps 018a/018b groups; gate reason + clearance both recorded]
 
 <!-- /ANCHOR:code-quality -->
 ---
@@ -65,14 +58,10 @@ _memory:
 <!-- ANCHOR:testing -->
 ## Testing
 
-- [ ] CHK-020 [P0] parent-skill-check strict run captures 018a partial closure [trace: master plan verify; audit P0-4, P0-5, P0-6]
-  - **Evidence to collect**: Strict run shows checks 8a, 9a, and 9b no longer fail after 018a.
-- [ ] CHK-021 [P0] Remaining failures map to 018b blocked work [trace: master plan 018b; audit P0-1, P0-2, P0-3, P0-7, P0-8]
-  - **Evidence to collect**: Remaining strict failures are registry fields, extensions, router, or changelog items only.
-- [ ] CHK-022 [P1] Router creation waits for stable registry mode keys [trace: audit P0-7]
-  - **Evidence to collect**: `hub-router.json` is authored only after the seven-mode registry set is settled.
-- [ ] CHK-023 [P1] Benchmark baseline is inspectable [trace: audit P0-6]
-  - **Evidence to collect**: `benchmark/` contains a baseline package with headline report and machine-readable result artifacts where applicable.
+- [x] CHK-020 [P0] parent-skill-check strict confirms the additive checks pass [trace: audit P0-4, P0-5, P0-6] [EVIDENCE: STRICT run — 8a, 9a, 9b pass]
+- [x] CHK-021 [P0] Formerly-remaining registry/extensions/router/changelog checks now pass [trace: audit P0-1, P0-2, P0-3, P0-7, P0-8] [EVIDENCE: STRICT run — 3d-canon, 3f, 5a-5f, 7a all pass]
+- [x] CHK-022 [P1] Router creation waited for stable registry mode keys [trace: audit P0-7] [EVIDENCE: hub-router.json authored after seven-mode set settled; check 5b passes]
+- [x] CHK-023 [P1] Benchmark baseline is inspectable [trace: audit P0-6] [EVIDENCE: benchmark/baseline/ holds skill-benchmark-report.{json,md}; benchmark/README.md documents the run]
 
 <!-- /ANCHOR:testing -->
 ---
@@ -80,12 +69,9 @@ _memory:
 <!-- ANCHOR:fix-completeness -->
 ## Fix Completeness
 
-- [ ] CHK-024 [P0] 018a closes the three safe-now P0 findings [trace: master plan verify; audit P0-4, P0-5, P0-6]
-  - **Evidence to collect**: Missing description, manual playbook, and benchmark findings are resolved by created artifacts.
-- [ ] CHK-025 [P0] 018b tasks remain blocked until the gate clears [trace: user brief; audit P0-1]
-  - **Evidence to collect**: Each 018b task says `mode-registry.json dirty — live agent mid-refactor; open only when git-clean`.
-- [ ] CHK-026 [P1] Full conformance is not claimed before 018b executes [trace: master plan verify]
-  - **Evidence to collect**: Implementation summary and checklist state planned/not executed, completion 0, and blockers active.
+- [x] CHK-024 [P0] 018a closed the three safe-now P0 findings [trace: audit P0-4, P0-5, P0-6] [EVIDENCE: missing description, playbook, benchmark findings resolved by created artifacts]
+- [x] CHK-025 [P0] 018b executed once the gate cleared [trace: audit P0-1] [EVIDENCE: registry git-clean; 018b shipped in `e1a266b07c` + `a5e81198c9`]
+- [x] CHK-026 [P0] Full conformance is claimed only with STRICT evidence [trace: master plan verify] [EVIDENCE: deep-loop parent-skill-check STRICT 0/0; drift-guard 7/7; vocab-sync exit 0]
 
 <!-- /ANCHOR:fix-completeness -->
 ---
@@ -93,12 +79,9 @@ _memory:
 <!-- ANCHOR:security -->
 ## Security
 
-- [ ] CHK-030 [P0] No hardcoded secrets introduced [trace: safe-now artifact scope]
-  - **Evidence to collect**: Additive description, playbook, and benchmark files contain no credentials or environment secrets.
-- [ ] CHK-031 [P0] Tool-surface restrictions are defined before registry completion [trace: audit P0-2]
-  - **Evidence to collect**: Future `toolSurface` values are reviewed against each deep-loop workflow mode before 018b edits land.
-- [ ] CHK-032 [P1] Read-only workflow modes do not gain mutating tool posture [trace: audit P0-2]
-  - **Evidence to collect**: Research, review, and ai-council tool surfaces forbid workspace mutation where appropriate.
+- [x] CHK-030 [P0] No hardcoded secrets introduced [trace: safe-now artifact scope] [EVIDENCE: additive description/playbook/benchmark files contain no credentials or secrets]
+- [x] CHK-031 [P0] Tool-surface restrictions are defined per mode [trace: audit P0-2] [EVIDENCE: each mode carries toolSurface; research grants WebFetch, the other six do not]
+- [x] CHK-032 [P1] Read-only intent is preserved in tool posture [trace: audit P0-2] [EVIDENCE: only research adds WebFetch; the six others share the non-web tool surface]
 
 <!-- /ANCHOR:security -->
 ---
@@ -106,12 +89,9 @@ _memory:
 <!-- ANCHOR:docs -->
 ## Documentation
 
-- [ ] CHK-040 [P1] Spec/plan/tasks synchronized [trace: user brief]
-  - **Evidence to collect**: All three docs describe the same 018a safe-now and 018b deferred/gated split.
-- [ ] CHK-041 [P1] Checklist remains unchecked until execution [trace: planned-state rules]
-  - **Evidence to collect**: All checklist items remain `[ ]` in planning docs.
-- [ ] CHK-042 [P2] Implementation summary records blockers without claiming completion [trace: planned-state rules]
-  - **Evidence to collect**: `implementation-summary.md` says Planned / not yet executed, completion_pct 0, and lists the 018b gate.
+- [x] CHK-040 [P1] Spec/plan/tasks synchronized [trace: user brief] [EVIDENCE: all three docs describe the same executed 018a/018b split]
+- [x] CHK-041 [P1] Checklist reflects executed state [trace: execution rules] [EVIDENCE: all items complete with inline evidence markers]
+- [x] CHK-042 [P2] Implementation summary records completion with evidence [trace: execution rules] [EVIDENCE: implementation-summary.md reports Complete, completion_pct 100, STRICT/drift-guard/benchmark evidence]
 
 <!-- /ANCHOR:docs -->
 ---
@@ -119,10 +99,8 @@ _memory:
 <!-- ANCHOR:file-org -->
 ## File Organization
 
-- [ ] CHK-050 [P1] Spec-doc writes stay inside this phase folder [trace: user brief hard rules]
-  - **Evidence to collect**: This planning step authors only `spec.md`, `plan.md`, `tasks.md`, `checklist.md`, and `implementation-summary.md` in the phase folder.
-- [ ] CHK-051 [P1] Metadata generation is left to the orchestrator [trace: user brief hard rules]
-  - **Evidence to collect**: No `generate-context.js`, `generate-description.js`, or backfill command is run by this phase-doc authoring step.
+- [x] CHK-050 [P1] Spec-doc writes stay inside this phase folder [trace: user brief hard rules] [EVIDENCE: close-out authored only the five phase docs + orchestrator-managed description.json/graph-metadata.json]
+- [x] CHK-051 [P1] Metadata regenerated at close-out [trace: execution rules] [EVIDENCE: generate-description.js + graph-metadata backfill run; validate.sh --strict passes]
 
 <!-- /ANCHOR:file-org -->
 ---
@@ -132,11 +110,11 @@ _memory:
 
 | Category | Total | Verified |
 |----------|-------|----------|
-| P0 Items | 10 | 0/10 |
-| P1 Items | 10 | 0/10 |
-| P2 Items | 1 | 0/1 |
+| P0 Items | 10 | 10/10 |
+| P1 Items | 10 | 10/10 |
+| P2 Items | 1 | 1/1 |
 
-**Verification Date**: Pending execution
-**Verified By**: Pending execution
+**Verification Date**: 2026-07-05
+**Verified By**: Claude Opus (deep-loop STRICT 0/0; drift-guard 7/7; vocab-sync exit 0; Lane-C CONDITIONAL 71/100, D5 100/100)
 
 <!-- /ANCHOR:summary -->

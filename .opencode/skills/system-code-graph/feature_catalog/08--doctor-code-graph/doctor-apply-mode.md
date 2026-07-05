@@ -1,6 +1,6 @@
 ---
 title: "Doctor code-graph route policy"
-description: "Doctor-code-graph route policy that exposes mutating flags in the manifest while the current YAML keeps Phase A diagnostic-only until apply workflow promotion."
+description: "Doctor-code-graph route policy for the current read-only manifest, with future apply flags still not promoted."
 trigger_phrases:
   - "doctor code graph apply"
   - "system-code-graph feature catalog"
@@ -15,13 +15,13 @@ version: 1.2.0.12
 
 ## 1. OVERVIEW
 
-`/doctor code-graph` is a command-owned diagnostic and repair policy surface. The route manifest exposes future apply flags and `mk-code-index` tool grants. The current YAML keeps Phase A diagnostic-only and writes only packet-local scratch reports.
+`/doctor code-graph` is a command-owned diagnostic policy surface. The route manifest currently marks the `- target: code-graph` block as `mutating: read-only` and grants only the shipped diagnostic flags. Apply and repair flags remain future-phase comments, not active command surface.
 
 ## 2. HOW IT WORKS
 
 ### Trigger / Auto-Fire Path
 
-Manual slash command: `/doctor code-graph` with target-specific flags (`--scope`, `--operation`, `--dry-run`, `--confirm`) per `.opencode/commands/doctor/_routes.yaml:54-79`.
+Manual slash command: `/doctor code-graph` with active target-specific flags (`--scope=stale|missed|bloat|all|excludes` and `--dry-run`) per the `.opencode/commands/doctor/_routes.yaml` `- target: code-graph` block. `--operation` and `--confirm` are not shipped active flags; they only appear in a future `phase_b` comment.
 
 ### Class
 
@@ -29,7 +29,7 @@ manual. Code-graph doctor diagnostics are operator-triggered. The current YAML r
 
 ### Caveats / Fallback
 
-The route manifest is marked `mutates` because it grants apply flags and future repair operations. The current YAML states Phase A is diagnostic-only at `.opencode/commands/doctor/assets/doctor_code-graph.yaml:20-23`.
+The route manifest is marked `read-only` today. The current YAML keeps Phase A diagnostic-only, and apply/mutation remains a not-yet-promoted future `phase_b`.
 
 ## 3. SOURCE FILES
 
@@ -37,11 +37,11 @@ The route manifest is marked `mutates` because it grants apply flags and future 
 
 | File | Layer | Role |
 |---|---|---|
-| `.opencode/commands/doctor/_routes.yaml:54-79` | Route manifest | defines code-graph flags, mutation class and `mk-code-index` tool grants |
-| `.opencode/commands/doctor/assets/doctor_code-graph.yaml:20-23` | Workflow YAML | states Phase A is diagnostic-only |
-| `.opencode/commands/doctor/assets/doctor_code-graph.yaml:76-86` | Workflow YAML | forbids mutations outside packet-local scratch in the current workflow |
-| `.opencode/commands/doctor/assets/doctor_code-graph.yaml:131-187` | Workflow YAML | defines discovery, analysis and proposal report phases |
-| `.opencode/commands/doctor/assets/doctor_code-graph.yaml:191-206` | Workflow YAML | enforces approval and read-only output gates |
+| `.opencode/commands/doctor/_routes.yaml` `- target: code-graph` | Route manifest | defines the read-only mutation class, active `--scope` and `--dry-run` flags, and `mk-code-index` tool grants |
+| `.opencode/commands/doctor/assets/doctor_code-graph.yaml` | Workflow YAML | states Phase A is diagnostic-only |
+| `.opencode/commands/doctor/assets/doctor_code-graph.yaml` | Workflow YAML | forbids mutations outside packet-local scratch in the current workflow |
+| `.opencode/commands/doctor/assets/doctor_code-graph.yaml` | Workflow YAML | defines discovery, analysis and proposal report phases |
+| `.opencode/commands/doctor/assets/doctor_code-graph.yaml` | Workflow YAML | enforces approval and read-only output gates |
 
 ### Validation And Tests
 

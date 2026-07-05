@@ -4,7 +4,7 @@
 // Feature catalog: Unified graph retrieval, deterministic ranking, explainability, and rollback
 // Causal graph search channel — uses FTS5 for node matching
 
-import { sanitizeFTS5Query } from './bm25-index.js';
+import { sanitizeFTS5Query, sanitizeFTS5QueryOr } from './bm25-index.js';
 import { queryHierarchyMemories } from './spec-folder-hierarchy.js';
 import { escapeLikePattern } from './vector-index-types.js';
 import { registerDatabaseRebindListener } from '../../core/db-state.js';
@@ -166,7 +166,7 @@ function queryCausalEdgesFTS5(
   // 1) Materialize matched memory rowids once (no OR join against memory_fts)
   // 2) UNION ALL source-side and target-side edge lookups
   // 3) Collapse duplicate edge hits in SQL (MAX fts_score per edge)
-  const rows = (database.prepare(`
+  const statement = database.prepare(`
     WITH matched_memories AS (
       SELECT
         rowid AS memory_id,
@@ -200,11 +200,27 @@ function queryCausalEdgesFTS5(
     FROM scored_edges
     ORDER BY (strength * fts_score) DESC
     LIMIT ?
-  `) as Database.Statement).all(
-    sanitized,
-    oversampleLimit,
-    oversampleLimit,
-  ) as Array<CausalEdgeRow & { fts_score: number }>;
+  `) as Database.Statement;
+
+  const runMatch = (matchExpression: string): Array<CausalEdgeRow & { fts_score: number }> =>
+    statement.all(
+      matchExpression,
+      oversampleLimit,
+      oversampleLimit,
+    ) as Array<CausalEdgeRow & { fts_score: number }>;
+
+  let rows = runMatch(sanitized);
+
+  // Space-joined quoted tokens are implicit AND in FTS5, so one absent token
+  // zeroes the whole graph channel for verbose natural-language queries.
+  // Retry with the OR form (stop words dropped) so any informative token can
+  // still surface graph candidates; precise queries keep strict-AND results.
+  if (rows.length === 0) {
+    const tolerant = sanitizeFTS5QueryOr(query);
+    if (tolerant && tolerant !== sanitized) {
+      rows = runMatch(tolerant);
+    }
+  }
 
   // Return one candidate entry per memory node (source_id and target_id) with
   // Numeric IDs matching memory_index.id (INTEGER column) in the hybrid search

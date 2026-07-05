@@ -1,0 +1,222 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/z_archive/023-deep-improvement-skill-benchmark-mode/011-sk-code-routing-efficiency-remediation",
+  "spec_folder": "system-deep-loop/z_archive/023-deep-improvement-skill-benchmark-mode/011-sk-code-routing-efficiency-remediation",
+  "parent_id": "system-deep-loop/z_archive/023-deep-improvement-skill-benchmark-mode",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "sk-code routing efficiency remediation",
+      "sk-code over-routing",
+      "surface-slice loading",
+      "D3 D4 sk-code remediation",
+      "sk-code remediation plan",
+      "surface-slice research plan",
+      "sk-code remediation tasks",
+      "sk-code remediation checklist",
+      "sk-code remediation summary"
+    ],
+    "key_topics": [
+      "sk-code",
+      "routing",
+      "efficiency",
+      "remediation",
+      "over-routing",
+      "surface-slice",
+      "loading",
+      "plan",
+      "research",
+      "tasks",
+      "checklist",
+      "summary"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "research/research.md",
+      "research/iterations/iteration-001.md",
+      "research/deep-research-strategy.md",
+      "research/deep-research-state.jsonl",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "iteration-001.md",
+        "kind": "doc",
+        "path": "research/iterations/iteration-001.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-strategy.md",
+        "kind": "doc",
+        "path": "research/deep-research-strategy.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-state.jsonl",
+        "kind": "file",
+        "path": "research/deep-research-state.jsonl",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Usefulness Remediation",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Dependencies",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Reduce",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Four",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Ready The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Evaluator",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria Research",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "its",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "sk-code routes to the correct surface and resources, but over-loads: the live run read 2-4x the resources the scenario needed (D3 42), and the D4 ablation showed the broad load is net-negative on routine tasks (LS-001 skill-on 0.82 vs skill-off 0.95) while helping domain-pattern tasks (CS-001 skill-on 0.88 vs skill-off 0.78)",
+    "created_at": "2026-06-01T18:29:41.530Z",
+    "last_save_at": "2026-06-23T03:49:51.339Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md",
+      "research/research.md"
+    ],
+    "source_fingerprint": "sha256:a44a218f245484eeb69941e5ef5943f02beaca13d50a6077b09ece1738c0f595",
+    "source_doc_hashes": {
+      "spec.md": "896099c00612707461d0b72d21bbba5c07059a7f84aa6f74c79c94fc2b670b78",
+      "plan.md": "5d59037d8adbb7db0d098e725c9dc5bc8eca59cb954ffd4fdf6b6735311318fd",
+      "tasks.md": "728243bc78c0441eabcba3a2ad85486b7888172385b3e5abaa390944112513cb",
+      "checklist.md": "c996d1c1fe06528352a2479f5612e00d18aebc3d4ac17d9152b934416ba908db",
+      "implementation-summary.md": "8ad334a4db7acc1d6496350e3b8e91239cabdf65d0d59c7f00338a52381c15f3",
+      "research/research.md": "3692da960bf073435a6cbd1796491931f4a050514bc96ac62dc9b0adc8e6699d"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

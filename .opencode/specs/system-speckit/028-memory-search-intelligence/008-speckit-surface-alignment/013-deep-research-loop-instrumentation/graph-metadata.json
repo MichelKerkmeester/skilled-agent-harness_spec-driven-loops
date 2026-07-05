@@ -1,0 +1,223 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/028-memory-search-intelligence/008-speckit-surface-alignment/013-deep-research-loop-instrumentation",
+  "spec_folder": "system-speckit/028-memory-search-intelligence/008-speckit-surface-alignment/013-deep-research-loop-instrumentation",
+  "parent_id": "system-speckit/028-memory-search-intelligence/008-speckit-surface-alignment",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "deep research loop instrumentation",
+      "newInfoRatio inert",
+      "novelty signal inert",
+      "deep research evidence labels",
+      "deep research loop instrumentation plan",
+      "newInfoRatio inertness",
+      "novelty_signal_inert",
+      "deep research loop instrumentation tasks",
+      "newInfoRatio inertness tasks",
+      "novelty signal inert tasks",
+      "deep research loop instrumentation checklist",
+      "newInfoRatio inertness verification"
+    ],
+    "key_topics": [
+      "deep",
+      "research",
+      "loop",
+      "instrumentation",
+      "newinforatio",
+      "inert",
+      "novelty",
+      "signal",
+      "evidence",
+      "labels",
+      "plan",
+      "inertness"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      ".opencode/specs/system-speckit/028-memory-search-intelligence/008-speckit-surface-alignment/013-deep-research-loop-instrumentation/spec.md",
+      ".opencode/specs/system-speckit/028-memory-search-intelligence/008-speckit-surface-alignment/013-deep-research-loop-instrumentation/implementation-summary.md",
+      ".opencode/skills/deep-loop-workflows/deep-research/scripts/reduce-state.cjs",
+      ".opencode/skills/deep-loop-runtime/tests/unit/deep-research-novelty-inertness.vitest.ts",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "checklist.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": ".opencode/specs/system-speckit/028-memory-search-intelligence/008-speckit-surface-alignment/013-deep-research-loop-instrumentation/spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": ".opencode/specs/system-speckit/028-memory-search-intelligence/008-speckit-surface-alignment/013-deep-research-loop-instrumentation/implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "reduce-state.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/deep-loop-workflows/deep-research/scripts/reduce-state.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-novelty-inertness.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/deep-loop-runtime/tests/unit/deep-research-novelty-inertness.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Research Loop Instrumentation",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Across",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Ship",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Escalate",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Across all 20 iterations of the surface-alignment deep-research run, the emitted `newInfoRatio` was exactly `1.0` in every state record, including iterations that repeated earlier findings",
+    "created_at": "2026-07-05T13:17:57.971Z",
+    "last_save_at": "2026-07-05T13:36:39.871Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:860409778ae336d96532ee83a377de3d7d9bbf2d25b877707c6f70bb9bb165d9",
+    "source_doc_hashes": {
+      "spec.md": "809ce357159da9ddbf68db5024cdd05b8d1c8d098d904c3681e48e8b226ee3c5",
+      "plan.md": "3f494d07de0447b4d4f2d5cfb483da21dad231f36967f89f76e41539a899a876",
+      "tasks.md": "8c34cb36e6f291751fc299abab742932327dc6f7f281ad8530254b660917d88e",
+      "checklist.md": "e55f5cdf5a4b6098532cd38bbd15a3aaaec5db343541ad8c3ddc8c7ed9463432",
+      "implementation-summary.md": "19e15dc65a4721c48dbb8df7738fe9054da02645e5089738810c29837e6815f2"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

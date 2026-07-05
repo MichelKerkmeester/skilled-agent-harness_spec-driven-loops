@@ -554,6 +554,15 @@
         "source_files": "source_files"
       },
       "description": "Per-feature playbook scenario file under manual_testing_playbook/NN--category/"
+    },
+    "feature_catalog": {
+      "tocRequired": false,
+      "tocUppercaseRequired": false,
+      "h2EmojiRequired": false,
+      "h2UppercaseRequired": false,
+      "requiredSections": [],
+      "allowedValidationTypes": ["Automated test", "Unit", "Integration", "Fixture", "Benchmark", "Schema", "Manual playbook", "Reference", "Vitest", "Node test", "MCP integration test", "Test harness"],
+      "description": "Per-feature catalog leaf file under */feature_catalog/NN--category/ (only the Validation And Tests table Type + placeholder check applies; catalogs do not use emoji/uppercase H2s). allowedValidationTypes is a curated canonical set — the advisory Type warning surfaces near-dupes/typos to normalize toward these, not to force 2 values on the real corpus"
     }
   },
   "validationRules": {

@@ -1,0 +1,216 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/030-deep-loop-improved/003-deep-loop-workflows/007-ideas-backlog-lifecycle",
+  "spec_folder": "system-deep-loop/030-deep-loop-improved/003-deep-loop-workflows/007-ideas-backlog-lifecycle",
+  "parent_id": "system-deep-loop/030-deep-loop-improved/003-deep-loop-workflows",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "ideas backlog lifecycle",
+      "idea_observed idea_promoted",
+      "minIdeaObservations threshold",
+      "idea promotion deep research",
+      "007-ideas-backlog-lifecycle summary",
+      "007-ideas-backlog-lifecycle"
+    ],
+    "key_topics": [
+      "ideas",
+      "backlog",
+      "lifecycle",
+      "minideaobservations",
+      "threshold",
+      "idea",
+      "promotion",
+      "deep",
+      "research",
+      "007-ideas-backlog-lifecycle",
+      "summary",
+      "deep-research"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      ".opencode/skills/deep-loop-workflows/deep-research/references/protocol/loop_protocol.md",
+      ".opencode/skills/deep-loop-workflows/deep-research/scripts/reduce-state.cjs",
+      ".opencode/skills/deep-loop-workflows/deep-research/references/state/state_jsonl.md",
+      ".opencode/commands/deep/assets/deep_research_auto.yaml",
+      ".opencode/agents/deep-research.md",
+      ".opencode/skills/deep-loop-runtime/tests/unit/deep-research-reduce-state.vitest.ts",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "loop_protocol.md",
+        "kind": "doc",
+        "path": ".opencode/skills/deep-loop-workflows/deep-research/references/protocol/loop_protocol.md",
+        "source": "derived"
+      },
+      {
+        "name": "reduce-state.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/deep-loop-workflows/deep-research/scripts/reduce-state.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "state_jsonl.md",
+        "kind": "doc",
+        "path": ".opencode/skills/deep-loop-workflows/deep-research/references/state/state_jsonl.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep_research_auto.yaml",
+        "kind": "config",
+        "path": ".opencode/commands/deep/assets/deep_research_auto.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research.md",
+        "kind": "doc",
+        "path": ".opencode/agents/deep-research.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-reduce-state.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/deep-loop-runtime/tests/unit/deep-research-reduce-state.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Backlog Threshold",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Rejection Lifecycle",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Reducer",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec-grounded",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The deep-research loop has no threshold-gated idea promotion; ideas surface in one iteration and disappear in the next without any canonical lifecycle record",
+    "created_at": "2026-06-28T14:02:11Z",
+    "last_save_at": "2026-07-04T18:02:10.961Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:acc4dd974519a4e0010fee0650e8b63e2777f35b3b0323951dc567c7eddc63dc",
+    "source_doc_hashes": {
+      "spec.md": "10a87e3551975487be851ca5e42fe1e7d880b99f868aba31ba755bcbcb0c9ba4",
+      "plan.md": "6f7f65142c99c89978c8638f16433505808572ff4a561f4d89d992567c6f64a8",
+      "tasks.md": "ebb32ef62d101e30644cb27e139bb85cb001e85f9fe310d5beef528a912ad40e",
+      "implementation-summary.md": "3ac2aef19409b3fec63f6b6d13718d71ad86dcdb4e959eb7d29c2ef84304ac51"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

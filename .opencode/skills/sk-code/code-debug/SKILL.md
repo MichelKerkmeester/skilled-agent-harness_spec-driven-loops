@@ -225,13 +225,13 @@ Before applying another fix for the same symptom, state a one-sentence root caus
 ### Debugging Assets And References
 
 - [`assets/universal-debugging_checklist.md`](assets/universal-debugging_checklist.md) - Surface-agnostic debugging checklist.
-- [`assets/webflow-debugging_checklist.md`](../webflow/assets/webflow-debugging_checklist.md) - Webflow/frontend debugging checklist.
-- [`references/webflow-debugging/debugging_workflows.md`](../webflow/references/debugging/debugging_workflows.md) - Browser and frontend debugging workflows.
-- [`references/webflow-debugging/error_recovery.md`](../webflow/references/debugging/error_recovery.md) - Webflow/frontend error recovery patterns.
+- [`assets/webflow-debugging_checklist.md`](../code-webflow/assets/webflow-debugging_checklist.md) - Webflow/frontend debugging checklist.
+- [`references/webflow-debugging/debugging_workflows.md`](../code-webflow/references/debugging/debugging_workflows.md) - Browser and frontend debugging workflows.
+- [`references/webflow-debugging/error_recovery.md`](../code-webflow/references/debugging/error_recovery.md) - Webflow/frontend error recovery patterns.
 
 ### Sibling Mode Contracts
 
 - [`../code-implement/SKILL.md`](../code-implement/SKILL.md) - Planned implementation and new behavior.
 - [`../code-quality/SKILL.md`](../code-quality/SKILL.md) - Quality gate after debug fixes.
 - [`../code-verify/SKILL.md`](../code-verify/SKILL.md) - Final non-mutating verification evidence.
-- [`../review/SKILL.md`](../review/SKILL.md) - Findings-first review output.
+- [`../code-review/SKILL.md`](../code-review/SKILL.md) - Findings-first review output.

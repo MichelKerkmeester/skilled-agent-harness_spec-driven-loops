@@ -1,0 +1,44 @@
+{
+  "title": "Phase 003 - Private Procedure Card Layer",
+  "type": "phase",
+  "trigger_phrases": [
+    "private procedure card layer",
+    "procedure-card schema",
+    "mode-local procedure cards",
+    "Claude procedure adaptation",
+    "source-adaptation rules",
+    "proof requirements",
+    "single sk-design hub identity"
+  ],
+  "path": ".opencode/specs/design/009-sk-design-claude-parity/003-private-procedure-card-layer/",
+  "level": 3,
+  "status": "planned/not-started",
+  "parentPacket": ".opencode/specs/design/009-sk-design-claude-parity/",
+  "specFolder": "design/009-sk-design-claude-parity/003-private-procedure-card-layer",
+  "description": "The external Claude procedure set contains useful design-manager behaviors, but exposing those procedures as fourteen public OpenCode skills would",
+  "keywords": [
+    "external",
+    "claude",
+    "procedure",
+    "set",
+    "contains",
+    "useful",
+    "design-manager",
+    "behaviors",
+    "exposing",
+    "procedures",
+    "fourteen",
+    "public",
+    "opencode",
+    "skills"
+  ],
+  "lastUpdated": "2026-07-05T16:15:10.205Z",
+  "specId": "003",
+  "folderSlug": "private-procedure-card-layer",
+  "parentChain": [
+    "design",
+    "009-sk-design-claude-parity"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

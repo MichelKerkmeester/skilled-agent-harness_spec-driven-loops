@@ -1,6 +1,6 @@
 ---
 title: "Implementation Plan: Phase 016 sk-code content coherence and reference integrity"
-description: "Forward-looking plan for repairing sk-code reference drift, stale playbook and benchmark content, hub metadata canon prose, sub-skill sk-doc alignment, and a single spec-kit relocation."
+description: "Executed plan for sk-code content coherence: audit-driven repair/playbook/benchmark/relocation tasks verified already-satisfied after the 013 restructure (0 broken refs, STRICT 0/0, vocab-sync 0/0/0); metadata cleanup shipped in af1170c663."
 trigger_phrases:
   - "sk-code content coherence plan"
   - "sk-code reference integrity plan"
@@ -11,23 +11,9 @@ _memory:
   continuity:
     packet_pointer: "skilled-agent-orchestration/124-sk-code-parent/016-sk-code-content-coherence"
     last_updated_at: "2026-07-05T00:00:00Z"
-    last_updated_by: "gpt-5.5"
-    recent_action: "Phase planned and documented; execution pending"
-    next_safe_action: "Start T001 by capturing the current sk-code reference and playbook baseline before edits"
-    blockers:
-      - "Phase 017 canon metadata-shape decisions may affect the exact description.json and graph-metadata.json wording."
-    key_files:
-      - ".opencode/skills/sk-code/description.json"
-      - ".opencode/skills/sk-code/graph-metadata.json"
-      - ".opencode/skills/sk-code/manual_testing_playbook/"
-    session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "phase-016-planning"
-      parent_session_id: null
-    completion_pct: 0
-    open_questions:
-      - "Does phase 017 land any metadata vocabulary decision before phase 016 edits begin?"
-    answered_questions: []
+    last_updated_by: "claude-opus"
+    recent_action: "Phase closed by verification; sk-code STRICT 0/0"
+    next_safe_action: "124 rollup"
 ---
 # Implementation Plan: Phase 016 sk-code content coherence and reference integrity
 
@@ -58,17 +44,17 @@ This phase will turn the audit's sk-code content findings into a narrow repair s
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] Phase 017 metadata vocabulary decision is known or confirmed not blocking.
-- [ ] Current sk-code link-check baseline captures 30 broken references, 8 useless references, and 5 duplicate references or updated equivalent counts.
-- [ ] Current playbook stale-body occurrences are inventoried across the affected scenario files.
-- [ ] Relocation target under system-spec-kit references is selected.
+- [x] Phase 017 metadata vocabulary decision confirmed not blocking (metadata already two-axis coherent).
+- [x] sk-code link-check baseline captured — 0 broken references (the audit's 30/8/5 counts predated the 013 restructure).
+- [x] Playbook stale-body occurrences inventoried — none live; paths resolve post-013.
+- [x] Relocation disposition selected — superseded (ADR-002); no live hooks-ref defect.
 
 ### Definition of Done
-- [ ] sk-code link checker reports 0 broken live references.
-- [ ] Router-sync and vocab-sync vitests pass with non-vacuous nested packet resource coverage.
-- [ ] Parent-skill-check strict remains 0 failures for sk-code.
-- [ ] code-quality P0, code-verify P0, and surface/shared P1 alignment findings are closed or explicitly deferred with approval.
-- [ ] Benchmark baseline is re-derived add-only and historical benchmark evidence is untouched.
+- [x] sk-code link checker reports 0 broken live references.
+- [x] Router and vocabulary coverage is non-vacuous (parent-skill-check 5b/5c; vocab-sync 0/0/0).
+- [x] Parent-skill-check strict remains 0 failures for sk-code.
+- [x] code-quality P0, code-verify P0, and surface/shared P1 alignment findings closed (verified already-satisfied).
+- [x] Benchmark baseline is intact add-only and historical benchmark evidence untouched (9b pass; no re-derivation needed).
 
 <!-- /ANCHOR:quality-gates -->
 ---

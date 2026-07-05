@@ -96,7 +96,7 @@ Use it for final evidence and completion-claim gating. Skip it when the task req
 | Universal pre-claim gate | Load and walk [`assets/universal-verification_checklist.md`](./assets/universal-verification_checklist.md) |
 | OpenCode alignment drift | `python3 .opencode/skills/sk-code/code-verify/assets/scripts/verify_alignment_drift.py --root <changed-scope>` |
 | Stack-folder integrity | `python3 .opencode/skills/sk-code/code-verify/assets/scripts/verify_stack_folders.py` when surface-router integrity is in scope |
-| Webflow verification | Use [`assets/webflow-verification_checklist.md`](../webflow/assets/webflow-verification_checklist.md) and [`references/webflow-verification/verification_workflows.md`](../webflow/references/verification/verification_workflows.md) |
+| Webflow verification | Use [`assets/webflow-verification_checklist.md`](../code-webflow/assets/webflow-verification_checklist.md) and [`references/webflow-verification/verification_workflows.md`](../code-webflow/references/verification/verification_workflows.md) |
 | Verifier tests | `python3 .opencode/skills/sk-code/code-verify/assets/scripts/test_verify_alignment_drift.py` when the alignment verifier changes |
 
 ---
@@ -107,10 +107,10 @@ Use it for final evidence and completion-claim gating. Skip it when the task req
 |---|---|
 | [`SKILL.md`](./SKILL.md) | Runtime contract for the non-mutating verify mode |
 | [`assets/universal-verification_checklist.md`](./assets/universal-verification_checklist.md) | Required pre-claim gate |
-| [`assets/webflow-verification_checklist.md`](../webflow/assets/webflow-verification_checklist.md) | Webflow/browser verification checklist |
+| [`assets/webflow-verification_checklist.md`](../code-webflow/assets/webflow-verification_checklist.md) | Webflow/browser verification checklist |
 | [`assets/performance_loading_checklist.md`](./assets/performance_loading_checklist.md) | Performance loading checklist |
 | [`assets/scripts/verify_alignment_drift.py`](./assets/scripts/verify_alignment_drift.py) | OpenCode alignment drift verifier |
 | [`assets/scripts/verify_stack_folders.py`](./assets/scripts/verify_stack_folders.py) | Stack-folder integrity verifier |
-| [`references/webflow-verification/verification_workflows.md`](../webflow/references/verification/verification_workflows.md) | Webflow/browser verification workflows |
-| [`references/webflow-verification/performance_checklist.md`](../webflow/references/verification/performance_checklist.md) | Webflow performance verification details |
+| [`references/webflow-verification/verification_workflows.md`](../code-webflow/references/verification/verification_workflows.md) | Webflow/browser verification workflows |
+| [`references/webflow-verification/performance_checklist.md`](../code-webflow/references/verification/performance_checklist.md) | Webflow performance verification details |
 | [`../shared/references/phase_detection.md`](../shared/references/phase_detection.md) | Lifecycle transitions into verification |

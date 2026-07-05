@@ -1,0 +1,217 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/z_archive/022-deep-agent-improvement-benchmark-mode/005-add-opt-in-5dim-scorer-and-skill-docs",
+  "spec_folder": "system-deep-loop/z_archive/022-deep-agent-improvement-benchmark-mode/005-add-opt-in-5dim-scorer-and-skill-docs",
+  "parent_id": "system-deep-loop/z_archive/022-deep-agent-improvement-benchmark-mode",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "optin 5dim scorer",
+      "run-benchmark scorer flag",
+      "deep-agent-improvement skill docs sk-doc",
+      "implementation",
+      "plan",
+      "name",
+      "template",
+      "plan core",
+      "tasks",
+      "tasks core",
+      "summary",
+      "impl summary core"
+    ],
+    "key_topics": [
+      "optin",
+      "5dim",
+      "scorer",
+      "run-benchmark",
+      "flag",
+      "deep-agent-improvement",
+      "skill",
+      "docs",
+      "sk-doc",
+      "implementation",
+      "plan",
+      "name"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "scripts/README.md",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": "scripts/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Clean Architecture",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Current Role",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 3: Verification",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The 122 review flagged that the ported 5-dim scorer (`score-model-variant.cjs`) was built and available but never wired into `run-benchmark.cjs` (deferral F-P2-1/F-P2-2), and the deep-agent-improvement SKILL.md did not document the model-benchmark mode at all (the whole 121/003 feature was undocumented in the skill)",
+    "created_at": "2026-05-28T19:15:44Z",
+    "last_save_at": "2026-06-23T03:49:51.202Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:4db0c7a5556500274447b42a4d5e5cbabcbac8bb50a8f7e0c061c0634af05059",
+    "source_doc_hashes": {
+      "spec.md": "fba41c35b05e376bed98a270052ff0039967bdfdada8cf34605afb92bdfef886",
+      "plan.md": "cada5e4623d3aa1eb19517cf55f69a6b5e77b82d12d2398035e56b3e86f2ffac",
+      "tasks.md": "a0c78ce7ef4b7da2ba261537af7af449acff9849484e23cd53c165758fe4c468",
+      "implementation-summary.md": "ec858c4ea8db47f15e29c2c63891d63832e584216fdf48353e02ecabc332e2ce"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

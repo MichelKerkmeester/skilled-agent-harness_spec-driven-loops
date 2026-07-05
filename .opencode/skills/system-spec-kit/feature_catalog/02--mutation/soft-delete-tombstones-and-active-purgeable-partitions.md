@@ -17,7 +17,7 @@ version: 3.6.0.1
 
 Soft-delete tombstones are available behind `SPECKIT_SOFT_DELETE_TOMBSTONES`, while hard-delete behavior remains the default.
 
-The feature adds tombstone-ready storage, delete-handler gates, and retention partitioning without making recall surfaces filter tombstoned rows by default.
+The feature adds tombstone-ready storage, delete-handler gates, and retention partitioning. Since the shared active-row predicate landed (031/002), recall surfaces — search, list, triggers, stats, and dedup reads — exclude soft-deleted (`deleted_at`) rows by default.
 
 ---
 

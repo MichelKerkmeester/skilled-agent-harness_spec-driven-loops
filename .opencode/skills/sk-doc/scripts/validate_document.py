@@ -128,6 +128,12 @@ def detect_document_type(file_path: str, content: str, rules: Dict[str, Any]) ->
         # Per-feature files: parent dir matches NN--category-name pattern
         if re.match(r'^\d{2}--', parent):
             return 'playbook_feature'
+    # Per-feature catalog leaves: under */feature_catalog/NN--category/feature.md. These carry the
+    # Validation And Tests table whose Type taxonomy and placeholder rows the generic readme path misses.
+    if '/feature_catalog/' in path_lower or '\\feature_catalog\\' in path_lower:
+        parent = Path(path_lower).parent.name
+        if re.match(r'^\d{2}--', parent):
+            return 'feature_catalog'
     if '/command/' in path_lower or '\\command\\' in path_lower or '/commands/' in path_lower or '\\commands\\' in path_lower:
         return 'command'
     if '/install_guides/' in path_lower or '\\install_guides\\' in path_lower:
@@ -525,6 +531,59 @@ def apply_fixes(content: str, errors: List[Dict[str, Any]]) -> Tuple[str, List[D
 # 7. MAIN VALIDATION
 # ───────────────────────────────────────────────────────────────
 
+def validate_feature_catalog_table(content: str, doc_type_rules: Dict[str, Any]) -> List[Dict[str, Any]]:
+    """Validate a feature-catalog leaf's 'Validation And Tests' table.
+
+    The generic readme path misses two drift classes here: placeholder rows (an em-dash File and Role
+    with a filler Type) that pass as 'valid' while documenting no real coverage, and off-taxonomy Type
+    values. The per-feature template defines Type as exactly {Automated test | Manual playbook}; anything
+    else (Integration, Manual scenario contract, a bare em-dash) hides missing or mislabeled tests.
+    Un-filled template rows (`{TEST_FILE_1}`) are skipped so a fresh scaffold does not fail.
+    """
+    errors: List[Dict[str, Any]] = []
+    allowed = set(doc_type_rules.get('allowedValidationTypes', ['Automated test', 'Manual playbook']))
+    dash = {'—', '-', '–', ''}
+    lines = content.split('\n')
+    in_table = False
+    for i, line in enumerate(lines):
+        stripped = line.strip()
+        if re.match(r'^\|\s*File\s*\|\s*Type\s*\|\s*Role\s*\|', stripped):
+            in_table = True
+            continue
+        if not in_table:
+            continue
+        if not stripped.startswith('|'):
+            in_table = False
+            continue
+        if re.match(r'^\|[\s|:\-]+\|$', stripped):  # |---|---|---| separator
+            continue
+        cells = [c.strip() for c in stripped.strip('|').split('|')]
+        if len(cells) < 3:
+            continue
+        file_cell, type_cell, role_cell = cells[0], cells[1], cells[2]
+        if '{' in file_cell or '{' in type_cell:  # un-filled template row
+            continue
+        if file_cell in dash and role_cell in dash:
+            errors.append({
+                'type': 'placeholder_validation_row',
+                'line': i + 1, 'severity': 'blocking', 'auto_fixable': False,
+                'message': (f"Placeholder validation-table row (File and Role are em-dashes, Type "
+                            f"'{type_cell}') — replace with a real test file + role, or remove the row."),
+            })
+        type_bare = type_cell.strip('`').strip()
+        # Advisory only: the live corpus uses ~35 descriptive Type values (Vitest, Fixture, MCP
+        # integration test, ...), so the template's 2-value taxonomy is de-facto stale. Warn to
+        # surface the inconsistency for a normalization decision rather than block a third of catalogs.
+        if type_bare and type_bare not in allowed:
+            errors.append({
+                'type': 'off_taxonomy_validation_type',
+                'line': i + 1, 'severity': 'warning', 'auto_fixable': False,
+                'message': (f"Off-taxonomy validation Type '{type_bare}' — template canon is "
+                            f"{' | '.join(sorted(allowed))} (advisory: taxonomy needs normalization)."),
+            })
+    return errors
+
+
 def validate_document(
     file_path: str,
     doc_type: Optional[str] = None,
@@ -597,6 +656,8 @@ def validate_document(
     all_errors.extend(validate_toc(content, doc_type_rules, rules))
     all_errors.extend(validate_h2_headers(content, doc_type_rules, rules))
     all_errors.extend(validate_required_sections(content, doc_type_rules))
+    if doc_type == 'feature_catalog':
+        all_errors.extend(validate_feature_catalog_table(content, doc_type_rules))
 
     blocking_errors = [e for e in all_errors if e.get('severity') == 'blocking']
     warnings = [e for e in all_errors if e.get('severity') == 'warning']

@@ -1,0 +1,31 @@
+{
+  "level": "3",
+  "specFolder": "system-deep-loop/z_archive/021-deep-skill-evolution/004-deep-research/005-uncovered-questions",
+  "description": "Deep-research convergence references use question coverage as a saturation signal, but the operator dashboard did not show which questions remained un",
+  "keywords": [
+    "deep-research",
+    "convergence",
+    "references",
+    "use",
+    "question",
+    "coverage",
+    "saturation",
+    "signal",
+    "operator",
+    "dashboard",
+    "show",
+    "questions",
+    "remained"
+  ],
+  "lastUpdated": "2026-06-23T03:49:50.936Z",
+  "specId": "005",
+  "folderSlug": "uncovered-questions",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "z_archive",
+    "116-deep-skill-evolution",
+    "004-deep-research"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

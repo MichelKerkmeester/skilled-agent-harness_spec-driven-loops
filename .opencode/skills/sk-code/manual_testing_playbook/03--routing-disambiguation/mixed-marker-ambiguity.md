@@ -32,7 +32,7 @@ Add Lenis smooth-scroll to .opencode/skills/sk-doc/scripts/preview-server.js for
 
 **Expected behavior** (one of two acceptable outcomes):
 
-**Outcome A (documented precedence)**: SKILL.md states OPENCODE target path overrides WEBFLOW library marker. sk-code reports `SURFACE: OPENCODE`, `LANGUAGE: JAVASCRIPT`, loads `references/opencode/javascript/*` + shared. Does NOT load `references/webflow/*`.
+**Outcome A (documented precedence)**: SKILL.md states OPENCODE target path overrides WEBFLOW library marker. sk-code reports `SURFACE: OPENCODE`, `LANGUAGE: JAVASCRIPT`, loads `code-opencode/references/javascript/*` + shared. Does NOT load `code-webflow/references/*`.
 
 **Outcome B (clarification ask)**: sk-code reports `SURFACE: AMBIGUOUS` and asks: "Is this an OpenCode internal tool (use OPENCODE) or a Webflow shipping artifact you happened to place under `.opencode/` (use WEBFLOW)?"
 
@@ -55,7 +55,7 @@ Add Lenis smooth-scroll to .opencode/skills/sk-doc/scripts/preview-server.js for
 ### Pass/Fail Criteria
 
 - **PASS** iff:
-  - **Outcome A**: surface == OPENCODE AND no `references/webflow/*` loaded AND SKILL.md documents this precedence.
+  - **Outcome A**: surface == OPENCODE AND no `code-webflow/references/*` loaded AND SKILL.md documents this precedence.
   - **Outcome B**: surface reported as AMBIGUOUS AND a clarification question is asked AND no surface-specific refs are loaded yet.
 - **FAIL** iff: surface silently picked without surfacing the conflict AND no documented precedence exists in SKILL.md.
 

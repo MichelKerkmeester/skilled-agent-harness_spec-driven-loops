@@ -1,0 +1,31 @@
+{
+  "level": "3",
+  "specFolder": "system-deep-loop/030-deep-loop-improved/002-deep-loop-runtime/008-loop-lock-single-flight-decision",
+  "description": "The current file-lock is advisory and can be raced under specific host conditions where two processes check the lock in a very tight window before",
+  "keywords": [
+    "current",
+    "file-lock",
+    "advisory",
+    "raced",
+    "specific",
+    "host",
+    "conditions",
+    "two",
+    "processes",
+    "check",
+    "lock",
+    "very",
+    "tight",
+    "window"
+  ],
+  "lastUpdated": "2026-07-04T18:02:03.313Z",
+  "specId": "008",
+  "folderSlug": "loop-lock-single-flight-decision",
+  "parentChain": [
+    "system-deep-loop",
+    "030-deep-loop-improved",
+    "002-deep-loop-runtime"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

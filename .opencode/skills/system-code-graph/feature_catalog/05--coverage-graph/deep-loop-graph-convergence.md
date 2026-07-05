@@ -38,10 +38,9 @@ Auto means "inside the command YAML workflow," not globally scheduled. Empty gra
 
 | File | Layer | Role |
 |---|---|---|
-| `.opencode/skills/system-spec-kit/mcp_server/handlers/coverage-graph/convergence.ts:146-240` | Handler | validates namespace, handles empty graphs, computes signals and emits decisions |
-| `.opencode/commands/deep/assets/deep_research_auto.yaml:456-467` | Implementation | calls convergence before the research stop vote |
-| `.opencode/commands/deep/assets/deep_review_auto.yaml:483-502` | Implementation | calls convergence before the review stop vote |
-| `.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:692-705` | Schema | defines the public schema |
+| `.opencode/skills/deep-loop-runtime/scripts/convergence.cjs` | Implementation | CLI script (argv-parsed via `parseArgs`); invoked directly from the deep YAMLs, NOT an MCP tool |
+| `.opencode/commands/deep/assets/deep_research_auto.yaml` `step_graph_convergence` | Call site | calls convergence before the research stop vote |
+| `.opencode/commands/deep/assets/deep_review_auto.yaml` `step_graph_convergence` | Call site | calls convergence before the review stop vote |
 
 ### Validation And Tests
 

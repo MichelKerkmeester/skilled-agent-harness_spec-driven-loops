@@ -1,6 +1,6 @@
 {
   "skill": "sk-design",
-  "version": "1.0.0",
+  "version": "1.1.0.0",
   "description": "Declarative mode registry: the single source of truth for the discriminator (workflowMode/backendKind) PLUS the advisorRouting projection for sk-design. The hub reads this file to resolve a mode; the advisor routes any design query to the single identity sk-design and the hub picks the mode. All five modes route by hub membership (routingClass 'metadata'), so there is no advisor map entry per mode and no merged-identity projection — the advisor does not read this file at runtime.",
   "discriminator": {
     "workflowMode": "Public hub/mode key. Stable identity used by the hub router and this registry. Carried by every mode.",
@@ -10,6 +10,12 @@
     "routingClass": "How the advisor finds the mode. For sk-design every mode is 'metadata' = resolved by hub membership; the advisor routes the single identity sk-design and the hub picks the mode, so no mode carries an advisor map entry or a merged-identity projection.",
     "packetSkillName": "The packet's SKILL.md name. The original flat skill name is preserved as packetSkillName; the packet folder is the short mode key, so folder != packetSkillName is grandfathered here and recorded per mode via grandfatheredFolderMismatch.",
     "grandfatheredFolderMismatch": "true when the packet folder (short mode key, e.g. 'interface') differs from packetSkillName (the preserved flat name, e.g. 'interface'). All five sk-design modes preserve their original flat names (folder == packetSkillName), so none has a folder mismatch — grandfatheredFolderMismatch is false for all five (there is no mismatch to grandfather)."
+  },
+  "extensions": {
+    "transform-verbs": {
+      "description": "Declares the transform-verb routing extension: framing-split verb aliases (interface-frame 'make it' applies the move; audit-frame 'should it be' evaluates it), with excludedAliases and aliasOnly carve-outs. Activates the in-place top-level transformVerbRouting block without relocating it — the hub router vocabulary, command projection parity, and playbook scenarios all read it at that location.",
+      "declaredField": "transformVerbRouting"
+    }
   },
   "transformVerbRouting": {
     "note": "Transform verbs split by framing: audit asks whether the move should happen; interface applies the requested move.",

@@ -8,7 +8,7 @@ version: 3.5.0.3
 
 ## 1. OVERVIEW
 
-This scenario verifies the language sub-detection layer within OPENCODE. When the target file extension is `.ts`, `.tsx`, `.mts`, or `.d.ts`, sk-code MUST load the `references/opencode/typescript/*` set and corresponding `assets/opencode/checklists/typescript_checklist.md`, while excluding python, shell, and config sub-language references.
+This scenario verifies the language sub-detection layer within OPENCODE. When the target file extension is `.ts`, `.tsx`, `.mts`, or `.d.ts`, sk-code MUST load the `code-opencode/references/typescript/*` set and corresponding `code-opencode/assets/checklists/typescript_checklist.md`, while excluding python, shell, and config sub-language references.
 
 Sub-detection rules are defined in SKILL.md lines 78-90 and `references/stack_detection.md:50-62`.
 
@@ -26,24 +26,24 @@ Refactor the parseExecutorConfig function in .opencode/skills/system-spec-kit/mc
 - Sub-language: `TYPESCRIPT` (target file `.ts`)
 
 **Expected references loaded** (must be EXACTLY this set, no more, no less from the language tier):
-- `references/opencode/typescript/style_guide.md`
-- `references/opencode/typescript/quality_standards.md`
-- `references/opencode/typescript/quick_reference.md`
-- `references/opencode/shared/code_organization.md`
-- `references/opencode/shared/universal_patterns.md`
+- `code-opencode/references/typescript/style_guide.md`
+- `code-opencode/references/typescript/quality_standards.md`
+- `code-opencode/references/typescript/quick_reference.md`
+- `code-opencode/references/shared/code_organization.md`
+- `code-opencode/references/shared/universal_patterns.md`
 
 **Expected assets loaded**:
-- `assets/opencode/checklists/typescript_checklist.md`
-- `assets/opencode/checklists/universal_checklist.md`
+- `code-opencode/assets/checklists/typescript_checklist.md`
+- `code-opencode/assets/checklists/universal_checklist.md`
 
-**Expected NOT loaded**: any of `references/opencode/{python,shell,config}/*`, any of `assets/opencode/checklists/{python,shell,config}_checklist.md`.
+**Expected NOT loaded**: any of `code-opencode/references/{python,shell,config}/*`, any of `code-opencode/assets/checklists/{python,shell,config}_checklist.md`.
 
 ## 3. TEST EXECUTION
 
 ### Preconditions
 
 1. Target file exists: `bash: test -f .opencode/skills/system-spec-kit/mcp_server/lib/deep-loop/executor-config.ts`
-2. TypeScript sub-language reference set intact: `bash: ls .opencode/skills/sk-code/opencode/references/typescript/ | sort` returns exactly `quality_standards.md style_guide.md quick_reference.md` (in some sort order).
+2. TypeScript sub-language reference set intact: `bash: ls .opencode/skills/sk-code/code-opencode/references/typescript/ | sort` returns exactly `quality_standards.md style_guide.md quick_reference.md` (in some sort order).
 
 ### Exact Command Sequence
 
@@ -65,7 +65,7 @@ Refactor the parseExecutorConfig function in .opencode/skills/system-spec-kit/mc
 
 - `.opencode/skills/sk-code/SKILL.md` (lines 78-90 — sub-detection table).
 - `.opencode/skills/sk-code/shared/references/stack_detection.md` (lines 50-62).
-- `.opencode/skills/sk-code/opencode/references/typescript/{style_guide,quality_standards,quick_reference}.md`.
+- `.opencode/skills/sk-code/code-opencode/references/typescript/{style_guide,quality_standards,quick_reference}.md`.
 
 ## 5. SOURCE METADATA
 

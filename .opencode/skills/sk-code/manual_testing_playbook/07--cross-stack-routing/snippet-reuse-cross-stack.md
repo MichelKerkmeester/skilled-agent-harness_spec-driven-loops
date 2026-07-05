@@ -29,25 +29,25 @@ Can I reuse the sk-code Motion in-view reveal snippet in a non-Webflow vanilla J
 **Expected references loaded** (exact relative paths under `.opencode/skills/sk-code/`):
 - `references/stack_detection.md`
 - `references/smart_routing.md`
-- `references/motion_dev/quick_start.md`
-- `references/motion_dev/integration_patterns.md`
-- `references/motion_dev/scroll_and_gestures.md`
-- `references/webflow/javascript/style_guide.md`
+- `code-animation/references/quick_start.md`
+- `code-animation/references/integration_patterns.md`
+- `code-animation/references/scroll_and_gestures.md`
+- `code-webflow/references/javascript/style_guide.md`
 
 **Expected assets loaded**:
-- `assets/motion_dev/snippets/in_view_reveal.js`
-- `assets/motion_dev/snippets/animate_on_scroll.js`
+- `code-animation/assets/snippets/in_view_reveal.js`
+- `code-animation/assets/snippets/animate_on_scroll.js`
 
 **Expected agent dispatch**: none.
 
 **Pass/fail criteria with binary grading**:
-- **PASS** iff the AI surfaces `assets/motion_dev/snippets/in_view_reveal.js`, states the snippet is cross-stack reusable with runtime adaptation, and explicitly flags the snake_case Webflow convention caveat.
+- **PASS** iff the AI surfaces `code-animation/assets/snippets/in_view_reveal.js`, states the snippet is cross-stack reusable with runtime adaptation, and explicitly flags the snake_case Webflow convention caveat.
 - **FAIL** iff the snippet is not named, Webflow is treated as required for reuse, or the naming caveat is missing.
 
 **Failure triage**:
-1. If the snippet is missing, inspect `assets/motion_dev/snippets/`.
+1. If the snippet is missing, inspect `code-animation/assets/snippets/`.
 2. If the response says Webflow is required, re-read `references/smart_routing.md` Section 3.
-3. If no caveat appears, inspect `references/webflow/javascript/style_guide.md` for local naming guidance.
+3. If no caveat appears, inspect `code-webflow/references/javascript/style_guide.md` for local naming guidance.
 
 ---
 
@@ -63,9 +63,9 @@ Evidence files:
 
 ## 4. SOURCE FILES
 
-- `.opencode/skills/sk-code/animation/assets/snippets/in_view_reveal.js` - Required reusable snippet.
-- `.opencode/skills/sk-code/animation/references/integration_patterns.md` - Cross-stack integration guidance.
-- `.opencode/skills/sk-code/webflow/references/javascript/style_guide.md` - Snake_case caveat source.
+- `.opencode/skills/sk-code/code-animation/assets/snippets/in_view_reveal.js` - Required reusable snippet.
+- `.opencode/skills/sk-code/code-animation/references/integration_patterns.md` - Cross-stack integration guidance.
+- `.opencode/skills/sk-code/code-webflow/references/javascript/style_guide.md` - Snake_case caveat source.
 
 ---
 

@@ -1,6 +1,6 @@
 ---
 title: "Decision Record: Phase 016 sk-code content coherence and reference integrity"
-description: "Decision records for the planned metadata-refresh-as-canon-reference decision and the spec-kit hooks relocation decision."
+description: "Decision records for phase 016 sk-code content coherence: ADR-001 metadata refresh (Accepted, realized via af1170c663) and ADR-002 hooks relocation (Superseded — 0 broken hooks refs, no live defect)."
 trigger_phrases:
   - "sk-code metadata canon decision"
   - "sk-code hooks relocation decision"
@@ -11,24 +11,9 @@ _memory:
   continuity:
     packet_pointer: "skilled-agent-orchestration/124-sk-code-parent/016-sk-code-content-coherence"
     last_updated_at: "2026-07-05T00:00:00Z"
-    last_updated_by: "gpt-5.5"
-    recent_action: "Phase planned and documented; execution pending"
-    next_safe_action: "Start T001 by capturing the current sk-code reference and playbook baseline before edits"
-    blockers:
-      - "Phase 017 canon metadata-shape decisions may affect the exact description.json and graph-metadata.json wording."
-    key_files:
-      - ".opencode/skills/sk-code/description.json"
-      - ".opencode/skills/sk-code/graph-metadata.json"
-      - ".opencode/skills/sk-code/opencode/references/shared/hooks.md"
-      - ".opencode/skills/system-spec-kit/references/"
-    session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "phase-016-planning"
-      parent_session_id: null
-    completion_pct: 0
-    open_questions:
-      - "Does phase 017 land any metadata vocabulary decision before phase 016 edits begin?"
-    answered_questions: []
+    last_updated_by: "claude-opus"
+    recent_action: "Phase closed by verification; sk-code STRICT 0/0"
+    next_safe_action: "124 rollup"
 ---
 # Decision Record: Phase 016 sk-code content coherence and reference integrity
 
@@ -45,9 +30,10 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Status** | Proposed |
+| **Status** | Accepted |
 | **Date** | 2026-07-05 |
 | **Deciders** | Operator, phase 016 implementer |
+| **Outcome** | Realized via `af1170c663` — the metadata was already two-axis coherent (3d-canon/5f pass); the only stale remnant, 3 merger placeholder fields, was removed. |
 
 ---
 
@@ -60,7 +46,7 @@ The master plan says sk-code `description.json` and `graph-metadata.json` are th
 
 - The metadata must describe the current model with mode-registry, hub-router, workflowMode, packetKind, three surface packets, and surfaceBundle language.
 - Phase 017 may still settle shared canon vocabulary, so implementation must avoid locking in contradictory metadata wording.
-- The phase is planned only; metadata files are not edited by this documentation pass.
+- Realized: the only metadata edit was the `af1170c663` placeholder-field removal; the broader two-axis prose was already canonical.
 
 <!-- /ANCHOR:adr-001-context -->
 ---
@@ -146,9 +132,10 @@ The master plan says sk-code `description.json` and `graph-metadata.json` are th
 
 | Field | Value |
 |-------|-------|
-| **Status** | Proposed |
+| **Status** | Superseded |
 | **Date** | 2026-07-05 |
 | **Deciders** | Operator, phase 016 implementer |
+| **Outcome** | Superseded — the relocation was an audit-era ownership preference. sk-code carries 0 broken hooks references, so there was no live defect to fix; the move was not performed. |
 
 ---
 
@@ -161,7 +148,7 @@ The audit identifies exactly one substantive spec-kit document misfiled in the s
 
 - The relocation must not become a broad content migration; only the single audited document is in scope.
 - All live references must be repointed as part of the same implementation change.
-- The planning pass must not move the file; execution owns the relocation.
+- Outcome: the file was not moved; the relocation was superseded (0 broken hooks refs, no live defect).
 
 <!-- /ANCHOR:adr-002-context -->
 ---

@@ -1,0 +1,228 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/030-deep-loop-improved/003-deep-loop-workflows/003-cross-mode-anti-convergence-adr",
+  "spec_folder": "system-deep-loop/030-deep-loop-improved/003-deep-loop-workflows/003-cross-mode-anti-convergence-adr",
+  "parent_id": "system-deep-loop/030-deep-loop-improved/003-deep-loop-workflows",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "cross-mode anti-convergence",
+      "antiConvergence contract ADR",
+      "optimizer invariant groups",
+      "stopPolicy fail-closed",
+      "cross-mode anti-convergence ADR",
+      "antiConvergence contract",
+      "optimizer invariant group",
+      "003-cross-mode-anti-convergence-adr summary",
+      "003-cross-mode-anti-convergence-adr"
+    ],
+    "key_topics": [
+      "cross-mode",
+      "anti-convergence",
+      "anticonvergence",
+      "contract",
+      "adr",
+      "optimizer",
+      "invariant",
+      "groups",
+      "stoppolicy",
+      "fail-closed",
+      "group",
+      "003-cross-mode-anti-convergence-adr"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      ".opencode/skills/deep-loop-workflows/deep-research/assets/deep_research_config.json",
+      ".opencode/skills/deep-loop-workflows/deep-review/assets/deep_review_config.json",
+      ".opencode/skills/deep-loop-workflows/deep-ai-council/assets/deep_ai_council_config.json",
+      ".opencode/skills/deep-loop-workflows/deep-research/assets/runtime_capabilities.json",
+      ".opencode/skills/deep-loop-workflows/deep-review/assets/runtime_capabilities.json",
+      ".opencode/skills/deep-loop-workflows/deep-ai-council/assets/runtime_capabilities.json",
+      ".opencode/skills/deep-loop-runtime/lib/deep-loop/runtime-capabilities.cjs",
+      ".opencode/skills/system-spec-kit/scripts/optimizer/optimizer-manifest.json",
+      ".opencode/skills/deep-loop-runtime/tests/unit/runtime-capabilities.vitest.ts",
+      ".opencode/skills/deep-loop-runtime/tests/unit/runtime-capabilities-matrix-conformance.vitest.ts",
+      ".opencode/skills/deep-loop-runtime/tests/unit/optimizer-manifest-anti-convergence.vitest.ts",
+      ".opencode/skills/deep-loop-runtime/tests/unit/deep-research-convergence-floor.vitest.ts",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "deep_research_config.json",
+        "kind": "config",
+        "path": ".opencode/skills/deep-loop-workflows/deep-research/assets/deep_research_config.json",
+        "source": "derived"
+      },
+      {
+        "name": "deep_review_config.json",
+        "kind": "config",
+        "path": ".opencode/skills/deep-loop-workflows/deep-review/assets/deep_review_config.json",
+        "source": "derived"
+      },
+      {
+        "name": "deep_ai_council_config.json",
+        "kind": "config",
+        "path": ".opencode/skills/deep-loop-workflows/deep-ai-council/assets/deep_ai_council_config.json",
+        "source": "derived"
+      },
+      {
+        "name": "runtime_capabilities.json",
+        "kind": "config",
+        "path": ".opencode/skills/deep-loop-workflows/deep-research/assets/runtime_capabilities.json",
+        "source": "derived"
+      },
+      {
+        "name": "runtime-capabilities.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/deep-loop-runtime/lib/deep-loop/runtime-capabilities.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "optimizer-manifest.json",
+        "kind": "config",
+        "path": ".opencode/skills/system-spec-kit/scripts/optimizer/optimizer-manifest.json",
+        "source": "derived"
+      },
+      {
+        "name": "runtime-capabilities.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/deep-loop-runtime/tests/unit/runtime-capabilities.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "runtime-capabilities-matrix-conformance.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/deep-loop-runtime/tests/unit/runtime-capabilities-matrix-conformance.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "optimizer-manifest-anti-convergence.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/deep-loop-runtime/tests/unit/optimizer-manifest-anti-convergence.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-convergence-floor.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/deep-loop-runtime/tests/unit/deep-research-convergence-floor.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Mode Anti",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Convergence Contract",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The optimizer can propose a config candidate that satisfies individual parameter ranges while violating `minIterations <= maxIterations`; there is no cross-mode invariant group to catch this",
+    "created_at": "2026-06-28T14:02:08Z",
+    "last_save_at": "2026-07-04T18:02:09.210Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:65aeafce0ac8152739446e442e986135de1637d82fc1eb12060b31fab2391cb9",
+    "source_doc_hashes": {
+      "spec.md": "5e65d930a5c920b069d7af27485751dfdacfa01ab31d82f8061062724f4c2f54",
+      "plan.md": "10b38c0034f1478cbc5834ebc65eff952c5dfbb4e0b3e5770615cfab5f3edf45",
+      "tasks.md": "29ba8da57e44acb2be5e852324f806482976f2f293d50892b418a6824fadaec9",
+      "decision-record.md": "728aa272ab42ac6274f7bec71b2b8818326c8389d2e88f2fb25769cfff6c285a",
+      "implementation-summary.md": "170b99b802fa647c8bbb0b4b52dbd1b1bd72ccfb317590e3d460c8b3e4a85603"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

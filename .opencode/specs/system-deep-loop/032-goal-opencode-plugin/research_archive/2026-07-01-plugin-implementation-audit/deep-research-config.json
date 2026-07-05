@@ -1,0 +1,91 @@
+{
+  "topic": "Audit the shipped /goal OpenCode plugin implementation in packet system-deep-loop/032-goal-opencode-plugin (phases 001-state-store through 008-system-spec-kit-integration only; EXCLUDE phase 009-speckit-command-goal-prompt-offer, which is actively owned by a separate in-flight OpenCode session and must not be touched or read as in-scope). Investigate drift between what was planned (each phase's spec.md/plan.md/tasks.md, and the original design synthesis at research_archive/2026-06-28-goal-design-synthesis/research.md) and what was actually built (.opencode/plugins/mk-goal.js, .opencode/commands/opencode_goal.md, the mk-goal-*.test.cjs suite, .opencode/skills/system-spec-kit/references/hooks/goal_plugin.md), refinement needed, missing upgrades, and new additions required to make the /goal plugin feature-complete, fully integrated, low-friction UX, safely automated, and flawless.\n\nANTI-CONVERGENCE: do not stop early; target at least 10 proper iterations, each adding genuine novelty (new phase examined, new drift class, new UX gap, new automation/safety gap). Do not converge before iteration 10 unless every avenue is genuinely exhausted. Under convergence pressure before iteration 10, rotate to an unexamined phase/file/comparison axis instead of stopping.",
+  "maxIterations": 15,
+  "convergenceThreshold": 0.05,
+  "antiConvergence": {
+    "minIterations": 10,
+    "convergenceMode": "default",
+    "stopPolicy": "fail-closed"
+  },
+  "minIterations": 10,
+  "convergenceMode": "default",
+  "minIdeaObservations": 2,
+  "stuckThreshold": 3,
+  "maxDurationMinutes": 180,
+  "maxToolCallsPerIteration": 12,
+  "maxMinutesPerIteration": 10,
+  "progressiveSynthesis": true,
+  "specFolder": ".opencode/specs/system-deep-loop/032-goal-opencode-plugin",
+  "createdAt": "2026-07-01T05:43:53Z",
+  "status": "initialized",
+  "executionMode": "auto",
+  "resource_map_present": false,
+  "resource_map": {
+    "emit": true
+  },
+  "executor": {
+    "kind": "cli-opencode",
+    "model": "zai-coding-plan/glm-5.2",
+    "reasoningEffort": "xhigh",
+    "serviceTier": null,
+    "sandboxMode": null,
+    "timeoutSeconds": 900
+  },
+  "lineage": {
+    "sessionId": "dr-goal-audit-032-20260701-054353",
+    "parentSessionId": null,
+    "lineageMode": "new",
+    "allowedModes": [
+      "new",
+      "resume",
+      "restart"
+    ],
+    "deferredModes": [
+      "fork",
+      "completed-continue"
+    ],
+    "generation": 1,
+    "continuedFromRun": null
+  },
+  "reducer": {
+    "enabled": true,
+    "version": "1.0",
+    "registryFile": "research/deep-research-findings-registry.json",
+    "dashboardFile": "research/deep-research-dashboard.md",
+    "strategyFile": "research/deep-research-strategy.md",
+    "machineOwnedSections": [
+      "key-questions",
+      "answered-questions",
+      "what-worked",
+      "what-failed",
+      "exhausted-approaches",
+      "ruled-out-directions",
+      "next-focus"
+    ]
+  },
+  "capabilityMatrixPath": ".opencode/skills/deep-loop-workflows/deep-research/assets/runtime_capabilities.json",
+  "capabilityMatrixDocPath": ".opencode/skills/deep-loop-workflows/deep-research/references/guides/capability_matrix.md",
+  "runtimeCapabilityResolver": ".opencode/skills/deep-loop-workflows/deep-research/scripts/runtime-capabilities.cjs",
+  "reducerScriptPath": ".opencode/skills/deep-loop-workflows/deep-research/scripts/reduce-state.cjs",
+  "pauseSentinelPath": "research/.deep-research-pause",
+  "archiveRoot": "research_archive",
+  "migrationWindowDays": 28,
+  "nextRunAt": null,
+  "remainingDelayMs": null,
+  "fileProtection": {
+    "deep-research-config.json": "immutable",
+    "deep-research-state.jsonl": "append-only",
+    "deep-research-strategy.md": "mutable",
+    "deep-research-dashboard.md": "auto-generated",
+    "deep-research-findings-registry.json": "auto-generated",
+    "iteration-*.md": "write-once",
+    "research/research.md": "mutable"
+  },
+  "_optimizerManaged": {
+    "description": "Fields managed by the offline loop optimizer (042.004). See optimizer-manifest.json for the canonical tunable/locked field registry.",
+    "manifestPath": ".opencode/skills/system-spec-kit/scripts/optimizer/optimizer-manifest.json",
+    "tunableFields": ["convergenceThreshold", "stuckThreshold", "maxIterations", "minIterations"],
+    "lockedFields": ["lineage", "reducer", "fileProtection", "sessionId", "status", "antiConvergence.convergenceMode", "antiConvergence.stopPolicy"],
+    "promotionMode": "advisory-only"
+  }
+}

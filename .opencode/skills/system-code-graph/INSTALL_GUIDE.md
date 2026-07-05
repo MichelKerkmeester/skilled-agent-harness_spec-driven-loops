@@ -56,7 +56,7 @@ Public MCP namespace: `mcp__mk_code_index__*`. Hyphens in the server name become
 
 | Field | Value |
 |---|---|
-| Skill version | `1.0.3.2` |
+| Skill version | `1.3.0.0` |
 | Runtime package | `@spec-kit/system-code-graph` |
 | Server name | `mk-code-index` |
 | Config key | `mk_code_index` |
@@ -229,6 +229,12 @@ Installs with a database at the former shared location (`.opencode/.spec-kit/cod
 | `SPECKIT_CODE_GRAPH_INDEX_PLUGINS` | `false` | Include `.opencode/plugins/**`. |
 
 End-user defaults are all `false` so the indexer is quiet and the SQLite file stays small. Per-call `code_graph_scan` arguments (`includeSkills`, `includeAgents`, `includeCommands`, `includeSpecs`, `includePlugins`) override the env defaults for one-shot scans.
+
+### Parser resilience flags
+
+| Flag | Default | Effect |
+|---|---:|---|
+| `SPECKIT_PARSER_SKIP_LIST_MAX_RETRIES` | `5` | Maximum transient parser failures before a skip-list entry is promoted to fatal quarantine. A later clean parse removes transient entries before that ceiling is exhausted. |
 
 ### Maintainer mode
 

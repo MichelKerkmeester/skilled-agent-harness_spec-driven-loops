@@ -238,17 +238,17 @@ Comments should explain durable WHY and constraints. They must not embed tempora
 ### Quality References And Assets
 
 - [`assets/code_quality_checklist.md`](assets/code_quality_checklist.md) - Required quality checklist before implementation completion claims.
-- [`assets/opencode-checklists/universal_checklist.md`](../opencode/assets/checklists/universal_checklist.md) - Universal OpenCode quality baseline.
-- [`assets/opencode-checklists/skill_authoring.md`](../opencode/assets/checklists/skill_authoring.md) - Skill authoring checklist.
-- [`assets/opencode-checklists/agent_authoring.md`](../opencode/assets/checklists/agent_authoring.md) - Agent authoring checklist.
-- [`assets/opencode-checklists/command_authoring.md`](../opencode/assets/checklists/command_authoring.md) - Command authoring checklist.
+- [`assets/opencode-checklists/universal_checklist.md`](../code-opencode/assets/checklists/universal_checklist.md) - Universal OpenCode quality baseline.
+- [`assets/opencode-checklists/skill_authoring.md`](../code-opencode/assets/checklists/skill_authoring.md) - Skill authoring checklist.
+- [`assets/opencode-checklists/agent_authoring.md`](../code-opencode/assets/checklists/agent_authoring.md) - Agent authoring checklist.
+- [`assets/opencode-checklists/command_authoring.md`](../code-opencode/assets/checklists/command_authoring.md) - Command authoring checklist.
 - [`spec_folder_authoring_checklist.md`](../../system-spec-kit/references/workflows/spec_folder_authoring_checklist.md) - Spec folder authoring checklist (owned by system-spec-kit).
-- [`assets/opencode-checklists/mcp_server_authoring.md`](../opencode/assets/checklists/mcp_server_authoring.md) - MCP server authoring checklist.
-- [`assets/opencode-checklists/javascript_checklist.md`](../opencode/assets/checklists/javascript_checklist.md) - JavaScript checklist.
-- [`assets/opencode-checklists/typescript_checklist.md`](../opencode/assets/checklists/typescript_checklist.md) - TypeScript checklist.
-- [`assets/opencode-checklists/python_checklist.md`](../opencode/assets/checklists/python_checklist.md) - Python checklist.
-- [`assets/opencode-checklists/shell_checklist.md`](../opencode/assets/checklists/shell_checklist.md) - Shell checklist.
-- [`assets/opencode-checklists/config_checklist.md`](../opencode/assets/checklists/config_checklist.md) - JSON and JSONC config checklist.
+- [`assets/opencode-checklists/mcp_server_authoring.md`](../code-opencode/assets/checklists/mcp_server_authoring.md) - MCP server authoring checklist.
+- [`assets/opencode-checklists/javascript_checklist.md`](../code-opencode/assets/checklists/javascript_checklist.md) - JavaScript checklist.
+- [`assets/opencode-checklists/typescript_checklist.md`](../code-opencode/assets/checklists/typescript_checklist.md) - TypeScript checklist.
+- [`assets/opencode-checklists/python_checklist.md`](../code-opencode/assets/checklists/python_checklist.md) - Python checklist.
+- [`assets/opencode-checklists/shell_checklist.md`](../code-opencode/assets/checklists/shell_checklist.md) - Shell checklist.
+- [`assets/opencode-checklists/config_checklist.md`](../code-opencode/assets/checklists/config_checklist.md) - JSON and JSONC config checklist.
 
 ### Scripts
 

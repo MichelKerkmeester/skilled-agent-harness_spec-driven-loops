@@ -2,7 +2,7 @@
 name: sk-design
 description: "Distinctive, intentional UI design and the full design surface: visual direction, taste, and build for interfaces; color, typography, layout, spacing, hierarchy, and design tokens; animation, transitions, and micro-interactions; accessibility, performance, responsive, theming, and anti-slop design audit with quality scoring; and live-website CSS to Style Reference DESIGN.md extraction. Use to make a UI look custom and polished rather than templated, design a visual system, choreograph motion, audit and harden design quality, or extract a real design system from a live site. The single advisor-routable design skill: it routes to five modes (interface, foundations, motion, audit, md-generator) via mode-registry.json, and each mode holds its own design logic."
 allowed-tools: [Read, Write, Edit, Bash, Grep, Glob]
-version: 1.0.0.3
+version: 1.1.0.0
 metadata:
   author: OpenCode
   family: sk-code
@@ -58,6 +58,8 @@ Intent classification favors the smallest useful mode. Default a generic "make t
 ### Bundle Rule for Build/UI Work
 
 For UI build work, page or component generation, and redesign implementation, auto-load the build bundle before design or implementation decisions: `interface`, `foundations`, `design-interface/assets/interface_preflight_card.md`, `shared/register.md`, `design-interface/references/design-process/brief_to_dials.md`, and the matching foundations axis references. Require a context manifest per `shared/context_loading_contract.md`, with `shared/assets/context_loaded_card.md` before recommendations and `shared/assets/proof_of_application_card.md` before any ready claim. Keep the smallest-useful-mode rule for narrow advice that does not produce, evaluate, or hand off a UI surface.
+
+This bundle is declared machine-readably as the `ui-build-bundle` entry in `hub-router.json` `routerPolicy.bundleRules` (`whenAll: interface + foundations → orderedBundle`); the prose above remains the behavioral elaboration (resource specifics and manifest requirements).
 
 Per-mode behavior is **not flattened**: each packet keeps its own design judgment, examples, standards, verification, and tool-permission needs. The four doc-guidance modes are read-and-guide; `md-generator` is the only mode that runs an extraction pipeline (Write/Edit/Bash over Playwright).
 

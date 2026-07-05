@@ -1,0 +1,42 @@
+{
+  "trigger_phrases": [
+    "review depth schema",
+    "review depth prompt contract",
+    "searchLedger contract"
+  ],
+  "level": "3",
+  "importance_tier": "important",
+  "contextType": "implementation",
+  "specFolder": "system-deep-loop/z_archive/021-deep-skill-evolution/002-deep-review/003-complexity-schema-prompt-contract",
+  "description": "`deep-review` records findings and graph events, but it has no versioned way to prove target selection, bug-class search coverage, ruled-out candidate",
+  "keywords": [
+    "deep-review",
+    "records",
+    "findings",
+    "graph",
+    "events",
+    "versioned",
+    "way",
+    "prove",
+    "target",
+    "selection",
+    "bug-class",
+    "search",
+    "coverage",
+    "ruled-out",
+    "candidate"
+  ],
+  "lastUpdated": "2026-06-23T03:49:50.804Z",
+  "specId": "003",
+  "folderSlug": "complexity-schema-prompt-contract",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "z_archive",
+    "116-deep-skill-evolution",
+    "002-deep-review"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "22-05-26_12-41__added-v2-state-format-md-contract-for.md"
+  ]
+}

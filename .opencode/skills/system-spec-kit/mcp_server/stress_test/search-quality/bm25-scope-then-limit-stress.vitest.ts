@@ -42,14 +42,15 @@ function createInstrumentedMemoryDb(): InstrumentedDb {
     CREATE TABLE memory_index (
       id INTEGER PRIMARY KEY,
       spec_folder TEXT,
-      importance_tier TEXT
+      importance_tier TEXT,
+      deleted_at TEXT
     )
   `);
 
   const metadataBatchSizes: number[] = [];
   const db = {
     prepare(sql: string) {
-      if (sql.includes('SELECT id, spec_folder, importance_tier FROM memory_index')) {
+      if (sql.includes('SELECT id, spec_folder, importance_tier, deleted_at FROM memory_index')) {
         metadataBatchSizes.push((sql.match(/\?/g) ?? []).length);
       }
       return database.prepare(sql);

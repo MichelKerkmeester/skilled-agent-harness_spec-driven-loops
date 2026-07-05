@@ -1,0 +1,30 @@
+{
+  "specFolder": "system-deep-loop/z_archive/021-deep-skill-evolution/003-deep-loop-runtime/002-skill-scaffold",
+  "description": "The 118 arc executes a FULLISOLATENOMCP migration that relocates 13 runtime library files, 4 MCP handler files, the SQLite coverage-graph DB, and 4 MC",
+  "keywords": [
+    "118",
+    "arc",
+    "executes",
+    "fullisolatenomcp",
+    "migration",
+    "relocates",
+    "runtime",
+    "library",
+    "files",
+    "mcp",
+    "handler",
+    "sqlite",
+    "coverage-graph"
+  ],
+  "lastUpdated": "2026-06-23T03:49:50.855Z",
+  "specId": "002",
+  "folderSlug": "skill-scaffold",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "z_archive",
+    "116-deep-skill-evolution",
+    "003-deep-loop-runtime"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

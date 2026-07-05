@@ -1,0 +1,219 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/032-goal-opencode-plugin/007-sk-prompt-goal-enhancement",
+  "spec_folder": "system-deep-loop/032-goal-opencode-plugin/007-sk-prompt-goal-enhancement",
+  "parent_id": "system-deep-loop/032-goal-opencode-plugin",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "sk-prompt goal enhancement",
+      "goal prompt under 4000 chars",
+      "improve goal input",
+      "mk_goal prompt metadata",
+      "goal prompt generation plan",
+      "mk-goal prompt metadata",
+      "goalPrompt",
+      "goal prompt tasks",
+      "mk-goal tests",
+      "goal prompt implementation summary"
+    ],
+    "key_topics": [
+      "sk-prompt",
+      "goal",
+      "enhancement",
+      "prompt",
+      "4000",
+      "chars",
+      "improve",
+      "input",
+      "metadata",
+      "generation",
+      "plan",
+      "mk-goal"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      ".opencode/plugins/mk-goal.js",
+      ".opencode/plugins/tests/mk-goal-state.test.cjs",
+      ".opencode/plugins/tests/mk-goal-tool-path.test.cjs",
+      ".opencode/specs/system-deep-loop/032-goal-opencode-plugin/spec.md",
+      ".opencode/commands/goal_opencode.md",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "mk-goal.js",
+        "kind": "code",
+        "path": ".opencode/plugins/mk-goal.js",
+        "source": "derived"
+      },
+      {
+        "name": "mk-goal-state.test.cjs",
+        "kind": "file",
+        "path": ".opencode/plugins/tests/mk-goal-state.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "mk-goal-tool-path.test.cjs",
+        "kind": "file",
+        "path": ".opencode/plugins/tests/mk-goal-tool-path.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "goal_opencode.md",
+        "kind": "doc",
+        "path": ".opencode/commands/goal_opencode.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Add",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Deterministic",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Prompt Generator",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Kit",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "`/goal set` currently stores and injects the sanitized raw user objective",
+    "created_at": "2026-06-30T16:17:28Z",
+    "last_save_at": "2026-07-03T13:21:41.316Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:8fbf4dd64a0272efad77817da34da2ea9874ba5ea3e5395db230f26f6edb3d6d",
+    "source_doc_hashes": {
+      "spec.md": "e49e6014e6089e67f50b853be2a7e9ce4b40af6a2fede561ca71313df5e7dc58",
+      "plan.md": "af9ff47245938eef2ac55cd39be76b4bfab962bb92ca63e1882921669f526f4c",
+      "tasks.md": "d42265c015fb523e0a960fc562d4b818aa7e3c0f709204b90be3df25461ecadd",
+      "implementation-summary.md": "0c4d68d39ed0e546deb31c3b1c625e5d16e3d0ef49eae59fd4bb63ea4a30f05d"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

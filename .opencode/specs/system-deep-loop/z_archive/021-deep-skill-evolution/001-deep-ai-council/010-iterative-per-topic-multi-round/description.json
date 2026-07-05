@@ -1,0 +1,35 @@
+{
+  "level": "3",
+  "status": "completed",
+  "manual": {
+    "depends_on": [
+      "skilled-agent-orchestration/116-deep-skill-evolution/001-ai-council/009-iterative-runtime-primitive-extraction"
+    ],
+    "related_to": []
+  },
+  "specFolder": "system-deep-loop/z_archive/021-deep-skill-evolution/001-deep-ai-council/010-iterative-per-topic-multi-round",
+  "description": "Implement a topic-local multi-round loop with verdict-delta convergence and max-round handling",
+  "keywords": [
+    "implement",
+    "topic-local",
+    "multi-round",
+    "loop",
+    "verdict-delta",
+    "convergence",
+    "max-round",
+    "handling"
+  ],
+  "lastUpdated": "2026-06-23T03:49:50.761Z",
+  "specId": "010",
+  "folderSlug": "iterative-per-topic-multi-round",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "z_archive",
+    "116-deep-skill-evolution",
+    "001-deep-ai-council"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [
+    "skilled-agent-orchestration/116-deep-skill-evolution/001-ai-council/010-iterative-per-topic-multi-round"
+  ]
+}

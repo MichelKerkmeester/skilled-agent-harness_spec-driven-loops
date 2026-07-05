@@ -1,0 +1,212 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/030-deep-loop-improved/002-deep-loop-runtime/014-coverage-graph-fuzzy-merge",
+  "spec_folder": "system-deep-loop/030-deep-loop-improved/002-deep-loop-runtime/014-coverage-graph-fuzzy-merge",
+  "parent_id": "system-deep-loop/030-deep-loop-improved/002-deep-loop-runtime",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "coverage-graph fuzzy merge",
+      "finding consolidation candidates",
+      "near-duplicate nodes",
+      "namespace alias memo",
+      "014-coverage-graph-fuzzy-merge summary",
+      "014-coverage-graph-fuzzy-merge"
+    ],
+    "key_topics": [
+      "coverage-graph",
+      "fuzzy",
+      "merge",
+      "finding",
+      "consolidation",
+      "candidates",
+      "near-duplicate",
+      "nodes",
+      "namespace",
+      "alias",
+      "memo",
+      "014-coverage-graph-fuzzy-merge"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      ".opencode/skills/deep-loop-runtime/lib/coverage-graph/coverage-graph-query.ts",
+      ".opencode/skills/deep-loop-runtime/tests/unit/coverage-graph-query.vitest.ts",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "coverage-graph-query.ts",
+        "kind": "code",
+        "path": ".opencode/skills/deep-loop-runtime/lib/coverage-graph/coverage-graph-query.ts",
+        "source": "derived"
+      },
+      {
+        "name": "coverage-graph-query.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/deep-loop-runtime/tests/unit/coverage-graph-query.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Coverage Graph Incremental Fuzzy Finding",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Near",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Coverage Graph Fuzzy Merge",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Read",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "completed",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "no DB",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Near-duplicate findings (same concept, slightly different wording) accumulate as separate nodes; without a consolidation layer the graph over-counts coverage and under-reports actual convergence",
+    "created_at": "2026-06-28T14:02:02Z",
+    "last_save_at": "2026-07-04T18:02:05.936Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:94f7bfb1d93d90db1c2e0cdc0d11229ea3fc18091c324703725867b9a4bdd95c",
+    "source_doc_hashes": {
+      "spec.md": "c83e7e8e47664a9c78d80e6b5edff5831d68f1d0a433afeba2e209ca45540163",
+      "plan.md": "d7dbfc1cca62d84a2fe77d751722023f356fa32a8524d7e65cf29e18beedfa8d",
+      "tasks.md": "b83efbf5b669451d017292bbafb72fa2572f46d5a1e39c145136c7f90b519732",
+      "implementation-summary.md": "fe4727e046dbe5ac505f5302ccb3a0f237ef139d580d5ed9a80e8655cb4ae7de"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

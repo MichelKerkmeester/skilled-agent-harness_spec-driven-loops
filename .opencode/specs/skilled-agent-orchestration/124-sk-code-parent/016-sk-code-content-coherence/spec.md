@@ -1,36 +1,20 @@
 ---
 title: "Feature Specification: Phase 016 sk-code content coherence and reference integrity"
-description: "Forward-looking Level 3 plan for repairing sk-code reference drift, stale playbook bodies, metadata canon prose, sub-skill sk-doc alignment, one spec-kit relocation, and stale benchmark baseline evidence after the two-axis restructure."
+description: "Executed Level 3 closeout for sk-code content coherence: the 143-finding audit predated the 013 two-axis restructure and re-verified as already-satisfied (0 broken refs, STRICT 0/0, vocab-sync 0/0/0); the one shipped change dropped 3 stale merger placeholder fields from sk-code metadata (af1170c663)."
 trigger_phrases:
   - "sk-code content coherence"
   - "sk-code reference integrity"
   - "phase 016 headline"
 importance_tier: "high"
 contextType: "implementation"
+parent: "skilled-agent-orchestration/124-sk-code-parent"
 _memory:
   continuity:
     packet_pointer: "skilled-agent-orchestration/124-sk-code-parent/016-sk-code-content-coherence"
     last_updated_at: "2026-07-05T00:00:00Z"
-    last_updated_by: "gpt-5.5"
-    recent_action: "Phase planned and documented; execution pending"
-    next_safe_action: "Start T001 by capturing the current sk-code reference and playbook baseline before edits"
-    blockers:
-      - "Phase 017 canon metadata-shape decisions may affect the exact description.json and graph-metadata.json wording."
-      - "Only phase 016 files are authored in this planning pass; implementation files remain untouched."
-    key_files:
-      - ".opencode/skills/sk-code/description.json"
-      - ".opencode/skills/sk-code/graph-metadata.json"
-      - ".opencode/skills/sk-code/manual_testing_playbook/"
-      - ".opencode/skills/sk-code/opencode/references/shared/hooks.md"
-      - ".opencode/skills/system-spec-kit/references/"
-    session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "phase-016-planning"
-      parent_session_id: null
-    completion_pct: 0
-    open_questions:
-      - "Does phase 017 land any metadata vocabulary decision before phase 016 edits begin?"
-    answered_questions: []
+    last_updated_by: "claude-opus"
+    recent_action: "Phase closed by verification; sk-code STRICT 0/0"
+    next_safe_action: "124 rollup"
 ---
 # Feature Specification: Phase 016 sk-code content coherence and reference integrity
 
@@ -41,11 +25,11 @@ _memory:
 
 ## EXECUTIVE SUMMARY
 
-Phase 016 is the headline sk-code coherence phase after the two-axis restructure. It will repair reference integrity across sk-code sub-skills, re-derive stale playbook and benchmark bodies against nested packet paths, refresh hub metadata as the canon reference other hubs copy, and relocate one misfiled spec-kit hooks document.
+Phase 016 was the headline sk-code coherence phase after the two-axis restructure. It **closed done-by-verification**: the 143-finding content-coherence audit that scoped it predated the 013 restructure and re-verified as stale. Re-checking the live hub found sk-code already coherent — 0 broken references, `parent-skill-check` STRICT 0/0, `parent-hub-vocab-sync` 0/0/0 — so the audit-driven repair, playbook, benchmark, and relocation tasks were dispositioned **verified already-satisfied** rather than newly executed. The one real remnant was removed in commit `af1170c663`, which dropped 3 stale merger placeholder fields from sk-code metadata.
 
-**Key Decisions**: Treat sk-code `description.json` and `graph-metadata.json` as canonical two-axis reference metadata; move the misfiled hooks reference to system-spec-kit instead of keeping an OpenCode compatibility document.
+**Key Decisions**: Treat the pre-013 audit as stale and read the live verification gates as the source of truth; ship only the placeholder-field removal; supersede the hooks relocation (ADR-002) because the sk-code link check is already clean.
 
-**Critical Dependencies**: Phase 017 may settle canon metadata vocabulary before the hub-root refresh; implementation must sequence that decision before final metadata edits.
+**Outcome**: sk-code content coherence is certified by live gate output; phase 019 owns the WARN→FAIL promotion and the 124 rollup.
 
 ---
 
@@ -56,7 +40,7 @@ Phase 016 is the headline sk-code coherence phase after the two-axis restructure
 |-------|-------|
 | **Level** | 3 |
 | **Priority** | P0 |
-| **Status** | Draft |
+| **Status** | Complete |
 | **Created** | 2026-07-05 |
 | **Branch** | `system-speckit/028-memory-search-intelligence` |
 | **Phase Role** | Headline sk-code content coherence phase |
@@ -144,11 +128,11 @@ Restore sk-code as the trustworthy canon example for parent hubs by making its r
 <!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA
 
-- **SC-001**: sk-code markdown link check reports 0 broken references after the 30 broken-ref repair set.
-- **SC-002**: Router-sync and vocab-sync vitests pass and no longer rely on vacuous resource enumeration.
-- **SC-003**: `parent-skill-check` strict remains green for sk-code after content and metadata updates.
-- **SC-004**: Playbook scenario bodies, benchmark baseline, `description.json`, and `graph-metadata.json` all describe current nested workflow/surface packet paths.
-- **SC-005**: The spec-kit hooks reference is owned by system-spec-kit and no live sk-code references point at the old OpenCode surface location.
+- **SC-001** — MET: sk-code markdown link check reports 0 broken references. The audit's "30 broken-ref" set predated the 013 restructure and no longer exists on disk. Evidence: `check-markdown-links.cjs`.
+- **SC-002** — MET: Router and vocabulary coverage is non-vacuous. `parent-skill-check` 5b matches routerSignals to the 8-mode registry and 5c resolves 21 vocabulary classes; `parent-hub-vocab-sync` reports 0 orphan / 0 collision / 0 drift.
+- **SC-003** — MET: `parent-skill-check` STRICT is green for sk-code (all hard invariants pass, 0 warnings, exit 0), including after the `af1170c663` metadata cleanup.
+- **SC-004** — MET: Playbook bodies, benchmark baseline, `description.json`, and `graph-metadata.json` describe current nested workflow/surface packet paths. The 013 restructure re-anchored the paths; `af1170c663` removed the last stale placeholder fields; 3d-canon/5f/9b pass.
+- **SC-005** — MET (by disposition): sk-code carries 0 broken hooks references, so no live reference points at a stale location. The physical relocation to system-spec-kit (ADR-002) was superseded as an audit-era preference with no live defect to fix.
 
 ### Acceptance Scenarios
 
@@ -265,7 +249,7 @@ Restore sk-code as the trustworthy canon example for parent hubs by making its r
 <!-- ANCHOR:questions -->
 ## 12. OPEN QUESTIONS
 
-- Should phase 017 provide final metadata version/vocabulary decisions before phase 016 edits `description.json` and `graph-metadata.json`?
+- RESOLVED: Phase 017 metadata vocabulary did not need to gate phase 016. sk-code metadata already satisfies the two-axis canon (`parent-skill-check` 3d-canon and 5f pass), so no vocabulary decision was required before the `af1170c663` cleanup.
 
 <!-- /ANCHOR:questions -->
 ---

@@ -189,15 +189,15 @@
       "shared/references/stack_detection.md",
       "shared/references/smart_routing.md",
       "shared/references/phase_detection.md",
-      "animation/references/animate_and_timelines.md",
-      "animation/references/decision_matrix.md",
-      "animation/references/integration_patterns.md",
-      "animation/references/performance_and_pitfalls.md",
-      "animation/references/quick_start.md",
-      "animation/references/scroll_and_gestures.md",
-      "webflow/SKILL.md",
-      "opencode/SKILL.md",
-      "animation/SKILL.md"
+      "code-animation/references/animate_and_timelines.md",
+      "code-animation/references/decision_matrix.md",
+      "code-animation/references/integration_patterns.md",
+      "code-animation/references/performance_and_pitfalls.md",
+      "code-animation/references/quick_start.md",
+      "code-animation/references/scroll_and_gestures.md",
+      "code-webflow/SKILL.md",
+      "code-opencode/SKILL.md",
+      "code-animation/SKILL.md"
     ],
     "key_files": [
       ".opencode/skills/sk-code/SKILL.md",
@@ -208,23 +208,23 @@
       ".opencode/skills/sk-code/code-quality/SKILL.md",
       ".opencode/skills/sk-code/code-debug/SKILL.md",
       ".opencode/skills/sk-code/code-verify/SKILL.md",
-      ".opencode/skills/sk-code/review/SKILL.md",
+      ".opencode/skills/sk-code/code-review/SKILL.md",
       ".opencode/skills/sk-code/shared/references/stack_detection.md",
       ".opencode/skills/sk-code/shared/references/smart_routing.md",
       ".opencode/skills/sk-code/shared/references/phase_detection.md",
-      ".opencode/skills/sk-code/animation/references/quick_start.md",
-      ".opencode/skills/sk-code/animation/references/decision_matrix.md",
-      ".opencode/skills/sk-code/animation/references/integration_patterns.md",
-      ".opencode/skills/sk-code/animation/references/performance_and_pitfalls.md",
-      ".opencode/skills/sk-code/animation/assets/install_card.md",
-      ".opencode/skills/sk-code/animation/assets/playbook_entries.md",
-      ".opencode/skills/sk-code/webflow/assets/patterns/wait_patterns.js",
-      ".opencode/skills/sk-code/webflow/references/implementation/implementation_workflows.md",
-      ".opencode/skills/sk-code/opencode/references/shared/universal_patterns.md",
+      ".opencode/skills/sk-code/code-animation/references/quick_start.md",
+      ".opencode/skills/sk-code/code-animation/references/decision_matrix.md",
+      ".opencode/skills/sk-code/code-animation/references/integration_patterns.md",
+      ".opencode/skills/sk-code/code-animation/references/performance_and_pitfalls.md",
+      ".opencode/skills/sk-code/code-animation/assets/install_card.md",
+      ".opencode/skills/sk-code/code-animation/assets/playbook_entries.md",
+      ".opencode/skills/sk-code/code-webflow/assets/patterns/wait_patterns.js",
+      ".opencode/skills/sk-code/code-webflow/references/implementation/implementation_workflows.md",
+      ".opencode/skills/sk-code/code-opencode/references/shared/universal_patterns.md",
       ".opencode/skills/sk-code/code-verify/assets/scripts/verify_alignment_drift.py",
-      ".opencode/skills/sk-code/webflow/SKILL.md",
-      ".opencode/skills/sk-code/opencode/SKILL.md",
-      ".opencode/skills/sk-code/animation/SKILL.md"
+      ".opencode/skills/sk-code/code-webflow/SKILL.md",
+      ".opencode/skills/sk-code/code-opencode/SKILL.md",
+      ".opencode/skills/sk-code/code-animation/SKILL.md"
     ],
     "entities": [
       {
@@ -236,7 +236,7 @@
       {
         "name": "motion_dev",
         "kind": "reference",
-        "path": ".opencode/skills/sk-code/animation/references/quick_start.md",
+        "path": ".opencode/skills/sk-code/code-animation/references/quick_start.md",
         "source": "derived"
       },
       {
@@ -255,8 +255,6 @@
     "causal_summary": "sk-code is the single public code skill that routes a request to one of five code modes (implement, quality, debug, verify, review) by workflowMode through mode-registry.json over a shared surface-detection router. The shared router centralizes WEBFLOW, OPENCODE, and MOTION_DEV identity and precedence, while each mode packet owns its own workflow contract and tool surface so the advisor sees exactly one code identity.",
     "created_at": "2026-04-30T08:30:00Z",
     "last_updated_at": "2026-07-03T00:00:00Z",
-    "merger_packet": "internal design notes",
-    "motion_dev_packet": "internal design notes",
     "supported_surfaces": [
       "WEBFLOW",
       "OPENCODE"

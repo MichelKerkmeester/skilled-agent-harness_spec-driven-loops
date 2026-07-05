@@ -21,8 +21,8 @@ Verify deep-loop graph upsert runs only when graphEvents exist.
 - Objective: Verify deep-loop graph upsert runs only when graphEvents exist.
 - Real user request: `Inspect deep-loop graph upsert behavior and confirm it only fires when graphEvents are present.`
 - Operator prompt: `Inspect the deep-loop graph upsert paths in research and review YAML. Show that upsert runs only when graphEvents exist, then return PASS/FAIL with anchors and fixture evidence.`
-- Expected execution process: Read the research and review `step_graph_upsert` line ranges, then run or inspect fixtures with and without `graphEvents`.
-- Expected signals: With graphEvents, upsert parameters are built and the MCP call is present. Without graphEvents, workflow proceeds without upsert.
+- Expected execution process: Inspect the research and review `step_graph_upsert` anchors, then run or inspect fixtures with and without `graphEvents`.
+- Expected signals: With graphEvents, upsert parameters are built and the CLI script invocation is present. Without graphEvents, workflow proceeds without upsert.
 - Desired user-visible outcome: A concise verdict explaining whether graph upsert is correctly conditional.
 - Pass/fail: PASS if upsert fires only for graphEvents and skips cleanly without them. FAIL if upsert is unconditional, missing when graphEvents exist or blocks the workflow when no graphEvents exist.
 
@@ -32,13 +32,13 @@ Verify deep-loop graph upsert runs only when graphEvents exist.
 
 ### Commands
 
-1. Read `.opencode/commands/deep/assets/deep_research_auto.yaml:794-807`.
-2. Read `.opencode/commands/deep/assets/deep_review_auto.yaml:1027-1047`.
+1. Inspect `.opencode/commands/deep/assets/deep_research_auto.yaml` `step_graph_upsert`.
+2. Inspect `.opencode/commands/deep/assets/deep_review_auto.yaml` `step_graph_upsert`.
 3. Run or inspect a fixture with and without `graphEvents`.
 
 ### Expected Output / Verification
 
-With graphEvents, upsert parameters are built and the MCP call is present. Without graphEvents, workflow proceeds without upsert.
+With graphEvents, upsert parameters are built and the CLI script invocation is present. Without graphEvents, workflow proceeds without upsert.
 
 ### Cleanup
 
@@ -64,3 +64,33 @@ Run direct `deep_loop_graph_status` before and after an upsert fixture.
 - Group: Code Graph Runtime
 - Playbook ID: 010
 - Canonical root source: `manual_testing_playbook.md`
+
+---
+
+## 6. EVIDENCE
+
+Command 1: Inspect `.opencode/commands/deep/assets/deep_research_auto.yaml` `step_graph_upsert`.
+
+```text
+`step_graph_upsert` conditionally invokes `node .opencode/skills/deep-loop-runtime/scripts/upsert.cjs` when research graph events exist.
+```
+
+Command 2: Inspect `.opencode/commands/deep/assets/deep_review_auto.yaml` `step_graph_upsert`.
+
+```text
+`step_graph_upsert` conditionally invokes `node .opencode/skills/deep-loop-runtime/scripts/upsert.cjs` when review graph events exist. `step_seed_coverage_graph` is the earlier review seed upsert path.
+```
+
+Command 3: Run or inspect a fixture with and without `graphEvents`.
+
+```text
+Not run. The stable YAML anchors confirm the conditional CLI invocation, and this scenario does not require creating disposable fixture folders.
+```
+
+---
+
+## 7. PASS/FAIL
+
+PASS
+
+An earlier capture cited YAML line ranges that have since drifted. The stable `step_graph_upsert` anchors in both deep auto YAML workflows conditionally call `node .opencode/skills/deep-loop-runtime/scripts/upsert.cjs` when `graphEvents` exist, and the review workflow also has the earlier `step_seed_coverage_graph` upsert call.

@@ -1,0 +1,211 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/031-deep-loop-gpt-reliability/002-routing-dispatch-and-identity/009-fix5-checkpoint",
+  "spec_folder": "system-deep-loop/031-deep-loop-gpt-reliability/002-routing-dispatch-and-identity/009-fix5-checkpoint",
+  "parent_id": "system-deep-loop/031-deep-loop-gpt-reliability/002-routing-dispatch-and-identity",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "fix5 checkpoint",
+      "fix5 unpark decision",
+      "host hard identity gate",
+      "implementation",
+      "plan",
+      "tasks",
+      "summary"
+    ],
+    "key_topics": [
+      "fix5",
+      "checkpoint",
+      "unpark",
+      "decision",
+      "host",
+      "hard",
+      "identity",
+      "gate",
+      "implementation",
+      "plan",
+      "tasks",
+      "summary"
+    ],
+    "importance_tier": "high",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "implementation-summary.md",
+      "plan.md",
+      "tasks.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Decision Checkpoint",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Final Resolution",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Phase",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Once",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Evidence",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "full",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built This",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "The Gate",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Applied Research",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Phase 006 parked FIX-5 (host hard identity / process-isolation) behind a trigger defined before this packet's follow-up research existed",
+    "created_at": "2026-07-01T10:56:27.409Z",
+    "last_save_at": "2026-07-05T06:46:02.430Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:21b23a5b69770675806816aaf3b94d94137f7705efc32f051a177fdb36eb89f6",
+    "source_doc_hashes": {
+      "spec.md": "9e4e221e09d9575e3e94d204abb52528cdaa6207f36d0250f81f209354e30cd5",
+      "plan.md": "7479cb410c8b4d43408acfb6764d7f43a879ebbebd44f59ce52bfcf887386d7e",
+      "tasks.md": "028ccb9a9a0f1d04a65bbc882fbddcd35a930b5fc3cab09910a47e896e3bbbca",
+      "implementation-summary.md": "2a0ad9cc4abcd01649782446c86bb07ec97350d395f95f9141fd2ef70c8299d9"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "level": "1",
+  "specFolder": "system-deep-loop/030-deep-loop-improved/011-followup-remediation/002-fanout-leaf-identity-conflation",
+  "description": "The shared fan-out prompt builder `buildLoopPrompt` in `.opencode/skills/deep-loop-runtime/scripts/fanout-run.cjs` (function spans roughly lines",
+  "keywords": [
+    "shared",
+    "fan-out",
+    "prompt",
+    "builder",
+    "buildloopprompt",
+    "opencode",
+    "skills",
+    "deep-loop-runtime",
+    "scripts",
+    "fanout-run",
+    "cjs",
+    "function",
+    "spans",
+    "roughly",
+    "lines"
+  ],
+  "lastUpdated": "2026-07-05T12:13:05.360Z",
+  "specId": "002",
+  "folderSlug": "fanout-leaf-identity-conflation",
+  "parentChain": [
+    "system-deep-loop",
+    "030-deep-loop-improved",
+    "011-followup-remediation"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

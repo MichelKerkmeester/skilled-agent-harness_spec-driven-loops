@@ -1,0 +1,31 @@
+{
+  "level": "1",
+  "specFolder": "system-deep-loop/030-deep-loop-improved/011-followup-remediation/001-fanout-session-id-propagation",
+  "description": "`fanout-run.cjs:1500` generates a concrete `sessionId` (`fanout-${lineage.label}-${runId}`) and threads it into the CLI subprocess prompt as a",
+  "keywords": [
+    "fanout-run",
+    "cjs",
+    "1500",
+    "generates",
+    "concrete",
+    "sessionid",
+    "fanout",
+    "lineage",
+    "label",
+    "runid",
+    "threads",
+    "cli",
+    "subprocess",
+    "prompt"
+  ],
+  "lastUpdated": "2026-07-05T12:13:05.356Z",
+  "specId": "001",
+  "folderSlug": "fanout-session-id-propagation",
+  "parentChain": [
+    "system-deep-loop",
+    "030-deep-loop-improved",
+    "011-followup-remediation"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

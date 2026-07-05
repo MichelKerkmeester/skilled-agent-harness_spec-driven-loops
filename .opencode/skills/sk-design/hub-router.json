@@ -1,6 +1,6 @@
 {
   "skill": "sk-design",
-  "version": "1.0.0",
+  "version": "1.1.0.0",
   "routerPolicy": {
     "defaultMode": "interface",
     "ambiguityDelta": 1,
@@ -13,7 +13,15 @@
     "defaultResource": [
       "shared/anti_slop_principles.md",
       "shared/cognitive_laws.md",
-      "shared/design_token_vocabulary.md"
+      "shared/design_token_vocabulary.md",
+      "references/design_proof_token.md"
+    ],
+    "bundleRules": [
+      {
+        "name": "ui-build-bundle",
+        "whenAll": ["interface", "foundations"],
+        "outcome": "orderedBundle"
+      }
     ]
   },
   "routerSignals": {

@@ -1,6 +1,6 @@
 ---
 title: "Task Breakdown: Hard-rule enforcement + dispatch-reliability hardening (handoff) [template:level_2/tasks.md]"
-description: "Forward-looking implementation task list for the hardening design. This is a plan-only phase — every task below is NOT STARTED and deferred to the implementation packet; nothing here has been executed."
+description: "Implementation task list for the hardening. Core (Wave D + A′ + B2, T00-T13) shipped 2026-07-05; T14 (B1) and T15 (burn-in) remain. Per-task commit evidence in implementation-summary.md."
 trigger_phrases:
   - "hardening implementation tasks"
   - "dispatch linter task list"
@@ -10,9 +10,9 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-speckit/028-memory-search-intelligence/003-skill-advisor/009-hard-rule-and-dispatch-preflight-hardening"
-    last_updated_at: "2026-07-05T05:56:04.453Z"
+    last_updated_at: "2026-07-05T08:13:59.253Z"
     last_updated_by: "claude-opus"
-    recent_action: "Listed T00-T18 implementation handoff, all not-started"
+    recent_action: "Shipped T00-T13 core; T14/T15 + optional remain"
     next_safe_action: "Operator resolves 6 open questions in decision-record"
     blockers: []
 ---
@@ -33,13 +33,20 @@ FAILURE MODES:
 <!-- ANCHOR:notation -->
 ## Task Notation
 
-> **STATUS: PLAN ONLY.** Every task below is **NOT STARTED**. This phase produced a design; it did not
-> execute any of it. This list is the handoff contract for the future implementation packet, in the
-> rollout order fixed in `plan.md`. Do not mark anything `[x]` here — completion belongs to the
-> implementation packet, not this design phase.
+> **STATUS: CORE SHIPPED 2026-07-05** (Q2=300000ms, operator go). Wave D + A′ + B2 are implemented,
+> tested, and pushed — both acceptance tests met. Per-task commit evidence is in
+> `implementation-summary.md`. Remaining: T14 (B1 fan-out guard, low value — deferred) and T15
+> (warn→block burn-in promotion, operator-gated). T16–T18 stay optional/deferred by design.
 
-- `[ ]` not started · `[~]` in progress · `[x]` complete (none may be `[x]` in this phase).
+- `[ ]` not started · `[~]` in progress · `[x]` complete.
 - **T00** is a prerequisite gate; all other tasks depend on it.
+- **Implementation deviations (authoritative account: `implementation-summary.md`):** the hard_rules
+  parser + CI guard landed in a dependency-free `cli-opencode/scripts/lib/dispatch-rule-checks.mjs`
+  (+ its `node --test` suite) rather than the advisor's `skill-hard-rules.ts` /
+  `check-skill-doc-frontmatter.mjs`, so the PreToolUse hook stays daemon-free (T08/T09). T06's AC-2
+  proof reuses the existing `stall_detected` fan-out test + the D-exit-truth unit coverage rather than
+  a new replay fixture. T03 is covered by the schema-level defaults (the YAML passes
+  `{config.fanout_json}` through `parseFanoutConfig`, so no per-YAML literal is needed).
 <!-- /ANCHOR:notation -->
 
 ---
@@ -47,14 +54,14 @@ FAILURE MODES:
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T00 — Operator resolves the six open questions in `decision-record.md` (esp. Q2 default values
+- [x] T00 — Operator resolves the six open questions in `decision-record.md` (esp. Q2 default values
   and Q3 the PreToolUse block-response schema). Implementation must not begin on Q2/Q3 items before
   their answers exist.
-- [ ] T01 — Flip Zod defaults `lagCeilingMs` + `progressHeartbeatSeconds` to non-zero in
+- [x] T01 — Flip Zod defaults `lagCeilingMs` + `progressHeartbeatSeconds` to non-zero in
   `executor-config.ts:277-278` (`progressHeartbeatSeconds: 60`, evidence-backed; `lagCeilingMs` per Q2).
-- [ ] T02 — Flip the raw-alias default for `stallWatchdogMs` in `fanout-run.cjs:645-653` (the
+- [x] T02 — Flip the raw-alias default for `stallWatchdogMs` in `fanout-run.cjs:645-653` (the
   schema-bypass trap — must move together with T01, per Q2).
-- [ ] T03 — Set all three keys explicitly in `deep_review_auto.yaml` + `deep_review_confirm.yaml`
+- [x] T03 — Set all three keys explicitly in `deep_review_auto.yaml` + `deep_review_confirm.yaml`
   fanout-config build (defense in depth for the two production `/deep:review` entry points).
 <!-- /ANCHOR:phase-1 -->
 
@@ -63,21 +70,21 @@ FAILURE MODES:
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T04 — Re-walk `main()`'s summary→exit chain (`fanout-run.cjs:1809`, `:1819-1821`) to CONFIRM the
+- [x] T04 — Re-walk `main()`'s summary→exit chain (`fanout-run.cjs:1809`, `:1819-1821`) to CONFIRM the
   inferred aggregation, then extend abnormal-exit classification (`:1702-1703`) to treat any non-null
   signal as abnormal and route abort-requeue into the non-zero exit bucket.
-- [ ] T05 — Add a single-line stderr echo to `appendObservabilityEvent` on
+- [x] T05 — Add a single-line stderr echo to `appendObservabilityEvent` on
   `stall_detected`/`orphan_requeued`/`aborted`.
-- [ ] T07 — Add the `hard_rules` frontmatter slice to `cli-opencode/SKILL.md` and
+- [x] T07 — Add the `hard_rules` frontmatter slice to `cli-opencode/SKILL.md` and
   `cli-claude-code/SKILL.md` (scope per Q5), every rule `severity: warn` initially.
-- [ ] T08 — Author `system-skill-advisor/mcp_server/lib/skill-graph/skill-hard-rules.ts` (small sibling
+- [x] T08 — Author `system-skill-advisor/mcp_server/lib/skill-graph/skill-hard-rules.ts` (small sibling
   parser; do not overload `doc-frontmatter.ts`).
-- [ ] T09 — Extend `check-skill-doc-frontmatter.mjs` (or a SKILL.md twin) to validate
+- [x] T09 — Extend `check-skill-doc-frontmatter.mjs` (or a SKILL.md twin) to validate
   `hard_rules[].check` against a known-checks enum so a typo fails CI loudly.
-- [ ] T10 — Author `dispatch-rule-checks.mjs` (dependency-free pure functions keyed by `check` id).
-- [ ] T11 — Author `cli-opencode/scripts/hooks/dispatch-preflight-lint.mjs` (fast-exit registry, read
+- [x] T10 — Author `dispatch-rule-checks.mjs` (dependency-free pure functions keyed by `check` id).
+- [x] T11 — Author `cli-opencode/scripts/hooks/dispatch-preflight-lint.mjs` (fast-exit registry, read
   hard_rules off disk, run checks, block/warn, fail-open). Confirm the block-response schema (Q3) first.
-- [ ] T12 — Wire the new `PreToolUse(Bash)` block in `.claude/settings.json`.
+- [x] T12 — Wire the new `PreToolUse(Bash)` block in `.claude/settings.json`.
 - [ ] T14 — B1: call the shared check module in-process after `buildLineageCommand(...)` returns, via
   `scripts/lib/cli-guards.cjs`, as a regression tripwire for the orchestrated path.
 <!-- /ANCHOR:phase-2 -->
@@ -87,10 +94,10 @@ FAILURE MODES:
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T06 — Extend existing fixtures (`fanout-run.vitest.ts`, `executor-config.vitest.ts`) to assert
+- [x] T06 — Extend existing fixtures (`fanout-run.vitest.ts`, `executor-config.vitest.ts`) to assert
   "non-zero default now fires"; add the AC-2 replay fixture (zero-iteration worker → bounded-window
   labeled event + non-zero orchestrator exit). Mutation-prove each.
-- [ ] T13 — Add the AC-1 fixture (opencode run with/without `</dev/null` → block/warn vs clean pass).
+- [x] T13 — Add the AC-1 fixture (opencode run with/without `</dev/null` → block/warn vs clean pass).
 - [ ] T15 — Burn in B2 for the operator-set window (Q4); promote `stdin-redirect-required` +
   `command-flag-for-slash-prompt` from `warn` to `block`.
 - [ ] T16 — (Deferred, Option C) Gate-2 brief hard-rule echo with a new outside-cap `HARD_RULES_TOKEN_CAP`.
