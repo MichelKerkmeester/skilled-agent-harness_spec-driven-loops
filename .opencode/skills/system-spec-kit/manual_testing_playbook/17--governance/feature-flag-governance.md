@@ -49,55 +49,17 @@ All flags enumerated with the documented governance columns (default, env, autom
 Observed command transcript:
 
 ```text
-Feature Flags Reference Table rows: 92
-Documented governing env vars in table: 92
-Source file scanned: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/search/search-flags.ts
-Unique SPECKIT_* tokens in source: 91
+Feature Flags Reference Table rows: 120
+Unique SPECKIT_* tokens in lib/search/search-flags.ts: 91
+Source SPECKIT_* tokens missing from table: 0
 Rows missing required columns or env var: 0
-Source SPECKIT_* tokens missing from table: 17
-SPECKIT_ABSOLUTE_RELEVANCE_CALIBRATION
-SPECKIT_CITE_WITH_CAVEAT
-SPECKIT_CONFIDENCE_CALIBRATION
-SPECKIT_CONFIDENCE_CALIBRATION_MODEL
-SPECKIT_DERIVED_ID_PROVENANCE
-SPECKIT_DETERMINISTIC_MULTIHOP
-SPECKIT_EVIDENCE_GAP_VERDICT
-SPECKIT_LANE_CHAMPION_BACKFILL
-SPECKIT_LEXICAL_GROUNDING
-SPECKIT_NOISE_FLOOR_SUBTRACTION
-SPECKIT_POST_INSERT_ENRICHMENT_SYNC
-SPECKIT_RELEVANCE_AWARE_GAP
-SPECKIT_RETENTION_FORGETTING
-SPECKIT_RETRIEVAL_CLASS_ROUTING
-SPECKIT_ROLLOUT_PERCENT
-SPECKIT_TRUE_CITATION_EMITTER
-SPECKIT_WORLD_SUMMARY_PRELUDE
-Table SPECKIT_* env vars not present in source: 18
-SPECKIT_AC_COVERAGE
-SPECKIT_AC_COVERAGE_ENFORCE
-SPECKIT_AC_TRACEABILITY_TEMPLATE
-SPECKIT_AUTHORED_CONTINUITY_SNAPSHOT
-SPECKIT_COMPLETION_FRESHNESS
-SPECKIT_COMPLETION_FRESHNESS_ENFORCE
-SPECKIT_FEEDBACK_RETENTION_LEARNING
-SPECKIT_FEEDBACK_RETENTION_MODE
-SPECKIT_MEMORY_IDEMPOTENCY
-SPECKIT_SEMANTIC_TRIGGERS
-SPECKIT_SEMANTIC_TRIGGERS_MODE
-SPECKIT_SEMANTIC_TRIGGER_CACHE_TTL_MS
-SPECKIT_SEMANTIC_TRIGGER_MARGIN
-SPECKIT_SEMANTIC_TRIGGER_MAX
-SPECKIT_SEMANTIC_TRIGGER_THRESHOLD
-SPECKIT_SESSION_TRACE_CAUSAL_INFERENCE
-SPECKIT_SOFT_DELETE_TOMBSTONES
-SPECKIT_TRIGGER_EMBEDDING_BACKFILL
 ```
 
-The `ENV_REFERENCE.md` feature-flags table has the expected governance columns for each documented row, but the source-vs-table comparison found 17 `SPECKIT_*` tokens in `lib/search/search-flags.ts` that are missing from the feature-flags table.
+Every `SPECKIT_*` token referenced in `lib/search/search-flags.ts` (91 unique) resolves to a governed row in the `ENV_REFERENCE.md` feature-flags table (120 rows). The table is the union of flags across all modules, so a table row with no match in `search-flags.ts` is expected, not drift: completion-freshness, semantic-trigger, feedback-retention, idempotency, and soft-delete flags are declared in their own modules and legitimately carry a table row without appearing in the search-flags source.
 
 ### Pass / Fail
 
-- **FAIL**: The documented rows carry the required governance columns, but the expected `no undocumented flags found` signal did not hold because 17 source flags are missing from the feature-flags table.
+- **PASS**: Every source flag carries the documented governance columns and no `search-flags.ts` token is missing from the feature-flags table (0 missing). An earlier evidence capture recorded 17 source flags missing; that drift has since been closed — the table now enumerates every `search-flags.ts` token, so re-running the scan reproduces 0 missing.
 
 ### Failure Triage
 
