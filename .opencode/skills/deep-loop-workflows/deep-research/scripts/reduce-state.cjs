@@ -939,16 +939,27 @@ function buildTrendFlatlineAdvisories(config, histories, latestRecord) {
         return [];
       }
 
+      // A novelty ratio pinned flat at a HIGH value is not "productive" — it is an
+      // inert signal (the loop is not discriminating repeated findings) that is
+      // deceptive because it reads as full novelty. Escalate that specific case from
+      // a buried advisory to a warning so convergence / "not exhausted" claims cannot
+      // silently cite it. A flat LOW value is legitimate stuck-detection, left as-is.
+      const flatValue = recent.at(-1);
+      const isInertNovelty = metric === 'newInfoRatio'
+        && recent.every((v) => typeof v === 'number' && v >= 0.9);
       return [{
         type: 'event',
-        event: 'trend_flatline',
+        event: isInertNovelty ? 'novelty_signal_inert' : 'trend_flatline',
         mode: 'research',
-        severity: 'advisory',
+        severity: isInertNovelty ? 'warning' : 'advisory',
         metric,
         run: readIterationRun(latestRecord),
         window,
-        value: recent.at(-1),
+        value: flatValue,
         sparkline,
+        ...(isInertNovelty
+          ? { note: `newInfoRatio held flat at ${flatValue} across ${window} iterations — the novelty signal is uninformative, so convergence and "not exhausted" claims derived from it are untrustworthy.` }
+          : {}),
         timestamp: typeof latestRecord?.timestamp === 'string' && latestRecord.timestamp
           ? latestRecord.timestamp
           : null,
@@ -961,7 +972,10 @@ function formatTrendAdvisoryEvent(event) {
   const run = isFiniteNumber(event?.run) ? event.run : 'unknown';
   const window = isFiniteNumber(event?.window) ? event.window : 'unknown';
   const sparkline = typeof event?.sparkline === 'string' && event.sparkline ? event.sparkline : 'N/A';
-  return `- Advisory event: ${event?.event || 'advisory'} metric=${metric} run=${run} window=${window} sparkline=${sparkline}`;
+  const severity = typeof event?.severity === 'string' && event.severity ? event.severity : 'advisory';
+  const label = severity === 'warning' ? 'WARNING' : 'Advisory';
+  const note = typeof event?.note === 'string' && event.note ? ` — ${event.note}` : '';
+  return `- ${label} event: ${event?.event || 'advisory'} metric=${metric} run=${run} window=${window} sparkline=${sparkline}${note}`;
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -2727,11 +2741,13 @@ module.exports = {
   buildGraphConvergenceRollup,
   buildLineageState,
   buildTerminalStopState,
+  buildTrendFlatlineAdvisories,
   computeGraphConvergenceScore,
   deriveRejectedPatternIndex,
   deriveDashboardStatus,
   filterRejectedIdeaCandidates,
   findRejectedPatternMatch,
+  formatTrendAdvisoryEvent,
   parseIterationFile,
   parseJsonl,
   parseJsonlDetailed,

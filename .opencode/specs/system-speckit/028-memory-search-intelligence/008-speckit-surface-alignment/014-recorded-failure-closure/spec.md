@@ -1,7 +1,7 @@
 # 014 — Recorded-Failure Closure ("detector fired, nobody acted")
 
 ## METADATA
-- **Status:** Deferred (documented; design decision needed)
+- **Status:** Partial — 014(a) exemplar (cap reconcile) done; 014(b) closure route + constitutional rule remains a focused follow-up
 - **Level:** 2
 - **Parent:** `008-speckit-surface-alignment`
 - **Source:** `../../research/fable-5-review-synthesis.md` §(a)

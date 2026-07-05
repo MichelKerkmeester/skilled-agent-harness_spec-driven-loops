@@ -1,7 +1,7 @@
 # 013 — Deep-Research Loop Instrumentation (`newInfoRatio` + evidence labels)
 
 ## METADATA
-- **Status:** Deferred (documented; needs focused implementation)
+- **Status:** Done — inert-novelty detector shipped + RED/GREEN tested (deterministic source-recompute is an optional stronger follow-up)
 - **Level:** 2
 - **Parent:** `008-speckit-surface-alignment`
 - **Source:** `../../research/fable-5-review-synthesis.md` §(d)(ii)
@@ -21,5 +21,5 @@ Prefer a deterministic scorer over an LLM instruction (LLM self-scoring is what 
 - A fully-novel iteration → `newInfoRatio == 1.0`.
 - The prompt-pack distinguishes inference from executed-command evidence.
 
-## 4. WHY DEFERRED
-Alters **shared deep-loop convergence semantics** consumed by every research/review/council loop. It needs a focused implementation with a real (not self-authored, not gameable) RED/GREEN test — not an autonomous mechanical dispatch that could ship a plausible-but-wrong convergence change. `deep-loop-runtime` code is currently clean, so there is no blocking collision; this is a care/blast-radius deferral, not a conflict one.
+## 4. IMPLEMENTATION (shipped)
+The inert-novelty detector is live in `deep-loop-workflows/deep-research/scripts/reduce-state.cjs`: `buildTrendFlatlineAdvisories` now escalates a `newInfoRatio` held flat at a high value from a buried advisory to a `novelty_signal_inert` **warning** carrying an explicit "convergence / not-exhausted claims untrustworthy" note, and `formatTrendAdvisoryEvent` renders it as `WARNING …`. A flat LOW value stays a plain advisory (legitimate stuck-detection). Covered by `deep-loop-runtime/tests/unit/deep-research-novelty-inertness.vitest.ts` (RED/GREEN: flat-high→warning, flat-low→advisory, varied→none); the existing reducer suite still passes (16/16). The full deterministic source-novelty recompute — feasible because the per-iteration `sourcesQueried` IS emitted — remains an optional stronger follow-up.
