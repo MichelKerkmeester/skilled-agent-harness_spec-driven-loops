@@ -40,3 +40,26 @@ Iteration 1 completed a first-pass top-down inventory for packet 028 memory-sear
 ## Next Audit Angle
 
 Command presentation assets for `/memory:search` and eval/dashboard rendering should be checked next because packet 028 graduated `requestQuality`, `citationPolicy`, and `data.envelopeRender` behavior through envelope-fidelity evidence.
+
+## Findings Added in Iteration 4
+
+1. `/memory:search` router and `search_presentation.txt` are aligned on current envelope-fidelity render slots: `requestQuality`, `citationPolicy`, and verbatim `data.envelopeRender` paste behavior. [SOURCE: .opencode/commands/memory/search.md:76] [SOURCE: .opencode/commands/memory/assets/search_presentation.txt:117]
+2. Historical/current drift remains: phase-027 summary says default-OFF `SPECKIT_ENVELOPE_FIDELITY_V1`, while current command presentation says default-ON `SPECKIT_ENVELOPE_FIDELITY`. [SOURCE: .opencode/specs/system-speckit/028-memory-search-intelligence/001-speckit-memory/027-envelope-fidelity-enforcement/implementation-summary.md:57] [SOURCE: .opencode/commands/memory/search.md:78]
+3. The ablation presentation template is too generic for packet-028 corrected-driver evidence and still shows a trigger row despite packet 028 dropping the trigger-noise row from corrected channel ablation. [SOURCE: .opencode/commands/memory/assets/search_presentation.txt:297] [SOURCE: .opencode/specs/system-speckit/028-memory-search-intelligence/benchmark-status.md:42]
+4. The router mentions diagnostic snapshots, gate-verdict, calibration, and cold-lane payloads, but the dashboard presentation template lacks slots for those diagnostic metadata fields. [SOURCE: .opencode/commands/memory/search.md:120] [SOURCE: .opencode/commands/memory/assets/search_presentation.txt:310]
+
+## Next Audit Angle After Iteration 4
+
+Inspect runtime formatter/eval handler code and code READMEs to determine whether the command presentation gaps are documentation-only or runtime-output gaps.
+
+## Findings Added in Iteration 5
+
+1. Runtime formatter code backs the `/memory:search` `data.envelopeRender` contract by building the two-line fragment from `requestQuality` and `citationPolicy`; the envelope slot is not presentation-only. [SOURCE: .opencode/skills/system-spec-kit/mcp_server/formatters/search-results.ts:473] [SOURCE: .opencode/skills/system-spec-kit/mcp_server/formatters/search-results.ts:486]
+2. A stale formatter comment still describes the envelope fragment as “gated dark” and “Off by default,” conflicting with the current command contract that says `SPECKIT_ENVELOPE_FIDELITY` is default-ON and opt-out. [SOURCE: .opencode/skills/system-spec-kit/mcp_server/formatters/search-results.ts:1350] [SOURCE: .opencode/commands/memory/search.md:78]
+3. Ablation runtime formatted output includes corpus diagnostic lanes for gate verdict, calibration, and cold-lane metrics when corpus metrics are present. [SOURCE: .opencode/skills/system-spec-kit/mcp_server/handlers/eval-reporting.ts:416] [SOURCE: .opencode/skills/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts:1674]
+4. Reporting dashboard text output remains narrower than ablation formatted output: it renders summary, metrics, metric-channel rows, channel rows, and trends but no corpus diagnostic lane section. [SOURCE: .opencode/skills/system-spec-kit/mcp_server/lib/eval/reporting-dashboard.ts:650] [SOURCE: .opencode/skills/system-spec-kit/mcp_server/lib/eval/reporting-dashboard.ts:686]
+5. `lib/eval/README.md` is current for diagnostic snapshots and corpus metrics, while `lib/search/README.md` omits the formatter/envelope-render surface from its key-file map. [SOURCE: .opencode/skills/system-spec-kit/mcp_server/lib/eval/README.md:98] [SOURCE: .opencode/skills/system-spec-kit/mcp_server/lib/search/README.md:148]
+
+## Next Audit Angle After Iteration 5
+
+Audit benchmark index, benchmark README, benchmark scripts, and promotion/graduation evidence against packet 028 corrected benchmark-status and phase-040 graduation notes.
