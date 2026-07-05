@@ -207,3 +207,27 @@ Audit sk-doc and system-spec-kit validation/test surfaces for documentation-qual
 ## Next Audit Angle After Iteration 17
 
 Audit `/create:feature-catalog`, sk-doc README/SKILL, and feature-catalog creation references for overclaims about validation completeness now that table taxonomy and placeholder test rows are known blind spots.
+
+## Findings Added in Iteration 18
+
+1. `/create:feature-catalog` completion reports `Feature Catalog Command Complete` with root validation, root/per-feature link checks, and category/per-feature count checks, but no slot for known blind spots such as validation-table `Type` taxonomy, placeholder test rows, or per-feature source-anchor quality. [SOURCE: .opencode/commands/create/feature-catalog.md:9] [SOURCE: .opencode/commands/create/assets/create_feature_catalog_presentation.txt:126] [SOURCE: .opencode/commands/create/assets/create_feature_catalog_presentation.txt:137]
+2. The auto workflow validation activities are narrower than its feature-file quality standard: they check root validation, linked file existence, category folder names, section headers, and root/file counts, not test-table row semantics. [SOURCE: .opencode/commands/create/assets/create_feature_catalog_auto.yaml:163] [SOURCE: .opencode/commands/create/assets/create_feature_catalog_auto.yaml:258] [SOURCE: .opencode/commands/create/assets/create_feature_catalog_auto.yaml:261]
+3. `feature_catalog_creation.md` is the most honest inspected surface because it says `validate_document.py` is strongest at the root-doc level, link resolution is covered separately, and per-feature link correctness/source-anchor quality still require manual review. [SOURCE: .opencode/skills/sk-doc/references/feature_catalog_creation.md:174] [SOURCE: .opencode/skills/sk-doc/references/feature_catalog_creation.md:179]
+4. sk-doc README quality-pipeline wording is broader than the feature-catalog validator supports: it says no document gets a quality pass without scripts, while the FAQ frames `validate_document.py` as a README delivery gate and `extract_structure.py` as the full-picture report. [SOURCE: .opencode/skills/sk-doc/README.md:44] [SOURCE: .opencode/skills/sk-doc/README.md:84] [SOURCE: .opencode/skills/sk-doc/README.md:146]
+5. sk-doc SKILL success criteria are comparatively aligned because they require templates filled, links resolved, and known validator limits stated honestly, but the create-command completion surface does not propagate that caveat. [SOURCE: .opencode/skills/sk-doc/SKILL.md:435] [SOURCE: .opencode/skills/sk-doc/SKILL.md:439] [SOURCE: .opencode/commands/create/assets/create_feature_catalog_presentation.txt:137]
+
+## Next Audit Angle After Iteration 18
+
+Audit generated metadata and skill-advisor/search-index documentation for packet-028 alignment: `description.json`/`graph-metadata.json` generation references, trigger/frontmatter requirements, and whether skill docs accurately describe what memory/search indexes do or do not index.
+
+## Findings Added in Iteration 19
+
+1. `ENV_REFERENCE.md` is current for save-planner metadata refresh: all planner modes refresh packet metadata, and `plan-only` no longer leaves `description.json.lastUpdated` or `graph-metadata.json` untouched. [SOURCE: .opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md:240]
+2. `template_mapping.md` correctly names the phase-parent lean trio, but its generation note still frames `generate-context.js` as primarily updating `_memory.continuity` inside `implementation-summary.md`, under-describing packet metadata refresh. [SOURCE: .opencode/skills/system-spec-kit/assets/template_mapping.md:66] [SOURCE: .opencode/skills/system-spec-kit/assets/template_mapping.md:271]
+3. The graph README is current for graph-metadata parsing: it names parser/schema files and documents sanitized key files, canonical entity dedupe, and capped trigger phrases. [SOURCE: .opencode/skills/system-spec-kit/mcp_server/lib/graph/README.md:56] [SOURCE: .opencode/skills/system-spec-kit/mcp_server/lib/graph/README.md:74] [SOURCE: .opencode/skills/system-spec-kit/mcp_server/lib/graph/README.md:80]
+4. Skill-advisor doc-trigger docs are mostly current: README, architecture, and ENV reference document `SPECKIT_ADVISOR_DOC_TRIGGERS`, reference/asset frontmatter harvesting into `skill_docs`, capped assistive scoring, and sanitized `matchedDocs`. [SOURCE: .opencode/skills/system-skill-advisor/README.md:134] [SOURCE: .opencode/skills/system-skill-advisor/ARCHITECTURE.md:135] [SOURCE: .opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md:626]
+5. The main advisor doc-trigger sections omit the known raw-field caveat: changelog evidence says `skill_docs` still writes and reads `title`, `description`, and `trigger_phrases` raw, and the DB upsert writes those fields directly. [SOURCE: .opencode/skills/system-skill-advisor/changelog/v0.10.0.md:13] [SOURCE: .opencode/skills/system-skill-advisor/mcp_server/lib/skill-graph/skill-graph-db.ts:767]
+
+## Next Audit Angle After Iteration 19
+
+Audit system-skill-advisor feature catalogs, manual playbooks, and tests for doc-trigger harvest and `skill_docs` sanitizer-boundary coverage, especially whether the raw-field caveat is represented outside the changelog.
