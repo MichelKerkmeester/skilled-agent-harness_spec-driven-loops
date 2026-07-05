@@ -13,7 +13,8 @@
     "defaultResource": [
       "shared/anti_slop_principles.md",
       "shared/cognitive_laws.md",
-      "shared/design_token_vocabulary.md"
+      "shared/design_token_vocabulary.md",
+      "references/design_proof_token.md"
     ]
   },
   "routerSignals": {
