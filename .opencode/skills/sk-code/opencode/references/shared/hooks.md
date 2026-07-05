@@ -1,19 +1,19 @@
 ---
-title: Runtime Hooks - Spec Kit MCP Hook Entrypoints
-description: Reference for the system-spec-kit runtime hook entrypoints (Claude, OpenCode, Copilot), the dynamic-load registration pattern, and maintenance rules for editing or adding hooks.
+title: Runtime Hooks - Entrypoint Authoring, Wiring, and Maintenance
+description: OpenCode-surface reference for runtime hook entrypoints (Claude, OpenCode, Copilot) — the dynamic-load registration pattern, per-runtime wiring shapes, and maintenance rules for editing, adding, or removing hooks. Uses the repo's canonical hook suite (system-spec-kit's mcp_server/hooks/) as the worked example.
 trigger_phrases:
-  - "spec kit runtime hooks"
+  - "runtime hook authoring"
   - "hook entrypoints registration"
   - "dynamic load hook pattern"
   - "claude opencode copilot hooks"
 importance_tier: normal
 contextType: implementation
-version: 3.5.0.8
+version: 3.6.0.0
 ---
 
-# Runtime Hooks - Spec Kit MCP Hook Entrypoints
+# Runtime Hooks - Entrypoint Authoring, Wiring, and Maintenance
 
-Reference for the three runtime hook surfaces that wire `mcp_server/hooks/` entrypoints into Claude, OpenCode, and Copilot via runtime settings files.
+Reference for the three runtime hook surfaces that wire hook entrypoints into Claude, OpenCode, and Copilot via runtime settings files. The pattern applies to any hook suite in this workspace; the repo's canonical suite (`system-spec-kit/mcp_server/hooks/`) is the worked example throughout.
 
 ---
 
@@ -21,7 +21,7 @@ Reference for the three runtime hook surfaces that wire `mcp_server/hooks/` entr
 
 ### Purpose
 
-This reference documents the runtime hook entrypoints under `.opencode/skills/system-spec-kit/mcp_server/hooks/` and the per-runtime settings that wire them. Hook source files have no static `import` callers inside the MCP server - they are reached by runtime command strings invoking the compiled `dist/hooks/<runtime>/*.js` artifacts. Static dead-code analyzers see them as unused; they are not.
+This reference documents the runtime-hook entrypoint pattern for OpenCode-family system code: how hook sources are registered, wired, and maintained. Hook source files have no static `import` callers inside their server - they are reached by runtime command strings invoking the compiled `dist/hooks/<runtime>/*.js` artifacts. Static dead-code analyzers see them as unused; they are not.
 
 ### Core Principle
 
@@ -39,7 +39,6 @@ This reference documents the runtime hook entrypoints under `.opencode/skills/sy
 
 | Source | Path | Purpose |
 |---|---|---|
-| Dead-code audit | Internal design notes | Canonical evidence: 15 hook entrypoints classified `dynamic-only-reference`, all KEEP |
 | Skill Advisor hook reference | `.opencode/skills/system-spec-kit/references/hooks/skill_advisor_hook.md` | Per-runtime advisor hook contract, smoke tests, control flags |
 | Hook system reference | `.opencode/skills/system-spec-kit/references/config/hook_system.md` | Runtime-specific hook system deep-dive |
 | Copilot hook README | `.opencode/skills/system-spec-kit/mcp_server/hooks/copilot/README.md` | Canonical contract for managed custom-instructions writer |
@@ -58,7 +57,7 @@ Static `import` analysis (e.g. `tsc --noUnusedLocals`, `ts-prune`, `knip`) walks
 | OpenCode | `.opencode/settings.json` | Nested `hooks.<Event>[].hooks[]` array; same shape as Claude |
 | Copilot | `mcp_server/hooks/copilot/README.md` | Custom-instructions writer (no native hook contract); invoked from a Copilot-supported command surface |
 
-The audit at packet `003-dead-code-audit` reached the same conclusion: 15 hook entrypoints classified `dynamic-only-reference` with `keep-with-rationale` (audit report §"Category: `dynamic-only-reference`"). KEEP unless a hook-removal packet proves the wiring is gone.
+A dead-code audit of the example suite reached the same conclusion: all 15 hook entrypoints classified `dynamic-only-reference` with keep-with-rationale. KEEP hook sources unless the wiring is verifiably gone from every runtime settings surface.
 
 ### Reachability Rule
 
@@ -71,6 +70,8 @@ Removing the source without removing the settings entry produces a runtime error
 ---
 
 ## 3. CLAUDE HOOKS
+
+> Sections 3-5 document the repo's canonical hook suite (system-spec-kit's `mcp_server/hooks/`) as the worked example. The wiring shapes and reachability rules generalize to any hook suite; treat the suite's own READMEs as the authoritative inventory of its entrypoints.
 
 `mcp_server/hooks/claude/` - 4 wired entrypoints + shared helpers.
 
@@ -213,8 +214,7 @@ Hooks are RUNTIME-SPECIFIC. Adding `compact-inject` to Claude does NOT auto-add 
 
 ### Canonical Evidence
 
-- Dead-code audit (003): `<spec-folder>` - 15 hook entrypoints classified `dynamic-only-reference`, KEEP
-- Per-runtime hook directories: `mcp_server/hooks/{claude,opencode,copilot}/README.md`
+- Per-runtime hook directories: `mcp_server/hooks/{claude,opencode,copilot}/README.md` (authoritative entrypoint inventory for the example suite)
 
 ### Runtime-Specific Deep-Dives (do not duplicate)
 
