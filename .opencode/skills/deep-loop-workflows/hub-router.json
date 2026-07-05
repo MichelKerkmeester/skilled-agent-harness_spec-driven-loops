@@ -1,0 +1,78 @@
+{
+  "skill": "deep-loop-workflows",
+  "version": "1.1.0.0",
+  "routerPolicy": {
+    "defaultMode": "research",
+    "ambiguityDelta": 1,
+    "tieBreak": ["research", "review", "ai-council", "agent-improvement", "model-benchmark", "skill-benchmark", "ai-system-improvement"],
+    "outcomes": {
+      "single": "one dominant deep-loop intent routes to one mode",
+      "orderedBundle": "clearly separate deep-loop intents route to an ordered mode list",
+      "defer": "unclear or contradictory deep-loop intent asks for disambiguation"
+    },
+    "defaultResource": ["README.md"]
+  },
+  "routerSignals": {
+    "research": {
+      "weight": 4,
+      "classes": ["research-aliases", "hub-identity"],
+      "resources": ["deep-research/SKILL.md"]
+    },
+    "review": {
+      "weight": 4,
+      "classes": ["review-aliases", "hub-identity"],
+      "resources": ["deep-review/SKILL.md"]
+    },
+    "ai-council": {
+      "weight": 4,
+      "classes": ["ai-council-aliases", "hub-identity"],
+      "resources": ["deep-ai-council/SKILL.md"]
+    },
+    "agent-improvement": {
+      "weight": 4,
+      "classes": ["agent-improvement-aliases", "hub-identity"],
+      "resources": ["deep-improvement/SKILL.md"]
+    },
+    "model-benchmark": {
+      "weight": 4,
+      "classes": ["model-benchmark-aliases", "hub-identity"],
+      "resources": ["deep-improvement/SKILL.md"]
+    },
+    "skill-benchmark": {
+      "weight": 4,
+      "classes": ["skill-benchmark-aliases", "hub-identity"],
+      "resources": ["deep-improvement/SKILL.md"]
+    },
+    "ai-system-improvement": {
+      "weight": 4,
+      "classes": ["ai-system-improvement-aliases", "hub-identity"],
+      "resources": ["deep-improvement/SKILL.md"]
+    }
+  },
+  "vocabularyClasses": {
+    "hub-identity": {
+      "keywords": ["deep-loop-workflows", "deep-loop", "deep loop", "mode-registry", "workflowmode", "runtimeloop-type", "backendkind", "convergence-detection", "externalized-state", "runtime-loop", "improvement-host"]
+    },
+    "research-aliases": {
+      "keywords": ["deep-research", "research loop", "iterative investigation workflow", "research convergence detection", "autoresearch", "iterative-research"]
+    },
+    "review-aliases": {
+      "keywords": ["deep-review", "review loop", "iterative code audit", "severity weighted findings", "code-audit", "release-readiness"]
+    },
+    "ai-council-aliases": {
+      "keywords": ["deep-ai-council", "ai council deliberation", "multi-seat planning council", "council convergence", "planning council"]
+    },
+    "agent-improvement-aliases": {
+      "keywords": ["improve agent", "evaluate agent", "agent scoring", "score agent candidate", "promote or rollback agent change", "agent-improvement"]
+    },
+    "model-benchmark-aliases": {
+      "keywords": ["model benchmark", "benchmark a model", "prompt framework benchmark", "benchmark-harness"]
+    },
+    "skill-benchmark-aliases": {
+      "keywords": ["skill benchmark", "benchmark a skill", "skill routing benchmark"]
+    },
+    "ai-system-improvement-aliases": {
+      "keywords": ["non-dev ai system", "non-dev-ai-system", "package ai system benchmark"]
+    }
+  }
+}

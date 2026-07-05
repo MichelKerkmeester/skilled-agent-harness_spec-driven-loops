@@ -1,6 +1,6 @@
 ---
 name: deep-loop-workflows
-version: 1.0.0.0
+version: 1.1.0.0
 description: "Unified deep-loop workflow skill: routes active requests to research, review, ai-council, and improvement modes over the shared deep-loop-runtime backend."
 allowed-tools: [Read, Write, Edit, Bash, Grep, Glob, Task, WebFetch]
 ---
