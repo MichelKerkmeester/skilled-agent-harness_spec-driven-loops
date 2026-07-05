@@ -1,5 +1,4 @@
 {
-  "level": "phase",
   "specFolder": "deep-loops/031-deep-loop-gpt-reliability/006-reliability-fixes",
   "description": "Implementation packet for the packet-034 research synthesis, restructured per the plan-review (58 verified gaps) into the unified command-contract",
   "keywords": [
@@ -16,31 +15,14 @@
     "unified",
     "command-contract"
   ],
-  "lastUpdated": "2026-07-04T19:14:57.189Z",
+  "lastUpdated": "2026-07-05T03:41:44.872Z",
   "specId": "006",
   "folderSlug": "reliability-fixes",
   "parentChain": [
     "deep-loops",
     "031-deep-loop-gpt-reliability"
   ],
-  "memorySequence": 17,
-  "memoryNameHistory": [
-    "03-07-26_19-12__to-reconcile-the-goal-cleanly-for-the-record-035.md",
-    "03-07-26_19-13__4a-2-validator-under-glm-7-5-min-in-now-actively.md",
-    "03-07-26_19-13__4a-2-at-8-5-min-now-running-typecheck-code.md",
-    "03-07-26_19-14__4a-2-validator-under-glm-9-min-in-running.md",
-    "03-07-26_19-30__4b-1-completion-watcher-armed-b4jttglua-it-ll.md",
-    "03-07-26_19-44__4c-1-completion-watcher-armed-bdmmmhbs6-standing.md",
-    "04-07-26_04-38__done-t002-is-deferred-to-036-documented-honestly.md",
-    "04-07-26_04-39__this-is-the-same-stale-goal-condition-firing.md",
-    "04-07-26_04-39__the-hook-s-own-text-now-concedes-the-point-the.md",
-    "04-07-26_04-39__same-stale-hook-unchanged-state-the-condition-is.md",
-    "04-07-26_04-39__the-condition-is-unsatisfiable-by-design-and-i-ve.md",
-    "04-07-26_04-40__resolved-stale-goal-unsatisfiable-literal-user.md",
-    "04-07-26_04-40__stale-goal-only-goal-clear-ends-it-holding-silent.md",
-    "04-07-26_04-40__stale-goal-unsatisfiable-literal-goal-clear-is.md",
-    "04-07-26_04-40__stale-goal-goal-clear-silent.md",
-    "04-07-26_12-21__progress-this-turn-two-committed-pushed-pieces.md",
-    "04-07-26_12-23__two-pieces-building-in-parallel-council-extension.md"
-  ]
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
 }
