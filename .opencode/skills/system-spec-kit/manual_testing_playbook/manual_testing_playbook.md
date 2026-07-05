@@ -143,7 +143,7 @@ Release is `READY` only when:
 1. No feature verdict is `FAIL`.
 2. All critical scenarios are `PASS`.
 3. Coverage is 100% of playbook scenarios defined by the root index and backed by per-scenario files (`COVERED_SCENARIOS == TOTAL_SCENARIOS`).
-4. Feature-catalog cross-reference coverage has been reviewed separately; scenario coverage does not imply a 1:1 feature-file count because the playbook currently contains 411 executable scenario files (category README/package-map files are excluded) while the feature catalog contains 345 feature files.
+4. Feature-catalog cross-reference coverage has been reviewed separately; scenario coverage does not imply a 1:1 feature-file count because the playbook currently contains 420 executable scenario files (category README/package-map files are excluded) while the feature catalog contains 345 feature files.
 5. No unresolved blocking triage item remains.
 6. Orphan scenario count does not exceed the recorded reconciliation baseline (82 as of 2026-06-16 — legacy index debt, recomputed after excluding 3 category README files; the baseline may only ratchet DOWN), and zero index links are broken.
 
@@ -173,8 +173,8 @@ linked = {
 }
 
 failures = []
-if len(scenario_files) != 411:
-    failures.append(f'expected 411 scenario files, found {len(scenario_files)}')
+if len(scenario_files) != 420:
+    failures.append(f'expected 420 scenario files, found {len(scenario_files)}')
 broken = sorted(linked - scenario_files)
 if broken:
     failures.append(f'{len(broken)} index link(s) resolve to no file: {broken[:5]}')
@@ -191,7 +191,7 @@ PY
 ```
 
 Final verdict report must include `COVERED_SCENARIOS/TOTAL_SCENARIOS` and should call out any remaining feature-catalog entries that are automated-only, indirect, or intentionally operator-only.
-As of 2026-06-29, the deterministic executable-scenario file count is 411 (category README/package-map files excluded). Scenarios 450-453 are the current high-water entries: graceful embedder-degrade to lexical (450), the constitutional self-edit and compare-and-swap guard (451), background enrichment pending/failed gauges (452), and the Speckit autopilot lifecycle (453). Scenario 419 is the runtime lifecycle guardrail entry for orphan MCP cleanup. Scenarios 421-426 are the daemon-reliability hardening entries. Scenarios 427-438 and 449 are the MCP-to-CLI program entries: daemon-backed CLI surfaces (427-431), the tri-daemon program gate (432), runtime warm-only hook fallbacks (433), CLI stress set (434-438), and compact/completion automation (449). Scenarios 439-448 are the release-hardening entries for default-off flags, retrieval observability, and governance guards. Broader legacy index reconciliation remains governed by the release-readiness rule above.
+As of 2026-07-05, the deterministic executable-scenario file count is 420 (category README/package-map files excluded). Scenarios 450-455 are the current high-water entries: graceful embedder-degrade to lexical (450), the constitutional self-edit and compare-and-swap guard (451), background enrichment pending/failed gauges (452), the Speckit autopilot lifecycle (453), goal OpenCode plugin active-goal injection and status (454), and validate.sh dist-freshness backstop (compiled validation orchestrator, exit 3) (455). Scenario 419 is the runtime lifecycle guardrail entry for orphan MCP cleanup. Scenarios 421-426 are the daemon-reliability hardening entries. Scenarios 427-438 and 449 are the MCP-to-CLI program entries: daemon-backed CLI surfaces (427-431), the tri-daemon program gate (432), runtime warm-only hook fallbacks (433), CLI stress set (434-438), and compact/completion automation (449). Scenarios 439-448 are the release-hardening entries for default-off flags, retrieval observability, and governance guards. Broader legacy index reconciliation remains governed by the release-readiness rule above.
 
 ### Destructive Scenario Rules
 

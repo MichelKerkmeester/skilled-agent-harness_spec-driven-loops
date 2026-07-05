@@ -163,7 +163,7 @@ quality_standards:
   feature_file_requirements:
     - frontmatter
     - OVERVIEW
-    - CURRENT REALITY
+    - HOW IT WORKS
     - SOURCE FILES
     - SOURCE METADATA
   current_reality_rule: "Describe shipped behavior, not speculative roadmap content"
