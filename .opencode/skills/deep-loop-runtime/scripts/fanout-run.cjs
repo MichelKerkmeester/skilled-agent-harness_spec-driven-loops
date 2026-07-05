@@ -1704,6 +1704,10 @@ async function main() {
 
       const exitCode = result.status ?? (result.error ? 1 : 0);
       const timedOut = result.signal === 'SIGTERM';
+      // Any signal-kill is abnormal, not just the orchestrator's own SIGTERM timeout — a
+      // stall-watchdog / lag-ceiling abort or an external SIGKILL leaves result.status null,
+      // so exitCode computes to 0 and the lineage would otherwise be masked as success.
+      const killedBySignal = result.signal != null;
       const missingArtifacts = findMissingLineageArtifacts(loopType, lineageDir);
       const stateRead = readLineageStateRecords(loopType, lineageDir);
       const stopPolicyViolation = findMaxIterationsPolicyViolation({
@@ -1718,13 +1722,17 @@ async function main() {
       // in summary.failed/all_failed, which drives the process exit code. Returning a
       // plain object here would let the pool record any completed worker as fulfilled
       // regardless of the underlying CLI exit, masking failed/timed-out lineages.
-      if (timedOut || exitCode !== 0) {
-        const failure = new Error(
-          `lineage ${lineage.label} ${timedOut ? 'timed out' : `exited with code ${exitCode}`}`,
-        );
+      if (timedOut || killedBySignal || exitCode !== 0) {
+        const reason = timedOut
+          ? 'timed out'
+          : killedBySignal
+            ? `killed by signal ${result.signal}`
+            : `exited with code ${exitCode}`;
+        const failure = new Error(`lineage ${lineage.label} ${reason}`);
         failure.label = lineage.label;
         failure.exitCode = exitCode;
         failure.timedOut = timedOut;
+        failure.killedBySignal = killedBySignal;
         failure.salvage = salvage;
         throw failure;
       }
