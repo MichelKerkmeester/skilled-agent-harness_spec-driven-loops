@@ -71,13 +71,20 @@ Load-bearing claims in `plan.md`, split by how they were established:
 - `HYGIENE_DIRECTIVE` is 202 chars; `parseRecommendations` is an explicit field-by-field mapper.
 - 028 track structure: `003-skill-advisor` has children 001-008 (next 009); `004-deep-loop` has 001-007.
 
-**INFERRED / per-source-report (re-confirm before coding):**
-- The exact abnormal-exit aggregation from an abort-requeue event to the final `process.exit(...)` code
-  (`fanout-run.cjs:1809`, `:1819-1821`) — mount points cited by thread 2, but the chain was not
-  re-walked in the synthesis pass. **Re-read `main()` before implementing D-step-2.**
-- The precise `deep_review_auto.yaml`/`deep_review_confirm.yaml` line numbers for the fanout-config
-  build (per thread 2).
-- The exact Claude Code PreToolUse block-response schema for the installed version (no in-repo precedent).
+**INFERRED / per-source-report — RESOLVED 2026-07-05 (verification pass, before coding):**
+- ✅ **Abnormal-exit aggregation — CONFIRMED** by re-reading `main()`. A non-zero-exit or timed-out
+  lineage throws (`fanout-run.cjs:1713-1727`, with an in-code comment stating exactly this intent); the
+  pool settles it as rejected → it counts in `summary.failed`/`all_failed`; the process exit derives
+  from that (`:1819` `exitCode = all_failed ? 3 : failed > 0 ? 2 : 0` → `:1821 process.exit`). So
+  **D-exit-truth needs NO new aggregation code** — only to widen the classification at `:1703`
+  (`timedOut = result.signal === 'SIGTERM'`, which today recognizes ONLY the orchestrator's own SIGTERM)
+  so a stall/lag-ceiling abort by any other signal also trips the `:1718` throw.
+- ✅ **`stallWatchdogMs` raw-alias trap — CONFIRMED** at `:646-653`: read via
+  `readRawConfigNumber(rawConfig, [aliases], 'stallWatchdogMs') ?? 0`, bypassing the Zod schema. D-config
+  T02 must edit THIS function, not just the `executor-config.ts` schema (the partial-fix trap is real).
+- ✅ **PreToolUse block-response schema — RESOLVED** (see open question 3 below).
+- ⏳ The precise `deep_review_auto.yaml`/`deep_review_confirm.yaml` fanout-config line numbers remain a
+  trivial grep-at-implementation-time check (not blocking, not a design risk).
 
 ## Open questions for the operator
 
@@ -87,8 +94,15 @@ Load-bearing claims in `plan.md`, split by how they were established:
 2. **`stallWatchdogMs` / `lagCeilingMs` default** (proposed 300000ms / 5 min) is an informed proposal,
    not evidence-backed the way `progressHeartbeatSeconds: 60` is (90-min working precedent). Too
    aggressive risks false-aborting a slow-but-healthy lineage; too lax reopens the detection gap.
-3. **PreToolUse hard-block response contract** — confirm the exact current Claude Code hook response
-   schema before B2 is implemented; do not assume a field shape.
+3. **PreToolUse hard-block response contract — RESOLVED 2026-07-05** (verified against
+   `code.claude.com/docs/en/hooks.md`). Canonical block: print
+   `{"hookSpecificOutput":{"hookEventName":"PreToolUse","permissionDecision":"deny","permissionDecisionReason":"<msg>"}}`
+   then exit 0 (the legacy top-level `{"decision":"block"}` is not the documented current shape).
+   Warn/allow-with-advisory: same envelope with `permissionDecision:"allow"` + `additionalContext:"<msg>"`.
+   Decision enum: `allow|deny|ask|defer`. Bash stdin fields: `$.tool_name` (=`"Bash"`), `$.tool_input.command`.
+   **Fail-open matches B2's design**: on the hook's own error/malformed output, exit 0 with no deny →
+   defers to the default allow flow; exit 2 is the hard-block fallback (its stderr goes to the user).
+   B2 is now implementable without guessing.
 4. **Burn-in window + false-positive tolerance** before promoting `stdin-redirect-required` /
    `command-flag-for-slash-prompt` from `warn` to `block` (e.g. N days / M dispatches with zero false
    positives).
