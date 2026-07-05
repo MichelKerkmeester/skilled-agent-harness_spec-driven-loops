@@ -7,6 +7,7 @@ trigger_phrases:
   - "deep-loop parent hub conformance"
 importance_tier: "high"
 contextType: "planning"
+parent: "skilled-agent-orchestration/124-sk-code-parent"
 _memory:
   continuity:
     packet_pointer: "skilled-agent-orchestration/124-sk-code-parent/018-deep-loop-canon-alignment"

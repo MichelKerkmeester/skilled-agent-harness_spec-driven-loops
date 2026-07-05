@@ -198,7 +198,7 @@
     ],
     "causal_summary": "The deep-loop parent hub fails the parent-hub canon with 8 P0 findings and 26 strict invariant failures",
     "created_at": "2026-07-05T05:46:26.719Z",
-    "last_save_at": "2026-07-05T09:02:00.516Z",
+    "last_save_at": "2026-07-05T10:12:47.446Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,13 +208,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:9c60d1dbd9d14681609ad5f72e6f7cfa49debcc295a2d5bcf5595b611e129be1",
+    "source_fingerprint": "sha256:364f9ca4774c5156671d33ae422f72eb5f9feb380867fb750f3f3e629b03c0d0",
     "source_doc_hashes": {
-      "spec.md": "41aade72c1fd20ce7a4430c27dbc7ad47cf7b46ff10ddeebfaf381fac40b8c36",
+      "spec.md": "d3f96b068959ef31ed57285ed52304798d46919deb80438d51d53dd64a2dc7f3",
       "plan.md": "deb6f30526f87039093567273c74b3de0a75846f324c3dd910bf74f361aeab7e",
       "tasks.md": "361465aff88a629a2da33edc7ef9d255fe45308c4d39751dc72e15e5a3889661",
       "checklist.md": "5633e9c193cadd162f9ca7e1d4d1533ff1521a1cf7b2ebd5b954cb5583b24bdf",
-      "implementation-summary.md": "86a308a4008a64e030d11b2698424b0d46c10cb024f8f222c7552a10937ff2ac"
+      "implementation-summary.md": "27bd852b4c5474c3f967164193f5ef6ff7fe416f4b189afc89e0492e60975523"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -39,45 +39,33 @@
       "validator"
     ],
     "importance_tier": "high",
-    "status": "draft",
+    "status": "complete",
     "key_files": [
-      "spec.md",
-      ".opencode/skills/sk-doc/assets/skill/parent_skill_hub_router_template.json",
-      ".opencode/skills/sk-doc/references/skill_creation/parent_hub_router_schema.md",
       ".opencode/commands/doctor/scripts/parent-skill-check.cjs",
+      ".opencode/skills/sk-doc/assets/skill/parent_skill_hub_router_template.json",
       ".opencode/skills/sk-code/mode-registry.json",
       ".opencode/skills/sk-code/hub-router.json",
+      ".opencode/skills/sk-doc/references/skill_creation/parent_hub_router_schema.md",
       ".opencode/skills/sk-code/description.json",
       ".opencode/skills/sk-code/graph-metadata.json",
       "decision-record.md",
       "plan.md",
       "tasks.md",
       "checklist.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      "spec.md"
     ],
     "entities": [
       {
-        "name": "spec.md",
-        "kind": "doc",
-        "path": "spec.md",
+        "name": "parent-skill-check.cjs",
+        "kind": "file",
+        "path": ".opencode/commands/doctor/scripts/parent-skill-check.cjs",
         "source": "derived"
       },
       {
         "name": "parent_skill_hub_router_template.json",
         "kind": "config",
         "path": ".opencode/skills/sk-doc/assets/skill/parent_skill_hub_router_template.json",
-        "source": "derived"
-      },
-      {
-        "name": "parent_hub_router_schema.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-doc/references/skill_creation/parent_hub_router_schema.md",
-        "source": "derived"
-      },
-      {
-        "name": "parent-skill-check.cjs",
-        "kind": "file",
-        "path": ".opencode/commands/doctor/scripts/parent-skill-check.cjs",
         "source": "derived"
       },
       {
@@ -90,6 +78,12 @@
         "name": "hub-router.json",
         "kind": "config",
         "path": ".opencode/skills/sk-code/hub-router.json",
+        "source": "derived"
+      },
+      {
+        "name": "parent_hub_router_schema.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/references/skill_creation/parent_hub_router_schema.md",
         "source": "derived"
       },
       {
@@ -135,6 +129,12 @@
         "source": "derived"
       },
       {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
         "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -159,7 +159,7 @@
         "source": "derived"
       },
       {
-        "name": "Purpose Plan",
+        "name": "Purpose Execute",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -203,7 +203,7 @@
     ],
     "causal_summary": "The parent-hub canon is defined, but its live router template, schema reference, and validator do not speak one `bundleRules` vocabulary",
     "created_at": "2026-07-05T05:46:26.440Z",
-    "last_save_at": "2026-07-05T05:46:26.440Z",
+    "last_save_at": "2026-07-05T09:43:04.210Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -214,14 +214,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:b0bea9ab1356bddec77bf849fed75e6a1120d40be577384a58185ae5e3270f6a",
+    "source_fingerprint": "sha256:913d91b0462af010fd03a83ffcbf3f25514f5c91090ab9c6f39d731308ba723a",
     "source_doc_hashes": {
-      "spec.md": "71b86105a353e292e0fcb46493384b94367979734316b5309c52f609bd69c65a",
-      "plan.md": "774c8fc5c267bd34a0f837fa946e0cc7a017478748f77f350b83efabc27a2031",
-      "tasks.md": "f4ff4a819e05397852380a453a94128798e0ba6415376ec1abca42dc1ed52004",
-      "checklist.md": "3c9300f328831fa9523b760c606ac2fa82c333070d1832e1c354b9b76d5451f1",
-      "decision-record.md": "c0021faaa3438813c75312f446a6d719a954e65993c34f425ec35c503ee2c020",
-      "implementation-summary.md": "ea4a75423c857e0263078e8413eaf7f1663599f351ab8a6cde67bc1156ebded8"
+      "spec.md": "cfba7c9e77432d69e439334142a6af6c91ee5f8ffd0f037669164787aec327c1",
+      "plan.md": "0668920120dbbd3869d3d6d84490ba3d557fb9388e2565ede5e53e29b1914632",
+      "tasks.md": "114764c3663314b7298b86665ed07858aac81192e29933d17e9ae83f2acf1c8b",
+      "checklist.md": "5d7346d3ca2bf22c6a1672c97cb99b75b13248de7ced84d08dd71b3f2ba8d8cf",
+      "decision-record.md": "988a9b4f4a1962f28324d97936b4a6518ed207bf6b37d9bcb7ee3c8de12b4164",
+      "implementation-summary.md": "7e4417af616b66c06dc5d2416ced238403efa0ed286fcfe764191f5b0f0a1ec4"
     },
     "last_active_child_id": null,
     "last_active_at": null

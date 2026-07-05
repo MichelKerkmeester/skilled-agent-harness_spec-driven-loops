@@ -7,16 +7,16 @@ trigger_phrases:
   - "bundleRules validator plan"
 importance_tier: "high"
 contextType: "implementation"
-status: "Draft"
+status: "Complete"
 parent: "skilled-agent-orchestration/124-sk-code-parent"
 phase: "017"
 _memory:
   continuity:
     packet_pointer: "skilled-agent-orchestration/124-sk-code-parent/017-canon-hardening"
     last_updated_at: "2026-07-05T00:00:00Z"
-    last_updated_by: "gpt-5.5"
-    recent_action: "Phase planned and documented"
-    next_safe_action: "Start T001 canon source inventory"
+    last_updated_by: "claude-opus"
+    recent_action: "Phase executed; bundleRules canon reconciled, STRICT 0/0"
+    next_safe_action: "124 rollup"
 ---
 # Implementation Plan: Phase 17 canon hardening
 
@@ -47,17 +47,17 @@ This phase plans a small but shared canon hardening pass. The implementation sho
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] Master plan phase 017 lines 38-47 reviewed and treated as scope lock.
-- [ ] Audit digest canon-gap and collision-risk evidence reviewed.
-- [ ] Current template, schema, validator, sk-code registry/router, and metadata files read before edits.
-- [ ] Baseline parent-skill-check result captured for sk-code and deep-loop-workflows.
+- [x] Master plan phase 017 lines 38-47 reviewed and treated as scope lock.
+- [x] Audit digest canon-gap and collision-risk evidence reviewed.
+- [x] Current template, schema, validator, sk-code registry/router, and metadata files read before edits.
+- [x] Baseline parent-skill-check result captured for sk-code and deep-loop-workflows.
 
 ### Definition of Done
-- [ ] Template, schema, and validator agree on the canonical `bundleRules[]` vocabulary.
-- [ ] Validator remains additive/tolerant for legacy aliases and absent rules.
-- [ ] sk-code uses `surfaces`, 4-part registry/router versions, and no stale placeholder metadata fields.
-- [ ] sk-code strict parent-skill-check remains green.
-- [ ] deep-loop strict failure count is unchanged or reduced.
+- [x] Template, schema, and validator agree on the canonical `bundleRules[]` vocabulary.
+- [x] Validator remains additive/tolerant for legacy aliases and absent rules.
+- [x] sk-code uses `surfaces`, 4-part registry/router versions, and no stale placeholder metadata fields.
+- [x] sk-code strict parent-skill-check remains green.
+- [x] deep-loop strict failure count is unchanged or reduced.
 
 <!-- /ANCHOR:quality-gates -->
 ---

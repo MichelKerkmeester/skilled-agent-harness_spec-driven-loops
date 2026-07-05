@@ -7,6 +7,7 @@ trigger_phrases:
   - "two-axis parent hub packetKind"
 importance_tier: "critical"
 contextType: "implementation"
+parent: "skilled-agent-orchestration/124-sk-code-parent"
 _memory:
   continuity:
     packet_pointer: "skilled-agent-orchestration/124-sk-code-parent/011-hub-canon"

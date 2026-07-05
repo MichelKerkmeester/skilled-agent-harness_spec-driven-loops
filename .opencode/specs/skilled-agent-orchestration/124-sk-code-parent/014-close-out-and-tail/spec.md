@@ -8,6 +8,7 @@ trigger_phrases:
   - "rename invariants"
 importance_tier: "important"
 contextType: "implementation"
+parent: "skilled-agent-orchestration/124-sk-code-parent"
 _memory:
   continuity:
     packet_pointer: "skilled-agent-orchestration/124-sk-code-parent/014-close-out-and-tail"

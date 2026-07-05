@@ -7,6 +7,7 @@ trigger_phrases:
   - "spec kit relocation"
 importance_tier: "high"
 contextType: "implementation"
+parent: "skilled-agent-orchestration/124-sk-code-parent"
 _memory:
   continuity:
     packet_pointer: "skilled-agent-orchestration/124-sk-code-parent/012-spec-kit-relocation"

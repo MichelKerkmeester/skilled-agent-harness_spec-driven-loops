@@ -39,17 +39,17 @@
       "checklist"
     ],
     "importance_tier": "high",
-    "status": "draft",
+    "status": "complete",
     "key_files": [
-      ".opencode/skills/sk-code/description.json",
-      ".opencode/skills/sk-code/graph-metadata.json",
       ".opencode/skills/sk-code/opencode/references/shared/hooks.md",
-      "tasks.md",
-      "plan.md",
       ".opencode/skills/sk-code/code-quality/SKILL.md",
       ".opencode/skills/sk-code/code-verify/assets/scripts/verify_stack_folders.py",
       ".opencode/skills/sk-code/code-verify/SKILL.md",
       ".opencode/skills/sk-code/code-verify/README.md",
+      ".opencode/skills/sk-code/description.json",
+      ".opencode/skills/sk-code/graph-metadata.json",
+      "plan.md",
+      "tasks.md",
       "checklist.md",
       "decision-record.md",
       "spec.md",
@@ -59,33 +59,9 @@
     ],
     "entities": [
       {
-        "name": "description.json",
-        "kind": "config",
-        "path": ".opencode/skills/sk-code/description.json",
-        "source": "derived"
-      },
-      {
-        "name": "graph-metadata.json",
-        "kind": "config",
-        "path": ".opencode/skills/sk-code/graph-metadata.json",
-        "source": "derived"
-      },
-      {
         "name": "hooks.md",
         "kind": "doc",
         "path": ".opencode/skills/sk-code/opencode/references/shared/hooks.md",
-        "source": "derived"
-      },
-      {
-        "name": "tasks.md",
-        "kind": "doc",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "plan.md",
-        "kind": "doc",
-        "path": "plan.md",
         "source": "derived"
       },
       {
@@ -104,6 +80,30 @@
         "name": "README.md",
         "kind": "doc",
         "path": ".opencode/skills/sk-code/code-verify/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "description.json",
+        "kind": "config",
+        "path": ".opencode/skills/sk-code/description.json",
+        "source": "derived"
+      },
+      {
+        "name": "graph-metadata.json",
+        "kind": "config",
+        "path": ".opencode/skills/sk-code/graph-metadata.json",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
         "source": "derived"
       },
       {
@@ -149,13 +149,13 @@
         "source": "derived"
       },
       {
-        "name": "Key Decisions",
+        "name": "Executed Level",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "Critical Dependencies",
+        "name": "Key Decisions",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -205,7 +205,7 @@
     ],
     "causal_summary": "The master plan identifies sk-code as structurally canonical but content-incoherent after phase 013",
     "created_at": "2026-07-05T05:46:26.162Z",
-    "last_save_at": "2026-07-05T05:46:26.162Z",
+    "last_save_at": "2026-07-05T10:12:44.010Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -216,14 +216,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:fb4bea22599e3b56b2f21fb997501221ba267d5c956117d691d44f6b66a34948",
+    "source_fingerprint": "sha256:606d80215e6f491c165904c3e6449df9b656e08abcb9e3168db70a24f86028dd",
     "source_doc_hashes": {
-      "spec.md": "4af4266b5fd23e50ecc3aa2d160e85fc479c4cc9212fbc7bb2be79a7707045bf",
-      "plan.md": "1654965678f5d1ef62a32823ca5b7156f2a0f6ad574a58db698045b0046b6a71",
-      "tasks.md": "8d1c08f2735dc8ae6c12300cded48b303a321eaaf716b8739534772dc850807c",
-      "checklist.md": "da1e259d5eca25dab3b1aa6e65d02b16d0a13a31af5d3369243bf78784bcec3b",
-      "decision-record.md": "4706bf703655edf5ef853a5f2ca802112b09c30862b8bf95e7bce19c8f631711",
-      "implementation-summary.md": "f5042c1ce3a4b1a050df5d5628a8c9ce3032550c744b38857ac901df7390bddb"
+      "spec.md": "f7fcaa0f1c4596ad483b5c23e11212f837da969a23d656438ad37fee46666513",
+      "plan.md": "9fa3b89e462e84af1fdc977ac4ca5aadf3f3b41ddbbf851b2007f7933dfdc29f",
+      "tasks.md": "004b4403062bd1844c90b40b451ca0732783959880f594271d135d0cc4cb1825",
+      "checklist.md": "94dafd77093c33ba805cdba04376717fdd9cfddf7173e1e0931ebe6826054924",
+      "decision-record.md": "7aefc9172539f7e8cec12629b1ffbefaa4a9584cf8ec516ba6b000c4a69dd771",
+      "implementation-summary.md": "4c39f5a79567bd64fea616f1c41568b45772650d3b919b3a5b7155544f913614"
     },
     "last_active_child_id": null,
     "last_active_at": null
