@@ -8,7 +8,7 @@ trigger_phrases:
   - "review session tracking"
 importance_tier: normal
 contextType: planning
-version: 1.11.0.13
+version: 1.11.0.14
 ---
 
 # Deep Review Strategy - Session Tracking
@@ -33,8 +33,8 @@ Review of `.opencode/specs/sk-design/009-sk-design-claude-parity` - the sk-desig
 <!-- MACHINE-OWNED: START -->
 - [x] D1 Correctness, Logic errors, off-by-one, wrong return types, broken invariants
 - [x] D2 Security, Injection, auth bypass, secrets exposure, unsafe deserialization
-- [ ] D3 Traceability, Spec/code alignment, checklist evidence, cross-reference integrity
-- [ ] D4 Maintainability, Patterns, clarity, documentation quality, safe follow-on change cost
+- [x] D3 Traceability, Spec/code alignment, checklist evidence, cross-reference integrity
+- [x] D4 Maintainability, Patterns, clarity, documentation quality, safe follow-on change cost
 <!-- MACHINE-OWNED: END -->
 
 ---
@@ -57,6 +57,8 @@ Not re-running the routing benchmark harness or the md-generator Playwright pipe
 |-----------|---------|-----------|---------|
 | Correctness | CONDITIONAL | 2 | Found one P1 in the md-generator WRITE prompt: component exact-value output is required by the v3 format but component style facts are not exposed by `build-write-prompt.ts`. |
 | Security | CONDITIONAL | 3 | Found two P1s: md-generator output guards do not enforce the documented spec-folder/sandbox boundary, and live-site-derived typography values enter the AI WRITE prompt without prompt-data isolation. |
+| Traceability | CONDITIONAL | 4 | Found one P1: md-generator report/preview catalog promises no silent overwrite, but report/preview/proof scripts write fixed artifact names without output-exists guards or explicit overwrite acceptance. |
+| Maintainability | PASS with advisories | 5 | Found two P2 advisories: procedure-card lint remains manual-only/outside canon checker coverage, and byte-identical benchmark artifacts remain under two naming conventions. |
 <!-- MACHINE-OWNED: END -->
 
 ---
@@ -64,9 +66,9 @@ Not re-running the routing benchmark harness or the md-generator Playwright pipe
 ## 7. RUNNING FINDINGS
 <!-- MACHINE-OWNED: START -->
 - **P0 (Critical):** 0 active
-- **P1 (Major):** 3 active
-- **P2 (Minor):** 0 active
-- **Delta this iteration:** +0 P0, +2 P1, +0 P2
+- **P1 (Major):** 4 active
+- **P2 (Minor):** 2 active
+- **Delta this iteration:** +0 P0, +0 P1, +2 P2
 
 [Findings are tracked in `deep-review-findings-registry.json`. This section provides a running count summary updated after each iteration.]
 <!-- MACHINE-OWNED: END -->
@@ -81,6 +83,8 @@ Not re-running the routing benchmark harness or the md-generator Playwright pipe
 - Direct reads of `mode-registry.json`, `hub-router.json`, and md-generator backend package/build metadata provided good starting anchors for iteration 2 correctness review.
 - Iteration 2 direct-read comparison between `build-write-prompt.ts`, `types.ts`, `cluster.ts`, and `references/design_md_format.md` exposed a value-provenance gap without needing to mutate reviewed code.
 - Iteration 3 targeted greps for process execution, path writes, prompt interpolation, URL/selector handling, and mode tool surfaces quickly narrowed the security pass to two confirmed P1s and several ruled-out directions.
+- Iteration 4 traceability sampling across phases 010-013, all six feature-catalog packages, procedure-card-contract playbook scenarios, and `/design:*` command projections isolated one real doc/code mismatch without re-reporting prior P1s.
+- Iteration 5 maintainability review found no new P0/P1 and clarified two shared remediation seams for the md-generator backend: prompt-data/facts encoding and output/artifact write policy.
 
 ---
 
@@ -90,6 +94,8 @@ Not re-running the routing benchmark harness or the md-generator Playwright pipe
 - Broad recursive globs over the full skill tree can truncate output; prefer targeted directory reads and narrow globs by packet/type in future iterations.
 - Code graph remained unsuitable for correctness assertions, so iteration 2 continued graphless fallback with direct reads and narrow grep/glob evidence.
 - Code graph remained unsuitable for security assertions; iteration 3 used graphless fallback and did not make structural graph coverage claims.
+- Code graph remained unsuitable for traceability assertions; iteration 4 used graphless fallback and did not make structural graph coverage claims.
+- Code graph remained stale in iteration 5 (`git HEAD changed`, newer mtimes, removed tracked files); maintainability assertions used graphless fallback only.
 
 ---
 
@@ -113,12 +119,19 @@ Not re-running the routing benchmark harness or the md-generator Playwright pipe
 - Crawler same-domain/action side-effect gap: ruled out for iteration 3 in the sampled path. Link discovery stays on the same hostname, and reveal-click logic skips forms, submits, navigating hrefs, and action-intent controls.
 - Read-only mode tool escalation: ruled out for iteration 3. Registry, mode frontmatters, and command frontmatters preserve Read/Glob/Grep-only surfaces for interface/foundations/motion/audit and reserve Write/Edit/Bash for md-generator.
 - Prior P1-001 as a separate current security issue: ruled out for iteration 3. Component facts are missing rather than currently interpolated, but any future remediation must apply prompt-data isolation.
+- Phase 010 traceability false-completion: ruled out for iteration 4. File-count, package-layout, and checklist claims match observed feature-catalog samples.
+- Phase 012 fabricated benchmark closeout: ruled out for iteration 4. ADR-003 descope is explicit, with unbuilt expanded-battery/live/advisor/procedure-card work visible as NOT MET or UNSCORED.
+- Procedure-card playbook capability mismatch: ruled out for sampled iteration 4 scenarios. Procedure-card-contract playbooks map to live mode SKILL card-selection and fallback contracts.
+- Command projection drift after Phase 013: ruled out for iteration 4. Five `/design:*` commands still match current registry mode and tool-surface behavior.
+- Feature-catalog root/leaf duplication as a new maintainability defect: ruled out for iteration 5. The six root catalogs summarize and link leaf files rather than duplicating long-form authoritative capability bodies.
+- Phase 012 future-work handoff ambiguity: ruled out for iteration 5. ADR-003, `plan.md`, `tasks.md`, `checklist.md`, and `implementation-summary.md` all name the descoped expanded battery, harness fields, live rerun, and baseline promotion.
+- md-generator remediation coupling as a separate new P1: ruled out for iteration 5. The existing four P1s share two maintainable remediation seams instead of proving an additional blocker-class design defect.
 
 ---
 
 ## 12. NEXT FOCUS
 <!-- MACHINE-OWNED: START -->
-Iteration 4 (traceability): review spec-to-code alignment, checklist evidence, feature-catalog-code coverage, command projection parity, and playbook capability mapping.
+Iteration 6 (deeper revisit): revisit md-generator P1 remediation design with emphasis on prompt-data/facts encoding and shared output/artifact write policy.
 <!-- MACHINE-OWNED: END -->
 
 ---
@@ -141,12 +154,13 @@ Do not inline full source bodies in this file. Use this snapshot only to seed re
 
 | Protocol | Level | Status | Iteration | Notes |
 |----------|-------|--------|-----------|-------|
-| `spec_code` | core | partial | 3 | Security pass checked md-generator implementation against output-path and prompt-boundary contracts; traceability remains incomplete. |
-| `checklist_evidence` | core | partial | 3 | Manual playbook sandbox policy sampled for md-generator execution boundaries; full checklist evidence pass pending. |
-| `skill_agent` | overlay | partial | 3 | Registry, hub, mode frontmatters, and command frontmatters preserve read-only vs mutating tool-surface split. |
+| `spec_code` | core | covered_with_new_p1 | 4 | Traceability pass checked Phase 010/012 claims, feature-catalog samples, and md-generator report/preview scripts; P1-004 is the new mismatch. |
+| `checklist_evidence` | core | covered | 4 | Phase 010/011/012/013 checklist evidence sampled; no new checklist-only defect found. |
+| `skill_agent` | overlay | covered | 4 | Registry, hub/mode SKILL contracts, playbook scenarios, and command frontmatters preserve expected behavior. |
 | `agent_cross_runtime` | overlay | notApplicable | - | sk-design has no dedicated agent family beyond the shared `design` LEAF agent, already covered under skill_agent |
-| `feature_catalog_code` | overlay | partial | 3 | Existing P1-001 security implication checked; no separate current component-facts injection path because component facts are not emitted today. |
-| `playbook_capability` | overlay | partial | 3 | Manual playbook sandbox policy sampled; full scenario-to-capability validation remains pending. |
+| `feature_catalog_code` | overlay | covered_with_new_p1 | 4 | Hub/interface/foundations/motion/audit samples matched source; md-generator report/preview produced P1-004. |
+| `playbook_capability` | overlay | covered | 4 | Sampled procedure-card-contract scenarios map to live SKILL card-selection and fallback contracts. |
+| `command_projection_parity` | overlay | covered | 4 | Five `/design:*` commands still match the current five-mode registry and tool-surface split. |
 <!-- MACHINE-OWNED: END -->
 
 ---
@@ -157,19 +171,19 @@ Do not inline full source bodies in this file. Use this snapshot only to seed re
 | File | Dimensions Reviewed | Last Iteration | Findings | Status |
 |------|-------------------|----------------|----------|--------|
 | `.opencode/specs/sk-design/009-sk-design-claude-parity/{spec.md,description.json,graph-metadata.json}` | inventory | 1 | 0 | mapped |
-| `.opencode/specs/sk-design/009-sk-design-claude-parity/001-baseline-ownership-gate/` through `013-design-commands-asset-refactor/` | inventory + checklist spot-check | 1 | 0 | mapped; deep traceability pending |
+| `.opencode/specs/sk-design/009-sk-design-claude-parity/001-baseline-ownership-gate/` through `013-design-commands-asset-refactor/` | inventory + checklist spot-check + traceability spot-check | 4 | 0 | mapped; Phase 010/012/013 traceability spot-check complete |
 | `.opencode/specs/sk-design/009-sk-design-claude-parity/008-smart-routing-optimization/benchmark-after-008/` | inventory | 1 | 0 | mapped |
 | `.opencode/specs/sk-design/009-sk-design-claude-parity/external/` | - | 1 | - | out of scope per review strategy |
 | `.opencode/specs/sk-design/009-sk-design-claude-parity/research/` | - | 1 | - | out of scope per review strategy |
 | `.opencode/specs/sk-design/009-sk-design-claude-parity/review/` | review-state only | 1 | 0 | mapped; own artifacts only |
-| `.opencode/skills/sk-design/{SKILL.md,README.md,hub-router.json,mode-registry.json,command-metadata.json,description.json,graph-metadata.json,references/,shared/,changelog/,benchmark/,feature_catalog/,manual_testing_playbook/}` | inventory + correctness routing spot-check + security tool-surface spot-check | 3 | 0 | mapped; no mode-routing/tool-surface correctness or security escalation finding |
+| `.opencode/skills/sk-design/{SKILL.md,README.md,hub-router.json,mode-registry.json,command-metadata.json,description.json,graph-metadata.json,references/,shared/,changelog/,benchmark/,feature_catalog/,manual_testing_playbook/}` | inventory + correctness routing spot-check + security tool-surface spot-check + traceability samples | 4 | 0 | mapped; sampled feature catalog/playbook command contracts covered |
 | `.opencode/skills/sk-design/design-interface/` | inventory | 1 | 0 | mapped; includes extra `LICENSE.txt` noted for maintainability pass |
 | `.opencode/skills/sk-design/design-foundations/` | inventory | 1 | 0 | mapped; scripts present |
 | `.opencode/skills/sk-design/design-motion/` | inventory | 1 | 0 | mapped |
 | `.opencode/skills/sk-design/design-audit/` | inventory | 1 | 0 | mapped; scripts present |
-| `.opencode/skills/sk-design/design-md-generator/` | inventory + backend correctness spot-check + security path/prompt spot-check | 3 | 3 P1 | mapped; `build-write-prompt.ts` component-facts gap, output-boundary guard gap, prompt-data isolation gap found |
+| `.opencode/skills/sk-design/design-md-generator/` | inventory + backend correctness spot-check + security path/prompt spot-check + report/preview traceability spot-check | 4 | 4 P1 | mapped; `build-write-prompt.ts` component-facts gap, output-boundary guard gap, prompt-data isolation gap, and report/preview overwrite-contract gap found |
 | `.opencode/skills/sk-design/design-md-generator/backend/node_modules/` | - | 1 | - | out of scope vendored dependency internals |
-| `.opencode/commands/design/*.md` | inventory + security tool-surface spot-check | 3 | 0 | mapped; read-only versus md-generator mutating split preserved |
+| `.opencode/commands/design/*.md` | inventory + security tool-surface spot-check + traceability command projection spot-check | 4 | 0 | mapped; read-only versus md-generator mutating split preserved |
 <!-- MACHINE-OWNED: END -->
 
 ---
@@ -193,8 +207,7 @@ Do not inline full source bodies in this file. Use this snapshot only to seed re
 
 <!-- ANCHOR:review-dimensions -->
 ## 3. REVIEW DIMENSIONS (remaining)
-- [ ] traceability
-- [ ] maintainability
+[All dimensions complete]
 
 <!-- /ANCHOR:review-dimensions -->
 
@@ -202,6 +215,8 @@ Do not inline full source bodies in this file. Use this snapshot only to seed re
 ## 4. COMPLETED DIMENSIONS
 - [x] correctness
 - [x] security
+- [x] traceability
+- [x] maintainability
 
 <!-- /ANCHOR:completed-dimensions -->
 
@@ -209,7 +224,7 @@ Do not inline full source bodies in this file. Use this snapshot only to seed re
 ## 5. RUNNING FINDINGS
 - P0 (Blockers): 0
 - P1 (Required): 4
-- P2 (Suggestions): 0
+- P2 (Suggestions): 2
 - Resolved: 0
 
 <!-- /ANCHOR:running-findings -->
@@ -222,6 +237,6 @@ Do not inline full source bodies in this file. Use this snapshot only to seed re
 
 <!-- ANCHOR:next-focus -->
 ## 11. NEXT FOCUS
-traceability
+[All dimensions covered]
 
 <!-- /ANCHOR:next-focus -->

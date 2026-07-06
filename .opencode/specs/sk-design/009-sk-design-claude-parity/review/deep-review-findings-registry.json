@@ -122,6 +122,64 @@
         "correctness"
       ],
       "mergedFindingIds": []
+    },
+    {
+      "findingId": "P2-001",
+      "severity": "P2",
+      "title": "Procedure-card schema lint is manual-only and outside the existing canon checker",
+      "file": ".opencode/skills/sk-design/shared/procedure_card_schema.md",
+      "line": 75,
+      "description": "",
+      "findingClass": "matrix/evidence",
+      "deltaStatus": "open",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 5,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 5,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "P2-002",
+      "severity": "P2",
+      "title": "Byte-identical benchmark artifacts remain under two incompatible naming conventions",
+      "file": ".opencode/specs/sk-design/009-sk-design-claude-parity/012-routing-benchmark-rigor/decision-record.md",
+      "line": 253,
+      "description": "",
+      "findingClass": "matrix/evidence",
+      "deltaStatus": "open",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 5,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 5,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
     }
   ],
   "resolvedFindings": [],
@@ -132,38 +190,49 @@
   "dimensionCoverage": {
     "correctness": true,
     "security": true,
-    "traceability": false,
-    "maintainability": false
+    "traceability": true,
+    "maintainability": true
   },
   "findingsBySeverity": {
     "P0": 0,
     "P1": 4,
-    "P2": 0
+    "P2": 2
   },
-  "openFindingsCount": 4,
+  "openFindingsCount": 6,
   "resolvedFindingsCount": 0,
-  "convergenceScore": 0.6699999999999999,
+  "convergenceScore": 0.6,
   "graphConvergenceScore": 0,
   "graphDecision": null,
   "graphBlockers": [],
   "candidateCoverage": {
     "covered": [
       "artifact_inventory",
+      "benchmark_duplicate_wayfinding",
       "checklist_evidence_drift",
+      "command_projection_parity",
       "compiled_backend_output_presence",
       "crawler_side_effect_control",
+      "feature_catalog_code",
+      "feature_catalog_duplicate_drift",
       "manual_playbook_capability_mismatch",
       "md_generator_entrypoint_contract",
+      "md_generator_remediation_coupling",
       "mode_registry_surface_mismatch",
       "mode_routing_surface_mismatch",
       "out_of_scope_boundary",
       "output_path_scope_guard",
       "phase010_remediation_residual",
+      "phase010_remediation_traceability",
+      "phase012_descope_traceability",
       "phase012_false_completion",
+      "phase012_handoff_clarity",
       "placeholder_or_stub_residue",
+      "playbook_capability",
       "prior_component_gap_security",
+      "procedure_card_schema_drift",
       "prompt_template_injection",
       "read_only_mode_escalation",
+      "report_preview_overwrite_contract",
       "shell_command_injection",
       "tool_surface_escalation",
       "write_prompt_value_fidelity"
@@ -171,17 +240,25 @@
     "ruledOut": [
       "artifact_inventory",
       "checklist_evidence_drift",
+      "command_projection_parity",
       "compiled_backend_output_presence",
       "crawler_side_effect_control",
+      "feature_catalog_duplicate_drift",
       "md_generator_entrypoint_contract",
+      "md_generator_new_p1_maintainability",
+      "md_generator_remediation_coupling",
       "missing_backend_dist_cli",
       "missing_parent_or_phase_structure",
       "mode_registry_surface_mismatch",
       "mode_routing_surface_mismatch",
       "obvious_stub_residue",
       "phase010_remediation_residual",
+      "phase010_remediation_traceability",
+      "phase012_descope_traceability",
       "phase012_false_completion",
+      "phase012_handoff_clarity",
       "placeholder_or_stub_residue",
+      "playbook_capability",
       "prior_component_gap_security",
       "read_only_mode_escalation",
       "shell_command_injection",
@@ -189,16 +266,21 @@
       "tool_surface_escalation"
     ],
     "deferred": [
+      "benchmark_duplicate_cleanup",
       "complete_report_preview_proof_write_guard_audit",
       "deep_correctness",
       "deep_correctness_security_traceability_maintainability",
       "feature_catalog_code",
       "full_command_surface_review",
+      "full_feature_catalog_line_by_line",
       "full_manual_playbook_capability_validation",
+      "full_manual_playbook_live_execution",
       "full_manual_playbook_scenario_execution",
       "maintainability_drift",
       "manual_playbook_capability_mismatch",
+      "md_generator_remediation_implementation",
       "playbook_capability",
+      "procedure_card_lint_automation_design",
       "security_boundary",
       "traceability_matrix"
     ],
@@ -219,7 +301,8 @@
         "deferred": false,
         "blocked": false,
         "iterations": [
-          1
+          1,
+          4
         ]
       },
       "mode_registry_surface_mismatch": {
@@ -332,21 +415,23 @@
         ]
       },
       "feature_catalog_code": {
-        "covered": false,
+        "covered": true,
         "ruledOut": false,
         "deferred": true,
         "blocked": false,
         "iterations": [
-          1
+          1,
+          4
         ]
       },
       "playbook_capability": {
-        "covered": false,
-        "ruledOut": false,
+        "covered": true,
+        "ruledOut": true,
         "deferred": true,
         "blocked": false,
         "iterations": [
-          1
+          1,
+          4
         ]
       },
       "deep_correctness_security_traceability_maintainability": {
@@ -509,6 +594,141 @@
         "blocked": false,
         "iterations": [
           3
+        ]
+      },
+      "phase010_remediation_traceability": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4
+        ]
+      },
+      "phase012_descope_traceability": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4
+        ]
+      },
+      "command_projection_parity": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4
+        ]
+      },
+      "report_preview_overwrite_contract": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4
+        ]
+      },
+      "full_feature_catalog_line_by_line": {
+        "covered": false,
+        "ruledOut": false,
+        "deferred": true,
+        "blocked": false,
+        "iterations": [
+          4
+        ]
+      },
+      "full_manual_playbook_live_execution": {
+        "covered": false,
+        "ruledOut": false,
+        "deferred": true,
+        "blocked": false,
+        "iterations": [
+          4
+        ]
+      },
+      "procedure_card_schema_drift": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          5
+        ]
+      },
+      "feature_catalog_duplicate_drift": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          5
+        ]
+      },
+      "benchmark_duplicate_wayfinding": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          5
+        ]
+      },
+      "phase012_handoff_clarity": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          5
+        ]
+      },
+      "md_generator_remediation_coupling": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          5
+        ]
+      },
+      "md_generator_new_p1_maintainability": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          5
+        ]
+      },
+      "procedure_card_lint_automation_design": {
+        "covered": false,
+        "ruledOut": false,
+        "deferred": true,
+        "blocked": false,
+        "iterations": [
+          5
+        ]
+      },
+      "benchmark_duplicate_cleanup": {
+        "covered": false,
+        "ruledOut": false,
+        "deferred": true,
+        "blocked": false,
+        "iterations": [
+          5
+        ]
+      },
+      "md_generator_remediation_implementation": {
+        "covered": false,
+        "ruledOut": false,
+        "deferred": true,
+        "blocked": false,
+        "iterations": [
+          5
         ]
       }
     }
@@ -780,6 +1000,135 @@
         ".opencode/skills/sk-design/design-md-generator/backend/scripts/build-write-prompt.ts:93"
       ],
       "reason": "No separate current security finding for P1-001 was confirmed beyond the new broader prompt-data isolation finding."
+    },
+    {
+      "iteration": 4,
+      "id": "SL-401",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".opencode/specs/sk-design/009-sk-design-claude-parity/010-feature-catalog-completeness",
+        ".opencode/skills/sk-design/**/feature_catalog/**"
+      ],
+      "bugClass": "phase010_remediation_traceability",
+      "disposition": "ruled_out",
+      "rationale": "Phase 010 implementation summary and checklist match observed package layout and sampled catalog content.",
+      "evidenceRefs": [
+        ".opencode/skills/sk-design/design-foundations/feature_catalog/01--token-system/oklch-color-and-token-system.md:26"
+      ],
+      "reason": "No residual false-completion gap found in sampled Phase 010 evidence."
+    },
+    {
+      "iteration": 4,
+      "id": "SL-402",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".opencode/specs/sk-design/009-sk-design-claude-parity/012-routing-benchmark-rigor"
+      ],
+      "bugClass": "phase012_descope_traceability",
+      "disposition": "ruled_out",
+      "rationale": "Spec, decision record, checklist, and implementation summary repeatedly mark unbuilt expanded-battery/live/advisor work as UNSCORED, NOT MET, or accepted descope.",
+      "evidenceRefs": [
+        ".opencode/specs/sk-design/009-sk-design-claude-parity/012-routing-benchmark-rigor/decision-record.md:241"
+      ],
+      "reason": "No fabricated score or silent pass row found in sampled Phase 012 reconciliation evidence."
+    },
+    {
+      "iteration": 4,
+      "id": "SL-404",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".opencode/skills/sk-design/**/manual_testing_playbook/*--procedure-card-contract/*.md",
+        ".opencode/skills/sk-design/**/SKILL.md"
+      ],
+      "bugClass": "playbook_capability",
+      "disposition": "ruled_out",
+      "rationale": "Sampled scenario files map to live SKILL Procedure Card Selection and fallback sections across interface, foundations, motion, audit, and md-generator.",
+      "evidenceRefs": [
+        ".opencode/specs/sk-design/009-sk-design-claude-parity/011-manual-testing-playbook-alignment/implementation-summary.md:52"
+      ],
+      "reason": "No sampled scenario claimed a non-existent procedure-card capability."
+    },
+    {
+      "iteration": 4,
+      "id": "SL-405",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".opencode/commands/design/*.md",
+        ".opencode/skills/sk-design/mode-registry.json"
+      ],
+      "bugClass": "command_projection_parity",
+      "disposition": "ruled_out",
+      "rationale": "Command frontmatters and load steps still map to the five registry modes and tool surfaces; Phase 013 states the refactor is planning-only.",
+      "evidenceRefs": [
+        ".opencode/commands/design/audit.md:51",
+        ".opencode/commands/design/md-generator.md:51"
+      ],
+      "reason": "No command projection mismatch found in frontmatter or mode binding samples."
+    },
+    {
+      "iteration": 5,
+      "id": "SL-502",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".opencode/skills/sk-design/**/feature_catalog/feature_catalog.md"
+      ],
+      "bugClass": "feature_catalog_duplicate_drift",
+      "disposition": "ruled_out",
+      "rationale": "The observed duplication is directory-level summary text, not parallel authoritative bodies likely to diverge on the next capability change.",
+      "evidenceRefs": [
+        ".opencode/skills/sk-design/feature_catalog/feature_catalog.md:31",
+        ".opencode/skills/sk-design/design-interface/feature_catalog/feature_catalog.md:37",
+        ".opencode/skills/sk-design/design-md-generator/feature_catalog/feature_catalog.md:31"
+      ],
+      "reason": "Root catalogs summarize capability areas and link leaf files rather than duplicating long-form source details."
+    },
+    {
+      "iteration": 5,
+      "id": "SL-504",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".opencode/specs/sk-design/009-sk-design-claude-parity/012-routing-benchmark-rigor/decision-record.md",
+        ".opencode/specs/sk-design/009-sk-design-claude-parity/012-routing-benchmark-rigor/plan.md",
+        ".opencode/specs/sk-design/009-sk-design-claude-parity/012-routing-benchmark-rigor/tasks.md",
+        ".opencode/specs/sk-design/009-sk-design-claude-parity/012-routing-benchmark-rigor/checklist.md",
+        ".opencode/specs/sk-design/009-sk-design-claude-parity/012-routing-benchmark-rigor/implementation-summary.md"
+      ],
+      "bugClass": "phase012_handoff_clarity",
+      "disposition": "ruled_out",
+      "rationale": "A future implementer can identify the unbuilt categories, harness fields, live-mode rerun, and baseline promotion without re-deriving context.",
+      "evidenceRefs": [
+        ".opencode/specs/sk-design/009-sk-design-claude-parity/012-routing-benchmark-rigor/decision-record.md:259",
+        ".opencode/specs/sk-design/009-sk-design-claude-parity/012-routing-benchmark-rigor/plan.md:40",
+        ".opencode/specs/sk-design/009-sk-design-claude-parity/012-routing-benchmark-rigor/tasks.md:37",
+        ".opencode/specs/sk-design/009-sk-design-claude-parity/012-routing-benchmark-rigor/checklist.md:155",
+        ".opencode/specs/sk-design/009-sk-design-claude-parity/012-routing-benchmark-rigor/implementation-summary.md:141"
+      ],
+      "reason": "ADR-003, plan/task/checklist reconciliation, and follow-up items repeatedly name the descoped expanded-battery work and the future pickup path."
+    },
+    {
+      "iteration": 5,
+      "id": "SL-505",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".opencode/skills/sk-design/design-md-generator/backend/scripts/build-write-prompt.ts",
+        ".opencode/skills/sk-design/design-md-generator/backend/scripts/extract.ts",
+        ".opencode/skills/sk-design/design-md-generator/backend/scripts/guided-run.ts",
+        ".opencode/skills/sk-design/design-md-generator/backend/scripts/report-gen.ts",
+        ".opencode/skills/sk-design/design-md-generator/backend/scripts/preview-gen.ts",
+        ".opencode/skills/sk-design/design-md-generator/backend/scripts/proof.ts"
+      ],
+      "bugClass": "md_generator_remediation_coupling",
+      "disposition": "ruled_out",
+      "rationale": "Prompt facts/data isolation belongs in the write-prompt seam; output boundary/overwrite semantics belong in a shared output/artifact policy used by all write scripts.",
+      "evidenceRefs": [
+        ".opencode/skills/sk-design/design-md-generator/backend/scripts/build-write-prompt.ts:53",
+        ".opencode/skills/sk-design/design-md-generator/backend/scripts/extract.ts:258",
+        ".opencode/skills/sk-design/design-md-generator/backend/scripts/guided-run.ts:138",
+        ".opencode/skills/sk-design/design-md-generator/backend/scripts/report-gen.ts:627",
+        ".opencode/skills/sk-design/design-md-generator/backend/scripts/preview-gen.ts:249",
+        ".opencode/skills/sk-design/design-md-generator/backend/scripts/proof.ts:301"
+      ],
+      "reason": "No separate P1 is needed; the active P1s can be addressed through two shared remediation seams instead of unrelated patches."
     }
   ],
   "cleanSearchProof": [
@@ -1016,34 +1365,161 @@
         ".opencode/skills/sk-design/design-md-generator/backend/scripts/build-write-prompt.ts:93"
       ],
       "proof": "No separate current security finding for P1-001 was confirmed beyond the new broader prompt-data isolation finding."
+    },
+    {
+      "iteration": 4,
+      "id": "SL-401",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".opencode/specs/sk-design/009-sk-design-claude-parity/010-feature-catalog-completeness",
+        ".opencode/skills/sk-design/**/feature_catalog/**"
+      ],
+      "bugClass": "phase010_remediation_traceability",
+      "disposition": "ruled_out",
+      "rationale": "Phase 010 implementation summary and checklist match observed package layout and sampled catalog content.",
+      "evidenceRefs": [
+        ".opencode/skills/sk-design/design-foundations/feature_catalog/01--token-system/oklch-color-and-token-system.md:26"
+      ],
+      "proof": "No residual false-completion gap found in sampled Phase 010 evidence."
+    },
+    {
+      "iteration": 4,
+      "id": "SL-402",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".opencode/specs/sk-design/009-sk-design-claude-parity/012-routing-benchmark-rigor"
+      ],
+      "bugClass": "phase012_descope_traceability",
+      "disposition": "ruled_out",
+      "rationale": "Spec, decision record, checklist, and implementation summary repeatedly mark unbuilt expanded-battery/live/advisor work as UNSCORED, NOT MET, or accepted descope.",
+      "evidenceRefs": [
+        ".opencode/specs/sk-design/009-sk-design-claude-parity/012-routing-benchmark-rigor/decision-record.md:241"
+      ],
+      "proof": "No fabricated score or silent pass row found in sampled Phase 012 reconciliation evidence."
+    },
+    {
+      "iteration": 4,
+      "id": "SL-404",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".opencode/skills/sk-design/**/manual_testing_playbook/*--procedure-card-contract/*.md",
+        ".opencode/skills/sk-design/**/SKILL.md"
+      ],
+      "bugClass": "playbook_capability",
+      "disposition": "ruled_out",
+      "rationale": "Sampled scenario files map to live SKILL Procedure Card Selection and fallback sections across interface, foundations, motion, audit, and md-generator.",
+      "evidenceRefs": [
+        ".opencode/specs/sk-design/009-sk-design-claude-parity/011-manual-testing-playbook-alignment/implementation-summary.md:52"
+      ],
+      "proof": "No sampled scenario claimed a non-existent procedure-card capability."
+    },
+    {
+      "iteration": 4,
+      "id": "SL-405",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".opencode/commands/design/*.md",
+        ".opencode/skills/sk-design/mode-registry.json"
+      ],
+      "bugClass": "command_projection_parity",
+      "disposition": "ruled_out",
+      "rationale": "Command frontmatters and load steps still map to the five registry modes and tool surfaces; Phase 013 states the refactor is planning-only.",
+      "evidenceRefs": [
+        ".opencode/commands/design/audit.md:51",
+        ".opencode/commands/design/md-generator.md:51"
+      ],
+      "proof": "No command projection mismatch found in frontmatter or mode binding samples."
+    },
+    {
+      "iteration": 5,
+      "id": "SL-502",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".opencode/skills/sk-design/**/feature_catalog/feature_catalog.md"
+      ],
+      "bugClass": "feature_catalog_duplicate_drift",
+      "disposition": "ruled_out",
+      "rationale": "The observed duplication is directory-level summary text, not parallel authoritative bodies likely to diverge on the next capability change.",
+      "evidenceRefs": [
+        ".opencode/skills/sk-design/feature_catalog/feature_catalog.md:31",
+        ".opencode/skills/sk-design/design-interface/feature_catalog/feature_catalog.md:37",
+        ".opencode/skills/sk-design/design-md-generator/feature_catalog/feature_catalog.md:31"
+      ],
+      "proof": "Root catalogs summarize capability areas and link leaf files rather than duplicating long-form source details."
+    },
+    {
+      "iteration": 5,
+      "id": "SL-504",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".opencode/specs/sk-design/009-sk-design-claude-parity/012-routing-benchmark-rigor/decision-record.md",
+        ".opencode/specs/sk-design/009-sk-design-claude-parity/012-routing-benchmark-rigor/plan.md",
+        ".opencode/specs/sk-design/009-sk-design-claude-parity/012-routing-benchmark-rigor/tasks.md",
+        ".opencode/specs/sk-design/009-sk-design-claude-parity/012-routing-benchmark-rigor/checklist.md",
+        ".opencode/specs/sk-design/009-sk-design-claude-parity/012-routing-benchmark-rigor/implementation-summary.md"
+      ],
+      "bugClass": "phase012_handoff_clarity",
+      "disposition": "ruled_out",
+      "rationale": "A future implementer can identify the unbuilt categories, harness fields, live-mode rerun, and baseline promotion without re-deriving context.",
+      "evidenceRefs": [
+        ".opencode/specs/sk-design/009-sk-design-claude-parity/012-routing-benchmark-rigor/decision-record.md:259",
+        ".opencode/specs/sk-design/009-sk-design-claude-parity/012-routing-benchmark-rigor/plan.md:40",
+        ".opencode/specs/sk-design/009-sk-design-claude-parity/012-routing-benchmark-rigor/tasks.md:37",
+        ".opencode/specs/sk-design/009-sk-design-claude-parity/012-routing-benchmark-rigor/checklist.md:155",
+        ".opencode/specs/sk-design/009-sk-design-claude-parity/012-routing-benchmark-rigor/implementation-summary.md:141"
+      ],
+      "proof": "ADR-003, plan/task/checklist reconciliation, and follow-up items repeatedly name the descoped expanded-battery work and the future pickup path."
+    },
+    {
+      "iteration": 5,
+      "id": "SL-505",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".opencode/skills/sk-design/design-md-generator/backend/scripts/build-write-prompt.ts",
+        ".opencode/skills/sk-design/design-md-generator/backend/scripts/extract.ts",
+        ".opencode/skills/sk-design/design-md-generator/backend/scripts/guided-run.ts",
+        ".opencode/skills/sk-design/design-md-generator/backend/scripts/report-gen.ts",
+        ".opencode/skills/sk-design/design-md-generator/backend/scripts/preview-gen.ts",
+        ".opencode/skills/sk-design/design-md-generator/backend/scripts/proof.ts"
+      ],
+      "bugClass": "md_generator_remediation_coupling",
+      "disposition": "ruled_out",
+      "rationale": "Prompt facts/data isolation belongs in the write-prompt seam; output boundary/overwrite semantics belong in a shared output/artifact policy used by all write scripts.",
+      "evidenceRefs": [
+        ".opencode/skills/sk-design/design-md-generator/backend/scripts/build-write-prompt.ts:53",
+        ".opencode/skills/sk-design/design-md-generator/backend/scripts/extract.ts:258",
+        ".opencode/skills/sk-design/design-md-generator/backend/scripts/guided-run.ts:138",
+        ".opencode/skills/sk-design/design-md-generator/backend/scripts/report-gen.ts:627",
+        ".opencode/skills/sk-design/design-md-generator/backend/scripts/preview-gen.ts:249",
+        ".opencode/skills/sk-design/design-md-generator/backend/scripts/proof.ts:301"
+      ],
+      "proof": "No separate P1 is needed; the active P1s can be addressed through two shared remediation seams instead of unrelated patches."
     }
   ],
   "searchCoverage": {
     "requiredBugClasses": [
-      "output_path_scope_guard",
-      "shell_command_injection",
-      "prompt_template_injection",
-      "crawler_side_effect_control",
-      "read_only_mode_escalation",
-      "prior_component_gap_security"
+      "procedure_card_schema_drift",
+      "feature_catalog_duplicate_drift",
+      "benchmark_duplicate_wayfinding",
+      "phase012_handoff_clarity",
+      "md_generator_remediation_coupling"
     ],
     "covered": [
-      "output_path_scope_guard",
-      "shell_command_injection",
-      "prompt_template_injection",
-      "crawler_side_effect_control",
-      "read_only_mode_escalation",
-      "prior_component_gap_security"
+      "procedure_card_schema_drift",
+      "feature_catalog_duplicate_drift",
+      "benchmark_duplicate_wayfinding",
+      "phase012_handoff_clarity",
+      "md_generator_remediation_coupling"
     ],
     "ruledOut": [
-      "shell_command_injection",
-      "crawler_side_effect_control",
-      "read_only_mode_escalation",
-      "prior_component_gap_security"
+      "feature_catalog_duplicate_drift",
+      "phase012_handoff_clarity",
+      "md_generator_new_p1_maintainability"
     ],
     "deferred": [
-      "complete_report_preview_proof_write_guard_audit",
-      "full_manual_playbook_scenario_execution"
+      "procedure_card_lint_automation_design",
+      "benchmark_duplicate_cleanup",
+      "md_generator_remediation_implementation"
     ],
     "blocked": [],
     "graphCoverageMode": "graphless_fallback"
