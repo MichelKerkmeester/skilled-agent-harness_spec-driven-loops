@@ -1,6 +1,19 @@
+---
+title: Workflow Reference - Verification
+description: Shared verification workflow doctrine for sk-code — the non-mutating evidence phase that runs last, compares against baseline, applies falsifier discipline, and gates any done/works/complete/fixed/passing/ready claim.
+trigger_phrases:
+  - "sk-code verification workflow"
+  - "verify workflow doctrine"
+  - "falsifier discipline"
+  - "completion claim gate"
+importance_tier: important
+contextType: general
+version: 1.0.0.0
+---
+
 # Workflow Reference - Verification
 
-Shared verification workflow doctrine for `sk-code`. This reference covers the non-mutating evidence phase that runs last, compares against baseline, applies falsifier discipline, and gates any done, works, complete, fixed, passing, or ready claim. It is consumed by surface packets and carries no skill frontmatter or surface-specific standards.
+Shared verification workflow doctrine for `sk-code`. This reference covers the non-mutating evidence phase that runs last, compares against baseline, applies falsifier discipline, and gates any done, works, complete, fixed, passing, or ready claim. It is consumed by surface packets and defines no skill identity or surface-specific standards.
 
 ---
 

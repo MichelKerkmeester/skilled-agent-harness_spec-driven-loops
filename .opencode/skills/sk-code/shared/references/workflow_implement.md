@@ -1,6 +1,19 @@
+---
+title: Workflow Reference - Implementation
+description: Shared implementation workflow doctrine for sk-code — research and mutating build work run after the shared router resolves the active surface, consumed by every surface packet.
+trigger_phrases:
+  - "sk-code implementation workflow"
+  - "implement workflow doctrine"
+  - "mutating build workflow"
+  - "surface implementation standards"
+importance_tier: important
+contextType: general
+version: 1.0.0.0
+---
+
 # Workflow Reference - Implementation
 
-Shared implementation workflow doctrine for `sk-code`. This reference covers research and mutating build work after the shared router has resolved the active surface. It is consumed by surface packets and carries no skill frontmatter or surface-specific standards.
+Shared implementation workflow doctrine for `sk-code`. This reference covers research and mutating build work after the shared router has resolved the active surface. It is consumed by surface packets and defines no skill identity or surface-specific standards.
 
 ---
 
