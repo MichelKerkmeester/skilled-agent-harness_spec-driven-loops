@@ -116,4 +116,4 @@ Each packet is self-contained (its own `SKILL.md`, `README.md`, `changelog/`, an
 - Advisor descriptor: `description.json`; skill-graph identity: `graph-metadata.json`.
 - Packets: `create-skill/`, `create-readme/`, `create-agent/`, `create-command/`, `create-feature-catalog/`, `create-manual-testing-playbook/`, `create-benchmark/`, `create-flowchart/`, `doc-quality/`.
 - Shared backbone: `shared/scripts/`, `shared/references/global/`, `shared/assets/`.
-- Parent-skill pattern: `create-skill/references/skill_creation/parent_skills_nested_packets.md`.
+- Parent-skill pattern: `create-skill/references/parent_skill/parent_skills_nested_packets.md`.

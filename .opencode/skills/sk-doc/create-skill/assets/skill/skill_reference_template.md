@@ -1022,4 +1022,4 @@ def test_default_mode():
 
 ### Standards
 - [core_standards.md](../../../shared/references/global/core_standards.md) - Document type rules
-- [skill_creation.md](../../references/skill_creation.md) - Complete skill creation workflow
+- [skill_creation.md](../../references/README.md) - Complete skill creation workflow

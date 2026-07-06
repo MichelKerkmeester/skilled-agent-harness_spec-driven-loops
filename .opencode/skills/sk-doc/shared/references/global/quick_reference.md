@@ -356,7 +356,7 @@ Validation note: the current validator checks the root playbook and does not rec
 - [validation.md](./validation.md) - Quality scoring and validation workflows
 - [optimization.md](../../../doc-quality/references/optimization.md) - Content transformation patterns
 - [workflows.md](../../../doc-quality/references/workflows.md) - Execution modes and workflows
-- [skill_creation.md](../../../create-skill/references/skill_creation.md) - Skill creation workflow
+- [skill_creation.md](../../../create-skill/references/README.md) - Skill creation workflow
 - [agent_creation.md](../../../create-agent/references/agent_creation.md) - Agent authority, permissions, and creation workflow
 - [install_guide_creation.md](../../../create-readme/references/install_guide_creation.md) - Install guide standards and workflow
 - [feature_catalog_creation.md](../../../create-feature-catalog/references/feature_catalog_creation.md) - Feature catalog standards and workflow

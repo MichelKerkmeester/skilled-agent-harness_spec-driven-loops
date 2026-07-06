@@ -943,4 +943,4 @@ Integration:
 
 ### Standards
 - [core_standards.md](../../../shared/references/global/core_standards.md) - Document type rules
-- [skill_creation.md](../../references/skill_creation.md) - Full skill creation workflow
+- [skill_creation.md](../../references/README.md) - Full skill creation workflow

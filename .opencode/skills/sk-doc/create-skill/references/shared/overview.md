@@ -263,9 +263,9 @@ Use these templates when authoring layered skills:
 ## 4. RELATED RESOURCES
 
 ### Sibling Skill-Creation References
-- [creation_workflow.md](./creation_workflow.md) - The 6-step skill creation process
+- [creation_workflow.md](../skill/creation_workflow.md) - The 6-step skill creation process
 - [validation_and_packaging.md](./validation_and_packaging.md) - Validation requirements and distribution
-- [parent_skills_nested_packets.md](./parent_skills_nested_packets.md) - Parent skills with nested mode packets
+- [parent_skills_nested_packets.md](../parent_skill/parent_skills_nested_packets.md) - Parent skills with nested mode packets
 
 ### Templates
 - [skill_md_template.md](../../assets/skill/skill_md_template.md) - SKILL.md file templates

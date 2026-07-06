@@ -167,19 +167,19 @@ operation_router:
       - shared/
 
 reference_sources:
-  specific_creation: .opencode/skills/sk-doc/references/skill_creation.md
+  specific_creation: .opencode/skills/sk-doc/create-skill/references/README.md
   pattern_section: "Parent Skills with Nested Mode Packets"
-  hub_router_schema: .opencode/skills/sk-doc/references/skill_creation/parent_hub_router_schema.md
-  core_standards: .opencode/skills/sk-doc/references/global/core_standards.md
-  validation: .opencode/skills/sk-doc/references/global/validation.md
+  hub_router_schema: .opencode/skills/sk-doc/create-skill/references/parent_skill/parent_hub_router_schema.md
+  core_standards: .opencode/skills/sk-doc/shared/references/global/core_standards.md
+  validation: .opencode/skills/sk-doc/shared/references/global/validation.md
   canonical_example: .opencode/skills/sk-code
 
 template_sources:
-  hub_skill: .opencode/skills/sk-doc/assets/skill/parent_skill_hub_template.md
-  mode_registry: .opencode/skills/sk-doc/assets/skill/parent_skill_registry_template.json
-  hub_router: .opencode/skills/sk-doc/assets/skill/parent_skill_hub_router_template.json
-  description: .opencode/skills/sk-doc/assets/skill/parent_skill_description_template.json
-  hub_graph_metadata: .opencode/skills/sk-doc/assets/skill/parent_skill_graph_metadata_template.json
+  hub_skill: .opencode/skills/sk-doc/create-skill/assets/parent_skill/parent_skill_hub_template.md
+  mode_registry: .opencode/skills/sk-doc/create-skill/assets/parent_skill/parent_skill_registry_template.json
+  hub_router: .opencode/skills/sk-doc/create-skill/assets/parent_skill/parent_skill_hub_router_template.json
+  description: .opencode/skills/sk-doc/create-skill/assets/parent_skill/parent_skill_description_template.json
+  hub_graph_metadata: .opencode/skills/sk-doc/create-skill/assets/parent_skill/parent_skill_graph_metadata_template.json
 
 validation_scripts:
   validate_document: .opencode/skills/sk-doc/scripts/validate_document.py

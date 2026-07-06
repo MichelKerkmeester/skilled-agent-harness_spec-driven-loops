@@ -273,7 +273,7 @@ $env:MCP_PATH = "$HOME\.mcp"
 - **[validation.md](../../shared/references/global/validation.md)** - DQI scoring methodology, quality bands
 - **[workflows.md](../../doc-quality/references/workflows.md)** - Document creation workflows
 - **[quick_reference.md](../../shared/references/global/quick_reference.md)** - Quick command reference
-- **[skill_creation.md](../../create-skill/references/skill_creation.md)** - Skill creation workflow
+- **[skill_creation.md](../../create-skill/references/README.md)** - Skill creation workflow
 - **[install_guide_template.md](../assets/readme/install_guide_template.md)** - Template for new install guides
 
 ### Pre-Publish Checklist

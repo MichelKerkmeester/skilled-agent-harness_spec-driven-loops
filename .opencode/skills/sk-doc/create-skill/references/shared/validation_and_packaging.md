@@ -130,7 +130,7 @@ scripts/package_skill.py <path/to/skill> <output-directory>
 ## 4. RELATED RESOURCES
 
 ### Sibling Skill-Creation References
-- [creation_workflow.md](./creation_workflow.md) - The 6-step skill creation process
+- [creation_workflow.md](../skill/creation_workflow.md) - The 6-step skill creation process
 - [common_pitfalls.md](./common_pitfalls.md) - Common skill-creation pitfalls and fixes
 - [overview.md](./overview.md) - Skill anatomy and structure system
 

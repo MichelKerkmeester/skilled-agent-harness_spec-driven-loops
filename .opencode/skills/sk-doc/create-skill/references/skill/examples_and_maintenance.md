@@ -30,7 +30,7 @@ This reference pairs worked example skills with the ongoing maintenance workflow
 - Choosing a version bump (major/minor/patch) for a skill change
 
 **Key Sources**:
-- [overview.md](./overview.md) - skill anatomy these examples instantiate
+- [overview.md](../shared/overview.md) - skill anatomy these examples instantiate
 - [creation_workflow.md](./creation_workflow.md) - the create process that produces them
 
 ---
@@ -160,9 +160,9 @@ version: 2.0.0
 ## 4. RELATED RESOURCES
 
 ### Sibling Skill-Creation References
-- [overview.md](./overview.md) - Skill anatomy and structure system
+- [overview.md](../shared/overview.md) - Skill anatomy and structure system
 - [creation_workflow.md](./creation_workflow.md) - The 6-step skill creation process
-- [validation_and_packaging.md](./validation_and_packaging.md) - Validation requirements and distribution
+- [validation_and_packaging.md](../shared/validation_and_packaging.md) - Validation requirements and distribution
 
 ### Reference Files
 - [core_standards.md](../../../shared/references/global/core_standards.md) - Document type rules and structural requirements

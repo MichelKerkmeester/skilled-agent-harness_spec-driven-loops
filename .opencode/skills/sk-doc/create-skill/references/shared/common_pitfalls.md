@@ -254,7 +254,7 @@ def route_request(context):
 ## 3. RELATED RESOURCES
 
 ### Sibling Skill-Creation References
-- [creation_workflow.md](./creation_workflow.md) - The 6-step skill creation process
+- [creation_workflow.md](../skill/creation_workflow.md) - The 6-step skill creation process
 - [overview.md](./overview.md) - Skill anatomy, SKILL.md required sections, and structure system
 - [validation_and_packaging.md](./validation_and_packaging.md) - Validation requirements and distribution
 

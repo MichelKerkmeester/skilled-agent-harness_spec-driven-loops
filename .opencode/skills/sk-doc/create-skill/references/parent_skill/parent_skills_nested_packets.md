@@ -206,9 +206,9 @@ Companion file policy:
 ## 7. Related Resources
 
 - [parent_hub_router_schema.md](./parent_hub_router_schema.md) - published router and registry schema details for parent hubs.
-- [skill_creation.md](../skill_creation.md) - skill-creation index and route map.
-- [overview.md](./overview.md) - skill anatomy and layered structure.
-- [creation_workflow.md](./creation_workflow.md) - ordered creation workflow.
-- [validation_and_packaging.md](./validation_and_packaging.md) - validation and packaging gates.
-- [parent_skill_hub_template.md](../../assets/skill/parent_skill_hub_template.md) - routing-only hub template.
-- [parent_skill_registry_template.json](../../assets/skill/parent_skill_registry_template.json) - registry scaffold.
+- [skill_creation.md](../README.md) - skill-creation index and route map.
+- [overview.md](../shared/overview.md) - skill anatomy and layered structure.
+- [creation_workflow.md](../skill/creation_workflow.md) - ordered creation workflow.
+- [validation_and_packaging.md](../shared/validation_and_packaging.md) - validation and packaging gates.
+- [parent_skill_hub_template.md](../../assets/parent_skill/parent_skill_hub_template.md) - routing-only hub template.
+- [parent_skill_registry_template.json](../../assets/parent_skill/parent_skill_registry_template.json) - registry scaffold.

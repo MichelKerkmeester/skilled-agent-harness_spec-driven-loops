@@ -58,7 +58,7 @@ upstream_assets:
   contract: "local command design contract"
   audit_script: ".opencode/commands/doctor/scripts/parent-skill-check.cjs"
   reference_implementation: ".opencode/skills/deep-loop-workflows"
-  reference_doc: ".opencode/skills/sk-doc/references/skill_creation.md"
+  reference_doc: ".opencode/skills/sk-doc/create-skill/references/README.md"
 
 # ─────────────────────────────────────────────────────────────────
 # USER INPUTS

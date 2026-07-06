@@ -190,10 +190,10 @@ A: The command reads the most recent changelog entry in the target component fol
 |----------|---------|
 | [Parent: OpenCode Commands](../README.txt) | Overview of all command groups |
 | [sk-doc SKILL.md](../../skills/sk-doc/SKILL.md) | Templates and standards used by create commands |
-| [feature_catalog_creation.md](../../skills/sk-doc/references/feature_catalog_creation.md) | Standards for rooted feature catalog packages |
-| [manual_testing_playbook_creation.md](../../skills/sk-doc/references/manual_testing_playbook_creation.md) | Standards for rooted testing playbook packages |
-| [agent_template.md](../../skills/sk-doc/assets/agent_template.md) | Agent creation template |
-| [command_template.md](../../skills/sk-doc/assets/command/command_template.md) | Command creation template |
-| [skill_creation.md](../../skills/sk-doc/references/skill_creation.md) | Skill creation workflow reference (includes "Parent Skills with Nested Mode Packets") |
-| [parent_skill_hub_template.md](../../skills/sk-doc/assets/skill/parent_skill_hub_template.md) | Parent-skill hub `SKILL.md` template |
-| [parent_skill_registry_template.json](../../skills/sk-doc/assets/skill/parent_skill_registry_template.json) | Parent-skill `mode-registry.json` template |
+| [feature_catalog_creation.md](../../skills/sk-doc/create-feature-catalog/references/feature_catalog_creation.md) | Standards for rooted feature catalog packages |
+| [manual_testing_playbook_creation.md](../../skills/sk-doc/create-manual-testing-playbook/references/manual_testing_playbook_creation.md) | Standards for rooted testing playbook packages |
+| [agent_template.md](../../skills/sk-doc/create-agent/assets/agent_template.md) | Agent creation template |
+| [command_template.md](../../skills/sk-doc/create-command/assets/command/command_template.md) | Command creation template |
+| [skill_creation.md](../../skills/sk-doc/create-skill/references/README.md) | Skill creation workflow reference (includes "Parent Skills with Nested Mode Packets") |
+| [parent_skill_hub_template.md](../../skills/sk-doc/create-skill/assets/parent_skill/parent_skill_hub_template.md) | Parent-skill hub `SKILL.md` template |
+| [parent_skill_registry_template.json](../../skills/sk-doc/create-skill/assets/parent_skill/parent_skill_registry_template.json) | Parent-skill `mode-registry.json` template |

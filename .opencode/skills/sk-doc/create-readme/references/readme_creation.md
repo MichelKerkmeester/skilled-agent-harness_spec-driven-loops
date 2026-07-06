@@ -379,5 +379,5 @@ Apply these checks only to sections that fit the README audience and purpose.
 
 ### Related Creation Guides
 - [install_guide_creation.md](./install_guide_creation.md) - Install guide creation workflow
-- [skill_creation.md](../../create-skill/references/skill_creation.md) - Skill creation workflow
+- [skill_creation.md](../../create-skill/references/README.md) - Skill creation workflow
 - [feature_catalog_creation.md](../../create-feature-catalog/references/feature_catalog_creation.md) - Feature catalog creation workflow

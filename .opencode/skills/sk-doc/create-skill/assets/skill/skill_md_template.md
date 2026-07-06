@@ -1043,7 +1043,7 @@ mode_detection:
 ## 5. COMMON PITFALLS
 
 For the complete list of 8 common pitfalls with before/after examples, see:
-→ **[common_pitfalls.md](../../references/skill_creation/common_pitfalls.md)**
+→ **[common_pitfalls.md](../../references/shared/common_pitfalls.md)**
 
 **Quick Summary:**
 1. Generic descriptions → Be specific about capabilities
@@ -1179,4 +1179,4 @@ python .opencode/skills/sk-doc/scripts/package_skill.py .opencode/skills/[skill-
 
 ### Standards
 - [core_standards.md](../../../shared/references/global/core_standards.md) - Document type rules
-- [skill_creation.md](../../references/skill_creation.md) - Complete skill creation workflow
+- [skill_creation.md](../../references/README.md) - Complete skill creation workflow

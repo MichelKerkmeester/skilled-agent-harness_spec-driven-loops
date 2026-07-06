@@ -29,7 +29,7 @@ Optimization transforms documentation from reference-style to question-answering
 - **Code completeness** - Runnable, standalone examples with imports
 - **Metadata removal** - Strip non-instructional content
 
-> **📍 Context**: This is a Level 3 reference file (loaded on-demand). For the complete progressive disclosure architecture, see [skill_creation/overview.md § Skill Structure System](../../create-skill/references/skill_creation/overview.md#3-skill-structure-system).
+> **📍 Context**: This is a Level 3 reference file (loaded on-demand). For the complete progressive disclosure architecture, see [skill_creation/overview.md § Skill Structure System](../../create-skill/references/shared/overview.md#3-skill-structure-system).
 
 This reference provides deep-dive technical guidance on transformation patterns for AI-friendly documentation.
 
@@ -438,7 +438,7 @@ Before finalizing, verify each snippet:
 - [workflows.md](./workflows.md) - Execution modes and workflow details
 - [validation.md](../../shared/references/global/validation.md) - Quality scoring and validation workflows
 - [quick_reference.md](../../shared/references/global/quick_reference.md) - Quick command reference
-- [skill_creation.md](../../create-skill/references/skill_creation.md) - Skill creation workflow
+- [skill_creation.md](../../create-skill/references/README.md) - Skill creation workflow
 - [install_guide_creation.md](../../create-readme/references/install_guide_creation.md) - Install guide standards and workflow
 
 ### Templates

@@ -316,5 +316,5 @@ Treat check 5 warnings as schema drift. The parent hub may still route during mi
 ## 10. RELATED RESOURCES
 
 - [parent_skills_nested_packets.md](./parent_skills_nested_packets.md) - parent-skill pattern, single advisor identity, and registry routing contract.
-- [parent_skill_hub_template.md](../../assets/skill/parent_skill_hub_template.md) - routing-only hub `SKILL.md` scaffold.
-- [parent_skill_registry_template.json](../../assets/skill/parent_skill_registry_template.json) - mode registry scaffold for parent hubs.
+- [parent_skill_hub_template.md](../../assets/parent_skill/parent_skill_hub_template.md) - routing-only hub `SKILL.md` scaffold.
+- [parent_skill_registry_template.json](../../assets/parent_skill/parent_skill_registry_template.json) - mode registry scaffold for parent hubs.

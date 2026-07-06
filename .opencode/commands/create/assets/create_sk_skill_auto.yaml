@@ -187,11 +187,11 @@ operation_profiles:
     - "SKILL.md routing updated"
 
 template_sources:
-  skill_md: .opencode/skills/sk-doc/assets/skill/skill_md_template.md
-  skill_reference: .opencode/skills/sk-doc/assets/skill/skill_reference_template.md
-  skill_asset: .opencode/skills/sk-doc/assets/skill/skill_asset_template.md
-  skill_smart_router: .opencode/skills/sk-doc/assets/skill/skill_smart_router.md
-  skill_readme: .opencode/skills/sk-doc/assets/skill/skill_readme_template.md
+  skill_md: .opencode/skills/sk-doc/create-skill/assets/skill/skill_md_template.md
+  skill_reference: .opencode/skills/sk-doc/create-skill/assets/skill/skill_reference_template.md
+  skill_asset: .opencode/skills/sk-doc/create-skill/assets/skill/skill_asset_template.md
+  skill_smart_router: .opencode/skills/sk-doc/create-skill/assets/skill/skill_smart_router.md
+  skill_readme: .opencode/skills/sk-doc/create-skill/assets/skill/skill_readme_template.md
 
 frontmatter_contract:
   rule: "Every authored .md ships frontmatter from its template before completion."

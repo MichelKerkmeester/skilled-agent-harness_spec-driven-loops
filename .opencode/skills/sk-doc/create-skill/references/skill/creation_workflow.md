@@ -252,7 +252,7 @@ SKILL.md requires all four fields. `package_skill.py --check` hard-fails when an
 | Field           | Required | Quick Note                                     |
 | --------------- | -------- | ---------------------------------------------- |
 | `name`          | ✅        | Must match folder name, lowercase-with-hyphens |
-| `description`   | ✅        | Single line, ≤ 130 chars (skill) / ≤ 110 (command); see Pitfall 1 in [common_pitfalls.md](./common_pitfalls.md) for trim rules |
+| `description`   | ✅        | Single line, ≤ 130 chars (skill) / ≤ 110 (command); see Pitfall 1 in [common_pitfalls.md](../shared/common_pitfalls.md) for trim rules |
 | `allowed-tools` | ✅        | Array format (`[Read, Write, ...]`)           |
 | `version`       | ✅        | 4-part `X.Y.Z.W` (e.g., `1.0.0.0`); see [frontmatter_versioning.md](../../../shared/references/global/frontmatter_versioning.md) |
 
@@ -395,9 +395,9 @@ Iteration 3:
 ## 3. RELATED RESOURCES
 
 ### Sibling Skill-Creation References
-- [overview.md](./overview.md) - Skill anatomy and structure system
-- [validation_and_packaging.md](./validation_and_packaging.md) - Validation requirements and distribution
-- [common_pitfalls.md](./common_pitfalls.md) - Common skill-creation pitfalls and fixes
+- [overview.md](../shared/overview.md) - Skill anatomy and structure system
+- [validation_and_packaging.md](../shared/validation_and_packaging.md) - Validation requirements and distribution
+- [common_pitfalls.md](../shared/common_pitfalls.md) - Common skill-creation pitfalls and fixes
 - [examples_and_maintenance.md](./examples_and_maintenance.md) - Example skills and maintenance workflow
 
 ### Templates

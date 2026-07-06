@@ -30,7 +30,7 @@ This command is a thin router. It separates execution routing from user-facing p
 
 ## What This Scaffolds
 
-This command generates the "parent skill with nested mode packets" pattern following the two-axis hub canon. The canonical example is `sk-code` (workflow modes plus read-only surface packets); `deep-loop-workflows` is the runtime-loop variant that expresses its extra machinery as named `extensions`. The pattern is standardized in `.opencode/skills/sk-doc/references/skill_creation/parent_skills_nested_packets.md`, and the hub-router contract in `.opencode/skills/sk-doc/references/skill_creation/parent_hub_router_schema.md`. The templates are `parent_skill_hub_template.md`, `parent_skill_registry_template.json`, `parent_skill_hub_router_template.json`, `parent_skill_description_template.json`, and `parent_skill_graph_metadata_template.json` under `.opencode/skills/sk-doc/assets/skill/`.
+This command generates the "parent skill with nested mode packets" pattern following the two-axis hub canon. The canonical example is `sk-code` (workflow modes plus read-only surface packets); `deep-loop-workflows` is the runtime-loop variant that expresses its extra machinery as named `extensions`. The pattern is standardized in `.opencode/skills/sk-doc/create-skill/references/parent_skill/parent_skills_nested_packets.md`, and the hub-router contract in `.opencode/skills/sk-doc/create-skill/references/parent_skill/parent_hub_router_schema.md`. The templates are `parent_skill_hub_template.md`, `parent_skill_registry_template.json`, `parent_skill_hub_router_template.json`, `parent_skill_description_template.json`, and `parent_skill_graph_metadata_template.json` under `.opencode/skills/sk-doc/create-skill/assets/skill/`.
 
 The generated package is:
 

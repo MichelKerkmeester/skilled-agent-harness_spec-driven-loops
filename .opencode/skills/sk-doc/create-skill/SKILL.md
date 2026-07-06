@@ -54,9 +54,9 @@ SKILL AUTHORING REQUEST
     |   +- assets/skill/skill_readme_template.md
     |
     +- Parent hub -> workflowMode: create-skill-parent
-        +- assets/skill/parent_skill_hub_template.md
-        +- assets/skill/parent_skill_registry_template.json
-        +- assets/skill/parent_skill_hub_router_template.json
+        +- assets/parent_skill/parent_skill_hub_template.md
+        +- assets/parent_skill/parent_skill_registry_template.json
+        +- assets/parent_skill/parent_skill_hub_router_template.json
 ```
 
 ### Route Selection
@@ -73,9 +73,9 @@ Ask one focused clarification before authoring if it is unclear whether the user
 | --- | --- | --- |
 | Scaffolding | `scripts/init_skill.py`, `assets/skill/skill_md_template.md`, `assets/skill/skill_readme_template.md` | Create or normalize standalone skill files. |
 | Resource templates | `assets/skill/skill_reference_template.md`, `assets/skill/skill_asset_template.md`, `assets/skill/skill_smart_router.md` | Create routed references, assets, and resilient smart-router pseudocode. |
-| Parent hubs | `assets/skill/parent_skill_*` | Create hub SKILL, registry, router, description, and graph metadata files. |
+| Parent hubs | `assets/parent_skill/parent_skill_*` | Create hub SKILL, registry, router, description, and graph metadata files. |
 | Validation | `scripts/package_skill.py`, `../shared/scripts/extract_structure.py` | Check completion, package distribution zips, and inspect structure. |
-| Overflow detail | `references/skill_creation*.md`, `references/skill_creation/`, `../shared/` | Load only for edge cases, exhaustive examples, or schema details beyond this SKILL.md. |
+| Overflow detail | `references/README.md`, `references/{shared,skill,parent_skill}/`, `../shared/` | Load only for edge cases, exhaustive examples, or schema details beyond this SKILL.md. |
 
 ### Smart Router Pseudocode
 
@@ -278,19 +278,19 @@ scripts/package_skill.py <path/to/skill-folder> <output-directory>
 
 Use these only for overflow detail, exhaustive examples, or schema checks beyond the core workflow above.
 
-- `references/skill_creation.md` - route map for the full reference set.
-- `references/skill_creation/overview.md` - deeper anatomy, layered-doc structure, and resource placement guidance.
-- `references/skill_creation/creation_workflow.md` - expanded examples for the six-step standalone workflow.
-- `references/skill_creation/validation_and_packaging.md` - detailed validation, packaging, and distribution notes.
-- `references/skill_creation/common_pitfalls.md` - examples of recurring trigger, YAML, style, and context-budget defects.
-- `references/skill_creation/parent_skills_nested_packets.md` - detailed parent-hub and nested-packet model.
-- `references/skill_creation/parent_hub_router_schema.md` - full router and registry schema.
+- `references/README.md` - route map for the full reference set.
+- `references/shared/overview.md` - deeper anatomy, layered-doc structure, and resource placement guidance.
+- `references/skill/creation_workflow.md` - expanded examples for the six-step standalone workflow.
+- `references/shared/validation_and_packaging.md` - detailed validation, packaging, and distribution notes.
+- `references/shared/common_pitfalls.md` - examples of recurring trigger, YAML, style, and context-budget defects.
+- `references/parent_skill/parent_skills_nested_packets.md` - detailed parent-hub and nested-packet model.
+- `references/parent_skill/parent_hub_router_schema.md` - full router and registry schema.
 - `assets/skill/skill_md_template.md` - standalone skill SKILL.md template.
 - `assets/skill/skill_readme_template.md` - skill README template.
 - `assets/skill/skill_reference_template.md` - reference markdown template.
 - `assets/skill/skill_asset_template.md` - asset markdown template.
 - `assets/skill/skill_smart_router.md` - resilient smart-router pattern.
-- `assets/skill/parent_skill_*` - parent hub templates.
+- `assets/parent_skill/parent_skill_*` - parent hub templates.
 - `scripts/init_skill.py` - standalone skill scaffold helper.
 - `scripts/package_skill.py` - validation and packaging helper.
 - `../shared/references/global/core_standards.md` - shared markdown standards.

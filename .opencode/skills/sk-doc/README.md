@@ -167,7 +167,7 @@ A: `/create:sk-skill` for a new skill under `.opencode/skills/`. `/create:sk-ski
 | [`references/global/workflows.md`](doc-quality/references/workflows.md) | Execution workflows by mode and task type |
 | [`references/global/optimization.md`](doc-quality/references/optimization.md) | AI-friendly content transforms and the llms.txt format |
 | [`references/global/evergreen_packet_id_rule.md`](shared/references/global/evergreen_packet_id_rule.md) | Why runtime-state docs must not cite mutable spec-packet numbers |
-| [`references/skill_creation.md`](create-skill/references/skill_creation.md) | The skill-creation workflow: understanding through packaging |
+| [`references/skill_creation.md`](create-skill/references/README.md) | The skill-creation workflow: understanding through packaging |
 | [`references/agent_creation.md`](create-agent/references/agent_creation.md) | Agent authority, permissions and the template-first workflow |
 | [`references/readme_creation.md`](create-readme/references/readme_creation.md) | README creation workflow and standards |
 | [`references/install_guide_creation.md`](create-readme/references/install_guide_creation.md) | Five-phase install guide standards and validation checkpoints |

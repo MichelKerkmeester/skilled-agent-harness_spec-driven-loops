@@ -29,7 +29,7 @@ Validation provides a comprehensive quality assessment framework for markdown do
 - **Improvement guidance** - Actionable recommendations based on AI analysis
 - **Checklist validation** - Automated structural checks via script
 
-> **📍 Context**: This is a Level 3 reference file (loaded on-demand). For the complete progressive disclosure architecture, see [skill_creation/overview.md § Skill Structure System](../../../create-skill/references/skill_creation/overview.md#3-skill-structure-system).
+> **📍 Context**: This is a Level 3 reference file (loaded on-demand). For the complete progressive disclosure architecture, see [skill_creation/overview.md § Skill Structure System](../../../create-skill/references/shared/overview.md#3-skill-structure-system).
 
 This reference provides deep-dive technical guidance on qualitative assessment, quality gates, and interpretation patterns.
 
@@ -531,7 +531,7 @@ fi
 - [workflows.md](../../../doc-quality/references/workflows.md) - Execution modes and workflow details
 - [optimization.md](../../../doc-quality/references/optimization.md) - Content transformation patterns
 - [quick_reference.md](./quick_reference.md) - Quick command reference
-- [skill_creation.md](../../../create-skill/references/skill_creation.md) - Skill creation workflow
+- [skill_creation.md](../../../create-skill/references/README.md) - Skill creation workflow
 - [install_guide_creation.md](../../../create-readme/references/install_guide_creation.md) - Install guide standards and workflow
 
 ### Templates
