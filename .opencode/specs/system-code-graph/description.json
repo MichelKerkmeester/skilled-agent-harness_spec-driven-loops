@@ -1,0 +1,21 @@
+{
+  "specFolder": "system-code-graph",
+  "description": "Track folder for code-graph packets - structural code search, edge lifecycle, seeded-PPR impact ranking, determinism, parser resilience, daemon hardening.",
+  "keywords": [
+    "system-code-graph",
+    "track",
+    "code-graph",
+    "structural-search",
+    "impact-analysis",
+    "seeded-ppr",
+    "edge-lifecycle",
+    "determinism"
+  ],
+  "lastUpdated": "2026-07-06T16:46:59.166Z",
+  "specId": "system-code-graph",
+  "folderSlug": "system-code-graph",
+  "parentChain": [],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "track"
+}

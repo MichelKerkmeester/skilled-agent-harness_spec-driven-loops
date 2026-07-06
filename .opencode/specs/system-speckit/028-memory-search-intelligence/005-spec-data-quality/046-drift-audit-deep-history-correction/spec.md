@@ -81,8 +81,8 @@ Supplement (not replace) pass 1's corrections with the real history: exact commi
 |-----------|-------------|-------------|
 | `001-speckit-memory/015-summary-fusion-grounding/{spec.md,implementation-summary.md,checklist.md}` | Modify | Add Recall@20 -0.036 + guessed-weight caveat |
 | `002-code-graph/005-seeded-ppr-ranking/{spec.md,implementation-summary.md,plan.md,decision-record.md}` + `007-dark-flag-graduation/005-codegraph-seeded-ppr/benchmark-results.md` | Modify | Forward-pointer to revisit work + exact 0.0000-delta numbers |
-| `003-skill-advisor/004-c4-shadow-seam-beta-posterior/{decision-record.md,implementation-summary.md,plan.md}` | Modify | Fix "never committed" -> built `10c5b61493`, deleted `8efcde0e6b` |
-| `003-skill-advisor/007-outcome-weighted-ranking-followon/{implementation-summary.md,plan.md,spec.md,decision-record.md,checklist.md}` | Modify | Fix pass-1's own wrong "never committed" claim + dangling link + real numbers |
+| `system-skill-advisor/002-skill-advisor-runtime/004-c4-shadow-seam-beta-posterior/{decision-record.md,implementation-summary.md,plan.md}` | Modify | Fix "never committed" -> built `10c5b61493`, deleted `8efcde0e6b` |
+| `system-skill-advisor/002-skill-advisor-runtime/007-outcome-weighted-ranking-followon/{implementation-summary.md,plan.md,spec.md,decision-record.md,checklist.md}` | Modify | Fix pass-1's own wrong "never committed" claim + dangling link + real numbers |
 | `045-drift-audit-remediation/{spec.md,implementation-summary.md}` | Modify | Pointer note to this second pass |
 <!-- /ANCHOR:scope -->
 
@@ -182,7 +182,7 @@ Supplement (not replace) pass 1's corrections with the real history: exact commi
 ## RELATED DOCUMENTS
 
 - **Prior pass**: `../045-drift-audit-remediation/`
-- **Parallel revisit work**: `../../002-code-graph/010-edge-confidence-and-ppr-revisit/`
+- **Parallel revisit work**: `../../../../system-code-graph/001-code-graph-core/010-edge-confidence-and-ppr-revisit/`
 - **Plan**: See `plan.md`
 - **Task Breakdown**: See `tasks.md`
 - **Verification Checklist**: See `checklist.md`

@@ -11,7 +11,9 @@
     "system-deep-loop/033-deep-loop-behavior-benchmarks",
     "system-deep-loop/034-deep-router-agent-rename",
     "system-deep-loop/035-deprecate-deep-context-integrate-capabilities",
-    "system-deep-loop/036-system-deep-loop",
+    "system-deep-loop/036-router-replay-surface-slice-sync",
+    "system-deep-loop/037-scenario-loader-code-surface-sync",
+    "system-deep-loop/038-deep-loop-runtime",
     "system-deep-loop/z_archive"
   ],
   "manual": {

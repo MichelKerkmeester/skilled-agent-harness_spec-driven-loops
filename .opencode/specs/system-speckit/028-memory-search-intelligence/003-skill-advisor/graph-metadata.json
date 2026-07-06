@@ -1,17 +1,9 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/028-memory-search-intelligence/003-skill-advisor",
-  "spec_folder": "system-spec-kit/028-memory-search-intelligence/003-skill-advisor",
-  "parent_id": "system-spec-kit/028-memory-search-intelligence",
+  "packet_id": "system-speckit/028-memory-search-intelligence/003-skill-advisor",
+  "spec_folder": "system-speckit/028-memory-search-intelligence/003-skill-advisor",
+  "parent_id": "system-speckit/028-memory-search-intelligence",
   "children_ids": [
-    "system-spec-kit/028-memory-search-intelligence/003-skill-advisor/001-rrf-determinism-spine",
-    "system-spec-kit/028-memory-search-intelligence/003-skill-advisor/002-runtime-lane-health-degrade",
-    "system-spec-kit/028-memory-search-intelligence/003-skill-advisor/003-embedding-staleness-signal",
-    "system-spec-kit/028-memory-search-intelligence/003-skill-advisor/004-c4-shadow-seam-beta-posterior",
-    "system-spec-kit/028-memory-search-intelligence/003-skill-advisor/005-conflict-rerank-query-routing",
-    "system-spec-kit/028-memory-search-intelligence/003-skill-advisor/006-provenance-drift-observability",
-    "system-spec-kit/028-memory-search-intelligence/003-skill-advisor/007-outcome-weighted-ranking-followon",
-    "system-spec-kit/028-memory-search-intelligence/003-skill-advisor/008-advisor-workspace-root-resolution",
     "system-speckit/028-memory-search-intelligence/003-skill-advisor/009-hard-rule-and-dispatch-preflight-hardening"
   ],
   "migrated": true,
@@ -50,6 +42,7 @@
     "key_files": [
       "spec.md",
       "research/research.md",
+      "009-hard-rule-and-dispatch-preflight-hardening/spec.md",
       ".opencode/skills/system-spec-kit/shared/algorithms/rrf-fusion.ts"
     ],
     "entities": [
@@ -140,16 +133,16 @@
     ],
     "causal_summary": "The Skill Advisor research surfaced candidate work across deterministic fusion, lane health, embedding freshness, query routing, drift metrics and outcome-weighted ranking",
     "created_at": "2026-06-16T14:27:21.651Z",
-    "last_save_at": "2026-06-27T15:51:54.891Z",
+    "last_save_at": "2026-07-06T16:59:10.028Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:e92c5031368c7ae64d7b14c646292d4061a8bf74f7f46eaf29aea27aa3644477",
+    "source_fingerprint": "sha256:33f42c050dc0a68977598690c4676fa683c0c1ba8e39afba08f7725326bf912e",
     "source_doc_hashes": {
-      "spec.md": "445dfa8ab09c576cd47a906fc4aa18690f308f45f818e63b0e1fc6f3ac5fc5ef",
+      "spec.md": "860720b936d785ae63d1b4f55cb19a78002c72b8fb6357ab6703a169b9c6dc6c",
       "research/research.md": "e059059c359a659407760183083cb505fa8eab8581cbd78e3b4ee50562efa8f3"
     },
     "last_active_child_id": null,

@@ -1,6 +1,6 @@
 # Doc-Alignment Audit — system-code-graph vs. 028 Code-Graph Implementation
 
-Review target: `.opencode/skills/system-code-graph/**` (SKILL.md, README.md, ARCHITECTURE.md, INSTALL_GUIDE.md, `feature_catalog/**`, `manual_testing_playbook/**`, `references/**`, `changelog/**`) against `.opencode/specs/system-speckit/028-memory-search-intelligence/002-code-graph/**` and the real `mcp_server/` source.
+Review target: `.opencode/skills/system-code-graph/**` (SKILL.md, README.md, ARCHITECTURE.md, INSTALL_GUIDE.md, `feature_catalog/**`, `manual_testing_playbook/**`, `references/**`, `changelog/**`) against `.opencode/specs/system-code-graph/001-code-graph-core/**` and the real `mcp_server/` source.
 Mode: single-pass adversarial read-only audit (Read/Grep/git-blame/git-log against live source). No fixes applied — read-only on all audited surfaces.
 
 ---
@@ -18,7 +18,7 @@ Mode: single-pass adversarial read-only audit (Read/Grep/git-blame/git-log again
 The task brief states the doc suite was "never audited despite 028 code-graph work." That premise is **overstated** — evidence contradicts a blanket "never":
 
 - Commit `fc9f4ae977` (2026-06-24, "docs(028): close the code-graph and advisor coverage gaps") added catalog/playbook coverage for `REVERSE_DEP_FORCE_PARSE`, `EDGE_GOVERNANCE_VOCAB`, `TOMBSTONE_LIMIT`, and a BM25-symbol-resolver playbook scenario. [SOURCE: git commit fc9f4ae977] CONFIRMED — verified the commit's file list and current doc content (`feature_catalog/02--manual-scan-verify-status/code-graph-scan.md:19-21`, `feature_catalog/02--manual-scan-verify-status/code-graph-status.md:25`) both accurately describe these flags today.
-- Spec phase `002-code-graph/011-edge-confidence-review-remediation` (completed 2026-07-01, four days before this audit) explicitly built a new `feature_catalog/09--edge-confidence-and-provenance/` group (3 files) plus 2 manual-playbook scenarios (028, 029) for edge-confidence-differentiation and seeded-PPR. [SOURCE: `.opencode/specs/system-speckit/028-memory-search-intelligence/002-code-graph/011-edge-confidence-review-remediation/implementation-summary.md:68-70`] CONFIRMED — verified `feature_catalog/feature_catalog.md:298-344` and the three files under `feature_catalog/09--edge-confidence-and-provenance/` exist and accurately cite real source lines.
+- Spec phase `002-code-graph/011-edge-confidence-review-remediation` (completed 2026-07-01, four days before this audit) explicitly built a new `feature_catalog/09--edge-confidence-and-provenance/` group (3 files) plus 2 manual-playbook scenarios (028, 029) for edge-confidence-differentiation and seeded-PPR. [SOURCE: `.opencode/specs/system-code-graph/001-code-graph-core/011-edge-confidence-review-remediation/implementation-summary.md:68-70`] CONFIRMED — verified `feature_catalog/feature_catalog.md:298-344` and the three files under `feature_catalog/09--edge-confidence-and-provenance/` exist and accurately cite real source lines.
 
 So the accurate framing is **partially audited, with specific confirmed gaps** — those gaps are findings F1 and F2 below, both of which predate and were missed by both remediation passes above.
 

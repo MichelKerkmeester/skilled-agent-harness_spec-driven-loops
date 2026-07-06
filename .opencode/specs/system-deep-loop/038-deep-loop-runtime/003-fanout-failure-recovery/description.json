@@ -1,0 +1,28 @@
+{
+  "level": "2",
+  "specFolder": "system-deep-loop/038-deep-loop-runtime/003-fanout-failure-recovery",
+  "description": "The deep-loop fan-out runtime (`.opencode/skills/deep-loop-runtime/scripts/`) is a fire-and-exit BATCH orchestrator [CONFIRMED iter-12:",
+  "keywords": [
+    "deep-loop",
+    "fan-out",
+    "runtime",
+    "opencode",
+    "skills",
+    "deep-loop-runtime",
+    "scripts",
+    "fire-and-exit",
+    "batch",
+    "orchestrator",
+    "confirmed",
+    "iter-12"
+  ],
+  "lastUpdated": "2026-07-06T16:24:27.231Z",
+  "specId": "003",
+  "folderSlug": "fanout-failure-recovery",
+  "parentChain": [
+    "system-deep-loop",
+    "038-deep-loop-runtime"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

@@ -4,7 +4,9 @@
   "spec_folder": "system-skill-advisor",
   "parent_id": null,
   "children_ids": [
-    "system-skill-advisor/001-scorer-saturation-root-fix"
+    "system-skill-advisor/001-scorer-saturation-root-fix",
+    "system-skill-advisor/002-skill-advisor-runtime",
+    "system-skill-advisor/z_archive"
   ],
   "manual": {
     "depends_on": [],

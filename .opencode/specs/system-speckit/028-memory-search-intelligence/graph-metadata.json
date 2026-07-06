@@ -6,9 +6,7 @@
   "children_ids": [
     "system-speckit/028-memory-search-intelligence/000-release-cleanup",
     "system-speckit/028-memory-search-intelligence/001-speckit-memory",
-    "system-speckit/028-memory-search-intelligence/002-code-graph",
     "system-speckit/028-memory-search-intelligence/003-skill-advisor",
-    "system-speckit/028-memory-search-intelligence/004-deep-loop",
     "system-speckit/028-memory-search-intelligence/005-spec-data-quality",
     "system-speckit/028-memory-search-intelligence/006-review-remediation",
     "system-speckit/028-memory-search-intelligence/007-dark-flag-graduation",

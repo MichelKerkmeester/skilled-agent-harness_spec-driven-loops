@@ -1,0 +1,24 @@
+{
+  "level": "3",
+  "specFolder": "system-skill-advisor/002-skill-advisor-runtime/004-c4-shadow-seam-beta-posterior",
+  "description": "The Skill Advisor's shadow learning pipeline is structurally half-built and disconnected",
+  "keywords": [
+    "skill",
+    "advisor",
+    "shadow",
+    "learning",
+    "pipeline",
+    "structurally",
+    "half-built",
+    "disconnected"
+  ],
+  "lastUpdated": "2026-07-06T16:57:19.871Z",
+  "specId": "004",
+  "folderSlug": "c4-shadow-seam-beta-posterior",
+  "parentChain": [
+    "system-skill-advisor",
+    "002-skill-advisor-runtime"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

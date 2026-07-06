@@ -71,7 +71,7 @@ Produce a cited review report that names confirmed documentation drift in `.open
 ### In Scope
 
 - Audit `SKILL.md`, `README.md`, `ARCHITECTURE.md`, `INSTALL_GUIDE.md`, `feature_catalog/**`, `manual_testing_playbook/**`, `references/**`, and `changelog/**` for system-code-graph.
-- Compare documentation claims against `.opencode/specs/system-speckit/028-memory-search-intelligence/002-code-graph/**` and live `mcp_server/` implementation evidence.
+- Compare documentation claims against `.opencode/specs/system-code-graph/001-code-graph-core/**` and live `mcp_server/` implementation evidence.
 - Record confirmed findings with file-line citations in `review-report.md`.
 
 ### Out of Scope

@@ -1,0 +1,29 @@
+{
+  "level": "3",
+  "specFolder": "system-code-graph/001-code-graph-core/011-edge-confidence-review-remediation",
+  "description": "A 20-iteration deep review (GPT-5.5-fast high, via cli-opencode, `stop-policy=max-iterations` so it could not converge early) audited",
+  "keywords": [
+    "20-iteration",
+    "deep",
+    "review",
+    "gpt-5",
+    "5-fast",
+    "high",
+    "via",
+    "cli-opencode",
+    "stop-policy",
+    "max-iterations",
+    "converge",
+    "early",
+    "audited"
+  ],
+  "lastUpdated": "2026-07-06T16:45:35.481Z",
+  "specId": "011",
+  "folderSlug": "edge-confidence-review-remediation",
+  "parentChain": [
+    "system-code-graph",
+    "001-code-graph-core"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

@@ -1,0 +1,32 @@
+{
+  "level": "2",
+  "specFolder": "system-deep-loop/038-deep-loop-runtime",
+  "description": "The Deep Loop Runtime research surfaced candidate work across reducer anchoring, fanout determinism, failure recovery, convergence scoring, stop-input",
+  "keywords": [
+    "deep",
+    "loop",
+    "runtime",
+    "research",
+    "surfaced",
+    "candidate",
+    "work",
+    "across",
+    "reducer",
+    "anchoring",
+    "fanout",
+    "determinism",
+    "failure",
+    "recovery",
+    "convergence",
+    "scoring",
+    "stop-input"
+  ],
+  "lastUpdated": "2026-07-06T16:24:28.116Z",
+  "specId": "038",
+  "folderSlug": "deep-loop-runtime",
+  "parentChain": [
+    "system-deep-loop"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}
