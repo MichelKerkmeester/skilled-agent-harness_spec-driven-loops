@@ -10,6 +10,7 @@ import * as fs from 'fs';
 import * as path from 'path';
 import { chromium } from 'playwright';
 import type { DesignTokens } from './types';
+import { ensureWritableFile } from './output-policy';
 
 // ─── Color Math ─────────────────────────────────────────────────────────────
 
@@ -303,6 +304,7 @@ async function runProof(
   tokensPath: string,
   outputDir: string,
   previewPath?: string,
+  options: { force?: boolean } = {},
 ): Promise<void> {
   // A missing or corrupt tokens file must fail with a clear message, not an
   // uncaught ENOENT/SyntaxError stack trace.
@@ -317,6 +319,13 @@ async function runProof(
     console.error(`Error: could not parse tokens file ${tokensPath}: ${(err as Error).message}`);
     process.exit(1);
   }
+
+  // Check overwrite guards before the expensive browser/sampling work below,
+  // so a --force-less re-run fails fast instead of after minutes of capture.
+  const proofDataPath = path.join(outputDir, 'proof-data.json');
+  const proofHtmlPath = path.join(outputDir, 'proof.html');
+  ensureWritableFile(proofDataPath, options);
+  ensureWritableFile(proofHtmlPath, options);
 
   // Build palette in OKLCH
   const palette = tokens.colorTokens
@@ -433,26 +442,28 @@ async function runProof(
     previewScreenshot: prevB64,
     excludedRegions: imageRects.length,
   };
-  fs.writeFileSync(path.join(outputDir, 'proof-data.json'), JSON.stringify(proofData));
+  fs.writeFileSync(proofDataPath, JSON.stringify(proofData));
   console.log(`  Saved proof-data.json`);
 
   // 5. Generate standalone proof report (kept for backwards compat)
   const html = buildProofHtml(url, origB64, prevB64, result, tokens);
-  const outPath = path.join(outputDir, 'proof.html');
-  fs.writeFileSync(outPath, html);
-  console.log(`  Generated proof.html → ${outPath}`);
+  fs.writeFileSync(proofHtmlPath, html);
+  console.log(`  Generated proof.html → ${proofHtmlPath}`);
 }
 
 // ─── CLI ────────────────────────────────────────────────────────────────────
 
 if (require.main === module) {
-  const args = process.argv.slice(2);
+  const force = process.argv.includes('--force');
+  const args = process.argv.slice(2).filter((a) => a !== '--force');
   if (args.length < 2) {
-    console.error(`Usage: npx ts-node scripts/proof.ts <url> <tokens-json> [output-dir] [preview-html]
+    console.error(`Usage: npx ts-node scripts/proof.ts <url> <tokens-json> [output-dir] [preview-html] [--force]
 
 Example (read from the spec-folder output where extraction wrote):
   npx ts-node scripts/proof.ts https://stripe.com <spec>/output/tokens.json
-  npx ts-node scripts/proof.ts https://vercel.com <spec>/output/tokens.json <spec>/output/`);
+  npx ts-node scripts/proof.ts https://vercel.com <spec>/output/tokens.json <spec>/output/
+
+By default this refuses to overwrite an existing proof-data.json/proof.html. Pass --force to overwrite.`);
     process.exit(1);
   }
 
@@ -461,7 +472,7 @@ Example (read from the spec-folder output where extraction wrote):
   const outputDir = args[2] ?? path.dirname(tokensPath);
   const previewPath = args[3];
 
-  runProof(url, tokensPath, outputDir, previewPath).catch((err) => {
+  runProof(url, tokensPath, outputDir, previewPath, { force }).catch((err) => {
     console.error('Fatal:', err.message ?? err);
     process.exit(1);
   });

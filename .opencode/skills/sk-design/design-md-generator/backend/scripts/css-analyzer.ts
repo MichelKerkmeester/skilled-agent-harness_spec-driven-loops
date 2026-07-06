@@ -219,16 +219,61 @@ function extractMediaBreakpoints(ast: csstree.CssNode): MediaBreakpoint[] {
 
 // ─── Transition extraction ───────────────────────────────────────────────────
 
-function parseTransitionShorthand(value: string): Partial<TransitionInfo>[] {
+// Splits a CSS value list on top-level commas only, treating commas inside
+// parentheses as part of the enclosing function call rather than a group
+// separator. A naive `value.split(',')` shatters `cubic-bezier(0.4, 0, 0.2, 1)`
+// into four bogus fragments, corrupting every transition after it in the list.
+function splitTopLevelCommas(value: string): string[] {
+  const parts: string[] = [];
+  let depth = 0;
+  let current = '';
+  for (const char of value) {
+    if (char === '(') depth++;
+    else if (char === ')') depth = Math.max(0, depth - 1);
+    if (char === ',' && depth === 0) {
+      parts.push(current);
+      current = '';
+    } else {
+      current += char;
+    }
+  }
+  parts.push(current);
+  return parts;
+}
+
+// Splits a single transition entry on whitespace, but never inside
+// parentheses — `cubic-bezier(0.4, 0, 0.2, 1)` must survive as ONE token, not
+// be shattered by the spaces csstree emits after each internal comma.
+function splitWhitespaceRespectingParens(value: string): string[] {
+  const tokens: string[] = [];
+  let depth = 0;
+  let current = '';
+  for (const char of value) {
+    if (char === '(') depth++;
+    else if (char === ')') depth = Math.max(0, depth - 1);
+    if (depth === 0 && /\s/.test(char)) {
+      if (current) {
+        tokens.push(current);
+        current = '';
+      }
+    } else {
+      current += char;
+    }
+  }
+  if (current) tokens.push(current);
+  return tokens;
+}
+
+export function parseTransitionShorthand(value: string): Partial<TransitionInfo>[] {
   // A transition shorthand can contain comma-separated transitions
-  const parts = value.split(',').map((s) => s.trim());
+  const parts = splitTopLevelCommas(value).map((s) => s.trim()).filter(Boolean);
 
   const isTime = (t: string): boolean => /^[\d.]+m?s$/.test(t);
   const isTimingFunction = (t: string): boolean =>
     /^(ease|ease-in|ease-out|ease-in-out|linear|step-start|step-end|steps|cubic-bezier)/.test(t);
 
   return parts.map((part) => {
-    const tokens = part.split(/\s+/).filter(Boolean);
+    const tokens = splitWhitespaceRespectingParens(part);
     // The transition shorthand order is flexible and the property is optional
     // (defaults to `all`), so classify tokens by shape instead of trusting
     // positions: the first time value is the duration, the second is the delay.

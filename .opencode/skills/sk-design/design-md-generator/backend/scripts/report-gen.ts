@@ -10,6 +10,8 @@ import * as fs from 'fs';
 import * as path from 'path';
 import type { DesignTokens, ColorToken, TypographyLevel, ShadowToken, RadiusToken } from './types';
 import { validateDesignMd, type ValidationResult } from './validate';
+import { ensureWritableFile } from './output-policy';
+import { safeColor, safeLength, safeLineHeight, safeFontWeight, safeFontFamily, safeShadow } from './render-safety';
 
 // ────────────────────────────────────────────────────────────────
 // 3. HELPERS
@@ -129,10 +131,17 @@ function inferPreviewTokens(colors: ColorToken[], typo: TypographyLevel[], shado
   const successColor = greens[0]?.hex ?? '#22c55e';
   const warningColor = yellows[0]?.hex ?? '#eab308';
 
+  // Every field here is source-derived (extracted color/typography/shadow/radius
+  // tokens) and lands directly in a style="..." attribute in buildComponentPreviewHtml
+  // below — sanitize once here so every downstream consumer inherits the guard.
   return {
-    primaryBg, primaryText, secondaryBorderColor, secondaryTextColor,
-    surfaceBg, textColor, borderColor, radius, shadow, fontFamily,
-    headingFont, headingWeight, bodyFont, bodyWeight, successColor, warningColor,
+    primaryBg: safeColor(primaryBg), primaryText: safeColor(primaryText),
+    secondaryBorderColor: safeColor(secondaryBorderColor), secondaryTextColor: safeColor(secondaryTextColor),
+    surfaceBg: safeColor(surfaceBg), textColor: safeColor(textColor), borderColor: safeColor(borderColor),
+    radius: safeLength(radius, '8px'), shadow: safeShadow(shadow), fontFamily: safeFontFamily(fontFamily),
+    headingFont: safeFontFamily(headingFont), headingWeight: safeFontWeight(headingWeight),
+    bodyFont: safeFontFamily(bodyFont), bodyWeight: safeFontWeight(bodyWeight),
+    successColor: safeColor(successColor), warningColor: safeColor(warningColor),
   };
 }
 
@@ -232,7 +241,7 @@ function generateReportHtml(
   const shadows = tokens.shadowTokens.slice(0, 8);
   const radii = tokens.radiusTokens.slice(0, 8);
   const source = tokens.meta?.sourceUrls?.[0] ?? 'Unknown';
-  const primary = inferPrimary(colors);
+  const primary = safeColor(inferPrimary(colors), '#6b5ce7');
 
   const brandColors = colors.filter(isChromatic);
   const structuralColors = colors.filter((c) => !isChromatic(c));
@@ -470,24 +479,24 @@ ${score !== null ? `
   ${brandColors.length > 0 ? `
   <div class="color-section-label">Brand Colors (${brandColors.length})</div>
   <div class="color-grid">
-${brandColors.map((c) => `    <div class="swatch"><div class="swatch__color" style="background:${c.hex};color:${contrastOn(c.hex)}">${c.hex}</div><div class="swatch__meta">${colorRole(c)}<br>×${c.frequency}</div></div>`).join('\n')}
+${brandColors.map((c) => `    <div class="swatch"><div class="swatch__color" style="background:${safeColor(c.hex)};color:${contrastOn(c.hex)}">${esc(c.hex)}</div><div class="swatch__meta">${colorRole(c)}<br>×${c.frequency}</div></div>`).join('\n')}
   </div>` : ''}
   ${structuralColors.length > 0 ? `
   <div class="color-section-label">Structural Colors (${structuralColors.length})</div>
   <div class="color-grid">
-${structuralColors.map((c) => `    <div class="swatch"><div class="swatch__color" style="background:${c.hex};color:${contrastOn(c.hex)}">${c.hex}</div><div class="swatch__meta">${colorRole(c)}<br>×${c.frequency}</div></div>`).join('\n')}
+${structuralColors.map((c) => `    <div class="swatch"><div class="swatch__color" style="background:${safeColor(c.hex)};color:${contrastOn(c.hex)}">${esc(c.hex)}</div><div class="swatch__meta">${colorRole(c)}<br>×${c.frequency}</div></div>`).join('\n')}
   </div>` : ''}
 </div>
 
 <!-- ═══════════ TYPOGRAPHY ═══════════ -->
 <div class="card">
   <h2>🔤 Typography Scale</h2>
-${typo.map((t) => `  <div class="typo-row"><span class="typo-sample" style="font-family:'${esc(t.fontFamily)}',system-ui;font-size:min(${t.fontSize},2rem);font-weight:${t.fontWeight};line-height:${t.lineHeight}">The quick brown fox jumps</span><span class="typo-spec">${esc(t.fontFamily)} ${t.fontSize} w${t.fontWeight}</span></div>`).join('\n')}
+${typo.map((t) => `  <div class="typo-row"><span class="typo-sample" style="font-family:'${esc(safeFontFamily(t.fontFamily))}',system-ui;font-size:min(${safeLength(t.fontSize)},2rem);font-weight:${safeFontWeight(t.fontWeight)};line-height:${safeLineHeight(t.lineHeight)}">The quick brown fox jumps</span><span class="typo-spec">${esc(t.fontFamily)} ${esc(t.fontSize)} w${esc(t.fontWeight)}</span></div>`).join('\n')}
 </div>
 
 <div class="grid-2">
-${shadows.length > 0 ? `<div class="card"><h2>🌑 Shadows (${shadows.length})</h2><div class="shadow-row">${shadows.map((s) => `<div class="shadow-demo" style="box-shadow:${esc(s.value)}">${esc(s.type)}</div>`).join('')}</div></div>` : ''}
-${radii.length > 0 ? `<div class="card"><h2>◼️ Radius (${radii.length})</h2><div class="radius-row">${radii.map((r) => `<div class="radius-demo" style="border-radius:${r.value}">${r.value}</div>`).join('')}</div></div>` : ''}
+${shadows.length > 0 ? `<div class="card"><h2>🌑 Shadows (${shadows.length})</h2><div class="shadow-row">${shadows.map((s) => `<div class="shadow-demo" style="box-shadow:${safeShadow(s.value)}">${esc(s.type)}</div>`).join('')}</div></div>` : ''}
+${radii.length > 0 ? `<div class="card"><h2>◼️ Radius (${radii.length})</h2><div class="radius-row">${radii.map((r) => `<div class="radius-demo" style="border-radius:${safeLength(r.value)}">${esc(r.value)}</div>`).join('')}</div></div>` : ''}
 </div>
 
 <!-- ═══════════ COMPONENTS ═══════════ -->
@@ -530,7 +539,9 @@ ${(tokens as unknown as Record<string, unknown>).darkMode && ((tokens as unknown
   }
 
   function renderVarRow(v: { name: string; lightValue: string; darkValue: string }): string {
-    return `      <tr><td style="font-family:monospace;font-size:0.75rem">${esc(v.name)}</td><td><span style="display:inline-block;width:12px;height:12px;border-radius:3px;vertical-align:middle;margin-right:4px;background:${v.lightValue};border:1px solid var(--border)"></span>${esc(v.lightValue)}</td><td><span style="display:inline-block;width:12px;height:12px;border-radius:3px;vertical-align:middle;margin-right:4px;background:${v.darkValue};border:1px solid var(--border)"></span>${esc(v.darkValue)}</td></tr>`;
+    const lightColor = safeColor(v.lightValue);
+    const darkColor = safeColor(v.darkValue);
+    return `      <tr><td style="font-family:monospace;font-size:0.75rem">${esc(v.name)}</td><td><span style="display:inline-block;width:12px;height:12px;border-radius:3px;vertical-align:middle;margin-right:4px;background:${lightColor};border:1px solid var(--border)"></span>${esc(v.lightValue)}</td><td><span style="display:inline-block;width:12px;height:12px;border-radius:3px;vertical-align:middle;margin-right:4px;background:${darkColor};border:1px solid var(--border)"></span>${esc(v.darkValue)}</td></tr>`;
   }
 
   const groupsHtml = groupOrder
@@ -628,6 +639,7 @@ export function generateReport(
   tokensPath: string,
   outputDir: string,
   designMdPath?: string,
+  options: { force?: boolean } = {},
 ): void {
   const tokens: DesignTokens = JSON.parse(fs.readFileSync(tokensPath, 'utf-8'));
 
@@ -648,6 +660,7 @@ export function generateReport(
 
   const html = generateReportHtml(tokens, validation, designMdContent, proofData);
   const outPath = path.join(outputDir, 'report.html');
+  ensureWritableFile(outPath, options);
   fs.writeFileSync(outPath, html);
   console.log(`  Generated report.html → ${outPath}`);
 
@@ -657,14 +670,17 @@ export function generateReport(
 }
 
 if (require.main === module) {
-  const args = process.argv.slice(2);
+  const force = process.argv.includes('--force');
+  const args = process.argv.slice(2).filter((a) => a !== '--force');
   if (args.length < 1) {
     console.error(`Usage:
-  npx ts-node scripts/report-gen.ts <tokens-json> [output-dir] [design-md]
+  npx ts-node scripts/report-gen.ts <tokens-json> [output-dir] [design-md] [--force]
 
 Examples (read from the spec-folder output where extraction wrote):
   npx ts-node scripts/report-gen.ts <spec>/output/tokens.json
-  npx ts-node scripts/report-gen.ts <spec>/output/tokens.json <spec>/output/ <spec>/output/DESIGN.md`);
+  npx ts-node scripts/report-gen.ts <spec>/output/tokens.json <spec>/output/ <spec>/output/DESIGN.md
+
+By default this refuses to overwrite an existing report.html. Pass --force to overwrite.`);
     process.exit(1);
   }
 
@@ -672,5 +688,10 @@ Examples (read from the spec-folder output where extraction wrote):
   const outputDir = args[1] ?? path.dirname(tokensPath);
   const designMdPath = args[2];
 
-  generateReport(tokensPath, outputDir, designMdPath);
+  try {
+    generateReport(tokensPath, outputDir, designMdPath, { force });
+  } catch (err) {
+    console.error(`Error: ${(err as Error).message}`);
+    process.exit(1);
+  }
 }

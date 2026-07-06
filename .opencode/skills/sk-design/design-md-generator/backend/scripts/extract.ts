@@ -8,6 +8,7 @@
 
 import * as path from 'path';
 import * as fs from 'fs';
+import { resolveOutputPath } from './output-policy';
 import { crawlPages, type WaitStrategy } from './crawl';
 import { collectDOM } from './dom-collector';
 import { analyzeCSS } from './css-analyzer';
@@ -255,22 +256,28 @@ async function extract(options: ExtractOptions): Promise<void> {
   console.log(`  Max pages: ${options.maxPages}`);
   console.log('');
 
-  // Output must live in a spec folder, not inside the skill. Require --output and
-  // refuse any path that resolves inside the skill directory (the old default
-  // dumped extraction artifacts into tool/output/, polluting the skill).
-  const skillRoot = path.resolve(__dirname, '..', '..');
+  // Output must live in a spec folder or an approved sandbox, never inside the
+  // skill. resolveOutputPath is the single enforcement point shared with
+  // guided-run/report-gen/preview-gen/proof, so the boundary can't drift
+  // between callers (the old default dumped extraction artifacts into
+  // tool/output/, polluting the skill; a bare skill-root blocklist would still
+  // accept any other arbitrary path).
   if (!options.output) {
     console.error('Error: --output is required. Extraction output must live in a spec folder, not the skill.');
     console.error('  Run from the repo root, e.g. --output .opencode/specs/<track>/<packet>/output');
     process.exit(1);
   }
-  const resolvedOut = path.resolve(options.output);
-  if (resolvedOut === skillRoot || resolvedOut.startsWith(skillRoot + path.sep)) {
-    console.error(`Error: refusing to write output inside the skill directory (${resolvedOut}).`);
-    console.error('  Run extract.ts from the repo root so a relative --output resolves outside the skill,');
+  const outputPolicy = resolveOutputPath(options.output);
+  if (!outputPolicy.ok) {
+    console.error(`Error: ${outputPolicy.reason}`);
+    console.error('  Run extract.ts from the repo root so a relative --output resolves correctly,');
     console.error('  e.g. (from repo root) --output .opencode/specs/<track>/<packet>/output');
     process.exit(1);
   }
+  // Downstream writes use the resolved absolute path so a caller that spawns
+  // this script with a different cwd (e.g. guided-run.ts) can't cause the
+  // same relative --output to land somewhere else than what was validated.
+  options.output = outputPolicy.resolvedPath;
 
   // Ensure output directory exists
   fs.mkdirSync(options.output, { recursive: true });

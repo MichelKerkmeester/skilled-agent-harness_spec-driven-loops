@@ -8,7 +8,7 @@ trigger_phrases:
   - "visual design preview"
   - "fidelity proof artifact"
 importance_tier: "normal"
-version: 1.0.0.6
+version: 1.0.0.7
 ---
 
 # Report and preview (report-gen.ts / preview-gen.ts / proof.ts)
@@ -56,7 +56,7 @@ Takes the original extraction URL and the token set, then produces a proof artif
 
 ### Output paths
 
-All three scripts write to a user-specified output directory. They do not silently overwrite existing artifacts; specify a clean directory or accept the overwrite explicitly. The HTML report and visual preview are standalone browser-viewable files. The proof artifact is a structured comparison document.
+All three scripts resolve their output directory through the shared output-policy module, which requires it to live inside a spec folder or an approved sandbox. They do not silently overwrite existing artifacts: if `report.html`, `preview.html`, `proof.html`, or `proof-data.json` already exists at the target path, the script refuses and exits with an error. Pass `--force` to accept the overwrite explicitly (e.g. `npx ts-node scripts/report-gen.ts <tokens.json> <output-dir> --force`). The HTML report and visual preview are standalone browser-viewable files. The proof artifact is a structured comparison document.
 
 ---
 
@@ -75,7 +75,8 @@ All three scripts write to a user-specified output directory. They do not silent
 | File | Type | Role |
 |---|---|---|
 | `../../manual_testing_playbook/07--report/report-generation.md` | Manual playbook | Report and preview generation scenario (REPORT-001) — runs report-gen, preview-gen, and proof and confirms each emits its artifact |
-| (no automated test) | Automated test | Covered by the REPORT-001 manual playbook scenario |
+| `backend/tests/report-preview-overwrite.test.ts` | Automated test | Overwrite-guard behavior (refuses without `--force`, succeeds with it) and a CSS-value-injection integration check for both report-gen and preview-gen |
+| `backend/tests/render-safety.test.ts` | Automated test | Unit coverage for the CSS-value sanitizers (`safeColor`/`safeLength`/`safeShadow`/etc.) both scripts route source-derived style values through |
 
 ---
 

@@ -13,8 +13,8 @@ _memory:
     packet_pointer: "sk-design/009-sk-design-claude-parity/012-routing-benchmark-rigor"
     last_updated_at: "2026-07-06T00:00:00.000Z"
     last_updated_by: "claude-sonnet-5"
-    recent_action: "Reconciled ADR-001/ADR-002 to real evidence; added ADR-003 for accepted descope"
-    next_safe_action: "No further action required; future phase may pick up ADR-003 descoped items"
+    recent_action: "Reconciled ADR-001/ADR-002 to real evidence; added ADR-003 for accepted descope; added ADR-004 resolving the P2-002 duplicate-benchmark-naming finding from the 009 packet's review"
+    next_safe_action: "No further action required; future phase may pick up ADR-003 descoped items or ADR-004's optional cleanup"
 ---
 # Decision Record: Phase 012 - Rigorous Routing Benchmark and Skill-Advisor Verification
 
@@ -300,3 +300,46 @@ Separately, `009-sk-design-claude-parity/010-feature-catalog-completeness/` has 
 
 **How to roll back**: If a future phase builds the expanded battery and harness extension, that phase's own decision record supersedes this ADR's descope; this ADR is not silently reopened.
 <!-- /ANCHOR:adr-003 -->
+
+---
+
+<!-- ANCHOR:adr-004 -->
+## ADR-004: Designate `after-012-routing-rigor/` as Canonical, `after-d3-proxy/` as a Named-Deprecated Duplicate
+
+### Metadata
+
+| Field | Value |
+|-------|-------|
+| **Status** | Accepted |
+| **Date** | 2026-07-06 |
+| **Deciders** | sk-design/009 review-remediation phase (014), per an active deep-review P2 finding (P2-002) |
+
+### Context
+
+The 10-iteration deep review of the 009 packet (`.opencode/specs/sk-design/009-sk-design-claude-parity/review/review-report.md`, finding P2-002) flagged that `.opencode/skills/sk-design/benchmark/after-012-routing-rigor/{report.json,report.md}` and `.opencode/skills/sk-design/benchmark/after-d3-proxy/{skill-benchmark-report.json,skill-benchmark-report.md}` are byte-identical (confirmed again via `diff`, no output either time) and use two incompatible naming conventions for the exact same benchmark run. ADR-003 above already named `after-d3-proxy/` "an orphaned duplicate-named artifact from earlier proxy work" and explicitly left it untouched, out of scope for that reconciliation pass.
+
+### Decision
+
+**We chose**: Formally designate `after-012-routing-rigor/` as the canonical artifact for this benchmark run (it uses the newer `report.json`/`report.md` convention shared with `after-009/`) and `after-d3-proxy/` as a confirmed, named-deprecated duplicate retained only for historical traceability to the D3-proxy-fix work session that originally produced it. No file is deleted or moved by this decision — Phase 012 is already closed, and removing a tracked artifact from a completed, unrelated phase is out of scope for a review-remediation pass whose own spec.md commits to a documentation resolution for this finding. Any future cleanup pass may act on this designation directly.
+
+### Alternatives Considered
+
+| Option | Pros | Cons | Score |
+|--------|------|------|-------|
+| **Designate canonical + document, no deletion (chosen)** | Resolves the reviewer's actual complaint (ambiguous naming) with zero blast radius on a closed phase; reversible; auditable | The duplicate file still exists on disk until a dedicated cleanup pass removes it | 9/10 |
+| Delete `after-d3-proxy/` now | Fully resolves the duplication | Mutates a git-tracked directory that belongs to an already-closed, unrelated phase (012) from within a different phase (014)'s remediation pass — scope escalation beyond what either phase's own documents authorize | 3/10 |
+| Rename `baseline/` and `after-d3-proxy/` to the `report.json` convention for full consistency | Uniform naming repo-wide | `skill-benchmark-report.json`/`.md` is referenced by name across many other spec-folder fixtures outside this packet (008-sk-design-parent, 009/005); renaming risks breaking those references for a P2 advisory | 2/10 |
+| Leave the finding undocumented | No work needed | Repeats exactly the gap the deep review flagged; the next review cycle would re-find the same P2 | 1/10 |
+
+**Why this one**: The finding is about ambiguity, not about the duplicate file's mere existence. Naming a canonical artifact resolves the ambiguity for any future reader without touching a closed phase's tracked files.
+
+### Consequences
+
+**What improves**: `after-012-routing-rigor/` is now the documented canonical reference for this benchmark run; a future reader hitting the duplicate knows which one to trust and why the other exists.
+
+**What it costs**: The duplicate file remains on disk until an explicit future cleanup pass (out of this phase's scope) removes it.
+
+**Risks**: None beyond that already-accepted duplication risk carried since ADR-003.
+
+**How to roll back**: A future cleanup phase may `git rm -r .opencode/skills/sk-design/benchmark/after-d3-proxy/` directly, citing this ADR, once it owns that blast radius explicitly.
+<!-- /ANCHOR:adr-004 -->

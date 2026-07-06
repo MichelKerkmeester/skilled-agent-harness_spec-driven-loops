@@ -1,5 +1,7 @@
 import { describe, it, expect } from 'vitest';
+import * as path from 'path';
 import { buildPlan, parseGuidedRunArgs, runPreflight } from '../scripts/guided-run';
+import { outputPolicyRoots } from '../scripts/output-policy';
 
 describe('guided-run wrapper', () => {
   it('parses required output, optional DESIGN.md and mode flags', () => {
@@ -27,5 +29,29 @@ describe('guided-run wrapper', () => {
     const checks = runPreflight({ url: 'https://example.com', output: '.opencode/skills/sk-design/design-md-generator/output', fast: false, report: false, dryRun: true });
     const outputCheck = checks.find((check) => check.name === 'output-path');
     expect(outputCheck?.ok).toBe(false);
+  });
+
+  it('reports a real spec-folder output path as safe (shared output-policy resolver)', () => {
+    const target = path.join(outputPolicyRoots.SPECS_ROOT, 'demo-packet', 'output');
+    const checks = runPreflight({ url: 'https://example.com', output: target, fast: false, report: false, dryRun: true });
+    const outputCheck = checks.find((check) => check.name === 'output-path');
+    expect(outputCheck?.ok).toBe(true);
+  });
+
+  it('reports an output path outside the spec-folder root and sandbox as unsafe', () => {
+    const checks = runPreflight({ url: 'https://example.com', output: '/etc/design-md-generator-output', fast: false, report: false, dryRun: true });
+    const outputCheck = checks.find((check) => check.name === 'output-path');
+    expect(outputCheck?.ok).toBe(false);
+  });
+
+  it('threads an absolute output path verbatim into the extract/report step args (guards the guided-run cwd-mismatch fix: runGuided resolves output to absolute before calling buildPlan, so a child process spawned with a different cwd cannot re-resolve a relative path to a different location)', () => {
+    const absoluteOutput = path.join(outputPolicyRoots.SPECS_ROOT, 'demo-packet', 'output');
+    const absoluteDesignMd = path.join(absoluteOutput, 'DESIGN.md');
+    const plan = buildPlan({ url: 'https://example.com', output: absoluteOutput, designMd: absoluteDesignMd, fast: false, report: true, dryRun: true });
+    const extractStep = plan.find((s) => s.label === 'extract');
+    expect(extractStep?.args).toContain(absoluteOutput);
+    const reportStep = plan.find((s) => s.label === 'report');
+    expect(reportStep?.args).toContain(absoluteOutput);
+    expect(reportStep?.args).toContain(absoluteDesignMd);
   });
 });

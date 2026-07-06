@@ -1,0 +1,233 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-design/009-sk-design-claude-parity/014-review-remediation",
+  "spec_folder": "sk-design/009-sk-design-claude-parity/014-review-remediation",
+  "parent_id": "sk-design/009-sk-design-claude-parity",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "review remediation",
+      "sk-design claude parity remediation",
+      "design-md-generator fixes",
+      "phase 014",
+      "implementation",
+      "plan",
+      "phase 014 plan",
+      "tasks",
+      "phase 014 tasks",
+      "verification",
+      "checklist",
+      "summary"
+    ],
+    "key_topics": [
+      "review",
+      "remediation",
+      "sk-design",
+      "claude",
+      "parity",
+      "design-md-generator",
+      "fixes",
+      "phase",
+      "014",
+      "implementation",
+      "plan",
+      "tasks"
+    ],
+    "importance_tier": "high",
+    "status": "in_progress",
+    "key_files": [
+      "tasks.md",
+      "implementation-summary.md",
+      "checklist.md",
+      ".opencode/specs/sk-design/009-sk-design-claude-parity/review/review-report.md",
+      ".opencode/skills/sk-design/design-md-generator/backend/scripts/output-policy.ts",
+      ".opencode/skills/sk-design/design-md-generator/backend/scripts/render-safety.ts",
+      ".opencode/skills/sk-design/design-md-generator/backend/scripts/build-write-prompt.ts",
+      ".opencode/skills/sk-design/design-md-generator/backend/scripts/extract.ts",
+      ".opencode/skills/sk-design/design-md-generator/backend/scripts/guided-run.ts",
+      ".opencode/skills/sk-design/design-md-generator/backend/scripts/report-gen.ts",
+      ".opencode/skills/sk-design/design-md-generator/backend/scripts/preview-gen.ts",
+      ".opencode/skills/sk-design/design-md-generator/backend/scripts/proof.ts",
+      ".opencode/skills/sk-design/design-md-generator/backend/scripts/css-analyzer.ts",
+      ".opencode/skills/sk-design/design-md-generator/feature_catalog/05--report-preview/report-preview.md",
+      ".opencode/skills/sk-design/shared/procedure_card_schema.md",
+      ".opencode/specs/sk-design/009-sk-design-claude-parity/012-routing-benchmark-rigor/decision-record.md",
+      "plan.md",
+      "spec.md",
+      ".opencode/skills/sk-design/shared/scripts/procedure-card-schema-check.mjs"
+    ],
+    "entities": [
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "review-report.md",
+        "kind": "doc",
+        "path": ".opencode/specs/sk-design/009-sk-design-claude-parity/review/review-report.md",
+        "source": "derived"
+      },
+      {
+        "name": "output-policy.ts",
+        "kind": "code",
+        "path": ".opencode/skills/sk-design/design-md-generator/backend/scripts/output-policy.ts",
+        "source": "derived"
+      },
+      {
+        "name": "render-safety.ts",
+        "kind": "code",
+        "path": ".opencode/skills/sk-design/design-md-generator/backend/scripts/render-safety.ts",
+        "source": "derived"
+      },
+      {
+        "name": "build-write-prompt.ts",
+        "kind": "code",
+        "path": ".opencode/skills/sk-design/design-md-generator/backend/scripts/build-write-prompt.ts",
+        "source": "derived"
+      },
+      {
+        "name": "extract.ts",
+        "kind": "code",
+        "path": ".opencode/skills/sk-design/design-md-generator/backend/scripts/extract.ts",
+        "source": "derived"
+      },
+      {
+        "name": "guided-run.ts",
+        "kind": "code",
+        "path": ".opencode/skills/sk-design/design-md-generator/backend/scripts/guided-run.ts",
+        "source": "derived"
+      },
+      {
+        "name": "report-gen.ts",
+        "kind": "code",
+        "path": ".opencode/skills/sk-design/design-md-generator/backend/scripts/report-gen.ts",
+        "source": "derived"
+      },
+      {
+        "name": "preview-gen.ts",
+        "kind": "code",
+        "path": ".opencode/skills/sk-design/design-md-generator/backend/scripts/preview-gen.ts",
+        "source": "derived"
+      },
+      {
+        "name": "proof.ts",
+        "kind": "code",
+        "path": ".opencode/skills/sk-design/design-md-generator/backend/scripts/proof.ts",
+        "source": "derived"
+      },
+      {
+        "name": "css-analyzer.ts",
+        "kind": "code",
+        "path": ".opencode/skills/sk-design/design-md-generator/backend/scripts/css-analyzer.ts",
+        "source": "derived"
+      },
+      {
+        "name": "report-preview.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-design/design-md-generator/feature_catalog/05--report-preview/report-preview.md",
+        "source": "derived"
+      },
+      {
+        "name": "procedure_card_schema.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-design/shared/procedure_card_schema.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "procedure-card-schema-check.mjs",
+        "kind": "file",
+        "path": ".opencode/skills/sk-design/shared/scripts/procedure-card-schema-check.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parity Review Remediation",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Move",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The 10-iteration deep review of the sk-design Claude-parity packet (`.opencode/specs/sk-design/009-sk-design-claude-parity/review/review-report.md`) returned verdict CONDITIONAL with 8 P1 and 3 P2 active findings, all concentrated in the `design-md-generator` backend: missing component facts in the WRITE prompt, unsanitized prompt-data and CSS-value injection surfaces, an output-path guard that doesn't enforce the documented spec-folder/sandbox boundary, a comma-splitting bug in transition-shorthand parsing, and a feature-catalog claim that doesn't match code behavior",
+    "created_at": "2026-07-06T17:16:14.933Z",
+    "last_save_at": "2026-07-06T17:16:14.933Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:db1469da074c824748b2126b4783f107a79892df154eca5ba9c8b7eb66b3a8a0",
+    "source_doc_hashes": {
+      "spec.md": "3007e8721ed25b2d6b46810e5367944e7f8302e832474f3d4b605836a06724c4",
+      "plan.md": "19cc414f00ca1e3353354c61e8c2194e3fcc26c6ffebc701e98cd5066b4cbd28",
+      "tasks.md": "fc4902706d886e9ca7e44c14dbb70dc8338c4ec6e65dd863fb455f5e9660f75e",
+      "checklist.md": "d993e25b9f0a57a714cc7b15c0251b100c55f53fbc1f8243a3c1392e35705861",
+      "implementation-summary.md": "2cd47e11853bba1516797604a6f7bfaea0846785bab73ba7b2b141cb7ebbb8fb"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

@@ -8,7 +8,7 @@ trigger_phrases:
   - "procedure card worked example"
 importance_tier: important
 contextType: implementation
-version: 1.0.0.0
+version: 1.0.0.1
 ---
 
 # Private Procedure Card Schema
@@ -73,6 +73,8 @@ Use these only when they materially improve reviewability:
 | Tool boundary | Required for `design-md-generator` cards. State the mutating permission boundary and that the card does not grant those permissions to read-only modes. |
 
 ## 4. Required-Field Lint
+
+Rules 1-7 and 9 below are automated: `node .opencode/skills/sk-design/shared/scripts/procedure-card-schema-check.mjs` checks every card under any mode's `procedures/` folder and exits non-zero on a failure. Rules 8 and 10 are semantic judgment calls the script does not attempt to automate (it says so explicitly in its output) — review those two by hand before publishing or updating a card.
 
 Before publishing or updating a card, verify the card passes this local lint:
 

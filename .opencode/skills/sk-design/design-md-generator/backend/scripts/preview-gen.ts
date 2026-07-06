@@ -9,6 +9,8 @@
 import * as fs from 'fs';
 import * as path from 'path';
 import type { DesignTokens, ColorToken, TypographyLevel, ShadowToken, RadiusToken } from './types';
+import { ensureWritableFile } from './output-policy';
+import { safeColor, safeLength, safeLineHeight, safeFontWeight, safeFontFamily, safeShadow } from './render-safety';
 
 // ────────────────────────────────────────────────────────────────
 // 2. HELPERS
@@ -67,11 +69,14 @@ function generatePreviewHtml(tokens: DesignTokens): string {
   const shadows = tokens.shadowTokens.slice(0, 5);
   const radii = tokens.radiusTokens.slice(0, 5);
 
-  const bgColor = inferBackground(colors);
-  const textColor = inferTextColor(colors);
-  const primary = inferPrimary(colors);
+  // Source-derived: every one of these interpolates directly into style="..." attributes
+  // below, so each must be validated against its CSS-value shape (not just HTML-escaped)
+  // before it ever reaches a style context.
+  const bgColor = safeColor(inferBackground(colors), '#ffffff');
+  const textColor = safeColor(inferTextColor(colors), '#000000');
+  const primary = safeColor(inferPrimary(colors), '#6b5ce7');
 
-  const fontFamily = typo[0]?.fontFamily ?? 'system-ui';
+  const fontFamily = safeFontFamily(typo[0]?.fontFamily, 'system-ui');
 
   return `<!DOCTYPE html>
 <html lang="en">
@@ -184,9 +189,9 @@ function generatePreviewHtml(tokens: DesignTokens): string {
 <h2>Color Palette (${colors.length} tokens)</h2>
 <div class="color-grid">
 ${colors.map((c) => `  <div class="color-swatch">
-    <div class="color-swatch__block" style="background:${c.hex}"></div>
+    <div class="color-swatch__block" style="background:${safeColor(c.hex)}"></div>
     <div class="color-swatch__info">
-      <div class="color-swatch__hex">${c.hex}</div>
+      <div class="color-swatch__hex">${escapeHtml(c.hex)}</div>
       <div class="color-swatch__freq">freq: ${c.frequency}</div>
     </div>
   </div>`).join('\n')}
@@ -197,8 +202,8 @@ ${colors.map((c) => `  <div class="color-swatch">
 <section class="section">
 <h2>Typography Scale (${typo.length} levels)</h2>
 ${typo.map((t) => `<div class="typo-row">
-  <div style="font-family:'${escapeHtml(t.fontFamily)}',system-ui;font-size:${t.fontSize};font-weight:${t.fontWeight};line-height:${t.lineHeight}">The quick brown fox</div>
-  <div class="typo-meta">${escapeHtml(t.fontFamily)} · ${t.fontSize} · ${t.fontWeight} · ${t.lineHeight}</div>
+  <div style="font-family:'${escapeHtml(safeFontFamily(t.fontFamily))}',system-ui;font-size:${safeLength(t.fontSize)};font-weight:${safeFontWeight(t.fontWeight)};line-height:${safeLineHeight(t.lineHeight)}">The quick brown fox</div>
+  <div class="typo-meta">${escapeHtml(t.fontFamily)} · ${escapeHtml(t.fontSize)} · ${escapeHtml(t.fontWeight)} · ${escapeHtml(t.lineHeight)}</div>
 </div>`).join('\n')}
 </section>
 
@@ -206,16 +211,16 @@ ${typo.map((t) => `<div class="typo-row">
 <section class="section">
 <h2>Buttons</h2>
 <div class="btn-row">
-  <button class="btn btn--primary" style="border-radius:${radii[0]?.value ?? '6px'}">Primary Action</button>
-  <button class="btn btn--secondary" style="border-radius:${radii[0]?.value ?? '6px'}">Secondary</button>
+  <button class="btn btn--primary" style="border-radius:${safeLength(radii[0]?.value, '6px')}">Primary Action</button>
+  <button class="btn btn--secondary" style="border-radius:${safeLength(radii[0]?.value, '6px')}">Secondary</button>
 </div>
 </section>
 
 <section class="section">
 <h2>Input</h2>
 <div class="input-demo">
-  <input class="input" style="border-radius:${radii[0]?.value ?? '4px'}" placeholder="Email address" />
-  <button class="btn btn--primary" style="border-radius:${radii[0]?.value ?? '6px'}">Submit</button>
+  <input class="input" style="border-radius:${safeLength(radii[0]?.value, '4px')}" placeholder="Email address" />
+  <button class="btn btn--primary" style="border-radius:${safeLength(radii[0]?.value, '6px')}">Submit</button>
 </div>
 </section>
 
@@ -223,14 +228,14 @@ ${typo.map((t) => `<div class="typo-row">
 ${shadows.length > 0 ? `<section class="section">
 <h2>Shadow System (${shadows.length} levels)</h2>
 <div class="shadow-grid">
-${shadows.map((s) => `  <div class="shadow-card" style="box-shadow:${escapeHtml(s.value)};border-radius:${radii[0]?.value ?? '8px'}">${escapeHtml(s.type)}</div>`).join('\n')}
+${shadows.map((s) => `  <div class="shadow-card" style="box-shadow:${safeShadow(s.value)};border-radius:${safeLength(radii[0]?.value, '8px')}">${escapeHtml(s.type)}</div>`).join('\n')}
 </div>
 </section>` : ''}
 
 <!-- Card -->
 <section class="section">
 <h2>Card</h2>
-<div class="card" style="border-radius:${radii[0]?.value ?? '8px'};${shadows[0] ? `box-shadow:${shadows[0].value}` : ''}">
+<div class="card" style="border-radius:${safeLength(radii[0]?.value, '8px')};${shadows[0] ? `box-shadow:${safeShadow(shadows[0].value)}` : ''}">
   <h3>Example Card</h3>
   <p>This card uses the extracted tokens — background, border, shadow, and radius values all come from the site's design system.</p>
 </div>
@@ -246,22 +251,31 @@ ${shadows.map((s) => `  <div class="shadow-card" style="box-shadow:${escapeHtml(
 
 // ─── Main Export ─────────────────────────────────────────────────────────────
 
-export function generatePreview(tokensPath: string, outputDir: string): void {
+export function generatePreview(tokensPath: string, outputDir: string, options: { force?: boolean } = {}): void {
   const tokens: DesignTokens = JSON.parse(fs.readFileSync(tokensPath, 'utf-8'));
   const html = generatePreviewHtml(tokens);
-  fs.writeFileSync(path.join(outputDir, 'preview.html'), html);
+  const outPath = path.join(outputDir, 'preview.html');
+  ensureWritableFile(outPath, options);
+  fs.writeFileSync(outPath, html);
   console.log(`  Generated preview.html`);
 }
 
 // ─── CLI ────────────────────────────────────────────────────────────────────
 
 if (require.main === module) {
-  const args = process.argv.slice(2);
+  const force = process.argv.includes('--force');
+  const args = process.argv.slice(2).filter((a) => a !== '--force');
   if (args.length < 1) {
-    console.error('Usage: npx ts-node scripts/preview-gen.ts <tokens-json-path> [output-dir]');
+    console.error('Usage: npx ts-node scripts/preview-gen.ts <tokens-json-path> [output-dir] [--force]');
+    console.error('By default this refuses to overwrite an existing preview.html. Pass --force to overwrite.');
     process.exit(1);
   }
   const tokensPath = args[0];
   const outputDir = args[1] ?? path.dirname(tokensPath);
-  generatePreview(tokensPath, outputDir);
+  try {
+    generatePreview(tokensPath, outputDir, { force });
+  } catch (err) {
+    console.error(`Error: ${(err as Error).message}`);
+    process.exit(1);
+  }
 }

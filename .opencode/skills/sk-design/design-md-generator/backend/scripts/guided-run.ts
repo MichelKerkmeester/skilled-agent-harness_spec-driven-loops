@@ -10,6 +10,7 @@
 import * as fs from 'fs';
 import * as path from 'path';
 import { spawnSync } from 'child_process';
+import { resolveOutputPath } from './output-policy';
 
 export interface GuidedRunOptions {
   url: string;
@@ -33,7 +34,6 @@ export interface PlannedCommand {
 }
 
 const BACKEND_ROOT = path.resolve(__dirname, '..');
-const SKILL_ROOT = path.resolve(BACKEND_ROOT, '..');
 const VALUE_FLAGS = new Set(['--output', '--design-md']);
 const BOOLEAN_FLAGS = new Set(['--fast', '--report', '--dry-run']);
 const PREFLIGHT_COMMAND_TIMEOUT_MS = 120_000;
@@ -130,35 +130,21 @@ function commandExists(command: string, args: string[]): CommandCheckResult {
   return { ok: false, detail: describeSpawnFailure(label, result, PREFLIGHT_COMMAND_TIMEOUT_MS) };
 }
 
-function isPathInsideOrEqual(targetPath: string, rootPath: string): boolean {
-  const relative = path.relative(rootPath, targetPath);
-  return relative === '' || (!!relative && !relative.startsWith('..') && !path.isAbsolute(relative));
-}
-
-function unsafeOutputPathReason(outputPath: string): string | undefined {
-  if (isPathInsideOrEqual(outputPath, BACKEND_ROOT)) {
-    return `inside backend root ${BACKEND_ROOT}`;
-  }
-  if (isPathInsideOrEqual(outputPath, SKILL_ROOT)) {
-    return `inside skill root ${SKILL_ROOT}`;
-  }
-  return undefined;
-}
-
 export function runPreflight(options: GuidedRunOptions): PreflightCheck[] {
-  const outputPath = path.resolve(process.cwd(), options.output);
   const nodeMajor = Number(process.versions.node.split('.')[0]);
   const packageJson = path.join(BACKEND_ROOT, 'package.json');
   const nodeModules = path.join(BACKEND_ROOT, 'node_modules');
   const chromium = commandExists('npx', ['playwright', 'install', '--dry-run', 'chromium']);
-  const unsafeOutputPath = unsafeOutputPathReason(outputPath);
+  // Shared with extract.ts/report-gen.ts/preview-gen.ts/proof.ts so the
+  // spec-folder/sandbox boundary can't drift between callers.
+  const outputPolicy = resolveOutputPath(options.output);
 
   return [
     { name: 'node', ok: nodeMajor >= 20, detail: `Node ${process.versions.node}` },
     { name: 'package-json', ok: fs.existsSync(packageJson), detail: packageJson },
     { name: 'dependencies', ok: fs.existsSync(nodeModules), detail: nodeModules },
     { name: 'chromium', ok: chromium.ok, detail: chromium.detail },
-    { name: 'output-path', ok: !unsafeOutputPath, detail: unsafeOutputPath ? `${outputPath} is unsafe: ${unsafeOutputPath}` : outputPath },
+    { name: 'output-path', ok: outputPolicy.ok, detail: outputPolicy.ok ? outputPolicy.resolvedPath : `${outputPolicy.resolvedPath} is unsafe: ${outputPolicy.reason}` },
   ];
 }
 
@@ -206,26 +192,35 @@ export function runGuided(options: GuidedRunOptions): void {
     throw new Error('Preflight failed');
   }
 
-  const plan = buildPlan(options);
+  // Resolve output/design-md to absolute paths against THIS process's cwd
+  // once, up front. runCommand spawns child scripts with cwd: BACKEND_ROOT,
+  // so a relative path threaded through unresolved would validate against
+  // one cwd here and then get re-resolved against a different cwd inside the
+  // child — silently landing somewhere other than what preflight checked.
+  const resolvedOutput = path.resolve(process.cwd(), options.output);
+  const resolvedDesignMd = options.designMd ? path.resolve(process.cwd(), options.designMd) : undefined;
+  const resolvedOptions: GuidedRunOptions = { ...options, output: resolvedOutput, designMd: resolvedDesignMd };
+
+  const plan = buildPlan(resolvedOptions);
   for (const step of plan) {
     console.log(`PLAN ${step.label}: ${step.command} ${step.args.join(' ')}`);
   }
   if (options.dryRun) return;
 
-  fs.mkdirSync(path.resolve(process.cwd(), options.output), { recursive: true });
+  fs.mkdirSync(resolvedOutput, { recursive: true });
   const extract = plan.find((step) => step.label === 'extract');
   const writePrompt = plan.find((step) => step.label === 'write-prompt');
   if (!extract || !writePrompt) throw new Error('Missing required plan steps');
 
   runCommand(extract);
   const prompt = runCommand(writePrompt);
-  fs.writeFileSync(path.resolve(process.cwd(), options.output, 'write-prompt.md'), prompt);
+  fs.writeFileSync(path.join(resolvedOutput, 'write-prompt.md'), prompt);
 
-  if (!options.designMd) {
+  if (!resolvedDesignMd) {
     console.log('STOP validation: provide --design-md after DESIGN.md is authored');
     return;
   }
-  if (!fs.existsSync(path.resolve(process.cwd(), options.designMd))) {
+  if (!fs.existsSync(resolvedDesignMd)) {
     console.log('STOP validation: DESIGN.md does not exist. The wrapper will not author it.');
     return;
   }
