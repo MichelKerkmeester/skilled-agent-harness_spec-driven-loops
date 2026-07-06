@@ -1,0 +1,234 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-design/009-sk-design-claude-parity/006-parent-skill-canon-verification",
+  "spec_folder": "sk-design/009-sk-design-claude-parity/006-parent-skill-canon-verification",
+  "parent_id": "sk-design/009-sk-design-claude-parity",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [
+      {
+        "packet_id": "sk-design/009-sk-design-claude-parity/005-parity-benchmark-release-gate",
+        "reason": "Phase 005 documentation-level closure (CONDITIONAL release verdict) is the go signal for Phase 006 audit and decision work",
+        "source": "manual",
+        "spec_folder": "sk-design/009-sk-design-claude-parity/005-parity-benchmark-release-gate",
+        "title": "Phase 005 - Parity Benchmark Release Gate"
+      }
+    ],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "parent-skill canon verification",
+      "sk-design canon re-verification",
+      "procedures pattern formalization",
+      "proceduresPath companion directory",
+      "parent-skill-check.cjs re-run",
+      "sk-doc canon gap",
+      "implementation plan",
+      "tasks",
+      "verification",
+      "checklist",
+      "procedures pattern decision",
+      "sk-design-local convention"
+    ],
+    "key_topics": [
+      "parent-skill",
+      "canon",
+      "verification",
+      "sk-design",
+      "re-verification",
+      "procedures",
+      "pattern",
+      "formalization",
+      "procedurespath",
+      "companion",
+      "directory",
+      "parent-skill-check"
+    ],
+    "importance_tier": "high",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      ".opencode/skills/sk-design/mode-registry.json",
+      ".opencode/skills/sk-design/shared/procedure_card_schema.md",
+      ".opencode/skills/sk-doc/references/skill_creation/parent_skills_nested_packets.md",
+      ".opencode/skills/sk-design/SKILL.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "mode-registry.json",
+        "kind": "config",
+        "path": ".opencode/skills/sk-design/mode-registry.json",
+        "source": "derived"
+      },
+      {
+        "name": "procedure_card_schema.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-design/shared/procedure_card_schema.md",
+        "source": "derived"
+      },
+      {
+        "name": "parent_skills_nested_packets.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/references/skill_creation/parent_skills_nested_packets.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-design/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Skill Canon Verification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Procedures Pattern Formalization",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Executed Level",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Executed Phase",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Folder",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Use Phase",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completed Phase",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Phases 001-005 refactored `sk-design` toward Claude Design-like manager behavior while preserving the OpenCode-native parent-hub shape: one advisor identity, registry-driven routing, five public modes",
+    "created_at": "2026-07-06T04:36:21.215Z",
+    "last_save_at": "2026-07-06T05:47:26.137Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:5e557e445e57bb886c0f4d9ece78cb1a47fdef4ef58ac94ac76b7e3529a4437e",
+    "source_doc_hashes": {
+      "spec.md": "1ef1042f02bbdacca5c79310d551f00ca98c8637be1635a6b83c8b78faeed852",
+      "plan.md": "58f61e8e52cfe4c51bb1982b4879db83d7de21dbc55e7b2864951821c271002f",
+      "tasks.md": "1e6b8de6495715398a0712fe83015d8d2bee697fc09e5f4dd5397f7d66b263fc",
+      "checklist.md": "1b272a438694b0dc3bb26129fb321a80b2e65b7d971871953d6ff4fba6d12480",
+      "decision-record.md": "702c7e4a2d363c4e53fb34c3310285a8f6ceff10be82ae47c139b19f327bb41c",
+      "implementation-summary.md": "943eb6d11944b6c98051fc7f02bafdbab81232d81e352967ff998ef4bd749a90"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

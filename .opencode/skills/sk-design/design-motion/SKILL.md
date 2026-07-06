@@ -27,7 +27,7 @@ Use this skill when the request involves:
 - Reviewing or authoring `motion/react`, Framer Motion, `AnimatePresence`, CSS transitions, View Transitions, or SVG icon morphs.
 - Creating reduced-motion alternatives while preserving information and state feedback.
 
-Keyword triggers: `animation`, `motion`, `micro-interaction`, `transition`, `hover state`, `loading state`, `stagger`, `AnimatePresence`, `framer-motion`, `motion/react`, `morphing icons`, `reduced motion`, `spring`, `gesture`, `exit animation`.
+Keyword triggers: `animation`, `motion`, `micro-interaction`, `transition`, `hover state`, `focus state`, `active state`, `interaction states`, `loading state`, `stagger`, `choreography`, `motion budget`, `AnimatePresence`, `framer-motion`, `motion/react`, `morphing icons`, `reduced motion`, `spring`, `gesture`, `exit animation`.
 
 ### When NOT to Use
 
@@ -53,6 +53,8 @@ Pairs well with:
 ### Primary Detection Signal
 
 Route by temporal concern:
+
+Route here when the user asks for temporal behavior: whether something should animate, interaction-state feedback, hover/focus/active/loading states, choreography, timing, easing, gestures, reduced motion, or motion performance. If the prompt uses polish language only to evaluate whether animation is appropriate or performant, route to `audit`; if the static hierarchy is unclear before motion can help, route back to `foundations` or `interface` first.
 
 ```text
 MOTION TASK
@@ -107,6 +109,8 @@ The router discovers markdown resources recursively from `references/` and `asse
 | CONDITIONAL | A pre-handoff motion performance pass | `assets/motion_performance_failure_card.md` |
 | CONDITIONAL | Internal procedure support | `procedures/interaction_states_pass.md` and `../shared/procedures/polish_gate_orchestration.md` when the trigger matches |
 | ON_DEMAND | Static token coordination | Parent `sk-design/references/design_token_vocabulary.md` and `foundations` |
+
+The private procedure-card selection table in Section 3 is part of this routing contract: after the public `motion` mode is selected, choose at most one card from `procedures/` or `../shared/procedures/` and cite its relative path in the plan or proof line.
 
 ### Smart Router Pseudocode
 

@@ -1,4 +1,20 @@
+---
+title: Deck Direction Spec
+description: Private procedure card for design-interface slide deck direction and implementation handoff.
+trigger_phrases:
+  - "deck direction spec"
+  - "slide presentation design"
+  - "html presentation plan"
+importance_tier: normal
+contextType: implementation
+version: 1.0.0.0
+---
+
 # Deck Direction Spec
+
+Private procedure card for applying the existing design-interface deck planning workflow.
+
+## 1. REQUIRED FIELDS
 
 | Field | Value |
 |---|---|
@@ -10,11 +26,11 @@
 | Proof gate | The plan names slide layout types, one-message-per-slide discipline, minimum body text size, overflow checks, navigation expectations, and any placeholder imagery decisions. |
 | Privacy rule | This card is private deck-planning guidance inside `design-interface`, not a public deck skill. |
 
-## Read-Only Compatibility
+## 2. READ-ONLY COMPATIBILITY
 
 `design-interface` may produce the deck plan and handoff. It must not require Write, Edit, or Bash to use this card.
 
-## Procedure
+## 3. PROCEDURE
 
 1. Resolve audience, aspect ratio, slide count, time budget, tone, source content, and speaker-note need.
 2. Commit to 4 to 6 layout types before implementation.

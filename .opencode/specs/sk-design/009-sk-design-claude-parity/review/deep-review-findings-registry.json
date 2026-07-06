@@ -1,0 +1,762 @@
+{
+  "sessionId": "2026-07-06T11:48:06.000Z",
+  "parentSessionId": null,
+  "generation": 1,
+  "lineageMode": "new",
+  "continuedFromRun": null,
+  "terminalStop": null,
+  "status": "INITIALIZED",
+  "openFindings": [
+    {
+      "findingId": "P1-001",
+      "severity": "P1",
+      "title": "WRITE prompt omits component facts while requiring exact component values",
+      "file": null,
+      "line": null,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": "open",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    }
+  ],
+  "resolvedFindings": [],
+  "blockedStopHistory": [],
+  "persistentSameSeverity": [],
+  "severityChanged": [],
+  "repeatedFindings": [],
+  "dimensionCoverage": {
+    "correctness": true,
+    "security": false,
+    "traceability": false,
+    "maintainability": false
+  },
+  "findingsBySeverity": {
+    "P0": 0,
+    "P1": 1,
+    "P2": 0
+  },
+  "openFindingsCount": 1,
+  "resolvedFindingsCount": 0,
+  "convergenceScore": 0,
+  "graphConvergenceScore": 0,
+  "graphDecision": null,
+  "graphBlockers": [],
+  "candidateCoverage": {
+    "covered": [
+      "artifact_inventory",
+      "checklist_evidence_drift",
+      "compiled_backend_output_presence",
+      "manual_playbook_capability_mismatch",
+      "md_generator_entrypoint_contract",
+      "mode_registry_surface_mismatch",
+      "mode_routing_surface_mismatch",
+      "out_of_scope_boundary",
+      "phase010_remediation_residual",
+      "phase012_false_completion",
+      "placeholder_or_stub_residue",
+      "tool_surface_escalation",
+      "write_prompt_value_fidelity"
+    ],
+    "ruledOut": [
+      "artifact_inventory",
+      "checklist_evidence_drift",
+      "compiled_backend_output_presence",
+      "md_generator_entrypoint_contract",
+      "missing_backend_dist_cli",
+      "missing_parent_or_phase_structure",
+      "mode_registry_surface_mismatch",
+      "mode_routing_surface_mismatch",
+      "obvious_stub_residue",
+      "phase010_remediation_residual",
+      "phase012_false_completion",
+      "placeholder_or_stub_residue",
+      "silent_unchecked_hard_blocker",
+      "tool_surface_escalation"
+    ],
+    "deferred": [
+      "deep_correctness",
+      "deep_correctness_security_traceability_maintainability",
+      "feature_catalog_code",
+      "full_command_surface_review",
+      "full_manual_playbook_capability_validation",
+      "maintainability_drift",
+      "manual_playbook_capability_mismatch",
+      "playbook_capability",
+      "security_boundary",
+      "traceability_matrix"
+    ],
+    "blocked": [],
+    "byBugClass": {
+      "artifact_inventory": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "checklist_evidence_drift": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "mode_registry_surface_mismatch": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "compiled_backend_output_presence": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "placeholder_or_stub_residue": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "out_of_scope_boundary": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "missing_parent_or_phase_structure": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "silent_unchecked_hard_blocker": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "missing_backend_dist_cli": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "obvious_stub_residue": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "deep_correctness": {
+        "covered": false,
+        "ruledOut": false,
+        "deferred": true,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "security_boundary": {
+        "covered": false,
+        "ruledOut": false,
+        "deferred": true,
+        "blocked": false,
+        "iterations": [
+          1,
+          2
+        ]
+      },
+      "traceability_matrix": {
+        "covered": false,
+        "ruledOut": false,
+        "deferred": true,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "maintainability_drift": {
+        "covered": false,
+        "ruledOut": false,
+        "deferred": true,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "feature_catalog_code": {
+        "covered": false,
+        "ruledOut": false,
+        "deferred": true,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "playbook_capability": {
+        "covered": false,
+        "ruledOut": false,
+        "deferred": true,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "deep_correctness_security_traceability_maintainability": {
+        "covered": false,
+        "ruledOut": false,
+        "deferred": true,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "mode_routing_surface_mismatch": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "tool_surface_escalation": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "md_generator_entrypoint_contract": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "write_prompt_value_fidelity": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "phase010_remediation_residual": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "phase012_false_completion": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "manual_playbook_capability_mismatch": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": true,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "full_manual_playbook_capability_validation": {
+        "covered": false,
+        "ruledOut": false,
+        "deferred": true,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "full_command_surface_review": {
+        "covered": false,
+        "ruledOut": false,
+        "deferred": true,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      }
+    }
+  },
+  "searchDebt": [
+    {
+      "iteration": 1,
+      "id": "SL-006",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".opencode/skills/sk-design/**",
+        ".opencode/specs/sk-design/009-sk-design-claude-parity/**"
+      ],
+      "bugClass": "deep_correctness_security_traceability_maintainability",
+      "disposition": "deferred",
+      "rationale": "Iteration 1 was explicitly broad inventory, not line-by-line dimension review.",
+      "evidenceRefs": [
+        ".opencode/specs/sk-design/009-sk-design-claude-parity/review/deep-review-strategy.md:100"
+      ],
+      "reason": "Review plan assigns deep dimension work to later iterations."
+    },
+    {
+      "iteration": 2,
+      "id": "SL-206",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".opencode/skills/sk-design/**/manual_testing_playbook/**/*.md"
+      ],
+      "bugClass": "manual_playbook_capability_mismatch",
+      "disposition": "deferred",
+      "rationale": "Glob confirmed broad playbook presence, but full scenario-to-capability validation is not needed to adjudicate the mode-routing and md-generator correctness focus.",
+      "evidenceRefs": [
+        ".opencode/specs/sk-design/009-sk-design-claude-parity/review/iterations/iteration-002.md:51"
+      ],
+      "reason": "Defer to traceability or maintainability iterations for full scenario validation."
+    }
+  ],
+  "ruledOutCandidates": [
+    {
+      "iteration": 1,
+      "id": "SL-001",
+      "dimension": "inventory-pass",
+      "targetRefs": [
+        ".opencode/specs/sk-design/009-sk-design-claude-parity"
+      ],
+      "bugClass": "artifact_inventory",
+      "disposition": "ruled_out",
+      "rationale": "No missing parent/phase structure was confirmed during inventory.",
+      "evidenceRefs": [
+        ".opencode/specs/sk-design/009-sk-design-claude-parity:1",
+        ".opencode/specs/sk-design/009-sk-design-claude-parity/008-smart-routing-optimization/benchmark-after-008/report.md:1"
+      ],
+      "reason": "Directory and targeted glob evidence matched the declared structure."
+    },
+    {
+      "iteration": 1,
+      "id": "SL-002",
+      "dimension": "inventory-pass",
+      "targetRefs": [
+        ".opencode/specs/sk-design/009-sk-design-claude-parity/*/checklist.md"
+      ],
+      "bugClass": "checklist_evidence_drift",
+      "disposition": "ruled_out",
+      "rationale": "Unchecked hard blockers were not silently left as complete; the visible P0/P1 unchecked rows are part of the accepted Phase 012 descope record.",
+      "evidenceRefs": [
+        ".opencode/specs/sk-design/009-sk-design-claude-parity/012-routing-benchmark-rigor/decision-record.md:241",
+        ".opencode/specs/sk-design/009-sk-design-claude-parity/012-routing-benchmark-rigor/implementation-summary.md:121",
+        ".opencode/specs/sk-design/009-sk-design-claude-parity/013-design-commands-asset-refactor/checklist.md:141"
+      ],
+      "reason": "Accepted descope and P2 deferral evidence explains the unchecked rows."
+    },
+    {
+      "iteration": 1,
+      "id": "SL-003",
+      "dimension": "inventory-pass",
+      "targetRefs": [
+        ".opencode/skills/sk-design/mode-registry.json"
+      ],
+      "bugClass": "mode_registry_surface_mismatch",
+      "disposition": "ruled_out",
+      "rationale": "No mode-count or tool-surface mismatch was observed.",
+      "evidenceRefs": [
+        ".opencode/skills/sk-design/mode-registry.json:32",
+        ".opencode/skills/sk-design/mode-registry.json:37",
+        ".opencode/skills/sk-design/mode-registry.json:57",
+        ".opencode/skills/sk-design/mode-registry.json:77",
+        ".opencode/skills/sk-design/mode-registry.json:97",
+        ".opencode/skills/sk-design/mode-registry.json:117"
+      ],
+      "reason": "Direct registry read matched the expected five-mode taxonomy."
+    },
+    {
+      "iteration": 1,
+      "id": "SL-004",
+      "dimension": "inventory-pass",
+      "targetRefs": [
+        ".opencode/skills/sk-design/design-md-generator/backend/package.json",
+        ".opencode/skills/sk-design/design-md-generator/backend/dist"
+      ],
+      "bugClass": "compiled_backend_output_presence",
+      "disposition": "ruled_out",
+      "rationale": "Compiled backend output exists and includes the package main target.",
+      "evidenceRefs": [
+        ".opencode/skills/sk-design/design-md-generator/backend/package.json:6",
+        ".opencode/skills/sk-design/design-md-generator/backend/dist:1",
+        ".opencode/skills/sk-design/design-md-generator/backend/tsconfig.build.json:1"
+      ],
+      "reason": "Direct directory read confirmed dist/cli.js exists."
+    },
+    {
+      "iteration": 1,
+      "id": "SL-005",
+      "dimension": "inventory-pass",
+      "targetRefs": [
+        ".opencode/specs/sk-design/009-sk-design-claude-parity",
+        ".opencode/skills/sk-design"
+      ],
+      "bugClass": "placeholder_or_stub_residue",
+      "disposition": "ruled_out",
+      "rationale": "Search did not produce an obvious actionable stub residue finding within inventory scope.",
+      "evidenceRefs": [
+        ".opencode/specs/sk-design/009-sk-design-claude-parity/013-design-commands-asset-refactor/plan.md:152",
+        ".opencode/skills/sk-design/design-md-generator/assets/design_md_prompt_template.md:30",
+        ".opencode/skills/sk-design/design-interface/assets/interface_preflight_card.md:54"
+      ],
+      "reason": "Observed hits were semantically expected uses of the searched terms."
+    },
+    {
+      "iteration": 2,
+      "id": "SL-201",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".opencode/skills/sk-design/mode-registry.json",
+        ".opencode/skills/sk-design/hub-router.json",
+        ".opencode/skills/sk-design/*/SKILL.md"
+      ],
+      "bugClass": "mode_routing_surface_mismatch",
+      "disposition": "ruled_out",
+      "rationale": "Registry, hub-router, hub prose, and five mode frontmatters agree on the five-mode taxonomy and tool-surface split.",
+      "evidenceRefs": [
+        ".opencode/skills/sk-design/mode-registry.json:32",
+        ".opencode/skills/sk-design/hub-router.json:27",
+        ".opencode/skills/sk-design/design-md-generator/SKILL.md:1"
+      ],
+      "reason": "Direct reads matched the declared routing contract."
+    },
+    {
+      "iteration": 2,
+      "id": "SL-203",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".opencode/skills/sk-design/design-md-generator/backend/scripts/extract.ts",
+        ".opencode/skills/sk-design/design-md-generator/backend/scripts/cli.ts",
+        ".opencode/skills/sk-design/design-md-generator/backend/scripts/validate.ts"
+      ],
+      "bugClass": "md_generator_entrypoint_contract",
+      "disposition": "ruled_out",
+      "rationale": "No correctness failure was confirmed in the sampled CLI parse, output guard, fast default, or validator pass/fail logic.",
+      "evidenceRefs": [
+        ".opencode/skills/sk-design/design-md-generator/backend/scripts/extract.ts:61",
+        ".opencode/skills/sk-design/design-md-generator/backend/scripts/extract.ts:97",
+        ".opencode/skills/sk-design/design-md-generator/backend/scripts/extract.ts:258",
+        ".opencode/skills/sk-design/design-md-generator/backend/scripts/validate.ts:279",
+        ".opencode/skills/sk-design/design-md-generator/backend/scripts/validate.ts:486"
+      ],
+      "reason": "No confirmed contract failure in those sampled entrypoints."
+    },
+    {
+      "iteration": 2,
+      "id": "SL-204",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".opencode/specs/sk-design/009-sk-design-claude-parity/010-feature-catalog-completeness/spec.md",
+        ".opencode/specs/sk-design/009-sk-design-claude-parity/010-feature-catalog-completeness/implementation-summary.md"
+      ],
+      "bugClass": "phase010_remediation_residual",
+      "disposition": "ruled_out",
+      "rationale": "Phase 010 spec and summary consistently record the remediation file layout and validation results.",
+      "evidenceRefs": [
+        ".opencode/specs/sk-design/009-sk-design-claude-parity/010-feature-catalog-completeness/spec.md:102",
+        ".opencode/specs/sk-design/009-sk-design-claude-parity/010-feature-catalog-completeness/implementation-summary.md:44"
+      ],
+      "reason": "No residual correctness drift found in sampled Phase 010 records."
+    },
+    {
+      "iteration": 2,
+      "id": "SL-205",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".opencode/specs/sk-design/009-sk-design-claude-parity/012-routing-benchmark-rigor/decision-record.md",
+        ".opencode/specs/sk-design/009-sk-design-claude-parity/012-routing-benchmark-rigor/implementation-summary.md"
+      ],
+      "bugClass": "phase012_false_completion",
+      "disposition": "ruled_out",
+      "rationale": "Phase 012 explicitly records accepted descope and unscored dimensions rather than fabricating the expanded benchmark completion.",
+      "evidenceRefs": [
+        ".opencode/specs/sk-design/009-sk-design-claude-parity/012-routing-benchmark-rigor/decision-record.md:241",
+        ".opencode/specs/sk-design/009-sk-design-claude-parity/012-routing-benchmark-rigor/implementation-summary.md:121"
+      ],
+      "reason": "The descope is explicit and not a silent false-pass claim."
+    }
+  ],
+  "cleanSearchProof": [
+    {
+      "iteration": 1,
+      "id": "SL-001",
+      "dimension": "inventory-pass",
+      "targetRefs": [
+        ".opencode/specs/sk-design/009-sk-design-claude-parity"
+      ],
+      "bugClass": "artifact_inventory",
+      "disposition": "ruled_out",
+      "rationale": "No missing parent/phase structure was confirmed during inventory.",
+      "evidenceRefs": [
+        ".opencode/specs/sk-design/009-sk-design-claude-parity:1",
+        ".opencode/specs/sk-design/009-sk-design-claude-parity/008-smart-routing-optimization/benchmark-after-008/report.md:1"
+      ],
+      "proof": "Directory and targeted glob evidence matched the declared structure."
+    },
+    {
+      "iteration": 1,
+      "id": "SL-002",
+      "dimension": "inventory-pass",
+      "targetRefs": [
+        ".opencode/specs/sk-design/009-sk-design-claude-parity/*/checklist.md"
+      ],
+      "bugClass": "checklist_evidence_drift",
+      "disposition": "ruled_out",
+      "rationale": "Unchecked hard blockers were not silently left as complete; the visible P0/P1 unchecked rows are part of the accepted Phase 012 descope record.",
+      "evidenceRefs": [
+        ".opencode/specs/sk-design/009-sk-design-claude-parity/012-routing-benchmark-rigor/decision-record.md:241",
+        ".opencode/specs/sk-design/009-sk-design-claude-parity/012-routing-benchmark-rigor/implementation-summary.md:121",
+        ".opencode/specs/sk-design/009-sk-design-claude-parity/013-design-commands-asset-refactor/checklist.md:141"
+      ],
+      "proof": "Accepted descope and P2 deferral evidence explains the unchecked rows."
+    },
+    {
+      "iteration": 1,
+      "id": "SL-003",
+      "dimension": "inventory-pass",
+      "targetRefs": [
+        ".opencode/skills/sk-design/mode-registry.json"
+      ],
+      "bugClass": "mode_registry_surface_mismatch",
+      "disposition": "ruled_out",
+      "rationale": "No mode-count or tool-surface mismatch was observed.",
+      "evidenceRefs": [
+        ".opencode/skills/sk-design/mode-registry.json:32",
+        ".opencode/skills/sk-design/mode-registry.json:37",
+        ".opencode/skills/sk-design/mode-registry.json:57",
+        ".opencode/skills/sk-design/mode-registry.json:77",
+        ".opencode/skills/sk-design/mode-registry.json:97",
+        ".opencode/skills/sk-design/mode-registry.json:117"
+      ],
+      "proof": "Direct registry read matched the expected five-mode taxonomy."
+    },
+    {
+      "iteration": 1,
+      "id": "SL-004",
+      "dimension": "inventory-pass",
+      "targetRefs": [
+        ".opencode/skills/sk-design/design-md-generator/backend/package.json",
+        ".opencode/skills/sk-design/design-md-generator/backend/dist"
+      ],
+      "bugClass": "compiled_backend_output_presence",
+      "disposition": "ruled_out",
+      "rationale": "Compiled backend output exists and includes the package main target.",
+      "evidenceRefs": [
+        ".opencode/skills/sk-design/design-md-generator/backend/package.json:6",
+        ".opencode/skills/sk-design/design-md-generator/backend/dist:1",
+        ".opencode/skills/sk-design/design-md-generator/backend/tsconfig.build.json:1"
+      ],
+      "proof": "Direct directory read confirmed dist/cli.js exists."
+    },
+    {
+      "iteration": 1,
+      "id": "SL-005",
+      "dimension": "inventory-pass",
+      "targetRefs": [
+        ".opencode/specs/sk-design/009-sk-design-claude-parity",
+        ".opencode/skills/sk-design"
+      ],
+      "bugClass": "placeholder_or_stub_residue",
+      "disposition": "ruled_out",
+      "rationale": "Search did not produce an obvious actionable stub residue finding within inventory scope.",
+      "evidenceRefs": [
+        ".opencode/specs/sk-design/009-sk-design-claude-parity/013-design-commands-asset-refactor/plan.md:152",
+        ".opencode/skills/sk-design/design-md-generator/assets/design_md_prompt_template.md:30",
+        ".opencode/skills/sk-design/design-interface/assets/interface_preflight_card.md:54"
+      ],
+      "proof": "Observed hits were semantically expected uses of the searched terms."
+    },
+    {
+      "iteration": 2,
+      "id": "SL-201",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".opencode/skills/sk-design/mode-registry.json",
+        ".opencode/skills/sk-design/hub-router.json",
+        ".opencode/skills/sk-design/*/SKILL.md"
+      ],
+      "bugClass": "mode_routing_surface_mismatch",
+      "disposition": "ruled_out",
+      "rationale": "Registry, hub-router, hub prose, and five mode frontmatters agree on the five-mode taxonomy and tool-surface split.",
+      "evidenceRefs": [
+        ".opencode/skills/sk-design/mode-registry.json:32",
+        ".opencode/skills/sk-design/hub-router.json:27",
+        ".opencode/skills/sk-design/design-md-generator/SKILL.md:1"
+      ],
+      "proof": "Direct reads matched the declared routing contract."
+    },
+    {
+      "iteration": 2,
+      "id": "SL-203",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".opencode/skills/sk-design/design-md-generator/backend/scripts/extract.ts",
+        ".opencode/skills/sk-design/design-md-generator/backend/scripts/cli.ts",
+        ".opencode/skills/sk-design/design-md-generator/backend/scripts/validate.ts"
+      ],
+      "bugClass": "md_generator_entrypoint_contract",
+      "disposition": "ruled_out",
+      "rationale": "No correctness failure was confirmed in the sampled CLI parse, output guard, fast default, or validator pass/fail logic.",
+      "evidenceRefs": [
+        ".opencode/skills/sk-design/design-md-generator/backend/scripts/extract.ts:61",
+        ".opencode/skills/sk-design/design-md-generator/backend/scripts/extract.ts:97",
+        ".opencode/skills/sk-design/design-md-generator/backend/scripts/extract.ts:258",
+        ".opencode/skills/sk-design/design-md-generator/backend/scripts/validate.ts:279",
+        ".opencode/skills/sk-design/design-md-generator/backend/scripts/validate.ts:486"
+      ],
+      "proof": "No confirmed contract failure in those sampled entrypoints."
+    },
+    {
+      "iteration": 2,
+      "id": "SL-204",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".opencode/specs/sk-design/009-sk-design-claude-parity/010-feature-catalog-completeness/spec.md",
+        ".opencode/specs/sk-design/009-sk-design-claude-parity/010-feature-catalog-completeness/implementation-summary.md"
+      ],
+      "bugClass": "phase010_remediation_residual",
+      "disposition": "ruled_out",
+      "rationale": "Phase 010 spec and summary consistently record the remediation file layout and validation results.",
+      "evidenceRefs": [
+        ".opencode/specs/sk-design/009-sk-design-claude-parity/010-feature-catalog-completeness/spec.md:102",
+        ".opencode/specs/sk-design/009-sk-design-claude-parity/010-feature-catalog-completeness/implementation-summary.md:44"
+      ],
+      "proof": "No residual correctness drift found in sampled Phase 010 records."
+    },
+    {
+      "iteration": 2,
+      "id": "SL-205",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".opencode/specs/sk-design/009-sk-design-claude-parity/012-routing-benchmark-rigor/decision-record.md",
+        ".opencode/specs/sk-design/009-sk-design-claude-parity/012-routing-benchmark-rigor/implementation-summary.md"
+      ],
+      "bugClass": "phase012_false_completion",
+      "disposition": "ruled_out",
+      "rationale": "Phase 012 explicitly records accepted descope and unscored dimensions rather than fabricating the expanded benchmark completion.",
+      "evidenceRefs": [
+        ".opencode/specs/sk-design/009-sk-design-claude-parity/012-routing-benchmark-rigor/decision-record.md:241",
+        ".opencode/specs/sk-design/009-sk-design-claude-parity/012-routing-benchmark-rigor/implementation-summary.md:121"
+      ],
+      "proof": "The descope is explicit and not a silent false-pass claim."
+    }
+  ],
+  "searchCoverage": {
+    "requiredBugClasses": [
+      "mode_routing_surface_mismatch",
+      "tool_surface_escalation",
+      "md_generator_entrypoint_contract",
+      "write_prompt_value_fidelity",
+      "phase010_remediation_residual",
+      "phase012_false_completion",
+      "manual_playbook_capability_mismatch"
+    ],
+    "covered": [
+      "mode_routing_surface_mismatch",
+      "tool_surface_escalation",
+      "md_generator_entrypoint_contract",
+      "write_prompt_value_fidelity",
+      "phase010_remediation_residual",
+      "phase012_false_completion",
+      "manual_playbook_capability_mismatch"
+    ],
+    "ruledOut": [
+      "mode_routing_surface_mismatch",
+      "tool_surface_escalation",
+      "phase010_remediation_residual",
+      "phase012_false_completion"
+    ],
+    "deferred": [
+      "full_manual_playbook_capability_validation",
+      "security_boundary",
+      "full_command_surface_review"
+    ],
+    "blocked": [],
+    "graphCoverageMode": "graphless_fallback"
+  },
+  "traceability": {
+    "summary": {
+      "required": 0,
+      "executed": 0,
+      "pass": 0,
+      "partial": 0,
+      "fail": 0,
+      "blocked": 0,
+      "notApplicable": 0,
+      "gatingFailures": 0
+    },
+    "results": []
+  },
+  "fieldWarnings": [
+    {
+      "index": 1,
+      "rule": "findingsNew-severity-keys",
+      "detail": "findingsNew must contain P0, P1, P2 keys"
+    }
+  ],
+  "corruptionWarnings": []
+}

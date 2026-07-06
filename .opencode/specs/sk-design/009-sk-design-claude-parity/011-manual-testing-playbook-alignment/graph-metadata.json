@@ -1,0 +1,224 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-design/009-sk-design-claude-parity/011-manual-testing-playbook-alignment",
+  "spec_folder": "sk-design/009-sk-design-claude-parity/011-manual-testing-playbook-alignment",
+  "parent_id": "sk-design/009-sk-design-claude-parity",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "manual testing playbook alignment",
+      "procedure card selection proof",
+      "hub manager intake coverage",
+      "context proof direct fallback scenarios",
+      "sk-design playbook gap analysis",
+      "implementation plan",
+      "tasks",
+      "verification",
+      "checklist",
+      "implementation summary",
+      "phase 011 complete"
+    ],
+    "key_topics": [
+      "manual",
+      "testing",
+      "playbook",
+      "alignment",
+      "procedure",
+      "card",
+      "selection",
+      "proof",
+      "hub",
+      "manager",
+      "intake",
+      "coverage"
+    ],
+    "importance_tier": "high",
+    "status": "complete",
+    "key_files": [
+      ".opencode/skills/sk-design/manual_testing_playbook/manual_testing_playbook.md",
+      ".opencode/skills/sk-design/design-interface/manual_testing_playbook/manual_testing_playbook.md",
+      ".opencode/skills/sk-design/design-foundations/manual_testing_playbook/manual_testing_playbook.md",
+      ".opencode/skills/sk-design/design-motion/manual_testing_playbook/manual_testing_playbook.md",
+      ".opencode/skills/sk-design/design-audit/manual_testing_playbook/manual_testing_playbook.md",
+      ".opencode/skills/sk-design/design-md-generator/manual_testing_playbook/manual_testing_playbook.md",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "manual_testing_playbook.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-design/manual_testing_playbook/manual_testing_playbook.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Manual Testing Playbook Full Alignment",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completed Level",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Folder",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Writable Scope Used",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Primary Area",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Level",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Mutation Policy",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completed Phase",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "All Phase",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Confirm Phases",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verified Phase",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Impact",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The sk-design hub and mode-packet manual testing playbooks did not fully exercise behavior added by earlier parity-refactor work:",
+    "created_at": "2026-07-06T04:31:56.870Z",
+    "last_save_at": "2026-07-06T09:11:03.370Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:f372675668b78893c8acb9eeb68b488967e275fb90aa131f377c68ddd107f261",
+    "source_doc_hashes": {
+      "spec.md": "72cbe45a10ed5bbcd3959438bfba12a29188672290e828e8418912dc50a7b2fc",
+      "plan.md": "772f3d9eb71f359e1f7557736805bc6a7033df27c3fdcf8d77a683979f5a5505",
+      "tasks.md": "28df08aa8953b272aeceb2aecab8a52752ddd35c541c5d36cda7a3ec08d8462e",
+      "checklist.md": "e1054600b0c4a0645f345444558a13ad107f471d01d251e3e81856377bb77078",
+      "implementation-summary.md": "45aa5e71c95560e8b6e40f729eef84fdd8022cc73cfdfb643c4a6ea8aa7f59b5"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

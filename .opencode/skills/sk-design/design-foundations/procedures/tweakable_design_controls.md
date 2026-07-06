@@ -1,4 +1,20 @@
+---
+title: Tweakable Design Controls
+description: Private procedure card for design-foundations live-adjustable design controls.
+trigger_phrases:
+  - "tweakable design controls"
+  - "adjustable design tokens"
+  - "live design controls"
+importance_tier: normal
+contextType: implementation
+version: 1.0.0.0
+---
+
 # Tweakable Design Controls
+
+Private procedure card for applying the existing design-foundations tweak-control workflow.
+
+## 1. REQUIRED FIELDS
 
 | Field | Value |
 |---|---|
@@ -10,11 +26,11 @@
 | Proof gate | Each control changes a meaningful design axis, maps to a token or state, has a default, and excludes nonessential knobs. |
 | Privacy rule | This is private foundations guidance and does not create a public tweakable skill. |
 
-## Read-Only Compatibility
+## 2. READ-ONLY COMPATIBILITY
 
 `design-foundations` can return the control schema and handoff without writing code or running host protocols. Implementation of controls belongs to a mutating follow-up or `sk-code`.
 
-## Procedure
+## 3. PROCEDURE
 
 1. Identify which axes are worth exposing: color, type, density, layout, component treatment, copy, or feature visibility.
 2. Keep the control surface small and purposeful.
@@ -22,7 +38,7 @@
 4. Specify defaults and persistence behavior for implementation.
 5. Require the final design to hide tweak chrome when controls are off.
 
-## Related Cards
+## 4. RELATED CARDS
 
 - `component_system_inventory.md` when controls affect reusable component variants.
 - `../design-interface/procedures/variation_set.md` when alternatives are better shown as separate directions.

@@ -1,4 +1,20 @@
+---
+title: Accessibility Audit
+description: Private procedure card for design-audit accessibility review across contrast, semantics, keyboard behavior, motion, and forms.
+trigger_phrases:
+  - "accessibility audit"
+  - "wcag review"
+  - "inclusive design review"
+importance_tier: normal
+contextType: implementation
+version: 1.0.0.0
+---
+
 # Accessibility Audit
+
+Private procedure card for applying the existing design-audit accessibility review workflow.
+
+## 1. REQUIRED FIELDS
 
 | Field | Value |
 |---|---|
@@ -10,11 +26,11 @@
 | Proof gate | The report covers contrast/color, semantic structure, keyboard/focus, motion/forms/miscellaneous, and does not claim accessibility where evidence is missing. |
 | Privacy rule | This is private audit guidance and not a public accessibility skill. |
 
-## Read-Only Compatibility
+## 2. READ-ONLY COMPATIBILITY
 
 `design-audit` may use Read, Glob, and Grep evidence plus supplied artifacts to report findings. It routes fixes to owners and does not require editing files itself.
 
-## Procedure
+## 3. PROCEDURE
 
 1. Resolve the target artifact and expected accessibility bar.
 2. Review contrast and color signaling with actual values when available; otherwise label gaps.
@@ -23,7 +39,7 @@
 5. Review motion preferences, flashing risk, form errors, required indicators, autocomplete, and touch target size.
 6. Order findings by severity and map each to audit, foundations, motion, interface, or `sk-code` implementation.
 
-## Related Cards
+## 4. RELATED CARDS
 
 - `../design-motion/procedures/interaction_states_pass.md` for detailed state feedback requirements.
 - `../shared/procedures/polish_gate_orchestration.md` for full pre-delivery aggregation.

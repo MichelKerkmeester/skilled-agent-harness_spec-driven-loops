@@ -1,0 +1,59 @@
+{
+  "title": "Phase 005 - Parity Benchmark Release Gate",
+  "type": "phase",
+  "trigger_phrases": [
+    "parity benchmark release gate",
+    "Claude Design-like behavior",
+    "sk-design release readiness",
+    "golden prompt benchmark",
+    "procedure selection proof",
+    "context manifest proof gates",
+    "anti-slop review lanes",
+    "md-generator preservation tests",
+    "router advisor invariants",
+    "manual playbook scenarios",
+    "negative controls",
+    "baseline delta discipline"
+  ],
+  "path": ".opencode/specs/sk-design/009-sk-design-claude-parity/005-parity-benchmark-release-gate/",
+  "level": 3,
+  "status": "complete",
+  "parentPacket": ".opencode/specs/sk-design/009-sk-design-claude-parity/",
+  "specFolder": "sk-design/009-sk-design-claude-parity/005-parity-benchmark-release-gate",
+  "description": "Defines the release gate proving refactored sk-design behaves like Claude Design while staying OpenCode-native: golden prompts, procedure-selection proof, design-quality lanes, md-generator preservation, and release authority.",
+  "keywords": [
+    "parity",
+    "refactor",
+    "look",
+    "correct",
+    "router",
+    "layer",
+    "while",
+    "still",
+    "failing",
+    "live",
+    "sk-design",
+    "usefulness",
+    "procedure",
+    "selection",
+    "proof",
+    "discipline",
+    "anti-slop"
+  ],
+  "lastUpdated": "2026-07-06T04:58:33.728Z",
+  "specId": "005",
+  "folderSlug": "parity-benchmark-release-gate",
+  "parentChain": [
+    "sk-design",
+    "009-sk-design-claude-parity"
+  ],
+  "memorySequence": 6,
+  "memoryNameHistory": [
+    "06-07-26_02-07__reconciled-phase-005-checklist-decision-record.md",
+    "06-07-26_02-10__reconciled-phase-005-checklist-decision-record.md",
+    "06-07-26_02-14__reconciled-phase-005-checklist-decision-record.md",
+    "06-07-26_02-25__reran-the-router-mode-sk-design-benchmark-into.md",
+    "06-07-26_05-57__phase-005-checklist-decision-record.md",
+    "06-07-26_05-58__phase-005-checklist-decision-record.md"
+  ]
+}

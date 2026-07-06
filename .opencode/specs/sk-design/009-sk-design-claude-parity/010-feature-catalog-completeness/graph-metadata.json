@@ -1,0 +1,234 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-design/009-sk-design-claude-parity/010-feature-catalog-completeness",
+  "spec_folder": "sk-design/009-sk-design-claude-parity/010-feature-catalog-completeness",
+  "parent_id": "sk-design/009-sk-design-claude-parity",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "feature catalog completeness",
+      "sk-design feature catalog",
+      "procedure card system catalog",
+      "phase 010",
+      "implementation plan",
+      "tasks",
+      "verification",
+      "checklist",
+      "phase 010 implementation summary",
+      "feature catalog completeness summary",
+      "sk-design catalog remediation evidence",
+      "procedure card catalog completeness"
+    ],
+    "key_topics": [
+      "feature",
+      "catalog",
+      "completeness",
+      "sk-design",
+      "procedure",
+      "card",
+      "system",
+      "phase",
+      "010",
+      "implementation",
+      "plan",
+      "tasks"
+    ],
+    "importance_tier": "high",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md",
+      ".opencode/skills/sk-design/design-foundations/feature_catalog/03--procedure-cards/foundations-procedure-card-inventory.md",
+      ".opencode/skills/sk-design/design-motion/feature_catalog/feature_catalog.md",
+      ".opencode/skills/sk-design/design-motion/feature_catalog/02--build-cards/motion-fill-in-cards.md",
+      ".opencode/skills/sk-design/design-motion/feature_catalog/03--procedure-cards/motion-procedure-card-inventory.md",
+      ".opencode/skills/sk-design/design-audit/feature_catalog/feature_catalog.md",
+      ".opencode/skills/sk-design/design-audit/feature_catalog/02--ai-tell-catalog/ai-fingerprint-tell-catalog.md",
+      ".opencode/skills/sk-design/design-audit/feature_catalog/03--procedure-cards/audit-procedure-card-inventory.md",
+      ".opencode/skills/sk-design/design-md-generator/feature_catalog/08--procedure-cards/md-generator-procedure-card-inventory.md",
+      ".opencode/skills/sk-design/design-md-generator/feature_catalog/feature_catalog.md",
+      ".opencode/skills/sk-design/graph-metadata.json",
+      ".opencode/skills/sk-doc/assets/feature_catalog/feature_catalog_template.md",
+      ".opencode/skills/sk-design/SKILL.md",
+      ".opencode/skills/sk-design/feature_catalog/feature_catalog.md",
+      ".opencode/skills/sk-design/shared/procedure_card_schema.md",
+      ".opencode/skills/sk-design/design-interface/feature_catalog/feature_catalog.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "foundations-procedure-card-inventory.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-design/design-foundations/feature_catalog/03--procedure-cards/foundations-procedure-card-inventory.md",
+        "source": "derived"
+      },
+      {
+        "name": "feature_catalog.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-design/design-motion/feature_catalog/feature_catalog.md",
+        "source": "derived"
+      },
+      {
+        "name": "motion-fill-in-cards.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-design/design-motion/feature_catalog/02--build-cards/motion-fill-in-cards.md",
+        "source": "derived"
+      },
+      {
+        "name": "motion-procedure-card-inventory.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-design/design-motion/feature_catalog/03--procedure-cards/motion-procedure-card-inventory.md",
+        "source": "derived"
+      },
+      {
+        "name": "ai-fingerprint-tell-catalog.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-design/design-audit/feature_catalog/02--ai-tell-catalog/ai-fingerprint-tell-catalog.md",
+        "source": "derived"
+      },
+      {
+        "name": "audit-procedure-card-inventory.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-design/design-audit/feature_catalog/03--procedure-cards/audit-procedure-card-inventory.md",
+        "source": "derived"
+      },
+      {
+        "name": "md-generator-procedure-card-inventory.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-design/design-md-generator/feature_catalog/08--procedure-cards/md-generator-procedure-card-inventory.md",
+        "source": "derived"
+      },
+      {
+        "name": "graph-metadata.json",
+        "kind": "config",
+        "path": ".opencode/skills/sk-design/graph-metadata.json",
+        "source": "derived"
+      },
+      {
+        "name": "feature_catalog_template.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/assets/feature_catalog/feature_catalog_template.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-design/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "procedure_card_schema.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-design/shared/procedure_card_schema.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Catalog",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Snippet Completeness",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Folder",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Writable Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Only one of the six `sk-design` packages — `design-md-generator` — has a `featurecatalog/` package (`design-md-generator/featurecatalog/featurecatalog.md`, 7 categories)",
+    "created_at": "2026-07-06T04:35:22.460Z",
+    "last_save_at": "2026-07-06T10:36:46.256Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:f00995e00667bef889211d0f111286b3bec14973beec96b224f6cef4eea7c090",
+    "source_doc_hashes": {
+      "spec.md": "a22172ecb4d7bacf05cdab048937c1130636bcda5e329950080d26348a6c16d6",
+      "plan.md": "4650d16d358b60dd9cb9fed45f3da27e429d0950351f1f8022f85515435321c6",
+      "tasks.md": "e11576d2ea35316f1055f4d86d72af622567cfe889a3bf9e9a6d48d650aae3cd",
+      "checklist.md": "70894848aebaf725eb701ee82de922a968443e52e967b4440074b827b6419e69",
+      "implementation-summary.md": "ea436da85e989643365587fb0a46071be9e71b476f2a8f3c202f43215ff8a1e3"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

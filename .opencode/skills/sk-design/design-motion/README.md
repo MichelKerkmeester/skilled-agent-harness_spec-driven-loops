@@ -7,7 +7,7 @@ trigger_phrases:
   - "AnimatePresence patterns"
   - "reduced motion"
 contextType: implementation
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # design-motion
@@ -53,6 +53,8 @@ The flow runs gate first, choreography second, verification last. Skipping the g
 
 **Spec it with a card, then verify.** Fill the matching card, run the presence checklist for any exit and clear the performance card before handoff.
 
+**Use the private procedure card when interaction states dominate.** The maintainer-facing card in [`procedures/interaction_states_pass.md`](./procedures/interaction_states_pass.md) supports state-by-state evidence gathering after the public `motion` mode is chosen. It is not a user-selectable route.
+
 ### The Three Cards
 
 The cards convert a motion decision into a build-ready spec and two pre-handoff gates.
@@ -89,7 +91,7 @@ The mode ships a manual testing playbook. Run it against the live skill and the 
 
 | Check | Result |
 |---|---|
-| [`manual_testing_playbook/`](./manual_testing_playbook/manual_testing_playbook.md) | Eight scenarios across decision, strategy, presence, reduced-motion and micro-interaction categories |
+| [`manual_testing_playbook/`](./manual_testing_playbook/manual_testing_playbook.md) | Ten scenarios across `01--strategy`, `02--presence`, `03--reduced-motion`, `04--micro-interactions`, `05--decision` and `06--advanced-craft` categories |
 | `python3 .opencode/skills/sk-doc/scripts/package_skill.py --check .opencode/skills/sk-design` | Exit 0, the parent skill packages cleanly |
 
 ---
@@ -107,4 +109,5 @@ The mode ships a manual testing playbook. Run it against the live skill and the 
 | [`assets/motion_pattern_cards.md`](./assets/motion_pattern_cards.md) | Fill-in spec cards for the common motion patterns |
 | [`assets/animate_presence_checklist.md`](./assets/animate_presence_checklist.md) | Pass-or-fail checklist for shipping an exit animation |
 | [`assets/motion_performance_failure_card.md`](./assets/motion_performance_failure_card.md) | Build-side card of frame-dropping patterns and their fixes |
+| [`procedures/interaction_states_pass.md`](./procedures/interaction_states_pass.md) | Maintainer-facing procedure card for interaction-state evidence after `motion` is selected |
 | [`../shared/register.md`](../shared/register.md) | The Brand-vs-Product register that sets the motion budget |

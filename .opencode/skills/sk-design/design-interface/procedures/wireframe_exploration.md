@@ -1,4 +1,20 @@
+---
+title: Wireframe Exploration
+description: Private procedure card for design-interface low-fidelity layout and flow exploration.
+trigger_phrases:
+  - "wireframe exploration"
+  - "low fidelity layout options"
+  - "storyboard flow"
+importance_tier: normal
+contextType: implementation
+version: 1.0.0.0
+---
+
 # Wireframe Exploration
+
+Private procedure card for applying the existing design-interface wireframe exploration workflow.
+
+## 1. REQUIRED FIELDS
 
 | Field | Value |
 |---|---|
@@ -10,11 +26,11 @@
 | Proof gate | The options differ in structure or flow, not cosmetic styling; each option has a rationale and a recommended next step. |
 | Privacy rule | This card is private interface guidance and is not exposed as a standalone wireframe skill. |
 
-## Read-Only Compatibility
+## 2. READ-ONLY COMPATIBILITY
 
 For read-only operation, the card returns a storyboard, ASCII outline, or handoff plan. It must not require file creation or prototype rendering from `design-interface`.
 
-## Procedure
+## 3. PROCEDURE
 
 1. Identify the user goal, target surface, constraints, and strongest variation axis.
 2. Keep fidelity intentionally low so feedback focuses on structure.
@@ -22,6 +38,6 @@ For read-only operation, the card returns a storyboard, ASCII outline, or handof
 4. Annotate each option with the tradeoff it tests.
 5. End with a recommended next procedure: direction, variation, prototype handoff, or another wireframe round.
 
-## Conflict Rule
+## 4. CONFLICT RULE
 
 If the user asks for high-fidelity alternatives, use `variation_set.md` instead. If they ask for interaction behavior, hand off from this card to `prototype_flow_spec.md`.

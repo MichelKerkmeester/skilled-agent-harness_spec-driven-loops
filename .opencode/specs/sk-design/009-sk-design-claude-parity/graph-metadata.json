@@ -1,0 +1,163 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-design/009-sk-design-claude-parity",
+  "spec_folder": "sk-design/009-sk-design-claude-parity",
+  "parent_id": "sk-design",
+  "parent_id_review_required": true,
+  "children_ids": [
+    "sk-design/009-sk-design-claude-parity/001-baseline-ownership-gate",
+    "sk-design/009-sk-design-claude-parity/002-parent-hub-compatibility-shell",
+    "sk-design/009-sk-design-claude-parity/003-private-procedure-card-layer",
+    "sk-design/009-sk-design-claude-parity/004-mode-packet-refactor",
+    "sk-design/009-sk-design-claude-parity/005-parity-benchmark-release-gate",
+    "sk-design/009-sk-design-claude-parity/011-manual-testing-playbook-alignment",
+    "sk-design/009-sk-design-claude-parity/013-design-commands-asset-refactor",
+    "sk-design/009-sk-design-claude-parity/007-procedure-card-template-alignment",
+    "sk-design/009-sk-design-claude-parity/009-readme-alignment",
+    "sk-design/009-sk-design-claude-parity/008-smart-routing-optimization",
+    "sk-design/009-sk-design-claude-parity/010-feature-catalog-completeness",
+    "sk-design/009-sk-design-claude-parity/006-parent-skill-canon-verification",
+    "sk-design/009-sk-design-claude-parity/012-routing-benchmark-rigor"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "sk-design Claude parity",
+      "Claude Design-like sk-design refactor",
+      "sk-design procedure card layer"
+    ],
+    "key_topics": [
+      "sk-design",
+      "claude",
+      "parity",
+      "design-like",
+      "refactor",
+      "procedure",
+      "card",
+      "layer",
+      "research",
+      "packet",
+      "found",
+      "already"
+    ],
+    "importance_tier": "important",
+    "status": "draft",
+    "key_files": [
+      "spec.md",
+      "research/research.md",
+      "research/iterations/iteration-010.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "iteration-010.md",
+        "kind": "doc",
+        "path": "research/iterations/iteration-010.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Claude Design",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Parent",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Source Evidence",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Deep Research Synthesis",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "Claude Parity",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "Progressive Findings",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "Core Inventory",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "External Claude",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "Skill Mapping",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The research packet found that `sk-design` already has the right OpenCode-native backbone: one advisor-routable hub, five public modes, registry-driven routing, a shared reference base, and a measured `design-md-generator` extraction backend",
+    "created_at": "2026-07-05T00:00:00.000Z",
+    "last_save_at": "2026-07-06T10:47:53.128Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "research/research.md"
+    ],
+    "source_fingerprint": "sha256:f3e6b436c1b67a9c5206ae704623a964bbf82b71b4d6d12d09c4f8a7ceed793e",
+    "source_doc_hashes": {
+      "spec.md": "de9fea7c8cb48c99257bdd1c64cb0cd7eead17590b6e74a7daa58d9c80e2cef3",
+      "research/research.md": "017e0c11f56cbf972117abfa72b185fbe302804a5ce6e7bf640b711d9a4563fb"
+    },
+    "last_active_child_id": "sk-design/009-sk-design-claude-parity/012-routing-benchmark-rigor",
+    "last_active_at": "2026-07-06T10:47:53.128Z"
+  }
+}

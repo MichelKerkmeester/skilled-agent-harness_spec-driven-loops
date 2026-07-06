@@ -9,7 +9,7 @@ trigger_phrases:
   - "responsive adaptation"
 importance_tier: normal
 contextType: implementation
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # foundations
@@ -91,6 +91,10 @@ Responsive work here adapts the experience to the context rather than scaling pi
 
 When a surface carries charts or tables, the skill treats the encoding as the design. A chart matches the question rather than the dataset shape, every visual channel carries one variable, and color-for-data uses a sequential, diverging or categorical scale chosen by the question, kept separate from brand color. Numeric tables right-align with tabular numerals so magnitude reads down the column.
 
+### Private Procedure Cards
+
+The maintainer-facing cards in [`procedures/`](./procedures/) support mode-local evidence gathering after the public `foundations` mode is chosen. The three cards are `component_system_inventory.md`, `hierarchy_rhythm_review.md` and `tweakable_design_controls.md`. They are not user-selectable routes.
+
 ---
 
 ## 5. INTEGRATION & NAVIGATION
@@ -143,5 +147,6 @@ Reach for it whenever a task needs a static visual system or a fix to one: a col
 | [`references/layout/adaptation_matrix.md`](./references/layout/adaptation_matrix.md) | Device, input and context adaptation as rethinking per context, not pixel scaling |
 | [`references/data_viz.md`](./references/data_viz.md) | Chart-type selection, axis and encoding, color-for-data scales and data-table alignment |
 | [`assets/token_starter.md`](./assets/token_starter.md) | Fill-in scaffold for an OKLCH ramp, type scale and spacing scale, keyed to the register |
+| [`procedures/`](./procedures/) | Three maintainer-facing procedure cards for component-system inventory, hierarchy and rhythm review and tweakable design controls |
 | [`../shared/register.md`](../shared/register.md) | The shared Brand-vs-Product register, set first. It sets the color strategy and density this skill inherits |
 | [Skills Library](../README.md) | The skill catalog and routing front door |

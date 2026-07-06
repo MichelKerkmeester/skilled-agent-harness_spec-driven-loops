@@ -44,7 +44,7 @@
       "proceduresPath": "design-interface/procedures",
       "packetSkillName": "design-interface",
       "grandfatheredFolderMismatch": false,
-      "aliases": ["interface design", "frontend design", "visual design", "visual identity", "make it look good", "looks templated", "redesign the ui", "hero section", "ui build", "design variations", "bolder", "quieter", "distill", "clarify", "delight"],
+      "aliases": ["interface design", "frontend design", "visual design", "visual identity", "make it look good", "looks templated", "redesign the ui", "hero section", "landing page direction", "hero redesign", "ui build", "design variations", "less generic", "custom not templated", "visual direction", "bolder", "quieter", "distill", "clarify", "delight"],
       "advisorRouting": {
         "routingClass": "metadata",
         "packetSkillName": "design-interface"
@@ -64,7 +64,7 @@
       "proceduresPath": "design-foundations/procedures",
       "packetSkillName": "design-foundations",
       "grandfatheredFolderMismatch": false,
-      "aliases": ["design foundations", "color system", "oklch palette", "color token system", "dark mode palette", "typography scale", "font pairing", "spacing system", "responsive layout", "design tokens", "grid", "container queries", "context adaptation", "data visualization", "chart type", "data tables", "token starter"],
+      "aliases": ["design foundations", "color system", "oklch palette", "color token system", "dark mode palette", "typography scale", "font pairing", "spacing system", "layout rhythm", "information hierarchy", "responsive layout", "design tokens", "theme tokens", "grid", "container queries", "context adaptation", "data visualization", "chart type", "data tables", "token starter"],
       "advisorRouting": {
         "routingClass": "metadata",
         "packetSkillName": "design-foundations"
@@ -84,7 +84,7 @@
       "proceduresPath": "design-motion/procedures",
       "packetSkillName": "design-motion",
       "grandfatheredFolderMismatch": false,
-      "aliases": ["motion design", "animate this", "micro-interactions", "transitions", "AnimatePresence", "exit animation", "reduced motion", "morphing icons", "motion performance"],
+      "aliases": ["motion design", "animate this", "micro-interactions", "transitions", "interaction states", "hover state", "focus state", "loading state", "choreography", "motion budget", "AnimatePresence", "exit animation", "reduced motion", "morphing icons", "motion performance"],
       "advisorRouting": {
         "routingClass": "metadata",
         "packetSkillName": "design-motion"
@@ -104,7 +104,7 @@
       "proceduresPath": "design-audit/procedures",
       "packetSkillName": "design-audit",
       "grandfatheredFolderMismatch": false,
-      "aliases": ["design audit", "ui critique", "accessibility audit", "performance audit", "anti-slop detection", "production hardening", "design quality score", "P0 P1 design findings"],
+      "aliases": ["design audit", "ui critique", "design review", "review the ui", "audit the design", "accessibility audit", "wcag contrast", "performance audit", "anti-slop detection", "ai tell", "production hardening", "design quality score", "ui quality review", "P0 P1 design findings"],
       "advisorRouting": {
         "routingClass": "metadata",
         "packetSkillName": "design-audit"
@@ -124,7 +124,7 @@
       "proceduresPath": "design-md-generator/procedures",
       "packetSkillName": "design-md-generator",
       "grandfatheredFolderMismatch": false,
-      "aliases": ["extract design system", "generate design.md", "capture website css", "design tokens from url", "create design reference", "design-to-markdown", "extract design tokens", "validate design.md", "design fidelity check", "design.md report", "render design preview", "study design.md format"],
+      "aliases": ["extract design system", "generate design.md", "capture website css", "design tokens from url", "create design reference", "style reference", "tokens.json", "design-to-markdown", "extract design tokens", "validate design.md", "design.md validation", "design fidelity check", "design.md report", "render design preview", "source of truth", "study design.md format"],
       "advisorRouting": {
         "routingClass": "metadata",
         "packetSkillName": "design-md-generator"

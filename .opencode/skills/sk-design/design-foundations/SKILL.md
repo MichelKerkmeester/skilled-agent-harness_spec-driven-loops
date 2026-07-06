@@ -28,7 +28,7 @@ Use this skill when the request involves:
 - Encoding quantitative content: chart-type selection, axis honesty, color-for-data scales, sparklines and data-table alignment.
 - Translating a design direction into reusable static tokens for `sk-code` implementation, often by filling the token starter scaffold.
 
-Keyword triggers: `OKLCH`, `palette`, `contrast`, `dark mode`, `theme tokens`, `typography scale`, `font pairing`, `measure`, `spacing`, `grid`, `layout rhythm`, `responsive`, `container queries`, `adaptation matrix`, `data visualization`, `chart type`, `data tables`, `design tokens`, `token starter`.
+Keyword triggers: `OKLCH`, `palette`, `contrast`, `dark mode`, `theme tokens`, `typography scale`, `font pairing`, `measure`, `spacing`, `grid`, `layout rhythm`, `visual hierarchy`, `information hierarchy`, `responsive`, `container queries`, `adaptation matrix`, `data visualization`, `chart type`, `data tables`, `design tokens`, `token starter`.
 
 ### When NOT to Use
 
@@ -57,6 +57,8 @@ Pairs well with:
 ### Primary Detection Signal
 
 Route by the static axis the user is asking about:
+
+Route here when the main ask is a static visual-system decision: hierarchy, rhythm, spacing, grid, layout, typography, palette, theme tokens, responsive adaptation, or design-token system design. A `hero section` prompt routes here only when the requested fix is hierarchy/rhythm/layout/token discipline; full visual direction for the hero routes to `interface`. `tokens.json` and `DESIGN.md` route to `md-generator` when they are measured extraction or validation artifacts; keep foundations for authoring or adapting token systems.
 
 ```text
 STATIC SYSTEM TASK
@@ -97,6 +99,8 @@ The folders are intentionally split-ready so `color`, `type`, and `layout` could
 | CONDITIONAL | Scaffolding a new token system or handing tokens to sk-code | `assets/token_starter.md` (fill-in OKLCH ramp, type scale, and spacing scale) and `../shared/sk_code_handoff.md` (final foundations handoff card) |
 | CONDITIONAL | Internal procedure support | `procedures/tweakable_design_controls.md`, `procedures/component_system_inventory.md`, `procedures/hierarchy_rhythm_review.md`, and `../shared/procedures/polish_gate_orchestration.md` when the trigger matches |
 | ON_DEMAND | Cross-axis token-system work | Load all three axis folders plus parent `sk-design/references/design_token_vocabulary.md` |
+
+The private procedure-card selection table in Section 3 is part of this routing contract: after the public `foundations` mode is selected, choose at most one card from `procedures/` or `../shared/procedures/` and cite its relative path in the plan or proof line.
 
 ### Smart Router Pseudocode
 

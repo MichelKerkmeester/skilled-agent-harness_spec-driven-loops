@@ -1,0 +1,31 @@
+{
+  "level": 2,
+  "specFolder": "sk-design/009-sk-design-claude-parity/008-smart-routing-optimization",
+  "description": "The sk-design Lane-C skill-benchmark harness recorded a `CONDITIONAL` verdict at aggregate `69/100` in both the frozen `benchmark/baseline/` run (21",
+  "keywords": [
+    "sk-design",
+    "lane-c",
+    "skill-benchmark",
+    "harness",
+    "recorded",
+    "conditional",
+    "verdict",
+    "aggregate",
+    "100",
+    "frozen",
+    "benchmark",
+    "baseline",
+    "run"
+  ],
+  "lastUpdated": "2026-07-06T06:46:08.267Z",
+  "specId": "008",
+  "folderSlug": "smart-routing-optimization",
+  "parentChain": [
+    "sk-design",
+    "009-sk-design-claude-parity"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "06-07-26_05-34__authored-planning-only-level-2-docs-spec-md-plan.md"
+  ]
+}

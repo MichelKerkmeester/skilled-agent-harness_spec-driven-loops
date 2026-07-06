@@ -191,3 +191,19 @@ Captures hover, focus, active, and disabled component states when extraction run
 #### Source Files
 
 See [`07--interaction-capture/interaction-capture.md`](07--interaction-capture/interaction-capture.md) for the interaction-capture method, the state-matrix schema, and the `--with-interaction` flag contract.
+
+---
+
+## 9. PROCEDURE CARDS
+
+#### Description
+
+One private card supports measured-extraction planning after the public `md-generator` mode is selected: design system extraction. It is the only card in the `sk-design` family attached to a mutating mode.
+
+#### Current Reality
+
+The mode cites the card when the request asks to extract tokens, capture CSS, generate `DESIGN.md`, or ground work in a live site, source design system, screenshot, or brand reference. The card grants no permission beyond the mode's existing extraction pipeline, and every reported value traces to source evidence or is labeled absent.
+
+#### Source Files
+
+See [`08--procedure-cards/md-generator-procedure-card-inventory.md`](08--procedure-cards/md-generator-procedure-card-inventory.md) for the card definition, tool boundary, and conflict rule.

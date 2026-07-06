@@ -8,7 +8,7 @@ trigger_phrases:
   - "design quality score"
 importance_tier: normal
 contextType: implementation
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # design-audit
@@ -76,6 +76,10 @@ Before scoring, the audit reads the Brand-vs-Product register. That one call set
 
 The anti-patterns dimension leans on a model-specific tell catalog. A ghost-card border plus shadow, over-rounded cards, a diagonal stripe background, an image-hover transform, a cream body background: each is a structural pattern a generator reaches for by reflex, turned into a checkable rule. One isolated tell is polish. Three or more on one surface is the dimension failing.
 
+### Private Procedure Cards
+
+The maintainer-facing cards in [`procedures/`](./procedures/) support mode-local audit focus after the public `audit` mode is chosen. The two cards are `accessibility_audit.md` and `ai_slop_check.md`. They are not user-selectable routes.
+
 ---
 
 ## 5. INTEGRATION & NAVIGATION
@@ -121,4 +125,5 @@ The mode ships a manual testing playbook. Each scenario runs a prompt against th
 | [`references/hardening_edge_cases.md`](./references/hardening_edge_cases.md) | Production-readiness matrix of extreme inputs, errors, concurrency and i18n |
 | [`assets/audit_report_template.md`](./assets/audit_report_template.md) | Fill-in findings-first report skeleton with the five-dimension score |
 | [`assets/a11y_quick_fixes.md`](./assets/a11y_quick_fixes.md) | Snippet-level accessibility fixes the report cites by reference |
+| [`procedures/`](./procedures/) | Two maintainer-facing procedure cards for accessibility audit focus and AI-slop checks |
 | [`../shared/register.md`](../shared/register.md) | The Brand-vs-Product register that sets the audit-severity dial |

@@ -20,6 +20,9 @@ version: 1.0.0.0
 | FOUND-DATAVIZ-001 | Data visualization encoding and color-for-data scales | [`04--data-viz/chart-encoding-and-color.md`](04--data-viz/chart-encoding-and-color.md) |
 | FOUND-TOKEN-001 | Token starter scaffold handoff | [`05--tokens/token-starter-handoff.md`](05--tokens/token-starter-handoff.md) |
 | FOUND-EXAMPLE-001 | Worked examples used as calibration, not presets | [`06--worked-examples/worked-examples-not-presets.md`](06--worked-examples/worked-examples-not-presets.md) |
+| FOUND-PROCCARD-001 | Procedure-card selection proof | [`07--procedure-card-contract/card-selection-proof.md`](07--procedure-card-contract/card-selection-proof.md) |
+| FOUND-PROCCARD-002 | No-card fallback | [`07--procedure-card-contract/no-card-fallback.md`](07--procedure-card-contract/no-card-fallback.md) |
+| FOUND-PROCCARD-003 | Direct fallback without subagents | [`07--procedure-card-contract/direct-fallback-without-subagents.md`](07--procedure-card-contract/direct-fallback-without-subagents.md) |
 
 ## 2. GLOBAL PRECONDITIONS
 
@@ -34,7 +37,8 @@ version: 1.0.0.0
 - Produced token/system plan.
 - Evidence that sibling boundaries were respected.
 - Final verdict with rationale.
+- Procedure card or no-card fallback proof when procedure support is in scope.
 
 ## 4. RELEASE READINESS
 
-Release is ready when every scenario PASSes or is SKIP only for environment reasons, and no scenario shows invented token roles, inaccessible color pairs, dishonest chart axes or generic responsive scaling.
+Release is ready when all 11 scenarios PASS or are SKIP only for environment reasons, and no scenario shows invented token roles, inaccessible color pairs, dishonest chart axes, generic responsive scaling, missing procedure-card proof, or a weakened direct-fallback proof bar.

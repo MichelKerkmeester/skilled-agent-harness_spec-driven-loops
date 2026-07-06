@@ -1,0 +1,33 @@
+{
+  "type": "phase",
+  "level": 2,
+  "status": "planned",
+  "specFolder": "sk-design/009-sk-design-claude-parity/009-readme-alignment",
+  "description": "`sk-design`'s hub `README.md` and its five mode-packet `README.md` files describe a snapshot of the skill that predates Phases 002-005",
+  "keywords": [
+    "sk-design",
+    "hub",
+    "readme",
+    "five",
+    "mode-packet",
+    "files",
+    "describe",
+    "snapshot",
+    "skill",
+    "predates",
+    "phases",
+    "002-005"
+  ],
+  "lastUpdated": "2026-07-06T07:20:59.554Z",
+  "specId": "009",
+  "folderSlug": "readme-alignment",
+  "parentChain": [
+    "sk-design",
+    "009-sk-design-claude-parity"
+  ],
+  "memorySequence": 2,
+  "memoryNameHistory": [
+    "06-07-26_05-34__hub-readme-md-never-mentions-benchmark-or-manual.md",
+    "06-07-26_05-36__hub-readme-md-never-mentions-benchmark-or-manual.md"
+  ]
+}

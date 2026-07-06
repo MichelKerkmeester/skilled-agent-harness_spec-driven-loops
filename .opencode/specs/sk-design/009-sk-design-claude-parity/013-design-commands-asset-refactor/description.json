@@ -1,0 +1,30 @@
+{
+  "level": 3,
+  "specFolder": "sk-design/009-sk-design-claude-parity/013-design-commands-asset-refactor",
+  "description": "The five `/design:` commands (`interface`, `foundations`, `motion`, `audit`, `md-generator`) are currently flat, single-file commands with no",
+  "keywords": [
+    "five",
+    "design",
+    "commands",
+    "interface",
+    "foundations",
+    "motion",
+    "audit",
+    "md-generator",
+    "currently",
+    "flat",
+    "single-file"
+  ],
+  "lastUpdated": "2026-07-06T09:57:31.980Z",
+  "specId": "013",
+  "folderSlug": "design-commands-asset-refactor",
+  "parentChain": [
+    "sk-design",
+    "009-sk-design-claude-parity"
+  ],
+  "memorySequence": 2,
+  "memoryNameHistory": [
+    "06-07-26_05-33__phase-013-depends-on-phases-006-012-of-this.md",
+    "06-07-26_05-42__phase-013-depends-on-phases-006-012-of-this.md"
+  ]
+}

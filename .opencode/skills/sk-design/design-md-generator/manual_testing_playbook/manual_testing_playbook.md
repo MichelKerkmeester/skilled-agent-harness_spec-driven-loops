@@ -37,9 +37,10 @@ End-to-end manual testing reference for the md-generator skill. Every scenario v
 | Source-of-Truth | 1 | PROVENANCE-001 |
 | Guided Run | 1 | GUIDED-014 |
 | Study | 1 | STUDY-015 |
-| **TOTAL** | **15** | **15 scenarios** |
+| Procedure Card Contract | 3 | PROCCARD-001..003 |
+| **TOTAL** | **18** | **18 scenarios** |
 
-This playbook defines 15 deterministic scenarios across 15 categories validating the full surface of the `md-generator` skill. Each scenario keeps its own ID, is summarized inline in Sections 7-21, and links to a dedicated per-scenario file with the full execution contract, with the cross-reference index in Section 22.
+This playbook defines 18 deterministic scenarios across 16 categories validating the full surface of the `md-generator` skill. Each scenario keeps its own ID, is summarized inline in Sections 7-21 plus the procedure-card contract section, and links to a dedicated per-scenario file with the full execution contract, with the cross-reference index in Section 23.
 
 > **Per-scenario files:** The root playbook is the directory, review surface, and orchestration guide, while per-scenario execution detail lives in one file per scenario inside numbered category folders at the playbook root. The cross-reference index in Section 21 lists every scenario file.
 
@@ -91,6 +92,7 @@ All scenarios share these preconditions. Verify before starting any wave.
 - For ESCALATE-001: the crawl error message and the escalation text
 - Final user-facing response or outcome summary
 - Scenario verdict with rationale
+- Selected procedure card or no-card fallback, backend entrypoint, and provenance proof for procedure-card contract scenarios
 
 ---
 
@@ -159,6 +161,7 @@ Keep global verdict logic in this root playbook. Put scenario-specific acceptanc
 | Wave 3 (Fidelity) | FIDELITY-001, DARKMODE-001 | Yes (read-only inspection) | Requires Wave 2 tokens.json and a written DESIGN.md |
 | Wave 4 (Validate) | VALIDATE-001 | No (requires DESIGN.md + tokens.json) | Requires Wave 2 tokens.json and a written DESIGN.md |
 | Wave 5 (Escalation) | ESCALATE-001 | Yes (independent) | Independent of Waves 2-4; requires a site that blocks crawlers |
+| Wave 6 (Procedure Card Contract) | PROCCARD-001, PROCCARD-002, PROCCARD-003 | Mixed | Selection and no-card checks are read/plan evidence; direct fallback preserves backend boundary and runs serially if it writes output |
 
 ### Operational Rules
 
@@ -503,7 +506,25 @@ The non-SaaS study lane uses an editorial or ecommerce exemplar to broaden v3 St
 
 ---
 
-## 22. FEATURE CATALOG CROSS-REFERENCE INDEX
+## 22. PROCEDURE CARD CONTRACT (`PROCCARD-001..PROCCARD-003`)
+
+The procedure-card contract lane checks `SKILL.md` procedure selection, the exact no-card fallback, and backend-preserving direct fallback.
+
+### PROCCARD-001 | md-generator procedure-card selection proof
+
+> **Feature File:** [PROCCARD-001](16--procedure-card-contract/card-selection-proof.md)
+
+### PROCCARD-002 | md-generator no-card fallback
+
+> **Feature File:** [PROCCARD-002](16--procedure-card-contract/no-card-fallback.md)
+
+### PROCCARD-003 | md-generator backend-preserving direct fallback
+
+> **Feature File:** [PROCCARD-003](16--procedure-card-contract/backend-preserving-direct-fallback.md)
+
+---
+
+## 23. FEATURE CATALOG CROSS-REFERENCE INDEX
 
 Each scenario maps to exactly one per-scenario file in a numbered category folder at the playbook root, and to its capability area in the feature catalog. Keep the per-scenario filenames stable once published.
 
@@ -524,7 +545,10 @@ Each scenario maps to exactly one per-scenario file in a numbered category folde
 | PROVENANCE-001 | Source-of-truth router card sorts each value | Source-of-Truth | [13--source-of-truth/source-of-truth-card.md](13--source-of-truth/source-of-truth-card.md) | [../feature_catalog/03--write-design-md/write-design-md.md](../feature_catalog/03--write-design-md/write-design-md.md) |
 | GUIDED-014 | Guided wrapper smoke lane | Guided Run | [14--guided-run/guided-run-smoke-lane.md](14--guided-run/guided-run-smoke-lane.md) | N/A |
 | STUDY-015 | Editorial or ecommerce exemplar study | Study | [15--study/editorial-exemplar-study.md](15--study/editorial-exemplar-study.md) | N/A |
+| PROCCARD-001 | md-generator procedure-card selection proof | Procedure Card Contract | [16--procedure-card-contract/card-selection-proof.md](16--procedure-card-contract/card-selection-proof.md) | N/A |
+| PROCCARD-002 | md-generator no-card fallback | Procedure Card Contract | [16--procedure-card-contract/no-card-fallback.md](16--procedure-card-contract/no-card-fallback.md) | N/A |
+| PROCCARD-003 | md-generator backend-preserving direct fallback | Procedure Card Contract | [16--procedure-card-contract/backend-preserving-direct-fallback.md](16--procedure-card-contract/backend-preserving-direct-fallback.md) | N/A |
 
-This index lists 15 scenario IDs and ships 15 per-scenario files. The count of per-scenario files MUST equal the count of IDs in this table (15), so keep them in sync as scenarios are added or revised.
+This index lists 18 scenario IDs and ships 18 per-scenario files. The count of per-scenario files MUST equal the count of IDs in this table (18), so keep them in sync as scenarios are added or revised.
 
-Total: 15 scenarios = 15 per-scenario files.
+Total: 18 scenarios = 18 per-scenario files.

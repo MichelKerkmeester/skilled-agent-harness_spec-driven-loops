@@ -27,7 +27,7 @@ Captures a live website's **real, measured CSS** into a publication-quality `DES
 - Generate visual validation reports (HTML preview, diff report) from a `DESIGN.md` + `tokens.json` pair.
 - Re-extract a site after a redesign to update the design-system reference.
 
-**Keyword Triggers**: "extract design system", "generate DESIGN.md", "capture website css", "design tokens from url", "create design reference", "anti-hallucination design doc", "design-to-markdown", "extract design tokens".
+**Keyword Triggers**: "extract design system", "generate DESIGN.md", "capture website css", "design tokens from url", "create design reference", "style reference", "tokens.json", "validate DESIGN.md", "anti-hallucination design doc", "design-to-markdown", "extract design tokens".
 
 ### Use Cases
 
@@ -56,6 +56,8 @@ Captures a live website's **real, measured CSS** into a publication-quality `DES
 ### Primary Detection Signal
 
 Detect the **pipeline phase** first. The three phases are sequential and each has a distinct surface: EXTRACT hits the live URL, WRITE produces the markdown, VALIDATE checks fidelity. A fourth path — REPORT — renders visual artifacts from an existing pair.
+
+Route here when `DESIGN.md`, `tokens.json`, style reference, CSS capture, validation, report generation, or source-of-truth provenance are measured artifacts from a live site or an existing extraction pair. Do not route brief-only token-system authoring here; that belongs to `foundations`. Do not route new visual direction from an extracted reference here; the extraction can ground `interface`, but this mode only captures and validates measured values.
 
 ```bash
 # Phase detection (pseudo)
@@ -116,6 +118,8 @@ assets/source_of_truth_router_card.md  # fill-in provenance card
 | CONDITIONAL | STUDY intent                         | `references/examples/` (one site at a time, loaded as reference pairs)           |
 | CONDITIONAL | Internal procedure support           | `procedures/design_system_extraction.md` when the request involves extraction, token capture, `DESIGN.md`, source design systems, screenshots, or measured brand references |
 | ON_DEMAND   | Deep format edge-cases or component patterns | `references/anti_patterns.md`, `references/component_taxonomy.md` |
+
+The private procedure-card selection table in Section 3 is part of this routing contract: after the public `md-generator` mode is selected, choose `procedures/design_system_extraction.md` when its trigger matches and cite its relative path in the plan or proof line.
 
 ### Smart Router Pseudocode
 

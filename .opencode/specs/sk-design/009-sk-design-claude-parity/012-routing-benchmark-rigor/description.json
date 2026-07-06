@@ -1,0 +1,39 @@
+{
+  "level": 3,
+  "specFolder": "sk-design/009-sk-design-claude-parity/012-routing-benchmark-rigor",
+  "description": "Level 3 phase packet planning a much larger sk-design Lane-C benchmark corpus, a frozen post-011 baseline, and numerically-gated routing-accuracy verification across skill-advisor confidence, hub mode-resolution, and procedure-card selection.",
+  "keywords": [
+    "phase",
+    "005",
+    "froze",
+    "parity-benchmark",
+    "evidence",
+    "against",
+    "21-24",
+    "scenario",
+    "corpus",
+    "benchmark",
+    "baseline",
+    "after-009",
+    "predates",
+    "phases"
+  ],
+  "lastUpdated": "2026-07-06T10:47:51.203Z",
+  "specId": "012",
+  "folderSlug": "routing-benchmark-rigor",
+  "parentChain": [
+    "..",
+    ".opencode",
+    "specs",
+    "sk-design",
+    "009-sk-design-claude-parity"
+  ],
+  "memorySequence": 5,
+  "memoryNameHistory": [
+    "06-07-26_05-40__confirmed-sk-design-passes-the-strict-parent.md",
+    "06-07-26_05-45__verification-pass-fixed-a-checklist-md.md",
+    "06-07-26_11-38__spec-md-was-already-reconciled-to-status-complete.md",
+    "06-07-26_11-45__spec-md-was-already-reconciled-to-status-complete.md",
+    "06-07-26_11-47__spec-md-was-already-reconciled-to-status-complete.md"
+  ]
+}

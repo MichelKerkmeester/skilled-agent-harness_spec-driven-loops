@@ -30,8 +30,7 @@
       "classes": [
         "interface-aliases",
         "interface-taste",
-        "interface-build",
-        "hub-identity"
+        "interface-build"
       ],
       "resources": ["design-interface/SKILL.md"]
     },
@@ -101,8 +100,13 @@
         "looks templated",
         "redesign the ui",
         "hero section",
+        "landing page direction",
+        "hero redesign",
         "ui build",
         "design variations",
+        "less generic",
+        "custom not templated",
+        "visual direction",
         "bolder",
         "quieter",
         "distill",
@@ -118,7 +122,6 @@
         "visual-identity",
         "make-it-look-good",
         "looks-templated",
-        "polish",
         "distinctive-interface",
         "intentional-design",
         "polished-ui",
@@ -160,8 +163,11 @@
         "typography scale",
         "font pairing",
         "spacing system",
+        "layout rhythm",
+        "information hierarchy",
         "responsive layout",
         "design tokens",
+        "theme tokens",
         "grid",
         "container queries",
         "context adaptation",
@@ -195,7 +201,9 @@
         "spacing-system",
         "responsive-layout",
         "layout",
-        "hierarchy"
+        "hierarchy",
+        "information hierarchy",
+        "density"
       ]
     },
     "foundations-tokens": {
@@ -203,7 +211,8 @@
         "design-tokens",
         "color-token-system",
         "css-tokens",
-        "tokens.json"
+        "semantic tokens",
+        "theme-tokens"
       ]
     },
     "motion-aliases": {
@@ -212,6 +221,12 @@
         "animate this",
         "micro-interactions",
         "transitions",
+        "interaction states",
+        "hover state",
+        "focus state",
+        "loading state",
+        "choreography",
+        "motion budget",
         "animatepresence",
         "exit animation",
         "reduced motion",
@@ -257,11 +272,17 @@
       "keywords": [
         "design audit",
         "ui critique",
+        "design review",
+        "review the ui",
+        "audit the design",
         "accessibility audit",
+        "wcag contrast",
         "performance audit",
         "anti-slop detection",
+        "ai tell",
         "production hardening",
         "design quality score",
+        "ui quality review",
         "p0 p1 design findings"
       ]
     },
@@ -315,12 +336,16 @@
         "capture website css",
         "design tokens from url",
         "create design reference",
+        "style reference",
+        "tokens.json",
         "design-to-markdown",
         "extract design tokens",
         "validate design.md",
+        "design.md validation",
         "design fidelity check",
         "design.md report",
         "render design preview",
+        "source of truth",
         "study design.md format"
       ]
     },
@@ -342,6 +367,8 @@
         "design.md",
         "design-md",
         "design-reference",
+        "tokens.json",
+        "style-reference",
         "playwright",
         "design-system-generator",
         "generate-design-md",

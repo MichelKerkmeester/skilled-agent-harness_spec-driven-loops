@@ -1,0 +1,56 @@
+{
+  "title": "Phase 006 - Parent-Skill Canon Verification & Procedures Pattern Formalization",
+  "type": "phase",
+  "trigger_phrases": [
+    "parent-skill canon verification",
+    "sk-design canon re-verification",
+    "procedures pattern formalization",
+    "proceduresPath companion directory",
+    "parent-skill-check.cjs re-run",
+    "sk-doc canon gap",
+    "procedures pattern decision",
+    "sk-design-local convention",
+    "companion file policy formalization",
+    "three hubs extension matrix",
+    "rule of three"
+  ],
+  "path": ".opencode/specs/sk-design/009-sk-design-claude-parity/006-parent-skill-canon-verification/",
+  "level": 2,
+  "status": "planned",
+  "parentPacket": ".opencode/specs/sk-design/009-sk-design-claude-parity/",
+  "specFolder": "sk-design/009-sk-design-claude-parity/006-parent-skill-canon-verification",
+  "description": "Phases 001-005 refactored `sk-design` toward Claude Design-like manager behavior while preserving the OpenCode-native parent-hub shape: one advisor",
+  "keywords": [
+    "phases",
+    "001-005",
+    "refactored",
+    "sk-design",
+    "toward",
+    "claude",
+    "design-like",
+    "manager",
+    "behavior",
+    "while",
+    "preserving",
+    "opencode-native",
+    "parent-hub",
+    "shape",
+    "one",
+    "advisor"
+  ],
+  "lastUpdated": "2026-07-06T05:28:20.807Z",
+  "specId": "006",
+  "folderSlug": "parent-skill-canon-verification",
+  "parentChain": [
+    "sk-design",
+    "009-sk-design-claude-parity"
+  ],
+  "memorySequence": 5,
+  "memoryNameHistory": [
+    "06-07-26_05-36__phases-001-005-of-the-sk-design-claude-parity.md",
+    "06-07-26_05-39__phases-001-005-of-the-sk-design-claude-parity.md",
+    "06-07-26_06-22__re-ran-node-opencode-commands-doctor-scripts.md",
+    "06-07-26_06-26__re-ran-node-opencode-commands-doctor-scripts.md",
+    "06-07-26_06-28__re-ran-node-opencode-commands-doctor-scripts.md"
+  ]
+}

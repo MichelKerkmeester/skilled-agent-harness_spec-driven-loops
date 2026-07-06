@@ -1,0 +1,29 @@
+{
+  "title": "Phase 010 - Feature Catalog and Snippet Completeness",
+  "level": 2,
+  "specFolder": "sk-design/009-sk-design-claude-parity/010-feature-catalog-completeness",
+  "description": "Only one of the six `sk-design` packages — `design-md-generator` — has a `featurecatalog/` package",
+  "keywords": [
+    "only",
+    "one",
+    "six",
+    "sk-design",
+    "packages",
+    "design-md-generator",
+    "featurecatalog",
+    "package"
+  ],
+  "lastUpdated": "2026-07-06T10:31:50.531Z",
+  "specId": "010",
+  "folderSlug": "feature-catalog-completeness",
+  "parentChain": [
+    "sk-design",
+    "009-sk-design-claude-parity"
+  ],
+  "memorySequence": 3,
+  "memoryNameHistory": [
+    "06-07-26_05-35__authored-a-planning-only-level-2-phase-child-spec.md",
+    "06-07-26_05-39__authored-a-planning-only-level-2-phase-child-spec.md",
+    "06-07-26_05-47__verification-pass-on-phase-010-feature-catalog.md"
+  ]
+}

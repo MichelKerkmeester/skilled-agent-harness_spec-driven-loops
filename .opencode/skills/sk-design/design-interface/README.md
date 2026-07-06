@@ -7,7 +7,7 @@ trigger_phrases:
   - "make it look good"
   - "looks templated"
   - "redesign"
-version: 1.6.0.0
+version: 1.6.1.0
 ---
 
 # interface
@@ -103,6 +103,10 @@ A taste read does not catch a four-line hero, a button the same color as its lab
 
 `references/design-process/design_principles.md` holds the verbatim guidance: grounding, the full design principles, the two-pass process with the AI-default calibration, restraint and self-critique, and interface writing.
 
+### Private Procedure Cards
+
+The maintainer-facing cards in [`procedures/`](./procedures/) support mode-local context and proof selection after the public `interface` mode is chosen. The six cards are `aesthetic_direction.md`, `deck_direction_spec.md`, `discovery_question_round.md`, `prototype_flow_spec.md`, `variation_set.md` and `wireframe_exploration.md`. They are not user-selectable routes.
+
 ---
 
 ## 5. INTEGRATION & NAVIGATION
@@ -175,6 +179,7 @@ A: It is vendored from Anthropic's official `frontend-design` skill under Apache
 | [`references/design-process/mechanical_defaults.md`](./references/design-process/mechanical_defaults.md) | The mechanical layout gate: counted hero lines, gapless bento math, the eyebrow ceiling, button contrast, and section spacing |
 | [`references/design-process/copy_and_mock_data.md`](./references/design-process/copy_and_mock_data.md) | The content gate: no lorem, no AI-tell phrasing, plausible names and numbers, one copy register, and image-seed discipline |
 | [`assets/interface_preflight_card.md`](./assets/interface_preflight_card.md) | The binary fill-in PASS or FAIL pre-flight card: the checkable form of the layout gate, content gate, and dials, run as the last filter before delivery |
+| [`procedures/`](./procedures/) | Six maintainer-facing procedure cards for aesthetic direction, deck direction, discovery questions, prototype flow, variation sets and wireframe exploration |
 | [`references/design-process/ux_quality_reference.md`](./references/design-process/ux_quality_reference.md) | The objective quality floor (accessibility, motion, touch, responsive, forms, charts): the pass/fail gate after the direction is set |
 | [`references/design-process/real_ui_loop.md`](./references/design-process/real_ui_loop.md) | The real-UI loop: ground in a system, reuse before generating, fidelity check, handoff |
 | [`references/design-process/variation_diversity.md`](./references/design-process/variation_diversity.md) | Seed-of-thought debias for two or more directions: a non-median start in a grounded option space, spread to be distinct, never a style chooser |

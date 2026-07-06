@@ -1,4 +1,20 @@
+---
+title: Interaction States Pass
+description: Private procedure card for design-motion interaction states, feedback, transitions, and reduced-motion expectations.
+trigger_phrases:
+  - "interaction states pass"
+  - "state feedback matrix"
+  - "reduced motion states"
+importance_tier: normal
+contextType: implementation
+version: 1.0.0.0
+---
+
 # Interaction States Pass
+
+Private procedure card for applying the existing design-motion interaction-state workflow.
+
+## 1. REQUIRED FIELDS
 
 | Field | Value |
 |---|---|
@@ -10,11 +26,11 @@
 | Proof gate | Every interactive element has a visible rest state, keyboard-visible focus, disabled semantics where needed, feedback for actions, and transition timing that fits the motion budget. |
 | Privacy rule | This is private motion guidance and does not create a public interaction-states skill. |
 
-## Read-Only Compatibility
+## 2. READ-ONLY COMPATIBILITY
 
 `design-motion` can return a state matrix or handoff. It must not require CSS edits, browser automation, or Bash to apply this card.
 
-## Procedure
+## 3. PROCEDURE
 
 1. Inventory buttons, links, inputs, toggles, clickable rows or cards, nav items, and custom widgets.
 2. For each element, specify default, hover, active, disabled, focus, and loading behavior when applicable.
@@ -22,6 +38,6 @@
 4. Add action feedback for submission, failure, validation, selection, filters, and async work.
 5. Include reduced-motion alternatives for nonessential movement.
 
-## Conflict Rule
+## 4. CONFLICT RULE
 
 If the request is primarily an accessibility release claim, `design-audit/procedures/accessibility_audit.md` owns the verdict while this card supplies the interaction-state standard.

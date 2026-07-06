@@ -28,7 +28,7 @@ Use this skill when the request involves:
 - Routing a bolder, quieter, distill or redesign direction to the right owner once a finding names the problem.
 - Producing a findings-first design quality report with P0-P3 severity and a `/20` score, including the fill-in report template.
 
-Keyword triggers: `audit design`, `critique UI`, `design review`, `accessibility audit`, `WCAG`, `performance audit`, `hardening`, `polish pass`, `responsive QA`, `anti-slop`, `looks AI-generated`, `AI tell`, `bolder`, `quieter`, `distill`, `quality score`, `P0`, `P1`.
+Keyword triggers: `audit design`, `critique UI`, `design review`, `review the UI`, `accessibility audit`, `WCAG`, `WCAG contrast`, `performance audit`, `hardening`, `polish pass`, `responsive QA`, `anti-slop`, `looks AI-generated`, `AI tell`, `should it be bolder`, `should it be quieter`, `should it be clearer`, `distill`, `quality score`, `P0`, `P1`.
 
 ### When NOT to Use
 
@@ -56,6 +56,8 @@ Pairs well with:
 ### Primary Detection Signal
 
 Route by audit mode:
+
+Route here when the request is evaluative: audit, review, critique, release readiness, accessibility, WCAG contrast, quality score, AI-template risk, production hardening, or a "should it be ..." transform question. Make-frame prompts such as "make it bolder" or "make this less generic" route to `interface`; static fixes named by findings route to `foundations` or `motion` only after audit maps owners. `polish` routes here when it means a review or release gate, and to a sibling only when the user already names the fix owner.
 
 ```text
 DESIGN QA TASK
@@ -111,6 +113,8 @@ DESIGN QA TASK
 | CONDITIONAL | Routing accepted findings to sk-code | `../shared/sk_code_handoff.md` (backlog handoff card, routes only and applies nothing) |
 | CONDITIONAL | Internal procedure support | `procedures/accessibility_audit.md`, `procedures/ai_slop_check.md`, and `../shared/procedures/polish_gate_orchestration.md` when the trigger matches |
 | ON_DEMAND | Code correctness beyond UI quality | `sk-code` code-review mode (findings-first baseline + router-selected surface evidence) |
+
+The private procedure-card selection table in Section 3 is part of this routing contract: after the public `audit` mode is selected, choose at most one card from `procedures/` or `../shared/procedures/` and cite its relative path in the plan or proof line.
 
 ### Smart Router Pseudocode
 

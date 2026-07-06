@@ -1,0 +1,48 @@
+{
+  "title": "Phase 003 - Private Procedure Card Layer",
+  "type": "phase",
+  "trigger_phrases": [
+    "private procedure card layer",
+    "procedure-card schema",
+    "mode-local procedure cards",
+    "Claude procedure adaptation",
+    "source-adaptation rules",
+    "proof requirements",
+    "single sk-design hub identity"
+  ],
+  "path": ".opencode/specs/sk-design/009-sk-design-claude-parity/003-private-procedure-card-layer/",
+  "level": 3,
+  "status": "complete",
+  "parentPacket": ".opencode/specs/sk-design/009-sk-design-claude-parity/",
+  "specFolder": "sk-design/009-sk-design-claude-parity/003-private-procedure-card-layer",
+  "description": "Level 3 phase packet that implemented a private, mode-local procedure-card layer adapting fourteen external Claude design procedures into the existing sk-design five-mode architecture without a public fourteen-skill mirror.",
+  "keywords": [
+    "private",
+    "procedure",
+    "card",
+    "layer",
+    "procedure-card",
+    "schema",
+    "mode-local",
+    "cards",
+    "claude",
+    "adaptation",
+    "sk-design",
+    "routing"
+  ],
+  "lastUpdated": "2026-07-05T23:34:56.473Z",
+  "specId": "003",
+  "folderSlug": "private-procedure-card-layer",
+  "parentChain": [
+    "sk-design",
+    "009-sk-design-claude-parity"
+  ],
+  "memorySequence": 5,
+  "memoryNameHistory": [
+    "06-07-26_00-12__verified-all-14-procedure-cards-exist-on-disk.md",
+    "06-07-26_00-13__verified-all-14-procedure-cards-exist-on-disk.md",
+    "06-07-26_00-18__verified-all-14-procedure-cards-exist-on-disk.md",
+    "06-07-26_00-19__verified-all-14-procedure-cards-exist-on-disk.md",
+    "06-07-26_00-34__independent-verification-confirmed-the-14-private.md"
+  ]
+}

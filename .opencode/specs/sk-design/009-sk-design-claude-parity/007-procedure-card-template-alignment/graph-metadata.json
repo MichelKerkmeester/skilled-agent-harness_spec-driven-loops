@@ -1,0 +1,230 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-design/009-sk-design-claude-parity/007-procedure-card-template-alignment",
+  "spec_folder": "sk-design/009-sk-design-claude-parity/007-procedure-card-template-alignment",
+  "parent_id": "sk-design/009-sk-design-claude-parity",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "procedure card template alignment",
+      "procedure-card schema audit",
+      "sk-doc procedure card template",
+      "field-by-field template diff",
+      "procedure card canon decision",
+      "mode-local card conformance",
+      "phase 007 plan",
+      "procedure-card template alignment plan",
+      "sk-doc canon path A",
+      "local schema tightening path B",
+      "phase 007 tasks",
+      "procedure-card audit tasks"
+    ],
+    "key_topics": [
+      "procedure",
+      "card",
+      "template",
+      "alignment",
+      "procedure-card",
+      "schema",
+      "audit",
+      "sk-doc",
+      "field-by-field",
+      "diff",
+      "canon",
+      "decision"
+    ],
+    "importance_tier": "high",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "tasks.md",
+      "plan.md",
+      "decision-record.md",
+      ".opencode/skills/sk-design/shared/procedure_card_schema.md",
+      ".opencode/skills/sk-design/design-motion/procedures/interaction_states_pass.md",
+      ".opencode/skills/sk-design/design-md-generator/procedures/design_system_extraction.md",
+      ".opencode/skills/sk-design/shared/procedures/polish_gate_orchestration.md",
+      "checklist.md",
+      "implementation-summary.md",
+      ".opencode/commands/doctor/scripts/parent-skill-check.cjs",
+      ".opencode/skills/sk-doc/assets/skill/skill_asset_template.md",
+      ".opencode/skills/sk-doc/assets/skill/skill_reference_template.md",
+      ".opencode/skills/sk-doc/assets/feature_catalog/feature_catalog_snippet_template.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "procedure_card_schema.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-design/shared/procedure_card_schema.md",
+        "source": "derived"
+      },
+      {
+        "name": "interaction_states_pass.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-design/design-motion/procedures/interaction_states_pass.md",
+        "source": "derived"
+      },
+      {
+        "name": "design_system_extraction.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-design/design-md-generator/procedures/design_system_extraction.md",
+        "source": "derived"
+      },
+      {
+        "name": "polish_gate_orchestration.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-design/shared/procedures/polish_gate_orchestration.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "parent-skill-check.cjs",
+        "kind": "file",
+        "path": ".opencode/commands/doctor/scripts/parent-skill-check.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "skill_asset_template.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/assets/skill/skill_asset_template.md",
+        "source": "derived"
+      },
+      {
+        "name": "skill_reference_template.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/assets/skill/skill_reference_template.md",
+        "source": "derived"
+      },
+      {
+        "name": "feature_catalog_snippet_template.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/assets/feature_catalog/feature_catalog_snippet_template.md",
+        "source": "derived"
+      },
+      {
+        "name": "Procedure Card Template Alignment",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Field Lint",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Worked Example",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Publication Checklist",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Executed Path",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Kit Level",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Phase 003 invented a private procedure-card schema (`shared/procedurecardschema.md`) and fourteen cards without checking whether the pattern should conform to sk-doc's existing template canon (`skillassettemplate.md`, `skillreferencetemplate.md`, `featurecatalogsnippettemplate.md`)",
+    "created_at": "2026-07-06T04:33:38.235Z",
+    "last_save_at": "2026-07-06T06:20:17.918Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:9bef189b1ea50810943aafd755ae16e9c3749e89e1469550af0f3bb6289118eb",
+    "source_doc_hashes": {
+      "spec.md": "297bcfe36da229e0999ccdf337d503f6b574e11d6111f4b2704b8148e57f0568",
+      "plan.md": "f6f872bfe9f7d846bbe390ae43c714f7cc44ec0fb2a2ec5ff2ecba347f2b9798",
+      "tasks.md": "0079dd7ba8fb508941d6e41af4f7c8d3a45e8deac9deacd49b4c6eb9bdc1d727",
+      "checklist.md": "4ade704544f2817f0f910fbb9b6477b6cb3b8942c955b8f82293db38e4835868",
+      "decision-record.md": "3fe98139dc78484f57dafa112c90a9dc80b58aaf511e3f8dfa1650a79be7da3c",
+      "implementation-summary.md": "f0e7c38c978b7ece20a86240bccb9adabfcbba00129f5fd62d83b71f5e680eee"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

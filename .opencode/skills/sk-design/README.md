@@ -5,7 +5,7 @@ trigger_phrases:
   - "design skill"
   - "ui design interface foundations motion audit"
   - "design system tokens accessibility"
-version: 1.2.0.0
+version: 1.2.1.0
 ---
 
 # sk-design
@@ -71,7 +71,9 @@ The mode packets carry no `graph-metadata.json` of their own, so the advisor dis
 
 ### Private procedure support
 
-Mode packets may cite private procedure cards after the public mode is selected. These cards are maintainer-facing support for context capture, proof expectations and direct fallback execution; they are not a public taxonomy and should not be presented as user-selectable routes. The four advisory modes remain Read/Glob/Grep-only. `design-md-generator` remains the only mutating mode and keeps its Playwright extraction backend boundary.
+Mode packets may cite private procedure cards after the public mode is selected. These cards are maintainer-facing support for context capture, proof expectations and direct fallback execution. They are not a public taxonomy and should not be presented as user-selectable routes. The four advisory modes remain Read/Glob/Grep-only. `design-md-generator` remains the only mutating mode and keeps its Playwright extraction backend boundary.
+
+The hub manager shell is defined in `SKILL.md` Section 2. Read `Manager Intake Before Routing`, `Visible Plan Before Design or Build Work` and `Proof Gates and Verifier Cadence` there before changing routing behavior. Transport boundaries live in `SKILL.md` Section 7, where `mcp-figma` and `mcp-open-design` are named as transports while `sk-design` owns taste and acceptance.
 
 ---
 
@@ -97,5 +99,8 @@ Reach for sk-design when output looks generic and needs taste, when a visual sys
 |---|---|
 | [`SKILL.md`](./SKILL.md) | Runtime instructions and routing logic. |
 | [`mode-registry.json`](./mode-registry.json) | The mode-to-packet routing map. |
+| [`benchmark/`](./benchmark/) | Frozen baseline and after-009 skill-benchmark reports for router trace scoring. |
+| [`manual_testing_playbook/`](./manual_testing_playbook/manual_testing_playbook.md) | Six-category, 24-scenario hub playbook covering mode routing, advisor integration, transform verbs, md-generator, shared references and parity behavior. |
+| [`shared/procedures/polish_gate_orchestration.md`](./shared/procedures/polish_gate_orchestration.md) | Shared maintainer-facing procedure card for polish-gate orchestration across modes. |
 | [`design-interface/SKILL.md`](./design-interface/SKILL.md) | An example mode packet. |
 | [`changelog/v1.2.0.0.md`](./changelog/v1.2.0.0.md) | Maintainer note for the mode-local procedure operating model. |

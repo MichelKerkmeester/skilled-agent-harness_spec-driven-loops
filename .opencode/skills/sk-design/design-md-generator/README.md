@@ -1,3 +1,15 @@
+---
+title: design-md-generator
+description: Live-site CSS extraction mode that writes measured tokens and validates a v3 Style Reference DESIGN.md.
+trigger_phrases:
+  - "extract design system"
+  - "generate design.md"
+  - "capture website css"
+  - "design tokens from url"
+  - "validate design.md"
+version: 1.0.0.0
+---
+
 # md-generator
 
 > Extract a live website's real, measured CSS into a v3 **Style Reference** `DESIGN.md` your AI agents build against without hallucinating colors, fonts, spacing, or shadows.
@@ -105,6 +117,10 @@ Each extracted token gets a stability classification that governs its presence i
 | L4 | Content | Image-derived, one-off, article-specific | Excluded |
 
 The classifier in `backend/scripts/cluster.ts` is deterministic. Boundary tokens get the higher (more restrictive) class.
+
+### Private Procedure Card
+
+The maintainer-facing card in [`procedures/design_system_extraction.md`](./procedures/design_system_extraction.md) supports extraction evidence after the public `md-generator` mode is chosen. It is not a user-selectable route.
 
 ### Extract Flags
 
@@ -220,4 +236,5 @@ A: This skill captures what exists on a live site. `interface` invents new direc
 | [`references/writing_style_guide.md`](./references/writing_style_guide.md) | Voice, tone, and section-composition rules for DESIGN.md prose |
 | [`references/authoring_boundary.md`](./references/authoring_boundary.md) | The line between measured, brief-provided, inferred and absent values, plus why forward-authoring from a brief stays out of scope |
 | [`assets/source_of_truth_router_card.md`](./assets/source_of_truth_router_card.md) | Fill-in card that sorts each value by origin before writing, so nothing is fabricated or backfilled |
+| [`procedures/design_system_extraction.md`](./procedures/design_system_extraction.md) | Maintainer-facing procedure card for extraction evidence after `md-generator` is selected |
 | [Skills Library](../README.md) | The skill catalog and routing front door |

@@ -29,7 +29,7 @@ Approach UI work as the design lead at a studio known for visual identities that
 - Reading a brief into the register and the variance, motion, and density dials before any visual choice.
 - Running the mechanical pre-flight gate over a built or planned surface before delivery, including the layout and content gates.
 
-**Keyword Triggers**: "design", "make it look good", "redesign", "variation", "give me N variations", "show me options", "multiple directions", "hero section", "landing page", "looks templated", "looks AI-generated", "visual identity".
+**Keyword Triggers**: "design", "make it look good", "redesign", "variation", "give me N variations", "show me options", "multiple directions", "hero section", "landing page", "looks templated", "looks AI-generated", "visual identity", "less generic", "custom not templated", "visual direction".
 
 ### When NOT to Use
 
@@ -45,6 +45,8 @@ Approach UI work as the design lead at a studio known for visual identities that
 ### Primary Detection Signal
 
 Detect design intent and how much of the visual direction the brief fixes:
+
+Route here when the request asks to invent, apply, or reshape an interface direction, not merely to evaluate it. `hero section`, `landing page`, `less generic`, `custom not templated`, `visual direction`, and make-frame transform verbs such as "make it bolder", "make it quieter", "clarify this", or "delight the interaction" are interface evidence when they ask for a new direction. If the same prompt asks whether the design should change, requests a score, or frames the work as review/release readiness, route to `audit`. If `hierarchy`, `spacing`, `grid`, or token language is the main ask, route to `foundations`; if `DESIGN.md` or `tokens.json` is a measured artifact, route to `md-generator`.
 
 ```bash
 # Direction freedom (pseudo)
@@ -85,6 +87,8 @@ DESIGN TASK
 | ON_DEMAND | Naming a realized look in one line as the default to critique against | The illustrative cues in `references/aesthetics/` (brutalist, minimalist, soft, apple-bento). Critique-against reference only, subordinate to grounding, never a chooser, preset, or pick-a-vibe axis. See `references/aesthetics/README.md` |
 | INITIATIVE / ASK | A convention-heavy category where naming the real-world default sharpens the deviation | A real shipped-UI reference via Mobbin (app/iOS screens + flows) or Refero (web pages + visual styles). These run through Code Mode (`mobbin.*` / `refero.*`), so co-load `mcp-code-mode` before any lookup; this skill does not call Code Mode directly. Take the initiative to pull ONE when the category benefits and a subscription is connected; otherwise ask the user; otherwise fall back to the generic process. See `references/design-grounding/design_references_mcp.md` |
 | ON_DEMAND | Implementing in code | `sk-code` web-surface standards for the target stack |
+
+The private procedure-card selection table in Section 3 is part of this routing contract: after the public `interface` mode is selected, choose at most one card from `procedures/` or `../shared/procedures/` and cite its relative path in the plan or proof line.
 
 ### Smart Router (parseable intent model)
 

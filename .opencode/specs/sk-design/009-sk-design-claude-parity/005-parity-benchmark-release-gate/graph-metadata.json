@@ -1,0 +1,266 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-design/009-sk-design-claude-parity/005-parity-benchmark-release-gate",
+  "spec_folder": "sk-design/009-sk-design-claude-parity/005-parity-benchmark-release-gate",
+  "parent_id": "sk-design/009-sk-design-claude-parity",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [
+      {
+        "packet_id": "sk-design/009-sk-design-claude-parity/004-mode-packet-refactor",
+        "reason": "Phase 005 benchmarks must run against the refactored mode-packet behavior produced by Phase 004",
+        "source": "manual",
+        "spec_folder": "sk-design/009-sk-design-claude-parity/004-mode-packet-refactor",
+        "title": "Phase 004 - Mode Packet Refactor"
+      }
+    ],
+    "supersedes": [],
+    "related_to": [
+      {
+        "packet_id": "sk-design/009-sk-design-claude-parity/001-baseline-ownership-gate",
+        "reason": "Phase 001 ownership boundaries constrain release-gate evidence and future benchmark artifact writes",
+        "source": "manual",
+        "spec_folder": "sk-design/009-sk-design-claude-parity/001-baseline-ownership-gate",
+        "title": "Phase 001 - Baseline Ownership Gate"
+      },
+      {
+        "packet_id": "sk-design/009-sk-design-claude-parity/002-parent-hub-compatibility-shell",
+        "reason": "Phase 002 parent hub compatibility shell defines routing behavior that release invariants must preserve",
+        "source": "manual",
+        "spec_folder": "sk-design/009-sk-design-claude-parity/002-parent-hub-compatibility-shell",
+        "title": "Phase 002 - Parent Hub Compatibility Shell"
+      },
+      {
+        "packet_id": "sk-design/009-sk-design-claude-parity/003-private-procedure-card-layer",
+        "reason": "Phase 003 private procedure cards are the internal selection layer that Phase 005 proof gates must verify",
+        "source": "manual",
+        "spec_folder": "sk-design/009-sk-design-claude-parity/003-private-procedure-card-layer",
+        "title": "Phase 003 - Private Procedure Card Layer"
+      }
+    ]
+  },
+  "derived": {
+    "trigger_phrases": [
+      "parity benchmark release gate",
+      "Claude Design-like behavior",
+      "sk-design release readiness",
+      "golden prompts",
+      "procedure selection checks",
+      "context manifest proof gates",
+      "anti-slop review",
+      "manual playbook scenarios",
+      "phase 005 plan",
+      "parity benchmark plan",
+      "release gate plan",
+      "golden prompt corpus"
+    ],
+    "key_topics": [
+      "parity",
+      "benchmark",
+      "release",
+      "gate",
+      "claude",
+      "design-like",
+      "behavior",
+      "sk-design",
+      "readiness",
+      "golden",
+      "prompts",
+      "procedure"
+    ],
+    "importance_tier": "high",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "manual_testing_playbook/manual_testing_playbook.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      ".opencode/skills/sk-design/manual_testing_playbook/manual_testing_playbook.md",
+      ".opencode/skills/sk-design/benchmark/after-009/report.json",
+      ".opencode/specs/sk-design/009-sk-design-claude-parity/005-parity-benchmark-release-gate/spec.md",
+      ".opencode/specs/sk-design/009-sk-design-claude-parity/005-parity-benchmark-release-gate/plan.md",
+      ".opencode/specs/sk-design/009-sk-design-claude-parity/005-parity-benchmark-release-gate/tasks.md",
+      ".opencode/specs/sk-design/009-sk-design-claude-parity/005-parity-benchmark-release-gate/checklist.md",
+      ".opencode/specs/sk-design/009-sk-design-claude-parity/005-parity-benchmark-release-gate/decision-record.md",
+      ".opencode/specs/sk-design/009-sk-design-claude-parity/005-parity-benchmark-release-gate/implementation-summary.md",
+      ".opencode/specs/sk-design/009-sk-design-claude-parity/005-parity-benchmark-release-gate/release-report.md",
+      ".opencode/specs/sk-design/009-sk-design-claude-parity/005-parity-benchmark-release-gate/description.json",
+      ".opencode/specs/sk-design/009-sk-design-claude-parity/005-parity-benchmark-release-gate/graph-metadata.json",
+      ".opencode/skills/sk-design/benchmark/after-009/report.md",
+      ".opencode/skills/sk-design/benchmark/baseline/skill-benchmark-report.json"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": ".opencode/specs/sk-design/009-sk-design-claude-parity/005-parity-benchmark-release-gate/spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "manual_testing_playbook.md",
+        "kind": "doc",
+        "path": "manual_testing_playbook/manual_testing_playbook.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": ".opencode/specs/sk-design/009-sk-design-claude-parity/005-parity-benchmark-release-gate/plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": ".opencode/specs/sk-design/009-sk-design-claude-parity/005-parity-benchmark-release-gate/tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": ".opencode/specs/sk-design/009-sk-design-claude-parity/005-parity-benchmark-release-gate/checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": ".opencode/specs/sk-design/009-sk-design-claude-parity/005-parity-benchmark-release-gate/decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": ".opencode/specs/sk-design/009-sk-design-claude-parity/005-parity-benchmark-release-gate/implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "report.json",
+        "kind": "config",
+        "path": ".opencode/skills/sk-design/benchmark/after-009/report.json",
+        "source": "derived"
+      },
+      {
+        "name": "release-report.md",
+        "kind": "doc",
+        "path": ".opencode/specs/sk-design/009-sk-design-claude-parity/005-parity-benchmark-release-gate/release-report.md",
+        "source": "derived"
+      },
+      {
+        "name": "description.json",
+        "kind": "config",
+        "path": ".opencode/specs/sk-design/009-sk-design-claude-parity/005-parity-benchmark-release-gate/description.json",
+        "source": "derived"
+      },
+      {
+        "name": "graph-metadata.json",
+        "kind": "config",
+        "path": ".opencode/specs/sk-design/009-sk-design-claude-parity/005-parity-benchmark-release-gate/graph-metadata.json",
+        "source": "derived"
+      },
+      {
+        "name": "report.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-design/benchmark/after-009/report.md",
+        "source": "derived"
+      },
+      {
+        "name": "skill-benchmark-report.json",
+        "kind": "config",
+        "path": ".opencode/skills/sk-design/benchmark/baseline/skill-benchmark-report.json",
+        "source": "derived"
+      },
+      {
+        "name": "Parity Benchmark Release Gate",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Claude Design",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Dependencies",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Conditional Release Gate",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Strict Spec Kit",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Evidence",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The parity refactor can look correct at the router layer while still failing live design usefulness, procedure selection, proof discipline, anti-slop judgment, accessibility, hierarchy, interaction quality, polish, or md-generator preservation",
+    "created_at": "2026-07-05T00:00:00.000Z",
+    "last_save_at": "2026-07-06T05:47:25.939Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:284368a407b2a2c6f8d2708a1b9e06da0d456437a685e4a80c00f846f4df057d",
+    "source_doc_hashes": {
+      "spec.md": "de8cf6bf1d5adb5f04fa45a34554ee01c7f7066f51a7377d6ca85f6875e05077",
+      "plan.md": "057bbf144533ce3fa45ace5b60c9545af4b3623b3f305e3c431ea144ad1eef42",
+      "tasks.md": "e0dcd6b3e24e3df372ecaecebcb7052cfb3014ee1016e7450327073b9ee4c94b",
+      "checklist.md": "428d6a8a163c338f9128d251977c63a541411cc27604d328cbc00489c71e19cf",
+      "decision-record.md": "f22c093313c06a750e18016c29634318faf8b84f8fa5b7c90c51b9160bffec3b",
+      "implementation-summary.md": "3b4f887bc4ee108003ac5e20629abef206dca4d22046032b450ab8afa249de54"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

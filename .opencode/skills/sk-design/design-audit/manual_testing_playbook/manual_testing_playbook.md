@@ -23,6 +23,9 @@ version: 1.0.0.3
 | AUDIT-SLOP-003 | Hardening edge-case matrix | CRITIQUE_HARDENING | [`03--slop-hardening/hardening-edge-cases.md`](03--slop-hardening/hardening-edge-cases.md) |
 | AUDIT-EVIDENCE-010 | Evidence worksheet label carry-through | EVIDENCE_CAPTURE | [`04--evidence-worksheet/evidence-worksheet-labels.md`](04--evidence-worksheet/evidence-worksheet-labels.md) |
 | AUDIT-EVIDENCE-011 | Evidence-backed release-readiness gate | AUDIT_CONTRACT | [`04--evidence-worksheet/evidence-backed-release-readiness.md`](04--evidence-worksheet/evidence-backed-release-readiness.md) |
+| AUDIT-PROCCARD-001 | Procedure-card selection proof | PROCEDURE_CARD_SELECTION | [`05--procedure-card-contract/card-selection-proof.md`](05--procedure-card-contract/card-selection-proof.md) |
+| AUDIT-PROCCARD-002 | No-card fallback | PROCEDURE_CARD_FALLBACK | [`05--procedure-card-contract/no-card-fallback.md`](05--procedure-card-contract/no-card-fallback.md) |
+| AUDIT-PROCCARD-003 | Direct fallback without subagents | DIRECT_FALLBACK | [`05--procedure-card-contract/direct-fallback-without-subagents.md`](05--procedure-card-contract/direct-fallback-without-subagents.md) |
 
 ## 2. GLOBAL PRECONDITIONS
 
@@ -40,7 +43,8 @@ A scenario is SKIP only when no concrete `<TARGET>` artifact can be supplied for
 - Target artifact and evidence available.
 - Resources loaded.
 - Findings, score, owner mapping, caveats, and final verdict.
+- Procedure card or no-card fallback proof when procedure support is in scope.
 
 ## 4. RELEASE READINESS
 
-Release is ready when all scenarios PASS or are SKIP only under the SKIP RULE (no target artifact supplied), and no scenario omits severity, score, evidence, or owner mapping.
+Release is ready when all 14 scenarios PASS or are SKIP only under the SKIP RULE (no target artifact supplied), and no scenario omits severity, score, evidence, owner mapping, procedure-card proof, or the read-only direct-fallback boundary.

@@ -28,12 +28,13 @@ Canonical package artifacts:
 - `10--mechanical-layout-gate/`
 - `11--content-and-mock-data-gate/`
 - `12--brief-to-dials-intake/`
+- `14--procedure-card-contract/`
 
 ---
 
 ## 1. OVERVIEW
 
-This playbook provides 17 deterministic scenarios across 13 categories validating the `interface` skill surface. Each scenario maps to a dedicated per-feature file with exact prompt, command sequence, expected signals, evidence, pass/fail criteria, and failure triage.
+This playbook provides 20 deterministic scenarios across 14 categories validating the `interface` skill surface. Each scenario maps to a dedicated per-feature file with exact prompt, command sequence, expected signals, evidence, pass/fail criteria, and failure triage.
 
 Coverage note (2026-06-26): the playbook covers the free-axis brainstorm-critique-deviate process against the three named AI-default clusters, brief-pinning precedence where the brief always wins, the objective quality-floor gate sourced from `ux_quality_reference.md`, the system-as-critique-against use where a real design system is read live as the default to deviate from with a negative control that it is never surfaced as a chooser and never copied, abstention and routing to `sk-code` for pure-logic work and to `sk-doc` for documentation work, licensing and provenance integrity confirming the skill is Apache-2.0 only with no vendored MIT material remaining, the real-UI loop covering reuse-before-generate when a design system is present, the render fidelity check gated on the quality floor and the anti-default critique, and the guarded native-image visual-direction branch for net-new, ambiguous, or image-led work with approval before code, and the design-references hybrid initiative/ask routing where the skill pulls one real-world Mobbin or Refero reference on its own initiative when a convention-heavy category benefits and a subscription is connected, asks the user when borderline or unknown, and falls back to the generic process otherwise, with a negative control that it is never a chooser and never copied. It also covers the mechanical pre-flight card walked box by box as the binary last filter before delivery, the mechanical layout gate where the hero lines, bento cells, and eyebrows are counted and button contrast is computed against the real background, the copy and mock-data content gate swept over the real strings for lorem, AI-tell phrasing, fake precision, one copy register, and image-seed discipline, and the brief-to-dials Design Read intake that reads a brief into the variance, motion, and density dials after the register posture is set with a negative control that the dials are never surfaced as a chooser. Per-feature files anchor directly to `SKILL.md`, the `references/` docs, and `assets/interface_preflight_card.md`.
 
@@ -131,7 +132,7 @@ Release is READY only when:
 
 1. No feature verdict is FAIL.
 2. All critical-path scenarios are PASS or explicitly SKIP for environment-only reasons.
-3. Coverage is 100% of playbook scenarios defined by the root index and backed by per-feature files (`COVERED_FEATURES == TOTAL_FEATURES == 17`).
+3. Coverage is 100% of playbook scenarios defined by the root index and backed by per-feature files (`COVERED_FEATURES == TOTAL_FEATURES == 20`).
 4. No unresolved blocking triage item remains.
 5. No scenario exposed a generator or persistence surface and no scenario overrode a pinned brief.
 
@@ -144,7 +145,7 @@ Keep global verdict logic in this root playbook. Put scenario-specific caveats, 
 Before declaring this playbook release-ready, confirm:
 
 1. Root validator is clean.
-2. Per-feature structural sweep checks all 15 files.
+2. Per-feature structural sweep checks all 20 files.
 3. No forbidden sidecars exist.
 4. Every table row has exactly 9 columns.
 5. Every scenario prompt is realistic per the RCAF-vs-natural-human heuristic in sk-doc creation reference section 5.
@@ -167,7 +168,7 @@ Before declaring this playbook release-ready, confirm:
 
 ### Purpose
 
-This section records wave planning and capacity guidance for executing the 17-scenario design battery. It is not a runtime support matrix by itself.
+This section records wave planning and capacity guidance for executing the 20-scenario design battery. It is not a runtime support matrix by itself.
 
 ### Operational Rules
 
@@ -191,7 +192,8 @@ This section records wave planning and capacity guidance for executing the 17-sc
 | 6 | Mechanical pre-flight + layout + content gates | ID-011, ID-012, ID-013 | The three delivery gates all read on-disk references against one supplied built UI fixture, so they share the render fixture and isolate cleanly |
 | 7 | Brief-to-dials intake | ID-014 | The Design Read intake reads a brief into the dials after the register posture, so it runs with the other intake-shaped checks and isolates the dial calibration |
 | 8 | Redesign intake | ID-015 | Redesign classification protects existing URLs, nav labels, form fields, legal copy and locked tokens before the visual pass |
-| 9 | Licensing and provenance | ID-007 | Provenance integrity is a static-inspection check and runs last |
+| 9 | Procedure-card contract | ID-018, ID-019, ID-020 | Procedure selection, no-card fallback, and direct fallback are read-only and share the same source section |
+| 10 | Licensing and provenance | ID-007 | Provenance integrity is a static-inspection check and runs last |
 
 ### What Belongs In Per-Feature Files
 
@@ -554,7 +556,61 @@ Desired user-visible outcome: A compact redesign intake that names the lane, app
 
 ---
 
-## 20. AUTOMATED TEST CROSS-REFERENCE
+## 20. PROCEDURE CARD CONTRACT (ID-018..ID-020)
+
+This category covers 3 scenarios while the linked feature files remain the canonical execution contract.
+
+### ID-018 | Interface procedure-card selection proof
+
+#### Description
+
+Interface selects the matching private procedure card across all six owned request-shape rows and keeps the shared polish card shared-only.
+
+#### Scenario Contract
+
+Prompt: `For each interface request shape, state the public mode, selected private procedure card, and proof line before giving design advice.`
+
+Desired user-visible outcome: A card-selection matrix covering `discovery_question_round`, `aesthetic_direction`, `wireframe_exploration`, `variation_set`, `prototype_flow_spec`, and `deck_direction_spec`, with no private route exposed as public.
+
+#### Test Execution
+
+> **Feature File:** [ID-018](14--procedure-card-contract/card-selection-proof.md)
+
+### ID-019 | Interface no-card fallback
+
+#### Description
+
+Interface states `Procedure applied: none - baseline interface workflow` when no private card matches.
+
+#### Scenario Contract
+
+Prompt: `interface: answer this narrow visual-order question using the baseline workflow. State whether any private procedure card applies before answering.`
+
+Desired user-visible outcome: Narrow baseline interface advice with the exact no-card fallback and no all-card loading.
+
+#### Test Execution
+
+> **Feature File:** [ID-019](14--procedure-card-contract/no-card-fallback.md)
+
+### ID-020 | Interface direct fallback without subagents
+
+#### Description
+
+Interface executes directly in the current session with the same proof bar and Read/Glob/Grep-only boundary when subagents are unavailable.
+
+#### Scenario Contract
+
+Prompt: `Subagents are unavailable. interface: produce the direction in this current session and show the selected procedure or fallback, context basis, proof line, and read-only tool boundary before recommendations.`
+
+Desired user-visible outcome: Direct current-session execution with selected card or fallback, context basis, proof line, and no Write/Edit/Bash/Task usage.
+
+#### Test Execution
+
+> **Feature File:** [ID-020](14--procedure-card-contract/direct-fallback-without-subagents.md)
+
+---
+
+## 21. AUTOMATED TEST CROSS-REFERENCE
 
 The current repository has no dedicated automated test module for `interface/manual_testing_playbook/`, and the sk-doc validator currently checks the root playbook only. The scenarios exercise the on-disk reference surface and a live design-system read directly.
 
@@ -571,12 +627,13 @@ The current repository has no dedicated automated test module for `interface/man
 | `../shared/register.md` | The Brand-vs-Product operating posture that must be set before color, type, layout, motion, copy, or audit severity decisions | ID-016 |
 | `references/design-process/brief_to_dials.md` | The Design Read intake that reads a brief into the variance, motion, and density dials with the no-chooser guard | ID-014, ID-016 |
 | `references/design-process/redesign_intake.md` | The redesign classification gate and never-silently-change list for existing surfaces | ID-015 |
+| `SKILL.md` | Procedure Card Selection and Context, Proof, And Direct Fallback contracts | ID-018, ID-019, ID-020 |
 
 Validator limitation: per-feature file completeness requires the structural sweep described in this playbook until `validate_document.py` recurses into category folders.
 
 ---
 
-## 21. FEATURE CATALOG CROSS-REFERENCE INDEX
+## 22. FEATURE CATALOG CROSS-REFERENCE INDEX
 
 | Feature ID | Feature Name | Category | Feature File |
 |---|---|---|---|
@@ -597,3 +654,6 @@ Validator limitation: per-feature file completeness requires the structural swee
 | ID-014 | Brief read into the variance, motion, and density dials | BRIEF-TO-DIALS INTAKE | [ID-014](12--brief-to-dials-intake/brief-read-into-dials.md) |
 | ID-015 | Redesign intake classification | REDESIGN INTAKE | [ID-015](13--redesign-intake/redesign-intake-classification.md) |
 | ID-016 | Register-first context gate on a UI build | BRIEF-TO-DIALS INTAKE | [ID-016](12--brief-to-dials-intake/register-first-context-gate.md) |
+| ID-018 | Interface procedure-card selection proof | PROCEDURE CARD CONTRACT | [ID-018](14--procedure-card-contract/card-selection-proof.md) |
+| ID-019 | Interface no-card fallback | PROCEDURE CARD CONTRACT | [ID-019](14--procedure-card-contract/no-card-fallback.md) |
+| ID-020 | Interface direct fallback without subagents | PROCEDURE CARD CONTRACT | [ID-020](14--procedure-card-contract/direct-fallback-without-subagents.md) |

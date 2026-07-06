@@ -1,0 +1,229 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-design/009-sk-design-claude-parity/008-smart-routing-optimization",
+  "spec_folder": "sk-design/009-sk-design-claude-parity/008-smart-routing-optimization",
+  "parent_id": "sk-design/009-sk-design-claude-parity",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "smart routing optimization",
+      "sk-design routing vocabulary",
+      "hub-router keyword sync",
+      "mode packet SMART ROUTING",
+      "procedure-card routing cross-reference",
+      "phase 008",
+      "implementation plan",
+      "tasks",
+      "verification",
+      "checklist",
+      "phase 008 implementation summary",
+      "smart routing optimization complete"
+    ],
+    "key_topics": [
+      "smart",
+      "routing",
+      "optimization",
+      "sk-design",
+      "vocabulary",
+      "hub-router",
+      "keyword",
+      "sync",
+      "mode",
+      "packet",
+      "procedure-card",
+      "cross-reference"
+    ],
+    "importance_tier": "high",
+    "status": "complete",
+    "key_files": [
+      ".opencode/skills/sk-design/SKILL.md",
+      ".opencode/skills/sk-design/design-interface/SKILL.md",
+      ".opencode/skills/sk-design/design-foundations/SKILL.md",
+      ".opencode/skills/sk-design/design-motion/SKILL.md",
+      ".opencode/skills/sk-design/design-audit/SKILL.md",
+      ".opencode/skills/sk-design/design-md-generator/SKILL.md",
+      ".opencode/skills/sk-design/hub-router.json",
+      ".opencode/skills/sk-design/mode-registry.json",
+      "benchmark-after-008/report.json",
+      "benchmark-after-008/report.md",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-design/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "hub-router.json",
+        "kind": "config",
+        "path": ".opencode/skills/sk-design/hub-router.json",
+        "source": "derived"
+      },
+      {
+        "name": "mode-registry.json",
+        "kind": "config",
+        "path": ".opencode/skills/sk-design/mode-registry.json",
+        "source": "derived"
+      },
+      {
+        "name": "report.json",
+        "kind": "config",
+        "path": "benchmark-after-008/report.json",
+        "source": "derived"
+      },
+      {
+        "name": "report.md",
+        "kind": "doc",
+        "path": "benchmark-after-008/report.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Smart Routing Optimization",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Mode Packets",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Folder",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Writable Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Primary Area",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Level",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implemented Phase",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Use Phase",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The sk-design Lane-C skill-benchmark harness recorded a `CONDITIONAL` verdict at aggregate `69/100` in both the frozen `benchmark/baseline/` run (21 scenarios, pre-Phase-002) and the Phase-005 `benchmark/after-009/` rerun (24 scenarios, post-Phase-005)",
+    "created_at": "2026-07-06T04:34:34.389Z",
+    "last_save_at": "2026-07-06T06:56:34.313Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:b925d11d6792815c82d0c736249f27898556ff67bbe8dd0761575e86e9a09125",
+    "source_doc_hashes": {
+      "spec.md": "3c0b3be45c0fc9a09d0d2dfd4e4b99be2ee3a472f22d41129a5c66135dc85ca5",
+      "plan.md": "7cad05c06fec5af3bb5426cc10d2dcbb7d54eba1a86bcb37796ff45a2e841ff0",
+      "tasks.md": "4ccb983476a09b15507ffbf686a1fdee60ac01308973047eaf7700931082e300",
+      "checklist.md": "50ebaef78fc2f895b3d418283a5c5c11ae38de9d4ccba9b029035860ca40c106",
+      "implementation-summary.md": "cef6437701844ca7d7f94c6b7a027aa2182d2b307329ffb012c96afaceef03bf"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

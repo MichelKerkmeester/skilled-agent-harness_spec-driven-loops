@@ -1,4 +1,20 @@
+---
+title: Prototype Flow Spec
+description: Private procedure card for design-interface stateful prototype flow specifications.
+trigger_phrases:
+  - "prototype flow spec"
+  - "interactive prototype brief"
+  - "stateful ui flow"
+importance_tier: normal
+contextType: implementation
+version: 1.0.0.0
+---
+
 # Prototype Flow Spec
+
+Private procedure card for applying the existing design-interface prototype flow specification workflow.
+
+## 1. REQUIRED FIELDS
 
 | Field | Value |
 |---|---|
@@ -10,11 +26,11 @@
 | Proof gate | The spec covers navigation, validation, loading, success, error, keyboard, focus, and any state that should survive reload; unresolved fake or simulated behavior is labeled. |
 | Privacy rule | This card does not make `design-interface` a builder mode or public prototype skill. Implementation remains a handoff to `sk-code`. |
 
-## Read-Only Compatibility
+## 2. READ-ONLY COMPATIBILITY
 
 The four read-only design modes may cite this card to produce a flow spec or handoff. They must not require writing files, running commands, or creating a working prototype themselves.
 
-## Procedure
+## 3. PROCEDURE
 
 1. Confirm flow scope, fidelity, device frame, variation count, visual system, and sample-data needs.
 2. Map screens and state transitions before any implementation handoff.
@@ -22,6 +38,6 @@ The four read-only design modes may cite this card to produce a flow spec or han
 4. Decide which state should persist across reloads or sessions.
 5. Hand implementation to `sk-code` with a verification checklist for the complete flow.
 
-## Conflict Rule
+## 4. CONFLICT RULE
 
 If the user only needs structure, start with `wireframe_exploration.md`. If they need multiple prototype directions, combine with `variation_set.md` before handoff.

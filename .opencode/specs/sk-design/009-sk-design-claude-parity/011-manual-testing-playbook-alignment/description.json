@@ -1,0 +1,35 @@
+{
+  "type": "phase",
+  "level": 2,
+  "status": "planned",
+  "parentPacket": ".opencode/specs/sk-design/009-sk-design-claude-parity/",
+  "specFolder": "sk-design/009-sk-design-claude-parity/011-manual-testing-playbook-alignment",
+  "description": "The sk-design hub and mode-packet manual testing playbooks did not fully exercise behavior added by earlier parity-refactor work:",
+  "keywords": [
+    "sk-design",
+    "hub",
+    "mode-packet",
+    "manual",
+    "testing",
+    "playbooks",
+    "fully",
+    "exercise",
+    "behavior",
+    "added",
+    "earlier",
+    "parity-refactor",
+    "work"
+  ],
+  "lastUpdated": "2026-07-06T09:07:57.204Z",
+  "specId": "011",
+  "folderSlug": "manual-testing-playbook-alignment",
+  "parentChain": [
+    "sk-design",
+    "009-sk-design-claude-parity"
+  ],
+  "memorySequence": 2,
+  "memoryNameHistory": [
+    "06-07-26_05-31__confirmed-sk-design-passes-the-strict-parent.md",
+    "06-07-26_05-36__confirmed-sk-design-passes-the-strict-parent.md"
+  ]
+}
