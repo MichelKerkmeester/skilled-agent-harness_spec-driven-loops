@@ -124,6 +124,41 @@
       "mergedFindingIds": []
     },
     {
+      "findingId": "P1-005",
+      "severity": "P1",
+      "title": "Guided run validates relative output against one cwd but executes extraction from another",
+      "file": ".opencode/skills/sk-design/design-md-generator/backend/scripts/guided-run.ts",
+      "line": 149,
+      "description": "The guided wrapper accepts and preflights the documented repo-root relative output path, but extraction runs from BACKEND_ROOT with the original relative path, so extract.ts resolves the same argument inside the skill/backend tree and rejects it as unsafe.",
+      "findingClass": "cross-consumer",
+      "deltaStatus": null,
+      "scopeProof": "Focused reads of guided-run, extract, backend README, CLI comments, and guided-run tests show the relative path is accepted, planned unchanged, executed from BACKEND_ROOT, and only tested as a string plan.",
+      "affectedSurfaceHints": [
+        "guided-run.ts",
+        "extract.ts",
+        "guided-run.test.ts",
+        "backend README",
+        "shared output path policy"
+      ],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 6,
+      "lastSeen": 6,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 6,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
       "findingId": "P2-001",
       "severity": "P2",
       "title": "Procedure-card schema lint is manual-only and outside the existing canon checker",
@@ -195,12 +230,12 @@
   },
   "findingsBySeverity": {
     "P0": 0,
-    "P1": 4,
+    "P1": 5,
     "P2": 2
   },
-  "openFindingsCount": 6,
+  "openFindingsCount": 7,
   "resolvedFindingsCount": 0,
-  "convergenceScore": 0.6,
+  "convergenceScore": 0.75,
   "graphConvergenceScore": 0,
   "graphDecision": null,
   "graphBlockers": [],
@@ -211,9 +246,12 @@
       "checklist_evidence_drift",
       "command_projection_parity",
       "compiled_backend_output_presence",
+      "component_facts_gap",
+      "compound_prompt_output_escalation",
       "crawler_side_effect_control",
       "feature_catalog_code",
       "feature_catalog_duplicate_drift",
+      "guided_run_relative_output",
       "manual_playbook_capability_mismatch",
       "md_generator_entrypoint_contract",
       "md_generator_remediation_coupling",
@@ -230,10 +268,12 @@
       "playbook_capability",
       "prior_component_gap_security",
       "procedure_card_schema_drift",
+      "prompt_data_isolation",
       "prompt_template_injection",
       "read_only_mode_escalation",
       "report_preview_overwrite_contract",
       "shell_command_injection",
+      "single_shared_root_cause",
       "tool_surface_escalation",
       "write_prompt_value_fidelity"
     ],
@@ -242,6 +282,7 @@
       "checklist_evidence_drift",
       "command_projection_parity",
       "compiled_backend_output_presence",
+      "compound_prompt_output_escalation",
       "crawler_side_effect_control",
       "feature_catalog_duplicate_drift",
       "md_generator_entrypoint_contract",
@@ -261,8 +302,10 @@
       "playbook_capability",
       "prior_component_gap_security",
       "read_only_mode_escalation",
+      "report_preview_new_p1",
       "shell_command_injection",
       "silent_unchecked_hard_blocker",
+      "single_shared_root_cause",
       "tool_surface_escalation"
     ],
     "deferred": [
@@ -279,6 +322,7 @@
       "maintainability_drift",
       "manual_playbook_capability_mismatch",
       "md_generator_remediation_implementation",
+      "nonfocused_extraction_modules",
       "playbook_capability",
       "procedure_card_lint_automation_design",
       "security_boundary",
@@ -530,7 +574,8 @@
         "deferred": false,
         "blocked": false,
         "iterations": [
-          3
+          3,
+          6
         ]
       },
       "shell_command_injection": {
@@ -629,7 +674,8 @@
         "deferred": false,
         "blocked": false,
         "iterations": [
-          4
+          4,
+          6
         ]
       },
       "full_feature_catalog_line_by_line": {
@@ -730,6 +776,69 @@
         "iterations": [
           5
         ]
+      },
+      "guided_run_relative_output": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          6
+        ]
+      },
+      "prompt_data_isolation": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          6
+        ]
+      },
+      "component_facts_gap": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          6
+        ]
+      },
+      "compound_prompt_output_escalation": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          6
+        ]
+      },
+      "single_shared_root_cause": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          6
+        ]
+      },
+      "report_preview_new_p1": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          6
+        ]
+      },
+      "nonfocused_extraction_modules": {
+        "covered": false,
+        "ruledOut": false,
+        "deferred": true,
+        "blocked": false,
+        "iterations": [
+          6
+        ]
       }
     }
   },
@@ -764,6 +873,22 @@
         ".opencode/specs/sk-design/009-sk-design-claude-parity/review/iterations/iteration-002.md:51"
       ],
       "reason": "Defer to traceability or maintainability iterations for full scenario validation."
+    },
+    {
+      "iteration": 6,
+      "id": "SL-605",
+      "dimension": "coverage",
+      "targetRefs": [
+        ".opencode/skills/sk-design/design-md-generator/backend/scripts/*.ts"
+      ],
+      "bugClass": "nonfocused_extraction_modules",
+      "disposition": "deferred",
+      "rationale": "Carry forward to iteration 7 for residual backend coverage.",
+      "evidenceRefs": [
+        ".opencode/skills/sk-design/design-md-generator/backend/scripts/a11y-extract.ts:1",
+        ".opencode/skills/sk-design/design-md-generator/backend/scripts/motion-extract.ts:1"
+      ],
+      "reason": "Prompt constrained this pass to the six P1-remediation backend files; non-output extraction modules were inventoried by glob but not read line-by-line in this iteration."
     }
   ],
   "ruledOutCandidates": [
@@ -1129,6 +1254,67 @@
         ".opencode/skills/sk-design/design-md-generator/backend/scripts/proof.ts:301"
       ],
       "reason": "No separate P1 is needed; the active P1s can be addressed through two shared remediation seams instead of unrelated patches."
+    },
+    {
+      "iteration": 6,
+      "id": "SL-602",
+      "dimension": "security",
+      "targetRefs": [
+        ".opencode/skills/sk-design/design-md-generator/backend/scripts/build-write-prompt.ts",
+        ".opencode/skills/sk-design/design-md-generator/backend/scripts/guided-run.ts",
+        ".opencode/skills/sk-design/design-md-generator/backend/scripts/extract.ts"
+      ],
+      "bugClass": "compound_prompt_output_escalation",
+      "disposition": "ruled_out",
+      "rationale": "P1-002 plus P1-003 remain important, but their combination does not currently justify P0.",
+      "evidenceRefs": [
+        ".opencode/skills/sk-design/design-md-generator/backend/scripts/build-write-prompt.ts:80",
+        ".opencode/skills/sk-design/design-md-generator/backend/scripts/guided-run.ts:84",
+        ".opencode/skills/sk-design/design-md-generator/backend/scripts/guided-run.ts:168"
+      ],
+      "reason": "No reviewed dataflow lets live-site prompt text control output path arguments or automatic arbitrary file writes; output paths are CLI-controlled before extraction and prompt generation."
+    },
+    {
+      "iteration": 6,
+      "id": "SL-603",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".opencode/skills/sk-design/design-md-generator/backend/scripts/build-write-prompt.ts",
+        ".opencode/skills/sk-design/design-md-generator/backend/scripts/extract.ts",
+        ".opencode/skills/sk-design/design-md-generator/backend/scripts/guided-run.ts",
+        ".opencode/skills/sk-design/design-md-generator/backend/scripts/report-gen.ts",
+        ".opencode/skills/sk-design/design-md-generator/backend/scripts/preview-gen.ts",
+        ".opencode/skills/sk-design/design-md-generator/backend/scripts/proof.ts"
+      ],
+      "bugClass": "single_shared_root_cause",
+      "disposition": "ruled_out",
+      "rationale": "A remediation plan should use two shared seams rather than four unrelated point fixes or one overbroad utility.",
+      "evidenceRefs": [
+        ".opencode/skills/sk-design/design-md-generator/backend/scripts/build-write-prompt.ts:53",
+        ".opencode/skills/sk-design/design-md-generator/backend/scripts/extract.ts:267",
+        ".opencode/skills/sk-design/design-md-generator/backend/scripts/report-gen.ts:650",
+        ".opencode/skills/sk-design/design-md-generator/backend/scripts/proof.ts:436"
+      ],
+      "reason": "The active P1s split into prompt/facts encoding and output/artifact policy seams; no single validateOutputPath or sanitizePromptData helper fixes all four prior P1s."
+    },
+    {
+      "iteration": 6,
+      "id": "SL-604",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".opencode/skills/sk-design/design-md-generator/backend/scripts/report-gen.ts",
+        ".opencode/skills/sk-design/design-md-generator/backend/scripts/preview-gen.ts",
+        ".opencode/skills/sk-design/design-md-generator/backend/scripts/proof.ts"
+      ],
+      "bugClass": "report_preview_new_p1",
+      "disposition": "ruled_out",
+      "rationale": "Writes remain fixed artifact paths under caller outputDir, with the existing missing overwrite guard as the confirmed defect.",
+      "evidenceRefs": [
+        ".opencode/skills/sk-design/design-md-generator/backend/scripts/report-gen.ts:650",
+        ".opencode/skills/sk-design/design-md-generator/backend/scripts/preview-gen.ts:252",
+        ".opencode/skills/sk-design/design-md-generator/backend/scripts/proof.ts:436"
+      ],
+      "reason": "The broader pass reconfirmed P1-004 overwrite semantics but did not identify a separate report/preview/proof P1."
     }
   ],
   "cleanSearchProof": [
@@ -1494,32 +1680,95 @@
         ".opencode/skills/sk-design/design-md-generator/backend/scripts/proof.ts:301"
       ],
       "proof": "No separate P1 is needed; the active P1s can be addressed through two shared remediation seams instead of unrelated patches."
+    },
+    {
+      "iteration": 6,
+      "id": "SL-602",
+      "dimension": "security",
+      "targetRefs": [
+        ".opencode/skills/sk-design/design-md-generator/backend/scripts/build-write-prompt.ts",
+        ".opencode/skills/sk-design/design-md-generator/backend/scripts/guided-run.ts",
+        ".opencode/skills/sk-design/design-md-generator/backend/scripts/extract.ts"
+      ],
+      "bugClass": "compound_prompt_output_escalation",
+      "disposition": "ruled_out",
+      "rationale": "P1-002 plus P1-003 remain important, but their combination does not currently justify P0.",
+      "evidenceRefs": [
+        ".opencode/skills/sk-design/design-md-generator/backend/scripts/build-write-prompt.ts:80",
+        ".opencode/skills/sk-design/design-md-generator/backend/scripts/guided-run.ts:84",
+        ".opencode/skills/sk-design/design-md-generator/backend/scripts/guided-run.ts:168"
+      ],
+      "proof": "No reviewed dataflow lets live-site prompt text control output path arguments or automatic arbitrary file writes; output paths are CLI-controlled before extraction and prompt generation."
+    },
+    {
+      "iteration": 6,
+      "id": "SL-603",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".opencode/skills/sk-design/design-md-generator/backend/scripts/build-write-prompt.ts",
+        ".opencode/skills/sk-design/design-md-generator/backend/scripts/extract.ts",
+        ".opencode/skills/sk-design/design-md-generator/backend/scripts/guided-run.ts",
+        ".opencode/skills/sk-design/design-md-generator/backend/scripts/report-gen.ts",
+        ".opencode/skills/sk-design/design-md-generator/backend/scripts/preview-gen.ts",
+        ".opencode/skills/sk-design/design-md-generator/backend/scripts/proof.ts"
+      ],
+      "bugClass": "single_shared_root_cause",
+      "disposition": "ruled_out",
+      "rationale": "A remediation plan should use two shared seams rather than four unrelated point fixes or one overbroad utility.",
+      "evidenceRefs": [
+        ".opencode/skills/sk-design/design-md-generator/backend/scripts/build-write-prompt.ts:53",
+        ".opencode/skills/sk-design/design-md-generator/backend/scripts/extract.ts:267",
+        ".opencode/skills/sk-design/design-md-generator/backend/scripts/report-gen.ts:650",
+        ".opencode/skills/sk-design/design-md-generator/backend/scripts/proof.ts:436"
+      ],
+      "proof": "The active P1s split into prompt/facts encoding and output/artifact policy seams; no single validateOutputPath or sanitizePromptData helper fixes all four prior P1s."
+    },
+    {
+      "iteration": 6,
+      "id": "SL-604",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".opencode/skills/sk-design/design-md-generator/backend/scripts/report-gen.ts",
+        ".opencode/skills/sk-design/design-md-generator/backend/scripts/preview-gen.ts",
+        ".opencode/skills/sk-design/design-md-generator/backend/scripts/proof.ts"
+      ],
+      "bugClass": "report_preview_new_p1",
+      "disposition": "ruled_out",
+      "rationale": "Writes remain fixed artifact paths under caller outputDir, with the existing missing overwrite guard as the confirmed defect.",
+      "evidenceRefs": [
+        ".opencode/skills/sk-design/design-md-generator/backend/scripts/report-gen.ts:650",
+        ".opencode/skills/sk-design/design-md-generator/backend/scripts/preview-gen.ts:252",
+        ".opencode/skills/sk-design/design-md-generator/backend/scripts/proof.ts:436"
+      ],
+      "proof": "The broader pass reconfirmed P1-004 overwrite semantics but did not identify a separate report/preview/proof P1."
     }
   ],
   "searchCoverage": {
     "requiredBugClasses": [
-      "procedure_card_schema_drift",
-      "feature_catalog_duplicate_drift",
-      "benchmark_duplicate_wayfinding",
-      "phase012_handoff_clarity",
-      "md_generator_remediation_coupling"
+      "guided_run_relative_output",
+      "prompt_data_isolation",
+      "component_facts_gap",
+      "output_path_scope_guard",
+      "report_preview_overwrite_contract",
+      "compound_prompt_output_escalation",
+      "single_shared_root_cause"
     ],
     "covered": [
-      "procedure_card_schema_drift",
-      "feature_catalog_duplicate_drift",
-      "benchmark_duplicate_wayfinding",
-      "phase012_handoff_clarity",
-      "md_generator_remediation_coupling"
+      "guided_run_relative_output",
+      "prompt_data_isolation",
+      "component_facts_gap",
+      "output_path_scope_guard",
+      "report_preview_overwrite_contract",
+      "compound_prompt_output_escalation",
+      "single_shared_root_cause"
     ],
     "ruledOut": [
-      "feature_catalog_duplicate_drift",
-      "phase012_handoff_clarity",
-      "md_generator_new_p1_maintainability"
+      "compound_prompt_output_escalation",
+      "single_shared_root_cause",
+      "report_preview_new_p1"
     ],
     "deferred": [
-      "procedure_card_lint_automation_design",
-      "benchmark_duplicate_cleanup",
-      "md_generator_remediation_implementation"
+      "nonfocused_extraction_modules"
     ],
     "blocked": [],
     "graphCoverageMode": "graphless_fallback"

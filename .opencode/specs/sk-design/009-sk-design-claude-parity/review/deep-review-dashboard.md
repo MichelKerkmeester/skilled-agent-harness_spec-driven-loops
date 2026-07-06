@@ -18,7 +18,7 @@ Reducer-generated observability surface for the active review packet.
 - Review Target: .opencode/specs/sk-design/009-sk-design-claude-parity (spec-folder)
 - Started: 2026-07-06T11:48:06.000Z
 - Status: INITIALIZED
-- Iteration: 5 of 10
+- Iteration: 6 of 10
 - Provisional Verdict: CONDITIONAL
 - hasSearchDebt: true
 - hasAdvisories: false
@@ -35,7 +35,7 @@ Reducer-generated observability surface for the active review packet.
 | Severity | Count |
 |----------|------:|
 | P0 (Blockers) | 0 |
-| P1 (Required) | 4 |
+| P1 (Required) | 5 |
 | P2 (Suggestions) | 2 |
 | Resolved | 0 |
 
@@ -50,6 +50,7 @@ Reducer-generated observability surface for the active review packet.
 | run-003 | security | security | 0.33 | 0/2/0 | complete |
 | run-003 | traceability | traceability | 0.25 | 0/1/0 | complete |
 | run-005 | maintainability | maintainability | 0.40 | 0/0/2 | complete |
+| run-006 | deep revisit - md-generator P1 remediation design | correctness/security | 0.25 | 0/1/0 | complete |
 
 <!-- /ANCHOR:progress -->
 <!-- ANCHOR:dimension-coverage -->
@@ -57,7 +58,7 @@ Reducer-generated observability surface for the active review packet.
 
 | Dimension | Status | Open findings |
 |-----------|--------|--------------:|
-| correctness | covered | 6 |
+| correctness | covered | 7 |
 | security | covered | 0 |
 | traceability | covered | 0 |
 | maintainability | covered | 0 |
@@ -77,9 +78,9 @@ No blocked-stop events recorded.
 <!-- /ANCHOR:graph-convergence -->
 <!-- ANCHOR:trend -->
 ## 8. TREND
-- Last 3 ratios: 0.33 -> 0.25 -> 0.40
-- convergenceScore: 0.60
-- openFindings: 6
+- Last 3 ratios: 0.25 -> 0.40 -> 0.25
+- convergenceScore: 0.75
+- openFindings: 7
 - persistentSameSeverity: 0
 - severityChanged: 0
 - repeatedFindings (deprecated combined bucket): 0
@@ -93,11 +94,12 @@ No corrupt JSONL lines detected.
 <!-- ANCHOR:search-debt -->
 ## 10. SEARCH DEBT
 - graphCoverageMode: graphless_fallback
-- candidateCoverage: covered=30, ruledOut=26, deferred=17, blocked=0
+- candidateCoverage: covered=35, ruledOut=29, deferred=18, blocked=0
 
 ### Search Debt
 - iteration 1 deep_correctness_security_traceability_maintainability (deferred): Review plan assigns deep dimension work to later iterations.; evidence=.opencode/specs/sk-design/009-sk-design-claude-parity/review/deep-review-strategy.md:100
 - iteration 2 manual_playbook_capability_mismatch (deferred): Defer to traceability or maintainability iterations for full scenario validation.; evidence=.opencode/specs/sk-design/009-sk-design-claude-parity/review/iterations/iteration-002.md:51
+- iteration 6 nonfocused_extraction_modules (deferred): Prompt constrained this pass to the six P1-remediation backend files; non-output extraction modules were inventoried by glob but not read line-by-line in this iteration.; evidence=.opencode/skills/sk-design/design-md-generator/backend/scripts/a11y-extract.ts:1, .opencode/skills/sk-design/design-md-generator/backend/scripts/motion-extract.ts:1
 
 ### Ruled-Out Candidates
 - iteration 1 artifact_inventory (ruled_out): Directory and targeted glob evidence matched the declared structure.; evidence=.opencode/specs/sk-design/009-sk-design-claude-parity:1, .opencode/specs/sk-design/009-sk-design-claude-parity/008-smart-routing-optimization/benchmark-after-008/report.md:1
@@ -120,6 +122,9 @@ No corrupt JSONL lines detected.
 - iteration 5 feature_catalog_duplicate_drift (ruled_out): Root catalogs summarize capability areas and link leaf files rather than duplicating long-form source details.; evidence=.opencode/skills/sk-design/feature_catalog/feature_catalog.md:31, .opencode/skills/sk-design/design-interface/feature_catalog/feature_catalog.md:37, .opencode/skills/sk-design/design-md-generator/feature_catalog/feature_catalog.md:31
 - iteration 5 phase012_handoff_clarity (ruled_out): ADR-003, plan/task/checklist reconciliation, and follow-up items repeatedly name the descoped expanded-battery work and the future pickup path.; evidence=.opencode/specs/sk-design/009-sk-design-claude-parity/012-routing-benchmark-rigor/decision-record.md:259, .opencode/specs/sk-design/009-sk-design-claude-parity/012-routing-benchmark-rigor/plan.md:40, .opencode/specs/sk-design/009-sk-design-claude-parity/012-routing-benchmark-rigor/tasks.md:37, .opencode/specs/sk-design/009-sk-design-claude-parity/012-routing-benchmark-rigor/checklist.md:155, .opencode/specs/sk-design/009-sk-design-claude-parity/012-routing-benchmark-rigor/implementation-summary.md:141
 - iteration 5 md_generator_remediation_coupling (ruled_out): No separate P1 is needed; the active P1s can be addressed through two shared remediation seams instead of unrelated patches.; evidence=.opencode/skills/sk-design/design-md-generator/backend/scripts/build-write-prompt.ts:53, .opencode/skills/sk-design/design-md-generator/backend/scripts/extract.ts:258, .opencode/skills/sk-design/design-md-generator/backend/scripts/guided-run.ts:138, .opencode/skills/sk-design/design-md-generator/backend/scripts/report-gen.ts:627, .opencode/skills/sk-design/design-md-generator/backend/scripts/preview-gen.ts:249, .opencode/skills/sk-design/design-md-generator/backend/scripts/proof.ts:301
+- iteration 6 compound_prompt_output_escalation (ruled_out): No reviewed dataflow lets live-site prompt text control output path arguments or automatic arbitrary file writes; output paths are CLI-controlled before extraction and prompt generation.; evidence=.opencode/skills/sk-design/design-md-generator/backend/scripts/build-write-prompt.ts:80, .opencode/skills/sk-design/design-md-generator/backend/scripts/guided-run.ts:84, .opencode/skills/sk-design/design-md-generator/backend/scripts/guided-run.ts:168
+- iteration 6 single_shared_root_cause (ruled_out): The active P1s split into prompt/facts encoding and output/artifact policy seams; no single validateOutputPath or sanitizePromptData helper fixes all four prior P1s.; evidence=.opencode/skills/sk-design/design-md-generator/backend/scripts/build-write-prompt.ts:53, .opencode/skills/sk-design/design-md-generator/backend/scripts/extract.ts:267, .opencode/skills/sk-design/design-md-generator/backend/scripts/report-gen.ts:650, .opencode/skills/sk-design/design-md-generator/backend/scripts/proof.ts:436
+- iteration 6 report_preview_new_p1 (ruled_out): The broader pass reconfirmed P1-004 overwrite semantics but did not identify a separate report/preview/proof P1.; evidence=.opencode/skills/sk-design/design-md-generator/backend/scripts/report-gen.ts:650, .opencode/skills/sk-design/design-md-generator/backend/scripts/preview-gen.ts:252, .opencode/skills/sk-design/design-md-generator/backend/scripts/proof.ts:436
 
 ### Clean Search Proof
 - iteration 1 artifact_inventory (ruled_out): Directory and targeted glob evidence matched the declared structure.; evidence=.opencode/specs/sk-design/009-sk-design-claude-parity:1, .opencode/specs/sk-design/009-sk-design-claude-parity/008-smart-routing-optimization/benchmark-after-008/report.md:1
@@ -142,6 +147,9 @@ No corrupt JSONL lines detected.
 - iteration 5 feature_catalog_duplicate_drift (ruled_out): Root catalogs summarize capability areas and link leaf files rather than duplicating long-form source details.; evidence=.opencode/skills/sk-design/feature_catalog/feature_catalog.md:31, .opencode/skills/sk-design/design-interface/feature_catalog/feature_catalog.md:37, .opencode/skills/sk-design/design-md-generator/feature_catalog/feature_catalog.md:31
 - iteration 5 phase012_handoff_clarity (ruled_out): ADR-003, plan/task/checklist reconciliation, and follow-up items repeatedly name the descoped expanded-battery work and the future pickup path.; evidence=.opencode/specs/sk-design/009-sk-design-claude-parity/012-routing-benchmark-rigor/decision-record.md:259, .opencode/specs/sk-design/009-sk-design-claude-parity/012-routing-benchmark-rigor/plan.md:40, .opencode/specs/sk-design/009-sk-design-claude-parity/012-routing-benchmark-rigor/tasks.md:37, .opencode/specs/sk-design/009-sk-design-claude-parity/012-routing-benchmark-rigor/checklist.md:155, .opencode/specs/sk-design/009-sk-design-claude-parity/012-routing-benchmark-rigor/implementation-summary.md:141
 - iteration 5 md_generator_remediation_coupling (ruled_out): No separate P1 is needed; the active P1s can be addressed through two shared remediation seams instead of unrelated patches.; evidence=.opencode/skills/sk-design/design-md-generator/backend/scripts/build-write-prompt.ts:53, .opencode/skills/sk-design/design-md-generator/backend/scripts/extract.ts:258, .opencode/skills/sk-design/design-md-generator/backend/scripts/guided-run.ts:138, .opencode/skills/sk-design/design-md-generator/backend/scripts/report-gen.ts:627, .opencode/skills/sk-design/design-md-generator/backend/scripts/preview-gen.ts:249, .opencode/skills/sk-design/design-md-generator/backend/scripts/proof.ts:301
+- iteration 6 compound_prompt_output_escalation (ruled_out): No reviewed dataflow lets live-site prompt text control output path arguments or automatic arbitrary file writes; output paths are CLI-controlled before extraction and prompt generation.; evidence=.opencode/skills/sk-design/design-md-generator/backend/scripts/build-write-prompt.ts:80, .opencode/skills/sk-design/design-md-generator/backend/scripts/guided-run.ts:84, .opencode/skills/sk-design/design-md-generator/backend/scripts/guided-run.ts:168
+- iteration 6 single_shared_root_cause (ruled_out): The active P1s split into prompt/facts encoding and output/artifact policy seams; no single validateOutputPath or sanitizePromptData helper fixes all four prior P1s.; evidence=.opencode/skills/sk-design/design-md-generator/backend/scripts/build-write-prompt.ts:53, .opencode/skills/sk-design/design-md-generator/backend/scripts/extract.ts:267, .opencode/skills/sk-design/design-md-generator/backend/scripts/report-gen.ts:650, .opencode/skills/sk-design/design-md-generator/backend/scripts/proof.ts:436
+- iteration 6 report_preview_new_p1 (ruled_out): The broader pass reconfirmed P1-004 overwrite semantics but did not identify a separate report/preview/proof P1.; evidence=.opencode/skills/sk-design/design-md-generator/backend/scripts/report-gen.ts:650, .opencode/skills/sk-design/design-md-generator/backend/scripts/preview-gen.ts:252, .opencode/skills/sk-design/design-md-generator/backend/scripts/proof.ts:436
 
 <!-- /ANCHOR:search-debt -->
 <!-- ANCHOR:next-focus -->
@@ -151,7 +159,7 @@ No corrupt JSONL lines detected.
 <!-- /ANCHOR:next-focus -->
 <!-- ANCHOR:active-risks -->
 ## 12. ACTIVE RISKS
-- 4 active P1 finding(s) — required before release; not a P0 but still blocks PASS.
-- 2 search-debt obligation(s) remain deferred or blocked. Verdict is CONDITIONAL until they are covered or ruled out.
+- 5 active P1 finding(s) — required before release; not a P0 but still blocks PASS.
+- 3 search-debt obligation(s) remain deferred or blocked. Verdict is CONDITIONAL until they are covered or ruled out.
 
 <!-- /ANCHOR:active-risks -->
