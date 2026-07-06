@@ -35,7 +35,7 @@ Reducer-generated observability surface for the active review packet.
 | Severity | Count |
 |----------|------:|
 | P0 (Blockers) | 0 |
-| P1 (Required) | 3 |
+| P1 (Required) | 4 |
 | P2 (Suggestions) | 0 |
 | Resolved | 0 |
 
@@ -55,7 +55,7 @@ Reducer-generated observability surface for the active review packet.
 
 | Dimension | Status | Open findings |
 |-----------|--------|--------------:|
-| correctness | covered | 3 |
+| correctness | covered | 4 |
 | security | covered | 0 |
 | traceability | pending | 0 |
 | maintainability | pending | 0 |
@@ -77,7 +77,7 @@ No blocked-stop events recorded.
 ## 8. TREND
 - Last 3 ratios: 0.00 -> 1.00 -> 0.33
 - convergenceScore: 0.67
-- openFindings: 3
+- openFindings: 4
 - persistentSameSeverity: 0
 - severityChanged: 0
 - repeatedFindings (deprecated combined bucket): 0
@@ -135,7 +135,7 @@ traceability
 <!-- /ANCHOR:next-focus -->
 <!-- ANCHOR:active-risks -->
 ## 12. ACTIVE RISKS
-- 3 active P1 finding(s) — required before release; not a P0 but still blocks PASS.
+- 4 active P1 finding(s) — required before release; not a P0 but still blocks PASS.
 - 2 search-debt obligation(s) remain deferred or blocked. Verdict is CONDITIONAL until they are covered or ruled out.
 
 <!-- /ANCHOR:active-risks -->

@@ -83,6 +83,7 @@ Scope class is complex. This iteration used graphless fallback because prior ite
 ## SCOPE VIOLATIONS
 
 - `deep-review-dashboard.md` changed outside the allowed write list after the iteration state append / verification path. I did not intentionally edit or patch that file, and I am not reverting it because it is outside this iteration's allowed write paths. The observed diff updates dashboard counters to iteration 3 and P1=3 from the newly appended review state.
+- `review/prompts/iteration-4.md` appeared outside the allowed write list after the same state/reducer path. I did not intentionally create or edit that prompt file, and I am not deleting it because it is outside this iteration's allowed write paths.
 - No reviewed target source/spec files were modified.
 
 ## Verdict

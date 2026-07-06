@@ -208,7 +208,7 @@ Do not inline full source bodies in this file. Use this snapshot only to seed re
 <!-- ANCHOR:running-findings -->
 ## 5. RUNNING FINDINGS
 - P0 (Blockers): 0
-- P1 (Required): 3
+- P1 (Required): 4
 - P2 (Suggestions): 0
 - Resolved: 0
 

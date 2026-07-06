@@ -93,6 +93,35 @@
         "correctness"
       ],
       "mergedFindingIds": []
+    },
+    {
+      "findingId": "P1-004",
+      "severity": "P1",
+      "title": "Report/preview catalog promises overwrite protection the scripts do not implement",
+      "file": null,
+      "line": null,
+      "description": "",
+      "findingClass": "cross-consumer",
+      "deltaStatus": "open",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 4,
+      "lastSeen": 4,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
     }
   ],
   "resolvedFindings": [],
@@ -108,10 +137,10 @@
   },
   "findingsBySeverity": {
     "P0": 0,
-    "P1": 3,
+    "P1": 4,
     "P2": 0
   },
-  "openFindingsCount": 3,
+  "openFindingsCount": 4,
   "resolvedFindingsCount": 0,
   "convergenceScore": 0.6699999999999999,
   "graphConvergenceScore": 0,
