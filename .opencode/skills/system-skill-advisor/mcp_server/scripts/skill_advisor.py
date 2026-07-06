@@ -3132,7 +3132,25 @@ LOW_INFO_AMBIGUITY_MULTI_RATIO = 0.5
 CODE_EDIT_VERB_RE = re.compile(r"\b(update|edit|modify|fix|refactor|implement|write|patch|rewrite)\b")
 CODE_SURFACE_NOUN_RE = re.compile(r"\b(script|file|module|function|class|handler|component|code|\.py|\.ts|\.js|\.tsx|\.mjs|\.cjs)\b")
 REVIEW_PLUS_WRITE_RE = re.compile(r"\breview\b.{0,40}\b(update|edit|modify|fix|patch|rewrite)\b")
-CLI_OPENCODE_EXPLICIT_RE = re.compile(r"\b(cli-opencode|opencode cli|delegate to opencode|use opencode)\b")
+
+# Executor-delegation resolver (mirror of lib/scorer/executor-delegation.ts).
+# Delegation cues pair with an orchestrator noun to catch non-literal framings
+# ("ask OpenCode ...", "an OpenCode second opinion", "a small-model executor").
+EXECUTOR_DELEGATION_CUES_RE = re.compile(
+    r"\b(use|delegate to|ask|run|invoke|dispatch|hand off to|second opinion|small[- ]model)\b"
+)
+# The negative guard forces NON-delegation: "opencode {standards|route|...}" and a
+# bare ".opencode/" path are the code hub's own opencode surface, not a handoff.
+EXECUTOR_NEGATIVE_GUARD_RE = re.compile(
+    r"\bopencode[-\s]?(standards|route|skill|agent|plugin|command|convention)\b|\.opencode/"
+)
+# Generic single tokens that appear in executor metadata as domain labels rather
+# than delegation cues; never treated as executor aliases.
+_EXECUTOR_ALIAS_STOPLIST = frozenset({
+    "cli", "delegation", "cross-ai", "cross ai", "reasoning",
+    "code-editing", "code editing", "code-generation", "code generation",
+    "web-research", "web research", "parallel-sessions", "parallel sessions",
+})
 
 # Git vocabulary is intentionally broad, but ownership boundaries still matter:
 # memory/context preservation belongs to system-spec-kit, and review phrases that
@@ -3203,6 +3221,171 @@ def _apply_git_boundary_disambiguation(
         code_rec["uncertainty"] = min(float(code_rec.get("uncertainty", 1.0)), 0.25)
 
 
+def _executor_alias_shaped(alias: str) -> bool:
+    """Reject generic tokens and file-path-shaped entities as executor aliases."""
+    if not alias or alias in _EXECUTOR_ALIAS_STOPLIST:
+        return False
+    if "/" in alias and "." in alias:
+        return False
+    return True
+
+
+def _executor_alias_variants(phrase: str) -> Set[str]:
+    return {variant for variant in _expand_signal_variants(phrase) if _executor_alias_shaped(variant)}
+
+
+def _harvest_cli_graph_metadata(meta_path: str) -> Optional[Dict[str, Any]]:
+    if not os.path.exists(meta_path):
+        return None
+    try:
+        with open(meta_path, "r", encoding="utf-8") as handle:
+            meta = json.load(handle)
+    except (OSError, ValueError, json.JSONDecodeError):
+        return None
+    if not isinstance(meta, dict) or meta.get("family") != "cli":
+        return None
+    return meta
+
+
+def _cli_metadata_phrases(meta: Dict[str, Any]) -> List[str]:
+    phrases = [signal for signal in (meta.get("intent_signals") or []) if isinstance(signal, str)]
+    derived = meta.get("derived")
+    if isinstance(derived, dict):
+        phrases.extend(
+            phrase for phrase in (derived.get("trigger_phrases") or []) if isinstance(phrase, str)
+        )
+    return phrases
+
+
+@lru_cache(maxsize=1)
+def _build_executor_alias_table() -> Dict[str, Any]:
+    """Build the executor alias tables from metadata (mirror of the TS builder).
+
+    Active aliases come from cli-family graph metadata (name variants + intent
+    signals + derived trigger phrases) plus the shared small-model profile
+    registry; suppressed aliases come from archived cli executors. Derived
+    KEYWORDS are intentionally excluded (they carry file paths / doc names that
+    would over-match general prompts).
+    """
+    active: Dict[str, str] = {}
+    suppressed: Set[str] = set()
+    orchestrator: Dict[str, str] = {}
+    active_executor_ids: Set[str] = set()
+
+    try:
+        entries = sorted(os.scandir(SKILLS_DIR), key=lambda entry: entry.name)
+    except OSError:
+        entries = []
+    for entry in entries:
+        if not entry.is_dir():
+            continue
+        meta = _harvest_cli_graph_metadata(os.path.join(entry.path, "graph-metadata.json"))
+        if meta is None:
+            continue
+        skill_id = str(meta.get("skill_id") or entry.name)
+        active_executor_ids.add(skill_id)
+        phrases = [skill_id, skill_id.replace("-", " "), skill_id.replace("-", "_")]
+        phrases.extend(_cli_metadata_phrases(meta))
+        for phrase in phrases:
+            for variant in _executor_alias_variants(phrase):
+                active.setdefault(variant, skill_id)
+        noun = skill_id[4:] if skill_id.startswith("cli-") else ""
+        if noun:
+            orchestrator.setdefault(noun, skill_id)
+            spaced = noun.replace("-", " ")
+            if spaced != noun:
+                orchestrator.setdefault(spaced, skill_id)
+
+    model_profiles_path = os.path.join(SKILLS_DIR, "sk-prompt-models", "assets", "model_profiles.json")
+    try:
+        with open(model_profiles_path, "r", encoding="utf-8") as handle:
+            profiles = json.load(handle)
+    except (OSError, ValueError, json.JSONDecodeError):
+        profiles = {}
+    models = profiles.get("models") if isinstance(profiles, dict) else None
+    for model in models or []:
+        if not isinstance(model, dict):
+            continue
+        executors = model.get("executors") or []
+        active_executor = next(
+            (entry for entry in executors if isinstance(entry, dict) and entry.get("status") == "active"),
+            None,
+        )
+        if not active_executor or not isinstance(active_executor.get("executor"), str):
+            continue
+        executor_id = active_executor["executor"]
+        if executor_id not in active_executor_ids:
+            continue
+        model_phrases: List[str] = []
+        if isinstance(model.get("id"), str):
+            model_phrases.append(model["id"])
+        capability = model.get("capability")
+        if isinstance(capability, dict) and isinstance(capability.get("model_slug"), str):
+            model_phrases.append(capability["model_slug"])
+        for phrase in model_phrases:
+            for variant in _executor_alias_variants(phrase):
+                active.setdefault(variant, executor_id)
+
+    archive_root = os.path.join(SKILLS_DIR, "z_archive")
+    if os.path.isdir(archive_root):
+        try:
+            archive_entries = sorted(os.scandir(archive_root), key=lambda entry: entry.name)
+        except OSError:
+            archive_entries = []
+        for entry in archive_entries:
+            if not entry.is_dir():
+                continue
+            meta = _harvest_cli_graph_metadata(os.path.join(entry.path, "graph-metadata.json"))
+            if meta is None:
+                continue
+            for phrase in _cli_metadata_phrases(meta):
+                for variant in _executor_alias_variants(phrase):
+                    suppressed.add(variant)
+
+    return {
+        "active": active,
+        "suppressed": suppressed,
+        "orchestrator": orchestrator,
+        "active_executor_ids": active_executor_ids,
+    }
+
+
+def _match_phrase_boundary(prompt_lower: str, phrase: str) -> bool:
+    if not phrase:
+        return False
+    return re.search(r"(?<!\w)" + re.escape(phrase) + r"(?!\w)", prompt_lower) is not None
+
+
+def _resolve_executor_delegation(prompt_lower: str) -> Optional[tuple]:
+    """Return (executor_id_or_None, action) or None. Mirror of the TS resolver.
+
+    Precedence: negative guard -> suppressed(abstain) -> direct alias(route) ->
+    orchestrator noun + delegation cue(route).
+    """
+    if not prompt_lower:
+        return None
+    if EXECUTOR_NEGATIVE_GUARD_RE.search(prompt_lower):
+        return None
+    table = _build_executor_alias_table()
+    for alias in table["suppressed"]:
+        if _match_phrase_boundary(prompt_lower, alias):
+            return (None, "abstain")
+    best_alias: Optional[tuple] = None
+    for alias, executor_id in table["active"].items():
+        if _match_phrase_boundary(prompt_lower, alias) and (best_alias is None or len(alias) > len(best_alias[0])):
+            best_alias = (alias, executor_id)
+    if best_alias is not None:
+        return (best_alias[1], "route")
+    if EXECUTOR_DELEGATION_CUES_RE.search(prompt_lower):
+        best_noun: Optional[tuple] = None
+        for noun, executor_id in table["orchestrator"].items():
+            if _match_phrase_boundary(prompt_lower, noun) and (best_noun is None or len(noun) > len(best_noun[0])):
+                best_noun = (noun, executor_id)
+        if best_noun is not None:
+            return (best_noun[1], "route")
+    return None
+
+
 def _apply_code_edit_cli_disambiguation(
     recommendations: List[Dict[str, Any]],
     prompt_lower: str,
@@ -3217,7 +3400,10 @@ def _apply_code_edit_cli_disambiguation(
     """
     if not prompt_lower:
         return
-    if CLI_OPENCODE_EXPLICIT_RE.search(prompt_lower):
+    # Aligned with the shared executor-delegation resolver: when the prompt is a
+    # genuine executor handoff (route) or names a retired executor (abstain),
+    # keeping the request on sk-code would fight that decision, so skip.
+    if _resolve_executor_delegation(prompt_lower) is not None:
         return
     if not (CODE_EDIT_VERB_RE.search(prompt_lower) and CODE_SURFACE_NOUN_RE.search(prompt_lower)):
         return
@@ -3226,25 +3412,63 @@ def _apply_code_edit_cli_disambiguation(
         sk_code["uncertainty"] = min(float(sk_code.get("uncertainty", 1.0)), 0.30)
 
 
-def _apply_cli_opencode_delegation_disambiguation(
+def _apply_executor_delegation_disambiguation(
     recommendations: List[Dict[str, Any]],
     prompt_lower: str,
 ) -> None:
-    """Keep explicit OpenCode delegation prompts on the CLI executor route."""
-    if not CLI_OPENCODE_EXPLICIT_RE.search(prompt_lower):
+    """Route an explicit executor handoff to its executor (mirror of the native override).
+
+    Handles cli-opencode / cli-claude-code and any small model that dispatches
+    through one via a metadata-derived alias table, injecting the executor when
+    it is not already a candidate (the harder orchestrator framings never surface
+    it). A named retired executor abstains so the request never silently falls
+    back to the code hub or another live executor.
+    """
+    decision = _resolve_executor_delegation(prompt_lower)
+    if decision is None:
         return
-    cli_opencode = _find_recommendation(recommendations, "cli-opencode")
-    if cli_opencode is None:
+    executor_id, action = decision
+
+    if action == "abstain":
+        table = _build_executor_alias_table()
+        suppressed_ids = set(table["active_executor_ids"])
+        suppressed_ids.add("sk-code")
+        for rec in recommendations:
+            if rec.get("skill") in suppressed_ids:
+                rec["confidence"] = min(float(rec.get("confidence", 0.0)), 0.5)
+                rec["uncertainty"] = max(float(rec.get("uncertainty", 0.0)), 0.5)
+                _append_reason_note(rec, "[disambiguation: retired executor named, abstaining]")
         return
 
-    cli_opencode["confidence"] = max(float(cli_opencode.get("confidence", 0.0)), 0.95)
-    cli_opencode["uncertainty"] = min(float(cli_opencode.get("uncertainty", 1.0)), 0.20)
-    _append_reason_note(cli_opencode, "[disambiguation: explicit opencode delegation]")
+    executor = _find_recommendation(recommendations, executor_id)
+    if executor is None:
+        # Injection-if-absent: the harder orchestrator framings never surface the
+        # executor as a candidate, so synthesize it to actually resolve the route.
+        executor = {
+            "skill": executor_id,
+            "kind": "skill",
+            "confidence": 0.0,
+            "uncertainty": 1.0,
+            "passes_threshold": False,
+            "reason": "Executor delegation resolved",
+            "_score": max((float(rec.get("_score", 0.0)) for rec in recommendations), default=0.0),
+            "_explicit_skill_match": True,
+            "_kind_priority": 1,
+            "_num_matches": 1,
+            "_num_ambiguous": 0,
+            "_graph_boost_count": 0,
+        }
+        recommendations.append(executor)
+
+    executor["confidence"] = max(float(executor.get("confidence", 0.0)), 0.95)
+    executor["uncertainty"] = min(float(executor.get("uncertainty", 1.0)), 0.20)
+    executor["_explicit_skill_match"] = True
+    _append_reason_note(executor, "[disambiguation: explicit executor delegation]")
 
     sk_code = _find_recommendation(recommendations, "sk-code")
-    if sk_code is not None:
+    if sk_code is not None and sk_code is not executor:
         sk_code["confidence"] = min(float(sk_code.get("confidence", 0.0)), 0.88)
-        _append_reason_note(sk_code, "[disambiguation: explicit opencode delegation]")
+        _append_reason_note(sk_code, "[disambiguation: explicit executor delegation]")
 
 
 def _apply_review_plus_write_disambiguation(
@@ -3699,7 +3923,7 @@ def analyze_request(prompt: str) -> List[Dict[str, Any]]:
     _apply_deep_research_disambiguation(recommendations, prompt_lower)
     _apply_code_mode_disambiguation(recommendations, prompt_lower)
     _apply_code_edit_cli_disambiguation(recommendations, prompt_lower)
-    _apply_cli_opencode_delegation_disambiguation(recommendations, prompt_lower)
+    _apply_executor_delegation_disambiguation(recommendations, prompt_lower)
     _apply_review_plus_write_disambiguation(recommendations, prompt_lower)
     _apply_deep_skill_routing_layer(recommendations, prompt)
 

@@ -32,16 +32,6 @@
       "approvedAt": "2026-06-15"
     },
     {
-      "id": "harder:79997ebae7df",
-      "corpus": "harder",
-      "promptHash": "sha256:79997ebae7df25146b41c11860048510c04988d77ac4730f5c474aeb6efd3691",
-      "gold": "cli-opencode",
-      "localTop": "sk-prompt-models",
-      "nativeTop": "sk-code",
-      "reason": "divergence captured 2026-07-06: local/native routing disagreement (local=sk-prompt-models, native=sk-code)",
-      "approvedAt": "2026-07-06"
-    },
-    {
       "id": "harder:b299699c3964",
       "corpus": "harder",
       "promptHash": "sha256:b299699c39642edb88ea3895ad7799d0cb5c153987e4c4e3aa85630798f17906",

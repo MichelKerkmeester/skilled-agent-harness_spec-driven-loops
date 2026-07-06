@@ -1,0 +1,72 @@
+{
+  "version": 1,
+  "description": "Shared executor-delegation routing cases consumed by both the TS-native scorer and the Python local scorer. Each case pins the strict top-1 skill so TS-native == Python for the same prompt. Cases are drawn from real executor/model metadata aliases and cover every resolver branch.",
+  "cases": [
+    {
+      "id": "direct-alias-cli-opencode-literal",
+      "prompt": "Use cli-opencode to delegate this coding task through OpenCode CLI.",
+      "expectedTop": "cli-opencode",
+      "branch": "direct-alias"
+    },
+    {
+      "id": "direct-alias-delegate-to-opencode",
+      "prompt": "delegate to opencode and run the ablation suite",
+      "expectedTop": "cli-opencode",
+      "branch": "direct-alias"
+    },
+    {
+      "id": "direct-alias-model-minimax",
+      "prompt": "dispatch this to MiniMax-M3",
+      "expectedTop": "cli-opencode",
+      "branch": "direct-alias-model"
+    },
+    {
+      "id": "direct-alias-model-kimi-slug",
+      "prompt": "send it to kimi-for-coding/k2p7",
+      "expectedTop": "cli-opencode",
+      "branch": "direct-alias-model"
+    },
+    {
+      "id": "direct-alias-cli-claude-code-literal",
+      "prompt": "Use cli-claude-code to delegate the refactor to Claude Code CLI.",
+      "expectedTop": "cli-claude-code",
+      "branch": "direct-alias"
+    },
+    {
+      "id": "direct-alias-anthropic-second-opinion",
+      "prompt": "get an anthropic cli second opinion",
+      "expectedTop": "cli-claude-code",
+      "branch": "direct-alias"
+    },
+    {
+      "id": "orchestrator-cue-opencode-executor",
+      "prompt": "Ask OpenCode with a small-model executor to sweep the architecture and report what this repo is missing.",
+      "expectedTop": "cli-opencode",
+      "branch": "orchestrator-cue"
+    },
+    {
+      "id": "orchestrator-cue-opencode-second-opinion",
+      "prompt": "Use an OpenCode second opinion for a wide-context read before we decide on the design.",
+      "expectedTop": "cli-opencode",
+      "branch": "orchestrator-cue"
+    },
+    {
+      "id": "negative-guard-opencode-standards-route",
+      "prompt": "Use the OpenCode standards route to clean up this CommonJS helper.",
+      "expectedTop": "sk-code",
+      "branch": "negative-guard"
+    },
+    {
+      "id": "negative-guard-following-opencode-standards",
+      "prompt": "update the python script following opencode standards",
+      "expectedTop": "sk-code",
+      "branch": "negative-guard"
+    },
+    {
+      "id": "suppressed-codex-abstain",
+      "prompt": "delegate to codex",
+      "expectedTop": "none",
+      "branch": "suppressed-abstain"
+    }
+  ]
+}

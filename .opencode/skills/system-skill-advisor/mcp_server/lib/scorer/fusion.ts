@@ -18,6 +18,7 @@ import { scoreExplicitLane } from './lanes/explicit.js';
 import { scoreGraphCausalLaneSplit } from './lanes/graph-causal.js';
 import { scoreLexicalLane } from './lanes/lexical.js';
 import { scoreSemanticShadowExactSubset, scoreSemanticShadowLane } from './lanes/semantic-shadow.js';
+import { applyExecutorDelegationOverride } from './executor-delegation.js';
 import { loadAdvisorProjection } from './projection.js';
 import { SCORING_CALIBRATION } from './scoring-constants.js';
 import { isReadOnlyExplainer, matchesPhraseBoundary } from './text.js';
@@ -869,6 +870,18 @@ export function scoreAdvisorPrompt(prompt: string, options: AdvisorScoringOption
       }
     }
   }
+
+  // Post-fusion so a resolved executor delegation can carry negative evidence
+  // the pre-clamp explicit lane cannot express, and so it runs after every
+  // abstention gate. The alias table is metadata-derived, so new executors or
+  // small models need no change here. It is a no-op on non-delegation prompts.
+  ranked = applyExecutorDelegationOverride(ranked, {
+    promptLower,
+    projection,
+    workspaceRoot: options.workspaceRoot,
+    confidenceThreshold: options.confidenceThreshold ?? DEFAULT_CONFIDENCE_THRESHOLD,
+    uncertaintyThreshold: options.uncertaintyThreshold ?? DEFAULT_UNCERTAINTY_THRESHOLD,
+  });
 
   const passing = ranked.filter((recommendation) => recommendation.passes_threshold);
   const visible = options.includeAllCandidates ? ranked : passing;
