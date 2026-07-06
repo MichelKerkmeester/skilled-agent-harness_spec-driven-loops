@@ -1,8 +1,10 @@
 # create-command
 
-Scaffold OpenCode slash commands with clear arguments, tight tool permissions, and router/presentation separation when needed.
+## 1. OVERVIEW
 
-## When to Use
+Scaffold OpenCode slash commands with clear arguments, tight tool permissions, and router/presentation separation when needed. `create-command` is a nested workflow packet of the `sk-doc` parent hub; `SKILL.md` is its authoritative contract and this README is the fast orientation.
+
+## 2. WHEN TO USE
 
 Use this packet when you need to:
 
@@ -15,13 +17,14 @@ Use this packet when you need to:
 
 Do not use it for skill scaffolding, agent scaffolding, prose-only documentation quality, one-time work, or runtime debugging of an existing command.
 
-## What's Inside
+## 3. WHAT'S INSIDE
 
 - `SKILL.md`: authoritative packet contract, workflow, rules, validation expectations, and escalation conditions.
+- `references/command_creation.md`: overflow reference with a worked split example, argument-hint patterns, mode design, and common mistakes.
 - `assets/command/command_template.md`: main command-authoring template covering frontmatter, command types, gates, structure, and examples.
 - `assets/command/command_presentation_template.md`: template for `_presentation.txt` assets used by thin router commands.
-- `changelog/.gitkeep`: placeholder for packet-local changelog entries.
-- No packet-local `references/` or `scripts/` directories are present.
+- `changelog/`: packet-local changelog entries.
+- No packet-local `graph-metadata.json` or `scripts/` directories are present.
 
 Shared validation and doc-quality resources live outside this packet:
 
@@ -31,7 +34,7 @@ Shared validation and doc-quality resources live outside this packet:
 - `../shared/scripts/extract_structure.py`
 - `../shared/scripts/quick_validate.py`
 
-## Quick Start
+## 4. QUICK START
 
 1. Confirm the command path, invocation name, namespace, and expected arguments.
 2. Read any existing command file before editing it.
@@ -44,11 +47,11 @@ Shared validation and doc-quality resources live outside this packet:
 9. Validate before claiming the command is structurally valid:
 
 ```bash
-python ../shared/scripts/validate_document.py <command-file.md> --type command
-python ../shared/scripts/extract_structure.py <command-file.md>
+python3 ../shared/scripts/validate_document.py <command-file.md> --type command
+python3 ../shared/scripts/extract_structure.py <command-file.md>
 ```
 
-## Example
+## 5. EXAMPLE
 
 ```text
 Request: create /doctor:memory with :auto and :confirm modes
@@ -61,6 +64,6 @@ Use this packet to:
 - validate the command through the shared doc-quality scripts.
 ```
 
-## Parent Hub
+## 6. PARENT HUB
 
 `create-command` is a nested workflow packet of the `sk-doc` parent hub. The shared doc-quality backbone lives at `../shared`; the single advisor identity and mode registry live at the hub root, not inside this packet.

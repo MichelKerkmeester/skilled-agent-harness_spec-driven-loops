@@ -529,7 +529,7 @@ def render_markdown_report(
     lines.append("")
     lines.append("## Grouped Fix Batches")
     lines.append("")
-    lines.append("### Batch A: Add missing TOC + Overview")
+    lines.append("### Batch A: Fix template violations (required sections and format)")
     if batch_a_files:
         for file in batch_a_files:
             lines.append(f"- `{file}`")
@@ -562,8 +562,9 @@ def render_markdown_report(
     lines.append("")
     lines.append("```bash")
     lines.append(
-        "python3 .opencode/skills/sk-doc/scripts/audit_readmes.py "
-        "--repo-root /Users/michelkerkmeester/MEGA/Development/Opencode\\ Env/Public "
+        "python3 .opencode/skills/sk-doc/create-readme/scripts/audit_readmes.py "
+        "--repo-root . "
+        "--validator .opencode/skills/sk-doc/shared/scripts/validate_document.py "
         "--inventory-out /tmp/readme-audit-inventory.txt "
         "--json-out /tmp/readme-audit-report.json "
         "--markdown-out /tmp/readme-audit-report.md"
@@ -616,7 +617,7 @@ def parse_args() -> argparse.Namespace:
     )
     parser.add_argument(
         "--validator",
-        default=".opencode/skills/sk-doc/scripts/validate_document.py",
+        default=".opencode/skills/sk-doc/shared/scripts/validate_document.py",
         help="Path to validate_document.py",
     )
     parser.add_argument(

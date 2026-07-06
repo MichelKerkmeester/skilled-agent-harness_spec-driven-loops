@@ -2,7 +2,11 @@
 
 Promotes curated MCP benchmark evidence into a skill-local `mcp_server/benchmarks/benchmark-<YYYY-MM-DD>/` operator record.
 
-## When To Use
+## 1. OVERVIEW
+
+`create-benchmark` is a nested workflow packet of the `sk-doc` parent hub. It moves a shipped spec packet's curated benchmark evidence into the consuming skill's `mcp_server/benchmarks/` tree so MCP operators find the winner, fixture, caveats, and replay commands without leaving the skill. The skill-local folder is the look-here-first surface; the full audit trail stays in the spec packet under `.opencode/specs/`. `SKILL.md` is the authoritative contract.
+
+## 2. WHEN TO USE
 
 Use this packet when a completed MCP benchmark or bake-off needs to move from a shipped spec packet into the consuming skill tree.
 
@@ -16,7 +20,7 @@ Typical jobs:
 
 Do not use it for in-progress benchmarks, speculative benchmark design, release notes, changelog rows, or one-off unreplayable measurements.
 
-## What's Inside
+## 3. WHAT'S INSIDE
 
 Packet root:
 
@@ -45,7 +49,7 @@ Shared resources loaded by the workflow:
 - `../shared/references/global/evergreen_packet_id_rule.md` when runtime-doc packet references matter.
 - `../shared/references/global/core_standards.md` and `../shared/assets/frontmatter_templates.md` when style or frontmatter questions arise.
 
-## Quick Start
+## 4. QUICK START
 
 Example target shape inside a consuming skill:
 
@@ -71,7 +75,7 @@ Basic flow:
 7. Update `mcp_server/benchmarks/README.md` with the benchmark index row.
 8. Validate authored markdown with the shared sk-doc validator.
 
-## Hub Relationship
+## 5. HUB RELATIONSHIP
 
 `create-benchmark` is a nested workflow packet of the `sk-doc` parent hub.
 

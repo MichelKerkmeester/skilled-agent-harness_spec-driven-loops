@@ -35,10 +35,10 @@ This reference provides deep-dive technical guidance on execution modes, validat
 
 **Scope Note**: This reference covers Mode 1 (Document Quality) workflows only. For other modes, see:
 - Mode 2 (Skill Creation): [skill_creation.md](../../create-skill/references/README.md)
-- Mode 3 (Flowcharts): [assets/flowcharts/](../../assets/flowcharts/)
+- Mode 3 (Flowcharts): [create-flowchart/assets/flowcharts/](../../create-flowchart/assets/flowcharts/)
 - Mode 4 (Install Guides): [install_guide_creation.md](../../create-readme/references/install_guide_creation.md)
 - Mode 5 (Playbooks): [manual_testing_playbook_creation.md](../../create-manual-testing-playbook/references/manual_testing_playbook_creation.md), [manual_testing_playbook_template.md](../../create-manual-testing-playbook/assets/testing_playbook/manual_testing_playbook_template.md), and [manual_testing_playbook_snippet_template.md](../../create-manual-testing-playbook/assets/testing_playbook/manual_testing_playbook_snippet_template.md)
-- Companion catalog workflow: [feature_catalog_creation.md](../../create-feature-catalog/references/feature_catalog_creation.md) plus the [feature catalog template bundle](../../assets/feature_catalog/)
+- Companion catalog workflow: [feature_catalog_creation.md](../../create-feature-catalog/references/feature_catalog_creation.md) plus the [feature catalog template bundle](../../create-feature-catalog/assets/feature_catalog/)
 
 The playbook workflow assumes a root directory playbook plus required per-feature files in numbered category folders at the playbook root. Current validation remains root-doc focused and does not recurse into those category folders.
 
@@ -52,10 +52,10 @@ The playbook workflow assumes a root directory playbook plus required per-featur
 
 | Workflow | Phases | Command | Use When | Output |
 | --- | --- | --- | --- | --- |
-| **Script-assisted review** | 1+2 | `python scripts/extract_structure.py` + AI eval | Critical docs (specs, skills, READMEs) | JSON output + qualitative assessment + recommendations |
-| **Structure checks** | 1 | `python scripts/quick_validate.py` | File save, structural validation | Checklist results + fix list |
-| **Content optimization** | 2 | `python scripts/extract_structure.py` + AI eval | Improve existing docs for AI | Recommendations for clarity + AI-friendliness |
-| **Audit snapshot** | 1 (JSON only) | `python scripts/extract_structure.py` | Quality audit, no changes | JSON report for another agent |
+| **Script-assisted review** | 1+2 | `python ../shared/scripts/extract_structure.py` + AI eval | Critical docs (specs, skills, READMEs) | JSON output + qualitative assessment + recommendations |
+| **Structure checks** | 1 | `python ../shared/scripts/quick_validate.py` | File save, structural validation | Checklist results + fix list |
+| **Content optimization** | 2 | `python ../shared/scripts/extract_structure.py` + AI eval | Improve existing docs for AI | Recommendations for clarity + AI-friendliness |
+| **Audit snapshot** | 1 (JSON only) | `python ../shared/scripts/extract_structure.py` | Quality audit, no changes | JSON report for another agent |
 
 **Mode selection**:
 - Creating new SKILL/Knowledge → Script-assisted review
@@ -71,20 +71,20 @@ The playbook workflow assumes a root directory playbook plus required per-featur
 
 **Pre-Delivery Format Validation** (MANDATORY for READMEs):
 - **When**: Before claiming completion on any README
-- **Script**: `python scripts/validate_document.py <file>`
+- **Script**: `python ../shared/scripts/validate_document.py <file>`
 - **Action**: Check H2 format and required sections
 - **Blocking**: Yes - exit code 1 blocks delivery
 - **Auto-fix**: Use `--fix` for safe issues
 
 **Post-Write Validation Pattern** (manual):
 - **When**: After Write/Edit operations on `.md` files
-- **Script**: `python scripts/quick_validate.py <path>`
+- **Script**: `python ../shared/scripts/quick_validate.py <path>`
 - **Action**: Filename corrections (ALL CAPS → lowercase, hyphens → underscores)
 - **Blocking**: No (logs only)
 
 **Pre-Submit Quality Pattern** (manual):
 - **When**: Before finalizing documentation
-- **Script**: `python scripts/extract_structure.py <file>`
+- **Script**: `python ../shared/scripts/extract_structure.py <file>`
 - **Action**: Structure validation + AI-assisted quality assessment
 - **Blocking**: Recommend blocking on critical violations
 
@@ -92,15 +92,15 @@ The playbook workflow assumes a root directory playbook plus required per-featur
 ```
 User saves file
     ↓
-Run: python scripts/validate_document.py <file>  ← NEW: Format validation
+Run: python ../shared/scripts/validate_document.py <file>  ← NEW: Format validation
     ├─ Exit 0 → Continue
     └─ Exit 1 → Fix blocking errors → Re-run
     ↓
-Run: python scripts/quick_validate.py <path>
+Run: python ../shared/scripts/quick_validate.py <path>
     ↓
 Review output, fix issues
     ↓
-Run: python scripts/extract_structure.py <file>
+Run: python ../shared/scripts/extract_structure.py <file>
     ├─ Safe violations → Fix manually → Re-run
     └─ Critical violations → Address before proceeding
 ```
@@ -223,10 +223,10 @@ cd .opencode/skills/my-skill
 
 # 2. Write initial SKILL.md
 # (Run quick validation to check frontmatter)
-scripts/quick_validate.py .
+../shared/scripts/quick_validate.py .
 
 # 3. Extract structure for AI analysis
-scripts/extract_structure.py SKILL.md
+../shared/scripts/extract_structure.py SKILL.md
 # AI evaluates JSON output and provides quality assessment
 
 # Expected: No checklist failures, high AI-friendliness rating
@@ -235,7 +235,7 @@ scripts/extract_structure.py SKILL.md
 **Example 2: README Optimization**
 ```bash
 # Extract current README structure
-scripts/extract_structure.py README.md
+../shared/scripts/extract_structure.py README.md
 
 # AI receives JSON with:
 # - Metrics (word count, heading depth, code ratio)
@@ -248,7 +248,7 @@ scripts/extract_structure.py README.md
 **Example 3: Pre-Commit Validation**
 ```bash
 # Extract spec structure for review
-scripts/extract_structure.py specs/042/spec.md
+../shared/scripts/extract_structure.py specs/042/spec.md
 
 # AI evaluates:
 # - Structure checklist results
@@ -265,7 +265,7 @@ scripts/extract_structure.py specs/042/spec.md
 # Extract structure from all spec files for batch analysis
 for file in $(find specs/ -name "spec.md"); do
   echo "=== $file ==="
-  scripts/extract_structure.py "$file"
+  ../shared/scripts/extract_structure.py "$file"
 done
 ```
 
@@ -273,7 +273,7 @@ done
 ```bash
 # Validate all skills in directory
 for skill in $(find .opencode/skills/ -maxdepth 1 -type d); do
-  scripts/quick_validate.py "$skill" --json
+  ../shared/scripts/quick_validate.py "$skill" --json
 done
 ```
 

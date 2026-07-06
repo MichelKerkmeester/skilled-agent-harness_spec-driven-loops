@@ -208,7 +208,7 @@ Run the completion gate before any completion claim:
 scripts/package_skill.py <path/to/skill-folder> --check
 ```
 
-`--check` hard-fails on missing SKILL frontmatter, non-four-part versions, folder/name mismatches, missing required sections, malformed names, and placeholder descriptions. It warns on non-snake_case filenames in `references/` and `assets/`.
+`--check` hard-fails on missing SKILL frontmatter or required fields, non-four-part versions, folder/name mismatches, missing required sections, malformed names, and descriptions that are missing, multiline, or contain angle brackets. It warns (does not fail) on TODO-placeholder descriptions, non-snake_case filenames in `references/` and `assets/`, missing resource-doc frontmatter, and absent smart-router markers.
 
 Use structure extraction when quality evidence is needed:
 

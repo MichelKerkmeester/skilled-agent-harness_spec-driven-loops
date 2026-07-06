@@ -15,7 +15,7 @@ The skill-local folder is the look-here-first surface, not the archive. The full
 
 ---
 
-## 1. WHEN TO USE
+## 1. WHEN TO USE + SMART_ROUTING
 
 ### Activation Triggers
 
@@ -104,7 +104,7 @@ Reference `references/benchmark_creation.md` only for deep overflow such as case
 
 ---
 
-## 3. AUTHORING WORKFLOW
+## 3. HOW IT WORKS: AUTHORING WORKFLOW
 
 Complete these steps in order. The spec packet must have shipped before promotion.
 
@@ -215,7 +215,7 @@ Do not rename the skill-local dated folder. Update the path in `SOURCE.md`, upda
 
 ---
 
-## 6. AUTHORITY AND GATES
+## 6. RULES: AUTHORITY AND GATES
 
 ### Authority Hierarchy
 

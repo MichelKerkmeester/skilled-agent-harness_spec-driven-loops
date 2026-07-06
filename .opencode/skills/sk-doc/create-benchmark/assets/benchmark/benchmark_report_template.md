@@ -21,7 +21,7 @@ Usage:
 
 Then fill in every {{PLACEHOLDER}}. Keep the ANCHOR pairs and numbered H2 ALL CAPS structure intact.
 Validate after authoring:
-  python3 .opencode/skills/sk-doc/scripts/validate_document.py \
+  python3 .opencode/skills/sk-doc/shared/scripts/validate_document.py \
     .opencode/skills/<your-skill>/mcp_server/benchmarks/benchmark-<YYYY-MM-DD>/benchmark_report.md \
     --type readme
 
@@ -324,7 +324,7 @@ Expected outcome: {{EXPECTED_OUTCOME_LINE}}.
 | [`per-probe.jsonl`](./per-probe.jsonl) | Per-probe rows. |
 | [`runtime-measurements.md`](./runtime-measurements.md) | RAM, residency, raw inference latency for the final candidates. |
 | [`../README.md`](../README.md) | Index of all `{{SKILL_NAME}}` benchmarks. |
-| [`benchmark_creation.md`](.opencode/skills/sk-doc/create-benchmark/references/benchmark_creation.md) | Convention these files follow. |
+| `.opencode/skills/sk-doc/create-benchmark/references/benchmark_creation.md` | Convention these files follow. |
 
 ### Authoritative spec packet
 

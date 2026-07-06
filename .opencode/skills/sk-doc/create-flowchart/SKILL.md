@@ -147,7 +147,7 @@ bash scripts/validate_flowchart.sh <target-flowchart.md>
 Shared document validation, only when the surrounding markdown document is in scope:
 
 ```bash
-python ../shared/scripts/validate_document.py <document.md>
+python3 ../shared/scripts/validate_document.py <document.md>
 ```
 
 ---

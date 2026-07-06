@@ -15,7 +15,7 @@ Core principle: keep shared rules in the root playbook, keep execution truth in 
 
 ---
 
-## 1. WHEN TO USE
+## 1. WHEN TO USE + SMART_ROUTING
 
 ### Activation Triggers
 
@@ -146,7 +146,7 @@ Each per-feature file must include:
 
 ---
 
-## 3. AUTHORING WORKFLOW
+## 3. HOW IT WORKS - AUTHORING WORKFLOW
 
 Follow this sequence:
 
@@ -254,11 +254,11 @@ Do not ship unsynchronized prompt fields.
 
 ### Automated Checks
 
-Run shared validation on the root playbook before delivery:
+Run shared validation on the root playbook before delivery from the repo root (replace `<SKILL_PATH>` with the target skill directory, e.g. `.opencode/skills/system-spec-kit`):
 
 ```bash
-python ../shared/scripts/validate_document.py manual_testing_playbook/manual_testing_playbook.md --type reference
-python ../shared/scripts/extract_structure.py manual_testing_playbook/manual_testing_playbook.md
+python3 .opencode/skills/sk-doc/shared/scripts/validate_document.py <SKILL_PATH>/manual_testing_playbook/manual_testing_playbook.md --type reference
+python3 .opencode/skills/sk-doc/shared/scripts/extract_structure.py <SKILL_PATH>/manual_testing_playbook/manual_testing_playbook.md
 ```
 
 Also check:

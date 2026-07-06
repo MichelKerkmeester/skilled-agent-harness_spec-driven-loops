@@ -171,15 +171,16 @@ Feature catalogs and manual testing playbooks serve different purposes:
 - playbooks should link back to the matching catalog entry when one exists
 - catalogs should stay focused on current behavior, not test execution detail
 
-**Validation workflow**:
-- validate the root catalog with `validate_document.py`
+**Validation workflow** (run from the repo root with `python3` so leaves resolve the `feature_catalog` doc type):
+- validate the root catalog: `python3 .opencode/skills/sk-doc/shared/scripts/validate_document.py <target-skill>/feature_catalog/feature_catalog.md`
+- validate each per-feature leaf: `python3 .opencode/skills/sk-doc/shared/scripts/validate_document.py <target-skill>/feature_catalog/NN--category/feature-name.md`
 - manually check per-feature file links and source anchors
 - confirm the root entry list matches the per-feature file set
 
-**Current validator limitation**:
-- `validate_document.py` validation is strongest at the root-doc level
+**Validator boundary**:
+- `validate_document.py` checks root-catalog structure and, for per-feature leaves reached by a repo-root path, the Validation And Tests table taxonomy
 - cross-file link resolution is enforced in CI by `check-markdown-links.cjs` (broken markdown links fail the PR)
-- per-feature link *correctness* and source-anchor quality still require manual review
+- per-feature link *correctness* and source-anchor accuracy still require manual review
 
 ## 8. COMMON MISTAKES
 

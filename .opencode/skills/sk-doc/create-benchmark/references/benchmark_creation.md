@@ -219,7 +219,7 @@ Complete these steps in order. The spec packet must have shipped before you prom
 3. **Copy raw artifacts** from the spec packet's `evidence/` directory: `results.csv`, `per-probe.jsonl` when applicable, and `runtime-measurements.md` when there is a meaningful runtime profile.
 4. **Write `benchmark_report.md`** using the ten-section structure from Section 5. Copy the scaffold from `assets/benchmark/benchmark_report_template.md`. Generalize the headline. Name the load-bearing insight explicitly (it is often distinct from the headline winner).
 5. **Write `SOURCE.md`** using the `assets/benchmark/source_template.md` scaffold. Include the spec packet path, a per-file navigation map, and a "last updated" date.
-6. **Validate** every authored markdown file: `python3 .opencode/skills/sk-doc/scripts/validate_document.py <file>`. Fix any blocking issues.
+6. **Validate** every authored markdown file: `python3 .opencode/skills/sk-doc/shared/scripts/validate_document.py <file> --type readme`. Fix any blocking issues.
 7. **Add a row to this skill's `benchmarks/README.md`** with the date, folder link, winner, status and spec-packet path.
 
 ### Authoring order matters
@@ -290,13 +290,15 @@ The bake-off compared six text embedders against a deterministic paraphrase-reca
 
 **Lesson**: A benchmark folder pays off most when the spec packet has many ADRs supporting one curated headline. Promote a `runtime-measurements.md` companion only when the runtime profile is part of the decision (RAM headroom, daemon residency, cold-load time).
 
-### Case study 2: code-embedder bake-off (system-code-graph, May 18, 2026)
+### Case study 2: code-embedder bake-off (experimental coco-index MCP, May 18, 2026)
 
-Path: `.opencode/skills/system-code-graph/mcp_server/benchmarks/benchmark-2026-05-18/`
+Path: `.opencode/specs/z_future/code-graph-and-cocoindex/backup/mcp-coco-index/mcp_server/benchmarks/benchmark-2026-05-18/`
 
-The bake-off compared five code-tuned embedders against an 18-pair paraphrased fixture. One skipped on Apple Silicon because of an xformers requirement. The leading candidate was ahead by two net pairs over the current default (four unique wins minus two unique losses). No promotion shipped on May 18 because the lead was a single-run signal requiring a 3-run confirmation.
+This bake-off belonged to an experimental `mcp-coco-index` server, not a live shipped skill. The run stayed provisional and the server was parked, so the folder now lives under `specs/z_future/` rather than in a skill tree. It is preserved here as a teaching example of a correctly-formatted but deliberately un-promoted run.
 
-**What triggered adoption anyway**: the bake-off shape mirrored the sibling skill's text-embedder run, and the same operators move between the two skills. Symmetry across sibling MCP servers is itself an adoption trigger.
+The bake-off compared five code-tuned embedders against an 18-pair paraphrased fixture. One skipped on Apple Silicon because of an xformers requirement. The leading candidate was ahead by two net pairs over the current default (four unique wins minus two unique losses). No promotion into a live skill shipped on May 18 because the lead was a single-run signal requiring a 3-run confirmation.
+
+**Why the format was applied anyway**: the bake-off shape mirrored the sibling text-embedder run so operators moving between the two would not have to relearn the layout. Format symmetry is a legitimate reason to author the folder even before a headline is confirmed — but a single-run signal keeps the run out of a live skill tree until it is validated. This run never cleared that bar, which is why it stayed archived.
 
 **What the folder had to carry**:
 - A single-run signal caveat: on a small fixture, single-sample wins under the noise floor are easy to mistake for real progress.
@@ -332,14 +334,14 @@ The bake-off compared five code-tuned embedders against an 18-pair paraphrased f
 
 ### Validation
 
-- `python3 .opencode/skills/sk-doc/scripts/validate_document.py --type readme <file>`: run against any `benchmark_report.md` or `benchmarks/README.md` before promoting.
+- `python3 .opencode/skills/sk-doc/shared/scripts/validate_document.py <file> --type readme`: run against any `benchmark_report.md` or `benchmarks/README.md` before promoting.
 
-### Shipped benchmark examples
+### Benchmark examples
 
-| Path | What |
-|---|---|
-| `.opencode/skills/system-spec-kit/mcp_server/benchmarks/benchmark-2026-05-17/` | mk-spec-memory text-embedder bake-off (Section 9 Case study 1) |
-| `.opencode/skills/system-code-graph/mcp_server/benchmarks/benchmark-2026-05-18/` | system-code-graph code-embedder bake-off (Section 9 Case study 2) |
+| Path | What | Status |
+|---|---|---|
+| `.opencode/skills/system-spec-kit/mcp_server/benchmarks/benchmark-2026-05-17/` | mk-spec-memory text-embedder bake-off (Section 9 Case study 1) | Live, promoted |
+| `.opencode/specs/z_future/code-graph-and-cocoindex/backup/mcp-coco-index/mcp_server/benchmarks/benchmark-2026-05-18/` | experimental coco-index code-embedder bake-off (Section 9 Case study 2) | Archived, never promoted |
 
 ### Related sk-doc references
 

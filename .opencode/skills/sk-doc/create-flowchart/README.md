@@ -20,6 +20,9 @@ Do not use it when a short bullet list is clearer, or when the requested output 
 - `SKILL.md`  
   The authoritative packet contract: activation triggers, routing rules, authoring workflow, validation requirements, and success criteria.
 
+- `references/flowchart_creation.md`  
+  Overflow guidance beyond the inline contract: a worked decision-tree example, validator-passing notation, pattern-selection detail, split heuristics, and common pitfalls.
+
 - `assets/flowcharts/simple_workflow.md`  
   Pattern for linear setup, tutorial, installation, or operational flows.
 
@@ -41,10 +44,10 @@ Do not use it when a short bullet list is clearer, or when the requested output 
 - `scripts/validate_flowchart.sh`  
   Packet-local validator for flowchart structure, connector use, branch labels, nesting depth, and size warnings.
 
-- `changelog/.gitkeep`  
-  Placeholder for packet changelog material.
+- `changelog/`  
+  Versioned packet changelog entries (for example `v1.0.0.0.md`).
 
-There is no packet-local `references/` directory. This packet uses the shared sk-doc references and validators from `../shared`.
+For shared markdown standards and the document-level validator, this packet reuses `../shared` rather than duplicating them.
 
 ## Quick Start
 

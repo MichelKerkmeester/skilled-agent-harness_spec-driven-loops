@@ -17,7 +17,7 @@ This packet is lean and self-contained. The advisor identity lives at the `sk-do
 
 ---
 
-## 1. WHEN TO USE
+## 1. WHEN TO USE + SMART_ROUTING
 
 Use this packet when the request involves:
 
@@ -42,7 +42,7 @@ Do not use this packet when:
 
 ---
 
-## 2. CREATION WORKFLOW
+## 2. HOW IT WORKS: CREATION WORKFLOW
 
 Follow these steps in order.
 
@@ -317,8 +317,8 @@ Before publishing or claiming the command is valid, verify:
 Run shared validators when available:
 
 ```bash
-python ../shared/scripts/validate_document.py <command-file.md> --type command
-python ../shared/scripts/extract_structure.py <command-file.md>
+python3 ../shared/scripts/validate_document.py <command-file.md> --type command
+python3 ../shared/scripts/extract_structure.py <command-file.md>
 ```
 
 Exit code `0` from `validate_document.py` is required before stating that the command document is structurally valid. If validation cannot be run, say that explicitly.

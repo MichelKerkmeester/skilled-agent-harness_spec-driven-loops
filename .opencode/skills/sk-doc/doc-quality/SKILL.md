@@ -1,6 +1,6 @@
 ---
 name: doc-quality
-description: Validate, score and optionally improve existing markdown through structure extraction, DQI scoring, HVR voice review and validation gates.
+description: Validate, score, and optionally improve existing markdown via structure extraction, DQI scoring, HVR review, and validation gates.
 allowed-tools: [Read, Write, Edit, Bash, Grep, Glob]
 version: 1.0.0.0
 ---
@@ -13,7 +13,7 @@ This packet is invoked by `/doc:quality`. The command is report-only by default.
 
 ---
 
-## 1. WHEN TO USE
+## 1. WHEN TO USE + SMART_ROUTING
 
 ### Activation Triggers
 
@@ -43,7 +43,7 @@ This is an independently invokable nested workflow packet under `sk-doc`. It own
 
 ---
 
-## 2. CORE WORKFLOW
+## 2. HOW IT WORKS: CORE WORKFLOW
 
 Follow this workflow from the `SKILL.md` alone. Use references only for overflow examples and exhaustive detail.
 

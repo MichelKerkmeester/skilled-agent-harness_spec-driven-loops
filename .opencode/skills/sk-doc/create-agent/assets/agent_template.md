@@ -705,6 +705,7 @@ If ANY required check fails, do not claim completion. Return a blocked or partia
 | `@prompt-improver` | `prompt-improver.md` | LEAF read-only prompt specialist | Framework selection, CLEAR validation, dispatch-ready prompt packages |
 | `@ai-council` | `ai-council.md` | LEAF planning subagent, `mode: subagent` | Depth-aware dispatch, diverse strategy lenses, planning-only no-write boundary |
 | `@markdown` | `markdown.md` | LEAF write-capable documentation executor | Template-first `/create:*`, spec-doc, and scoped markdown authoring |
+| `@design` | `design.md` | LEAF write-capable design subagent | `sk-design` parent-hub mode routing (interface/foundations/motion/audit/md-generator), applies the mode, then verifies |
 | `@orchestrate` | `orchestrate.md` | Primary orchestrator | Task decomposition, specialist routing, integration synthesis, delegation governance |
 | `@review` | `review.md` | LEAF review subagent | Findings-first code review, quality rubric, read-only target discipline |
 
@@ -776,4 +777,4 @@ Before deploying an agent, verify:
 - [ ] Output format matches the agent's real deliverable.
 - [ ] Claims require inspected evidence.
 - [ ] Write boundaries are stricter than raw permissions when the role is scoped.
-- [ ] Production examples match the current 10-agent fleet.
+- [ ] Production examples match the current agent fleet in `.opencode/agents/`.

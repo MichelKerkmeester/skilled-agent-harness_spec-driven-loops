@@ -126,7 +126,7 @@ Follow this workflow in order.
 10. Use plain prose for short `HOW IT WORKS` sections and H3 subheadings for sections longer than three paragraphs.
 11. Fill implementation source tables and validation or test anchor tables for every feature claim.
 12. Fill `## 4. SOURCE METADATA`, including group, canonical file path, and related references.
-13. Validate the root document.
+13. Validate the root catalog and each per-feature leaf file with shared validation (see §6).
 14. Manually verify feature-file links, root-entry parity, source anchors, and current-state wording.
 
 Authoring order matters:
@@ -229,16 +229,18 @@ Cross-reference rule:
 - Catalogs should stay focused on current behavior, not test execution detail.
 - Manual execution scenario matrices belong in playbooks, not catalogs.
 
-Validation workflow:
+Validation workflow — run from the repo root so the validator resolves the `feature_catalog` doc type on per-feature leaves (leaf detection keys on a `/feature_catalog/NN--category/` path):
 
 ```bash
-python ../shared/scripts/validate_document.py feature_catalog/feature_catalog.md
-python ../shared/scripts/extract_structure.py feature_catalog/feature_catalog.md
+# Root catalog (detected as the readme doc type)
+python3 .opencode/skills/sk-doc/shared/scripts/validate_document.py <target-skill>/feature_catalog/feature_catalog.md
+python3 .opencode/skills/sk-doc/shared/scripts/extract_structure.py <target-skill>/feature_catalog/feature_catalog.md
+
+# Each per-feature leaf (detected as the feature_catalog doc type; validates the Validation And Tests table taxonomy)
+python3 .opencode/skills/sk-doc/shared/scripts/validate_document.py <target-skill>/feature_catalog/NN--category/feature-name.md
 ```
 
-Manual validation is required because root-doc validation is strongest at the root document level.
-
-Manually verify:
+The validator machine-checks the root-catalog structure and each leaf's Validation And Tests table, but not cross-file link targets or source-anchor accuracy. Manually verify:
 
 - Every root entry links to an existing per-feature file.
 - Every per-feature file is represented in the root catalog.
@@ -248,11 +250,11 @@ Manually verify:
 - Cross-file links resolve.
 - Runtime docs avoid mutable spec or phase packet history.
 
-Current validator limitation:
+Validator boundary:
 
-- `validate_document.py` validation is strongest at the root-doc level.
+- `validate_document.py` checks root-catalog structure and, for per-feature leaves reached by a repo-root path, the Validation And Tests table taxonomy.
 - Cross-file link resolution is enforced in CI by `check-markdown-links.cjs`.
-- Per-feature link correctness and source-anchor quality still require manual review.
+- Per-feature link correctness and source-anchor accuracy still require manual review.
 
 ---
 
@@ -270,7 +272,7 @@ Current validator limitation:
 8. Describe current shipped behavior from the caller or operator perspective.
 9. Keep the root catalog inventory-first and navigation-focused.
 10. Put implementation truth in per-feature files.
-11. Run shared validation on the root catalog before delivery.
+11. Run shared validation on the root catalog and per-feature leaves before delivery.
 12. Manually verify cross-file links, source anchors, and root-entry to feature-file parity.
 13. Consume global standards and validators from `../shared/` instead of duplicating them here.
 

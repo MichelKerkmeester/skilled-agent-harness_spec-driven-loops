@@ -2,7 +2,11 @@
 
 Validate, score, and optionally improve existing markdown through structure extraction, DQI scoring, HVR voice review, and validation gates.
 
-## When To Use
+## 1. OVERVIEW
+
+`doc-quality` is the existing-document audit and optimization workflow packet of the `sk-doc` family. It extracts a target document's structure, computes a Document Quality Index (DQI) score and band, applies Human Voice Rules, and, only when edits are explicitly requested, makes targeted improvements to that same document. It is report-only by default and never creates new artifacts. `SKILL.md` is the authoritative contract; this README is human orientation.
+
+## 2. WHEN TO USE
 
 Use `doc-quality` when you need to audit or improve an existing markdown document.
 
@@ -16,7 +20,7 @@ Good fits:
 
 Do not use it for brand-new artifacts. Route new README, skill, agent, command, catalog, benchmark, flowchart, or playbook creation to the matching `sk-doc` creation packet.
 
-## What's Inside
+## 3. WHAT'S INSIDE
 
 Packet-local files:
 
@@ -39,7 +43,7 @@ Shared backbone used by this packet:
 - `../shared/references/global/quick_reference.md` - command and quality-gate cheat sheet.
 - `../shared/assets/` - shared templates and rules used across `sk-doc`.
 
-## Quick Start
+## 4. QUICK START
 
 Report-only audit of one markdown file:
 
@@ -48,10 +52,10 @@ python ../shared/scripts/extract_structure.py README.md
 python ../shared/scripts/validate_document.py README.md
 ```
 
-If the document type is ambiguous, pass it explicitly:
+`extract_structure.py` takes only the file path and auto-detects the document type. If detection is ambiguous, force the type on the validation gate instead (the extractor has no `--type` flag):
 
 ```bash
-python ../shared/scripts/extract_structure.py README.md --type readme
+python ../shared/scripts/validate_document.py README.md --type readme
 ```
 
 Typical workflow:
@@ -65,7 +69,7 @@ Typical workflow:
 7. Validate with `../shared/scripts/validate_document.py <file>`.
 8. Re-run extraction after edits to confirm the final state.
 
-## Hub Relationship
+## 5. HUB RELATIONSHIP
 
 `doc-quality` is a nested workflow packet of the `sk-doc` parent hub.
 

@@ -233,7 +233,7 @@ Before delivery, verify both document quality and runtime correctness.
 
 - [agent_template.md](../assets/agent_template.md) - canonical agent scaffold
 - [command_template.md](../../create-command/assets/command/command_template.md) - companion scaffold for slash-command entry points
-- [skill_creation.md](../../create-skill/references/README.md) - companion workflow for reusable knowledge bundles
+- [create-skill README](../../create-skill/references/README.md) - companion workflow for reusable knowledge bundles
 - [quick_reference.md](../../shared/references/global/quick_reference.md) - condensed commands and file locations
 - [workflows.md](../../doc-quality/references/workflows.md) - execution-mode reference
 - `.opencode/commands/create/agent.md` - preferred command-driven creation workflow

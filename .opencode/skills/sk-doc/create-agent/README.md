@@ -19,7 +19,7 @@ Do not use it for reusable knowledge alone, slash-command entry points alone, br
 | `SKILL.md` | Authoritative packet contract for `/create:agent` and agent-authoring rules. |
 | `references/agent_creation.md` | Standards and workflow guidance for deciding agent vs skill vs command, runtime placement, permission design, required sections, validation, and common mistakes. |
 | `assets/agent_template.md` | Canonical scaffold for production agent files, including frontmatter shape, Section 0 boundaries, workflow, output verification, anti-patterns, and summary structure. |
-| `changelog/.gitkeep` | Placeholder for packet-local changelog history. |
+| `changelog/` | Packet-local changelog history (`v1.0.0.0.md` is the initial release; `.gitkeep` keeps the directory tracked). |
 | `scripts/` | Not present in this packet. Use shared sk-doc validators from `../shared/scripts/`. |
 
 ## 4. QUICK START
@@ -34,8 +34,8 @@ Do not use it for reusable knowledge alone, slash-command entry points alone, br
 Example validation for an OpenCode agent:
 
 ```bash
-python .opencode/skills/sk-doc/shared/scripts/validate_document.py .opencode/agents/agent-name.md --type agent
-python .opencode/skills/sk-doc/shared/scripts/extract_structure.py .opencode/agents/agent-name.md
+python3 .opencode/skills/sk-doc/shared/scripts/validate_document.py .opencode/agents/agent-name.md --type agent
+python3 .opencode/skills/sk-doc/shared/scripts/extract_structure.py .opencode/agents/agent-name.md
 ```
 
 ## 5. RELATED

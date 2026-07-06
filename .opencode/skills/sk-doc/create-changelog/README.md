@@ -34,7 +34,7 @@ Do not use it for authoring prose docs, READMEs, skills, agents, or commands —
 Example validation:
 
 ```bash
-python .opencode/skills/sk-doc/shared/scripts/validate_document.py <changelog-file>.md --type changelog
+python3 .opencode/skills/sk-doc/shared/scripts/validate_document.py <changelog-file> --type changelog
 ```
 
 ## 5. RELATED

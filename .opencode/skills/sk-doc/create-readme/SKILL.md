@@ -38,7 +38,7 @@ This is a nested workflow packet under the `sk-doc` parent hub. It owns README a
 
 ---
 
-## 2. ROUTE THE REQUEST
+## 2. SMART ROUTING
 
 Route by artifact type first, then by folder purpose.
 
@@ -73,7 +73,21 @@ Is the tool already well documented?
 
 ---
 
-## 3. README AUTHORING WORKFLOW
+## 3. HOW IT WORKS
+
+Every run follows one operating model, whatever the artifact:
+
+1. Read local evidence first: the target folder, nearby docs, package files, config files and existing commands. Never document unconfirmed files, commands, APIs or metrics.
+2. Route by artifact type and folder purpose (Section 2) to pick the output and template.
+3. Draft current-state content only, in the smallest useful shape: a general README (Section 5), a code-folder README (Section 6) or an install guide (Section 7).
+4. Copy the matching template as a scaffold, remove unused sections and put orientation first.
+5. Validate the authored markdown and resolve local links before delivery (Section 8).
+
+READMEs and install guides share this lifecycle. The sections below give the detailed steps for each.
+
+---
+
+## 4. README AUTHORING WORKFLOW
 
 1. Identify the target folder, audience and README type before drafting.
 2. Read the target folder contents, nearby documentation, package files, config files and existing commands.
@@ -92,7 +106,7 @@ Is the tool already well documented?
 
 ---
 
-## 4. GENERAL README OUTPUT SHAPE
+## 5. GENERAL README OUTPUT SHAPE
 
 A general README answers two questions: what this is, and how someone uses or navigates it.
 
@@ -140,7 +154,7 @@ trigger_phrases:
 
 ---
 
-## 5. CODE-FOLDER README OUTPUT SHAPE
+## 6. CODE-FOLDER README OUTPUT SHAPE
 
 Create a code-folder README when a developer needs local orientation before editing the directory.
 
@@ -183,7 +197,7 @@ Code-folder README rules:
 
 ---
 
-## 6. INSTALL GUIDE WORKFLOW
+## 7. INSTALL GUIDE WORKFLOW
 
 1. Confirm the install needs a guide rather than a one-line command or link to official docs.
 2. Identify the install-guide type: MCP server, CLI tool, plugin or development dependency.
@@ -261,7 +275,7 @@ Install guides should contain 5+ STOP blocks across all validation checkpoints a
 
 ---
 
-## 7. VALIDATION AND AUDIT
+## 8. VALIDATION AND AUDIT
 
 Run shared validation on authored markdown when feasible:
 
@@ -309,7 +323,7 @@ Pre-publish checks for install guides:
 
 ---
 
-## 8. WRITING RULES
+## 9. WRITING RULES
 
 Always:
 
@@ -352,7 +366,7 @@ Escalate if:
 
 ---
 
-## 9. OVERFLOW REFERENCES
+## 10. OVERFLOW REFERENCES
 
 The core workflow lives in this `SKILL.md`. Use these files only for deep overflow detail, exhaustive scaffolds, edge cases and long examples:
 

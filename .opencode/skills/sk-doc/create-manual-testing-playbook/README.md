@@ -53,11 +53,11 @@ Per-feature files own the executable scenario truth: exact prompt, exact command
 5. Define category folders using `NN--category-name`.
 6. Create one per-feature file per feature ID from `assets/testing_playbook/manual_testing_playbook_snippet_template.md`.
 7. Keep prompt fields synchronized between the root summary, `SCENARIO CONTRACT`, and execution table.
-8. Validate the root playbook:
+8. Validate the root playbook from the repo root (replace `<SKILL_PATH>` with the target skill directory, e.g. `.opencode/skills/system-spec-kit`):
 
 ```bash
-python ../shared/scripts/validate_document.py manual_testing_playbook/manual_testing_playbook.md --type reference
-python ../shared/scripts/extract_structure.py manual_testing_playbook/manual_testing_playbook.md
+python3 .opencode/skills/sk-doc/shared/scripts/validate_document.py <SKILL_PATH>/manual_testing_playbook/manual_testing_playbook.md --type reference
+python3 .opencode/skills/sk-doc/shared/scripts/extract_structure.py <SKILL_PATH>/manual_testing_playbook/manual_testing_playbook.md
 ```
 
 Then manually spot-check per-feature frontmatter, numbered sections, divider lines, feature ID counts, prompt synchronization, and local links.
