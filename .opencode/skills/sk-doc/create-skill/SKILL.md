@@ -49,69 +49,178 @@ This packet may create and edit skill artifacts. It does not own the sk-doc hub 
 SKILL AUTHORING REQUEST
     |
     +- Standalone skill -> workflowMode: create-skill
-    |   +- references/skill_creation.md
-    |   +- references/skill_creation/creation_workflow.md
-    |   +- assets/skill/skill_md_template.md
     |   +- scripts/init_skill.py
+    |   +- assets/skill/skill_md_template.md
+    |   +- assets/skill/skill_readme_template.md
     |
     +- Parent hub -> workflowMode: create-skill-parent
-        +- references/skill_creation/parent_skills_nested_packets.md
-        +- references/skill_creation/parent_hub_router_schema.md
         +- assets/skill/parent_skill_hub_template.md
         +- assets/skill/parent_skill_registry_template.json
         +- assets/skill/parent_skill_hub_router_template.json
 ```
 
+### Route Selection
+
+Choose `create-skill` when the artifact is one skill with one advisor identity and one runtime contract.
+
+Choose `create-skill-parent` when the artifact is one advisor-routable hub that dispatches to nested workflow packets or read-only surface packets.
+
+Ask one focused clarification before authoring if it is unclear whether the user wants a standalone skill or a parent hub.
+
 ### Resource Domains
 
-| Domain | Resources | Purpose |
+| Domain | Core Resources | Use |
 | --- | --- | --- |
-| Skill workflow | `references/skill_creation.md`, `references/skill_creation/creation_workflow.md` | Six-step lifecycle: understand, plan, initialize, edit, package, iterate. |
-| Skill structure | `references/skill_creation/overview.md`, `assets/skill/skill_md_template.md`, `assets/skill/skill_readme_template.md` | Required frontmatter, section order, README shape, progressive disclosure. |
-| Skill resources | `assets/skill/skill_reference_template.md`, `assets/skill/skill_asset_template.md`, `assets/skill/skill_smart_router.md` | Reference and asset frontmatter, resilient router pattern. |
-| Parent hubs | `references/skill_creation/parent_skills_nested_packets.md`, `references/skill_creation/parent_hub_router_schema.md` | Hub, packet, registry, router, and `packetKind` rules. |
-| Parent templates | `assets/skill/parent_skill_*` | Hub SKILL, registry, router, description, and graph metadata templates for target hubs. |
-| Automation | `scripts/init_skill.py`, `scripts/package_skill.py` | Scaffold, validate, and package skill folders. |
-| Shared quality | `../shared/references/global/*`, `../shared/scripts/*` | Doc standards, frontmatter/version checks, structure extraction, validation. |
+| Scaffolding | `scripts/init_skill.py`, `assets/skill/skill_md_template.md`, `assets/skill/skill_readme_template.md` | Create or normalize standalone skill files. |
+| Resource templates | `assets/skill/skill_reference_template.md`, `assets/skill/skill_asset_template.md`, `assets/skill/skill_smart_router.md` | Create routed references, assets, and resilient smart-router pseudocode. |
+| Parent hubs | `assets/skill/parent_skill_*` | Create hub SKILL, registry, router, description, and graph metadata files. |
+| Validation | `scripts/package_skill.py`, `../shared/scripts/extract_structure.py` | Check completion, package distribution zips, and inspect structure. |
+| Overflow detail | `references/skill_creation*.md`, `references/skill_creation/`, `../shared/` | Load only for edge cases, exhaustive examples, or schema details beyond this SKILL.md. |
 
-### Loading Levels
+### Smart Router Pseudocode
 
-| Level | When to Load | Resources |
-| --- | --- | --- |
-| ALWAYS | Any invocation | `references/skill_creation.md`, `../shared/references/global/core_standards.md`, `../shared/references/global/validation.md` |
-| CONDITIONAL | Standalone skill | `creation_workflow.md`, `overview.md`, `common_pitfalls.md`, `skill_md_template.md`, `skill_readme_template.md` |
-| CONDITIONAL | Parent hub | `parent_skills_nested_packets.md`, `parent_hub_router_schema.md`, `parent_skill_hub_template.md`, `parent_skill_registry_template.json`, `parent_skill_hub_router_template.json` |
-| CONDITIONAL | Validation or release | `validation_and_packaging.md`, `scripts/package_skill.py`, `../shared/scripts/extract_structure.py` |
-| ON_DEMAND | Router-heavy skill | `assets/skill/skill_smart_router.md` |
+```python
+def route_skill_authoring_request(request):
+    if asks_for_parent_hub_or_mode_registry(request):
+        return "create-skill-parent"
+    if asks_for_nested_workflow_or_surface_packets(request):
+        return "create-skill-parent"
+    if asks_for_one_skill_package(request):
+        return "create-skill"
+    if unclear_standalone_vs_parent(request):
+        return "ask_clarifying_question"
+    return "defer_to_matching_sk_doc_packet"
+```
 
 ---
 
 ## 3. HOW IT WORKS
 
-### Standalone Skill Workflow
+### Standalone Skill Creation Workflow
 
-1. Clarify the skill's concrete trigger examples, output contract, tool needs, and boundaries.
-2. Plan reusable `references/`, `assets/`, and `scripts/` before writing `SKILL.md`.
-3. Scaffold with `python3 scripts/init_skill.py <skill-name> --path <target-dir>` when creating a new folder.
-4. Replace generated placeholders with real workflow content using `assets/skill/skill_md_template.md` and `assets/skill/skill_readme_template.md`.
-5. Move deep instructions into `references/`; keep `SKILL.md` concise and routable.
-6. Validate with `python3 scripts/package_skill.py <path/to/skill> --check`.
-7. Run shared structure review with `python3 ../shared/scripts/extract_structure.py <path/to/skill/SKILL.md>` when quality evidence is needed.
-8. Package with `python3 scripts/package_skill.py <path/to/skill> <output-dir>` only after validation passes.
+Follow these steps in order, skipping only when the target skill already exists and the skipped step is plainly not applicable.
 
-### Parent Hub Workflow
+1. Understand the skill through concrete examples.
+2. Identify direct user examples or generate examples and validate them with the user when needed.
+3. Clarify the skill purpose, trigger phrases, output contract, tool needs, and boundaries.
+4. Ask only the most important missing questions first; conclude this step when the supported functionality is clear.
+5. Plan reusable skill contents before writing final instructions.
+6. For each expected use case, decide whether repeated work belongs in `scripts/`, `references/`, or `assets/`.
+7. Put deterministic or repeatedly rewritten code in `scripts/`.
+8. Put domain knowledge, schemas, policies, workflows, and detailed guidance in `references/`.
+9. Put templates, boilerplate, images, or output resources in `assets/`.
+10. Scaffold a new skill when creating a new folder with `scripts/init_skill.py <skill-name> --path <output-directory>`.
+11. Normalize generated files to this repo's section order after scaffolding.
+12. Delete generated example files and directories that the final skill does not need.
+13. Create reference markdown from `assets/skill/skill_reference_template.md`.
+14. Create asset markdown from `assets/skill/skill_asset_template.md`.
+15. Use snake_case filenames for `references/` and `assets/` markdown.
+16. Create `README.md` from `assets/skill/skill_readme_template.md` when operators need quick start, examples, troubleshooting, or a package map.
+17. Author `SKILL.md` as the executable runtime contract, not as a link farm.
+18. Keep `WHEN TO USE` limited to activation triggers, use cases, keyword triggers, and when-not-to-use boundaries.
+19. Put resource selection in `SMART ROUTING`, including detection signals, resource domains, loading levels, and smart-router pseudocode.
+20. Put the ordered execution path and decision points in `HOW IT WORKS`.
+21. Put required actions, forbidden actions, and escalation conditions in `RULES`.
+22. Put completion checks in `SUCCESS CRITERIA`.
+23. Put references only as overflow pointers for deep detail, examples, or schemas.
+24. Run `scripts/package_skill.py <path/to/skill-folder> --check` before claiming the skill is complete.
+25. Fix every hard failure and rerun the check until it exits clean.
+26. Package only after validation passes with `scripts/package_skill.py <path/to/skill-folder> <output-directory>`.
+27. Iterate after real usage by improving unclear instructions, adding missing resources, trimming bloated `SKILL.md` content into references, and improving trigger descriptions.
 
-1. Confirm the hub is one advisor-routable identity with nested packets, not separate advisor identities.
-2. Define each mode in a single `mode-registry.json > modes[]` entry with `workflowMode`, `packetKind`, `backendKind`, `toolSurface`, `packet`, `packetSkillName`, `aliases`, and `advisorRouting`.
-3. Use `packetKind: "workflow"` for lifecycle/process packets and `packetKind: "surface"` for read-only evidence packets.
-4. Create hub-root router files from the parent templates: `parent_skill_hub_template.md`, `parent_skill_registry_template.json`, `parent_skill_hub_router_template.json`, `parent_skill_description_template.json`, and `parent_skill_graph_metadata_template.json`.
-5. Create each nested packet with its own `SKILL.md`, `README.md`, and `changelog/`.
-6. Do not create `graph-metadata.json` inside nested packets; only the parent hub carries advisor graph identity.
-7. Validate paths in `hub-router.json` and keep aliases unique across modes.
+### Required Standalone Skill Shape
 
-### Validation Gate
+```text
+skill-name/
+├── SKILL.md
+├── README.md
+├── references/
+├── assets/
+└── scripts/
+```
 
-`package_skill.py --check` must pass before any completion claim. It checks required SKILL frontmatter, four-part version, folder/name match, required sections, and resource warnings. Use shared validators for document structure, frontmatter versioning, and global markdown standards.
+`SKILL.md` is required. `README.md`, `references/`, `assets/`, and `scripts/` are optional only when they are genuinely unnecessary.
+
+### SKILL.md Frontmatter Contract
+
+Every `SKILL.md` must include:
+- `name`: lowercase hyphen-case and matching the folder name.
+- `description`: single-line, specific, non-placeholder routing description.
+- `allowed-tools`: YAML array format such as `[Read, Write, Edit, Bash, Grep, Glob]`.
+- `version`: four-part `X.Y.Z.W`.
+
+Every authored `references/*.md` and markdown asset should carry the full reference/asset frontmatter block from the packet templates, including `version`. `README.md` is exempt from the full reference block but still uses the README template frontmatter.
+
+### Parent Hub Creation Workflow
+
+Use the parent-hub path when one public skill identity must dispatch to multiple packets.
+
+1. Confirm the hub is one advisor-routable identity, not multiple standalone skills.
+2. Keep the hub routing-only; nested packets own detailed workflows, evidence, examples, tool boundaries, and validation.
+3. Create the hub root with `SKILL.md`, `mode-registry.json`, `hub-router.json`, `description.json`, `graph-metadata.json`, `changelog/`, `manual_testing_playbook/`, and `benchmark/`.
+4. Create each nested packet with `SKILL.md`, `README.md`, and `changelog/`.
+5. Add `references/` and `assets/` to surface packets when they carry evidence material.
+6. Do not add `graph-metadata.json` to nested workflow packets or surface packets.
+7. Define every packet in one `mode-registry.json > modes[]` array.
+8. Use `packetKind: "workflow"` for lifecycle or process packets.
+9. Use `packetKind: "surface"` for read-only evidence packets.
+10. For every `modes[]` entry, define `workflowMode`, `packetKind`, `backendKind`, `toolSurface`, `packet`, `packetSkillName`, `grandfatheredFolderMismatch`, `aliases`, and `advisorRouting`.
+11. Keep `folder == packetSkillName` for all new packets.
+12. Set `grandfatheredFolderMismatch: false` unless preserving an existing mismatch.
+13. Keep aliases unique across all modes.
+14. Put all workflow and surface packets in `modes[]`; never create a second array such as `surfacePackets[]`.
+15. Create `hub-router.json` with `routerPolicy`, `routerSignals`, and `vocabularyClasses`.
+16. Ensure `routerSignals` keys match `mode-registry.json > modes[].workflowMode` exactly.
+17. Ensure `routerPolicy.tieBreak` lists every registry mode once, with workflow modes before surface packets.
+18. Ensure router outcomes include `single`, `orderedBundle`, `defer`, and `surfaceBundle`.
+19. Ensure all router resources are hub-root-relative, packet-qualified paths that resolve on disk.
+20. Use named `extensions` only when real routing semantics require them; do not add extra directory tiers for extensions.
+
+### Parent Hub Shape
+
+```text
+parent-hub/
+├── SKILL.md
+├── mode-registry.json
+├── hub-router.json
+├── description.json
+├── graph-metadata.json
+├── changelog/
+├── manual_testing_playbook/
+├── benchmark/
+├── workflow-packet/
+│   ├── SKILL.md
+│   ├── README.md
+│   └── changelog/
+└── surface-packet/
+    ├── SKILL.md
+    ├── README.md
+    ├── references/
+    ├── assets/
+    └── changelog/
+```
+
+### Validation And Packaging Gate
+
+Run the completion gate before any completion claim:
+
+```bash
+scripts/package_skill.py <path/to/skill-folder> --check
+```
+
+`--check` hard-fails on missing SKILL frontmatter, non-four-part versions, folder/name mismatches, missing required sections, malformed names, and placeholder descriptions. It warns on non-snake_case filenames in `references/` and `assets/`.
+
+Use structure extraction when quality evidence is needed:
+
+```bash
+../shared/scripts/extract_structure.py <path/to/skill/SKILL.md>
+```
+
+Package only after validation passes:
+
+```bash
+scripts/package_skill.py <path/to/skill-folder> <output-directory>
+```
 
 ---
 
@@ -119,31 +228,36 @@ SKILL AUTHORING REQUEST
 
 ### ALWAYS
 
-1. Read the target skill or hub files before editing them.
-2. Load the matching workflow reference before authoring: `creation_workflow.md` for standalone skills, `parent_skills_nested_packets.md` for parent hubs.
-3. Use the packet's local templates under `assets/skill/` rather than inventing structure from memory.
-4. Keep `SKILL.md` focused on activation, routing, workflow, rules, references, and success criteria.
-5. Put reusable deep guidance in `references/`, deterministic helpers in `scripts/`, and reusable boilerplate in `assets/`.
-6. Include a packet-local `README.md` and `changelog/` for nested workflow packets.
-7. Run `scripts/package_skill.py <path> --check` before calling a skill scaffold complete.
-8. Consume shared doc-quality standards through `../shared`; do not duplicate global validators in this packet.
+1. Read existing target skill or hub files before editing them.
+2. Select `create-skill` or `create-skill-parent` before authoring.
+3. Build the skill for another AI agent instance to execute; include information that is beneficial and non-obvious.
+4. Use local templates under `assets/skill/` rather than inventing file shapes from memory.
+5. Keep `SKILL.md` under 5k words and focused on activation, routing, core workflow, rules, and success criteria.
+6. Move deep examples, schemas, edge cases, and long guidance into `references/`.
+7. Keep `WHEN TO USE` free of file references and navigation tables.
+8. Keep one authoritative routing source in `SMART ROUTING`.
+9. Delete TODO placeholders and generated example files before validation.
+10. Run `scripts/package_skill.py <path> --check` before calling the scaffold complete.
 
 ### NEVER
 
-1. Never add `graph-metadata.json` to a nested workflow or surface packet.
-2. Never create multiple advisor identities when the user requested a parent hub.
-3. Never add a second registry array such as `surfacePackets[]`; all packets belong in `modes[]`.
-4. Never leave TODO placeholders in generated `SKILL.md`, README, references, assets, registry, or router files.
-5. Never use multiline YAML descriptions or non-four-part versions in skill frontmatter.
-6. Never package a skill before validation passes.
-7. Never broaden into unrelated sk-doc artifact types.
+1. Never defer the core executable creation workflow out of `SKILL.md`.
+2. Never create multiple advisor identities when the requested artifact is a parent hub.
+3. Never add `graph-metadata.json` to a nested workflow or surface packet.
+4. Never add `surfacePackets[]` or another parallel registry array.
+5. Never create new folder/name mismatches for convenience.
+6. Never use multiline YAML descriptions in skill frontmatter.
+7. Never leave angle-bracket placeholders, TODO text, or generic descriptions in shipped artifacts.
+8. Never claim automatic platform behavior that OpenCode does not provide; document manual verification instead.
+9. Never package or distribute a skill before validation passes.
+10. Never broaden into unrelated sk-doc artifact types.
 
 ### ESCALATE IF
 
-1. It is unclear whether the user needs a standalone skill or a parent hub.
+1. It is unclear whether the target should be a standalone skill or parent hub.
 2. Tool permissions, mutation authority, or advisor identity boundaries are ambiguous.
-3. Existing folder names conflict with `packetSkillName` or hub naming rules.
-4. The target hub needs extensions beyond the core parent-hub pattern.
+3. Existing folder names conflict with required `name` or `packetSkillName` rules.
+4. A parent hub needs routing semantics beyond the core two-tier model.
 5. Validation fails for reasons that would require changing the public contract.
 
 ---
@@ -151,26 +265,32 @@ SKILL AUTHORING REQUEST
 ## 5. SUCCESS CRITERIA
 
 - The correct workflow mode was selected: `create-skill` or `create-skill-parent`.
-- Required references and templates were loaded before authoring.
-- Standalone skills contain real frontmatter, concise workflow content, README, and only useful resources.
-- Parent hubs contain a single hub identity, valid registry/router files, and nested packets without packet-local graph metadata.
-- `scripts/package_skill.py <path> --check` exits clean or blockers are reported with exact errors.
-- Shared doc-quality standards from `../shared` were applied.
+- Concrete trigger examples, boundaries, tool needs, and output contracts are reflected in the artifact.
+- Standalone skills contain valid frontmatter, executable `SKILL.md` workflow content, useful resources, and no placeholder examples.
+- Parent hubs contain one hub identity, one `modes[]` registry, valid router metadata, and nested packets without packet-local graph metadata.
+- References and assets use the packet templates and snake_case filenames.
+- `scripts/package_skill.py <path> --check` exits clean, or exact blockers are reported.
+- Shared doc-quality standards from `../shared` were applied when quality evidence was needed.
 
 ---
 
 ## 6. REFERENCES
 
-- `references/skill_creation.md` - skill lifecycle index and route map.
-- `references/skill_creation/creation_workflow.md` - six-step standalone skill creation workflow.
-- `references/skill_creation/validation_and_packaging.md` - validation and packaging gates.
-- `references/skill_creation/parent_skills_nested_packets.md` - canonical parent-hub and nested-packet model.
-- `references/skill_creation/parent_hub_router_schema.md` - registry and router schema.
+Use these only for overflow detail, exhaustive examples, or schema checks beyond the core workflow above.
+
+- `references/skill_creation.md` - route map for the full reference set.
+- `references/skill_creation/overview.md` - deeper anatomy, layered-doc structure, and resource placement guidance.
+- `references/skill_creation/creation_workflow.md` - expanded examples for the six-step standalone workflow.
+- `references/skill_creation/validation_and_packaging.md` - detailed validation, packaging, and distribution notes.
+- `references/skill_creation/common_pitfalls.md` - examples of recurring trigger, YAML, style, and context-budget defects.
+- `references/skill_creation/parent_skills_nested_packets.md` - detailed parent-hub and nested-packet model.
+- `references/skill_creation/parent_hub_router_schema.md` - full router and registry schema.
 - `assets/skill/skill_md_template.md` - standalone skill SKILL.md template.
 - `assets/skill/skill_readme_template.md` - skill README template.
-- `assets/skill/parent_skill_hub_template.md` - parent hub SKILL.md template.
-- `assets/skill/parent_skill_registry_template.json` - parent hub mode registry template.
-- `assets/skill/parent_skill_hub_router_template.json` - parent hub router template.
+- `assets/skill/skill_reference_template.md` - reference markdown template.
+- `assets/skill/skill_asset_template.md` - asset markdown template.
+- `assets/skill/skill_smart_router.md` - resilient smart-router pattern.
+- `assets/skill/parent_skill_*` - parent hub templates.
 - `scripts/init_skill.py` - standalone skill scaffold helper.
 - `scripts/package_skill.py` - validation and packaging helper.
 - `../shared/references/global/core_standards.md` - shared markdown standards.

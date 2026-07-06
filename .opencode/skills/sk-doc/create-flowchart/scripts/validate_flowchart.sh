@@ -48,11 +48,11 @@ check_box_alignment() {
     if [[ $NUM_WIDTHS -gt 5 ]]; then
       echo "   ❌ Error: Too many box width variations ($NUM_WIDTHS)"
       echo "   Tip: Standardize box widths for consistency"
-      ((ERRORS++))
+      ERRORS=$((ERRORS + 1))
     elif [[ $NUM_WIDTHS -gt 3 ]]; then
       echo "   ⚠️  Warning: Multiple box widths detected (found $NUM_WIDTHS different widths)"
       echo "   Tip: Standardize box widths for consistency"
-      ((WARNINGS++))
+      WARNINGS=$((WARNINGS + 1))
     else
       echo "   ✅ Box widths consistent"
     fi
@@ -68,7 +68,7 @@ check_arrows() {
     if [[ $ARROW_COUNT -eq 0 ]] && [[ $BOX_COUNT -gt 0 ]]; then
       echo "   ❌ Error: Found boxes but no arrows/connectors (broken flowchart)"
       echo "   Tip: Add arrows (→, ↓) or tree branches (├─, └─) to connect boxes"
-      ((ERRORS++))
+      ERRORS=$((ERRORS + 1))
     else
       echo "   ✅ Arrows and connectors present"
     fi
@@ -84,7 +84,7 @@ check_decision_labels() {
     if [[ $DECISION_COUNT -gt 0 ]] && [[ $YES_NO_COUNT -eq 0 ]]; then
       echo "   ❌ Error: Decision points detected but no YES/NO labels found"
       echo "   Tip: Add [YES]/[NO] or ✓/✗ labels to decision branches"
-      ((ERRORS++))
+      ERRORS=$((ERRORS + 1))
     else
       echo "   ✅ Decision branch labeling looks good"
     fi
@@ -99,7 +99,7 @@ check_nesting_depth() {
     if [[ $DEPTH_LEVEL -gt 6 ]]; then
       echo "   ⚠️  Warning: Deep nesting detected (level $DEPTH_LEVEL)"
       echo "   Tip: Consider breaking into multiple flowcharts or using swimlanes"
-      ((WARNINGS++))
+      WARNINGS=$((WARNINGS + 1))
     elif [[ $DEPTH_LEVEL -gt 4 ]]; then
       echo "   ℹ️  Info: Moderate nesting (level $DEPTH_LEVEL)"
     else
@@ -114,7 +114,7 @@ check_size() {
     if [[ $LINE_COUNT -gt 200 ]]; then
       echo "   ⚠️  Warning: Large flowchart ($LINE_COUNT lines)"
       echo "   Tip: Consider splitting into multiple diagrams for readability"
-      ((WARNINGS++))
+      WARNINGS=$((WARNINGS + 1))
     elif [[ $LINE_COUNT -gt 100 ]]; then
       echo "   ℹ️  Info: Moderate size ($LINE_COUNT lines)"
     else

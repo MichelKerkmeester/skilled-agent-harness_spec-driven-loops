@@ -7,61 +7,52 @@ version: 1.0.0.0
 
 <!-- Keywords: create-agent, /create:agent, opencode agent, agent frontmatter, permission object, authority boundary, agent template, runtime agent directory -->
 
-# Create Agent (workflow)
+# Create Agent - Runtime Persona Authoring
 
-`create-agent` is the agent-authoring WORKFLOW packet of the `sk-doc` parent hub. It creates or updates one OpenCode agent markdown file using the packet-local template and standards, while consuming shared `sk-doc` validation through `../shared`.
+`create-agent` is the `sk-doc` workflow packet for creating or updating one runtime agent markdown file. The executable contract lives here: decide whether an agent is the right component, place it in the active runtime directory, author current frontmatter and authority boundaries, then validate before delivery.
 
-This packet owns `/create:agent`, `references/agent_creation.md`, and `assets/agent_template.md`. It does not own advisor identity and must not add a packet-local `graph-metadata.json`.
+Use `references/agent_creation.md` and `assets/agent_template.md` only for deeper examples, exhaustive variants, and long-form reference detail. Do not make those files the primary workflow contract.
 
 ---
 
-## 1. WHEN TO USE
-
-### Activation Triggers
+## 1. WHEN TO USE + SMART_ROUTING
 
 Use this workflow when the request involves:
 
-- Creating a new OpenCode agent under the active runtime agent directory.
-- Updating an existing agent's frontmatter, permissions, authority boundary, workflow, verification contract, or anti-patterns.
-- Converting a vague role description into a durable runtime persona.
-- Deciding whether a requested component should be an agent, skill, or command.
-- Running `/create:agent` or authoring the target file that command produces.
+1. Creating a new OpenCode or Claude Code agent file.
+2. Updating an agent's frontmatter, permissions, authority boundary, workflow, verification contract, or anti-patterns.
+3. Converting a durable role description into a runtime persona with explicit authority and tool policy.
+4. Deciding whether the requested component should be an agent, skill, or command.
+5. Running or supporting `/create:agent`.
 
-Keyword triggers: `create agent`, `new agent`, `OpenCode agent`, `agent frontmatter`, `permission object`, `authority boundary`, `mode: subagent`, `task permission`, `agent template`, `/create:agent`.
+Create an agent only when the system needs a stable named persona with explicit tool permissions, denied capabilities, behavioral constraints, orchestration authority, or reusable execution posture.
 
-### When NOT to Use
+Use a different `sk-doc` workflow when:
 
-Skip this workflow when:
+1. The request only needs reusable knowledge, standards, templates, or long-form workflow guidance. Create or update a skill instead.
+2. The request only needs a slash-command entry point. Create or update a command instead.
+3. Existing agents already cover the requested authority and boundary.
+4. The user asks for broad orchestration design rather than one concrete agent file.
 
-- The request only needs reusable knowledge, references, standards, or templates. Use a skill workflow instead.
-- The request only needs a slash-command entry point. Use the command workflow instead.
-- The task is documentation quality review without creating or editing an agent. Use the doc-quality workflow.
-- The requested role duplicates an existing agent with only wording changes.
-- The user asks for broad agent orchestration design rather than authoring one concrete agent file.
+Decision rule:
 
-### Packet Boundary
-
-This packet authors agent files only. It may read supporting skills, commands, and existing agents to avoid duplication, but it must keep generated content focused on the agent's role, permissions, workflow, limits, and output contract.
+```text
+Need a named runtime persona with authority and tool policy?
+  YES -> Create an agent
+  NO  -> Use or create a skill, template, or command instead
+```
 
 ---
 
 ## 2. HOW IT WORKS
 
-### Source Materials
+### Component Choice
 
-Load these resources before writing or materially editing an agent:
+Choose the component type before authoring: an agent answers who should do the work, a skill answers how the work should be done, and a command answers how a user should trigger the workflow. Healthy systems often pair all three: the agent provides persona and boundaries, the skill provides detailed domain knowledge, and the command provides the ergonomic entry point.
 
-| Purpose | Resource |
-| --- | --- |
-| Agent standards and workflow | `references/agent_creation.md` |
-| Canonical scaffold | `assets/agent_template.md` |
-| Shared validation rules | `../shared/references/global/validation.md` |
-| Shared structure rules | `../shared/references/global/core_standards.md` |
-| Shared frontmatter guidance | `../shared/assets/frontmatter_templates.md` when frontmatter is unclear |
+### Output Package
 
-### Runtime Placement
-
-Resolve the active runtime before choosing the output path:
+Create or update one markdown file in the active runtime agent directory.
 
 | Runtime profile | Agent directory |
 | --- | --- |
@@ -69,21 +60,17 @@ Resolve the active runtime before choosing the output path:
 | Claude Code | `.claude/agents/` |
 | Copilot/default OpenCode profile | `.opencode/agents/` |
 
-The filename must be kebab-case, end in `.md`, and match the frontmatter `name` field.
+The output file contract:
 
-### Authoring Workflow
+1. The filename is kebab-case and ends in `.md`.
+2. The filename stem matches frontmatter `name` exactly.
+3. The file lives in the active runtime directory, not under `sk-doc`.
+4. The body is self-sufficient for the agent's role, boundaries, workflow, limits, and output contract.
+5. Reusable or deep domain guidance stays in skills or references and is linked, not pasted into the agent.
 
-1. Confirm the requested role needs a durable persona with tool permissions and authority boundaries.
-2. Search existing agents for overlap before creating a new one.
-3. Resolve the runtime directory and target filename.
-4. Start from `assets/agent_template.md`; do not invent a new structure from scratch.
-5. Write YAML frontmatter first, using the unified `permission:` object.
-6. Set `mode`, `temperature`, and each permission from the role's actual needs.
-7. Write the body with role purpose, illegal nesting or write boundary, core workflow, capability scan, output verification, anti-patterns, and related resources.
-8. Keep deep domain knowledge in skills or references; link to it instead of pasting it into the agent.
-9. Validate the document with shared sk-doc validators before delivery.
+### Canonical Frontmatter
 
-### Canonical Frontmatter Shape
+Every agent starts with valid YAML frontmatter using the unified `permission:` object.
 
 ```yaml
 ---
@@ -108,18 +95,63 @@ permission:
 ---
 ```
 
-Use `allow`, `deny`, or `ask`. Do not use the deprecated standalone `tools:` object as the canonical contract.
+Frontmatter rules:
 
-### Validation
+1. `name` must match the filename stem.
+2. `description` is one line describing role and scope.
+3. `mode` must match runtime invocation, commonly `subagent` for specialists.
+4. `temperature` should reflect determinism needs, commonly `0.1`.
+5. `permission` values must be explicit, least-authority, and justified by the role.
+6. Use only `allow`, `deny`, or `ask`; do not use deprecated standalone `tools:` as the canonical model.
+7. Set `task: allow` only for agents whose explicit authority is orchestration.
 
-Run shared validation against the final agent file:
+### Required Body Shape
+
+Start from `assets/agent_template.md` when creating a new agent. At minimum, a production-ready agent includes:
+
+1. H1 and short purpose statement.
+2. Hard boundary section that states nesting, delegation, and write limits.
+3. Core workflow section that describes how the agent acts.
+4. Capability scan section that identifies relevant skills, tools, commands, or companion agents.
+5. Output verification section that defines checks required before claiming completion.
+6. Anti-patterns section that names failure modes.
+7. Related resources section with real supporting paths.
+
+Boundary variants: LEAF write-capable agents deny nested sub-agent dispatch and restrict mutation to explicitly scoped paths; LEAF read-only agents deny nested dispatch and all file mutation; orchestrators may dispatch only when orchestration is their explicit authority and `task` permission allows it; command-driven or machine-validated agents may need input/scope gates before workflow steps.
+
+### Ordered Creation Workflow
+
+Follow this order for new agents and material rewrites:
+
+1. Read the request and define the proposed role, authority boundary, and likely runtime directory.
+2. Decide whether the task truly needs a new agent instead of a skill, command, or existing agent.
+3. Search existing agents for overlap before creating a new one.
+4. Resolve the active runtime directory and target filename.
+5. Read `assets/agent_template.md` and use it as the scaffold; do not invent a new structure from scratch.
+6. Draft frontmatter first, especially `mode`, `temperature`, and each `permission` value.
+7. Confirm permissions against actual role needs before writing tool-heavy instructions.
+8. Write the hard boundary section before the general workflow.
+9. Write the core workflow and capability scan.
+10. Add explicit output verification, anti-patterns, and related resources.
+11. Link supporting skills, commands, references, and companion agents rather than copying their full guidance.
+12. Remove template placeholders and check that the document stays focused on the runtime role.
+13. Validate markdown structure, frontmatter, runtime placement, permission consistency, and related links.
+14. Deliver only after validation passes or after reporting the exact blocker.
+
+When the user invokes `/create:agent`, treat the command as the preferred entry point, but keep this same creation contract as the source of truth for the generated file.
+
+### Validation Gate
+
+Before delivery, verify document quality and runtime correctness.
 
 ```bash
-python .opencode/skills/sk-doc/shared/scripts/validate_document.py .opencode/agents/agent-name.md --type agent
-python .opencode/skills/sk-doc/shared/scripts/extract_structure.py .opencode/agents/agent-name.md
+python3 .opencode/skills/sk-doc/shared/scripts/validate_document.py .opencode/agents/agent-name.md --type agent
+python3 .opencode/skills/sk-doc/shared/scripts/extract_structure.py .opencode/agents/agent-name.md
 ```
 
-If the active runtime is Claude Code, validate the `.claude/agents/agent-name.md` path instead.
+Use `.claude/agents/agent-name.md` instead when Claude Code is the active runtime.
+
+Required checks: frontmatter parses, filename stem matches `name`, required sections are present, runtime directory is correct, permissions match authority, `task` matches orchestration intent, related resources exist, and unresolved markdown links are reported.
 
 ---
 
@@ -127,14 +159,14 @@ If the active runtime is Claude Code, validate the `.claude/agents/agent-name.md
 
 ### ALWAYS
 
-1. Read `references/agent_creation.md` and `assets/agent_template.md` before authoring.
-2. Decide agent vs skill vs command before writing the file.
+1. Decide agent vs skill vs command before writing the file.
+2. Search existing agents before creating a new one.
 3. Use the active runtime agent directory, not a convenient nearby path.
 4. Keep filename stem and frontmatter `name` identical.
 5. Use the unified `permission:` object with explicit least-authority choices.
 6. Set `task: allow` only when orchestration is the agent's explicit authority.
-7. Include a hard boundary section that states nesting, delegation, and write limits.
-8. Include output verification and anti-pattern sections.
+7. Include hard boundary, core workflow, capability scan, output verification, anti-patterns, and related resources.
+8. Keep deep domain knowledge in skills or references and link to it.
 9. Validate with `../shared/scripts/validate_document.py` before delivery.
 10. Keep this packet self-contained and leave advisor graph identity at the `sk-doc` hub root.
 
@@ -144,15 +176,26 @@ If the active runtime is Claude Code, validate the `.claude/agents/agent-name.md
 2. Never create an agent for reusable knowledge alone.
 3. Never use deprecated standalone `tools:` frontmatter as the canonical permission model.
 4. Never grant broad permissions because they might be useful later.
-5. Never give a leaf agent `task: allow`.
+5. Never give a LEAF agent `task: allow`.
 6. Never paste full skill guidance into an agent body.
 7. Never write an agent into the wrong runtime directory.
 8. Never leave placeholders from `assets/agent_template.md` in the final file.
+9. Never claim completion before validation passes or the blocker is reported.
 
 ### ESCALATE IF
 
-1. The role's authority boundary is unclear.
+1. The requested role's authority boundary is unclear.
 2. Existing agents already cover the requested role.
 3. The requested permissions exceed the stated purpose.
 4. Runtime placement is ambiguous.
-5. Validation fails with blocking frontmatter, section, or markdown errors.
+5. The user asks for a component that mixes agent, skill, and command responsibilities without a clear owner.
+6. Validation fails with blocking frontmatter, section, or markdown errors.
+
+### OVERFLOW REFERENCES
+
+Use these only when the core path above is not enough:
+
+1. `references/agent_creation.md` for long-form standards, current-reality notes, and common mistake examples.
+2. `assets/agent_template.md` for exhaustive body variants, binding/refusal contracts, and scaffold examples.
+3. `../shared/references/global/validation.md` for validation pipeline details.
+4. `../shared/references/global/core_standards.md` for shared document structure rules.

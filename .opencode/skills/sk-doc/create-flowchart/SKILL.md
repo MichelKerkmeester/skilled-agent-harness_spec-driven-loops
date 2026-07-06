@@ -7,160 +7,277 @@ version: 1.0.0.0
 
 <!-- Keywords: create-flowchart, ascii flowchart, diagram, decision tree, workflow diagram, swimlane, parallel execution, approval loop, validate_flowchart -->
 
-# Create Flowchart (generate/validate workflow)
+# Create Flowchart
 
-`create-flowchart` is the flowchart-authoring workflow packet of the `sk-doc` family. It turns a real process, decision tree, user journey, approval loop, parallel pipeline, or system interaction into a readable ASCII-style markdown flowchart, then validates it with the packet-local gate before handoff.
+`create-flowchart` is the `sk-doc` workflow packet for creating ASCII-style markdown flowcharts from real processes, decision trees, user journeys, approval loops, parallel pipelines, and system interactions. The core creation workflow lives here. The pattern assets under `assets/flowcharts/` are examples and shape guides, not the primary contract.
 
-This packet owns `assets/flowcharts/*` and `scripts/validate_flowchart.sh`. It consumes shared sk-doc quality standards and markdown validators from `../shared/`; it does not own the parent hub advisor identity and must not add a packet-local `graph-metadata.json`.
-
----
-
-## 1. WHEN TO USE
-
-### Activation Triggers
-
-Use this workflow when the request involves:
-- Creating an ASCII or box-drawing flowchart in markdown.
-- Turning a written process into a visual workflow diagram.
-- Documenting branching logic, approval gates, retries, or terminal outcomes.
-- Showing parallel execution with a join or synchronization point.
-- Mapping a user onboarding journey or multi-step UX path.
-- Drawing system interactions across services, layers, APIs, databases, queues, or caches.
-- Validating an existing markdown flowchart for connector, size, alignment, branch-label, or nesting problems.
-
-Keyword triggers: `flowchart`, `ASCII diagram`, `workflow diagram`, `decision tree`, `process map`, `swimlane`, `parallel execution`, `approval workflow`, `onboarding flow`, `validate flowchart`.
-
-### When NOT to Use
-
-Skip this workflow when:
-- A 2-3 step process is clearer as a bullet list.
-- The user needs Mermaid, Graphviz, SVG, HTML, or an interactive diagram instead of markdown.
-- The diagram requires exact visual design, screenshots, or canvas layout tools.
-- The task is general markdown quality without a flowchart deliverable; use the parent `sk-doc` quality workflow.
-- The requested artifact is a README, agent, command, skill, benchmark, catalog, or testing playbook; route to that packet instead.
-
-### Packet Boundary
-
-This packet may create or edit markdown flowcharts and their surrounding explanatory text. It does not create new flowchart pattern assets unless explicitly asked, and it does not replace shared markdown quality rules from `../shared`.
+This packet owns flowchart authoring and `scripts/validate_flowchart.sh`. It uses shared sk-doc quality standards from `../shared/` when surrounding markdown quality is in scope. It must not add packet-local advisor metadata such as `graph-metadata.json`.
 
 ---
 
-## 2. SMART ROUTING
+## 1. When To Use
 
-### Pattern Selection
+Use this packet when the request asks to:
 
-Choose one packet-local pattern before drafting:
+- Create an ASCII or box-drawing flowchart in markdown.
+- Turn a written process into a visual workflow diagram.
+- Document branching logic, decision outcomes, retries, escalation paths, or terminal states.
+- Show parallel execution with fan-out, fan-in, and synchronization points.
+- Map onboarding, activation, guided setup, or support journeys.
+- Draw system interactions across services, layers, APIs, databases, queues, caches, or error paths.
+- Validate an existing markdown flowchart for structure, connector, size, branch-label, nesting, or readability issues.
 
-| User Need | Pattern Asset | Use It For |
+Do not use this packet when:
+
+- A short 2-3 step bullet list is clearer.
+- The requested output is Mermaid, Graphviz, SVG, HTML, screenshot, canvas, or interactive design work.
+- The work is general markdown quality without a flowchart deliverable.
+- The requested artifact is a README, skill, command, agent, benchmark, catalog, or testing playbook.
+
+If the target path is unknown and writing would be a guess, ask for the path before creating or editing a file.
+
+---
+
+## 2. Required Inputs
+
+Before drafting, establish:
+
+- Target artifact: standalone flowchart file or embedded section in an existing markdown document.
+- Source process: the real workflow, user journey, system interaction, approval cycle, or decision tree being represented.
+- Audience: who must understand the diagram and what decision or action it should support.
+- Scope boundary: what is included, what is intentionally omitted, and whether surrounding prose is in scope.
+- Terminal outcomes: success, failure, blocked, canceled, complete, published, deployed, or equivalent end states.
+- Validation command: the exact path that will be passed to `scripts/validate_flowchart.sh`.
+
+Read the target file before editing it. Use `Glob` or `Grep` to locate nearby diagrams and preserve the local style when editing an existing document.
+
+---
+
+## 3. Pattern Selection
+
+Choose one closest pattern before drafting. Load the asset for visual guidance and adapt it to the real workflow.
+
+| Workflow Shape | Pattern Asset | Use For |
 | --- | --- | --- |
-| Linear sequence | `assets/flowcharts/simple_workflow.md` | Installation steps, setup flows, tutorials, simple operational processes. |
-| Conditional branching | `assets/flowcharts/decision_tree_flow.md` | Decision trees, validations, retries, alternate outcomes, failure paths. |
-| Concurrent work | `assets/flowcharts/parallel_execution.md` | CI/CD, multi-agent work, batch jobs, fan-out/fan-in pipelines. |
-| Approval and revision | `assets/flowcharts/approval_workflow_loops.md` | Review cycles, governance gates, sign-off loops, rework paths. |
-| System interaction | `assets/flowcharts/system_architecture_swimlane.md` | Layers, services, APIs, storage, queues, caches, and error paths. |
-| User journey | `assets/flowcharts/user_onboarding.md` | Product onboarding, guided setup, activation journeys, support paths. |
+| Linear sequence | `assets/flowcharts/simple_workflow.md` | Installation steps, setup flows, tutorials, basic operational processes. |
+| Conditional branching | `assets/flowcharts/decision_tree_flow.md` | Decision trees, validations, retries, alternate outcomes, failure handling. |
+| Parallel execution | `assets/flowcharts/parallel_execution.md` | CI/CD, multi-agent work, batch jobs, fan-out/fan-in pipelines. |
+| Approval and revision | `assets/flowcharts/approval_workflow_loops.md` | Review cycles, governance gates, sign-off loops, rework paths, escalation. |
+| System swimlane | `assets/flowcharts/system_architecture_swimlane.md` | Layers, services, APIs, storage, caches, queues, data flows, error paths. |
+| User journey | `assets/flowcharts/user_onboarding.md` | Onboarding, activation, progressive setup, education, completion states. |
 
-### Resource Loading Levels
-
-| Level | When to Load | Resources |
-| --- | --- | --- |
-| ALWAYS | Any flowchart generation or validation | `../shared/references/global/quick_reference.md`, `../shared/references/global/core_standards.md` |
-| ALWAYS | Before delivery | `scripts/validate_flowchart.sh`, `../shared/references/global/validation.md` |
-| CONDITIONAL | Linear flow | `assets/flowcharts/simple_workflow.md` |
-| CONDITIONAL | Branching flow | `assets/flowcharts/decision_tree_flow.md` |
-| CONDITIONAL | Parallel flow | `assets/flowcharts/parallel_execution.md` |
-| CONDITIONAL | Approval loop | `assets/flowcharts/approval_workflow_loops.md` |
-| CONDITIONAL | System architecture | `assets/flowcharts/system_architecture_swimlane.md` |
-| CONDITIONAL | User journey | `assets/flowcharts/user_onboarding.md` |
-| ON_DEMAND | Existing-doc quality review | `../shared/scripts/extract_structure.py`, `../shared/scripts/validate_document.py` |
-
-### Routing Rules
-
-Use `Glob` or `Grep` to locate existing target documents and nearby diagrams before creating a new file. Match the local visual style when editing an existing document. If no target path is provided, ask where the flowchart should live before writing.
+Use the pattern's demonstrated features, not its content. Do not copy placeholder business logic, fake timings, fake owners, or unrelated system components.
 
 ---
 
-## 3. HOW IT WORKS
+## 4. Output Shape
 
-### Generate and Validate Workflow
+For a standalone flowchart file, use this shape unless the surrounding project has a stronger local convention:
 
-1. Identify the flowchart purpose, audience, target file, and source process.
-2. Read the target document before editing, or confirm the new output path before writing.
-3. Select the closest pattern from `assets/flowcharts/`.
-4. Extract the real nodes: start state, actions, decisions, branches, retries, parallel lanes, joins, terminal states, and failure paths.
-5. Draft the diagram using consistent box widths, vertical flow where possible, labeled decision branches, and explicit terminal outcomes.
-6. Add brief surrounding prose only when it improves interpretation: purpose, assumptions, legend, or follow-up notes.
-7. Run the packet-local validator:
+```markdown
+# <Flowchart Name>
+
+Brief purpose, audience, and scope.
+
+```text
+<ASCII flowchart>
+```
+
+Validation:
+- `<command>` -> `<result>`
+```
+
+For an embedded flowchart, preserve the host document's heading level and style. Add only the surrounding prose needed to interpret the diagram, such as purpose, assumptions, legend, or follow-up notes.
+
+A valid flowchart includes:
+
+- A clear title or section heading.
+- A start or entry state.
+- Action boxes for concrete steps.
+- Decision points where the workflow branches.
+- Explicit branch labels on every decision. The validator (§8) recognizes `[YES]`/`[NO]` or `✓`/`✗`, so each decision node must carry at least one of those forms; add a descriptive word (`Approved`, `Rejected`, `Success`, `Failed`, `Valid`, `Invalid`) alongside when it helps the reader.
+- Retry, loop-back, escalation, skip, or fallback paths when they exist in the real workflow.
+- Join or synchronization points for parallel work.
+- At least one terminal outcome for workflows that can end.
+- Plain-text connectors that remain readable in raw markdown.
+
+---
+
+## 5. Notation Rules
+
+Use consistent ASCII or box-drawing notation throughout one diagram.
+
+Preferred shapes:
+
+- Rounded boxes with `╭ ╮ ╰ ╯` for start, end, and major terminal states.
+- Rectangular boxes with `┌ ┐ └ ┘` for action steps, stages, components, and grouped blocks.
+- Diamond-like shapes with `╱ ╲` for decisions or questions.
+- Vertical arrows `▼` for primary top-to-bottom flow.
+- Horizontal arrows `──▶` or branch lines for side-by-side steps.
+- Branch labels placed next to the outgoing path, not buried in prose. On decision branches use `[YES]`/`[NO]` or `✓`/`✗` so the diagram passes the validator's decision-label check (§8); pair them with a descriptive word when clarity needs it.
+- Section bands for stages, swimlanes, layers, or grouped phases when they improve scanning.
+
+Keep widths consistent. The validator allows limited width variation, but too many widths create warnings or errors. Prefer fewer, clearer nodes over exhaustive detail.
+
+---
+
+## 6. Creation Workflow
+
+Follow this order for every creation or rewrite task:
+
+1. Identify the workflow type, target path, audience, and source material.
+2. Read the existing target document before editing, or confirm the new file path before writing.
+3. Search nearby documents for existing diagram style when editing an established docs area.
+4. Select and read exactly the closest pattern asset from `assets/flowcharts/`.
+5. Extract the real nodes from the source: start state, actions, decisions, branch outcomes, retries, parallel lanes, joins, terminal states, and failure paths.
+6. Remove anything not supported by the source. Mark unknowns as unknown or ask, rather than inventing steps.
+7. Draft the diagram in a fenced code block using consistent width, spacing, connectors, and branch labels.
+8. Add only necessary prose around the diagram: purpose, assumptions, legend, or validation evidence.
+9. Validate the diagram with the packet-local script.
+10. Fix validator errors before delivery. Treat warnings as readability defects and address them when practical.
+11. If the flowchart is embedded in a larger edited markdown document and surrounding markdown is in scope, run the shared document validator.
+12. Report or include the exact validation command and outcome when handing off.
+
+Validator command from this packet directory:
 
 ```bash
 bash scripts/validate_flowchart.sh <target-flowchart.md>
 ```
 
-8. Fix validator errors before delivery. Treat warnings as readability issues and address them when cheap.
-9. If the flowchart is embedded in a larger markdown document, run shared document validation when the surrounding document is in scope:
+Shared document validation, only when the surrounding markdown document is in scope:
 
 ```bash
 python ../shared/scripts/validate_document.py <document.md>
 ```
 
-10. Report or hand off the validator result with the exact command and outcome.
+---
 
-### Validator Contract
+## 7. Pattern-Specific Build Rules
 
-`scripts/validate_flowchart.sh` checks:
-- Box-width consistency.
-- Presence of arrows or connectors when boxes exist.
-- Decision branch labels for detected decision points.
-- Nesting depth.
-- Overall line count and split recommendations.
+For linear workflows:
 
-Exit `0` means the flowchart passed, including warning-only runs. Exit `1` blocks delivery until flowchart errors are fixed.
+- Use a single top-to-bottom path.
+- Number stages only when sequence matters.
+- Include durations, owners, or details only when present in the source.
+- End with a concrete completion state.
 
-### Authoring Standards
+For decision trees:
 
-Flowcharts should be scannable in a terminal and in rendered markdown. Prefer fewer, clearer nodes over dense exhaustive diagrams. Use decision diamonds for questions, rectangular boxes for actions, rounded terminal boxes for start/end states, and branch labels such as `Yes`, `No`, `Approved`, `Rejected`, `Success`, or `Failed`.
+- Make each decision a visible question.
+- Label every outgoing branch.
+- Show retry and fallback paths explicitly.
+- Merge paths only where the real process converges.
+- Split the diagram if branching becomes too dense to read.
+
+For parallel execution:
+
+- Show the fan-out point before concurrent work begins.
+- Use separate boxes for each concurrent lane.
+- Show the fan-in or synchronization point.
+- Add an aggregate result or gate after the join when the workflow depends on all branches.
+- Include failure handling for branch or aggregate failure when it exists.
+
+For approval loops:
+
+- Separate review stages clearly.
+- Show who reviews or what gate is being applied when known.
+- Show revision loops back to the correct stage.
+- Show escalation paths for major changes, priority issues, or repeated failure.
+- Avoid infinite-looking loops; include a terminal blocked, rejected, restart, or approved outcome where applicable.
+
+For system swimlanes:
+
+- Use layer or service bands for client, gateway, service, database, cache, queue, or similar boundaries.
+- Annotate connector transitions with data or protocol when known.
+- Show success and error paths when both matter.
+- Keep request and response direction clear.
+- Do not invent services, databases, queues, or caches.
+
+For user journeys:
+
+- Show user-facing milestones, validation, feedback, and completion states.
+- Include education or value-proposition moments only when they are part of the journey.
+- Use embedded sub-processes for multi-step setup flows.
+- Show draft, skip, retry, support, or completion options when present.
+- Preserve motivation and progress cues if they are part of the source experience.
 
 ---
 
-## 4. RULES
+## 8. Validator Contract
 
-### ALWAYS
+`scripts/validate_flowchart.sh` is required before delivery for any generated or edited flowchart file.
 
-1. Read the target file before editing it.
-2. Choose and load one pattern asset before drafting.
-3. Preserve the user's actual process; do not invent missing decisions or success criteria.
-4. Label every decision branch with clear outcomes.
-5. Include at least one terminal success or failure state when the workflow can end.
-6. Keep connector paths readable in plain text, not just rendered markdown.
-7. Run `bash scripts/validate_flowchart.sh <target-flowchart.md>` before delivery.
-8. Use `../shared` validators and standards for surrounding markdown quality when editing a full document.
+It checks:
 
-### NEVER
+- Box-width consistency by counting horizontal rule width variations.
+- Connector presence when boxes exist.
+- Decision branch labeling when decision-like text is detected.
+- Nesting depth based on indentation.
+- Overall line count, with split recommendations for large diagrams.
 
-1. Never add a packet-local `graph-metadata.json`.
-2. Never deliver an unvalidated flowchart unless the validator cannot run and the failure is reported.
-3. Never use a flowchart when a short list is clearer.
-4. Never mix incompatible diagram styles in the same target document without a reason.
-5. Never leave decision nodes with unlabeled branches.
-6. Never turn the pattern assets into static wrappers; adapt them to the user's actual workflow.
-7. Never add placeholder nodes, fake timings, fake owners, or invented system components.
+Exit behavior:
 
-### ESCALATE IF
+- Exit `0`: validation passed, including warning-only runs.
+- Exit `1`: validation failed and blocks delivery until errors are fixed.
 
-1. The source process is ambiguous enough that branch outcomes would be invented.
-2. The diagram exceeds practical markdown size and should be split.
-3. The user needs Mermaid, HTML, SVG, or a design-tool artifact instead of ASCII markdown.
-4. The validator reports errors that conflict with an existing required document style.
-5. The target path is unknown and writing a new markdown file would be a scope guess.
+Important thresholds and messages:
+
+- More than 5 box width variations is an error.
+- More than 3 box width variations is a warning.
+- Boxes with no arrows or connectors is an error.
+- Detected decisions without `[YES]`, `[NO]`, `✓`, or `✗` labels can error.
+- Nesting deeper than level 6 warns to split or use swimlanes.
+- Files over 200 lines warn that the flowchart may need splitting.
+
+If the validator cannot run, report the exact command, failure, and what was manually checked. Do not claim a clean validation result.
 
 ---
 
-## 5. SUCCESS CRITERIA
+## 9. Rules
 
-- The selected pattern matches the workflow shape.
-- The diagram is based on real source content, not generic filler.
-- Branches, retries, joins, and terminal states are explicit.
-- The result is readable in raw markdown and rendered markdown.
-- `scripts/validate_flowchart.sh` passes for the flowchart target.
-- Shared sk-doc validation is run when the flowchart is part of a larger edited markdown document.
+Always:
+
+- Read before editing.
+- Load the closest pattern asset before drafting.
+- Base nodes and outcomes on real source content.
+- Label every decision branch.
+- Include terminal states when the workflow can end.
+- Keep raw markdown readable in a terminal.
+- Use one visual style within a diagram.
+- Run `bash scripts/validate_flowchart.sh <target-flowchart.md>` before handoff.
+- Run shared markdown validation when editing the larger document is in scope.
+
+Never:
+
+- Add packet-local `graph-metadata.json`.
+- Deliver an unvalidated flowchart unless the validator failure is reported.
+- Use a diagram where a short list is clearer.
+- Mix incompatible diagram styles without a local-document reason.
+- Leave decision nodes with unlabeled branches.
+- Treat pattern assets as static wrappers.
+- Add placeholder nodes, fake timings, fake owners, fake services, fake databases, or invented success criteria.
+- Hide unresolved ambiguity inside a polished-looking diagram.
+
+Escalate or ask when:
+
+- Branch outcomes are ambiguous enough that drafting would invent behavior.
+- The flowchart is too large and should be split into multiple diagrams.
+- The user needs Mermaid, HTML, SVG, or a design-tool artifact.
+- Validator errors conflict with a required existing document style.
+- The target path is unknown and writing would be a scope guess.
+
+---
+
+## 10. Success Criteria
+
+The task is successful when:
+
+- The chosen pattern matches the workflow shape.
+- The diagram reflects the real source process rather than generic filler.
+- Branches, retries, joins, escalations, skip paths, and terminal states are explicit where applicable.
+- The flowchart is readable in raw markdown and rendered markdown.
+- `scripts/validate_flowchart.sh` exits `0` for the flowchart target, or the validator failure is explicitly reported.
+- Shared sk-doc validation is run when the surrounding markdown document is edited and in scope.
 - No packet-local advisor metadata is created.
+
+For long examples and visual pattern details, use `assets/flowcharts/*`. For shared markdown standards and document-level validation behavior, use `../shared/`.
