@@ -91,8 +91,8 @@ test -f /tmp/sk-test-dummy-CHANGELOG-cli-opencode.md && \
 - **Intent picked**: `CHANGELOG`
 - **Executor**: `@markdown` agent (opencode resolves via `.opencode/agents/markdown.md`)
 - **Resources loaded**:
-  - `.opencode/skills/sk-doc/assets/changelog_template.md`
-  - `.opencode/skills/sk-doc/references/changelog_creation.md`
+  - `.opencode/skills/sk-doc/shared/assets/changelog_template.md`
+  - `.opencode/skills/sk-doc/create-changelog/references/changelog_creation.md`
 - **Outcome**: CLI scaffolds a v0.1.0 changelog file with Added / Changed / Fixed / Removed sections at `/tmp/sk-test-dummy-CHANGELOG-cli-opencode.md`.
 
 ## Cross-CLI Variants

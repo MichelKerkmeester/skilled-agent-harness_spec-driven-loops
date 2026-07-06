@@ -123,6 +123,18 @@
       "advisorRouting": { "routingClass": "metadata", "packetSkillName": "create-flowchart" }
     },
     {
+      "workflowMode": "create-changelog",
+      "packetKind": "workflow",
+      "backendKind": "template-scaffold",
+      "toolSurface": { "allowed": ["Read", "Write", "Edit", "Bash", "Grep", "Glob"], "forbidden": ["Task"], "mutatesWorkspace": true, "bashAllowlist": [] },
+      "packet": "create-changelog",
+      "packetSkillName": "create-changelog",
+      "grandfatheredFolderMismatch": false,
+      "command": "/create:changelog",
+      "aliases": ["create changelog", "write a changelog", "changelog entry", "version changelog", "release notes"],
+      "advisorRouting": { "routingClass": "metadata", "packetSkillName": "create-changelog" }
+    },
+    {
       "workflowMode": "doc-quality",
       "packetKind": "workflow",
       "backendKind": "doc-quality",

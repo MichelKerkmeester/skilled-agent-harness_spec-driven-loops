@@ -68,13 +68,13 @@ Load the file that matches the current task:
 - [skill_asset_template.md](../assets/skill/skill_asset_template.md) - Asset file templates
 - [parent_skill_hub_template.md](../assets/skill/parent_skill_hub_template.md) - Parent-skill routing hub SKILL.md
 - [parent_skill_registry_template.json](../assets/skill/parent_skill_registry_template.json) - Parent-skill mode-registry.json
-- [frontmatter_templates.md](../assets/frontmatter_templates.md) - Frontmatter by document type
+- [frontmatter_templates.md](../../shared/assets/frontmatter_templates.md) - Frontmatter by document type
 
 ### Reference Files
-- [core_standards.md](global/core_standards.md) - Document type rules and structural requirements
-- [validation.md](global/validation.md) - Quality scoring and validation workflows
-- [quick_reference.md](global/quick_reference.md) - Quick command reference
-- [install_guide_creation.md](./install_guide_creation.md) - Install guide standards and workflow
+- [core_standards.md](../../shared/references/global/core_standards.md) - Document type rules and structural requirements
+- [validation.md](../../shared/references/global/validation.md) - Quality scoring and validation workflows
+- [quick_reference.md](../../shared/references/global/quick_reference.md) - Quick command reference
+- [install_guide_creation.md](../../create-readme/references/install_guide_creation.md) - Install guide standards and workflow
 
 ---
 

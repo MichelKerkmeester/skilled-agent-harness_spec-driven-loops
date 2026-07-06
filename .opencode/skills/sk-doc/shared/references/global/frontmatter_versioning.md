@@ -143,5 +143,5 @@ Every major equals the owning skill's major — always low.
 
 ## 9. RELATED RESOURCES
 
-- [frontmatter_templates.md](../assets/frontmatter_templates.md) — frontmatter by document type (carries the per-class `version` rows)
+- [frontmatter_templates.md](../../assets/frontmatter_templates.md) — frontmatter by document type (carries the per-class `version` rows)
 - Engine: `scripts/frontmatter-version.*` — the deterministic compute/insert/verify tool that implements this standard

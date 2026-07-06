@@ -363,7 +363,7 @@
       "h2EmojiRequired": false
     },
     "changelog": {
-      "description": "Component changelog files at .opencode/changelog/{component}/v{VERSION}.md or .opencode/skills/<skill>/changelog/v{VERSION}.md. Files start directly with a summary paragraph; no TOC, no Overview section, no version header. Authoritative format reference: .opencode/skills/sk-doc/assets/changelog_template.md",
+      "description": "Component changelog files at .opencode/changelog/{component}/v{VERSION}.md or .opencode/skills/<skill>/changelog/v{VERSION}.md. Files start directly with a summary paragraph; no TOC, no Overview section, no version header. Authoritative format reference: .opencode/skills/sk-doc/shared/assets/changelog_template.md",
       "requiredSections": [],
       "recommendedSections": [
         "upgrade"

@@ -4,7 +4,7 @@
   "routerPolicy": {
     "defaultMode": null,
     "ambiguityDelta": 1,
-    "tieBreak": ["doc-quality", "create-skill", "create-skill-parent", "create-readme", "create-agent", "create-command", "create-feature-catalog", "create-manual-testing-playbook", "create-benchmark", "create-flowchart"],
+    "tieBreak": ["doc-quality", "create-skill", "create-skill-parent", "create-readme", "create-agent", "create-command", "create-feature-catalog", "create-manual-testing-playbook", "create-benchmark", "create-flowchart", "create-changelog"],
     "outcomes": {
       "single": "one dominant authoring/quality intent routes to one workflow mode",
       "orderedBundle": "clearly separate authoring intents route to an ordered workflow mode list",
@@ -29,6 +29,7 @@
     "create-manual-testing-playbook": { "weight": 4, "classes": ["create-manual-testing-playbook-aliases", "authoring-actions", "hub-identity"], "resources": ["create-manual-testing-playbook/SKILL.md"] },
     "create-benchmark": { "weight": 3, "classes": ["create-benchmark-aliases", "authoring-actions", "hub-identity"], "resources": ["create-benchmark/SKILL.md"] },
     "create-flowchart": { "weight": 3, "classes": ["create-flowchart-aliases", "authoring-actions", "hub-identity"], "resources": ["create-flowchart/SKILL.md"] },
+    "create-changelog": { "weight": 3, "classes": ["create-changelog-aliases", "authoring-actions", "hub-identity"], "resources": ["create-changelog/SKILL.md"] },
     "doc-quality": { "weight": 4, "classes": ["doc-quality-aliases", "quality-actions", "hub-identity"], "resources": ["doc-quality/SKILL.md"] }
   },
   "vocabularyClasses": {
@@ -44,6 +45,7 @@
     "create-manual-testing-playbook-aliases": { "keywords": ["testing playbook", "manual testing", "test scenarios", "testing-playbook"] },
     "create-benchmark-aliases": { "keywords": ["benchmark", "benchmark folder", "benchmark report", "mcp_server benchmarks"] },
     "create-flowchart-aliases": { "keywords": ["flowchart", "ascii diagram", "decision tree", "swimlane", "ascii flowchart"] },
+    "create-changelog-aliases": { "keywords": ["changelog", "create-changelog", "release notes", "version bump", "changelog entry"] },
     "doc-quality-aliases": { "keywords": ["doc quality", "document quality", "dqi", "quality score", "optimize doc", "validate doc", "human voice", "hvr"] }
   }
 }

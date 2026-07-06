@@ -1,1 +1,0 @@
-../create-feature-catalog/references/feature_catalog_creation.md

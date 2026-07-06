@@ -1,1 +1,0 @@
-../create-agent/assets/agent_template.md

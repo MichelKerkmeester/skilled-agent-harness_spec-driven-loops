@@ -1,1 +1,0 @@
-../../shared/references/global/evergreen_packet_id_rule.md

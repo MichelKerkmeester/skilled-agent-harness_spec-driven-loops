@@ -29,7 +29,7 @@ Validation provides a comprehensive quality assessment framework for markdown do
 - **Improvement guidance** - Actionable recommendations based on AI analysis
 - **Checklist validation** - Automated structural checks via script
 
-> **📍 Context**: This is a Level 3 reference file (loaded on-demand). For the complete progressive disclosure architecture, see [skill_creation/overview.md § Skill Structure System](../skill_creation/overview.md#3-skill-structure-system).
+> **📍 Context**: This is a Level 3 reference file (loaded on-demand). For the complete progressive disclosure architecture, see [skill_creation/overview.md § Skill Structure System](../../../create-skill/references/skill_creation/overview.md#3-skill-structure-system).
 
 This reference provides deep-dive technical guidance on qualitative assessment, quality gates, and interpretation patterns.
 
@@ -528,17 +528,17 @@ fi
 
 ### Reference Files
 - [core_standards.md](./core_standards.md) - Document type rules and structural requirements
-- [workflows.md](./workflows.md) - Execution modes and workflow details
-- [optimization.md](./optimization.md) - Content transformation patterns
+- [workflows.md](../../../doc-quality/references/workflows.md) - Execution modes and workflow details
+- [optimization.md](../../../doc-quality/references/optimization.md) - Content transformation patterns
 - [quick_reference.md](./quick_reference.md) - Quick command reference
-- [skill_creation.md](../skill_creation.md) - Skill creation workflow
-- [install_guide_creation.md](../install_guide_creation.md) - Install guide standards and workflow
+- [skill_creation.md](../../../create-skill/references/skill_creation.md) - Skill creation workflow
+- [install_guide_creation.md](../../../create-readme/references/install_guide_creation.md) - Install guide standards and workflow
 
 ### Templates
-- [skill_md_template.md](../../assets/skill/skill_md_template.md) - SKILL.md file templates
-- [skill_asset_template.md](../../assets/skill/skill_asset_template.md) - Bundled asset structure
-- [readme_template.md](../../assets/readme/readme_template.md) - Comprehensive README guide (13 sections)
-- [command_template.md](../../assets/command/command_template.md) - Command creation guide (19 sections)
-- [install_guide_template.md](../../assets/readme/install_guide_template.md) - Install guide template (14 sections)
+- [skill_md_template.md](../../../create-skill/assets/skill/skill_md_template.md) - SKILL.md file templates
+- [skill_asset_template.md](../../../create-skill/assets/skill/skill_asset_template.md) - Bundled asset structure
+- [readme_template.md](../../../create-readme/assets/readme/readme_template.md) - Comprehensive README guide (13 sections)
+- [command_template.md](../../../create-command/assets/command/command_template.md) - Command creation guide (19 sections)
+- [install_guide_template.md](../../../create-readme/assets/readme/install_guide_template.md) - Install guide template (14 sections)
 - [llmstxt_templates.md](../../assets/llmstxt_templates.md) - llms.txt with decision framework
 - [frontmatter_templates.md](../../assets/frontmatter_templates.md) - Frontmatter validation & templates (11 sections)

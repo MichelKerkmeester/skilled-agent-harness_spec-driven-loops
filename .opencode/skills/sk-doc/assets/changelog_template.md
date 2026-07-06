@@ -1,1 +1,0 @@
-../shared/assets/changelog_template.md

@@ -1,1 +1,0 @@
-../shared/references/global/frontmatter_versioning.md

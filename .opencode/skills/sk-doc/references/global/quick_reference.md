@@ -1,1 +1,0 @@
-../../shared/references/global/quick_reference.md

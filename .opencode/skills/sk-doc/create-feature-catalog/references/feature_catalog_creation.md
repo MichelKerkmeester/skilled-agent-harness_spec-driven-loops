@@ -119,7 +119,7 @@ Required structure:
 4. `## 4. SOURCE METADATA`
 
 **Per-feature files must include**:
-- frontmatter with stable `title`, one-line `description`, `trigger_phrases` list, and a 4-part `version` (root catalog and per-feature files both carry it; see [frontmatter_versioning.md](frontmatter_versioning.md))
+- frontmatter with stable `title`, one-line `description`, `trigger_phrases` list, and a 4-part `version` (root catalog and per-feature files both carry it; see [frontmatter_versioning.md](../../shared/references/global/frontmatter_versioning.md))
 - a concise overview of the feature
 - HOW IT WORKS behavior description (see sub-heading rule below)
 - implementation source tables with `File | Layer | Role` columns
@@ -197,6 +197,6 @@ Feature catalogs and manual testing playbooks serve different purposes:
 
 - [feature_catalog_template.md](../assets/feature_catalog/feature_catalog_template.md) - root catalog scaffold
 - [feature_catalog_snippet_template.md](../assets/feature_catalog/feature_catalog_snippet_template.md) - per-feature file scaffold
-- [manual_testing_playbook_creation.md](./manual_testing_playbook_creation.md) - companion reference for validation-package design
-- [quick_reference.md](global/quick_reference.md) - condensed commands and file locations
-- [workflows.md](global/workflows.md) - execution-mode reference
+- [manual_testing_playbook_creation.md](../../create-manual-testing-playbook/references/manual_testing_playbook_creation.md) - companion reference for validation-package design
+- [quick_reference.md](../../shared/references/global/quick_reference.md) - condensed commands and file locations
+- [workflows.md](../../doc-quality/references/workflows.md) - execution-mode reference

@@ -5,7 +5,7 @@
 # manual_testing_playbook under .opencode/skills/*) git-free and exits non-zero on
 # any missing or malformed version. Frontmatter-less docs are skipped, not failed.
 #
-# Standard: .opencode/skills/sk-doc/references/frontmatter_versioning.md
+# Standard: .opencode/skills/sk-doc/shared/references/global/frontmatter_versioning.md
 # Usage:    check-frontmatter-versions.sh [--skill <name>] [--classes <c1,c2>]
 # ───────────────────────────────────────────────────────────────
 set -euo pipefail

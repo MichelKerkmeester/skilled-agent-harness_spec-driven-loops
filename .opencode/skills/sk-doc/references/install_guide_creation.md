@@ -1,1 +1,0 @@
-../create-readme/references/install_guide_creation.md

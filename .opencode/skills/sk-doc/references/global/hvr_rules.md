@@ -1,1 +1,0 @@
-../../shared/references/global/hvr_rules.md

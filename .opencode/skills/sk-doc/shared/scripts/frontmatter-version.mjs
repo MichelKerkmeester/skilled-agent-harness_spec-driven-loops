@@ -5,7 +5,7 @@
 // Deterministic compute / insert / verify of the 4-part `version`
 // frontmatter field for in-scope skill docs.
 //
-// Standard: .opencode/skills/sk-doc/references/frontmatter_versioning.md
+// Standard: .opencode/skills/sk-doc/shared/references/global/frontmatter_versioning.md
 //
 // Usage:
 //   node frontmatter-version.mjs compute [--skill <name>] [--manifest-out <path>]
@@ -355,7 +355,7 @@ function helpText() {
   return `frontmatter-version.mjs — 4-part version compute/apply/verify
 Modes: compute (dry-run), apply, verify
 Options: --skill <name>  --paths <file-list>  --manifest-out <base>  --update
-Standard: .opencode/skills/sk-doc/references/frontmatter_versioning.md`;
+Standard: .opencode/skills/sk-doc/shared/references/global/frontmatter_versioning.md`;
 }
 
 async function main() {

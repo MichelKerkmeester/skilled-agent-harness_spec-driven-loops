@@ -1,1 +1,0 @@
-../../doc-quality/references/optimization.md

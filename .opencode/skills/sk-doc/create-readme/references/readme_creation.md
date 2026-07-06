@@ -34,7 +34,7 @@ This reference defines standards for README documentation. READMEs are the entry
 - Use only the sections that fit the audience and folder purpose
 - Overview must answer "what is this?" in 2-3 sentences
 - Add Quick Start, Features, FAQ or Troubleshooting only when the reader needs setup, capability explanation or known-problem help
-- All content follows Human Voice Rules ([hvr_rules.md](global/hvr_rules.md))
+- All content follows Human Voice Rules ([hvr_rules.md](../../shared/references/global/hvr_rules.md))
 
 ---
 
@@ -357,8 +357,8 @@ Apply these checks only to sections that fit the README audience and purpose.
 - [ ] No "not just X, but also Y" patterns
 - [ ] No exactly three-item inline lists. Use 2, 4 or 5 items (tables and bullet lists exempt).
 - [ ] No setup language ("Let's explore", "dive in", "when it comes to")
-- [ ] No banned words (see [hvr_rules.md](global/hvr_rules.md) Section 6)
-- [ ] No banned phrases (see [hvr_rules.md](global/hvr_rules.md) Section 7)
+- [ ] No banned words (see [hvr_rules.md](../../shared/references/global/hvr_rules.md) Section 6)
+- [ ] No banned phrases (see [hvr_rules.md](../../shared/references/global/hvr_rules.md) Section 7)
 - [ ] Active voice throughout. Direct address. Simple words.
 - [ ] "However" used max 2 times per file
 - [ ] Max 1 ellipsis per file
@@ -373,11 +373,11 @@ Apply these checks only to sections that fit the README audience and purpose.
 - [readme_code_template.md](../assets/readme/readme_code_template.md) - Code-folder README template for developer topology and boundaries
 
 ### Standards
-- [hvr_rules.md](global/hvr_rules.md) - Human Voice Rules (writing standards)
-- [core_standards.md](global/core_standards.md) - Document formatting rules
-- [validation.md](global/validation.md) - Quality scoring (DQI)
+- [hvr_rules.md](../../shared/references/global/hvr_rules.md) - Human Voice Rules (writing standards)
+- [core_standards.md](../../shared/references/global/core_standards.md) - Document formatting rules
+- [validation.md](../../shared/references/global/validation.md) - Quality scoring (DQI)
 
 ### Related Creation Guides
 - [install_guide_creation.md](./install_guide_creation.md) - Install guide creation workflow
-- [skill_creation.md](./skill_creation.md) - Skill creation workflow
-- [feature_catalog_creation.md](./feature_catalog_creation.md) - Feature catalog creation workflow
+- [skill_creation.md](../../create-skill/references/skill_creation.md) - Skill creation workflow
+- [feature_catalog_creation.md](../../create-feature-catalog/references/feature_catalog_creation.md) - Feature catalog creation workflow

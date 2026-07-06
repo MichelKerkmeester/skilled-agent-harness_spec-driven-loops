@@ -111,4 +111,4 @@ Expected output: Findings list current README template alignment and freshness d
 |---|---|
 | [`sk-doc/SKILL.md`](../SKILL.md) | Runtime instructions for the owning skill. |
 | [`sk-code/SKILL.md`](../../sk-code/SKILL.md) | OpenCode coding standards and verification routing. |
-| [`sk-doc skill_readme_template.md`](../assets/skill/skill_readme_template.md) | README structure used for this code README. |
+| [`sk-doc skill_readme_template.md`](../create-skill/assets/skill/skill_readme_template.md) | README structure used for this code README. |

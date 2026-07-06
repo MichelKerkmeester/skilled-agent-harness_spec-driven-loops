@@ -160,20 +160,20 @@ A: `/create:sk-skill` for a new skill under `.opencode/skills/`. `/create:sk-ski
 | Document | Purpose |
 |---|---|
 | [`SKILL.md`](./SKILL.md) | Runtime instructions, the smart router and the mode rules |
-| [`references/global/quick_reference.md`](./references/global/quick_reference.md) | One-page command and gate cheat sheet |
-| [`references/global/hvr_rules.md`](./references/global/hvr_rules.md) | Human Voice Rules, the writing standard all output must pass |
-| [`references/global/validation.md`](./references/global/validation.md) | DQI scoring criteria, quality gates and assessment interpretation |
-| [`references/global/core_standards.md`](./references/global/core_standards.md) | Filename conventions, heading rules and document-type requirements |
-| [`references/global/workflows.md`](./references/global/workflows.md) | Execution workflows by mode and task type |
-| [`references/global/optimization.md`](./references/global/optimization.md) | AI-friendly content transforms and the llms.txt format |
-| [`references/global/evergreen_packet_id_rule.md`](./references/global/evergreen_packet_id_rule.md) | Why runtime-state docs must not cite mutable spec-packet numbers |
-| [`references/skill_creation.md`](./references/skill_creation.md) | The skill-creation workflow: understanding through packaging |
-| [`references/agent_creation.md`](./references/agent_creation.md) | Agent authority, permissions and the template-first workflow |
-| [`references/readme_creation.md`](./references/readme_creation.md) | README creation workflow and standards |
-| [`references/install_guide_creation.md`](./references/install_guide_creation.md) | Five-phase install guide standards and validation checkpoints |
-| [`references/manual_testing_playbook_creation.md`](./references/manual_testing_playbook_creation.md) | Playbook package structure, scenario tables and cross-reference index |
-| [`references/feature_catalog_creation.md`](./references/feature_catalog_creation.md) | Feature catalog inventory standards and per-feature file structure |
-| [`references/benchmark_creation.md`](./references/benchmark_creation.md) | Benchmark folder standards, ten-section report shape and promotion workflow |
+| [`references/global/quick_reference.md`](shared/references/global/quick_reference.md) | One-page command and gate cheat sheet |
+| [`references/global/hvr_rules.md`](shared/references/global/hvr_rules.md) | Human Voice Rules, the writing standard all output must pass |
+| [`references/global/validation.md`](shared/references/global/validation.md) | DQI scoring criteria, quality gates and assessment interpretation |
+| [`references/global/core_standards.md`](shared/references/global/core_standards.md) | Filename conventions, heading rules and document-type requirements |
+| [`references/global/workflows.md`](doc-quality/references/workflows.md) | Execution workflows by mode and task type |
+| [`references/global/optimization.md`](doc-quality/references/optimization.md) | AI-friendly content transforms and the llms.txt format |
+| [`references/global/evergreen_packet_id_rule.md`](shared/references/global/evergreen_packet_id_rule.md) | Why runtime-state docs must not cite mutable spec-packet numbers |
+| [`references/skill_creation.md`](create-skill/references/skill_creation.md) | The skill-creation workflow: understanding through packaging |
+| [`references/agent_creation.md`](create-agent/references/agent_creation.md) | Agent authority, permissions and the template-first workflow |
+| [`references/readme_creation.md`](create-readme/references/readme_creation.md) | README creation workflow and standards |
+| [`references/install_guide_creation.md`](create-readme/references/install_guide_creation.md) | Five-phase install guide standards and validation checkpoints |
+| [`references/manual_testing_playbook_creation.md`](create-manual-testing-playbook/references/manual_testing_playbook_creation.md) | Playbook package structure, scenario tables and cross-reference index |
+| [`references/feature_catalog_creation.md`](create-feature-catalog/references/feature_catalog_creation.md) | Feature catalog inventory standards and per-feature file structure |
+| [`references/benchmark_creation.md`](create-benchmark/references/benchmark_creation.md) | Benchmark folder standards, ten-section report shape and promotion workflow |
 | [`scripts/validate_document.py`](./scripts/validate_document.py) | Fast format validator, exit 0/1/2, supports `--json` and `--fix` |
 | [`scripts/extract_structure.py`](./scripts/extract_structure.py) | Full DQI analysis with type-specific checklists and JSON output |
 | [`scripts/init_skill.py`](./scripts/init_skill.py) | Skill directory scaffold from the template set |

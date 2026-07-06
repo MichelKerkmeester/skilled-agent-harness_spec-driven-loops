@@ -16,7 +16,7 @@ version: 1.8.0.4
 Copy-paste-ready scaffold for mcp_server/benchmarks/benchmark-<YYYY-MM-DD>/benchmark_report.md.
 
 Usage:
-  cp .opencode/skills/sk-doc/assets/benchmark/benchmark_report_template.md \
+  cp .opencode/skills/sk-doc/create-benchmark/assets/benchmark/benchmark_report_template.md \
      .opencode/skills/<your-skill>/mcp_server/benchmarks/benchmark-<YYYY-MM-DD>/benchmark_report.md
 
 Then fill in every {{PLACEHOLDER}}. Keep the ANCHOR pairs and numbered H2 ALL CAPS structure intact.
@@ -25,7 +25,7 @@ Validate after authoring:
     .opencode/skills/<your-skill>/mcp_server/benchmarks/benchmark-<YYYY-MM-DD>/benchmark_report.md \
     --type readme
 
-Canonical reference: .opencode/skills/sk-doc/references/benchmark_creation.md
+Canonical reference: .opencode/skills/sk-doc/create-benchmark/references/benchmark_creation.md
 -->
 
 # {{SKILL_NAME}} {{BENCHMARK_TOPIC}} -- {{LONG_DATE}}
@@ -324,7 +324,7 @@ Expected outcome: {{EXPECTED_OUTCOME_LINE}}.
 | [`per-probe.jsonl`](./per-probe.jsonl) | Per-probe rows. |
 | [`runtime-measurements.md`](./runtime-measurements.md) | RAM, residency, raw inference latency for the final candidates. |
 | [`../README.md`](../README.md) | Index of all `{{SKILL_NAME}}` benchmarks. |
-| [`benchmark_creation.md`](.opencode/skills/sk-doc/references/benchmark_creation.md) | Convention these files follow. |
+| [`benchmark_creation.md`](.opencode/skills/sk-doc/create-benchmark/references/benchmark_creation.md) | Convention these files follow. |
 
 ### Authoritative spec packet
 

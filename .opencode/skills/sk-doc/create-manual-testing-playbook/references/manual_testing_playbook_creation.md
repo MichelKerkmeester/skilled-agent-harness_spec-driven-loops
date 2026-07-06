@@ -126,7 +126,7 @@ Required structure:
 5. `## 5. SOURCE METADATA`
 
 **Per-feature files must include**:
-- frontmatter with `title`, `description`, and a 4-part `version` (root playbook and per-feature files both carry it; see [frontmatter_versioning.md](frontmatter_versioning.md))
+- frontmatter with `title`, `description`, and a 4-part `version` (root playbook and per-feature files both carry it; see [frontmatter_versioning.md](../../shared/references/global/frontmatter_versioning.md))
 - realistic user request when that clarifies user intent
 - operator prompt or orchestrator prompt
 - exact prompt in the scenario table when a table is used
@@ -246,6 +246,6 @@ Cross-file markdown links are covered separately: the `check-markdown-links.cjs`
 
 - [manual_testing_playbook_template.md](../assets/testing_playbook/manual_testing_playbook_template.md) - root playbook scaffold
 - [manual_testing_playbook_snippet_template.md](../assets/testing_playbook/manual_testing_playbook_snippet_template.md) - per-feature file scaffold
-- [feature_catalog_creation.md](./feature_catalog_creation.md) - companion reference for the feature-catalog side of the contract
-- [quick_reference.md](global/quick_reference.md) - condensed commands and file locations
-- [workflows.md](global/workflows.md) - execution-mode reference
+- [feature_catalog_creation.md](../../create-feature-catalog/references/feature_catalog_creation.md) - companion reference for the feature-catalog side of the contract
+- [quick_reference.md](../../shared/references/global/quick_reference.md) - condensed commands and file locations
+- [workflows.md](../../doc-quality/references/workflows.md) - execution-mode reference

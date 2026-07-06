@@ -165,4 +165,4 @@ version: 2.0.0
 - [validation_and_packaging.md](./validation_and_packaging.md) - Validation requirements and distribution
 
 ### Reference Files
-- [core_standards.md](../global/core_standards.md) - Document type rules and structural requirements
+- [core_standards.md](../../../shared/references/global/core_standards.md) - Document type rules and structural requirements

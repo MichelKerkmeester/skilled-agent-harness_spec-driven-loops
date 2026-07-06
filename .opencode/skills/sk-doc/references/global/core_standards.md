@@ -1,1 +1,0 @@
-../../shared/references/global/core_standards.md

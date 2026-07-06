@@ -35,7 +35,7 @@ Skill-local benchmark folders are curated entry points. The full audit trail (AD
 - The convention applies to every `<skill>/mcp_server/benchmarks/` folder in this repo.
 - Numeric data is never cross-comparable across skills (different stacks, different fixtures). Each skill's report flags this in its Caveats section.
 - Each sibling skill maintains its own `README.md` index and `benchmark-<YYYY-MM-DD>/` dated subfolders.
-- The canonical mechanics document is this file. Sibling skill READMEs reference it by path: `.opencode/skills/sk-doc/references/benchmark_creation.md`.
+- The canonical mechanics document is this file. Sibling skill READMEs reference it by path: `.opencode/skills/sk-doc/create-benchmark/references/benchmark_creation.md`.
 
 ---
 
@@ -343,6 +343,6 @@ The bake-off compared five code-tuned embedders against an 18-pair paraphrased f
 
 ### Related sk-doc references
 
-- [`readme_creation.md`](./readme_creation.md): README authoring conventions used by `benchmarks/README.md`
-- [`global/core_standards.md`](./global/core_standards.md): cross-document standards including ANCHOR conventions
-- [`global/evergreen_packet_id_rule.md`](./global/evergreen_packet_id_rule.md): evergreen rule for runtime docs; benchmark reports follow it via `SOURCE.md` cross-link rather than inline packet IDs
+- [`readme_creation.md`](../../create-readme/references/readme_creation.md): README authoring conventions used by `benchmarks/README.md`
+- [`global/core_standards.md`](../../shared/references/global/core_standards.md): cross-document standards including ANCHOR conventions
+- [`global/evergreen_packet_id_rule.md`](../../shared/references/global/evergreen_packet_id_rule.md): evergreen rule for runtime docs; benchmark reports follow it via `SOURCE.md` cross-link rather than inline packet IDs

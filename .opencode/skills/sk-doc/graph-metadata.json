@@ -46,6 +46,7 @@
     "testing-playbook",
     "benchmark",
     "flowchart",
+    "changelog",
     "doc-quality"
   ],
   "intent_signals": [
@@ -59,6 +60,7 @@
     "create manual testing playbook",
     "promote benchmark folder",
     "create ascii flowchart",
+    "create changelog",
     "validate document",
     "score document quality",
     "optimize documentation"
@@ -77,6 +79,7 @@
       "manual testing playbook",
       "create benchmark",
       "ascii flowchart",
+      "create changelog",
       "doc quality",
       "validate markdown",
       "dqi score"

@@ -1,1 +1,0 @@
-../shared/assets/frontmatter_templates.md

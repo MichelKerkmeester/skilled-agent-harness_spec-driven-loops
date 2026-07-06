@@ -1,1 +1,0 @@
-../create-benchmark/references/benchmark_creation.md

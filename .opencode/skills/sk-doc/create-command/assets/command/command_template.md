@@ -60,7 +60,7 @@ User types: /command-name arguments
                     └─► AI agent executes instructions step-by-step
 ```
 
-> **Description budget**: command `description:` fields share the Claude Code skill-metadata budget (default 8,000 chars total). Keep each command description **≤ 110 chars**, retain `:auto`/`:confirm` mode suffixes (advisor trigger tokens), no product enumerations. See [`assets/frontmatter_templates.md` § Description Budget & Trim Style](frontmatter_templates.md) for the canonical trim rules.
+> **Description budget**: command `description:` fields share the Claude Code skill-metadata budget (default 8,000 chars total). Keep each command description **≤ 110 chars**, retain `:auto`/`:confirm` mode suffixes (advisor trigger tokens), no product enumerations. See [`assets/frontmatter_templates.md` § Description Budget & Trim Style](../../../shared/assets/frontmatter_templates.md) for the canonical trim rules.
 
 ### Command File Location
 
@@ -1218,9 +1218,9 @@ OPUS ORCHESTRATOR → Dispatches → SONNET WORKERS (parallel)
 ## 19. RELATED RESOURCES
 
 ### Templates
-- [frontmatter_templates.md](./frontmatter_templates.md) - Frontmatter by document type
-- [skill_md_template.md](./skill/skill_md_template.md) - If converting to skill
+- [frontmatter_templates.md](../../../shared/assets/frontmatter_templates.md) - Frontmatter by document type
+- [skill_md_template.md](../../../create-skill/assets/skill/skill_md_template.md) - If converting to skill
 
 ### Standards
-- [core_standards.md](../references/global/core_standards.md) - Document type rules
-- [validation.md](../references/global/validation.md) - Quality scoring
+- [core_standards.md](../../../shared/references/global/core_standards.md) - Document type rules
+- [validation.md](../../../shared/references/global/validation.md) - Quality scoring

@@ -1,1 +1,0 @@
-../create-manual-testing-playbook/references/manual_testing_playbook_creation.md

@@ -204,7 +204,7 @@ These rules apply to both changelog files and GitHub release notes. See `PUBLIC_
 - **H4 (`####`) for category subsections** under each H2 -- never H3
 - **`&nbsp;` between H4 subsections within the same H2** -- this is the soft separator that renders as an invisible line on GitHub. Do NOT use `---` between H4s.
 - **`---` only between H2 sections** -- place a `---` divider before each `##` heading. Do NOT place `---` (or `&nbsp;`) between an H2 (or its intro paragraph) and the first H4 underneath it.
-- **No Oxford commas, em dashes, or semicolons** -- see HVR rules in `.opencode/skills/sk-doc/references/global/hvr_rules.md`
+- **No Oxford commas, em dashes, or semicolons** -- see HVR rules in `.opencode/skills/sk-doc/shared/references/global/hvr_rules.md`
 
 ### Category Vocabulary (use plain names)
 
@@ -280,8 +280,8 @@ The global component versioning rules in this file do not apply to nested packet
 
 ### Templates
 
-- [readme_template.md](./readme/readme_template.md) - README structure and quality rules
-- [install_guide_template.md](./readme/install_guide_template.md) - Phased installation guides
+- [readme_template.md](../../create-readme/assets/readme/readme_template.md) - README structure and quality rules
+- [install_guide_template.md](../../create-readme/assets/readme/install_guide_template.md) - Phased installation guides
 - [llmstxt_templates.md](./llmstxt_templates.md) - llms.txt site-map files
 - [frontmatter_templates.md](./frontmatter_templates.md) - YAML frontmatter by document type
 
@@ -293,5 +293,5 @@ The global component versioning rules in this file do not apply to nested packet
 
 ### Workflows
 
-- [.opencode/commands/create/changelog.md](../../../commands/create/changelog.md) - The `/create:changelog` command surface
-- [nested_changelog.md](../../system-spec-kit/references/workflows/nested_changelog.md) - Nested packet-local changelog workflow
+- [.opencode/commands/create/changelog.md](../../../../commands/create/changelog.md) - The `/create:changelog` command surface
+- [nested_changelog.md](../../../system-spec-kit/references/workflows/nested_changelog.md) - Nested packet-local changelog workflow

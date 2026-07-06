@@ -23,7 +23,7 @@ Output formats:
 - JSON (with --json flag)
 
 Description budget reference: see
-.opencode/skills/sk-doc/assets/frontmatter_templates.md
+.opencode/skills/sk-doc/shared/assets/frontmatter_templates.md
 § "Description Budget & Trim Style". Constants below are the single source of
 truth for the python validators; doc-side constants live in the markdown file.
 """
@@ -80,7 +80,7 @@ def check_description_length(
             None,
             f"Description is {length} chars, exceeds soft target of {soft_target}. "
             f"Project total budget is ~5,600 chars (default 8,000 minus built-ins); "
-            f"trim per .opencode/skills/sk-doc/assets/frontmatter_templates.md "
+            f"trim per .opencode/skills/sk-doc/shared/assets/frontmatter_templates.md "
             f"§ 'Description Budget & Trim Style'.",
         )
     return (None, None)

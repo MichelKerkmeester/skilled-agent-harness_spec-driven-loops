@@ -33,7 +33,7 @@ This reference is the core create workflow for a skill. It walks the six ordered
 - `scripts/init_skill.py` - scaffolds the skill directory
 - `scripts/package_skill.py` - validates and packages the skill
 - [skill_md_template.md](../../assets/skill/skill_md_template.md) - SKILL.md section pattern
-- [frontmatter_templates.md](../../assets/frontmatter_templates.md) - frontmatter field rules
+- [frontmatter_templates.md](../../../shared/assets/frontmatter_templates.md) - frontmatter field rules
 
 ---
 
@@ -254,7 +254,7 @@ SKILL.md requires all four fields. `package_skill.py --check` hard-fails when an
 | `name`          | ✅        | Must match folder name, lowercase-with-hyphens |
 | `description`   | ✅        | Single line, ≤ 130 chars (skill) / ≤ 110 (command); see Pitfall 1 in [common_pitfalls.md](./common_pitfalls.md) for trim rules |
 | `allowed-tools` | ✅        | Array format (`[Read, Write, ...]`)           |
-| `version`       | ✅        | 4-part `X.Y.Z.W` (e.g., `1.0.0.0`); see [frontmatter_versioning.md](../frontmatter_versioning.md) |
+| `version`       | ✅        | 4-part `X.Y.Z.W` (e.g., `1.0.0.0`); see [frontmatter_versioning.md](../../../shared/references/global/frontmatter_versioning.md) |
 
 ```yaml
 ---
@@ -269,7 +269,7 @@ version: 1.0.0.0
 - **`references/*.md` and `assets/*.md`** carry the full 5-field block (`title`, `description`, `trigger_phrases` 3-8, `importance_tier`, `contextType`) **plus `version`** (4-part `X.Y.Z.W`). Seed each new file from [skill_reference_template.md](../../assets/skill/skill_reference_template.md) / [skill_asset_template.md](../../assets/skill/skill_asset_template.md) so the block is present by construction. Use **snake_case** filenames (`package_skill.py --check` warns on non-snake_case in `references/` and `assets/`).
 - **`README.md`** is exempt from the 5-field reference block but still carries `title`, `description`, and `version` per [skill_readme_template.md](../../assets/skill/skill_readme_template.md).
 
-> **Complete Reference**: For validation rules, format specifications, and all document types, see [frontmatter_templates.md](../../assets/frontmatter_templates.md)
+> **Complete Reference**: For validation rules, format specifications, and all document types, see [frontmatter_templates.md](../../../shared/assets/frontmatter_templates.md)
 
 ### Step 5: Packaging a Skill (~2 min)
 
@@ -402,7 +402,7 @@ Iteration 3:
 
 ### Templates
 - [skill_md_template.md](../../assets/skill/skill_md_template.md) - SKILL.md file templates
-- [frontmatter_templates.md](../../assets/frontmatter_templates.md) - Frontmatter by document type
+- [frontmatter_templates.md](../../../shared/assets/frontmatter_templates.md) - Frontmatter by document type
 
 ### Reference Files
-- [core_standards.md](../global/core_standards.md) - Document type rules and structural requirements
+- [core_standards.md](../../../shared/references/global/core_standards.md) - Document type rules and structural requirements

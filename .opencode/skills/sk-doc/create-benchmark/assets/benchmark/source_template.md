@@ -14,12 +14,12 @@ version: 1.8.0.3
 SOURCE.md scaffold for mcp_server/benchmarks/benchmark-<YYYY-MM-DD>/SOURCE.md.
 
 Usage:
-  cp .opencode/skills/sk-doc/assets/benchmark/source_template.md \
+  cp .opencode/skills/sk-doc/create-benchmark/assets/benchmark/source_template.md \
      .opencode/skills/<your-skill>/mcp_server/benchmarks/benchmark-<YYYY-MM-DD>/SOURCE.md
 
 Replace every [PLACEHOLDER]. Do not leave unfilled brackets in the shipped file.
 
-Creation reference: .opencode/skills/sk-doc/references/benchmark_creation.md
+Creation reference: .opencode/skills/sk-doc/create-benchmark/references/benchmark_creation.md
 -->
 
 # SOURCE: [BENCHMARK_TOPIC] ([PROMOTION_DATE_LONG])
