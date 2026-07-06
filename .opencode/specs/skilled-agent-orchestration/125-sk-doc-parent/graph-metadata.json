@@ -1,0 +1,144 @@
+{
+  "schema_version": 1,
+  "packet_id": "skilled-agent-orchestration/125-sk-doc-parent",
+  "spec_folder": "skilled-agent-orchestration/125-sk-doc-parent",
+  "parent_id": null,
+  "children_ids": [
+    "skilled-agent-orchestration/125-sk-doc-parent/001-research-and-canon",
+    "skilled-agent-orchestration/125-sk-doc-parent/002-architecture-decision",
+    "skilled-agent-orchestration/125-sk-doc-parent/003-hub-scaffold",
+    "skilled-agent-orchestration/125-sk-doc-parent/004-shared-backbone",
+    "skilled-agent-orchestration/125-sk-doc-parent/005-create-skill",
+    "skilled-agent-orchestration/125-sk-doc-parent/006-create-readme",
+    "skilled-agent-orchestration/125-sk-doc-parent/007-create-agent",
+    "skilled-agent-orchestration/125-sk-doc-parent/008-create-feature-catalog",
+    "skilled-agent-orchestration/125-sk-doc-parent/009-create-manual-testing-playbook",
+    "skilled-agent-orchestration/125-sk-doc-parent/010-create-benchmark",
+    "skilled-agent-orchestration/125-sk-doc-parent/011-create-changelog",
+    "skilled-agent-orchestration/125-sk-doc-parent/012-doc-quality",
+    "skilled-agent-orchestration/125-sk-doc-parent/013-command-rebinding",
+    "skilled-agent-orchestration/125-sk-doc-parent/014-advisor-and-skill-graph",
+    "skilled-agent-orchestration/125-sk-doc-parent/015-external-refs-and-facades",
+    "skilled-agent-orchestration/125-sk-doc-parent/016-routing-benchmark",
+    "skilled-agent-orchestration/125-sk-doc-parent/017-cutover-and-closeout"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "sk-doc parent skill",
+      "sk-doc parent hub",
+      "documentation skill family",
+      "create-* sub-skills",
+      "doc-quality shared backbone"
+    ],
+    "key_topics": [
+      "sk-doc",
+      "parent",
+      "skill",
+      "hub",
+      "documentation",
+      "family",
+      "create",
+      "sub-skills",
+      "doc-quality",
+      "shared",
+      "backbone",
+      "6-mode"
+    ],
+    "importance_tier": "important",
+    "status": "planned",
+    "key_files": [
+      "spec.md",
+      ".opencode/skills/sk-doc/graph-metadata.json",
+      ".opencode/skills/sk-doc/references/skill_creation/parent_skills_nested_packets.md",
+      ".opencode/commands/create/sk-skill-parent.md",
+      ".opencode/commands/doctor/scripts/parent-skill-check.cjs"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "graph-metadata.json",
+        "kind": "config",
+        "path": ".opencode/skills/sk-doc/graph-metadata.json",
+        "source": "derived"
+      },
+      {
+        "name": "parent_skills_nested_packets.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/references/skill_creation/parent_skills_nested_packets.md",
+        "source": "derived"
+      },
+      {
+        "name": "sk-skill-parent.md",
+        "kind": "doc",
+        "path": ".opencode/commands/create/sk-skill-parent.md",
+        "source": "derived"
+      },
+      {
+        "name": "parent-skill-check.cjs",
+        "kind": "file",
+        "path": ".opencode/commands/doctor/scripts/parent-skill-check.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Documentation Map",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "`sk-doc` is a 6-mode monolith: one overloaded `SKILL.md` carries document-quality management, skill/agent/command/readme/feature-catalog/testing-playbook/benchmark/changelog authoring, and flowchart creation, with `references/`, `scripts/`, and `assets/` flat at the skill root",
+    "created_at": "2026-07-06T06:30:17.554Z",
+    "last_save_at": "2026-07-06T06:41:41.294Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "source_fingerprint": "sha256:3c0bb3a777b96c0118cfaf8588b64bc9f64a63f8d1651b6052e54eaf18ce74f7",
+    "source_doc_hashes": {
+      "spec.md": "a98511ad070fb593423108fb8400d97f03e7c03c6f4f65b93ce38aaee15e90a0"
+    },
+    "last_active_child_id": "skilled-agent-orchestration/125-sk-doc-parent/005-create-skill",
+    "last_active_at": null
+  }
+}

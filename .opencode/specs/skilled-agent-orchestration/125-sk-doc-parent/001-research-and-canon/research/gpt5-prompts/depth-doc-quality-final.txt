@@ -1,0 +1,13 @@
+You are doing a DEPTH pass on the sk-doc parent-hub conversion. Repo root is CWD. Ground every claim in file:line. BE EFFICIENT: first read the prior breadth findings provided, then read at most 3 more files.
+
+SEED — sk-doc monolith -> WORKFLOW-ONLY parent hub (shared/ doc-quality backbone; ONE graph-metadata.json at hub; two tiers; NO surface axis; base-case ZERO named extensions; root facade symlinks preserve ~151 external refs for ZERO external edits; reference hub sk-code; over-decomposition bar from 124/022).
+CURRENT PACKET RULING (from breadth research — stress-test it): NINE workflow packets = create-skill, create-readme (install-guide folded), create-agent, create-command, create-feature-catalog, create-manual-testing-playbook, create-benchmark, create-changelog, doc-quality (NEW). create-skill-parent = a 2nd workflowMode over the create-skill packet. Prior breadth findings live as JSON in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/skilled-agent-orchestration/125-sk-doc-parent/001-research-and-canon/research/gpt5-iterations/ (one file per angle key).
+
+YOUR DEPTH TASK (doc-quality-final):
+FINAL RULING: is doc-quality an advisor-routable WORKFLOW packet or pure shared backbone? Does it warrant a /doc:quality command? Where do optimization/hvr_rules/quick_reference/workflows live (shared vocabulary vs doc-quality-owned procedure)? Give the definitive answer.
+
+Prior breadth findings to load first (cat these): /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/skilled-agent-orchestration/125-sk-doc-parent/001-research-and-canon/research/gpt5-iterations/*doc-quality-placement*.json /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/skilled-agent-orchestration/125-sk-doc-parent/001-research-and-canon/research/gpt5-iterations/*global-refs-split*.json
+Extra source(s) to consult: .opencode/skills/sk-design/mode-registry.json (audit mode analog)
+
+Output ONLY a JSON object: {"key":"doc-quality-final","verdict":"CONFIRMED|REFUTED|REVISED|DELIVERED","rulings":[{"question":"...","ruling":"...","rationale":"...","evidence":"path:line","confidence":"high|med|low"}],"artifact":"<for final-* tasks: the concrete produced spec text; else empty>","risks":["..."],"open":["..."]}
+Nothing except the JSON.

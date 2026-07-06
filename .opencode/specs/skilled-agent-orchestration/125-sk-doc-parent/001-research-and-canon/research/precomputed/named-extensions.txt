@@ -1,0 +1,17 @@
+## 3. Named Extensions
+
+Extensions declare extra semantics in place. They do not create extra directory tiers or move fields away from their current registry locations.
+
+| Extension | Activates | Use when |
+| --- | --- | --- |
+| `surface-axis` | `packetKind: "surface"` entries and `surfaceBundle` routing. | The hub has read-only evidence packets attached to workflow modes. |
+| `runtime-loop` | Per-mode `runtimeLoopType` plus convergence backend. | Modes run through a loop runtime with explicit loop types. |
+| `advisor-projection` | Drift guard path for lexical or alias-fold projection maps. | Any mode has `routingClass: "lexical"` or `routingClass: "alias-fold"`. |
+| `transform-verbs` | Verb routing that changes target mode by wording frame. | The hub routes phrases such as applying a transformation versus auditing whether it should happen. |
+| `deprecated-modes` | Retired modes kept as redirects or shims. | A public mode remains as replacement guidance without active packet routing. |
+
+A hub with no extensions is the pure two-tier core. Add only the extension needed for real routing semantics.
+
+---
+
+## 4. Three Hubs Extension Matrix

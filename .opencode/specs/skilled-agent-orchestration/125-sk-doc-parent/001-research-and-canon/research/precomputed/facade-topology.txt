@@ -1,0 +1,69 @@
+## Files OUTSIDE sk-doc that reference skills/sk-doc/ paths (top 60):
+.opencode/install_guides/README.md
+.opencode/skills/sk-git/SKILL.md
+.opencode/agents/markdown.md
+.opencode/scripts/git-hooks/pre-commit
+.opencode/hooks/README.md
+.opencode/specs/system-speckit/z_archive/019-readme-and-summary-with-hvr/decision-record.md
+.opencode/specs/skilled-agent-orchestration/124-sk-code-parent/009-cutover-and-rollout/implementation-summary.md
+.opencode/specs/system-deep-loop/029-deep-loop-workflows/context/context-findings.json
+.opencode/specs/system-speckit/z_archive/019-readme-and-summary-with-hvr/scratch/legacy-memory-quarantine/20-02-26_07-05__readme-and-summary-with-hvr.md
+.opencode/specs/skilled-agent-orchestration/124-sk-code-parent/016-sk-code-content-coherence/decision-record.md
+.opencode/specs/system-deep-loop/029-deep-loop-workflows/009-old-skill-deletion-and-validation/decision-record.md
+.opencode/specs/skilled-agent-orchestration/122-cli-codex-deprecation/decision-record.md
+.opencode/specs/system-speckit/z_archive/019-readme-and-summary-with-hvr/implementation-summary.md
+.opencode/specs/system-speckit/z_archive/011-upgrade-auto-populate/decision-record.md
+.opencode/skills/system-code-graph/mcp_server/lib/ipc/README.md
+.opencode/specs/skilled-agent-orchestration/122-cli-codex-deprecation/implementation-summary.md
+.opencode/specs/skilled-agent-orchestration/124-sk-code-parent/016-sk-code-content-coherence/implementation-summary.md
+.opencode/specs/system-deep-loop/z_archive/002-sk-deep-research-refinement/implementation-summary.md
+.opencode/skills/sk-git/README.md
+.opencode/specs/system-deep-loop/z_archive/003-sk-deep-research-testing-playbook/plan.md
+.opencode/specs/system-speckit/z_archive/011-upgrade-auto-populate/implementation-summary.md
+.opencode/specs/system-deep-loop/029-deep-loop-workflows/010-deep-loop-skill-system-review/spec.md
+.opencode/specs/system-speckit/z_archive/016-index-workflows-code/decision-record.md
+.opencode/skills/system-code-graph/mcp_server/lib/shared/README.md
+.opencode/skills/system-code-graph/mcp_server/lib/utils/README.md
+.opencode/specs/system-speckit/z_archive/016-index-workflows-code/implementation-summary.md
+.opencode/specs/system-speckit/z_archive/025-nested-changelog-per-spec/decision-record.md
+.opencode/specs/system-deep-loop/z_archive/025-deep-context-gathering/005-runtime-mirror-parity/implementation-summary.md
+.opencode/specs/system-deep-loop/z_archive/025-deep-context-gathering/007-deep-command-gate-hardening/implementation-summary.md
+.opencode/specs/system-deep-loop/z_archive/007-sk-deep-research-path-migration/decision-record.md
+.opencode/skills/system-code-graph/mcp_server/README.md
+.opencode/specs/system-deep-loop/z_archive/025-deep-context-gathering/003-runtime-feature-utilization/decision-record.md
+.opencode/specs/system-speckit/z_archive/025-nested-changelog-per-spec/implementation-summary.md
+.opencode/specs/system-deep-loop/z_archive/007-sk-deep-research-path-migration/implementation-summary.md
+.opencode/specs/system-deep-loop/z_archive/020-deep-multi-ai-council-skill/007-council-infrastructure-hardening/implementation-summary.md
+.opencode/specs/system-deep-loop/029-deep-loop-workflows/010-deep-loop-skill-system-review/review/logs/seat-W2-A.out
+.opencode/specs/system-speckit/z_archive/018-mcp-issues-after-update/implementation-summary.md
+.opencode/skills/system-code-graph/mcp_server/tests/assets/README.md
+.opencode/specs/system-deep-loop/029-deep-loop-workflows/010-deep-loop-skill-system-review/review/logs/seat-G1.out
+.opencode/specs/system-deep-loop/z_archive/020-deep-multi-ai-council-skill/005-deep-ai-council-fixups-and-graph-value-scenarios/implementation-summary.md
+.opencode/specs/system-deep-loop/029-deep-loop-workflows/010-deep-loop-skill-system-review/review/deltas/iter-002.jsonl
+.opencode/specs/system-deep-loop/z_archive/020-deep-multi-ai-council-skill/001-deep-ai-council-skill-creation/implementation-summary.md
+.opencode/specs/system-speckit/z_archive/009-full-spec-doc-indexing/implementation-summary.md
+.opencode/specs/system-deep-loop/z_archive/015-multi-ai-council-output-protocol/ai-council/seats/round-002/seat-003-deep-research.md
+.opencode/specs/system-deep-loop/029-deep-loop-workflows/010-deep-loop-skill-system-review/review/deltas/iter-004.jsonl
+.opencode/skills/system-code-graph/mcp_server/tests/lib/README.md
+.opencode/specs/system-deep-loop/029-deep-loop-workflows/010-deep-loop-skill-system-review/review/deltas/iter-005-wave1-remediation.jsonl
+.opencode/specs/system-deep-loop/029-deep-loop-workflows/010-deep-loop-skill-system-review/review/review-report.md
+.opencode/specs/skilled-agent-orchestration/124-sk-code-parent/011-hub-canon/spec.md
+.opencode/specs/system-deep-loop/z_archive/020-deep-multi-ai-council-skill/004-deep-ai-council-playbook-graph-coverage/implementation-summary.md
+.opencode/specs/system-deep-loop/029-deep-loop-workflows/010-deep-loop-skill-system-review/implementation-summary.md
+.opencode/specs/skilled-agent-orchestration/124-sk-code-parent/011-hub-canon/tasks.md
+.opencode/specs/system-deep-loop/029-deep-loop-workflows/010-deep-loop-skill-system-review/graph-metadata.json
+.opencode/specs/system-deep-loop/z_archive/025-deep-context-gathering/003-runtime-feature-utilization/implementation-summary.md
+.opencode/skills/system-code-graph/mcp_server/tests/code-graph-indexer.vitest.ts
+.opencode/specs/system-speckit/z_archive/012-spec-doc-anchor-tags/implementation-summary.md
+.opencode/specs/skilled-agent-orchestration/124-sk-code-parent/011-hub-canon/implementation-summary.md
+.opencode/specs/skilled-agent-orchestration/124-sk-code-parent/011-hub-canon/graph-metadata.json
+.opencode/specs/system-deep-loop/z_archive/020-deep-multi-ai-council-skill/006-council-graph-value-scenario-automation/implementation-summary.md
+.opencode/specs/system-speckit/z_archive/024-compact-code-graph/030-opencode-graph-plugin/001-shared-payload-provenance-layer/decision-record.md
+
+## sk-code shared/ symlinks (the facade pattern to mirror):
+sk-code/code-webflow/references/workflow_debug.md -> ../../shared/references/workflow_debug.md
+sk-code/code-webflow/references/workflow_implement.md -> ../../shared/references/workflow_implement.md
+sk-code/code-webflow/references/workflow_verify.md -> ../../shared/references/workflow_verify.md
+sk-code/code-opencode/references/workflow_debug.md -> ../../shared/references/workflow_debug.md
+sk-code/code-opencode/references/workflow_implement.md -> ../../shared/references/workflow_implement.md
+sk-code/code-opencode/references/workflow_verify.md -> ../../shared/references/workflow_verify.md

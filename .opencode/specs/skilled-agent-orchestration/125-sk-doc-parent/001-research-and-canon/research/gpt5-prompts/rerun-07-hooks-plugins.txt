@@ -1,0 +1,11 @@
+You are settling ONE angle of the sk-doc monolith -> WORKFLOW-ONLY parent-hub conversion. Repo root is CWD. Ground claims in file:line. BE FAST: a pre-computed search result file is provided — read it FIRST, then read at most 2 extra files. Do NOT run your own broad grep.
+
+SEED: converting sk-doc (6-mode monolith) into a WORKFLOW-ONLY parent hub with a shared/ doc-quality backbone; ONE graph-metadata.json at the hub; two tiers; NO surface axis; ZERO named extensions (base case); root facade symlinks preserve ~151 external refs for zero external edits. Reference hub: sk-code. Over-decomposition lesson (124/022): fold generic doctrine into shared/.
+
+ANGLE (hooks-plugins): Confirm the advisor/skill-graph top-level-slug scan keeps the sk-doc advisor id with ZERO hook/plugin edits, and nested child packets stay advisor-invisible (no per-child graph-metadata.json, matching sk-code). Rule whether any hook/plugin needs editing and how the advisor rebuild/scan is sequenced.
+
+PRE-COMPUTED SEARCH RESULTS (read this file — it already contains the grep/ls output you would otherwise compute): /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/skilled-agent-orchestration/125-sk-doc-parent/001-research-and-canon/research/precomputed/hooks-plugins.txt
+Extra file to read if useful: .opencode/skills/sk-code/graph-metadata.json (the one-identity node)
+
+Output ONLY a JSON object: {"angle":"hooks-plugins","rulings":[{"question":"...","ruling":"...","rationale":"...","evidence":"path:line","confidence":"high|med|low"}],"risks":["..."],"open":["..."]}
+Nothing except the JSON.

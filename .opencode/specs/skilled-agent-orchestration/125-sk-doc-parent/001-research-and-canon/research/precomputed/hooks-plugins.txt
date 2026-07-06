@@ -1,0 +1,26 @@
+## sk-doc references in .claude hooks/settings + .opencode plugins + skill-advisor:
+.claude/agents/prompt-improver.md:49:| `INT-SKILL-SK-DOC` | `sk-doc` | Documentation-shape guidance may inform prompt constraints when the caller asks for documentation packaging or template alignment |
+.claude/agents/prompt-improver.md:75:| `sk-doc` | `INT-SKILL-SK-DOC` | Agent-template alignment | Agent structure or formatting must match current template conventions | Canonical agent template and runtime guidance |
+.claude/agents/prompt-improver.md:348:│  ├─► Skills: sk-prompt, sk-doc                                          │
+.claude/agents/markdown.md:119:4. **LOAD sk-doc** -> Read `.opencode/skills/sk-doc/SKILL.md` on every invocation and select the matching resource from Section 4.
+.claude/agents/markdown.md:135:| `sk-doc`          | Documentation creation and quality | Always                                                              | Command templates, DQI scoring, README, changelog, agent, skill, feature catalog, and testing playbook guidance |
+.claude/agents/markdown.md:174:| `/create:agent`            | New OpenCode agent `.md` plus requested runtime mirrors | `.opencode/skills/sk-doc/assets/agent_template.md`                                                                                               |
+.claude/agents/markdown.md:175:| `/create:sk-skill`         | New skill `SKILL.md` or doc-only skill resource         | `.opencode/skills/sk-doc/assets/skill/skill_md_template.md` and, when needed, `.opencode/skills/sk-doc/assets/skill/skill_reference_template.md` |
+.claude/agents/markdown.md:176:| `/create:sk-skill-parent`     | Parent skill with nested mode packets (hub + registry + N `deep-<mode>` packets + `shared/`, one hub `graph-metadata.json`) | `.opencode/skills/sk-doc/assets/skill/parent_skill_hub_template.md` and `.opencode/skills/sk-doc/assets/skill/parent_skill_registry_template.json` |
+.claude/agents/markdown.md:177:| `/create:feature-catalog`  | `feature_catalog/` package                              | `.opencode/skills/sk-doc/assets/feature_catalog/feature_catalog_template.md`                                                                     |
+.claude/agents/markdown.md:178:| `/create:testing-playbook` | `manual_testing_playbook/` package                      | `.opencode/skills/sk-doc/assets/testing_playbook/manual_testing_playbook_template.md`                                                            |
+.claude/agents/markdown.md:179:| `/create:folder_readme`    | `README.md` or install-guide markdown                   | `.opencode/skills/sk-doc/assets/readme/readme_template.md`                                                                                       |
+.claude/agents/markdown.md:180:| `/create:changelog`        | Versioned changelog markdown                            | `.opencode/skills/sk-doc/assets/changelog_template.md`                                                                                           |
+.claude/agents/markdown.md:182:| `markdown`                 | Scoped markdown document                                | Existing document structure, `.opencode/skills/sk-doc/assets/readme/readme_template.md`, or the closest matching sk-doc template                 |
+.claude/agents/markdown.md:225:□ sk-doc SKILL.md was read for this invocation
+.claude/agents/markdown.md:250:4. If no hook context is present, continue with command markdown, `sk-doc`, templates, and explicit setup values.
+.claude/agents/markdown.md:272:| `.opencode/skills/sk-doc/SKILL.md`                                                    | Required skill routing and documentation creation standards        |
+.claude/agents/markdown.md:273:| `.opencode/skills/sk-doc/assets/agent_template.md`                                    | Production agent structure, BINDING, REFUSE, and summary contracts |
+.claude/agents/markdown.md:274:| `.opencode/skills/sk-doc/assets/skill/skill_md_template.md`                           | Skill creation template for `/create:sk-skill`                     |
+.claude/agents/markdown.md:275:| `.opencode/skills/sk-doc/assets/feature_catalog/feature_catalog_template.md`          | Feature catalog package template                                   |
+.claude/agents/markdown.md:276:| `.opencode/skills/sk-doc/assets/testing_playbook/manual_testing_playbook_template.md` | Manual testing playbook package template                           |
+.claude/agents/markdown.md:277:| `.opencode/skills/sk-doc/assets/readme/readme_template.md`                            | README template for `/create:folder_readme`                        |
+.claude/agents/markdown.md:278:| `.opencode/skills/sk-doc/assets/changelog_template.md`                                | Changelog template for `/create:changelog`                         |
+
+## how sk-code children avoid graph-metadata.json (child dirs):
+(no graph-metadata.json in sk-code child packets — confirmed advisor-invisible)

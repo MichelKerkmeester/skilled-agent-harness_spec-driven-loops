@@ -1,0 +1,24 @@
+{
+  "specFolder": "skilled-agent-orchestration/125-sk-doc-parent",
+  "description": "`sk-doc` is a 6-mode monolith: one overloaded `SKILL.md` carries document-quality management,",
+  "keywords": [
+    "sk-doc",
+    "6-mode",
+    "monolith",
+    "one",
+    "overloaded",
+    "skill",
+    "carries",
+    "document-quality",
+    "management"
+  ],
+  "lastUpdated": "2026-07-06T06:30:17.408Z",
+  "specId": "125",
+  "folderSlug": "sk-doc-parent",
+  "parentChain": [
+    "skilled-agent-orchestration"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "phase"
+}

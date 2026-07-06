@@ -1,0 +1,49 @@
+{
+  "skill": "sk-doc",
+  "version": "2.0.0.0",
+  "routerPolicy": {
+    "defaultMode": null,
+    "ambiguityDelta": 1,
+    "tieBreak": ["doc-quality", "create-skill", "create-skill-parent", "create-readme", "create-agent", "create-command", "create-feature-catalog", "create-manual-testing-playbook", "create-benchmark", "create-flowchart"],
+    "outcomes": {
+      "single": "one dominant authoring/quality intent routes to one workflow mode",
+      "orderedBundle": "clearly separate authoring intents route to an ordered workflow mode list",
+      "defer": "unclear or contradictory intent asks for disambiguation"
+    },
+    "defaultResource": ["shared/references/global/quick_reference.md"],
+    "bundleRules": [
+      {
+        "name": "create-then-quality",
+        "whenAll": ["create-skill", "doc-quality"],
+        "outcome": "orderedBundle"
+      }
+    ]
+  },
+  "routerSignals": {
+    "create-skill": { "weight": 4, "classes": ["create-skill-aliases", "authoring-actions", "hub-identity"], "resources": ["create-skill/SKILL.md"] },
+    "create-skill-parent": { "weight": 4, "classes": ["create-skill-parent-aliases", "authoring-actions", "hub-identity"], "resources": ["create-skill/SKILL.md"] },
+    "create-readme": { "weight": 4, "classes": ["create-readme-aliases", "authoring-actions", "hub-identity"], "resources": ["create-readme/SKILL.md"] },
+    "create-agent": { "weight": 4, "classes": ["create-agent-aliases", "authoring-actions", "hub-identity"], "resources": ["create-agent/SKILL.md"] },
+    "create-command": { "weight": 3, "classes": ["create-command-aliases", "authoring-actions", "hub-identity"], "resources": ["create-command/SKILL.md"] },
+    "create-feature-catalog": { "weight": 4, "classes": ["create-feature-catalog-aliases", "authoring-actions", "hub-identity"], "resources": ["create-feature-catalog/SKILL.md"] },
+    "create-manual-testing-playbook": { "weight": 4, "classes": ["create-manual-testing-playbook-aliases", "authoring-actions", "hub-identity"], "resources": ["create-manual-testing-playbook/SKILL.md"] },
+    "create-benchmark": { "weight": 3, "classes": ["create-benchmark-aliases", "authoring-actions", "hub-identity"], "resources": ["create-benchmark/SKILL.md"] },
+    "create-flowchart": { "weight": 3, "classes": ["create-flowchart-aliases", "authoring-actions", "hub-identity"], "resources": ["create-flowchart/SKILL.md"] },
+    "doc-quality": { "weight": 4, "classes": ["doc-quality-aliases", "quality-actions", "hub-identity"], "resources": ["doc-quality/SKILL.md"] }
+  },
+  "vocabularyClasses": {
+    "hub-identity": { "keywords": ["sk-doc", "documentation", "docs", "markdown", "mode-registry", "hub-router", "workflowmode", "packetkind", "authoring"] },
+    "authoring-actions": { "keywords": ["create", "make", "new", "scaffold", "generate", "write", "add", "author"] },
+    "quality-actions": { "keywords": ["validate", "score", "optimize", "check", "review", "harden", "improve", "audit"] },
+    "create-skill-aliases": { "keywords": ["skill", "create-skill", "sk-skill", "init_skill", "package_skill"] },
+    "create-skill-parent-aliases": { "keywords": ["parent skill", "parent hub", "nested packets", "mode packet", "sk-skill-parent"] },
+    "create-readme-aliases": { "keywords": ["readme", "folder readme", "install guide", "setup instructions"] },
+    "create-agent-aliases": { "keywords": ["agent", "create-agent", "agent persona", "subagent"] },
+    "create-command-aliases": { "keywords": ["command", "slash command", "create-command", "argument-hint"] },
+    "create-feature-catalog-aliases": { "keywords": ["feature catalog", "feature inventory", "feature-catalog"] },
+    "create-manual-testing-playbook-aliases": { "keywords": ["testing playbook", "manual testing", "test scenarios", "testing-playbook"] },
+    "create-benchmark-aliases": { "keywords": ["benchmark", "benchmark folder", "benchmark report", "mcp_server benchmarks"] },
+    "create-flowchart-aliases": { "keywords": ["flowchart", "ascii diagram", "decision tree", "swimlane", "ascii flowchart"] },
+    "doc-quality-aliases": { "keywords": ["doc quality", "document quality", "dqi", "quality score", "optimize doc", "validate doc", "human voice", "hvr"] }
+  }
+}

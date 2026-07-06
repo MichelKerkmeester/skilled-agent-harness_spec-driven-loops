@@ -1,0 +1,49 @@
+{
+  "key": "adv-zero-ext",
+  "verdict": "REVISED",
+  "rulings": [
+    {
+      "question": "Do surface-axis, runtime-loop, advisor-projection, or transform-verbs have a required base-case activator?",
+      "ruling": "No. ZERO active named extensions remains correct for the base hub.",
+      "rationale": "The extension matrix limits these to read-only surface bundles, explicit loop runtimes, lexical or alias-fold projection maps, and verb-frame routing; current sk-doc exposes keyword intent scoring plus resource loading for documentation/component creation workflows, not those activators.",
+      "evidence": ".opencode/specs/skilled-agent-orchestration/125-sk-doc-parent/001-research-and-canon/research/precomputed/named-extensions.txt:7-13; .opencode/skills/sk-doc/SKILL.md:20-163; .opencode/skills/sk-doc/SKILL.md:216-245; .opencode/skills/sk-doc/SKILL.md:282-347",
+      "confidence": "high"
+    },
+    {
+      "question": "Does create-skill-parent require a surface axis or advisor projection?",
+      "ruling": "No. Treat it as a second workflowMode under create-skill.",
+      "rationale": "Parent hubs are already a component-creation resource under the skill-creation area, with a PARENT_HUB intent and parent-hub resources; that is workflow routing, not a read-only surface bundle or lexical projection map.",
+      "evidence": ".opencode/skills/sk-doc/SKILL.md:61-64; .opencode/skills/sk-doc/SKILL.md:219-220; .opencode/skills/sk-doc/SKILL.md:235-236; .opencode/specs/skilled-agent-orchestration/125-sk-doc-parent/001-research-and-canon/research/precomputed/named-extensions.txt:7,9",
+      "confidence": "high"
+    },
+    {
+      "question": "Does install-guide folding require transform-verbs or deprecated-modes?",
+      "ruling": "No.",
+      "rationale": "Install guide is a current document-creation use case and its routed resources already combine readme assets with an install-guide reference, so folding it into create-readme can be ordinary alias/routerSignals behavior rather than a transform or retired-mode redirect.",
+      "evidence": ".opencode/skills/sk-doc/SKILL.md:104-116; .opencode/skills/sk-doc/SKILL.md:223; .opencode/skills/sk-doc/SKILL.md:239; .opencode/specs/skilled-agent-orchestration/125-sk-doc-parent/001-research-and-canon/research/precomputed/named-extensions.txt:10-11",
+      "confidence": "high"
+    },
+    {
+      "question": "Does backward-compatible advisor routing require advisor-projection?",
+      "ruling": "No.",
+      "rationale": "Current public signals are hub-level metadata and derived trigger phrases; named advisor-projection is only justified if the new hub introduces lexical or alias-fold projection maps.",
+      "evidence": ".opencode/skills/sk-doc/graph-metadata.json:41-78; .opencode/specs/skilled-agent-orchestration/125-sk-doc-parent/001-research-and-canon/research/precomputed/named-extensions.txt:9,13",
+      "confidence": "high"
+    },
+    {
+      "question": "Is any named extension genuinely needed for migration?",
+      "ruling": "Only deprecated-modes, conditionally, for Flowchart if it is intentionally retired instead of promoted to an active workflow packet.",
+      "rationale": "Flowchart is a current public sk-doc use case, intent, resource route, mode section, and graph trigger; if the conversion keeps the public entry as replacement guidance without active packet routing, the extension matrix says that is exactly deprecated-modes. If Flowchart becomes an active workflow packet, ZERO extensions stands.",
+      "evidence": ".opencode/skills/sk-doc/SKILL.md:90-103; .opencode/skills/sk-doc/SKILL.md:222; .opencode/skills/sk-doc/SKILL.md:238; .opencode/skills/sk-doc/SKILL.md:380-382; .opencode/skills/sk-doc/graph-metadata.json:73; .opencode/specs/skilled-agent-orchestration/125-sk-doc-parent/001-research-and-canon/research/precomputed/named-extensions.txt:11,13",
+      "confidence": "med"
+    }
+  ],
+  "artifact": "",
+  "risks": [
+    "If Flowchart is neither an active workflow packet nor a deprecated-modes shim, current public routing for FLOWCHART/ascii flowchart generation can resolve without a packet target: .opencode/skills/sk-doc/SKILL.md:90-103; .opencode/skills/sk-doc/graph-metadata.json:73",
+    "Declaring surface-axis, runtime-loop, advisor-projection, or transform-verbs without their activators would add unused semantics against the extension rule: .opencode/specs/skilled-agent-orchestration/125-sk-doc-parent/001-research-and-canon/research/precomputed/named-extensions.txt:7-13"
+  ],
+  "open": [
+    "Decide Flowchart disposition: retire with deprecated-modes redirect or add an active create-flowchart workflow packet; current source exposes it as a public mode: .opencode/skills/sk-doc/SKILL.md:90-103; .opencode/skills/sk-doc/SKILL.md:380-382"
+  ]
+}

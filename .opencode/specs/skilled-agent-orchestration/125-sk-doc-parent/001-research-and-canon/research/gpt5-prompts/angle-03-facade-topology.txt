@@ -1,0 +1,16 @@
+You are researching ONE angle of a plan to convert the sk-doc skill from a 6-mode monolith into a WORKFLOW-ONLY parent hub. Repo root is the CWD. Ground EVERY claim in file:line. Be efficient: read only the files needed, then answer. Do not exceed ~10 file reads.
+
+SEED (reconciled from prior foundation analysis — BUILD ON IT, do not rediscover the basics):
+- Target: convert the sk-doc skill from a 6-mode MONOLITH into a WORKFLOW-ONLY parent hub with a shared/ doc-quality backbone. Canon: ONE graph-metadata.json at the hub only; single mode-registry.json modes[] array (packetKind:workflow for all); hub-router.json; strictly two tiers (hub + nested packets); NO surface axis; ZERO named extensions (base case). Canon doc: .opencode/skills/sk-doc/references/skill_creation/parent_skills_nested_packets.md. Reference hub: .opencode/skills/sk-code/.
+- Proposed packet set: KEEP create-skill (+create-skill-parent as a 2nd workflowMode over the SAME packet; absorbs create-command templates), create-readme (install-guide folded), create-agent, create-feature-catalog, create-manual-testing-playbook, doc-quality (NEW). PROVISIONAL keep-or-fold: create-benchmark, create-changelog. shared/ backbone: generic validators + references/global/* + frontmatter/llms/template_rules/flowchart. FOLDED: create-command -> create-skill; install-guide -> create-readme; flowchart -> shared.
+- HARD LESSON (spec 124/022): over-decomposition — never mint a packet for generic doctrine or a thin overlay; fold it into shared/.
+- DOMINANT CONSTRAINT: ~151 external refs + the 7 /create:* command YAMLs + /doctor audit_descriptions.py import + git pre-commit hook + council test matrix hardcode sk-doc/ paths -> preserve via root facade symlinks for ZERO external edits.
+
+YOUR ANGLE (#3 facade-topology):
+Symlink facade topology for zero external edits: design the exact facade set (root scripts/, references/skill_creation/, assets/frontmatter_templates.md) that preserves the external refs, the 3 sibling-hub method-doc citations, the /doctor import, the pre-commit hook, and the council matrix. Enforce canonical-in-shared / symlink-inward; no reverse or cyclic links.
+
+Files/areas to inspect (keep it tight): run one grep: rg -l "skills/sk-doc/" .opencode/skills --glob "!sk-doc/**" | head; then read .opencode/skills/sk-code/SKILL.md (symlink pattern) and 2-3 of the referencing files
+
+Produce concrete, decisive, evidence-backed rulings a follow-up architecture-decision phase can act on. Output ONLY a single JSON object (no prose, no fences):
+{"angle":"facade-topology","rulings":[{"question":"...","ruling":"...","rationale":"...","evidence":"path:line","confidence":"high|med|low"}],"risks":["..."],"open":["..."]}
+Output nothing except the JSON object.

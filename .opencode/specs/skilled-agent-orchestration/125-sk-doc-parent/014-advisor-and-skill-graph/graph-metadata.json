@@ -1,0 +1,96 @@
+{
+  "schema_version": 1,
+  "packet_id": "skilled-agent-orchestration/125-sk-doc-parent/014-advisor-and-skill-graph",
+  "spec_folder": "skilled-agent-orchestration/125-sk-doc-parent/014-advisor-and-skill-graph",
+  "parent_id": "skilled-agent-orchestration/125-sk-doc-parent",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "sk-doc advisor and skill graph",
+      "125 advisor and skill graph",
+      "sk-doc parent phase 014"
+    ],
+    "key_topics": [
+      "sk-doc",
+      "advisor",
+      "skill",
+      "graph",
+      "125",
+      "parent",
+      "phase",
+      "014",
+      "monolith",
+      "parent-hub",
+      "conversion",
+      "feature"
+    ],
+    "importance_tier": "normal",
+    "status": "draft",
+    "key_files": [
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Depends On",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Phase",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Execute",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Phase 014 of the sk-doc monolith to parent-hub conversion",
+    "created_at": "2026-07-06T06:30:36.981Z",
+    "last_save_at": "2026-07-06T06:41:45.284Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "source_fingerprint": "sha256:92fc091059f574f1b5c210c803944477f0a42cc2a2dca1c3ea03659128c94d80",
+    "source_doc_hashes": {
+      "spec.md": "036273960fff6beeb1d4cd1c327c47b5b0cfac3c875ec1a625dc15023d0486c8"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

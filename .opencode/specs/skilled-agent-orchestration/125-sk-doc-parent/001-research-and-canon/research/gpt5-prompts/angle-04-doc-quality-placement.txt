@@ -1,0 +1,16 @@
+You are researching ONE angle of a plan to convert the sk-doc skill from a 6-mode monolith into a WORKFLOW-ONLY parent hub. Repo root is the CWD. Use Read/Grep/Glob to ground EVERY claim in file:line.
+
+SEED (reconciled from prior foundation analysis — BUILD ON IT, do not rediscover the basics):
+- Target: convert the sk-doc skill from a 6-mode MONOLITH into a WORKFLOW-ONLY parent hub with a shared/ doc-quality backbone. Canon: ONE graph-metadata.json at the hub only; single mode-registry.json modes[] array (packetKind:workflow for all); hub-router.json; strictly two tiers (hub + nested packets); NO surface axis; ZERO named extensions (base case). Canon doc: .opencode/skills/sk-doc/references/skill_creation/parent_skills_nested_packets.md. Reference hub: .opencode/skills/sk-code/ (SKILL.md, mode-registry.json, hub-router.json, shared/ + symlinks).
+- Proposed packet set: KEEP create-skill (+create-skill-parent as a 2nd workflowMode over the SAME packet; absorbs create-command templates), create-readme (install-guide folded as a variant), create-agent, create-feature-catalog, create-manual-testing-playbook, doc-quality (NEW: validate/score/optimize an existing doc, the sk-design-audit analog). PROVISIONAL keep-or-fold: create-benchmark, create-changelog. shared/ backbone: generic validators (extract_structure/validate_document/quick_validate/frontmatter-version) + references/global/* + frontmatter/llms/template_rules/flowchart assets. FOLDED: create-command -> create-skill templates; install-guide -> create-readme; flowchart -> shared assets.
+- HARD LESSON (spec 124/022): over-decomposition — never mint a packet for generic doctrine or a thin overlay of another mode; fold it into shared/. sk-code once had 8 sub-skills; 3 were near-empty routing shells and were collapsed back into shared/.
+- DOMINANT CONSTRAINT: ~151 external refs + the 7 /create:* command YAMLs (.opencode/commands/create/) + /doctor audit_descriptions.py import + the git pre-commit hook + the council test matrix all hardcode sk-doc/ paths -> preserve via root facade symlinks for ZERO external edits.
+
+YOUR ANGLE (#4 doc-quality-placement):
+doc-quality core placement: is doc-quality a routable advisor-visible WORKFLOW packet (sk-design-audit analog, improve/score/optimize an existing doc) or pure shared backbone the hub absorbs? Does it warrant a /doc:quality command? Where do optimization.md / hvr_rules.md / quick_reference.md / workflows.md live — shared authoring vocabulary vs doc-quality-owned procedure?
+
+Files/areas to inspect for this angle: .opencode/skills/sk-doc/references/global/*.md, .opencode/skills/sk-doc/SKILL.md sections on Document Quality, and .opencode/skills/sk-design/mode-registry.json (audit mode as the analog)
+
+Produce concrete, evidence-backed rulings that a follow-up architecture-decision phase can act on. Prefer decisive rulings over hedging; when genuinely unresolved, say so in "open". Output ONLY a single JSON object (no prose, no markdown fences), shape:
+{"angle":"doc-quality-placement","rulings":[{"question":"...","ruling":"...","rationale":"...","evidence":"path:line","confidence":"high|med|low"}],"risks":["..."],"open":["..."]}
+Output nothing except the JSON object.
