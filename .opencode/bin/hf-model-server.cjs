@@ -424,7 +424,11 @@ async function loadHfModel(options = {}) {
   try {
     console.warn(`[hf-model-server] Loading ${modelName} (dtype=${dtype}, first load may take 15-30s)...`);
 
-    const { pipeline } = await importer();
+    // transformers v3 ships as CJS; under dynamic import() its exports arrive on
+    // the module's `default` rather than as synthesized named exports, so reach
+    // through it when present (falling back to the namespace for ESM builds).
+    const imported = await importer();
+    const { pipeline } = imported?.default ?? imported;
 
     let targetDevice = getOptimalDevice();
     console.error(`[hf-model-server] Attempting device: ${targetDevice}`);
@@ -522,14 +526,22 @@ function extractorRunner(extractor) {
 }
 
 function embeddingData(output) {
-  const data = output && typeof output === 'object' && Object.prototype.hasOwnProperty.call(output, 'data')
+  // The transformers.js tensor exposes `data` as a prototype getter, not an own
+  // property, so hasOwnProperty misses it and the raw tensor leaks through as
+  // "no embedding data". Use `in` to reach the getter.
+  const data = output && typeof output === 'object' && 'data' in output
     ? output.data
     : output;
   if (data instanceof Float32Array) {
     return data;
   }
-  if (Array.isArray(data)) {
-    return new Float32Array(data);
+  // A transformers.js tensor's `data` can be a Float32Array constructed in a
+  // different module realm, so a cross-realm `instanceof` check misses it even
+  // though it is real embedding data. Accept any numeric ArrayBuffer view (or a
+  // plain array) and normalize into a canonical Float32Array rather than
+  // rejecting a valid embedding as "no data".
+  if (ArrayBuffer.isView(data) || Array.isArray(data)) {
+    return Float32Array.from(data);
   }
   throw new Error('[hf-model-server] Extractor output does not contain embedding data');
 }
