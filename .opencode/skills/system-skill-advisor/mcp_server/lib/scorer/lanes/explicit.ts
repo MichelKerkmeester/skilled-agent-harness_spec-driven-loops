@@ -162,6 +162,8 @@ const PHRASE_BOOSTS: Readonly<Record<string, readonly [string, number][]>> = {
   'review the routing taxonomy': [['sk-code', 1.1], ['sk-doc', -0.4]],
   'review the packet docs': [['sk-code', 1.2]],
   'audit packet docs': [['sk-code', 1.2]],
+  'audit whether': [['sk-code', 1.2]],
+  'audit the': [['sk-code', 1.0]],
   'documented consistently': [['sk-code', 1]],
   'scoped correctly': [['sk-code', 1]],
   'iteration is scoped': [['sk-code', 1]],
