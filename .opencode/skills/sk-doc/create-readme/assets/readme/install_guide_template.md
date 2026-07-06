@@ -985,8 +985,8 @@ You now have [TOOL_NAME] installed and configured. [BRIEF_USAGE_INSTRUCTION]
 - [core_standards.md](../../../shared/references/global/core_standards.md) - Document formatting standards
 
 ### Examples
-- [MCP - Spec Kit Memory.md](../../../../install_guides/MCP%20-%20Spec%20Kit%20Memory.md) - MCP server example
-- [MCP - Code Mode.md](../../../../install_guides/MCP%20-%20Code%20Mode.md) - Code Mode installation
+- [MCP - Spec Kit Memory.md](../../../../../install_guides/MCP%20-%20Spec%20Kit%20Memory.md) - MCP server example
+- [MCP - Code Mode.md](../../../../../install_guides/MCP%20-%20Code%20Mode.md) - Code Mode installation
 
 ### Skill Reference
 - [sk-doc SKILL.md](../../SKILL.md) - Mode 4: Install Guide Creation

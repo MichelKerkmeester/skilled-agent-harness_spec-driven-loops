@@ -178,5 +178,5 @@ A: `/create:sk-skill` for a new skill under `.opencode/skills/`. `/create:sk-ski
 | [`scripts/extract_structure.py`](./scripts/extract_structure.py) | Full DQI analysis with type-specific checklists and JSON output |
 | [`scripts/init_skill.py`](./scripts/init_skill.py) | Skill directory scaffold from the template set |
 | [`scripts/package_skill.py`](./scripts/package_skill.py) | Validate and package a skill to a zip file |
-| [`assets/skill/`](./assets/skill/) | SKILL.md, README, reference and asset templates for skill creation |
-| [`assets/flowcharts/`](./assets/flowcharts/) | Reusable ASCII flowchart patterns for workflows and decision trees |
+| [`assets/skill/`](./create-skill/assets/skill/) | SKILL.md, README, reference and asset templates for skill creation |
+| [`assets/flowcharts/`](./create-flowchart/assets/flowcharts/) | Reusable ASCII flowchart patterns for workflows and decision trees |
