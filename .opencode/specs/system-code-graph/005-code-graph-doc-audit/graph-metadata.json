@@ -198,7 +198,7 @@
     ],
     "causal_summary": "The 008 parent identified a coverage gap for system-code-graph documentation after the 028 code-graph work",
     "created_at": "2026-07-05T13:17:55.597Z",
-    "last_save_at": "2026-07-06T17:15:58.309Z",
+    "last_save_at": "2026-07-06T17:28:25.500Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,13 +208,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:c7ab67b9cdb736aa013e7079c1bc45ec48c20fb1e3abfe496997c63ce50e7ac4",
+    "source_fingerprint": "sha256:2c206e2c0346dbed53d5f832427ec13b8a3b386a28cf4ea9551601df41f64aff",
     "source_doc_hashes": {
-      "spec.md": "f359794ccc9c8667929935a20bed008792b859b1f5b249ea95b75f2db2700225",
+      "spec.md": "218a295c3c9915eec3d2cf8a6fe97d51ea2d176ce47e58516e3975b20c82cf1f",
       "plan.md": "7cdf257632653f313442e71d7ca4e6667d9e8c3ba3d7c5e458cf531a302787dc",
       "tasks.md": "9168a66686a8a584f8b0eb667d24827842a6d2577ed6afd868381ee6f4d7420d",
       "checklist.md": "e47b0b31b9e1186d82f1260f7cba8e99dfbef169caf281ea044bcf0fde8b8291",
-      "implementation-summary.md": "200b22893be318052a915b6857df7a9606a8f521f8f13ee5c510c9ff908c59cc"
+      "implementation-summary.md": "7524f58f31f6d2ed28c1f0fb4cc73ec4603069eee74692cf05a6f4e5e6e79f68"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -9,7 +9,7 @@ trigger_phrases:
   - "doc-symbol lane"
 importance_tier: "important"
 contextType: "general"
-parent: "../spec.md"
+parent: "system-code-graph"
 predecessor: "011-code-graph-doc-audit"
 successor: "012-fix-stress-docs"
 _memory:

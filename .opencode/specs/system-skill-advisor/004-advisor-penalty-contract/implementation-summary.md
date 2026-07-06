@@ -6,7 +6,7 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-skill-advisor/004-advisor-penalty-contract"
-    last_updated_at: "2026-07-06T17:16:00.752Z"
+    last_updated_at: "2026-07-06T17:28:26.576Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "Documented and locked the implicit penalty"
     next_safe_action: "Run the full advisor cli test pass, then have the user review and commit"
@@ -36,7 +36,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 007-dark-flag-graduation/011-graduation-follow-ups/004-advisor-penalty-contract |
+@4-advisor-penalty-contract |
 | **Completed** | 2026-06-24, status COMPLETE |
 | **Level** | 2 |
 <!-- /ANCHOR:metadata -->

@@ -10,7 +10,7 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-code-graph/006-fix-code-graph-docs"
-    last_updated_at: "2026-07-06T17:15:58.712Z"
+    last_updated_at: "2026-07-06T17:28:25.838Z"
     last_updated_by: "opencode"
     recent_action: "Summarize system-code-graph documentation alignment"
     next_safe_action: "No further action required"
@@ -42,7 +42,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 011-fix-code-graph-docs |
+@6-fix-code-graph-docs |
 | **Completed** | 2026-07-05 |
 | **Level** | 1 |
 <!-- /ANCHOR:metadata -->

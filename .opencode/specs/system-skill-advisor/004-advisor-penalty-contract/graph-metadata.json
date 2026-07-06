@@ -192,7 +192,7 @@
     ],
     "causal_summary": "The 007 graduation suite cut the explicit advisor self-recommendation guard (`SPECKITADVISORSELFRECOMMENDATIONGUARD`) as redundant",
     "created_at": "2026-06-24T07:59:12.248Z",
-    "last_save_at": "2026-07-06T17:16:00.752Z",
+    "last_save_at": "2026-07-06T17:28:26.576Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -202,13 +202,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:c97cc1e17d24a61a6e0b87f454dff4407815403522f02dd682b2defcb336de53",
+    "source_fingerprint": "sha256:617e9eff4018718e460ff22db63293efea9191e01d0fa193ec7920a224fa66b9",
     "source_doc_hashes": {
       "spec.md": "fca6c2681dd88dde19a3a6d326e7d568d6a777fc4e7599fcad96ca7655b26481",
       "plan.md": "69172d92208a2863e55bff40790e2710242e66861b7253cc7e1f54d9811ad130",
       "tasks.md": "6b94309ddf38c77682896261afff7f000049fe7a912c0a387e7c76e18d55561c",
       "checklist.md": "a7b3b59fe283fe97485763f1e812eb6ba3632ae125255cae799c5b395edd0223",
-      "implementation-summary.md": "9bc4191f9fc82e528ad66e580b29140b430360a3ab579316979d44f9bc3b5f5b"
+      "implementation-summary.md": "facdcbcd8f0d7c7671c56b39abfbf49586467e211be6bb5256e547ef65a35b72"
     },
     "last_active_child_id": null,
     "last_active_at": null

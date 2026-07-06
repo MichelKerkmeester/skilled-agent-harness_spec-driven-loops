@@ -8,7 +8,7 @@ trigger_phrases:
   - "deep research evidence labels"
 importance_tier: "normal"
 contextType: "implementation"
-parent: "../spec.md"
+parent: "system-deep-loop"
 predecessor: "012-stress-and-skillmd-audit"
 successor: "014-recorded-failure-closure"
 _memory:

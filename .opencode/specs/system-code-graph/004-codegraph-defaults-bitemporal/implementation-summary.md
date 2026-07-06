@@ -10,7 +10,7 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-code-graph/004-codegraph-defaults-bitemporal"
-    last_updated_at: "2026-07-06T17:15:57.901Z"
+    last_updated_at: "2026-07-06T17:28:25.179Z"
     last_updated_by: "claude-opus"
     recent_action: "Completed both follow-ups with tsc clean and tests authored"
     next_safe_action: "Run the full vitest suite on the CLI executor"
@@ -40,7 +40,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 007-dark-flag-graduation/011-graduation-follow-ups/001-codegraph-defaults-bitemporal |
+@4-codegraph-defaults-bitemporal |
 | **Completed** | 2026-06-24 |
 | **Level** | 2 |
 | **Actual Effort** | 2.75 hours |

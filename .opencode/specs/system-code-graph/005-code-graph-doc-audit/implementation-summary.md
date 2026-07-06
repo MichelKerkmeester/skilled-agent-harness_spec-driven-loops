@@ -10,7 +10,7 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-code-graph/005-code-graph-doc-audit"
-    last_updated_at: "2026-07-06T17:15:58.309Z"
+    last_updated_at: "2026-07-06T17:28:25.500Z"
     last_updated_by: "opencode"
     recent_action: "Complete code graph documentation audit"
     next_safe_action: "Run strict validation for the audit phase"
@@ -28,7 +28,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 011-code-graph-doc-audit |
+@5-code-graph-doc-audit |
 | **Completed** | 2026-07-05 |
 | **Level** | 2 |
 | **Status** | Complete |

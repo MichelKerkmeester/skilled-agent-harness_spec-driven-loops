@@ -10,7 +10,7 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/041-deep-research-loop-instrumentation"
-    last_updated_at: "2026-07-06T17:15:59.934Z"
+    last_updated_at: "2026-07-06T17:28:26.224Z"
     last_updated_by: "opencode"
     recent_action: "Ship inert novelty detector instrumentation"
     next_safe_action: "Run strict validation for the instrumentation phase"
@@ -28,7 +28,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 013-deep-research-loop-instrumentation |
+D1-deep-research-loop-instrumentation |
 | **Completed** | 2026-07-05 |
 | **Level** | 2 |
 | **Status** | Complete |

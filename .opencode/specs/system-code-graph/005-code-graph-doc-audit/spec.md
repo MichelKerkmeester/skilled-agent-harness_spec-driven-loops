@@ -8,7 +8,7 @@ trigger_phrases:
   - "parser resilience documentation gap"
 importance_tier: "normal"
 contextType: "general"
-parent: "../spec.md"
+parent: "system-code-graph"
 predecessor: "002-false-now-doc-corrections"
 successor: "011-fix-code-graph-docs"
 _memory:
