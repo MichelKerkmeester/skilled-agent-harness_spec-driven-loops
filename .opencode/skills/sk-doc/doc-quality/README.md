@@ -26,8 +26,12 @@ Packet-local files:
 
 - `SKILL.md` - authoritative workflow contract for `doc-quality`.
 - `README.md` - human orientation for this packet.
-- `references/workflows.md` - execution modes, validation sequence, troubleshooting, and workflow patterns.
-- `references/optimization.md` - transformation patterns for AI-friendly, question-answering documentation.
+- `references/README.md` - route map over the reference set (start here).
+- `references/workflows.md` - the four execution modes and mode selection (externally cited entry file).
+- `references/validation_and_enforcement.md` - validation touchpoints, enforcement approval prompts, phase chaining, and troubleshooting.
+- `references/workflow_examples.md` - worked command examples and batch/multi-file processing.
+- `references/optimization.md` - optimization procedure: heuristics, analysis workflow, README strategy, checklist, and iteration (externally cited entry file).
+- `references/transformation_patterns.md` - the 16 transformation patterns with worked before/after examples.
 - `changelog/.gitkeep` - packet-local changelog placeholder.
 
 There are no packet-local `assets/` or `scripts/` directories in `doc-quality`.
@@ -61,7 +65,7 @@ python ../shared/scripts/validate_document.py README.md --type readme
 Typical workflow:
 
 1. Read the target document.
-2. Load `references/workflows.md`.
+2. Load `references/README.md` (route map) and, for modes, `references/workflows.md`.
 3. Run `../shared/scripts/extract_structure.py <file>`.
 4. Interpret DQI and checklist output with `../shared/references/global/validation.md`.
 5. Apply HVR review using `../shared/references/global/hvr_rules.md`.

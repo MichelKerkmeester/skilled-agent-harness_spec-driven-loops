@@ -11,7 +11,7 @@ version: 1.0.0.0
 
 `create-changelog` is the changelog-authoring workflow packet of the `sk-doc` family. It creates global component changelog files under `.opencode/changelog/{component}/v{VERSION}.md` or packet-local nested changelogs under a spec packet's `changelog/` folder, depending on source topology.
 
-The executable contract lives here: resolve the work source, detect global vs packet-local output, calculate the version when global versioning applies, generate content from the canonical format, validate, then write the file. Use `../shared/assets/changelog_template.md` as the shared global changelog template and `references/changelog_creation.md` only for supplementary worked examples or edge cases.
+The executable contract lives here: resolve the work source, detect global vs packet-local output, calculate the version when global versioning applies, generate content from the canonical format, validate, then write the file. Use `../shared/assets/changelog_template.md` as the shared global changelog template and the `references/` set (routed by `references/README.md`) only for supplementary worked examples or edge cases.
 
 ---
 
@@ -472,7 +472,7 @@ If validation fails, fix blocking issues before delivery or report the exact blo
 Use these only when the core path above is not enough:
 
 1. `../shared/assets/changelog_template.md` for the canonical global changelog and release-note format.
-2. `references/changelog_creation.md` for supplementary worked examples and uncommon edge cases.
+2. `references/README.md` route-map to the overflow set: `references/worked_examples.md` (filled-in global and packet-local entries), `references/version_bump_rules.md` (concrete four-part version choices), and `references/topology_edge_cases.md` (placement, back-dating, source conflicts, and the optional GitHub release flow).
 3. `.opencode/commands/create/changelog.md` for the thin `/create:changelog` router boundary.
 4. `.opencode/commands/create/assets/create_changelog_auto.yaml` and `create_changelog_confirm.yaml` for the source workflows this packet inlines. `/create:changelog` runs `:auto` (autonomous) or `:confirm` (interactive checkpoints); both resolve to this same packet contract.
 

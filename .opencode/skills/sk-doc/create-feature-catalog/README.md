@@ -19,7 +19,9 @@ Do not use it for roadmap-only docs, manual test scenario matrices, small README
 ## What's Inside
 
 - `SKILL.md` - authoritative packet contract, routing rules, authoring workflow, validation expectations, and hard rules.
-- `references/feature_catalog_creation.md` - creation guide that must be loaded before authoring or restructuring a catalog.
+- `references/README.md` - route-map into the reference overflow, loaded before authoring or restructuring a catalog.
+- `references/examples.md` - annotated walkthrough of a shipped feature catalog (root-catalog and per-feature anatomy).
+- `references/common_pitfalls.md` - recurring catalog defects with worked fixes and the template-versus-reference split.
 - `assets/feature_catalog/feature_catalog_template.md` - scaffold for the root `feature_catalog/feature_catalog.md`.
 - `assets/feature_catalog/feature_catalog_snippet_template.md` - scaffold for each per-feature reference file.
 - `changelog/.gitkeep` - placeholder for packet changelog history.
@@ -54,7 +56,7 @@ Each root catalog entry should map to exactly one per-feature file.
 Then follow the packet flow:
 
 1. Read the target system docs, source files, commands, tests, and existing README material.
-2. Load `references/feature_catalog_creation.md`.
+2. Load `references/README.md`, which routes to the worked example and pitfalls references.
 3. Decide whether the feature surface is large enough to warrant a catalog.
 4. Create the root catalog from `assets/feature_catalog/feature_catalog_template.md`.
 5. Create one numbered category folder per root section.

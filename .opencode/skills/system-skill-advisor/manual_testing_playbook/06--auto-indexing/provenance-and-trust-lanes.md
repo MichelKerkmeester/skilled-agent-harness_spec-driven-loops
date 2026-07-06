@@ -143,12 +143,12 @@ Target skill metadata read from `.opencode/skills/sk-doc/graph-metadata.json`:
     "key_files": [
       ".opencode/skills/sk-doc/SKILL.md",
       ".opencode/skills/sk-doc/README.md",
-      ".opencode/skills/sk-doc/references/global/validation.md",
-      ".opencode/skills/sk-doc/references/skill_creation.md",
-      ".opencode/skills/sk-doc/assets/readme/readme_template.md",
+      ".opencode/skills/sk-doc/shared/references/global/validation.md",
+      ".opencode/skills/sk-doc/create-skill/references/README.md",
+      ".opencode/skills/sk-doc/create-readme/assets/readme/readme_template.md",
       ".opencode/skills/sk-doc/scripts/validate_document.py",
       ".opencode/skills/sk-doc/scripts/extract_structure.py",
-      ".opencode/skills/sk-doc/assets/template_rules.json"
+      ".opencode/skills/sk-doc/shared/assets/template_rules.json"
     ],
     "causal_summary": "Unified markdown and OpenCode component specialist providing document quality enforcement, content optimization, component creation workflows (skills, agents, commands), ASCII flowcharts, install guides, feature catalogs, and manual testing playbooks. It matters because it gives the workspace a single specialist for creating and validating high-quality markdown components and documentation artifacts.",
     "source_docs": [
@@ -156,7 +156,7 @@ Target skill metadata read from `.opencode/skills/sk-doc/graph-metadata.json`:
       "README.md",
       "references/global/validation.md",
       "references/skill_creation.md",
-      "references/readme_creation.md"
+      "references/README.md"
     ],
     "created_at": "2026-04-13T00:00:00Z",
     "last_updated_at": "2026-04-13T23:00:00Z"
@@ -186,7 +186,7 @@ jq '.derived | {provenance_fingerprint, trust_lane, intent_signals, source_docs}
     "README.md",
     "references/global/validation.md",
     "references/skill_creation.md",
-    "references/readme_creation.md"
+    "references/README.md"
   ]
 }
 ```
@@ -204,11 +204,11 @@ Found 2 matches
 Local docs/assets source check returned paths including:
 
 ```text
-/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/sk-doc/assets/frontmatter_templates.md
-/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/sk-doc/assets/testing_playbook/manual_testing_playbook_template.md
-/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/sk-doc/references/global/validation.md
-/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/sk-doc/references/skill_creation.md
-/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/sk-doc/references/readme_creation.md
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/sk-doc/shared/assets/frontmatter_templates.md
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/sk-doc/create-manual-testing-playbook/assets/testing_playbook/manual_testing_playbook_template.md
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/sk-doc/shared/references/global/validation.md
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/sk-doc/create-skill/references/README.md
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/sk-doc/create-readme/references/README.md
 ```
 
 The scenario command below was not run because this manual execution was constrained to write only this scenario file, and `touch` would modify `.opencode/skills/sk-doc/SKILL.md` metadata:

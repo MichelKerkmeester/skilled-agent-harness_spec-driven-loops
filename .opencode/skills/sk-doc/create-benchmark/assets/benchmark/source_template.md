@@ -19,7 +19,7 @@ Usage:
 
 Replace every [PLACEHOLDER]. Do not leave unfilled brackets in the shipped file.
 
-Creation reference: .opencode/skills/sk-doc/create-benchmark/references/benchmark_creation.md
+Creation reference: .opencode/skills/sk-doc/create-benchmark/SKILL.md
 -->
 
 # SOURCE: [BENCHMARK_TOPIC] ([PROMOTION_DATE_LONG])

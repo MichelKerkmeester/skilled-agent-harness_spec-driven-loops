@@ -11,7 +11,7 @@ version: 1.0.0.0
 
 `create-command` is the command-authoring workflow packet of the `sk-doc` parent hub. It creates and improves OpenCode slash commands under `.opencode/commands/` with executable workflows, precise frontmatter, required input gates, least-privilege tools, and router/presentation separation when needed.
 
-This SKILL.md contains the core creation workflow. Use `assets/command/command_template.md`, `assets/command/command_presentation_template.md`, and `../shared/` only for exhaustive examples, edge cases, and validator implementation detail.
+This SKILL.md contains the core creation workflow. Use the `references/` route map (`references/README.md`), `assets/command/command_template.md`, `assets/command/command_presentation_template.md`, and `../shared/` only for exhaustive examples, edge cases, and validator implementation detail.
 
 This packet is lean and self-contained. The advisor identity lives at the `sk-doc` hub root; do not add packet-local `graph-metadata.json`.
 
@@ -368,7 +368,11 @@ Escalate if:
 
 Use these only for overflow detail, long examples, and exact skeletons:
 
-- `references/command_creation.md` - this packet's overflow creation reference: a worked command example, the router/presentation split, argument-hint patterns, `:auto`/`:confirm` mode design, and common pitfalls.
+- `references/README.md` - overflow route map for this packet; indexes the single-concern reference files below.
+- `references/worked_example.md` - the canonical file contract plus a fully worked split command (router `.md` and presentation `.txt`).
+- `references/router_presentation_split.md` - router/presentation ownership, the before/after split transformation, and the behavior-preserving rule.
+- `references/argument_hints_and_modes.md` - argument-hint design patterns, `:auto`/`:confirm` mode design, and frontmatter/description budget tips.
+- `references/common_pitfalls.md` - command-vs-skill-vs-agent selection and the common command-authoring mistakes table.
 - `assets/command/command_template.md` - exhaustive command type templates, examples, vocabulary, and validation checklist.
 - `assets/command/command_presentation_template.md` - full `_presentation.txt` skeleton for split command families.
 - `../shared/references/global/core_standards.md` - shared document quality standards.

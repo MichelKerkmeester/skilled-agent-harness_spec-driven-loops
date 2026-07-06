@@ -74,7 +74,7 @@ Load the file that matches the current task:
 - [core_standards.md](../../shared/references/global/core_standards.md) - Document type rules and structural requirements
 - [validation.md](../../shared/references/global/validation.md) - Quality scoring and validation workflows
 - [quick_reference.md](../../shared/references/global/quick_reference.md) - Quick command reference
-- [install_guide_creation.md](../../create-readme/references/install_guide_creation.md) - Install guide standards and workflow
+- [references/README.md](../../create-readme/references/README.md) - Install guide standards and workflow
 
 ---
 

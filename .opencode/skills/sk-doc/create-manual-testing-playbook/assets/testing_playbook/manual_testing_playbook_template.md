@@ -304,7 +304,7 @@ This section records wave planning and capacity guidance for the manual testing 
 Verify {OBJECTIVE}.
 
 #### Scenario Contract
-Prompt: `{PROMPT — natural-human by default; use RCAF "As a {ROLE}, ..." only when actor is an AI orchestrator. See manual_testing_playbook_creation.md §5.}`
+Prompt: `{PROMPT — natural-human by default; use RCAF "As a {ROLE}, ..." only when actor is an AI orchestrator. See references/prompt_voice.md.}`
 
 {SCENARIO_CONTRACT_SUMMARY}
 
@@ -324,7 +324,7 @@ Desired user-visible outcome: {DESIRED_USER_OUTCOME}
 Verify {OBJECTIVE_2}.
 
 #### Scenario Contract
-Prompt: `{PROMPT_2 — natural-human by default; use RCAF only for orchestrator-as-actor scenarios per manual_testing_playbook_creation.md §5}`
+Prompt: `{PROMPT_2 — natural-human by default; use RCAF only for orchestrator-as-actor scenarios per references/prompt_voice.md}`
 
 {SCENARIO_CONTRACT_SUMMARY_2}
 
@@ -387,7 +387,7 @@ Operators run the exact prompt and command sequence for `{FEATURE_ID}` and confi
 
 - Objective: {OBJECTIVE}
 - Real user request: `{REAL_USER_REQUEST}`
-- Prompt: `{PROMPT — natural-human by default; use RCAF "As a {ROLE}, ..." only when actor is an AI orchestrator. See manual_testing_playbook_creation.md §5.}`
+- Prompt: `{PROMPT — natural-human by default; use RCAF "As a {ROLE}, ..." only when actor is an AI orchestrator. See references/prompt_voice.md.}`
 - Expected execution process: {EXPECTED_PROCESS}
 - Expected signals: {EXPECTED_SIGNALS}
 - Desired user-visible outcome: {DESIRED_USER_OUTCOME}

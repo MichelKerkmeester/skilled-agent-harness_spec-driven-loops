@@ -17,7 +17,7 @@ Do not use it for authoring prose docs, READMEs, skills, agents, or commands —
 | Path | Purpose |
 | --- | --- |
 | `SKILL.md` | Authoritative packet contract for `/create:changelog`: the inline creation workflow, versioning rules, topology-awareness, and the entry format. |
-| `references/changelog_creation.md` | Overflow detail: fully worked global and packet-local examples, the version-bump decision table, edge cases, and the GitHub-release flow. |
+| `references/` | Overflow detail, routed by `references/README.md`: `worked_examples.md` (fully worked global and packet-local entries), `version_bump_rules.md` (four-part version choices), and `topology_edge_cases.md` (placement, back-dating, source conflicts, and the GitHub-release flow). |
 | `changelog/.gitkeep` | Placeholder for this packet's own changelog history. |
 | `assets/` | Not present. The changelog template is a shared standard at `../shared/assets/changelog_template.md`. |
 | `scripts/` | Not present. Use the shared sk-doc validators from `../shared/scripts/`. |

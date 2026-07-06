@@ -4,7 +4,7 @@ category: 01--intent-detection
 title: 'AGENT_COMMAND intent: author paired @agent and /create command'
 expected_intent: AGENT_COMMAND
 expected_resources:
-  - references/agent_creation.md
+  - references/README.md
   - assets/agent_template.md
   - assets/command/command_template.md
 expected_token_range_input: 1000-2500
@@ -57,10 +57,10 @@ Author an @analyze agent and paired /create:analyze command using the standard t
 
 - **Intent picked**: `AGENT_COMMAND`
 - **Resources loaded**:
-  - `references/agent_creation.md`
+  - `references/README.md`
   - `assets/agent_template.md`
   - `assets/command/command_template.md`
-- **Outcome**: CLI loads agent-creation reference + both templates and produces two file scaffolds (`@analyze` agent definition and `/create:analyze` command) with the dispatch wiring described in `agent_creation.md`.
+- **Outcome**: CLI loads agent-creation reference + both templates and produces two file scaffolds (`@analyze` agent definition and `/create:analyze` command) with the dispatch wiring described in `references/README.md`.
 
 ## Cross-CLI Variants
 

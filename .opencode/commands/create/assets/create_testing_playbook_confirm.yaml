@@ -156,13 +156,13 @@ operation_router:
       - manual_testing_playbook/NN--category-name/feature-name.md
 
 reference_sources:
-  specific_creation: .opencode/skills/sk-doc/references/manual_testing_playbook_creation.md
-  core_standards: .opencode/skills/sk-doc/references/global/core_standards.md
-  validation: .opencode/skills/sk-doc/references/global/validation.md
+  specific_creation: .opencode/skills/sk-doc/create-manual-testing-playbook/references/README.md
+  core_standards: .opencode/skills/sk-doc/shared/references/global/core_standards.md
+  validation: .opencode/skills/sk-doc/shared/references/global/validation.md
 
 template_sources:
-  root_playbook: .opencode/skills/sk-doc/assets/testing_playbook/manual_testing_playbook_template.md
-  feature_file: .opencode/skills/sk-doc/assets/testing_playbook/manual_testing_playbook_snippet_template.md
+  root_playbook: .opencode/skills/sk-doc/create-manual-testing-playbook/assets/testing_playbook/manual_testing_playbook_template.md
+  feature_file: .opencode/skills/sk-doc/create-manual-testing-playbook/assets/testing_playbook/manual_testing_playbook_snippet_template.md
 
 validation_scripts:
   validate_document: .opencode/skills/sk-doc/scripts/validate_document.py
@@ -277,7 +277,7 @@ workflow:
   step_3_template_loading:
     purpose: Load references and both templates
     activities:
-      - Read manual_testing_playbook_creation.md
+      - Read references/README.md
       - Read manual_testing_playbook_template.md
       - Read manual_testing_playbook_snippet_template.md
       - Extract the canonical root and feature-file section contracts

@@ -48,6 +48,16 @@ Measurable retrieval surface + shipped spec packet with accepted ADRs + stable f
   NO  -> Keep results in the spec packet's evidence/ directory
 ```
 
+### Trigger Signals
+
+You will know a benchmark folder is warranted when:
+
+- An ADR just promoted a non-trivial default change: production now runs on a new embedder, reranker, retrieval pipeline, or runtime setting because of measured evidence, and operators inside the MCP code will ask "why this default?"
+- The spec packet has a clean `benchmark-results.md` headline backed by five or more ADRs of context. The headline is the story to promote; the ADRs are the audit trail to point back to.
+- A reader has already asked "where are the benchmark numbers?" and you pointed at a deep spec path. That question recurs every time someone touches the MCP code.
+- You are about to write the same comparison table twice, once in a README and once in a release note. Promote it once and link both places.
+- A sibling skill ships a benchmark folder and your skill has an analogous retrieval surface. Match the layout so operators moving between skills do not relearn the structure.
+
 ### When NOT to Use
 
 Skip this workflow when:
@@ -100,7 +110,7 @@ Required and optional files:
 
 Use `assets/benchmark/benchmark_report_template.md` for `benchmark_report.md` and `assets/benchmark/source_template.md` for `SOURCE.md`.
 
-Reference `references/benchmark_creation.md` only for deep overflow such as case studies, sibling examples, and uncommon edge cases.
+Reference `references/README.md` for deep overflow: it routes to the case studies, the report worked example, and common pitfalls.
 
 ---
 

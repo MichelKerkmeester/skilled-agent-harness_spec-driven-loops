@@ -23,8 +23,9 @@ Do not use it for general prose review, changelogs, release notes, non-markdown 
 | Path | Purpose |
 | --- | --- |
 | `SKILL.md` | Authoritative workflow contract: routing rules, README and install-guide workflows, output shapes and validation expectations. |
-| `references/readme_creation.md` | README type selection, progressive disclosure, voice and section standards. |
-| `references/install_guide_creation.md` | Five-phase install-guide workflow, validation checkpoints and STOP-block rules. |
+| `references/README.md` | Overflow route map indexing the `readme/` and `install_guide/` reference groups. |
+| `references/readme/` | README type, voice, writing-pattern and quality overflow across three single-concern files. |
+| `references/install_guide/` | Install-guide section examples, platform config and quality standards across two single-concern files. |
 | `assets/readme/readme_template.md` | Template for project, skill, feature and component READMEs. |
 | `assets/readme/readme_code_template.md` | Template for source-code folder READMEs, including diagram examples. |
 | `assets/readme/install_guide_template.md` | Template for install guides. |

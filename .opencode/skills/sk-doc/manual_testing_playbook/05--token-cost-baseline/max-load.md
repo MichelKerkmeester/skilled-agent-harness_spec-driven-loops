@@ -11,11 +11,11 @@ expected_resources:
   - references/global/hvr_rules.md
   - references/global/optimization.md
   - references/skill_creation.md
-  - references/agent_creation.md
-  - references/readme_creation.md
-  - references/feature_catalog_creation.md
-  - references/manual_testing_playbook_creation.md
-  - references/install_guide_creation.md
+  - references/README.md
+  - references/README.md
+  - references/README.md
+  - references/README.md
+  - references/README.md
   - assets/skill/skill_md_template.md
   - assets/skill/skill_readme_template.md
   - assets/skill/skill_reference_template.md

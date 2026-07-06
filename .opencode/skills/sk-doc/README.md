@@ -168,12 +168,12 @@ A: `/create:sk-skill` for a new skill under `.opencode/skills/`. `/create:sk-ski
 | [`references/global/optimization.md`](doc-quality/references/optimization.md) | AI-friendly content transforms and the llms.txt format |
 | [`references/global/evergreen_packet_id_rule.md`](shared/references/global/evergreen_packet_id_rule.md) | Why runtime-state docs must not cite mutable spec-packet numbers |
 | [`references/skill_creation.md`](create-skill/references/README.md) | The skill-creation workflow: understanding through packaging |
-| [`references/agent_creation.md`](create-agent/references/agent_creation.md) | Agent authority, permissions and the template-first workflow |
-| [`references/readme_creation.md`](create-readme/references/readme_creation.md) | README creation workflow and standards |
-| [`references/install_guide_creation.md`](create-readme/references/install_guide_creation.md) | Five-phase install guide standards and validation checkpoints |
-| [`references/manual_testing_playbook_creation.md`](create-manual-testing-playbook/references/manual_testing_playbook_creation.md) | Playbook package structure, scenario tables and cross-reference index |
-| [`references/feature_catalog_creation.md`](create-feature-catalog/references/feature_catalog_creation.md) | Feature catalog inventory standards and per-feature file structure |
-| [`references/benchmark_creation.md`](create-benchmark/references/benchmark_creation.md) | Benchmark folder standards, ten-section report shape and promotion workflow |
+| [`references/README.md`](create-agent/references/README.md) | Agent authority, permissions and the template-first workflow |
+| [`references/README.md`](create-readme/references/README.md) | README creation workflow and standards |
+| [`references/README.md`](create-readme/references/README.md) | Five-phase install guide standards and validation checkpoints |
+| [`references/README.md`](create-manual-testing-playbook/references/README.md) | Playbook package structure, scenario tables and cross-reference index |
+| [`references/README.md`](create-feature-catalog/references/README.md) | Feature catalog inventory standards and per-feature file structure |
+| [`references/README.md`](create-benchmark/references/README.md) | Benchmark folder standards, ten-section report shape and promotion workflow |
 | [`scripts/validate_document.py`](./scripts/validate_document.py) | Fast format validator, exit 0/1/2, supports `--json` and `--fix` |
 | [`scripts/extract_structure.py`](./scripts/extract_structure.py) | Full DQI analysis with type-specific checklists and JSON output |
 | [`scripts/init_skill.py`](./scripts/init_skill.py) | Skill directory scaffold from the template set |

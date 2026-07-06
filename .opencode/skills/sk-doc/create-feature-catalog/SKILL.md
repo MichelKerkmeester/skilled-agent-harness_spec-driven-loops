@@ -13,7 +13,7 @@ Feature catalogs are the canonical inventory for what a system does today. They 
 
 Core principle: use the root catalog for stable inventory and navigation, and use per-feature files for implementation truth and traceable source anchors.
 
-This packet owns `/create:feature-catalog`, `references/feature_catalog_creation.md`, and `assets/feature_catalog/`. It consumes shared sk-doc validation and writing standards from `../shared/`.
+This packet owns `/create:feature-catalog`, its `references/` set (indexed by `references/README.md`), and `assets/feature_catalog/`. It consumes shared sk-doc validation and writing standards from `../shared/`.
 
 ---
 
@@ -106,7 +106,7 @@ Use these packet resources while authoring:
 - `assets/feature_catalog/feature_catalog_snippet_template.md` for each per-feature file.
 - `../shared/references/global/quick_reference.md` and `../shared/references/global/validation.md` before delivery.
 - `../shared/references/global/frontmatter_versioning.md` when checking frontmatter version fields.
-- `references/feature_catalog_creation.md` only for deep overflow beyond this inline workflow.
+- `references/README.md` to route the reference overflow — [`examples.md`](references/examples.md) (worked live-catalog walkthrough) and [`common_pitfalls.md`](references/common_pitfalls.md) (deep-dive pitfalls, template-versus-reference split) — only for depth beyond this inline workflow.
 
 ---
 

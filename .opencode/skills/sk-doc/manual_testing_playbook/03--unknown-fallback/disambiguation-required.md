@@ -4,8 +4,8 @@ category: 03--unknown-fallback
 title: 'FEATURE_CATALOG vs PLAYBOOK tie within delta=1'
 expected_intent: FEATURE_CATALOG+PLAYBOOK
 expected_resources:
-  - references/feature_catalog_creation.md
-  - references/manual_testing_playbook_creation.md
+  - references/README.md
+  - references/README.md
 expected_token_range_input: 1000-2000
 expected_token_range_output: 1000-2500
 created: 2026-05-05

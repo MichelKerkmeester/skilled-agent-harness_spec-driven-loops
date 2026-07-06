@@ -1,6 +1,6 @@
 ---
-title: Document Quality Workflows - Mode 1 Reference
-description: Execution modes, validation patterns, and phase interactions for Mode 1 document quality workflows.
+title: Document Quality Workflows - Execution Modes (Mode 1)
+description: The four execution modes and mode selection for Mode 1 document-quality workflows, with a route map to the validation, enforcement, and example overflow.
 trigger_phrases:
   - "document quality workflows"
   - "doc improvement modes"
@@ -8,12 +8,12 @@ trigger_phrases:
   - "mode one document quality"
 importance_tier: normal
 contextType: implementation
-version: 1.8.0.19
+version: 1.8.0.20
 ---
 
-# Document Quality Workflows - Mode 1 Reference
+# Document Quality Workflows - Execution Modes (Mode 1)
 
-Execution modes, validation patterns, and phase interactions for Mode 1 (Document Quality) workflows.
+The four execution modes and how to pick one, for Mode 1 (Document Quality) workflows. `SKILL.md` §2 Step 1 owns mode selection at runtime; this file is the overflow reference — the mode/script/phase/output mapping, plus a route map to the validation sequence, enforcement prompts, and worked examples.
 
 ---
 
@@ -31,14 +31,12 @@ Workflows define the execution patterns and operational modes for the markdown d
 
 > **📍 Context**: This is a Level 3 reference file (loaded on-demand). For the complete progressive disclosure architecture, see [skill_creation/overview.md § Skill Structure System](../../create-skill/references/shared/overview.md#3-skill-structure-system).
 
-This reference provides deep-dive technical guidance on execution modes, validation patterns, and workflow orchestration.
-
 **Scope Note**: This reference covers Mode 1 (Document Quality) workflows only. For other modes, see:
 - Mode 2 (Skill Creation): [skill_creation.md](../../create-skill/references/README.md)
 - Mode 3 (Flowcharts): [create-flowchart/assets/flowcharts/](../../create-flowchart/assets/flowcharts/)
-- Mode 4 (Install Guides): [install_guide_creation.md](../../create-readme/references/install_guide_creation.md)
-- Mode 5 (Playbooks): [manual_testing_playbook_creation.md](../../create-manual-testing-playbook/references/manual_testing_playbook_creation.md), [manual_testing_playbook_template.md](../../create-manual-testing-playbook/assets/testing_playbook/manual_testing_playbook_template.md), and [manual_testing_playbook_snippet_template.md](../../create-manual-testing-playbook/assets/testing_playbook/manual_testing_playbook_snippet_template.md)
-- Companion catalog workflow: [feature_catalog_creation.md](../../create-feature-catalog/references/feature_catalog_creation.md) plus the [feature catalog template bundle](../../create-feature-catalog/assets/feature_catalog/)
+- Mode 4 (Install Guides): [create-readme references](../../create-readme/references/README.md)
+- Mode 5 (Playbooks): [create-manual-testing-playbook references](../../create-manual-testing-playbook/references/README.md), [manual_testing_playbook_template.md](../../create-manual-testing-playbook/assets/testing_playbook/manual_testing_playbook_template.md), and [manual_testing_playbook_snippet_template.md](../../create-manual-testing-playbook/assets/testing_playbook/manual_testing_playbook_snippet_template.md)
+- Companion catalog workflow: [create-feature-catalog references](../../create-feature-catalog/references/README.md) plus the [feature catalog template bundle](../../create-feature-catalog/assets/feature_catalog/)
 
 The playbook workflow assumes a root directory playbook plus required per-feature files in numbered category folders at the playbook root. Current validation remains root-doc focused and does not recurse into those category folders.
 
@@ -65,242 +63,30 @@ The playbook workflow assumes a root directory playbook plus required per-featur
 
 ---
 
-## 3. VALIDATION INTEGRATION
+## 3. WHERE THE REST LIVES
 
-> **Note**: These validation patterns are conceptual workflows describing when and how validation should occur. They are not implemented as automated hooks - apply these checks manually using the available scripts.
+The validation sequence, enforcement prompts, phase chaining, worked examples, and batch recipes moved to single-concern siblings so this file stays focused on modes:
 
-**Pre-Delivery Format Validation** (MANDATORY for READMEs):
-- **When**: Before claiming completion on any README
-- **Script**: `python ../shared/scripts/validate_document.py <file>`
-- **Action**: Check H2 format and required sections
-- **Blocking**: Yes - exit code 1 blocks delivery
-- **Auto-fix**: Use `--fix` for safe issues
-
-**Post-Write Validation Pattern** (manual):
-- **When**: After Write/Edit operations on `.md` files
-- **Script**: `python ../shared/scripts/quick_validate.py <path>`
-- **Action**: Filename corrections (ALL CAPS → lowercase, hyphens → underscores)
-- **Blocking**: No (logs only)
-
-**Pre-Submit Quality Pattern** (manual):
-- **When**: Before finalizing documentation
-- **Script**: `python ../shared/scripts/extract_structure.py <file>`
-- **Action**: Structure validation + AI-assisted quality assessment
-- **Blocking**: Recommend blocking on critical violations
-
-**Manual Validation Workflow**:
-```
-User saves file
-    ↓
-Run: python ../shared/scripts/validate_document.py <file>  ← NEW: Format validation
-    ├─ Exit 0 → Continue
-    └─ Exit 1 → Fix blocking errors → Re-run
-    ↓
-Run: python ../shared/scripts/quick_validate.py <path>
-    ↓
-Review output, fix issues
-    ↓
-Run: python ../shared/scripts/extract_structure.py <file>
-    ├─ Safe violations → Fix manually → Re-run
-    └─ Critical violations → Address before proceeding
-```
+| Need | Reference |
+| --- | --- |
+| Validation touchpoints, enforcement approval prompts, phase interactions, troubleshooting | [validation_and_enforcement.md](./validation_and_enforcement.md) |
+| Worked command examples and batch/multi-file processing | [workflow_examples.md](./workflow_examples.md) |
+| Content transformation procedure and the 16-pattern catalog | [optimization.md](./optimization.md) / [transformation_patterns.md](./transformation_patterns.md) |
 
 ---
 
-## 4. ENFORCEMENT WORKFLOWS
-
-> **Note**: These are manual workflow patterns for the AI agent to follow when violations are detected. They are not automated scripts.
-
-### Workflow 1: Add Missing Frontmatter
-
-**Detection**: SKILL/Command file, no `---` at line 1
-
-**Fix approach**:
-1. Determine document type (SKILL vs Command)
-2. Ask the user for metadata
-3. Insert frontmatter template at line 1
-
-**Approval prompt template**:
-```
-Missing required frontmatter. Add the following to line 1?
-
----
-name: [skill-name]
-description: [Brief description]
-allowed-tools: Read, Write, Edit, Bash
----
-
-Options:
-A) Add frontmatter as shown
-B) Let me edit manually
-C) Skip this file
-```
-
-### Workflow 2: Fix Section Order
-
-**Detection**: Required sections out of sequence
-
-**Fix approach**:
-1. Identify current section order
-2. Map to required order for document type
-3. Show proposed reordering
-
-**Approval prompt template**:
-```
-Section order incorrect. Reorder to match standard?
-
-Current: [current order]
-Required: [required order]
-
-Options:
-A) Reorder automatically
-B) Let me reorder manually
-C) Skip validation
-```
-
-### Workflow 3: Add Missing Sections
-
-**Detection**: Required section absent (e.g., RULES in SKILL)
-
-**Fix approach**:
-1. Identify missing sections
-2. Generate section template
-3. Insert at appropriate position
-
-**Approval prompt template**:
-```
-Missing required section: [SECTION NAME]
-
-Add template section at line [N]?
-
-## N.  [SECTION NAME]
-[Template content]
-
-Options:
-A) Add template section
-B) Let me add manually
-C) Skip this section
-```
-
----
-
-## 5. PHASE INTERACTIONS
-
-**Independent execution**:
-- Phase 1 (Enforcement) → Standalone structure validation
-- Phase 2 (Optimization) → Standalone content improvement
-- Phase 3 (Recommendations) → Standalone review output
-
-**Sequential chaining** (script-assisted review):
-```
-Phase 1: Extract structure (extract_structure.py)
-    ├─ Critical violations in checklist? → STOP
-    └─ Valid → Continue
-        ↓
-Phase 2: AI evaluates JSON output
-    ├─ Low quality assessment? → WARNING
-    └─ Continue
-        ↓
-Phase 3: AI provides recommendations
-    ├─ Issues found? → REPORT
-    └─ Complete
-```
-
-**Error handling**:
-- Phase 1 critical → Block execution, manual fix required
-- Phase 2 weak content → Warning + suggestions, continues
-- Phase 3 gaps detected → Report + improvement plan
-
----
-
-## 6. COMMON WORKFLOW EXAMPLES
-
-**Example 1: New SKILL Creation**
-```bash
-# 1. Create file
-mkdir .opencode/skills/my-skill
-cd .opencode/skills/my-skill
-
-# 2. Write initial SKILL.md
-# (Run quick validation to check frontmatter)
-../shared/scripts/quick_validate.py .
-
-# 3. Extract structure for AI analysis
-../shared/scripts/extract_structure.py SKILL.md
-# AI evaluates JSON output and provides quality assessment
-
-# Expected: No checklist failures, high AI-friendliness rating
-```
-
-**Example 2: README Optimization**
-```bash
-# Extract current README structure
-../shared/scripts/extract_structure.py README.md
-
-# AI receives JSON with:
-# - Metrics (word count, heading depth, code ratio)
-# - Checklist results for README type
-# - Evaluation questions to answer
-
-# AI provides improvement recommendations
-```
-
-**Example 3: Pre-Commit Validation**
-```bash
-# Extract spec structure for review
-../shared/scripts/extract_structure.py specs/042/spec.md
-
-# AI evaluates:
-# - Structure checklist results
-# - Content quality assessment
-# - Improvement recommendations (if any)
-```
-
----
-
-## 7. BATCH PROCESSING
-
-**Multi-file extraction**:
-```bash
-# Extract structure from all spec files for batch analysis
-for file in $(find specs/ -name "spec.md"); do
-  echo "=== $file ==="
-  ../shared/scripts/extract_structure.py "$file"
-done
-```
-
-**Quick validation batch**:
-```bash
-# Validate all skills in directory
-for skill in $(find .opencode/skills/ -maxdepth 1 -type d); do
-  ../shared/scripts/quick_validate.py "$skill" --json
-done
-```
-
----
-
-## 8. QUICK TROUBLESHOOTING
-
-| Issue | Cause | Solution |
-|-------|-------|----------|
-| "Execution blocked" | Critical violation | Read error message, apply suggested fix |
-| JSON parse error | Invalid markdown structure | Check for unclosed code blocks or frontmatter |
-| Wrong type detected | File location mismatch | Check document type detection in JSON output |
-| Checklist failures | Structure issues | Review checklist results in JSON, fix violations |
-| Validation not running | Environment difference | Apply checks manually (see Section 3) |
-| Safe fix not applied | Permission issue | Check file permissions |
-
----
-
-## 9. RELATED RESOURCES
+## 4. RELATED RESOURCES
 
 ### Reference Files
+- [README.md](./README.md) - doc-quality reference route map
+- [validation_and_enforcement.md](./validation_and_enforcement.md) - Validation, enforcement prompts, phase chaining, troubleshooting
+- [workflow_examples.md](./workflow_examples.md) - Worked command examples and batch processing
+- [optimization.md](./optimization.md) - Content transformation procedure
 - [core_standards.md](../../shared/references/global/core_standards.md) - Document type rules and structural requirements
-- [optimization.md](./optimization.md) - Content transformation patterns
 - [validation.md](../../shared/references/global/validation.md) - Quality scoring and validation workflows
 - [quick_reference.md](../../shared/references/global/quick_reference.md) - Quick command reference
 - [skill_creation.md](../../create-skill/references/README.md) - Skill creation workflow
-- [install_guide_creation.md](../../create-readme/references/install_guide_creation.md) - Install guide standards and workflow
+- [create-readme references](../../create-readme/references/README.md) - Install guide standards and workflow
 
 ### Templates
 - [skill_md_template.md](../../create-skill/assets/skill/skill_md_template.md) - SKILL.md file templates

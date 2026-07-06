@@ -532,7 +532,7 @@ fi
 - [optimization.md](../../../doc-quality/references/optimization.md) - Content transformation patterns
 - [quick_reference.md](./quick_reference.md) - Quick command reference
 - [skill_creation.md](../../../create-skill/references/README.md) - Skill creation workflow
-- [install_guide_creation.md](../../../create-readme/references/install_guide_creation.md) - Install guide standards and workflow
+- [references/README.md](../../../create-readme/references/README.md) - Install guide standards and workflow
 
 ### Templates
 - [skill_md_template.md](../../../create-skill/assets/skill/skill_md_template.md) - SKILL.md file templates

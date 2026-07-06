@@ -30,7 +30,7 @@ Packet root:
 
 References:
 
-- `references/benchmark_creation.md` — detailed benchmark-promotion guidance and report structure.
+- `references/README.md` — overflow route-map to case studies, the report worked example, and common pitfalls. `SKILL.md` is the authoritative contract.
 
 Assets:
 
@@ -67,7 +67,7 @@ mcp_server/benchmarks/
 Basic flow:
 
 1. Confirm the source spec packet has an accepted decision record, stable headline, stable fixture, replay commands, and defensible winner or provisional status.
-2. Read `references/benchmark_creation.md`.
+2. Read `SKILL.md` for the authoritative workflow; consult `references/README.md` for case studies and the worked example.
 3. Create the dated folder using the benchmark execution date, not the authoring date.
 4. Copy the source artifacts that support the decision.
 5. Write `benchmark_report.md` from `assets/benchmark/benchmark_report_template.md`.

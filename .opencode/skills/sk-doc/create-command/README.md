@@ -20,7 +20,7 @@ Do not use it for skill scaffolding, agent scaffolding, prose-only documentation
 ## 3. WHAT'S INSIDE
 
 - `SKILL.md`: authoritative packet contract, workflow, rules, validation expectations, and escalation conditions.
-- `references/command_creation.md`: overflow reference with a worked split example, argument-hint patterns, mode design, and common mistakes.
+- `references/`: overflow route map (`README.md`) plus single-concern files — `worked_example.md`, `router_presentation_split.md`, `argument_hints_and_modes.md`, and `common_pitfalls.md`.
 - `assets/command/command_template.md`: main command-authoring template covering frontmatter, command types, gates, structure, and examples.
 - `assets/command/command_presentation_template.md`: template for `_presentation.txt` assets used by thin router commands.
 - `changelog/`: packet-local changelog entries.

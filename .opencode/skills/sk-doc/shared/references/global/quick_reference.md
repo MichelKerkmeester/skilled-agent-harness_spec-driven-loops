@@ -175,11 +175,11 @@ python scripts/package_skill.py skill-path        # Package skill
 │   │   ├── workflows.md (execution modes, validation patterns, troubleshooting)
 │   │   └── quick_reference.md (this file)
 │   └── specific/
-│       ├── agent_creation.md (agent authority, permissions, and workflow)
-│       ├── install_guide_creation.md (install guide standards and workflow)
+│       ├── references/README.md (agent authority, permissions, and workflow)
+│       ├── references/README.md (install guide standards and workflow)
 │       ├── skill_creation.md (skill creation workflow)
-│       ├── feature_catalog_creation.md (feature catalog standards and workflow)
-│       └── manual_testing_playbook_creation.md (playbook standards and workflow)
+│       ├── references/README.md (feature catalog standards and workflow)
+│       └── references/README.md (playbook standards and workflow)
 ├── assets/
 │   ├── agent_template.md (agent definition template)
 │   ├── command/
@@ -306,7 +306,7 @@ python scripts/package_skill.py skill-path        # Package skill
 ### Companion: Feature Catalog Creation
 
 **Reference**
-`references/feature_catalog_creation.md`
+`references/README.md`
 
 **Template**
 `assets/feature_catalog/feature_catalog_template.md`
@@ -324,7 +324,7 @@ python scripts/package_skill.py skill-path        # Package skill
 ### Manual Testing Playbook
 
 **Reference**
-`references/manual_testing_playbook_creation.md`
+`references/README.md`
 
 ### Template
 `assets/testing_playbook/manual_testing_playbook_template.md`
@@ -357,10 +357,10 @@ Validation note: the current validator checks the root playbook and does not rec
 - [optimization.md](../../../doc-quality/references/optimization.md) - Content transformation patterns
 - [workflows.md](../../../doc-quality/references/workflows.md) - Execution modes and workflows
 - [skill_creation.md](../../../create-skill/references/README.md) - Skill creation workflow
-- [agent_creation.md](../../../create-agent/references/agent_creation.md) - Agent authority, permissions, and creation workflow
-- [install_guide_creation.md](../../../create-readme/references/install_guide_creation.md) - Install guide standards and workflow
-- [feature_catalog_creation.md](../../../create-feature-catalog/references/feature_catalog_creation.md) - Feature catalog standards and workflow
-- [manual_testing_playbook_creation.md](../../../create-manual-testing-playbook/references/manual_testing_playbook_creation.md) - Playbook standards and workflow
+- [references/README.md](../../../create-agent/references/README.md) - Agent authority, permissions, and creation workflow
+- [references/README.md](../../../create-readme/references/README.md) - Install guide standards and workflow
+- [references/README.md](../../../create-feature-catalog/references/README.md) - Feature catalog standards and workflow
+- [references/README.md](../../../create-manual-testing-playbook/references/README.md) - Playbook standards and workflow
 
 ### Templates
 - [skill_md_template.md](../../../create-skill/assets/skill/skill_md_template.md) - SKILL.md file templates

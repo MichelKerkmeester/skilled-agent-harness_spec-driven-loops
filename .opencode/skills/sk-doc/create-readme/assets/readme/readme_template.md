@@ -306,7 +306,7 @@ A: [Short answer with a link when useful.]
 ## 8. RELATED RESOURCES
 
 - [`readme_code_template.md`](./readme_code_template.md) - Code-folder README scaffold.
-- [`readme_creation.md`](../../references/readme_creation.md) - README workflow and quality criteria.
+- [`README.md`](../../references/README.md) - README overflow reference map: types, voice, writing patterns and quality.
 - [`core_standards.md`](../../../shared/references/global/core_standards.md) - Markdown formatting rules.
 - [`validation.md`](../../../shared/references/global/validation.md) - Document validation and DQI scoring.
 - [`hvr_rules.md`](../../../shared/references/global/hvr_rules.md) - Human Voice Rules.

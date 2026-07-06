@@ -11,7 +11,7 @@ version: 1.0.0.0
 
 `create-agent` is the `sk-doc` workflow packet for creating or updating one runtime agent markdown file. The executable contract lives here: decide whether an agent is the right component, place it in the active runtime directory, author current frontmatter and authority boundaries, then validate before delivery.
 
-Use `references/agent_creation.md` and `assets/agent_template.md` only for deeper examples, exhaustive variants, and long-form reference detail. Do not make those files the primary workflow contract.
+Use `references/README.md` (the overflow route map) and `assets/agent_template.md` only for deeper examples, exhaustive variants, and long-form reference detail. Do not make those files the primary workflow contract.
 
 ---
 
@@ -195,7 +195,10 @@ Required checks: frontmatter parses, filename stem matches `name`, required sect
 
 Use these only when the core path above is not enough:
 
-1. `references/agent_creation.md` for long-form standards, current-reality notes, and common mistake examples.
-2. `assets/agent_template.md` for exhaustive body variants, binding/refusal contracts, and scaffold examples.
-3. `../shared/references/global/validation.md` for validation pipeline details.
-4. `../shared/references/global/core_standards.md` for shared document structure rules.
+1. `references/README.md` — route map over the overflow references below.
+2. `references/agent-vs-skill-vs-command.md` for the deeper agent vs skill vs command decision and its signals.
+3. `references/permission_design.md` for `mode` selection and least-authority permission design.
+4. `references/common_pitfalls.md` for recurring mistakes with why-it-breaks and correct fixes.
+5. `assets/agent_template.md` for exhaustive body variants, binding/refusal contracts, and scaffold examples.
+6. `../shared/references/global/validation.md` for validation pipeline details.
+7. `../shared/references/global/core_standards.md` for shared document structure rules.

@@ -164,16 +164,16 @@ documentation_level:
 # AGENT CREATION TEMPLATES
 # ─────────────────────────────────────────────────────────────────
 agent_templates:
-  primary: .opencode/skills/sk-doc/assets/agent_template.md
+  primary: .opencode/skills/sk-doc/create-agent/assets/agent_template.md
 
 agent_scripts:
   validate_document: .opencode/skills/sk-doc/scripts/validate_document.py
   extract_structure: .opencode/skills/sk-doc/scripts/extract_structure.py
 
 agent_references:
-  agent_creation: .opencode/skills/sk-doc/references/agent_creation.md
-  core_standards: .opencode/skills/sk-doc/references/global/core_standards.md
-  validation: .opencode/skills/sk-doc/references/global/validation.md
+  agent_creation: .opencode/skills/sk-doc/create-agent/references/README.md
+  core_standards: .opencode/skills/sk-doc/shared/references/global/core_standards.md
+  validation: .opencode/skills/sk-doc/shared/references/global/validation.md
 
 # ─────────────────────────────────────────────────────────────────
 # CHECKPOINT OPTIONS
@@ -612,7 +612,7 @@ workflow:
     description_budget:
       soft_target: 130
       hard_cap: 1536
-      reference: ".opencode/skills/sk-doc/assets/frontmatter_templates.md § Description Budget & Trim Style"
+      reference: ".opencode/skills/sk-doc/shared/assets/frontmatter_templates.md § Description Budget & Trim Style"
     outputs:
     - quality_score: number
     - validation_findings: list
@@ -780,7 +780,7 @@ quality_standards:
     stage_3: "Mode validation (primary/subagent/all)"
     stage_4: "Permission format validation (unified v1.1.1+)"
   template_adherence: required
-  core_standards_reference: ".opencode/skills/sk-doc/references/global/core_standards.md"
+  core_standards_reference: ".opencode/skills/sk-doc/shared/references/global/core_standards.md"
 
 # ─────────────────────────────────────────────────────────────────
 # COMPLETION REPORT TEMPLATE

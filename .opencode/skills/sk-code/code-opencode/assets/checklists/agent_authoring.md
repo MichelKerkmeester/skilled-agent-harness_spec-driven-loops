@@ -33,7 +33,7 @@ This checklist makes new `@<name>` agents safe to dispatch and easy to mirror ac
 ## 2. PRE-CHECKS
 
 - [ ] Read canonical agent examples at `.opencode/agents/code.md`, `.opencode/agents/review.md`, and `.opencode/agents/orchestrate.md`.
-- [ ] Read `sk-doc` source rules at `.opencode/skills/sk-doc/references/agent_creation.md`.
+- [ ] Read `sk-doc` source rules at `.opencode/skills/sk-doc/create-agent/references/README.md`.
 - [ ] Decide whether the agent is LEAF-only or an orchestrator before granting task/delegation authority.
 - [ ] Confirm the dispatch contract: who may invoke the agent, what inputs it expects, and what outputs it returns.
 - [ ] Set `allowed-tools` or runtime permission fields to the least authority that supports the role.
@@ -64,6 +64,6 @@ This checklist makes new `@<name>` agents safe to dispatch and easy to mirror ac
 
 ## 5. RELATED RESOURCES
 
-- sk-doc references/specific/agent_creation.md (source-of-truth for agent content rules)
+- sk-doc .opencode/skills/sk-doc/create-agent/references/README.md (source-of-truth for agent content rules)
 - Prior examples: `.opencode/agents/code.md`, `.opencode/agents/review.md`, `.opencode/agents/orchestrate.md`
 - Verification recipes: `.opencode/skills/sk-code/code-opencode/assets/checklists/universal_checklist.md`

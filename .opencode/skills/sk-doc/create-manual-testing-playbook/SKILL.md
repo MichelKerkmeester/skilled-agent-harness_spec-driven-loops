@@ -270,7 +270,7 @@ Also check:
 
 ### Manual Checks
 
-The current validator is root-document focused. It does not recurse into category folders and does not prove every cross-file playbook link by itself.
+The current validator is root-document focused. It does not recurse into category folders and does not prove every cross-file playbook link by itself. Cross-file markdown links are covered separately by the `check-markdown-links.cjs` CI guard, which verifies every markdown link across skills, commands, and agents and fails the PR on a broken link; per-feature file structure inside the category folders still needs manual review.
 
 Manually verify:
 
@@ -326,7 +326,10 @@ Document any remaining manual scope honestly in the generated playbook docs.
 
 The core executable workflow lives in this `SKILL.md`. Use these only for overflow detail, exhaustive examples, or template text:
 
-- `references/manual_testing_playbook_creation.md` - deeper rationale, examples, and historical package notes.
+- `references/README.md` - reference map routing to the overflow detail below.
+- `references/prompt_voice.md` - natural-human vs RCAF decision table and voice guidelines.
+- `references/common_pitfalls.md` - recurring package defects and correct fixes.
+- `references/examples.md` - shipped reference playbooks and scaffold templates.
 - `assets/testing_playbook/manual_testing_playbook_template.md` - root playbook scaffold.
 - `assets/testing_playbook/manual_testing_playbook_snippet_template.md` - per-feature file scaffold.
 - `../shared/references/global/core_standards.md` - shared markdown structure rules.

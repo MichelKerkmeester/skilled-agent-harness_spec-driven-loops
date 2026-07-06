@@ -373,8 +373,9 @@ The core workflow lives in this `SKILL.md`. Use these files only for deep overfl
 - `assets/readme/readme_template.md` for the full fillable general README scaffold.
 - `assets/readme/readme_code_template.md` for the full fillable code-folder scaffold and diagram examples.
 - `assets/readme/install_guide_template.md` for full install-guide examples and platform config patterns.
-- `references/readme_creation.md` for extended README quality criteria, analogy patterns and table patterns.
-- `references/install_guide_creation.md` for extended install-guide examples, validation patterns and troubleshooting standards.
+- `references/README.md` for the overflow route map that indexes the `readme/` and `install_guide/` reference groups.
+- `references/readme/` for extended README type, voice, writing-pattern and quality detail across three single-concern files.
+- `references/install_guide/` for extended install-guide section examples, platform config and quality standards across two single-concern files.
 - `../shared/references/global/core_standards.md` for shared document formatting rules.
 - `../shared/references/global/hvr_rules.md` for the full Human Voice Rules.
 - `../shared/references/global/evergreen_packet_id_rule.md` for current-state documentation rules.

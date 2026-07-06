@@ -20,8 +20,8 @@ Do not use it when a short bullet list is clearer, or when the requested output 
 - `SKILL.md`  
   The authoritative packet contract: activation triggers, routing rules, authoring workflow, validation requirements, and success criteria.
 
-- `references/flowchart_creation.md`  
-  Overflow guidance beyond the inline contract: a worked decision-tree example, validator-passing notation, pattern-selection detail, split heuristics, and common pitfalls.
+- `references/`  
+  Overflow guidance beyond the inline contract, dissected into single-concern files behind a route-map: `README.md` (reference map), `worked_example.md` (a validator-passing decision-tree example), `notation_and_validator.md` (validator mechanics, box-width notation, common mistakes, and author judgment), and `pattern_selection.md` (pattern-selection detail and split heuristics).
 
 - `assets/flowcharts/simple_workflow.md`  
   Pattern for linear setup, tutorial, installation, or operational flows.

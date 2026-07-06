@@ -506,5 +506,5 @@ pre_publish_checklist:
 - [sk-doc SKILL.md](../../../SKILL.md) - Parent skill with HVR enforcement rules
 
 ### Creation Guides
-- [readme_creation.md](../../../create-readme/references/readme_creation.md) - README creation workflow and standards
-- [install_guide_creation.md](../../../create-readme/references/install_guide_creation.md) - Install guide creation workflow
+- [references/README.md](../../../create-readme/references/README.md) - README creation workflow and standards
+- [references/README.md](../../../create-readme/references/README.md) - Install guide creation workflow

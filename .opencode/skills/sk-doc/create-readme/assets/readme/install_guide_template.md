@@ -981,7 +981,7 @@ You now have [TOOL_NAME] installed and configured. [BRIEF_USAGE_INSTRUCTION]
 - [frontmatter_templates.md](../../../shared/assets/frontmatter_templates.md) - YAML frontmatter examples
 
 ### Standards
-- [install_guide_creation.md](../../references/install_guide_creation.md) - Phase validation rules and creation workflow
+- [README.md](../../references/README.md) - Reference map for install-guide section examples and quality standards
 - [core_standards.md](../../../shared/references/global/core_standards.md) - Document formatting standards
 
 ### Examples

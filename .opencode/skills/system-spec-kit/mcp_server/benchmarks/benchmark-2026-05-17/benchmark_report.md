@@ -383,7 +383,7 @@ unset SPECKIT_RERANK_LAYER
 | [`per-probe-with-rescue.jsonl`](./per-probe-with-rescue.jsonl) | Per-probe rows for the final three-way comparison that backs ADR-012. |
 | [`runtime-measurements.md`](./runtime-measurements.md) | Live RAM, Metal residency, and raw inference latency for the final three candidates. |
 | [`../README.md`](../README.md) | Index of all `mk-spec-memory` benchmarks. |
-| [`../FORMAT.md`](../../../../sk-doc/references/benchmark_creation.md) | Convention these files follow. |
+| [`../FORMAT.md`](../../../../sk-doc/create-benchmark/references/README.md) | Convention these files follow. |
 
 ### Authoritative spec packet
 

@@ -315,7 +315,7 @@ Format: Plain text navigation file for LLMs
 - [validation.md](./validation.md) - Quality scoring and validation workflows
 - [quick_reference.md](./quick_reference.md) - Quick command reference
 - [skill_creation.md](../skill_creation.md) - Skill creation workflow
-- [install_guide_creation.md](../install_guide_creation.md) - Install guide standards and workflow
+- [install-guide standards](../../../create-readme/references/README.md) - Install guide standards and workflow
 
 ### Templates
 - [skill_md_template.md](../../assets/skill/skill_md_template.md) - SKILL.md file templates

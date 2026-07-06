@@ -280,4 +280,4 @@ The task is successful when:
 - Shared sk-doc validation is run when the surrounding markdown document is edited and in scope.
 - No packet-local advisor metadata is created.
 
-For long examples and visual pattern details, use `assets/flowcharts/*`. For deeper creation guidance — a worked decision-tree example, validator-passing notation, pattern selection, and pitfalls — use `references/flowchart_creation.md`. For shared markdown standards and document-level validation behavior, use `../shared/`.
+For long examples and visual pattern details, use `assets/flowcharts/*`. For deeper creation guidance — a worked decision-tree example, validator mechanics and notation, pattern selection, and common pitfalls — use the reference route-map at `references/README.md`, which maps each concern to a focused single-concern file. For shared markdown standards and document-level validation behavior, use `../shared/`.

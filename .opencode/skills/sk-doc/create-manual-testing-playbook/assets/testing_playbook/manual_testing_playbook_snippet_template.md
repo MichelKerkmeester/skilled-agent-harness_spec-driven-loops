@@ -73,7 +73,7 @@ Operators run the exact prompt and command sequence for `{FEATURE_ID}` and confi
 
 - Objective: {OBJECTIVE}
 - Real user request: `{REAL_USER_REQUEST}`
-- Prompt: `{PROMPT — natural-human voice by default (e.g., "Review this auth diff for security issues"); use RCAF "As a {ROLE}, {ACTION} against {TARGET}. Verify {EXPECTED_OUTCOME}. Return {OUTPUT_FORMAT}." only when actor is an AI orchestrator. See manual_testing_playbook_creation.md §5.}`
+- Prompt: `{PROMPT — natural-human voice by default (e.g., "Review this auth diff for security issues"); use RCAF "As a {ROLE}, {ACTION} against {TARGET}. Verify {EXPECTED_OUTCOME}. Return {OUTPUT_FORMAT}." only when actor is an AI orchestrator. See references/prompt_voice.md.}`
 - Expected execution process: {EXPECTED_PROCESS}
 - Expected signals: {EXPECTED_SIGNALS}
 - Desired user-visible outcome: {DESIRED_USER_OUTCOME}
@@ -85,7 +85,7 @@ Operators run the exact prompt and command sequence for `{FEATURE_ID}` and confi
 
 ### Prompt
 
-- Prompt: `{PROMPT — natural-human voice by default (e.g., "Review this auth diff for security issues"); use RCAF "As a {ROLE}, {ACTION} against {TARGET}. Verify {EXPECTED_OUTCOME}. Return {OUTPUT_FORMAT}." only when actor is an AI orchestrator. See manual_testing_playbook_creation.md §5.}`
+- Prompt: `{PROMPT — natural-human voice by default (e.g., "Review this auth diff for security issues"); use RCAF "As a {ROLE}, {ACTION} against {TARGET}. Verify {EXPECTED_OUTCOME}. Return {OUTPUT_FORMAT}." only when actor is an AI orchestrator. See references/prompt_voice.md.}`
 
 ### Commands
 
