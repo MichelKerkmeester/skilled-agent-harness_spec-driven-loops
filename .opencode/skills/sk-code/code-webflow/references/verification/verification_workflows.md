@@ -441,7 +441,7 @@ bdg stop 2>&1
   - Check Motion.dev animations include retry logic and cleanup
   - Confirm easing curves match standards ([0.22, 1, 0.36, 1] or [0.16, 1, 0.3, 1])
 
-> **Cross-stack motion.dev reference**: For Motion API behavior, reduced-motion patterns, and animation regression checks that apply beyond Webflow, see [`../../motion_dev/performance_and_pitfalls.md`](../../../code-animation/references/performance_and_pitfalls.md) and [`../../motion_dev/integration_patterns.md`](../../../code-animation/references/integration_patterns.md). The Webflow verification rules here remain authoritative for browser evidence and Webflow-specific completion claims.
+> **Cross-stack motion.dev reference**: For Motion API behavior, reduced-motion patterns, and animation regression checks that apply beyond Webflow, see [`../animation/performance_and_pitfalls.md`](../animation/performance_and_pitfalls.md) and [`../animation/integration_patterns.md`](../animation/integration_patterns.md). The Webflow verification rules here remain authoritative for browser evidence and Webflow-specific completion claims.
 
 - Note what you tested in your claim
   - Include whether automated or manual verification used

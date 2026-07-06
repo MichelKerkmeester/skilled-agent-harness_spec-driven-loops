@@ -106,7 +106,7 @@ node .opencode/plugins/tests/mk-goal-capabilities.test.cjs
 node .opencode/plugins/tests/mk-goal-lifecycle.test.cjs
 node .opencode/plugins/tests/mk-goal-supervisor.test.cjs
 node .opencode/plugins/tests/mk-goal-continuation.test.cjs
-python3 .opencode/skills/sk-code/code-verify/assets/scripts/verify_alignment_drift.py --root .opencode/plugins
+python3 .opencode/skills/sk-code/code-opencode/assets/scripts/verify_alignment_drift.py --root .opencode/plugins
 python3 .opencode/skills/sk-code/code-quality/scripts/check-comment-hygiene.sh .opencode/plugins/mk-goal.js
 ```
 

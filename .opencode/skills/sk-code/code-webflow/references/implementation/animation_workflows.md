@@ -192,15 +192,15 @@ function close_dropdown(dropdown) {
 
 ## 4. MOTION.DEV INTEGRATION
 
-> **Cross-stack motion.dev reference**: The full Motion.dev knowledge base lives at [`../../motion_dev/`](../../../code-animation/references/). Load by topic:
+> **Cross-stack motion.dev reference**: The full Motion.dev knowledge base lives at [`../animation/`](../animation/). Load by topic:
 >
-> - [`quick_start.md`](../../../code-animation/references/quick_start.md) — install modes, API availability, first-call patterns
-> - [`animation_principles.md`](../../../code-animation/references/animation_principles.md) — timing, easing, stagger direction, anticipation, arc, and depth vocabulary
-> - [`decision_matrix.md`](../../../code-animation/references/decision_matrix.md) — when to use Motion.dev vs CSS vs `requestAnimationFrame`
-> - [`integration_patterns.md`](../../../code-animation/references/integration_patterns.md) — non-Webflow integration patterns and module loading
-> - [`animate_and_timelines.md`](../../../code-animation/references/animate_and_timelines.md) — `animate()` API surface, keyframe shapes, easing
-> - [`scroll_and_gestures.md`](../../../code-animation/references/scroll_and_gestures.md) — `scroll()`, `inView()`, gesture-driven animation
-> - [`performance_and_pitfalls.md`](../../../code-animation/references/performance_and_pitfalls.md) — `will-change` cleanup, GPU acceleration, frame-rate gotchas
+> - [`quick_start.md`](../animation/quick_start.md) — install modes, API availability, first-call patterns
+> - [`animation_principles.md`](../animation/animation_principles.md) — timing, easing, stagger direction, anticipation, arc, and depth vocabulary
+> - [`decision_matrix.md`](../animation/decision_matrix.md) — when to use Motion.dev vs CSS vs `requestAnimationFrame`
+> - [`integration_patterns.md`](../animation/integration_patterns.md) — non-Webflow integration patterns and module loading
+> - [`animate_and_timelines.md`](../animation/animate_and_timelines.md) — `animate()` API surface, keyframe shapes, easing
+> - [`scroll_and_gestures.md`](../animation/scroll_and_gestures.md) — `scroll()`, `inView()`, gesture-driven animation
+> - [`performance_and_pitfalls.md`](../animation/performance_and_pitfalls.md) — `will-change` cleanup, GPU acceleration, frame-rate gotchas
 >
 > The Webflow guidance in this section remains authoritative for Webflow CDN loading, `window.Motion`, and Designer-specific initialization timing.
 

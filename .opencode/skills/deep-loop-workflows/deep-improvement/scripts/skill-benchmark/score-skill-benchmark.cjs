@@ -240,6 +240,21 @@ function scoreD3({ negative, d1intra, routerResult, expected }) {
       note: 'negative scenario: D3 tracks the suppression outcome, not over-routing',
     };
   }
+  // No positive resource gold: over-routing is unmeasurable. Against an empty
+  // expectation every routed resource would count as waste, scoring a spurious
+  // zero, so a resourceless scenario would be punished for routing anything at
+  // all. Return a not-applicable score instead — the same convention D1-inter
+  // uses when no advisor probe ran — so this dimension drops out and the row is
+  // normalized over the dims that were actually measured.
+  if (!expected || !expected.resources || expected.resources.length === 0) {
+    return {
+      score: null,
+      routedCount: routed,
+      wastedCount: 0,
+      proxy: 'no-positive-gold',
+      note: 'not-applicable: no expected-resource gold to measure over-routing against',
+    };
+  }
   return {
     score: routed === 0 ? 1 : Math.max(0, 1 - unexpectedRoutedCount / routed),
     routedCount: routed,
@@ -1061,8 +1076,11 @@ function modeAScore(dims) {
   const measured = [
     [dims.d1intra.score, WEIGHTS.d1intra],
     [dims.d2.score, WEIGHTS.d2],
-    [dims.d3.score, WEIGHTS.d3],
   ];
+  // D3 and D1-inter join the measured set only when they were actually scored.
+  // A scenario with no positive-resource gold cannot measure over-routing, so
+  // its D3 drops out and the row normalizes over the remaining dims.
+  if (dims.d3.score !== null) measured.push([dims.d3.score, WEIGHTS.d3]);
   if (dims.d1inter.score !== null) measured.push([dims.d1inter.score, WEIGHTS.d1inter]);
   const wsum = measured.reduce((a, [, w]) => a + w, 0);
   // Round once after weighted normalization so the row score stays stable.
@@ -1128,9 +1146,11 @@ function scoreScenario(arg) {
     dims.d2.uncappedScore = dims.d2.score;
     dims.d2.score = Math.min(dims.d2.score, RECIPE_INVALID_CAP);
     dims.d2.recipeCapped = true;
-    dims.d3.uncappedScore = dims.d3.score;
-    dims.d3.score = Math.min(dims.d3.score, RECIPE_INVALID_CAP);
-    dims.d3.recipeCapped = true;
+    if (typeof dims.d3.score === 'number') {
+      dims.d3.uncappedScore = dims.d3.score;
+      dims.d3.score = Math.min(dims.d3.score, RECIPE_INVALID_CAP);
+      dims.d3.recipeCapped = true;
+    }
   }
 
   // Asset support lane (advisory, not in the weighted aggregate). The router
@@ -1355,7 +1375,7 @@ function aggregate({ skillId, skillRoot, scenarioRows, connectivity, traceMode, 
         : { points: WEIGHTS.d1inter, score: d1interAvg },
       D1intra: { points: WEIGHTS.d1intra, score: avg((r) => (r.dims && r.dims.d1intra ? Math.round(r.dims.d1intra.score * 100) : null)) },
       D2: { points: WEIGHTS.d2, score: avg((r) => (r.dims && r.dims.d2 ? Math.round(r.dims.d2.score * 100) : null)) },
-      D3: { points: WEIGHTS.d3, score: avg((r) => (r.dims && r.dims.d3 ? Math.round(r.dims.d3.score * 100) : null)) },
+      D3: { points: WEIGHTS.d3, score: avg((r) => (r.dims && r.dims.d3 && typeof r.dims.d3.score === 'number' ? Math.round(r.dims.d3.score * 100) : null)) },
       D4: { points: WEIGHTS.d4, score: null, status: 'unscored-mode-a' },
       D5: { points: WEIGHTS.d5, score: d5, hardGate: true },
     },

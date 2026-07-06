@@ -179,7 +179,7 @@ Use this enforcement reference when:
 2. Comments explain reasoning, constraints, or platform requirements
 3. Platform prefixes: WEBFLOW, MOTION, LENIS, HLS.JS
 
-> **Cross-stack motion.dev reference**: For the Motion API and integration assumptions behind `MOTION:` comments, see [`../../motion_dev/quick_start.md`](../../../code-animation/references/quick_start.md) and [`../../motion_dev/integration_patterns.md`](../../../code-animation/references/integration_patterns.md). This file remains the Webflow style-enforcement source for comment quality.
+> **Cross-stack motion.dev reference**: For the Motion API and integration assumptions behind `MOTION:` comments, see [`../animation/quick_start.md`](../animation/quick_start.md) and [`../animation/integration_patterns.md`](../animation/integration_patterns.md). This file remains the Webflow style-enforcement source for comment quality.
 
 ### Pattern Recognition
 

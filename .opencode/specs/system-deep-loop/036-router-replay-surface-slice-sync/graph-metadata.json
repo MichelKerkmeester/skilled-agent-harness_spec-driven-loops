@@ -1,0 +1,229 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/036-router-replay-surface-slice-sync",
+  "spec_folder": "system-deep-loop/036-router-replay-surface-slice-sync",
+  "parent_id": null,
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "router-replay surface slice sync",
+      "skill-benchmark surface slicing",
+      "code-webflow code-opencode surface prefix",
+      "router replay surface slice plan",
+      "surface slice sync plan",
+      "code surface router replay plan",
+      "router replay surface slice tasks",
+      "surface slice sync tasks",
+      "code surface router replay tasks",
+      "router replay surface slice checklist",
+      "surface slice sync checklist",
+      "code surface router replay verification"
+    ],
+    "key_topics": [
+      "router-replay",
+      "surface",
+      "slice",
+      "sync",
+      "skill-benchmark",
+      "slicing",
+      "code-webflow",
+      "code-opencode",
+      "prefix",
+      "router",
+      "replay",
+      "plan"
+    ],
+    "importance_tier": "high",
+    "status": "complete",
+    "key_files": [
+      ".opencode/specs/system-deep-loop/036-router-replay-surface-slice-sync/spec.md",
+      ".opencode/skills/deep-loop-workflows/deep-improvement/scripts/skill-benchmark/router-replay.cjs",
+      ".opencode/skills/deep-loop-workflows/deep-improvement/scripts/skill-benchmark/tests/surface-slice-sync.vitest.ts",
+      ".opencode/specs/system-deep-loop/036-router-replay-surface-slice-sync/plan.md",
+      ".opencode/specs/system-deep-loop/036-router-replay-surface-slice-sync/tasks.md",
+      ".opencode/specs/system-deep-loop/036-router-replay-surface-slice-sync/checklist.md",
+      ".opencode/specs/system-deep-loop/036-router-replay-surface-slice-sync/implementation-summary.md",
+      ".opencode/specs/system-deep-loop/036-router-replay-surface-slice-sync/description.json",
+      ".opencode/specs/system-deep-loop/036-router-replay-surface-slice-sync/graph-metadata.json",
+      ".opencode/skills/sk-code/shared/references/smart_routing.md",
+      "spec.md",
+      "plan.md",
+      "checklist.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": ".opencode/specs/system-deep-loop/036-router-replay-surface-slice-sync/spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "router-replay.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/deep-loop-workflows/deep-improvement/scripts/skill-benchmark/router-replay.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "surface-slice-sync.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/deep-loop-workflows/deep-improvement/scripts/skill-benchmark/tests/surface-slice-sync.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": ".opencode/specs/system-deep-loop/036-router-replay-surface-slice-sync/plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": ".opencode/specs/system-deep-loop/036-router-replay-surface-slice-sync/tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": ".opencode/specs/system-deep-loop/036-router-replay-surface-slice-sync/checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": ".opencode/specs/system-deep-loop/036-router-replay-surface-slice-sync/implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "description.json",
+        "kind": "config",
+        "path": ".opencode/specs/system-deep-loop/036-router-replay-surface-slice-sync/description.json",
+        "source": "derived"
+      },
+      {
+        "name": "graph-metadata.json",
+        "kind": "config",
+        "path": ".opencode/specs/system-deep-loop/036-router-replay-surface-slice-sync/graph-metadata.json",
+        "source": "derived"
+      },
+      {
+        "name": "smart_routing.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-code/shared/references/smart_routing.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "The Lane",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The Lane",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Re",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Change During Execution",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Harness Vitest",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Targeted",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The Lane-C deterministic router-replay (`deep-loop-workflows/deep-improvement/scripts/skill-benchmark/router-replay.cjs`) slices a single-surface sk-code task down to only its detected surface's resources, so the benchmark can measure route-time loading discipline (the D3 efficiency dimension)",
+    "created_at": "2026-07-05T18:13:11.174Z",
+    "last_save_at": "2026-07-06T08:41:30.282Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:24dfd588d48d46f151eb02de4d9939217232dbc4ca442cc425b70a12c698ed6a",
+    "source_doc_hashes": {
+      "spec.md": "b75155617c24edc0f9053980ac6d44001b71e32674cce0925ce9e4e2b73e2ab0",
+      "plan.md": "764675649cec368efc16ad42333bd87546a823fb09c802192222d2445aa133ec",
+      "tasks.md": "406832d61535be70bdac800cec6e4908ba9078fc30023627ea2a04b69edfa5c3",
+      "checklist.md": "4d0836ad04d2c92501db60d10c263ca2be3889c218919d129abb0c2ea0a958b4",
+      "implementation-summary.md": "ff22ca94870dfc1c723c4c4c86be7ac6cbf1545493458b94fe02bead5a576c46"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

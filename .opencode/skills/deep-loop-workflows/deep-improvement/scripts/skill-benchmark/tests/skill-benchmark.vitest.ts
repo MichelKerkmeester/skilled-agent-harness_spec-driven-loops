@@ -98,7 +98,7 @@ describe('Lane C — reference-following router (delegated RESOURCE_MAP)', () =>
     // SKILL.md alone has no inline dicts -> unparseable without the skillRoot pointer.
     expect(parseRouter(skillMd).parseable).toBe(false);
     // With the skill root, parseRouter follows the pointer to the hub router, which
-    // selects the mode (implement/quality/debug/verify/review).
+    // selects the mode (quality/code-review workflow, or a code-webflow/code-opencode surface).
     const router = parseRouter(skillMd, SKCODE);
     expect(router.parseable).toBe(true);
     expect(router.routerSource).toBe('hub-router.json');
@@ -113,7 +113,10 @@ describe('Lane C — reference-following router (delegated RESOURCE_MAP)', () =>
   it('routes a sk-code task to existing resources with no dead paths', () => {
     const res = routeSkillResources({ skillRoot: SKCODE, taskText: 'improve lighthouse score and core web vitals for the webflow site' });
     expect(res.parseable).toBe(true);
-    expect(res.intents).toContain('implement');
+    // The implement/debug/verify workflow modes are dissolved into the surface
+    // packets; a webflow task routes to the code-webflow surface, which carries
+    // the implement doctrine via the symlinked shared workflow references.
+    expect(res.intents).toContain('code-webflow');
     expect(res.resources.length).toBeGreaterThan(0);
     expect(res.missingResources).toEqual([]); // every routed path exists on disk
   });

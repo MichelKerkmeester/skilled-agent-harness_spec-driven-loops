@@ -16,7 +16,10 @@
     "system-speckit/028-memory-search-intelligence/005-spec-data-quality/048-create-sh-parent-corruption-fix",
     "system-speckit/028-memory-search-intelligence/005-spec-data-quality/049-derive-status-explicit-bypass-fix",
     "system-speckit/028-memory-search-intelligence/005-spec-data-quality/050-validate-sh-dist-freshness-and-repo-remediation",
-    "system-speckit/028-memory-search-intelligence/005-spec-data-quality/029-vague-query-model-benchmark"
+    "system-speckit/028-memory-search-intelligence/005-spec-data-quality/029-vague-query-model-benchmark",
+    "system-speckit/028-memory-search-intelligence/005-spec-data-quality/051-graph-metadata-child-drift-audit-and-harden",
+    "system-speckit/028-memory-search-intelligence/005-spec-data-quality/052-z-archive-metadata-backfill",
+    "system-speckit/028-memory-search-intelligence/005-spec-data-quality/053-deep-loop-036-037-reindex"
   ],
   "manual": {
     "depends_on": [],

@@ -205,6 +205,14 @@
     "description": "Checks generated description and graph metadata are present."
   },
   {
+    "rule_id": "GRAPH_METADATA_CHILD_DRIFT",
+    "aliases": ["CHILD_DRIFT", "GRAPH_CHILD_DRIFT"],
+    "script_path": "rules/check-graph-metadata-child-drift.sh",
+    "severity": "warn",
+    "category": "operational_runtime",
+    "description": "Flags graph-metadata.json children_ids missing on-disk phase children the writer would add (advisory unless SPECKIT_CHILD_DRIFT_ENFORCE=true)."
+  },
+  {
     "rule_id": "GRAPH_METADATA_SHAPE",
     "aliases": ["GRAPH_SHAPE", "GRAPH_METADATA_VALID"],
     "script_path": "rules/check-graph-metadata-shape.sh",

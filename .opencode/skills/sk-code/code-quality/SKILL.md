@@ -12,7 +12,7 @@ metadata:
 
 # Code Quality (quality)
 
-`quality` is the author-side quality gate MODE child of the `sk-code` family. It runs after `code-implement` changes files and before any `code-verify` or done-claim. It consumes the shared surface router, loads the right checklist for the detected surface and target path, fixes quality-gate failures in place, and leaves findings-only output to `code-review`.
+`quality` is the author-side quality gate MODE child of the `sk-code` family. It runs after the surface skill (`code-webflow` / `code-opencode`) implements changes and before the surface's verification workflow or done-claim. It consumes the shared surface router, loads the right checklist for the detected surface and target path, fixes quality-gate failures in place, and leaves findings-only output to `code-review`.
 
 ---
 
@@ -33,20 +33,20 @@ Keyword triggers: `quality gate`, `code quality`, `comment hygiene`, `surface ch
 ### When NOT to Use
 
 Skip this mode when:
-- The user needs code written, files scaffolded, or behavior implemented. Use `code-implement`.
-- A failure needs symptom-to-root-cause investigation or a single-cause bug fix. Use `code-debug`.
-- The task is to collect final non-mutating verification evidence. Use `code-verify`.
+- The user needs code written, files scaffolded, or behavior implemented. Use the appropriate surface skill (`code-webflow` / `code-opencode`) and its implementation workflow.
+- A failure needs symptom-to-root-cause investigation or a single-cause bug fix. Use the surface's debugging workflow (`workflow_debug.md`).
+- The task is to collect final non-mutating verification evidence. Use the surface's verification workflow (`workflow_verify.md`).
 - The user asks for findings-first review output, severity-ranked findings, or PR review. Use `code-review`.
 - The task is documentation-only prose with no code-work contract. Use `sk-doc`.
 
 ### Family Boundary
 
-This is an independently invokable member of the `sk-code` family. It owns the quality gate, not implementation planning, debugging, verification evidence, or formal review reporting. It may edit files that `code-implement` already changed to satisfy gate failures, but it does not create new files and does not dispatch subagents.
+This is an independently invokable member of the `sk-code` family. It owns the quality gate, not implementation planning, debugging, verification evidence, or formal review reporting. It may edit files that the surface skill already changed to satisfy gate failures, but it does not create new files and does not dispatch subagents.
 
 Pairs well with:
-- `code-implement` immediately before this gate, because implementation writes the files this mode checks.
-- `code-debug` when a quality failure reveals a functional bug or failing command.
-- `code-verify` after P0 quality issues are clear, because verification gates the final claim.
+- The surface skill (`code-webflow` / `code-opencode`) immediately before this gate, because implementation writes the files this mode checks.
+- The surface's debugging workflow (`workflow_debug.md`) when a quality failure reveals a functional bug or failing command.
+- The surface's verification workflow (`workflow_verify.md`) after P0 quality issues are clear, because verification gates the final claim.
 - `code-review` when the user wants findings-only output rather than author-side correction.
 
 ---
@@ -139,15 +139,15 @@ Run `scripts/check-comment-hygiene.sh <file>` on each modified file that can con
 
 ### Quality Gate Workflow
 
-1. Resolve the surface and lifecycle state through the shared router. If no implementation changed files yet, route to `code-implement` unless the user explicitly asked for a standalone quality audit.
+1. Resolve the surface and lifecycle state through the shared router. If no implementation changed files yet, route to the appropriate surface skill (`code-webflow` / `code-opencode`) unless the user explicitly asked for a standalone quality audit.
 2. Collect the changed-file set from the task context or targeted paths. Read each target before editing.
 3. Load `assets/code_quality_checklist.md` before any completion claim, then load the target-path checklist from `assets/opencode-checklists/` when the target is OpenCode-owned.
 4. Run `scripts/check-comment-hygiene.sh <file>` for every modified comment-capable file.
 5. Apply the P0/P1/P2 model: P0 blocks completion, P1 should be fixed before handoff unless explicitly accepted, P2 can be documented when there is a clear reason.
 6. Fix gate failures in place with `Edit` when the correction is limited to already-authored files.
-7. If a gate failure requires new files, broader implementation, or behavior design, hand back to `code-implement`.
-8. If a gate failure is caused by an unclear runtime failure, hand to `code-debug` with the observed command, output, and failing target.
-9. When P0 items are clear, hand to `code-verify` for non-mutating evidence before any done-claim.
+7. If a gate failure requires new files, broader implementation, or behavior design, hand back to the surface skill (`code-webflow` / `code-opencode`).
+8. If a gate failure is caused by an unclear runtime failure, hand to the surface's debugging workflow (`workflow_debug.md`) with the observed command, output, and failing target.
+9. When P0 items are clear, hand to the surface's verification workflow (`workflow_verify.md`) for non-mutating evidence before any done-claim.
 
 ### P0/P1/P2 Author Checks
 
@@ -159,7 +159,7 @@ Run `scripts/check-comment-hygiene.sh <file>` on each modified file that can con
 
 ### Author-Side, Not Review-Side
 
-Quality mode is allowed to edit because it is part of the implementation lifecycle. It should leave the workspace better than it found it, but only inside the current scope. If the requested output is a review report, use `code-review`; if the requested output is evidence that commands pass, use `code-verify`.
+Quality mode is allowed to edit because it is part of the implementation lifecycle. It should leave the workspace better than it found it, but only inside the current scope. If the requested output is a review report, use `code-review`; if the requested output is evidence that commands pass, use the surface's verification workflow (`workflow_verify.md`).
 
 ### Comment Hygiene
 
@@ -178,13 +178,13 @@ Comments should explain durable WHY and constraints. They must not embed tempora
 5. Run `scripts/check-comment-hygiene.sh <file>` on each modified comment-capable file.
 6. Fix P0 issues before handing to verification unless the only safe action is escalation.
 7. Keep fixes scoped to quality-gate failures in files already in scope.
-8. Hand failures that need root-cause investigation to `code-debug` with the exact symptom and evidence.
+8. Hand failures that need root-cause investigation to the surface's debugging workflow (`workflow_debug.md`) with the exact symptom and evidence.
 
 ### NEVER
 
 1. Never create new files; this mode has no `Write` authority.
 2. Never dispatch subagents; this mode has no `Task` authority.
-3. Never make completion, done, works, or passing claims; hand to `code-verify` for evidence.
+3. Never make completion, done, works, or passing claims; hand to the surface's verification workflow (`workflow_verify.md`) for evidence.
 4. Never replace a formal findings-first review; route that to `code-review`.
 5. Never paste or fork shared surface-detection, quality, or style references into this packet.
 6. Never broaden scope into cleanup or refactor work unrelated to the gate failure.
@@ -210,16 +210,14 @@ Comments should explain durable WHY and constraints. They must not embed tempora
 - `scripts/check-comment-hygiene.sh` ran for each modified comment-capable file and reported zero violations or a documented escalation.
 - P0 issues are fixed in place or escalated with evidence; P1/P2 handling is explicit.
 - No new files were authored by this mode.
-- Handoff to `code-verify` includes the quality evidence and any remaining accepted risk.
+- Handoff to the surface's verification workflow (`workflow_verify.md`) includes the quality evidence and any remaining accepted risk.
 
 ---
 
 ## 6. INTEGRATION POINTS
 
 - `sk-code` routes quality prompts here through `mode-registry.json` and keeps the hub routing-only.
-- `code-implement` writes or changes files before this gate runs.
-- `code-debug` receives failing symptoms, root-cause issues, or command failures found by this gate.
-- `code-verify` runs final non-mutating verification after this gate clears P0 issues.
+- `code-webflow` / `code-opencode` implements or changes files before this gate runs, owns root-cause debugging, and gathers verification evidence via the implement → debug → verify workflow doctrine.
 - `code-review` owns findings-first review output and PR-style severity reporting.
 - `system-spec-kit` owns spec-folder documentation, validation, and memory workflows when the broader task requires them.
 

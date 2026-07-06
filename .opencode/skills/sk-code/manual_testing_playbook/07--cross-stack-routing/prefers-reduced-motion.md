@@ -39,23 +39,23 @@ grep -lqE "window\.Motion|window\.gsap|gsap\.(to|from|set|timeline|registerPlugi
 - `code-webflow/references/implementation/animation_workflows.md`
 - `code-webflow/references/javascript/quality_standards.md`
 - `code-webflow/references/verification/verification_workflows.md`
-- `code-animation/references/performance_and_pitfalls.md`
-- `code-animation/references/integration_patterns.md`
+- `code-webflow/references/animation/performance_and_pitfalls.md`
+- `code-webflow/references/animation/integration_patterns.md`
 
 **Expected assets loaded**:
-- `code-webflow/assets/checklists/code_quality_checklist.md`
-- `code-webflow/assets/checklists/verification_checklist.md`
-- `code-animation/assets/snippets/hover_gesture.js`
-- `code-animation/assets/snippets/in_view_reveal.js`
+- `code-review/assets/code_quality_checklist.md`
+- `code-webflow/assets/webflow-verification_checklist.md`
+- `code-webflow/assets/animation/snippets/hover_gesture.js`
+- `code-webflow/assets/animation/snippets/in_view_reveal.js`
 
 **Expected agent dispatch**: none.
 
 **Pass/fail criteria with binary grading**:
-- **PASS** iff surface is `WEBFLOW`, `code-animation/references/performance_and_pitfalls.md` loads, the user response cites Motion.dev reduced-motion guidance, and Webflow verification/a11y guidance is also loaded.
+- **PASS** iff surface is `WEBFLOW`, `code-webflow/references/animation/performance_and_pitfalls.md` loads, the user response cites Motion.dev reduced-motion guidance, and Webflow verification/a11y guidance is also loaded.
 - **FAIL** iff Motion.dev reduced-motion guidance is missing, Webflow guidance is missing, surface is not `WEBFLOW`, or an agent is dispatched.
 
 **Failure triage**:
-1. If Motion reduced-motion guidance is missing, inspect `code-animation/references/performance_and_pitfalls.md`.
+1. If Motion reduced-motion guidance is missing, inspect `code-webflow/references/animation/performance_and_pitfalls.md`.
 2. If Webflow verification is missing, inspect `code-webflow/references/verification/verification_workflows.md`.
 3. If the response only says "disable animations", check whether it preserves state changes and usability.
 
@@ -73,10 +73,10 @@ Evidence files:
 
 ## 4. SOURCE FILES
 
-- `.opencode/skills/sk-code/code-animation/references/performance_and_pitfalls.md` - Motion reduced-motion guidance.
+- `.opencode/skills/sk-code/code-webflow/references/animation/performance_and_pitfalls.md` - Motion reduced-motion guidance.
 - `.opencode/skills/sk-code/code-webflow/references/implementation/animation_workflows.md` - Webflow animation accessibility guidance.
 - `.opencode/skills/sk-code/code-webflow/references/verification/verification_workflows.md` - Browser evidence expectations.
-- `.opencode/skills/sk-code/code-animation/assets/snippets/hover_gesture.js` - Reduced-motion snippet pattern.
+- `.opencode/skills/sk-code/code-webflow/assets/animation/snippets/hover_gesture.js` - Reduced-motion snippet pattern.
 
 ---
 

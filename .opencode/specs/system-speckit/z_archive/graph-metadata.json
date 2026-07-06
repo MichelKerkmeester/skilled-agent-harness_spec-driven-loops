@@ -1,0 +1,57 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/z_archive",
+  "spec_folder": "system-speckit/z_archive",
+  "parent_id": "system-speckit",
+  "children_ids": [
+    "system-speckit/z_archive/001-fix-command-dispatch",
+    "system-speckit/z_archive/002-agent-routing-doc-update",
+    "system-speckit/z_archive/003-node-modules-relocation",
+    "system-speckit/z_archive/004-script-audit-comprehensive",
+    "system-speckit/z_archive/005-upgrade-speckit-docs",
+    "system-speckit/z_archive/006-generate-context-subfolder",
+    "system-speckit/z_archive/007-upgrade-level-script",
+    "system-speckit/z_archive/008-codex-system-wide-audit",
+    "system-speckit/z_archive/009-full-spec-doc-indexing",
+    "system-speckit/z_archive/010-documentation-alignment",
+    "system-speckit/z_archive/011-upgrade-auto-populate",
+    "system-speckit/z_archive/012-spec-doc-anchor-tags",
+    "system-speckit/z_archive/013-memory-overhaul-and-agent-upgrade-release",
+    "system-speckit/z_archive/014-memory-index-txt-support",
+    "system-speckit/z_archive/015-anchor-enforcement-automation",
+    "system-speckit/z_archive/016-index-workflows-code",
+    "system-speckit/z_archive/017-command-adherence",
+    "system-speckit/z_archive/018-mcp-issues-after-update",
+    "system-speckit/z_archive/019-readme-and-summary-with-hvr",
+    "system-speckit/z_archive/020-mcp-working-memory-hybrid-rag",
+    "system-speckit/z_archive/021-spec-kit-phase-system",
+    "system-speckit/z_archive/022-hybrid-rag-fusion",
+    "system-speckit/z_archive/023-hybrid-rag-fusion-refinement",
+    "system-speckit/z_archive/024-compact-code-graph",
+    "system-speckit/z_archive/025-nested-changelog-per-spec"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [],
+    "key_topics": [
+      "archive",
+      "cold-tier",
+      "container"
+    ],
+    "importance_tier": "archived",
+    "status": "archived",
+    "key_files": [],
+    "entities": [],
+    "causal_summary": "Hand-authored archived container node for cold-tier graph discoverability under system-speckit/z_archive; indexes 25 direct child folder(s), no canonical spec documents.",
+    "created_at": "2026-07-06T09:52:21.000Z",
+    "last_save_at": "2026-07-06T09:52:21.000Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [],
+    "source_doc_hashes": {}
+  }
+}

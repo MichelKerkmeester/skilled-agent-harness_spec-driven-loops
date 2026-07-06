@@ -1001,7 +1001,7 @@ async function handleMemorySearch(args: SearchArgs): Promise<MCPResponse> {
     applyStateLimits: applyStateLimits = false,
     rerank = true, // Enable reranking by default for better result quality
     applyLengthPenalty: applyLengthPenalty = true,
-    trackAccess: trackAccess = false, // opt-in, off by default
+    trackAccess: trackAccess = true, // default-on: FSRS retrievability needs access fuel; both cache-hit and cache-miss paths record it, and writes are batched (accumulate + interval flush) so per-search amplification stays low
     includeArchived: includeArchivedRequested = false,
     enableSessionBoost: enableSessionBoost = isSessionBoostEnabled(),
     enableCausalBoost: enableCausalBoost = isCausalBoostEnabled(),

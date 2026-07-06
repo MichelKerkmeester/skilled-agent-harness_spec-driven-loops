@@ -47,7 +47,7 @@ Cross-language consistency in file naming and commenting reduces cognitive load 
 3. **No commented-out code:** Delete unused code (git preserves history)
 4. **Platform-specific notes:** Document Webflow, Motion.dev, Lenis constraints
 
-> **Cross-stack motion.dev reference**: For Motion API assumptions and integration modes that can inform `MOTION:` comments across stacks, see [`../../motion_dev/quick_start.md`](../../../code-animation/references/quick_start.md) and [`../../motion_dev/integration_patterns.md`](../../../code-animation/references/integration_patterns.md). Webflow comment and naming conventions remain defined in this style guide.
+> **Cross-stack motion.dev reference**: For Motion API assumptions and integration modes that can inform `MOTION:` comments across stacks, see [`../animation/quick_start.md`](../animation/quick_start.md) and [`../animation/integration_patterns.md`](../animation/integration_patterns.md). Webflow comment and naming conventions remain defined in this style guide.
 
 ---
 

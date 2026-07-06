@@ -514,7 +514,7 @@ P0 blocks, P1 requires completion or approved deferral, and P2 is optional. Code
 | Canonical intake | `/speckit:plan --intake-only "Description"` |
 | Create spec folder | `./scripts/spec/create.sh "Description" --short-name name --level 2` |
 | Validate | `.opencode/skills/system-spec-kit/scripts/spec/validate.sh specs/007-feature/` |
-| Verify code alignment drift | `python3 .opencode/skills/sk-code/code-verify/assets/scripts/verify_alignment_drift.py --root .opencode/skills/system-spec-kit` |
+| Verify code alignment drift | `python3 .opencode/skills/sk-code/code-opencode/assets/scripts/verify_alignment_drift.py --root .opencode/skills/system-spec-kit` |
 | Save context | `node .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js /tmp/save-context-data-<session-id>.json specs/007-feature/` |
 | Memory CLI (dual-stack) | `node .opencode/bin/spec-memory.cjs <tool> --format json` calls any of the 41 memory tools over the live daemon; `list-tools` enumerates them offline; `--warm-only` for prompt-time contexts |
 | Next spec number | `ls -d specs/[0-9]*/ \| sed 's/.*\/\([0-9]*\)-.*/\1/' \| sort -n \| tail -1` |

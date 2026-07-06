@@ -288,12 +288,14 @@ function parseRouter(skillMdText, skillRoot) {
  * @param {Object} intentSignals - Map of intent -> {weight, keywords}.
  * @returns {Array<{intent:string,score:number}>} Scored intents, highest first.
  */
-const WORD_BOUNDARY_KEYWORDS = new Set(['review']);
+const WORD_BOUNDARY_KEYWORDS = new Set(['review', 'lcp', 'inp', 'cls']);
 
 // A bare keyword like "review" gets swallowed by unrelated longer words
-// ("preview" contains "review"), so match those on word boundaries. Path- and
-// identifier-style keywords keep substring matching so "javascript" still
-// matches inside "2_javascript".
+// ("preview" contains "review"), so match those on word boundaries. The short
+// performance acronyms need the same guard for the opposite reason: bare "inp"
+// would substring-match "input", firing the performance intent on unrelated
+// prompts. Path- and identifier-style keywords keep substring matching so
+// "javascript" still matches inside "2_javascript".
 function keywordHits(taskLower, kw) {
   if (!kw) return false;
   if (WORD_BOUNDARY_KEYWORDS.has(kw)) {
@@ -328,14 +330,17 @@ function selectIntents(scores) {
   return scores.filter((s) => top - s.score <= AMBIGUITY_DELTA).map((s) => s.intent);
 }
 
-// Which surface a resource belongs to, by its on-disk path prefix. Webflow,
-// OpenCode, and Motion.dev resources live under their own code-<surface>/ packet
-// folders, so the prefix IS the surface. Everything else (universal refs, the
-// detection/router preamble) is surface-agnostic.
+// Which surface a resource belongs to, by its on-disk path prefix. Webflow and
+// OpenCode resources live under their code-<surface>/ packet folders, so the
+// prefix IS the surface. Motion.dev is a cross-stack overlay folded into
+// code-webflow/{references,assets}/animation/; it is matched FIRST so it stays a
+// distinct overlay surface (kept regardless of the detected code surface) rather
+// than collapsing into WEBFLOW's broader code-webflow/ prefix. Everything else
+// (universal refs, the detection/router preamble) is surface-agnostic.
 const SURFACE_PREFIXES = {
+  MOTION: ['code-webflow/references/animation/', 'code-webflow/assets/animation/'],
   WEBFLOW: ['code-webflow/'],
   OPENCODE: ['code-opencode/'],
-  MOTION: ['code-animation/'],
 };
 function resourceSurface(r) {
   for (const [surface, prefixes] of Object.entries(SURFACE_PREFIXES)) {

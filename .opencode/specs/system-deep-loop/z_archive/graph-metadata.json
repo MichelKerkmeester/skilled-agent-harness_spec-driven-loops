@@ -1,0 +1,60 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/z_archive",
+  "spec_folder": "system-deep-loop/z_archive",
+  "parent_id": "system-deep-loop",
+  "children_ids": [
+    "system-deep-loop/z_archive/001-sk-deep-research-creation",
+    "system-deep-loop/z_archive/002-sk-deep-research-refinement",
+    "system-deep-loop/z_archive/003-sk-deep-research-testing-playbook",
+    "system-deep-loop/z_archive/004-sk-deep-research-first-upgrade",
+    "system-deep-loop/z_archive/005-sk-deep-research-review-mode",
+    "system-deep-loop/z_archive/006-sk-deep-research-review-folders",
+    "system-deep-loop/z_archive/007-sk-deep-research-path-migration",
+    "system-deep-loop/z_archive/008-sk-deep-research-review-split",
+    "system-deep-loop/z_archive/009-sk-deep-research-review-improvement-1",
+    "system-deep-loop/z_archive/010-sk-recursive-agent-loop",
+    "system-deep-loop/z_archive/011-sk-deep-research-review-improvement-2",
+    "system-deep-loop/z_archive/012-sk-agent-improver-test-report-alignment",
+    "system-deep-loop/z_archive/013-deep-loop-command-flow-stress-tests",
+    "system-deep-loop/z_archive/014-sk-deep-agent-improvement",
+    "system-deep-loop/z_archive/015-multi-ai-council-output-protocol",
+    "system-deep-loop/z_archive/016-multi-ai-council-persistence",
+    "system-deep-loop/z_archive/017-multi-ai-council-deferrals",
+    "system-deep-loop/z_archive/018-multi-ai-council-write-authority",
+    "system-deep-loop/z_archive/019-multi-ai-council-main-agent-write-enforcement",
+    "system-deep-loop/z_archive/020-deep-multi-ai-council-skill",
+    "system-deep-loop/z_archive/021-deep-skill-evolution",
+    "system-deep-loop/z_archive/022-deep-agent-improvement-benchmark-mode",
+    "system-deep-loop/z_archive/023-deep-improvement-skill-benchmark-mode",
+    "system-deep-loop/z_archive/024-deep-loop-parallel-fanout",
+    "system-deep-loop/z_archive/025-deep-context-gathering",
+    "system-deep-loop/z_archive/026-deep-context-workflow-adoption",
+    "system-deep-loop/z_archive/027-deep-improvement-guarded-refine-hardening",
+    "system-deep-loop/z_archive/028-deep-loop-executor-config-dir"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [],
+    "key_topics": [
+      "archive",
+      "cold-tier",
+      "container"
+    ],
+    "importance_tier": "archived",
+    "status": "archived",
+    "key_files": [],
+    "entities": [],
+    "causal_summary": "Hand-authored archived container node for cold-tier graph discoverability under system-deep-loop/z_archive; indexes 28 direct child folder(s), no canonical spec documents.",
+    "created_at": "2026-07-06T09:52:21.000Z",
+    "last_save_at": "2026-07-06T09:52:21.000Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [],
+    "source_doc_hashes": {}
+  }
+}

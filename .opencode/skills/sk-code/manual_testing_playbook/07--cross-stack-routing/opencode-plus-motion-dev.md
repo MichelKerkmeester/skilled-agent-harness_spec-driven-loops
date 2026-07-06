@@ -36,14 +36,14 @@ Before editing .opencode/skills/sk-doc/scripts/preview-server.ts for a Motion de
 - `code-opencode/references/typescript/quick_reference.md`
 - `code-opencode/references/typescript/style_guide.md`
 - `code-opencode/references/typescript/quality_standards.md`
-- `code-animation/references/quick_start.md`
-- `code-animation/references/integration_patterns.md`
-- `code-animation/references/animate_and_timelines.md`
+- `code-webflow/references/animation/quick_start.md`
+- `code-webflow/references/animation/integration_patterns.md`
+- `code-webflow/references/animation/animate_and_timelines.md`
 
 **Expected assets loaded**:
 - `code-opencode/assets/checklists/universal_checklist.md`
 - `code-opencode/assets/checklists/typescript_checklist.md`
-- `code-animation/assets/snippets/es_module_bootstrap.js`
+- `code-webflow/assets/animation/snippets/es_module_bootstrap.js`
 
 **Expected NOT loaded as authoritative surface guidance**:
 - `code-webflow/references/implementation/webflow_patterns.md`
@@ -77,7 +77,7 @@ Evidence files:
 - `.opencode/skills/sk-code/shared/references/stack_detection.md` - OPENCODE precedence rule.
 - `.opencode/skills/sk-code/shared/references/smart_routing.md` - OPENCODE and MOTION_DEV maps.
 - `.opencode/skills/sk-code/code-opencode/references/typescript/quick_reference.md` - Expected TypeScript route.
-- `.opencode/skills/sk-code/code-animation/assets/snippets/es_module_bootstrap.js` - Supplementary Motion ESM pattern.
+- `.opencode/skills/sk-code/code-webflow/assets/animation/snippets/es_module_bootstrap.js` - Supplementary Motion ESM pattern.
 
 ---
 

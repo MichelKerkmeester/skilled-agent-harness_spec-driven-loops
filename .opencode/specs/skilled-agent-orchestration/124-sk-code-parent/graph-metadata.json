@@ -24,7 +24,10 @@
     "skilled-agent-orchestration/124-sk-code-parent/018-deep-loop-canon-alignment",
     "skilled-agent-orchestration/124-sk-code-parent/019-benchmarks-and-promotion",
     "skilled-agent-orchestration/124-sk-code-parent/020-surface-packet-rename",
-    "skilled-agent-orchestration/124-sk-code-parent/021-playbook-gold-and-lane-c-rebaseline"
+    "skilled-agent-orchestration/124-sk-code-parent/021-playbook-gold-and-lane-c-rebaseline",
+    "skilled-agent-orchestration/124-sk-code-parent/022-collapse-to-four-subskills",
+    "skilled-agent-orchestration/124-sk-code-parent/023-sk-code-workflow-subskill-research",
+    "skilled-agent-orchestration/124-sk-code-parent/024-sk-code-advisor-routing-and-discovery"
   ],
   "migrated": true,
   "migration_source": "legacy",
@@ -143,7 +146,7 @@
     ],
     "causal_summary": "Code capability is split across two mature-but-uncoordinated skills",
     "created_at": "2026-07-03T00:00:00Z",
-    "last_save_at": "2026-07-05T10:05:41.735Z",
+    "last_save_at": "2026-07-06T06:53:29.705Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -153,7 +156,7 @@
     "source_doc_hashes": {
       "spec.md": "19fdbf0c57cf5b8861e9edf69d3c99a6f3c151fc521610b39c54ad4f22091ff7"
     },
-    "last_active_child_id": "skilled-agent-orchestration/124-sk-code-parent/021-playbook-gold-and-lane-c-rebaseline",
-    "last_active_at": "2026-07-05T19:56:30.000Z"
+    "last_active_child_id": "skilled-agent-orchestration/124-sk-code-parent/024-sk-code-advisor-routing-and-discovery",
+    "last_active_at": "2026-07-06T09:31:15.780Z"
   }
 }

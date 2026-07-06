@@ -112,4 +112,4 @@ Measure before and after each gating change:
 - [cwv_remediation.md](./cwv_remediation.md) - Metric-specific fixes for Lighthouse/PageSpeed issues
 - [resource_loading.md](./resource_loading.md) - Preconnect, preload, async, and dynamic loading patterns
 - [third_party.md](./third_party.md) - Deferral guidance for non-critical external scripts
-- [../../assets/checklists/performance_loading_checklist.md](../../../code-verify/assets/performance_loading_checklist.md) - Verification checklist for gated loading rollouts
+- [../../assets/checklists/performance_loading_checklist.md](../../../shared/references/performance_loading_checklist.md) - Verification checklist for gated loading rollouts

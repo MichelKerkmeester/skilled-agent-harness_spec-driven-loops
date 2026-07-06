@@ -36,13 +36,13 @@ Use the `code-review` mode (of the sk-code family) when:
 
 ### When NOT to Use
 
-- Feature implementation without review intent; use `code-implement`.
+- Feature implementation without review intent; use the surface skill (`code-webflow` / `code-opencode`).
 - Pure documentation editing where code behavior is not being assessed.
 - Git-only workflow tasks (branching, rebasing, commit hygiene) without code-quality evaluation intent.
-- Applying review fixes after findings are accepted; use `code-implement`.
+- Applying review fixes after findings are accepted; use the surface skill (`code-webflow` / `code-opencode`).
 - Author-side quality gates before review; use `code-quality`.
-- Root-cause debugging; use `code-debug`.
-- Verification evidence collection; use `code-verify`.
+- Root-cause debugging; use the surface's `workflow_debug.md` doctrine.
+- Verification evidence collection; use the surface's `workflow_verify.md` doctrine.
 
 ---
 
@@ -441,7 +441,7 @@ Downstream automation parses this final line via exact string match — do not v
 
 - Primary review baseline for `@review` agents in `.opencode/agents/review.md`.
 - Referenced by review-dispatch steps in `spec_kit` and `create` command YAML workflows.
-- Complements, but does not replace, sibling mode ownership: `code-implement` applies fixes, `code-quality` owns author-side gates, `code-debug` owns root-cause debugging, and `code-verify` owns verification evidence.
+- Complements, but does not replace, sibling ownership: the surface skills (`code-webflow` / `code-opencode`) apply fixes and own the implement → debug → verify workflow doctrine, and `code-quality` owns author-side gates.
 
 ---
 

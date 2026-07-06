@@ -8,8 +8,8 @@
     "id": "sk-code",
     "root": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/sk-code"
   },
-  "verdict": "CONDITIONAL",
-  "aggregateScore": 71,
+  "verdict": "PASS",
+  "aggregateScore": 84,
   "gate": {
     "d5Score": 100,
     "gateFailed": false,
@@ -34,15 +34,15 @@
     },
     "D1intra": {
       "points": 13,
-      "score": 87
+      "score": 91
     },
     "D2": {
       "points": 20,
-      "score": 79
+      "score": 85
     },
     "D3": {
       "points": 15,
-      "score": 47
+      "score": 68
     },
     "D4": {
       "points": 25,
@@ -151,18 +151,10 @@
     }
   },
   "funnel": {
-    "passed": 20,
-    "discovered": 2
+    "passed": 22
   },
-  "headlineBottleneck": "discovered",
-  "bottlenecks": [
-    {
-      "class": "funnel_attrition",
-      "severity": "P1",
-      "stage": "discovered",
-      "detail": "2 scenario(s) first fail at stage 'discovered'"
-    }
-  ],
+  "headlineBottleneck": null,
+  "bottlenecks": [],
   "coverage": {
     "routing": 20,
     "advisor": 2,
@@ -178,16 +170,12 @@
         "src/2_javascript",
         "javascript",
         "lenis",
-        "intersectionobserver",
-        "lenis smooth-scroll"
+        "intersectionobserver"
       ]
     },
     {
       "scenarioId": "SD-002",
       "leaks": [
-        "handle empty",
-        "console.error fallback",
-        "fallback",
         "opencode",
         "mcp",
         "typescript",
@@ -197,10 +185,6 @@
     {
       "scenarioId": "LS-001",
       "leaks": [
-        "refactor",
-        "refactor the",
-        "throw on missing",
-        "missing",
         "opencode",
         "mcp",
         "config",
@@ -210,7 +194,6 @@
     {
       "scenarioId": "LS-002",
       "leaks": [
-        "argparse block",
         "opencode",
         "mcp",
         "json",
@@ -237,7 +220,6 @@
         "review",
         "lenis",
         "opencode",
-        "lenis smooth-scroll",
         "skill"
       ]
     },
@@ -264,7 +246,6 @@
       "leaks": [
         "sk-code",
         "webflow",
-        "motion.dev",
         "references"
       ]
     },
@@ -280,10 +261,7 @@
     {
       "scenarioId": "CS-004",
       "leaks": [
-        "implement",
-        "implementation",
         "css",
-        "motion.dev",
         "references"
       ]
     },
@@ -302,7 +280,6 @@
         "webflow",
         "src/2_javascript",
         "javascript",
-        "motion.dev",
         "references"
       ]
     },
@@ -312,8 +289,7 @@
         "sk-code",
         "webflow",
         "src/2_javascript",
-        "javascript",
-        "motion.dev"
+        "javascript"
       ]
     },
     {
@@ -339,12 +315,6 @@
         "review",
         "opencode",
         "skill"
-      ]
-    },
-    {
-      "scenarioId": "DR-004",
-      "leaks": [
-        "fails"
       ]
     },
     {
@@ -560,25 +530,19 @@
         "observed": true,
         "source": "hub-router",
         "workflowMode": [
-          "debug",
           "code-opencode"
         ],
         "matchedAliases": [
-          "handle empty",
-          "console.error fallback",
-          "fallback",
           "opencode",
           "mcp",
           "typescript"
         ],
         "defaultApplied": false,
-        "deferReason": "ambiguous-multi-axis",
+        "deferReason": null,
         "backendKind": [
-          "surface-router",
           "evidence-base"
         ],
         "packet": [
-          "code-debug",
           "code-opencode"
         ]
       }
@@ -672,7 +636,7 @@
         "source": "hub-router",
         "workflowMode": null,
         "matchedAliases": [],
-        "defaultApplied": true,
+        "defaultApplied": false,
         "deferReason": "no-mode-scored",
         "backendKind": [],
         "packet": []
@@ -770,25 +734,19 @@
         "observed": true,
         "source": "hub-router",
         "workflowMode": [
-          "implement",
           "code-opencode"
         ],
         "matchedAliases": [
-          "refactor",
-          "refactor the",
-          "throw on missing",
           "opencode",
           "mcp",
           "config"
         ],
         "defaultApplied": false,
-        "deferReason": "ambiguous-multi-axis",
+        "deferReason": null,
         "backendKind": [
-          "surface-router",
           "evidence-base"
         ],
         "packet": [
-          "code-implement",
           "code-opencode"
         ]
       }
@@ -1209,25 +1167,21 @@
         "source": "hub-router",
         "workflowMode": [
           "code-webflow",
-          "code-opencode",
-          "code-animation"
+          "code-opencode"
         ],
         "matchedAliases": [
           "lenis",
-          "opencode",
-          "lenis smooth-scroll"
+          "opencode"
         ],
         "defaultApplied": false,
         "deferReason": "ambiguous-multi-axis",
         "backendKind": [
           "evidence-base",
-          "evidence-base",
           "evidence-base"
         ],
         "packet": [
           "code-webflow",
-          "code-opencode",
-          "code-animation"
+          "code-opencode"
         ]
       }
     },
@@ -1254,11 +1208,11 @@
           "note": "Mode A proxy; live-mode replaces with observed-load Hit@k/Recall@k/MRR"
         },
         "d3": {
-          "score": 0,
+          "score": null,
           "routedCount": 4,
-          "wastedCount": 4,
-          "proxy": "router-overload",
-          "note": "Mode A proxy; live-mode replaces with calls/tokens-to-first-expected"
+          "wastedCount": 0,
+          "proxy": "no-positive-gold",
+          "note": "not-applicable: no expected-resource gold to measure over-routing against"
         },
         "assetRecall": {
           "score": null,
@@ -1301,7 +1255,7 @@
         }
       },
       "firstFailingStage": null,
-      "modeAScore": 69,
+      "modeAScore": 100,
       "applicable": true,
       "recipeCapped": false,
       "classKind": "advisor",
@@ -1318,14 +1272,10 @@
         "observed": true,
         "source": "hub-router",
         "workflowMode": [
-          "implement",
           "quality",
-          "debug",
-          "verify",
           "code-review",
           "code-webflow",
-          "code-opencode",
-          "code-animation"
+          "code-opencode"
         ],
         "matchedAliases": [
           "sk-code"
@@ -1334,23 +1284,15 @@
         "deferReason": "ambiguous-multi-axis",
         "backendKind": [
           "surface-router",
-          "surface-router",
-          "surface-router",
-          "surface-router",
           "review-cache",
-          "evidence-base",
           "evidence-base",
           "evidence-base"
         ],
         "packet": [
-          "code-implement",
           "code-quality",
-          "code-debug",
-          "code-verify",
           "code-review",
           "code-webflow",
-          "code-opencode",
-          "code-animation"
+          "code-opencode"
         ]
       }
     },
@@ -1377,11 +1319,11 @@
           "note": "Mode A proxy; live-mode replaces with observed-load Hit@k/Recall@k/MRR"
         },
         "d3": {
-          "score": 0,
+          "score": null,
           "routedCount": 4,
-          "wastedCount": 4,
-          "proxy": "router-overload",
-          "note": "Mode A proxy; live-mode replaces with calls/tokens-to-first-expected"
+          "wastedCount": 0,
+          "proxy": "no-positive-gold",
+          "note": "not-applicable: no expected-resource gold to measure over-routing against"
         },
         "assetRecall": {
           "score": null,
@@ -1424,7 +1366,7 @@
         }
       },
       "firstFailingStage": null,
-      "modeAScore": 69,
+      "modeAScore": 100,
       "applicable": true,
       "recipeCapped": false,
       "classKind": "advisor",
@@ -1442,7 +1384,7 @@
         "source": "hub-router",
         "workflowMode": null,
         "matchedAliases": [],
-        "defaultApplied": true,
+        "defaultApplied": false,
         "deferReason": "no-mode-scored",
         "backendKind": [],
         "packet": []
@@ -1495,9 +1437,9 @@
       "tier": "playbook",
       "dims": {
         "d1intra": {
-          "score": 0.76,
+          "score": 0.8200000000000001,
           "intentRecall": null,
-          "resourceRecall": 0.6,
+          "resourceRecall": 0.7,
           "negative": false
         },
         "commandRecipe": {
@@ -1508,13 +1450,13 @@
           "missReasons": []
         },
         "d2": {
-          "score": 0.6,
+          "score": 0.7,
           "proxy": "router-replay-recall",
           "note": "Mode A proxy; live-mode replaces with observed-load Hit@k/Recall@k/MRR"
         },
         "d3": {
-          "score": 0.4,
-          "routedCount": 15,
+          "score": 0.4375,
+          "routedCount": 16,
           "wastedCount": 9,
           "proxy": "router-overload",
           "note": "Mode A proxy; live-mode replaces with calls/tokens-to-first-expected"
@@ -1525,9 +1467,9 @@
           "expectedAssets": [
             "code-webflow/assets/checklists/code_quality_checklist.md",
             "code-webflow/assets/checklists/verification_checklist.md",
-            "code-animation/assets/install_card.md",
-            "code-animation/assets/snippets/in_view_reveal.js",
-            "code-animation/assets/snippets/cdn_bootstrap.js"
+            "code-webflow/assets/animation/install_card.md",
+            "code-webflow/assets/animation/snippets/in_view_reveal.js",
+            "code-webflow/assets/animation/snippets/cdn_bootstrap.js"
           ],
           "note": "assets deferred on-demand; not in the first slice (router mode)"
         },
@@ -1568,7 +1510,7 @@
         }
       },
       "firstFailingStage": null,
-      "modeAScore": 58,
+      "modeAScore": 65,
       "applicable": true,
       "recipeCapped": false,
       "classKind": "routing",
@@ -1628,8 +1570,8 @@
         },
         "d3": {
           "score": 1,
-          "routedCount": 10,
-          "wastedCount": 10,
+          "routedCount": 11,
+          "wastedCount": 11,
           "proxy": "negative-activation",
           "note": "negative scenario: D3 tracks the suppression outcome, not over-routing"
         },
@@ -1637,9 +1579,9 @@
           "score": null,
           "deferred": true,
           "expectedAssets": [
-            "code-animation/assets/snippets/hover_gesture.js",
-            "code-animation/assets/snippets/in_view_reveal.js",
-            "code-animation/assets/install_card.md"
+            "code-webflow/assets/animation/snippets/hover_gesture.js",
+            "code-webflow/assets/animation/snippets/in_view_reveal.js",
+            "code-webflow/assets/animation/install_card.md"
           ],
           "note": "assets deferred on-demand; not in the first slice (router mode)"
         },
@@ -1697,23 +1639,19 @@
         "observed": true,
         "source": "hub-router",
         "workflowMode": [
-          "code-webflow",
-          "code-animation"
+          "code-webflow"
         ],
         "matchedAliases": [
           "webflow",
-          "sk-code",
-          "motion.dev"
+          "sk-code"
         ],
         "defaultApplied": false,
-        "deferReason": "ambiguous-multi-axis",
+        "deferReason": null,
         "backendKind": [
-          "evidence-base",
           "evidence-base"
         ],
         "packet": [
-          "code-webflow",
-          "code-animation"
+          "code-webflow"
         ]
       }
     },
@@ -1752,7 +1690,7 @@
           "expectedAssets": [
             "code-opencode/assets/checklists/universal_checklist.md",
             "code-opencode/assets/checklists/typescript_checklist.md",
-            "code-animation/assets/snippets/es_module_bootstrap.js"
+            "code-webflow/assets/animation/snippets/es_module_bootstrap.js"
           ],
           "note": "assets deferred on-demand; not in the first slice (router mode)"
         },
@@ -1831,9 +1769,9 @@
       "tier": "playbook",
       "dims": {
         "d1intra": {
-          "score": 0.8,
+          "score": 1,
           "intentRecall": null,
-          "resourceRecall": 0.8,
+          "resourceRecall": 1,
           "negative": true,
           "forbiddenLeaked": false
         },
@@ -1845,14 +1783,14 @@
           "missReasons": []
         },
         "d2": {
-          "score": 0.8,
+          "score": 1,
           "proxy": "router-replay-recall",
           "note": "Mode A proxy; live-mode replaces with observed-load Hit@k/Recall@k/MRR"
         },
         "d3": {
-          "score": 0.8,
-          "routedCount": 11,
-          "wastedCount": 11,
+          "score": 1,
+          "routedCount": 12,
+          "wastedCount": 12,
           "proxy": "negative-activation",
           "note": "negative scenario: D3 tracks the suppression outcome, not over-routing"
         },
@@ -1860,7 +1798,7 @@
           "score": null,
           "deferred": true,
           "expectedAssets": [
-            "code-animation/assets/snippets/hover_gesture.js"
+            "code-webflow/assets/animation/snippets/hover_gesture.js"
           ],
           "note": "assets deferred on-demand; not in the first slice (router mode)"
         },
@@ -1901,7 +1839,7 @@
         }
       },
       "firstFailingStage": null,
-      "modeAScore": 80,
+      "modeAScore": 100,
       "applicable": true,
       "recipeCapped": false,
       "classKind": "routing",
@@ -1918,19 +1856,18 @@
         "observed": true,
         "source": "hub-router",
         "workflowMode": [
-          "implement"
+          "code-webflow"
         ],
         "matchedAliases": [
-          "implement",
-          "implementation"
+          "css"
         ],
         "defaultApplied": false,
         "deferReason": null,
         "backendKind": [
-          "surface-router"
+          "evidence-base"
         ],
         "packet": [
-          "code-implement"
+          "code-webflow"
         ]
       }
     },
@@ -1959,8 +1896,8 @@
         },
         "d3": {
           "score": 0.8333333333333334,
-          "routedCount": 13,
-          "wastedCount": 13,
+          "routedCount": 14,
+          "wastedCount": 14,
           "proxy": "negative-activation",
           "note": "negative scenario: D3 tracks the suppression outcome, not over-routing"
         },
@@ -1968,8 +1905,8 @@
           "score": null,
           "deferred": true,
           "expectedAssets": [
-            "code-animation/assets/snippets/in_view_reveal.js",
-            "code-animation/assets/snippets/animate_on_scroll.js"
+            "code-webflow/assets/animation/snippets/in_view_reveal.js",
+            "code-webflow/assets/animation/snippets/animate_on_scroll.js"
           ],
           "note": "assets deferred on-demand; not in the first slice (router mode)"
         },
@@ -2048,9 +1985,9 @@
       "tier": "playbook",
       "dims": {
         "d1intra": {
-          "score": 0.625,
+          "score": 1,
           "intentRecall": null,
-          "resourceRecall": 0.375,
+          "resourceRecall": 1,
           "negative": false
         },
         "commandRecipe": {
@@ -2061,14 +1998,14 @@
           "missReasons": []
         },
         "d2": {
-          "score": 0.375,
+          "score": 1,
           "proxy": "router-replay-recall",
           "note": "Mode A proxy; live-mode replaces with observed-load Hit@k/Recall@k/MRR"
         },
         "d3": {
-          "score": 0.30000000000000004,
-          "routedCount": 10,
-          "wastedCount": 7,
+          "score": 0.42105263157894735,
+          "routedCount": 19,
+          "wastedCount": 11,
           "proxy": "router-overload",
           "note": "Mode A proxy; live-mode replaces with calls/tokens-to-first-expected"
         },
@@ -2076,7 +2013,7 @@
           "score": null,
           "deferred": true,
           "expectedAssets": [
-            "code-webflow/assets/checklists/performance_loading_checklist.md",
+            "references/performance_loading_checklist.md",
             "code-webflow/assets/patterns/performance_patterns.js"
           ],
           "note": "assets deferred on-demand; not in the first slice (router mode)"
@@ -2117,8 +2054,8 @@
           "violations": []
         }
       },
-      "firstFailingStage": "discovered",
-      "modeAScore": 42,
+      "firstFailingStage": null,
+      "modeAScore": 82,
       "applicable": true,
       "recipeCapped": false,
       "classKind": "routing",
@@ -2158,9 +2095,9 @@
       "tier": "playbook",
       "dims": {
         "d1intra": {
-          "score": 0.6571428571428571,
+          "score": 0.9142857142857143,
           "intentRecall": null,
-          "resourceRecall": 0.42857142857142855,
+          "resourceRecall": 0.8571428571428571,
           "negative": false
         },
         "commandRecipe": {
@@ -2171,13 +2108,13 @@
           "missReasons": []
         },
         "d2": {
-          "score": 0.42857142857142855,
+          "score": 0.8571428571428571,
           "proxy": "router-replay-recall",
           "note": "Mode A proxy; live-mode replaces with observed-load Hit@k/Recall@k/MRR"
         },
         "d3": {
-          "score": 0.30000000000000004,
-          "routedCount": 10,
+          "score": 0.46153846153846156,
+          "routedCount": 13,
           "wastedCount": 7,
           "proxy": "router-overload",
           "note": "Mode A proxy; live-mode replaces with calls/tokens-to-first-expected"
@@ -2186,10 +2123,10 @@
           "score": null,
           "deferred": true,
           "expectedAssets": [
-            "code-webflow/assets/checklists/code_quality_checklist.md",
-            "code-webflow/assets/checklists/verification_checklist.md",
-            "code-animation/assets/snippets/hover_gesture.js",
-            "code-animation/assets/snippets/in_view_reveal.js"
+            "code-review/assets/code_quality_checklist.md",
+            "code-webflow/assets/webflow-verification_checklist.md",
+            "code-webflow/assets/animation/snippets/hover_gesture.js",
+            "code-webflow/assets/animation/snippets/in_view_reveal.js"
           ],
           "note": "assets deferred on-demand; not in the first slice (router mode)"
         },
@@ -2229,8 +2166,8 @@
           "violations": []
         }
       },
-      "firstFailingStage": "discovered",
-      "modeAScore": 45,
+      "firstFailingStage": null,
+      "modeAScore": 75,
       "applicable": true,
       "recipeCapped": false,
       "classKind": "routing",
@@ -2392,11 +2329,11 @@
           "note": "Mode A proxy; live-mode replaces with observed-load Hit@k/Recall@k/MRR"
         },
         "d3": {
-          "score": 0,
+          "score": null,
           "routedCount": 7,
-          "wastedCount": 7,
-          "proxy": "router-overload",
-          "note": "Mode A proxy; live-mode replaces with calls/tokens-to-first-expected"
+          "wastedCount": 0,
+          "proxy": "no-positive-gold",
+          "note": "not-applicable: no expected-resource gold to measure over-routing against"
         },
         "assetRecall": {
           "score": null,
@@ -2439,7 +2376,7 @@
         }
       },
       "firstFailingStage": null,
-      "modeAScore": 69,
+      "modeAScore": 100,
       "applicable": true,
       "recipeCapped": false,
       "classKind": "routing",
@@ -2496,11 +2433,11 @@
           "note": "Mode A proxy; live-mode replaces with observed-load Hit@k/Recall@k/MRR"
         },
         "d3": {
-          "score": 0,
+          "score": null,
           "routedCount": 7,
-          "wastedCount": 7,
-          "proxy": "router-overload",
-          "note": "Mode A proxy; live-mode replaces with calls/tokens-to-first-expected"
+          "wastedCount": 0,
+          "proxy": "no-positive-gold",
+          "note": "not-applicable: no expected-resource gold to measure over-routing against"
         },
         "assetRecall": {
           "score": null,
@@ -2543,7 +2480,7 @@
         }
       },
       "firstFailingStage": null,
-      "modeAScore": 69,
+      "modeAScore": 100,
       "applicable": true,
       "recipeCapped": false,
       "classKind": "routing",
@@ -2598,11 +2535,11 @@
           "note": "Mode A proxy; live-mode replaces with observed-load Hit@k/Recall@k/MRR"
         },
         "d3": {
-          "score": 0,
+          "score": null,
           "routedCount": 4,
-          "wastedCount": 4,
-          "proxy": "router-overload",
-          "note": "Mode A proxy; live-mode replaces with calls/tokens-to-first-expected"
+          "wastedCount": 0,
+          "proxy": "no-positive-gold",
+          "note": "not-applicable: no expected-resource gold to measure over-routing against"
         },
         "assetRecall": {
           "score": null,
@@ -2645,7 +2582,7 @@
         }
       },
       "firstFailingStage": null,
-      "modeAScore": 69,
+      "modeAScore": 100,
       "applicable": true,
       "recipeCapped": false,
       "classKind": "routing",
@@ -2661,20 +2598,12 @@
       "routeTelemetry": {
         "observed": true,
         "source": "hub-router",
-        "workflowMode": [
-          "debug"
-        ],
-        "matchedAliases": [
-          "fails"
-        ],
+        "workflowMode": null,
+        "matchedAliases": [],
         "defaultApplied": false,
-        "deferReason": null,
-        "backendKind": [
-          "surface-router"
-        ],
-        "packet": [
-          "code-debug"
-        ]
+        "deferReason": "no-mode-scored",
+        "backendKind": [],
+        "packet": []
       }
     },
     {
@@ -2700,11 +2629,11 @@
           "note": "Mode A proxy; live-mode replaces with observed-load Hit@k/Recall@k/MRR"
         },
         "d3": {
-          "score": 0,
+          "score": null,
           "routedCount": 7,
-          "wastedCount": 7,
-          "proxy": "router-overload",
-          "note": "Mode A proxy; live-mode replaces with calls/tokens-to-first-expected"
+          "wastedCount": 0,
+          "proxy": "no-positive-gold",
+          "note": "not-applicable: no expected-resource gold to measure over-routing against"
         },
         "assetRecall": {
           "score": null,
@@ -2747,7 +2676,7 @@
         }
       },
       "firstFailingStage": null,
-      "modeAScore": 69,
+      "modeAScore": 100,
       "applicable": true,
       "recipeCapped": false,
       "classKind": "routing",

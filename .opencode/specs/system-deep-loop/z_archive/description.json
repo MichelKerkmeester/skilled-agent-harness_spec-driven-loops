@@ -1,0 +1,19 @@
+{
+  "level": "archive",
+  "importance_tier": "archived",
+  "specFolder": "system-deep-loop/z_archive",
+  "description": "Cold-tier archive container under system-deep-loop. Holds archived deep-loop spec-folder phases (deep-research, deep-review, ai-council, and improvement history). Archived tier: excluded from default recall, retrievable via includeArchived.",
+  "keywords": [
+    "archive",
+    "cold-tier",
+    "system-deep-loop",
+    "deep-research",
+    "deep-review"
+  ],
+  "lastUpdated": "2026-07-06T09:52:21.000Z",
+  "specId": "",
+  "folderSlug": "z_archive",
+  "parentChain": [],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

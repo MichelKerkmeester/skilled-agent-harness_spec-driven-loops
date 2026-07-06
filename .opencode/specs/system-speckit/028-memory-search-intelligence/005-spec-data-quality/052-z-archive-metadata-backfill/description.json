@@ -1,0 +1,26 @@
+{
+  "level": "2",
+  "specFolder": "system-speckit/028-memory-search-intelligence/005-spec-data-quality/052-z-archive-metadata-backfill",
+  "description": "There are nine `zarchive` root directories across `.opencode/specs` (`system-speckit/zarchive`, `system-deep-loop/zarchive`,",
+  "keywords": [
+    "nine",
+    "zarchive",
+    "root",
+    "directories",
+    "across",
+    "opencode",
+    "specs",
+    "system-speckit",
+    "system-deep-loop"
+  ],
+  "lastUpdated": "2026-07-06T06:38:18.283Z",
+  "specId": "052",
+  "folderSlug": "z-archive-metadata-backfill",
+  "parentChain": [
+    "system-speckit",
+    "028-memory-search-intelligence",
+    "005-spec-data-quality"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

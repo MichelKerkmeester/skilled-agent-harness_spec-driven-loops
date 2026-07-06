@@ -1,0 +1,229 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/037-scenario-loader-code-surface-sync",
+  "spec_folder": "system-deep-loop/037-scenario-loader-code-surface-sync",
+  "parent_id": null,
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "scenario loader code surface paths",
+      "load-playbook extractPaths code prefix",
+      "benchmark gold parser code-webflow",
+      "scenario loader code surface plan",
+      "code surface path parse plan",
+      "load playbook code prefix plan",
+      "scenario loader code surface tasks",
+      "code surface path parse tasks",
+      "load playbook code prefix tasks",
+      "scenario loader code surface checklist",
+      "code surface path parse checklist",
+      "load playbook code prefix verification"
+    ],
+    "key_topics": [
+      "scenario",
+      "loader",
+      "code",
+      "surface",
+      "paths",
+      "load-playbook",
+      "extractpaths",
+      "prefix",
+      "benchmark",
+      "gold",
+      "parser",
+      "code-webflow"
+    ],
+    "importance_tier": "high",
+    "status": "complete",
+    "key_files": [
+      ".opencode/specs/system-deep-loop/037-scenario-loader-code-surface-sync/spec.md",
+      ".opencode/skills/deep-loop-workflows/deep-improvement/scripts/skill-benchmark/load-playbook-scenarios.cjs",
+      ".opencode/skills/deep-loop-workflows/deep-improvement/scripts/skill-benchmark/live-executor.cjs",
+      ".opencode/skills/deep-loop-workflows/deep-improvement/scripts/skill-benchmark/tests/code-surface-path-parse.vitest.ts",
+      ".opencode/specs/system-deep-loop/037-scenario-loader-code-surface-sync/plan.md",
+      ".opencode/specs/system-deep-loop/037-scenario-loader-code-surface-sync/tasks.md",
+      ".opencode/specs/system-deep-loop/037-scenario-loader-code-surface-sync/checklist.md",
+      ".opencode/specs/system-deep-loop/037-scenario-loader-code-surface-sync/implementation-summary.md",
+      ".opencode/specs/system-deep-loop/037-scenario-loader-code-surface-sync/description.json",
+      ".opencode/specs/system-deep-loop/037-scenario-loader-code-surface-sync/graph-metadata.json",
+      "spec.md",
+      "plan.md",
+      "checklist.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": ".opencode/specs/system-deep-loop/037-scenario-loader-code-surface-sync/spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "load-playbook-scenarios.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/deep-loop-workflows/deep-improvement/scripts/skill-benchmark/load-playbook-scenarios.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "live-executor.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/deep-loop-workflows/deep-improvement/scripts/skill-benchmark/live-executor.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "code-surface-path-parse.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/deep-loop-workflows/deep-improvement/scripts/skill-benchmark/tests/code-surface-path-parse.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": ".opencode/specs/system-deep-loop/037-scenario-loader-code-surface-sync/plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": ".opencode/specs/system-deep-loop/037-scenario-loader-code-surface-sync/tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": ".opencode/specs/system-deep-loop/037-scenario-loader-code-surface-sync/checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": ".opencode/specs/system-deep-loop/037-scenario-loader-code-surface-sync/implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "description.json",
+        "kind": "config",
+        "path": ".opencode/specs/system-deep-loop/037-scenario-loader-code-surface-sync/description.json",
+        "source": "derived"
+      },
+      {
+        "name": "graph-metadata.json",
+        "kind": "config",
+        "path": ".opencode/specs/system-deep-loop/037-scenario-loader-code-surface-sync/graph-metadata.json",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "The Lane",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The Lane",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Teach",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Change During Execution",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Harness Vitest",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Targeted",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The Lane-C benchmark parses each playbook scenario's expected-resource gold (and, in live mode, the model's observed resource reads) with path-extraction regexes that recognized only the `references/`, `assets/`, and `../shared/` prefixes",
+    "created_at": "2026-07-05T18:53:23.765Z",
+    "last_save_at": "2026-07-06T08:41:30.599Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:9dee4576db9a5e627c41b93ff88bf07c9d29d80b05e206943dbd0aaef497bebd",
+    "source_doc_hashes": {
+      "spec.md": "f9b0c59d80fca54ec38d9b35ecafdf38d20bb33570348617f55e4f9e56568650",
+      "plan.md": "a183115842d276d3969d8716fe655c98aa526375b966d03c87a80cc94a8c7fff",
+      "tasks.md": "484d830818bfc400298a4e2aa38ac45da7836d226402394a0ca4dbaef97994ec",
+      "checklist.md": "02932a8335d17ecd41747313ae4bc2441d3da9d48a11c5dfc99e4f5fcfe17da4",
+      "implementation-summary.md": "ea0a4dd36e6d4c6f635997078600226f550f210090340a2bcb8e09e15177206e"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

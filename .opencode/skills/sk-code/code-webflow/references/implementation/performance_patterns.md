@@ -22,7 +22,7 @@ Performance optimization checklist covering animations, assets, requests, and Co
 ### Purpose
 Comprehensive performance optimization patterns for frontend development targeting Motion.dev animations, HLS video streaming, and Webflow platform constraints.
 
-> **Cross-stack motion.dev reference**: For Motion-specific performance pitfalls, reduced-motion handling, and CSS/Motion/GSAP trade-offs outside Webflow, see [`../../motion_dev/performance_and_pitfalls.md`](../../../code-animation/references/performance_and_pitfalls.md) and [`../../motion_dev/decision_matrix.md`](../../../code-animation/references/decision_matrix.md). This Webflow performance guide remains authoritative for Webflow deployment and CWV evidence.
+> **Cross-stack motion.dev reference**: For Motion-specific performance pitfalls, reduced-motion handling, and CSS/Motion/GSAP trade-offs outside Webflow, see [`../animation/performance_and_pitfalls.md`](../animation/performance_and_pitfalls.md) and [`../animation/decision_matrix.md`](../animation/decision_matrix.md). This Webflow performance guide remains authoritative for Webflow deployment and CWV evidence.
 
 ### When to Use
 Apply during Phase 1 (Implementation) when:
@@ -571,7 +571,7 @@ This file is the high-level checklist + budgets + anti-patterns index. For deep-
 - [`../css/quality_standards.md`](../css/quality_standards.md) — CSS-side performance patterns (will-change management, GPU-accelerated properties, easing standards, fluid typography)
 
 ### Cross-stack
-- [`../../motion_dev/performance_and_pitfalls.md`](../../../code-animation/references/performance_and_pitfalls.md) — Motion.dev performance and pitfalls (will-change cleanup, GPU acceleration, frame-rate gotchas)
+- [`../animation/performance_and_pitfalls.md`](../animation/performance_and_pitfalls.md) — Motion.dev performance and pitfalls (will-change cleanup, GPU acceleration, frame-rate gotchas)
 
 ### Related Skills
 - `mcp-chrome-devtools` - Automated performance budget enforcement via CLI for regression detection

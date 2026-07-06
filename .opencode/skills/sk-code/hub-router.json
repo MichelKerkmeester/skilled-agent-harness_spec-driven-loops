@@ -2,9 +2,9 @@
   "skill": "sk-code",
   "version": "4.1.0.0",
   "routerPolicy": {
-    "defaultMode": "implement",
+    "defaultMode": null,
     "ambiguityDelta": 1,
-    "tieBreak": ["implement", "quality", "debug", "verify", "code-review", "code-webflow", "code-opencode", "code-animation"],
+    "tieBreak": ["quality", "code-review", "code-webflow", "code-opencode"],
     "outcomes": {
       "single": "one dominant code intent routes to one workflow mode",
       "orderedBundle": "clearly separate code intents route to an ordered workflow-mode list",
@@ -14,25 +14,10 @@
     "defaultResource": ["shared/README.md"]
   },
   "routerSignals": {
-    "implement": {
-      "weight": 4,
-      "classes": ["implement-aliases", "implement-actions", "hub-identity"],
-      "resources": ["code-implement/SKILL.md"]
-    },
     "quality": {
       "weight": 4,
       "classes": ["quality-aliases", "quality-gates", "hub-identity"],
       "resources": ["code-quality/SKILL.md"]
-    },
-    "debug": {
-      "weight": 4,
-      "classes": ["debug-aliases", "debug-symptoms", "debug-recovery", "hub-identity"],
-      "resources": ["code-debug/SKILL.md"]
-    },
-    "verify": {
-      "weight": 4,
-      "classes": ["verify-aliases", "verify-evidence", "verify-mutation", "hub-identity"],
-      "resources": ["code-verify/SKILL.md"]
     },
     "code-review": {
       "weight": 4,
@@ -48,46 +33,17 @@
       "weight": 4,
       "classes": ["code-opencode-aliases", "code-opencode-runtime", "code-opencode-authoring", "hub-identity"],
       "resources": ["code-opencode/SKILL.md"]
-    },
-    "code-animation": {
-      "weight": 4,
-      "classes": ["code-animation-aliases", "hub-identity"],
-      "resources": ["code-animation/SKILL.md"]
     }
   },
   "vocabularyClasses": {
     "hub-identity": {
       "keywords": ["sk-code", "code-family", "mode-registry", "workflowmode", "backendkind", "surface-router", "surface-aware", "smart-router", "code surface detection", "two-axis hub"]
     },
-    "implement-aliases": {
-      "keywords": ["implement", "implement feature", "implement code", "implementation", "write code", "modify code", "refactor", "refactor function", "refactor the", "build a script", "build a tiny script", "tiny script that counts", "counts how many", "build a script that"]
-    },
-    "implement-actions": {
-      "keywords": ["add a flag", "add a fallback", "add a parameter", "add a method", "implement function", "early return", "type annotation", "function signature", "argparse block", "throw on missing"]
-    },
     "quality-aliases": {
       "keywords": ["quality", "code quality", "quality gate", "code-quality", "stack-specific code quality gate", "surface checklist", "surface checklists"]
     },
     "quality-gates": {
       "keywords": ["comment hygiene", "comment hygiene check", "author checks", "p0 p1 p2 author check", "stable jsonl keys", "add set -euo pipefail", "alignment verifier"]
-    },
-    "debug-aliases": {
-      "keywords": ["debug", "debugging", "debugging workflow", "fix bug", "bug", "root cause", "root-cause", "error recovery", "trace symptom", "test failure", "build failure"]
-    },
-    "debug-symptoms": {
-      "keywords": ["handle empty", "handle null", "empty state", "null", "missing", "throws", "fails", "failure", "runtime error", "three fixes", "escalation", "console.error fallback"]
-    },
-    "debug-recovery": {
-      "keywords": ["recover", "fallback", "root cause debugging", "escalation discipline", "symptom", "current evidence"]
-    },
-    "verify-aliases": {
-      "keywords": ["verify", "verification", "verification commands", "language-specific verification commands", "verify after change", "before completion claim", "fresh verification evidence", "iron law"]
-    },
-    "verify-evidence": {
-      "keywords": ["browser test", "desktop browser", "mobile browser", "vitest covering", "pytest", "shellcheck", "json validation", "alignment verifier workflow", "verify-minification", "test-minified-runtime", "mutation check"]
-    },
-    "verify-mutation": {
-      "keywords": ["mutation test", "claim-falsifier", "true-red", "compile-red", "verification ladder", "fresh evidence", "surface-appropriate verification"]
     },
     "code-review-aliases": {
       "keywords": ["review", "reviewer", "code review", "findings-first review", "security review", "pr review", "review baseline", "review mode", "code-review"]
@@ -115,9 +71,6 @@
     },
     "code-opencode-authoring": {
       "keywords": ["skill authoring", "agent authoring", "command authoring", "mcp server authoring"]
-    },
-    "code-animation-aliases": {
-      "keywords": ["motion.dev animation", "motion animation integration", "cross-stack animation", "motion.dev", "motion-dev", "motion_dev", "motion api", "animation", "motion snippets", "motion decision matrix", "motion.dev integration", "cross-stack-animation", "gsap timeline", "lenis smooth-scroll"]
     }
   }
 }

@@ -91,6 +91,18 @@ Relocated from packet-028 top-level `013` (adopted from standalone packet 030) t
 
 ---
 
+## 051-053: Spec-Metadata Integrity and Archive Coverage (planning)
+
+Authored 2026-07-06 as planning specs for a spec-metadata integrity program. Status Draft: specs written and validated, implementation not started.
+
+| Phase | Folder | Status | Focus |
+|-------|--------|--------|-------|
+| 051 | `051-graph-metadata-child-drift-audit-and-harden/` | Draft | Audit and backfill every phase parent whose `children_ids` lags its on-disk phase children, and add a drift check with a RED/GREEN test so the gap cannot accumulate silently again. |
+| 052 | `052-z-archive-metadata-backfill/` | Draft | Give each of the nine `z_archive` container roots a `description.json` + `graph-metadata.json` so each archive is a discoverable, cold-tier graph node. |
+| 053 | `053-deep-loop-036-037-reindex/` | Draft | Regenerate metadata for the renamed `system-deep-loop/036,037` folders and repoint the two inbound `124-sk-code-parent` harness references. |
+
+---
+
 ## Count and Source Notes
 
-The verified disk inventory is 44 child folders `001-*` through `044-*`, plus five leaf phases `045-*` through `049-*` (re-nested from former top-level `008-012`) and one parent phase `050-*` (re-nested from former top-level `013`, keeping its two children), all relocated on 2026-07-04. Earlier summaries asserting no `045-*`/`050-*` folder exists predate that re-nest. For detailed evidence, read the per-phase child specs and the rollup changelog before relying on older summaries.
+The verified disk inventory is 44 child folders `001-*` through `044-*`, plus five leaf phases `045-*` through `049-*` (re-nested from former top-level `008-012`) and one parent phase `050-*` (re-nested from former top-level `013`, keeping its two children), all relocated on 2026-07-04, plus three planning phases `051-053` authored 2026-07-06 (specs only, implementation not started). Earlier summaries asserting no `045-*`/`050-*` folder exists predate that re-nest. For detailed evidence, read the per-phase child specs and the rollup changelog before relying on older summaries.

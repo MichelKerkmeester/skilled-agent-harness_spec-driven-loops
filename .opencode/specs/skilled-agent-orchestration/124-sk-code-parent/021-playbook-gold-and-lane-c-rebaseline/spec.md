@@ -175,7 +175,7 @@ Translate the stale gold paths in the playbook scenarios to the current `code-<s
 <!-- ANCHOR:related-docs -->
 ## RELATED DOCUMENTS
 
-- **Harness dependencies**: `system-deep-loop/037-router-replay-surface-slice-sync`, `system-deep-loop/038-scenario-loader-code-surface-sync`
+- **Harness dependencies**: `system-deep-loop/036-router-replay-surface-slice-sync`, `system-deep-loop/037-scenario-loader-code-surface-sync`
 - **Corpus refreshed**: `.opencode/skills/sk-code/manual_testing_playbook/`
 - **Baseline regenerated**: `.opencode/skills/sk-code/benchmark/router-final/`
 

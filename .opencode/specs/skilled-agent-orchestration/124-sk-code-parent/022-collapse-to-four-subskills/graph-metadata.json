@@ -1,0 +1,220 @@
+{
+  "schema_version": 1,
+  "packet_id": "skilled-agent-orchestration/124-sk-code-parent/022-collapse-to-four-subskills",
+  "spec_folder": "skilled-agent-orchestration/124-sk-code-parent/022-collapse-to-four-subskills",
+  "parent_id": "skilled-agent-orchestration/124-sk-code-parent",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "sk-code collapse to four sub-skills",
+      "dissolve code-implement code-debug code-verify",
+      "fold code-animation into code-webflow",
+      "phase 22 collapse plan",
+      "sk-code four subskills plan",
+      "collapse code-implement code-debug code-verify",
+      "phase 22 tasks",
+      "sk-code four subskills tasks",
+      "collapse sk-code tasks",
+      "phase 22 checklist",
+      "sk-code four subskills checklist",
+      "collapse sk-code verification"
+    ],
+    "key_topics": [
+      "sk-code",
+      "collapse",
+      "four",
+      "sub-skills",
+      "dissolve",
+      "code-implement",
+      "code-debug",
+      "code-verify",
+      "fold",
+      "code-animation",
+      "code-webflow",
+      "phase"
+    ],
+    "importance_tier": "high",
+    "status": "complete",
+    "key_files": [
+      ".opencode/skills/sk-code/shared/references/smart_routing.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md",
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "smart_routing.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-code/shared/references/smart_routing.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Collapse",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Change During Execution",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Retrospective Level",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Surface",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Promotion Gate",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Iron Law",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Severity Promotion",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Rollup",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The `sk-code` parent hub carries eight sub-skills split across two axes: three surface skills (`code-opencode`, `code-webflow`, `code-animation`) and five workflow-mode skills (`code-implement`, `code-debug`, `code-verify`, `code-quality`, `code-review`)",
+    "created_at": "2026-07-06T06:49:42.937Z",
+    "last_save_at": "2026-07-06T06:49:42.937Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:57d6d106f82220fca0a1653d8efd170f3ec50591d4fb76808d087e796321dfad",
+    "source_doc_hashes": {
+      "spec.md": "1833874be7e1b418dcc30d221d4cfc8d8ee853b84d512854608433358d19b92c",
+      "plan.md": "6afa8a01f2d3ee72e15c2278566a0bca5c80c1fc68942aa1bf75311bbb67bf66",
+      "tasks.md": "009a8ce0cf33bbd2f0a4e0c7c6405b0f4675fab6a0ba5a83506c4e29e641b6b5",
+      "checklist.md": "9e11171fa6ffa9e8ec6eca7a86540fbd050068913fd329b5c89b9d74ca82259f",
+      "implementation-summary.md": "cbcc68452c8163de595dd07dc67811175d1430007eb786406d9b3e2606d90cd7"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

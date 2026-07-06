@@ -1,7 +1,7 @@
 {
   "skill": "sk-code",
   "version": "4.1.0.0",
-  "description": "Declarative two-axis mode registry for the sk-code parent hub. Every packet is a modes[] entry carrying the discriminator (workflowMode/packetKind/backendKind) plus its advisorRouting contract. The WORKFLOW axis (implement/quality/debug/verify/code-review) is process; the SURFACE axis (code-webflow/code-opencode/code-animation) is read-only domain evidence. The advisor routes the single identity sk-code; the hub resolves the workflow mode and bundles surface packets as evidence.",
+  "description": "Declarative two-axis mode registry for the sk-code parent hub. Every packet is a modes[] entry carrying the discriminator (workflowMode/packetKind/backendKind) plus its advisorRouting contract. The WORKFLOW axis (quality/code-review) is process; the SURFACE axis (code-webflow/code-opencode) is read-only domain evidence. Implement/debug/verify phase doctrine is consolidated in shared/references/workflow_*.md, symlinked into each surface. The advisor routes the single identity sk-code; the hub resolves the workflow mode and bundles surface packets as evidence.",
   "discriminator": {
     "workflowMode": "Public hub/mode key. Stable identity used by the hub router and this registry. Carried by every mode.",
     "packetKind": "The axis discriminator: 'workflow' for process modes that act, 'surface' for read-only domain-evidence packets bundled alongside a workflow mode.",
@@ -15,29 +15,10 @@
   "extensions": {
     "surface-axis": {
       "description": "Declares the SURFACE axis. packetKind:'surface' entries are read-only domain-evidence packets (backendKind:'evidence-base', routingClass:'metadata', mutatesWorkspace:false) bundled alongside a workflow mode via routerPolicy.outcomes.surfaceBundle. They carry stack knowledge, never process.",
-      "surfaces": ["code-webflow", "code-opencode", "code-animation"]
+      "surfaces": ["code-webflow", "code-opencode"]
     }
   },
   "modes": [
-    {
-      "workflowMode": "implement",
-      "packetKind": "workflow",
-      "backendKind": "surface-router",
-      "toolSurface": {
-        "allowed": ["Read", "Write", "Edit", "Bash", "Grep", "Glob", "Task"],
-        "forbidden": [],
-        "mutatesWorkspace": true,
-        "bashAllowlist": []
-      },
-      "packet": "code-implement",
-      "packetSkillName": "code-implement",
-      "grandfatheredFolderMismatch": false,
-      "aliases": ["implement feature", "refactor function", "implement code", "add a flag", "add a fallback", "add a parameter", "build a script"],
-      "advisorRouting": {
-        "routingClass": "metadata",
-        "packetSkillName": "code-implement"
-      }
-    },
     {
       "workflowMode": "quality",
       "packetKind": "workflow",
@@ -55,44 +36,6 @@
       "advisorRouting": {
         "routingClass": "metadata",
         "packetSkillName": "code-quality"
-      }
-    },
-    {
-      "workflowMode": "debug",
-      "packetKind": "workflow",
-      "backendKind": "surface-router",
-      "toolSurface": {
-        "allowed": ["Read", "Edit", "Bash", "Grep", "Glob", "Task"],
-        "forbidden": ["Write"],
-        "mutatesWorkspace": true,
-        "bashAllowlist": []
-      },
-      "packet": "code-debug",
-      "packetSkillName": "code-debug",
-      "grandfatheredFolderMismatch": false,
-      "aliases": ["debug", "root cause", "fix bug", "error recovery", "test failure", "build failure", "handle empty", "handle null", "console.error fallback", "debugging workflow"],
-      "advisorRouting": {
-        "routingClass": "metadata",
-        "packetSkillName": "code-debug"
-      }
-    },
-    {
-      "workflowMode": "verify",
-      "packetKind": "workflow",
-      "backendKind": "surface-router",
-      "toolSurface": {
-        "allowed": ["Read", "Bash", "Grep", "Glob"],
-        "forbidden": ["Write", "Edit", "Task"],
-        "mutatesWorkspace": false,
-        "bashAllowlist": []
-      },
-      "packet": "code-verify",
-      "packetSkillName": "code-verify",
-      "grandfatheredFolderMismatch": false,
-      "aliases": ["verify", "verification commands", "iron law", "mutation test", "language-specific verification commands", "browser test", "vitest covering", "alignment verifier workflow", "verify after change"],
-      "advisorRouting": {
-        "routingClass": "metadata",
-        "packetSkillName": "code-verify"
       }
     },
     {
@@ -150,25 +93,6 @@
       "advisorRouting": {
         "routingClass": "metadata",
         "packetSkillName": "code-opencode"
-      }
-    },
-    {
-      "workflowMode": "code-animation",
-      "packetKind": "surface",
-      "backendKind": "evidence-base",
-      "toolSurface": {
-        "allowed": ["Read", "Bash", "Grep", "Glob"],
-        "forbidden": ["Write", "Edit", "Task"],
-        "mutatesWorkspace": false,
-        "bashAllowlist": []
-      },
-      "packet": "code-animation",
-      "packetSkillName": "code-animation",
-      "grandfatheredFolderMismatch": false,
-      "aliases": ["motion.dev animation", "motion animation integration", "cross-stack animation"],
-      "advisorRouting": {
-        "routingClass": "metadata",
-        "packetSkillName": "code-animation"
       }
     }
   ]

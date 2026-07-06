@@ -65,7 +65,7 @@ From Spec 031 (ADR-001): Standardize timeouts across all hero scripts to create 
 | **Safety timeout (desktop)** | 3000ms | Final guarantee — page always visible within 3s |
 | **Safety timeout (mobile)** | 2000ms | Faster reveal for better perceived performance on mobile |
 
-> **Cross-stack motion.dev reference**: For Motion performance and fallback guidance that applies beyond this Webflow CWV timeout pattern, see [`../../motion_dev/performance_and_pitfalls.md`](../../../code-animation/references/performance_and_pitfalls.md). The timeout hierarchy here remains the Webflow-specific CWV remediation contract.
+> **Cross-stack motion.dev reference**: For Motion performance and fallback guidance that applies beyond this Webflow CWV timeout pattern, see [`../animation/performance_and_pitfalls.md`](../animation/performance_and_pitfalls.md). The timeout hierarchy here remains the Webflow-specific CWV remediation contract.
 
 **The chain:** Each hero script has its own timeout (1s for libraries, 2s for images). The safety timeout is the last-resort guarantee that fires independently of hero scripts.
 
