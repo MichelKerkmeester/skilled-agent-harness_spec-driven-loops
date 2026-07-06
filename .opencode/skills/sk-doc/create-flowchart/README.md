@@ -1,7 +1,84 @@
 # create-flowchart
 
-SCAFFOLD PLACEHOLDER — nested workflow packet of the `sk-doc` parent hub.
+Generate and validate ASCII-style markdown flowcharts from real processes, decisions, journeys, loops, parallel work, or system interactions.
 
-Generate + validate ASCII flowcharts (pattern library + validate_flowchart.sh).
+## When To Use
 
-Body populated in a later phase; see the 125-sk-doc-parent spec folder.
+Use this packet when you need to:
+
+- Turn a written process into a readable markdown flowchart.
+- Document branching logic, approval gates, retries, or terminal outcomes.
+- Show parallel execution with a join/synchronization point.
+- Map a user onboarding journey or multi-step UX path.
+- Draw system interactions across services, APIs, storage, queues, caches, or layers.
+- Validate an existing markdown flowchart for readability and structural issues.
+
+Do not use it when a short bullet list is clearer, or when the requested output is Mermaid, Graphviz, SVG, HTML, screenshots, or a design-canvas artifact.
+
+## What's Inside
+
+- `SKILL.md`  
+  The authoritative packet contract: activation triggers, routing rules, authoring workflow, validation requirements, and success criteria.
+
+- `assets/flowcharts/simple_workflow.md`  
+  Pattern for linear setup, tutorial, installation, or operational flows.
+
+- `assets/flowcharts/decision_tree_flow.md`  
+  Pattern for conditional branching, validation paths, retries, failure handling, and alternate outcomes.
+
+- `assets/flowcharts/parallel_execution.md`  
+  Pattern for fan-out/fan-in work, CI/CD, batch jobs, or multi-agent execution.
+
+- `assets/flowcharts/approval_workflow_loops.md`  
+  Pattern for review cycles, governance gates, sign-off loops, and rework paths.
+
+- `assets/flowcharts/system_architecture_swimlane.md`  
+  Pattern for service, layer, API, database, queue, cache, and error-path interactions.
+
+- `assets/flowcharts/user_onboarding.md`  
+  Pattern for onboarding, activation, guided setup, and support journeys.
+
+- `scripts/validate_flowchart.sh`  
+  Packet-local validator for flowchart structure, connector use, branch labels, nesting depth, and size warnings.
+
+- `changelog/.gitkeep`  
+  Placeholder for packet changelog material.
+
+There is no packet-local `references/` directory. This packet uses the shared sk-doc references and validators from `../shared`.
+
+## Quick Start
+
+1. Read the target document before editing, or confirm the new output path before writing.
+2. Choose the closest pattern from `assets/flowcharts/`.
+3. Draft the flowchart using real source content, labeled branches, clear terminal states, and readable plain-text connectors.
+4. Validate the result:
+
+```bash
+bash scripts/validate_flowchart.sh <target-flowchart.md>
+```
+
+5. Fix validator errors before delivery. Treat warnings as readability issues and address them when practical.
+
+Example request:
+
+```text
+Create an ASCII flowchart for the release approval workflow, including rejection loops and final shipped/blocked outcomes.
+```
+
+Likely pattern:
+
+```text
+assets/flowcharts/approval_workflow_loops.md
+```
+
+## Hub Relationship
+
+`create-flowchart` is a nested workflow packet of the `sk-doc` parent hub.
+
+The shared doc-quality backbone lives at:
+
+```text
+../shared
+```
+
+The single advisor identity and workflow registry live at the sk-doc hub root, not inside this packet. This packet must not add packet-local advisor metadata such as `graph-metadata.json`.
