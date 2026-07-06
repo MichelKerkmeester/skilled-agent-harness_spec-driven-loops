@@ -64,4 +64,3 @@ Each adapter maps a normalized `AdapterInput` into the target CLI's argv/stdin c
 - Packet source: `011-cli-matrix-adapter-runners`
 Related references:
 - [strict-validation-addons-continuity-freshness-and-evidence-markers.md](strict-validation-addons-continuity-freshness-and-evidence-markers.md) — Strict validation add-ons: continuity freshness and evidence markers
-- [opencode-hook-freshness-smoke-check.md](opencode-hook-freshness-smoke-check.md) — OpenCode hook freshness smoke check

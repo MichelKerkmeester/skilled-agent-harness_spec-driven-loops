@@ -141,7 +141,7 @@ Exit code from step 1: `0`
 
 ## 4. SOURCE FILES
 - Root playbook: [manual_testing_playbook.md](../manual_testing_playbook.md)
-- Originating spec packet: [012-literal-spec-folder-names](../../../../specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/004-literal-spec-folder-names/)
+- Originating spec packet: [012-literal-spec-folder-names](../../../../specs/system-speckit/026-graph-and-context-optimization/002-spec-kit-internals/004-literal-spec-folder-names/)
 
 ---
 

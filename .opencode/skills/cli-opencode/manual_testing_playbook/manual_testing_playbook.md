@@ -299,7 +299,7 @@ Expected signals: Dispatch exits 0. Tool.call event for Code Graph search MCP ap
 
 #### Test Execution
 
-> **Feature File:** [CO-007](02--external-dispatch/from-opencode-handback.md)
+> **Feature File:** CO-007 (feature file not yet authored)
 
 ### CO-008 | Self-invocation guard refusal (ADR-001)
 
@@ -548,7 +548,7 @@ Expected signals: Exit 0. Tool.call for memory_search appears. Session.completed
 
 #### Test Execution
 
-> **Feature File:** [CO-021](06--integration-patterns/cross-ai-handback-opencode.md)
+> **Feature File:** CO-021 (feature file not yet authored)
 
 ### CO-022 | Memory Epilogue handback to generate-context.js
 
@@ -811,7 +811,7 @@ Validator support: the shared `validate_document.py` validates this root playboo
 ### EXTERNAL DISPATCH
 
 - CO-006: [External dispatch from Claude Code into OpenCode](02--external-dispatch/from-claude-code.md)
-- CO-007: [External dispatch from OpenCode into OpenCode (use case 1)](02--external-dispatch/from-opencode-handback.md)
+- CO-007: External dispatch from OpenCode into OpenCode (use case 1) (feature file not yet authored)
 - CO-008: [Self-invocation guard refusal (ADR-001)](02--external-dispatch/self-invocation-refusal.md)
 
 ### MULTI-PROVIDER
@@ -837,7 +837,7 @@ Validator support: the shared `validate_document.py` validates this root playboo
 
 ### INTEGRATION PATTERNS
 
-- CO-021: [Cross-AI orchestration handback (use case 3)](06--integration-patterns/cross-ai-handback-opencode.md)
+- CO-021: Cross-AI orchestration handback (use case 3) (feature file not yet authored)
 - CO-022: [Memory Epilogue handback to generate-context.js](06--integration-patterns/memory-epilogue-handback.md)
 
 ### PROMPT TEMPLATES

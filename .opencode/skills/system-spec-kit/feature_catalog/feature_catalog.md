@@ -4333,7 +4333,7 @@ The OpenCode hook freshness smoke check verifies that cold-start OpenCode contex
 
 #### Source Files
 
-See [`16--tooling-and-scripts/opencode-hook-freshness-smoke-check.md`](16--tooling-and-scripts/opencode-hook-freshness-smoke-check.md) for full implementation and test file listings.
+See `16--tooling-and-scripts/opencode-hook-freshness-smoke-check.md` for full implementation and test file listings.
 
 ---
 

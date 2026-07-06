@@ -54,5 +54,4 @@ Exit code remains 0 to keep scaffolding non-blocking. Downstream consumers (work
 - Canonical catalog source: `feature_catalog.md`
 - Feature file path: `16--tooling-and-scripts/spec-folder-literal-naming-create-sh-fallback.md`
 Related references:
-- [opencode-hook-freshness-smoke-check.md](opencode-hook-freshness-smoke-check.md) — OpenCode hook freshness smoke check
 - [spec-folder-literal-naming-ai-derived-slugs.md](spec-folder-literal-naming-ai-derived-slugs.md) — Spec folder literal naming: AI-derived slugs

@@ -276,7 +276,7 @@ Canonical operator references:
 
 - [Repo scripts runbook](../../../scripts/README.md)
 - [Environment reference](./ENV_REFERENCE.md)
-- [Orphan MCP leak prevention implementation summary](../../../specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/022-orphan-mcp-leak-prevention/implementation-summary.md)
+- [Orphan MCP leak prevention implementation summary](../../../specs/system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/022-orphan-mcp-leak-prevention/implementation-summary.md)
 
 ---
 
