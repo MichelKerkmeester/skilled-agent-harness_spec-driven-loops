@@ -4,7 +4,12 @@
   "spec_folder": "system-code-graph",
   "parent_id": null,
   "children_ids": [
-    "system-code-graph/001-code-graph-core"
+    "system-code-graph/001-code-graph-core",
+    "system-code-graph/002-codegraph-seeded-ppr",
+    "system-code-graph/003-codegraph-edge-lifecycle",
+    "system-code-graph/004-codegraph-defaults-bitemporal",
+    "system-code-graph/005-code-graph-doc-audit",
+    "system-code-graph/006-fix-code-graph-docs"
   ],
   "manual": {
     "depends_on": [],

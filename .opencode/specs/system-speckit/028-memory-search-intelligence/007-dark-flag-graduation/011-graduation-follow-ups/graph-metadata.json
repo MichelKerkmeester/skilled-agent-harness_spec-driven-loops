@@ -1,13 +1,10 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/028-memory-search-intelligence/007-dark-flag-graduation/011-graduation-follow-ups",
-  "spec_folder": "system-spec-kit/028-memory-search-intelligence/007-dark-flag-graduation/011-graduation-follow-ups",
-  "parent_id": "system-spec-kit/028-memory-search-intelligence/007-dark-flag-graduation",
+  "packet_id": "system-speckit/028-memory-search-intelligence/007-dark-flag-graduation/011-graduation-follow-ups",
+  "spec_folder": "system-speckit/028-memory-search-intelligence/007-dark-flag-graduation/011-graduation-follow-ups",
+  "parent_id": "system-speckit/028-memory-search-intelligence/007-dark-flag-graduation",
   "children_ids": [
-    "system-spec-kit/028-memory-search-intelligence/007-dark-flag-graduation/011-graduation-follow-ups/001-codegraph-defaults-bitemporal",
-    "system-spec-kit/028-memory-search-intelligence/007-dark-flag-graduation/011-graduation-follow-ups/002-deeploop-gauges-dedup-scale",
-    "system-spec-kit/028-memory-search-intelligence/007-dark-flag-graduation/011-graduation-follow-ups/004-advisor-penalty-contract",
-    "system-spec-kit/028-memory-search-intelligence/007-dark-flag-graduation/011-graduation-follow-ups/003-search-append-citation-probe"
+    "system-speckit/028-memory-search-intelligence/007-dark-flag-graduation/011-graduation-follow-ups/003-search-append-citation-probe"
   ],
   "manual": {
     "depends_on": [],
@@ -40,10 +37,7 @@
     "status": "planned",
     "key_files": [
       "spec.md",
-      "001-codegraph-defaults-bitemporal/spec.md",
-      "002-deeploop-gauges-dedup-scale/spec.md",
-      "003-search-append-citation-probe/spec.md",
-      "004-advisor-penalty-contract/spec.md"
+      "003-search-append-citation-probe/spec.md"
     ],
     "entities": [
       {
@@ -91,7 +85,7 @@
     ],
     "causal_summary": "The 009 validation confirmed the dark-flag winners are correct and byte-identical when off, but qualified the graduate-ready posture: the bitemporal writer is unwired, the staleness degree cap and the deep-loop gauges default to off, the dedup was only proven on synthetic records, and the cut self-recommendation guard left an undocumented implicit penalty as the sole defense",
     "created_at": "2026-06-24T07:59:20.565Z",
-    "last_save_at": "2026-06-25T18:01:45.174Z",
+    "last_save_at": "2026-07-06T17:16:54.587Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

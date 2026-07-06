@@ -1,6 +1,7 @@
 {
-  "specFolder": "system-spec-kit/028-memory-search-intelligence/007-dark-flag-graduation/011-graduation-follow-ups",
-  "description": "The 009 validation confirmed the dark-flag winners are correct and byte-identical when off, but qualified the graduate-ready posture: the bitemporal w",
+  "level": "2",
+  "specFolder": "system-speckit/028-memory-search-intelligence/007-dark-flag-graduation/011-graduation-follow-ups",
+  "description": "The 009 validation confirmed the dark-flag winners are correct and byte-identical when off, but qualified the graduate-ready posture: the bitemporal",
   "keywords": [
     "009",
     "validation",
@@ -14,11 +15,11 @@
     "posture",
     "bitemporal"
   ],
-  "lastUpdated": "2026-06-25T18:01:57.217Z",
+  "lastUpdated": "2026-07-06T17:16:54.464Z",
   "specId": "011",
   "folderSlug": "graduation-follow-ups",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "028-memory-search-intelligence",
     "007-dark-flag-graduation"
   ],

@@ -1,0 +1,226 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-code-graph/003-codegraph-edge-lifecycle",
+  "spec_folder": "system-code-graph/003-codegraph-edge-lifecycle",
+  "parent_id": "system-code-graph",
+  "parent_id_review_required": true,
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "code graph edge lifecycle benchmark",
+      "edge staleness rebind fan-in benchmark",
+      "code graph bitemporal reads consumer",
+      "code graph edge governance vocab",
+      "reverse dependency force parse rebind",
+      "throwaway graph rebind harness",
+      "code graph smallest proving consumer",
+      "edge staleness rebind verification",
+      "code graph edge lifecycle verdict",
+      "edge staleness rebind benchmark result",
+      "code graph bitemporal consumer verdict",
+      "code graph governance vocab verdict"
+    ],
+    "key_topics": [
+      "code",
+      "graph",
+      "edge",
+      "lifecycle",
+      "benchmark",
+      "staleness",
+      "rebind",
+      "fan-in",
+      "bitemporal",
+      "reads",
+      "consumer",
+      "governance"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "scripts/edge-staleness-rebind-benchmark.mjs",
+      "results/staleness-metrics.json",
+      "scripts/edge-staleness-cost-benchmark.mjs",
+      "scripts/bitemporal-asof-benchmark.mjs",
+      "results/cost-metrics.json",
+      "results/bitemporal-metrics.json",
+      "implementation-summary.md",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md"
+    ],
+    "entities": [
+      {
+        "name": "edge-staleness-rebind-benchmark.mjs",
+        "kind": "file",
+        "path": "scripts/edge-staleness-rebind-benchmark.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "staleness-metrics.json",
+        "kind": "config",
+        "path": "results/staleness-metrics.json",
+        "source": "derived"
+      },
+      {
+        "name": "edge-staleness-cost-benchmark.mjs",
+        "kind": "file",
+        "path": "scripts/edge-staleness-cost-benchmark.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "bitemporal-asof-benchmark.mjs",
+        "kind": "file",
+        "path": "scripts/bitemporal-asof-benchmark.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "cost-metrics.json",
+        "kind": "config",
+        "path": "results/cost-metrics.json",
+        "source": "derived"
+      },
+      {
+        "name": "bitemporal-metrics.json",
+        "kind": "config",
+        "path": "results/bitemporal-metrics.json",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Graph Edge Lifecycle Dark",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Flag Benchmark",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Three",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Run",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Three code-graph edge-lifecycle capabilities ship finished but dark behind default-off flags with no measured verdict",
+    "created_at": "2026-06-24T04:51:53.815Z",
+    "last_save_at": "2026-07-06T17:15:57.469Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:9a49482741a015ae661cfcf2046aa98ea4dcdee55c891ae26a0a2e522b896a4c",
+    "source_doc_hashes": {
+      "spec.md": "f71f56453a34e621286c731e0014d51b4b6b9d25a2fbdd95278822e512912541",
+      "plan.md": "4af5d928329f6b956584bbe301eecffc5bfba56f8a3e20aef96de2d182d8a238",
+      "tasks.md": "55acfdc622335fdaff7dcc5418e991a5282d66ea6d39370d4cb72c05afcd0e8f",
+      "checklist.md": "846506deb3f2b4e18ec89d5753a6dd757ccdbcd4fe2e42f6cc35cafd242d4540",
+      "implementation-summary.md": "4d86d142964004bd0e8170f2485ab5a0338b026a4356f4a8cd0b353a4111e462"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

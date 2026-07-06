@@ -1,0 +1,222 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-code-graph/002-codegraph-seeded-ppr",
+  "spec_folder": "system-code-graph/002-codegraph-seeded-ppr",
+  "parent_id": "system-code-graph",
+  "parent_id_review_required": true,
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "code graph seeded ppr benchmark",
+      "SPECKIT_CODE_GRAPH_SEEDED_PPR_RANKING flag",
+      "seeded pagerank vs flat impact walk",
+      "impact ranking precision recall benchmark",
+      "personalized pagerank code graph cut",
+      "code graph seeded ppr benchmark plan",
+      "shared candidate pool ranking comparison",
+      "ppr damping calibration sweep",
+      "reconstruct removed ppr mechanism",
+      "code graph seeded ppr benchmark tasks",
+      "code graph seeded ppr benchmark checklist",
+      "ppr benchmark verification"
+    ],
+    "key_topics": [
+      "code",
+      "graph",
+      "seeded",
+      "ppr",
+      "benchmark",
+      "flag",
+      "pagerank",
+      "flat",
+      "impact",
+      "walk",
+      "ranking",
+      "precision"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "scripts/seeded-ppr-impact-benchmark.mjs",
+      "results/metrics.json",
+      "implementation-summary.md",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md"
+    ],
+    "entities": [
+      {
+        "name": "seeded-ppr-impact-benchmark.mjs",
+        "kind": "file",
+        "path": "scripts/seeded-ppr-impact-benchmark.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "metrics.json",
+        "kind": "config",
+        "path": "results/metrics.json",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Graph Seeded",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Impact Ranking Benchmark",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Measure",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Date",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The code-graph impact path shipped a bounded seeded personalized PageRank mechanism behind the default-off flag `SPECKITCODEGRAPHSEEDEDPPRRANKING` in commit 657a0f6a3e",
+    "created_at": "2026-06-24T04:55:07.954Z",
+    "last_save_at": "2026-07-06T17:15:57.046Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:cfc74fb9abdaa1e4a7f94aa822e165926ba63c0154e337e8849c403c259a0abd",
+    "source_doc_hashes": {
+      "spec.md": "f3e398352c2fc443df1a9385c9bcb7d4a73104037f90c5bfd4787d709f0fae18",
+      "plan.md": "cd3e3e3ffba9d79f8886ffc2d622cf8ed8c62146dd56ade4a0be725004f5aac1",
+      "tasks.md": "5e75efb117dc738b21e18d01881d6cc156250e2a1dc3895cfefefecf1f23d5b6",
+      "checklist.md": "425bcf0ca63971c9474891731483b9c2f0b7c12ef9a6b763e824340f523bec19",
+      "implementation-summary.md": "d7a58d3459c6762aeb805680b92fdb3d99c3848ba266b94dde1809b68f060a60"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}
