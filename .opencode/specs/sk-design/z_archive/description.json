@@ -1,0 +1,17 @@
+{
+  "level": "archive",
+  "specFolder": "sk-design/z_archive",
+  "description": "Empty cold-tier archive container under sk-design. No archived children yet. Archived tier: excluded from default recall, retrievable via includeArchived.",
+  "keywords": [
+    "archive",
+    "cold-tier",
+    "sk-design",
+    "empty"
+  ],
+  "lastUpdated": "2026-07-06T09:52:21.000Z",
+  "specId": "",
+  "folderSlug": "z_archive",
+  "parentChain": [],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}
