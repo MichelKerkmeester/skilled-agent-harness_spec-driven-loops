@@ -16,7 +16,7 @@ This iteration checked target READMEs, checklist assets, and script documentatio
 
 - Re-ranking stale-path cleanup above the broken verifier: README/checklist evidence makes path drift broader, but the verifier remains higher impact because it is advertised as a runnable integrity check. [SOURCE: .opencode/skills/sk-code/code-verify/README.md:98]
 - Treating sibling links as completely broken: several Markdown links target sibling packet paths, but their visible labels and checklist body text remain stale. The issue is inconsistent owner/path vocabulary, not universal link absence. [SOURCE: .opencode/skills/sk-code/code-verify/README.md:114]
-- Editing target README/checklist files during research; the run is research-only and target skills remain read-only. [SOURCE: .opencode/specs/skilled-agent-orchestration/126-sk-code-workflow-subskill-research/research/deep-research-strategy.md:29]
+- Editing target README/checklist files during research; the run is research-only and target skills remain read-only. [SOURCE: .opencode/specs/skilled-agent-orchestration/124-sk-code-parent/023-sk-code-workflow-subskill-research/research/deep-research-strategy.md:29]
 
 ## Dead Ends
 

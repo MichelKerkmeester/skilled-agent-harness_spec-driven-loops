@@ -9,7 +9,7 @@ importance_tier: "high"
 contextType: "research"
 _memory:
   continuity:
-    packet_pointer: "skilled-agent-orchestration/126-sk-code-workflow-subskill-research"
+    packet_pointer: "skilled-agent-orchestration/124-sk-code-parent/023-sk-code-workflow-subskill-research"
     last_updated_at: "2026-07-05T00:00:00Z"
     last_updated_by: "claude-opus"
     recent_action: "Deep-research loop converged; ranked sk-code workflow upgrade proposals synthesized"
@@ -31,7 +31,7 @@ _memory:
 |--------|-------|
 | **Language/Stack** | Markdown research artifacts, YAML frontmatter, JSON spec metadata, OpenCode skill documentation |
 | **Framework** | system-spec-kit Level 2 research packet, deep-research loop, sk-code workflow sub-skill lifecycle |
-| **Storage** | Repository filesystem: `.opencode/specs/skilled-agent-orchestration/126-sk-code-workflow-subskill-research/` and read-only research outputs under `research/` |
+| **Storage** | Repository filesystem: `.opencode/specs/skilled-agent-orchestration/124-sk-code-parent/023-sk-code-workflow-subskill-research/` and read-only research outputs under `research/` |
 | **Testing** | Iteration evidence review, convergence check, ranked synthesis review, top-finding independent verification, strict spec validation at close-out |
 
 ### Overview

@@ -9,20 +9,20 @@ importance_tier: "high"
 contextType: "research"
 _memory:
   continuity:
-    packet_pointer: "skilled-agent-orchestration/126-sk-code-workflow-subskill-research"
+    packet_pointer: "skilled-agent-orchestration/124-sk-code-parent/023-sk-code-workflow-subskill-research"
     last_updated_at: "2026-07-05T16:26:10.709Z"
     last_updated_by: "claude-opus"
     recent_action: "Deep-research loop converged at iteration 8 and produced ranked upgrade proposals"
     next_safe_action: "Open a separate implementation packet for accepted proposal work"
     blockers: []
     key_files:
-      - ".opencode/specs/skilled-agent-orchestration/126-sk-code-workflow-subskill-research/spec.md"
-      - ".opencode/specs/skilled-agent-orchestration/126-sk-code-workflow-subskill-research/research/research.md"
-      - ".opencode/specs/skilled-agent-orchestration/126-sk-code-workflow-subskill-research/research/iterations/"
-      - ".opencode/specs/skilled-agent-orchestration/126-sk-code-workflow-subskill-research/plan.md"
-      - ".opencode/specs/skilled-agent-orchestration/126-sk-code-workflow-subskill-research/tasks.md"
-      - ".opencode/specs/skilled-agent-orchestration/126-sk-code-workflow-subskill-research/checklist.md"
-      - ".opencode/specs/skilled-agent-orchestration/126-sk-code-workflow-subskill-research/implementation-summary.md"
+      - "spec.md"
+      - "research/research.md"
+      - "research/iterations/"
+      - "plan.md"
+      - "tasks.md"
+      - "checklist.md"
+      - "implementation-summary.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "phase-126-closeout"
@@ -47,7 +47,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 126-sk-code-workflow-subskill-research |
+| **Spec Folder** | 023-sk-code-workflow-subskill-research |
 | **Status** | Complete |
 | **Level** | 2 |
 | **Actual Effort** | Bounded deep-research loop executed; eight productive iterations converged; ranked synthesis and close-out docs completed; implementation of proposals deferred by scope |
@@ -64,16 +64,16 @@ Phase 126 completed a research-only close-out for the sk-code workflow sub-skill
 
 | File | Action | Purpose | Commit |
 |------|--------|---------|--------|
-| `.opencode/specs/skilled-agent-orchestration/126-sk-code-workflow-subskill-research/spec.md` | Created | Define research scope, requirements, success criteria, risks, edge cases, and out-of-scope implementation boundary | phase evidence |
-| `.opencode/specs/skilled-agent-orchestration/126-sk-code-workflow-subskill-research/research/research.md` | Created/Updated | Store progressive synthesis, per-iteration conclusions, final ranked upgrade proposals, validation hooks, and convergence note | phase evidence |
-| `.opencode/specs/skilled-agent-orchestration/126-sk-code-workflow-subskill-research/research/iterations/iteration-001.md` through `iteration-008.md` | Created | Record eight productive deep-research iterations that led to convergence | phase evidence |
-| `.opencode/specs/skilled-agent-orchestration/126-sk-code-workflow-subskill-research/research/deep-research-strategy.md` and append-only state artifacts | Created/Updated | Preserve deep-research strategy and resumable externalized state for the loop | phase evidence |
-| `.opencode/specs/skilled-agent-orchestration/126-sk-code-workflow-subskill-research/description.json` | Created | Provide spec-folder metadata for memory/search visibility | phase evidence |
-| `.opencode/specs/skilled-agent-orchestration/126-sk-code-workflow-subskill-research/graph-metadata.json` | Created | Provide graph metadata for packet traversal and status | phase evidence |
-| `.opencode/specs/skilled-agent-orchestration/126-sk-code-workflow-subskill-research/plan.md` | Created | Record the research execution plan, quality gates, dependencies, rollback, and known limitations | close-out evidence |
-| `.opencode/specs/skilled-agent-orchestration/126-sk-code-workflow-subskill-research/tasks.md` | Created | Record completed research-execution tasks and completion criteria | close-out evidence |
-| `.opencode/specs/skilled-agent-orchestration/126-sk-code-workflow-subskill-research/checklist.md` | Created | Record verification evidence, limitation handling, and P0/P1/P2 summary counts | close-out evidence |
-| `.opencode/specs/skilled-agent-orchestration/126-sk-code-workflow-subskill-research/implementation-summary.md` | Created | Record final status, files changed, verification, limitations, and deviations from plan | close-out evidence |
+| `.opencode/specs/skilled-agent-orchestration/124-sk-code-parent/023-sk-code-workflow-subskill-research/spec.md` | Created | Define research scope, requirements, success criteria, risks, edge cases, and out-of-scope implementation boundary | phase evidence |
+| `.opencode/specs/skilled-agent-orchestration/124-sk-code-parent/023-sk-code-workflow-subskill-research/research/research.md` | Created/Updated | Store progressive synthesis, per-iteration conclusions, final ranked upgrade proposals, validation hooks, and convergence note | phase evidence |
+| `.opencode/specs/skilled-agent-orchestration/124-sk-code-parent/023-sk-code-workflow-subskill-research/research/iterations/iteration-001.md` through `iteration-008.md` | Created | Record eight productive deep-research iterations that led to convergence | phase evidence |
+| `.opencode/specs/skilled-agent-orchestration/124-sk-code-parent/023-sk-code-workflow-subskill-research/research/deep-research-strategy.md` and append-only state artifacts | Created/Updated | Preserve deep-research strategy and resumable externalized state for the loop | phase evidence |
+| `.opencode/specs/skilled-agent-orchestration/124-sk-code-parent/023-sk-code-workflow-subskill-research/description.json` | Created | Provide spec-folder metadata for memory/search visibility | phase evidence |
+| `.opencode/specs/skilled-agent-orchestration/124-sk-code-parent/023-sk-code-workflow-subskill-research/graph-metadata.json` | Created | Provide graph metadata for packet traversal and status | phase evidence |
+| `.opencode/specs/skilled-agent-orchestration/124-sk-code-parent/023-sk-code-workflow-subskill-research/plan.md` | Created | Record the research execution plan, quality gates, dependencies, rollback, and known limitations | close-out evidence |
+| `.opencode/specs/skilled-agent-orchestration/124-sk-code-parent/023-sk-code-workflow-subskill-research/tasks.md` | Created | Record completed research-execution tasks and completion criteria | close-out evidence |
+| `.opencode/specs/skilled-agent-orchestration/124-sk-code-parent/023-sk-code-workflow-subskill-research/checklist.md` | Created | Record verification evidence, limitation handling, and P0/P1/P2 summary counts | close-out evidence |
+| `.opencode/specs/skilled-agent-orchestration/124-sk-code-parent/023-sk-code-workflow-subskill-research/implementation-summary.md` | Created | Record final status, files changed, verification, limitations, and deviations from plan | close-out evidence |
 
 <!-- /ANCHOR:what-built -->
 ---

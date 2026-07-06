@@ -12,7 +12,7 @@
   "maxToolCallsPerIteration": 12,
   "maxMinutesPerIteration": 10,
   "progressiveSynthesis": true,
-  "specFolder": ".opencode/specs/skilled-agent-orchestration/126-sk-code-workflow-subskill-research",
+  "specFolder": ".opencode/specs/skilled-agent-orchestration/124-sk-code-parent/023-sk-code-workflow-subskill-research",
   "createdAt": "2026-07-05T00:00:00.000Z",
   "status": "initialized",
   "executionMode": "auto",

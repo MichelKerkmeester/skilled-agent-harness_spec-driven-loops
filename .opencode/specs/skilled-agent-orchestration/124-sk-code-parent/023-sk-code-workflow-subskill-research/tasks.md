@@ -9,7 +9,7 @@ importance_tier: "high"
 contextType: "research"
 _memory:
   continuity:
-    packet_pointer: "skilled-agent-orchestration/126-sk-code-workflow-subskill-research"
+    packet_pointer: "skilled-agent-orchestration/124-sk-code-parent/023-sk-code-workflow-subskill-research"
     last_updated_at: "2026-07-05T00:00:00Z"
     last_updated_by: "claude-opus"
     recent_action: "Deep-research loop converged; ranked proposal synthesis recorded"

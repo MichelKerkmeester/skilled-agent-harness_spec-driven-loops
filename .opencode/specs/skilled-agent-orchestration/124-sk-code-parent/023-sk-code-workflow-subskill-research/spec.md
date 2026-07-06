@@ -10,7 +10,7 @@ contextType: "research"
 parent: "skilled-agent-orchestration"
 _memory:
   continuity:
-    packet_pointer: "skilled-agent-orchestration/126-sk-code-workflow-subskill-research"
+    packet_pointer: "skilled-agent-orchestration/124-sk-code-parent/023-sk-code-workflow-subskill-research"
     last_updated_at: "2026-07-05T14:45:00.000Z"
     last_updated_by: "claude-opus"
     recent_action: "Research packet scaffolded; deep-research loop being launched"
@@ -69,8 +69,8 @@ Run a bounded deep-research investigation (ten productive iterations) that studi
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| `.opencode/specs/skilled-agent-orchestration/126-sk-code-workflow-subskill-research/research/` | Create | Deep-research artifacts: state log, iterations, deltas, strategy, dashboard, synthesis |
-| `.opencode/specs/skilled-agent-orchestration/126-sk-code-workflow-subskill-research/{description,graph-metadata}.json` | Create | Spec-folder metadata for memory-search visibility |
+| `.opencode/specs/skilled-agent-orchestration/124-sk-code-parent/023-sk-code-workflow-subskill-research/research/` | Create | Deep-research artifacts: state log, iterations, deltas, strategy, dashboard, synthesis |
+| `.opencode/specs/skilled-agent-orchestration/124-sk-code-parent/023-sk-code-workflow-subskill-research/{description,graph-metadata}.json` | Create | Spec-folder metadata for memory-search visibility |
 
 <!-- /ANCHOR:scope -->
 ---

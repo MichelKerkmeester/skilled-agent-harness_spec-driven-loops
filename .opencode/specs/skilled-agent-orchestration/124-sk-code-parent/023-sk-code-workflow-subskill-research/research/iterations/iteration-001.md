@@ -25,9 +25,9 @@ This iteration investigated the strategy's first focus: an inventory and boundar
 - Partial success: The inventory covered all four target `SKILL.md` files, hub registry, hub router, shared phase lifecycle, and discovered resource paths; deeper asset content review remains.
 
 ## Sources Consulted
-- .opencode/specs/skilled-agent-orchestration/126-sk-code-workflow-subskill-research/research/deep-research-config.json:1
-- .opencode/specs/skilled-agent-orchestration/126-sk-code-workflow-subskill-research/research/deep-research-state.jsonl:1
-- .opencode/specs/skilled-agent-orchestration/126-sk-code-workflow-subskill-research/research/deep-research-strategy.md:15
+- .opencode/specs/skilled-agent-orchestration/124-sk-code-parent/023-sk-code-workflow-subskill-research/research/deep-research-config.json:1
+- .opencode/specs/skilled-agent-orchestration/124-sk-code-parent/023-sk-code-workflow-subskill-research/research/deep-research-state.jsonl:1
+- .opencode/specs/skilled-agent-orchestration/124-sk-code-parent/023-sk-code-workflow-subskill-research/research/deep-research-strategy.md:15
 - .opencode/skills/sk-code/SKILL.md:23
 - .opencode/skills/sk-code/mode-registry.json:21
 - .opencode/skills/sk-code/hub-router.json:4
