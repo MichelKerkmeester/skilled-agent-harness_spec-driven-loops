@@ -1,0 +1,97 @@
+# ─────────────────────────────────────────────────────────────────
+# DESIGN AUDIT WORKFLOW (AUTONOMOUS MODE)
+# ─────────────────────────────────────────────────────────────────
+role: sk-design audit mode, autonomous execution
+purpose: Review, score, and harden the quality of a design surface that already exists
+action: Apply the audit mode to $ARGUMENTS and return a STATUS line without an approval gate
+
+operating_mode:
+  workflow: single_pass
+  approvals: none
+  validation: self_validated
+
+user_inputs:
+  target: "Concrete design target - a URL, component, screen, or file. REQUIRED."
+  scope: "Optional audit scope (e.g. a11y, performance, responsive)."
+  score: "Optional flag requesting a numeric quality score."
+  register: "[brand|product] - design posture. Default: auto-resolved from declared register field, task cue, or surface in focus."
+
+auto_resolution:
+  target:
+    required: true
+    default: none
+    on_missing: "Use the Auto Fail-Fast Display from the presentation asset; do not guess."
+  scope:
+    required: false
+    default: full
+  score:
+    required: false
+    default: false
+  register:
+    required: false
+    default: auto
+    resolution_order: [declared_register_field, task_cue, surface_in_focus]
+
+task_projections:
+  note: "Advisory transform verbs are NOT standalone commands and NOT new modes. Route each into this workflow as the named lane behavior."
+  harden: "Harden a built surface for production readiness; applies the hardening and remediation reference lanes."
+  polish: "Assess a near-final surface for polish readiness; applies the critique and remediation reference lanes."
+  negative_corpus: "None of these verbs is a /design:<verb> command. A request that asks to mint one as a top-level command is rejected; the verb routes into this mode instead."
+
+workflow:
+  step_1_load_hub:
+    purpose: Load the sk-design parent hub routing table and shared references
+    action: "Read .opencode/skills/sk-design/SKILL.md"
+    output: hub_context
+
+  step_2_load_mode:
+    purpose: Load the audit mode contract
+    action: "Read .opencode/skills/sk-design/design-audit/SKILL.md, then its references/ and assets as the work requires"
+    output: mode_context
+
+  step_3_resolve_target_and_register:
+    purpose: Resolve the target and set the register before scoring
+    action: "Read references/evidence_capture.md to resolve the target, then ../shared/register.md so the audit-severity dial weights findings by Brand-vs-Product posture"
+    output: resolved_target_and_register
+
+  step_4_select_procedure_card:
+    purpose: Select at most one private procedure card by request shape, or state the no-procedure fallback
+    action: "Match $ARGUMENTS against the trigger table below; cite the selected card (or the fallback) by relative path before substantial output"
+    trigger_table:
+      - request_shape: "Accessibility, WCAG, inclusive design, contrast, keyboard, focus, form, or release-readiness review"
+        card: "procedures/accessibility_audit.md"
+      - request_shape: "AI-template risk, generic visual language, over-decoration, slop, or model-tell review"
+        card: "procedures/ai_slop_check.md"
+      - request_shape: "Full pre-delivery polish spanning multiple design dimensions"
+        card: "../shared/procedures/polish_gate_orchestration.md"
+      - request_shape: "No trigger matches"
+        card: "none - state 'Procedure applied: none - baseline audit workflow' and continue"
+    output: selected_procedure_card
+
+  step_5_run_audit_workflow:
+    purpose: Run the audit mode's own core workflow against target/scope/score/register and the selected procedure card's output
+    action: "State evidence available and missing -> score the 5 audit dimensions 0-4 (accessibility, performance, responsive, theming, anti-patterns) -> produce a findings-first report ordered P0-P3 -> map each finding to the owning sibling or implementation skill -> end with recommended next actions, per design-audit's Audit Workflow. Do not silently implement fixes during a review-only request."
+    output: design_quality_audit_report
+
+  step_6_prepare_handoff:
+    purpose: Prepare implementation handoff only when accepted design output moves to code
+    action: "Read .opencode/skills/sk-design/shared/sk_code_handoff.md"
+    condition: "Only when the user accepts the design output for build"
+    output: handoff_manifest
+
+deliverable:
+  name: "Design Quality Audit Report"
+  required_fields: [target, evidenceInventory, severityFindings, qualityScore]
+
+status_contract:
+  success: 'STATUS=OK PRODUCES="Design Quality Audit Report" NEXT=/design:foundations,/design:interface,/design:motion PROOF=target,evidenceInventory,severityFindings,qualityScore'
+  missing_input: "STATUS=ASK MISSING=<input>, plus the Ask-first question from the presentation asset"
+  cannot_run: "STATUS=FAIL ERROR=<named-cause>"
+  route_instead: "STATUS=DEFER ROUTE=<hub|sibling>"
+
+pipeline:
+  stage: "review - validates design output before the build handoff"
+  accepts_from: ["/design:foundations", "/design:interface", "/design:md-generator", "/design:motion"]
+  hands_to_next: ["/design:foundations", "/design:interface", "/design:motion"]
+  recommend_only: true
+  hands_to_build: "sk-code, via .opencode/skills/sk-design/shared/sk_code_handoff.md, only when accepted design findings move to implementation"

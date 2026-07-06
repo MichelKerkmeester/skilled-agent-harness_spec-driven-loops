@@ -1,0 +1,92 @@
+# Design Foundations Presentation Contract
+
+Presentation source of truth for `/design:foundations`. The router owns mode selection and asset loading. Workflow YAML owns execution. This file owns visible prompts, result displays, and next-step wording.
+
+## 1. Startup Presentation
+
+For `:confirm`, or no suffix with incomplete `$ARGUMENTS`, the consolidated setup prompt is the first visible response. Ask all applicable questions once, then wait.
+
+For `:auto`, or no suffix with complete `$ARGUMENTS`, do not show the consolidated prompt. Resolve setup through the Auto Resolution Table below.
+
+### Auto Resolution Table
+
+| Field | Required | Default | Targeted-ask when |
+|-------|----------|---------|--------------------|
+| axis | Yes | none | Always, when missing |
+| target | Yes | none | Always, when missing |
+| register | No | auto (declared field -> task cue -> surface in focus) | Register is genuinely mixed or unresolved |
+
+### Consolidated Prompt Template
+
+```text
+Design Foundations setup
+
+Q1. Which axis (color, type, layout, spacing, tokens) and for which target surface?
+Q2. Is this Brand or Product register?
+Q3. Execution mode, if no suffix: A) Auto  B) Confirm
+
+Reply format: "<axis>, <target>, <brand|product>, <A|B>"
+```
+
+Never split these questions into separate visible prompts.
+
+### Auto Fail-Fast Display
+
+```text
+Design Foundations auto setup failed
+Missing required input: [axis and/or target]
+Provide the missing input or rerun with :confirm.
+STATUS=FAIL ERROR="missing required setup inputs"
+```
+
+---
+
+## 2. Results Display
+
+### Success
+
+```text
+STATUS=OK PRODUCES="Visual System Foundations Plan" NEXT=/design:interface,/design:motion,/design:audit PROOF=axis,target,tokenDecisions,contrastEvidence
+```
+
+### Missing Input
+
+```text
+Which axis (color, type, layout, spacing, tokens) and for which target surface?
+STATUS=ASK MISSING=<input>
+```
+
+### Failure
+
+```text
+STATUS=FAIL ERROR=<named-cause>
+```
+
+### Defer
+
+```text
+STATUS=DEFER ROUTE=<hub|sibling>
+```
+
+---
+
+## 3. Next-Step Suggestions
+
+| Condition | Suggested Command | Reason |
+|-----------|--------------------|--------|
+| Static system decisions are ready to become a concrete interface direction or screen treatment | `/design:interface` | Turn tokens into an interface direction |
+| Tokens or layout decisions need temporal behavior, transitions, or state choreography | `/design:motion` | Specify temporal behavior |
+| The static system is ready for quality review, contrast evidence, or hardening | `/design:audit` | Validate quality before build |
+| Accepted tokens or static-system decisions move to implementation | sk-code handoff via `.opencode/skills/sk-design/shared/sk_code_handoff.md` | Hand off to build |
+
+This command never silently chains; it emits options only (`HANDOFF_REQUIRED=false`, recommend-only).
+
+---
+
+## 4. Example Usage
+
+```
+/design:foundations color marketing-site
+```
+
+Returns: a static visual-system plan with color, type, layout, spacing, responsive, and token guidance as applicable.

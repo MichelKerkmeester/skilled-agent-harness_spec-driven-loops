@@ -1,0 +1,225 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-design/009-sk-design-claude-parity/015-design-commands-implementation",
+  "spec_folder": "sk-design/009-sk-design-claude-parity/015-design-commands-implementation",
+  "parent_id": "sk-design/009-sk-design-claude-parity",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "design commands implementation",
+      "design command router split implementation",
+      "phase 015 design commands",
+      "design auto confirm build",
+      "phase 015 plan",
+      "design command implementation plan",
+      "tasks",
+      "phase 015 tasks",
+      "verification",
+      "checklist",
+      "phase 015 checklist",
+      "implementation"
+    ],
+    "key_topics": [
+      "design",
+      "commands",
+      "implementation",
+      "command",
+      "router",
+      "split",
+      "phase",
+      "015",
+      "auto",
+      "confirm",
+      "build",
+      "plan"
+    ],
+    "importance_tier": "high",
+    "status": "in_progress",
+    "key_files": [
+      ".opencode/commands/design/interface.md",
+      ".opencode/commands/design/foundations.md",
+      ".opencode/commands/design/motion.md",
+      ".opencode/commands/design/audit.md",
+      ".opencode/commands/design/md-generator.md",
+      "implementation-summary.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      ".opencode/commands/speckit/plan.md",
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "interface.md",
+        "kind": "doc",
+        "path": ".opencode/commands/design/interface.md",
+        "source": "derived"
+      },
+      {
+        "name": "foundations.md",
+        "kind": "doc",
+        "path": ".opencode/commands/design/foundations.md",
+        "source": "derived"
+      },
+      {
+        "name": "motion.md",
+        "kind": "doc",
+        "path": ".opencode/commands/design/motion.md",
+        "source": "derived"
+      },
+      {
+        "name": "audit.md",
+        "kind": "doc",
+        "path": ".opencode/commands/design/audit.md",
+        "source": "derived"
+      },
+      {
+        "name": "md-generator.md",
+        "kind": "doc",
+        "path": ".opencode/commands/design/md-generator.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Design Commands Router",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Assets Implementation",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Navigation",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Execute Phase",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Thin",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Read Phase",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pass Process",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The five `/design:` commands remain flat single-file commands with routing logic and presentation content (Ask-first wording, STATUS templates, handoff grammar) mixed together",
+    "created_at": "2026-07-06T18:57:35.656Z",
+    "last_save_at": "2026-07-06T18:57:35.656Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:bd6689899a2aaa34fe8f446e9e7675069b9c3b43db112e7eab837f32d6f89ca6",
+    "source_doc_hashes": {
+      "spec.md": "ea0ba9e917b2f7f1dac4ce9ac92d31608def1640f7fa0946b8abbbfbd3bd5187",
+      "plan.md": "bdf17c68c03ce89ba62fe16d991c8557c36184637026ff762dd9cc0d3419310f",
+      "tasks.md": "3413494a71a15a981fbd7a3fe1a8a965028e8706e916620cb3012f7fa7cb5386",
+      "checklist.md": "1ae94a567cd7604c62ba5cd18e58f2dfc02d93c81c28a11d798853b0eacd76e0",
+      "implementation-summary.md": "65e03804e6e55ec9329ac72bbe8c3e11e695e3ac23521ea417f19035768a33c5"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

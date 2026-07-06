@@ -12,8 +12,8 @@ _memory:
     packet_pointer: "sk-design/009-sk-design-claude-parity/013-design-commands-asset-refactor"
     last_updated_at: "2026-07-06T10:00:05.000Z"
     last_updated_by: "claude-sonnet-5"
-    recent_action: "Verified the Phase 013 planning packet against live command files and mode-registry.json"
-    next_safe_action: "Get User/Reviewer sign-off, then hand plan.md to implementation after Phases 006-012 settle"
+    recent_action: "Executed in ../015-design-commands-implementation/ (2026-07-06); this doc's Known Limitations #1 updated to cross-reference it"
+    next_safe_action: "None - the router+assets refactor is implemented; see ../015-design-commands-implementation/ for its own follow-ups"
     completion_pct: 100
 ---
 # Implementation Summary: Phase 013 - Design Commands Refactor (Assets, Workflow YAML, Presentation Dashboard)
@@ -109,9 +109,9 @@ See `decision-record.md` for full context, alternatives (each scored), consequen
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **The actual `/design:*` router+assets refactor is NOT implemented.** This phase is planning-only by explicit scope (`spec.md` Out of Scope). `spec.md`'s Metadata `Status` field intentionally remains "Planned / Not Started" — this refers to the router+assets refactor itself, not to this planning packet, and is preserved by design (`checklist.md` CHK-052) so no doc falsely claims implementation occurred.
-2. **Implementation is gated on Phases 006-012 settling plus a separate operator-approved kickoff.** `plan.md` § 6 Dependencies and `decision-record.md` both name this gate explicitly.
-3. **Human sign-off is still Pending.** `checklist.md`'s L3+ Sign-off table names `User` (scope owner) and `Reviewer` (behavior-preservation reviewer) roles as required before implementation begins; this AI-executed verification pass closes the evidence-checkable rows but does not substitute for that human sign-off.
+1. **The actual `/design:*` router+assets refactor was NOT implemented by this phase.** This phase is planning-only by explicit scope (`spec.md` Out of Scope). `spec.md`'s Metadata `Status` field intentionally remains "Planned / Not Started" — this refers to the router+assets refactor itself, not to this planning packet, and is preserved by design (`checklist.md` CHK-052) so no doc falsely claims implementation occurred. **Update (2026-07-06): the refactor was executed in `../015-design-commands-implementation/`.** All five `/design:*` commands are now thin routers with owned `_auto.yaml`/`_confirm.yaml`/`_presentation.txt` assets, per this phase's plan and decision record — see that phase's `implementation-summary.md` for what was built and how it was verified.
+2. **Implementation is gated on Phases 006-012 settling plus a separate operator-approved kickoff.** `plan.md` § 6 Dependencies and `decision-record.md` both name this gate explicitly. This gate cleared before Phase 015 began (Phases 006-012 were already settled/complete in this packet).
+3. **Human sign-off is still Pending.** `checklist.md`'s L3+ Sign-off table names `User` (scope owner) and `Reviewer` (behavior-preservation reviewer) roles as required before implementation begins; this AI-executed verification pass closes the evidence-checkable rows but does not substitute for that human sign-off. Phase 015's implementation proceeded on the operator's direct instruction to implement the plan, which stands in for that kickoff approval; the row-level `User`/`Reviewer` sign-off in this phase's own checklist remains unaddressed by either phase.
 <!-- /ANCHOR:limitations -->
 
 ---

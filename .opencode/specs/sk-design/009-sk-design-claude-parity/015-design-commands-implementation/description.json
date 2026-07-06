@@ -1,0 +1,40 @@
+{
+  "specFolder": "sk-design/009-sk-design-claude-parity/015-design-commands-implementation",
+  "description": "Executes Phase 013's plan: all five /design:* commands become thin routers with owned auto/confirm/presentation assets, with explicit procedure-card t",
+  "keywords": [
+    "executes",
+    "phase",
+    "013",
+    "plan",
+    "five",
+    "design",
+    "commands",
+    "become",
+    "thin",
+    "routers",
+    "owned",
+    "auto",
+    "confirm",
+    "presentation",
+    "assets",
+    "explicit",
+    "procedure-card",
+    "triggers",
+    "naming",
+    "underlying",
+    "mode",
+    "procedure",
+    "actually",
+    "runs"
+  ],
+  "lastUpdated": "2026-07-06T18:57:35.537Z",
+  "specId": "015",
+  "folderSlug": "design-commands-implementation",
+  "parentChain": [
+    "sk-design",
+    "009-sk-design-claude-parity"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

@@ -1,22 +1,32 @@
 ---
 description: Interface direction: distinctive UI, palette, type, layout, motion. sk-design interface mode.
-argument-hint: "<target> [--mode]"
+argument-hint: "<target> [--mode] [--register brand|product] [:auto|:confirm]"
 allowed-tools: Read, Glob, Grep
 ---
 
 # /design:interface
 
-I want to invent or reshape a distinctive interface direction for a surface.
+Thin router for the sk-design `interface` mode. This command resolves the execution mode, loads the presentation contract, then applies the `interface` mode to `$ARGUMENTS`.
 
-## 1. USER INTENT
+## 1. ROUTER CONTRACT
 
-This command serves that user job and owns these signals: "shape interface direction", "redesign ui surface", "make ui distinctive".
+This command serves the user job: "shape interface direction", "redesign ui surface", "make ui distinctive".
 
-## 2. INTERNAL BINDING
+Pin the `interface` mode of the `sk-design` parent hub to build or reshape a distinctive, intentional interface. The hub owns routing across modes; this command loads the `interface` mode directly. If the request spans more than `interface`, defer to the hub's routing instead of forcing this mode.
 
-Pin the `interface` mode of the `sk-design` parent hub to build or reshape a distinctive, intentional interface. The hub owns routing
-across modes; this command loads the `interface` mode directly. If the request spans more
-than `interface`, defer to the hub's routing instead of forcing this mode.
+Do not embed workflow steps or presentation content in this file. Workflow steps live in the owned YAML assets; visible prompts, dashboards, and result templates live in the presentation asset.
+
+---
+
+## 2. OWNED ASSETS
+
+| Purpose | Asset |
+|---------|-------|
+| Presentation source of truth | `.opencode/commands/design/assets/design_interface_presentation.txt` |
+| Auto workflow | `.opencode/commands/design/assets/design_interface_auto.yaml` |
+| Confirm workflow | `.opencode/commands/design/assets/design_interface_confirm.yaml` |
+
+---
 
 ## 3. INTERFACE TASK LANES
 
@@ -42,13 +52,16 @@ Pick the lane that matches the request; if none fits, defer to the `sk-design` h
 - **Defer to the `sk-design` hub when** the request is primarily static tokens, motion behavior, audit findings, or measured CSS extraction.
 <!-- /ANCHOR:sibling-discriminator -->
 
+---
+
 ## 5. PRECONDITIONS
 
-- **Requires:** an interface target (surface, screen, or component set) plus the register and any mode hint
-- **Ask-first:** if that input is missing, emit `STATUS=ASK MISSING=<input>` and ask "Which interface surface, and is this Brand or Product register?" Do not run on a guess.
+- **Requires:** an interface target (surface, screen, or component set) plus the register and any mode hint.
 - **Cannot-run:** when no interface target is named to shape, stop with `STATUS=FAIL ERROR=<named-cause>`.
 - **Escalate:** if the register is genuinely mixed or unresolved and changes the design dials, return `STATUS=DEFER ROUTE=hub` rather than forcing the mode.
 - **Route instead:** when the request is primarily static tokens, motion behavior, audit findings, or measured CSS extraction, return `STATUS=DEFER ROUTE=hub`.
+
+Ask-first question wording lives only in the presentation asset's Consolidated Prompt Template.
 
 <!-- ANCHOR:register -->
 ## REGISTER
@@ -56,79 +69,43 @@ Pick the lane that matches the request; if none fits, defer to the `sk-design` h
 - **Pin with** `--register <brand|product>` at command entry. Default `auto` resolves the posture from a declared register field, then the task cue, then the surface in focus.
 - **Postures:** Brand (design IS the product) gives the interface room for expression, identity, and a memorable move. Product (design SERVES the product) keeps the interface dense, predictable, and task-led.
 - **This command's dials:** `register`, `density`, `motionBudget`, `colorStrategy`.
-- **Ask-first:** when the register is unresolved or the surface is genuinely mixed, emit `STATUS=ASK MISSING_REGISTER` and ask "Is this a Brand surface (design IS the product) or a Product surface (design SERVES the product)?" Do not guess the posture.
+
+Register Ask-first question wording lives only in the presentation asset.
 <!-- /ANCHOR:register -->
 
-## 6. INSTRUCTIONS
+---
 
-### Step 1: Load and apply the mode
-- Read `.opencode/skills/sk-design/SKILL.md` -- the parent hub: routing table and the
-  shared references under `shared/`.
-- Read `.opencode/skills/sk-design/design-interface/SKILL.md` -- the `interface` mode contract
-  -- and load its `references/` and assets as the work requires.
-- Apply the `interface` mode to `$ARGUMENTS`, following its workflow and quality gates.
+## 6. MODE ROUTING
 
-### Step 2: Return Status
-- Success: `STATUS=OK PRODUCES="Interface Direction Spec" NEXT=/design:foundations,/design:motion,/design:audit PROOF=target,register,designDials,preflightResult`
-- Missing input: `STATUS=ASK MISSING=<input>` plus the Ask-first question.
-- Cannot run: `STATUS=FAIL ERROR=<named-cause>` with the cause named.
-- Route instead: `STATUS=DEFER ROUTE=<hub|sibling>`.
+1. Parse `$ARGUMENTS` for `:auto` or `:confirm`.
+2. If no suffix is present, check whether `$ARGUMENTS` already supplies the required input (an interface target). If complete, proceed autonomously; if incomplete, fall back to the `:confirm` consolidated prompt.
+3. For explicit `:auto`, resolve setup through the presentation contract's Auto Resolution Table; if the target still cannot be resolved, use the Auto Fail-Fast Display.
+4. For explicit `:confirm`, always show the consolidated setup prompt once, even when `$ARGUMENTS` is fully specified.
+5. Load the selected workflow asset and execute it step by step.
 
-## CHOREOGRAPHY
+---
 
-1. `sk-design` reads `.opencode/skills/sk-design/SKILL.md` -- load the parent hub routing table and shared references.
-2. `design-interface` reads `.opencode/skills/sk-design/design-interface/SKILL.md` -- load the interface mode contract.
-3. `design-interface` uses `.opencode/skills/sk-design/design-interface/references/` -- load mode references and assets as the work requires, then apply the interface workflow to $ARGUMENTS.
-4. `sk-code` uses `.opencode/skills/sk-design/shared/sk_code_handoff.md` -- prepare implementation handoff only when accepted design output moves to code.
+## 7. EXECUTION TARGETS
 
-## 7. EMIT DELIVERABLE
+| Mode | Workflow |
+|------|----------|
+| `:auto`, or no suffix with complete `$ARGUMENTS` | `.opencode/commands/design/assets/design_interface_auto.yaml` |
+| `:confirm`, or no suffix with incomplete `$ARGUMENTS` | `.opencode/commands/design/assets/design_interface_confirm.yaml` |
 
-Emit `Interface Direction Spec` as the primary deliverable.
+---
 
-Required fields:
-- `target`
-- `register`
-- `designDials`
-- `preflightResult`
+## 8. PRESENTATION BOUNDARY
 
-## 8. PIPELINE & HANDOFF
+The following content lives only in `.opencode/commands/design/assets/design_interface_presentation.txt`:
 
-- **Stage:** direction - frames the interface decision before static systems, behavior, audit, or build.
-- **Accepts from:** `/design:audit`, `/design:foundations`, `/design:md-generator`, `/design:motion`.
-- **Produces:** Interface Direction Spec, carrying `target`, `register`, `designDials`, `preflightResult`.
-- **Hands to next (recommend-only):** `/design:foundations`, `/design:motion`, `/design:audit` -- emitted as `NEXT=`, never auto-invoked.
-- **Hands to build:** when the accepted interface direction moves to implementation, hand off to `sk-code` via the shared sk-code handoff card `.opencode/skills/sk-design/shared/sk_code_handoff.md`.
-- **Recommend-only:** this command never silently chains; the user or the `sk-design` hub chooses the next step.
+- Consolidated setup prompt wording (target, register, task-lane hint, execution-mode question).
+- Auto Resolution Table and Auto Fail-Fast Display.
+- STATUS result templates (`OK`/`ASK`/`FAIL`/`DEFER`).
+- Next-step suggestions and handoff-grammar wording.
+- Example usage.
 
-## HANDOFF GRAMMAR
+---
 
-```
-NEXT_OPTIONS=/design:foundations,/design:motion,/design:audit
-HANDOFF_REQUIRED=false
-HANDOFF_REASON="recommend-only; the user or the sk-design hub chooses the next step, never an automatic chain"
-```
+## 9. WORKFLOW SUMMARY
 
-- `/design:foundations` when the direction needs a static token, type, spacing, or theming system.
-- `/design:motion` when the direction needs purposeful animation, transitions, or micro-interactions.
-- `/design:audit` when the interface direction is ready for findings-first review and scoring.
-
-This command never silently chains; it emits options only.
-
-## 9. EXAMPLE
-
-```
-/design:interface dashboard-shell --mode redesign
-```
-
-Returns: a deliberate interface direction with rationale, visual choices, critique, and handoff notes
-
-## TASK PROJECTIONS
-
-These transform verbs are advisory task projections of this mode. They are NOT standalone commands and NOT new modes.
-
-- **bolder** (advisory) -- push an interface surface louder with stronger hierarchy and committed choices.
-- **quieter** (advisory) -- calm an interface surface while preserving its point of view.
-- **distill** (advisory) -- reduce an interface surface to essentials without removing necessary function.
-- **delight** (advisory) -- add an earned moment to an interface surface through the real-UI loop.
-
-**Negative corpus:** none of these verbs is a `/design:<verb>` command. A request that asks to mint one as a top-level command is rejected; the verb routes into this mode instead.
+Loads the `sk-design` hub and the `interface` mode packet, applies the mode to `$ARGUMENTS`, and returns a STATUS line naming the produced Interface Direction Spec. Never auto-chains to a sibling command; next steps are recommend-only.

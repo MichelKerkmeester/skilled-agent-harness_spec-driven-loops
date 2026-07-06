@@ -1,22 +1,32 @@
 ---
 description: Design QA report: accessibility, performance, responsive, anti-slop, scoring, hardening. sk-design audit mode.
-argument-hint: "<target> [--scope] [--score]"
+argument-hint: "<target> [--scope] [--score] [--register brand|product] [:auto|:confirm]"
 allowed-tools: Read, Glob, Grep
 ---
 
 # /design:audit
 
-I want to review, score, and harden the quality of a design surface I already have.
+Thin router for the sk-design `audit` mode. This command resolves the execution mode, loads the presentation contract, then applies the `audit` mode to `$ARGUMENTS`.
 
-## 1. USER INTENT
+## 1. ROUTER CONTRACT
 
-This command serves that user job and owns these signals: "audit design quality", "critique ui surface", "score design readiness".
+This command serves the user job: "audit design quality", "critique ui surface", "score design readiness".
 
-## 2. INTERNAL BINDING
+Pin the `audit` mode of the `sk-design` parent hub to audit and harden design quality. The hub owns routing across modes; this command loads the `audit` mode directly. If the request spans more than `audit`, defer to the hub's routing instead of forcing this mode.
 
-Pin the `audit` mode of the `sk-design` parent hub to audit and harden design quality. The hub owns routing
-across modes; this command loads the `audit` mode directly. If the request spans more
-than `audit`, defer to the hub's routing instead of forcing this mode.
+Do not embed workflow steps or presentation content in this file. Workflow steps live in the owned YAML assets; visible prompts, dashboards, and result templates live in the presentation asset.
+
+---
+
+## 2. OWNED ASSETS
+
+| Purpose | Asset |
+|---------|-------|
+| Presentation source of truth | `.opencode/commands/design/assets/design_audit_presentation.txt` |
+| Auto workflow | `.opencode/commands/design/assets/design_audit_auto.yaml` |
+| Confirm workflow | `.opencode/commands/design/assets/design_audit_confirm.yaml` |
+
+---
 
 <!-- ANCHOR:sibling-discriminator -->
 ## 3. WHEN TO USE THIS, NOT A SIBLING
@@ -29,13 +39,16 @@ than `audit`, defer to the hub's routing instead of forcing this mode.
 - **Defer to the `sk-design` hub when** the request asks for new direction, static system design, or motion choreography rather than quality review.
 <!-- /ANCHOR:sibling-discriminator -->
 
+---
+
 ## 4. PRECONDITIONS
 
-- **Requires:** a concrete design target - a URL, component, screen, or file - to inspect
-- **Ask-first:** if that input is missing, emit `STATUS=ASK MISSING=<input>` and ask "What is the audit target (URL, component, screen, or file), and what scope/score do you want?" Do not run on a guess.
+- **Requires:** a concrete design target - a URL, component, screen, or file - to inspect.
 - **Cannot-run:** when no target is given, or the named target cannot be opened or inspected, stop with `STATUS=FAIL ERROR=<named-cause>`.
 - **Escalate:** if the target needs build or run state the audit cannot reach to evidence a finding, return `STATUS=DEFER ROUTE=hub` rather than forcing the mode.
 - **Route instead:** when the ask is to create new direction, a static system, or motion rather than review existing quality, return `STATUS=DEFER ROUTE=hub`.
+
+Ask-first question wording lives only in the presentation asset's Consolidated Prompt Template.
 
 <!-- ANCHOR:register -->
 ## REGISTER
@@ -43,77 +56,43 @@ than `audit`, defer to the hub's routing instead of forcing this mode.
 - **Pin with** `--register <brand|product>` at command entry. Default `auto` resolves the posture from a declared register field, then the task cue, then the surface in focus.
 - **Postures:** Brand (design IS the product) weights distinctiveness and voice. Product (design SERVES the product) weights affordance, accessibility, and consistency.
 - **This command's dials:** `register`, `auditSeverity`.
-- **Ask-first:** when the register is unresolved or the surface is genuinely mixed, emit `STATUS=ASK MISSING_REGISTER` and ask "Is this a Brand surface (design IS the product) or a Product surface (design SERVES the product)?" Do not guess the posture.
+
+Register Ask-first question wording lives only in the presentation asset.
 <!-- /ANCHOR:register -->
 
-## 5. INSTRUCTIONS
+---
 
-### Step 1: Load and apply the mode
-- Read `.opencode/skills/sk-design/SKILL.md` -- the parent hub: routing table and the
-  shared references under `shared/`.
-- Read `.opencode/skills/sk-design/design-audit/SKILL.md` -- the `audit` mode contract
-  -- and load its `references/` and assets as the work requires.
-- Apply the `audit` mode to `$ARGUMENTS`, following its workflow and quality gates.
+## 5. MODE ROUTING
 
-### Step 2: Return Status
-- Success: `STATUS=OK PRODUCES="Design Quality Audit Report" NEXT=/design:foundations,/design:interface,/design:motion PROOF=target,evidenceInventory,severityFindings,qualityScore`
-- Missing input: `STATUS=ASK MISSING=<input>` plus the Ask-first question.
-- Cannot run: `STATUS=FAIL ERROR=<named-cause>` with the cause named.
-- Route instead: `STATUS=DEFER ROUTE=<hub|sibling>`.
+1. Parse `$ARGUMENTS` for `:auto` or `:confirm`.
+2. If no suffix is present, check whether `$ARGUMENTS` already supplies the required input (an audit target). If complete, proceed autonomously; if incomplete, fall back to the `:confirm` consolidated prompt.
+3. For explicit `:auto`, resolve setup through the presentation contract's Auto Resolution Table; if the target still cannot be resolved, use the Auto Fail-Fast Display.
+4. For explicit `:confirm`, always show the consolidated setup prompt once, even when `$ARGUMENTS` is fully specified.
+5. Load the selected workflow asset and execute it step by step.
 
-## CHOREOGRAPHY
+---
 
-1. `sk-design` reads `.opencode/skills/sk-design/SKILL.md` -- load the parent hub routing table and shared references.
-2. `design-audit` reads `.opencode/skills/sk-design/design-audit/SKILL.md` -- load the audit mode contract.
-3. `design-audit` uses `.opencode/skills/sk-design/design-audit/references/` -- load mode references and assets as the work requires, then apply the audit workflow to $ARGUMENTS.
-4. `sk-code` uses `.opencode/skills/sk-design/shared/sk_code_handoff.md` -- prepare implementation handoff only when accepted design output moves to code.
+## 6. EXECUTION TARGETS
 
-## 6. EMIT DELIVERABLE
+| Mode | Workflow |
+|------|----------|
+| `:auto`, or no suffix with complete `$ARGUMENTS` | `.opencode/commands/design/assets/design_audit_auto.yaml` |
+| `:confirm`, or no suffix with incomplete `$ARGUMENTS` | `.opencode/commands/design/assets/design_audit_confirm.yaml` |
 
-Emit `Design Quality Audit Report` as the primary deliverable.
+---
 
-Required fields:
-- `target`
-- `evidenceInventory`
-- `severityFindings`
-- `qualityScore`
+## 7. PRESENTATION BOUNDARY
 
-## 7. PIPELINE & HANDOFF
+The following content lives only in `.opencode/commands/design/assets/design_audit_presentation.txt`:
 
-- **Stage:** review - validates design output before the build handoff.
-- **Accepts from:** `/design:foundations`, `/design:interface`, `/design:md-generator`, `/design:motion`.
-- **Produces:** Design Quality Audit Report, carrying `target`, `evidenceInventory`, `severityFindings`, `qualityScore`.
-- **Hands to next (recommend-only):** `/design:foundations`, `/design:interface`, `/design:motion` -- emitted as `NEXT=`, never auto-invoked.
-- **Hands to build:** when accepted design findings move to implementation, hand off to `sk-code` via the shared sk-code handoff card `.opencode/skills/sk-design/shared/sk_code_handoff.md`.
-- **Recommend-only:** this command never silently chains; the user or the `sk-design` hub chooses the next step.
+- Consolidated setup prompt wording (target, scope/score, register, execution-mode question).
+- Auto Resolution Table and Auto Fail-Fast Display.
+- STATUS result templates (`OK`/`ASK`/`FAIL`/`DEFER`).
+- Next-step suggestions and handoff-grammar wording.
+- Example usage.
 
-## HANDOFF GRAMMAR
+---
 
-```
-NEXT_OPTIONS=/design:foundations,/design:interface,/design:motion
-HANDOFF_REQUIRED=false
-HANDOFF_REASON="recommend-only; the user or the sk-design hub chooses the next step, never an automatic chain"
-```
+## 8. WORKFLOW SUMMARY
 
-- `/design:foundations` when audit findings need static token, contrast, or system decisions before another pass.
-- `/design:interface` when findings point to a changed interface direction rather than local fixes.
-- `/design:motion` when findings involve animation, timing, state feedback, or reduced-motion behavior.
-
-This command never silently chains; it emits options only.
-
-## 8. EXAMPLE
-
-```
-/design:audit src/components/Checkout.tsx --scope a11y --score
-```
-
-Returns: a findings-first design quality report with evidence, scores, owners, and verification notes
-
-## TASK PROJECTIONS
-
-These transform verbs are advisory task projections of this mode. They are NOT standalone commands and NOT new modes.
-
-- **harden** (advisory) -- harden a built surface for production readiness; applies the hardening and remediation reference lanes.
-- **polish** (advisory) -- assess a near-final surface for polish readiness; applies the critique and remediation reference lanes.
-
-**Negative corpus:** none of these verbs is a `/design:<verb>` command. A request that asks to mint one as a top-level command is rejected; the verb routes into this mode instead.
+Loads the `sk-design` hub and the `audit` mode packet, applies the mode to `$ARGUMENTS`, and returns a STATUS line naming the produced Design Quality Audit Report. Never auto-chains to a sibling command; next steps are recommend-only.

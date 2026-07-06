@@ -1,0 +1,96 @@
+# ─────────────────────────────────────────────────────────────────
+# DESIGN FOUNDATIONS WORKFLOW (AUTONOMOUS MODE)
+# ─────────────────────────────────────────────────────────────────
+role: sk-design foundations mode, autonomous execution
+purpose: Design or repair the static visual system (color, type, layout, spacing, tokens) for a surface
+action: Apply the foundations mode to $ARGUMENTS and return a STATUS line without an approval gate
+
+operating_mode:
+  workflow: single_pass
+  approvals: none
+  validation: self_validated
+
+user_inputs:
+  axis: "[color|type|layout|spacing|tokens] - design-system axis. REQUIRED."
+  target: "Target surface or product context. REQUIRED."
+  register: "[brand|product] - design posture. Default: auto-resolved from declared register field, task cue, or surface in focus."
+
+auto_resolution:
+  axis:
+    required: true
+    default: none
+    on_missing: "Use the Auto Fail-Fast Display from the presentation asset; do not guess."
+  target:
+    required: true
+    default: none
+    on_missing: "Use the Auto Fail-Fast Display from the presentation asset; do not guess."
+  register:
+    required: false
+    default: auto
+    resolution_order: [declared_register_field, task_cue, surface_in_focus]
+
+task_projections:
+  note: "Advisory transform verbs are NOT standalone commands and NOT new modes. Route each into this workflow as the named lane behavior."
+  typeset: "Set a type system or target surface; applies the typography and token reference lanes."
+  colorize: "Color a palette or surface; applies the OKLCH and palette reference lanes."
+  negative_corpus: "None of these verbs is a /design:<verb> command. A request that asks to mint one as a top-level command is rejected; the verb routes into this mode instead."
+
+workflow:
+  step_1_load_hub:
+    purpose: Load the sk-design parent hub routing table and shared references
+    action: "Read .opencode/skills/sk-design/SKILL.md"
+    output: hub_context
+
+  step_2_load_mode:
+    purpose: Load the foundations mode contract
+    action: "Read .opencode/skills/sk-design/design-foundations/SKILL.md, then its references/ and assets as the work requires"
+    output: mode_context
+
+  step_3_set_register:
+    purpose: Set the Brand-vs-Product register before any token decision
+    action: "Read ../shared/register.md; the posture gates color strategy and token density"
+    output: register
+
+  step_4_select_procedure_card:
+    purpose: Select at most one private procedure card by request shape, or state the no-procedure fallback
+    action: "Match $ARGUMENTS against the trigger table below; cite the selected card (or the fallback) by relative path before substantial output"
+    trigger_table:
+      - request_shape: "User-adjustable options, controls, or tunable variants"
+        card: "procedures/tweakable_design_controls.md"
+      - request_shape: "Component extraction, reusable parts, or system inventory"
+        card: "procedures/component_system_inventory.md"
+      - request_shape: "Hierarchy, rhythm, spacing, density, or flat/chaotic visual order"
+        card: "procedures/hierarchy_rhythm_review.md"
+      - request_shape: "Final polish spanning accessibility, slop, rhythm, and states"
+        card: "../shared/procedures/polish_gate_orchestration.md"
+      - request_shape: "No trigger matches"
+        card: "none - state 'Procedure applied: none - baseline foundations workflow' and continue"
+    output: selected_procedure_card
+
+  step_5_run_static_system_workflow:
+    purpose: Run the foundations mode's own core workflow against axis/target/register and the selected procedure card's output
+    action: "Identify the system role -> ground constraints -> build the static system in layers (color, type, layout, data) -> test against the anti-slop base -> produce a compact handoff, per design-foundations's Static-System Workflow"
+    output: foundations_plan
+
+  step_6_prepare_handoff:
+    purpose: Prepare implementation handoff only when accepted design output moves to code
+    action: "Read .opencode/skills/sk-design/shared/sk_code_handoff.md"
+    condition: "Only when the user accepts the design output for build"
+    output: handoff_manifest
+
+deliverable:
+  name: "Visual System Foundations Plan"
+  required_fields: [axis, target, tokenDecisions, contrastEvidence]
+
+status_contract:
+  success: 'STATUS=OK PRODUCES="Visual System Foundations Plan" NEXT=/design:interface,/design:motion,/design:audit PROOF=axis,target,tokenDecisions,contrastEvidence'
+  missing_input: "STATUS=ASK MISSING=<input>, plus the Ask-first question from the presentation asset"
+  cannot_run: "STATUS=FAIL ERROR=<named-cause>"
+  route_instead: "STATUS=DEFER ROUTE=<hub|sibling>"
+
+pipeline:
+  stage: "system - turns direction or measured evidence into static visual-system decisions"
+  accepts_from: ["/design:audit", "/design:interface", "/design:md-generator", "/design:motion"]
+  hands_to_next: ["/design:interface", "/design:motion", "/design:audit"]
+  recommend_only: true
+  hands_to_build: "sk-code, via .opencode/skills/sk-design/shared/sk_code_handoff.md, only when tokens or static-system decisions move to implementation"
