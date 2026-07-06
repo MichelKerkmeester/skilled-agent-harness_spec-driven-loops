@@ -1,469 +1,117 @@
 ---
 name: sk-doc
-description: "Markdown and OpenCode component specialist: doc quality, content optimization, component scaffolds, install guides, playbooks."
-allowed-tools: [Bash, Edit, Glob, Grep, Read, Task, Write]
-version: 1.8.2.0
+description: "Documentation & OpenCode-component authoring parent hub: routes to nine workflow packets that create skills, parent hubs, READMEs/install-guides, agents, commands, feature catalogs, manual-testing playbooks, MCP benchmark folders, and ASCII flowcharts, plus a doc-quality mode that validates/scores/optimizes existing docs. Holds no per-packet logic; dispatches by workflowMode through mode-registry.json."
+allowed-tools: [Read, Write, Edit, Bash, Grep, Glob]
+version: 2.0.0.0
+metadata:
+  author: OpenCode
+  family: sk-doc
 ---
 
-<!-- Keywords: sk-doc, markdown-quality, skill-creation, document-validation, ascii-flowchart, llms-txt, content-optimization, extract-structure -->
+<!-- Keywords: sk-doc, documentation, markdown, authoring, parent-hub, mode-registry, hub-router, workflowmode, packetkind, create-skill, create-readme, create-agent, create-command, create-feature-catalog, create-manual-testing-playbook, create-benchmark, create-flowchart, doc-quality, shared-backbone, doc-quality-pipeline -->
 
-# Documentation Creation Specialist - Unified Markdown & Component Management
+# Documentation Authoring Hub (sk-doc)
 
-Unified specialist providing: (1) Document quality pipeline with structure enforcement and content optimization, (2) OpenCode component creation (skills, agents, commands) with scaffolding, validation and packaging, (3) ASCII flowchart creation for visualizing workflows, (4) Install guide creation for setup documentation and (5) Feature catalog and manual testing playbook creation for inventory and validation packages.
+One advisor identity, nine workflow packets, one shared doc-quality backbone. `sk-doc` is the parent hub for documentation and OpenCode-component authoring. It holds NO per-packet logic: it routes by `workflowMode` through `mode-registry.json`, and each packet keeps its own contract in its nested folder. The cross-cutting doc-quality pipeline (validators, global standards, frontmatter/llms/template assets) lives once in `shared/` and is consumed by every packet.
 
-**Core Principle**: Structure first, then content, then quality.
-
-**Architecture**: Scripts handle deterministic parsing/metrics. AI handles quality judgment and recommendations.
+---
 
 ## 1. WHEN TO USE
 
-### Use Case: Document Quality Management
+Use this skill for documentation and OpenCode-component authoring, and for document-quality work. The hub classifies the request, resolves a `workflowMode`, and loads the matching nested packet.
 
-Enforce markdown structure, optimize content for AI assistants, validate quality through script-assisted AI analysis.
+| Mode | Use it for | Packet | Command |
+|------|------------|--------|---------|
+| **create-skill** | Scaffold an OpenCode skill (and, via `create-skill-parent`, a parent hub with nested mode packets) | `create-skill/` | `/create:sk-skill`, `/create:sk-skill-parent` |
+| **create-readme** | Author a folder README or an install guide (install-guide is a folded variant) | `create-readme/` | `/create:folder_readme` |
+| **create-agent** | Scaffold an OpenCode agent (permission/authority frontmatter) | `create-agent/` | `/create:agent` |
+| **create-command** | Scaffold an OpenCode slash command (argument-hint + allowed-tools + router/presentation split) | `create-command/` | — |
+| **create-feature-catalog** | Author a feature-catalog inventory package | `create-feature-catalog/` | `/create:feature-catalog` |
+| **create-manual-testing-playbook** | Author a manual-testing-playbook package | `create-manual-testing-playbook/` | `/create:testing-playbook` |
+| **create-benchmark** | Promote a curated MCP benchmark folder into a consuming skill | `create-benchmark/` | — |
+| **create-flowchart** | Generate and validate an ASCII flowchart | `create-flowchart/` | — |
+| **doc-quality** | Validate / score / optimize an EXISTING document (extract → DQI → HVR → validate) | `doc-quality/` | `/doc:quality` |
 
-**README Creation** - Use `readme_template.md` + `readme_creation.md` when:
-- Creating new README for any folder or project
-- User requests "create a README", "add documentation", "write a README"
-- Folder needs comprehensive documentation
-- Workflow: [readme_creation.md](./references/readme_creation.md) | Template: [readme_template.md](./assets/readme/readme_template.md)
-
-**Skill README Creation** - Use `skill_readme_template.md` when:
-- Creating or refreshing `.opencode/skills/[skill-name]/README.md`
-- A skill README needs human-facing purpose, quick start, structure, examples, troubleshooting, FAQ or related-resource navigation
-- Template: [skill_readme_template.md](./assets/skill/skill_readme_template.md)
-
-**Frontmatter Validation** - Use `frontmatter_templates.md` when:
-- Validating YAML frontmatter in any document
-- Checking required fields for document types
-- Fixing frontmatter syntax errors
-
-**Changelog & Release Notes** - Use `changelog_template.md` when:
-- Authoring a global component changelog at `.opencode/changelog/{NN--component}/v{VERSION}.md`
-- Composing GitHub release notes that mirror the changelog body
-- Choosing between compact (under 10 changes) and expanded (10+ changes or major) formats
-- Template: [changelog_template.md](./assets/changelog_template.md). Used by `/create:changelog` (auto + confirm). Nested packet-local changelogs use the spec-kit templates at `.opencode/skills/system-spec-kit/templates/changelog/` instead.
-
-**Validation Workflow** - Apply after Write/Edit operations:
-- Auto-correct filename violations (ALL CAPS to lowercase, hyphens to underscores)
-- Fix safe violations (separators, H2 case)
-- Check critical violations (missing frontmatter, wrong section order)
-
-**Manual Optimization** - Run when:
-- README needs optimization for AI assistants
-- Creating critical documentation (specs, knowledge, skills)
-- Pre-release quality checks
-- Generating llms.txt for LLM navigation
-
-### Use Case: OpenCode Component Creation
-
-Create and manage OpenCode components (skills, agents, commands). Each component type has templates and validation with quality standards.
-
-**Component Types:**
-- **Skills** (.opencode/skills/) - Knowledge bundles with workflows → [skill_creation.md](./references/skill_creation.md)
-- **Parent Hubs** (.opencode/skills/) - Advisor-routable skill families with mode packets, mode registries, hub routers, and optional surface packets → [parent_skills_nested_packets.md](./references/skill_creation/parent_skills_nested_packets.md)
-- **Agents** (.opencode/agents/) - AI personas with tool permissions → [agent_creation.md](./references/agent_creation.md)
-- **Commands** (.opencode/commands/) - Slash commands for user invocation → [command_template.md](./assets/command/command_template.md)
-
-For larger skills, split deep content into focused reference files and keep concise navigation in `SKILL.md` or `README.md`. When a skill has both cross-cutting standards and document-family guides, prefer `references/global/` for shared rules and the `references/` root for creation-specific workflows.
-
-Start with: [skill_creation.md](./references/skill_creation.md), then [overview.md](./references/skill_creation/overview.md) for skill structure
-Primary templates:
-- [skill_md_template.md](./assets/skill/skill_md_template.md)
-- [skill_readme_template.md](./assets/skill/skill_readme_template.md)
-- [skill_reference_template.md](./assets/skill/skill_reference_template.md)
-- [skill_asset_template.md](./assets/skill/skill_asset_template.md)
-
-**Use when**:
-- User requests skill creation ("create a skill", "make a new skill")
-- User requests agent creation ("create an agent", "make a new agent")
-- User requests command creation ("create a command", "add a slash command")
-- Scaffolding component structure
-- Validating component quality
-- Packaging skill for distribution
-
-**Skill Process (6 steps)**: Understanding (examples) → Planning (resources) → Initialization (`init_skill.py`) → Editing (populate) → Packaging (`package_skill.py`) → Iteration (test/improve)
-
-**Agent Process**: Load `agent_creation.md` and `agent_template.md` → Define frontmatter (mode, permissions) → Create sections (workflow, capabilities, anti-patterns) → Validate → Test
-
-**Command Process**: Load `command_template.md` → Define frontmatter (name, description) → Create execution logic → Add to command registry → Test
-
-### Use Case: Flowchart Creation
-
-Create ASCII flowcharts for visualizing workflows, user journeys and decision trees.
-
-For styled HTML visuals (interactive diagrams, dashboard pages, or polished data-table renders), use a dedicated HTML workflow instead of forcing ASCII or markdown flowcharts.
-
-**Use when**:
-- Documenting multi-step processes with branching
-- Creating decision trees with multiple outcomes
-- Showing parallel execution with sync points
-- Visualizing approval gates and revision cycles
-
-**See**: [assets/flowcharts/](./assets/flowcharts/)
-
-### Use Case: Install Guide Creation
-
-Create and validate installation documentation for MCP servers, plugins and tools using phase-based templates.
-
-**Use when**:
-- Creating documentation for MCP server installation
-- Documenting plugin setup procedures
-- Standardizing tool installation across platforms
-- Need phase-based validation checkpoints
-
-**5-Phase Process**: Overview → Prerequisites → Installation → Configuration → Verification
-
-**See**: [install_guide_creation.md](./references/install_guide_creation.md)
-
-### Use Case: Manual Testing Playbook Creation
-
-Create manual testing playbooks with deterministic scenarios, structured evidence collection, and multi-agent execution planning.
-
-**Manual Testing Playbook** - Use `testing_playbook/manual_testing_playbook_template.md` when:
-- Creating manual testing scenarios for a skill
-- Standardizing test evidence and verdict criteria
-- Setting up multi-agent test execution planning
-
-**Canonical Package**: Root `manual_testing_playbook.md` plus numbered category folders with one per-feature file per feature ID.
-
-**See**:
-- [manual_testing_playbook_creation.md](./references/manual_testing_playbook_creation.md)
-- [manual_testing_playbook_template.md](./assets/testing_playbook/manual_testing_playbook_template.md)
-
-### Use Case: Feature Catalog Creation
-
-Create feature catalogs with a rooted feature inventory, numbered category sections, and per-feature reference files.
-
-**Feature Catalog** - Use `assets/feature_catalog/feature_catalog_template.md` when:
-- Creating a canonical current-state feature inventory for a skill or system
-- Linking manual playbooks back to a stable feature reference
-- Documenting current behavior with source-file anchors and stable slugs
-
-**Canonical Package**: Root `FEATURE_CATALOG.md` plus numbered category folders with one per-feature file per catalog entry.
-
-**See**:
-- [feature_catalog_creation.md](./references/feature_catalog_creation.md)
-- [feature_catalog_template.md](./assets/feature_catalog/feature_catalog_template.md)
-
-### Use Case: Benchmark Folder Creation
-
-Create skill-local `mcp_server/benchmarks/benchmark-<YYYY-MM-DD>/` folders that promote curated bake-off results from an originating spec packet into the consuming skill, where operators reading the MCP code can find the headline without leaving the skill tree.
-
-**Benchmark Creation** - Use `benchmark_report_template.md` plus `source_template.md` when:
-- An ADR or spec packet has just promoted a non-trivial default change (embedder swap, reranker change, retrieval policy) backed by measured evidence
-- The originating spec packet has a stable headline plus replay commands and is worth surfacing inside the consuming skill
-- A sibling skill already ships a `mcp_server/benchmarks/` folder and parity matters for operators moving between skills
-
-**Canonical Package**: One `benchmark-<YYYY-MM-DD>/` folder per run, holding `benchmark_report.md` (ten-section curated narrative), `SOURCE.md` (wayfinding pointer back to the spec packet), `results.csv`, `*.jsonl` per-probe data, and optional sidecars (`runtime-measurements.md`, `risk-analysis-*.md`).
-
-**See**:
-- [benchmark_creation.md](./references/benchmark_creation.md)
-- [benchmark_report_template.md](./assets/benchmark/benchmark_report_template.md)
-- [source_template.md](./assets/benchmark/source_template.md)
-
-### When NOT to Use (All Modes)
-
-- Non-markdown files (only `.md` supported)
-- Simple typo fixes (use Edit tool directly)
-- Internal notes or drafts
-- Auto-generated API docs
-- Short 2-3 step processes (use bullet points)
+### When NOT to Use
+- Code implementation, tests, or debugging — use `sk-code`.
+- Git worktree, branch, commit, PR, or release work — use `sk-git`.
+- Spec-folder workflow / memory / save context — use `system-spec-kit`.
+- Design judgment, visual direction, motion, or UI audit — use `sk-design`.
+- The `shared/` backbone is consumed by the packets, not invoked as a user workflow.
 
 ---
 
 ## 2. SMART ROUTING
 
-> Pattern: see [sk-doc smart-router resilience template](./assets/skill/skill_smart_router.md).
+Routing is **registry-driven**. `mode-registry.json` is the single source of truth; the hub reads it and does not re-derive the mapping. The advisor routes any documentation/authoring query to the single identity `sk-doc`; the hub then picks the packet.
 
-### Resource Domains
+### The discriminator
+- **`workflowMode`** — the public packet key (e.g. `create-skill`, `doc-quality`). `create-skill-parent` is a second mode over the same `create-skill` packet.
+- **`packetKind`** — `workflow` for every sk-doc packet (there is no surface axis; the doc-quality pipeline is universal doctrine in `shared/`, not orthogonal stack-evidence).
+- **`backendKind`** — `template-scaffold` for the create-* generators, `doc-quality` for the doc-quality mode.
 
-The router discovers markdown resources recursively from `references/` and `assets/` and then applies intent scoring from `RESOURCE_MAP`. Keep this section domain-focused rather than static file inventories.
-
-- `references/global/` for documentation standards, validation rules, optimization guidance, voice rules, and shared execution workflows.
-- `references/` root for document-family and component creation guides such as skill creation, parent hubs, agent creation, install guides, feature catalogs, and manual testing playbooks.
-- `assets/readme/` for README and install-guide scaffolds; `assets/changelog_template.md`, `assets/frontmatter_templates.md`, and `assets/llmstxt_templates.md` at the assets/ root for cross-cutting templates.
-- `assets/skill/` for skill creation templates, including `SKILL.md`, skill README, reference and asset scaffolds; `assets/agent_template.md` at the assets/ root and `assets/command/command_template.md` (with `assets/command/command_presentation_template.md`) for agent and command creation templates.
-- `assets/feature_catalog/` and `assets/testing_playbook/` at the assets/ root for feature catalog and manual testing playbook package templates.
-- `assets/benchmark/` for skill-local benchmark folder templates (`benchmark_report_template.md`, `source_template.md`).
-- `assets/flowcharts/` for reusable ASCII flowchart patterns and diagram examples.
-
-> **Cross-CLI consumption note** (per packets 071/072 stress-test data): when sk-doc is dispatched via an external CLI and the caller consumes the routing-trace output LITERALLY (e.g. attempts to `Read()` cited resource paths), prefer **cli-opencode** (gpt-5.5/high/fast) — it scored 66.7% resource-accuracy vs cli-opencode 47.2% on the sk-doc router stress matrix. claude-opus-4.7 tends to hallucinate plausible-sounding paths that don't exist in this skill's filesystem; treat its routing trace as advisory and verify cited paths before reading. See the local router stress-test notes for the full data and hallucination finding.
-
-### Resource Loading Levels
-
-| Level       | When to Load             | Resources                   |
-| ----------- | ------------------------ | --------------------------- |
-| ALWAYS      | Every skill invocation   | Quick reference baseline    |
-| CONDITIONAL | If intent signals match  | Mode-specific docs/templates|
-| ON_DEMAND   | Only on explicit request | Extended standards/template |
-
-### Smart Router Pseudocode
-
-The authoritative routing logic for scoped loading, weighted intent scoring, and ambiguity handling.
-
-- Pattern 1: Runtime Discovery - `discover_markdown_resources()` recursively scans `references/` and `assets/`.
-- Pattern 2: Existence-Check Before Load - `load_if_available()` guards, checks `inventory`, and suppresses repeats with `seen`.
-- Pattern 3: Extensible Routing Key - intent labels route to document families without static inventories.
-- Pattern 4: Multi-Tier Graceful Fallback - `UNKNOWN_FALLBACK` requests disambiguation and missing families return a "no knowledge base" notice.
-
-```python
-from pathlib import Path
-
-SKILL_ROOT = Path(__file__).resolve().parent
-RESOURCE_BASES = (SKILL_ROOT / "references", SKILL_ROOT / "assets")
-DEFAULT_RESOURCE = "references/global/quick_reference.md"
-
-INTENT_SIGNALS = {
-    "DOC_QUALITY": {"weight": 4, "keywords": ["dqi", "quality", "validate", "extract_structure"]},
-    "OPTIMIZATION": {"weight": 3, "keywords": ["optimize", "llms.txt", "ai context"]},
-    "SKILL_CREATION": {"weight": 4, "keywords": ["skill creation", "new skill", "init_skill", "package_skill"]},
-    "PARENT_HUB": {"weight": 4, "keywords": ["parent skill", "parent hub", "mode packet", "mode registry", "hub router", "surface packet"]},
-    "AGENT_COMMAND": {"weight": 4, "keywords": ["create agent", "create command", "agent template", "command template"]},
-    "FLOWCHART": {"weight": 3, "keywords": ["flowchart", "ascii diagram", "decision tree", "swimlane"]},
-    "INSTALL_GUIDE": {"weight": 3, "keywords": ["install guide", "setup instructions", "prerequisite"]},
-    "HVR": {"weight": 4, "keywords": ["human voice", "hvr", "voice rules", "banned words", "writing style"]},
-    "PLAYBOOK": {"weight": 4, "keywords": ["playbook", "manual testing", "test scenarios", "manual test", "testing playbook"]},
-    "FEATURE_CATALOG": {"weight": 4, "keywords": ["feature catalog", "feature inventory", "catalog snippet"]},
-    "README_CREATION": {"weight": 3, "keywords": ["create readme", "readme creation", "write readme", "add documentation", "folder readme"]},
-    "CHANGELOG": {"weight": 4, "keywords": ["changelog", "release notes", "changelog template", "release template", "create changelog", "github release"]},
-    "BENCHMARK": {"weight": 4, "keywords": ["benchmark", "benchmark creation", "benchmark report", "mcp_server benchmarks", "benchmark_report.md", "skill-local benchmark", "benchmark folder", "source.md template"]},
-}
-
-RESOURCE_MAP = {
-    "DOC_QUALITY": ["references/global/validation.md", "references/global/workflows.md", "references/global/core_standards.md", "references/global/evergreen_packet_id_rule.md"],
-    "OPTIMIZATION": ["references/global/optimization.md", "assets/llmstxt_templates.md"],
-    "SKILL_CREATION": ["references/skill_creation.md", "assets/skill/skill_md_template.md", "assets/skill/skill_readme_template.md", "assets/skill/skill_reference_template.md"],
-    "PARENT_HUB": ["references/skill_creation/parent_skills_nested_packets.md", "references/skill_creation/parent_hub_router_schema.md"],
-    "AGENT_COMMAND": ["references/agent_creation.md", "assets/agent_template.md", "assets/command/command_template.md"],
-    "FLOWCHART": ["assets/flowcharts/simple_workflow.md", "assets/flowcharts/decision_tree_flow.md"],
-    "INSTALL_GUIDE": ["assets/readme/install_guide_template.md", "references/install_guide_creation.md"],
-    "HVR": ["references/global/hvr_rules.md"],
-    "PLAYBOOK": ["references/manual_testing_playbook_creation.md", "assets/testing_playbook/manual_testing_playbook_template.md"],
-    "FEATURE_CATALOG": ["references/feature_catalog_creation.md", "assets/feature_catalog/feature_catalog_template.md"],
-    "README_CREATION": ["references/readme_creation.md", "assets/readme/readme_template.md"],
-    "CHANGELOG": ["assets/changelog_template.md"],
-    "BENCHMARK": ["references/benchmark_creation.md", "assets/benchmark/benchmark_report_template.md", "assets/benchmark/source_template.md"],
-}
-
-LOADING_LEVELS = {
-    "ALWAYS": [DEFAULT_RESOURCE],
-    "ON_DEMAND_KEYWORDS": ["full standards", "all templates", "deep dive", "readme", "documentation", "manual testing playbook", "feature catalog", "release notes", "corpus/readme", "corpus documentation"],
-    "ON_DEMAND": ["assets/frontmatter_templates.md"],
-}
-
-UNKNOWN_FALLBACK_CHECKLIST = [
-    "Confirm whether this is document quality, component creation, flowchart, install guide, playbook, or catalog work",
-    "Confirm the expected output file or component type",
-    "Provide one example input or target document",
-    "Confirm whether full templates or a quick reference are needed",
-]
-
-def _task_text(task) -> str:
-    return " ".join([
-        str(getattr(task, "text", "")),
-        str(getattr(task, "query", "")),
-        " ".join(getattr(task, "keywords", []) or []),
-    ]).lower()
-
-def _guard_in_skill(relative_path: str) -> str:
-    resolved = (SKILL_ROOT / relative_path).resolve()
-    resolved.relative_to(SKILL_ROOT)
-    if resolved.suffix.lower() != ".md":
-        raise ValueError(f"Only markdown resources are routable: {relative_path}")
-    return resolved.relative_to(SKILL_ROOT).as_posix()
-
-def discover_markdown_resources() -> set[str]:
-    docs = []
-    for base in RESOURCE_BASES:
-        if base.exists():
-            docs.extend(p for p in base.rglob("*.md") if p.is_file())
-    return {doc.relative_to(SKILL_ROOT).as_posix() for doc in docs}
-
-def score_intents(task) -> dict[str, float]:
-    """Weighted intent scoring from request text and documentation modes."""
-    text = _task_text(task)
-    scores = {intent: 0.0 for intent in INTENT_SIGNALS}
-    for intent, cfg in INTENT_SIGNALS.items():
-        for keyword in cfg["keywords"]:
-            if keyword in text:
-                scores[intent] += cfg["weight"]
-    return scores
-
-def select_intents(scores: dict[str, float], ambiguity_delta: float = 1.0, max_intents: int = 2) -> list[str]:
-    ranked = sorted(scores.items(), key=lambda item: item[1], reverse=True)
-    if not ranked or ranked[0][1] <= 0:
-        return ["DOC_QUALITY"]
-    selected = [ranked[0][0]]
-    if len(ranked) > 1 and ranked[1][1] > 0 and (ranked[0][1] - ranked[1][1]) <= ambiguity_delta:
-        selected.append(ranked[1][0])
-    return selected[:max_intents]
-
-def route_documentation_resources(task):
-    inventory = discover_markdown_resources()
-    scores = score_intents(task)
-    intents = select_intents(scores, ambiguity_delta=1.0)
-    loaded = []
-    seen = set()
-
-    def load_if_available(relative_path: str) -> None:
-        guarded = _guard_in_skill(relative_path)
-        if guarded in inventory and guarded not in seen:
-            load(guarded)
-            loaded.append(guarded)
-            seen.add(guarded)
-
-    for relative_path in LOADING_LEVELS["ALWAYS"]:
-        load_if_available(relative_path)
-
-    if max(scores.values() or [0]) < 0.5:
-        return {
-            "intents": intents,
-            "intent_scores": scores,
-            "load_level": "UNKNOWN_FALLBACK",
-            "needs_disambiguation": True,
-            "disambiguation_checklist": UNKNOWN_FALLBACK_CHECKLIST,
-            "resources": loaded,
-        }
-
-    matched_intents = []
-    for intent in intents:
-        before_count = len(loaded)
-        for relative_path in RESOURCE_MAP.get(intent, []):
-            load_if_available(relative_path)
-        if len(loaded) > before_count:
-            matched_intents.append(intent)
-
-    text = _task_text(task)
-    if any(keyword in text for keyword in LOADING_LEVELS["ON_DEMAND_KEYWORDS"]):
-        for relative_path in LOADING_LEVELS["ON_DEMAND"]:
-            load_if_available(relative_path)
-
-    if not loaded:
-        load_if_available(DEFAULT_RESOURCE)
-
-    result = {"intents": intents, "intent_scores": scores, "resources": loaded}
-    if not matched_intents:
-        result["notice"] = f"No knowledge base found for intent(s): {', '.join(intents)}"
-    return result
+### Routing rule
 ```
+classify the request to a workflowMode (dominant authoring/quality intent; a command like /create:agent resolves directly)
+read mode-registry.json
+  -> resolve workflowMode
+  -> load the packet at registry[mode].packet (e.g. sk-doc/create-agent/SKILL.md)
+```
+`routerPolicy.defaultMode` is `null`: an unclear documentation intent asks for disambiguation rather than forcing a stale default. `hub-router.json` carries the router signals and vocabulary classes. Outcomes are `single`, `orderedBundle`, or `defer` — there is no `surfaceBundle` (no surface axis).
+
+Per-packet behavior is **not flattened**: each packet keeps its own authoring contract, references, assets, scripts, and templates.
 
 ---
 
 ## 3. HOW IT WORKS
 
-### Mode 1: Document Quality
+### Layout
+```
+sk-doc/
+  SKILL.md               # this routing hub (no per-packet logic)
+  mode-registry.json     # the nine-packet discriminator + advisorRouting (single source of truth)
+  hub-router.json        # router signals + vocabulary classes
+  description.json       # hub advisor descriptor
+  graph-metadata.json    # the ONE advisor identity for the whole skill
+  changelog/  manual_testing_playbook/  benchmark/
+  create-skill/  create-readme/  create-agent/  create-command/
+  create-feature-catalog/  create-manual-testing-playbook/
+  create-benchmark/  create-flowchart/  doc-quality/    # nested workflow packets
+  shared/                # doc-quality backbone: validators, global standards, shared assets
+```
 
-**Evergreen packet-ID rule**: Runtime-state docs such as README, INSTALL_GUIDE, ARCHITECTURE, SKILL, AGENTS, CLAUDE, references, feature catalogs, manual testing playbooks, and ENV_REFERENCE must not cite mutable spec or phase packet numbers. Use current feature names, file paths, commands, and source anchors instead. See [evergreen_packet_id_rule.md](./references/global/evergreen_packet_id_rule.md).
+Each packet is self-contained (its own `SKILL.md`, `README.md`, `changelog/`, and moved `references/`/`assets/`/`scripts/`) and carries **no** `graph-metadata.json`, so the advisor discovers exactly one `sk-doc` identity.
 
-Run `scripts/extract_structure.py` for structure, metrics, DQI, and checklist data. Detect document type first, then apply the right enforcement level: SKILL and command docs are strict, README docs are usability-focused, knowledge docs are moderately strict, and active spec docs are loose unless the task explicitly asks for enforcement.
-
-### Mode 2: OpenCode Component Creation
-
-#### Skill Creation
-
-Use progressive disclosure: metadata stays in frontmatter, SKILL.md stays concise, README.md gives human orientation when needed, and deep details move to references or assets. Define scope with [skill_creation.md](./references/skill_creation.md) and use the skill templates under `assets/skill/`.
-
-#### Smart Router (Resilience Pattern)
-
-Newly scaffolded skills include the resilient smart-router skeleton by default. Fill in the skill-specific intent model, resource map, loading levels, and routing key while preserving runtime markdown discovery, `_guard_in_skill()` path sandboxing, `load_if_available()` existence checks, `UNKNOWN_FALLBACK` disambiguation, and a helpful notice when keyed resources are absent. Full reference: [skill_smart_router.md](./assets/skill/skill_smart_router.md).
-
-**After packaging**: Run `extract_structure.py` on SKILL.md for final quality review.
-
-#### Agent Creation
-
-Load `agent_template.md`, define explicit tool and action permissions, include workflow/scope/anti-pattern sections, validate frontmatter, and test with examples. Agents use permission fields, not a skill-style allowed-tools array.
-
-#### Command Creation
-
-Load `command_template.md`, define name/description/triggers, write executable logic, add registry wiring where required, and test invocation.
-
-### Mode 3: Flowchart Creation
-
-Select a pattern from `assets/flowcharts/`, build with consistent ASCII components, label decisions, and validate readability with `validate_flowchart.sh` when available.
-
-### Mode 5: Playbook Creation
-
-Use [manual_testing_playbook_creation.md](./references/manual_testing_playbook_creation.md) and the testing playbook template. The root playbook owns package guidance; per-feature files live under numbered category folders.
-
-### Companion Pattern: Feature Catalog Creation
-
-Use [feature_catalog_creation.md](./references/feature_catalog_creation.md) when inventorying current behavior. Keep summary inventory in the root catalog and source anchors in per-feature files.
+### Shared backbone
+`shared/` holds the universal doc-quality pipeline consumed by every packet: generic validator scripts (`shared/scripts/`), cross-cutting standards and vocabulary (`shared/references/global/`), and shared templates (`shared/assets/`). The `sk-doc/{scripts,references,assets}` root directories keep facade symlinks pointing inward to `shared/` and the owning packets, so external references resolve unchanged.
 
 ---
 
 ## 4. RULES
 
-### ✅ ALWAYS
+### ALWAYS
+- **ALWAYS** resolve a packet through `mode-registry.json`; never hardcode a router mapping in the hub.
+- **ALWAYS** keep authoring contracts in the packets; the hub stays routing-only.
+- **ALWAYS** keep exactly one `graph-metadata.json` (this hub's) so the advisor sees one identity.
+- **ALWAYS** keep the doc-quality pipeline as one shared source under `shared/`, consumed by the packets.
+- **ALWAYS** keep changelogs as real files at the hub and in each packet — never symlinked.
 
-1. Detect document/component type before enforcement.
-2. Load the relevant template or reference before creating components.
-3. Keep SKILL.md concise; move deep detail into references or assets.
-4. Validate frontmatter for SKILL, agent, and command docs.
-5. Validate before delivery with the appropriate sk-doc script.
-6. Preserve README.md/SKILL.md casing and enforce snake_case elsewhere.
-7. Keep playbooks rooted in `manual_testing_playbook.md` with per-feature files under numbered categories.
+### NEVER
+- **NEVER** add a `graph-metadata.json` inside a packet or `shared/`.
+- **NEVER** put per-packet authoring logic in the hub.
+- **NEVER** add a surface axis or a `surfaceBundle` outcome — sk-doc is workflow-only.
 
-### ❌ NEVER
-
-1. Delete original content without approval.
-2. Generate llms.txt without explicit request.
-3. Add a ToC outside README/research surfaces.
-4. Use ambiguous agent permissions, command triggers, or playbook prompts.
-5. Duplicate long guidance in SKILL.md when a reference or asset can carry it.
-
-### ⚠️ ESCALATE IF
-
-1. Document type, component purpose, or category boundary is unclear.
-2. Critical frontmatter or structure validation fails repeatedly.
-3. Brand assets, API docs, destructive test scope, or external permissions are required.
-4. Flowcharts exceed practical ASCII size or need an interactive/exportable format.
+### ESCALATE IF
+- A new documentation workflow is needed — extend `mode-registry.json` and open a packet; do not bolt logic onto the hub.
+- A packet would become a near-empty shell (generic doctrine, no type-specific behavior) — fold it into `shared/` instead.
 
 ---
 
 ## 5. REFERENCES
 
-The router discovers available markdown resources dynamically; do not maintain exhaustive file inventories here. Start with [quick_reference.md](./references/global/quick_reference.md), then load routed references and templates through the smart router.
-
-Primary scripts: `scripts/validate_document.py`, `scripts/extract_structure.py`, `scripts/init_skill.py`, `scripts/package_skill.py`, `scripts/quick_validate.py`, and `scripts/validate_flowchart.sh`.
-
----
-
-## 6. SUCCESS CRITERIA
-
-### Completion Checks
-
-- Document quality: structure extracted, document type detected, critical issues addressed, validation script passes.
-- Skill creation: frontmatter is specific, SKILL.md is concise, resources are organized, packaging validation passes.
-- Agent/command creation: frontmatter is valid, permissions or triggers are explicit, examples are tested.
-- Flowcharts: paths are clear, decisions are labeled, spacing is readable, size limits are respected.
-- Install guides/playbooks/catalogs: required templates are filled, links resolve, and known validator limits are stated honestly.
-
-### Document-Type Gates
-
-| Type      | Structure               | Content              | Required                    |
-| --------- | ----------------------- | -------------------- | --------------------------- |
-| SKILL.md  | Strict (no failures)    | High AI-friendliness | Frontmatter, WHEN/SMART/HOW/RULES/REFERENCES |
-| README.md | Flexible                | High AI-friendliness | Quick Start, examples       |
-| Knowledge | Strict (no frontmatter) | Good AI-friendliness | Numbered H2s                |
-
----
-
-## 7. INTEGRATION POINTS
-
-This skill works with `system-spec-kit` for packet documentation and `sk-git` for commit/PR text quality. Treat spec docs as canonical continuity surfaces and use `/speckit:resume` recovery order: `handover.md -> _memory.continuity -> spec docs`.
-
-Need fast navigation? See [quick_reference.md](./references/global/quick_reference.md).
-
----
-
-**Remember**: This skill operates in six modes: Document Quality, Component Creation (skills/agents/commands), Flowchart Creation, Install Guide Creation, Catalog/Playbook Creation, and Benchmark Folder Creation.
-
----
-
-## 8. REFERENCES AND RELATED RESOURCES
-
-The router discovers reference, asset, and script docs dynamically. Start with `references/global/quick_reference.md`, routed references under references/global/ and the references root, templates under assets/ root (`agent_template.md`, `feature_catalog/`, `testing_playbook/`) plus assets/command/ (`command_template.md`, `command_presentation_template.md`), assets/readme/, assets/skill/ (`skill_md_template.md`, `skill_readme_template.md`, reference and asset scaffolds), and assets/flowcharts/, then load task-specific resources from `references/`, templates from `assets/`, and automation from `scripts/` when present.
-
-Scripts: `scripts/validate_document.py`, `scripts/extract_structure.py`, `scripts/init_skill.py`, `scripts/package_skill.py`, `scripts/quick_validate.py`, `scripts/validate_flowchart.sh`.
-
-Related skills: `system-spec-kit` for packet documentation and memory continuity, and `sk-git` for commit, PR, and release text workflows.
+- Registry: `mode-registry.json` (nine packets; `packetKind: workflow`).
+- Hub router: `hub-router.json` (signals + vocabulary classes).
+- Advisor descriptor: `description.json`; skill-graph identity: `graph-metadata.json`.
+- Packets: `create-skill/`, `create-readme/`, `create-agent/`, `create-command/`, `create-feature-catalog/`, `create-manual-testing-playbook/`, `create-benchmark/`, `create-flowchart/`, `doc-quality/`.
+- Shared backbone: `shared/scripts/`, `shared/references/global/`, `shared/assets/`.
+- Parent-skill pattern: `create-skill/references/skill_creation/parent_skills_nested_packets.md`.
