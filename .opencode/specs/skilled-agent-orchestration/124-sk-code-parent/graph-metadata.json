@@ -26,7 +26,8 @@
     "skilled-agent-orchestration/124-sk-code-parent/020-surface-packet-rename",
     "skilled-agent-orchestration/124-sk-code-parent/021-playbook-gold-and-lane-c-rebaseline",
     "skilled-agent-orchestration/124-sk-code-parent/022-collapse-to-four-subskills",
-    "skilled-agent-orchestration/124-sk-code-parent/023-sk-code-workflow-subskill-research"
+    "skilled-agent-orchestration/124-sk-code-parent/023-sk-code-workflow-subskill-research",
+    "skilled-agent-orchestration/124-sk-code-parent/024-sk-code-advisor-routing-and-discovery"
   ],
   "migrated": true,
   "migration_source": "legacy",
@@ -155,7 +156,7 @@
     "source_doc_hashes": {
       "spec.md": "19fdbf0c57cf5b8861e9edf69d3c99a6f3c151fc521610b39c54ad4f22091ff7"
     },
-    "last_active_child_id": "skilled-agent-orchestration/124-sk-code-parent/022-collapse-to-four-subskills",
-    "last_active_at": "2026-07-06T06:53:29.705Z"
+    "last_active_child_id": "skilled-agent-orchestration/124-sk-code-parent/024-sk-code-advisor-routing-and-discovery",
+    "last_active_at": "2026-07-06T09:31:15.780Z"
   }
 }

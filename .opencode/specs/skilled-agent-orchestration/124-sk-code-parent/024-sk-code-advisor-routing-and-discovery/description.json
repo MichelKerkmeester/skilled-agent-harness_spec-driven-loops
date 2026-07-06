@@ -1,0 +1,29 @@
+{
+  "specFolder": "skilled-agent-orchestration/124-sk-code-parent/024-sk-code-advisor-routing-and-discovery",
+  "description": "Two sk-code discovery scenarios failed because the references they needed already existed in `sk-code/shared/references/smartrouting.md` RESOURCEMAP,",
+  "keywords": [
+    "two",
+    "sk-code",
+    "discovery",
+    "scenarios",
+    "failed",
+    "because",
+    "references",
+    "needed",
+    "already",
+    "existed",
+    "shared",
+    "smartrouting",
+    "resourcemap"
+  ],
+  "lastUpdated": "2026-07-06T09:31:15.611Z",
+  "specId": "024",
+  "folderSlug": "sk-code-advisor-routing-and-discovery",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "124-sk-code-parent"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}
