@@ -75,23 +75,27 @@ function buildGraphCausalScores(
     conflictEvidence: string[];
   }>();
   for (const [seedId, seedScore] of seedScores) {
-    const queue: Array<{ id: string; depth: number; strength: number; path: string }> = [{ id: seedId, depth: 0, strength: seedScore, path: seedId }];
-    const seen = new Set([seedId]);
+    // Best positive strength discovered per target; also the visited/expansion ledger.
+    // Seeded with the origin so a back-edge to the seed can never re-expand it.
+    const bestPositiveStrengthByTarget = new Map<string, number>([[seedId, seedScore]]);
+    const queue: Array<{ id: string; depth: number }> = [{ id: seedId, depth: 0 }];
     while (queue.length > 0) {
       // queue.length was checked immediately before shifting the next item.
       const current = queue.shift()!;
       if (current.depth >= maxDepth) continue;
+      const currentStrength = bestPositiveStrengthByTarget.get(current.id) ?? 0;
+      if (currentStrength <= 0) continue;
       const outgoing = [...(adjacency.get(current.id) ?? [])]
         .sort((left, right) => right.weight - left.weight)
         .slice(0, maxBreadth);
       for (const edge of outgoing) {
-        if (seen.has(edge.targetId)) continue;
-        seen.add(edge.targetId);
         const multiplier = EDGE_MULTIPLIER[edge.edgeType];
         if (multiplier === undefined) continue;
-        const propagated = current.strength * edge.weight * Math.abs(multiplier) * (1 / (current.depth + 1));
+        const propagated = currentStrength * edge.weight * Math.abs(multiplier) * (1 / (current.depth + 1));
         if (propagated < 0.05) continue;
         const signed = multiplier < 0 ? -propagated : propagated;
+        // Score every qualifying edge before deciding expansion, so a weaker or earlier
+        // edge can no longer suppress a stronger later edge to the same target.
         const entry = scores.get(edge.targetId) ?? {
           combinedScore: 0,
           positiveScore: 0,
@@ -111,13 +115,17 @@ function buildGraphCausalScores(
           entry.conflictEvidence.push(evidence);
         }
         scores.set(edge.targetId, entry);
+        // Expand a target once, on its first positive reach, tracking its best positive
+        // strength for onward propagation. Negative edges score but never expand, so no
+        // positive graph-causal support propagates through a negative edge.
         if (signed > 0) {
-          queue.push({
-            id: edge.targetId,
-            depth: current.depth + 1,
-            strength: signed,
-            path: `${current.path}/${edge.targetId}`,
-          });
+          const prevBest = bestPositiveStrengthByTarget.get(edge.targetId);
+          if (prevBest === undefined) {
+            bestPositiveStrengthByTarget.set(edge.targetId, signed);
+            queue.push({ id: edge.targetId, depth: current.depth + 1 });
+          } else if (signed > prevBest) {
+            bestPositiveStrengthByTarget.set(edge.targetId, signed);
+          }
         }
       }
     }

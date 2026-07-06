@@ -9,6 +9,7 @@
     "system-skill-advisor/003-advisor-rrf-fusion",
     "system-skill-advisor/004-advisor-penalty-contract",
     "system-skill-advisor/005-executor-delegation-resolver",
+    "system-skill-advisor/006-graph-causal-visited-guard",
     "system-skill-advisor/z_archive"
   ],
   "manual": {
