@@ -15,15 +15,15 @@ _memory:
     packet_pointer: "skilled-agent-orchestration/125-sk-doc-parent"
     last_updated_at: "2026-07-06T00:00:00Z"
     last_updated_by: "claude-opus"
-    recent_action: "Build live: 003 hub shell + 004 shared/facades + 005-012 packet content moved (37 facades, zero breakage); 9 packet SKILL.md via GPT-5.5 writers in progress")
-    next_safe_action: "Verify packet SKILL.md (fresh Sonnet-5); then cutover (hub SKILL.md swap + advisor) + validate")
+    recent_action: "Conversion complete; canon-clean; pushed to 028"
+    next_safe_action: "Follow-ups: doc-quality command, packet READMEs"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "bootstrap-session"
       parent_session_id: null
-    completion_pct: 5
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -41,7 +41,7 @@ _memory:
 |-------|-------|
 | **Level** | phase (program Level 3) |
 | **Priority** | P1 |
-| **Status** | In Progress (foundation scaffolded; research phase 001 pending) |
+| **Status** | Complete — conversion executed directly in sk-doc (canon-clean, parent-skill-check 0/0, pushed to 028); phase children are the plan seeds, worked as a batch rather than individually spec-documented. skill_advisor.py verb boosters deferred (concurrent 024 advisor lane). |
 | **Created** | 2026-07-06 |
 | **Branch** | `system-speckit/028-memory-search-intelligence` |
 | **Parent Spec** | None (root) |
