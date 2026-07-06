@@ -53,9 +53,9 @@ _memory:
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 Export the on-disk `^[0-9]{3}-` child-name set from `countPhaseChildren` instead of just its count (`.opencode/skills/system-spec-kit/scripts/spec/is-phase-parent.ts`)
-- [ ] T002 [P] Confirm the child-set definition against spec.md's edge cases: support folders (`research/`, `review/`, `scratch/`) excluded, numbered folder must hold `spec.md` or `description.json`
-- [ ] T003 [P] Add a report-only `--audit` mode to `check-graph-metadata.sh` for the first repo-wide pass (`.opencode/skills/system-spec-kit/scripts/rules/check-graph-metadata.sh`)
+- [x] T001 Exported the on-disk child-name set from `is-phase-parent.ts` as `listDerivedChildNames()`, mirroring the graph-metadata writer's enumeration (not `countPhaseChildren`; see implementation-summary)
+- [x] T002 [P] Confirmed the child-set definition: the writer's name-only `^\d{3}(?:[-_].+)?$`, NOT "must hold spec.md/description.json" (that stricter rule false-positives on real metadata-less children, e.g. `026/007`'s `031`)
+- [x] T003 [P] Repo-wide audit run via a standalone scanner (21 drifted parents); the durable repo-wide mechanism is the per-parent `GRAPH_METADATA_CHILD_DRIFT` rule under recursive `validate.sh`
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -63,11 +63,11 @@ _memory:
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T004 Run the repo-wide audit and capture every drifted parent with its before/after child counts, including `sk-design` (8 to 9) and `005-spec-data-quality` (13 to current)
-- [ ] T005 Overlap-check each drifted parent against the concurrent-session dirty set (git status) before touching it; skip and note any hot parent
-- [ ] T006 Backfill every non-hot drifted parent via `backfill-graph-metadata.js`, confirming only `children_ids` and the continuity fingerprint change per parent
-- [ ] T007 Add the `children_ids`-vs-on-disk-children drift comparison to `check-graph-metadata.sh`, surfaced under `validate.sh --strict` per the decision-record's severity ruling
-- [ ] T008 Write the RED/GREEN fixture test under `.opencode/skills/system-spec-kit/scripts/tests/`: an unlisted child folder fails the check, the same parent post-backfill passes
+- [x] T004 Ran the repo-wide audit: 21 drifted parents, split into genuine "missing" drift (`sk-design` 009, `system-deep-loop` 036/037, `barter`, `skilled-agent-orchestration` 124/125) and metadata-less-folder false positives
+- [x] T005 Overlap-checked the drifted parents; every genuine drift is owned by a concurrent session, another phase, or another project
+- [ ] T006 [DEFERRED] Backfill has no safe targets now: `sk-design/009` (active session), `system-deep-loop/036,037` (phase 053 + concurrent), `barter` (other project), `skilled-agent-orchestration/124,125` (hot). The check surfaces each for reconciliation when its owner releases it
+- [x] T007 Added the `children_ids`-vs-on-disk drift comparison as the `GRAPH_METADATA_CHILD_DRIFT` registry rule, advisory-by-default under `--strict`, enforce behind `SPECKIT_CHILD_DRIFT_ENFORCE`
+- [x] T008 RED/GREEN test written and passing 8/8, including two default-path (orchestrator) integration cases
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -75,9 +75,9 @@ _memory:
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T009 Rerun the repo-wide audit and confirm zero drift, including `sk-design` `children_ids` containing `009-sk-design-claude-parity`
-- [ ] T010 Run `validate.sh --strict` across the affected parents and confirm the new drift check is clean and produces no false positives on non-parent folders
-- [ ] T011 Confirm `decision-record.md` documents severity and flag-vs-auto-regen with rationale, then update `implementation-summary.md` with the final audit numbers
+- [ ] T009 [DEFERRED WITH T006] Cannot confirm zero drift while the backfill is deferred; `sk-design`'s `009` stays unlisted until the active 009 session ships that folder's own metadata
+- [x] T010 `validate.sh --strict` confirmed: the check fires in the default path, adds zero warnings advisory, warns under enforce, and does not false-positive on `026/007` or clean parents
+- [x] T011 `decision-record.md` documents the severity/flag decision; `implementation-summary.md` records the audit numbers, the definition correction, and the deferred backfill
 <!-- /ANCHOR:phase-3 -->
 
 ---

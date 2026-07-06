@@ -61,7 +61,7 @@ A phase parent's `graph-metadata.json` records its phase children in `children_i
 |-------|-------|
 | **Level** | 3 |
 | **Priority** | P1 |
-| **Status** | Draft |
+| **Status** | In Progress |
 | **Created** | 2026-07-06 |
 | **Branch** | `system-speckit/028-memory-search-intelligence` |
 <!-- /ANCHOR:metadata -->

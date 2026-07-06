@@ -39,16 +39,16 @@
       "plan"
     ],
     "importance_tier": "normal",
-    "status": "draft",
+    "status": "in_progress",
     "key_files": [
       ".opencode/skills/system-spec-kit/scripts/rules/check-graph-metadata.sh",
       ".opencode/skills/system-spec-kit/scripts/spec/is-phase-parent.ts",
       ".opencode/skills/system-spec-kit/scripts/graph/backfill-graph-metadata.ts",
       "spec.md",
+      ".opencode/specs/descriptions.json",
       "decision-record.md",
       "plan.md",
       "tasks.md",
-      ".opencode/specs/descriptions.json",
       "checklist.md",
       "scripts/dist/spec/is-phase-parent.js",
       "implementation-summary.md"
@@ -79,6 +79,12 @@
         "source": "derived"
       },
       {
+        "name": "descriptions.json",
+        "kind": "config",
+        "path": ".opencode/specs/descriptions.json",
+        "source": "derived"
+      },
+      {
         "name": "decision-record.md",
         "kind": "doc",
         "path": "decision-record.md",
@@ -94,12 +100,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "descriptions.json",
-        "kind": "config",
-        "path": ".opencode/specs/descriptions.json",
         "source": "derived"
       },
       {
@@ -145,13 +145,13 @@
         "source": "derived"
       },
       {
-        "name": "Problem Statement",
+        "name": "In Progress",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "Purpose Eliminate",
+        "name": "Problem Statement",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -201,7 +201,7 @@
     ],
     "causal_summary": "A phase parent's `graph-metadata.json` `childrenids` array is populated only when `backfill-graph-metadata.js` is explicitly re-run against that parent",
     "created_at": "2026-07-06T06:03:21Z",
-    "last_save_at": "2026-07-06T06:44:07.160Z",
+    "last_save_at": "2026-07-06T08:24:58.933Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -212,14 +212,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:80b4ee6293ab15f4ae5dbc5640e229427ff26099d093d8a1db0bef912175be74",
+    "source_fingerprint": "sha256:e6724d14cbd7f36f9bdb392a45cec226ea420f0ff9a6f00bba6bdf582ff88699",
     "source_doc_hashes": {
-      "spec.md": "c0a862ba4cb8bb1d95b6682435fdc4fa692662acdd4f39be7b41a6c317cbdf8a",
+      "spec.md": "2082d838fec2202b19920d26d408b7781e0bffed4047ce95d9cf90b217de8448",
       "plan.md": "6fbe0cb8fbc8cc3b73f0dfcac2004c5de1ef6afda14e824f109a38a56a445385",
-      "tasks.md": "15af6cc9b06fbdb19e6f5a5530933844ef45ad6b1378460e89186eaef1111290",
+      "tasks.md": "54feb51fe290ff8a5639214d9f0f8c71de779d38161d4d1ec1a533633af97295",
       "checklist.md": "9d500d05eb0d0865529576d8d1f93232906fe2bee893e37f929abe9c26c76742",
       "decision-record.md": "555d37bfd9e1aab3eaabfeb5f5ab6227b03fee33618e6c4fa91960624ae77f1a",
-      "implementation-summary.md": "f2e12a6dcc3fb485a2cc2640ddb6faa28085afdc00dde184631227fc4b4418b2"
+      "implementation-summary.md": "e26e0f3c23a366827735e90aa180d172264442ac79963384bc2d1baac2b5542a"
     },
     "last_active_child_id": null,
     "last_active_at": null

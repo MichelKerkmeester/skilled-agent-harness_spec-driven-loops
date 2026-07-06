@@ -7,6 +7,17 @@ import * as path from 'path';
 
 const PHASE_CHILD_REGEX = /^[0-9]{3}-[a-z0-9][a-z0-9-]*$/;
 
+// The graph-metadata writer enumerates a spec folder's children by directory
+// name alone — every immediate subdirectory whose name is a spec-leaf segment
+// (three digits, optionally followed by '-' or '_' and more) — and folds them
+// into children_ids by union: it adds derived children and never prunes. This
+// pattern mirrors that writer-side membership rule so a read-only check can
+// predict exactly which children a refresh would add. It is deliberately looser
+// than PHASE_CHILD_REGEX: manifest classification wants the strict slug shape,
+// but child-drift detection must match whatever the writer would actually derive
+// (including bare-number and underscore folders the strict rule excludes).
+const DERIVED_CHILD_REGEX = /^[0-9]{3}(?:[-_].+)?$/;
+
 // Thresholds for phase-parent manifest health. Mirrors the
 // authoritative copy in mcp_server/lib/spec/is-phase-parent.ts so shell rules
 // and TypeScript runtime callers see identical buckets.
@@ -76,6 +87,27 @@ function countPhaseChildren(specFolderAbsPath: string): number {
   }
 }
 
+/**
+ * List the direct child directory names the graph-metadata writer would derive
+ * for a spec folder: every immediate subdirectory whose name is a spec-leaf
+ * segment, regardless of whether it yet carries spec docs. A name returned here
+ * that is absent from the folder's persisted children_ids is a child the writer
+ * would add on its next refresh — the sole truthful child-drift signal, since
+ * the writer unions and never prunes (a listed entry with no matching folder is
+ * left untouched, so it is not drift the writer would ever reconcile).
+ */
+export function listDerivedChildNames(specFolderAbsPath: string): string[] {
+  try {
+    return fs
+      .readdirSync(specFolderAbsPath, { withFileTypes: true })
+      .filter((entry) => entry.isDirectory() && DERIVED_CHILD_REGEX.test(entry.name))
+      .map((entry) => entry.name)
+      .sort();
+  } catch {
+    return [];
+  }
+}
+
 // Lightweight advisory health record — same logic as
 // mcp_server/lib/spec/is-phase-parent.ts so shell and TS runtime agree.
 /** Assess the manifest-size health of a phase-parent folder. */
@@ -117,7 +149,8 @@ export function assessPhaseParentHealth(specFolderAbsPath: string): PhaseParentH
 // JS wrapper. Usage: `node scripts/dist/spec/is-phase-parent.js health <folder>`
 // emits one line: `<status>\t<childCount>\t<recommendation>` (tab-separated).
 // Invoking with `check <folder>` keeps the original boolean exit-code contract
-// (exit 0 = is phase parent, exit 1 = not).
+// (exit 0 = is phase parent, exit 1 = not). Invoking with `children <folder>`
+// emits the writer-derived child directory names, one per line, for drift checks.
 function runCli(): void {
   const [, , command, folderArg] = process.argv;
   if (!command || !folderArg) {
@@ -132,6 +165,11 @@ function runCli(): void {
     process.stdout.write(
       `${health.status}\t${health.childCount}\t${health.recommendation}\n`,
     );
+    process.exit(0);
+  }
+  if (command === 'children') {
+    const names = listDerivedChildNames(absFolder);
+    process.stdout.write(names.length ? `${names.join('\n')}\n` : '');
     process.exit(0);
   }
 }
