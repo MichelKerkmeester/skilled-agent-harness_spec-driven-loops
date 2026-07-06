@@ -23,7 +23,8 @@
     "skilled-agent-orchestration/124-sk-code-parent/017-canon-hardening",
     "skilled-agent-orchestration/124-sk-code-parent/018-deep-loop-canon-alignment",
     "skilled-agent-orchestration/124-sk-code-parent/019-benchmarks-and-promotion",
-    "skilled-agent-orchestration/124-sk-code-parent/020-surface-packet-rename"
+    "skilled-agent-orchestration/124-sk-code-parent/020-surface-packet-rename",
+    "skilled-agent-orchestration/124-sk-code-parent/021-playbook-gold-and-lane-c-rebaseline"
   ],
   "migrated": true,
   "migration_source": "legacy",
@@ -152,7 +153,7 @@
     "source_doc_hashes": {
       "spec.md": "19fdbf0c57cf5b8861e9edf69d3c99a6f3c151fc521610b39c54ad4f22091ff7"
     },
-    "last_active_child_id": "skilled-agent-orchestration/124-sk-code-parent/020-surface-packet-rename",
-    "last_active_at": "2026-07-05T14:37:02.169Z"
+    "last_active_child_id": "skilled-agent-orchestration/124-sk-code-parent/021-playbook-gold-and-lane-c-rebaseline",
+    "last_active_at": "2026-07-05T19:56:30.000Z"
   }
 }
