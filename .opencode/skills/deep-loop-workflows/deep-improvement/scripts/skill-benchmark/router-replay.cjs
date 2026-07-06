@@ -328,14 +328,17 @@ function selectIntents(scores) {
   return scores.filter((s) => top - s.score <= AMBIGUITY_DELTA).map((s) => s.intent);
 }
 
-// Which surface a resource belongs to, by its on-disk path prefix. Webflow,
-// OpenCode, and Motion.dev resources live under their own code-<surface>/ packet
-// folders, so the prefix IS the surface. Everything else (universal refs, the
-// detection/router preamble) is surface-agnostic.
+// Which surface a resource belongs to, by its on-disk path prefix. Webflow and
+// OpenCode resources live under their code-<surface>/ packet folders, so the
+// prefix IS the surface. Motion.dev is a cross-stack overlay folded into
+// code-webflow/{references,assets}/animation/; it is matched FIRST so it stays a
+// distinct overlay surface (kept regardless of the detected code surface) rather
+// than collapsing into WEBFLOW's broader code-webflow/ prefix. Everything else
+// (universal refs, the detection/router preamble) is surface-agnostic.
 const SURFACE_PREFIXES = {
+  MOTION: ['code-webflow/references/animation/', 'code-webflow/assets/animation/'],
   WEBFLOW: ['code-webflow/'],
   OPENCODE: ['code-opencode/'],
-  MOTION: ['code-animation/'],
 };
 function resourceSurface(r) {
   for (const [surface, prefixes] of Object.entries(SURFACE_PREFIXES)) {

@@ -36,14 +36,14 @@ Run the STACK_FOLDERS validator, confirm a clean pass, then add an orphan assets
 
 ### Preconditions
 
-1. The validator resolves: `bash: test -f .opencode/skills/sk-code/code-verify/assets/scripts/verify_stack_folders.py`.
+1. The validator resolves: `bash: test -f .opencode/skills/sk-code/code-opencode/assets/scripts/verify_stack_folders.py`.
 2. `.opencode/skills/sk-code/SKILL.md` contains the `STACK_FOLDERS` map.
 
 ### Exact Command Sequence
 
 1. **Clean run**:
    ```
-   bash: python3 .opencode/skills/sk-code/code-verify/assets/scripts/verify_stack_folders.py > /tmp/skc-DR004-clean.txt; echo "exit=$?"
+   bash: python3 .opencode/skills/sk-code/code-opencode/assets/scripts/verify_stack_folders.py > /tmp/skc-DR004-clean.txt; echo "exit=$?"
    ```
 2. **Verify**: exit 0 and the report lists every declared surface.
 3. **Introduce an orphan**:
@@ -52,7 +52,7 @@ Run the STACK_FOLDERS validator, confirm a clean pass, then add an orphan assets
    ```
 4. **Re-run and expect failure**:
    ```
-   bash: python3 .opencode/skills/sk-code/code-verify/assets/scripts/verify_stack_folders.py > /tmp/skc-DR004-orphan.txt; echo "exit=$?"
+   bash: python3 .opencode/skills/sk-code/code-opencode/assets/scripts/verify_stack_folders.py > /tmp/skc-DR004-orphan.txt; echo "exit=$?"
    ```
 5. **Verify**: exit 1 and the report names the orphan assets folder.
 6. **Restore**:
@@ -83,7 +83,7 @@ Run the STACK_FOLDERS validator, confirm a clean pass, then add an orphan assets
 
 ## 4. SOURCE FILES
 
-- `.opencode/skills/sk-code/code-verify/assets/scripts/verify_stack_folders.py` — STACK_FOLDERS-to-disk surface validator.
+- `.opencode/skills/sk-code/code-opencode/assets/scripts/verify_stack_folders.py` — STACK_FOLDERS-to-disk surface validator.
 - `.opencode/skills/sk-code/SKILL.md` — `STACK_FOLDERS` declaration the validator parses.
 
 ## 5. SOURCE METADATA

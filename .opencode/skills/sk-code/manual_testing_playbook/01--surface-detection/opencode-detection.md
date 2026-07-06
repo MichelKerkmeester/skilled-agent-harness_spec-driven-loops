@@ -97,7 +97,7 @@ Handle empty prompts in .opencode/skills/system-spec-kit/mcp_server/lib/scorer/l
 - `.opencode/skills/sk-code/shared/references/stack_detection.md` — OPENCODE marker definition (lines 39-40).
 - `.opencode/skills/sk-code/code-opencode/references/typescript/` — Expected-loaded TypeScript references.
 - `.opencode/skills/sk-code/code-opencode/references/shared/` — Expected-loaded shared OPENCODE references.
-- `.opencode/skills/sk-code/code-verify/assets/scripts/verify_alignment_drift.py` — OPENCODE alignment verifier (run after the edit for evidence).
+- `.opencode/skills/sk-code/code-opencode/assets/scripts/verify_alignment_drift.py` — OPENCODE alignment verifier (run after the edit for evidence).
 - `.opencode/agents/code.md` — @code agent dispatch convention.
 
 ## 5. SOURCE METADATA
