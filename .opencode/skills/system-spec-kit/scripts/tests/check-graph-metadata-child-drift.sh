@@ -227,6 +227,31 @@ echo "Running: child-drift — leaf (no numbered children) not flagged"
 }
 
 # ───────────────────────────────────────────────────────────────
+# TEST 6b (fail-closed): when the child-scanner dependency is unavailable, a
+# run that cannot determine drift must warn under enforce (not silently pass),
+# while advisory stays best-effort clean.
+# ───────────────────────────────────────────────────────────────
+echo ""
+echo "Running: child-drift — fail-closed when scanner unavailable"
+{
+    root=$(make_temp_root)
+    parent="$root/900-drift-parent"
+    mkdir -p "$parent/001-foo"
+    write_graph_metadata "$parent" '[]'
+    export SPECKIT_CHILD_SCANNER="$root/nonexistent-scanner.js"
+    run_rule "$parent" enforce
+    fc_enforce=$([[ "$RULE_STATUS" == "warn" && "$RULE_MESSAGE" == *"could not run"* ]] && echo ok || echo no)
+    run_rule "$parent" advisory
+    fc_advisory=$([[ "$RULE_STATUS" == "pass" ]] && echo ok || echo no)
+    unset SPECKIT_CHILD_SCANNER
+    if [[ "$fc_enforce" == "ok" && "$fc_advisory" == "ok" ]]; then
+        pass "scanner unavailable → enforce warns (fail-closed), advisory stays clean"
+    else
+        fail "fail-closed expected enforce=warn+'could not run' / advisory=pass, got enforce=$fc_enforce advisory=$fc_advisory (last status=$RULE_STATUS msg='$RULE_MESSAGE')"
+    fi
+}
+
+# ───────────────────────────────────────────────────────────────
 # TEST 7 (DEFAULT PATH): the distinct rule id fires in the Node orchestrator
 # (no SPECKIT_RULES / SPECKIT_VALIDATE_LEGACY) — advisory pass, enforce warn.
 # ───────────────────────────────────────────────────────────────

@@ -51,7 +51,9 @@ run_check() {
 
     local rule_dir child_scanner drift_missing drift_rc
     rule_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" 2>/dev/null && pwd)" || rule_dir=""
-    child_scanner="$rule_dir/../dist/spec/is-phase-parent.js"
+    # Override hook: lets a caller point at a relocated scanner dist, and lets
+    # tests drive the dependency-unavailable branch deterministically.
+    child_scanner="${SPECKIT_CHILD_SCANNER:-$rule_dir/../dist/spec/is-phase-parent.js}"
     drift_missing=""
     drift_rc=0
     drift_missing=$(node --input-type=module - "$graph_file" "$folder" "$child_scanner" 2>/dev/null <<'NODE_DRIFT'
@@ -71,6 +73,10 @@ try {
 } catch {
   process.exit(21); // unreadable graph metadata — presence check owns that
 }
+// Match on basename, not the full path: children_ids can carry stale track-prefix
+// spelling, and a basename compare stays robust to that drift. The accepted cost is
+// that a foreign entry sharing a basename with a genuinely-missing local child would
+// mask it — a rare, low-severity trade in favor of prefix-drift robustness.
 const listed = new Set(
   (Array.isArray(parsed.children_ids) ? parsed.children_ids : [])
     .map((entry) => String(entry).split('/').filter(Boolean).pop())
@@ -83,8 +89,20 @@ process.exit(9); // drift: children_ids is missing derived on-disk children
 NODE_DRIFT
 ) || drift_rc=$?
 
-    # drift_rc 0 (no drift) / 20 (scanner unavailable) / 21 (unreadable json)
-    # all report clean; only a positive drift signal changes the outcome.
+    # drift_rc: 0 no drift, 9 drift found, 20 scanner unavailable, 21 unreadable json.
+    # A run that could not determine drift (20/21) must not pass silently under
+    # enforcement: a real gap could hide behind an unavailable dependency, so fail
+    # closed there. Advisory mode stays best-effort and reports clean.
+    if [[ "$drift_rc" -eq 20 || "$drift_rc" -eq 21 ]]; then
+        if [[ "${SPECKIT_CHILD_DRIFT_ENFORCE:-false}" == "true" ]]; then
+            RULE_STATUS="warn"
+            RULE_MESSAGE="child-drift check could not run (dependency unavailable, rc=$drift_rc); children_ids currency is unverified"
+            RULE_DETAILS=("child-drift dependency unavailable under enforce (rc=$drift_rc)")
+            RULE_REMEDIATION="Restore the child-scanner dist or the graph-metadata.json, then rerun validation."
+        fi
+        return 0
+    fi
+
     [[ "$drift_rc" -eq 9 ]] || return 0
 
     if [[ "${SPECKIT_CHILD_DRIFT_ENFORCE:-false}" == "true" ]]; then
