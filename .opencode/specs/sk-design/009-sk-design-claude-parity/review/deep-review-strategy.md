@@ -32,7 +32,7 @@ Review of `.opencode/specs/sk-design/009-sk-design-claude-parity` - the sk-desig
 ## 3. REVIEW DIMENSIONS (remaining)
 <!-- MACHINE-OWNED: START -->
 - [x] D1 Correctness, Logic errors, off-by-one, wrong return types, broken invariants
-- [ ] D2 Security, Injection, auth bypass, secrets exposure, unsafe deserialization
+- [x] D2 Security, Injection, auth bypass, secrets exposure, unsafe deserialization
 - [ ] D3 Traceability, Spec/code alignment, checklist evidence, cross-reference integrity
 - [ ] D4 Maintainability, Patterns, clarity, documentation quality, safe follow-on change cost
 <!-- MACHINE-OWNED: END -->
@@ -56,6 +56,7 @@ Not re-running the routing benchmark harness or the md-generator Playwright pipe
 | Dimension | Verdict | Iteration | Summary |
 |-----------|---------|-----------|---------|
 | Correctness | CONDITIONAL | 2 | Found one P1 in the md-generator WRITE prompt: component exact-value output is required by the v3 format but component style facts are not exposed by `build-write-prompt.ts`. |
+| Security | CONDITIONAL | 3 | Found two P1s: md-generator output guards do not enforce the documented spec-folder/sandbox boundary, and live-site-derived typography values enter the AI WRITE prompt without prompt-data isolation. |
 <!-- MACHINE-OWNED: END -->
 
 ---
@@ -63,9 +64,9 @@ Not re-running the routing benchmark harness or the md-generator Playwright pipe
 ## 7. RUNNING FINDINGS
 <!-- MACHINE-OWNED: START -->
 - **P0 (Critical):** 0 active
-- **P1 (Major):** 1 active
+- **P1 (Major):** 3 active
 - **P2 (Minor):** 0 active
-- **Delta this iteration:** +0 P0, +1 P1, +0 P2
+- **Delta this iteration:** +0 P0, +2 P1, +0 P2
 
 [Findings are tracked in `deep-review-findings-registry.json`. This section provides a running count summary updated after each iteration.]
 <!-- MACHINE-OWNED: END -->
@@ -79,6 +80,7 @@ Not re-running the routing benchmark harness or the md-generator Playwright pipe
 - Grep for unchecked checklist rows quickly separated real deferred/descoped rows from potential silent-completion defects.
 - Direct reads of `mode-registry.json`, `hub-router.json`, and md-generator backend package/build metadata provided good starting anchors for iteration 2 correctness review.
 - Iteration 2 direct-read comparison between `build-write-prompt.ts`, `types.ts`, `cluster.ts`, and `references/design_md_format.md` exposed a value-provenance gap without needing to mutate reviewed code.
+- Iteration 3 targeted greps for process execution, path writes, prompt interpolation, URL/selector handling, and mode tool surfaces quickly narrowed the security pass to two confirmed P1s and several ruled-out directions.
 
 ---
 
@@ -87,6 +89,7 @@ Not re-running the routing benchmark harness or the md-generator Playwright pipe
 - Code graph is stale for this workspace (`git HEAD changed`, newer mtimes, and removed tracked files), so iteration 1 used graphless fallback and did not make structural-graph claims.
 - Broad recursive globs over the full skill tree can truncate output; prefer targeted directory reads and narrow globs by packet/type in future iterations.
 - Code graph remained unsuitable for correctness assertions, so iteration 2 continued graphless fallback with direct reads and narrow grep/glob evidence.
+- Code graph remained unsuitable for security assertions; iteration 3 used graphless fallback and did not make structural graph coverage claims.
 
 ---
 
@@ -106,12 +109,16 @@ Not re-running the routing benchmark harness or the md-generator Playwright pipe
 - Mode-routing/tool-surface correctness: ruled out for iteration 2. `mode-registry.json`, `hub-router.json`, hub `SKILL.md`, and the five mode `SKILL.md` frontmatters agree on the five-mode taxonomy and read-only vs md-generator mutating split.
 - Phase 010 residual layout drift: ruled out for iteration 2 based on the live package glob and the phase implementation summary's exact file-count evidence.
 - Phase 012 false-pass regression: ruled out for iteration 2. The packet now explicitly records accepted descope / unscored dimensions instead of fabricating expanded-battery completion.
+- Shell command injection in md-generator guided-run: ruled out for iteration 3. `spawnSync` uses argv arrays with no shell interpolation.
+- Crawler same-domain/action side-effect gap: ruled out for iteration 3 in the sampled path. Link discovery stays on the same hostname, and reveal-click logic skips forms, submits, navigating hrefs, and action-intent controls.
+- Read-only mode tool escalation: ruled out for iteration 3. Registry, mode frontmatters, and command frontmatters preserve Read/Glob/Grep-only surfaces for interface/foundations/motion/audit and reserve Write/Edit/Bash for md-generator.
+- Prior P1-001 as a separate current security issue: ruled out for iteration 3. Component facts are missing rather than currently interpolated, but any future remediation must apply prompt-data isolation.
 
 ---
 
 ## 12. NEXT FOCUS
 <!-- MACHINE-OWNED: START -->
-Iteration 3 (security): review path/output guards, shell/Bash boundaries, prompt/template injection surfaces, generated artifact write locations, and any trust-boundary differences between the four read-only modes and the mutating md-generator mode.
+Iteration 4 (traceability): review spec-to-code alignment, checklist evidence, feature-catalog-code coverage, command projection parity, and playbook capability mapping.
 <!-- MACHINE-OWNED: END -->
 
 ---
@@ -134,12 +141,12 @@ Do not inline full source bodies in this file. Use this snapshot only to seed re
 
 | Protocol | Level | Status | Iteration | Notes |
 |----------|-------|--------|-----------|-------|
-| `spec_code` | core | pending | - | - |
-| `checklist_evidence` | core | pending | - | - |
-| `skill_agent` | overlay | pending | - | - |
+| `spec_code` | core | partial | 3 | Security pass checked md-generator implementation against output-path and prompt-boundary contracts; traceability remains incomplete. |
+| `checklist_evidence` | core | partial | 3 | Manual playbook sandbox policy sampled for md-generator execution boundaries; full checklist evidence pass pending. |
+| `skill_agent` | overlay | partial | 3 | Registry, hub, mode frontmatters, and command frontmatters preserve read-only vs mutating tool-surface split. |
 | `agent_cross_runtime` | overlay | notApplicable | - | sk-design has no dedicated agent family beyond the shared `design` LEAF agent, already covered under skill_agent |
-| `feature_catalog_code` | overlay | pending | - | - |
-| `playbook_capability` | overlay | pending | - | - |
+| `feature_catalog_code` | overlay | partial | 3 | Existing P1-001 security implication checked; no separate current component-facts injection path because component facts are not emitted today. |
+| `playbook_capability` | overlay | partial | 3 | Manual playbook sandbox policy sampled; full scenario-to-capability validation remains pending. |
 <!-- MACHINE-OWNED: END -->
 
 ---
@@ -155,14 +162,14 @@ Do not inline full source bodies in this file. Use this snapshot only to seed re
 | `.opencode/specs/sk-design/009-sk-design-claude-parity/external/` | - | 1 | - | out of scope per review strategy |
 | `.opencode/specs/sk-design/009-sk-design-claude-parity/research/` | - | 1 | - | out of scope per review strategy |
 | `.opencode/specs/sk-design/009-sk-design-claude-parity/review/` | review-state only | 1 | 0 | mapped; own artifacts only |
-| `.opencode/skills/sk-design/{SKILL.md,README.md,hub-router.json,mode-registry.json,command-metadata.json,description.json,graph-metadata.json,references/,shared/,changelog/,benchmark/,feature_catalog/,manual_testing_playbook/}` | inventory + correctness routing spot-check | 2 | 0 | mapped; no mode-routing/tool-surface correctness finding |
+| `.opencode/skills/sk-design/{SKILL.md,README.md,hub-router.json,mode-registry.json,command-metadata.json,description.json,graph-metadata.json,references/,shared/,changelog/,benchmark/,feature_catalog/,manual_testing_playbook/}` | inventory + correctness routing spot-check + security tool-surface spot-check | 3 | 0 | mapped; no mode-routing/tool-surface correctness or security escalation finding |
 | `.opencode/skills/sk-design/design-interface/` | inventory | 1 | 0 | mapped; includes extra `LICENSE.txt` noted for maintainability pass |
 | `.opencode/skills/sk-design/design-foundations/` | inventory | 1 | 0 | mapped; scripts present |
 | `.opencode/skills/sk-design/design-motion/` | inventory | 1 | 0 | mapped |
 | `.opencode/skills/sk-design/design-audit/` | inventory | 1 | 0 | mapped; scripts present |
-| `.opencode/skills/sk-design/design-md-generator/` | inventory + backend correctness spot-check | 2 | 1 P1 | mapped; `build-write-prompt.ts` component-facts gap found |
+| `.opencode/skills/sk-design/design-md-generator/` | inventory + backend correctness spot-check + security path/prompt spot-check | 3 | 3 P1 | mapped; `build-write-prompt.ts` component-facts gap, output-boundary guard gap, prompt-data isolation gap found |
 | `.opencode/skills/sk-design/design-md-generator/backend/node_modules/` | - | 1 | - | out of scope vendored dependency internals |
-| `.opencode/commands/design/*.md` | inventory | 1 | 0 | mapped; Phase 013 says untouched/planning-only |
+| `.opencode/commands/design/*.md` | inventory + security tool-surface spot-check | 3 | 0 | mapped; read-only versus md-generator mutating split preserved |
 <!-- MACHINE-OWNED: END -->
 
 ---
@@ -186,7 +193,6 @@ Do not inline full source bodies in this file. Use this snapshot only to seed re
 
 <!-- ANCHOR:review-dimensions -->
 ## 3. REVIEW DIMENSIONS (remaining)
-- [ ] security
 - [ ] traceability
 - [ ] maintainability
 
@@ -195,13 +201,14 @@ Do not inline full source bodies in this file. Use this snapshot only to seed re
 <!-- ANCHOR:completed-dimensions -->
 ## 4. COMPLETED DIMENSIONS
 - [x] correctness
+- [x] security
 
 <!-- /ANCHOR:completed-dimensions -->
 
 <!-- ANCHOR:running-findings -->
 ## 5. RUNNING FINDINGS
 - P0 (Blockers): 0
-- P1 (Required): 1
+- P1 (Required): 3
 - P2 (Suggestions): 0
 - Resolved: 0
 
@@ -215,6 +222,6 @@ Do not inline full source bodies in this file. Use this snapshot only to seed re
 
 <!-- ANCHOR:next-focus -->
 ## 11. NEXT FOCUS
-security
+traceability
 
 <!-- /ANCHOR:next-focus -->
