@@ -13,10 +13,10 @@
   ],
   "path": ".opencode/specs/design/009-sk-design-claude-parity/002-parent-hub-compatibility-shell/",
   "level": 2,
-  "status": "planned/not-started",
+  "status": "complete",
   "parentPacket": ".opencode/specs/design/009-sk-design-claude-parity/",
   "specFolder": "design/009-sk-design-claude-parity/002-parent-hub-compatibility-shell",
-  "description": "The parent `sk-design` hub needs the feel of a design manager: it should ask for context first, make the plan visible, enforce proof gates, and run",
+  "description": "Adds a Claude Design-like manager shell to the sk-design parent hub: context-first intake, a visible plan before build work, proof gates and verifier cadence, and transport-vs-taste separation, while preserving the single advisor identity and mode-registry.json as the sole routing authority.",
   "keywords": [
     "parent",
     "sk-design",
@@ -36,13 +36,18 @@
     "gates",
     "run"
   ],
-  "lastUpdated": "2026-07-05T16:15:10.197Z",
+  "lastUpdated": "2026-07-05T22:20:13.380Z",
   "specId": "002",
   "folderSlug": "parent-hub-compatibility-shell",
   "parentChain": [
     "design",
     "009-sk-design-claude-parity"
   ],
-  "memorySequence": 0,
-  "memoryNameHistory": []
+  "memorySequence": 4,
+  "memoryNameHistory": [
+    "05-07-26_22-37__sk-design-skill-md-already-contains-live-phase.md",
+    "05-07-26_23-14__implemented-phase-002-parent-hub-compatibility.md",
+    "05-07-26_23-18__finalized-phase-002-parent-hub-compatibility.md",
+    "05-07-26_23-20__finalized-phase-002-checklist-evidence-markers.md"
+  ]
 }

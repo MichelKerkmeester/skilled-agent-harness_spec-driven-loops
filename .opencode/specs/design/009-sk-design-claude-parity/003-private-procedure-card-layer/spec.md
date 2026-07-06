@@ -15,8 +15,8 @@ _memory:
     packet_pointer: "design/009-sk-design-claude-parity/003-private-procedure-card-layer"
     last_updated_at: "2026-07-05T00:00:00.000Z"
     last_updated_by: "gpt-5.5"
-    recent_action: "Created Phase 003 packet."
-    next_safe_action: "Implement approved cards."
+    recent_action: "Implemented and verified the private procedure-card layer."
+    next_safe_action: "Use Phase 004 to wire cards into mode-packet routing without changing the Phase 003 artifacts."
 ---
 # Feature Specification: Phase 003 - Private Procedure Card Layer
 
@@ -27,7 +27,7 @@ _memory:
 
 ## EXECUTIVE SUMMARY
 
-Phase 003 will translate the fourteen external Claude design procedures into private OpenCode-native procedure cards that are selected by the existing five `sk-design` modes. The phase protects the single public `sk-design` hub identity, avoids creating a public fourteen-skill mirror, and requires synthesis plus citation instead of copied procedure text.
+Phase 003 translated the fourteen external Claude design procedures into private OpenCode-native procedure cards owned by the existing five `sk-design` modes. The phase protects the single public `sk-design` hub identity, avoids creating a public fourteen-skill mirror, and uses synthesized card text with source filename citations instead of copied procedure prose.
 
 **Key Decisions**: Use private mode-local procedure cards by default, reserve `shared/procedures/` for cross-mode orchestration only, and adapt source procedures into OpenCode-native cards rather than mirroring external prompts.
 
@@ -41,9 +41,9 @@ Phase 003 will translate the fourteen external Claude design procedures into pri
 |-------|-------|
 | **Level** | 3 |
 | **Priority** | P0 |
-| **Status** | Planned / Not Started |
+| **Status** | Complete |
 | **Created** | 2026-07-05 |
-| **Branch** | `UNKNOWN` |
+| **Branch** | `system-speckit/028-memory-search-intelligence` |
 | **Estimated LOC** | Documentation packet only; implementation LOC not estimated in this phase packet |
 <!-- /ANCHOR:metadata -->
 
@@ -87,8 +87,8 @@ Define a private procedure-card layer that preserves one public `sk-design` iden
 
 ### Out of Scope
 
-- Editing `.opencode/skills/sk-design/**` during packet creation.
-- Editing the parent root, sibling phases, `external/**`, or `research/**` during packet creation.
+- Editing `mode-registry.json`, `hub-router.json`, or any mode `SKILL.md` in this phase.
+- Editing the parent root, sibling phases, `external/**`, or `research/**` except for automatic parent metadata touches from the Spec Kit save tool.
 - Creating fourteen public OpenCode skills from the external procedures.
 - Publishing external procedure text verbatim inside public skill docs.
 - Changing the public `sk-design` hub identity or the five-mode architecture.
@@ -97,14 +97,16 @@ Define a private procedure-card layer that preserves one public `sk-design` iden
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| `.opencode/specs/design/009-sk-design-claude-parity/003-private-procedure-card-layer/spec.md` | Create | Phase specification and acceptance criteria |
-| `.opencode/specs/design/009-sk-design-claude-parity/003-private-procedure-card-layer/plan.md` | Create | Implementation plan for the private card layer |
-| `.opencode/specs/design/009-sk-design-claude-parity/003-private-procedure-card-layer/tasks.md` | Create | Pending task breakdown for implementation |
-| `.opencode/specs/design/009-sk-design-claude-parity/003-private-procedure-card-layer/checklist.md` | Create | Verification checklist for this phase |
-| `.opencode/specs/design/009-sk-design-claude-parity/003-private-procedure-card-layer/decision-record.md` | Create | Decision record for private cards over public skill mirror |
-| `.opencode/specs/design/009-sk-design-claude-parity/003-private-procedure-card-layer/implementation-summary.md` | Create | Planned/not-started status summary |
-| `.opencode/specs/design/009-sk-design-claude-parity/003-private-procedure-card-layer/description.json` | Create | Memory discovery metadata |
-| `.opencode/specs/design/009-sk-design-claude-parity/003-private-procedure-card-layer/graph-metadata.json` | Create | Graph traversal metadata |
+| `.opencode/skills/sk-design/shared/procedure_card_schema.md` | Create | Private card schema, selection rules, adaptation rules, and shared-placement rule |
+| `.opencode/skills/sk-design/design-interface/procedures/*.md` | Create | Six private interface cards for discovery, direction, wireframe, deck, prototype, and variations |
+| `.opencode/skills/sk-design/design-foundations/procedures/*.md` | Create | Three private foundations cards for components, hierarchy/rhythm, and tweakable controls |
+| `.opencode/skills/sk-design/design-motion/procedures/*.md` | Create | One private motion card for interaction states |
+| `.opencode/skills/sk-design/design-audit/procedures/*.md` | Create | Two private audit cards for accessibility and AI-slop review |
+| `.opencode/skills/sk-design/design-md-generator/procedures/*.md` | Create | One private md-generator card for measured design-system extraction |
+| `.opencode/skills/sk-design/shared/procedures/*.md` | Create | One shared private card for cross-mode polish orchestration with `design-audit` owner |
+| `.opencode/specs/design/009-sk-design-claude-parity/003-private-procedure-card-layer/*.md` | Update | Phase tracking, verification evidence, decision status, and implementation summary |
+| `.opencode/specs/design/009-sk-design-claude-parity/003-private-procedure-card-layer/description.json` | Regenerate | Memory discovery metadata |
+| `.opencode/specs/design/009-sk-design-claude-parity/003-private-procedure-card-layer/graph-metadata.json` | Regenerate | Graph traversal metadata |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -138,11 +140,11 @@ Define a private procedure-card layer that preserves one public `sk-design` iden
 <!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA
 
-- **SC-001**: The future implementation has one procedure-card schema that can represent all fourteen source procedure themes without copying source prompt bodies.
-- **SC-002**: Each current `sk-design` mode has a planned card inventory or an explicit no-card rationale.
+- **SC-001**: The implementation has one procedure-card schema that can represent all fourteen source procedure themes without copying source prompt bodies.
+- **SC-002**: Each current `sk-design` mode has a private card inventory, with shared orchestration used only for the final polish gate.
 - **SC-003**: The routing rules keep public skill selection at the existing `sk-design` hub and mode layer.
-- **SC-004**: Shared procedure cards are reserved for cross-mode orchestration and are not used as a dumping ground.
-- **SC-005**: Verification can prove mode fit, source adaptation, privacy, and no public taxonomy expansion.
+- **SC-004**: Shared procedure cards are reserved for cross-mode orchestration and the shared card names `design-audit` as owner.
+- **SC-005**: Verification proves mode fit, source adaptation, privacy, and no public taxonomy expansion.
 <!-- /ANCHOR:success-criteria -->
 
 ---
@@ -258,9 +260,9 @@ Define a private procedure-card layer that preserves one public `sk-design` iden
 
 ## 12. OPEN QUESTIONS
 
-- None block packet creation.
-- Future implementation should confirm the exact source identifier format before writing procedure cards.
-- Future implementation should confirm whether shared procedure cards need a separate owner field or can inherit owner from the invoking mode.
+- None remain open for Phase 003.
+- Source identifiers are external source filenames only.
+- Shared procedure cards require an explicit owner; the implemented shared polish card names `design-audit` as owning reviewer.
 <!-- /ANCHOR:questions -->
 
 ---

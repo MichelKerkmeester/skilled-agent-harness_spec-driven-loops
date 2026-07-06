@@ -2,7 +2,7 @@
 name: design-md-generator
 description: "Extracts a live website's real CSS into a v3 Style Reference DESIGN.md via an embedded extract-write-validate pipeline."
 allowed-tools: [Read, Write, Edit, Bash, Glob, Grep]
-version: 1.0.0.2
+version: 1.0.0.3
 ---
 
 <!-- Keywords: design system, design tokens, css extraction, design.md, website design extraction, design reference, tokens.json, playwright, design-to-markdown, design-system generator, css tokens, color extraction, typography extraction, hex extraction, shadow extraction, spacing extraction, design fidelity, anti-hallucination -->
@@ -114,6 +114,7 @@ assets/source_of_truth_router_card.md  # fill-in provenance card
 | CONDITIONAL | A value's origin is unclear (brief vs measured), or a brief-only request with no live site | `references/authoring_boundary.md` (the measured / brief-provided / inferred / absent line, where forward-authoring is out of scope) and `assets/source_of_truth_router_card.md` (the fill-in provenance card) |
 | CONDITIONAL | VALIDATE / completion claim          | `references/quality_checklist.md`, `references/anti_patterns.md`  |
 | CONDITIONAL | STUDY intent                         | `references/examples/` (one site at a time, loaded as reference pairs)           |
+| CONDITIONAL | Internal procedure support           | `procedures/design_system_extraction.md` when the request involves extraction, token capture, `DESIGN.md`, source design systems, screenshots, or measured brand references |
 | ON_DEMAND   | Deep format edge-cases or component patterns | `references/anti_patterns.md`, `references/component_taxonomy.md` |
 
 ### Smart Router Pseudocode
@@ -228,6 +229,24 @@ def route_design_md_resources(request: str):
 
 Every extraction runs as a sequential pipeline. No phase can be skipped in a full run, though VALIDATE and REPORT can be invoked standalone on an existing `DESIGN.md` + `tokens.json` pair.
 
+### Procedure Card Selection
+
+After the hub selects the public `md-generator` mode, select the private `procedures/design_system_extraction.md` card when the request involves measured extraction, token capture, CSS capture, `DESIGN.md` generation, source design systems, screenshots, brand references, gaps, inconsistencies, or grounding future work in an existing surface. Cite that card by relative path in the plan or proof line. The card supports this mode; it is not a public route.
+
+If the card does not match, state `Procedure applied: none - baseline md-generator pipeline` and continue with phase detection (`EXTRACT_WRITE`, `VALIDATE`, `REPORT`, `STUDY`) plus the existing resource router.
+
+### Backend Boundary Preservation
+
+Procedure support does not replace or generalize the extraction backend. `design-md-generator` remains the only mutating `sk-design` mode, with `backendKind: playwright-extract`, Write/Edit/Bash permission, and the embedded TypeScript pipeline under `backend/scripts/`. The protected entrypoints are `extract.ts`, `build-write-prompt.ts`, `validate.ts`, `report-gen.ts`, `preview-gen.ts`, and `proof.ts`; package-level verification remains `npm run typecheck`, `npm run build`, and `npm test` from `backend/` when operator policy allows those commands.
+
+The procedure card can shape planning and proof, but it must not flatten this mode into read-only guidance or grant Write, Edit, or Bash to `interface`, `foundations`, `motion`, or `audit`.
+
+### Context, Proof, And Direct Fallback
+
+Record the context basis before extraction or validation: public mode `md-generator`, selected procedure card or no-procedure fallback, pipeline phase, source type, target URL or artifact, output paths, tool-readiness state, loaded references, and value-origin risks. Before any completion claim, include proof naming the selected procedure card, backend entrypoint used, `tokens.json`/`DESIGN.md` provenance, validation result, and unresolved gaps.
+
+If subagents are unavailable or disallowed, execute directly in the current session using this mode's normal backend boundary. Direct fallback does not weaken the pipeline: full extraction still requires extract, write, and validate; validation-only and report-only paths still use their dedicated backend entrypoints.
+
 **Process Flow:**
 ```
 EXTRACT (Phase 1)
@@ -340,6 +359,7 @@ The classifier lives in `backend/scripts/cluster.ts` and is deterministic. Token
 6. **ALWAYS include a dark-mode section ONLY when `tokens.json` contains a detected dark-mode palette.** Never infer, derive, or fabricate a dark palette from the light tokens.
 7. **ALWAYS include an accessibility section** drawn from the `tokens.json` a11y data (contrast ratios, focus ring styles, minimum touch-target sizes). If the extractor captured no a11y data, note the absence rather than inventing values.
 8. **ALWAYS confirm tool readiness** before any extract/validate/report invocation: `cd backend && npm install && npx playwright install chromium`. The embedded tool requires Node.js and a Playwright Chromium binary.
+9. **ALWAYS cite `procedures/design_system_extraction.md` or the no-procedure fallback** before substantial extraction planning, generation, validation, or report output.
 
 ### ❌ NEVER
 
@@ -385,6 +405,7 @@ The classifier lives in `backend/scripts/cluster.ts` and is deterministic. Token
 - [references/troubleshooting.md](references/troubleshooting.md) — Failure modes and fixes (Chromium, crawl blocks, dark-mode gaps, validation mismatches).
 - [references/authoring_boundary.md](references/authoring_boundary.md) — The line between measured, brief-provided, inferred and absent values, plus the source-of-truth labels that protect the cardinal fidelity rule. States that forward-authoring from a brief with no live site is out of scope and routes to a separate design-spec decision.
 - [references/guided_run.md](references/guided_run.md) - Guided wrapper behavior and stop conditions for smoke runs and operator handoff.
+- [procedures/design_system_extraction.md](procedures/design_system_extraction.md) - Private measured-extraction procedure support for source evidence, gaps, inconsistencies, and next steps inside this existing mode.
 
 ### Shared
 
@@ -419,6 +440,8 @@ The classifier lives in `backend/scripts/cluster.ts` and is deterministic. Token
 - [x] Elevation renders FLAT when there are 0 shadow tokens (states how depth is achieved instead); no false systems asserted.
 - [x] The Quick Start CSS + Tailwind blocks are present and every value traces to a token.
 - [x] `validate.ts` passes with zero hex mismatches, zero missing required sections, Quick-Start fidelity intact, and `claimsScore >= 80`.
+- [x] The selected private procedure card is cited by relative path, or the no-procedure fallback is explicitly stated.
+- [x] The mutating backend entrypoint and validation evidence are named; procedure support does not replace the extract-write-validate boundary.
 
 **Validation-only complete when:**
 - [x] `validate.ts` was run against the DESIGN.md + tokens.json pair.

@@ -5,7 +5,7 @@ trigger_phrases:
   - "design skill"
   - "ui design interface foundations motion audit"
   - "design system tokens accessibility"
-version: 1.0.0.0
+version: 1.2.0.0
 ---
 
 # sk-design
@@ -33,7 +33,7 @@ Most generated UI looks templated: default palettes, default spacing, default co
 
 ### What It Does
 
-`Skill(sk-design)` loads the hub, and the hub routes the request to one of five modes through `mode-registry.json`. Each mode holds its own design logic and the hub itself is routing-only. sk-design owns the taste and the system. It hands the actual build to `sk-code` and uses `mcp-open-design` or `mcp-figma` only as transport.
+`Skill(sk-design)` loads the hub, and the hub routes the request to one of five modes through `mode-registry.json`. Each mode holds its own design logic and the hub itself is routing-only. Inside a selected mode, private procedure cards can shape context loading, proof, and fallback behavior, but users still choose from the same five public modes. sk-design owns the taste and the system. It hands the actual build to `sk-code` and uses `mcp-open-design` or `mcp-figma` only as transport.
 
 ---
 
@@ -69,6 +69,10 @@ A design request resolves through the hub to exactly one mode. A request that sp
 
 The mode packets carry no `graph-metadata.json` of their own, so the advisor discovers exactly one design skill. The shared baselines under `shared/` (anti-slop principles, cognitive laws and the design-token vocabulary) load for every mode.
 
+### Private procedure support
+
+Mode packets may cite private procedure cards after the public mode is selected. These cards are maintainer-facing support for context capture, proof expectations and direct fallback execution; they are not a public taxonomy and should not be presented as user-selectable routes. The four advisory modes remain Read/Glob/Grep-only. `design-md-generator` remains the only mutating mode and keeps its Playwright extraction backend boundary.
+
 ---
 
 ## 5. INTEGRATION & NAVIGATION
@@ -94,3 +98,4 @@ Reach for sk-design when output looks generic and needs taste, when a visual sys
 | [`SKILL.md`](./SKILL.md) | Runtime instructions and routing logic. |
 | [`mode-registry.json`](./mode-registry.json) | The mode-to-packet routing map. |
 | [`design-interface/SKILL.md`](./design-interface/SKILL.md) | An example mode packet. |
+| [`changelog/v1.2.0.0.md`](./changelog/v1.2.0.0.md) | Maintainer note for the mode-local procedure operating model. |

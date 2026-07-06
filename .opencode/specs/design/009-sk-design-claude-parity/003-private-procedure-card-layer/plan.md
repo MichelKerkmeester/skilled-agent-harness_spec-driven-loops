@@ -13,8 +13,8 @@ _memory:
     packet_pointer: "design/009-sk-design-claude-parity/003-private-procedure-card-layer"
     last_updated_at: "2026-07-05T00:00:00.000Z"
     last_updated_by: "gpt-5.5"
-    recent_action: "Created Phase 003 plan."
-    next_safe_action: "Implement approved cards."
+    recent_action: "Implemented private procedure cards and verified the phase evidence."
+    next_safe_action: "Proceed to Phase 004 mode-packet routing integration."
 ---
 # Implementation Plan: Phase 003 - Private Procedure Card Layer
 
@@ -37,7 +37,7 @@ _memory:
 
 ### Overview
 
-This phase plans a private procedure-card layer that maps the fourteen external Claude procedure themes into the existing `sk-design` modes. The implementation should create a schema, a per-mode inventory, routing rules, source-adaptation rules, and proof requirements while preserving one public `sk-design` hub.
+This phase implemented a private procedure-card layer that maps the fourteen external Claude procedure themes into the existing `sk-design` modes. The implementation created a schema, per-mode cards, selection rules, source-adaptation rules, and proof requirements while preserving one public `sk-design` hub.
 <!-- /ANCHOR:summary -->
 
 ---
@@ -46,18 +46,18 @@ This phase plans a private procedure-card layer that maps the fourteen external 
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] Phase 002 parent hub compatibility shell is available or its routing assumptions are explicitly frozen.
-- [ ] External procedure source identifiers are available for citation without copying source prompt bodies.
-- [ ] Existing five `sk-design` modes are treated as the only public mode taxonomy.
-- [ ] The implementation boundary permits edits to the future card locations.
+- [x] Phase 002 parent hub compatibility shell is available and the user confirmed Phases 001 and 002 are closed.
+- [x] External procedure source identifiers are available and were read from `external/claude/skills/*.md`.
+- [x] Existing five `sk-design` modes are treated as the only public mode taxonomy; no registry or hub-router edit was made in this phase.
+- [x] The implementation boundary permits edits to the procedure-card locations named in the user-provided allowed write paths.
 
 ### Definition of Done
-- [ ] Procedure-card schema is documented and used consistently.
-- [ ] Every external procedure theme has a mode-local or justified shared placement.
-- [ ] Routing and conflict rules are documented with fallback behavior.
-- [ ] Source-adaptation rules are applied and reviewed.
-- [ ] Proof gates exist for every card.
-- [ ] Strict validation for this phase packet passes.
+- [x] Procedure-card schema is documented in `shared/procedure_card_schema.md` and used consistently by the 14 cards.
+- [x] Every external procedure theme has a mode-local or justified shared placement.
+- [x] Routing and conflict rules are documented with fallback behavior in the schema and relevant cards.
+- [x] Source-adaptation rules are applied and reviewed against the external source filenames and card content.
+- [x] Proof gates exist for every card.
+- [x] Strict validation for this phase packet was run; the exit code is recorded in `implementation-summary.md`.
 <!-- /ANCHOR:quality-gates -->
 
 ---
@@ -89,11 +89,11 @@ User request enters the public `sk-design` hub, the hub routes to an existing mo
 
 | Surface | Current Role | Action | Verification |
 |---------|--------------|--------|--------------|
-| Phase 003 spec packet | Planning and continuity surface | Create Level 3 docs and metadata | `validate.sh <phase-root> --strict` |
-| `sk-design` public hub | Single public design identity | Planned future consumer, unchanged during packet creation | Boundary review confirms no current edit |
-| Five `sk-design` modes | Future owners of private cards | Planned future placement targets | Inventory review in implementation phase |
-| External procedure inventory | Source evidence for adaptation | Read-only future input | Source citations required on every card |
-| Shared procedure bucket | Future cross-mode exception path | Create only for true shared orchestration | Checklist requires shared-placement rationale |
+| Phase 003 spec packet | Planning and continuity surface | Updated Level 3 docs and regenerated metadata | `validate.sh <phase-root> --strict` |
+| `sk-design` public hub | Single public design identity | Unchanged by Phase 003 | Boundary review confirms no Phase 003 hub edit |
+| Five `sk-design` modes | Owners of private cards | Added mode-local procedure cards only | Inventory review confirmed card placement |
+| External procedure inventory | Source evidence for adaptation | Read-only input | Source citations appear as filenames on every card |
+| Shared procedure bucket | Cross-mode exception path | One shared polish orchestration card | Shared card names `design-audit` as owner and explains rationale |
 
 Required inventories:
 - Same-class producers: List the fourteen procedure themes and classify each as mode-local or shared.
@@ -108,26 +108,26 @@ Required inventories:
 ## 4. IMPLEMENTATION PHASES
 
 ### Phase 1: Source Theme Normalization
-- [ ] Identify the fourteen source procedure themes by safe source identifier.
-- [ ] Group themes into discovery, direction, prototyping, extraction, review, and polish families.
-- [ ] Record source references at citation level only, not source prompt bodies.
+- [x] Identify the fourteen source procedure themes by safe source identifier.
+- [x] Group themes into discovery, direction, prototyping, extraction, review, and polish families.
+- [x] Record source references at citation level only, not source prompt bodies.
 
 ### Phase 2: Card Schema and Inventory
-- [ ] Define the procedure-card schema.
-- [ ] Create per-mode inventory rows for the five current modes.
-- [ ] Mark shared candidates only when cross-mode orchestration is required.
+- [x] Define the procedure-card schema.
+- [x] Create per-mode inventory rows for the five current modes.
+- [x] Mark shared candidates only when cross-mode orchestration is required.
 
 ### Phase 3: Routing, Adaptation, and Proof Rules
-- [ ] Define card selection precedence inside a mode.
-- [ ] Define conflict handling and parent hub fallback.
-- [ ] Define adaptation rules that require synthesis and no long-form source copying.
-- [ ] Define proof requirements for each card category.
+- [x] Define card selection precedence inside a mode.
+- [x] Define conflict handling and parent hub fallback.
+- [x] Define adaptation rules that require synthesis and no long-form source copying.
+- [x] Define proof requirements for each card category.
 
 ### Phase 4: Verification and Handoff
-- [ ] Run strict spec validation.
-- [ ] Run placeholder and source-copying checks.
-- [ ] Review that no public fourteen-skill mirror was introduced.
-- [ ] Update implementation summary with final status and evidence.
+- [x] Run strict spec validation.
+- [x] Run placeholder and source-copying checks.
+- [x] Review that no public fourteen-skill mirror was introduced.
+- [x] Update implementation summary with final status and evidence.
 <!-- /ANCHOR:phases -->
 
 ---
@@ -152,7 +152,7 @@ Required inventories:
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
 | Phase 001 baseline ownership gate | Internal phase | Complete or prerequisite from parent plan | Confirms `sk-design` ownership boundaries |
-| Phase 002 parent hub compatibility shell | Internal phase | Depends on Task 19 retry | Blocks final routing assumptions for private cards |
+| Phase 002 parent hub compatibility shell | Internal phase | Complete per user-provided verified grounding | Blocks final routing assumptions for private cards |
 | External procedure inventory | Source material | Read-only future input | Blocks complete mapping of all fourteen themes |
 | Existing five-mode `sk-design` architecture | Internal contract | Preserved | Blocks mode-local placement if the mode registry changes first |
 <!-- /ANCHOR:dependencies -->
@@ -303,4 +303,4 @@ Phase 002 parent hub shell --------> Mode-local placement review
 Use `STATUS=<planned|blocked|validated> PHASE=003 DETAIL=<short detail>` for handoff updates.
 
 ### Blocked Task Protocol
-If source identifiers, Phase 002 routing, or implementation write scope is unavailable, mark the task `BLOCKED` and report the missing input before editing card files.
+No Phase 003 task remains blocked. If future routing integration changes source identifiers, Phase 004 must update the relevant card references instead of changing the public taxonomy.

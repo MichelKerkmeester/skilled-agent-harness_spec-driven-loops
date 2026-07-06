@@ -62,7 +62,7 @@
       "design-motion"
     ],
     "importance_tier": "high",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -70,6 +70,7 @@
       "checklist.md",
       "decision-record.md",
       "implementation-summary.md",
+      ".opencode/skills/sk-design/SKILL.md",
       ".opencode/specs/design/009-sk-design-claude-parity/004-mode-packet-refactor/spec.md",
       ".opencode/specs/design/009-sk-design-claude-parity/004-mode-packet-refactor/plan.md",
       ".opencode/specs/design/009-sk-design-claude-parity/004-mode-packet-refactor/tasks.md",
@@ -78,7 +79,6 @@
       ".opencode/specs/design/009-sk-design-claude-parity/004-mode-packet-refactor/implementation-summary.md",
       ".opencode/specs/design/009-sk-design-claude-parity/004-mode-packet-refactor/description.json",
       ".opencode/specs/design/009-sk-design-claude-parity/004-mode-packet-refactor/graph-metadata.json",
-      ".opencode/skills/sk-design/SKILL.md",
       ".opencode/skills/sk-design/README.md"
     ],
     "entities": [
@@ -119,6 +119,12 @@
         "source": "derived"
       },
       {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-design/SKILL.md",
+        "source": "derived"
+      },
+      {
         "name": "description.json",
         "kind": "config",
         "path": ".opencode/specs/design/009-sk-design-claude-parity/004-mode-packet-refactor/description.json",
@@ -131,12 +137,6 @@
         "source": "derived"
       },
       {
-        "name": "SKILL.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-design/SKILL.md",
-        "source": "derived"
-      },
-      {
         "name": "README.md",
         "kind": "doc",
         "path": ".opencode/skills/sk-design/README.md",
@@ -144,12 +144,6 @@
       },
       {
         "name": "Mode Packet Refactor",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Created Phase",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -173,13 +167,25 @@
         "source": "derived"
       },
       {
-        "name": "Not Started",
+        "name": "Phase Navigation",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
         "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Start Phase",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -219,17 +225,11 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Contract Freeze",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The five `sk-design` mode packets currently provide the public execution lanes for design work, but they have not yet been refactored to consume the Claude-like private procedure strategy from the parent/procedure model",
     "created_at": "2026-07-05T00:00:00.000Z",
-    "last_save_at": "2026-07-05T16:15:10.219Z",
+    "last_save_at": "2026-07-06T00:25:10.027Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -240,14 +240,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:84b9835fb136cbf16effc266396c588663e2b2010d7a628b8e88df56e9559c3c",
+    "source_fingerprint": "sha256:3c5c9e18192aba2cae158cd1ad7151514235f4498fcf6b78f0a07d43eeb25fb6",
     "source_doc_hashes": {
-      "spec.md": "1a43e501f324a0350af658b50bf2a0fd1db7499590f194fb5a1848e387fc8076",
-      "plan.md": "4a9a0f405f87caf824602fd79e614abba253c74b4023f65dcfec26adf197580b",
-      "tasks.md": "128de14742af636d4da56253491d6e05a429fde4329cd9118b1b920924887bc9",
-      "checklist.md": "2df0681896b9e77ac8318a1a4828b82610b7001a91b4e496be6652cba939b25e",
-      "decision-record.md": "744dda1ef5055f4ddb5d84d5619add1ee49e6aad809482ac035a0cd4b297a287",
-      "implementation-summary.md": "763cabf3e55f4fb3750de19a8072ced90df2a0a2a18fef796f0825283642a054"
+      "spec.md": "1c6ca33142546170a6cb51d51cc3fd752e8fbc3dab26158b71ae81d3c754bb11",
+      "plan.md": "46553be9fbf2b496f92fa3ba7ee2ed8c15eb5b86795cd4c22dbd0ac7350d938e",
+      "tasks.md": "cc0ed4254cff56afbc6e5c6437351f9f6baed506fa609753199dc80e31c652ca",
+      "checklist.md": "ea87ff36bb0c57be6d4ddd611e94d336c7df7876de60dedb4d86b9ddc5844da2",
+      "decision-record.md": "2d03bcbbed229927f0484cb612437b3646acbca681e31ee4d2a07acaae1dfaaa",
+      "implementation-summary.md": "5985e1e9c2d9a46c4567c6dfd6487b9fffdf4befa3abb554d6c0dfd0f0bff306"
     },
     "last_active_child_id": null,
     "last_active_at": null

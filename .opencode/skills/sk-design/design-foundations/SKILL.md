@@ -1,8 +1,8 @@
 ---
 name: design-foundations
 description: Static visual-system design for color, typography, layout, spacing, hierarchy, responsive adaptation, themes, and design tokens.
-allowed-tools: [Read, Grep, Glob, Task]
-version: 1.0.0.0
+allowed-tools: [Read, Grep, Glob]
+version: 1.0.0.1
 metadata:
   author: OpenCode
   family: sk-code
@@ -95,6 +95,7 @@ The folders are intentionally split-ready so `color`, `type`, and `layout` could
 | CONDITIONAL | Calibrating what a complete foundations answer looks like | `references/worked_examples.md` (illustrative dashboard and brand landing examples, never presets) |
 | CONDITIONAL | Device, input, or context adaptation | `references/layout/adaptation_matrix.md` |
 | CONDITIONAL | Scaffolding a new token system or handing tokens to sk-code | `assets/token_starter.md` (fill-in OKLCH ramp, type scale, and spacing scale) and `../shared/sk_code_handoff.md` (final foundations handoff card) |
+| CONDITIONAL | Internal procedure support | `procedures/tweakable_design_controls.md`, `procedures/component_system_inventory.md`, `procedures/hierarchy_rhythm_review.md`, and `../shared/procedures/polish_gate_orchestration.md` when the trigger matches |
 | ON_DEMAND | Cross-axis token-system work | Load all three axis folders plus parent `sk-design/references/design_token_vocabulary.md` |
 
 ### Smart Router Pseudocode
@@ -249,6 +250,25 @@ def route_foundations_resources(user_request, task=None):
 4. Test against the parent anti-slop base: every token needs a purpose, and free axes must not default to the median AI look.
 5. Produce a compact handoff for implementation: named tokens, usage rules, responsive breakpoints, and explicit risks. The token starter scaffold turns this into a fill-in deliverable.
 
+### Procedure Card Selection
+
+After the hub selects the public `foundations` mode, choose at most one primary private procedure card and cite it by relative path in the plan or proof line. These cards support static-system decisions; they are not public routes.
+
+| Request shape | Procedure card | Proof to cite |
+| --- | --- | --- |
+| User-adjustable options, controls, or tunable variants | `procedures/tweakable_design_controls.md` | The 3 to 8 meaningful controls, targets, defaults, and persistence expectations. |
+| Component extraction, reusable parts, or system inventory | `procedures/component_system_inventory.md` | Repeated patterns versus one-offs, variants/states, token traces, and gaps. |
+| Hierarchy, rhythm, spacing, density, or flat/chaotic visual order | `procedures/hierarchy_rhythm_review.md` | Scan path, scale discipline, confirmed/inferred evidence, and owner-mapped fixes. |
+| Final polish spanning accessibility, slop, rhythm, and states | `../shared/procedures/polish_gate_orchestration.md` | Consolidated blockers, quality issues, polish notes, and owner mapping. |
+
+If no procedure card matches, state `Procedure applied: none - baseline foundations workflow` and continue with the static-system workflow. Do not load every procedure card for a single request; select from the prompt and available evidence.
+
+### Context, Proof, And Direct Fallback
+
+Record the context basis before system decisions: public mode `foundations`, loaded references, selected procedure card or no-procedure fallback, system role, source evidence, pinned tokens, target platforms, accessibility bar, and unknowns. Before a ready or handoff claim, include proof naming the selected procedure card, evidence labels, token/scale decisions, and verification risks.
+
+This mode must run directly with Read, Glob, and Grep only. If subagents are unavailable or disallowed, do not dispatch; execute the same procedure selection, context capture, and proof checks in the current session. The fallback keeps the same proof bar and cannot rely on Write, Edit, Bash, or Task.
+
 ### Foundations sk-code Handoff Card
 
 When foundations sends a static system to `sk-code`, fill the shared envelope from `../shared/sk_code_handoff.md`. The foundations-owned fields are required: register posture, surface role, source evidence, output schema, CSS-variable or theme-token names, breakpoint intent, accessibility checks, and unresolved risks. `sk-code` implements those tokens and breakpoints. It must not invent new token roles or change breakpoint intent.
@@ -277,6 +297,7 @@ When foundations sends a static system to `sk-code`, fill the shared envelope fr
 6. For layout, establish a spacing scale and use proximity before adding containers.
 7. For responsive work, adapt the experience to input method, viewport, orientation, and context; do not scale pixels.
 8. Cite parent `sk-design` shared references only as vocabulary; keep foundations-specific decisions here.
+9. Cite the selected procedure card or no-procedure fallback before substantial foundations output when a private procedure trigger matches.
 
 ### NEVER
 
@@ -322,6 +343,10 @@ Use, do not duplicate, the parent vocabulary:
 - `../shared/anti_slop_principles.md`
 - `../shared/design_token_vocabulary.md`
 - `../shared/cognitive_laws.md`
+- [`procedures/tweakable_design_controls.md`](procedures/tweakable_design_controls.md) - Private support for small, meaningful adjustable design controls.
+- [`procedures/component_system_inventory.md`](procedures/component_system_inventory.md) - Private support for reusable component inventory and system-gap discovery.
+- [`procedures/hierarchy_rhythm_review.md`](procedures/hierarchy_rhythm_review.md) - Private support for hierarchy, rhythm, spacing, and scan-path review.
+- [`../shared/procedures/polish_gate_orchestration.md`](../shared/procedures/polish_gate_orchestration.md) - Shared private final-polish orchestration when foundations owns static-system fixes.
 
 ---
 
@@ -335,6 +360,8 @@ Use, do not duplicate, the parent vocabulary:
 - When a token system is scaffolded, the token starter is filled from the register with OKLCH values, type roles and scale-bound spacing.
 - The final handoff is implementable by `sk-code` without guessing token roles or breakpoint intent.
 - The handoff card carries CSS-variable or theme-token names, breakpoint intent, source evidence and verification risks from the shared schema.
+- The selected private procedure card is cited by relative path, or the no-procedure fallback is explicitly stated.
+- Direct execution with Read, Glob, and Grep can produce the same context/proof result without subagent dispatch.
 
 ---
 

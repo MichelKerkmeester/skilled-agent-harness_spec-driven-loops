@@ -17,10 +17,10 @@
   ],
   "path": ".opencode/specs/design/009-sk-design-claude-parity/005-parity-benchmark-release-gate/",
   "level": 3,
-  "status": "planned/not-started",
+  "status": "complete",
   "parentPacket": ".opencode/specs/design/009-sk-design-claude-parity/",
   "specFolder": "design/009-sk-design-claude-parity/005-parity-benchmark-release-gate",
-  "description": "The parity refactor can look correct at the router layer while still failing live design usefulness, procedure selection, proof discipline, anti-slop",
+  "description": "Defines the release gate proving refactored sk-design behaves like Claude Design while staying OpenCode-native: golden prompts, procedure-selection proof, design-quality lanes, md-generator preservation, and release authority.",
   "keywords": [
     "parity",
     "refactor",
@@ -40,13 +40,18 @@
     "discipline",
     "anti-slop"
   ],
-  "lastUpdated": "2026-07-05T16:15:10.222Z",
+  "lastUpdated": "2026-07-06T01:25:00.533Z",
   "specId": "005",
   "folderSlug": "parity-benchmark-release-gate",
   "parentChain": [
     "design",
     "009-sk-design-claude-parity"
   ],
-  "memorySequence": 0,
-  "memoryNameHistory": []
+  "memorySequence": 4,
+  "memoryNameHistory": [
+    "06-07-26_02-07__reconciled-phase-005-checklist-decision-record.md",
+    "06-07-26_02-10__reconciled-phase-005-checklist-decision-record.md",
+    "06-07-26_02-14__reconciled-phase-005-checklist-decision-record.md",
+    "06-07-26_02-25__reran-the-router-mode-sk-design-benchmark-into.md"
+  ]
 }

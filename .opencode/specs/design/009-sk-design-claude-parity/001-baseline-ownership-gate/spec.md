@@ -13,9 +13,9 @@ _memory:
   continuity:
     packet_pointer: ".opencode/specs/design/009-sk-design-claude-parity/001-baseline-ownership-gate/"
     last_updated_at: "2026-07-05"
-    last_updated_by: "markdown-leaf-agent"
-    recent_action: "Created planned Level 2 baseline ownership gate docs."
-    next_safe_action: "Collect read-only sk-design status and benchmark baseline before implementation."
+    last_updated_by: "openai-gpt-5.5"
+    recent_action: "Closed baseline gate: clean sk-design status, frozen benchmark, authority/rollback recorded"
+    next_safe_action: "Later phases proceed only while preserving frozen baseline and parent invariants from Phase 001"
 ---
 # Feature Specification: Phase 001 — Baseline Ownership Gate
 
@@ -31,11 +31,11 @@ _memory:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P0 |
-| **Status** | Planned / not started |
+| **Status** | Complete - baseline ownership gate closed |
 | **Created** | 2026-07-05 |
 | **Phase Folder** | `.opencode/specs/design/009-sk-design-claude-parity/001-baseline-ownership-gate/` |
 | **Parent Packet** | `.opencode/specs/design/009-sk-design-claude-parity/` |
-| **Writable Scope** | Phase 001 documentation only until ownership is resolved |
+| **Writable Scope** | Phase 001 documentation only; `.opencode/skills/sk-design/**` remained read-only during this phase |
 
 <!-- /ANCHOR:metadata -->
 ---
@@ -87,17 +87,18 @@ Create a hard ownership gate that records the current baseline, inventories touc
 | `plan.md` | Create/update | Gate execution plan, evidence flow, rollback, and dependencies |
 | `tasks.md` | Create/update | Pending work queue for baseline and ownership decisions |
 | `checklist.md` | Create/update | P0/P1 gate checklist with required evidence |
-| `implementation-summary.md` | Create/update | Planned/not-started state and non-completion record |
+| `implementation-summary.md` | Create/update | Completed gate state, evidence ledger, validation result, and handoff status |
+| `decision-record.md` | Create | Accepted ownership, threshold, rollback, and invariant decisions for later phases |
 
 ### Evidence to Collect During Phase Execution
 
 | Evidence | Source | Required Before Implementation? |
 |----------|--------|----------------------------------|
-| Current touched-file inventory | `git status --short` plus scoped file review | Yes |
-| Current `sk-design` diff inventory | Scoped diff/read-only inspection of `.opencode/skills/sk-design/**` | Yes |
-| Benchmark baseline | Existing benchmark command outputs or curated prior result files | Yes |
-| Ownership decision | Written decision in this phase's docs | Yes |
-| Rollback path | Concrete command/file reversal plan approved before implementation | Yes |
+| Current touched-file inventory | `git status --short -- ".opencode/skills/sk-design"` returned no output on 2026-07-05 | Yes |
+| Current `sk-design` diff inventory | `git diff --name-status -- ".opencode/skills/sk-design"` returned no output on 2026-07-05 | Yes |
+| Benchmark baseline | Fresh artifact `/tmp/skd-bench-phase001/report.json` from the canonical router benchmark | Yes |
+| Ownership decision | `PRESERVE` the committed parent-hub baseline; no pending `sk-design` paths require absorb/revert/defer/block | Yes |
+| Rollback path | Compare with `git diff`; destructive checkout against `ba8906743c1b1e327ff4d4a758bb9d67e9d6c8ed` only after explicit confirmation | Yes |
 
 <!-- /ANCHOR:scope -->
 ---
@@ -109,21 +110,32 @@ Create a hard ownership gate that records the current baseline, inventories touc
 
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-001 | No implementation writes before ownership is resolved | Checklist records the gate as closed before any `.opencode/skills/sk-design/**` edit occurs |
-| REQ-002 | Baseline snapshot captured | Commands, artifacts, timestamps, and baseline verdict are recorded in phase docs |
-| REQ-003 | Touched-file inventory captured | Every existing or uncommitted `sk-design` path is listed with owner, status, and disposition |
-| REQ-004 | Ownership decision recorded | Pending changes are assigned to preserve, revert, absorb, or defer with rationale |
-| REQ-005 | Rollback plan named | Later phases have a concrete rollback path and stop trigger before writes begin |
-| REQ-006 | Parent invariants documented | Later phases know which parity, design, and doc boundaries cannot drift |
+| REQ-001 | No implementation writes before ownership is resolved | Closed: scoped status/diff were clean before docs changed; no `.opencode/skills/sk-design/**` edits were made |
+| REQ-002 | Baseline snapshot captured | Closed: fresh benchmark artifact `/tmp/skd-bench-phase001/report.json`, verdict `CONDITIONAL`, aggregate `69`, scenario count `21` |
+| REQ-003 | Touched-file inventory captured | Closed: inventory is empty because scoped status and diff both returned no output |
+| REQ-004 | Ownership decision recorded | Closed: committed parent-hub baseline is preserved; no pending paths require ownership classification |
+| REQ-005 | Rollback plan named | Closed: inspect with `git diff`; checkout against `ba8906743c1b1e327ff4d4a758bb9d67e9d6c8ed` only after explicit confirmation |
+| REQ-006 | Parent invariants documented | Closed: invariants are recorded below and in `decision-record.md` |
 
 ### P1 - Required (complete OR user-approved deferral)
 
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-007 | Benchmark acceptance thresholds defined | Later phases can compare against explicit pass/fail thresholds |
-| REQ-008 | Release and threshold authority identified | Decision owner is documented for accepting baseline deltas |
-| REQ-009 | Evidence collection commands listed | Required commands are recorded for repeatable collection without git mutation |
-| REQ-010 | Handoff criteria documented | Phase can stop with a clear next-phase go/no-go statement |
+| REQ-007 | Benchmark acceptance thresholds defined | Later router-mode benchmark must keep verdict at least `CONDITIONAL`, aggregate score `>= 69`, D5 `100`, zero hub-route/tool-surface gate failures, and no new unowned corpus changes |
+| REQ-008 | Release and threshold authority identified | Repository owner, delegated to this session for Phase 001 gate closure |
+| REQ-009 | Evidence collection commands listed | Commands are recorded in `plan.md`, `checklist.md`, and `implementation-summary.md`; none mutate git or `sk-design` source |
+| REQ-010 | Handoff criteria documented | Later phases may proceed only while preserving the frozen baseline and parent invariants |
+
+### Authoritative Parent Invariants for Later Phases
+
+| Invariant | Evidence Source | Gate Decision |
+|-----------|-----------------|---------------|
+| `sk-design` is one parent hub routed through `mode-registry.json` to five modes: `interface`, `foundations`, `motion`, `audit`, `md-generator` | `.opencode/skills/sk-design/SKILL.md`; `.opencode/skills/sk-design/mode-registry.json` | Preserve |
+| The four advisory modes use `backendKind: reference-base`, allow only `Read`, `Glob`, and `Grep`, forbid `Write`, `Edit`, and `Bash`, and set `mutatesWorkspace: false` | `.opencode/skills/sk-design/mode-registry.json` | Preserve |
+| `design-md-generator` is the only mutating mode, with `backendKind: playwright-extract` and `mutatesWorkspace: true` | `.opencode/skills/sk-design/mode-registry.json` | Preserve |
+| Exactly one `graph-metadata.json` exists for the whole `sk-design` skill, at the parent hub root | `.opencode/skills/sk-design/SKILL.md`; `.opencode/skills/sk-design/graph-metadata.json` | Preserve; never add mode-packet graph metadata |
+| The committed benchmark baseline under `.opencode/skills/sk-design/benchmark/baseline/` remains the packet-local comparison anchor | `.opencode/skills/sk-design/benchmark/README.md`; fresh `/tmp/skd-bench-phase001/report.json` | Preserve; never overwrite `benchmark/baseline/` |
+| The manual testing playbook contains 21 scenarios across five categories | `.opencode/skills/sk-design/manual_testing_playbook/manual_testing_playbook.md` | Preserve coverage unless a later phase records an explicit corpus-change decision |
 
 <!-- /ANCHOR:requirements -->
 ---
@@ -135,7 +147,7 @@ Create a hard ownership gate that records the current baseline, inventories touc
 - **SC-002**: Baseline snapshot and benchmark evidence are recorded with enough detail for later replay.
 - **SC-003**: Touched files have explicit owner, disposition, and rollback impact.
 - **SC-004**: Later phases receive acceptance thresholds and stop conditions before implementation begins.
-- **SC-005**: Phase documents state planned/not-started status until evidence proves the gate is closed.
+- **SC-005**: Phase documents state complete status after evidence proves the gate is closed.
 
 <!-- /ANCHOR:success-criteria -->
 ---
@@ -183,7 +195,7 @@ Create a hard ownership gate that records the current baseline, inventories touc
 ### Error Scenarios
 - **Git status unavailable**: Mark baseline capture blocked and do not proceed to implementation.
 - **Benchmark command unavailable**: Record the missing command as a P1 blocker unless user approves a documented deferral.
-- **Ownership authority unavailable**: Keep the phase planned/not-started and do not unlock later implementation.
+- **Ownership authority unavailable**: Keep the phase blocked and do not unlock later implementation.
 
 ### Concurrent Operations
 - **User changes files during gate execution**: Re-run inventory before closure and update the owner/disposition table.
@@ -195,9 +207,11 @@ Create a hard ownership gate that records the current baseline, inventories touc
 <!-- ANCHOR:questions -->
 ## 9. OPEN QUESTIONS
 
-- Who has final authority to accept benchmark threshold deltas? **Resolution required before implementation.**
-- Which pending `sk-design` changes, if any, are user-authored and must be preserved? **Resolution required before implementation.**
-- Which exact benchmark command is canonical for the parity baseline? **Resolution required before implementation.**
+| Question | Resolution | Evidence |
+|----------|------------|----------|
+| Who has final authority to accept benchmark threshold deltas? | Repository owner, delegated to this session for the Phase 001 gate. | User instruction: release/threshold authority is repository owner delegated to this session. |
+| Which pending `sk-design` changes, if any, are user-authored and must be preserved? | No pending scoped `sk-design` changes were present; preserve the committed parent-hub baseline. | `git status --short -- ".opencode/skills/sk-design"` and `git diff --name-status -- ".opencode/skills/sk-design"` returned no output. |
+| Which exact benchmark command is canonical for the parity baseline? | `node .opencode/skills/deep-loop-workflows/deep-improvement/scripts/skill-benchmark/run-skill-benchmark.cjs --skill .opencode/skills/sk-design --outputs-dir /tmp/skd-bench-phase001 --trace-mode router --output /tmp/skd-bench-phase001/report.json` | Fresh run produced `/tmp/skd-bench-phase001/report.json` with verdict `CONDITIONAL`, aggregate `69`, and `21` scenarios. |
 
 <!-- /ANCHOR:questions -->
 ---

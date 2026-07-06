@@ -55,58 +55,67 @@
       "routing"
     ],
     "importance_tier": "high",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
+      ".opencode/skills/sk-design/shared/procedure_card_schema.md",
       "spec.md",
       "plan.md",
       "tasks.md",
       "checklist.md",
       "decision-record.md",
       "implementation-summary.md",
-      ".opencode/specs/design/009-sk-design-claude-parity/003-private-procedure-card-layer/spec.md",
-      ".opencode/specs/design/009-sk-design-claude-parity/003-private-procedure-card-layer/plan.md",
-      ".opencode/specs/design/009-sk-design-claude-parity/003-private-procedure-card-layer/tasks.md",
-      ".opencode/specs/design/009-sk-design-claude-parity/003-private-procedure-card-layer/checklist.md",
-      ".opencode/specs/design/009-sk-design-claude-parity/003-private-procedure-card-layer/decision-record.md",
-      ".opencode/specs/design/009-sk-design-claude-parity/003-private-procedure-card-layer/implementation-summary.md",
+      ".opencode/skills/sk-design/graph-metadata.json",
       ".opencode/specs/design/009-sk-design-claude-parity/003-private-procedure-card-layer/description.json",
-      ".opencode/specs/design/009-sk-design-claude-parity/003-private-procedure-card-layer/graph-metadata.json"
+      ".opencode/specs/design/009-sk-design-claude-parity/003-private-procedure-card-layer/graph-metadata.json",
+      ".opencode/skills/sk-design/SKILL.md"
     ],
     "entities": [
       {
+        "name": "procedure_card_schema.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-design/shared/procedure_card_schema.md",
+        "source": "derived"
+      },
+      {
         "name": "spec.md",
         "kind": "doc",
-        "path": ".opencode/specs/design/009-sk-design-claude-parity/003-private-procedure-card-layer/spec.md",
+        "path": "spec.md",
         "source": "derived"
       },
       {
         "name": "plan.md",
         "kind": "doc",
-        "path": ".opencode/specs/design/009-sk-design-claude-parity/003-private-procedure-card-layer/plan.md",
+        "path": "plan.md",
         "source": "derived"
       },
       {
         "name": "tasks.md",
         "kind": "doc",
-        "path": ".opencode/specs/design/009-sk-design-claude-parity/003-private-procedure-card-layer/tasks.md",
+        "path": "tasks.md",
         "source": "derived"
       },
       {
         "name": "checklist.md",
         "kind": "doc",
-        "path": ".opencode/specs/design/009-sk-design-claude-parity/003-private-procedure-card-layer/checklist.md",
+        "path": "checklist.md",
         "source": "derived"
       },
       {
         "name": "decision-record.md",
         "kind": "doc",
-        "path": ".opencode/specs/design/009-sk-design-claude-parity/003-private-procedure-card-layer/decision-record.md",
+        "path": "decision-record.md",
         "source": "derived"
       },
       {
         "name": "implementation-summary.md",
         "kind": "doc",
-        "path": ".opencode/specs/design/009-sk-design-claude-parity/003-private-procedure-card-layer/implementation-summary.md",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "graph-metadata.json",
+        "kind": "config",
+        "path": ".opencode/skills/sk-design/graph-metadata.json",
         "source": "derived"
       },
       {
@@ -116,9 +125,9 @@
         "source": "derived"
       },
       {
-        "name": "graph-metadata.json",
-        "kind": "config",
-        "path": ".opencode/specs/design/009-sk-design-claude-parity/003-private-procedure-card-layer/graph-metadata.json",
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-design/SKILL.md",
         "source": "derived"
       },
       {
@@ -128,7 +137,7 @@
         "source": "derived"
       },
       {
-        "name": "Created Phase",
+        "name": "Use Phase",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -152,7 +161,7 @@
         "source": "derived"
       },
       {
-        "name": "Not Started",
+        "name": "Phase Navigation",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -182,6 +191,18 @@
         "source": "derived"
       },
       {
+        "name": "Pattern Private",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Revalidated Phase",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
         "name": "Task Notation",
         "kind": "proper_noun",
         "path": "tasks.md",
@@ -192,35 +213,11 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Decision Record",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Protocol",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The external Claude procedure set contains useful design-manager behaviors, but exposing those procedures as fourteen public OpenCode skills would fragment the `sk-design` surface and create a taxonomy users did not ask for",
     "created_at": "2026-07-05T00:00:00.000Z",
-    "last_save_at": "2026-07-05T16:15:10.212Z",
+    "last_save_at": "2026-07-05T23:34:56.473Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -231,14 +228,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:90d6e0ca08315b121003a3d0b48aea13928aaae41dc5881e66e5066717cb338e",
+    "source_fingerprint": "sha256:67c230d51ea9b403c2468c608dcb55cb6b73d153b0d7ee117a86ed64e57f4ff5",
     "source_doc_hashes": {
-      "spec.md": "900533b7def24d8cf5927656c66efc405dc18f8241599e1fc13293833ad01957",
-      "plan.md": "c8643139d68d83443f2ef4ac933b6c62922819fa06e544d61361dfa73c4bb90b",
-      "tasks.md": "194239be148077e802cfb984b0de882eb33c920aee1dba62b7407e563b8404b6",
-      "checklist.md": "91bab87d9aa973572e1684a7e93cbc58b45b0ad85442bcd73d48880b758683a7",
-      "decision-record.md": "9864301b6cd435aab8c353584c90eab6b441689c1185925ea894fef4701646cd",
-      "implementation-summary.md": "c6d4cdcbd6394749d5f90a0a5dbdfddcd6ca188285a0c2cee83e4040620ee515"
+      "spec.md": "4f8a4de8667fe7bfd16d36bd7462addbf95b9d1d95e2ddf5b2996a164e637749",
+      "plan.md": "ad4e25ba1abac3f9e2fb90785d94f4468c5ac0ea54c4cf011d324da2cfb23601",
+      "tasks.md": "8b674e541c7599f2a775edc41773b5c970481c6dd34e38c457d3d8d7eb345119",
+      "checklist.md": "7ae2ba86d34265613029132733db7e0e845b32973f97bc1d5fef4f7b48362b55",
+      "decision-record.md": "9f7a4b0e3663a8d7f1528a20e6755cd15d51ce842157560407b63ef1b379cddc",
+      "implementation-summary.md": "97f4dea23666b6abd6e83b4dceb3dddec17da6010f5acc138933fd243ed7ab50"
     },
     "last_active_child_id": null,
     "last_active_at": null

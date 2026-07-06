@@ -10,10 +10,10 @@ contextType: "decision"
 _memory:
   continuity:
     packet_pointer: "design/009-sk-design-claude-parity/004-mode-packet-refactor"
-    last_updated_at: "2026-07-05T00:00:00.000Z"
+    last_updated_at: "2026-07-06T00:23:55.000Z"
     last_updated_by: "gpt-5.5"
-    recent_action: "Created Phase 004 decisions."
-    next_safe_action: "Use decisions to guide future mode-packet edits."
+    recent_action: "Reconciled decision-record.md; ADR-001/002/003 status updated to Accepted and Implemented."
+    next_safe_action: "Start Phase 005 release gate."
 ---
 # Decision Record: Phase 004 - Mode Packet Refactor
 
@@ -29,7 +29,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Status** | Accepted for Phase 004 planning |
+| **Status** | Accepted and Implemented |
 | **Date** | 2026-07-05 |
 | **Deciders** | Phase packet owner, user-provided task scope |
 
@@ -135,7 +135,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Status** | Accepted for Phase 004 planning |
+| **Status** | Accepted and Implemented |
 | **Date** | 2026-07-05 |
 | **Deciders** | Phase packet owner, user-provided task scope |
 
@@ -202,7 +202,7 @@ Phase 003 establishes private procedure cards as the internal adaptation layer. 
 
 | Field | Value |
 |-------|-------|
-| **Status** | Accepted for Phase 004 planning |
+| **Status** | Accepted and Implemented |
 | **Date** | 2026-07-05 |
 | **Deciders** | Phase packet owner, user-provided task scope |
 

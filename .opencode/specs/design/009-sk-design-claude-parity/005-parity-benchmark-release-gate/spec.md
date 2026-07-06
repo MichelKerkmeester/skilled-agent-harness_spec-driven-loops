@@ -17,8 +17,8 @@ _memory:
     packet_pointer: "design/009-sk-design-claude-parity/005-parity-benchmark-release-gate"
     last_updated_at: "2026-07-05T00:00:00.000Z"
     last_updated_by: "gpt-5.5"
-    recent_action: "Created Phase 005 packet."
-    next_safe_action: "Run the parity benchmark release gate after Phase 004 implementation evidence exists."
+    recent_action: "Recorded conditional Phase 005 release-gate evidence."
+    next_safe_action: "Operator runs live/browser/manual scenarios before any ready verdict."
 ---
 # Feature Specification: Phase 005 - Parity Benchmark Release Gate
 
@@ -44,10 +44,10 @@ Phase 005 defines the final release gate for proving the refactored `sk-design` 
 |-------|-------|
 | **Level** | 3 |
 | **Priority** | P0 |
-| **Status** | Planned / Not Started |
+| **Status** | Complete / Conditional Release Gate |
 | **Created** | 2026-07-05 |
-| **Branch** | `UNKNOWN` |
-| **Estimated LOC** | Documentation packet only; benchmark implementation LOC not estimated in this phase packet |
+| **Branch** | `system-speckit/028-memory-search-intelligence` |
+| **Estimated LOC** | Documentation and benchmark artifact updates only; no sk-design runtime code authored in this phase pass |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -90,11 +90,13 @@ Define the benchmark and release-readiness gate that proves the refactored `sk-d
 - Define manual playbook scenarios and negative controls for live usefulness and false-positive prevention.
 - Define benchmark baseline discipline: capture baseline first, report deltas, and never overwrite an existing baseline without release authority.
 - Define release authority for benchmark failures, partial passes, and release-blocking evidence gaps.
+- Add the parity-behavior manual playbook scenarios and compare the fresh router-mode benchmark run against the frozen baseline.
+- Compile a conditional release report that names live/manual/browser-mode gaps instead of claiming readiness.
 
 ### Out of Scope
 
-- Editing the parent root, sibling phases, `external/**`, `research/**`, or `.opencode/skills/sk-design/**` during packet creation.
-- Running the actual benchmarks during packet creation.
+- Editing the parent root, sibling phases, `external/**`, `research/**`, or `.opencode/skills/sk-design/**` outside the approved Phase 005 artifact paths.
+- Running live/manual/browser-mode scenarios in this automated dispatch.
 - Replacing the existing `sk-design` advisor identity or five public mode taxonomy.
 - Treating router success alone as parity success.
 - Overwriting any existing benchmark baseline without explicit release-owner authority.
@@ -104,14 +106,19 @@ Define the benchmark and release-readiness gate that proves the refactored `sk-d
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| `.opencode/specs/design/009-sk-design-claude-parity/005-parity-benchmark-release-gate/spec.md` | Create | Phase specification and acceptance gates |
-| `.opencode/specs/design/009-sk-design-claude-parity/005-parity-benchmark-release-gate/plan.md` | Create | Future benchmark and release-gate execution plan |
-| `.opencode/specs/design/009-sk-design-claude-parity/005-parity-benchmark-release-gate/tasks.md` | Create | Pending task breakdown for future benchmark execution |
-| `.opencode/specs/design/009-sk-design-claude-parity/005-parity-benchmark-release-gate/checklist.md` | Create | Verification checklist for release readiness |
-| `.opencode/specs/design/009-sk-design-claude-parity/005-parity-benchmark-release-gate/decision-record.md` | Create | Decisions for evidence thresholds, baseline authority, and failure handling |
-| `.opencode/specs/design/009-sk-design-claude-parity/005-parity-benchmark-release-gate/implementation-summary.md` | Create | Planned/not-started status summary |
-| `.opencode/specs/design/009-sk-design-claude-parity/005-parity-benchmark-release-gate/description.json` | Create | Memory discovery metadata |
-| `.opencode/specs/design/009-sk-design-claude-parity/005-parity-benchmark-release-gate/graph-metadata.json` | Create | Graph traversal metadata |
+| `.opencode/specs/design/009-sk-design-claude-parity/005-parity-benchmark-release-gate/spec.md` | Update | Phase status and actual artifact scope |
+| `.opencode/specs/design/009-sk-design-claude-parity/005-parity-benchmark-release-gate/plan.md` | Update | Evidence-driven gate plan and conditional outcome |
+| `.opencode/specs/design/009-sk-design-claude-parity/005-parity-benchmark-release-gate/tasks.md` | Update | Completed task evidence and operator-gap notes |
+| `.opencode/specs/design/009-sk-design-claude-parity/005-parity-benchmark-release-gate/checklist.md` | Update | P0/P1 verification evidence and conditional release state |
+| `.opencode/specs/design/009-sk-design-claude-parity/005-parity-benchmark-release-gate/decision-record.md` | Update | Release authority and conditional verdict decisions |
+| `.opencode/specs/design/009-sk-design-claude-parity/005-parity-benchmark-release-gate/implementation-summary.md` | Update | Final implementation summary and validation evidence |
+| `.opencode/specs/design/009-sk-design-claude-parity/005-parity-benchmark-release-gate/release-report.md` | Create | Conditional release report comparing baseline to after-009 |
+| `.opencode/specs/design/009-sk-design-claude-parity/005-parity-benchmark-release-gate/description.json` | Regenerate | Memory discovery metadata |
+| `.opencode/specs/design/009-sk-design-claude-parity/005-parity-benchmark-release-gate/graph-metadata.json` | Regenerate | Graph traversal metadata |
+| `.opencode/skills/sk-design/manual_testing_playbook/06--parity-behavior/*.md` | Existing Phase 005 artifact | Parity behavior scenarios PB-001 through PB-003 |
+| `.opencode/skills/sk-design/manual_testing_playbook/manual_testing_playbook.md` | Existing Phase 005 artifact | Root playbook index includes category 06 and PB-001 through PB-003 |
+| `.opencode/skills/sk-design/benchmark/after-009/report.json` | Update | Fresh router-mode benchmark report |
+| `.opencode/skills/sk-design/benchmark/after-009/report.md` | Update | Fresh rendered router-mode benchmark report |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -285,9 +292,10 @@ Define the benchmark and release-readiness gate that proves the refactored `sk-d
 <!-- ANCHOR:questions -->
 ## 12. OPEN QUESTIONS
 
-- Who is the named release owner for accepting benchmark failures, approving conditional release, or authorizing baseline overwrite?
-- Where should future benchmark run artifacts live once execution scope is approved?
-- What existing baseline, if any, must be treated as immutable for the first parity release gate?
+- Resolved: release and threshold authority for this automated gate record is the repository owner, delegated to this session.
+- Resolved: current run artifacts live in `.opencode/skills/sk-design/benchmark/after-009/`.
+- Resolved: `.opencode/skills/sk-design/benchmark/baseline/skill-benchmark-report.json` is the immutable comparison baseline for this run.
+- Still pending before READY: operator execution of live/browser/manual scenarios and design-quality reviewer lanes.
 <!-- /ANCHOR:questions -->
 
 ---
@@ -298,3 +306,4 @@ Define the benchmark and release-readiness gate that proves the refactored `sk-d
 - **Task Breakdown**: See `tasks.md`
 - **Verification Checklist**: See `checklist.md`
 - **Decision Records**: See `decision-record.md`
+- **Release Report**: See `release-report.md`

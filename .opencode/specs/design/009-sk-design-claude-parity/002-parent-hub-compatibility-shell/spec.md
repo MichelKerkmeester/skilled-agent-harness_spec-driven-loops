@@ -1,21 +1,22 @@
 ---
 title: "Feature Specification: Phase 002 — Parent Hub Compatibility Shell"
-description: "Level 2 specification for adding a Claude Design-like parent hub shell while preserving the single sk-design advisor identity, mode registry, and OpenCode-native skill boundaries."
+description: "Completed Level 2 specification for the sk-design parent hub manager shell: context-first intake, visible plan, proof gates, verifier cadence, and transport-vs-taste separation."
 trigger_phrases:
   - "parent hub compatibility shell"
   - "sk-design manager shell"
   - "context-first intake"
+  - "visible plan"
   - "proof gates"
-  - "phase 002"
+  - "verifier cadence"
 importance_tier: "high"
 contextType: "spec"
 _memory:
   continuity:
     packet_pointer: ".opencode/specs/design/009-sk-design-claude-parity/002-parent-hub-compatibility-shell/"
-    last_updated_at: "2026-07-05"
-    last_updated_by: "markdown-leaf-agent"
-    recent_action: "Created planned Level 2 parent hub compatibility shell docs."
-    next_safe_action: "Wait for Phase 001 gates to pass before any sk-design hub implementation."
+    last_updated_at: "2026-07-05T22:14:30Z"
+    last_updated_by: "openai-gpt-5.5"
+    recent_action: "Closed hub shell evidence docs."
+    next_safe_action: "Start Phase 003 procedure cards."
 ---
 # Feature Specification: Phase 002 — Parent Hub Compatibility Shell
 
@@ -31,12 +32,13 @@ _memory:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P0 |
-| **Status** | Planned / not started |
+| **Status** | Complete |
 | **Created** | 2026-07-05 |
+| **Completed** | 2026-07-05 |
 | **Phase Folder** | `.opencode/specs/design/009-sk-design-claude-parity/002-parent-hub-compatibility-shell/` |
 | **Parent Packet** | `.opencode/specs/design/009-sk-design-claude-parity/` |
-| **Writable Scope** | Phase 002 documentation only until Phase 001 gates pass |
-| **Depends On** | `001-baseline-ownership-gate/` gate closure |
+| **Writable Scope Used** | `.opencode/skills/sk-design/SKILL.md` plus this Phase 002 folder only |
+| **Depends On** | `001-baseline-ownership-gate/` closed; checklist shows 9/9 P0 and 12/12 P1 verified |
 
 <!-- /ANCHOR:metadata -->
 ---
@@ -55,10 +57,10 @@ _memory:
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
-The parent `sk-design` hub needs the feel of a design manager: it should ask for context first, make the plan visible, enforce proof gates, and run verifier cadence before handing work to mode packets. That behavior must be added without copying Claude Design's many public skill files, fragmenting the advisor identity, or bypassing the existing OpenCode mode registry.
+The parent `sk-design` hub needed the feel of a design manager: context first, visible plan, proof expectations, and verifier cadence before mode handoff. The shell also needed to preserve the existing OpenCode architecture: one public `sk-design` advisor identity, registry-backed routing, five public mode packets, read-only advisory mode tool boundaries, and a clear separation between design judgment and external transport mechanics.
 
 ### Purpose
-Define the compatibility shell contract for the parent hub. The shell keeps `sk-design` as the single public advisor identity, uses the existing mode registry as routing authority, separates design taste from MCP transport, and adds manager-style intake, plan, proof, and verification expectations that later phases can implement safely.
+This phase implements that parent-hub shell in `.opencode/skills/sk-design/SKILL.md`. The shell adds manager choreography at the hub boundary while leaving per-mode design logic inside the existing packets and leaving `mode-registry.json` and `hub-router.json` unchanged.
 
 <!-- /ANCHOR:problem -->
 ---
@@ -67,43 +69,48 @@ Define the compatibility shell contract for the parent hub. The shell keeps `sk-
 ## 3. SCOPE
 
 ### In Scope
-- Define the parent hub compatibility shell for context-first intake, visible plan, proof gates, and verifier cadence.
-- Preserve the single public `sk-design` identity and existing five public mode packets.
-- Preserve `mode-registry.json` as the routing source of truth.
-- Document negative rules against adding a 14 public skill mirror or public micro-skill identities.
-- Separate design judgment and taste from Open Design, Figma, browser, or other transport mechanics.
-- Block implementation until Phase 001 gates close with evidence.
+- Implement context-first intake in the parent hub before mode routing or transport use.
+- Require a visible plan before substantial design, build, implementation handoff, or transport work.
+- Add proof-gate language for taste, accessibility, responsive behavior, and requested transport evidence.
+- Add verifier-cadence language without creating new hub-local verification logic.
+- Preserve the single public `sk-design` advisor identity and the existing five public modes.
+- Preserve `mode-registry.json` as the routing source of truth and keep `hub-router.json` unchanged.
+- Extend section 7 transport-vs-taste separation so transports never decide design acceptance.
+- Update Phase 002 tasks, checklist, decision record, implementation summary, and generated metadata.
 
 ### Out of Scope
-- Editing `.opencode/skills/sk-design/**` before Phase 001 closes.
+- Editing `mode-registry.json`, `hub-router.json`, mode packets, `shared/**`, `benchmark/baseline/**`, `manual_testing_playbook/**`, `external/**`, or `research/**`.
 - Creating private procedure cards; that belongs to Phase 003.
 - Refactoring individual mode packets; that belongs to Phase 004.
 - Building parity benchmark release gates; that belongs to Phase 005.
-- Editing parent root files, sibling phases, `external/**`, `research/**`, or source skill files during this documentation task.
-- Dispatching sub-agents or using nested Task execution.
+- Adding public micro-skill identities or a public mirror of another design skill family.
+- Dispatching sub-agents or nested Task execution.
 
-### Files to Change
+### Files Changed
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| `spec.md` | Create/update | Phase 002 scope, requirements, success criteria, and constraints |
-| `plan.md` | Create/update | Compatibility shell execution plan, quality gates, dependencies, and rollback |
-| `tasks.md` | Create/update | Pending work queue for hub-shell design, routing preservation, and verification |
-| `checklist.md` | Create/update | P0/P1 evidence gates that block implementation until Phase 001 passes |
-| `implementation-summary.md` | Create/update | Planned/not-started state and non-completion record |
-| `description.json` | Create/update | Phase metadata for memory/search discovery |
-| `graph-metadata.json` | Create/update | Phase graph metadata and dependency linkage |
+| `.opencode/skills/sk-design/SKILL.md` | Updated | Added manager-style intake, visible-plan, proof-gate, verifier-cadence, negative-control, and transport-vs-taste shell language |
+| `spec.md` | Updated | Reconciled scope and requirements with the completed hub shell |
+| `plan.md` | Updated | Marked implementation phases and quality gates complete with evidence |
+| `tasks.md` | Updated | Checked off all Phase 002 tasks with evidence |
+| `checklist.md` | Updated | Marked P0/P1/P2 evidence gates with real evidence |
+| `decision-record.md` | Created | Recorded release authority, shell-placement, registry-preservation, and transport-boundary decisions |
+| `implementation-summary.md` | Updated | Recorded completed status, files changed, verification evidence, and handoff |
+| `description.json` | Regenerated | Discovery metadata for the completed phase packet |
+| `graph-metadata.json` | Regenerated | Graph metadata and source hashes for the completed phase packet |
 
 ### Compatibility Shell Capabilities
 
-| Capability | Required Behavior | Boundary |
-|------------|-------------------|----------|
-| Context-first intake | Parent hub gathers goals, constraints, inputs, references, and verification expectations before mode routing | No implementation write before intake facts are clear |
-| Visible plan | Parent hub exposes a concise plan before design/build work proceeds | No hidden mode handoff without plan state |
-| Proof gates | Parent hub requires evidence for design judgment, accessibility, responsive behavior, and requested transport checks | Proof requirements route to existing modes and tools |
-| Verifier cadence | Parent hub names when verification runs and what blocks release | Cadence must preserve Phase 001 thresholds |
-| Transport-vs-taste separation | `sk-design` owns taste and design judgment; MCP skills/tools own file/app/browser transport | Transport cannot decide visual quality |
-| Public identity preservation | Advisor still surfaces one `sk-design` family with five modes | No 14 public skill mirror |
+| Capability | Implemented Behavior | Evidence |
+|------------|----------------------|----------|
+| Context-first intake | Hub gathers goal, surface, inputs, constraints, and proof expectations before selecting a mode or transport | `.opencode/skills/sk-design/SKILL.md` section 2, `Manager Intake Before Routing` |
+| Visible plan | Hub requires selected mode/bundle, loaded/missing context, design moves/audit dimensions, proof, and handoff target before substantial work | `.opencode/skills/sk-design/SKILL.md` section 2, `Visible Plan Before Design or Build Work` |
+| Proof gates | Hub names taste, accessibility, responsive, and transport proof fields while delegating detailed evidence to selected modes | `.opencode/skills/sk-design/SKILL.md` section 2, `Proof Gates and Verifier Cadence` |
+| Verifier cadence | Hub requires intake before routing, visible plan before substantial output, proof review before ready claims, and `sk-code` review/verification after implementation handoff | `.opencode/skills/sk-design/SKILL.md` section 2, `Proof Gates and Verifier Cadence` |
+| Transport-vs-taste separation | Section 7 states Figma/Open Design transports execute mechanics only; acceptance returns to selected design/audit mode | `.opencode/skills/sk-design/SKILL.md` section 7, `Transports and Consumers` |
+| Public identity preservation | Exactly one `graph-metadata.json` exists under `.opencode/skills/sk-design/` and no mode-packet graph metadata was added | `Glob("**/graph-metadata.json", .opencode/skills/sk-design)` returned only `.opencode/skills/sk-design/graph-metadata.json` |
+| Registry preservation | `mode-registry.json` still declares five modes and was not changed by this phase | `git diff -- .opencode/skills/sk-design/mode-registry.json .opencode/skills/sk-design/hub-router.json` returned no output |
 
 <!-- /ANCHOR:scope -->
 ---
@@ -113,25 +120,25 @@ Define the compatibility shell contract for the parent hub. The shell keeps `sk-
 
 ### P0 - Blockers (MUST complete)
 
-| ID | Requirement | Acceptance Criteria |
+| ID | Requirement | Acceptance Evidence |
 |----|-------------|---------------------|
-| REQ-001 | Phase 001 gates pass before implementation | Phase 002 checklist records Phase 001 strict validation, ownership closure, baseline evidence, and go/no-go state before any hub edit |
-| REQ-002 | Single public advisor identity preserved | No new public `sk-design` micro-skill identities are introduced by the shell |
-| REQ-003 | Mode registry remains routing authority | Parent shell routes through existing registry keys and does not hard-code a replacement routing table |
-| REQ-004 | Context-first intake defined | Shell contract lists required context fields before mode routing or tool transport begins |
-| REQ-005 | Visible plan defined | Shell contract requires a plan visible to the user before implementation/design output proceeds |
-| REQ-006 | Proof gates and verifier cadence defined | Shell contract names proof fields, cadence moments, and blocking verifier outcomes |
-| REQ-007 | Transport and taste remain separated | Contract states `sk-design` owns design judgment and transport skills/tools execute only transport mechanics |
+| REQ-001 | Phase 001 gates pass before implementation | Phase 001 `checklist.md` records 9/9 P0, 12/12 P1, and gate status closed; Phase 001 `implementation-summary.md` says Phase 002 implementation is the next safe action |
+| REQ-002 | Single public advisor identity preserved | One skill root `graph-metadata.json` found under `.opencode/skills/sk-design/`; no packet graph metadata added |
+| REQ-003 | Mode registry remains routing authority | `SKILL.md` still says routing is registry-driven and `git diff` for `mode-registry.json`/`hub-router.json` is empty |
+| REQ-004 | Context-first intake defined | `SKILL.md` section 2 defines goal, surface, inputs, constraints, and proof expectations |
+| REQ-005 | Visible plan defined | `SKILL.md` section 2 requires a visible plan before substantial design/build/transport work |
+| REQ-006 | Proof gates and verifier cadence defined | `SKILL.md` section 2 names proof fields and cadence moments while routing details to mode packets and `sk-code` |
+| REQ-007 | Transport and taste remain separated | `SKILL.md` section 7 states transports do not decide design acceptance and conflicts return to selected design/audit mode |
 
 ### P1 - Required (complete OR user-approved deferral)
 
-| ID | Requirement | Acceptance Criteria |
+| ID | Requirement | Acceptance Evidence |
 |----|-------------|---------------------|
-| REQ-008 | Existing five mode packets remain public surface | Shell maps behavior to interface, foundations, motion, audit, and md-generator modes without public mode proliferation |
-| REQ-009 | Negative controls documented | Checklist includes no 14-skill mirror, no bypass of registry, and no transport-owned taste decisions |
-| REQ-010 | Handoff to Phase 003 is explicit | Private procedure-card requirements are deferred with clear handoff criteria |
-| REQ-011 | Verification commands are listed | Plan lists strict spec validation and later router/registry checks needed after implementation |
-| REQ-012 | Rollback path is non-destructive first | Plan describes how to stop or revert shell changes without disturbing unrelated work |
+| REQ-008 | Existing five mode packets remain public surface | `mode-registry.json` still lists interface, foundations, motion, audit, and md-generator |
+| REQ-009 | Negative controls documented | `SKILL.md` rules prohibit mode-packet graph metadata, public micro-skill identities, registry bypass, Write/Edit/Bash requirements for read-only modes, and transport-owned taste |
+| REQ-010 | Handoff to Phase 003 is explicit | This spec and `implementation-summary.md` hand off private procedure-card detail to Phase 003 only |
+| REQ-011 | Verification commands are listed | `plan.md`, `tasks.md`, `checklist.md`, and `implementation-summary.md` record benchmark, diff, glob, metadata regeneration, and strict validation commands |
+| REQ-012 | Rollback path is non-destructive first | `plan.md` and `implementation-summary.md` name diff/status inspection first and require explicit approval before destructive rollback |
 
 <!-- /ANCHOR:requirements -->
 ---
@@ -139,12 +146,14 @@ Define the compatibility shell contract for the parent hub. The shell keeps `sk-
 <!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA
 
-- **SC-001**: Phase 002 docs and metadata exist and validate as a Level 2 child packet.
-- **SC-002**: Implementation remains blocked until Phase 001 gates pass with evidence.
-- **SC-003**: The parent shell contract supports design-manager behavior without adding public skill identities.
-- **SC-004**: The mode registry remains the only routing source of truth for public modes.
-- **SC-005**: Proof gates and verifier cadence are explicit enough for later implementation and benchmark phases.
-- **SC-006**: Transport-vs-taste separation is documented so MCP transport cannot replace design judgment.
+| Criterion | Result |
+|-----------|--------|
+| **SC-001** Phase 002 docs and metadata exist and validate as a Level 2 child packet | Complete; final strict validation evidence is recorded in `implementation-summary.md` |
+| **SC-002** Implementation waits for Phase 001 closure | Complete; Phase 001 closed before the hub edit was accepted as Phase 002 work |
+| **SC-003** Parent shell supports design-manager behavior without public identity proliferation | Complete; shell language lives in the parent hub and no public mode identities were added |
+| **SC-004** Mode registry remains the routing source of truth | Complete; registry/router diffs are empty |
+| **SC-005** Proof gates and verifier cadence are explicit | Complete; `SKILL.md` names proof fields and cadence moments |
+| **SC-006** Transport-vs-taste separation is documented | Complete; section 7 says transports are mechanical and acceptance belongs to selected design/audit mode |
 
 <!-- /ANCHOR:success-criteria -->
 ---
@@ -152,13 +161,13 @@ Define the compatibility shell contract for the parent hub. The shell keeps `sk-
 <!-- ANCHOR:risks -->
 ## 6. RISKS & DEPENDENCIES
 
-| Type | Item | Impact | Mitigation |
-|------|------|--------|------------|
-| Dependency | Phase 001 gate closure | Implementation cannot start safely | Keep Phase 002 planned/not-started until Phase 001 evidence passes |
-| Dependency | Existing `sk-design` registry | Shell could bypass the current route contract | Require registry-preservation checks before and after implementation |
-| Risk | Public skill mirror creep | Advisor identity fragments and OpenCode routing degrades | Add negative controls against 14 public skill mirror |
-| Risk | Transport owns taste decisions | Open Design/Figma/browser mechanics could override design judgment | Keep taste rules in `sk-design`; transport only executes app/tool interaction |
-| Risk | Hidden plan or proof omissions | Claude-like manager feel becomes cosmetic only | Require context fields, visible plan, proof fields, and verifier cadence |
+| Type | Item | Final State | Mitigation |
+|------|------|-------------|------------|
+| Dependency | Phase 001 gate closure | Closed before Phase 002 documentation closure | Phase 001 checklist and implementation summary were read and cited |
+| Dependency | Existing `sk-design` registry | Preserved unchanged | Scoped `git diff` for registry/router returned no output |
+| Risk | Public skill mirror creep | Blocked | `SKILL.md` NEVER rules prohibit public micro-skill identities and packet graph metadata |
+| Risk | Transport owns taste decisions | Blocked | Section 7 makes transports mechanical and routes acceptance back to design/audit modes |
+| Risk | Hidden plan or proof omissions | Mitigated | Hub now requires visible plan, proof fields, and cadence before ready claims |
 
 <!-- /ANCHOR:risks -->
 ---
@@ -167,20 +176,20 @@ Define the compatibility shell contract for the parent hub. The shell keeps `sk-
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 
 ### Traceability
-- **NFR-T01**: Shell requirements must map back to parent packet invariants and Phase 001 gates.
-- **NFR-T02**: Every later implementation change must have an explicit shell capability or checklist row.
+- **NFR-T01**: Shell requirements map to Phase 001 invariants and to `SKILL.md` sections 2, 4, 6, and 7.
+- **NFR-T02**: Later private procedure-card details are explicitly handed to Phase 003, not embedded in the hub.
 
 ### Maintainability
-- **NFR-M01**: Shell behavior must stay in the parent hub and existing registry structure, not in duplicated public skills.
-- **NFR-M02**: Negative rules must be visible to future mode-packet authors.
+- **NFR-M01**: The hub remains routing/manager choreography only; per-mode logic stays in existing mode packets.
+- **NFR-M02**: Negative rules are visible in the parent hub ALWAYS/NEVER section.
 
 ### Safety
-- **NFR-S01**: No `.opencode/skills/sk-design/**` implementation edit is allowed while Phase 001 is unresolved.
-- **NFR-S02**: Rollback must preserve unrelated user or sibling-phase work.
+- **NFR-S01**: No registry, router, mode packet, `shared/**`, baseline, external, or research file was edited by Phase 002.
+- **NFR-S02**: Rollback requires non-destructive diff/status inspection first and explicit approval before destructive recovery.
 
 ### Verification
-- **NFR-V01**: Strict spec validation must run for this phase packet.
-- **NFR-V02**: Later implementation must include router/registry evidence and negative-control checks.
+- **NFR-V01**: Strict spec validation is run after metadata regeneration.
+- **NFR-V02**: Router benchmark and scoped diffs are recorded as preservation evidence.
 
 <!-- /ANCHOR:nfr -->
 ---
@@ -189,19 +198,18 @@ Define the compatibility shell contract for the parent hub. The shell keeps `sk-
 ## 8. EDGE CASES
 
 ### Data Boundaries
-- **Phase 001 incomplete**: Keep this phase in planned/not-started state and do not edit `sk-design` files.
-- **Existing registry has unexpected keys**: Record mismatch and stop for logic-sync before writing shell behavior.
-- **Transport request includes design judgment**: Route judgment through `sk-design`; use transport only for external app or browser mechanics.
+- **Phase 001 incomplete**: Not applicable now; Phase 001 is closed and cited as the go signal.
+- **Existing registry has unexpected keys**: Not encountered; registry still lists the expected five modes.
+- **Transport request includes design judgment**: Resolved by section 7: transport mechanics can be used only after design mode selection, and acceptance returns to selected design/audit mode.
 
 ### Error Scenarios
-- **Validator fails**: Fix docs/metadata inside this phase folder only, then re-run strict validation.
-- **Router baseline unavailable**: Treat later implementation as blocked until an accepted fallback check is named.
-- **Public mirror request appears**: Reject adding public micro-skill identities and document the negative-control evidence.
+- **Validator fails**: Fix only files in the Phase 002 folder, regenerate metadata, and re-run strict validation.
+- **Router baseline unavailable**: Not encountered; benchmark ran and produced `/tmp/skd-bench/report.json`.
+- **Public mirror request appears**: Reject it under the parent hub NEVER rules and keep the single `sk-design` identity.
 
 ### Concurrent Operations
-- **User changes Phase 001 during this work**: Re-read Phase 001 gate state before implementation starts.
-- **Sibling phase docs appear first**: Treat them as read-only context unless this phase explicitly depends on them.
-- **Unrelated worktree changes appear**: Preserve them and keep Phase 002 writes scoped to this folder.
+- **Sibling phase changes exist**: Preserved as unrelated dirty-tree work and not modified by Phase 002.
+- **Unrelated worktree changes appear**: Preserve them and keep writes scoped to the allowed paths.
 
 <!-- /ANCHOR:edge-cases -->
 ---
@@ -209,9 +217,16 @@ Define the compatibility shell contract for the parent hub. The shell keeps `sk-
 <!-- ANCHOR:questions -->
 ## 9. OPEN QUESTIONS
 
-- What exact Phase 001 evidence will be accepted as the go signal for Phase 002 implementation? **Resolution required before implementation.**
-- Which router/registry command is canonical for proving the parent shell did not bypass mode-registry routing? **Resolution required before implementation.**
-- Which verifier cadence should block release versus warn only? **Resolution required before implementation or Phase 005.**
+No open questions remain for Phase 002 closure.
+
+### Resolved Questions and Decisions
+
+| Question | Resolution |
+|----------|------------|
+| What Phase 001 evidence is accepted as the Phase 002 go signal? | Phase 001 checklist gate status closed with 9/9 P0 and 12/12 P1 verified, plus implementation summary next safe action naming Phase 002. |
+| Which router/registry command proves routing preservation? | Canonical benchmark command from `benchmark/README.md`, plus scoped `git diff` proving `mode-registry.json` and `hub-router.json` unchanged. |
+| Which verifier cadence blocks ready claims? | Intake before routing, visible plan before substantial output, proof review before ready claims, and `sk-code` review/verification after implementation handoff. |
+| Who owns release/threshold decisions for this autonomous run? | Repository owner, delegated to this session, as provided in the task grounding facts. |
 
 <!-- /ANCHOR:questions -->
 ---
@@ -221,9 +236,10 @@ Define the compatibility shell contract for the parent hub. The shell keeps `sk-
 
 - **Parent Packet**: `../spec.md`
 - **Predecessor Gate**: `../001-baseline-ownership-gate/`
-- **Implementation Plan**: See `plan.md`
-- **Task Breakdown**: See `tasks.md`
-- **Verification Checklist**: See `checklist.md`
-- **Implementation Summary**: See `implementation-summary.md`
+- **Implementation Plan**: `plan.md`
+- **Task Breakdown**: `tasks.md`
+- **Verification Checklist**: `checklist.md`
+- **Decision Record**: `decision-record.md`
+- **Implementation Summary**: `implementation-summary.md`
 
 <!-- /ANCHOR:related-docs -->

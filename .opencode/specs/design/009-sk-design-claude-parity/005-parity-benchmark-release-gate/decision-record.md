@@ -11,10 +11,10 @@ contextType: "decision"
 _memory:
   continuity:
     packet_pointer: "design/009-sk-design-claude-parity/005-parity-benchmark-release-gate"
-    last_updated_at: "2026-07-05T00:00:00.000Z"
+    last_updated_at: "2026-07-06T01:30:00.000Z"
     last_updated_by: "gpt-5.5"
-    recent_action: "Created Phase 005 decision record."
-    next_safe_action: "Name the release owner before executing the benchmark gate."
+    recent_action: "Recorded release owner authority, append-only baseline policy, and conditional gate decision."
+    next_safe_action: "Operator executes live/manual/browser lanes before any READY verdict."
 ---
 # Decision Record: Phase 005 - Parity Benchmark Release Gate
 
@@ -30,7 +30,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Status** | Proposed |
+| **Status** | Accepted |
 | **Date** | 2026-07-05 |
 | **Deciders** | Release owner, design reviewer, maintainer |
 
@@ -135,7 +135,7 @@ The parity release gate must prove that `sk-design` behaves like a useful Claude
 
 | Field | Value |
 |-------|-------|
-| **Status** | Proposed |
+| **Status** | Accepted |
 | **Date** | 2026-07-05 |
 | **Deciders** | Release owner |
 

@@ -1,6 +1,6 @@
 {
   "skill": "sk-design",
-  "version": "1.1.0.0",
+  "version": "1.2.0.0",
   "description": "Declarative mode registry: the single source of truth for the discriminator (workflowMode/backendKind) PLUS the advisorRouting projection for sk-design. The hub reads this file to resolve a mode; the advisor routes any design query to the single identity sk-design and the hub picks the mode. All five modes route by hub membership (routingClass 'metadata'), so there is no advisor map entry per mode and no merged-identity projection — the advisor does not read this file at runtime.",
   "discriminator": {
     "workflowMode": "Public hub/mode key. Stable identity used by the hub router and this registry. Carried by every mode.",
@@ -41,6 +41,7 @@
         "bashAllowlist": []
       },
       "packet": "design-interface",
+      "proceduresPath": "design-interface/procedures",
       "packetSkillName": "design-interface",
       "grandfatheredFolderMismatch": false,
       "aliases": ["interface design", "frontend design", "visual design", "visual identity", "make it look good", "looks templated", "redesign the ui", "hero section", "ui build", "design variations", "bolder", "quieter", "distill", "clarify", "delight"],
@@ -60,6 +61,7 @@
         "bashAllowlist": []
       },
       "packet": "design-foundations",
+      "proceduresPath": "design-foundations/procedures",
       "packetSkillName": "design-foundations",
       "grandfatheredFolderMismatch": false,
       "aliases": ["design foundations", "color system", "oklch palette", "color token system", "dark mode palette", "typography scale", "font pairing", "spacing system", "responsive layout", "design tokens", "grid", "container queries", "context adaptation", "data visualization", "chart type", "data tables", "token starter"],
@@ -79,6 +81,7 @@
         "bashAllowlist": []
       },
       "packet": "design-motion",
+      "proceduresPath": "design-motion/procedures",
       "packetSkillName": "design-motion",
       "grandfatheredFolderMismatch": false,
       "aliases": ["motion design", "animate this", "micro-interactions", "transitions", "AnimatePresence", "exit animation", "reduced motion", "morphing icons", "motion performance"],
@@ -98,6 +101,7 @@
         "bashAllowlist": []
       },
       "packet": "design-audit",
+      "proceduresPath": "design-audit/procedures",
       "packetSkillName": "design-audit",
       "grandfatheredFolderMismatch": false,
       "aliases": ["design audit", "ui critique", "accessibility audit", "performance audit", "anti-slop detection", "production hardening", "design quality score", "P0 P1 design findings"],
@@ -117,6 +121,7 @@
         "bashAllowlist": []
       },
       "packet": "design-md-generator",
+      "proceduresPath": "design-md-generator/procedures",
       "packetSkillName": "design-md-generator",
       "grandfatheredFolderMismatch": false,
       "aliases": ["extract design system", "generate design.md", "capture website css", "design tokens from url", "create design reference", "design-to-markdown", "extract design tokens", "validate design.md", "design fidelity check", "design.md report", "render design preview", "study design.md format"],

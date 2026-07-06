@@ -1,8 +1,8 @@
 ---
 name: design-interface
 description: Guidance for distinctive, intentional UI design when building or reshaping an interface. Drives deliberate palette, typography, layout and motion choices that avoid templated AI defaults, with a brainstorm-critique-build process and interface writing rules.
-allowed-tools: [Read, Grep, Glob, Task]
-version: 1.0.0.1
+allowed-tools: [Read, Grep, Glob]
+version: 1.0.0.2
 metadata:
   author: Anthropic
   source: https://github.com/anthropics/skills/tree/main/skills/frontend-design
@@ -80,6 +80,7 @@ DESIGN TASK
 | CONDITIONAL | Final mechanical pass before shipping | `references/design-process/mechanical_defaults.md` (the layout gate) and `assets/interface_preflight_card.md` (the fill-in PASS or FAIL pre-flight card) |
 | CONDITIONAL | Writing placeholder content, names, or numbers | `references/design-process/copy_and_mock_data.md` (realistic mock content, no lorem, no AI-tell copy) |
 | CONDITIONAL | Redesigning an existing surface | `references/design-process/redesign_intake.md` (classify greenfield, preserve or overhaul, then protect URLs, nav labels, form fields, legal copy and locked tokens) |
+| CONDITIONAL | Internal procedure support | `procedures/discovery_question_round.md`, `procedures/aesthetic_direction.md`, `procedures/wireframe_exploration.md`, `procedures/variation_set.md`, `procedures/prototype_flow_spec.md`, `procedures/deck_direction_spec.md`, and `../shared/procedures/polish_gate_orchestration.md` when the trigger matches |
 | ON_DEMAND | Need a real design system to ground in, reuse, or name the default to deviate from | A real design system you own, read live and never copied. See `references/design-grounding/design_inventory.md` |
 | ON_DEMAND | Naming a realized look in one line as the default to critique against | The illustrative cues in `references/aesthetics/` (brutalist, minimalist, soft, apple-bento). Critique-against reference only, subordinate to grounding, never a chooser, preset, or pick-a-vibe axis. See `references/aesthetics/README.md` |
 | INITIATIVE / ASK | A convention-heavy category where naming the real-world default sharpens the deviation | A real shipped-UI reference via Mobbin (app/iOS screens + flows) or Refero (web pages + visual styles). These run through Code Mode (`mobbin.*` / `refero.*`), so co-load `mcp-code-mode` before any lookup; this skill does not call Code Mode directly. Take the initiative to pull ONE when the category benefits and a subscription is connected; otherwise ask the user; otherwise fall back to the generic process. See `references/design-grounding/design_references_mcp.md` |
@@ -143,6 +144,28 @@ RESOURCE_MAP = {
 
 Before any visual choice, set the Brand-vs-Product posture from `../shared/register.md`, which gates density, motion budget, color dosage, copy register, anti-slop strictness, and audit severity. Then read the brief into the VARIANCE, MOTION, and DENSITY dials with `references/design-process/brief_to_dials.md`, stated once in a one-line Design Read. The dials are internal calibration, never a chooser surfaced to the user.
 
+### Procedure Card Selection
+
+After the hub selects the public `interface` mode, choose at most one primary private procedure card and cite it by relative path in the plan or proof line. These cards support this mode; they are not public user-facing routes.
+
+| Request shape | Procedure card | Proof to cite |
+| --- | --- | --- |
+| Missing material brief facts | `procedures/discovery_question_round.md` | The specific facts that would change direction, plus which minor decisions this mode will own. |
+| Greenfield direction without a stronger brand/system | `procedures/aesthetic_direction.md` | The non-generic direction, the absent/source context, and axes needing sign-off. |
+| Low-fidelity structure or storyboard | `procedures/wireframe_exploration.md` | Structurally distinct options, each with its test question and recommendation. |
+| Multiple high-fidelity directions or alternatives | `procedures/variation_set.md` | Meaningful variation axes and the recommended option. |
+| Prototype, demo, or stateful interaction brief | `procedures/prototype_flow_spec.md` | Screens, state model, interaction matrix, feedback states, and handoff constraints. |
+| Slide deck or presentation design | `procedures/deck_direction_spec.md` | Slide system, layout types, contrast/body-size expectations, and implementation handoff. |
+| Final polish across dimensions | `../shared/procedures/polish_gate_orchestration.md` | Consolidated blockers, quality issues, polish notes, and owner mapping. |
+
+If no procedure card matches, state `Procedure applied: none - baseline interface workflow` and continue with the core register, dials, two-pass process, and pre-flight card. Do not load all cards by default; select from request triggers and available context.
+
+### Context, Proof, And Direct Fallback
+
+Record the context basis before recommendations: public mode `interface`, loaded references, selected procedure card or no-procedure fallback, target surface, audience, pinned axes, constraints, and missing facts. Before any ready or handoff claim, include a proof line naming the selected procedure card, loaded evidence, pre-flight result, and unresolved risks.
+
+This mode must run directly with Read, Glob, and Grep only. If subagents are unavailable or disallowed, do not dispatch; execute the same card selection, context capture, and proof checks in the current session. The fallback keeps the same proof bar and cannot rely on Write, Edit, Bash, or Task.
+
 ### The Two-Pass Process
 
 **Process Flow**:
@@ -193,6 +216,7 @@ When interface hands a built or specified UI to `sk-code`, emit the shared hando
 5. **ALWAYS meet the quality floor**: responsive, visible focus, reduced-motion respected.
 6. **ALWAYS debias multiple directions with the seed of thought** from `references/design-process/variation_diversity.md` when a brief asks for two or more: a committed seed picks a non-median start in the grounded option space and the rest are spread to be genuinely distinct, each still grounded and critiqued. Never surface it as a style chooser.
 7. **ALWAYS decide, at the critique step, whether a real-world reference would sharpen the default to deviate from.** Take the initiative to pull ONE Mobbin or Refero reference when the brief sits in a convention-heavy category and a subscription is connected; otherwise ask the user first; otherwise fall back to the generic anti-default process. Mobbin for app/iOS surfaces, Refero for web pages and visual style. One reference, read live, never copied, never a chooser. Mobbin and Refero are Code Mode (UTCP) manuals, not tools in this skill's `allowed-tools`, so co-load `mcp-code-mode` and route the lookup through it; if Code Mode is unavailable, fall back to the generic process. See `references/design-grounding/design_references_mcp.md`.
+8. **ALWAYS cite the selected procedure card or the no-procedure fallback** before substantial output when a private procedure trigger matches.
 
 ### NEVER
 
@@ -227,6 +251,13 @@ When interface hands a built or specified UI to `sk-code`, emit the shared hando
 - [`references/design-process/copy_and_mock_data.md`](references/design-process/copy_and_mock_data.md) - The content gate for realistic mock data and copy (no lorem, no AI-tell phrasing, one copy register). Authored once here, referenced by the audit mode.
 - [`references/design-process/redesign_intake.md`](references/design-process/redesign_intake.md) - Redesign lane intake for existing surfaces, including greenfield, preserve and overhaul classification plus approval-gated never-silently-change items.
 - [`assets/interface_preflight_card.md`](assets/interface_preflight_card.md) - The fill-in PASS or FAIL mechanical pre-flight card. Run it before shipping.
+- [`procedures/discovery_question_round.md`](procedures/discovery_question_round.md) - Private question-round support for under-specified interface briefs.
+- [`procedures/aesthetic_direction.md`](procedures/aesthetic_direction.md) - Private direction-setting support for greenfield or weakly grounded visual systems.
+- [`procedures/wireframe_exploration.md`](procedures/wireframe_exploration.md) - Private low-fidelity structure and storyboard exploration support.
+- [`procedures/variation_set.md`](procedures/variation_set.md) - Private support for materially distinct design options.
+- [`procedures/prototype_flow_spec.md`](procedures/prototype_flow_spec.md) - Private prototype-flow specification support before `sk-code` implementation.
+- [`procedures/deck_direction_spec.md`](procedures/deck_direction_spec.md) - Private deck and presentation planning support.
+- [`../shared/procedures/polish_gate_orchestration.md`](../shared/procedures/polish_gate_orchestration.md) - Shared private final-polish orchestration when interface owns visual-direction repair.
 - [`references/aesthetics/README.md`](references/aesthetics/README.md) - Illustrative grounding cues (brutalist, minimalist, soft, apple-bento) for naming a realized default to critique against. Subordinate to grounding and the anti-default critique, never a chooser, preset, or pick-a-vibe axis.
 - [`LICENSE.txt`](LICENSE.txt) - Apache-2.0 terms for the vendored Anthropic `frontend-design` base.
 
@@ -255,6 +286,8 @@ Manual testing scenarios live in `manual_testing_playbook/manual_testing_playboo
 - ✅ The signature element is the one bold move, and everything else is quiet.
 - ✅ The quality floor holds: responsive, visible focus, reduced motion respected.
 - ✅ The mechanical pre-flight card passes: the layout gate and the content gate clear every binary box before delivery.
+- ✅ The selected private procedure card is cited by relative path, or the no-procedure fallback is explicitly stated.
+- ✅ Direct execution with Read, Glob, and Grep can produce the same context/proof result without subagent dispatch.
 - ✅ Any child-agent or small-model dispatch carries the context manifest from `../shared/context_loading_contract.md`, requires `../shared/assets/context_loaded_card.md` before recommendations, requires `../shared/assets/proof_of_application_card.md` before any ready claim, and presents a valid `DESIGN_BOUNDARY_PROOF v1` envelope at the dispatch boundary per `../shared/design_dispatch_boundary.md`.
 - ✅ Any handoff to `sk-code` includes the required build manifest with locked values, signature moves, reuse list, open risks and never-change constraints.
 

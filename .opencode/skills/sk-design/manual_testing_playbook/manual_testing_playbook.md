@@ -21,12 +21,13 @@ Canonical package artifacts:
 - `03--transform-verb-framing/`
 - `04--md-generator-pipeline/`
 - `05--shared-reference-base/`
+- `06--parity-behavior/`
 
 ---
 
 ## 1. OVERVIEW
 
-This playbook provides 21 deterministic scenarios across 5 categories validating the `sk-design` parent-skill hub. Each feature keeps its stable `{PREFIX}-NNN` ID and links to a dedicated feature file with the full execution contract.
+This playbook provides 24 deterministic scenarios across 6 categories validating the `sk-design` parent-skill hub. Each feature keeps its stable `{PREFIX}-NNN` ID and links to a dedicated feature file with the full execution contract.
 
 Coverage note: the playbook covers sk-design's parent-hub routing at the current skill files. It exercises:
 - Mode routing across the five registry modes: `interface`, `foundations`, `motion`, `audit`, and `md-generator`.
@@ -35,6 +36,7 @@ Coverage note: the playbook covers sk-design's parent-hub routing at the current
 - Transform-verb routing from `mode-registry.json`: interface-frame `make it`, audit-frame `should it be`, `aliasOnly`, and excluded aliases.
 - The md-generator pipeline as the only mutating mode with `backendKind: playwright-extract` and Write/Edit/Bash access.
 - Shared reference base usage: the hub stays routing-only, modes cite shared references, and the shared base is not a user workflow.
+- Parity behavior proof: selected procedure card rationale, context/proof gates, and md-generator preservation confirmation.
 
 ### Realistic Test Model
 
@@ -75,6 +77,7 @@ Coverage note: the playbook covers sk-design's parent-hub routing at the current
 - The exact packet loaded, relative to `.opencode/skills/sk-design/`.
 - The exact list of shared resources and mode resources loaded.
 - The tool surface used: read-only for `interface`, `foundations`, `motion`, and `audit`; mutating tool surface only for `md-generator`.
+- The selected procedure card when the scenario requests procedure-selection proof.
 - The AI's user-visible response.
 - The scenario verdict: PASS, PARTIAL, FAIL, or SKIP, with one-line rationale.
 
@@ -125,7 +128,7 @@ For each executed scenario, check:
 - `PARTIAL`: at least one mapped scenario is PARTIAL, none are FAIL.
 - `FAIL`: any mapped scenario is FAIL.
 
-Critical-path scenarios are MR-001, MR-002, MR-003, MR-004, MR-005, AI-001, AI-002, TV-001, TV-002, MG-001, and SR-003.
+Critical-path scenarios are MR-001, MR-002, MR-003, MR-004, MR-005, AI-001, AI-002, TV-001, TV-002, MG-001, SR-003, PB-001, PB-002, and PB-003.
 
 Release is READY only when:
 1. No feature verdict is FAIL.
@@ -222,13 +225,23 @@ This section records wave planning and capacity guidance for the manual testing 
 
 ---
 
-## 12. AUTOMATED TEST CROSS-REFERENCE
+## 12. PARITY BEHAVIOR (`PB-001..PB-003`)
+
+| Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Expected Signals | Per-Feature File |
+|---|---|---|---|---|---|
+| `PB-001` | Procedure Selection Proof | Interface mode states the selected procedure card and why it fits | `Make this fintech dashboard feel premium and less generic. Before giving direction, state the public sk-design mode, the internal procedure card you selected, and why that card fits the available context.` | `interface-taste`: `premium ui`, `less generic`; procedure `design-interface/procedures/aesthetic_direction.md`; read-only surface | `06--parity-behavior/procedure-selection-proof.md` |
+| `PB-002` | Context and Proof Gates | Foundations mode separates confirmed context, inferred claims, and readiness proof gaps | `Review the supplied dashboard screenshot description for hierarchy and spacing rhythm. Before recommendations, list the context you used, what is confirmed, what is inferred, and what proof would be required before calling the design ready.` | `foundations-layout`: `hierarchy`, `spacing`; procedure `design-foundations/procedures/hierarchy_rhythm_review.md`; read-only surface | `06--parity-behavior/context-proof-gates.md` |
+| `PB-003` | md-generator Preservation Confirmation | Extraction stays in md-generator and confirms only that mode may write measured artifacts | `Extract the design system from https://example.com into /tmp/skd-PB003/DESIGN.md, preserve measured CSS evidence, and confirm that md-generator is the only mode allowed to write the output.` | `md-generator-aliases`: `extract design system`; `md-generator-artifacts`: `design.md`; procedure `design-md-generator/procedures/design_system_extraction.md` | `06--parity-behavior/md-generator-preservation-confirmation.md` |
+
+---
+
+## 13. AUTOMATED TEST CROSS-REFERENCE
 
 No automated tests are claimed by this playbook. Manual execution is the validation source for advisor behavior, hub routing, resource loading, transform-verb framing, and md-generator pipeline behavior.
 
 ---
 
-## 13. FEATURE CATALOG CROSS-REFERENCE INDEX
+## 14. FEATURE CATALOG CROSS-REFERENCE INDEX
 
 | Category | Feature ID | Per-Feature File | Critical Path |
 |---|---|---|---|
@@ -253,7 +266,10 @@ No automated tests are claimed by this playbook. Manual execution is the validat
 | Shared Reference Base | SR-002 | `05--shared-reference-base/reference-base-backend-modes.md` | No |
 | Shared Reference Base | SR-003 | `05--shared-reference-base/shared-base-not-workflow.md` | Yes |
 | Shared Reference Base | SR-004 | `05--shared-reference-base/hub-routing-only.md` | No |
+| Parity Behavior | PB-001 | `06--parity-behavior/procedure-selection-proof.md` | Yes |
+| Parity Behavior | PB-002 | `06--parity-behavior/context-proof-gates.md` | Yes |
+| Parity Behavior | PB-003 | `06--parity-behavior/md-generator-preservation-confirmation.md` | Yes |
 
-**Total scenarios**: 21
-**Critical-path scenarios**: 11
-**Categories**: 5
+**Total scenarios**: 24
+**Critical-path scenarios**: 14
+**Categories**: 6

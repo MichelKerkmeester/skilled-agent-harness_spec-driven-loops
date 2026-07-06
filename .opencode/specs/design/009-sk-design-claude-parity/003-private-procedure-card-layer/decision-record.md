@@ -11,10 +11,10 @@ contextType: "decision"
 _memory:
   continuity:
     packet_pointer: "design/009-sk-design-claude-parity/003-private-procedure-card-layer"
-    last_updated_at: "2026-07-05T00:00:00.000Z"
-    last_updated_by: "gpt-5.5"
-    recent_action: "Created Phase 003 decision."
-    next_safe_action: "Use decision for cards."
+    last_updated_at: "2026-07-06T00:00:00.000Z"
+    last_updated_by: "claude-sonnet-5"
+    recent_action: "Revalidated ADR-001."
+    next_safe_action: "Use ADR-001 for Phase 004 routing integration."
 ---
 # Decision Record: Phase 003 - Private Procedure Card Layer
 
@@ -30,7 +30,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Status** | Accepted for Phase 003 planning |
+| **Status** | Accepted, implemented, and revalidated in Phase 003 |
 | **Date** | 2026-07-05 |
 | **Deciders** | Phase packet owner, user-provided task scope |
 
@@ -74,6 +74,10 @@ The parity effort needs to adapt fourteen external Claude design procedures into
 
 **Why this one**: Private mode-local cards solve the current adaptation need while keeping the user-facing interface stable and giving reviewers a concrete object to inspect for source safety and proof quality.
 <!-- /ANCHOR:adr-001-alternatives -->
+
+### Revalidation Note
+
+No decision changed during the final verification pass. The live evidence still supports ADR-001: 14 private cards exist under mode-local or justified shared procedure folders, no new public mode or skill metadata was added, and the normalized source/card comparison found no 15-word verbatim source run in the cards.
 
 ---
 

@@ -1,19 +1,20 @@
 ---
 title: "Implementation Summary: Phase 003 - Private Procedure Card Layer"
-description: "Planned/not-started implementation summary for the private procedure-card layer phase packet."
+description: "Completed implementation summary for the private procedure-card layer phase packet: schema plus 14 mode-local/shared cards adapted from the external Claude procedure inventory."
 trigger_phrases:
   - "phase 003 implementation summary"
-  - "planned not started"
-  - "private procedure card layer"
+  - "private procedure card layer complete"
+  - "procedure card inventory"
 importance_tier: "high"
 contextType: "continuity"
 _memory:
   continuity:
     packet_pointer: "design/009-sk-design-claude-parity/003-private-procedure-card-layer"
-    last_updated_at: "2026-07-05T00:00:00.000Z"
+    last_updated_at: "2026-07-06T00:00:00.000Z"
     last_updated_by: "gpt-5.5"
-    recent_action: "Created Phase 003 docs"
-    next_safe_action: "Begin scoped implementation."
+    recent_action: "Verified Phase 003 complete"
+    next_safe_action: "Start Phase 004 routing integration"
+    completion_pct: 100
 ---
 # Implementation Summary: Phase 003 - Private Procedure Card Layer
 
@@ -28,10 +29,10 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 003-private-procedure-card-layer |
-| **Completed** | Not completed |
+| **Completed** | 2026-07-06 |
 | **Level** | 3 |
-| **Status** | Planned / Not Started |
-| **Completion Pct** | 0% |
+| **Status** | Complete |
+| **Completion Pct** | 100% |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -39,11 +40,19 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-This packet establishes the Phase 003 planning surface for a private procedure-card layer. No `sk-design` procedure cards, shared procedure folders, public skill registrations, or source-adapted procedure content have been implemented yet.
+This phase implemented a private, mode-local procedure-card layer that adapts the fourteen external Claude design procedures into the existing `sk-design` five-mode architecture without adding a public taxonomy.
 
-### Planning Packet
+### Delivered Artifacts
 
-The packet now defines the target architecture, requirements, task sequence, verification gates, and architecture decision for adapting external Claude procedure themes into private OpenCode-native cards. The implementation is intentionally not started because the current task scope only permits writes inside the Phase 003 root.
+- `.opencode/skills/sk-design/shared/procedure_card_schema.md` — the card schema (purpose, owning mode, source reference, trigger, output contract, proof gate, privacy rule, plus optional placement rationale/related cards/conflict rule/read-only compatibility), selection rules, source-adaptation rules, and shared-placement rule.
+- Six `design-interface/procedures/*.md` cards: discovery, aesthetic direction, wireframe, deck, prototype, and variations.
+- Three `design-foundations/procedures/*.md` cards: component inventory, hierarchy/rhythm, and tweakable controls.
+- One `design-motion/procedures/interaction_states_pass.md` card.
+- Two `design-audit/procedures/*.md` cards: accessibility and AI-slop review.
+- One `design-md-generator/procedures/design_system_extraction.md` card, preserving `design-md-generator` as the only mutating mode.
+- One `shared/procedures/polish_gate_orchestration.md` card for cross-mode polish orchestration, owned by `design-audit`.
+
+All 14 cards cite one of the 14 files under `.opencode/specs/design/009-sk-design-claude-parity/external/claude/skills/*.md` by filename only, with no long-form copied prompt text.
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -51,7 +60,7 @@ The packet now defines the target architecture, requirements, task sequence, ver
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-The packet was scaffolded from the Level 3 Spec Kit templates, then filled with phase-specific content and metadata. Strict validation must pass before this packet creation task can be reported as successful.
+The packet was scaffolded from the Level 3 Spec Kit templates, then the schema and 14 cards were authored directly under the approved write paths (Phase 003 root plus the seven procedure-card locations named in the phase's `Files to Change` table). Each card was synthesized from its source procedure theme rather than copied, with a filename-only source citation. `mode-registry.json`, `hub-router.json`, and every mode `SKILL.md` were left unmodified in this phase.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -74,10 +83,14 @@ The packet was scaffolded from the Level 3 Spec Kit templates, then filled with 
 
 | Check | Result |
 |-------|--------|
-| Level 3 template scaffolding | PASS - `spec.md`, `plan.md`, `tasks.md`, `checklist.md`, `decision-record.md`, and `implementation-summary.md` were rendered before adaptation. |
-| Phase metadata creation | PASS - `description.json` and `graph-metadata.json` are included in this packet. |
-| Implementation status | PASS - procedure-card implementation is explicitly planned/not-started. |
-| Strict Spec Kit validation | Pending - run after all packet files are written. |
+| Level 3 template scaffolding | PASS - `spec.md`, `plan.md`, `tasks.md`, `checklist.md`, `decision-record.md`, and `implementation-summary.md` are present and template-conformant. |
+| Card file existence | PASS - all 14 procedure-card files plus the schema file exist on disk at the paths named in `spec.md` Files to Change. |
+| Schema field completeness | PASS - `card_count=14` and `required_field_rows=98` from the required-field grep check, matching 7 required fields across 14 cards. |
+| Source citation coverage | PASS - `rg -n '^\| Source reference \|'` returned exactly one filename-only citation for each of the 14 card files, matching the 14 filenames read under `external/claude/skills/`. |
+| No long-form source copying | PASS - normalized 15-word source/card comparison through `grep -Fxf` returned no matches and printed `no_15_word_verbatim_runs=true`. |
+| Public taxonomy unchanged | PASS - `mode-registry.json` still declares exactly 5 `workflowMode` values with read-only `toolSurface` for interface/foundations/motion/audit and mutating md-generator only; `Glob` found exactly one `.opencode/skills/sk-design/graph-metadata.json`; `git status --short -- mode-registry.json hub-router.json design-*/SKILL.md` returned no output. |
+| Phase metadata creation | PASS - `description.json` and `graph-metadata.json` are present in this packet and were regenerated after the final content edit pass. |
+| Strict Spec Kit validation | PASS - `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/design/009-sk-design-claude-parity/003-private-procedure-card-layer --strict` reported `Errors: 0, Warnings: 0` and exited 0. |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -85,7 +98,7 @@ The packet was scaffolded from the Level 3 Spec Kit templates, then filled with 
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **Implementation not started** The future card schema, mode inventories, routing logic, source-adaptation rules, and proof requirements still need to be implemented in a later scoped task.
-2. **Source identifiers not finalized** The packet requires safe source citations, but the exact source identifier format should be confirmed before card authoring begins.
-3. **Branch not captured** The current git branch was not captured during packet creation and remains `UNKNOWN` in `spec.md`.
+1. **Routing integration is not yet wired.** This phase defines the schema, card inventory, selection rules, and proof gates; wiring cards into live mode-packet routing behavior is explicitly deferred to Phase 004 per the phase's Out of Scope list.
+2. **Source identifier format is filename-only by design.** This is an intentional citation-safety choice (see `procedure_card_schema.md` Source Adaptation Rules), not an open gap.
+3. **Uncommitted working tree.** All Phase 003 artifacts and card files exist on disk but were intentionally left uncommitted, per the no-commit-without-explicit-request policy in effect for this session.
 <!-- /ANCHOR:limitations -->

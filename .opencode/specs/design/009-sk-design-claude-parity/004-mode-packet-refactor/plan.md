@@ -11,10 +11,10 @@ contextType: "planning"
 _memory:
   continuity:
     packet_pointer: "design/009-sk-design-claude-parity/004-mode-packet-refactor"
-    last_updated_at: "2026-07-05T00:00:00.000Z"
+    last_updated_at: "2026-07-06T00:23:55.000Z"
     last_updated_by: "gpt-5.5"
-    recent_action: "Created Phase 004 plan."
-    next_safe_action: "Read current sk-design mode packets before future implementation."
+    recent_action: "Reconciled plan.md quality gates and phase checkboxes to the verified-complete state."
+    next_safe_action: "Start Phase 005 release gate."
 ---
 # Implementation Plan: Phase 004 - Mode Packet Refactor
 
@@ -47,20 +47,20 @@ This phase plans a future refactor of the five public `sk-design` mode packets s
 
 ### Definition of Ready
 
-- [ ] Phase 003 private procedure-card layer is complete enough to define mode-local integration points.
-- [ ] Current `sk-design` hub, `mode-registry`, and five mode packet files have been read before editing.
-- [ ] `design-md-generator` backend boundary and verification command are identified.
-- [ ] The implementation scope explicitly permits edits to `.opencode/skills/sk-design/**`.
-- [ ] Direct execution is required even if subagents are unavailable or disallowed.
+- [x] Phase 003 private procedure-card layer is complete enough to define mode-local integration points.
+- [x] Current `sk-design` hub, `mode-registry`, and five mode packet files have been read before editing.
+- [x] `design-md-generator` backend boundary and verification command are identified.
+- [x] The implementation scope explicitly permits edits to `.opencode/skills/sk-design/**`.
+- [x] Direct execution is required even if subagents are unavailable or disallowed.
 
 ### Definition of Done
 
-- [ ] All five public mode packets integrate procedure selection without adding public modes.
-- [ ] Context/proof card expectations are documented for each mode.
-- [ ] Verifier cadence is documented and runnable.
-- [ ] No-subagent fallback is documented for each mode.
-- [ ] README and changelog updates explain the maintainer impact without exposing private procedure taxonomy.
-- [ ] Link, routing, registry, shared reference, and md-generator backend checks pass.
+- [x] All five public mode packets integrate procedure selection without adding public modes.
+- [x] Context/proof card expectations are documented for each mode.
+- [x] Verifier cadence is documented and runnable.
+- [x] No-subagent fallback is documented for each mode.
+- [x] README and changelog updates explain the maintainer impact without exposing private procedure taxonomy.
+- [x] Link, routing, registry, shared reference, and md-generator backend checks pass.
 <!-- /ANCHOR:quality-gates -->
 
 ---
@@ -122,31 +122,31 @@ Required inventories:
 
 ### Phase 1: Read and Freeze Public Contracts
 
-- [ ] Read the `sk-design` parent hub, mode-registry, hub-router references, and five mode packet files.
-- [ ] Record current public mode names and route shape.
-- [ ] Identify the md-generator extraction backend boundary and verification command.
+- [x] Read the `sk-design` parent hub, mode-registry, hub-router references, and five mode packet files.
+- [x] Record current public mode names and route shape.
+- [x] Identify the md-generator extraction backend boundary and verification command.
 
 ### Phase 2: Mode-Local Procedure Integration
 
-- [ ] Add procedure selection language to `design-interface`.
-- [ ] Add procedure selection language to `design-foundations`.
-- [ ] Add procedure selection language to `design-motion`.
-- [ ] Add procedure selection language to `design-audit`.
-- [ ] Add procedure selection language to `design-md-generator` without weakening backend-specific requirements.
+- [x] Add procedure selection language to `design-interface`.
+- [x] Add procedure selection language to `design-foundations`.
+- [x] Add procedure selection language to `design-motion`.
+- [x] Add procedure selection language to `design-audit`.
+- [x] Add procedure selection language to `design-md-generator` without weakening backend-specific requirements.
 
 ### Phase 3: Context Cards, Proof Cards, and Fallback
 
-- [ ] Add context/proof expectations per mode.
-- [ ] Add no-subagent fallback instructions per mode.
-- [ ] Add verifier cadence for procedure selection, output proof, link checks, and routing checks.
-- [ ] Keep shared references linked instead of duplicating the base.
+- [x] Add context/proof expectations per mode.
+- [x] Add no-subagent fallback instructions per mode.
+- [x] Add verifier cadence for procedure selection, output proof, link checks, and routing checks.
+- [x] Keep shared references linked instead of duplicating the base.
 
 ### Phase 4: Maintainer Docs and Verification
 
-- [ ] Update README and changelog where scoped and required.
-- [ ] Run link and routing checks.
-- [ ] Run md-generator backend verification.
-- [ ] Update this packet's implementation summary and checklist with evidence.
+- [x] Update README and changelog where scoped and required.
+- [x] Run link and routing checks.
+- [x] Run md-generator backend verification.
+- [x] Update this packet's implementation summary and checklist with evidence.
 <!-- /ANCHOR:phases -->
 
 ---
@@ -225,9 +225,9 @@ Phase 003 private procedure cards -> Phase 004 public mode packet integration ->
 
 ### Pre-deployment Checklist
 
-- [ ] Confirm future implementation scope permits edits to `.opencode/skills/sk-design/**`.
-- [ ] Capture current public mode list and registry entries before editing.
-- [ ] Capture md-generator backend verification command before editing.
+- [x] Confirm future implementation scope permits edits to `.opencode/skills/sk-design/**`.
+- [x] Capture current public mode list and registry entries before editing.
+- [x] Capture md-generator backend verification command before editing.
 
 ### Rollback Procedure
 
@@ -287,10 +287,10 @@ Critical path risk sits in the transition between shared procedure model and mod
 
 ### Pre-Task Checklist
 
-- [ ] Read `spec.md`, `tasks.md`, `checklist.md`, and `decision-record.md` before future implementation.
-- [ ] Read the current `sk-design` parent hub, `mode-registry`, hub-router references, and five mode packets before editing.
-- [ ] Confirm `.opencode/skills/sk-design/**` is explicitly in scope before future implementation writes.
-- [ ] Capture md-generator backend boundary and verification command before changing md-generator mode guidance.
+- [x] Read `spec.md`, `tasks.md`, `checklist.md`, and `decision-record.md` before implementation.
+- [x] Read the current `sk-design` parent hub, `mode-registry`, hub-router references, and five mode packets before editing.
+- [x] Confirm `.opencode/skills/sk-design/**` is explicitly in scope before implementation writes.
+- [x] Capture md-generator backend boundary and verification command before changing md-generator mode guidance.
 
 ### Execution Rules
 

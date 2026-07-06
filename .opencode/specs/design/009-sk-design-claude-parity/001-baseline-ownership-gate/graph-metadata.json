@@ -21,8 +21,8 @@
       "tasks",
       "verification",
       "checklist",
-      "implementation summary",
-      "planned"
+      "decision record",
+      "rollback"
     ],
     "key_topics": [
       "baseline",
@@ -36,16 +36,23 @@
       "tasks",
       "verification",
       "checklist",
-      "summary"
+      "decision"
     ],
     "importance_tier": "high",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
       "checklist.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      "decision-record.md",
+      ".opencode/skills/sk-design/SKILL.md",
+      ".opencode/skills/sk-design/mode-registry.json",
+      ".opencode/skills/sk-design/graph-metadata.json",
+      ".opencode/skills/sk-design/benchmark/README.md",
+      ".opencode/skills/sk-design/manual_testing_playbook/manual_testing_playbook.md",
+      ".opencode/skills/sk-design/benchmark/baseline/skill-benchmark-report.json"
     ],
     "entities": [
       {
@@ -76,6 +83,48 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-design/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "mode-registry.json",
+        "kind": "config",
+        "path": ".opencode/skills/sk-design/mode-registry.json",
+        "source": "derived"
+      },
+      {
+        "name": "graph-metadata.json",
+        "kind": "config",
+        "path": ".opencode/skills/sk-design/graph-metadata.json",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-design/benchmark/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "manual_testing_playbook.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-design/manual_testing_playbook/manual_testing_playbook.md",
+        "source": "derived"
+      },
+      {
+        "name": "skill-benchmark-report.json",
+        "kind": "config",
+        "path": ".opencode/skills/sk-design/benchmark/baseline/skill-benchmark-report.json",
         "source": "derived"
       },
       {
@@ -145,57 +194,15 @@
         "source": "derived"
       },
       {
-        "name": "Task Notation",
+        "name": "Executed Phase",
         "kind": "proper_noun",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Baseline Evidence",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Acceptance Thresholds",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Ownership Classification",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Protocol",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Impact",
-        "kind": "proper_noun",
-        "path": "checklist.md",
         "source": "derived"
       }
     ],
     "causal_summary": "The sk-design parity refactor must not begin while existing or uncommitted `sk-design` changes have unclear ownership",
     "created_at": "2026-07-05T00:00:00.000Z",
-    "last_save_at": "2026-07-05T16:15:10.192Z",
+    "last_save_at": "2026-07-05T21:10:23.067Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,15 +210,17 @@
       "plan.md",
       "tasks.md",
       "checklist.md",
+      "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:577d9a3cfc2cec1feca32abf77635c7d57649bcb7152a9324ebb0fb01daa0ca2",
+    "source_fingerprint": "sha256:b436be1c09303d915024a6de25d3d8b47a85afc6220b1fc75fbfde1511fe0713",
     "source_doc_hashes": {
-      "spec.md": "254ca75bf16b105daed3d5510d4bee6278c99a3eae02a6a69049afe51a8d0799",
-      "plan.md": "5d7a18719acc546494e15ff3ac4b4f6c6f72a5252eda99b04bf6a96609053a54",
-      "tasks.md": "cefb421ea1b2d52b8e53db58f3eef652cb5df86bf2811ae304bf06bdb2606757",
-      "checklist.md": "60391fdb2114e3ab66282195c9429e43d58d4363fbc1bd8d232707fbc1bb3ef9",
-      "implementation-summary.md": "6e7402ccd69d564add0e319e70fa07e11bf23e0e104bcb0a2e80f7bb15da2a32"
+      "spec.md": "7c353a662117e5ed781466c1db7811a0a5794391909484316d4f04235244aa40",
+      "plan.md": "218b50059da8eee28be46a5675113fc0bd375a5db8448d473b23535838bd4dd9",
+      "tasks.md": "5d21a3a41157e08895d94db3ca7f10bede9fc4689eb5113a46efb094a916c7ce",
+      "checklist.md": "56a18b6188d3ce022f7bb2ed707108273dca49a95ded309672eb46b16280110f",
+      "decision-record.md": "fea62d958eebf21bd0a7b03808cff29a6b3632cf8962fb7950cc167451abd8e8",
+      "implementation-summary.md": "ebef19240704024dc979b8dec5a65e259cea51bc8163e8b3d76b20995f48fb3d"
     },
     "last_active_child_id": null,
     "last_active_at": null

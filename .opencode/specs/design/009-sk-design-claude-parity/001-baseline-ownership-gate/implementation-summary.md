@@ -1,21 +1,40 @@
 ---
 title: "Implementation Summary: Phase 001 — Baseline Ownership Gate"
-description: "Planned/not-started implementation summary for the baseline ownership gate before sk-design refactor work."
+description: "Completed implementation summary for the baseline ownership gate before sk-design refactor work."
 trigger_phrases:
   - "implementation summary"
-  - "planned"
+  - "complete"
   - "baseline ownership"
   - "sk-design"
 importance_tier: "high"
 contextType: "implementation-summary"
 _memory:
   continuity:
-    packet_pointer: ".opencode/specs/design/009-sk-design-claude-parity/001-baseline-ownership-gate/"
-    last_updated_at: "2026-07-05"
-    last_updated_by: "markdown-leaf-agent"
-    recent_action: "Created planned Level 2 baseline ownership gate docs."
-    next_safe_action: "Collect read-only sk-design status and benchmark baseline before implementation."
+    packet_pointer: "design/009-sk-design-claude-parity/001-baseline-ownership-gate"
+    last_updated_at: "2026-07-05T20:56:33Z"
+    last_updated_by: "gpt-5.5-fast"
+    recent_action: "Closed baseline ownership gate; preserved packet-124 baseline."
+    next_safe_action: "Begin Phase 002 (parent hub compatibility shell) implementation."
+    blockers: []
+    key_files:
+      - "spec.md"
+      - "plan.md"
+      - "tasks.md"
+      - "checklist.md"
+      - "decision-record.md"
+      - "implementation-summary.md"
+    session_dedup:
+      fingerprint: "sha256:ebbde72e1b8ff701f0a8b88cf5d896baa520a744b4535d541b3d4000954f058b"
+      session_id: "memory-save"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions:
+      - "Ownership of pending sk-design changes: preserved as packet-124 baseline, not reverted."
+      - "Release/threshold authority: repository owner, delegated to executing session."
+      - "Canonical benchmark command and baseline: benchmark/README.md command against benchmark/baseline/skill-benchmark-report.json (CONDITIONAL 69/100)."
 ---
+
 # Implementation Summary: Phase 001 — Baseline Ownership Gate
 
 <!-- SPECKIT_LEVEL: 2 -->
@@ -29,10 +48,10 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 001-baseline-ownership-gate |
-| **Status** | planned / not started |
-| **Completed** | Not completed |
+| **Status** | Complete - baseline ownership gate closed |
+| **Completed** | 2026-07-05 |
 | **Level** | 2 |
-| **Actual Effort** | No implementation effort recorded yet |
+| **Actual Effort** | ~1.5 hours (status inventory, benchmark capture, ownership/authority decisions, gate handoff) |
 
 <!-- /ANCHOR:metadata -->
 ---
@@ -40,19 +59,24 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-No implementation has been completed yet. This phase currently defines the baseline ownership gate that must close before any `sk-design` refactor or implementation work begins.
+This phase closed the baseline ownership gate that must hold before any `sk-design` refactor or implementation work begins: it captured a clean status/diff inventory, froze a fresh router-mode benchmark artifact, recorded ownership/release/threshold authority, and named the rollback path and parent invariants that later phases must preserve. No `.opencode/skills/sk-design/**` file was created, edited, or removed by this phase.
 
 ### Files Changed
 
 | File | Action | Purpose |
 |------|--------|---------|
-| `spec.md` | Created/updated | Defines Phase 001 goal, scope, P0/P1 requirements, and success criteria |
-| `plan.md` | Created/updated | Defines evidence flow, ownership decision path, rollback, and dependencies |
-| `tasks.md` | Created/updated | Lists pending status, benchmark, ownership, and gate-marking tasks |
-| `checklist.md` | Created/updated | Tracks P0/P1 evidence gates before implementation can start |
-| `implementation-summary.md` | Created/updated | Records planned/not-started state and non-completion status |
+| `spec.md` | Updated | Defines Phase 001 goal, scope, closed P0/P1 requirements with evidence, and success criteria |
+| `plan.md` | Updated | Records the frozen benchmark baseline, later-phase acceptance thresholds, and rollback plan |
+| `tasks.md` | Updated | Marks status/benchmark/ownership/gate-marking tasks complete with evidence citations |
+| `checklist.md` | Updated (this pass) | Syncs P0/P1 checklist rows and the Verification Summary with the closed gate state; previously stale ("planned / not started", all boxes unchecked) |
+| `implementation-summary.md` | Updated (this pass) | Records the closed gate state, evidence ledger, and the two open findings below; previously stale ("planned / not started") |
+| `decision-record.md` | Created (this pass) | Records accepted ownership, benchmark threshold, release authority, rollback, and parent-invariant decisions |
 
-No `.opencode/skills/sk-design/**` files, parent root files, sibling phase files, `external/**`, or `research/**` files are part of this documentation authoring change.
+### Resolved Finding: `decision-record.md` Created
+
+`decision-record.md` now exists in this phase folder and records the accepted decisions that `spec.md` and task T011 require: preserve the committed `sk-design` parent-hub baseline, freeze `/tmp/skd-bench-phase001/report.json` as the comparison baseline, use repository-owner authority delegated to this session, keep rollback non-destructive first, and preserve parent invariants for later phases.
+
+No `.opencode/skills/sk-design/**` files, parent root files, sibling phase files, `external/**`, or `research/**` files are part of this documentation task.
 
 <!-- /ANCHOR:what-built -->
 ---
@@ -61,14 +85,14 @@ No `.opencode/skills/sk-design/**` files, parent root files, sibling phase files
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-This phase has not delivered implementation work. The current delivery is a documentation scaffold that records the gate contract, planned evidence flow, and required stop conditions before any `sk-design` refactor begins.
+This phase delivered an evidence-first governance gate: read-only status collection, a fresh benchmark capture, explicit ownership/authority decisions, and a named rollback plan, all re-verified against the live repo during this pass.
 
 | Delivery Area | Current Result | Completion Impact |
 |---------------|----------------|-------------------|
-| Baseline snapshot | Not collected | Implementation remains blocked |
-| Touched-file inventory | Not collected | Ownership remains unresolved |
-| Ownership decision | Not collected | Gate cannot close |
-| Rollback path | Initial plan documented | Final authority review pending |
+| Baseline snapshot | Collected: `/tmp/skd-bench-phase001/report.json` (+ `report.md`), verdict `CONDITIONAL`, aggregate `69/100`, D5 `100/100`, no gate failures | Later phases have a replayable comparison baseline |
+| Touched-file inventory | Collected: empty (scoped `git status`/`git diff` for `.opencode/skills/sk-design` returned no output) | Ownership is resolved — nothing pending to classify |
+| Ownership decision | Collected: `PRESERVE` the committed parent-hub baseline; no revert/absorb/defer/block rows | Gate closes without an open ownership blocker |
+| Rollback path | Documented: non-destructive `git diff` inspection first, destructive checkout against `ba8906743c1b1e327ff4d4a758bb9d67e9d6c8ed` only after explicit confirmation | Later phases have a named, non-destructive-first rollback |
 
 <!-- /ANCHOR:how-delivered -->
 ---
@@ -82,7 +106,8 @@ This phase has not delivered implementation work. The current delivery is a docu
 | Require owner/disposition for every pending `sk-design` change | Later phases need clear authorship and rollback impact |
 | Require benchmark baseline before later refactor work | Acceptance thresholds must compare against a stable starting point |
 | Use non-destructive rollback first | Pending user or sibling changes must not be destroyed without authority |
-| Keep implementation status planned/not started | Baseline evidence and ownership decisions have not been collected yet |
+| Preserve the committed parent-hub baseline | Scoped `sk-design` status/diff returned no output, so the committed baseline is owned and preserved |
+| Create `decision-record.md` for accepted gate decisions | `spec.md` and task T011 require a decision file; the file now provides durable handoff evidence for later phases |
 
 <!-- /ANCHOR:decisions -->
 ---
@@ -92,19 +117,19 @@ This phase has not delivered implementation work. The current delivery is a docu
 
 | Test Type | Status | Coverage | Notes |
 |-----------|--------|----------|-------|
-| Spec validation | Pending after write | Phase docs | Strict validation must be run and exit code recorded |
-| Baseline benchmark | Not started | `sk-design` baseline | Command/artifact not collected yet |
-| Touched-file inventory | Not started | Pending `sk-design` files | Owner/disposition rows not collected yet |
-| Checklist | Not closed | P0/P1 gates | Implementation remains blocked |
+| Spec validation | PASSING content checks (`Errors: 0`) | Phase docs | Independently re-run 2026-07-05 after `description.json`/`graph-metadata.json` regeneration and hash/fingerprint reconciliation: `Errors: 0, Warnings: 1`. The sole remaining warning is `CONTINUITY_FRESHNESS` (packet paths have uncommitted changes) — expected, since no commit was made per the no-commit-without-explicit-request policy; resolves once the packet is committed |
+| Baseline benchmark | Complete | `sk-design` baseline | `/tmp/skd-bench-phase001/report.json`, verdict `CONDITIONAL`, aggregate `69`, 21 scenarios (15 scored, 6 browser-routed) |
+| Touched-file inventory | Complete | Pending `sk-design` files | Empty — scoped status/diff returned no output |
+| Checklist | Closed | P0/P1 gates | 9/9 P0, 12/12 P1, 1/1 P2 verified in `checklist.md` |
 
 ### Test Coverage Summary
 
 | Area | Target | Actual |
 |------|--------|--------|
-| Baseline snapshot | Recorded before implementation | Not started |
-| Ownership inventory | Every pending change classified | Not started |
-| Rollback path | Named before implementation | Initial plan exists; authority review pending |
-| Parent invariants | Documented before implementation | Initial docs authored; final review pending |
+| Baseline snapshot | Recorded before implementation | Recorded: `/tmp/skd-bench-phase001/report.json` |
+| Ownership inventory | Every pending change classified | Empty inventory; nothing pending to classify |
+| Rollback path | Named before implementation | Named: non-destructive `git diff` first, destructive checkout on confirmation only |
+| Parent invariants | Documented before implementation | Documented in `spec.md` §4 and re-verified against `mode-registry.json`/`graph-metadata.json` |
 
 <!-- /ANCHOR:verification -->
 ---
@@ -114,12 +139,12 @@ This phase has not delivered implementation work. The current delivery is a docu
 
 | NFR ID | Target | Actual | Status |
 |--------|--------|--------|--------|
-| NFR-T01 | Baseline evidence has source command or file path | Not collected | Not started |
-| NFR-T02 | Ownership decision names responsible authority | Not collected | Not started |
-| NFR-S01 | No git mutation during evidence collection | Planned constraint | Not started |
-| NFR-S02 | Destructive rollback requires confirmation | Planned constraint | Not started |
-| NFR-R01 | Benchmark evidence is replayable | Not collected | Not started |
-| NFR-R02 | Thresholds are pass/fail criteria | Not collected | Not started |
+| NFR-T01 | Baseline evidence has source command or file path | `/tmp/skd-bench-phase001/report.json` + canonical command in `plan.md` | Met |
+| NFR-T02 | Ownership decision names responsible authority | Repository owner, delegated to this session | Met |
+| NFR-S01 | No git mutation during evidence collection | Only `git status`/`git diff` (read-only) were run | Met |
+| NFR-S02 | Destructive rollback requires confirmation | Named in `plan.md` §7; no destructive command issued | Met |
+| NFR-R01 | Benchmark evidence is replayable | Canonical command recorded verbatim in `plan.md` | Met |
+| NFR-R02 | Thresholds are pass/fail criteria | `plan.md` §4 "Later-Phase Acceptance Thresholds" table | Met |
 
 <!-- /ANCHOR:nfr-verify -->
 ---
@@ -127,10 +152,8 @@ This phase has not delivered implementation work. The current delivery is a docu
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **No baseline evidence recorded yet** - The phase is planned/not started, so later implementation remains blocked.
-2. **No ownership authority identified yet** - Pending changes cannot be accepted, reverted, or absorbed until authority is recorded.
-3. **No benchmark threshold accepted yet** - Later phases cannot claim improvement or parity until thresholds are set.
-4. **No git status collected in this authoring task** - Status evidence must be collected during gate execution without git mutation.
+1. **Strict validation passes on content; one expected git-state warning remains** - Independently re-run on 2026-07-05 after regenerating `description.json`/`graph-metadata.json` and reconciling `source_doc_hashes`/`source_fingerprint`/continuity fingerprint against the final doc content: `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/design/009-sk-design-claude-parity/001-baseline-ownership-gate --strict` returns `Errors: 0, Warnings: 1`. The sole warning is `CONTINUITY_FRESHNESS` (packet paths have uncommitted changes) — this is a git-dirty-tree check, not a content defect, and is expected because no commit was made per the no-commit-without-explicit-request policy. It resolves the moment the packet is committed. The "Status: Complete" line above is accurate: all content, metadata-integrity, and evidence checks pass.
+2. **D3 (efficiency) is unscored in router mode** - The frozen benchmark shows `D3: 0/100` with a documented note that this is a router-mode measurement gap, not a regression; later phases should not treat this as a new failure.
 
 <!-- /ANCHOR:limitations -->
 ---
@@ -140,7 +163,8 @@ This phase has not delivered implementation work. The current delivery is a docu
 
 | Planned | Actual | Reason |
 |---------|--------|--------|
-| Create Phase 001 Level 2 documentation | Documentation scaffold authored | Required before baseline ownership execution |
-| Complete baseline ownership implementation | Not completed | Phase is intentionally planned/not started until evidence is collected |
+| Create Phase 001 Level 2 documentation | Documentation scaffold authored, then executed to a closed gate | Required before baseline ownership execution |
+| Complete baseline ownership implementation | Completed: status inventory, benchmark capture, ownership/authority decisions, and rollback path all recorded and evidenced | Gate closure required before later `sk-design` refactor phases may begin |
+| Create `decision-record.md` per `spec.md`'s Files-to-Change table | Created in this pass | Required to remove fabricated evidence citations from `spec.md`/`tasks.md` and provide a durable gate decision handoff |
 
 <!-- /ANCHOR:deviations -->

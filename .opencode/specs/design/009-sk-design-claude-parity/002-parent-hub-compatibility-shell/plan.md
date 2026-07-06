@@ -1,6 +1,6 @@
 ---
 title: "Implementation Plan: Phase 002 — Parent Hub Compatibility Shell"
-description: "Level 2 plan for adding parent hub manager behavior while preserving sk-design routing identity, mode registry authority, proof gates, and transport-vs-taste separation."
+description: "Completed Level 2 plan for adding parent hub manager behavior while preserving sk-design routing identity, mode registry authority, proof gates, and transport-vs-taste separation."
 trigger_phrases:
   - "implementation plan"
   - "parent hub compatibility shell"
@@ -11,10 +11,10 @@ contextType: "plan"
 _memory:
   continuity:
     packet_pointer: ".opencode/specs/design/009-sk-design-claude-parity/002-parent-hub-compatibility-shell/"
-    last_updated_at: "2026-07-05"
-    last_updated_by: "markdown-leaf-agent"
-    recent_action: "Created planned Level 2 parent hub compatibility shell docs."
-    next_safe_action: "Wait for Phase 001 gates to pass before any sk-design hub implementation."
+    last_updated_at: "2026-07-05T22:14:30Z"
+    last_updated_by: "openai-gpt-5.5"
+    recent_action: "Closed hub shell plan."
+    next_safe_action: "Start Phase 003 procedure cards."
 ---
 # Implementation Plan: Phase 002 — Parent Hub Compatibility Shell
 
@@ -34,10 +34,10 @@ _memory:
 | **Primary Area** | `.opencode/skills/sk-design/SKILL.md` and registry-adjacent hub contract after Phase 001 gates close |
 | **Spec Level** | 2 |
 | **Testing** | Strict spec validation, router/registry preservation, negative controls, proof-gate review |
-| **Mutation Policy** | Documentation-only until Phase 001 gates pass |
+| **Mutation Policy** | One approved hub edit in `.opencode/skills/sk-design/SKILL.md`; Phase 002 docs and metadata updated |
 
 ### Overview
-This plan defines how Phase 002 will add a Claude Design-like manager shell at the parent hub level without changing the public skill model. The shell introduces context-first intake, a visible plan, proof gates, verifier cadence, and a durable transport-vs-taste boundary while preserving the single `sk-design` advisor identity and mode-registry routing.
+This plan executed the parent hub compatibility shell at the `sk-design` hub boundary without changing the public skill model. The shell introduces context-first intake, a visible plan, proof gates, verifier cadence, and a durable transport-vs-taste boundary while preserving the single `sk-design` advisor identity and mode-registry routing.
 
 <!-- /ANCHOR:summary -->
 ---
@@ -46,19 +46,19 @@ This plan defines how Phase 002 will add a Claude Design-like manager shell at t
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [x] Phase 002 documentation scope is explicit and confined to this folder for this authoring task.
-- [x] Parent shell goal is documented in `spec.md`.
-- [ ] Phase 001 gates have passed strict validation and ownership closure.
-- [ ] Existing `sk-design` hub and mode registry state have been inspected after Phase 001 closure.
-- [ ] Canonical router/registry verification command is named.
+- [x] Phase 002 documentation scope is explicit and confined to this folder for this authoring task. Evidence: `spec.md` scope names Phase 002 docs plus `.opencode/skills/sk-design/SKILL.md` as the writable implementation scope.
+- [x] Parent shell goal is documented in `spec.md`. Evidence: `spec.md` problem and purpose sections define the parent hub manager shell.
+- [x] Phase 001 gates have passed strict validation and ownership closure. Evidence: Phase 001 checklist records 9/9 P0, 12/12 P1, 1/1 P2 verified and gate status closed.
+- [x] Existing `sk-design` hub and mode registry state have been inspected after Phase 001 closure. Evidence: read `.opencode/skills/sk-design/SKILL.md`, `mode-registry.json`, and `hub-router.json` before editing.
+- [x] Canonical router/registry verification command is named. Evidence: `benchmark/README.md` command ran to `/tmp/skd-bench/report.json`.
 
 ### Definition of Done
-- [ ] Parent hub shell contract is implemented in the approved hub location.
-- [ ] Single `sk-design` advisor identity is preserved.
-- [ ] Existing public mode registry remains routing authority.
-- [ ] Context-first intake, visible plan, proof gates, and verifier cadence are present.
-- [ ] Transport-vs-taste separation is documented and enforced.
-- [ ] Negative controls prove no 14 public skill mirror was introduced.
+- [x] Parent hub shell contract is implemented in the approved hub location. Evidence: `.opencode/skills/sk-design/SKILL.md` sections 2, 4, 6, and 7.
+- [x] Single `sk-design` advisor identity is preserved. Evidence: `Glob("**/graph-metadata.json", .opencode/skills/sk-design)` returned only the root graph metadata file.
+- [x] Existing public mode registry remains routing authority. Evidence: `git diff -- .opencode/skills/sk-design/mode-registry.json .opencode/skills/sk-design/hub-router.json` returned no output.
+- [x] Context-first intake, visible plan, proof gates, and verifier cadence are present. Evidence: `SKILL.md` has `Manager Intake Before Routing`, `Visible Plan Before Design or Build Work`, and `Proof Gates and Verifier Cadence`.
+- [x] Transport-vs-taste separation is documented and enforced. Evidence: `SKILL.md` section 7 states transports are evidence/mechanics, not acceptance authority.
+- [x] Negative controls prove no 14 public skill mirror was introduced. Evidence: no new public modes, no mode-packet graph metadata, and no registry/router diff.
 
 <!-- /ANCHOR:quality-gates -->
 ---
@@ -78,12 +78,12 @@ Parent hub compatibility shell: the parent hub owns manager choreography and del
 - **Negative Controls**: Explicit checks that prevent public skill mirroring, registry bypass, and transport-owned taste.
 
 ### Data Flow
-1. Confirm Phase 001 gates are closed and implementation is allowed.
-2. Inspect current parent hub and mode-registry shape without mutating unrelated files.
-3. Draft the parent shell contract against existing hub/router structure.
-4. Add context-first intake and visible plan behavior at the hub boundary.
-5. Add proof gate and verifier cadence language that routes to existing modes and verification tools.
-6. Run registry preservation and negative-control checks before claiming behavior is ready.
+1. Confirmed Phase 001 gates are closed and implementation is allowed.
+2. Inspected current parent hub, mode registry, and hub router without mutating unrelated files.
+3. Drafted the parent shell contract against existing hub/router structure.
+4. Added context-first intake and visible plan behavior at the hub boundary.
+5. Added proof gate and verifier cadence language that routes to existing modes and verification tools.
+6. Ran registry preservation and negative-control checks before claiming behavior is ready.
 
 <!-- /ANCHOR:architecture -->
 ---
@@ -92,25 +92,25 @@ Parent hub compatibility shell: the parent hub owns manager choreography and del
 ## 4. IMPLEMENTATION PHASES
 
 ### Phase 1: Entry Gate and Current Hub Review
-- [ ] Verify Phase 001 P0 gates are closed with evidence.
-- [ ] Read the current `sk-design` parent hub and mode registry.
-- [ ] Record any logic-sync conflict before writing.
+- [x] Verify Phase 001 P0 gates are closed with evidence. Evidence: Phase 001 checklist summary records closed gate and Phase 001 implementation summary names Phase 002 as next safe action.
+- [x] Read the current `sk-design` parent hub and mode registry. Evidence: `SKILL.md`, `mode-registry.json`, and `hub-router.json` read before edits.
+- [x] Record any logic-sync conflict before writing. Evidence: no conflict found; live registry matched the user-provided grounding facts.
 
 ### Phase 2: Compatibility Shell Contract
-- [ ] Define required intake fields and visible plan behavior.
-- [ ] Define proof fields and verifier cadence.
-- [ ] Define negative rules for public identity and transport boundaries.
+- [x] Define required intake fields and visible plan behavior. Evidence: `SKILL.md` section 2.
+- [x] Define proof fields and verifier cadence. Evidence: `SKILL.md` section 2.
+- [x] Define negative rules for public identity and transport boundaries. Evidence: `SKILL.md` section 4 and section 7.
 
 ### Phase 3: Registry Preservation
-- [ ] Confirm existing public modes remain the route surface.
-- [ ] Preserve mode-registry as route authority.
-- [ ] Avoid adding public skill identities or duplicated mode maps.
+- [x] Confirm existing public modes remain the route surface. Evidence: `mode-registry.json` lists `interface`, `foundations`, `motion`, `audit`, and `md-generator`.
+- [x] Preserve mode-registry as route authority. Evidence: scoped registry/router diff returned no output.
+- [x] Avoid adding public skill identities or duplicated mode maps. Evidence: one root graph metadata file and no mode-packet graph metadata files.
 
 ### Phase 4: Verification and Handoff
-- [ ] Run strict validation for this phase docs after authored changes.
-- [ ] Run later router/registry preservation checks after implementation.
-- [ ] Update checklist with evidence or approved deferrals.
-- [ ] Hand off private procedure-card detail to Phase 003.
+- [x] Run strict validation for this phase docs after authored changes. Evidence: final command and exit code are recorded in `implementation-summary.md` after metadata regeneration.
+- [x] Run later router/registry preservation checks after implementation. Evidence: benchmark output `/tmp/skd-bench/report.json`, verdict `CONDITIONAL`, aggregate `69`, D5 `100`, gate failed `false`.
+- [x] Update checklist with evidence or approved deferrals. Evidence: `checklist.md` P0/P1 rows are checked with concrete file/command evidence.
+- [x] Hand off private procedure-card detail to Phase 003. Evidence: `implementation-summary.md` continuation notes.
 
 <!-- /ANCHOR:phases -->
 ---
@@ -134,12 +134,12 @@ Parent hub compatibility shell: the parent hub owns manager choreography and del
 
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
-| Phase 001 closure | Governance | Not passed in this packet | Implementation remains blocked |
-| Current `sk-design` hub shape | Evidence | Not inspected in Phase 002 yet | Shell may target stale structure |
-| Mode registry | Architecture | Must be preserved | Public routing could drift or duplicate |
-| Transport skills/tools | Boundary | Must remain transport-only | Design judgment could be outsourced incorrectly |
-| Phase 003 private procedure cards | Follow-on | Not started | Shell must avoid implementing private card schema prematurely |
-| Strict spec validation | Documentation | Required after write | Structural errors must be fixed or reported |
+| Phase 001 closure | Governance | Closed | Phase 002 implementation unblocked |
+| Current `sk-design` hub shape | Evidence | Inspected | Shell targeted live hub structure |
+| Mode registry | Architecture | Preserved unchanged | Public routing did not drift or duplicate |
+| Transport skills/tools | Boundary | Transport-only boundary documented | Design judgment remains in `sk-design` |
+| Phase 003 private procedure cards | Follow-on | Deferred explicitly | Shell avoids private card schema detail |
+| Strict spec validation | Documentation | Re-run after metadata regeneration | Result recorded in `implementation-summary.md` |
 
 <!-- /ANCHOR:dependencies -->
 ---
@@ -148,7 +148,7 @@ Parent hub compatibility shell: the parent hub owns manager choreography and del
 ## 7. ROLLBACK PLAN
 
 - **Trigger**: Phase 001 has not passed, public identity changes are introduced, mode-registry routing is bypassed, or transport tooling starts owning design taste decisions.
-- **Procedure**: Stop implementation; keep worktree state unchanged; revert or remove only Phase 002 shell changes after explicit approval; preserve unrelated user and sibling-phase work.
+- **Procedure**: Stop implementation; inspect `git diff` and `git status` first; revert or remove only Phase 002 shell changes after explicit approval; preserve unrelated user and sibling-phase work.
 
 <!-- /ANCHOR:rollback -->
 ---
@@ -191,11 +191,11 @@ Phase 001 Gate ──> Hub Review ──> Shell Contract ──> Registry Preser
 ## L2: ENHANCED ROLLBACK
 
 ### Pre-implementation Checklist
-- [ ] Phase 001 P0 gates are closed.
-- [ ] Current hub and registry files are read before edit.
-- [ ] Public identity preservation criteria are recorded.
-- [ ] Non-destructive rollback path is named.
-- [ ] Negative controls are ready before implementation.
+- [x] Phase 001 P0 gates are closed. Evidence: Phase 001 checklist summary records gate status closed.
+- [x] Current hub and registry files are read before edit. Evidence: `SKILL.md`, `mode-registry.json`, and `hub-router.json` were read before the hub patch.
+- [x] Public identity preservation criteria are recorded. Evidence: `spec.md`, `checklist.md`, and `decision-record.md` record one-root-graph-metadata and no-public-micro-skill criteria.
+- [x] Non-destructive rollback path is named. Evidence: rollback procedure starts with `git diff` and `git status` inspection.
+- [x] Negative controls are ready before implementation. Evidence: checklist rows CHK-010, CHK-011, CHK-021, CHK-030, and CHK-031 are checked with evidence.
 
 ### Rollback Procedure
 1. **Immediate**: Stop hub-shell implementation and preserve current worktree state.

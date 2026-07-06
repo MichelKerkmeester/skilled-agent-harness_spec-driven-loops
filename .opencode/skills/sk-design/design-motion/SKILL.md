@@ -1,8 +1,8 @@
 ---
 name: design-motion
 description: Temporal interaction design for purposeful animation, micro-interactions, transitions, motion materials, AnimatePresence, and reduced motion.
-allowed-tools: [Read, Grep, Glob, Task]
-version: 1.0.0.0
+allowed-tools: [Read, Grep, Glob]
+version: 1.0.0.1
 metadata:
   author: OpenCode
   family: sk-code
@@ -105,6 +105,7 @@ The router discovers markdown resources recursively from `references/` and `asse
 | CONDITIONAL | Specifying a motion pattern or writing a handoff | `assets/motion_pattern_cards.md` and `../shared/sk_code_handoff.md` |
 | CONDITIONAL | Building or reviewing an `AnimatePresence` exit | `assets/animate_presence_checklist.md` |
 | CONDITIONAL | A pre-handoff motion performance pass | `assets/motion_performance_failure_card.md` |
+| CONDITIONAL | Internal procedure support | `procedures/interaction_states_pass.md` and `../shared/procedures/polish_gate_orchestration.md` when the trigger matches |
 | ON_DEMAND | Static token coordination | Parent `sk-design/references/design_token_vocabulary.md` and `foundations` |
 
 ### Smart Router Pseudocode
@@ -269,6 +270,23 @@ def route_motion_resources(user_request, task=None):
 7. Spec the pattern with the matching card in `assets/motion_pattern_cards.md`, run `assets/animate_presence_checklist.md` for any exit and clear `assets/motion_performance_failure_card.md` before handoff.
 8. Hand implementation to `sk-code` with timing, easing, states, reduced-motion fallback, and performance risks.
 
+### Procedure Card Selection
+
+After the hub selects the public `motion` mode, choose a private procedure card only when its trigger matches, then cite it by relative path in the plan or proof line. These cards support this mode; they are not public routes.
+
+| Request shape | Procedure card | Proof to cite |
+| --- | --- | --- |
+| Hover, active, focus, disabled, loading, selected, navigation, forms, custom widgets, or missing feedback | `procedures/interaction_states_pass.md` | Interaction-state matrix, visible focus, feedback coverage, transition timing, and reduced-motion behavior. |
+| Final polish spanning accessibility, slop, rhythm, and interaction states | `../shared/procedures/polish_gate_orchestration.md` | Consolidated blockers, quality issues, polish notes, and owner mapping. |
+
+If no procedure card matches, state `Procedure applied: none - baseline motion workflow` and continue with the restraint gate, temporal concern routing, and motion handoff. Do not load every procedure card for a single request.
+
+### Context, Proof, And Direct Fallback
+
+Record the context basis before motion decisions: public mode `motion`, loaded references, selected procedure card or no-procedure fallback, target interaction, affected states, existing animation system, motion budget, reduced-motion bar, and performance constraints. Before a ready or handoff claim, include proof naming the selected procedure card, evidence labels, timing/easing decisions, reduced-motion path, and verification risks.
+
+This mode must run directly with Read, Glob, and Grep only. If subagents are unavailable or disallowed, do not dispatch; execute the same procedure selection, context capture, and proof checks in the current session. The fallback keeps the same proof bar and cannot rely on Write, Edit, Bash, or Task.
+
 ### Motion sk-code Handoff Boundary
 
 Before `sk-code` implements motion, fill the shared envelope from `../shared/sk_code_handoff.md`. The motion-owned field is `IMPLEMENTATION MECHANISM / STACK BOUNDARY`: name CSS transitions, Web Animations, View Transitions, `motion/react`, GSAP or the existing project animation system. If no library applies, say `no animation library`. `sk-code` must not migrate or mix animation systems inside one interaction surface without approval.
@@ -291,6 +309,7 @@ Good motion clarifies. Bad motion decorates, delays, or competes. One well-rehea
 6. For `AnimatePresence`, ensure conditional motion elements have wrappers, stable keys, exit props, and coordinated modes.
 7. Pause, stop, or avoid looping motion when off-screen.
 8. Keep delight earned, brief, contextual, and non-blocking.
+9. Cite the selected procedure card or no-procedure fallback before substantial motion output when a private procedure trigger matches.
 
 ### NEVER
 
@@ -331,6 +350,8 @@ Fill-in cards. Copy, complete, and hand off:
 - [`assets/animate_presence_checklist.md`](assets/animate_presence_checklist.md) - Pass-or-fail checklist for `AnimatePresence` exits.
 - [`assets/motion_performance_failure_card.md`](assets/motion_performance_failure_card.md) - Build-side failure-mode card for motion that drops frames.
 - [`../shared/sk_code_handoff.md`](../shared/sk_code_handoff.md) - Shared sk-code handoff envelope. Motion uses it for implementation mechanism and stack-boundary fields.
+- [`procedures/interaction_states_pass.md`](procedures/interaction_states_pass.md) - Private support for interaction-state matrices, feedback, transitions, and reduced-motion expectations.
+- [`../shared/procedures/polish_gate_orchestration.md`](../shared/procedures/polish_gate_orchestration.md) - Shared private final-polish orchestration when motion owns interaction-state or transition fixes.
 
 ### Parent Shared Base
 
@@ -352,6 +373,8 @@ Use, do not duplicate, the parent references for shared vocabulary:
 - Implementation handoff names the target states, target properties, and verification risks.
 - Implementation handoff names the animation mechanism and forbids accidental library migration or mixed animation systems.
 - Motion does not block interaction, compete with primary hierarchy, or exhaust the user.
+- The selected private procedure card is cited by relative path, or the no-procedure fallback is explicitly stated.
+- Direct execution with Read, Glob, and Grep can produce the same context/proof result without subagent dispatch.
 
 ---
 

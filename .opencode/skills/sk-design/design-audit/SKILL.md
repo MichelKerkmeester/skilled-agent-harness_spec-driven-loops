@@ -1,8 +1,8 @@
 ---
 name: design-audit
 description: Design QA and critique mode for accessibility, performance, responsive, theming, anti-slop detection, scoring, and production hardening.
-allowed-tools: [Read, Grep, Glob, Task]
-version: 1.0.0.1
+allowed-tools: [Read, Grep, Glob]
+version: 1.0.0.2
 metadata:
   author: OpenCode
   family: sk-code
@@ -109,6 +109,7 @@ DESIGN QA TASK
 | CONDITIONAL | Producing the audit report | `assets/audit_report_template.md` (fill-in 5-dimension score plus P0-P3 findings) |
 | CONDITIONAL | Citing the snippet-level accessibility fix | `assets/a11y_quick_fixes.md` (accessible names, keyboard, focus, semantics, forms, announcements, contrast, motion) |
 | CONDITIONAL | Routing accepted findings to sk-code | `../shared/sk_code_handoff.md` (backlog handoff card, routes only and applies nothing) |
+| CONDITIONAL | Internal procedure support | `procedures/accessibility_audit.md`, `procedures/ai_slop_check.md`, and `../shared/procedures/polish_gate_orchestration.md` when the trigger matches |
 | ON_DEMAND | Code correctness beyond UI quality | `sk-code` code-review mode (findings-first baseline + router-selected surface evidence) |
 
 ### Smart Router Pseudocode
@@ -281,6 +282,24 @@ def route_audit_resources(user_request, task=None):
 5. Map each finding to the owning sibling or implementation skill. Route a bolder, quieter, distill or redesign direction through `references/transform_remediation.md` first, because the correct direction depends on the register.
 6. End with recommended next actions; do not silently implement fixes during a review-only request.
 
+### Procedure Card Selection
+
+After the hub selects the public `audit` mode, choose at most one primary private procedure card and cite it by relative path in the plan or proof line. These cards support audit focus; they are not public routes.
+
+| Request shape | Procedure card | Proof to cite |
+| --- | --- | --- |
+| Accessibility, WCAG, inclusive design, contrast, keyboard, focus, form, or release-readiness review | `procedures/accessibility_audit.md` | Coverage of contrast/color, semantics, keyboard/focus, motion/forms/miscellaneous, evidence labels, and unresolved confirmation needs. |
+| AI-template risk, generic visual language, over-decoration, slop, or model-tell review | `procedures/ai_slop_check.md` | Detected pattern, evidence location or artifact, severity, owner, and concrete fix direction. |
+| Full pre-delivery polish spanning multiple design dimensions | `../shared/procedures/polish_gate_orchestration.md` | Consolidated blockers, quality issues, polish notes, and owner mapping. |
+
+If no procedure card matches, state `Procedure applied: none - baseline audit workflow` and continue with the audit contract, five-dimension score, and findings-first report. Do not load every procedure card for a single request.
+
+### Context, Proof, And Direct Fallback
+
+Record the context basis before findings: public mode `audit`, loaded references, selected procedure card or no-procedure fallback, target artifact, available evidence, missing evidence, audit bar, and whether the score is full or focused. Before a ready, release, or accessibility claim, include proof naming the selected procedure card, evidence labels, dimensions covered, and what remains not assessed.
+
+This mode must run directly with Read, Glob, and Grep only. If subagents are unavailable or disallowed, do not dispatch; execute the same procedure selection, context capture, and proof checks in the current session. The fallback keeps the same proof bar and cannot rely on Write, Edit, Bash, or Task.
+
 ### Backlog Handoff To sk-code
 
 When accepted findings move to implementation, emit the shared handoff envelope from `../shared/sk_code_handoff.md` as a backlog card. Each finding includes id, severity, owner, target, evidence label, one-line fix shape and verification. An audit with zero accepted findings emits an empty valid backlog. The audit never applies fixes, edits files or grants write authority.
@@ -319,6 +338,7 @@ Each dimension scores 0-4. Total `/20` rating:
 6. Explain user impact, not just rule violation.
 7. Map each fix to the right owner: foundations, motion, interface, spec/extraction, or code implementation.
 8. Celebrate positive findings briefly so teams know what to preserve.
+9. Cite the selected procedure card or no-procedure fallback before substantial audit output when a private procedure trigger matches.
 
 ### NEVER
 
@@ -353,6 +373,9 @@ Each dimension scores 0-4. Total `/20` rating:
 - [`references/hardening_edge_cases.md`](references/hardening_edge_cases.md) - Production-readiness matrix of extreme inputs, errors, permissions, concurrency, i18n and RTL, text expansion, CJK and emoji.
 - [`references/corpus_map.md`](references/corpus_map.md) - Source traceability for the distilled corpus.
 - [`../shared/sk_code_handoff.md`](../shared/sk_code_handoff.md) - Shared sk-code handoff envelope. Audit uses it for accepted-finding backlog handoff without applying fixes.
+- [`procedures/accessibility_audit.md`](procedures/accessibility_audit.md) - Private support for accessibility-focused audit passes.
+- [`procedures/ai_slop_check.md`](procedures/ai_slop_check.md) - Private support for AI-template and generic-design risk review.
+- [`../shared/procedures/polish_gate_orchestration.md`](../shared/procedures/polish_gate_orchestration.md) - Shared private final-polish orchestration when audit owns the review verdict.
 
 ### Assets
 
@@ -380,6 +403,8 @@ Use, do not duplicate, the parent references for shared vocabulary:
 - Findings map to concrete next actions and owning skills, with directional remediation routed by register.
 - No positive completion or release-readiness claim is made from missing evidence.
 - Accepted findings route through a backlog handoff card and preserve the audit-never-fixes boundary.
+- The selected private procedure card is cited by relative path, or the no-procedure fallback is explicitly stated.
+- Direct execution with Read, Glob, and Grep can produce the same context/proof result without subagent dispatch.
 
 ---
 

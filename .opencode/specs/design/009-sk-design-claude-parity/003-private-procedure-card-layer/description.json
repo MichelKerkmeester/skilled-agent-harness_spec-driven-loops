@@ -12,33 +12,37 @@
   ],
   "path": ".opencode/specs/design/009-sk-design-claude-parity/003-private-procedure-card-layer/",
   "level": 3,
-  "status": "planned/not-started",
+  "status": "complete",
   "parentPacket": ".opencode/specs/design/009-sk-design-claude-parity/",
   "specFolder": "design/009-sk-design-claude-parity/003-private-procedure-card-layer",
-  "description": "The external Claude procedure set contains useful design-manager behaviors, but exposing those procedures as fourteen public OpenCode skills would",
+  "description": "Level 3 phase packet that implemented a private, mode-local procedure-card layer adapting fourteen external Claude design procedures into the existing sk-design five-mode architecture without a public fourteen-skill mirror.",
   "keywords": [
-    "external",
-    "claude",
+    "private",
     "procedure",
-    "set",
-    "contains",
-    "useful",
-    "design-manager",
-    "behaviors",
-    "exposing",
-    "procedures",
-    "fourteen",
-    "public",
-    "opencode",
-    "skills"
+    "card",
+    "layer",
+    "procedure-card",
+    "schema",
+    "mode-local",
+    "cards",
+    "claude",
+    "adaptation",
+    "sk-design",
+    "routing"
   ],
-  "lastUpdated": "2026-07-05T16:15:10.205Z",
+  "lastUpdated": "2026-07-05T23:34:56.473Z",
   "specId": "003",
   "folderSlug": "private-procedure-card-layer",
   "parentChain": [
     "design",
     "009-sk-design-claude-parity"
   ],
-  "memorySequence": 0,
-  "memoryNameHistory": []
+  "memorySequence": 5,
+  "memoryNameHistory": [
+    "06-07-26_00-12__verified-all-14-procedure-cards-exist-on-disk.md",
+    "06-07-26_00-13__verified-all-14-procedure-cards-exist-on-disk.md",
+    "06-07-26_00-18__verified-all-14-procedure-cards-exist-on-disk.md",
+    "06-07-26_00-19__verified-all-14-procedure-cards-exist-on-disk.md",
+    "06-07-26_00-34__independent-verification-confirmed-the-14-private.md"
+  ]
 }

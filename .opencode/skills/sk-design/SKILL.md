@@ -12,7 +12,7 @@ metadata:
 
 # Design Family Hub (sk-design)
 
-One skill, five design modes, one shared reference base. `sk-design` is the public, advisor-routable home for every design persona; the shared design reference base (anti-slop principles, cognitive laws, design-token vocabulary) is the common vocabulary the modes cite. This hub holds NO per-mode design logic — each mode keeps its own contract in its packet, and the hub only routes by `workflowMode` through `mode-registry.json`.
+One skill, five design modes, one shared reference base. `sk-design` is the public, advisor-routable home for every design persona; the shared design reference base (anti-slop principles, cognitive laws, design-token vocabulary) is the common vocabulary the modes cite. Before routing, the hub acts as a design manager: it gathers context, makes the plan visible, names proof expectations, then delegates through `mode-registry.json`. This hub holds NO per-mode design logic — each mode keeps its own contract in its packet, and the hub only routes by `workflowMode` through `mode-registry.json`.
 
 ---
 
@@ -40,6 +40,17 @@ Use this skill (through the hub) for any design-family workflow. Invoke it as `s
 
 Routing is **registry-driven**. `mode-registry.json` is the single source of truth; the hub reads it and does not re-derive the mapping. The advisor routes any design query to the single identity `sk-design`; the hub then picks the mode.
 
+### Manager Intake Before Routing
+
+Before selecting a mode or using a transport, gather the smallest complete context set needed to avoid generic output:
+- **Goal**: what the user wants changed, evaluated, generated, or extracted.
+- **Surface**: target page, component, product area, brand, platform, or artifact.
+- **Inputs**: existing files, screenshots, live URLs, design references, copy, constraints, and user-provided assets.
+- **Constraints**: audience, accessibility, responsive breakpoints, brand limits, implementation surface, deadlines, and non-goals.
+- **Proof expectations**: what evidence will make the result ready, including critique criteria, accessibility checks, responsive states, and any requested transport confirmation.
+
+If a required fact is unknown and changes the route or acceptance bar, ask a focused question before routing. If enough context exists for a narrow advisory answer, proceed with the smallest useful mode and state any assumption explicitly.
+
 ### The discriminator
 - **`workflowMode`** — the public mode key (every mode): `interface`, `foundations`, `motion`, `audit`, `md-generator`.
 - **`backendKind`** — which backend runs the mode: `reference-base` (the four doc-guidance modes cite the shared design reference base) or `playwright-extract` (`md-generator` runs its embedded Playwright CSS-extraction pipeline).
@@ -55,6 +66,17 @@ read mode-registry.json
 
 Intent classification favors the smallest useful mode. Default a generic "make this look good" prompt to **interface** unless the prompt is explicitly foundations (tokens/color/type/layout), motion (animation/transition), audit (critique/accessibility/slop), or md-generator (`DESIGN.md`/style-reference extraction). Pair modes only when the prompt has clearly separate design axes (e.g. interface + motion for a landing page with substantial choreography).
 
+### Visible Plan Before Design or Build Work
+
+Before producing substantial design direction, build-ready guidance, implementation handoff, or transport work, show a concise plan with:
+- selected mode or ordered bundle, resolved from `mode-registry.json`;
+- context loaded or still missing;
+- intended design moves or audit dimensions;
+- proof the result must provide before it can be called ready;
+- handoff target when code implementation or external transport is needed.
+
+For quick, narrow advice, the plan can be one sentence. For UI build or redesign work, make the plan explicit before the first design recommendation so the user can see the route and acceptance bar.
+
 ### Bundle Rule for Build/UI Work
 
 For UI build work, page or component generation, and redesign implementation, auto-load the build bundle before design or implementation decisions: `interface`, `foundations`, `design-interface/assets/interface_preflight_card.md`, `shared/register.md`, `design-interface/references/design-process/brief_to_dials.md`, and the matching foundations axis references. Require a context manifest per `shared/context_loading_contract.md`, with `shared/assets/context_loaded_card.md` before recommendations and `shared/assets/proof_of_application_card.md` before any ready claim. Keep the smallest-useful-mode rule for narrow advice that does not produce, evaluate, or hand off a UI surface.
@@ -62,6 +84,18 @@ For UI build work, page or component generation, and redesign implementation, au
 This bundle is declared machine-readably as the `ui-build-bundle` entry in `hub-router.json` `routerPolicy.bundleRules` (`whenAll: interface + foundations → orderedBundle`); the prose above remains the behavioral elaboration (resource specifics and manifest requirements).
 
 Per-mode behavior is **not flattened**: each packet keeps its own design judgment, examples, standards, verification, and tool-permission needs. The four doc-guidance modes are read-and-guide; `md-generator` is the only mode that runs an extraction pipeline (Write/Edit/Bash over Playwright).
+
+### Proof Gates and Verifier Cadence
+
+The hub names proof requirements; the selected mode supplies the detailed evidence contract. Use these gates before a ready/completion claim:
+- **Taste proof**: cite the mode's design rationale and the concrete visual decisions made against the user's context.
+- **Accessibility proof**: route contrast, semantics, reduced-motion, and usability concerns to the relevant mode packet; do not let transport output stand in for critique.
+- **Responsive proof**: name the viewport/state coverage expected for the surface, or state why the current request is advisory-only.
+- **Transport proof**: when Figma, Open Design, browser, or extraction tools are involved, report only what the transport actually did and keep design acceptance in `sk-design`.
+
+If a required proof field is missing, contradictory, or only supplied by transport mechanics, pause the ready claim and route the gap back to the selected mode or to `audit`. The hub names the missing proof; it does not invent a new verifier or bypass the mode packet's evidence contract.
+
+Verifier cadence is: intake before routing, visible plan before substantial design/build output, proof review before ready claims, and `sk-code` review/verification after implementation handoff. The four read-only modes must meet their proof obligations with Read/Glob/Grep evidence, loaded references, and user-provided artifacts only; they must not require Write, Edit, or Bash. `md-generator` may use its extraction pipeline because the registry marks it as the only mutating mode.
 
 ---
 
@@ -88,14 +122,19 @@ The four doc-guidance modes (interface, foundations, motion, audit) consume the 
 
 ### ALWAYS
 - **ALWAYS** resolve a mode through `mode-registry.json`; never hardcode a router mapping in the hub.
+- **ALWAYS** gather context before routing when missing facts could change the selected mode or acceptance bar.
+- **ALWAYS** make the route and proof plan visible before substantial design, build, or transport work.
 - **ALWAYS** keep each mode's design judgment, examples, and verification in its packet — the hub stays logic-free.
 - **ALWAYS** keep exactly one `graph-metadata.json` (this hub's) so the advisor sees one skill identity.
 - **ALWAYS** give every mode an `advisorRouting` block with a valid `routingClass` and `packetSkillName`.
 - **ALWAYS** route a generic design prompt to the smallest useful mode; default to `interface` when no other axis dominates.
+- **ALWAYS** route evidence requirements to the existing modes and consumers instead of inventing hub-local verification logic.
 
 ### NEVER
 - **NEVER** add a `graph-metadata.json` or a discoverable skill marker inside a mode packet or the shared reference base.
 - **NEVER** embed per-mode design instructions in this hub — that content lives in the packets.
+- **NEVER** add public micro-skill identities or a public mirror of another design skill family; preserve the single `sk-design` advisor identity.
+- **NEVER** require Write, Edit, or Bash for the four read-only advisory modes; their tool surface is Read/Glob/Grep only.
 - **NEVER** treat `mcp-figma` or `mcp-open-design` as taste or critique authority; they are transports loaded after the design mode is chosen.
 - **NEVER** route pure code, backend, or data work through the design family.
 
@@ -119,6 +158,7 @@ The four doc-guidance modes (interface, foundations, motion, audit) consume the 
 
 - The hub resolves one primary mode for the request (or a small set only for clearly separate axes).
 - The selected mode packet owns the detailed design workflow; the hub stayed routing-only.
+- Intake, visible plan, proof expectations, and verifier cadence are visible before ready claims.
 - The shared reference base is used only for common vocabulary and cross-mode consistency.
 - Exactly one `graph-metadata.json` exists for the whole skill; no packet carries its own.
 
@@ -134,9 +174,12 @@ The four doc-guidance modes (interface, foundations, motion, audit) consume the 
 - `md-generator` — `DESIGN.md` / style-reference extraction other skills consume.
 
 ### Transports and Consumers
-- `mcp-figma` and `mcp-open-design` are transports. Use them after the design mode is chosen.
-- `sk-code` consumes design output and implements it in the detected code surface.
-- `sk-code`'s code-review mode can audit implementation quality after design and build work converge.
+- `mcp-figma` and `mcp-open-design` are transports. Use them after the design mode is chosen, with the user-visible plan naming what the transport will do.
+- Transports can fetch, inspect, generate, extract, or apply artifacts; they do not decide whether the design is tasteful, accessible, responsive, or production-ready. Treat transport output as evidence to inspect, not as acceptance.
+- `sk-design` owns design judgment and proof expectations. When transport evidence is needed, bring it back into the selected design mode or audit mode for acceptance.
+- If transport output conflicts with the visible proof plan, resolve acceptance through the selected design mode or audit mode before implementation or ready claims.
+- `sk-code` consumes design output and implements it in the detected code surface after the design plan and proof expectations are clear.
+- `sk-code`'s code-review mode can audit implementation quality after design and build work converge; use it as the implementation verifier, not as a replacement for design taste.
 
 ---
 
