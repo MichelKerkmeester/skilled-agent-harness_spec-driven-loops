@@ -109,11 +109,11 @@ Use these examples when checking future router drift. They are routing contracts
 
 | Query | Expected Surface | Expected References |
 |-------|------------------|---------------------|
-| `Should I use motion.dev or pure CSS for hover states?` | N/A or UNKNOWN | `references/motion_dev/decision_matrix.md`, `references/motion_dev/quick_start.md`; cite the decision tree in this file |
-| `For a Webflow page, should scroll reveal use Motion.dev or CSS?` | WEBFLOW | `references/webflow/implementation/animation_workflows.md`, `references/webflow/implementation/performance_patterns.md`, `references/motion_dev/decision_matrix.md`, `references/motion_dev/scroll_and_gestures.md` |
-| `I'm building vanilla HTML/CSS/JS only, NOT Webflow, and deciding between Motion.dev and WAAPI.` | UNKNOWN or N/A | `references/motion_dev/decision_matrix.md`, `references/motion_dev/performance_and_pitfalls.md`; no `references/webflow/*` |
+| `Should I use motion.dev or pure CSS for hover states?` | N/A or UNKNOWN | `references/animation/decision_matrix.md`, `references/animation/quick_start.md`; cite the decision tree in this file |
+| `For a Webflow page, should scroll reveal use Motion.dev or CSS?` | WEBFLOW | `references/implementation/animation_workflows.md`, `references/implementation/performance_patterns.md`, `references/animation/decision_matrix.md`, `references/animation/scroll_and_gestures.md` |
+| `I'm building vanilla HTML/CSS/JS only, NOT Webflow, and deciding between Motion.dev and WAAPI.` | UNKNOWN or N/A | `references/animation/decision_matrix.md`, `references/animation/performance_and_pitfalls.md`; no `references/*` surface resources for a non-Webflow task |
 
-Expected response shape: give the smallest-tool recommendation first, then name the trade-off. Do not emit directory placeholders such as `references/motion_dev/`.
+Expected response shape: give the smallest-tool recommendation first, then name the trade-off. Do not emit directory placeholders such as `references/animation/`.
 
 ## 8. REFERENCES AND RELATED RESOURCES
 

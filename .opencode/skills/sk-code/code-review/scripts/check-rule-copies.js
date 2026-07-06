@@ -61,9 +61,9 @@ const EXACT_INVARIANTS = [
 // carry BOTH concepts. This locks the safety wording without forcing every
 // incidental mention (a heading, a keyword list) to restate it, and without
 // forcing files to identical wording (one says "surface", another "stack").
-// The full statement lives in the verify mode packet; the hub only routes to it.
+// The full statement lives in the shared verify workflow doctrine that each surface consumes.
 const IRON_LAW_FILES = [
-  '.opencode/skills/sk-code/code-verify/SKILL.md',
+  '.opencode/skills/sk-code/shared/references/workflow_verify.md',
   'CLAUDE.md',
   'AGENTS.md',
 ];

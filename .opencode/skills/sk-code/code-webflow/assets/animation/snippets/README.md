@@ -1,8 +1,8 @@
 ---
 title: "sk code assets motion dev snippets: Code README"
-description: "Code-facing README for .opencode/skills/sk-code/code-animation/assets/snippets."
+description: "Code-facing README for .opencode/skills/sk-code/code-webflow/assets/animation/snippets."
 trigger_phrases:
-  - "sk-code assets/motion_dev/snippets"
+  - "sk-code assets/animation/snippets"
   - "code README"
 version: 3.5.0.6
 ---
@@ -17,7 +17,7 @@ Executable asset scripts shipped with the skill.
 
 ### Purpose
 
-This README documents the code-bearing folder `.opencode/skills/sk-code/code-animation/assets/snippets` so operators can understand its role without opening every source file first. It follows the sk-doc skill README structure while staying focused on code navigation.
+This README documents the code-bearing folder `.opencode/skills/sk-code/code-webflow/assets/animation/snippets` so operators can understand its role without opening every source file first. It follows the sk-doc skill README structure while staying focused on code navigation.
 
 ### Usage
 
@@ -42,7 +42,7 @@ Start with `.opencode/skills/sk-code/SKILL.md` for runtime routing and workflow 
 **Step 2: Inspect the local code.**
 
 ```bash
-rg --files .opencode/skills/sk-code/code-animation/assets/snippets
+rg --files .opencode/skills/sk-code/code-webflow/assets/animation/snippets
 ```
 
 Expected result: the command lists the source files summarized below.
@@ -57,7 +57,7 @@ Load this folder through the owning skill workflow or MCP server entrypoint.
 
 | Feature | What It Does |
 |---|---|
-| Folder boundary | Documents direct code files under `assets/motion_dev/snippets`. |
+| Folder boundary | Documents direct code files under `assets/animation/snippets`. |
 | sk-code alignment | Points reviewers at OpenCode naming, header, error-handling, and type-discipline checks. |
 | Verification handoff | Records the expected owner and release-alignment review path for follow-up work. |
 
@@ -94,7 +94,7 @@ Load this folder through the owning skill workflow or MCP server entrypoint.
 **Audit this folder**
 
 ```text
-User request: Check .opencode/skills/sk-code/code-animation/assets/snippets for sk-code and README coverage.
+User request: Check .opencode/skills/sk-code/code-webflow/assets/animation/snippets for sk-code and README coverage.
 Skill routing: sk-code plus sk-doc.
 Expected output: Findings recorded in the current release-alignment review evidence.
 ```
@@ -114,6 +114,6 @@ Expected output: Findings recorded in the current release-alignment review evide
 
 | Document | Purpose |
 |---|---|
-| [`sk-code/SKILL.md`](../../../SKILL.md) | Runtime instructions for the owning skill. |
-| [`sk-code/SKILL.md`](../../../SKILL.md) | OpenCode coding standards and verification routing. |
-| [`sk-doc skill_readme_template.md`](../../../../sk-doc/assets/skill/skill_readme_template.md) | README structure used for this code README. |
+| [`sk-code/SKILL.md`](../../../../SKILL.md) | Runtime instructions for the owning skill. |
+| [`sk-code/SKILL.md`](../../../../SKILL.md) | OpenCode coding standards and verification routing. |
+| [`sk-doc skill_readme_template.md`](../../../../../sk-doc/assets/skill/skill_readme_template.md) | README structure used for this code README. |

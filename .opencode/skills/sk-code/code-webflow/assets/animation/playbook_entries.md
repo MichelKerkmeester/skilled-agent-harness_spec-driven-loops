@@ -21,7 +21,7 @@ Scenario-ready entries for Packet 1's motion.dev and animation regression playbo
 
 ### Purpose
 
-These entries can be lifted into `.opencode/skills/sk-code/manual_testing_playbook/05--motion-dev-and-animation-regression/` or used standalone. They expand Packet 1's MR-001 through MR-004 scenarios with API context from `references/motion_dev/`.
+These entries can be lifted into `.opencode/skills/sk-code/manual_testing_playbook/05--motion-dev-and-animation-regression/` or used standalone. They expand Packet 1's MR-001 through MR-004 scenarios with API context from `references/animation/`.
 
 ### Usage
 
@@ -49,9 +49,9 @@ Evidence:
 - exact CDN URL used
 
 API context:
-- `references/motion_dev/quick_start.md`
-- `references/motion_dev/animate_and_timelines.md`
-- `references/motion_dev/scroll_and_gestures.md`
+- `references/animation/quick_start.md`
+- `references/animation/animate_and_timelines.md`
+- `references/animation/scroll_and_gestures.md`
 
 ### MR-002 - CDN Bundle Version Pin
 
@@ -71,9 +71,9 @@ Evidence:
 - `/tmp/skc-MR002-export-probe.txt`
 
 API context:
-- `references/motion_dev/quick_start.md`
-- `references/motion_dev/integration_patterns.md`
-- `assets/motion_dev/install_card.md`
+- `references/animation/quick_start.md`
+- `references/animation/integration_patterns.md`
+- `assets/animation/install_card.md`
 
 ### MR-003 - Prefers Reduced Motion
 
@@ -94,7 +94,7 @@ Evidence:
 - console transcript
 
 API context:
-- `references/motion_dev/performance_and_pitfalls.md`
+- `references/animation/performance_and_pitfalls.md`
 - `a_nobel_en_zn/2_javascript/slider/testimonial.js`
 - `a_nobel_en_zn/2_javascript/video/video_hls_background_play_on_hover.js`
 
@@ -118,10 +118,10 @@ Evidence:
 - `/tmp/skc-MR004-verdict.md`
 
 API context:
-- `references/motion_dev/animate_and_timelines.md`
-- `references/motion_dev/scroll_and_gestures.md`
-- `references/motion_dev/performance_and_pitfalls.md`
-- `assets/motion_dev/snippets/stagger_animation.js`
+- `references/animation/animate_and_timelines.md`
+- `references/animation/scroll_and_gestures.md`
+- `references/animation/performance_and_pitfalls.md`
+- `assets/animation/snippets/stagger_animation.js`
 
 ## 3. CONTRACT REGRESSION EXAMPLES
 
@@ -129,9 +129,9 @@ Use these examples to prevent snippet and caveat drift in cross-stack routing ch
 
 | Query | Expected Surface | Expected Outputs |
 |-------|------------------|------------------|
-| `Show me a motion.dev animate-on-scroll example for any stack.` | N/A or UNKNOWN | `assets/motion_dev/snippets/animate_on_scroll.js`, `references/motion_dev/scroll_and_gestures.md`, `references/motion_dev/quick_start.md` |
-| `Give me a Webflow-safe Motion.dev in-view reveal snippet.` | WEBFLOW | `assets/motion_dev/snippets/in_view_reveal.js`, `references/webflow/implementation/animation_workflows.md`, `references/motion_dev/scroll_and_gestures.md`, plus the Webflow `snake_case` naming caveat |
-| `Reuse the Motion.dev stagger snippet in a stack-agnostic example, not Webflow.` | UNKNOWN or N/A | `assets/motion_dev/snippets/stagger_animation.js`, `references/motion_dev/animate_and_timelines.md`; no `references/webflow/*` |
+| `Show me a motion.dev animate-on-scroll example for any stack.` | N/A or UNKNOWN | `assets/animation/snippets/animate_on_scroll.js`, `references/animation/scroll_and_gestures.md`, `references/animation/quick_start.md` |
+| `Give me a Webflow-safe Motion.dev in-view reveal snippet.` | WEBFLOW | `assets/animation/snippets/in_view_reveal.js`, `references/implementation/animation_workflows.md`, `references/animation/scroll_and_gestures.md`, plus the Webflow `snake_case` naming caveat |
+| `Reuse the Motion.dev stagger snippet in a stack-agnostic example, not Webflow.` | UNKNOWN or N/A | `assets/animation/snippets/stagger_animation.js`, `references/animation/animate_and_timelines.md`; no `references/*` surface resources for a non-Webflow task |
 
 Expected response shape: name the exact snippet asset, include the relevant Motion.dev reference file, and only add the Webflow `snake_case` caveat when the prompt is Webflow-owned.
 
@@ -139,10 +139,10 @@ Expected response shape: name the exact snippet asset, include the relevant Moti
 
 - Packet 1 root playbook: `.opencode/skills/sk-code/manual_testing_playbook/manual_testing_playbook.md`
 - Packet 1 MR category: `.opencode/skills/sk-code/manual_testing_playbook/05--motion-dev-and-animation-regression/`
-- Motion quick start: `references/motion_dev/quick_start.md`
-- Motion integration patterns: `references/motion_dev/integration_patterns.md`
-- Motion performance guidance: `references/motion_dev/performance_and_pitfalls.md`
-- Motion stagger snippet: `assets/motion_dev/snippets/stagger_animation.js`
+- Motion quick start: `references/animation/quick_start.md`
+- Motion integration patterns: `references/animation/integration_patterns.md`
+- Motion performance guidance: `references/animation/performance_and_pitfalls.md`
+- Motion stagger snippet: `assets/animation/snippets/stagger_animation.js`
 
 ## 5. RELATED RESOURCES
 

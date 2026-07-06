@@ -161,7 +161,7 @@ Downloads high-priority resources for the current page with elevated priority. B
 <link rel="preload" href="https://cdn.jsdelivr.net/npm/motion@{version}/+esm" as="script" crossorigin>
 ```
 
-> **Cross-stack motion.dev reference**: For canonical motion.dev install patterns (CDN module + legacy global + npm), version-pin policy, and verification snippets that apply across stacks (not just Webflow), see [`../../motion_dev/integration_patterns.md`](../../../code-animation/references/integration_patterns.md) and [`../../../assets/motion_dev/install_card.md`](../../../code-animation/assets/install_card.md). The Webflow preload pattern above remains the authoritative source for Webflow-CDN-specific resource loading.
+> **Cross-stack motion.dev reference**: For canonical motion.dev install patterns (CDN module + legacy global + npm), version-pin policy, and verification snippets that apply across stacks (not just Webflow), see [`../animation/integration_patterns.md`](../animation/integration_patterns.md) and [`../../assets/animation/install_card.md`](../../assets/animation/install_card.md). The Webflow preload pattern above remains the authoritative source for Webflow-CDN-specific resource loading.
 
 **Custom Scripts:**
 ```html

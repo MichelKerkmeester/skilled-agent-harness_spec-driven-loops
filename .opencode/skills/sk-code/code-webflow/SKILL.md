@@ -1,6 +1,6 @@
 ---
 name: code-webflow
-description: "sk-code WEBFLOW surface: read-only frontend evidence (CSS/HTML/JavaScript standards, implementation and performance patterns, CDN deployment, browser debugging and verification) bundled by the hub alongside a workflow mode."
+description: "sk-code WEBFLOW surface: frontend evidence (CSS/HTML/JavaScript standards, implementation and performance patterns, CDN deployment, browser debugging and verification) plus shared implement/debug/verify workflow doctrine."
 allowed-tools: [Read, Bash, Grep, Glob]
 version: 1.0.0.0
 metadata:
@@ -13,13 +13,13 @@ metadata:
 
 # webflow Surface — Frontend Evidence
 
-Read-only **domain evidence** for browser/Webflow frontend work. This packet carries no process of its own: the hub bundles it alongside a workflow mode (`implement`, `debug`, `verify`, …) when it detects a Webflow surface, and the workflow mode acts on the evidence gathered here. Detection markers: `src/2_javascript`, `webflow`, `--vw-` custom properties, CDN-delivered client scripts.
+**Domain evidence** and shared workflow doctrine for browser/Webflow frontend work. This surface owns the implement -> debug -> verify phases through the workflow references below, and acts on the evidence gathered here when the hub detects a Webflow surface. Detection markers: `src/2_javascript`, `webflow`, `--vw-` custom properties, CDN-delivered client scripts.
 
 ## 1. WHEN THE HUB BUNDLES THIS
 
 - The task touches Webflow-published pages, CDN-delivered `webflow.js`/client scripts, or `src/2_javascript` sources.
-- A workflow mode needs frontend standards (CSS/HTML/JS), an implementation pattern, a performance remediation, a deployment step, or a browser debugging/verification procedure.
-- Surface bundling is evidence-only: nothing here mutates the workspace. The paired workflow mode owns any edits, tests, or commits.
+- The active workflow phase needs frontend standards (CSS/HTML/JS), an implementation pattern, a performance remediation, a deployment step, or a browser debugging/verification procedure.
+- This surface owns edits, tests, and verification through the workflow references; hand off formal findings-first review to `code-review` and author-side quality gates to `code-quality`.
 
 ## 2. REFERENCE MAP
 
@@ -35,6 +35,9 @@ Implementation patterns (`references/implementation/`):
 - Media & vendors: `third_party_integrations.md`, `swiper_patterns.md`
 - Hardening & performance: `security_patterns.md`, `performance_patterns.md`
 
+Animation / Motion.dev (`references/animation/`): `animation_principles.md`, `animate_and_timelines.md`, `decision_matrix.md`, `performance_and_pitfalls.md`, `scroll_and_gestures.md`, `integration_patterns.md`, `quick_start.md`
+Use after the Webflow surface resolves when Motion.dev overlays Webflow animation needs: scroll reveals, timelines, gestures; snippets live in `assets/animation/snippets/`.
+
 Performance (`references/performance/`): `cwv_remediation.md`, `resource_loading.md`, `interaction_gated_loading.md`, `third_party.md`, `webflow_constraints.md`
 
 Deployment (`references/deployment/`): `cdn_deployment.md`, `minification_guide.md`, `webflow_staging_production.md`
@@ -44,6 +47,8 @@ Browser debugging (`references/debugging/`): `debugging_workflows.md`, `error_re
 Browser verification (`references/verification/`): `verification_workflows.md`, `performance_checklist.md`
 
 Cross-language shared tier (`references/shared/`): `dev_workflow.md`, `cross_language_rules.md`, `enforcement.md`
+
+Workflow (`references/`): `workflow_implement.md`, `workflow_debug.md`, `workflow_verify.md` — this surface owns the implement -> debug -> verify phases; these are the shared phase doctrine.
 
 ## 3. SURFACE STANDARDS (the non-negotiables)
 
@@ -57,4 +62,4 @@ Cross-language shared tier (`references/shared/`): `dev_workflow.md`, `cross_lan
 - Integrations, patterns, templates, scripts — `assets/integrations/`, `assets/patterns/`, `assets/templates/`, `assets/scripts/`
 - Surface checklists — `assets/webflow-debugging_checklist.md`, `assets/webflow-verification_checklist.md`
 
-Assets are pulled on demand by the paired workflow mode; they are not part of the initial evidence slice.
+Assets are pulled on demand by the active workflow phase; they are not part of the initial evidence slice.

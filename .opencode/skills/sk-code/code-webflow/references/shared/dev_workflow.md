@@ -647,7 +647,7 @@ text.replace(/</g, '&lt;').replace(/>/g, '&gt;');
 
 See: [performance_patterns.md](../implementation/performance_patterns.md)
 
-> **Cross-stack motion.dev reference**: For deeper Motion API, performance, and decision guidance beyond this Webflow quick reference, see [`../../motion_dev/quick_start.md`](../../../code-animation/references/quick_start.md), [`../../motion_dev/performance_and_pitfalls.md`](../../../code-animation/references/performance_and_pitfalls.md), and [`../../motion_dev/decision_matrix.md`](../../../code-animation/references/decision_matrix.md).
+> **Cross-stack motion.dev reference**: For deeper Motion API, performance, and decision guidance beyond this Webflow quick reference, see [`../animation/quick_start.md`](../animation/quick_start.md), [`../animation/performance_and_pitfalls.md`](../animation/performance_and_pitfalls.md), and [`../animation/decision_matrix.md`](../animation/decision_matrix.md).
 
 ```javascript
 // ✅ Animate transform/opacity only (Motion.dev)

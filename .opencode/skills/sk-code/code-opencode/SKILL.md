@@ -1,6 +1,6 @@
 ---
 name: code-opencode
-description: "sk-code OPENCODE surface: read-only system-code evidence (TypeScript/Python/shell/config standards, language-agnostic patterns, hooks, alignment verification, and skill/agent/command/MCP authoring checklists) bundled by the hub alongside a workflow mode."
+description: "sk-code OPENCODE surface: system-code evidence (TypeScript/Python/shell/config standards, language-agnostic patterns, hooks, alignment verification, and skill/agent/command/MCP authoring checklists) plus shared implement/debug/verify workflow doctrine."
 allowed-tools: [Read, Bash, Grep, Glob]
 version: 1.0.0.0
 metadata:
@@ -13,13 +13,13 @@ metadata:
 
 # opencode Surface — System-Code Evidence
 
-Read-only **domain evidence** for OpenCode system code (the `.opencode/` tree: skills, agents, commands, plugins, MCP servers, config). This packet carries no process: the hub bundles it alongside a workflow mode when it detects a system-code surface, then slices by the detected language so a TypeScript task never pulls the Python/shell/config guides. Detection markers: `.opencode/`, `SKILL.md`, `.cjs`/`.mjs`/`.ts`/`.py`/`.sh`, `graph-metadata`, `spec-folder`, `argparse`.
+**Domain evidence** and shared workflow doctrine for OpenCode system code (the `.opencode/` tree: skills, agents, commands, plugins, MCP servers, config). This surface owns the implement -> debug -> verify phases through the workflow references below, then slices evidence by the detected language so a TypeScript task never pulls the Python/shell/config guides. Detection markers: `.opencode/`, `SKILL.md`, `.cjs`/`.mjs`/`.ts`/`.py`/`.sh`, `graph-metadata`, `spec-folder`, `argparse`.
 
 ## 1. WHEN THE HUB BUNDLES THIS
 
 - The task touches `.opencode/` system code — a skill, agent, command, plugin, MCP server, or descriptor/config.
-- A workflow mode needs a language standard, a language-agnostic organization pattern, a hook contract, an alignment-verification procedure, or an authoring checklist.
-- Evidence-only: nothing here mutates the workspace. The paired workflow mode owns edits, tests, and commits.
+- The active workflow phase needs a language standard, a language-agnostic organization pattern, a hook contract, an alignment-verification procedure, or an authoring checklist.
+- This surface owns edits, tests, and verification through the workflow references; hand off formal findings-first review to `code-review` and author-side quality gates to `code-quality`.
 
 ## 2. REFERENCE MAP
 
@@ -35,6 +35,8 @@ Language-agnostic shared tier (`references/shared/`, always kept within OpenCode
 - `hooks.md` — session-prime / user-prompt-submit / pre-tool-use / post-tool-use contracts
 - `alignment_verification_automation.md` — the alignment-drift verifier
 
+Workflow (`references/`): `workflow_implement.md`, `workflow_debug.md`, `workflow_verify.md` — this surface owns the implement -> debug -> verify phases; these are the shared phase doctrine.
+
 ## 3. SURFACE STANDARDS (the non-negotiables)
 
 - **Plugins never write to the TUI.** OpenCode plugins must not print to the process stdout/stderr (no overlay on the chat input); user/agent-visible output goes through system-context injection, tools, or append-only log files; DEBUG-gated stderr is allowed only behind an env flag. See `references/javascript/quality_standards.md` and the plugin exemption tier.
@@ -48,4 +50,4 @@ Component authoring (`assets/checklists/`): `skill_authoring.md`, `agent_authori
 
 Language quality gates (`assets/checklists/`): `universal_checklist.md`, `typescript_checklist.md`, `python_checklist.md`, `shell_checklist.md`, `javascript_checklist.md`, `config_checklist.md`
 
-Spec-folder authoring lives in system-spec-kit (`references/workflows/spec_folder_write_recipe.md` + `spec_folder_authoring_checklist.md`), not in this surface. Checklists are pulled on demand by the paired workflow mode.
+Spec-folder authoring lives in system-spec-kit (`references/workflows/spec_folder_write_recipe.md` + `spec_folder_authoring_checklist.md`), not in this surface. Checklists are pulled on demand by the active workflow phase.

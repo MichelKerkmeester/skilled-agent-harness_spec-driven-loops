@@ -43,7 +43,7 @@ Run ops validation from the repository root:
 bash .opencode/skills/system-spec-kit/scripts/ops/runbook.sh list
 bash .opencode/skills/system-spec-kit/scripts/ops/runbook.sh show index-drift
 bash .opencode/skills/system-spec-kit/scripts/ops/runbook.sh drill all --scenario success --max-attempts 1
-python3 .opencode/skills/sk-code/code-verify/assets/scripts/verify_alignment_drift.py --root .opencode/skills/system-spec-kit/scripts/ops
+python3 .opencode/skills/sk-code/code-opencode/assets/scripts/verify_alignment_drift.py --root .opencode/skills/system-spec-kit/scripts/ops
 ```
 
 ## 5. KEY FILES

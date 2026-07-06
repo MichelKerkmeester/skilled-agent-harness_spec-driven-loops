@@ -163,4 +163,4 @@ For frame-level verification, see [`performance_and_pitfalls.md`](./performance_
 - [`scroll_and_gestures.md`](./scroll_and_gestures.md) - `scroll()`, `inView()`, hover, press, drag-adjacent behavior.
 - [`performance_and_pitfalls.md`](./performance_and_pitfalls.md) - reduced motion, compositing, CWV risk, visual verification escalation.
 - [`decision_matrix.md`](./decision_matrix.md) - CSS vs Motion.dev vs GSAP vs WAAPI selection.
-- Snippet: `assets/motion_dev/snippets/principled_reveal.js`.
+- Snippet: `assets/animation/snippets/principled_reveal.js`.

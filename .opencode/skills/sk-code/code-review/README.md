@@ -135,10 +135,8 @@ Reach for the `code-review` mode (of the sk-code family) when you want severity-
 
 | Skill | Relationship |
 |---|---|
-| `code-implement` | Applies fixes after review findings are accepted. |
+| `code-webflow` / `code-opencode` | Surface skills that apply fixes after review findings are accepted and own the implement → debug → verify workflow doctrine (including root-cause debugging and verification evidence). |
 | `code-quality` | Runs author-side quality gates before review. |
-| `code-debug` | Owns root-cause debugging when review findings expose a defect needing investigation. |
-| `code-verify` | Owns verification evidence after fixes or when proof is requested. |
 | `deep-review` | The multi-iteration review loop. It adds JSONL state, deltas and autonomous convergence on top of the same severity taxonomy and evidence rules from `references/review_core.md`. |
 
 The `code-review` mode and deep-review share `references/review_core.md`, so P0, P1 and P2 mean the same thing in both workflows. The boundary is single-pass versus iterative. Use `code-review` when you want one report. Use deep-review when the scope demands multiple passes with tracked convergence.
@@ -174,7 +172,7 @@ A: The `code-review` mode is the single-pass baseline. One report, one status li
 
 **Q: How does this differ from sibling sk-code modes?**
 
-A: `code-implement` applies fixes, `code-quality` owns author-side gates, `code-debug` owns root-cause debugging and `code-verify` owns verification evidence. The `code-review` mode consumes surface evidence as the review layer. It owns the review workflow, the severity classification and the output contract.
+A: The surface skills (`code-webflow` / `code-opencode`) apply fixes and own the implement → debug → verify workflow doctrine, and `code-quality` owns author-side gates. The `code-review` mode consumes surface evidence as the review layer. It owns the review workflow, the severity classification and the output contract.
 
 **Q: Why the mandatory status line?**
 
