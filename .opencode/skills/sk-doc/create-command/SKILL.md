@@ -368,6 +368,7 @@ Escalate if:
 
 Use these only for overflow detail, long examples, and exact skeletons:
 
+- `references/command_creation.md` - this packet's overflow creation reference: a worked command example, the router/presentation split, argument-hint patterns, `:auto`/`:confirm` mode design, and common pitfalls.
 - `assets/command/command_template.md` - exhaustive command type templates, examples, vocabulary, and validation checklist.
 - `assets/command/command_presentation_template.md` - full `_presentation.txt` skeleton for split command families.
 - `../shared/references/global/core_standards.md` - shared document quality standards.
