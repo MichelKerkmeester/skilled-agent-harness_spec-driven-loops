@@ -12,10 +12,10 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/028-memory-search-intelligence"
-    last_updated_at: "2026-07-04T17:56:26.146Z"
+    last_updated_at: "2026-07-06T17:33:25.530Z"
     last_updated_by: "claude-opus-4-8"
-    recent_action: "016 deep-dive program complete (13/13 shipped); 006/002+006/004 absorbed"
-    next_safe_action: "016 complete; daemon-side captures pending a daemon restart"
+    recent_action: "Extracted code-graph/skill-advisor/deep-loop to sibling packets; 028 scope narrowed"
+    next_safe_action: "Reindex the new paths, then run the deferred re-embed drain"
     blockers: []
     key_files:
       - "spec.md"
@@ -74,9 +74,9 @@ Use this root `spec.md` as the current phase map. Use `changelog/README.md`, `be
 Packet 028 owns the planning record that turns external memory-system research into shipped retrieval intelligence, cleanup, review remediation, data-quality generation and dark-flag graduation work. Its top-level children span release cleanup, four subsystem phase parents, the spec-data-quality lineage, the review-remediation phase parent, the dark-flag graduation program and later hardening/adoption tracks so research inputs, candidate plans, cleanup scopes, child validation state and benchmark verdicts are easy to navigate. The kept-off flag-resolution, new-feature-research-build and reranker-research phases are nested under 001-speckit-memory as children 022 through 024, followed by the off-corpus eval gate, lexical-grounding floor, envelope-fidelity enforcement, scoring-hardening and substrate sandbox cleanup builds as children 025 through 029, and a 30th child, `030-opencode-temp-worker-reaping`, a planned scaffold not yet started.
 
 ### Purpose
-Provide the root purpose, child map and cross-packet boundary for packet 028. This parent routes the release-cleanup, subsystem, data-quality, review-remediation, dark-flag and adopted hardening children to their current child maps.
+Provide the root purpose, child map and cross-packet boundary for packet 028. After the 2026-07-06 subsystem extraction, 028 is scoped to the **memory-search engine** (`001-speckit-memory`) and **spec data-quality** (`005-spec-data-quality`), plus release-cleanup, review-remediation and the dark-flag/surface-alignment programs. The code-graph, skill-advisor and deep-loop subsystems were extracted to their own sibling packets — see `context-index.md` for the full migration record and a consolidated summary of the memory-search and data-quality work.
 
-> **Phase-parent note:** This `spec.md` is the only authored document at this parent level. Detailed planning lives in the child phase folders listed below.
+> **Phase-parent note:** This `spec.md` is the only authored document at this parent level. Detailed planning lives in the child phase folders listed below. The migration bridge and work summary live in `context-index.md`.
 <!-- /ANCHOR:problem -->
 
 ---
@@ -119,9 +119,7 @@ Provide the root purpose, child map and cross-packet boundary for packet 028. Th
 |-------|--------|-------|--------|
 | 000 | `000-release-cleanup/` | Release-readiness documentation sweep across repository doc surfaces | Phase parent |
 | 001 | `001-speckit-memory/` | Spec-Kit Memory MCP research plus 30 child phases, including the kept-off-flag resolution, new-feature-research-build and reranker-research phases as 022 through 024, the off-corpus eval gate, lexical-grounding floor, envelope-fidelity enforcement, scoring-hardening and substrate sandbox cleanup builds as 025 through 029, and the OpenCode temp-worker reaping build as 030 | Phase parent |
-| 002 | `002-code-graph/` | Code Graph research plus 8 implementation child plans | Phase parent |
-| 003 | `003-skill-advisor/` | Skill Advisor research plus 8 implementation child plans | Phase parent |
-| 004 | `004-deep-loop/` | Deep Loop Runtime research plus 6 implementation child plans | Phase parent |
+| 003 | `003-skill-advisor/` | Holds only the in-progress `009-hard-rule-and-dispatch-preflight-hardening`. The advisor runtime work (001-008) was extracted to `system-skill-advisor/002-skill-advisor-runtime/` on 2026-07-06 | Phase parent |
 | 005 | `005-spec-data-quality/` | Spec-kit data-quality research that then shipped: 49 child phases spanning the go/no-go research scaffold, benchmark and generated-JSON bridge, generated-metadata build, full-repo JSON migration, flag-graduation benchmark and search-quality/evidence-gap wave, plus five drift-audit, metadata-status-integrity and create.sh-corruption phases (045-049) re-nested here from top-level on 2026-07-04 | Complete |
 | 006 | `006-review-remediation/` | Six-child review-remediation track: 001, 003, 005, 006 executed; 002 and 004 ABSORBED into 016 (verify-first-then-close, closed by phase 013 2026-07-04) | Phase parent |
 | 007 | `007-dark-flag-graduation/` | Twelve-child dark-flag graduation suite that benchmarked built-but-default-off capabilities, returned graduate, refine or cut verdicts and closed follow-up validation | Phase parent |
@@ -134,7 +132,7 @@ Provide the root purpose, child map and cross-packet boundary for packet 028. Th
 - Child 006 is the review-remediation rollup, with four executed children and two scopes (002/004) absorbed into the 016 program and closed 2026-07-04.
 - Child 007 is the dark-flag graduation suite, with twelve benchmark, cleanup, validation, follow-up and review children.
 - Children 013 through 015 were adopted from standalone packets 030 through 032 on 2026-07-03 by operator restructure.
-- **Top-level ceiling (governance):** 028 has exactly eight canonical top-level phase-parent folders — 000 through 007. All new phase work nests as a child of one of them by subject; never create a new top-level `0NN-` folder. The eight-parent structure is now clean: the folders 013 through 016 that had accreted at top level were all re-nested to their subject parents on 2026-07-04 — 013 to `005-spec-data-quality/050-validate-sh-dist-freshness-and-repo-remediation`, 014 to `000-release-cleanup/015-manual-playbook-execution-sweep`, 015 to `004-deep-loop/007-deep-review-followup-hardening`, and 016 to `001-speckit-memory/031-fix-deep-dive-p0-p2-findings-for-mk-spec-memory`. No top-level `0NN-` folder outside 000 through 007 remains.
+- **Top-level ceiling (governance):** All new phase work nests as a child of an existing top-level folder by subject; never create a new top-level `0NN-` folder. On 2026-07-06 the three subsystem phase-parents that had accreted here were extracted to their own sibling packets — `002-code-graph/` to `system-code-graph/`, `004-deep-loop/` to `system-deep-loop/`, and `003-skill-advisor/` phases 001-008 to `system-skill-advisor/` (leaving `003-skill-advisor/` holding only the in-progress `009`). 028 is now scoped to the memory-search engine (`001-speckit-memory`) and data-quality (`005-spec-data-quality`) plus release-cleanup, review-remediation and the surface-alignment/dark-flag programs. Full migration record: `context-index.md`.
 - Research-only material from earlier rounds lives under subsystem `research/from-*` archives.
 - Run strict validation on a child parent and its direct children before using it as an execution source.
 
