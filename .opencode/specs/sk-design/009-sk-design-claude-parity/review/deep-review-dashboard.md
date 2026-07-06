@@ -18,7 +18,7 @@ Reducer-generated observability surface for the active review packet.
 - Review Target: .opencode/specs/sk-design/009-sk-design-claude-parity (spec-folder)
 - Started: 2026-07-06T11:48:06.000Z
 - Status: INITIALIZED
-- Iteration: 8 of 10
+- Iteration: 10 of 10
 - Provisional Verdict: CONDITIONAL
 - hasSearchDebt: true
 - hasAdvisories: false
@@ -53,6 +53,8 @@ Reducer-generated observability surface for the active review packet.
 | run-006 | deep revisit - md-generator P1 remediation design | correctness/security | 0.25 | 0/1/0 | complete |
 | run-007 | deep revisit - non-output extraction modules | correctness/security/maintainability | 0.50 | 0/2/1 | complete |
 | run-008 | deep revisit - HTML/CSS sinks + generalization check | security | 0.25 | 0/1/0 | complete |
+| run-009 | final adversarial P1 re-verification | correctness | 0.00 | 0/8/0 | complete |
+| run-010 | final coverage confirmation | correctness/security/traceability/maintainability | 0.00 | 0/8/3 | complete |
 
 <!-- /ANCHOR:progress -->
 <!-- ANCHOR:dimension-coverage -->
@@ -80,12 +82,12 @@ No blocked-stop events recorded.
 <!-- /ANCHOR:graph-convergence -->
 <!-- ANCHOR:trend -->
 ## 8. TREND
-- Last 3 ratios: 0.25 -> 0.50 -> 0.25
-- convergenceScore: 0.75
+- Last 3 ratios: 0.25 -> 0.00 -> 0.00
+- convergenceScore: 1.00
 - openFindings: 11
-- persistentSameSeverity: 0
+- persistentSameSeverity: 11
 - severityChanged: 0
-- repeatedFindings (deprecated combined bucket): 0
+- repeatedFindings (deprecated combined bucket): 11
 
 <!-- /ANCHOR:trend -->
 <!-- ANCHOR:corruption-warnings -->
@@ -96,7 +98,7 @@ No corrupt JSONL lines detected.
 <!-- ANCHOR:search-debt -->
 ## 10. SEARCH DEBT
 - graphCoverageMode: graphless_fallback
-- candidateCoverage: covered=44, ruledOut=37, deferred=22, blocked=1
+- candidateCoverage: covered=46, ruledOut=39, deferred=23, blocked=1
 
 ### Search Debt
 - iteration 1 deep_correctness_security_traceability_maintainability (deferred): Review plan assigns deep dimension work to later iterations.; evidence=.opencode/specs/sk-design/009-sk-design-claude-parity/review/deep-review-strategy.md:100
@@ -134,6 +136,9 @@ No corrupt JSONL lines detected.
 - iteration 8 proof_renderer_css_sinks (ruled_out): No source-derived arbitrary CSS string was found in proof style declarations.; evidence=.opencode/skills/sk-design/design-md-generator/backend/scripts/proof.ts:151, .opencode/skills/sk-design/design-md-generator/backend/scripts/proof.ts:278, .opencode/skills/sk-design/design-md-generator/backend/scripts/proof.ts:282
 - iteration 8 href_src_attribute_isolation (ruled_out): No unescaped quote-breaking href/src sink was confirmed in the reviewed files; Google Fonts host allowlisting remains hardening, not this P1.; evidence=.opencode/skills/sk-design/design-md-generator/backend/scripts/dom-collector.ts:423, .opencode/skills/sk-design/design-md-generator/backend/scripts/report-gen.ts:247, .opencode/skills/sk-design/design-md-generator/backend/scripts/proof.ts:265
 - iteration 8 rendering_test_coverage (ruled_out): The absence of rendering tests supports P1-008 and existing P2-003, but does not require a new distinct P2.; evidence=.opencode/skills/sk-design/design-md-generator/backend/tests:1
+- iteration 9 compound_prompt_output_escalation (ruled_out): Current source still does not feed live-site-derived prompt strings into output path arguments or automatic write destinations; output paths are operator CLI arguments before extraction and prompt generation.; evidence=.opencode/skills/sk-design/design-md-generator/backend/scripts/build-write-prompt.ts:80, .opencode/skills/sk-design/design-md-generator/backend/scripts/guided-run.ts:168, .opencode/skills/sk-design/design-md-generator/backend/scripts/extract.ts:267
+- iteration 10 final_dimension_coverage (ruled_out): No final coverage gap found.; evidence=.opencode/specs/sk-design/009-sk-design-claude-parity/review/deep-review-strategy.md:54, .opencode/specs/sk-design/009-sk-design-claude-parity/review/deep-review-strategy.md:166
+- iteration 10 compound_prompt_output_escalation (ruled_out): No evidence that live-site prompt content feeds output path arguments or automatic write destinations.; evidence=.opencode/specs/sk-design/009-sk-design-claude-parity/review/iterations/iteration-009.md:30, .opencode/skills/sk-design/design-md-generator/backend/scripts/extract.ts:267, .opencode/skills/sk-design/design-md-generator/backend/scripts/build-write-prompt.ts:80
 
 ### Clean Search Proof
 - iteration 1 artifact_inventory (ruled_out): Directory and targeted glob evidence matched the declared structure.; evidence=.opencode/specs/sk-design/009-sk-design-claude-parity:1, .opencode/specs/sk-design/009-sk-design-claude-parity/008-smart-routing-optimization/benchmark-after-008/report.md:1
@@ -164,6 +169,9 @@ No corrupt JSONL lines detected.
 - iteration 8 proof_renderer_css_sinks (ruled_out): No source-derived arbitrary CSS string was found in proof style declarations.; evidence=.opencode/skills/sk-design/design-md-generator/backend/scripts/proof.ts:151, .opencode/skills/sk-design/design-md-generator/backend/scripts/proof.ts:278, .opencode/skills/sk-design/design-md-generator/backend/scripts/proof.ts:282
 - iteration 8 href_src_attribute_isolation (ruled_out): No unescaped quote-breaking href/src sink was confirmed in the reviewed files; Google Fonts host allowlisting remains hardening, not this P1.; evidence=.opencode/skills/sk-design/design-md-generator/backend/scripts/dom-collector.ts:423, .opencode/skills/sk-design/design-md-generator/backend/scripts/report-gen.ts:247, .opencode/skills/sk-design/design-md-generator/backend/scripts/proof.ts:265
 - iteration 8 rendering_test_coverage (ruled_out): The absence of rendering tests supports P1-008 and existing P2-003, but does not require a new distinct P2.; evidence=.opencode/skills/sk-design/design-md-generator/backend/tests:1
+- iteration 9 compound_prompt_output_escalation (ruled_out): Current source still does not feed live-site-derived prompt strings into output path arguments or automatic write destinations; output paths are operator CLI arguments before extraction and prompt generation.; evidence=.opencode/skills/sk-design/design-md-generator/backend/scripts/build-write-prompt.ts:80, .opencode/skills/sk-design/design-md-generator/backend/scripts/guided-run.ts:168, .opencode/skills/sk-design/design-md-generator/backend/scripts/extract.ts:267
+- iteration 10 final_dimension_coverage (ruled_out): No final coverage gap found.; evidence=.opencode/specs/sk-design/009-sk-design-claude-parity/review/deep-review-strategy.md:54, .opencode/specs/sk-design/009-sk-design-claude-parity/review/deep-review-strategy.md:166
+- iteration 10 compound_prompt_output_escalation (ruled_out): No evidence that live-site prompt content feeds output path arguments or automatic write destinations.; evidence=.opencode/specs/sk-design/009-sk-design-claude-parity/review/iterations/iteration-009.md:30, .opencode/skills/sk-design/design-md-generator/backend/scripts/extract.ts:267, .opencode/skills/sk-design/design-md-generator/backend/scripts/build-write-prompt.ts:80
 
 <!-- /ANCHOR:search-debt -->
 <!-- ANCHOR:next-focus -->

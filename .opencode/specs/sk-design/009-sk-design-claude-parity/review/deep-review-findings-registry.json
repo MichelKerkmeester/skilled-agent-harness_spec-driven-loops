@@ -21,7 +21,7 @@
       "contentHash": null,
       "dimension": "correctness",
       "firstSeen": 2,
-      "lastSeen": 2,
+      "lastSeen": 10,
       "status": "active",
       "transitions": [
         {
@@ -50,7 +50,7 @@
       "contentHash": null,
       "dimension": "correctness",
       "firstSeen": 3,
-      "lastSeen": 3,
+      "lastSeen": 10,
       "status": "active",
       "transitions": [
         {
@@ -79,7 +79,7 @@
       "contentHash": null,
       "dimension": "correctness",
       "firstSeen": 3,
-      "lastSeen": 3,
+      "lastSeen": 10,
       "status": "active",
       "transitions": [
         {
@@ -108,7 +108,7 @@
       "contentHash": null,
       "dimension": "correctness",
       "firstSeen": 4,
-      "lastSeen": 4,
+      "lastSeen": 10,
       "status": "active",
       "transitions": [
         {
@@ -143,7 +143,7 @@
       "contentHash": null,
       "dimension": "correctness",
       "firstSeen": 6,
-      "lastSeen": 6,
+      "lastSeen": 10,
       "status": "active",
       "transitions": [
         {
@@ -172,7 +172,7 @@
       "contentHash": null,
       "dimension": "correctness",
       "firstSeen": 7,
-      "lastSeen": 7,
+      "lastSeen": 10,
       "status": "active",
       "transitions": [
         {
@@ -201,7 +201,7 @@
       "contentHash": null,
       "dimension": "correctness",
       "firstSeen": 7,
-      "lastSeen": 7,
+      "lastSeen": 10,
       "status": "active",
       "transitions": [
         {
@@ -237,7 +237,7 @@
       "contentHash": "p1-008-css-style-context-v1",
       "dimension": "correctness",
       "firstSeen": 8,
-      "lastSeen": 8,
+      "lastSeen": 10,
       "status": "active",
       "transitions": [
         {
@@ -266,7 +266,7 @@
       "contentHash": null,
       "dimension": "correctness",
       "firstSeen": 5,
-      "lastSeen": 5,
+      "lastSeen": 10,
       "status": "active",
       "transitions": [
         {
@@ -295,7 +295,7 @@
       "contentHash": null,
       "dimension": "correctness",
       "firstSeen": 5,
-      "lastSeen": 5,
+      "lastSeen": 10,
       "status": "active",
       "transitions": [
         {
@@ -324,7 +324,7 @@
       "contentHash": null,
       "dimension": "correctness",
       "firstSeen": 7,
-      "lastSeen": 7,
+      "lastSeen": 10,
       "status": "active",
       "transitions": [
         {
@@ -342,9 +342,675 @@
   ],
   "resolvedFindings": [],
   "blockedStopHistory": [],
-  "persistentSameSeverity": [],
+  "persistentSameSeverity": [
+    {
+      "findingId": "P1-001",
+      "severity": "P1",
+      "title": "WRITE prompt omits component facts while requiring exact component values",
+      "file": null,
+      "line": null,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": "open",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 2,
+      "lastSeen": 10,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "P1-002",
+      "severity": "P1",
+      "title": "md-generator output guard does not enforce the documented spec-folder or sandbox boundary",
+      "file": null,
+      "line": null,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": "open",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 3,
+      "lastSeen": 10,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "P1-003",
+      "severity": "P1",
+      "title": "Extracted live-site values enter the WRITE prompt without prompt-data isolation",
+      "file": null,
+      "line": null,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": "open",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 3,
+      "lastSeen": 10,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "P1-004",
+      "severity": "P1",
+      "title": "Report/preview catalog promises overwrite protection the scripts do not implement",
+      "file": null,
+      "line": null,
+      "description": "",
+      "findingClass": "cross-consumer",
+      "deltaStatus": "open",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 4,
+      "lastSeen": 10,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "P1-005",
+      "severity": "P1",
+      "title": "Guided run validates relative output against one cwd but executes extraction from another",
+      "file": ".opencode/skills/sk-design/design-md-generator/backend/scripts/guided-run.ts",
+      "line": 149,
+      "description": "The guided wrapper accepts and preflights the documented repo-root relative output path, but extraction runs from BACKEND_ROOT with the original relative path, so extract.ts resolves the same argument inside the skill/backend tree and rejects it as unsafe.",
+      "findingClass": "cross-consumer",
+      "deltaStatus": null,
+      "scopeProof": "Focused reads of guided-run, extract, backend README, CLI comments, and guided-run tests show the relative path is accepted, planned unchanged, executed from BACKEND_ROOT, and only tested as a string plan.",
+      "affectedSurfaceHints": [
+        "guided-run.ts",
+        "extract.ts",
+        "guided-run.test.ts",
+        "backend README",
+        "shared output path policy"
+      ],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 6,
+      "lastSeen": 10,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 6,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "P1-006",
+      "severity": "P1",
+      "title": "Dark-mode CSS variable values are injected into report style attributes without data isolation",
+      "file": ".opencode/skills/sk-design/design-md-generator/backend/scripts/report-gen.ts",
+      "line": null,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 7,
+      "lastSeen": 10,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 7,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "P1-007",
+      "severity": "P1",
+      "title": "Transition shorthand parsing splits cubic-bezier commas into bogus transitions",
+      "file": ".opencode/skills/sk-design/design-md-generator/backend/scripts/css-analyzer.ts",
+      "line": null,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 7,
+      "lastSeen": 10,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 7,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "P1-008",
+      "severity": "P1",
+      "title": "Report and preview renderers inject source-derived CSS token strings into style contexts without validation",
+      "file": ".opencode/skills/sk-design/design-md-generator/backend/scripts/preview-gen.ts",
+      "line": 200,
+      "description": "P1-006 generalizes beyond dark-mode swatches: report-gen.ts and preview-gen.ts interpolate source-derived typography, radius, and shadow token strings into inline CSS contexts without a CSS-value sanitizer or property-specific allowlist.",
+      "findingClass": "cross-consumer",
+      "deltaStatus": null,
+      "scopeProof": "Exact sink grep plus direct reads covered report-gen.ts, preview-gen.ts, proof.ts, token value types, Google Fonts link producer, and backend rendering tests.",
+      "affectedSurfaceHints": [
+        "report-gen.ts",
+        "preview-gen.ts",
+        "dark-mode report rows",
+        "typography/radius/shadow preview renderers",
+        "generated report.html",
+        "generated preview.html"
+      ],
+      "contentHash": "p1-008-css-style-context-v1",
+      "dimension": "correctness",
+      "firstSeen": 8,
+      "lastSeen": 10,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 8,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "P2-001",
+      "severity": "P2",
+      "title": "Procedure-card schema lint is manual-only and outside the existing canon checker",
+      "file": ".opencode/skills/sk-design/shared/procedure_card_schema.md",
+      "line": 75,
+      "description": "",
+      "findingClass": "matrix/evidence",
+      "deltaStatus": "open",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 5,
+      "lastSeen": 10,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 5,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "P2-002",
+      "severity": "P2",
+      "title": "Byte-identical benchmark artifacts remain under two incompatible naming conventions",
+      "file": ".opencode/specs/sk-design/009-sk-design-claude-parity/012-routing-benchmark-rigor/decision-record.md",
+      "line": 253,
+      "description": "",
+      "findingClass": "matrix/evidence",
+      "deltaStatus": "open",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 5,
+      "lastSeen": 10,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 5,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "P2-003",
+      "severity": "P2",
+      "title": "Focused extraction modules mostly have no real test files",
+      "file": ".opencode/skills/sk-design/design-md-generator/backend/tests/a11y-extract.test.ts",
+      "line": null,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 7,
+      "lastSeen": 10,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 7,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    }
+  ],
   "severityChanged": [],
-  "repeatedFindings": [],
+  "repeatedFindings": [
+    {
+      "findingId": "P1-001",
+      "severity": "P1",
+      "title": "WRITE prompt omits component facts while requiring exact component values",
+      "file": null,
+      "line": null,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": "open",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 2,
+      "lastSeen": 10,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "P1-002",
+      "severity": "P1",
+      "title": "md-generator output guard does not enforce the documented spec-folder or sandbox boundary",
+      "file": null,
+      "line": null,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": "open",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 3,
+      "lastSeen": 10,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "P1-003",
+      "severity": "P1",
+      "title": "Extracted live-site values enter the WRITE prompt without prompt-data isolation",
+      "file": null,
+      "line": null,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": "open",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 3,
+      "lastSeen": 10,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "P1-004",
+      "severity": "P1",
+      "title": "Report/preview catalog promises overwrite protection the scripts do not implement",
+      "file": null,
+      "line": null,
+      "description": "",
+      "findingClass": "cross-consumer",
+      "deltaStatus": "open",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 4,
+      "lastSeen": 10,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "P1-005",
+      "severity": "P1",
+      "title": "Guided run validates relative output against one cwd but executes extraction from another",
+      "file": ".opencode/skills/sk-design/design-md-generator/backend/scripts/guided-run.ts",
+      "line": 149,
+      "description": "The guided wrapper accepts and preflights the documented repo-root relative output path, but extraction runs from BACKEND_ROOT with the original relative path, so extract.ts resolves the same argument inside the skill/backend tree and rejects it as unsafe.",
+      "findingClass": "cross-consumer",
+      "deltaStatus": null,
+      "scopeProof": "Focused reads of guided-run, extract, backend README, CLI comments, and guided-run tests show the relative path is accepted, planned unchanged, executed from BACKEND_ROOT, and only tested as a string plan.",
+      "affectedSurfaceHints": [
+        "guided-run.ts",
+        "extract.ts",
+        "guided-run.test.ts",
+        "backend README",
+        "shared output path policy"
+      ],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 6,
+      "lastSeen": 10,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 6,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "P1-006",
+      "severity": "P1",
+      "title": "Dark-mode CSS variable values are injected into report style attributes without data isolation",
+      "file": ".opencode/skills/sk-design/design-md-generator/backend/scripts/report-gen.ts",
+      "line": null,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 7,
+      "lastSeen": 10,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 7,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "P1-007",
+      "severity": "P1",
+      "title": "Transition shorthand parsing splits cubic-bezier commas into bogus transitions",
+      "file": ".opencode/skills/sk-design/design-md-generator/backend/scripts/css-analyzer.ts",
+      "line": null,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 7,
+      "lastSeen": 10,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 7,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "P1-008",
+      "severity": "P1",
+      "title": "Report and preview renderers inject source-derived CSS token strings into style contexts without validation",
+      "file": ".opencode/skills/sk-design/design-md-generator/backend/scripts/preview-gen.ts",
+      "line": 200,
+      "description": "P1-006 generalizes beyond dark-mode swatches: report-gen.ts and preview-gen.ts interpolate source-derived typography, radius, and shadow token strings into inline CSS contexts without a CSS-value sanitizer or property-specific allowlist.",
+      "findingClass": "cross-consumer",
+      "deltaStatus": null,
+      "scopeProof": "Exact sink grep plus direct reads covered report-gen.ts, preview-gen.ts, proof.ts, token value types, Google Fonts link producer, and backend rendering tests.",
+      "affectedSurfaceHints": [
+        "report-gen.ts",
+        "preview-gen.ts",
+        "dark-mode report rows",
+        "typography/radius/shadow preview renderers",
+        "generated report.html",
+        "generated preview.html"
+      ],
+      "contentHash": "p1-008-css-style-context-v1",
+      "dimension": "correctness",
+      "firstSeen": 8,
+      "lastSeen": 10,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 8,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "P2-001",
+      "severity": "P2",
+      "title": "Procedure-card schema lint is manual-only and outside the existing canon checker",
+      "file": ".opencode/skills/sk-design/shared/procedure_card_schema.md",
+      "line": 75,
+      "description": "",
+      "findingClass": "matrix/evidence",
+      "deltaStatus": "open",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 5,
+      "lastSeen": 10,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 5,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "P2-002",
+      "severity": "P2",
+      "title": "Byte-identical benchmark artifacts remain under two incompatible naming conventions",
+      "file": ".opencode/specs/sk-design/009-sk-design-claude-parity/012-routing-benchmark-rigor/decision-record.md",
+      "line": 253,
+      "description": "",
+      "findingClass": "matrix/evidence",
+      "deltaStatus": "open",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 5,
+      "lastSeen": 10,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 5,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "P2-003",
+      "severity": "P2",
+      "title": "Focused extraction modules mostly have no real test files",
+      "file": ".opencode/skills/sk-design/design-md-generator/backend/tests/a11y-extract.test.ts",
+      "line": null,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 7,
+      "lastSeen": 10,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 7,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    }
+  ],
   "dimensionCoverage": {
     "correctness": true,
     "security": true,
@@ -358,7 +1024,7 @@
   },
   "openFindingsCount": 11,
   "resolvedFindingsCount": 0,
-  "convergenceScore": 0.75,
+  "convergenceScore": 1,
   "graphConvergenceScore": 0,
   "graphDecision": null,
   "graphBlockers": [],
@@ -375,6 +1041,8 @@
       "css_shorthand_correctness",
       "feature_catalog_code",
       "feature_catalog_duplicate_drift",
+      "final_dimension_coverage",
+      "final_verdict_consistency",
       "focused_module_test_coverage",
       "guided_run_relative_output",
       "href_src_attribute_isolation",
@@ -418,8 +1086,10 @@
       "command_projection_parity",
       "compiled_backend_output_presence",
       "compound_prompt_output_escalation",
+      "compound_prompt_output_escalation_as_p0",
       "crawler_side_effect_control",
       "feature_catalog_duplicate_drift",
+      "final_dimension_coverage",
       "href_src_attribute_breakout",
       "href_src_attribute_isolation",
       "md_generator_entrypoint_contract",
@@ -450,6 +1120,7 @@
     ],
     "deferred": [
       "benchmark_duplicate_cleanup",
+      "brand_new_finding_discovery",
       "complete_report_preview_proof_write_guard_audit",
       "deep_correctness",
       "deep_correctness_security_traceability_maintainability",
@@ -721,7 +1392,9 @@
         "blocked": false,
         "iterations": [
           3,
-          6
+          6,
+          9,
+          10
         ]
       },
       "shell_command_injection": {
@@ -821,7 +1494,8 @@
         "blocked": false,
         "iterations": [
           4,
-          6
+          6,
+          9
         ]
       },
       "full_feature_catalog_line_by_line": {
@@ -920,7 +1594,8 @@
         "deferred": true,
         "blocked": false,
         "iterations": [
-          5
+          5,
+          9
         ]
       },
       "guided_run_relative_output": {
@@ -929,7 +1604,8 @@
         "deferred": false,
         "blocked": false,
         "iterations": [
-          6
+          6,
+          9
         ]
       },
       "prompt_data_isolation": {
@@ -938,7 +1614,9 @@
         "deferred": false,
         "blocked": false,
         "iterations": [
-          6
+          6,
+          9,
+          10
         ]
       },
       "component_facts_gap": {
@@ -947,7 +1625,8 @@
         "deferred": false,
         "blocked": false,
         "iterations": [
-          6
+          6,
+          9
         ]
       },
       "compound_prompt_output_escalation": {
@@ -956,7 +1635,9 @@
         "deferred": false,
         "blocked": false,
         "iterations": [
-          6
+          6,
+          9,
+          10
         ]
       },
       "single_shared_root_cause": {
@@ -993,7 +1674,8 @@
         "deferred": false,
         "blocked": false,
         "iterations": [
-          7
+          7,
+          9
         ]
       },
       "css_shorthand_correctness": {
@@ -1002,7 +1684,8 @@
         "deferred": false,
         "blocked": false,
         "iterations": [
-          7
+          7,
+          9
         ]
       },
       "focused_module_test_coverage": {
@@ -1057,7 +1740,9 @@
         "blocked": true,
         "iterations": [
           7,
-          8
+          8,
+          9,
+          10
         ]
       },
       "boundary_icon_motion_prompt_flow": {
@@ -1075,7 +1760,9 @@
         "deferred": false,
         "blocked": false,
         "iterations": [
-          8
+          8,
+          9,
+          10
         ]
       },
       "href_src_attribute_isolation": {
@@ -1138,7 +1825,8 @@
         "deferred": true,
         "blocked": false,
         "iterations": [
-          8
+          8,
+          9
         ]
       },
       "sanitizer_implementation": {
@@ -1147,7 +1835,44 @@
         "deferred": true,
         "blocked": false,
         "iterations": [
-          8
+          8,
+          9
+        ]
+      },
+      "compound_prompt_output_escalation_as_p0": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          9
+        ]
+      },
+      "final_dimension_coverage": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          10
+        ]
+      },
+      "final_verdict_consistency": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          10
+        ]
+      },
+      "brand_new_finding_discovery": {
+        "covered": false,
+        "ruledOut": false,
+        "deferred": true,
+        "blocked": false,
+        "iterations": [
+          10
         ]
       }
     }
@@ -1740,6 +2465,62 @@
         ".opencode/skills/sk-design/design-md-generator/backend/tests:1"
       ],
       "reason": "The absence of rendering tests supports P1-008 and existing P2-003, but does not require a new distinct P2."
+    },
+    {
+      "iteration": 9,
+      "id": "SL-909",
+      "dimension": "security",
+      "targetRefs": [
+        ".opencode/skills/sk-design/design-md-generator/backend/scripts/build-write-prompt.ts:80",
+        ".opencode/skills/sk-design/design-md-generator/backend/scripts/guided-run.ts:168",
+        ".opencode/skills/sk-design/design-md-generator/backend/scripts/extract.ts:267"
+      ],
+      "bugClass": "compound_prompt_output_escalation",
+      "disposition": "ruled_out",
+      "rationale": "Re-check preserved the iteration 6 no-P0 adjudication.",
+      "evidenceRefs": [
+        ".opencode/skills/sk-design/design-md-generator/backend/scripts/build-write-prompt.ts:80",
+        ".opencode/skills/sk-design/design-md-generator/backend/scripts/guided-run.ts:168",
+        ".opencode/skills/sk-design/design-md-generator/backend/scripts/extract.ts:267"
+      ],
+      "reason": "Current source still does not feed live-site-derived prompt strings into output path arguments or automatic write destinations; output paths are operator CLI arguments before extraction and prompt generation."
+    },
+    {
+      "iteration": 10,
+      "id": "SL-1001",
+      "dimension": "traceability",
+      "targetRefs": [
+        "deep-review-strategy.md",
+        "deep-review-state.jsonl",
+        "deep-review-findings-registry.json"
+      ],
+      "bugClass": "final_dimension_coverage",
+      "disposition": "ruled_out",
+      "rationale": "Strategy and registry show correctness, security, traceability, and maintainability coverage with core protocol coverage.",
+      "evidenceRefs": [
+        ".opencode/specs/sk-design/009-sk-design-claude-parity/review/deep-review-strategy.md:54",
+        ".opencode/specs/sk-design/009-sk-design-claude-parity/review/deep-review-strategy.md:166"
+      ],
+      "reason": "No final coverage gap found."
+    },
+    {
+      "iteration": 10,
+      "id": "SL-1005",
+      "dimension": "security",
+      "targetRefs": [
+        "P1-002",
+        "P1-003",
+        "iteration-009.md"
+      ],
+      "bugClass": "compound_prompt_output_escalation",
+      "disposition": "ruled_out",
+      "rationale": "Iteration 9 and this pass confirm live-site-derived prompt data is separate from operator-provided output path construction.",
+      "evidenceRefs": [
+        ".opencode/specs/sk-design/009-sk-design-claude-parity/review/iterations/iteration-009.md:30",
+        ".opencode/skills/sk-design/design-md-generator/backend/scripts/extract.ts:267",
+        ".opencode/skills/sk-design/design-md-generator/backend/scripts/build-write-prompt.ts:80"
+      ],
+      "reason": "No evidence that live-site prompt content feeds output path arguments or automatic write destinations."
     }
   ],
   "cleanSearchProof": [
@@ -2251,31 +3032,85 @@
         ".opencode/skills/sk-design/design-md-generator/backend/tests:1"
       ],
       "proof": "The absence of rendering tests supports P1-008 and existing P2-003, but does not require a new distinct P2."
+    },
+    {
+      "iteration": 9,
+      "id": "SL-909",
+      "dimension": "security",
+      "targetRefs": [
+        ".opencode/skills/sk-design/design-md-generator/backend/scripts/build-write-prompt.ts:80",
+        ".opencode/skills/sk-design/design-md-generator/backend/scripts/guided-run.ts:168",
+        ".opencode/skills/sk-design/design-md-generator/backend/scripts/extract.ts:267"
+      ],
+      "bugClass": "compound_prompt_output_escalation",
+      "disposition": "ruled_out",
+      "rationale": "Re-check preserved the iteration 6 no-P0 adjudication.",
+      "evidenceRefs": [
+        ".opencode/skills/sk-design/design-md-generator/backend/scripts/build-write-prompt.ts:80",
+        ".opencode/skills/sk-design/design-md-generator/backend/scripts/guided-run.ts:168",
+        ".opencode/skills/sk-design/design-md-generator/backend/scripts/extract.ts:267"
+      ],
+      "proof": "Current source still does not feed live-site-derived prompt strings into output path arguments or automatic write destinations; output paths are operator CLI arguments before extraction and prompt generation."
+    },
+    {
+      "iteration": 10,
+      "id": "SL-1001",
+      "dimension": "traceability",
+      "targetRefs": [
+        "deep-review-strategy.md",
+        "deep-review-state.jsonl",
+        "deep-review-findings-registry.json"
+      ],
+      "bugClass": "final_dimension_coverage",
+      "disposition": "ruled_out",
+      "rationale": "Strategy and registry show correctness, security, traceability, and maintainability coverage with core protocol coverage.",
+      "evidenceRefs": [
+        ".opencode/specs/sk-design/009-sk-design-claude-parity/review/deep-review-strategy.md:54",
+        ".opencode/specs/sk-design/009-sk-design-claude-parity/review/deep-review-strategy.md:166"
+      ],
+      "proof": "No final coverage gap found."
+    },
+    {
+      "iteration": 10,
+      "id": "SL-1005",
+      "dimension": "security",
+      "targetRefs": [
+        "P1-002",
+        "P1-003",
+        "iteration-009.md"
+      ],
+      "bugClass": "compound_prompt_output_escalation",
+      "disposition": "ruled_out",
+      "rationale": "Iteration 9 and this pass confirm live-site-derived prompt data is separate from operator-provided output path construction.",
+      "evidenceRefs": [
+        ".opencode/specs/sk-design/009-sk-design-claude-parity/review/iterations/iteration-009.md:30",
+        ".opencode/skills/sk-design/design-md-generator/backend/scripts/extract.ts:267",
+        ".opencode/skills/sk-design/design-md-generator/backend/scripts/build-write-prompt.ts:80"
+      ],
+      "proof": "No evidence that live-site prompt content feeds output path arguments or automatic write destinations."
     }
   ],
   "searchCoverage": {
     "requiredBugClasses": [
+      "final_dimension_coverage",
+      "final_verdict_consistency",
+      "output_path_scope_guard",
+      "prompt_data_isolation",
       "source_derived_css_style_attr_isolation",
-      "href_src_attribute_isolation",
-      "proof_renderer_css_sinks",
-      "rendering_test_coverage",
-      "shared_css_sanitizer_seam"
+      "compound_prompt_output_escalation"
     ],
     "covered": [
-      "source_derived_css_style_attr_isolation",
-      "href_src_attribute_isolation",
-      "proof_renderer_css_sinks",
-      "rendering_test_coverage",
-      "shared_css_sanitizer_seam"
+      "final_dimension_coverage",
+      "final_verdict_consistency",
+      "output_path_scope_guard",
+      "prompt_data_isolation",
+      "source_derived_css_style_attr_isolation"
     ],
     "ruledOut": [
-      "proof_renderer_css_sinks",
-      "href_src_attribute_breakout",
-      "normalized_color_sinks"
+      "compound_prompt_output_escalation"
     ],
     "deferred": [
-      "live_browser_malicious_token_rendering",
-      "sanitizer_implementation"
+      "brand_new_finding_discovery"
     ],
     "blocked": [
       "structural_graph"
