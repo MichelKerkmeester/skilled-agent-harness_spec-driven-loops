@@ -3,8 +3,8 @@
 // ───────────────────────────────────────────────────────────────
 // Loads and validates the code-graph gold query battery.
 
-import { existsSync, readFileSync } from 'node:fs';
-import { dirname, resolve } from 'node:path';
+import { readFileSync } from 'node:fs';
+import { basename, dirname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import {
   isRecord,
@@ -12,32 +12,17 @@ import {
   type CodeGraphQueryResponse,
 } from './query-result-adapter.js';
 
-/** Path inside the workspace, anchored at the project root, to the v1 gold battery. */
-const GOLD_BATTERY_RELATIVE_PATH =
-  '.opencode/specs/system-speckit/026-graph-and-context-optimization/004-code-graph/005-resilience-and-advisor/002-code-graph-resilience-research/assets/code-graph-gold-queries.json';
-
 /**
- * Resolve the project root by walking up from this module's directory until
- * a folder containing the `.opencode/specs/` semantic anchor is found.
- *
- * Anchored on `.opencode/specs/` (rather than just `.opencode/`) because a
- * stray `mcp_server/.opencode/` test artifact otherwise short-circuits the
- * walk one level too early. The stray contains only `skill/`, not `specs/`,
- * so this stricter marker correctly skips it and lands at the real
- * workspace root.
- *
- * Behaves identically whether the module is loaded from
- * `mcp_server/lib/` (TS source under vitest) or
- * `mcp_server/dist/lib/` (compiled MCP runtime). The legacy
- * hardcoded `../../../../../` relative path was correct for the TS source
- * location but produced a phantom `.opencode/skills/specs/...` path when
- * loaded from `dist/`, breaking `code_graph_verify({})` at runtime.
+ * Resolve the mcp_server root by walking up from this module's directory to the
+ * enclosing `mcp_server` folder. Works identically whether the module is loaded
+ * from `mcp_server/lib/` (TS source under vitest) or `mcp_server/dist/lib/`
+ * (compiled runtime), since both sit under the same `mcp_server` folder; a
+ * fixed relative depth would differ between the two and mis-resolve from dist.
  */
-function resolveProjectRoot(): string {
-  const moduleDir = dirname(fileURLToPath(import.meta.url));
-  let current = moduleDir;
+function resolveServerRoot(): string {
+  let current = dirname(fileURLToPath(import.meta.url));
   for (let i = 0; i < 12; i++) {
-    if (existsSync(resolve(current, '.opencode', 'specs'))) {
+    if (basename(current) === 'mcp_server') {
       return current;
     }
     const parent = dirname(current);
@@ -49,14 +34,17 @@ function resolveProjectRoot(): string {
 }
 
 /**
- * Canonical on-disk path to the gold battery shipped under the research assets
- * folder. Re-exported so handlers do not redeclare the relative path.
+ * Canonical on-disk path to the gold battery, shipped inside this skill's own
+ * runtime `assets/` directory. Re-exported so handlers do not redeclare it.
  *
- * Keep in sync if the asset moves.
+ * The battery lives with the skill, never in a spec folder: spec folders are
+ * ephemeral documentation/research artifacts that get renamed, re-nested, or
+ * deleted, which would leave this runtime dependency dangling at startup.
  */
 export const DEFAULT_GOLD_BATTERY_PATH = resolve(
-  resolveProjectRoot(),
-  GOLD_BATTERY_RELATIVE_PATH,
+  resolveServerRoot(),
+  'assets',
+  'code-graph-gold-queries.json',
 );
 
 export interface GoldQuery {
