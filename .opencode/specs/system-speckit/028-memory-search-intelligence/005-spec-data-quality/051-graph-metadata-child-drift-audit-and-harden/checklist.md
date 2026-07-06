@@ -11,7 +11,7 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-speckit/028-memory-search-intelligence/005-spec-data-quality/051-graph-metadata-child-drift-audit-and-harden"
-    last_updated_at: "2026-07-06T06:03:21Z"
+    last_updated_at: "2026-07-06T12:51:15.752Z"
     last_updated_by: "michel-kerkmeester"
     recent_action: "Authored Level 3 verification checklist for graph-metadata child-drift audit + harden"
     next_safe_action: "Author decision-record.md and implementation-summary.md for this phase"
@@ -56,9 +56,9 @@ FAILURE MODES:
 <!-- ANCHOR:pre-impl -->
 ## Pre-Implementation
 
-- [ ] CHK-001 [P0] Requirements documented in spec.md
-- [ ] CHK-002 [P0] Technical approach defined in plan.md
-- [ ] CHK-003 [P1] Dependencies identified and available
+- [ ] CHK-001 [P0] Requirements documented in spec.md (unsupported)
+- [ ] CHK-002 [P0] Technical approach defined in plan.md (unsupported)
+- [x] CHK-003 [P1] Dependencies identified and available — registry runtime path confirmed; no orchestrator or validate.sh rebuild needed. [EVIDENCE: implementation-summary.md How It Was Delivered]
 <!-- /ANCHOR:pre-impl -->
 
 ---
@@ -66,10 +66,10 @@ FAILURE MODES:
 <!-- ANCHOR:code-quality -->
 ## Code Quality
 
-- [ ] CHK-010 [P0] Code passes lint/format checks
-- [ ] CHK-011 [P0] No console errors or warnings
-- [ ] CHK-012 [P1] Error handling implemented
-- [ ] CHK-013 [P1] Code follows project patterns
+- [ ] CHK-010 [P0] Code passes lint/format checks (unsupported)
+- [x] CHK-011 [P0] No console errors or warnings — default-path advisory confirmed with 0 warnings. [EVIDENCE: implementation-summary.md Verification table]
+- [ ] CHK-012 [P1] Error handling implemented (unsupported)
+- [x] CHK-013 [P1] Code follows project patterns — distinct registry rule reuses the shared writer-mirroring scanner. [EVIDENCE: implementation-summary.md What Was Built and How It Was Delivered]
 <!-- /ANCHOR:code-quality -->
 
 ---
@@ -77,10 +77,10 @@ FAILURE MODES:
 <!-- ANCHOR:testing -->
 ## Testing
 
-- [ ] CHK-020 [P0] All acceptance criteria met
-- [ ] CHK-021 [P0] Manual testing complete
-- [ ] CHK-022 [P1] Edge cases tested
-- [ ] CHK-023 [P1] Error scenarios validated
+- [ ] CHK-020 [P0] All acceptance criteria met (deferred — see implementation-summary.md)
+- [x] CHK-021 [P0] Manual testing complete — repo-wide audit ran and default-path firing was confirmed. [EVIDENCE: implementation-summary.md Verification table]
+- [x] CHK-022 [P1] Edge cases tested — RED/GREEN, clean, underscore-writer-pattern, extra-not-drift, leaf, and integration cases passed. [EVIDENCE: implementation-summary.md Verification table]
+- [x] CHK-023 [P1] Error scenarios validated — advisory and enforce modes both exercised. [EVIDENCE: implementation-summary.md Verification table]
 <!-- /ANCHOR:testing -->
 
 ---
@@ -88,13 +88,13 @@ FAILURE MODES:
 <!-- ANCHOR:fix-completeness -->
 ## Fix Completeness
 
-- [ ] CHK-FIX-001 [P0] Each actionable finding has a finding class: `instance-only`, `class-of-bug`, `cross-consumer`, `algorithmic`, `matrix/evidence`, or `test-isolation`.
-- [ ] CHK-FIX-002 [P0] Same-class producer inventory completed, or instance-only status proven by grep.
-- [ ] CHK-FIX-003 [P0] Consumer inventory completed for changed helpers, policies, schema fields, response fields, docs, and tests.
-- [ ] CHK-FIX-004 [P0] Security/path/parser/redaction fixes include adversarial table tests for delimiter, joined-input, outside-root, no-op, and fallback cases.
-- [ ] CHK-FIX-005 [P1] Matrix axes and row count are listed before completion is claimed.
-- [ ] CHK-FIX-006 [P1] Hostile env/global-state variant executed when tests or code read process-wide state.
-- [ ] CHK-FIX-007 [P1] Evidence is pinned to a fix SHA or explicit diff range, not a moving branch-relative range.
+- [ ] CHK-FIX-001 [P0] Each actionable finding has a finding class: `instance-only`, `class-of-bug`, `cross-consumer`, `algorithmic`, `matrix/evidence`, or `test-isolation`. (unsupported)
+- [x] CHK-FIX-002 [P0] Same-class producer inventory completed, or instance-only status proven by grep. — repo-wide audit found and classified 21 drifted parents. [EVIDENCE: implementation-summary.md Verification table]
+- [x] CHK-FIX-003 [P0] Consumer inventory completed for changed helpers, policies, schema fields, response fields, docs, and tests. — default validate path and registry wiring were confirmed. [EVIDENCE: implementation-summary.md Verification table]
+- [ ] CHK-FIX-004 [P0] Security/path/parser/redaction fixes include adversarial table tests for delimiter, joined-input, outside-root, no-op, and fallback cases. (N/A)
+- [x] CHK-FIX-005 [P1] Matrix axes and row count are listed before completion is claimed. — audit classified 21 drifted parents and no-false-positive cases. [EVIDENCE: implementation-summary.md Verification table]
+- [ ] CHK-FIX-006 [P1] Hostile env/global-state variant executed when tests or code read process-wide state. (N/A)
+- [ ] CHK-FIX-007 [P1] Evidence is pinned to a fix SHA or explicit diff range, not a moving branch-relative range. (unsupported)
 <!-- /ANCHOR:fix-completeness -->
 
 ---
@@ -102,9 +102,9 @@ FAILURE MODES:
 <!-- ANCHOR:security -->
 ## Security
 
-- [ ] CHK-030 [P0] No hardcoded secrets
-- [ ] CHK-031 [P0] Input validation implemented
-- [ ] CHK-032 [P1] Auth/authz working correctly
+- [ ] CHK-030 [P0] No hardcoded secrets (unsupported)
+- [x] CHK-031 [P0] Input validation implemented — unreadable graph metadata is delegated to the presence/shape checks. [EVIDENCE: implementation-summary.md How It Was Delivered]
+- [ ] CHK-032 [P1] Auth/authz working correctly (N/A)
 <!-- /ANCHOR:security -->
 
 ---
@@ -112,9 +112,9 @@ FAILURE MODES:
 <!-- ANCHOR:docs -->
 ## Documentation
 
-- [ ] CHK-040 [P1] Spec/plan/tasks synchronized
-- [ ] CHK-041 [P1] Code comments adequate
-- [ ] CHK-042 [P2] README updated (if applicable)
+- [ ] CHK-040 [P1] Spec/plan/tasks synchronized (unsupported)
+- [ ] CHK-041 [P1] Code comments adequate (unsupported)
+- [ ] CHK-042 [P2] README updated (if applicable) (N/A)
 <!-- /ANCHOR:docs -->
 
 ---
@@ -122,8 +122,8 @@ FAILURE MODES:
 <!-- ANCHOR:file-org -->
 ## File Organization
 
-- [ ] CHK-050 [P1] Temp files in scratch/ only
-- [ ] CHK-051 [P1] scratch/ cleaned before completion
+- [ ] CHK-050 [P1] Temp files in scratch/ only (unsupported)
+- [ ] CHK-051 [P1] scratch/ cleaned before completion (unsupported)
 <!-- /ANCHOR:file-org -->
 
 ---
@@ -133,9 +133,9 @@ FAILURE MODES:
 
 | Category | Total | Verified |
 |----------|-------|----------|
-| P0 Items | 15 | 0/15 |
-| P1 Items | 23 | 0/23 |
-| P2 Items | 9 | 0/9 |
+| P0 Items | 15 | 6/15 |
+| P1 Items | 23 | 5/23 |
+| P2 Items | 9 | 1/9 |
 
 **Verification Date**: 2026-07-06
 <!-- /ANCHOR:summary -->
@@ -149,10 +149,10 @@ FAILURE MODES:
 <!-- ANCHOR:arch-verify -->
 ## L3+: ARCHITECTURE VERIFICATION
 
-- [ ] CHK-100 [P0] Architecture decisions documented in decision-record.md
-- [ ] CHK-101 [P1] All ADRs have status (Proposed/Accepted)
-- [ ] CHK-102 [P1] Alternatives documented with rejection rationale
-- [ ] CHK-103 [P2] Migration path documented (if applicable)
+- [ ] CHK-100 [P0] Architecture decisions documented in decision-record.md (unsupported)
+- [ ] CHK-101 [P1] All ADRs have status (Proposed/Accepted) (unsupported)
+- [ ] CHK-102 [P1] Alternatives documented with rejection rationale (unsupported)
+- [ ] CHK-103 [P2] Migration path documented (if applicable) (deferred — see implementation-summary.md)
 <!-- /ANCHOR:arch-verify -->
 
 ---
@@ -160,10 +160,10 @@ FAILURE MODES:
 <!-- ANCHOR:perf-verify -->
 ## L3+: PERFORMANCE VERIFICATION
 
-- [ ] CHK-110 [P1] Response time targets met (NFR-P01)
-- [ ] CHK-111 [P1] Throughput targets met (NFR-P02)
-- [ ] CHK-112 [P2] Load testing completed
-- [ ] CHK-113 [P2] Performance benchmarks documented
+- [ ] CHK-110 [P1] Response time targets met (NFR-P01) (N/A)
+- [ ] CHK-111 [P1] Throughput targets met (NFR-P02) (N/A)
+- [ ] CHK-112 [P2] Load testing completed (N/A)
+- [ ] CHK-113 [P2] Performance benchmarks documented (N/A)
 <!-- /ANCHOR:perf-verify -->
 
 ---
@@ -171,11 +171,11 @@ FAILURE MODES:
 <!-- ANCHOR:deploy-ready -->
 ## L3+: DEPLOYMENT READINESS
 
-- [ ] CHK-120 [P0] Rollback procedure documented and tested
-- [ ] CHK-121 [P0] Feature flag configured (if applicable)
-- [ ] CHK-122 [P1] Monitoring/alerting configured
-- [ ] CHK-123 [P1] Runbook created
-- [ ] CHK-124 [P2] Deployment runbook reviewed
+- [ ] CHK-120 [P0] Rollback procedure documented and tested (unsupported)
+- [x] CHK-121 [P0] Feature flag configured (if applicable) — enforce flag documented as advisory by default and blocking only when enabled. [EVIDENCE: implementation-summary.md Key Decisions]
+- [ ] CHK-122 [P1] Monitoring/alerting configured (N/A)
+- [ ] CHK-123 [P1] Runbook created (N/A)
+- [ ] CHK-124 [P2] Deployment runbook reviewed (N/A)
 <!-- /ANCHOR:deploy-ready -->
 
 ---
@@ -183,10 +183,10 @@ FAILURE MODES:
 <!-- ANCHOR:compliance-verify -->
 ## L3+: COMPLIANCE VERIFICATION
 
-- [ ] CHK-130 [P1] Security review completed
-- [ ] CHK-131 [P1] Dependency licenses compatible
-- [ ] CHK-132 [P2] OWASP Top 10 checklist completed
-- [ ] CHK-133 [P2] Data handling compliant with requirements
+- [ ] CHK-130 [P1] Security review completed (unsupported)
+- [ ] CHK-131 [P1] Dependency licenses compatible (N/A)
+- [ ] CHK-132 [P2] OWASP Top 10 checklist completed (N/A)
+- [ ] CHK-133 [P2] Data handling compliant with requirements (N/A)
 <!-- /ANCHOR:compliance-verify -->
 
 ---
@@ -194,10 +194,10 @@ FAILURE MODES:
 <!-- ANCHOR:docs-verify -->
 ## L3+: DOCUMENTATION VERIFICATION
 
-- [ ] CHK-140 [P1] All spec documents synchronized
-- [ ] CHK-141 [P1] API documentation complete (if applicable)
-- [ ] CHK-142 [P2] User-facing documentation updated
-- [ ] CHK-143 [P2] Knowledge transfer documented
+- [ ] CHK-140 [P1] All spec documents synchronized (unsupported)
+- [ ] CHK-141 [P1] API documentation complete (if applicable) (N/A)
+- [ ] CHK-142 [P2] User-facing documentation updated (N/A)
+- [x] CHK-143 [P2] Knowledge transfer documented — implementation summary records shipped behavior, verification, and limitations. [EVIDENCE: implementation-summary.md Verification and Known Limitations]
 <!-- /ANCHOR:docs-verify -->
 
 ---

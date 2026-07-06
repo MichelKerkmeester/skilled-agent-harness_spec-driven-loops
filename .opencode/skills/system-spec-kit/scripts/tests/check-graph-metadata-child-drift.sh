@@ -170,6 +170,25 @@ echo "Running: child-drift — GREEN (child listed, both modes clean)"
 }
 
 # ───────────────────────────────────────────────────────────────
+# TEST 3b (wrong parent): a foreign listed entry with the same child basename
+# must not mask a genuinely missing local child under enforce.
+# ───────────────────────────────────────────────────────────────
+echo ""
+echo "Running: child-drift — foreign same-basename entry does not mask drift"
+{
+    root=$(make_temp_root)
+    parent="$root/900-drift-parent"
+    mkdir -p "$parent/001-foo"
+    write_graph_metadata "$parent" '["test/other-parent/001-foo"]'
+    run_rule "$parent" enforce
+    if [[ "$RULE_STATUS" == "warn" && "$(details_str)" == *001-foo* ]]; then
+        pass "foreign other-parent/001-foo does not satisfy local 001-foo"
+    else
+        fail "foreign same-basename expected warn+001-foo, got status=$RULE_STATUS details='$(details_str)'"
+    fi
+}
+
+# ───────────────────────────────────────────────────────────────
 # TEST 4 (writer-parity): a bare-number/underscore folder is a writer child.
 # The strict slug rule would miss 010_experiment; the drift check must not.
 # ───────────────────────────────────────────────────────────────

@@ -201,7 +201,7 @@
     ],
     "causal_summary": "A phase parent's `graph-metadata.json` `childrenids` array is populated only when `backfill-graph-metadata.js` is explicitly re-run against that parent",
     "created_at": "2026-07-06T06:03:21Z",
-    "last_save_at": "2026-07-06T08:24:58.933Z",
+    "last_save_at": "2026-07-06T12:51:15.752Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -212,12 +212,12 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:e6724d14cbd7f36f9bdb392a45cec226ea420f0ff9a6f00bba6bdf582ff88699",
+    "source_fingerprint": "sha256:cb7564e52629aace23e8f33ae3f3ff472d9d058dccd039a9143fe15bd08a21aa",
     "source_doc_hashes": {
       "spec.md": "2082d838fec2202b19920d26d408b7781e0bffed4047ce95d9cf90b217de8448",
       "plan.md": "6fbe0cb8fbc8cc3b73f0dfcac2004c5de1ef6afda14e824f109a38a56a445385",
       "tasks.md": "54feb51fe290ff8a5639214d9f0f8c71de779d38161d4d1ec1a533633af97295",
-      "checklist.md": "9d500d05eb0d0865529576d8d1f93232906fe2bee893e37f929abe9c26c76742",
+      "checklist.md": "83d5c0336efb1d3c0f30cf689dac05e47a07c89559d9b56db2dc4484a14cf967",
       "decision-record.md": "555d37bfd9e1aab3eaabfeb5f5ab6227b03fee33618e6c4fa91960624ae77f1a",
       "implementation-summary.md": "e26e0f3c23a366827735e90aa180d172264442ac79963384bc2d1baac2b5542a"
     },

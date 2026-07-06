@@ -1,5 +1,6 @@
 {
   "level": "archive",
+  "importance_tier": "archived",
   "specFolder": "system-skill-advisor/z_archive",
   "description": "Empty cold-tier archive container under system-skill-advisor. No archived children. NOTE: the enclosing system-skill-advisor track has no registered graph node, so parent_id is null. Archived tier: excluded from default recall, retrievable via includeArchived.",
   "keywords": [

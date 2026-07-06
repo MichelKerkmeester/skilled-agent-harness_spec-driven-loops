@@ -58,6 +58,7 @@ run_check() {
     drift_rc=0
     drift_missing=$(node --input-type=module - "$graph_file" "$folder" "$child_scanner" 2>/dev/null <<'NODE_DRIFT'
 import { readFileSync } from 'node:fs';
+import { basename } from 'node:path';
 import { pathToFileURL } from 'node:url';
 const [graphFile, folder, scanner] = process.argv.slice(2);
 let listDerivedChildNames;
@@ -73,15 +74,17 @@ try {
 } catch {
   process.exit(21); // unreadable graph metadata — presence check owns that
 }
-// Match on basename, not the full path: children_ids can carry stale track-prefix
-// spelling, and a basename compare stays robust to that drift. The accepted cost is
-// that a foreign entry sharing a basename with a genuinely-missing local child would
-// mask it — a rare, low-severity trade in favor of prefix-drift robustness.
-const listed = new Set(
-  (Array.isArray(parsed.children_ids) ? parsed.children_ids : [])
-    .map((entry) => String(entry).split('/').filter(Boolean).pop())
-    .filter(Boolean),
-);
+// Compare the immediate parent segment to the checked folder name. This keeps
+// tolerance for leading-prefix drift while preventing another parent with the
+// same child basename from satisfying the local child.
+const parentName = basename(folder);
+const listed = new Set();
+for (const entry of Array.isArray(parsed.children_ids) ? parsed.children_ids : []) {
+  const segments = String(entry).split('/').filter(Boolean);
+  if (segments.length >= 2 && segments[segments.length - 2] === parentName) {
+    listed.add(segments[segments.length - 1]);
+  }
+}
 const missing = listDerivedChildNames(folder).filter((name) => !listed.has(name));
 if (missing.length === 0) process.exit(0);
 process.stdout.write(missing.join(', '));

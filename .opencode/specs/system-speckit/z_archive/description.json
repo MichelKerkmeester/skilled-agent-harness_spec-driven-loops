@@ -1,5 +1,6 @@
 {
   "level": "archive",
+  "importance_tier": "archived",
   "specFolder": "system-speckit/z_archive",
   "description": "Cold-tier archive container under system-speckit. Holds archived spec-folder phases (spec-kit and memory history). Archived tier: excluded from default recall, retrievable via includeArchived.",
   "keywords": [

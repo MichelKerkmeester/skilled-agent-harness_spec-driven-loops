@@ -1,5 +1,6 @@
 {
   "level": "archive",
+  "importance_tier": "archived",
   "specFolder": "system-deep-loop/z_archive/021-deep-skill-evolution/z_archive",
   "description": "Nested cold-tier archive container under system-deep-loop/z_archive/021-deep-skill-evolution. Holds archived child material (arc-workspaces). Archived tier: excluded from default recall, retrievable via includeArchived.",
   "keywords": [

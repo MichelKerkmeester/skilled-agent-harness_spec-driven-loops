@@ -208,7 +208,7 @@
     ],
     "causal_summary": "There are nine `zarchive` root directories across `.opencode/specs` (`system-speckit/zarchive`, `system-deep-loop/zarchive`, `skilled-agent-orchestration/zarchive`, `sk-design/zarchive`, `system-skill-advisor/zarchive`, `system-speckit/026-graph-and-context-optimization/zarchive`, `sk-design/008-sk-design-parent/external/zarchive`, plus two nested roots inside already-archived folders)",
     "created_at": "2026-07-06T06:03:39Z",
-    "last_save_at": "2026-07-06T10:02:20.287Z",
+    "last_save_at": "2026-07-06T12:51:23.429Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -218,13 +218,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:a044ded276b74af4b461bcf86267d23b109452f24668524bf7d793da160bf7f1",
+    "source_fingerprint": "sha256:115b347dd54cd7387eb5876ea4977d46874208879b1db6896fafe8c3674bb956",
     "source_doc_hashes": {
-      "spec.md": "6327b1529ec65e3c9fdc06c4cd1cb88bbcb1dba7ff43963201ec42a98b7def0a",
-      "plan.md": "feacf9a978754ba9a688f20aa4351f1968f4d38dcf6a86e48b7933d45c2a50d8",
-      "tasks.md": "7ec4284650c75aaec5dd88149ad74d145e5f7350750189a93bbae7c3e7eb147b",
-      "checklist.md": "e956d20c1169e59fc986b032ac5fcdf60ca51f8aa7d1d85eb099f6efc5ad093b",
-      "implementation-summary.md": "6d26425c42e7366a66f2d38fbaf95ea07e23169cabcb0105b744507fdc4efb9f"
+      "spec.md": "81ca3622743f59dc054a8ced97ff8ac944de74aef69af22de98996ddbab9a5cf",
+      "plan.md": "58b13a85b3eef010a56d174a388f4bd3d1d3768ac4671e8289a99bfaba19e306",
+      "tasks.md": "523a292405f241ff96596494c1867e66e3672f18d4e7b6c2d6d06c07c7d2ff2d",
+      "checklist.md": "4be6f674bd7551ae64c57e38553db191ae1b52c7873ec498115e3ada786a90ca",
+      "implementation-summary.md": "bfe59f4b14a27752db3a9c2f00b00514882c051f38e8ee5025e4c742d1017d40"
     },
     "last_active_child_id": null,
     "last_active_at": null

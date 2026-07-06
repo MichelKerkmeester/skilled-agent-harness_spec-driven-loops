@@ -1,5 +1,6 @@
 {
   "level": "archive",
+  "importance_tier": "archived",
   "specFolder": "skilled-agent-orchestration/z_archive",
   "description": "Cold-tier archive container under skilled-agent-orchestration. Holds archived spec-folder phases (agent, CLI, and skill orchestration history). Archived tier: excluded from default recall, retrievable via includeArchived.",
   "keywords": [

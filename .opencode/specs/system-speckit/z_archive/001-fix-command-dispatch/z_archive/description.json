@@ -1,5 +1,6 @@
 {
   "level": "archive",
+  "importance_tier": "archived",
   "specFolder": "system-speckit/z_archive/001-fix-command-dispatch/z_archive",
   "description": "Nested cold-tier archive container under system-speckit/z_archive/001-fix-command-dispatch. Holds archived spec-folder phases. Archived tier: excluded from default recall, retrievable via includeArchived.",
   "keywords": [
