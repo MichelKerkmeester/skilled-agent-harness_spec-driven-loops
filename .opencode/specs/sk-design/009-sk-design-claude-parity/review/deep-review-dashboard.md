@@ -18,7 +18,7 @@ Reducer-generated observability surface for the active review packet.
 - Review Target: .opencode/specs/sk-design/009-sk-design-claude-parity (spec-folder)
 - Started: 2026-07-06T11:48:06.000Z
 - Status: INITIALIZED
-- Iteration: 7 of 10
+- Iteration: 8 of 10
 - Provisional Verdict: CONDITIONAL
 - hasSearchDebt: true
 - hasAdvisories: false
@@ -35,7 +35,7 @@ Reducer-generated observability surface for the active review packet.
 | Severity | Count |
 |----------|------:|
 | P0 (Blockers) | 0 |
-| P1 (Required) | 7 |
+| P1 (Required) | 8 |
 | P2 (Suggestions) | 3 |
 | Resolved | 0 |
 
@@ -52,6 +52,7 @@ Reducer-generated observability surface for the active review packet.
 | run-005 | maintainability | maintainability | 0.40 | 0/0/2 | complete |
 | run-006 | deep revisit - md-generator P1 remediation design | correctness/security | 0.25 | 0/1/0 | complete |
 | run-007 | deep revisit - non-output extraction modules | correctness/security/maintainability | 0.50 | 0/2/1 | complete |
+| run-008 | deep revisit - HTML/CSS sinks + generalization check | security | 0.25 | 0/1/0 | complete |
 
 <!-- /ANCHOR:progress -->
 <!-- ANCHOR:dimension-coverage -->
@@ -59,7 +60,7 @@ Reducer-generated observability surface for the active review packet.
 
 | Dimension | Status | Open findings |
 |-----------|--------|--------------:|
-| correctness | covered | 10 |
+| correctness | covered | 11 |
 | security | covered | 0 |
 | traceability | covered | 0 |
 | maintainability | covered | 0 |
@@ -79,9 +80,9 @@ No blocked-stop events recorded.
 <!-- /ANCHOR:graph-convergence -->
 <!-- ANCHOR:trend -->
 ## 8. TREND
-- Last 3 ratios: 0.40 -> 0.25 -> 0.50
-- convergenceScore: 0.50
-- openFindings: 10
+- Last 3 ratios: 0.25 -> 0.50 -> 0.25
+- convergenceScore: 0.75
+- openFindings: 11
 - persistentSameSeverity: 0
 - severityChanged: 0
 - repeatedFindings (deprecated combined bucket): 0
@@ -95,13 +96,14 @@ No corrupt JSONL lines detected.
 <!-- ANCHOR:search-debt -->
 ## 10. SEARCH DEBT
 - graphCoverageMode: graphless_fallback
-- candidateCoverage: covered=39, ruledOut=32, deferred=20, blocked=1
+- candidateCoverage: covered=44, ruledOut=37, deferred=22, blocked=1
 
 ### Search Debt
 - iteration 1 deep_correctness_security_traceability_maintainability (deferred): Review plan assigns deep dimension work to later iterations.; evidence=.opencode/specs/sk-design/009-sk-design-claude-parity/review/deep-review-strategy.md:100
 - iteration 2 manual_playbook_capability_mismatch (deferred): Defer to traceability or maintainability iterations for full scenario validation.; evidence=.opencode/specs/sk-design/009-sk-design-claude-parity/review/iterations/iteration-002.md:51
 - iteration 6 nonfocused_extraction_modules (deferred): Prompt constrained this pass to the six P1-remediation backend files; non-output extraction modules were inventoried by glob but not read line-by-line in this iteration.; evidence=.opencode/skills/sk-design/design-md-generator/backend/scripts/a11y-extract.ts:1, .opencode/skills/sk-design/design-md-generator/backend/scripts/motion-extract.ts:1
 - iteration 7 structural_graph (blocked): Code graph readiness is stale, so graph assertions were not trusted.; evidence=code_graph_status:1
+- iteration 8 structural_graph (blocked): code_graph_status reported stale readiness and graphless fallback was used.; evidence=code_graph_status:1
 
 ### Ruled-Out Candidates
 - iteration 1 artifact_inventory (ruled_out): Directory and targeted glob evidence matched the declared structure.; evidence=.opencode/specs/sk-design/009-sk-design-claude-parity:1, .opencode/specs/sk-design/009-sk-design-claude-parity/008-smart-routing-optimization/benchmark-after-008/report.md:1
@@ -129,6 +131,9 @@ No corrupt JSONL lines detected.
 - iteration 6 report_preview_new_p1 (ruled_out): The broader pass reconfirmed P1-004 overwrite semantics but did not identify a separate report/preview/proof P1.; evidence=.opencode/skills/sk-design/design-md-generator/backend/scripts/report-gen.ts:650, .opencode/skills/sk-design/design-md-generator/backend/scripts/preview-gen.ts:252, .opencode/skills/sk-design/design-md-generator/backend/scripts/proof.ts:436
 - iteration 7 a11y_focus_regression_repeat (ruled_out): The focus absence/presence regression has a real focused test and was not re-reported.; evidence=.opencode/skills/sk-design/design-md-generator/backend/tests/a11y-extract.test.ts:8
 - iteration 7 boundary_icon_motion_prompt_flow (ruled_out): No separate raw source-derived prompt/report P1 was confirmed for boundary/icon/motion beyond counts or structured values in this pass.; evidence=.opencode/skills/sk-design/design-md-generator/backend/scripts/build-write-prompt.ts:39, .opencode/skills/sk-design/design-md-generator/backend/scripts/build-write-prompt.ts:46
+- iteration 8 proof_renderer_css_sinks (ruled_out): No source-derived arbitrary CSS string was found in proof style declarations.; evidence=.opencode/skills/sk-design/design-md-generator/backend/scripts/proof.ts:151, .opencode/skills/sk-design/design-md-generator/backend/scripts/proof.ts:278, .opencode/skills/sk-design/design-md-generator/backend/scripts/proof.ts:282
+- iteration 8 href_src_attribute_isolation (ruled_out): No unescaped quote-breaking href/src sink was confirmed in the reviewed files; Google Fonts host allowlisting remains hardening, not this P1.; evidence=.opencode/skills/sk-design/design-md-generator/backend/scripts/dom-collector.ts:423, .opencode/skills/sk-design/design-md-generator/backend/scripts/report-gen.ts:247, .opencode/skills/sk-design/design-md-generator/backend/scripts/proof.ts:265
+- iteration 8 rendering_test_coverage (ruled_out): The absence of rendering tests supports P1-008 and existing P2-003, but does not require a new distinct P2.; evidence=.opencode/skills/sk-design/design-md-generator/backend/tests:1
 
 ### Clean Search Proof
 - iteration 1 artifact_inventory (ruled_out): Directory and targeted glob evidence matched the declared structure.; evidence=.opencode/specs/sk-design/009-sk-design-claude-parity:1, .opencode/specs/sk-design/009-sk-design-claude-parity/008-smart-routing-optimization/benchmark-after-008/report.md:1
@@ -156,6 +161,9 @@ No corrupt JSONL lines detected.
 - iteration 6 report_preview_new_p1 (ruled_out): The broader pass reconfirmed P1-004 overwrite semantics but did not identify a separate report/preview/proof P1.; evidence=.opencode/skills/sk-design/design-md-generator/backend/scripts/report-gen.ts:650, .opencode/skills/sk-design/design-md-generator/backend/scripts/preview-gen.ts:252, .opencode/skills/sk-design/design-md-generator/backend/scripts/proof.ts:436
 - iteration 7 a11y_focus_regression_repeat (ruled_out): The focus absence/presence regression has a real focused test and was not re-reported.; evidence=.opencode/skills/sk-design/design-md-generator/backend/tests/a11y-extract.test.ts:8
 - iteration 7 boundary_icon_motion_prompt_flow (ruled_out): No separate raw source-derived prompt/report P1 was confirmed for boundary/icon/motion beyond counts or structured values in this pass.; evidence=.opencode/skills/sk-design/design-md-generator/backend/scripts/build-write-prompt.ts:39, .opencode/skills/sk-design/design-md-generator/backend/scripts/build-write-prompt.ts:46
+- iteration 8 proof_renderer_css_sinks (ruled_out): No source-derived arbitrary CSS string was found in proof style declarations.; evidence=.opencode/skills/sk-design/design-md-generator/backend/scripts/proof.ts:151, .opencode/skills/sk-design/design-md-generator/backend/scripts/proof.ts:278, .opencode/skills/sk-design/design-md-generator/backend/scripts/proof.ts:282
+- iteration 8 href_src_attribute_isolation (ruled_out): No unescaped quote-breaking href/src sink was confirmed in the reviewed files; Google Fonts host allowlisting remains hardening, not this P1.; evidence=.opencode/skills/sk-design/design-md-generator/backend/scripts/dom-collector.ts:423, .opencode/skills/sk-design/design-md-generator/backend/scripts/report-gen.ts:247, .opencode/skills/sk-design/design-md-generator/backend/scripts/proof.ts:265
+- iteration 8 rendering_test_coverage (ruled_out): The absence of rendering tests supports P1-008 and existing P2-003, but does not require a new distinct P2.; evidence=.opencode/skills/sk-design/design-md-generator/backend/tests:1
 
 <!-- /ANCHOR:search-debt -->
 <!-- ANCHOR:next-focus -->
@@ -165,7 +173,7 @@ No corrupt JSONL lines detected.
 <!-- /ANCHOR:next-focus -->
 <!-- ANCHOR:active-risks -->
 ## 12. ACTIVE RISKS
-- 7 active P1 finding(s) — required before release; not a P0 but still blocks PASS.
-- 4 search-debt obligation(s) remain deferred or blocked. Verdict is CONDITIONAL until they are covered or ruled out.
+- 8 active P1 finding(s) — required before release; not a P0 but still blocks PASS.
+- 5 search-debt obligation(s) remain deferred or blocked. Verdict is CONDITIONAL until they are covered or ruled out.
 
 <!-- /ANCHOR:active-risks -->

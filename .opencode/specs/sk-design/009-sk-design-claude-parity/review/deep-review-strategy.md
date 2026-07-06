@@ -66,9 +66,9 @@ Not re-running the routing benchmark harness or the md-generator Playwright pipe
 ## 7. RUNNING FINDINGS
 <!-- MACHINE-OWNED: START -->
 - **P0 (Critical):** 0 active
-- **P1 (Major):** 7 active
+- **P1 (Major):** 8 active
 - **P2 (Minor):** 3 active
-- **Delta this iteration:** +0 P0, +2 P1, +1 P2
+- **Delta this iteration:** +0 P0, +1 P1, +0 P2
 
 [Findings are tracked in `deep-review-findings-registry.json`. This section provides a running count summary updated after each iteration.]
 <!-- MACHINE-OWNED: END -->
@@ -87,6 +87,7 @@ Not re-running the routing benchmark harness or the md-generator Playwright pipe
 - Iteration 5 maintainability review found no new P0/P1 and clarified two shared remediation seams for the md-generator backend: prompt-data/facts encoding and output/artifact write policy.
 - Iteration 6 deeper md-generator revisit found a new guided-run relative-output correctness defect and confirmed the prompt-injection plus output-path findings do not currently compound into P0.
 - Iteration 7 covered the non-output extraction modules deferred by iteration 6 and found two new backend P1s: dark-mode CSS variable values enter generated report style attributes without data isolation, and transition shorthand parsing corrupts comma-bearing timing functions.
+- Iteration 8 generalized the HTML/CSS sink revisit across report/preview/proof and found one new backend P1: report and preview renderers reuse source-derived typography, radius, and shadow token strings in CSS contexts without a shared CSS-value sanitizer.
 
 ---
 
@@ -100,6 +101,7 @@ Not re-running the routing benchmark harness or the md-generator Playwright pipe
 - Code graph remained stale in iteration 5 (`git HEAD changed`, newer mtimes, removed tracked files); maintainability assertions used graphless fallback only.
 - Code graph remained stale in iteration 6 (`git HEAD changed`, newer mtimes, removed tracked files); md-generator revisit assertions used graphless fallback only.
 - Code graph remained stale in iteration 7 (`git HEAD changed`, newer mtimes, removed tracked files); non-output extraction assertions used graphless fallback only.
+- Code graph remained stale in iteration 8 (`git HEAD changed`, newer mtimes, removed tracked files); HTML/CSS sink assertions used graphless fallback only.
 
 ---
 
@@ -135,12 +137,14 @@ Not re-running the routing benchmark harness or the md-generator Playwright pipe
 - Report/preview/proof additional P1 beyond overwrite semantics: ruled out for iteration 6. The broader pass reconfirmed P1-004 but did not find a separate report/preview/proof correctness or security defect.
 - A11y focus-indicator regression repeat: ruled out for iteration 7. The focused `a11y-extract.test.ts` covers captured:false/consistent:false on empty focus data and captured:true with a real focus style.
 - Boundary/icon/motion raw prompt-flow P1: ruled out for iteration 7. The reviewed write-prompt facts for these modules use counts/booleans rather than raw boundary/icon/animation strings; dark-mode report CSS context remains the new confirmed sink.
+- Proof renderer CSS-context repeat: ruled out for iteration 8. `proof.ts` style colors are hardcoded or numeric-derived, and screenshot `src` values are base64 from the proof path rather than arbitrary CSS-derived strings.
+- href/src attribute breakout as a separate P1: ruled out for iteration 8. Reviewed href/src sinks use HTML-attribute escaping or base64 screenshot sources; Google Fonts host allowlisting remains hardening but not the same CSS-context escaping defect.
 
 ---
 
 ## 12. NEXT FOCUS
 <!-- MACHINE-OWNED: START -->
-Iteration 8 (deeper revisit): check generated HTML/CSS sinks and report/preview/proof rendering tests more broadly, especially shared CSS-context escaping and whether P1-006 generalizes beyond dark-mode variable swatches.
+Iteration 9 (deeper revisit): check remediation completeness across active md-generator P1s, especially whether a shared output policy plus a renderer-local CSS-value sanitizer covers all affected sinks without overbroad escaping.
 <!-- MACHINE-OWNED: END -->
 
 ---
@@ -190,7 +194,7 @@ Do not inline full source bodies in this file. Use this snapshot only to seed re
 | `.opencode/skills/sk-design/design-foundations/` | inventory | 1 | 0 | mapped; scripts present |
 | `.opencode/skills/sk-design/design-motion/` | inventory | 1 | 0 | mapped |
 | `.opencode/skills/sk-design/design-audit/` | inventory | 1 | 0 | mapped; scripts present |
-| `.opencode/skills/sk-design/design-md-generator/` | inventory + backend correctness spot-check + security path/prompt spot-check + report/preview traceability spot-check + maintainability seam review + deep revisit | 7 | 7 P1 + 1 P2 | mapped; `build-write-prompt.ts` component-facts gap, output-boundary guard gap, prompt-data isolation gap, report/preview overwrite-contract gap, guided-run relative-output cwd mismatch, dark-mode report CSS-context isolation gap, transition shorthand parser bug, and focused extraction test gap found; remediation seams identified |
+| `.opencode/skills/sk-design/design-md-generator/` | inventory + backend correctness spot-check + security path/prompt spot-check + report/preview traceability spot-check + maintainability seam review + deep revisit | 8 | 8 P1 + 1 P2 | mapped; `build-write-prompt.ts` component-facts gap, output-boundary guard gap, prompt-data isolation gap, report/preview overwrite-contract gap, guided-run relative-output cwd mismatch, dark-mode report CSS-context isolation gap, transition shorthand parser bug, generalized report/preview CSS-value sanitizer gap, and focused extraction test gap found; remediation seams identified |
 | `.opencode/skills/sk-design/design-md-generator/backend/node_modules/` | - | 1 | - | out of scope vendored dependency internals |
 | `.opencode/commands/design/*.md` | inventory + security tool-surface spot-check + traceability command projection spot-check | 4 | 0 | mapped; read-only versus md-generator mutating split preserved |
 <!-- MACHINE-OWNED: END -->
@@ -232,7 +236,7 @@ Do not inline full source bodies in this file. Use this snapshot only to seed re
 <!-- ANCHOR:running-findings -->
 ## 5. RUNNING FINDINGS
 - P0 (Blockers): 0
-- P1 (Required): 7
+- P1 (Required): 8
 - P2 (Suggestions): 3
 - Resolved: 0
 

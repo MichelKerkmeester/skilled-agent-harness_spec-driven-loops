@@ -217,6 +217,42 @@
       "mergedFindingIds": []
     },
     {
+      "findingId": "P1-008",
+      "severity": "P1",
+      "title": "Report and preview renderers inject source-derived CSS token strings into style contexts without validation",
+      "file": ".opencode/skills/sk-design/design-md-generator/backend/scripts/preview-gen.ts",
+      "line": 200,
+      "description": "P1-006 generalizes beyond dark-mode swatches: report-gen.ts and preview-gen.ts interpolate source-derived typography, radius, and shadow token strings into inline CSS contexts without a CSS-value sanitizer or property-specific allowlist.",
+      "findingClass": "cross-consumer",
+      "deltaStatus": null,
+      "scopeProof": "Exact sink grep plus direct reads covered report-gen.ts, preview-gen.ts, proof.ts, token value types, Google Fonts link producer, and backend rendering tests.",
+      "affectedSurfaceHints": [
+        "report-gen.ts",
+        "preview-gen.ts",
+        "dark-mode report rows",
+        "typography/radius/shadow preview renderers",
+        "generated report.html",
+        "generated preview.html"
+      ],
+      "contentHash": "p1-008-css-style-context-v1",
+      "dimension": "correctness",
+      "firstSeen": 8,
+      "lastSeen": 8,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 8,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
       "findingId": "P2-001",
       "severity": "P2",
       "title": "Procedure-card schema lint is manual-only and outside the existing canon checker",
@@ -317,12 +353,12 @@
   },
   "findingsBySeverity": {
     "P0": 0,
-    "P1": 7,
+    "P1": 8,
     "P2": 3
   },
-  "openFindingsCount": 10,
+  "openFindingsCount": 11,
   "resolvedFindingsCount": 0,
-  "convergenceScore": 0.5,
+  "convergenceScore": 0.75,
   "graphConvergenceScore": 0,
   "graphDecision": null,
   "graphBlockers": [],
@@ -341,6 +377,7 @@
       "feature_catalog_duplicate_drift",
       "focused_module_test_coverage",
       "guided_run_relative_output",
+      "href_src_attribute_isolation",
       "manual_playbook_capability_mismatch",
       "md_generator_entrypoint_contract",
       "md_generator_remediation_coupling",
@@ -360,10 +397,14 @@
       "procedure_card_schema_drift",
       "prompt_data_isolation",
       "prompt_template_injection",
+      "proof_renderer_css_sinks",
       "read_only_mode_escalation",
+      "rendering_test_coverage",
       "report_preview_overwrite_contract",
+      "shared_css_sanitizer_seam",
       "shell_command_injection",
       "single_shared_root_cause",
+      "source_derived_css_style_attr_isolation",
       "source_derived_html_css_isolation",
       "tool_surface_escalation",
       "write_prompt_value_fidelity"
@@ -379,6 +420,8 @@
       "compound_prompt_output_escalation",
       "crawler_side_effect_control",
       "feature_catalog_duplicate_drift",
+      "href_src_attribute_breakout",
+      "href_src_attribute_isolation",
       "md_generator_entrypoint_contract",
       "md_generator_new_p1_maintainability",
       "md_generator_remediation_coupling",
@@ -386,6 +429,7 @@
       "missing_parent_or_phase_structure",
       "mode_registry_surface_mismatch",
       "mode_routing_surface_mismatch",
+      "normalized_color_sinks",
       "obvious_stub_residue",
       "phase010_remediation_residual",
       "phase010_remediation_traceability",
@@ -395,7 +439,9 @@
       "placeholder_or_stub_residue",
       "playbook_capability",
       "prior_component_gap_security",
+      "proof_renderer_css_sinks",
       "read_only_mode_escalation",
+      "rendering_test_coverage",
       "report_preview_new_p1",
       "shell_command_injection",
       "silent_unchecked_hard_blocker",
@@ -415,12 +461,14 @@
       "full_manual_playbook_live_execution",
       "full_manual_playbook_scenario_execution",
       "live_browser_execution",
+      "live_browser_malicious_token_rendering",
       "maintainability_drift",
       "manual_playbook_capability_mismatch",
       "md_generator_remediation_implementation",
       "nonfocused_extraction_modules",
       "playbook_capability",
       "procedure_card_lint_automation_design",
+      "sanitizer_implementation",
       "security_boundary",
       "traceability_matrix"
     ],
@@ -1008,7 +1056,8 @@
         "deferred": false,
         "blocked": true,
         "iterations": [
-          7
+          7,
+          8
         ]
       },
       "boundary_icon_motion_prompt_flow": {
@@ -1018,6 +1067,87 @@
         "blocked": false,
         "iterations": [
           7
+        ]
+      },
+      "source_derived_css_style_attr_isolation": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          8
+        ]
+      },
+      "href_src_attribute_isolation": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          8
+        ]
+      },
+      "proof_renderer_css_sinks": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          8
+        ]
+      },
+      "rendering_test_coverage": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          8
+        ]
+      },
+      "shared_css_sanitizer_seam": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          8
+        ]
+      },
+      "href_src_attribute_breakout": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          8
+        ]
+      },
+      "normalized_color_sinks": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          8
+        ]
+      },
+      "live_browser_malicious_token_rendering": {
+        "covered": false,
+        "ruledOut": false,
+        "deferred": true,
+        "blocked": false,
+        "iterations": [
+          8
+        ]
+      },
+      "sanitizer_implementation": {
+        "covered": false,
+        "ruledOut": false,
+        "deferred": true,
+        "blocked": false,
+        "iterations": [
+          8
         ]
       }
     }
@@ -1084,6 +1214,21 @@
         "code_graph_status:1"
       ],
       "reason": "Code graph readiness is stale, so graph assertions were not trusted."
+    },
+    {
+      "iteration": 8,
+      "id": "SL-805",
+      "dimension": "coverage",
+      "targetRefs": [
+        "code_graph_status"
+      ],
+      "bugClass": "structural_graph",
+      "disposition": "blocked",
+      "rationale": "Code graph readiness is stale, so graph assertions were not trusted.",
+      "evidenceRefs": [
+        "code_graph_status:1"
+      ],
+      "reason": "code_graph_status reported stale readiness and graphless fallback was used."
     }
   ],
   "ruledOutCandidates": [
@@ -1545,6 +1690,56 @@
         ".opencode/skills/sk-design/design-md-generator/backend/scripts/build-write-prompt.ts:46"
       ],
       "reason": "No separate raw source-derived prompt/report P1 was confirmed for boundary/icon/motion beyond counts or structured values in this pass."
+    },
+    {
+      "iteration": 8,
+      "id": "SL-802",
+      "dimension": "security",
+      "targetRefs": [
+        "proof.ts"
+      ],
+      "bugClass": "proof_renderer_css_sinks",
+      "disposition": "ruled_out",
+      "rationale": "Proof style colors are hardcoded mappings or generated from numeric RGB, and screenshot src values are base64 buffers.",
+      "evidenceRefs": [
+        ".opencode/skills/sk-design/design-md-generator/backend/scripts/proof.ts:151",
+        ".opencode/skills/sk-design/design-md-generator/backend/scripts/proof.ts:278",
+        ".opencode/skills/sk-design/design-md-generator/backend/scripts/proof.ts:282"
+      ],
+      "reason": "No source-derived arbitrary CSS string was found in proof style declarations."
+    },
+    {
+      "iteration": 8,
+      "id": "SL-803",
+      "dimension": "security",
+      "targetRefs": [
+        "report-gen.ts",
+        "proof.ts"
+      ],
+      "bugClass": "href_src_attribute_isolation",
+      "disposition": "ruled_out",
+      "rationale": "Reviewed href/src sinks did not prove attribute breakout: href is HTML-escaped and screenshot src values are produced as base64.",
+      "evidenceRefs": [
+        ".opencode/skills/sk-design/design-md-generator/backend/scripts/dom-collector.ts:423",
+        ".opencode/skills/sk-design/design-md-generator/backend/scripts/report-gen.ts:247",
+        ".opencode/skills/sk-design/design-md-generator/backend/scripts/proof.ts:265"
+      ],
+      "reason": "No unescaped quote-breaking href/src sink was confirmed in the reviewed files; Google Fonts host allowlisting remains hardening, not this P1."
+    },
+    {
+      "iteration": 8,
+      "id": "SL-804",
+      "dimension": "security",
+      "targetRefs": [
+        "backend/tests/*.test.ts"
+      ],
+      "bugClass": "rendering_test_coverage",
+      "disposition": "ruled_out",
+      "rationale": "No new P2 was needed because P2-003 already records focused extraction/rendering test gaps; this iteration adds rendering-test evidence to that advisory.",
+      "evidenceRefs": [
+        ".opencode/skills/sk-design/design-md-generator/backend/tests:1"
+      ],
+      "reason": "The absence of rendering tests supports P1-008 and existing P2-003, but does not require a new distinct P2."
     }
   ],
   "cleanSearchProof": [
@@ -2006,27 +2201,81 @@
         ".opencode/skills/sk-design/design-md-generator/backend/scripts/build-write-prompt.ts:46"
       ],
       "proof": "No separate raw source-derived prompt/report P1 was confirmed for boundary/icon/motion beyond counts or structured values in this pass."
+    },
+    {
+      "iteration": 8,
+      "id": "SL-802",
+      "dimension": "security",
+      "targetRefs": [
+        "proof.ts"
+      ],
+      "bugClass": "proof_renderer_css_sinks",
+      "disposition": "ruled_out",
+      "rationale": "Proof style colors are hardcoded mappings or generated from numeric RGB, and screenshot src values are base64 buffers.",
+      "evidenceRefs": [
+        ".opencode/skills/sk-design/design-md-generator/backend/scripts/proof.ts:151",
+        ".opencode/skills/sk-design/design-md-generator/backend/scripts/proof.ts:278",
+        ".opencode/skills/sk-design/design-md-generator/backend/scripts/proof.ts:282"
+      ],
+      "proof": "No source-derived arbitrary CSS string was found in proof style declarations."
+    },
+    {
+      "iteration": 8,
+      "id": "SL-803",
+      "dimension": "security",
+      "targetRefs": [
+        "report-gen.ts",
+        "proof.ts"
+      ],
+      "bugClass": "href_src_attribute_isolation",
+      "disposition": "ruled_out",
+      "rationale": "Reviewed href/src sinks did not prove attribute breakout: href is HTML-escaped and screenshot src values are produced as base64.",
+      "evidenceRefs": [
+        ".opencode/skills/sk-design/design-md-generator/backend/scripts/dom-collector.ts:423",
+        ".opencode/skills/sk-design/design-md-generator/backend/scripts/report-gen.ts:247",
+        ".opencode/skills/sk-design/design-md-generator/backend/scripts/proof.ts:265"
+      ],
+      "proof": "No unescaped quote-breaking href/src sink was confirmed in the reviewed files; Google Fonts host allowlisting remains hardening, not this P1."
+    },
+    {
+      "iteration": 8,
+      "id": "SL-804",
+      "dimension": "security",
+      "targetRefs": [
+        "backend/tests/*.test.ts"
+      ],
+      "bugClass": "rendering_test_coverage",
+      "disposition": "ruled_out",
+      "rationale": "No new P2 was needed because P2-003 already records focused extraction/rendering test gaps; this iteration adds rendering-test evidence to that advisory.",
+      "evidenceRefs": [
+        ".opencode/skills/sk-design/design-md-generator/backend/tests:1"
+      ],
+      "proof": "The absence of rendering tests supports P1-008 and existing P2-003, but does not require a new distinct P2."
     }
   ],
   "searchCoverage": {
     "requiredBugClasses": [
-      "source_derived_html_css_isolation",
-      "css_shorthand_correctness",
-      "focused_module_test_coverage"
+      "source_derived_css_style_attr_isolation",
+      "href_src_attribute_isolation",
+      "proof_renderer_css_sinks",
+      "rendering_test_coverage",
+      "shared_css_sanitizer_seam"
     ],
     "covered": [
-      "source_derived_html_css_isolation",
-      "css_shorthand_correctness",
-      "focused_module_test_coverage",
-      "nonfocused_extraction_modules"
+      "source_derived_css_style_attr_isolation",
+      "href_src_attribute_isolation",
+      "proof_renderer_css_sinks",
+      "rendering_test_coverage",
+      "shared_css_sanitizer_seam"
     ],
     "ruledOut": [
-      "boundary_icon_motion_prompt_flow_new_p1",
-      "a11y_focus_regression_repeat"
+      "proof_renderer_css_sinks",
+      "href_src_attribute_breakout",
+      "normalized_color_sinks"
     ],
     "deferred": [
-      "live_browser_execution",
-      "full_end_to_end_md_generator_run"
+      "live_browser_malicious_token_rendering",
+      "sanitizer_implementation"
     ],
     "blocked": [
       "structural_graph"
