@@ -9,8 +9,8 @@ importance_tier: "high"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-deep-loop/038-scenario-loader-code-surface-sync"
-    last_updated_at: "2026-07-05T00:00:00Z"
+    packet_pointer: "system-deep-loop/037-scenario-loader-code-surface-sync"
+    last_updated_at: "2026-07-06T08:41:30.599Z"
     last_updated_by: "claude-opus"
     recent_action: "Scenario loader and live parser prefix handling re-synced; regression guard added"
     next_safe_action: "Validate and push; keep gold re-baseline in follow-up"

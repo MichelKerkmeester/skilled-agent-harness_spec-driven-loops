@@ -9,8 +9,8 @@ importance_tier: "high"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-deep-loop/038-scenario-loader-code-surface-sync"
-    last_updated_at: "2026-07-05T00:00:00Z"
+    packet_pointer: "system-deep-loop/037-scenario-loader-code-surface-sync"
+    last_updated_at: "2026-07-06T08:41:30.599Z"
     last_updated_by: "claude-opus"
     recent_action: "Code-surface path parsing verified with direct parser proof and guard tests"
     next_safe_action: "Run close-out validation and push; continue sk-code gold translation separately"
@@ -100,7 +100,7 @@ _memory:
 <!-- ANCHOR:file-org -->
 ## File Organization
 
-- [x] CHK-050 [P1] Authored docs stay in the existing packet folder [EVIDENCE: plan.md, tasks.md, checklist.md, and implementation-summary.md are authored under `.opencode/specs/system-deep-loop/038-scenario-loader-code-surface-sync/`]
+- [x] CHK-050 [P1] Authored docs stay in the existing packet folder [EVIDENCE: plan.md, tasks.md, checklist.md, and implementation-summary.md are authored under `.opencode/specs/system-deep-loop/037-scenario-loader-code-surface-sync/`]
 - [x] CHK-051 [P1] Metadata artifacts accounted for without source drift [EVIDENCE: Files Changed table records existing `description.json` and `graph-metadata.json` as packet metadata outputs while this close-out authoring pass only writes the four requested docs]
 
 <!-- /ANCHOR:file-org -->

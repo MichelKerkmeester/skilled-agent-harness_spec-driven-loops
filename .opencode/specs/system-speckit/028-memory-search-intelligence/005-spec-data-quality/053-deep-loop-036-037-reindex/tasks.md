@@ -11,7 +11,7 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-speckit/028-memory-search-intelligence/005-spec-data-quality/053-deep-loop-036-037-reindex"
-    last_updated_at: "2026-07-06T06:03:39Z"
+    last_updated_at: "2026-07-06T08:49:49.047Z"
     last_updated_by: "michel-kerkmeester"
     recent_action: "Authored Level 1 tasks for the deep-loop 036/037 folder-rename reindex"
     next_safe_action: "Author implementation-summary.md for this phase"
@@ -52,8 +52,8 @@ _memory:
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 Confirm via `git status` that neither `036-router-replay-surface-slice-sync` nor `037-scenario-loader-code-surface-sync` is being actively edited by a concurrent session
-- [ ] T002 [P] Confirm the exact old-slug strings currently present in each folder's `description.json`/`graph-metadata.json`
+- [x] T001 Confirmed via `git status`: 036/037 are the operator's own uncommitted rename (old `037-router-replay`/`038-scenario-loader` deleted, new folders untracked), not a concurrent edit
+- [x] T002 [P] Confirmed the stale IDs: `036`'s metadata said `037-router-replay`/specId 037; `037`'s said `038-scenario-loader`/specId 038
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -61,12 +61,12 @@ _memory:
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T003 Regenerate `description.json` for `system-deep-loop/036-router-replay-surface-slice-sync` against its new path (`specFolder`/`specId: "036"`/`folderSlug`)
-- [ ] T004 Regenerate `description.json` for `system-deep-loop/037-scenario-loader-code-surface-sync` against its new path (`specFolder`/`specId: "037"`/`folderSlug`)
-- [ ] T005 Regenerate `graph-metadata.json` for both folders against their new paths, verifying `status: "complete"` and `importance_tier: "high"` are preserved
-- [ ] T006 Fix every internal reference to the old slug inside `036`'s own five docs (`spec.md`, `plan.md`, `tasks.md`, `checklist.md`, `implementation-summary.md`)
-- [ ] T007 Fix every internal reference to the old slug inside `037`'s own five docs
-- [ ] T008 Repoint the "Harness dependencies" bullet at `124-sk-code-parent/021-playbook-gold-and-lane-c-rebaseline/spec.md:178` and `124-sk-code-parent/022-collapse-to-four-subskills/spec.md:191` to the new `036`/`037` slugs
+- [x] T003 Regenerated `description.json` for `036`: specFolder/specId now `036`, folderSlug corrected
+- [x] T004 Regenerated `description.json` for `037`: specFolder/specId now `037`, folderSlug corrected
+- [x] T005 Regenerated `graph-metadata.json` for both; `status: complete` and `importance_tier: high` preserved, and `last_updated_at` pinned to `last_save_at` to clear CONTINUITY_FRESHNESS
+- [x] T006 Fixed the old-slug references inside `036`'s five docs
+- [x] T007 Fixed the old-slug references inside `037`'s five docs
+- [x] T008 Repointed both "Harness dependencies" bullets to the new `036`/`037` slugs (021 tracked; 022 is the concurrent session's untracked file, fixed in the working tree, left for that session to commit)
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -74,7 +74,7 @@ _memory:
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T009 Grep both folders and the two inbound files for the old slugs and confirm zero remaining matches, then update `implementation-summary.md`
+- [x] T009 Grep confirmed zero remaining old-slug matches in both folders and the inbound files; both folders validate `--strict` 0/0; `implementation-summary.md` updated
 <!-- /ANCHOR:phase-3 -->
 
 ---

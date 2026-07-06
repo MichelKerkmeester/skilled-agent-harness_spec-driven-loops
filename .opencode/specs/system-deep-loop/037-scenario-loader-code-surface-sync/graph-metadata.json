@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "packet_id": "system-deep-loop/038-scenario-loader-code-surface-sync",
-  "spec_folder": "system-deep-loop/038-scenario-loader-code-surface-sync",
+  "packet_id": "system-deep-loop/037-scenario-loader-code-surface-sync",
+  "spec_folder": "system-deep-loop/037-scenario-loader-code-surface-sync",
   "parent_id": null,
   "children_ids": [],
   "manual": {
@@ -41,16 +41,16 @@
     "importance_tier": "high",
     "status": "complete",
     "key_files": [
-      ".opencode/specs/system-deep-loop/038-scenario-loader-code-surface-sync/spec.md",
+      ".opencode/specs/system-deep-loop/037-scenario-loader-code-surface-sync/spec.md",
       ".opencode/skills/deep-loop-workflows/deep-improvement/scripts/skill-benchmark/load-playbook-scenarios.cjs",
       ".opencode/skills/deep-loop-workflows/deep-improvement/scripts/skill-benchmark/live-executor.cjs",
       ".opencode/skills/deep-loop-workflows/deep-improvement/scripts/skill-benchmark/tests/code-surface-path-parse.vitest.ts",
-      ".opencode/specs/system-deep-loop/038-scenario-loader-code-surface-sync/plan.md",
-      ".opencode/specs/system-deep-loop/038-scenario-loader-code-surface-sync/tasks.md",
-      ".opencode/specs/system-deep-loop/038-scenario-loader-code-surface-sync/checklist.md",
-      ".opencode/specs/system-deep-loop/038-scenario-loader-code-surface-sync/implementation-summary.md",
-      ".opencode/specs/system-deep-loop/038-scenario-loader-code-surface-sync/description.json",
-      ".opencode/specs/system-deep-loop/038-scenario-loader-code-surface-sync/graph-metadata.json",
+      ".opencode/specs/system-deep-loop/037-scenario-loader-code-surface-sync/plan.md",
+      ".opencode/specs/system-deep-loop/037-scenario-loader-code-surface-sync/tasks.md",
+      ".opencode/specs/system-deep-loop/037-scenario-loader-code-surface-sync/checklist.md",
+      ".opencode/specs/system-deep-loop/037-scenario-loader-code-surface-sync/implementation-summary.md",
+      ".opencode/specs/system-deep-loop/037-scenario-loader-code-surface-sync/description.json",
+      ".opencode/specs/system-deep-loop/037-scenario-loader-code-surface-sync/graph-metadata.json",
       "spec.md",
       "plan.md",
       "checklist.md",
@@ -61,7 +61,7 @@
       {
         "name": "spec.md",
         "kind": "doc",
-        "path": ".opencode/specs/system-deep-loop/038-scenario-loader-code-surface-sync/spec.md",
+        "path": ".opencode/specs/system-deep-loop/037-scenario-loader-code-surface-sync/spec.md",
         "source": "derived"
       },
       {
@@ -85,37 +85,37 @@
       {
         "name": "plan.md",
         "kind": "doc",
-        "path": ".opencode/specs/system-deep-loop/038-scenario-loader-code-surface-sync/plan.md",
+        "path": ".opencode/specs/system-deep-loop/037-scenario-loader-code-surface-sync/plan.md",
         "source": "derived"
       },
       {
         "name": "tasks.md",
         "kind": "doc",
-        "path": ".opencode/specs/system-deep-loop/038-scenario-loader-code-surface-sync/tasks.md",
+        "path": ".opencode/specs/system-deep-loop/037-scenario-loader-code-surface-sync/tasks.md",
         "source": "derived"
       },
       {
         "name": "checklist.md",
         "kind": "doc",
-        "path": ".opencode/specs/system-deep-loop/038-scenario-loader-code-surface-sync/checklist.md",
+        "path": ".opencode/specs/system-deep-loop/037-scenario-loader-code-surface-sync/checklist.md",
         "source": "derived"
       },
       {
         "name": "implementation-summary.md",
         "kind": "doc",
-        "path": ".opencode/specs/system-deep-loop/038-scenario-loader-code-surface-sync/implementation-summary.md",
+        "path": ".opencode/specs/system-deep-loop/037-scenario-loader-code-surface-sync/implementation-summary.md",
         "source": "derived"
       },
       {
         "name": "description.json",
         "kind": "config",
-        "path": ".opencode/specs/system-deep-loop/038-scenario-loader-code-surface-sync/description.json",
+        "path": ".opencode/specs/system-deep-loop/037-scenario-loader-code-surface-sync/description.json",
         "source": "derived"
       },
       {
         "name": "graph-metadata.json",
         "kind": "config",
-        "path": ".opencode/specs/system-deep-loop/038-scenario-loader-code-surface-sync/graph-metadata.json",
+        "path": ".opencode/specs/system-deep-loop/037-scenario-loader-code-surface-sync/graph-metadata.json",
         "source": "derived"
       },
       {
@@ -205,7 +205,7 @@
     ],
     "causal_summary": "The Lane-C benchmark parses each playbook scenario's expected-resource gold (and, in live mode, the model's observed resource reads) with path-extraction regexes that recognized only the `references/`, `assets/`, and `../shared/` prefixes",
     "created_at": "2026-07-05T18:53:23.765Z",
-    "last_save_at": "2026-07-05T18:53:23.930Z",
+    "last_save_at": "2026-07-06T08:41:30.599Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -215,13 +215,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:f96392176a800c4da44c7470c8519019a7f782685d8d23ac4879d8e0f4805a1b",
+    "source_fingerprint": "sha256:9dee4576db9a5e627c41b93ff88bf07c9d29d80b05e206943dbd0aaef497bebd",
     "source_doc_hashes": {
-      "spec.md": "0610835b2f8a22c380514dff503901d438cbe4d0d1175be41a531637b2fdbeb1",
-      "plan.md": "445a5ac5642274e334cb16bb335f3a868ba48075debbfcf0ca3e717386738aa8",
-      "tasks.md": "7fef34feb3760cb5e327be21bc98573d6ef7f5f83e8e22ea5619cc6142181c04",
-      "checklist.md": "352b9e7a6852c0a7cc964aa015fcc28e9da219b6f131bfb0ffd6846641811502",
-      "implementation-summary.md": "329b0957511aea62ae3aec9db2f726c5d8366e2bd5ddbb8b704806f8d20c0570"
+      "spec.md": "f9b0c59d80fca54ec38d9b35ecafdf38d20bb33570348617f55e4f9e56568650",
+      "plan.md": "a183115842d276d3969d8716fe655c98aa526375b966d03c87a80cc94a8c7fff",
+      "tasks.md": "484d830818bfc400298a4e2aa38ac45da7836d226402394a0ca4dbaef97994ec",
+      "checklist.md": "02932a8335d17ecd41747313ae4bc2441d3da9d48a11c5dfc99e4f5fcfe17da4",
+      "implementation-summary.md": "ea0a4dd36e6d4c6f635997078600226f550f210090340a2bcb8e09e15177206e"
     },
     "last_active_child_id": null,
     "last_active_at": null

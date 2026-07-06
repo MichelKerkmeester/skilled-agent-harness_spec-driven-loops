@@ -9,8 +9,8 @@ importance_tier: "high"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-deep-loop/037-router-replay-surface-slice-sync"
-    last_updated_at: "2026-07-05T00:00:00Z"
+    packet_pointer: "system-deep-loop/036-router-replay-surface-slice-sync"
+    last_updated_at: "2026-07-06T08:41:30.282Z"
     last_updated_by: "claude-opus"
     recent_action: "Surface-slicing drift diagnosed; prefix sync and guard tests completed"
     next_safe_action: "Run close-out validation and push; continue gold alignment in the follow-up packet"
@@ -40,7 +40,7 @@ _memory:
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [x] T001 Confirm packet-037 scope and branch [small] — spec.md fixes the existing `system-deep-loop/037-router-replay-surface-slice-sync` packet on branch `system-speckit/028-memory-search-intelligence`
+- [x] T001 Confirm packet-037 scope and branch [small] — spec.md fixes the existing `system-deep-loop/036-router-replay-surface-slice-sync` packet on branch `system-speckit/028-memory-search-intelligence`
 - [x] T002 Diagnose Lane-C router-replay surface-slicing drift [medium] — `router-replay.cjs` still keyed slicing on bare `webflow/`, `opencode/`, and `animation/` prefixes after sk-code moved to `code-*` packet folders
 - [x] T003 Confirm root cause across the rename boundary [medium] — the sk-code folder rename updated packet folders and `smart_routing.md` `RESOURCE_MAP`, but not the deep-improvement harness string-literal slicing constants in a different tree
 - [x] T004 Capture pre-fix leak diagnostic [small] — before the fix, 13 of 21 scored non-browser scenarios routed both `code-webflow/` and `code-opencode/` at once

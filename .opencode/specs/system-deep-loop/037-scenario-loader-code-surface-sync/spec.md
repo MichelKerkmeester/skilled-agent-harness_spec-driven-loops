@@ -10,8 +10,8 @@ contextType: "general"
 parent: "system-deep-loop"
 _memory:
   continuity:
-    packet_pointer: "system-deep-loop/038-scenario-loader-code-surface-sync"
-    last_updated_at: "2026-07-05T00:00:00.000Z"
+    packet_pointer: "system-deep-loop/037-scenario-loader-code-surface-sync"
+    last_updated_at: "2026-07-06T08:41:30.599Z"
     last_updated_by: "claude-opus"
     recent_action: "Loader parsers re-synced to code-<surface>/; regression guard added; harness vitests green"
     next_safe_action: "Close out, push; unblocks the sk-code gold translation + Lane-C re-baseline (021)"
@@ -176,7 +176,7 @@ Teach the four code-*-blind path extractors the `code-<surface>/` packet prefix 
 ## RELATED DOCUMENTS
 
 - **Loader under repair**: `.opencode/skills/deep-loop-workflows/deep-improvement/scripts/skill-benchmark/load-playbook-scenarios.cjs`, `live-executor.cjs`
-- **Companion harness fix**: `system-deep-loop/037-router-replay-surface-slice-sync`
+- **Companion harness fix**: `system-deep-loop/036-router-replay-surface-slice-sync`
 - **Follow-up**: sk-code playbook gold translation + Lane-C re-baseline
 
 <!-- /ANCHOR:related-docs -->

@@ -9,8 +9,8 @@ importance_tier: "high"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-deep-loop/037-router-replay-surface-slice-sync"
-    last_updated_at: "2026-07-05T18:13:11.174Z"
+    packet_pointer: "system-deep-loop/036-router-replay-surface-slice-sync"
+    last_updated_at: "2026-07-06T08:41:30.282Z"
     last_updated_by: "claude-opus"
     recent_action: "Router-replay slicing restored; guard tests passing"
     next_safe_action: "Run close-out validation; keep gold alignment separate"
@@ -49,7 +49,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 037-router-replay-surface-slice-sync |
+| **Spec Folder** | 036-router-replay-surface-slice-sync |
 | **Status** | Complete |
 | **Level** | 2 |
 | **Actual Effort** | Small correctness-critical harness fix: three prefix-site edits, one four-test regression guard, leak diagnostic, harness Vitest comparison, and close-out docs; gold alignment and push pending by scope |
@@ -66,15 +66,15 @@ Packet 037 restored deterministic router-replay surface-slicing for sk-code afte
 
 | File | Action | Purpose | Commit |
 |------|--------|---------|--------|
-| `.opencode/specs/system-deep-loop/037-router-replay-surface-slice-sync/spec.md` | Updated | Define the harness regression, in-scope three-site fix, success criteria, risks, and follow-up boundaries | not committed at authoring time |
+| `.opencode/specs/system-deep-loop/036-router-replay-surface-slice-sync/spec.md` | Updated | Define the harness regression, in-scope three-site fix, success criteria, risks, and follow-up boundaries | not committed at authoring time |
 | `.opencode/skills/deep-loop-workflows/deep-improvement/scripts/skill-benchmark/router-replay.cjs` | Updated | Re-sync `SURFACE_PREFIXES`, `hasSurfaceLayout`, and OpenCode language regex to the `code-<surface>/` layout | not committed at authoring time |
 | `.opencode/skills/deep-loop-workflows/deep-improvement/scripts/skill-benchmark/tests/surface-slice-sync.vitest.ts` | Added | Lock WEBFLOW, OPENCODE, UNKNOWN Motion, and corpus-wide no-dual-surface over-routing behavior | not committed at authoring time |
-| `.opencode/specs/system-deep-loop/037-router-replay-surface-slice-sync/plan.md` | Added | Record implementation approach, quality gates, verification strategy, dependencies, and rollback | not committed at authoring time |
-| `.opencode/specs/system-deep-loop/037-router-replay-surface-slice-sync/tasks.md` | Added | Record completed task sequence and evidence notes | not committed at authoring time |
-| `.opencode/specs/system-deep-loop/037-router-replay-surface-slice-sync/checklist.md` | Added | Record Level 2 verification checklist with evidence and deferrals | not committed at authoring time |
-| `.opencode/specs/system-deep-loop/037-router-replay-surface-slice-sync/implementation-summary.md` | Added | Record final state, files changed, verification, limitations, and deviations | not committed at authoring time |
-| `.opencode/specs/system-deep-loop/037-router-replay-surface-slice-sync/description.json` | Updated | Packet metadata generated for memory/index visibility | not committed at authoring time |
-| `.opencode/specs/system-deep-loop/037-router-replay-surface-slice-sync/graph-metadata.json` | Updated | Packet graph metadata generated for traversal/status visibility | not committed at authoring time |
+| `.opencode/specs/system-deep-loop/036-router-replay-surface-slice-sync/plan.md` | Added | Record implementation approach, quality gates, verification strategy, dependencies, and rollback | not committed at authoring time |
+| `.opencode/specs/system-deep-loop/036-router-replay-surface-slice-sync/tasks.md` | Added | Record completed task sequence and evidence notes | not committed at authoring time |
+| `.opencode/specs/system-deep-loop/036-router-replay-surface-slice-sync/checklist.md` | Added | Record Level 2 verification checklist with evidence and deferrals | not committed at authoring time |
+| `.opencode/specs/system-deep-loop/036-router-replay-surface-slice-sync/implementation-summary.md` | Added | Record final state, files changed, verification, limitations, and deviations | not committed at authoring time |
+| `.opencode/specs/system-deep-loop/036-router-replay-surface-slice-sync/description.json` | Updated | Packet metadata generated for memory/index visibility | not committed at authoring time |
+| `.opencode/specs/system-deep-loop/036-router-replay-surface-slice-sync/graph-metadata.json` | Updated | Packet graph metadata generated for traversal/status visibility | not committed at authoring time |
 
 <!-- /ANCHOR:what-built -->
 ---

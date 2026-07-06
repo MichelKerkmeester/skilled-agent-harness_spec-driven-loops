@@ -9,8 +9,8 @@ importance_tier: "high"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-deep-loop/038-scenario-loader-code-surface-sync"
-    last_updated_at: "2026-07-05T18:53:23.765Z"
+    packet_pointer: "system-deep-loop/037-scenario-loader-code-surface-sync"
+    last_updated_at: "2026-07-06T08:41:30.599Z"
     last_updated_by: "claude-opus"
     recent_action: "Scenario loader and live parser now preserve code-surface packet paths; guard tests passing"
     next_safe_action: "Run close-out validation; keep gold translation and Lane-C re-baseline separate"
@@ -50,7 +50,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 038-scenario-loader-code-surface-sync |
+| **Spec Folder** | 037-scenario-loader-code-surface-sync |
 | **Status** | Complete |
 | **Level** | 2 |
 | **Actual Effort** | Small correctness-critical harness fix: four one-line regex prefix additions, one export, one two-test regression guard, direct parser proof, harness Vitest comparison, temporary end-to-end recall/verdict proof, and close-out docs; gold translation and push pending by scope |
@@ -67,16 +67,16 @@ Packet 038 restored Lane-C scenario-loader and live-result parser compatibility 
 
 | File | Action | Purpose | Commit |
 |------|--------|---------|--------|
-| `.opencode/specs/system-deep-loop/038-scenario-loader-code-surface-sync/spec.md` | Updated | Define the loader/live-parser regression, in-scope four-site fix, success criteria, risks, and follow-up boundaries | not committed at authoring time |
+| `.opencode/specs/system-deep-loop/037-scenario-loader-code-surface-sync/spec.md` | Updated | Define the loader/live-parser regression, in-scope four-site fix, success criteria, risks, and follow-up boundaries | not committed at authoring time |
 | `.opencode/skills/deep-loop-workflows/deep-improvement/scripts/skill-benchmark/load-playbook-scenarios.cjs` | Updated | Teach `extractPaths` and `extractForbiddenPrefixes` the `code-<surface>/` prefix and export forbidden-prefix parsing | not committed at authoring time |
 | `.opencode/skills/deep-loop-workflows/deep-improvement/scripts/skill-benchmark/live-executor.cjs` | Updated | Teach prose-fallback and observed-reads parsers the `code-<surface>/` prefix | not committed at authoring time |
 | `.opencode/skills/deep-loop-workflows/deep-improvement/scripts/skill-benchmark/tests/code-surface-path-parse.vitest.ts` | Added | Lock whole-path parsing for `code-webflow`, `code-opencode`, `code-animation`, and `code-<surface>/` forbidden globs | not committed at authoring time |
-| `.opencode/specs/system-deep-loop/038-scenario-loader-code-surface-sync/plan.md` | Added | Record implementation approach, quality gates, verification strategy, dependencies, and rollback | not committed at authoring time |
-| `.opencode/specs/system-deep-loop/038-scenario-loader-code-surface-sync/tasks.md` | Added | Record completed task sequence and evidence notes | not committed at authoring time |
-| `.opencode/specs/system-deep-loop/038-scenario-loader-code-surface-sync/checklist.md` | Added | Record Level 2 verification checklist with evidence and deferrals | not committed at authoring time |
-| `.opencode/specs/system-deep-loop/038-scenario-loader-code-surface-sync/implementation-summary.md` | Added | Record final state, files changed, verification, limitations, and deviations | not committed at authoring time |
-| `.opencode/specs/system-deep-loop/038-scenario-loader-code-surface-sync/description.json` | Updated | Packet metadata generated for memory/index visibility | not committed at authoring time |
-| `.opencode/specs/system-deep-loop/038-scenario-loader-code-surface-sync/graph-metadata.json` | Updated | Packet graph metadata generated for traversal/status visibility | not committed at authoring time |
+| `.opencode/specs/system-deep-loop/037-scenario-loader-code-surface-sync/plan.md` | Added | Record implementation approach, quality gates, verification strategy, dependencies, and rollback | not committed at authoring time |
+| `.opencode/specs/system-deep-loop/037-scenario-loader-code-surface-sync/tasks.md` | Added | Record completed task sequence and evidence notes | not committed at authoring time |
+| `.opencode/specs/system-deep-loop/037-scenario-loader-code-surface-sync/checklist.md` | Added | Record Level 2 verification checklist with evidence and deferrals | not committed at authoring time |
+| `.opencode/specs/system-deep-loop/037-scenario-loader-code-surface-sync/implementation-summary.md` | Added | Record final state, files changed, verification, limitations, and deviations | not committed at authoring time |
+| `.opencode/specs/system-deep-loop/037-scenario-loader-code-surface-sync/description.json` | Updated | Packet metadata generated for memory/index visibility | not committed at authoring time |
+| `.opencode/specs/system-deep-loop/037-scenario-loader-code-surface-sync/graph-metadata.json` | Updated | Packet graph metadata generated for traversal/status visibility | not committed at authoring time |
 
 <!-- /ANCHOR:what-built -->
 ---
