@@ -1,0 +1,11 @@
+{
+  "owner_pid": 82280,
+  "started_at_iso": "2026-07-01T13:36:56.782Z",
+  "ttl_ms": 300000,
+  "last_heartbeat_iso": "2026-07-01T13:36:56.782Z",
+  "packet_id": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-code-graph/001-code-graph-core/010-edge-confidence-and-ppr-revisit",
+  "runtime_kind": "main",
+  "phase": "running",
+  "last_activity_iso": "2026-07-01T13:36:56.782Z",
+  "acquire_nonce": "82280-1782913016782-cd40b9ba-630d-4bfd-b3c0-a42b5f1cddb7"
+}

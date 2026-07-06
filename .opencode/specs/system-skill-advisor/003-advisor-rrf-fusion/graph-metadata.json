@@ -1,0 +1,225 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-skill-advisor/003-advisor-rrf-fusion",
+  "spec_folder": "system-skill-advisor/003-advisor-rrf-fusion",
+  "parent_id": "system-skill-advisor",
+  "parent_id_review_required": true,
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "advisor rrf fusion benchmark",
+      "SPECKIT_ADVISOR_RRF_FUSION graduation",
+      "advisor routing top-1 correctness",
+      "advisor rrf vs weighted sum",
+      "advisor self recommendation guard benchmark",
+      "advisor routing labeled set",
+      "advisor rrf vs weighted sum harness",
+      "read-only advisor projection copy",
+      "advisor scoreAdvisorPrompt matrix",
+      "advisor routing verification",
+      "SPECKIT_ADVISOR_RRF_FUSION verdict",
+      "advisor conflict rerank seam graduate"
+    ],
+    "key_topics": [
+      "advisor",
+      "rrf",
+      "fusion",
+      "benchmark",
+      "graduation",
+      "routing",
+      "top-1",
+      "correctness",
+      "weighted",
+      "sum",
+      "self",
+      "recommendation"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "scripts/advisor-rrf-benchmark.mjs",
+      "scripts/labeled-routing-set.mjs",
+      "results/metrics.json",
+      "scripts/conflict-overlay.mjs",
+      "results/skill-graph.backup.sqlite",
+      "implementation-summary.md",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md"
+    ],
+    "entities": [
+      {
+        "name": "advisor-rrf-benchmark.mjs",
+        "kind": "file",
+        "path": "scripts/advisor-rrf-benchmark.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "labeled-routing-set.mjs",
+        "kind": "file",
+        "path": "scripts/labeled-routing-set.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "metrics.json",
+        "kind": "config",
+        "path": "results/metrics.json",
+        "source": "derived"
+      },
+      {
+        "name": "conflict-overlay.mjs",
+        "kind": "file",
+        "path": "scripts/conflict-overlay.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "skill-graph.backup.sqlite",
+        "kind": "file",
+        "path": "results/skill-graph.backup.sqlite",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Fusion Benchmark",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Measure",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Change Type",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The skill advisor ships an RRF-fusion path and two routing guards that are built, pass their unit tests and are byte-identical when off, but have never been measured against the real corpus on the production routing path",
+    "created_at": "2026-06-24T04:51:51.544Z",
+    "last_save_at": "2026-07-06T17:16:00.338Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:8d9bc72552f7e89a363fc48fa09ce1ba4130a67d272e043061d7b50083438c09",
+    "source_doc_hashes": {
+      "spec.md": "b77537ed8b5aa8bc127f6fade4263387531d7876987d7c4dcc3ab5949f4faccf",
+      "plan.md": "3d798e290fb5860c1627232ead47aaef48a8e40b1d11ada2afe100e200cab12d",
+      "tasks.md": "562fd93ac4b6921d4153d3b116e5a585b66216049704920d9c1c42832e9525cc",
+      "checklist.md": "d86c4856bd3f97527431d0dd4e314d34bbac3d5b397d43f8393f3e15263e00c2",
+      "implementation-summary.md": "97edd35ce61d52b812f1c89662e64010e1602e8939261e875bebc8e660f0c5d9"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

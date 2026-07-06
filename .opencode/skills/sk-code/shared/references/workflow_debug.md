@@ -1,6 +1,19 @@
+---
+title: Workflow Reference - Debugging
+description: Shared debugging workflow doctrine for sk-code — root-cause diagnosis and scoped repair after a symptom, failing command, runtime error, quality failure, or verification failure, consumed by every surface packet.
+trigger_phrases:
+  - "sk-code debugging workflow"
+  - "debug workflow doctrine"
+  - "root-cause diagnosis"
+  - "scoped repair workflow"
+importance_tier: important
+contextType: general
+version: 1.0.0.0
+---
+
 # Workflow Reference - Debugging
 
-Shared debugging workflow doctrine for `sk-code`. This reference covers root-cause diagnosis and scoped repair after a symptom, failing command, runtime error, quality failure, or verification failure appears. It is consumed by surface packets and carries no skill frontmatter or surface-specific standards.
+Shared debugging workflow doctrine for `sk-code`. This reference covers root-cause diagnosis and scoped repair after a symptom, failing command, runtime error, quality failure, or verification failure appears. It is consumed by surface packets and defines no skill identity or surface-specific standards.
 
 ---
 

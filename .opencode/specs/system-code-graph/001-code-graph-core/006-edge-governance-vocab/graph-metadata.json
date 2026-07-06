@@ -1,0 +1,224 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-code-graph/001-code-graph-core/006-edge-governance-vocab",
+  "spec_folder": "system-code-graph/001-code-graph-core/006-edge-governance-vocab",
+  "parent_id": "system-code-graph/001-code-graph-core",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "028 code graph edge governance",
+      "closed vocab check edge_type",
+      "edge_type CHECK constraint migration",
+      "cascade guard churn cap heuristic edges",
+      "derived clock supersession tiebreak prune",
+      "edge governance plan",
+      "edge_type CHECK table rebuild migration",
+      "heuristic churn cap plan",
+      "tombstone audit extension",
+      "derived clock tiebreak plan",
+      "edge governance tasks",
+      "edge_type CHECK migration tasks"
+    ],
+    "key_topics": [
+      "028",
+      "code",
+      "graph",
+      "edge",
+      "governance",
+      "closed",
+      "vocab",
+      "check",
+      "constraint",
+      "migration",
+      "cascade",
+      "guard"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      ".opencode/skills/system-code-graph/mcp_server/lib/code-graph-db.ts",
+      ".opencode/skills/system-code-graph/mcp_server/lib/indexer-types.ts",
+      ".opencode/skills/system-code-graph/mcp_server/tests/code-edge-governance-vocab.vitest.ts",
+      ".opencode/skills/system-code-graph/mcp_server/lib/structural-indexer.ts",
+      ".opencode/skills/system-code-graph/mcp_server/lib/edge-drift.ts",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "code-graph-db.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-code-graph/mcp_server/lib/code-graph-db.ts",
+        "source": "derived"
+      },
+      {
+        "name": "indexer-types.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-code-graph/mcp_server/lib/indexer-types.ts",
+        "source": "derived"
+      },
+      {
+        "name": "code-edge-governance-vocab.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-code-graph/mcp_server/tests/code-edge-governance-vocab.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "structural-indexer.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-code-graph/mcp_server/lib/structural-indexer.ts",
+        "source": "derived"
+      },
+      {
+        "name": "edge-drift.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-code-graph/mcp_server/lib/edge-drift.ts",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Graph Edge Write",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Time Governance",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Graph",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Phase",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Four",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Schema",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The code-graph edge table is ungoverned at write time",
+    "created_at": "2026-06-19T05:52:29.582Z",
+    "last_save_at": "2026-07-06T16:45:37.346Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:37c2ad91e470531be0f849544ce93e601f8cdc587f14fe33a7204f326eb9dd71",
+    "source_doc_hashes": {
+      "spec.md": "ff825c890d9f07c58850a61b1e2a6c6fb292fb21e533dfba11bcdd2176127904",
+      "plan.md": "fe8c62062459500d66f22ed316b76cdb8e873f600d24e2b4a8d46af506bea5b8",
+      "tasks.md": "25cbcc2dbf169170976f8bbc7bd0e3760fa33e3050cbbf1d70a42135c2459ace",
+      "checklist.md": "e230a0251196222e319087dcb1439466fb7c32ed7b66d04747b14af34810d7f8",
+      "implementation-summary.md": "0f08891b98e07bbd6f22382e5e747fda649667aa5462a1ffd13c3a26580d3798"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

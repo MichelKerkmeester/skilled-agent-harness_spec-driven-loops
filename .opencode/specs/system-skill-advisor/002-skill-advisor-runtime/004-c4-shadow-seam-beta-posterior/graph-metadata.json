@@ -1,0 +1,224 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-skill-advisor/002-skill-advisor-runtime/004-c4-shadow-seam-beta-posterior",
+  "spec_folder": "system-skill-advisor/002-skill-advisor-runtime/004-c4-shadow-seam-beta-posterior",
+  "parent_id": "system-skill-advisor/002-skill-advisor-runtime",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "advisor c4 shadow seam",
+      "advisor beta posterior lane tune",
+      "advisor two-gate promotion",
+      "skill advisor reliability weighted learning",
+      "advisor held-out attestation gate",
+      "advisor c4 seam plan",
+      "advisor beta posterior plan",
+      "skill advisor promotion gate plan",
+      "advisor c4 seam tasks",
+      "advisor beta posterior tasks",
+      "skill advisor promotion gate tasks",
+      "advisor c4 seam checklist"
+    ],
+    "key_topics": [
+      "advisor",
+      "shadow",
+      "seam",
+      "beta",
+      "posterior",
+      "lane",
+      "tune",
+      "two-gate",
+      "promotion",
+      "skill",
+      "reliability",
+      "weighted"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      ".opencode/skills/system-skill-advisor/mcp_server/lib/scorer/feedback-calibration.ts",
+      ".opencode/skills/system-skill-advisor/mcp_server/lib/scorer/lane-registry.ts",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "feedback-calibration.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-skill-advisor/mcp_server/lib/scorer/feedback-calibration.ts",
+        "source": "derived"
+      },
+      {
+        "name": "lane-registry.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-skill-advisor/mcp_server/lib/scorer/lane-registry.ts",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Skill Advisor",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Shadow Seam",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Beta Posterior",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "The Skill Advisor",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Start Phase",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Date",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Decision Record",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The Skill Advisor's shadow learning pipeline is structurally half-built and disconnected",
+    "created_at": "2026-06-19T06:06:27.153Z",
+    "last_save_at": "2026-07-06T16:57:20.003Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:974796384b85646d8a82300c62edc84ebfde2870099464117f042d78ac31449c",
+    "source_doc_hashes": {
+      "spec.md": "e0639dffbee07c9d08d7efb0021e38e79037767bc95a110e1e94adb107e30d70",
+      "plan.md": "b8af20c7602ff4572f82eacba6928d0a73187e46869d9d56d74214b5f218338d",
+      "tasks.md": "21917b9e84148daec18c6815efad5d18ac830dc4ac1ae384fb1c36f4c7bc9f3f",
+      "checklist.md": "6650a34cd766c1dafe511371811ad559395dda4063e3994ff1602bca9d37a205",
+      "decision-record.md": "9e0be7c1e20060c5d48f92f440376405d64feea13efd0c3137d0726c05139c78",
+      "implementation-summary.md": "7afcada9029116f00f2e54ea14d5a23c4f4058886cd6a3a9bfe6bf255980b655"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

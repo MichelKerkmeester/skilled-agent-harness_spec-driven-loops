@@ -1,0 +1,222 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/038-deep-loop-runtime/004-reliability-weighted-convergence",
+  "spec_folder": "system-deep-loop/038-deep-loop-runtime/004-reliability-weighted-convergence",
+  "parent_id": "system-deep-loop/038-deep-loop-runtime",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "reliability weighted convergence",
+      "deep loop reliability signal",
+      "contradiction quarantine",
+      "beta posterior convergence",
+      "vote count flood",
+      "reliability weighted convergence plan",
+      "beta posterior sequencing",
+      "contradiction quarantine plan",
+      "reliability convergence tasks",
+      "beta posterior task breakdown",
+      "quarantine tasks",
+      "reliability convergence checklist"
+    ],
+    "key_topics": [
+      "reliability",
+      "weighted",
+      "convergence",
+      "deep",
+      "loop",
+      "signal",
+      "contradiction",
+      "quarantine",
+      "beta",
+      "posterior",
+      "vote",
+      "count"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Weighted Convergence",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Dependencies",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Deep Loop",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Authored Level",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Additive",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Breakdown",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Candidate Catalog",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Impact",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The deep-loop research convergence verdict (`computeCompositeScore`, `convergence.cjs:107-141`) is a fixed-weight linear blend whose two volume terms (`normalizedDiversity = min(sourceDiversity/3.0, 1.0)` at `:112`, `normalizedDepth = min(evidenceDepth/5.0, 1.0)` at `:113`) saturate to their 0.15 ceiling on raw COUNT with no source-quality reference, and `claimVerificationRate` (`:117`) is a ratio any self-citing finding satisfies, so STOP is vote-count-floodable with no asymptotic reliability bound [CONFIRMED iter-1 F1-2, iter-3 F1]",
+    "created_at": "2026-06-19T06:20:37.818Z",
+    "last_save_at": "2026-07-06T16:24:26.243Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:c7ee0ca41fb3ec3f29fc5c11e1917b1d4142d0d785a1554b0980f6dcd52906a1",
+    "source_doc_hashes": {
+      "spec.md": "28e34164ccb6c6f3504db1000c574aba6f207e961e106cc2873e705cddf87d69",
+      "plan.md": "710fe0002a80c82fb56478e93a50c174946735d688187363108fa09f2aae968c",
+      "tasks.md": "2e0f75bbc33fb2ad0ae00032abf06879d8313d2eef81a9fc37a56853dc901d6e",
+      "checklist.md": "9b80c1b55bea01f3193542fbb81bc7169ff208675a272e8c043eaac1b1d52b51",
+      "decision-record.md": "98f77ab05e72969b70439343d687f9447185765eba04cb910ea616946e52042a",
+      "implementation-summary.md": "d74aa8df9024252ff86ca8f581e2bf283a6b768b60740d63fb1e9594477d17da"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

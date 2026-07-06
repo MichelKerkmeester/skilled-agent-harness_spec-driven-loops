@@ -1,8 +1,0 @@
-{
-  "owner_pid": 47505,
-  "started_at_iso": "2026-06-16T17:46:01.505Z",
-  "ttl_ms": 300000,
-  "last_heartbeat_iso": "2026-06-16T17:46:01.505Z",
-  "packet_id": ".opencode/specs/system-spec-kit/028-memory-search-intelligence/004-deep-loop",
-  "runtime_kind": "main"
-}

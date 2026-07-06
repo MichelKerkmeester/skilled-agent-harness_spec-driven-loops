@@ -1,0 +1,29 @@
+{
+  "level": "3",
+  "specFolder": "system-deep-loop/038-deep-loop-runtime/007-deep-review-followup-hardening/001-orchestrator-validation-parity",
+  "description": "`runRegistryShellRules` filters the validator registry with `rule.strictonly !== true` unconditionally (`orchestrator.ts:269` at time of writing), so",
+  "keywords": [
+    "runregistryshellrules",
+    "filters",
+    "validator",
+    "registry",
+    "rule",
+    "strictonly",
+    "true",
+    "unconditionally",
+    "orchestrator",
+    "269",
+    "time",
+    "writing"
+  ],
+  "lastUpdated": "2026-07-06T16:24:24.909Z",
+  "specId": "001",
+  "folderSlug": "orchestrator-validation-parity",
+  "parentChain": [
+    "system-deep-loop",
+    "038-deep-loop-runtime",
+    "007-deep-review-followup-hardening"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

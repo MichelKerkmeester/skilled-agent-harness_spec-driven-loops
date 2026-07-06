@@ -1,0 +1,222 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-code-graph/001-code-graph-core/003-generation-watermark",
+  "spec_folder": "system-code-graph/001-code-graph-core/003-generation-watermark",
+  "parent_id": "system-code-graph/001-code-graph-core",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "code graph generation watermark",
+      "q6-c2 soft generation watermark",
+      "q6-c1 hard generation gate",
+      "code graph as-of-generation read",
+      "scan finalize generation bump",
+      "code graph generation watermark plan",
+      "q6-c2 soft watermark sequencing",
+      "scan finalize generation bump plan",
+      "code graph generation watermark tasks",
+      "q6-c2 q6-c1 task breakdown",
+      "code graph generation watermark checklist",
+      "code graph generation watermark implementation summary"
+    ],
+    "key_topics": [
+      "code",
+      "graph",
+      "generation",
+      "watermark",
+      "q6-c2",
+      "soft",
+      "q6-c1",
+      "hard",
+      "gate",
+      "as-of-generation",
+      "read",
+      "scan"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      ".opencode/skills/system-code-graph/mcp_server/lib/code-graph-db.ts",
+      ".opencode/skills/system-code-graph/mcp_server/handlers/scan.ts",
+      ".opencode/skills/system-code-graph/mcp_server/lib/code-graph-context.ts",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "code-graph-db.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-code-graph/mcp_server/lib/code-graph-db.ts",
+        "source": "derived"
+      },
+      {
+        "name": "scan.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-code-graph/mcp_server/handlers/scan.ts",
+        "source": "derived"
+      },
+      {
+        "name": "code-graph-context.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-code-graph/mcp_server/lib/code-graph-context.ts",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Graph",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Generation Watermark",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Candidate Status",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Add",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Additive",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Deep Loop",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Setup Confirm",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Impact",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The code-graph readiness signal has no generation counter: `code-graph-context.ts:320` `computeFreshness()` reports only a wall-clock staleness bucket (`fresh`/`recent`/`stale`/`unknown` from `MAX(indexedat)`), and the read-path gate is binary (`freshness !== 'fresh'` blocks at `handlers/query.ts:903-915`)",
+    "created_at": "2026-06-19T05:52:29.580Z",
+    "last_save_at": "2026-07-06T16:45:38.011Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:648d5c98ffcd1777ebcc0d643cb6b47d26bbf71a684f764eceafbca66344f3e9",
+    "source_doc_hashes": {
+      "spec.md": "faa5c1385b4cca2d76b47b4be30e47d531362bc71bfdd3a39c2d33a806a46b86",
+      "plan.md": "e88e1305e1c75d47f0f1a4225f8b1cbf6e3539a48eb62d826b7799c51c6b61b6",
+      "tasks.md": "79c23e1e176b5e8d38451058a01d93f26f7a4bf11d515db23286cfaf3a2184ca",
+      "checklist.md": "e1c2f3ce92393d7afb2750f8a417328ee086653872b77fc87d91f277c61bf382",
+      "implementation-summary.md": "a8491537609e24335fa014d096ebabb4b7622f6f9885b72ad20e5442d769c0a6"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

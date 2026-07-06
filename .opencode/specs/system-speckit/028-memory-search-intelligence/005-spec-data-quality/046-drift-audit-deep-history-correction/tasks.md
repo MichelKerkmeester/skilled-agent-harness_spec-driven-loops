@@ -60,8 +60,8 @@ Correct all 5 items, then independently verify each.
 
 - [ ] T003 Correct summary-fusion lane docs (`001-speckit-memory/015-summary-fusion-grounding/{spec.md,implementation-summary.md,checklist.md}`) - Recall@20 -0.036, guessed-weight caveat
 - [ ] T004 Correct seeded-PPR docs with forward-pointer (`002-code-graph/005-seeded-ppr-ranking/{spec.md,implementation-summary.md,plan.md,decision-record.md}` + `007-dark-flag-graduation/005-codegraph-seeded-ppr/benchmark-results.md`) - exact 0.0000-delta numbers + pointer to 010 revisit work
-- [ ] T005 Fix C4 shadow-weight promoter "never committed" claim (`003-skill-advisor/004-c4-shadow-seam-beta-posterior/{decision-record.md,implementation-summary.md,plan.md}`) - built `10c5b61493`, deleted `8efcde0e6b`
-- [ ] T006 Fix outcome-weighted ranking pass-1 error + dangling link (`003-skill-advisor/007-outcome-weighted-ranking-followon/{implementation-summary.md,plan.md,spec.md,decision-record.md,checklist.md}`) - built `03d0b01eb6`/`09626fc921`, deleted `8efcde0e6b`, MRR delta vs noise numbers
+- [ ] T005 Fix C4 shadow-weight promoter "never committed" claim (`system-skill-advisor/002-skill-advisor-runtime/004-c4-shadow-seam-beta-posterior/{decision-record.md,implementation-summary.md,plan.md}`) - built `10c5b61493`, deleted `8efcde0e6b`
+- [ ] T006 Fix outcome-weighted ranking pass-1 error + dangling link (`system-skill-advisor/002-skill-advisor-runtime/007-outcome-weighted-ranking-followon/{implementation-summary.md,plan.md,spec.md,decision-record.md,checklist.md}`) - built `03d0b01eb6`/`09626fc921`, deleted `8efcde0e6b`, MRR delta vs noise numbers
 - [ ] T007 Add pointer note in prior pass's own docs (`045-drift-audit-remediation/{spec.md,implementation-summary.md}`) - acknowledge pass 2
 
 - [ ] T008 [P] Verify T003 correction (GPT-5.5-fast read-back)

@@ -210,5 +210,5 @@ Per-phase Files-to-Change tables live in each child `spec.md`; the program's bla
 
 - **Evidence**: `research/deep-dive-report.md`, `research/findings-ledger.md`, `research/phase-decomposition.md`
 - **Absorbed trackers**: `../../006-review-remediation/002-memory-schema-and-concurrency/`, `../../006-review-remediation/004-p2-triage/`, `../../000-release-cleanup/015-manual-playbook-execution-sweep/001-findings-remediation/` (Group-A rows)
-- **Adopted sibling packets** (same restructure, commit 32aae18dc7; 013 re-nested to `../../005-spec-data-quality/050-validate-sh-dist-freshness-and-repo-remediation/` on 2026-07-04): `../../005-spec-data-quality/050-validate-sh-dist-freshness-and-repo-remediation/`, `../../000-release-cleanup/015-manual-playbook-execution-sweep/`, `../../004-deep-loop/007-deep-review-followup-hardening/`
+- **Adopted sibling packets** (same restructure, commit 32aae18dc7; 013 re-nested to `../../005-spec-data-quality/050-validate-sh-dist-freshness-and-repo-remediation/` on 2026-07-04): `../../005-spec-data-quality/050-validate-sh-dist-freshness-and-repo-remediation/`, `../../000-release-cleanup/015-manual-playbook-execution-sweep/`, `../../../../system-deep-loop/038-deep-loop-runtime/007-deep-review-followup-hardening/`
 - **Graph metadata**: `graph-metadata.json`

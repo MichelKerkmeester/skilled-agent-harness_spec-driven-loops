@@ -1,0 +1,224 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-skill-advisor/002-skill-advisor-runtime/003-embedding-staleness-signal",
+  "spec_folder": "system-skill-advisor/002-skill-advisor-runtime/003-embedding-staleness-signal",
+  "parent_id": "system-skill-advisor/002-skill-advisor-runtime",
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "advisor embedding staleness signal",
+      "skill advisor projection embedder drift",
+      "SA8 embedding staleness",
+      "stamp embedder id into advisor projection",
+      "advisor projection generatedAt masks embedder drift",
+      "advisor embedding staleness plan",
+      "SA8 projection signature plan",
+      "advisor projection rebuild idempotent plan",
+      "stamp embedder signature advisor plan",
+      "tasks advisor embedding staleness signal",
+      "SA8 projection signature task breakdown",
+      "advisor projection rebuild idempotent tasks"
+    ],
+    "key_topics": [
+      "advisor",
+      "embedding",
+      "staleness",
+      "signal",
+      "skill",
+      "projection",
+      "embedder",
+      "drift",
+      "sa8",
+      "stamp",
+      "generatedat",
+      "masks"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      ".opencode/skills/system-skill-advisor/mcp_server/lib/scorer/projection.ts",
+      ".opencode/skills/system-skill-advisor/mcp_server/lib/skill-graph/skill-graph-db.ts",
+      ".opencode/skills/system-skill-advisor/mcp_server/lib/scorer/lanes/semantic-shadow.ts",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "projection.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-skill-advisor/mcp_server/lib/scorer/projection.ts",
+        "source": "derived"
+      },
+      {
+        "name": "skill-graph-db.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-skill-advisor/mcp_server/lib/skill-graph/skill-graph-db.ts",
+        "source": "derived"
+      },
+      {
+        "name": "semantic-shadow.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-skill-advisor/mcp_server/lib/scorer/lanes/semantic-shadow.ts",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Skill Advisor Embedding",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Staleness Signal",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The Skill Advisor",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Close",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Skill Advisor",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Close",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Milestone Reference",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "For Phase",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The Skill Advisor has a load-time staleness blind spot",
+    "created_at": "2026-06-19T08:00:00.000Z",
+    "last_save_at": "2026-07-06T16:57:20.679Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:600367a1fc32859d6be6d4c4010086748d47131666283867eb9d09300239492d",
+    "source_doc_hashes": {
+      "spec.md": "bab88bed07815ded9bd366239bf3a1153c7969f61bd58424ae503f9834b709c4",
+      "plan.md": "f1f9edeb4fe277aeba3852045f3ee271edfda1383e9542dca92a5311bbbf5d18",
+      "tasks.md": "12bd41ba9e2dcd6b823965c072a1078b949ea899cf6582c6ecdbe8233a01844b",
+      "checklist.md": "2005ea26daf06e50d631ebeb136ddebb7747fe6ea6b385027160e636944d058d",
+      "implementation-summary.md": "609dc262020f48d7bd0b07a0b7b28aa7263e86089421807c740decb6dfd34d3b"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

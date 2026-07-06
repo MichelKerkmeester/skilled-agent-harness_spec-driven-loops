@@ -1,0 +1,29 @@
+{
+  "level": "2",
+  "specFolder": "system-skill-advisor/002-skill-advisor-runtime/006-provenance-drift-observability",
+  "description": "The iter-8 mining of aionforge `cross-family-guard.md` + `drift.md` opened two orthogonal families the fusion-math roadmap never touches -",
+  "keywords": [
+    "iter-8",
+    "mining",
+    "aionforge",
+    "cross-family-guard",
+    "drift",
+    "opened",
+    "two",
+    "orthogonal",
+    "families",
+    "fusion-math",
+    "roadmap",
+    "never",
+    "touches"
+  ],
+  "lastUpdated": "2026-07-06T16:57:19.169Z",
+  "specId": "006",
+  "folderSlug": "provenance-drift-observability",
+  "parentChain": [
+    "system-skill-advisor",
+    "002-skill-advisor-runtime"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

@@ -5,11 +5,8 @@
   "parent_id": "system-speckit/028-memory-search-intelligence",
   "children_ids": [
     "system-speckit/028-memory-search-intelligence/008-speckit-surface-alignment/002-false-now-doc-corrections",
-    "system-speckit/028-memory-search-intelligence/008-speckit-surface-alignment/011-code-graph-doc-audit",
-    "system-speckit/028-memory-search-intelligence/008-speckit-surface-alignment/011-fix-code-graph-docs",
     "system-speckit/028-memory-search-intelligence/008-speckit-surface-alignment/012-fix-stress-docs",
     "system-speckit/028-memory-search-intelligence/008-speckit-surface-alignment/012-stress-and-skillmd-audit",
-    "system-speckit/028-memory-search-intelligence/008-speckit-surface-alignment/013-deep-research-loop-instrumentation",
     "system-speckit/028-memory-search-intelligence/008-speckit-surface-alignment/014-recorded-failure-closure",
     "system-speckit/028-memory-search-intelligence/008-speckit-surface-alignment/015-manual-test-verification-and-fixes"
   ],

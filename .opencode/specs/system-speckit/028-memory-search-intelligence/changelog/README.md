@@ -19,9 +19,9 @@ Spec 028 (memory-search-intelligence) turned a long external memory-system resea
 |-------|-----------------|------------|
 | 000 release cleanup | 12 | [changelog-000-root.md](./000-release-cleanup/changelog-000-root.md) |
 | 001 speckit memory | 28 | [changelog-001-root.md](./001-speckit-memory/changelog-001-root.md) |
-| 002 code graph | 8 | [changelog-002-root.md](./002-code-graph/changelog-002-root.md) |
-| 003 skill advisor | 7 | [changelog-003-root.md](./003-skill-advisor/changelog-003-root.md) |
-| 004 deep loop | 6 | [changelog-004-root.md](./004-deep-loop/changelog-004-root.md) |
+| 002 code graph | 8 | [changelog-002-root.md](../../../system-code-graph/changelog/001-code-graph-core/changelog-002-root.md) |
+| 003 skill advisor | 7 | [changelog-003-root.md](../../../system-skill-advisor/changelog/002-skill-advisor-runtime/changelog-003-root.md) |
+| 004 deep loop | 6 | [changelog-004-root.md](../../../system-deep-loop/changelog/038-deep-loop-runtime/changelog-004-root.md) |
 | 005 spec data quality | 40 | [changelog-005-root.md](./005-spec-data-quality/changelog-005-root.md) |
 | 006 review remediation | 6 | [changelog-006-root.md](./006-review-remediation/changelog-006-root.md) |
 | 007 dark flag graduation | 12 | [changelog-007-root.md](./007-dark-flag-graduation/changelog-007-root.md) |

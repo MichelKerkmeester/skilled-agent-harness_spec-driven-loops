@@ -26,17 +26,17 @@ interface ParityRegression {
 }
 
 // Reviewed-accepted top-1 divergences: rows the Python reference gets right but
-// the native scorer does not, ordered as they occur in the corpus. These are the
-// saturation-class misroutes (sk-code losing to sk-doc/sk-prompt/system-spec-kit,
-// code-graph losing to deep-loop-workflows) that the explicit-lane demotion root
-// fix targets; prune entries here as that fix resolves them.
+// the native scorer does not, ordered as they occur in the corpus. The remaining
+// four are fusion-level or labeling-edge losses that single-lane explicit
+// calibration does not cleanly resolve: sk-code losing a saturated multi-lane tie
+// to sk-doc/sk-prompt, and system-code-graph losing to deep-loop-workflows on
+// prompts that also carry strong deep-review / deep-research phrasing. Prune
+// entries here as targeted cross-lane work resolves them.
 const ACCEPTED_PARITY_REGRESSION_IDS: string[] = [
   'rr-iter2-016',
   'rr-iter2-020',
   'rr-iter2-060',
   'rr-iter3-093',
-  'rr-iter3-100',
-  'rr-iter3-104',
 ];
 
 const workspaceRoot = findAdvisorWorkspaceRoot(import.meta.dirname);
@@ -133,11 +133,11 @@ describe('advisor 193-prompt corpus regression-protection parity', () => {
 
       // On the current 193-row corpus the Python reference scorer (built-in
       // semantic disabled for determinism) makes 105 gold-correct top-1 calls;
-      // the native/hook scorer preserves 99 of them. The remaining Python-correct
+      // the native/hook scorer preserves 101 of them. The remaining Python-correct
       // rows the native scorer diverges on are enumerated and reviewed-accepted
-      // below, pending the explicit-lane demotion root fix expected to shrink them.
+      // below.
       expect(pythonCorrect).toBe(105);
-      expect(hookPreservedPythonCorrect).toBe(99);
+      expect(hookPreservedPythonCorrect).toBe(101);
       expect(hookGoldNoneFalseFire).toBeLessThanOrEqual(pythonGoldNoneFalseFire);
       expect(
         regressions.map((regression) => regression.id),

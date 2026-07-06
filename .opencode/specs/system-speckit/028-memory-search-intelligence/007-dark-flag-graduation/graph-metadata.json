@@ -1,21 +1,17 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/028-memory-search-intelligence/007-dark-flag-graduation",
-  "spec_folder": "system-spec-kit/028-memory-search-intelligence/007-dark-flag-graduation",
-  "parent_id": "system-spec-kit/028-memory-search-intelligence",
+  "packet_id": "system-speckit/028-memory-search-intelligence/007-dark-flag-graduation",
+  "spec_folder": "system-speckit/028-memory-search-intelligence/007-dark-flag-graduation",
+  "parent_id": "system-speckit/028-memory-search-intelligence",
   "children_ids": [
-    "system-spec-kit/028-memory-search-intelligence/007-dark-flag-graduation/001-multihop-tail-appends",
-    "system-spec-kit/028-memory-search-intelligence/007-dark-flag-graduation/002-retrieval-class-weights",
-    "system-spec-kit/028-memory-search-intelligence/007-dark-flag-graduation/003-true-citation-ledger",
-    "system-spec-kit/028-memory-search-intelligence/007-dark-flag-graduation/004-save-reconsolidation",
-    "system-spec-kit/028-memory-search-intelligence/007-dark-flag-graduation/005-codegraph-seeded-ppr",
-    "system-spec-kit/028-memory-search-intelligence/007-dark-flag-graduation/006-codegraph-edge-lifecycle",
-    "system-spec-kit/028-memory-search-intelligence/007-dark-flag-graduation/007-advisor-rrf-fusion",
-    "system-spec-kit/028-memory-search-intelligence/007-dark-flag-graduation/008-deeploop-finding-dedup",
-    "system-spec-kit/028-memory-search-intelligence/007-dark-flag-graduation/009-flag-name-cleanup",
-    "system-spec-kit/028-memory-search-intelligence/007-dark-flag-graduation/010-dark-flag-validation",
-    "system-spec-kit/028-memory-search-intelligence/007-dark-flag-graduation/011-graduation-follow-ups",
-    "system-spec-kit/028-memory-search-intelligence/007-dark-flag-graduation/012-followup-deep-review"
+    "system-speckit/028-memory-search-intelligence/007-dark-flag-graduation/001-multihop-tail-appends",
+    "system-speckit/028-memory-search-intelligence/007-dark-flag-graduation/002-retrieval-class-weights",
+    "system-speckit/028-memory-search-intelligence/007-dark-flag-graduation/003-true-citation-ledger",
+    "system-speckit/028-memory-search-intelligence/007-dark-flag-graduation/004-save-reconsolidation",
+    "system-speckit/028-memory-search-intelligence/007-dark-flag-graduation/009-flag-name-cleanup",
+    "system-speckit/028-memory-search-intelligence/007-dark-flag-graduation/010-dark-flag-validation",
+    "system-speckit/028-memory-search-intelligence/007-dark-flag-graduation/011-graduation-follow-ups",
+    "system-speckit/028-memory-search-intelligence/007-dark-flag-graduation/012-followup-deep-review"
   ],
   "migrated": true,
   "manual": {
@@ -48,7 +44,8 @@
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
-      "spec.md"
+      "spec.md",
+      "011-graduation-follow-ups/spec.md"
     ],
     "entities": [
       {
@@ -96,15 +93,15 @@
     ],
     "causal_summary": "This cycle added 41 feature flags",
     "created_at": "2026-06-24T05:05:10.913Z",
-    "last_save_at": "2026-06-27T19:43:24.843Z",
+    "last_save_at": "2026-07-06T17:16:54.316Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:63ba7233f1a1f0535861a2f414efab2dd2c447b379286a70be23d86a88a59789",
+    "source_fingerprint": "sha256:06cc25d1011d53c3014b761fc7b15636e8139053fda82a18ab2d2e6973e1887f",
     "source_doc_hashes": {
-      "spec.md": "afe55e9bf54173e0702f8de7a7f3c4fa3f5fabce07809c1e6d9c95e945410dcb"
+      "spec.md": "1e7de9b88f2eb2421d414e8f44d13519ab1eb67bfa3f8b9863bdc67fc06a99b9"
     },
     "last_active_child_id": null,
     "last_active_at": null
