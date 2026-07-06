@@ -1,6 +1,6 @@
 {
   "skill": "sk-design",
-  "version": "1.2.0.0",
+  "version": "1.3.0.0",
   "description": "Declarative mode registry: the single source of truth for the discriminator (workflowMode/backendKind) PLUS the advisorRouting projection for sk-design. The hub reads this file to resolve a mode; the advisor routes any design query to the single identity sk-design and the hub picks the mode. All five modes route by hub membership (routingClass 'metadata'), so there is no advisor map entry per mode and no merged-identity projection — the advisor does not read this file at runtime.",
   "discriminator": {
     "workflowMode": "Public hub/mode key. Stable identity used by the hub router and this registry. Carried by every mode.",
@@ -9,7 +9,8 @@
   "advisorRoutingContract": {
     "routingClass": "How the advisor finds the mode. For sk-design every mode is 'metadata' = resolved by hub membership; the advisor routes the single identity sk-design and the hub picks the mode, so no mode carries an advisor map entry or a merged-identity projection.",
     "packetSkillName": "The packet's SKILL.md name. The original flat skill name is preserved as packetSkillName; the packet folder is the short mode key, so folder != packetSkillName is grandfathered here and recorded per mode via grandfatheredFolderMismatch.",
-    "grandfatheredFolderMismatch": "true when the packet folder (short mode key, e.g. 'interface') differs from packetSkillName (the preserved flat name, e.g. 'interface'). All five sk-design modes preserve their original flat names (folder == packetSkillName), so none has a folder mismatch — grandfatheredFolderMismatch is false for all five (there is no mismatch to grandfather)."
+    "grandfatheredFolderMismatch": "true when the packet folder (short mode key, e.g. 'interface') differs from packetSkillName (the preserved flat name, e.g. 'interface'). All five sk-design modes preserve their original flat names (folder == packetSkillName), so none has a folder mismatch — grandfatheredFolderMismatch is false for all five (there is no mismatch to grandfather).",
+    "command": "The bound slash command for the mode, recorded even on metadata-routed modes (same field sk-doc's mode-registry.json carries); null when the mode has no dedicated command today. All five sk-design modes have a dedicated command as of the Phase 015 router+assets build, so this field is never null here."
   },
   "extensions": {
     "transform-verbs": {
@@ -44,6 +45,7 @@
       "proceduresPath": "design-interface/procedures",
       "packetSkillName": "design-interface",
       "grandfatheredFolderMismatch": false,
+      "command": "/design:interface",
       "aliases": ["interface design", "frontend design", "visual design", "visual identity", "make it look good", "looks templated", "redesign the ui", "hero section", "landing page direction", "hero redesign", "ui build", "design variations", "less generic", "custom not templated", "visual direction", "bolder", "quieter", "distill", "clarify", "delight"],
       "advisorRouting": {
         "routingClass": "metadata",
@@ -64,6 +66,7 @@
       "proceduresPath": "design-foundations/procedures",
       "packetSkillName": "design-foundations",
       "grandfatheredFolderMismatch": false,
+      "command": "/design:foundations",
       "aliases": ["design foundations", "color system", "oklch palette", "color token system", "dark mode palette", "typography scale", "font pairing", "spacing system", "layout rhythm", "information hierarchy", "responsive layout", "design tokens", "theme tokens", "grid", "container queries", "context adaptation", "data visualization", "chart type", "data tables", "token starter"],
       "advisorRouting": {
         "routingClass": "metadata",
@@ -84,6 +87,7 @@
       "proceduresPath": "design-motion/procedures",
       "packetSkillName": "design-motion",
       "grandfatheredFolderMismatch": false,
+      "command": "/design:motion",
       "aliases": ["motion design", "animate this", "micro-interactions", "transitions", "interaction states", "hover state", "focus state", "loading state", "choreography", "motion budget", "AnimatePresence", "exit animation", "reduced motion", "morphing icons", "motion performance"],
       "advisorRouting": {
         "routingClass": "metadata",
@@ -104,6 +108,7 @@
       "proceduresPath": "design-audit/procedures",
       "packetSkillName": "design-audit",
       "grandfatheredFolderMismatch": false,
+      "command": "/design:audit",
       "aliases": ["design audit", "ui critique", "design review", "review the ui", "audit the design", "accessibility audit", "wcag contrast", "performance audit", "anti-slop detection", "ai tell", "production hardening", "design quality score", "ui quality review", "P0 P1 design findings"],
       "advisorRouting": {
         "routingClass": "metadata",
@@ -124,6 +129,7 @@
       "proceduresPath": "design-md-generator/procedures",
       "packetSkillName": "design-md-generator",
       "grandfatheredFolderMismatch": false,
+      "command": "/design:md-generator",
       "aliases": ["extract design system", "generate design.md", "capture website css", "design tokens from url", "create design reference", "style reference", "tokens.json", "design-to-markdown", "extract design tokens", "validate design.md", "design.md validation", "design fidelity check", "design.md report", "render design preview", "source of truth", "study design.md format"],
       "advisorRouting": {
         "routingClass": "metadata",

@@ -1,6 +1,6 @@
 {
   "skill": "sk-design",
-  "version": "1.1.0.0",
+  "version": "1.2.0.0",
   "routerPolicy": {
     "defaultMode": "interface",
     "ambiguityDelta": 1,
@@ -30,7 +30,8 @@
       "classes": [
         "interface-aliases",
         "interface-taste",
-        "interface-build"
+        "interface-build",
+        "hub-identity"
       ],
       "resources": ["design-interface/SKILL.md"]
     },
@@ -41,7 +42,8 @@
         "foundations-color",
         "foundations-type",
         "foundations-layout",
-        "foundations-tokens"
+        "foundations-tokens",
+        "hub-identity"
       ],
       "resources": ["design-foundations/SKILL.md"]
     },
@@ -51,7 +53,8 @@
         "motion-aliases",
         "motion-temporal",
         "motion-runtime",
-        "motion-feel"
+        "motion-feel",
+        "hub-identity"
       ],
       "resources": ["design-motion/SKILL.md"]
     },
@@ -62,7 +65,8 @@
         "audit-quality",
         "audit-transform-question",
         "audit-accessibility",
-        "audit-hardening"
+        "audit-hardening",
+        "hub-identity"
       ],
       "resources": ["design-audit/SKILL.md"]
     },
@@ -72,7 +76,8 @@
         "md-generator-aliases",
         "md-generator-extraction",
         "md-generator-artifacts",
-        "md-generator-validation"
+        "md-generator-validation",
+        "hub-identity"
       ],
       "resources": ["design-md-generator/SKILL.md"]
     }
