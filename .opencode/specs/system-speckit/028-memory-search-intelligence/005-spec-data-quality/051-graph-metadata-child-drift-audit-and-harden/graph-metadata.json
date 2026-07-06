@@ -1,0 +1,227 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/028-memory-search-intelligence/005-spec-data-quality/051-graph-metadata-child-drift-audit-and-harden",
+  "spec_folder": "system-speckit/028-memory-search-intelligence/005-spec-data-quality/051-graph-metadata-child-drift-audit-and-harden",
+  "parent_id": "system-speckit/028-memory-search-intelligence/005-spec-data-quality",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "graph-metadata child drift",
+      "children_ids stale",
+      "phase parent metadata",
+      "backfill graph metadata",
+      "child-count drift check",
+      "graph-metadata drift plan",
+      "children_ids reconciliation",
+      "phase parent backfill plan",
+      "drift check implementation",
+      "graph-metadata drift tasks",
+      "children_ids backfill tasks",
+      "drift check red green test"
+    ],
+    "key_topics": [
+      "graph-metadata",
+      "child",
+      "drift",
+      "stale",
+      "phase",
+      "parent",
+      "metadata",
+      "backfill",
+      "graph",
+      "child-count",
+      "check",
+      "plan"
+    ],
+    "importance_tier": "normal",
+    "status": "draft",
+    "key_files": [
+      ".opencode/skills/system-spec-kit/scripts/rules/check-graph-metadata.sh",
+      ".opencode/skills/system-spec-kit/scripts/spec/is-phase-parent.ts",
+      ".opencode/skills/system-spec-kit/scripts/graph/backfill-graph-metadata.ts",
+      "spec.md",
+      "decision-record.md",
+      "plan.md",
+      "tasks.md",
+      ".opencode/specs/descriptions.json",
+      "checklist.md",
+      "scripts/dist/spec/is-phase-parent.js",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "check-graph-metadata.sh",
+        "kind": "script",
+        "path": ".opencode/skills/system-spec-kit/scripts/rules/check-graph-metadata.sh",
+        "source": "derived"
+      },
+      {
+        "name": "is-phase-parent.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/scripts/spec/is-phase-parent.ts",
+        "source": "derived"
+      },
+      {
+        "name": "backfill-graph-metadata.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/scripts/graph/backfill-graph-metadata.ts",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "descriptions.json",
+        "kind": "config",
+        "path": ".opencode/specs/descriptions.json",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "is-phase-parent.js",
+        "kind": "code",
+        "path": "scripts/dist/spec/is-phase-parent.js",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Authored Level",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Dependencies",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Eliminate",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Current Role",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "A phase parent's `graph-metadata.json` `childrenids` array is populated only when `backfill-graph-metadata.js` is explicitly re-run against that parent",
+    "created_at": "2026-07-06T06:03:21Z",
+    "last_save_at": "2026-07-06T06:44:07.160Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:80b4ee6293ab15f4ae5dbc5640e229427ff26099d093d8a1db0bef912175be74",
+    "source_doc_hashes": {
+      "spec.md": "c0a862ba4cb8bb1d95b6682435fdc4fa692662acdd4f39be7b41a6c317cbdf8a",
+      "plan.md": "6fbe0cb8fbc8cc3b73f0dfcac2004c5de1ef6afda14e824f109a38a56a445385",
+      "tasks.md": "15af6cc9b06fbdb19e6f5a5530933844ef45ad6b1378460e89186eaef1111290",
+      "checklist.md": "9d500d05eb0d0865529576d8d1f93232906fe2bee893e37f929abe9c26c76742",
+      "decision-record.md": "555d37bfd9e1aab3eaabfeb5f5ab6227b03fee33618e6c4fa91960624ae77f1a",
+      "implementation-summary.md": "f2e12a6dcc3fb485a2cc2640ddb6faa28085afdc00dde184631227fc4b4418b2"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

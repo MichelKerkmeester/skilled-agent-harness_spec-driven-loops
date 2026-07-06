@@ -1,0 +1,223 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/028-memory-search-intelligence/005-spec-data-quality/052-z-archive-metadata-backfill",
+  "spec_folder": "system-speckit/028-memory-search-intelligence/005-spec-data-quality/052-z-archive-metadata-backfill",
+  "parent_id": "system-speckit/028-memory-search-intelligence/005-spec-data-quality",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "z_archive root metadata",
+      "archive container graph node",
+      "z_archive root backfill",
+      "cold tier container node",
+      "z_archive container backfill plan",
+      "archive root graph node plan",
+      "cold tier container plan",
+      "z_archive parent_id resolution",
+      "z_archive container backfill tasks",
+      "archive root graph node tasks",
+      "parent_id resolution tasks",
+      "cold tier tagging tasks"
+    ],
+    "key_topics": [
+      "root",
+      "metadata",
+      "archive",
+      "container",
+      "graph",
+      "node",
+      "backfill",
+      "cold",
+      "tier",
+      "plan",
+      "resolution",
+      "tasks"
+    ],
+    "importance_tier": "normal",
+    "status": "draft",
+    "key_files": [
+      ".opencode/skills/system-spec-kit/scripts/spec-folder/generate-description.ts",
+      ".opencode/skills/system-spec-kit/scripts/graph/backfill-graph-metadata.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/search/active-row-predicate.ts",
+      "spec.md",
+      "plan.md",
+      ".opencode/specs/descriptions.json",
+      "implementation-summary.md",
+      "tasks.md",
+      "checklist.md"
+    ],
+    "entities": [
+      {
+        "name": "generate-description.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/scripts/spec-folder/generate-description.ts",
+        "source": "derived"
+      },
+      {
+        "name": "backfill-graph-metadata.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/scripts/graph/backfill-graph-metadata.ts",
+        "source": "derived"
+      },
+      {
+        "name": "active-row-predicate.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/search/active-row-predicate.ts",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "descriptions.json",
+        "kind": "config",
+        "path": ".opencode/specs/descriptions.json",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Authored Level",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement There",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Give",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Four",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Batch",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "no",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "There are nine `zarchive` root directories across `.opencode/specs` (`system-speckit/zarchive`, `system-deep-loop/zarchive`, `skilled-agent-orchestration/zarchive`, `sk-design/zarchive`, `system-skill-advisor/zarchive`, `system-speckit/026-graph-and-context-optimization/zarchive`, `sk-design/008-sk-design-parent/external/zarchive`, plus two nested roots inside already-archived folders)",
+    "created_at": "2026-07-06T06:03:39Z",
+    "last_save_at": "2026-07-06T06:43:28.015Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:a6ce167f18479e2c9fc538d511066fa9becd0f24674f1ac1f9ff010a101f9cb6",
+    "source_doc_hashes": {
+      "spec.md": "fee3952e6fb3650324b1b2eda505e41d55e62bc25438ff60bd8f53f68538972a",
+      "plan.md": "feacf9a978754ba9a688f20aa4351f1968f4d38dcf6a86e48b7933d45c2a50d8",
+      "tasks.md": "ae270bb7bcd00a17077c9b10865c271ae9d6bcde5b60db3fcaddbb7198fe52b6",
+      "checklist.md": "e956d20c1169e59fc986b032ac5fcdf60ca51f8aa7d1d85eb099f6efc5ad093b",
+      "implementation-summary.md": "15175751caeb1b8244a7f456bdf729fd0d23771b00ccf87167a665a4d082fe37"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

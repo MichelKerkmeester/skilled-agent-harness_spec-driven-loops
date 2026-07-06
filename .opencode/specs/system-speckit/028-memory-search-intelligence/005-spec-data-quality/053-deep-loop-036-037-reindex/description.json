@@ -1,0 +1,26 @@
+{
+  "level": "1",
+  "specFolder": "system-speckit/028-memory-search-intelligence/005-spec-data-quality/053-deep-loop-036-037-reindex",
+  "description": "The operator renamed `.opencode/specs/system-deep-loop/037-router-replay-surface-slice-sync` to `036-router-replay-surface-slice-sync` and added a new",
+  "keywords": [
+    "operator",
+    "renamed",
+    "opencode",
+    "specs",
+    "system-deep-loop",
+    "037-router-replay-surface-slice-sync",
+    "036-router-replay-surface-slice-sync",
+    "added",
+    "new"
+  ],
+  "lastUpdated": "2026-07-06T06:38:18.566Z",
+  "specId": "053",
+  "folderSlug": "deep-loop-036-037-reindex",
+  "parentChain": [
+    "system-speckit",
+    "028-memory-search-intelligence",
+    "005-spec-data-quality"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}
