@@ -288,12 +288,14 @@ function parseRouter(skillMdText, skillRoot) {
  * @param {Object} intentSignals - Map of intent -> {weight, keywords}.
  * @returns {Array<{intent:string,score:number}>} Scored intents, highest first.
  */
-const WORD_BOUNDARY_KEYWORDS = new Set(['review']);
+const WORD_BOUNDARY_KEYWORDS = new Set(['review', 'lcp', 'inp', 'cls']);
 
 // A bare keyword like "review" gets swallowed by unrelated longer words
-// ("preview" contains "review"), so match those on word boundaries. Path- and
-// identifier-style keywords keep substring matching so "javascript" still
-// matches inside "2_javascript".
+// ("preview" contains "review"), so match those on word boundaries. The short
+// performance acronyms need the same guard for the opposite reason: bare "inp"
+// would substring-match "input", firing the performance intent on unrelated
+// prompts. Path- and identifier-style keywords keep substring matching so
+// "javascript" still matches inside "2_javascript".
 function keywordHits(taskLower, kw) {
   if (!kw) return false;
   if (WORD_BOUNDARY_KEYWORDS.has(kw)) {

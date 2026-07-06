@@ -44,7 +44,7 @@ grep -lqE "window\.Motion|window\.gsap|gsap\.(to|from|set|timeline|registerPlugi
 - `code-webflow/references/animation/decision_matrix.md`
 
 **Expected assets loaded**:
-- `code-webflow/assets/checklists/performance_loading_checklist.md`
+- `shared/references/performance_loading_checklist.md`
 - `code-webflow/assets/patterns/performance_patterns.js`
 
 **Expected agent dispatch**: none.

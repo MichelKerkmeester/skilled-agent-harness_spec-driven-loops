@@ -2,7 +2,7 @@
 
 > Rendered from report.json (do not hand-edit). Scoring: `mode-a-router-replay` · trace mode: `router`.
 
-**Verdict: CONDITIONAL** · aggregate 71/100
+**Verdict: PASS** · aggregate 84/100
 
 ## Coverage
 
@@ -14,9 +14,9 @@
 | Dimension | Weight | Score |
 | --------- | ------ | ----- |
 | D1 inter (advisor) | 12pts | _unscored-mode-a_ |
-| D1 intra (router) | 13pts | 87/100 |
-| D2 discovery | 20pts | 79/100 |
-| D3 efficiency | 15pts | 47/100 |
+| D1 intra (router) | 13pts | 91/100 |
+| D2 discovery | 20pts | 85/100 |
+| D3 efficiency | 15pts | 68/100 |
 | D4 usefulness | 25pts | _unscored-mode-a_ |
 | D5 connectivity (hard gate) | 15pts | 100/100 |
 
@@ -29,16 +29,11 @@ _Unscored in this run (need live mode): D1inter, D4._
 
 ## Funnel
 
-- passed: 20
-- discovered: 2
-
-**Headline bottleneck: discovered**
+- passed: 22
 
 ## Ranked bottlenecks
 
-| Severity | Class | Locus | Finding |
-| -------- | ----- | ----- | ------- |
-| P1 | funnel_attrition | discovered | 2 scenario(s) first fail at stage 'discovered' |
+_None._
 
 ## Scenarios
 
@@ -52,8 +47,8 @@ _Unscored in this run (need live mode): D1inter, D4._
 | LS-003 | routing | 59/100 | passed |
 | LS-004 | routing | 59/100 | passed |
 | RD-001 | routing | 100/100 | passed |
-| RD-002 | advisor | 69/100 | passed |
-| SA-001 | advisor | 69/100 | passed |
+| RD-002 | advisor | 100/100 | passed |
+| SA-001 | advisor | 100/100 | passed |
 | MR-001 | browser | _routed-out_ | browser scenario — run in live mode (needs bdg) |
 | MR-002 | browser | _routed-out_ | browser scenario — run in live mode (needs bdg) |
 | MR-003 | browser | _routed-out_ | browser scenario — run in live mode (needs bdg) |
@@ -61,18 +56,18 @@ _Unscored in this run (need live mode): D1inter, D4._
 | CB-001 | browser | _routed-out_ | browser scenario — run in live mode (needs bdg) |
 | CB-002 | browser | _routed-out_ | browser scenario — run in live mode (needs bdg) |
 | CB-003 | browser | _routed-out_ | browser scenario — run in live mode (needs bdg) |
-| CS-001 | routing | 58/100 | passed |
+| CS-001 | routing | 65/100 | passed |
 | CS-002 | routing | 100/100 | passed |
 | CS-003 | routing | 62/100 | passed |
-| CS-004 | routing | 80/100 | passed |
+| CS-004 | routing | 100/100 | passed |
 | CS-005 | routing | 83/100 | passed |
-| CS-006 | routing | 42/100 | discovered |
-| CS-007 | routing | 45/100 | discovered |
+| CS-006 | routing | 82/100 | passed |
+| CS-007 | routing | 75/100 | passed |
 | DR-001 | routing | 100/100 | passed |
-| DR-002 | routing | 69/100 | passed |
-| DR-003 | routing | 69/100 | passed |
-| DR-004 | routing | 69/100 | passed |
-| TH-001 | routing | 69/100 | passed |
+| DR-002 | routing | 100/100 | passed |
+| DR-003 | routing | 100/100 | passed |
+| DR-004 | routing | 100/100 | passed |
+| TH-001 | routing | 100/100 | passed |
 
 ## Contamination findings (router mode — drift, not failures)
 

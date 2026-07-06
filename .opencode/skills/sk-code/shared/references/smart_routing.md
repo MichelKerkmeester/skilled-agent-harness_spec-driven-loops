@@ -323,9 +323,10 @@ INTENT_SIGNALS = {
     "VERIFICATION":       {"weight": 1, "keywords": ["verify", "passing", "type-check", "alignment drift", "completion claim"]},
     "TESTING":            {"weight": 1, "keywords": ["unit test", "integration test", "coverage", "vitest", "pytest", "shellcheck"]},
     "DEPLOYMENT":         {"weight": 1, "keywords": ["deploy", "cdn", "wrangler", "minify", "staging", "production release"]},
-    "PERFORMANCE":        {"weight": 1, "keywords": ["lighthouse", "core web vitals", "largest contentful", "pagespeed", "jank", "frame budget"]},
+    "PERFORMANCE":        {"weight": 1, "keywords": ["lighthouse", "core web vitals", "web vitals", "largest contentful", "lcp", "interaction to next paint", "inp", "cumulative layout shift", "cls", "pagespeed", "jank", "frame budget"]},
     "ANIMATION":          {"weight": 1, "keywords": ["animation", "transition", "easing", "stagger", "motion principles", "motion language", "gsap", "lenis", "carousel", "parallax"]},
     "MOTION_DEV":         {"weight": 1, "keywords": ["motion.dev", "motion-dev", "animate()", "inview", "in-view", "motion cdn", "scroll()", "stagger()", "animation principles", "cross-stack animation"]},
+    "ACCESSIBILITY":      {"weight": 1, "keywords": ["reduced motion", "reduced-motion", "prefers-reduced-motion", "a11y", "accessibility"]},
     "FORMS":              {"weight": 1, "keywords": ["form upload", "filepond", "field validation", "focus trap"]},
     "VIDEO":              {"weight": 1, "keywords": ["hls", "adaptive stream", "video player"]},
     "HOOKS":              {"weight": 1, "keywords": ["session-prime", "user-prompt-submit", "pre-tool-use", "post-tool-use"]},
@@ -411,9 +412,15 @@ RESOURCE_MAP = {
         "code-webflow/references/animation/scroll_and_gestures.md",
         "code-webflow/references/animation/integration_patterns.md",
         "code-webflow/references/animation/decision_matrix.md",
+        "code-webflow/references/animation/performance_and_pitfalls.md",
         "code-webflow/assets/animation/install_card.md",
         "code-webflow/assets/animation/snippets/principled_reveal.js",
         "code-webflow/assets/animation/snippets/README.md"
+    ],
+    "ACCESSIBILITY": [
+        "code-webflow/references/animation/performance_and_pitfalls.md",
+        "code-webflow/references/implementation/animation_workflows.md",
+        "code-webflow/references/verification/verification_workflows.md"
     ],
     "FORMS": [
         "code-webflow/references/implementation/form_upload_workflows.md",

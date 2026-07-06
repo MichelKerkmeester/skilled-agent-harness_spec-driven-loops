@@ -24,7 +24,7 @@ Schema reference for `hub-router.json`, the routing brain a thin parent hub uses
 
 **Core Principle**: One hub identity, one registry mode set, one router file that explains how requests become workflow modes plus optional surface evidence.
 
-**Worked example**: `sk-code` currently publishes five workflow modes in `mode-registry.json`: `implement`, `quality`, `debug`, `verify`, and `review`. The two-axis parent-hub contract extends that same shape with surface packets such as `webflow`, `opencode`, and `animation`; those surfaces become ordinary registry modes and ordinary router signal entries.
+**Worked example**: `sk-code` publishes two workflow modes in `mode-registry.json` — `quality` and `code-review` — plus two surface packets, `code-webflow` and `code-opencode`. Every mode, workflow or surface, is an ordinary registry mode with an ordinary router signal entry; the surface packets carry `packetKind: surface`. `sk-code` is *surface-primary*: it declares no default workflow, so a request that names only a surface defers rather than assuming a process.
 
 **Consumer inventory**:
 - `/deep:skill-benchmark` router-replay reads `projectHubRouter` to replay parent-hub routing decisions.
@@ -64,9 +64,9 @@ Schema reference for `hub-router.json`, the routing brain a thin parent hub uses
 ```json
 {
   "routerPolicy": {
-    "defaultMode": "implement",
+    "defaultMode": null,
     "ambiguityDelta": 1,
-    "tieBreak": ["implement", "quality", "debug", "verify", "review", "webflow", "opencode", "animation"],
+    "tieBreak": ["quality", "code-review", "code-webflow", "code-opencode"],
     "outcomes": {
       "single": "one dominant intent routes to one mode",
       "orderedBundle": "multiple workflow intents route to an ordered mode list",
@@ -82,7 +82,7 @@ Schema reference for `hub-router.json`, the routing brain a thin parent hub uses
 
 | Field | Rule |
 | --- | --- |
-| `defaultMode` | Must be a real registry `workflowMode`. For `sk-code`, the default is `implement`. |
+| `defaultMode` | A real registry `workflowMode`, or `null` for a *surface-primary* hub with no default workflow. `sk-code` sets `null`: a request naming only a surface (no process word) defers instead of assuming a workflow. |
 | `ambiguityDelta` | Integer threshold for bundling near-tied scores instead of forcing a single winner. |
 | `tieBreak` | Must list every registry mode exactly once, with workflow modes first and surface packets after them. |
 | `outcomes` | Must include `single`, `orderedBundle`, `defer`, and `surfaceBundle`. |
@@ -94,13 +94,10 @@ Workflow modes always sort before surface packets. For `sk-code`, the workflow o
 
 | Order | Mode | Kind |
 | ---: | --- | --- |
-| 1 | `implement` | Workflow |
-| 2 | `quality` | Workflow |
-| 3 | `debug` | Workflow |
-| 4 | `verify` | Workflow |
-| 5 | `review` | Workflow |
+| 1 | `quality` | Workflow |
+| 2 | `code-review` | Workflow |
 
-When surfaces are present, append them after every workflow mode. This keeps process selection primary and surface evidence secondary.
+The surface packets `code-webflow` and `code-opencode` sort after every workflow mode. This keeps process selection primary and surface evidence secondary.
 
 ### Outcomes
 
@@ -111,24 +108,24 @@ When surfaces are present, append them after every workflow mode. This keeps pro
 | `defer` | The request is unclear, contradictory, or below routing confidence. |
 | `surfaceBundle` | One workflow mode is primary, with zero-or-more surface packets attached as evidence. |
 
-`surfaceBundle` is the two-axis outcome. It prevents surface vocabulary such as `webflow` or `animation` from stealing the route from a process word such as `review`, `debug`, or `verify`.
+`surfaceBundle` is the two-axis outcome. It prevents surface vocabulary such as `code-webflow` or `code-opencode` from stealing the route from a process word such as `code-review` or `quality`.
 
 ### Optional `bundleRules[]`
 
-`bundleRules[]` lets a hub encode prose bundle rules declaratively. Each rule must reference real registry modes only. The surface rule below is valid only after `webflow` and `animation` exist in the registry and on disk.
+`bundleRules[]` lets a hub encode prose bundle rules declaratively. Each rule must reference real registry modes only. `sk-code` currently ships none — its two-axis routing rides the `surfaceBundle` outcome and the tie-break order — but the shape below shows how a hub would encode one; every referenced mode must exist in the registry and on disk.
 
 ```json
 {
   "bundleRules": [
     {
       "name": "review-with-surface-evidence",
-      "whenPrimary": "review",
-      "includeSurfaces": ["webflow", "animation"],
+      "whenPrimary": "code-review",
+      "includeSurfaces": ["code-webflow", "code-opencode"],
       "outcome": "surfaceBundle"
     },
     {
-      "name": "implement-then-verify",
-      "whenAll": ["implement", "verify"],
+      "name": "quality-then-review",
+      "whenAll": ["quality", "code-review"],
       "outcome": "orderedBundle"
     }
   ]
@@ -141,20 +138,20 @@ Use `bundleRules[]` when a hub has a durable prose rule such as "if the request 
 
 ## 4. ROUTER SIGNALS
 
-`routerSignals` is keyed by mode. Every key maps to a scoring weight, vocabulary classes, and resources. The `review` entry below reflects the current `sk-code` workflow packet; the `webflow` entry shows the same shape for a surface packet once that packet exists.
+`routerSignals` is keyed by mode. Every key maps to a scoring weight, vocabulary classes, and resources. The `code-review` entry below reflects the `sk-code` workflow packet; the `code-webflow` entry shows the same shape for a surface packet.
 
 ```json
 {
   "routerSignals": {
-    "review": {
+    "code-review": {
       "weight": 4,
-      "classes": ["review-aliases", "review-findings", "review-security", "review-pr", "hub-identity"],
-      "resources": ["review/SKILL.md"]
+      "classes": ["code-review-aliases", "code-review-findings", "code-review-security", "code-review-pr", "hub-identity"],
+      "resources": ["code-review/SKILL.md"]
     },
-    "webflow": {
+    "code-webflow": {
       "weight": 3,
-      "classes": ["webflow-aliases", "webflow-runtime"],
-      "resources": ["webflow/SKILL.md"]
+      "classes": ["code-webflow-aliases", "code-webflow-runtime"],
+      "resources": ["code-webflow/SKILL.md"]
     }
   }
 }
@@ -189,13 +186,13 @@ Surface packets get normal signal entries. They are not special side arrays, and
 ```json
 {
   "vocabularyClasses": {
-    "review-aliases": {
+    "code-review-aliases": {
       "keywords": ["review", "code review", "security review", "pr review"]
     },
-    "webflow-aliases": {
+    "code-webflow-aliases": {
       "keywords": ["webflow", "frontend", "browser", "cdn"]
     },
-    "webflow-runtime": {
+    "code-webflow-runtime": {
       "keywords": ["gsap", "lenis", "swiper", "browser test"]
     },
     "hub-identity": {
@@ -218,12 +215,12 @@ Use owned class names rather than generic surface labels:
 
 | Pattern | Owner | Example |
 | --- | --- | --- |
-| `<surface>-aliases` | Surface identity phrases | `webflow-aliases` |
-| `<surface>-runtime` | Surface library/runtime evidence | `webflow-runtime` |
-| `<mode>-aliases` | Workflow/process phrases | `review-aliases` |
+| `<surface>-aliases` | Surface identity phrases | `code-webflow-aliases` |
+| `<surface>-runtime` | Surface library/runtime evidence | `code-webflow-runtime` |
+| `<mode>-aliases` | Workflow/process phrases | `code-review-aliases` |
 | `hub-identity` | Parent hub identity and shared router vocabulary | `hub-identity` |
 
-Retire ad-hoc names like `surface-webflow` into owned classes such as `webflow-aliases` and `webflow-runtime`. Owned names make vocabulary sync safer because each alias has a clear home.
+Retire ad-hoc names like `surface-webflow` into owned classes such as `code-webflow-aliases` and `code-webflow-runtime`. Owned names make vocabulary sync safer because each alias has a clear home.
 
 ---
 
@@ -233,23 +230,22 @@ The router has two axes:
 
 | Axis | Question | Examples |
 | --- | --- | --- |
-| Workflow | What process should run? | `implement`, `quality`, `debug`, `verify`, `review` |
-| Surface | Which evidence base should inform it? | `webflow`, `opencode`, `animation` |
+| Workflow | What process should run? | `quality`, `code-review` |
+| Surface | Which evidence base should inform it? | `code-webflow`, `code-opencode` |
 
-A request such as `review my webflow animation` carries one workflow signal and two surface signals:
+A request such as `review my webflow animation code` carries one workflow signal and one surface signal — Motion.dev animation is folded into the `code-webflow` surface, not a separate mode:
 
 | Token | Matching class | Routed mode |
 | --- | --- | --- |
-| `review` | `review-aliases` | `review` |
-| `webflow` | `webflow-aliases` | `webflow` |
-| `animation` | `animation-aliases` | `animation` |
+| `review` | `code-review-aliases` | `code-review` |
+| `webflow` | `code-webflow-aliases` | `code-webflow` |
 
 The correct outcome is `surfaceBundle`:
 
 ```json
 {
   "outcome": "surfaceBundle",
-  "modes": ["review", "webflow", "animation"]
+  "modes": ["code-review", "code-webflow"]
 }
 ```
 
@@ -279,7 +275,7 @@ If the next-ranked mode is within `routerPolicy.ambiguityDelta` of the winner, t
 | --- | --- |
 | Workflow + workflow | `orderedBundle` when the request clearly asks for both processes. |
 | Workflow + surface | `surfaceBundle` when one process should run with surface evidence attached. |
-| Surface + surface with no workflow | `defer` or fall back to `defaultMode`, depending on the hub policy. |
+| Surface + surface with no workflow | Fall back to `defaultMode` when the hub sets one; a surface-primary hub with `defaultMode: null` (like `sk-code`) defers. |
 
 ### Tie-break ordering
 
@@ -293,8 +289,8 @@ All resource paths must be hub-root-relative and packet-qualified.
 
 | Good | Problem if omitted |
 | --- | --- |
-| `review/SKILL.md` | The router can load the selected packet contract directly. |
-| `webflow/references/runtime.md` | Surface evidence stays under the owning surface packet once that packet exists. |
+| `code-review/SKILL.md` | The router can load the selected packet contract directly. |
+| `code-webflow/references/runtime.md` | Surface evidence stays under the owning surface packet. |
 | `shared/README.md` | Default resources are clearly hub-level shared context. |
 
 Avoid unqualified names like `SKILL.md` in router resources. A parent hub has multiple packet roots, so every resource must identify the packet or shared hub location that owns it.

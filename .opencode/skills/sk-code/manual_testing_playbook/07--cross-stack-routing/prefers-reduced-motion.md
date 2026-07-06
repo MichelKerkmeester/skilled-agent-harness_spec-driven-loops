@@ -43,8 +43,8 @@ grep -lqE "window\.Motion|window\.gsap|gsap\.(to|from|set|timeline|registerPlugi
 - `code-webflow/references/animation/integration_patterns.md`
 
 **Expected assets loaded**:
-- `code-webflow/assets/checklists/code_quality_checklist.md`
-- `code-webflow/assets/checklists/verification_checklist.md`
+- `code-review/assets/code_quality_checklist.md`
+- `code-webflow/assets/webflow-verification_checklist.md`
 - `code-webflow/assets/animation/snippets/hover_gesture.js`
 - `code-webflow/assets/animation/snippets/in_view_reveal.js`
 
