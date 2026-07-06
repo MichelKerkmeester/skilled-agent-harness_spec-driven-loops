@@ -1,0 +1,21 @@
+{
+  "level": "track",
+  "specFolder": "system-skill-advisor",
+  "description": "Skill-advisor track: the shared advisor-scorer saturation-class root fix (WS1-6) plus advisor projection vocabulary, housed out of the 028 memory-search tree.",
+  "keywords": [
+    "system-skill-advisor",
+    "advisor",
+    "scorer",
+    "saturation",
+    "demotion",
+    "projection",
+    "vocabulary",
+    "track"
+  ],
+  "lastUpdated": "2026-07-06T11:00:00.000Z",
+  "specId": "",
+  "folderSlug": "system-skill-advisor",
+  "parentChain": [],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}
