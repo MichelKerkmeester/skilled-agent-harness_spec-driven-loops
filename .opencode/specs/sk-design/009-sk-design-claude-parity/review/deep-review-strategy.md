@@ -68,7 +68,7 @@ Not re-running the routing benchmark harness or the md-generator Playwright pipe
 - **P0 (Critical):** 0 active
 - **P1 (Major):** 8 active
 - **P2 (Minor):** 3 active
-- **Delta this iteration:** +0 P0, +1 P1, +0 P2
+- **Delta this iteration:** +0 P0, +0 P1, +0 P2
 
 [Findings are tracked in `deep-review-findings-registry.json`. This section provides a running count summary updated after each iteration.]
 <!-- MACHINE-OWNED: END -->
@@ -88,6 +88,7 @@ Not re-running the routing benchmark harness or the md-generator Playwright pipe
 - Iteration 6 deeper md-generator revisit found a new guided-run relative-output correctness defect and confirmed the prompt-injection plus output-path findings do not currently compound into P0.
 - Iteration 7 covered the non-output extraction modules deferred by iteration 6 and found two new backend P1s: dark-mode CSS variable values enter generated report style attributes without data isolation, and transition shorthand parsing corrupts comma-bearing timing functions.
 - Iteration 8 generalized the HTML/CSS sink revisit across report/preview/proof and found one new backend P1: report and preview renderers reuse source-derived typography, radius, and shadow token strings in CSS contexts without a shared CSS-value sanitizer.
+- Iteration 9 adversarially re-read the current source citations for P1-001 through P1-008 and confirmed all eight remain valid as P1, with no P0 escalation, downgrade, or resolved finding.
 
 ---
 
@@ -144,7 +145,7 @@ Not re-running the routing benchmark harness or the md-generator Playwright pipe
 
 ## 12. NEXT FOCUS
 <!-- MACHINE-OWNED: START -->
-Iteration 9 (deeper revisit): check remediation completeness across active md-generator P1s, especially whether a shared output policy plus a renderer-local CSS-value sanitizer covers all affected sinks without overbroad escaping.
+Iteration 10 (synthesis): produce the final CONDITIONAL review synthesis, grouping remediation into prompt-data/component facts, output/artifact policy, renderer CSS-value safety, transition parser correctness, and P2 advisory follow-up.
 <!-- MACHINE-OWNED: END -->
 
 ---
@@ -194,7 +195,7 @@ Do not inline full source bodies in this file. Use this snapshot only to seed re
 | `.opencode/skills/sk-design/design-foundations/` | inventory | 1 | 0 | mapped; scripts present |
 | `.opencode/skills/sk-design/design-motion/` | inventory | 1 | 0 | mapped |
 | `.opencode/skills/sk-design/design-audit/` | inventory | 1 | 0 | mapped; scripts present |
-| `.opencode/skills/sk-design/design-md-generator/` | inventory + backend correctness spot-check + security path/prompt spot-check + report/preview traceability spot-check + maintainability seam review + deep revisit | 8 | 8 P1 + 1 P2 | mapped; `build-write-prompt.ts` component-facts gap, output-boundary guard gap, prompt-data isolation gap, report/preview overwrite-contract gap, guided-run relative-output cwd mismatch, dark-mode report CSS-context isolation gap, transition shorthand parser bug, generalized report/preview CSS-value sanitizer gap, and focused extraction test gap found; remediation seams identified |
+| `.opencode/skills/sk-design/design-md-generator/` | inventory + backend correctness spot-check + security path/prompt spot-check + report/preview traceability spot-check + maintainability seam review + deep revisit + adversarial P1 re-verification | 9 | 8 P1 + 1 P2 | mapped; `build-write-prompt.ts` component-facts gap, output-boundary guard gap, prompt-data isolation gap, report/preview overwrite-contract gap, guided-run relative-output cwd mismatch, dark-mode report CSS-context isolation gap, transition shorthand parser bug, generalized report/preview CSS-value sanitizer gap, and focused extraction test gap found; iteration 9 reverified all 8 P1s still hold |
 | `.opencode/skills/sk-design/design-md-generator/backend/node_modules/` | - | 1 | - | out of scope vendored dependency internals |
 | `.opencode/commands/design/*.md` | inventory + security tool-surface spot-check + traceability command projection spot-check | 4 | 0 | mapped; read-only versus md-generator mutating split preserved |
 <!-- MACHINE-OWNED: END -->
