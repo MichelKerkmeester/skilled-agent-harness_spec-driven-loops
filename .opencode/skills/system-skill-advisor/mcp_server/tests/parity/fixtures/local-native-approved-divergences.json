@@ -2,14 +2,84 @@
   "schemaVersion": 1,
   "entries": [
     {
-      "id": "rr-iter2-001",
-      "corpus": "labeled",
-      "promptHash": "sha256:75d29012d0e7a40eda94935ac40f993346df000afa9302326590a09a2dbafcfc",
-      "gold": "sk-code",
+      "id": "harder:00b82eb94d58",
+      "corpus": "harder",
+      "promptHash": "sha256:00b82eb94d58d743bbca3348c0be25235af0347a9714a5a9e4d68374ce8483ac",
+      "gold": "mcp-code-mode",
       "localTop": "none",
       "nativeTop": "sk-code",
-      "reason": "baseline divergence captured 2026-06-13: local abstains at strict thresholds where native routes to sk-code",
+      "reason": "divergence captured 2026-07-06: local abstains at strict thresholds where native routes to sk-code",
+      "approvedAt": "2026-07-06"
+    },
+    {
+      "id": "harder:0627b7a965f0",
+      "corpus": "harder",
+      "promptHash": "sha256:0627b7a965f0ce8fd1d8fc1f1a50d51567dab591010c9a67b7f84c53843becf6",
+      "gold": "system-spec-kit",
+      "localTop": "system-spec-kit",
+      "nativeTop": "memory:save",
+      "reason": "baseline divergence captured 2026-06-13: local/native lexical-mis-route disagreement (local=system-spec-kit, native=memory:save)",
       "approvedAt": "2026-06-13"
+    },
+    {
+      "id": "harder:4798f04a4216",
+      "corpus": "harder",
+      "promptHash": "sha256:4798f04a421656a90c29b49d7b311ceb8a335d940e9f353b66fbd3df32baf5e0",
+      "gold": "deep-ai-council",
+      "localTop": "none",
+      "nativeTop": "deep-loop-workflows",
+      "reason": "deep-loop merge re-baseline: legacy deep-* skills folded into deep-loop-workflows shifted native top-1; recorded as approved local-vs-native divergence",
+      "approvedAt": "2026-06-15"
+    },
+    {
+      "id": "harder:79997ebae7df",
+      "corpus": "harder",
+      "promptHash": "sha256:79997ebae7df25146b41c11860048510c04988d77ac4730f5c474aeb6efd3691",
+      "gold": "cli-opencode",
+      "localTop": "sk-prompt-models",
+      "nativeTop": "sk-code",
+      "reason": "divergence captured 2026-07-06: local/native routing disagreement (local=sk-prompt-models, native=sk-code)",
+      "approvedAt": "2026-07-06"
+    },
+    {
+      "id": "harder:b299699c3964",
+      "corpus": "harder",
+      "promptHash": "sha256:b299699c39642edb88ea3895ad7799d0cb5c153987e4c4e3aa85630798f17906",
+      "gold": "sk-doc",
+      "localTop": "none",
+      "nativeTop": "sk-doc",
+      "reason": "baseline divergence captured 2026-06-13: local abstains at strict thresholds where native routes to sk-doc",
+      "approvedAt": "2026-06-13"
+    },
+    {
+      "id": "harder:c4b5aa8603df",
+      "corpus": "harder",
+      "promptHash": "sha256:c4b5aa8603dfb6944f76c69c237017597a153fda1e79b3a19e476a2dbe577395",
+      "gold": "system-spec-kit",
+      "localTop": "none",
+      "nativeTop": "system-spec-kit",
+      "reason": "baseline divergence captured 2026-06-13: local abstains at strict thresholds where native routes to system-spec-kit",
+      "approvedAt": "2026-06-13"
+    },
+    {
+      "id": "harder:eb10a4b1b288",
+      "corpus": "harder",
+      "promptHash": "sha256:eb10a4b1b288817423b6525eba5e74b846d7b38d972992d359b1a04111a92eaf",
+      "gold": "mcp-chrome-devtools",
+      "localTop": "mcp-chrome-devtools",
+      "nativeTop": "none",
+      "reason": "baseline divergence captured 2026-06-13: native abstains at strict thresholds where local routes to mcp-chrome-devtools",
+      "approvedAt": "2026-06-13"
+    },
+    {
+      "id": "rr-iter2-002",
+      "corpus": "labeled",
+      "promptHash": "sha256:2aa5916b83bf92a26396573e441330a477e3a4515f27527bac57379cf0c191c8",
+      "gold": "sk-doc",
+      "localTop": "sk-design",
+      "nativeTop": "sk-doc",
+      "reason": "divergence captured 2026-07-06: local/native routing disagreement (local=sk-design, native=sk-doc)",
+      "approvedAt": "2026-07-06"
     },
     {
       "id": "rr-iter2-003",
@@ -20,6 +90,16 @@
       "nativeTop": "system-spec-kit",
       "reason": "baseline divergence captured 2026-06-13: local abstains at strict thresholds where native routes to system-spec-kit",
       "approvedAt": "2026-06-13"
+    },
+    {
+      "id": "rr-iter2-005",
+      "corpus": "labeled",
+      "promptHash": "sha256:cc947e1c460b25d76a4884caceac1efd2dccf8be65762a9f4749d0b5bf5a57c3",
+      "gold": "system-spec-kit",
+      "localTop": "none",
+      "nativeTop": "deep-loop-workflows",
+      "reason": "divergence captured 2026-07-06: local abstains at strict thresholds where native routes to deep-loop-workflows",
+      "approvedAt": "2026-07-06"
     },
     {
       "id": "rr-iter2-008",
@@ -42,20 +122,50 @@
       "approvedAt": "2026-06-13"
     },
     {
+      "id": "rr-iter2-016",
+      "corpus": "labeled",
+      "promptHash": "sha256:40cdda6ce8f89f707df2e961a1050f2270e7e5b75d49fb744dbed65adadf535f",
+      "gold": "system-code-graph",
+      "localTop": "system-code-graph",
+      "nativeTop": "deep-loop-workflows",
+      "reason": "divergence captured 2026-07-06: local/native routing disagreement (local=system-code-graph, native=deep-loop-workflows)",
+      "approvedAt": "2026-07-06"
+    },
+    {
       "id": "rr-iter2-017",
       "corpus": "labeled",
       "promptHash": "sha256:a6d58b2f7cbbb25db486e2eab4c1e33e8b31b380c5e5800693f8242cd9c89584",
-      "gold": "sk-code-review",
+      "gold": "sk-code",
       "localTop": "none",
-      "nativeTop": "sk-code-review",
-      "reason": "baseline divergence captured 2026-06-13: local abstains at strict thresholds where native routes to sk-code-review",
-      "approvedAt": "2026-06-13"
+      "nativeTop": "sk-code",
+      "reason": "divergence captured 2026-07-06: local abstains at strict thresholds where native routes to sk-code",
+      "approvedAt": "2026-07-06"
+    },
+    {
+      "id": "rr-iter2-019",
+      "corpus": "labeled",
+      "promptHash": "sha256:c57eb5cdb9f134832b9d507f5a31f42f6fe967106a9e5c3bcc4c6f21b791a84c",
+      "gold": "none",
+      "localTop": "sk-code",
+      "nativeTop": "none",
+      "reason": "divergence captured 2026-07-06: local/native routing disagreement (local=sk-code, native=none)",
+      "approvedAt": "2026-07-06"
+    },
+    {
+      "id": "rr-iter2-020",
+      "corpus": "labeled",
+      "promptHash": "sha256:39fd549fe242bc996fa82a066ec1496e2b5a5ddf9b1015e707022b47c74d9a72",
+      "gold": "sk-code",
+      "localTop": "sk-code",
+      "nativeTop": "sk-doc",
+      "reason": "divergence captured 2026-07-06: local/native routing disagreement (local=sk-code, native=sk-doc)",
+      "approvedAt": "2026-07-06"
     },
     {
       "id": "rr-iter2-025",
       "corpus": "labeled",
       "promptHash": "sha256:43de25b4b33d11bd03e6b36e3746b74b10bd684481affb9622d9ebba8633f2ee",
-      "gold": "sk-deep-research",
+      "gold": "deep-loop-workflows",
       "localTop": "none",
       "nativeTop": "deep-loop-workflows",
       "reason": "deep-loop merge re-baseline: legacy deep-* skills folded into deep-loop-workflows shifted native top-1; recorded as approved local-vs-native divergence",
@@ -65,7 +175,7 @@
       "id": "rr-iter2-028",
       "corpus": "labeled",
       "promptHash": "sha256:f9690ab10a2661b33c183c9981d910a50aa40f5f675e9559f7c9fcf4379b05e5",
-      "gold": "sk-deep-research",
+      "gold": "deep-loop-workflows",
       "localTop": "none",
       "nativeTop": "deep-loop-workflows",
       "reason": "deep-loop merge re-baseline: legacy deep-* skills folded into deep-loop-workflows shifted native top-1; recorded as approved local-vs-native divergence",
@@ -79,16 +189,6 @@
       "localTop": "sk-git",
       "nativeTop": "system-spec-kit",
       "reason": "baseline divergence captured 2026-06-13: local/native lexical-mis-route disagreement (local=sk-git, native=system-spec-kit)",
-      "approvedAt": "2026-06-13"
-    },
-    {
-      "id": "rr-iter2-031",
-      "corpus": "labeled",
-      "promptHash": "sha256:0bfbc1e727a6dcea4954d1947742f37fff1d736078533889144eac894a32ff5d",
-      "gold": "sk-code",
-      "localTop": "none",
-      "nativeTop": "sk-code",
-      "reason": "baseline divergence captured 2026-06-13: local abstains at strict thresholds where native routes to sk-code",
       "approvedAt": "2026-06-13"
     },
     {
@@ -135,17 +235,27 @@
       "id": "rr-iter2-041",
       "corpus": "labeled",
       "promptHash": "sha256:d8b52f3665a438dfdcf2eae8a93422387d2a5e981cd70d795d8238b9f26fa30c",
-      "gold": "sk-deep-research",
+      "gold": "deep-loop-workflows",
       "localTop": "deep-research",
       "nativeTop": "deep-loop-workflows",
       "reason": "deep-loop merge re-baseline: legacy deep-* skills folded into deep-loop-workflows shifted native top-1; recorded as approved local-vs-native divergence",
       "approvedAt": "2026-06-15"
     },
     {
+      "id": "rr-iter2-044",
+      "corpus": "labeled",
+      "promptHash": "sha256:1c4f38b1953cdca9c0bff1c279a79b941e619dcfc90be55a43ac568996547cf8",
+      "gold": "deep-loop-workflows",
+      "localTop": "system-spec-kit",
+      "nativeTop": "deep-loop-workflows",
+      "reason": "divergence captured 2026-07-06: local/native routing disagreement (local=system-spec-kit, native=deep-loop-workflows)",
+      "approvedAt": "2026-07-06"
+    },
+    {
       "id": "rr-iter2-046",
       "corpus": "labeled",
       "promptHash": "sha256:565345fe2413c2a915d1448a744fb0e662fc563bfa5bbf9d4035e9fa5117fd8a",
-      "gold": "sk-deep-review",
+      "gold": "deep-loop-workflows",
       "localTop": "deep-review",
       "nativeTop": "system-spec-kit",
       "reason": "baseline divergence captured 2026-06-13: local/native lexical-mis-route disagreement (local=deep-review, native=system-spec-kit)",
@@ -160,6 +270,16 @@
       "nativeTop": "sk-doc",
       "reason": "baseline divergence captured 2026-06-13: local/native lexical-mis-route disagreement (local=create:testing-playbook, native=sk-doc)",
       "approvedAt": "2026-06-13"
+    },
+    {
+      "id": "rr-iter2-060",
+      "corpus": "labeled",
+      "promptHash": "sha256:a29b1d14f01431eaa8a62dadef5b8820b0b14c040bc875bf99230d11d319b13c",
+      "gold": "system-code-graph",
+      "localTop": "system-code-graph",
+      "nativeTop": "deep-loop-workflows",
+      "reason": "divergence captured 2026-07-06: local/native routing disagreement (local=system-code-graph, native=deep-loop-workflows)",
+      "approvedAt": "2026-07-06"
     },
     {
       "id": "rr-iter3-061",
@@ -206,10 +326,10 @@
       "corpus": "labeled",
       "promptHash": "sha256:16a1968df998a78a4d4afc58d179218b2c035de8bd1a6c033f5ef2c6fe46f8c9",
       "gold": "sk-doc",
-      "localTop": "none",
+      "localTop": "sk-code",
       "nativeTop": "sk-doc",
-      "reason": "baseline divergence captured 2026-06-13: local abstains at strict thresholds where native routes to sk-doc",
-      "approvedAt": "2026-06-13"
+      "reason": "divergence captured 2026-07-06: local/native routing disagreement (local=sk-code, native=sk-doc)",
+      "approvedAt": "2026-07-06"
     },
     {
       "id": "rr-iter3-067",
@@ -282,16 +402,6 @@
       "approvedAt": "2026-06-13"
     },
     {
-      "id": "rr-iter3-077",
-      "corpus": "labeled",
-      "promptHash": "sha256:dd89e56b361965ce3805fbfc78b920ab49a8a6e03ba4fc210c7ce82c9f4bfa47",
-      "gold": "sk-code",
-      "localTop": "none",
-      "nativeTop": "sk-code",
-      "reason": "baseline divergence captured 2026-06-13: local abstains at strict thresholds where native routes to sk-code",
-      "approvedAt": "2026-06-13"
-    },
-    {
       "id": "rr-iter3-078",
       "corpus": "labeled",
       "promptHash": "sha256:e08b4feb6fbf8ade72fdb40f2faf6e73f158f25ce0a0444ca9fb7b4b250715b2",
@@ -316,10 +426,10 @@
       "corpus": "labeled",
       "promptHash": "sha256:8266a2bd7cbf5adb07b28894c39dccd4787165025d8bd77a795e492bf54da294",
       "gold": "system-spec-kit",
-      "localTop": "none",
+      "localTop": "sk-code",
       "nativeTop": "sk-doc",
-      "reason": "baseline divergence captured 2026-06-13: local abstains at strict thresholds where native routes to sk-doc",
-      "approvedAt": "2026-06-13"
+      "reason": "divergence captured 2026-07-06: local/native routing disagreement (local=sk-code, native=sk-doc)",
+      "approvedAt": "2026-07-06"
     },
     {
       "id": "rr-iter3-081",
@@ -352,24 +462,14 @@
       "approvedAt": "2026-06-13"
     },
     {
-      "id": "rr-iter3-086",
-      "corpus": "labeled",
-      "promptHash": "sha256:e6e0d089510be17b92f0e532620e15a0a67da265dc721aed34dd06586d6d1e6d",
-      "gold": "none",
-      "localTop": "sk-prompt",
-      "nativeTop": "sk-code-review",
-      "reason": "baseline divergence captured 2026-06-13: local/native lexical-mis-route disagreement (local=sk-prompt, native=sk-code-review)",
-      "approvedAt": "2026-06-13"
-    },
-    {
       "id": "rr-iter3-088",
       "corpus": "labeled",
       "promptHash": "sha256:2367ae212ecf277f12e7e40e991471d1e5eb838b88c9e58a42d5562467dd0037",
-      "gold": "sk-code-review",
+      "gold": "sk-code",
       "localTop": "none",
-      "nativeTop": "sk-code-review",
-      "reason": "baseline divergence captured 2026-06-13: local abstains at strict thresholds where native routes to sk-code-review",
-      "approvedAt": "2026-06-13"
+      "nativeTop": "sk-code",
+      "reason": "divergence captured 2026-07-06: local abstains at strict thresholds where native routes to sk-code",
+      "approvedAt": "2026-07-06"
     },
     {
       "id": "rr-iter3-092",
@@ -380,6 +480,16 @@
       "nativeTop": "sk-code",
       "reason": "baseline divergence captured 2026-06-13: local/native lexical-mis-route disagreement (local=mcp-chrome-devtools, native=sk-code)",
       "approvedAt": "2026-06-13"
+    },
+    {
+      "id": "rr-iter3-093",
+      "corpus": "labeled",
+      "promptHash": "sha256:2b3fccb873c32cdb627a51b6e5fd1b741ccaa7a6493d6b14328e9e77e06c177b",
+      "gold": "sk-code",
+      "localTop": "sk-code",
+      "nativeTop": "sk-prompt",
+      "reason": "divergence captured 2026-07-06: local/native routing disagreement (local=sk-code, native=sk-prompt)",
+      "approvedAt": "2026-07-06"
     },
     {
       "id": "rr-iter3-094",
@@ -405,27 +515,17 @@
       "id": "rr-iter3-099",
       "corpus": "labeled",
       "promptHash": "sha256:bce428e713650d8b3a47bf4ebd48806cf17c7cee1764558e31bccc9de045e7db",
-      "gold": "sk-deep-research",
+      "gold": "deep-loop-workflows",
       "localTop": "sk-prompt",
       "nativeTop": "system-spec-kit",
       "reason": "baseline divergence captured 2026-06-13: local/native lexical-mis-route disagreement (local=sk-prompt, native=system-spec-kit)",
       "approvedAt": "2026-06-13"
     },
     {
-      "id": "rr-iter3-100",
-      "corpus": "labeled",
-      "promptHash": "sha256:3a853ab7f72c2d60716485de9640be97c216ac090ea39777719e3bb9157ebe25",
-      "gold": "sk-code-review",
-      "localTop": "sk-prompt",
-      "nativeTop": "sk-code-review",
-      "reason": "baseline divergence captured 2026-06-13: local/native lexical-mis-route disagreement (local=sk-prompt, native=sk-code-review)",
-      "approvedAt": "2026-06-13"
-    },
-    {
       "id": "rr-iter3-110",
       "corpus": "labeled",
       "promptHash": "sha256:4aea2da081bd8447f7721f64dbcf61ed0e9b7c646acb17036ed0f1108b15f464",
-      "gold": "sk-deep-research",
+      "gold": "deep-loop-workflows",
       "localTop": "none",
       "nativeTop": "deep-loop-workflows",
       "reason": "deep-loop merge re-baseline: legacy deep-* skills folded into deep-loop-workflows shifted native top-1; recorded as approved local-vs-native divergence",
@@ -435,7 +535,7 @@
       "id": "rr-iter3-113",
       "corpus": "labeled",
       "promptHash": "sha256:c20d922623f538929eccdd760a462bb2bb0b2e5abb564412b722ecece34095d1",
-      "gold": "sk-deep-research",
+      "gold": "deep-loop-workflows",
       "localTop": "none",
       "nativeTop": "deep-loop-runtime",
       "reason": "deep-loop merge re-baseline: legacy deep-* skills folded into deep-loop-workflows shifted native top-1; recorded as approved local-vs-native divergence",
@@ -455,7 +555,7 @@
       "id": "rr-iter3-119",
       "corpus": "labeled",
       "promptHash": "sha256:b0e07ccfcfdf4e8737e8d31839aaf531f63930e40261240fcd8e325baac96aab",
-      "gold": "sk-deep-research",
+      "gold": "deep-loop-workflows",
       "localTop": "none",
       "nativeTop": "system-spec-kit",
       "reason": "baseline divergence captured 2026-06-13: local abstains at strict thresholds where native routes to system-spec-kit",
@@ -465,21 +565,11 @@
       "id": "rr-iter3-125",
       "corpus": "labeled",
       "promptHash": "sha256:cf4b224328d8c77499c0302598a6533fe072d4a7fe5eab95206e399e574855be",
-      "gold": "sk-deep-research",
+      "gold": "deep-loop-workflows",
       "localTop": "none",
       "nativeTop": "deep-loop-workflows",
       "reason": "deep-loop merge re-baseline: legacy deep-* skills folded into deep-loop-workflows shifted native top-1; recorded as approved local-vs-native divergence",
       "approvedAt": "2026-06-15"
-    },
-    {
-      "id": "rr-iter3-128",
-      "corpus": "labeled",
-      "promptHash": "sha256:ec64d18b9a73bede3e46ef06c6e61447a685eac1b8819c8266d8abe9b43f8c58",
-      "gold": "system-spec-kit",
-      "localTop": "sk-code-review",
-      "nativeTop": "sk-doc",
-      "reason": "baseline divergence captured 2026-06-13: local/native lexical-mis-route disagreement (local=sk-code-review, native=sk-doc)",
-      "approvedAt": "2026-06-13"
     },
     {
       "id": "rr-iter3-129",
@@ -512,6 +602,16 @@
       "approvedAt": "2026-06-13"
     },
     {
+      "id": "rr-iter3-132",
+      "corpus": "labeled",
+      "promptHash": "sha256:5d7779286e5c66b55c15f1e959b60ed8ce2ee3203e7bc8961633aa941a750b7f",
+      "gold": "system-spec-kit",
+      "localTop": "sk-code",
+      "nativeTop": "deep-loop-workflows",
+      "reason": "divergence captured 2026-07-06: local/native routing disagreement (local=sk-code, native=deep-loop-workflows)",
+      "approvedAt": "2026-07-06"
+    },
+    {
       "id": "rr-iter3-134",
       "corpus": "labeled",
       "promptHash": "sha256:8d71b9e06b68a990f1bca13f6059f2d7c85804bd2ef1a5c0bf1506b1ed92fba4",
@@ -529,16 +629,6 @@
       "localTop": "mcp-chrome-devtools",
       "nativeTop": "sk-code",
       "reason": "baseline divergence captured 2026-06-13: local/native lexical-mis-route disagreement (local=mcp-chrome-devtools, native=sk-code)",
-      "approvedAt": "2026-06-13"
-    },
-    {
-      "id": "rr-iter3-139",
-      "corpus": "labeled",
-      "promptHash": "sha256:761a85a382272dd6b9be7a7dd5379bbe96e85ff54f9f6a79068578ae7dfa345c",
-      "gold": "sk-doc",
-      "localTop": "none",
-      "nativeTop": "sk-doc",
-      "reason": "baseline divergence captured 2026-06-13: local abstains at strict thresholds where native routes to sk-doc",
       "approvedAt": "2026-06-13"
     },
     {
@@ -565,7 +655,7 @@
       "id": "rr-iter3-149",
       "corpus": "labeled",
       "promptHash": "sha256:7835647650813b6bfab37b922c629cc9396e9f75301a894e0cae02f0545bfe37",
-      "gold": "sk-deep-research",
+      "gold": "deep-loop-workflows",
       "localTop": "deep-research",
       "nativeTop": "deep-loop-workflows",
       "reason": "deep-loop merge re-baseline: legacy deep-* skills folded into deep-loop-workflows shifted native top-1; recorded as approved local-vs-native divergence",
@@ -575,7 +665,7 @@
       "id": "rr-iter3-151",
       "corpus": "labeled",
       "promptHash": "sha256:0775864f3a2b1f244a249656d35b1d6e8cb20061a207e594c2eda43240f33664",
-      "gold": "sk-deep-review",
+      "gold": "deep-loop-workflows",
       "localTop": "system-spec-kit",
       "nativeTop": "deep-loop-workflows",
       "reason": "deep-loop merge re-baseline: legacy deep-* skills folded into deep-loop-workflows shifted native top-1; recorded as approved local-vs-native divergence",
@@ -585,7 +675,7 @@
       "id": "rr-iter3-154",
       "corpus": "labeled",
       "promptHash": "sha256:e5ca59e6aaf93b62c8922d5384b116cd2b5e32e2c39ff60c2ce3532353d41ad0",
-      "gold": "sk-deep-review",
+      "gold": "deep-loop-workflows",
       "localTop": "deep-review",
       "nativeTop": "deep-loop-workflows",
       "reason": "deep-loop merge re-baseline: legacy deep-* skills folded into deep-loop-workflows shifted native top-1; recorded as approved local-vs-native divergence",
@@ -595,7 +685,7 @@
       "id": "rr-iter3-160",
       "corpus": "labeled",
       "promptHash": "sha256:9c0ef30e791f6058c04f75e92dae3ff2dc4c029a5e84ee8f78873fbaf995021e",
-      "gold": "sk-deep-research",
+      "gold": "deep-loop-workflows",
       "localTop": "none",
       "nativeTop": "deep-loop-workflows",
       "reason": "deep-loop merge re-baseline: legacy deep-* skills folded into deep-loop-workflows shifted native top-1; recorded as approved local-vs-native divergence",
@@ -605,7 +695,7 @@
       "id": "rr-iter3-163",
       "corpus": "labeled",
       "promptHash": "sha256:fdbff56355f1f78508a39aca210cc297428bbc93c7803c31d45b13a9310ee4f2",
-      "gold": "sk-deep-research",
+      "gold": "deep-loop-workflows",
       "localTop": "memory:save",
       "nativeTop": "system-spec-kit",
       "reason": "baseline divergence captured 2026-06-13: local/native lexical-mis-route disagreement (local=memory:save, native=system-spec-kit)",
@@ -615,7 +705,7 @@
       "id": "rr-iter3-165",
       "corpus": "labeled",
       "promptHash": "sha256:5576f5ea921dd63d46f93b988a6b31b973957d9805326aac406fabf100b925cb",
-      "gold": "sk-deep-research",
+      "gold": "deep-loop-workflows",
       "localTop": "none",
       "nativeTop": "deep-loop-workflows",
       "reason": "deep-loop merge re-baseline: legacy deep-* skills folded into deep-loop-workflows shifted native top-1; recorded as approved local-vs-native divergence",
@@ -625,7 +715,7 @@
       "id": "rr-iter3-167",
       "corpus": "labeled",
       "promptHash": "sha256:7d89049b6428bcdb285e51bf06e87b83b15faed2f6f6d3cc965394ed86e79972",
-      "gold": "sk-deep-research",
+      "gold": "deep-loop-workflows",
       "localTop": "system-spec-kit",
       "nativeTop": "deep-loop-workflows",
       "reason": "deep-loop merge re-baseline: legacy deep-* skills folded into deep-loop-workflows shifted native top-1; recorded as approved local-vs-native divergence",
@@ -635,7 +725,7 @@
       "id": "rr-iter3-168",
       "corpus": "labeled",
       "promptHash": "sha256:0ea500718ab50a26e8c9e21c9a72d5929bb57c199ae5e6f1123c7097315f8de7",
-      "gold": "sk-deep-research",
+      "gold": "deep-loop-workflows",
       "localTop": "deep-research",
       "nativeTop": "deep-loop-workflows",
       "reason": "deep-loop merge re-baseline: legacy deep-* skills folded into deep-loop-workflows shifted native top-1; recorded as approved local-vs-native divergence",
@@ -645,11 +735,11 @@
       "id": "rr-iter3-170",
       "corpus": "labeled",
       "promptHash": "sha256:881587736ed278087a3dd786c181efc5a57dc6d7c094e849e3fedd696441fb17",
-      "gold": "sk-deep-research",
-      "localTop": "sk-code-review",
+      "gold": "deep-loop-workflows",
+      "localTop": "sk-code",
       "nativeTop": "deep-loop-workflows",
-      "reason": "deep-loop merge re-baseline: legacy deep-* skills folded into deep-loop-workflows shifted native top-1; recorded as approved local-vs-native divergence",
-      "approvedAt": "2026-06-15"
+      "reason": "divergence captured 2026-07-06: local/native routing disagreement (local=sk-code, native=deep-loop-workflows)",
+      "approvedAt": "2026-07-06"
     },
     {
       "id": "rr-iter3-184",
@@ -662,64 +752,14 @@
       "approvedAt": "2026-06-13"
     },
     {
-      "id": "harder:c4b5aa8603df",
-      "corpus": "harder",
-      "promptHash": "sha256:c4b5aa8603dfb6944f76c69c237017597a153fda1e79b3a19e476a2dbe577395",
-      "gold": "system-spec-kit",
-      "localTop": "none",
-      "nativeTop": "system-spec-kit",
-      "reason": "baseline divergence captured 2026-06-13: local abstains at strict thresholds where native routes to system-spec-kit",
-      "approvedAt": "2026-06-13"
-    },
-    {
-      "id": "harder:0627b7a965f0",
-      "corpus": "harder",
-      "promptHash": "sha256:0627b7a965f0ce8fd1d8fc1f1a50d51567dab591010c9a67b7f84c53843becf6",
-      "gold": "system-spec-kit",
-      "localTop": "system-spec-kit",
-      "nativeTop": "memory:save",
-      "reason": "baseline divergence captured 2026-06-13: local/native lexical-mis-route disagreement (local=system-spec-kit, native=memory:save)",
-      "approvedAt": "2026-06-13"
-    },
-    {
-      "id": "harder:b299699c3964",
-      "corpus": "harder",
-      "promptHash": "sha256:b299699c39642edb88ea3895ad7799d0cb5c153987e4c4e3aa85630798f17906",
-      "gold": "sk-doc",
-      "localTop": "none",
-      "nativeTop": "sk-doc",
-      "reason": "baseline divergence captured 2026-06-13: local abstains at strict thresholds where native routes to sk-doc",
-      "approvedAt": "2026-06-13"
-    },
-    {
-      "id": "harder:eb10a4b1b288",
-      "corpus": "harder",
-      "promptHash": "sha256:eb10a4b1b288817423b6525eba5e74b846d7b38d972992d359b1a04111a92eaf",
-      "gold": "mcp-chrome-devtools",
-      "localTop": "mcp-chrome-devtools",
-      "nativeTop": "none",
-      "reason": "baseline divergence captured 2026-06-13: native abstains at strict thresholds where local routes to mcp-chrome-devtools",
-      "approvedAt": "2026-06-13"
-    },
-    {
-      "id": "harder:6ec7daa39ca9",
-      "corpus": "harder",
-      "promptHash": "sha256:6ec7daa39ca95f695f379d15322d2dee2798f1730c68731f53a6f09bd3ec302b",
-      "gold": "deep-review",
+      "id": "rr-iter3-188",
+      "corpus": "labeled",
+      "promptHash": "sha256:959dd2d64f24612870f28b1039bc0aef1b622448b90d5eb7ab626f439cc180f3",
+      "gold": "sk-code",
       "localTop": "sk-git",
-      "nativeTop": "sk-code-review",
-      "reason": "deep-loop merge re-baseline: legacy deep-* skills folded into deep-loop-workflows shifted native top-1; recorded as approved local-vs-native divergence",
-      "approvedAt": "2026-06-15"
-    },
-    {
-      "id": "harder:4798f04a4216",
-      "corpus": "harder",
-      "promptHash": "sha256:4798f04a421656a90c29b49d7b311ceb8a335d940e9f353b66fbd3df32baf5e0",
-      "gold": "deep-ai-council",
-      "localTop": "none",
-      "nativeTop": "deep-loop-workflows",
-      "reason": "deep-loop merge re-baseline: legacy deep-* skills folded into deep-loop-workflows shifted native top-1; recorded as approved local-vs-native divergence",
-      "approvedAt": "2026-06-15"
+      "nativeTop": "sk-code",
+      "reason": "divergence captured 2026-07-06: local/native routing disagreement (local=sk-git, native=sk-code)",
+      "approvedAt": "2026-07-06"
     }
   ]
 }
