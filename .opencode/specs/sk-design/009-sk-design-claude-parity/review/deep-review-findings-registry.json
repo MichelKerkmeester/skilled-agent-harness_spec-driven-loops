@@ -159,6 +159,64 @@
       "mergedFindingIds": []
     },
     {
+      "findingId": "P1-006",
+      "severity": "P1",
+      "title": "Dark-mode CSS variable values are injected into report style attributes without data isolation",
+      "file": ".opencode/skills/sk-design/design-md-generator/backend/scripts/report-gen.ts",
+      "line": null,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 7,
+      "lastSeen": 7,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 7,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "P1-007",
+      "severity": "P1",
+      "title": "Transition shorthand parsing splits cubic-bezier commas into bogus transitions",
+      "file": ".opencode/skills/sk-design/design-md-generator/backend/scripts/css-analyzer.ts",
+      "line": null,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 7,
+      "lastSeen": 7,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 7,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
       "findingId": "P2-001",
       "severity": "P2",
       "title": "Procedure-card schema lint is manual-only and outside the existing canon checker",
@@ -215,6 +273,35 @@
         "correctness"
       ],
       "mergedFindingIds": []
+    },
+    {
+      "findingId": "P2-003",
+      "severity": "P2",
+      "title": "Focused extraction modules mostly have no real test files",
+      "file": ".opencode/skills/sk-design/design-md-generator/backend/tests/a11y-extract.test.ts",
+      "line": null,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 7,
+      "lastSeen": 7,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 7,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
     }
   ],
   "resolvedFindings": [],
@@ -230,12 +317,12 @@
   },
   "findingsBySeverity": {
     "P0": 0,
-    "P1": 5,
-    "P2": 2
+    "P1": 7,
+    "P2": 3
   },
-  "openFindingsCount": 7,
+  "openFindingsCount": 10,
   "resolvedFindingsCount": 0,
-  "convergenceScore": 0.75,
+  "convergenceScore": 0.5,
   "graphConvergenceScore": 0,
   "graphDecision": null,
   "graphBlockers": [],
@@ -249,14 +336,17 @@
       "component_facts_gap",
       "compound_prompt_output_escalation",
       "crawler_side_effect_control",
+      "css_shorthand_correctness",
       "feature_catalog_code",
       "feature_catalog_duplicate_drift",
+      "focused_module_test_coverage",
       "guided_run_relative_output",
       "manual_playbook_capability_mismatch",
       "md_generator_entrypoint_contract",
       "md_generator_remediation_coupling",
       "mode_registry_surface_mismatch",
       "mode_routing_surface_mismatch",
+      "nonfocused_extraction_modules",
       "out_of_scope_boundary",
       "output_path_scope_guard",
       "phase010_remediation_residual",
@@ -274,11 +364,15 @@
       "report_preview_overwrite_contract",
       "shell_command_injection",
       "single_shared_root_cause",
+      "source_derived_html_css_isolation",
       "tool_surface_escalation",
       "write_prompt_value_fidelity"
     ],
     "ruledOut": [
+      "a11y_focus_regression_repeat",
       "artifact_inventory",
+      "boundary_icon_motion_prompt_flow",
+      "boundary_icon_motion_prompt_flow_new_p1",
       "checklist_evidence_drift",
       "command_projection_parity",
       "compiled_backend_output_presence",
@@ -315,10 +409,12 @@
       "deep_correctness_security_traceability_maintainability",
       "feature_catalog_code",
       "full_command_surface_review",
+      "full_end_to_end_md_generator_run",
       "full_feature_catalog_line_by_line",
       "full_manual_playbook_capability_validation",
       "full_manual_playbook_live_execution",
       "full_manual_playbook_scenario_execution",
+      "live_browser_execution",
       "maintainability_drift",
       "manual_playbook_capability_mismatch",
       "md_generator_remediation_implementation",
@@ -328,7 +424,9 @@
       "security_boundary",
       "traceability_matrix"
     ],
-    "blocked": [],
+    "blocked": [
+      "structural_graph"
+    ],
     "byBugClass": {
       "artifact_inventory": {
         "covered": true,
@@ -832,12 +930,94 @@
         ]
       },
       "nonfocused_extraction_modules": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": true,
+        "blocked": false,
+        "iterations": [
+          6,
+          7
+        ]
+      },
+      "source_derived_html_css_isolation": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          7
+        ]
+      },
+      "css_shorthand_correctness": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          7
+        ]
+      },
+      "focused_module_test_coverage": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          7
+        ]
+      },
+      "boundary_icon_motion_prompt_flow_new_p1": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          7
+        ]
+      },
+      "a11y_focus_regression_repeat": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          7
+        ]
+      },
+      "live_browser_execution": {
         "covered": false,
         "ruledOut": false,
         "deferred": true,
         "blocked": false,
         "iterations": [
-          6
+          7
+        ]
+      },
+      "full_end_to_end_md_generator_run": {
+        "covered": false,
+        "ruledOut": false,
+        "deferred": true,
+        "blocked": false,
+        "iterations": [
+          7
+        ]
+      },
+      "structural_graph": {
+        "covered": false,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": true,
+        "iterations": [
+          7
+        ]
+      },
+      "boundary_icon_motion_prompt_flow": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          7
         ]
       }
     }
@@ -889,6 +1069,21 @@
         ".opencode/skills/sk-design/design-md-generator/backend/scripts/motion-extract.ts:1"
       ],
       "reason": "Prompt constrained this pass to the six P1-remediation backend files; non-output extraction modules were inventoried by glob but not read line-by-line in this iteration."
+    },
+    {
+      "iteration": 7,
+      "id": "SL-706",
+      "dimension": "coverage",
+      "targetRefs": [
+        "code_graph_status"
+      ],
+      "bugClass": "structural_graph",
+      "disposition": "blocked",
+      "rationale": "code_graph_status reported stale readiness and graphless fallback was used.",
+      "evidenceRefs": [
+        "code_graph_status:1"
+      ],
+      "reason": "Code graph readiness is stale, so graph assertions were not trusted."
     }
   ],
   "ruledOutCandidates": [
@@ -1315,6 +1510,41 @@
         ".opencode/skills/sk-design/design-md-generator/backend/scripts/proof.ts:436"
       ],
       "reason": "The broader pass reconfirmed P1-004 overwrite semantics but did not identify a separate report/preview/proof P1."
+    },
+    {
+      "iteration": 7,
+      "id": "SL-704",
+      "dimension": "correctness",
+      "targetRefs": [
+        "a11y-extract.ts",
+        "a11y-extract.test.ts"
+      ],
+      "bugClass": "a11y_focus_regression_repeat",
+      "disposition": "ruled_out",
+      "rationale": "The current test asserts captured:false/consistent:false on empty data and captured:true with a real focus style.",
+      "evidenceRefs": [
+        ".opencode/skills/sk-design/design-md-generator/backend/tests/a11y-extract.test.ts:8"
+      ],
+      "reason": "The focus absence/presence regression has a real focused test and was not re-reported."
+    },
+    {
+      "iteration": 7,
+      "id": "SL-705",
+      "dimension": "security",
+      "targetRefs": [
+        "design-boundary-detect.ts",
+        "icon-detect.ts",
+        "motion-extract.ts",
+        "build-write-prompt.ts"
+      ],
+      "bugClass": "boundary_icon_motion_prompt_flow",
+      "disposition": "ruled_out",
+      "rationale": "The reviewed write-prompt facts use support/count/consistency summaries for these surfaces.",
+      "evidenceRefs": [
+        ".opencode/skills/sk-design/design-md-generator/backend/scripts/build-write-prompt.ts:39",
+        ".opencode/skills/sk-design/design-md-generator/backend/scripts/build-write-prompt.ts:46"
+      ],
+      "reason": "No separate raw source-derived prompt/report P1 was confirmed for boundary/icon/motion beyond counts or structured values in this pass."
     }
   ],
   "cleanSearchProof": [
@@ -1741,36 +1971,66 @@
         ".opencode/skills/sk-design/design-md-generator/backend/scripts/proof.ts:436"
       ],
       "proof": "The broader pass reconfirmed P1-004 overwrite semantics but did not identify a separate report/preview/proof P1."
+    },
+    {
+      "iteration": 7,
+      "id": "SL-704",
+      "dimension": "correctness",
+      "targetRefs": [
+        "a11y-extract.ts",
+        "a11y-extract.test.ts"
+      ],
+      "bugClass": "a11y_focus_regression_repeat",
+      "disposition": "ruled_out",
+      "rationale": "The current test asserts captured:false/consistent:false on empty data and captured:true with a real focus style.",
+      "evidenceRefs": [
+        ".opencode/skills/sk-design/design-md-generator/backend/tests/a11y-extract.test.ts:8"
+      ],
+      "proof": "The focus absence/presence regression has a real focused test and was not re-reported."
+    },
+    {
+      "iteration": 7,
+      "id": "SL-705",
+      "dimension": "security",
+      "targetRefs": [
+        "design-boundary-detect.ts",
+        "icon-detect.ts",
+        "motion-extract.ts",
+        "build-write-prompt.ts"
+      ],
+      "bugClass": "boundary_icon_motion_prompt_flow",
+      "disposition": "ruled_out",
+      "rationale": "The reviewed write-prompt facts use support/count/consistency summaries for these surfaces.",
+      "evidenceRefs": [
+        ".opencode/skills/sk-design/design-md-generator/backend/scripts/build-write-prompt.ts:39",
+        ".opencode/skills/sk-design/design-md-generator/backend/scripts/build-write-prompt.ts:46"
+      ],
+      "proof": "No separate raw source-derived prompt/report P1 was confirmed for boundary/icon/motion beyond counts or structured values in this pass."
     }
   ],
   "searchCoverage": {
     "requiredBugClasses": [
-      "guided_run_relative_output",
-      "prompt_data_isolation",
-      "component_facts_gap",
-      "output_path_scope_guard",
-      "report_preview_overwrite_contract",
-      "compound_prompt_output_escalation",
-      "single_shared_root_cause"
+      "source_derived_html_css_isolation",
+      "css_shorthand_correctness",
+      "focused_module_test_coverage"
     ],
     "covered": [
-      "guided_run_relative_output",
-      "prompt_data_isolation",
-      "component_facts_gap",
-      "output_path_scope_guard",
-      "report_preview_overwrite_contract",
-      "compound_prompt_output_escalation",
-      "single_shared_root_cause"
-    ],
-    "ruledOut": [
-      "compound_prompt_output_escalation",
-      "single_shared_root_cause",
-      "report_preview_new_p1"
-    ],
-    "deferred": [
+      "source_derived_html_css_isolation",
+      "css_shorthand_correctness",
+      "focused_module_test_coverage",
       "nonfocused_extraction_modules"
     ],
-    "blocked": [],
+    "ruledOut": [
+      "boundary_icon_motion_prompt_flow_new_p1",
+      "a11y_focus_regression_repeat"
+    ],
+    "deferred": [
+      "live_browser_execution",
+      "full_end_to_end_md_generator_run"
+    ],
+    "blocked": [
+      "structural_graph"
+    ],
     "graphCoverageMode": "graphless_fallback"
   },
   "traceability": {
