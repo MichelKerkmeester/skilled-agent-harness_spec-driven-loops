@@ -9,22 +9,24 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "sk-doc/999-sk-doc-parent/023-parent-hub-remediation"
-    last_updated_at: "2026-07-07T15:55:58.000Z"
+    last_updated_at: "2026-07-07T19:45:00.000Z"
     last_updated_by: "claude-opus"
-    recent_action: "Remediation plan authored; awaiting fork decisions"
-    next_safe_action: "Operator resolves D1-D6; execute WU1 (P0) first"
+    recent_action: "Executed WU1-4,6-9 (8/9) — all shipped + pushed, final sweep 4/4 canon-clean (0 warnings); WU5 gated"
+    next_safe_action: "WU5 command-bridge lane on the operator-gated system-skill-advisor scorer track; coordinate the 193-row parity re-baseline"
     blockers:
-      - "D1-D6 decision forks unresolved (block the P0/P1 work units)"
+      - "WU5 gated on the operator-owned advisor scorer track (projection.ts/explicit.ts/skill_advisor.py) + its gated 193-row parity re-baseline; dead-id evidence captured"
     key_files:
       - ".opencode/specs/sk-doc/999-sk-doc-parent/023-parent-hub-remediation/plan.md"
+      - ".opencode/commands/doctor/scripts/parent-skill-check.cjs"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "bootstrap-session"
       parent_session_id: null
-    completion_pct: 100
+    completion_pct: 89
     open_questions:
-      - "D1-D6: the six decision forks in plan.md §6"
-    answered_questions: []
+      - "WU5: run the command-bridge lane once the advisor scorer track is operator-cleared / confirmed quiet for the re-baseline"
+    answered_questions:
+      - "D1-D6 resolved via 'Execute all on my defaults' (D1→allowlist feature_catalog, D5→bless top-level deprecatedModes)"
 ---
 # Implementation Summary
 
@@ -39,9 +41,9 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 023-parent-hub-remediation |
-| **Completed** | 2026-07-07 (plan; execution pending) |
+| **Completed** | 2026-07-07 (plan + execution: 8/9 WUs shipped; WU5 gated) |
 | **Level** | 1 |
-| **Deliverable** | `plan.md` — nine work units, six decision forks |
+| **Deliverable** | `plan.md` + WU1-4/6-9 shipped across 8 commits (`f788c86932`…`1fc620e83e`) |
 
 <!-- /ANCHOR:metadata -->
 ---
@@ -109,7 +111,8 @@ Built directly from the 022 review-report.md, which already carried a nine-step 
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **This is a plan, not the fix** — execution is gated on D1-D6; WU1 (the red P0) should execute first once the transport/feature_catalog forks land.
-2. **WU5 touches the gated advisor scorer track** — it must coordinate with the live advisor lane and flag the pending 193-row re-baseline, as the prior command-rename phase did.
+1. **Executed 2026-07-07** — WU1-WU4 + WU6-WU9 shipped + pushed (8 commits); final canon sweep is 4/4 "all hard invariants passed, 0 warnings". D1-D6 resolved via "Execute all on my defaults" (D1 refined to allowlist `feature_catalog`; D5 refined to bless the top-level `deprecatedModes` location).
+2. **WU5 is the one gated unit** — the command-bridge lane (PS-06, PS-07) touches the operator-owned system-skill-advisor scorer track (`projection.ts`/`explicit.ts`/`skill_advisor.py`) and its gated 193-row parity re-baseline. The dead command ids (`/deep:start-{research,review,model-benchmark}-loop` → live `/deep:{research,review,model-benchmark}`) and the TS(8)/Python(35)/registry(10) `create:*` coverage skew are CONFIRMED as evidence; the fix is held for operator/advisor-track coordination so it does not collide with the pending re-baseline.
+3. **Reindex pending** — the sk-design `sk-hub` family and lowercased-alias derived tokens in generated `graph-metadata.json` refresh on the next (operator-gated) memory/graph reindex; the source files are correct now.
 
 <!-- /ANCHOR:limitations -->

@@ -50,7 +50,7 @@ _memory:
 
 - [x] T001 Map all 18 findings (PS-01..PS-18) to nine work units
 - [x] T002 Surface the six decision forks with recommended defaults
-- [ ] T003 [B] Operator resolves D1-D6 (blocks the P0/P1 units)
+- [x] T003 Operator resolved D1-D6 → "Execute all on my defaults" (recommended defaults; D1 refined to allowlist feature_catalog, D5 refined to bless top-level deprecatedModes)
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -58,15 +58,15 @@ _memory:
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T004 WU1 [P0] Canonize the transport axis; resolve feature_catalog; restore 4/4 canon-clean (PS-01)
-- [ ] T005 WU2 surfaceBundle → conditional + base-outcome check (PS-02)
-- [ ] T006 [P] WU3 One-identity ingestion guard + node_modules skip (PS-03)
-- [ ] T007 [P] WU4 sk-code tool contracts: mutation decision + drop Task + 2 checker rules (PS-04, PS-05)
-- [ ] T008 WU5 Command-bridge lane under contract + drift guard; refresh dead ids (PS-06, PS-07)
-- [ ] T009 WU6 sk-design one-file truth pass (PS-08, PS-09, PS-10, PS-17-case)
-- [ ] T010 [P] WU7 Doctrine refresh sweep (PS-11, PS-12, PS-13, PS-17, PS-18)
-- [ ] T011 [P] WU8 Checker hardening batch (PS-14)
-- [ ] T012 [P] WU9 Metadata dialect convergence (PS-15, PS-16)
+- [x] T004 WU1 [P0] Canonize the transport axis; allowlist feature_catalog; restore 4/4 canon-clean (PS-01) — `f788c86932`
+- [x] T005 WU2 surfaceBundle → conditional + base-outcome check 5g (PS-02) — `7fa386544b`
+- [x] T006 [P] WU3 One-identity ingestion guard + node_modules skip; RED/GREEN fixture (PS-03) — `4c33c79b0f`
+- [x] T007 [P] WU4 sk-code tool contracts: D2 keep-false+annotate + drop Task + checker 3i/3j (PS-04, PS-05) — `4ba60fb0cd`
+- [B] T008 WU5 Command-bridge lane under contract + drift guard; refresh dead ids (PS-06, PS-07) — GATED on the operator-owned system-skill-advisor scorer track (projection.ts/explicit.ts/skill_advisor.py + the gated 193-row parity re-baseline). Dead ids CONFIRMED as evidence.
+- [x] T009 WU6 sk-design one-file truth pass (PS-08, PS-09, PS-10, PS-17-case) — `045d748511`
+- [x] T010 [P] WU7 Doctrine refresh sweep (PS-11, PS-12, PS-13, PS-17, PS-18) — `f192cdb688`
+- [x] T011 [P] WU8 Checker hardening batch, 5 rules RED/GREEN-proven (PS-14) — `c968b04771`
+- [x] T012 [P] WU9 Metadata dialect convergence, sk-hub family (PS-15, PS-16) — `1fc620e83e`
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -74,9 +74,9 @@ _memory:
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T013 parent-skill-check.cjs 0/0 on all four hubs; ingestion guard proven with a fixture
-- [ ] T014 Advisor drift-guard + parity vitests green; every bridge id resolves to a live command
-- [ ] T015 validate.sh --strict on each touched spec folder; done-bar met
+- [x] T013 parent-skill-check.cjs 0/0 on all four hubs (final sweep: "all hard invariants passed, 0 warnings" x4); ingestion guard proven with a RED/GREEN fixture
+- [B] T014 Advisor drift-guard + parity vitests green; every bridge id resolves to a live command — GATED with WU5 (advisor scorer track)
+- [x] T015 validate.sh --strict on the 023 packet folder
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -85,10 +85,10 @@ _memory:
 ## Completion Criteria
 
 - [x] All 18 findings mapped to work units; 6 forks surfaced
-- [ ] D1-D6 resolved
-- [ ] WU1-WU9 executed + gated
-- [ ] 4/4 canon-clean; advisor guarded; validate --strict clean
-- [ ] No `[B]` blocked tasks remaining
+- [x] D1-D6 resolved ("Execute all on my defaults")
+- [x] WU1-WU4, WU6-WU9 executed + pushed (8 commits); WU5 gated on the advisor scorer track
+- [x] 4/4 canon-clean (0 warnings x4); validate --strict clean; advisor guard deferred with WU5
+- [ ] One `[B]` remaining: WU5/T014 (advisor command-bridge — operator-gated, dead-id evidence captured)
 <!-- /ANCHOR:completion -->
 
 ---
