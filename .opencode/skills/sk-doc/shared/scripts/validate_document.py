@@ -150,7 +150,7 @@ def detect_document_type(file_path: str, content: str, rules: Dict[str, Any]) ->
         return 'skill'
     if '/specs/' in path_lower or '\\specs\\' in path_lower:
         return 'spec'
-    if '/agent/' in path_lower or '\\agent\\' in path_lower:
+    if '/agents/' in path_lower or '\\agents\\' in path_lower or '/agent/' in path_lower or '\\agent\\' in path_lower:
         return 'agent'
     if '/references/' in path_lower or '\\references\\' in path_lower:
         return 'reference'

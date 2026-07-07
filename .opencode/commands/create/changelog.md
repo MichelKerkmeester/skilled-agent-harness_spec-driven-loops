@@ -8,7 +8,11 @@ allowed-tools: Read, Write, Edit, Bash, Glob, Grep, mcp__mk_code_index__code_gra
 
 This command is a thin router. It separates execution routing from user-facing presentation.
 
-## Routing Assets
+## 1. PURPOSE
+
+Route /create:changelog to its presentation contract and workflow YAML for creating global or packet-local changelogs with topology-aware release options.
+
+## 2. Routing Assets
 
 | Asset | Path | Purpose |
 | --- | --- | --- |
@@ -16,7 +20,7 @@ This command is a thin router. It separates execution routing from user-facing p
 | Auto workflow | `.opencode/commands/create/assets/create_changelog_auto.yaml` | Autonomous changelog workflow execution |
 | Confirm workflow | `.opencode/commands/create/assets/create_changelog_confirm.yaml` | Interactive checkpointed changelog workflow execution |
 
-## Execution Order
+## 3. INSTRUCTIONS
 
 1. Read `.opencode/commands/create/assets/create_changelog_presentation.txt`.
 2. Run the presentation contract's Phase 0 verification and setup resolution.
@@ -27,14 +31,14 @@ This command is a thin router. It separates execution routing from user-facing p
 5. Execute the selected YAML step by step.
 6. Use the presentation contract, not this router, for user prompts, setup/status dashboards, release-option display, and final result display.
 
-## Routing Rules
+## 4. Routing Rules
 
 - Do not dispatch agents from this router.
 - Do not edit workflow YAML while executing this command.
 - If any referenced asset is missing, stop and report the missing path.
 - The YAML owns workflow behavior; the presentation Markdown owns user-visible wording and layout.
 
-## Presentation Boundary
+## 5. Presentation Boundary
 
 The following content lives only in `.opencode/commands/create/assets/create_changelog_presentation.txt`:
 

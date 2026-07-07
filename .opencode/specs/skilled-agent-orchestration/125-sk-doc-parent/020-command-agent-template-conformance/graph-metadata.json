@@ -1,0 +1,220 @@
+{
+  "schema_version": 1,
+  "packet_id": "skilled-agent-orchestration/125-sk-doc-parent/020-command-agent-template-conformance",
+  "spec_folder": "skilled-agent-orchestration/125-sk-doc-parent/020-command-agent-template-conformance",
+  "parent_id": "skilled-agent-orchestration/125-sk-doc-parent",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "command agent template conformance",
+      "125 sk-doc phase 020",
+      "validate_document command agent align",
+      "command agent conformance plan",
+      "125 sk-doc phase 020 plan",
+      "command agent conformance tasks",
+      "125 sk-doc phase 020 tasks",
+      "command agent conformance checklist",
+      "125 sk-doc phase 020 checklist",
+      "command agent conformance summary",
+      "125 sk-doc phase 020 summary"
+    ],
+    "key_topics": [
+      "command",
+      "agent",
+      "template",
+      "conformance",
+      "125",
+      "sk-doc",
+      "phase",
+      "020",
+      "align",
+      "plan",
+      "tasks",
+      "checklist"
+    ],
+    "importance_tier": "normal",
+    "status": "draft",
+    "key_files": [
+      ".opencode/skills/sk-doc/shared/scripts/validate_document.py",
+      ".opencode/skills/sk-doc/shared/assets/template_rules.json",
+      "spec.md",
+      "plan.md",
+      "checklist.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "validate_document.py",
+        "kind": "file",
+        "path": ".opencode/skills/sk-doc/shared/scripts/validate_document.py",
+        "source": "derived"
+      },
+      {
+        "name": "template_rules.json",
+        "kind": "config",
+        "path": ".opencode/skills/sk-doc/shared/assets/template_rules.json",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Depends On",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Routing Assets",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Execution Order",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Two",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Rules",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 3: Verification",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The sk-doc `/create` command routers and the `markdown` agents all fail `validatedocument.py`",
+    "created_at": "2026-07-07T14:28:17.730Z",
+    "last_save_at": "2026-07-07T14:31:04.277Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:dbfabf5a27564082c99c8d8ca16dc2bf677d02becaa630d1df6996ae9ce6d14a",
+    "source_doc_hashes": {
+      "spec.md": "f1e40508b006724a609709cf4d7967a1c4835107cc205b46ea9c527dc9ee746c",
+      "plan.md": "fed2cec44b8c6854b7a3f6dc2db669631e8ddac60e84866d13e63015e273aeef",
+      "tasks.md": "a0fc4d1cca86ebd4919f41b983b4ad71e55e27e5ad7e91d5c132ae00e20d8aba",
+      "checklist.md": "2d2460d1864208c0382ec22f0ba5ccf73141e96f1cfef1fa151130e50cd4d19f",
+      "implementation-summary.md": "4dab736c0374295ce8224ffd761367b53d60372293c650f447b275ca4282807c"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

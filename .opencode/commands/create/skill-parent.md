@@ -8,7 +8,11 @@ allowed-tools: Read, Write, Edit, Bash, Glob, Grep, TodoWrite
 
 This command is a thin router. It separates execution routing from user-facing presentation.
 
-## Routing Assets
+## 1. PURPOSE
+
+Route /create:skill-parent to its presentation contract and workflow YAML for scaffolding or updating a parent skill with nested mode packets.
+
+## 2. Routing Assets
 
 | Asset | Path | Purpose |
 | --- | --- | --- |
@@ -16,7 +20,7 @@ This command is a thin router. It separates execution routing from user-facing p
 | Auto workflow | `.opencode/commands/create/assets/create_skill_parent_auto.yaml` | Autonomous parent-skill scaffolding workflow execution |
 | Confirm workflow | `.opencode/commands/create/assets/create_skill_parent_confirm.yaml` | Interactive checkpointed parent-skill scaffolding workflow execution |
 
-## Execution Order
+## 3. INSTRUCTIONS
 
 1. Read `.opencode/commands/create/assets/create_skill_parent_presentation.txt`.
 2. Run the presentation contract's Phase 0 verification and setup resolution.
@@ -28,7 +32,7 @@ This command is a thin router. It separates execution routing from user-facing p
 6. Execute the selected YAML step by step and route to the resolved operation branch.
 7. Use the presentation contract, not this router, for user prompts, setup/status dashboards, and final result display.
 
-## What This Scaffolds
+## 4. What This Scaffolds
 
 This command generates the "parent skill with nested mode packets" pattern following the two-axis hub canon. The canonical example is `sk-code` (workflow modes plus read-only surface packets); `deep-loop-workflows` is the runtime-loop variant that expresses its extra machinery as named `extensions`. The pattern is standardized in `.opencode/skills/sk-doc/create-skill/references/parent_skill/parent_skills_nested_packets.md`, and the hub-router contract in `.opencode/skills/sk-doc/create-skill/references/parent_skill/parent_hub_router_schema.md`. The templates are `parent_skill_hub_template.md`, `parent_skill_registry_template.json`, `parent_skill_hub_router_template.json`, `parent_skill_description_template.json`, and `parent_skill_graph_metadata_template.json` under `.opencode/skills/sk-doc/create-skill/assets/skill/`.
 
@@ -43,7 +47,7 @@ The generated package is:
 - A hub `changelog/` and `manual_testing_playbook/` (changelog entries are real files, never symlinks).
 - A non-discoverable `shared/` directory (with `shared/README.md`) for packet-shared workflow-layer helpers.
 
-## Routing Rules
+## 5. Routing Rules
 
 - This command is the canonical `/create:skill-parent` entrypoint.
 - Do not split behavior across legacy or ad-hoc parent-skill scaffolders.
@@ -51,13 +55,13 @@ The generated package is:
 - If any referenced asset is missing, stop and report the missing path.
 - The YAML owns workflow behavior; the presentation Markdown owns user-visible wording and layout.
 
-## One-Identity Invariant
+## 6. One-Identity Invariant
 
 - The hub owns exactly one `graph-metadata.json`. This is the load-bearing keystone: skill-graph discovery keys only on `graph-metadata.json` and throws when `skill_id` does not equal its folder.
 - NEVER add a `graph-metadata.json` inside a mode packet or inside `shared/`. A nested `graph-metadata.json` creates a rogue advisor identity (B-style discovery drift) and re-introduces the multi-ID brittleness this pattern removes.
 - The mode packets and `shared/` stay non-discoverable by design; their invisibility is a consequence of nesting, not a special mechanism.
 
-## Presentation Boundary
+## 7. Presentation Boundary
 
 The following content lives only in `.opencode/commands/create/assets/create_skill_parent_presentation.txt`:
 

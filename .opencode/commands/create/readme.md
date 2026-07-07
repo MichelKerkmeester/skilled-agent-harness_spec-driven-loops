@@ -8,7 +8,11 @@ allowed-tools: Read, Write, Edit, Bash, Glob, Grep, TodoWrite
 
 This command is a thin router. It separates execution routing from user-facing presentation.
 
-## Routing Assets
+## 1. PURPOSE
+
+Route /create:readme to its presentation contract and workflow YAML for creating folder READMEs or install guides with sk-doc quality standards.
+
+## 2. Routing Assets
 
 | Asset | Path | Purpose |
 | --- | --- | --- |
@@ -16,7 +20,7 @@ This command is a thin router. It separates execution routing from user-facing p
 | Auto workflow | `.opencode/commands/create/assets/create_readme_auto.yaml` | Autonomous README/install workflow execution |
 | Confirm workflow | `.opencode/commands/create/assets/create_readme_confirm.yaml` | Interactive checkpointed README/install workflow execution |
 
-## Execution Order
+## 3. INSTRUCTIONS
 
 1. Read `.opencode/commands/create/assets/create_readme_presentation.txt`.
 2. Run the presentation contract's Phase 0 verification and setup resolution.
@@ -28,14 +32,14 @@ This command is a thin router. It separates execution routing from user-facing p
 6. Execute the selected YAML step by step and skip to the resolved operation section.
 7. Use the presentation contract, not this router, for user prompts, setup/status dashboards, and final result display.
 
-## Routing Rules
+## 4. Routing Rules
 
 - Do not dispatch agents from this router.
 - Do not edit workflow YAML while executing this command.
 - If any referenced asset is missing, stop and report the missing path.
 - The YAML owns workflow behavior; the presentation Markdown owns user-visible wording and layout.
 
-## Presentation Boundary
+## 5. Presentation Boundary
 
 The following content lives only in `.opencode/commands/create/assets/create_readme_presentation.txt`:
 

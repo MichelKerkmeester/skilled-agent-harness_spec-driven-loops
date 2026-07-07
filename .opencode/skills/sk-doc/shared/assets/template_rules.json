@@ -455,17 +455,17 @@
     "agent": {
       "description": "Agent definition files in .opencode/agents/",
       "requiredSections": [
-        "core_workflow",
-        "capability_scan",
-        "output_verification",
-        "anti_patterns",
-        "related_resources"
+        "core_workflow"
       ],
       "recommendedSections": [
         "model_preference",
         "rules",
         "output_format",
-        "summary"
+        "summary",
+        "capability_scan",
+        "output_verification",
+        "anti_patterns",
+        "related_resources"
       ],
       "optionalSections": [
         "routing",

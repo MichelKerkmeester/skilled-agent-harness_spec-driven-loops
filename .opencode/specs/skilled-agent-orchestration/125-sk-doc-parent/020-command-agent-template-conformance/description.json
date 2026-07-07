@@ -1,0 +1,33 @@
+{
+  "specFolder": "skilled-agent-orchestration/125-sk-doc-parent/020-command-agent-template-conformance",
+  "description": "Make sk-doc /create commands and agents pass validate_document.py: routers get numbered PURPOSE/INSTRUCTIONS; agent detection bug + over-strict rule r",
+  "keywords": [
+    "make",
+    "sk-doc",
+    "create",
+    "commands",
+    "agents",
+    "pass",
+    "routers",
+    "get",
+    "numbered",
+    "purpose",
+    "instructions",
+    "agent",
+    "detection",
+    "bug",
+    "over-strict",
+    "rule",
+    "reconciled"
+  ],
+  "lastUpdated": "2026-07-07T14:28:17.528Z",
+  "specId": "020",
+  "folderSlug": "command-agent-template-conformance",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "125-sk-doc-parent"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": 2
+}
