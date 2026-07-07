@@ -78,7 +78,7 @@ The validation sequence, enforcement prompts, phase chaining, worked examples, a
 ## 4. RELATED RESOURCES
 
 ### Reference Files
-- [README.md](./README.md) - doc-quality reference route map
+- [README.md](./README.md) - create-quality-control reference route map
 - [validation_and_enforcement.md](./validation_and_enforcement.md) - Validation, enforcement prompts, phase chaining, troubleshooting
 - [workflow_examples.md](./workflow_examples.md) - Worked command examples and batch processing
 - [optimization.md](./optimization.md) - Content transformation procedure

@@ -79,7 +79,7 @@ Basic flow:
 
 `create-benchmark` is a nested workflow packet of the `sk-doc` parent hub.
 
-The shared doc-quality backbone lives at `../shared`.
+The shared create-quality-control backbone lives at `../shared`.
 
 The single advisor identity, `mode-registry.json`, `hub-router.json`, `description.json`, and `graph-metadata.json` live at the `sk-doc` hub root.
 

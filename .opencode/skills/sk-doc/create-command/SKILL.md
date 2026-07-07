@@ -338,7 +338,7 @@ Always:
 7. Keep `allowed-tools` least-privilege and accurate.
 8. Use fully qualified MCP tool IDs in `allowed-tools`.
 9. Keep presentation text in the presentation asset when using a split.
-10. Validate with shared doc-quality scripts before delivery.
+10. Validate with shared create-quality-control scripts before delivery.
 11. Keep this nested packet free of `graph-metadata.json`.
 
 Never:

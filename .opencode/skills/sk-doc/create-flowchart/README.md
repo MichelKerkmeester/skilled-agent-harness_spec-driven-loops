@@ -79,7 +79,7 @@ assets/flowcharts/approval_workflow_loops.md
 
 `create-flowchart` is a nested workflow packet of the `sk-doc` parent hub.
 
-The shared doc-quality backbone lives at:
+The shared create-quality-control backbone lives at:
 
 ```text
 ../shared

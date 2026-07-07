@@ -66,7 +66,7 @@ Skip this workflow when:
 - The user needs manual validation scenarios. Use `create-manual-testing-playbook`.
 - The user needs a README, install guide, changelog, benchmark report, command, agent, or skill scaffold.
 - The requested catalog would describe planned behavior rather than current shipped behavior.
-- The task is only document quality review of an existing catalog. Use `doc-quality`.
+- The task is only document quality review of an existing catalog. Use `create-quality-control`.
 
 ### Family Boundary
 

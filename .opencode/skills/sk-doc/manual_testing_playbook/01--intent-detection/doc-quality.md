@@ -80,4 +80,4 @@ Validate documentation quality for skill X and report which sections fail sk-doc
 - Group: Intent Detection
 - Playbook ID: SD-001
 - Canonical root source: `manual_testing_playbook.md`
-- Feature file path: `01--intent-detection/doc-quality.md`
+- Feature file path: `01--intent-detection/create-quality-control.md`

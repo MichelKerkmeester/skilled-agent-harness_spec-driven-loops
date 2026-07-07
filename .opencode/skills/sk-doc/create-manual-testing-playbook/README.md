@@ -70,7 +70,7 @@ Then manually spot-check per-feature frontmatter, numbered sections, divider lin
 
 This is a nested workflow packet of the `sk-doc` parent hub.
 
-The shared doc-quality backbone lives at `../shared`.
+The shared create-quality-control backbone lives at `../shared`.
 
 The single advisor identity and mode registry live at the `sk-doc` hub root, not inside this packet.
 

@@ -182,8 +182,8 @@ Before finalizing, verify each snippet:
 
 ### Reference Files
 - [transformation_patterns.md](./transformation_patterns.md) - The 16 patterns with worked before/after examples
-- [workflows.md](./workflows.md) - Execution modes for the doc-quality workflow
-- [README.md](./README.md) - doc-quality reference route map
+- [workflows.md](./workflows.md) - Execution modes for the create-quality-control workflow
+- [README.md](./README.md) - create-quality-control reference route map
 - [core_standards.md](../../shared/references/global/core_standards.md) - Document type rules and structural requirements
 - [validation.md](../../shared/references/global/validation.md) - Quality scoring and validation workflows
 - [quick_reference.md](../../shared/references/global/quick_reference.md) - Quick command reference

@@ -1,5 +1,5 @@
 ---
-name: doc-quality
+name: create-quality-control
 description: Validate, score, and optionally improve existing markdown via structure extraction, DQI scoring, HVR review, and validation gates.
 allowed-tools: [Read, Write, Edit, Bash, Grep, Glob]
 version: 1.0.0.0
@@ -7,7 +7,7 @@ version: 1.0.0.0
 
 # Doc Quality (quality)
 
-`doc-quality` is the existing-document audit and optimization workflow packet of the `sk-doc` family. It evaluates markdown, extracts structure, computes Document Quality Index evidence, applies Human Voice Rules, and, only when explicitly requested, edits the same target document to improve structure, clarity and AI-friendliness.
+`create-quality-control` is the existing-document audit and optimization workflow packet of the `sk-doc` family. It evaluates markdown, extracts structure, computes Document Quality Index evidence, applies Human Voice Rules, and, only when explicitly requested, edits the same target document to improve structure, clarity and AI-friendliness.
 
 This packet is invoked by `/doc:quality`. The command is report-only by default.
 
@@ -342,7 +342,7 @@ Escalate instead of guessing when required content needs source evidence that is
 
 ## 6. SUCCESS CRITERIA
 
-A successful `doc-quality` run produces:
+A successful `create-quality-control` run produces:
 - Target document type and file path.
 - Structure extraction result, including DQI score and quality band.
 - Checklist failures grouped by blocking, warning and recommendation.

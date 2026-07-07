@@ -66,7 +66,7 @@ assets/parent_skill/parent_skill_*
 
 This packet is nested under the `sk-doc` parent hub.
 
-The shared doc-quality backbone lives at `../shared`, including global standards and shared validators.
+The shared create-quality-control backbone lives at `../shared`, including global standards and shared validators.
 
 The single advisor identity and registry live at the `sk-doc` hub root, not inside this packet.
 

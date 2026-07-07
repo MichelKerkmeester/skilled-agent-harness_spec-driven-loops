@@ -1,6 +1,6 @@
 {
   "name": "sk-doc",
-  "description": "Documentation & OpenCode-component authoring parent hub. One advisor identity that routes through mode-registry.json + hub-router.json to ten nested workflow packets: create-skill (+ create-skill-parent), create-readme (install guides folded), create-agent, create-command, create-feature-catalog, create-manual-testing-playbook, create-benchmark, create-flowchart, create-changelog, and doc-quality (validate/score/optimize an existing doc). The universal doc-quality pipeline — validators, global standards, frontmatter/llms/template assets — lives once in shared/ and is consumed by every packet. Workflow-only hub: no surface axis, zero named extensions.",
+  "description": "Documentation & OpenCode-component authoring parent hub. One advisor identity that routes through mode-registry.json + hub-router.json to ten nested workflow packets: create-skill (+ create-skill-parent), create-readme (install guides folded), create-agent, create-command, create-feature-catalog, create-manual-testing-playbook, create-benchmark, create-flowchart, create-changelog, and create-quality-control (validate/score/optimize an existing doc). The universal create-quality-control pipeline — validators, global standards, frontmatter/llms/template assets — lives once in shared/ and is consumed by every packet. Workflow-only hub: no surface axis, zero named extensions.",
   "version": "2.0.0.0",
   "importance_tier": "high",
   "keywords": [
@@ -21,7 +21,7 @@
     "create-benchmark",
     "create-flowchart",
     "create-changelog",
-    "doc-quality",
+    "create-quality-control",
     "shared-backbone",
     "dqi",
     "human-voice"

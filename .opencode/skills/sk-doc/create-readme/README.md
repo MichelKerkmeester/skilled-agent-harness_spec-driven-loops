@@ -16,7 +16,7 @@ Use this packet when you need to create, refresh or audit a `README.md`, especia
 - `/create:folder_readme` requests.
 - README freshness checks, broken local reference checks or key artifact coverage audits.
 
-Do not use it for general prose review, changelogs, release notes, non-markdown targets or scaffolding other `sk-doc` artifacts. Those belong in the doc-quality packet or another `sk-doc` workflow.
+Do not use it for general prose review, changelogs, release notes, non-markdown targets or scaffolding other `sk-doc` artifacts. Those belong in the create-quality-control packet or another `sk-doc` workflow.
 
 ## 3. WHAT'S INSIDE
 

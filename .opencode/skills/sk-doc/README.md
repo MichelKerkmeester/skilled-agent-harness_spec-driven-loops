@@ -164,8 +164,8 @@ A: `/create:sk-skill` for a new skill under `.opencode/skills/`. `/create:sk-ski
 | [`references/global/hvr_rules.md`](shared/references/global/hvr_rules.md) | Human Voice Rules, the writing standard all output must pass |
 | [`references/global/validation.md`](shared/references/global/validation.md) | DQI scoring criteria, quality gates and assessment interpretation |
 | [`references/global/core_standards.md`](shared/references/global/core_standards.md) | Filename conventions, heading rules and document-type requirements |
-| [`references/global/workflows.md`](doc-quality/references/workflows.md) | Execution workflows by mode and task type |
-| [`references/global/optimization.md`](doc-quality/references/optimization.md) | AI-friendly content transforms and the llms.txt format |
+| [`references/global/workflows.md`](create-quality-control/references/workflows.md) | Execution workflows by mode and task type |
+| [`references/global/optimization.md`](create-quality-control/references/optimization.md) | AI-friendly content transforms and the llms.txt format |
 | [`references/global/evergreen_packet_id_rule.md`](shared/references/global/evergreen_packet_id_rule.md) | Why runtime-state docs must not cite mutable spec-packet numbers |
 | [`references/skill_creation.md`](create-skill/references/README.md) | The skill-creation workflow: understanding through packaging |
 | [`references/README.md`](create-agent/references/README.md) | Agent authority, permissions and the template-first workflow |

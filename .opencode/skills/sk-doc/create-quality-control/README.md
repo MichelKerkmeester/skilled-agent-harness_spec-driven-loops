@@ -1,14 +1,14 @@
-# doc-quality
+# create-quality-control
 
 Validate, score, and optionally improve existing markdown through structure extraction, DQI scoring, HVR voice review, and validation gates.
 
 ## 1. OVERVIEW
 
-`doc-quality` is the existing-document audit and optimization workflow packet of the `sk-doc` family. It extracts a target document's structure, computes a Document Quality Index (DQI) score and band, applies Human Voice Rules, and, only when edits are explicitly requested, makes targeted improvements to that same document. It is report-only by default and never creates new artifacts. `SKILL.md` is the authoritative contract; this README is human orientation.
+`create-quality-control` is the existing-document audit and optimization workflow packet of the `sk-doc` family. It extracts a target document's structure, computes a Document Quality Index (DQI) score and band, applies Human Voice Rules, and, only when edits are explicitly requested, makes targeted improvements to that same document. It is report-only by default and never creates new artifacts. `SKILL.md` is the authoritative contract; this README is human orientation.
 
 ## 2. WHEN TO USE
 
-Use `doc-quality` when you need to audit or improve an existing markdown document.
+Use `create-quality-control` when you need to audit or improve an existing markdown document.
 
 Good fits:
 
@@ -24,7 +24,7 @@ Do not use it for brand-new artifacts. Route new README, skill, agent, command, 
 
 Packet-local files:
 
-- `SKILL.md` - authoritative workflow contract for `doc-quality`.
+- `SKILL.md` - authoritative workflow contract for `create-quality-control`.
 - `README.md` - human orientation for this packet.
 - `references/README.md` - route map over the reference set (start here).
 - `references/workflows.md` - the four execution modes and mode selection (externally cited entry file).
@@ -34,7 +34,7 @@ Packet-local files:
 - `references/transformation_patterns.md` - the 16 transformation patterns with worked before/after examples.
 - `changelog/.gitkeep` - packet-local changelog placeholder.
 
-There are no packet-local `assets/` or `scripts/` directories in `doc-quality`.
+There are no packet-local `assets/` or `scripts/` directories in `create-quality-control`.
 
 Shared backbone used by this packet:
 
@@ -75,8 +75,8 @@ Typical workflow:
 
 ## 5. HUB RELATIONSHIP
 
-`doc-quality` is a nested workflow packet of the `sk-doc` parent hub.
+`create-quality-control` is a nested workflow packet of the `sk-doc` parent hub.
 
-The shared doc-quality backbone lives at `../shared`. The single advisor identity and routing registry live at the hub root: `../graph-metadata.json`, `../description.json`, `../mode-registry.json`, and `../hub-router.json`.
+The shared create-quality-control backbone lives at `../shared`. The single advisor identity and routing registry live at the hub root: `../graph-metadata.json`, `../description.json`, `../mode-registry.json`, and `../hub-router.json`.
 
 This packet owns existing-document validation and optimization. It does not create new artifacts and must not add a packet-local `graph-metadata.json`.

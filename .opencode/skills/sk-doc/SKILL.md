@@ -1,6 +1,6 @@
 ---
 name: sk-doc
-description: "Documentation & OpenCode-component authoring parent hub: routes to ten workflow packets that create skills, parent hubs, READMEs/install-guides, agents, commands, feature catalogs, manual-testing playbooks, MCP benchmark folders, ASCII flowcharts, and changelogs, plus a doc-quality mode that validates/scores/optimizes existing docs. Holds no per-packet logic; dispatches by workflowMode through mode-registry.json."
+description: "Documentation & OpenCode-component authoring parent hub: routes to ten workflow packets that create skills, parent hubs, READMEs/install-guides, agents, commands, feature catalogs, manual-testing playbooks, MCP benchmark folders, ASCII flowcharts, and changelogs, plus a create-quality-control mode that validates/scores/optimizes existing docs. Holds no per-packet logic; dispatches by workflowMode through mode-registry.json."
 allowed-tools: [Read, Write, Edit, Bash, Grep, Glob]
 version: 2.0.0.0
 metadata:
@@ -8,11 +8,11 @@ metadata:
   family: sk-doc
 ---
 
-<!-- Keywords: sk-doc, documentation, markdown, authoring, parent-hub, mode-registry, hub-router, workflowmode, packetkind, create-skill, create-readme, create-agent, create-command, create-feature-catalog, create-manual-testing-playbook, create-benchmark, create-flowchart, create-changelog, doc-quality, shared-backbone, doc-quality-pipeline -->
+<!-- Keywords: sk-doc, documentation, markdown, authoring, parent-hub, mode-registry, hub-router, workflowmode, packetkind, create-skill, create-readme, create-agent, create-command, create-feature-catalog, create-manual-testing-playbook, create-benchmark, create-flowchart, create-changelog, create-quality-control, shared-backbone, create-quality-control-pipeline -->
 
 # Documentation Authoring Hub (sk-doc)
 
-One advisor identity, ten workflow packets, one shared doc-quality backbone. `sk-doc` is the parent hub for documentation and OpenCode-component authoring. It holds NO per-packet logic: it routes by `workflowMode` through `mode-registry.json`, and each packet keeps its own contract in its nested folder. The cross-cutting doc-quality pipeline (validators, global standards, frontmatter/llms/template assets) lives once in `shared/` and is consumed by every packet.
+One advisor identity, ten workflow packets, one shared create-quality-control backbone. `sk-doc` is the parent hub for documentation and OpenCode-component authoring. It holds NO per-packet logic: it routes by `workflowMode` through `mode-registry.json`, and each packet keeps its own contract in its nested folder. The cross-cutting create-quality-control pipeline (validators, global standards, frontmatter/llms/template assets) lives once in `shared/` and is consumed by every packet.
 
 ---
 
@@ -31,7 +31,7 @@ Use this skill for documentation and OpenCode-component authoring, and for docum
 | **create-benchmark** | Promote a curated MCP benchmark folder into a consuming skill | `create-benchmark/` | — |
 | **create-flowchart** | Generate and validate an ASCII flowchart | `create-flowchart/` | — |
 | **create-changelog** | Author a global or packet-local changelog entry (version bump + topology-aware placement) | `create-changelog/` | `/create:changelog` |
-| **doc-quality** | Validate / score / optimize an EXISTING document (extract → DQI → HVR → validate) | `doc-quality/` | `/doc:quality` |
+| **create-quality-control** | Validate / score / optimize an EXISTING document (extract → DQI → HVR → validate) | `create-quality-control/` | `/doc:quality` |
 
 ### When NOT to Use
 - Code implementation, tests, or debugging — use `sk-code`.
@@ -47,9 +47,9 @@ Use this skill for documentation and OpenCode-component authoring, and for docum
 Routing is **registry-driven**. `mode-registry.json` is the single source of truth; the hub reads it and does not re-derive the mapping. The advisor routes any documentation/authoring query to the single identity `sk-doc`; the hub then picks the packet.
 
 ### The discriminator
-- **`workflowMode`** — the public packet key (e.g. `create-skill`, `doc-quality`). `create-skill-parent` is a second mode over the same `create-skill` packet.
-- **`packetKind`** — `workflow` for every sk-doc packet (there is no surface axis; the doc-quality pipeline is universal doctrine in `shared/`, not orthogonal stack-evidence).
-- **`backendKind`** — `template-scaffold` for the create-* generators, `doc-quality` for the doc-quality mode.
+- **`workflowMode`** — the public packet key (e.g. `create-skill`, `create-quality-control`). `create-skill-parent` is a second mode over the same `create-skill` packet.
+- **`packetKind`** — `workflow` for every sk-doc packet (there is no surface axis; the create-quality-control pipeline is universal doctrine in `shared/`, not orthogonal stack-evidence).
+- **`backendKind`** — `template-scaffold` for the create-* generators, `create-quality-control` for the create-quality-control mode.
 
 ### Routing rule
 ```
@@ -114,15 +114,15 @@ sk-doc/
   changelog/  manual_testing_playbook/  benchmark/
   create-skill/  create-readme/  create-agent/  create-command/
   create-feature-catalog/  create-manual-testing-playbook/
-  create-benchmark/  create-flowchart/  create-changelog/  doc-quality/    # nested workflow packets
+  create-benchmark/  create-flowchart/  create-changelog/  create-quality-control/    # nested workflow packets
   scripts/               # facade symlinks -> shared/ + owning packets (tool paths only)
-  shared/                # doc-quality backbone: validators, global standards, shared assets
+  shared/                # create-quality-control backbone: validators, global standards, shared assets
 ```
 
 Each packet is self-contained (its own `SKILL.md`, `README.md`, `changelog/`, and moved `references/`/`assets/`/`scripts/`) and carries **no** `graph-metadata.json`, so the advisor discovers exactly one `sk-doc` identity.
 
 ### Shared backbone
-`shared/` holds the universal doc-quality pipeline consumed by every packet: generic validator scripts (`shared/scripts/`), cross-cutting standards and vocabulary (`shared/references/global/`), and shared templates (`shared/assets/`). The `sk-doc/scripts/` root directory keeps facade symlinks pointing inward to `shared/` and the owning packets so tool paths resolve. There are no hub-root `assets/` or `references/` aggregation directories: consumers reference each packet's own `assets/`/`references/` or the `shared/` backbone directly.
+`shared/` holds the universal create-quality-control pipeline consumed by every packet: generic validator scripts (`shared/scripts/`), cross-cutting standards and vocabulary (`shared/references/global/`), and shared templates (`shared/assets/`). The `sk-doc/scripts/` root directory keeps facade symlinks pointing inward to `shared/` and the owning packets so tool paths resolve. There are no hub-root `assets/` or `references/` aggregation directories: consumers reference each packet's own `assets/`/`references/` or the `shared/` backbone directly.
 
 ---
 
@@ -132,7 +132,7 @@ Each packet is self-contained (its own `SKILL.md`, `README.md`, `changelog/`, an
 - **ALWAYS** resolve a packet through `mode-registry.json`; never hardcode a router mapping in the hub.
 - **ALWAYS** keep authoring contracts in the packets; the hub stays routing-only.
 - **ALWAYS** keep exactly one `graph-metadata.json` (this hub's) so the advisor sees one identity.
-- **ALWAYS** keep the doc-quality pipeline as one shared source under `shared/`, consumed by the packets.
+- **ALWAYS** keep the create-quality-control pipeline as one shared source under `shared/`, consumed by the packets.
 - **ALWAYS** keep changelogs as real files at the hub and in each packet — never symlinked.
 
 ### NEVER
@@ -151,6 +151,6 @@ Each packet is self-contained (its own `SKILL.md`, `README.md`, `changelog/`, an
 - Registry: `mode-registry.json` (ten packets; `packetKind: workflow`).
 - Hub router: `hub-router.json` (signals + vocabulary classes).
 - Advisor descriptor: `description.json`; skill-graph identity: `graph-metadata.json`.
-- Packets: `create-skill/`, `create-readme/`, `create-agent/`, `create-command/`, `create-feature-catalog/`, `create-manual-testing-playbook/`, `create-benchmark/`, `create-flowchart/`, `doc-quality/`.
+- Packets: `create-skill/`, `create-readme/`, `create-agent/`, `create-command/`, `create-feature-catalog/`, `create-manual-testing-playbook/`, `create-benchmark/`, `create-flowchart/`, `create-quality-control/`.
 - Shared backbone: `shared/scripts/`, `shared/references/global/`, `shared/assets/`.
 - Parent-skill pattern: `create-skill/references/parent_skill/parent_skills_nested_packets.md`.

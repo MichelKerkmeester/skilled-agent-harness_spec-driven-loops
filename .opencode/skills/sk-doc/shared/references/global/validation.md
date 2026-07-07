@@ -528,8 +528,8 @@ fi
 
 ### Reference Files
 - [core_standards.md](./core_standards.md) - Document type rules and structural requirements
-- [workflows.md](../../../doc-quality/references/workflows.md) - Execution modes and workflow details
-- [optimization.md](../../../doc-quality/references/optimization.md) - Content transformation patterns
+- [workflows.md](../../../create-quality-control/references/workflows.md) - Execution modes and workflow details
+- [optimization.md](../../../create-quality-control/references/optimization.md) - Content transformation patterns
 - [quick_reference.md](./quick_reference.md) - Quick command reference
 - [skill_creation.md](../../../create-skill/references/README.md) - Skill creation workflow
 - [references/README.md](../../../create-readme/references/README.md) - Install guide standards and workflow

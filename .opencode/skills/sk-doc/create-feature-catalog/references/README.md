@@ -60,7 +60,7 @@ Load the file that matches the current task:
 ### Companion packets
 
 - [create-manual-testing-playbook references](../../create-manual-testing-playbook/references/README.md) - the validation-package side of the catalog/playbook boundary
-- [workflows.md](../../doc-quality/references/workflows.md) - doc-quality execution modes
+- [workflows.md](../../create-quality-control/references/workflows.md) - create-quality-control execution modes
 
 ### Live example
 

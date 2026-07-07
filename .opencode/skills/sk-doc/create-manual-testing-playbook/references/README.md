@@ -54,7 +54,7 @@ Load the file that matches the current task:
 - [validation.md](../../shared/references/global/validation.md) - Shared validation and DQI workflow
 - [frontmatter_versioning.md](../../shared/references/global/frontmatter_versioning.md) - 4-part version expectations
 - [quick_reference.md](../../shared/references/global/quick_reference.md) - Condensed commands and file locations
-- [workflows.md](../../doc-quality/references/workflows.md) - Execution-mode reference
+- [workflows.md](../../create-quality-control/references/workflows.md) - Execution-mode reference
 
 ---
 

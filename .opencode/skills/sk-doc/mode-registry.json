@@ -5,7 +5,7 @@
   "discriminator": {
     "workflowMode": "Public hub/mode key; stable identity used by the hub router and this registry.",
     "packetKind": "Axis discriminator: workflow for all sk-doc packets (no surface packets).",
-    "backendKind": "template-scaffold for the create-* document generators; doc-quality for the validate/score/optimize-existing-doc workflow."
+    "backendKind": "template-scaffold for the create-* document generators; create-quality-control for the validate/score/optimize-existing-doc workflow."
   },
   "advisorRoutingContract": {
     "routingClass": "metadata = resolved by hub membership (default for all sk-doc modes); command-bridge = reached only via its command, never advisor-scored. No lexical/alias-fold modes (avoids the advisor-projection extension + CI drift-guard).",
@@ -135,16 +135,16 @@
       "advisorRouting": { "routingClass": "metadata", "packetSkillName": "create-changelog" }
     },
     {
-      "workflowMode": "doc-quality",
+      "workflowMode": "create-quality-control",
       "packetKind": "workflow",
-      "backendKind": "doc-quality",
+      "backendKind": "create-quality-control",
       "toolSurface": { "allowed": ["Read", "Write", "Edit", "Bash", "Grep", "Glob"], "forbidden": ["Task"], "mutatesWorkspace": true, "bashAllowlist": [] },
-      "packet": "doc-quality",
-      "packetSkillName": "doc-quality",
+      "packet": "create-quality-control",
+      "packetSkillName": "create-quality-control",
       "grandfatheredFolderMismatch": false,
       "command": "/doc:quality",
       "aliases": ["doc quality", "score this doc", "validate a document", "optimize documentation", "dqi", "harden docs"],
-      "advisorRouting": { "routingClass": "metadata", "packetSkillName": "doc-quality" }
+      "advisorRouting": { "routingClass": "metadata", "packetSkillName": "create-quality-control" }
     }
   ]
 }

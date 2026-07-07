@@ -1,6 +1,6 @@
 ---
 title: Doc-Quality References
-description: Route map over the doc-quality reference set - execution modes, validation and enforcement, optimization procedure, and the transformation pattern catalog.
+description: Route map over the create-quality-control reference set - execution modes, validation and enforcement, optimization procedure, and the transformation pattern catalog.
 trigger_phrases:
   - "doc quality references"
   - "doc quality reference map"
@@ -12,13 +12,13 @@ version: 1.0.0.0
 
 # Doc-Quality References
 
-Route map over the `doc-quality` reference set. The operating logic lives in [`../SKILL.md`](../SKILL.md) (primary); these references are single-concern overflow — worked examples, exhaustive detail, and templates loaded on demand. Open only the file the current task needs.
+Route map over the `create-quality-control` reference set. The operating logic lives in [`../SKILL.md`](../SKILL.md) (primary); these references are single-concern overflow — worked examples, exhaustive detail, and templates loaded on demand. Open only the file the current task needs.
 
 ---
 
 ## 1. OVERVIEW
 
-This file is the reference route map for the `doc-quality` packet: it indexes five single-concern reference files — execution modes, validation and enforcement, worked examples, optimization procedure, and the transformation pattern catalog — so each loads only when the current task needs its depth.
+This file is the reference route map for the `create-quality-control` packet: it indexes five single-concern reference files — execution modes, validation and enforcement, worked examples, optimization procedure, and the transformation pattern catalog — so each loads only when the current task needs its depth.
 
 ---
 
@@ -28,7 +28,7 @@ Load the file that matches the current task:
 
 | Concern | Reference | Load When |
 | --- | --- | --- |
-| **Execution modes** — the four modes (script-assisted review, structure checks, content optimization, audit snapshot) and how to pick one | [workflows.md](./workflows.md) | Choosing how to run a doc-quality pass, or mapping a mode to its scripts/phases/output |
+| **Execution modes** — the four modes (script-assisted review, structure checks, content optimization, audit snapshot) and how to pick one | [workflows.md](./workflows.md) | Choosing how to run a create-quality-control pass, or mapping a mode to its scripts/phases/output |
 | **Validation & enforcement operations** — validation touchpoints, enforcement approval-prompt templates, phase chaining, troubleshooting | [validation_and_enforcement.md](./validation_and_enforcement.md) | Wording an enforcement prompt, sequencing validation manually, or a run breaks |
 | **Worked examples & batch** — copy-paste command recipes and multi-file/batch processing | [workflow_examples.md](./workflow_examples.md) | Needing a starting command for a common run, or processing many docs at once |
 | **Optimization procedure** — quality heuristics, analysis workflow, README priority strategy, snippet checklist, iteration loop | [optimization.md](./optimization.md) | The user asked to improve/optimize an existing doc for AI-friendliness |
@@ -41,7 +41,7 @@ Load the file that matches the current task:
 ## 3. RELATED RESOURCES
 
 ### Packet
-- [../SKILL.md](../SKILL.md) - Authoritative doc-quality workflow contract (primary)
+- [../SKILL.md](../SKILL.md) - Authoritative create-quality-control workflow contract (primary)
 - [../README.md](../README.md) - Human orientation for the packet
 
 ### Shared Backbone
@@ -57,4 +57,4 @@ Load the file that matches the current task:
 
 ---
 
-*End of doc-quality references route map — depth lives in the single-concern files above.*
+*End of create-quality-control references route map — depth lives in the single-concern files above.*

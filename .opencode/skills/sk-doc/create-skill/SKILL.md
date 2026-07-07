@@ -31,7 +31,7 @@ Keyword triggers: `create skill`, `new skill`, `skill scaffold`, `OpenCode skill
 
 Skip this packet when:
 - The user asks for agent scaffolding, command scaffolding, README creation, benchmark folders, feature catalogs, or manual testing playbooks. Route to the matching sk-doc packet.
-- The task is only quality review of an existing document. Route to `doc-quality`.
+- The task is only quality review of an existing document. Route to `create-quality-control`.
 - The task is application code implementation. Route to `sk-code`.
 - The user only needs conceptual advice and no artifact authoring or validation.
 
@@ -342,7 +342,7 @@ scripts/package_skill.py <path/to/skill-folder> <output-directory>
 - Parent hubs contain one hub identity, one `modes[]` registry, valid router metadata, and nested packets without packet-local graph metadata.
 - References and assets use the packet templates and snake_case filenames.
 - `scripts/package_skill.py <path> --check` exits clean, or exact blockers are reported.
-- Shared doc-quality standards from `../shared` were applied when quality evidence was needed.
+- Shared create-quality-control standards from `../shared` were applied when quality evidence was needed.
 
 ---
 

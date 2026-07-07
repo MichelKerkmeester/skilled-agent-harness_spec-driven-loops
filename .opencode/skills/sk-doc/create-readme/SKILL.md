@@ -9,7 +9,7 @@ version: 1.0.0.0
 
 # Create README (workflow)
 
-`create-readme` is the README authoring packet in the `sk-doc` family. It writes current-state folder READMEs and install guides from local evidence, using packet-local templates under `assets/readme/` and shared doc-quality validators under `../shared`.
+`create-readme` is the README authoring packet in the `sk-doc` family. It writes current-state folder READMEs and install guides from local evidence, using packet-local templates under `assets/readme/` and shared create-quality-control validators under `../shared`.
 
 ---
 
@@ -28,7 +28,7 @@ Keyword triggers: `create readme`, `folder readme`, `write readme`, `README.md`,
 
 Skip this packet when:
 
-- The user wants general prose quality review of an existing document. Use the doc-quality packet.
+- The user wants general prose quality review of an existing document. Use the create-quality-control packet.
 - The user wants to scaffold a skill, agent, command, benchmark, feature catalog or testing playbook. Use that specific sk-doc packet.
 - The target is not markdown.
 - The folder is self-explanatory and a parent README or inline comments already give enough orientation.

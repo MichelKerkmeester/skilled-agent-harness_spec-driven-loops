@@ -36,7 +36,7 @@ The sk-doc manual testing playbook validates smart-router behavior through deter
 ## Scenario Index
 
 ### 01 — Intent Detection
-- **SD-001** — `01--intent-detection/doc-quality.md` — DOC_QUALITY: validate documentation quality for a skill.
+- **SD-001** — `01--intent-detection/create-quality-control.md` — DOC_QUALITY: validate documentation quality for a skill.
 - **SD-002** — `01--intent-detection/skill-creation.md` — SKILL_CREATION: author a new sk-skill.
 - **SD-003** — `01--intent-detection/agent-command.md` — AGENT_COMMAND: author paired @agent and /create command.
 - **SD-016** — `01--intent-detection/optimization.md` — OPTIMIZATION: rewrite for token efficiency + llms.txt generation. (added in 076)

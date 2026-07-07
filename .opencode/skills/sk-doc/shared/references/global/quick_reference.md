@@ -354,8 +354,8 @@ Validation note: the current validator checks the root playbook and does not rec
 ### Reference Files
 - [core_standards.md](./core_standards.md) - Document type rules and structural requirements
 - [validation.md](./validation.md) - Quality scoring and validation workflows
-- [optimization.md](../../../doc-quality/references/optimization.md) - Content transformation patterns
-- [workflows.md](../../../doc-quality/references/workflows.md) - Execution modes and workflows
+- [optimization.md](../../../create-quality-control/references/optimization.md) - Content transformation patterns
+- [workflows.md](../../../create-quality-control/references/workflows.md) - Execution modes and workflows
 - [skill_creation.md](../../../create-skill/references/README.md) - Skill creation workflow
 - [references/README.md](../../../create-agent/references/README.md) - Agent authority, permissions, and creation workflow
 - [references/README.md](../../../create-readme/references/README.md) - Install guide standards and workflow

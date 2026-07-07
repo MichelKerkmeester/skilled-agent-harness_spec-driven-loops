@@ -13,7 +13,7 @@ version: 1.8.0.1
 
 # Workflow Examples and Batch Processing
 
-Worked command recipes for common doc-quality runs and batch/multi-file processing. These are copy-paste starting points; the executable workflow lives in `SKILL.md` §2.
+Worked command recipes for common create-quality-control runs and batch/multi-file processing. These are copy-paste starting points; the executable workflow lives in `SKILL.md` §2.
 
 For execution modes see [workflows.md](./workflows.md). For the validation sequence see [validation_and_enforcement.md](./validation_and_enforcement.md).
 
@@ -21,7 +21,7 @@ For execution modes see [workflows.md](./workflows.md). For the validation seque
 
 ## 1. OVERVIEW
 
-This file collects copy-paste command recipes for the doc-quality workflow: single-file worked examples (new SKILL creation, README optimization, pre-commit validation) plus multi-file and batch-processing recipes.
+This file collects copy-paste command recipes for the create-quality-control workflow: single-file worked examples (new SKILL creation, README optimization, pre-commit validation) plus multi-file and batch-processing recipes.
 
 ---
 

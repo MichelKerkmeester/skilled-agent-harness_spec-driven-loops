@@ -26,7 +26,7 @@ Do not use it for skill scaffolding, agent scaffolding, prose-only documentation
 - `changelog/`: packet-local changelog entries.
 - No packet-local `graph-metadata.json` or `scripts/` directories are present.
 
-Shared validation and doc-quality resources live outside this packet:
+Shared validation and create-quality-control resources live outside this packet:
 
 - `../shared/references/global/core_standards.md`
 - `../shared/references/global/validation.md`
@@ -61,9 +61,9 @@ Use this packet to:
 - define argument handling for mode suffixes,
 - keep routing in the command file,
 - move user-facing prompts and result templates into a presentation asset,
-- validate the command through the shared doc-quality scripts.
+- validate the command through the shared create-quality-control scripts.
 ```
 
 ## 6. PARENT HUB
 
-`create-command` is a nested workflow packet of the `sk-doc` parent hub. The shared doc-quality backbone lives at `../shared`; the single advisor identity and mode registry live at the hub root, not inside this packet.
+`create-command` is a nested workflow packet of the `sk-doc` parent hub. The shared create-quality-control backbone lives at `../shared`; the single advisor identity and mode registry live at the hub root, not inside this packet.

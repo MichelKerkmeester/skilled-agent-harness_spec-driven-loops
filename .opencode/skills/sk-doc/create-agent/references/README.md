@@ -52,4 +52,4 @@ Load the file that matches the current task:
 - [core_standards.md](../../shared/references/global/core_standards.md) - document type rules and structural requirements
 - [validation.md](../../shared/references/global/validation.md) - quality scoring and validation workflows
 - [quick_reference.md](../../shared/references/global/quick_reference.md) - condensed commands and file locations
-- [workflows.md](../../doc-quality/references/workflows.md) - execution-mode reference
+- [workflows.md](../../create-quality-control/references/workflows.md) - execution-mode reference

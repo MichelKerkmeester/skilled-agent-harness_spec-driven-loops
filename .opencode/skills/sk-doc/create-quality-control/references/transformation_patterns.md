@@ -303,5 +303,5 @@ print(response)
 ## RELATED RESOURCES
 
 - [optimization.md](./optimization.md) - Optimization procedure, quality heuristics, README strategy, and the snippet quality checklist that verifies the output of these patterns
-- [README.md](./README.md) - doc-quality reference route map
-- [workflows.md](./workflows.md) - Execution modes for the doc-quality workflow
+- [README.md](./README.md) - create-quality-control reference route map
+- [workflows.md](./workflows.md) - Execution modes for the create-quality-control workflow
