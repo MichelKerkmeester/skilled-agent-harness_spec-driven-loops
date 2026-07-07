@@ -7,10 +7,11 @@ trigger_phrases:
   - "pre-implementation advisor scorer"
 importance_tier: "high"
 contextType: "implementation"
+status: "Closed"
 _memory:
   continuity:
     packet_pointer: "system-skill-advisor/012-skill-advisor-tuning/001-scorer-saturation-root-fix"
-    last_updated_at: "2026-07-06T12:00:00.000Z"
+    last_updated_at: "2026-07-07T17:37:00.000Z"
     last_updated_by: "opus-4.8"
     recent_action: "Pre-implementation spec authored"
     next_safe_action: "Await advisor-lane standdown, then execute WS3→WS1→re-run→WS2/4/5/6"
@@ -28,7 +29,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "system-skill-advisor-001-preimpl"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions:
       - question: "WS1 Design A vs Design B?"
         answer: "Start with Design A (post-cap demotion); escalate to Design B (first-class disambiguation channel) only if the scorer must rank by negative evidence, pending the corpus re-run evidence."
@@ -49,7 +50,7 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 001-scorer-saturation-root-fix |
-| **Status** | Planned / Not started — GATED |
+| **Status** | Closed — WS1 falsified / superseded |
 | **Level** | 2 |
 | **Actual Effort** | Not yet implemented — this packet is the pre-implementation spec |
 
@@ -59,7 +60,7 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-Not yet implemented — this packet is the pre-implementation spec. It captures the design for the shared advisor-scorer saturation-class root fix (WS1–WS6) plus the Layer 1b advisor projection vocabulary, sequenced by leverage and gated on the live advisor-TS lane standing down. The intended work, once unblocked, is:
+WS1's post-cap demotion (Design A) was implemented, measured, and reverted: on the 193-row corpus it scored a net -2, fixing 0 of the 6 target regressions and breaking 2. It was superseded by audit-intent phrase calibration — two explicit-lane phrase boosts that landed instead under commit e2711fb580 — which moved the 193-row TS-vs-gold agreement from 145 to 147 on the filesystem projection and from 144 to 146 on SQLite, lifted parity preservation from 99 to 101, and resolved-and-dropped regressions rr-iter3-100 and rr-iter3-104. The four remaining accepted divergences are fusion-level and labeling-edge losses, not absorbed-penalty saturation, so the saturation thesis that motivated WS1 was empirically falsified. The packet's original design — the shared advisor-scorer saturation-class root fix (WS1–WS6) plus the Layer 1b advisor projection vocabulary, sequenced by leverage and gated on the live advisor-TS lane standing down — is retained below as the historical proposal, now superseded:
 
 - **WS1 [ROOT]**: a post-cap demotion channel so disambiguation penalties survive clamp headroom and fusion instead of being erased by saturating positive support.
 - **WS2**: a metadata-driven `executor-delegation.ts` resolver with a post-fusion routing override, replacing the inline `-3.0` OpenCode regex.
@@ -159,6 +160,6 @@ Pending. No verification has run because implementation has not started. The int
 <!-- ANCHOR:deviations -->
 ## Deviations from Plan
 
-None yet — implementation has not started, so there is nothing to deviate from. Any deviation (for example, escalating WS1 to Design B, or ledgering a parity regression that does not self-resolve) is recorded here as it happens.
+Governing deviation: the packet's central thesis was falsified. WS1's saturation fix (Design A post-cap demotion) was implemented and measured, then reverted — it scored a net -2 on the 193-row corpus, fixed 0 of 6 target regressions, and broke 2. The saturation thesis was re-scoped accordingly: the parity win the packet sought landed instead through audit-intent phrase calibration (two explicit-lane phrase boosts) under commit e2711fb580, and the surviving four divergences were accepted as fusion-level and labeling-edge losses rather than absorbed-penalty saturation. Design B (the first-class disambiguation channel) was not pursued: with the thesis falsified there was no ranking-by-negative-evidence case to justify it.
 
 <!-- /ANCHOR:deviations -->

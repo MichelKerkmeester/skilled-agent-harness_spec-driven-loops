@@ -45,7 +45,7 @@ _memory:
 | **Spec Folder** | system-skill-advisor/012-skill-advisor-tuning/002-skill-advisor-runtime/004-c4-shadow-seam-beta-posterior |
 | **Authored** | 2026-06-19 |
 | **Level** | 3 |
-| **Status** | complete (pending P0 CHK-120 rollback) |
+| **Status** | complete (CHK-120 rollback satisfied by store deletion at 8efcde0e6b) |
 | **Scope** | Advisor reliability-weighted learning: C4-seam + Beta posterior + aionforge promotion-gate family + Phase-0 foundation, shipped shadow-only and default-off |
 | **Branch** | system-speckit/027-xce-research-based-refinement |
 | **Shipped via** | Commit `10c5b61493` (default-off shadow). T006 daemon reload and T010 D2 coordination remain pending |

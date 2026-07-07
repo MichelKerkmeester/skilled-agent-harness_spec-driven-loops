@@ -1,20 +1,21 @@
 {
   "level": "2",
   "specFolder": "system-skill-advisor/012-skill-advisor-tuning/004-advisor-penalty-contract",
-  "description": "The 007 graduation suite cut the explicit advisor self-recommendation guard (`SPECKITADVISORSELFRECOMMENDATIONGUARD`) as redundant",
+  "description": "The 007 graduation suite adopted the CUT verdict for the explicit advisor self-recommendation guard (`SPECKITADVISORSELFRECOMMENDATIONGUARD`); the",
   "keywords": [
     "007",
     "graduation",
     "suite",
+    "adopted",
     "cut",
+    "verdict",
     "explicit",
     "advisor",
     "self-recommendation",
     "guard",
-    "speckitadvisorselfrecommendationguard",
-    "redundant"
+    "speckitadvisorselfrecommendationguard"
   ],
-  "lastUpdated": "2026-07-06T17:16:00.625Z",
+  "lastUpdated": "2026-07-07T17:37:36.542Z",
   "specId": "004",
   "folderSlug": "advisor-penalty-contract",
   "parentChain": [

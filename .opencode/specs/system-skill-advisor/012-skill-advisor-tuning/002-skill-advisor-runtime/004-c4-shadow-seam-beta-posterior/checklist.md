@@ -203,7 +203,8 @@ FAILURE MODES:
 <!-- ANCHOR:deploy-ready -->
 ## L3+: DEPLOYMENT READINESS
 
-- [ ] CHK-120 [P0] Rollback procedure documented and tested (unset shadow env + revert scoped commits, plan.md §L2 Enhanced Rollback)
+- [x] CHK-120 [P0] Rollback procedure documented and tested (unset shadow env + revert scoped commits, plan.md §L2 Enhanced Rollback)
+  - **Rollback satisfied by deletion (2026-07-07)**: rollback satisfied by store deletion at commit `8efcde0e6b` (`shadow-weight-promoter.ts` / `skill-outcome-store.ts` deleted); flags remain default-off shadow-only; no live flip needed.
 - [x] CHK-121 [P0] Feature flag configured - shadow channel `SPECKIT_ADVISOR_LANE_SHADOW_WEIGHTS_JSON`, guardrails default-off, `liveWeightsFrozen:true`
   - **Evidence**: `tasks.md` T005 writes the shadow-weights env, T016 keeps `defaultOff/shadowOnly/liveWeightsFrozen/autoPromotion` TRUE, SHA `10c5b61493`.
 - [ ] CHK-122 [P1] Monitoring/alerting configured (N/A - shadow channel, the `_shadow` recommendation channel is observation-only)

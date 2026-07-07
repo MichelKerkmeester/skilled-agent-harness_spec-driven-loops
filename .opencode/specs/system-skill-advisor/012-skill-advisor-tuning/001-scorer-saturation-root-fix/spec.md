@@ -12,10 +12,10 @@ parent: "system-skill-advisor"
 _memory:
   continuity:
     packet_pointer: "system-skill-advisor/012-skill-advisor-tuning/001-scorer-saturation-root-fix"
-    last_updated_at: "2026-07-06T12:00:00.000Z"
+    last_updated_at: "2026-07-07T17:37:00.000Z"
     last_updated_by: "opus-4.8"
     recent_action: "Pre-implementation spec authored"
-    next_safe_action: "Await advisor-lane standdown, then execute WS3→WS1→re-run→WS2/4/5/6"
+    next_safe_action: "Record close-out, WS1 falsified, superseded by commit e2711fb580"
 ---
 # Feature Specification: Advisor-Scorer Saturation-Class Root Fix (WS1–WS6) + Advisor Projection Vocab
 
@@ -31,7 +31,7 @@ _memory:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Planned / Not started — GATED |
+| **Status** | Closed — WS1 saturation thesis empirically falsified & re-scoped (superseded by workstreams 002–008 + audit-phrase calibration, commit e2711fb580) |
 | **Created** | 2026-07-06 |
 | **Branch** | `system-speckit/028-memory-search-intelligence` |
 

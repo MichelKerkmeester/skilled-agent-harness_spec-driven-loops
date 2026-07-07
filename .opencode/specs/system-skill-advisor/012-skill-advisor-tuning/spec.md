@@ -10,10 +10,10 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-skill-advisor/012-skill-advisor-tuning"
-    last_updated_at: "2026-07-07T10:00:00.000Z"
+    last_updated_at: "2026-07-07T17:49:35.000Z"
     last_updated_by: "claude-opus"
-    recent_action: "Grouped the advisor-scorer work as nested phases under this parent; scorer workstreams shipped"
-    next_safe_action: "Land Layer-1b projection vocab + one coordinated advisor reindex; close the 001 umbrella"
+    recent_action: "WU-1 reconciled 001/002/003/004 spec honesty (WS1 falsified, RRF row, guard ledger truthed)"
+    next_safe_action: "WU-2 read-only assets (012/009); gated WU-3 vocab+reindex, WU-4 guard del, WU-5 penalty"
 ---
 
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
@@ -79,8 +79,8 @@ Per-phase detail lives in each child's `plan.md`. This parent authors only `spec
 
 | Phase | Folder | Focus | Status |
 |-------|--------|-------|--------|
-| 001 | `001-scorer-saturation-root-fix/` | Root-fix design spec + TS↔Python parity re-baseline. The pre-clamp-penalty saturation thesis; its WS1 arithmetic fix was empirically falsified and re-scoped into the workstreams below plus audit-phrase calibration. | planned (umbrella) |
-| 002 | `002-skill-advisor-runtime/` | Advisor runtime research + its own nested sub-phases: deterministic fusion, lane health, embedding freshness, query routing, drift metrics. | complete |
+| 001 | `001-scorer-saturation-root-fix/` | Root-fix design spec + TS↔Python parity re-baseline. The pre-clamp-penalty saturation thesis; its WS1 arithmetic fix was empirically falsified and re-scoped into the workstreams below plus audit-phrase calibration. | closed — WS1 thesis falsified & re-scoped |
+| 002 | `002-skill-advisor-runtime/` | Advisor runtime research + its own nested sub-phases: deterministic fusion, lane health, embedding freshness, query routing, drift metrics. | complete — children at accepted terminal states (004/007 shadow-only live-NO-GO, CHK-120 satisfied-by-deletion; 003/006 accepted-partial) |
 | 003 | `003-advisor-rrf-fusion/` | The RRF-fusion path and two routing guards — built, unit-tested, byte-identical when disabled. | complete |
 | 004 | `004-advisor-penalty-contract/` | The explicit-lane penalty contract and the self-recommendation-guard graduation. | complete |
 | 005 | `005-executor-delegation-resolver/` | Metadata-driven executor-delegation resolver replacing the inline pre-clamp band-aid; post-fusion override; TS + Python parity. | complete |
@@ -101,7 +101,7 @@ Per-phase detail lives in each child's `plan.md`. This parent authors only `spec
 ## 4. OPEN QUESTIONS
 
 - **Layer-1b projection vocab** — adding single-pass audit/review vocab to the advisor-facing metadata is deferred to bundle with the coordinated reindex, since metadata edits only take effect post-reindex.
-- **001 umbrella close-out** — 001 remains `planned` because its WS1 thesis was superseded by the shipped workstreams; whether to mark it complete or retire it is an open bookkeeping question.
+- **001 umbrella close-out** — RESOLVED: 001 is closed out as WS1-falsified/superseded; its close-out imports the experiment record (WS1 post-cap demotion implemented → measured net -2 / fixed 0 of 6 / broke 2 → reverted; superseded by audit-phrase calibration in commit e2711fb580).
 <!-- /ANCHOR:questions -->
 
 ---

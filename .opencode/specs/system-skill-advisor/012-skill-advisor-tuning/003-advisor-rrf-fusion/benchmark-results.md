@@ -101,5 +101,12 @@ This is the key finding of the refinement. The conflict-rerank seam is not a lux
 ### Live-corpus caveat on the conflict graduation
 The conflict-rerank seam was measured against a benchmark overlay because the live corpus carries no `conflicts_with` edges. Graduating the seam is safe and correct as a property of RRF (it prevents an RRF regression), and it is inert on the current corpus exactly because there are no conflict edges to demote. The seam earns its graduation as RRF's safety net, and it begins to add routing value the moment the corpus grows its first `conflicts_with` edge. Seeding those edges into the live corpus is a separate corpus-authoring decision outside this read-only benchmark.
 
+## Graduation Decision (tracked)
+
+| Item | Verdict | Decision state | Owner | Notes |
+|---|---|---|---|---|
+| RRF core + conflict-rerank seam | GRADUATE | DEFER → coordinated reindex window | operator | Flag `SPECKIT_ADVISOR_RRF_FUSION` still default-off (`fusion.ts:101-103`); flip needs the atomic reindex + green gates. Pairwise-comparator intransitivity (`fusion.ts:765`) to fix as a precondition; live `conflicts_with` edges are currently empty. |
+| Self-recommendation guard | CUT | ADOPTED — guard-code deletion pending | operator | Guard code still present in `fusion.ts`; deletion scheduled for the gated code window. |
+
 ## Reproduce
 `node scripts/advisor-rrf-benchmark.mjs` rebuilds `results/metrics.json` from the read-only projection copy and the in-memory conflict overlay, exit 0.

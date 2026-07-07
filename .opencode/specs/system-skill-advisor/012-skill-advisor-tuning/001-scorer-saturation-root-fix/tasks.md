@@ -7,11 +7,11 @@ trigger_phrases:
   - "executor delegation resolver tasks"
 importance_tier: "high"
 contextType: "implementation"
-status: "Planned"
+status: "Closed"
 _memory:
   continuity:
     packet_pointer: "system-skill-advisor/012-skill-advisor-tuning/001-scorer-saturation-root-fix"
-    last_updated_at: "2026-07-06T12:00:00.000Z"
+    last_updated_at: "2026-07-07T17:37:00.000Z"
     last_updated_by: "opus-4.8"
     recent_action: "Pre-implementation spec authored"
     next_safe_action: "Await advisor-lane standdown, then execute WS3→WS1→re-run→WS2/4/5/6"
@@ -47,9 +47,9 @@ _Readiness: unblock, re-baseline, and make the parity gate honest before touchin
 - [ ] T002 Land Layer 1b vocab on sk-code [medium] — add `code audit`, `code review loop`, `findings-first review`, `release readiness`, `audit`, `findings`, `security`, `correctness` to graph-metadata + SKILL frontmatter
 - [ ] T003 Land Layer 1b vocab on deep-loop-workflows [small] — drop bare `code audit` and `severity weighted findings`; keep loop/convergence identity
 - [ ] T004 Capture a fresh 193-row baseline [medium] — PID-scoped native rebuild via `rebuild-native-modules.sh` if the corpus scan SIGBUSes; record tsCorrect, pythonCorrect, regressions, holdout
-- [ ] T005 WS3 ledger the five named regressions [medium] — rr-iter2-016, rr-iter2-060, rr-iter3-093, rr-iter3-100, rr-iter3-104 recorded as reviewed-accepted (or confirmed preserved)
-- [ ] T006 WS3 rename the legacy "197-prompt" suite to 193 [small] — align the suite name with the real corpus size
-- [ ] T007 WS3 keep force-local parity in CI and re-point evaluation to SQLite/source metadata [medium] — native-first delegation must not mask fallback drift; stop evaluating against the diagnostic `skill-graph.json`
+- [x] T005 WS3 ledger the five named regressions [medium] — superseded via commit e2711fb580: rr-iter3-100 and rr-iter3-104 were resolved and dropped; the surviving divergences were accepted as fusion-level / labeling-edge losses
+- [x] T006 WS3 rename the legacy "197-prompt" suite to 193 [small] — corrected via commit e2711fb580; the projection is the true 193-row corpus
+- [x] T007 WS3 keep force-local parity in CI and re-point evaluation to SQLite/source metadata [medium] — superseded: the parity outcome this packet targeted landed via commit e2711fb580's audit-phrase calibration rather than this packet's re-pointing plan
 
 <!-- /ANCHOR:phase-1 -->
 ---
@@ -59,9 +59,9 @@ _Readiness: unblock, re-baseline, and make the parity gate honest before touchin
 
 _The scorer code: root demotion first, then the executor resolver, then the isolated correctness and hardening gaps._
 
-- [ ] T008 WS1 implement Design A post-cap demotion [large] — `score = Math.max(0, Math.min(supportScore, 1) + demotionScore)` in `explicit.ts`; stop `fusion.ts` flooring net-negative evidence
-- [ ] T009 WS1 add the verbose-saturation fixture set [medium] — cli-opencode, colon review loop, webflow CMS, benchmark-mode; assert topSkill + demoted candidate contribution
-- [ ] T010 [B] WS1 escalate to Design B only if required [medium] — first-class `disambiguationPenalty` channel, gated on whether the scorer must rank by negative evidence
+- [x] T008 WS1 implement Design A post-cap demotion [large] — implemented, measured, and reverted; falsified (net -2 on the 193-row corpus, fixed 0 of 6 target regressions, broke 2)
+- [x] T009 WS1 add the verbose-saturation fixture set [medium] — moot: WS1 Design A was measured and reverted (falsified), so this fixture work did not persist; parity landed via commit e2711fb580 instead
+- [x] T010 WS1 escalate to Design B only if required [medium] — not pursued: with the saturation thesis falsified there is no ranking-by-negative-evidence case to justify a first-class disambiguationPenalty channel
 - [ ] T011 WS2 create `executor-delegation.ts` [large] — detect delegation verbs (`use`, `delegate to`, `ask`, `run`, `invoke`, `second opinion`) near an executor alias
 - [ ] T012 WS2 build the alias table from metadata [medium] — `graph-metadata.json` (`family:'cli'`/`category:'cli-orchestrator'`) + `model_profiles.json`; MiniMax/Kimi resolve to cli-opencode
 - [ ] T013 WS2 suppress the archived codex executor and apply the post-fusion override [medium] — load codex as `lifecycleStatus:'archived'` (abstain/redirect, never default-routable); lift the resolved active executor and suppress sk-code re-saturation

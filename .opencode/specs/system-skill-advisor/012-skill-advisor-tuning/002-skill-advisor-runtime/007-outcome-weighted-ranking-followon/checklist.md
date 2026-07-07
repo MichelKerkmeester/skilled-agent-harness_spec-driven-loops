@@ -206,7 +206,8 @@ FAILURE MODES:
 <!-- ANCHOR:deploy-ready -->
 ## L3+: DEPLOYMENT READINESS
 
-- [ ] CHK-120 [P0] Rollback procedure documented and tested (disable shadow re-rank channel + revert scoped commits + delete store -> fresh-0.5, plan.md §L2 Enhanced Rollback)
+- [x] CHK-120 [P0] Rollback procedure documented and tested (disable shadow re-rank channel + revert scoped commits + delete store -> fresh-0.5, plan.md §L2 Enhanced Rollback)
+  - **Rollback satisfied by deletion (2026-07-07)**: rollback satisfied by store deletion at commit `8efcde0e6b` (`skill-outcome-store.ts` deleted; shadow re-rank channel default-off); no live flip needed.
 - [x] CHK-121 [P0] Feature flag configured - shadow re-rank channel default-off, BM25 lane stays `shadowOnly:true` with zeroed weight
   - **Evidence**: `tasks.md` T013/T015 - re-rank channel default-off (`isAdvisorOutcomeWeightedRerankEnabled`), BM25 `shadowOnly:true` with zeroed fusion weight, SHA `03d0b01eb6`.
 - [ ] CHK-122 [P1] Monitoring/alerting configured (N/A - shadow channel, BM25 calibration is telemetry-only)

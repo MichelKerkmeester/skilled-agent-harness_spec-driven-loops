@@ -95,15 +95,15 @@
     ],
     "causal_summary": "The Skill Advisor research surfaced candidate work across deterministic fusion, lane health, embedding freshness, query routing, drift metrics and outcome-weighted ranking",
     "created_at": "2026-06-16T14:27:21.651Z",
-    "last_save_at": "2026-07-07T11:21:36.771Z",
+    "last_save_at": "2026-07-07T17:36:57.990Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:f71d487dabca7c119067410d6948a251ddb8e0727f75cca1f06d3bcbdfae84a8",
+    "source_fingerprint": "sha256:fdff431ffe12f68967ba08e2b61faba0b3a5131e3cc71a14c74f34513a7617c8",
     "source_doc_hashes": {
-      "spec.md": "ec9de100d4e6717e651aa87440c28e0a8823745f06460c95359cddd9a2363377"
+      "spec.md": "9c09d9b971193bebe8827f38c74ea1a291e3a2f5016b09b1303ace7afbf06f22"
     },
     "last_active_child_id": null,
     "last_active_at": null

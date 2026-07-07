@@ -199,7 +199,7 @@
     ],
     "causal_summary": "The Skill Advisor ranks skills by metadata similarity (the 5-lane fusion scorer), not by whether the recommended skill has historically WORKED on tasks like the current one",
     "created_at": "2026-06-19T06:06:27.156Z",
-    "last_save_at": "2026-07-07T09:40:25.053Z",
+    "last_save_at": "2026-07-07T17:37:32.556Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,14 +210,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:cb03e84d284aa1c3a216422c4598d109409f3f895324dfe7dfe6c244647a6c43",
+    "source_fingerprint": "sha256:2a8988fe80678c6ece91a0ce5be152e970d17c0da30fe8260c0e4f76506d2fcf",
     "source_doc_hashes": {
-      "spec.md": "2d4213f8a5534847aa910083afff9bd5668d74e47cd499ce0fcdd3db0d7bb2d6",
-      "plan.md": "3694524630d5faf3deea04cc4a3e9c27b316e4c1d408f4ff1a6205a10f307872",
-      "tasks.md": "c2d317c39d95e3da74ef0f399fb9254beb63ee526a4ca5de1042d024c861b985",
-      "checklist.md": "d0876a1db63a93433fc57361d74f9a717ac029f01e1a644c4c5bd19a7e6896ef",
-      "decision-record.md": "5baef14edb1629f2a9422056fcbf86990395ff025f6b6d29b221901792b3bf4c",
-      "implementation-summary.md": "4f19637dc1a96c7c596ceefc96ace524d48199f0a5c30a3c3b2e6ae0499d41a9"
+      "spec.md": "21aa16353d733b88b11555095d078f7cd99c99148fccfe8e7173d1f4a7b6dcdc",
+      "plan.md": "728d48a68d78e64c14612d91f06b08dc60ad64db42c78282f2dcc08afeaa84e9",
+      "tasks.md": "183920b8c2ac4064d3bae16eec27c0f3aa6eda06690095d3a2be354fca3df7ce",
+      "checklist.md": "d84809b92a6f472f8b3e889dbba983d4ef9bf726fa82bc6517717aec79ba14ab",
+      "decision-record.md": "c077b60feea17e309ad761329235f4eac9b0cad1bed956513ab516d6a458f631",
+      "implementation-summary.md": "a50a105a1a48c0f4a57e3db7dfe26bf94311f6a1c7beb19a8161816c677cba9b"
     },
     "last_active_child_id": null,
     "last_active_at": null

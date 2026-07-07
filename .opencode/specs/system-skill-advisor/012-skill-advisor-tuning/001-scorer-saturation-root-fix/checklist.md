@@ -7,11 +7,11 @@ trigger_phrases:
   - "executor delegation resolver checklist"
 importance_tier: "high"
 contextType: "implementation"
-status: "Planned"
+status: "Closed"
 _memory:
   continuity:
     packet_pointer: "system-skill-advisor/012-skill-advisor-tuning/001-scorer-saturation-root-fix"
-    last_updated_at: "2026-07-06T12:00:00.000Z"
+    last_updated_at: "2026-07-07T17:37:00.000Z"
     last_updated_by: "opus-4.8"
     recent_action: "Pre-implementation spec authored"
     next_safe_action: "Await advisor-lane standdown, then execute WS3→WS1→re-run→WS2/4/5/6"
@@ -50,10 +50,10 @@ _memory:
 <!-- ANCHOR:code-quality -->
 ## Code Quality
 
-- [ ] CHK-010 [P0] WS1 post-cap demotion implemented — positive support capped before demotion is subtracted; no penalty absorbed by clamp headroom; fusion no longer floors net-negative evidence
+- [x] CHK-010 [P0] WS1 post-cap demotion attempted then reverted — Design A was implemented and measured, then reverted; the saturation thesis was empirically falsified [EVIDENCE: net -2 on the 193-row corpus, 0 of 6 target regressions fixed and 2 broken; superseded by audit-phrase calibration in commit e2711fb580]
 - [ ] CHK-011 [P0] WS2 resolver replaces the inline `-3.0` regex — `executor-delegation.ts` builds its alias table from metadata + model profiles and applies a post-fusion override
 - [ ] CHK-012 [P1] WS4 graph-causal order fixed — score-first/traversal-second; `bestPositiveStrengthByTarget` replaces boolean `seen`
-- [ ] CHK-013 [P1] WS1 escalation decision recorded — Design A shipped; Design B escalation is taken only if ranking by negative evidence is required
+- [x] CHK-013 [P1] WS1 escalation decision recorded — Design A was falsified (attempted then reverted), not shipped; Design B was not pursued because the falsified thesis left no ranking-by-negative-evidence case [EVIDENCE: Design A net -2, reverted; parity landed via commit e2711fb580]
 
 <!-- /ANCHOR:code-quality -->
 ---
@@ -72,7 +72,7 @@ _memory:
 <!-- ANCHOR:fix-completeness -->
 ## Fix Completeness
 
-- [ ] CHK-024 [P0] WS3 parity gate honest and green — five regressions ledgered/preserved, suite renamed 197→193, force-local in CI, evaluated against SQLite/source metadata
+- [x] CHK-024 [P0] WS3 parity superseded — parity landed via audit-phrase calibration rather than this packet's mechanism [EVIDENCE: commit e2711fb580 corrected the legacy 197-prompt label to the true 193-row corpus, resolved regressions rr-iter3-100 and rr-iter3-104, and left four accepted divergences]
 - [ ] CHK-025 [P1] WS5 eval hardening landed — empirical ambiguity slice, schema-enforced buckets, ratcheted baseline, frozen independent holdout ≥60 rows
 - [ ] CHK-026 [P1] WS6 semantic_shadow proven-or-frozen — paired ablation + holdout with pinned providerModelId + fail-on-skip; weight kept low until evidence
 
@@ -113,11 +113,11 @@ _memory:
 
 | Category | Total | Verified |
 |----------|-------|----------|
-| P0 Items | 9 | 0/9 |
-| P1 Items | 10 | 0/10 |
+| P0 Items | 9 | 2/9 resolved (falsified/superseded) |
+| P1 Items | 10 | 1/10 resolved (falsified) |
 | P2 Items | 3 | 0/3 |
 
-**Status**: Planned / Not started — GATED
+**Status**: Closed — WS1 saturation thesis falsified (WS1 items attempted-then-reverted); WS3 parity superseded via commit e2711fb580; remaining workstreams not executed
 **Verification Date**: Pending
 **Verified By**: Pending
 

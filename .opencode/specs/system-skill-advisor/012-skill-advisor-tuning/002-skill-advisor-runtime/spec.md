@@ -46,7 +46,7 @@ _memory:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | complete|
+| **Status** | complete — all children at accepted terminal states (004 & 007 shadow-only / live NO-GO, CHK-120 satisfied-by-deletion at 8efcde0e6b; 003 & 006 accepted-partial; remainder implemented) |
 | **Created** | 2026-06-16 |
 | **Updated** | 2026-06-19 |
 | **Parent Spec** | `../spec.md` |
@@ -103,12 +103,14 @@ Research input: `research/research.md` remains the subsystem source packet for c
 |-------|--------|-------|--------|
 | 001 | `001-rrf-determinism-spine/` | Shared RRF determinism spine | Implemented (default-off) |
 | 002 | `002-runtime-lane-health-degrade/` | Runtime lane health and fallback scoring | Implemented |
-| 003 | `003-embedding-staleness-signal/` | Embedding freshness signal | Partial (signal implemented) |
+| 003 | `003-embedding-staleness-signal/` | Embedding freshness signal | Accepted-partial (freshness signal implemented; remainder intentionally deferred) |
 | 004 | `004-c4-shadow-seam-beta-posterior/` | C4 shadow path and beta posterior | Implemented (shadow-only, live NO-GO) |
 | 005 | `005-conflict-rerank-query-routing/` | Conflict rerank and query routing | Implemented (default-off) |
-| 006 | `006-provenance-drift-observability/` | Provenance drift observability | Partial |
+| 006 | `006-provenance-drift-observability/` | Provenance drift observability | Accepted-partial (drift observability signal implemented; remainder intentionally deferred) |
 | 007 | `007-outcome-weighted-ranking-followon/` | Outcome-weighted ranking follow-on | Implemented (shadow-only, live NO-GO) |
 | 008 | `008-advisor-workspace-root-resolution/` | Resolve the advisor workspace root by walking up from the module location so advisor state writes to the canonical root | Complete |
+
+> **Tracked-dead note (2026-07-07):** the orphan `mcp_server/scripts/skill-outcome-fold-tick.mjs` (007's ambient-tick driver) and its stale `dist` output (`dist/mcp_server/lib/scorer/skill-outcome-store.js` plus `.map`) are confirmed dead. Their store dependency `skill-outcome-store.ts` was deleted at commit `8efcde0e6b`. They are TRACKED for physical deletion in the gated code window; they live under `mcp_server/` (off-limits now), so they cannot be removed here.
 
 ### Phase Transition Rules
 
