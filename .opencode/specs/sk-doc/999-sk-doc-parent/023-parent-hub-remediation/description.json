@@ -1,0 +1,29 @@
+{
+  "specFolder": "sk-doc/999-sk-doc-parent/023-parent-hub-remediation",
+  "description": "Remediation plan for all 18 parent-hub review findings: 9 ordered work units, 6 operator decision forks, 4/4-canon-clean done-bar.",
+  "keywords": [
+    "remediation",
+    "plan",
+    "parent-hub",
+    "review",
+    "findings",
+    "ordered",
+    "work",
+    "units",
+    "operator",
+    "decision",
+    "forks",
+    "4-canon-clean",
+    "done-bar"
+  ],
+  "lastUpdated": "2026-07-07T15:55:58.658Z",
+  "specId": "023",
+  "folderSlug": "parent-hub-remediation",
+  "parentChain": [
+    "sk-doc",
+    "999-sk-doc-parent"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": 1
+}
