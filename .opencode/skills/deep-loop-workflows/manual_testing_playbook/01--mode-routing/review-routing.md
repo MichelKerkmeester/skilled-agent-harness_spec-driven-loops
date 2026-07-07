@@ -1,6 +1,6 @@
 ---
 title: "MR-002: Review Mode Routing"
-description: "Verify an iterative code-audit request resolves to the review mode through the deep-loop-workflows hub."
+description: "Verify an iterative review request resolves to the review mode through the deep-loop-workflows hub."
 version: "1.1.0.0"
 ---
 
@@ -8,7 +8,7 @@ version: "1.1.0.0"
 
 ## 1. OVERVIEW
 
-This scenario verifies that an iterative code-audit request resolves to `workflowMode: review` and produces the review route with P0/P1/P2 finding expectations.
+This scenario verifies that an iterative review request resolves to `workflowMode: review` and produces the review route with P0/P1/P2 finding expectations.
 
 ## 2. SCENARIO CONTRACT
 
@@ -30,7 +30,7 @@ Run a deep review of the current routing changes, iterate until findings converg
 
 **Why this route is expected**:
 - Registry fields: `workflowMode: "review"`, `runtimeLoopType: "review"`, `backendKind: "runtime-loop-type"`, `command: "/deep:review"`, `agent: "deep-review"`, `artifactRoot: "review/"`.
-- Alias evidence: `aliases` includes `"deep-review"`, `"review loop"`, `"iterative code audit"`, `"severity weighted findings"`, `"code-audit"`, and `"release-readiness"`.
+- Alias evidence: `aliases` includes `"deep-review"`, `"review loop"`, `"iterative review loop"`, `"severity weighted findings"`, `"convergence review"`, and `"release-readiness"`.
 - Advisor evidence: `advisorRouting.routingClass: "lexical"` and `advisorRouting.legacyAdvisorId: "deep-review"`.
 
 **Desired user-visible outcome**: The AI invokes or describes the `review` lane, names `/deep:review`, `deep-review`, `runtime-loop-type`, and `review/`, and frames output as severity-weighted findings plus verdict.
