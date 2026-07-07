@@ -35,14 +35,11 @@ fi
 
 check_box_alignment() {
     echo "⏹️  Checking for misaligned boxes..."
-    NUM_WIDTHS=$(awk '
-      {
-        while (match($0, /─{2,}/)) {
-          print RLENGTH
-          $0 = substr($0, RSTART + RLENGTH)
-        }
-      }
-    ' "$FLOWCHART_FILE" | sort -u | sed '/^$/d' | wc -l | tr -d ' ')
+    # Measure box-width consistency from actual box borders only: matching-corner
+    # tops/bottoms and side-tee separators. Connector, merge, fork, elbow and
+    # swimlane-divider runs are not box widths, and counting them wrongly flagged
+    # connector geometry as box-width variation.
+    NUM_WIDTHS=$(grep -oE '┌─+┐|└─+┘|├─+┤' "$FLOWCHART_FILE" 2>/dev/null | grep -oE '─+' | awk '{ print length }' | sort -u | sed '/^$/d' | wc -l | tr -d ' ')
     NUM_WIDTHS="${NUM_WIDTHS:-0}"
 
     if [[ $NUM_WIDTHS -gt 5 ]]; then
