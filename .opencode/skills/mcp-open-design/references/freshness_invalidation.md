@@ -13,7 +13,7 @@ version: 1.0.0.0
 
 # Open Design Freshness Invalidation
 
-This document defines the freshness consumer for `DESIGN_PROOF_TOKEN` validation. It does not define a second token schema. Token fields, boundary responsibilities, and validator acceptance are inherited by citation from [`DESIGN_PROOF_TOKEN` §2, §6, and §7](../../sk-design/references/design_proof_token.md#2-field-schema-v1).
+This document defines the freshness consumer for `DESIGN_PROOF_TOKEN` validation. It does not define a second token schema. Token fields, boundary responsibilities, and validator acceptance are inherited by citation from [`DESIGN_PROOF_TOKEN` §2, §6, and §7](../../sk-design/shared/design_proof_token.md#2-field-schema-v1).
 
 The opencode boundary is token-only and stateless. It can enforce malformed-time, stale, future-issued, and unreasonable TTL-span checks because those are fully determined by `issuedAt` and `expiresAt`. Replay and payload mismatch are run-scoped residuals at that boundary: they are mandatory reject rules, but they require state or payload data held by the guarded proxy or parent.
 

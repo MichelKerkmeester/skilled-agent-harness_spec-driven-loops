@@ -1,6 +1,6 @@
 {
   "skill": "sk-design",
-  "version": "1.2.0.0",
+  "version": "1.2.1.0",
   "routerPolicy": {
     "defaultMode": "interface",
     "ambiguityDelta": 1,
@@ -14,7 +14,7 @@
       "shared/anti_slop_principles.md",
       "shared/cognitive_laws.md",
       "shared/design_token_vocabulary.md",
-      "references/design_proof_token.md"
+      "shared/design_proof_token.md"
     ],
     "bundleRules": [
       {

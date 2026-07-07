@@ -73,7 +73,7 @@ Context verdict: [ ] LOADED [ ] BLOCKED, gaps: `__________`
 
 ## 6. SOURCE PROOF
 
-Recompute rule: raw-byte sha256 per `../../references/design_proof_token.md` section 4. Gate: `python3 ../scripts/proof_check.py --require-source-proof <this-file>.md`.
+Recompute rule: raw-byte sha256 per `../design_proof_token.md` section 4. Gate: `python3 ../scripts/proof_check.py --require-source-proof <this-file>.md`.
 
 | Path | SHA256 | Anchor | Echo |
 |---|---|---|---|

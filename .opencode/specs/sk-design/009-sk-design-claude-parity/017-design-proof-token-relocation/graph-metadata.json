@@ -1,0 +1,223 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-design/009-sk-design-claude-parity/017-design-proof-token-relocation",
+  "spec_folder": "sk-design/009-sk-design-claude-parity/017-design-proof-token-relocation",
+  "parent_id": "sk-design/009-sk-design-claude-parity",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "design proof token relocation",
+      "phase 017 sk-design references",
+      "sk-design shared folder consolidation",
+      "phase 017 plan",
+      "design proof token relocation plan",
+      "tasks",
+      "phase 017 tasks",
+      "implementation",
+      "summary",
+      "phase 017 implementation summary",
+      "design proof token relocation summary"
+    ],
+    "key_topics": [
+      "design",
+      "proof",
+      "token",
+      "relocation",
+      "phase",
+      "017",
+      "sk-design",
+      "references",
+      "shared",
+      "folder",
+      "consolidation",
+      "plan"
+    ],
+    "importance_tier": "normal",
+    "status": "in_progress",
+    "key_files": [
+      ".opencode/skills/sk-design/shared/design_proof_token.md",
+      ".opencode/skills/sk-design/hub-router.json",
+      ".opencode/skills/sk-design/shared/assets/proof_of_application_card.md",
+      ".opencode/skills/sk-design/shared/assets/context_loaded_card.md",
+      ".opencode/skills/mcp-open-design/references/cli_child_pairing.md",
+      ".opencode/skills/mcp-open-design/references/guarded_proxy.md",
+      ".opencode/skills/mcp-open-design/references/freshness_invalidation.md",
+      ".opencode/skills/mcp-open-design/references/inner_generator_binding.md",
+      "implementation-summary.md",
+      "spec.md",
+      "plan.md",
+      "tasks.md"
+    ],
+    "entities": [
+      {
+        "name": "design_proof_token.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-design/shared/design_proof_token.md",
+        "source": "derived"
+      },
+      {
+        "name": "hub-router.json",
+        "kind": "config",
+        "path": ".opencode/skills/sk-design/hub-router.json",
+        "source": "derived"
+      },
+      {
+        "name": "proof_of_application_card.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-design/shared/assets/proof_of_application_card.md",
+        "source": "derived"
+      },
+      {
+        "name": "context_loaded_card.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-design/shared/assets/context_loaded_card.md",
+        "source": "derived"
+      },
+      {
+        "name": "cli_child_pairing.md",
+        "kind": "doc",
+        "path": ".opencode/skills/mcp-open-design/references/cli_child_pairing.md",
+        "source": "derived"
+      },
+      {
+        "name": "guarded_proxy.md",
+        "kind": "doc",
+        "path": ".opencode/skills/mcp-open-design/references/guarded_proxy.md",
+        "source": "derived"
+      },
+      {
+        "name": "freshness_invalidation.md",
+        "kind": "doc",
+        "path": ".opencode/skills/mcp-open-design/references/freshness_invalidation.md",
+        "source": "derived"
+      },
+      {
+        "name": "inner_generator_binding.md",
+        "kind": "doc",
+        "path": ".opencode/skills/mcp-open-design/references/inner_generator_binding.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Move",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Pure",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Test Type",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. SUMMARY",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "`sk-design`'s hub root had a `references/` folder containing exactly one file, `designprooftoken.md`, while every other cross-cutting design doc (`antislopprinciples.md`, `cognitivelaws.md`, `designtokenvocabulary.md`, etc.) already lives directly in `shared/`",
+    "created_at": "2026-07-07T04:26:23.402Z",
+    "last_save_at": "2026-07-07T04:27:54.018Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:0ca640981d1a6a2e8fdfd7e0f41814f6caf01c699cde9add0606b869f4a45c33",
+    "source_doc_hashes": {
+      "spec.md": "c5e2020b4311401ff59520cd9792cc20ad3b709f952adbc3fdc920cbd0dac8e0",
+      "plan.md": "3782580d7838363c0e34636e1d07add1444a1b9e5ed3e8880d3d9caa660d91a6",
+      "tasks.md": "6a64f424c4b18ca8f7422dfd064f2268c7bfea28eaeea1782ce61b8e3de6f4ae",
+      "implementation-summary.md": "2c3f4d127b2941febe6948f571588b6c9a6e95342d11a352d8235287039b47d4"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

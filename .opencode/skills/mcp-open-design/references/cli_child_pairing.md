@@ -18,7 +18,7 @@ This contract is the counterpart to two existing request-path contracts:
 
 | Dependency | Boundary |
 |---|---|
-| [`DESIGN_PROOF_TOKEN`](../../sk-design/references/design_proof_token.md) | Defines token minting, digest convention, freshness, replay, surface binding, and validator behavior. This document references that contract and does not redefine token internals. |
+| [`DESIGN_PROOF_TOKEN`](../../sk-design/shared/design_proof_token.md) | Defines token minting, digest convention, freshness, replay, surface binding, and validator behavior. This document references that contract and does not redefine token internals. |
 | [`Open Design Guarded Proxy`](./guarded_proxy.md) | Defines the request-path precondition and guarded/exempt policy before an Open Design call is forwarded. This document references that policy and does not redefine the proxy. |
 
 The transport result is a post-operation receipt, not a new authorization token. It never re-mints or extends a `DESIGN_PROOF_TOKEN`.
