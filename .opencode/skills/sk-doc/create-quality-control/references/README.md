@@ -45,10 +45,10 @@ Load the file that matches the current task:
 - [../README.md](../README.md) - Human orientation for the packet
 
 ### Shared Backbone
-- [core_standards.md](../../shared/references/global/core_standards.md) - Document type detection and structural standards
-- [validation.md](../../shared/references/global/validation.md) - DQI bands and validation severity
-- [hvr_rules.md](../../shared/references/global/hvr_rules.md) - Human Voice Rules for natural documentation style
-- [quick_reference.md](../../shared/references/global/quick_reference.md) - Command and quality-gate cheat sheet
+- [core_standards.md](../../shared/references/core_standards.md) - Document type detection and structural standards
+- [validation.md](../../shared/references/validation.md) - DQI bands and validation severity
+- [hvr_rules.md](../../shared/references/hvr_rules.md) - Human Voice Rules for natural documentation style
+- [quick_reference.md](../../shared/references/quick_reference.md) - Command and quality-gate cheat sheet
 
 ### Scripts
 - [extract_structure.py](../../shared/scripts/extract_structure.py) - Structure metrics, checklist, and DQI (source of truth)

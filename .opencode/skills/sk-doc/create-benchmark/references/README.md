@@ -63,8 +63,8 @@ Load the file that matches the current task:
 ### Related sk-doc references
 
 - [`create-readme references`](../../create-readme/references/README.md): README authoring conventions used by `benchmarks/README.md`
-- [`global/core_standards.md`](../../shared/references/global/core_standards.md): cross-document standards including ANCHOR conventions
-- [`global/evergreen_packet_id_rule.md`](../../shared/references/global/evergreen_packet_id_rule.md): evergreen rule for runtime docs; benchmark reports follow it via `SOURCE.md` cross-link rather than inline packet IDs
+- [`global/core_standards.md`](../../shared/references/core_standards.md): cross-document standards including ANCHOR conventions
+- [`global/evergreen_packet_id_rule.md`](../../shared/references/evergreen_packet_id_rule.md): evergreen rule for runtime docs; benchmark reports follow it via `SOURCE.md` cross-link rather than inline packet IDs
 
 ---
 

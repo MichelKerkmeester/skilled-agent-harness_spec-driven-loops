@@ -143,7 +143,7 @@ Target skill metadata read from `.opencode/skills/sk-doc/graph-metadata.json`:
     "key_files": [
       ".opencode/skills/sk-doc/SKILL.md",
       ".opencode/skills/sk-doc/README.md",
-      ".opencode/skills/sk-doc/shared/references/global/validation.md",
+      ".opencode/skills/sk-doc/shared/references/validation.md",
       ".opencode/skills/sk-doc/create-skill/references/README.md",
       ".opencode/skills/sk-doc/create-readme/assets/readme/readme_template.md",
       ".opencode/skills/sk-doc/scripts/validate_document.py",
@@ -206,7 +206,7 @@ Local docs/assets source check returned paths including:
 ```text
 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/sk-doc/shared/assets/frontmatter_templates.md
 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/sk-doc/create-manual-testing-playbook/assets/testing_playbook/manual_testing_playbook_template.md
-/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/sk-doc/shared/references/global/validation.md
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/sk-doc/shared/references/validation.md
 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/sk-doc/create-skill/references/README.md
 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/sk-doc/create-readme/references/README.md
 ```

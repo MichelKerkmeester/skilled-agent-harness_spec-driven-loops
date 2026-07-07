@@ -40,5 +40,5 @@ python3 .opencode/skills/sk-doc/shared/scripts/validate_document.py <changelog-f
 ## 5. RELATED
 
 - Shared format: `../shared/assets/changelog_template.md`
-- Shared standards: `../shared/references/global/`
+- Shared standards: `../shared/references/`
 - Command entry point: `/create:changelog`

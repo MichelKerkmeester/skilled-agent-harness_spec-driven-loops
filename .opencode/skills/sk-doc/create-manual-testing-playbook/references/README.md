@@ -50,10 +50,10 @@ Load the file that matches the current task:
 - [manual_testing_playbook_snippet_template.md](../assets/testing_playbook/manual_testing_playbook_snippet_template.md) - Per-feature file scaffold
 
 ### Shared Reference Files
-- [core_standards.md](../../shared/references/global/core_standards.md) - Document type rules and structural requirements
-- [validation.md](../../shared/references/global/validation.md) - Shared validation and DQI workflow
-- [frontmatter_versioning.md](../../shared/references/global/frontmatter_versioning.md) - 4-part version expectations
-- [quick_reference.md](../../shared/references/global/quick_reference.md) - Condensed commands and file locations
+- [core_standards.md](../../shared/references/core_standards.md) - Document type rules and structural requirements
+- [validation.md](../../shared/references/validation.md) - Shared validation and DQI workflow
+- [frontmatter_versioning.md](../../shared/references/frontmatter_versioning.md) - 4-part version expectations
+- [quick_reference.md](../../shared/references/quick_reference.md) - Condensed commands and file locations
 - [workflows.md](../../create-quality-control/references/workflows.md) - Execution-mode reference
 
 ---

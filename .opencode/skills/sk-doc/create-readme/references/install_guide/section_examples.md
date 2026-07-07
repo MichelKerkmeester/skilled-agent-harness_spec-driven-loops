@@ -136,4 +136,4 @@ Include platform-specific configuration only when it is real for the tool.
 
 - [quality_and_standards.md](quality_and_standards.md) - Troubleshooting standards, quality criteria and checklist
 - [install_guide_template.md](../../assets/readme/install_guide_template.md) - Full install-guide scaffold
-- [core_standards.md](../../../shared/references/global/core_standards.md) - Document formatting rules
+- [core_standards.md](../../../shared/references/core_standards.md) - Document formatting rules

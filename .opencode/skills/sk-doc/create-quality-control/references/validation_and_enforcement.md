@@ -191,5 +191,5 @@ Phase 3: AI provides recommendations
 - [workflows.md](./workflows.md) - Four execution modes and mode selection
 - [workflow_examples.md](./workflow_examples.md) - Worked command examples and batch processing
 - [optimization.md](./optimization.md) - Content transformation procedure
-- [core_standards.md](../../shared/references/global/core_standards.md) - Document type rules and structural requirements
-- [validation.md](../../shared/references/global/validation.md) - Quality scoring and validation workflows
+- [core_standards.md](../../shared/references/core_standards.md) - Document type rules and structural requirements
+- [validation.md](../../shared/references/validation.md) - Quality scoring and validation workflows

@@ -53,9 +53,9 @@ Load the file that matches the current task:
 
 ### Shared sk-doc backbone
 
-- [quick_reference.md](../../shared/references/global/quick_reference.md) - condensed commands and file locations
-- [validation.md](../../shared/references/global/validation.md) - quality scoring and validation workflows
-- [frontmatter_versioning.md](../../shared/references/global/frontmatter_versioning.md) - 4-part version field rules
+- [quick_reference.md](../../shared/references/quick_reference.md) - condensed commands and file locations
+- [validation.md](../../shared/references/validation.md) - quality scoring and validation workflows
+- [frontmatter_versioning.md](../../shared/references/frontmatter_versioning.md) - 4-part version field rules
 
 ### Companion packets
 

@@ -366,5 +366,5 @@ Use these only for overflow detail, exhaustive examples, or schema checks beyond
 - `assets/parent_skill/parent_skill_*` - parent hub templates.
 - `scripts/init_skill.py` - standalone skill scaffold helper.
 - `scripts/package_skill.py` - validation and packaging helper.
-- `../shared/references/global/core_standards.md` - shared markdown standards.
-- `../shared/references/global/validation.md` - shared validation workflow.
+- `../shared/references/core_standards.md` - shared markdown standards.
+- `../shared/references/validation.md` - shared validation workflow.

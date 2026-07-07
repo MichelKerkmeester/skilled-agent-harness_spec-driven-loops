@@ -204,7 +204,7 @@ These rules apply to both changelog files and GitHub release notes. See `PUBLIC_
 - **H4 (`####`) for category subsections** under each H2 -- never H3
 - **`&nbsp;` between H4 subsections within the same H2** -- this is the soft separator that renders as an invisible line on GitHub. Do NOT use `---` between H4s.
 - **`---` only between H2 sections** -- place a `---` divider before each `##` heading. Do NOT place `---` (or `&nbsp;`) between an H2 (or its intro paragraph) and the first H4 underneath it.
-- **No Oxford commas, em dashes, or semicolons** -- see HVR rules in `.opencode/skills/sk-doc/shared/references/global/hvr_rules.md`
+- **No Oxford commas, em dashes, or semicolons** -- see HVR rules in `.opencode/skills/sk-doc/shared/references/hvr_rules.md`
 
 ### Category Vocabulary (use plain names)
 

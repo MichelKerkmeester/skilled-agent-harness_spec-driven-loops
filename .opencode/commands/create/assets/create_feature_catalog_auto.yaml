@@ -143,8 +143,8 @@ operation_router:
 
 reference_sources:
   specific_creation: .opencode/skills/sk-doc/create-feature-catalog/references/README.md
-  core_standards: .opencode/skills/sk-doc/shared/references/global/core_standards.md
-  validation: .opencode/skills/sk-doc/shared/references/global/validation.md
+  core_standards: .opencode/skills/sk-doc/shared/references/core_standards.md
+  validation: .opencode/skills/sk-doc/shared/references/validation.md
 
 template_sources:
   root_catalog: .opencode/skills/sk-doc/create-feature-catalog/assets/feature_catalog/feature_catalog_template.md

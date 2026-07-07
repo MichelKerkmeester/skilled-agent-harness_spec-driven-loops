@@ -198,4 +198,4 @@ version: 2.0.0
 - [skill_procedure_template.md](../../assets/skill/skill_procedure_template.md) - Private procedure card templates and guidelines
 
 ### Reference Files
-- [core_standards.md](../../../shared/references/global/core_standards.md) - Document type rules and structural requirements
+- [core_standards.md](../../../shared/references/core_standards.md) - Document type rules and structural requirements

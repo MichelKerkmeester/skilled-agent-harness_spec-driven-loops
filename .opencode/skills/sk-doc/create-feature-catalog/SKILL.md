@@ -104,8 +104,8 @@ Use these packet resources while authoring:
 
 - `assets/feature_catalog/feature_catalog_template.md` for the root catalog scaffold.
 - `assets/feature_catalog/feature_catalog_snippet_template.md` for each per-feature file.
-- `../shared/references/global/quick_reference.md` and `../shared/references/global/validation.md` before delivery.
-- `../shared/references/global/frontmatter_versioning.md` when checking frontmatter version fields.
+- `../shared/references/quick_reference.md` and `../shared/references/validation.md` before delivery.
+- `../shared/references/frontmatter_versioning.md` when checking frontmatter version fields.
 - `references/README.md` to route the reference overflow — [`examples.md`](references/examples.md) (worked live-catalog walkthrough) and [`common_pitfalls.md`](references/common_pitfalls.md) (deep-dive pitfalls, template-versus-reference split) — only for depth beyond this inline workflow.
 
 ---

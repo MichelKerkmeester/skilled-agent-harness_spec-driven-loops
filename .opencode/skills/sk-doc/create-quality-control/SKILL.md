@@ -373,6 +373,6 @@ Use these only for deep overflow detail, edge cases, exhaustive templates and lo
 - `../shared/scripts/extract_structure.py` - Structure extraction, metrics, checklist data and DQI.
 - `../shared/scripts/validate_document.py` - Pre-delivery document validation gate.
 - `../shared/scripts/quick_validate.py` - Fast validation for folders or skill packets.
-- `../shared/references/global/core_standards.md` - Document type detection and structural rules.
-- `../shared/references/global/validation.md` - DQI scoring, quality bands and gate interpretation.
-- `../shared/references/global/hvr_rules.md` - Human Voice Rules for natural documentation style.
+- `../shared/references/core_standards.md` - Document type detection and structural rules.
+- `../shared/references/validation.md` - DQI scoring, quality bands and gate interpretation.
+- `../shared/references/hvr_rules.md` - Human Voice Rules for natural documentation style.

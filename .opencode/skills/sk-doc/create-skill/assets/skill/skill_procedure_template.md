@@ -235,6 +235,6 @@ Placement:
 - [frontmatter_templates.md](../../../shared/assets/frontmatter_templates.md) - Frontmatter by document type
 
 ### Standards
-- [core_standards.md](../../../shared/references/global/core_standards.md) - Document type rules
+- [core_standards.md](../../../shared/references/core_standards.md) - Document type rules
 - [creation_workflow.md](../../references/skill/creation_workflow.md) - Full skill creation workflow
 - [examples_and_maintenance.md](../../references/skill/examples_and_maintenance.md) - Worked example skills, including the procedure-card layout

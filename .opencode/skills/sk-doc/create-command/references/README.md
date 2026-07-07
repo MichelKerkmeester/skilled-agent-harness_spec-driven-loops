@@ -52,8 +52,8 @@ Load the file that matches the current task:
 - [command_presentation_template.md](../assets/command/command_presentation_template.md) - Presentation asset skeleton for split command families
 
 ### Shared Reference Files
-- [core_standards.md](../../shared/references/global/core_standards.md) - Document type rules and structural requirements
-- [validation.md](../../shared/references/global/validation.md) - Quality scoring and validation workflows
+- [core_standards.md](../../shared/references/core_standards.md) - Document type rules and structural requirements
+- [validation.md](../../shared/references/validation.md) - Quality scoring and validation workflows
 - [validate_document.py](../../shared/scripts/validate_document.py) - Blocking structure validator
 - [extract_structure.py](../../shared/scripts/extract_structure.py) - Structure extraction helper
 

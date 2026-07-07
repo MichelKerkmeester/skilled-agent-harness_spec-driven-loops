@@ -518,5 +518,5 @@ Validation:
 
 - [manual_testing_playbook_snippet_template.md](./manual_testing_playbook_snippet_template.md) - Per-feature file template
 - [template_rules.json](../../../shared/assets/template_rules.json) - Machine-readable validation rules
-- [core_standards.md](../../../shared/references/global/core_standards.md) - Document formatting standards
+- [core_standards.md](../../../shared/references/core_standards.md) - Document formatting standards
 - [sk-doc SKILL.md](../../SKILL.md) - Mode 5: Playbook Creation

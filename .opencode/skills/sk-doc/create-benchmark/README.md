@@ -44,10 +44,10 @@ Scripts:
 
 Shared resources loaded by the workflow:
 
-- `../shared/references/global/quick_reference.md`
-- `../shared/references/global/validation.md`
-- `../shared/references/global/evergreen_packet_id_rule.md` when runtime-doc packet references matter.
-- `../shared/references/global/core_standards.md` and `../shared/assets/frontmatter_templates.md` when style or frontmatter questions arise.
+- `../shared/references/quick_reference.md`
+- `../shared/references/validation.md`
+- `../shared/references/evergreen_packet_id_rule.md` when runtime-doc packet references matter.
+- `../shared/references/core_standards.md` and `../shared/assets/frontmatter_templates.md` when style or frontmatter questions arise.
 
 ## 4. QUICK START
 

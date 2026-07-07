@@ -10,7 +10,7 @@
       "orderedBundle": "clearly separate authoring intents route to an ordered workflow mode list",
       "defer": "unclear or contradictory intent asks for disambiguation"
     },
-    "defaultResource": ["shared/references/global/quick_reference.md"],
+    "defaultResource": ["shared/references/quick_reference.md"],
     "bundleRules": [
       {
         "name": "create-then-quality",

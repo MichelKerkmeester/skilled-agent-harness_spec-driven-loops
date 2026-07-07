@@ -1178,5 +1178,5 @@ python .opencode/skills/sk-doc/scripts/package_skill.py .opencode/skills/[skill-
 - [skill_reference_template.md](./skill_reference_template.md) - Reference file templates
 
 ### Standards
-- [core_standards.md](../../../shared/references/global/core_standards.md) - Document type rules
+- [core_standards.md](../../../shared/references/core_standards.md) - Document type rules
 - [skill_creation.md](../../references/README.md) - Complete skill creation workflow

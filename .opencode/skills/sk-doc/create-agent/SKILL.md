@@ -200,5 +200,5 @@ Use these only when the core path above is not enough:
 3. `references/permission_design.md` for `mode` selection and least-authority permission design.
 4. `references/common_pitfalls.md` for recurring mistakes with why-it-breaks and correct fixes.
 5. `assets/agent_template.md` for exhaustive body variants, binding/refusal contracts, and scaffold examples.
-6. `../shared/references/global/validation.md` for validation pipeline details.
-7. `../shared/references/global/core_standards.md` for shared document structure rules.
+6. `../shared/references/validation.md` for validation pipeline details.
+7. `../shared/references/core_standards.md` for shared document structure rules.

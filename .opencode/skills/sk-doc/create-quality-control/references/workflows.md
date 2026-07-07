@@ -82,9 +82,9 @@ The validation sequence, enforcement prompts, phase chaining, worked examples, a
 - [validation_and_enforcement.md](./validation_and_enforcement.md) - Validation, enforcement prompts, phase chaining, troubleshooting
 - [workflow_examples.md](./workflow_examples.md) - Worked command examples and batch processing
 - [optimization.md](./optimization.md) - Content transformation procedure
-- [core_standards.md](../../shared/references/global/core_standards.md) - Document type rules and structural requirements
-- [validation.md](../../shared/references/global/validation.md) - Quality scoring and validation workflows
-- [quick_reference.md](../../shared/references/global/quick_reference.md) - Quick command reference
+- [core_standards.md](../../shared/references/core_standards.md) - Document type rules and structural requirements
+- [validation.md](../../shared/references/validation.md) - Quality scoring and validation workflows
+- [quick_reference.md](../../shared/references/quick_reference.md) - Quick command reference
 - [skill_creation.md](../../create-skill/references/README.md) - Skill creation workflow
 - [create-readme references](../../create-readme/references/README.md) - Install guide standards and workflow
 

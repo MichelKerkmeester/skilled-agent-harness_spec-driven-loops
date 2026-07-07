@@ -385,6 +385,6 @@ The core workflow lives in this `SKILL.md`. Use these files only for deep overfl
 - `references/README.md` for the overflow route map that indexes the `readme/` and `install_guide/` reference groups.
 - `references/readme/` for extended README type, voice, writing-pattern and quality detail across three single-concern files.
 - `references/install_guide/` for extended install-guide section examples, platform config and quality standards across two single-concern files.
-- `../shared/references/global/core_standards.md` for shared document formatting rules.
-- `../shared/references/global/hvr_rules.md` for the full Human Voice Rules.
-- `../shared/references/global/evergreen_packet_id_rule.md` for current-state documentation rules.
+- `../shared/references/core_standards.md` for shared document formatting rules.
+- `../shared/references/hvr_rules.md` for the full Human Voice Rules.
+- `../shared/references/evergreen_packet_id_rule.md` for current-state documentation rules.

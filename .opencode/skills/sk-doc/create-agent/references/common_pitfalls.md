@@ -47,4 +47,4 @@ Agent files fail in a small, predictable set of ways: the component should not h
 - [README.md](README.md) - reference route map for the create-agent packet
 - [agent-vs-skill-vs-command.md](agent-vs-skill-vs-command.md) - avoids the first mistake by choosing the component type up front
 - [permission_design.md](permission_design.md) - avoids the permission and `task` mistakes
-- [validation.md](../../shared/references/global/validation.md) - the validation pipeline that catches structural defects
+- [validation.md](../../shared/references/validation.md) - the validation pipeline that catches structural defects

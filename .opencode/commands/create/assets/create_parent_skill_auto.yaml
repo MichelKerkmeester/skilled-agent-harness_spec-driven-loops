@@ -170,8 +170,8 @@ reference_sources:
   specific_creation: .opencode/skills/sk-doc/create-skill/references/README.md
   pattern_section: "Parent Skills with Nested Mode Packets"
   hub_router_schema: .opencode/skills/sk-doc/create-skill/references/parent_skill/parent_hub_router_schema.md
-  core_standards: .opencode/skills/sk-doc/shared/references/global/core_standards.md
-  validation: .opencode/skills/sk-doc/shared/references/global/validation.md
+  core_standards: .opencode/skills/sk-doc/shared/references/core_standards.md
+  validation: .opencode/skills/sk-doc/shared/references/validation.md
   canonical_example: .opencode/skills/sk-code
 
 template_sources:

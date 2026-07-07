@@ -110,7 +110,7 @@ scripts/package_skill.py <path/to/skill> <output-directory>
 - ✅ Final review completed (no critical gaps)
 - ✅ All bundled resources included
 - ✅ README or documentation provided
-- ✅ Version number in frontmatter (4-part `X.Y.Z.W`; see [frontmatter_versioning.md](../../../shared/references/global/frontmatter_versioning.md))
+- ✅ Version number in frontmatter (4-part `X.Y.Z.W`; see [frontmatter_versioning.md](../../../shared/references/frontmatter_versioning.md))
 - ✅ License information (if applicable)
 
 ### Installation
@@ -135,5 +135,5 @@ scripts/package_skill.py <path/to/skill> <output-directory>
 - [overview.md](./overview.md) - Skill anatomy and structure system
 
 ### Reference Files
-- [core_standards.md](../../../shared/references/global/core_standards.md) - Document type rules and structural requirements
-- [validation.md](../../../shared/references/global/validation.md) - Quality scoring and validation workflows
+- [core_standards.md](../../../shared/references/core_standards.md) - Document type rules and structural requirements
+- [validation.md](../../../shared/references/validation.md) - Quality scoring and validation workflows

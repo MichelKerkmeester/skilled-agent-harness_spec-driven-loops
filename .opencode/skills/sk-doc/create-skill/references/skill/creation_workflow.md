@@ -255,7 +255,7 @@ SKILL.md requires all four fields. `package_skill.py --check` hard-fails when an
 | `name`          | ✅        | Must match folder name, lowercase-with-hyphens |
 | `description`   | ✅        | Single line, ≤ 130 chars (skill) / ≤ 110 (command); see Pitfall 1 in [common_pitfalls.md](../shared/common_pitfalls.md) for trim rules |
 | `allowed-tools` | ✅        | Array format (`[Read, Write, ...]`)           |
-| `version`       | ✅        | 4-part `X.Y.Z.W` (e.g., `1.0.0.0`); see [frontmatter_versioning.md](../../../shared/references/global/frontmatter_versioning.md) |
+| `version`       | ✅        | 4-part `X.Y.Z.W` (e.g., `1.0.0.0`); see [frontmatter_versioning.md](../../../shared/references/frontmatter_versioning.md) |
 
 ```yaml
 ---
@@ -407,4 +407,4 @@ Iteration 3:
 - [frontmatter_templates.md](../../../shared/assets/frontmatter_templates.md) - Frontmatter by document type
 
 ### Reference Files
-- [core_standards.md](../../../shared/references/global/core_standards.md) - Document type rules and structural requirements
+- [core_standards.md](../../../shared/references/core_standards.md) - Document type rules and structural requirements

@@ -122,7 +122,7 @@ Human Voice Rules apply to all README content:
 - No banned words from the HVR reference.
 - Prefer active voice and direct verbs.
 
-Full reference: [`hvr_rules.md`](../../../shared/references/global/hvr_rules.md).
+Full reference: [`hvr_rules.md`](../../../shared/references/hvr_rules.md).
 
 ---
 
@@ -307,6 +307,6 @@ A: [Short answer with a link when useful.]
 
 - [`readme_code_template.md`](./readme_code_template.md) - Code-folder README scaffold.
 - [`README.md`](../../references/README.md) - README overflow reference map: types, voice, writing patterns and quality.
-- [`core_standards.md`](../../../shared/references/global/core_standards.md) - Markdown formatting rules.
-- [`validation.md`](../../../shared/references/global/validation.md) - Document validation and DQI scoring.
-- [`hvr_rules.md`](../../../shared/references/global/hvr_rules.md) - Human Voice Rules.
+- [`core_standards.md`](../../../shared/references/core_standards.md) - Markdown formatting rules.
+- [`validation.md`](../../../shared/references/validation.md) - Document validation and DQI scoring.
+- [`hvr_rules.md`](../../../shared/references/hvr_rules.md) - Human Voice Rules.

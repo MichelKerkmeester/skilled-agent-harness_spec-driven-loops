@@ -263,4 +263,4 @@ def route_request(context):
 - [skill_md_template.md](../../assets/skill/skill_md_template.md) - SKILL.md section pattern
 
 ### Reference Files
-- [core_standards.md](../../../shared/references/global/core_standards.md) - Document type rules and structural requirements
+- [core_standards.md](../../../shared/references/core_standards.md) - Document type rules and structural requirements

@@ -49,7 +49,7 @@ Load the file that matches the current task:
 - [command_template.md](../../create-command/assets/command/command_template.md) - companion scaffold for slash-command entry points
 
 ### Shared Reference Files
-- [core_standards.md](../../shared/references/global/core_standards.md) - document type rules and structural requirements
-- [validation.md](../../shared/references/global/validation.md) - quality scoring and validation workflows
-- [quick_reference.md](../../shared/references/global/quick_reference.md) - condensed commands and file locations
+- [core_standards.md](../../shared/references/core_standards.md) - document type rules and structural requirements
+- [validation.md](../../shared/references/validation.md) - quality scoring and validation workflows
+- [quick_reference.md](../../shared/references/quick_reference.md) - condensed commands and file locations
 - [workflows.md](../../create-quality-control/references/workflows.md) - execution-mode reference

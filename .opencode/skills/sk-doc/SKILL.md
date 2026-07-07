@@ -81,7 +81,7 @@ classify the request to one or more workflowMode values using hub-router.json
   (dominant authoring/quality intent; a command like /create:agent resolves directly)
 
 if confidence is low, intent is contradictory, or routerPolicy.defaultMode is null and no mode wins:
-  load_if_available("shared/references/global/quick_reference.md", seen)
+  load_if_available("shared/references/quick_reference.md", seen)
   return UNKNOWN_FALLBACK with a checklist to confirm workflowMode, target document/component, inputs, and validation expectations
 
 for each resolved workflowMode:
@@ -122,7 +122,7 @@ sk-doc/
 Each packet is self-contained (its own `SKILL.md`, `README.md`, `changelog/`, and moved `references/`/`assets/`/`scripts/`) and carries **no** `graph-metadata.json`, so the advisor discovers exactly one `sk-doc` identity.
 
 ### Shared backbone
-`shared/` holds the universal create-quality-control pipeline consumed by every packet: generic validator scripts (`shared/scripts/`), cross-cutting standards and vocabulary (`shared/references/global/`), and shared templates (`shared/assets/`). The `sk-doc/scripts/` root directory keeps facade symlinks pointing inward to `shared/` and the owning packets so tool paths resolve. There are no hub-root `assets/` or `references/` aggregation directories: consumers reference each packet's own `assets/`/`references/` or the `shared/` backbone directly.
+`shared/` holds the universal create-quality-control pipeline consumed by every packet: generic validator scripts (`shared/scripts/`), cross-cutting standards and vocabulary (`shared/references/`), and shared templates (`shared/assets/`). The `sk-doc/scripts/` root directory keeps facade symlinks pointing inward to `shared/` and the owning packets so tool paths resolve. There are no hub-root `assets/` or `references/` aggregation directories: consumers reference each packet's own `assets/`/`references/` or the `shared/` backbone directly.
 
 ---
 
@@ -152,5 +152,5 @@ Each packet is self-contained (its own `SKILL.md`, `README.md`, `changelog/`, an
 - Hub router: `hub-router.json` (signals + vocabulary classes).
 - Advisor descriptor: `description.json`; skill-graph identity: `graph-metadata.json`.
 - Packets: `create-skill/`, `create-readme/`, `create-agent/`, `create-command/`, `create-feature-catalog/`, `create-manual-testing-playbook/`, `create-benchmark/`, `create-flowchart/`, `create-quality-control/`.
-- Shared backbone: `shared/scripts/`, `shared/references/global/`, `shared/assets/`.
+- Shared backbone: `shared/scripts/`, `shared/references/`, `shared/assets/`.
 - Parent-skill pattern: `create-skill/references/parent_skill/parent_skills_nested_packets.md`.

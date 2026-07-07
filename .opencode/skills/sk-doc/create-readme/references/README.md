@@ -58,9 +58,9 @@ Load the file that matches the current task.
 - [install_guide_template.md](../assets/readme/install_guide_template.md) - Full install-guide scaffold and platform config patterns
 
 ### Shared Standards
-- [core_standards.md](../../shared/references/global/core_standards.md) - Document formatting rules
-- [hvr_rules.md](../../shared/references/global/hvr_rules.md) - Human Voice Rules
-- [validation.md](../../shared/references/global/validation.md) - Quality scoring (DQI)
+- [core_standards.md](../../shared/references/core_standards.md) - Document formatting rules
+- [hvr_rules.md](../../shared/references/hvr_rules.md) - Human Voice Rules
+- [validation.md](../../shared/references/validation.md) - Quality scoring (DQI)
 
 ---
 

@@ -375,7 +375,7 @@ Use these only for overflow detail, long examples, and exact skeletons:
 - `references/common_pitfalls.md` - command-vs-skill-vs-agent selection and the common command-authoring mistakes table.
 - `assets/command/command_template.md` - exhaustive command type templates, examples, vocabulary, and validation checklist.
 - `assets/command/command_presentation_template.md` - full `_presentation.txt` skeleton for split command families.
-- `../shared/references/global/core_standards.md` - shared document quality standards.
-- `../shared/references/global/validation.md` - shared validation expectations.
+- `../shared/references/core_standards.md` - shared document quality standards.
+- `../shared/references/validation.md` - shared validation expectations.
 - `../shared/scripts/validate_document.py` - blocking structure validation.
 - `../shared/scripts/extract_structure.py` - structure extraction for review.

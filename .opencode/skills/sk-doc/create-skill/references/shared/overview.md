@@ -275,5 +275,5 @@ Use these templates when authoring layered skills:
 - [frontmatter_templates.md](../../../shared/assets/frontmatter_templates.md) - Frontmatter by document type
 
 ### Reference Files
-- [core_standards.md](../../../shared/references/global/core_standards.md) - Document type rules and structural requirements
-- [validation.md](../../../shared/references/global/validation.md) - Quality scoring and validation workflows
+- [core_standards.md](../../../shared/references/core_standards.md) - Document type rules and structural requirements
+- [validation.md](../../../shared/references/validation.md) - Quality scoring and validation workflows

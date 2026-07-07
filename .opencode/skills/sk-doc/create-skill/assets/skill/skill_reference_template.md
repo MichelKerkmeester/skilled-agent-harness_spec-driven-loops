@@ -1021,5 +1021,5 @@ def test_default_mode():
 - [skill_asset_template.md](./skill_asset_template.md) - Asset file creation guide
 
 ### Standards
-- [core_standards.md](../../../shared/references/global/core_standards.md) - Document type rules
+- [core_standards.md](../../../shared/references/core_standards.md) - Document type rules
 - [skill_creation.md](../../references/README.md) - Complete skill creation workflow

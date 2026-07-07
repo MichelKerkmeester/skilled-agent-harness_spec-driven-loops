@@ -13,7 +13,7 @@ This is a thin router. The workflow, scoring, and doctrine live in the sk-doc pa
 ## Execution
 
 1. Load the create-quality-control packet contract: `.opencode/skills/sk-doc/create-quality-control/SKILL.md`.
-2. It consumes the shared create-quality-control backbone: `.opencode/skills/sk-doc/shared/scripts/extract_structure.py` (structure + DQI), `shared/scripts/validate_document.py` (validation), `shared/references/global/hvr_rules.md` (human voice), and `create-quality-control/references/optimization.md` (optimization procedure).
+2. It consumes the shared create-quality-control backbone: `.opencode/skills/sk-doc/shared/scripts/extract_structure.py` (structure + DQI), `shared/scripts/validate_document.py` (validation), `shared/references/hvr_rules.md` (human voice), and `create-quality-control/references/optimization.md` (optimization procedure).
 3. Detect the document type first, then apply the right enforcement level (SKILL/command docs strict, READMEs usability-focused, knowledge docs moderately strict).
 4. Default posture is **report** (structure + DQI score + issues + recommendations). Apply changes only under `--fix`/`--optimize`, and never rewrite original content without the flag.
 

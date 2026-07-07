@@ -41,10 +41,10 @@ Shared backbone used by this packet:
 - `../shared/scripts/extract_structure.py` - source of truth for structure metrics, checklist results, and DQI.
 - `../shared/scripts/validate_document.py` - pre-delivery markdown validation gate.
 - `../shared/scripts/quick_validate.py` - fast validation for files, folders, or skill packets.
-- `../shared/references/global/core_standards.md` - document type detection and structural standards.
-- `../shared/references/global/validation.md` - DQI bands and validation severity.
-- `../shared/references/global/hvr_rules.md` - Human Voice Rules for natural documentation style.
-- `../shared/references/global/quick_reference.md` - command and quality-gate cheat sheet.
+- `../shared/references/core_standards.md` - document type detection and structural standards.
+- `../shared/references/validation.md` - DQI bands and validation severity.
+- `../shared/references/hvr_rules.md` - Human Voice Rules for natural documentation style.
+- `../shared/references/quick_reference.md` - command and quality-gate cheat sheet.
 - `../shared/assets/` - shared templates and rules used across `sk-doc`.
 
 ## 4. QUICK START
@@ -67,8 +67,8 @@ Typical workflow:
 1. Read the target document.
 2. Load `references/README.md` (route map) and, for modes, `references/workflows.md`.
 3. Run `../shared/scripts/extract_structure.py <file>`.
-4. Interpret DQI and checklist output with `../shared/references/global/validation.md`.
-5. Apply HVR review using `../shared/references/global/hvr_rules.md`.
+4. Interpret DQI and checklist output with `../shared/references/validation.md`.
+5. Apply HVR review using `../shared/references/hvr_rules.md`.
 6. If the user requested edits, use `references/optimization.md` and edit only the target document.
 7. Validate with `../shared/scripts/validate_document.py <file>`.
 8. Re-run extraction after edits to confirm the final state.

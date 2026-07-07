@@ -226,4 +226,4 @@ A: [A short, direct answer. Link a stable file when it helps.]
 - [`skill_creation.md`](../../references/skill_creation.md) - Skill creation workflow and lifecycle guidance.
 - [`skill_md_template.md`](./skill_md_template.md) - Runtime `SKILL.md` scaffold.
 - [`skill_reference_template.md`](./skill_reference_template.md) - Reference-file scaffold.
-- [`hvr_rules.md`](../../../shared/references/global/hvr_rules.md) - Human Voice Rules, the voice this template writes in.
+- [`hvr_rules.md`](../../../shared/references/hvr_rules.md) - Human Voice Rules, the voice this template writes in.

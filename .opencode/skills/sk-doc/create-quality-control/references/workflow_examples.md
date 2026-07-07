@@ -95,4 +95,4 @@ done
 
 - [workflows.md](./workflows.md) - Four execution modes and mode selection
 - [validation_and_enforcement.md](./validation_and_enforcement.md) - Validation touchpoints, enforcement prompts, troubleshooting
-- [quick_reference.md](../../shared/references/global/quick_reference.md) - Quick command reference
+- [quick_reference.md](../../shared/references/quick_reference.md) - Quick command reference

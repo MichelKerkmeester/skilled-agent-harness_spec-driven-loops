@@ -72,9 +72,9 @@ Load the file that matches the current task:
 - [frontmatter_templates.md](../../shared/assets/frontmatter_templates.md) - Frontmatter by document type
 
 ### Reference Files
-- [core_standards.md](../../shared/references/global/core_standards.md) - Document type rules and structural requirements
-- [validation.md](../../shared/references/global/validation.md) - Quality scoring and validation workflows
-- [quick_reference.md](../../shared/references/global/quick_reference.md) - Quick command reference
+- [core_standards.md](../../shared/references/core_standards.md) - Document type rules and structural requirements
+- [validation.md](../../shared/references/validation.md) - Quality scoring and validation workflows
+- [quick_reference.md](../../shared/references/quick_reference.md) - Quick command reference
 - [references/README.md](../../create-readme/references/README.md) - Install guide standards and workflow
 
 ---

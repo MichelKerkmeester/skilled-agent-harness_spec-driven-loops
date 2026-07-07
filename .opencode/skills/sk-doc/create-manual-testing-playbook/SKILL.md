@@ -332,7 +332,7 @@ The core executable workflow lives in this `SKILL.md`. Use these only for overfl
 - `references/examples.md` - shipped reference playbooks and scaffold templates.
 - `assets/testing_playbook/manual_testing_playbook_template.md` - root playbook scaffold.
 - `assets/testing_playbook/manual_testing_playbook_snippet_template.md` - per-feature file scaffold.
-- `../shared/references/global/core_standards.md` - shared markdown structure rules.
-- `../shared/references/global/validation.md` - shared validation and DQI workflow.
-- `../shared/references/global/frontmatter_versioning.md` - 4-part version expectations.
-- `../shared/references/global/evergreen_packet_id_rule.md` - evergreen current-state wording.
+- `../shared/references/core_standards.md` - shared markdown structure rules.
+- `../shared/references/validation.md` - shared validation and DQI workflow.
+- `../shared/references/frontmatter_versioning.md` - 4-part version expectations.
+- `../shared/references/evergreen_packet_id_rule.md` - evergreen current-state wording.

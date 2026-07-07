@@ -108,5 +108,5 @@ An install guide is judged on whether users succeed on the first attempt and can
 
 - [section_examples.md](section_examples.md) - Section and configuration examples
 - [install_guide_template.md](../../assets/readme/install_guide_template.md) - Full install-guide scaffold
-- [validation.md](../../../shared/references/global/validation.md) - DQI scoring methodology
-- [core_standards.md](../../../shared/references/global/core_standards.md) - Document formatting rules
+- [validation.md](../../../shared/references/validation.md) - DQI scoring methodology
+- [core_standards.md](../../../shared/references/core_standards.md) - Document formatting rules

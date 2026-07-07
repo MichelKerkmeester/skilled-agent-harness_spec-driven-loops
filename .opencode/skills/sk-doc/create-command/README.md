@@ -28,8 +28,8 @@ Do not use it for skill scaffolding, agent scaffolding, prose-only documentation
 
 Shared validation and create-quality-control resources live outside this packet:
 
-- `../shared/references/global/core_standards.md`
-- `../shared/references/global/validation.md`
+- `../shared/references/core_standards.md`
+- `../shared/references/validation.md`
 - `../shared/scripts/validate_document.py`
 - `../shared/scripts/extract_structure.py`
 - `../shared/scripts/quick_validate.py`

@@ -202,4 +202,4 @@ Use `[PLACEHOLDER]` format with descriptive names:
 - [quality_and_checklist.md](quality_and_checklist.md) - Quality criteria and pre-publish checklist
 - [readme_template.md](../../assets/readme/readme_template.md) - Fillable general README scaffold
 - [readme_code_template.md](../../assets/readme/readme_code_template.md) - Code-folder README scaffold
-- [core_standards.md](../../../shared/references/global/core_standards.md) - Document formatting rules
+- [core_standards.md](../../../shared/references/core_standards.md) - Document formatting rules
