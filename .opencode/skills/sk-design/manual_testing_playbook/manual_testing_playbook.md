@@ -1,7 +1,7 @@
 ---
 title: "sk-design: Manual Testing Playbook"
 description: "Operator-facing reference combining the manual testing directory, execution expectations, and per-feature validation files for the sk-design parent-skill hub."
-version: 1.1.0.0
+version: 1.2.0.0
 ---
 
 # sk-design: Manual Testing Playbook
@@ -29,18 +29,18 @@ Canonical package artifacts:
 
 ## 1. OVERVIEW
 
-This playbook provides 33 deterministic scenarios across 8 categories validating the `sk-design` parent-skill hub. Each feature keeps its stable `{PREFIX}-NNN` ID and links to a dedicated feature file with the full execution contract.
+This playbook provides 37 deterministic scenarios across 8 categories validating the `sk-design` parent-skill hub. Each feature keeps its stable `{PREFIX}-NNN` ID and links to a dedicated feature file with the full execution contract.
 
 Coverage note: the playbook covers sk-design's parent-hub routing at the current skill files. It exercises:
 - Mode routing across the five `packetKind: "workflow"` registry modes: `interface`, `foundations`, `motion`, `audit`, and `md-generator`; plus the one `packetKind: "transport"` mode, `design-mcp-open-design`.
 - The mode-hint override rule from the hub: a hint such as `motion: ...` resolves the matching mode.
-- Skill advisor integration: `sk-design` wins positive design controls at confidence `>= 0.80`; pure code and documentation requests route elsewhere.
+- Skill advisor integration: `sk-design` wins positive design controls at confidence `>= 0.80`; pure code, documentation, and code-correctness review requests (even with review/audit-adjacent wording) route elsewhere.
 - Transform-verb routing from `mode-registry.json`: interface-frame `make it`, audit-frame `should it be`, `aliasOnly`, and excluded aliases.
-- The md-generator pipeline as the only mutating mode with `backendKind: playwright-extract` and Write/Edit/Bash access.
+- The md-generator pipeline as the only mutating mode with `backendKind: playwright-extract` and Write/Edit/Bash access, including its authoring-boundary refusal to fabricate a token table from a brief-only request with no live site.
 - Shared reference base usage: the hub stays routing-only, modes cite shared references, and the shared base is not a user workflow.
-- Parity behavior proof: selected procedure card rationale, context/proof gates, md-generator preservation confirmation, motion/audit procedure selection, and shared polish-gate selection.
+- Parity behavior proof: selected procedure card rationale, context/proof gates, md-generator preservation confirmation, motion/audit procedure selection, interface variation-set selection, and shared polish-gate selection.
 - Fallback and resilience proof: exact no-card fallback lines and direct fallback behavior without subagents, including the md-generator backend-preserving distinction.
-- Hub manager-intake proof: context-first intake fields, visible plan before substantial work, and verifier-cadence pause when required proof is missing.
+- Hub manager-intake proof: context-first intake fields, visible plan before substantial work, verifier-cadence pause when required proof is missing, and design-mode pairing before a design-affecting Open Design run.
 
 ### Realistic Test Model
 
@@ -132,7 +132,7 @@ For each executed scenario, check:
 - `PARTIAL`: at least one mapped scenario is PARTIAL, none are FAIL.
 - `FAIL`: any mapped scenario is FAIL.
 
-Critical-path scenarios are MR-001, MR-002, MR-003, MR-004, MR-005, MR-007, AI-001, AI-002, TV-001, TV-002, MG-001, SR-003, PB-001, PB-002, and PB-003.
+Critical-path scenarios are MR-001, MR-002, MR-003, MR-004, MR-005, MR-007, AI-001, AI-002, TV-001, TV-002, MG-001, MG-004, SR-003, PB-001, PB-002, and PB-003.
 
 Candidate additions for the next operator-confirmed critical-path policy are PB-004, PB-005, PB-006, FR-001, FR-002, HM-001, HM-002, and HM-003. They are not silently promoted by this playbook update.
 
@@ -189,13 +189,14 @@ This section records wave planning and capacity guidance for the manual testing 
 
 ---
 
-## 8. ADVISOR INTEGRATION (`AI-001..AI-003`)
+## 8. ADVISOR INTEGRATION (`AI-001..AI-004`)
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Expected Signals | Per-Feature File |
 |---|---|---|---|---|---|
 | `AI-001` | Positive Design Controls | Verify sk-design wins positive design prompts at confidence `>= 0.80` | Multi-prompt battery in file | Advisor top-1 `sk-design`; hub resolves matching mode | `02--advisor-integration/positive-design-controls.md` |
 | `AI-002` | Pure Code Negative | Verify pure code edit routes to sk-code, not sk-design | `Refactor the parseExecutorConfig function in a TypeScript config loader to throw when the executor type is missing.` | Advisor route elsewhere: expected `sk-code` | `02--advisor-integration/pure-code-routes-skcode.md` |
 | `AI-003` | Documentation Negative | Verify documentation authoring routes to sk-doc or another documentation owner | `Write a README section explaining how the sk-design hub routes its six modes.` | Advisor route elsewhere: expected `sk-doc` or another documentation owner, not `sk-design` | `02--advisor-integration/doc-write-routes-elsewhere.md` |
+| `AI-004` | Code-Correctness Review Negative | Verify a code-correctness review request using review/audit-adjacent wording still routes to sk-code's code-review mode, not sk-design's audit mode | `Review this checkout API handler for SQL-injection risk and missing input validation. This is a code-correctness review, not a visual or UI design review.` | Advisor route elsewhere: expected `sk-code` (code-review mode); `sk-design` must not be top-1 at confidence `>= 0.80` | `02--advisor-integration/code-review-routes-skcode.md` |
 
 ---
 
@@ -211,13 +212,14 @@ This section records wave planning and capacity guidance for the manual testing 
 
 ---
 
-## 10. MD-GENERATOR PIPELINE (`MG-001..MG-003`)
+## 10. MD-GENERATOR PIPELINE (`MG-001..MG-004`)
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Expected Signals | Per-Feature File |
 |---|---|---|---|---|---|
 | `MG-001` | Extract Write Validate | Full URL to DESIGN.md request runs EXTRACT, WRITE, VALIDATE | `Extract the design system from https://example.com into /tmp/skd-MG001/DESIGN.md with tokens.json evidence.` | Mode `md-generator`; backend `playwright-extract`; phases EXTRACT -> WRITE -> VALIDATE | `04--md-generator-pipeline/extract-write-validate.md` |
 | `MG-002` | Validate Existing DESIGN.md | Validation-only request stays md-generator | `Validate /tmp/skd-MG002/DESIGN.md against /tmp/skd-MG002/tokens.json for hex accuracy and section completeness.` | `md-generator-aliases`: `validate design.md`; phase VALIDATE | `04--md-generator-pipeline/validate-design-md.md` |
 | `MG-003` | Design Fidelity Report | Fidelity report request stays md-generator | `Run a design fidelity check for /tmp/skd-MG003/DESIGN.md and its tokens.json, then render the preview report.` | `md-generator-aliases`: `design fidelity check`; phase REPORT or validation plus report | `04--md-generator-pipeline/design-fidelity-check.md` |
+| `MG-004` | Brief-Only Authoring Boundary | Brief-only request with no live site stays inside the authoring-boundary contract instead of fabricating a measured token table | `Generate a DESIGN.md style reference for our new checkout product from this brief: primary blue #1a73e8, Inter font family, 8px spacing scale, and 12px rounded cards. We do not have a live site to crawl yet -- just the brief.` | Mode `md-generator`; cites `references/authoring_boundary.md` and `assets/source_of_truth_router_card.md`; no brief value lands in an unlabeled Tokens table | `04--md-generator-pipeline/brief-only-authoring-boundary.md` |
 
 ---
 
@@ -232,7 +234,7 @@ This section records wave planning and capacity guidance for the manual testing 
 
 ---
 
-## 12. PARITY BEHAVIOR (`PB-001..PB-006`)
+## 12. PARITY BEHAVIOR (`PB-001..PB-007`)
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Expected Signals | Per-Feature File |
 |---|---|---|---|---|---|
@@ -242,6 +244,7 @@ This section records wave planning and capacity guidance for the manual testing 
 | `PB-004` | Motion Procedure Selection Proof | Motion mode states the interaction-states procedure card and why it fits | `motion: define hover, focus, active, loading, disabled, and reduced-motion behavior for this command menu. Before giving timing guidance, state the public sk-design mode, the internal procedure card you selected, and why that card fits.` | `motion` mode; procedure `design-motion/procedures/interaction_states_pass.md`; read-only surface | `06--parity-behavior/motion-procedure-selection-proof.md` |
 | `PB-005` | Audit Procedure Selection Proof | Audit mode disambiguates accessibility procedure selection from AI-slop review | `audit: review this checkout screen for WCAG contrast, keyboard focus, and form accessibility. State the public sk-design mode, the internal procedure card you selected, and why it is not the AI-slop card.` | `audit` mode; procedure `design-audit/procedures/accessibility_audit.md`; negative variant `design-audit/procedures/ai_slop_check.md` | `06--parity-behavior/audit-procedure-selection-proof.md` |
 | `PB-006` | Shared Polish-Gate Selection Proof | Shared polish gate stays hub-level with `design-audit` as owning reviewer | `Run the final design polish gate for this nearly finished checkout UI. State the public sk-design mode, the shared internal procedure card you selected, the owning reviewer, and how findings route across audit, foundations, motion, interface, and sk-code.` | shared procedure `shared/procedures/polish_gate_orchestration.md`; owning reviewer `design-audit` | `06--parity-behavior/shared-polish-gate-selection-proof.md` |
+| `PB-007` | Interface Variation-Set Selection Proof | Interface mode selects `variation_set.md`, not `aesthetic_direction.md`, and applies the seed-of-thought debias for a multi-direction brief | `Give me three genuinely distinct visual directions for this fintech onboarding flow, not three safe variations of the same idea. Before giving the directions, state the public sk-design mode, the internal procedure card you selected, and why it is not the single-direction aesthetic_direction card.` | procedure `design-interface/procedures/variation_set.md` (not `aesthetic_direction.md`); seed-of-thought debias cited from `variation_diversity.md`; read-only surface | `06--parity-behavior/interface-variation-set-selection-proof.md` |
 
 ---
 
@@ -254,13 +257,14 @@ This section records wave planning and capacity guidance for the manual testing 
 
 ---
 
-## 14. HUB MANAGER INTAKE (`HM-001..HM-003`)
+## 14. HUB MANAGER INTAKE (`HM-001..HM-004`)
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Expected Signals | Per-Feature File |
 |---|---|---|---|---|---|
 | `HM-001` | Context-First Intake | Hub gathers goal, surface, inputs, constraints, and proof expectations before routing when missing facts affect the route | `Make this product experience feel more premium and production-ready. I have some screenshots and a brand deck, but I am not sure whether this needs interface direction, foundations, motion, or audit.` | intake fields appear before route or a focused question is asked | `08--hub-manager-intake/context-first-intake.md` |
 | `HM-002` | Visible Plan Before Build | Hub shows selected mode or bundle, context, design moves, proof, and handoff target before substantial work | `Design the visual direction for a dense operations dashboard and prepare the implementation handoff. Before any design recommendation, show the selected mode or bundle, context loaded, intended design moves, proof required, and handoff target.` | visible plan appears before design recommendations | `08--hub-manager-intake/visible-plan-before-build.md` |
 | `HM-003` | Verifier-Cadence Pause | Hub pauses ready claims when required proof is missing or transport-only | `I only have a Figma export and no rendered responsive checks. Tell me whether this design is ready to ship, and if any proof field is missing, pause the ready claim and name the missing proof.` | readiness is paused; missing proof fields are named | `08--hub-manager-intake/verifier-cadence-pause.md` |
+| `HM-004` | Design-Mode Pairing Before Run | Hub pairs a design-judgment mode with `design-mcp-open-design` and names it as a hard precondition before a RUN-direction Open Design generation request | `Commission an Open Design generation run for a new settings page, grounding it in one of Open Design's local design systems, and start the run now.` | ordered bundle pairs a design-judgment mode (default `interface`) with `design-mcp-open-design`; paired mode named as hard precondition before any `start_run` call | `08--hub-manager-intake/design-mode-pairing-before-run.md` |
 
 ---
 
@@ -284,6 +288,7 @@ No automated tests are claimed by this playbook. Manual execution is the validat
 | Advisor Integration | AI-001 | `02--advisor-integration/positive-design-controls.md` | Yes |
 | Advisor Integration | AI-002 | `02--advisor-integration/pure-code-routes-skcode.md` | Yes |
 | Advisor Integration | AI-003 | `02--advisor-integration/doc-write-routes-elsewhere.md` | No |
+| Advisor Integration | AI-004 | `02--advisor-integration/code-review-routes-skcode.md` | No |
 | Transform Verb Framing | TV-001 | `03--transform-verb-framing/make-it-interface.md` | Yes |
 | Transform Verb Framing | TV-002 | `03--transform-verb-framing/should-it-be-audit.md` | Yes |
 | Transform Verb Framing | TV-003 | `03--transform-verb-framing/clarify-alias-only.md` | No |
@@ -292,6 +297,7 @@ No automated tests are claimed by this playbook. Manual execution is the validat
 | md-generator Pipeline | MG-001 | `04--md-generator-pipeline/extract-write-validate.md` | Yes |
 | md-generator Pipeline | MG-002 | `04--md-generator-pipeline/validate-design-md.md` | No |
 | md-generator Pipeline | MG-003 | `04--md-generator-pipeline/design-fidelity-check.md` | No |
+| md-generator Pipeline | MG-004 | `04--md-generator-pipeline/brief-only-authoring-boundary.md` | Yes |
 | Shared Reference Base | SR-001 | `05--shared-reference-base/interface-shared-references.md` | No |
 | Shared Reference Base | SR-002 | `05--shared-reference-base/reference-base-backend-modes.md` | No |
 | Shared Reference Base | SR-003 | `05--shared-reference-base/shared-base-not-workflow.md` | Yes |
@@ -302,13 +308,15 @@ No automated tests are claimed by this playbook. Manual execution is the validat
 | Parity Behavior | PB-004 | `06--parity-behavior/motion-procedure-selection-proof.md` | Candidate |
 | Parity Behavior | PB-005 | `06--parity-behavior/audit-procedure-selection-proof.md` | Candidate |
 | Parity Behavior | PB-006 | `06--parity-behavior/shared-polish-gate-selection-proof.md` | Candidate |
+| Parity Behavior | PB-007 | `06--parity-behavior/interface-variation-set-selection-proof.md` | Candidate |
 | Fallback and Resilience | FR-001 | `07--fallback-and-resilience/no-card-matches-fallback.md` | Candidate |
 | Fallback and Resilience | FR-002 | `07--fallback-and-resilience/direct-fallback-without-subagents.md` | Candidate |
 | Hub Manager Intake | HM-001 | `08--hub-manager-intake/context-first-intake.md` | Candidate |
 | Hub Manager Intake | HM-002 | `08--hub-manager-intake/visible-plan-before-build.md` | Candidate |
 | Hub Manager Intake | HM-003 | `08--hub-manager-intake/verifier-cadence-pause.md` | Candidate |
+| Hub Manager Intake | HM-004 | `08--hub-manager-intake/design-mode-pairing-before-run.md` | Candidate |
 
-**Total scenarios**: 33
-**Critical-path scenarios**: 15
-**Critical-path candidates pending operator confirmation**: 8
+**Total scenarios**: 37
+**Critical-path scenarios**: 16
+**Critical-path candidates pending operator confirmation**: 10
 **Categories**: 8

@@ -1,0 +1,225 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-design/009-sk-design-claude-parity/022-benchmark-rerun-and-coverage-fill",
+  "spec_folder": "sk-design/009-sk-design-claude-parity/022-benchmark-rerun-and-coverage-fill",
+  "parent_id": "sk-design/009-sk-design-claude-parity",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "benchmark rerun coverage fill",
+      "phase 022 sk-design",
+      "manual testing playbook coverage audit",
+      "PB-007 AI-004 MG-004 HM-004",
+      "phase 022 plan",
+      "coverage audit workflow plan",
+      "tasks",
+      "phase 022 tasks",
+      "verification",
+      "checklist",
+      "phase 022 checklist",
+      "implementation"
+    ],
+    "key_topics": [
+      "benchmark",
+      "rerun",
+      "coverage",
+      "fill",
+      "phase",
+      "022",
+      "sk-design",
+      "manual",
+      "testing",
+      "playbook",
+      "audit",
+      "pb-007"
+    ],
+    "importance_tier": "high",
+    "status": "complete",
+    "key_files": [
+      ".opencode/skills/sk-design/manual_testing_playbook/06--parity-behavior/interface-variation-set-selection-proof.md",
+      ".opencode/skills/sk-design/manual_testing_playbook/02--advisor-integration/code-review-routes-skcode.md",
+      ".opencode/skills/sk-design/manual_testing_playbook/04--md-generator-pipeline/brief-only-authoring-boundary.md",
+      ".opencode/skills/sk-design/manual_testing_playbook/08--hub-manager-intake/design-mode-pairing-before-run.md",
+      ".opencode/skills/sk-design/manual_testing_playbook/manual_testing_playbook.md",
+      ".opencode/skills/sk-design/README.md",
+      "implementation-summary.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "interface-variation-set-selection-proof.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-design/manual_testing_playbook/06--parity-behavior/interface-variation-set-selection-proof.md",
+        "source": "derived"
+      },
+      {
+        "name": "code-review-routes-skcode.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-design/manual_testing_playbook/02--advisor-integration/code-review-routes-skcode.md",
+        "source": "derived"
+      },
+      {
+        "name": "brief-only-authoring-boundary.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-design/manual_testing_playbook/04--md-generator-pipeline/brief-only-authoring-boundary.md",
+        "source": "derived"
+      },
+      {
+        "name": "design-mode-pairing-before-run.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-design/manual_testing_playbook/08--hub-manager-intake/design-mode-pairing-before-run.md",
+        "source": "derived"
+      },
+      {
+        "name": "manual_testing_playbook.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-design/manual_testing_playbook/manual_testing_playbook.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-design/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Benchmark Rerun",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Testing Coverage Fill",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Phase",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Rerun",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Two",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Coverage",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Open Design",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Phase 021 rewrote `design-command-surface-check.mjs` and fixed the remaining 020 deep-research findings, but the Lane C skill-benchmark had not been re-run since before that work, so there was no fresh evidence it didn't regress anything",
+    "created_at": "2026-07-07T13:00:00.167Z",
+    "last_save_at": "2026-07-07T13:00:58.639Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:2dcbaead718bd23ec7ea370d6d1c2826501e45c85d266d70b21494869ad368c8",
+    "source_doc_hashes": {
+      "spec.md": "196d3d7d5248f4052d5dac81c0944d37ad8aec077aa0ab41c3fa7db1cf6df790",
+      "plan.md": "6c6f707f1397d7d865a80fbd4d7df15dd7a697aec68061b5fdbce6ae26cff003",
+      "tasks.md": "df04e02615551c1ff355b9ebb2b903fab63f90e1b2a2637205250f592d299fc7",
+      "checklist.md": "50b795d921ea292e548080ce838add8a999afcae58f3593f2c4f41d9c983a4e3",
+      "implementation-summary.md": "977a7785bab4c2b8d3c4eb21758538f7a071e4b1b34b4c2b4d0b2d4fbed454f1"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}
