@@ -138,7 +138,7 @@ Use `bundleRules[]` when a hub has a durable prose rule such as "if the request 
 
 ## 4. ROUTER SIGNALS
 
-`routerSignals` is keyed by mode. Every key maps to a scoring weight, vocabulary classes, and resources. The `code-review` entry below reflects the `sk-code` workflow packet; the `code-webflow` entry shows the same shape for a surface packet.
+`routerSignals` is keyed by mode. Every key maps to a scoring weight, vocabulary classes, and resources. The `code-review` entry below reflects the `sk-code` workflow packet; the `code-webflow` entry shows the same shape for a surface packet. These are illustrative shapes, not live snapshots — consult the hub's own `hub-router.json` for current weights and vocabulary classes.
 
 ```json
 {

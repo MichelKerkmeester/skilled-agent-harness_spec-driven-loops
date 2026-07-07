@@ -58,7 +58,7 @@ Every packet is one entry in `mode-registry.json > modes[]`. Use `packetKind` to
 | Axis | `packetKind` | Purpose | Naming | Tool posture | Advisor routing |
 |------|--------------|---------|--------|--------------|-----------------|
 | Workflow | `workflow` | A process or lifecycle mode | `[hub-prefix]-[mode]` or existing packet name | Mutating or read-only per role | `lexical`, `alias-fold`, `metadata`, or `command-bridge` |
-| Surface | `surface` | A domain evidence base | Bare noun such as `[surface]` | Read-only only | `metadata` |
+| Surface | `surface` | A domain evidence base | Hub-prefixed `[hub-prefix]-[surface]` | Read-only only | `metadata` |
 | Transport | `transport` | Bridges to an external tool's CLI/MCP surface (declared via `transport-axis`) | `[hub-prefix]-[mode]` | Read/Bash only; `mutatesWorkspace:false` (writes land externally); forbids Write/Edit/Task | `metadata` |
 
 Surface packets have these required properties:

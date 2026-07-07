@@ -52,7 +52,7 @@ Core rules:
 - **One mode array**: every packet is one entry in `mode-registry.json > modes[]`; do not add a second array such as `surfacePackets[]`.
 - **Mode kind**: every mode entry declares `packetKind: "workflow" | "surface" | "transport"`. Workflow and surface are the two primary axes; `transport` is a narrow third kind for packets that bridge to an external tool's CLI/MCP surface (declared via the `transport-axis` extension) and never perform the hub's own judgment.
 - **Workflow packets**: process or lifecycle modes such as implement, quality, review, research, or audit. They may mutate or stay read-only according to their role.
-- **Surface packets**: read-only evidence bases such as webflow, opencode, or animation. They are advisor-invisible and enrich a workflow rather than becoming advisor identities.
+- **Surface packets**: read-only evidence bases such as `code-webflow` or `code-opencode` (hub-prefixed, matching `folder == packetSkillName`). They are advisor-invisible and enrich a workflow rather than becoming advisor identities.
 - **One graph identity**: only the hub has `graph-metadata.json`; packets never carry their own advisor identity.
 - **Required router**: every hub has `hub-router.json` with `routerPolicy`, `routerSignals`, `vocabularyClasses`, and resource paths that resolve on disk.
 - **Named extensions only**: optional behavior is declared in top-level `extensions`; it never changes the physical layout.
@@ -133,15 +133,16 @@ A hub with no extensions is the pure two-tier core. Add only the extension neede
 
 ---
 
-## 4. Three Hubs Extension Matrix
+## 4. Four Hubs Extension Matrix
 
 | Hub | Packet axis | Runtime loop | Advisor projection | Transform verbs | Deprecated modes | Notes |
 | --- | --- | --- | --- | --- | --- | --- |
-| `sk-code` | Declares the surface axis in the canonical model: workflow modes resolve code lifecycle steps and surface packets provide read-only evidence such as Webflow, OpenCode, and animation. | No runtime-loop extension; workflows are direct code modes, not convergence loops. | None for modes in the live registry; each mode uses `metadata` and the advisor routes the single `sk-code` identity. | None. | None. | Canonical live example for `mode-registry.json` plus `hub-router.json`; router vocabulary currently includes surface signal classes inside workflow modes. |
-| `sk-design` | Workflow-only design modes in the live registry; no surface packets are required for its current shape. | No runtime-loop extension; four guidance modes use a shared reference base and the extraction mode runs its own backend. | None; all modes use `metadata` under the single `sk-design` identity. | Declares transform-verb semantics: phrasing decides whether a mode applies a visual move or audits whether it should happen. | None. | Transform-verbs example with five mode packets and required hub-router vocabulary. |
-| `deep-loop-workflows` | Workflow-only active modes; no surface packets in the live registry. | Declares runtime-loop semantics for research, review, and council modes; improvement lanes use host or external adapters. | Required for lexical and alias-fold modes; hardcoded advisor projection maps stay drift-guarded against the registry. | None. | Declares deprecated standalone context routing as replacement guidance. | Extension-heavy example: runtime-loop, advisor-projection, and deprecated-modes semantics. |
+| `sk-code` | Declares the surface axis: workflow modes resolve code lifecycle steps and surface packets provide read-only evidence (`code-webflow`, `code-opencode`). | No runtime-loop extension; workflows are direct code modes, not convergence loops. | None; each mode uses `metadata` and the advisor routes the single `sk-code` identity. | None. | None. | Canonical live example for `mode-registry.json` plus `hub-router.json`; router vocabulary includes surface signal classes inside workflow modes. |
+| `sk-design` | Five workflow design modes plus one `transport` packet (`design-mcp-open-design`) via the `transport-axis` extension; no surface packets. | No runtime-loop extension; four guidance modes share a reference base and the extraction mode runs its own backend. | None; all modes use `metadata` under the single `sk-design` identity. | Declares transform-verb semantics: phrasing decides whether a mode applies a visual move or audits whether it should happen. | None. | Transform-verbs + transport-axis example. |
+| `deep-loop-workflows` | Workflow-only active modes; no surface packets. | Declares runtime-loop semantics for research, review, and council modes; improvement lanes use host or external adapters. | Required for lexical and alias-fold modes; hardcoded advisor projection maps stay drift-guarded against the registry. | None. | None declared (`deprecatedModes: []`); the retired standalone context loop survives only as an advisor comment, not a registry deprecation. | Extension-heavy example: runtime-loop and advisor-projection semantics. |
+| `sk-doc` | Workflow-only; no surface axis, zero named extensions. Several workflowModes may multiplex onto one packet (N modes → 1 packet) when that packet's `SKILL.md` declares each mode. | No runtime-loop extension. | None; all modes use `metadata` under the single `sk-doc` identity. | None. | None. | Workflow-only, zero-extension example — the pure two-tier core scaffolded by this doctrine. |
 
-Use the matrix to describe current hub behavior without copying one hub's special machinery into another. `runtimeLoopType` belongs only to hubs declaring `runtime-loop`; transform-verb routing belongs only to hubs declaring `transform-verbs`; surface evidence packets belong only to hubs declaring `surface-axis`.
+Use the matrix to describe current hub behavior without copying one hub's special machinery into another. `runtimeLoopType` belongs only to hubs declaring `runtime-loop`; transform-verb routing belongs only to hubs declaring `transform-verbs`; surface evidence packets belong only to hubs declaring `surface-axis`; and transport packets belong only to hubs declaring `transport-axis`.
 
 ---
 
@@ -188,11 +189,12 @@ Changelog policy:
 Naming policy:
 
 - Workflow packet folders use the hub's naming convention. Prefix workflow packets when the hub family uses a prefix; otherwise use the established packet name.
-- Surface packet folders are bare nouns such as `webflow`, `opencode`, or `animation`.
+- Surface packet folders use the hub-prefixed convention (`folder == packetSkillName == [hub-prefix]-<surface>`), such as `code-webflow` or `code-opencode`.
 - `folder == packetSkillName` is the default for every new packet.
+- **Mode multiplexing (N→1)**: several `workflowMode` entries may point at one packet folder when that packet's `SKILL.md` declares each mode it serves (sk-doc and deep-loop do this). `folder == packetSkillName` still holds for the packet; the multiplexed modes share it.
 - `grandfatheredFolderMismatch: true` is only for an existing mismatch that must be preserved.
 - Never create a new mismatch for convenience.
-- Keep natural-language `aliases[]` unique across all modes.
+- Keep natural-language `aliases[]` unique across all modes, and lowercase — the router vocabulary is matched case-folded, so a non-lowercase alias silently fails to mirror its vocabulary class.
 - Name vocabulary classes by owner, such as `<surface>-aliases`, `<surface>-runtime`, or `<mode>-aliases`.
 
 Companion file policy:
@@ -201,6 +203,7 @@ Companion file policy:
 - Every packet has `README.md`, `SKILL.md`, and `changelog/`.
 - Surface packets also carry `references/` and `assets/` when they need evidence material.
 - Shared directories may hold cross-packet vocabulary or synthesis, but never per-mode workflow logic and never their own `graph-metadata.json`.
+- A single shared workflow doctrine may live once under `shared/` and be **symlinked** into each packet that consumes it (sk-code symlinks its implement → debug → verify doctrine into both surfaces), so packets bundle the doctrine as read-only evidence without forking per-packet copies. The acting agent executes the process; the packet never carries it.
 
 ---
 

@@ -31,8 +31,8 @@ Use this skill for code-family workflows. Invoke it as `sk-code` with an optiona
 
 | Surface | Carries | Packet |
 |---------|---------|--------|
-| **code-webflow** | Frontend evidence: CSS/HTML/JS standards, implementation and performance patterns, CDN deployment, browser debug/verify — plus the Motion.dev animation overlay. Owns the implement → debug → verify workflow doctrine for the Webflow surface. | `sk-code/code-webflow/` |
-| **code-opencode** | System-code evidence: TypeScript/Python/shell/config standards, hooks, alignment verification, authoring checklists. Owns the implement → debug → verify workflow doctrine for the OpenCode surface. | `sk-code/code-opencode/` |
+| **code-webflow** | Frontend evidence: CSS/HTML/JS standards, implementation and performance patterns, CDN deployment, browser debug/verify — plus the Motion.dev animation overlay. Bundles the implement → debug → verify workflow doctrine (read-only evidence) for the Webflow surface; the acting agent applies it. | `sk-code/code-webflow/` |
+| **code-opencode** | System-code evidence: TypeScript/Python/shell/config standards, hooks, alignment verification, authoring checklists. Bundles the implement → debug → verify workflow doctrine (read-only evidence) for the OpenCode surface; the acting agent applies it. | `sk-code/code-opencode/` |
 
 The **implement → debug → verify** phases are not standalone modes. Their surface-agnostic doctrine lives once in `shared/references/workflow_implement.md`, `workflow_debug.md`, and `workflow_verify.md`, and is symlinked into each surface so the active surface carries the full workflow. A request to implement, debug, or verify code detects its surface and loads that surface's bundled doctrine; the acting agent applies it.
 

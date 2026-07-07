@@ -13,6 +13,7 @@
     "legacyAdvisorId": "Legacy skill id used by lexical and alias-fold projection maps only.",
     "advisorDefaultMode": "Marks the default mode a multi-mode legacy id folds to. Never inferred from array order.",
     "legacyAliases": "Advisor system-id aliases for lexical or alias-fold routes; drift guards compare these order-insensitively.",
+    "driftGuard": "Path to the registry-vs-advisor drift-guard test. Required (here or in the advisor-projection extension) when any mode uses routingClass lexical or alias-fold.",
     "packetSkillName": "The packet SKILL.md name. Folder equals packetSkillName unless grandfatheredFolderMismatch is true.",
     "grandfatheredFolderMismatch": "Required on every mode; false unless a legacy folder/name mismatch is intentionally preserved.",
     "toolSurface": "Required on every mode; declares allowed tools, forbidden tools, mutating posture, and any bash allowlist."
@@ -120,7 +121,7 @@
       }
     },
     {
-      "_example": "packetKind surface: bare-noun read-only evidence base; advisor-invisible metadata route.",
+      "_example": "packetKind surface: hub-prefixed read-only evidence base; advisor-invisible metadata route.",
       "workflowMode": "[surface-name]",
       "packetKind": "surface",
       "backendKind": "evidence-base",
@@ -143,24 +144,28 @@
   "extensions": {
     "_template": "OPTIONAL declaration-only block. Keep only extensions this hub actually uses; delete this block for a pure two-tier hub.",
     "runtime-loop": {
-      "_example": "Activates runtimeLoopType per workflow mode and names the convergence backend.",
-      "backend": "[runtime-backend-name]"
+      "_example": "Activates runtimeLoopType per workflow mode; lists the valid loop types (runtimeLoopType is validated against exactly these).",
+      "runtimeLoopTypes": ["[loop-type-a]", "[loop-type-b]"]
     },
     "advisor-projection": {
       "_example": "Required when any mode uses routingClass lexical or alias-fold.",
       "driftGuard": "[path/to/drift-guard.test.ts]"
     },
     "transform-verbs": {
-      "_example": "Declares verb-transform routing for hubs whose modes are selected through action verbs.",
-      "verbs": ["[verb-a]", "[verb-b]"]
+      "_example": "Declares verb-transform routing; names the top-level block that carries the verb map (the block stays top-level, not inside this extension).",
+      "declaredField": "[top-level-transform-routing-block]"
     },
     "deprecated-modes": {
-      "_example": "Documents retired modes kept as compatibility shims.",
-      "modes": ["[deprecated-mode]"]
+      "_example": "Declares retired modes kept as guidance; the list lives in the top-level deprecatedModes[] array (blessed top-level location), not inside this block.",
+      "declaredField": "deprecatedModes"
     },
     "surface-axis": {
       "_example": "Declares that this hub carries packetKind surface packets in modes[].",
       "surfaces": ["[surface-name]"]
+    },
+    "transport-axis": {
+      "_example": "Declares packetKind transport packets that bridge to an external tool's CLI/MCP surface; every listed transport must be a registered packetKind:\"transport\" mode.",
+      "transports": ["[transport-mode-name]"]
     }
   }
 }
