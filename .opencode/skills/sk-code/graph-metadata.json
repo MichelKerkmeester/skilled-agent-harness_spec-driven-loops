@@ -131,7 +131,12 @@
     "findings",
     "audit packet docs",
     "review packet docs",
-    "merge readiness"
+    "merge readiness",
+    "quality check",
+    "check before done",
+    "author quality gate",
+    "pre-verification quality check",
+    "p0 p1 p2 review"
   ],
   "derived": {
     "trigger_phrases": [
@@ -152,7 +157,9 @@
       "sk-code hub",
       "code mode router",
       "workflow doctrine",
-      "review mode"
+      "review mode",
+      "author quality gate",
+      "quality check"
     ],
     "key_topics": [
       "code",
@@ -170,7 +177,8 @@
       "surface-router",
       "workflow-doctrine",
       "quality-mode",
-      "review-mode"
+      "review-mode",
+      "quality-gate"
     ],
     "intent_signals": [
       "implement code",

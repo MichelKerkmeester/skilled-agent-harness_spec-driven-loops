@@ -1,6 +1,6 @@
 ---
 title: "Git Hooks"
-description: "Repo-tracked git hooks and their installer. Currently the comment-hygiene pre-commit gate that blocks ephemeral-artifact pointers in code comments."
+description: "Repo-tracked git hooks and their installer. The pre-commit hook runs two independent gates: a comment-hygiene gate that blocks ephemeral-artifact pointers in code comments, and a staged agent-mirror-sync gate that blocks commits which desync the .opencode / .claude agent mirrors."
 trigger_phrases:
   - "git hooks"
   - "pre-commit hook"
@@ -18,7 +18,7 @@ trigger_phrases:
 
 `.opencode/hooks/` holds the repository's version-controlled git hooks and the script that installs them. Git only runs hooks from the local, untracked `.git/hooks/` directory, so these files live here under version control and `install-hooks.sh` symlinks them into place.
 
-Today the only hook is `pre-commit`, the comment-hygiene gate. It blocks any commit that adds ephemeral-artifact pointers (spec-folder paths, packet/phase numbers, ADR/REQ/CHK/task/finding ids) to **code comments**, enforcing the durable-WHY rule from the code style guide.
+Today the only hook is `pre-commit`, which runs two independent gates. The **comment-hygiene gate** blocks any commit that adds ephemeral-artifact pointers (spec-folder paths, packet/phase numbers, ADR/REQ/CHK/task/finding ids) to **code comments**, enforcing the durable-WHY rule from the code style guide. The **agent-mirror-sync gate** fires only when the commit stages files under `.opencode/agents/` or `.claude/agents/`, and blocks a commit that would desync the two agent mirrors. Both gates fail open if their tooling is missing.
 
 ---
 
@@ -27,7 +27,7 @@ Today the only hook is `pre-commit`, the comment-hygiene gate. It blocks any com
 | File | Role |
 |---|---|
 | `install-hooks.sh` | Symlinks `pre-commit` into `.git/hooks/pre-commit`. Run once per clone. |
-| `pre-commit` | Comment-hygiene gate. Runs the checker on every staged file; exits non-zero (blocking the commit) when a code file carries a forbidden comment artifact. |
+| `pre-commit` | Two independent gates. (1) **Comment hygiene** — runs the checker on every staged file and blocks the commit when a code file carries a forbidden comment artifact. (2) **Agent mirror-sync** — when staged files include `.opencode/`/`.claude/` agent files, runs the mirror-sync checker on them and blocks a commit that desyncs the mirrors. Each gate fails open if its own tooling is missing. |
 
 ---
 
@@ -39,10 +39,21 @@ install-hooks.sh
 
 git commit
    └─ .git/hooks/pre-commit
-        ├─ for each staged file (git diff --cached --diff-filter=ACM)
-        │     └─ run .opencode/skills/sk-code/code-quality/scripts/check-comment-hygiene.sh <file>
-        ├─ if any file returns rc=1  → print BLOCKED + count → exit 1 (commit aborted)
-        └─ else                       → exit 0 (commit proceeds)
+        ├─ Gate A · comment hygiene
+        │    ├─ for each staged file (git diff --cached --diff-filter=ACM)
+        │    │     └─ run .opencode/skills/sk-code/code-quality/scripts/check-comment-hygiene.sh <file>
+        │    ├─ any file returns rc=1     → print BLOCKED + count → exit 1 (commit aborted)
+        │    └─ checker missing/non-exec  → warn → skip gate (fail-open)
+        │
+        ├─ Gate B · agent mirror-sync (only when agent files are staged)
+        │    ├─ staged agent files = git diff --cached --diff-filter=ACMD
+        │    │                        filtered to ^\.(opencode|claude)/agents/
+        │    ├─ none staged               → skip gate (most commits)
+        │    └─ else run .opencode/skills/deep-loop-workflows/deep-improvement/scripts/check-agent-mirror-sync.cjs
+        │          ├─ mirrors desynced       → print BLOCKED → exit 1 (commit aborted)
+        │          └─ node/checker missing   → warn → skip gate (fail-open)
+        │
+        └─ neither gate blocked          → exit 0 (commit proceeds)
 ```
 
 - The checker is resolved relative to the repo root. If it is missing or not executable, the hook prints a warning and exits 0 — fail-open, so missing infrastructure never blocks a commit.
@@ -68,8 +79,8 @@ The hook is a symlink, so later edits to `.opencode/hooks/pre-commit` take effec
 | Boundary | Rule |
 |---|---|
 | Opt-in | Hooks do nothing until `install-hooks.sh` runs. A fresh clone has no active hook. |
-| Scope | `pre-commit` checks comment hygiene only. It does not run tests, linting, or formatting. |
-| Fail-open | If the hygiene checker is absent or non-executable, the hook exits 0 — it never blocks on its own tooling being missing. |
+| Scope | `pre-commit` runs two gates — comment hygiene and staged agent-mirror-sync. It does not run tests, linting, or formatting. |
+| Fail-open | Each gate exits 0 when its own tooling is missing — the hygiene checker absent or non-executable, or `node` / the mirror-sync checker unavailable. Neither gate blocks on missing infrastructure. |
 | Bypass | `git commit --no-verify` skips the hook; prefer fixing the comment or using `// hygiene-ok` for a genuinely durable reference. |
 
 ---

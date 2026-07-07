@@ -40,10 +40,10 @@
       "keywords": ["sk-code", "code-family", "mode-registry", "workflowmode", "backendkind", "surface-router", "surface-aware", "smart-router", "code surface detection", "two-axis hub"]
     },
     "quality-aliases": {
-      "keywords": ["quality", "code quality", "quality gate", "code-quality", "stack-specific code quality gate", "surface checklist", "surface checklists"]
+      "keywords": ["quality", "code quality", "quality gate", "code-quality", "stack-specific code quality gate", "surface checklist", "surface checklists", "quality check", "check before done", "author quality gate", "pre-verification quality check"]
     },
     "quality-gates": {
-      "keywords": ["comment hygiene", "comment hygiene check", "author checks", "p0 p1 p2 author check", "stable jsonl keys", "add set -euo pipefail", "alignment verifier"]
+      "keywords": ["comment hygiene", "comment hygiene check", "author checks", "p0 p1 p2 author check", "stable jsonl keys", "add set -euo pipefail", "alignment verifier", "p0 p1 p2 review"]
     },
     "code-review-aliases": {
       "keywords": ["review", "reviewer", "code review", "findings-first review", "security review", "pr review", "review baseline", "review mode", "code-review"]

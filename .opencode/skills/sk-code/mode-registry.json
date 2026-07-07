@@ -32,7 +32,7 @@
       "packet": "code-quality",
       "packetSkillName": "code-quality",
       "grandfatheredFolderMismatch": false,
-      "aliases": ["quality gate", "code quality", "comment hygiene check", "surface checklist", "p0 p1 p2 author check", "stack-specific code quality gate", "alignment verifier", "stable jsonl keys"],
+      "aliases": ["quality gate", "code quality", "comment hygiene check", "surface checklist", "p0 p1 p2 author check", "stack-specific code quality gate", "alignment verifier", "stable jsonl keys", "quality check", "check before done", "author quality gate", "pre-verification quality check", "p0 p1 p2 review"],
       "advisorRouting": {
         "routingClass": "metadata",
         "packetSkillName": "code-quality"

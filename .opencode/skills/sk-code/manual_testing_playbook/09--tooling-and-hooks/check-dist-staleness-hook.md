@@ -92,7 +92,7 @@ Edit .opencode/skills/system-spec-kit/mcp_server/lib/validation/orchestrator.ts 
 - `.opencode/skills/sk-code/code-quality/scripts/check-dist-staleness.sh` — Dist-staleness checker (Python, `.sh` extension); currently missing its executable bit (see §1, §3 Failure Triage).
 - `.opencode/skills/system-spec-kit/scripts/lib/dist-freshness.cjs` — Shared `checkFileFreshness()` / `DIST_PACKAGES` registry the checker calls.
 
-**Related**: `claude-posttooluse.sh` also runs the pre-existing comment-hygiene check (`check-comment-hygiene.sh`, see `references/universal/code_style_guide.md` §4) on the same edit. That checker itself currently has **no dedicated manual testing playbook scenario** in this package — a known pre-existing gap, unrelated to and out of scope for this scenario. It is flagged here for visibility only; fixing it is a separate task.
+**Related**: `claude-posttooluse.sh` also runs the pre-existing comment-hygiene check (`check-comment-hygiene.sh`, see `references/universal/code_style_guide.md` §4) on the same edit. That checker's hook branch is covered by its own scenario `TH-002` (see `comment-hygiene-hook.md` in this same category).
 
 ## 5. SOURCE METADATA
 

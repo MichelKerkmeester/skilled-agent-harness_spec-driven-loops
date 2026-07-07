@@ -30,7 +30,7 @@ Canonical package artifacts:
 
 ## 1. OVERVIEW
 
-This playbook provides 29 deterministic scenarios across 9 categories validating the `sk-code` skill surface. Each feature keeps its stable `{PREFIX}-NNN` ID and links to a dedicated feature file with the full execution contract.
+This playbook provides 30 deterministic scenarios across 9 categories validating the `sk-code` skill surface. Each feature keeps its stable `{PREFIX}-NNN` ID and links to a dedicated feature file with the full execution contract.
 
 Coverage note (2026-05-04): the playbook covers sk-code's two-axis routing (Code Surface → Intent → Resource Loading) at SKILL.md head-of-main. It exercises:
 - WEBFLOW surface detection (vanilla HTML/CSS/JS frontend with motion.dev / GSAP / Lenis / HLS / Swiper / FilePond markers, `wrangler.toml`, `src/2_javascript/`).
@@ -43,7 +43,7 @@ Coverage note (2026-05-04): the playbook covers sk-code's two-axis routing (Code
 - Cross-browser and performance gates: Chrome/Safari/Firefox behavior, LCP/CLS/INP thresholds, and compositor-friendly animation checks.
 - Cross-stack routing checks: Webflow plus Motion.dev, non-Webflow Motion.dev, OpenCode plus Motion.dev, decision-matrix use, snippet reuse, CWV dual loading, and reduced-motion guidance.
 - Design restraint scenarios (added 2026-06-13, v3.4.0.0): the pre-write Design Restraint Ladder rung selection, the implementer anti-stall rule, the `ceiling:` intentional-simplification convention, and the STACK_FOLDERS-to-disk validator.
-- Tooling and hooks (added 2026-07-02, v3.5.0.16): the shared `claude-posttooluse.sh` PostToolUse hook's dist-staleness banner wiring (`check-dist-staleness.sh`), a deterministic warn-only check independent of skill routing.
+- Tooling and hooks: the shared `claude-posttooluse.sh` PostToolUse hook's two warn-only banner branches — dist-staleness wiring (`check-dist-staleness.sh`; TH-001, added 2026-07-02, v3.5.0.16) and comment-hygiene wiring (`check-comment-hygiene.sh`; TH-002, added 2026-07-07) — each a deterministic stdout/exit-code check independent of skill routing.
 
 ### Realistic Test Model
 
@@ -142,7 +142,7 @@ Hard rule: any critical-path scenario FAIL forces feature verdict to FAIL. Criti
 Release is READY only when:
 1. No feature verdict is FAIL.
 2. All critical scenarios (SD-001, SD-002, SD-003, RD-002, SA-001) are PASS.
-3. Coverage is 100% of playbook scenarios (28 / 28).
+3. Coverage is 100% of playbook scenarios (30 / 30).
 4. No unresolved blocking triage item remains.
 
 ### Root-vs-Feature Rule
@@ -289,15 +289,16 @@ Per-feature files: see `08--design-restraint/`.
 
 ---
 
-## 15. TOOLING AND HOOKS (`TH-001`)
+## 15. TOOLING AND HOOKS (`TH-001..TH-002`)
 
 This category validates shared tooling hooks that sk-code ships or wires into, independent of skill-advisor routing or surface detection. Scenarios here are deterministic checks against a script's real stdout/exit-code contract, not routing decisions.
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
 | `TH-001` | Dist-Staleness Hook Wiring | Verify `claude-posttooluse.sh` prints a STALE DIST WARNING banner for a stale watched package and always exits 0 | `Edit .opencode/skills/system-spec-kit/mcp_server/lib/validation/orchestrator.ts while its compiled dist output is stale, and confirm claude-posttooluse.sh prints a STALE DIST WARNING banner and still exits 0.` | make dist stale → invoke checker directly → invoke full hook via stdin JSON → restore | banner: `STALE DIST WARNING: @spec-kit/mcp-server -- run: ...`; hook exit 0 in all cases | `/tmp/th001-hook-stdout.txt`, `/tmp/th001-hook-stderr.txt` | PASS iff banner reaches hook stdout AND hook exits 0 | If banner is missing but hook still exits 0, check the checker's executable bit (`ls -la check-dist-staleness.sh`) — see per-feature file for the incident this scenario originally caught and how it was fixed |
+| `TH-002` | Comment-Hygiene Hook Wiring | Verify `claude-posttooluse.sh` prints a COMMENT HYGIENE WARNING banner for an edit that introduces a forbidden ephemeral-artifact comment and always exits 0, while `check-comment-hygiene.sh` flags rc=1 pre-fix and rc=0 post-fix | `In a /tmp sandbox, add a source file whose comment carries an ephemeral-artifact pointer (an ADR id), and confirm claude-posttooluse.sh prints a COMMENT HYGIENE WARNING banner and still exits 0, that check-comment-hygiene.sh returns rc=1 on that file, then fix the comment in place and confirm rc=0.` | write sandbox `.ts` with a forbidden `ADR-<n>` comment → invoke checker directly (rc=1) → invoke full hook via stdin JSON (banner, exit 0) → rewrite comment as a durable WHY → re-run checker directly (rc=0) | direct checker stdout `<file>:<line>: <excerpt>` with `direct_prefix_exit=1`; hook stdout banner `COMMENT HYGIENE WARNING: ephemeral-artifact pointers found in code comments.` (blank-line wrapped); `hook_exit=0` in all cases; `direct_postfix_exit=0` after the fix | `/tmp/th002-hook-stdout.txt`, `/tmp/th002-direct-prefix.txt`, `/tmp/th002-direct-postfix.txt` | PASS iff the COMMENT HYGIENE WARNING banner reaches hook stdout AND the hook exits 0 AND `check-comment-hygiene.sh` returns rc=1 pre-fix AND rc=0 post-fix | If the banner is missing, confirm the checker returned rc=1 (not rc=2 skip / rc=0 clean): the comment must sit on a comment line, match a `VIOLATION_PATTERN`, and carry no `hygiene-ok` escape; if rc=1 yet no banner, check the checker's executable bit and the hook's `returncode==1 AND stdout.strip()` guard — see per-feature file |
 
-Per-feature file: see `09--tooling-and-hooks/check-dist-staleness-hook.md`.
+Per-feature files: see `09--tooling-and-hooks/`.
 
 ---
 
@@ -321,7 +322,7 @@ Tests NOT covered by automation (manual playbook is the only validation):
 - Design restraint behaviors: ladder rung selection, anti-stall, and the `ceiling:` convention (DR-001, DR-002, DR-003). DR-004 wraps the deterministic `verify_stack_folders.py` check.
 - Dist-staleness hook wiring (TH-001): no automated test covers `claude-posttooluse.sh`'s dist-checker branch; this manual scenario is the only coverage.
 
-**Known pre-existing gap (not covered by this or any playbook scenario)**: `claude-posttooluse.sh`'s comment-hygiene branch (`check-comment-hygiene.sh`, see `references/universal/code_style_guide.md` §4) has no dedicated automated test and no manual playbook scenario in this package. It predates the TH-001 addition and is out of scope for it — flagged here for visibility, not fixed.
+**Comment-hygiene hook wiring (TH-002)**: no automated test covers `claude-posttooluse.sh`'s comment-hygiene branch (`check-comment-hygiene.sh`, see `references/universal/code_style_guide.md` §4); it is now covered by the manual scenario TH-002 (see `09--tooling-and-hooks/comment-hygiene-hook.md`), which exercises the warn-only banner path and the checker's rc=1-then-rc=0 contract across an in-place fix. This closes the gap previously flagged here alongside the TH-001 addition; the `check-comment-hygiene.sh` checker itself still has no dedicated automated unit test, so this manual scenario is its only coverage.
 
 ---
 
@@ -358,7 +359,8 @@ Tests NOT covered by automation (manual playbook is the only validation):
 | Design Restraint | DR-003 | `08--design-restraint/ceiling-comment-convention.md` | No |
 | Design Restraint | DR-004 | `08--design-restraint/stack-folders-validator.md` | No |
 | Tooling And Hooks | TH-001 | `09--tooling-and-hooks/check-dist-staleness-hook.md` | No |
+| Tooling And Hooks | TH-002 | `09--tooling-and-hooks/comment-hygiene-hook.md` | No |
 
-**Total scenarios**: 29
+**Total scenarios**: 30
 **Critical-path scenarios**: approximately 15 (SD-001, SD-002, SD-003, RD-002, SA-001, MR-001, MR-002, MR-003, MR-004, CB-001, CB-002, CB-003, CS-001, CS-002, CS-003)
 **Categories**: 9
