@@ -44,6 +44,7 @@
     "key_files": [
       ".opencode/specs/system-skill-advisor/000-migration-from-system-speckit/spec.md",
       "spec.md",
+      "review/review-report.md",
       "plan.md",
       "tasks.md",
       "checklist.md",
@@ -56,6 +57,12 @@
         "name": "spec.md",
         "kind": "doc",
         "path": ".opencode/specs/system-skill-advisor/000-migration-from-system-speckit/spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "review-report.md",
+        "kind": "doc",
+        "path": "review/review-report.md",
         "source": "derived"
       },
       {
@@ -189,17 +196,11 @@
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Skill-advisor spec history lives in four different places under `system-speckit` (026, 027, 028, plus a half-built `system-skill-advisor` track), with no single folder a reader can open to understand the subsystem's full history",
     "created_at": "2026-07-07T10:52:55.670Z",
-    "last_save_at": "2026-07-07T12:47:03.724Z",
+    "last_save_at": "2026-07-07T13:28:21.101Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,14 +211,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:24ef32ae021c04689abb92ec9286814c84f2e8d8a34dffa68cf6144ee4832c4c",
+    "source_fingerprint": "sha256:076b05ad39835ec31148d4d6c98053c79eba564c980fe9dc3995ca8985b7dcf4",
     "source_doc_hashes": {
       "spec.md": "2480e2fce7b8dc2712241cc15d1105602703cab888188b69f10f43b48a2cd6e8",
       "plan.md": "4fbea072e92bcd2acf8d46ad691f79802e66a9dd7976e5f16a9009df56454e14",
-      "tasks.md": "877d9db7dbcf0ee2e1767a2ceb7311ff9e9e9cc9f73336d918bcff95a5c3cfe2",
-      "checklist.md": "956deae540c217fb986285a379ee65b802fb3d4545d20292093f2b0809eb8bf1",
+      "tasks.md": "3f9059a843128a05ef3b6ab7fcb9c80f52c2c173f9f14e34b8e4577403db244c",
+      "checklist.md": "49dd55d271b6b25f4972b0af472d1fc08f75a39a12093f691bba4883b132a6a3",
       "decision-record.md": "c6b53b3f51cf392eac9c3de6bc147bd85b6402267b64efb15db56041e0459f6d",
-      "implementation-summary.md": "634588b07f91583f66147c038525723fdb5e75efb4d6b926db29e2e347d65f21"
+      "implementation-summary.md": "fce55ef07ee497d6e644b466d0de75a1c891c74a9ad2d5b03a713589002878f2"
     },
     "last_active_child_id": null,
     "last_active_at": null
