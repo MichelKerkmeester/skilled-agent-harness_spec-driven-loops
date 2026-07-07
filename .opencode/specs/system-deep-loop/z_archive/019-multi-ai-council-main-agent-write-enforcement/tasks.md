@@ -1,5 +1,5 @@
 ---
-title: "Task Breakdown: Multi-AI Council main-agent write enforcement [skilled-agent-orchestration/100-multi-ai-council-main-agent-write-enforcement/tasks]"
+title: "Task Breakdown: Multi-AI Council main-agent write enforcement [system-deep-loop/z_archive/019-multi-ai-council-main-agent-write-enforcement/tasks]"
 description: "Bullet-level work items mapped to plan.md phases. Each task names the file, the section, and the exit signal."
 trigger_phrases:
   - "100 tasks"
@@ -8,7 +8,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "skilled-agent-orchestration/100-multi-ai-council-main-agent-write-enforcement"
+    packet_pointer: "system-deep-loop/z_archive/019-multi-ai-council-main-agent-write-enforcement"
     last_updated_at: "2026-05-09T17:50:00Z"
     last_updated_by: "claude-opus-4-7"
     recent_action: "Authored task list"

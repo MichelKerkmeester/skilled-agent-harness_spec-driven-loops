@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: sk-deep-research Manual [skilled-agent-orchestration/028-sk-deep-research-testing-playbook/plan]"
+title: "Implementation Plan: sk-deep-research Manual [system-deep-loop/z_archive/003-sk-deep-research-testing-playbook/plan]"
 description: "Plan the approved 19-scenario manual_testing_playbook package for sk-deep-research using the live skill and command docs plus the current sk-doc testing-playbook contract."
 trigger_phrases:
   - "deep research playbook plan"
@@ -10,7 +10,7 @@ contextType: "implementation"
 template_source_hint: "<!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2 -->"
 _memory:
   continuity:
-    packet_pointer: "skilled-agent-orchestration/028-sk-deep-research-testing-playbook"
+    packet_pointer: "system-deep-loop/z_archive/003-sk-deep-research-testing-playbook"
     last_updated_at: "2026-04-24T15:25:01Z"
     last_updated_by: "backfill-memory-block"
     recent_action: "Backfilled _memory block (repo-wide frontmatter sweep)"

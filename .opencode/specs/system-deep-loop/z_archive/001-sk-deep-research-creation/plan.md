@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: Autonomous Deep Research Loop [skilled-agent-orchestration/023-sk-deep-research-creation/plan]"
+title: "Implementation Plan: Autonomous Deep Research Loop [system-deep-loop/z_archive/001-sk-deep-research-creation/plan]"
 description: "5-phase plan for 3-layer autoresearch integration (agent + command + skill) with ~2800 LOC across 18 files"
 trigger_phrases:
   - "autoresearch plan"
@@ -9,7 +9,7 @@ contextType: "general"
 template_source_hint: "<!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2 -->"
 _memory:
   continuity:
-    packet_pointer: "skilled-agent-orchestration/023-sk-deep-research-creation"
+    packet_pointer: "system-deep-loop/z_archive/001-sk-deep-research-creation"
     last_updated_at: "2026-04-24T15:25:01Z"
     last_updated_by: "backfill-memory-block"
     recent_action: "Backfilled _memory block (repo-wide frontmatter sweep)"

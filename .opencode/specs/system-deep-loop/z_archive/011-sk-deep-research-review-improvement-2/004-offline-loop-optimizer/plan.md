@@ -1,5 +1,5 @@
 ---
-title: "Implementation [skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/plan]"
+title: "Implementation [system-deep-loop/z_archive/011-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/plan]"
 description: "Deliver Phase 4a as a deterministic offline config optimizer with advisory-only outputs now, and defer Phase 4b prompt/meta optimization until replay fixtures, behavioral suites, and broader corpus coverage exist."
 trigger_phrases:
   - "042.004"
@@ -12,7 +12,7 @@ contextType: "planning"
 template_source_hint: "<!-- SPECKIT_TEMPLATE_SOURCE: plan-core + level2-verify + level3-arch | v2.2 -->"
 _memory:
   continuity:
-    packet_pointer: "skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer"
+    packet_pointer: "system-deep-loop/z_archive/011-sk-deep-research-review-improvement-2/004-offline-loop-optimizer"
     last_updated_at: "2026-04-24T15:25:01Z"
     last_updated_by: "backfill-memory-block"
     recent_action: "Backfilled _memory block (repo-wide frontmatter sweep)"

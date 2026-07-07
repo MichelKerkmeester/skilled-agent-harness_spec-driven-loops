@@ -1,5 +1,5 @@
 ---
-title: "Decis [skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/decision-record]"
+title: "Decis [system-deep-loop/z_archive/011-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/decision-record]"
 description: "Accepted architecture decision for the offline replay optimizer and its advisory promotion boundary."
 trigger_phrases:
   - "042.004"
@@ -10,7 +10,7 @@ contextType: "planning"
 template_source_hint: "<!-- SPECKIT_TEMPLATE_SOURCE: decision-record | v2.2 -->"
 _memory:
   continuity:
-    packet_pointer: "skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer"
+    packet_pointer: "system-deep-loop/z_archive/011-sk-deep-research-review-improvement-2/004-offline-loop-optimizer"
     last_updated_at: "2026-04-24T15:25:01Z"
     last_updated_by: "backfill-memory-block"
     recent_action: "Backfilled _memory block (repo-wide frontmatter sweep)"

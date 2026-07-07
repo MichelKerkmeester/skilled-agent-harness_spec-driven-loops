@@ -10,18 +10,18 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "skilled-agent-orchestration/101-deep-multi-ai-council-skill"
+    packet_pointer: "system-deep-loop/z_archive/020-deep-multi-ai-council-skill"
     last_updated_at: "2026-05-11T07:55:00Z"
     last_updated_by: "claude-opus-4-7"
     recent_action: "Phase 005 added for fixups and value scenarios"
     next_safe_action: "Complete 005-deep-ai-council-fixups-and-graph-value-scenarios implementation"
     blockers: []
     key_files:
-      - .opencode/specs/skilled-agent-orchestration/101-deep-multi-ai-council-skill/001-deep-ai-council-skill-creation/
-      - .opencode/specs/skilled-agent-orchestration/101-deep-multi-ai-council-skill/002-deep-ai-council-reference-expansion/
-      - .opencode/specs/skilled-agent-orchestration/101-deep-multi-ai-council-skill/003-deep-ai-council-graph-support/
-      - .opencode/specs/skilled-agent-orchestration/101-deep-multi-ai-council-skill/004-deep-ai-council-playbook-graph-coverage/
-      - .opencode/specs/skilled-agent-orchestration/101-deep-multi-ai-council-skill/005-deep-ai-council-fixups-and-graph-value-scenarios/
+      - .opencode/specs/system-deep-loop/z_archive/020-deep-multi-ai-council-skill/001-deep-ai-council-skill-creation/
+      - .opencode/specs/system-deep-loop/z_archive/020-deep-multi-ai-council-skill/002-deep-ai-council-reference-expansion/
+      - .opencode/specs/system-deep-loop/z_archive/020-deep-multi-ai-council-skill/003-deep-ai-council-graph-support/
+      - .opencode/specs/system-deep-loop/z_archive/020-deep-multi-ai-council-skill/004-deep-ai-council-playbook-graph-coverage/
+      - .opencode/specs/system-deep-loop/z_archive/020-deep-multi-ai-council-skill/005-deep-ai-council-fixups-and-graph-value-scenarios/
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "101-phase-parent-scaffold"

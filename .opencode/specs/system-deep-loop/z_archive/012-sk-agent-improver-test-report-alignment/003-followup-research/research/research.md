@@ -6,14 +6,14 @@ iterations_run: 10
 convergence_iteration: 9
 _memory:
   continuity:
-    packet_pointer: "skilled-agent-orchestration/060-sk-agent-improver-test-report-alignment/003-followup-research"
+    packet_pointer: "system-deep-loop/z_archive/012-sk-agent-improver-test-report-alignment/003-followup-research/research"
     last_updated_at: "2026-05-02T13:41:52+02:00"
     last_updated_by: "codex-gpt-5"
     recent_action: "Synthesized 10 cli-copilot deep-research iterations into final research.md"
     next_safe_action: "Use handover.md to start packet 004 (was 061) or 062"
     blockers: []
     key_files:
-      - .opencode/specs/skilled-agent-orchestration/060-sk-agent-improver-test-report-alignment/003-followup-research/research/research.md
+      - .opencode/specs/system-deep-loop/z_archive/012-sk-agent-improver-test-report-alignment/003-followup-research/research/research/research.md
     completion_pct: 100
     open_questions:
       - "Whether 062 includes the GREEN rerun or leaves it to optional 063"

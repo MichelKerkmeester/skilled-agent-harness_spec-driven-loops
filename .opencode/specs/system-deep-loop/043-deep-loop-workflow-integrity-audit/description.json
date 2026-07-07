@@ -1,0 +1,22 @@
+{
+  "specFolder": "system-deep-loop/043-deep-loop-workflow-integrity-audit",
+  "description": "The release-readiness program needs a truth check for the deep-loop workflow layer",
+  "keywords": [
+    "release-readiness",
+    "program",
+    "needs",
+    "truth",
+    "check",
+    "deep-loop",
+    "workflow",
+    "layer"
+  ],
+  "lastUpdated": "2026-07-07T15:25:33.791Z",
+  "specId": "043",
+  "folderSlug": "deep-loop-workflow-integrity-audit",
+  "parentChain": [
+    "system-deep-loop"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": []
+}

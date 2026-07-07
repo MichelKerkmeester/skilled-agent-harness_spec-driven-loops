@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: Agent [skilled-agent-orchestration/041-sk-recursive-agent-loop/001-sk-recursive-agent-mvp/spec]"
+title: "Feature Specification: Agent [system-deep-loop/z_archive/010-sk-recursive-agent-loop/001-sk-recursive-agent-mvp/spec]"
 description: "The repo has reusable loop scaffolding, but no evaluator-first system for safely iterating on agent behavior. We need a bounded experiment loop that improves one canonical agent surface without pretending prompt churn is validated progress."
 trigger_phrases:
   - "agent improvement loop"
@@ -12,7 +12,7 @@ contextType: "general"
 template_source_hint: "<!-- SPECKIT_TEMPLATE_SOURCE: spec-core + level2-verify + level3-arch | v2.2 -->"
 _memory:
   continuity:
-    packet_pointer: "skilled-agent-orchestration/041-sk-recursive-agent-loop/001-sk-recursive-agent-mvp"
+    packet_pointer: "system-deep-loop/z_archive/010-sk-recursive-agent-loop/001-sk-recursive-agent-mvp"
     last_updated_at: "2026-04-24T15:25:01Z"
     last_updated_by: "backfill-memory-block"
     recent_action: "Backfilled _memory block (repo-wide frontmatter sweep)"

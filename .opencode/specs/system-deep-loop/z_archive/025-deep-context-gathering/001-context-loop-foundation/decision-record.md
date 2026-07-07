@@ -11,14 +11,14 @@ importance_tier: "high"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "skilled-agent-orchestration/134-deep-context-gathering"
+    packet_pointer: "system-deep-loop/z_archive/025-deep-context-gathering/001-context-loop-foundation"
     last_updated_at: "2026-06-06T18:05:22Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "Authored ownership ADR for deep-context runtime consumer"
     next_safe_action: "Cross-check plan/tasks/checklist evidence against ADR decisions"
     blockers: []
     key_files:
-      - "specs/skilled-agent-orchestration/134-deep-context-gathering/research/research.md"
+      - "specs/system-deep-loop/z_archive/025-deep-context-gathering/001-context-loop-foundation/research/research.md"
       - ".opencode/skills/deep-loop-runtime/lib/coverage-graph/coverage-graph-db.ts"
     session_dedup:
       fingerprint: "sha256:1aecb6c05c8afddbea2821d951fa97eec42d3241a133b2c0cd0c60677edc6667"

@@ -1,5 +1,5 @@
 ---
-title: "Verification Checklist: Multi-AI Council write authority [skilled-agent-orchestration/098-multi-ai-council-write-authority/checklist]"
+title: "Verification Checklist: Multi-AI Council write authority [system-deep-loop/z_archive/018-multi-ai-council-write-authority/checklist]"
 description: "Level 3 verification checklist for scoped council write authority."
 trigger_phrases:
   - "council write authority checklist"
@@ -8,7 +8,7 @@ importance_tier: "important"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "skilled-agent-orchestration/098-multi-ai-council-write-authority"
+    packet_pointer: "system-deep-loop/z_archive/018-multi-ai-council-write-authority"
     last_updated_at: "2026-05-08T23:10:00Z"
     last_updated_by: "codex"
     recent_action: "Implementation in progress"

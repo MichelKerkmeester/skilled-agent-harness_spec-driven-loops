@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: sk-deep-research Review Mode [skilled-agent-orchestration/030-sk-deep-research-review-mode/plan]"
+title: "Implementation Plan: sk-deep-research Review Mode [system-deep-loop/z_archive/005-sk-deep-research-review-mode/plan]"
 description: "Plan the review-mode documentation and implementation follow-through while preserving the existing design intent recorded in the packet."
 trigger_phrases:
   - "030"
@@ -10,7 +10,7 @@ contextType: "implementation"
 template_source_hint: "<!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2 -->"
 _memory:
   continuity:
-    packet_pointer: "skilled-agent-orchestration/030-sk-deep-research-review-mode"
+    packet_pointer: "system-deep-loop/z_archive/005-sk-deep-research-review-mode"
     last_updated_at: "2026-04-24T15:25:01Z"
     last_updated_by: "backfill-memory-block"
     recent_action: "Backfilled _memory block (repo-wide frontmatter sweep)"

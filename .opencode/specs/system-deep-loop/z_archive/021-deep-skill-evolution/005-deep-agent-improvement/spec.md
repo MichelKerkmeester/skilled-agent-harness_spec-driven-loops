@@ -11,7 +11,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "skilled-agent-orchestration/116-deep-skill-evolution/005-deep-agent-improvement"
+    packet_pointer: "system-deep-loop/z_archive/021-deep-skill-evolution/005-deep-agent-improvement"
     last_updated_at: "2026-05-24T06:47:43Z"
     last_updated_by: "main_agent"
     recent_action: "nested-from-flat-131-restructure"

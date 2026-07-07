@@ -11,7 +11,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "skilled-agent-orchestration/079-sk-deep-agent-improvement"
+    packet_pointer: "system-deep-loop/z_archive/014-sk-deep-agent-improvement"
     last_updated_at: "2026-05-06T08:40:00Z"
     last_updated_by: "claude-orchestrator"
     recent_action: "resource-map authored"

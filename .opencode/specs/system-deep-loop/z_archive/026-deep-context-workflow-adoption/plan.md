@@ -7,7 +7,7 @@ importance_tier: "high"
 contextType: "specification"
 _memory:
   continuity:
-    packet_pointer: "skilled-agent-orchestration/137-deep-context-workflow-adoption"
+    packet_pointer: "system-deep-loop/z_archive/026-deep-context-workflow-adoption"
     last_updated_at: "2026-06-07T19:55:00Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "Council verdict in; implemented PLAN-WORKFLOW LOCK + two secondaries"

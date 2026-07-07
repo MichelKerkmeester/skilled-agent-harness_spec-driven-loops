@@ -7,7 +7,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "skilled-agent-orchestration/116-deep-skill-evolution/001-ai-council/012-iterative-command-and-skill-wiring"
+    packet_pointer: "system-deep-loop/z_archive/021-deep-skill-evolution/001-deep-ai-council/012-iterative-command-and-skill-wiring"
     last_updated_at: "2026-05-23T09:30:00Z"
     last_updated_by: "codex"
     recent_action: "Scaffold 005-command-and-skill-wiring for Wave 6 dispatch"

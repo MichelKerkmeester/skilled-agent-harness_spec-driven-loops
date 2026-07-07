@@ -1,5 +1,5 @@
 ---
-title: "Implementat [skilled-agent-orchestration/040-sk-deep-research-review-improvement-1/002-sk-deep-review-improvements/plan]"
+title: "Implementat [system-deep-loop/z_archive/009-sk-deep-research-review-improvement-1/002-sk-deep-review-improvements/plan]"
 description: "Implement the review-mode contract alignment across deep-review docs, assets, workflow YAML, runtime mirrors, packet tests, and packet closeout docs, then verify the phase folder with strict validation."
 trigger_phrases:
   - "deep review plan"
@@ -12,7 +12,7 @@ contextType: "general"
 template_source_hint: "<!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2 -->"
 _memory:
   continuity:
-    packet_pointer: "skilled-agent-orchestration/040-sk-deep-research-review-improvement-1/002-sk-deep-review-improvements"
+    packet_pointer: "system-deep-loop/z_archive/009-sk-deep-research-review-improvement-1/002-sk-deep-review-improvements"
     last_updated_at: "2026-04-24T15:25:01Z"
     last_updated_by: "backfill-memory-block"
     recent_action: "Backfilled _memory block (repo-wide frontmatter sweep)"

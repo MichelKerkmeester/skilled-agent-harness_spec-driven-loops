@@ -9,7 +9,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "skilled-agent-orchestration/116-deep-skill-evolution/005-deep-agent-improvement/009-command-surface-relocation"
+    packet_pointer: "system-deep-loop/z_archive/021-deep-skill-evolution/005-deep-agent-improvement/009-command-surface-relocation"
     last_updated_at: "2026-05-24T07:06:34Z"
     last_updated_by: "codex"
     recent_action: "recorded root README and runtime mirror audit evidence"

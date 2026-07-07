@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: sk-deep-research Refinement [skilled-agent-orchestration/024-sk-deep-research-refinement/plan]"
+title: "Implementation Plan: sk-deep-research Refinement [system-deep-loop/z_archive/002-sk-deep-research-refinement/plan]"
 description: "This plan uses the existing /speckit:deep-research:auto system to run autonomous research rounds that investigate improvements to itself. The research targets 3 external refere..."
 trigger_phrases:
   - "implementation"
@@ -13,7 +13,7 @@ contextType: "planning"
 template_source_hint: "<!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2 -->"
 _memory:
   continuity:
-    packet_pointer: "skilled-agent-orchestration/024-sk-deep-research-refinement"
+    packet_pointer: "system-deep-loop/z_archive/002-sk-deep-research-refinement"
     last_updated_at: "2026-04-24T15:25:01Z"
     last_updated_by: "backfill-memory-block"
     recent_action: "Backfilled _memory block (repo-wide frontmatter sweep)"

@@ -17,7 +17,7 @@
   "parent_id": "103-spec-kit-auto-mode-noninteractive-contract",
   "manual": {
     "depends_on": [
-      "skilled-agent-orchestration/z_archive/083-spec-kit-auto-mode-noninteractive-contract/001-deep-review-three-tier-setup",
+      "system-deep-loop/z_archive/033-deep-review-three-tier-setup",
       "skilled-agent-orchestration/z_archive/083-spec-kit-auto-mode-noninteractive-contract/002-auto-mode-contract-generalization-to-all-commands"
     ]
   },

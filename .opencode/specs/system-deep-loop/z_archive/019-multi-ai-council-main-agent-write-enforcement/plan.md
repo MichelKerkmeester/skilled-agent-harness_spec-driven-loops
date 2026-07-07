@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: Multi-AI Council main-agent write enforcement [skilled-agent-orchestration/100-multi-ai-council-main-agent-write-enforcement/plan]"
+title: "Implementation Plan: Multi-AI Council main-agent write enforcement [system-deep-loop/z_archive/019-multi-ai-council-main-agent-write-enforcement/plan]"
 description: "Sequenced plan for adding the missing enforcement gates to the Multi-AI Council agent body across all 4 runtime mirrors. Phase 1 audits the current body for the exact insertion points and confirms the parity-test coverage. Phase 2 authors the enforcement edits in a single mirror as the canonical reference. Phase 3 propagates to the other 3 mirrors and updates reference docs. Phase 4 runs the sandbox smoke + parity test."
 trigger_phrases:
   - "100 plan"
@@ -8,7 +8,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "skilled-agent-orchestration/100-multi-ai-council-main-agent-write-enforcement"
+    packet_pointer: "system-deep-loop/z_archive/019-multi-ai-council-main-agent-write-enforcement"
     last_updated_at: "2026-05-09T17:50:00Z"
     last_updated_by: "claude-opus-4-7"
     recent_action: "Drafted 4-phase plan"

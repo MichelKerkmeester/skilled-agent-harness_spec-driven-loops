@@ -114,7 +114,7 @@ Drive every P0/P1/P2 finding to implemented-and-verified through seven independe
 
 | Phase | Folder | Focus | Status |
 |-------|--------|-------|--------|
-| 1 | 001-deep-loop-fanout-reliability/ | RC5 — fan-out result accounting (P0), async spawn, iteration cap, service_tier enum, comment hygiene in code | Complete |
+| 1 | ../../../../system-deep-loop/045-deep-loop-fanout-reliability/ | RC5 — fan-out result accounting (P0), async spawn, iteration cap, service_tier enum, comment hygiene in code | Moved |
 | 2 | 002-retrieval-scope-hardening/ | RC4 — community-fallback scope, causal bare-ID scope, FK guard, session trust (P1) | Complete |
 | 3 | 003-memory-write-correctness/ | RC3 — entity-density invalidation on update/delete; atomic-save recovery regression test (P1) | Complete |
 | 4 | 004-mcp-contract-parity/ | RC1 — reconcile/ingest/causal_stats contract parity + governed-ingest propagation + parity test (P1/P2) | Complete |

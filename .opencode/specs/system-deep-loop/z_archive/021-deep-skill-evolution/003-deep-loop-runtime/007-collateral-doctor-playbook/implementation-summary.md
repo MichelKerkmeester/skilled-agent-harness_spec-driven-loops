@@ -9,7 +9,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "skilled-agent-orchestration/116-deep-skill-evolution/003-deep-loop-runtime/007-collateral-doctor-playbook"
+    packet_pointer: "system-deep-loop/z_archive/021-deep-skill-evolution/003-deep-loop-runtime/007-collateral-doctor-playbook"
     last_updated_at: "2026-05-22T18:51:26Z"
     last_updated_by: "gpt-5-codex"
     recent_action: "Updated /doctor and playbook collateral to use deep-loop-runtime scripts."

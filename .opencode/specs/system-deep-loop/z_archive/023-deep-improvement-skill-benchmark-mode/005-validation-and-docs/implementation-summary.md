@@ -8,7 +8,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "skilled-agent-orchestration/122-deep-improvement-skill-benchmark-mode/005-validation-and-docs"
+    packet_pointer: "system-deep-loop/z_archive/023-deep-improvement-skill-benchmark-mode/005-validation-and-docs"
     last_updated_at: "2026-05-31T00:00:00Z"
     last_updated_by: "claude-opus"
     recent_action: "Three-lane docs + catalog complete; Opus hardening gate SHIP (208/208, 0 P0/P1)"

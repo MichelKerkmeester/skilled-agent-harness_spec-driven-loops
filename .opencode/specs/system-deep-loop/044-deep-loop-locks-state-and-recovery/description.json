@@ -1,0 +1,32 @@
+{
+  "level": "1",
+  "specFolder": "system-deep-loop/044-deep-loop-locks-state-and-recovery",
+  "description": "The broad audit found advisory locks without PID/TTL/heartbeat metadata, inconsistent deep-review locking, and JSONL state recovery gaps",
+  "keywords": [
+    "broad",
+    "audit",
+    "found",
+    "advisory",
+    "locks",
+    "without",
+    "pid",
+    "ttl",
+    "heartbeat",
+    "metadata",
+    "inconsistent",
+    "deep-review",
+    "locking",
+    "jsonl",
+    "state",
+    "recovery",
+    "gaps"
+  ],
+  "lastUpdated": "2026-07-07T15:25:34.343Z",
+  "specId": "044",
+  "folderSlug": "deep-loop-locks-state-and-recovery",
+  "parentChain": [
+    "system-deep-loop"
+  ],
+  "memorySequence": 4,
+  "memoryNameHistory": []
+}

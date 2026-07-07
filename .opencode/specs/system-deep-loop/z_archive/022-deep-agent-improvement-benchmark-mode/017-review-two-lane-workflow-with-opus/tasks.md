@@ -10,7 +10,7 @@ importance_tier: "important"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "skilled-agent-orchestration/121-deep-agent-improvement-benchmark-mode/017-review-two-lane-workflow-with-opus"
+    packet_pointer: "system-deep-loop/z_archive/022-deep-agent-improvement-benchmark-mode/017-review-two-lane-workflow-with-opus"
     last_updated_at: "2026-05-29T13:38:56Z"
     last_updated_by: "deep-review-leaf"
     recent_action: "Scaffolded 017 packet + deep-review state config"

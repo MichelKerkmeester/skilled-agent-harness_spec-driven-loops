@@ -115,12 +115,6 @@ Rewrite all 22 skill READMEs and the `.opencode/skills/README.md` index into the
 | 003 | `003-cli-codex-readme/` | Rewrite `cli-codex` README | Complete |
 | 004 | `004-cli-devin-readme/` | Rewrite `cli-devin` README | Complete |
 | 005 | `005-cli-opencode-readme/` | Rewrite `cli-opencode` README | Complete |
-| 006 | `006-deep-ai-council-readme/` | Rewrite `deep-ai-council` README | Complete |
-| 007 | `007-deep-context-readme/` | Rewrite `deep-context` README | Complete |
-| 008 | `008-deep-improvement-readme/` | Rewrite `deep-improvement` README | Complete |
-| 009 | `009-deep-loop-runtime-readme/` | Rewrite `deep-loop-runtime` README | Complete |
-| 010 | `010-deep-research-readme/` | Rewrite `deep-research` README | Complete |
-| 011 | `011-deep-review-readme/` | Rewrite `deep-review` README | Complete |
 | 012 | `012-mcp-chrome-devtools-readme/` | Rewrite `mcp-chrome-devtools` README | Complete |
 | 013 | `013-mcp-click-up-readme/` | Rewrite `mcp-click-up` README | Complete |
 | 014 | `014-mcp-code-mode-readme/` | Rewrite `mcp-code-mode` README | Complete |

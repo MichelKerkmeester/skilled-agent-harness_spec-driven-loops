@@ -11,14 +11,14 @@ importance_tier: "high"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "skilled-agent-orchestration/134-deep-context-gathering"
+    packet_pointer: "system-deep-loop/z_archive/025-deep-context-gathering/001-context-loop-foundation"
     last_updated_at: "2026-06-06T19:30:00Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "Added alignment + catalog/playbook + Barter phase to plan"
     next_safe_action: "3 sonnet agents align skill, build catalog/playbook, integrate Barter"
     blockers: []
     key_files:
-      - "specs/skilled-agent-orchestration/134-deep-context-gathering/research/research.md"
+      - "specs/system-deep-loop/z_archive/025-deep-context-gathering/001-context-loop-foundation/research/research.md"
       - ".opencode/skills/deep-context/SKILL.md"
       - ".opencode/skills/deep-loop-runtime/lib/coverage-graph/coverage-graph-db.ts"
     session_dedup:

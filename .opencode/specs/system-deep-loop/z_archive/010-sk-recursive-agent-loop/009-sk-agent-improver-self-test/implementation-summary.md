@@ -1,5 +1,5 @@
 ---
-title: "Impleme [skilled-agent-orchestration/041-sk-recursive-agent-loop/009-sk-agent-improver-self-test/implementation-summary]"
+title: "Impleme [system-deep-loop/z_archive/010-sk-recursive-agent-loop/009-sk-agent-improver-self-test/implementation-summary]"
 description: "Ran the first self-referential test of the sk-improve-agent skill: the /deep:start-agent-improvement-loop loop targeting .opencode/agents/agent-improver.md itself. This is the agent that describes t..."
 trigger_phrases:
   - "impleme"
@@ -10,7 +10,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "skilled-agent-orchestration/041-sk-recursive-agent-loop/009-sk-agent-improver-self-test"
+    packet_pointer: "system-deep-loop/z_archive/010-sk-recursive-agent-loop/009-sk-agent-improver-self-test"
     last_updated_at: "2026-04-24T15:25:01Z"
     last_updated_by: "backfill-memory-block"
     recent_action: "Backfilled _memory block (repo-wide frontmatter sweep)"

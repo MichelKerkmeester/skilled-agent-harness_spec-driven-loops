@@ -9,7 +9,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "skilled-agent-orchestration/042-sk-deep-research-review-improvement-2"
+    packet_pointer: "system-deep-loop/z_archive/011-sk-deep-research-review-improvement-2"
     last_updated_at: "2026-04-29T11:10:00Z"
     last_updated_by: "claude-opus-4-7"
     recent_action: "Backfill _memory.continuity per Tier 4 sk-doc template alignment"

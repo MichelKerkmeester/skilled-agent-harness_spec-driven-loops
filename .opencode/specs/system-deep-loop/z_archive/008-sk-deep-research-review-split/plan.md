@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: Split sk-deep-research [skilled-agent-orchestration/036-sk-deep-research-review-split/plan]"
+title: "Implementation Plan: Split sk-deep-research [system-deep-loop/z_archive/008-sk-deep-research-review-split/plan]"
 description: "Separates review mode into a dedicated skill and command while simplifying sk-deep-research back to investigation-only behavior."
 trigger_phrases:
   - "deep-review split plan"
@@ -9,7 +9,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "skilled-agent-orchestration/036-sk-deep-research-review-split"
+    packet_pointer: "system-deep-loop/z_archive/008-sk-deep-research-review-split"
     last_updated_at: "2026-04-13T10:38:46Z"
     last_updated_by: "copilot"
     recent_action: "Applied follow-up advisor evidence calibration and sibling-edge cleanup"

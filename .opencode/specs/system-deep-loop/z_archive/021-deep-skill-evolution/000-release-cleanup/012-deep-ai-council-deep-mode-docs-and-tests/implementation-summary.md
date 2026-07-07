@@ -7,7 +7,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "skilled-agent-orchestration/116-deep-skill-evolution/000-release-cleanup/004-deep-ai-council/001-deep-mode-docs-and-tests"
+    packet_pointer: "system-deep-loop/z_archive/021-deep-skill-evolution/000-release-cleanup/012-deep-ai-council-deep-mode-docs-and-tests"
     last_updated_at: "2026-05-24T00:00:00Z"
     last_updated_by: "main_agent"
     recent_action: "deep-mode-followons-closed"

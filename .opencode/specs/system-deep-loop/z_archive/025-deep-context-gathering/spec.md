@@ -11,7 +11,7 @@ importance_tier: "high"
 contextType: "specification"
 _memory:
   continuity:
-    packet_pointer: "skilled-agent-orchestration/134-deep-context-gathering"
+    packet_pointer: "system-deep-loop/z_archive/025-deep-context-gathering"
     last_updated_at: "2026-06-07T10:30:00Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "All 4 phases shipped + verified; 004 reference alignment closed (e73ffe6610)"

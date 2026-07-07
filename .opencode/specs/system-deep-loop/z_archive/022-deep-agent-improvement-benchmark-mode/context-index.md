@@ -3,7 +3,7 @@ title: "Context Index — 121 deep-agent-improvement-benchmark-mode"
 description: "Migration bridge for the phase parent: arc map, phase renames (old -> new), the 122 -> 007 fold-in provenance, and numbering policy. Resolves any reference to an old phase name."
 _memory:
   continuity:
-    packet_pointer: "skilled-agent-orchestration/121-deep-agent-improvement-benchmark-mode"
+    packet_pointer: "system-deep-loop/z_archive/022-deep-agent-improvement-benchmark-mode"
     last_updated_at: "2026-05-30T00:00:00Z"
     last_updated_by: "claude-opus"
     recent_action: "Authored as part of the 121 naming + historic-context reorg"

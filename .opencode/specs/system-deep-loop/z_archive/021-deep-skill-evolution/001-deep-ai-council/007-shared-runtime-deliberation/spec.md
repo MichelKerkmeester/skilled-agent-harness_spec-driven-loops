@@ -10,7 +10,7 @@ importance_tier: "important"
 contextType: "decision"
 _memory:
   continuity:
-    packet_pointer: "skilled-agent-orchestration/116-deep-skill-evolution/001-ai-council/007-shared-runtime-deliberation"
+    packet_pointer: "system-deep-loop/z_archive/021-deep-skill-evolution/001-deep-ai-council/007-shared-runtime-deliberation"
     last_updated_at: "2026-05-23T05:04:55Z"
     last_updated_by: "codex"
     recent_action: "Scaffolded and authored 4-seat AI Council deliberation."

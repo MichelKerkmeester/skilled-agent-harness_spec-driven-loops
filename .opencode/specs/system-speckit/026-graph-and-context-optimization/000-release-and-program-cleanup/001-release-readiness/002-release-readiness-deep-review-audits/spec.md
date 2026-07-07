@@ -81,7 +81,7 @@ Validate release-readiness across:
 | 004 | code-graph-readiness | `mcp_server/code_graph/` read-path/manual contract | 30-90 min cli-codex |
 | 005 | cross-runtime-hook-parity | `mcp_server/hooks/` + 035 + 043 + 044 evidence; 5-runtime parity | 30-90 min cli-codex |
 | 006 | mcp-tool-schema-governance | `mcp_server/schemas/` + `tool-schemas.ts` + governed-ingest | 30-90 min cli-codex |
-| 007 | deep-loop-workflow-integrity | `mcp_server/lib/deep-loop/` + deep-research/review YAMLs | 30-90 min cli-codex |
+| 007 | deep-loop-workflow-integrity | Moved to `../../../../../system-deep-loop/043-deep-loop-workflow-integrity-audit/` | moved |
 | 008 | validator-spec-doc-integrity | `scripts/spec/validate.sh` + `mcp_server/lib/spec/` + sample of `specs/**` | 30-90 min cli-codex |
 | 009 | documentation-truth | AGENTS.md + CLAUDE.md + SKILL.md + READMEs + feature_catalog + manual_testing_playbook | 30-90 min cli-codex |
 | 010 | upgrade-safety-operability | `mcp_server/db/` + INSTALL_GUIDE.md + `package.json` + `doctor:mcp_install` | 30-90 min cli-codex |
@@ -159,7 +159,7 @@ The phase parent inherits requirements from each child packet. Aggregate:
 | 003-code-graph-readiness-audit | [spec](003-code-graph-readiness-audit/spec.md) | [plan](003-code-graph-readiness-audit/plan.md) | [tasks](003-code-graph-readiness-audit/tasks.md) | [checklist](003-code-graph-readiness-audit/checklist.md) | [impl](003-code-graph-readiness-audit/implementation-summary.md) | [review](003-code-graph-readiness-audit/review-report.md) |
 | 004-cross-runtime-hook-parity-audit | [spec](004-cross-runtime-hook-parity-audit/spec.md) | [plan](004-cross-runtime-hook-parity-audit/plan.md) | [tasks](004-cross-runtime-hook-parity-audit/tasks.md) | [checklist](004-cross-runtime-hook-parity-audit/checklist.md) | [impl](004-cross-runtime-hook-parity-audit/implementation-summary.md) | [review](004-cross-runtime-hook-parity-audit/review-report.md) |
 | 005-mcp-tool-schema-governance-audit | [spec](005-mcp-tool-schema-governance-audit/spec.md) | [plan](005-mcp-tool-schema-governance-audit/plan.md) | [tasks](005-mcp-tool-schema-governance-audit/tasks.md) | [checklist](005-mcp-tool-schema-governance-audit/checklist.md) | [impl](005-mcp-tool-schema-governance-audit/implementation-summary.md) | [review](005-mcp-tool-schema-governance-audit/review-report.md) |
-| 006-deep-loop-workflow-integrity-audit | [spec](006-deep-loop-workflow-integrity-audit/spec.md) | [plan](006-deep-loop-workflow-integrity-audit/plan.md) | [tasks](006-deep-loop-workflow-integrity-audit/tasks.md) | [checklist](006-deep-loop-workflow-integrity-audit/checklist.md) | [impl](006-deep-loop-workflow-integrity-audit/implementation-summary.md) | [review](006-deep-loop-workflow-integrity-audit/review-report.md) |
+| 006-deep-loop-workflow-integrity-audit | [moved](../../../../../system-deep-loop/043-deep-loop-workflow-integrity-audit/spec.md) | [moved](../../../../../system-deep-loop/043-deep-loop-workflow-integrity-audit/plan.md) | [moved](../../../../../system-deep-loop/043-deep-loop-workflow-integrity-audit/tasks.md) | [moved](../../../../../system-deep-loop/043-deep-loop-workflow-integrity-audit/checklist.md) | [moved](../../../../../system-deep-loop/043-deep-loop-workflow-integrity-audit/implementation-summary.md) | [moved](../../../../../system-deep-loop/043-deep-loop-workflow-integrity-audit/review-report.md) |
 | 007-validator-spec-document-integrity-audit | [spec](007-validator-spec-document-integrity-audit/spec.md) | [plan](007-validator-spec-document-integrity-audit/plan.md) | [tasks](007-validator-spec-document-integrity-audit/tasks.md) | [checklist](007-validator-spec-document-integrity-audit/checklist.md) | [impl](007-validator-spec-document-integrity-audit/implementation-summary.md) | [review](007-validator-spec-document-integrity-audit/review-report.md) |
 | 008-documentation-truth-audit | [spec](008-documentation-truth-audit/spec.md) | [plan](008-documentation-truth-audit/plan.md) | [tasks](008-documentation-truth-audit/tasks.md) | [checklist](008-documentation-truth-audit/checklist.md) | [impl](008-documentation-truth-audit/implementation-summary.md) | [review](008-documentation-truth-audit/review-report.md) |
 | 009-upgrade-safety-operability-audit | [spec](009-upgrade-safety-operability-audit/spec.md) | [plan](009-upgrade-safety-operability-audit/plan.md) | [tasks](009-upgrade-safety-operability-audit/tasks.md) | [checklist](009-upgrade-safety-operability-audit/checklist.md) | [impl](009-upgrade-safety-operability-audit/implementation-summary.md) | [review](009-upgrade-safety-operability-audit/review-report.md) |
@@ -177,7 +177,7 @@ The phase parent inherits requirements from each child packet. Aggregate:
 | 003-code-graph-readiness-audit | Planned | 2026-04-29 |
 | 004-cross-runtime-hook-parity-audit | Planned | 2026-04-29 |
 | 005-mcp-tool-schema-governance-audit | Planned | 2026-04-29 |
-| 006-deep-loop-workflow-integrity-audit | Planned | 2026-04-29 |
+| 006-deep-loop-workflow-integrity-audit | Moved to `system-deep-loop/043-deep-loop-workflow-integrity-audit` | 2026-07-07 |
 | 007-validator-spec-document-integrity-audit | Planned | 2026-04-29 |
 | 008-documentation-truth-audit | Planned | 2026-04-29 |
 | 009-upgrade-safety-operability-audit | Planned | 2026-04-29 |

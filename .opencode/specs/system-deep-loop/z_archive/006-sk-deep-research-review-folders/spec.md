@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: sk-deep-research Review [skilled-agent-orchestration/034-sk-deep-research-review-folders/spec]"
+title: "Feature Specification: sk-deep-research Review [system-deep-loop/z_archive/006-sk-deep-research-review-folders/spec]"
 description: "Review mode currently stores durable session artifacts in scratch even though system-spec-kit defines scratch as disposable temporary workspace. This spec plans a dedicated review/ subfolder for all deep-review outputs, plus a compatibility path for legacy scratch-based review sessions."
 trigger_phrases:
   - "deep review folder"
@@ -12,7 +12,7 @@ contextType: "general"
 template_source_hint: "<!-- SPECKIT_TEMPLATE_SOURCE: spec-core + level2-verify + level3-arch | v2.2 -->"
 _memory:
   continuity:
-    packet_pointer: "skilled-agent-orchestration/034-sk-deep-research-review-folders"
+    packet_pointer: "system-deep-loop/z_archive/006-sk-deep-research-review-folders"
     last_updated_at: "2026-04-24T15:25:01Z"
     last_updated_by: "backfill-memory-block"
     recent_action: "Backfilled _memory block (repo-wide frontmatter sweep)"

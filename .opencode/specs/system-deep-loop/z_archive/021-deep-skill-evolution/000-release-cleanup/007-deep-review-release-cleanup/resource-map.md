@@ -10,7 +10,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "skilled-agent-orchestration/116-deep-skill-evolution/000-release-cleanup/003-deep-review"
+    packet_pointer: "system-deep-loop/z_archive/021-deep-skill-evolution/000-release-cleanup/007-deep-review-release-cleanup"
     last_updated_at: "2026-05-23T00:00:00Z"
     last_updated_by: "main_agent"
     recent_action: "phase-1-resource-map-authored"

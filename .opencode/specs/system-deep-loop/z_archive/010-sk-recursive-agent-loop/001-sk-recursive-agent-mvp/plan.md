@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: Agent [skilled-agent-orchestration/041-sk-recursive-agent-loop/001-sk-recursive-agent-mvp/plan]"
+title: "Implementation Plan: Agent [system-deep-loop/z_archive/010-sk-recursive-agent-loop/001-sk-recursive-agent-mvp/plan]"
 description: "Phased plan for building sk-improve-agent as an evaluator-first experiment system with a proposal-only MVP on the handover target."
 trigger_phrases:
   - "agent improvement plan"
@@ -10,7 +10,7 @@ contextType: "general"
 template_source_hint: "<!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2 -->"
 _memory:
   continuity:
-    packet_pointer: "skilled-agent-orchestration/041-sk-recursive-agent-loop/001-sk-recursive-agent-mvp"
+    packet_pointer: "system-deep-loop/z_archive/010-sk-recursive-agent-loop/001-sk-recursive-agent-mvp"
     last_updated_at: "2026-04-24T15:25:01Z"
     last_updated_by: "backfill-memory-block"
     recent_action: "Backfilled _memory block (repo-wide frontmatter sweep)"

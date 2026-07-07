@@ -9,7 +9,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "skilled-agent-orchestration/121-deep-agent-improvement-benchmark-mode"
+    packet_pointer: "system-deep-loop/z_archive/022-deep-agent-improvement-benchmark-mode/001-design-model-benchmark-mode-selector"
     last_updated_at: "2026-05-28T00:00:00Z"
     last_updated_by: "claude-opus"
     recent_action: "Authored ADRs for the mode-selector design"

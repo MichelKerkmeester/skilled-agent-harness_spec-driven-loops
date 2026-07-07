@@ -5,8 +5,7 @@
   "parent_id": null,
   "children_ids": [
     "skilled-agent-orchestration/119-parent-skill-native-invocability/001-native-invocability-planning",
-    "skilled-agent-orchestration/119-parent-skill-native-invocability/002-invocability-mechanism",
-    "skilled-agent-orchestration/119-parent-skill-native-invocability/003-deep-loop-alignment"
+    "skilled-agent-orchestration/119-parent-skill-native-invocability/002-invocability-mechanism"
   ],
   "manual": {
     "depends_on": [],
@@ -40,7 +39,6 @@
     "key_files": [
       "001-native-invocability-planning/spec.md",
       "002-invocability-mechanism/decision-record.md",
-      "003-deep-loop-alignment/spec.md",
       "spec.md"
     ],
     "entities": [
@@ -89,17 +87,17 @@
     ],
     "causal_summary": "Phase parent for parent-skill native invocability. Coordinates initial planning, the accepted invokable-hub mechanism, and deep-loop alignment while keeping the parent root lean.",
     "created_at": "2026-06-26T11:31:00.291Z",
-    "last_save_at": "2026-07-02T05:31:09.105Z",
+    "last_save_at": "2026-07-07T15:56:02.826Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:05d2a96aff1292992de28fc69be868ae13d94b7c786f1f34fcb1bc899108c557",
+    "source_fingerprint": "sha256:5d8c81014aad4f1a24dcf355375c9bd6c3c896bcac31ddbfbb70fae64ab88581",
     "source_doc_hashes": {
-      "spec.md": "2cb06bda77c15f1be450048ec0644b9035339856da4b039afadf792d95e67307"
+      "spec.md": "608d2a027f4afff7fa01a1b369f623088a3bea1ac600c131a93707748726a5ef"
     },
-    "last_active_child_id": "skilled-agent-orchestration/119-parent-skill-native-invocability/003-deep-loop-alignment",
+    "last_active_child_id": "skilled-agent-orchestration/119-parent-skill-native-invocability/002-invocability-mechanism",
     "last_active_at": "2026-06-30T00:00:00Z"
   }
 }

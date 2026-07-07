@@ -8,7 +8,7 @@ importance_tier: "important"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "skilled-agent-orchestration/116-deep-skill-evolution/005-deep-agent-improvement/007-cross-runtime-promotion"
+    packet_pointer: "system-deep-loop/z_archive/021-deep-skill-evolution/005-deep-agent-improvement/007-cross-runtime-promotion"
     recent_action: "Planned and implemented packet 127 cross-runtime promotion gate."
     last_updated_at: "2026-05-23T00:00:00Z"
     last_updated_by: "codex"

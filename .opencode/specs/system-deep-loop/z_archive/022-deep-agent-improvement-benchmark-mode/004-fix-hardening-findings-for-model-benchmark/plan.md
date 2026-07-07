@@ -11,7 +11,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "skilled-agent-orchestration/121-deep-agent-improvement-benchmark-mode/004-fix-hardening-findings-for-model-benchmark"
+    packet_pointer: "system-deep-loop/z_archive/022-deep-agent-improvement-benchmark-mode/004-fix-hardening-findings-for-model-benchmark"
     last_updated_at: "2026-05-28T18:39:19Z"
     last_updated_by: "template-author"
     recent_action: "Initialize continuity block"

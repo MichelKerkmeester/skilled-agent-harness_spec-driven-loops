@@ -8,7 +8,7 @@ importance_tier: "high"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "skilled-agent-orchestration/116-deep-skill-evolution/004-deep-research/005-uncovered-questions"
+    packet_pointer: "system-deep-loop/z_archive/021-deep-skill-evolution/004-deep-research/005-uncovered-questions"
     last_updated_at: "2026-05-23T00:00:00Z"
     last_updated_by: "codex"
     recent_action: "Completed packet 121 tasks"

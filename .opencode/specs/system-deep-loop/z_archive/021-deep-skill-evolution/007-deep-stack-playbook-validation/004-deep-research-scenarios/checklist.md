@@ -9,7 +9,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "skilled-agent-orchestration/116-deep-skill-evolution/007-deep-stack-playbook-validation/004-deep-research-scenarios"
+    packet_pointer: "system-deep-loop/z_archive/021-deep-skill-evolution/007-deep-stack-playbook-validation/004-deep-research-scenarios"
     last_updated_at: "2026-05-27T00:00:00Z"
     last_updated_by: "claude-opus-4-7"
     recent_action: "deep-research 41/41 done - 24 PASS 10 PARTIAL 7 SKIP 0 FAIL, corroborated"

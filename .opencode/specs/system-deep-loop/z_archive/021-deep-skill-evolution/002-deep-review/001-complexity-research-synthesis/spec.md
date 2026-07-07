@@ -11,7 +11,7 @@ importance_tier: "important"
 contextType: "research"
 _memory:
   continuity:
-    packet_pointer: "skilled-agent-orchestration/116-deep-skill-evolution/002-deep-review/001-complexity-research-synthesis"
+    packet_pointer: "system-deep-loop/z_archive/021-deep-skill-evolution/002-deep-review/001-complexity-research-synthesis"
     last_updated_at: "2026-05-22T08:35:00Z"
     last_updated_by: "gpt-5.5"
     recent_action: "Completed 15-iteration Level 3 auto deep-research synthesis."

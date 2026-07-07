@@ -7,7 +7,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "skilled-agent-orchestration/122-deep-improvement-skill-benchmark-mode/011-sk-code-routing-efficiency-remediation"
+    packet_pointer: "system-deep-loop/z_archive/023-deep-improvement-skill-benchmark-mode/011-sk-code-routing-efficiency-remediation"
     last_updated_at: "2026-06-01T00:00:00Z"
     last_updated_by: "claude-opus"
     recent_action: "Research tasks complete; build handed to phase 012"

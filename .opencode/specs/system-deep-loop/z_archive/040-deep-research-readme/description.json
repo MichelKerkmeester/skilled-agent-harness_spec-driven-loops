@@ -1,0 +1,28 @@
+{
+  "level": "1",
+  "specFolder": "system-deep-loop/z_archive/040-deep-research-readme",
+  "description": "The deep-research README is a tabular reference card with a buried Key Statistics block and no problem-first entry point",
+  "keywords": [
+    "deep-research",
+    "readme",
+    "tabular",
+    "reference",
+    "card",
+    "buried",
+    "key",
+    "statistics",
+    "block",
+    "problem-first",
+    "entry",
+    "point"
+  ],
+  "lastUpdated": "2026-07-07T15:24:12.441Z",
+  "specId": "040",
+  "folderSlug": "deep-research-readme",
+  "parentChain": [
+    "system-deep-loop",
+    "z_archive"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

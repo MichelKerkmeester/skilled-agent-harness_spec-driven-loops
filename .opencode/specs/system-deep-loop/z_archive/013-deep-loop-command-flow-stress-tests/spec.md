@@ -12,14 +12,14 @@ importance_tier: "high"
 contextType: "agent-architecture"
 _memory:
   continuity:
-    packet_pointer: "skilled-agent-orchestration/062-deep-loop-command-flow-stress-tests"
+    packet_pointer: "system-deep-loop/z_archive/013-deep-loop-command-flow-stress-tests"
     last_updated_at: "2026-05-02T19:30:00Z"
     last_updated_by: "claude-opus-4-7-1m"
     recent_action: "Scaffolded 4-phase parent + per-agent sub-phases"
     next_safe_action: "Pick a sub-phase and dispatch CP-scenario authoring"
     blockers: []
     key_files:
-      - .opencode/specs/skilled-agent-orchestration/062-deep-loop-command-flow-stress-tests/spec.md
+      - .opencode/specs/system-deep-loop/z_archive/013-deep-loop-command-flow-stress-tests/spec.md
     completion_pct: 0
     open_questions:
       - "Run sub-phases sequentially (research first, then review) or in parallel?"

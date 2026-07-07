@@ -9,7 +9,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "skilled-agent-orchestration/122-deep-improvement-skill-benchmark-mode/004-skill-benchmark-mode"
+    packet_pointer: "system-deep-loop/z_archive/023-deep-improvement-skill-benchmark-mode/004-skill-benchmark-mode"
     last_updated_at: "2026-05-30T00:00:00Z"
     last_updated_by: "claude-opus"
     recent_action: "Built Lane C Mode A spine + 14 tests; runs end-to-end; Opus reviewed"

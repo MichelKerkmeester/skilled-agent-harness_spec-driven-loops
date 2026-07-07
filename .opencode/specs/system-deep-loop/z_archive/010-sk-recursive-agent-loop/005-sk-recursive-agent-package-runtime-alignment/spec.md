@@ -1,5 +1,5 @@
 ---
-title: "Feature [skilled-agent-orchestration/041-sk-recursive-agent-loop/005-sk-recursive-agent-package-runtime-alignment/spec]"
+title: "Feature [system-deep-loop/z_archive/010-sk-recursive-agent-loop/005-sk-recursive-agent-package-runtime-alignment/spec]"
 description: "Phase 005 under packet 041 corrects agent-improver template fidelity, renames the mutator to agent-improver across runtimes, aligns the command surface, and syncs the .agents skill mirror."
 trigger_phrases:
   - "recursive agent package runtime alignment"
@@ -10,7 +10,7 @@ contextType: "general"
 template_source_hint: "<!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->"
 _memory:
   continuity:
-    packet_pointer: "skilled-agent-orchestration/041-sk-recursive-agent-loop/005-sk-recursive-agent-package-runtime-alignment"
+    packet_pointer: "system-deep-loop/z_archive/010-sk-recursive-agent-loop/005-sk-recursive-agent-package-runtime-alignment"
     last_updated_at: "2026-04-24T15:25:01Z"
     last_updated_by: "backfill-memory-block"
     recent_action: "Backfilled _memory block (repo-wide frontmatter sweep)"

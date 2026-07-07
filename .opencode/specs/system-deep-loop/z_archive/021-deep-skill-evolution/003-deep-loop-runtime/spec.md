@@ -9,7 +9,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "skilled-agent-orchestration/116-deep-skill-evolution/003-deep-loop-runtime"
+    packet_pointer: "system-deep-loop/z_archive/021-deep-skill-evolution/003-deep-loop-runtime"
     last_updated_at: "2026-05-23T09:52:56.265976Z"
     last_updated_by: "main_agent"
     recent_action: "nested-from-flat-131-restructure"

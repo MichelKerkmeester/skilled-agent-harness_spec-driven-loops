@@ -8,7 +8,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "skilled-agent-orchestration/123-deep-loop-parallel-fanout/003-per-lineage-spawn-isolation"
+    packet_pointer: "system-deep-loop/z_archive/024-deep-loop-parallel-fanout/003-per-lineage-spawn-isolation"
     last_updated_at: "2026-05-30T00:00:00Z"
     last_updated_by: "claude-opus"
     recent_action: "Phase 3 complete — decision-record.md + fanout-run.cjs + all 4 YAML overrides + 5 integration tests green (176/176 excl. known loop-lock flake)"

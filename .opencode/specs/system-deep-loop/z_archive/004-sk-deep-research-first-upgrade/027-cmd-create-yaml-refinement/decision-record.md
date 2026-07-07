@@ -1,5 +1,5 @@
 ---
-title: "Decision Record: Create Command YAML [skilled-agent-orchestration/027-cmd-create-yaml-refinement/decision-record]"
+title: "Decision Record: Create Command YAML [system-deep-loop/z_archive/004-sk-deep-research-first-upgrade/027-cmd-create-yaml-refinement/decision-record]"
 description: "Accepted implementation decision covering the shared top-level contract used to normalize the create-command YAML suite."
 trigger_phrases:
   - "create yaml refinement adr"
@@ -9,7 +9,7 @@ contextType: "planning"
 template_source_hint: "<!-- SPECKIT_TEMPLATE_SOURCE: decision-record | v2.2 -->"
 _memory:
   continuity:
-    packet_pointer: "skilled-agent-orchestration/027-cmd-create-yaml-refinement"
+    packet_pointer: "system-deep-loop/z_archive/004-sk-deep-research-first-upgrade/027-cmd-create-yaml-refinement"
     last_updated_at: "2026-04-24T15:25:01Z"
     last_updated_by: "backfill-memory-block"
     recent_action: "Backfilled _memory block (repo-wide frontmatter sweep)"

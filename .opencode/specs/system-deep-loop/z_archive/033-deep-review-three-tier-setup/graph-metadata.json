@@ -1,0 +1,213 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/z_archive/033-deep-review-three-tier-setup",
+  "spec_folder": "system-deep-loop/z_archive/033-deep-review-three-tier-setup",
+  "parent_id": "system-deep-loop/z_archive",
+  "parent_id_review_required": true,
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "deep-review setup hang",
+      "deep-review :auto non-interactive bypass",
+      "F-Stage-E-001"
+    ],
+    "key_topics": [
+      "deep-review",
+      "setup",
+      "hang",
+      "auto",
+      "non-interactive",
+      "bypass",
+      "f-stage-e-001",
+      "deep",
+      "start-review-loop",
+      "advertises",
+      "itself",
+      "autonomous"
+    ],
+    "importance_tier": "important",
+    "status": "draft",
+    "key_files": [
+      ".opencode/specs/skilled-agent-orchestration/z_archive/082-sk-doc-skill-readme-and-structure/004-sk-doc-playbook-markdown-agent-coverage/implementation-summary.md",
+      "evidence/dry-run-verification.txt",
+      "implementation-summary.md",
+      "tasks.md",
+      "checklist.md",
+      "spec.md",
+      "plan.md"
+    ],
+    "entities": [
+      {
+        "name": "dry-run-verification.txt",
+        "kind": "file",
+        "path": "evidence/dry-run-verification.txt",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Known Limitations",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Make",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Audit",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Three",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Tier Setup Resolution",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Default Resolution Table",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Runtime",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "`/deep:start-review-loop:auto` advertises itself as autonomous (`:auto` suffix → `executionmode = AUTONOMOUS`)",
+    "created_at": "2026-05-11T09:32:52Z",
+    "last_save_at": "2026-07-07T15:26:10.202Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:886188f37a842b502f68c7e6f735c10a06df91f172dfae182a358f23b65757d9",
+    "source_doc_hashes": {
+      "spec.md": "dbb07530733e17ce473a1e16bfe1acf3fcc789e69273e7c513849871edde0d09",
+      "plan.md": "1a42ce889beb60fb7b2e7932fdf3002d0df1fdf7d8b0204b0a5402786eca2490",
+      "tasks.md": "a4c6dc8c03f79f2b1fd1bbe7bb8656d387ad4902881fa5177dca860e92257eb4",
+      "checklist.md": "86764fce50271f7c761e776a7f8ce2b0095011ad86f4c42fd6285ffe264f647a",
+      "implementation-summary.md": "57706a5fe4f5454c39a8fc1a2cb5653a55e5b7e41f64fdcbbf58132e3bcc9afc"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: Multi-AI Council main-agent write enforcement [skilled-agent-orchestration/100-multi-ai-council-main-agent-write-enforcement/spec]"
+title: "Feature Specification: Multi-AI Council main-agent write enforcement [system-deep-loop/z_archive/019-multi-ai-council-main-agent-write-enforcement/spec]"
 description: "Multi-AI Council, when invoked directly as a main agent in opencode (Depth 0, no orchestrator wrapper), routinely fails to write ai-council/** artifacts despite §12/§13/§16 documenting the layout, invocation contract, and writer library. The agent body has no enforcement gate that BLOCKS completion when artifacts are not persisted, no spec_folder resolution step at the start of the workflow, and no clarification fallback when the user invokes the council without naming a packet. This packet adds the missing enforcement: (1) a packet-resolution gate at the top of §1 RECEIVE, (2) a hard write-or-fail rule in §7 ALWAYS, (3) a persistence checklist in §9 OUTPUT VERIFICATION, and (4) a HALT-and-ASK escape for missing spec_folder. All 4 runtime mirrors flip together."
 trigger_phrases:
   - "multi-ai-council main agent"
@@ -13,7 +13,7 @@ importance_tier: "critical"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "skilled-agent-orchestration/100-multi-ai-council-main-agent-write-enforcement"
+    packet_pointer: "system-deep-loop/z_archive/019-multi-ai-council-main-agent-write-enforcement"
     last_updated_at: "2026-05-09T17:50:00Z"
     last_updated_by: "claude-opus-4-7"
     recent_action: "Scaffolded L2 spec"

@@ -6,7 +6,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "skilled-agent-orchestration/116-deep-skill-evolution/001-ai-council/005-rename-root-docs-hooks-index"
+    packet_pointer: "system-deep-loop/z_archive/021-deep-skill-evolution/001-deep-ai-council/005-rename-root-docs-hooks-index"
     last_updated_at: "2026-05-23T07:12:42Z"
     last_updated_by: "main_agent"
     recent_action: "4 root surfaces updated"

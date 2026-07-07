@@ -7,7 +7,7 @@ importance_tier: "high"
 contextType: "agent-architecture"
 _memory:
   continuity:
-    packet_pointer: "skilled-agent-orchestration/062-deep-loop-command-flow-stress-tests/003-deep-review-cp-scenarios"
+    packet_pointer: "system-deep-loop/z_archive/013-deep-loop-command-flow-stress-tests/003-deep-review-cp-scenarios"
     last_updated_at: "2026-05-02T19:30:00Z"
     last_updated_by: "claude-opus-4-7-1m"
     recent_action: "Plan scaffolded — references 060/004 plan as source"

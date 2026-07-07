@@ -8,7 +8,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "skilled-agent-orchestration/116-deep-skill-evolution/000-release-cleanup/001-deep-loop-runtime/002-evergreen-citation-sweep"
+    packet_pointer: "system-deep-loop/z_archive/021-deep-skill-evolution/000-release-cleanup/003-deep-loop-runtime-evergreen-citation-sweep"
     last_updated_at: "2026-05-24T00:00:00Z"
     last_updated_by: "main_agent"
     recent_action: "plan-authored"

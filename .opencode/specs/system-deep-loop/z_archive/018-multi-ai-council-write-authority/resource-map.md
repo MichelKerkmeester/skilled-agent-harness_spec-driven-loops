@@ -8,7 +8,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "skilled-agent-orchestration/098-multi-ai-council-write-authority"
+    packet_pointer: "system-deep-loop/z_archive/018-multi-ai-council-write-authority"
     last_updated_at: "2026-05-08T23:15:00Z"
     last_updated_by: "codex"
     recent_action: "Authored resource map"

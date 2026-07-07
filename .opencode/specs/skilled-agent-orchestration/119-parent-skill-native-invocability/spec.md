@@ -53,7 +53,7 @@ This root is a phase parent. It owns the shared purpose, phase map, and indexing
 |-------|--------|--------|-------------|
 | 1 | `001-native-invocability-planning/` | complete | Initial planning and mechanism-framing record for the native invocability gap. |
 | 2 | `002-invocability-mechanism/` | complete | Accepted mechanism decision: Option E, invokable-hub routing through the parent skill. |
-| 3 | `003-deep-loop-alignment/` | complete | Deep-loop family alignment with the accepted mechanism; required gates are closed, with full live-loop e2e left as optional evidence. |
+| 3 | `../../system-deep-loop/051-deep-loop-parent-skill-alignment/` | moved | Deep-loop family alignment with the accepted mechanism; required gates are closed, with full live-loop e2e left as optional evidence. |
 
 ---
 

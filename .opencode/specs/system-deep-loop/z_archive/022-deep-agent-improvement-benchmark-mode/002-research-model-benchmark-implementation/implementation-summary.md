@@ -10,7 +10,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "skilled-agent-orchestration/121-deep-agent-improvement-benchmark-mode/002-research-model-benchmark-implementation"
+    packet_pointer: "system-deep-loop/z_archive/022-deep-agent-improvement-benchmark-mode/002-research-model-benchmark-implementation"
     last_updated_at: "2026-05-28T15:18:00Z"
     last_updated_by: "claude-opus"
     recent_action: "Deep-research converged; research.md + findings authored"

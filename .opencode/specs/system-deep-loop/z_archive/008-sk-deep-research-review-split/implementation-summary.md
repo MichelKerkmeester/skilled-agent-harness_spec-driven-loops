@@ -1,5 +1,5 @@
 ---
-title: "Implementation Summary [skilled-agent-orchestration/036-sk-deep-research-review-split/implementation-summary]"
+title: "Implementation Summary [system-deep-loop/z_archive/008-sk-deep-research-review-split/implementation-summary]"
 description: "Repository artifacts show that review mode was split out of sk-deep-research into a dedicated sk-deep-review skill and command."
 trigger_phrases:
   - "036 implementation summary"
@@ -9,14 +9,14 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "skilled-agent-orchestration/036-sk-deep-research-review-split"
+    packet_pointer: "system-deep-loop/z_archive/008-sk-deep-research-review-split"
     last_updated_at: "2026-04-13T10:38:46Z"
     last_updated_by: "copilot"
     recent_action: "Synced implementation evidence links and packet continuity metadata"
     next_safe_action: "Sync evidence if docs change"
     blockers: []
     key_files:
-      - ".opencode/specs/skilled-agent-orchestration/036-sk-deep-research-review-split/implementation-summary.md"
+      - ".opencode/specs/system-deep-loop/z_archive/008-sk-deep-research-review-split/implementation-summary.md"
       - ".opencode/skills/skill-advisor/scripts/skill_advisor.py"
       - ".opencode/skills/sk-deep-review/graph-metadata.json"
       - ".opencode/skills/sk-deep-research/graph-metadata.json"

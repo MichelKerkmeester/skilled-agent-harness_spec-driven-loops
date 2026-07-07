@@ -8,7 +8,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "skilled-agent-orchestration/116-deep-skill-evolution/000-release-cleanup/002-deep-research/001-reference-split"
+    packet_pointer: "system-deep-loop/z_archive/021-deep-skill-evolution/000-release-cleanup/006-deep-research-reference-split"
     last_updated_at: "2026-05-24T00:00:00Z"
     last_updated_by: "main_agent"
     recent_action: "tasks-complete"

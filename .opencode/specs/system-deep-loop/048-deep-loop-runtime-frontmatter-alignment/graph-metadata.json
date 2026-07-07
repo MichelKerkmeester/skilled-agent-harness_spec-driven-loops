@@ -1,0 +1,221 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/048-deep-loop-runtime-frontmatter-alignment",
+  "spec_folder": "system-deep-loop/048-deep-loop-runtime-frontmatter-alignment",
+  "parent_id": "system-deep-loop",
+  "parent_id_review_required": true,
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "deep-loop-runtime frontmatter alignment",
+      "deep-loop-runtime reference frontmatter",
+      "skill frontmatter standardization",
+      "deep-loop-runtime frontmatter plan",
+      "frontmatter pilot phase",
+      "skill doc contract pilot",
+      "deep-loop-runtime frontmatter tasks",
+      "frontmatter pilot tasks",
+      "doc contract normalization tasks",
+      "deep-loop-runtime frontmatter summary",
+      "frontmatter pilot complete",
+      "doc contract pilot evidence"
+    ],
+    "key_topics": [
+      "deep-loop-runtime",
+      "frontmatter",
+      "alignment",
+      "reference",
+      "skill",
+      "standardization",
+      "plan",
+      "pilot",
+      "phase",
+      "doc",
+      "contract",
+      "tasks"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      ".opencode/skills/deep-loop-runtime/references/coverage_graph_schema.md",
+      ".opencode/skills/deep-loop-runtime/references/integration_points.md",
+      ".opencode/skills/deep-loop-runtime/references/script_interface_contract.md",
+      ".opencode/skills/deep-loop-runtime/references/state_format.md",
+      "spec.md",
+      "plan.md",
+      "implementation-summary.md",
+      "tasks.md"
+    ],
+    "entities": [
+      {
+        "name": "coverage_graph_schema.md",
+        "kind": "doc",
+        "path": ".opencode/skills/deep-loop-runtime/references/coverage_graph_schema.md",
+        "source": "derived"
+      },
+      {
+        "name": "integration_points.md",
+        "kind": "doc",
+        "path": ".opencode/skills/deep-loop-runtime/references/integration_points.md",
+        "source": "derived"
+      },
+      {
+        "name": "script_interface_contract.md",
+        "kind": "doc",
+        "path": ".opencode/skills/deep-loop-runtime/references/script_interface_contract.md",
+        "source": "derived"
+      },
+      {
+        "name": "state_format.md",
+        "kind": "doc",
+        "path": ".opencode/skills/deep-loop-runtime/references/state_format.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Frontmatter Alignment",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Frontmatter",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "deep-loop-runtime reference/asset frontmatter is inconsistent with the repo-wide contract: 4 of 4 references and 0 of 0 assets carry the detailed memory-style block (triggerphrases, importancetier, contextType), while the rest carry title+description only",
+    "created_at": "2026-06-11T05:47:27Z",
+    "last_save_at": "2026-07-07T15:48:11.911Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:422b3fcc4976ea2b5ce6462cee95e23ad436f70053fc6421c7eb759620104c1e",
+    "source_doc_hashes": {
+      "spec.md": "c0517600d0631242e0b8dfb47ea7557e3594e04b9474fc2ac7dffcf514bc861b",
+      "plan.md": "f8a2335f4f10d56756908efb70c528bb9aeb383265d70a6369986a5b535e359d",
+      "tasks.md": "228c53f950a86a347e86cdfe7d4c6a2f0390585177083ce65dfed75c40c65b3d",
+      "implementation-summary.md": "b55a9e30503b76da84037a4a75720ddfd35a5b00a5aa3848ed7c944345e881cb"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

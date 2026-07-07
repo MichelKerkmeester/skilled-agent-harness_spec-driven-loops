@@ -10,7 +10,7 @@ importance_tier: "high"
 contextType: "agent-architecture"
 _memory:
   continuity:
-    packet_pointer: "skilled-agent-orchestration/060-sk-agent-improver-test-report-alignment/002-stress-test-implementation"
+    packet_pointer: "system-deep-loop/z_archive/012-sk-agent-improver-test-report-alignment/002-stress-test-implementation"
     last_updated_at: "2026-05-02T11:42:00Z"
     last_updated_by: "claude-opus-4-7-1m"
     recent_action: "Phase 002 spec scaffolded from 001 research recommendations"

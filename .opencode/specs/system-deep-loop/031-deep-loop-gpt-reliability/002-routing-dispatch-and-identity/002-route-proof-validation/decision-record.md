@@ -9,7 +9,7 @@ importance_tier: "critical"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "deep-loops/031-deep-loop-gpt-reliability/002-routing-dispatch-and-identity/002-route-proof-validation"
+    packet_pointer: "system-deep-loop/031-deep-loop-gpt-reliability/002-routing-dispatch-and-identity/002-route-proof-validation"
     last_updated_at: "2026-06-30T19:40:00Z"
     last_updated_by: "opencode-gpt"
     recent_action: "Accepted unrecovered prior research claims as explicit axioms"

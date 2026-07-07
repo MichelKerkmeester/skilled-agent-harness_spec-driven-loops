@@ -9,7 +9,7 @@ importance_tier: "important"
 contextType: "fix"
 _memory:
   continuity:
-    packet_pointer: "skilled-agent-orchestration/116-deep-skill-evolution/004-deep-research/004-iteration-ordering-fix"
+    packet_pointer: "system-deep-loop/z_archive/021-deep-skill-evolution/004-deep-research/004-iteration-ordering-fix"
     last_updated_at: "2026-05-23T05:45:00Z"
     last_updated_by: "claude-opus-4-7"
     recent_action: "Fix applied + DR-006 vitest passing."

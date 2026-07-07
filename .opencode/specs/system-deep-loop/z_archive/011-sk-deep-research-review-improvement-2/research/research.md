@@ -1,5 +1,5 @@
 ---
-title: "Deep Research — Further Improvements [skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/research]"
+title: "Deep Research — Further Improvements [system-deep-loop/z_archive/011-sk-deep-research-review-improvement-2/research]"
 description: "Synthesis of 20 Codex-driven iterations auditing sk-deep-research v1.5.0.0, sk-deep-review v1.2.0.0, and sk-improve-agent v1.1.0.0 for self-compliance, coverage graph integration, and prioritized improvements."
 trigger_phrases:
   - "deep"
@@ -11,7 +11,7 @@ importance_tier: "normal"
 contextType: "research"
 _memory:
   continuity:
-    packet_pointer: "skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/research"
+    packet_pointer: "system-deep-loop/z_archive/011-sk-deep-research-review-improvement-2/research"
     last_updated_at: "2026-04-24T15:25:01Z"
     last_updated_by: "backfill-memory-block"
     recent_action: "Backfilled _memory block (repo-wide frontmatter sweep)"

@@ -8,7 +8,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "skilled-agent-orchestration/089-multi-ai-council-persistence"
+    packet_pointer: "system-deep-loop/z_archive/016-multi-ai-council-persistence"
     last_updated_at: "2026-05-06T16:30:00.000Z"
     last_updated_by: "claude-opus-4-7"
     recent_action: "Phase 2A-2C complete; 4-runtime parity verified; strict validation passed"

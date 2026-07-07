@@ -11,14 +11,14 @@ importance_tier: "high"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "skilled-agent-orchestration/134-deep-context-gathering"
+    packet_pointer: "system-deep-loop/z_archive/025-deep-context-gathering/001-context-loop-foundation"
     last_updated_at: "2026-06-06T23:30:00Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "Phase 5: skill-advisor registered + synced to Barter v3.5 mirror"
     next_safe_action: "Operator: run a live /deep:start-context-loop on a real feature"
     blockers: []
     key_files:
-      - "specs/skilled-agent-orchestration/134-deep-context-gathering/research/research.md"
+      - "specs/system-deep-loop/z_archive/025-deep-context-gathering/001-context-loop-foundation/research/research.md"
     session_dedup:
       fingerprint: "sha256:8e21494a9d2c00dec751e783e9aa266a83d727dda0b4fae220947b13998cf7bd"
       session_id: "dc-134-20260606"

@@ -10,7 +10,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "skilled-agent-orchestration/121-deep-agent-improvement-benchmark-mode/006-deep-loop-empty-archive-dir"
+    packet_pointer: "system-deep-loop/z_archive/022-deep-agent-improvement-benchmark-mode/006-deep-loop-empty-archive-dir"
     last_updated_at: "2026-05-29T08:00:00Z"
     last_updated_by: "claude-opus"
     recent_action: "Removed eager archive-root mkdir from research init; made all 4 restart branches lazy+guarded"

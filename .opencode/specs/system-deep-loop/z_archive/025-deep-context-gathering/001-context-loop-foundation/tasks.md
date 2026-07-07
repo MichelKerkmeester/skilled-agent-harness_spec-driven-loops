@@ -11,7 +11,7 @@ importance_tier: "high"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "skilled-agent-orchestration/134-deep-context-gathering"
+    packet_pointer: "system-deep-loop/z_archive/025-deep-context-gathering/001-context-loop-foundation"
     last_updated_at: "2026-06-06T19:30:00Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "Added Phase 4 tasks: alignment, catalog/playbook, Barter"

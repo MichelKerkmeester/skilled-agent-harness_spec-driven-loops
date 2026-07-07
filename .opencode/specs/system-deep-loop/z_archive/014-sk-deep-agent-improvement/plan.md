@@ -11,14 +11,14 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "skilled-agent-orchestration/079-sk-deep-agent-improvement"
+    packet_pointer: "system-deep-loop/z_archive/014-sk-deep-agent-improvement"
     last_updated_at: "2026-05-06T08:10:00Z"
     last_updated_by: "claude-orchestrator"
     recent_action: "plan.md authored"
     next_safe_action: "validate"
     blockers: []
     key_files:
-      - "specs/skilled-agent-orchestration/079-sk-deep-agent-improvement/spec.md"
+      - "specs/system-deep-loop/z_archive/014-sk-deep-agent-improvement/spec.md"
       - "specs/skilled-agent-orchestration/z_archive/056-sk-deep-rename/004-runtime-mirrors/plan.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000080"

@@ -1,5 +1,5 @@
 ---
-title: "Implement [skilled-agent-orchestration/040-sk-deep-research-review-improvement-1/001-sk-deep-research-improvements/plan]"
+title: "Implement [system-deep-loop/z_archive/009-sk-deep-research-review-improvement-1/001-sk-deep-research-improvements/plan]"
 description: "Implement and verify the complete Phase 1 lineage, reducer, and runtime-parity contract across deep-research docs, helpers, mirrors, and packet surfaces."
 trigger_phrases:
   - "deep research plan"
@@ -12,7 +12,7 @@ contextType: "general"
 template_source_hint: "<!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2 -->"
 _memory:
   continuity:
-    packet_pointer: "skilled-agent-orchestration/040-sk-deep-research-review-improvement-1/001-sk-deep-research-improvements"
+    packet_pointer: "system-deep-loop/z_archive/009-sk-deep-research-review-improvement-1/001-sk-deep-research-improvements"
     last_updated_at: "2026-04-24T15:25:01Z"
     last_updated_by: "backfill-memory-block"
     recent_action: "Backfilled _memory block (repo-wide frontmatter sweep)"

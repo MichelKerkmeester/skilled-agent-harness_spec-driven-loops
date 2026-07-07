@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: sk-deep-research Path [skilled-agent-orchestration/035-sk-deep-research-path-migration/plan]"
+title: "Implementation Plan: sk-deep-research Path [system-deep-loop/z_archive/007-sk-deep-research-path-migration/plan]"
 description: "Plan the repo-wide migration from a root research document plus scratch iterations to a research packet root plus dedicated iteration folders, while standardizing review iterations under review/iterations/ and preserving the review report at the review packet root."
 trigger_phrases:
   - "deep-research migration plan"
@@ -10,7 +10,7 @@ contextType: "implementation"
 template_source_hint: "<!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2 -->"
 _memory:
   continuity:
-    packet_pointer: "skilled-agent-orchestration/035-sk-deep-research-path-migration"
+    packet_pointer: "system-deep-loop/z_archive/007-sk-deep-research-path-migration"
     last_updated_at: "2026-04-24T15:25:01Z"
     last_updated_by: "backfill-memory-block"
     recent_action: "Backfilled _memory block (repo-wide frontmatter sweep)"

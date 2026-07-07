@@ -8,7 +8,7 @@ importance_tier: "important"
 contextType: "decision"
 _memory:
   continuity:
-    packet_pointer: "skilled-agent-orchestration/080-multi-ai-council-output-protocol"
+    packet_pointer: "system-deep-loop/z_archive/015-multi-ai-council-output-protocol"
     last_updated_at: "2026-05-06T11:30:00.000Z"
     last_updated_by: "claude-opus-4-7"
     recent_action: "Refactored decision-record.md to canonical ADR anchors"

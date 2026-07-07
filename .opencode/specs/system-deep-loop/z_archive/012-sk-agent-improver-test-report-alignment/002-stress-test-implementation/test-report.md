@@ -10,15 +10,15 @@ importance_tier: "high"
 contextType: "agent-architecture"
 _memory:
   continuity:
-    packet_pointer: "skilled-agent-orchestration/060-sk-agent-improver-test-report-alignment/002-stress-test-implementation"
+    packet_pointer: "system-deep-loop/z_archive/012-sk-agent-improver-test-report-alignment/002-stress-test-implementation"
     last_updated_at: "2026-05-02T12:25:00Z"
     last_updated_by: "codex-gpt-5"
     recent_action: "Authored final R1 test report and closed out 060/002"
     next_safe_action: "Commit + push 060; open follow-on packet for command-flow stress tests"
     blockers: []
     key_files:
-      - .opencode/specs/skilled-agent-orchestration/060-sk-agent-improver-test-report-alignment/002-stress-test-implementation/test-report.md
-      - .opencode/specs/skilled-agent-orchestration/060-sk-agent-improver-test-report-alignment/002-stress-test-implementation/stress-runs/stage4-summary.md
+      - .opencode/specs/system-deep-loop/z_archive/012-sk-agent-improver-test-report-alignment/002-stress-test-implementation/test-report.md
+      - .opencode/specs/system-deep-loop/z_archive/012-sk-agent-improver-test-report-alignment/002-stress-test-implementation/stress-runs/stage4-summary.md
       - .opencode/commands/deep/start-agent-improvement-loop.md
       - .opencode/agents/improve-agent.md
     completion_pct: 100

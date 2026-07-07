@@ -9,7 +9,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "skilled-agent-orchestration/121-deep-agent-improvement-benchmark-mode/010-reorganize-two-lane-references-assets"
+    packet_pointer: "system-deep-loop/z_archive/022-deep-agent-improvement-benchmark-mode/010-reorganize-two-lane-references-assets"
     last_updated_at: "2026-05-29T10:40:00Z"
     last_updated_by: "claude-opus"
     recent_action: "Moved references and assets into lane subdirs, repointed all literals"

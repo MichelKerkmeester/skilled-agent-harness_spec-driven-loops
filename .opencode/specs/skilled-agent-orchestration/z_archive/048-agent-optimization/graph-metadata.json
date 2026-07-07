@@ -9,9 +9,7 @@
     "skilled-agent-orchestration/z_archive/048-agent-optimization/004-agent-review",
     "skilled-agent-orchestration/z_archive/048-agent-optimization/005-agent-orchestrate",
     "skilled-agent-orchestration/z_archive/048-agent-optimization/006-agent-multi-ai-council",
-    "skilled-agent-orchestration/z_archive/048-agent-optimization/007-agent-improve-prompt",
-    "skilled-agent-orchestration/z_archive/048-agent-optimization/008-agent-deep-review",
-    "skilled-agent-orchestration/z_archive/048-agent-optimization/009-agent-deep-research"
+    "skilled-agent-orchestration/z_archive/048-agent-optimization/007-agent-improve-prompt"
   ],
   "migrated": true,
   "migration_source": "legacy",

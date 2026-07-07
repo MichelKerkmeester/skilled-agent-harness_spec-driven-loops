@@ -9,7 +9,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "skilled-agent-orchestration/121-deep-agent-improvement-benchmark-mode/003-build-model-benchmark-mode-runtime"
+    packet_pointer: "system-deep-loop/z_archive/022-deep-agent-improvement-benchmark-mode/003-build-model-benchmark-mode-runtime"
     last_updated_at: "2026-05-28T16:30:00Z"
     last_updated_by: "claude-opus"
     recent_action: "Build complete — switch + scorer port + mode field; smoke verified"

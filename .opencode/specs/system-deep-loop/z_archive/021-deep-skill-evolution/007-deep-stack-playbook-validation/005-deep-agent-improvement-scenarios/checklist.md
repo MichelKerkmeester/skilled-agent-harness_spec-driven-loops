@@ -9,7 +9,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "skilled-agent-orchestration/116-deep-skill-evolution/007-deep-stack-playbook-validation/005-deep-agent-improvement-scenarios"
+    packet_pointer: "system-deep-loop/z_archive/021-deep-skill-evolution/007-deep-stack-playbook-validation/005-deep-agent-improvement-scenarios"
     last_updated_at: "2026-05-27T00:00:00Z"
     last_updated_by: "claude-opus-4-7"
     recent_action: "005 ledger complete 37/37 - 25 PASS 6 PARTIAL 0 FAIL 6 SKIP"

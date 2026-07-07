@@ -9,7 +9,7 @@ importance_tier: "important"
 contextType: "decision"
 _memory:
   continuity:
-    packet_pointer: "skilled-agent-orchestration/116-deep-skill-evolution/003-deep-loop-runtime/010-council-graph-cli-migration"
+    packet_pointer: "system-deep-loop/z_archive/021-deep-skill-evolution/003-deep-loop-runtime/010-council-graph-cli-migration"
     last_updated_at: "2026-05-24T09:35:00Z"
     last_updated_by: "codex-gpt-5"
     recent_action: "Remediated native review findings and revalidated council matrix"

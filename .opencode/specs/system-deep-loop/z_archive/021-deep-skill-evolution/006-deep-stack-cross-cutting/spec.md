@@ -10,7 +10,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "skilled-agent-orchestration/116-deep-skill-evolution/006-deep-stack-cross-cutting"
+    packet_pointer: "system-deep-loop/z_archive/021-deep-skill-evolution/006-deep-stack-cross-cutting"
     last_updated_at: "2026-05-26T00:00:00Z"
     last_updated_by: "main_agent"
     recent_action: "created cross-cutting cluster from three folded sources"

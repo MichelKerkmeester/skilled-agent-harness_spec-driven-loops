@@ -1,5 +1,5 @@
 ---
-title: "Tasks: Split sk-deep-research review mode [skilled-agent-orchestration/036-sk-deep-research-review-split/tasks]"
+title: "Tasks: Split sk-deep-research review mode [system-deep-loop/z_archive/008-sk-deep-research-review-split/tasks]"
 description: "Task Format: T### [P?] Description (file path)"
 trigger_phrases:
   - "036 tasks"
@@ -9,7 +9,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "skilled-agent-orchestration/036-sk-deep-research-review-split"
+    packet_pointer: "system-deep-loop/z_archive/008-sk-deep-research-review-split"
     last_updated_at: "2026-04-13T10:38:46Z"
     last_updated_by: "copilot"
     recent_action: "Applied follow-up advisor evidence calibration and sibling-edge cleanup"

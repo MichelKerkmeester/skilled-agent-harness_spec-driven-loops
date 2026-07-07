@@ -9,7 +9,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "skilled-agent-orchestration/121-deep-agent-improvement-benchmark-mode/004-fix-hardening-findings-for-model-benchmark"
+    packet_pointer: "system-deep-loop/z_archive/022-deep-agent-improvement-benchmark-mode/004-fix-hardening-findings-for-model-benchmark"
     last_updated_at: "2026-05-28T19:10:00Z"
     last_updated_by: "claude-opus"
     recent_action: "All 3 P1 fixed + tested; P2s fixed or reconciled; suite green"

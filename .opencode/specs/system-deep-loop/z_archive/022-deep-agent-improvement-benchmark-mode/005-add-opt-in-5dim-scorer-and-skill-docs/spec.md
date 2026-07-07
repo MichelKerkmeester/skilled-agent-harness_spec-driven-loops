@@ -9,7 +9,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "skilled-agent-orchestration/121-deep-agent-improvement-benchmark-mode/005-add-opt-in-5dim-scorer-and-skill-docs"
+    packet_pointer: "system-deep-loop/z_archive/022-deep-agent-improvement-benchmark-mode/005-add-opt-in-5dim-scorer-and-skill-docs"
     last_updated_at: "2026-05-28T19:30:00Z"
     last_updated_by: "claude-opus"
     recent_action: "Wired opt-in 5dim scorer + documented mode in SKILL.md"

@@ -9,7 +9,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "skilled-agent-orchestration/123-deep-loop-parallel-fanout"
+    packet_pointer: "system-deep-loop/z_archive/024-deep-loop-parallel-fanout"
     last_updated_at: "2026-05-30T00:00:00Z"
     last_updated_by: "claude-opus"
     recent_action: "Phases 001-002 done (171/171); wrote handover.md for Phases 003-006"

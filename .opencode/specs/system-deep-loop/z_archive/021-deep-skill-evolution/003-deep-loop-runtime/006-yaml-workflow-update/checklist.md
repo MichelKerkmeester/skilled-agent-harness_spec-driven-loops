@@ -8,7 +8,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "skilled-agent-orchestration/116-deep-skill-evolution/003-deep-loop-runtime/006-yaml-workflow-update"
+    packet_pointer: "system-deep-loop/z_archive/021-deep-skill-evolution/003-deep-loop-runtime/006-yaml-workflow-update"
     last_updated_at: "2026-05-22T19:55:00Z"
     last_updated_by: "claude-opus-4-7"
     recent_action: "Scaffolded CHK + CHK-FIX checklist."

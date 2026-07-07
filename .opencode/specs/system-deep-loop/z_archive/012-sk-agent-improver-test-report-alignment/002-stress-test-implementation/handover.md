@@ -10,16 +10,16 @@ importance_tier: "high"
 contextType: "agent-architecture"
 _memory:
   continuity:
-    packet_pointer: "skilled-agent-orchestration/060-sk-agent-improver-test-report-alignment/002-stress-test-implementation"
+    packet_pointer: "system-deep-loop/z_archive/012-sk-agent-improver-test-report-alignment/002-stress-test-implementation"
     last_updated_at: "2026-05-02T12:25:00Z"
     last_updated_by: "codex-gpt-5"
     recent_action: "Phase 002 closed out with final test report"
     next_safe_action: "Commit 060; open 061 command-flow tests"
     blockers: []
     key_files:
-      - .opencode/specs/skilled-agent-orchestration/060-sk-agent-improver-test-report-alignment/002-stress-test-implementation/test-report.md
-      - .opencode/specs/skilled-agent-orchestration/060-sk-agent-improver-test-report-alignment/002-stress-test-implementation/implementation-summary.md
-      - .opencode/specs/skilled-agent-orchestration/060-sk-agent-improver-test-report-alignment/002-stress-test-implementation/stress-runs/stage4-summary.md
+      - .opencode/specs/system-deep-loop/z_archive/012-sk-agent-improver-test-report-alignment/002-stress-test-implementation/test-report.md
+      - .opencode/specs/system-deep-loop/z_archive/012-sk-agent-improver-test-report-alignment/002-stress-test-implementation/implementation-summary.md
+      - .opencode/specs/system-deep-loop/z_archive/012-sk-agent-improver-test-report-alignment/002-stress-test-implementation/stress-runs/stage4-summary.md
     completion_pct: 100
     open_questions:
       - "Should 061 preserve CP-040..CP-045 IDs or create command-flow variants?"

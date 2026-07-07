@@ -7,7 +7,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "skilled-agent-orchestration/116-deep-skill-evolution/000-release-cleanup/003-deep-review/002-phase5-backlog/001-doc-cluster-remediation"
+    packet_pointer: "system-deep-loop/z_archive/021-deep-skill-evolution/000-release-cleanup/009-deep-review-phase5-doc-cluster-remediation"
     last_updated_at: "2026-05-23T00:00:00Z"
     last_updated_by: "main_agent"
     recent_action: "skeleton-authored"

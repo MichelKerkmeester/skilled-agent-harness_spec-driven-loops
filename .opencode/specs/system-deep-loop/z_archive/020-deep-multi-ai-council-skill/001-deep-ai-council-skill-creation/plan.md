@@ -9,7 +9,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "skilled-agent-orchestration/101-deep-multi-ai-council-skill/001-deep-ai-council-skill-creation"
+    packet_pointer: "system-deep-loop/z_archive/020-deep-multi-ai-council-skill/001-deep-ai-council-skill-creation"
     last_updated_at: "2026-05-10T08:10:34Z"
     last_updated_by: "openai-gpt-5.5-opencode"
     recent_action: "Executed skill creation, runtime rename, advisor routing, and council test path updates"

@@ -1,5 +1,5 @@
 ---
-title: "Implementatio [skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/009-round3-review-remediation/plan]"
+title: "Implementatio [system-deep-loop/z_archive/011-sk-deep-research-review-improvement-2/009-round3-review-remediation/plan]"
 description: "6-batch sequential fix plan using cli-codex GPT 5.4 high/fast primary with cli-copilot fallback."
 trigger_phrases:
   - "042.009 plan"
@@ -8,7 +8,7 @@ importance_tier: "important"
 contextType: "planning"
 _memory:
   continuity:
-    packet_pointer: "skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/009-round3-review-remediation"
+    packet_pointer: "system-deep-loop/z_archive/011-sk-deep-research-review-improvement-2/009-round3-review-remediation"
     last_updated_at: "2026-04-24T15:25:01Z"
     last_updated_by: "backfill-memory-block"
     recent_action: "Backfilled _memory block (repo-wide frontmatter sweep)"

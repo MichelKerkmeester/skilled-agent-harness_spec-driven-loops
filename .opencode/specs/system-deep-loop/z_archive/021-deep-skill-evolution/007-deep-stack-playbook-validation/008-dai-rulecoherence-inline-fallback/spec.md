@@ -9,7 +9,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "skilled-agent-orchestration/116-deep-skill-evolution/007-deep-stack-playbook-validation/008-dai-rulecoherence-inline-fallback"
+    packet_pointer: "system-deep-loop/z_archive/021-deep-skill-evolution/007-deep-stack-playbook-validation/008-dai-rulecoherence-inline-fallback"
     last_updated_at: "2026-05-27T21:30:00Z"
     last_updated_by: "claude-opus-4-7"
     recent_action: "Added inline ALWAYS/NEVER fallback to deriveRules; vitest 99/99 still green"

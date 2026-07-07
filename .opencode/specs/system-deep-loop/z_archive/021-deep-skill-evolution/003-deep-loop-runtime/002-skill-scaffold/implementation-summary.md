@@ -9,7 +9,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "skilled-agent-orchestration/116-deep-skill-evolution/003-deep-loop-runtime/002-skill-scaffold"
+    packet_pointer: "system-deep-loop/z_archive/021-deep-skill-evolution/003-deep-loop-runtime/002-skill-scaffold"
     last_updated_at: "2026-05-22T18:32:06Z"
     last_updated_by: "gpt-5.5-codex"
     recent_action: "Created deep-loop-runtime scaffold."

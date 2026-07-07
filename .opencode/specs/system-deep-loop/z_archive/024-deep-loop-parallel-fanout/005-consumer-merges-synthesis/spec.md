@@ -8,7 +8,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "skilled-agent-orchestration/123-deep-loop-parallel-fanout/005-consumer-merges-synthesis"
+    packet_pointer: "system-deep-loop/z_archive/024-deep-loop-parallel-fanout/005-consumer-merges-synthesis"
     last_updated_at: "2026-05-30T00:00:00Z"
     last_updated_by: "claude-opus"
     recent_action: "Phase 5 complete — fanout-merge.cjs + step_fanout_merge in all 4 YAMLs + 10 tests; 196/197 (loop-lock flake only)"

@@ -1,5 +1,5 @@
 ---
-title: "Research: Multi-AI Council write authority [skilled-agent-orchestration/098-multi-ai-council-write-authority/research]"
+title: "Research: Multi-AI Council write authority [system-deep-loop/z_archive/018-multi-ai-council-write-authority/research]"
 description: "Lightweight design research covering precedent agents (deep-research, deep-review), the §0 invariant flip rationale, audit-trail schema options, and path-scope enforcement strategies."
 trigger_phrases:
   - "council write authority research"
@@ -9,7 +9,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "skilled-agent-orchestration/098-multi-ai-council-write-authority"
+    packet_pointer: "system-deep-loop/z_archive/018-multi-ai-council-write-authority"
     last_updated_at: "2026-05-08T21:55:00Z"
     last_updated_by: "claude-opus-4-7"
     recent_action: "Authored design research summarizing precedent agents + decision rationale"

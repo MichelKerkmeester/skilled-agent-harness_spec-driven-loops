@@ -8,7 +8,7 @@ importance_tier: "important"
 contextType: "decision"
 _memory:
   continuity:
-    packet_pointer: "skilled-agent-orchestration/116-deep-skill-evolution/002-deep-review/001-complexity-research-synthesis"
+    packet_pointer: "system-deep-loop/z_archive/021-deep-skill-evolution/002-deep-review/001-complexity-research-synthesis"
     last_updated_at: "2026-05-22T05:52:00Z"
     last_updated_by: "gpt-5.5"
     recent_action: "Accepted evidence-led research decision"

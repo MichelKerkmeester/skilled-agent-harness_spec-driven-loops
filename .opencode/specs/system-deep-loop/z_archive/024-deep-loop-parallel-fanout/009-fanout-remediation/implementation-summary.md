@@ -9,7 +9,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "skilled-agent-orchestration/123-deep-loop-parallel-fanout/009-fanout-remediation"
+    packet_pointer: "system-deep-loop/z_archive/024-deep-loop-parallel-fanout/009-fanout-remediation"
     last_updated_at: "2026-05-31T00:00:00Z"
     last_updated_by: "claude-opus"
     recent_action: "Scaffolded design-phase docs; no code written yet"

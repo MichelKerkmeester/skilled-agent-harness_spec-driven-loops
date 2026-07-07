@@ -61,7 +61,7 @@ The operating rule is verification first: no cleanup path may claim memory relie
 | `001-research-synthesis-and-remediation-map/` | Research Synthesis and Remediation Map | P0 | Completed |
 | `002-telemetry-and-process-verification-harness/` | Telemetry and Process Verification Harness | P0 | Completed |
 | `003-cli-dispatch-containment-and-recursion-guards/` | CLI Dispatch Containment and Recursion Guards | P0 | Completed |
-| `004-deep-loop-locks-state-and-recovery/` | Deep Loop Locks, State, and Recovery | P1 | Completed |
+| `../../../../../system-deep-loop/044-deep-loop-locks-state-and-recovery/` | Deep Loop Locks, State, and Recovery | P1 | Moved |
 | `005-expected-daemon-classifier-and-process-sweep/` | Expected Daemon Classifier and Process Sweep | P1 | Completed |
 | `006-cocoindex-remove-cancel-and-index-lifecycle/` | CocoIndex Remove, Cancel, and Index Lifecycle | P1 | Completed |
 | `007-code-graph-launcher-and-db-lifecycle/` | Code Graph Launcher and DB Lifecycle | P1 | Completed |

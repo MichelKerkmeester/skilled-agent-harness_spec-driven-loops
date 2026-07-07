@@ -9,7 +9,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "skilled-agent-orchestration/116-deep-skill-evolution/008-deep-skill-doc-evolution/009-deep-research-gap-backstop"
+    packet_pointer: "system-deep-loop/z_archive/021-deep-skill-evolution/006-deep-stack-cross-cutting/004-doc-evolution-research-gap-backstop"
     last_updated_at: "2026-05-25T18:48:00Z"
     last_updated_by: "main_agent"
     recent_action: "deep-research-loop-converged-negative-2-iters"

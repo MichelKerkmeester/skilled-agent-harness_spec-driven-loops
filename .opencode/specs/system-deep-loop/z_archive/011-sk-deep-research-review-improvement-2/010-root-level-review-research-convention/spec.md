@@ -1,5 +1,5 @@
 ---
-title: "F [skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/010-root-level-review-research-convention/spec]"
+title: "F [system-deep-loop/z_archive/011-sk-deep-research-review-improvement-2/010-root-level-review-research-convention/spec]"
 description: "Change sk-deep-review and sk-deep-research so review/ and research/ folders are always created at the spec tree root with phase-based subfolders, never inside nested child phases."
 trigger_phrases:
   - "root level review folder"
@@ -12,7 +12,7 @@ contextType: "implementation"
 template_source_hint: "<!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->"
 _memory:
   continuity:
-    packet_pointer: "skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/010-root-level-review-research-convention"
+    packet_pointer: "system-deep-loop/z_archive/011-sk-deep-research-review-improvement-2/010-root-level-review-research-convention"
     last_updated_at: "2026-04-16T14:00:00Z"
     last_updated_by: "claude-opus-4.6-1m"
     recent_action: "Created spec"

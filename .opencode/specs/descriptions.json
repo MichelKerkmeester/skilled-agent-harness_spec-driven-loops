@@ -4,7 +4,7 @@
   "folders": [
     {
       "specFolder": "ai-systems/001-ai-system-architecture",
-      "description": "AI System Architecture — Barter Agent Ecosystem",
+      "description": "AI System Architecture \u2014 Barter Agent Ecosystem",
       "keywords": [
         "system",
         "architecture",
@@ -16,7 +16,7 @@
     },
     {
       "specFolder": "ai-systems/001-ai-system-architecture/001-two-runtime-packaging-design",
-      "description": "Two-Runtime Packaging — Architecture Design (Copywriter pilot)",
+      "description": "Two-Runtime Packaging \u2014 Architecture Design (Copywriter pilot)",
       "keywords": [
         "two-runtime",
         "packaging",
@@ -29,7 +29,7 @@
     },
     {
       "specFolder": "ai-systems/001-ai-system-architecture/002-copywriter-projects-build",
-      "description": "Copywriter — Build the Claude Projects Packaging",
+      "description": "Copywriter \u2014 Build the Claude Projects Packaging",
       "keywords": [
         "copywriter",
         "build",
@@ -41,7 +41,7 @@
     },
     {
       "specFolder": "ai-systems/001-ai-system-architecture/003-copywriter-projects-validation",
-      "description": "Copywriter — Validate Projects/CLI Parity",
+      "description": "Copywriter \u2014 Validate Projects/CLI Parity",
       "keywords": [
         "copywriter",
         "validate",
@@ -77,7 +77,7 @@
     },
     {
       "specFolder": "ai-systems/001-ai-system-architecture/006-sales-dc-speed-optimization",
-      "description": "Sales Direct Communication — Speed Optimization (Copywriter playbook port)",
+      "description": "Sales Direct Communication \u2014 Speed Optimization (Copywriter playbook port)",
       "keywords": [
         "sales",
         "direct",
@@ -92,7 +92,7 @@
     },
     {
       "specFolder": "ai-systems/001-ai-system-architecture/007-linkedin-speed-voice-refinement",
-      "description": "LinkedIn Ghostwriters — Speed + Voice Refinement (Pieter Bertram, Nigel de Lange)",
+      "description": "LinkedIn Ghostwriters \u2014 Speed + Voice Refinement (Pieter Bertram, Nigel de Lange)",
       "keywords": [
         "linkedin",
         "ghostwriters",
@@ -108,7 +108,7 @@
     },
     {
       "specFolder": "ai-systems/002-skill-port-quality-audit",
-      "description": "Skill-Port Quality Audit — Assets vs References + Trim Loss",
+      "description": "Skill-Port Quality Audit \u2014 Assets vs References + Trim Loss",
       "keywords": [
         "skill-port",
         "quality",
@@ -122,7 +122,7 @@
     },
     {
       "specFolder": "ai-systems/002-skill-port-quality-audit/001-copywriter",
-      "description": "Skill-Port Quality Audit — Copywriter",
+      "description": "Skill-Port Quality Audit \u2014 Copywriter",
       "keywords": [
         "skill-port",
         "quality",
@@ -133,7 +133,7 @@
     },
     {
       "specFolder": "ai-systems/002-skill-port-quality-audit/002-barter-deals",
-      "description": "Skill-Port Quality Audit — Barter Deals",
+      "description": "Skill-Port Quality Audit \u2014 Barter Deals",
       "keywords": [
         "skill-port",
         "quality",
@@ -145,7 +145,7 @@
     },
     {
       "specFolder": "ai-systems/002-skill-port-quality-audit/003-sales-direct-communication",
-      "description": "Skill-Port Quality Audit — Sales - Direct Communication",
+      "description": "Skill-Port Quality Audit \u2014 Sales - Direct Communication",
       "keywords": [
         "skill-port",
         "quality",
@@ -158,7 +158,7 @@
     },
     {
       "specFolder": "ai-systems/002-skill-port-quality-audit/004-sales-hubspot-sequences",
-      "description": "Skill-Port Quality Audit — Sales - HubSpot Sequences",
+      "description": "Skill-Port Quality Audit \u2014 Sales - HubSpot Sequences",
       "keywords": [
         "skill-port",
         "quality",
@@ -171,7 +171,7 @@
     },
     {
       "specFolder": "ai-systems/002-skill-port-quality-audit/005-sales-process-automation",
-      "description": "Skill-Port Quality Audit — Sales - Process Automation",
+      "description": "Skill-Port Quality Audit \u2014 Sales - Process Automation",
       "keywords": [
         "skill-port",
         "quality",
@@ -184,7 +184,7 @@
     },
     {
       "specFolder": "ai-systems/002-skill-port-quality-audit/006-product-owner",
-      "description": "Skill-Port Quality Audit — Product Owner",
+      "description": "Skill-Port Quality Audit \u2014 Product Owner",
       "keywords": [
         "skill-port",
         "quality",
@@ -196,7 +196,7 @@
     },
     {
       "specFolder": "ai-systems/002-skill-port-quality-audit/007-prompt-improver",
-      "description": "Skill-Port Quality Audit — Prompt Improver",
+      "description": "Skill-Port Quality Audit \u2014 Prompt Improver",
       "keywords": [
         "skill-port",
         "quality",
@@ -208,7 +208,7 @@
     },
     {
       "specFolder": "ai-systems/002-skill-port-quality-audit/008-linkedin-nigel-de-lange",
-      "description": "Skill-Port Quality Audit — LinkedIn - Nigel de Lange",
+      "description": "Skill-Port Quality Audit \u2014 LinkedIn - Nigel de Lange",
       "keywords": [
         "skill-port",
         "quality",
@@ -221,7 +221,7 @@
     },
     {
       "specFolder": "ai-systems/002-skill-port-quality-audit/009-linkedin-pieter-bertram",
-      "description": "Skill-Port Quality Audit — LinkedIn - Pieter Bertram",
+      "description": "Skill-Port Quality Audit \u2014 LinkedIn - Pieter Bertram",
       "keywords": [
         "skill-port",
         "quality",
@@ -234,7 +234,7 @@
     },
     {
       "specFolder": "ai-systems/002-skill-port-quality-audit/010-tiktok-seo-creative-strategy",
-      "description": "Skill-Port Quality Audit — TikTok SEO & Creative Strategy",
+      "description": "Skill-Port Quality Audit \u2014 TikTok SEO & Creative Strategy",
       "keywords": [
         "skill-port",
         "quality",
@@ -248,7 +248,7 @@
     },
     {
       "specFolder": "ai-systems/003-skill-consolidation",
-      "description": "Skill Consolidation — One Brain per System (system_prompt dissolution)",
+      "description": "Skill Consolidation \u2014 One Brain per System (system_prompt dissolution)",
       "keywords": [
         "skill",
         "consolidation",
@@ -262,7 +262,7 @@
     },
     {
       "specFolder": "ai-systems/003-skill-consolidation/001-copywriter",
-      "description": "Skill Consolidation — Copywriter",
+      "description": "Skill Consolidation \u2014 Copywriter",
       "keywords": [
         "skill",
         "consolidation",
@@ -272,7 +272,7 @@
     },
     {
       "specFolder": "ai-systems/003-skill-consolidation/002-barter-deals",
-      "description": "Skill Consolidation — Barter Deals",
+      "description": "Skill Consolidation \u2014 Barter Deals",
       "keywords": [
         "skill",
         "consolidation",
@@ -283,7 +283,7 @@
     },
     {
       "specFolder": "ai-systems/003-skill-consolidation/003-sales-direct-communication",
-      "description": "Skill Consolidation — Sales - Direct Communication",
+      "description": "Skill Consolidation \u2014 Sales - Direct Communication",
       "keywords": [
         "skill",
         "consolidation",
@@ -295,7 +295,7 @@
     },
     {
       "specFolder": "ai-systems/003-skill-consolidation/004-sales-hubspot-sequences",
-      "description": "Skill Consolidation — Sales - HubSpot Sequences",
+      "description": "Skill Consolidation \u2014 Sales - HubSpot Sequences",
       "keywords": [
         "skill",
         "consolidation",
@@ -307,7 +307,7 @@
     },
     {
       "specFolder": "ai-systems/003-skill-consolidation/005-sales-process-automation",
-      "description": "Skill Consolidation — Sales - Process Automation",
+      "description": "Skill Consolidation \u2014 Sales - Process Automation",
       "keywords": [
         "skill",
         "consolidation",
@@ -319,7 +319,7 @@
     },
     {
       "specFolder": "ai-systems/003-skill-consolidation/006-product-owner",
-      "description": "Skill Consolidation — Product Owner",
+      "description": "Skill Consolidation \u2014 Product Owner",
       "keywords": [
         "skill",
         "consolidation",
@@ -330,7 +330,7 @@
     },
     {
       "specFolder": "ai-systems/003-skill-consolidation/007-prompt-improver",
-      "description": "Skill Consolidation — Prompt Improver",
+      "description": "Skill Consolidation \u2014 Prompt Improver",
       "keywords": [
         "skill",
         "consolidation",
@@ -341,7 +341,7 @@
     },
     {
       "specFolder": "ai-systems/003-skill-consolidation/008-linkedin-nigel-de-lange",
-      "description": "Skill Consolidation — LinkedIn - Nigel de Lange",
+      "description": "Skill Consolidation \u2014 LinkedIn - Nigel de Lange",
       "keywords": [
         "skill",
         "consolidation",
@@ -353,7 +353,7 @@
     },
     {
       "specFolder": "ai-systems/003-skill-consolidation/009-linkedin-pieter-bertram",
-      "description": "Skill Consolidation — LinkedIn - Pieter Bertram",
+      "description": "Skill Consolidation \u2014 LinkedIn - Pieter Bertram",
       "keywords": [
         "skill",
         "consolidation",
@@ -365,7 +365,7 @@
     },
     {
       "specFolder": "ai-systems/003-skill-consolidation/010-tiktok-seo-creative-strategy",
-      "description": "Skill Consolidation — TikTok SEO & Creative Strategy",
+      "description": "Skill Consolidation \u2014 TikTok SEO & Creative Strategy",
       "keywords": [
         "skill",
         "consolidation",
@@ -378,7 +378,7 @@
     },
     {
       "specFolder": "ai-systems/004-asset-reference-optimization",
-      "description": "Asset / Reference Split Optimization — fleet pass",
+      "description": "Asset / Reference Split Optimization \u2014 fleet pass",
       "keywords": [
         "asset",
         "reference",
@@ -457,7 +457,7 @@
     },
     {
       "specFolder": "ai-systems/009-prompt-improver-interface-design",
-      "description": "Visual Mode offers eight named Design Directions (Precision & Density, Warmth & Approachability, …) that the model auto-selects from — structurally id",
+      "description": "Visual Mode offers eight named Design Directions (Precision & Density, Warmth & Approachability, \u2026) that the model auto-selects from \u2014 structurally id",
       "keywords": [
         "visual",
         "mode",
@@ -478,7 +478,7 @@
     },
     {
       "specFolder": "barter/001-reel-video-flicker-expo",
-      "description": "In `MediaViewer` reels mode, scrolling down between reels produces an aggressive black-screen flash (~80–130ms) on each transition",
+      "description": "In `MediaViewer` reels mode, scrolling down between reels produces an aggressive black-screen flash (~80\u2013130ms) on each transition",
       "keywords": [
         "mediaviewer",
         "reels",
@@ -620,7 +620,7 @@
     },
     {
       "specFolder": "barter/005-notifications-system/003-notification-logic",
-      "description": "The 43-notification scaffold (`notification-scaffold.md`) enumerates the catalog — categories, events, channels, caps, ladders — but stops short of th",
+      "description": "The 43-notification scaffold (`notification-scaffold.md`) enumerates the catalog \u2014 categories, events, channels, caps, ladders \u2014 but stops short of th",
       "keywords": [
         "43-notification",
         "scaffold",
@@ -639,7 +639,7 @@
     },
     {
       "specFolder": "barter/005-notifications-system/004-design-deepening",
-      "description": "`003-notification-logic` produced build-ready decision logic — the global pipeline, gate pseudocode + data contracts, cap/dedupe algorithm, preference",
+      "description": "`003-notification-logic` produced build-ready decision logic \u2014 the global pipeline, gate pseudocode + data contracts, cap/dedupe algorithm, preference",
       "keywords": [
         "003-notification-logic",
         "produced",
@@ -661,7 +661,7 @@
     },
     {
       "specFolder": "barter/005-notifications-system/005-output-improvement",
-      "description": "Phases 002–004 produced a build-ready notifications output: a 43-notification catalog, the product logic, the backend engine-map, and build-ready desi",
+      "description": "Phases 002\u2013004 produced a build-ready notifications output: a 43-notification catalog, the product logic, the backend engine-map, and build-ready desi",
       "keywords": [
         "phases",
         "002",
@@ -931,7 +931,7 @@
     },
     {
       "specFolder": "sk-design/009-sk-design-claude-parity/010-feature-catalog-completeness",
-      "description": "Only one of the six `sk-design` packages — `design-md-generator` — has a `featurecatalog/` package",
+      "description": "Only one of the six `sk-design` packages \u2014 `design-md-generator` \u2014 has a `featurecatalog/` package",
       "keywords": [
         "only",
         "one",
@@ -1239,7 +1239,7 @@
     },
     {
       "specFolder": "skilled-agent-orchestration/117-parent-nested-skill-pattern/002-advisor-routing-drift-guard",
-      "description": "`mode-registry.json` claimed to be the single source of truth for how each deep-loop-workflows mode routes, but the advisor never read it — the mode",
+      "description": "`mode-registry.json` claimed to be the single source of truth for how each deep-loop-workflows mode routes, but the advisor never read it \u2014 the mode",
       "keywords": [
         "mode-registry",
         "json",
@@ -1258,7 +1258,7 @@
     },
     {
       "specFolder": "skilled-agent-orchestration/117-parent-nested-skill-pattern/003-formalize-pattern",
-      "description": "`deep-loop-workflows` is the framework's first parent-skill-with-nested-mode-packets, and Phases 1–2 proved the pattern and Phase 3 implemented its",
+      "description": "`deep-loop-workflows` is the framework's first parent-skill-with-nested-mode-packets, and Phases 1\u20132 proved the pattern and Phase 3 implemented its",
       "keywords": [
         "deep-loop-workflows",
         "framework",
@@ -1392,7 +1392,7 @@
     },
     {
       "specFolder": "skilled-agent-orchestration/118-frontmatter-versioning/005-verify-and-enforce",
-      "description": "Populating the corpus is not enough — without enforcement, new docs would drift back to no version",
+      "description": "Populating the corpus is not enough \u2014 without enforcement, new docs would drift back to no version",
       "keywords": [
         "populating",
         "corpus",
@@ -1486,26 +1486,8 @@
       "lastUpdated": "2026-07-07T12:56:31.477Z"
     },
     {
-      "specFolder": "skilled-agent-orchestration/119-parent-skill-native-invocability/003-deep-loop-alignment",
-      "description": "`deep-loop-workflows` was the canonical parent-skill example, but the sk-design conversion (spec 154) advanced the pattern beyond it",
-      "keywords": [
-        "deep-loop-workflows",
-        "canonical",
-        "parent-skill",
-        "example",
-        "sk-design",
-        "conversion",
-        "spec",
-        "154",
-        "advanced",
-        "pattern",
-        "beyond"
-      ],
-      "lastUpdated": "2026-07-07T12:56:31.477Z"
-    },
-    {
       "specFolder": "skilled-agent-orchestration/120-glm-5-2-support",
-      "description": "The small-model rotation needs GLM-5.2 (the Zhipu/Z.AI coding-plan model, served through the Z.AI GLM Coding Plan provider — shown in opencode's auth",
+      "description": "The small-model rotation needs GLM-5.2 (the Zhipu/Z.AI coding-plan model, served through the Z.AI GLM Coding Plan provider \u2014 shown in opencode's auth",
       "keywords": [
         "small-model",
         "rotation",
@@ -1689,7 +1671,7 @@
     },
     {
       "specFolder": "skilled-agent-orchestration/121-sk-prompt-models-rename/003-cross-skill-and-code-refs",
-      "description": "The card-sync guard hardcodes `H = f\"{ROOT}/.opencode/skills/sk-prompt-small-model\"` — after the folder moves, that gate fails immediately",
+      "description": "The card-sync guard hardcodes `H = f\"{ROOT}/.opencode/skills/sk-prompt-small-model\"` \u2014 after the folder moves, that gate fails immediately",
       "keywords": [
         "card-sync",
         "guard",
@@ -1708,7 +1690,7 @@
     },
     {
       "specFolder": "skilled-agent-orchestration/121-sk-prompt-models-rename/004-commands-scripts-data",
-      "description": "The `/deep:model-benchmark` and `/deep:context` workflows hardcode `.opencode/skills/sk-prompt-small-model/...` paths — the benchmark workflow writes",
+      "description": "The `/deep:model-benchmark` and `/deep:context` workflows hardcode `.opencode/skills/sk-prompt-small-model/...` paths \u2014 the benchmark workflow writes",
       "keywords": [
         "deep",
         "model-benchmark",
@@ -2247,7 +2229,7 @@
     },
     {
       "specFolder": "skilled-agent-orchestration/124-sk-code-parent/021-playbook-gold-and-lane-c-rebaseline",
-      "description": "The sk-code `manualtestingplaybook` scenarios assert an expected-resource gold — the references and assets a correct route should load for each prompt",
+      "description": "The sk-code `manualtestingplaybook` scenarios assert an expected-resource gold \u2014 the references and assets a correct route should load for each prompt",
       "keywords": [
         "sk-code",
         "manualtestingplaybook",
@@ -2289,7 +2271,7 @@
     },
     {
       "specFolder": "skilled-agent-orchestration/124-sk-code-parent/023-sk-code-workflow-subskill-research",
-      "description": "The sk-code parent hub exposes four WORKFLOW sub-skills — `code-implement`, `code-quality`, `code-debug`, `code-verify` — that carry the day-to-day",
+      "description": "The sk-code parent hub exposes four WORKFLOW sub-skills \u2014 `code-implement`, `code-quality`, `code-debug`, `code-verify` \u2014 that carry the day-to-day",
       "keywords": [
         "sk-code",
         "parent",
@@ -2329,7 +2311,7 @@
     },
     {
       "specFolder": "skilled-agent-orchestration/124-sk-code-parent/025-code-quality-and-shared-research",
-      "description": "The sk-code `code-quality` sub-skill carries one of the highest-leverage jobs in the coding lifecycle — judging whether code is correct, clean, and",
+      "description": "The sk-code `code-quality` sub-skill carries one of the highest-leverage jobs in the coding lifecycle \u2014 judging whether code is correct, clean, and",
       "keywords": [
         "sk-code",
         "code-quality",
@@ -2753,7 +2735,7 @@
     },
     {
       "specFolder": "skilled-agent-orchestration/125-sk-doc-parent/019-create-command-alignment",
-      "description": "Two gaps in the sk-doc `/create:` command surface: (1) three packets (`create-command`, `create-benchmark`, `create-flowchart`) had no bound command —",
+      "description": "Two gaps in the sk-doc `/create:` command surface: (1) three packets (`create-command`, `create-benchmark`, `create-flowchart`) had no bound command \u2014",
       "keywords": [
         "two",
         "gaps",
@@ -3514,7 +3496,7 @@
     },
     {
       "specFolder": "skilled-agent-orchestration/z_archive/040-cli-skill-patterns",
-      "description": "The 5 cli- skills under `.opencode/skills/` (`cli-claude-code`, `cli-codex`, `cli-gemini`, `cli-opencode`) all expose the same intent — orchestrate an",
+      "description": "The 5 cli- skills under `.opencode/skills/` (`cli-claude-code`, `cli-codex`, `cli-gemini`, `cli-opencode`) all expose the same intent \u2014 orchestrate an",
       "keywords": [
         "cli",
         "skills",
@@ -3657,7 +3639,7 @@
     },
     {
       "specFolder": "skilled-agent-orchestration/z_archive/048-agent-optimization",
-      "description": "Phase-parent root spec. Apply the validated sk-improve-agent v2 substrate (proven in packet 060 → final composite PASS 6/0/0) to the remaining 9",
+      "description": "Phase-parent root spec. Apply the validated sk-improve-agent v2 substrate (proven in packet 060 \u2192 final composite PASS 6/0/0) to the remaining 9",
       "keywords": [
         "phase-parent",
         "root",
@@ -3747,30 +3729,6 @@
         "lens"
       ],
       "lastUpdated": "2026-06-30T12:42:36.511Z"
-    },
-    {
-      "specFolder": "skilled-agent-orchestration/z_archive/048-agent-optimization/008-agent-deep-review",
-      "description": "`@deep-review` (579 LOC) has not been through the sk-improve-agent v2 lens",
-      "keywords": [
-        "deep-review",
-        "579",
-        "loc",
-        "sk-improve-agent",
-        "lens"
-      ],
-      "lastUpdated": "2026-06-30T12:42:36.516Z"
-    },
-    {
-      "specFolder": "skilled-agent-orchestration/z_archive/048-agent-optimization/009-agent-deep-research",
-      "description": "`@deep-research` (476 LOC) has not been through the sk-improve-agent v2 lens",
-      "keywords": [
-        "deep-research",
-        "476",
-        "loc",
-        "sk-improve-agent",
-        "lens"
-      ],
-      "lastUpdated": "2026-06-30T12:42:36.521Z"
     },
     {
       "specFolder": "skilled-agent-orchestration/z_archive/049-sk-doc-agent-template-alignment",
@@ -4132,7 +4090,7 @@
     },
     {
       "specFolder": "skilled-agent-orchestration/z_archive/054-sk-doc-organization/002-update-and-mirror",
-      "description": "After Phase 1 moves the 4 asset items to `assets/` root, every dependent reference across sk-doc internal docs, `/create:` commands × 4 runtimes, the",
+      "description": "After Phase 1 moves the 4 asset items to `assets/` root, every dependent reference across sk-doc internal docs, `/create:` commands \u00d7 4 runtimes, the",
       "keywords": [
         "phase",
         "moves",
@@ -4329,203 +4287,8 @@
       "lastUpdated": "2026-06-30T12:42:36.625Z"
     },
     {
-      "specFolder": "skilled-agent-orchestration/z_archive/056-sk-deep-rename",
-      "description": "The two deep- skills currently use a `sk-` prefix (`sk-deep-review`, `sk-deep-research`) inherited from when all skills carried it",
-      "keywords": [
-        "two",
-        "deep",
-        "skills",
-        "currently",
-        "use",
-        "prefix",
-        "sk-deep-review",
-        "sk-deep-research",
-        "inherited",
-        "carried"
-      ],
-      "lastUpdated": "2026-07-07T12:56:31.477Z"
-    },
-    {
-      "specFolder": "skilled-agent-orchestration/z_archive/056-sk-deep-rename/001-discovery-impact-map",
-      "description": "Packet 070 will rename `sk-deep-review` to `deep-review` and `sk-deep-research` to `deep-research`",
-      "keywords": [
-        "packet",
-        "070",
-        "rename",
-        "sk-deep-review",
-        "deep-review",
-        "sk-deep-research",
-        "deep-research"
-      ],
-      "lastUpdated": "2026-06-30T12:42:36.631Z"
-    },
-    {
-      "specFolder": "skilled-agent-orchestration/z_archive/056-sk-deep-rename/002-skill-folder-rename",
-      "description": "Phase 001 measured 130 Phase 002 files: the two old skill folder roots and `.opencode/skills/system-spec-kit/mcpserver/skilladvisor/scripts/skill-grap",
-      "keywords": [
-        "phase",
-        "001",
-        "measured",
-        "130",
-        "002",
-        "files",
-        "two",
-        "old",
-        "skill",
-        "folder",
-        "roots",
-        "opencode",
-        "skills",
-        "system-spec-kit",
-        "mcpserver",
-        "skilladvisor",
-        "scripts",
-        "skill-grap"
-      ],
-      "lastUpdated": "2026-06-30T12:42:36.635Z"
-    },
-    {
-      "specFolder": "skilled-agent-orchestration/z_archive/056-sk-deep-rename/003-opencode-internals",
-      "description": "Phase 002 renamed the skill folders and updated the advisor graph source, but many `.opencode/` consumers still point at `sk-deep-review` and `sk-deep",
-      "keywords": [
-        "phase",
-        "002",
-        "renamed",
-        "skill",
-        "folders",
-        "updated",
-        "advisor",
-        "graph",
-        "source",
-        "many",
-        "opencode",
-        "consumers",
-        "still",
-        "point",
-        "sk-deep-review",
-        "sk-deep"
-      ],
-      "lastUpdated": "2026-06-30T12:42:36.641Z"
-    },
-    {
-      "specFolder": "skilled-agent-orchestration/z_archive/056-sk-deep-rename/004-runtime-mirrors",
-      "description": "Phase 001 found runtime mirror files in `.claude`, `.codex`, and `.gemini` that still reference the old deep-loop skill names",
-      "keywords": [
-        "phase",
-        "001",
-        "found",
-        "runtime",
-        "mirror",
-        "files",
-        "claude",
-        "codex",
-        "gemini",
-        "still",
-        "reference",
-        "old",
-        "deep-loop",
-        "skill",
-        "names"
-      ],
-      "lastUpdated": "2026-06-30T12:42:36.645Z"
-    },
-    {
-      "specFolder": "skilled-agent-orchestration/z_archive/056-sk-deep-rename/005-root-and-config",
-      "description": "Packet 070 renames the old deep-loop skill IDs to `deep-review` and `deep-research`",
-      "keywords": [
-        "packet",
-        "070",
-        "renames",
-        "old",
-        "deep-loop",
-        "skill",
-        "ids",
-        "deep-review",
-        "deep-research"
-      ],
-      "lastUpdated": "2026-06-30T12:42:36.651Z"
-    },
-    {
-      "specFolder": "skilled-agent-orchestration/z_archive/056-sk-deep-rename/006-advisor-and-validate",
-      "description": "Phases 001-005 completed the broad rename from `sk-deep-review`/`sk-deep-research` to `deep-review`/`deep-research`, but Packet 070 still needs final",
-      "keywords": [
-        "phases",
-        "001-005",
-        "completed",
-        "broad",
-        "rename",
-        "sk-deep-review",
-        "sk-deep-research",
-        "deep-review",
-        "deep-research",
-        "packet",
-        "070",
-        "still",
-        "needs",
-        "final"
-      ],
-      "lastUpdated": "2026-06-30T12:42:36.656Z"
-    },
-    {
-      "specFolder": "skilled-agent-orchestration/z_archive/056-sk-deep-rename/007-deep-review-remediation",
-      "description": "The Packet 070 deep review failed because child phase documentation still contains over-replaced identity-renames such as `deep-review to deep-review`",
-      "keywords": [
-        "packet",
-        "070",
-        "deep",
-        "review",
-        "failed",
-        "because",
-        "child",
-        "phase",
-        "documentation",
-        "still",
-        "contains",
-        "over-replaced",
-        "identity-renames",
-        "deep-review"
-      ],
-      "lastUpdated": "2026-06-30T12:42:36.661Z"
-    },
-    {
-      "specFolder": "skilled-agent-orchestration/z_archive/056-sk-deep-rename/008-final-cleanup",
-      "description": "Packet 070 still has three approved P1 cleanup gaps",
-      "keywords": [
-        "packet",
-        "070",
-        "still",
-        "three",
-        "approved",
-        "cleanup",
-        "gaps"
-      ],
-      "lastUpdated": "2026-06-30T12:42:36.666Z"
-    },
-    {
-      "specFolder": "skilled-agent-orchestration/z_archive/056-sk-deep-rename/009-family-schema-migration",
-      "description": "Phase 008 attempted the `sk-deep` to `deep-loop` internal family rename, but the existing SQLite-backed skill graph schema rejects `deep-loop` inserts",
-      "keywords": [
-        "phase",
-        "008",
-        "attempted",
-        "sk-deep",
-        "deep-loop",
-        "internal",
-        "family",
-        "rename",
-        "existing",
-        "sqlite-backed",
-        "skill",
-        "graph",
-        "schema",
-        "rejects",
-        "inserts"
-      ],
-      "lastUpdated": "2026-06-30T12:42:36.671Z"
-    },
-    {
       "specFolder": "skilled-agent-orchestration/z_archive/057-sk-doc-router-stress-test",
-      "description": "sk-doc has a smart router (§2 of SKILL.md) with INTENTMODEL, RESOURCEMAP, scoreintents(), selectintents() — but NO manualtestingplaybook to verify it",
+      "description": "sk-doc has a smart router (\u00a72 of SKILL.md) with INTENTMODEL, RESOURCEMAP, scoreintents(), selectintents() \u2014 but NO manualtestingplaybook to verify it",
       "keywords": [
         "sk-doc",
         "smart",
@@ -4744,7 +4507,7 @@
     },
     {
       "specFolder": "skilled-agent-orchestration/z_archive/063-cli-copilot-hallucination-caveat",
-      "description": "Packet 072's review-report-v2.md surfaced P1-072-001: cli-copilot (claude-opus-4.7) HALLUCINATES sk-doc resource paths — citing files like",
+      "description": "Packet 072's review-report-v2.md surfaced P1-072-001: cli-copilot (claude-opus-4.7) HALLUCINATES sk-doc resource paths \u2014 citing files like",
       "keywords": [
         "packet",
         "072",
@@ -4782,7 +4545,7 @@
     },
     {
       "specFolder": "skilled-agent-orchestration/z_archive/065-spec-kit-coco-sk-code-research",
-      "description": "Three OpenCode skill ecosystem surfaces — system-spec-kit, mcp-coco-index, and sk-code (OpenCode side specifically) — have grown organically and",
+      "description": "Three OpenCode skill ecosystem surfaces \u2014 system-spec-kit, mcp-coco-index, and sk-code (OpenCode side specifically) \u2014 have grown organically and",
       "keywords": [
         "three",
         "opencode",
@@ -5090,7 +4853,7 @@
     },
     {
       "specFolder": "skilled-agent-orchestration/z_archive/071-sk-prompt-testing-playbook-and-agent-rename",
-      "description": "Two related gaps surfaced after packet 082 renamed the skill `sk-improve-prompt` → `sk-prompt`:",
+      "description": "Two related gaps surfaced after packet 082 renamed the skill `sk-improve-prompt` \u2192 `sk-prompt`:",
       "keywords": [
         "two",
         "related",
@@ -5107,7 +4870,7 @@
     },
     {
       "specFolder": "skilled-agent-orchestration/z_archive/071-sk-prompt-testing-playbook-and-agent-rename/001-prompt-improver-rename",
-      "description": "The `@improve-prompt` agent name is verb-object phrasing — an outlier in the noun-form agent family (`@code`, `@review`, `@debug`, `@context`, `@deep-",
+      "description": "The `@improve-prompt` agent name is verb-object phrasing \u2014 an outlier in the noun-form agent family (`@code`, `@review`, `@debug`, `@context`, `@deep-",
       "keywords": [
         "improve-prompt",
         "agent",
@@ -5165,28 +4928,8 @@
       "lastUpdated": "2026-07-01T12:31:47.554Z"
     },
     {
-      "specFolder": "skilled-agent-orchestration/z_archive/073-improve-agent-to-deep-agent-improvement-rename",
-      "description": "Packet 079 renamed the skill `sk-improve-agent` → `deep-agent-improvement` but kept the agent name `@improve-agent` stable per the original",
-      "keywords": [
-        "packet",
-        "079",
-        "renamed",
-        "skill",
-        "sk-improve-agent",
-        "deep-agent-improvement",
-        "kept",
-        "agent",
-        "name",
-        "improve-agent",
-        "stable",
-        "per",
-        "original"
-      ],
-      "lastUpdated": "2026-07-01T12:31:47.562Z"
-    },
-    {
       "specFolder": "skilled-agent-orchestration/z_archive/074-agent-description-trim",
-      "description": "The `/doctor:skill-budget` audit shipped in packet 086 surfaced 6 agents whose descriptions exceed the 130-char soft target — none were touched by",
+      "description": "The `/doctor:skill-budget` audit shipped in packet 086 surfaced 6 agents whose descriptions exceed the 130-char soft target \u2014 none were touched by",
       "keywords": [
         "doctor",
         "skill-budget",
@@ -5264,7 +5007,7 @@
     },
     {
       "specFolder": "skilled-agent-orchestration/z_archive/076-testing-playbooks-code-review-and-git/002-sk-git-playbook",
-      "description": "sk-git is the three-phase git lifecycle orchestrator (worktree setup → commit formation → finish/PR) used across the repo for every feature shipped",
+      "description": "sk-git is the three-phase git lifecycle orchestrator (worktree setup \u2192 commit formation \u2192 finish/PR) used across the repo for every feature shipped",
       "keywords": [
         "sk-git",
         "three-phase",
@@ -5895,21 +5638,6 @@
       "lastUpdated": "2026-07-07T12:56:31.477Z"
     },
     {
-      "specFolder": "skilled-agent-orchestration/z_archive/083-spec-kit-auto-mode-noninteractive-contract/001-deep-review-three-tier-setup",
-      "description": "`/deep:start-review-loop:auto` advertises itself as autonomous (`:auto` suffix → `executionmode = AUTONOMOUS`)",
-      "keywords": [
-        "deep",
-        "start-review-loop",
-        "auto",
-        "advertises",
-        "itself",
-        "autonomous",
-        "suffix",
-        "executionmode"
-      ],
-      "lastUpdated": "2026-06-30T12:42:36.941Z"
-    },
-    {
       "specFolder": "skilled-agent-orchestration/z_archive/083-spec-kit-auto-mode-noninteractive-contract/002-auto-mode-contract-generalization-to-all-commands",
       "description": "Phase 1 introduced the three-tier `:auto` contract for `/deep:start-review-loop`",
       "keywords": [
@@ -6168,39 +5896,6 @@
       "lastUpdated": "2026-06-30T12:42:36.984Z"
     },
     {
-      "specFolder": "skilled-agent-orchestration/z_archive/089-auto-review-stretch-config-dedup-gates/003-deep-review-uplift",
-      "description": "Two efficiency gaps in deep-review's multi-dimensional iteration model:",
-      "keywords": [
-        "two",
-        "efficiency",
-        "gaps",
-        "deep-review",
-        "multi-dimensional",
-        "iteration",
-        "model"
-      ],
-      "lastUpdated": "2026-06-30T12:42:36.990Z"
-    },
-    {
-      "specFolder": "skilled-agent-orchestration/z_archive/089-auto-review-stretch-config-dedup-gates/004-deep-agent-improvement-uplift",
-      "description": "deep-agent-improvement evaluates candidate agent mutations across 5 dimensions × multiple mutation types per dimension",
-      "keywords": [
-        "deep-agent-improvement",
-        "evaluates",
-        "candidate",
-        "agent",
-        "mutations",
-        "across",
-        "dimensions",
-        "multiple",
-        "mutation",
-        "types",
-        "per",
-        "dimension"
-      ],
-      "lastUpdated": "2026-06-30T12:42:36.994Z"
-    },
-    {
       "specFolder": "skilled-agent-orchestration/z_archive/090-base-files-renumbering-name-cleanup",
       "description": "Remediate 4 cleanup gaps after 026 Wave 1+2 restructure: 11 sub-phase dirs missing 33 base files; 86 sub-phase children + 22 parent children need",
       "keywords": [
@@ -6223,7 +5918,7 @@
     },
     {
       "specFolder": "skilled-agent-orchestration/z_archive/091-commit-standards-and-retroactive-rewrite",
-      "description": "The `sk-git` skill documents conventional-commit-style standards at `.opencode/skills/sk-git/SKILL.md` §3 and `assets/commitmessagetemplate.md`, but",
+      "description": "The `sk-git` skill documents conventional-commit-style standards at `.opencode/skills/sk-git/SKILL.md` \u00a73 and `assets/commitmessagetemplate.md`, but",
       "keywords": [
         "sk-git",
         "skill",
@@ -6239,7 +5934,7 @@
     },
     {
       "specFolder": "skilled-agent-orchestration/z_archive/091-commit-standards-and-retroactive-rewrite/001-prerequisites-and-baseline",
-      "description": "Two unknowns block downstream phases: (1) `git-filter-repo` is not currently installed on this Mac (verified at planning time — Phase 005 needs it for",
+      "description": "Two unknowns block downstream phases: (1) `git-filter-repo` is not currently installed on this Mac (verified at planning time \u2014 Phase 005 needs it for",
       "keywords": [
         "two",
         "unknowns",
@@ -6278,7 +5973,7 @@
     },
     {
       "specFolder": "skilled-agent-orchestration/z_archive/091-commit-standards-and-retroactive-rewrite/003-sk-git-skill-update",
-      "description": "sk-git documents commit standards in two places — SKILL.md §3 and `assets/commitmessagetemplate.md` — and both are partially stale relative to the dec",
+      "description": "sk-git documents commit standards in two places \u2014 SKILL.md \u00a73 and `assets/commitmessagetemplate.md` \u2014 and both are partially stale relative to the dec",
       "keywords": [
         "sk-git",
         "documents",
@@ -6328,7 +6023,7 @@
     },
     {
       "specFolder": "skilled-agent-orchestration/z_archive/092-cli-devin-prompt-quality",
-      "description": "cli-devin shipped with 7 prompt templates, 5 model presets, 6 framework choices, and 3 detail levels for the pre-planning block — but no systematic",
+      "description": "cli-devin shipped with 7 prompt templates, 5 model presets, 6 framework choices, and 3 detail levels for the pre-planning block \u2014 but no systematic",
       "keywords": [
         "cli-devin",
         "shipped",
@@ -6405,7 +6100,7 @@
     },
     {
       "specFolder": "skilled-agent-orchestration/z_archive/092-cli-devin-prompt-quality/004-skill-uplift",
-      "description": "The synthesis.md from 003 lists winning prompt patterns, but they live in eval-loop packet artifacts — invisible to future cli-devin dispatches",
+      "description": "The synthesis.md from 003 lists winning prompt patterns, but they live in eval-loop packet artifacts \u2014 invisible to future cli-devin dispatches",
       "keywords": [
         "synthesis",
         "003",
@@ -6556,7 +6251,7 @@
     },
     {
       "specFolder": "skilled-agent-orchestration/z_archive/093-small-ai-model-optimization/004-budget-and-output-verification",
-      "description": "SWE-1.6 dispatches today have NO context-budget awareness — every iter sends prompts up to the model's window with no truncation hints, no eviction pr",
+      "description": "SWE-1.6 dispatches today have NO context-budget awareness \u2014 every iter sends prompts up to the model's window with no truncation hints, no eviction pr",
       "keywords": [
         "swe-1",
         "dispatches",
@@ -6577,7 +6272,7 @@
     },
     {
       "specFolder": "skilled-agent-orchestration/z_archive/093-small-ai-model-optimization/005-model-profiles-and-fallback",
-      "description": "Today cli- skills repeat model-selection guidance per skill (cli-devin §3, cli-opencode §3, sk-prompt clipromptqualitycard.md)",
+      "description": "Today cli- skills repeat model-selection guidance per skill (cli-devin \u00a73, cli-opencode \u00a73, sk-prompt clipromptqualitycard.md)",
       "keywords": [
         "today",
         "cli",
@@ -6732,7 +6427,7 @@
     },
     {
       "specFolder": "skilled-agent-orchestration/z_archive/095-skill-anchor-toc-removal/004-verification-reconciliation",
-      "description": "A large mechanical change set (≈860 files) needs proof that it removed only TOC/anchor scaffolding,",
+      "description": "A large mechanical change set (\u2248860 files) needs proof that it removed only TOC/anchor scaffolding,",
       "keywords": [
         "large",
         "mechanical",
@@ -6775,7 +6470,7 @@
     },
     {
       "specFolder": "skilled-agent-orchestration/z_archive/097-comment-ref-hygiene",
-      "description": "AI assistants routinely embed pointers to ephemeral tracking artifacts — spec folders, packet/phase numbers, feature-catalog entries, ADR ids, and",
+      "description": "AI assistants routinely embed pointers to ephemeral tracking artifacts \u2014 spec folders, packet/phase numbers, feature-catalog entries, ADR ids, and",
       "keywords": [
         "assistants",
         "routinely",
@@ -6821,7 +6516,7 @@
     },
     {
       "specFolder": "skilled-agent-orchestration/z_archive/097-comment-ref-hygiene/002-active-enforcement-layer",
-      "description": "The `sk-code §4` text rule exists",
+      "description": "The `sk-code \u00a74` text rule exists",
       "keywords": [
         "sk-code",
         "text",
@@ -6888,7 +6583,7 @@
     },
     {
       "specFolder": "skilled-agent-orchestration/z_archive/098-cli-opencode-minimax-optimization/003-minimax-prompt-framework-benchmark",
-      "description": "120/002's research recommended a prompt framework for MiniMax 2.7 by desk analysis only — it never ran the model, so the recommendation is unvalidated",
+      "description": "120/002's research recommended a prompt framework for MiniMax 2.7 by desk analysis only \u2014 it never ran the model, so the recommendation is unvalidated",
       "keywords": [
         "120",
         "002",
@@ -6910,7 +6605,7 @@
     },
     {
       "specFolder": "skilled-agent-orchestration/z_archive/098-cli-opencode-minimax-optimization/004-minimax-token-plan-provider",
-      "description": "Every MiniMax reference in the repo describes the provider as the pay-per-token Direct API (`minimax` → `MINIMAXAPIKEY`, `MiniMax-M2.7`)",
+      "description": "Every MiniMax reference in the repo describes the provider as the pay-per-token Direct API (`minimax` \u2192 `MINIMAXAPIKEY`, `MiniMax-M2.7`)",
       "keywords": [
         "every",
         "minimax",
@@ -7063,7 +6758,7 @@
     },
     {
       "specFolder": "skilled-agent-orchestration/z_archive/100-feature-catalog-template-improvements/006-subheadings-advisor-codegraph",
-      "description": "Apply H3 sub-headings to long HOW IT WORKS sections in skill-advisor (40 files) and code-graph (14 files). Smaller scale than phase 005 — can be done",
+      "description": "Apply H3 sub-headings to long HOW IT WORKS sections in skill-advisor (40 files) and code-graph (14 files). Smaller scale than phase 005 \u2014 can be done",
       "keywords": [
         "apply",
         "sub-headings",
@@ -7108,7 +6803,7 @@
     },
     {
       "specFolder": "skilled-agent-orchestration/z_archive/100-feature-catalog-template-improvements/008-master-catalog-enrichment",
-      "description": "Add trigger_phrases and last_updated to all 3 master feature_catalog.md files. Fix any remaining stale references. Small scope — 3 files, AI edits.",
+      "description": "Add trigger_phrases and last_updated to all 3 master feature_catalog.md files. Fix any remaining stale references. Small scope \u2014 3 files, AI edits.",
       "keywords": [
         "add",
         "master",
@@ -7622,7 +7317,7 @@
     },
     {
       "specFolder": "skilled-agent-orchestration/z_archive/105-prompt-knowledge-layering/010-hub-doc-alignment-and-router",
-      "description": "The hub's `SKILL.md` §2 declared \"this skill has no runtime router of its own\" — a no-op that",
+      "description": "The hub's `SKILL.md` \u00a72 declared \"this skill has no runtime router of its own\" \u2014 a no-op that",
       "keywords": [
         "hub",
         "skill",
@@ -8140,123 +7835,6 @@
       "lastUpdated": "2026-06-30T12:42:37.319Z"
     },
     {
-      "specFolder": "skilled-agent-orchestration/z_archive/109-skill-readme-standardization/006-deep-ai-council-readme",
-      "description": "The deep-ai-council README is a tabular reference card with no problem-first entry point",
-      "keywords": [
-        "deep-ai-council",
-        "readme",
-        "tabular",
-        "reference",
-        "card",
-        "problem-first",
-        "entry",
-        "point"
-      ],
-      "lastUpdated": "2026-06-30T12:42:37.323Z"
-    },
-    {
-      "specFolder": "skilled-agent-orchestration/z_archive/109-skill-readme-standardization/007-deep-context-readme",
-      "description": "The deep-context README is a tabular reference card with no problem-first entry point, and its Key Statistics carry stale facts: version 1.0.0 (the sk",
-      "keywords": [
-        "deep-context",
-        "readme",
-        "tabular",
-        "reference",
-        "card",
-        "problem-first",
-        "entry",
-        "point",
-        "key",
-        "statistics",
-        "carry",
-        "stale",
-        "facts",
-        "version"
-      ],
-      "lastUpdated": "2026-06-30T12:42:37.328Z"
-    },
-    {
-      "specFolder": "skilled-agent-orchestration/z_archive/109-skill-readme-standardization/008-deep-improvement-readme",
-      "description": "The deep-improvement README is a tabular reference card with no problem-first entry point, and its stats carry stale facts (a feature-catalog count of",
-      "keywords": [
-        "deep-improvement",
-        "readme",
-        "tabular",
-        "reference",
-        "card",
-        "problem-first",
-        "entry",
-        "point",
-        "stats",
-        "carry",
-        "stale",
-        "facts",
-        "feature-catalog",
-        "count"
-      ],
-      "lastUpdated": "2026-06-30T12:42:37.332Z"
-    },
-    {
-      "specFolder": "skilled-agent-orchestration/z_archive/109-skill-readme-standardization/009-deep-loop-runtime-readme",
-      "description": "The deep-loop-runtime README is a tabular reference card with no problem-first entry point, and its Key Features table carries stale counts (27 vitest",
-      "keywords": [
-        "deep-loop-runtime",
-        "readme",
-        "tabular",
-        "reference",
-        "card",
-        "problem-first",
-        "entry",
-        "point",
-        "key",
-        "features",
-        "table",
-        "carries",
-        "stale",
-        "counts",
-        "vitest"
-      ],
-      "lastUpdated": "2026-06-30T12:42:37.337Z"
-    },
-    {
-      "specFolder": "skilled-agent-orchestration/z_archive/109-skill-readme-standardization/010-deep-research-readme",
-      "description": "The deep-research README is a tabular reference card with a buried Key Statistics block and no problem-first entry point",
-      "keywords": [
-        "deep-research",
-        "readme",
-        "tabular",
-        "reference",
-        "card",
-        "buried",
-        "key",
-        "statistics",
-        "block",
-        "problem-first",
-        "entry",
-        "point"
-      ],
-      "lastUpdated": "2026-06-30T12:42:37.342Z"
-    },
-    {
-      "specFolder": "skilled-agent-orchestration/z_archive/109-skill-readme-standardization/011-deep-review-readme",
-      "description": "The deep-review README is a tabular reference card with a buried Key Statistics block and no problem-first entry point",
-      "keywords": [
-        "deep-review",
-        "readme",
-        "tabular",
-        "reference",
-        "card",
-        "buried",
-        "key",
-        "statistics",
-        "block",
-        "problem-first",
-        "entry",
-        "point"
-      ],
-      "lastUpdated": "2026-06-30T12:42:37.346Z"
-    },
-    {
       "specFolder": "skilled-agent-orchestration/z_archive/109-skill-readme-standardization/012-mcp-chrome-devtools-readme",
       "description": "The mcp-chrome-devtools README is a tabular reference card with a table of contents and no problem-first entry point",
       "keywords": [
@@ -8527,7 +8105,7 @@
     },
     {
       "specFolder": "skilled-agent-orchestration/z_archive/111-cli-devin-deprecation",
-      "description": "The `.opencode/skills/cli-devin` skill (and the broader Devin surface — the cli-devin executor plus the Devin IDE-runtime hooks) is being retired",
+      "description": "The `.opencode/skills/cli-devin` skill (and the broader Devin surface \u2014 the cli-devin executor plus the Devin IDE-runtime hooks) is being retired",
       "keywords": [
         "opencode",
         "skills",
@@ -8857,7 +8435,7 @@
     },
     {
       "specFolder": "skilled-agent-orchestration/z_archive/114-operate-like-fable-5/001-initial-refinement",
-      "description": "`external/Fable5.md` is a distilled agent operating doctrine — verify before you claim, make confirmed-vs-inferred claims legible, capture a baseline",
+      "description": "`external/Fable5.md` is a distilled agent operating doctrine \u2014 verify before you claim, make confirmed-vs-inferred claims legible, capture a baseline",
       "keywords": [
         "external",
         "fable5",
@@ -9361,7 +8939,7 @@
     },
     {
       "specFolder": "system-code-graph/001-code-graph-core/009-daemon-reclaim-hardening",
-      "description": "The launcher decides daemon liveness from `process.kill(pid,0)` plus a launcher-written heartbeat — with zero socket-health correlation",
+      "description": "The launcher decides daemon liveness from `process.kill(pid,0)` plus a launcher-written heartbeat \u2014 with zero socket-health correlation",
       "keywords": [
         "launcher",
         "decides",
@@ -9511,7 +9089,7 @@
     },
     {
       "specFolder": "system-deep-loop/029-deep-loop-workflows",
-      "description": "The deep-loop capability is split across five sibling skills — `deep-ai-council`, `deep-context`, `deep-improvement`, `deep-research`, `deep-review` —",
+      "description": "The deep-loop capability is split across five sibling skills \u2014 `deep-ai-council`, `deep-context`, `deep-improvement`, `deep-research`, `deep-review` \u2014",
       "keywords": [
         "deep-loop",
         "capability",
@@ -9542,7 +9120,7 @@
     },
     {
       "specFolder": "system-deep-loop/029-deep-loop-workflows/002-runtime-backend-promotions",
-      "description": "The five skills duplicate generic plumbing — a byte-identical runtime-capabilities resolver in deep-research and deep-review, a loop-lock CLI adapter",
+      "description": "The five skills duplicate generic plumbing \u2014 a byte-identical runtime-capabilities resolver in deep-research and deep-review, a loop-lock CLI adapter",
       "keywords": [
         "five",
         "skills",
@@ -9772,7 +9350,7 @@
     },
     {
       "specFolder": "system-deep-loop/030-deep-loop-improved/002-deep-loop-runtime",
-      "description": "The deep-loop-runtime core library and scripts carry known structural gaps across four dimensions: (1) resilience — atomic state writes are unguarded",
+      "description": "The deep-loop-runtime core library and scripts carry known structural gaps across four dimensions: (1) resilience \u2014 atomic state writes are unguarded",
       "keywords": [
         "deep-loop-runtime",
         "core",
@@ -9856,7 +9434,7 @@
     },
     {
       "specFolder": "system-deep-loop/030-deep-loop-improved/002-deep-loop-runtime/004-abortable-chunked-sleep",
-      "description": "Wait calls are scattered across the deep-loop executor as bare `setTimeout` promises with no cancellation support — a cancelled run must wait the full",
+      "description": "Wait calls are scattered across the deep-loop executor as bare `setTimeout` promises with no cancellation support \u2014 a cancelled run must wait the full",
       "keywords": [
         "wait",
         "calls",
@@ -10031,7 +9609,7 @@
     },
     {
       "specFolder": "system-deep-loop/030-deep-loop-improved/002-deep-loop-runtime/012-observation-threshold-guard",
-      "description": "A single-observation finding can trigger a STOP decision or auto-promotion without any confirmation; this causes premature convergence on noise — a",
+      "description": "A single-observation finding can trigger a STOP decision or auto-promotion without any confirmation; this causes premature convergence on noise \u2014 a",
       "keywords": [
         "single-observation",
         "finding",
@@ -10811,7 +10389,7 @@
     },
     {
       "specFolder": "system-deep-loop/030-deep-loop-improved/008-loop-systems-remediation/006-p2-test-adequacy-and-source-only-audit",
-      "description": "The JSONL append test named \"keeps concurrent append records parseable at record boundaries\" ran two child writers with blocking `spawnSync` calls —",
+      "description": "The JSONL append test named \"keeps concurrent append records parseable at record boundaries\" ran two child writers with blocking `spawnSync` calls \u2014",
       "keywords": [
         "jsonl",
         "append",
@@ -10878,7 +10456,7 @@
     },
     {
       "specFolder": "system-deep-loop/030-deep-loop-improved/009-research-backlog-remediation/001-fanout-merge-schema-tolerance",
-      "description": "`.opencode/skills/deep-loop-runtime/scripts/fanout-merge.cjs:472` — `mergeResearchRegistries` does `if (!registry ||",
+      "description": "`.opencode/skills/deep-loop-runtime/scripts/fanout-merge.cjs:472` \u2014 `mergeResearchRegistries` does `if (!registry ||",
       "keywords": [
         "opencode",
         "skills",
@@ -10894,7 +10472,7 @@
     },
     {
       "specFolder": "system-deep-loop/030-deep-loop-improved/009-research-backlog-remediation/002-fanout-timeout-override",
-      "description": "`fanout-run.cjs:884-888` `computeLineageTimeoutMs(lineage)` computes `Math.min(iters  timeoutSeconds  2  1000, 4  60  60  1000)` — the `Math.min`",
+      "description": "`fanout-run.cjs:884-888` `computeLineageTimeoutMs(lineage)` computes `Math.min(iters  timeoutSeconds  2  1000, 4  60  60  1000)` \u2014 the `Math.min`",
       "keywords": [
         "fanout-run",
         "cjs",
@@ -10984,7 +10562,7 @@
     },
     {
       "specFolder": "system-deep-loop/030-deep-loop-improved/009-research-backlog-remediation/007-parent-scaffold-and-governance-docs",
-      "description": "`008-loop-systems-remediation/tasks.md` and `implementation-summary.md` are confirmed (direct read) to still be raw, unmodified templates —",
+      "description": "`008-loop-systems-remediation/tasks.md` and `implementation-summary.md` are confirmed (direct read) to still be raw, unmodified templates \u2014",
       "keywords": [
         "008-loop-systems-remediation",
         "tasks",
@@ -11019,7 +10597,7 @@
     },
     {
       "specFolder": "system-deep-loop/030-deep-loop-improved/009-research-backlog-remediation/009-convergence-design-and-hardening",
-      "description": "Two distinct, lower-severity items from `research/researcharchive/20260701T071133Z-gen1/research.md` §4.3-4.4:",
+      "description": "Two distinct, lower-severity items from `research/researcharchive/20260701T071133Z-gen1/research.md` \u00a74.3-4.4:",
       "keywords": [
         "two",
         "distinct",
@@ -11247,7 +10825,7 @@
     },
     {
       "specFolder": "system-deep-loop/031-deep-loop-gpt-reliability",
-      "description": "GPT-backed OpenCode mis-handled deep-loop routing, dispatch, host identity, and orchestration — deep skills were mis-invoked, routes were mismatched,",
+      "description": "GPT-backed OpenCode mis-handled deep-loop routing, dispatch, host identity, and orchestration \u2014 deep skills were mis-invoked, routes were mismatched,",
       "keywords": [
         "gpt-backed",
         "opencode",
@@ -11355,7 +10933,7 @@
     },
     {
       "specFolder": "system-deep-loop/031-deep-loop-gpt-reliability/002-routing-dispatch-and-identity/002-route-proof-validation",
-      "description": "The research (`../../research/research.md` §5) found a critical false-negative (F27): a GPT mis-dispatch can PASS every existing FIX-5 validator",
+      "description": "The research (`../../research/research.md` \u00a75) found a critical false-negative (F27): a GPT mis-dispatch can PASS every existing FIX-5 validator",
       "keywords": [
         "research",
         "found",
@@ -11374,7 +10952,7 @@
     },
     {
       "specFolder": "system-deep-loop/031-deep-loop-gpt-reliability/002-routing-dispatch-and-identity/003-agent-dispatch-hardening",
-      "description": "The research (§1, §2) established that `subagenttype` is normalized to `\"general\"` with identity prompt-injected, so a DEEP agent file buys",
+      "description": "The research (\u00a71, \u00a72) established that `subagenttype` is normalized to `\"general\"` with identity prompt-injected, so a DEEP agent file buys",
       "keywords": [
         "research",
         "established",
@@ -11407,7 +10985,7 @@
     },
     {
       "specFolder": "system-deep-loop/031-deep-loop-gpt-reliability/002-routing-dispatch-and-identity/005-host-hard-identity-fix5",
-      "description": "The research (§8b) found that hard per-agent `subagenttype` identity requires a host-runtime dispatch-primitive change (bind `agentslug` at the Task",
+      "description": "The research (\u00a78b) found that hard per-agent `subagenttype` identity requires a host-runtime dispatch-primitive change (bind `agentslug` at the Task",
       "keywords": [
         "research",
         "found",
@@ -11782,7 +11360,7 @@
     },
     {
       "specFolder": "system-deep-loop/031-deep-loop-gpt-reliability/006-reliability-fixes/002-gate3-precedence-and-validator",
-      "description": "Phase 002 of packet 035 (unified command-contract architecture). The P0 fix: kill the most-replicated GPT failure — the Gate-3 spec-folder halt on",
+      "description": "Phase 002 of packet 035 (unified command-contract architecture). The P0 fix: kill the most-replicated GPT failure \u2014 the Gate-3 spec-folder halt on",
       "keywords": [
         "phase",
         "002",
@@ -12055,7 +11633,7 @@
     },
     {
       "specFolder": "system-deep-loop/032-goal-opencode-plugin/009-speckit-command-goal-prompt-offer",
-      "description": "Finding INT-1 (dossier §E, verbatim): the `/speckit:` goal-prompt offer — this phase's whole original purpose — is NOT implemented",
+      "description": "Finding INT-1 (dossier \u00a7E, verbatim): the `/speckit:` goal-prompt offer \u2014 this phase's whole original purpose \u2014 is NOT implemented",
       "keywords": [
         "finding",
         "int-1",
@@ -12107,7 +11685,7 @@
     },
     {
       "specFolder": "system-deep-loop/032-goal-opencode-plugin/012-regression-test-backfill",
-      "description": "Research (F-018/019/021) found the `experimental.chat.system.transform` hook — the actual mechanism that injects `[activegoal]` into every turn — is",
+      "description": "Research (F-018/019/021) found the `experimental.chat.system.transform` hook \u2014 the actual mechanism that injects `[activegoal]` into every turn \u2014 is",
       "keywords": [
         "research",
         "f-018",
@@ -13609,7 +13187,7 @@
     },
     {
       "specFolder": "system-deep-loop/z_archive/012-sk-agent-improver-test-report-alignment",
-      "description": "Phase-parent root spec. Five-phase end-to-end methodology campaign on the sk-improve-agent triad — research → initial implementation + R1 → followup r",
+      "description": "Phase-parent root spec. Five-phase end-to-end methodology campaign on the sk-improve-agent triad \u2014 research \u2192 initial implementation + R1 \u2192 followup r",
       "keywords": [
         "phase-parent",
         "root",
@@ -14089,7 +13667,7 @@
     },
     {
       "specFolder": "system-deep-loop/z_archive/021-deep-skill-evolution",
-      "description": "The deep- skill family — `deep-ai-council`, `deep-review`, `deep-loop-runtime`, `deep-research`, and `deep-agent-improvement` — evolved through many i",
+      "description": "The deep- skill family \u2014 `deep-ai-council`, `deep-review`, `deep-loop-runtime`, `deep-research`, and `deep-agent-improvement` \u2014 evolved through many i",
       "keywords": [
         "deep",
         "skill",
@@ -14324,7 +13902,7 @@
     },
     {
       "specFolder": "system-deep-loop/z_archive/021-deep-skill-evolution/000-release-cleanup/012-deep-ai-council-deep-mode-docs-and-tests",
-      "description": "The deep-ai-council skill documents single-round council behavior thoroughly, but the v2.0.0.0 deep-mode capability (session → topic → round, exposed",
+      "description": "The deep-ai-council skill documents single-round council behavior thoroughly, but the v2.0.0.0 deep-mode capability (session \u2192 topic \u2192 round, exposed",
       "keywords": [
         "deep-ai-council",
         "skill",
@@ -15371,7 +14949,7 @@
     },
     {
       "specFolder": "system-deep-loop/z_archive/021-deep-skill-evolution/007-deep-stack-playbook-validation",
-      "description": "The five deep-loop skills — `deep-loop-runtime` (22), `deep-ai-council` (32), `deep-review` (45), `deep-research` (41), and `deep-agent-improvement` (",
+      "description": "The five deep-loop skills \u2014 `deep-loop-runtime` (22), `deep-ai-council` (32), `deep-review` (45), `deep-research` (41), and `deep-agent-improvement` (",
       "keywords": [
         "five",
         "deep-loop",
@@ -15660,7 +15238,7 @@
     },
     {
       "specFolder": "system-deep-loop/z_archive/022-deep-agent-improvement-benchmark-mode/004-fix-hardening-findings-for-model-benchmark",
-      "description": "The 122 deep review confirmed (post Opus-4.8 arbitration) 3 unique P1 correctness/security defects in the shipped model-benchmark mode — the dispatche",
+      "description": "The 122 deep review confirmed (post Opus-4.8 arbitration) 3 unique P1 correctness/security defects in the shipped model-benchmark mode \u2014 the dispatche",
       "keywords": [
         "122",
         "deep",
@@ -15703,7 +15281,7 @@
     },
     {
       "specFolder": "system-deep-loop/z_archive/022-deep-agent-improvement-benchmark-mode/006-deep-loop-empty-archive-dir",
-      "description": "The deep-research command init step `stepcreatedirectories` ran `mkdir -p … {statepaths.archiveroot}` on every fresh/resume run, but the archive root",
+      "description": "The deep-research command init step `stepcreatedirectories` ran `mkdir -p \u2026 {statepaths.archiveroot}` on every fresh/resume run, but the archive root",
       "keywords": [
         "deep-research",
         "command",
@@ -15725,7 +15303,7 @@
     },
     {
       "specFolder": "system-deep-loop/z_archive/022-deep-agent-improvement-benchmark-mode/007-review-model-benchmark-mode-hardening",
-      "description": "This session shipped real, committed code — the deep-agent-improvement `model-benchmark` mode (121/003: `loop-host.cjs`, `dispatch-model.cjs`, a porte",
+      "description": "This session shipped real, committed code \u2014 the deep-agent-improvement `model-benchmark` mode (121/003: `loop-host.cjs`, `dispatch-model.cjs`, a porte",
       "keywords": [
         "session",
         "shipped",
@@ -15764,7 +15342,7 @@
     },
     {
       "specFolder": "system-deep-loop/z_archive/022-deep-agent-improvement-benchmark-mode/009-restructure-skill-md-two-lane",
-      "description": "SKILL.md frames the model-benchmark lane as \"Mode 4: Model-Benchmark\" appended inside the agent-improvement lane section (§3), even though §1 already",
+      "description": "SKILL.md frames the model-benchmark lane as \"Mode 4: Model-Benchmark\" appended inside the agent-improvement lane section (\u00a73), even though \u00a71 already",
       "keywords": [
         "skill",
         "frames",
@@ -16101,7 +15679,7 @@
     },
     {
       "specFolder": "system-deep-loop/z_archive/023-deep-improvement-skill-benchmark-mode/007-deep-improvement-3lane-doc-rebuild",
-      "description": "007 — Deep-Improvement 3-Lane Doc Rebuild",
+      "description": "007 \u2014 Deep-Improvement 3-Lane Doc Rebuild",
       "keywords": [
         "007",
         "deep-improvement",
@@ -16113,7 +15691,7 @@
     },
     {
       "specFolder": "system-deep-loop/z_archive/023-deep-improvement-skill-benchmark-mode/008-playbook-manual-test-run",
-      "description": "008 — Deep-Improvement Playbook Manual Test Run",
+      "description": "008 \u2014 Deep-Improvement Playbook Manual Test Run",
       "keywords": [
         "008",
         "deep-improvement",
@@ -16142,7 +15720,7 @@
     },
     {
       "specFolder": "system-deep-loop/z_archive/023-deep-improvement-skill-benchmark-mode/010-skill-benchmark-live-playbook-mode",
-      "description": "The Lane C benchmark grades skills with hand-invented, keyword-stripped fixtures and a pure-function router replay — not the skill being used",
+      "description": "The Lane C benchmark grades skills with hand-invented, keyword-stripped fixtures and a pure-function router replay \u2014 not the skill being used",
       "keywords": [
         "lane",
         "benchmark",
@@ -16510,7 +16088,7 @@
     },
     {
       "specFolder": "system-deep-loop/z_archive/025-deep-context-gathering/005-runtime-mirror-parity",
-      "description": "The framework supports three runtimes — OpenCode, Claude Code, Codex — whose `agents/` directories are real, separate folders (unlike `commands`/`skil",
+      "description": "The framework supports three runtimes \u2014 OpenCode, Claude Code, Codex \u2014 whose `agents/` directories are real, separate folders (unlike `commands`/`skil",
       "keywords": [
         "framework",
         "supports",
@@ -16817,7 +16395,7 @@
     },
     {
       "specFolder": "system-skill-advisor/001-skill-graph/003-skill-metadata-embedding-quality-audit",
-      "description": "The 015/004 seeded sweep proved that the cosine lane cannot flip routing decisions on the current 24-prompt corpus regardless of weight (V0–V6, includ",
+      "description": "The 015/004 seeded sweep proved that the cosine lane cannot flip routing decisions on the current 24-prompt corpus regardless of weight (V0\u2013V6, includ",
       "keywords": [
         "015",
         "004",
@@ -17715,7 +17293,7 @@
     },
     {
       "specFolder": "system-skill-advisor/003-skill-advisor-routing-engine/002-advisor-phrase-booster-tuning",
-      "description": "The skill advisor's `INTENTBOOSTERS` dict (`skilladvisor.py:496`) contains 24 multi-word keys that the advisor's tokenizer splits on whitespace — maki",
+      "description": "The skill advisor's `INTENTBOOSTERS` dict (`skilladvisor.py:496`) contains 24 multi-word keys that the advisor's tokenizer splits on whitespace \u2014 maki",
       "keywords": [
         "skill",
         "advisor",
@@ -17749,7 +17327,7 @@
     },
     {
       "specFolder": "system-skill-advisor/003-skill-advisor-routing-engine/004-advisor-hook-surface-integration",
-      "description": "Current state — skill-advisor invocation and context cost:",
+      "description": "Current state \u2014 skill-advisor invocation and context cost:",
       "keywords": [
         "current",
         "state",
@@ -18279,7 +17857,7 @@
     },
     {
       "specFolder": "system-skill-advisor/006-playbook-run-and-remediation/001-preconditions-and-build",
-      "description": "The playbook's §2 global preconditions require a current MCP server build, an unset `SPECKITSKILLADVISORHOOKDISABLED` flag, and evidence workspaces",
+      "description": "The playbook's \u00a72 global preconditions require a current MCP server build, an unset `SPECKITSKILLADVISORHOOKDISABLED` flag, and evidence workspaces",
       "keywords": [
         "playbook",
         "global",
@@ -18584,7 +18162,7 @@
     },
     {
       "specFolder": "system-skill-advisor/007-skill-advisor-embedder-stack/003-install-guide-docs",
-      "description": "Document the new pluggable embedder + auto-detect for new users — mirror 019/002 for skill-advisor",
+      "description": "Document the new pluggable embedder + auto-detect for new users \u2014 mirror 019/002 for skill-advisor",
       "keywords": [
         "document",
         "new",
@@ -18771,7 +18349,7 @@
     },
     {
       "specFolder": "system-skill-advisor/008-skill-advisor-cli/003-runtime-integration",
-      "description": "The advisor brief sits on the prompt-submit critical path in every runtime; pairing it with the CLI must respect the measured budget — the one-shot",
+      "description": "The advisor brief sits on the prompt-submit critical path in every runtime; pairing it with the CLI must respect the measured budget \u2014 the one-shot",
       "keywords": [
         "advisor",
         "brief",
@@ -19015,7 +18593,7 @@
     },
     {
       "specFolder": "system-skill-advisor/011-skill-advisor-phase-parent/001-hard-rule-and-dispatch-preflight-hardening",
-      "description": "Two dispatch-path failures — a manual opencode run with no stdin redirect that hung at 0% CPU, and a fanout lineage that stalled at 0 iterations with",
+      "description": "Two dispatch-path failures \u2014 a manual opencode run with no stdin redirect that hung at 0% CPU, and a fanout lineage that stalled at 0 iterations with",
       "keywords": [
         "two",
         "dispatch-path",
@@ -19036,7 +18614,7 @@
     },
     {
       "specFolder": "system-skill-advisor/012-skill-advisor-tuning",
-      "description": "The shared skill-advisor scorer — the weighted five-lane fusion that ranks which skill a prompt should route to — carries a saturation-class defect:",
+      "description": "The shared skill-advisor scorer \u2014 the weighted five-lane fusion that ranks which skill a prompt should route to \u2014 carries a saturation-class defect:",
       "keywords": [
         "shared",
         "skill-advisor",
@@ -19434,7 +19012,7 @@
     },
     {
       "specFolder": "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/001-release-readiness/002-release-readiness-deep-review-audits",
-      "description": "After this session's wave of remediation work (013 research → 031-044 implementation + audits + finalization), the 026-graph-and-context-optimization",
+      "description": "After this session's wave of remediation work (013 research \u2192 031-044 implementation + audits + finalization), the 026-graph-and-context-optimization",
       "keywords": [
         "session",
         "wave",
@@ -19530,21 +19108,6 @@
         "tool",
         "schema",
         "contract"
-      ],
-      "lastUpdated": "2026-07-07T12:56:31.477Z"
-    },
-    {
-      "specFolder": "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/001-release-readiness/002-release-readiness-deep-review-audits/006-deep-loop-workflow-integrity-audit",
-      "description": "The release-readiness program needs a truth check for the deep-loop workflow layer",
-      "keywords": [
-        "release-readiness",
-        "program",
-        "needs",
-        "truth",
-        "check",
-        "deep-loop",
-        "workflow",
-        "layer"
       ],
       "lastUpdated": "2026-07-07T12:56:31.477Z"
     },
@@ -20496,7 +20059,7 @@
     },
     {
       "specFolder": "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/029-autoclean-orphan-file-removal",
-      "description": "`verifyintegrity({ autoClean: true })` only auto-cleans orphan vectors and orphan chunks — it never deletes memoryindex rows whose `filepath` is missi",
+      "description": "`verifyintegrity({ autoClean: true })` only auto-cleans orphan vectors and orphan chunks \u2014 it never deletes memoryindex rows whose `filepath` is missi",
       "keywords": [
         "verifyintegrity",
         "autoclean",
@@ -20798,7 +20361,7 @@
     },
     {
       "specFolder": "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/004-followup-post-program/004-runtime-root-memory-cleanup-followup-fixes",
-      "description": "After the packet 096 singular→plural path-residue fix, three follow-on issues remain in the runtime: (1) `findAdvisorWorkspaceRoot` uses a bare `.open",
+      "description": "After the packet 096 singular\u2192plural path-residue fix, three follow-on issues remain in the runtime: (1) `findAdvisorWorkspaceRoot` uses a bare `.open",
       "keywords": [
         "packet",
         "096",
@@ -20877,7 +20440,7 @@
     },
     {
       "specFolder": "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings",
-      "description": "The MCP runtime serves four high-traffic surfaces — `memorycontext`, `memorysearch`, `codegraphquery`, `memorycausalstats` — that AI assistants depend",
+      "description": "The MCP runtime serves four high-traffic surfaces \u2014 `memorycontext`, `memorysearch`, `codegraphquery`, `memorycausalstats` \u2014 that AI assistants depend",
       "keywords": [
         "mcp",
         "runtime",
@@ -20937,7 +20500,7 @@
     },
     {
       "specFolder": "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/001-search-intelligence-stress-playbook/002-search-scenario-design",
-      "description": "Without a fixed corpus + rubric + dispatch matrix, \"stress-test\" devolves into ad-hoc prompting — non-reproducible, partial, and impossible to compare",
+      "description": "Without a fixed corpus + rubric + dispatch matrix, \"stress-test\" devolves into ad-hoc prompting \u2014 non-reproducible, partial, and impossible to compare",
       "keywords": [
         "without",
         "fixed",
@@ -21065,7 +20628,7 @@
     },
     {
       "specFolder": "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/006-causal-graph-relation-window-metrics",
-      "description": "005/REQ-010 captured 344 new edges in 15 minutes — 100% `supersedes`, 0% `caused`/`supports`",
+      "description": "005/REQ-010 captured 344 new edges in 15 minutes \u2014 100% `supersedes`, 0% `caused`/`supports`",
       "keywords": [
         "005",
         "req-010",
@@ -21083,7 +20646,7 @@
     },
     {
       "specFolder": "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/007-intent-classifier-stability-telemetry",
-      "description": "005/REQ-016 captured paraphrase instability: `\"Semantic Search\"` → `fixbug` (0.098) but `\"Find stuff related to semantic search\"` → `understand`",
+      "description": "005/REQ-016 captured paraphrase instability: `\"Semantic Search\"` \u2192 `fixbug` (0.098) but `\"Find stuff related to semantic search\"` \u2192 `understand`",
       "keywords": [
         "005",
         "req-016",
@@ -21153,7 +20716,7 @@
     },
     {
       "specFolder": "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/011-research-post-stress-finding-followups",
-      "description": "The v1.0.2 stress-test rerun closed with four follow-ups tagged in `../010-stress-test-close-loop-measurement-rerun/findings.md` Recommendations §1-5",
+      "description": "The v1.0.2 stress-test rerun closed with four follow-ups tagged in `../010-stress-test-close-loop-measurement-rerun/findings.md` Recommendations \u00a71-5",
       "keywords": [
         "stress-test",
         "rerun",
@@ -21229,7 +20792,7 @@
     },
     {
       "specFolder": "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/015-cocoindex-seed-telemetry-passthrough",
-      "description": "The CocoIndex fork (cocoindexcode v0.2.3+spec-kit-fork.0.2.0) emits 5 new telemetry fields per query result — `rawscore`, `pathclass`, `rankingSignals",
+      "description": "The CocoIndex fork (cocoindexcode v0.2.3+spec-kit-fork.0.2.0) emits 5 new telemetry fields per query result \u2014 `rawscore`, `pathclass`, `rankingSignals",
       "keywords": [
         "cocoindex",
         "fork",
@@ -21269,7 +20832,7 @@
     },
     {
       "specFolder": "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/017-cli-copilot-dispatch-test-parity",
-      "description": "The 011 deep-review report (`../011-research-post-stress-finding-followups/review/review-report.md`) §4 surfaced F-004 [P2]:",
+      "description": "The 011 deep-review report (`../011-research-post-stress-finding-followups/review/review-report.md`) \u00a74 surfaced F-004 [P2]:",
       "keywords": [
         "011",
         "deep-review",
@@ -21326,7 +20889,7 @@
     },
     {
       "specFolder": "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/020-enterprise-readiness-verification-expansion-research",
-      "description": "Phases C–E delivered W3 (composed RAG trust tree), W4 (conditional rerank, now default-on), W5 (advisor shadow learned weights), W6 (CocoIndex adaptiv",
+      "description": "Phases C\u2013E delivered W3 (composed RAG trust tree), W4 (conditional rerank, now default-on), W5 (advisor shadow learned weights), W6 (CocoIndex adaptiv",
       "keywords": [
         "phases",
         "delivered",
@@ -21568,7 +21131,7 @@
     },
     {
       "specFolder": "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/007-fix-stress-test-coverage-gap-followup",
-      "description": "Packet 042's audit produced a 54-row coverage matrix and classified 10 features as P0 stress gaps — features with concurrency, lease, capacity, or per",
+      "description": "Packet 042's audit produced a 54-row coverage matrix and classified 10 features as P0 stress gaps \u2014 features with concurrency, lease, capacity, or per",
       "keywords": [
         "packet",
         "042",
@@ -21736,20 +21299,6 @@
       "lastUpdated": "2026-06-23T03:49:52.824Z"
     },
     {
-      "specFolder": "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/006-research/004-fix-deep-research-findings/002-fix-deep-loop-workflow-state",
-      "description": "Five findings flagged the deep-loop workflow state machine",
-      "keywords": [
-        "five",
-        "findings",
-        "flagged",
-        "deep-loop",
-        "workflow",
-        "state",
-        "machine"
-      ],
-      "lastUpdated": "2026-06-23T03:49:52.830Z"
-    },
-    {
       "specFolder": "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/006-research/004-fix-deep-research-findings/003-fix-validation-memory",
       "description": "Thirteen validators and parsers across the advisor, memory, and spec-validation subsystems leak loose-typing, generic-parse, and false-positive bugs",
       "keywords": [
@@ -21892,7 +21441,7 @@
     },
     {
       "specFolder": "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/007-clean-room-license-audit",
-      "description": "pt-02 §12 ranks license contamination from direct External Project reuse as a P0 risk",
+      "description": "pt-02 \u00a712 ranks license contamination from direct External Project reuse as a P0 risk",
       "keywords": [
         "pt-02",
         "ranks",
@@ -22087,7 +21636,7 @@
     },
     {
       "specFolder": "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/010-scouted-bugfix-train/004-scouted-bugfix-batch-4",
-      "description": "The fourth scout surfaced a new candidate pool and applied the pipeline (scout → gpt-5.5-fast confirm → implement-and-test)",
+      "description": "The fourth scout surfaced a new candidate pool and applied the pipeline (scout \u2192 gpt-5.5-fast confirm \u2192 implement-and-test)",
       "keywords": [
         "fourth",
         "scout",
@@ -22331,7 +21880,7 @@
     },
     {
       "specFolder": "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/013-comprehensive-audit-remediation",
-      "description": "The packet-012 audit surfaced ~50 verified findings — one true infrastructure P0, two governed-scope findings calibrated to P1 under the local single-",
+      "description": "The packet-012 audit surfaced ~50 verified findings \u2014 one true infrastructure P0, two governed-scope findings calibrated to P1 under the local single-",
       "keywords": [
         "packet-012",
         "audit",
@@ -22348,28 +21897,6 @@
         "single"
       ],
       "lastUpdated": "2026-06-23T03:49:53.022Z"
-    },
-    {
-      "specFolder": "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/013-comprehensive-audit-remediation/001-deep-loop-fanout-reliability",
-      "description": "The deep-loop fan-out runner reported failed and timed-out CLI lineages as successes (the worker returned a result object instead of throwing, so the",
-      "keywords": [
-        "deep-loop",
-        "fan-out",
-        "runner",
-        "reported",
-        "failed",
-        "timed-out",
-        "cli",
-        "lineages",
-        "successes",
-        "worker",
-        "returned",
-        "result",
-        "object",
-        "instead",
-        "throwing"
-      ],
-      "lastUpdated": "2026-06-23T03:49:53.028Z"
     },
     {
       "specFolder": "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/013-comprehensive-audit-remediation/002-retrieval-scope-hardening",
@@ -22829,7 +22356,7 @@
     },
     {
       "specFolder": "system-speckit/026-graph-and-context-optimization/002-spec-kit-internals/001-resource-map-deep-loop-fix/003-resource-map-deep-loop-integration",
-      "description": "Autonomous deep-loop runs produce rich evidence across 5–15 iterations, but the output surface is split between iteration markdown files (dense, per-c",
+      "description": "Autonomous deep-loop runs produce rich evidence across 5\u201315 iterations, but the output surface is split between iteration markdown files (dense, per-c",
       "keywords": [
         "autonomous",
         "deep-loop",
@@ -23451,7 +22978,7 @@
     },
     {
       "specFolder": "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation",
-      "description": "This phased decomposition tracks Local embeddings Setup A — EmbeddingGemma-300m for code, EmbeddingGemma-300m for memory across independently executab",
+      "description": "This phased decomposition tracks Local embeddings Setup A \u2014 EmbeddingGemma-300m for code, EmbeddingGemma-300m for memory across independently executab",
       "keywords": [
         "phased",
         "decomposition",
@@ -23866,7 +23393,7 @@
     },
     {
       "specFolder": "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/021-local-llm-legacy-review",
-      "description": "Packet 014 shipped a default-LLM and embedding-stack migration (Voyage → EmbeddingGemma-300m hf-local q8 for Memory MCP; google/embeddinggemma-300m se",
+      "description": "Packet 014 shipped a default-LLM and embedding-stack migration (Voyage \u2192 EmbeddingGemma-300m hf-local q8 for Memory MCP; google/embeddinggemma-300m se",
       "keywords": [
         "packet",
         "014",
@@ -24682,7 +24209,7 @@
     },
     {
       "specFolder": "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack/007-auto-embedder-selection-and-llama-cpp-purge",
-      "description": "Replace the hardcoded embeddinggemma-300m default with a smart precedence-chain auto-selection at bootstrap. Probe environment in order — Voyage API k",
+      "description": "Replace the hardcoded embeddinggemma-300m default with a smart precedence-chain auto-selection at bootstrap. Probe environment in order \u2014 Voyage API k",
       "keywords": [
         "replace",
         "hardcoded",
@@ -24841,7 +24368,7 @@
     },
     {
       "specFolder": "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack/015-cascade-reorder-and-nomic-hf-local-default",
-      "description": "Reorder auto-select provider cascade to Ollama → hf-local → OpenAI → Voyage (local-first). Change HF_LOCAL_MODEL fallback from BAAI/bge-base-en-v1.5 t",
+      "description": "Reorder auto-select provider cascade to Ollama \u2192 hf-local \u2192 OpenAI \u2192 Voyage (local-first). Change HF_LOCAL_MODEL fallback from BAAI/bge-base-en-v1.5 t",
       "keywords": [
         "reorder",
         "auto-select",
@@ -25018,7 +24545,7 @@
     },
     {
       "specFolder": "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack/022-hardcoded-default-remediation-arc/002b-cocoindex-reranker-doc-prose",
-      "description": "Reranker-side doc-drift corrections deferred from phase 002. Updates BAAI/bge-reranker-v2-m3 → Qwen/Qwen3-Reranker-0.6B (023B follow-on canonical) acr",
+      "description": "Reranker-side doc-drift corrections deferred from phase 002. Updates BAAI/bge-reranker-v2-m3 \u2192 Qwen/Qwen3-Reranker-0.6B (023B follow-on canonical) acr",
       "keywords": [
         "reranker-side",
         "doc-drift",
@@ -25301,7 +24828,7 @@
     },
     {
       "specFolder": "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/004-code-index-stack/002-baseline-fixture",
-      "description": "Author 10-20 deterministic query→expected-source pairs for CocoIndex embedder benchmarking",
+      "description": "Author 10-20 deterministic query\u2192expected-source pairs for CocoIndex embedder benchmarking",
       "keywords": [
         "author",
         "10-20",
@@ -25402,7 +24929,7 @@
     },
     {
       "specFolder": "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/004-code-index-stack/008-chunking-strategy-tuning",
-      "description": "Research phase for §3 structural retrieval improvements. Deep-research informs implementation plan.",
+      "description": "Research phase for \u00a73 structural retrieval improvements. Deep-research informs implementation plan.",
       "keywords": [
         "research",
         "phase",
@@ -25490,7 +25017,7 @@
     },
     {
       "specFolder": "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/004-code-index-stack/013-bench-harness-and-fixture-audit",
-      "description": "Measurement-quality prerequisite for the cocoindex-retrieval-pipeline future-proofing arc (013→018). Hardens the path-extraction regex in run-phase2-s",
+      "description": "Measurement-quality prerequisite for the cocoindex-retrieval-pipeline future-proofing arc (013\u2192018). Hardens the path-extraction regex in run-phase2-s",
       "keywords": [
         "measurement-quality",
         "prerequisite",
@@ -25548,7 +25075,7 @@
     },
     {
       "specFolder": "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/004-code-index-stack/016-query-expansion-identifier-bridging",
-      "description": "Bridges the natural-language → code-identifier gap by expanding queries with camelCase / snake_case / PascalCase / kebab-case splits, common code-doma",
+      "description": "Bridges the natural-language \u2192 code-identifier gap by expanding queries with camelCase / snake_case / PascalCase / kebab-case splits, common code-doma",
       "keywords": [
         "bridges",
         "natural-language",
@@ -26197,7 +25724,7 @@
     },
     {
       "specFolder": "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/006-mcp-launcher-concurrency/004-launcher-diagnostics-and-signal-coverage",
-      "description": "The 3-reviewer audit of packets 006+007 surfaced 14 P2 findings — none blockers, each a hardening opportunity",
+      "description": "The 3-reviewer audit of packets 006+007 surfaced 14 P2 findings \u2014 none blockers, each a hardening opportunity",
       "keywords": [
         "3-reviewer",
         "audit",
@@ -26347,7 +25874,7 @@
     },
     {
       "specFolder": "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/006-mcp-launcher-concurrency/012-daemon-bridge-socket-for-skill-advisor-and-code-index",
-      "description": "Packet 010 (`feat(016/006/010)` at commit `088cb82a0`) introduced the multi-client stdio↔socket bridge but shipped daemon-side binding only for `mk-sp",
+      "description": "Packet 010 (`feat(016/006/010)` at commit `088cb82a0`) introduced the multi-client stdio\u2194socket bridge but shipped daemon-side binding only for `mk-sp",
       "keywords": [
         "packet",
         "010",
@@ -26389,7 +25916,7 @@
     },
     {
       "specFolder": "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/006-mcp-launcher-concurrency/014-launcher-overlap-spawn-and-bridge-fix",
-      "description": "T1 — spurious model-server spawn",
+      "description": "T1 \u2014 spurious model-server spawn",
       "keywords": [
         "spurious",
         "model-server",
@@ -26621,7 +26148,7 @@
     },
     {
       "specFolder": "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/008-rerank-sidecar-arc/004-spec-memory-rerank-benchmark",
-      "description": "Cocoindex's benchmark (2026-05-20-expanded, 73 probes on code chunks) showed Qwen3-Reranker-0.6B winning by `+1 hit / 73` over jina-v3 — a hit-rate de",
+      "description": "Cocoindex's benchmark (2026-05-20-expanded, 73 probes on code chunks) showed Qwen3-Reranker-0.6B winning by `+1 hit / 73` over jina-v3 \u2014 a hit-rate de",
       "keywords": [
         "cocoindex",
         "benchmark",
@@ -26659,7 +26186,7 @@
     },
     {
       "specFolder": "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/008-rerank-sidecar-arc/006-cocoindex-dedup-from-shared-sidecar",
-      "description": "Arc 008 was scoped around deduplication — ship one shared cross-encoder sidecar so both spec-memory and cocoindex stop bundling independent Qwen insta",
+      "description": "Arc 008 was scoped around deduplication \u2014 ship one shared cross-encoder sidecar so both spec-memory and cocoindex stop bundling independent Qwen insta",
       "keywords": [
         "arc",
         "008",
@@ -26728,7 +26255,7 @@
     },
     {
       "specFolder": "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/008-rerank-sidecar-arc/009-fp16-rerank",
-      "description": "Packet 007 found that Qwen3-Reranker-0.6B on MPS OOMs in attention forwards at spec-memory's default 50-doc batch size — Metal tried to allocate a 76",
+      "description": "Packet 007 found that Qwen3-Reranker-0.6B on MPS OOMs in attention forwards at spec-memory's default 50-doc batch size \u2014 Metal tried to allocate a 76",
       "keywords": [
         "packet",
         "007",
@@ -26954,30 +26481,6 @@
         "guards"
       ],
       "lastUpdated": "2026-06-23T03:49:55.101Z"
-    },
-    {
-      "specFolder": "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/004-deep-loop-locks-state-and-recovery",
-      "description": "The broad audit found advisory locks without PID/TTL/heartbeat metadata, inconsistent deep-review locking, and JSONL state recovery gaps",
-      "keywords": [
-        "broad",
-        "audit",
-        "found",
-        "advisory",
-        "locks",
-        "without",
-        "pid",
-        "ttl",
-        "heartbeat",
-        "metadata",
-        "inconsistent",
-        "deep-review",
-        "locking",
-        "jsonl",
-        "state",
-        "recovery",
-        "gaps"
-      ],
-      "lastUpdated": "2026-06-23T03:49:55.107Z"
     },
     {
       "specFolder": "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/005-expected-daemon-classifier-and-process-sweep",
@@ -27790,7 +27293,7 @@
     },
     {
       "specFolder": "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/006-memory-embedding-reconcile-tool",
-      "description": "The one-time backlog repair — vector-present rows whose `embeddingstatus` is stale at `failed`/`pending`/`retry`, which must be flipped to `success` —",
+      "description": "The one-time backlog repair \u2014 vector-present rows whose `embeddingstatus` is stale at `failed`/`pending`/`retry`, which must be flipped to `success` \u2014",
       "keywords": [
         "one-time",
         "backlog",
@@ -27811,7 +27314,7 @@
     },
     {
       "specFolder": "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/007-success-vector-coverage-hygiene",
-      "description": "Verification during the 005 reconcile found 23 rows marked `embeddingstatus='success'` that are MISSING from an active vector surface — not present in",
+      "description": "Verification during the 005 reconcile found 23 rows marked `embeddingstatus='success'` that are MISSING from an active vector surface \u2014 not present in",
       "keywords": [
         "verification",
         "005",
@@ -27831,7 +27334,7 @@
     },
     {
       "specFolder": "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/008-embedder-provider-auto-resolution",
-      "description": "With `EMBEDDINGSPROVIDER=auto` (the committed MCP-config default, documented as a local-first cascade `ollama → hf-local → openai → voyage`), the mk-s",
+      "description": "With `EMBEDDINGSPROVIDER=auto` (the committed MCP-config default, documented as a local-first cascade `ollama \u2192 hf-local \u2192 openai \u2192 voyage`), the mk-s",
       "keywords": [
         "embeddingsprovider",
         "auto",
@@ -28084,7 +27587,7 @@
     },
     {
       "specFolder": "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/011-embedding-stack-hardening/005-live-validation-bench-hardening",
-      "description": "The cross-launcher residency, spawn→bind window, real EADDRINUSE/wx races, SIGKILL reclaim, and the 404 contract have never been validated live, so `S",
+      "description": "The cross-launcher residency, spawn\u2192bind window, real EADDRINUSE/wx races, SIGKILL reclaim, and the 404 contract have never been validated live, so `S",
       "keywords": [
         "cross-launcher",
         "residency",
@@ -28106,7 +27609,7 @@
     },
     {
       "specFolder": "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/011-embedding-stack-hardening/006-comment-ephemeral-pointer-cleanup",
-      "description": "The sk-code canonical rule `codestyleguide.md` §4 \"No ephemeral-artifact pointers\" forbids code comments from embedding a spec folder/number, a packet",
+      "description": "The sk-code canonical rule `codestyleguide.md` \u00a74 \"No ephemeral-artifact pointers\" forbids code comments from embedding a spec folder/number, a packet",
       "keywords": [
         "sk-code",
         "canonical",
@@ -28466,7 +27969,7 @@
     },
     {
       "specFolder": "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/018-front-proxy-recycle-hardening",
-      "description": "A 2026-06-04 incident left `mk-spec-memory` stuck at `connecting…` in new sessions after an operator externally SIGTERM-killed the daemon child during",
+      "description": "A 2026-06-04 incident left `mk-spec-memory` stuck at `connecting\u2026` in new sessions after an operator externally SIGTERM-killed the daemon child during",
       "keywords": [
         "2026-06-04",
         "incident",
@@ -28841,7 +28344,7 @@
     },
     {
       "specFolder": "system-speckit/026-graph-and-context-optimization/004-code-graph/002-deprecate-coco-index/013-post-deprecation-deep-review",
-      "description": "The 014 deprecation was declared complete, but the session repeatedly found more residual at each grep refinement (`cocoindex`→`ccc`→`ccc`), and a pre",
+      "description": "The 014 deprecation was declared complete, but the session repeatedly found more residual at each grep refinement (`cocoindex`\u2192`ccc`\u2192`ccc`), and a pre",
       "keywords": [
         "014",
         "deprecation",
@@ -28861,7 +28364,7 @@
     },
     {
       "specFolder": "system-speckit/026-graph-and-context-optimization/004-code-graph/002-deprecate-coco-index/014-remediate-codegraph-naming",
-      "description": "The 014 deprecation renamed code-graph's handlers and tools to their own clean identifiers — handlers are `status.ts` / `scan.ts` / `verify.ts` (+ `qu",
+      "description": "The 014 deprecation renamed code-graph's handlers and tools to their own clean identifiers \u2014 handlers are `status.ts` / `scan.ts` / `verify.ts` (+ `qu",
       "keywords": [
         "014",
         "deprecation",
@@ -29601,7 +29104,7 @@
     },
     {
       "specFolder": "system-speckit/026-graph-and-context-optimization/004-code-graph/009-system-code-graph-uplift-phase-parent/001-skill-docs-install-guide-and-readmes-polish",
-      "description": "Research §10 enumerated 10 priority items spanning SKILL.md, INSTALLGUIDE.md, ARCHITECTURE.md, references, featurecatalog, and per-folder mcpserver RE",
+      "description": "Research \u00a710 enumerated 10 priority items spanning SKILL.md, INSTALLGUIDE.md, ARCHITECTURE.md, references, featurecatalog, and per-folder mcpserver RE",
       "keywords": [
         "research",
         "enumerated",
@@ -29702,7 +29205,7 @@
     },
     {
       "specFolder": "system-speckit/026-graph-and-context-optimization/004-code-graph/010-playbook-validation-and-hardening/003-release-readiness-synthesis",
-      "description": "Phases 001 and 002 each produce per-scenario evidence, but the playbook's release-readiness verdict (§5 Review Protocol) requires a single consolidate",
+      "description": "Phases 001 and 002 each produce per-scenario evidence, but the playbook's release-readiness verdict (\u00a75 Review Protocol) requires a single consolidate",
       "keywords": [
         "phases",
         "001",
@@ -30599,7 +30102,7 @@
     },
     {
       "specFolder": "system-speckit/026-graph-and-context-optimization/007-mcp-daemon-reliability/003-daemon-reliability-research",
-      "description": "During sessions the MCP daemons repeatedly die or disconnect, forcing constant `/mcp` reconnects: mk-spec-memory grows to ~1–2 GB RSS and gets OOM-kil",
+      "description": "During sessions the MCP daemons repeatedly die or disconnect, forcing constant `/mcp` reconnects: mk-spec-memory grows to ~1\u20132 GB RSS and gets OOM-kil",
       "keywords": [
         "sessions",
         "mcp",
@@ -30620,7 +30123,7 @@
     },
     {
       "specFolder": "system-speckit/026-graph-and-context-optimization/007-mcp-daemon-reliability/004-nondestructive-build",
-      "description": "The `@spec-kit/mcp-server` build runs `prebuild` → `clean` → `rmSync('dist', {recursive,force})`, deleting the live `dist/` before `tsc --build` repop",
+      "description": "The `@spec-kit/mcp-server` build runs `prebuild` \u2192 `clean` \u2192 `rmSync('dist', {recursive,force})`, deleting the live `dist/` before `tsc --build` repop",
       "keywords": [
         "spec-kit",
         "mcp-server",
@@ -30988,7 +30491,7 @@
     },
     {
       "specFolder": "system-speckit/026-graph-and-context-optimization/007-mcp-daemon-reliability/015-infra-followup-hardening/006-sessionstart-worktree-guard",
-      "description": "Packet 035 created `worktree-guard.sh` — a detect-and-warn SessionStart guard that warns when a top-level session is running directly on the shared `m",
+      "description": "Packet 035 created `worktree-guard.sh` \u2014 a detect-and-warn SessionStart guard that warns when a top-level session is running directly on the shared `m",
       "keywords": [
         "packet",
         "035",
@@ -31825,7 +31328,7 @@
     },
     {
       "specFolder": "system-speckit/026-graph-and-context-optimization/z_archive/wave-3-deep-archives/007-033-deferred-fix-followup",
-      "description": "Closes the 5 deferred findings from 018 (F001, F006/F011, F012, F017, F018) — architecture.md reconstruction, launcher kitDir-derived path, source-map",
+      "description": "Closes the 5 deferred findings from 018 (F001, F006/F011, F012, F017, F018) \u2014 architecture.md reconstruction, launcher kitDir-derived path, source-map",
       "keywords": [
         "closes",
         "deferred",
@@ -32292,25 +31795,6 @@
       "lastUpdated": "2026-06-23T03:49:56.938Z"
     },
     {
-      "specFolder": "system-speckit/027-xce-research-based-refinement/000-release-cleanup/009-skill-frontmatter-alignment/005-deep-ai-council",
-      "description": "deep-ai-council reference/asset frontmatter is inconsistent with the repo-wide contract: 15 of 15 references and 2 of 3 assets carry the detailed memo",
-      "keywords": [
-        "deep-ai-council",
-        "reference",
-        "asset",
-        "frontmatter",
-        "inconsistent",
-        "repo-wide",
-        "contract",
-        "references",
-        "assets",
-        "carry",
-        "detailed",
-        "memo"
-      ],
-      "lastUpdated": "2026-06-23T03:49:56.944Z"
-    },
-    {
       "specFolder": "system-speckit/027-xce-research-based-refinement/000-release-cleanup/009-skill-frontmatter-alignment/006-deep-context",
       "description": "deep-context reference/asset frontmatter is inconsistent with the repo-wide contract: 0 of 10 references and 0 of 1 assets carry the detailed memory-s",
       "keywords": [
@@ -32328,81 +31812,6 @@
         "memory-s"
       ],
       "lastUpdated": "2026-06-23T03:49:56.950Z"
-    },
-    {
-      "specFolder": "system-speckit/027-xce-research-based-refinement/000-release-cleanup/009-skill-frontmatter-alignment/007-deep-improvement",
-      "description": "deep-improvement reference/asset frontmatter is inconsistent with the repo-wide contract: 17 of 23 references and 8 of 11 assets carry the detailed me",
-      "keywords": [
-        "deep-improvement",
-        "reference",
-        "asset",
-        "frontmatter",
-        "inconsistent",
-        "repo-wide",
-        "contract",
-        "references",
-        "assets",
-        "carry",
-        "detailed"
-      ],
-      "lastUpdated": "2026-06-23T03:49:56.956Z"
-    },
-    {
-      "specFolder": "system-speckit/027-xce-research-based-refinement/000-release-cleanup/009-skill-frontmatter-alignment/008-deep-loop-runtime",
-      "description": "deep-loop-runtime reference/asset frontmatter is inconsistent with the repo-wide contract: 4 of 4 references and 0 of 0 assets carry the detailed memo",
-      "keywords": [
-        "deep-loop-runtime",
-        "reference",
-        "asset",
-        "frontmatter",
-        "inconsistent",
-        "repo-wide",
-        "contract",
-        "references",
-        "assets",
-        "carry",
-        "detailed",
-        "memo"
-      ],
-      "lastUpdated": "2026-06-23T03:49:56.962Z"
-    },
-    {
-      "specFolder": "system-speckit/027-xce-research-based-refinement/000-release-cleanup/009-skill-frontmatter-alignment/009-deep-research",
-      "description": "deep-research reference/asset frontmatter is inconsistent with the repo-wide contract: 0 of 13 references and 0 of 2 assets carry the detailed memory-",
-      "keywords": [
-        "deep-research",
-        "reference",
-        "asset",
-        "frontmatter",
-        "inconsistent",
-        "repo-wide",
-        "contract",
-        "references",
-        "assets",
-        "carry",
-        "detailed",
-        "memory"
-      ],
-      "lastUpdated": "2026-06-23T03:49:56.968Z"
-    },
-    {
-      "specFolder": "system-speckit/027-xce-research-based-refinement/000-release-cleanup/009-skill-frontmatter-alignment/010-deep-review",
-      "description": "deep-review reference/asset frontmatter is inconsistent with the repo-wide contract: 3 of 10 references and 0 of 2 assets carry the detailed memory-st",
-      "keywords": [
-        "deep-review",
-        "reference",
-        "asset",
-        "frontmatter",
-        "inconsistent",
-        "repo-wide",
-        "contract",
-        "references",
-        "assets",
-        "carry",
-        "detailed",
-        "memory-st"
-      ],
-      "lastUpdated": "2026-06-23T03:49:56.974Z"
     },
     {
       "specFolder": "system-speckit/027-xce-research-based-refinement/000-release-cleanup/009-skill-frontmatter-alignment/011-mcp-chrome-devtools",
@@ -33470,7 +32879,7 @@
     },
     {
       "specFolder": "system-speckit/027-xce-research-based-refinement/002-memory-store-and-search/016-search-and-output-intelligence",
-      "description": "After 015 fixed the dominant RRF-vs-cosine miscalibration, on-topic searches still under-report: generic 2–3 word queries read `weak`/`donotcite` desp",
+      "description": "After 015 fixed the dominant RRF-vs-cosine miscalibration, on-topic searches still under-report: generic 2\u20133 word queries read `weak`/`donotcite` desp",
       "keywords": [
         "015",
         "fixed",
@@ -33532,7 +32941,7 @@
     },
     {
       "specFolder": "system-speckit/027-xce-research-based-refinement/002-memory-store-and-search/016-search-and-output-intelligence/003-generic-query-deep-routing",
-      "description": "Generic short queries read \"weak\" because the cheap `simple` route stripped them of the recall machinery they need: a ≤3-term query was trimmed to two",
+      "description": "Generic short queries read \"weak\" because the cheap `simple` route stripped them of the recall machinery they need: a \u22643-term query was trimmed to two",
       "keywords": [
         "generic",
         "short",
@@ -33995,7 +33404,7 @@
     },
     {
       "specFolder": "system-speckit/027-xce-research-based-refinement/004-shared-infrastructure/001-mcp-to-cli-tool-transition/001-spec-memory-cli/001-cli-core",
-      "description": "The mk-spec-memory daemon already speaks JSON-RPC over its IPC socket, but the only client surface was the MCP protocol layer — which dies permanently",
+      "description": "The mk-spec-memory daemon already speaks JSON-RPC over its IPC socket, but the only client surface was the MCP protocol layer \u2014 which dies permanently",
       "keywords": [
         "mk-spec-memory",
         "daemon",
@@ -34138,7 +33547,7 @@
     },
     {
       "specFolder": "system-speckit/027-xce-research-based-refinement/004-shared-infrastructure/001-mcp-to-cli-tool-transition/002-code-index-cli/003-runtime-integration",
-      "description": "A working code-index CLI no runtime calls does not close the transport-down class — and the existing OpenCode plugin bridge (mk-code-graph-bridge.mjs)",
+      "description": "A working code-index CLI no runtime calls does not close the transport-down class \u2014 and the existing OpenCode plugin bridge (mk-code-graph-bridge.mjs)",
       "keywords": [
         "working",
         "code-index",
@@ -34869,7 +34278,7 @@
     },
     {
       "specFolder": "system-speckit/027-xce-research-based-refinement/004-shared-infrastructure/007-ipc-client-cap-hardening",
-      "description": "A fresh Fable 5 debug seat root-caused the persistent `[mk-code-graph] Bridge skipped … (exit=75)` banner empirically: the shared daemon IPC socket se",
+      "description": "A fresh Fable 5 debug seat root-caused the persistent `[mk-code-graph] Bridge skipped \u2026 (exit=75)` banner empirically: the shared daemon IPC socket se",
       "keywords": [
         "fresh",
         "fable",
@@ -35101,7 +34510,7 @@
     },
     {
       "specFolder": "system-speckit/027-xce-research-based-refinement/005-verification-and-remediation/002-tri-system-deep-research",
-      "description": "The 027 epic shipped twenty-four phases, a finding-remediation program, and a database recovery — but every review so far was scoped to shipped diffs",
+      "description": "The 027 epic shipped twenty-four phases, a finding-remediation program, and a database recovery \u2014 but every review so far was scoped to shipped diffs",
       "keywords": [
         "027",
         "epic",
@@ -35234,7 +34643,7 @@
     },
     {
       "specFolder": "system-speckit/027-xce-research-based-refinement/005-verification-and-remediation/005-fresh-regression-remediation/004-cli-frontdoor-safety",
-      "description": "Remediation sub-phase of the 027 fresh+regression deep-review: 6 CLI front-door findings. Resolved — 5 fixed, 1 refuted-then-hardened; CLI vitest gree",
+      "description": "Remediation sub-phase of the 027 fresh+regression deep-review: 6 CLI front-door findings. Resolved \u2014 5 fixed, 1 refuted-then-hardened; CLI vitest gree",
       "keywords": [
         "remediation",
         "sub-phase",
@@ -35356,7 +34765,7 @@
     },
     {
       "specFolder": "system-speckit/027-xce-research-based-refinement/005-verification-and-remediation/006-deep-review-017-021-remediation/review-r2/scopes/B-rest-of-002",
-      "description": "Independent gpt-5.5 deep-review audit of the memory store, index, and write-lifecycle code of the system-spec-kit MCP server — the 002-memory-store-an",
+      "description": "Independent gpt-5.5 deep-review audit of the memory store, index, and write-lifecycle code of the system-spec-kit MCP server \u2014 the 002-memory-store-an",
       "keywords": [
         "independent",
         "gpt-5",
@@ -36304,7 +35713,7 @@
     },
     {
       "specFolder": "system-speckit/028-memory-search-intelligence/001-speckit-memory/019-eval-harness-extension",
-      "description": "The Memory MCP ships a live retrieval eval harness that is already ~75-85% built [CONFIRMED: iter-011 \"extend-not-greenfield … honest figure ≈",
+      "description": "The Memory MCP ships a live retrieval eval harness that is already ~75-85% built [CONFIRMED: iter-011 \"extend-not-greenfield \u2026 honest figure \u2248",
       "keywords": [
         "memory",
         "mcp",
@@ -36772,7 +36181,7 @@
     },
     {
       "specFolder": "system-speckit/028-memory-search-intelligence/001-speckit-memory/031-fix-deep-dive-p0-p2-findings-for-mk-spec-memory/012-envelope-presentation-and-command-doc-alignment",
-      "description": "Live-measured (deep-dive report §5, ledger L7 🟢): a 5-result `memorysearch` returns a 17.6KB envelope because every telemetry block is double-emitted",
+      "description": "Live-measured (deep-dive report \u00a75, ledger L7 \ud83d\udfe2): a 5-result `memorysearch` returns a 17.6KB envelope because every telemetry block is double-emitted",
       "keywords": [
         "live-measured",
         "deep-dive",
@@ -38364,7 +37773,7 @@
     },
     {
       "specFolder": "system-speckit/029-headroom-utilization/001-research",
-      "description": "Headroom promises 60–95% token reduction on agent context without changing application code, plus cross-agent memory and failure-learning",
+      "description": "Headroom promises 60\u201395% token reduction on agent context without changing application code, plus cross-agent memory and failure-learning",
       "keywords": [
         "headroom",
         "promises",
@@ -38499,7 +37908,7 @@
     },
     {
       "specFolder": "system-speckit/029-headroom-utilization/external/plugins/headroom-oauth2",
-      "description": "Spec — `headroom-oauth2` (generic OAuth2 client-credentials upstream auth)",
+      "description": "Spec \u2014 `headroom-oauth2` (generic OAuth2 client-credentials upstream auth)",
       "keywords": [
         "spec",
         "headroom-oauth2",
@@ -40388,7 +39797,7 @@
     },
     {
       "specFolder": "system-speckit/z_archive/013-memory-overhaul-and-agent-upgrade-release/003-command-alignment",
-      "description": "Audit all command configuration files in `.opencode/commands/` to ensure agent routing patterns (spec 014), memory command capabilities (specs 126–128",
+      "description": "Audit all command configuration files in `.opencode/commands/` to ensure agent routing patterns (spec 014), memory command capabilities (specs 126\u2013128",
       "keywords": [
         "audit",
         "command",
@@ -40437,7 +39846,7 @@
     },
     {
       "specFolder": "system-speckit/z_archive/013-memory-overhaul-and-agent-upgrade-release/005-changelog-updates",
-      "description": "After Tasks 01–04 identify all required documentation changes, create changelog entries for each affected track documenting the alignment work perform",
+      "description": "After Tasks 01\u201304 identify all required documentation changes, create changelog entries for each affected track documenting the alignment work perform",
       "keywords": [
         "tasks",
         "identify",
@@ -40803,7 +40212,7 @@
     },
     {
       "specFolder": "system-speckit/z_archive/022-hybrid-rag-fusion/001-hybrid-rag-fusion-epic/001-sprint-0-measurement-foundation",
-      "description": "The graph channel is completely broken — 0% hit rate in production due to `mem:${edgeId}` string IDs being compared against numeric memory IDs",
+      "description": "The graph channel is completely broken \u2014 0% hit rate in production due to `mem:${edgeId}` string IDs being compared against numeric memory IDs",
       "keywords": [
         "graph",
         "channel",
@@ -40844,7 +40253,7 @@
     },
     {
       "specFolder": "system-speckit/z_archive/022-hybrid-rag-fusion/001-hybrid-rag-fusion-epic/003-sprint-2-scoring-calibration",
-      "description": "The dual scoring systems have a ~15:1 magnitude mismatch — RRF fusion scores range ~[0, 0.07] while composite scores range ~[0, 1]",
+      "description": "The dual scoring systems have a ~15:1 magnitude mismatch \u2014 RRF fusion scores range ~[0, 0.07] while composite scores range ~[0, 1]",
       "keywords": [
         "dual",
         "scoring",
@@ -40886,7 +40295,7 @@
     },
     {
       "specFolder": "system-speckit/z_archive/022-hybrid-rag-fusion/001-hybrid-rag-fusion-epic/005-sprint-4-feedback-and-quality",
-      "description": "Chunked memories are scored individually without aggregation — a memory with 5 matching chunks gets no advantage over one with 1 chunk, losing valuabl",
+      "description": "Chunked memories are scored individually without aggregation \u2014 a memory with 5 matching chunks gets no advantage over one with 1 chunk, losing valuabl",
       "keywords": [
         "chunked",
         "memories",
@@ -40925,7 +40334,7 @@
     },
     {
       "specFolder": "system-speckit/z_archive/022-hybrid-rag-fusion/001-hybrid-rag-fusion-epic/007-sprint-6-indexing-and-graph",
-      "description": "Graph signal was established in Sprint 1 (R4) but lacks sophistication — centrality and community structures remain unexploited, leaving graph channel",
+      "description": "Graph signal was established in Sprint 1 (R4) but lacks sophistication \u2014 centrality and community structures remain unexploited, leaving graph channel",
       "keywords": [
         "graph",
         "signal",
@@ -40945,7 +40354,7 @@
     },
     {
       "specFolder": "system-speckit/z_archive/022-hybrid-rag-fusion/001-hybrid-rag-fusion-epic/008-sprint-7-long-horizon",
-      "description": "Memory summaries are only valuable at scale (>5K memories) — implementing them prematurely adds overhead without benefit",
+      "description": "Memory summaries are only valuable at scale (>5K memories) \u2014 implementing them prematurely adds overhead without benefit",
       "keywords": [
         "memory",
         "summaries",
@@ -41053,7 +40462,7 @@
     },
     {
       "specFolder": "system-speckit/z_archive/022-hybrid-rag-fusion/001-hybrid-rag-fusion-epic/011-research-based-refinement/002-query-intelligence-reformulation",
-      "description": "The current retrieval pipeline treats every user query as a single opaque string — one embedding lookup, one keyword expansion, one graph probe",
+      "description": "The current retrieval pipeline treats every user query as a single opaque string \u2014 one embedding lookup, one keyword expansion, one graph probe",
       "keywords": [
         "current",
         "retrieval",
@@ -42541,7 +41950,7 @@
     },
     {
       "specFolder": "system-speckit/z_archive/022-hybrid-rag-fusion/015-manual-testing-per-playbook/009-evaluation-and-measurement",
-      "description": "The evaluation-and-measurement category covers 16 scenarios that verify the correctness of the retrieval evaluation framework — including the eval DB",
+      "description": "The evaluation-and-measurement category covers 16 scenarios that verify the correctness of the retrieval evaluation framework \u2014 including the eval DB",
       "keywords": [
         "evaluation-and-measurement",
         "category",
@@ -42931,7 +42340,7 @@
     },
     {
       "specFolder": "system-speckit/z_archive/022-hybrid-rag-fusion/021-ground-truth-id-remapping",
-      "description": "The ablation study (`evalrunablation`) produces all-zero retrieval metrics — Recall, MRR, Precision, NDCG, MAP, and Hit Rate are all 0.0 — because `gr",
+      "description": "The ablation study (`evalrunablation`) produces all-zero retrieval metrics \u2014 Recall, MRR, Precision, NDCG, MAP, and Hit Rate are all 0.0 \u2014 because `gr",
       "keywords": [
         "ablation",
         "study",
@@ -43359,7 +42768,7 @@
     },
     {
       "specFolder": "system-speckit/z_archive/023-hybrid-rag-fusion-refinement/011-indexing-and-adaptive-fusion/006-default-on-boost-rollout",
-      "description": "Three retrieval quality features — session boost, causal boost, and deep query expansion — are each gated behind explicit opt-in environment variables",
+      "description": "Three retrieval quality features \u2014 session boost, causal boost, and deep query expansion \u2014 are each gated behind explicit opt-in environment variables",
       "keywords": [
         "three",
         "retrieval",
@@ -43451,7 +42860,7 @@
     },
     {
       "specFolder": "system-speckit/z_archive/023-hybrid-rag-fusion-refinement/013-fts5-fix-and-search-dashboard",
-      "description": "Item 1 — FTS5 Double-Quoting Bug (COMPLETED): `normalizeLexicalQueryTokens()` in `bm25-index.ts` produces pre-quoted phrase tokens such as `\"semantic",
+      "description": "Item 1 \u2014 FTS5 Double-Quoting Bug (COMPLETED): `normalizeLexicalQueryTokens()` in `bm25-index.ts` produces pre-quoted phrase tokens such as `\"semantic",
       "keywords": [
         "item",
         "fts5",

@@ -1,5 +1,5 @@
 ---
-title: "Feature [skilled-agent-orchestration/040-sk-deep-research-review-improvement-1/001-sk-deep-research-improvements/spec]"
+title: "Feature [system-deep-loop/z_archive/009-sk-deep-research-review-improvement-1/001-sk-deep-research-improvements/spec]"
 description: "Complete the Phase 1 lineage-aware, reducer-driven runtime contract for sk-deep-research across docs, runtime mirrors, executable helpers, and verification surfaces."
 trigger_phrases:
   - "deep research"
@@ -12,7 +12,7 @@ contextType: "general"
 template_source_hint: "<!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->"
 _memory:
   continuity:
-    packet_pointer: "skilled-agent-orchestration/040-sk-deep-research-review-improvement-1/001-sk-deep-research-improvements"
+    packet_pointer: "system-deep-loop/z_archive/009-sk-deep-research-review-improvement-1/001-sk-deep-research-improvements"
     last_updated_at: "2026-04-24T15:25:01Z"
     last_updated_by: "backfill-memory-block"
     recent_action: "Backfilled _memory block (repo-wide frontmatter sweep)"

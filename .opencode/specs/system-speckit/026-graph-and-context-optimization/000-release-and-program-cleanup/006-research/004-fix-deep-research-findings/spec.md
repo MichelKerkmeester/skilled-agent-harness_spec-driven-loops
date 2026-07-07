@@ -124,7 +124,7 @@ Land surgical product-code, schema, doc, and test fixes for all 78 remaining fin
 | Phase | Folder | Scope | Findings (count) | Status |
 |---|---|---|---:|---|
 | 001 | `001-fix-code-graph-consistency/` | code_graph SQLite atomicity, staleness, error fallback | F-002-A2-01..03, F-014-C4-01..04, F-004-A4-02..03 (9) | Pending |
-| 002 | `002-fix-deep-loop-workflow-state/` | YAML state machine, lock cleanup, parent metadata | F-010-B5-01..04, F-019-D4-01 (5) | Pending |
+| 002 | `../../../../../system-deep-loop/042-fix-deep-loop-workflow-state/` | YAML state machine, lock cleanup, parent metadata | F-010-B5-01..04, F-019-D4-01 (5) | Moved |
 | 003 | `003-fix-skill-advisor-quality/` | hook drift, scorer fusion, regression fixture | F-006-B1-01..03, F-012-C2-01..04, F-013-C3-01 (8) | Pending |
 | 004 | `004-fix-validation-memory/` | validator parsers, memory parser, schema gaps | F-008-B3-01..02, F-009-B4-01..05, F-005-A5-01..06 (13) | Pending |
 | 005 | `005-resource-leaks-silent-errors/` | watcher unwatch, queue caps, scorer projection fallback | F-003-A3-01..03, F-004-A4-01, F-004-A4-04 (5) | Pending |

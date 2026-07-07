@@ -8,7 +8,7 @@ importance_tier: "high"
 contextType: "agent-architecture"
 _memory:
   continuity:
-    packet_pointer: "skilled-agent-orchestration/060-sk-agent-improver-test-report-alignment/001-deep-research-recommendations"
+    packet_pointer: "system-deep-loop/z_archive/012-sk-agent-improver-test-report-alignment/001-deep-research-recommendations"
     last_updated_at: "2026-05-02T10:50:00Z"
     last_updated_by: "claude-opus-4-7-1m"
     recent_action: "Completion checklist authored"

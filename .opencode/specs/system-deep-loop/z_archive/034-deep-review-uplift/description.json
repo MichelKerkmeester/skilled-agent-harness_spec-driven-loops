@@ -1,0 +1,23 @@
+{
+  "level": "1",
+  "specFolder": "system-deep-loop/z_archive/034-deep-review-uplift",
+  "description": "Two efficiency gaps in deep-review's multi-dimensional iteration model:",
+  "keywords": [
+    "two",
+    "efficiency",
+    "gaps",
+    "deep-review",
+    "multi-dimensional",
+    "iteration",
+    "model"
+  ],
+  "lastUpdated": "2026-07-07T15:26:19.039Z",
+  "specId": "034",
+  "folderSlug": "deep-review-uplift",
+  "parentChain": [
+    "system-deep-loop",
+    "z_archive"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

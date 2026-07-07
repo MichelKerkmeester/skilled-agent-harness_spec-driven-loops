@@ -7,7 +7,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "skilled-agent-orchestration/080-multi-ai-council-output-protocol"
+    packet_pointer: "system-deep-loop/z_archive/015-multi-ai-council-output-protocol"
     last_updated_at: "2026-05-06T13:00:00.000Z"
     last_updated_by: "claude-opus-4-7"
     recent_action: "Phase 2-3 complete (agent body, references, mirrors, vitest); CHK-022 smoke test deferred"

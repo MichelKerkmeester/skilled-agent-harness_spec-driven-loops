@@ -8,7 +8,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "skilled-agent-orchestration/123-deep-loop-parallel-fanout/002-capped-pool-status-ledger"
+    packet_pointer: "system-deep-loop/z_archive/024-deep-loop-parallel-fanout/002-capped-pool-status-ledger"
     last_updated_at: "2026-05-30T00:00:00Z"
     last_updated_by: "claude-opus"
     recent_action: "Phase 002 complete: fanout-pool.cjs + 10 tests; full suite 171/171 green"

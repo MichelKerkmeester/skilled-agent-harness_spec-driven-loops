@@ -1,5 +1,5 @@
 ---
-title: "Research: Improving Review Logic in [skilled-agent-orchestration/030-sk-deep-research-review-mode/research]"
+title: "Research: Improving Review Logic in [system-deep-loop/z_archive/005-sk-deep-research-review-mode/research]"
 description: "This research investigated 7 key questions about improving the review logic in sk-deep-research and related commands/agents. Across 8 iterations using GPT-5.4 agents, the resear..."
 trigger_phrases:
   - "research"
@@ -12,7 +12,7 @@ importance_tier: "normal"
 contextType: "research"
 _memory:
   continuity:
-    packet_pointer: "skilled-agent-orchestration/030-sk-deep-research-review-mode/research"
+    packet_pointer: "system-deep-loop/z_archive/005-sk-deep-research-review-mode/research"
     last_updated_at: "2026-04-24T15:25:01Z"
     last_updated_by: "backfill-memory-block"
     recent_action: "Backfilled _memory block (repo-wide frontmatter sweep)"

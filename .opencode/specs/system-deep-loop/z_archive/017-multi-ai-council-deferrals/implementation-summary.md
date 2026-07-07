@@ -10,7 +10,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "scaffold/092-multi-ai-council-deferrals"
+    packet_pointer: "system-deep-loop/z_archive/017-multi-ai-council-deferrals"
     last_updated_at: "2026-05-06T18:50:00Z"
     last_updated_by: "codex"
     recent_action: "Implemented packet 092 deferrals"
@@ -23,7 +23,7 @@ _memory:
       - ".opencode/skills/system-spec-kit/references/multi-ai-council/command-wiring.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "scaffold-scaffold/092-multi-ai-council-deferrals"
+      session_id: "scaffold-system-deep-loop/z_archive/017-multi-ai-council-deferrals"
       parent_session_id: null
     completion_pct: 95
     open_questions: []

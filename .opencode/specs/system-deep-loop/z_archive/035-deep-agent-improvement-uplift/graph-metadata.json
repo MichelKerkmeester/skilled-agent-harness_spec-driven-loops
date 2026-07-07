@@ -1,0 +1,225 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/z_archive/035-deep-agent-improvement-uplift",
+  "spec_folder": "system-deep-loop/z_archive/035-deep-agent-improvement-uplift",
+  "parent_id": "system-deep-loop/z_archive",
+  "parent_id_review_required": true,
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [
+      {
+        "packet_id": "skilled-agent-orchestration/z_archive/089-auto-review-stretch-config-dedup-gates",
+        "reason": "Imported from legacy graph-metadata.json",
+        "source": "legacy"
+      }
+    ],
+    "supersedes": [],
+    "related_to": [
+      {
+        "packet_id": "skilled-agent-orchestration/z_archive/086-opencode-auto-review-teachings-research",
+        "reason": "Imported from legacy graph-metadata.json",
+        "source": "legacy"
+      }
+    ]
+  },
+  "derived": {
+    "trigger_phrases": [
+      "m3 mutation signature dedup",
+      "deep-agent-improvement uplift",
+      "110 phase 004-dai plan",
+      "110 phase 004-dai tasks",
+      "110 phase 004-dai-uplift summary",
+      "deep-agent-improvement mutation signature dedup"
+    ],
+    "key_topics": [
+      "mutation",
+      "signature",
+      "dedup",
+      "deep-agent-improvement",
+      "uplift",
+      "110",
+      "phase",
+      "004-dai",
+      "plan",
+      "tasks",
+      "004-dai-uplift",
+      "summary"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Parent",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Change Type",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "redundant",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Add",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "per-file",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. SUMMARY",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 3: Verification",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Cross-References",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "deep-agent-improvement evaluates candidate agent mutations across 5 dimensions × multiple mutation types per dimension",
+    "created_at": "2026-05-16T11:00:00Z",
+    "last_save_at": "2026-07-07T15:26:34.216Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:38bc5af82a7133a493253359d6300ff0981058ee9df173abddb24e67d17a377b",
+    "source_doc_hashes": {
+      "spec.md": "41177e8b0d9f0a6285d6dcb3991cd4d0f13e59d8e017d589bde04ccc3089346b",
+      "plan.md": "06f18887194876cfcaa5e3a4459d6c0bcb315f390fdf63929fdd3479062b7f9c",
+      "tasks.md": "a5e4e87616b85eb66d5eadc8fbdeb021799fce80e8d02bfe11e4f7c0a73fde0b",
+      "implementation-summary.md": "5518fb327af9dde0c9c937e8d987061d931684e2d717d12072517a9c7adccaa2"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "level": "1",
+  "specFolder": "system-deep-loop/045-deep-loop-fanout-reliability",
+  "description": "The deep-loop fan-out runner reported failed and timed-out CLI lineages as successes (the worker returned a result object instead of throwing, so the",
+  "keywords": [
+    "deep-loop",
+    "fan-out",
+    "runner",
+    "reported",
+    "failed",
+    "timed-out",
+    "cli",
+    "lineages",
+    "successes",
+    "worker",
+    "returned",
+    "result",
+    "object",
+    "instead",
+    "throwing"
+  ],
+  "lastUpdated": "2026-07-07T15:25:34.738Z",
+  "specId": "045",
+  "folderSlug": "deep-loop-fanout-reliability",
+  "parentChain": [
+    "system-deep-loop"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

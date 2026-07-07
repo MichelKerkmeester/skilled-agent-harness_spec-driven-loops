@@ -7,7 +7,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "skilled-agent-orchestration/116-deep-skill-evolution/002-deep-review/004-complexity-validator-v2-enforcement"
+    packet_pointer: "system-deep-loop/z_archive/021-deep-skill-evolution/002-deep-review/004-complexity-validator-v2-enforcement"
     last_updated_at: "2026-05-22T12:10:00Z"
     last_updated_by: "gpt-5.5"
     recent_action: "Implemented validator v2 warnings and enforcement surface."

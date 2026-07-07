@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: sk-deep-research Path [skilled-agent-orchestration/035-sk-deep-research-path-migration/spec]"
+title: "Feature Specification: sk-deep-research Path [system-deep-loop/z_archive/007-sk-deep-research-path-migration/spec]"
 description: "Deep research still mixes canonical output between a root research document and scratch iteration artifacts, while legacy review packets can also leave iteration files directly under review/. This packet freezes the repo-wide migration to a research packet root plus dedicated iteration folders without adding an output folder."
 trigger_phrases:
   - "deep-research path migration"
@@ -12,7 +12,7 @@ contextType: "general"
 template_source_hint: "<!-- SPECKIT_TEMPLATE_SOURCE: spec-core + level2-verify + level3-arch | v2.2 -->"
 _memory:
   continuity:
-    packet_pointer: "skilled-agent-orchestration/035-sk-deep-research-path-migration"
+    packet_pointer: "system-deep-loop/z_archive/007-sk-deep-research-path-migration"
     last_updated_at: "2026-04-24T15:25:01Z"
     last_updated_by: "backfill-memory-block"
     recent_action: "Backfilled _memory block (repo-wide frontmatter sweep)"

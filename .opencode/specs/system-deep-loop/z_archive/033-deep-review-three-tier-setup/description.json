@@ -1,0 +1,24 @@
+{
+  "level": "2",
+  "specFolder": "system-deep-loop/z_archive/033-deep-review-three-tier-setup",
+  "description": "`/deep:start-review-loop:auto` advertises itself as autonomous (`:auto` suffix → `executionmode = AUTONOMOUS`)",
+  "keywords": [
+    "deep",
+    "start-review-loop",
+    "auto",
+    "advertises",
+    "itself",
+    "autonomous",
+    "suffix",
+    "executionmode"
+  ],
+  "lastUpdated": "2026-07-07T15:26:10.471Z",
+  "specId": "033",
+  "folderSlug": "deep-review-three-tier-setup",
+  "parentChain": [
+    "system-deep-loop",
+    "z_archive"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

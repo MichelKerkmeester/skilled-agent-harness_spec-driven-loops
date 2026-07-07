@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: Autonomous Deep Research Loop [skilled-agent-orchestration/023-sk-deep-research-creation/spec]"
+title: "Feature Specification: Autonomous Deep Research Loop [system-deep-loop/z_archive/001-sk-deep-research-creation/spec]"
 description: "No built-in iterative research capability exists. Current /speckit:research is single-pass only, unable to deepen findings across multiple cycles or detect convergence."
 trigger_phrases:
   - "autoresearch"
@@ -12,7 +12,7 @@ contextType: "general"
 template_source_hint: "<!-- SPECKIT_TEMPLATE_SOURCE: spec-core + level2-verify + level3-arch | v2.2 -->"
 _memory:
   continuity:
-    packet_pointer: "skilled-agent-orchestration/023-sk-deep-research-creation"
+    packet_pointer: "system-deep-loop/z_archive/001-sk-deep-research-creation"
     last_updated_at: "2026-04-24T15:25:01Z"
     last_updated_by: "backfill-memory-block"
     recent_action: "Backfilled _memory block (repo-wide frontmatter sweep)"

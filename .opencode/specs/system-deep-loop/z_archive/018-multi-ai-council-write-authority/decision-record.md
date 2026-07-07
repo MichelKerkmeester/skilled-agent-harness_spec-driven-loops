@@ -1,5 +1,5 @@
 ---
-title: "Decision Record: Multi-AI Council write authority [skilled-agent-orchestration/098-multi-ai-council-write-authority/decision-record]"
+title: "Decision Record: Multi-AI Council write authority [system-deep-loop/z_archive/018-multi-ai-council-write-authority/decision-record]"
 description: "Three ADRs governing the council's write-authority flip: write-permission model, audit-trail schema, rollback semantics. Each ADR captures context, decision, alternatives considered, consequences, and reversal cost."
 trigger_phrases:
   - "council write authority ADRs"
@@ -10,7 +10,7 @@ importance_tier: "important"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "skilled-agent-orchestration/098-multi-ai-council-write-authority"
+    packet_pointer: "system-deep-loop/z_archive/018-multi-ai-council-write-authority"
     last_updated_at: "2026-05-08T21:50:00Z"
     last_updated_by: "claude-opus-4-7"
     recent_action: "Authored 3 ADRs (write-permission model, audit-trail schema, rollback semantics)"

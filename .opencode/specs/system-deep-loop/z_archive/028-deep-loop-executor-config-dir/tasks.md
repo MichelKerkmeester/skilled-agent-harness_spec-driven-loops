@@ -8,7 +8,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: ".opencode/specs/skilled-agent-orchestration/140-deep-loop-executor-config-dir"
+    packet_pointer: "system-deep-loop/z_archive/028-deep-loop-executor-config-dir"
     last_updated_at: "2026-06-10T16:50:00Z"
     last_updated_by: "gpt-5.5-fast"
     recent_action: "Completed configDir implementation and verification"

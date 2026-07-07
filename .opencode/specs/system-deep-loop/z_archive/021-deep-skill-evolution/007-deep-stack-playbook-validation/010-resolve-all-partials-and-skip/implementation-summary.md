@@ -8,7 +8,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "skilled-agent-orchestration/116-deep-skill-evolution/007-deep-stack-playbook-validation/010-resolve-all-partials-and-skip"
+    packet_pointer: "system-deep-loop/z_archive/021-deep-skill-evolution/007-deep-stack-playbook-validation/010-resolve-all-partials-and-skip"
     last_updated_at: "2026-05-28T02:00:00Z"
     last_updated_by: "claude-opus-4-7"
     recent_action: "Residual resolved; relocated to 116/007 + memory/causal reindexed"

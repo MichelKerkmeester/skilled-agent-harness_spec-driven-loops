@@ -9,7 +9,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "skilled-agent-orchestration/101-deep-multi-ai-council-skill/003-deep-ai-council-graph-support"
+    packet_pointer: "system-deep-loop/z_archive/020-deep-multi-ai-council-skill/003-deep-ai-council-graph-support"
     last_updated_at: "2026-05-11T05:20:00Z"
     last_updated_by: "openai-gpt-5.5-opencode"
     recent_action: "Recorded deep-review remediation evidence"

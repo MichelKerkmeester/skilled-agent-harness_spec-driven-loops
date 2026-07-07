@@ -7,7 +7,7 @@ importance_tier: "important"
 contextType: "decision"
 _memory:
   continuity:
-    packet_pointer: "skilled-agent-orchestration/116-deep-skill-evolution/003-deep-loop-runtime/001-core-isolation-deliberation"
+    packet_pointer: "system-deep-loop/z_archive/021-deep-skill-evolution/003-deep-loop-runtime/001-core-isolation-deliberation"
     last_updated_at: "2026-05-22T17:50:00Z"
     last_updated_by: "claude-opus-4-7"
     recent_action: "Authored checklist"

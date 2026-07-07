@@ -8,7 +8,7 @@ importance_tier: "important"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "skilled-agent-orchestration/122-deep-improvement-skill-benchmark-mode/010-skill-benchmark-live-playbook-mode"
+    packet_pointer: "system-deep-loop/z_archive/023-deep-improvement-skill-benchmark-mode/010-skill-benchmark-live-playbook-mode"
     last_updated_at: "2026-06-01T00:00:00Z"
     last_updated_by: "claude-opus"
     recent_action: "All 6 phases done; packet strict-valid (0/0); 245 tests green; operator/command docs updated"

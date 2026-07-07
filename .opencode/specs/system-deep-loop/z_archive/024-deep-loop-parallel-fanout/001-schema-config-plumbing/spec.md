@@ -8,7 +8,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "skilled-agent-orchestration/123-deep-loop-parallel-fanout/001-schema-config-plumbing"
+    packet_pointer: "system-deep-loop/z_archive/024-deep-loop-parallel-fanout/001-schema-config-plumbing"
     last_updated_at: "2026-05-30T00:00:00Z"
     last_updated_by: "claude-opus"
     recent_action: "Phase 1 complete — lineageExecutorSchema + fanoutConfigSchema + parseFanoutConfig + expandLineages + optional lineageId in executor-audit; 36 tests green (27 original + 9 fan-out)"

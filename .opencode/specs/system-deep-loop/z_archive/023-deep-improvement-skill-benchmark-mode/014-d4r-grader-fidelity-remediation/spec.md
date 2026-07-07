@@ -9,7 +9,7 @@ importance_tier: "important"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "skilled-agent-orchestration/122-deep-improvement-skill-benchmark-mode/014-d4r-grader-fidelity-remediation"
+    packet_pointer: "system-deep-loop/z_archive/023-deep-improvement-skill-benchmark-mode/014-d4r-grader-fidelity-remediation"
     last_updated_at: "2026-06-02T00:00:00Z"
     last_updated_by: "claude-opus"
     recent_action: "All 28 findings fixed + integrated to main; suite 358/358 + drift 4/4 green"

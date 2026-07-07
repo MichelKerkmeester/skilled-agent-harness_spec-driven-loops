@@ -8,7 +8,7 @@ importance_tier: "important"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "skilled-agent-orchestration/116-deep-skill-evolution/005-deep-agent-improvement/004-correctness-fixes"
+    packet_pointer: "system-deep-loop/z_archive/021-deep-skill-evolution/005-deep-agent-improvement/004-correctness-fixes"
     recent_action: "Tracked packet 124 implementation and validation tasks."
     last_updated_at: "2026-05-23T00:00:00Z"
     last_updated_by: "codex"

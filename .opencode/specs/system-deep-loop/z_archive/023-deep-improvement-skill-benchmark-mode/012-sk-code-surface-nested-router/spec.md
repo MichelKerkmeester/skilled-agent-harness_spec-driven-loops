@@ -9,7 +9,7 @@ importance_tier: "important"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "skilled-agent-orchestration/122-deep-improvement-skill-benchmark-mode/012-sk-code-surface-nested-router"
+    packet_pointer: "system-deep-loop/z_archive/023-deep-improvement-skill-benchmark-mode/012-sk-code-surface-nested-router"
     last_updated_at: "2026-06-01T00:00:00Z"
     last_updated_by: "claude-opus"
     recent_action: "Opened the build phase from the 011 research recommendation"

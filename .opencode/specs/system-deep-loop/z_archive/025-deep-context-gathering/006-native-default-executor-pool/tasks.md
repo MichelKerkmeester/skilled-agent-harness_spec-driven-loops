@@ -10,7 +10,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "skilled-agent-orchestration/134-deep-context-gathering/006-native-default-executor-pool"
+    packet_pointer: "system-deep-loop/z_archive/025-deep-context-gathering/006-native-default-executor-pool"
     last_updated_at: "2026-06-07T11:30:00Z"
     last_updated_by: "claude-opus"
     recent_action: "Marked native-default tasks complete"

@@ -7,7 +7,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "skilled-agent-orchestration/101-deep-multi-ai-council-skill/007-council-infrastructure-hardening"
+    packet_pointer: "system-deep-loop/z_archive/020-deep-multi-ai-council-skill/007-council-infrastructure-hardening"
     last_updated_at: "2026-05-11T11:00:00Z"
     last_updated_by: "claude-opus-4-7"
     recent_action: "Authored task breakdown"

@@ -11,7 +11,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "skilled-agent-orchestration/121-deep-agent-improvement-benchmark-mode/005-add-opt-in-5dim-scorer-and-skill-docs"
+    packet_pointer: "system-deep-loop/z_archive/022-deep-agent-improvement-benchmark-mode/005-add-opt-in-5dim-scorer-and-skill-docs"
     last_updated_at: "2026-05-28T19:15:45Z"
     last_updated_by: "template-author"
     recent_action: "Initialize continuity block"

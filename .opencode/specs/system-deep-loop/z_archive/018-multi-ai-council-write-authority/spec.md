@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: Multi-AI Council write authority [skilled-agent-orchestration/098-multi-ai-council-write-authority/spec]"
+title: "Feature Specification: Multi-AI Council write authority [system-deep-loop/z_archive/018-multi-ai-council-write-authority/spec]"
 description: "Flip the multi-ai-council agent from planning-only (write: deny / edit: deny) to scoped-write (write/edit: allow, restricted to ai-council/** paths). Adds artifact_written audit-trail events to ai-council-state.jsonl, defines round-NNN-scoped rollback semantics, and migrates persist-artifacts.cjs from dispatcher-owned writes to council-owned writes (helper retained as fallback for non-council callers). All 4 runtime mirrors (.opencode, .claude, .codex TOML, .gemini) flip together."
 trigger_phrases:
   - "multi-ai-council write authority"
@@ -11,7 +11,7 @@ importance_tier: "critical"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "skilled-agent-orchestration/098-multi-ai-council-write-authority"
+    packet_pointer: "system-deep-loop/z_archive/018-multi-ai-council-write-authority"
     last_updated_at: "2026-05-08T21:45:00Z"
     last_updated_by: "claude-opus-4-7"
     recent_action: "Scaffolded Level 3 spec + 3 ADRs"

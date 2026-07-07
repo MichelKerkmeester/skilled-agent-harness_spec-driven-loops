@@ -10,7 +10,7 @@ importance_tier: "high"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "deep-loops/031-deep-loop-gpt-reliability/006-reliability-fixes"
+    packet_pointer: "system-deep-loop/031-deep-loop-gpt-reliability/006-reliability-fixes"
     last_updated_at: "2026-07-03T16:00:00Z"
     last_updated_by: "claude-code"
     recent_action: "Restructured to unified command-contract architecture"

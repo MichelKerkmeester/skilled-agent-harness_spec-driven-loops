@@ -10,7 +10,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "skilled-agent-orchestration/116-deep-skill-evolution/008-deep-skill-doc-evolution/001-spec-and-resource-map"
+    packet_pointer: "system-deep-loop/z_archive/021-deep-skill-evolution/006-deep-stack-cross-cutting/003-doc-evolution-spec-and-resource-map"
     last_updated_at: "2026-05-25T00:00:00Z"
     last_updated_by: "main_agent"
     recent_action: "authored-phase-1-spec-schemas-resource-map"

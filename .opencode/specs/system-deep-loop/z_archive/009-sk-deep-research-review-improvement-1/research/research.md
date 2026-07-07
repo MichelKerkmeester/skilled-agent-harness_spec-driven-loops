@@ -1,5 +1,5 @@
 ---
-title: "Research Report: 040 Auto Deep [skilled-agent-orchestration/040-sk-deep-research-review-improvement-1/research]"
+title: "Research Report: 040 Auto Deep [system-deep-loop/z_archive/009-sk-deep-research-review-improvement-1/research]"
 description: "This packet now includes 90 total research iterations across three waves"
 trigger_phrases:
   - "research"
@@ -11,7 +11,7 @@ importance_tier: "normal"
 contextType: "research"
 _memory:
   continuity:
-    packet_pointer: "skilled-agent-orchestration/040-sk-deep-research-review-improvement-1/research"
+    packet_pointer: "system-deep-loop/z_archive/009-sk-deep-research-review-improvement-1/research"
     last_updated_at: "2026-04-24T15:25:01Z"
     last_updated_by: "backfill-memory-block"
     recent_action: "Backfilled _memory block (repo-wide frontmatter sweep)"

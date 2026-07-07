@@ -1,5 +1,5 @@
 ---
-title: "Fe [skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/006-graph-testing-and-playbook-alignment/spec]"
+title: "Fe [system-deep-loop/z_archive/011-sk-deep-research-review-improvement-2/006-graph-testing-and-playbook-alignment/spec]"
 description: "Capture the completed graph-contract verification work that added cross-layer integration tests, stress coverage, and graph-specific manual playbook scenarios across the deep-loop skills."
 trigger_phrases:
   - "042.006"
@@ -12,7 +12,7 @@ contextType: "planning"
 template_source_hint: "<!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->"
 _memory:
   continuity:
-    packet_pointer: "skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/006-graph-testing-and-playbook-alignment"
+    packet_pointer: "system-deep-loop/z_archive/011-sk-deep-research-review-improvement-2/006-graph-testing-and-playbook-alignment"
     last_updated_at: "2026-04-24T15:25:01Z"
     last_updated_by: "backfill-memory-block"
     recent_action: "Backfilled _memory block (repo-wide frontmatter sweep)"

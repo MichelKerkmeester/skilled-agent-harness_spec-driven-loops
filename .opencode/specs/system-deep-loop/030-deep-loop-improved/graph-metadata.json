@@ -140,16 +140,16 @@
     ],
     "causal_summary": "Our loop-based systems (deep-loop-runtime, deep-loop-workflows, and the system-spec-kit commands/agents that drive them) carry known gaps in resilience, convergence quality, observability, safety, and interconnection",
     "created_at": "2026-06-30T10:32:21.634Z",
-    "last_save_at": "2026-07-04T18:02:32.326Z",
+    "last_save_at": "2026-07-07T15:43:51.683Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:e0317f535d812dedd55f2a0169b9fe75ae954e8a72e834cd3a3c822147024fc1",
+    "source_fingerprint": "sha256:81dcba29b40eb37867cc411055398002c1fa3c6f59f694465ae06c4958383cc2",
     "source_doc_hashes": {
-      "spec.md": "a214b42d59e7fd2f589c029cb715bdbae27780f2919dcf6ba1dfc30cbd9b4280",
+      "spec.md": "86d71a30553d72c7bebb90376b4f747e45a64c0efeb42fb19474df70bfde8b56",
       "research/research.md": "593ff3a4953413e4456105d5cb406de665c7e486d4a1ff367eb2385a05394ac5"
     },
     "last_active_child_id": null,

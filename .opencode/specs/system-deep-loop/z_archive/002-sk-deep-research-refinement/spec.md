@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: sk-deep-research Refinement [skilled-agent-orchestration/024-sk-deep-research-refinement/spec]"
+title: "Feature Specification: sk-deep-research Refinement [system-deep-loop/z_archive/002-sk-deep-research-refinement/spec]"
 description: "The sk-deep-research system (v1) is functional but has 18 documented improvement proposals (from spec 023) that need rigorous validation, prioritization refinement, and implemen..."
 trigger_phrases:
   - "feature"
@@ -14,7 +14,7 @@ contextType: "implementation"
 template_source_hint: "<!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->"
 _memory:
   continuity:
-    packet_pointer: "skilled-agent-orchestration/024-sk-deep-research-refinement"
+    packet_pointer: "system-deep-loop/z_archive/002-sk-deep-research-refinement"
     last_updated_at: "2026-04-24T15:25:01Z"
     last_updated_by: "backfill-memory-block"
     recent_action: "Backfilled _memory block (repo-wide frontmatter sweep)"

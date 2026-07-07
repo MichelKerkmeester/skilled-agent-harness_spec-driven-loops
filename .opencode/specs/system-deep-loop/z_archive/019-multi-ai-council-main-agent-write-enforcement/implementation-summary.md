@@ -1,5 +1,5 @@
 ---
-title: "Implementation Summary: Multi-AI Council main-agent write enforcement [skilled-agent-orchestration/100-multi-ai-council-main-agent-write-enforcement/implementation-summary]"
+title: "Implementation Summary: Multi-AI Council main-agent write enforcement [system-deep-loop/z_archive/019-multi-ai-council-main-agent-write-enforcement/implementation-summary]"
 description: "Placeholder. Will record the actual outcomes of Phase 4 verification (parity test, validator, sandbox smokes A and B) once implementation lands. Do not flag the placeholder tokens below as stale until completion_pct reaches 100."
 trigger_phrases:
   - "100 implementation summary"
@@ -8,7 +8,7 @@ importance_tier: "important"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "skilled-agent-orchestration/100-multi-ai-council-main-agent-write-enforcement"
+    packet_pointer: "system-deep-loop/z_archive/019-multi-ai-council-main-agent-write-enforcement"
     last_updated_at: "2026-05-09T20:11:00Z"
     last_updated_by: "claude-opus-4-7"
     recent_action: "Shipped body edits"

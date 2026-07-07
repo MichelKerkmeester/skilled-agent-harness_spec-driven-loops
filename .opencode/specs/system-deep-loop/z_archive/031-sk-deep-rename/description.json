@@ -1,0 +1,25 @@
+{
+  "specFolder": "system-deep-loop/z_archive/031-sk-deep-rename",
+  "description": "The two deep- skills currently use a `sk-` prefix (`sk-deep-review`, `sk-deep-research`) inherited from when all skills carried it",
+  "keywords": [
+    "two",
+    "deep",
+    "skills",
+    "currently",
+    "use",
+    "prefix",
+    "sk-deep-review",
+    "sk-deep-research",
+    "inherited",
+    "carried"
+  ],
+  "lastUpdated": "2026-07-07T15:25:48.024Z",
+  "specId": "031",
+  "folderSlug": "sk-deep-rename",
+  "parentChain": [
+    "system-deep-loop",
+    "z_archive"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

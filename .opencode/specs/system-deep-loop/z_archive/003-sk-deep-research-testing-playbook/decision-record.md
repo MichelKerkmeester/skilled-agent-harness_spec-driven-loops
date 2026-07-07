@@ -1,5 +1,5 @@
 ---
-title: "Decision Record: sk-deep-research [skilled-agent-orchestration/028-sk-deep-research-testing-playbook/decision-record]"
+title: "Decision Record: sk-deep-research [system-deep-loop/z_archive/003-sk-deep-research-testing-playbook/decision-record]"
 description: "Architectural decisions for the approved sk-deep-research manual testing playbook implementation."
 trigger_phrases:
   - "deep research playbook adr"
@@ -9,7 +9,7 @@ contextType: "general"
 template_source_hint: "<!-- SPECKIT_TEMPLATE_SOURCE: decision-record | v2.2 -->"
 _memory:
   continuity:
-    packet_pointer: "skilled-agent-orchestration/028-sk-deep-research-testing-playbook"
+    packet_pointer: "system-deep-loop/z_archive/003-sk-deep-research-testing-playbook"
     last_updated_at: "2026-04-24T15:25:01Z"
     last_updated_by: "backfill-memory-block"
     recent_action: "Backfilled _memory block (repo-wide frontmatter sweep)"

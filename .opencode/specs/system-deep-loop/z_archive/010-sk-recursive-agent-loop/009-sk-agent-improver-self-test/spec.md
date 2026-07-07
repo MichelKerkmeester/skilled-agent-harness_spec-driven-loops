@@ -1,5 +1,5 @@
 ---
-title: "Spec: Agent-Improver [skilled-agent-orchestration/041-sk-recursive-agent-loop/009-sk-agent-improver-self-test/spec]"
+title: "Spec: Agent-Improver [system-deep-loop/z_archive/010-sk-recursive-agent-loop/009-sk-agent-improver-self-test/spec]"
 description: "The sk-improve-agent skill has been validated against handover, debug, orchestrate, and review agents (Phases 001-008), but never against itself. The agent-improver's own agent ..."
 trigger_phrases:
   - "spec"
@@ -10,7 +10,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "skilled-agent-orchestration/041-sk-recursive-agent-loop/009-sk-agent-improver-self-test"
+    packet_pointer: "system-deep-loop/z_archive/010-sk-recursive-agent-loop/009-sk-agent-improver-self-test"
     last_updated_at: "2026-04-24T15:25:01Z"
     last_updated_by: "backfill-memory-block"
     recent_action: "Backfilled _memory block (repo-wide frontmatter sweep)"

@@ -7,16 +7,16 @@ importance_tier: "high"
 contextType: "agent-architecture"
 _memory:
   continuity:
-    packet_pointer: "skilled-agent-orchestration/060-sk-agent-improver-test-report-alignment/004-improve-agent-command-flow-stress-tests"
+    packet_pointer: "system-deep-loop/z_archive/012-sk-agent-improver-test-report-alignment/004-improve-agent-command-flow-stress-tests"
     last_updated_at: "2026-05-02T15:45:00Z"
     last_updated_by: "codex-gpt-5"
     recent_action: "R2 complete via direct Bash; final composite PASS 6 / PARTIAL 0 / FAIL 0"
     next_safe_action: "Methodology campaign complete; consider follow-on packets for @deep-research/@deep-review command-flow stress, or for CP-042 body-discipline gap"
     blockers: []
     key_files:
-      - .opencode/specs/skilled-agent-orchestration/060-sk-agent-improver-test-report-alignment/004-improve-agent-command-flow-stress-tests/test-report.md
-      - .opencode/specs/skilled-agent-orchestration/060-sk-agent-improver-test-report-alignment/004-improve-agent-command-flow-stress-tests/stress-runs/r1-summary.md
-      - .opencode/specs/skilled-agent-orchestration/060-sk-agent-improver-test-report-alignment/004-improve-agent-command-flow-stress-tests/stress-runs/r1-run-log.txt
+      - .opencode/specs/system-deep-loop/z_archive/012-sk-agent-improver-test-report-alignment/004-improve-agent-command-flow-stress-tests/test-report.md
+      - .opencode/specs/system-deep-loop/z_archive/012-sk-agent-improver-test-report-alignment/004-improve-agent-command-flow-stress-tests/stress-runs/r1-summary.md
+      - .opencode/specs/system-deep-loop/z_archive/012-sk-agent-improver-test-report-alignment/004-improve-agent-command-flow-stress-tests/stress-runs/r1-run-log.txt
       - .opencode/skills/sk-improve-agent/manual_testing_playbook/08--agent-discipline-stress-tests/setup-cp-sandbox.sh
     completion_pct: 100
     open_questions:

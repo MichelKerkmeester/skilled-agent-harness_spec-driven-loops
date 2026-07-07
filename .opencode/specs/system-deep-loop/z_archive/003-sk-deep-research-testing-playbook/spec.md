@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: sk-deep-research [skilled-agent-orchestration/028-sk-deep-research-testing-playbook/spec]"
+title: "Feature Specification: sk-deep-research [system-deep-loop/z_archive/003-sk-deep-research-testing-playbook/spec]"
 description: "sk-deep-research ships protocol and command docs but no manual testing playbook package. This spec locks the approved greenfield implementation plan: a 19-scenario playbook across 6 categories, with no feature catalog in place yet."
 trigger_phrases:
   - "sk-deep-research testing playbook"
@@ -11,7 +11,7 @@ contextType: "general"
 template_source_hint: "<!-- SPECKIT_TEMPLATE_SOURCE: spec-core + level2-verify + level3-arch | v2.2 -->"
 _memory:
   continuity:
-    packet_pointer: "skilled-agent-orchestration/028-sk-deep-research-testing-playbook"
+    packet_pointer: "system-deep-loop/z_archive/003-sk-deep-research-testing-playbook"
     last_updated_at: "2026-04-24T15:25:01Z"
     last_updated_by: "backfill-memory-block"
     recent_action: "Backfilled _memory block (repo-wide frontmatter sweep)"

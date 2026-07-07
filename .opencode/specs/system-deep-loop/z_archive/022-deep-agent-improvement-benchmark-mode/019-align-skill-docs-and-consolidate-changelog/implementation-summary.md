@@ -8,7 +8,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "skilled-agent-orchestration/121-deep-agent-improvement-benchmark-mode/019-align-skill-docs-and-consolidate-changelog"
+    packet_pointer: "system-deep-loop/z_archive/022-deep-agent-improvement-benchmark-mode/019-align-skill-docs-and-consolidate-changelog"
     last_updated_at: "2026-05-30T08:30:00Z"
     last_updated_by: "claude-opus"
     recent_action: "Consolidated the 121 changelog and aligned the README plus docs to two-lane reality"

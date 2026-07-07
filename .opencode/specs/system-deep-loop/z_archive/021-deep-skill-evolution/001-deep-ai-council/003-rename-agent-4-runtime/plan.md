@@ -6,7 +6,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "skilled-agent-orchestration/116-deep-skill-evolution/001-ai-council/003-rename-agent-4-runtime"
+    packet_pointer: "system-deep-loop/z_archive/021-deep-skill-evolution/001-deep-ai-council/003-rename-agent-4-runtime"
     last_updated_at: "2026-05-21T00:00:00Z"
     last_updated_by: "main_agent"
     recent_action: "Authored 115/003 plan.md"

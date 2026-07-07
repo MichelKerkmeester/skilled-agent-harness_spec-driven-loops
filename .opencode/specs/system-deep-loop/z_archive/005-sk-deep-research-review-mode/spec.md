@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: sk-deep-research Review [skilled-agent-orchestration/030-sk-deep-research-review-mode/spec]"
+title: "Feature Specification: sk-deep-research Review [system-deep-loop/z_archive/005-sk-deep-research-review-mode/spec]"
 description: "Add a review mode to sk-deep-research that repurposes the iterative loop infrastructure for automated review work instead of external research."
 trigger_phrases:
   - "030"
@@ -11,7 +11,7 @@ contextType: "implementation"
 template_source_hint: "<!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->"
 _memory:
   continuity:
-    packet_pointer: "skilled-agent-orchestration/030-sk-deep-research-review-mode"
+    packet_pointer: "system-deep-loop/z_archive/005-sk-deep-research-review-mode"
     last_updated_at: "2026-04-24T15:25:01Z"
     last_updated_by: "backfill-memory-block"
     recent_action: "Backfilled _memory block (repo-wide frontmatter sweep)"

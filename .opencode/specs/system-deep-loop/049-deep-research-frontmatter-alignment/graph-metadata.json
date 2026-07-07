@@ -1,0 +1,217 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/049-deep-research-frontmatter-alignment",
+  "spec_folder": "system-deep-loop/049-deep-research-frontmatter-alignment",
+  "parent_id": "system-deep-loop",
+  "parent_id_review_required": true,
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "deep-research frontmatter alignment",
+      "deep-research reference frontmatter",
+      "skill frontmatter standardization",
+      "deep-research frontmatter plan",
+      "frontmatter net-new authoring",
+      "research doc contract plan",
+      "deep-research frontmatter tasks",
+      "research doc authoring tasks",
+      "frontmatter campaign phase nine tasks",
+      "deep-research frontmatter summary",
+      "research frontmatter authoring complete",
+      "research doc contract evidence"
+    ],
+    "key_topics": [
+      "deep-research",
+      "frontmatter",
+      "alignment",
+      "reference",
+      "skill",
+      "standardization",
+      "plan",
+      "net-new",
+      "authoring",
+      "research",
+      "doc",
+      "contract"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "implementation-summary.md",
+      "tasks.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Frontmatter Alignment",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Frontmatter",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "an",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Files Changed",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "deep-research reference/asset frontmatter is inconsistent with the repo-wide contract: 0 of 13 references and 0 of 2 assets carry the detailed memory-style block (triggerphrases, importancetier, contextType), while the rest carry title+description only",
+    "created_at": "2026-06-11T05:47:28Z",
+    "last_save_at": "2026-07-07T15:48:12.084Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:e60c810d18f74d7abbaf91408d4df50371589168091d05942b5d19501d8379f6",
+    "source_doc_hashes": {
+      "spec.md": "200433fce47e7775b6d2f09c31495f94c383aec90b3688ab75bcd54b9693a212",
+      "plan.md": "75baf05e04cb022d46b8e457f760889126c23dc67988d98063841a1b2ac6e4c7",
+      "tasks.md": "37ea8fb8a46c515ff1a56c7545078d0ec2f949f9d2b7b60ac2d33db17c885aa7",
+      "implementation-summary.md": "86988af2b8dc5090d18dc2b01f9e55f4ce11e7675354726ca20292e2c656fb5a"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

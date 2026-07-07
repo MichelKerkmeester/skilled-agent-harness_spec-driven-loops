@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: Deep Research and [skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/spec]"
+title: "Feature Specification: Deep Research and [system-deep-loop/z_archive/011-sk-deep-research-review-improvement-2/spec]"
 description: "Parent overview for the phased implementation bundle that coordinates runtime truth, semantic coverage, wave execution, offline optimization, and closeout remediation across child phases 001-008."
 trigger_phrases:
   - "042"
@@ -13,7 +13,7 @@ contextType: "planning"
 template_source_hint: "<!-- SPECKIT_TEMPLATE_SOURCE: spec-core + level2-verify + level3-arch | v2.2 -->"
 _memory:
   continuity:
-    packet_pointer: "skilled-agent-orchestration/042-sk-deep-research-review-improvement-2"
+    packet_pointer: "system-deep-loop/z_archive/011-sk-deep-research-review-improvement-2"
     last_updated_at: "2026-04-24T15:25:01Z"
     last_updated_by: "backfill-memory-block"
     recent_action: "Backfilled _memory block (repo-wide frontmatter sweep)"

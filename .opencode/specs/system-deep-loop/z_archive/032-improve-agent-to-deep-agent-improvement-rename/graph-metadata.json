@@ -1,0 +1,227 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/z_archive/032-improve-agent-to-deep-agent-improvement-rename",
+  "spec_folder": "system-deep-loop/z_archive/032-improve-agent-to-deep-agent-improvement-rename",
+  "parent_id": "system-deep-loop/z_archive",
+  "parent_id_review_required": true,
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "087 agent rename",
+      "improve-agent to deep-agent-improvement",
+      "deep-agent-improvement agent rename",
+      "naming-family alignment agent",
+      "087 plan",
+      "agent rename plan",
+      "deep-agent-improvement agent",
+      "improve-agent migration plan",
+      "087 tasks",
+      "agent rename tasks",
+      "T-001 087",
+      "deep-agent-improvement task list"
+    ],
+    "key_topics": [
+      "087",
+      "agent",
+      "rename",
+      "improve-agent",
+      "deep-agent-improvement",
+      "naming-family",
+      "alignment",
+      "plan",
+      "migration",
+      "tasks",
+      "t-001",
+      "task"
+    ],
+    "importance_tier": "important",
+    "status": "draft",
+    "key_files": [
+      ".opencode/agents/README.txt",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "resource-map.md",
+      ".opencode/commands/README.txt",
+      "implementation-summary.md",
+      ".claude/commands/README.txt",
+      ".opencode/install_guides/SET-UP - AGENTS.md"
+    ],
+    "entities": [
+      {
+        "name": "README.txt",
+        "kind": "file",
+        "path": ".opencode/agents/README.txt",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "resource-map.md",
+        "kind": "doc",
+        "path": "resource-map.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "SET-UP - AGENTS.md",
+        "kind": "doc",
+        "path": ".opencode/install_guides/SET-UP - AGENTS.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Known Limitations",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Rename",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Acceptance Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Symbolic",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Current Role",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Resource Map",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Packet 079 renamed the skill `sk-improve-agent` → `deep-agent-improvement` but kept the agent name `@improve-agent` stable per the original 070-sk-deep-rename precedent",
+    "created_at": "2026-05-06T13:38:43.676Z",
+    "last_save_at": "2026-07-07T15:26:01.224Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md",
+      "resource-map.md"
+    ],
+    "source_fingerprint": "sha256:359c82f80283f1f2a929927592b1f805fd700502f2ebb166c4e2af11f2bab328",
+    "source_doc_hashes": {
+      "spec.md": "6e181e8fc902312281c19323352eb0948809e339154b9911ed3ebfeb74c60208",
+      "plan.md": "df68bdac5dcd9b8a25656fe3122d44ecf34a4466f03862cc3f5247cc0918f922",
+      "tasks.md": "a21db0e83204db8b63a65b44f74e423fa55713281787c3f2acf6590fcee584de",
+      "checklist.md": "dfe880a26f9144faeefe9544372852106e8ad36efa1db858ff143b6264f17ce2",
+      "implementation-summary.md": "bc25c6739744be73e31cb0b2d9fc82355d60b54c528bcefde79b8f7b9269283e",
+      "resource-map.md": "8b4b23a895daba94c6b4d1d7496d1ab61ce37dd7595aad3408ceeff92718c50c"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

@@ -1,0 +1,33 @@
+{
+  "specFolder": "system-deep-loop/z_archive/032-improve-agent-to-deep-agent-improvement-rename",
+  "description": "Packet 079 renamed the skill `sk-improve-agent` → `deep-agent-improvement` but kept the agent name `@improve-agent` stable per the original",
+  "keywords": [
+    "packet",
+    "079",
+    "renamed",
+    "skill",
+    "sk-improve-agent",
+    "deep-agent-improvement",
+    "kept",
+    "agent",
+    "name",
+    "improve-agent",
+    "stable",
+    "per",
+    "original"
+  ],
+  "lastUpdated": "2026-07-07T15:26:01.431Z",
+  "specId": "032",
+  "folderSlug": "improve-agent-to-deep-agent-improvement-rename",
+  "parentChain": [
+    "system-deep-loop",
+    "z_archive"
+  ],
+  "memorySequence": 4,
+  "memoryNameHistory": [
+    "06-05-26_14-38__manual-context-save.md",
+    "06-05-26_14-41__manual-context-save.md",
+    "06-05-26_15-25__next-steps.md",
+    "06-05-26_17-54__manual-context-save.md"
+  ]
+}

@@ -1,0 +1,27 @@
+{
+  "level": "1",
+  "parent_id": "system-spec-kit/027-xce-research-based-refinement/000-release-cleanup/009-skill-frontmatter-alignment",
+  "specFolder": "system-deep-loop/047-deep-improvement-frontmatter-alignment",
+  "description": "deep-improvement reference/asset frontmatter is inconsistent with the repo-wide contract: 17 of 23 references and 8 of 11 assets carry the detailed",
+  "keywords": [
+    "deep-improvement",
+    "reference",
+    "asset",
+    "frontmatter",
+    "inconsistent",
+    "repo-wide",
+    "contract",
+    "references",
+    "assets",
+    "carry",
+    "detailed"
+  ],
+  "lastUpdated": "2026-07-07T15:23:55.514Z",
+  "specId": "047",
+  "folderSlug": "deep-improvement-frontmatter-alignment",
+  "parentChain": [
+    "system-deep-loop"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

@@ -7,7 +7,7 @@ importance_tier: "high"
 contextType: "agent-architecture"
 _memory:
   continuity:
-    packet_pointer: "skilled-agent-orchestration/062-deep-loop-command-flow-stress-tests/004-deep-review-stress-runs"
+    packet_pointer: "system-deep-loop/z_archive/013-deep-loop-command-flow-stress-tests/004-deep-review-stress-runs"
     last_updated_at: "2026-05-02T19:30:00Z"
     last_updated_by: "claude-opus-4-7-1m"
     recent_action: "Placeholder created at scaffolding time"

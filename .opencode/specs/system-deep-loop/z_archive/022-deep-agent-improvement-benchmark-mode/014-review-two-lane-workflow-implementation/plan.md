@@ -9,7 +9,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "skilled-agent-orchestration/121-deep-agent-improvement-benchmark-mode/014-review-two-lane-workflow-implementation"
+    packet_pointer: "system-deep-loop/z_archive/022-deep-agent-improvement-benchmark-mode/014-review-two-lane-workflow-implementation"
     last_updated_at: "2026-05-29T10:35:00Z"
     last_updated_by: "claude-opus"
     recent_action: "Authored review plan: 10-iter gpt-5.5 xhigh, 4 dimensions"

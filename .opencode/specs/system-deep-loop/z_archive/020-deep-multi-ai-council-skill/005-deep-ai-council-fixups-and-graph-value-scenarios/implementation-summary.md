@@ -9,7 +9,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "skilled-agent-orchestration/101-deep-multi-ai-council-skill/005-deep-ai-council-fixups-and-graph-value-scenarios"
+    packet_pointer: "system-deep-loop/z_archive/020-deep-multi-ai-council-skill/005-deep-ai-council-fixups-and-graph-value-scenarios"
     last_updated_at: "2026-05-11T09:05:00Z"
     last_updated_by: "claude-opus-4-7"
     recent_action: "Fixed 2 vitests and authored 6 value scenarios"

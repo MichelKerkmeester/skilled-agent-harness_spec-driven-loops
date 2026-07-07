@@ -1,5 +1,5 @@
 ---
-title: "Decision Record: Autonomous Deep Research [skilled-agent-orchestration/023-sk-deep-research-creation/decision-record]"
+title: "Decision Record: Autonomous Deep Research [system-deep-loop/z_archive/001-sk-deep-research-creation/decision-record]"
 description: "Architecture decisions for 3-layer autoresearch system"
 trigger_phrases:
   - "autoresearch decisions"
@@ -9,7 +9,7 @@ contextType: "general"
 template_source_hint: "<!-- SPECKIT_TEMPLATE_SOURCE: decision-record | v2.2 -->"
 _memory:
   continuity:
-    packet_pointer: "skilled-agent-orchestration/023-sk-deep-research-creation"
+    packet_pointer: "system-deep-loop/z_archive/001-sk-deep-research-creation"
     last_updated_at: "2026-04-24T15:25:01Z"
     last_updated_by: "backfill-memory-block"
     recent_action: "Backfilled _memory block (repo-wide frontmatter sweep)"

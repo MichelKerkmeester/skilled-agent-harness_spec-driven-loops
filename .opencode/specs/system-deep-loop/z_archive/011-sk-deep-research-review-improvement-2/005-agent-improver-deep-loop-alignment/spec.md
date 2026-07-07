@@ -1,5 +1,5 @@
 ---
-title: "Feat [skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/005-agent-improver-deep-loop-alignment/spec]"
+title: "Feat [system-deep-loop/z_archive/011-sk-deep-research-review-improvement-2/005-agent-improver-deep-loop-alignment/spec]"
 description: "Completed Level 3 phase packet for the deep-loop runtime-truth alignment that introduced journal wiring, mutation coverage, trade-off detection, candidate lineage, and benchmark stability for the skill now published as sk-improve-agent."
 trigger_phrases:
   - "005"
@@ -13,7 +13,7 @@ contextType: "implementation"
 template_source_hint: "<!-- SPECKIT_TEMPLATE_SOURCE: spec-core + level2-verify + level3-arch | v2.2 -->"
 _memory:
   continuity:
-    packet_pointer: "skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/005-agent-improver-deep-loop-alignment"
+    packet_pointer: "system-deep-loop/z_archive/011-sk-deep-research-review-improvement-2/005-agent-improver-deep-loop-alignment"
     last_updated_at: "2026-04-24T15:25:01Z"
     last_updated_by: "backfill-memory-block"
     recent_action: "Backfilled _memory block (repo-wide frontmatter sweep)"

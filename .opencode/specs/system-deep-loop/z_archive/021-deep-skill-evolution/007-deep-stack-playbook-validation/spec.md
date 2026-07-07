@@ -9,7 +9,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "skilled-agent-orchestration/116-deep-skill-evolution/007-deep-stack-playbook-validation"
+    packet_pointer: "system-deep-loop/z_archive/021-deep-skill-evolution/007-deep-stack-playbook-validation"
     last_updated_at: "2026-05-28T02:00:00Z"
     last_updated_by: "claude-opus-4-7"
     recent_action: "Relocated to 116/007; refs+metadata+memory/causal reindex done"

@@ -1,5 +1,5 @@
 ---
-title: "Tasks: sk-deep-research Path Migration [skilled-agent-orchestration/035-sk-deep-research-path-migration/tasks]"
+title: "Tasks: sk-deep-research Path Migration [system-deep-loop/z_archive/007-sk-deep-research-path-migration/tasks]"
 description: "Task Format: T### [P?] Description (file path or file family)"
 trigger_phrases:
   - "deep-research migration tasks"
@@ -9,7 +9,7 @@ contextType: "general"
 template_source_hint: "<!-- SPECKIT_TEMPLATE_SOURCE: tasks-core | v2.2 -->"
 _memory:
   continuity:
-    packet_pointer: "skilled-agent-orchestration/035-sk-deep-research-path-migration"
+    packet_pointer: "system-deep-loop/z_archive/007-sk-deep-research-path-migration"
     last_updated_at: "2026-04-24T15:25:01Z"
     last_updated_by: "backfill-memory-block"
     recent_action: "Backfilled _memory block (repo-wide frontmatter sweep)"

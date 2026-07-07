@@ -11,7 +11,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "skilled-agent-orchestration/134-deep-context-gathering/007-deep-command-gate-hardening"
+    packet_pointer: "system-deep-loop/z_archive/025-deep-context-gathering/007-deep-command-gate-hardening"
     last_updated_at: "2026-06-07T12:00:00Z"
     last_updated_by: "claude-opus"
     recent_action: "Added Phase 0 + BLOCKED setup gates to all 7 deep commands"

@@ -8,7 +8,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "skilled-agent-orchestration/116-deep-skill-evolution/001-ai-council/001-rename-preflight-and-plan"
+    packet_pointer: "system-deep-loop/z_archive/021-deep-skill-evolution/001-deep-ai-council/001-rename-preflight-and-plan"
     last_updated_at: "2026-05-21T00:00:00Z"
     last_updated_by: "main_agent"
     recent_action: "Authored 115/001 tasks.md"

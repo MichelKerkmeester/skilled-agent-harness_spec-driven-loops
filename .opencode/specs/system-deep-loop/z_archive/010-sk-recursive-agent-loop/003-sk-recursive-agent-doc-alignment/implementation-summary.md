@@ -1,5 +1,5 @@
 ---
-title: "Im [skilled-agent-orchestration/041-sk-recursive-agent-loop/003-sk-recursive-agent-doc-alignment/implementation-summary]"
+title: "Im [system-deep-loop/z_archive/010-sk-recursive-agent-loop/003-sk-recursive-agent-doc-alignment/implementation-summary]"
 description: "Phase 003 closed the remaining sk-doc alignment gaps across sk-improve-agent, the canonical loop command and agent, and the parent packet records."
 trigger_phrases:
   - "041 phase 003 implementation summary"
@@ -9,7 +9,7 @@ contextType: "general"
 template_source_hint: "<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->"
 _memory:
   continuity:
-    packet_pointer: "skilled-agent-orchestration/041-sk-recursive-agent-loop/003-sk-recursive-agent-doc-alignment"
+    packet_pointer: "system-deep-loop/z_archive/010-sk-recursive-agent-loop/003-sk-recursive-agent-doc-alignment"
     last_updated_at: "2026-04-24T15:25:01Z"
     last_updated_by: "backfill-memory-block"
     recent_action: "Backfilled _memory block (repo-wide frontmatter sweep)"

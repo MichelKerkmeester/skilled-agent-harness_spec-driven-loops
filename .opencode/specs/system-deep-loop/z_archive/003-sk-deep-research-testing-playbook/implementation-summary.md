@@ -1,5 +1,5 @@
 ---
-title: "Implementation Summary [skilled-agent-orchestration/028-sk-deep-research-testing-playbook/implementation-summary]"
+title: "Implementation Summary [system-deep-loop/z_archive/003-sk-deep-research-testing-playbook/implementation-summary]"
 description: "This summary records the completed alignment of the Level 3 spec packet to the approved 19-scenario implementation plan."
 trigger_phrases:
   - "deep research playbook implementation summary"
@@ -9,7 +9,7 @@ contextType: "general"
 template_source_hint: "<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->"
 _memory:
   continuity:
-    packet_pointer: "skilled-agent-orchestration/028-sk-deep-research-testing-playbook"
+    packet_pointer: "system-deep-loop/z_archive/003-sk-deep-research-testing-playbook"
     last_updated_at: "2026-04-24T15:25:01Z"
     last_updated_by: "backfill-memory-block"
     recent_action: "Backfilled _memory block (repo-wide frontmatter sweep)"

@@ -10,7 +10,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "skilled-agent-orchestration/116-deep-skill-evolution/004-deep-research/006-hygiene-fix-pack"
+    packet_pointer: "system-deep-loop/z_archive/021-deep-skill-evolution/004-deep-research/006-hygiene-fix-pack"
     last_updated_at: "2026-05-23T00:00:00Z"
     last_updated_by: "codex"
     recent_action: "Implemented packet 122 hygiene fixes"

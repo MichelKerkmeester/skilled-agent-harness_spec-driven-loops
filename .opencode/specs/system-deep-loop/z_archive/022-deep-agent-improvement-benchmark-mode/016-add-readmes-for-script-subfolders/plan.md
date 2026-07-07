@@ -9,7 +9,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "skilled-agent-orchestration/121-deep-agent-improvement-benchmark-mode/016-add-readmes-for-script-subfolders"
+    packet_pointer: "system-deep-loop/z_archive/022-deep-agent-improvement-benchmark-mode/016-add-readmes-for-script-subfolders"
     last_updated_at: "2026-05-29T13:30:00Z"
     last_updated_by: "setup-agent"
     recent_action: "Authored Level 2 plan for subfolder READMEs"

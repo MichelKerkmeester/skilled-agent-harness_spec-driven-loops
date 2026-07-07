@@ -7,16 +7,16 @@ importance_tier: "high"
 contextType: "agent-architecture"
 _memory:
   continuity:
-    packet_pointer: "skilled-agent-orchestration/060-sk-agent-improver-test-report-alignment/003-followup-research"
+    packet_pointer: "system-deep-loop/z_archive/012-sk-agent-improver-test-report-alignment/003-followup-research"
     last_updated_at: "2026-05-02T13:41:52+02:00"
     last_updated_by: "codex-gpt-5"
     recent_action: "Synthesized 10 iteration files into research/research.md and finalized packet handoff"
     next_safe_action: "Start packet 004 (was 061) or 062 from handover prompts"
     blockers: []
     key_files:
-      - .opencode/specs/skilled-agent-orchestration/060-sk-agent-improver-test-report-alignment/003-followup-research/research/research.md
-      - .opencode/specs/skilled-agent-orchestration/060-sk-agent-improver-test-report-alignment/003-followup-research/research/iterations/iteration-001.md
-      - .opencode/specs/skilled-agent-orchestration/060-sk-agent-improver-test-report-alignment/003-followup-research/research/iterations/iteration-010.md
+      - .opencode/specs/system-deep-loop/z_archive/012-sk-agent-improver-test-report-alignment/003-followup-research/research/research.md
+      - .opencode/specs/system-deep-loop/z_archive/012-sk-agent-improver-test-report-alignment/003-followup-research/research/iterations/iteration-001.md
+      - .opencode/specs/system-deep-loop/z_archive/012-sk-agent-improver-test-report-alignment/003-followup-research/research/iterations/iteration-010.md
       - .opencode/specs/skilled-agent-orchestration/060-sk-agent-improver-test-report-alignment/002-stress-test-implementation/test-report.md
     completion_pct: 100
     open_questions:

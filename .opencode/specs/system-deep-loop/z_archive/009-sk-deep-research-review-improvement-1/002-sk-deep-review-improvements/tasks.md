@@ -1,5 +1,5 @@
 ---
-title: "Tasks [skilled-agent-orchestration/040-sk-deep-research-review-improvement-1/002-sk-deep-review-improvements/tasks]"
+title: "Tasks [system-deep-loop/z_archive/009-sk-deep-research-review-improvement-1/002-sk-deep-review-improvements/tasks]"
 description: "Task Format: T### [P?] Description (file path)"
 trigger_phrases:
   - "deep review tasks"
@@ -11,7 +11,7 @@ contextType: "general"
 template_source_hint: "<!-- SPECKIT_TEMPLATE_SOURCE: tasks-core | v2.2 -->"
 _memory:
   continuity:
-    packet_pointer: "skilled-agent-orchestration/040-sk-deep-research-review-improvement-1/002-sk-deep-review-improvements"
+    packet_pointer: "system-deep-loop/z_archive/009-sk-deep-research-review-improvement-1/002-sk-deep-review-improvements"
     last_updated_at: "2026-04-24T15:25:01Z"
     last_updated_by: "backfill-memory-block"
     recent_action: "Backfilled _memory block (repo-wide frontmatter sweep)"

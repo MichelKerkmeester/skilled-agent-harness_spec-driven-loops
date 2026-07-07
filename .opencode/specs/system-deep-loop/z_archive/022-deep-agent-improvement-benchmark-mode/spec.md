@@ -9,7 +9,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "skilled-agent-orchestration/121-deep-agent-improvement-benchmark-mode"
+    packet_pointer: "system-deep-loop/z_archive/022-deep-agent-improvement-benchmark-mode"
     last_updated_at: "2026-05-30T00:00:00Z"
     last_updated_by: "claude-opus"
     recent_action: "Closeout 019: one comprehensive v1.9 changelog for 121 + README aligned to two lanes"

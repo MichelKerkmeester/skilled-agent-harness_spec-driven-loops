@@ -1,5 +1,5 @@
 ---
-title: "Implementation Summary: Multi-AI Council write authority [skilled-agent-orchestration/098-multi-ai-council-write-authority/implementation-summary]"
+title: "Implementation Summary: Multi-AI Council write authority [system-deep-loop/z_archive/018-multi-ai-council-write-authority/implementation-summary]"
 description: "Implementation status for the council write-authority flip. Core writer/audit/rollback code is implemented, but completion is blocked by the unwritable Codex TOML mirror."
 trigger_phrases:
   - "council write authority implementation summary"
@@ -8,7 +8,7 @@ importance_tier: "important"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "skilled-agent-orchestration/098-multi-ai-council-write-authority"
+    packet_pointer: "system-deep-loop/z_archive/018-multi-ai-council-write-authority"
     last_updated_at: "2026-05-08T23:15:00Z"
     last_updated_by: "codex"
     recent_action: "Implemented core writer/audit/rollback path; Codex TOML mirror blocked by EPERM"

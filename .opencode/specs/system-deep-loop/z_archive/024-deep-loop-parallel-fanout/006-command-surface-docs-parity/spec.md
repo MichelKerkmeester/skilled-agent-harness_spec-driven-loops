@@ -8,7 +8,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "skilled-agent-orchestration/123-deep-loop-parallel-fanout/006-command-surface-docs-parity"
+    packet_pointer: "system-deep-loop/z_archive/024-deep-loop-parallel-fanout/006-command-surface-docs-parity"
     last_updated_at: "2026-05-30T00:00:00Z"
     last_updated_by: "claude-opus"
     recent_action: "Phase 6 complete — fan-out flags + policy in both command docs; deep-loop-runtime/SKILL.md script table; deep-research + deep-review SKILL.md carve-outs; parity gate confirmed structural (skip_when guards + if_absent resolver branch)"

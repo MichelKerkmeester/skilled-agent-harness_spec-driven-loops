@@ -8,7 +8,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "skilled-agent-orchestration/121-deep-agent-improvement-benchmark-mode/011-add-agent-lane-awareness-note"
+    packet_pointer: "system-deep-loop/z_archive/022-deep-agent-improvement-benchmark-mode/011-add-agent-lane-awareness-note"
     last_updated_at: "2026-05-29T07:36:07Z"
     last_updated_by: "build-agent"
     recent_action: "4 mirror notes upgraded to Lane awareness byte-identical"

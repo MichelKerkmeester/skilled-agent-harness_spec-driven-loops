@@ -3,7 +3,7 @@ title: "134 deep-context-gathering — context index"
 description: "Migration bridge for the 134 phase parent: records reorganization history (renames, renumbering, moves) so the lean spec.md stays free of migration narrative."
 _memory:
   continuity:
-    packet_pointer: "skilled-agent-orchestration/134-deep-context-gathering"
+    packet_pointer: "system-deep-loop/z_archive/025-deep-context-gathering"
     last_updated_at: "2026-06-07T07:30:00Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "Recorded 135 to 003 move and 004 creation in the migration bridge"

@@ -11,7 +11,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "skilled-agent-orchestration/116-deep-skill-evolution/000-release-cleanup/001-deep-loop-runtime/003-reference-asset-alignment"
+    packet_pointer: "system-deep-loop/z_archive/021-deep-skill-evolution/000-release-cleanup/004-deep-loop-runtime-reference-asset-alignment"
     last_updated_at: "2026-05-24T12:00:00Z"
     last_updated_by: "codex"
     recent_action: "phase-8-validation-complete"
