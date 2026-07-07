@@ -35,7 +35,7 @@ DEFAULT_OUTPUT = os.path.join(SCRIPT_DIR, "skill-graph.json")
 COMPILED_SCHEMA_VERSION = 1
 ALLOWED_METADATA_SCHEMA_VERSIONS = {1, 2}
 
-ALLOWED_FAMILIES = {"cli", "mcp", "sk-code", "deep-loop", "sk-util", "system"}
+ALLOWED_FAMILIES = {"cli", "mcp", "sk-code", "sk-hub", "deep-loop", "sk-util", "system"}
 ALLOWED_CATEGORIES = {
     "cli-orchestrator", "mcp-tool", "code-quality",
     "autonomous-loop", "utility", "system",

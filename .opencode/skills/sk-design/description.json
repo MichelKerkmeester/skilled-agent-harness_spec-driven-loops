@@ -58,18 +58,5 @@
     "capture a site's real CSS tokens as a Style Reference",
     "wire Open Design's MCP server into opencode so I can drive od cli"
   ],
-  "lastUpdated": "2026-07-07T00:00:00Z",
-  "modes": [
-    "interface",
-    "foundations",
-    "motion",
-    "audit",
-    "md-generator",
-    "design-mcp-open-design"
-  ],
-  "backend_kinds": [
-    "reference-base",
-    "playwright-extract",
-    "od-cli-transport"
-  ]
+  "lastUpdated": "2026-07-07T00:00:00Z"
 }

@@ -1,6 +1,5 @@
 {
   "schema_version": 2,
-  "packet_id": "147-deep-loop-workflows",
   "skill_id": "deep-loop-workflows",
   "family": "deep-loop",
   "category": "workflow",

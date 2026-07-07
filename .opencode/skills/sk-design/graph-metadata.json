@@ -1,7 +1,7 @@
 {
   "schema_version": 2,
   "skill_id": "sk-design",
-  "family": "sk-code",
+  "family": "sk-hub",
   "category": "design",
   "importance_tier": "important",
   "edges": {

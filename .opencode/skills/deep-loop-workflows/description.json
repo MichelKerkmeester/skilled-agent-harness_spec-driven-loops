@@ -48,19 +48,5 @@
     "benchmark how well this skill is routed",
     "refine a non-dev AI system package"
   ],
-  "lastUpdated": "2026-07-05T00:00:00Z",
-  "modes": [
-    "research",
-    "review",
-    "ai-council",
-    "agent-improvement",
-    "model-benchmark",
-    "skill-benchmark",
-    "ai-system-improvement"
-  ],
-  "backend_kinds": [
-    "runtime-loop-type",
-    "improvement-host",
-    "external-adapter"
-  ]
+  "lastUpdated": "2026-07-05T00:00:00Z"
 }

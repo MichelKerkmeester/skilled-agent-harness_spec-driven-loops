@@ -69,6 +69,16 @@ Required fields for every `modes[]` entry:
 - `aliases`: natural-language mode phrases, unique across modes.
 - `advisorRouting`: routing class and packet identity.
 
+Optional per-mode fields (declare, don't infer — never derive an extension-only field from `workflowMode`):
+
+| Field | Meaning | Hubs that use it |
+| --- | --- | --- |
+| `command` | The bound `/slash` command for the mode; `null` when the mode has no dedicated command. | sk-doc, sk-design, deep-loop |
+| `agent` | The leaf agent a runtime-loop mode dispatches. | deep-loop |
+| `artifactRoot` | Where a mode's generated artifacts are rooted. | deep-loop |
+| `loopHostMode` | The host mode for an improvement lane (paired with `backendKind: improvement-host`). | deep-loop |
+| `proceduresPath` | Path to a mode's procedure cards. | sk-design |
+
 Surface packet constraints:
 
 - `packetKind` is `surface`.
@@ -202,6 +212,7 @@ Companion file policy:
 - Every hub has `SKILL.md`, `mode-registry.json`, `hub-router.json`, `description.json`, `graph-metadata.json`, `changelog/`, `manual_testing_playbook/`, and `benchmark/`.
 - Every packet has `README.md`, `SKILL.md`, and `changelog/`.
 - Surface packets also carry `references/` and `assets/` when they need evidence material.
+- A hub MAY carry an optional `command-metadata.json` (the advisor-facing per-command projection: `ownerMode`, `aliases`, `hubKeywordProjection`). When present it is a **declared surface**: every command key must map to a registered mode's `command` field, and its aliases must stay in sync with the registry (feed it into the advisor drift guard, not a third free-floating vocabulary).
 - Shared directories may hold cross-packet vocabulary or synthesis, but never per-mode workflow logic and never their own `graph-metadata.json`.
 - A single shared workflow doctrine may live once under `shared/` and be **symlinked** into each packet that consumes it (sk-code symlinks its implement → debug → verify doctrine into both surfaces), so packets bundle the doctrine as read-only evidence without forking per-packet copies. The acting agent executes the process; the packet never carries it.
 

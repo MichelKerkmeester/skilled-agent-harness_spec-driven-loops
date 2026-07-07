@@ -116,7 +116,6 @@
       "command": "/deep:agent-improvement",
       "agent": "deep-improvement",
       "artifactRoot": "improvement/",
-      "mutating": true,
       "aliases": ["improve agent", "evaluate agent", "agent scoring", "score agent candidate", "promote or rollback agent change", "agent-improvement"],
       "advisorRouting": {
         "routingClass": "alias-fold",
