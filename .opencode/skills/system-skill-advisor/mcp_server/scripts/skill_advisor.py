@@ -2072,7 +2072,7 @@ COMMAND_BRIDGES = {
         "slash_markers": ["/create:manual-testing-playbook", "create:manual-testing-playbook"],
         "owning_skill": "create:manual-testing-playbook",
     },
-    "command-create-folder-readme": {
+    "command-create-readme": {
         "description": "Create folder README documentation using /create:readme.",
         "slash_markers": ["/create:readme", "create:readme"],
     },
