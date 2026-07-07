@@ -114,7 +114,7 @@ The private procedure-card selection table in Section 3 is part of this routing 
 
 ### Smart Router Pseudocode
 
-The authoritative routing logic: runtime discovery, scoped path guards, weighted intent scoring with top-2 ambiguity handling, a runtime routing key, and a multi-tier graceful fallback. See [skill_smart_router.md](../../sk-doc/assets/skill/skill_smart_router.md) for the full resilience pattern.
+The authoritative routing logic: runtime discovery, scoped path guards, weighted intent scoring with top-2 ambiguity handling, a runtime routing key, and a multi-tier graceful fallback. See [skill_smart_router.md](../../sk-doc/create-skill/assets/skill/skill_smart_router.md) for the full resilience pattern.
 
 ```python
 from pathlib import Path

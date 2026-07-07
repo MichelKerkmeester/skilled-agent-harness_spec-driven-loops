@@ -243,16 +243,16 @@ GRAPH_ADJACENCY_EDGE_TYPES = ("depends_on", "enhances", "siblings", "prerequisit
 GRAPH_ONLY_SKILL_IDS = {"system-skill-advisor"}
 GRAPHLESS_INLINE_SKILL_IDS = {
     "create:agent",
-    "create:testing-playbook",
+    "create:manual-testing-playbook",
     "memory:save",
 }
 
 SKILL_ALIAS_GROUPS = {
     "create:agent": {"command-create-agent", "/create:agent", "create:agent"},
-    "create:testing-playbook": {
-        "command-create-testing-playbook",
-        "/create:testing-playbook",
-        "create:testing-playbook",
+    "create:manual-testing-playbook": {
+        "command-create-manual-testing-playbook",
+        "/create:manual-testing-playbook",
+        "create:manual-testing-playbook",
     },
     "memory:save": {"command-memory-save", "/memory:save", "memory:save"},
     "deep-research": {
@@ -1796,10 +1796,10 @@ PHRASE_INTENT_BOOSTERS = {
     "generate documentation": [("sk-doc", 1.2)],
     "create new agent": [("create:agent", 1.6), ("sk-doc", 0.45)],
     "create agent": [("create:agent", 1.6), ("sk-doc", 0.45)],
-    "create a test playbook": [("create:testing-playbook", 1.8), ("command-create-testing-playbook", 1.2), ("sk-doc", 0.2)],
-    "create a testing playbook": [("create:testing-playbook", 1.8), ("command-create-testing-playbook", 1.2), ("sk-doc", 0.2)],
-    "create test playbook": [("create:testing-playbook", 1.8), ("command-create-testing-playbook", 1.2), ("sk-doc", 0.2)],
-    "create testing playbook": [("create:testing-playbook", 1.8), ("command-create-testing-playbook", 1.2), ("sk-doc", 0.2)],
+    "create a test playbook": [("create:manual-testing-playbook", 1.8), ("command-create-manual-testing-playbook", 1.2), ("sk-doc", 0.2)],
+    "create a testing playbook": [("create:manual-testing-playbook", 1.8), ("command-create-manual-testing-playbook", 1.2), ("sk-doc", 0.2)],
+    "create test playbook": [("create:manual-testing-playbook", 1.8), ("command-create-manual-testing-playbook", 1.2), ("sk-doc", 0.2)],
+    "create testing playbook": [("create:manual-testing-playbook", 1.8), ("command-create-manual-testing-playbook", 1.2), ("sk-doc", 0.2)],
     "save context": [("system-spec-kit", 1.6), ("memory:save", 1.0), ("command-memory-save", 0.8)],
     "save memory": [("system-spec-kit", 1.6), ("memory:save", 1.0), ("command-memory-save", 0.8)],
     "save this context": [("system-spec-kit", 1.6), ("memory:save", 1.0), ("command-memory-save", 0.8)],
@@ -2059,22 +2059,22 @@ COMMAND_BRIDGES = {
         "description": "Create a changelog entry using /create:changelog.",
         "slash_markers": ["/create:changelog", "create:changelog"],
     },
-    "command-create-sk-skill": {
-        "description": "Create or update an OpenCode skill using /create:sk-skill.",
-        "slash_markers": ["/create:sk-skill", "create:sk-skill"],
+    "command-create-skill": {
+        "description": "Create or update an OpenCode skill using /create:skill.",
+        "slash_markers": ["/create:skill", "create:skill"],
     },
     "command-create-feature-catalog": {
         "description": "Create or update a feature catalog using /create:feature-catalog.",
         "slash_markers": ["/create:feature-catalog", "create:feature-catalog"],
     },
-    "command-create-testing-playbook": {
-        "description": "Create or update a testing playbook using /create:testing-playbook.",
-        "slash_markers": ["/create:testing-playbook", "create:testing-playbook"],
-        "owning_skill": "create:testing-playbook",
+    "command-create-manual-testing-playbook": {
+        "description": "Create or update a testing playbook using /create:manual-testing-playbook.",
+        "slash_markers": ["/create:manual-testing-playbook", "create:manual-testing-playbook"],
+        "owning_skill": "create:manual-testing-playbook",
     },
-    "command-create-folder-readme": {
-        "description": "Create folder README documentation using /create:folder_readme.",
-        "slash_markers": ["/create:folder_readme", "create:folder_readme"],
+    "command-create-readme": {
+        "description": "Create folder README documentation using /create:readme.",
+        "slash_markers": ["/create:readme", "create:readme"],
     },
 }
 
@@ -2085,7 +2085,7 @@ COMMAND_BRIDGE_OWNER_NORMALIZATION = {
     # normalizes there rather than to the inline `memory:save` bridge record.
     "command-memory-save": "system-spec-kit",
     "command-create-agent": "create:agent",
-    "command-create-testing-playbook": "create:testing-playbook",
+    "command-create-manual-testing-playbook": "create:manual-testing-playbook",
     "command-spec-kit-resume": "system-spec-kit",
     "command-spec-kit-deep-research": "deep-research",
     "command-spec-kit-deep-review": "deep-review",
@@ -2260,13 +2260,13 @@ def get_skills(force_refresh: bool = False) -> Dict[str, Dict[str, Any]]:
         path=None,
         extra_variants={"/create:agent", "create new agent", "create agent"},
     )
-    skills["create:testing-playbook"] = _build_inline_record(
-        name="create:testing-playbook",
-        description="Create command bridge for /create:testing-playbook manual testing playbook scaffolding.",
+    skills["create:manual-testing-playbook"] = _build_inline_record(
+        name="create:manual-testing-playbook",
+        description="Create command bridge for /create:manual-testing-playbook manual testing playbook scaffolding.",
         kind="skill",
         source="bridge",
         path=None,
-        extra_variants={"/create:testing-playbook", "create testing playbook", "create test playbook"},
+        extra_variants={"/create:manual-testing-playbook", "create testing playbook", "create test playbook"},
     )
     skills["deep-improvement"] = _build_inline_record(
         name="deep-improvement",

@@ -18,6 +18,7 @@
     "system-deep-loop/032-goal-opencode-plugin/012-regression-test-backfill",
     "system-deep-loop/032-goal-opencode-plugin/013-design-fidelity-and-polish",
     "system-deep-loop/032-goal-opencode-plugin/014-goal-state-cleanup-and-archive",
+    "system-deep-loop/032-goal-opencode-plugin/009-diagnostic-review",
     "system-deep-loop/032-goal-opencode-plugin/015-packet-hygiene-and-narrative-integrity",
     "system-deep-loop/032-goal-opencode-plugin/016-plugin-correctness-fixes",
     "system-deep-loop/032-goal-opencode-plugin/017-hot-path-optimization",
@@ -231,16 +232,16 @@
     ],
     "causal_summary": "OpenCode has no goal/completion-condition system",
     "created_at": "2026-06-28T14:00:33Z",
-    "last_save_at": "2026-07-07T05:01:52.898Z",
+    "last_save_at": "2026-07-04T17:02:24.129Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:e9f9d5df1a9f5a8b6ac190e0e4b9fdb0eecc098c7c0827e3a3fe560ea2064f30",
+    "source_fingerprint": "sha256:8313333b0a98687a1b070b6814e1f5f0f79e46c906bb03f4764360fe751f56c0",
     "source_doc_hashes": {
-      "spec.md": "3fa84df983fd885837d388391f7802602a305ee6883f6552e82f13d40252da8f",
+      "spec.md": "0a567a866a0f73d08bba1011c4dd74f29f68d255150abbc0e2b0712c4770a775",
       "research/research.md": "e605621d84837840c64727d30b15da5a33fc3cef532236e825b8cae0d597a18c"
     },
     "last_active_child_id": null,

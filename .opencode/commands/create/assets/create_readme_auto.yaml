@@ -1,0 +1,1627 @@
+# ─────────────────────────────────────────────────────────────────
+# OPENCODE CREATE: UNIFIED DOCUMENTATION WORKFLOW (AUTO MODE)
+# ─────────────────────────────────────────────────────────────────
+# Mode: autonomous (no user approval gates)
+# Operations: README creation | Install Guide creation
+# Note: This workflow executes all steps sequentially with
+#       continuous self-validation. Pauses only if confidence < 40%.
+#
+# Note: Documentation files should include concise metadata (no Table of Contents, no <!-- ANCHOR --> comments).
+# Use YAML frontmatter (title, description, trigger_phrases) for consistency.
+# ─────────────────────────────────────────────────────────────────
+role: Expert Documentation Creator using sk-doc skill
+purpose: Create comprehensive README files and AI-first installation guides with proper structure and AI-optimization
+action: Generate scannable, well-organized documentation (README or Install Guide) with proper structure
+
+# ─────────────────────────────────────────────────────────────────
+# PREREQUISITE: @markdown AGENT VERIFICATION
+# ─────────────────────────────────────────────────────────────────
+# This workflow REQUIRES the @markdown agent for:
+#   • Template-first workflow (loads templates before creating)
+#   • DQI scoring (target: 70+ Acceptable)
+#   • sk-doc skill integration
+#
+# PHASE 0 in the command markdown verifies @markdown agent BEFORE
+# this YAML workflow loads. If you're executing this workflow,
+# @markdown verification has already passed.
+#
+# To invoke correctly:
+#   README:        @markdown /create:readme [path]
+#   Install Guide: @markdown /create:readme install [project-name]
+# ─────────────────────────────────────────────────────────────────
+
+# ─────────────────────────────────────────────────────────────────
+# OPERATION ROUTING
+# ─────────────────────────────────────────────────────────────────
+# This YAML handles both README and Install Guide operations.
+# The setup phase in folder_readme.md determines which operation
+# to execute based on the user's command arguments:
+#
+#   /create:readme [path]           → README operation
+#   /create:readme install [name]   → Install Guide operation
+#
+# Skip to the relevant operation section below:
+#   - OPERATION: README         — For folder/project README creation
+#   - OPERATION: INSTALL GUIDE  — For installation guide creation
+#
+# Common sections (confidence framework, operating mode, etc.)
+# apply to BOTH operations and are defined once above the
+# operation-specific sections.
+# ─────────────────────────────────────────────────────────────────
+
+operation_routing:
+  readme:
+    trigger: "/create:readme [path]"
+    description: "Create a README.md for a folder, project, component, feature, or skill"
+    jump_to: "OPERATION: README"
+  install_guide:
+    trigger: "/create:readme install [project-name]"
+    description: "Create an AI-first installation guide with multi-platform support"
+    jump_to: "OPERATION: INSTALL GUIDE"
+
+operating_mode:
+  workflow: sequential_6_step
+  workflow_compliance: MANDATORY
+  workflow_execution: autonomous
+  approvals: none
+  tracking: progressive_task_checklists
+  validation: continuous_self_validation
+  description: |
+    Executes the 6-step documentation workflow without step-by-step approval.
+    Pauses only if confidence drops below threshold or target path is ambiguous.
+
+development_philosophy:
+  principle: "Question-answering format maximizes AI usefulness"
+  approach: "Discover → Structure → Generate → Validate"
+  mandate: "Progressive disclosure - Quick Start first, details follow"
+  install_guide_addendum:
+    principle: "AI-First approach with copy-paste prompt for assisted installation"
+    approach: "Analyze → Discover → Define → Generate → Validate"
+    mandate: "Every install guide starts with AI-First section for immediate value"
+
+runtime_agent_path_resolution:
+  default: .opencode/agent
+  claude: .claude/agents
+
+# ─────────────────────────────────────────────────────────────────
+# CONFIDENCE & CLARIFICATION FRAMEWORK
+# ─────────────────────────────────────────────────────────────────
+confidence_framework:
+  thresholds:
+    high: { range: "80-100%", action: "Proceed with citable source" }
+    medium: { range: "40-79%", action: "Proceed with caution, document assumptions" }
+    low: { range: "0-39%", action: "STOP - Ask clarification with A/B/C options" }
+
+  scoring_weights:
+    scope_clarity: 0.30
+    content_completeness: 0.25
+    structure_adherence: 0.25
+    audience_fit: 0.20
+
+  clarification_format: |
+    "I need clarity (confidence: [NN%]). Which approach:
+    - A) [option with brief rationale]
+    - B) [option with brief rationale]
+    - C) [option with brief rationale]"
+
+  escalation:
+    timebox_minutes: 10
+    failed_attempts_threshold: 2
+    action: "Present options to user with current findings"
+
+# ─────────────────────────────────────────────────────────────────
+# REQUEST ANALYSIS FRAMEWORK
+# ─────────────────────────────────────────────────────────────────
+request_analysis_framework:
+  code_search_note: "Use Code Graph structural queries (code_graph_query) + Grep for concept discovery; verify hits with Read. memory_search is for spec docs/memory, not arbitrary code."
+  solution_flow:
+  - "Parse carefully: What is ACTUALLY requested?"
+  - "Gather Context: Scan directory structure"
+  - "Identify Approach: SIMPLEST solution that works"
+  - "Validate Choice: Follow patterns, maintainable"
+  - "Clarify If Needed: If <80% confidence, ask"
+  - "Scope Check: Solving ONLY what was asked?"
+  - "Execute: Implement with minimal complexity"
+
+  pre_change_validation:
+    readme:
+      items:
+      - "Target path confirmed?"
+      - "README type determined? (project/component/feature/skill)"
+      - "Key features identified?"
+      - "Structure template selected?"
+      - "Confidence >=80%? (if not: ask)"
+      stop_conditions: [ "Any item unchecked", "Path not found" ]
+      stop_action: "STOP and address before proceeding"
+    install_guide:
+      items:
+      - "Project name confirmed?"
+      - "Type prefix determined? (MCP/CLI/PLUGIN/SDK/SERVICE)"
+      - "Platforms identified?"
+      - "Prerequisites discovered?"
+      - "Confidence >=80%? (if not: ask)"
+      stop_conditions: [ "Any item unchecked", "Unknown project type" ]
+      stop_action: "STOP and address before proceeding"
+
+input_contract:
+  required:
+  - create_agent_verified
+  - operation
+  - execution_mode
+  optional:
+  - target_path
+  - project_name
+  - readme_type
+  - install_guide_type_prefix
+  - platforms
+  - spec_path
+
+# ─────────────────────────────────────────────────────────────────
+# CHECKPOINT OPTIONS
+# ─────────────────────────────────────────────────────────────────
+checkpoint_options:
+  standard:
+  - label: "Approve"
+    description: "Approve and continue to next step"
+  - label: "Review"
+    description: "Show more details"
+  - label: "Modify"
+    description: "Make changes before proceeding"
+
+# ─────────────────────────────────────────────────────────────────
+# WORKFLOW ENFORCEMENT (CRITICAL)
+# ─────────────────────────────────────────────────────────────────
+workflow_enforcement:
+  mode: strict
+  step_order: sequential_mandatory
+  skip_allowed: false
+
+  readme_phase_gate:
+    location: "Between Step 2 and Step 3"
+    purpose: "Verify content discovery complete before structure selection"
+    requirements:
+    - "Key features identified (3-5)"
+    - "Target audience determined"
+    - "Prerequisites/dependencies gathered"
+    action_if_failed: "STOP and return to incomplete step"
+
+  install_guide_phase_gate:
+    location: "Between Step 3 and Step 4"
+    purpose: "Verify requirements and steps defined before generation"
+    requirements:
+    - "Prerequisites identified and documented"
+    - "Installation steps defined for each platform"
+    - "Verification commands specified"
+    - "Troubleshooting scenarios captured"
+    action_if_failed: "STOP and return to incomplete step"
+
+  critical_steps:
+    readme:
+      step_2_discovery:
+        enforcement: "MUST gather project information before writing"
+        verification: "Self-validate features are identified and concrete"
+      step_4_generation:
+        enforcement: "MUST use template structure with section formatting, tables"
+        verification: "All sections written, no placeholder content"
+      step_5_validation:
+        enforcement: "MUST verify structure and completeness"
+        verification: "DQI score >= 70 before claiming complete"
+    install_guide:
+      step_2_requirements_discovery:
+        enforcement: "MUST identify all prerequisites and platform needs"
+        verification: "Cannot proceed without prerequisites list"
+      step_4_content_generation:
+        enforcement: "MUST include AI-First section and all 11 sections"
+        verification: "All sections populated, AI prompt complete"
+      step_5_validation:
+        enforcement: "MUST verify commands and validate completeness"
+        verification: "DQI score >= 70 (Acceptable) before claiming complete"
+
+gate_logic:
+  hard:
+    H0_write_verified:
+      description: "@markdown verification must have passed in Phase 0"
+      fail_action: "STOP and return to the command setup phase"
+    H1_operation_resolution:
+      description: "The workflow must resolve README vs Install Guide before generation"
+      fail_action: "STOP and correct the operation routing"
+    H2_required_inputs:
+      description: "Required operation-specific inputs must be present"
+      fail_action: "STOP and collect missing inputs"
+    H3_validation_gate:
+      description: "Generated documentation must pass the structural validation path"
+      fail_action: "Fix the generated output before continuing"
+  soft:
+    S1_discovered_context:
+      description: "Discovered project context may proceed with logged assumptions"
+      fail_action: "Proceed with rationale"
+
+# ─────────────────────────────────────────────────────────────────
+# CIRCUIT BREAKER
+# ─────────────────────────────────────────────────────────────────
+circuit_breaker:
+  consecutive_failure_threshold: 3
+  states:
+    closed: "Normal operation"
+    open: "3+ failures — pause and report to user"
+    half_open: "Test with single retry before resuming"
+  on_open:
+    action: "Report failures to user with summary"
+    suggest: "Review inputs and try again, or escalate"
+
+# ─────────────────────────────────────────────────────────────────
+# AUTONOMOUS EXECUTION
+# ─────────────────────────────────────────────────────────────────
+autonomous_execution:
+  principle: "Execute workflow steps sequentially without user approval gates"
+  decision_making: "Use confidence framework to self-assess at each step"
+  self_validation_approach:
+    continuous: "Self-validate at each step completion"
+    confidence_threshold: "Stop only if confidence < 40%"
+    error_handling: "Apply error_recovery strategies automatically"
+  uncertainty_handling: "If confidence < 40%, pause and report to user"
+  progress_tracking: "Log step completion with validation status"
+  completion_criteria:
+    readme: "All steps validated, DQI >= 70, README created"
+    install_guide: "All steps validated, DQI >= 70, install guide created"
+
+# ─────────────────────────────────────────────────────────────────
+# QUALITY STANDARDS
+# ─────────────────────────────────────────────────────────────────
+quality_standards:
+  dqi_minimum: 70
+  dqi_band: "Acceptable"
+  dqi_enforcement: FLEXIBLE
+  validation_pipeline:
+    readme:
+      stage_1: "Structural check (title, sections, separators)"
+      stage_2: "Content check (code blocks, tables, no placeholders)"
+    install_guide:
+      stage_1: "Verify all 11 sections present"
+      stage_2: "Validate AI-First prompt completeness"
+      stage_3: "Check command syntax and platform coverage"
+  template_adherence: required
+  core_standards_reference: ".opencode/skills/sk-doc/shared/references/core_standards.md"
+
+workflow_overview:
+  steps:
+  - id: step_1_request_analysis
+    purpose: "Normalize inputs and resolve the target operation"
+  - id: step_2_content_discovery
+    purpose: "Gather README or install-guide source context"
+  - id: step_3_structure_selection
+    purpose: "Choose the correct template and section contract"
+  - id: step_4_content_generation
+    purpose: "Generate the document content for the selected operation"
+  - id: step_5_validation
+    purpose: "Run structure and quality validation"
+  - id: step_6_save_context
+    purpose: "Persist spec context and emit completion status"
+
+# ════════════════════════════════════════════════════════════════
+# OPERATION: README
+# ════════════════════════════════════════════════════════════════
+
+# ─────────────────────────────────────────────────────────────────
+# README: USER INPUTS (From gate outputs)
+# ─────────────────────────────────────────────────────────────────
+readme_user_inputs:
+  target_path: |
+    [TARGET_PATH]
+    Where to create README.
+    FROM UNIFIED SETUP PHASE (Q0 or command argument).
+
+  readme_type: |
+    [README_TYPE]
+    Type: project | component | feature | skill
+    FROM UNIFIED SETUP PHASE (Q1).
+
+  path_verified: |
+    [PATH_VERIFIED]
+    Whether target path exists.
+    FROM UNIFIED SETUP PHASE (automatic verification).
+
+  existing_readme: |
+    [EXISTING_README]
+    Whether README.md already exists at path.
+    FROM UNIFIED SETUP PHASE (automatic detection).
+
+# ─────────────────────────────────────────────────────────────────
+# README: TYPES
+# ─────────────────────────────────────────────────────────────────
+readme_types:
+  project:
+    scope: "Entire project"
+    sections:
+    # Canonical sections from readme_template.md §13 (omits FAQ for project scope)
+    - "OVERVIEW"
+    - "QUICK START"
+    - "FEATURES"
+    - "STRUCTURE"
+    - "CONFIGURATION"
+    - "USAGE EXAMPLES"
+    - "TROUBLESHOOTING"
+    - "RELATED DOCUMENTS"
+    key_questions:
+    - "What is this?"
+    - "How do I install it?"
+    - "How do I use it?"
+    - "How do I contribute?"
+
+  component:
+    scope: "Module or package"
+    sections:
+    # Full canonical 9-section set from readme_template.md §13
+    - "OVERVIEW"
+    - "QUICK START"
+    - "FEATURES"
+    - "STRUCTURE"
+    - "CONFIGURATION"
+    - "USAGE EXAMPLES"
+    - "TROUBLESHOOTING"
+    - "FAQ"
+    - "RELATED DOCUMENTS"
+    key_questions:
+    - "What does this component do?"
+    - "How do I use the API?"
+    - "How do I integrate it?"
+
+  feature:
+    scope: "Specific feature"
+    sections:
+    # Canonical subset from readme_template.md §13 (omits STRUCTURE, FAQ, RELATED DOCUMENTS)
+    - "OVERVIEW"
+    - "QUICK START"
+    - "FEATURES"
+    - "CONFIGURATION"
+    - "USAGE EXAMPLES"
+    - "TROUBLESHOOTING"
+    key_questions:
+    - "What does this feature do?"
+    - "How do I enable it?"
+    - "How do I configure it?"
+
+  skill:
+    scope: "OpenCode skill"
+    sections:
+    # Full canonical 9-section set from readme_template.md §13
+    - "OVERVIEW"
+    - "QUICK START"
+    - "FEATURES"
+    - "STRUCTURE"
+    - "CONFIGURATION"
+    - "USAGE EXAMPLES"
+    - "TROUBLESHOOTING"
+    - "FAQ"
+    - "RELATED DOCUMENTS"
+    key_questions:
+    - "When does this skill activate?"
+    - "What commands are available?"
+    - "What MCP tools does it use?"
+
+# ─────────────────────────────────────────────────────────────────
+# README: AI OPTIMIZATION PRINCIPLES
+# ─────────────────────────────────────────────────────────────────
+readme_ai_optimization:
+  question_answering:
+    description: "Structure to answer common questions"
+    examples:
+    - question: "How do I install?"
+      maps_to: "Installation section"
+    - question: "How do I configure?"
+      maps_to: "Configuration section"
+
+  scannable_structure:
+    description: "Easy to scan and find information"
+    techniques:
+    - "Clear headings"
+    - "Code examples for every feature"
+    - "Tables for options"
+    - "ASCII diagrams for architecture"
+
+  progressive_disclosure:
+    description: "Quick Start first, details follow"
+    order:
+    - "Quick Start (get running fast)"
+    - "Details (deep configuration)"
+    - "Reference (complete API)"
+
+# ─────────────────────────────────────────────────────────────────
+# README: REFERENCE TEMPLATES
+# ─────────────────────────────────────────────────────────────────
+readme_reference_templates:
+  readme_template: .opencode/skills/sk-doc/create-readme/assets/readme/readme_template.md
+  speckit_readme: .opencode/skills/system-spec-kit/README.md
+  memory_readme: .opencode/skills/system-spec-kit/README.md
+  core_standards: .opencode/skills/sk-doc/shared/references/core_standards.md
+
+# ─────────────────────────────────────────────────────────────────
+# README: TEMPLATE EVOLUTION REFERENCES
+# ─────────────────────────────────────────────────────────────────
+# Points to readme_template.md sections for patterns not embedded here.
+# The canonical template is the single source of truth for all README structure.
+readme_template_references:
+  canonical_structure: "readme_template.md §13 (Complete Template)"
+  writing_patterns: "readme_template.md §6 (Writing Patterns)"
+  style_guide: "readme_template.md §7 (Style Reference)"
+  badge_shields: "readme_template.md §8 (Badge Shields)"
+  before_after_patterns: "readme_template.md §6.4 (Before/After)"
+  architecture_diagrams: "readme_template.md §6.5 (Architecture Diagrams)"
+
+# ─────────────────────────────────────────────────────────────────
+# README: WORKFLOW (6 STEPS WITH CHECKPOINTS)
+# ─────────────────────────────────────────────────────────────────
+readme_workflow:
+  step_1_request_analysis:
+    purpose: Determine scope and location (from UNIFIED SETUP PHASE)
+    activities:
+    - Confirm target_path from UNIFIED SETUP PHASE
+    - Confirm readme_type from UNIFIED SETUP PHASE
+    - Confirm path_verified from UNIFIED SETUP PHASE
+    - Confirm existing_readme handling from UNIFIED SETUP PHASE
+    - Validate readme_type is one of: project, component, feature, skill
+    type_reference:
+      project: "Entire project - overview, installation, configuration, usage"
+      component: "Module/package - purpose, API, usage examples, integration"
+      feature: "Specific feature - what it does, how it works, configuration"
+      skill: "OpenCode skill - triggers, commands, MCP tools, architecture"
+    outputs:
+    - target_confirmed
+    - type_confirmed
+    - scope_defined
+
+  step_2_content_discovery:
+    purpose: Gather project information based on type
+    activities:
+    - Scan for project metadata
+    - Identify main features and capabilities
+    - Find existing documentation to reference
+    - Check for configuration options
+    scan_targets:
+      project:
+      - "package.json / pyproject.toml for metadata"
+      - "Main entry points and configuration files"
+      - "Key features and capabilities"
+      - "Existing documentation"
+      component:
+      - "Component purpose and scope"
+      - "Exported APIs and interfaces"
+      - "Usage examples in codebase"
+      - "Dependencies and integration points"
+      feature_or_skill:
+      - "Feature scope and capabilities"
+      - "Commands, triggers, or APIs"
+      - "Configuration options"
+      - "Architecture if applicable"
+    questions:
+    - "What are the key aspects to document?"
+    - "Main purpose/value proposition?"
+    - "Key features (3-5)?"
+    - "Target audience?"
+    - "Prerequisites/dependencies?"
+    prompt_template: |
+      ┌────────────────────────────────────────────────────────────┐
+      │ "What are the key aspects to document?"                    │
+      │                                                            │
+      │ - Main purpose/value proposition?                          │
+      │ - Key features (3-5)?                                      │
+      │ - Target audience?                                         │
+      │ - Prerequisites/dependencies?                              │
+      └────────────────────────────────────────────────────────────┘
+    outputs:
+    - features_identified
+    - metadata_gathered
+    - structure_understood
+
+  step_3_structure_selection:
+    purpose: Choose appropriate template based on type
+    activities:
+    - Select section structure based on readme_type
+    - Adapt sections to specific project needs
+    - Plan content for each section
+    - Identify which optional sections to include
+    core_pattern:
+      all_types:
+      - "Title + Tagline (one-liner description)"
+      - "Numbered sections"
+      - "Tables for structured data"
+      - "Code blocks with language tags"
+      - "Horizontal rules between major sections"
+    emoji_guidance:
+      note: "Optional emoji prefix suggestions (not required in output)"
+      examples:
+        overview: "📖"
+        quick_start: "🚀"
+        structure: "📁"
+        features: "⚡"
+        configuration: "⚙️"
+        usage_examples: "💡"
+        troubleshooting: "🛠️"
+        faq: "❓"
+        related_documents: "📚"
+    outputs:
+    - template_selected
+    - sections_planned
+    - content_outline
+
+  step_4_content_generation:
+    purpose: Write comprehensive README following selected structure
+    activities:
+    - Write Title + Tagline (concise, clear value proposition)
+    - Write each section
+    - Create tables for structured data (features, commands, config)
+    - Add code blocks with language tags
+    - Create ASCII diagrams for architecture/flow visualization
+    - Add horizontal rules between major sections
+    - Write to target_path
+    quality_requirements:
+      title: "Clear, concise value proposition"
+      sections: "Section headers - numbered format recommended"
+      tables: "For structured data (features, commands, config)"
+      code_blocks: "Always specify language"
+      diagrams: "ASCII for architecture/flow"
+      separators: "Horizontal rules between major sections"
+    outputs:
+    - readme_file: created
+    - sections_count: number
+    - tables_count: number
+    - code_blocks_count: number
+
+  step_5_validation:
+    purpose: Verify README quality and completeness
+    activities:
+    - Structure check (title, sections, separators)
+    - Content check (code blocks, tables, no placeholders, valid links)
+    - Completeness check (Quick Start, Troubleshooting, FAQ for component/skill)
+    - DQI check if script available
+    validation_checklist:
+      structure:
+      - "Title + one-liner tagline present"
+      - "All sections numbered"
+      - "Horizontal rules between sections"
+      content:
+      - "All code blocks have language tags"
+      - "Tables are properly formatted"
+      - "No placeholder text remaining"
+      - "Links are valid"
+      completeness:
+      - "Quick Start section present"
+      - "Troubleshooting section present"
+      - "FAQ section present (for component/skill)"
+    quality_gates:
+      dqi_minimum: 70
+      dqi_band: "Acceptable"
+      enforcement: "Flexible"
+    outputs:
+    - validation_passed: boolean
+    - checklist_results: object
+    - dqi_score: number (optional)
+
+  step_5b_quality_validation:
+    purpose: Quality-validate the created README artifact
+    agent_availability:
+      agent_file: "[runtime_agent_path]/write.md"
+      template_contract:
+        source: "sk-doc"
+        validators: "validate_document.py + extract_structure.py"
+        precedence: "Template compliance and DQI quality checks are mandatory before completion."
+      rule_reference: "AGENTS.md §3 — sk-doc template alignment and quality validation"
+      condition: "ONLY when this step is actively executing"
+      blocking: false
+      not_for: "reviewing this workflow prompt or any pre-step activity"
+    activities:
+    - "Run @markdown quality validation to score the created README file"
+    - "Validation checks: structure completeness, content quality, DQI standards"
+    - "Score against 100-point rubric (Accuracy 40%, Completeness 35%, Consistency 25%)"
+    on_low_score:
+      threshold: 70
+      action: "Log warnings and suggest improvements; do not block workflow"
+    outputs:
+    - quality_score: number
+    - validation_findings: list
+    - improvement_suggestions: list (if score < 70)
+
+  step_6_save_context:
+    purpose: Preserve workflow decisions and context
+    activities:
+    - Invoke system-spec-kit skill
+    - Document README creation decisions
+    - Record structure choices and rationale
+    - Save validation results
+    - Create memory file with timestamp
+    - Index memory file for immediate search availability
+    tool_invocation:
+      command: 'Read(".opencode/skills/system-spec-kit/SKILL.md")'
+      note: "Activate context saving via memory skill"
+    memory_content:
+      include:
+      - README type and target path
+      - Structure decisions made
+      - Content sources and references
+      - Validation results
+      - Any challenges or decisions made
+    outputs:
+    - implementation_summary: "[SPEC_FOLDER]/implementation-summary.md"
+    validation: context_saved
+
+    # ── SEMANTIC MEMORY INTEGRATION ─────────────────────────────────
+    post_save_indexing:
+      purpose: "Index the canonical spec document immediately for search availability"
+      mcp_tool: memory_save
+      invocation: |
+        memory_save({
+          filePath: "[SPEC_FOLDER]/implementation-summary.md"
+        })
+      critical_note: "Call semantic memory MCP DIRECTLY - NEVER through Code Mode. The save target is a canonical spec document; standalone memory/*.md files are retired and the runtime rejects them."
+      when: "Immediately after implementation-summary.md is written to disk"
+
+    anchor_requirements:
+      enforcement: MANDATORY
+      minimum_anchors: 2
+      pattern: "[context-type]-[keywords]-[spec-number]"
+      format: "<!-- ANCHOR:ID --> content <!-- /ANCHOR:ID -->"
+      case: "UPPERCASE recommended for visibility"
+      required_sections:
+      - context_type: "general"
+        section: "Session summary with README creation outcomes"
+        example_id: "GENERAL-SESSION-SUMMARY-{spec#}"
+        example: |
+          <!-- ANCHOR:GENERAL-SESSION-SUMMARY-{spec#} -->
+          ## Session Summary
+          Created [type] README at [path]...
+          <!-- /ANCHOR:GENERAL-SESSION-SUMMARY-{spec#} -->
+      - context_type: "decision"
+        section: "Key decisions made during README creation"
+        example_id: "DECISION-README-STRUCTURE-{spec#}"
+        example: |
+          <!-- ANCHOR:DECISION-README-STRUCTURE-{spec#} -->
+          ## Key Decisions
+          - Chose structure X because...
+          <!-- /ANCHOR:DECISION-README-STRUCTURE-{spec#} -->
+      optional_sections:
+      - context_type: "implementation"
+        section: "Structure and sections chosen"
+        example_id: "IMPLEMENTATION-STRUCTURE-{spec#}"
+      - context_type: "research"
+        section: "Content sources and references"
+        example_id: "RESEARCH-SOURCES-{spec#}"
+      benefit: "93% token savings on anchor-based retrieval"
+      reference: "See /memory:save Step 3 for full anchor documentation"
+
+    importance_tier:
+      assign: normal
+      rationale: "README creation is standard documentation task"
+      promotion_note: "Use memory_update() to promote to 'important' if README becomes a key reference"
+      tier_reference: |
+        constitutional: Core project rules (auto-surface always)
+        critical: Foundational decisions (high priority in search)
+        important: Significant work like implementations
+        normal: Standard context like documentation tasks (this workflow)
+        temporary: Short-term notes
+        deprecated: Outdated but retained
+
+# ─────────────────────────────────────────────────────────────────
+# README: TEMPLATE REFERENCES
+# ─────────────────────────────────────────────────────────────────
+readme_templates:
+  # ── CANONICAL TEMPLATE REFERENCES ──────────────────────────────
+  # Full README scaffolds are NOT embedded here to avoid dual sources of truth.
+  # All types use the canonical 9-section template as their base.
+  project_readme: |
+    # Reference: See readme_template.md §13 (Complete Template) for the canonical 9-section scaffold.
+    # Adapt sections per readme_types.project.sections above.
+    # Template path: .opencode/skills/sk-doc/create-readme/assets/readme/readme_template.md
+  component_readme: |
+    # Reference: See readme_template.md §13 (Complete Template) for the canonical 9-section scaffold.
+    # Adapt sections per readme_types.component.sections above.
+    # Template path: .opencode/skills/sk-doc/create-readme/assets/readme/readme_template.md
+  feature_readme: |
+    # Reference: See readme_template.md §13 (Complete Template) for the canonical 9-section scaffold.
+    # Adapt sections per readme_types.feature.sections above (subset of 9 sections).
+    # Template path: .opencode/skills/sk-doc/create-readme/assets/readme/readme_template.md
+  skill_readme: |
+    # Reference: See readme_template.md §13 (Complete Template) for the canonical 9-section scaffold.
+    # Adapt sections per readme_types.skill.sections above.
+    # Template path: .opencode/skills/sk-doc/create-readme/assets/readme/readme_template.md
+
+# ─────────────────────────────────────────────────────────────────
+# README: COMPLETION REPORT TEMPLATE
+# ─────────────────────────────────────────────────────────────────
+readme_completion_report:
+  template: |
+    ✅ README Created
+
+    Location: [path]
+    Type: [project|component|feature|skill]
+
+    Structure:
+    - Title + Tagline: ✅
+    - Sections: [N] numbered
+    - Tables: [N]
+    - Code blocks: [N]
+    - ASCII diagrams: [N]
+
+    Quality:
+    - All sections linked: ✅
+    - No placeholders: ✅
+    - Horizontal rules: ✅
+
+    Next Steps:
+    - Review for accuracy
+    - Add screenshots if applicable
+    - Test all code examples
+
+    STATUS=OK PATH=[readme-path]
+
+# ════════════════════════════════════════════════════════════════
+# OPERATION: INSTALL GUIDE
+# ════════════════════════════════════════════════════════════════
+
+# ─────────────────────────────────────────────────────────────────
+# INSTALL GUIDE: USER INPUTS (From gate outputs)
+# ─────────────────────────────────────────────────────────────────
+install_guide_user_inputs:
+  project_name: |
+    [PROJECT_NAME]
+    Name of project to document.
+    FROM UNIFIED SETUP PHASE (Q0 or command argument).
+
+  platforms: |
+    [PLATFORMS]
+    Target platforms: macos | linux | windows | docker | all
+    FROM UNIFIED SETUP PHASE (Q1).
+
+  output_path: |
+    [OUTPUT_PATH]
+    Where to create the installation guide.
+    FROM UNIFIED SETUP PHASE (Q2 or default).
+
+  existing_file: |
+    [EXISTING_FILE]
+    Whether an installation guide already exists.
+    FROM UNIFIED SETUP PHASE (automatic detection).
+
+# ─────────────────────────────────────────────────────────────────
+# INSTALL GUIDE: TYPE PREFIXES
+# ─────────────────────────────────────────────────────────────────
+type_prefixes:
+  mcp:
+    prefix: "MCP -"
+    use_case: "MCP server installations"
+    example: "MCP - Semantic Search.md"
+  cli:
+    prefix: "CLI -"
+    use_case: "Command-line tool installations"
+    example: "CLI - Chrome DevTools Debugging.md"
+  plugin:
+    prefix: "PLUGIN -"
+    use_case: "Plugin/extension installations"
+    example: "PLUGIN - Opencode Skills.md"
+  sdk:
+    prefix: "SDK -"
+    use_case: "SDK/library installations"
+    example: "SDK - Anthropic Python.md"
+  service:
+    prefix: "SERVICE -"
+    use_case: "Service/daemon installations"
+    example: "SERVICE - Qdrant Vector DB.md"
+
+# ─────────────────────────────────────────────────────────────────
+# INSTALL GUIDE: PLATFORM CONFIGURATIONS
+# ─────────────────────────────────────────────────────────────────
+install_guide_platforms:
+  macos:
+    name: "macOS"
+    package_manager: "brew"
+    shell: "bash/zsh"
+    paths:
+      config: "~/.config/"
+      bin: "/usr/local/bin/"
+
+  linux:
+    name: "Linux (Ubuntu/Debian)"
+    package_manager: "apt"
+    shell: "bash"
+    paths:
+      config: "~/.config/"
+      bin: "/usr/local/bin/"
+
+  windows:
+    name: "Windows"
+    package_manager: "winget/choco"
+    shell: "powershell"
+    paths:
+      config: "%APPDATA%"
+      bin: "C:\\Program Files\\"
+
+  docker:
+    name: "Docker"
+    package_manager: "N/A"
+    shell: "sh"
+    paths:
+      config: "/app/config/"
+      bin: "/app/"
+
+# ─────────────────────────────────────────────────────────────────
+# INSTALL GUIDE: REQUIRED SECTIONS (11 sections: 0-10, with 7-8 optional)
+# ─────────────────────────────────────────────────────────────────
+install_guide_required_sections:
+- number: 0
+  name: "AI-FIRST INSTALL GUIDE"
+  purpose: "Copy-paste prompt for AI-assisted install"
+  required: true
+- number: 1
+  name: "OVERVIEW"
+  purpose: "What it is, why use it"
+  required: true
+- number: 2
+  name: "PREREQUISITES"
+  purpose: "What's needed before install"
+  required: true
+- number: 3
+  name: "INSTALLATION"
+  purpose: "Step-by-step commands"
+  required: true
+- number: 4
+  name: "CONFIGURATION"
+  purpose: "Platform-specific config"
+  required: true
+- number: 5
+  name: "VERIFICATION"
+  purpose: "How to test it works"
+  required: true
+- number: 6
+  name: "USAGE"
+  purpose: "How to use it"
+  required: true
+- number: 7
+  name: "FEATURES"
+  purpose: "Detailed feature docs"
+  required: false # Optional
+- number: 8
+  name: "EXAMPLES"
+  purpose: "Practical use cases"
+  required: false # Optional
+- number: 9
+  name: "TROUBLESHOOTING"
+  purpose: "Common problems + fixes"
+  required: true
+- number: 10
+  name: "RESOURCES"
+  purpose: "Links, references"
+  required: true
+
+# ─────────────────────────────────────────────────────────────────
+# INSTALL GUIDE: REFERENCE TEMPLATES
+# ─────────────────────────────────────────────────────────────────
+install_guide_reference_templates:
+  install_guide_template: .opencode/skills/sk-doc/create-readme/assets/readme/install_guide_template.md
+  mcp_guide: .opencode/install_guides/MCP - Code Mode.md
+  cli_guide: .opencode/install_guides/MCP - Chrome Dev Tools.md
+  core_standards: .opencode/skills/sk-doc/shared/references/core_standards.md
+
+# ─────────────────────────────────────────────────────────────────
+# INSTALL GUIDE: WORKFLOW (6 STEPS WITH CHECKPOINTS)
+# ─────────────────────────────────────────────────────────────────
+install_guide_workflow:
+  step_1_request_analysis:
+    purpose: Determine project, type prefix, and platforms (from UNIFIED SETUP PHASE)
+    activities:
+    - Confirm project_name from UNIFIED SETUP PHASE
+    - Confirm platforms from UNIFIED SETUP PHASE
+    - Confirm output_path from UNIFIED SETUP PHASE
+    - Determine appropriate type prefix (MCP/CLI/PLUGIN/SDK/SERVICE)
+    - Confirm existing_file handling from UNIFIED SETUP PHASE
+    type_reference:
+      mcp: "MCP - [name].md - Model Context Protocol servers"
+      cli: "CLI - [name].md - Command-line interface tools"
+      plugin: "PLUGIN - [name].md - Extensions, plugins, add-ons"
+      sdk: "SDK - [name].md - Software development kits, libraries"
+      service: "SERVICE - [name].md - Background services, daemons"
+    outputs:
+    - project_confirmed
+    - type_prefix_confirmed
+    - platforms_confirmed
+    - output_path_confirmed
+
+  step_2_requirements_discovery:
+    purpose: Identify all prerequisites
+    activities:
+    - Scan package.json/pyproject.toml for dependencies
+    - Identify runtime requirements (Python 3.10+, Node.js 18+, etc.)
+    - List system requirements (package managers, storage, memory)
+    - Document configuration needs (API keys, environment variables)
+    - Check platform-specific needs (Homebrew, apt, WSL2, Docker)
+    scan_targets:
+    - "package.json / pyproject.toml for metadata"
+    - "Runtime versions and dependencies"
+    - "External services or APIs needed"
+    - "Authentication/API keys required"
+    - "Other tools that must be installed first"
+    questions:
+    - "What are the runtime requirements?"
+    - "What external services or APIs needed?"
+    - "Authentication/API keys required?"
+    - "Other tools that must be installed first?"
+    prompt_template: |
+      ┌────────────────────────────────────────────────────────────┐
+      │ "What are the prerequisites for this installation?"        │
+      │                                                            │
+      │ - Runtime version requirements?                            │
+      │ - External services or APIs needed?                        │
+      │ - Authentication/API keys required?                        │
+      │ - Other tools that must be installed first?                 │
+      └────────────────────────────────────────────────────────────┘
+    outputs:
+    - requirements_list
+    - platform_specific_needs
+    - configuration_requirements
+
+  step_3_steps_definition:
+    purpose: Define installation steps for each platform
+    activities:
+    - Define prerequisite verification steps
+    - Define download/clone step
+    - Define virtual environment setup (if applicable)
+    - Define dependency installation
+    - Define configuration steps (.env, config files)
+    - Define AI platform configuration (Claude Code, OpenCode, etc.)
+    - Define verification steps
+    standard_flow:
+    - "Verify prerequisites"
+    - "Clone/download project"
+    - "Create virtual environment (if applicable)"
+    - "Install dependencies"
+    - "Configure environment (.env, config files)"
+    - "Configure for AI platform (Claude Code, OpenCode, etc.)"
+    - "Verify installation"
+    step_definition_format:
+      step:
+        name: "[Step name]"
+        description: "[What this step does]"
+        commands:
+          macos: "[command]"
+          linux: "[command]"
+          windows: "[command]"
+        verification: "[How to verify success]"
+        common_errors:
+        - error: "[Error message]"
+          fix: "[How to fix]"
+    outputs:
+    - steps_list
+    - platform_commands
+    - verification_commands
+
+  step_4_content_generation:
+    purpose: Write comprehensive AI-First installation guide
+    activities:
+    - Write AI-First prompt section (copy-paste prompt)
+    - Write title and overview with architecture diagram
+    - Write all 11 sections (9 required + 2 optional)
+    - Add platform-specific configuration (Claude Code, OpenCode)
+    - Create Quick Reference at end
+    - Write to output_path
+    quality_requirements:
+      ai_first_section: "Copy-paste prompt with placeholders, 'What AI will do' list"
+      sections: "All 11 sections numbered"
+      heading_style: "Use plain text section headings; emojis optional (never required)"
+      tables: "For prerequisites, features, comparisons"
+      code_blocks: "Always specify language"
+      diagrams: "ASCII for architecture/flow"
+      separators: "Horizontal rules between major sections"
+    outputs:
+    - install_guide_file: created
+    - sections_count: 11
+    - ai_first_prompt: complete
+
+  step_5_validation:
+    purpose: Verify guide quality and completeness
+    activities:
+    - AI-First section check (prompt complete, placeholders marked, AI actions listed)
+    - Structure check (all 11 sections, ASCII diagram, comparison table)
+    - Command verification (syntax correct, versions accurate, platform-specific)
+    - Completeness check (all platforms covered, 5+ troubleshooting issues, practical examples)
+    - DQI check if script available
+    validation_checklist:
+      ai_first:
+      - "Copy-paste prompt is complete"
+      - "All placeholders are marked with [brackets]"
+      - "'What the AI will do' lists 5-8 specific actions"
+      - "Expected setup time is realistic"
+      structure:
+      - "All 11 sections present (0-10)"
+      - "ASCII diagram in Overview"
+      - "Comparison table included"
+      commands:
+      - "All commands are syntactically correct"
+      - "Version checks are accurate"
+      - "Platform-specific commands provided"
+      completeness:
+      - "All platforms covered"
+      - "Troubleshooting covers 5+ common issues"
+      - "Examples are practical"
+    quality_gates:
+      dqi_minimum: 70
+      dqi_band: "Acceptable"
+      enforcement: "Flexible"
+    outputs:
+    - validation_passed: boolean
+    - checklist_results: object
+    - dqi_score: number (optional)
+
+  step_5b_quality_validation:
+    purpose: Quality-validate the created install guide artifact
+    agent_availability:
+      agent_file: "[runtime_agent_path]/write.md"
+      template_contract:
+        source: "sk-doc"
+        validators: "validate_document.py + extract_structure.py"
+        precedence: "Template compliance and DQI quality checks are mandatory before completion."
+      rule_reference: "AGENTS.md §3 — sk-doc template alignment and quality validation"
+      condition: "ONLY when this step is actively executing"
+      blocking: false
+      not_for: "reviewing this workflow prompt or any pre-step activity"
+    activities:
+    - "Run @markdown quality validation to score the created install guide"
+    - "Validation checks: section completeness, prerequisite accuracy, platform coverage"
+    - "Score against 100-point rubric (Accuracy 40%, Completeness 35%, Consistency 25%)"
+    on_low_score:
+      threshold: 70
+      action: "Log warnings and suggest improvements; do not block workflow"
+    outputs:
+    - quality_score: number
+    - validation_findings: list
+    - improvement_suggestions: list (if score < 70)
+
+  step_6_save_context:
+    purpose: Preserve workflow decisions and context
+    activities:
+    - Invoke system-spec-kit skill
+    - Document installation guide creation decisions
+    - Record requirements and platform choices
+    - Save validation results
+    - Create memory file with timestamp
+    - Index memory file for immediate search availability
+    tool_invocation:
+      command: 'Read(".opencode/skills/system-spec-kit/SKILL.md")'
+      note: "Activate context saving via memory skill"
+    memory_content:
+      include:
+      - Project name and type prefix
+      - Platform configurations documented
+      - Prerequisites discovered
+      - Installation steps defined
+      - Troubleshooting scenarios captured
+      - Any challenges or decisions made
+    outputs:
+    - implementation_summary: "[SPEC_FOLDER]/implementation-summary.md"
+    validation: context_saved
+
+    # ── SEMANTIC MEMORY INTEGRATION ─────────────────────────────────
+    post_save_indexing:
+      purpose: "Index the canonical spec document immediately for search availability"
+      mcp_tool: memory_save
+      invocation: |
+        memory_save({
+          filePath: "[SPEC_FOLDER]/implementation-summary.md"
+        })
+      critical_note: "Call semantic memory MCP DIRECTLY - NEVER through Code Mode. The save target is a canonical spec document; standalone memory/*.md files are retired and the runtime rejects them."
+      when: "Immediately after implementation-summary.md is written to disk"
+
+    anchor_requirements:
+      enforcement: MANDATORY
+      minimum_anchors: 2
+      # Note: Anchor IDs support prefix matching — 'summary' matches 'summary-049', etc.
+      pattern: "[context-type]-[keywords]-[spec-number]"
+      format: "<!-- ANCHOR:ID --> content <!-- /ANCHOR:ID -->"
+      case: "UPPERCASE recommended for visibility"
+      required_sections:
+      - context_type: "general"
+        section: "Session summary with installation guide outcomes"
+        example_id: "GENERAL-SESSION-SUMMARY-{spec#}"
+        example: |
+          <!-- ANCHOR:GENERAL-SESSION-SUMMARY-{spec#} -->
+          ## Session Summary
+          Created [type] guide for [project]...
+          <!-- /ANCHOR:GENERAL-SESSION-SUMMARY-{spec#} -->
+      - context_type: "decision"
+        section: "Key decisions made during guide creation"
+        example_id: "DECISION-PLATFORM-SUPPORT-{spec#}"
+        example: |
+          <!-- ANCHOR:DECISION-PLATFORM-SUPPORT-{spec#} -->
+          ## Key Decisions
+          - Platform support choices...
+          <!-- /ANCHOR:DECISION-PLATFORM-SUPPORT-{spec#} -->
+      optional_sections:
+      - context_type: "research"
+        section: "Prerequisites discovered"
+        example_id: "RESEARCH-PREREQUISITES-{spec#}"
+      - context_type: "implementation"
+        section: "Common issues documented"
+        example_id: "IMPLEMENTATION-TROUBLESHOOTING-{spec#}"
+      benefit: "93% token savings on anchor-based retrieval"
+      reference: "See /memory:save Step 3 for full anchor documentation"
+
+    importance_tier:
+      assign: important
+      rationale: "Installation guides capture valuable setup knowledge for future reference"
+      promotion_note: "Use memory_update() to promote to 'critical' if this becomes a frequently referenced guide"
+      tier_reference: |
+        constitutional: Core project rules (auto-surface always)
+        critical: Foundational decisions (high priority in search)
+        important: Significant work like installation guides (this workflow)
+        normal: Standard context (default)
+        temporary: Short-term notes
+        deprecated: Outdated but retained
+
+# ─────────────────────────────────────────────────────────────────
+# INSTALL GUIDE: AI-FIRST TEMPLATE
+# ─────────────────────────────────────────────────────────────────
+install_guide_templates:
+  ai_first_section: |
+    ## AI-FIRST INSTALL GUIDE
+
+    **Copy and paste this prompt to your AI assistant to get installation help:**
+
+    ```
+    I want to install [project name] for [primary purpose]
+
+    Please help me:
+    1. Check if I have [runtime] installed
+    2. Verify I have [prerequisite tools] available
+    3. [Clone/download] the [project] to [recommended location]
+    4. [Create virtual environment and] install dependencies
+    5. Configure environment variables for [required services]
+    6. Configure the [tool type] for my environment (I'm using: [Claude Code / OpenCode / VS Code Copilot])
+    7. Verify the installation is working with a test [action]
+
+    My [project-specific setting] is: [placeholder for user to fill]
+    My [other setting] is: [placeholder]
+
+    Guide me through each step with the exact commands I need to run.
+    ```
+
+    **What the AI will do:**
+    - Verify [runtime] is available on your system
+    - [List 5-8 specific actions the AI will perform]
+    - Test the installation with [verification method]
+
+    **Expected setup time:** [X-Y] minutes
+
+  full_guide_template: |
+    # [Project Name] Installation Guide
+
+    A comprehensive guide to installing, configuring, and using [project description].
+
+    ---
+
+    ## AI-FIRST INSTALL GUIDE
+
+    [AI-First section from template above]
+
+    ---
+
+    ## 1. OVERVIEW
+
+    [2-3 paragraphs explaining what the project is and why to use it]
+
+    ### Key Features
+
+    - **[Feature 1]**: [Description]
+    - **[Feature 2]**: [Description]
+    - **[Feature 3]**: [Description]
+
+    ### Architecture Overview
+
+    ```
+    [ASCII diagram showing how components connect]
+    ```
+
+    ### How It Compares
+
+    | Feature | [This Project] | [Alternative 1] | [Alternative 2] |
+    |---------|---------------|-----------------|-----------------|
+    | **[Aspect]** | [Value] | [Value] | [Value] |
+
+    ---
+
+    ## 2. PREREQUISITES
+
+    Before installing, ensure you have:
+
+    ### Required
+
+    - **[Runtime/Tool 1]**
+      ```bash
+      [version check command]
+      # Should show [expected version]
+      ```
+
+    - **[Runtime/Tool 2]**
+      ```bash
+      [version check command]
+      ```
+
+    - **[API/Service Requirements]**
+      - [Requirement with link to get it]
+
+    ### Optional but Recommended
+
+    - **[Optional tool]**
+      ```bash
+      [install command]
+      ```
+
+    ---
+
+    ## 3. INSTALLATION
+
+    ### Step 1: [First Step Name]
+
+    [Description of what this step does]
+
+    ```bash
+    [commands]
+    ```
+
+    ### Step 2: [Second Step Name]
+
+    ```bash
+    [commands]
+    ```
+
+    [Continue for all steps...]
+
+    ### Installation Complete
+
+    Files created:
+    - `[file1]` - [purpose]
+    - `[file2]` - [purpose]
+
+    ---
+
+    ## 4. CONFIGURATION
+
+    ### Option A: Configure for Claude Code CLI
+
+    Add to `.mcp.json` in your project root:
+
+    ```json
+    {
+      "mcpServers": {
+        "[server-name]": {
+          "command": "[command]",
+          "args": ["[args]"],
+          "env": {
+            "[ENV_VAR]": "[value]"
+          }
+        }
+      }
+    }
+    ```
+
+    ### Option B: Configure for OpenCode
+
+    Add to `opencode.json` in your project root:
+
+    ```json
+    {
+      "mcp": {
+        "[server-name]": {
+          "type": "local",
+          "command": ["[command]", "[args]"],
+          "env": {
+            "[ENV_VAR]": "[value]"
+          }
+        }
+      }
+    }
+    ```
+
+    [Add more platform options as needed...]
+
+    ---
+
+    ## 5. VERIFICATION
+
+    ### Check 1: [First Verification]
+
+    ```bash
+    [verification command]
+
+    # Expected output:
+    [expected output]
+    ```
+
+    ### Check 2: [Second Verification]
+
+    [Continue for all checks...]
+
+    ---
+
+    ## 6. USAGE
+
+    ### Basic Usage Pattern
+
+    [Explain how to use the tool with examples]
+
+    ### Workflow Integration
+
+    [Show how it fits into a typical workflow]
+
+    ---
+
+    ## 7. FEATURES
+
+    ### 7.1 [Feature Name]
+
+    **Purpose**: [What it does]
+
+    **Parameters**:
+    - `[param]` (type, required/optional) - [description]
+
+    **Example**:
+    ```[language]
+    [example code]
+    ```
+
+    [Continue for all features...]
+
+    ---
+
+    ## 8. EXAMPLES
+
+    ### Example 1: [Use Case Name]
+
+    **Scenario**: [What the user wants to accomplish]
+
+    ```[language]
+    [example code/commands]
+    ```
+
+    [Continue for 3-5 examples...]
+
+    ---
+
+    ## 9. TROUBLESHOOTING
+
+    ### [Problem Category 1]
+
+    **Problem**: `[Error message or symptom]`
+
+    **Cause**: [Why it happens]
+
+    **Solutions**:
+    1. [First solution]
+       ```bash
+       [fix command]
+       ```
+
+    2. [Second solution if first doesn't work]
+
+    [Continue for common issues...]
+
+    ---
+
+    ## 10. RESOURCES
+
+    ### Documentation
+
+    - **[Resource 1]**: [URL]
+    - **[Resource 2]**: [URL]
+
+    ### Related Tools
+
+    | Tool | Package | Purpose |
+    |------|---------|---------|
+    | **[Name]** | `[package]` | [purpose] |
+
+    ### Helper Commands
+
+    ```bash
+    # [Purpose 1]
+    [command 1]
+
+    # [Purpose 2]
+    [command 2]
+    ```
+
+    ---
+
+    ## Quick Reference
+
+    ### Essential Commands
+
+    ```bash
+    # Install
+    [main install commands]
+
+    # Verify
+    [verification commands]
+
+    # Update
+    [update commands]
+    ```
+
+    ### Configuration Paths
+
+    | Client | Configuration File |
+    |--------|-------------------|
+    | **Claude Code** | `.mcp.json` |
+    | **OpenCode** | `opencode.json` |
+
+    ---
+
+    **Installation Complete!**
+
+    [Brief closing statement with next steps]
+
+# ─────────────────────────────────────────────────────────────────
+# INSTALL GUIDE: COMPLETION REPORT TEMPLATE
+# ─────────────────────────────────────────────────────────────────
+install_guide_completion_report:
+  template: |
+    ✅ Installation Guide Created
+
+    Project: [name]
+    Location: [path]
+    Type: [MCP/CLI/PLUGIN/SDK/SERVICE]
+    Platforms: [list]
+
+    Content:
+    - AI-First Prompt: ✅
+    - Sections: 11/11 (9 required + 2 optional)
+    - Prerequisites: [N items]
+    - Installation Steps: [N steps]
+    - Configuration Options: [N platforms]
+    - Troubleshooting: [N issues]
+
+    Quality:
+    - Copy-paste prompt complete: ✅
+    - ASCII diagram included: ✅
+    - All platforms covered: ✅
+    - Quick Reference included: ✅
+
+    Next Steps:
+    - Test installation on each platform
+    - Verify all commands work
+    - Add screenshots if helpful
+
+    STATUS=OK PATH=[output_path]
+
+# ════════════════════════════════════════════════════════════════
+# SHARED: ERROR RECOVERY
+# ════════════════════════════════════════════════════════════════
+
+# ─────────────────────────────────────────────────────────────────
+# ERROR RECOVERY (Combined — README + Install Guide)
+# ─────────────────────────────────────────────────────────────────
+error_recovery:
+  # ── README-specific recovery ──────────────────────────────────
+  template_not_found:
+    operation: readme
+    action: "Check template paths, verify sk-doc skill exists"
+    fallback: "Use inline minimal template structure"
+  path_not_exist:
+    operation: readme
+    action: "Create directory or choose different path"
+    options: [ "Create directory", "Choose different path", "Cancel" ]
+  readme_exists:
+    operation: readme
+    action: "Offer update, backup, or new location"
+    options: [ "Overwrite", "Backup and overwrite", "Merge", "Cancel" ]
+  no_project_info:
+    operation: readme
+    action: "Prompt for manual input"
+    questions: [ "Project name?", "Key features?", "Target audience?" ]
+  user_rejects_approach:
+    operation: readme
+    action: "Return to planning, gather alternative requirements"
+    restart_from: "step_2_content_discovery"
+
+  # ── Install-guide-specific recovery ───────────────────────────
+  unknown_project_type:
+    operation: install_guide
+    action: "Ask for project documentation/repo"
+    options: [ "Provide documentation", "Describe project", "Cancel" ]
+  missing_platform_info:
+    operation: install_guide
+    action: "Default to common platforms (macos, linux)"
+    options: [ "Use defaults", "Specify platforms", "All platforms" ]
+  unverifiable_commands:
+    operation: install_guide
+    action: "Add [unverified] notes"
+    options: [ "Mark as unverified", "Test manually", "Skip" ]
+  no_package_file:
+    operation: install_guide
+    action: "Ask user for dependencies manually"
+    questions: [ "What runtime is needed?", "What dependencies?", "What APIs?" ]
+
+  # ── Shared recovery ──────────────────────────────────────────
+  validation_failure:
+    operation: both
+    action: "Show specific validation errors, guide fixes"
+    retry: true
+  file_write_failure:
+    operation: both
+    action: "Check permissions, verify path exists, create parent directories"
+    retry: true
+  validation_fails:
+    operation: both
+    action: "Show which sections need content, guide fixes"
+    loop: true
+
+# ─────────────────────────────────────────────────────────────────
+# TERMINATION (Combined — README + Install Guide)
+# ─────────────────────────────────────────────────────────────────
+termination:
+  after_step: step_6_save_context
+  message:
+    readme: "README creation workflow complete."
+    install_guide: "Installation guide creation workflow complete."
+  next_steps:
+  - condition: "README needs screenshots"
+    action: "Add visual assets to enhance documentation"
+    operation: readme
+  - condition: "Need install guide"
+    action: "Run /create:readme install [project-name]"
+    operation: readme
+  - condition: "Want to save context"
+    action: "Run /memory:save"
+    operation: both
+  - condition: "Create another README"
+    action: "Run /create:readme [path]"
+    operation: readme
+  - condition: "Guide needs testing"
+    action: "Test AI-First prompt with real installation"
+    operation: install_guide
+  - condition: "Need related documentation"
+    action: "Run /create:readme for project README"
+    operation: install_guide
+  - condition: "Context should be saved"
+    action: "Run /memory:save (if spec folder exists)"
+    operation: install_guide
+
+# ─────────────────────────────────────────────────────────────────
+# RULES (Combined — README + Install Guide)
+# ─────────────────────────────────────────────────────────────────
+rules:
+  # ── Shared rules ─────────────────────────────────────────────
+  ALWAYS:
+  - "Self-validate at each step before proceeding"
+  - "Load templates before creating content"
+  - "Include Quick Start / AI-First section with clear examples"
+  - "Use section formatting"
+  - "Validate structure before claiming complete"
+  - "Include troubleshooting section"
+  NEVER:
+  - "Prompt user for approval at checkpoints"
+  - "Skip validation steps"
+  - "Create documents without loading templates first"
+  - "Leave placeholder text in final output"
+  - "Create documentation without user-confirmed path/output"
+  # ── README-specific rules ────────────────────────────────────
+  readme_ALWAYS:
+  - "Load readme_template.md before creating content"
+  - "Include Quick Start section with clear examples"
+  - "Validate structure before claiming complete"
+  readme_NEVER:
+  - "Omit troubleshooting section"
+  - "Create README without user-confirmed path"
+  # ── Install-guide-specific rules ─────────────────────────────
+  install_guide_ALWAYS:
+  - include_ai_first_section
+  - include_all_11_sections
+  - provide_quick_install_option
+  - include_verification_commands
+  - add_troubleshooting_section
+  - include_platform_configurations
+  - add_quick_reference_at_end
+  - validate_before_claiming_complete
+  install_guide_NEVER:
+  - skip_ai_first_section
+  - skip_platform_when_requested
+  - leave_placeholders_unfilled
+  - omit_version_requirements
+  - use_untested_commands_without_warning
+  - create_without_user_confirmed_output

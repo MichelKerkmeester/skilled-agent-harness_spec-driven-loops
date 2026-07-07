@@ -1,2 +1,0 @@
-{"iteration":4,"type":"finding","id":"F5","title":"Backlog handoff gap","summary":"A11y/performance quick fixes are bounded well, but accepted findings need a backlog-shaped handoff to sk-code so audit does not implement fixes itself."}
-{"iteration":4,"type":"recommendation","id":"R5","summary":"Add assets/audit_backlog_handoff.md with owner, evidence, target, accepted fix shape and verification columns."}

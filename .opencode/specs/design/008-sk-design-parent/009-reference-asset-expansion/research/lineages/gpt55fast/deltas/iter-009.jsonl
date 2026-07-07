@@ -1,1 +1,0 @@
-{"type":"iteration","iteration":9,"focus":"Matrix validation against live owners","newInfoRatio":0.09,"status":"complete","findingIds":["F2","F3","F4","F5","F6"],"ruledOut":["moving current mode boundaries"],"sources":[".opencode/skills/sk-design/design-interface/SKILL.md:197",".opencode/skills/sk-design/design-audit/SKILL.md:337"]}

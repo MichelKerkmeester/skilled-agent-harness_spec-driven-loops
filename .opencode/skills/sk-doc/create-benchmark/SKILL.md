@@ -69,7 +69,6 @@ Skip this workflow when:
 - The task is a general benchmark design exercise rather than promotion of an already-curated run.
 - A re-run confirms the same headline; update the existing `benchmark_report.md` with a re-run note instead.
 - The result mixes data from different MCP stacks and asks for a single comparative verdict.
-- The user asks for a bound `/create:` command. This packet has no slash command; it is a narrow workflow packet.
 
 If unsure, default to "not yet." Promotion is cheap after rigor; rolling back a premature folder costs more.
 

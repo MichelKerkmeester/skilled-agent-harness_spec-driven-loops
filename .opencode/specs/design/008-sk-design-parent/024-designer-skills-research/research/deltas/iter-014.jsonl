@@ -1,4 +1,0 @@
-{"type":"iteration","iteration":14,"newInfoRatio":0.2,"status":"insight","focus":"completeness sweep (Kimi-k2.7) over visual-critique/interaction-design/ui-design"}
-{"type":"finding","id":"f-iter014-001","label":"Gesture-accessibility alternatives (beyond gesture-conflict wording) -> motion/audit","iteration":14}
-{"type":"ruled_out","direction":"Data-visualization rules as net-new","reason":"already covered: design-foundations/references/data_viz.md + data-viz playbook","iteration":14}
-{"type":"observation","id":"obs-iter014-001","label":"micro-interaction spec + emotional timing are thin partials, likely subsumed","iteration":14}

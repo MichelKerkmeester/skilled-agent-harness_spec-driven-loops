@@ -104,7 +104,7 @@ The private procedure-card selection table in Section 3 is part of this routing 
 
 ### Smart Router Pseudocode
 
-The authoritative routing logic discovers markdown at runtime, guards every path inside the skill folder, scores the static axis as a routing key, loads only files that exist, and returns an `UNKNOWN_FALLBACK` checklist when confidence is too low. See [skill_smart_router.md](../../sk-doc/assets/skill/skill_smart_router.md) for the full resilience pattern.
+The authoritative routing logic discovers markdown at runtime, guards every path inside the skill folder, scores the static axis as a routing key, loads only files that exist, and returns an `UNKNOWN_FALLBACK` checklist when confidence is too low. See [skill_smart_router.md](../../sk-doc/create-skill/assets/skill/skill_smart_router.md) for the full resilience pattern.
 
 ```python
 from pathlib import Path

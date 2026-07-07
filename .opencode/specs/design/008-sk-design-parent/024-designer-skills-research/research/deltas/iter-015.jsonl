@@ -1,4 +1,0 @@
-{"type":"iteration","iteration":15,"newInfoRatio":0.28,"status":"insight","focus":"adversarial backlog review (DeepSeek-v4-pro)"}
-{"type":"finding","id":"f-iter015-001","label":"Perceived-quality / aesthetic-usability audit lens (CONFIRMED net-new; fills the unfilled S4 perceived-quality entry)","iteration":15}
-{"type":"invariant","id":"inv-iter015-001","label":"All six S7 rulings hold under adversarial review; no wrongly-ruled-out item","iteration":15}
-{"type":"ruled_out","direction":"Icon-system checks as net-new","reason":"largely subsumed by rank-3 component completeness (model self-rated 65%)","iteration":15}

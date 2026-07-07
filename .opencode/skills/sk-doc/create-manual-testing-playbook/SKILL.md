@@ -5,7 +5,7 @@ allowed-tools: [Read, Write, Edit, Bash, Grep, Glob]
 version: 1.0.0.0
 ---
 
-<!-- Keywords: manual testing playbook, testing playbook, deterministic scenario, evidence collection, operator validation, multi-agent execution, release readiness, create:testing-playbook -->
+<!-- Keywords: manual testing playbook, testing playbook, deterministic scenario, evidence collection, operator validation, multi-agent execution, release readiness, create:manual-testing-playbook -->
 
 # Manual Testing Playbook Creation
 
@@ -21,7 +21,7 @@ Core principle: keep shared rules in the root playbook, keep execution truth in 
 
 Use this workflow when the request involves:
 
-- `/create:testing-playbook`.
+- `/create:manual-testing-playbook`.
 - Creating `manual_testing_playbook/manual_testing_playbook.md`.
 - Building one-file-per-feature manual test scenarios.
 - Designing deterministic prompts, command sequences, expected signals, evidence, pass/fail criteria, and failure triage.

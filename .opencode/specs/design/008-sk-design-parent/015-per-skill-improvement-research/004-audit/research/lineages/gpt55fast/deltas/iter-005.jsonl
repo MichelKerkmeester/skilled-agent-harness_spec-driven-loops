@@ -1,1 +1,0 @@
-{"iteration":5,"type":"finding","id":"F6","title":"Hardening run-log gap","summary":"The hardening matrix is strong, but audits need a pass/fail/skip/inferred run log for probes to avoid memory-based production-readiness claims."}

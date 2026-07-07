@@ -1,1 +1,0 @@
-{"executors":[{"label":"gpt55high-rev","kind":"cli-opencode","model":"openai/gpt-5.5-fast","reasoningEffort":"high","iterations":10,"count":1,"timeoutSeconds":900}],"concurrency":1}

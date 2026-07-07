@@ -1,3 +1,0 @@
-{"type":"iteration","iteration":17,"newInfoRatio":0.1,"status":"insight","focus":"out-of-scope salvage review (DeepSeek-v4-pro)"}
-{"type":"invariant","id":"inv-iter017-001","label":"Out-of-scope rulings sound across design-research, ux-strategy, prototyping-testing, designer-toolkit (skill-by-skill confirmed)","iteration":17}
-{"type":"finding","id":"f-iter017-001","label":"ux-writing concrete copy formulas (error/empty/CTA sequences) -> interface copy, LOW CONFIDENCE; net-new only if rank-6 copy sources do not subsume","iteration":17}

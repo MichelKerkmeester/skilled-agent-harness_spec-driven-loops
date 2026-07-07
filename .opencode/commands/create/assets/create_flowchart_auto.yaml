@@ -1,0 +1,638 @@
+# -----------------------------------------------------------------
+# OPENCODE CREATE: FLOWCHART CREATION WORKFLOW (AUTO MODE)
+# -----------------------------------------------------------------
+# Mode: autonomous (no user approval gates)
+# Note: This workflow executes all steps sequentially with
+#       continuous self-validation. Pauses only if confidence < 40%.
+# -----------------------------------------------------------------
+role: Expert Flowchart Creator using sk-doc create-flowchart packet
+purpose: Create a validated ASCII flowchart markdown file with a 6-step workflow
+action: Guide flowchart creation from input analysis through pattern selection, drafting, validation, and delivery
+
+# -----------------------------------------------------------------
+# PREREQUISITE: CREATE-FLOWCHART PACKET VERIFICATION
+# -----------------------------------------------------------------
+# This workflow REQUIRES the create-flowchart packet for:
+#   - Pattern-first flowchart drafting
+#   - ASCII notation and branch-label rules
+#   - Mandatory packet-local validation
+#
+# PHASE 0 in the presentation contract verifies the packet resources
+# BEFORE this YAML workflow loads. If you're executing this workflow,
+# create-flowchart verification has already passed.
+#
+# To invoke correctly: /create:flowchart <target-flowchart.md> [source/process description]
+# -----------------------------------------------------------------
+
+operating_mode:
+  workflow: sequential_6_step
+  workflow_compliance: MANDATORY
+  workflow_execution: autonomous
+  approvals: none
+  tracking: progressive_task_checklists
+  validation: continuous_self_validation
+  output_configuration: explicit_target_path_required
+  description: |
+    Executes the 6-step flowchart creation workflow without step-by-step approval.
+    Pauses only if confidence drops below threshold, required inputs are missing, or validation fails.
+
+development_philosophy:
+  principle: "Represent the real workflow before polishing the diagram"
+  approach: "Understand -> Select Pattern -> Draft -> Validate"
+  mandate: "Real nodes and outcomes first, then notation, then validator-backed delivery"
+
+flowchart_path_resolution:
+  default: none
+  required_extension: .md
+
+# -----------------------------------------------------------------
+# CONFIDENCE & CLARIFICATION FRAMEWORK
+# -----------------------------------------------------------------
+confidence_framework:
+  thresholds:
+    high: { range: "80-100%", action: "Proceed with citable source" }
+    medium: { range: "40-79%", action: "Proceed with caution, document assumptions" }
+    low: { range: "0-39%", action: "STOP - Ask clarification with A/B/C options" }
+
+  scoring_weights:
+    target_path_clarity: 0.25
+    source_process_specificity: 0.30
+    workflow_shape_clarity: 0.25
+    terminal_outcomes_defined: 0.20
+
+  clarification_format: |
+    "I need clarity (confidence: [NN%]). Which approach:
+    - A) [option with brief rationale]
+    - B) [option with brief rationale]
+    - C) [option with brief rationale]"
+
+  escalation:
+    timebox_minutes: 10
+    failed_attempts_threshold: 2
+    action: "Present options to user with current findings"
+
+# -----------------------------------------------------------------
+# REQUEST ANALYSIS FRAMEWORK
+# -----------------------------------------------------------------
+request_analysis_framework:
+  code_search_note: "Use Glob/Grep to locate target documents and nearby diagram style. Read files before editing. Do not use memory search for arbitrary code or docs."
+  solution_flow:
+  - "Parse carefully: What flowchart artifact is ACTUALLY requested?"
+  - "Gather Context: Read the target or source material"
+  - "Identify Approach: SIMPLEST diagram that represents the real workflow"
+  - "Validate Choice: Select the closest pattern asset"
+  - "Clarify If Needed: If <80% confidence, ask"
+  - "Scope Check: Creating ONLY the requested markdown flowchart?"
+  - "Execute: Draft, validate, fix, and report"
+
+  pre_change_validation:
+    items:
+    - "Target flowchart path provided and ends in .md?"
+    - "Source process or source material available?"
+    - "Audience and workflow shape understood?"
+    - "Terminal outcomes identified or marked UNKNOWN?"
+    - "Confidence >=80%? (if not: ask)"
+    stop_conditions: [ "Any item unchecked", "No target flowchart path" ]
+    stop_action: "STOP and address before proceeding"
+
+# -----------------------------------------------------------------
+# USER INPUTS (From gate outputs)
+# -----------------------------------------------------------------
+user_inputs:
+  target_flowchart_path: |
+    [TARGET_FLOWCHART_PATH]
+    Path for the output markdown flowchart file, ending in .md.
+    FROM UNIFIED SETUP PHASE (Q0 or command argument).
+
+  source_process: |
+    [SOURCE_PROCESS]
+    Workflow, user journey, decision tree, system interaction, or source material to represent.
+    FROM UNIFIED SETUP PHASE (Q1 or command argument).
+
+  workflow_shape: |
+    [WORKFLOW_SHAPE]
+    Closest pattern shape: linear, decision, parallel, approval, swimlane, or journey.
+    FROM UNIFIED SETUP PHASE (Q2 or derived from source_process).
+
+  memory_loaded: |
+    [MEMORY_LOADED]
+    Whether previous context was loaded.
+    FROM UNIFIED SETUP PHASE (Q3 if applicable).
+
+# -----------------------------------------------------------------
+# FIELD HANDLING
+# -----------------------------------------------------------------
+field_handling:
+  target_flowchart_path:
+    validation: "workspace-relative markdown path ending in .md"
+    required: true
+
+  workflow_shape:
+    validation: "must be one of: linear, decision, parallel, approval, swimlane, journey"
+    default: "derive_from_source_process"
+    note: "Determines which packet-local pattern asset is loaded"
+
+  defaults:
+    output_format: "markdown file containing a fenced text flowchart"
+    validator_command: "bash .opencode/skills/sk-doc/create-flowchart/scripts/validate_flowchart.sh [target_flowchart_path]"
+    spec_path_from_phase: "FROM USER CHOICE IN SETUP PHASE, if documentation is requested"
+
+input_contract:
+  required:
+    - create_flowchart_verified
+    - target_flowchart_path
+    - source_process
+    - workflow_shape
+  optional:
+    - memory_loaded
+    - audience
+    - terminal_outcomes
+
+# -----------------------------------------------------------------
+# DOCUMENTATION LEVEL
+# -----------------------------------------------------------------
+documentation_level:
+  default: "No separate spec packet for ordinary flowchart creation"
+  required_files:
+  - target_flowchart_path
+  note: "The command output is a single markdown flowchart file unless the user explicitly asks for surrounding documentation."
+
+# -----------------------------------------------------------------
+# FLOWCHART CREATION RESOURCES
+# -----------------------------------------------------------------
+flowchart_resources:
+  skill_contract: .opencode/skills/sk-doc/create-flowchart/SKILL.md
+
+flowchart_scripts:
+  validate_flowchart: .opencode/skills/sk-doc/create-flowchart/scripts/validate_flowchart.sh
+
+flowchart_references:
+  route_map: .opencode/skills/sk-doc/create-flowchart/references/README.md
+  notation_and_validator: .opencode/skills/sk-doc/create-flowchart/references/notation_and_validator.md
+  pattern_selection: .opencode/skills/sk-doc/create-flowchart/references/pattern_selection.md
+  worked_example: .opencode/skills/sk-doc/create-flowchart/references/worked_example.md
+
+flowchart_patterns:
+  linear: .opencode/skills/sk-doc/create-flowchart/assets/flowcharts/simple_workflow.md
+  decision: .opencode/skills/sk-doc/create-flowchart/assets/flowcharts/decision_tree_flow.md
+  parallel: .opencode/skills/sk-doc/create-flowchart/assets/flowcharts/parallel_execution.md
+  approval: .opencode/skills/sk-doc/create-flowchart/assets/flowcharts/approval_workflow_loops.md
+  swimlane: .opencode/skills/sk-doc/create-flowchart/assets/flowcharts/system_architecture_swimlane.md
+  journey: .opencode/skills/sk-doc/create-flowchart/assets/flowcharts/user_onboarding.md
+
+# -----------------------------------------------------------------
+# WORKFLOW ENFORCEMENT (CRITICAL)
+# -----------------------------------------------------------------
+workflow_enforcement:
+  mode: strict
+  step_order: sequential_mandatory
+  skip_allowed: false
+
+  phase_gate:
+    location: "Between Step 2 and Step 3"
+    purpose: "Verify source understanding before selecting notation and pattern"
+    requirements:
+    - "Target artifact path confirmed"
+    - "Source process and audience understood"
+    - "Terminal outcomes identified or explicitly UNKNOWN"
+    action_if_failed: "STOP and return to incomplete step"
+
+  critical_steps:
+    step_2_understanding:
+      enforcement: "MUST gather source process, audience, scope, and terminal outcomes"
+      verification: "Self-validate understanding before proceeding"
+    step_3_pattern_selection:
+      enforcement: "MUST select and read exactly one closest pattern asset"
+      verification: "Pattern choice documented with rationale"
+    step_4_generation:
+      enforcement: "MUST create a single markdown flowchart file with a fenced text diagram"
+      verification: "No unsupported or invented nodes remain"
+    step_5_validation:
+      enforcement: "MUST run validate_flowchart.sh"
+      verification: "Validator exits 0 or failure is fixed before delivery"
+
+# -----------------------------------------------------------------
+# WORKFLOW (6 STEPS - AUTONOMOUS)
+# -----------------------------------------------------------------
+gate_logic:
+  hard:
+    H0_write_verified:
+      description: "create-flowchart packet resource verification must have passed in Phase 0"
+      fail_action: "STOP and return to the command setup phase"
+    H1_required_fields:
+      description: "Required setup fields must be present before generation"
+      fail_action: "STOP and collect missing inputs"
+    H2_validation_contract:
+      description: "Generated flowchart must pass the packet-local validator before delivery"
+      fail_action: "Fix the generated output before continuing"
+  soft:
+    S1_existing_flowchart:
+      description: "Warn when the target flowchart already exists"
+      fail_action: "Proceed only after explicit update intent"
+
+workflow_overview:
+  steps:
+    - id: step_1_request_analysis
+      purpose: "Normalize inputs, validate the target path, and detect existing files"
+    - id: step_2_understanding
+      purpose: "Capture the source process, audience, scope, and terminal outcomes"
+    - id: step_3_pattern_selection
+      purpose: "Select and load the closest packet-local flowchart pattern"
+    - id: step_4_generation
+      purpose: "Generate the markdown flowchart from the selected pattern and real source nodes"
+    - id: step_5_validation
+      purpose: "Run packet-local flowchart validation and fix blocking issues"
+    - id: step_6_delivery
+      purpose: "Emit final status with path and validation evidence"
+
+workflow:
+  # ==============================================================
+  # PHASE A: PLANNING (Steps 1-3)
+  # ==============================================================
+
+  step_1_request_analysis:
+    purpose: Parse inputs and validate target flowchart path (from UNIFIED SETUP PHASE)
+    activities:
+    - Confirm target_flowchart_path from UNIFIED SETUP PHASE (Q0 or argument)
+    - Confirm source_process from UNIFIED SETUP PHASE (Q1 or argument)
+    - Confirm workflow_shape from UNIFIED SETUP PHASE (Q2 or derived from source_process)
+    - Confirm memory_loaded from UNIFIED SETUP PHASE (Q3 if applicable)
+    - Verify target path ends in .md
+    - Check if target flowchart already exists
+    validation:
+      path_format: "workspace-relative markdown path ending in .md"
+      check_exists: true
+      command: "test -e [target_flowchart_path]"
+    outputs:
+    - target_path_validated
+    - source_process_confirmed
+    - existing_flowchart_check
+
+  step_1b_style_discovery:
+    purpose: Search for nearby existing flowchart style before creating the new file (MANDATORY when nearby docs exist)
+    gate_type: SOFT_BLOCK
+    enforcement: "Reuse local style when it exists, otherwise use packet-local pattern style"
+    activities:
+    - "Use Glob/Grep to locate nearby markdown files in the target directory"
+    - "Read nearby diagrams only when relevant to the target location"
+    - "Record reusable style cues: heading level, code fence style, notation, validation section"
+    validation:
+      similar_exists_threshold: "same directory markdown with ASCII diagram or flowchart wording"
+      action_if_found: "Log style cues and preserve local convention where compatible"
+    outputs:
+    - nearby_diagrams_found: list_of_matching_files
+    - reusable_style_cues: list
+    - proceed_recommendation: boolean
+    auto_decision: "Proceed with packet-local pattern when no nearby style exists"
+    skip_condition: "No nearby markdown files or user explicitly skips discovery"
+
+  step_1c_output_path_setup:
+    purpose: Prepare the output path for a single markdown flowchart file
+    condition: "target_flowchart_path is provided"
+    activities:
+    - Ensure parent directory exists or can be created without leaving scope
+    - IF target file exists, read it before editing
+    - IF target file does not exist, prepare to write exactly one markdown file
+    - Do not create extra metadata or packet files
+    outputs:
+    - output_parent_ready
+    - existing_target_read_if_present
+    - single_output_file_confirmed
+
+  step_2_understanding:
+    purpose: Gather source process, audience, scope, and terminal outcomes (CRITICAL - DO NOT SKIP)
+    enforcement: MANDATORY
+    activities:
+    - Identify the real workflow, decision tree, user journey, approval loop, parallel process, or system interaction
+    - Capture the audience and what the diagram must help them decide or do
+    - Define scope boundaries: included, omitted, and unknown
+    - Identify start state, actions, decisions, branch outcomes, retries, joins, escalations, and terminal states
+    - Mark unsupported details as UNKNOWN instead of inventing nodes
+    questions:
+    - "What process should the flowchart represent?"
+    - "Who is the audience, and what should the diagram help them do?"
+    - "What is in scope, what is intentionally omitted, and what is unknown?"
+    - "What terminal outcomes should appear?"
+    prompt_template: |
+      +------------------------------------------------------------+
+      | "What process should this flowchart represent?"           |
+      |                                                            |
+      | Please provide:                                            |
+      | - Source: workflow, journey, system flow, or decision tree  |
+      | - Audience: who will read it and why                       |
+      | - Scope: included, omitted, and unknown areas               |
+      | - Outcomes: success, failure, blocked, complete, etc.       |
+      +------------------------------------------------------------+
+    outputs:
+    - source_process_defined: "real process or source material"
+    - audience_defined: "reader and decision/action supported"
+    - scope_defined: "included, omitted, unknown"
+    - terminal_outcomes_defined: "end states or UNKNOWN"
+    validation: understanding_complete
+
+  # ==============================================================
+  # PHASE GATE: UNDERSTANDING -> PATTERN SELECTION
+  # ==============================================================
+  phase_gate_understanding_to_configuration:
+    trigger: "After Step 2 completes"
+    enforcement: HARD_BLOCK
+    verification: |
+      BEFORE proceeding to Pattern Selection Phase (Step 3):
+
+      VERIFY all understanding artifacts exist:
+      - [ ] Target artifact path confirmed
+      - [ ] Source process defined
+      - [ ] Audience and scope documented
+      - [ ] Terminal outcomes identified or UNKNOWN
+
+      IF any artifact missing:
+      - STOP -> Return to Step 2 -> Complete it -> Return here
+
+      WHEN all artifacts verified:
+      - SET PHASE GATE STATUS: PASSED -> Proceed to Step 3
+    action_if_failed: "Return to incomplete step"
+
+  # ==============================================================
+  # PHASE B: IMPLEMENTATION (Steps 3-6)
+  # ==============================================================
+
+  step_3_pattern_selection:
+    purpose: Select the closest flowchart pattern and plan notation
+    activities:
+    - Load .opencode/skills/sk-doc/create-flowchart/SKILL.md
+    - Load .opencode/skills/sk-doc/create-flowchart/references/pattern_selection.md when workflow shape needs comparison
+    - Select exactly one closest pattern from flowchart_patterns
+    - Read the selected pattern asset before drafting
+    - Load .opencode/skills/sk-doc/create-flowchart/references/notation_and_validator.md for validation-sensitive notation rules
+    - Plan branch labels, connector style, box width strategy, and terminal states
+    pattern_selection:
+      linear:
+        asset: .opencode/skills/sk-doc/create-flowchart/assets/flowcharts/simple_workflow.md
+        use_case: "single primary path with little branching"
+      decision:
+        asset: .opencode/skills/sk-doc/create-flowchart/assets/flowcharts/decision_tree_flow.md
+        use_case: "branching logic, validation, retries, fallback outcomes"
+      parallel:
+        asset: .opencode/skills/sk-doc/create-flowchart/assets/flowcharts/parallel_execution.md
+        use_case: "fan-out, concurrent work, fan-in, aggregate gates"
+      approval:
+        asset: .opencode/skills/sk-doc/create-flowchart/assets/flowcharts/approval_workflow_loops.md
+        use_case: "review, revision, sign-off, escalation"
+      swimlane:
+        asset: .opencode/skills/sk-doc/create-flowchart/assets/flowcharts/system_architecture_swimlane.md
+        use_case: "request or data movement across layers or services"
+      journey:
+        asset: .opencode/skills/sk-doc/create-flowchart/assets/flowcharts/user_onboarding.md
+        use_case: "user-facing milestones, validation, support, completion"
+    outputs:
+    - pattern_asset_selected
+    - notation_plan_defined
+    - branch_label_plan_defined
+    - terminal_state_plan_defined
+    validation: pattern_selected
+
+  step_4_generation:
+    purpose: Create the markdown flowchart file with a fenced ASCII diagram
+    activities:
+    - Draft title, purpose, audience, and scope in concise prose
+    - Draft a fenced text flowchart using the selected pattern's demonstrated features
+    - Replace every pattern placeholder with real source nodes
+    - Label every decision branch with [YES]/[NO] or check/cross notation plus useful descriptive text
+    - Include retries, loop-backs, joins, escalations, and terminal states when present in the source
+    - Avoid fake timings, fake owners, fake services, fake databases, and invented success criteria
+    - Write the single markdown file to target_flowchart_path
+    - Verify file exists and is readable
+    output_template: |
+      # [Flowchart Name]
+
+      Brief purpose, audience, and scope.
+
+      ```text
+      [ASCII flowchart]
+      ```
+
+      Validation:
+      - `bash .opencode/skills/sk-doc/create-flowchart/scripts/validate_flowchart.sh [target_flowchart_path]` -> [result]
+    quality_requirements:
+      source_fidelity: "diagram reflects only real or explicitly UNKNOWN process facts"
+      notation: "consistent ASCII or box-drawing style"
+      branch_labels: "every decision branch labeled"
+      output_scope: "single markdown flowchart file"
+    outputs:
+    - flowchart_file_created
+    - prose_complete
+    - diagram_complete
+    validation: file_created
+
+  step_5_validation:
+    purpose: Packet-local flowchart validation and quality checks
+    enforcement: HARD_BLOCK
+    activities:
+    - Run .opencode/skills/sk-doc/create-flowchart/scripts/validate_flowchart.sh against target_flowchart_path
+    - Verify validator exits 0 before delivery
+    - If validation fails, fix issues and re-run
+    - Address warnings when practical as readability defects
+    - Repeat until passing or report the exact validator failure if it cannot run
+    validation_command: |
+      bash .opencode/skills/sk-doc/create-flowchart/scripts/validate_flowchart.sh [target_flowchart_path]
+    quality_gates:
+      validator_exit: "must be 0 before clean delivery"
+      connector_presence: "boxes must have arrows or branch markers"
+      branch_labels: "decision-like diagrams must include [YES]/[NO] or check/cross labels"
+      box_widths: "avoid excessive width variations"
+      nesting_and_size: "split or simplify when warnings indicate poor readability"
+      enforcement: HARD_BLOCK
+    fix_workflow: |
+      IF validation fails:
+      1. Review the exact validator output.
+      2. Fix the diagram or prose causing the failure.
+      3. Re-run the validator command.
+      4. Repeat until passing.
+    outputs:
+    - flowchart_validation_result: pass_or_fail
+    - validation_errors: list_if_failed
+    validation: flowchart_valid
+
+  step_5b_readability_validation:
+    purpose: Quality-validate the created flowchart artifact
+    activities:
+    - "Review raw markdown readability in a terminal-width view"
+    - "Check every node is sourced or explicitly UNKNOWN"
+    - "Check every branch has a visible outcome and terminal path where applicable"
+    - "Check the selected pattern still matches the final workflow shape"
+    on_low_score:
+      threshold: 70
+      action: "Fix readability and source-fidelity issues before delivery when practical"
+    outputs:
+    - readability_score: number
+    - validation_findings: list
+    - improvement_suggestions: list (if score < 70)
+
+  step_6_delivery:
+    purpose: Preserve validation evidence and emit completion status
+    condition: "target_flowchart_path is not null"
+    activities:
+    - Ensure the output remains a single markdown flowchart file
+    - Record selected pattern and validation result in the delivery summary
+    - Include the exact validator command and outcome
+    - Do not create packet-local advisor metadata or extra output files
+    memory_content:
+      include:
+      - Target flowchart path
+      - Selected pattern asset
+      - Source process summary
+      - Scope and unknowns
+      - Validator command and result
+      - Any unresolved ambiguity or warning
+    outputs:
+    - delivery_summary: "target flowchart path and validation evidence"
+    validation: delivery_ready
+
+    validation_evidence:
+      validator: .opencode/skills/sk-doc/create-flowchart/scripts/validate_flowchart.sh
+      invocation: |
+        bash .opencode/skills/sk-doc/create-flowchart/scripts/validate_flowchart.sh [target_flowchart_path]
+      critical_note: "Run the packet-local validator directly before delivery. Do not claim a clean validation result if the command fails or cannot run."
+      when: "Immediately after the flowchart markdown file is written or edited"
+
+    anchor_requirements:
+      enforcement: NOT_APPLICABLE
+      rationale: "The command creates a single flowchart markdown file, not a memory packet."
+
+    importance_tier:
+      assign: normal
+      rationale: "Flowchart creation is artifact-scoped unless the user requests durable project memory."
+      promotion_note: "Promote only if the created diagram becomes authoritative project documentation."
+      tier_reference: |
+        constitutional: Core project rules (auto-surface always)
+        critical: Foundational decisions (high priority in search)
+        important: Significant work with future reuse value
+        normal: Standard artifact creation (default)
+        temporary: Short-term notes
+        deprecated: Outdated but retained
+
+# -----------------------------------------------------------------
+# CIRCUIT BREAKER
+# -----------------------------------------------------------------
+circuit_breaker:
+  consecutive_failure_threshold: 3
+  states:
+    closed: "Normal operation"
+    open: "3+ failures - pause and report to user"
+    half_open: "Test with single retry before resuming"
+  on_open:
+    action: "Report failures to user with summary"
+    suggest: "Review inputs and try again, or escalate"
+
+# -----------------------------------------------------------------
+# ERROR RECOVERY
+# -----------------------------------------------------------------
+error_recovery:
+  invalid_target_path:
+    action: "Show valid format (workspace-relative .md path), prompt for correction"
+    example: "Expected: docs/workflows/release-flowchart.md"
+  flowchart_already_exists:
+    action: "Offer to update existing or choose a new target path"
+    options: [ "Update existing", "Choose new path", "Cancel" ]
+  missing_source_process:
+    action: "Ask for the workflow, journey, decision tree, or system interaction to represent"
+  ambiguous_workflow_shape:
+    action: "Load pattern_selection.md and present the closest shape choices"
+    options: [ "linear", "decision", "parallel", "approval", "swimlane", "journey" ]
+  validation_failure:
+    action: "Fix connector, branch-label, box-width, nesting, or size issues and re-run validator"
+    common_issues:
+    - "Boxes without arrows or branch markers"
+    - "Decision nodes without [YES]/[NO] or check/cross labels"
+    - "Too many box width variations"
+    - "Deep indentation or excessive line count"
+  unsupported_format:
+    action: "Explain that this command creates markdown ASCII flowcharts, not Mermaid, SVG, HTML, or design-tool artifacts"
+
+# -----------------------------------------------------------------
+# AUTONOMOUS EXECUTION
+# -----------------------------------------------------------------
+autonomous_execution:
+  validation_approach: "Continuous self-validation at each step"
+  error_handling: "Auto-recover if possible, halt on critical failures"
+  progress_reporting: "Brief status updates between steps"
+
+# -----------------------------------------------------------------
+# QUALITY STANDARDS
+# -----------------------------------------------------------------
+quality_standards:
+  flowchart_validation: MANDATORY
+  validation_enforcement: HARD_BLOCK
+  validation_pipeline:
+    stage_1: "Packet-local validator execution"
+    stage_2: "Connector and branch-label checks"
+    stage_3: "Box-width, nesting, and size checks"
+    stage_4: "Readability and source-fidelity review"
+  template_adherence: required
+  core_standards_reference: ".opencode/skills/sk-doc/create-flowchart/SKILL.md"
+
+# -----------------------------------------------------------------
+# COMPLETION REPORT TEMPLATE
+# -----------------------------------------------------------------
+completion_report:
+  template: |
+    Flowchart Creation Complete
+
+    Flowchart: [flowchart-name]
+    Location: [target-flowchart-path]
+    Pattern: [selected-pattern-asset]
+
+    Source:
+    - Process: [source-process-summary]
+    - Audience: [audience]
+    - Scope: [scope-summary]
+    - Unknowns: [unknowns-or-none]
+
+    Validation:
+    - Command: bash .opencode/skills/sk-doc/create-flowchart/scripts/validate_flowchart.sh [target-flowchart-path]
+    - Result: PASSED
+
+    Output:
+    - Single markdown flowchart file created
+
+    Next Steps:
+    - Review the diagram for source-process accuracy
+    - Update the source process if branch outcomes change
+
+    STATUS=OK PATH=[target-flowchart-path]
+
+# -----------------------------------------------------------------
+# TERMINATION
+# -----------------------------------------------------------------
+termination:
+  after_step: step_6_delivery
+  message: "Flowchart creation workflow complete."
+  next_steps:
+    - condition: "Flowchart needs source-owner review"
+      action: "Ask the process owner to verify branch outcomes and terminal states"
+    - condition: "Flowchart needs refinement"
+      action: "Revise source nodes and re-run the validator"
+    - condition: "Flowchart should become canonical documentation"
+      action: "Link the markdown file from the appropriate project documentation"
+
+# -----------------------------------------------------------------
+# RULES
+# -----------------------------------------------------------------
+rules:
+  ALWAYS:
+    - "Load the closest pattern asset from the target packet before drafting"
+    - "Run validate_flowchart.sh before claiming delivery"
+    - "Self-validate at each step"
+    - "Respect user feedback and modification requests"
+    - "Reference the create-flowchart packet for notation and validation rules"
+    - "Label decision branches with [YES]/[NO] or check/cross notation"
+    - "Keep the output to a single markdown flowchart file unless explicitly requested otherwise"
+    - "Report the exact validation command and result"
+  NEVER:
+    - "Skip validation between steps"
+    - "Create documents without loading the selected pattern first"
+    - "Write files without self-validation"
+    - "Leave placeholder text in final output"
+    - "Invent workflow nodes, owners, services, timings, or outcomes"
+    - "Deliver decision branches without labels"
+    - "Create packet-local advisor metadata"

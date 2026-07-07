@@ -1,2 +1,0 @@
-{"iteration":1,"type":"finding","id":"F1","title":"Audit mode is mature","summary":"Existing audit owns severity, /20 scoring, evidence rules, a11y/performance, critique, anti-patterns, AI tells, hardening and transform routing; broad expansion would duplicate coverage."}
-{"iteration":1,"type":"decision","id":"D1","summary":"Focus improvements on operational leverage, not new taxonomy."}

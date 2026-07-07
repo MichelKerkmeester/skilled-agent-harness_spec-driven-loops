@@ -1,25 +1,21 @@
 {
+  "level": "2",
   "specFolder": "sk-design/009-sk-design-claude-parity/019-transport-mode-benchmark-coverage",
-  "description": "Adds manual_testing_playbook coverage for the design-mcp-open-design transport packet, syncs the skill-level advisor descriptor, and re-runs both benc",
+  "description": "Phase 018 integrated `design-mcp-open-design` as a registered `packetKind: \"transport\"` mode in sk-design's registries, but the hub's",
   "keywords": [
-    "adds",
-    "coverage",
+    "phase",
+    "018",
+    "integrated",
     "design-mcp-open-design",
+    "registered",
+    "packetkind",
     "transport",
-    "packet",
-    "syncs",
-    "skill-level",
-    "advisor",
-    "descriptor",
-    "re-runs",
-    "benchmark",
-    "modes",
-    "plus",
-    "direct",
-    "router-replay",
-    "spot-check"
+    "mode",
+    "sk-design",
+    "registries",
+    "hub"
   ],
-  "lastUpdated": "2026-07-07T08:32:09.424Z",
+  "lastUpdated": "2026-07-07T12:56:31.780Z",
   "specId": "019",
   "folderSlug": "transport-mode-benchmark-coverage",
   "parentChain": [
@@ -27,6 +23,5 @@
     "009-sk-design-claude-parity"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }

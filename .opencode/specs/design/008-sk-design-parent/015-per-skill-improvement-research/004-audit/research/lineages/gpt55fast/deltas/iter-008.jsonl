@@ -1,2 +1,0 @@
-{"iteration":8,"type":"finding","id":"F9","title":"Audit benchmark artifact absent","summary":"Manual testing scenarios exist, but no checked-in 014-routing-benchmark/design-audit report was found in this checkout; operator-provided 82/100 remains context rather than file evidence."}
-{"iteration":8,"type":"recommendation","id":"R9","summary":"Add design-audit benchmark fixtures for full-audit, AI tell, a11y, transform and screenshot-evidence prompts."}

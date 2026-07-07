@@ -73,7 +73,7 @@ Use deep-research for multi-round technical investigation, source triangulation,
 
 ## 2. SMART ROUTING
 
-> Pattern: aligned with the [sk-doc smart-router resilience template](../sk-doc/assets/skill/skill_smart_router.md).
+> Pattern: aligned with the [sk-doc smart-router resilience template](../../sk-doc/create-skill/assets/skill/skill_smart_router.md).
 
 ### Resource Domains
 

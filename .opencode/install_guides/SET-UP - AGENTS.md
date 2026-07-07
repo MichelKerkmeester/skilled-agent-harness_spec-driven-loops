@@ -578,10 +578,10 @@ Commands are slash-prefixed shortcuts for common workflows.
 | `/create:agent`           | Create new agent                    | Agent file in the active runtime agent path |
 | `/create:changelog`       | Create changelog entry              | Versioned changelog markdown      |
 | `/create:feature-catalog` | Create or update feature catalog    | Rooted `feature_catalog/` package |
-| `/create:folder_readme`   | Unified README + install guide      | README.md or install guide output |
+| `/create:readme`   | Unified README + install guide      | README.md or install guide output |
 | `/create:prompt`          | Create or improve prompt artifact   | Prompt markdown                   |
-| `/create:sk-skill`        | Unified skill command               | Skill create/update/file flows    |
-| `/create:testing-playbook` | Create or update testing playbook | Rooted `manual_testing_playbook/` package |
+| `/create:skill`        | Unified skill command               | Skill create/update/file flows    |
+| `/create:manual-testing-playbook` | Create or update testing playbook | Rooted `manual_testing_playbook/` package |
 
 **Memory Commands (4)**
 

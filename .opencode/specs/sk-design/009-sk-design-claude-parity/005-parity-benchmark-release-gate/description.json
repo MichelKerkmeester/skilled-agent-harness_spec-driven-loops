@@ -20,7 +20,7 @@
   "status": "complete",
   "parentPacket": ".opencode/specs/sk-design/009-sk-design-claude-parity/",
   "specFolder": "sk-design/009-sk-design-claude-parity/005-parity-benchmark-release-gate",
-  "description": "Defines the release gate proving refactored sk-design behaves like Claude Design while staying OpenCode-native: golden prompts, procedure-selection proof, design-quality lanes, md-generator preservation, and release authority.",
+  "description": "The parity refactor can look correct at the router layer while still failing live design usefulness, procedure selection, proof discipline, anti-slop",
   "keywords": [
     "parity",
     "refactor",
@@ -32,7 +32,7 @@
     "still",
     "failing",
     "live",
-    "sk-design",
+    "design",
     "usefulness",
     "procedure",
     "selection",
@@ -40,7 +40,7 @@
     "discipline",
     "anti-slop"
   ],
-  "lastUpdated": "2026-07-06T04:58:33.728Z",
+  "lastUpdated": "2026-07-07T06:10:17.583Z",
   "specId": "005",
   "folderSlug": "parity-benchmark-release-gate",
   "parentChain": [

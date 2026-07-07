@@ -33,7 +33,7 @@ This checklist keeps new and modified OpenCode skills consistent with the shared
 ## 2. PRE-CHECKS
 
 - [ ] Read existing canonical skills at `.opencode/skills/sk-doc/SKILL.md`, `.opencode/skills/sk-code/SKILL.md`, and `.opencode/skills/sk-git/SKILL.md`.
-- [ ] Read `sk-doc` source rules at `.opencode/skills/sk-doc/references/skill_creation.md`.
+- [ ] Read `sk-doc` source rules at `.opencode/skills/sk-doc/create-skill/references/README.md`.
 - [ ] Verify whether the target skill uses a 3-part version or a 4-part version; `sk-code` uses 4-part versions such as `3.2.0.0`, while `sk-doc` currently uses a 3-part series.
 - [ ] Confirm `allowed-tools` is explicit and no broader than the workflow needs.
 - [ ] Keep the frontmatter description to 1-2 sentences that explain when the skill should activate.

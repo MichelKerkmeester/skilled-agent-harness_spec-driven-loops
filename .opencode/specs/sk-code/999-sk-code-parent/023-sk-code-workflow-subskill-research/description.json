@@ -1,0 +1,29 @@
+{
+  "level": "2",
+  "specFolder": "skilled-agent-orchestration/124-sk-code-parent/023-sk-code-workflow-subskill-research",
+  "description": "The sk-code parent hub exposes four WORKFLOW sub-skills — `code-implement`, `code-quality`, `code-debug`, `code-verify` — that carry the day-to-day",
+  "keywords": [
+    "sk-code",
+    "parent",
+    "hub",
+    "exposes",
+    "four",
+    "workflow",
+    "sub-skills",
+    "code-implement",
+    "code-quality",
+    "code-debug",
+    "code-verify",
+    "carry",
+    "day-to-day"
+  ],
+  "lastUpdated": "2026-07-07T06:10:17.608Z",
+  "specId": "023",
+  "folderSlug": "sk-code-workflow-subskill-research",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "124-sk-code-parent"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

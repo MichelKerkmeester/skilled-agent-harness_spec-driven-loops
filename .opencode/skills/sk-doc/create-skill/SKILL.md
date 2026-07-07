@@ -5,7 +5,7 @@ allowed-tools: [Read, Write, Edit, Bash, Grep, Glob]
 version: 1.1.0.0
 ---
 
-<!-- Keywords: create-skill, create-skill-parent, skill scaffolding, parent hub, nested workflow packet, mode-registry, hub-router, package-skill, init-skill, /create:sk-skill, /create:sk-skill-parent -->
+<!-- Keywords: create-skill, create-skill-parent, skill scaffolding, parent hub, nested workflow packet, mode-registry, hub-router, package-skill, init-skill, /create:skill, /create:skill-parent -->
 
 # Create Skill
 
@@ -19,13 +19,13 @@ version: 1.1.0.0
 
 Use this packet when the request involves:
 - Creating or rebuilding an OpenCode skill under `.opencode/skills/`.
-- Running `/create:sk-skill` for a standalone skill with its own advisor identity.
-- Running `/create:sk-skill-parent` for a parent hub with nested workflow or surface packets.
+- Running `/create:skill` for a standalone skill with its own advisor identity.
+- Running `/create:skill-parent` for a parent hub with nested workflow or surface packets.
 - Authoring or repairing `SKILL.md`, `README.md`, `references/`, `assets/`, `scripts/`, or `changelog/` for a skill package.
 - Creating parent-hub router files such as `mode-registry.json`, `hub-router.json`, `description.json`, or hub-level `graph-metadata.json`.
 - Validating and packaging a skill with `scripts/package_skill.py`.
 
-Keyword triggers: `create skill`, `new skill`, `skill scaffold`, `OpenCode skill`, `parent skill`, `parent hub`, `mode packet`, `workflowMode`, `mode-registry`, `hub-router`, `package skill`, `/create:sk-skill`, `/create:sk-skill-parent`.
+Keyword triggers: `create skill`, `new skill`, `skill scaffold`, `OpenCode skill`, `parent skill`, `parent hub`, `mode packet`, `workflowMode`, `mode-registry`, `hub-router`, `package skill`, `/create:skill`, `/create:skill-parent`.
 
 ### When NOT to Use
 

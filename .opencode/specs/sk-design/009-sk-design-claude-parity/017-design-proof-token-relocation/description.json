@@ -1,26 +1,25 @@
 {
+  "level": "1",
   "specFolder": "sk-design/009-sk-design-claude-parity/017-design-proof-token-relocation",
-  "description": "Moves sk-design's lone hub-root references/design_proof_token.md into shared/ alongside its cross-cutting siblings, repoints 8 live citations across s",
+  "description": "`sk-design`'s hub root had a `references/` folder containing exactly one file, `designprooftoken.md`, while every other cross-cutting design doc",
   "keywords": [
-    "moves",
     "sk-design",
-    "lone",
-    "hub-root",
+    "hub",
+    "root",
     "references",
-    "shared",
-    "alongside",
+    "folder",
+    "containing",
+    "exactly",
+    "one",
+    "file",
+    "designprooftoken",
+    "while",
+    "every",
     "cross-cutting",
-    "siblings",
-    "repoints",
-    "live",
-    "citations",
-    "across",
-    "mcp-open-design",
-    "removes",
-    "emptied",
-    "folder"
+    "design",
+    "doc"
   ],
-  "lastUpdated": "2026-07-07T04:26:17.922Z",
+  "lastUpdated": "2026-07-07T06:10:17.589Z",
   "specId": "017",
   "folderSlug": "design-proof-token-relocation",
   "parentChain": [
@@ -28,6 +27,5 @@
     "009-sk-design-claude-parity"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

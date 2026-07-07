@@ -15,7 +15,7 @@
   "status": "complete",
   "parentPacket": ".opencode/specs/sk-design/009-sk-design-claude-parity/",
   "specFolder": "sk-design/009-sk-design-claude-parity/004-mode-packet-refactor",
-  "description": "Completed phase packet: the five sk-design mode packets now integrate mode-local private procedure support while preserving public routing and the md-generator backend boundary, verified against the live repo.",
+  "description": "The five `sk-design` mode packets currently provide the public execution lanes for design work, but they have not yet been refactored to consume the",
   "keywords": [
     "five",
     "sk-design",
@@ -26,12 +26,12 @@
     "public",
     "execution",
     "lanes",
-    "sk-design",
+    "design",
     "work",
     "refactored",
     "consume"
   ],
-  "lastUpdated": "2026-07-06T00:25:10.027Z",
+  "lastUpdated": "2026-07-07T06:10:17.577Z",
   "specId": "004",
   "folderSlug": "mode-packet-refactor",
   "parentChain": [

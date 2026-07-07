@@ -1,9 +1,0 @@
-{"type":"iteration","iteration":2,"newInfoRatio":0.7,"status":"complete","focus":"Lovable + Bolt.new"}
-{"type":"finding","id":"f-iter002-001","label":"Lovable Visual Edits: direct token/markup edit, no AI turn (corroborates F1; NET-NEW vs 005)","iteration":2}
-{"type":"finding","id":"f-iter002-002","label":"Lovable Knowledge: persistent per-project context doc grounds all generations (sharpens 005 snapshot -> persistent; NET-NEW)","iteration":2}
-{"type":"finding","id":"f-iter002-003","label":"Lovable Chat vs Build mode plan/build separation (OVERLAP; sk-interface-design already does this)","iteration":2}
-{"type":"finding","id":"f-iter002-004","label":"Lovable full-stack Supabase/GitHub/deploy/Remix (out-of-scope)","iteration":2}
-{"type":"finding","id":"f-iter002-005","label":"Bolt.new WebContainers runtime (out-of-scope) + error self-healing (corroborates F4) + diff-before-apply (NET-NEW minor)","iteration":2}
-{"type":"edge","id":"e-iter002-001","relation":"CORROBORATES","source":"f-iter002-001","target":"f-iter001-001","iteration":2}
-{"type":"edge","id":"e-iter002-002","relation":"CORROBORATES","source":"f-iter002-005","target":"f-iter001-004","iteration":2}
-{"type":"ruled_out","direction":"Adopt full-stack backend gen, in-browser runtime, or community remix into the CLI skills","reason":"backend/host/runtime/platform scope","iteration":2}
