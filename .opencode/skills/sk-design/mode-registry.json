@@ -147,7 +147,7 @@
       "backendKind": "od-cli-transport",
       "toolSurface": {
         "allowed": ["Read", "Bash"],
-        "forbidden": ["Write", "Edit"],
+        "forbidden": ["Write", "Edit", "Task"],
         "mutatesWorkspace": false,
         "bashAllowlist": []
       },

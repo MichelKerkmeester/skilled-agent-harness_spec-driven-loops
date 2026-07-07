@@ -11,7 +11,7 @@
  * A parent hub keeps ONE advisor identity at the hub and routes to N
  * non-discoverable packets through a declarative mode-registry, with a
  * hub-router describing how a prompt picks/bundles modes. Every packet is a
- * modes[] entry with a required packetKind discriminator (workflow | surface);
+ * modes[] entry with a required packetKind discriminator (workflow | surface | transport);
  * surface packets are read-only, advisor-invisible evidence bases. Deep-loop's
  * 3-tier machinery is expressed as named `extensions` that activate in-place
  * fields, so the checks are family-agnostic: they run FULL on every hub and
@@ -66,7 +66,7 @@ const SURFACE_FORBIDDEN_TOOLS = ['Write', 'Edit', 'Task'];
 
 // Directories allowed at a hub root without being a registered packet.
 const DIRECTORY_ALLOWLIST = new Set([
-  'shared', 'changelog', 'benchmark', 'manual_testing_playbook',
+  'shared', 'changelog', 'benchmark', 'manual_testing_playbook', 'feature_catalog',
   'references', 'assets', 'node_modules', 'scripts', 'templates', 'dist',
 ]);
 
@@ -335,8 +335,8 @@ function main() {
           fail(`3d: mode "${label}" is missing backendKind`);
           discriminatorOk = false;
         }
-        if (kind !== 'workflow' && kind !== 'surface') {
-          softFail(`3d: mode "${label}" has invalid packetKind ${JSON.stringify(kind)} (expected "workflow" or "surface")`);
+        if (kind !== 'workflow' && kind !== 'surface' && kind !== 'transport') {
+          softFail(`3d: mode "${label}" has invalid packetKind ${JSON.stringify(kind)} (expected "workflow", "surface", or "transport")`);
           canonOk = false;
         }
         if (typeof mode.grandfatheredFolderMismatch !== 'boolean') {
@@ -399,6 +399,30 @@ function main() {
               softFail(`3g: surface packet "${label}" must forbid [${missingForbidden.join(', ')}]`);
               surfaceOk = false;
             }
+          }
+        }
+
+        // 3h — transport packets bridge to an external tool's CLI/MCP surface:
+        // metadata-routed (advisor-invisible), non-mutating in THIS repo (writes
+        // land in the external tool), never orchestrating, and declared on the
+        // transport-axis extension so the axis is registered, not ad-hoc.
+        if (kind === 'transport') {
+          if (routing && routing.routingClass !== 'metadata') {
+            softFail(`3h: transport packet "${label}" must be routingClass "metadata" (advisor-invisible)`);
+          }
+          if (ts && typeof ts === 'object' && ts.mutatesWorkspace !== false) {
+            softFail(`3h: transport packet "${label}" toolSurface must be mutatesWorkspace:false (writes land in the external tool, not this repo)`);
+          }
+          const TRANSPORT_FORBIDDEN_TOOLS = ['Write', 'Edit', 'Task'];
+          const missingT = ts && typeof ts === 'object'
+            ? TRANSPORT_FORBIDDEN_TOOLS.filter((t) => !(ts.forbidden || []).includes(t))
+            : TRANSPORT_FORBIDDEN_TOOLS;
+          if (missingT.length > 0) {
+            softFail(`3h: transport packet "${label}" must forbid [${missingT.join(', ')}]`);
+          }
+          const ta = extensions && extensions['transport-axis'];
+          if (!ta || !Array.isArray(ta.transports) || !ta.transports.includes(mode.workflowMode)) {
+            softFail(`3h: transport packet "${label}" is not declared in the transport-axis extension's transports[]`);
           }
         }
       }

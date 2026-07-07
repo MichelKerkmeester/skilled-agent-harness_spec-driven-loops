@@ -50,7 +50,7 @@ Core rules:
 
 - **Two-tier core**: one hub directory plus nested packets. Do not add an intermediate tier for backend families, runtime loops, or surface groups.
 - **One mode array**: every packet is one entry in `mode-registry.json > modes[]`; do not add a second array such as `surfacePackets[]`.
-- **Two-axis modes**: every mode entry declares `packetKind: "workflow" | "surface"`.
+- **Mode kind**: every mode entry declares `packetKind: "workflow" | "surface" | "transport"`. Workflow and surface are the two primary axes; `transport` is a narrow third kind for packets that bridge to an external tool's CLI/MCP surface (declared via the `transport-axis` extension) and never perform the hub's own judgment.
 - **Workflow packets**: process or lifecycle modes such as implement, quality, review, research, or audit. They may mutate or stay read-only according to their role.
 - **Surface packets**: read-only evidence bases such as webflow, opencode, or animation. They are advisor-invisible and enrich a workflow rather than becoming advisor identities.
 - **One graph identity**: only the hub has `graph-metadata.json`; packets never carry their own advisor identity.
@@ -60,7 +60,7 @@ Core rules:
 Required fields for every `modes[]` entry:
 
 - `workflowMode`: stable public hub/mode key.
-- `packetKind`: `workflow` or `surface`.
+- `packetKind`: `workflow`, `surface`, or `transport`.
 - `backendKind`: workflow backend kind or `evidence-base` for surface packets.
 - `toolSurface`: allowed tools, forbidden tools, mutation flag, and bash allowlist.
 - `packet`: packet folder name.
@@ -127,6 +127,7 @@ Extensions declare extra semantics in place. They do not create extra directory 
 | `advisor-projection` | Drift guard path for lexical or alias-fold projection maps. | Any mode has `routingClass: "lexical"` or `routingClass: "alias-fold"`. |
 | `transform-verbs` | Verb routing that changes target mode by wording frame. | The hub routes phrases such as applying a transformation versus auditing whether it should happen. |
 | `deprecated-modes` | Retired modes kept as redirects or shims. | A public mode remains as replacement guidance without active packet routing. |
+| `transport-axis` | `packetKind: "transport"` entries that bridge to an external tool's CLI/MCP surface. | A mode drives an external tool (its CLI/MCP), stays `mutatesWorkspace:false` + `routingClass:"metadata"`, forbids Write/Edit/Task, and pairs with a workflow mode before any effecting operation. Every listed transport must be a registered `packetKind:"transport"` mode. |
 
 A hub with no extensions is the pure two-tier core. Add only the extension needed for real routing semantics.
 
