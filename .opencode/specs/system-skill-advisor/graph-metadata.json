@@ -11,6 +11,7 @@
     "system-skill-advisor/005-executor-delegation-resolver",
     "system-skill-advisor/006-graph-causal-visited-guard",
     "system-skill-advisor/007-eval-hardening",
+    "system-skill-advisor/008-semantic-shadow-prove-or-freeze",
     "system-skill-advisor/z_archive"
   ],
   "manual": {
@@ -37,7 +38,7 @@
     ],
     "importance_tier": "important",
     "status": "planned",
-    "last_active_child_id": "system-skill-advisor/007-eval-hardening",
+    "last_active_child_id": "system-skill-advisor/008-semantic-shadow-prove-or-freeze",
     "key_files": [],
     "entities": [],
     "causal_summary": "The shared skill-advisor scorer cannot express durable negative evidence: explicit-lane disambiguation penalties are pre-clamp additive offsets and fusion floors net-negative lane matches to zero, so a penalty is erased the moment saturating positive support re-appears",
