@@ -1,0 +1,30 @@
+{
+  "specFolder": "sk-design/009-sk-design-claude-parity/023-full-manual-playbook-execution/010-md-generator-serial-pipeline",
+  "description": "The `md-generator` mode is the only `sk-design` mode with `mutatesWorkspace: true` and `Write`/`Edit`/`Bash` tool access, so its",
+  "keywords": [
+    "md-generator",
+    "mode",
+    "only",
+    "sk-design",
+    "mutatesworkspace",
+    "true",
+    "write",
+    "edit",
+    "bash",
+    "tool",
+    "access"
+  ],
+  "lastUpdated": "2026-07-07T16:16:43.989Z",
+  "specId": "010",
+  "folderSlug": "md-generator-serial-pipeline",
+  "parentChain": [
+    ".opencode",
+    "specs",
+    "sk-design",
+    "009-sk-design-claude-parity",
+    "023-full-manual-playbook-execution"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

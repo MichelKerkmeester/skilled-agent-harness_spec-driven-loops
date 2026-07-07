@@ -1,0 +1,36 @@
+{
+  "specFolder": "sk-design/009-sk-design-claude-parity/023-full-manual-playbook-execution/002-transport-and-negative-controls",
+  "description": "Phase 023's parent scoped this child wave to 5 dispatches spanning two different playbook categories: the Open Design transport mode's routing",
+  "keywords": [
+    "phase",
+    "023",
+    "parent",
+    "scoped",
+    "child",
+    "wave",
+    "dispatches",
+    "spanning",
+    "two",
+    "different",
+    "playbook",
+    "categories",
+    "open",
+    "design",
+    "transport",
+    "mode",
+    "routing"
+  ],
+  "lastUpdated": "2026-07-07T15:18:37.610Z",
+  "specId": "002",
+  "folderSlug": "transport-and-negative-controls",
+  "parentChain": [
+    ".opencode",
+    "specs",
+    "sk-design",
+    "009-sk-design-claude-parity",
+    "023-full-manual-playbook-execution"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

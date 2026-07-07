@@ -149,7 +149,7 @@ Keep global verdict logic in this root playbook. Put feature-specific acceptance
 
 ### WIRE-001 | Install And Verify The Live Tools
 
-Verify `node "$OD_BIN" mcp install opencode` writes the `open-design` MCP entry after a reviewed dry-run, and the live `tools/list` reflects the wired tools.
+Verify `node "$OD_BIN" mcp install opencode` writes the `open-design` MCP entry after a reviewed dry-run, and the live `tools/list` reflects the wired tools. **In this repo, do not run the actual (non-`--print`) install against the real global config** -- canonical wiring here is Code Mode (`.utcp_config.json`), see the feature file for the safe grading approach.
 
 Prompt: `"Connect Open Design to this agent and confirm its tools are available."`
 Expected: dry-run prints the exact entry and writes nothing, the install deep-merges `opencode.json` under `mcp.open-design`, and the live `tools/list` shows the Open Design tools while the desktop app is open.

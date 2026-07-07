@@ -10,7 +10,8 @@ Open Design's terminal surface is the bundled `od` CLI, run as `node "<app>/Cont
 
 - Verify the app and locate the CLI: `bash ../../scripts/install.sh`
 - Read-only diagnostics: `bash ../../scripts/doctor.sh`
-- Preview MCP wiring, which writes nothing: `node "$OD_BIN" mcp install opencode --print --json`
+- This repo already wires Open Design via Code Mode (`.utcp_config.json`'s `open_design` manual) -- the native `node "$OD_BIN" mcp install opencode` path below is for other repos/environments only.
+- Preview native MCP wiring, which writes nothing: `node "$OD_BIN" mcp install opencode --print --json`
 
 The full steps, the socket-discovered daemon model (the HTTP port is ephemeral), and the gated wiring flow are in `../../INSTALL_GUIDE.md` and `../../references/mcp_wiring.md`.
 

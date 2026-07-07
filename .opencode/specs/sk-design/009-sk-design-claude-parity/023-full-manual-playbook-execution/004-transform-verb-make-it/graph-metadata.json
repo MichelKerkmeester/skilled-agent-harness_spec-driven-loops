@@ -1,0 +1,227 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-design/009-sk-design-claude-parity/023-full-manual-playbook-execution/004-transform-verb-make-it",
+  "spec_folder": "sk-design/009-sk-design-claude-parity/023-full-manual-playbook-execution/004-transform-verb-make-it",
+  "parent_id": "sk-design/009-sk-design-claude-parity/023-full-manual-playbook-execution",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "wave 004 transform verb make it",
+      "TV-001 TV-002 dispatch",
+      "make it bolder quieter distill delight",
+      "phase 004 sk-design manual playbook",
+      "phase 004 plan",
+      "transform verb make it dispatch plan",
+      "tasks",
+      "phase 004 tasks",
+      "verification",
+      "checklist",
+      "phase 004 checklist",
+      "implementation"
+    ],
+    "key_topics": [
+      "wave",
+      "004",
+      "transform",
+      "verb",
+      "make",
+      "tv-001",
+      "tv-002",
+      "dispatch",
+      "bolder",
+      "quieter",
+      "distill",
+      "delight"
+    ],
+    "importance_tier": "high",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md",
+      ".opencode/specs/sk-design/009-sk-design-claude-parity/023-full-manual-playbook-execution/004-transform-verb-make-it/spec.md",
+      ".opencode/specs/sk-design/009-sk-design-claude-parity/023-full-manual-playbook-execution/004-transform-verb-make-it/plan.md",
+      ".opencode/specs/sk-design/009-sk-design-claude-parity/023-full-manual-playbook-execution/004-transform-verb-make-it/tasks.md",
+      ".opencode/specs/sk-design/009-sk-design-claude-parity/023-full-manual-playbook-execution/004-transform-verb-make-it/checklist.md",
+      ".opencode/specs/sk-design/009-sk-design-claude-parity/023-full-manual-playbook-execution/004-transform-verb-make-it/implementation-summary.md",
+      ".opencode/specs/sk-design/009-sk-design-claude-parity/023-full-manual-playbook-execution/004-transform-verb-make-it/dispatch-log.md",
+      ".opencode/skills/sk-design/manual_testing_playbook/03--transform-verb-framing/make-it-interface.md",
+      ".opencode/skills/sk-design/manual_testing_playbook/03--transform-verb-framing/should-it-be-audit.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": ".opencode/specs/sk-design/009-sk-design-claude-parity/023-full-manual-playbook-execution/004-transform-verb-make-it/spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": ".opencode/specs/sk-design/009-sk-design-claude-parity/023-full-manual-playbook-execution/004-transform-verb-make-it/plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": ".opencode/specs/sk-design/009-sk-design-claude-parity/023-full-manual-playbook-execution/004-transform-verb-make-it/tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": ".opencode/specs/sk-design/009-sk-design-claude-parity/023-full-manual-playbook-execution/004-transform-verb-make-it/checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": ".opencode/specs/sk-design/009-sk-design-claude-parity/023-full-manual-playbook-execution/004-transform-verb-make-it/implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "dispatch-log.md",
+        "kind": "doc",
+        "path": ".opencode/specs/sk-design/009-sk-design-claude-parity/023-full-manual-playbook-execution/004-transform-verb-make-it/dispatch-log.md",
+        "source": "derived"
+      },
+      {
+        "name": "make-it-interface.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-design/manual_testing_playbook/03--transform-verb-framing/make-it-interface.md",
+        "source": "derived"
+      },
+      {
+        "name": "should-it-be-audit.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-design/manual_testing_playbook/03--transform-verb-framing/should-it-be-audit.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Transform Verb",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Fail Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Phase",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Dispatch",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Ran",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Sequential",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Dispatch Evidence",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Date",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Phase 023's parent scope assigned this child wave 5 of the 55 real constituent dispatches: all 4 variants of `TV-001` (`make it` transform-verb prompts that should route to `interface`) plus the first variant of `TV-002` (`should it be` transform-verb prompts that should route to `audit`)",
+    "created_at": "2026-07-07T15:12:22.642Z",
+    "last_save_at": "2026-07-07T15:13:38.127Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:41cb4363ecde8c4eb3a7d3f60ee76904fc638e11715cc29ecce8d5f6e2cc9cf0",
+    "source_doc_hashes": {
+      "spec.md": "3c612a4bfabbde2d8b3b1c0a48021a66a4479af8a874a4ff92cf6990a0c1cb58",
+      "plan.md": "de31e869e762dce3b9f41d5cf615865636879d691976cb6882155efbc26491d5",
+      "tasks.md": "e6be72b14b2a90b4c6a7f7383f85267eece0dbe09fab1c4e23e6d2bd09a1a3f3",
+      "checklist.md": "97ed5a9aad9537c171930d93554c716d2388781f3e18a3f569099151bc5eaddd",
+      "implementation-summary.md": "d9229bd13d9b5467e17be719f1ad7c56bb4a9c6f10827e0fe4b46641809bb7b8"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

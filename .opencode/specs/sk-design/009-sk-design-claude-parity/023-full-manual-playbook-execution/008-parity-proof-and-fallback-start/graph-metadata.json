@@ -1,0 +1,228 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-design/009-sk-design-claude-parity/023-full-manual-playbook-execution/008-parity-proof-and-fallback-start",
+  "spec_folder": "sk-design/009-sk-design-claude-parity/023-full-manual-playbook-execution/008-parity-proof-and-fallback-start",
+  "parent_id": "sk-design/009-sk-design-claude-parity/023-full-manual-playbook-execution",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "wave 008 parity proof fallback start",
+      "PB-006 PB-007 FR-001",
+      "polish gate selection proof",
+      "variation set selection proof",
+      "no card matches fallback",
+      "wave 008 plan",
+      "parity proof fallback start plan",
+      "tasks",
+      "wave 008 tasks",
+      "verification",
+      "checklist",
+      "wave 008 checklist"
+    ],
+    "key_topics": [
+      "wave",
+      "008",
+      "parity",
+      "proof",
+      "fallback",
+      "start",
+      "pb-006",
+      "pb-007",
+      "fr-001",
+      "polish",
+      "gate",
+      "selection"
+    ],
+    "importance_tier": "high",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md",
+      ".opencode/specs/sk-design/009-sk-design-claude-parity/023-full-manual-playbook-execution/008-parity-proof-and-fallback-start/spec.md",
+      ".opencode/specs/sk-design/009-sk-design-claude-parity/023-full-manual-playbook-execution/008-parity-proof-and-fallback-start/plan.md",
+      ".opencode/specs/sk-design/009-sk-design-claude-parity/023-full-manual-playbook-execution/008-parity-proof-and-fallback-start/tasks.md",
+      ".opencode/specs/sk-design/009-sk-design-claude-parity/023-full-manual-playbook-execution/008-parity-proof-and-fallback-start/checklist.md",
+      ".opencode/specs/sk-design/009-sk-design-claude-parity/023-full-manual-playbook-execution/008-parity-proof-and-fallback-start/implementation-summary.md",
+      ".opencode/specs/sk-design/009-sk-design-claude-parity/023-full-manual-playbook-execution/008-parity-proof-and-fallback-start/dispatch-log.md",
+      ".opencode/skills/sk-design/manual_testing_playbook/06--parity-behavior/shared-polish-gate-selection-proof.md",
+      ".opencode/skills/sk-design/manual_testing_playbook/06--parity-behavior/interface-variation-set-selection-proof.md",
+      ".opencode/skills/sk-design/manual_testing_playbook/07--fallback-and-resilience/no-card-matches-fallback.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": ".opencode/specs/sk-design/009-sk-design-claude-parity/023-full-manual-playbook-execution/008-parity-proof-and-fallback-start/spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": ".opencode/specs/sk-design/009-sk-design-claude-parity/023-full-manual-playbook-execution/008-parity-proof-and-fallback-start/plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": ".opencode/specs/sk-design/009-sk-design-claude-parity/023-full-manual-playbook-execution/008-parity-proof-and-fallback-start/tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": ".opencode/specs/sk-design/009-sk-design-claude-parity/023-full-manual-playbook-execution/008-parity-proof-and-fallback-start/checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": ".opencode/specs/sk-design/009-sk-design-claude-parity/023-full-manual-playbook-execution/008-parity-proof-and-fallback-start/implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "dispatch-log.md",
+        "kind": "doc",
+        "path": ".opencode/specs/sk-design/009-sk-design-claude-parity/023-full-manual-playbook-execution/008-parity-proof-and-fallback-start/dispatch-log.md",
+        "source": "derived"
+      },
+      {
+        "name": "shared-polish-gate-selection-proof.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-design/manual_testing_playbook/06--parity-behavior/shared-polish-gate-selection-proof.md",
+        "source": "derived"
+      },
+      {
+        "name": "interface-variation-set-selection-proof.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-design/manual_testing_playbook/06--parity-behavior/interface-variation-set-selection-proof.md",
+        "source": "derived"
+      },
+      {
+        "name": "no-card-matches-fallback.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-design/manual_testing_playbook/07--fallback-and-resilience/no-card-matches-fallback.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Fail Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Run",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Read",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Procedure Card Selection",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Sequential",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "no",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The larger 023 manual-playbook-execution packet needs every `manualtestingplaybook` scenario actually dispatched through the real `cli-opencode` orchestrator (not just read or reasoned about) and graded strictly against that scenario file's own Pass/Fail Criteria",
+    "created_at": "2026-07-07T15:09:17.527Z",
+    "last_save_at": "2026-07-07T15:11:17.645Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:b5266f8155c04017297ca9fd9ba178e317b7d6e040c27ff998d2e59d92b4fe9a",
+    "source_doc_hashes": {
+      "spec.md": "0c91248d7fb8f8964a9abf4de223194f93271c3316d14ccb0b3c7ca1506ce578",
+      "plan.md": "219e56069565f35b44b9b05846144adf20c1a8930725443aa6c1afb6053b8192",
+      "tasks.md": "953ddcd73552d871afe63f02fca3b205d734d08676f028dee302550d3d1befd5",
+      "checklist.md": "591eef41abc7a0d3500512499fbc46b0ad6f4efc577d5f68f78549d39b9557ac",
+      "implementation-summary.md": "a72499174e4998389980258766acfa74201ee10df66e7c74ae97b12c39c67e2b"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

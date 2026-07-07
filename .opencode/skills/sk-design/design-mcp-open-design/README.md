@@ -55,12 +55,14 @@ node "$OD_BIN" --help
 # There is no global `od` on PATH (bare `od` is the unrelated octal-dump tool).
 ```
 
-**Step 2: Preview the MCP wiring, then write it.**
+**Step 2: MCP wiring -- already done in this repo.**
+
+This repo wires Open Design through Code Mode (`.utcp_config.json`'s `open_design` manual), not native agent config. Skip the commands below unless you're using this skill in a different repo/environment.
 
 ```bash
 node "$OD_BIN" mcp install opencode --print --json   # PREVIEW only, writes nothing
 # Read the command array and environment it would write, then apply:
-node "$OD_BIN" mcp install opencode                   # deep-merges opencode.json (mcp.open-design)
+node "$OD_BIN" mcp install opencode                   # deep-merges opencode.json (mcp.open-design) -- NOT this repo's integration point, see references/mcp_wiring.md Section 5b
 # For CLI and JSON-plan agents, use the target slug. `vibe`, `pi`, and `hermes` only print manual setup snippets.
 ```
 
@@ -91,7 +93,7 @@ Every session starts by locating the CLI as `node "$OD_BIN" --help` (or the `ELE
 
 ### The Wire Direction
 
-`od mcp install <agent>` wires Open Design's stdio MCP server for supported agents, but it does not write config for every slug. Supported agent slugs include `claude`, `opencode`, `cursor`, `copilot`, `openclaw`, `antigravity`, `gemini`, `pi`, `vibe`, `hermes`, `cline`, `kimi`, `trae`, and `opencode`; `vibe`, `pi`, and `hermes` are manual setup targets where the installer returns a snippet instead of writing agent config. For opencode it deep-merges `~/.config/opencode/opencode.json` under `mcp.open-design`; for Claude Code it delegates to `claude mcp add --scope user open-design`. The dry-run form `--print --json` writes nothing and prints the exact entry, so the operator reviews the command array and environment before anything lands. The written entry re-discovers the live daemon URL from the socket on each spawn, so it survives daemon restarts. The skill never pipes a remote install script to a shell.
+`od mcp install <agent>` wires Open Design's stdio MCP server for supported agents, but it does not write config for every slug. Supported agent slugs include `claude`, `opencode`, `cursor`, `copilot`, `openclaw`, `antigravity`, `gemini`, `pi`, `vibe`, `hermes`, `cline`, `kimi`, `trae`, and `opencode`; `vibe`, `pi`, and `hermes` are manual setup targets where the installer returns a snippet instead of writing agent config. For opencode it deep-merges `~/.config/opencode/opencode.json` under `mcp.open-design`; for Claude Code it delegates to `claude mcp add --scope user open-design`. **This repo does not use the opencode native-registration path** -- it wires Open Design through Code Mode instead (`.utcp_config.json`'s `open_design` manual, already configured; see `references/mcp_wiring.md` Section 5b). The dry-run form `--print --json` writes nothing and prints the exact entry, so the operator reviews the command array and environment before anything lands. The written entry re-discovers the live daemon URL from the socket on each spawn, so it survives daemon restarts. The skill never pipes a remote install script to a shell.
 
 ### The Read Direction
 

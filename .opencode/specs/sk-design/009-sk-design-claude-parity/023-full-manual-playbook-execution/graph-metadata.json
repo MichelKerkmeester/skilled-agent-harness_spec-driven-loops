@@ -1,0 +1,158 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-design/009-sk-design-claude-parity/023-full-manual-playbook-execution",
+  "spec_folder": "sk-design/009-sk-design-claude-parity/023-full-manual-playbook-execution",
+  "parent_id": "sk-design/009-sk-design-claude-parity",
+  "children_ids": [
+    "sk-design/009-sk-design-claude-parity/023-full-manual-playbook-execution/001-mode-routing-core",
+    "sk-design/009-sk-design-claude-parity/023-full-manual-playbook-execution/002-transport-and-negative-controls",
+    "sk-design/009-sk-design-claude-parity/023-full-manual-playbook-execution/003-advisor-positive-controls",
+    "sk-design/009-sk-design-claude-parity/023-full-manual-playbook-execution/004-transform-verb-make-it",
+    "sk-design/009-sk-design-claude-parity/023-full-manual-playbook-execution/005-transform-verb-should-it-be",
+    "sk-design/009-sk-design-claude-parity/023-full-manual-playbook-execution/006-excluded-aliases-and-shared-base",
+    "sk-design/009-sk-design-claude-parity/023-full-manual-playbook-execution/007-shared-base-and-parity-core",
+    "sk-design/009-sk-design-claude-parity/023-full-manual-playbook-execution/008-parity-proof-and-fallback-start",
+    "sk-design/009-sk-design-claude-parity/023-full-manual-playbook-execution/009-fallback-and-hub-intake",
+    "sk-design/009-sk-design-claude-parity/023-full-manual-playbook-execution/010-md-generator-serial-pipeline"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "phase 023 sk-design",
+      "full manual playbook execution",
+      "55 dispatch playbook run",
+      "gpt-5.5-fast medium playbook",
+      "implementation",
+      "summary",
+      "phase 023 implementation summary",
+      "full manual playbook execution summary"
+    ],
+    "key_topics": [
+      "phase",
+      "023",
+      "sk-design",
+      "full",
+      "manual",
+      "playbook",
+      "execution",
+      "dispatch",
+      "run",
+      "gpt-5",
+      "5-fast",
+      "medium"
+    ],
+    "importance_tier": "high",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "implementation-summary.md",
+      "scripts/doctor.sh"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "doctor.sh",
+        "kind": "script",
+        "path": "scripts/doctor.sh",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Full Manual Playbook Execution",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Parent",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Dispatch",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built Every",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Fail Criteria",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "How It Was Delivered",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "sk-design's `manualtestingplaybook` (37 scenarios, 8 categories) has only ever been exercised by the automated Lane C skill-benchmark harness, which structurally cannot reach the whole corpus (`PB-004..007`, `HM-`, `FR-` are never dispatched at all; every `MR-` scenario is force-classified `browser` and routed out) and which deliberately wraps every dispatched prompt into a \"state what you'd do, don't do it\" routing-analysis-only request specifically to avoid real side effects",
+    "created_at": "2026-07-07T14:55:39.959Z",
+    "last_save_at": "2026-07-07T17:31:17.793Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:99569e91cf64f767cbb5ba5385ab4914538f9567872df914cdfa4ffda4d7667a",
+    "source_doc_hashes": {
+      "spec.md": "2ddba4baf41b05a4a509d6a72d9133293fdc6a75544e248c400b05a164cff4f8",
+      "implementation-summary.md": "3de6a7bbfaacebe1fcfb44798f7fe6fbf46bbcd9831c5737b366abc2a04b63ad"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

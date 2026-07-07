@@ -22,7 +22,10 @@ bash .opencode/skills/sk-design/design-mcp-open-design/scripts/install.sh
 # 3. Run read-only diagnostics
 bash .opencode/skills/sk-design/design-mcp-open-design/scripts/doctor.sh
 
-# 4. PREVIEW MCP wiring (writes nothing), then wire if the printed config looks right
+# 4. MCP wiring: in THIS repo, skip this -- Open Design is already wired via
+#    Code Mode (.utcp_config.json's "open_design" manual). Step 4 below only
+#    applies when using this skill in a different repo/environment that
+#    doesn't use Code Mode.
 OD_BIN="/Applications/Open Design.app/Contents/Resources/app/prebundled/daemon/daemon-cli.mjs"
 node "$OD_BIN" mcp install opencode --print --json
 ```
@@ -81,6 +84,8 @@ If the app is missing, install it from Open Design's official download, then rer
 ---
 
 ## 4. CONFIGURATION (OPTIONAL MCP WIRING)
+
+> **This repo already has Open Design wired.** The canonical entry lives in `.utcp_config.json`'s `open_design` Code Mode manual (live-verified), not in `~/.config/opencode/opencode.json`. The `mcp install <agent>` commands below register a *native* agent-config entry and only apply when using this skill in a repo/environment that does not route through Code Mode -- running them here creates a redundant, unwanted `mcp.open-design` entry in the user's global opencode config. See [`references/mcp_wiring.md`](references/mcp_wiring.md) Section 5b for this repo's actual wiring.
 
 Wiring the MCP server is optional and gated. Always preview first.
 

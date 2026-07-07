@@ -73,12 +73,23 @@ else
 fi
 
 log "-- MCP config presence --"
+UTCP_CONFIG="$HERE/../../../../../.utcp_config.json"
+if [ -f "$UTCP_CONFIG" ]; then
+  if grep -qi 'open_design' "$UTCP_CONFIG" 2>/dev/null; then
+    ok "Code Mode (.utcp_config.json): open_design manual present -- this repo's canonical wiring"
+  else
+    warn "Code Mode (.utcp_config.json): open_design manual not found -- this repo's canonical wiring is missing"
+  fi
+else
+  info "Code Mode config not found at $UTCP_CONFIG (expected if this checkout doesn't use Code Mode)"
+fi
+
 OPENCODE_CONFIG="$HOME/.config/opencode/opencode.json"
 if [ -f "$OPENCODE_CONFIG" ]; then
   if grep -qi 'open-design' "$OPENCODE_CONFIG" 2>/dev/null; then
-    ok "opencode config: open-design entry present"
+    warn "opencode native config: open-design entry present -- not this repo's integration point (see references/mcp_wiring.md Section 5b); remove it unless you specifically want native wiring too"
   else
-    info "opencode config: open-design entry not found"
+    info "opencode native config: open-design entry not found (expected in this repo -- Code Mode is canonical)"
   fi
 else
   info "opencode config not found at $OPENCODE_CONFIG"

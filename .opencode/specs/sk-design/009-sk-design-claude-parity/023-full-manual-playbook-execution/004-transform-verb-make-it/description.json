@@ -1,0 +1,33 @@
+{
+  "specFolder": "sk-design/009-sk-design-claude-parity/023-full-manual-playbook-execution/004-transform-verb-make-it",
+  "description": "Phase 023's parent scope assigned this child wave 5 of the 55 real constituent dispatches: all 4 variants of `TV-001` (`make it` transform-verb",
+  "keywords": [
+    "phase",
+    "023",
+    "parent",
+    "scope",
+    "assigned",
+    "child",
+    "wave",
+    "real",
+    "constituent",
+    "dispatches",
+    "variants",
+    "tv-001",
+    "make",
+    "transform-verb"
+  ],
+  "lastUpdated": "2026-07-07T15:12:19.793Z",
+  "specId": "004",
+  "folderSlug": "transform-verb-make-it",
+  "parentChain": [
+    ".opencode",
+    "specs",
+    "sk-design",
+    "009-sk-design-claude-parity",
+    "023-full-manual-playbook-execution"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

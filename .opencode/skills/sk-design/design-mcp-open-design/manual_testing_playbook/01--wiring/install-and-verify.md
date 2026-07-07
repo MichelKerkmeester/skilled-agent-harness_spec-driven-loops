@@ -44,7 +44,7 @@ Operators run the exact command sequence for `WIRE-001` and confirm the expected
 4. Compare the observed output against the desired user-visible outcome.
 5. Return a concise final answer that a real user would understand.
 
-PRE: Back up the target agent config first. Confirm the desktop app is open before the tools/list step.
+PRE: Back up the target agent config first. Confirm the desktop app is open before the tools/list step. **In this repo, do not actually run step 3 (`node "$OD_BIN" mcp install opencode`) against the real global config** -- this repo's canonical wiring is already Code Mode (`.utcp_config.json`'s `open_design` manual, see `references/mcp_wiring.md` Section 5b); executing step 3 for real here writes a redundant, unwanted native entry. Grade this scenario from the dry-run output (step 1) plus the already-present Code Mode entry, or execute against a disposable/sandboxed agent config, not the operator's real one.
 
 1. `node "$OD_BIN" mcp install opencode --print --json`  # -> prints the entry, writes nothing
 2. review the printed command array and environment  # -> confirm OD_SIDECAR_IPC_PATH and ELECTRON_RUN_AS_NODE

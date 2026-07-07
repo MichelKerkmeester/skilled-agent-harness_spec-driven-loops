@@ -14,6 +14,8 @@ version: 1.4.0.3
 
 # Open Design MCP Wiring
 
+> **This repo's canonical wiring is Section 5b (Code Mode / `.utcp_config.json`), already configured.** Sections 2-4 below (`od mcp install opencode`/`claude`) document the daemon CLI's general native-agent-registration capability for OTHER repos/environments that don't use Code Mode. Do not run `node "$OD_BIN" mcp install opencode` (without `--print --json`) in this repo -- it deep-merges a redundant entry into the user's global `~/.config/opencode/opencode.json`, which is not this repo's integration point.
+
 > **IMPORTANT:** Always run `od mcp install <agent> --print --json` (a dry-run) first and read the exact `command` and `environment` it will write before letting it modify an agent config. The live daemon fills the exact `command[0]` and `OD_DATA_DIR` from `/api/mcp/install-info`.
 
 ---
@@ -141,9 +143,9 @@ The per-client "Settings to MCP server" copy-paste snippet in the desktop app is
 
 ---
 
-## 5b. CODE MODE (UTCP) WIRING
+## 5b. CODE MODE (UTCP) WIRING -- canonical for this repo
 
-This project also drives MCP servers through Code Mode (`.utcp_config.json`), so Open Design can be wired there instead of (or in addition to) an agent config. `od mcp install` has no `utcp` target, so add the manual by hand, mirroring the existing stdio-MCP entries and using the socket-mode launch spec the dry-run prints:
+This repo drives MCP servers through Code Mode (`.utcp_config.json`) rather than native agent config, and Open Design is already wired there (the `open_design` manual, live-verified). `od mcp install` has no `utcp` target, so the manual was added by hand, mirroring the existing stdio-MCP entries and using the socket-mode launch spec the dry-run prints:
 
 ```json
 {

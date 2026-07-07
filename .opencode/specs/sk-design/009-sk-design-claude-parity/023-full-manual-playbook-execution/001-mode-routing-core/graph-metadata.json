@@ -1,0 +1,219 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-design/009-sk-design-claude-parity/023-full-manual-playbook-execution/001-mode-routing-core",
+  "spec_folder": "sk-design/009-sk-design-claude-parity/023-full-manual-playbook-execution/001-mode-routing-core",
+  "parent_id": "sk-design/009-sk-design-claude-parity/023-full-manual-playbook-execution",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "wave 001 mode routing core",
+      "MR-001 MR-002 MR-003 MR-004 MR-006",
+      "mode routing dispatch wave",
+      "wave 001 plan",
+      "mode routing dispatch plan",
+      "tasks",
+      "wave 001 tasks",
+      "verification",
+      "checklist",
+      "wave 001 checklist",
+      "implementation",
+      "summary"
+    ],
+    "key_topics": [
+      "wave",
+      "001",
+      "mode",
+      "routing",
+      "core",
+      "mr-001",
+      "mr-002",
+      "mr-003",
+      "mr-004",
+      "mr-006",
+      "dispatch",
+      "plan"
+    ],
+    "importance_tier": "high",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Mode Routing Core",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Fail Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Dispatch",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Ran",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Sequential",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Phase",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Date",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Impact",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The sk-design `manualtestingplaybook`'s `01--mode-routing` category has never been dispatched for real",
+    "created_at": "2026-07-07T15:09:43.419Z",
+    "last_save_at": "2026-07-07T15:11:10.868Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:b6408e137aef46ed8960ce7e5199f551e0c14670245565afecaadc25d4104a2e",
+    "source_doc_hashes": {
+      "spec.md": "22e73e9185c7dee7ef73bc19036a497f34161c71bacc5e196aa4063923fae313",
+      "plan.md": "2bd2df4fb9e1fee24b5be69545c9e753c2288818ea5068a6cb592ee7cb2dc4c4",
+      "tasks.md": "b1177a870fb410fd0c756cd46be0e00190eec45876e56aafeb714533aab6177f",
+      "checklist.md": "407c94fca15edc060229cdca3a6fb188c72b951a0f9f324ba7ff9b9e9c9aa0a9",
+      "implementation-summary.md": "e65dfba662c32bb16c03578e5b8ea0de29049e53b707192aaa161fa2382a8714"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

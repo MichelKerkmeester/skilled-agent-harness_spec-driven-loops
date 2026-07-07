@@ -20,6 +20,8 @@ Registers Open Design's stdio MCP server into a terminal agent so its tools appe
 
 The command resolves the target agent and writes a single MCP entry. For opencode it deep-merges `~/.config/opencode/opencode.json` under `mcp.open-design`. For Claude Code it delegates to `claude mcp add --scope user open-design`. The dry-run form prints the exact entry and writes nothing, so the operator reviews the `command` array and `environment` before anything lands on disk.
 
+**This repo's own canonical wiring is different**: Open Design is already wired here through Code Mode (`.utcp_config.json`'s `open_design` manual), not the native opencode path this feature documents. `WIRE-001` below still validates the native `od mcp install opencode` capability as a general skill feature, but running it live in this repo writes a redundant entry into the user's global config — see `references/mcp_wiring.md` Section 5b before executing `WIRE-001` for real here.
+
 ---
 
 ## 2. HOW IT WORKS

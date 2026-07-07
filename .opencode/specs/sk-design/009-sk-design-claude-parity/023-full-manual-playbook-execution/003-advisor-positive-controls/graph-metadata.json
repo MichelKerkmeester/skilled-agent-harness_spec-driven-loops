@@ -1,0 +1,220 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-design/009-sk-design-claude-parity/023-full-manual-playbook-execution/003-advisor-positive-controls",
+  "spec_folder": "sk-design/009-sk-design-claude-parity/023-full-manual-playbook-execution/003-advisor-positive-controls",
+  "parent_id": "sk-design/009-sk-design-claude-parity/023-full-manual-playbook-execution",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "wave 003 advisor positive controls",
+      "AI-001 P1 P2 P3 P4 P6",
+      "positive design controls dispatch wave",
+      "wave 003 plan",
+      "advisor positive controls dispatch plan",
+      "tasks",
+      "wave 003 tasks",
+      "verification",
+      "checklist",
+      "wave 003 checklist",
+      "implementation",
+      "summary"
+    ],
+    "key_topics": [
+      "wave",
+      "003",
+      "advisor",
+      "positive",
+      "controls",
+      "ai-001",
+      "design",
+      "dispatch",
+      "plan",
+      "tasks",
+      "verification",
+      "checklist"
+    ],
+    "importance_tier": "high",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md",
+      ".opencode/skills/sk-design/manual_testing_playbook/02--advisor-integration/positive-design-controls.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "positive-design-controls.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-design/manual_testing_playbook/02--advisor-integration/positive-design-controls.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Advisor Positive Controls",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Fail Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Positive Design Controls",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Dispatch",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Ran",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Wire Open Design",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Phase",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Date",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Impact",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "`AI-001: Positive Design Controls` defines a single 6-probe battery (P1-P6) verifying that the advisor picks the single public `sk-design` identity — never a child mode as a separate identity — for every positive design-family prompt, and that the hub then resolves each probe to its documented `workflowMode` and packet",
+    "created_at": "2026-07-07T15:17:02.203Z",
+    "last_save_at": "2026-07-07T15:17:51.746Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:5963ab6f7b4f4e9d61bcc309df4e6cb0240b0348f495dc7b620946244c5fa02d",
+    "source_doc_hashes": {
+      "spec.md": "027e9e214bb815b61cfd73b728b891b611630dd1221043f0d4cb625a782843fd",
+      "plan.md": "b4ce6dfb282da2731310d607322b90ba0775a6939f3874b062cd8d70a4d5a3a0",
+      "tasks.md": "fe0ee130e0c3fed3507ebaca28ed4b1df7259aa25034151a5c490d5d1db98d94",
+      "checklist.md": "28210780fb52fe134c1743d42bfa807235d169fef428d96862ddbe365efc59e3",
+      "implementation-summary.md": "dc09997845a9b7a9b2997807d5331ea1d67decad33469c59de8d48fdc24006fc"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

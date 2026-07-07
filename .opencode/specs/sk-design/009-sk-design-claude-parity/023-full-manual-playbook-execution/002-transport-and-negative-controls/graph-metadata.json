@@ -1,0 +1,222 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-design/009-sk-design-claude-parity/023-full-manual-playbook-execution/002-transport-and-negative-controls",
+  "spec_folder": "sk-design/009-sk-design-claude-parity/023-full-manual-playbook-execution/002-transport-and-negative-controls",
+  "parent_id": "sk-design/009-sk-design-claude-parity/023-full-manual-playbook-execution",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "wave 002 transport and negative controls",
+      "phase 023 wave 002 sk-design",
+      "MR-007 AI-002 AI-003 AI-004 SR-001",
+      "phase 002 plan",
+      "transport negative control dispatch plan",
+      "tasks",
+      "phase 002 tasks",
+      "verification",
+      "checklist",
+      "phase 002 checklist",
+      "implementation",
+      "summary"
+    ],
+    "key_topics": [
+      "wave",
+      "002",
+      "transport",
+      "negative",
+      "controls",
+      "phase",
+      "023",
+      "sk-design",
+      "mr-007",
+      "ai-002",
+      "ai-003",
+      "ai-004"
+    ],
+    "importance_tier": "high",
+    "status": "complete",
+    "key_files": [
+      ".opencode/skills/deep-loop-runtime/lib/deep-loop/executor-config.ts",
+      "implementation-summary.md",
+      ".opencode/skills/sk-design/manual_testing_playbook/01--mode-routing/mcp-open-design-mode.md",
+      ".opencode/skills/sk-design/manual_testing_playbook/05--shared-reference-base/interface-shared-references.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "executor-config.ts",
+        "kind": "code",
+        "path": ".opencode/skills/deep-loop-runtime/lib/deep-loop/executor-config.ts",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "mcp-open-design-mode.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-design/manual_testing_playbook/01--mode-routing/mcp-open-design-mode.md",
+        "source": "derived"
+      },
+      {
+        "name": "interface-shared-references.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-design/manual_testing_playbook/05--shared-reference-base/interface-shared-references.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Control Dispatches",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Open Design",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Fail Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Phase",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Run",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Five",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Two",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Resource Loading Levels",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Date",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Phase 023's parent scoped this child wave to 5 dispatches spanning two different playbook categories: the Open Design transport mode's routing contract (`MR-007`) and four advisor-integration boundary checks (`AI-002`, `AI-003`, `AI-004`, `SR-001`) that prove `sk-design` neither false-fires on pure-code/documentation/backend-review prompts nor skips its own mandatory shared-resource loading contract when it does legitimately win",
+    "created_at": "2026-07-07T15:18:40.673Z",
+    "last_save_at": "2026-07-07T15:20:38.212Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:47ab54ed9934f4c10c1baed8f9e807dd2efa7637ecdcf4a089cbbe6fe96af586",
+    "source_doc_hashes": {
+      "spec.md": "2ddfe8aa100ee5a8451237e8bef86e1a880aaf55b429351b792cfe802d6ab0a9",
+      "plan.md": "6c7a31f76ac609132ab66891894509e559213dc46e803766f1aaec38127f642e",
+      "tasks.md": "bfc646149b0fa2f4bc4d3d71c5f0b5c2f60ed115913a745a368e7c4404b4bc7f",
+      "checklist.md": "4022bcab20d503317af498cf983fb4972b117a8fe2d0392ff3bac764a473218c",
+      "implementation-summary.md": "4b0420fc0dc4450944a8888da37a48e999e1589ee7054f3e74e8142d24f675e1"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}
