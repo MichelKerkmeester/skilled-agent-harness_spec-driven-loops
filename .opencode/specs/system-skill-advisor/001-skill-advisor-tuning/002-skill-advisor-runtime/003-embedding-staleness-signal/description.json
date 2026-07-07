@@ -1,0 +1,23 @@
+{
+  "level": "2",
+  "specFolder": "system-skill-advisor/001-skill-advisor-tuning/002-skill-advisor-runtime/003-embedding-staleness-signal",
+  "description": "The Skill Advisor has a load-time staleness blind spot",
+  "keywords": [
+    "skill",
+    "advisor",
+    "load-time",
+    "staleness",
+    "blind",
+    "spot"
+  ],
+  "lastUpdated": "2026-07-06T16:57:20.549Z",
+  "specId": "003",
+  "folderSlug": "embedding-staleness-signal",
+  "parentChain": [
+    "system-skill-advisor",
+    "001-skill-advisor-tuning",
+    "002-skill-advisor-runtime"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

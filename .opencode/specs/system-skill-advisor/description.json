@@ -1,18 +1,17 @@
 {
-  "level": "phase",
+  "level": "track",
   "specFolder": "system-skill-advisor",
-  "description": "Skill-advisor phase parent: the shared advisor-scorer saturation-class root fix (WS1-6) plus advisor projection vocabulary, grouped under one parent spec.",
+  "description": "Skill-advisor track: the shared advisor-scorer program (saturation root fix, executor-delegation resolver, graph-causal visited-guard, eval hardening, semantic_shadow prove-or-freeze, runtime, RRF-fusion, penalty-contract), grouped as nested phases under 001-skill-advisor-tuning.",
   "keywords": [
     "system-skill-advisor",
     "advisor",
     "scorer",
     "saturation",
-    "demotion",
+    "tuning",
     "projection",
-    "vocabulary",
-    "parent"
+    "track"
   ],
-  "lastUpdated": "2026-07-07T00:00:00.000Z",
+  "lastUpdated": "2026-07-07T10:00:00.000Z",
   "specId": "",
   "folderSlug": "system-skill-advisor",
   "parentChain": [],

@@ -1,0 +1,221 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-skill-advisor/001-skill-advisor-tuning/002-skill-advisor-runtime/008-advisor-workspace-root-resolution",
+  "spec_folder": "system-skill-advisor/001-skill-advisor-tuning/002-skill-advisor-runtime/008-advisor-workspace-root-resolution",
+  "parent_id": "system-skill-advisor/001-skill-advisor-tuning/002-skill-advisor-runtime",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "advisor workspace root",
+      "nested .opencode",
+      "advisor-state",
+      "skill-graph-generation",
+      "resolveWorkspaceRoot",
+      "advisor root plan",
+      "resolveWorkspaceRoot walk-up",
+      "advisor dist rebuild",
+      "advisor root tasks",
+      "advisor-state cleanup tasks",
+      "advisor root checklist",
+      "advisor-state qa"
+    ],
+    "key_topics": [
+      "advisor",
+      "workspace",
+      "root",
+      "nested",
+      "opencode",
+      "advisor-state",
+      "skill-graph-generation",
+      "resolveworkspaceroot",
+      "plan",
+      "walk-up",
+      "dist",
+      "rebuild"
+    ],
+    "importance_tier": "normal",
+    "status": "in_progress",
+    "key_files": [
+      ".opencode/skills/system-skill-advisor/mcp_server/advisor-server.ts",
+      "mcp_server/package.json",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "advisor-server.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-skill-advisor/mcp_server/advisor-server.ts",
+        "source": "derived"
+      },
+      {
+        "name": "package.json",
+        "kind": "config",
+        "path": "mcp_server/package.json",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "a",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "other",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. METADATA",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "2. PROBLEM & PURPOSE",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Reuse",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Walk",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow Generation",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Breakdown",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria Code",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "typecheck",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "content",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The skill advisor wrote its generation state to <cwd>/.opencode/skills/.advisor-state whenever it ran with a subdirectory as the working directory, creating stray nested .opencode trees across the repo. Resolve the workspace root deterministically from the module location instead of process.cwd().",
+    "created_at": "2026-06-21T15:40:00Z",
+    "last_save_at": "2026-07-07T09:40:25.059Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:20ab0a08f6df8939f84fd3885dce9867dd8b4477a4be266d67ec8738900a416b",
+    "source_doc_hashes": {
+      "spec.md": "e2f030e1eaf6e732c7e9052091fee627073c2623810f2ede925a3ce9fc466df7",
+      "plan.md": "4b6acefab5627b5fc118b6d3f7def3dd50d5a57f61e50a50b8a149bce0d2bb54",
+      "tasks.md": "c6a4484470be68cf1d2ddd3dd20e6424b03275e3dbb80bbf0397a280be7b23ef",
+      "checklist.md": "4195eaae4be36b74d2b61f5af115af9c17b9b0b0695092a12c4358a6fc48d513",
+      "implementation-summary.md": "06c246ecac29fe03535d332f6d1e01a588c082419b8de66d32c473c164140a6e"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

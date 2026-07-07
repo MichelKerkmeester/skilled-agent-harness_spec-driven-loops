@@ -1,0 +1,28 @@
+{
+  "level": "phase",
+  "specFolder": "system-skill-advisor/001-skill-advisor-tuning",
+  "description": "The shared skill-advisor scorer — the weighted five-lane fusion that ranks which skill a prompt should route to — carries a saturation-class defect:",
+  "keywords": [
+    "shared",
+    "skill-advisor",
+    "scorer",
+    "weighted",
+    "five-lane",
+    "fusion",
+    "ranks",
+    "skill",
+    "prompt",
+    "route",
+    "carries",
+    "saturation-class",
+    "defect"
+  ],
+  "lastUpdated": "2026-07-07T09:40:25.004Z",
+  "specId": "001",
+  "folderSlug": "skill-advisor-tuning",
+  "parentChain": [
+    "system-skill-advisor"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}
