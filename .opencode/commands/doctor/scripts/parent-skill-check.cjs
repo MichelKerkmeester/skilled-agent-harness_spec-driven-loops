@@ -50,7 +50,7 @@ const VALID_ROUTING_CLASSES = ['lexical', 'alias-fold', 'metadata', 'command-bri
 // The graph-backed convergence loop keys consumed by a runtime-loop backend.
 // null is the explicit value for host/adapter modes; only demanded when the hub
 // declares the runtime-loop extension.
-const VALID_RUNTIME_LOOP_TYPES = ['research', 'review', 'council', 'context', null];
+const VALID_RUNTIME_LOOP_TYPES = ['research', 'review', 'council', null];
 
 // Which backend actually runs a mode. Covers both the runtime-loop family and
 // the 2-tier surface family; 'evidence-base' is the required kind for a surface
@@ -291,6 +291,10 @@ function main() {
       let canonOk = true;           // canon (FAIL by default): packetKind, toolSurface, grandfathered, runtimeLoopType
       let routingOk = true;
       let surfaceOk = true;
+      let folderNameOk = true;      // folder == packetSkillName unless grandfatheredFolderMismatch
+      let packetFilesOk = true;     // each packet carries SKILL.md + README.md + changelog/
+      let aliasOk = true;           // aliases unique across all modes
+      const aliasSeen = new Map();  // alias (lowercased) → first mode that declared it
 
       for (const mode of modes) {
         const label = mode.workflowMode || '<unnamed>';
@@ -343,6 +347,39 @@ function main() {
           softFail(`3d: mode "${label}" is missing the grandfatheredFolderMismatch boolean`);
           canonOk = false;
         }
+        // 3d-name — folder == packetSkillName unless the mismatch is explicitly grandfathered.
+        // A mode may not ship grandfatheredFolderMismatch:false while its folder and
+        // packetSkillName actually diverge — that is a silent, un-grandfathered mismatch.
+        if (mode.grandfatheredFolderMismatch === false && typeof mode.packet === 'string' && typeof mode.packetSkillName === 'string') {
+          const folderLeaf = mode.packet.replace(/[\\/]+$/, '').split(/[\\/]/).pop();
+          if (folderLeaf !== mode.packetSkillName) {
+            softFail(`3d-name: mode "${label}" folder "${folderLeaf}" != packetSkillName "${mode.packetSkillName}" but grandfatheredFolderMismatch is false (set it true to preserve a real mismatch)`);
+            folderNameOk = false;
+          }
+        }
+        // 3d-files — every packet carries its companion files (doctrine §6).
+        if (typeof mode.packet === 'string') {
+          const pdir = path.join(target, mode.packet);
+          if (fs.existsSync(pdir) && fs.statSync(pdir).isDirectory()) {
+            for (const companion of ['SKILL.md', 'README.md', 'changelog']) {
+              if (!fs.existsSync(path.join(pdir, companion))) {
+                softFail(`3d-files: packet "${mode.packet}" is missing companion ${companion}`);
+                packetFilesOk = false;
+              }
+            }
+          }
+        }
+        // 3d-alias — natural-language aliases must be unique across all modes.
+        for (const a of (Array.isArray(mode.aliases) ? mode.aliases : [])) {
+          if (typeof a !== 'string') continue;
+          const key = a.toLowerCase();
+          if (aliasSeen.has(key)) {
+            softFail(`3d-alias: alias ${JSON.stringify(a)} on mode "${label}" duplicates mode "${aliasSeen.get(key)}" (aliases must be unique across modes)`);
+            aliasOk = false;
+          } else {
+            aliasSeen.set(key, label);
+          }
+        }
         // toolSurface shape required on every mode (canon: FAIL by default).
         const ts = mode.toolSurface;
         if (!ts || typeof ts !== 'object' || !Array.isArray(ts.allowed) || !Array.isArray(ts.forbidden) ||
@@ -356,7 +393,7 @@ function main() {
             softFail(`3d: mode "${label}" is missing runtimeLoopType (runtime-loop extension declared; null is allowed, absence is not)`);
             canonOk = false;
           } else if (!VALID_RUNTIME_LOOP_TYPES.includes(mode.runtimeLoopType)) {
-            softFail(`3d: mode "${label}" has invalid runtimeLoopType ${JSON.stringify(mode.runtimeLoopType)} (expected one of {research, review, council, context, null})`);
+            softFail(`3d: mode "${label}" has invalid runtimeLoopType ${JSON.stringify(mode.runtimeLoopType)} (expected one of {research, review, council, null})`);
             canonOk = false;
           }
         } else if ('runtimeLoopType' in mode && !VALID_RUNTIME_LOOP_TYPES.includes(mode.runtimeLoopType)) {
@@ -442,6 +479,9 @@ function main() {
       if (packetOk) pass('3c: every mode packet resolves to an existing sub-directory');
       if (discriminatorOk) pass('3d: every mode carries the hard discriminator (workflowMode + backendKind)');
       if (canonOk) pass('3d-canon: every mode carries packetKind + toolSurface + grandfatheredFolderMismatch');
+      if (folderNameOk) pass('3d-name: every mode folder matches packetSkillName (or is grandfathered)');
+      if (packetFilesOk) pass('3d-files: every packet carries SKILL.md, README.md, and changelog/');
+      if (aliasOk) pass(`3d-alias: all ${aliasSeen.size} aliases are unique across modes`);
       if (routingOk) pass('3e: every mode has an advisorRouting block with a valid routingClass');
       if (surfaceCount === 0) {
         info('3g: hub declares no surface packets');
@@ -696,6 +736,36 @@ function main() {
       } else {
         softFail(`5g: routerPolicy.outcomes is missing base outcome(s): [${missingOutcomes.join(', ')}]`);
       }
+
+      // 5h — defaultMode is a registered workflowMode or explicit null.
+      const rp = router.routerPolicy || {};
+      if (!('defaultMode' in rp)) {
+        softFail('5h: routerPolicy.defaultMode is absent (must be a registered workflowMode or explicit null)');
+      } else if (rp.defaultMode === null) {
+        pass('5h: routerPolicy.defaultMode is null (surface-primary or no default)');
+      } else if (registryModeSet.has(rp.defaultMode)) {
+        pass(`5h: routerPolicy.defaultMode "${rp.defaultMode}" is a registered mode`);
+      } else {
+        softFail(`5h: routerPolicy.defaultMode ${JSON.stringify(rp.defaultMode)} is not a registered workflowMode (must be a real mode or null)`);
+      }
+
+      // 5i — tie-break lists workflow modes before surface/transport modes (doctrine
+      // requires process selection primary, evidence/transport secondary).
+      const kindByMode = new Map((registry && Array.isArray(registry.modes) ? registry.modes : []).map((m) => [m.workflowMode, m.packetKind]));
+      const tbOrder = router.routerPolicy && Array.isArray(router.routerPolicy.tieBreak) ? router.routerPolicy.tieBreak : [];
+      let firstNonWorkflow = null;
+      let tieOrderOk = true;
+      for (const m of tbOrder) {
+        const k = kindByMode.get(m);
+        if (k && k !== 'workflow') {
+          if (!firstNonWorkflow) firstNonWorkflow = m;
+        } else if (k === 'workflow' && firstNonWorkflow) {
+          softFail(`5i: tieBreak places workflow mode "${m}" after non-workflow mode "${firstNonWorkflow}" (workflow modes must sort first)`);
+          tieOrderOk = false;
+          break;
+        }
+      }
+      if (tieOrderOk && tbOrder.length > 0) pass('5i: tieBreak orders workflow modes before surface/transport modes');
     }
   }
 
