@@ -252,7 +252,7 @@ This section records wave planning and capacity guidance for the manual testing 
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Expected Signals | Per-Feature File |
 |---|---|---|---|---|---|
-| `FR-001` | No-Card-Matches Fallback | Modes state exact no-procedure fallback lines instead of inventing cards | `foundations: answer this narrow semantic-token naming question and state whether a private procedure card applies before answering.` | exact fallback line per mode; md-generator uses `baseline md-generator pipeline`; no all-card loading | `07--fallback-and-resilience/no-card-matches-fallback.md` |
+| `FR-001` | No-Card-Matches Fallback | Modes state exact no-procedure fallback lines instead of inventing cards | `foundations: explain whether this existing neutral token name should be semantic or surface-level. Keep it advisory and state whether a procedure card applies before answering.` | exact fallback line per mode; md-generator uses `baseline md-generator pipeline`; no all-card loading | `07--fallback-and-resilience/no-card-matches-fallback.md` |
 | `FR-002` | Direct Fallback Without Subagents | Direct fallback preserves proof bar and tool boundary without subagents | `Subagents are unavailable. motion: define the feedback states and reduced-motion path for this toolbar directly in the current session, and show the procedure card, context basis, proof line, and tool boundary you used.` | read-only modes stay Read/Glob/Grep-only; md-generator keeps backend boundary | `07--fallback-and-resilience/direct-fallback-without-subagents.md` |
 
 ---

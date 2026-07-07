@@ -5,7 +5,7 @@ allowed-tools: [Read, Grep, Glob]
 version: 1.0.0.1
 metadata:
   author: OpenCode
-  family: sk-code
+  family: sk-design
 ---
 
 <!-- Keywords: motion, motion-design, animation, transitions, micro-interactions, framer-motion, AnimatePresence, reduced-motion, motion-performance -->

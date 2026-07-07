@@ -5,7 +5,7 @@ allowed-tools: [Read, Grep, Glob]
 version: 1.0.0.2
 metadata:
   author: OpenCode
-  family: sk-code
+  family: sk-design
 ---
 
 <!-- Keywords: audit, design-audit, accessibility, performance, responsive, theming, critique, polish, hardening, anti-slop, P0-P3, design-quality-score -->

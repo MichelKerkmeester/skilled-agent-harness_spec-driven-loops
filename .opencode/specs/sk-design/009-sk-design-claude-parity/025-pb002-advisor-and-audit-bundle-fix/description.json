@@ -1,0 +1,32 @@
+{
+  "specFolder": "sk-design/009-sk-design-claude-parity/025-pb002-advisor-and-audit-bundle-fix",
+  "description": "A fresh, independent Opus-max audit of sk-design's parent hub and all 6 subskills (dispatched after phase 024 closed its 8 bugs) cross-referenced the",
+  "keywords": [
+    "fresh",
+    "independent",
+    "opus-max",
+    "audit",
+    "sk-design",
+    "parent",
+    "hub",
+    "subskills",
+    "dispatched",
+    "phase",
+    "024",
+    "closed",
+    "bugs",
+    "cross-referenced"
+  ],
+  "lastUpdated": "2026-07-07T20:49:01.824Z",
+  "specId": "025",
+  "folderSlug": "pb002-advisor-and-audit-bundle-fix",
+  "parentChain": [
+    ".opencode",
+    "specs",
+    "sk-design",
+    "009-sk-design-claude-parity"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

@@ -2005,6 +2005,15 @@ PHRASE_INTENT_BOOSTERS = {
     "should it be distill": [("sk-design", 2.0)],
     "should it be clarify": [("sk-design", 2.0)],
     "feel gratuitous": [("sk-design", 1.5)],
+
+    # "review"/"audit" alone boost sk-code through four independent additive
+    # mechanisms (intent signal, INTENT_BOOSTERS, keyword match, and
+    # MULTI_SKILL_BOOSTERS), since code review is that word's dominant sense.
+    # A review scoped to a static visual-system axis (hierarchy, spacing,
+    # rhythm, typography) has no counterweight on the sk-design side, so it
+    # loses to sk-code even though the request never touches code at all.
+    "spacing rhythm": [("sk-design", 2.2)],
+    "hierarchy and spacing": [("sk-design", 1.8)],
 }
 
 DEFAULT_CONFIDENCE_THRESHOLD = NATIVE_DEFAULT_CONFIDENCE_THRESHOLD

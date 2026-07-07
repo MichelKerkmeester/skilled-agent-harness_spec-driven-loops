@@ -71,7 +71,10 @@
     "validate DESIGN.md",
     "hex accuracy",
     "section completeness",
-    "tokens.json fidelity"
+    "tokens.json fidelity",
+    "spacing rhythm",
+    "hierarchy and spacing review",
+    "confirmed versus inferred design evidence"
   ],
   "derived": {
     "trigger_phrases": [
@@ -127,7 +130,11 @@
       "validate design.md against tokens.json",
       "hex accuracy and section completeness",
       "design fidelity check",
-      "design.md report"
+      "design.md report",
+      "spacing rhythm",
+      "hierarchy and spacing rhythm",
+      "proof before calling the design ready",
+      "confirmed versus inferred design evidence"
     ],
     "key_topics": [
       "sk-design",

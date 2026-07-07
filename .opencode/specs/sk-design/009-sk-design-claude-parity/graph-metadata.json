@@ -28,7 +28,8 @@
     "sk-design/009-sk-design-claude-parity/021-command-surface-validator-and-agent-parity",
     "sk-design/009-sk-design-claude-parity/022-benchmark-rerun-and-coverage-fill",
     "sk-design/009-sk-design-claude-parity/023-full-manual-playbook-execution",
-    "sk-design/009-sk-design-claude-parity/024-manual-playbook-bug-remediation"
+    "sk-design/009-sk-design-claude-parity/024-manual-playbook-bug-remediation",
+    "sk-design/009-sk-design-claude-parity/025-pb002-advisor-and-audit-bundle-fix"
   ],
   "manual": {
     "depends_on": [],
@@ -156,7 +157,7 @@
     ],
     "causal_summary": "The research packet found that `sk-design` already has the right OpenCode-native backbone: one advisor-routable hub, five public modes, registry-driven routing, a shared reference base, and a measured `design-md-generator` extraction backend",
     "created_at": "2026-07-05T00:00:00.000Z",
-    "last_save_at": "2026-07-07T19:22:35.325Z",
+    "last_save_at": "2026-07-07T20:49:36.970Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

@@ -137,7 +137,7 @@
           "when": "Prefer motion when the request is to create animation choreography, transitions, or micro-interaction behavior."
         },
         {
-          "sibling": "/design:design-mcp-open-design",
+          "sibling": "design-mcp-open-design (no standalone command; reached via the sk-design hub paired with a design mode)",
           "when": "Prefer design-mcp-open-design when the request is to wire, read, or drive Open Design's MCP server rather than review an existing design surface."
         }
       ],
@@ -301,7 +301,7 @@
           "when": "Prefer motion when the request is animation, transition choreography, micro-interactions, or reduced-motion behavior."
         },
         {
-          "sibling": "/design:design-mcp-open-design",
+          "sibling": "design-mcp-open-design (no standalone command; reached via the sk-design hub paired with a design mode)",
           "when": "Prefer design-mcp-open-design when the request is to wire, read, or drive Open Design's MCP server rather than author a static visual system from judgment."
         }
       ],
@@ -555,7 +555,7 @@
           "when": "Prefer motion when the request is animation choreography, transitions, micro-interactions, or reduced-motion behavior."
         },
         {
-          "sibling": "/design:design-mcp-open-design",
+          "sibling": "design-mcp-open-design (no standalone command; reached via the sk-design hub paired with a design mode)",
           "when": "Prefer design-mcp-open-design when the request is to wire, read, or drive Open Design's MCP server rather than invent a new interface direction."
         }
       ],
@@ -696,7 +696,7 @@
           "when": "Prefer motion when the request is to design animation, transitions, or micro-interaction behavior."
         },
         {
-          "sibling": "/design:design-mcp-open-design",
+          "sibling": "design-mcp-open-design (no standalone command; reached via the sk-design hub paired with a design mode)",
           "when": "Prefer design-mcp-open-design when the request is to wire, read, or drive Open Design's MCP server rather than extract measured CSS from a live website."
         }
       ],
@@ -837,7 +837,7 @@
           "when": "Prefer md-generator when the request is to capture measured CSS or tokens from a live site."
         },
         {
-          "sibling": "/design:design-mcp-open-design",
+          "sibling": "design-mcp-open-design (no standalone command; reached via the sk-design hub paired with a design mode)",
           "when": "Prefer design-mcp-open-design when the request is to wire, read, or drive Open Design's MCP server rather than design animation or motion behavior."
         }
       ],
