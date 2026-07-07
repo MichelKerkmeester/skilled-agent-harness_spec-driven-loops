@@ -18,7 +18,13 @@ A compact, validator-safe decision-tree flowchart and a breakdown of why it sati
 
 ---
 
-## 1. WORKED DECISION TREE
+## 1. OVERVIEW
+
+This file gives one compact, validator-passing decision-tree flowchart, then breaks down why its labels, connectors, and box widths satisfy the packet validator's checks. Use it as a shape to model a real decision tree on — replace the support-triage content with sourced nodes rather than copying it verbatim.
+
+---
+
+## 2. WORKED DECISION TREE
 
 The example below borrows the decision-tree asset's shape: visible question nodes, explicit branch outcomes, retry or escalation handling, convergence, and terminal states. It uses `[YES]` and `[NO]` labels because the validator accepts those tokens or checkmarks for decision labels.
 
@@ -74,7 +80,7 @@ The example below borrows the decision-tree asset's shape: visible question node
       ╰────────────────────────────────────────────╯
 ```
 
-## 2. WHY THIS EXAMPLE PASSES
+## 3. WHY THIS EXAMPLE PASSES
 
 The example is not a universal template. It is a compact model for validator-safe decisions; replace its support-triage content with real sourced nodes.
 
@@ -95,7 +101,7 @@ The example is not a universal template. It is a compact model for validator-saf
 
 ---
 
-## 3. RELATED RESOURCES
+## 4. RELATED RESOURCES
 
 - [README.md](README.md) - create-flowchart reference route-map
 - [notation_and_validator.md](notation_and_validator.md) - validator mechanics, box-width notation, and common mistakes

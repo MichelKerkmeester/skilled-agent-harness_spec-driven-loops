@@ -19,7 +19,13 @@ For execution modes see [workflows.md](./workflows.md). For the validation seque
 
 ---
 
-## 1. COMMON WORKFLOW EXAMPLES
+## 1. OVERVIEW
+
+This file collects copy-paste command recipes for the doc-quality workflow: single-file worked examples (new SKILL creation, README optimization, pre-commit validation) plus multi-file and batch-processing recipes.
+
+---
+
+## 2. COMMON WORKFLOW EXAMPLES
 
 **Example 1: New SKILL Creation**
 ```bash
@@ -64,7 +70,7 @@ cd .opencode/skills/my-skill
 
 ---
 
-## 2. BATCH PROCESSING
+## 3. BATCH PROCESSING
 
 **Multi-file extraction**:
 ```bash

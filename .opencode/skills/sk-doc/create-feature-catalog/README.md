@@ -2,7 +2,11 @@
 
 Create canonical feature-inventory packages for shipped systems, with a root catalog plus one source-anchored file per feature.
 
-## When To Use
+## 1. OVERVIEW
+
+`create-feature-catalog` is a nested workflow packet of the `sk-doc` parent hub. It authors canonical current-state feature inventories rooted at `feature_catalog/feature_catalog.md`, with numbered category folders and one source-anchored per-feature file per root catalog entry. The root catalog stays inventory-first and navigation-focused; per-feature files carry the implementation truth, source anchors, and validation references. `SKILL.md` is the authoritative contract.
+
+## 2. WHEN TO USE
 
 Use this packet when you need to document a real feature surface as an inventory, especially for a skill, system, MCP surface, CLI surface, or documentation family.
 
@@ -16,7 +20,7 @@ Good fits:
 
 Do not use it for roadmap-only docs, manual test scenario matrices, small README-sized feature lists, or document-quality review of an existing catalog.
 
-## What's Inside
+## 3. WHAT'S INSIDE
 
 - `SKILL.md` - authoritative packet contract, routing rules, authoring workflow, validation expectations, and hard rules.
 - `references/README.md` - route-map into the reference overflow, loaded before authoring or restructuring a catalog.
@@ -27,7 +31,7 @@ Do not use it for roadmap-only docs, manual test scenario matrices, small README
 - `changelog/.gitkeep` - placeholder for packet changelog history.
 - No packet-local `scripts/` directory is present; validation is consumed from the shared sk-doc backbone.
 
-## Output Shape
+## 4. OUTPUT SHAPE
 
 A catalog package uses this structure:
 
@@ -47,7 +51,7 @@ Per-feature files use stable `feature-name.md` slugs without numeric prefixes.
 
 Each root catalog entry should map to exactly one per-feature file.
 
-## Quick Start
+## 5. QUICK START
 
 ```text
 /create:feature-catalog for the MCP memory tools
@@ -64,7 +68,7 @@ Then follow the packet flow:
 7. Verify root-entry to feature-file parity, links, source anchors, and shipped-behavior claims.
 8. Run shared validation from `../shared/scripts/` before delivery.
 
-## Hub Relationship
+## 6. HUB RELATIONSHIP
 
 This is a nested workflow packet of the `sk-doc` parent hub.
 

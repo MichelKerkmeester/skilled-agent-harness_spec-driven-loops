@@ -19,7 +19,13 @@ For execution modes see [workflows.md](./workflows.md). For worked command recip
 
 ---
 
-## 1. VALIDATION INTEGRATION
+## 1. OVERVIEW
+
+This file covers how a doc-quality run validates and enforces standards: the validation touchpoints, the enforcement approval-prompt wording, how the phases chain together, and what to check when a run breaks.
+
+---
+
+## 2. VALIDATION INTEGRATION
 
 > **Note**: These validation patterns are conceptual workflows describing when and how validation should occur. They are not implemented as automated hooks - apply these checks manually using the available scripts.
 
@@ -61,7 +67,7 @@ Run: python ../shared/scripts/extract_structure.py <file>
 
 ---
 
-## 2. ENFORCEMENT WORKFLOWS
+## 3. ENFORCEMENT WORKFLOWS
 
 > **Note**: These are manual workflow patterns for the AI agent to follow when violations are detected. They are not automated scripts. `SKILL.md` §4 lists the fix steps; the approval-prompt templates below are the wording to surface to the user.
 
@@ -138,7 +144,7 @@ C) Skip this section
 
 ---
 
-## 3. PHASE INTERACTIONS
+## 4. PHASE INTERACTIONS
 
 **Independent execution**:
 - Phase 1 (Enforcement) → Standalone structure validation
@@ -167,7 +173,7 @@ Phase 3: AI provides recommendations
 
 ---
 
-## 4. QUICK TROUBLESHOOTING
+## 5. QUICK TROUBLESHOOTING
 
 | Issue | Cause | Solution |
 |-------|-------|----------|

@@ -19,6 +19,12 @@ For the surrounding procedure (heuristics, analysis workflow, README strategy, i
 
 ---
 
+## 1. OVERVIEW
+
+This file is the worked-example catalog for the 16 transformation patterns that convert reference-style documentation into question-answering format — each entry pairs a before/after code sample with its impact and effort rating.
+
+---
+
 ## Pattern 1: API Reference → Usage Example
 
 **Impact**: High

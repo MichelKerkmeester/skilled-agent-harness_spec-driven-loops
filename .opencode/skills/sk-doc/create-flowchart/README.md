@@ -2,7 +2,11 @@
 
 Generate and validate ASCII-style markdown flowcharts from real processes, decisions, journeys, loops, parallel work, or system interactions.
 
-## When To Use
+## 1. OVERVIEW
+
+This workflow packet turns a real process, decision tree, user journey, or system interaction into a validator-passing ASCII flowchart, using the packet's six pattern assets and its local validator (`scripts/validate_flowchart.sh`) instead of inventing diagram structure from scratch.
+
+## 2. WHEN TO USE
 
 Use this packet when you need to:
 
@@ -15,7 +19,7 @@ Use this packet when you need to:
 
 Do not use it when a short bullet list is clearer, or when the requested output is Mermaid, Graphviz, SVG, HTML, screenshots, or a design-canvas artifact.
 
-## What's Inside
+## 3. WHAT'S INSIDE
 
 - `SKILL.md`  
   The authoritative packet contract: activation triggers, routing rules, authoring workflow, validation requirements, and success criteria.
@@ -49,7 +53,7 @@ Do not use it when a short bullet list is clearer, or when the requested output 
 
 For shared markdown standards and the document-level validator, this packet reuses `../shared` rather than duplicating them.
 
-## Quick Start
+## 4. QUICK START
 
 1. Read the target document before editing, or confirm the new output path before writing.
 2. Choose the closest pattern from `assets/flowcharts/`.
@@ -74,7 +78,7 @@ Likely pattern:
 assets/flowcharts/approval_workflow_loops.md
 ```
 
-## Hub Relationship
+## 5. HUB RELATIONSHIP
 
 `create-flowchart` is a nested workflow packet of the `sk-doc` parent hub.
 

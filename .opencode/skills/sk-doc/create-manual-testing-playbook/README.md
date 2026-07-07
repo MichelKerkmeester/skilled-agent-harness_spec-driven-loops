@@ -2,7 +2,11 @@
 
 Author reusable manual testing playbook packages with deterministic scenarios, evidence capture, release-readiness review, and multi-operator or multi-agent execution planning.
 
-## When To Use
+## 1. OVERVIEW
+
+This workflow packet turns a request for operator-facing validation into a `manual_testing_playbook/` package: one root playbook holding shared policy and review protocol, plus one file per feature scenario holding the exact prompt, commands, expected signals, evidence, and pass/fail criteria. It keeps every scenario deterministic enough for another operator or agent to reproduce the verdict, rather than leaving validation as an ad hoc checklist.
+
+## 2. WHEN TO USE
 
 Use this packet when you need an operator-facing validation package, not just a short checklist.
 
@@ -18,7 +22,7 @@ Good fits:
 
 Skip it when a small feature only needs checklist rows in a spec folder, automated tests cover the only meaningful criteria, or the user asked for generic markdown cleanup instead of a playbook package.
 
-## What's Inside
+## 3. WHAT'S INSIDE
 
 - `SKILL.md`: Authoritative packet contract, activation rules, package shape, workflow, validation expectations, and hard rules.
 - `references/README.md`: Reference map routing to the overflow detail - prompt voice (`prompt_voice.md`), common pitfalls (`common_pitfalls.md`), and reference implementations (`examples.md`). The complete workflow lives in `SKILL.md`.
@@ -28,7 +32,7 @@ Skip it when a small feature only needs checklist rows in a spec folder, automat
 - No packet-local `scripts/` directory currently exists.
 - Shared validators live under `../shared/scripts/`, including `validate_document.py` and `extract_structure.py`.
 
-## Canonical Output Shape
+## 4. CANONICAL OUTPUT SHAPE
 
 ```text
 manual_testing_playbook/
@@ -44,7 +48,7 @@ The root playbook owns package policy, review protocol, orchestration guidance, 
 
 Per-feature files own the executable scenario truth: exact prompt, exact command sequence, expected signals, evidence, pass/fail criteria, and failure triage.
 
-## Quick Start
+## 5. QUICK START
 
 1. Read `SKILL.md`.
 2. Skim `references/README.md` for overflow detail (prompt voice, pitfalls, examples) as needed.
@@ -62,7 +66,7 @@ python3 .opencode/skills/sk-doc/shared/scripts/extract_structure.py <SKILL_PATH>
 
 Then manually spot-check per-feature frontmatter, numbered sections, divider lines, feature ID counts, prompt synchronization, and local links.
 
-## Hub Relationship
+## 6. HUB RELATIONSHIP
 
 This is a nested workflow packet of the `sk-doc` parent hub.
 

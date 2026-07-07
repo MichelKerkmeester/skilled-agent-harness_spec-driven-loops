@@ -17,7 +17,7 @@ This packet owns `/create:feature-catalog`, its `references/` set (indexed by `r
 
 ---
 
-## 1. WHEN TO USE
+## 1. WHEN TO USE + SMART_ROUTING
 
 ### Activation Triggers
 
@@ -110,7 +110,7 @@ Use these packet resources while authoring:
 
 ---
 
-## 3. CREATION WORKFLOW
+## 3. HOW IT WORKS: CREATION WORKFLOW
 
 Follow this workflow in order.
 

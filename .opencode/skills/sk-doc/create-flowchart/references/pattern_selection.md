@@ -18,7 +18,13 @@ Choosing the closest pattern by workflow shape, and recognizing when a diagram s
 
 ---
 
-## 1. PATTERN SELECTION DEEP DIVE
+## 1. OVERVIEW
+
+This file extends the pattern table in `../SKILL.md` §3 with best-fit and avoid-when detail for each of the six workflow-shape patterns, plus the signals that mean a diagram should be split into more than one figure.
+
+---
+
+## 2. PATTERN SELECTION DEEP DIVE
 
 Choose the pattern by workflow shape, not by topic. A deployment process can be parallel execution, approval loop, or system swimlane depending on what the reader must understand.
 
@@ -36,7 +42,7 @@ Choose the pattern by workflow shape, not by topic. A deployment process can be 
 - use parallel execution for concurrent branches with synchronization; use swimlane when responsibility boundaries matter more than timing
 - use user journey when motivation, feedback, skip, retry, or support paths affect the experience
 
-## 2. WHEN TO SPLIT A LARGE DIAGRAM
+## 3. WHEN TO SPLIT A LARGE DIAGRAM
 
 Split before the diagram becomes a wall of branches. The script warns over 200 lines, but readability can fail earlier when one screen cannot hold the main path and side paths together.
 
@@ -49,7 +55,7 @@ Split before the diagram becomes a wall of branches. The script warns over 200 l
 
 ---
 
-## 3. RELATED RESOURCES
+## 4. RELATED RESOURCES
 
 - [README.md](README.md) - create-flowchart reference route-map
 - `../SKILL.md` - authoritative workflow contract, including the §3 pattern-selection table

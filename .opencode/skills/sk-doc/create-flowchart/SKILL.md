@@ -15,7 +15,7 @@ This packet owns flowchart authoring and `scripts/validate_flowchart.sh`. It use
 
 ---
 
-## 1. When To Use
+## 1. When To Use + Smart Routing
 
 Use this packet when the request asks to:
 
@@ -121,7 +121,7 @@ Keep widths consistent. The validator allows limited width variation, but too ma
 
 ---
 
-## 6. Creation Workflow
+## 6. How It Works: Creation Workflow
 
 Follow this order for every creation or rewrite task:
 

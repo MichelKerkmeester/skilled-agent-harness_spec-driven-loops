@@ -16,7 +16,13 @@ Route map over the `doc-quality` reference set. The operating logic lives in [`.
 
 ---
 
-## 1. REFERENCE MAP
+## 1. OVERVIEW
+
+This file is the reference route map for the `doc-quality` packet: it indexes five single-concern reference files — execution modes, validation and enforcement, worked examples, optimization procedure, and the transformation pattern catalog — so each loads only when the current task needs its depth.
+
+---
+
+## 2. REFERENCE MAP
 
 Load the file that matches the current task:
 
@@ -32,7 +38,7 @@ Load the file that matches the current task:
 
 ---
 
-## 2. RELATED RESOURCES
+## 3. RELATED RESOURCES
 
 ### Packet
 - [../SKILL.md](../SKILL.md) - Authoritative doc-quality workflow contract (primary)

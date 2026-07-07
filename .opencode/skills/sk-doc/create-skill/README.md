@@ -2,7 +2,11 @@
 
 Skill-authoring workflow packet for scaffolding OpenCode standalone skills and parent hubs.
 
-## When To Use
+## 1. OVERVIEW
+
+This workflow packet turns a skill-authoring request into a validated `.opencode/skills/` package, covering both standalone skills with their own advisor identity and parent hubs with nested workflow or surface packets. It scaffolds `SKILL.md`, references, and assets from the packet's templates, then validates and packages the result with `scripts/init_skill.py` and `scripts/package_skill.py` instead of inventing structure from scratch.
+
+## 2. WHEN TO USE
 
 Use `create-skill` when you need to create, rebuild, validate, or package an OpenCode skill under `.opencode/skills/`.
 
@@ -13,7 +17,7 @@ It covers two workflow modes:
 
 Use another `sk-doc` packet for agents, commands, READMEs, benchmarks, feature catalogs, manual testing playbooks, flowcharts, or document-quality review.
 
-## What's Inside
+## 3. WHAT'S INSIDE
 
 - `SKILL.md`: authoritative packet contract, routing rules, workflows, success criteria, and boundaries.
 - `README.md`: human-facing packet orientation.
@@ -39,7 +43,7 @@ Use another `sk-doc` packet for agents, commands, READMEs, benchmarks, feature c
 - `scripts/init_skill.py`: scaffold helper for new standalone skill folders.
 - `scripts/package_skill.py`: validation and packaging helper.
 
-## Quick Start
+## 4. QUICK START
 
 For a standalone skill:
 
@@ -57,7 +61,7 @@ references/parent_skill/parent_hub_router_schema.md
 assets/parent_skill/parent_skill_*
 ```
 
-## Important Boundaries
+## 5. IMPORTANT BOUNDARIES
 
 This packet is nested under the `sk-doc` parent hub.
 

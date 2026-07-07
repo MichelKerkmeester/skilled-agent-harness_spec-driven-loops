@@ -18,7 +18,13 @@ How the packet validator actually inspects a file, how to keep box widths consis
 
 ---
 
-## 1. HOW THE VALIDATOR INSPECTS A FILE
+## 1. OVERVIEW
+
+This file explains how the packet validator actually inspects a flowchart file — box widths, connectors, decision labels, nesting, and size — then covers the box-width fix strategy, the mistakes that most often fail validation, and the judgment the validator cannot supply.
+
+---
+
+## 2. HOW THE VALIDATOR INSPECTS A FILE
 
 The validator is lightweight and runs each check across the whole file, not per node. Knowing the mechanism explains why a diagram fails. For the exact numeric thresholds and exit behavior, see `../SKILL.md` §8 and the script itself.
 
@@ -28,7 +34,7 @@ The validator is lightweight and runs each check across the whole file, not per 
 - **Nesting** — it derives depth from leading-space indentation, so deep indentation, not logical nesting, is what trips the warning.
 - **Size** — it counts total lines, so a long file warns even when the diagram itself is simple.
 
-## 2. BOX WIDTH CONSISTENCY
+## 3. BOX WIDTH CONSISTENCY
 
 Width variation is the most common validator failure. Because the validator counts every run of two or more `─` characters and does not understand intent, a decorative line and a real box border both affect the width count.
 
@@ -50,7 +56,7 @@ Width variation is the most common validator failure. Because the validator coun
 - shorten prose bullets rather than widening one box
 - split the diagram if the only readable version needs many box sizes
 
-## 3. COMMON MISTAKES
+## 4. COMMON MISTAKES
 
 | Mistake | Why It Breaks | Correct Fix |
 |---|---|---|
@@ -62,7 +68,7 @@ Width variation is the most common validator failure. Because the validator coun
 | Drawing an infinite loop | Readers cannot tell when work stops | Add blocked, rejected, escalated, or completed terminal states |
 | Treating warnings as harmless polish | Warnings often reflect readability defects | Fix warnings when practical before handoff |
 
-## 4. WHAT THE VALIDATOR CANNOT CHECK
+## 5. WHAT THE VALIDATOR CANNOT CHECK
 
 It catches common structural defects, but it does not prove the workflow is semantically complete.
 
@@ -80,7 +86,7 @@ It catches common structural defects, but it does not prove the workflow is sema
 
 ---
 
-## 5. RELATED RESOURCES
+## 6. RELATED RESOURCES
 
 - [README.md](README.md) - create-flowchart reference route-map
 - [worked_example.md](worked_example.md) - a validator-passing decision-tree example
