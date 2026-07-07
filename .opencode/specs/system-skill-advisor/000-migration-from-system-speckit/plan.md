@@ -10,17 +10,17 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-skill-advisor/000-migration-from-system-speckit"
-    last_updated_at: "2026-07-07T11:01:53Z"
+    last_updated_at: "2026-07-07T15:45:00Z"
     last_updated_by: "claude-sonnet-5"
-    recent_action: "Authored plan.md alongside spec.md"
-    next_safe_action: "Dispatch the /deep:review 20-iteration loop"
+    recent_action: "All batches executed; Definition of Done boxes reconciled"
+    next_safe_action: "None required; packet complete"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "claude-2026-07-07-skill-advisor-extraction"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -58,10 +58,10 @@ Move every skill-advisor-scoped spec folder from `system-speckit/026/027/028` in
 - [x] Chronological order confirmed via `git log --follow` archaeology, not assumed
 
 ### Definition of Done
-- [ ] All folders in the manifest moved via `git mv`
-- [ ] All cross-references rewritten
-- [ ] `validate.sh --strict --recursive` clean on every touched folder
-- [ ] docs updated (spec/plan/tasks all reconciled with final state)
+- [x] All folders in the manifest moved via `git mv`
+- [x] All cross-references rewritten
+- [x] `validate.sh --strict --recursive` clean on every touched folder
+- [x] docs updated (spec/plan/tasks all reconciled with final state)
 <!-- /ANCHOR:quality-gates -->
 
 ---
@@ -89,40 +89,40 @@ Each iteration reads the next unmigrated batch from spec.md, moves it, regenerat
 ### Phase 1: Setup
 - [x] Migration manifest documented in spec.md
 - [x] Tracking spec folder authored and validated
-- [ ] Tracking folder committed (scoped, explicit paths)
+- [x] Tracking folder committed (scoped, explicit paths)
 
 ### Phase 2: Core Implementation
 
 #### Batch 2a: 026 primary hub extraction
-- [ ] Move `026/002-spec-kit-internals/002-skill-advisor/{001-006}` to `system-skill-advisor/{001-006}`
-- [ ] Reconcile `026/002-spec-kit-internals/` `children_ids` (drops `002-skill-advisor`)
+- [x] Move `026/002-spec-kit-internals/002-skill-advisor/{001-006}` to `system-skill-advisor/{001-006}`
+- [x] Reconcile `026/002-spec-kit-internals/` `children_ids` (drops `002-skill-advisor`)
 
 #### Batch 2b: Scattered leaves + embedder-stack cluster
-- [ ] Append the 4 April-2026 hardening leaves into `system-skill-advisor/004-skill-advisor-production-hardening/` as children `005-008`
-- [ ] Append the affordance-evidence leaf into `system-skill-advisor/003-skill-advisor-routing-engine/` as child `006`
-- [ ] Merge the 3 May-2026 embedder-stack folders into new `system-skill-advisor/007-skill-advisor-embedder-stack/`
-- [ ] Reconcile the 5-6 source parents this touches in 026
+- [x] Append the 4 April-2026 hardening leaves into `system-skill-advisor/004-skill-advisor-production-hardening/` as children `005-008`
+- [x] Append the affordance-evidence leaf into `system-skill-advisor/003-skill-advisor-routing-engine/` as child `006`
+- [x] Merge the 3 May-2026 embedder-stack folders into new `system-skill-advisor/007-skill-advisor-embedder-stack/`
+- [x] Reconcile the 5-6 source parents this touches in 026
 
 #### Batch 2c: 027 content extraction
-- [ ] Move `027/004-shared-infrastructure/001-mcp-to-cli-tool-transition/003-skill-advisor-cli/` to `system-skill-advisor/008-skill-advisor-cli/`
-- [ ] Extract the 8 advisor-only items out of `027/003-advisor-and-codegraph/` into `system-skill-advisor/009-advisor-and-codegraph-migrated-items/`
-- [ ] Move `027/000-release-cleanup/009-skill-frontmatter-alignment/021-system-skill-advisor` to `system-skill-advisor/010-skill-advisor-frontmatter-alignment/`
-- [ ] Renumber `027/003-advisor-and-codegraph/002-xce-feature-adoption-advisor-codegraph`'s remaining 4 code-graph-only children `001-004`, update `027/003-advisor-and-codegraph/spec.md` prose for its narrower remaining scope
+- [x] Move `027/004-shared-infrastructure/001-mcp-to-cli-tool-transition/003-skill-advisor-cli/` to `system-skill-advisor/008-skill-advisor-cli/`
+- [x] Extract the 8 advisor-only items out of `027/003-advisor-and-codegraph/` into `system-skill-advisor/009-advisor-and-codegraph-migrated-items/`
+- [x] Move `027/000-release-cleanup/009-skill-frontmatter-alignment/021-system-skill-advisor` to `system-skill-advisor/010-skill-advisor-frontmatter-alignment/`
+- [x] Renumber `027/003-advisor-and-codegraph/002-xce-feature-adoption-advisor-codegraph`'s remaining 4 code-graph-only children `001-004`, update `027/003-advisor-and-codegraph/spec.md` prose for its narrower remaining scope
 
 #### Batch 2d: 028 hub + destination renumber
-- [ ] Move `028/002-skill-advisor/` to `system-skill-advisor/011-skill-advisor-phase-parent/`
-- [ ] Renumber `028`'s remaining top-level children `003→002, 004→003, 005→004, 006→005`
-- [ ] Rename `system-skill-advisor/001-skill-advisor-tuning/` to `012-skill-advisor-tuning/`, fix every internal `001`-referencing metadata field (`packet_pointer`, `children_ids`, frontmatter) to `012`
+- [x] Move `028/002-skill-advisor/` to `system-skill-advisor/011-skill-advisor-phase-parent/`
+- [x] Renumber `028`'s remaining top-level children `003→002, 004→003, 005→004, 006→005`
+- [x] Rename `system-skill-advisor/001-skill-advisor-tuning/` to `012-skill-advisor-tuning/`, fix every internal `001`-referencing metadata field (`packet_pointer`, `children_ids`, frontmatter) to `012`
 
 #### Batch 2e: Destination track finalization
-- [ ] Rewrite `system-skill-advisor/spec.md` (track root) to narrate the full 001-012 history
-- [ ] Write `system-skill-advisor/context-index.md` documenting the 6 left-in-place shared/joint items
-- [ ] Regenerate `system-skill-advisor/description.json` + `graph-metadata.json` for the full 001-012 children set
+- [x] Rewrite `system-skill-advisor/spec.md` (track root) to narrate the full 001-012 history
+- [x] Write `system-skill-advisor/context-index.md` documenting the 6 left-in-place shared/joint items
+- [x] Regenerate `system-skill-advisor/description.json` + `graph-metadata.json` for the full 001-012 children set
 
 ### Phase 3: Verification
-- [ ] `validate.sh --strict --recursive` clean on `system-skill-advisor/`, `026/`, `027/`, `028/`
-- [ ] Repo-wide `rg` for every old path fragment returns zero live hits
-- [ ] Scoped `memory_index_scan` per moved path (never full-tree, this corpus SIGBUS's)
+- [x] `validate.sh --strict --recursive` clean on `system-skill-advisor/`, `026/`, `027/`, `028/`
+- [x] Repo-wide `rg` for every old path fragment returns zero live hits
+- [x] Scoped `memory_index_scan` per moved path (never full-tree, this corpus SIGBUS's)
 <!-- /ANCHOR:phases -->
 
 ---

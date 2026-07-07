@@ -1,5 +1,5 @@
 ---
-title: "Hand [system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/004-advisor-hook-surface-integration/handover]"
+title: "Hand [system-skill-advisor/003-skill-advisor-routing-engine/004-advisor-hook-surface-integration/handover]"
 description: "Post-patch handover. Wave-3 P0 (005 impossible cache-hit gate) + all 9 P1 patches applied across 003/004/005/007/008/009. All 6 children pass validate.sh strict. Ready for /spec_kit:implement :auto 020/002 dispatch."
 trigger_phrases:
   - "020 handover"
@@ -10,7 +10,7 @@ importance_tier: "critical"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/004-advisor-hook-surface-integration"
+    packet_pointer: "system-skill-advisor/003-skill-advisor-routing-engine/004-advisor-hook-surface-integration"
     last_updated_at: "2026-04-28T19:30:00Z"
     last_updated_by: "codex-gpt-5-hygiene-pass"
     recent_action: "Hygiene pass - validator structure"

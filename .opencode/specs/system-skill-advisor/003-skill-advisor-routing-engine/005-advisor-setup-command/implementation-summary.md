@@ -1,5 +1,5 @@
 ---
-title: "Implementation Summary: Skill Advisor Setup Command [system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/005-advisor-setup-command/implementation-summary]"
+title: "Implementation Summary: Skill Advisor Setup Command [system-skill-advisor/003-skill-advisor-routing-engine/005-advisor-setup-command/implementation-summary]"
 description: "Adds /doctor:skill-advisor slash command (auto + confirm YAML workflows), README update, and user-facing install guide. Lets users analyze skills, optimize advisor scoring tables, and re-index the skill graph without knowing internal scoring architecture."
 template_source_hint: "<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->"
 trigger_phrases:
@@ -10,7 +10,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/005-advisor-setup-command"
+    packet_pointer: "system-skill-advisor/003-skill-advisor-routing-engine/005-advisor-setup-command"
     last_updated_at: "2026-04-25T19:45:00Z"
     last_updated_by: "claude-opus-4-7"
     recent_action: "Closed 25 P1 + 5 P2 deep-review findings via 12-step in-place remediation"

@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: Skill Advisor Setup Command [system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/005-advisor-setup-command/plan]"
+title: "Implementation Plan: Skill Advisor Setup Command [system-skill-advisor/003-skill-advisor-routing-engine/005-advisor-setup-command/plan]"
 description: "Creates the /doctor:skill-advisor command with auto/confirm YAML workflows, updates README.txt, and delivers a user-facing setup guide. Follows existing spec_kit command conventions (resume.md, plan.md patterns)."
 template_source_hint: "<!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2 -->"
 trigger_phrases:
@@ -10,7 +10,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/005-advisor-setup-command"
+    packet_pointer: "system-skill-advisor/003-skill-advisor-routing-engine/005-advisor-setup-command"
     last_updated_at: "2026-04-25T14:30:00Z"
     last_updated_by: "deepseek-v4-pro"
     recent_action: "Created plan.md"

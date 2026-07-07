@@ -1,5 +1,5 @@
 ---
-title: "Verifi [system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/001-skill-graph-metadata-routing-boosts/checklist]"
+title: "Verifi [system-skill-advisor/001-skill-graph/001-skill-graph-metadata-routing-boosts/checklist]"
 description: "Verification checklist for 011-skill-advisor-graph."
 trigger_phrases:
   - "011-skill-advisor-graph"
@@ -9,7 +9,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/001-skill-graph-metadata-routing-boosts"
+    packet_pointer: "system-skill-advisor/001-skill-graph/001-skill-graph-metadata-routing-boosts"
     last_updated_at: "2026-04-13T12:00:00Z"
     last_updated_by: "claude-opus-4-6"
     recent_action: "Created checklist"

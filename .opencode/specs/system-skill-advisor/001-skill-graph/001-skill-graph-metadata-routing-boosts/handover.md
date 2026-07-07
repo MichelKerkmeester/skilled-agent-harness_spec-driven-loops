@@ -1,5 +1,5 @@
 ---
-title: "Session [system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/001-skill-graph-metadata-routing-boosts/handover]"
+title: "Session [system-skill-advisor/001-skill-graph/001-skill-graph-metadata-routing-boosts/handover]"
 description: "Handover for 011-skill-advisor-graph — graph system built, research-audited, P0 fixes landed, packaging in progress."
 trigger_phrases:
   - "session"
@@ -10,7 +10,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/001-skill-graph-metadata-routing-boosts"
+    packet_pointer: "system-skill-advisor/001-skill-graph/001-skill-graph-metadata-routing-boosts"
     last_updated_at: "2026-04-24T15:25:01Z"
     last_updated_by: "backfill-memory-block"
     recent_action: "Backfilled _memory block (repo-wide frontmatter sweep)"

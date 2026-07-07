@@ -9,17 +9,17 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-skill-advisor/000-migration-from-system-speckit"
-    last_updated_at: "2026-07-07T11:01:53Z"
+    last_updated_at: "2026-07-07T15:45:00Z"
     last_updated_by: "claude-sonnet-5"
-    recent_action: "Authored decision-record.md alongside spec.md, plan.md, tasks.md, checklist.md"
-    next_safe_action: "Dispatch the /deep:review 20-iteration loop"
+    recent_action: "ADRs confirmed against the executed and verified end state"
+    next_safe_action: "None required; packet complete"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "claude-2026-07-07-skill-advisor-extraction"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -47,7 +47,7 @@ _memory:
 <!-- ANCHOR:adr-001-context -->
 ### Context
 
-The destination track's existing packet (`system-skill-advisor/001-skill-advisor-tuning/`) is correctly and consistently numbered `001` in every metadata surface, but it was created 2026-07-06, the newest work in the whole subsystem's history. The 026 hub predates it by roughly two and a half months (first touched 2026-04-21). Keeping it at `001` while the older 026/027/028 content lands alongside it would put the newest work first and the oldest work last, backwards from what "perfect historical context" requires.
+The destination track's existing packet (disk name `999-skill-advisor-tuning/`, every metadata surface consistently calling it `001-skill-advisor-tuning/`) was created 2026-07-06, the newest work in the whole subsystem's history. The 026 hub predates it by roughly two and a half months (first touched 2026-04-21). Keeping it at `001` while the older 026/027/028 content lands alongside it would put the newest work first and the oldest work last, backwards from what "perfect historical context" requires.
 
 ### Constraints
 
@@ -120,7 +120,7 @@ The destination track's existing packet (`system-skill-advisor/001-skill-advisor
 ### Implementation
 
 **What changes**:
-- `system-skill-advisor/001-skill-advisor-tuning/` renamed to `012-skill-advisor-tuning/`, with every internal metadata and frontmatter reference corrected from `001` to `012`.
+- `system-skill-advisor/999-skill-advisor-tuning/` (disk name; metadata called it `001-skill-advisor-tuning/`) renamed to `012-skill-advisor-tuning/`, with every internal metadata and frontmatter reference corrected to `012`.
 - The 026/027/028 hubs land at `system-skill-advisor/001` through `011` in the order derived above.
 
 **How to roll back**: each batch is an independently committed `git mv` plus metadata regen. `git revert` the single commit for the affected batch restores the pre-move state for that batch only.

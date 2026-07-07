@@ -1,5 +1,5 @@
 ---
-title: "F [system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/003-advisor-standards-alignment/spec]"
+title: "F [system-skill-advisor/004-skill-advisor-production-hardening/003-advisor-standards-alignment/spec]"
 description: "Two-part standards alignment from packet 008 audit: (A) add OpenCode Plugin Exemption Tier to sk-code-opencode quality_standards.md + javascript_checklist.md (recognizes ESM is required for plugins, not a violation of CommonJS rule); (B) bring spec-kit-skill-advisor.js into alignment with non-exempt standards (box header COMPONENT/PURPOSE fields, JSDoc on default export + helpers, numbered ALL-CAPS section dividers mirroring sibling compact plugin)."
 trigger_phrases:
   - "skill advisor standards alignment"
@@ -13,7 +13,7 @@ contextType: "implementation"
 template_source_hint: "<!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/003-advisor-standards-alignment"
+    packet_pointer: "system-skill-advisor/004-skill-advisor-production-hardening/003-advisor-standards-alignment"
     last_updated_at: "2026-04-23T10:30:00Z"
     last_updated_by: "claude-opus-4-7"
     recent_action: "Completed documentation/cosmetic standards alignment"

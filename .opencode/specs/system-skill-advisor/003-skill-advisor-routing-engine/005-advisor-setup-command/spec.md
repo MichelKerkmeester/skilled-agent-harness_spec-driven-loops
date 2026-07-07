@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: Skill Advisor Setup Command [system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/005-advisor-setup-command/spec]"
+title: "Feature Specification: Skill Advisor Setup Command [system-skill-advisor/003-skill-advisor-routing-engine/005-advisor-setup-command/spec]"
 description: "New doctor:skill-advisor slash command that interactively guides the AI to analyze all skills in a user's repo, optimize the skill advisor scoring tables (TOKEN_BOOSTS, PHRASE_BOOSTS, graph-metadata.json), and index the skill graph. Includes a user-facing setup guide."
 template_source_hint: "<!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->"
 trigger_phrases:
@@ -12,7 +12,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/005-advisor-setup-command"
+    packet_pointer: "system-skill-advisor/003-skill-advisor-routing-engine/005-advisor-setup-command"
     last_updated_at: "2026-04-25T14:30:00Z"
     last_updated_by: "deepseek-v4-pro"
     recent_action: "Created spec.md"

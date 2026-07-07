@@ -1,5 +1,5 @@
 ---
-title: "Imp [system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/001-advisor-hook-brief-improvements/plan]"
+title: "Imp [system-skill-advisor/002-skill-advisor-scoring-engine/001-advisor-hook-brief-improvements/plan]"
 description: "Translate packet-02 skill-advisor research into a Level-2 implementation sequence focused on threshold parity, shared brief rendering, MCP surface normalization, and durable prompt-safe telemetry. The plan stays inside the skill-advisor and hook surfaces named by the 014 findings and defers optional P2 cleanup work to downstream follow-up."
 trigger_phrases:
   - "skill-advisor hook improvements"
@@ -12,15 +12,15 @@ contextType: "planning"
 template_source_hint: "<!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2 -->"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/001-advisor-hook-brief-improvements"
+    packet_pointer: "system-skill-advisor/002-skill-advisor-scoring-engine/001-advisor-hook-brief-improvements"
     last_updated_at: "2026-04-24T08:05:00Z"
     last_updated_by: "codex-gpt-5.4"
     recent_action: "Synthesized pt-02 research and merged Bucket B inputs into a Level-2 implementation plan"
     next_safe_action: "Execute Phase 1 setup tasks from tasks.md, then implement 014-F-001 through 014-F-007 in priority order"
     blockers: []
     key_files:
-      - ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/001-advisor-hook-brief-improvements/spec.md"
-      - ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/001-advisor-hook-brief-improvements/tasks.md"
+      - ".opencode/specs/system-skill-advisor/002-skill-advisor-scoring-engine/001-advisor-hook-brief-improvements/spec.md"
+      - ".opencode/specs/system-skill-advisor/002-skill-advisor-scoring-engine/001-advisor-hook-brief-improvements/tasks.md"
     completion_pct: 20
     status: "planned"
 ---

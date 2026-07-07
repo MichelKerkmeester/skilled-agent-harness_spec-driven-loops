@@ -11,7 +11,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/005-skill-advisor-documentation/003-fix-documentation-config-drift"
+    packet_pointer: "system-skill-advisor/005-skill-advisor-documentation/003-fix-documentation-config-drift"
     last_updated_at: "2026-05-16T00:00:00Z"
     last_updated_by: "claude-opus-4-7-1m"
     recent_action: "Scaffold Level 1 packet for skill-advisor drift fixes"

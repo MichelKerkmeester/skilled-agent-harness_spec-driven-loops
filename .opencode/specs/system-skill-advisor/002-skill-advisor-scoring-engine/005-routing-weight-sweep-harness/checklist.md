@@ -7,7 +7,7 @@ importance_tier: "important"
 contextType: "verification"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/005-routing-weight-sweep-harness"
+    packet_pointer: "system-skill-advisor/002-skill-advisor-scoring-engine/005-routing-weight-sweep-harness"
     last_updated_at: "2026-05-13T20:45:00Z"
     last_updated_by: "claude"
     recent_action: "Scaffolded packet"

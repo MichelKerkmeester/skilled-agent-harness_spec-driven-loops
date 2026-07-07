@@ -10,7 +10,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/003-skill-advisor-stack/002-jina-swap-and-reindex"
+    packet_pointer: "system-skill-advisor/007-skill-advisor-embedder-stack/002-jina-swap-and-reindex"
     last_updated_at: "2026-05-17T23:55:00Z"
     last_updated_by: "main_agent"
     recent_action: "010/004 writer cross-wire shipped (c0ec765f4); 010/002 unblocked"

@@ -7,7 +7,7 @@ importance_tier: "important"
 contextType: "verification"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/002-semantic-routing-lane"
+    packet_pointer: "system-skill-advisor/002-skill-advisor-scoring-engine/002-semantic-routing-lane"
     last_updated_at: "2026-05-15T00:00:00Z"
     last_updated_by: "opencode-deepseek"
     recent_action: "Restructured: children promoted to 014-023"

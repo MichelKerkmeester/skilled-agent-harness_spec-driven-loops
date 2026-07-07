@@ -8,7 +8,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/002-code-folder-readme-coverage"
+    packet_pointer: "system-skill-advisor/005-skill-advisor-documentation/002-code-folder-readme-coverage"
     last_updated_at: "2026-05-15T11:55:00Z"
     last_updated_by: "main_agent"
     recent_action: "Wrote plan for Phase B 2-track approach"

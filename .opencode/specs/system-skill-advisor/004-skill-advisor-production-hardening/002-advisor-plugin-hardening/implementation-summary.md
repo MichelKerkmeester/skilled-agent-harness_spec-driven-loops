@@ -9,7 +9,7 @@ contextType: "implementation"
 template_source_hint: "<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/002-advisor-plugin-hardening"
+    packet_pointer: "system-skill-advisor/004-skill-advisor-production-hardening/002-advisor-plugin-hardening"
     last_updated_at: "2026-04-23T08:13:46Z"
     last_updated_by: "codex-gpt-5"
     recent_action: "Implemented plugin hardening and verified focused tests/build"

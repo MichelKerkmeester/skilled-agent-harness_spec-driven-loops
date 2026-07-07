@@ -7,7 +7,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/003-embedding-cache-cosine-wiring"
+    packet_pointer: "system-skill-advisor/002-skill-advisor-scoring-engine/003-embedding-cache-cosine-wiring"
     last_updated_at: "2026-05-13T19:30:00Z"
     last_updated_by: "claude"
     recent_action: "Scaffolded implementation-summary template"

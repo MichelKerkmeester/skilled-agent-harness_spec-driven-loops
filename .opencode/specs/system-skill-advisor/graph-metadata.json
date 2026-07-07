@@ -59,10 +59,13 @@
     "last_save_at": "2026-07-07T00:00:00.000Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
-    "source_docs": ["spec.md", "context-index.md"],
-    "source_fingerprint": "sha256:37977663505af519447c1da131185236a3bbefa8a62f6f0873c84834fb8a21d2",
+    "source_docs": [
+      "spec.md",
+      "context-index.md"
+    ],
+    "source_fingerprint": "sha256:b9043ce87e2cab2b904cc92acc61f591ff348f1d5eef76ac8f3a21eb2b51d0a1",
     "source_doc_hashes": {
-      "spec.md": "b69dd6c0d427d61117797f9c445dab9fe99ada4bd9a4a735644c1fe8a88ea383"
+      "spec.md": "446dfce8f911a3fd08b54e2ff78c11504edfd33dc8d26160b99c61ac30126513"
     }
   }
 }

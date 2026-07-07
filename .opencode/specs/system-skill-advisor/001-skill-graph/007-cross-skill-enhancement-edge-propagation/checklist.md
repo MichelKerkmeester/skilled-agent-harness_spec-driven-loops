@@ -7,7 +7,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/007-cross-skill-enhancement-edge-propagation"
+    packet_pointer: "system-skill-advisor/001-skill-graph/007-cross-skill-enhancement-edge-propagation"
     last_updated_at: "2026-05-15T15:30:00Z"
     last_updated_by: "claude-opus-4-7"
     recent_action: "Author checklist"

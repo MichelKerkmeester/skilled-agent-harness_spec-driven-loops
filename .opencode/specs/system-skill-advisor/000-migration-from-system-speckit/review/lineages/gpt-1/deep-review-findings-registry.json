@@ -1,0 +1,87 @@
+{
+  "sessionId": "fanout-gpt-1-1783433085887-cah79b",
+  "generation": 1,
+  "lineageMode": "new",
+  "openFindings": [
+    {
+      "findingId": "F001",
+      "severity": "P1",
+      "category": "traceability",
+      "status": "active",
+      "dimension": "correctness",
+      "title": "Completion state is split across canonical packet surfaces",
+      "file": ".opencode/specs/system-skill-advisor/000-migration-from-system-speckit/spec.md",
+      "line": 17,
+      "firstSeen": 1,
+      "lastSeen": 20,
+      "content_hash": "sha256:f001-completion-state",
+      "evidenceRefs": [
+        ".opencode/specs/system-skill-advisor/000-migration-from-system-speckit/spec.md:17",
+        ".opencode/specs/system-skill-advisor/000-migration-from-system-speckit/spec.md:29",
+        ".opencode/specs/system-skill-advisor/000-migration-from-system-speckit/spec.md:59",
+        ".opencode/specs/system-skill-advisor/000-migration-from-system-speckit/implementation-summary.md:15",
+        ".opencode/specs/system-skill-advisor/000-migration-from-system-speckit/implementation-summary.md:25"
+      ],
+      "transitions": [{ "iteration": 1, "from": null, "to": "P1", "reason": "Initial discovery" }]
+    },
+    {
+      "findingId": "F002",
+      "severity": "P1",
+      "category": "traceability",
+      "status": "active",
+      "dimension": "traceability",
+      "title": "Retired system-spec-kit path prefix remains live across migrated canonical docs",
+      "file": ".opencode/specs/system-skill-advisor/000-migration-from-system-speckit/review/lineages/gpt-1/stale-system-spec-kit-026-skill-advisor.txt",
+      "line": 1,
+      "firstSeen": 2,
+      "lastSeen": 20,
+      "content_hash": "sha256:f002-stale-system-spec-kit",
+      "evidenceRefs": [
+        ".opencode/specs/system-skill-advisor/000-migration-from-system-speckit/checklist.md:69",
+        ".opencode/specs/system-skill-advisor/000-migration-from-system-speckit/review/lineages/gpt-1/stale-system-spec-kit-026-skill-advisor.txt:1",
+        ".opencode/specs/system-skill-advisor/000-migration-from-system-speckit/review/lineages/gpt-1/stale-system-spec-kit-026-skill-advisor.txt:2",
+        ".opencode/specs/system-skill-advisor/000-migration-from-system-speckit/review/lineages/gpt-1/stale-system-spec-kit-026-skill-advisor.txt:4"
+      ],
+      "transitions": [{ "iteration": 2, "from": null, "to": "P1", "reason": "Initial discovery" }]
+    },
+    {
+      "findingId": "F003",
+      "severity": "P1",
+      "category": "traceability",
+      "status": "active",
+      "dimension": "traceability",
+      "title": "Claimed recursive validation success does not match current validation output",
+      "file": ".opencode/specs/system-skill-advisor/000-migration-from-system-speckit/review/lineages/gpt-1/validation-system-skill-advisor.txt",
+      "line": 46,
+      "firstSeen": 3,
+      "lastSeen": 20,
+      "content_hash": "sha256:f003-validation-claim",
+      "evidenceRefs": [
+        ".opencode/specs/system-skill-advisor/000-migration-from-system-speckit/checklist.md:67",
+        ".opencode/specs/system-skill-advisor/000-migration-from-system-speckit/review/lineages/gpt-1/validation-system-skill-advisor.txt:44",
+        ".opencode/specs/system-skill-advisor/000-migration-from-system-speckit/review/lineages/gpt-1/validation-system-skill-advisor.txt:46",
+        ".opencode/specs/system-skill-advisor/000-migration-from-system-speckit/review/lineages/gpt-1/validation-system-skill-advisor.txt:145"
+      ],
+      "transitions": [{ "iteration": 3, "from": null, "to": "P1", "reason": "Initial discovery" }]
+    }
+  ],
+  "resolvedFindings": [],
+  "persistentSameSeverity": ["F001", "F002", "F003"],
+  "severityChanged": [],
+  "repeatedFindings": ["F001", "F002", "F003"],
+  "blockedStopHistory": [],
+  "dimensionCoverage": {
+    "correctness": true,
+    "security": true,
+    "traceability": true,
+    "maintainability": true
+  },
+  "findingsBySeverity": { "P0": 0, "P1": 3, "P2": 0 },
+  "openFindingsCount": 3,
+  "resolvedFindingsCount": 0,
+  "convergenceScore": 1.0,
+  "graphConvergenceScore": 0,
+  "graphDecision": null,
+  "graphBlockers": [],
+  "corruptionWarnings": []
+}

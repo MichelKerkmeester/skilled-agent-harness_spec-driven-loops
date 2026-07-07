@@ -1,5 +1,5 @@
 ---
-title: "Feature [system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/001-skill-graph-metadata-routing-boosts/spec]"
+title: "Feature [system-skill-advisor/001-skill-graph/001-skill-graph-metadata-routing-boosts/spec]"
 description: "Add structured graph metadata to all 20 skill folders, compile into a lightweight skill-graph.json, and integrate graph-derived boosts into skill_advisor.py routing."
 trigger_phrases:
   - "011-skill-advisor-graph"
@@ -10,7 +10,7 @@ importance_tier: "important"
 contextType: "planning"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/001-skill-graph-metadata-routing-boosts"
+    packet_pointer: "system-skill-advisor/001-skill-graph/001-skill-graph-metadata-routing-boosts"
     last_updated_at: "2026-04-13T12:00:00Z"
     last_updated_by: "claude-opus-4-6"
     recent_action: "Created spec folder"

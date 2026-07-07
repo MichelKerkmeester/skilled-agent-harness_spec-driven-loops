@@ -1,5 +1,5 @@
 ---
-title: "Tasks [system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/004-advisor-hook-surface-integration/tasks]"
+title: "Tasks [system-skill-advisor/003-skill-advisor-routing-engine/004-advisor-hook-surface-integration/tasks]"
 description: "Task list for 020 umbrella — research wave + implementation cluster spawning."
 template_source: "SPECKIT_TEMPLATE_SOURCE: tasks-core | v2.2"
 trigger_phrases:
@@ -8,7 +8,7 @@ importance_tier: "critical"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/004-advisor-hook-surface-integration"
+    packet_pointer: "system-skill-advisor/003-skill-advisor-routing-engine/004-advisor-hook-surface-integration"
     last_updated_at: "2026-04-28T19:30:00Z"
     last_updated_by: "codex-gpt-5-hygiene-pass"
     recent_action: "Hygiene pass - validator structure"

@@ -8,7 +8,7 @@ importance_tier: "critical"
 contextType: "plan"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/006-system-skill-advisor-package-extraction/020-spec-kit-codegraph-decoupling"
+    packet_pointer: "system-skill-advisor/001-skill-graph/006-system-skill-advisor-package-extraction/020-spec-kit-codegraph-decoupling"
     last_updated_at: "2026-05-15T09:35:00Z"
     last_updated_by: "codex"
     recent_action: "Plan executed through typecheck"

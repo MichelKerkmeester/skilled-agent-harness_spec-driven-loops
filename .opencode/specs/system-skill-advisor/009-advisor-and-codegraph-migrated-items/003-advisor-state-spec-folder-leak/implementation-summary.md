@@ -8,7 +8,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/027-xce-research-based-refinement/003-advisor-and-codegraph/005-advisor-state-spec-folder-leak"
+    packet_pointer: "system-skill-advisor/009-advisor-and-codegraph-migrated-items/003-advisor-state-spec-folder-leak"
     last_updated_at: "2026-06-18T00:00:00Z"
     last_updated_by: "opus-agent"
     recent_action: "Hardened workspace-root fallback + cleaned 23 stray advisor-state dirs"

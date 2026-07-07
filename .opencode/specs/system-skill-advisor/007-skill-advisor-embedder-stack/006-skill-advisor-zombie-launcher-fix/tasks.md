@@ -8,7 +8,7 @@ importance_tier: "important"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/006-mcp-launcher-concurrency/007-skill-advisor-zombie-launcher-fix"
+    packet_pointer: "system-skill-advisor/007-skill-advisor-embedder-stack/006-skill-advisor-zombie-launcher-fix"
     last_updated_at: "2026-05-18T00:00:00Z"
     last_updated_by: "codex"
     recent_action: "Implemented launcher guard"

@@ -6,7 +6,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/003-skill-advisor-stack/003-install-guide-docs"
+    packet_pointer: "system-skill-advisor/007-skill-advisor-embedder-stack/003-install-guide-docs"
     last_updated_at: "2026-05-17T21:25:00Z"
     last_updated_by: "main_agent"
     recent_action: "Authored tasks"

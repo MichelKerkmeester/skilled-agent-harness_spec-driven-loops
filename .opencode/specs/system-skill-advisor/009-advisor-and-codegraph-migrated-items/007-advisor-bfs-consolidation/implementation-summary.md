@@ -10,7 +10,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/027-xce-research-based-refinement/003-advisor-and-codegraph/002-xce-feature-adoption-advisor-codegraph/004-advisor-bfs-consolidation"
+    packet_pointer: "system-skill-advisor/009-advisor-and-codegraph-migrated-items/007-advisor-bfs-consolidation"
     last_updated_at: "2026-06-10T23:30:00Z"
     last_updated_by: "gpt-5.5-fast"
     recent_action: "Implemented advisor-local BFS helper, query cutovers, tests, and docs"

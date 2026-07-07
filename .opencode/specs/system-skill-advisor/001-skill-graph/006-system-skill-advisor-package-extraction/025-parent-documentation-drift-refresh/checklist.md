@@ -9,7 +9,7 @@ importance_tier: "important"
 contextType: "checklist"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/006-system-skill-advisor-package-extraction/025-parent-documentation-drift-refresh"
+    packet_pointer: "system-skill-advisor/001-skill-graph/006-system-skill-advisor-package-extraction/025-parent-documentation-drift-refresh"
     last_updated_at: "2026-05-15T11:00:00Z"
     last_updated_by: "codex"
     recent_action: "Parent doc drift refresh implemented"

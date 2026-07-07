@@ -9,7 +9,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/004-devin-advisor-hook-integration"
+    packet_pointer: "system-skill-advisor/004-skill-advisor-production-hardening/004-devin-advisor-hook-integration"
     last_updated_at: "2026-05-15T17:30:00Z"
     last_updated_by: "cli-codex-phase-b"
     recent_action: "Phase B synthesis complete"

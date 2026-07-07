@@ -8,7 +8,7 @@ importance_tier: "critical"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/006-system-skill-advisor-package-extraction/008-skill-graph-tools-advisor-migration"
+    packet_pointer: "system-skill-advisor/001-skill-graph/006-system-skill-advisor-package-extraction/008-skill-graph-tools-advisor-migration"
     last_updated_at: "2026-05-14T15:45:16Z"
     last_updated_by: "codex"
     recent_action: "008 implementation shipped (D1+D2)"

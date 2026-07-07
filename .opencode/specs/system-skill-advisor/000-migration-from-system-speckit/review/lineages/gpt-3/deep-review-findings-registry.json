@@ -1,0 +1,19 @@
+{
+  "sessionId": "fanout-gpt-3-1783433085887-cah79b",
+  "generation": 1,
+  "lineageMode": "new",
+  "openFindings": [
+    {"id":"G3-F001","severity":"P1","category":"verification","title":"Verified checklist claims conflict with the spec's zero-error success criteria and live strict validation","evidence":[".opencode/specs/system-skill-advisor/000-migration-from-system-speckit/spec.md:179",".opencode/specs/system-skill-advisor/000-migration-from-system-speckit/checklist.md:67",".opencode/specs/system-skill-advisor/000-migration-from-system-speckit/implementation-summary.md:93"],"finding_class":"acceptance-criteria-drift","content_hash":"sha256:g3f001","status":"active","dimensions":["traceability","correctness"]},
+    {"id":"G3-F002","severity":"P1","category":"traceability","title":"Checklist says spec/plan/tasks are synchronized while plan.md still has pending completion boxes","evidence":[".opencode/specs/system-skill-advisor/000-migration-from-system-speckit/checklist.md:98",".opencode/specs/system-skill-advisor/000-migration-from-system-speckit/plan.md:61"],"finding_class":"unsupported-completion-claim","content_hash":"sha256:g3f002","status":"active","dimensions":["traceability","correctness"]},
+    {"id":"G3-F003","severity":"P2","category":"spec-alignment","title":"Track phase map still marks the migration child as In Progress","evidence":[".opencode/specs/system-skill-advisor/spec.md:95",".opencode/specs/system-skill-advisor/000-migration-from-system-speckit/implementation-summary.md:25"],"finding_class":"documentation-drift","content_hash":"sha256:g3f003","status":"active","dimensions":["correctness","maintainability"]},
+    {"id":"G3-F004","severity":"P2","category":"documentation","title":"Left-in-place item count is inconsistent","evidence":[".opencode/specs/system-skill-advisor/000-migration-from-system-speckit/spec.md:127",".opencode/specs/system-skill-advisor/context-index.md:50"],"finding_class":"documentation-count-drift","content_hash":"sha256:g3f004","status":"active","dimensions":["maintainability"]},
+    {"id":"G3-F005","severity":"P2","category":"documentation","title":"Context-index records a different old tuning folder name than the migration spec","evidence":[".opencode/specs/system-skill-advisor/context-index.md:40",".opencode/specs/system-skill-advisor/000-migration-from-system-speckit/spec.md:112",".opencode/specs/system-skill-advisor/000-migration-from-system-speckit/decision-record.md:123"],"finding_class":"documentation-path-drift","content_hash":"sha256:g3f005","status":"active","dimensions":["maintainability"]}
+  ],
+  "resolvedFindings": [],
+  "repeatedFindings": [],
+  "dimensionCoverage": {"correctness": true, "security": true, "traceability": true, "maintainability": true},
+  "findingsBySeverity": {"P0": 0, "P1": 2, "P2": 3},
+  "openFindingsCount": 5,
+  "resolvedFindingsCount": 0,
+  "convergenceScore": 0.9
+}

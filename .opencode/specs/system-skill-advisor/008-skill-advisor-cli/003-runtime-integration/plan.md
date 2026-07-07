@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: Phase 3: Runtime Integration [system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure/001-mcp-to-cli-tool-transition/003-skill-advisor-cli/003-runtime-integration/plan]"
+title: "Implementation Plan: Phase 3: Runtime Integration [system-skill-advisor/008-skill-advisor-cli/003-runtime-integration/plan]"
 description: "Planned approach: Pairing per program rule: prompt-submit advisor-brief hooks (Claude/Codex) gain the CLI warm path under the <60ms cache-hit p95 bar (D4), mk-skill-advisor plugin bridge gains CLI fallback, config compatibility (D7), doctor routes, docs"
 trigger_phrases:
   - "skill-advisor runtime integration plan"
@@ -9,7 +9,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure/001-mcp-to-cli-tool-transition/003-skill-advisor-cli/003-runtime-integration"
+    packet_pointer: "system-skill-advisor/008-skill-advisor-cli/003-runtime-integration"
     last_updated_at: "2026-06-10T06:00:00Z"
     last_updated_by: "claude-fable-5"
     recent_action: "T9xx transport-down drill PASSED; verification approach executed"

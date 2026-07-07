@@ -1,5 +1,5 @@
 ---
-title: "Implemen [system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/004-advisor-hook-surface-integration/plan]"
+title: "Implemen [system-skill-advisor/003-skill-advisor-routing-engine/004-advisor-hook-surface-integration/plan]"
 description: "Research-first plan for cross-runtime skill-advisor hook integration. Phase 1 scaffolds 001-initial-research for architecture investigation; Phase 2+ spawns remediation children per cluster."
 trigger_phrases:
   - "026/009/001 skill advisor hook plan"
@@ -7,7 +7,7 @@ importance_tier: "critical"
 contextType: "planning"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/004-advisor-hook-surface-integration"
+    packet_pointer: "system-skill-advisor/003-skill-advisor-routing-engine/004-advisor-hook-surface-integration"
     last_updated_at: "2026-04-28T19:30:00Z"
     last_updated_by: "codex-gpt-5-hygiene-pass"
     recent_action: "Hygiene pass - validator structure"

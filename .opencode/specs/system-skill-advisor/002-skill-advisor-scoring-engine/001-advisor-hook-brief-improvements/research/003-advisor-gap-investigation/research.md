@@ -13,7 +13,7 @@ importance_tier: "normal"
 contextType: "research"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/001-advisor-hook-brief-improvements/research/003-advisor-gap-investigation"
+    packet_pointer: "system-skill-advisor/002-skill-advisor-scoring-engine/001-advisor-hook-brief-improvements/research/003-advisor-gap-investigation"
     last_updated_at: "2026-04-24T15:25:01Z"
     last_updated_by: "backfill-memory-block"
     recent_action: "Backfilled _memory block (repo-wide frontmatter sweep)"

@@ -9,7 +9,7 @@ contextType: "planning"
 template_source_hint: "<!-- SPECKIT_TEMPLATE_SOURCE: decision-record + level3-arch | v2.2 -->"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/007-hook-parity/003-codex-native-startup-advisor-hooks"
+    packet_pointer: "system-skill-advisor/004-skill-advisor-production-hardening/006-codex-native-startup-advisor-hooks"
     last_updated_at: "2026-04-23T13:55:57Z"
     last_updated_by: "codex-gpt-5"
     recent_action: "Independent review and live re-verification — all claims hold"

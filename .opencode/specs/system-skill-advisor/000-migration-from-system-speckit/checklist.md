@@ -10,17 +10,17 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-skill-advisor/000-migration-from-system-speckit"
-    last_updated_at: "2026-07-07T11:01:53Z"
+    last_updated_at: "2026-07-07T15:45:00Z"
     last_updated_by: "claude-sonnet-5"
-    recent_action: "Authored checklist.md alongside spec.md, plan.md, tasks.md"
-    next_safe_action: "Dispatch the /deep:review 20-iteration loop"
+    recent_action: "All P0/P1 checklist items verified with evidence"
+    next_safe_action: "None required; packet complete"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "claude-2026-07-07-skill-advisor-extraction"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -64,8 +64,8 @@ N/A. This packet moves and renumbers spec-doc folders, it does not change applic
 <!-- ANCHOR:testing -->
 ## Testing
 
-- [x] CHK-020 [P0] `validate.sh --strict --recursive` clean on `system-skill-advisor/` (verified) - Errors: 2, both known/accepted track-root limitations (FOLDER_NAMING, packet_pointer-no-slash) matching the sibling `system-code-graph` track root; confirmed not fixable without falsifying the root's actual identity
-- [x] CHK-021 [P0] `validate.sh --strict --recursive` clean on `026/`, `027/`, `028/` (verified) - 026: Errors 0; 027: Errors 0; 028: Errors 2, both pre-existing content-quality debt unrelated to path/numbering correctness (handover.md missing _memory block predates this session; 004-dark-flag-graduation narrative next_safe_action predates the renumber)
+- [x] CHK-020 [P0] `validate.sh --strict --recursive` on `system-skill-advisor/` shows 0 errors from this migration (verified) - Errors: 2 total, both known/accepted track-root limitations (FOLDER_NAMING, packet_pointer-no-slash) matching the sibling `system-code-graph` track root; confirmed not fixable without falsifying the root's actual identity. Not zero-error clean; this is the accepted-limitation floor.
+- [x] CHK-021 [P0] `validate.sh --strict --recursive` on `026/`, `027/`, `028/` shows 0 errors from this migration (verified) - 026: Errors 0; 027: Errors 0; 028: Errors 2 total, both pre-existing content-quality debt unrelated to path/numbering correctness (handover.md missing _memory block predates this session; 004-dark-flag-graduation narrative next_safe_action predates the renumber). Not zero-error clean; this is the accepted-limitation floor.
 - [x] CHK-022 [P0] Repo-wide `rg` for every old path fragment returns zero live hits (verified) - live JSON registry sweep across all 10 old-path categories returned zero hits; all remaining textual hits confirmed frozen historical records (changelogs, review logs/iterations, benchmark raw results)
 - [x] CHK-023 [P1] Manual spot-read confirms `system-skill-advisor/spec.md` narrates 001-012 coherently (verified)
 <!-- /ANCHOR:testing -->
@@ -166,7 +166,7 @@ N/A. No security review, license, or data-handling surface applies to a spec-fol
 ## L3+: DOCUMENTATION VERIFICATION
 
 - [x] CHK-140 [P1] All spec documents synchronized (verified)
-- [x] CHK-142 [P2] `context-index.md` documents the 6 left-in-place shared/joint items (verified)
+- [x] CHK-142 [P2] `context-index.md` documents the 7 left-in-place shared/joint items (verified)
 <!-- /ANCHOR:docs-verify -->
 
 ---

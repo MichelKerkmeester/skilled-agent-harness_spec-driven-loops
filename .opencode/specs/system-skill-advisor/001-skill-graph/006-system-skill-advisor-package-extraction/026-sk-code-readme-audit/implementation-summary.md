@@ -8,7 +8,7 @@ importance_tier: "high"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/006-system-skill-advisor-package-extraction/026-sk-code-readme-audit"
+    packet_pointer: "system-skill-advisor/001-skill-graph/006-system-skill-advisor-package-extraction/026-sk-code-readme-audit"
     last_updated_at: "2026-05-15T11:40:19Z"
     last_updated_by: "codex"
     recent_action: "Authored 42 missing code READMEs and audit report"

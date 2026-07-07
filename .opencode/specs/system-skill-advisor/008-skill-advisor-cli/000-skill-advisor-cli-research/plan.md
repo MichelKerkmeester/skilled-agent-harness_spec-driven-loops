@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: Skill-Advisor CLI Feasibility [system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure/001-mcp-to-cli-tool-transition/003-skill-advisor-cli/000-skill-advisor-cli-research/plan]"
+title: "Implementation Plan: Skill-Advisor CLI Feasibility [system-skill-advisor/008-skill-advisor-cli/000-skill-advisor-cli-research/plan]"
 description: "Single-execution research plan: one fan-out invocation, one cli-codex lane (gpt-5.5, high, fast), forced 10 iterations against the 10-KQ register."
 trigger_phrases:
   - "skill advisor cli feasibility plan"
@@ -9,7 +9,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure/001-mcp-to-cli-tool-transition/003-skill-advisor-cli/000-skill-advisor-cli-research"
+    packet_pointer: "system-skill-advisor/008-skill-advisor-cli/000-skill-advisor-cli-research"
     last_updated_at: "2026-06-06T14:15:00Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "Run complete; plan gates closed"

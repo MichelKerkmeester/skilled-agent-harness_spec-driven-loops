@@ -10,7 +10,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/027-xce-research-based-refinement/003-advisor-and-codegraph/003-skill-advisor-cross-session-reconnect"
+    packet_pointer: "system-skill-advisor/009-advisor-and-codegraph-migrated-items/001-skill-advisor-cross-session-reconnect"
     last_updated_at: "2026-06-11T10:07:00Z"
     last_updated_by: "gpt-5.5"
     recent_action: "Recorded launcher remediation evidence."
@@ -19,10 +19,10 @@ _memory:
     key_files:
       - ".opencode/bin/mk-skill-advisor-launcher.cjs"
       - ".opencode/skills/system-skill-advisor/mcp_server/tests/skill-advisor-launcher-orphan-reaping.vitest.ts"
-      - ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/003-advisor-and-codegraph/003-skill-advisor-cross-session-reconnect/spec.md"
-      - ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/003-advisor-and-codegraph/003-skill-advisor-cross-session-reconnect/plan.md"
-      - ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/003-advisor-and-codegraph/003-skill-advisor-cross-session-reconnect/tasks.md"
-      - ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/003-advisor-and-codegraph/003-skill-advisor-cross-session-reconnect/implementation-summary.md"
+      - ".opencode/specs/system-skill-advisor/009-advisor-and-codegraph-migrated-items/001-skill-advisor-cross-session-reconnect/spec.md"
+      - ".opencode/specs/system-skill-advisor/009-advisor-and-codegraph-migrated-items/001-skill-advisor-cross-session-reconnect/plan.md"
+      - ".opencode/specs/system-skill-advisor/009-advisor-and-codegraph-migrated-items/001-skill-advisor-cross-session-reconnect/tasks.md"
+      - ".opencode/specs/system-skill-advisor/009-advisor-and-codegraph-migrated-items/001-skill-advisor-cross-session-reconnect/implementation-summary.md"
     session_dedup:
       fingerprint: "sha256:8b46b0fd8978997547f6e1782f1eaefc3ea4f5b90f80d3e7297ac9521182f86f"
       session_id: "skill-advisor-cross-session-reconnect-remediation"

@@ -5,7 +5,7 @@ importance_tier: "critical"
 contextType: "evidence"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/006-system-skill-advisor-package-extraction/014-manual-testing-playbook-validation"
+    packet_pointer: "system-skill-advisor/001-skill-graph/006-system-skill-advisor-package-extraction/014-manual-testing-playbook-validation/results"
     last_updated_at: "2026-05-14T18:06:00Z"
     last_updated_by: "opencode-go/glm-5.1"
     recent_action: "Scenario run log complete"

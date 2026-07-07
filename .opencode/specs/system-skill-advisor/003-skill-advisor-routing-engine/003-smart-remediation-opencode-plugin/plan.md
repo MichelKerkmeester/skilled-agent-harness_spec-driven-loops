@@ -8,14 +8,14 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/003-smart-remediation-opencode-plugin"
+    packet_pointer: "system-skill-advisor/003-skill-advisor-routing-engine/003-smart-remediation-opencode-plugin"
     last_updated_at: "2026-04-19T00:00:00Z"
     last_updated_by: "codex"
     recent_action: "Initialized Phase 023 implementation plan"
     next_safe_action: "Execute Area A stale path remediation first, then Area D checker"
     blockers: []
     key_files:
-      - ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/003-smart-remediation-opencode-plugin/spec.md"
+      - ".opencode/specs/system-skill-advisor/003-skill-advisor-routing-engine/003-smart-remediation-opencode-plugin/spec.md"
       - ".opencode/plugins/spec-kit-compact-code-graph.js"
       - ".opencode/skills/system-spec-kit/mcp_server/lib/skill-advisor/skill-advisor-brief.ts"
     completion_pct: 5

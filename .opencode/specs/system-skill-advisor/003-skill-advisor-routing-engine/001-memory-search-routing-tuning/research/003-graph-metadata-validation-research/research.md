@@ -13,7 +13,7 @@ importance_tier: "normal"
 contextType: "research"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/001-memory-search-routing-tuning/003-graph-metadata-validation/research/003-graph-metadata-validation-research"
+    packet_pointer: "system-skill-advisor/003-skill-advisor-routing-engine/001-memory-search-routing-tuning/research/003-graph-metadata-validation-research"
     last_updated_at: "2026-04-24T15:25:01Z"
     last_updated_by: "backfill-memory-block"
     recent_action: "Backfilled _memory block (repo-wide frontmatter sweep)"

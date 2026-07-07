@@ -14,7 +14,7 @@ importance_tier: "important"
 contextType: "research"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/007-hook-parity/003-codex-native-startup-advisor-hooks/research/007-deep-review-remediation-pt-02"
+    packet_pointer: "system-skill-advisor/004-skill-advisor-production-hardening/006-codex-native-startup-advisor-hooks/research"
     last_updated_at: "2026-04-24T15:25:01Z"
     last_updated_by: "backfill-memory-block"
     recent_action: "Backfilled _memory block (repo-wide frontmatter sweep)"

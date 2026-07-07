@@ -1,5 +1,5 @@
 ---
-title: "Ta [system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/001-advisor-hook-brief-improvements/tasks]"
+title: "Ta [system-skill-advisor/002-skill-advisor-scoring-engine/001-advisor-hook-brief-improvements/tasks]"
 description: "Task breakdown for implementing the packet-02 skill-advisor parity, MCP-surface, and telemetry findings while keeping every task traced to a concrete 014 finding."
 trigger_phrases:
   - "tasks"
@@ -12,15 +12,15 @@ contextType: "implementation"
 template_source_hint: "<!-- SPECKIT_TEMPLATE_SOURCE: tasks-core | v2.2 -->"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/001-advisor-hook-brief-improvements"
+    packet_pointer: "system-skill-advisor/002-skill-advisor-scoring-engine/001-advisor-hook-brief-improvements"
     last_updated_at: "2026-04-24T08:05:00Z"
     last_updated_by: "codex-gpt-5.4"
     recent_action: "Converted packet-02 findings into Level-2 setup, implementation, and verification tasks"
     next_safe_action: "Start Phase 1 setup tasks and land the P1 implementation tasks in finding order"
     blockers: []
     key_files:
-      - ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/001-advisor-hook-brief-improvements/plan.md"
-      - ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/001-advisor-hook-brief-improvements/research/002-advisor-hook-followup-research/findings-registry.json"
+      - ".opencode/specs/system-skill-advisor/002-skill-advisor-scoring-engine/001-advisor-hook-brief-improvements/plan.md"
+      - ".opencode/specs/system-skill-advisor/002-skill-advisor-scoring-engine/001-advisor-hook-brief-improvements/research/002-advisor-hook-followup-research/findings-registry.json"
     completion_pct: 10
     status: "tasks-ready"
 ---

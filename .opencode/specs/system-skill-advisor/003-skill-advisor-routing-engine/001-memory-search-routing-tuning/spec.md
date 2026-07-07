@@ -1,5 +1,5 @@
 ---
-title: "Featu [system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/001-memory-search-routing-tuning/spec]"
+title: "Featu [system-skill-advisor/003-skill-advisor-routing-engine/001-memory-search-routing-tuning/spec]"
 description: "Coordination parent for continuity research packets focused on search-pipeline tuning, routing accuracy, and graph-metadata validation. This root spec restores the canonical packet identity while leaving the detailed research and implementation surfaces in the existing child packets."
 trigger_phrases:
   - "010 search and routing tuning"
@@ -10,7 +10,7 @@ importance_tier: "important"
 contextType: "planning"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/001-memory-search-routing-tuning"
+    packet_pointer: "system-skill-advisor/003-skill-advisor-routing-engine/001-memory-search-routing-tuning"
     last_updated_at: "2026-04-18T22:00:00Z"
     last_updated_by: "codex-gpt-5.4"
     recent_action: "Restored coordination-parent root spec for canonical save invariants"

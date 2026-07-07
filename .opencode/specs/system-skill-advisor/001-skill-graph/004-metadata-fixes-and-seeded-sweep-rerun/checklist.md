@@ -7,7 +7,7 @@ importance_tier: "important"
 contextType: "verification"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/004-metadata-fixes-and-seeded-sweep-rerun"
+    packet_pointer: "system-skill-advisor/001-skill-graph/004-metadata-fixes-and-seeded-sweep-rerun"
     last_updated_at: "2026-05-14T01:00:00Z"
     last_updated_by: "claude"
     recent_action: "Scaffolded packet"

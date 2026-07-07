@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: Phase 2: Hardening and Tests [system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure/001-mcp-to-cli-tool-transition/003-skill-advisor-cli/002-hardening-and-tests/spec]"
+title: "Feature Specification: Phase 2: Hardening and Tests [system-skill-advisor/008-skill-advisor-cli/002-hardening-and-tests/spec]"
 description: "Parity + lifecycle regression-lock: 10-prompt Python local/native parity fixture (D2), rebuild/scan job semantics with mutation wall-time MEASURED (D5), orphan-reaping fixtures for the six-orphan incident class (D6), dual-client coverage"
 trigger_phrases:
   - "skill-advisor hardening and tests"
@@ -9,7 +9,7 @@ importance_tier: "important"
 contextType: "specification"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure/001-mcp-to-cli-tool-transition/003-skill-advisor-cli/002-hardening-and-tests"
+    packet_pointer: "system-skill-advisor/008-skill-advisor-cli/002-hardening-and-tests"
     last_updated_at: "2026-06-06T15:05:00Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "Phase scaffolded in planned state"

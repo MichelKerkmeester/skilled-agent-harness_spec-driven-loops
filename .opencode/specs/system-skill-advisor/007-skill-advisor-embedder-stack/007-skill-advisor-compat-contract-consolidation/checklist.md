@@ -6,7 +6,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/002-spec-memory-stack/022-hardcoded-default-remediation-arc/004a-skill-advisor-compat-contract-consolidation"
+    packet_pointer: "system-skill-advisor/007-skill-advisor-embedder-stack/007-skill-advisor-compat-contract-consolidation"
     last_updated_at: "2026-05-23T17:20:00Z"
     last_updated_by: "main_agent"
     recent_action: "All checks pass"

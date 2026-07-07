@@ -10,7 +10,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/005-skill-advisor-documentation/005-cross-skill-documentation-decoupling"
+    packet_pointer: "system-skill-advisor/005-skill-advisor-documentation/005-cross-skill-documentation-decoupling"
     last_updated_at: "2026-05-16T12:33:24Z"
     last_updated_by: "main_agent"
     recent_action: "Shipped 3-phase doc decouple plus arch conform plus zero-table pass"

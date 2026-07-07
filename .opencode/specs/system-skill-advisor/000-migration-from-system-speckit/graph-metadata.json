@@ -40,7 +40,7 @@
       "plan"
     ],
     "importance_tier": "normal",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
       ".opencode/specs/system-skill-advisor/000-migration-from-system-speckit/spec.md",
       "spec.md",
@@ -200,7 +200,7 @@
     ],
     "causal_summary": "Skill-advisor spec history lives in four different places under `system-speckit` (026, 027, 028, plus a half-built `system-skill-advisor` track), with no single folder a reader can open to understand the subsystem's full history",
     "created_at": "2026-07-07T10:52:55.670Z",
-    "last_save_at": "2026-07-07T13:28:21.101Z",
+    "last_save_at": "2026-07-07T14:32:20.629Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -211,13 +211,13 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:076b05ad39835ec31148d4d6c98053c79eba564c980fe9dc3995ca8985b7dcf4",
+    "source_fingerprint": "sha256:821eeb636b479e9b8033233cccd083f588d81d40223512aca2fab0a0e70e78ac",
     "source_doc_hashes": {
-      "spec.md": "2480e2fce7b8dc2712241cc15d1105602703cab888188b69f10f43b48a2cd6e8",
-      "plan.md": "4fbea072e92bcd2acf8d46ad691f79802e66a9dd7976e5f16a9009df56454e14",
-      "tasks.md": "3f9059a843128a05ef3b6ab7fcb9c80f52c2c173f9f14e34b8e4577403db244c",
-      "checklist.md": "49dd55d271b6b25f4972b0af472d1fc08f75a39a12093f691bba4883b132a6a3",
-      "decision-record.md": "c6b53b3f51cf392eac9c3de6bc147bd85b6402267b64efb15db56041e0459f6d",
+      "spec.md": "19764b2914798f507a6db9b7d6af21fb797a169d749408e5306a607664443b3c",
+      "plan.md": "928e8ab74190e079dec9c567a8a4b36830e1afb61a7c6ad655fe705572f4b934",
+      "tasks.md": "3ea4c0925a6690670930a89e06ceff730f66ca3930a9ced7b99dc37418cd3bfa",
+      "checklist.md": "6e6fa7114749bdeaae74e45ca3cad14a35369658eb32e6886915c1c5f82654dd",
+      "decision-record.md": "e8a622a586bb5ae50cba15a921e4e65ff89383207d40e1423e9987616d086b61",
       "implementation-summary.md": "fce55ef07ee497d6e644b466d0de75a1c891c74a9ad2d5b03a713589002878f2"
     },
     "last_active_child_id": null,

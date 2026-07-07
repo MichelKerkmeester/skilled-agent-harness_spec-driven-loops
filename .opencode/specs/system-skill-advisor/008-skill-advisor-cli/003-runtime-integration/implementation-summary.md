@@ -1,5 +1,5 @@
 ---
-title: "Implementation Summary: Phase 3: Runtime Integration [system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure/001-mcp-to-cli-tool-transition/003-skill-advisor-cli/003-runtime-integration/implementation-summary]"
+title: "Implementation Summary: Phase 3: Runtime Integration [system-skill-advisor/008-skill-advisor-cli/003-runtime-integration/implementation-summary]"
 description: "Shipped summary for Phase 3 Runtime Integration: skill-advisor CLI fallback, bridge route, doctor probes, and docs."
 trigger_phrases:
   - "skill-advisor runtime integration result"
@@ -9,7 +9,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure/001-mcp-to-cli-tool-transition/003-skill-advisor-cli/003-runtime-integration"
+    packet_pointer: "system-skill-advisor/008-skill-advisor-cli/003-runtime-integration"
     last_updated_at: "2026-06-09T19:10:00Z"
     last_updated_by: "gpt-5.5-fast"
     recent_action: "Reconciled shipped skill-advisor runtime evidence"

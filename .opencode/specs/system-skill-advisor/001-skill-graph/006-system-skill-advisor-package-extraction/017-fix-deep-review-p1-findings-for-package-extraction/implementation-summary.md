@@ -8,7 +8,7 @@ importance_tier: "critical"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/006-system-skill-advisor-package-extraction/017-fix-deep-review-p1-findings-for-package-extraction"
+    packet_pointer: "system-skill-advisor/001-skill-graph/006-system-skill-advisor-package-extraction/017-fix-deep-review-p1-findings-for-package-extraction"
     last_updated_at: "2026-05-15T06:09:08Z"
     last_updated_by: "codex"
     recent_action: "R-004 and S-004 fixed"

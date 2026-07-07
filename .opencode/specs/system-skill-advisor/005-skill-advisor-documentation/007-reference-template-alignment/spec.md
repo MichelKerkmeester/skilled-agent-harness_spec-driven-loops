@@ -10,7 +10,7 @@ importance_tier: "important"
 contextType: "documentation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/005-skill-advisor-documentation/007-reference-template-alignment"
+    packet_pointer: "system-skill-advisor/005-skill-advisor-documentation/007-reference-template-alignment"
     last_updated_at: "2026-05-24T07:27:00Z"
     last_updated_by: "codex-gpt-5"
     recent_action: "Completed reference template alignment and validation"

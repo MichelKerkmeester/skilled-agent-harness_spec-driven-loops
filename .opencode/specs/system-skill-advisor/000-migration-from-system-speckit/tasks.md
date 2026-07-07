@@ -96,7 +96,7 @@ _memory:
 ### Batch 2e: Destination track finalization
 
 - [x] T026 Rewrite `system-skill-advisor/spec.md` (track root) to narrate the full 001-012 history
-- [x] T027 Write `system-skill-advisor/context-index.md` documenting the 6 left-in-place shared/joint items
+- [x] T027 Write `system-skill-advisor/context-index.md` documenting the 7 left-in-place shared/joint items
 - [x] T028 Regenerate `system-skill-advisor/description.json` + `graph-metadata.json` for the full 001-012 children set
 <!-- /ANCHOR:phase-2 -->
 

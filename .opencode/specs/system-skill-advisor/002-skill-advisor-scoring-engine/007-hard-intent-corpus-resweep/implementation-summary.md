@@ -7,7 +7,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/007-hard-intent-corpus-resweep"
+    packet_pointer: "system-skill-advisor/002-skill-advisor-scoring-engine/007-hard-intent-corpus-resweep"
     last_updated_at: "2026-05-14T01:30:00Z"
     last_updated_by: "claude"
     recent_action: "Scaffolded packet"

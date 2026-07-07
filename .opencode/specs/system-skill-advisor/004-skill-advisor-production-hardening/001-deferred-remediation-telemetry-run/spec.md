@@ -9,7 +9,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/001-deferred-remediation-telemetry-run"
+    packet_pointer: "system-skill-advisor/004-skill-advisor-production-hardening/001-deferred-remediation-telemetry-run"
     last_updated_at: "2026-04-19T20:15:00Z"
     last_updated_by: "claude-opus-4.7-1m"
     recent_action: "Phase 024 scaffolded — closes 020/021/022/023 deferrals"

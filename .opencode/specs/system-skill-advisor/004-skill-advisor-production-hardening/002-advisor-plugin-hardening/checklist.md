@@ -9,7 +9,7 @@ contextType: "implementation"
 template_source_hint: "<!-- SPECKIT_TEMPLATE_SOURCE: checklist-core + level2-verify | v2.2 -->"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/002-advisor-plugin-hardening"
+    packet_pointer: "system-skill-advisor/004-skill-advisor-production-hardening/002-advisor-plugin-hardening"
     last_updated_at: "2026-04-23T08:35:00Z"
     last_updated_by: "claude-opus-4-7"
     recent_action: "Implemented plugin hardening and verified focused tests/build"

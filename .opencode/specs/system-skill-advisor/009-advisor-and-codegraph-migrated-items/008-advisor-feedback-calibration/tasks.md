@@ -10,7 +10,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/027-xce-research-based-refinement/003-advisor-and-codegraph/002-xce-feature-adoption-advisor-codegraph/005-advisor-feedback-calibration"
+    packet_pointer: "system-skill-advisor/009-advisor-and-codegraph-migrated-items/008-advisor-feedback-calibration"
     last_updated_at: "2026-06-10T23:45:00Z"
     last_updated_by: "gpt-5.5-fast"
     recent_action: "Completed shadow feedback calibration reducer"

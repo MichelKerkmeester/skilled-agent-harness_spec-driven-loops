@@ -11,7 +11,7 @@ importance_tier: "important"
 contextType: "review"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-release-readiness-deep-review-audits/003-skill-advisor-freshness-audit"
+    packet_pointer: "system-skill-advisor/004-skill-advisor-production-hardening/007-skill-advisor-freshness-audit"
     last_updated_at: "2026-04-29T22:05:20+02:00"
     last_updated_by: "codex"
     recent_action: "Completed review-report.md and packet docs"

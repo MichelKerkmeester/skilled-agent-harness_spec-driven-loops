@@ -9,7 +9,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/001-advisor-hook-brief-improvements"
+    packet_pointer: "system-skill-advisor/002-skill-advisor-scoring-engine/001-advisor-hook-brief-improvements"
     last_updated_at: "2026-04-24T13:01:31+02:00"
     last_updated_by: "codex-gpt-5"
     recent_action: "Regenerated the resource map as a path-only ledger and corrected research-lineage references"

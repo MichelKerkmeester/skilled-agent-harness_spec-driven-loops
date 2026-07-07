@@ -11,7 +11,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/004-fix-deep-research-findings/003-fix-skill-advisor-quality"
+    packet_pointer: "system-skill-advisor/004-skill-advisor-production-hardening/008-fix-skill-advisor-quality"
     last_updated_at: "2026-04-30T00:00:00Z"
     last_updated_by: "remediation-orchestrator"
     recent_action: "Doc authored"

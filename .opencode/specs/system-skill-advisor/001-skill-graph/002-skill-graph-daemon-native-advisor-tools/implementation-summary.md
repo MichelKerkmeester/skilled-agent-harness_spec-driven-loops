@@ -10,7 +10,7 @@ contextType: "implementation"
 template_source_hint: "<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/002-skill-graph-daemon-native-advisor-tools"
+    packet_pointer: "system-skill-advisor/001-skill-graph/002-skill-graph-daemon-native-advisor-tools"
     last_updated_at: "2026-04-28T19:26:58Z"
     last_updated_by: "codex"
     recent_action: "Post-program status refresh"

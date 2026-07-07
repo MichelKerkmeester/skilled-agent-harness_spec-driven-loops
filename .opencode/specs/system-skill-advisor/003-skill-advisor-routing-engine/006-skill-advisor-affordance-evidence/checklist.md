@@ -10,7 +10,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/010-graph-impact-and-affordance-uplift/004-skill-advisor-affordance-evidence"
+    packet_pointer: "system-skill-advisor/003-skill-advisor-routing-engine/006-skill-advisor-affordance-evidence"
     last_updated_at: "2026-04-25T14:03:00+02:00"
     last_updated_by: "copilot-gpt-5.5"
     recent_action: "Normalized checklist doc"

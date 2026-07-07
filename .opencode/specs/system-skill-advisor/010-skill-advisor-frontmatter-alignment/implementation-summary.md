@@ -9,7 +9,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/027-xce-research-based-refinement/000-release-cleanup/009-skill-frontmatter-alignment/021-system-skill-advisor"
+    packet_pointer: "system-skill-advisor/010-skill-advisor-frontmatter-alignment"
     last_updated_at: "2026-06-11T09:31:00Z"
     last_updated_by: "claude-fable"
     recent_action: "Phase complete: 15 docs conform and smoke passed"

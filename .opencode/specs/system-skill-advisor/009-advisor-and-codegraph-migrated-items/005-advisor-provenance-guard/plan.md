@@ -11,7 +11,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/027-xce-research-based-refinement/003-advisor-and-codegraph/002-xce-feature-adoption-advisor-codegraph/002-advisor-provenance-guard"
+    packet_pointer: "system-skill-advisor/009-advisor-and-codegraph-migrated-items/005-advisor-provenance-guard"
     last_updated_at: "2026-06-10T23:03:00Z"
     last_updated_by: "gpt-5.5-fast"
     recent_action: "Implemented source_kind guard and verified advisor MCP server"

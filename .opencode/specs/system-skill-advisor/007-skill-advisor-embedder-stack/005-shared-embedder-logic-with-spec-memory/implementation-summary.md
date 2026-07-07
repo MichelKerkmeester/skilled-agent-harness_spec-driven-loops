@@ -11,7 +11,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/003-skill-advisor-stack/006-shared-embedder-logic-with-spec-memory"
+    packet_pointer: "system-skill-advisor/007-skill-advisor-embedder-stack/005-shared-embedder-logic-with-spec-memory"
     last_updated_at: "2026-05-21T17:37:00Z"
     last_updated_by: "main_agent"
     recent_action: "Shipped phase 003/006: shared embedder contract surface + 'auto' cascade + llama-cpp purge"

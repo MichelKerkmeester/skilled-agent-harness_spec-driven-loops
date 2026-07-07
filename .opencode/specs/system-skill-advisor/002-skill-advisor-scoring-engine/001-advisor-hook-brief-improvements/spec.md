@@ -1,5 +1,5 @@
 ---
-title: "Fea [system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/001-advisor-hook-brief-improvements/spec]"
+title: "Fea [system-skill-advisor/002-skill-advisor-scoring-engine/001-advisor-hook-brief-improvements/spec]"
 description: "Level-2 implementation packet that translates the packet-02 skill-advisor research findings into shipped runtime parity, public MCP contract normalization, and durable prompt-safe telemetry across the skill-advisor and hook surfaces."
 trigger_phrases:
   - "skill-advisor hook improvements"
@@ -9,7 +9,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/001-advisor-hook-brief-improvements"
+    packet_pointer: "system-skill-advisor/002-skill-advisor-scoring-engine/001-advisor-hook-brief-improvements"
     last_updated_at: "2026-04-24T12:15:00+02:00"
     last_updated_by: "codex-gpt-5"
     recent_action: "Governing spec reconciled to the shipped packet-02-derived implementation"

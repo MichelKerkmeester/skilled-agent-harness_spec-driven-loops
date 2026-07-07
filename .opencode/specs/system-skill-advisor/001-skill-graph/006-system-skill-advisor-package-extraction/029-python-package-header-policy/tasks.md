@@ -9,7 +9,7 @@ importance_tier: "high"
 contextType: "tasks"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/006-system-skill-advisor-package-extraction/029-python-package-header-policy"
+    packet_pointer: "system-skill-advisor/001-skill-graph/006-system-skill-advisor-package-extraction/029-python-package-header-policy"
     last_updated_at: "2026-05-15T12:04:51Z"
     last_updated_by: "codex"
     recent_action: "Closed packet 026 sk-code follow-on ledger"

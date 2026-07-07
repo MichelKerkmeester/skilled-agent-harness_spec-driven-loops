@@ -7,7 +7,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/001-documentation-code-alignment"
+    packet_pointer: "system-skill-advisor/005-skill-advisor-documentation/001-documentation-code-alignment"
     last_updated_at: "2026-04-19T18:40:00Z"
     last_updated_by: "claude-opus-4.7-1m"
     recent_action: "Tasks scaffolded"

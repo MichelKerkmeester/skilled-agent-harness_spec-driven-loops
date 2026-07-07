@@ -9,7 +9,7 @@ importance_tier: "critical"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/006-system-skill-advisor-package-extraction/007-skill-advisor-db-rename"
+    packet_pointer: "system-skill-advisor/001-skill-graph/006-system-skill-advisor-package-extraction/007-skill-advisor-db-rename"
     last_updated_at: "2026-05-14T13:20:00Z"
     last_updated_by: "codex"
     recent_action: "Documented implemented plan"

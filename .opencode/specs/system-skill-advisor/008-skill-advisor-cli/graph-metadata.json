@@ -91,15 +91,15 @@
     ],
     "causal_summary": "The mkskilladvisor MCP server (9 tools: 4 advisor + 5 skillgraph) powers Gate-2 routing and the prompt-submit advisor brief, but the MCP surface has the same transport fragility class as the other servers - and this system already shipped a partial answer: skilladvisor.py (3,642 lines) is the documented Gate-2 fallback covering advisorrecommend via a DIVERGENT Python scorer with a native-bridge probe, while advisorrebuild and 4 of 5 skillgraph tools have no CLI at all",
     "created_at": "2026-06-06T13:40:00Z",
-    "last_save_at": "2026-07-07T11:55:37.141Z",
+    "last_save_at": "2026-07-07T14:25:49.669Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:9c47a930c5d77f587cfc470f6ca421eb47d21c630399dda7afb80fd8df0cbcf9",
+    "source_fingerprint": "sha256:7f7b18581de31282e40d0ad813fe03413fdbc58d750d7c4e1e972b4dbad6b6f1",
     "source_doc_hashes": {
-      "spec.md": "906f23d0a82899e5e17dc159426c90f5dece74da5988a4b896111501204f2752"
+      "spec.md": "a71f9ee3f4f40e5a5ecfc9e14c2eab796a1dd945632f51dd3375a9a074b76c09"
     },
     "last_active_child_id": "system-skill-advisor/008-skill-advisor-cli/001-cli-core",
     "last_active_at": "2026-06-06T15:05:00.000Z"

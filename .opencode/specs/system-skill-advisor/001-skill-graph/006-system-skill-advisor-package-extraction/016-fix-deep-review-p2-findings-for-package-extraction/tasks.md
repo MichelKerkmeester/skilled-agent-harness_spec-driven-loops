@@ -8,7 +8,7 @@ importance_tier: "important"
 contextType: "tasks"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/006-system-skill-advisor-package-extraction/016-fix-deep-review-p2-findings-for-package-extraction"
+    packet_pointer: "system-skill-advisor/001-skill-graph/006-system-skill-advisor-package-extraction/016-fix-deep-review-p2-findings-for-package-extraction"
     last_updated_at: "2026-05-14T21:30:00Z"
     last_updated_by: "codex"
     recent_action: "Commit and push complete"

@@ -11,7 +11,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/027-xce-research-based-refinement/003-advisor-and-codegraph/002-xce-feature-adoption-advisor-codegraph/001-advisor-observability"
+    packet_pointer: "system-skill-advisor/009-advisor-and-codegraph-migrated-items/004-advisor-observability"
     last_updated_at: "2026-06-10T22:36:00Z"
     last_updated_by: "gpt-5.5-fast"
     recent_action: "Delivered advisor observability with prompt-safe attribution and semantic-lane health"

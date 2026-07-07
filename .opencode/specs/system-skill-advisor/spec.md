@@ -92,7 +92,7 @@ One track holds every skill-advisor-scoped spec folder, numbered in true chronol
 
 | Phase | Folder | Focus | Status |
 |-------|--------|-------|--------|
-| 000 | `000-migration-from-system-speckit/` | This extraction's own tracking spec (manifest, decisions, verification) | In Progress |
+| 000 | `000-migration-from-system-speckit/` | This extraction's own tracking spec (manifest, decisions, verification) | Complete |
 | 001 | `001-skill-graph/` | Skill-graph DB/tooling, incl. the 30-item package-extraction arc (originally 2026-04-21) | Phase parent |
 | 002 | `002-skill-advisor-scoring-engine/` | Scoring system: hooks, semantic routing, ablation sweeps, confidence calibration | Phase parent |
 | 003 | `003-skill-advisor-routing-engine/` | Intent routing, phrase boosters, hook surface integration, affordance evidence | Phase parent |

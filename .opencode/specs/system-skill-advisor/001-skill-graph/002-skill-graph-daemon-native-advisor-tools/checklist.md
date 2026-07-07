@@ -9,7 +9,7 @@ contextType: "implementation"
 template_source_hint: "<!-- SPECKIT_TEMPLATE_SOURCE: checklist | v2.2 -->"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/002-skill-graph-daemon-native-advisor-tools"
+    packet_pointer: "system-skill-advisor/001-skill-graph/002-skill-graph-daemon-native-advisor-tools"
     last_updated_at: "2026-04-28T15:30:03Z"
     last_updated_by: "codex-gpt-5.4"
     recent_action: "Shipped implementation preserved; strict validation follow-up still pending"

@@ -11,7 +11,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/027-xce-research-based-refinement/003-advisor-and-codegraph/003-skill-advisor-cross-session-reconnect"
+    packet_pointer: "system-skill-advisor/009-advisor-and-codegraph-migrated-items/001-skill-advisor-cross-session-reconnect"
     last_updated_at: "2026-06-11T10:05:00Z"
     last_updated_by: "gpt-5.5"
     recent_action: "Applied launcher reconnect hardening."

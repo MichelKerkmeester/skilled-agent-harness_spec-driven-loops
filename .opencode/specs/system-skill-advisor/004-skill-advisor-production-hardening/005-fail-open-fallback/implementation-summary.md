@@ -11,7 +11,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/001-fix-skill-advisor-fail-open-fallback"
+    packet_pointer: "system-skill-advisor/004-skill-advisor-production-hardening/005-fail-open-fallback"
     last_updated_at: "2026-04-28T16:13:26Z"
     last_updated_by: "codex-gpt-5"
     recent_action: "Remediation complete"

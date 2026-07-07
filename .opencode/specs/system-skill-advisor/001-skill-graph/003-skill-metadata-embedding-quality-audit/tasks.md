@@ -7,7 +7,7 @@ importance_tier: "important"
 contextType: "tasks"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/003-skill-metadata-embedding-quality-audit"
+    packet_pointer: "system-skill-advisor/001-skill-graph/003-skill-metadata-embedding-quality-audit"
     last_updated_at: "2026-05-14T00:30:00Z"
     last_updated_by: "claude"
     recent_action: "Scaffolded packet"

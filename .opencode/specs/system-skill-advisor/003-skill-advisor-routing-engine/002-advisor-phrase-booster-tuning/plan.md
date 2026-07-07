@@ -9,7 +9,7 @@ contextType: "general"
 template_source_hint: "<!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2 -->"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/002-advisor-phrase-booster-tuning"
+    packet_pointer: "system-skill-advisor/003-skill-advisor-routing-engine/002-advisor-phrase-booster-tuning"
     last_updated_at: "2026-04-15T00:00:00Z"
     last_updated_by: "spec-kit-start"
     recent_action: "Authored Level 2 plan with 3-phase migration + regression gate"

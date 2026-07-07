@@ -8,15 +8,15 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/003-smart-remediation-opencode-plugin"
+    packet_pointer: "system-skill-advisor/003-skill-advisor-routing-engine/003-smart-remediation-opencode-plugin"
     last_updated_at: "2026-04-19T00:00:00Z"
     last_updated_by: "codex"
     recent_action: "Completed Phase 023 verification checklist"
     next_safe_action: "Hand off plugin rollout and observe-only telemetry measurement"
     blockers: []
     key_files:
-      - ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/003-smart-remediation-opencode-plugin/tasks.md"
-      - ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/003-smart-remediation-opencode-plugin/implementation-summary.md"
+      - ".opencode/specs/system-skill-advisor/003-skill-advisor-routing-engine/003-smart-remediation-opencode-plugin/tasks.md"
+      - ".opencode/specs/system-skill-advisor/003-skill-advisor-routing-engine/003-smart-remediation-opencode-plugin/implementation-summary.md"
     completion_pct: 100
     open_questions: []
     answered_questions: []

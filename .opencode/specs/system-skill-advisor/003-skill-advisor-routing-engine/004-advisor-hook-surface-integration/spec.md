@@ -1,5 +1,5 @@
 ---
-title: "Feature [system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/004-advisor-hook-surface-integration/spec]"
+title: "Feature [system-skill-advisor/003-skill-advisor-routing-engine/004-advisor-hook-surface-integration/spec]"
 template_source_hint: "<!-- SPECKIT_TEMPLATE_SOURCE: spec-core + level2-verify + level3-arch | v2.2 -->"
 description: "Research-first umbrella for proactive skill-advisor integration across all CLI runtimes (Claude, Codex, Copilot, Gemini). Goal: run advisor on every relevant prompt via hook infrastructure (not explicit AI invocation), surface minimal context (top-1 skill + confidence only), cache within session to avoid redundant calls. Follows the code-graph buildStartupBrief pattern."
 template_source: "SPECKIT_TEMPLATE_SOURCE: spec-core + level2-verify + level3-arch | v2.2"
@@ -14,7 +14,7 @@ importance_tier: "critical"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/004-advisor-hook-surface-integration"
+    packet_pointer: "system-skill-advisor/003-skill-advisor-routing-engine/004-advisor-hook-surface-integration"
     last_updated_at: "2026-04-28T19:30:00Z"
     last_updated_by: "codex-gpt-5-hygiene-pass"
     recent_action: "Hygiene pass - validator structure"
