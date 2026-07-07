@@ -1,6 +1,6 @@
 # open-design
 
-Pointer doc for the mcp-open-design skill's CLI and MCP server. Nothing is installed here, because both ship inside the Open Design desktop app.
+Pointer doc for the design-mcp-open-design skill's CLI and MCP server. Nothing is installed here, because both ship inside the Open Design desktop app.
 
 ## What it is
 

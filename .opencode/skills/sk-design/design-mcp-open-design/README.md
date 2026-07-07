@@ -1,5 +1,5 @@
 ---
-title: mcp-open-design
+title: design-mcp-open-design
 description: Drive the installed Open Design desktop app from the terminal through its od CLI and stdio MCP server, so a coding agent can read local design content, reuse it, and commission generation runs without the in-app chat.
 trigger_phrases:
   - "open design"
@@ -7,10 +7,10 @@ trigger_phrases:
   - "od mcp"
   - "od cli"
   - "drive open design from the terminal"
-version: 1.4.0.10
+version: 1.4.0.11
 ---
 
-# mcp-open-design
+# design-mcp-open-design
 
 > Read, reuse, and commission Open Design's local projects and design-systems from your agent or terminal, through the `od` CLI and its stdio MCP server, without ever typing into the in-app chat.
 
@@ -171,10 +171,10 @@ A: This skill is the transport that reads and writes Open Design content. `sk-de
 
 | Check | How to run it |
 |---|---|
-| README structure | `python3 .opencode/skills/sk-doc/scripts/validate_document.py .opencode/skills/mcp-open-design/README.md --type readme` reports zero issues |
-| SKILL.md frontmatter | `head -12 .opencode/skills/mcp-open-design/SKILL.md` shows `name: mcp-open-design`, a `description`, and `user-invocable: true` |
-| Feature catalog structure | `python3 .opencode/skills/sk-doc/scripts/validate_document.py .opencode/skills/mcp-open-design/feature_catalog/feature_catalog.md` reports zero issues |
-| Playbook structure | `python3 .opencode/skills/sk-doc/scripts/validate_document.py .opencode/skills/mcp-open-design/manual_testing_playbook/manual_testing_playbook.md` reports zero issues |
+| README structure | `python3 .opencode/skills/sk-doc/scripts/validate_document.py .opencode/skills/sk-design/design-mcp-open-design/README.md --type readme` reports zero issues |
+| SKILL.md frontmatter | `head -12 .opencode/skills/sk-design/design-mcp-open-design/SKILL.md` shows `name: design-mcp-open-design` and a `description` |
+| Feature catalog structure | `python3 .opencode/skills/sk-doc/scripts/validate_document.py .opencode/skills/sk-design/design-mcp-open-design/feature_catalog/feature_catalog.md` reports zero issues |
+| Playbook structure | `python3 .opencode/skills/sk-doc/scripts/validate_document.py .opencode/skills/sk-design/design-mcp-open-design/manual_testing_playbook/manual_testing_playbook.md` reports zero issues |
 | CLI reachability | `node "$OD_BIN" --help` returns usage text with the Open Design desktop app open (Node.js required) |
 
 ---
@@ -190,4 +190,4 @@ A: This skill is the transport that reads and writes Open Design content. `sk-de
 | [`references/mcp_wiring.md`](./references/mcp_wiring.md) | Wiring the MCP server into supported terminal agents, the written config shape, and the manual fallback |
 | [`references/tool_surface.md`](./references/tool_surface.md) | The roughly 18 MCP tools, the surface, gate, and omit policy, and the live-verification requirement |
 | [`references/design_parity_transport.md`](./references/design_parity_transport.md) | The Open Design transport mechanics for the real-UI loop (the loop itself lives in `sk-design`) |
-| [Skills Library](../README.md) | The skill catalog and routing front door |
+| [Skills Library](../../README.md) | The skill catalog and routing front door |

@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Shared helpers for mcp-open-design scripts. Source this, do not run directly.
+# Shared helpers for design-mcp-open-design scripts. Source this, do not run directly.
 # WHY: the od CLI is not an npm package and not a global binary. It ships
 # inside the Open Design desktop app and is run as `node <daemon-cli.mjs>`.
 # A bare `od` is the unrelated octal-dump tool.

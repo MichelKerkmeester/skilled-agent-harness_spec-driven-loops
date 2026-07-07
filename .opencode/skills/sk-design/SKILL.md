@@ -1,6 +1,6 @@
 ---
 name: sk-design
-description: "Distinctive, intentional UI design and the full design surface: visual direction, taste, and build for interfaces; color, typography, layout, spacing, hierarchy, and design tokens; animation, transitions, and micro-interactions; accessibility, performance, responsive, theming, and anti-slop design audit with quality scoring; and live-website CSS to Style Reference DESIGN.md extraction. Use to make a UI look custom and polished rather than templated, design a visual system, choreograph motion, audit and harden design quality, or extract a real design system from a live site. The single advisor-routable design skill: it routes to five modes (interface, foundations, motion, audit, md-generator) via mode-registry.json, and each mode holds its own design logic."
+description: "Distinctive, intentional UI design and the full design surface: visual direction, taste, and build for interfaces; color, typography, layout, spacing, hierarchy, and design tokens; animation, transitions, and micro-interactions; accessibility, performance, responsive, theming, and anti-slop design audit with quality scoring; and live-website CSS to Style Reference DESIGN.md extraction. Use to make a UI look custom and polished rather than templated, design a visual system, choreograph motion, audit and harden design quality, or extract a real design system from a live site. The single advisor-routable design skill: it routes to five design modes (interface, foundations, motion, audit, md-generator) plus a nested Open Design transport packet via mode-registry.json, and each holds its own logic."
 allowed-tools: [Read, Write, Edit, Bash, Grep, Glob]
 version: 1.1.0.0
 metadata:
@@ -12,7 +12,7 @@ metadata:
 
 # Design Family Hub (sk-design)
 
-One skill, five design modes, one shared reference base. `sk-design` is the public, advisor-routable home for every design persona; the shared design reference base (anti-slop principles, cognitive laws, design-token vocabulary) is the common vocabulary the modes cite. Before routing, the hub acts as a design manager: it gathers context, makes the plan visible, names proof expectations, then delegates through `mode-registry.json`. This hub holds NO per-mode design logic — each mode keeps its own contract in its packet, and the hub only routes by `workflowMode` through `mode-registry.json`.
+One skill, five design modes plus a nested transport packet, one shared reference base. `sk-design` is the public, advisor-routable home for every design persona; the shared design reference base (anti-slop principles, cognitive laws, design-token vocabulary) is the common vocabulary the modes cite. Before routing, the hub acts as a design manager: it gathers context, makes the plan visible, names proof expectations, then delegates through `mode-registry.json`. This hub holds NO per-mode design logic — each mode keeps its own contract in its packet, and the hub only routes by `workflowMode` through `mode-registry.json`.
 
 ---
 
@@ -188,7 +188,8 @@ sk-design/
   mode-registry.json     # the discriminator + advisorRouting (single source of truth)
   graph-metadata.json    # the ONE advisor identity for the whole skill
   shared/                # shared design reference base the hub + modes cite
-  design-interface/  design-foundations/  design-motion/  design-audit/  design-md-generator/   # five mode packets
+  design-interface/  design-foundations/  design-motion/  design-audit/  design-md-generator/   # five design mode packets
+  design-mcp-open-design/  # nested transport packet (packetKind: "transport")
 ```
 
 Each mode packet is self-contained (its own `SKILL.md`, `references/`, `assets/`, and `md-generator`'s extraction backend), with internal paths repointed and **no per-packet `graph-metadata.json`** — only this hub carries one, so the advisor discovers exactly one skill. The mode packet folders are created when the flat skills move under the hub; the hub references those packet paths now.
@@ -215,7 +216,7 @@ The four doc-guidance modes (interface, foundations, motion, audit) consume the 
 - **NEVER** embed per-mode design instructions in this hub — that content lives in the packets.
 - **NEVER** add public micro-skill identities or a public mirror of another design skill family; preserve the single `sk-design` advisor identity.
 - **NEVER** require Write, Edit, or Bash for the four read-only advisory modes; their tool surface is Read/Glob/Grep only.
-- **NEVER** treat `mcp-figma` or `mcp-open-design` as taste or critique authority; they are transports loaded after the design mode is chosen.
+- **NEVER** treat `mcp-figma` or `design-mcp-open-design` as taste or critique authority; they are transports loaded after the design mode is chosen.
 - **NEVER** route pure code, backend, or data work through the design family.
 
 ### ESCALATE IF
@@ -228,7 +229,7 @@ The four doc-guidance modes (interface, foundations, motion, audit) consume the 
 ## 5. REFERENCES
 
 - Shared reference base: `shared/anti_slop_principles.md`, `shared/cognitive_laws.md`, `shared/design_token_vocabulary.md` (cited by every doc-guidance mode).
-- Mode packets: `design-interface/SKILL.md`, `design-foundations/SKILL.md`, `design-motion/SKILL.md`, `design-audit/SKILL.md`, `design-md-generator/SKILL.md` (per-mode detail).
+- Mode packets: `design-interface/SKILL.md`, `design-foundations/SKILL.md`, `design-motion/SKILL.md`, `design-audit/SKILL.md`, `design-md-generator/SKILL.md` (per-mode detail); `design-mcp-open-design/SKILL.md` (nested transport packet, `packetKind: "transport"`).
 - Registry: `mode-registry.json` (the routing contract).
 - Implementation handoff: `sk-code` consumes the design output; its code-review mode can audit it after build.
 
@@ -254,7 +255,7 @@ The four doc-guidance modes (interface, foundations, motion, audit) consume the 
 - `md-generator` — `DESIGN.md` / style-reference extraction other skills consume.
 
 ### Transports and Consumers
-- `mcp-figma` and `mcp-open-design` are transports. Use them after the design mode is chosen, with the user-visible plan naming what the transport will do.
+- `mcp-figma` (external sibling skill) and `design-mcp-open-design` (nested transport packet, resolved through this hub's own `mode-registry.json`) are transports. Use them after the design mode is chosen, with the user-visible plan naming what the transport will do.
 - Transports can fetch, inspect, generate, extract, or apply artifacts; they do not decide whether the design is tasteful, accessible, responsive, or production-ready. Treat transport output as evidence to inspect, not as acceptance.
 - `sk-design` owns design judgment and proof expectations. When transport evidence is needed, bring it back into the selected design mode or audit mode for acceptance.
 - If transport output conflicts with the visible proof plan, resolve acceptance through the selected design mode or audit mode before implementation or ready claims.

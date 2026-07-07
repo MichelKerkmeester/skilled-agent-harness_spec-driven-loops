@@ -19,7 +19,7 @@ version: 1.4.0.5
 
 Turns a read of an Open Design system into a grounded design decision. The transport belongs to this skill, but the taste belongs to `sk-design`, which is a hard precondition: any read or run that feeds a design decision MUST load `sk-design` first. Only pure transport — wiring the MCP server, a bare inventory listing that feeds no design decision — is exempt.
 
-The point of the loop is to reuse a real, lint-governed design system instead of drifting into AI defaults. An Open Design system is an input to judgment, never the authority. The two skills share the real-UI loop in `sk-design/references/design-process/real_ui_loop.md`, and this skill's Open Design transport for that loop lives in `references/design_parity_transport.md`.
+The point of the loop is to reuse a real, lint-governed design system instead of drifting into AI defaults. An Open Design system is an input to judgment, never the authority. The two skills share the real-UI loop in `sk-design/design-interface/references/design-process/real_ui_loop.md`, and this skill's Open Design transport for that loop lives in `references/design_parity_transport.md`.
 
 ---
 
@@ -42,7 +42,7 @@ Reuse before generating: prefer one resolved system's tokens and components, and
 | File | Layer | Role |
 |---|---|---|
 | `references/design_parity_transport.md` | This skill | The Open Design transport mechanics for the real-UI loop |
-| `../sk-design/references/design-process/real_ui_loop.md` | Shared | The real-UI loop (ground, reuse-before-generate, fidelity, handoff) it serves |
+| `../../../design-interface/references/design-process/real_ui_loop.md` | Shared | The real-UI loop (ground, reuse-before-generate, fidelity, handoff) it serves |
 | `references/tool_surface.md` | Shared | The read tools that feed grounding |
 
 ### Validation And Tests

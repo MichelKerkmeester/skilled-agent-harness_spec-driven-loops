@@ -1,24 +1,25 @@
 ---
-name: mcp-open-design
+name: design-mcp-open-design
 description: Drive the installed Open Design desktop app from the terminal through its `od` CLI and stdio MCP server. Read local design projects and design-systems, reuse them, answer the app's prompts, and commission headless generation runs without using the in-app chat. Wires Open Design's MCP server into opencode or Claude Code. MANDATORY: any UI/design work through Open Design also requires sk-design — this skill is the transport, that skill is the non-negotiable design judgment.
 compatibility: Requires the Open Design desktop app (v0.9.0+) installed and running (it hosts the local daemon), Node.js, and the target agent CLI (opencode or claude) for MCP install.
 metadata:
   author: nexu-io (Open Design)
   source: https://github.com/nexu-io/open-design
+  family: sk-design
+  packetKind: transport
 allowed-tools: [Read, Bash]
-version: 1.4.0.1
-user-invocable: true
+version: 1.5.0.0
 ---
 
-<!-- keywords: open-design od-cli mcp-open-design design-systems local-first claude-design-alternative terminal-design daemon start-run -->
+<!-- keywords: open-design od-cli design-mcp-open-design design-systems local-first claude-design-alternative terminal-design daemon start-run -->
 
-# Open Design (mcp-open-design)
+# Open Design (design-mcp-open-design)
 
 Drive the installed **Open Design** desktop app (nexu-io/open-design, "the official open-source, local-first Claude Design alternative") from the terminal, so a coding agent (opencode / Claude Code) can read your local design projects and design-systems, reuse them, answer the app's prompts, and commission generation runs **without typing into the in-app chat**. The interface is the `od` CLI plus a stdio MCP server that Open Design exposes; deep operational detail lives in [`references/od_cli_reference.md`](references/od_cli_reference.md).
 
 > ## ⛔ MANDATORY PAIRING — `sk-design`
 >
-> **This skill is the transport, never the taste.** For ANY UI/design work through Open Design — every generation/`start_run`, and every read that feeds a design decision (grounding in a system, reusing its tokens/components) — you **MUST** load [`sk-design`](../sk-design/SKILL.md) and run its ground → token-system → critique FIRST, then shape the brief and every discovery-form answer with that judgment. **You may never produce or shape an interface from Open Design without it.** Open Design generates; `sk-design` decides. This is a hard precondition, not a recommendation. (Pure transport — wiring the MCP server, bare project listing that feeds no design decision — is exempt only with `openDesignExemption`, which forbids later design use of the returned artifact.)
+> **This skill is the transport, never the taste.** For ANY UI/design work through Open Design — every generation/`start_run`, and every read that feeds a design decision (grounding in a system, reusing its tokens/components) — you **MUST** load [`sk-design`](../SKILL.md) and run its ground → token-system → critique FIRST, then shape the brief and every discovery-form answer with that judgment. **You may never produce or shape an interface from Open Design without it.** Open Design generates; `sk-design` decides. This is a hard precondition, not a recommendation. (Pure transport — wiring the MCP server, bare project listing that feeds no design decision — is exempt only with `openDesignExemption`, which forbids later design use of the returned artifact.)
 
 > **Terminology.** Open Design calls a workspace a **project**, a brand/style a **design system** (DESIGN.md + tokens.css + components.html), a build a **run**, and an output file an **artifact**. The CLI brands itself **`od`** but is `app/prebundled/daemon/daemon-cli.mjs` run under Node - it is NOT the bundled `vela` binary (vela is the cloud auth client).
 
@@ -94,13 +95,14 @@ TASK CONTEXT
 
 ### Smart Router Pseudocode
 
-> Resilience pattern: see [sk-doc smart-router template](../sk-doc/assets/skill/skill_smart_router.md). Guard paths, discover at runtime, derive a routing key, score intents, fall back when unsure.
+> Resilience pattern: see [sk-doc smart-router template](../../sk-doc/create-skill/assets/skill/skill_smart_router.md). This skill is a flat intent router (WIRE / READ / RUN), not a keyed `references/<key>/` or `assets/<key>/` resource router. Guard paths, discover current markdown resources at runtime, load only existing resources once, and fall back with an explicit checklist when unsure.
 
 ```python
 from pathlib import Path
 
 SKILL_ROOT = Path(__file__).resolve().parent
-RESOURCE_BASES = (SKILL_ROOT / "references",)
+# `assets/` is optional for this skill; discovery is existence-guarded.
+RESOURCE_BASES = (SKILL_ROOT / "references", SKILL_ROOT / "assets")
 DEFAULT_RESOURCE = "references/od_cli_reference.md"
 
 INTENT_MODEL = {
@@ -117,7 +119,7 @@ RESOURCE_MAP = {
 
 # ⛔ HARD COUPLING: any RUN, or any READ that feeds a design decision, is design
 # work and MUST load sk-design and run its ground -> token-system ->
-# critique BEFORE any design output. mcp-open-design owns the transport; the
+# critique BEFORE any design output. design-mcp-open-design owns the transport; the
 # judgment is sk-design's and is non-negotiable. A design step composed
 # without it is blocked (see design_gate below). Pure WIRE / bare inventory is
 # exempt only when the caller positively asserts openDesignExemption.

@@ -1,6 +1,6 @@
 ---
 title: "sk-design"
-description: "The single advisor-routable design skill: a hub that routes to five design modes (interface, foundations, motion, audit, md-generator)."
+description: "The single advisor-routable design skill: a hub that routes to five design modes (interface, foundations, motion, audit, md-generator) plus a nested Open Design transport packet."
 trigger_phrases:
   - "design skill"
   - "ui design interface foundations motion audit"
@@ -33,7 +33,7 @@ Most generated UI looks templated: default palettes, default spacing, default co
 
 ### What It Does
 
-`Skill(sk-design)` loads the hub, and the hub routes the request to one of five modes through `mode-registry.json`. Each mode holds its own design logic and the hub itself is routing-only. Inside a selected mode, private procedure cards can shape context loading, proof, and fallback behavior, but users still choose from the same five public modes. sk-design owns the taste and the system. It hands the actual build to `sk-code` and uses `mcp-open-design` or `mcp-figma` only as transport.
+`Skill(sk-design)` loads the hub, and the hub routes the request to one of five design modes or a nested transport packet through `mode-registry.json`. Each holds its own logic and the hub itself is routing-only. Inside a selected mode, private procedure cards can shape context loading, proof, and fallback behavior, but users still choose from the same five public design modes. sk-design owns the taste and the system. It hands the actual build to `sk-code` and uses `design-mcp-open-design` (nested) or `mcp-figma` (external sibling) only as transport.
 
 ---
 
@@ -55,7 +55,7 @@ The hub resolves the request to the `design-foundations` mode and applies it.
 
 ## 4. HOW IT WORKS
 
-A design request resolves through the hub to exactly one mode. A request that spans modes stays at the hub for disambiguation. The five modes:
+A design request resolves through the hub to exactly one mode. A request that spans modes stays at the hub for disambiguation. The five design modes:
 
 | Mode | Owns |
 |---|---|
@@ -73,7 +73,7 @@ The mode packets carry no `graph-metadata.json` of their own, so the advisor dis
 
 Mode packets may cite private procedure cards after the public mode is selected. These cards are maintainer-facing support for context capture, proof expectations and direct fallback execution. They are not a public taxonomy and should not be presented as user-selectable routes. The four advisory modes remain Read/Glob/Grep-only. `design-md-generator` remains the only mutating mode and keeps its Playwright extraction backend boundary.
 
-The hub manager shell is defined in `SKILL.md` Section 2. Read `Manager Intake Before Routing`, `Visible Plan Before Design or Build Work` and `Proof Gates and Verifier Cadence` there before changing routing behavior. Transport boundaries live in `SKILL.md` Section 7, where `mcp-figma` and `mcp-open-design` are named as transports while `sk-design` owns taste and acceptance.
+The hub manager shell is defined in `SKILL.md` Section 2. Read `Manager Intake Before Routing`, `Visible Plan Before Design or Build Work` and `Proof Gates and Verifier Cadence` there before changing routing behavior. Transport boundaries live in `SKILL.md` Section 7, where `mcp-figma` and `design-mcp-open-design` are named as transports while `sk-design` owns taste and acceptance.
 
 ---
 
@@ -88,8 +88,8 @@ Reach for sk-design when output looks generic and needs taste, when a visual sys
 | Skill | Relationship |
 |---|---|
 | `sk-code` | Builds what sk-design designs. sk-design decides taste and sk-code writes the code. |
-| `mcp-open-design` | Transport for design work. It never decides taste, so it co-loads sk-design. |
-| `mcp-figma` | The sibling Figma transport. |
+| `design-mcp-open-design` | Nested transport packet for Open Design. It never decides taste, so it co-loads this hub's own workflow modes. |
+| `mcp-figma` | The external sibling Figma transport. |
 
 ---
 

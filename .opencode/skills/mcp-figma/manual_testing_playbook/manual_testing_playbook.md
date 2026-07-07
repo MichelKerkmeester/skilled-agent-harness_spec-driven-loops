@@ -31,7 +31,7 @@ End-to-end manual testing reference for the mcp-figma skill. Every scenario vali
 
 This playbook defines 8 deterministic scenarios across 5 categories validating the safe surface of the `mcp-figma` skill. Each scenario keeps its own ID, is summarized inline in Sections 7-11, and links to a dedicated per-scenario file with the full execution contract, with the cross-reference index in Section 12.
 
-> **Per-scenario files:** This package adopts the Feature Catalog split-document pattern used by the sibling `mcp-open-design` package. The root playbook is the directory, review surface, and orchestration guide, while per-scenario execution detail lives in one file per scenario inside numbered category folders at the playbook root. The cross-reference index in Section 12 lists every scenario file. The validator checks this root file for markdown structure and does not recurse into category folders, so per-scenario file structure is checked manually, and cross-file markdown links are guarded in CI by `check-markdown-links.cjs`.
+> **Per-scenario files:** This package adopts the Feature Catalog split-document pattern used by `design-mcp-open-design` (nested inside `sk-design`). The root playbook is the directory, review surface, and orchestration guide, while per-scenario execution detail lives in one file per scenario inside numbered category folders at the playbook root. The cross-reference index in Section 12 lists every scenario file. The validator checks this root file for markdown structure and does not recurse into category folders, so per-scenario file structure is checked manually, and cross-file markdown links are guarded in CI by `check-markdown-links.cjs`.
 
 ### Realistic Test Model
 

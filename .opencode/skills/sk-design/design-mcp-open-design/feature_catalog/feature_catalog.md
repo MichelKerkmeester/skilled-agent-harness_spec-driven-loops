@@ -1,6 +1,6 @@
 ---
-title: "mcp-open-design: Feature Catalog"
-description: "Unified reference combining the complete capability inventory and current-reality reference for the mcp-open-design skill, covering od CLI wiring, read-only content access, design-system grounding, gated headless runs, and the daemon transport model."
+title: "design-mcp-open-design: Feature Catalog"
+description: "Unified reference combining the complete capability inventory and current-reality reference for the design-mcp-open-design skill, covering od CLI wiring, read-only content access, design-system grounding, gated headless runs, and the daemon transport model."
 trigger_phrases:
   - "open design"
   - "od mcp"
@@ -9,15 +9,15 @@ last_updated: "2026-06-14"
 version: 1.4.0.4
 ---
 
-# mcp-open-design: Feature Catalog
+# design-mcp-open-design: Feature Catalog
 
-This document combines the current capability inventory for the `mcp-open-design` skill into a single reference. The root catalog acts as the system-level directory: it summarizes each capability area, describes what the skill does today, and points to the per-feature files that carry the deeper behavior and verification anchors. The skill drives the installed Open Design desktop app from the terminal through its `od` CLI and stdio MCP server, so a coding agent can read local design content, reuse it, and commission generation runs without using the in-app chat.
+This document combines the current capability inventory for the `design-mcp-open-design` skill into a single reference. The root catalog acts as the system-level directory: it summarizes each capability area, describes what the skill does today, and points to the per-feature files that carry the deeper behavior and verification anchors. The skill drives the installed Open Design desktop app from the terminal through its `od` CLI and stdio MCP server, so a coding agent can read local design content, reuse it, and commission generation runs without using the in-app chat.
 
 ---
 
 ## 1. OVERVIEW
 
-Use this catalog as the canonical inventory for the live `mcp-open-design` surface. The five numbered sections below group the skill by capability area so readers can move from a top-level summary into per-feature reference files without losing behavior or verification context.
+Use this catalog as the canonical inventory for the live `design-mcp-open-design` surface. The five numbered sections below group the skill by capability area so readers can move from a top-level summary into per-feature reference files without losing behavior or verification context.
 
 The capability surface splits into three directions plus the foundations that make them work. The **wire** direction registers Open Design's MCP server into a terminal agent. The **read** direction pulls local projects, files, and design-systems read-only. The **run** direction commissions headless generation behind explicit gates. Underneath both sits the design-system grounding loop shared with `sk-design`, and the daemon transport model that every tool call depends on.
 

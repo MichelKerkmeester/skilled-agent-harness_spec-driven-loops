@@ -75,7 +75,7 @@ For guarded requests, it MUST:
 | Check | Requirement |
 |---|---|
 | Token presence | Reject when `designProofToken` is absent or not structured metadata. |
-| Token validity | Delegate schema, freshness, replay, digest, file-hash, mode, and payload validation to the [`DESIGN_PROOF_TOKEN` contract](../../sk-design/shared/design_proof_token.md). This contract does not redefine token internals. |
+| Token validity | Delegate schema, freshness, replay, digest, file-hash, mode, and payload validation to the [`DESIGN_PROOF_TOKEN` contract](../../shared/design_proof_token.md). This contract does not redefine token internals. |
 | Bound surface | Reject unless `designProofToken.boundSurface` matches the normalized `target` for the outgoing operation. |
 | Payload binding | Validate the token against `payloadDigestInputs` rebuilt from the actual outgoing payload, not from prose or caller assertions. |
 | Exception handling | Reject on validator exceptions, unreadable required inputs, stale replay state, malformed timestamps, ambiguous target binding, unmapped routes, or classifier failures. |
@@ -210,7 +210,7 @@ The contract is acceptable when all of these are true:
 
 ## Automation Freeze
 
-A design-affecting automation is FROZEN — DENIED by default. This includes `od automation create` or `od automation run` when the automation triggers a design-mutating operation, and any scheduled `start_run` fire that would launch design work. The reason is the token contract itself: [`DESIGN_PROOF_TOKEN` Section 2](../../sk-design/shared/design_proof_token.md#2-field-schema-v1) requires `singleUse: true` and a short `expiresAt` window of approximately 300 seconds. An unattended automation cannot mint or carry a live interactive single-use token at fire time.
+A design-affecting automation is FROZEN — DENIED by default. This includes `od automation create` or `od automation run` when the automation triggers a design-mutating operation, and any scheduled `start_run` fire that would launch design work. The reason is the token contract itself: [`DESIGN_PROOF_TOKEN` Section 2](../../shared/design_proof_token.md#2-field-schema-v1) requires `singleUse: true` and a short `expiresAt` window of approximately 300 seconds. An unattended automation cannot mint or carry a live interactive single-use token at fire time.
 
 There are only two escape paths:
 

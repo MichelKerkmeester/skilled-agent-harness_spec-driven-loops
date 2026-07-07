@@ -18,7 +18,7 @@ This contract is the counterpart to two existing request-path contracts:
 
 | Dependency | Boundary |
 |---|---|
-| [`DESIGN_PROOF_TOKEN`](../../sk-design/shared/design_proof_token.md) | Defines token minting, digest convention, freshness, replay, surface binding, and validator behavior. This document references that contract and does not redefine token internals. |
+| [`DESIGN_PROOF_TOKEN`](../../shared/design_proof_token.md) | Defines token minting, digest convention, freshness, replay, surface binding, and validator behavior. This document references that contract and does not redefine token internals. |
 | [`Open Design Guarded Proxy`](./guarded_proxy.md) | Defines the request-path precondition and guarded/exempt policy before an Open Design call is forwarded. This document references that policy and does not redefine the proxy. |
 
 The transport result is a post-operation receipt, not a new authorization token. It never re-mints or extends a `DESIGN_PROOF_TOKEN`.
@@ -68,7 +68,7 @@ Required conditionals are evaluated by operation class. A guarded `RUN`, mutatin
   "OPEN_DESIGN_TRANSPORT_RESULT": {
     "version": 1,
     "dispatchId": "dispatch-open-design-example",
-    "childLoadedSkills": ["sk-design", "mcp-open-design"],
+    "childLoadedSkills": ["sk-design", "design-mcp-open-design"],
     "direction": "RUN",
     "operationClass": "mutating",
     "liveToolsListVerified": true,
@@ -112,8 +112,8 @@ Required conditionals are evaluated by operation class. A guarded `RUN`, mutatin
       "runId": "run-example"
     },
     "loadedTransportFiles": [
-      ".opencode/skills/mcp-open-design/SKILL.md",
-      ".opencode/skills/mcp-open-design/references/guarded_proxy.md"
+      ".opencode/skills/sk-design/design-mcp-open-design/SKILL.md",
+      ".opencode/skills/sk-design/design-mcp-open-design/references/guarded_proxy.md"
     ],
     "artifactRefs": [
       {
@@ -173,7 +173,7 @@ This residual is not hidden by the result schema. It is the honest boundary of a
 
 ## Agent I/O Is Not The Gate
 
-The [`Agent I/O Contract`](../../system-spec-kit/references/workflows/agent-io-contract.md) is optional-advisory. It may carry routing hints, summaries, evidence fields, or the transport-result payload as data, but it is not the Open Design gate.
+The [`Agent I/O Contract`](../../../system-spec-kit/references/workflows/agent-io-contract.md) is optional-advisory. It may carry routing hints, summaries, evidence fields, or the transport-result payload as data, but it is not the Open Design gate.
 
 Absence of Agent I/O never allows an Open Design handoff. Presence of Agent I/O never replaces the structured transport result, proof-token reference, guarded-proxy classification, digest comparison, or parent re-validation algorithm.
 
@@ -269,7 +269,7 @@ The child MUST emit the assertion as structured metadata named `OPEN_DESIGN_TRAN
   "OPEN_DESIGN_TRANSPORT_ASSERTION": {
     "version": 1,
     "dispatchId": "dispatch-open-design-example",
-    "childLoadedSkills": ["sk-design", "mcp-open-design"],
+    "childLoadedSkills": ["sk-design", "design-mcp-open-design"],
     "operationClass": "mutating",
     "liveToolsListVerified": true,
     "payloadDigests": {

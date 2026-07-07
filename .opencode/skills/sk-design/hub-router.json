@@ -1,10 +1,10 @@
 {
   "skill": "sk-design",
-  "version": "1.2.1.0",
+  "version": "1.3.0.0",
   "routerPolicy": {
     "defaultMode": "interface",
     "ambiguityDelta": 1,
-    "tieBreak": ["interface", "foundations", "motion", "audit", "md-generator"],
+    "tieBreak": ["interface", "foundations", "motion", "audit", "md-generator", "design-mcp-open-design"],
     "outcomes": {
       "single": "one dominant design axis routes to one mode",
       "orderedBundle": "clearly separate design axes route to an ordered mode list",
@@ -80,6 +80,14 @@
         "hub-identity"
       ],
       "resources": ["design-md-generator/SKILL.md"]
+    },
+    "design-mcp-open-design": {
+      "weight": 4,
+      "classes": [
+        "design-mcp-open-design-aliases",
+        "hub-identity"
+      ],
+      "resources": ["design-mcp-open-design/SKILL.md"]
     }
   },
   "vocabularyClasses": {
@@ -384,6 +392,20 @@
     "md-generator-validation": {
       "keywords": [
         "design fidelity"
+      ]
+    },
+    "design-mcp-open-design-aliases": {
+      "keywords": [
+        "open design",
+        "open-design",
+        "od mcp",
+        "od cli",
+        "wire open design",
+        "connect open design",
+        "drive open design from the terminal",
+        "design system from open design",
+        "od run start",
+        "start_run"
       ]
     }
   }

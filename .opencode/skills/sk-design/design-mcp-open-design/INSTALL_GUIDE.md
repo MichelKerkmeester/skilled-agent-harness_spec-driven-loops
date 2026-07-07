@@ -1,6 +1,6 @@
-# mcp-open-design Installation Guide
+# design-mcp-open-design Installation Guide
 
-Complete installation and configuration guide for the `mcp-open-design` skill, which drives the installed Open Design desktop app from the terminal. The skill talks to the app's local daemon through the bundled **`od`** CLI (the read and write surface) and, optionally, wires Open Design's stdio **MCP server** into an agent (opencode or Claude Code). There is nothing to download or npm-install: the CLI and the MCP server both ship inside the desktop app, so "install" here means confirming the app, locating its bundled CLI, and verifying readiness.
+Complete installation and configuration guide for the `design-mcp-open-design` skill, which drives the installed Open Design desktop app from the terminal. The skill talks to the app's local daemon through the bundled **`od`** CLI (the read and write surface) and, optionally, wires Open Design's stdio **MCP server** into an agent (opencode or Claude Code). There is nothing to download or npm-install: the CLI and the MCP server both ship inside the desktop app, so "install" here means confirming the app, locating its bundled CLI, and verifying readiness.
 
 > **Nature of this tool, read first.** The CLI brands itself **`od`** but is `app/prebundled/daemon/daemon-cli.mjs` run under Node, not a binary on PATH. A bare `od` on your PATH is the unrelated `/usr/bin/od` octal-dump tool and must never be used. Always invoke the bundled CLI as `node "<app>/Contents/Resources/app/prebundled/daemon/daemon-cli.mjs"`. It is NOT the bundled `vela` binary either (vela is the cloud auth client).
 > **Requires:** the Open Design desktop app (v0.9.0+), Node.js 18+, macOS baseline. For MCP wiring you also need the target agent CLI (`opencode` or `claude`) on PATH.
@@ -15,12 +15,12 @@ The fast path for an agent or operator who just wants the skill working:
 
 ```bash
 # 1. Verify the desktop app and locate the bundled od CLI (installs nothing, wires nothing)
-bash .opencode/skills/mcp-open-design/scripts/install.sh
+bash .opencode/skills/sk-design/design-mcp-open-design/scripts/install.sh
 
 # 2. Open the Open Design desktop app (the daemon it hosts answers every tool call)
 
 # 3. Run read-only diagnostics
-bash .opencode/skills/mcp-open-design/scripts/doctor.sh
+bash .opencode/skills/sk-design/design-mcp-open-design/scripts/doctor.sh
 
 # 4. PREVIEW MCP wiring (writes nothing), then wire if the printed config looks right
 OD_BIN="/Applications/Open Design.app/Contents/Resources/app/prebundled/daemon/daemon-cli.mjs"
@@ -61,7 +61,7 @@ Design judgment stays with `sk-design`: this skill owns the transport, that skil
 There is no package to install. `scripts/install.sh` verifies local readiness and reports next steps. It never starts the daemon, never wires MCP, and never runs a remote installer.
 
 ```bash
-bash .opencode/skills/mcp-open-design/scripts/install.sh
+bash .opencode/skills/sk-design/design-mcp-open-design/scripts/install.sh
 # Options:
 #   --skip-verify   Skip the od CLI verification step
 #   --verbose       Print the verification command before running it
@@ -106,7 +106,7 @@ Never pipe a remote `install.sh` to a shell. Use the local `node "$OD_BIN" mcp i
 
 ```bash
 # Read-only diagnostics: platform, Node, app presence + running, od CLI, daemon socket, MCP config presence
-bash .opencode/skills/mcp-open-design/scripts/doctor.sh
+bash .opencode/skills/sk-design/design-mcp-open-design/scripts/doctor.sh
 
 # Direct CLI check
 node "$OD_BIN" --version
@@ -172,7 +172,7 @@ Commands are classified read-only, mutating, and destructive, and every mutating
 - [references/tool_surface.md](references/tool_surface.md) - the read-only / mutating / destructive taxonomy.
 - [`references/design_parity_transport.md`](references/design_parity_transport.md) - the Open Design transport for the real-UI loop (the loop itself lives in `sk-design`).
 
-Sibling terminal-driven design skills with the same install-and-doctor shape: [`mcp-figma`](../mcp-figma/INSTALL_GUIDE.md) (Figma Desktop via the silships figma-ds-cli) and [`mcp-chrome-devtools`](../mcp-chrome-devtools/INSTALL_GUIDE.md) (a real-browser surface for last-mile preview).
+Sibling terminal-driven design skills with the same install-and-doctor shape: [`mcp-figma`](../../mcp-figma/INSTALL_GUIDE.md) (Figma Desktop via the silships figma-ds-cli) and [`mcp-chrome-devtools`](../../mcp-chrome-devtools/INSTALL_GUIDE.md) (a real-browser surface for last-mile preview).
 
 ---
 
@@ -184,4 +184,4 @@ Sibling terminal-driven design skills with the same install-and-doctor shape: [`
 
 ---
 
-**Need help?** See [Troubleshooting](#9-troubleshooting) or load the `mcp-open-design` skill for detailed workflows.
+**Need help?** See [Troubleshooting](#9-troubleshooting) or load the `design-mcp-open-design` skill for detailed workflows.

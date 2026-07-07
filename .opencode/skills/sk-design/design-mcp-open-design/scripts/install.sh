@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# mcp-open-design installer: install + verify ONLY. Never wires MCP and never
+# design-mcp-open-design installer: install + verify ONLY. Never wires MCP and never
 # starts the daemon.
 # WHY: unlike normal CLI tooling, there is nothing to npm-install. "install"
 # verifies the desktop app and locates its bundled od CLI.
@@ -16,7 +16,7 @@ OD_BIN=""
 
 usage() {
   cat <<EOF
-mcp-open-design install.sh: verify the Open Design desktop app and bundled od CLI.
+design-mcp-open-design install.sh: verify the Open Design desktop app and bundled od CLI.
 
 Usage: install.sh [options]
   --skip-verify            Skip CLI verification

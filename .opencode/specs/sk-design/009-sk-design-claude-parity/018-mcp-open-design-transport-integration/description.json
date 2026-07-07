@@ -1,0 +1,39 @@
+{
+  "specFolder": "sk-design/009-sk-design-claude-parity/018-mcp-open-design-transport-integration",
+  "description": "Integrates the operator-relocated mcp-open-design skill (now sk-design/design-mcp-open-design) as a proper nested transport packet: a new packetKind:\"",
+  "keywords": [
+    "integrates",
+    "operator-relocated",
+    "mcp-open-design",
+    "skill",
+    "now",
+    "sk-design",
+    "design-mcp-open-design",
+    "proper",
+    "nested",
+    "transport",
+    "packet",
+    "new",
+    "packetkind",
+    "axis",
+    "registries",
+    "dissolved",
+    "independent",
+    "advisor",
+    "identity",
+    "every",
+    "stale",
+    "cross-reference",
+    "repointed"
+  ],
+  "lastUpdated": "2026-07-07T07:42:15.793Z",
+  "specId": "018",
+  "folderSlug": "mcp-open-design-transport-integration",
+  "parentChain": [
+    "sk-design",
+    "009-sk-design-claude-parity"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

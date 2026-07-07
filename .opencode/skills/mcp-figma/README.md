@@ -112,7 +112,7 @@ The skill is complete with the CLI alone, but when the agent needs to pull desig
 
 ### When To Use This Skill
 
-Reach for this skill whenever a user wants to drive Figma Desktop from the terminal: create or render frames and components, work a design system of tokens and variables, inspect or export content, import a design system into Figma, or set up and troubleshoot the connection and daemon. Use it also when the agent needs to pull design context out of Figma through the optional Code Mode MCP. Skip it when the work is generic app coding with no Figma input, in which case use `sk-code`. Skip it when the work is the design judgment itself, the palette, the type, the anti-default critique, which belongs to `sk-design` while this skill stays the transport. Skip it for a last-mile browser preview of a built page, which is `mcp-chrome-devtools`, and for the sibling design tool Open Design, which is `mcp-open-design`. And skip it entirely when Figma Desktop is not installed or not open, since the CLI cannot work without the live session.
+Reach for this skill whenever a user wants to drive Figma Desktop from the terminal: create or render frames and components, work a design system of tokens and variables, inspect or export content, import a design system into Figma, or set up and troubleshoot the connection and daemon. Use it also when the agent needs to pull design context out of Figma through the optional Code Mode MCP. Skip it when the work is generic app coding with no Figma input, in which case use `sk-code`. Skip it when the work is the design judgment itself, the palette, the type, the anti-default critique, which belongs to `sk-design` while this skill stays the transport. Skip it for a last-mile browser preview of a built page, which is `mcp-chrome-devtools`, and for the Open Design tool, which is `design-mcp-open-design` (nested inside `sk-design`). And skip it entirely when Figma Desktop is not installed or not open, since the CLI cannot work without the live session.
 
 ### Related Skills
 
@@ -121,7 +121,7 @@ Reach for this skill whenever a user wants to drive Figma Desktop from the termi
 | `sk-design` | Owns the design judgment and is applied whenever a Figma read or export feeds a design decision. This skill is the transport, that skill is the taste. |
 | `sk-code` | Owns application-code standards for adapting extracted tokens, a DESIGN.md, or exported code into a real app, and verifying it. |
 | `mcp-code-mode` | The transport for the optional Figma MCP. The Framelink `figma` manual is called through Code Mode's `call_tool_chain()`. |
-| `mcp-open-design` | The sibling terminal-driven design tool, a CLI plus optional MCP hybrid with the same daemon and gating shape. |
+| `design-mcp-open-design` | The Open Design terminal-driven design tool (nested inside `sk-design`), a CLI plus optional MCP hybrid with the same daemon and gating shape. |
 | `mcp-chrome-devtools` | A real-browser surface for a last-mile visual preview only. It is never the way to operate Figma. |
 
 ---

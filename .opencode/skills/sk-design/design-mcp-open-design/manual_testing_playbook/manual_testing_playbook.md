@@ -1,12 +1,12 @@
 ---
-title: "mcp-open-design: Manual Testing Playbook"
-description: "Operator-facing reference combining the manual testing directory, integrated review and orchestration guidance, execution expectations, and per-feature validation files for the mcp-open-design skill. Covers wiring, read-only content access, gated mutating runs, and the daemon failure path."
+title: "design-mcp-open-design: Manual Testing Playbook"
+description: "Operator-facing reference combining the manual testing directory, integrated review and orchestration guidance, execution expectations, and per-feature validation files for the design-mcp-open-design skill. Covers wiring, read-only content access, gated mutating runs, and the daemon failure path."
 version: 1.4.0.7
 ---
 
-# mcp-open-design: Manual Testing Playbook
+# design-mcp-open-design: Manual Testing Playbook
 
-End-to-end manual testing reference for the mcp-open-design skill. Every scenario validates a capability from the feature catalog against its defined behavior. Each scenario keeps its own ID and links to a dedicated per-feature file with the full execution contract. The skill drives the installed Open Design desktop app from the terminal, so most scenarios depend on the desktop app being open and on verifying the live tool set rather than trusting documentation.
+End-to-end manual testing reference for the design-mcp-open-design skill. Every scenario validates a capability from the feature catalog against its defined behavior. Each scenario keeps its own ID and links to a dedicated per-feature file with the full execution contract. The skill drives the installed Open Design desktop app from the terminal, so most scenarios depend on the desktop app being open and on verifying the live tool set rather than trusting documentation.
 
 ---
 

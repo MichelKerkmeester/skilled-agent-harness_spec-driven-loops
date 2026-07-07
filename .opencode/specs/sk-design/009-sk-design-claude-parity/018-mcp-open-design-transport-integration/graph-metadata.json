@@ -1,0 +1,227 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-design/009-sk-design-claude-parity/018-mcp-open-design-transport-integration",
+  "spec_folder": "sk-design/009-sk-design-claude-parity/018-mcp-open-design-transport-integration",
+  "parent_id": "sk-design/009-sk-design-claude-parity",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "design-mcp-open-design integration",
+      "sk-design transport axis",
+      "phase 018 mcp-open-design",
+      "open design nested transport packet",
+      "phase 018 plan",
+      "design-mcp-open-design integration plan",
+      "tasks",
+      "phase 018 tasks",
+      "verification",
+      "checklist",
+      "phase 018 checklist",
+      "implementation"
+    ],
+    "key_topics": [
+      "design-mcp-open-design",
+      "integration",
+      "sk-design",
+      "transport",
+      "axis",
+      "phase",
+      "018",
+      "mcp-open-design",
+      "open",
+      "design",
+      "nested",
+      "packet"
+    ],
+    "importance_tier": "high",
+    "status": "in_progress",
+    "key_files": [
+      ".opencode/skills/sk-design/mode-registry.json",
+      ".opencode/skills/sk-design/hub-router.json",
+      ".opencode/skills/sk-design/graph-metadata.json",
+      ".opencode/skills/mcp-figma/graph-metadata.json",
+      ".opencode/skills/cli-opencode/SKILL.md",
+      ".opencode/skills/sk-code/mode-registry.json",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md",
+      "feature_catalog/feature_catalog.md",
+      "manual_testing_playbook/manual_testing_playbook.md",
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "mode-registry.json",
+        "kind": "config",
+        "path": ".opencode/skills/sk-design/mode-registry.json",
+        "source": "derived"
+      },
+      {
+        "name": "hub-router.json",
+        "kind": "config",
+        "path": ".opencode/skills/sk-design/hub-router.json",
+        "source": "derived"
+      },
+      {
+        "name": "graph-metadata.json",
+        "kind": "config",
+        "path": ".opencode/skills/sk-design/graph-metadata.json",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/cli-opencode/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "feature_catalog.md",
+        "kind": "doc",
+        "path": "feature_catalog/feature_catalog.md",
+        "source": "derived"
+      },
+      {
+        "name": "manual_testing_playbook.md",
+        "kind": "doc",
+        "path": "manual_testing_playbook/manual_testing_playbook.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Transport Integration",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Open Design",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Properly",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Custom Python",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Two",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The operator physically moved and renamed `.opencode/skills/mcp-open-design/` to `.opencode/skills/sk-design/design-mcp-open-design/` via a raw `mv` (outside git)",
+    "created_at": "2026-07-07T07:42:15.977Z",
+    "last_save_at": "2026-07-07T07:44:29.245Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:dfe837a80288b8eea9d77bf87e28e18878fbc38cf8364a3f28336156e1130433",
+    "source_doc_hashes": {
+      "spec.md": "3d3254710bf13f113f461983b30328f7c49b33bdca4a48d7dc01d65dd7ddb5bd",
+      "plan.md": "aaa9371574796e822be480c6b4f7d2ca11768e92e5ee3f0423420b8faf61d138",
+      "tasks.md": "9f0b4b3ffadaaf7682c8d6c9d3b495dabf7a7d84ee3f9652fb6c5e1707045e3f",
+      "checklist.md": "8c4ba98aceb373432394fa4f749fea56f1b6f3c9df5bfc90c78dc36afb3ed8af",
+      "implementation-summary.md": "9fd94009c15a5b73bbfefff32aaf1e35d055a16bcbf2476bfeed5c161095c8a0"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

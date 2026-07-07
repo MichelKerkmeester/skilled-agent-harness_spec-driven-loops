@@ -77,7 +77,7 @@ Confirm the block is a refusal and not a silent skip: the unloaded design RUN mu
 | File | Role |
 |---|---|
 | `../../references/design_parity_transport.md` | The Open Design transport for the real-UI loop, applied with `sk-design`'s judgment |
-| `../../../sk-design/references/design-process/real_ui_loop.md` | The real-UI loop and the design judgment the gate enforces |
+| `../../../design-interface/references/design-process/real_ui_loop.md` | The real-UI loop and the design judgment the gate enforces |
 
 ---
 

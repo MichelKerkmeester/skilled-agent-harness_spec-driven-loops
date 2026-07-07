@@ -19,7 +19,7 @@ This contract depends on the proof-token and guarded-proxy contracts:
 
 | Dependency | Boundary |
 |---|---|
-| [`DESIGN_PROOF_TOKEN`](../../sk-design/shared/design_proof_token.md) | Defines token schema, payload digest fields, freshness, replay, surface binding, validator behavior, and §4 digest canonicalization. This document cites that contract and does not redefine token internals. |
+| [`DESIGN_PROOF_TOKEN`](../../shared/design_proof_token.md) | Defines token schema, payload digest fields, freshness, replay, surface binding, validator behavior, and §4 digest canonicalization. This document cites that contract and does not redefine token internals. |
 | [`Open Design Guarded Proxy`](./guarded_proxy.md) | Defines the agent-side precondition before an Open Design call is forwarded. This document extends that recompute point across the inner generator's multi-turn run flow. |
 
 The binding is a boundary rule, not a new token. It extends no token field and never re-mints or amends a `DESIGN_PROOF_TOKEN`.
@@ -58,7 +58,7 @@ The inner agent and pinned model are bound by declared equality against the auth
 
 The adapter MUST recompute `subjectDigest`, `briefDigest`, `formAnswersDigest`, and `openDesignLineageDigest` from the actual inner payload for both the turn 1 request and the build-fire turn. It MUST compare the recomputed values to the same `DESIGN_PROOF_TOKEN` that authorized the run.
 
-Canonicalization is inherited by reference from [`DESIGN_PROOF_TOKEN` §4](../../sk-design/shared/design_proof_token.md#4-digest-canonicalization):
+Canonicalization is inherited by reference from [`DESIGN_PROOF_TOKEN` §4](../../shared/design_proof_token.md#4-digest-canonicalization):
 
 | Digest | Canonicalization source |
 |---|---|

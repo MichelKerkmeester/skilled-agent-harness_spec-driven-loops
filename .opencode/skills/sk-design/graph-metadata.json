@@ -23,11 +23,6 @@
         "target": "mcp-figma",
         "weight": 0.45,
         "context": "Sibling Figma tool with design handoff overlap"
-      },
-      {
-        "target": "mcp-open-design",
-        "weight": 0.45,
-        "context": "Sibling Open Design tool with design handoff overlap"
       }
     ],
     "conflicts_with": [],
@@ -36,11 +31,6 @@
         "target": "mcp-figma",
         "weight": 0.7,
         "context": "Figma reads and exports depend on sk-design judgment when they feed design decisions"
-      },
-      {
-        "target": "mcp-open-design",
-        "weight": 0.7,
-        "context": "Open Design reads and runs depend on sk-design judgment when they feed design decisions"
       }
     ]
   },
@@ -48,8 +38,7 @@
     "depends_on": [],
     "related_to": [
       "sk-code",
-      "mcp-figma",
-      "mcp-open-design"
+      "mcp-figma"
     ]
   },
   "domains": [

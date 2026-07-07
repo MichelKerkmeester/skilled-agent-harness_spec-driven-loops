@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# mcp-open-design doctor: REPORT-ONLY diagnostics.
+# design-mcp-open-design doctor: REPORT-ONLY diagnostics.
 # WHY: this script is read-only. It changes nothing, never prints secrets, never
 # starts the daemon, and never wires MCP.
 
@@ -8,7 +8,7 @@ HERE="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 # shellcheck source=_common.sh
 . "$HERE/_common.sh"
 
-log "== mcp-open-design doctor (read-only) =="
+log "== design-mcp-open-design doctor (read-only) =="
 info "The daemon HTTP port is ephemeral, so this doctor does not probe a fixed port."
 
 log "-- Platform --"
