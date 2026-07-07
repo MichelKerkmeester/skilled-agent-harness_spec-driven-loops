@@ -1,0 +1,43 @@
+{
+  "specFolder": "sk-code/017-sk-code-parent/020-surface-packet-rename",
+  "description": "Rename the four sk-code surface sub-skill folders (review, webflow, opencode, animation) to the code- prefix and repair every live reference across th",
+  "keywords": [
+    "rename",
+    "four",
+    "sk-code",
+    "surface",
+    "sub-skill",
+    "folders",
+    "review",
+    "webflow",
+    "opencode",
+    "animation",
+    "code",
+    "prefix",
+    "repair",
+    "every",
+    "live",
+    "reference",
+    "across",
+    "repo",
+    "two-axis",
+    "hub",
+    "router",
+    "markdown",
+    "link",
+    "graph",
+    "advisor",
+    "metadata",
+    "resolve"
+  ],
+  "lastUpdated": "2026-07-05T14:35:43.420Z",
+  "specId": "020",
+  "folderSlug": "surface-packet-rename",
+  "parentChain": [
+    "sk-code",
+    "017-sk-code-parent"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

@@ -1,0 +1,22 @@
+{
+  "level": "phase",
+  "specFolder": "sk-code/017-sk-code-parent",
+  "description": "Code capability is split across two mature-but-uncoordinated skills",
+  "keywords": [
+    "code",
+    "capability",
+    "split",
+    "across",
+    "two",
+    "mature-but-uncoordinated",
+    "skills"
+  ],
+  "lastUpdated": "2026-07-07T17:12:36.325Z",
+  "specId": "017",
+  "folderSlug": "sk-code-parent",
+  "parentChain": [
+    "sk-code"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": []
+}

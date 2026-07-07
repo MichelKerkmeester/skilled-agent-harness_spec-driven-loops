@@ -1,0 +1,26 @@
+{
+  "specFolder": "sk-code/017-sk-code-parent/012-spec-kit-relocation",
+  "description": "Two spec-folder authoring docs lived under sk-code, but spec-folder authoring is system-spec-kit's domain, not a code surface",
+  "keywords": [
+    "two",
+    "spec-folder",
+    "authoring",
+    "docs",
+    "lived",
+    "sk-code",
+    "system-spec-kit",
+    "domain",
+    "code",
+    "surface"
+  ],
+  "lastUpdated": "2026-07-05T04:34:33.429Z",
+  "specId": "012",
+  "folderSlug": "spec-kit-relocation",
+  "parentChain": [
+    "sk-code",
+    "017-sk-code-parent"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

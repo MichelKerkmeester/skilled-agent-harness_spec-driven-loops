@@ -1,0 +1,227 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-code/017-sk-code-parent/016-sk-code-content-coherence",
+  "spec_folder": "sk-code/017-sk-code-parent/016-sk-code-content-coherence",
+  "parent_id": "sk-code/017-sk-code-parent",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "sk-code content coherence",
+      "sk-code reference integrity",
+      "phase 016 headline",
+      "sk-code content coherence plan",
+      "sk-code reference integrity plan",
+      "phase 016 plan",
+      "sk-code content coherence tasks",
+      "sk-code reference repair tasks",
+      "phase 016 tasks",
+      "sk-code content coherence checklist",
+      "sk-code reference integrity checklist",
+      "phase 016 checklist"
+    ],
+    "key_topics": [
+      "sk-code",
+      "content",
+      "coherence",
+      "reference",
+      "integrity",
+      "phase",
+      "016",
+      "headline",
+      "plan",
+      "tasks",
+      "repair",
+      "checklist"
+    ],
+    "importance_tier": "high",
+    "status": "complete",
+    "key_files": [
+      ".opencode/skills/sk-code/code-quality/SKILL.md",
+      ".opencode/skills/sk-code/description.json",
+      ".opencode/skills/sk-code/graph-metadata.json",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "spec.md",
+      ".opencode/skills/sk-code/shared/references/smart_routing.md",
+      ".opencode/skills/sk-code/manual_testing_playbook/01--surface-detection/webflow-detection.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-code/code-quality/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "description.json",
+        "kind": "config",
+        "path": ".opencode/skills/sk-code/description.json",
+        "source": "derived"
+      },
+      {
+        "name": "graph-metadata.json",
+        "kind": "config",
+        "path": ".opencode/skills/sk-code/graph-metadata.json",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "smart_routing.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-code/shared/references/smart_routing.md",
+        "source": "derived"
+      },
+      {
+        "name": "webflow-detection.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-code/manual_testing_playbook/01--surface-detection/webflow-detection.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Executed Level",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Role",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Restore",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Content",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow Audit",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The master plan identifies sk-code as structurally canonical but content-incoherent after phase 013",
+    "created_at": "2026-07-05T05:46:26.162Z",
+    "last_save_at": "2026-07-07T17:16:29.806Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:ac311bf7c2632ec4cc4c58067007ecf9e55a86cc707e3e5ebbff4b6dce28ca56",
+    "source_doc_hashes": {
+      "spec.md": "4207de20f10b6e77a7c7b40c4f9c4c2358a22fdc800888444d2a832c454ad49d",
+      "plan.md": "fde675c8260651c6b19ff9785cded278f5ebfc955c489369325223f21f69ec04",
+      "tasks.md": "5735851be250cd2d332d94281b37a4be488a342613826b0267b2d280b16388cd",
+      "checklist.md": "294157146ff7bb48499b256fcb8fb0657734cd97227719bf26bc0379b8ccd331",
+      "decision-record.md": "497ac16b652806a037176ab33cee9c6897990718fedd9c6143f7dc536500e17e",
+      "implementation-summary.md": "f83a55024b33e56582aeaace4ca734f84959d5ae617bd246d87196a7aee760f0"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

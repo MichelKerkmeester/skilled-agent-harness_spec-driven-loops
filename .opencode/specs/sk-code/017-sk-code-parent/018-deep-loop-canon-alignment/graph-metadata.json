@@ -1,0 +1,222 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-code/017-sk-code-parent/018-deep-loop-canon-alignment",
+  "spec_folder": "sk-code/017-sk-code-parent/018-deep-loop-canon-alignment",
+  "parent_id": "sk-code/017-sk-code-parent",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "deep-loop canon alignment",
+      "deep-loop benchmark baseline",
+      "deep-loop parent hub conformance",
+      "deep-loop canon plan",
+      "deep-loop safe-now gated split",
+      "deep-loop parent hub benchmark",
+      "deep-loop canon tasks",
+      "018a safe-now",
+      "018b executed",
+      "deep-loop canon checklist",
+      "deep-loop parent hub verification",
+      "018 verification complete"
+    ],
+    "key_topics": [
+      "deep-loop",
+      "canon",
+      "alignment",
+      "benchmark",
+      "baseline",
+      "parent",
+      "hub",
+      "conformance",
+      "plan",
+      "safe-now",
+      "gated",
+      "split"
+    ],
+    "importance_tier": "high",
+    "status": "complete",
+    "key_files": [
+      ".opencode/skills/deep-loop-workflows/description.json",
+      ".opencode/skills/deep-loop-workflows/mode-registry.json",
+      ".opencode/skills/deep-loop-workflows/hub-router.json",
+      "tasks.md",
+      "plan.md",
+      "implementation-summary.md",
+      "checklist.md",
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "description.json",
+        "kind": "config",
+        "path": ".opencode/skills/deep-loop-workflows/description.json",
+        "source": "derived"
+      },
+      {
+        "name": "mode-registry.json",
+        "kind": "config",
+        "path": ".opencode/skills/deep-loop-workflows/mode-registry.json",
+        "source": "derived"
+      },
+      {
+        "name": "hub-router.json",
+        "kind": "config",
+        "path": ".opencode/skills/deep-loop-workflows/hub-router.json",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Document",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Change Type",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Parent",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow Execution",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Absent Files",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Additive Hub Artifacts",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The deep-loop parent hub fails the parent-hub canon with 8 P0 findings and 26 strict invariant failures",
+    "created_at": "2026-07-05T05:46:26.719Z",
+    "last_save_at": "2026-07-07T17:16:30.111Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:be32a192130f0003a79be6e4f99714c71857bdaacfef98b9644264b0db12b548",
+    "source_doc_hashes": {
+      "spec.md": "a325757a273002d46304d8e9fdc1def082f64a6b77d9f1e1af8b31f33f8e5a62",
+      "plan.md": "fb8e589fcffe29aeb22ffe7ec72d213e7394d3ee631bfe684026587d17f014c0",
+      "tasks.md": "4fd1230210191270c9e7dfdaeae67b987b1d1c3711acc81b756aa72d2d996e7c",
+      "checklist.md": "f438b5f08a4ee892a33080e2ca0b96d22363f7d3ffa12efbded4a816458e9f58",
+      "implementation-summary.md": "84fb32fb58fb595081172c7a4f910881a8477d2fd7ea4cbe901a1660f9b734b1"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

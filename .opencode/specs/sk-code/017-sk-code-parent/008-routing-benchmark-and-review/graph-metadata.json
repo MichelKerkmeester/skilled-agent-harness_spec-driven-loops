@@ -1,0 +1,228 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-code/017-sk-code-parent/008-routing-benchmark-and-review",
+  "spec_folder": "sk-code/017-sk-code-parent/008-routing-benchmark-and-review",
+  "parent_id": "sk-code/017-sk-code-parent",
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "sk-code routing benchmark",
+      "sk-code family deep-review",
+      "skill-benchmark hub re-layer",
+      "sk-code routing benchmark plan",
+      "skill-benchmark re-layer plan",
+      "sk-code routing benchmark tasks",
+      "skill-benchmark re-layer tasks",
+      "sk-code routing benchmark checklist",
+      "sk-code routing benchmark outcome",
+      "sk-code family deep-review summary"
+    ],
+    "key_topics": [
+      "sk-code",
+      "routing",
+      "benchmark",
+      "family",
+      "deep-review",
+      "skill-benchmark",
+      "hub",
+      "re-layer",
+      "plan",
+      "tasks",
+      "checklist",
+      "outcome"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      ".opencode/skills/deep-loop-workflows/deep-improvement/scripts/skill-benchmark/router-replay.cjs",
+      ".opencode/skills/deep-loop-workflows/deep-improvement/scripts/skill-benchmark/score-skill-benchmark.cjs",
+      ".opencode/skills/deep-loop-workflows/deep-improvement/scripts/skill-benchmark/load-playbook-scenarios.cjs",
+      ".opencode/skills/deep-loop-workflows/deep-improvement/scripts/skill-benchmark/tests/skill-benchmark.vitest.ts",
+      ".opencode/skills/sk-code/code-review/scripts/check-rule-copies.js",
+      ".opencode/skills/sk-code/manual_testing_playbook/02--language-sub-detection/opencode-config.md",
+      ".opencode/skills/sk-code/code-review/manual_testing_playbook/manual_testing_playbook.md",
+      ".opencode/skills/sk-code/benchmark/README.md",
+      ".opencode/skills/sk-code/code-review/SKILL.md",
+      "spec.md",
+      "plan.md",
+      "checklist.md",
+      "implementation-summary.md",
+      "tasks.md"
+    ],
+    "entities": [
+      {
+        "name": "router-replay.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/deep-loop-workflows/deep-improvement/scripts/skill-benchmark/router-replay.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "score-skill-benchmark.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/deep-loop-workflows/deep-improvement/scripts/skill-benchmark/score-skill-benchmark.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "load-playbook-scenarios.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/deep-loop-workflows/deep-improvement/scripts/skill-benchmark/load-playbook-scenarios.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "skill-benchmark.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/deep-loop-workflows/deep-improvement/scripts/skill-benchmark/tests/skill-benchmark.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "check-rule-copies.js",
+        "kind": "code",
+        "path": ".opencode/skills/sk-code/code-review/scripts/check-rule-copies.js",
+        "source": "derived"
+      },
+      {
+        "name": "opencode-config.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-code/manual_testing_playbook/02--language-sub-detection/opencode-config.md",
+        "source": "derived"
+      },
+      {
+        "name": "manual_testing_playbook.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-code/code-review/manual_testing_playbook/manual_testing_playbook.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-code/benchmark/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-code/code-review/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Run",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Instrument",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The restructured hub had never been benchmarked or reviewed as a family",
+    "created_at": "2026-07-04T00:00:00Z",
+    "last_save_at": "2026-07-07T17:16:28.799Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:edde3938459f56adc31926f22ccb746b66caf6773960d5604edfd3a68730e0b7",
+    "source_doc_hashes": {
+      "spec.md": "9a6fbfd294b60ee5c6e6b7399d54143797f4d98898bdc1bfbd777f154fae2b59",
+      "plan.md": "20392d808a26aff4234465a26ef5d8be1499b7a39d64b83f7d8f03144d2d449d",
+      "tasks.md": "0b0ac12a5ae254b6489d6195917cb4b10c7d988184c6a8c5b707bf3ed25d0ed5",
+      "checklist.md": "8f12d2ee15b78f4855b8114841ce3fc02c3b02959e096d1338ec1eeac693d6b3",
+      "implementation-summary.md": "ce0bfcde119995c3a0c46f8b7b175977bf1208efcacc5d4f4b480f6d0a2cb660"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

@@ -1,0 +1,224 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-code/017-sk-code-parent/001-research-and-context",
+  "spec_folder": "sk-code/017-sk-code-parent/001-research-and-context",
+  "parent_id": "sk-code/017-sk-code-parent",
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "sk-code research and context",
+      "sk-code taxonomy research",
+      "sk-code blast-radius context",
+      "sk-code research and context plan",
+      "two-track deep loop plan",
+      "sk-code taxonomy fan-out",
+      "sk-code research and context tasks",
+      "two-track deep loop tasks",
+      "sk-code research and context summary",
+      "sk-code taxonomy outcome"
+    ],
+    "key_topics": [
+      "sk-code",
+      "research",
+      "context",
+      "taxonomy",
+      "blast-radius",
+      "plan",
+      "two-track",
+      "deep",
+      "loop",
+      "fan-out",
+      "tasks",
+      "summary"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      "context/context-map.md",
+      "research/research.md",
+      "research/gpt55-taxonomy-recommendation.md",
+      "research/gpt55-taxonomy-pass.json",
+      "research/deep-research-config.json",
+      "context/deep-context-config.json",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "context-map.md",
+        "kind": "doc",
+        "path": "context/context-map.md",
+        "source": "derived"
+      },
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "gpt55-taxonomy-recommendation.md",
+        "kind": "doc",
+        "path": "research/gpt55-taxonomy-recommendation.md",
+        "source": "derived"
+      },
+      {
+        "name": "gpt55-taxonomy-pass.json",
+        "kind": "config",
+        "path": "research/gpt55-taxonomy-pass.json",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-config.json",
+        "kind": "config",
+        "path": "research/deep-research-config.json",
+        "source": "derived"
+      },
+      {
+        "name": "deep-context-config.json",
+        "kind": "config",
+        "path": "context/deep-context-config.json",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Seed Inputs",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Run",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Two",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The sk-code family's mode composition and migration path are undecided",
+    "created_at": "2026-07-03T00:00:00Z",
+    "last_save_at": "2026-07-07T17:16:27.872Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "research/research.md"
+    ],
+    "source_fingerprint": "sha256:b6cc8541161bffba67d966d3820c021d5cbba34a7986c31148a493685aa5c5c8",
+    "source_doc_hashes": {
+      "spec.md": "62c6de8349a549649e4654503105d8df13ff26daa1feeab37fa332619dd607be",
+      "plan.md": "2c5466d46a28effd4cbaee1177f43af65fe9c7f8367089d24039e41fbd1bd6eb",
+      "tasks.md": "bd15ac607161001dba9059122d40d6b67577e6081dce4433e5a7dee54508216e",
+      "implementation-summary.md": "4943065d4bc7ec0b881340a12b350ac5f0c5dc395fba293679d8d2930f60caef",
+      "research/research.md": "32d6a984e61d4a9a2cdaa44d6f0c187fd6abf25e074648a329597fe21d9a36f1"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

@@ -1,0 +1,236 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-code/017-sk-code-parent/025-code-quality-and-shared-research",
+  "spec_folder": "sk-code/017-sk-code-parent/025-code-quality-and-shared-research",
+  "parent_id": "sk-code/017-sk-code-parent",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "sk-code code-quality research",
+      "improve code-quality subskill",
+      "sk-code shared assets references research",
+      "code-quality shared research plan",
+      "sk-code code-quality research plan",
+      "code-quality shared assets upgrade research plan",
+      "code-quality shared research tasks",
+      "sk-code code-quality research tasks",
+      "code-quality shared assets research close-out tasks",
+      "code-quality shared research checklist",
+      "sk-code code-quality research checklist",
+      "code-quality shared assets research verification"
+    ],
+    "key_topics": [
+      "sk-code",
+      "code-quality",
+      "research",
+      "improve",
+      "subskill",
+      "shared",
+      "assets",
+      "references",
+      "plan",
+      "upgrade",
+      "tasks",
+      "close-out"
+    ],
+    "importance_tier": "high",
+    "status": "complete",
+    "key_files": [
+      "research/research.md",
+      "shared/README.md",
+      ".opencode/specs/sk-code/017-sk-code-parent/025-code-quality-and-shared-research/spec.md",
+      ".opencode/specs/sk-code/017-sk-code-parent/025-code-quality-and-shared-research/research/research.md",
+      ".opencode/specs/sk-code/017-sk-code-parent/025-code-quality-and-shared-research/research/iterations/iteration-001.md",
+      ".opencode/specs/sk-code/017-sk-code-parent/025-code-quality-and-shared-research/research/deep-research-strategy.md",
+      ".opencode/specs/sk-code/017-sk-code-parent/025-code-quality-and-shared-research/description.json",
+      ".opencode/specs/sk-code/017-sk-code-parent/025-code-quality-and-shared-research/graph-metadata.json",
+      ".opencode/specs/sk-code/017-sk-code-parent/025-code-quality-and-shared-research/plan.md",
+      ".opencode/specs/sk-code/017-sk-code-parent/025-code-quality-and-shared-research/tasks.md",
+      ".opencode/specs/sk-code/017-sk-code-parent/025-code-quality-and-shared-research/checklist.md",
+      ".opencode/specs/sk-code/017-sk-code-parent/025-code-quality-and-shared-research/implementation-summary.md",
+      ".opencode/specs/sk-code/017-sk-code-parent/graph-metadata.json",
+      ".opencode/commands/deep/research.md",
+      ".opencode/skills/deep-loop-workflows/deep-research/SKILL.md",
+      "spec.md",
+      "research/iterations/iteration-001.md",
+      "plan.md",
+      "checklist.md",
+      "research/deep-research-config.json"
+    ],
+    "entities": [
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": "shared/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": ".opencode/specs/sk-code/017-sk-code-parent/025-code-quality-and-shared-research/spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "iteration-001.md",
+        "kind": "doc",
+        "path": ".opencode/specs/sk-code/017-sk-code-parent/025-code-quality-and-shared-research/research/iterations/iteration-001.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-strategy.md",
+        "kind": "doc",
+        "path": ".opencode/specs/sk-code/017-sk-code-parent/025-code-quality-and-shared-research/research/deep-research-strategy.md",
+        "source": "derived"
+      },
+      {
+        "name": "description.json",
+        "kind": "config",
+        "path": ".opencode/specs/sk-code/017-sk-code-parent/025-code-quality-and-shared-research/description.json",
+        "source": "derived"
+      },
+      {
+        "name": "graph-metadata.json",
+        "kind": "config",
+        "path": ".opencode/specs/sk-code/017-sk-code-parent/025-code-quality-and-shared-research/graph-metadata.json",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": ".opencode/specs/sk-code/017-sk-code-parent/025-code-quality-and-shared-research/plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": ".opencode/specs/sk-code/017-sk-code-parent/025-code-quality-and-shared-research/tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": ".opencode/specs/sk-code/017-sk-code-parent/025-code-quality-and-shared-research/checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": ".opencode/specs/sk-code/017-sk-code-parent/025-code-quality-and-shared-research/implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/deep-loop-workflows/deep-research/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-config.json",
+        "kind": "config",
+        "path": "research/deep-research-config.json",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Run",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Change During Execution",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Retrospective Level",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Bounded",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The sk-code `code-quality` sub-skill carries one of the highest-leverage jobs in the coding lifecycle — judging whether code is correct, clean, and safe — yet it has grown independently and its real usefulness is unproven",
+    "created_at": "2026-07-07T00:00:00.000Z",
+    "last_save_at": "2026-07-07T17:16:31.033Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md",
+      "research/research.md"
+    ],
+    "source_fingerprint": "sha256:59c1ac117cc8271c6b1fb0f6ac36915850638346a1c2b5f789e82df1b8427faf",
+    "source_doc_hashes": {
+      "spec.md": "628312e86f0b08d834a72ea6be12744631e0142e2febc4820d24c1856a118238",
+      "plan.md": "f0cc40f7cdd5345697c65bd4be524cef6d7e575efe1627efeb1abc63b863067a",
+      "tasks.md": "2c6583a4dfc775a44c7dc3f538ba1fabd05b5011cc39ccca7d3346cb46ff3380",
+      "checklist.md": "d74b7e684e3cf603d877340407ea0d5544a59af2c991efa0bf44d6eb94f4fa75",
+      "implementation-summary.md": "91afe9fb6fe0afdb01c9f617a246a683e523d6dbc902865093fef376d928ad95",
+      "research/research.md": "4284a9b72060da7df2ff963ad9dc29f1bf4bdfcb03f071ee231aa7bd9f38ac23"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

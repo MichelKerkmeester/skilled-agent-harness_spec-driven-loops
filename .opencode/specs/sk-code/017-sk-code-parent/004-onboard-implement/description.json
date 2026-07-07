@@ -1,0 +1,30 @@
+{
+  "level": "1",
+  "specFolder": "sk-code/017-sk-code-parent/004-onboard-implement",
+  "description": "After the parent-hub scaffold existed, the flat top-level `references/`, `assets/`, and `scripts/` directories still held the prior monolithic sk-code",
+  "keywords": [
+    "parent-hub",
+    "scaffold",
+    "existed",
+    "flat",
+    "top-level",
+    "references",
+    "assets",
+    "scripts",
+    "directories",
+    "still",
+    "held",
+    "prior",
+    "monolithic",
+    "sk-code"
+  ],
+  "lastUpdated": "2026-07-05T12:13:05.257Z",
+  "specId": "004",
+  "folderSlug": "onboard-implement",
+  "parentChain": [
+    "sk-code",
+    "017-sk-code-parent"
+  ],
+  "memorySequence": 4,
+  "memoryNameHistory": []
+}

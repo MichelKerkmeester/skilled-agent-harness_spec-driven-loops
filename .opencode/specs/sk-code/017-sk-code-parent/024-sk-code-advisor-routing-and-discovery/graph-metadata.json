@@ -1,0 +1,224 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-code/017-sk-code-parent/024-sk-code-advisor-routing-and-discovery",
+  "spec_folder": "sk-code/017-sk-code-parent/024-sk-code-advisor-routing-and-discovery",
+  "parent_id": "sk-code/017-sk-code-parent",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "sk-code advisor routing discovery",
+      "Lane-C D3 proxy fix",
+      "CWV accessibility smart routing",
+      "phase 24 plan",
+      "sk-code advisor routing discovery plan",
+      "Lane-C D3 proxy plan",
+      "phase 24 tasks",
+      "sk-code advisor routing discovery tasks",
+      "Lane-C D3 proxy tasks",
+      "phase 24 checklist",
+      "sk-code advisor routing discovery checklist",
+      "Lane-C D3 proxy verification"
+    ],
+    "key_topics": [
+      "sk-code",
+      "advisor",
+      "routing",
+      "discovery",
+      "lane-c",
+      "proxy",
+      "fix",
+      "cwv",
+      "accessibility",
+      "smart",
+      "phase",
+      "plan"
+    ],
+    "importance_tier": "high",
+    "status": "complete",
+    "key_files": [
+      ".opencode/skills/sk-code/shared/references/smart_routing.md",
+      ".opencode/skills/deep-loop-workflows/deep-improvement/scripts/skill-benchmark/router-replay.cjs",
+      ".opencode/skills/deep-loop-workflows/deep-improvement/scripts/skill-benchmark/score-skill-benchmark.cjs",
+      ".opencode/skills/sk-code/manual_testing_playbook/07--cross-stack-routing/cwv-gates-animation-heavy.md",
+      ".opencode/skills/sk-code/manual_testing_playbook/07--cross-stack-routing/prefers-reduced-motion.md",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "smart_routing.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-code/shared/references/smart_routing.md",
+        "source": "derived"
+      },
+      {
+        "name": "router-replay.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/deep-loop-workflows/deep-improvement/scripts/skill-benchmark/router-replay.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "score-skill-benchmark.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/deep-loop-workflows/deep-improvement/scripts/skill-benchmark/score-skill-benchmark.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "cwv-gates-animation-heavy.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-code/manual_testing_playbook/07--cross-stack-routing/cwv-gates-animation-heavy.md",
+        "source": "derived"
+      },
+      {
+        "name": "prefers-reduced-motion.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-code/manual_testing_playbook/07--cross-stack-routing/prefers-reduced-motion.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Two",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Ship",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Change During Execution",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Retrospective Level",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Local",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Two sk-code discovery scenarios failed because the references they needed already existed in `sk-code/shared/references/smartrouting.md` RESOURCEMAP, but the prompts did not fire the intents that map to those references",
+    "created_at": "2026-07-06T09:31:15.780Z",
+    "last_save_at": "2026-07-07T17:16:30.902Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:1f96ea2de6279a5726893a336f3047eb6aa4714a96cecaa9e65907d67cf8a7d5",
+    "source_doc_hashes": {
+      "spec.md": "918dfc674c4d3f79bede65f69ddc7a47284a6527c2c76525a95f460e33d42ecc",
+      "plan.md": "d85731122a7c372358466ea5bdd77f0335082172543b8bbe39f399429638178f",
+      "tasks.md": "16a431ea6aff2c8215fe035963d95c61f01618551b87b68ca428c2263ccce3d0",
+      "checklist.md": "27c112e1a2ed7ba66b65a0fe0dbf4de1e376b6dde68ea734a3316aee2c38f8ef",
+      "implementation-summary.md": "7c98f2bfe5c9b2dc164d2f1104fac71f86681e02c9f37f0adf65d290e3d2d658"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

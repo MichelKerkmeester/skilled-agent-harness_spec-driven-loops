@@ -1,0 +1,221 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-code/017-sk-code-parent/009-cutover-and-rollout",
+  "spec_folder": "sk-code/017-sk-code-parent/009-cutover-and-rollout",
+  "parent_id": "sk-code/017-sk-code-parent",
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "sk-code cutover and rollout",
+      "sk-code-review alias removal",
+      "sk-code advisor-rebuild",
+      "sk-code cutover plan",
+      "sk-code-review NAME-ref map",
+      "sk-code cutover tasks",
+      "sk-code rollout runbook tasks",
+      "sk-code cutover checklist",
+      "sk-code-review alias removal runbook",
+      "sk-code advisor-rebuild main-side"
+    ],
+    "key_topics": [
+      "sk-code",
+      "cutover",
+      "rollout",
+      "sk-code-review",
+      "alias",
+      "removal",
+      "advisor-rebuild",
+      "plan",
+      "name-ref",
+      "map",
+      "tasks",
+      "runbook"
+    ],
+    "importance_tier": "critical",
+    "status": "in_progress",
+    "key_files": [
+      ".opencode/commands/doctor/scripts/parent-skill-check.cjs",
+      "plan.md",
+      "spec.md",
+      ".github/workflows/routing-registry-drift.yml",
+      "implementation-summary.md",
+      "checklist.md",
+      "tasks.md"
+    ],
+    "entities": [
+      {
+        "name": "parent-skill-check.cjs",
+        "kind": "file",
+        "path": ".opencode/commands/doctor/scripts/parent-skill-check.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "routing-registry-drift.yml",
+        "kind": "config",
+        "path": ".github/workflows/routing-registry-drift.yml",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Side Rollout Runbook",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Split",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "verified",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "evidence",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The cutover removes `sk-code-review` as a routing identity and cuts the release",
+    "created_at": "2026-07-04T00:00:00Z",
+    "last_save_at": "2026-07-07T17:16:28.920Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:4c34ba56c56676077a4cd137041928a55e250507c2c483f5ca0ca35e0d42dc9f",
+    "source_doc_hashes": {
+      "spec.md": "97dacc2342b3cfc0833aa86acee517d6d825c527627be13433f7c1bda795d29d",
+      "plan.md": "aabaa08d0b974178cdd7d474cb4fd113059f46f79c2bedcb1b545493d869f43f",
+      "tasks.md": "555a4a498697de2835bbea56f3aa9903b2ed79b8c292cdd1abf58d2e7c1b94e7",
+      "checklist.md": "e6644b1e9c7fb0e074e32cc3462b863db28d3d70eb945df1ab0cbf7e1d960b2d",
+      "implementation-summary.md": "8b854e5497b7b74f9bc6c624e94db27b4f5b93445e5e08a1a958025a8ae0895f"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}
