@@ -46,7 +46,7 @@ Do not invoke this skill when:
 
 ## 2. SMART ROUTING
 
-This skill has no direct LLM-facing keyword triggers — it is invoked by workflow YAMLs (via `bash:` script calls) and by test imports. The router below documents which sub-domain to load for a given consumer query.
+This skill has no direct LLM-facing keyword triggers — it is invoked by workflow YAMLs (via `bash:` script calls) and by test imports. It is a simple intent-to-runtime-domain router, not a keyed `references/<key>/` / `assets/<key>/` resource router: `references/` is a flat contract set and this skill has no `assets/` directory.
 
 ### Primary Detection Signal
 
@@ -91,15 +91,86 @@ tests/{unit,integration,lifecycle}/  # 21+ vitest files split by responsibility
 
 ### Smart Router Pseudocode
 
-```text
-IF request mentions a specific lib name (e.g. "bayesian-scorer", "prompt-pack"):
-  → Load lib/deep-loop/<name>.ts + matching tests/unit/<name>.vitest.ts
-ELIF request mentions coverage-graph / convergence / signals:
-  → Load lib/coverage-graph/*.ts + tests/integration/review-depth-*.vitest.ts
-ELIF request mentions a script (convergence.cjs, status.cjs, etc.):
-  → Load scripts/<name>.cjs + tests/integration/<name>-script.vitest.ts + lib/coverage-graph/coverage-graph-db.ts
-ELSE:
-  → Defer to consumer skill (deep-review / deep-research)
+```python
+from pathlib import Path
+
+SKILL_ROOT = Path(__file__).resolve().parent
+RESOURCE_BASES = (
+    SKILL_ROOT / "lib",
+    SKILL_ROOT / "scripts",
+    SKILL_ROOT / "tests",
+    SKILL_ROOT / "references",
+)
+ROUTABLE_SUFFIXES = {".md", ".ts", ".cjs"}
+UNKNOWN_FALLBACK_CHECKLIST = [
+    "Confirm whether the request targets a runtime library, coverage graph, script entry point, or consumer workflow",
+    "Name the concrete module, script, test, or failing command",
+    "Confirm whether deep-review, deep-research, deep-ai-council, or deep-improvement is the consuming workflow",
+    "Confirm the verification command set before completion",
+]
+
+def discover_runtime_resources() -> set[str]:
+    resources = []
+    for base in RESOURCE_BASES:
+        if base.exists():
+            resources.extend(
+                path for path in base.rglob("*")
+                if path.is_file() and path.suffix.lower() in ROUTABLE_SUFFIXES
+            )
+    return {path.relative_to(SKILL_ROOT).as_posix() for path in resources}
+
+def _guard_in_skill(relative_path: str) -> str:
+    resolved = (SKILL_ROOT / relative_path).resolve()
+    resolved.relative_to(SKILL_ROOT)
+    if resolved.suffix.lower() not in ROUTABLE_SUFFIXES:
+        raise ValueError(f"Only runtime skill resources are routable: {relative_path}")
+    return resolved.relative_to(SKILL_ROOT).as_posix()
+
+def load_if_available(relative_path: str, inventory: set[str], loaded: list[str], seen: set[str]) -> None:
+    guarded = _guard_in_skill(relative_path)
+    if guarded in inventory and guarded not in seen:
+        load(guarded)
+        loaded.append(guarded)
+        seen.add(guarded)
+
+def route(task):
+    inventory = discover_runtime_resources()
+    loaded, seen = [], set()
+
+    if mentions_specific_lib(task):
+        name = normalize_lib_name(task)  # e.g. bayesian-scorer, prompt-pack
+        load_if_available(f"lib/deep-loop/{name}.ts", inventory, loaded, seen)
+        load_if_available(f"tests/unit/{name}.vitest.ts", inventory, loaded, seen)
+    elif mentions_coverage_graph(task):
+        for path in sorted(p for p in inventory if p.startswith("lib/coverage-graph/")):
+            load_if_available(path, inventory, loaded, seen)
+        for path in sorted(p for p in inventory if p.startswith("tests/integration/review-depth-")):
+            load_if_available(path, inventory, loaded, seen)
+    elif mentions_script(task):
+        script = normalize_script_name(task)  # e.g. convergence, status, query, upsert
+        load_if_available(f"scripts/{script}.cjs", inventory, loaded, seen)
+        load_if_available(f"tests/integration/{script}-script.vitest.ts", inventory, loaded, seen)
+        load_if_available("lib/coverage-graph/coverage-graph-db.ts", inventory, loaded, seen)
+    else:
+        load_if_available("references/integration_points.md", inventory, loaded, seen)
+        return {
+            "load_level": "UNKNOWN_FALLBACK",
+            "needs_disambiguation": True,
+            "disambiguation_checklist": UNKNOWN_FALLBACK_CHECKLIST,
+            "defer_to": "consumer skill: deep-review, deep-research, deep-ai-council, or deep-improvement",
+            "resources": loaded,
+        }
+
+    if not loaded:
+        load_if_available("references/integration_points.md", inventory, loaded, seen)
+        return {
+            "load_level": "UNKNOWN_FALLBACK",
+            "notice": "Matched a runtime domain but no current resource path was available",
+            "disambiguation_checklist": UNKNOWN_FALLBACK_CHECKLIST,
+            "resources": loaded,
+        }
+
+    return {"load_level": "CONDITIONAL", "resources": loaded}
 ```
 
 ---

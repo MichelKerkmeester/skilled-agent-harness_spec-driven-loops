@@ -84,6 +84,8 @@ Resource domains:
 - `manual_testing_playbook/` documents deterministic operator scenarios for advisor tools, hooks, compatibility, daemon behavior and skill graph flows.
 - `mcp_server/` owns handlers, schemas, tools, scripts, tests, library modules and the package-local SQLite database.
 
+This skill is a keyed intent-domain router: it selects resources from its `references/<domain>/` subdirectories by intent, rather than keying by project, mode, stack, or model. There is currently no `assets/` directory; the router still includes `assets/` in discovery with an existence guard so future markdown assets can appear without breaking the loader.
+
 ### Resource loading levels
 
 | Level | When to Load | Resources |
@@ -94,7 +96,7 @@ Resource domains:
 
 ### Smart router pseudocode
 
-This pseudocode captures the canonical documentation resource-loading contract. See [`references/scoring/advisor_scorer.md`](./references/scoring/advisor_scorer.md) for the actual runtime scorer mechanics.
+This pseudocode adapts the canonical resilient-router mechanics to this skill's intent-domain resource map. See [`references/scoring/advisor_scorer.md`](./references/scoring/advisor_scorer.md) for the actual runtime scorer mechanics.
 
 ```python
 from pathlib import Path
@@ -102,6 +104,7 @@ from pathlib import Path
 SKILL_ROOT = Path(__file__).resolve().parent
 RESOURCE_BASES = (
     SKILL_ROOT / "references",
+    SKILL_ROOT / "assets",
     SKILL_ROOT / "feature_catalog",
     SKILL_ROOT / "manual_testing_playbook",
 )
@@ -121,42 +124,39 @@ INTENT_SIGNALS = {
     "PLAYBOOK": {"weight": 3, "keywords": ["manual test", "playbook", "scenario", "evidence"]},
 }
 
-RESOURCE_MAP = {
-    "SCORING": [
-        "references/scoring/advisor_scorer.md",
-        "references/scoring/lane_weight_tuning.md",
-        "references/scoring/validation_baselines.md",
-        "feature_catalog/04--scorer-fusion/weights-config.md",
-    ],
-    "GRAPH": [
-        "references/graph/skill_graph_query_cookbook.md",
-        "references/graph/skill_graph_drift.md",
-        "references/graph/skill_graph_extraction_plan.md",
-        "references/graph/propagate_enhances.md",
-    ],
-    "RUNTIME": [
-        "references/runtime/standalone_mcp_shape.md",
-        "references/runtime/tool_ids_reference.md",
-        "references/runtime/legacy_tool_bridge.md",
-        "references/runtime/freshness_contract.md",
-        "references/runtime/daemon_lease_contract.md",
-    ],
-    "CONFIG": [
-        "references/config/db_path_policy.md",
-    ],
-    "HOOKS": [
-        "references/hooks/skill_advisor_hook.md",
-        "manual_testing_playbook/02--cli-hooks-and-plugin/opencode-plugin-bridge.md",
-    ],
-    "DECISIONS": [
-        "references/decisions/deferred_decisions.md",
-    ],
-    "FEATURES": [
-        "feature_catalog/feature_catalog.md",
-    ],
-    "PLAYBOOK": [
-        "manual_testing_playbook/manual_testing_playbook.md",
-    ],
+RESOURCE_DOMAINS = {
+    "SCORING": {
+        "prefixes": ["references/scoring/", "feature_catalog/04--scorer-fusion/", "manual_testing_playbook/08--scorer-fusion/"],
+        "priority": ["references/scoring/advisor_scorer.md"],
+    },
+    "GRAPH": {
+        "prefixes": ["references/graph/", "feature_catalog/06--mcp-surface/", "manual_testing_playbook/01--native-mcp-tools/"],
+        "priority": ["references/graph/skill_graph_query_cookbook.md"],
+    },
+    "RUNTIME": {
+        "prefixes": ["references/runtime/", "feature_catalog/01--daemon-and-freshness/", "manual_testing_playbook/05--auto-update-daemon/"],
+        "priority": ["references/runtime/tool_ids_reference.md", "references/runtime/standalone_mcp_shape.md"],
+    },
+    "CONFIG": {
+        "prefixes": ["references/config/"],
+        "priority": ["references/config/db_path_policy.md"],
+    },
+    "HOOKS": {
+        "prefixes": ["references/hooks/", "feature_catalog/07--hooks-and-plugin/", "manual_testing_playbook/02--cli-hooks-and-plugin/"],
+        "priority": ["references/hooks/skill_advisor_hook.md"],
+    },
+    "DECISIONS": {
+        "prefixes": ["references/decisions/"],
+        "priority": ["references/decisions/deferred_decisions.md"],
+    },
+    "FEATURES": {
+        "prefixes": ["feature_catalog/"],
+        "priority": ["feature_catalog/feature_catalog.md"],
+    },
+    "PLAYBOOK": {
+        "prefixes": ["manual_testing_playbook/"],
+        "priority": ["manual_testing_playbook/manual_testing_playbook.md"],
+    },
 }
 
 UNKNOWN_FALLBACK_CHECKLIST = [
@@ -180,14 +180,11 @@ def _guard_in_skill(relative_path: str) -> str:
         raise ValueError(f"Only markdown resources are routable: {relative_path}")
     return resolved.relative_to(SKILL_ROOT).as_posix()
 
-def _guard_resource_map(resource_map: dict[str, list[str]]) -> None:
-    for intent, resources in resource_map.items():
-        for relative_path in resources:
-            guarded = _guard_in_skill(relative_path)
-            if guarded.startswith("references/"):
-                tail = guarded.removeprefix("references/")
-                if "/" not in tail and "-" in Path(tail).stem:
-                    raise ValueError(f"RESOURCE_MAP must target canonical references, not compatibility stubs: {intent} -> {guarded}")
+def _filter_paths(paths: list[str], keywords: list[str]) -> list[str]:
+    if not keywords:
+        return paths
+    lowered = [keyword.lower() for keyword in keywords]
+    return [path for path in paths if any(keyword in path.lower() for keyword in lowered)]
 
 def _task_text(task) -> str:
     fields = [
@@ -200,8 +197,6 @@ def _task_text(task) -> str:
 
 loaded = []
 seen = set()
-_guard_resource_map(RESOURCE_MAP)
-_guard_resource_map({"DEFAULT": DEFAULT_RESOURCES})
 inventory = discover_markdown_resources()
 
 def load_if_available(relative_path: str) -> None:
@@ -220,6 +215,17 @@ def score_intents(task) -> dict[str, int]:
             scores[intent] = hits * model["weight"]
     return scores
 
+def resources_for_intent(intent: str, task) -> list[str]:
+    domain = RESOURCE_DOMAINS.get(intent)
+    if not domain:
+        return []
+    resources = []
+    resources.extend(domain["priority"])
+    for prefix in domain["prefixes"]:
+        resources.extend(sorted(path for path in inventory if path.startswith(prefix)))
+    keywords = str(getattr(task, "resource_keywords", "")).split()
+    return _filter_paths(resources, keywords)
+
 for resource in DEFAULT_RESOURCES:
     load_if_available(resource)
 
@@ -237,7 +243,7 @@ top_score = ranked[0][1]
 selected = [intent for intent, score in ranked if top_score - score <= 1][:2]
 
 for intent in selected:
-    resources = RESOURCE_MAP.get(intent, [])
+    resources = resources_for_intent(intent, task)
     if not resources:
         return {
             "notice": f"No knowledge base found for advisor intent '{intent}'",

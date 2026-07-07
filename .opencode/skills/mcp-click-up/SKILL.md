@@ -50,6 +50,7 @@ ALWAYS:    SKILL.md (this file)
 ON_DEMAND: references/cupt_commands.md    (when cupt command details needed)
            references/mcp_tools.md         (when MCP tool details needed)
            references/troubleshooting.md   (when error or auth issue detected)
+           INSTALL_GUIDE.md                (when setup or authentication details needed)
 ```
 
 ### Operation-to-Tool Routing Table
@@ -77,7 +78,19 @@ ON_DEMAND: references/cupt_commands.md    (when cupt command details needed)
 ### Smart Router Pseudocode
 
 ```python
-# Intent signals with weights
+from pathlib import Path
+
+SKILL_ROOT = Path(__file__).resolve().parent
+RESOURCE_BASES = (SKILL_ROOT / "references", SKILL_ROOT / "assets")
+ROOT_MARKDOWN_RESOURCES = ("INSTALL_GUIDE.md",)
+
+UNKNOWN_FALLBACK_CHECKLIST = [
+    "Confirm whether the request is for cupt daily ops, official ClickUp MCP, install/auth, or troubleshooting",
+    "Provide the task ID, command, error text, or target ClickUp feature",
+    "Confirm whether cupt CLI or Code Mode MCP is already configured",
+    "Confirm the verification command before completing any write action",
+]
+
 INTENT_SIGNALS = {
     "CUPT_DAILY": {
         "weight": 5,
@@ -105,13 +118,42 @@ INTENT_SIGNALS = {
 RESOURCE_MAP = {
     "CUPT_DAILY":    ["references/cupt_commands.md"],
     "MCP_ADVANCED":  ["references/mcp_tools.md"],
-    "INSTALL":       ["INSTALL_GUIDE.md", "scripts/install.sh"],
+    "INSTALL":       ["INSTALL_GUIDE.md", "references/troubleshooting.md"],
     "TROUBLESHOOT":  ["references/troubleshooting.md"],
     "DEFAULT":       ["references/cupt_commands.md"],
 }
 
-def route_clickup_resources(request: str) -> list[str]:
-    """Score intents, load matching reference files."""
+def discover_markdown_resources() -> set[str]:
+    docs = []
+    for base in RESOURCE_BASES:
+        if base.exists():
+            docs.extend(path for path in base.rglob("*.md") if path.is_file())
+
+    for resource in ROOT_MARKDOWN_RESOURCES:
+        path = SKILL_ROOT / resource
+        if path.exists() and path.is_file():
+            docs.append(path)
+
+    return {doc.relative_to(SKILL_ROOT).as_posix() for doc in docs}
+
+def _guard_in_skill(relative_path: str) -> str:
+    resolved = (SKILL_ROOT / relative_path).resolve()
+    resolved.relative_to(SKILL_ROOT)
+    if resolved.suffix.lower() != ".md":
+        raise ValueError(f"Only markdown skill resources are routable: {relative_path}")
+    return resolved.relative_to(SKILL_ROOT).as_posix()
+
+def load_if_available(relative_path: str, loaded: list[str], seen: set[str], inventory: set[str]) -> None:
+    guarded = _guard_in_skill(relative_path)
+    if guarded in inventory and guarded not in seen:
+        load(guarded)
+        loaded.append(guarded)
+        seen.add(guarded)
+
+def route_clickup_resources(request: str) -> dict:
+    """Score intent labels and load available ClickUp reference docs."""
+    inventory = discover_markdown_resources()
+    loaded, seen = [], set()
     request_lower = request.lower()
 
     scores = {}
@@ -124,27 +166,35 @@ def route_clickup_resources(request: str) -> list[str]:
             scores[intent] = score
 
     if not scores:
-        return load_resources(RESOURCE_MAP["DEFAULT"])
+        load_if_available("references/cupt_commands.md", loaded, seen, inventory)
+        return {
+            "load_level": "UNKNOWN_FALLBACK",
+            "needs_disambiguation": True,
+            "disambiguation_checklist": UNKNOWN_FALLBACK_CHECKLIST,
+            "resources": loaded,
+        }
 
     # Error/install keywords boost TROUBLESHOOT/INSTALL regardless of other signals
     if scores.get("TROUBLESHOOT", 0) > 3:
-        return load_resources(RESOURCE_MAP["TROUBLESHOOT"])
-    if scores.get("INSTALL", 0) > 4:
-        return load_resources(RESOURCE_MAP["INSTALL"])
+        intent = "TROUBLESHOOT"
+    elif scores.get("INSTALL", 0) > 4:
+        intent = "INSTALL"
+    else:
+        intent = max(scores, key=scores.get)
 
-    # Pick top intent
-    top_intent = max(scores, key=scores.get)
-    return load_resources(RESOURCE_MAP[top_intent])
+    for resource in RESOURCE_MAP[intent]:
+        load_if_available(resource, loaded, seen, inventory)
 
-def load_resources(resource_list: list[str]) -> list[str]:
-    """Load resource files, guard to skill directory."""
-    skill_root = ".opencode/skills/mcp-click-up/"
-    loaded = []
-    for resource in resource_list:
-        path = skill_root + resource
-        if _guard_in_skill(path):
-            loaded.append(Read(path))
-    return loaded
+    if not loaded:
+        load_if_available("references/cupt_commands.md", loaded, seen, inventory)
+        return {
+            "load_level": "UNKNOWN_FALLBACK",
+            "notice": f"No ClickUp reference docs available for intent '{intent}'",
+            "disambiguation_checklist": UNKNOWN_FALLBACK_CHECKLIST,
+            "resources": loaded,
+        }
+
+    return {"intent": intent, "resources": loaded}
 ```
 
 ---
