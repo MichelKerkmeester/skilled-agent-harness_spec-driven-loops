@@ -100,6 +100,49 @@ describe('skill graph database indexing', () => {
     }
   });
 
+  it('rejects a nested skill identity under a hub subtree (one-identity invariant)', () => {
+    const root = mkdtempSync(join(tmpdir(), 'skill-graph-db-'));
+    const dbDir = join(root, 'db');
+    const skillRoot = join(root, 'skills');
+
+    try {
+      initDb(dbDir);
+      // A hub identity, plus a distinctly-named skill-shaped graph-metadata.json
+      // nested inside the hub's own subtree — the exact one-identity hole. The
+      // duplicate-id check would miss this (different ids); the ingestion guard
+      // must reject it.
+      writeGraphMetadata(skillRoot, 'sk-hub');
+      writeGraphMetadata(join(skillRoot, 'sk-hub'), 'nested-packet');
+
+      expect(() => indexSkillMetadata(skillRoot)).toThrow(/One-identity violation/);
+    } finally {
+      closeDb();
+      rmSync(root, { recursive: true, force: true });
+    }
+  });
+
+  it('accepts sibling skill identities that do not nest', () => {
+    const root = mkdtempSync(join(tmpdir(), 'skill-graph-db-'));
+    const dbDir = join(root, 'db');
+    const skillRoot = join(root, 'skills');
+
+    try {
+      initDb(dbDir);
+      writeGraphMetadata(skillRoot, 'alpha');
+      writeGraphMetadata(skillRoot, 'beta');
+
+      const result = indexSkillMetadata(skillRoot);
+      expect(result.indexedNodes).toBe(2);
+      expect(getDb().prepare('SELECT id FROM skill_nodes ORDER BY id').all()).toEqual([
+        { id: 'alpha' },
+        { id: 'beta' },
+      ]);
+    } finally {
+      closeDb();
+      rmSync(root, { recursive: true, force: true });
+    }
+  });
+
   it('sanitizes skill metadata before writing indexed rows', () => {
     const root = mkdtempSync(join(tmpdir(), 'skill-graph-db-'));
     const dbDir = join(root, 'db');

@@ -135,6 +135,13 @@ export const SCHEMA_VERSION = 1;
 export const DB_FILENAME = 'skill-graph.sqlite';
 
 const SKILL_METADATA_FILENAME = 'graph-metadata.json';
+// Directories never descended when discovering skill metadata: dependency,
+// build, and VCS trees can carry their own graph-metadata.json (e.g. a vendored
+// package) that must never be ingested as a skill identity, and walking them is
+// pure waste. Defensive skip — none currently contain skill metadata.
+const IGNORED_SCAN_DIRS = new Set([
+  'node_modules', '.git', 'dist', 'build', 'out', 'coverage', '.next', '.turbo', '.cache',
+]);
 const MIN_WEIGHT = 0.0;
 const MAX_WEIGHT = 1.0;
 
@@ -622,7 +629,9 @@ function discoverGraphMetadataFiles(skillDir: string): string[] {
     for (const entry of entries) {
       const entryPath = join(currentDir, entry.name);
       if (entry.isDirectory()) {
-        stack.push(entryPath);
+        if (!IGNORED_SCAN_DIRS.has(entry.name)) {
+          stack.push(entryPath);
+        }
         continue;
       }
 
@@ -854,6 +863,7 @@ export function indexSkillMetadata(skillDir: string): SkillGraphIndexResult {
   const database = getDb();
   const discoveredFiles = discoverGraphMetadataFiles(skillDir);
   const parsedMetadata: ParsedSkillMetadata[] = [];
+  const skillMetadataPaths: string[] = [];
   const warnings: string[] = [];
   let nonSkillMetadataFiles = 0;
 
@@ -868,6 +878,26 @@ export function indexSkillMetadata(skillDir: string): SkillGraphIndexResult {
 
     const contentHash = computeContentHash(`${SKILL_METADATA_SANITIZER_VERSION}\n${content}`);
     parsedMetadata.push(parseSkillMetadata(sourcePath, parsedJson, contentHash));
+    skillMetadataPaths.push(sourcePath);
+  }
+
+  // One-identity invariant (ingestion guard): no skill-shaped graph-metadata.json
+  // may live inside another skill's subtree. A distinctly-named nested identity
+  // would silently register a second advisor node under a hub that must project a
+  // single identity — the duplicate-id check below only catches same-id
+  // collisions, not a nested identity with a different id. Spec-folder metadata is
+  // content-filtered out above, so only true skill identities reach this check.
+  for (const outer of skillMetadataPaths) {
+    const hubDir = dirname(outer);
+    for (const inner of skillMetadataPaths) {
+      if (inner === outer) continue;
+      const rel = relative(hubDir, dirname(inner));
+      if (rel !== '' && !rel.startsWith('..')) {
+        throw new Error(
+          `One-identity violation: ${toDisplayPath(inner)} is nested inside the skill identity rooted at ${toDisplayPath(outer)}; a hub projects a single advisor identity, so nested packets must not carry their own graph-metadata.json`,
+        );
+      }
+    }
   }
 
   const skillIds = parsedMetadata.map((entry) => entry.node.id);
