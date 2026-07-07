@@ -2,7 +2,7 @@
   "schema_version": 1,
   "packet_id": "system-deep-loop/037-scenario-loader-code-surface-sync",
   "spec_folder": "system-deep-loop/037-scenario-loader-code-surface-sync",
-  "parent_id": null,
+  "parent_id": "system-deep-loop",
   "children_ids": [],
   "manual": {
     "depends_on": [],

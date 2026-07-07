@@ -2,7 +2,7 @@
   "schema_version": 1,
   "packet_id": "system-deep-loop/z_archive/010-sk-recursive-agent-loop",
   "spec_folder": "system-deep-loop/z_archive/010-sk-recursive-agent-loop",
-  "parent_id": null,
+  "parent_id": "system-deep-loop/z_archive",
   "children_ids": [
     "system-deep-loop/z_archive/010-sk-recursive-agent-loop/001-sk-recursive-agent-mvp",
     "system-deep-loop/z_archive/010-sk-recursive-agent-loop/002-sk-recursive-agent-full-skill",

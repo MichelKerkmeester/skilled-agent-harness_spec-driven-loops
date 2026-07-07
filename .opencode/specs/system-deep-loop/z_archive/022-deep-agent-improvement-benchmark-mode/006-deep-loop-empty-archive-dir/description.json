@@ -24,9 +24,9 @@
   "specId": "006",
   "folderSlug": "deep-loop-empty-archive-dir",
   "parentChain": [
-    "skilled-agent-orchestration",
+    "system-deep-loop",
     "z_archive",
-    "121-deep-agent-improvement-benchmark-mode"
+    "022-deep-agent-improvement-benchmark-mode"
   ],
   "memorySequence": 1,
   "memoryNameHistory": [

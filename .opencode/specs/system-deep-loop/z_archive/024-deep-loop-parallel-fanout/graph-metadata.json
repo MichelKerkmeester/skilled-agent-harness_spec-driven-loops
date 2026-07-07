@@ -2,7 +2,7 @@
   "schema_version": 1,
   "packet_id": "system-deep-loop/z_archive/024-deep-loop-parallel-fanout",
   "spec_folder": "system-deep-loop/z_archive/024-deep-loop-parallel-fanout",
-  "parent_id": null,
+  "parent_id": "system-deep-loop/z_archive",
   "children_ids": [
     "system-deep-loop/z_archive/024-deep-loop-parallel-fanout/001-schema-config-plumbing",
     "system-deep-loop/z_archive/024-deep-loop-parallel-fanout/002-capped-pool-status-ledger",

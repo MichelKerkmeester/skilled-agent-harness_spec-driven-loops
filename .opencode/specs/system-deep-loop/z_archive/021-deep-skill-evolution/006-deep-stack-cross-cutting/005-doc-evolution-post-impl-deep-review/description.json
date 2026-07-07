@@ -19,9 +19,9 @@
   "specId": "005",
   "folderSlug": "doc-evolution-post-impl-deep-review",
   "parentChain": [
-    "skilled-agent-orchestration",
+    "system-deep-loop",
     "z_archive",
-    "116-deep-skill-evolution",
+    "021-deep-skill-evolution",
     "006-deep-stack-cross-cutting"
   ],
   "memorySequence": 0,

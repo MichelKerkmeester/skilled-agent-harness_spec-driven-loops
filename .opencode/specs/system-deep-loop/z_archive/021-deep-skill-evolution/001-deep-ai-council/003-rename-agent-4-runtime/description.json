@@ -20,9 +20,9 @@
   "specId": "003",
   "folderSlug": "rename-agent-4-runtime",
   "parentChain": [
-    "skilled-agent-orchestration",
+    "system-deep-loop",
     "z_archive",
-    "116-deep-skill-evolution",
+    "021-deep-skill-evolution",
     "001-deep-ai-council"
   ],
   "memorySequence": 0,

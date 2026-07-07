@@ -33,7 +33,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | `002-applied-source-and-doc-fixes` |
+| **Spec Folder** | 002-applied-source-and-doc-fixes |
 | **Completed** | 2026-05-29 |
 | **Level** | 1 |
 <!-- /ANCHOR:metadata -->

@@ -2,7 +2,7 @@
   "schema_version": 1,
   "packet_id": "system-deep-loop/z_archive/026-deep-context-workflow-adoption",
   "spec_folder": "system-deep-loop/z_archive/026-deep-context-workflow-adoption",
-  "parent_id": null,
+  "parent_id": "system-deep-loop/z_archive",
   "children_ids": [],
   "manual": {
     "depends_on": [],

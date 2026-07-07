@@ -33,7 +33,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | `014-gold-query-battery-repair` |
+| **Spec Folder** | 014-gold-query-battery-repair |
 | **Completed** | 2026-06-07 |
 | **Level** | 2 |
 <!-- /ANCHOR:metadata -->

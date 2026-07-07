@@ -21,9 +21,9 @@
   "specId": "007",
   "folderSlug": "deep-review-remediation",
   "parentChain": [
-    "skilled-agent-orchestration",
+    "system-deep-loop",
     "z_archive",
-    "056-sk-deep-rename"
+    "031-sk-deep-rename"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

@@ -22,9 +22,9 @@
   "specId": "005",
   "folderSlug": "improve-agent-executable-wiring",
   "parentChain": [
-    "skilled-agent-orchestration",
+    "system-deep-loop",
     "z_archive",
-    "060-sk-agent-improver-test-report-alignment"
+    "012-sk-agent-improver-test-report-alignment"
   ],
   "memorySequence": 1,
   "memoryNameHistory": []

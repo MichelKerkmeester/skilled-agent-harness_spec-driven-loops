@@ -41,7 +41,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | `specs/skilled-agent-orchestration/z_archive/056-sk-deep-rename/009-family-schema-migration` |
+| **Spec Folder** | 009-family-schema-migration |
 | **Completed** | 2026-05-05 |
 | **Level** | 2 |
 | **Verdict** | `DONE` |

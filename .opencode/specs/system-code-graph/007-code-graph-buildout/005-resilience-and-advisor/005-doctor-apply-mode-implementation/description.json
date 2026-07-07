@@ -16,7 +16,7 @@
   "createdAt": "2026-05-08T21:30:00Z",
   "branch": "main",
   "parent_track": "system-spec-kit/026-graph-and-context-optimization/005-code-graph",
-  "parent_id": "005-code-graph",
+  "parent_id": "system-code-graph/007-code-graph-buildout/005-resilience-and-advisor",
   "manual": {
     "depends_on": [
       "system-spec-kit/026-graph-and-context-optimization/005-code-graph/005-doctor-diagnostic-command-phase-a",
@@ -47,9 +47,8 @@
   "specId": "005",
   "folderSlug": "doctor-apply-mode-implementation",
   "parentChain": [
-    "system-spec-kit",
-    "026-graph-and-context-optimization",
-    "004-code-graph",
+    "system-code-graph",
+    "007-code-graph-buildout",
     "005-resilience-and-advisor"
   ],
   "memorySequence": 0,

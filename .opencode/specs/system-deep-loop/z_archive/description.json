@@ -13,7 +13,9 @@
   "lastUpdated": "2026-07-06T09:52:21.000Z",
   "specId": "",
   "folderSlug": "z_archive",
-  "parentChain": [],
+  "parentChain": [
+    "system-deep-loop"
+  ],
   "memorySequence": 0,
   "memoryNameHistory": []
 }

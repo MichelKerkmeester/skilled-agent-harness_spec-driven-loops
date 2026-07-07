@@ -23,9 +23,9 @@
   "specId": "005",
   "folderSlug": "add-opt-in-5dim-scorer-and-skill-docs",
   "parentChain": [
-    "skilled-agent-orchestration",
+    "system-deep-loop",
     "z_archive",
-    "121-deep-agent-improvement-benchmark-mode"
+    "022-deep-agent-improvement-benchmark-mode"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

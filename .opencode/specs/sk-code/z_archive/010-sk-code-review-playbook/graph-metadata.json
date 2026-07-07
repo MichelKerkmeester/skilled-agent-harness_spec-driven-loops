@@ -1,0 +1,225 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-code/z_archive/010-sk-code-review-playbook",
+  "spec_folder": "sk-code/z_archive/010-sk-code-review-playbook",
+  "parent_id": "sk-code/z_archive",
+  "parent_id_review_required": true,
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "sk-code-review playbook",
+      "manual testing playbook for review",
+      "093/001 sk-code-review",
+      "code review playbook",
+      "review baseline regression coverage",
+      "sk-code-review playbook plan",
+      "093/001 plan",
+      "code review playbook implementation",
+      "sk-code-review playbook tasks",
+      "093/001 tasks",
+      "sk-code-review playbook checklist",
+      "093/001 checklist"
+    ],
+    "key_topics": [
+      "sk-code-review",
+      "playbook",
+      "manual",
+      "testing",
+      "review",
+      "093",
+      "001",
+      "code",
+      "baseline",
+      "regression",
+      "coverage",
+      "plan"
+    ],
+    "importance_tier": "high",
+    "status": "draft",
+    "key_files": [
+      ".opencode/skills/sk-prompt/manual_testing_playbook/manual_testing_playbook.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      ".opencode/agents/review.md",
+      ".opencode/agents/deep-review.md",
+      "implementation-summary.md",
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "manual_testing_playbook.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-prompt/manual_testing_playbook/manual_testing_playbook.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "review.md",
+        "kind": "doc",
+        "path": ".opencode/agents/review.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-review.md",
+        "kind": "doc",
+        "path": ".opencode/agents/deep-review.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Authored Level",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Author",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Claude Code",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Use",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Doc",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "file",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "sk-code-review is the findings-first review baseline used by `@review`, `@deep-review`, and `/speckit:deep-review`",
+    "created_at": "2026-05-18T07:49:27.225Z",
+    "last_save_at": "2026-07-07T16:45:58.068Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:985d15fb2f7a68ccd0a55b589ad005cbc3e5e3e31b40beb10fcaab4df6b7c933",
+    "source_doc_hashes": {
+      "spec.md": "e288c8db6f415836bd654b52087136d7ed2e102cd9be83210e8ab0fb6ad67a12",
+      "plan.md": "54d1c9a3fccba2e02f7c656025b693ca8bb6cdfc8211327ece6deb6de948b969",
+      "tasks.md": "0079450da0392e7da86afae96ddf925052e6dc2d25d57c7847bc0294899c6ba6",
+      "checklist.md": "53091f03b5b9d5a7ed724d9c9a23ab5843205634be6c2a14bbd6ea260c98ac54",
+      "implementation-summary.md": "544b95644110e3e844ea02c924bbd730a290d2920984ff833ca0e5627dd03061"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

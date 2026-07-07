@@ -2,7 +2,7 @@
   "schema_version": 1,
   "packet_id": "system-deep-loop/z_archive/016-multi-ai-council-persistence",
   "spec_folder": "system-deep-loop/z_archive/016-multi-ai-council-persistence",
-  "parent_id": null,
+  "parent_id": "system-deep-loop/z_archive",
   "children_ids": [],
   "manual": {
     "depends_on": [],

@@ -17,9 +17,9 @@
   "specId": "009",
   "folderSlug": "sk-code-router-benchmarkability",
   "parentChain": [
-    "skilled-agent-orchestration",
+    "system-deep-loop",
     "z_archive",
-    "122-deep-improvement-skill-benchmark-mode"
+    "023-deep-improvement-skill-benchmark-mode"
   ],
   "memorySequence": 1,
   "memoryNameHistory": [

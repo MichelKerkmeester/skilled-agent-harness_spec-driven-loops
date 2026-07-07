@@ -17,7 +17,7 @@
   "createdAt": "2026-05-09T17:50:00Z",
   "branch": "main",
   "parent_track": "skilled-agent-orchestration",
-  "parent_id": null,
+  "parent_id": "system-deep-loop/z_archive",
   "manual": {
     "depends_on": [
       "skilled-agent-orchestration/080-multi-ai-council-output-protocol",

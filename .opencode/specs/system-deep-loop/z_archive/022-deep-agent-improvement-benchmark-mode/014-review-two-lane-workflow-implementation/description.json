@@ -26,9 +26,9 @@
   "specId": "014",
   "folderSlug": "review-two-lane-workflow-implementation",
   "parentChain": [
-    "skilled-agent-orchestration",
+    "system-deep-loop",
     "z_archive",
-    "121-deep-agent-improvement-benchmark-mode"
+    "022-deep-agent-improvement-benchmark-mode"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

@@ -23,9 +23,9 @@
   "specId": "003",
   "folderSlug": "cross-ref-metadata-sync",
   "parentChain": [
-    "skilled-agent-orchestration",
+    "sk-code",
     "z_archive",
-    "055-sk-code-motion-dev-and-playbook"
+    "007-sk-code-motion-dev-and-playbook"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

@@ -2,7 +2,7 @@
   "schema_version": 1,
   "packet_id": "system-deep-loop/z_archive/020-deep-multi-ai-council-skill",
   "spec_folder": "system-deep-loop/z_archive/020-deep-multi-ai-council-skill",
-  "parent_id": null,
+  "parent_id": "system-deep-loop/z_archive",
   "children_ids": [
     "system-deep-loop/z_archive/020-deep-multi-ai-council-skill/001-deep-ai-council-skill-creation",
     "system-deep-loop/z_archive/020-deep-multi-ai-council-skill/002-deep-ai-council-reference-expansion",

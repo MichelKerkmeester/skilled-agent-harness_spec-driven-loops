@@ -2,7 +2,7 @@
   "schema_version": 1,
   "packet_id": "system-deep-loop/z_archive/014-sk-deep-agent-improvement",
   "spec_folder": "system-deep-loop/z_archive/014-sk-deep-agent-improvement",
-  "parent_id": null,
+  "parent_id": "system-deep-loop/z_archive",
   "children_ids": [],
   "manual": {
     "depends_on": [],

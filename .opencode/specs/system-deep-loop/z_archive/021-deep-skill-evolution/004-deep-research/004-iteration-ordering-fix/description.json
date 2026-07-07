@@ -17,9 +17,9 @@
   "specId": "004",
   "folderSlug": "iteration-ordering-fix",
   "parentChain": [
-    "skilled-agent-orchestration",
+    "system-deep-loop",
     "z_archive",
-    "116-deep-skill-evolution",
+    "021-deep-skill-evolution",
     "004-deep-research"
   ],
   "memorySequence": 120,

@@ -2,7 +2,7 @@
   "schema_version": 1,
   "packet_id": "system-deep-loop/z_archive/009-sk-deep-research-review-improvement-1",
   "spec_folder": "system-deep-loop/z_archive/009-sk-deep-research-review-improvement-1",
-  "parent_id": null,
+  "parent_id": "system-deep-loop/z_archive",
   "children_ids": [
     "system-deep-loop/z_archive/009-sk-deep-research-review-improvement-1/001-sk-deep-research-improvements",
     "system-deep-loop/z_archive/009-sk-deep-research-review-improvement-1/002-sk-deep-review-improvements"

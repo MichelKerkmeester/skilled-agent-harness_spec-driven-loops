@@ -23,9 +23,9 @@
   "specId": "006",
   "folderSlug": "complexity-candidate-saturation-gates",
   "parentChain": [
-    "skilled-agent-orchestration",
+    "system-deep-loop",
     "z_archive",
-    "116-deep-skill-evolution",
+    "021-deep-skill-evolution",
     "002-deep-review"
   ],
   "memorySequence": 1,

@@ -2,7 +2,7 @@
   "schema_version": 1,
   "packet_id": "system-deep-loop/z_archive/023-deep-improvement-skill-benchmark-mode",
   "spec_folder": "system-deep-loop/z_archive/023-deep-improvement-skill-benchmark-mode",
-  "parent_id": null,
+  "parent_id": "system-deep-loop/z_archive",
   "children_ids": [
     "system-deep-loop/z_archive/023-deep-improvement-skill-benchmark-mode/001-skill-benchmark-deep-research",
     "system-deep-loop/z_archive/023-deep-improvement-skill-benchmark-mode/002-implementation-deep-research",

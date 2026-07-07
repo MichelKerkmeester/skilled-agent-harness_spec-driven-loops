@@ -1,6 +1,6 @@
 {
   "specFolder": "system-code-graph/007-code-graph-buildout/010-playbook-validation-and-hardening/003-release-readiness-synthesis",
-  "description": "Phases 001 and 002 each produce per-scenario evidence, but the playbook's release-readiness verdict (\u00a75 Review Protocol) requires a single consolidate",
+  "description": "Phases 001 and 002 each produce per-scenario evidence, but the playbook's release-readiness verdict (§5 Review Protocol) requires a single consolidate",
   "keywords": [
     "phases",
     "001",
@@ -21,9 +21,8 @@
   "specId": "003",
   "folderSlug": "release-readiness-synthesis",
   "parentChain": [
-    "system-spec-kit",
-    "026-graph-and-context-optimization",
-    "004-code-graph",
+    "system-code-graph",
+    "007-code-graph-buildout",
     "010-playbook-validation-and-hardening"
   ],
   "memorySequence": 0,

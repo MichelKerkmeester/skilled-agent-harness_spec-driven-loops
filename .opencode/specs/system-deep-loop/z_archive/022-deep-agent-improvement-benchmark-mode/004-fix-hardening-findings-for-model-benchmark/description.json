@@ -24,9 +24,9 @@
   "specId": "004",
   "folderSlug": "fix-hardening-findings-for-model-benchmark",
   "parentChain": [
-    "skilled-agent-orchestration",
+    "system-deep-loop",
     "z_archive",
-    "121-deep-agent-improvement-benchmark-mode"
+    "022-deep-agent-improvement-benchmark-mode"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

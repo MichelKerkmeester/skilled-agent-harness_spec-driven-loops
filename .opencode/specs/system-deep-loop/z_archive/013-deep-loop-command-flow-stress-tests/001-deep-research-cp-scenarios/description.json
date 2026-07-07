@@ -13,9 +13,9 @@
   "specId": "001",
   "folderSlug": "deep-research-cp-scenarios",
   "parentChain": [
-    "skilled-agent-orchestration",
+    "system-deep-loop",
     "z_archive",
-    "062-deep-loop-command-flow-stress-tests"
+    "013-deep-loop-command-flow-stress-tests"
   ],
   "memorySequence": 1,
   "memoryNameHistory": []

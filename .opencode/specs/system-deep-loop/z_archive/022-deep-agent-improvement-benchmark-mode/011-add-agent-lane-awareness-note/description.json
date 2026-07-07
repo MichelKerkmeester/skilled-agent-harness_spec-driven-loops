@@ -20,9 +20,9 @@
   "specId": "011",
   "folderSlug": "add-agent-lane-awareness-note",
   "parentChain": [
-    "skilled-agent-orchestration",
+    "system-deep-loop",
     "z_archive",
-    "121-deep-agent-improvement-benchmark-mode"
+    "022-deep-agent-improvement-benchmark-mode"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

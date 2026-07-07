@@ -33,7 +33,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | `004-db-location-skill-local` |
+| **Spec Folder** | 004-db-location-skill-local |
 | **Completed** | 2026-05-29 |
 | **Level** | 1 |
 <!-- /ANCHOR:metadata -->

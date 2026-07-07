@@ -56,9 +56,9 @@
   "specId": "005",
   "folderSlug": "doc-version-reconciliation",
   "parentChain": [
-    "skilled-agent-orchestration",
+    "system-deep-loop",
     "z_archive",
-    "116-deep-skill-evolution",
+    "021-deep-skill-evolution",
     "005-deep-agent-improvement"
   ],
   "memorySequence": 0,

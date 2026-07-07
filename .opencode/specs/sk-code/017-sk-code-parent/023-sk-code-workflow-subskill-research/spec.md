@@ -7,7 +7,7 @@ trigger_phrases:
   - "code-implement code-quality code-debug code-verify research"
 importance_tier: "high"
 contextType: "research"
-parent: "skilled-agent-orchestration"
+parent: "sk-code/017-sk-code-parent"
 _memory:
   continuity:
     packet_pointer: "sk-code/017-sk-code-parent/023-sk-code-workflow-subskill-research"

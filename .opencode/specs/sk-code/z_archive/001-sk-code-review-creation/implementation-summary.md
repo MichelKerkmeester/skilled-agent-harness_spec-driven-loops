@@ -22,7 +22,7 @@ SPECKIT_TEMPLATE_SOURCE: "impl-summary-core | v2.2"
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 016-sk-code-review-creation |
+| **Spec Folder** | 001-sk-code-review-creation |
 | **Completed** | 2026-02-22 |
 | **Level** | 2 |
 <!-- /ANCHOR:metadata -->

@@ -2,7 +2,7 @@
   "schema_version": 1,
   "packet_id": "sk-code/017-sk-code-parent",
   "spec_folder": "sk-code/017-sk-code-parent",
-  "parent_id": null,
+  "parent_id": "sk-code",
   "children_ids": [
     "sk-code/017-sk-code-parent/001-research-and-context",
     "sk-code/017-sk-code-parent/002-architecture-decision",

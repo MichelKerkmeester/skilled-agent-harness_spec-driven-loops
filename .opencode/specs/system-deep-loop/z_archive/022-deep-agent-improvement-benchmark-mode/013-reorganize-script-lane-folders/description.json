@@ -25,9 +25,9 @@
   "specId": "013",
   "folderSlug": "reorganize-script-lane-folders",
   "parentChain": [
-    "skilled-agent-orchestration",
+    "system-deep-loop",
     "z_archive",
-    "121-deep-agent-improvement-benchmark-mode"
+    "022-deep-agent-improvement-benchmark-mode"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

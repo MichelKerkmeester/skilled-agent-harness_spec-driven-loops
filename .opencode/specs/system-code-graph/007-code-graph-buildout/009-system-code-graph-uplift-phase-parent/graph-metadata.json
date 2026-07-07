@@ -4,12 +4,6 @@
   "spec_folder": "system-code-graph/007-code-graph-buildout/009-system-code-graph-uplift-phase-parent",
   "parent_id": "system-code-graph/007-code-graph-buildout",
   "children_ids": [
-    "system-spec-kit/026-graph-and-context-optimization/004-code-graph/009-system-code-graph-uplift-phase-parent/001-skill-docs-install-guide-and-readmes-polish",
-    "system-spec-kit/026-graph-and-context-optimization/004-code-graph/009-system-code-graph-uplift-phase-parent/002-readme-problem-first-rewrite",
-    "system-spec-kit/026-graph-and-context-optimization/004-code-graph/009-system-code-graph-uplift-phase-parent/003-sk-doc-type-validation-alignment",
-    "system-speckit/026-graph-and-context-optimization/004-code-graph/009-system-code-graph-uplift-phase-parent/001-skill-docs-install-guide-and-readmes-polish",
-    "system-speckit/026-graph-and-context-optimization/004-code-graph/009-system-code-graph-uplift-phase-parent/002-readme-problem-first-rewrite",
-    "system-speckit/026-graph-and-context-optimization/004-code-graph/009-system-code-graph-uplift-phase-parent/003-sk-doc-type-validation-alignment",
     "system-code-graph/007-code-graph-buildout/009-system-code-graph-uplift-phase-parent/001-skill-docs-install-guide-and-readmes-polish",
     "system-code-graph/007-code-graph-buildout/009-system-code-graph-uplift-phase-parent/002-readme-problem-first-rewrite",
     "system-code-graph/007-code-graph-buildout/009-system-code-graph-uplift-phase-parent/003-sk-doc-type-validation-alignment"

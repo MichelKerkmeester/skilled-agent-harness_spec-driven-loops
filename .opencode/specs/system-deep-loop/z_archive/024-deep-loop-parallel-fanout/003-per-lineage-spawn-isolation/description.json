@@ -16,9 +16,9 @@
   "specId": "003",
   "folderSlug": "per-lineage-spawn-isolation",
   "parentChain": [
-    "skilled-agent-orchestration",
+    "system-deep-loop",
     "z_archive",
-    "123-deep-loop-parallel-fanout"
+    "024-deep-loop-parallel-fanout"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

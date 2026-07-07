@@ -20,9 +20,9 @@
   "specId": "001",
   "folderSlug": "scenario-author",
   "parentChain": [
-    "skilled-agent-orchestration",
+    "sk-doc",
     "z_archive",
-    "071-sk-doc-router-stress-test"
+    "008-sk-doc-router-stress-test"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

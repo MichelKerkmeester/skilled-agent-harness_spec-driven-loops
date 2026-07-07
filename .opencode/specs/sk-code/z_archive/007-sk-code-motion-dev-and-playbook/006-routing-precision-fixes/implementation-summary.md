@@ -45,7 +45,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | `specs/sk-code/z_archive/007-sk-code-motion-dev-and-playbook/006-routing-precision-fixes` |
+| **Spec Folder** | 006-routing-precision-fixes |
 | **Completed** | Not complete; verification failed |
 | **Level** | 2 |
 | **Phase Status** | FAILED |

@@ -19,9 +19,9 @@
   "specId": "001",
   "folderSlug": "sk-doc-reference-relocation",
   "parentChain": [
-    "skilled-agent-orchestration",
+    "sk-doc",
     "z_archive",
-    "082-sk-doc-skill-readme-and-structure"
+    "011-sk-doc-skill-readme-and-structure"
   ],
   "memorySequence": 1,
   "memoryNameHistory": [

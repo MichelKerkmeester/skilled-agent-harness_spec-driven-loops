@@ -33,7 +33,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | `012-empty-graph-first-time-auto-scan` |
+| **Spec Folder** | 012-empty-graph-first-time-auto-scan |
 | **Completed** | 2026-05-29 |
 | **Level** | 2 |
 <!-- /ANCHOR:metadata -->

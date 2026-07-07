@@ -7,7 +7,7 @@ trigger_phrases:
   - "playbook gold code-surface translation"
 importance_tier: "high"
 contextType: "general"
-parent: "skilled-agent-orchestration"
+parent: "sk-code/017-sk-code-parent"
 _memory:
   continuity:
     packet_pointer: "sk-code/017-sk-code-parent/021-playbook-gold-and-lane-c-rebaseline"

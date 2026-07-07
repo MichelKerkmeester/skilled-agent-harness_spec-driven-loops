@@ -1,6 +1,6 @@
 {
   "specFolder": "system-code-graph/007-code-graph-buildout/009-system-code-graph-uplift-phase-parent/003-sk-doc-type-validation-alignment",
-  "description": "Phase 3. Research synthesized at parent 019/research/research.md \u00a712. Exhaustive validate_document.py --type <type> exit-0 across every authored doc. Per D3, validate manually for ALL files including per-feature files under feature_catalog/01--*/*.md and per-scenario files under manual_testing_playbook/01--*/*.md (no sampling). Research \u00a75 Q7/Q8 confirmed validator does not auto-recurse; manual recursion required for both catalog and playbook subdirectories. Primary docs already type-compliant per research iter-019; this phase is verification + per-feature/per-scenario recursion.",
+  "description": "Phase 3. Research synthesized at parent 019/research/research.md §12. Exhaustive validate_document.py --type <type> exit-0 across every authored doc. Per D3, validate manually for ALL files including per-feature files under feature_catalog/01--*/*.md and per-scenario files under manual_testing_playbook/01--*/*.md (no sampling). Research §5 Q7/Q8 confirmed validator does not auto-recurse; manual recursion required for both catalog and playbook subdirectories. Primary docs already type-compliant per research iter-019; this phase is verification + per-feature/per-scenario recursion.",
   "keywords": [
     "phase-stub",
     "sk-doc-1to1-alignment",
@@ -11,9 +11,8 @@
   "specId": "003",
   "folderSlug": "sk-doc-1to1-alignment",
   "parentChain": [
-    "system-spec-kit",
-    "026-graph-and-context-optimization",
-    "004-code-graph",
+    "system-code-graph",
+    "007-code-graph-buildout",
     "009-system-code-graph-uplift-phase-parent"
   ],
   "memorySequence": 0,

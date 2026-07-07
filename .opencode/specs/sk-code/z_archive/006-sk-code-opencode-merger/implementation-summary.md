@@ -46,7 +46,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 066-sk-code-opencode-merger |
+| **Spec Folder** | 006-sk-code-opencode-merger |
 | **Completed** | 2026-05-03 |
 | **Level** | 3 |
 <!-- /ANCHOR:metadata -->

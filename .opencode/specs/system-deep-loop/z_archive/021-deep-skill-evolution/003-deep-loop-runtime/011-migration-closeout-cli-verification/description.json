@@ -22,9 +22,9 @@
   "specId": "011",
   "folderSlug": "migration-closeout-cli-verification",
   "parentChain": [
-    "skilled-agent-orchestration",
+    "system-deep-loop",
     "z_archive",
-    "116-deep-skill-evolution",
+    "021-deep-skill-evolution",
     "003-deep-loop-runtime"
   ],
   "memorySequence": 1,

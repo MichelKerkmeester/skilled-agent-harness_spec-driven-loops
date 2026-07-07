@@ -15,9 +15,9 @@
   "specId": "004",
   "folderSlug": "deep-review-remediation",
   "parentChain": [
-    "skilled-agent-orchestration",
+    "sk-code",
     "z_archive",
-    "055-sk-code-motion-dev-and-playbook"
+    "007-sk-code-motion-dev-and-playbook"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

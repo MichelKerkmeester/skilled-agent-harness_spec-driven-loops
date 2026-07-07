@@ -45,7 +45,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | `sk-code/z_archive/007-sk-code-motion-dev-and-playbook/005-playbook-cross-cli-execution` |
+| **Spec Folder** | 005-playbook-cross-cli-execution |
 | **Completed** | Not complete - smoke test blocked by sandbox network |
 | **Level** | 2 |
 | **Status** | Harness authored; final completion blocked |

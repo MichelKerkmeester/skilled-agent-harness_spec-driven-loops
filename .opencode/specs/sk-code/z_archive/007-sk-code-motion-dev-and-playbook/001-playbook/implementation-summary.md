@@ -39,7 +39,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | `specs/sk-code/z_archive/007-sk-code-motion-dev-and-playbook/001-playbook` |
+| **Spec Folder** | 001-playbook |
 | **Completed** | 2026-05-05 |
 | **Level** | 2 |
 | **Actual Effort** | 3 validation attempts to green strict validation |

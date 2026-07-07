@@ -2,7 +2,7 @@
   "schema_version": 1,
   "packet_id": "system-deep-loop/z_archive/025-deep-context-gathering",
   "spec_folder": "system-deep-loop/z_archive/025-deep-context-gathering",
-  "parent_id": null,
+  "parent_id": "system-deep-loop/z_archive",
   "children_ids": [
     "system-deep-loop/z_archive/025-deep-context-gathering/001-context-loop-foundation",
     "system-deep-loop/z_archive/025-deep-context-gathering/002-runtime-robustness-parity",

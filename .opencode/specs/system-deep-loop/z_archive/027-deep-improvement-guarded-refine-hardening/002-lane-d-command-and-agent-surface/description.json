@@ -14,9 +14,9 @@
   "specId": "002",
   "folderSlug": "lane-d-command-and-agent-surface",
   "parentChain": [
-    "skilled-agent-orchestration",
+    "system-deep-loop",
     "z_archive",
-    "139-deep-improvement-guarded-refine-hardening"
+    "027-deep-improvement-guarded-refine-hardening"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

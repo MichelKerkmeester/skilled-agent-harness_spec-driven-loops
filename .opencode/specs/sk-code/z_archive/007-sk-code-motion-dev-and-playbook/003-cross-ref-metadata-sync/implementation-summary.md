@@ -46,7 +46,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | `specs/sk-code/z_archive/007-sk-code-motion-dev-and-playbook/003-cross-ref-metadata-sync` |
+| **Spec Folder** | 003-cross-ref-metadata-sync |
 | **Completed** | 2026-05-05 |
 | **Level** | 2 |
 | **Actual Effort** | Packet execution in current session |

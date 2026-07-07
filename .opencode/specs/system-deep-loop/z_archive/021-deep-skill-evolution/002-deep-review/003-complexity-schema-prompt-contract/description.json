@@ -30,9 +30,9 @@
   "specId": "003",
   "folderSlug": "complexity-schema-prompt-contract",
   "parentChain": [
-    "skilled-agent-orchestration",
+    "system-deep-loop",
     "z_archive",
-    "116-deep-skill-evolution",
+    "021-deep-skill-evolution",
     "002-deep-review"
   ],
   "memorySequence": 1,

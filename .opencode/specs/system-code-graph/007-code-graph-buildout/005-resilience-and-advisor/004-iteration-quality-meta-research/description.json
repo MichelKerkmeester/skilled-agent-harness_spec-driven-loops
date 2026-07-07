@@ -1,5 +1,5 @@
 {
-  "title": "Fix-Iteration Quality Meta-Research \u2014 root causes of multi-round fix trajectories",
+  "title": "Fix-Iteration Quality Meta-Research — root causes of multi-round fix trajectories",
   "trigger_phrases": [
     "fix iteration quality",
     "class of bug vs finding",
@@ -41,9 +41,8 @@
   "specId": "004",
   "folderSlug": "iteration-quality-meta-research",
   "parentChain": [
-    "system-spec-kit",
-    "026-graph-and-context-optimization",
-    "004-code-graph",
+    "system-code-graph",
+    "007-code-graph-buildout",
     "005-resilience-and-advisor"
   ],
   "memorySequence": 0,

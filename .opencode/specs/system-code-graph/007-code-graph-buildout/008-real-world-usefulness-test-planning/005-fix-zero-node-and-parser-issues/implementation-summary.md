@@ -44,7 +44,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | `005-fix-zero-node-and-parser-issues` |
+| **Spec Folder** | 005-fix-zero-node-and-parser-issues |
 | **Completed** | 2026-05-06 |
 | **Level** | 2 |
 | **Status** | Complete |

@@ -2,7 +2,7 @@
   "schema_version": 1,
   "packet_id": "system-deep-loop/030-deep-loop-improved",
   "spec_folder": "system-deep-loop/030-deep-loop-improved",
-  "parent_id": null,
+  "parent_id": "system-deep-loop",
   "children_ids": [
     "system-deep-loop/030-deep-loop-improved/001-reference-research",
     "system-deep-loop/030-deep-loop-improved/002-deep-loop-runtime",

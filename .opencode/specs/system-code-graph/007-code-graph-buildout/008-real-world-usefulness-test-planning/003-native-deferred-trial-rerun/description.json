@@ -24,9 +24,8 @@
   "specId": "003",
   "folderSlug": "native-deferred-trial-rerun",
   "parentChain": [
-    "system-spec-kit",
-    "026-graph-and-context-optimization",
-    "004-code-graph",
+    "system-code-graph",
+    "007-code-graph-buildout",
     "008-real-world-usefulness-test-planning"
   ],
   "memorySequence": 0,

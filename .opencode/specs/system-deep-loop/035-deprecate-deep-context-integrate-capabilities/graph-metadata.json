@@ -2,7 +2,7 @@
   "schema_version": 1,
   "packet_id": "system-deep-loop/035-deprecate-deep-context-integrate-capabilities",
   "spec_folder": "system-deep-loop/035-deprecate-deep-context-integrate-capabilities",
-  "parent_id": null,
+  "parent_id": "system-deep-loop",
   "children_ids": [
     "system-deep-loop/035-deprecate-deep-context-integrate-capabilities/001-research-baseline-and-inventory",
     "system-deep-loop/035-deprecate-deep-context-integrate-capabilities/002-public-redirect-and-replacement-contracts",

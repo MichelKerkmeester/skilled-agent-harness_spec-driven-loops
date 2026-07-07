@@ -20,9 +20,9 @@
   "specId": "001",
   "folderSlug": "playbook",
   "parentChain": [
-    "skilled-agent-orchestration",
+    "sk-code",
     "z_archive",
-    "055-sk-code-motion-dev-and-playbook"
+    "007-sk-code-motion-dev-and-playbook"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

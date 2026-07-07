@@ -18,9 +18,9 @@
   "specId": "006",
   "folderSlug": "command-surface-docs-parity",
   "parentChain": [
-    "skilled-agent-orchestration",
+    "system-deep-loop",
     "z_archive",
-    "123-deep-loop-parallel-fanout"
+    "024-deep-loop-parallel-fanout"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

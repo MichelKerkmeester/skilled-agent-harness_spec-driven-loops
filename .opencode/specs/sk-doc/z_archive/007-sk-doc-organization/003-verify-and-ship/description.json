@@ -18,9 +18,9 @@
   "specId": "003",
   "folderSlug": "verify-and-ship",
   "parentChain": [
-    "skilled-agent-orchestration",
+    "sk-doc",
     "z_archive",
-    "054-sk-doc-organization"
+    "007-sk-doc-organization"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

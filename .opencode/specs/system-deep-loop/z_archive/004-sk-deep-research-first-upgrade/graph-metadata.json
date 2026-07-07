@@ -2,7 +2,7 @@
   "schema_version": 1,
   "packet_id": "system-deep-loop/z_archive/004-sk-deep-research-first-upgrade",
   "spec_folder": "system-deep-loop/z_archive/004-sk-deep-research-first-upgrade",
-  "parent_id": null,
+  "parent_id": "system-deep-loop/z_archive",
   "children_ids": [
     "system-deep-loop/z_archive/004-sk-deep-research-first-upgrade/027-cmd-create-yaml-refinement"
   ],

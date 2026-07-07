@@ -39,7 +39,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 007-sk-code-rituals |
+| **Spec Folder** | 016-sk-code-rituals |
 | **Status** | Complete |
 | **Completed** | 2026-06-15 |
 | **Level** | 2 |

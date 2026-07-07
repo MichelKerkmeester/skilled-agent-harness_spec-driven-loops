@@ -22,9 +22,8 @@
   "specId": "002",
   "folderSlug": "readme-problem-first-rewrite",
   "parentChain": [
-    "system-spec-kit",
-    "026-graph-and-context-optimization",
-    "004-code-graph",
+    "system-code-graph",
+    "007-code-graph-buildout",
     "009-system-code-graph-uplift-phase-parent"
   ],
   "memorySequence": 0,

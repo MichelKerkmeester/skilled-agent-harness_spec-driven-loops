@@ -24,9 +24,9 @@
   "specId": "003",
   "folderSlug": "deep-loop-runtime-evergreen-citation-sweep",
   "parentChain": [
-    "skilled-agent-orchestration",
+    "system-deep-loop",
     "z_archive",
-    "116-deep-skill-evolution",
+    "021-deep-skill-evolution",
     "000-release-cleanup"
   ],
   "memorySequence": 0,

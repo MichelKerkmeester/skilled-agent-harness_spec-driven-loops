@@ -1,0 +1,218 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-code/z_archive/008-sk-code-authoring",
+  "spec_folder": "sk-code/z_archive/008-sk-code-authoring",
+  "parent_id": "sk-code/z_archive",
+  "parent_id_review_required": true,
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "078/001",
+      "sk-code-authoring",
+      "OpenCode authoring recipe",
+      "skill_authoring checklist",
+      "spec_folder_write recipe",
+      "078/001 plan",
+      "078/001 tasks",
+      "078/001 summary",
+      "sk-code v3.2.0.0"
+    ],
+    "key_topics": [
+      "078",
+      "001",
+      "sk-code-authoring",
+      "opencode",
+      "authoring",
+      "recipe",
+      "checklist",
+      "plan",
+      "tasks",
+      "summary",
+      "sk-code",
+      "skill"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      ".opencode/skills/sk-code/SKILL.md",
+      "changelog/v3.2.0.0.md",
+      ".opencode/skills/sk-code/description.json",
+      ".opencode/skills/sk-code/changelog/v3.2.0.0.md",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-code/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "v3.2.0.0.md",
+        "kind": "doc",
+        "path": "changelog/v3.2.0.0.md",
+        "source": "derived"
+      },
+      {
+        "name": "description.json",
+        "kind": "config",
+        "path": ".opencode/skills/sk-code/description.json",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Authoring Recipe",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Add",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Smart Routing",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "cli-codex",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "compact-format",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "create.sh",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "stdin",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "sk-code's SKILL.md declares OPENCODE scope covering skills, agents, commands, MCP servers, hooks, scripts, tests, and config (lines 20-23), but the on-disk `assets/opencode/checklists/` directory contains only language-level checklists (config, javascript, python, shell, typescript, universal)",
+    "created_at": "2026-05-05T17:36:52Z",
+    "last_save_at": "2026-07-07T16:45:58.066Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:f8ff9ac92b8aa39da32c621686a52a033eef6cb73355c666a2c8a73ef363588d",
+    "source_doc_hashes": {
+      "spec.md": "39059af84fa0387c44b9d356f800b66616cd147c6ef9b6a576aefaebb0ba27f0",
+      "plan.md": "5910663a161f7fcff0a65f3152abb5a262cecd4f6ceec2b62485ef21e43202f9",
+      "tasks.md": "1ebce427a0751e37e295987638fbce15d756db09500ef8de22a82f623348242e",
+      "implementation-summary.md": "765afb5d0854e58119120b190ab5ca68612e6e76082facaf65a9fd06973f24a1"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

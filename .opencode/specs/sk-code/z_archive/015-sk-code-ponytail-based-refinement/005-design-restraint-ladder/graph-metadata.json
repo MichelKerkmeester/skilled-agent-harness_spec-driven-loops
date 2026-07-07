@@ -1,0 +1,201 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-code/z_archive/015-sk-code-ponytail-based-refinement/005-design-restraint-ladder",
+  "spec_folder": "sk-code/z_archive/015-sk-code-ponytail-based-refinement/005-design-restraint-ladder",
+  "parent_id": "sk-code/z_archive/015-sk-code-ponytail-based-refinement",
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "phase 5 design restraint ladder",
+      "decision ladder sk-code",
+      "do you really need this gate",
+      "phase 5 plan design restraint ladder",
+      "phase 5 tasks design restraint ladder",
+      "phase 5 summary design restraint ladder"
+    ],
+    "key_topics": [
+      "phase",
+      "design",
+      "restraint",
+      "ladder",
+      "decision",
+      "sk-code",
+      "really",
+      "need",
+      "gate",
+      "plan",
+      "tasks",
+      "summary"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      ".opencode/skills/sk-code/SKILL.md",
+      "spec.md",
+      "plan.md",
+      "implementation-summary.md",
+      "tasks.md"
+    ],
+    "entities": [
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-code/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Design Restraint Ladder",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Iron Law",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "One Phase Overview",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Change Type",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Overview",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Smart Routing",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "router-sync",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "OPENCODE",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built The",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Requirement",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "How It Was Delivered Implemented",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Encode ponytail's 6-rung 'do you really need this?' ladder as a ~15-line subsection in sk-code's always-loaded universal quality doc, attached at the Phase 0->1 transition and gated to implementation intent — run AFTER surface+intent routing. The only recommendation touching the actual workflow; its clean integration must be proven before merge.",
+    "created_at": "2026-06-13T11:40:00Z",
+    "last_save_at": "2026-07-07T16:45:58.059Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:2415e9339cb0ff9f5f700ec158bff48e531062314279d4d0000d1c1dbb4d0f39",
+    "source_doc_hashes": {
+      "spec.md": "8637d26317538bdd32d9d53faf16e7453ba343462f42b0519ee528c43afbf37c",
+      "plan.md": "66747ca1df29b4c4550fc612074e540a5a25d244046055c3c8b48da1c0d84f3b",
+      "tasks.md": "3649d693910ec36921ee553a60754e4080d8a9c342b9dfe59c37e3b0b4b8fff8",
+      "implementation-summary.md": "c274928038e609f45a7fa9c4cf0df5797b4baad702f239a167d97503d975f125"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

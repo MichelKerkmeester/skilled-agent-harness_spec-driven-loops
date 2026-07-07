@@ -15,9 +15,9 @@
   "specId": "001",
   "folderSlug": "schema-config-plumbing",
   "parentChain": [
-    "skilled-agent-orchestration",
+    "system-deep-loop",
     "z_archive",
-    "123-deep-loop-parallel-fanout"
+    "024-deep-loop-parallel-fanout"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

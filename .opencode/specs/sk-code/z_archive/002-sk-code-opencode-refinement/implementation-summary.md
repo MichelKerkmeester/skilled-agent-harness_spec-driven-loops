@@ -22,7 +22,7 @@ SPECKIT_TEMPLATE_SOURCE: "impl-summary-core + level3plus-govern adaptation | v2.
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 018-sk-code-opencode-refinement |
+| **Spec Folder** | 002-sk-code-opencode-refinement |
 | **Completed** | 2026-02-22 |
 | **Level** | 3+ |
 <!-- /ANCHOR:metadata -->

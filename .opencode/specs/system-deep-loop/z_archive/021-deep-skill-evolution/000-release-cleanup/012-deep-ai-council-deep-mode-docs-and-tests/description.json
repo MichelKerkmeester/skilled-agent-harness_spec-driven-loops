@@ -20,9 +20,9 @@
   "specId": "012",
   "folderSlug": "deep-ai-council-deep-mode-docs-and-tests",
   "parentChain": [
-    "skilled-agent-orchestration",
+    "system-deep-loop",
     "z_archive",
-    "116-deep-skill-evolution",
+    "021-deep-skill-evolution",
     "000-release-cleanup"
   ],
   "memorySequence": 11,

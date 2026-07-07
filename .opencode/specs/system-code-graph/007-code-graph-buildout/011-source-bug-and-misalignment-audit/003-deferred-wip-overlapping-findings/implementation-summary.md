@@ -33,7 +33,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | `003-deferred-wip-overlapping-findings` |
+| **Spec Folder** | 003-deferred-wip-overlapping-findings |
 | **Completed** | 2026-05-29 |
 | **Level** | 1 |
 <!-- /ANCHOR:metadata -->

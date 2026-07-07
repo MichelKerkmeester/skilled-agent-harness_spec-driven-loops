@@ -1,7 +1,7 @@
 {
   "level": "2",
   "specFolder": "system-code-graph/007-code-graph-buildout/002-deprecate-coco-index/014-remediate-codegraph-naming",
-  "description": "The 014 deprecation renamed code-graph's handlers and tools to their own clean identifiers \u2014 handlers are `status.ts` / `scan.ts` / `verify.ts` (+ `qu",
+  "description": "The 014 deprecation renamed code-graph's handlers and tools to their own clean identifiers — handlers are `status.ts` / `scan.ts` / `verify.ts` (+ `qu",
   "keywords": [
     "014",
     "deprecation",
@@ -20,9 +20,8 @@
   "specId": "014",
   "folderSlug": "remediate-codegraph-naming",
   "parentChain": [
-    "system-spec-kit",
-    "026-graph-and-context-optimization",
-    "004-code-graph",
+    "system-code-graph",
+    "007-code-graph-buildout",
     "002-deprecate-coco-index"
   ],
   "memorySequence": 0,

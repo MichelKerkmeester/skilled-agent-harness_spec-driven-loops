@@ -22,9 +22,9 @@
   "specId": "001",
   "folderSlug": "sk-deep-research-improvements",
   "parentChain": [
-    "skilled-agent-orchestration",
+    "system-deep-loop",
     "z_archive",
-    "040-sk-deep-research-review-improvement-1"
+    "009-sk-deep-research-review-improvement-1"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

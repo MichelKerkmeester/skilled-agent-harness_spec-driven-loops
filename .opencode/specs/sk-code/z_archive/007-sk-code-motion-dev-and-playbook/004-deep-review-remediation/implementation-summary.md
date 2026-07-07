@@ -44,7 +44,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | `specs/sk-code/z_archive/007-sk-code-motion-dev-and-playbook/004-deep-review-remediation` |
+| **Spec Folder** | 004-deep-review-remediation |
 | **Completed** | 2026-05-05 |
 | **Level** | 2 |
 | **Actual Effort** | One focused remediation pass plus verification |

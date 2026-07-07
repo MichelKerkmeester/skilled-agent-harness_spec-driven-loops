@@ -17,9 +17,9 @@
   "specId": "013",
   "folderSlug": "deep-agent-improvement-release-cleanup",
   "parentChain": [
-    "skilled-agent-orchestration",
+    "system-deep-loop",
     "z_archive",
-    "116-deep-skill-evolution",
+    "021-deep-skill-evolution",
     "000-release-cleanup"
   ],
   "memorySequence": 0,

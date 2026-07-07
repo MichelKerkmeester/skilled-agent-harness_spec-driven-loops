@@ -2,7 +2,7 @@
   "schema_version": 1,
   "packet_id": "system-deep-loop/z_archive/022-deep-agent-improvement-benchmark-mode",
   "spec_folder": "system-deep-loop/z_archive/022-deep-agent-improvement-benchmark-mode",
-  "parent_id": null,
+  "parent_id": "system-deep-loop/z_archive",
   "children_ids": [
     "system-deep-loop/z_archive/022-deep-agent-improvement-benchmark-mode/001-design-model-benchmark-mode-selector",
     "system-deep-loop/z_archive/022-deep-agent-improvement-benchmark-mode/002-research-model-benchmark-implementation",

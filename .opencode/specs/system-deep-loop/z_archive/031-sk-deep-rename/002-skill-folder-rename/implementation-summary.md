@@ -48,7 +48,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | `skilled-agent-orchestration/z_archive/056-sk-deep-rename/002-skill-folder-rename` |
+| **Spec Folder** | 002-skill-folder-rename |
 | **Completed** | 2026-05-05 |
 | **Level** | 2 |
 <!-- /ANCHOR:metadata -->

@@ -1,0 +1,236 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-code/z_archive/015-sk-code-ponytail-based-refinement",
+  "spec_folder": "sk-code/z_archive/015-sk-code-ponytail-based-refinement",
+  "parent_id": "sk-code/z_archive",
+  "parent_id_review_required": true,
+  "children_ids": [
+    "sk-code/z_archive/015-sk-code-ponytail-based-refinement/001-skreview-checklist-rows",
+    "sk-code/z_archive/015-sk-code-ponytail-based-refinement/002-ceiling-comment-convention",
+    "sk-code/z_archive/015-sk-code-ponytail-based-refinement/003-wording-invariant-guards",
+    "sk-code/z_archive/015-sk-code-ponytail-based-refinement/004-mirror-stackfolder-drift-guards",
+    "sk-code/z_archive/015-sk-code-ponytail-based-refinement/005-design-restraint-ladder",
+    "sk-code/z_archive/015-sk-code-ponytail-based-refinement/006-optional-addons",
+    "sk-code/z_archive/015-sk-code-ponytail-based-refinement/007-sk-code-asset-router-alignment",
+    "sk-code/z_archive/015-sk-code-ponytail-based-refinement/008-sk-code-review-checklist-reclassification"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "ponytail refinement",
+      "ponytail sk-code",
+      "lazy decision ladder",
+      "ponytail hooks",
+      "sk-code improvement research",
+      "ponytail based refinement",
+      "ponytail refinement plan",
+      "ponytail research plan",
+      "ponytail refinement tasks",
+      "ponytail refinement checklist",
+      "ponytail refinement summary",
+      "ponytail research summary"
+    ],
+    "key_topics": [
+      "ponytail",
+      "refinement",
+      "sk-code",
+      "lazy",
+      "decision",
+      "ladder",
+      "hooks",
+      "improvement",
+      "research",
+      "based",
+      "plan",
+      "tasks"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "research/research.md",
+      "research/deep-research-state.jsonl",
+      "spec.md",
+      "research/deep-research-strategy.md",
+      "plan.md",
+      "checklist.md",
+      "implementation-summary.md",
+      "research/findings-registry.json",
+      ".github/workflows/rule-canary-sync.yml",
+      "tasks.md"
+    ],
+    "entities": [
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-state.jsonl",
+        "kind": "file",
+        "path": "research/deep-research-state.jsonl",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-strategy.md",
+        "kind": "doc",
+        "path": "research/deep-research-strategy.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "findings-registry.json",
+        "kind": "config",
+        "path": "research/findings-registry.json",
+        "source": "derived"
+      },
+      {
+        "name": "rule-canary-sync.yml",
+        "kind": "config",
+        "path": ".github/workflows/rule-canary-sync.yml",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Research Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Based Refinement",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Run",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Research Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Iron Law",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "Wave A",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "cli-opencode",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Based Refinement Research",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Packet 146 bundles the external ponytail project (`external/ponytail-main/`) and asks how its logic, hooks, etc",
+    "created_at": "2026-06-13T11:19:39.612Z",
+    "last_save_at": "2026-07-07T16:45:58.050Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md",
+      "research/research.md"
+    ],
+    "source_fingerprint": "sha256:c953ef2f6676e01d70eb5aed98815f3069225f3693776c9612713d07502c50a0",
+    "source_doc_hashes": {
+      "spec.md": "8706c568b2be8e191cbf934b8ab4ab76e5a54d293335339bb943088480d08933",
+      "plan.md": "7dc321e66ca93be79abb555af5ac641daec45370c02238b59fdb9adf7e67d9dc",
+      "tasks.md": "86e4bb72fd9501ae042df3ecb97394d6227da309935e5ece2804f6e3ddad0206",
+      "checklist.md": "1c15ff8bc738ffebd9badf7069afaa1e56c125ae9bc0461fa8e1fb02e444ee45",
+      "implementation-summary.md": "1859a87cc190ab61f7bb270c53c3a5e14a4ad6b169e1f29d0bf5cd42b8686605",
+      "research/research.md": "b048accfaa2d73e03f7f96c064c05d239893d3f0e00173557289bafa858cb104"
+    },
+    "last_active_child_id": "sk-code/z_archive/015-sk-code-ponytail-based-refinement/008-sk-code-review-checklist-reclassification",
+    "last_active_at": "2026-06-13T11:40:00Z"
+  }
+}

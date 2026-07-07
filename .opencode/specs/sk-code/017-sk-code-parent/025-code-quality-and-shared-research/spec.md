@@ -7,7 +7,7 @@ trigger_phrases:
   - "sk-code shared assets references research"
 importance_tier: "high"
 contextType: "research"
-parent: "skilled-agent-orchestration"
+parent: "sk-code/017-sk-code-parent"
 _memory:
   continuity:
     packet_pointer: "sk-code/017-sk-code-parent/025-code-quality-and-shared-research"

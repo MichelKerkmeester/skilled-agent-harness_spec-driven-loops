@@ -26,9 +26,9 @@
   "specId": "012",
   "folderSlug": "iterative-command-and-skill-wiring",
   "parentChain": [
-    "skilled-agent-orchestration",
+    "system-deep-loop",
     "z_archive",
-    "116-deep-skill-evolution",
+    "021-deep-skill-evolution",
     "001-deep-ai-council"
   ],
   "memorySequence": 0,

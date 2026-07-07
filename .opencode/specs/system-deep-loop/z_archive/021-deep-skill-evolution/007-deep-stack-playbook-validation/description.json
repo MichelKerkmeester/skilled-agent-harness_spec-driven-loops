@@ -15,9 +15,9 @@
   "specId": "007",
   "folderSlug": "deep-stack-playbook-validation",
   "parentChain": [
-    "skilled-agent-orchestration",
+    "system-deep-loop",
     "z_archive",
-    "116-deep-skill-evolution"
+    "021-deep-skill-evolution"
   ],
   "memorySequence": 1,
   "memoryNameHistory": [

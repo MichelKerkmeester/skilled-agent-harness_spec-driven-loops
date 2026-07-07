@@ -24,9 +24,9 @@
   "specId": "002",
   "folderSlug": "update-and-mirror",
   "parentChain": [
-    "skilled-agent-orchestration",
+    "sk-doc",
     "z_archive",
-    "068-sk-doc-organization"
+    "007-sk-doc-organization"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

@@ -39,7 +39,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | `specs/skilled-agent-orchestration/z_archive/073-improve-agent-to-deep-agent-improvement-rename` |
+| **Spec Folder** | 032-improve-agent-to-deep-agent-improvement-rename |
 | **Completed** | [POPULATE-T-023: YYYY-MM-DD] |
 | **Level** | 2 |
 | **Implementation executor** | Claude direct (shell + sed + Edit + git mv) |

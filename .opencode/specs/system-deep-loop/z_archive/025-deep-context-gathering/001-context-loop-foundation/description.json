@@ -11,7 +11,7 @@
   "schema_version": 1,
   "packet_id": "skilled-agent-orchestration/134-deep-context-gathering/001-context-loop-foundation",
   "status": "complete",
-  "parent_id": "skilled-agent-orchestration/134-deep-context-gathering",
+  "parent_id": "system-deep-loop/z_archive/025-deep-context-gathering",
   "importance_tier": "high",
   "created_at": "2026-06-06T14:09:09Z",
   "is_phase_parent": false,
@@ -31,9 +31,9 @@
   "specId": "001",
   "folderSlug": "context-loop-foundation",
   "parentChain": [
-    "skilled-agent-orchestration",
+    "system-deep-loop",
     "z_archive",
-    "134-deep-context-gathering"
+    "025-deep-context-gathering"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

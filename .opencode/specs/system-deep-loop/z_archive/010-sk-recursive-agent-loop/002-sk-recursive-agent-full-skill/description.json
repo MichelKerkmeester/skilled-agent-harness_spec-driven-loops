@@ -13,9 +13,9 @@
   "specId": "002",
   "folderSlug": "sk-recursive-agent-full-skill",
   "parentChain": [
-    "skilled-agent-orchestration",
+    "system-deep-loop",
     "z_archive",
-    "041-sk-recursive-agent-loop"
+    "010-sk-recursive-agent-loop"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

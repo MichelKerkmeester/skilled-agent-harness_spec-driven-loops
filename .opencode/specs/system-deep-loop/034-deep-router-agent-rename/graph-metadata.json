@@ -2,7 +2,7 @@
   "schema_version": 1,
   "packet_id": "system-deep-loop/034-deep-router-agent-rename",
   "spec_folder": "system-deep-loop/034-deep-router-agent-rename",
-  "parent_id": null,
+  "parent_id": "system-deep-loop",
   "children_ids": [],
   "manual": {
     "depends_on": [],

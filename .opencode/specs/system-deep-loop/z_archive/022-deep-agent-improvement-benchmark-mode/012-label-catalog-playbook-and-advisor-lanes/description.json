@@ -23,9 +23,9 @@
   "specId": "012",
   "folderSlug": "label-catalog-playbook-and-advisor-lanes",
   "parentChain": [
-    "skilled-agent-orchestration",
+    "system-deep-loop",
     "z_archive",
-    "121-deep-agent-improvement-benchmark-mode"
+    "022-deep-agent-improvement-benchmark-mode"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

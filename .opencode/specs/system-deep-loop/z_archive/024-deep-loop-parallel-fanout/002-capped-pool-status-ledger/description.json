@@ -17,9 +17,9 @@
   "specId": "002",
   "folderSlug": "capped-pool-status-ledger",
   "parentChain": [
-    "skilled-agent-orchestration",
+    "system-deep-loop",
     "z_archive",
-    "123-deep-loop-parallel-fanout"
+    "024-deep-loop-parallel-fanout"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

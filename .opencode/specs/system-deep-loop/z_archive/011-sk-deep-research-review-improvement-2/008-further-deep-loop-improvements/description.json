@@ -23,9 +23,9 @@
   "specId": "008",
   "folderSlug": "further-deep-loop-improvements",
   "parentChain": [
-    "skilled-agent-orchestration",
+    "system-deep-loop",
     "z_archive",
-    "042-sk-deep-research-review-improvement-2"
+    "011-sk-deep-research-review-improvement-2"
   ],
   "memorySequence": 1,
   "memoryNameHistory": [

@@ -37,7 +37,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | `specs/skilled-agent-orchestration/z_archive/056-sk-deep-rename/003-opencode-internals` |
+| **Spec Folder** | 003-opencode-internals |
 | **Completed** | 2026-05-05 |
 | **Level** | 2 |
 <!-- /ANCHOR:metadata -->

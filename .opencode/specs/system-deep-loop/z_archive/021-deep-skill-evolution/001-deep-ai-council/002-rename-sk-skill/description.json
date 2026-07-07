@@ -21,9 +21,9 @@
   "specId": "002",
   "folderSlug": "rename-sk-skill",
   "parentChain": [
-    "skilled-agent-orchestration",
+    "system-deep-loop",
     "z_archive",
-    "116-deep-skill-evolution",
+    "021-deep-skill-evolution",
     "001-deep-ai-council"
   ],
   "memorySequence": 0,

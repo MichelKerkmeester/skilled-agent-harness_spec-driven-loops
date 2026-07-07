@@ -43,7 +43,7 @@ _memory:
 ## Metadata
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | `110/004-deep-agent-improvement-uplift` |
+| **Spec Folder** | 035-deep-agent-improvement-uplift |
 | **Status** | Complete |
 <!-- /ANCHOR:metadata -->
 

@@ -27,9 +27,9 @@
   "specId": "003",
   "folderSlug": "synthesize",
   "parentChain": [
-    "skilled-agent-orchestration",
+    "sk-doc",
     "z_archive",
-    "057-sk-doc-router-stress-test"
+    "008-sk-doc-router-stress-test"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

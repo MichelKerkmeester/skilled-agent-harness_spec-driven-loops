@@ -26,7 +26,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 056-sk-code-fullstack-branch |
+| **Spec Folder** | 005-sk-code-fullstack-branch |
 | **Completed** | 2026-04-30 |
 | **Level** | 2 |
 | **Absorbed** | `057-sk-code-multi-stack-placeholders` (merged 2026-04-30) |

@@ -2,7 +2,7 @@
   "schema_version": 1,
   "packet_id": "system-deep-loop/032-goal-opencode-plugin",
   "spec_folder": "system-deep-loop/032-goal-opencode-plugin",
-  "parent_id": null,
+  "parent_id": "system-deep-loop",
   "children_ids": [
     "system-deep-loop/032-goal-opencode-plugin/001-state-store",
     "system-deep-loop/032-goal-opencode-plugin/002-injection-plugin",
@@ -18,7 +18,6 @@
     "system-deep-loop/032-goal-opencode-plugin/012-regression-test-backfill",
     "system-deep-loop/032-goal-opencode-plugin/013-design-fidelity-and-polish",
     "system-deep-loop/032-goal-opencode-plugin/014-goal-state-cleanup-and-archive",
-    "system-deep-loop/032-goal-opencode-plugin/009-diagnostic-review",
     "system-deep-loop/032-goal-opencode-plugin/015-packet-hygiene-and-narrative-integrity",
     "system-deep-loop/032-goal-opencode-plugin/016-plugin-correctness-fixes",
     "system-deep-loop/032-goal-opencode-plugin/017-hot-path-optimization",

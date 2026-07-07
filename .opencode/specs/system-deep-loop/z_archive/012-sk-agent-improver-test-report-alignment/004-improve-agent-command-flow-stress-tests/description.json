@@ -20,9 +20,9 @@
   "specId": "004",
   "folderSlug": "improve-agent-command-flow-stress-tests",
   "parentChain": [
-    "skilled-agent-orchestration",
+    "system-deep-loop",
     "z_archive",
-    "060-sk-agent-improver-test-report-alignment"
+    "012-sk-agent-improver-test-report-alignment"
   ],
   "memorySequence": 1,
   "memoryNameHistory": []

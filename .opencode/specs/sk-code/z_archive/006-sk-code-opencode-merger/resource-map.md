@@ -344,8 +344,8 @@ These were found during broad exact search. The deep-analysis session (2026-05-0
 ### ARCHIVED (historical spec packages, not active rewrite targets)
 ### ARCHIVED (historical spec packages, not active rewrite targets)
 
-- `.opencode/specs/sk-code/z_archive/003-sk-code-merger/*`
-- `.opencode/specs/sk-code/z_archive/004-cli-skill-removal-sk-code-merger-deprecated/*`
+- `.opencode/specs/sk-code/z_archive/004-sk-code-merger/*`
+- `.opencode/specs/sk-code/z_archive/003-cli-skill-removal-sk-code-merger-deprecated/*`
 - `.opencode/specs/sk-code/z_archive/005-sk-code-fullstack-branch/*`
 - `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/003-followup-quality-pass/001-sk-code-opencode-audit/*`
 

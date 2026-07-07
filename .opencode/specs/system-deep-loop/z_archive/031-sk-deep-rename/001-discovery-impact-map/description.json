@@ -14,9 +14,9 @@
   "specId": "001",
   "folderSlug": "discovery-impact-map",
   "parentChain": [
-    "skilled-agent-orchestration",
+    "system-deep-loop",
     "z_archive",
-    "056-sk-deep-rename"
+    "031-sk-deep-rename"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

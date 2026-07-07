@@ -19,9 +19,9 @@
   "specId": "007",
   "folderSlug": "cp-sandbox-speckit-path-fix",
   "parentChain": [
-    "skilled-agent-orchestration",
+    "system-deep-loop",
     "z_archive",
-    "116-deep-skill-evolution",
+    "021-deep-skill-evolution",
     "007-deep-stack-playbook-validation"
   ],
   "memorySequence": 0,

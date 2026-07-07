@@ -23,9 +23,9 @@
   "specId": "010",
   "folderSlug": "iterative-per-topic-multi-round",
   "parentChain": [
-    "skilled-agent-orchestration",
+    "system-deep-loop",
     "z_archive",
-    "116-deep-skill-evolution",
+    "021-deep-skill-evolution",
     "001-deep-ai-council"
   ],
   "memorySequence": 0,

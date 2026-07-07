@@ -2,7 +2,7 @@
   "schema_version": 1,
   "packet_id": "system-deep-loop/033-deep-loop-behavior-benchmarks",
   "spec_folder": "system-deep-loop/033-deep-loop-behavior-benchmarks",
-  "parent_id": null,
+  "parent_id": "system-deep-loop",
   "children_ids": [
     "system-deep-loop/033-deep-loop-behavior-benchmarks/001-framework-and-harness",
     "system-deep-loop/033-deep-loop-behavior-benchmarks/002-pilot-deep-review",

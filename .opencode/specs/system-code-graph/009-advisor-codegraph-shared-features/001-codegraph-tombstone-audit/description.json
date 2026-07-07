@@ -22,10 +22,8 @@
   "specId": "001",
   "folderSlug": "codegraph-tombstone-audit",
   "parentChain": [
-    "system-speckit",
-    "027-xce-research-based-refinement",
-    "003-advisor-and-codegraph",
-    "002-xce-feature-adoption-advisor-codegraph"
+    "system-code-graph",
+    "009-advisor-codegraph-shared-features"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

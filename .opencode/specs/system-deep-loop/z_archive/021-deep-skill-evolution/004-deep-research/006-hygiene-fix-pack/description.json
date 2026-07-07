@@ -25,9 +25,9 @@
   "specId": "006",
   "folderSlug": "hygiene-fix-pack",
   "parentChain": [
-    "skilled-agent-orchestration",
+    "system-deep-loop",
     "z_archive",
-    "116-deep-skill-evolution",
+    "021-deep-skill-evolution",
     "004-deep-research"
   ],
   "memorySequence": 0,

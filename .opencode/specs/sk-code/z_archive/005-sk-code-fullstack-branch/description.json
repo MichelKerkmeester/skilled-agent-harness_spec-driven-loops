@@ -14,8 +14,8 @@
   "completion_pct": 100,
   "absorbed_packet": "skilled-agent-orchestration/057-sk-code-multi-stack-placeholders",
   "builds_on": [
-    "sk-code/z_archive/003-sk-code-merger",
-    "sk-code/z_archive/004-cli-skill-removal-sk-code-merger-deprecated"
+    "sk-code/z_archive/004-sk-code-merger",
+    "sk-code/z_archive/003-cli-skill-removal-sk-code-merger-deprecated"
   ],
   "key_files": [
     ".opencode/specs/sk-code/z_archive/005-sk-code-fullstack-branch/spec.md",

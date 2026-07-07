@@ -15,9 +15,9 @@
   "specId": "009",
   "folderSlug": "deep-review-phase5-doc-cluster-remediation",
   "parentChain": [
-    "skilled-agent-orchestration",
+    "system-deep-loop",
     "z_archive",
-    "116-deep-skill-evolution",
+    "021-deep-skill-evolution",
     "000-release-cleanup"
   ],
   "memorySequence": 0,

@@ -2,7 +2,7 @@
   "schema_version": 1,
   "packet_id": "system-deep-loop/z_archive/011-sk-deep-research-review-improvement-2",
   "spec_folder": "system-deep-loop/z_archive/011-sk-deep-research-review-improvement-2",
-  "parent_id": null,
+  "parent_id": "system-deep-loop/z_archive",
   "children_ids": [
     "system-deep-loop/z_archive/011-sk-deep-research-review-improvement-2/001-runtime-truth-foundation",
     "system-deep-loop/z_archive/011-sk-deep-research-review-improvement-2/002-semantic-coverage-graph",

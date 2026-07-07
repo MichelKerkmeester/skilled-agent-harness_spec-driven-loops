@@ -21,10 +21,9 @@
   "specId": "005",
   "folderSlug": "code-graph-auto-reindex-parity",
   "parentChain": [
-    "system-spec-kit",
+    "system-code-graph",
     "z_archive",
-    "024-compact-code-graph",
-    "030-opencode-graph-plugin"
+    "017-opencode-graph-plugin"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

@@ -21,9 +21,8 @@
   "specId": "003",
   "folderSlug": "deferred-wip-overlapping-findings",
   "parentChain": [
-    "system-speckit",
-    "026-graph-and-context-optimization",
-    "004-code-graph",
+    "system-code-graph",
+    "007-code-graph-buildout",
     "011-source-bug-and-misalignment-audit"
   ],
   "memorySequence": 0,

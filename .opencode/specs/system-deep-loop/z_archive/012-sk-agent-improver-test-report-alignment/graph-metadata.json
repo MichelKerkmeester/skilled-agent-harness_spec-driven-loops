@@ -2,7 +2,7 @@
   "schema_version": 1,
   "packet_id": "system-deep-loop/z_archive/012-sk-agent-improver-test-report-alignment",
   "spec_folder": "system-deep-loop/z_archive/012-sk-agent-improver-test-report-alignment",
-  "parent_id": null,
+  "parent_id": "system-deep-loop/z_archive",
   "children_ids": [
     "system-deep-loop/z_archive/012-sk-agent-improver-test-report-alignment/001-deep-research-recommendations",
     "system-deep-loop/z_archive/012-sk-agent-improver-test-report-alignment/002-stress-test-implementation",

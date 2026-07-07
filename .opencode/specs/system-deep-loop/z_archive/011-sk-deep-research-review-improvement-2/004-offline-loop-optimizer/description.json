@@ -24,9 +24,9 @@
   "specId": "004",
   "folderSlug": "offline-loop-optimizer",
   "parentChain": [
-    "skilled-agent-orchestration",
+    "system-deep-loop",
     "z_archive",
-    "042-sk-deep-research-review-improvement-2"
+    "011-sk-deep-research-review-improvement-2"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

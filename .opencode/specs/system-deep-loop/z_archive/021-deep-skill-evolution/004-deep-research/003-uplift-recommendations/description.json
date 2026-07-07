@@ -13,8 +13,9 @@
   "specId": "003",
   "folderSlug": "003-uplift-recommendations",
   "parentChain": [
-    "skilled-agent-orchestration",
-    "116-deep-skill-evolution",
+    "system-deep-loop",
+    "z_archive",
+    "021-deep-skill-evolution",
     "004-deep-research"
   ],
   "memorySequence": 119003,

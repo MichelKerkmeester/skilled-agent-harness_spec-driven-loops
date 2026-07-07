@@ -13,8 +13,9 @@
   "specId": "002",
   "folderSlug": "002-uplift-applicability-analysis",
   "parentChain": [
-    "skilled-agent-orchestration",
-    "116-deep-skill-evolution",
+    "system-deep-loop",
+    "z_archive",
+    "021-deep-skill-evolution",
     "004-deep-research"
   ],
   "memorySequence": 119002,

@@ -13,9 +13,9 @@
   "specId": "027",
   "folderSlug": "cmd-create-yaml-refinement",
   "parentChain": [
-    "skilled-agent-orchestration",
+    "system-deep-loop",
     "z_archive",
-    "029-sk-deep-research-first-upgrade"
+    "004-sk-deep-research-first-upgrade"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

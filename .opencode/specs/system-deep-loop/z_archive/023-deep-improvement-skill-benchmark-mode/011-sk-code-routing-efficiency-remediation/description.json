@@ -21,9 +21,9 @@
   "specId": "011",
   "folderSlug": "sk-code-routing-efficiency-remediation",
   "parentChain": [
-    "skilled-agent-orchestration",
+    "system-deep-loop",
     "z_archive",
-    "122-deep-improvement-skill-benchmark-mode"
+    "023-deep-improvement-skill-benchmark-mode"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

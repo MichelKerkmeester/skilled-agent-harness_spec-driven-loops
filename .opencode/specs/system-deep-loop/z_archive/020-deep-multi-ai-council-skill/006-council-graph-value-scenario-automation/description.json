@@ -22,9 +22,9 @@
   "specId": "006",
   "folderSlug": "council-graph-value-scenario-automation",
   "parentChain": [
-    "skilled-agent-orchestration",
+    "system-deep-loop",
     "z_archive",
-    "101-deep-multi-ai-council-skill"
+    "020-deep-multi-ai-council-skill"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

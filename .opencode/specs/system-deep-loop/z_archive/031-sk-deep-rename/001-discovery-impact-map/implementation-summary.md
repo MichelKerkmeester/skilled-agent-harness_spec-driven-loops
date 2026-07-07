@@ -42,7 +42,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | `skilled-agent-orchestration/z_archive/056-sk-deep-rename/001-discovery-impact-map` |
+| **Spec Folder** | 001-discovery-impact-map |
 | **Completed** | 2026-05-05 |
 | **Level** | 2 |
 <!-- /ANCHOR:metadata -->

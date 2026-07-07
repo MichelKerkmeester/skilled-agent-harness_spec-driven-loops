@@ -16,9 +16,8 @@
   "specId": "006",
   "folderSlug": "reference-template-alignment",
   "parentChain": [
-    "system-spec-kit",
-    "026-graph-and-context-optimization",
-    "004-code-graph",
+    "system-code-graph",
+    "007-code-graph-buildout",
     "007-docs-and-readmes"
   ],
   "memorySequence": 0,

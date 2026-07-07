@@ -23,9 +23,9 @@
   "specId": "001",
   "folderSlug": "relocate",
   "parentChain": [
-    "skilled-agent-orchestration",
+    "sk-doc",
     "z_archive",
-    "068-sk-doc-organization"
+    "007-sk-doc-organization"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

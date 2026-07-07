@@ -41,7 +41,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | `specs/skilled-agent-orchestration/z_archive/056-sk-deep-rename/007-deep-review-remediation` |
+| **Spec Folder** | 007-deep-review-remediation |
 | **Completed** | 2026-05-05 |
 | **Level** | 2 |
 | **Verdict** | `DONE` |

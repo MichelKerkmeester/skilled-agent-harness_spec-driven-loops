@@ -15,9 +15,8 @@
   "specId": "002",
   "folderSlug": "fix-stale-highlights-and-scan-scope",
   "parentChain": [
-    "system-spec-kit",
-    "026-graph-and-context-optimization",
-    "004-code-graph",
+    "system-code-graph",
+    "007-code-graph-buildout",
     "004-runtime-and-scan"
   ],
   "memorySequence": 0,

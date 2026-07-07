@@ -41,7 +41,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | `.opencode/specs/skilled-agent-orchestration/z_archive/083-spec-kit-auto-mode-noninteractive-contract/001-deep-review-three-tier-setup/` |
+| **Spec Folder** | 033-deep-review-three-tier-setup |
 | **Completed** | 2026-05-11 |
 | **Level** | 2 |
 | **Status** | Complete |

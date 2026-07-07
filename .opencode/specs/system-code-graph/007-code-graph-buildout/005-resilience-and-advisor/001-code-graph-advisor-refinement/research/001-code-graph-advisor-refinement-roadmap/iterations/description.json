@@ -16,10 +16,10 @@
   "specId": "015",
   "folderSlug": "code-graph-advisor-refinement-pt-01-iterations",
   "parentChain": [
-    "system-spec-kit",
-    "026-graph-and-context-optimization",
-    "009-hook-package",
-    "015-code-graph-advisor-refinement",
+    "system-code-graph",
+    "007-code-graph-buildout",
+    "005-resilience-and-advisor",
+    "001-code-graph-advisor-refinement",
     "research",
     "001-code-graph-advisor-refinement-roadmap"
   ],

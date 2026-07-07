@@ -14,9 +14,8 @@
   "specId": "002",
   "folderSlug": "decouple-code-graph",
   "parentChain": [
-    "system-spec-kit",
-    "026-graph-and-context-optimization",
-    "004-code-graph",
+    "system-code-graph",
+    "007-code-graph-buildout",
     "002-deprecate-coco-index"
   ],
   "memorySequence": 0,

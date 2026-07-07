@@ -20,9 +20,9 @@
   "specId": "001",
   "folderSlug": "skill-benchmark-deep-research",
   "parentChain": [
-    "skilled-agent-orchestration",
+    "system-deep-loop",
     "z_archive",
-    "122-deep-improvement-skill-benchmark-mode"
+    "023-deep-improvement-skill-benchmark-mode"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

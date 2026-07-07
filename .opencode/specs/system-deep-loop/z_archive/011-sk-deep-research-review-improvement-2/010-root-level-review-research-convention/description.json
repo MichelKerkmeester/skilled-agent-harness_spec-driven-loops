@@ -21,9 +21,9 @@
   "specId": "010",
   "folderSlug": "root-level-review-research-convention",
   "parentChain": [
-    "skilled-agent-orchestration",
+    "system-deep-loop",
     "z_archive",
-    "042-sk-deep-research-review-improvement-2"
+    "011-sk-deep-research-review-improvement-2"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

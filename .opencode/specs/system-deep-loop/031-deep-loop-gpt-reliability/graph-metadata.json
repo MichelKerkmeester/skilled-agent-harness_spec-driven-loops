@@ -2,7 +2,7 @@
   "schema_version": 1,
   "packet_id": "system-deep-loop/031-deep-loop-gpt-reliability",
   "spec_folder": "system-deep-loop/031-deep-loop-gpt-reliability",
-  "parent_id": null,
+  "parent_id": "system-deep-loop",
   "children_ids": [
     "system-deep-loop/031-deep-loop-gpt-reliability/001-research-and-diagnosis",
     "system-deep-loop/031-deep-loop-gpt-reliability/002-routing-dispatch-and-identity",

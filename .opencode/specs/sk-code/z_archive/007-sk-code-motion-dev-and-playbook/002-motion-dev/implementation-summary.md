@@ -40,7 +40,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | `specs/sk-code/z_archive/007-sk-code-motion-dev-and-playbook/002-motion-dev` |
+| **Spec Folder** | 002-motion-dev |
 | **Completed** | 2026-05-05 |
 | **Level** | 2 |
 | **Actual Effort** | Packet execution in current session |

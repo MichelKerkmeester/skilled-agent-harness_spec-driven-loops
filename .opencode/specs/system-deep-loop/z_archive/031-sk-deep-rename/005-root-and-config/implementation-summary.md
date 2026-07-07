@@ -40,7 +40,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | `specs/skilled-agent-orchestration/z_archive/056-sk-deep-rename/005-root-and-config` |
+| **Spec Folder** | 005-root-and-config |
 | **Completed** | 2026-05-05 |
 | **Level** | 2 |
 <!-- /ANCHOR:metadata -->
