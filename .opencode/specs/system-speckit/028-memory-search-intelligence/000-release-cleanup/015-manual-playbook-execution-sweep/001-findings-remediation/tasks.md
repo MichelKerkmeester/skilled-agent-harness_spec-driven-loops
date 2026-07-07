@@ -5,9 +5,27 @@ trigger_phrases:
   - "playbook sweep findings remediation tasks"
 importance_tier: "important"
 contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "system-speckit/028-memory-search-intelligence/000-release-cleanup/015-manual-playbook-execution-sweep/001-findings-remediation"
+    last_updated_at: "2026-07-06T19:16:27.470Z"
+    last_updated_by: "claude-opus-4-8"
+    recent_action: "Recorded one fix task per confirmed FAIL finding"
+    next_safe_action: "Run the deferred Phase 2 fixes and re-verify each"
+    blockers: []
+    key_files:
+      - "tasks.md"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "2026-07-06-tasks-001-findings-remediation"
+      parent_session_id: null
+    completion_pct: 98
+    open_questions: []
+    answered_questions: []
 ---
 # Tasks: Manual Playbook Sweep Findings Remediation
 
+<!-- SPECKIT_TEMPLATE_SOURCE: tasks-core | v2.2 -->
 <!-- SPECKIT_LEVEL: 2 -->
 
 ---
@@ -28,7 +46,9 @@ contextType: "implementation"
 ---
 
 <!-- ANCHOR:phase-1 -->
-## Phase 1: Plan (done incrementally as the sweep confirms findings)
+## Phase 1: Setup
+
+Planning done incrementally as the sweep confirms findings.
 
 - [x] T001 Scaffold this remediation packet (spec.md, plan.md, tasks.md, checklist.md)
 - [x] T002 Draft root-cause hypothesis + fix direction for the 26 findings confirmed as of manifest 170/485 done
@@ -42,7 +62,9 @@ contextType: "implementation"
 ---
 
 <!-- ANCHOR:phase-2 -->
-## Phase 2: Fix (deferred — one task per finding, not yet started)
+## Phase 2: Implementation
+
+One fix task per confirmed finding.
 
 > **Process note (2026-07-02)**: 0030 and 0033 both self-reported `VERDICT: FIXED` with an empty `git diff`. Root cause was NOT dispatcher/edit-persistence failure (independently ruled out via a controlled diagnostic dispatch on an untracked scratch file, which persisted correctly). Both findings' underlying bugs were already fixed by unrelated prior packets (029, 030) that landed in this repo before the fix dispatcher ran — the dispatch contract's OUTPUT CONTRACT lacked an `ALREADY_CORRECT` verdict tag distinct from `FIXED` (implying a change was made), so the model reused the closest label. **Going forward**: an empty `git diff` on a `FIXED` verdict is not automatically a failure — read the dispatch's own reasoning log before reclassifying; if it cites specific existing code matching the fix, treat as `ALREADY_CORRECT` (done, evidence-backed) rather than `[B]` blocked/retry.
 
@@ -94,7 +116,9 @@ contextType: "implementation"
 ---
 
 <!-- ANCHOR:phase-3 -->
-## Phase 3: Verification (deferred to Phase 2 completion)
+## Phase 3: Verification
+
+Deferred to Phase 2 completion.
 
 - [ ] T900 Re-run each fixed scenario's own playbook file to confirm PASS
 - [ ] T901 Run the affected subsystem's Vitest suite with each fix, confirm no regressions
@@ -106,8 +130,6 @@ contextType: "implementation"
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-<!-- /ANCHOR:phase-2-appendix -->
-<!-- ANCHOR:phase-2-appendix -->
 ### Phase 2 Appendix: findings from the resumed sweep (post wave-7 remediation close-out)
 
 - [x] T-0305 Add 17 undocumented `SPECKIT_*` flags to the feature-flags governance table (0305) — DOC_FIX, VERIFIED. Added 17 missing governance rows to `ENV_REFERENCE.md` (verified via `git diff`: +17 insertions).

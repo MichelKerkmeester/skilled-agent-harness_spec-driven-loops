@@ -12,7 +12,7 @@ _memory:
     last_updated_at: "2026-07-04T17:31:34.862Z"
     last_updated_by: "claude-sonnet-5"
     recent_action: "Scaffolded remediation packet with fix plans for 26 findings confirmed so far"
-    next_safe_action: "Append new finding entries to spec.md/plan.md/tasks.md as the sweep confirms more FAILs; begin implementation once sweep completes"
+    next_safe_action: "Append new FAIL findings as the sweep confirms them"
     blockers: []
     key_files: ["spec.md", "plan.md", "tasks.md", "checklist.md"]
     session_dedup:

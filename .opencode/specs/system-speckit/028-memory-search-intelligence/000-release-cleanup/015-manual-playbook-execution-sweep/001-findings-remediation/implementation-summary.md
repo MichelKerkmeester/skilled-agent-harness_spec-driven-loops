@@ -10,10 +10,10 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-speckit/028-memory-search-intelligence/000-release-cleanup/015-manual-playbook-execution-sweep/001-findings-remediation"
-    last_updated_at: "2026-07-06T19:16:27.470Z"
+    last_updated_at: "2026-07-07T05:59:09.470Z"
     last_updated_by: "claude-opus-4-8"
-    recent_action: "Fixed T-0381 (empty deep-loop convergence graph) via a graphEvents prompt-pack contract correction, end-to-end proven through upsert.cjs; closed T-0208 as a confirmed false positive; committed (8967d20e37 fix, fa49443a7c docs) and pushed to origin/system-speckit/028-memory-search-intelligence (local == origin)"
-    next_safe_action: "All sweep findings resolved and landed on origin. The only outstanding item is pre-existing packet-wide --strict doc-hygiene debt (template headers/anchors/frontmatter blocks across the older docs), which would need its own dedicated cleanup pass — not a findings issue"
+    recent_action: "Fixed T-0381 convergence graph, closed T-0208, committed and pushed to origin"
+    next_safe_action: "Run the packet-wide --strict doc-hygiene cleanup pass"
     blockers: []
     key_files:
       - "tasks.md"
@@ -68,6 +68,13 @@ The headline late fix is **T-0381** — the `doctor` deep-loop convergence diagn
 > Prior rounds touched dozens of source/test/doc files across the three subsystems; those are recorded per-finding in `tasks.md` and landed in commits `2e8638071b`, `04abbf4434`, `d9acc6ecb9`, and `8967d20e37`.
 
 <!-- /ANCHOR:what-built -->
+---
+
+<!-- ANCHOR:how-delivered -->
+## How It Was Delivered
+
+Findings were remediated in rounds: the 485-scenario sweep surfaced FAILs, GPT-5.5-fast and GLM-5.2 dispatch batches produced each fix, and Claude planned and independently verified every result via `git diff`, real test runs, and `git-stash` baselines before it landed. The final round diagnosed and closed the two blocked findings (T-0381, T-0208). Work landed across commits `2e8638071b`, `04abbf4434`, `d9acc6ecb9`, and `8967d20e37`.
+<!-- /ANCHOR:how-delivered -->
 ---
 
 <!-- ANCHOR:decisions -->
