@@ -179,21 +179,21 @@
         "source": "derived"
       },
       {
-        "name": "Phase 1: Setup",
-        "kind": "heading",
+        "name": "a RED",
+        "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
       },
       {
-        "name": "Implementation Summary",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
+        "name": "WU5",
+        "kind": "key_phrase",
+        "path": "tasks.md",
         "source": "derived"
       }
     ],
     "causal_summary": "The 022 deep review found 18 defects in the parent-hub pattern: one P0 (sk-design fails the canon checker on an un-canonized `transport` axis), seven P1s (surfaceBundle doctrine fiction, unenforced one-identity ingestion, two sk-code tool-contract contradictions, two unguarded advisor command-bridge lanes, sk-design's self-contradicting routing contract), and ten P2s (doctrine/checker/template staleness and cross-hub metadata dialect drift)",
     "created_at": "2026-07-07T15:55:58.850Z",
-    "last_save_at": "2026-07-07T15:55:58.850Z",
+    "last_save_at": "2026-07-07T17:30:39.745Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -202,12 +202,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:34dc5768f11e85271497db38d9ba886c35e3d50f4429bf423e46b9eadbcf5eb0",
+    "source_fingerprint": "sha256:1169c86624e82b6c2e68a38ed8b654996981cefe84163c2c41fd8b22d9bc2b69",
     "source_doc_hashes": {
       "spec.md": "6eda96e50ba5786133427701db1e113a91c9f66777041b925bd533ab39772361",
       "plan.md": "7d27e1ea51cfaea6bb3afd7338ab3e8b77639146cc8aa6d126580d3b7e122c28",
-      "tasks.md": "e511da10e724e03fa4519fe96f2c51417e308edb55221b298e3ef57ce3bb7f75",
-      "implementation-summary.md": "9ea9b5054430d465741574759c1ef514743407418e1ebcdaee2f63e12bee9d0d"
+      "tasks.md": "1e720c4e690e0886fcf3a79760eb73563673672f068978665b9d261b337a7aeb",
+      "implementation-summary.md": "ea8644cfa7631380ecd166a73b0932b68b7f742eee01d2088c42e1778766c868"
     },
     "last_active_child_id": null,
     "last_active_at": null

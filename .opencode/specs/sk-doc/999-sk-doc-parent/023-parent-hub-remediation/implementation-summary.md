@@ -11,13 +11,12 @@ _memory:
     packet_pointer: "sk-doc/999-sk-doc-parent/023-parent-hub-remediation"
     last_updated_at: "2026-07-07T19:45:00.000Z"
     last_updated_by: "claude-opus"
-    recent_action: "Executed WU1-4,6-9 (8/9) — all shipped + pushed, final sweep 4/4 canon-clean (0 warnings); WU5 gated"
-    next_safe_action: "WU5 command-bridge lane on the operator-gated system-skill-advisor scorer track; coordinate the 193-row parity re-baseline"
+    recent_action: "Executed WU1-4,6-9 (8/9); all pushed; 4/4 canon-clean; WU5 gated"
+    next_safe_action: "Run WU5 command-bridge once advisor scorer track is operator-cleared"
     blockers:
       - "WU5 gated on the operator-owned advisor scorer track (projection.ts/explicit.ts/skill_advisor.py) + its gated 193-row parity re-baseline; dead-id evidence captured"
     key_files:
       - ".opencode/specs/sk-doc/999-sk-doc-parent/023-parent-hub-remediation/plan.md"
-      - ".opencode/commands/doctor/scripts/parent-skill-check.cjs"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "bootstrap-session"
@@ -25,8 +24,7 @@ _memory:
     completion_pct: 89
     open_questions:
       - "WU5: run the command-bridge lane once the advisor scorer track is operator-cleared / confirmed quiet for the re-baseline"
-    answered_questions:
-      - "D1-D6 resolved via 'Execute all on my defaults' (D1→allowlist feature_catalog, D5→bless top-level deprecatedModes)"
+    answered_questions: []
 ---
 # Implementation Summary
 
