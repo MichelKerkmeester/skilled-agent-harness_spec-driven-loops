@@ -354,22 +354,22 @@ Validation note: the current validator checks the root playbook and does not rec
 ### Reference Files
 - [core_standards.md](./core_standards.md) - Document type rules and structural requirements
 - [validation.md](./validation.md) - Quality scoring and validation workflows
-- [optimization.md](../../../create-quality-control/references/optimization.md) - Content transformation patterns
-- [workflows.md](../../../create-quality-control/references/workflows.md) - Execution modes and workflows
-- [skill_creation.md](../../../create-skill/references/README.md) - Skill creation workflow
-- [references/README.md](../../../create-agent/references/README.md) - Agent authority, permissions, and creation workflow
-- [references/README.md](../../../create-readme/references/README.md) - Install guide standards and workflow
-- [references/README.md](../../../create-feature-catalog/references/README.md) - Feature catalog standards and workflow
-- [references/README.md](../../../create-manual-testing-playbook/references/README.md) - Playbook standards and workflow
+- [optimization.md](../../create-quality-control/references/optimization.md) - Content transformation patterns
+- [workflows.md](../../create-quality-control/references/workflows.md) - Execution modes and workflows
+- [skill_creation.md](../../create-skill/references/README.md) - Skill creation workflow
+- [references/README.md](../../create-agent/references/README.md) - Agent authority, permissions, and creation workflow
+- [references/README.md](../../create-readme/references/README.md) - Install guide standards and workflow
+- [references/README.md](../../create-feature-catalog/references/README.md) - Feature catalog standards and workflow
+- [references/README.md](../../create-manual-testing-playbook/references/README.md) - Playbook standards and workflow
 
 ### Templates
-- [skill_md_template.md](../../../create-skill/assets/skill/skill_md_template.md) - SKILL.md file templates
-- [frontmatter_templates.md](../../assets/frontmatter_templates.md) - Frontmatter by document type
-- [command_template.md](../../../create-command/assets/command/command_template.md) - Command file templates
-- [feature_catalog_template.md](../../../create-feature-catalog/assets/feature_catalog/feature_catalog_template.md) - Feature catalog template
-- [feature_catalog_snippet_template.md](../../../create-feature-catalog/assets/feature_catalog/feature_catalog_snippet_template.md) - Per-feature catalog template
-- [manual_testing_playbook_template.md](../../../create-manual-testing-playbook/assets/testing_playbook/manual_testing_playbook_template.md) - Playbook creation template
-- [manual_testing_playbook_snippet_template.md](../../../create-manual-testing-playbook/assets/testing_playbook/manual_testing_playbook_snippet_template.md) - Per-feature snippet template
+- [skill_md_template.md](../../create-skill/assets/skill/skill_md_template.md) - SKILL.md file templates
+- [frontmatter_templates.md](../assets/frontmatter_templates.md) - Frontmatter by document type
+- [command_template.md](../../create-command/assets/command/command_template.md) - Command file templates
+- [feature_catalog_template.md](../../create-feature-catalog/assets/feature_catalog/feature_catalog_template.md) - Feature catalog template
+- [feature_catalog_snippet_template.md](../../create-feature-catalog/assets/feature_catalog/feature_catalog_snippet_template.md) - Per-feature catalog template
+- [manual_testing_playbook_template.md](../../create-manual-testing-playbook/assets/testing_playbook/manual_testing_playbook_template.md) - Playbook creation template
+- [manual_testing_playbook_snippet_template.md](../../create-manual-testing-playbook/assets/testing_playbook/manual_testing_playbook_snippet_template.md) - Per-feature snippet template
 
 ### Related Skills
 - `git-commit` - Git commit workflows
@@ -381,4 +381,4 @@ Validation note: the current validator checks the root playbook and does not rec
 
 ---
 
-**For complete documentation**: See [SKILL.md](../../../SKILL.md)
+**For complete documentation**: See [SKILL.md](../../SKILL.md)

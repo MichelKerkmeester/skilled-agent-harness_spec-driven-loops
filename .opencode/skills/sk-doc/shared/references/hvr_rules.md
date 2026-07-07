@@ -503,8 +503,8 @@ pre_publish_checklist:
 
 ### Standards
 - [core_standards.md](./core_standards.md) - Document formatting standards
-- [sk-doc SKILL.md](../../../SKILL.md) - Parent skill with HVR enforcement rules
+- [sk-doc SKILL.md](../../SKILL.md) - Parent skill with HVR enforcement rules
 
 ### Creation Guides
-- [references/README.md](../../../create-readme/references/README.md) - README creation workflow and standards
-- [references/README.md](../../../create-readme/references/README.md) - Install guide creation workflow
+- [references/README.md](../../create-readme/references/README.md) - README creation workflow and standards
+- [references/README.md](../../create-readme/references/README.md) - Install guide creation workflow
