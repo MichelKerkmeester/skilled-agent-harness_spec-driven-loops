@@ -1,0 +1,223 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-code/001-sk-code-parent/021-playbook-gold-and-lane-c-rebaseline",
+  "spec_folder": "sk-code/001-sk-code-parent/021-playbook-gold-and-lane-c-rebaseline",
+  "parent_id": "sk-code/001-sk-code-parent",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "sk-code playbook gold rebaseline",
+      "lane-c router-final regenerate",
+      "playbook gold code-surface translation",
+      "phase 21 playbook gold plan",
+      "sk-code playbook gold rebaseline plan",
+      "lane-c router-final plan",
+      "phase 21 tasks",
+      "sk-code playbook gold tasks",
+      "lane-c router-final tasks",
+      "phase 21 checklist",
+      "sk-code playbook gold checklist",
+      "lane-c router-final verification"
+    ],
+    "key_topics": [
+      "sk-code",
+      "playbook",
+      "gold",
+      "rebaseline",
+      "lane-c",
+      "router-final",
+      "regenerate",
+      "code-surface",
+      "translation",
+      "phase",
+      "plan",
+      "tasks"
+    ],
+    "importance_tier": "high",
+    "status": "complete",
+    "key_files": [
+      ".opencode/specs/sk-code/001-sk-code-parent/021-playbook-gold-and-lane-c-rebaseline/spec.md",
+      ".opencode/skills/sk-code/benchmark/router-final/skill-benchmark-report.json",
+      ".opencode/skills/sk-code/benchmark/router-final/skill-benchmark-report.md",
+      ".opencode/skills/sk-code/benchmark/README.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md",
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": ".opencode/specs/sk-code/001-sk-code-parent/021-playbook-gold-and-lane-c-rebaseline/spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "skill-benchmark-report.json",
+        "kind": "config",
+        "path": ".opencode/skills/sk-code/benchmark/router-final/skill-benchmark-report.json",
+        "source": "derived"
+      },
+      {
+        "name": "skill-benchmark-report.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-code/benchmark/router-final/skill-benchmark-report.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-code/benchmark/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Translate",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Change During Execution",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Deterministic",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Promotion Gate",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Severity Promotion",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The sk-code `manualtestingplaybook` scenarios assert an expected-resource gold — the references and assets a correct route should load for each prompt",
+    "created_at": "2026-07-05T19:09:55.824Z",
+    "last_save_at": "2026-07-07T16:45:57.964Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:29f08d9228f00c6cadefed92adb66c9ec50d427b044f8ec123d196c39294dace",
+    "source_doc_hashes": {
+      "spec.md": "02758b128c7e4be432dee02f2693acfecbc039a51ef5c16fcbbbfe88e45d9515",
+      "plan.md": "fbd480886bf90edfbff74d60383eae41ecdb1e039734b2ec017322d8d554811c",
+      "tasks.md": "2b58cb56b816e266ed59ec5df632f264854fd3fd038c1101651f0bf5ed6a72bb",
+      "checklist.md": "a4d6af9a414b93fed0e541502992500e0f3f2e590cca97c5af52c57e7d5df37e",
+      "implementation-summary.md": "f0b2722abe5f599fb0727cc3c99d6e1049ec76bc17558c44157c6242703cddee"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

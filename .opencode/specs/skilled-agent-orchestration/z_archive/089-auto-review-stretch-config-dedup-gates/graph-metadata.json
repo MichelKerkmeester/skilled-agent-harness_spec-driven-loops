@@ -4,8 +4,7 @@
   "spec_folder": "skilled-agent-orchestration/z_archive/089-auto-review-stretch-config-dedup-gates",
   "parent_id": null,
   "children_ids": [
-    "skilled-agent-orchestration/z_archive/089-auto-review-stretch-config-dedup-gates/001-mk-plugins-config-uplift",
-    "skilled-agent-orchestration/z_archive/089-auto-review-stretch-config-dedup-gates/002-sk-code-review-uplift"
+    "skilled-agent-orchestration/z_archive/089-auto-review-stretch-config-dedup-gates/001-mk-plugins-config-uplift"
   ],
   "migrated": true,
   "migration_source": "legacy",

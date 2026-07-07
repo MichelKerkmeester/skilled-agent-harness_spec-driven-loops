@@ -1,0 +1,226 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-code/z_archive/007-sk-code-motion-dev-and-playbook/001-playbook",
+  "spec_folder": "sk-code/z_archive/007-sk-code-motion-dev-and-playbook/001-playbook",
+  "parent_id": "sk-code/z_archive/007-sk-code-motion-dev-and-playbook",
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "sk-code playbook refinement",
+      "motion.dev manual testing",
+      "animation regression playbook",
+      "cross-browser performance gates",
+      "sk-code playbook plan",
+      "motion.dev playbook plan",
+      "sk-code playbook tasks",
+      "motion.dev playbook tasks",
+      "sk-code playbook checklist",
+      "motion.dev playbook verification",
+      "sk-code playbook implementation summary",
+      "motion.dev playbook summary"
+    ],
+    "key_topics": [
+      "sk-code",
+      "playbook",
+      "refinement",
+      "motion",
+      "dev",
+      "manual",
+      "testing",
+      "animation",
+      "regression",
+      "cross-browser",
+      "performance",
+      "gates"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      ".opencode/skills/sk-code/manual_testing_playbook/manual_testing_playbook.md",
+      "implementation-summary.md",
+      "specs/sk-code/z_archive/007-sk-code-motion-dev-and-playbook/001-playbook/spec.md",
+      "specs/sk-code/z_archive/007-sk-code-motion-dev-and-playbook/001-playbook/plan.md",
+      "specs/sk-code/z_archive/007-sk-code-motion-dev-and-playbook/001-playbook/tasks.md",
+      "specs/sk-code/z_archive/007-sk-code-motion-dev-and-playbook/001-playbook/checklist.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "specs/sk-code/z_archive/007-sk-code-motion-dev-and-playbook/001-playbook/spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "specs/sk-code/z_archive/007-sk-code-motion-dev-and-playbook/001-playbook/plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "specs/sk-code/z_archive/007-sk-code-motion-dev-and-playbook/001-playbook/tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "specs/sk-code/z_archive/007-sk-code-motion-dev-and-playbook/001-playbook/checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "manual_testing_playbook.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-code/manual_testing_playbook/manual_testing_playbook.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Manual Testing Playbook Motion",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Surface",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Defined Packet",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Extend",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Split",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Created Packet",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Create Level",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Core Web Vitals",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Date",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The sk-code manual testing playbook already follows the sk-doc playbook package contract, but it stops at routing and advisor scenarios",
+    "created_at": "2026-05-05T07:30:00Z",
+    "last_save_at": "2026-07-07T16:45:58.034Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:75e00fe37c585bafb3ee77cb809d422419bfbeea3ec52a27409f97b72c5e98bd",
+    "source_doc_hashes": {
+      "spec.md": "2b53ecaabfa77737ca1799c12471c3ed6194d969b240ee607523e29e8da9809a",
+      "plan.md": "ce588f9b7c7c34f4706682794d71c3b8f4a3e163f4183126e1121a7d3e4a370c",
+      "tasks.md": "297f65d57616faeea437f541924f0daa47138df3c7f71784651021144cfaf763",
+      "checklist.md": "6c3b113e49dd118b4acb5b16b1fabd54f2f0b3429aac78269f366ca5996d5ebd",
+      "implementation-summary.md": "7077c4626c7709f04dadbf8a25f416031c42426ba9c5237248e4ae66b93ca289"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

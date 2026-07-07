@@ -1,0 +1,31 @@
+{
+  "level": "2",
+  "specFolder": "sk-code/z_archive/016-sk-code-rituals",
+  "description": "`sk-code` Phase 3 (`.opencode/skills/sk-code/SKILL.md` lines 41, 208-214) tells the agent to \"run surface verification commands and record evidence,\"",
+  "keywords": [
+    "sk-code",
+    "phase",
+    "opencode",
+    "skills",
+    "skill",
+    "lines",
+    "208-214",
+    "tells",
+    "agent",
+    "run",
+    "surface",
+    "verification",
+    "commands",
+    "record",
+    "evidence"
+  ],
+  "lastUpdated": "2026-07-07T16:37:58.461Z",
+  "specId": "016",
+  "folderSlug": "sk-code-rituals",
+  "parentChain": [
+    "sk-code",
+    "z_archive"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

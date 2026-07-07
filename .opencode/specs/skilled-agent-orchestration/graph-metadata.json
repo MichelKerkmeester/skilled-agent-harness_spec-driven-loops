@@ -19,9 +19,7 @@
     "skilled-agent-orchestration/z_archive/013-cmd-create-codex-compatibility",
     "skilled-agent-orchestration/z_archive/014-cmd-memory-output",
     "skilled-agent-orchestration/z_archive/015-cmd-create-changelog",
-    "skilled-agent-orchestration/z_archive/016-sk-code-review-creation",
     "skilled-agent-orchestration/z_archive/017-cmd-create-prompt",
-    "skilled-agent-orchestration/z_archive/018-sk-code-opencode-refinement",
     "skilled-agent-orchestration/z_archive/019-cmd-create-skill-merger",
     "skilled-agent-orchestration/z_archive/020-cmd-create-readme-install-merger",
     "skilled-agent-orchestration/z_archive/021-sk-doc-feature-catalog-testing-playbook",
@@ -45,9 +43,6 @@
     "skilled-agent-orchestration/z_archive/039-cli-opencode-providers",
     "skilled-agent-orchestration/z_archive/040-cli-skill-patterns",
     "skilled-agent-orchestration/z_archive/041-cli-skill-removal-mcp-clickup",
-    "skilled-agent-orchestration/z_archive/042-sk-code-merger",
-    "skilled-agent-orchestration/z_archive/043-cli-skill-removal-sk-code-merger-deprecated",
-    "skilled-agent-orchestration/z_archive/044-sk-code-fullstack-branch",
     "skilled-agent-orchestration/z_archive/045-cmd-spec-kit-ux-upgrade",
     "skilled-agent-orchestration/z_archive/046-spec-kit-ux-adoptions",
     "skilled-agent-orchestration/z_archive/047-agent-implement-code",
@@ -55,14 +50,11 @@
     "skilled-agent-orchestration/z_archive/049-sk-doc-agent-template-alignment",
     "skilled-agent-orchestration/z_archive/050-agent-create",
     "skilled-agent-orchestration/z_archive/051-skill-advisor-reindex-and-stress-test",
-    "skilled-agent-orchestration/z_archive/052-sk-code-opencode-merger",
     "skilled-agent-orchestration/z_archive/053-mcp-figma-transfer",
     "skilled-agent-orchestration/z_archive/054-sk-doc-organization",
-    "skilled-agent-orchestration/z_archive/055-sk-code-motion-dev-and-playbook",
     "skilled-agent-orchestration/z_archive/056-sk-deep-rename",
     "skilled-agent-orchestration/z_archive/057-sk-doc-router-stress-test",
     "skilled-agent-orchestration/z_archive/058-stack-agnostic-cleanup",
-    "skilled-agent-orchestration/z_archive/059-sk-code-scripts-relocation",
     "skilled-agent-orchestration/z_archive/060-sk-doc-router-rerun-refined-extraction",
     "skilled-agent-orchestration/z_archive/061-test-and-toolchain-cleanup",
     "skilled-agent-orchestration/z_archive/062-test-alignment-validator-esm-migration",
@@ -107,7 +99,6 @@
     "skilled-agent-orchestration/z_archive/101-cli-opencode-mimo-pro-optimization",
     "skilled-agent-orchestration/z_archive/102-reusable-model-benchmark-framework",
     "skilled-agent-orchestration/z_archive/103-sk-git-worktree-convention-and-advisor-routing",
-    "skilled-agent-orchestration/z_archive/104-sk-code-animation-mining",
     "skilled-agent-orchestration/z_archive/105-prompt-knowledge-layering",
     "skilled-agent-orchestration/z_archive/106-relocate-model-registry-and-benchmarks",
     "skilled-agent-orchestration/z_archive/107-cli-gemini-deprecation",
@@ -116,7 +107,6 @@
     "skilled-agent-orchestration/z_archive/110-nested-mcp-readme-sync",
     "skilled-agent-orchestration/z_archive/111-cli-devin-deprecation",
     "skilled-agent-orchestration/z_archive/112-advisor-doc-trigger-harvest",
-    "skilled-agent-orchestration/z_archive/113-sk-code-ponytail-based-refinement",
     "skilled-agent-orchestration/z_archive/114-operate-like-fable-5",
     "skilled-agent-orchestration/z_archive/115-mcp-skill-install-doctor-standardization",
     "skilled-agent-orchestration/z_archive/116-kimi-k2-7-code-support",
@@ -129,20 +119,12 @@
     "skilled-agent-orchestration/123-agent-loops-improved"
   ],
   "manual": {
-    "depends_on": [
-
-    ],
-    "supersedes": [
-
-    ],
-    "related_to": [
-
-    ]
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
   },
   "derived": {
-    "trigger_phrases": [
-
-    ],
+    "trigger_phrases": [],
     "key_topics": [
       "packet",
       "metadata",
@@ -153,23 +135,16 @@
     ],
     "importance_tier": "important",
     "status": "in_progress",
-    "key_files": [
-
-    ],
-    "entities": [
-
-    ],
+    "key_files": [],
+    "entities": [],
     "causal_summary": "Packet metadata derived from canonical spec documents.",
     "created_at": "2026-05-05T11:35:00.000Z",
     "last_save_at": "2026-06-30T13:20:00.000Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
-    "source_docs": [
-
-    ],
+    "source_docs": [],
     "source_fingerprint": "sha256:4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
-    "source_doc_hashes": {
-    },
+    "source_doc_hashes": {},
     "last_active_child_id": "skilled-agent-orchestration/123-agent-loops-improved",
     "last_active_at": "2026-06-30T13:20:00.000Z"
   }

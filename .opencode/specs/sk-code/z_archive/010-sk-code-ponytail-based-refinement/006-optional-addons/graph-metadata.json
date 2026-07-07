@@ -1,0 +1,214 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-code/z_archive/010-sk-code-ponytail-based-refinement/006-optional-addons",
+  "spec_folder": "sk-code/z_archive/010-sk-code-ponytail-based-refinement/006-optional-addons",
+  "parent_id": "sk-code/z_archive/010-sk-code-ponytail-based-refinement",
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "phase 6 optional addons",
+      "sk-code-review depth alias",
+      "loc benchmark metric",
+      "anti-stall rule",
+      "phase 6 plan optional addons",
+      "phase 6 tasks optional addons",
+      "phase 6 summary optional addons"
+    ],
+    "key_topics": [
+      "phase",
+      "optional",
+      "addons",
+      "sk-code-review",
+      "depth",
+      "alias",
+      "loc",
+      "benchmark",
+      "metric",
+      "anti-stall",
+      "rule",
+      "plan"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      ".opencode/skills/sk-code/SKILL.md",
+      "spec.md",
+      "plan.md",
+      "implementation-summary.md",
+      "tasks.md"
+    ],
+    "entities": [
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-code/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Heavier Add",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Change Type",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Acceptance Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. METADATA",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Optional Add",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Escalation Discipline",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "documented",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "rationale",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. SUMMARY",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "How It Was Delivered The",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Lower-urgency ponytail-derived add-ons: a code_loc/over-engineering metric folded into the existing correctness-gated benchmark, a SK_CODE_REVIEW_DEPTH env alias for the existing ON_DEMAND tier, an implementer anti-stall rule, and optional startup/typing hooks. Each needs a decision or carries upkeep cost; ship after the core phases.",
+    "created_at": "2026-06-13T11:40:00Z",
+    "last_save_at": "2026-07-07T16:45:58.061Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:0174589ae3738bf4d24794febc0b25cd4db389cdf6a1f1860a68685de3ea0b43",
+    "source_doc_hashes": {
+      "spec.md": "95a1d208db5923b0df910c51f742e13b4741078689410b3c3eabec599f27d2d6",
+      "plan.md": "03b6dbc00370dd705f8687eca352df81d15baa110ffd271c74ef97f5f4bfe238",
+      "tasks.md": "36f3fd96046e21ffb6376132a67aef0f4953cbee80d8fe8a45a8bc76373fe800",
+      "implementation-summary.md": "16a3548e4b17a14a3596368469e7cd1f63f054f028adb20ce11631c1bc7308cb"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

@@ -1,0 +1,225 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-code/001-sk-code-parent/010-plugin-tui-fix",
+  "spec_folder": "sk-code/001-sk-code-parent/010-plugin-tui-fix",
+  "parent_id": "sk-code/001-sk-code-parent",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "mk-dist-freshness-guard TUI overlay",
+      "opencode plugin no stdout stderr",
+      "plugin warning over chat input",
+      "mk-dist-freshness-guard plan",
+      "plugin TUI overlay fix plan",
+      "mk-dist-freshness-guard tasks",
+      "plugin TUI overlay fix tasks",
+      "mk-dist-freshness-guard checklist",
+      "plugin TUI overlay fix verification",
+      "mk-dist-freshness-guard TUI overlay fix",
+      "opencode plugin no stdout stderr rule"
+    ],
+    "key_topics": [
+      "mk-dist-freshness-guard",
+      "tui",
+      "overlay",
+      "opencode",
+      "plugin",
+      "stdout",
+      "stderr",
+      "warning",
+      "chat",
+      "input",
+      "plan",
+      "fix"
+    ],
+    "importance_tier": "high",
+    "status": "complete",
+    "key_files": [
+      ".opencode/plugins/mk-dist-freshness-guard.js",
+      ".opencode/plugins/tests/mk-dist-freshness-guard.test.cjs",
+      ".opencode/plugins/README.md",
+      ".opencode/bin/README.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      ".opencode/plugins/mk-goal.js",
+      ".opencode/plugins/mk-skill-advisor.js",
+      ".opencode/plugins/mk-spec-memory.js",
+      "spec.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "mk-dist-freshness-guard.js",
+        "kind": "code",
+        "path": ".opencode/plugins/mk-dist-freshness-guard.js",
+        "source": "derived"
+      },
+      {
+        "name": "mk-dist-freshness-guard.test.cjs",
+        "kind": "file",
+        "path": ".opencode/plugins/tests/mk-dist-freshness-guard.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/plugins/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "mk-goal.js",
+        "kind": "code",
+        "path": ".opencode/plugins/mk-goal.js",
+        "source": "derived"
+      },
+      {
+        "name": "mk-skill-advisor.js",
+        "kind": "code",
+        "path": ".opencode/plugins/mk-skill-advisor.js",
+        "source": "derived"
+      },
+      {
+        "name": "mk-spec-memory.js",
+        "kind": "code",
+        "path": ".opencode/plugins/mk-spec-memory.js",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Preserve",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Change Type",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Core Implementation",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completed Level",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The `.opencode/plugins/mk-dist-freshness-guard.js` plugin emitted stale-dist warnings with `console.warn` and `console.error` during `tool.execute.before` for risky `opencode run` / `validate.sh` commands and once per session during `session.created`",
+    "created_at": "2026-07-04T00:00:00Z",
+    "last_save_at": "2026-07-07T16:45:57.938Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:349ee3bd814cddf557d3c7e95ce433268bf09dbc81d53d6314745fd6a509eaca",
+    "source_doc_hashes": {
+      "spec.md": "71e3666ad0820d928c97e0afc07f9ebd0d38f15cbf4db6d00a7df9591cbd6bca",
+      "plan.md": "7e164f123b665036a01fb266efa7b157b466a9d66287635377d611252f961846",
+      "tasks.md": "8e16610cc70fa81362f6769436f6e6b8c6c9a3ee5b25de6115ad867d807f1377",
+      "checklist.md": "d5ec2d520c45848f28477dac9669238d94d5cf4255b0f81a829e6d4faf28e89e",
+      "implementation-summary.md": "02210770537a00134f0424e178cb8714aaf2f7b00f26a834e9bf9ee8c3e5cff9"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

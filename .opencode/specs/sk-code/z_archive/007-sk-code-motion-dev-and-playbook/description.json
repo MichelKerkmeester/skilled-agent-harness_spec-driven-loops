@@ -1,0 +1,30 @@
+{
+  "specFolder": "sk-code/z_archive/007-sk-code-motion-dev-and-playbook",
+  "description": "Motion.dev is currently referenced informally inside `sk-code/references/webflow/` (10 docs mention it) as a Webflow-specific animation library, even",
+  "keywords": [
+    "motion",
+    "dev",
+    "currently",
+    "referenced",
+    "informally",
+    "inside",
+    "sk-code",
+    "references",
+    "webflow",
+    "docs",
+    "mention",
+    "webflow-specific",
+    "animation",
+    "library",
+    "even"
+  ],
+  "lastUpdated": "2026-07-07T16:37:55.586Z",
+  "specId": "007",
+  "folderSlug": "sk-code-motion-dev-and-playbook",
+  "parentChain": [
+    "sk-code",
+    "z_archive"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

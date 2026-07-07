@@ -1,0 +1,217 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-code/z_archive/010-sk-code-ponytail-based-refinement/001-skreview-checklist-rows",
+  "spec_folder": "sk-code/z_archive/010-sk-code-ponytail-based-refinement/001-skreview-checklist-rows",
+  "parent_id": "sk-code/z_archive/010-sk-code-ponytail-based-refinement",
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "phase 1 sk-code-review rows",
+      "reinvent the wheel review check",
+      "needed-ness prompt",
+      "replacement field removal plan",
+      "phase 1 plan sk-code-review rows",
+      "phase 1 tasks sk-code-review rows",
+      "phase 1 checklist sk-code-review rows",
+      "phase 1 summary sk-code-review rows"
+    ],
+    "key_topics": [
+      "phase",
+      "sk-code-review",
+      "rows",
+      "reinvent",
+      "wheel",
+      "review",
+      "check",
+      "needed-ness",
+      "prompt",
+      "replacement",
+      "field",
+      "removal"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "checklist.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Checklist Rows",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Add",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Change Type",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. SUMMARY",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "2. QUALITY GATES",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "3. ARCHITECTURE",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "FIX ADDENDUM: AFFECTED SURFACES",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "T-001",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol Doc",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Quality",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Fix Completeness",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "sk-code-review's `codequalitychecklist.md` has generic KISS/DRY rows but no explicit check for code that hand-rolls something the standard library already ships, or that duplicates a native platform feature (verified absent — 0 grep hits)",
+    "created_at": "2026-06-13T11:40:00Z",
+    "last_save_at": "2026-07-07T16:45:58.053Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:e3e0658fd64b364de8cb92444d5be2e320ce2d65af2019f96a4e4b2abc8475ac",
+    "source_doc_hashes": {
+      "spec.md": "ebb310957dcd6449337207bfe3f55e7adee47219d09b09d5b9d656efd13e49c8",
+      "plan.md": "43dffedf6a79b9d4244b4d6a877a1a233fc2dc477bc2bc28de3cbaab311a8ced",
+      "tasks.md": "ace0d595cd20c3b33647905456d67fc8bcc3aeed842d68f1438e6300a2b69340",
+      "checklist.md": "dfb242505182db65b643231852640f2908e37ed53b64cb3ca544696ec4d7ded3",
+      "implementation-summary.md": "7af087ba5289e2e2da0fa88ae9175ff962242f395f669d95d76b324041cd6f13"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

@@ -1,0 +1,226 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-code/z_archive/005-sk-code-fullstack-branch",
+  "spec_folder": "sk-code/z_archive/005-sk-code-fullstack-branch",
+  "parent_id": "sk-code/z_archive",
+  "parent_id_review_required": true,
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "sk-code multi-stack",
+      "sk-code nextjs go",
+      "056 sk-code",
+      "smart router alignment",
+      "stack scaffolding",
+      "056 plan",
+      "sk-code multi-stack plan",
+      "stack scaffolding plan",
+      "056 tasks",
+      "sk-code multi-stack tasks",
+      "056 checklist",
+      "sk-code multi-stack verification"
+    ],
+    "key_topics": [
+      "sk-code",
+      "multi-stack",
+      "nextjs",
+      "056",
+      "smart",
+      "router",
+      "alignment",
+      "stack",
+      "scaffolding",
+      "plan",
+      "tasks",
+      "checklist"
+    ],
+    "importance_tier": "high",
+    "status": "in_progress",
+    "key_files": [
+      ".opencode/skills/sk-code/SKILL.md",
+      ".opencode/skills/sk-code/README.md",
+      ".opencode/skills/sk-code/description.json",
+      ".opencode/skills/sk-code/graph-metadata.json",
+      "spec.md",
+      "plan.md",
+      "checklist.md",
+      "implementation-summary.md",
+      "tasks.md"
+    ],
+    "entities": [
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-code/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-code/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "description.json",
+        "kind": "config",
+        "path": ".opencode/skills/sk-code/description.json",
+        "source": "derived"
+      },
+      {
+        "name": "graph-metadata.json",
+        "kind": "config",
+        "path": ".opencode/skills/sk-code/graph-metadata.json",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Restore",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "App Router",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "React Native",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Three",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Mechanical",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Resource Domains",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "`sk-code` was the umbrella code-routing skill but only had one live stack (Webflow)",
+    "created_at": "2026-04-30T13:00:00Z",
+    "last_save_at": "2026-07-07T16:45:58.023Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": "2026-04-30T18:30:00Z",
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:746bf302a19208c011d907b5e178ba8e2b79fb6dc8bd30dc4f2de422107b0b96",
+    "source_doc_hashes": {
+      "spec.md": "5b6f6ca35e63d6a64bf66f941f74ec4b7d7bcc96cdda1a345d92b68dfdea6420",
+      "plan.md": "6922ed0049671809e8bc2a36ab371d0228a3d230b9dbc97230c3e8b9efeb4326",
+      "tasks.md": "ea5577d4bbaea3b334bfc4682e3f5197c5444e97e5cf6b7c4fe5906ecc42e163",
+      "checklist.md": "9ca0e03ee9cef35144a09f01e19ffbede561acfd830b6f060ed225cccc3b966e",
+      "implementation-summary.md": "5506d8461097f5647e64169dea8a7d16bae4495079c0c283d6c3b6045d62f945"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

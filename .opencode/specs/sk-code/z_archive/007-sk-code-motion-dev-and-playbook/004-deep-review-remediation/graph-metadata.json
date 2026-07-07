@@ -1,0 +1,236 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-code/z_archive/007-sk-code-motion-dev-and-playbook/004-deep-review-remediation",
+  "spec_folder": "sk-code/z_archive/007-sk-code-motion-dev-and-playbook/004-deep-review-remediation",
+  "parent_id": "sk-code/z_archive/007-sk-code-motion-dev-and-playbook",
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "069 deep review remediation",
+      "packet 069 final remediation",
+      "motion.dev review findings",
+      "sk-code remediation phase 004",
+      "069 remediation plan",
+      "packet 069 deep review fix plan",
+      "069 remediation tasks",
+      "deep review finding tasks",
+      "069 remediation checklist",
+      "deep review remediation verification",
+      "069 remediation complete",
+      "packet 069 deep review remediation summary"
+    ],
+    "key_topics": [
+      "069",
+      "deep",
+      "review",
+      "remediation",
+      "packet",
+      "final",
+      "motion",
+      "dev",
+      "findings",
+      "sk-code",
+      "phase",
+      "004"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md",
+      ".opencode/skills/sk-code/SKILL.md",
+      ".opencode/skills/sk-code/README.md",
+      ".opencode/skills/sk-code/manual_testing_playbook/manual_testing_playbook.md",
+      "specs/sk-code/z_archive/007-sk-code-motion-dev-and-playbook/spec.md",
+      "specs/sk-code/z_archive/007-sk-code-motion-dev-and-playbook/001-playbook/spec.md",
+      "specs/sk-code/z_archive/007-sk-code-motion-dev-and-playbook/002-motion-dev/spec.md",
+      "specs/sk-code/z_archive/007-sk-code-motion-dev-and-playbook/002-motion-dev/implementation-summary.md",
+      "specs/sk-code/z_archive/007-sk-code-motion-dev-and-playbook/003-cross-ref-metadata-sync/spec.md",
+      "specs/sk-code/z_archive/007-sk-code-motion-dev-and-playbook/003-cross-ref-metadata-sync/graph-metadata.json",
+      "specs/sk-code/z_archive/007-sk-code-motion-dev-and-playbook/graph-metadata.json",
+      "specs/sk-code/z_archive/007-sk-code-motion-dev-and-playbook/004-deep-review-remediation/spec.md",
+      "specs/sk-code/z_archive/007-sk-code-motion-dev-and-playbook/004-deep-review-remediation/plan.md",
+      "specs/sk-code/z_archive/007-sk-code-motion-dev-and-playbook/004-deep-review-remediation/tasks.md",
+      "specs/sk-code/z_archive/007-sk-code-motion-dev-and-playbook/004-deep-review-remediation/checklist.md",
+      "specs/sk-code/z_archive/007-sk-code-motion-dev-and-playbook/004-deep-review-remediation/graph-metadata.json"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "specs/sk-code/z_archive/007-sk-code-motion-dev-and-playbook/004-deep-review-remediation/spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "specs/sk-code/z_archive/007-sk-code-motion-dev-and-playbook/004-deep-review-remediation/plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "specs/sk-code/z_archive/007-sk-code-motion-dev-and-playbook/004-deep-review-remediation/tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "specs/sk-code/z_archive/007-sk-code-motion-dev-and-playbook/004-deep-review-remediation/checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-code/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-code/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "manual_testing_playbook.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-code/manual_testing_playbook/manual_testing_playbook.md",
+        "source": "derived"
+      },
+      {
+        "name": "graph-metadata.json",
+        "kind": "config",
+        "path": "specs/sk-code/z_archive/007-sk-code-motion-dev-and-playbook/003-cross-ref-metadata-sync/graph-metadata.json",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Deep Review Remediation",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Source Verdict",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Clear",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Authored Phase",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Primary Skill",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Source Ledger",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Prove Webflow",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Update Packet",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The 7-iteration deep review for Packet 069 ended with a FAIL verdict",
+    "created_at": "2026-05-05T12:00:00Z",
+    "last_save_at": "2026-07-07T16:45:58.040Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": "2026-05-05T12:00:00Z",
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:b776315bec2161d6673c1f03cb6a7d1e52f987d75938714c5dbd65d5d1466b9b",
+    "source_doc_hashes": {
+      "spec.md": "1a77c1d445b3a5dbe5d94c794e172c37655547e2d56a9c6360985dfb2ec6e999",
+      "plan.md": "7f2347381cb2d6c24804ac6bc6490a0fcf0b502244493e35c52415f2bfb29fe7",
+      "tasks.md": "ff947bb4fa896fb7a76b063aeec20ac1bffec50c437f1ba5fdc2fe1af0f7223e",
+      "checklist.md": "caca4d6d9fda9dadae8d323d674be3747cac3715eb7442beae72784a3c3e522a",
+      "implementation-summary.md": "378cebcbed553eb70e9982fa39c93dcd8ff9fcbc892e0810b49bd1faecd68f4b"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

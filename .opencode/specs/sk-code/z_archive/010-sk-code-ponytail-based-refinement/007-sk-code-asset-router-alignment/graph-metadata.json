@@ -1,0 +1,220 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-code/z_archive/010-sk-code-ponytail-based-refinement/007-sk-code-asset-router-alignment",
+  "spec_folder": "sk-code/z_archive/010-sk-code-ponytail-based-refinement/007-sk-code-asset-router-alignment",
+  "parent_id": "sk-code/z_archive/010-sk-code-ponytail-based-refinement",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "sk-code asset template alignment",
+      "sk-code smart router conformance",
+      "loading levels table",
+      "authoring checklist overview section",
+      "sk-code asset router plan",
+      "loading levels table plan",
+      "authoring checklist overview restructure",
+      "router conformance verification",
+      "sk-code asset router tasks",
+      "authoring checklist overview tasks",
+      "loading levels task",
+      "router guard verification task"
+    ],
+    "key_topics": [
+      "sk-code",
+      "asset",
+      "template",
+      "alignment",
+      "smart",
+      "router",
+      "conformance",
+      "loading",
+      "levels",
+      "table",
+      "authoring",
+      "checklist"
+    ],
+    "importance_tier": "normal",
+    "status": "in_progress",
+    "key_files": [
+      ".opencode/skills/sk-code/SKILL.md",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-code/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Template Alignment",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Router Conformance",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Resource Loading Levels",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Restructure",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Date",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Impact",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "sk-code's five `authoring.md` checklist assets led with `## 1",
+    "created_at": "2026-06-14T06:30:53Z",
+    "last_save_at": "2026-07-07T16:45:58.062Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:23c2ba8c5c00cc7a4d70fce5d0a2879c700e5a46ec5c7b764c1a108533f541f4",
+    "source_doc_hashes": {
+      "spec.md": "f6e3940aa5f921446d81ec67f801a26cb55184dc941223c75845db6fec5da90a",
+      "plan.md": "a1255a729fb29a24c04bce3a2081c4d19d567556de760188bf5cde9667cd8587",
+      "tasks.md": "371cc032bd087de94098ecb2fe3f8efa7ab2e724cb0be95d35e212f650c1ce77",
+      "checklist.md": "46f8f173989af074fa6790e86f278ca3fc7663fda98ab8233e34391a888110fb",
+      "implementation-summary.md": "655100de13b167d1719fb60161a57649c1441485d56ea7e0dd308d2d43f6dae1"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

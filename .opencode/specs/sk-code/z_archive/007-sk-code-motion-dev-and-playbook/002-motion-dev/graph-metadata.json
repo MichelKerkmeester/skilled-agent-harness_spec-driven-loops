@@ -1,0 +1,225 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-code/z_archive/007-sk-code-motion-dev-and-playbook/002-motion-dev",
+  "spec_folder": "sk-code/z_archive/007-sk-code-motion-dev-and-playbook/002-motion-dev",
+  "parent_id": "sk-code/z_archive/007-sk-code-motion-dev-and-playbook",
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "sk-code motion.dev references",
+      "motion.dev assets",
+      "motion_dev cross-stack",
+      "002-motion-dev",
+      "sk-code motion.dev plan",
+      "002-motion-dev plan",
+      "sk-code motion.dev tasks",
+      "002-motion-dev tasks",
+      "sk-code motion.dev checklist",
+      "002-motion-dev verification",
+      "sk-code motion.dev implementation summary",
+      "002-motion-dev complete"
+    ],
+    "key_topics": [
+      "sk-code",
+      "motion",
+      "dev",
+      "references",
+      "assets",
+      "cross-stack",
+      "002-motion-dev",
+      "plan",
+      "tasks",
+      "checklist",
+      "verification",
+      "implementation"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md",
+      "specs/sk-code/z_archive/007-sk-code-motion-dev-and-playbook/002-motion-dev/spec.md",
+      "specs/sk-code/z_archive/007-sk-code-motion-dev-and-playbook/002-motion-dev/plan.md",
+      "specs/sk-code/z_archive/007-sk-code-motion-dev-and-playbook/002-motion-dev/tasks.md",
+      "specs/sk-code/z_archive/007-sk-code-motion-dev-and-playbook/002-motion-dev/checklist.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "specs/sk-code/z_archive/007-sk-code-motion-dev-and-playbook/002-motion-dev/spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "specs/sk-code/z_archive/007-sk-code-motion-dev-and-playbook/002-motion-dev/plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "specs/sk-code/z_archive/007-sk-code-motion-dev-and-playbook/002-motion-dev/tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "specs/sk-code/z_archive/007-sk-code-motion-dev-and-playbook/002-motion-dev/checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Surface",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Create",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Defined Packet",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Build",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Existing Webflow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Official Motion",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Created Packet",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Read Level",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Mine Motion",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Create Packet",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The sk-code skill has empty peer folders for cross-stack motion.dev guidance",
+    "created_at": "2026-05-05T08:00:00Z",
+    "last_save_at": "2026-07-07T16:45:58.037Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:704282b31e5f650d977baff84145aa8dd97f063896934a7c84f25e67f7982fa1",
+    "source_doc_hashes": {
+      "spec.md": "6fd431efcf66a4e18fa68bec88533e09577be90188b8e9395275dce1e455e1d1",
+      "plan.md": "2ad492dc674d575aea7c7fbfda5e334284a22ad4bd7c2606cabf60b3a40ed23a",
+      "tasks.md": "d46e737f464120abee76a6d3f125c6698522c2175c702ed279ffd23dbbf9e573",
+      "checklist.md": "7d47b179028686fe00a339933a1220379704e3758292defe9629f118ebc8e17e",
+      "implementation-summary.md": "9245fd14376ced0dc32fd001dfb6ad15bad6f3f5239d755b519385c091040676"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

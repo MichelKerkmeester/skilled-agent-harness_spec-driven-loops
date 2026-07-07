@@ -1,0 +1,29 @@
+{
+  "specFolder": "sk-code/z_archive/007-sk-code-motion-dev-and-playbook/001-playbook",
+  "description": "The sk-code manual testing playbook already follows the sk-doc playbook package contract, but it stops at routing and advisor scenarios",
+  "keywords": [
+    "sk-code",
+    "manual",
+    "testing",
+    "playbook",
+    "already",
+    "follows",
+    "sk-doc",
+    "package",
+    "contract",
+    "stops",
+    "routing",
+    "advisor",
+    "scenarios"
+  ],
+  "lastUpdated": "2026-06-30T12:42:36.600Z",
+  "specId": "001",
+  "folderSlug": "playbook",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "z_archive",
+    "055-sk-code-motion-dev-and-playbook"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

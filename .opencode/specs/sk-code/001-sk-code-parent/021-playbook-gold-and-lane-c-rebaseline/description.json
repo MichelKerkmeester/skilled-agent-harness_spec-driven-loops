@@ -1,0 +1,28 @@
+{
+  "level": "2",
+  "specFolder": "sk-code/001-sk-code-parent/021-playbook-gold-and-lane-c-rebaseline",
+  "description": "The sk-code `manualtestingplaybook` scenarios assert an expected-resource gold — the references and assets a correct route should load for each prompt",
+  "keywords": [
+    "sk-code",
+    "manualtestingplaybook",
+    "scenarios",
+    "assert",
+    "expected-resource",
+    "gold",
+    "references",
+    "assets",
+    "correct",
+    "route",
+    "load",
+    "prompt"
+  ],
+  "lastUpdated": "2026-07-07T06:10:17.603Z",
+  "specId": "021",
+  "folderSlug": "playbook-gold-and-lane-c-rebaseline",
+  "parentChain": [
+    "sk-code",
+    "001-sk-code-parent"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

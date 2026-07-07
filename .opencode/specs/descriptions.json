@@ -1829,7 +1829,7 @@
       "lastUpdated": "2026-07-01T05:32:33.222Z"
     },
     {
-      "specFolder": "skilled-agent-orchestration/124-sk-code-parent",
+      "specFolder": "sk-code/001-sk-code-parent",
       "description": "Code capability is split across two mature-but-uncoordinated skills",
       "keywords": [
         "code",
@@ -1843,7 +1843,7 @@
       "lastUpdated": "2026-07-07T12:56:31.477Z"
     },
     {
-      "specFolder": "skilled-agent-orchestration/124-sk-code-parent/001-research-and-context",
+      "specFolder": "sk-code/001-sk-code-parent/001-research-and-context",
       "description": "The sk-code family's mode composition and migration path are undecided",
       "keywords": [
         "sk-code",
@@ -1857,7 +1857,7 @@
       "lastUpdated": "2026-07-07T12:56:31.477Z"
     },
     {
-      "specFolder": "skilled-agent-orchestration/124-sk-code-parent/002-architecture-decision",
+      "specFolder": "sk-code/001-sk-code-parent/002-architecture-decision",
       "description": "Phase 001 produced a decision-ready recommendation but nothing binds it; the build phases need a single authoritative contract for the taxonomy,",
       "keywords": [
         "phase",
@@ -1878,7 +1878,7 @@
       "lastUpdated": "2026-07-05T12:13:05.247Z"
     },
     {
-      "specFolder": "skilled-agent-orchestration/124-sk-code-parent/003-scaffold-hub",
+      "specFolder": "sk-code/001-sk-code-parent/003-scaffold-hub",
       "description": "The accepted architecture needed a safe intermediate state before content relocation",
       "keywords": [
         "accepted",
@@ -1893,7 +1893,7 @@
       "lastUpdated": "2026-07-05T12:13:05.252Z"
     },
     {
-      "specFolder": "skilled-agent-orchestration/124-sk-code-parent/004-onboard-implement",
+      "specFolder": "sk-code/001-sk-code-parent/004-onboard-implement",
       "description": "After the parent-hub scaffold existed, the flat top-level `references/`, `assets/`, and `scripts/` directories still held the prior monolithic sk-code",
       "keywords": [
         "parent-hub",
@@ -1914,7 +1914,7 @@
       "lastUpdated": "2026-07-05T12:13:05.257Z"
     },
     {
-      "specFolder": "skilled-agent-orchestration/124-sk-code-parent/005-foldin-review",
+      "specFolder": "sk-code/001-sk-code-parent/005-foldin-review",
       "description": "After the review package moved under the `sk-code` parent hub, the runtime docs still carried standalone `sk-code-review` identity",
       "keywords": [
         "review",
@@ -1934,7 +1934,7 @@
       "lastUpdated": "2026-07-05T12:13:05.262Z"
     },
     {
-      "specFolder": "skilled-agent-orchestration/124-sk-code-parent/006-build-remaining-modes",
+      "specFolder": "sk-code/001-sk-code-parent/006-build-remaining-modes",
       "description": "The hub is routing-only and the surface detection lives in `shared/`, but the four non-review mode packets were still 57-line placeholders",
       "keywords": [
         "hub",
@@ -1954,7 +1954,7 @@
       "lastUpdated": "2026-07-05T12:13:05.266Z"
     },
     {
-      "specFolder": "skilled-agent-orchestration/124-sk-code-parent/007-advisor-and-integration",
+      "specFolder": "sk-code/001-sk-code-parent/007-advisor-and-integration",
       "description": "The relocation (004) and fold (005) moved or deleted files that external code and docs still referenced by their old paths",
       "keywords": [
         "relocation",
@@ -1975,7 +1975,7 @@
       "lastUpdated": "2026-07-05T12:13:05.269Z"
     },
     {
-      "specFolder": "skilled-agent-orchestration/124-sk-code-parent/008-routing-benchmark-and-review",
+      "specFolder": "sk-code/001-sk-code-parent/008-routing-benchmark-and-review",
       "description": "The restructured hub had never been benchmarked or reviewed as a family",
       "keywords": [
         "restructured",
@@ -1988,7 +1988,7 @@
       "lastUpdated": "2026-07-05T12:13:05.273Z"
     },
     {
-      "specFolder": "skilled-agent-orchestration/124-sk-code-parent/009-cutover-and-rollout",
+      "specFolder": "sk-code/001-sk-code-parent/009-cutover-and-rollout",
       "description": "Final phase of the sk-code parent conversion. Branch portion landed verified cleanup (8 harness-test migrations, parent-hub-vocab-sync generalization, CS-003 matcher, a 29-path smart_routing content-drift fix) plus two fold-broken live fixes; the load-bearing cutover (sk-code-review scorer removal, skill-graph regen + reindex, 4 alias-site deletions, ~350 NAME-ref repoints, version release) is specified as an atomic main-side advisor-rebuild runbook because the worktree lacks the compiled dist those steps require",
       "keywords": [
         "sk-code",
@@ -2005,7 +2005,7 @@
       "lastUpdated": "2026-07-05T06:47:46.999Z"
     },
     {
-      "specFolder": "skilled-agent-orchestration/124-sk-code-parent/010-plugin-tui-fix",
+      "specFolder": "sk-code/001-sk-code-parent/010-plugin-tui-fix",
       "description": "The `.opencode/plugins/mk-dist-freshness-guard.js` plugin emitted stale-dist warnings with `console.warn` and `console.error` during",
       "keywords": [
         "opencode",
@@ -2022,7 +2022,7 @@
       "lastUpdated": "2026-07-05T10:10:41.418Z"
     },
     {
-      "specFolder": "skilled-agent-orchestration/124-sk-code-parent/011-hub-canon",
+      "specFolder": "sk-code/001-sk-code-parent/011-hub-canon",
       "description": "The repo had competing parent-hub shapes: deep-loop-workflows' 3-tier machinery and the sk-design/sk-code 2-tier shape",
       "keywords": [
         "repo",
@@ -2040,7 +2040,7 @@
       "lastUpdated": "2026-07-07T12:56:31.477Z"
     },
     {
-      "specFolder": "skilled-agent-orchestration/124-sk-code-parent/012-spec-kit-relocation",
+      "specFolder": "sk-code/001-sk-code-parent/012-spec-kit-relocation",
       "description": "Two spec-folder authoring docs lived under sk-code, but spec-folder authoring is system-spec-kit's domain, not a code surface",
       "keywords": [
         "two",
@@ -2057,7 +2057,7 @@
       "lastUpdated": "2026-07-07T12:56:31.477Z"
     },
     {
-      "specFolder": "skilled-agent-orchestration/124-sk-code-parent/013-sk-code-two-axis-restructure",
+      "specFolder": "sk-code/001-sk-code-parent/013-sk-code-two-axis-restructure",
       "description": "The 124 cutover merged the sk-code parent hub with a workflow-only decomposition: implement, quality, debug, verify, and review",
       "keywords": [
         "124",
@@ -2077,7 +2077,7 @@
       "lastUpdated": "2026-07-07T12:56:31.477Z"
     },
     {
-      "specFolder": "skilled-agent-orchestration/124-sk-code-parent/014-close-out-and-tail",
+      "specFolder": "sk-code/001-sk-code-parent/014-close-out-and-tail",
       "description": "The sk-code parent program had shipped its two-axis restructure, but the tail still carried stale identity labels, scorer tests from the pre-fold",
       "keywords": [
         "sk-code",
@@ -2099,7 +2099,7 @@
       "lastUpdated": "2026-07-07T12:56:31.477Z"
     },
     {
-      "specFolder": "skilled-agent-orchestration/124-sk-code-parent/015-sk-design-canon-alignment",
+      "specFolder": "sk-code/001-sk-code-parent/015-sk-design-canon-alignment",
       "description": "The master plan reports that `parent-skill-check` strict mode leaves sk-design with four remaining parent-hub invariant failures after the five-mode",
       "keywords": [
         "master",
@@ -2120,7 +2120,7 @@
       "lastUpdated": "2026-07-07T12:56:31.477Z"
     },
     {
-      "specFolder": "skilled-agent-orchestration/124-sk-code-parent/016-sk-code-content-coherence",
+      "specFolder": "sk-code/001-sk-code-parent/016-sk-code-content-coherence",
       "description": "The master plan identifies sk-code as structurally canonical but content-incoherent after phase 013",
       "keywords": [
         "master",
@@ -2136,7 +2136,7 @@
       "lastUpdated": "2026-07-07T12:56:31.477Z"
     },
     {
-      "specFolder": "skilled-agent-orchestration/124-sk-code-parent/017-canon-hardening",
+      "specFolder": "sk-code/001-sk-code-parent/017-canon-hardening",
       "description": "The parent-hub canon is defined, but its live router template, schema reference, and validator do not speak one `bundleRules` vocabulary",
       "keywords": [
         "parent-hub",
@@ -2156,7 +2156,7 @@
       "lastUpdated": "2026-07-07T12:56:31.477Z"
     },
     {
-      "specFolder": "skilled-agent-orchestration/124-sk-code-parent/018-deep-loop-canon-alignment",
+      "specFolder": "sk-code/001-sk-code-parent/018-deep-loop-canon-alignment",
       "description": "The deep-loop parent hub fails the parent-hub canon with 8 P0 findings and 26 strict invariant failures",
       "keywords": [
         "deep-loop",
@@ -2173,7 +2173,7 @@
       "lastUpdated": "2026-07-07T12:56:31.477Z"
     },
     {
-      "specFolder": "skilled-agent-orchestration/124-sk-code-parent/019-benchmarks-and-promotion",
+      "specFolder": "sk-code/001-sk-code-parent/019-benchmarks-and-promotion",
       "description": "The 124 parent-hub program is only complete after all three hub families have fresh, comparable Lane-C benchmark baselines, parent-skill-check",
       "keywords": [
         "124",
@@ -2194,7 +2194,7 @@
       "lastUpdated": "2026-07-07T12:56:31.477Z"
     },
     {
-      "specFolder": "skilled-agent-orchestration/124-sk-code-parent/020-surface-packet-rename",
+      "specFolder": "sk-code/001-sk-code-parent/020-surface-packet-rename",
       "description": "Rename the four sk-code surface sub-skill folders (review, webflow, opencode, animation) to the code- prefix and repair every live reference across th",
       "keywords": [
         "rename",
@@ -2228,7 +2228,7 @@
       "lastUpdated": "2026-07-05T14:35:43.420Z"
     },
     {
-      "specFolder": "skilled-agent-orchestration/124-sk-code-parent/021-playbook-gold-and-lane-c-rebaseline",
+      "specFolder": "sk-code/001-sk-code-parent/021-playbook-gold-and-lane-c-rebaseline",
       "description": "The sk-code `manualtestingplaybook` scenarios assert an expected-resource gold \u2014 the references and assets a correct route should load for each prompt",
       "keywords": [
         "sk-code",
@@ -2247,7 +2247,7 @@
       "lastUpdated": "2026-07-07T06:10:17.603Z"
     },
     {
-      "specFolder": "skilled-agent-orchestration/124-sk-code-parent/022-collapse-to-four-subskills",
+      "specFolder": "sk-code/001-sk-code-parent/022-collapse-to-four-subskills",
       "description": "The `sk-code` parent hub carries eight sub-skills split across two axes: three surface skills (`code-opencode`, `code-webflow`, `code-animation`) and",
       "keywords": [
         "sk-code",
@@ -2270,7 +2270,7 @@
       "lastUpdated": "2026-07-07T12:56:31.477Z"
     },
     {
-      "specFolder": "skilled-agent-orchestration/124-sk-code-parent/023-sk-code-workflow-subskill-research",
+      "specFolder": "sk-code/001-sk-code-parent/023-sk-code-workflow-subskill-research",
       "description": "The sk-code parent hub exposes four WORKFLOW sub-skills \u2014 `code-implement`, `code-quality`, `code-debug`, `code-verify` \u2014 that carry the day-to-day",
       "keywords": [
         "sk-code",
@@ -2290,7 +2290,7 @@
       "lastUpdated": "2026-07-07T06:10:17.608Z"
     },
     {
-      "specFolder": "skilled-agent-orchestration/124-sk-code-parent/024-sk-code-advisor-routing-and-discovery",
+      "specFolder": "sk-code/001-sk-code-parent/024-sk-code-advisor-routing-and-discovery",
       "description": "Two sk-code discovery scenarios failed because the references they needed already existed in `sk-code/shared/references/smartrouting.md` RESOURCEMAP,",
       "keywords": [
         "two",
@@ -2310,7 +2310,7 @@
       "lastUpdated": "2026-07-06T09:31:15.611Z"
     },
     {
-      "specFolder": "skilled-agent-orchestration/124-sk-code-parent/025-code-quality-and-shared-research",
+      "specFolder": "sk-code/001-sk-code-parent/025-code-quality-and-shared-research",
       "description": "The sk-code `code-quality` sub-skill carries one of the highest-leverage jobs in the coding lifecycle \u2014 judging whether code is correct, clean, and",
       "keywords": [
         "sk-code",
@@ -2331,7 +2331,7 @@
       "lastUpdated": "2026-07-07T12:56:31.477Z"
     },
     {
-      "specFolder": "skilled-agent-orchestration/124-sk-code-parent/026-code-quality-and-shared-implementation",
+      "specFolder": "sk-code/001-sk-code-parent/026-code-quality-and-shared-implementation",
       "description": "The sibling research packet `025-code-quality-and-shared-research` ran ten capped-converged deep-research iterations and produced a ranked,",
       "keywords": [
         "sibling",
@@ -3035,7 +3035,7 @@
       "lastUpdated": "2026-06-23T03:49:48.963Z"
     },
     {
-      "specFolder": "skilled-agent-orchestration/z_archive/016-sk-code-review-creation",
+      "specFolder": "sk-code/z_archive/001-sk-code-review-creation",
       "description": "Level 2 specification for converting the draft `legacy-single-hyphen-review` package into `sk-code-review`, aligning router behavior to `sk-doc` stand",
       "keywords": [
         "level",
@@ -3076,7 +3076,7 @@
       "lastUpdated": "2026-06-23T03:49:48.975Z"
     },
     {
-      "specFolder": "skilled-agent-orchestration/z_archive/018-sk-code-opencode-refinement",
+      "specFolder": "sk-code/z_archive/002-sk-code-opencode-refinement",
       "description": "Current OpenCode standards provide strong cross-language structure, but inline comment rules are still broad enough to allow verbose human-style narra",
       "keywords": [
         "current",
@@ -3523,7 +3523,7 @@
       "lastUpdated": "2026-07-07T12:56:31.477Z"
     },
     {
-      "specFolder": "skilled-agent-orchestration/z_archive/042-sk-code-merger",
+      "specFolder": "sk-code/z_archive/003-sk-code-merger",
       "description": "Two parallel code skills (`sk-code-web` and `sk-code-full-stack`) overlap in phase model, intent vocabulary, and advisor scoring keys, causing routing",
       "keywords": [
         "two",
@@ -3546,7 +3546,7 @@
       "lastUpdated": "2026-07-07T12:56:31.477Z"
     },
     {
-      "specFolder": "skilled-agent-orchestration/z_archive/043-cli-skill-removal-sk-code-merger-deprecated",
+      "specFolder": "sk-code/z_archive/004-cli-skill-removal-sk-code-merger-deprecated",
       "description": "The skills `sk-code-full-stack` and `sk-code-web` were soft-deprecated on 2026-04-30 by packet `054-sk-code-merger`, which created the new umbrella",
       "keywords": [
         "skills",
@@ -3563,7 +3563,7 @@
       "lastUpdated": "2026-07-01T12:31:47.453Z"
     },
     {
-      "specFolder": "skilled-agent-orchestration/z_archive/044-sk-code-fullstack-branch",
+      "specFolder": "sk-code/z_archive/005-sk-code-fullstack-branch",
       "description": "`sk-code` was the umbrella code-routing skill but only had one live stack (Webflow)",
       "keywords": [
         "sk-code",
@@ -3935,7 +3935,7 @@
       "lastUpdated": "2026-06-30T12:42:36.561Z"
     },
     {
-      "specFolder": "skilled-agent-orchestration/z_archive/052-sk-code-opencode-merger",
+      "specFolder": "sk-code/z_archive/006-sk-code-opencode-merger",
       "description": "Before this implementation, `sk-code` advertised itself as an umbrella application-code router with Webflow, Go, and React/NextJS branches, while",
       "keywords": [
         "implementation",
@@ -4144,7 +4144,7 @@
       "lastUpdated": "2026-06-30T12:42:36.594Z"
     },
     {
-      "specFolder": "skilled-agent-orchestration/z_archive/055-sk-code-motion-dev-and-playbook",
+      "specFolder": "sk-code/z_archive/007-sk-code-motion-dev-and-playbook",
       "description": "Motion.dev is currently referenced informally inside `sk-code/references/webflow/` (10 docs mention it) as a Webflow-specific animation library, even",
       "keywords": [
         "motion",
@@ -4166,7 +4166,7 @@
       "lastUpdated": "2026-07-07T12:56:31.477Z"
     },
     {
-      "specFolder": "skilled-agent-orchestration/z_archive/055-sk-code-motion-dev-and-playbook/001-playbook",
+      "specFolder": "sk-code/z_archive/007-sk-code-motion-dev-and-playbook/001-playbook",
       "description": "The sk-code manual testing playbook already follows the sk-doc playbook package contract, but it stops at routing and advisor scenarios",
       "keywords": [
         "sk-code",
@@ -4186,7 +4186,7 @@
       "lastUpdated": "2026-06-30T12:42:36.600Z"
     },
     {
-      "specFolder": "skilled-agent-orchestration/z_archive/055-sk-code-motion-dev-and-playbook/002-motion-dev",
+      "specFolder": "sk-code/z_archive/007-sk-code-motion-dev-and-playbook/002-motion-dev",
       "description": "The sk-code skill has empty peer folders for cross-stack motion.dev guidance",
       "keywords": [
         "sk-code",
@@ -4202,7 +4202,7 @@
       "lastUpdated": "2026-06-30T12:42:36.605Z"
     },
     {
-      "specFolder": "skilled-agent-orchestration/z_archive/055-sk-code-motion-dev-and-playbook/003-cross-ref-metadata-sync",
+      "specFolder": "sk-code/z_archive/007-sk-code-motion-dev-and-playbook/003-cross-ref-metadata-sync",
       "description": "Packets 1 and 2 created motion.dev playbook coverage and a populated cross-stack `motiondev/` reference package, but existing Webflow docs still menti",
       "keywords": [
         "packets",
@@ -4225,7 +4225,7 @@
       "lastUpdated": "2026-06-30T12:42:36.610Z"
     },
     {
-      "specFolder": "skilled-agent-orchestration/z_archive/055-sk-code-motion-dev-and-playbook/004-deep-review-remediation",
+      "specFolder": "sk-code/z_archive/007-sk-code-motion-dev-and-playbook/004-deep-review-remediation",
       "description": "The 7-iteration deep review for Packet 069 ended with a FAIL verdict",
       "keywords": [
         "7-iteration",
@@ -4240,7 +4240,7 @@
       "lastUpdated": "2026-06-30T12:42:36.615Z"
     },
     {
-      "specFolder": "skilled-agent-orchestration/z_archive/055-sk-code-motion-dev-and-playbook/005-playbook-cross-cli-execution",
+      "specFolder": "sk-code/z_archive/007-sk-code-motion-dev-and-playbook/005-playbook-cross-cli-execution",
       "description": "Packet 069 now has Motion.dev peer references and manual playbook coverage, but it lacks a repeatable way to ask multiple AI runtimes how they would r",
       "keywords": [
         "packet",
@@ -4263,7 +4263,7 @@
       "lastUpdated": "2026-06-30T12:42:36.620Z"
     },
     {
-      "specFolder": "skilled-agent-orchestration/z_archive/055-sk-code-motion-dev-and-playbook/006-routing-precision-fixes",
+      "specFolder": "sk-code/z_archive/007-sk-code-motion-dev-and-playbook/006-routing-precision-fixes",
       "description": "Phase 005 proved the Motion.dev peer-reference architecture works on the majority path, but the matrix still returned CONDITIONAL because two critical",
       "keywords": [
         "phase",
@@ -4430,7 +4430,7 @@
       "lastUpdated": "2026-06-30T12:42:36.689Z"
     },
     {
-      "specFolder": "skilled-agent-orchestration/z_archive/059-sk-code-scripts-relocation",
+      "specFolder": "sk-code/z_archive/008-sk-code-scripts-relocation",
       "description": "`.opencode/skills/sk-code/scripts/` currently mixes stack-specific Webflow build utilities with the root of the `sk-code` skill",
       "keywords": [
         "opencode",
@@ -4581,7 +4581,7 @@
       "lastUpdated": "2026-07-07T12:56:31.477Z"
     },
     {
-      "specFolder": "skilled-agent-orchestration/z_archive/066-opencode-authoring-recipe/001-sk-code-authoring",
+      "specFolder": "sk-code/z_archive/011-sk-code-authoring",
       "description": "sk-code's SKILL.md declares OPENCODE scope covering skills, agents, commands, MCP servers, hooks, scripts, tests, and config (lines 20-23), but the on",
       "keywords": [
         "sk-code",
@@ -4992,7 +4992,7 @@
       "lastUpdated": "2026-07-01T12:31:47.583Z"
     },
     {
-      "specFolder": "skilled-agent-orchestration/z_archive/076-testing-playbooks-code-review-and-git/001-sk-code-review-playbook",
+      "specFolder": "sk-code/z_archive/012-sk-code-review-playbook",
       "description": "sk-code-review is the findings-first review baseline used by `@review`, `@deep-review`, and `/speckit:deep-review`",
       "keywords": [
         "sk-code-review",
@@ -5885,7 +5885,7 @@
       "lastUpdated": "2026-06-30T12:42:36.980Z"
     },
     {
-      "specFolder": "skilled-agent-orchestration/z_archive/089-auto-review-stretch-config-dedup-gates/002-sk-code-review-uplift",
+      "specFolder": "sk-code/z_archive/013-sk-code-review-uplift",
       "description": "Two waste vectors in sk-code-review:",
       "keywords": [
         "two",
@@ -7106,7 +7106,7 @@
       "lastUpdated": "2026-07-01T12:31:47.745Z"
     },
     {
-      "specFolder": "skilled-agent-orchestration/z_archive/104-sk-code-animation-mining",
+      "specFolder": "sk-code/z_archive/009-sk-code-animation-mining",
       "description": "sk-code's Motion.dev surface is strong on API how-to (animate/timelines, scroll/gestures, integration, a decision matrix, performance pitfalls) but",
       "keywords": [
         "sk-code",
@@ -7887,7 +7887,7 @@
       "lastUpdated": "2026-06-30T12:42:37.360Z"
     },
     {
-      "specFolder": "skilled-agent-orchestration/z_archive/109-skill-readme-standardization/015-sk-code-review-readme",
+      "specFolder": "sk-code/z_archive/014-sk-code-review-readme",
       "description": "The sk-code-review README is a tabular reference card with stray non-numbered headings (`## Findings`, `## Review Context`) breaking the section seque",
       "keywords": [
         "sk-code-review",
@@ -7908,7 +7908,7 @@
       "lastUpdated": "2026-06-30T12:42:37.365Z"
     },
     {
-      "specFolder": "skilled-agent-orchestration/z_archive/109-skill-readme-standardization/016-sk-code-readme",
+      "specFolder": "sk-code/z_archive/015-sk-code-readme",
       "description": "The sk-code README is a tabular reference card with no problem-first entry point, and it carries a material accuracy error: it presents MOTIONDEV as a",
       "keywords": [
         "sk-code",
@@ -8249,7 +8249,7 @@
       "lastUpdated": "2026-07-01T12:31:47.787Z"
     },
     {
-      "specFolder": "skilled-agent-orchestration/z_archive/113-sk-code-ponytail-based-refinement",
+      "specFolder": "sk-code/z_archive/010-sk-code-ponytail-based-refinement",
       "description": "Packet 146 bundles the external ponytail project (`external/ponytail-main/`) and asks how its logic, hooks, etc",
       "keywords": [
         "packet",
@@ -8267,7 +8267,7 @@
       "lastUpdated": "2026-06-23T03:49:48.326Z"
     },
     {
-      "specFolder": "skilled-agent-orchestration/z_archive/113-sk-code-ponytail-based-refinement/001-skreview-checklist-rows",
+      "specFolder": "sk-code/z_archive/010-sk-code-ponytail-based-refinement/001-skreview-checklist-rows",
       "description": "sk-code-review's `codequalitychecklist.md` has generic KISS/DRY rows but no explicit check for code that hand-rolls something the standard library alr",
       "keywords": [
         "sk-code-review",
@@ -8288,7 +8288,7 @@
       "lastUpdated": "2026-06-30T12:42:37.450Z"
     },
     {
-      "specFolder": "skilled-agent-orchestration/z_archive/113-sk-code-ponytail-based-refinement/002-ceiling-comment-convention",
+      "specFolder": "sk-code/z_archive/010-sk-code-ponytail-based-refinement/002-ceiling-comment-convention",
       "description": "Define a neutral 'ceiling:' comment convention for deliberate shortcuts in sk-code, and let sk-code-review treat a present ceiling comment as P2-downg",
       "keywords": [
         "define",
@@ -8308,7 +8308,7 @@
       "lastUpdated": "2026-06-30T12:42:37.455Z"
     },
     {
-      "specFolder": "skilled-agent-orchestration/z_archive/113-sk-code-ponytail-based-refinement/003-wording-invariant-guards",
+      "specFolder": "sk-code/z_archive/010-sk-code-ponytail-based-refinement/003-wording-invariant-guards",
       "description": "Add a standalone canary guard that locks automation-parsed exact strings (the Review status triplet) and, after canonicalizing the 3-way-drifted Iron",
       "keywords": [
         "add",
@@ -8329,7 +8329,7 @@
       "lastUpdated": "2026-06-30T12:42:37.459Z"
     },
     {
-      "specFolder": "skilled-agent-orchestration/z_archive/113-sk-code-ponytail-based-refinement/004-mirror-stackfolder-drift-guards",
+      "specFolder": "sk-code/z_archive/010-sk-code-ponytail-based-refinement/004-mirror-stackfolder-drift-guards",
       "description": "Promote the existing 3-runtime mirror-sync check from a promotion-only gate to a repo-wide pre-commit + CI gate, and add a STACK_FOLDERS-to-on-disk bi",
       "keywords": [
         "promote",
@@ -8347,7 +8347,7 @@
       "lastUpdated": "2026-06-30T12:42:37.465Z"
     },
     {
-      "specFolder": "skilled-agent-orchestration/z_archive/113-sk-code-ponytail-based-refinement/005-design-restraint-ladder",
+      "specFolder": "sk-code/z_archive/010-sk-code-ponytail-based-refinement/005-design-restraint-ladder",
       "description": "Encode ponytail's 6-rung 'do you really need this?' ladder as a ~15-line subsection in sk-code's always-loaded universal quality doc, attached at the",
       "keywords": [
         "encode",
@@ -8368,7 +8368,7 @@
       "lastUpdated": "2026-06-30T12:42:37.469Z"
     },
     {
-      "specFolder": "skilled-agent-orchestration/z_archive/113-sk-code-ponytail-based-refinement/006-optional-addons",
+      "specFolder": "sk-code/z_archive/010-sk-code-ponytail-based-refinement/006-optional-addons",
       "description": "Lower-urgency ponytail-derived add-ons: a code_loc/over-engineering metric folded into the existing correctness-gated benchmark, a SK_CODE_REVIEW_DEPT",
       "keywords": [
         "lower-urgency",
@@ -8384,7 +8384,7 @@
       "lastUpdated": "2026-06-30T12:42:37.475Z"
     },
     {
-      "specFolder": "skilled-agent-orchestration/z_archive/113-sk-code-ponytail-based-refinement/007-sk-code-asset-router-alignment",
+      "specFolder": "sk-code/z_archive/010-sk-code-ponytail-based-refinement/007-sk-code-asset-router-alignment",
       "description": "sk-code's five `authoring.md` checklist assets led with `## 1",
       "keywords": [
         "sk-code",
@@ -8397,7 +8397,7 @@
       "lastUpdated": "2026-06-30T12:42:37.479Z"
     },
     {
-      "specFolder": "skilled-agent-orchestration/z_archive/113-sk-code-ponytail-based-refinement/008-sk-code-review-checklist-reclassification",
+      "specFolder": "sk-code/z_archive/010-sk-code-ponytail-based-refinement/008-sk-code-review-checklist-reclassification",
       "description": "Six `sk-code-review/references/` files (`codequalitychecklist`, `securitychecklist`, `solidchecklist`, `testqualitychecklist`, `fix-completeness-check",
       "keywords": [
         "six",
@@ -8558,7 +8558,7 @@
       "lastUpdated": "2026-06-23T03:49:48.508Z"
     },
     {
-      "specFolder": "skilled-agent-orchestration/z_archive/114-operate-like-fable-5/007-sk-code-rituals",
+      "specFolder": "sk-code/z_archive/016-sk-code-rituals",
       "description": "`sk-code` Phase 3 (`.opencode/skills/sk-code/SKILL.md` lines 41, 208-214) tells the agent to \"run surface verification commands and record evidence,\"",
       "keywords": [
         "sk-code",

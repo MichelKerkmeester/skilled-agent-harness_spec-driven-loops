@@ -1,0 +1,223 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-code/001-sk-code-parent/019-benchmarks-and-promotion",
+  "spec_folder": "sk-code/001-sk-code-parent/019-benchmarks-and-promotion",
+  "parent_id": "sk-code/001-sk-code-parent",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "phase 19 benchmarks",
+      "validator promotion",
+      "124 parent rollup",
+      "phase 19 benchmark plan",
+      "parent-skill-check promotion plan",
+      "124 rollup plan",
+      "phase 19 tasks",
+      "benchmark promotion tasks",
+      "parent rollup tasks",
+      "phase 19 checklist",
+      "benchmark promotion checklist",
+      "parent rollup verification"
+    ],
+    "key_topics": [
+      "phase",
+      "benchmarks",
+      "validator",
+      "promotion",
+      "124",
+      "parent",
+      "rollup",
+      "benchmark",
+      "plan",
+      "parent-skill-check",
+      "tasks",
+      "checklist"
+    ],
+    "importance_tier": "high",
+    "status": "complete",
+    "key_files": [
+      ".opencode/commands/doctor/scripts/parent-skill-check.cjs",
+      ".opencode/commands/doctor/assets/doctor_parent-skill.yaml",
+      ".opencode/specs/sk-code/001-sk-code-parent/graph-metadata.json",
+      ".opencode/specs/sk-code/001-sk-code-parent/spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "spec.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "parent-skill-check.cjs",
+        "kind": "file",
+        "path": ".opencode/commands/doctor/scripts/parent-skill-check.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "doctor_parent-skill.yaml",
+        "kind": "config",
+        "path": ".opencode/commands/doctor/assets/doctor_parent-skill.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "graph-metadata.json",
+        "kind": "config",
+        "path": ".opencode/specs/sk-code/001-sk-code-parent/graph-metadata.json",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Plan",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Change During Execution",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Fresh Lane",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Final",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Promotion Gate",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Severity Promotion",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The 124 parent-hub program is only complete after all three hub families have fresh, comparable Lane-C benchmark baselines, parent-skill-check migration checks 5-9 can be promoted from warning posture to failure posture, and the parent phase rollup metadata reflects phases 010-019 instead of the stale 001-009 child list",
+    "created_at": "2026-07-05T05:46:27.012Z",
+    "last_save_at": "2026-07-07T16:45:57.958Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:79b1221f294bed21e8e40d2c22f870364b75854b27ade75c37a5578d5161ff28",
+    "source_doc_hashes": {
+      "spec.md": "81ff6ca58b4b785c1b01829d5c8cb7effbbd3e3371f18e58c3fa53e5bebaf865",
+      "plan.md": "94138014e6090145bddcc07bb82e1c6bc6d020943e959626b6fcf75bab13ab91",
+      "tasks.md": "09aee92b315a6a99b8d46f4d9402ac8135752d42cf9eb5c3423388646dc4f611",
+      "checklist.md": "b8a5bb2ca9dd57d51a567a7cf683a3be4c503cd7de3569f3600b47022e1fd097",
+      "implementation-summary.md": "c44d74daf11c114f42135ec03f22d300c6f93cb34c15aa53d2a72b70522c6cd0"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

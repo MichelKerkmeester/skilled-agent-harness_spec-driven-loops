@@ -1,0 +1,41 @@
+{
+  "level": "archive",
+  "importance_tier": "archived",
+  "packet_id": "sk-code/z_archive",
+  "spec_folder": "sk-code/z_archive",
+  "parent_id": "sk-code",
+  "children_ids": [
+    "sk-code/z_archive/001-sk-code-review-creation",
+    "sk-code/z_archive/002-sk-code-opencode-refinement",
+    "sk-code/z_archive/003-sk-code-merger",
+    "sk-code/z_archive/004-cli-skill-removal-sk-code-merger-deprecated",
+    "sk-code/z_archive/005-sk-code-fullstack-branch",
+    "sk-code/z_archive/006-sk-code-opencode-merger",
+    "sk-code/z_archive/007-sk-code-motion-dev-and-playbook",
+    "sk-code/z_archive/008-sk-code-scripts-relocation",
+    "sk-code/z_archive/009-sk-code-animation-mining",
+    "sk-code/z_archive/010-sk-code-ponytail-based-refinement",
+    "sk-code/z_archive/011-sk-code-authoring",
+    "sk-code/z_archive/012-sk-code-review-playbook",
+    "sk-code/z_archive/013-sk-code-review-uplift",
+    "sk-code/z_archive/014-sk-code-review-readme",
+    "sk-code/z_archive/015-sk-code-readme",
+    "sk-code/z_archive/016-sk-code-rituals"
+  ],
+  "specFolder": "sk-code/z_archive",
+  "description": "Cold-tier archive container under sk-code for 16 migrated sk-code specification packets.",
+  "keywords": [
+    "archive",
+    "cold-tier",
+    "sk-code",
+    "migrated"
+  ],
+  "lastUpdated": "2026-07-07T00:00:00.000Z",
+  "specId": "",
+  "folderSlug": "z_archive",
+  "parentChain": [
+    "sk-code"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

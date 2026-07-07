@@ -1,0 +1,55 @@
+{
+  "trigger_phrases": [
+    "sk-code multi-stack",
+    "sk-code nextjs go",
+    "056 sk-code",
+    "smart router alignment",
+    "stack scaffolding"
+  ],
+  "level": 2,
+  "name": "056-sk-code-fullstack-branch",
+  "version": "2.0.0",
+  "importance_tier": "high",
+  "status": "complete",
+  "completion_pct": 100,
+  "absorbed_packet": "skilled-agent-orchestration/057-sk-code-multi-stack-placeholders",
+  "builds_on": [
+    "sk-code/z_archive/003-sk-code-merger",
+    "sk-code/z_archive/004-cli-skill-removal-sk-code-merger-deprecated"
+  ],
+  "key_files": [
+    ".opencode/specs/sk-code/z_archive/005-sk-code-fullstack-branch/spec.md",
+    ".opencode/specs/sk-code/z_archive/005-sk-code-fullstack-branch/plan.md",
+    ".opencode/specs/sk-code/z_archive/005-sk-code-fullstack-branch/tasks.md",
+    ".opencode/specs/sk-code/z_archive/005-sk-code-fullstack-branch/checklist.md",
+    ".opencode/specs/sk-code/z_archive/005-sk-code-fullstack-branch/implementation-summary.md",
+    ".opencode/skills/sk-code/SKILL.md",
+    ".opencode/skills/sk-code/references/router/cross_stack_pairing.md",
+    ".opencode/skills/sk-code/changelog/v1.3.0.0.md"
+  ],
+  "specFolder": "sk-code/z_archive/005-sk-code-fullstack-branch",
+  "description": "`sk-code` was the umbrella code-routing skill but only had one live stack (Webflow)",
+  "keywords": [
+    "sk-code",
+    "umbrella",
+    "code-routing",
+    "skill",
+    "only",
+    "one",
+    "live",
+    "stack",
+    "webflow"
+  ],
+  "lastUpdated": "2026-07-07T16:37:55.037Z",
+  "specId": "005",
+  "folderSlug": "sk-code-fullstack-branch",
+  "parentChain": [
+    "sk-code",
+    "z_archive"
+  ],
+  "memorySequence": 2,
+  "memoryNameHistory": [
+    "30-04-26_18-22__audited-the-live-skill-advisor-graph-for-residue.md",
+    "30-04-26_18-23__audited-the-live-skill-advisor-graph-for-residue.md"
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "level": "1",
+  "specFolder": "sk-code/001-sk-code-parent/003-scaffold-hub",
+  "description": "The accepted architecture needed a safe intermediate state before content relocation",
+  "keywords": [
+    "accepted",
+    "architecture",
+    "needed",
+    "safe",
+    "intermediate",
+    "state",
+    "content",
+    "relocation"
+  ],
+  "lastUpdated": "2026-07-05T12:13:05.252Z",
+  "specId": "003",
+  "folderSlug": "scaffold-hub",
+  "parentChain": [
+    "sk-code",
+    "001-sk-code-parent"
+  ],
+  "memorySequence": 3,
+  "memoryNameHistory": []
+}

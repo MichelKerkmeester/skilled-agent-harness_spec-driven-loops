@@ -1,0 +1,225 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-code/z_archive/007-sk-code-motion-dev-and-playbook/006-routing-precision-fixes",
+  "spec_folder": "sk-code/z_archive/007-sk-code-motion-dev-and-playbook/006-routing-precision-fixes",
+  "parent_id": "sk-code/z_archive/007-sk-code-motion-dev-and-playbook",
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "phase 006 routing precision",
+      "packet 069 routing fixes",
+      "RD-002 sk-doc routing",
+      "CS-002 non-Webflow guard",
+      "motion.dev path precision",
+      "phase 006 plan",
+      "routing precision plan",
+      "packet 069 remediation plan",
+      "phase 006 tasks",
+      "routing precision tasks",
+      "packet 069 finding remediation",
+      "phase 006 checklist"
+    ],
+    "key_topics": [
+      "phase",
+      "006",
+      "routing",
+      "precision",
+      "packet",
+      "069",
+      "fixes",
+      "rd-002",
+      "sk-doc",
+      "cs-002",
+      "non-webflow",
+      "guard"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md",
+      ".opencode/skills/sk-code/SKILL.md",
+      "spot-recheck-results/RD-002-RECHECK-codex.yaml",
+      "spot-recheck-results/CS-002-RECHECK-codex.yaml",
+      "spot-recheck-results/LS-001-RECHECK-codex.yaml"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-code/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "RD-002-RECHECK-codex.yaml",
+        "kind": "config",
+        "path": "spot-recheck-results/RD-002-RECHECK-codex.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "CS-002-RECHECK-codex.yaml",
+        "kind": "config",
+        "path": "spot-recheck-results/CS-002-RECHECK-codex.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "LS-001-RECHECK-codex.yaml",
+        "kind": "config",
+        "path": "spot-recheck-results/LS-001-RECHECK-codex.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Routing Precision Fixes",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Webflow Motion",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Planned Phase",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Primary Skills",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Source Audit",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Read Phase",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Create Level",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Phase 005 proved the Motion.dev peer-reference architecture works on the majority path, but the matrix still returned CONDITIONAL because two critical routing classes failed",
+    "created_at": "2026-05-05T13:30:00Z",
+    "last_save_at": "2026-07-07T16:45:58.044Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": "2026-05-05T13:30:00Z",
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:743c1161c72f9cfd069671733646514a2e6d3223ec05ed6384e1ec2961876f06",
+    "source_doc_hashes": {
+      "spec.md": "a8ee0137861fc9f5baf6f1a7c57d77409e6618944f85f54ca0ca439ea65f0d58",
+      "plan.md": "e1b3cfa99d2057caf007b72db4125e8223a31349e50ab17cc96127c5d6bc4412",
+      "tasks.md": "a23f7b4675bfe9f11834032c42f1a1679ec83e3c98fb43744dfb2329e83f77c5",
+      "checklist.md": "351ede487bb9bb39c79d43140113c7cf26e97f7bba3a51b34e6d8039f5ab5ba5",
+      "implementation-summary.md": "63be6a56950ae0ec020695e3e401a884f50a8a9bf5934bea9efceb171ca389fd"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

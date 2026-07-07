@@ -1,0 +1,33 @@
+{
+  "title": "Plugin TUI-overlay fix",
+  "type": "implementation",
+  "trigger_phrases": [
+    "mk-dist-freshness-guard TUI overlay",
+    "opencode plugin no stdout stderr",
+    "plugin warning over chat input"
+  ],
+  "level": "2",
+  "specFolder": "sk-code/001-sk-code-parent/010-plugin-tui-fix",
+  "description": "The `.opencode/plugins/mk-dist-freshness-guard.js` plugin emitted stale-dist warnings with `console.warn` and `console.error` during",
+  "keywords": [
+    "opencode",
+    "plugins",
+    "mk-dist-freshness-guard",
+    "plugin",
+    "emitted",
+    "stale-dist",
+    "warnings",
+    "console",
+    "warn",
+    "error"
+  ],
+  "lastUpdated": "2026-07-05T10:10:41.418Z",
+  "specId": "010",
+  "folderSlug": "plugin-tui-fix",
+  "parentChain": [
+    "sk-code",
+    "001-sk-code-parent"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

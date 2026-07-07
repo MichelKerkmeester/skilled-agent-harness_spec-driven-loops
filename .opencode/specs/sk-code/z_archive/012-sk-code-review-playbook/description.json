@@ -1,0 +1,24 @@
+{
+  "completionPct": 0,
+  "lastOutcome": "Authored Level 2 spec docs; awaiting cli-codex implementation dispatch.",
+  "specFolder": "sk-code/z_archive/012-sk-code-review-playbook",
+  "description": "sk-code-review is the findings-first review baseline used by `@review`, `@deep-review`, and `/speckit:deep-review`",
+  "keywords": [
+    "sk-code-review",
+    "findings-first",
+    "review",
+    "baseline",
+    "used",
+    "deep-review",
+    "speckit"
+  ],
+  "lastUpdated": "2026-07-07T16:37:57.180Z",
+  "specId": "012",
+  "folderSlug": "sk-code-review-playbook",
+  "parentChain": [
+    "sk-code",
+    "z_archive"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": []
+}

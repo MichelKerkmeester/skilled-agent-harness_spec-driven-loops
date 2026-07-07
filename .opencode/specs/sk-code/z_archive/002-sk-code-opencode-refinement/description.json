@@ -1,0 +1,31 @@
+{
+  "specFolder": "sk-code/z_archive/002-sk-code-opencode-refinement",
+  "description": "Current OpenCode standards provide strong cross-language structure, but inline comment rules are still broad enough to allow verbose human-style",
+  "keywords": [
+    "current",
+    "opencode",
+    "standards",
+    "provide",
+    "strong",
+    "cross-language",
+    "structure",
+    "inline",
+    "comment",
+    "rules",
+    "still",
+    "broad",
+    "enough",
+    "allow",
+    "verbose",
+    "human-style"
+  ],
+  "lastUpdated": "2026-07-07T16:37:54.210Z",
+  "specId": "002",
+  "folderSlug": "sk-code-opencode-refinement",
+  "parentChain": [
+    "sk-code",
+    "z_archive"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

@@ -1,0 +1,23 @@
+{
+  "level": "1",
+  "specFolder": "sk-code/001-sk-code-parent/001-research-and-context",
+  "description": "The sk-code family's mode composition and migration path are undecided",
+  "keywords": [
+    "sk-code",
+    "family",
+    "mode",
+    "composition",
+    "migration",
+    "path",
+    "undecided"
+  ],
+  "lastUpdated": "2026-07-03T17:39:05.603Z",
+  "specId": "001",
+  "folderSlug": "research-and-context",
+  "parentChain": [
+    "sk-code",
+    "001-sk-code-parent"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": []
+}

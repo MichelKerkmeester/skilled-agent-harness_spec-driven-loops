@@ -1,0 +1,30 @@
+{
+  "level": "1",
+  "specFolder": "sk-code/z_archive/015-sk-code-readme",
+  "description": "The sk-code README is a tabular reference card with no problem-first entry point, and it carries a material accuracy error: it presents MOTIONDEV as a",
+  "keywords": [
+    "sk-code",
+    "readme",
+    "tabular",
+    "reference",
+    "card",
+    "problem-first",
+    "entry",
+    "point",
+    "carries",
+    "material",
+    "accuracy",
+    "error",
+    "presents",
+    "motiondev"
+  ],
+  "lastUpdated": "2026-07-07T16:37:58.148Z",
+  "specId": "015",
+  "folderSlug": "sk-code-readme",
+  "parentChain": [
+    "sk-code",
+    "z_archive"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

@@ -1,0 +1,29 @@
+{
+  "level": "1",
+  "specFolder": "sk-code/001-sk-code-parent/006-build-remaining-modes",
+  "description": "The hub is routing-only and the surface detection lives in `shared/`, but the four non-review mode packets were still 57-line placeholders",
+  "keywords": [
+    "hub",
+    "routing-only",
+    "surface",
+    "detection",
+    "lives",
+    "shared",
+    "four",
+    "non-review",
+    "mode",
+    "packets",
+    "still",
+    "57-line",
+    "placeholders"
+  ],
+  "lastUpdated": "2026-07-05T12:13:05.266Z",
+  "specId": "006",
+  "folderSlug": "build-remaining-modes",
+  "parentChain": [
+    "sk-code",
+    "001-sk-code-parent"
+  ],
+  "memorySequence": 6,
+  "memoryNameHistory": []
+}

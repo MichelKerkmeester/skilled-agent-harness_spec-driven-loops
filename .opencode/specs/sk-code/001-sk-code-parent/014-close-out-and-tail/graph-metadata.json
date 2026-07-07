@@ -1,0 +1,223 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-code/001-sk-code-parent/014-close-out-and-tail",
+  "spec_folder": "sk-code/001-sk-code-parent/014-close-out-and-tail",
+  "parent_id": "sk-code/001-sk-code-parent",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "sk-code close-out",
+      "review identity cleanup",
+      "advisor scorer tail",
+      "rename invariants",
+      "sk-code close-out plan",
+      "advisor scorer repair plan",
+      "review identity cleanup plan",
+      "sk-code close-out tasks",
+      "advisor scorer repair tasks",
+      "review identity cleanup tasks",
+      "sk-code close-out checklist",
+      "advisor scorer verification"
+    ],
+    "key_topics": [
+      "sk-code",
+      "close-out",
+      "review",
+      "identity",
+      "cleanup",
+      "advisor",
+      "scorer",
+      "tail",
+      "rename",
+      "invariants",
+      "plan",
+      "repair"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      ".opencode/skills/system-skill-advisor/mcp_server/tests/rename-invariants.vitest.ts",
+      ".opencode/skills/system-skill-advisor/mcp_server/lib/scorer/lanes/explicit.ts",
+      ".opencode/skills/system-skill-advisor/mcp_server/tests/scorer/advisor-quality-049-003.vitest.ts",
+      ".opencode/skills/system-skill-advisor/mcp_server/tests/scorer/native-scorer.vitest.ts",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md",
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "rename-invariants.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-skill-advisor/mcp_server/tests/rename-invariants.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "explicit.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-skill-advisor/mcp_server/lib/scorer/lanes/explicit.ts",
+        "source": "derived"
+      },
+      {
+        "name": "advisor-quality-049-003.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-skill-advisor/mcp_server/tests/scorer/advisor-quality-049-003.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "native-scorer.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-skill-advisor/mcp_server/tests/scorer/native-scorer.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Backfilled Level",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Finish",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Post",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Stale Test Repairs",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Routing Regression Repair",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The sk-code parent program had shipped its two-axis restructure, but the tail still carried stale identity labels, scorer tests from the pre-fold two-skill world, one real cli-opencode routing regression, and a committed parse error in rename-invariant tests",
+    "created_at": "2026-07-05T04:34:34.172Z",
+    "last_save_at": "2026-07-07T16:45:57.946Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:5f2af492c02f2974e5a384523cdb5ead421e40afbccc178a4c85bd5a7a047cc7",
+    "source_doc_hashes": {
+      "spec.md": "0cae4d98c474829f59a645c673b95546faebf5ff1b38ee9a4a20ee4f71d5a852",
+      "plan.md": "392eedd013480871c1c2508a6183af1050a471e2f2084297cfadfb264445d3e3",
+      "tasks.md": "cf2aaf4d3fd40c44ce2cf7947abd49b8a0834939e0f6765e544fb6f256326be6",
+      "checklist.md": "a9ea436ab6d08b0b51cb227fee0111f83c356d5b247251f63756e72742b60521",
+      "implementation-summary.md": "04949d24d6ad55909a8a826dc5ae5e55ec772676a98881b780cae35d79b88044"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

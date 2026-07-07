@@ -1,0 +1,228 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-code/z_archive/002-sk-code-opencode-refinement",
+  "spec_folder": "sk-code/z_archive/002-sk-code-opencode-refinement",
+  "parent_id": "sk-code/z_archive",
+  "parent_id_review_required": true,
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "sk-code-opencode refinement",
+      "inline comment policy",
+      "all-caps numbered sections",
+      "solid checks",
+      "139-hybrid-rag-fusion pattern extraction",
+      "implementation",
+      "plan",
+      "global quality sweep",
+      "tasks",
+      "verification",
+      "checklist",
+      "decision"
+    ],
+    "key_topics": [
+      "sk-code-opencode",
+      "refinement",
+      "inline",
+      "comment",
+      "policy",
+      "all-caps",
+      "numbered",
+      "sections",
+      "solid",
+      "checks",
+      "139-hybrid-rag-fusion",
+      "pattern"
+    ],
+    "importance_tier": "critical",
+    "status": "in_progress",
+    "key_files": [
+      "scratch/final-quality-evidence-2026-02-22.md",
+      "tasks.md",
+      "checklist.md",
+      "plan.md",
+      "decision-record.md",
+      "spec.md",
+      "research/research.md",
+      ".opencode/skills/system-spec-kit/scripts/spec/validate.sh",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "final-quality-evidence-2026-02-22.md",
+        "kind": "doc",
+        "path": "scratch/final-quality-evidence-2026-02-22.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "validate.sh",
+        "kind": "script",
+        "path": ".opencode/skills/system-spec-kit/scripts/spec/validate.sh",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Dependencies",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Current",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Produce",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Governance",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Policy Core Workstream",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Create Level",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Current OpenCode standards provide strong cross-language structure, but inline comment rules are still broad enough to allow verbose human-style narration that reduces signal quality for AI-assisted parsing",
+    "created_at": "2026-04-12T09:02:50.219Z",
+    "last_save_at": "2026-07-07T16:37:54.069Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      "research/research.md"
+    ],
+    "source_fingerprint": "sha256:d1eec0347039bd2d93867d8e70bff9df59f80a8815cd9b3088c72b4f892d6c50",
+    "source_doc_hashes": {
+      "spec.md": "d0768e2cf688d970b1d6ffb063bfb657e91f5d56790de3279a4ffbf8426a0f78",
+      "plan.md": "50a66da81c12c919e0ae598c4222e9d6a99bd7fcf8b4922189de61cc1978a843",
+      "tasks.md": "4d9c3c2bb339871e5f653c780a3f2b70232a1f734c01ff7ab4af18245edbc701",
+      "checklist.md": "11eb95c74e30bd724387f45396c303260f1b585be7a241a36cc410eeb8c5cb31",
+      "decision-record.md": "b23eb395ca82688312ff4ec959cc0b3fbcd697a096f066b090eb60a3e9a88844",
+      "implementation-summary.md": "eacee073742d675bc2e30e293c8d5c503e3a94a994f7b9c75c8c5a4935a1af9e",
+      "research/research.md": "3cd1803c999cbe3a6f132c9c3cca78cdcd7a424e8aaf27f8a4e10cc6142aa886"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "schemaVersion": "1.0.0",
+  "mode": "review",
+  "target": "specs/sk-code/z_archive/007-sk-code-motion-dev-and-playbook",
+  "specFolder": "specs/sk-code/z_archive/007-sk-code-motion-dev-and-playbook",
+  "reviewTarget": "specs/sk-code/z_archive/007-sk-code-motion-dev-and-playbook",
+  "reviewTargetType": "spec-folder",
+  "reviewDimensions": "all",
+  "maxIterations": 7,
+  "convergenceThreshold": 0.0,
+  "currentIteration": 0,
+  "status": "in_progress",
+  "lineage": {
+    "sessionId": "069-deep-review-2026-05-05",
+    "generation": 1,
+    "intent": "fresh"
+  },
+  "config": {
+    "executor": {
+      "type": "cli-codex",
+      "model": "gpt-5.5",
+      "reasoningEffort": "high",
+      "serviceTier": "fast",
+      "timeoutSeconds": 900
+    },
+    "resource_map": {
+      "emit": false
+    }
+  },
+  "createdAt": "2026-05-05T11:30:00Z",
+  "updatedAt": "2026-05-05T11:30:00Z"
+}

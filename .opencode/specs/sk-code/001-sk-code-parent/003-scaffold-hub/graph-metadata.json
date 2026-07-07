@@ -1,0 +1,225 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-code/001-sk-code-parent/003-scaffold-hub",
+  "spec_folder": "sk-code/001-sk-code-parent/003-scaffold-hub",
+  "parent_id": "sk-code/001-sk-code-parent",
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "sk-code scaffold hub",
+      "sk-code parent hub scaffold",
+      "sk-code five mode scaffold",
+      "sk-code scaffold hub plan",
+      "sk-code parent scaffold plan",
+      "five mode scaffold plan",
+      "sk-code scaffold hub tasks",
+      "sk-code parent scaffold tasks",
+      "sk-code scaffold hub summary",
+      "sk-code parent scaffold outcome"
+    ],
+    "key_topics": [
+      "sk-code",
+      "scaffold",
+      "hub",
+      "parent",
+      "five",
+      "mode",
+      "plan",
+      "tasks",
+      "summary",
+      "outcome",
+      "accepted",
+      "architecture"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      ".opencode/skills/sk-code/SKILL.md",
+      ".opencode/skills/sk-code/mode-registry.json",
+      ".opencode/skills/sk-code/hub-router.json",
+      ".opencode/skills/sk-code/graph-metadata.json",
+      ".opencode/skills/sk-code/README.md",
+      ".opencode/skills/sk-code/changelog/v4.0.0.0.md",
+      ".opencode/skills/sk-code/shared/README.md",
+      "fixtures/routing-parity-fixtures.md",
+      "shared/README.md",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-code/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "mode-registry.json",
+        "kind": "config",
+        "path": ".opencode/skills/sk-code/mode-registry.json",
+        "source": "derived"
+      },
+      {
+        "name": "hub-router.json",
+        "kind": "config",
+        "path": ".opencode/skills/sk-code/hub-router.json",
+        "source": "derived"
+      },
+      {
+        "name": "graph-metadata.json",
+        "kind": "config",
+        "path": ".opencode/skills/sk-code/graph-metadata.json",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-code/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "v4.0.0.0.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-code/changelog/v4.0.0.0.md",
+        "source": "derived"
+      },
+      {
+        "name": "routing-parity-fixtures.md",
+        "kind": "doc",
+        "path": "fixtures/routing-parity-fixtures.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Build",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Nested",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow User",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The accepted architecture needed a safe intermediate state before content relocation",
+    "created_at": "2026-07-03T00:00:00Z",
+    "last_save_at": "2026-07-07T16:45:57.917Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:dbfa7cd5039860cb52462192fc50d106a4d3348959653007911a26c16c6fb410",
+    "source_doc_hashes": {
+      "spec.md": "5ca7f4b7ab1b26648572ef97bb5c39e5a0d87f6ec5be1e17898942b902dd447c",
+      "plan.md": "5bf3f780e4492d1645c9cbe54b5e2504ccfdfc13b83667763be69d22341babc7",
+      "tasks.md": "c835d47223598e8952353489a82002a7b4f20999aca244a9148cd34fd6fc94f7",
+      "implementation-summary.md": "d89fc7b3e2ec598afacc781749c320e39544d708d4c84fa37e1d4c67539359f9"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

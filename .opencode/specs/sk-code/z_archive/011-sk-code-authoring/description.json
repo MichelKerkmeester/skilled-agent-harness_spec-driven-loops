@@ -1,0 +1,33 @@
+{
+  "level": "1",
+  "specFolder": "sk-code/z_archive/011-sk-code-authoring",
+  "description": "sk-code's SKILL.md declares OPENCODE scope covering skills, agents, commands, MCP servers, hooks, scripts, tests, and config (lines 20-23), but the",
+  "keywords": [
+    "sk-code",
+    "skill",
+    "declares",
+    "opencode",
+    "scope",
+    "covering",
+    "skills",
+    "agents",
+    "commands",
+    "mcp",
+    "servers",
+    "hooks",
+    "scripts",
+    "tests",
+    "config",
+    "lines",
+    "20-23"
+  ],
+  "lastUpdated": "2026-07-07T16:37:56.890Z",
+  "specId": "011",
+  "folderSlug": "sk-code-authoring",
+  "parentChain": [
+    "sk-code",
+    "z_archive"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

@@ -1,0 +1,26 @@
+{
+  "specFolder": "sk-code/z_archive/001-sk-code-review-creation",
+  "description": "Level 2 specification for converting the draft `legacy-single-hyphen-review` package into `sk-code-review`, aligning router behavior to `sk-doc`",
+  "keywords": [
+    "level",
+    "specification",
+    "converting",
+    "draft",
+    "legacy-single-hyphen-review",
+    "package",
+    "sk-code-review",
+    "aligning",
+    "router",
+    "behavior",
+    "sk-doc"
+  ],
+  "lastUpdated": "2026-07-07T16:37:53.899Z",
+  "specId": "001",
+  "folderSlug": "sk-code-review-creation",
+  "parentChain": [
+    "sk-code",
+    "z_archive"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

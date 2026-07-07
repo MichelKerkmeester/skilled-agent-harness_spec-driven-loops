@@ -1,0 +1,217 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-code/z_archive/010-sk-code-ponytail-based-refinement/003-wording-invariant-guards",
+  "spec_folder": "sk-code/z_archive/010-sk-code-ponytail-based-refinement/003-wording-invariant-guards",
+  "parent_id": "sk-code/z_archive/010-sk-code-ponytail-based-refinement",
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "phase 3 canary guard",
+      "review status triplet lock",
+      "iron law canonicalize",
+      "rule invariant guard",
+      "phase 3 plan canary guard",
+      "phase 3 tasks canary guard",
+      "phase 3 summary canary guard"
+    ],
+    "key_topics": [
+      "phase",
+      "canary",
+      "guard",
+      "review",
+      "status",
+      "triplet",
+      "lock",
+      "iron",
+      "law",
+      "canonicalize",
+      "rule",
+      "invariant"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      ".github/workflows/rule-canary-sync.yml",
+      ".opencode/package.json",
+      ".opencode/skills/sk-code/SKILL.md",
+      ".github/workflows/comment-hygiene.yml",
+      "spec.md",
+      "plan.md",
+      "implementation-summary.md",
+      "tasks.md"
+    ],
+    "entities": [
+      {
+        "name": "rule-canary-sync.yml",
+        "kind": "config",
+        "path": ".github/workflows/rule-canary-sync.yml",
+        "source": "derived"
+      },
+      {
+        "name": "package.json",
+        "kind": "config",
+        "path": ".opencode/package.json",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-code/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "comment-hygiene.yml",
+        "kind": "config",
+        "path": ".github/workflows/comment-hygiene.yml",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Wording Guards",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Iron Law Cleanup",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Iron Law",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Bonus Bug",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "One Node",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. SUMMARY",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "2. QUALITY GATES",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "How It Was Delivered Implemented",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Add a standalone canary guard that locks automation-parsed exact strings (the Review status triplet) and, after canonicalizing the 3-way-drifted Iron Law wording, a minimal Iron Law invariant. Wired as a script + CI workflow (the proven comment-hygiene.yml pattern), not a vitest.",
+    "created_at": "2026-06-13T11:40:00Z",
+    "last_save_at": "2026-07-07T16:45:58.056Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:43884850fcf27301e9f5d06c9ce6bccdbcf32681c7f36760a0e89292f6766d6e",
+    "source_doc_hashes": {
+      "spec.md": "838d39b6a0bb64d9795a2f411fe734a0fd4d7dcfd2dfbf53d002e84dbd5f7f03",
+      "plan.md": "ab94ea4c066f3a9da49b7c412907d68b39a0fa654490292898a167aab1785139",
+      "tasks.md": "9c829be1803f607d69647253bb89ae3f3fbe23a97962f493ae4ce59fd4ea68c3",
+      "implementation-summary.md": "812657393679b11755bb6e552fb1ac1d8107d6e7794550f55b4c6c74cf03499d"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}
