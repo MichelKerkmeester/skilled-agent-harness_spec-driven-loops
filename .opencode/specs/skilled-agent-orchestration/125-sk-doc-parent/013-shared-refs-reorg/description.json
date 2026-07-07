@@ -1,0 +1,24 @@
+{
+  "specFolder": "skilled-agent-orchestration/125-sk-doc-parent/013-shared-refs-reorg",
+  "description": "Flatten shared/references/global into shared/references and update all prose and JSON citations.",
+  "keywords": [
+    "flatten",
+    "shared",
+    "references",
+    "global",
+    "update",
+    "prose",
+    "json",
+    "citations"
+  ],
+  "lastUpdated": "2026-07-07T04:54:03.610Z",
+  "specId": "013",
+  "folderSlug": "shared-refs-reorg",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "125-sk-doc-parent"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": 1
+}

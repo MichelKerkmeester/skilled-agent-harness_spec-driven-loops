@@ -1,0 +1,203 @@
+{
+  "schema_version": 1,
+  "packet_id": "skilled-agent-orchestration/125-sk-doc-parent/010-subskill-doc-review",
+  "spec_folder": "skilled-agent-orchestration/125-sk-doc-parent/010-subskill-doc-review",
+  "parent_id": "skilled-agent-orchestration/125-sk-doc-parent",
+  "children_ids": [
+    "skilled-agent-orchestration/125-sk-doc-parent/010-subskill-doc-review/001-create-skill",
+    "skilled-agent-orchestration/125-sk-doc-parent/010-subskill-doc-review/002-create-readme",
+    "skilled-agent-orchestration/125-sk-doc-parent/010-subskill-doc-review/003-create-agent",
+    "skilled-agent-orchestration/125-sk-doc-parent/010-subskill-doc-review/004-create-command",
+    "skilled-agent-orchestration/125-sk-doc-parent/010-subskill-doc-review/005-create-feature-catalog",
+    "skilled-agent-orchestration/125-sk-doc-parent/010-subskill-doc-review/006-create-manual-testing-playbook",
+    "skilled-agent-orchestration/125-sk-doc-parent/010-subskill-doc-review/007-create-benchmark",
+    "skilled-agent-orchestration/125-sk-doc-parent/010-subskill-doc-review/008-create-flowchart",
+    "skilled-agent-orchestration/125-sk-doc-parent/010-subskill-doc-review/009-create-changelog",
+    "skilled-agent-orchestration/125-sk-doc-parent/010-subskill-doc-review/010-doc-quality"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "sk-doc subskill doc review",
+      "125 sk-doc phase 010",
+      "sk-doc 4-iteration deep review",
+      "sk-doc packet template alignment",
+      "sk-doc subskill doc review plan",
+      "125 sk-doc phase 010 plan",
+      "sk-doc deep review swarm",
+      "sk-doc subskill doc review tasks",
+      "125 sk-doc phase 010 tasks"
+    ],
+    "key_topics": [
+      "sk-doc",
+      "subskill",
+      "doc",
+      "review",
+      "125",
+      "phase",
+      "010",
+      "4-iteration",
+      "deep",
+      "packet",
+      "template",
+      "alignment"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Depends On",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Close",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Two",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Parallel",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "a",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The `creation.md` reference dissection split each sk-doc packet's authoring doctrine into its own creation-guideline reference (`skillcreation.md`, `readmecreation.md`, `agentcreation.md`, `commandcreation.md`, `featurecatalogcreation.md`, `manualtestingplaybookcreation.md`, `benchmarkcreation.md`, `flowchartcreation.md`, `changelogcreation.md`, plus `doc-quality`'s `workflows.md`/`optimization.md`)",
+    "created_at": "2026-07-07T04:51:44.516Z",
+    "last_save_at": "2026-07-07T04:51:44.516Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md"
+    ],
+    "source_fingerprint": "sha256:108709ddf7e10e5eaaf169cbfedd55ae012c87a03d925022f4ec4a4c975e25ca",
+    "source_doc_hashes": {
+      "spec.md": "e9eb086360f05fa7df62b4172f145a928e721e70d60e6135a2ea6866ffe842ba",
+      "plan.md": "0a56c4c36818c2b9b3d02f66a9cc5b0eca1d63278d89905e9525ae3a29331184",
+      "tasks.md": "8c74801e8eabb2fd56a65c979e3d769067fa9e273d068501e49f92ff8b7499e3"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

@@ -1,0 +1,214 @@
+{
+  "schema_version": 1,
+  "packet_id": "skilled-agent-orchestration/125-sk-doc-parent/012-quality-control-rename",
+  "spec_folder": "skilled-agent-orchestration/125-sk-doc-parent/012-quality-control-rename",
+  "parent_id": "skilled-agent-orchestration/125-sk-doc-parent",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "quality control rename",
+      "125 sk-doc phase 012",
+      "doc-quality packet rename",
+      "create_quality_control",
+      "quality control rename plan",
+      "125 sk-doc phase 012 plan",
+      "quality control rename tasks",
+      "125 sk-doc phase 012 tasks"
+    ],
+    "key_topics": [
+      "quality",
+      "control",
+      "rename",
+      "125",
+      "sk-doc",
+      "phase",
+      "012",
+      "doc-quality",
+      "packet",
+      "plan",
+      "tasks",
+      "workflow"
+    ],
+    "importance_tier": "important",
+    "status": "draft",
+    "key_files": [
+      ".opencode/commands/doc/quality.md",
+      ".opencode/skills/sk-doc/mode-registry.json",
+      ".opencode/skills/sk-doc/hub-router.json",
+      ".opencode/skills/sk-doc/description.json",
+      ".opencode/skills/sk-doc/graph-metadata.json",
+      "spec.md",
+      "plan.md",
+      "tasks.md"
+    ],
+    "entities": [
+      {
+        "name": "quality.md",
+        "kind": "doc",
+        "path": ".opencode/commands/doc/quality.md",
+        "source": "derived"
+      },
+      {
+        "name": "mode-registry.json",
+        "kind": "config",
+        "path": ".opencode/skills/sk-doc/mode-registry.json",
+        "source": "derived"
+      },
+      {
+        "name": "hub-router.json",
+        "kind": "config",
+        "path": ".opencode/skills/sk-doc/hub-router.json",
+        "source": "derived"
+      },
+      {
+        "name": "description.json",
+        "kind": "config",
+        "path": ".opencode/skills/sk-doc/description.json",
+        "source": "derived"
+      },
+      {
+        "name": "graph-metadata.json",
+        "kind": "config",
+        "path": ".opencode/skills/sk-doc/graph-metadata.json",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Depends On",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Rename",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Registry",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Test Type",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "all",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The sk-doc `doc-quality` workflow packet (built in the original phase map's `012-doc-quality/`) is named as if it were a mode or feature flag rather than a create- authoring packet, which is inconsistent with the hub's naming convention and undersells what the packet actually does: validate, score, and optimize an existing document — the same job the bound `/doc:quality` command already describes",
+    "created_at": "2026-07-07T04:51:44.810Z",
+    "last_save_at": "2026-07-07T04:51:44.810Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md"
+    ],
+    "source_fingerprint": "sha256:6e9b15999205db0efdc67f7c3f30f9f95003f284b66acbaa65b2185ff526c89a",
+    "source_doc_hashes": {
+      "spec.md": "815c6a365a87a4c021cac76fe6517ebf4cf4a47781ebdfa6e181b9ebddf457ff",
+      "plan.md": "f7bed4f209600528b7ba33a606c0c89eac0f40478a0a2a821902ed6a094565e1",
+      "tasks.md": "66160752c2b6830d62218f66d18260da259817c02918fa4d28768d1b597f4edd"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

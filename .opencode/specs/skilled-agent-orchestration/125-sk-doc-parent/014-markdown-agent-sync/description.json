@@ -1,0 +1,26 @@
+{
+  "specFolder": "skilled-agent-orchestration/125-sk-doc-parent/014-markdown-agent-sync",
+  "description": "Sync both markdown.md agent mirrors with the final sk-doc structure after phases 011-013 land.",
+  "keywords": [
+    "sync",
+    "markdown",
+    "agent",
+    "mirrors",
+    "final",
+    "sk-doc",
+    "structure",
+    "phases",
+    "011-013",
+    "land"
+  ],
+  "lastUpdated": "2026-07-07T04:54:03.904Z",
+  "specId": "014",
+  "folderSlug": "markdown-agent-sync",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "125-sk-doc-parent"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": 1
+}

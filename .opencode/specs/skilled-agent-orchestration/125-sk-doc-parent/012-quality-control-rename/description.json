@@ -1,0 +1,24 @@
+{
+  "specFolder": "skilled-agent-orchestration/125-sk-doc-parent/012-quality-control-rename",
+  "description": "Rename the doc-quality packet to create_quality_control across directory, registries, command, and all references.",
+  "keywords": [
+    "rename",
+    "doc-quality",
+    "packet",
+    "across",
+    "directory",
+    "registries",
+    "command",
+    "references"
+  ],
+  "lastUpdated": "2026-07-07T04:54:03.286Z",
+  "specId": "012",
+  "folderSlug": "quality-control-rename",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "125-sk-doc-parent"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": 1
+}

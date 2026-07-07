@@ -1,0 +1,190 @@
+{
+  "schema_version": 1,
+  "packet_id": "skilled-agent-orchestration/125-sk-doc-parent/013-shared-refs-reorg",
+  "spec_folder": "skilled-agent-orchestration/125-sk-doc-parent/013-shared-refs-reorg",
+  "parent_id": "skilled-agent-orchestration/125-sk-doc-parent",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "shared refs reorg",
+      "125 sk-doc phase 013",
+      "shared references global flatten",
+      "shared refs reorg plan",
+      "125 sk-doc phase 013 plan",
+      "shared refs reorg tasks",
+      "125 sk-doc phase 013 tasks"
+    ],
+    "key_topics": [
+      "shared",
+      "refs",
+      "reorg",
+      "125",
+      "sk-doc",
+      "phase",
+      "013",
+      "references",
+      "global",
+      "flatten",
+      "plan",
+      "tasks"
+    ],
+    "importance_tier": "important",
+    "status": "draft",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Depends On",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Drop",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Deterministic",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Test Type",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 3: Verification",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "`.opencode/skills/sk-doc/shared/references/global/` adds a nesting level that carries no meaning beyond \"these are the generic, cross-packet references\" — a distinction `shared/references/` already makes on its own, since everything under `shared/` is by definition cross-packet",
+    "created_at": "2026-07-07T04:51:44.948Z",
+    "last_save_at": "2026-07-07T04:51:44.948Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md"
+    ],
+    "source_fingerprint": "sha256:5fed261223b17d42732bbc90c141ac8082d41be8e20a25b92d43958e6905e619",
+    "source_doc_hashes": {
+      "spec.md": "02a8e9a5c2c23347d165e38d045313f14dfc1df9797d422185fbcd5630d25421",
+      "plan.md": "4fa8358d1aec43f3f16e890dbfe3f8d1e127ae92049ada2b1306cc110f9050d0",
+      "tasks.md": "12deb817d49861055243a18f2b8beabd0412b0f781b1e76a99c4e9feeacd5820"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}
