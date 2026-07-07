@@ -106,7 +106,7 @@ Top-level registry fields:
 `hub-router.json` is required for every hub. It declares:
 
 - `routerPolicy.defaultMode`, `ambiguityDelta`, `defaultResource`, and `tieBreak`.
-- `routerPolicy.outcomes.single`, `orderedBundle`, `defer`, and `surfaceBundle`.
+- `routerPolicy.outcomes.single`, `orderedBundle`, and `defer` (base three); plus `surfaceBundle` only when the hub declares `surface-axis`.
 - Optional `routerPolicy.bundleRules[]` for declarative multi-mode bundles.
 - `routerSignals` keyed by every `workflowMode` in the registry, including surfaces.
 - `vocabularyClasses` referenced by router signals.

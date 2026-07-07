@@ -85,7 +85,7 @@ Schema reference for `hub-router.json`, the routing brain a thin parent hub uses
 | `defaultMode` | A real registry `workflowMode`, or `null` for a *surface-primary* hub with no default workflow. `sk-code` sets `null`: a request naming only a surface (no process word) defers instead of assuming a workflow. |
 | `ambiguityDelta` | Integer threshold for bundling near-tied scores instead of forcing a single winner. |
 | `tieBreak` | Must list every registry mode exactly once, with workflow modes first and surface packets after them. |
-| `outcomes` | Must include `single`, `orderedBundle`, `defer`, and `surfaceBundle`. |
+| `outcomes` | Must include the three base outcomes `single`, `orderedBundle`, and `defer`. `surfaceBundle` is required **only** for a hub that declares the `surface-axis` extension (has ≥1 surface packet); a workflow-only hub omits it. |
 | `defaultResource` | Array of hub-root-relative, packet-qualified paths to load when no more specific resource wins. |
 
 ### Tie-break order
@@ -304,7 +304,7 @@ Avoid unqualified names like `SKILL.md` in router resources. A parent hub has mu
 It validates:
 - `routerSignals` keys match `mode-registry.json > modes[].workflowMode` bidirectionally.
 - `routerPolicy.tieBreak` covers every registry mode exactly once.
-- `routerPolicy.outcomes` includes `surfaceBundle` alongside `single`, `orderedBundle`, and `defer`.
+- `routerPolicy.outcomes` includes the base three `single`, `orderedBundle`, and `defer`; it includes `surfaceBundle` too **iff** the hub has surface packets (declares `surface-axis`).
 - Every `bundleRules[]` reference points to a real registry mode.
 - Every signal class exists in `vocabularyClasses`.
 - Every router resource resolves on disk from the hub root.

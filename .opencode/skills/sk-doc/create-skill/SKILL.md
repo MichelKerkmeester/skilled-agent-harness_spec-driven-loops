@@ -242,7 +242,7 @@ Use the parent-hub path when one public skill identity must dispatch to multiple
 16. Create `hub-router.json` with `routerPolicy`, `routerSignals`, and `vocabularyClasses`.
 17. Ensure `routerSignals` keys match `mode-registry.json > modes[].workflowMode` exactly.
 18. Ensure `routerPolicy.tieBreak` lists every registry mode once, with workflow modes before surface packets.
-19. Ensure router outcomes include `single`, `orderedBundle`, `defer`, and `surfaceBundle`.
+19. Ensure router outcomes include the base three `single`, `orderedBundle`, and `defer`; add `surfaceBundle` only when the hub has surface packets (`surface-axis`).
 20. Ensure all router resources are hub-root-relative, packet-qualified paths that resolve on disk.
 21. Use named `extensions` only when real routing semantics require them; do not add extra directory tiers for extensions.
 

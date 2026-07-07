@@ -640,6 +640,19 @@ function main() {
       } else {
         pass('5f: bundleRules reference real modes');
       }
+
+      // 5g — the three base outcomes are the universal router contract, required for
+      // every hub regardless of axis: single (one mode wins), orderedBundle (co-required
+      // workflow modes in order), defer (ambiguous → ask). surfaceBundle is the ONLY
+      // axis-conditional outcome (checked in 5f, present only when surfaces exist).
+      const outcomes = (router.routerPolicy && router.routerPolicy.outcomes) || {};
+      const BASE_OUTCOMES = ['single', 'orderedBundle', 'defer'];
+      const missingOutcomes = BASE_OUTCOMES.filter((o) => !outcomes[o]);
+      if (missingOutcomes.length === 0) {
+        pass('5g: base router outcomes present (single, orderedBundle, defer)');
+      } else {
+        softFail(`5g: routerPolicy.outcomes is missing base outcome(s): [${missingOutcomes.join(', ')}]`);
+      }
     }
   }
 

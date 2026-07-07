@@ -275,7 +275,7 @@ Before claiming the hub complete:
 - [ ] `mode-registry.json` has one `modes[]` array with `packetKind` on every entry.
 - [ ] Every mode has `toolSurface` and `grandfatheredFolderMismatch`.
 - [ ] Every surface is read-only, `backendKind: "evidence-base"`, and `routingClass: "metadata"`.
-- [ ] `hub-router.json` has `surfaceBundle`, workflow-first `tieBreak`, bidirectional mode keys, and defined vocabulary classes.
+- [ ] `hub-router.json` has base outcomes (`single`, `orderedBundle`, `defer`) — plus `surfaceBundle` iff surface packets exist — workflow-first `tieBreak`, bidirectional mode keys, and defined vocabulary classes.
 - [ ] `description.json` has the required advisor-facing fields and a four-part version.
 - [ ] `graph-metadata.json` is the only advisor identity node for the hub.
 - [ ] Changelog directories use real files, not symlinks.
