@@ -111,9 +111,11 @@ Executor MECHANICS and runtime code live elsewhere — a profile points at them,
 
 ### Smart Router Pseudocode
 
-> Pattern: see [`../sk-doc/assets/skill/skill_smart_router.md`](../sk-doc/assets/skill/skill_smart_router.md)
+> Pattern: see [`../sk-doc/create-skill/assets/skill/skill_smart_router.md`](../sk-doc/create-skill/assets/skill/skill_smart_router.md)
 > for the canonical runtime-discovery, guarded-load, routing-key, and fallback reference. This hub
 > routes by MODEL: `routing_key` = the canonical model id, resource = `references/models/<id>.md`.
+> There are no per-model `assets/<id>/` folders; assets are shared registry/checklist data and are
+> referenced by the loaded profile or index.
 
 ```python
 from pathlib import Path
@@ -121,7 +123,8 @@ from pathlib import Path
 SKILL_ROOT = Path(__file__).resolve().parent
 RESOURCE_BASES = (SKILL_ROOT / "references", SKILL_ROOT / "assets")
 DEFAULT_RESOURCE = "references/models/_index.md"
-MODELS_DIR = "references/models/"
+PATTERN_INDEX_RESOURCE = "references/pattern_index.md"
+MODEL_PROFILE_PREFIX = "references/models/"
 
 UNKNOWN_FALLBACK_CHECKLIST = [
     "Name the target small model (slug, alias, or provider)",
@@ -148,8 +151,8 @@ def resolve_model_id(task):
     text = (getattr(task, "request", "") or "").lower()
     for alias, model_id in MODEL_ALIASES.items():
         if alias in text:
-            return model_id
-    return "unknown"
+            return model_id, 1.0
+    return "unknown", 0.0
 
 def route_small_model_profile(task):
     inventory = discover_markdown_resources()
@@ -159,23 +162,26 @@ def route_small_model_profile(task):
         guarded = _guard_in_skill(relative_path)
         if guarded in inventory and guarded not in seen:
             load(guarded); loaded.append(guarded); seen.add(guarded)
+            return True
+        return False
 
     load_if_available(DEFAULT_RESOURCE)                    # ALWAYS: the model index
 
-    model_id = resolve_model_id(task)
-    if model_id == "unknown":                              # Tier 1: no model named
-        return {"routing_key": "unknown", "needs_disambiguation": True,
+    routing_key, confidence = resolve_model_id(task)        # Pattern 3: model id is the runtime key
+    profile = f"{MODEL_PROFILE_PREFIX}{routing_key}.md"
+
+    if confidence < 0.5 or routing_key == "unknown":        # Tier 1: no model named / low confidence
+        return {"routing_key": routing_key, "load_level": "UNKNOWN_FALLBACK", "needs_disambiguation": True,
                 "disambiguation_checklist": UNKNOWN_FALLBACK_CHECKLIST, "resources": loaded}
 
-    profile = f"{MODELS_DIR}{model_id}.md"
     if profile not in inventory:                           # Tier 2: known model, profile not authored yet
-        return {"routing_key": model_id,
-                "notice": f"No prompt-craft profile authored yet for '{model_id}'; see _index.md",
+        return {"routing_key": routing_key, "load_level": "INDEX_ONLY_FALLBACK",
+                "notice": f"No prompt-craft profile authored yet for '{routing_key}'; see _index.md",
                 "resources": loaded}
 
     load_if_available(profile)                             # Tier 3: load the profile; mechanics follow
-    load_if_available("references/pattern_index.md")
-    return {"routing_key": model_id, "resources": loaded}
+    load_if_available(PATTERN_INDEX_RESOURCE)
+    return {"routing_key": routing_key, "load_level": "MODEL_PROFILE", "resources": loaded}
 ```
 
 The skill-advisor still surfaces this hub via `graph-metadata.json` trigger phrases (lexical) and

@@ -122,12 +122,12 @@ if detect_self_invocation():
 
 ### Smart Router
 
-Provider-specific dictionaries (used by the shared helper functions in [`system-spec-kit/references/cli/shared_smart_router.md`](../system-spec-kit/references/cli/shared_smart_router.md)):
+Intent-specific dictionaries (used by the shared helper functions in [`system-spec-kit/references/cli/shared_smart_router.md`](../system-spec-kit/references/cli/shared_smart_router.md)):
 
-- Pattern 1: Runtime Discovery - `discover_markdown_resources()` recursively scans `references/` and `assets/`.
-- Pattern 2: Existence-Check Before Load - `load_if_available()` uses `_guard_in_skill()`, `inventory`, and `seen`.
-- Pattern 3: Extensible Routing Key - provider/use-case context derives an `opencode` routing key across external dispatch, detached sessions, handback, agents, cross-repo, templates, and workflows.
-- Pattern 4: Multi-Tier Graceful Fallback - `UNKNOWN_FALLBACK` disambiguates OpenCode vs sibling CLI vs detached/handback and missing intent routes return a "no knowledge base" notice.
+- Pattern 1: Runtime Discovery - `discover_markdown_resources()` recursively scans existing `references/` and `assets/` folders with `base.exists()` safeguards.
+- Pattern 2: Existence-Check Before Load - `load_if_available()` uses `_guard_in_skill()`, `inventory`, and `seen` so raw loads, missing files, duplicate loads, and path escapes are rejected.
+- Pattern 3: Not applicable here - `cli-opencode` has flat resource folders, not keyed `references/<key>/` or `assets/<key>/` subdirectories. Routing selects from `RESOURCE_MAP` by intent signal rather than by runtime resource key.
+- Pattern 4: Multi-Tier Graceful Fallback - low-confidence intent scores return `UNKNOWN_FALLBACK` with a disambiguation checklist; missing intent resources still return always-load baseline docs plus a clear notice.
 
 ```python
 INTENT_SIGNALS = {
@@ -173,9 +173,8 @@ UNKNOWN_FALLBACK_CHECKLIST = [
 1. `discover_markdown_resources()` — recursively enumerate current `.md` files under existing `references/` and `assets/` folders at routing time.
 2. `_guard_in_skill()` + `load_if_available()` — sandbox paths to this skill, reject non-markdown loads, skip missing files, and suppress duplicates.
 3. `score_intents(task)` and `select_intents(scores, ambiguity_delta=1.0)` — preserve provider-specific weighted intent scoring and top-2 ambiguity handling.
-4. `get_routing_key(task, intents)` — derive the provider routing key from task/provider context, then fall back to `opencode`.
-5. ALWAYS-load `LOADING_LEVELS["ALWAYS"]`, then return `UNKNOWN_FALLBACK` with `UNKNOWN_FALLBACK_CHECKLIST` when max score is 0.
-6. CONDITIONAL-load `RESOURCE_MAP[intent]`, ON_DEMAND-load keyword matches, and return a notice when no provider-specific knowledge base is available beyond always-load resources.
+4. ALWAYS-load `LOADING_LEVELS["ALWAYS"]`, then return `UNKNOWN_FALLBACK` with `UNKNOWN_FALLBACK_CHECKLIST` when max score is 0.
+5. CONDITIONAL-load existing `RESOURCE_MAP[intent]` entries via `load_if_available()`, ON_DEMAND-load keyword matches, and return a notice when no intent-specific knowledge base is available beyond always-load resources.
 
 The `route_opencode_resources(task)` function body lives in [`shared_smart_router.md`](../system-spec-kit/references/cli/shared_smart_router.md) — substitute `<PROVIDER>` = `opencode`.
 

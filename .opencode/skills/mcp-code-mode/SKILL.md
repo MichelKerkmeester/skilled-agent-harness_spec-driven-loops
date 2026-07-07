@@ -66,11 +66,11 @@ Execute TypeScript code with direct access to 200+ MCP tools through progressive
 
 ### Smart Router Pseudocode
 
-The authoritative routing logic for scoped loading, weighted intent scoring, and ambiguity handling.
+The authoritative routing logic for scoped loading, weighted intent scoring, and ambiguity handling. This skill uses a simple flat-resource intent router: `references/` and `assets/` contain direct markdown resources, not keyed `references/<key>/` or `assets/<key>/` subdirectories. Keep the resilient mechanics from the canonical router, but do not force keyed subdirectory discovery onto this skill.
 
-- Pattern 1: Runtime Discovery - `discover_markdown_resources()` recursively inventories `references/` and `assets/`.
+- Pattern 1: Runtime Discovery - `discover_markdown_resources()` recursively inventories current markdown under `references/` and `assets/`.
 - Pattern 2: Existence-Check Before Load - `load_if_available()` guards paths, checks `inventory`, and de-duplicates with `seen`.
-- Pattern 3: Extensible Routing Key - intent and command signals select Code Mode routing labels.
+- Pattern 3: Simple Intent Labels - intent and command signals select known flat Code Mode resources; `routing_key` stays `code-mode` because there are no runtime keyed resource subdirectories.
 - Pattern 4: Multi-Tier Graceful Fallback - `UNKNOWN_FALLBACK` returns a disambiguation checklist and missing matches return a "no knowledge base" notice.
 
 ```python
@@ -79,6 +79,7 @@ from pathlib import Path
 SKILL_ROOT = Path(__file__).resolve().parent
 RESOURCE_BASES = (SKILL_ROOT / "references", SKILL_ROOT / "assets")
 DEFAULT_RESOURCE = "references/workflows.md"
+ROUTING_KEY = "code-mode"
 
 INTENT_SIGNALS = {
     "NAMING": {"weight": 4, "keywords": ["tool not found", "naming", "prefix", "format"]},
@@ -176,7 +177,7 @@ def route_code_mode_resources(task):
 
     if max(scores.values() or [0]) < 0.5:
         return {
-            "routing_key": "code-mode",
+            "routing_key": ROUTING_KEY,
             "intents": intents,
             "intent_scores": scores,
             "load_level": "UNKNOWN_FALLBACK",
@@ -201,7 +202,7 @@ def route_code_mode_resources(task):
     if not loaded:
         load_if_available(DEFAULT_RESOURCE)
 
-    result = {"routing_key": "code-mode", "intents": intents, "intent_scores": scores, "resources": loaded}
+    result = {"routing_key": ROUTING_KEY, "intents": intents, "intent_scores": scores, "resources": loaded}
     if not matched_intents:
         result["notice"] = f"No knowledge base found for intent(s): {', '.join(intents)}"
     return result
