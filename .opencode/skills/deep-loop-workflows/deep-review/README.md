@@ -3,7 +3,7 @@ title: "deep-review"
 description: "Autonomous review loop that audits one dimension per iteration with fresh context, classifies every finding by blocking severity and ends with a release-readiness verdict."
 trigger_phrases:
   - "deep review"
-  - "code audit"
+  - "convergence review"
   - "review loop"
   - "release readiness"
   - "convergence detection"
@@ -22,7 +22,7 @@ version: 1.11.0.35
 | Aspect | What you get |
 |---|---|
 | **Use it for** | Multi-pass code audit where each dimension gets a fresh agent, findings carry blocking severity and the loop stops on a convergence signal |
-| **Invoke with** | `/deep:review:auto "target"` (autonomous) or `:confirm` (approval-gated). Keyword triggers include "deep review", "code audit" and "review loop" |
+| **Invoke with** | `/deep:review:auto "target"` (autonomous) or `:confirm` (approval-gated). Keyword triggers include "deep review", "convergence review" and "review loop" |
 | **Works on** | Five target types: a spec folder, a skill package, a named agent, a spec track or an explicit file set |
 | **Produces** | A release-readiness verdict (PASS, CONDITIONAL or FAIL) with a full findings registry, a dashboard, an iteration audit trail and a nine-section review report under `{spec_folder}/review/` |
 

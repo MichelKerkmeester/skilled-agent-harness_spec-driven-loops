@@ -1,6 +1,6 @@
 {
   "name": "deep-loop-workflows",
-  "description": "Unified deep-loop workflow parent hub: the single advisor-routable home for active deep-loop personas, routing to seven modes across four workflow families over the shared deep-loop-runtime backend. research (outward web+code iterative investigation → research/ artifacts), review (iterative code audit → P0/P1/P2 findings + verdict), ai-council (multi-seat planning deliberation → ai-council/ artifacts), and four improvement lanes on the deep-improvement packet (agent-improvement, model-benchmark, skill-benchmark, ai-system-improvement). The hub holds no per-mode convergence, state, or synthesis logic; each mode keeps its own contract in its packet and is reachable via its /deep:* command and native agent.",
+  "description": "Unified deep-loop workflow parent hub: the single advisor-routable home for active deep-loop personas, routing to seven modes across four workflow families over the shared deep-loop-runtime backend. research (outward web+code iterative investigation → research/ artifacts), review (iterative review loop → P0/P1/P2 findings + verdict), ai-council (multi-seat planning deliberation → ai-council/ artifacts), and four improvement lanes on the deep-improvement packet (agent-improvement, model-benchmark, skill-benchmark, ai-system-improvement). The hub holds no per-mode convergence, state, or synthesis logic; each mode keeps its own contract in its packet and is reachable via its /deep:* command and native agent.",
   "version": "1.1.0.0",
   "importance_tier": "high",
   "keywords": [
@@ -13,7 +13,7 @@
     "autoresearch",
     "iterative-research",
     "research-convergence",
-    "code-audit",
+    "review-loop",
     "severity-findings",
     "P0-P1-P2",
     "release-readiness",

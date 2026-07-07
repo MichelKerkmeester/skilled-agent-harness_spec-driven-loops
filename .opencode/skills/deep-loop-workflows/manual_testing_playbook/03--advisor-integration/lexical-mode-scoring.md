@@ -21,7 +21,7 @@ deep-research: run an iterative investigation workflow and summarize findings.
 
 **Additional advisor probes** (each lexical mode family scored through its own `legacyAdvisorId`):
 ```
-deep-review: run an iterative code audit and produce severity weighted findings.
+deep-review: run an iterative review loop and produce severity weighted findings.
 deep-ai-council: run a planning council and converge on a recommendation.
 ```
 

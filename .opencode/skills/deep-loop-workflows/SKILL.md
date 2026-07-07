@@ -5,7 +5,7 @@ description: "Unified deep-loop workflow skill: routes active requests to resear
 allowed-tools: [Read, Write, Edit, Bash, Grep, Glob, Task, WebFetch]
 ---
 
-<!-- Keywords: deep-loop-workflows, deep-loop, deep-research, deep-review, deep-ai-council, deep-improvement, context-gathering, reuse-catalog, autoresearch, iterative-research, code-audit, severity-findings, P0-P1-P2, ai-council, council-deliberation, multi-seat-planning, agent-improvement, benchmark-harness, model-benchmark, skill-benchmark, non-dev-ai-system, convergence-detection, externalized-state, coverage-graph, mode-registry, workflowmode, runtimeloop-type, backendkind -->
+<!-- Keywords: deep-loop-workflows, deep-loop, deep-research, deep-review, deep-ai-council, deep-improvement, context-gathering, reuse-catalog, autoresearch, iterative-research, review-loop, severity-findings, P0-P1-P2, ai-council, council-deliberation, multi-seat-planning, agent-improvement, benchmark-harness, model-benchmark, skill-benchmark, non-dev-ai-system, convergence-detection, externalized-state, coverage-graph, mode-registry, workflowmode, runtimeloop-type, backendkind -->
 
 # Deep Loop Workflows
 
@@ -22,7 +22,7 @@ Use this skill (through the hub) for any active deep-loop workflow. Invoke it as
 | Mode | Use it for | Packet | Command | Agent |
 |------|-----------|--------|---------|-------|
 | **research** | Outward, web + code iterative investigation → `research/research.md` | `deep-loop-workflows/deep-research/` | `/deep:research` | `deep-research` |
-| **review** | Iterative code audit → P0/P1/P2 findings + verdict | `deep-loop-workflows/deep-review/` | `/deep:review` | `deep-review` |
+| **review** | Iterative review loop → P0/P1/P2 findings + verdict | `deep-loop-workflows/deep-review/` | `/deep:review` | `deep-review` |
 | **ai-council** | Multi-seat planning deliberation → `ai-council/**` artifacts | `deep-loop-workflows/deep-ai-council/` | `/deep:ai-council` | `ai-council` |
 | **improvement** (4 lanes) | Evaluator-first improvement: `agent-improvement`, `model-benchmark`, `skill-benchmark`, `non-dev-ai-system-refine` | `deep-loop-workflows/deep-improvement/` | `/deep:agent-improvement` · `/deep:model-benchmark` · `/deep:skill-benchmark` · `/deep:ai-system-improvement` | `deep-improvement` |
 
@@ -129,7 +129,7 @@ All modes consume `deep-loop-runtime` (frozen, MCP-free): executor config, promp
 
 ### Modes
 - `research` — outward web + code iterative investigation (`research/research.md`).
-- `review` — iterative code audit, P0/P1/P2 findings + verdict.
+- `review` — iterative review loop, P0/P1/P2 findings + verdict.
 - `ai-council` — multi-seat planning deliberation (`ai-council/**` artifacts).
 - `improvement` (4 lanes) — evaluator-first agent/model/skill/non-dev-system improvement.
 

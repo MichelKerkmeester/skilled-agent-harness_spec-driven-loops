@@ -7,7 +7,7 @@ version: 1.11.0.0
 ---
 <!-- Note: Task is for the command executor (loop management); @deep-review agent is LEAF-only (no Task). No WebFetch: review is code-only. -->
 
-<!-- Keywords: deep-review, code-audit, iterative-review, review-loop, convergence-detection, externalized-state, fresh-context, review-agent, JSONL-state, severity-findings, P0-P1-P2, release-readiness, spec-alignment -->
+<!-- Keywords: deep-review, iterative-review, review-loop, convergence-detection, externalized-state, fresh-context, review-agent, JSONL-state, severity-findings, P0-P1-P2, release-readiness, spec-alignment -->
 
 # Autonomous Deep Review Loop
 
@@ -73,7 +73,7 @@ This skill is invoked EXCLUSIVELY through the `/deep:review` command. The comman
 
 ### Keyword Triggers
 
-`deep review`, `code audit`, `iterative review`, `review loop`, `release readiness`, `spec folder review`, `convergence detection`, `quality audit`, `find misalignments`, `verify cross-references`, `pre-release review`, `audit spec folder`
+`deep review`, `convergence review`, `iterative review`, `review loop`, `release readiness`, `spec folder review`, `convergence detection`, `quality audit`, `find misalignments`, `verify cross-references`, `pre-release review`, `audit spec folder`
 
 ---
 
@@ -103,7 +103,7 @@ RESOURCE_BASES = (SKILL_ROOT / "references", SKILL_ROOT / "assets")
 DEFAULT_RESOURCE = "references/protocol/quick_reference.md"
 
 INTENT_SIGNALS = {
-    "REVIEW_SETUP":       {"weight": 4, "keywords": ["deep review", "review mode", "code audit", "iterative review", ":review", "audit spec"]},
+    "REVIEW_SETUP":       {"weight": 4, "keywords": ["deep review", "review mode", "convergence review", "iterative review", ":review", "audit spec"]},
     "REVIEW_ITERATION":   {"weight": 4, "keywords": ["review iteration", "dimension review", "review findings", "P0", "P1", "P2"]},
     "REVIEW_CONVERGENCE": {"weight": 3, "keywords": ["review convergence", "coverage gate", "verdict", "binary gate", "all dimensions"]},
     "REVIEW_REPORT":      {"weight": 3, "keywords": ["review report", "remediation", "verdict", "release readiness", "planning packet"]},
@@ -496,7 +496,7 @@ The release-readiness handoff is valid when:
 This skill operates within the behavioral framework defined in the active runtime's root doc (CLAUDE.md or AGENTS.md).
 
 Key integrations:
-- **Gate 2**: Skill routing via `skill_advisor.py` (keywords: deep review, code audit, iterative review)
+- **Gate 2**: Skill routing via `skill_advisor.py` (keywords: deep review, convergence review, iterative review)
 - **Gate 3**: File modifications require spec folder question per the root doc Gate 3. The spec folder determines the `{spec_folder}/review/` state packet location
 - **Continuity**: `/speckit:resume` is the operator-facing recovery surface. Canonical packet continuity is written via `generate-context.js`
 - **Command**: `/deep:review` is the primary invocation point

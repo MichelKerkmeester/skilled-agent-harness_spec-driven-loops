@@ -146,7 +146,7 @@ Keep global verdict logic and routing-architecture explanations in this root pla
 | Feature ID | Feature Name | Scenario Name / Objective | Per-Feature File | Critical Path |
 |---|---|---|---|---|
 | `MR-001` | Research Routing | Outward investigation request resolves to `research` | `01--mode-routing/research-routing.md` | Yes |
-| `MR-002` | Review Routing | Iterative code-audit request resolves to `review` | `01--mode-routing/review-routing.md` | Yes |
+| `MR-002` | Review Routing | Iterative review request resolves to `review` | `01--mode-routing/review-routing.md` | Yes |
 | `MR-003` | AI Council Routing | Multi-seat planning deliberation resolves to `ai-council` | `01--mode-routing/ai-council-routing.md` | Yes |
 | `MR-004` | Mode-Hint Override | Explicit `research:` hint overrides ambiguous wording | `01--mode-routing/mode-hint-override.md` | No |
 
