@@ -1,11 +1,11 @@
 {
-  "_template": "Parent-skill mode-registry.json scaffold. Replace every [bracketed] placeholder. Keep one modes[] array for workflow and surface packets; packetKind is the axis discriminator. The canonical live example is sk-code/mode-registry.json.",
+  "_template": "Parent-skill mode-registry.json scaffold. Replace every [bracketed] placeholder. Keep one modes[] array for workflow, surface, and transport packets; packetKind is the axis discriminator. The canonical live example is sk-code/mode-registry.json.",
   "skill": "[parent-skill-name]",
   "version": "1.0.0.0",
   "description": "[Declarative packet registry: workflowMode, packetKind, backendKind, toolSurface, and advisorRouting for [parent-skill-name]. The advisor routes the hub identity; the hub selects workflow and surface packets.]",
   "discriminator": {
     "workflowMode": "Public hub/mode key. Stable identity used by the hub router and this registry. Carried by every mode.",
-    "packetKind": "Axis discriminator: workflow for process/lifecycle packets, surface for read-only evidence-base packets.",
+    "packetKind": "Axis discriminator: workflow for process/lifecycle packets, surface for read-only evidence-base packets, transport for packets that bridge to an external tool's CLI/MCP surface.",
     "backendKind": "Which backend runs the mode. Surface packets use evidence-base. Workflow packets use the hub's declared backend kinds."
   },
   "advisorRoutingContract": {
@@ -138,6 +138,27 @@
       "advisorRouting": {
         "routingClass": "metadata",
         "packetSkillName": "[surface-name]"
+      }
+    },
+    {
+      "_example": "packetKind transport: bridges to an external tool's CLI/MCP surface; metadata-routed, non-mutating in this repo, command:null (reached only by pairing with a workflow mode). Keep only under the transport-axis extension and list it there.",
+      "workflowMode": "[transport-name]",
+      "packetKind": "transport",
+      "backendKind": "[external-tool]-cli-transport",
+      "toolSurface": {
+        "allowed": ["Read", "Bash"],
+        "forbidden": ["Write", "Edit", "Task"],
+        "mutatesWorkspace": false,
+        "bashAllowlist": []
+      },
+      "packet": "[transport-name]",
+      "packetSkillName": "[transport-name]",
+      "grandfatheredFolderMismatch": false,
+      "command": null,
+      "aliases": ["[transport-name]", "[external tool natural-language phrase]"],
+      "advisorRouting": {
+        "routingClass": "metadata",
+        "packetSkillName": "[transport-name]"
       }
     }
   ],

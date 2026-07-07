@@ -9,8 +9,8 @@
   },
   "advisorRoutingContract": {
     "routingClass": "How the advisor finds the mode. For sk-design every mode is 'metadata' = resolved by hub membership; the advisor routes the single identity sk-design and the hub picks the mode, so no mode carries an advisor map entry or a merged-identity projection.",
-    "packetSkillName": "The packet's SKILL.md name. The original flat skill name is preserved as packetSkillName; the packet folder is the short mode key, so folder != packetSkillName is grandfathered here and recorded per mode via grandfatheredFolderMismatch.",
-    "grandfatheredFolderMismatch": "true when the packet folder (short mode key, e.g. 'interface') differs from packetSkillName (the preserved flat name, e.g. 'interface'). All six sk-design modes preserve their original flat names (folder == packetSkillName), so none has a folder mismatch — grandfatheredFolderMismatch is false for all six (there is no mismatch to grandfather).",
+    "packetSkillName": "The packet's SKILL.md name. For sk-design the packet folder IS its packetSkillName — the prefixed name (e.g. folder 'design-interface' == packetSkillName 'design-interface') — so no mode has a folder/name mismatch and grandfatheredFolderMismatch is false throughout.",
+    "grandfatheredFolderMismatch": "true only when a packet folder differs from its packetSkillName (a preserved legacy mismatch). All six sk-design modes use folder == packetSkillName (the prefixed name), so none has a mismatch — grandfatheredFolderMismatch is false for all six.",
     "command": "The bound slash command for the mode, recorded even on metadata-routed modes (same field sk-doc's mode-registry.json carries); null when the mode has no dedicated command today. The five design-judgment modes each have a dedicated /design:* command; the sixth mode, the design-mcp-open-design transport, carries command:null and is reached only by mandatory pairing with a design-judgment mode, never by its own command."
   },
   "extensions": {

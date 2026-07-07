@@ -350,10 +350,14 @@ function main() {
         // 3d-name — folder == packetSkillName unless the mismatch is explicitly grandfathered.
         // A mode may not ship grandfatheredFolderMismatch:false while its folder and
         // packetSkillName actually diverge — that is a silent, un-grandfathered mismatch.
-        if (mode.grandfatheredFolderMismatch === false && typeof mode.packet === 'string' && typeof mode.packetSkillName === 'string') {
+        if (typeof mode.packet === 'string' && typeof mode.packetSkillName === 'string') {
           const folderLeaf = mode.packet.replace(/[\\/]+$/, '').split(/[\\/]/).pop();
-          if (folderLeaf !== mode.packetSkillName) {
+          const nameMismatch = folderLeaf !== mode.packetSkillName;
+          if (mode.grandfatheredFolderMismatch === false && nameMismatch) {
             softFail(`3d-name: mode "${label}" folder "${folderLeaf}" != packetSkillName "${mode.packetSkillName}" but grandfatheredFolderMismatch is false (set it true to preserve a real mismatch)`);
+            folderNameOk = false;
+          } else if (mode.grandfatheredFolderMismatch === true && !nameMismatch) {
+            softFail(`3d-name: mode "${label}" sets grandfatheredFolderMismatch:true but folder "${folderLeaf}" == packetSkillName (stale flag — set it false; a blanket-true flag would mask a real future mismatch)`);
             folderNameOk = false;
           }
         }
@@ -361,11 +365,16 @@ function main() {
         if (typeof mode.packet === 'string') {
           const pdir = path.join(target, mode.packet);
           if (fs.existsSync(pdir) && fs.statSync(pdir).isDirectory()) {
-            for (const companion of ['SKILL.md', 'README.md', 'changelog']) {
+            for (const companion of ['SKILL.md', 'README.md']) {
               if (!fs.existsSync(path.join(pdir, companion))) {
                 softFail(`3d-files: packet "${mode.packet}" is missing companion ${companion}`);
                 packetFilesOk = false;
               }
+            }
+            const changelogDir = path.join(pdir, 'changelog');
+            if (!fs.existsSync(changelogDir) || !fs.statSync(changelogDir).isDirectory()) {
+              softFail(`3d-files: packet "${mode.packet}" is missing a changelog/ directory`);
+              packetFilesOk = false;
             }
           }
         }

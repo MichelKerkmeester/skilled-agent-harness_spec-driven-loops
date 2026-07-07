@@ -77,6 +77,7 @@ Optional per-mode fields (declare, don't infer — never derive an extension-onl
 | `agent` | The leaf agent a runtime-loop mode dispatches. | deep-loop |
 | `artifactRoot` | Where a mode's generated artifacts are rooted. | deep-loop |
 | `loopHostMode` | The host mode for an improvement lane (paired with `backendKind: improvement-host`). | deep-loop |
+| `externalLoopOwner` | The external owner of an improvement lane that runs outside the host loop runtime. | deep-loop |
 | `proceduresPath` | Path to a mode's procedure cards. | sk-design |
 
 Surface packet constraints:
@@ -205,6 +206,7 @@ Naming policy:
 - `grandfatheredFolderMismatch: true` is only for an existing mismatch that must be preserved.
 - Never create a new mismatch for convenience.
 - Keep natural-language `aliases[]` unique across all modes, and lowercase — the router vocabulary is matched case-folded, so a non-lowercase alias silently fails to mirror its vocabulary class.
+- **Two vocabulary strategies** — pick one per hub and hold it: *mirrored* copies every registry alias verbatim into a hub-router `vocabularyClasses` entry (sk-design; keeps vocab-sync clean), or *compositional* builds match phrases from parts so some registry aliases have no literal router-vocab home (sk-doc leaves ~34 such aliases). Both are valid; mixing them makes vocab-sync drift meaningless.
 - Name vocabulary classes by owner, such as `<surface>-aliases`, `<surface>-runtime`, or `<mode>-aliases`.
 
 Companion file policy:
@@ -212,7 +214,7 @@ Companion file policy:
 - Every hub has `SKILL.md`, `mode-registry.json`, `hub-router.json`, `description.json`, `graph-metadata.json`, `changelog/`, `manual_testing_playbook/`, and `benchmark/`.
 - Every packet has `README.md`, `SKILL.md`, and `changelog/`.
 - Surface packets also carry `references/` and `assets/` when they need evidence material.
-- A hub MAY carry an optional `command-metadata.json` (the advisor-facing per-command projection: `ownerMode`, `aliases`, `hubKeywordProjection`). When present it is a **declared surface**: every command key must map to a registered mode's `command` field, and its aliases must stay in sync with the registry (feed it into the advisor drift guard, not a third free-floating vocabulary).
+- A hub MAY carry an optional `command-metadata.json` (the advisor-facing per-command projection: `ownerMode`, `aliases`, `hubKeywordProjection`). When present it is a **declared surface**: every command key must map to a registered mode's `command` field, and its aliases fold into the registry rather than becoming a third free-floating vocabulary. Enforcement is the advisor drift guard — **pending** (it ships with the command-bridge lane); until it lands a hub's `command-metadata.json` may carry advisor-facing phrases the registry does not yet list (sk-design does today), and those must be reconciled into the registry, not left to diverge.
 - Shared directories may hold cross-packet vocabulary or synthesis, but never per-mode workflow logic and never their own `graph-metadata.json`.
 - A single shared workflow doctrine may live once under `shared/` and be **symlinked** into each packet that consumes it (sk-code symlinks its implement → debug → verify doctrine into both surfaces), so packets bundle the doctrine as read-only evidence without forking per-packet copies. The acting agent executes the process; the packet never carries it.
 
