@@ -1,0 +1,215 @@
+{
+  "schema_version": 1,
+  "packet_id": "skilled-agent-orchestration/125-sk-doc-parent/018-swimlane-revert",
+  "spec_folder": "skilled-agent-orchestration/125-sk-doc-parent/018-swimlane-revert",
+  "parent_id": "skilled-agent-orchestration/125-sk-doc-parent",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "swimlane revert",
+      "125 sk-doc phase 018",
+      "flowchart example widening",
+      "system architecture swimlane original",
+      "swimlane revert plan",
+      "125 sk-doc phase 018 plan",
+      "swimlane revert tasks",
+      "125 sk-doc phase 018 tasks",
+      "swimlane revert summary",
+      "125 sk-doc phase 018 summary"
+    ],
+    "key_topics": [
+      "swimlane",
+      "revert",
+      "125",
+      "sk-doc",
+      "phase",
+      "018",
+      "flowchart",
+      "example",
+      "widening",
+      "system",
+      "architecture",
+      "original"
+    ],
+    "importance_tier": "normal",
+    "status": "draft",
+    "key_files": [
+      ".opencode/skills/sk-doc/create-flowchart/assets/flowcharts/system_architecture_swimlane.md",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "system_architecture_swimlane.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/create-flowchart/assets/flowcharts/system_architecture_swimlane.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Depends On",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Restore",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Restore",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Deterministic",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 3: Verification",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The `systemarchitectureswimlane.md` flowchart example was box-widened wholesale (~40 borders) to satisfy the old box-width validator, which counted every horizontal rule — including connectors",
+    "created_at": "2026-07-07T11:15:05.809Z",
+    "last_save_at": "2026-07-07T11:15:06.179Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:ff8f376223bcb4657dd153a98d2f0d3bb35146468f79899e11edb8248a1f8407",
+    "source_doc_hashes": {
+      "spec.md": "b86640ac7f0c89492dcf2a43c3808945ccdfc1096300874f03a5431262cb4902",
+      "plan.md": "f2008487496b3e062c583af47a91636562a0965c7c4d3afffe316b7a82bd643d",
+      "tasks.md": "8b10435a56083b4e8f7dd586571dc9de71ef9227a6a081e78b4ad3f93d4e65fb",
+      "implementation-summary.md": "d52b5328d106ae8e00603bf432450f293766c382bedc4b22aad30d4aea862207"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

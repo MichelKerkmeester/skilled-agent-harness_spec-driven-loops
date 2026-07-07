@@ -1,0 +1,35 @@
+{
+  "specFolder": "skilled-agent-orchestration/125-sk-doc-parent/018-swimlane-revert",
+  "description": "Restore the original system_architecture_swimlane geometry (undo the wholesale box-widening) after the box-width validator was refined to count only b",
+  "keywords": [
+    "restore",
+    "original",
+    "geometry",
+    "undo",
+    "wholesale",
+    "box-widening",
+    "box-width",
+    "validator",
+    "refined",
+    "count",
+    "only",
+    "box",
+    "borders",
+    "keep",
+    "validator-clean",
+    "labels",
+    "one",
+    "outlier-box",
+    "normalization"
+  ],
+  "lastUpdated": "2026-07-07T11:15:05.600Z",
+  "specId": "018",
+  "folderSlug": "swimlane-revert",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "125-sk-doc-parent"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": 1
+}

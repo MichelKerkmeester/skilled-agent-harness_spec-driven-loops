@@ -58,11 +58,11 @@ Use this asset when documenting system interactions across layers, services, sto
                     ┌─────────────┴─────────────┐
                     │                           │
                     ▼                           ▼
-          ┌───────────────────┐        ┌───────────────────┐
-          │  Request Logger   │        │  Request          │
-          │  • Log entry      │        │  Validator        │
-          │  • Trace ID       │        │  • Schema check   │
-          └───────────────────┘        └───────────────────┘
+          ┌──────────────────┐        ┌──────────────────┐
+          │  Request Logger  │        │  Request         │
+          │  • Log entry     │        │  Validator       │
+          │  • Trace ID      │        │  • Schema check  │
+          └──────────────────┘        └──────────────────┘
                     │                           │
                     └─────────────┬─────────────┘
                                   │
@@ -82,12 +82,12 @@ Use this asset when documenting system interactions across layers, services, sto
                     ┌─────────────┴─────────────┐
                     │                           │
                     ▼                           ▼
-          ┌───────────────────┐        ┌───────────────────┐
-          │  Password         │        │  Token            │
-          │  Validator        │        │  Generator        │
-          │  • Check hash     │        │  • Create JWT     │
-          │  • Bcrypt         │        │  • Sign token     │
-          └───────────────────┘        └───────────────────┘
+          ┌──────────────────┐        ┌──────────────────┐
+          │  Password        │        │  Token           │
+          │  Validator       │        │  Generator       │
+          │  • Check hash    │        │  • Create JWT    │
+          │  • Bcrypt        │        │  • Sign token    │
+          └──────────────────┘        └──────────────────┘
                     │                           │
                     │ DB Query                  │
                     ▼                           │
@@ -109,27 +109,27 @@ Use this asset when documenting system interactions across layers, services, sto
 └─────────────────────────────────────────────────────────────────────────────┘
                             │                   │
                             ▼                   │
-                    ╱───────────────────╲       │
-                   ╱  Credentials        ╲      │
-                  ╱   Valid?              ╲     │
-                  ╲                       ╱     │
-                   ╲───────────────────╱       │
-                      │           │              │
-                 [YES] Valid  [NO] Invalid       │
-                      │           │              │
-                      │           ▼              │
-                      │   ┌───────────────────┐  │
-                      │   │  Error            │  │
-                      │   │  Response         │  │
-                      │   │  • 401            │  │
-                      │   │  • Log            │  │
-                      │   └───────────────────┘  │
+                    ╱──────────────╲            │
+                   ╱  Credentials   ╲           │
+                  ╱   Valid?         ╲          │
+                  ╲                  ╱          │
+                   ╲────────────────╱           │
+                     │           │              │
+             [YES] Valid [NO] Invalid           │
+                     │           │              │
+                     │           ▼              │
+                     │   ┌──────────────────┐   │
+                     │   │  Error           │   │
+                     │   │  Response        │   │
+                     │   │  • 401           │   │
+                     │   │  • Log           │   │
+                     │   └──────────────────┘   │
                      │           │              │
                      │           │ Return Error │
                      │           ▼              │
-                      │◀─────────────┘           │
-                      │                          │
-                      └───────────┬─────────────┤
+                     │◀──────────┘              │
+                     │                          │
+                     └──────────────────────────┤
                                   │             │
                                   │ Token       │
                                   ▼             │
@@ -168,11 +168,11 @@ Use this asset when documenting system interactions across layers, services, sto
                         └───────────────────┘   │
                                   │             │
                                   │             │
-                    ┌─────────────┴─────────────┐   │
-                    │  User makes               │   │
-                    │  authenticated            │   │
-                    │  data request             │   │
-                    └─────────────┬─────────────┘   │
+                        ┌─────────┴─────────┐   │
+                        │  User makes       │   │
+                        │  authenticated    │   │
+                        │  data request     │   │
+                        └───────────────────┘   │
                                   │             │
                                   │ + JWT Token │
                                   ▼             │
@@ -203,19 +203,19 @@ Use this asset when documenting system interactions across layers, services, sto
                     ┌─────────────┴─────────────┼─────┐
                     │                           │     │
                     ▼                           ▼     ▼
-          ┌───────────────────┐        ┌───────────────────┐
-          │  Cache Layer      │        │  Data             │
-          │  • Redis          │        │  Transformation   │
-          │  • Check key      │        │  • Format         │
-          └───────────────────┘        │  • Enrich         │
-                    │                 └───────────────────┘
+          ┌──────────────────┐        ┌──────────────────┐
+          │  Cache Layer     │        │  Data            │
+          │  • Redis         │        │  Transformation  │
+          │  • Check key     │        │  • Format        │
+          └──────────────────┘        │  • Enrich        │
+                    │                 └──────────────────┘
                     │                           │
-              ╱───────────────────╲             │
-             ╱ Cache Hit?          ╲            │
-             ╲                     ╱            │
-              ╲───────────────────╱             │
+              ╱──────────╲                      │
+             ╱ Cache Hit?  ╲                    │
+             ╲             ╱                    │
+              ╲──────────╱                      │
                 │      │                        │
-           [YES] Hit [NO] Miss                  │
+        [YES] Hit  [NO] Miss                    │
                 │      │                        │
                 │      │ DB Query               │
                 │      ▼                        │
@@ -224,12 +224,12 @@ Use this asset when documenting system interactions across layers, services, sto
 └─────────────────────────────────────────────────────────────────────────────┘
                 │     │                        │
                 │     ▼                        │
-                │  ┌───────────────────┐       │
-                │  │  Database         │       │
-                │  │  • Query data     │       │
-                │  │  • Join tables    │       │
-                │  │  • Return rows    │       │
-                │  └───────────────────┘       │
+                │  ┌──────────────────┐        │
+                │  │  Database        │        │
+                │  │  • Query data    │        │
+                │  │  • Join tables   │        │
+                │  │  • Return rows   │        │
+                │  └──────────────────┘        │
                 │     │                        │
                 │     │ Result Set             │
                 │     ▼                        │
@@ -238,11 +238,11 @@ Use this asset when documenting system interactions across layers, services, sto
 └─────────────────────────────────────────────────────────────────────────────┘
                 │     │                        │
                 │     ▼                        │
-                │  ┌───────────────────┐       │
-                │  │  Update Cache     │       │
-                │  │  • Store result   │       │
-                │  │  • Set TTL        │       │
-                │  └───────────────────┘       │
+                │  ┌──────────────────┐        │
+                │  │  Update Cache    │        │
+                │  │  • Store result  │        │
+                │  │  • Set TTL       │        │
+                │  └──────────────────┘        │
                 │    │                         │
                 │    └────────┐                │
                 └─────────────┤                │
