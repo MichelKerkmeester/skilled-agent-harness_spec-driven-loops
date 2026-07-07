@@ -17,7 +17,9 @@
       "markdown agent sync plan",
       "125 sk-doc phase 014 plan",
       "markdown agent sync tasks",
-      "125 sk-doc phase 014 tasks"
+      "125 sk-doc phase 014 tasks",
+      "markdown agent sync summary",
+      "125 sk-doc phase 014 summary"
     ],
     "key_topics": [
       "markdown",
@@ -30,8 +32,8 @@
       "reconciliation",
       "plan",
       "tasks",
-      "opencode",
-      "agents"
+      "summary",
+      "opencode"
     ],
     "importance_tier": "important",
     "status": "draft",
@@ -39,6 +41,7 @@
       ".opencode/agents/markdown.md",
       ".claude/agents/markdown.md",
       ".opencode/skills/sk-doc/mode-registry.json",
+      "implementation-summary.md",
       "spec.md",
       "plan.md",
       "tasks.md"
@@ -54,6 +57,12 @@
         "name": "mode-registry.json",
         "kind": "config",
         "path": ".opencode/skills/sk-doc/mode-registry.json",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -185,19 +194,21 @@
     ],
     "causal_summary": "`.opencode/agents/markdown.md` and `.claude/agents/markdown.md` are the two runtime mirrors of the markdown-authoring agent, and both cite `sk-doc` packet paths directly (template paths per `/create:` command, the required-reading table, and the resource inventory)",
     "created_at": "2026-07-07T04:51:45.089Z",
-    "last_save_at": "2026-07-07T04:51:45.089Z",
+    "last_save_at": "2026-07-07T06:45:58.353Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
-      "tasks.md"
+      "tasks.md",
+      "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:2d901460344603f399ffb5c980d6c51a3c527d8ee29ae7518b786be861ca595a",
+    "source_fingerprint": "sha256:b0d3cd86b3d1c2e72b3ac2b97225389b9b092a7d634d344dccb6c1d040375de1",
     "source_doc_hashes": {
-      "spec.md": "3465a9548c5013acfd2429c31d05ffe0460dd97d7a10aa15695bad6451baf219",
-      "plan.md": "5a03ec0b55a1070286f1903dd3a6adc070d42ad4ceb446b93a7bef93fec8449c",
-      "tasks.md": "f94d9a1d9c35ac17373cb4cd324bcc5f3b11581712ec2f49921a7f9cbfaf89a1"
+      "spec.md": "dc95ffc6ba810e31f1bdaa6bc0bd7f608b95cbe869a10a7b4551ff0b89473fda",
+      "plan.md": "7c0c9b5e03aac7c02b56bef4689db497814ea4d6638c1119b2b5976959089d0d",
+      "tasks.md": "8a865d15105a0d497c5af4f5180b205d4d4a94b1474ad4a90aa1b8d5b19c4263",
+      "implementation-summary.md": "f229d100424c69acfc947e29dc4a6742c5348c8ae59b6898af10d65cf89b8ba6"
     },
     "last_active_child_id": null,
     "last_active_at": null
