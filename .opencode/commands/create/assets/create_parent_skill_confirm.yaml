@@ -326,8 +326,8 @@ workflow:
   step_3_template_loading:
     purpose: Load references and templates
     activities:
-      - Read skill_creation/parent_skills_nested_packets.md for the Parent Skills with Nested Mode Packets pattern
-      - Read references/skill_creation/parent_hub_router_schema.md for the hub-router.json contract
+      - Read parent_skill/parent_skills_nested_packets.md for the Parent Skills with Nested Mode Packets pattern
+      - Read references/parent_skill/parent_hub_router_schema.md for the hub-router.json contract
       - Read parent_skill_hub_template.md
       - Read parent_skill_registry_template.json
       - Read parent_skill_hub_router_template.json

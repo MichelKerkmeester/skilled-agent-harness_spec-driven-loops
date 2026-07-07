@@ -1,0 +1,30 @@
+{
+  "specFolder": "skilled-agent-orchestration/125-sk-doc-parent/015-commands-refresh",
+  "description": "Repoint residual stale sk-doc structural references under .opencode/commands to the dissected, renamed, flattened structure from phases 011-013.",
+  "keywords": [
+    "repoint",
+    "residual",
+    "stale",
+    "sk-doc",
+    "structural",
+    "references",
+    "opencode",
+    "commands",
+    "dissected",
+    "renamed",
+    "flattened",
+    "structure",
+    "phases",
+    "011-013"
+  ],
+  "lastUpdated": "2026-07-07T06:36:19.996Z",
+  "specId": "015",
+  "folderSlug": "commands-refresh",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "125-sk-doc-parent"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": 1
+}
