@@ -44,6 +44,29 @@ interface CorpusRow {
   readonly id: string;
   readonly prompt: string;
   readonly skill_top_1: string;
+  readonly bucket: CorpusBucket;
+  readonly source_type: CorpusSourceType;
+}
+
+type CorpusBucket =
+  | 'true_write'
+  | 'true_read_only'
+  | 'memory_save_resume'
+  | 'mixed_ambiguous'
+  | 'deep_loop_prompts'
+  | 'skill_routing_prompts';
+
+type CorpusSourceType =
+  | 'synthetic-realistic'
+  | 'paraphrased-realistic'
+  | 'synthetic-edge'
+  | 'synthetic-command';
+
+interface DelegationCase {
+  readonly id: string;
+  readonly prompt: string;
+  readonly expectedTop: string;
+  readonly branch: string;
 }
 
 interface RegressionCase {
@@ -74,6 +97,31 @@ const FULL_CORPUS_THRESHOLD = 0.75;
 const HOLDOUT_THRESHOLD = 0.725;
 const PER_SKILL_THRESHOLD = 0.7;
 const UNKNOWN_TARGET_MAX = 10;
+// Per-intent bucket accuracy floor. Reuses the per-skill release floor: a named
+// intent slice is held to the same top-1 bar as any single skill. The precise
+// non-regression ratchet lives in the eval baseline gate; this is the live
+// operator-facing floor surfaced alongside each bucket.
+const BUCKET_TOP1_THRESHOLD = PER_SKILL_THRESHOLD;
+const CORPUS_BUCKETS = [
+  'true_write',
+  'true_read_only',
+  'memory_save_resume',
+  'mixed_ambiguous',
+  'deep_loop_prompts',
+  'skill_routing_prompts',
+] as const;
+const CORPUS_SOURCE_TYPES = [
+  'synthetic-realistic',
+  'paraphrased-realistic',
+  'synthetic-edge',
+  'synthetic-command',
+] as const;
+// Minimum row counts below which a bucket slice is statistically meaningless.
+// review/memory_save track their labeled-corpus bucket sizes; delegation tracks
+// the shared executor-routing fixture size.
+const REVIEW_BUCKET_MIN_N = 32;
+const MEMORY_SAVE_BUCKET_MIN_N = 32;
+const DELEGATION_BUCKET_MIN_N = 11;
 
 // Strict zod schemas for the JSONL fixtures consumed by
 // loadCorpus() and loadRegressionCases(). The shapes match the existing
@@ -84,6 +132,27 @@ export const CorpusRowSchema = z.object({
   id: z.string().min(1),
   prompt: z.string().min(1),
   skill_top_1: z.string().min(1),
+  // Every corpus row carries an intent bucket and a provenance source_type.
+  // Enforcing them as enums makes a mislabeled or malformed fixture row fail the
+  // loader loudly instead of silently degrading a bucket slice. passthrough()
+  // is retained so additive fixture columns never break the loader.
+  bucket: z.enum(CORPUS_BUCKETS),
+  source_type: z.enum(CORPUS_SOURCE_TYPES),
+}).passthrough();
+
+// Shared executor-delegation routing fixture. Each case pins the strict top-1
+// skill (the sentinel 'none' means a correct abstain). The training corpus
+// carries no honest executor-delegation signal, so the delegation bucket is
+// sourced here.
+export const DelegationCaseSchema = z.object({
+  id: z.string().min(1),
+  prompt: z.string().min(1),
+  expectedTop: z.string().min(1),
+  branch: z.string().min(1),
+}).passthrough();
+
+export const DelegationFixtureSchema = z.object({
+  cases: z.array(DelegationCaseSchema).min(1),
 }).passthrough();
 
 export const RegressionCaseSchema = z.object({
@@ -214,6 +283,22 @@ function loadRegressionCases(workspaceRoot: string): RegressionCase[] {
     }
     return result.data as RegressionCase;
   });
+}
+
+function loadDelegationCases(workspaceRoot: string): DelegationCase[] {
+  const fixturePath = resolve(
+    workspaceRoot,
+    '.opencode/skills/system-skill-advisor/mcp_server/tests/parity/fixtures/executor-delegation-cases.json',
+  );
+  const parsed: unknown = JSON.parse(readFileSync(fixturePath, 'utf8'));
+  const result = DelegationFixtureSchema.safeParse(parsed);
+  if (!result.success) {
+    const issues = result.error.issues
+      .map((issue) => `${issue.path.join('.') || 'value'}: ${issue.message}`)
+      .join('; ');
+    throw new Error(`Delegation fixture: ${issues}`);
+  }
+  return result.data.cases as DelegationCase[];
 }
 
 function goldSkill(row: CorpusRow): string | null {
@@ -423,6 +508,43 @@ function countSlice(correct: number, total: number, threshold: number): {
   };
 }
 
+// A named-bucket accuracy slice: the generic slice plus a minN floor (a bucket
+// shrunk below minN by a corpus edit fails rather than reporting a meaningless
+// ratio) and an explicit top1 mirror of the accuracy.
+function bucketSlice(correct: number, total: number, minN: number): {
+  percentage: number;
+  passed: boolean;
+  threshold: number;
+  count: { passed: number; total: number };
+  minN: number;
+  top1: number;
+} {
+  const base = countSlice(correct, total, BUCKET_TOP1_THRESHOLD);
+  return {
+    ...base,
+    passed: base.passed && total >= minN,
+    minN,
+    top1: base.percentage,
+  };
+}
+
+// Strict top-1 accuracy over the executor-delegation fixture. A case's
+// expectedTop of 'none' is a correct-abstain (null top skill). Delegation
+// targets are top-level skill ids with no alias folding, so strict equality is
+// exact here.
+function evaluateDelegationCases(cases: readonly DelegationCase[], workspaceRoot: string): {
+  correct: number;
+  total: number;
+} {
+  let correct = 0;
+  for (const testCase of cases) {
+    const expected = testCase.expectedTop === 'none' ? null : testCase.expectedTop;
+    const topSkill = scoreAdvisorPrompt(testCase.prompt, { workspaceRoot }).topSkill;
+    if (topSkill === expected) correct += 1;
+  }
+  return { correct, total: cases.length };
+}
+
 // Single synthetic two-skill STABILITY check: a known dead-tie must still
 // surface as ambiguous. This is NOT an empirical ambiguity false-positive /
 // false-negative rate — the labeled routing corpus carries no expected-ambiguous
@@ -517,9 +639,18 @@ export async function validateAdvisor(input: AdvisorValidateInput = { confirmHea
   for (const record of recordedOutcomeRecords) {
     await persistAdvisorHookOutcomeRecord(workspaceRoot, record);
   }
-  const corpus = loadCorpus(workspaceRoot)
+  const fullCorpus = loadCorpus(workspaceRoot);
+  const corpus = fullCorpus
     .filter((row) => selectedSkillSlugForMatch ? mergedSkillForAlias(row.skill_top_1) === selectedSkillSlugForMatch : true);
   const full = evaluateRows(corpus, workspaceRoot);
+  // Named intent buckets are a global diagnostic over the whole corpus (plus the
+  // shared delegation fixture), independent of any skillSlug scope, so their
+  // minN floors and counts stay stable regardless of the selected skill.
+  const reviewRows = fullCorpus.filter((row) => row.bucket === 'true_read_only');
+  const memorySaveRows = fullCorpus.filter((row) => row.bucket === 'memory_save_resume');
+  const reviewBucket = evaluateRows(reviewRows, workspaceRoot);
+  const memorySaveBucket = evaluateRows(memorySaveRows, workspaceRoot);
+  const delegationBucket = evaluateDelegationCases(loadDelegationCases(workspaceRoot), workspaceRoot);
   const holdout = stratifiedHoldout(corpus);
   const holdoutResult = evaluateRows(holdout, workspaceRoot);
   const fullSlice = countSlice(full.correct, corpus.length, FULL_CORPUS_THRESHOLD);
@@ -606,6 +737,11 @@ export async function validateAdvisor(input: AdvisorValidateInput = { confirmHea
           cacheHitP95Ms: latency.cacheHitP95Ms,
           uncachedP95Ms: latency.uncachedP95Ms,
         },
+      },
+      buckets: {
+        review: bucketSlice(reviewBucket.correct, reviewRows.length, REVIEW_BUCKET_MIN_N),
+        memory_save: bucketSlice(memorySaveBucket.correct, memorySaveRows.length, MEMORY_SAVE_BUCKET_MIN_N),
+        delegation: bucketSlice(delegationBucket.correct, delegationBucket.total, DELEGATION_BUCKET_MIN_N),
       },
     },
     telemetry: buildTelemetrySummary(args, workspaceRoot, selectedSkillSlug, scopedOutcomeTotals),

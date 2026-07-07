@@ -340,6 +340,17 @@ const validationSliceSchema = z.object({
   }).strict(),
 }).strict();
 
+// A named data-slice accuracy gate. Extends the generic validation slice with
+// `minN` (the minimum row count below which the slice is statistically
+// meaningless and fails, guarding against a corpus edit silently shrinking a
+// bucket) and `top1` (the strict top-1 accuracy for the slice, surfaced
+// explicitly so operators read the bucket's accuracy without recomputing it
+// from `count`).
+const bucketSliceSchema = validationSliceSchema.extend({
+  minN: z.number().int().positive(),
+  top1: z.number().min(0).max(1),
+}).strict();
+
 const advisorValidateAggregateValidationSchema = z.object({
   fullCorpusTop1: z.number().min(0).max(1),
   holdoutTop1: z.number().min(0).max(1),
@@ -434,6 +445,16 @@ export const AdvisorValidateOutputSchema = z.object({
         cacheHitP95Ms: z.number().min(0),
         uncachedP95Ms: z.number().min(0),
       }).strict(),
+    }).strict(),
+    // Named per-intent accuracy buckets. review/memory_save are corpus rows
+    // grouped by their labeled bucket; delegation is the shared executor-routing
+    // fixture (the training corpus carries no honest executor-delegation signal).
+    // Each is a first-class accuracy gate so a regression confined to one intent
+    // class stays visible even when the aggregate corpus number holds.
+    buckets: z.object({
+      review: bucketSliceSchema,
+      memory_save: bucketSliceSchema,
+      delegation: bucketSliceSchema,
     }).strict(),
   }).strict(),
   telemetry: z.object({

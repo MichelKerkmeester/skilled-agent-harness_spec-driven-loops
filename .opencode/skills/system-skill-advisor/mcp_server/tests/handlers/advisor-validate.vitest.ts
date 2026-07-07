@@ -12,7 +12,7 @@ import { describe, expect, it } from 'vitest';
 import { advisorHookOutcomesPath } from '../../lib/metrics.js';
 import { findAdvisorWorkspaceRoot } from '../../lib/utils/workspace-root.js';
 import { AdvisorValidateInputSchema, AdvisorValidateOutputSchema } from '../../schemas/advisor-tool-schemas.js';
-import { handleAdvisorValidate } from '../../handlers/advisor-validate.js';
+import { CorpusRowSchema, handleAdvisorValidate } from '../../handlers/advisor-validate.js';
 
 const REPO_ROOT = findAdvisorWorkspaceRoot(dirname(fileURLToPath(import.meta.url)));
 
@@ -31,8 +31,53 @@ describe('advisor_validate handler', () => {
         parity: expect.any(Object),
         safety: expect.any(Object),
         latency: expect.any(Object),
+        buckets: expect.any(Object),
       }),
     }));
+  });
+
+  it('surfaces named intent buckets with minN floors', async () => {
+    const response = await handleAdvisorValidate({ confirmHeavyRun: true, skillSlug: null });
+    const parsed = JSON.parse(response.content[0].text) as { data: unknown };
+    const data = AdvisorValidateOutputSchema.parse(parsed.data);
+    const { review, memory_save: memorySave, delegation } = data.slices.buckets;
+
+    for (const slice of [review, memorySave, delegation]) {
+      expect(slice.top1).toBeGreaterThanOrEqual(0);
+      expect(slice.top1).toBeLessThanOrEqual(1);
+      expect(slice.count.total).toBeGreaterThanOrEqual(slice.minN);
+      expect(typeof slice.passed).toBe('boolean');
+    }
+    expect(review.minN).toBe(32);
+    expect(memorySave.minN).toBe(32);
+    expect(delegation.minN).toBe(11);
+    expect(delegation.count.total).toBe(11);
+  });
+
+  it('computes buckets over the full corpus regardless of skillSlug scope', async () => {
+    // A skillSlug filter narrows the aggregate corpus but must not shrink the
+    // named buckets — they are a global diagnostic, so their totals stay fixed.
+    const scoped = AdvisorValidateOutputSchema.parse(
+      JSON.parse((await handleAdvisorValidate({ confirmHeavyRun: true, skillSlug: 'system-spec-kit' })).content[0].text).data,
+    );
+    expect(scoped.slices.buckets.review.count.total).toBe(32);
+    expect(scoped.slices.buckets.memory_save.count.total).toBe(32);
+    expect(scoped.slices.buckets.delegation.count.total).toBe(11);
+  });
+
+  it('CorpusRowSchema enforces bucket and source_type enums', () => {
+    const valid = {
+      id: 'row-1',
+      prompt: 'create a pull request',
+      skill_top_1: 'sk-git',
+      bucket: 'true_read_only',
+      source_type: 'synthetic-realistic',
+    };
+    expect(CorpusRowSchema.safeParse(valid).success).toBe(true);
+    expect(CorpusRowSchema.safeParse({ ...valid, bucket: 'not_a_bucket' }).success).toBe(false);
+    expect(CorpusRowSchema.safeParse({ ...valid, source_type: 'not_a_source' }).success).toBe(false);
+    const { bucket: _bucket, ...missingBucket } = valid;
+    expect(CorpusRowSchema.safeParse(missingBucket).success).toBe(false);
   });
 
   it('preserves privacy by excluding raw prompts and PII-shaped content', async () => {

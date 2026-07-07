@@ -18,6 +18,8 @@ describe('CorpusRowSchema (F-005-A5-02)', () => {
       id: 'row-1',
       prompt: 'sample prompt',
       skill_top_1: 'system-spec-kit',
+      bucket: 'true_read_only',
+      source_type: 'synthetic-realistic',
     })).not.toThrow();
   });
 
@@ -41,6 +43,8 @@ describe('CorpusRowSchema (F-005-A5-02)', () => {
       id: 'row-1',
       prompt: 'sample',
       skill_top_1: 'system-spec-kit',
+      bucket: 'true_read_only',
+      source_type: 'synthetic-realistic',
       tags: ['extra', 'metadata'],
     });
     // The runtime accepts the extra `tags` field without rejecting.
