@@ -207,6 +207,7 @@ Produce real, current, evidence-backed PASS/FAIL verdicts for all 485 manual tes
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 12. OPEN QUESTIONS
 
 - None blocking. Scope, parallelism, and evidence-handling were all explicitly confirmed by the operator before execution began.
