@@ -35,24 +35,24 @@ Generic onboarding flow integrating value propositions, celebrations, and multi-
 │  INITIAL SIGNUP FLOW (Standard Authentication)               │
 └──────────────────────────────────────────────────────────────┘
 
-┌──────────────┐   ┌──────────────┐   ┌──────────────┐
-│ Email/Phone  │──▶│     Auth     │──▶│   Welcome    │
-│    Entry     │   │ Verification  │   │   Screen     │
-└──────────────┘   └──────────────┘   └──────────────┘
-                                              │
-                                              ▼
-                                      ┌──────────────┐
-                                      │ Preferences  │
-                                      │   Setup      │
-                                      └──────────────┘
-                                              │
-                                              ▼
-                                      ┌──────────────┐
-                                      │ Subscription │
-                                      │    Setup     │
-                                      └──────────────┘
-                                              │
-                                              ▼
+┌──────────────┐               ┌──────────────┐               ┌──────────────┐
+│ Email/Phone  │──────────────▶│     Auth     │──────────────▶│   Welcome    │
+│    Entry     │               │ Verification  │               │   Screen     │
+└──────────────┘               └──────────────┘               └──────────────┘
+                                                                      │
+                                                                      ▼
+                                                              ┌──────────────┐
+                                                              │ Preferences  │
+                                                              │   Setup      │
+                                                              └──────────────┘
+                                                                      │
+                                                                      ▼
+                                                              ┌──────────────┐
+                                                              │ Subscription │
+                                                              │    Setup     │
+                                                              └──────────────┘
+                                                                      │
+                                                                      ▼
 ┌──────────────────────────────────────────────────────────────┐
 │  ENHANCED ONBOARDING LAYER                                   │
 └──────────────────────────────────────────────────────────────┘
@@ -77,7 +77,7 @@ Generic onboarding flow integrating value propositions, celebrations, and multi-
 │                                                              │
 │  ┌────────────────────────────────────────────────────────┐  │
 │  │  Step 1: Basic Info                                    │  │
-│  │  ────────────────────                                  │  │
+│  │  ──────────────                                        │  │
 │  │  Fields: [Required]                                    │  │
 │  │    • Profile Name/Title                                 │  │
 │  │    • Description (brief overview)                      │  │
@@ -91,7 +91,7 @@ Generic onboarding flow integrating value propositions, celebrations, and multi-
 │                          ▼                                   │
 │  ┌────────────────────────────────────────────────────────┐  │
 │  │  Step 2: Socials                                       │  │
-│  │  ────────────────                                      │  │
+│  │  ──────────────                                        │  │
 │  │  Connect Social Media: [All Optional]                  │  │
 │  │    • Instagram (@handle)                               │  │
 │  │    • TikTok (@handle)                                  │  │
@@ -104,7 +104,7 @@ Generic onboarding flow integrating value propositions, celebrations, and multi-
 │                          ▼                                   │
 │  ┌────────────────────────────────────────────────────────┐  │
 │  │  Step 3: Locations                                     │  │
-│  │  ────────────────                                      │  │
+│  │  ──────────────                                        │  │
 │  │  Physical Presence:                                    │  │
 │  │    • Address (street, city, postal)                    │  │
 │  │    • HQ Designation (mark as headquarters)             │  │
@@ -119,7 +119,7 @@ Generic onboarding flow integrating value propositions, celebrations, and multi-
 │                          ▼                                   │
 │  ┌────────────────────────────────────────────────────────┐  │
 │  │  Step 4: Review                                        │  │
-│  │  ────────────────                                      │  │
+│  │  ──────────────                                        │  │
 │  │  Preview Profile:                                       │  │
 │  │    • All entered information displayed                 │  │
 │  │    • Visual preview of profile card                     │  │
@@ -135,7 +135,7 @@ Generic onboarding flow integrating value propositions, celebrations, and multi-
                     ╱  All Required  ╲
                    ╱   Fields Valid?  ╲
                    ╲                  ╱
-                    ╲────────────────╱
+                     ╲──────────────╱
                        │         │
                      Yes        No
                        │         │
@@ -147,7 +147,7 @@ Generic onboarding flow integrating value propositions, celebrations, and multi-
                        │    └──────────────┘
                        │         │
                        │         │ Loop back
-                       │         └──────────┘
+                       │         └──────────────┘
                        │
                        ▼
 ┌──────────────────────────────────────────────────────────────┐
@@ -170,7 +170,7 @@ Generic onboarding flow integrating value propositions, celebrations, and multi-
 │                                                              │
 │  ┌────────────────────────────────────────────────────────┐  │
 │  │  Step 1: Category                                      │  │
-│  │  ────────────────                                      │  │
+│  │  ──────────────                                        │  │
 │  │  Choose Listing Type:                                  │  │
 │  │    ⚪ Digital (online delivery)                        │  │
 │  │    ⚪ Physical (in-person)                             │  │
@@ -182,7 +182,7 @@ Generic onboarding flow integrating value propositions, celebrations, and multi-
 │                          ▼                                   │
 │  ┌────────────────────────────────────────────────────────┐  │
 │  │  Step 2: Profile                                        │  │
-│  │  ───────────                                           │  │
+│  │  ──────────────                                        │  │
 │  │  Assign to Profile:                                     │  │
 │  │    [Dropdown: Recently created profile selected]        │  │
 │  │                                                        │  │
@@ -192,7 +192,7 @@ Generic onboarding flow integrating value propositions, celebrations, and multi-
 │                          ▼                                   │
 │  ┌────────────────────────────────────────────────────────┐  │
 │  │  Step 3: Pricing                                       │  │
-│  │  ───────────                                           │  │
+│  │  ──────────────                                        │  │
 │  │  Define Your Pricing:                                   │  │
 │  │    • Price ($amount or "Contact")                      │  │
 │  │    • Product/Service description                       │  │
@@ -204,7 +204,7 @@ Generic onboarding flow integrating value propositions, celebrations, and multi-
 │                          ▼                                   │
 │  ┌────────────────────────────────────────────────────────┐  │
 │  │  Step 4: Details                                       │  │
-│  │  ───────────                                           │  │
+│  │  ──────────────                                        │  │
 │  │  Listing Details:                                      │  │
 │  │    • Title (catchy, brief)                             │  │
 │  │    • Description (detailed)                            │  │
@@ -216,7 +216,7 @@ Generic onboarding flow integrating value propositions, celebrations, and multi-
 │                          ▼                                   │
 │  ┌────────────────────────────────────────────────────────┐  │
 │  │  Step 5: Media                                         │  │
-│  │  ──────────                                            │  │
+│  │  ──────────────                                        │  │
 │  │  Visual Assets:                                        │  │
 │  │    • Listing Images (gallery, 3-5 photos)              │  │
 │  │    • Featured Image (hero/thumbnail)                   │  │
@@ -228,7 +228,7 @@ Generic onboarding flow integrating value propositions, celebrations, and multi-
 │                          ▼                                   │
 │  ┌────────────────────────────────────────────────────────┐  │
 │  │  Step 6: Availability                                  │  │
-│  │  ────────────────                                      │  │
+│  │  ──────────────                                        │  │
 │  │  Schedule & Availability:                              │  │
 │  │    • Start Date                                        │  │
 │  │    • End Date (or ongoing)                             │  │
@@ -240,7 +240,7 @@ Generic onboarding flow integrating value propositions, celebrations, and multi-
 │                          ▼                                   │
 │  ┌────────────────────────────────────────────────────────┐  │
 │  │  Step 7: Review                                        │  │
-│  │  ──────────                                            │  │
+│  │  ──────────────                                        │  │
 │  │  Preview Complete Listing:                             │  │
 │  │    • All information displayed                         │  │
 │  │    • Visual preview of listing card                    │  │
@@ -256,7 +256,7 @@ Generic onboarding flow integrating value propositions, celebrations, and multi-
                     ╱  Publish or    ╲
                    ╱   Save Draft?    ╲
                    ╲                  ╱
-                    ╲────────────────╱
+                     ╲──────────────╱
                        │         │
                    Publish     Draft
                        │         │
