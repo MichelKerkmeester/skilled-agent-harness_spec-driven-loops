@@ -1,0 +1,27 @@
+{
+  "specFolder": "sk-design/009-sk-design-claude-parity/021-command-surface-validator-and-agent-parity",
+  "description": "The 020 deep-research audit (`../020-drift-and-improvement-audit/research/research.md`) found `design-command-surface-check.mjs` reporting",
+  "keywords": [
+    "020",
+    "deep-research",
+    "audit",
+    "020-drift-and-improvement-audit",
+    "research",
+    "found",
+    "design-command-surface-check",
+    "mjs",
+    "reporting"
+  ],
+  "lastUpdated": "2026-07-07T09:57:57.474Z",
+  "specId": "021",
+  "folderSlug": "command-surface-validator-and-agent-parity",
+  "parentChain": [
+    ".opencode",
+    "specs",
+    "sk-design",
+    "009-sk-design-claude-parity"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

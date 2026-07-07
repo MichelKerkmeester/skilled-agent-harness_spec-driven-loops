@@ -49,6 +49,7 @@ Pick the lane that matches the request; if none fits, defer to the `sk-design` h
 - **Prefer `/design:foundations` when** the request is static token work: color, typography, layout, spacing, responsive adaptation, or theming.
 - **Prefer `/design:md-generator` when** the request is extracting a live site's measured CSS into DESIGN.md.
 - **Prefer `/design:motion` when** the request is animation choreography, transitions, micro-interactions, or reduced-motion behavior.
+- **Prefer `/design:design-mcp-open-design` when** the request is to wire, read, or drive Open Design's MCP server rather than invent a new interface direction.
 - **Defer to the `sk-design` hub when** the request is primarily static tokens, motion behavior, audit findings, or measured CSS extraction.
 <!-- /ANCHOR:sibling-discriminator -->
 
@@ -61,7 +62,7 @@ Pick the lane that matches the request; if none fits, defer to the `sk-design` h
 - **Escalate:** if the register is genuinely mixed or unresolved and changes the design dials, return `STATUS=DEFER ROUTE=hub` rather than forcing the mode.
 - **Route instead:** when the request is primarily static tokens, motion behavior, audit findings, or measured CSS extraction, return `STATUS=DEFER ROUTE=hub`.
 
-Ask-first question wording lives only in the presentation asset's Consolidated Prompt Template.
+**Ask-first:** wording lives only in the presentation asset's Consolidated Prompt Template.
 
 <!-- ANCHOR:register -->
 ## REGISTER

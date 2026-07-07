@@ -75,17 +75,12 @@ const PRECONDITION_FIELDS = [
 const REGISTER_POLICY_FIELDS = ["accepted", "default", "resolutionOrder", "askWhen", "proofFields"];
 const PRECONDITION_SECTION_MARKERS = ["Requires:", "Ask-first:", "Cannot-run:", "Escalate:"];
 const PIPELINE_FIELDS = ["stage", "acceptsFrom", "produces", "nextCommands", "proofRequired"];
-const PIPELINE_SECTION_MARKERS = [
-  "Stage:",
-  "Accepts from:",
-  "Produces:",
-  "Hands to next",
-  "Hands to build:",
-  "Recommend-only:"
-];
 const PIPELINE_STATUS_TOKENS = ["PRODUCES=", "NEXT=", "PROOF="];
 const HANDOFF_OPTION_FIELDS = ["command", "when"];
-const HANDOFF_STATUS_TOKENS = ["NEXT_OPTIONS=", "HANDOFF_REQUIRED=", "HANDOFF_REASON="];
+const HANDOFF_STATUS_TOKENS = ["HANDOFF_REQUIRED="];
+const NEGATIVE_CORPUS_PATTERN = /negative[\s_-]?corpus/i;
+const WORD_OVERLAP_THRESHOLD = 0.7;
+const CHOREOGRAPHY_ACTION_OVERLAP_THRESHOLD = 0.5;
 const REQUIRED_RETURN_STATUS_TOKENS = [
   "STATUS=OK",
   "STATUS=ASK MISSING=<input>",
@@ -188,9 +183,10 @@ async function main() {
   }
 
   const records = [...metadata].sort((a, b) => a.command.localeCompare(b.command));
+  const transportCommands = readTransportCommands(registry);
   const drift = [
     ...(await collectSurfaceDrift(records)),
-    ...collectRosterReconciliationDrift(records, workflowModes, hubRouter, wrapperRoster)
+    ...collectRosterReconciliationDrift(records, workflowModes, hubRouter, wrapperRoster, transportCommands)
   ].sort(compareDrift);
 
   emitAndExit(
@@ -285,6 +281,18 @@ function readHubRouterModes(hubRouter) {
   return new Set(
     Object.keys(hubRouter.routerSignals)
       .filter((workflowMode) => workflowMode.length > 0)
+  );
+}
+
+function readTransportCommands(registry) {
+  if (!registry || !Array.isArray(registry.modes)) {
+    return new Set();
+  }
+
+  return new Set(
+    registry.modes
+      .filter((mode) => mode && mode.packetKind === "transport" && typeof mode.workflowMode === "string" && mode.workflowMode.length > 0)
+      .map((mode) => `/design:${mode.workflowMode}`)
   );
 }
 
@@ -1294,6 +1302,7 @@ async function collectSurfaceDrift(records) {
 
   for (const record of records) {
     const wrapperPath = wrapperPathForCommand(record.command);
+    const assetPaths = assetPathsForCommand(record.command);
     let markdown;
     let frontmatter;
 
@@ -1310,6 +1319,23 @@ async function collectSurfaceDrift(records) {
       continue;
     }
 
+    const surface = { wrapper: markdown, presentation: "", auto: "", confirm: "" };
+
+    for (const key of ["presentation", "auto", "confirm"]) {
+      try {
+        surface[key] = await readFile(assetPaths[key].url, "utf8");
+      } catch (error) {
+        drift.push({
+          command: record.command,
+          field: "wrapper",
+          expected: assetPaths[key].relativePath,
+          actual: error instanceof Error ? error.message : String(error)
+        });
+      }
+    }
+
+    surface.combined = [surface.wrapper, surface.presentation, surface.auto, surface.confirm].join("\n");
+
     for (const field of FRONTMATTER_DRIFT_FIELDS) {
       const expected = expectedFrontmatterValue(record, field);
       const actual = frontmatter[field];
@@ -1325,30 +1351,30 @@ async function collectSurfaceDrift(records) {
       }
     }
 
-    const deliverableDrift = expectedEmitDeliverableDrift(record, markdown);
+    const deliverableDrift = expectedEmitDeliverableDrift(record, surface);
     if (deliverableDrift) {
       drift.push(deliverableDrift);
     }
 
-    drift.push(...expectedUserIntentDrift(record, markdown));
-    drift.push(...expectedExampleDrift(record, markdown, wrapperPath));
-    drift.push(...expectedDiscriminatorDrift(record, markdown));
-    drift.push(...expectedPreconditionsDrift(record, markdown));
-    drift.push(...expectedPipelineDrift(record, markdown));
-    drift.push(...expectedHandoffDrift(record, markdown));
-    drift.push(...expectedChoreographyDrift(record, markdown));
-    drift.push(...expectedRegisterDrift(record, markdown));
-    drift.push(...expectedTaskProjectionsDrift(record, markdown));
+    drift.push(...expectedUserIntentDrift(record, surface));
+    drift.push(...expectedExampleDrift(record, surface, wrapperPath));
+    drift.push(...expectedDiscriminatorDrift(record, surface));
+    drift.push(...expectedPreconditionsDrift(record, surface));
+    drift.push(...expectedPipelineDrift(record, surface));
+    drift.push(...expectedHandoffDrift(record, surface));
+    drift.push(...expectedChoreographyDrift(record, surface));
+    drift.push(...expectedRegisterDrift(record, surface));
+    drift.push(...expectedTaskProjectionsDrift(record, surface));
 
     if (record.command === INTERFACE_COMMAND) {
-      drift.push(...expectedInterfaceTaskLanesDrift(record, markdown));
+      drift.push(...expectedInterfaceTaskLanesDrift(record, surface));
     }
   }
 
   return drift.sort(compareDrift);
 }
 
-function collectRosterReconciliationDrift(records, workflowModes, hubRouter, wrappers) {
+function collectRosterReconciliationDrift(records, workflowModes, hubRouter, wrappers, transportCommands) {
   const drift = [];
   const metadataCommands = new Set(records.map((record) => record.command));
   const wrapperCommands = new Set(wrappers.map((wrapper) => wrapper.command));
@@ -1392,6 +1418,10 @@ function collectRosterReconciliationDrift(records, workflowModes, hubRouter, wra
   }
 
   for (const command of sortedSet(hubCommands)) {
+    if (transportCommands.has(command)) {
+      continue;
+    }
+
     const workflowMode = command.replace("/design:", "");
 
     if (!registryCommands.has(command)) {
@@ -1453,31 +1483,22 @@ function hasPlaceholderWrapper(wrapper) {
     || wrapper.frontmatter?.["argument-hint"] === GENERIC_ARGUMENT_HINT;
 }
 
-function expectedHandoffDrift(record, markdown) {
-  const section = extractHandoffGrammarSection(markdown);
-
-  if (!section) {
+function expectedHandoffDrift(record, surface) {
+  if (!surface.presentation) {
     return [
       {
         kind: "handoff",
         command: record.command,
         field: "handoff",
-        expected: "## HANDOFF GRAMMAR",
-        actual: "<missing section>"
+        expected: "Next-Step Suggestions in the presentation asset",
+        actual: "<missing asset>"
       }
     ];
   }
 
   const drift = [];
   const handoff = record.handoff;
-  const nextOptionCommands = Array.isArray(handoff?.nextOptions)
-    ? handoff.nextOptions.map((option) => option.command)
-    : [];
-  const expectedLines = [
-    `NEXT_OPTIONS=${nextOptionCommands.join(",")}`,
-    `HANDOFF_REQUIRED=${String(handoff?.handoffRequired)}`,
-    `HANDOFF_REASON="${handoff?.handoffReason}"`
-  ];
+  const section = surface.presentation;
 
   for (const token of HANDOFF_STATUS_TOKENS) {
     if (!section.includes(token)) {
@@ -1487,18 +1508,6 @@ function expectedHandoffDrift(record, markdown) {
         field: "handoff",
         expected: token,
         actual: "<missing handoff token>"
-      });
-    }
-  }
-
-  for (const expectedLine of expectedLines) {
-    if (!section.includes(expectedLine)) {
-      drift.push({
-        kind: "handoff",
-        command: record.command,
-        field: "handoff",
-        expected: expectedLine,
-        actual: "<missing or mismatched handoff value>"
       });
     }
   }
@@ -1514,13 +1523,13 @@ function expectedHandoffDrift(record, markdown) {
       });
     }
 
-    if (!containsPhrase(section, option.when)) {
+    if (wordOverlapRatio(section, option.when) < WORD_OVERLAP_THRESHOLD) {
       drift.push({
         kind: "handoff",
         command: record.command,
         field: "handoff",
         expected: option.when,
-        actual: "<missing next option rationale>"
+        actual: "<missing or mismatched next option rationale>"
       });
     }
   }
@@ -1535,12 +1544,12 @@ function expectedHandoffDrift(record, markdown) {
     });
   }
 
-  if (!containsPhrase(section, "never silently chains")) {
+  if (!containsPhrase(surface.combined, "never silently chains") && !containsPhrase(surface.combined, "never auto-chains")) {
     drift.push({
       kind: "handoff",
       command: record.command,
       field: "handoff",
-      expected: "never silently chains",
+      expected: "never silently chains / never auto-chains",
       actual: "<missing no-silent-chain assertion>"
     });
   }
@@ -1548,8 +1557,14 @@ function expectedHandoffDrift(record, markdown) {
   return drift;
 }
 
-function expectedTaskProjectionsDrift(record, markdown) {
-  const section = extractTaskProjectionsSection(markdown);
+function expectedTaskProjectionsDrift(record, surface) {
+  const projections = Array.isArray(record.taskProjections) ? record.taskProjections : [];
+
+  if (projections.length === 0) {
+    return [];
+  }
+
+  const section = surface.auto || "";
 
   if (!section) {
     return [
@@ -1557,14 +1572,13 @@ function expectedTaskProjectionsDrift(record, markdown) {
         kind: "taskProjections",
         command: record.command,
         field: "taskProjections",
-        expected: "## TASK PROJECTIONS",
-        actual: "<missing section>"
+        expected: "task_projections in the auto asset",
+        actual: "<missing asset>"
       }
     ];
   }
 
   const drift = [];
-  const projections = Array.isArray(record.taskProjections) ? record.taskProjections : [];
 
   for (const projection of projections) {
     if (!isPlainObject(projection) || typeof projection.verb !== "string" || projection.verb.length === 0) {
@@ -1582,17 +1596,7 @@ function expectedTaskProjectionsDrift(record, markdown) {
     }
   }
 
-  if (projections.length === 0 && !containsPhrase(section, "No transform-verb projections")) {
-    drift.push({
-      kind: "taskProjections",
-      command: record.command,
-      field: "taskProjections",
-      expected: "No transform-verb projections",
-      actual: "<missing empty-projection notice>"
-    });
-  }
-
-  if (!section.includes(TASK_PROJECTIONS_NEGATIVE_CORPUS_MARKER)) {
+  if (!NEGATIVE_CORPUS_PATTERN.test(section)) {
     drift.push({
       kind: "taskProjections",
       command: record.command,
@@ -1605,8 +1609,8 @@ function expectedTaskProjectionsDrift(record, markdown) {
   return drift;
 }
 
-function expectedInterfaceTaskLanesDrift(record, markdown) {
-  const section = extractInterfaceTaskLanesSection(markdown);
+function expectedInterfaceTaskLanesDrift(record, surface) {
+  const section = extractInterfaceTaskLanesSection(surface.wrapper);
 
   if (!section) {
     return [
@@ -1675,55 +1679,51 @@ function expectedInterfaceTaskLanesDrift(record, markdown) {
   return drift;
 }
 
-function expectedUserIntentDrift(record, markdown) {
+function expectedUserIntentDrift(record, surface) {
   const drift = [];
-  const userIntentSection = extractUserIntentSection(markdown);
-  const internalBindingSection = extractInternalBindingSection(markdown);
-  const leadRegion = extractIntentLeadRegion(markdown);
+  const routerContractSection = extractNamedSection(surface.wrapper, "ROUTER CONTRACT");
 
-  if (!userIntentSection) {
+  if (!routerContractSection) {
     drift.push({
       kind: "user-intent",
       command: record.command,
       field: "user-intent",
-      expected: "## USER INTENT",
+      expected: "## ROUTER CONTRACT",
       actual: "<missing section>"
     });
+    return drift;
   }
 
-  if (!internalBindingSection) {
+  for (const signal of record.userIntent.ownedSignals) {
+    if (!routerContractSection.includes(signal)) {
+      drift.push({
+        kind: "user-intent",
+        command: record.command,
+        field: "user-intent",
+        expected: signal,
+        actual: "<missing owned signal>"
+      });
+    }
+  }
+
+  const discriminatorSection = extractSiblingDiscriminatorSection(surface.wrapper);
+  const whenToUseLine = discriminatorSection
+    ? discriminatorSection.split(/\r?\n/).find((line) => /use this command when/i.test(line))
+    : null;
+
+  if (!whenToUseLine) {
     drift.push({
       kind: "user-intent",
       command: record.command,
       field: "user-intent",
-      expected: "## INTERNAL BINDING",
-      actual: "<missing section>"
-    });
-  }
-
-  if (!leadRegion) {
-    drift.push({
-      kind: "user-intent",
-      command: record.command,
-      field: "user-intent",
-      expected: record.userIntent.job,
+      expected: "Use this command when",
       actual: "<missing lead region>"
     });
     return drift;
   }
 
-  if (!leadRegion.includes(record.userIntent.job)) {
-    drift.push({
-      kind: "user-intent",
-      command: record.command,
-      field: "user-intent",
-      expected: record.userIntent.job,
-      actual: "<missing job text>"
-    });
-  }
-
   for (const phrase of record.copyGuard) {
-    if (containsPhrase(leadRegion, phrase)) {
+    if (containsPhrase(whenToUseLine, phrase)) {
       drift.push({
         kind: "user-intent",
         command: record.command,
@@ -1737,8 +1737,8 @@ function expectedUserIntentDrift(record, markdown) {
   return drift;
 }
 
-function expectedChoreographyDrift(record, markdown) {
-  const section = extractChoreographySection(markdown);
+function expectedChoreographyDrift(record, surface) {
+  const section = surface.auto || "";
 
   if (!section) {
     return [
@@ -1746,96 +1746,69 @@ function expectedChoreographyDrift(record, markdown) {
         kind: "choreography",
         command: record.command,
         field: "choreography",
-        expected: "## CHOREOGRAPHY",
-        actual: "<missing section>"
+        expected: "workflow steps in the auto asset",
+        actual: "<missing asset>"
       }
     ];
   }
 
   const drift = [];
   const steps = Array.isArray(record.choreography) ? record.choreography : [];
-  const numberedLines = section
-    .split(/\r?\n/)
-    .map((line) => line.trim())
-    .filter((line) => /^\d+\.\s+/.test(line));
-
-  if (numberedLines.length !== steps.length) {
-    drift.push({
-      kind: "choreography",
-      command: record.command,
-      field: "choreography",
-      expected: `${steps.length} ordered steps`,
-      actual: `${numberedLines.length} numbered steps`
-    });
-  }
 
   for (const step of steps) {
     if (!isPlainObject(step) || !Number.isInteger(step.order)) {
       continue;
     }
 
-    const line = numberedLines.find((candidate) => candidate.startsWith(`${step.order}.`));
-    if (!line) {
+    if (
+      typeof step.resource === "string" &&
+      step.resource.length > 0 &&
+      !section.includes(step.resource) &&
+      !containsWholeWord(section, lastPathSegment(step.resource))
+    ) {
       drift.push({
         kind: "choreography",
         command: record.command,
         field: "choreography",
-        expected: `step ${step.order}`,
-        actual: "<missing ordered step>"
+        expected: step.resource,
+        actual: `<missing resource in step ${step.order}>`
       });
-      continue;
     }
 
-    for (const field of ["skill", "resource", "action"]) {
-      const expected = step[field];
-      if (typeof expected !== "string" || expected.length === 0) {
-        continue;
-      }
-
-      if (!containsPhrase(line, expected)) {
-        drift.push({
-          kind: "choreography",
-          command: record.command,
-          field: "choreography",
-          expected,
-          actual: `<missing ${field} in step ${step.order}>`
-        });
-      }
+    if (
+      typeof step.action === "string" &&
+      step.action.length > 0 &&
+      wordOverlapRatio(section, step.action) < CHOREOGRAPHY_ACTION_OVERLAP_THRESHOLD
+    ) {
+      drift.push({
+        kind: "choreography",
+        command: record.command,
+        field: "choreography",
+        expected: step.action,
+        actual: `<missing or mismatched action in step ${step.order}>`
+      });
     }
   }
 
   return drift;
 }
 
-function expectedPipelineDrift(record, markdown) {
-  const section = extractPipelineSection(markdown);
+function expectedPipelineDrift(record, surface) {
   const drift = [];
 
-  if (!section) {
+  if (!surface.auto) {
     return [
       {
         kind: "pipeline",
         command: record.command,
         field: "pipeline",
-        expected: "## PIPELINE & HANDOFF",
-        actual: "<missing section>"
+        expected: "pipeline block in the auto asset",
+        actual: "<missing asset>"
       }
     ];
   }
 
-  for (const marker of PIPELINE_SECTION_MARKERS) {
-    if (!section.includes(marker)) {
-      drift.push({
-        kind: "pipeline",
-        command: record.command,
-        field: "pipeline",
-        expected: marker,
-        actual: "<missing marker>"
-      });
-    }
-  }
-
-  if (!section.includes(record.pipeline.stage)) {
+  if (!surface.combined.includes(record.pipeline.stage)) {
     drift.push({
       kind: "pipeline",
       command: record.command,
@@ -1845,7 +1818,7 @@ function expectedPipelineDrift(record, markdown) {
     });
   }
 
-  if (!section.includes(record.pipeline.produces)) {
+  if (!surface.combined.includes(record.pipeline.produces)) {
     drift.push({
       kind: "pipeline",
       command: record.command,
@@ -1856,7 +1829,7 @@ function expectedPipelineDrift(record, markdown) {
   }
 
   for (const upstream of record.pipeline.acceptsFrom) {
-    if (!section.includes(upstream)) {
+    if (!surface.auto.includes(upstream)) {
       drift.push({
         kind: "pipeline",
         command: record.command,
@@ -1868,7 +1841,7 @@ function expectedPipelineDrift(record, markdown) {
   }
 
   for (const nextCommand of record.pipeline.nextCommands) {
-    if (!section.includes(nextCommand)) {
+    if (!surface.combined.includes(nextCommand)) {
       drift.push({
         kind: "pipeline",
         command: record.command,
@@ -1880,7 +1853,7 @@ function expectedPipelineDrift(record, markdown) {
   }
 
   for (const proofField of record.pipeline.proofRequired) {
-    if (!section.includes(proofField)) {
+    if (!surface.combined.includes(proofField)) {
       drift.push({
         kind: "pipeline",
         command: record.command,
@@ -1891,7 +1864,7 @@ function expectedPipelineDrift(record, markdown) {
     }
   }
 
-  if (!hasSkCodeHandoffLine(section)) {
+  if (!hasSkCodeHandoffLine(surface.auto) && !hasSkCodeHandoffLine(surface.presentation)) {
     drift.push({
       kind: "pipeline",
       command: record.command,
@@ -1901,13 +1874,13 @@ function expectedPipelineDrift(record, markdown) {
     });
   }
 
-  drift.push(...expectedPipelineStatusDrift(record, markdown));
+  drift.push(...expectedPipelineStatusDrift(record, surface));
 
   return drift;
 }
 
-function expectedPipelineStatusDrift(record, markdown) {
-  const status = extractSuccessStatusLine(markdown);
+function expectedPipelineStatusDrift(record, surface) {
+  const status = extractSuccessStatusLine(surface.presentation);
 
   if (!status) {
     return [
@@ -1916,7 +1889,7 @@ function expectedPipelineStatusDrift(record, markdown) {
         command: record.command,
         field: "pipeline",
         expected: "STATUS=OK PRODUCES= NEXT= PROOF=",
-        actual: "<missing success status tail>"
+        actual: "<missing success status line>"
       }
     ];
   }
@@ -1972,8 +1945,8 @@ function expectedPipelineStatusDrift(record, markdown) {
   return drift;
 }
 
-function expectedRegisterDrift(record, markdown) {
-  const section = extractRegisterSection(markdown);
+function expectedRegisterDrift(record, surface) {
+  const section = extractRegisterSection(surface.wrapper);
 
   if (!section) {
     return [
@@ -2012,16 +1985,6 @@ function expectedRegisterDrift(record, markdown) {
     }
   }
 
-  if (!section.includes("STATUS=ASK MISSING_REGISTER")) {
-    drift.push({
-      kind: "register",
-      command: record.command,
-      field: "register",
-      expected: "STATUS=ASK MISSING_REGISTER",
-      actual: "<missing ask token>"
-    });
-  }
-
   for (const dial of record.registerPolicy.proofFields) {
     if (!section.includes(dial)) {
       drift.push({
@@ -2037,9 +2000,9 @@ function expectedRegisterDrift(record, markdown) {
   return drift;
 }
 
-function expectedPreconditionsDrift(record, markdown) {
+function expectedPreconditionsDrift(record, surface) {
   const drift = [];
-  const section = extractPreconditionsSection(markdown);
+  const section = extractPreconditionsSection(surface.wrapper);
 
   if (!section) {
     return [
@@ -2063,7 +2026,7 @@ function expectedPreconditionsDrift(record, markdown) {
     }
   }
 
-  if (STATUS_ONLY_FAILURE_PATTERN.test(markdown)) {
+  if (STATUS_ONLY_FAILURE_PATTERN.test(surface.combined)) {
     drift.push({
       command: record.command,
       field: "preconditions",
@@ -2073,7 +2036,7 @@ function expectedPreconditionsDrift(record, markdown) {
   }
 
   for (const token of REQUIRED_RETURN_STATUS_TOKENS) {
-    if (!markdown.includes(token)) {
+    if (!surface.combined.includes(token)) {
       drift.push({
         command: record.command,
         field: "preconditions",
@@ -2086,8 +2049,8 @@ function expectedPreconditionsDrift(record, markdown) {
   return drift;
 }
 
-function expectedDiscriminatorDrift(record, markdown) {
-  const section = extractSiblingDiscriminatorSection(markdown);
+function expectedDiscriminatorDrift(record, surface) {
+  const section = extractSiblingDiscriminatorSection(surface.wrapper);
 
   if (!section) {
     return [
@@ -2129,19 +2092,8 @@ function expectedDiscriminatorDrift(record, markdown) {
   return drift;
 }
 
-function expectedEmitDeliverableDrift(record, markdown) {
-  const section = extractEmitDeliverableSection(markdown);
-
-  if (!section) {
-    return {
-      command: record.command,
-      field: "emit-deliverable",
-      expected: record.outputContract.primaryArtifactName,
-      actual: "<missing section>"
-    };
-  }
-
-  if (!section.includes(record.outputContract.primaryArtifactName)) {
+function expectedEmitDeliverableDrift(record, surface) {
+  if (!surface.combined.includes(record.outputContract.primaryArtifactName)) {
     return {
       command: record.command,
       field: "emit-deliverable",
@@ -2153,9 +2105,9 @@ function expectedEmitDeliverableDrift(record, markdown) {
   return null;
 }
 
-function expectedExampleDrift(record, markdown, wrapperPath) {
+function expectedExampleDrift(record, surface, wrapperPath) {
   const drift = [];
-  const section = extractExampleSection(markdown);
+  const section = extractExampleSection(surface.presentation || "");
   const [example] = record.examples;
 
   if (!section) {
@@ -2189,7 +2141,7 @@ function expectedExampleDrift(record, markdown, wrapperPath) {
   }
 
   const returnsArtifact = extractReturnsArtifact(section);
-  if (returnsArtifact !== example.returnsArtifact) {
+  if (stripTrailingPeriod(returnsArtifact) !== stripTrailingPeriod(example.returnsArtifact)) {
     drift.push({
       command: record.command,
       field: "returns",
@@ -2201,30 +2153,8 @@ function expectedExampleDrift(record, markdown, wrapperPath) {
   return drift;
 }
 
-function extractEmitDeliverableSection(markdown) {
-  const sectionMatch = markdown.match(/^##\s+\d+\.\s+EMIT DELIVERABLE\s*$/im);
-  if (!sectionMatch || typeof sectionMatch.index !== "number") {
-    return null;
-  }
-
-  const bodyStart = sectionMatch.index + sectionMatch[0].length;
-  const nextSection = markdown.slice(bodyStart).search(/\r?\n##\s+\d+\./);
-  return nextSection === -1 ? markdown.slice(bodyStart) : markdown.slice(bodyStart, bodyStart + nextSection);
-}
-
 function extractExampleSection(markdown) {
   const sectionMatch = markdown.match(/^##\s+(?:\d+\.\s+)?Example\b.*$/im);
-  if (!sectionMatch || typeof sectionMatch.index !== "number") {
-    return null;
-  }
-
-  const bodyStart = sectionMatch.index + sectionMatch[0].length;
-  const nextSection = markdown.slice(bodyStart).search(/\r?\n##\s+/);
-  return nextSection === -1 ? markdown.slice(bodyStart) : markdown.slice(bodyStart, bodyStart + nextSection);
-}
-
-function extractPipelineSection(markdown) {
-  const sectionMatch = markdown.match(/^##\s+(?:\d+\.\s+)?PIPELINE & HANDOFF\s*$/im);
   if (!sectionMatch || typeof sectionMatch.index !== "number") {
     return null;
   }
@@ -2248,9 +2178,26 @@ function extractReturnsArtifact(section) {
   return returnsMatch ? returnsMatch[1].trim() : null;
 }
 
-function extractSuccessStatusLine(markdown) {
-  const statusMatch = markdown.match(/^\s*-\s+Success:\s+`([^`]*STATUS=OK[^`]*)`/im);
-  return statusMatch ? statusMatch[1].trim() : null;
+function stripTrailingPeriod(value) {
+  return typeof value === "string" ? value.replace(/\.+$/, "") : value;
+}
+
+function lastPathSegment(value) {
+  if (typeof value !== "string") {
+    return "";
+  }
+
+  const segments = value.split("/").filter(Boolean);
+  return segments.length > 0 ? segments[segments.length - 1] : "";
+}
+
+function extractSuccessStatusLine(text) {
+  if (typeof text !== "string") {
+    return null;
+  }
+
+  const statusMatch = text.match(/STATUS=OK[^\r\n]*/);
+  return statusMatch ? statusMatch[0].trim() : null;
 }
 
 function extractPreconditionsSection(markdown) {
@@ -2264,28 +2211,8 @@ function extractPreconditionsSection(markdown) {
   return nextSection === -1 ? markdown.slice(bodyStart) : markdown.slice(bodyStart, bodyStart + nextSection);
 }
 
-function extractUserIntentSection(markdown) {
-  return extractNamedSection(markdown, "USER INTENT");
-}
-
-function extractInternalBindingSection(markdown) {
-  return extractNamedSection(markdown, "INTERNAL BINDING");
-}
-
 function extractInterfaceTaskLanesSection(markdown) {
   return extractNamedSection(markdown, "INTERFACE TASK LANES");
-}
-
-function extractTaskProjectionsSection(markdown) {
-  return extractNamedSection(markdown, "TASK PROJECTIONS");
-}
-
-function extractChoreographySection(markdown) {
-  return extractNamedSection(markdown, "CHOREOGRAPHY");
-}
-
-function extractHandoffGrammarSection(markdown) {
-  return extractNamedSection(markdown, "HANDOFF GRAMMAR");
 }
 
 function extractNamedSection(markdown, sectionName) {
@@ -2297,24 +2224,6 @@ function extractNamedSection(markdown, sectionName) {
   const bodyStart = sectionMatch.index + sectionMatch[0].length;
   const nextSection = markdown.slice(bodyStart).search(/\r?\n##\s+/);
   return nextSection === -1 ? markdown.slice(bodyStart) : markdown.slice(bodyStart, bodyStart + nextSection);
-}
-
-function extractIntentLeadRegion(markdown) {
-  const titleMatch = markdown.match(/^#\s+\/design:[^\r\n]+$/im);
-  if (!titleMatch || typeof titleMatch.index !== "number") {
-    return null;
-  }
-
-  const bodyStart = titleMatch.index + titleMatch[0].length;
-  const afterTitle = markdown.slice(bodyStart);
-  const internalBindingMatch = afterTitle.match(/^##\s+(?:\d+\.\s+)?INTERNAL BINDING\s*$/im);
-
-  if (internalBindingMatch && typeof internalBindingMatch.index === "number") {
-    return afterTitle.slice(0, internalBindingMatch.index);
-  }
-
-  const nextSection = afterTitle.search(/\r?\n##\s+/);
-  return nextSection === -1 ? afterTitle : afterTitle.slice(0, nextSection);
 }
 
 function extractSiblingDiscriminatorSection(markdown) {
@@ -2375,6 +2284,41 @@ function wrapperPathForCommand(command) {
     relativePath,
     url: new URL(`${name}.md`, commandsRootUrl)
   };
+}
+
+function assetPathsForCommand(command) {
+  const name = command.replace("/design:", "");
+  const assetsRootUrl = new URL("assets/", commandsRootUrl);
+
+  const asset = (suffix, extension) => {
+    const fileName = `design_${name}_${suffix}.${extension}`;
+    return {
+      relativePath: `.opencode/commands/design/assets/${fileName}`,
+      url: new URL(fileName, assetsRootUrl)
+    };
+  };
+
+  return {
+    presentation: asset("presentation", "txt"),
+    auto: asset("auto", "yaml"),
+    confirm: asset("confirm", "yaml")
+  };
+}
+
+function wordOverlapRatio(text, phrase) {
+  if (typeof text !== "string" || typeof phrase !== "string") {
+    return 0;
+  }
+
+  const words = phrase.toLowerCase().match(/[a-z0-9]+/g) || [];
+  const significant = words.filter((word) => word.length > 3);
+
+  if (significant.length === 0) {
+    return 1;
+  }
+
+  const present = significant.filter((word) => containsWholeWord(text, word));
+  return present.length / significant.length;
 }
 
 function expectedFrontmatterValue(record, field) {

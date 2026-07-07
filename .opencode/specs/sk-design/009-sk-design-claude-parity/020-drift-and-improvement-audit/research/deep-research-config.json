@@ -1,0 +1,34 @@
+{
+  "type": "deep-research-config",
+  "schemaVersion": 1,
+  "sessionId": "sk-design-drift-audit-2026-07-07",
+  "researchTopic": "Audit sk-design and nested mode packets design-interface, design-foundations, design-motion, design-audit, design-md-generator, design-mcp-open-design, plus .opencode/agents/design.md and .opencode/commands/design/** for drift, bugs, misalignment, and concrete improvement opportunities grounded in the current .opencode codebase.",
+  "specFolder": ".opencode/specs/sk-design/009-sk-design-claude-parity/020-drift-and-improvement-audit",
+  "artifactRoot": ".opencode/specs/sk-design/009-sk-design-claude-parity/020-drift-and-improvement-audit/research",
+  "executionMode": "AUTONOMOUS",
+  "maxIterations": 20,
+  "convergenceThreshold": 0.05,
+  "progressiveSynthesis": true,
+  "lineage": {
+    "lineageMode": "new",
+    "generation": 1
+  },
+  "executor": {
+    "type": "cli-opencode",
+    "model": "openai/gpt-5.5-fast",
+    "reasoningEffort": "high"
+  },
+  "resource_map": {
+    "emit": true
+  },
+  "routeProof": {
+    "target_agent": "deep-research",
+    "resolved_route": "/deep:research:auto direct fresh-init workflow",
+    "agent_definition_loaded": true,
+    "mode": "research"
+  },
+  "writeBoundary": {
+    "allowedRoot": ".opencode/specs/sk-design/009-sk-design-claude-parity/020-drift-and-improvement-audit/research",
+    "status": "verified before writes"
+  }
+}

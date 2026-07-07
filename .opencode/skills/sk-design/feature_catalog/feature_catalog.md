@@ -64,7 +64,7 @@ The hub treats Figma, Open Design, browser, and extraction transports as evidenc
 
 #### Current Reality
 
-`mcp-figma` and `mcp-open-design` are loaded after design mode selection when needed. Their output must return to the selected mode or audit mode for acceptance, and the hub keeps design proof in `sk-design`.
+`mcp-figma` and `design-mcp-open-design` (nested inside `sk-design`) are loaded after design mode selection when needed. Their output must return to the selected mode or audit mode for acceptance, and the hub keeps design proof in `sk-design`.
 
 #### Source Files
 

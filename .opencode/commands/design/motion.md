@@ -36,6 +36,7 @@ Do not embed workflow steps or presentation content in this file. Workflow steps
 - **Prefer `/design:foundations` when** the request is static color, type, layout, responsive, or theme-token work.
 - **Prefer `/design:interface` when** the request is to invent the full visual direction or interface concept first.
 - **Prefer `/design:md-generator` when** the request is to capture measured CSS or tokens from a live site.
+- **Prefer `/design:design-mcp-open-design` when** the request is to wire, read, or drive Open Design's MCP server rather than design animation or motion behavior.
 - **Defer to the `sk-design` hub when** the request is primarily static visual-system design, interface direction, audit scoring, or measured CSS extraction.
 <!-- /ANCHOR:sibling-discriminator -->
 
@@ -48,7 +49,7 @@ Do not embed workflow steps or presentation content in this file. Workflow steps
 - **Escalate:** if the motion depends on an interface direction that has not been decided yet, return `STATUS=DEFER ROUTE=hub` rather than forcing the mode.
 - **Route instead:** when the request is static visual-system design, interface direction, audit scoring, or measured CSS extraction, return `STATUS=DEFER ROUTE=hub`.
 
-Ask-first question wording lives only in the presentation asset's Consolidated Prompt Template.
+**Ask-first:** wording lives only in the presentation asset's Consolidated Prompt Template.
 
 <!-- ANCHOR:register -->
 ## REGISTER

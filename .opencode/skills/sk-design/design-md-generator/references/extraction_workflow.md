@@ -95,4 +95,4 @@ Boundary tokens take the higher (more restrictive) class.
 |----|----------|
 | `sk-code` | The `DESIGN.md` is the implementation contract - source of truth for colours, type, spacing, shadows, radii |
 | `interface` | When the captured system feeds *new* distinctive direction, that skill owns the taste and anti-default judgment; this skill supplies ground truth |
-| `mcp-figma` / `mcp-open-design` | Those transports cover Figma files and Open Design projects; this skill covers live URLs |
+| `mcp-figma` / `design-mcp-open-design` (nested inside `sk-design`) | Those transports cover Figma files and Open Design projects; this skill covers live URLs |

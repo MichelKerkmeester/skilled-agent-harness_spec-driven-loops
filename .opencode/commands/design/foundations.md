@@ -36,6 +36,7 @@ Do not embed workflow steps or presentation content in this file. Workflow steps
 - **Prefer `/design:interface` when** the request is to invent the overall interface direction, voice, or signature visual concept first.
 - **Prefer `/design:md-generator` when** the request is to extract measured tokens from a live site into DESIGN.md.
 - **Prefer `/design:motion` when** the request is animation, transition choreography, micro-interactions, or reduced-motion behavior.
+- **Prefer `/design:design-mcp-open-design` when** the request is to wire, read, or drive Open Design's MCP server rather than author a static visual system from judgment.
 - **Defer to the `sk-design` hub when** the request spans invention of the overall interface direction, motion choreography, or release-quality audit.
 <!-- /ANCHOR:sibling-discriminator -->
 
@@ -48,7 +49,7 @@ Do not embed workflow steps or presentation content in this file. Workflow steps
 - **Escalate:** if the request actually needs full interface invention, not a single static axis, return `STATUS=DEFER ROUTE=hub` rather than forcing the mode.
 - **Route instead:** when the work is overall interface direction, motion behavior, or release-quality audit, return `STATUS=DEFER ROUTE=hub`.
 
-Ask-first question wording lives only in the presentation asset's Consolidated Prompt Template.
+**Ask-first:** wording lives only in the presentation asset's Consolidated Prompt Template.
 
 <!-- ANCHOR:register -->
 ## REGISTER

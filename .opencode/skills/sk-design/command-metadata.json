@@ -28,8 +28,7 @@
       "flags": [
         { "name": "--scope", "required": false, "takesValue": true, "valueName": "scope", "kind": "scope-filter" },
         { "name": "--score", "required": false, "takesValue": false, "kind": "boolean" },
-        { "name": "--register", "required": false, "takesValue": true, "valueName": "register", "kind": "register-selector", "values": ["brand", "product"] },
-        { "name": ":auto|:confirm", "required": false, "takesValue": false, "kind": "execution-mode-suffix" }
+        { "name": "--register", "required": false, "takesValue": true, "valueName": "register", "kind": "register-selector", "values": ["brand", "product"] }
       ],
       "render": "<target> [--scope] [--score] [--register brand|product] [:auto|:confirm]"
     },
@@ -136,6 +135,10 @@
         {
           "sibling": "/design:motion",
           "when": "Prefer motion when the request is to create animation choreography, transitions, or micro-interaction behavior."
+        },
+        {
+          "sibling": "/design:design-mcp-open-design",
+          "when": "Prefer design-mcp-open-design when the request is to wire, read, or drive Open Design's MCP server rather than review an existing design surface."
         }
       ],
       "pairWithHubWhen": "the request asks for new direction, static system design, or motion choreography rather than quality review",
@@ -189,8 +192,7 @@
         { "name": "target", "required": true, "kind": "design-target" }
       ],
       "flags": [
-        { "name": "--register", "required": false, "takesValue": true, "valueName": "register", "kind": "register-selector", "values": ["brand", "product"] },
-        { "name": ":auto|:confirm", "required": false, "takesValue": false, "kind": "execution-mode-suffix" }
+        { "name": "--register", "required": false, "takesValue": true, "valueName": "register", "kind": "register-selector", "values": ["brand", "product"] }
       ],
       "render": "<axis> <target> [--register brand|product] [:auto|:confirm]"
     },
@@ -297,6 +299,10 @@
         {
           "sibling": "/design:motion",
           "when": "Prefer motion when the request is animation, transition choreography, micro-interactions, or reduced-motion behavior."
+        },
+        {
+          "sibling": "/design:design-mcp-open-design",
+          "when": "Prefer design-mcp-open-design when the request is to wire, read, or drive Open Design's MCP server rather than author a static visual system from judgment."
         }
       ],
       "pairWithHubWhen": "the request spans invention of the overall interface direction, motion choreography, or release-quality audit",
@@ -350,8 +356,7 @@
       ],
       "flags": [
         { "name": "--mode", "required": false, "takesValue": true, "valueName": "mode", "kind": "mode-selector" },
-        { "name": "--register", "required": false, "takesValue": true, "valueName": "register", "kind": "register-selector", "values": ["brand", "product"] },
-        { "name": ":auto|:confirm", "required": false, "takesValue": false, "kind": "execution-mode-suffix" }
+        { "name": "--register", "required": false, "takesValue": true, "valueName": "register", "kind": "register-selector", "values": ["brand", "product"] }
       ],
       "render": "<target> [--mode] [--register brand|product] [:auto|:confirm]"
     },
@@ -548,6 +553,10 @@
         {
           "sibling": "/design:motion",
           "when": "Prefer motion when the request is animation choreography, transitions, micro-interactions, or reduced-motion behavior."
+        },
+        {
+          "sibling": "/design:design-mcp-open-design",
+          "when": "Prefer design-mcp-open-design when the request is to wire, read, or drive Open Design's MCP server rather than invent a new interface direction."
         }
       ],
       "pairWithHubWhen": "the request is primarily static tokens, motion behavior, audit findings, or measured CSS extraction",
@@ -601,8 +610,7 @@
       ],
       "flags": [
         { "name": "--output", "required": true, "takesValue": true, "valueName": "dir", "kind": "output-directory" },
-        { "name": "--register", "required": false, "takesValue": true, "valueName": "register", "kind": "register-selector", "values": ["brand", "product"] },
-        { "name": ":auto|:confirm", "required": false, "takesValue": false, "kind": "execution-mode-suffix" }
+        { "name": "--register", "required": false, "takesValue": true, "valueName": "register", "kind": "register-selector", "values": ["brand", "product"] }
       ],
       "render": "<live-url> --output <dir> [--register brand|product] [:auto|:confirm]"
     },
@@ -686,6 +694,10 @@
         {
           "sibling": "/design:motion",
           "when": "Prefer motion when the request is to design animation, transitions, or micro-interaction behavior."
+        },
+        {
+          "sibling": "/design:design-mcp-open-design",
+          "when": "Prefer design-mcp-open-design when the request is to wire, read, or drive Open Design's MCP server rather than extract measured CSS from a live website."
         }
       ],
       "pairWithHubWhen": "the request spans more than measured CSS extraction, such as redesign, critique, or new visual-system invention",
@@ -739,8 +751,7 @@
       ],
       "flags": [
         { "name": "--library", "required": false, "takesValue": true, "valueName": "library", "kind": "library-hint" },
-        { "name": "--register", "required": false, "takesValue": true, "valueName": "register", "kind": "register-selector", "values": ["brand", "product"] },
-        { "name": ":auto|:confirm", "required": false, "takesValue": false, "kind": "execution-mode-suffix" }
+        { "name": "--register", "required": false, "takesValue": true, "valueName": "register", "kind": "register-selector", "values": ["brand", "product"] }
       ],
       "render": "<component-state> [--library] [--register brand|product] [:auto|:confirm]"
     },
@@ -824,6 +835,10 @@
         {
           "sibling": "/design:md-generator",
           "when": "Prefer md-generator when the request is to capture measured CSS or tokens from a live site."
+        },
+        {
+          "sibling": "/design:design-mcp-open-design",
+          "when": "Prefer design-mcp-open-design when the request is to wire, read, or drive Open Design's MCP server rather than design animation or motion behavior."
         }
       ],
       "pairWithHubWhen": "the request is primarily static visual-system design, interface direction, audit scoring, or measured CSS extraction",

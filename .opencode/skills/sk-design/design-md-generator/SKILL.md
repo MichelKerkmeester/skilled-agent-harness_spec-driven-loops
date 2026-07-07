@@ -11,7 +11,7 @@ version: 1.0.0.3
 
 Captures a live website's **real, measured CSS** into a publication-quality `DESIGN.md` — a v3 **Style Reference**: a named, role-driven, ship-ready design-system handoff (named colour tokens, semantic type scale, named components, Surfaces, Elevation, Agent Prompt Guide, Similar Brands, and copy-paste Quick Start CSS + Tailwind) that AI agents build against without hallucinating colors, fonts, spacing, or shadows. Runs a three-phase pipeline (extract, write, validate) through an embedded Playwright crawler that samples five viewports and emits verbatim `tokens.json`. Deep operational detail lives in [`references/`](references/).
 
-> **Family boundary.** This skill is the **extraction and format-fidelity engine** of the `sk-design-*` family. It captures what already exists. Sibling `interface` invents **new** distinctive direction (palette, type, anti-default critique). The transports — `mcp-open-design` and `mcp-figma` — move design data; this skill produces the authoritative reference those transports and `interface` consume.
+> **Family boundary.** This skill is the **extraction and format-fidelity engine** of the `sk-design-*` family. It captures what already exists. Sibling `interface` invents **new** distinctive direction (palette, type, anti-default critique). The transports — `design-mcp-open-design` (nested inside `sk-design`) and `mcp-figma` — move design data; this skill produces the authoritative reference those transports and `interface` consume.
 
 ---
 
@@ -45,7 +45,7 @@ Captures a live website's **real, measured CSS** into a publication-quality `DES
 - The task is **inventing a new design direction** (palette, type scale, the anti-default critique). That is `interface`. This skill captures; that skill creates.
 - The task is **authoring a Style Reference from a brief alone** with no live site to measure. That is forward-authoring, and it is OUT OF SCOPE for this mode. This mode reports what is measurably there. A brief-only request is a different contract routed to a separate design-spec decision, never satisfied by loosening fidelity here. The line between measured values and a brief's stated intent is drawn in `references/authoring_boundary.md`.
 - The target is a **Figma file**, not a live website. Use `mcp-figma` to extract from Figma Desktop.
-- The target is an **Open Design project**. Use `mcp-open-design`.
+- The target is an **Open Design project**. Use `design-mcp-open-design` (nested inside `sk-design`).
 - The user only wants a **screenshot or visual preview** of a page. Use `mcp-chrome-devtools`.
 - The website cannot be reached (requires a live, renderable URL with JavaScript execution).
 
@@ -123,7 +123,7 @@ The private procedure-card selection table in Section 3 is part of this routing 
 
 ### Smart Router Pseudocode
 
-> Resilience pattern: see [sk-doc smart-router template](../../sk-doc/assets/skill/skill_smart_router.md). Guard paths, discover at runtime, score intents, fall back to the full extract-write-validate pipeline when unsure.
+> Resilience pattern: see [sk-doc smart-router template](../../sk-doc/create-skill/assets/skill/skill_smart_router.md). Guard paths, discover at runtime, score intents, fall back to the full extract-write-validate pipeline when unsure.
 
 ```python
 from pathlib import Path
@@ -470,7 +470,7 @@ The classifier lives in `backend/scripts/cluster.ts` and is deterministic. Token
 
 - **`interface`** is the design-judgment skill. When a DESIGN.md extraction feeds into inventing new UI direction, load that skill. This skill provides the ground truth; `interface` applies the taste.
 - **`sk-code`** consumes DESIGN.md as an implementation reference. The DESIGN.md produced by this skill is the contract that `sk-code` builds against — the hallucination-proof source of truth for colors, fonts, spacing, shadows, and radii.
-- **`mcp-figma`** and **`mcp-open-design`** are alternative extraction sources. When the user needs a DESIGN.md from a Figma file or Open Design project instead of a live URL, route to those transports. When the user needs a DESIGN.md from a live URL, this is the skill.
+- **`mcp-figma`** and **`design-mcp-open-design`** (nested inside `sk-design`) are alternative extraction sources. When the user needs a DESIGN.md from a Figma file or Open Design project instead of a live URL, route to those transports. When the user needs a DESIGN.md from a live URL, this is the skill.
 - **`system-spec-kit`** applies when the extraction is part of a larger spec-tracked feature and packet documentation is required.
 
 ### External Tools
@@ -493,7 +493,7 @@ Examples: `references/examples/{stripe,vercel,linear,supabase}/` provide gold-st
 
 Scripts: the embedded `backend/scripts/` directory contains 20 TypeScript modules. The primary entry points are `extract.ts` (Phase 1), `build-write-prompt.ts` (Phase 2 doc-as-view: pre-renders the v3 Tokens — Colors / Spacing & Shapes / Surfaces / Quick Start sections and a FACTS block), `validate.ts` (Phase 3, v3-schema-aware with a Quick-Start fidelity check), `report-gen.ts`, and `preview-gen.ts` (Phase 4). `formatters-v3.ts` holds the deterministic v3 emitters — the hue+lightness colour namer, Tokens — Colors, Spacing & Shapes, Surfaces, and Quick Start renderers (every value verbatim from tokens) — that `build-write-prompt.ts` calls. The remaining modules are internal pipeline stages called by the orchestrator.
 
-Related skills: `interface` (the design-judgment sibling — invents new direction, consumes DESIGN.md as ground truth), `sk-code` (consumes DESIGN.md as the implementation contract), `mcp-figma` (extracts from Figma Desktop, not live URLs), `mcp-open-design` (extracts from Open Design projects), `mcp-chrome-devtools` (for browser inspection and visual preview, not structured extraction), and `system-spec-kit` when the extraction is part of a tracked packet.
+Related skills: `interface` (the design-judgment sibling — invents new direction, consumes DESIGN.md as ground truth), `sk-code` (consumes DESIGN.md as the implementation contract), `mcp-figma` (extracts from Figma Desktop, not live URLs), `design-mcp-open-design` (nested inside `sk-design`, extracts from Open Design projects), `mcp-chrome-devtools` (for browser inspection and visual preview, not structured extraction), and `system-spec-kit` when the extraction is part of a tracked packet.
 
 Install guide: tool setup is `cd backend && npm install && npx playwright install chromium`. A dedicated INSTALL_GUIDE.md for Node.js + Playwright + Chromium setup is authored separately.
 
