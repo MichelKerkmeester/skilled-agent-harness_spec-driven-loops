@@ -1,0 +1,227 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-design/009-sk-design-claude-parity/024-manual-playbook-bug-remediation",
+  "spec_folder": "sk-design/009-sk-design-claude-parity/024-manual-playbook-bug-remediation",
+  "parent_id": "sk-design/009-sk-design-claude-parity",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "manual playbook bug remediation",
+      "phase 024 sk-design",
+      "MG-004 authoring boundary fix",
+      "sk-design 8 real bugs remediation",
+      "phase 024 plan",
+      "manual playbook remediation workflow plan",
+      "tasks",
+      "phase 024 tasks",
+      "verification",
+      "checklist",
+      "phase 024 checklist",
+      "implementation"
+    ],
+    "key_topics": [
+      "manual",
+      "playbook",
+      "bug",
+      "remediation",
+      "phase",
+      "024",
+      "sk-design",
+      "mg-004",
+      "authoring",
+      "boundary",
+      "fix",
+      "real"
+    ],
+    "importance_tier": "high",
+    "status": "complete",
+    "key_files": [
+      ".opencode/skills/system-skill-advisor/mcp_server/scripts/skill_advisor.py",
+      ".opencode/skills/sk-design/SKILL.md",
+      ".opencode/skills/sk-design/design-interface/SKILL.md",
+      ".opencode/skills/sk-design/design-md-generator/SKILL.md",
+      ".opencode/skills/sk-design/design-md-generator/references/authoring_boundary.md",
+      ".opencode/skills/sk-design/graph-metadata.json",
+      ".opencode/skills/sk-design/description.json",
+      ".opencode/specs/sk-design/009-sk-design-claude-parity/023-full-manual-playbook-execution/verdict-matrix.md",
+      "implementation-summary.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "skill_advisor.py",
+        "kind": "file",
+        "path": ".opencode/skills/system-skill-advisor/mcp_server/scripts/skill_advisor.py",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-design/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "authoring_boundary.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-design/design-md-generator/references/authoring_boundary.md",
+        "source": "derived"
+      },
+      {
+        "name": "graph-metadata.json",
+        "kind": "config",
+        "path": ".opencode/skills/sk-design/graph-metadata.json",
+        "source": "derived"
+      },
+      {
+        "name": "description.json",
+        "kind": "config",
+        "path": ".opencode/skills/sk-design/description.json",
+        "source": "derived"
+      },
+      {
+        "name": "verdict-matrix.md",
+        "kind": "doc",
+        "path": ".opencode/specs/sk-design/009-sk-design-claude-parity/023-full-manual-playbook-execution/verdict-matrix.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Manual Playbook Bug Remediation",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Phase",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Fix",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Fail Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Fixed",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Open Design",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Resource Loading Levels",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Phase 023's first-ever full manual execution of sk-design's `manualtestingplaybook` (56 real dispatches through `cli-opencode`, `openai/gpt-5.5-fast --variant medium`) produced a genuine `NOT READY` release verdict and catalogued 8 real bugs in `023-full-manual-playbook-execution/verdict-matrix.md`'s \"Real bugs found\" section — routing misses, a skipped ALWAYS-marked resource load, an unenforced excluded-alias rule, a router-precedence loss on a brief-only authoring-boundary scenario, an intake-before-routing violation, a weak-signal transform-verb prompt producing zero skill routing, and a",
+    "created_at": "2026-07-07T19:18:48.068Z",
+    "last_save_at": "2026-07-07T19:21:31.997Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:a1a7118947da0f64a050ca7c477bf84fa14b88e89968fdf188b85a5c2fe1c92b",
+    "source_doc_hashes": {
+      "spec.md": "74a22bd6aef795168ef3ce08460af96d745a787a84ed49f210162220ffda742f",
+      "plan.md": "cb27d72eb1f7f72342a4f6d0fa29b868f13d3def7ef79dd4b4495064a29f702e",
+      "tasks.md": "6451382d46ae1bdad8087365b340e03b9fc732c1ff6d5f72a48186893ec16459",
+      "checklist.md": "44fb8ad15ccd9014263f99fbbcb3c6b277bcc0870ca1dbf4d87f5b122c12b249",
+      "implementation-summary.md": "3dea8ff143e6a1f4406a33aa148d4a8d3fe2aa90fe5d001dcb38db7cbece1cb2"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

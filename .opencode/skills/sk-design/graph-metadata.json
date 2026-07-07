@@ -67,7 +67,11 @@
     "DESIGN.md",
     "style reference",
     "open design",
-    "od cli"
+    "od cli",
+    "validate DESIGN.md",
+    "hex accuracy",
+    "section completeness",
+    "tokens.json fidelity"
   ],
   "derived": {
     "trigger_phrases": [
@@ -118,7 +122,12 @@
       "design tokens from url",
       "create design reference",
       "design-to-markdown",
-      "extract design tokens"
+      "extract design tokens",
+      "validate design.md",
+      "validate design.md against tokens.json",
+      "hex accuracy and section completeness",
+      "design fidelity check",
+      "design.md report"
     ],
     "key_topics": [
       "sk-design",
@@ -160,6 +169,6 @@
       "mode-registry.json"
     ],
     "created_at": "2026-06-25T00:00:00Z",
-    "last_updated_at": "2026-06-26T00:00:00Z"
+    "last_updated_at": "2026-07-07T00:00:00Z"
   }
 }

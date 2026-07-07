@@ -1,7 +1,7 @@
 {
   "name": "sk-design",
   "description": "Design-family parent hub: the single advisor-routable home for distinctive, intentional UI design and the full design surface. Routes any design query to six modes via mode-registry.json — five packetKind:\"workflow\" modes (interface: visual direction, taste, and interface build judgment; foundations: color, typography, layout, spacing, hierarchy, design tokens, theming; motion: animation, transitions, micro-interactions, reduced motion; audit: accessibility, performance, responsive, anti-slop detection, design quality scoring; md-generator: extract a live site's real CSS into a v3 Style Reference DESIGN.md via an embedded Playwright pipeline) plus one packetKind:\"transport\" mode (design-mcp-open-design: drives the external Open Design app's od CLI and stdio MCP server, gated behind sk-design's own judgment for any design-affecting operation). The hub holds no per-mode logic; each mode keeps its own contract and cites the shared design reference base.",
-  "version": "1.4.0.0",
+  "version": "1.4.1.0",
   "importance_tier": "high",
   "keywords": [
     "sk-design",
@@ -43,7 +43,15 @@
     "od-cli",
     "od-mcp",
     "wire-open-design",
-    "connect-open-design"
+    "connect-open-design",
+    "bolder",
+    "quieter",
+    "distill",
+    "clarify",
+    "delight",
+    "validate-design-md",
+    "hex-accuracy",
+    "section-completeness"
   ],
   "trigger_examples": [
     "make this landing page look less templated",
@@ -56,7 +64,9 @@
     "score the design quality and list P0/P1 findings",
     "extract a design system from a live website into DESIGN.md",
     "capture a site's real CSS tokens as a Style Reference",
-    "wire Open Design's MCP server into opencode so I can drive od cli"
+    "wire Open Design's MCP server into opencode so I can drive od cli",
+    "validate this DESIGN.md against its tokens.json for hex accuracy and section completeness",
+    "should it be delight users more, or would that feel gratuitous"
   ],
   "lastUpdated": "2026-07-07T00:00:00Z"
 }

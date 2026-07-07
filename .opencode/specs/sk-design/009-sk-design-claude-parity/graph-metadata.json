@@ -17,7 +17,18 @@
     "sk-design/009-sk-design-claude-parity/008-smart-routing-optimization",
     "sk-design/009-sk-design-claude-parity/010-feature-catalog-completeness",
     "sk-design/009-sk-design-claude-parity/006-parent-skill-canon-verification",
-    "sk-design/009-sk-design-claude-parity/012-routing-benchmark-rigor"
+    "sk-design/009-sk-design-claude-parity/012-routing-benchmark-rigor",
+    "sk-design/009-sk-design-claude-parity/014-review-remediation",
+    "sk-design/009-sk-design-claude-parity/015-design-commands-implementation",
+    "sk-design/009-sk-design-claude-parity/016-hub-routing-optimization",
+    "sk-design/009-sk-design-claude-parity/017-design-proof-token-relocation",
+    "sk-design/009-sk-design-claude-parity/018-mcp-open-design-transport-integration",
+    "sk-design/009-sk-design-claude-parity/019-transport-mode-benchmark-coverage",
+    "sk-design/009-sk-design-claude-parity/020-drift-and-improvement-audit",
+    "sk-design/009-sk-design-claude-parity/021-command-surface-validator-and-agent-parity",
+    "sk-design/009-sk-design-claude-parity/022-benchmark-rerun-and-coverage-fill",
+    "sk-design/009-sk-design-claude-parity/023-full-manual-playbook-execution",
+    "sk-design/009-sk-design-claude-parity/024-manual-playbook-bug-remediation"
   ],
   "manual": {
     "depends_on": [],
@@ -145,7 +156,7 @@
     ],
     "causal_summary": "The research packet found that `sk-design` already has the right OpenCode-native backbone: one advisor-routable hub, five public modes, registry-driven routing, a shared reference base, and a measured `design-md-generator` extraction backend",
     "created_at": "2026-07-05T00:00:00.000Z",
-    "last_save_at": "2026-07-06T10:47:53.128Z",
+    "last_save_at": "2026-07-07T19:22:35.325Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

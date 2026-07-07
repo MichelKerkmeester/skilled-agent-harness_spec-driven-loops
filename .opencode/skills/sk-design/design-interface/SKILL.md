@@ -2,7 +2,7 @@
 name: design-interface
 description: Guidance for distinctive, intentional UI design when building or reshaping an interface. Drives deliberate palette, typography, layout and motion choices that avoid templated AI defaults, with a brainstorm-critique-build process and interface writing rules.
 allowed-tools: [Read, Grep, Glob]
-version: 1.0.0.2
+version: 1.0.1.0
 metadata:
   author: Anthropic
   source: https://github.com/anthropics/skills/tree/main/skills/frontend-design
@@ -46,7 +46,7 @@ Approach UI work as the design lead at a studio known for visual identities that
 
 Detect design intent and how much of the visual direction the brief fixes:
 
-Route here when the request asks to invent, apply, or reshape an interface direction, not merely to evaluate it. `hero section`, `landing page`, `less generic`, `custom not templated`, `visual direction`, and make-frame transform verbs such as "make it bolder", "make it quieter", "clarify this", or "delight the interaction" are interface evidence when they ask for a new direction. If the same prompt asks whether the design should change, requests a score, or frames the work as review/release readiness, route to `audit`. If `hierarchy`, `spacing`, `grid`, or token language is the main ask, route to `foundations`; if `DESIGN.md` or `tokens.json` is a measured artifact, route to `md-generator`.
+Route here when the request asks to invent, apply, or reshape an interface direction, not merely to evaluate it. `hero section`, `landing page`, `less generic`, `custom not templated`, `visual direction`, and make-frame transform verbs such as "make it bolder", "make it quieter", "clarify this", or "delight the interaction" are interface evidence when they ask for a new direction. If the same prompt asks whether the design should change, requests a score, or frames the work as review/release readiness, route to `audit`. If `hierarchy`, `spacing`, `grid`, or token language is the main ask, route to `foundations`; if `DESIGN.md` or `tokens.json` is a measured artifact, route to `md-generator`. **Exception — transform-verb precedence**: `clarify` (`transformVerbRouting.aliasOnly`) always resolves here even when a static-system noun like "hierarchy" appears in the same sentence; `typeset`/`colorize` (`transformVerbRouting.excludedAliases.foundations`) never independently justify pulling `foundations` in as a bundled or supporting mode, even when the request's own wording ("typography and color application") echoes foundations' static-system vocabulary — the registry's alias/exclusion list overrides this noun-based heuristic.
 
 ```bash
 # Direction freedom (pseudo)
@@ -74,7 +74,7 @@ DESIGN TASK
 | ----- | ------------ | -------- |
 | ALWAYS | Any design task | `references/design-process/design_principles.md` (palette, type, structure, motion, restraint) |
 | ALWAYS | The first step of any design task | `../shared/register.md` (set the Brand-vs-Product register, which gates density, motion, color dosage, copy, anti-slop strictness) and `references/design-process/brief_to_dials.md` (Design Read intake to the dials). **Required load-and-prove loop:** register + brief-to-dials + `assets/interface_preflight_card.md` are not optional for interface work; load the first two before decisions and prove the third before delivery. |
-| ALWAYS | Any design or UI build task | `../shared/context_loading_contract.md` (register-first gate, build bundle, context manifest, the four required proof fields, and hard gates) |
+| ALWAYS | Any design or UI build task | `../shared/context_loading_contract.md` (register-first gate, build bundle, context manifest, the four required proof fields, and hard gates). **Citation required, not just a background load**: name this file by its relative path in the context-basis line alongside `register.md` — the same explicit by-path citation this mode already requires for procedure cards (Section 3) — a recommendation with no visible citation of this path is the same as not loading it. |
 | CONDITIONAL | Writing UI copy | Section 6 of `design_principles.md` (writing in design) |
 | CONDITIONAL | Producing two or more design directions at once | `references/design-process/variation_diversity.md` (seed-of-thought debias so the directions are not N safe copies of the median) |
 | CONDITIONAL | Verifying the quality floor / charts | `references/design-process/ux_quality_reference.md` (accessibility, motion, touch, responsive, forms, charts) |
@@ -215,12 +215,13 @@ When interface hands a built or specified UI to `sk-code`, emit the shared hando
 
 1. **ALWAYS ground the design in the subject** before choosing anything. Name the subject, audience, and the page's single job, then draw distinctive choices from the subject's own world.
 2. **ALWAYS make deliberate, brief-specific choices** for palette, typography, layout, and motion, and take one justifiable aesthetic risk.
-3. **ALWAYS critique the plan against the AI-default looks** before writing code, and revise anything generic with a stated reason.
-4. **ALWAYS treat copy as design material**, with active voice, end-user vocabulary, and consistent action names across a flow.
-5. **ALWAYS meet the quality floor**: responsive, visible focus, reduced-motion respected.
-6. **ALWAYS debias multiple directions with the seed of thought** from `references/design-process/variation_diversity.md` when a brief asks for two or more: a committed seed picks a non-median start in the grounded option space and the rest are spread to be genuinely distinct, each still grounded and critiqued. Never surface it as a style chooser.
-7. **ALWAYS decide, at the critique step, whether a real-world reference would sharpen the default to deviate from.** Take the initiative to pull ONE Mobbin or Refero reference when the brief sits in a convention-heavy category and a subscription is connected; otherwise ask the user first; otherwise fall back to the generic anti-default process. Mobbin for app/iOS surfaces, Refero for web pages and visual style. One reference, read live, never copied, never a chooser. Mobbin and Refero are Code Mode (UTCP) manuals, not tools in this skill's `allowed-tools`, so co-load `mcp-code-mode` and route the lookup through it; if Code Mode is unavailable, fall back to the generic process. See `references/design-grounding/design_references_mcp.md`.
-8. **ALWAYS cite the selected procedure card or the no-procedure fallback** before substantial output when a private procedure trigger matches.
+3. **ALWAYS load all three `DEFAULT_RESOURCE` files before any recommendation, not just `design_principles.md` and `register.md`**: `../shared/context_loading_contract.md` is DEFAULT_RESOURCE too, not conditional — skipping it is a FAIL condition on its own, independent of whether the recommendation itself is otherwise sound.
+4. **ALWAYS critique the plan against the AI-default looks** before writing code, and revise anything generic with a stated reason.
+5. **ALWAYS treat copy as design material**, with active voice, end-user vocabulary, and consistent action names across a flow.
+6. **ALWAYS meet the quality floor**: responsive, visible focus, reduced-motion respected.
+7. **ALWAYS debias multiple directions with the seed of thought** from `references/design-process/variation_diversity.md` when a brief asks for two or more: a committed seed picks a non-median start in the grounded option space and the rest are spread to be genuinely distinct, each still grounded and critiqued. Never surface it as a style chooser.
+8. **ALWAYS decide, at the critique step, whether a real-world reference would sharpen the default to deviate from.** Take the initiative to pull ONE Mobbin or Refero reference when the brief sits in a convention-heavy category and a subscription is connected; otherwise ask the user first; otherwise fall back to the generic anti-default process. Mobbin for app/iOS surfaces, Refero for web pages and visual style. One reference, read live, never copied, never a chooser. Mobbin and Refero are Code Mode (UTCP) manuals, not tools in this skill's `allowed-tools`, so co-load `mcp-code-mode` and route the lookup through it; if Code Mode is unavailable, fall back to the generic process. See `references/design-grounding/design_references_mcp.md`.
+9. **ALWAYS cite the selected procedure card or the no-procedure fallback** before substantial output when a private procedure trigger matches.
 
 ### NEVER
 

@@ -1980,6 +1980,31 @@ PHRASE_INTENT_BOOSTERS = {
     "claude-cli": [("cli-claude-code", 1.5)],
     "extended-thinking": [("cli-claude-code", 1.0)],
     "tidd-ec": [("sk-prompt", 2.0)],
+
+    # ─────────────────────────────────────────────────────────────────
+    # SK-DESIGN: design-mcp-open-design transport (nested packet). Single
+    # tokens "opencode"/"mcp" alone already boost sk-code +3.5 combined
+    # (INTENT_BOOSTERS above + MULTI_SKILL_BOOSTERS "mcp"); these Open
+    # Design phrases need to outweigh that on their own request shape.
+    # ─────────────────────────────────────────────────────────────────
+    "open design": [("sk-design", 2.5)],
+    "wire open design": [("sk-design", 3.5)],
+    "connect open design": [("sk-design", 3.0)],
+    "drive open design": [("sk-design", 2.5)],
+    "od cli": [("sk-design", 2.5)],
+    "od mcp": [("sk-design", 2.5)],
+
+    # "delight" alone (no co-occurring "hero section"/"less generic"/etc.)
+    # scored only 0.68 confidence, below the 0.80 gate — mirrors
+    # hub-router.json's own "should it be delight" audit-transform-question
+    # keyword (unreachable from this scorer, which never reads
+    # hub-router.json), so this phrase list makes it reachable here too.
+    "should it be delight": [("sk-design", 2.0)],
+    "should it be bolder": [("sk-design", 2.0)],
+    "should it be quieter": [("sk-design", 2.0)],
+    "should it be distill": [("sk-design", 2.0)],
+    "should it be clarify": [("sk-design", 2.0)],
+    "feel gratuitous": [("sk-design", 1.5)],
 }
 
 DEFAULT_CONFIDENCE_THRESHOLD = NATIVE_DEFAULT_CONFIDENCE_THRESHOLD

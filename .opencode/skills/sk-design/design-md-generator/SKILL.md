@@ -2,7 +2,7 @@
 name: design-md-generator
 description: "Extracts a live website's real CSS into a v3 Style Reference DESIGN.md via an embedded extract-write-validate pipeline."
 allowed-tools: [Read, Write, Edit, Bash, Glob, Grep]
-version: 1.0.0.3
+version: 1.0.2.0
 ---
 
 <!-- Keywords: design system, design tokens, css extraction, design.md, website design extraction, design reference, tokens.json, playwright, design-to-markdown, design-system generator, css tokens, color extraction, typography extraction, hex extraction, shadow extraction, spacing extraction, design fidelity, anti-hallucination -->
@@ -57,7 +57,7 @@ Captures a live website's **real, measured CSS** into a publication-quality `DES
 
 Detect the **pipeline phase** first. The three phases are sequential and each has a distinct surface: EXTRACT hits the live URL, WRITE produces the markdown, VALIDATE checks fidelity. A fourth path — REPORT — renders visual artifacts from an existing pair.
 
-Route here when `DESIGN.md`, `tokens.json`, style reference, CSS capture, validation, report generation, or source-of-truth provenance are measured artifacts from a live site or an existing extraction pair. Do not route brief-only token-system authoring here; that belongs to `foundations`. Do not route new visual direction from an extracted reference here; the extraction can ground `interface`, but this mode only captures and validates measured values.
+Route here when `DESIGN.md`, `tokens.json`, style reference, CSS capture, validation, report generation, or source-of-truth provenance are measured artifacts from a live site or an existing extraction pair. **Route here too, even with no live URL present, whenever the request explicitly names the `DESIGN.md`/"style reference" artifact this mode owns** (e.g. "generate a DESIGN.md style reference for X from this brief") — resolving elsewhere on a brief-only technicality would skip this mode's own authoring-boundary refusal (`references/authoring_boundary.md`), the exact check that request needs. Only route brief-only requests to `foundations` when the ask is generic token-system authoring that never names `DESIGN.md`/style-reference/`tokens.json` as the target artifact (e.g. "design a color and type token system for X"). Do not route new visual direction from an extracted reference here; the extraction can ground `interface`, but this mode only captures and validates measured values.
 
 ```bash
 # Phase detection (pseudo)
@@ -364,6 +364,7 @@ The classifier lives in `backend/scripts/cluster.ts` and is deterministic. Token
 7. **ALWAYS include an accessibility section** drawn from the `tokens.json` a11y data (contrast ratios, focus ring styles, minimum touch-target sizes). If the extractor captured no a11y data, note the absence rather than inventing values.
 8. **ALWAYS confirm tool readiness** before any extract/validate/report invocation: `cd backend && npm install && npx playwright install chromium`. The embedded tool requires Node.js and a Playwright Chromium binary.
 9. **ALWAYS cite `procedures/design_system_extraction.md` or the no-procedure fallback** before substantial extraction planning, generation, validation, or report output.
+10. **ALWAYS, on a brief-only request with no live URL, STOP before producing any Style Reference content.** The entire response is text only: either (a) a request for the live URL to crawl, or (b) an explicit statement, citing `references/authoring_boundary.md` by path, that brief-only authoring is out of scope for this mode and naming where it routes instead (a separate design-spec decision, or `foundations`). Cite both `references/authoring_boundary.md` and `assets/source_of_truth_router_card.md` by their file paths in the response text — reading them via a tool call is not a substitute for naming them in what the user sees. **NEVER produce a partial or full DESIGN.md artifact as a byproduct of this decision** — no Tokens table, no Surfaces, no Quick Start — even with a disclaimer sentence attached or brief values Origin-labeled. A labeled or disclaimed artifact is still forward-authoring; the boundary forbids the artifact itself, not just unlabeled values inside it. There is no third option and no "boundary exception" framing that produces output anyway.
 
 ### ❌ NEVER
 
@@ -372,6 +373,7 @@ The classifier lives in `backend/scripts/cluster.ts` and is deterministic. Token
 3. **NEVER replace the v3 Style Reference format with a freeform structure.** The named sections (Tokens — Colors/Typography/Spacing & Shapes, Components, Do's and Don'ts, Surfaces, Elevation, Layout, Agent Prompt Guide, Similar Brands, Quick Start) are part of the contract that downstream consumers — `interface`, `sk-code`, and AI coding agents — depend on. Never assert a false system (gradient-as-depth, focus-consistent) the tokens contradict.
 4. **NEVER skip validation before claiming a DESIGN.md is complete.** An unvalidated DESIGN.md is a draft. Validation errors must be resolved before completion.
 5. **NEVER write DESIGN.md without reading `tokens.json` first.** The markdown exists only as a faithful rendering of the token data; writing without the source data guarantees hallucination.
+6. **NEVER produce any Tokens table (Colors, Typography, Spacing & Shapes, Border Radius, or any other) when the request is brief-only with no live URL to crawl** — not even with an Origin/brief-provided label or a disclaimer sentence attached. The correct response for that condition contains zero token tables: either a URL request or an explicit out-of-scope statement per ALWAYS rule #10. Outside that specific no-live-URL condition, a brief-provided value must never appear inside an actual Tokens table row, even when a separate Provenance/source-of-truth table also exists elsewhere in the response. A separate labeling table does not cure an unlabeled value sitting in the real Tokens table — brief-provided values stay in prose only, per `references/authoring_boundary.md`'s measured/brief-provided/inferred/absent line (Section 3, "Only measured values enter the token tables, and they enter unlabeled").
 
 ### ⚠️ ESCALATE IF
 
