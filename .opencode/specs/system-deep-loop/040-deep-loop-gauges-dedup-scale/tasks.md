@@ -11,7 +11,7 @@ importance_tier: "important"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-deep-loop/040-deeploop-gauges-dedup-scale"
+    packet_pointer: "system-deep-loop/040-deep-loop-gauges-dedup-scale"
     last_updated_at: "2026-06-24T00:00:00Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "Ran both harnesses green and authored the verdict docs"

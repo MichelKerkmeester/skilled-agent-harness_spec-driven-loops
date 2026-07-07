@@ -11,7 +11,7 @@ importance_tier: "important"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-deep-loop/039-deeploop-finding-dedup"
+    packet_pointer: "system-deep-loop/039-deep-loop-finding-dedup"
     last_updated_at: "2026-06-24T00:00:00Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "Built the dedup and gauge benchmarks, ran them, authored the verdict"

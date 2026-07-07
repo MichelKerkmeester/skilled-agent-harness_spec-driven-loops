@@ -11,7 +11,7 @@ importance_tier: "important"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-deep-loop/040-deeploop-gauges-dedup-scale"
+    packet_pointer: "system-deep-loop/040-deep-loop-gauges-dedup-scale"
     last_updated_at: "2026-07-06T17:15:59.524Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "Shipped P1-7 stall-metric and P2-15 title-aware dedup fixes"
