@@ -26,7 +26,7 @@ Use this file to identify the folder boundary, the likely verification path, and
 
 | Metric | Value |
 |---|---:|
-| Code files | 6 |
+| Code files | 10 |
 | README scope | Direct files in this folder |
 | Audit context | Internal validation notes |
 
@@ -66,12 +66,17 @@ Run individual scripts from the repository root with the documented arguments.
 
 | Path | Purpose |
 |---|---|
-| `audit_readmes.py` | PY source file in this folder. |
-| `extract_structure.py` | PY source file in this folder. |
-| `init_skill.py` | PY source file in this folder. |
-| `package_skill.py` | PY source file in this folder. |
-| `quick_validate.py` | PY source file in this folder. |
-| `validate_document.py` | PY source file in this folder. |
+| `audit_readmes.py` | Audit README template alignment and freshness drift; reports missing/extra files. |
+| `check-frontmatter-versions.sh` | Pre-commit gate: every in-scope skill doc must carry a 4-part `version`. |
+| `extract_structure.py` | Extract a document's structure, checklist and DQI score to JSON. |
+| `frontmatter-version.mjs` | Frontmatter versioning engine: compute / insert / verify the 4-part `version` field. |
+| `init_skill.py` | Scaffold a new skill directory from the sk-doc templates. |
+| `package_skill.py` | Validate and bundle a skill into a distributable package. |
+| `quick_validate.py` | Fast naming and frontmatter checks for pre-commit speed. |
+| `validate-doc-model-refs.js` | Detect docs that cite a non-canonical model name as default. |
+| `validate_document.py` | Validate a markdown doc against its type's required sections and frontmatter. |
+| `validate_flowchart.sh` | Validate ASCII flowchart box alignment and decision-branch labels. |
+| `tests/` | Test suite and fixtures for these scripts (see `tests/README.md`). |
 
 ---
 

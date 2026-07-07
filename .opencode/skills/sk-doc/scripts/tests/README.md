@@ -27,7 +27,7 @@ Use this file to identify the folder boundary, the likely verification path, and
 
 | Metric | Value |
 |---|---:|
-| Code files | 5 |
+| Code files | 8 |
 | README scope | Direct files in this folder |
 | Audit context | Internal validation notes |
 
@@ -76,11 +76,15 @@ Run the owning package test command from the nearest package boundary.
 
 | Path | Purpose |
 |---|---|
-| `test_changelog_validator.py` | PY source file in this folder. |
-| `test_extract_structure_regressions.py` | PY source file in this folder. |
-| `test_package_skill_regressions.py` | PY source file in this folder. |
-| `test_quick_validate_086.py` | PY source file in this folder. |
-| `test_validator.py` | PY source file in this folder. |
+| `test_changelog_validator.py` | Regression tests for changelog document-type detection and validation. |
+| `test_extract_structure_regressions.py` | Regression tests for `extract_structure.py`. |
+| `test_feature_catalog_validation.py` | Unit test for the feature-catalog validation-table check. |
+| `test_flowchart_validator.sh` | Tests for `validate_flowchart.sh` (box alignment + labels). |
+| `test_frontmatter_version.mjs` | Unit/integration tests for `frontmatter-version.mjs`. |
+| `test_package_skill_regressions.py` | Regression tests for `package_skill.py`. |
+| `test_quick_validate_086.py` | Tests for `quick_validate.py`. |
+| `test_validator.py` | Tests for `validate_document.py`. |
+| `valid_*.md`, `missing_*.md`, `single_dash_anchors.md`, `command/`, `specs/` | Test fixtures and expected-shape sample documents (data, not code). |
 
 <!-- /ANCHOR:structure -->
 
