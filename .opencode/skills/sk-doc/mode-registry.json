@@ -1,7 +1,7 @@
 {
   "skill": "sk-doc",
   "version": "2.0.0.0",
-  "description": "Declarative packet registry for the sk-doc parent hub: workflowMode + packetKind + backendKind + toolSurface + advisorRouting for each documentation-authoring workflow packet. The advisor routes the single sk-doc identity; the hub selects the workflow packet. Workflow-only hub (no surface axis), zero named extensions. SCAFFOLD STATE: registry authored; packet bodies + shared/ populated in later phases; hub SKILL.md/graph-metadata/description swap deferred to cutover.",
+  "description": "Declarative packet registry for the sk-doc parent hub: workflowMode + packetKind + backendKind + toolSurface + advisorRouting for each documentation-authoring workflow packet. The advisor routes the single sk-doc identity; the hub selects the workflow packet. Workflow-only hub (no surface axis), zero named extensions.",
   "discriminator": {
     "workflowMode": "Public hub/mode key; stable identity used by the hub router and this registry.",
     "packetKind": "Axis discriminator: workflow for all sk-doc packets (no surface packets).",

@@ -10,8 +10,8 @@
   "advisorRoutingContract": {
     "routingClass": "How the advisor finds the mode. For sk-design every mode is 'metadata' = resolved by hub membership; the advisor routes the single identity sk-design and the hub picks the mode, so no mode carries an advisor map entry or a merged-identity projection.",
     "packetSkillName": "The packet's SKILL.md name. The original flat skill name is preserved as packetSkillName; the packet folder is the short mode key, so folder != packetSkillName is grandfathered here and recorded per mode via grandfatheredFolderMismatch.",
-    "grandfatheredFolderMismatch": "true when the packet folder (short mode key, e.g. 'interface') differs from packetSkillName (the preserved flat name, e.g. 'interface'). All five sk-design modes preserve their original flat names (folder == packetSkillName), so none has a folder mismatch — grandfatheredFolderMismatch is false for all five (there is no mismatch to grandfather).",
-    "command": "The bound slash command for the mode, recorded even on metadata-routed modes (same field sk-doc's mode-registry.json carries); null when the mode has no dedicated command today. All five sk-design modes have a dedicated command as of the Phase 015 router+assets build, so this field is never null here."
+    "grandfatheredFolderMismatch": "true when the packet folder (short mode key, e.g. 'interface') differs from packetSkillName (the preserved flat name, e.g. 'interface'). All six sk-design modes preserve their original flat names (folder == packetSkillName), so none has a folder mismatch — grandfatheredFolderMismatch is false for all six (there is no mismatch to grandfather).",
+    "command": "The bound slash command for the mode, recorded even on metadata-routed modes (same field sk-doc's mode-registry.json carries); null when the mode has no dedicated command today. The five design-judgment modes each have a dedicated /design:* command; the sixth mode, the design-mcp-open-design transport, carries command:null and is reached only by mandatory pairing with a design-judgment mode, never by its own command."
   },
   "extensions": {
     "transform-verbs": {
@@ -93,7 +93,7 @@
       "packetSkillName": "design-motion",
       "grandfatheredFolderMismatch": false,
       "command": "/design:motion",
-      "aliases": ["motion design", "animate this", "micro-interactions", "transitions", "interaction states", "hover state", "focus state", "loading state", "choreography", "motion budget", "AnimatePresence", "exit animation", "reduced motion", "morphing icons", "motion performance"],
+      "aliases": ["motion design", "animate this", "micro-interactions", "transitions", "interaction states", "hover state", "focus state", "loading state", "choreography", "motion budget", "animatepresence", "exit animation", "reduced motion", "morphing icons", "motion performance"],
       "advisorRouting": {
         "routingClass": "metadata",
         "packetSkillName": "design-motion"
@@ -114,7 +114,7 @@
       "packetSkillName": "design-audit",
       "grandfatheredFolderMismatch": false,
       "command": "/design:audit",
-      "aliases": ["design audit", "ui critique", "design review", "review the ui", "audit the design", "accessibility audit", "wcag contrast", "performance audit", "anti-slop detection", "ai tell", "production hardening", "design quality score", "ui quality review", "P0 P1 design findings"],
+      "aliases": ["design audit", "ui critique", "design review", "review the ui", "audit the design", "accessibility audit", "wcag contrast", "performance audit", "anti-slop detection", "ai tell", "production hardening", "design quality score", "ui quality review", "p0 p1 design findings"],
       "advisorRouting": {
         "routingClass": "metadata",
         "packetSkillName": "design-audit"
