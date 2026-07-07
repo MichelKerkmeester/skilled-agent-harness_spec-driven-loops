@@ -103,7 +103,7 @@ User: Convert documentation to question-answering format, remove metadata.
 **Example 4: Markdown Optimizer Skill**
 - **Query**: "Optimize this documentation for AI"
 - **Analysis**: Need to parse document structure consistently
-- **Solution**: Create `scripts/extract_structure.py` and `references/global/optimization.md`
+- **Solution**: Create `scripts/extract_structure.py` and `create-quality-control/references/optimization.md`
 - **Rationale**: Document parsing better in Python, AI evaluates the output
 
 **Output**: List of reusable resources (scripts, references, assets) with rationale.

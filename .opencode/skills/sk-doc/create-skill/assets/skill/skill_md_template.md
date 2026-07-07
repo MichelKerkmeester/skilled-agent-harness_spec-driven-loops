@@ -596,7 +596,7 @@ Install guide: [INSTALL_GUIDE.md](INSTALL_GUIDE.md) when the skill has installat
 
 **Folder Organization Principle**:
 - **references/** = flat for small skills, domain subfolders for medium/complex skills
-  - Flat example: `references/global/core_standards.md`, `references/global/validation.md`
+  - Flat example: `references/core_standards.md`, `references/validation.md`
   - Domain example: `references/backend/go/`, `references/frontend/react/`
 - **assets/** = Subfolders ALLOWED when organizing many files by category
   - Group related templates together

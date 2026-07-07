@@ -4,10 +4,10 @@ category: 01--intent-detection
 title: 'DOC_QUALITY intent: validate documentation quality for a skill'
 expected_intent: DOC_QUALITY
 expected_resources:
-  - references/global/validation.md
-  - references/global/workflows.md
-  - references/global/core_standards.md
-  - references/global/evergreen_packet_id_rule.md
+  - references/validation.md
+  - create-quality-control/references/workflows.md
+  - references/core_standards.md
+  - references/evergreen_packet_id_rule.md
 expected_token_range_input: 1000-2500
 expected_token_range_output: 800-2500
 created: 2026-05-05
@@ -58,10 +58,10 @@ Validate documentation quality for skill X and report which sections fail sk-doc
 
 - **Intent picked**: `DOC_QUALITY`
 - **Resources loaded**:
-  - `references/global/validation.md`
-  - `references/global/workflows.md`
-  - `references/global/core_standards.md`
-  - `references/global/evergreen_packet_id_rule.md`
+  - `references/validation.md`
+  - `create-quality-control/references/workflows.md`
+  - `references/core_standards.md`
+  - `references/evergreen_packet_id_rule.md`
 - **Outcome**: CLI loads only the four global references above and produces a non-empty validation-style response (DQI checklist or per-section findings) referencing at least one of those resources.
 
 ## Cross-CLI Variants

@@ -43,7 +43,7 @@ The sk-doc manual testing playbook validates smart-router behavior through deter
 - **SD-017** — `01--intent-detection/install-guide.md` — INSTALL_GUIDE: scaffold install guide for an MCP server. (added in 076)
 
 ### 02 — Resource Loading
-- **SD-004** — `02--resource-loading/references-global-only.md` — HVR loads only `references/global/hvr_rules.md`.
+- **SD-004** — `02--resource-loading/references-global-only.md` — HVR loads only `references/hvr_rules.md`.
 - **SD-005** — `02--resource-loading/assets-only.md` — FLOWCHART loads only `assets/flowcharts/*`.
 - **SD-006** — `02--resource-loading/mixed-references-assets.md` — README_CREATION loads mixed references + assets.
 
@@ -72,7 +72,7 @@ The sk-doc manual testing playbook validates smart-router behavior through deter
 ## Global Preconditions
 
 1. `.opencode/skills/sk-doc/SKILL.md` is at HEAD-of-main and contains the §2 Smart Routing block (RESOURCE_MAP, INTENT_MODEL, UNKNOWN_FALLBACK_CHECKLIST, AMBIGUITY_DELTA, ON_DEMAND_KEYWORDS).
-2. All `references/global/*.md`, `references/*.md`, `assets/skill/*.md`, `assets/readme/*.md`, `assets/flowcharts/*.md`, `assets/command/*.md`, and `assets/agent_template.md` resolve on disk.
+2. All `references/*.md`, `references/*.md`, `assets/skill/*.md`, `assets/readme/*.md`, `assets/flowcharts/*.md`, `assets/command/*.md`, and `assets/agent_template.md` resolve on disk.
 3. Skill advisor binary callable: `python3 .opencode/skills/system-skill-advisor/mcp_server/scripts/skill_advisor.py --help` exits 0.
 4. Each of the 2 CLI runtimes (cli-opencode, cli-claude-code) is installed and authenticated.
 5. Token-cost baselines (SD-013 → SD-014 → SD-015) MUST run in order on the same CLI to keep the floor/median/ceiling comparable.

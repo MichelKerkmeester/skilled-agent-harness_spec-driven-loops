@@ -7,8 +7,8 @@ expected_resources:
   - references/skill_creation.md
   - assets/skill/skill_md_template.md
   - assets/skill/skill_readme_template.md
-  - references/global/validation.md
-  - references/global/core_standards.md
+  - references/validation.md
+  - references/core_standards.md
   - assets/changelog_template.md
 expected_token_range_input: 2000-5000
 expected_token_range_output: 3000-6000

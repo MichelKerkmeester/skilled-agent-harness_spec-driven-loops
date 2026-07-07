@@ -288,8 +288,8 @@ The global component versioning rules in this file do not apply to nested packet
 ### Standards
 
 - `PUBLIC_RELEASE.md` Section 7 - Authoritative writing style for releases
-- [hvr_rules.md](../references/global/hvr_rules.md) - Human Voice Rules (banned words, punctuation, structure)
-- [core_standards.md](../references/global/core_standards.md) - Markdown structure and naming conventions
+- [hvr_rules.md](../references/hvr_rules.md) - Human Voice Rules (banned words, punctuation, structure)
+- [core_standards.md](../references/core_standards.md) - Markdown structure and naming conventions
 
 ### Workflows
 

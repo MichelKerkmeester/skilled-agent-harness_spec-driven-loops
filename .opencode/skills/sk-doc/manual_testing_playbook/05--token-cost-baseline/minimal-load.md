@@ -4,7 +4,7 @@ category: 05--token-cost-baseline
 title: 'Floor token cost: minimal-keyword query, 1 reference load'
 expected_intent: HVR
 expected_resources:
-  - references/global/hvr_rules.md
+  - references/hvr_rules.md
 expected_token_range_input: 500-1000
 expected_token_range_output: 500-1500
 created: 2026-05-05
@@ -56,7 +56,7 @@ Apply HVR to this sentence: The system was designed by us to be modular.
 ## Expected Behavior
 
 - **Intent picked**: `HVR`
-- **Resources loaded**: `references/global/hvr_rules.md` only (1 reference + DEFAULT_RESOURCE).
+- **Resources loaded**: `references/hvr_rules.md` only (1 reference + DEFAULT_RESOURCE).
 - **Outcome**: CLI rewrites the single sentence in HVR voice and emits minimal supporting output. This establishes the FLOOR token cost per CLI.
 
 ## Cross-CLI Variants

@@ -121,7 +121,7 @@ Level 3: Field Format
 | **Command** | ✅ Always | `description`, `argument-hint`, `allowed-tools` | `name`, `model`, `version` |
 | **Skill Reference/Asset** | ✅ Always | `title`, `description`, `trigger_phrases`, `importance_tier`, `contextType`, `version` | — |
 
-> **`version` is the 4-part `X.Y.Z.W` field** carried by every in-scope skill doc (SKILL.md, README, references, assets, feature catalogs, testing playbooks). Format, derivation, and rollout live in [frontmatter_versioning.md](../references/global/frontmatter_versioning.md). Commands and agents are out of scope (their `version` stays optional).
+> **`version` is the 4-part `X.Y.Z.W` field** carried by every in-scope skill doc (SKILL.md, README, references, assets, feature catalogs, testing playbooks). Format, derivation, and rollout live in [frontmatter_versioning.md](../references/frontmatter_versioning.md). Commands and agents are out of scope (their `version` stays optional).
 | **Knowledge (outside skills)** | ❌ Never | — | — |
 | **Spec** | ❌ Avoid | — | Use inline metadata instead |
 | **README** | ⚪ Rarely | Only if in `.opencode/skills/*/` | — |
@@ -178,7 +178,7 @@ Is this document invoked programmatically?
 | `allowed-tools` | ✅ Required | ✅ Required | Comma-separated tool list |
 | `argument-hint` | ❌ N/A | ✅ Required | Syntax hint: `<required> [optional]` |
 | `model` | ❌ N/A | ⚪ Optional | Override default model (rarely used) |
-| `version` | ✅ Required | ⚪ Optional | 4-part `X.Y.Z.W` for skill docs; see [frontmatter_versioning.md](../references/global/frontmatter_versioning.md) |
+| `version` | ✅ Required | ⚪ Optional | 4-part `X.Y.Z.W` for skill docs; see [frontmatter_versioning.md](../references/frontmatter_versioning.md) |
 | `tags` | ⚪ Optional | ❌ N/A | Categorization keywords |
 
 ---
@@ -360,7 +360,7 @@ model: opus
 | `trigger_phrases` | YAML block list | 3-8 items; distinctive lowercase multi-word phrases drawn from the doc's content |
 | `importance_tier` | Enum | `constitutional` \| `critical` \| `important` \| `normal` \| `temporary` \| `deprecated` — default `normal`; `important` only for formal contract/invariant docs |
 | `contextType` | Enum | `planning` \| `research` \| `implementation` \| `general` |
-| `version` | `X.Y.Z.W` | Required; 4-part; inserted as the last key in the block; derived per [frontmatter_versioning.md](../references/global/frontmatter_versioning.md) |
+| `version` | `X.Y.Z.W` | Required; 4-part; inserted as the last key in the block; derived per [frontmatter_versioning.md](../references/frontmatter_versioning.md) |
 
 **Trigger phrase quality**:
 ```yaml
@@ -935,5 +935,5 @@ Skill references/assets additionally require `trigger_phrases` (3-8), `importanc
 - [command_template.md](../../create-command/assets/command/command_template.md) - Command file templates
 
 ### Standards
-- [core_standards.md](../references/global/core_standards.md) - Document type rules
-- [validation.md](../references/global/validation.md) - Quality scoring
+- [core_standards.md](../references/core_standards.md) - Document type rules
+- [validation.md](../references/validation.md) - Quality scoring

@@ -4,8 +4,8 @@ category: 03--unknown-fallback
 title: 'Ambiguous prompt scores DOC_QUALITY and FLOWCHART within delta'
 expected_intent: DOC_QUALITY+FLOWCHART
 expected_resources:
-  - references/global/validation.md
-  - references/global/core_standards.md
+  - references/validation.md
+  - references/core_standards.md
   - assets/flowcharts/simple_workflow.md
   - assets/flowcharts/decision_tree_flow.md
 expected_token_range_input: 1000-2500

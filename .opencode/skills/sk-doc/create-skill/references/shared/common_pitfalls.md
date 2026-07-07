@@ -207,7 +207,7 @@ See `references/guide.md` for details...
 ### Routing Table
 | Intent     | Path                           |
 | ---------- | ------------------------------ |
-| Validation | `references/global/core_standards.md` |
+| Validation | `references/core_standards.md` |
 
 ### Smart Router Pseudocode
 ...
@@ -235,7 +235,7 @@ assets/[domain]/...
 ```python
 def route_request(context):
     if context.needs_validation:
-        return load("references/global/core_standards.md")  # Validation rules
+        return load("references/core_standards.md")  # Validation rules
 ```
 ```
 

@@ -4,12 +4,12 @@ category: 05--token-cost-baseline
 title: 'Ceiling token cost: ON_DEMAND_KEYWORDS load all RESOURCE_MAP'
 expected_intent: ON_DEMAND_ALL
 expected_resources:
-  - references/global/validation.md
-  - references/global/workflows.md
-  - references/global/core_standards.md
-  - references/global/evergreen_packet_id_rule.md
-  - references/global/hvr_rules.md
-  - references/global/optimization.md
+  - references/validation.md
+  - create-quality-control/references/workflows.md
+  - references/core_standards.md
+  - references/evergreen_packet_id_rule.md
+  - references/hvr_rules.md
+  - create-quality-control/references/optimization.md
   - references/skill_creation.md
   - references/README.md
   - references/README.md

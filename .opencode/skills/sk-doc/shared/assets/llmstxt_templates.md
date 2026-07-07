@@ -851,7 +851,7 @@ Add sections:
 - [skill_md_template.md](../../create-skill/assets/skill/skill_md_template.md) - SKILL.md file templates
 
 ### Standards
-- [core_standards.md](../references/global/core_standards.md) - Document type rules
+- [core_standards.md](../references/core_standards.md) - Document type rules
 
 ### External
 - [llmstxt.org](https://llmstxt.org/) - Official specification

@@ -1,10 +1,10 @@
 ---
 id: SD-004
 category: 02--resource-loading
-title: 'HVR intent loads only references/global/hvr_rules.md'
+title: 'HVR intent loads only references/hvr_rules.md'
 expected_intent: HVR
 expected_resources:
-  - references/global/hvr_rules.md
+  - references/hvr_rules.md
 expected_token_range_input: 1000-2000
 expected_token_range_output: 800-2000
 created: 2026-05-05
@@ -15,7 +15,7 @@ version: 1.8.0.6
 
 ## 1. OVERVIEW
 
-This scenario validates HVR references-only resource loading for `SD-004`. It focuses on routing a voice-rule edit request to `references/global/hvr_rules.md` without loading unrelated templates or assets.
+This scenario validates HVR references-only resource loading for `SD-004`. It focuses on routing a voice-rule edit request to `references/hvr_rules.md` without loading unrelated templates or assets.
 
 ### Why This Matters
 
@@ -34,7 +34,7 @@ HVR requests should stay narrow because voice rewrites do not need creation scaf
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
-| SD-004 | HVR intent loads only references/global/hvr_rules.md | Verify sk-doc routes the scenario to `HVR` with the expected resources. | `Apply HVR voice rules to specs/123-example/implementation-summary.md without changing semantics.` | Run the setup block below against sk-doc and capture the routing trace. | Intent resolves to `HVR`; loaded resources match `expected_resources`. | CLI transcript with intent, resources, response shape, token counts where applicable. | PASS when intent/resources/output match the scenario criteria; PARTIAL for tolerated extra resources; FAIL for wrong intent or empty output. | Re-read `SKILL.md` smart-router RESOURCE_MAP and intent keywords, then compare against the routed prompt. |
+| SD-004 | HVR intent loads only references/hvr_rules.md | Verify sk-doc routes the scenario to `HVR` with the expected resources. | `Apply HVR voice rules to specs/123-example/implementation-summary.md without changing semantics.` | Run the setup block below against sk-doc and capture the routing trace. | Intent resolves to `HVR`; loaded resources match `expected_resources`. | CLI transcript with intent, resources, response shape, token counts where applicable. | PASS when intent/resources/output match the scenario criteria; PARTIAL for tolerated extra resources; FAIL for wrong intent or empty output. | Re-read `SKILL.md` smart-router RESOURCE_MAP and intent keywords, then compare against the routed prompt. |
 
 
 ### Setup
@@ -55,7 +55,7 @@ Apply HVR voice rules to specs/123-example/implementation-summary.md without cha
 
 - **Intent picked**: `HVR`
 - **Resources loaded**:
-  - `references/global/hvr_rules.md` ONLY
+  - `references/hvr_rules.md` ONLY
 - **Outcome**: CLI loads exactly one reference and emits a rewritten document (or diff) that demonstrably applies HVR voice rules. NO `assets/` resources are loaded.
 
 ## Cross-CLI Variants
@@ -67,7 +67,7 @@ Apply HVR voice rules to specs/123-example/implementation-summary.md without cha
 
 - intent_picked == `HVR`
 - false_positive_resource_load_count <= 1 (no assets/* loaded)
-- response is non-empty and references `references/global/hvr_rules.md`
+- response is non-empty and references `references/hvr_rules.md`
 
 ## 4. SOURCE METADATA
 

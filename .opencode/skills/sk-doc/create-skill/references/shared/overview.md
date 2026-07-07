@@ -57,7 +57,7 @@ skill-name/
 
 **Folder Organization Principle**:
 - **references/** = flat for small skills, domain subfolders for medium/complex skills
-  - Grouped example: `references/global/core_standards.md`, `references/global/validation.md`
+  - Grouped example: `references/core_standards.md`, `references/validation.md`
   - Domain example: `references/backend/go/`, `references/frontend/react/`
 - **assets/** = Subfolders ALLOWED when organizing many files by category
   - Group related templates together for clarity
@@ -168,7 +168,7 @@ Documentation loaded as needed to inform the agent's process and thinking.
 - `references/schema.md` - Database schema documentation
 - `references/api_docs.md` - API endpoint specifications
 - `references/policies.md` - Company policies and guidelines
-- `references/global/workflows.md` - Detailed workflow documentation
+- `create-quality-control/references/workflows.md` - Detailed workflow documentation
 
 **Benefits**:
 - Keeps SKILL.md lean
