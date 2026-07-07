@@ -28,7 +28,8 @@
     "skilled-agent-orchestration/125-sk-doc-parent/014-markdown-agent-sync",
     "skilled-agent-orchestration/125-sk-doc-parent/015-commands-refresh",
     "skilled-agent-orchestration/125-sk-doc-parent/018-swimlane-revert",
-    "skilled-agent-orchestration/125-sk-doc-parent/019-create-command-alignment"
+    "skilled-agent-orchestration/125-sk-doc-parent/019-create-command-alignment",
+    "skilled-agent-orchestration/125-sk-doc-parent/020-command-agent-template-conformance"
   ],
   "manual": {
     "depends_on": [],
@@ -122,7 +123,7 @@
     ],
     "causal_summary": "`sk-doc` is a 6-mode monolith: one overloaded `SKILL.md` carries document-quality management, skill/agent/command/readme/feature-catalog/testing-playbook/benchmark/changelog authoring, and flowchart creation, with `references/`, `scripts/`, and `assets/` flat at the skill root",
     "created_at": "2026-07-06T06:30:17.554Z",
-    "last_save_at": "2026-07-07T12:56:12.275Z",
+    "last_save_at": "2026-07-07T14:32:41.106Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -132,7 +133,7 @@
     "source_doc_hashes": {
       "spec.md": "2934039e7d655caa5be93221536d76731447aa0d701a1dd11d0c1b9f59e3213c"
     },
-    "last_active_child_id": "skilled-agent-orchestration/125-sk-doc-parent/019-create-command-alignment",
+    "last_active_child_id": "skilled-agent-orchestration/125-sk-doc-parent/020-command-agent-template-conformance",
     "last_active_at": null
   }
 }
