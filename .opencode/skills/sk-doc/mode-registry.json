@@ -70,7 +70,7 @@
       "packet": "create-command",
       "packetSkillName": "create-command",
       "grandfatheredFolderMismatch": false,
-      "command": null,
+      "command": "/create:command",
       "aliases": ["create command", "new slash command", "make a command", "add a command"],
       "advisorRouting": { "routingClass": "metadata", "packetSkillName": "create-command" }
     },
@@ -106,7 +106,7 @@
       "packet": "create-benchmark",
       "packetSkillName": "create-benchmark",
       "grandfatheredFolderMismatch": false,
-      "command": null,
+      "command": "/create:benchmark",
       "aliases": ["create benchmark folder", "promote benchmark", "mcp_server benchmarks", "benchmark report package"],
       "advisorRouting": { "routingClass": "metadata", "packetSkillName": "create-benchmark" }
     },
@@ -118,7 +118,7 @@
       "packet": "create-flowchart",
       "packetSkillName": "create-flowchart",
       "grandfatheredFolderMismatch": false,
-      "command": null,
+      "command": "/create:flowchart",
       "aliases": ["create flowchart", "ascii flowchart", "ascii diagram", "decision tree", "swimlane"],
       "advisorRouting": { "routingClass": "metadata", "packetSkillName": "create-flowchart" }
     },

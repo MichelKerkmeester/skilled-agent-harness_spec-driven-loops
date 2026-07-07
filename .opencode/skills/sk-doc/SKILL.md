@@ -25,11 +25,11 @@ Use this skill for documentation and OpenCode-component authoring, and for docum
 | **create-skill** | Scaffold an OpenCode skill (and, via `create-skill-parent`, a parent hub with nested mode packets) | `create-skill/` | `/create:sk-skill`, `/create:sk-skill-parent` |
 | **create-readme** | Author a folder README or an install guide (install-guide is a folded variant) | `create-readme/` | `/create:folder_readme` |
 | **create-agent** | Scaffold an OpenCode agent (permission/authority frontmatter) | `create-agent/` | `/create:agent` |
-| **create-command** | Scaffold an OpenCode slash command (argument-hint + allowed-tools + router/presentation split) | `create-command/` | — |
+| **create-command** | Scaffold an OpenCode slash command (argument-hint + allowed-tools + router/presentation split) | `create-command/` | `/create:command` |
 | **create-feature-catalog** | Author a feature-catalog inventory package | `create-feature-catalog/` | `/create:feature-catalog` |
 | **create-manual-testing-playbook** | Author a manual-testing-playbook package | `create-manual-testing-playbook/` | `/create:testing-playbook` |
-| **create-benchmark** | Promote a curated MCP benchmark folder into a consuming skill | `create-benchmark/` | — |
-| **create-flowchart** | Generate and validate an ASCII flowchart | `create-flowchart/` | — |
+| **create-benchmark** | Promote a curated MCP benchmark folder into a consuming skill | `create-benchmark/` | `/create:benchmark` |
+| **create-flowchart** | Generate and validate an ASCII flowchart | `create-flowchart/` | `/create:flowchart` |
 | **create-changelog** | Author a global or packet-local changelog entry (version bump + topology-aware placement) | `create-changelog/` | `/create:changelog` |
 | **create-quality-control** | Validate / score / optimize an EXISTING document (extract → DQI → HVR → validate) | `create-quality-control/` | `/doc:quality` |
 

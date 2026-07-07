@@ -1,0 +1,391 @@
+# ─────────────────────────────────────────────────────────────────
+# OPENCODE CREATE: BENCHMARK WORKFLOW (CONFIRM MODE)
+# ─────────────────────────────────────────────────────────────────
+# Mode: interactive execution with checkpoints
+# Entrypoint: /create:benchmark
+# Operations: create | update
+# ─────────────────────────────────────────────────────────────────
+role: Benchmark Folder Creator using sk-doc
+purpose: Create or update MCP benchmark folders with explicit checkpoints and validation gates
+action: Normalize inputs, confirm promotion evidence, load standards, generate the package, validate structure, and report completion
+
+# ─────────────────────────────────────────────────────────────────
+# PREREQUISITE: @markdown AGENT VERIFICATION
+# ─────────────────────────────────────────────────────────────────
+# This workflow REQUIRES the @markdown agent for:
+#   - Template-first benchmark report and SOURCE.md generation
+#   - sk-doc standards enforcement
+#   - Benchmark folder validation
+#
+# PHASE 0 in the command markdown verifies @markdown agent BEFORE
+# this YAML workflow loads. If you are executing this workflow,
+# @markdown verification has already passed.
+# ─────────────────────────────────────────────────────────────────
+
+operating_mode:
+  workflow: unified_6_step
+  workflow_compliance: MANDATORY
+  workflow_execution: interactive
+  approvals: step_by_step
+  tracking: checkpoint_decision_log
+  validation: checkpoint_based
+  supports_operations:
+    - create
+    - update
+  description: |
+    Executes the 6-step benchmark promotion workflow with approval gates at each checkpoint.
+    User confirms, reviews, or modifies at each step before the workflow advances.
+
+development_philosophy:
+  principle: "Confirm promotion evidence and target folder before writing the benchmark package"
+  approach: "Normalize -> Verify -> Preview -> Promote -> Validate -> Report"
+  mandate: "Ask for approval at the source-evidence plan and benchmark package preview checkpoints"
+
+# ─────────────────────────────────────────────────────────────────
+# CONFIDENCE & CLARIFICATION FRAMEWORK
+# ─────────────────────────────────────────────────────────────────
+confidence_framework:
+  thresholds:
+    high: { range: "80-100%", action: "Proceed with checkpoint proposal" }
+    medium: { range: "40-79%", action: "Proceed with caution and note assumptions" }
+    low: { range: "0-39%", action: "STOP and request clarification" }
+  scoring_weights:
+    input_completeness: 0.30
+    routing_clarity: 0.20
+    contract_alignment: 0.30
+    validation_readiness: 0.20
+  low_confidence_behavior:
+    action: "Pause before the next checkpoint and request clarification"
+
+# ─────────────────────────────────────────────────────────────────
+# REQUEST ANALYSIS FRAMEWORK
+# ─────────────────────────────────────────────────────────────────
+request_analysis_framework:
+  code_search_note: "Use Code Graph structural queries (code_graph_query) + Grep for concept discovery; verify hits with Read. memory_search is for spec docs/memory, not arbitrary code."
+  solution_flow:
+    - "Parse command arguments and normalize execution mode"
+    - "Verify create/update semantics against the real benchmark folder path"
+    - "Load the create-benchmark SKILL, references, and both templates before writing"
+    - "Propose source evidence, benchmark artifacts, dated folder, and README index changes before generation"
+    - "Generate the benchmark folder package after checkpoint approval"
+    - "Validate report structure, SOURCE.md navigation, copied artifacts, and README index consistency"
+  pre_change_validation:
+    items:
+      - "create_benchmark_verified is true"
+      - "skill_name is present"
+      - "source_packet_path is present"
+      - "operation is create or update"
+      - "source_strategy is present"
+      - "benchmark_date is present"
+      - "execution_mode is :confirm"
+    stop_conditions:
+      - "Any required input missing"
+      - "Operation does not match real benchmark folder existence"
+      - "Source packet lacks accepted decision, stable fixture, replay commands, or benchmark evidence"
+      - "Target skill lacks mcp_server/ or a measurable MCP surface"
+    stop_action: "STOP and correct setup before generation"
+
+checkpoint_options:
+  proceed:
+    label: "Proceed"
+    description: "Approve and continue"
+  review:
+    label: "Review"
+    description: "Show more detail before deciding"
+  modify:
+    label: "Modify"
+    description: "Adjust the current step before continuing"
+  abort:
+    label: "Abort"
+    description: "Stop the workflow"
+
+input_contract:
+  required:
+    - create_benchmark_verified
+    - skill_name
+    - source_packet_path
+    - operation
+    - source_strategy
+    - benchmark_date
+    - execution_mode
+  optional:
+    - skill_path
+    - benchmarks_root
+    - benchmark_folder
+    - memory_choice
+
+field_handling:
+  skill_name:
+    validation: "hyphen-case folder name"
+    required: true
+  source_packet_path:
+    validation: "existing spec packet folder with decision-record.md, implementation-summary.md, and benchmark evidence"
+    required: true
+  operation:
+    validation: "must be one of: create, update"
+    required: true
+  source_strategy:
+    validation: "must be one of: promote-benchmark, rerun-update, retirement-update"
+    required: true
+  benchmark_date:
+    validation: "ISO execution date used for benchmark-YYYY-MM-DD"
+    required: true
+  execution_mode:
+    validation: "must be :confirm"
+    required: true
+
+documentation_level:
+  default: "Level 2 (Verification)"
+  required_files:
+    - spec.md
+    - plan.md
+    - tasks.md
+    - checklist.md
+  note: "Benchmark package creation typically needs verification because it promotes spec evidence into a skill-local MCP operator surface"
+
+defaults:
+  skill_path: .opencode/skills/
+  benchmarks_dirname: mcp_server/benchmarks
+  execution_mode: :confirm
+  dqi_hard_minimum: 75
+
+operation_router:
+  create:
+    requires_existing_benchmark_folder: false
+    output_scope:
+      - mcp_server/benchmarks/README.md
+      - mcp_server/benchmarks/benchmark-YYYY-MM-DD/
+      - mcp_server/benchmarks/benchmark-YYYY-MM-DD/benchmark_report.md
+      - mcp_server/benchmarks/benchmark-YYYY-MM-DD/SOURCE.md
+      - mcp_server/benchmarks/benchmark-YYYY-MM-DD/results.csv
+  update:
+    requires_existing_benchmark_folder: true
+    output_scope:
+      - mcp_server/benchmarks/README.md
+      - mcp_server/benchmarks/benchmark-YYYY-MM-DD/
+      - mcp_server/benchmarks/benchmark-YYYY-MM-DD/benchmark_report.md
+      - mcp_server/benchmarks/benchmark-YYYY-MM-DD/SOURCE.md
+      - mcp_server/benchmarks/benchmark-YYYY-MM-DD/results.csv
+
+reference_sources:
+  specific_creation: .opencode/skills/sk-doc/create-benchmark/SKILL.md
+  reference_map: .opencode/skills/sk-doc/create-benchmark/references/README.md
+  case_studies: .opencode/skills/sk-doc/create-benchmark/references/case_studies.md
+  pitfalls: .opencode/skills/sk-doc/create-benchmark/references/pitfalls.md
+  worked_example: .opencode/skills/sk-doc/create-benchmark/references/worked_example.md
+  core_standards: .opencode/skills/sk-doc/shared/references/core_standards.md
+  validation: .opencode/skills/sk-doc/shared/references/validation.md
+
+template_sources:
+  benchmark_report: .opencode/skills/sk-doc/create-benchmark/assets/benchmark/benchmark_report_template.md
+  source_file: .opencode/skills/sk-doc/create-benchmark/assets/benchmark/source_template.md
+
+validation_scripts:
+  validate_document: .opencode/skills/sk-doc/shared/scripts/validate_document.py
+  extract_structure: .opencode/skills/sk-doc/shared/scripts/extract_structure.py
+
+quality_standards:
+  template_first: required
+  frontmatter_required: true
+  report_requirements:
+    - fixed ten-section benchmark_report.md structure
+    - section 1 is HEADLINE / OVERVIEW
+    - section 10 is RELATED RESOURCES
+  source_file_requirements:
+    - frontmatter
+    - OVERVIEW
+    - SPEC PACKET LOCATION
+    - WHEN TO READ WHAT
+    - EVIDENCE FILE MAP
+  current_reality_rule: "Promote accepted benchmark evidence, not speculative or in-flight measurements"
+  validation_pipeline:
+    - "python3 .opencode/skills/sk-doc/shared/scripts/validate_document.py [benchmark_folder]/benchmark_report.md --type readme"
+    - "python3 .opencode/skills/sk-doc/shared/scripts/validate_document.py [benchmarks_root]/README.md --type readme"
+
+gate_logic:
+  hard:
+    H0_write_verified:
+      description: "create_benchmark_verified must be true"
+      fail_action: "STOP and return to setup"
+    H1_required_fields:
+      description: "All required setup fields must be present"
+      fail_action: "STOP and collect missing fields"
+    H2_existence_semantics:
+      description: "create/update must match real benchmark folder existence"
+      fail_action: "STOP and reroute or correct target"
+    H3_contract_shape:
+      description: "Generated package must match MCP benchmark folder contract"
+      fail_action: "Return to generation before continuing"
+    H4_validation_gate:
+      description: "Report validation, SOURCE.md navigation, copied artifacts, and README index checks must pass"
+      fail_action: "Run fix-and-revalidate loop"
+  soft:
+    S1_source_strategy:
+      description: "Prefer true promotion only when an accepted decision and replayable evidence exist"
+      fail_action: "Proceed only with logged provisional or retirement status"
+
+interactive_execution:
+  principle: "Pause at each checkpoint and wait for explicit approval"
+  user_feedback_handling:
+    proceed: "Advance to the next step"
+    review: "Show more detail and remain at the current checkpoint"
+    modify: "Revise the current step and re-present the checkpoint"
+    abort: "Return STATUS=CANCELLED and stop"
+
+workflow_overview:
+  steps:
+    - id: step_1_preflight
+      purpose: "Normalize inputs and enforce H0-H2"
+    - id: step_2_source_discovery
+      purpose: "Resolve promotion evidence, target MCP surface, and dated folder"
+    - id: step_3_template_loading
+      purpose: "Load create-benchmark references and both report/source templates"
+    - id: step_4_package_generation
+      purpose: "Create or update benchmark artifacts after approval"
+    - id: step_5_validation
+      purpose: "Run markdown validation and path/artifact consistency checks"
+    - id: step_6_completion
+      purpose: "Emit deterministic completion report"
+
+workflow:
+  step_1_preflight:
+    purpose: Normalize inputs and existence semantics
+    activities:
+      - Normalize skill_path to default when omitted
+      - Derive benchmarks_root as "[skill_path]/[skill_name]/mcp_server/benchmarks"
+      - Derive benchmark_folder as "[benchmarks_root]/benchmark-[benchmark_date]"
+      - Validate operation token to supported value
+      - Validate execution_mode is :confirm
+      - Check whether target benchmark folder exists
+    outputs:
+      - normalized_inputs
+      - target_existence_state
+    checkpoint:
+      question: "Preflight complete for [skill_name] using [operation]. Continue?"
+      options:
+        - proceed
+        - review
+        - modify
+        - abort
+
+  step_2_source_discovery:
+    purpose: Resolve source packet evidence and benchmark promotion inputs
+    activities:
+      - Read source packet decision-record.md, implementation-summary.md, and benchmark evidence
+      - Verify accepted decision, stable headline, stable fixture, replay commands, and expected outcome
+      - Verify target skill has mcp_server/ and a measurable MCP surface
+      - Identify aggregate CSV, optional per-probe JSONL, optional runtime sidecars, and README index needs
+    outputs:
+      - promotion_gate_state
+      - artifact_copy_plan
+      - benchmark_index_plan
+    checkpoint:
+      question: "Review the source evidence, target folder, and artifact copy plan?"
+      options:
+        - proceed
+        - review
+        - modify
+        - abort
+
+  step_3_template_loading:
+    purpose: Load references and both templates
+    activities:
+      - Read create-benchmark/SKILL.md
+      - Read references/README.md, case_studies.md, pitfalls.md, and worked_example.md
+      - Read benchmark_report_template.md
+      - Read source_template.md
+      - Extract the canonical report and SOURCE.md section contracts
+    outputs:
+      - template_contract_loaded
+
+  step_4_package_generation:
+    purpose: Draft benchmark folder, report, SOURCE.md, artifacts, and README row
+    activities:
+      - Ensure benchmarks_root and README.md exist
+      - Create or update benchmark_folder
+      - Copy required results.csv and applicable benchmark artifacts
+      - Create or update benchmark_report.md from the ten-section template
+      - Create or update SOURCE.md from the wayfinding template
+      - Add or update the README index row with date, folder link, winner or status, headline metric, and source packet path
+    outputs:
+      - generated_benchmark_report_preview
+      - generated_source_file_preview
+      - copied_artifact_plan
+      - updated_index_row_preview
+    checkpoint:
+      question: "Review the benchmark report preview, SOURCE.md map, artifact plan, and README row?"
+      options:
+        - proceed
+        - review
+        - modify
+        - abort
+
+  step_5_validation:
+    purpose: Validate generated package
+    activities:
+      - Run validate_document.py on benchmark_report.md with --type readme
+      - Run validate_document.py on benchmarks/README.md with --type readme
+      - Check SOURCE.md maps the authoritative spec packet and evidence files
+      - Check required artifacts exist and optional omissions are documented
+      - Check benchmark_report.md keeps all ten required sections without placeholders
+    outputs:
+      - report_validation_passed
+      - index_validation_passed
+      - consistency_checks_passed
+
+  step_6_completion:
+    purpose: Emit completion status
+    activities:
+      - Summarize operation, source strategy, and generated paths
+      - Report validation results
+      - Return STATUS=OK PATH=[benchmark_folder]
+    outputs:
+      - completion_report
+
+error_recovery:
+  checkpoint_rejected:
+    action: "Return to the previous step and revise"
+  missing_benchmark_on_update:
+    action: "Offer reroute to create"
+  report_validation_failure:
+    action: "Fix and re-run validation before completion"
+
+circuit_breaker:
+  trigger_threshold: 3
+  reset_condition: "A checkpoint is approved and the validation gate passes"
+  actions:
+    - "Stop the workflow"
+    - "Report the failing step and affected path"
+    - "Return STATUS=CANCELLED or STATUS=FAIL"
+
+completion_report_template: |
+  Benchmark Command Complete
+
+  Skill: [skill_name]
+  Operation: [operation]
+  Source strategy: [source_strategy]
+  Mode: :confirm
+  Target: [benchmark_folder]
+
+  Validation:
+  - Report validation: [passed/failed]
+  - README index validation: [passed/failed]
+  - SOURCE/artifact consistency checks: [passed/failed]
+
+  STATUS=[OK|CANCELLED|FAIL] PATH=[benchmark_folder]
+
+termination:
+  success_signal: "STATUS=OK PATH=[benchmark_folder]"
+  cancel_signal: "STATUS=CANCELLED PATH=[benchmark_folder]"
+  failure_signal: "STATUS=FAIL PATH=[benchmark_folder]"
+  rule: "Do not claim completion until checkpoint outcomes and validation are included"
+
+rules:
+  must:
+    - "Load the create-benchmark reference and both templates before writing"
+    - "Keep SOURCE.md as navigation, not a duplicate audit trail"
+    - "Use the benchmark execution date for benchmark-YYYY-MM-DD"
+  must_not:
+    - "Promote in-flight or unreplayable benchmark evidence"
+    - "Compare numeric results across different MCP stacks as if equivalent"
+    - "Leave template placeholders in shipped benchmark files"
