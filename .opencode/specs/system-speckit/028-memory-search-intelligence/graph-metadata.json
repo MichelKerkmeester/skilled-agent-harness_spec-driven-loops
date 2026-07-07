@@ -6,11 +6,10 @@
   "children_ids": [
     "system-speckit/028-memory-search-intelligence/000-release-cleanup",
     "system-speckit/028-memory-search-intelligence/001-speckit-memory",
-    "system-speckit/028-memory-search-intelligence/002-skill-advisor",
-    "system-speckit/028-memory-search-intelligence/003-spec-data-quality",
-    "system-speckit/028-memory-search-intelligence/004-review-remediation",
-    "system-speckit/028-memory-search-intelligence/005-dark-flag-graduation",
-    "system-speckit/028-memory-search-intelligence/006-speckit-surface-alignment"
+    "system-speckit/028-memory-search-intelligence/002-spec-data-quality",
+    "system-speckit/028-memory-search-intelligence/003-review-remediation",
+    "system-speckit/028-memory-search-intelligence/004-dark-flag-graduation",
+    "system-speckit/028-memory-search-intelligence/005-speckit-surface-alignment"
   ],
   "migrated": true,
   "migration_source": "legacy",
@@ -25,11 +24,7 @@
       "external memory systems research",
       "galadriel aionforge mining",
       "memory retrieval improvements",
-      "028 implementation phase parent",
-      "028 renumber handover",
-      "descriptions.json reindex handover",
-      "028 open items",
-      "resume 028 renumber follow-ups"
+      "028 implementation phase parent"
     ],
     "key_topics": [
       "028",
@@ -51,12 +46,11 @@
       "spec.md",
       "001-speckit-memory/research/merged-research-index.md",
       "001-speckit-memory/spec.md",
-      "002-skill-advisor/spec.md",
       "000-release-cleanup/spec.md",
-      "003-spec-data-quality/SUMMARY.md",
-      "004-review-remediation/spec.md",
-      "005-dark-flag-graduation/spec.md",
-      "006-speckit-surface-alignment/spec.md",
+      "002-spec-data-quality/SUMMARY.md",
+      "003-review-remediation/spec.md",
+      "004-dark-flag-graduation/spec.md",
+      "005-speckit-surface-alignment/spec.md",
       "changelog/README.md",
       "mcp_server/benchmarks/README.md",
       "formatters/search-results.ts",
@@ -65,9 +59,7 @@
       "mcp_server/README.md",
       "research/deltas/iteration-009.jsonl",
       "research/deltas/iteration-010.jsonl",
-      ".opencode/specs/descriptions.json",
-      "research/research.md",
-      "handover.md"
+      "research/research.md"
     ],
     "entities": [
       {
@@ -85,7 +77,7 @@
       {
         "name": "SUMMARY.md",
         "kind": "doc",
-        "path": "003-spec-data-quality/SUMMARY.md",
+        "path": "002-spec-data-quality/SUMMARY.md",
         "source": "derived"
       },
       {
@@ -113,21 +105,9 @@
         "source": "derived"
       },
       {
-        "name": "descriptions.json",
-        "kind": "config",
-        "path": ".opencode/specs/descriptions.json",
-        "source": "derived"
-      },
-      {
         "name": "research.md",
         "kind": "doc",
         "path": "research/research.md",
-        "source": "derived"
-      },
-      {
-        "name": "handover.md",
-        "kind": "doc",
-        "path": "handover.md",
         "source": "derived"
       },
       {
@@ -201,35 +181,21 @@
         "kind": "proper_noun",
         "path": "research/research.md",
         "source": "derived"
-      },
-      {
-        "name": "Session Handover",
-        "kind": "proper_noun",
-        "path": "handover.md",
-        "source": "derived"
-      },
-      {
-        "name": "Renumber Follow",
-        "kind": "proper_noun",
-        "path": "handover.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Packet 028 owns the planning record that turns external memory-system research into shipped retrieval intelligence, release cleanup, review remediation, data-quality generation, dark-flag graduation and surface-alignment work",
     "created_at": "2026-06-16T14:27:21.650Z",
-    "last_save_at": "2026-07-07T07:21:20.583Z",
+    "last_save_at": "2026-07-07T12:06:52.610Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
-      "research/research.md",
-      "handover.md"
+      "research/research.md"
     ],
-    "source_fingerprint": "sha256:9c5aa928557c94a44390a0895bd26c750727f1e18532c8e7bfac1c99405ea302",
+    "source_fingerprint": "sha256:645e233afccd49f054215ab0470ce259a2499478feeb73fcf183abe3726cdcff",
     "source_doc_hashes": {
-      "spec.md": "da11a34677eb23eef816748edeca45f797f3001a120f677b1315fde3df7b1b9f",
-      "research/research.md": "534a044ff852cf46516be419c0aab3b6afe9c380ef6c288ddbdc25661bbdc120",
-      "handover.md": "0aa19a3de52fdf7a8a977f07a95e469786ed0e55cd2ed977195b799de441c6fb"
+      "spec.md": "d4199d6534f39cb6d4985d805111c16f1027e09b17ca7bf1045dbf2861de24fb",
+      "research/research.md": "534a044ff852cf46516be419c0aab3b6afe9c380ef6c288ddbdc25661bbdc120"
     },
     "last_active_child_id": null,
     "last_active_at": "2026-07-05T12:17:24.510Z"

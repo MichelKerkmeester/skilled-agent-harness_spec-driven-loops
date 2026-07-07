@@ -111,20 +111,17 @@ Aggregate file scope across all phases (audit trail only). Per-phase detail and 
 
 | Phase | Folder | Focus | Status |
 |-------|--------|-------|--------|
-| 1 | 001-advisor-observability/ | Transfers #1+#2: prompt-safe `why_recommended` attribution + degraded-vector/maintenance counters in `advisor_status` | Complete |
-| 2 | 002-advisor-provenance-guard/ | Transfer #3: `source_kind` / manual-overwrite guard for `skill_graph_propagate_enhances` auto edges | Complete |
-| 3 | 003-advisor-packed-bm25-lexical/ | Transfer #5: packed BM25 + BM25F field weights for the advisor lexical lane (adopts 027 phase 014) | Complete |
-| 4 | 004-advisor-bfs-consolidation/ | Transfer #6: shared app-level BFS for advisor `transitive_path` / `subgraph` (adopts 027 phase 012) | Complete |
-| 5 | 005-advisor-feedback-calibration/ | Transfer #10: shadow-only lane-weight/threshold calibration from `advisor_validate` outcomes | Complete |
-| 6 | 006-codegraph-tombstone-audit/ | Transfer #4: bounded soft-delete tombstone lineage for stale code-graph nodes/edges | Complete |
-| 7 | 007-codegraph-bfs-consolidation/ | Transfer #7: standardize code-graph's two BFS paths (transitive symbol + blast radius) | Complete |
-| 8 | 008-codegraph-why-included/ | Transfer #8: `why_included` edge-chain breadcrumbs for `blast_radius` + `code_graph_context` | Complete |
-| 9 | 009-codegraph-bm25-symbol-resolver/ | Transfer #9: optional BM25 fuzzy symbol resolver for disambiguation only (must not compete with Grep) | Complete |
+| 1 | 001-codegraph-tombstone-audit/ | Transfer #4: bounded soft-delete tombstone lineage for stale code-graph nodes/edges | Complete |
+| 2 | 002-codegraph-bfs-consolidation/ | Transfer #7: standardize code-graph's two BFS paths (transitive symbol + blast radius) | Complete |
+| 3 | 003-codegraph-why-included/ | Transfer #8: `why_included` edge-chain breadcrumbs for `blast_radius` + `code_graph_context` | Complete |
+| 4 | 004-codegraph-bm25-symbol-resolver/ | Transfer #9: optional BM25 fuzzy symbol resolver for disambiguation only (must not compete with Grep) | Complete |
+
+The 5 advisor-only phases that originally lived here (observability, provenance guard, packed BM25 lexical, BFS consolidation, feedback calibration) moved to `system-skill-advisor/009-advisor-and-codegraph-migrated-items/` on 2026-07-07.
 
 ### Phase Transition Rules
 
 - Each phase MUST pass `validate.sh` independently before its work is claimed done.
-- Phases are mostly independent: advisor phases (001-005) and code-graph phases (006-009) touch disjoint systems and can run in any order or in parallel. The two ordering hints below are soft, not a strict linear chain.
+- All 4 remaining phases touch code-graph only and are independent of each other.
 - Parent spec tracks aggregate progress via this map.
 - Use `/speckit:resume [parent-folder]/[NNN-phase]/` to resume a specific phase.
 - Run `validate.sh --recursive` on parent to validate all phases as an integrated unit.
@@ -133,13 +130,8 @@ Aggregate file scope across all phases (audit trail only). Per-phase detail and 
 
 | From | To | Criteria | Verification |
 |------|-----|----------|--------------|
-| 004-advisor-bfs-consolidation | 007-codegraph-bfs-consolidation | Advisor BFS helper pattern proven behavior-preserving before reusing the same consolidation pattern code-graph-side | Advisor `transitive_path`/`subgraph` parity tests green |
-| 003-advisor-packed-bm25-lexical | 009-codegraph-bm25-symbol-resolver | Advisor packed-BM25 lane validated before code-graph attempts the lower-priority symbol resolver. SATISFIED: the 003 lane shipped as inert-until-promotion shadow infra, validated by its vitest parity suite (not `advisor_validate` baselines); wiring into `advisor_validate` shadow recording is a scheduled future phase | Vitest BM25/BM25F parity suite green (003 implementation-summary.md) |
-| 001-advisor-observability | (none) | Independent; ships standalone | Phase `--strict` validate |
-| 002-advisor-provenance-guard | (none) | Independent; ships standalone | Phase `--strict` validate |
-| 005-advisor-feedback-calibration | (none) | Independent; shadow/default-off; ships standalone | Phase `--strict` validate |
-| 006-codegraph-tombstone-audit | (none) | Independent; bounded/default-off; ships standalone | Phase `--strict` validate |
-| 008-codegraph-why-included | (none) | Independent; behind includeTrace; ships standalone | Phase `--strict` validate |
+| 001-codegraph-tombstone-audit | (none) | Independent; bounded/default-off; ships standalone | Phase `--strict` validate |
+| 003-codegraph-why-included | (none) | Independent; behind includeTrace; ships standalone | Phase `--strict` validate |
 <!-- /ANCHOR:phase-map -->
 
 ---

@@ -1,0 +1,219 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/028-memory-search-intelligence/002-spec-data-quality/005-shared-engine-and-research/032-z-future-always-ignored",
+  "spec_folder": "system-speckit/028-memory-search-intelligence/002-spec-data-quality/005-shared-engine-and-research/032-z-future-always-ignored",
+  "parent_id": "system-speckit/028-memory-search-intelligence/002-spec-data-quality/005-shared-engine-and-research",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "z future always ignored",
+      "backfill graph metadata exclusion",
+      "z future not a supported specs root",
+      "collectSpecFolders staging skip",
+      "backfill walk over-reach",
+      "excluded dirs z future",
+      "backfill dist rebuild",
+      "backfill verification",
+      "z archive parity check",
+      "z archive parity preserved"
+    ],
+    "key_topics": [
+      "future",
+      "always",
+      "ignored",
+      "backfill",
+      "graph",
+      "metadata",
+      "exclusion",
+      "supported",
+      "specs",
+      "root",
+      "collectspecfolders",
+      "staging"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      ".opencode/skills/system-spec-kit/scripts/graph/backfill-graph-metadata.ts",
+      ".opencode/skills/system-spec-kit/scripts/tests/graph-metadata-backfill.vitest.ts",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "backfill-graph-metadata.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/scripts/graph/backfill-graph-metadata.ts",
+        "source": "derived"
+      },
+      {
+        "name": "graph-metadata-backfill.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-spec-kit/scripts/tests/graph-metadata-backfill.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Always Ignored In Backfill",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Make",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Change Type",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "no",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Date",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The graph-metadata backfill generator refreshed `zfuture/` by default",
+    "created_at": "2026-06-27T17:15:41.172Z",
+    "last_save_at": "2026-07-06T18:49:40.532Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:3567c6353f71875aa40b1739fcd3300c26dee6f9d72af03cde2f813646083c25",
+    "source_doc_hashes": {
+      "spec.md": "41c0d63fef7e095d16d96a20cf1cd103b083547a1ac945e649e545c9a97b5b0f",
+      "plan.md": "cd706039ebf4a2f83d016639c440c71678472e266f438813b222f4fcfbffc9d3",
+      "tasks.md": "25e09d94231d1f22d428d7cedaaf6464afe9c0a0e488881a58fb3129a4bb012b",
+      "checklist.md": "7afe0649d94b9a735d738ee9b95423f062a53caba3e43ee89c0e9b383f9ad7a4",
+      "implementation-summary.md": "13e5f397e1ea3e54b756394858614ca47294864ddc49870dc349bac93d86595d"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

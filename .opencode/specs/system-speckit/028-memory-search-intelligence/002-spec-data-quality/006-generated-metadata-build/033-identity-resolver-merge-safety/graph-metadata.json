@@ -1,0 +1,219 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/028-memory-search-intelligence/002-spec-data-quality/006-generated-metadata-build/033-identity-resolver-merge-safety",
+  "spec_folder": "system-speckit/028-memory-search-intelligence/002-spec-data-quality/006-generated-metadata-build/033-identity-resolver-merge-safety",
+  "parent_id": "system-speckit/028-memory-search-intelligence/002-spec-data-quality/006-generated-metadata-build",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "shared spec folder identity resolver",
+      "merge graph metadata parent preservation",
+      "children ids append only",
+      "parent id reconciled merge",
+      "spec folder identity canonicalizer"
+    ],
+    "key_topics": [
+      "shared",
+      "spec",
+      "folder",
+      "identity",
+      "resolver",
+      "merge",
+      "graph",
+      "metadata",
+      "parent",
+      "preservation",
+      "children",
+      "ids"
+    ],
+    "importance_tier": "normal",
+    "status": "in_progress",
+    "key_files": [
+      ".opencode/skills/system-spec-kit/mcp_server/lib/graph/graph-metadata-parser.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/search/folder-discovery.ts",
+      "lib/config/spec-doc-paths.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/config/spec-doc-paths.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/config/capability-flags.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/graph/graph-metadata-schema.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/tests/identity-resolver-merge-safety.vitest.ts",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "graph-metadata-parser.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/graph/graph-metadata-parser.ts",
+        "source": "derived"
+      },
+      {
+        "name": "folder-discovery.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/search/folder-discovery.ts",
+        "source": "derived"
+      },
+      {
+        "name": "spec-doc-paths.ts",
+        "kind": "code",
+        "path": "lib/config/spec-doc-paths.ts",
+        "source": "derived"
+      },
+      {
+        "name": "capability-flags.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/config/capability-flags.ts",
+        "source": "derived"
+      },
+      {
+        "name": "graph-metadata-schema.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/graph/graph-metadata-schema.ts",
+        "source": "derived"
+      },
+      {
+        "name": "identity-resolver-merge-safety.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/identity-resolver-merge-safety.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Shared Identity Resolver",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Merge Safety",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Introduce",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Single",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The two generators that emit `description.json` and `graph-metadata.json` disagree on spec-folder identity and the graph merge path loses lineage",
+    "created_at": "2026-06-27T17:15:41.439Z",
+    "last_save_at": "2026-07-06T18:49:38.029Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:7abf13e05b1be28c85c6de5ccf781c89f8e50e666024dcdd418eafe632832213",
+    "source_doc_hashes": {
+      "spec.md": "186b195d3c8eca51de267793b34e5c567d02b8b9ec974ae2eb2ce53c8530c408",
+      "plan.md": "8882d91bef4d93e6422a5cdf56d6650b8ac3c2f4b6e3278f824f955739defb3d",
+      "tasks.md": "4004aa4b40dcc14fff60fb84e67ac36b720242db020ee55460ecac81fe0e13c5",
+      "checklist.md": "73a8bdd0d49eae624f755a99b8abcbb4bc7106821799e7e63cb6715690a9f605",
+      "implementation-summary.md": "ae4c1391eeb2cd7873d0207464ab4b40d087690db19dee605420f0b8cd5b52b1"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

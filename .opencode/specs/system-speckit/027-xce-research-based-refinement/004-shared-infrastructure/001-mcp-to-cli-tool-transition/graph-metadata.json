@@ -4,14 +4,9 @@
   "spec_folder": "system-speckit/027-xce-research-based-refinement/004-shared-infrastructure/001-mcp-to-cli-tool-transition",
   "parent_id": "system-speckit/027-xce-research-based-refinement/004-shared-infrastructure",
   "children_ids": [
-    "system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure/001-mcp-to-cli-tool-transition/001-spec-memory-cli",
-    "system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure/001-mcp-to-cli-tool-transition/002-code-index-cli",
-    "system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure/001-mcp-to-cli-tool-transition/003-skill-advisor-cli",
-    "system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure/001-mcp-to-cli-tool-transition/004-release-and-program-cleanup",
     "system-speckit/027-xce-research-based-refinement/004-shared-infrastructure/001-mcp-to-cli-tool-transition/001-spec-memory-cli",
     "system-speckit/027-xce-research-based-refinement/004-shared-infrastructure/001-mcp-to-cli-tool-transition/002-code-index-cli",
-    "system-speckit/027-xce-research-based-refinement/004-shared-infrastructure/001-mcp-to-cli-tool-transition/003-skill-advisor-cli",
-    "system-speckit/027-xce-research-based-refinement/004-shared-infrastructure/001-mcp-to-cli-tool-transition/004-release-and-program-cleanup"
+    "system-speckit/027-xce-research-based-refinement/004-shared-infrastructure/001-mcp-to-cli-tool-transition/003-release-and-program-cleanup"
   ],
   "manual": {
     "depends_on": [],
@@ -44,7 +39,7 @@
     "status": "planned",
     "key_files": [
       "spec.md",
-      "004-release-and-program-cleanup/implementation-summary.md",
+      "003-release-and-program-cleanup/implementation-summary.md",
       "001-spec-memory-cli/spec.md",
       "001-spec-memory-cli/000-spec-memory-cli-research/research/research.md",
       "001-spec-memory-cli/000-spec-memory-cli-research/spec.md"
@@ -95,15 +90,15 @@
     ],
     "causal_summary": "The mk-spec-memory MCP server (37 tools) is the spec-kit's continuity backbone, but the MCP transport carries real operational costs: a mid-session transport disconnect permanently removes the tools from a live session because Claude Code never reconnects MCP transports, every session pays tool-schema token overhead, and each runtime needs separate MCP registration",
     "created_at": "2026-06-06T08:46:15.481Z",
-    "last_save_at": "2026-07-02T05:31:13.824Z",
+    "last_save_at": "2026-07-07T11:55:37.714Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:0dd48508f1467288b8a37ba23034751670d27e076c8db1ac550bf9983f7652cd",
+    "source_fingerprint": "sha256:0078c53cd132568f11038a66df823146b8e445feb70b4a91a5e8df780a0dff83",
     "source_doc_hashes": {
-      "spec.md": "f819aa26f27f0c07321967f0540986ad4c99acb4696379a26b4eda89526866e0"
+      "spec.md": "6b2505757ba35d301b1864433050f0aacebaf906877f05332b70c01b80895592"
     },
     "last_active_child_id": null,
     "last_active_at": "2026-06-09T20:29:34.821Z"

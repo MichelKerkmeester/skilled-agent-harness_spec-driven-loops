@@ -39,8 +39,8 @@ freshness, fix `parent_id`. Each moved folder is a net improvement over its pre-
 ## 2. Post-extraction 028 scope
 
 028 top-level is now: `000-release-cleanup`, `001-speckit-memory` (the memory-search engine),
-`002-skill-advisor` (holds only the in-progress `009`), `003-spec-data-quality`, `004-review-remediation`,
-`005-dark-flag-graduation`, `006-speckit-surface-alignment`.
+`002-skill-advisor` (holds only the in-progress `009`), `002-spec-data-quality`, `003-review-remediation`,
+`004-dark-flag-graduation`, `005-speckit-surface-alignment`.
 
 ## 3. Memory-search engine + spec data-quality — work done and tested
 
@@ -53,13 +53,13 @@ ranking-filter-bypass + score-scale fixes, causal-graph hygiene + entity-linker 
 loop repair, search-hot-path performance, envelope/command-doc alignment, and closeout. Recursive
 `validate.sh --strict` was 14 passed / 0 failed across the program parent and all 13 children.
 
-### Spec data-quality — `003-spec-data-quality`
+### Spec data-quality — `002-spec-data-quality`
 
 On-write quality loop, retroactive automation, retrieval-gated tuning, novel research, the shared
 safe-fix engine, generated-metadata build and full-repo JSON migration, plus the flat drift-audit /
 metadata-status-integrity / create.sh-corruption phases (045-053).
 
-### This session (2026-07-06) — new work under `003-spec-data-quality`
+### This session (2026-07-06) — new work under `002-spec-data-quality`
 
 - `051-graph-metadata-child-drift-audit-and-harden` — a repo-wide `children_ids`-vs-on-disk drift audit
   (21 drifted parents found and classified) plus a permanent `GRAPH_METADATA_CHILD_DRIFT` validate rule

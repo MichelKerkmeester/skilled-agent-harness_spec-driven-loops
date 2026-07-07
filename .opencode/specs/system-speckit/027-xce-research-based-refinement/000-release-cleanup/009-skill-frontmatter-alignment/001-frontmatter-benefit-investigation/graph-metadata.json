@@ -50,8 +50,6 @@
       "handlers/memory-save.ts",
       ".opencode/skills/system-spec-kit/mcp_server/lib/parsing/memory-parser.ts",
       ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts",
-      ".opencode/skills/sk-doc/assets/frontmatter_templates.md",
-      ".opencode/skills/sk-doc/references/skill_creation.md",
       "tasks.md"
     ],
     "entities": [
@@ -95,18 +93,6 @@
         "name": "memory-save.ts",
         "kind": "code",
         "path": "handlers/memory-save.ts",
-        "source": "derived"
-      },
-      {
-        "name": "frontmatter_templates.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-doc/assets/frontmatter_templates.md",
-        "source": "derived"
-      },
-      {
-        "name": "skill_creation.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-doc/references/skill_creation.md",
         "source": "derived"
       },
       {
@@ -198,11 +184,23 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "detailed",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "no",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Some skill reference and asset docs carry a detailed memory-style frontmatter block (`triggerphrases`, `importancetier`, `contextType`) while most carry only `title` + `description`, and nobody has established whether the detailed block does anything",
     "created_at": "2026-06-11T05:47:21Z",
-    "last_save_at": "2026-07-02T05:31:13.462Z",
+    "last_save_at": "2026-07-07T11:55:42.645Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

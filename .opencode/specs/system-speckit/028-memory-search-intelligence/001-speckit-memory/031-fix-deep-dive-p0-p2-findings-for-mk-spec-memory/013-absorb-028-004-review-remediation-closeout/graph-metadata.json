@@ -195,7 +195,7 @@
     ],
     "causal_summary": "The operator absorbed three open trackers into this program, but the tracker docs still advertise their pre-absorption state: `028/006/002-memory-schema-and-concurrency` and `028/006/004-p2-triage` read \"PENDING, scaffold only\" with no pointer to the phases that now own their items, and the ex-031 tracker (`028/014/001-findings-remediation`) still lists T-0211/T-0212 as \"queued for next fix-dispatch round\"",
     "created_at": "2026-07-03T09:44:26Z",
-    "last_save_at": "2026-07-06T19:26:05.342Z",
+    "last_save_at": "2026-07-07T12:47:04.321Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,13 +205,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:767c51376111b58647a9fe8eae945197d3783f8b6f80932b94ccb0bd8334704f",
+    "source_fingerprint": "sha256:a52014f41e409d117615f83867dbc297deb33f38f018a602b605575be42637df",
     "source_doc_hashes": {
       "spec.md": "9dd20ece0214c7d8067d9fd2ac07e301e33a136736713f8d49bddde24e380d79",
-      "plan.md": "bc932a582e16d057b8d02848ead4becf114139fac68e83bc7ac649145596be7c",
+      "plan.md": "8043b47e0369ac60fb375218a0a5dd5676b4d317776603817495c1c81e80263f",
       "tasks.md": "47e30011ece726bff9775cb43598557bb8cbe4c21aab331ae0a324f051d48851",
       "checklist.md": "cc47de569ab5458a5bd36d74ab8ff0e9f458c358956cb028e6ab33027bef8dcf",
-      "implementation-summary.md": "db48f153db761f9f8925aba7f30d86926ed2d7176e5a480ebc2e4f5b00c499ff"
+      "implementation-summary.md": "bc8edd8aa5a67819a3d9c8d756cd09226e6f6d1519caf23c178a56a46218097c"
     },
     "last_active_child_id": null,
     "last_active_at": null

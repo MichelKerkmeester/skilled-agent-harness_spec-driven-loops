@@ -34,7 +34,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 028-mcp-to-cli-tool-transition/001-spec-memory-cli/001-cli-core |
+| **Spec Folder** | 001-cli-core |
 | **Completed** | Core delivered; phase 002/003 hardening and runtime integration remain |
 | **Level** | 1 |
 <!-- /ANCHOR:metadata -->

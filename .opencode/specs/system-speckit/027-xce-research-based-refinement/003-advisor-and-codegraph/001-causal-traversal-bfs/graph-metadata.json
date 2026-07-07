@@ -195,7 +195,7 @@
     ],
     "causal_summary": "The only two WITH RECURSIVE consumers in the memory backend are read paths with measurable inefficiencies",
     "created_at": "2026-06-10T17:48:32Z",
-    "last_save_at": "2026-07-02T05:31:13.767Z",
+    "last_save_at": "2026-07-07T11:58:29.581Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,12 +204,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:c95241011048ecea431c420257376ab9ddf3e0769532da7bbed78c3a8b185ef5",
+    "source_fingerprint": "sha256:ce1540cad8070d70907483f6232e833bd1f1bbf9b726c1334e2c6c2723a4523d",
     "source_doc_hashes": {
       "spec.md": "199e2e5250e1237eb503e674ed6442b90778c4b6a72185da8da4212069571e55",
       "plan.md": "4a853d215bf4050175c4abd66f782c1d307c4b54c231faed02e939dd62297961",
       "tasks.md": "cab6f57831f93c2cd2dc0574489ca2f485abc27f85d9d945eb6c40665914aca3",
-      "implementation-summary.md": "a2d98044adbfbd7527d82734ca0cfc87edf7efd879c28c57d6d310696848559d"
+      "implementation-summary.md": "94c681f31ab6d02c4cd014a4912b4451f3fbb403bdb50b08815ebb5e3ce58838"
     },
     "last_active_child_id": null,
     "last_active_at": null

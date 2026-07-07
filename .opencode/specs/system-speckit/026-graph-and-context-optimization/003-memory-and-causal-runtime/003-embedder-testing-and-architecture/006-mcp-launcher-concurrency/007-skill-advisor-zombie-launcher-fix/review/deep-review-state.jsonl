@@ -1,5 +1,0 @@
-{"type":"event","event":"session_start","sessionId":"rvw-007-20260518-171741","timestamp":"2026-05-18T17:17:41Z"}
-{"type":"iteration","iteration":1,"dimension":"correctness","findingsByP0":0,"findingsByP1":0,"findingsByP2":1,"verdict":"PASS","newFindingsRatio":1.0,"durationSec":62,"exitCode":0,"timestamp":"2026-05-18T17:18:43Z"}
-{"type":"iteration","iteration":2,"dimension":"security","findingsByP0":0,"findingsByP1":0,"findingsByP2":0,"verdict":"UNKNOWN","newFindingsRatio":0.0,"durationSec":102,"exitCode":0,"timestamp":"2026-05-18T17:20:25Z"}
-{"type":"iteration","iteration":3,"dimension":"traceability","findingsByP0":0,"findingsByP1":0,"findingsByP2":0,"verdict":"UNKNOWN","newFindingsRatio":0.0,"durationSec":49,"exitCode":0,"timestamp":"2026-05-18T17:21:14Z"}
-{"type":"event","event":"session_complete","sessionId":"rvw-007-20260518-171741","itersUsed":3,"itersAllocated":10,"converged":1,"verdict":"PASS","timestamp":"2026-05-18T17:21:14Z"}

@@ -1,0 +1,221 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/027-xce-research-based-refinement/003-advisor-and-codegraph/002-xce-feature-adoption-advisor-codegraph/001-codegraph-tombstone-audit",
+  "spec_folder": "system-speckit/027-xce-research-based-refinement/003-advisor-and-codegraph/002-xce-feature-adoption-advisor-codegraph/001-codegraph-tombstone-audit",
+  "parent_id": "system-speckit/027-xce-research-based-refinement/003-advisor-and-codegraph/002-xce-feature-adoption-advisor-codegraph",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "code graph tombstones",
+      "soft delete audit lineage",
+      "why did this edge disappear",
+      "stale node cleanup audit",
+      "implementation",
+      "plan",
+      "name",
+      "template",
+      "plan core",
+      "tasks",
+      "tasks core",
+      "summary"
+    ],
+    "key_topics": [
+      "code",
+      "graph",
+      "tombstones",
+      "soft",
+      "delete",
+      "audit",
+      "lineage",
+      "edge",
+      "disappear",
+      "stale",
+      "node",
+      "cleanup"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      ".opencode/skills/system-code-graph/mcp_server/lib/code-graph-db.ts",
+      ".opencode/skills/system-code-graph/mcp_server/handlers/scan.ts",
+      ".opencode/skills/system-code-graph/mcp_server/handlers/status.ts",
+      ".opencode/skills/system-code-graph/mcp_server/tests/code-graph-tombstones.vitest.ts",
+      ".opencode/skills/system-code-graph/mcp_server/tests/code-graph-scan.vitest.ts",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "code-graph-db.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-code-graph/mcp_server/lib/code-graph-db.ts",
+        "source": "derived"
+      },
+      {
+        "name": "scan.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-code-graph/mcp_server/handlers/scan.ts",
+        "source": "derived"
+      },
+      {
+        "name": "status.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-code-graph/mcp_server/handlers/status.ts",
+        "source": "derived"
+      },
+      {
+        "name": "code-graph-tombstones.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-code-graph/mcp_server/tests/code-graph-tombstones.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "code-graph-scan.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-code-graph/mcp_server/tests/code-graph-scan.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Implemented",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Feature",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow When",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The code graph hard-deletes nodes and edges during reindex and stale cleanup (`lib/code-graph-db.ts:692-704`, `:784-790`, `:890-905`), so after a file deletion or scan repair there is no way to answer \"why did this edge disappear?\"",
+    "created_at": "2026-06-10T19:24:12Z",
+    "last_save_at": "2026-07-07T11:58:29.710Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:8ae13e354323ff331f368377e80c30a714410951ab2793eba9f644c970e03a7c",
+    "source_doc_hashes": {
+      "spec.md": "6294c70dbdfb50646b64788673b0e72e99a0d982e6938073141fc039821fc70e",
+      "plan.md": "4e5d0a81f313a7b3b14deb17d5bfa95ac9f6413be206bfba45465ac7cd247884",
+      "tasks.md": "0752612f53a68e009ce237e0ba86a9d6e17fac3dbd6c4b4521771ce8c2e70c69",
+      "implementation-summary.md": "4a2f1c5f32e6e16d5491e16832c02325e289e85515d5e1fb4474c5e2e9c87de4"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

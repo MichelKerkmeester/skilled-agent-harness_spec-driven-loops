@@ -1,0 +1,224 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/028-memory-search-intelligence/005-speckit-surface-alignment/001-false-now-doc-corrections",
+  "spec_folder": "system-speckit/028-memory-search-intelligence/005-speckit-surface-alignment/001-false-now-doc-corrections",
+  "parent_id": "system-speckit/028-memory-search-intelligence/005-speckit-surface-alignment",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "false-now doc corrections",
+      "retention forgetting flag",
+      "Track C supersession",
+      "soft delete tombstones",
+      "envelope fidelity comment",
+      "implementation plan",
+      "tasks",
+      "spec-kit tasks",
+      "implementation summary",
+      "retention forgetting"
+    ],
+    "key_topics": [
+      "false-now",
+      "doc",
+      "corrections",
+      "retention",
+      "forgetting",
+      "flag",
+      "track",
+      "supersession",
+      "soft",
+      "delete",
+      "tombstones",
+      "envelope"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      ".opencode/specs/system-speckit/028-memory-search-intelligence/feature-flags.md",
+      ".opencode/specs/system-speckit/028-memory-search-intelligence/benchmark-status.md",
+      ".opencode/skills/system-spec-kit/feature_catalog/02--mutation/soft-delete-tombstones-and-active-purgeable-partitions.md",
+      ".opencode/skills/system-spec-kit/mcp_server/formatters/search-results.ts",
+      ".opencode/specs/system-speckit/028-memory-search-intelligence/005-speckit-surface-alignment/001-false-now-doc-corrections/spec.md",
+      ".opencode/specs/system-speckit/028-memory-search-intelligence/005-speckit-surface-alignment/001-false-now-doc-corrections/plan.md",
+      ".opencode/specs/system-speckit/028-memory-search-intelligence/005-speckit-surface-alignment/001-false-now-doc-corrections/tasks.md",
+      ".opencode/specs/system-speckit/028-memory-search-intelligence/005-speckit-surface-alignment/001-false-now-doc-corrections/implementation-summary.md",
+      ".opencode/specs/system-speckit/028-memory-search-intelligence/005-speckit-surface-alignment/001-false-now-doc-corrections/description.json",
+      ".opencode/specs/system-speckit/028-memory-search-intelligence/005-speckit-surface-alignment/001-false-now-doc-corrections/graph-metadata.json",
+      "spec.md",
+      "plan.md",
+      "implementation-summary.md",
+      "tasks.md"
+    ],
+    "entities": [
+      {
+        "name": "feature-flags.md",
+        "kind": "doc",
+        "path": ".opencode/specs/system-speckit/028-memory-search-intelligence/feature-flags.md",
+        "source": "derived"
+      },
+      {
+        "name": "benchmark-status.md",
+        "kind": "doc",
+        "path": ".opencode/specs/system-speckit/028-memory-search-intelligence/benchmark-status.md",
+        "source": "derived"
+      },
+      {
+        "name": "soft-delete-tombstones-and-active-purgeable-partitions.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/feature_catalog/02--mutation/soft-delete-tombstones-and-active-purgeable-partitions.md",
+        "source": "derived"
+      },
+      {
+        "name": "search-results.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/formatters/search-results.ts",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": ".opencode/specs/system-speckit/028-memory-search-intelligence/005-speckit-surface-alignment/001-false-now-doc-corrections/spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": ".opencode/specs/system-speckit/028-memory-search-intelligence/005-speckit-surface-alignment/001-false-now-doc-corrections/plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": ".opencode/specs/system-speckit/028-memory-search-intelligence/005-speckit-surface-alignment/001-false-now-doc-corrections/tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": ".opencode/specs/system-speckit/028-memory-search-intelligence/005-speckit-surface-alignment/001-false-now-doc-corrections/implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "description.json",
+        "kind": "config",
+        "path": ".opencode/specs/system-speckit/028-memory-search-intelligence/005-speckit-surface-alignment/001-false-now-doc-corrections/description.json",
+        "source": "derived"
+      },
+      {
+        "name": "graph-metadata.json",
+        "kind": "config",
+        "path": ".opencode/specs/system-speckit/028-memory-search-intelligence/005-speckit-surface-alignment/001-false-now-doc-corrections/graph-metadata.json",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Now Documentation Corrections",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Four",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Align",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Surgical",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Read Level",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Four false-now surfaces could mislead readers about current packet 028 behavior: a stale retention flag suffix, an earlier Track-C proposed-only snapshot, a soft-delete recall-filter contradiction, and a stale envelope-fidelity default comment",
+    "created_at": "2026-07-05T08:50:45.332Z",
+    "last_save_at": "2026-07-06T18:49:54.085Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:ebdb3d0429e538b61f0e2513b63c59f3cd0aceab22bd932d18079a542b30cf98",
+    "source_doc_hashes": {
+      "spec.md": "9d26e7f96584b9489c2d4834c76f5b3a28006d8e07bad9843339f20771333bb8",
+      "plan.md": "92490add602f9b38c90f723a9fb2d4bd0f05e18e23ea1371d2377cc04de71115",
+      "tasks.md": "1ac2d6d8141366987a931823a246ceda917d3d0bb2dcb89e3e34d054437b3736",
+      "implementation-summary.md": "c4ba6dc2e7be4245cab27ca46805a23097bc5ca7e0467543d2b39b96d1f58db2"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

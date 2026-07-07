@@ -201,7 +201,7 @@
     ],
     "causal_summary": "The code-trace guarantees from the research (lease races, dual-client safety, blocked-read discipline) are not regression-locked; any refactor can silently reopen them",
     "created_at": "2026-06-06T14:45:14Z",
-    "last_save_at": "2026-07-02T05:31:13.859Z",
+    "last_save_at": "2026-07-07T11:58:30.545Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,12 +210,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:53e0592b5769170736123f1c0a0fed07b2a32d94ac2fd78e8cf00e79170ecb36",
+    "source_fingerprint": "sha256:1fd15cc182c9647dac61c2243c616edf8c271046ab5d9d29447d997d3e8a38f3",
     "source_doc_hashes": {
       "spec.md": "0924e962113894fc6d8552805fcdb81f81460e6ac7c4b0da2b73eaa20fe348f2",
       "plan.md": "a800d84bad0c3c2849edb450e8310cf8471fa8f8adce9293994088dff3d9a841",
       "tasks.md": "4ff8cd306d6acf8b0989f22c107605f8bbe3ccb7005757ccf92a5e0fe2692621",
-      "implementation-summary.md": "f380f9c5b62fe7cd9da3511824dec669e9d193917ddf94b8e846641cd4c51a43"
+      "implementation-summary.md": "2b4ca8eb6964d94250c97a81d9d133d27405384bfaf08270a013bca0ec950b1c"
     },
     "last_active_child_id": null,
     "last_active_at": null

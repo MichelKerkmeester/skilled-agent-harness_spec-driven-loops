@@ -135,8 +135,9 @@ Planned future implementation scope for audit only. Per-phase detail lives in ea
 | 18 | 018-sk-prompt/ | Apply the canonical contract to sk-prompt (0/2 references, 0/3 assets carry the detailed block). | Complete |
 | 19 | 019-sk-prompt-models/ | Apply the canonical contract to sk-prompt-models (0/12 references, 0/2 assets carry the detailed block). | Complete |
 | 20 | 020-system-code-graph/ | Apply the canonical contract to system-code-graph (6/7 references carry the detailed block; no assets). | Complete |
-| 21 | 021-system-skill-advisor/ | Apply the canonical contract to system-skill-advisor (14/15 references carry the detailed block; no assets). | Complete |
-| 22 | 022-system-spec-kit/ | Apply the canonical contract to system-spec-kit (2/41 references, 0/4 assets carry the detailed block). | Complete |
+| 21 | 021-system-spec-kit/ | Apply the canonical contract to system-spec-kit (2/41 references, 0/4 assets carry the detailed block). | Complete |
+
+Phase 021-system-skill-advisor (canonical contract for system-skill-advisor, 14/15 references) moved to `system-skill-advisor/010-skill-advisor-frontmatter-alignment/` on 2026-07-07.
 
 ### Phase Transition Rules
 

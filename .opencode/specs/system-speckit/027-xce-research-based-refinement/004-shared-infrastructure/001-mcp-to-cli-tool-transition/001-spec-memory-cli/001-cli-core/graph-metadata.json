@@ -206,7 +206,7 @@
     ],
     "causal_summary": "The mk-spec-memory daemon already speaks JSON-RPC over its IPC socket, but the only client surface was the MCP protocol layer — which dies permanently on mid-session transport disconnects, costs schema tokens every session, and needs per-runtime registration",
     "created_at": "2026-06-06T14:09:11.246Z",
-    "last_save_at": "2026-07-02T05:31:13.835Z",
+    "last_save_at": "2026-07-07T11:58:30.947Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -215,12 +215,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:36ef1c35f531291107d49847c248bb4e68043b5206cfc70013a531621e1437f9",
+    "source_fingerprint": "sha256:f0257926271d9da9033d0d277db741993e5cb10c3c9935821e19c86463b98927",
     "source_doc_hashes": {
       "spec.md": "68e81d9fb9c1c79e614331b368d3f176c4de09b70e9b08b37391edfe8427a1b4",
       "plan.md": "8c81026906a3ea64f056801970baeb72d4ed53a3f281de5e3dd860bbb602fd48",
       "tasks.md": "77011b5c2f70586798678296b2ed53f6f84c2704a03d6303d79e858b5e7fdf15",
-      "implementation-summary.md": "25f9c74b22f7a415f71e1ab1d62229ef72b062f6351e728d1ff3062cc2d357f8"
+      "implementation-summary.md": "299aeb845a13b52ca39279481331e3595cab1527ffefd49c68b8f8da5d9d17ef"
     },
     "last_active_child_id": null,
     "last_active_at": null

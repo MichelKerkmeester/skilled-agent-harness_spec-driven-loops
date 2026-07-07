@@ -4,18 +4,11 @@
   "spec_folder": "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/001-release-readiness",
   "parent_id": "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup",
   "children_ids": [
-    "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/001-release-readiness/001-fix-skill-advisor-fail-open-fallback",
-    "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/001-release-readiness/002-fix-additional-release-readiness-findings",
-    "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/001-release-readiness/003-release-readiness-deep-review-audits",
-    "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/001-release-readiness/004-fix-release-readiness-findings-synthesis",
-    "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/001-release-readiness/005-fix-remaining-priority-findings",
-    "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/001-release-readiness/006-fix-stress-test-coverage-gap",
-    "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/001-release-readiness/001-fix-skill-advisor-fail-open-fallback",
-    "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/001-release-readiness/002-fix-additional-release-readiness-findings",
-    "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/001-release-readiness/003-release-readiness-deep-review-audits",
-    "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/001-release-readiness/004-fix-release-readiness-findings-synthesis",
-    "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/001-release-readiness/005-fix-remaining-priority-findings",
-    "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/001-release-readiness/006-fix-stress-test-coverage-gap"
+    "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/001-release-readiness/001-fix-additional-release-readiness-findings",
+    "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/001-release-readiness/002-release-readiness-deep-review-audits",
+    "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/001-release-readiness/003-fix-release-readiness-findings-synthesis",
+    "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/001-release-readiness/004-fix-remaining-priority-findings",
+    "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/001-release-readiness/005-fix-stress-test-coverage-gap"
   ],
   "migrated": true,
   "migration_source": "legacy",

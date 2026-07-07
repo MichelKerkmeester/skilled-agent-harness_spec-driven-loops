@@ -34,7 +34,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 028-mcp-to-cli-tool-transition/001-spec-memory-cli/002-hardening-and-tests |
+| **Spec Folder** | 002-hardening-and-tests |
 | **Completed** | 2026-06-09 - shipped |
 | **Level** | 1 |
 <!-- /ANCHOR:metadata -->

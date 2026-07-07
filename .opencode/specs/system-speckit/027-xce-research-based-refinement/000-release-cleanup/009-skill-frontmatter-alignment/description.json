@@ -37,7 +37,7 @@
   ],
   "packet_id": "system-spec-kit/027-xce-research-based-refinement/000-release-cleanup/009-skill-frontmatter-alignment",
   "specFolder": "system-speckit/027-xce-research-based-refinement/000-release-cleanup/009-skill-frontmatter-alignment",
-  "description": "Skill reference and asset frontmatter has drifted into three incompatible practices: 103 of 369 docs under `.opencode/skills//references/` and `.openc",
+  "description": "Skill reference and asset frontmatter has drifted into three incompatible practices: 103 of 369 docs under `.opencode/skills//references/` and",
   "keywords": [
     "skill",
     "reference",
@@ -52,10 +52,9 @@
     "docs",
     "opencode",
     "skills",
-    "references",
-    "openc"
+    "references"
   ],
-  "lastUpdated": "2026-06-30T12:42:37.588Z",
+  "lastUpdated": "2026-07-07T12:56:32.370Z",
   "specId": "009",
   "folderSlug": "skill-frontmatter-alignment",
   "parentChain": [

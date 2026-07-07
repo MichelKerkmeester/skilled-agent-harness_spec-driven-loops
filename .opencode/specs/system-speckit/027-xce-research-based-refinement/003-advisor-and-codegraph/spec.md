@@ -62,10 +62,10 @@ _memory:
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
-Two sibling daemons beyond the memory store needed 027's hardening: the skill-advisor lacked launcher resilience and had not adopted the proven write-safety and observability patterns, and the code-graph carried recursive-CTE traversals that defeated its indexes. The advisor and code-graph work is cross-cutting between two subsystems, so it belongs under one themed parent.
+The code-graph carried recursive-CTE traversals that defeated its indexes and needed a shared snapshot-equivalent BFS helper. That helper is also consumed by the skill-advisor's own skill-graph queries, so it stays here as shared infrastructure rather than moving with the advisor-only work.
 
 ### Purpose
-Own the advisor and code-graph child phases so each can be resumed and validated independently while the parent keeps the phase map and handoff order visible.
+Own the shared BFS helper and the pure-code-graph XCE feature adoptions (tombstone audit, BFS consolidation, why-included trace, symbol resolver) so each can be resumed and validated independently. The advisor-only phases that originally lived here (cross-session reconnect, suite repair, spec-folder-leak fix, and 5 advisor-specific feature adoptions) moved to `system-skill-advisor/009-advisor-and-codegraph-migrated-items/` on 2026-07-07.
 
 > **Phase-parent note:** This spec.md is the only REQUIRED authored document at the parent level. All detailed planning, task breakdowns, checklists, decisions, and continuity live inside the child phase folders listed in the Phase Documentation Map below. Program-level history and consolidation narrative live in the 027 root `../context-index.md` and `../timeline.md` — not here.
 <!-- /ANCHOR:problem -->
@@ -76,13 +76,13 @@ Own the advisor and code-graph child phases so each can be resumed and validated
 ## 3. SCOPE
 
 ### In Scope
-- Shared app-level BFS traversal helper for the code graph.
-- XCE feature transfers into skill-advisor and code-graph (observability, provenance guard, packed BM25, BFS, tombstone audit, why-included trace, symbol resolver).
-- Skill-advisor owner-lease and reconnecting proxy for transport-drop resilience.
+- Shared app-level BFS traversal helper for the code graph (also consumed by skill-advisor).
+- Pure code-graph XCE feature transfers (tombstone audit, BFS consolidation, why-included trace, symbol resolver).
 
 ### Out of Scope
 - Memory-store and search work (track 002).
 - Shared transport, command, and dependency layers (track 004).
+- Advisor-only work: moved to `system-skill-advisor/009-advisor-and-codegraph-migrated-items/`.
 - Implementation detail at the parent level.
 
 ### Files to Change
@@ -103,10 +103,7 @@ Summary of aggregate file scope. Per-phase detail lives in each child's plan.md.
 | Phase | Folder | Focus | Status |
 |-------|--------|-------|--------|
 | 001 | `001-causal-traversal-bfs/` | Replace the recursive-CTE graph traversals with a shared snapshot-equivalent BFS helper | Complete |
-| 002 | `002-xce-feature-adoption-advisor-codegraph/` | Nested phase parent: nine XCE feature transfers into the skill-advisor and code-graph skills (observability, provenance, packed BM25, BFS, tombstones, why-included, symbol resolver) | Phase Parent |
-| 003 | `003-skill-advisor-cross-session-reconnect/` | Owner-lease + reconnecting proxy so mk_skill_advisor survives MCP transport drops | Complete |
-| 004 | `004-skill-advisor-suite-repair/` | Fix deep-loop-workflows merge fallout in the advisor test suite + align brief-assertion tests with the fable-5 governor | Complete |
-| 005 | `005-advisor-state-spec-folder-leak/` | Harden the advisor workspace-root fallback so it can never write `.advisor-state` into a `specs/` subtree, plus regression test and stray cleanup | Complete |
+| 002 | `002-xce-feature-adoption-advisor-codegraph/` | Nested phase parent: 4 pure-code-graph XCE feature transfers (tombstone audit, BFS consolidation, why-included trace, symbol resolver) | Phase Parent |
 
 ### Phase Transition Rules
 

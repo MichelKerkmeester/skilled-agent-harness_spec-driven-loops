@@ -40,7 +40,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 012-causal-traversal-bfs |
+| **Spec Folder** | 001-causal-traversal-bfs |
 | **Completed** | 2026-06-10 |
 | **Level** | 1 |
 | **Status** | Shipped |

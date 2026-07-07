@@ -4,28 +4,6 @@
   "spec_folder": "system-speckit/027-xce-research-based-refinement/000-release-cleanup/009-skill-frontmatter-alignment",
   "parent_id": "system-speckit/027-xce-research-based-refinement/000-release-cleanup",
   "children_ids": [
-    "system-spec-kit/027-xce-research-based-refinement/000-release-cleanup/009-skill-frontmatter-alignment/001-frontmatter-benefit-investigation",
-    "system-spec-kit/027-xce-research-based-refinement/000-release-cleanup/009-skill-frontmatter-alignment/002-cli-claude-code",
-    "system-spec-kit/027-xce-research-based-refinement/000-release-cleanup/009-skill-frontmatter-alignment/003-cli-codex",
-    "system-spec-kit/027-xce-research-based-refinement/000-release-cleanup/009-skill-frontmatter-alignment/004-cli-opencode",
-    "system-spec-kit/027-xce-research-based-refinement/000-release-cleanup/009-skill-frontmatter-alignment/005-deep-ai-council",
-    "system-spec-kit/027-xce-research-based-refinement/000-release-cleanup/009-skill-frontmatter-alignment/006-deep-context",
-    "system-spec-kit/027-xce-research-based-refinement/000-release-cleanup/009-skill-frontmatter-alignment/007-deep-improvement",
-    "system-spec-kit/027-xce-research-based-refinement/000-release-cleanup/009-skill-frontmatter-alignment/008-deep-loop-runtime",
-    "system-spec-kit/027-xce-research-based-refinement/000-release-cleanup/009-skill-frontmatter-alignment/009-deep-research",
-    "system-spec-kit/027-xce-research-based-refinement/000-release-cleanup/009-skill-frontmatter-alignment/010-deep-review",
-    "system-spec-kit/027-xce-research-based-refinement/000-release-cleanup/009-skill-frontmatter-alignment/011-mcp-chrome-devtools",
-    "system-spec-kit/027-xce-research-based-refinement/000-release-cleanup/009-skill-frontmatter-alignment/012-mcp-click-up",
-    "system-spec-kit/027-xce-research-based-refinement/000-release-cleanup/009-skill-frontmatter-alignment/013-mcp-code-mode",
-    "system-spec-kit/027-xce-research-based-refinement/000-release-cleanup/009-skill-frontmatter-alignment/014-sk-code",
-    "system-spec-kit/027-xce-research-based-refinement/000-release-cleanup/009-skill-frontmatter-alignment/015-sk-code-review",
-    "system-spec-kit/027-xce-research-based-refinement/000-release-cleanup/009-skill-frontmatter-alignment/016-sk-doc",
-    "system-spec-kit/027-xce-research-based-refinement/000-release-cleanup/009-skill-frontmatter-alignment/017-sk-git",
-    "system-spec-kit/027-xce-research-based-refinement/000-release-cleanup/009-skill-frontmatter-alignment/018-sk-prompt",
-    "system-spec-kit/027-xce-research-based-refinement/000-release-cleanup/009-skill-frontmatter-alignment/019-sk-prompt-models",
-    "system-spec-kit/027-xce-research-based-refinement/000-release-cleanup/009-skill-frontmatter-alignment/020-system-code-graph",
-    "system-spec-kit/027-xce-research-based-refinement/000-release-cleanup/009-skill-frontmatter-alignment/021-system-skill-advisor",
-    "system-spec-kit/027-xce-research-based-refinement/000-release-cleanup/009-skill-frontmatter-alignment/022-system-spec-kit",
     "system-speckit/027-xce-research-based-refinement/000-release-cleanup/009-skill-frontmatter-alignment/001-frontmatter-benefit-investigation",
     "system-speckit/027-xce-research-based-refinement/000-release-cleanup/009-skill-frontmatter-alignment/002-cli-claude-code",
     "system-speckit/027-xce-research-based-refinement/000-release-cleanup/009-skill-frontmatter-alignment/003-cli-codex",
@@ -46,8 +24,7 @@
     "system-speckit/027-xce-research-based-refinement/000-release-cleanup/009-skill-frontmatter-alignment/018-sk-prompt",
     "system-speckit/027-xce-research-based-refinement/000-release-cleanup/009-skill-frontmatter-alignment/019-sk-prompt-small-model",
     "system-speckit/027-xce-research-based-refinement/000-release-cleanup/009-skill-frontmatter-alignment/020-system-code-graph",
-    "system-speckit/027-xce-research-based-refinement/000-release-cleanup/009-skill-frontmatter-alignment/021-system-skill-advisor",
-    "system-speckit/027-xce-research-based-refinement/000-release-cleanup/009-skill-frontmatter-alignment/022-system-spec-kit"
+    "system-speckit/027-xce-research-based-refinement/000-release-cleanup/009-skill-frontmatter-alignment/021-system-spec-kit"
   ],
   "manual": {
     "depends_on": [],
@@ -78,20 +55,13 @@
     "importance_tier": "normal",
     "status": "complete",
     "key_files": [
-      "spec.md",
-      ".opencode/skills/sk-doc/assets/frontmatter_templates.md"
+      "spec.md"
     ],
     "entities": [
       {
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "frontmatter_templates.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-doc/assets/frontmatter_templates.md",
         "source": "derived"
       },
       {
@@ -133,15 +103,15 @@
     ],
     "causal_summary": "Skill reference and asset frontmatter has drifted into three incompatible practices: 103 of 369 docs under `.opencode/skills//references/` and `.opencode/skills//assets/` carry a detailed memory-style block (`triggerphrases`, `importancetier`, `contextType`), roughly 255 carry `title` + `description` only, and 11 carry no frontmatter at all",
     "created_at": "2026-06-11T05:47:09Z",
-    "last_save_at": "2026-07-02T05:31:13.459Z",
+    "last_save_at": "2026-07-07T11:55:37.872Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:1471222d2198fd3c651b4962baf8eb1006aee3493ebcc76a203ea1de4ea89162",
+    "source_fingerprint": "sha256:f4c41b14ba3b395b7ac9cb7c04556473e6af8504b0d82f3839057263124db6bf",
     "source_doc_hashes": {
-      "spec.md": "92d5081cca3cfcb02f1442032d8c6c756720ea3aeb4aafd4ef367a08d7468c1c"
+      "spec.md": "008abe7e84569bcda76153553ba5c8e2d643bd2eeea08fc69ad87f0852aeee5c"
     },
     "last_active_child_id": null,
     "last_active_at": null

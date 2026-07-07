@@ -1,0 +1,32 @@
+{
+  "level": "2",
+  "specFolder": "system-speckit/028-memory-search-intelligence/002-spec-data-quality/006-generated-metadata-build/033-identity-resolver-merge-safety",
+  "description": "The two generators that emit `description.json` and `graph-metadata.json` disagree on spec-folder identity and the graph merge path loses lineage",
+  "keywords": [
+    "two",
+    "generators",
+    "emit",
+    "description",
+    "json",
+    "graph-metadata",
+    "disagree",
+    "spec-folder",
+    "identity",
+    "graph",
+    "merge",
+    "path",
+    "loses",
+    "lineage"
+  ],
+  "lastUpdated": "2026-07-07T12:56:32.625Z",
+  "specId": "033",
+  "folderSlug": "identity-resolver-merge-safety",
+  "parentChain": [
+    "system-speckit",
+    "028-memory-search-intelligence",
+    "002-spec-data-quality",
+    "006-generated-metadata-build"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

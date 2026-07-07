@@ -1,0 +1,30 @@
+{
+  "level": "2",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/004-validate-recursive-orchestrator-fix",
+  "description": "In `validate.sh`, `runnodeorchestrator()` built the command with `--folder \"$FOLDERPATH\"`, ran the compiled orchestrator (`mcpserver/dist/lib/validati",
+  "keywords": [
+    "validate",
+    "runnodeorchestrator",
+    "built",
+    "command",
+    "folder",
+    "folderpath",
+    "ran",
+    "compiled",
+    "orchestrator",
+    "mcpserver",
+    "dist",
+    "lib",
+    "validati"
+  ],
+  "lastUpdated": "2026-06-23T03:49:53.801Z",
+  "specId": "004",
+  "folderSlug": "validate-recursive-orchestrator-fix",
+  "parentChain": [
+    "system-spec-kit",
+    "026-graph-and-context-optimization",
+    "002-spec-kit-internals"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

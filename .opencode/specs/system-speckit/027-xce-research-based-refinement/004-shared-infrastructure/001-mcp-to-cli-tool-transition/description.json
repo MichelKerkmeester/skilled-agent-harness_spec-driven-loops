@@ -21,8 +21,8 @@
     "003-skill-advisor-cli",
     "004-release-and-program-cleanup"
   ],
-  "specFolder": "system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure/001-mcp-to-cli-tool-transition",
-  "description": "The mk-spec-memory MCP server (37 tools) is the spec-kit's continuity backbone, but the MCP transport carries real operational costs: a mid-session tr",
+  "specFolder": "system-speckit/027-xce-research-based-refinement/004-shared-infrastructure/001-mcp-to-cli-tool-transition",
+  "description": "The mk-spec-memory MCP server (37 tools) is the spec-kit's continuity backbone, but the MCP transport carries real operational costs: a mid-session",
   "keywords": [
     "mk-spec-memory",
     "mcp",
@@ -38,11 +38,11 @@
     "costs",
     "mid-session"
   ],
-  "lastUpdated": "2026-06-23T03:49:57.532Z",
+  "lastUpdated": "2026-07-07T12:56:32.424Z",
   "specId": "001",
   "folderSlug": "mcp-to-cli-tool-transition",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "027-xce-research-based-refinement",
     "004-shared-infrastructure"
   ],

@@ -4,24 +4,10 @@
   "spec_folder": "system-speckit/027-xce-research-based-refinement/003-advisor-and-codegraph/002-xce-feature-adoption-advisor-codegraph",
   "parent_id": "system-speckit/027-xce-research-based-refinement/003-advisor-and-codegraph",
   "children_ids": [
-    "system-spec-kit/027-xce-research-based-refinement/003-advisor-and-codegraph/002-xce-feature-adoption-advisor-codegraph/001-advisor-observability",
-    "system-spec-kit/027-xce-research-based-refinement/003-advisor-and-codegraph/002-xce-feature-adoption-advisor-codegraph/002-advisor-provenance-guard",
-    "system-spec-kit/027-xce-research-based-refinement/003-advisor-and-codegraph/002-xce-feature-adoption-advisor-codegraph/003-advisor-packed-bm25-lexical",
-    "system-spec-kit/027-xce-research-based-refinement/003-advisor-and-codegraph/002-xce-feature-adoption-advisor-codegraph/004-advisor-bfs-consolidation",
-    "system-spec-kit/027-xce-research-based-refinement/003-advisor-and-codegraph/002-xce-feature-adoption-advisor-codegraph/005-advisor-feedback-calibration",
-    "system-spec-kit/027-xce-research-based-refinement/003-advisor-and-codegraph/002-xce-feature-adoption-advisor-codegraph/006-codegraph-tombstone-audit",
-    "system-spec-kit/027-xce-research-based-refinement/003-advisor-and-codegraph/002-xce-feature-adoption-advisor-codegraph/007-codegraph-bfs-consolidation",
-    "system-spec-kit/027-xce-research-based-refinement/003-advisor-and-codegraph/002-xce-feature-adoption-advisor-codegraph/008-codegraph-why-included",
-    "system-spec-kit/027-xce-research-based-refinement/003-advisor-and-codegraph/002-xce-feature-adoption-advisor-codegraph/009-codegraph-bm25-symbol-resolver",
-    "system-speckit/027-xce-research-based-refinement/003-advisor-and-codegraph/002-xce-feature-adoption-advisor-codegraph/001-advisor-observability",
-    "system-speckit/027-xce-research-based-refinement/003-advisor-and-codegraph/002-xce-feature-adoption-advisor-codegraph/002-advisor-provenance-guard",
-    "system-speckit/027-xce-research-based-refinement/003-advisor-and-codegraph/002-xce-feature-adoption-advisor-codegraph/003-advisor-packed-bm25-lexical",
-    "system-speckit/027-xce-research-based-refinement/003-advisor-and-codegraph/002-xce-feature-adoption-advisor-codegraph/004-advisor-bfs-consolidation",
-    "system-speckit/027-xce-research-based-refinement/003-advisor-and-codegraph/002-xce-feature-adoption-advisor-codegraph/005-advisor-feedback-calibration",
-    "system-speckit/027-xce-research-based-refinement/003-advisor-and-codegraph/002-xce-feature-adoption-advisor-codegraph/006-codegraph-tombstone-audit",
-    "system-speckit/027-xce-research-based-refinement/003-advisor-and-codegraph/002-xce-feature-adoption-advisor-codegraph/007-codegraph-bfs-consolidation",
-    "system-speckit/027-xce-research-based-refinement/003-advisor-and-codegraph/002-xce-feature-adoption-advisor-codegraph/008-codegraph-why-included",
-    "system-speckit/027-xce-research-based-refinement/003-advisor-and-codegraph/002-xce-feature-adoption-advisor-codegraph/009-codegraph-bm25-symbol-resolver"
+    "system-speckit/027-xce-research-based-refinement/003-advisor-and-codegraph/002-xce-feature-adoption-advisor-codegraph/001-codegraph-tombstone-audit",
+    "system-speckit/027-xce-research-based-refinement/003-advisor-and-codegraph/002-xce-feature-adoption-advisor-codegraph/002-codegraph-bfs-consolidation",
+    "system-speckit/027-xce-research-based-refinement/003-advisor-and-codegraph/002-xce-feature-adoption-advisor-codegraph/003-codegraph-why-included",
+    "system-speckit/027-xce-research-based-refinement/003-advisor-and-codegraph/002-xce-feature-adoption-advisor-codegraph/004-codegraph-bm25-symbol-resolver"
   ],
   "manual": {
     "depends_on": [],
@@ -100,15 +86,15 @@
     ],
     "causal_summary": "Spec-027 hardened the Spec Kit Memory system with retrieval observability, a provenance-overwrite guard, packed BM25/BM25F lexical search, shared app-level BFS traversal, shadow feedback reducers, and soft-delete tombstones",
     "created_at": "2026-06-10T19:24:08Z",
-    "last_save_at": "2026-07-02T05:31:13.770Z",
+    "last_save_at": "2026-07-07T11:55:39.800Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:0fc241807d84e86f8de6d5b4268d6c1b07d2c70cabed8f76d586a9ffc4599fb5",
+    "source_fingerprint": "sha256:a67cc82d6e934007ead52fa27a7c2f51417a8f709e44cf55efafcca7add47d3b",
     "source_doc_hashes": {
-      "spec.md": "8e9c15c07aaac8e2533e7fad300d8e96b78a0f090d6aacae027ac284dc3169bd"
+      "spec.md": "d39696871e3db73109a225ff550654a07affd8658327b66712be74ed7740c347"
     },
     "last_active_child_id": null,
     "last_active_at": null

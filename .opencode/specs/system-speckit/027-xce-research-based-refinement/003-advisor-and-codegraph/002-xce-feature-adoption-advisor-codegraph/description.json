@@ -1,7 +1,7 @@
 {
   "level": "phase",
-  "specFolder": "system-spec-kit/027-xce-research-based-refinement/003-advisor-and-codegraph/002-xce-feature-adoption-advisor-codegraph",
-  "description": "Spec-027 hardened the Spec Kit Memory system with retrieval observability, a provenance-overwrite guard, packed BM25/BM25F lexical search, shared app-",
+  "specFolder": "system-speckit/027-xce-research-based-refinement/003-advisor-and-codegraph/002-xce-feature-adoption-advisor-codegraph",
+  "description": "Spec-027 hardened the Spec Kit Memory system with retrieval observability, a provenance-overwrite guard, packed BM25/BM25F lexical search, shared",
   "keywords": [
     "spec-027",
     "hardened",
@@ -18,14 +18,13 @@
     "bm25f",
     "lexical",
     "search",
-    "shared",
-    "app"
+    "shared"
   ],
-  "lastUpdated": "2026-06-23T03:49:57.441Z",
+  "lastUpdated": "2026-07-07T12:56:32.401Z",
   "specId": "002",
   "folderSlug": "xce-feature-adoption-advisor-codegraph",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "027-xce-research-based-refinement",
     "003-advisor-and-codegraph"
   ],

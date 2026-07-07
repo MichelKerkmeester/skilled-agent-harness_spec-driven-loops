@@ -46,7 +46,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 007-cross-launcher-lease-propagation |
+| **Spec Folder** | 002-cross-launcher-lease-propagation |
 | **Completed** | 2026-05-18 |
 | **Level** | 2 |
 <!-- /ANCHOR:metadata -->

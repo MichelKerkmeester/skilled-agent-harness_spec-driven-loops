@@ -38,7 +38,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 009-p2-cleanup-from-review |
+| **Spec Folder** | 004-launcher-diagnostics-and-signal-coverage |
 | **Completed** | 2026-05-18 |
 | **Level** | 2 |
 <!-- /ANCHOR:metadata -->

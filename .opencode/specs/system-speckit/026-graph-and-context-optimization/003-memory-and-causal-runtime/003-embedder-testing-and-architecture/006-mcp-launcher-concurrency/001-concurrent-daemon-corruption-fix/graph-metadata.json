@@ -39,7 +39,7 @@
       "files"
     ],
     "importance_tier": "normal",
-    "status": "complete",
+    "status": "in_progress",
     "key_files": [
       ".opencode/skills/system-skill-advisor/mcp_server/lib/daemon/lease.ts",
       ".opencode/skills/system-skill-advisor/mcp_server/lib/daemon/lifecycle.ts",
@@ -202,7 +202,7 @@
     ],
     "causal_summary": "Between 2026-05-17 16:42 UTC and 22:51 UTC (~6 hours), the skill-advisor's `mcpserver/database/` accumulated 1005 `skill-graph.sqlite.<ms-timestamp>.corrupt` quarantine files — a rate of ~167/hour",
     "created_at": "2026-05-18T04:46:08Z",
-    "last_save_at": "2026-07-02T05:31:12.065Z",
+    "last_save_at": "2026-07-07T12:30:10.026Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -212,13 +212,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:ade976da07013ecfce22e753c999f1b773df8d962bb9ac30ce472d7f6ec4867e",
+    "source_fingerprint": "sha256:c3e7e58ae897d058d81b6c76751a07252e6e721d0b20783051df2d7f8ce8a080",
     "source_doc_hashes": {
       "spec.md": "f4088b5301b36b44f6a67894646a3c04cab151a41c8591e2595c023a859c6ce8",
       "plan.md": "99488cbeadfbba259849d1f5b7d25321637e2dbd64d9ae89bfe923f69f754da2",
       "tasks.md": "156ab9dcf41a640d3f252d1d3944d0a365c0b9c3ac803bd5817a9e5f72a75371",
       "checklist.md": "7271090618e6bc1de6b16a638d1c95d0ebc3ce2ae9f03ad82bea2fbebbd51a62",
-      "implementation-summary.md": "ffd45ee6faac38983586cf2a25dd814a02b6e75ad3c919b0319880cca7ead863"
+      "implementation-summary.md": "16c6efabb8c84d7095a05f2703042964d69db7b2bd955a4e35b70e35f6efd773"
     },
     "last_active_child_id": null,
     "last_active_at": null

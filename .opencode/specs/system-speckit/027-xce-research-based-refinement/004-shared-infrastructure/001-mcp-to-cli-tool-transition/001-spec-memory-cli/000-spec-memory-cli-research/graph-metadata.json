@@ -203,7 +203,7 @@
     ],
     "causal_summary": "The mk-spec-memory MCP server (37 tools) is the spec-kit's continuity backbone, but the MCP transport carries real operational costs: a mid-session disconnect on 2026-06-06 permanently removed 45 tools from a live session because Claude Code never reconnects MCP transports, every session pays tool-schema token overhead, and each runtime needs separate MCP registration",
     "created_at": "2026-06-06T08:46:15.481Z",
-    "last_save_at": "2026-07-02T05:31:13.828Z",
+    "last_save_at": "2026-07-07T11:58:30.816Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -213,12 +213,12 @@
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:65f95ff4f77b8b126399533cd0df066d04af01987077e55db9cb0e983f83d29c",
+    "source_fingerprint": "sha256:42f2201817cc7893a54e8c84b2fa42a9d3efea78c07bbf85e84ba0dfb0bb7bf2",
     "source_doc_hashes": {
       "spec.md": "5a8ff4297925b2d454c340f94de9096c67b637d49d890ac8cd55898b77c5fcab",
       "plan.md": "0a8e656777d3f20b610d8b59676003250c7814376d6ec42dde6d354ec416ea3b",
       "tasks.md": "0687a925646663a2e85f0bd192a3af9b50b4c0ac362460776ab9abc526e474ce",
-      "implementation-summary.md": "11b3ab9c2ba5bf04cc0dd6ac6d70b92051d218fa18e7025c791ffc13ce794519",
+      "implementation-summary.md": "4e3a9dc899c392cb530068e286cd4431e1d21e024ac415384f1c41b426327de6",
       "research/research.md": "01f07f3034cde3bebc65bfb88a4edfe7bb824e0b0a1720928f87a631cbda912c"
     },
     "last_active_child_id": null,

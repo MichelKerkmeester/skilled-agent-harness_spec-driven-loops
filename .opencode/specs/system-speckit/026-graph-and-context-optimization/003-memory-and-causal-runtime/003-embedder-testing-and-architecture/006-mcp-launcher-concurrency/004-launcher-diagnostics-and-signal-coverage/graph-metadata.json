@@ -204,7 +204,7 @@
     ],
     "causal_summary": "The 3-reviewer audit of packets 006+007 surfaced 14 P2 findings — none blockers, each a hardening opportunity",
     "created_at": "2026-05-18T06:42:51Z",
-    "last_save_at": "2026-07-02T05:31:12.078Z",
+    "last_save_at": "2026-07-07T12:30:10.462Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -214,13 +214,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:8152f509b7290432196048bca1e060772a07ad743be1d0571ff6da55ea6c3230",
+    "source_fingerprint": "sha256:ee7118a8e3d5f652260559dc4ede26f1984bf06e96e77c813191213404a838da",
     "source_doc_hashes": {
       "spec.md": "d233bd402d7d91a60b9e2fc8699aa6424f4978b77dcb627b12e753782579bcc9",
       "plan.md": "2bad1b76da82d3b499161ea9a8302680afd68495cf51c180d3617bec2dcb32e7",
       "tasks.md": "c4df80c4ddaf43789565ff44fa6cc1d678edbc3492008a7b1928960627edcaf3",
       "checklist.md": "f3eb76629ba0e8472d669fc1f5afb063c04ab2803b533de3a707cd3294af5640",
-      "implementation-summary.md": "4e9bacb326acf9ecd7889b778ea30c270b9ffc6b66ba0d3d1e0931f3efe99159"
+      "implementation-summary.md": "38321f425ab73dfc58eb2ac5f2738933577b1e8554fb1e51922004fb55e84324"
     },
     "last_active_child_id": null,
     "last_active_at": null

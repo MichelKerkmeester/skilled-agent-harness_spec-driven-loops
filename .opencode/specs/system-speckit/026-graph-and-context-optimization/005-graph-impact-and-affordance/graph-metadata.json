@@ -4,18 +4,11 @@
   "spec_folder": "system-speckit/026-graph-and-context-optimization/005-graph-impact-and-affordance",
   "parent_id": "system-speckit/026-graph-and-context-optimization",
   "children_ids": [
-    "system-spec-kit/026-graph-and-context-optimization/005-graph-impact-and-affordance/001-code-graph-phase-runner",
-    "system-spec-kit/026-graph-and-context-optimization/005-graph-impact-and-affordance/002-edge-explanation-impact-uplift",
-    "system-spec-kit/026-graph-and-context-optimization/005-graph-impact-and-affordance/003-skill-advisor-affordance-evidence",
-    "system-spec-kit/026-graph-and-context-optimization/005-graph-impact-and-affordance/004-memory-causal-trust-display",
-    "system-spec-kit/026-graph-and-context-optimization/005-graph-impact-and-affordance/005-deep-review-findings",
-    "system-spec-kit/026-graph-and-context-optimization/005-graph-impact-and-affordance/006-deep-research-review",
     "system-speckit/026-graph-and-context-optimization/005-graph-impact-and-affordance/001-code-graph-phase-runner",
     "system-speckit/026-graph-and-context-optimization/005-graph-impact-and-affordance/002-edge-explanation-impact-uplift",
-    "system-speckit/026-graph-and-context-optimization/005-graph-impact-and-affordance/003-skill-advisor-affordance-evidence",
-    "system-speckit/026-graph-and-context-optimization/005-graph-impact-and-affordance/004-memory-causal-trust-display",
-    "system-speckit/026-graph-and-context-optimization/005-graph-impact-and-affordance/005-deep-review-findings",
-    "system-speckit/026-graph-and-context-optimization/005-graph-impact-and-affordance/006-deep-research-review"
+    "system-speckit/026-graph-and-context-optimization/005-graph-impact-and-affordance/003-memory-causal-trust-display",
+    "system-speckit/026-graph-and-context-optimization/005-graph-impact-and-affordance/004-deep-review-findings",
+    "system-speckit/026-graph-and-context-optimization/005-graph-impact-and-affordance/005-deep-research-review"
   ],
   "manual": {
     "depends_on": [],

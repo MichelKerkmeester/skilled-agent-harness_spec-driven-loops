@@ -1,0 +1,33 @@
+{
+  "level": "2",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/003-literal-spec-folder-names",
+  "description": "AI-derived spec-folder and phase slugs frequently default to generic placeholders that do not describe the concrete work being shipped",
+  "keywords": [
+    "ai-derived",
+    "spec-folder",
+    "phase",
+    "slugs",
+    "frequently",
+    "default",
+    "generic",
+    "placeholders",
+    "describe",
+    "concrete",
+    "work",
+    "shipped"
+  ],
+  "lastUpdated": "2026-06-23T03:49:53.795Z",
+  "specId": "003",
+  "folderSlug": "literal-spec-folder-names",
+  "parentChain": [
+    "system-spec-kit",
+    "026-graph-and-context-optimization",
+    "002-spec-kit-internals"
+  ],
+  "memorySequence": 3,
+  "memoryNameHistory": [
+    "19-05-26_13-49__with-swe-1.md",
+    "19-05-26_18-34__test-session-for-m-003-scenario-validation-this.md",
+    "19-05-26_18-43__test-memory-save-via-generate-context-js-script.md"
+  ]
+}

@@ -233,14 +233,14 @@ otherwise evict a higher-scored lexical hit from the truncated top-3.
 
 ## 005 data-quality flag benchmarks: phase 040 graduation verdicts
 
-The `003-spec-data-quality` build landed thirteen real switches, unlike the still-PROPOSED Track-C slate above.
+The `002-spec-data-quality` build landed thirteen real switches, unlike the still-PROPOSED Track-C slate above.
 Phase 039 restamped the tree and phase 040 ran the graduation benchmark, so every switch now carries a measured
 verdict rather than a pending read. The benchmark harness toggled each flag in isolation against the phase 039
 migrated tree, reusing the phase 036 integrity validator through the migrate driver verify pass for the
 migration-gated flags and the phase 025 false-confirm driver plus the envelope-fidelity replay checker for the
 behavioral flags. The false-confirm baseline reproduced the documented 0.833 rate exactly, which confirms the
 driver is wired to the live verdict path. The full numbers live in
-[`003-spec-data-quality/006-generated-metadata-build/040-flag-graduation-benchmark/benchmark-results.md`](./003-spec-data-quality/006-generated-metadata-build/040-flag-graduation-benchmark/benchmark-results.md).
+[`002-spec-data-quality/006-generated-metadata-build/040-flag-graduation-benchmark/benchmark-results.md`](./002-spec-data-quality/006-generated-metadata-build/040-flag-graduation-benchmark/benchmark-results.md).
 
 **Final verdict tally: twelve of thirteen kept, one deleted.** Eleven graduated on a measured before-and-after, one stays default-ON by construction, and grounding-signal was deleted as purely informational. A migration re-run then wrote the drift-gate and generator-hardening fields and a fixture re-benchmark measured the verdict and render flags, so the two pending-re-run rows and three of the four neutral rows below have since graduated, recorded in place.
 

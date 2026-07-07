@@ -38,7 +38,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 019-sk-prompt-models |
+| **Spec Folder** | 019-sk-prompt-small-model |
 | **Completed** | 2026-06-11 |
 | **Level** | 1 |
 <!-- /ANCHOR:metadata -->

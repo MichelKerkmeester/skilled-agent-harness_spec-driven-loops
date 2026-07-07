@@ -44,7 +44,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 006-concurrent-daemon-corruption-fix |
+| **Spec Folder** | 001-concurrent-daemon-corruption-fix |
 | **Completed** | 2026-05-18 |
 | **Level** | 2 |
 <!-- /ANCHOR:metadata -->

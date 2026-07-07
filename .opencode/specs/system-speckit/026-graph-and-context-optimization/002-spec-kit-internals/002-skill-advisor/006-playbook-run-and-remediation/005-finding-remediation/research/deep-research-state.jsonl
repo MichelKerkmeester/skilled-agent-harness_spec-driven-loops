@@ -1,9 +1,0 @@
-{"type":"config","topic":"Investigate and remediate the 5 key findings from the system-skill-advisor playbook run (028): corpus accuracy regression, PC-005 bench, semantic_shadow lane drift, OpenCode plugin bridge native-route fail-open, stale vitest path in NC-004/005.","maxIterations":10,"convergenceThreshold":0.05,"resource_map_present":true,"resource_map":{"emit":true},"createdAt":"2026-05-26T20:24:43.421Z","specFolder":".opencode/specs/system-spec-kit/028-skill-advisor-playbook-run/005-finding-remediation"}
-{"type":"event","event":"session_start","mode":"research","sessionId":"b83e1f02-7c08-4c57-bb89-261c0c12e2bc","lineageMode":"new","generation":1,"executor":{"type":"cli-codex","model":"gpt-5.5","reasoningEffort":"high","serviceTier":"fast"},"timestamp":"2026-05-26T20:24:43.421Z"}
-{"type":"iteration","iteration":1,"newInfoRatio":0.88,"status":"insight","focus":"F1 corpus accuracy regression","graphEvents":[]}
-{"type":"event","event":"reducer_skipped","reason":"strategy anchor key-questions not recognized by reduce-state.cjs; loop driven by pre-staged plan + delta files","timestamp":"2026-05-26T20:32:26.367Z"}
-{"type":"iteration","iteration":2,"newInfoRatio":0.82,"status":"evidence","focus":"F2 PC-005 bench","graphEvents":[]}
-{"type":"iteration","iteration":3,"newInfoRatio":0.74,"status":"insight","focus":"F3 semantic_shadow lane weight","graphEvents":[]}
-{"type":"iteration","iteration":4,"newInfoRatio":0.78,"status":"insight","focus":"F4 opencode bridge native route","graphEvents":[]}
-{"type":"iteration","iteration":5,"newInfoRatio":0.62,"status":"insight","focus":"F5 stale vitest path + doc audit","graphEvents":[]}
-{"type":"event","event":"synthesis_complete","totalIterations":5,"answeredCount":5,"totalQuestions":5,"stopReason":"all_questions_answered","timestamp":"2026-05-26T21:07:24.244Z"}

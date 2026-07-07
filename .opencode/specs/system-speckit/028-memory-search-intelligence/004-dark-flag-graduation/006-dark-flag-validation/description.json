@@ -1,0 +1,33 @@
+{
+  "level": "2",
+  "specFolder": "system-speckit/028-memory-search-intelligence/004-dark-flag-graduation/006-dark-flag-validation",
+  "description": "The 007 Dark Flag Graduation Suite returned GRADUATE verdicts for 4 clusters (9 flags) across multihop tail-appends, code-graph staleness repair and",
+  "keywords": [
+    "007",
+    "dark",
+    "flag",
+    "graduation",
+    "suite",
+    "returned",
+    "graduate",
+    "verdicts",
+    "clusters",
+    "flags",
+    "across",
+    "multihop",
+    "tail-appends",
+    "code-graph",
+    "staleness",
+    "repair"
+  ],
+  "lastUpdated": "2026-07-07T12:56:32.784Z",
+  "specId": "006",
+  "folderSlug": "dark-flag-validation",
+  "parentChain": [
+    "system-speckit",
+    "028-memory-search-intelligence",
+    "004-dark-flag-graduation"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

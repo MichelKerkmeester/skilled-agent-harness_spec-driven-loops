@@ -28,7 +28,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 003-hook-parity-remediation |
+| **Spec Folder** | 001-fix-runtime-hook-parity-findings |
 | **Completed** | 2026-04-21 |
 | **Level** | 3 |
 | **Status** | Complete |

@@ -204,7 +204,7 @@
     ],
     "causal_summary": "The mkcodeindex MCP server (8 tools) is the structural-code-search backbone, but its only client surface is the MCP protocol layer: a mid-session transport disconnect removes the tools until restart (Code Graph showed \"unavailable\" at this session's own startup), every session pays schema token overhead, and hooks/cron/CI have no sanctioned shell path",
     "created_at": "2026-06-06T13:40:00Z",
-    "last_save_at": "2026-07-02T05:31:13.851Z",
+    "last_save_at": "2026-07-07T11:58:30.259Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -214,12 +214,12 @@
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:9fc3450272ffc98c695efbdf2b4ee8c9f57f4cef906b1fc258661a6ce7fa9d61",
+    "source_fingerprint": "sha256:ce35b0cbc81f66a8c5c68f43d88ba5a4ea8070f4149442561738beec94e827c1",
     "source_doc_hashes": {
       "spec.md": "6fdb08f0986863f8f82b170ad9df6d21f1abf9dd073a6d56954192ef2fe65066",
       "plan.md": "0ae32772b574a94121dbb59d69ae22727972f1d19b09b18360afd1734504c570",
       "tasks.md": "09fa41f9814132782e7e471dbc73791070e7845b02f4827c5745397b2a448b15",
-      "implementation-summary.md": "0eb94d0c6a8ceee490ad6bf328ae4d51fb6c642456ebfeeb5a0fe9ecc8fc5ddc",
+      "implementation-summary.md": "ba04a79b7a1a8fd311edf2b522571f16db7ce6992206a727f4a16981a04c9185",
       "research/research.md": "78d0fec212e1b1e2f6fb3675258d4130a436a8bc59ba557738f7f19bfb8b386d"
     },
     "last_active_child_id": null,

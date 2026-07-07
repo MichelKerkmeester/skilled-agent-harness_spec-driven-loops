@@ -4,18 +4,11 @@
   "spec_folder": "system-speckit/026-graph-and-context-optimization/002-spec-kit-internals",
   "parent_id": "system-speckit/026-graph-and-context-optimization",
   "children_ids": [
-    "system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/001-resource-map-deep-loop-fix",
-    "system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor",
-    "system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/003-template-levels",
-    "system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/004-literal-spec-folder-names",
-    "system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/005-validate-recursive-orchestrator-fix",
-    "system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/006-orchestrator-placeholder-parity",
     "system-speckit/026-graph-and-context-optimization/002-spec-kit-internals/001-resource-map-deep-loop-fix",
-    "system-speckit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor",
-    "system-speckit/026-graph-and-context-optimization/002-spec-kit-internals/003-template-levels",
-    "system-speckit/026-graph-and-context-optimization/002-spec-kit-internals/004-literal-spec-folder-names",
-    "system-speckit/026-graph-and-context-optimization/002-spec-kit-internals/005-validate-recursive-orchestrator-fix",
-    "system-speckit/026-graph-and-context-optimization/002-spec-kit-internals/006-orchestrator-placeholder-parity"
+    "system-speckit/026-graph-and-context-optimization/002-spec-kit-internals/002-template-levels",
+    "system-speckit/026-graph-and-context-optimization/002-spec-kit-internals/003-literal-spec-folder-names",
+    "system-speckit/026-graph-and-context-optimization/002-spec-kit-internals/004-validate-recursive-orchestrator-fix",
+    "system-speckit/026-graph-and-context-optimization/002-spec-kit-internals/005-orchestrator-placeholder-parity"
   ],
   "manual": {
     "depends_on": [],
@@ -93,15 +86,15 @@
     ],
     "causal_summary": "Improve internal spec-kit and skill-system mechanics: the resource-map and deep-loop artifact plumbing, the skill-advisor system, the spec-folder template system, and spec-folder naming policy",
     "created_at": "2026-05-26T16:35:26.421Z",
-    "last_save_at": "2026-07-02T05:31:11.049Z",
+    "last_save_at": "2026-07-07T11:26:12.831Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:4130bec7189d376b6aa6204d9d44a006600a0c85c5c6acd854afed0ae251b867",
+    "source_fingerprint": "sha256:86cae26d649ea096c7e8ec148ea46f457d52811c7e9f6bfb8f5a148f4218c3d8",
     "source_doc_hashes": {
-      "spec.md": "9556aa29912a32d81cc73e96ab3c1fd197abc600bdd7c2127753bc1d4790b57f"
+      "spec.md": "a180a22b71bee5f753ee717a5e5f30fcec4d18f4f855d0d583836106317caff1"
     },
     "last_active_child_id": null,
     "last_active_at": null

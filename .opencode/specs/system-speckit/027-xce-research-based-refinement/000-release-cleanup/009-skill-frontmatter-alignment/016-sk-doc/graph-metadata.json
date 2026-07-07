@@ -41,40 +41,12 @@
     "importance_tier": "normal",
     "status": "complete",
     "key_files": [
-      ".opencode/skills/sk-doc/assets/frontmatter_templates.md",
-      ".opencode/skills/sk-doc/assets/skill/skill_reference_template.md",
-      ".opencode/skills/sk-doc/assets/skill/skill_asset_template.md",
-      ".opencode/skills/sk-doc/assets/feature_catalog/feature_catalog_snippet_template.md",
       "spec.md",
       "plan.md",
       "implementation-summary.md",
       "tasks.md"
     ],
     "entities": [
-      {
-        "name": "frontmatter_templates.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-doc/assets/frontmatter_templates.md",
-        "source": "derived"
-      },
-      {
-        "name": "skill_reference_template.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-doc/assets/skill/skill_reference_template.md",
-        "source": "derived"
-      },
-      {
-        "name": "skill_asset_template.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-doc/assets/skill/skill_asset_template.md",
-        "source": "derived"
-      },
-      {
-        "name": "feature_catalog_snippet_template.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-doc/assets/feature_catalog/feature_catalog_snippet_template.md",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -194,11 +166,29 @@
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built All",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Files Changed",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "sk-doc reference/asset frontmatter is inconsistent with the repo-wide contract: 2 of 14 references and 7 of 25 assets carry the detailed memory-style block (triggerphrases, importancetier, contextType), while the rest carry title+description only",
     "created_at": "2026-06-11T05:47:34Z",
-    "last_save_at": "2026-07-02T05:31:13.515Z",
+    "last_save_at": "2026-07-07T11:55:41.531Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

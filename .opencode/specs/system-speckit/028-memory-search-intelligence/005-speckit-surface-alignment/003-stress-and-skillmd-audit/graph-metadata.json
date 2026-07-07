@@ -1,0 +1,221 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/028-memory-search-intelligence/005-speckit-surface-alignment/003-stress-and-skillmd-audit",
+  "spec_folder": "system-speckit/028-memory-search-intelligence/005-speckit-surface-alignment/003-stress-and-skillmd-audit",
+  "parent_id": "system-speckit/028-memory-search-intelligence/005-speckit-surface-alignment",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "stress and skillmd audit",
+      "stress-test lane audit",
+      "system-spec-kit SKILL.md audit",
+      "changelog alignment audit",
+      "stress audit plan",
+      "SKILL.md changelog audit plan",
+      "stress-test documentation audit plan",
+      "stress audit tasks",
+      "SKILL.md changelog audit tasks",
+      "stress and skillmd audit checklist",
+      "stress-test documentation audit verification",
+      "stress audit summary"
+    ],
+    "key_topics": [
+      "stress",
+      "skillmd",
+      "audit",
+      "stress-test",
+      "lane",
+      "system-spec-kit",
+      "skill",
+      "changelog",
+      "alignment",
+      "plan",
+      "documentation",
+      "tasks"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      ".opencode/specs/system-speckit/028-memory-search-intelligence/005-speckit-surface-alignment/003-stress-and-skillmd-audit/review-report.md",
+      ".opencode/specs/system-speckit/028-memory-search-intelligence/005-speckit-surface-alignment/003-stress-and-skillmd-audit/spec.md",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "checklist.md"
+    ],
+    "entities": [
+      {
+        "name": "review-report.md",
+        "kind": "doc",
+        "path": ".opencode/specs/system-speckit/028-memory-search-intelligence/005-speckit-surface-alignment/003-stress-and-skillmd-audit/review-report.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": ".opencode/specs/system-speckit/028-memory-search-intelligence/005-speckit-surface-alignment/003-stress-and-skillmd-audit/spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Documentation Audit",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Deliver",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Split",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The 008 parent identified a second audit gap around the system-spec-kit stress-test lane, `SKILL.md`, and changelog coverage",
+    "created_at": "2026-07-05T13:17:56.780Z",
+    "last_save_at": "2026-07-06T18:49:55.192Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:6e81bd817c6c855bbca770d1e06e4969ff9e045600cc248730d2121f17c59935",
+    "source_doc_hashes": {
+      "spec.md": "10297cde877cd78e8940d3be2e74331eca77ac6ce51b06a5a788d8ed861d95ac",
+      "plan.md": "1c8db7a0d226968055f8ec49f9f64cc09210cfd3804da53596b8d392a9585f3a",
+      "tasks.md": "76dabe6dded5fdc6d253506348d8ca2f32ef83517637642666a0a84862b753db",
+      "checklist.md": "20c08cb97301c31ef3b0db5882bce7ac9d54195f0e41d80eb4ed621f7c280e9b",
+      "implementation-summary.md": "ec7d229f1d1334b8e2aa832fbe391937c21203a71880a0d55d01ccc23c1ef19e"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

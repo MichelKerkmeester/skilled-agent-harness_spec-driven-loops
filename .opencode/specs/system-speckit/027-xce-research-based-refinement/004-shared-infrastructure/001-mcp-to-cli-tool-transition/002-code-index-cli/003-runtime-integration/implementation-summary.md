@@ -34,7 +34,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 028-mcp-to-cli-tool-transition/002-code-index-cli/003-runtime-integration |
+| **Spec Folder** | 003-runtime-integration |
 | **Completed** | Shipped; observation window in progress |
 | **Level** | 1 |
 <!-- /ANCHOR:metadata -->

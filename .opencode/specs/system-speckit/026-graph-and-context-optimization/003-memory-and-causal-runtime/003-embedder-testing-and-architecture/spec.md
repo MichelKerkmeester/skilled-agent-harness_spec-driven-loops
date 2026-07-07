@@ -73,7 +73,6 @@ This parent is a control file for nine direct child arcs plus `research/`; detai
 |---|---|---|
 | `001-local-embeddings-foundation/` | Local embeddings foundation, Ollama cascade, local-LLM follow-ons | In Progress |
 | `002-spec-memory-stack/` | mk-spec-memory adapter/cascade/default stack | In Progress |
-| `003-skill-advisor-stack/` | skill-advisor pluggable registry and deferred default alignment | In Progress |
 | `004-code-index-stack/` | CocoIndex CodeRankEmbed, hybrid search, query expansion, rerank stack | In Progress |
 | `005-cross-cutting-quality/` | cross-stack QA, docs, benchmark format, install hygiene | In Progress |
 | `006-mcp-launcher-concurrency/` | launcher lease/concurrency hardening and 013 follow-up | In Progress |
@@ -81,6 +80,8 @@ This parent is a control file for nine direct child arcs plus `research/`; detai
 | `008-rerank-sidecar-arc/` | shared rerank sidecar and Qwen/CocoIndex rerank work | In Progress |
 | `009-memory-leak-remediation/` | dedicated memory/process lifecycle remediation, with former follow-ons folded in as phases 011-013 | Completed |
 | `010-system-spec-kit-mcp-sidecar-investigation/` | system-spec-kit MCP sidecar drift, dead-code, security, simplification, and refinement investigation | Planned |
+
+`003-skill-advisor-stack/` moved to `system-skill-advisor/007-skill-advisor-embedder-stack/` on 2026-07-07; the `003` slot is intentionally left open (not renumbered) since closing it would require rewriting path references across 90+ nested descendant folders under 004-009, matching the same left-open-gap precedent already documented at `006-mcp-launcher-concurrency`.
 <!-- /ANCHOR:sub-phase-list -->
 
 ---

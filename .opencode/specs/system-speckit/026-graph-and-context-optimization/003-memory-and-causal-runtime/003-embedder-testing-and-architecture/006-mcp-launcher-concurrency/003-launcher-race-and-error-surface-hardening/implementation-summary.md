@@ -48,7 +48,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 008-lease-hardening-from-review |
+| **Spec Folder** | 003-launcher-race-and-error-surface-hardening |
 | **Completed** | 2026-05-18 |
 | **Level** | 2 |
 <!-- /ANCHOR:metadata -->

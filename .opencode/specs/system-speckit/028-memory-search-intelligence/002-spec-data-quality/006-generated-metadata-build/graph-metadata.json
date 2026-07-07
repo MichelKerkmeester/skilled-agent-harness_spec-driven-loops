@@ -1,0 +1,110 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/028-memory-search-intelligence/002-spec-data-quality/006-generated-metadata-build",
+  "spec_folder": "system-speckit/028-memory-search-intelligence/002-spec-data-quality/006-generated-metadata-build",
+  "parent_id": "system-speckit/028-memory-search-intelligence/002-spec-data-quality",
+  "children_ids": [
+    "system-speckit/028-memory-search-intelligence/002-spec-data-quality/006-generated-metadata-build/033-identity-resolver-merge-safety",
+    "system-speckit/028-memory-search-intelligence/002-spec-data-quality/006-generated-metadata-build/034-scoped-backfill-boundary",
+    "system-speckit/028-memory-search-intelligence/002-spec-data-quality/006-generated-metadata-build/035-idempotent-writes-cache-upsert",
+    "system-speckit/028-memory-search-intelligence/002-spec-data-quality/006-generated-metadata-build/036-metadata-validator-status-enum",
+    "system-speckit/028-memory-search-intelligence/002-spec-data-quality/006-generated-metadata-build/037-drift-gate-synopsis-extractor",
+    "system-speckit/028-memory-search-intelligence/002-spec-data-quality/006-generated-metadata-build/038-generator-hardening",
+    "system-speckit/028-memory-search-intelligence/002-spec-data-quality/006-generated-metadata-build/039-full-repo-json-migration",
+    "system-speckit/028-memory-search-intelligence/002-spec-data-quality/006-generated-metadata-build/040-flag-graduation-benchmark",
+    "system-speckit/028-memory-search-intelligence/002-spec-data-quality/006-generated-metadata-build/041-search-quality-fixes",
+    "system-speckit/028-memory-search-intelligence/002-spec-data-quality/006-generated-metadata-build/042-deterministic-ranking-benchmark",
+    "system-speckit/028-memory-search-intelligence/002-spec-data-quality/006-generated-metadata-build/043-gap-threshold-calibration-benchmark",
+    "system-speckit/028-memory-search-intelligence/002-spec-data-quality/006-generated-metadata-build/044-relevance-aware-evidence-gap"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "generated metadata build",
+      "spec data quality generated-metadata build",
+      "generated-metadata build phase parent"
+    ],
+    "key_topics": [
+      "generated",
+      "metadata",
+      "build",
+      "spec",
+      "data",
+      "quality",
+      "generated-metadata",
+      "phase",
+      "parent",
+      "subgroup",
+      "spec-data-quality",
+      "track"
+    ],
+    "importance_tier": "normal",
+    "status": "planned",
+    "key_files": [
+      "spec.md",
+      "033-identity-resolver-merge-safety/spec.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Metadata Build Phase Parent",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Metadata Build",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Generated Metadata Build Groups",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Identity Resolver Merge Safety",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scoped Backfill Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Generated-Metadata Build subgroup of the spec-data-quality track: the generated-metadata build, full-repo migration, flag-graduation benchmark and search-quality/evidence-gap wave.",
+    "created_at": "2026-06-27T17:26:05.303Z",
+    "last_save_at": "2026-07-06T18:49:59.317Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "source_fingerprint": "sha256:9adac718069bb5fe7c641999287d3fd3378e87a56ad2c36a70edd7621c15432a",
+    "source_doc_hashes": {
+      "spec.md": "6fa72ddfa8b2805967e9b12a18219fd2b08cae61ea98059406e036acd2a5f1d1"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

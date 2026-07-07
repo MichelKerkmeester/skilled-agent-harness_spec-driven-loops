@@ -1,0 +1,238 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/026-graph-and-context-optimization/002-spec-kit-internals/002-template-levels/003-manifest-template-implementation-plan",
+  "spec_folder": "system-speckit/026-graph-and-context-optimization/002-spec-kit-internals/002-template-levels/003-manifest-template-implementation-plan",
+  "parent_id": "system-speckit/026-graph-and-context-optimization/002-spec-kit-internals/002-template-levels",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "template greenfield impl",
+      "manifest-driven implementation",
+      "level-contract resolver",
+      "kill level dirs",
+      "012 plan",
+      "template impl phases",
+      "manifest impl plan",
+      "012 tasks",
+      "template impl tasks",
+      "012 checklist",
+      "template impl checklist",
+      "012 ADR"
+    ],
+    "key_topics": [
+      "template",
+      "greenfield",
+      "impl",
+      "manifest-driven",
+      "implementation",
+      "level-contract",
+      "resolver",
+      "kill",
+      "level",
+      "dirs",
+      "012",
+      "plan"
+    ],
+    "importance_tier": "high",
+    "status": "in_progress",
+    "key_files": [
+      "checklist.md",
+      "resource-map.md",
+      "decision-record.md",
+      "plan.md",
+      "templates/manifest/spec-kit-docs.json",
+      "mcp_server/lib/validation/spec-doc-structure.ts",
+      "tasks.md",
+      "mcp_server/lib/templates/level-contract-resolver.ts",
+      "scripts/tests/workflow-invariance.vitest.ts",
+      "scripts/templates/inline-gate-renderer.ts",
+      "scripts/templates/inline-gate-renderer.sh",
+      ".opencode/skills/system-spec-kit/SKILL.md",
+      "templates/manifest/README.md",
+      "scripts/tests/level-contract-resolver.vitest.ts",
+      "scripts/tests/inline-gate-renderer.vitest.ts",
+      "scripts/tests/scaffold-golden-snapshots.vitest.ts",
+      "scripts/spec/create.sh",
+      "scripts/spec/scaffold-debug-delegation.sh",
+      "templates/manifest/debug-delegation.md.tmpl",
+      "scripts/spec/recommend-level.sh"
+    ],
+    "entities": [
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "resource-map.md",
+        "kind": "doc",
+        "path": "resource-map.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec-kit-docs.json",
+        "kind": "config",
+        "path": "templates/manifest/spec-kit-docs.json",
+        "source": "derived"
+      },
+      {
+        "name": "spec-doc-structure.ts",
+        "kind": "code",
+        "path": "mcp_server/lib/validation/spec-doc-structure.ts",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "level-contract-resolver.ts",
+        "kind": "code",
+        "path": "mcp_server/lib/templates/level-contract-resolver.ts",
+        "source": "derived"
+      },
+      {
+        "name": "workflow-invariance.vitest.ts",
+        "kind": "test",
+        "path": "scripts/tests/workflow-invariance.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "inline-gate-renderer.ts",
+        "kind": "code",
+        "path": "scripts/templates/inline-gate-renderer.ts",
+        "source": "derived"
+      },
+      {
+        "name": "inline-gate-renderer.sh",
+        "kind": "script",
+        "path": "scripts/templates/inline-gate-renderer.sh",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": "templates/manifest/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "level-contract-resolver.vitest.ts",
+        "kind": "test",
+        "path": "scripts/tests/level-contract-resolver.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "inline-gate-renderer.vitest.ts",
+        "kind": "test",
+        "path": "scripts/tests/inline-gate-renderer.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "scaffold-golden-snapshots.vitest.ts",
+        "kind": "test",
+        "path": "scripts/tests/scaffold-golden-snapshots.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "create.sh",
+        "kind": "script",
+        "path": "scripts/spec/create.sh",
+        "source": "derived"
+      },
+      {
+        "name": "scaffold-debug-delegation.sh",
+        "kind": "script",
+        "path": "scripts/spec/scaffold-debug-delegation.sh",
+        "source": "derived"
+      },
+      {
+        "name": "debug-delegation.md.tmpl",
+        "kind": "file",
+        "path": "templates/manifest/debug-delegation.md.tmpl",
+        "source": "derived"
+      },
+      {
+        "name": "recommend-level.sh",
+        "kind": "script",
+        "path": "scripts/spec/recommend-level.sh",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Template Greenfield Implementation",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Hybrid Manifest",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Begin Phase",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Today's spec-kit template system has 86 files / ~13K LOC split across `core/`, `addendum/{level2-verify, level3-arch, level3-plus-govern, phase}/`, four materialized `levelN/` outputs, `phaseparent/`, plus a build-time composer (`compose.sh`) and an anchor wrapper (`wrap-all-templates.ts`)",
+    "created_at": "2026-05-01T12:37:22Z",
+    "last_save_at": "2026-07-02T05:31:11.406Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      "resource-map.md"
+    ],
+    "source_fingerprint": "sha256:3580179726443cd8f8ba7a772e0e9be3abb48f49cfd06b4d6ee478875374709b",
+    "source_doc_hashes": {
+      "spec.md": "d4ca5c12c60b2acfeb1329f480b21085c5c014dc4283fbfd74a2af71096a2d2e",
+      "plan.md": "45a15e46e04a0ed8af70984db7b8fe41b5082e8c8e27dcfb80417e665a95bdcf",
+      "tasks.md": "d0f53852015a99852a5a58f7d4f72e5ab1e095bfc16c78ab44edb32ce733943f",
+      "checklist.md": "5045d78b4ae04b47a92ef0a14beb8b9509acd8b2e1f6e051e11315502b0fba1d",
+      "decision-record.md": "457e43720222b0f921606a7863c8fde06fdc3ea33094175d86018387fc77edbb",
+      "implementation-summary.md": "b14eb4b91220e13f8b10f5be0d52720d737b873d041b70aac3a8543351fe8913",
+      "resource-map.md": "97cabaeb020c69d9dac3b5a758ece59f914ed03e6ad0faa831ba76dd6b600e6d"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

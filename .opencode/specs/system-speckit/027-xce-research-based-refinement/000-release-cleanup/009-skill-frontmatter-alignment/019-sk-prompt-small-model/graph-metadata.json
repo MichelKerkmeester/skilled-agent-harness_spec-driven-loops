@@ -196,7 +196,7 @@
     ],
     "causal_summary": "sk-prompt-models reference/asset frontmatter is inconsistent with the repo-wide contract: 0 of 12 references and 0 of 2 assets carry the detailed memory-style block (triggerphrases, importancetier, contextType), while the rest carry title+description only",
     "created_at": "2026-06-11T05:47:37Z",
-    "last_save_at": "2026-07-02T05:31:13.525Z",
+    "last_save_at": "2026-07-07T11:58:31.504Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,12 +205,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:5406c1a105aabf1493c27e42741aa92c22c750709797c8e97cf71277a744b14c",
+    "source_fingerprint": "sha256:03e2bc372817b76301fcbbfe43582c78aceed114b962396fd8d277f554dd5ee0",
     "source_doc_hashes": {
       "spec.md": "41708efb653f6e0f1b0e4bc577dc1798c28f351272355509b188e112e34298b1",
       "plan.md": "e84f447f73e7461180a72cb932a56a4054a29869c14cd85d0d8f6628129b350b",
       "tasks.md": "8ac6675040b1703f5ab49316a363edff48508cf5158d1ed2eb3d7b157f594c06",
-      "implementation-summary.md": "05f849df72217b6818d1b55b447af28cffc952390b0b8f3ed1a2a4c148351578"
+      "implementation-summary.md": "01f285e50f538e621dea4891e52ae5fe126ffd68e3772978b4639465052e5331"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -5,23 +5,6 @@ trigger_phrases:
   - "playbook sweep findings remediation checklist"
 importance_tier: "important"
 contextType: "implementation"
-_memory:
-  continuity:
-    packet_pointer: "system-speckit/028-memory-search-intelligence/000-release-cleanup/015-manual-playbook-execution-sweep/001-findings-remediation"
-    last_updated_at: "2026-07-06T19:16:27.470Z"
-    last_updated_by: "claude-opus-4-8"
-    recent_action: "Recorded planning-phase verification items"
-    next_safe_action: "Verify all items once Phase 2 fixes land"
-    blockers: []
-    key_files:
-      - "checklist.md"
-    session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "2026-07-06-checklist-001-findings-remediation"
-      parent_session_id: null
-    completion_pct: 98
-    open_questions: []
-    answered_questions: []
 ---
 # Verification Checklist: Manual Playbook Sweep Findings Remediation
 
@@ -76,17 +59,6 @@ _memory:
 - [ ] CHK-023 [P1] No regressions introduced by any fix — deferred to Phase 2
 
 <!-- /ANCHOR:testing -->
----
-
-<!-- ANCHOR:fix-completeness -->
-## Fix Completeness
-
-- [ ] CHK-060 [P0] Every confirmed FAIL finding has a corresponding fix task in tasks.md — deferred to Phase 2
-- [ ] CHK-061 [P0] Each proposed fix's root cause is re-verified against real code before it lands — deferred to Phase 2
-- [ ] CHK-062 [P1] Already-correct and doc-only findings are labelled distinctly from real code fixes — deferred to Phase 2
-- [ ] CHK-063 [P1] Blocked or thin-evidence findings are dispositioned, not silently dropped — deferred to Phase 2
-
-<!-- /ANCHOR:fix-completeness -->
 ---
 
 <!-- ANCHOR:security -->

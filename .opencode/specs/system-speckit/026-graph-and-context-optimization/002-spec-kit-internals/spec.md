@@ -73,7 +73,7 @@ Own navigation, the child-phase map, and aggregate status for this theme. Each c
 
 | File Path | Change Type | Phase | Description |
 |-----------|-------------|-------|-------------|
-| `001-resource-map-deep-loop-fix/` … `004-literal-spec-folder-names/` | Modify | children | Per-child work lives in the child phase folders |
+| `001-resource-map-deep-loop-fix/` … `005-orchestrator-placeholder-parity/` | Modify | children | Per-child work lives in the child phase folders |
 | `spec.md`, `graph-metadata.json`, `description.json` | Modify | this | Theme navigation and metadata |
 <!-- /ANCHOR:scope -->
 
@@ -87,9 +87,12 @@ Own navigation, the child-phase map, and aggregate status for this theme. Each c
 | Phase | Folder | Focus | Status |
 |-------|--------|-------|--------|
 | 001 | `001-resource-map-deep-loop-fix/` | resource-map.md template and deep-loop artifact placement and auto-emit | complete |
-| 002 | `002-skill-advisor/` | Skill-advisor system: graph, scoring engine, routing engine, hardening, docs, playbook-run + remediation | in progress |
-| 003 | `003-template-levels/` | Manifest-driven spec template system (research, design, implementation) | in progress (85%) |
-| 004 | `004-literal-spec-folder-names/` | Concrete-token spec-folder and phase naming policy | deferred |
+| 002 | `002-template-levels/` | Manifest-driven spec template system (research, design, implementation) | in progress (85%) |
+| 003 | `003-literal-spec-folder-names/` | Concrete-token spec-folder and phase naming policy | deferred |
+| 004 | `004-validate-recursive-orchestrator-fix/` | validate.sh --recursive orchestrator fix | see child for status |
+| 005 | `005-orchestrator-placeholder-parity/` | Orchestrator placeholder parity | see child for status |
+
+The skill-advisor system (formerly this hub's phase 002) moved to its own dedicated track, `system-skill-advisor/`, on 2026-07-07.
 
 ### Phase Transition Rules
 
@@ -103,7 +106,7 @@ Own navigation, the child-phase map, and aggregate status for this theme. Each c
 
 | From | To | Criteria | Verification |
 |------|-----|----------|--------------|
-| `001-resource-map-deep-loop-fix` | `004-literal-spec-folder-names` | Earlier children stable before later children build on them | Each child validates independently |
+| `001-resource-map-deep-loop-fix` | `005-orchestrator-placeholder-parity` | Earlier children stable before later children build on them | Each child validates independently |
 <!-- /ANCHOR:phase-map -->
 
 ---

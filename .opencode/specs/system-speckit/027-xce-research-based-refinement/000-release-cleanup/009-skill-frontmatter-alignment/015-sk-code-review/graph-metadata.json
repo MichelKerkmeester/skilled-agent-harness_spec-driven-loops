@@ -41,40 +41,12 @@
     "importance_tier": "normal",
     "status": "complete",
     "key_files": [
-      ".opencode/skills/sk-code-review/references/pr_state_dedup.md",
-      ".opencode/skills/sk-code-review/references/quick_reference.md",
-      ".opencode/skills/sk-code-review/references/review_core.md",
-      ".opencode/skills/sk-code-review/references/review_ux_single_pass.md",
       "spec.md",
       "plan.md",
       "implementation-summary.md",
       "tasks.md"
     ],
     "entities": [
-      {
-        "name": "pr_state_dedup.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-code-review/references/pr_state_dedup.md",
-        "source": "derived"
-      },
-      {
-        "name": "quick_reference.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-code-review/references/quick_reference.md",
-        "source": "derived"
-      },
-      {
-        "name": "review_core.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-code-review/references/review_core.md",
-        "source": "derived"
-      },
-      {
-        "name": "review_ux_single_pass.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-code-review/references/review_ux_single_pass.md",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -194,11 +166,35 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Files Changed",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "sk-code-review reference/asset frontmatter is inconsistent with the repo-wide contract: 0 of 10 references and 0 of 0 assets carry the detailed memory-style block (triggerphrases, importancetier, contextType), while the rest carry title+description only",
     "created_at": "2026-06-11T05:47:33Z",
-    "last_save_at": "2026-07-02T05:31:13.512Z",
+    "last_save_at": "2026-07-07T11:55:42.501Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

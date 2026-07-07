@@ -38,7 +38,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 028-mcp-to-cli-tool-transition/001-spec-memory-cli/000-spec-memory-cli-research |
+| **Spec Folder** | 000-spec-memory-cli-research |
 | **Completed** | 2026-06-06 |
 | **Level** | 1 |
 <!-- /ANCHOR:metadata -->

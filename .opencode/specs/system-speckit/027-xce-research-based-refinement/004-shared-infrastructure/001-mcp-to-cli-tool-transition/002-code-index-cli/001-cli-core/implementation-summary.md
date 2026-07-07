@@ -34,7 +34,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 028-mcp-to-cli-tool-transition/002-code-index-cli/001-cli-core |
+| **Spec Folder** | 001-cli-core |
 | **Completed** | 2026-06-09 - shipped |
 | **Level** | 1 |
 <!-- /ANCHOR:metadata -->

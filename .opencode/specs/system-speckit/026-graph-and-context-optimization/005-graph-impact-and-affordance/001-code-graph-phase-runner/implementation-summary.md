@@ -33,7 +33,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/010-graph-impact-and-affordance-uplift/002-code-graph-phase-runner-and-detect-changes/` |
+| **Spec Folder** | 001-code-graph-phase-runner |
 | **Completed** | 2026-04-25 |
 | **Level** | 2 |
 | **Status** | Complete |

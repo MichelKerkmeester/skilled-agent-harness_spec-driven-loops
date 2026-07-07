@@ -4,16 +4,10 @@
   "spec_folder": "system-speckit/026-graph-and-context-optimization/006-operator-tooling/001-hook-parity",
   "parent_id": "system-speckit/026-graph-and-context-optimization/006-operator-tooling",
   "children_ids": [
-    "system-spec-kit/026-graph-and-context-optimization/006-operator-tooling/001-hook-parity/001-fix-runtime-hook-parity-findings",
-    "system-spec-kit/026-graph-and-context-optimization/006-operator-tooling/001-hook-parity/002-copilot-custom-instructions-hook-parity",
-    "system-spec-kit/026-graph-and-context-optimization/006-operator-tooling/001-hook-parity/003-codex-native-startup-advisor-hooks",
-    "system-spec-kit/026-graph-and-context-optimization/006-operator-tooling/001-hook-parity/004-fix-claude-freshness-schema-harness",
-    "system-spec-kit/026-graph-and-context-optimization/006-operator-tooling/001-hook-parity/005-fix-opencode-plugin-loader-bridge",
     "system-speckit/026-graph-and-context-optimization/006-operator-tooling/001-hook-parity/001-fix-runtime-hook-parity-findings",
     "system-speckit/026-graph-and-context-optimization/006-operator-tooling/001-hook-parity/002-copilot-custom-instructions-hook-parity",
-    "system-speckit/026-graph-and-context-optimization/006-operator-tooling/001-hook-parity/003-codex-native-startup-advisor-hooks",
-    "system-speckit/026-graph-and-context-optimization/006-operator-tooling/001-hook-parity/004-fix-claude-freshness-schema-harness",
-    "system-speckit/026-graph-and-context-optimization/006-operator-tooling/001-hook-parity/005-fix-opencode-plugin-loader-bridge"
+    "system-speckit/026-graph-and-context-optimization/006-operator-tooling/001-hook-parity/003-fix-claude-freshness-schema-harness",
+    "system-speckit/026-graph-and-context-optimization/006-operator-tooling/001-hook-parity/004-fix-opencode-plugin-loader-bridge"
   ],
   "migrated": true,
   "migration_source": "legacy",
@@ -55,7 +49,6 @@
     "status": "in_progress",
     "key_files": [
       "spec.md",
-      ".codex/config.toml",
       ".claude/settings.local.json",
       ".github/hooks/superset-notify.json",
       ".opencode/skills/system-spec-kit/references/config/hook_system.md",
@@ -68,12 +61,6 @@
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "config.toml",
-        "kind": "file",
-        "path": ".codex/config.toml",
         "source": "derived"
       },
       {
@@ -207,11 +194,17 @@
         "kind": "heading",
         "path": "resource-map.md",
         "source": "derived"
+      },
+      {
+        "name": "2. Documents",
+        "kind": "heading",
+        "path": "resource-map.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Runtime hook coverage drifted across Claude, Codex, Copilot, and the OpenCode plugin loader",
     "created_at": "2026-04-21T13:00:00Z",
-    "last_save_at": "2026-07-02T05:31:12.742Z",
+    "last_save_at": "2026-07-07T12:26:24.837Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
