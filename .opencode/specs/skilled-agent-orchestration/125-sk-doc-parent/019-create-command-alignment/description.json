@@ -1,22 +1,21 @@
 {
-  "level": 2,
   "specFolder": "skilled-agent-orchestration/125-sk-doc-parent/019-create-command-alignment",
-  "description": "Two gaps in the sk-doc `/create:` command surface: (1) three packets (`create-command`, `create-benchmark`, `create-flowchart`) had no bound command —",
+  "description": "Add 3 /create commands and rename 4 to /create:<packet>, wiring every live surface and the skill-advisor ids test-neutrally.",
   "keywords": [
-    "two",
-    "gaps",
-    "sk-doc",
+    "add",
     "create",
-    "command",
+    "commands",
+    "rename",
+    "packet",
+    "wiring",
+    "every",
+    "live",
     "surface",
-    "three",
-    "packets",
-    "create-command",
-    "create-benchmark",
-    "create-flowchart",
-    "bound"
+    "skill-advisor",
+    "ids",
+    "test-neutrally"
   ],
-  "lastUpdated": "2026-07-07T12:56:31.809Z",
+  "lastUpdated": "2026-07-07T12:40:29.038Z",
   "specId": "019",
   "folderSlug": "create-command-alignment",
   "parentChain": [
@@ -24,5 +23,6 @@
     "125-sk-doc-parent"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": []
+  "memoryNameHistory": [],
+  "level": 2
 }
