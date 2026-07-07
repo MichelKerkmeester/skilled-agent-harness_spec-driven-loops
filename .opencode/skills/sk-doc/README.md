@@ -110,7 +110,7 @@ Enforcement is type-aware so a SKILL.md cannot ship with a missing frontmatter, 
 
 Reach for sk-doc when you create or edit a markdown document, when you scaffold a skill, agent or command and when you need a quality gate before publishing. Use it when you build an install guide, a feature catalog, a testing playbook, a flowchart or a changelog. Use it too when a document's DQI score drops and you need to know what to fix and why.
 
-You reach it through seven `/create:*` commands: `/create:agent`, `/create:sk-skill`, `/create:sk-skill-parent`, `/create:feature-catalog`, `/create:testing-playbook`, `/create:folder_readme` and `/create:changelog`. The `@markdown` agent handles template-first documentation authoring for these and other markdown targets.
+You reach it through ten `/create:*` commands: `/create:agent`, `/create:skill`, `/create:skill-parent`, `/create:command`, `/create:feature-catalog`, `/create:manual-testing-playbook`, `/create:benchmark`, `/create:flowchart`, `/create:readme` and `/create:changelog`. The `@markdown` agent handles template-first documentation authoring for these and other markdown targets.
 
 Skip sk-doc for code changes (route to `sk-code`), for spec-folder lifecycle operations (route to `system-spec-kit`) and for git workflow orchestration (route to `sk-git`).
 
@@ -151,7 +151,7 @@ A: A feature catalog documents current behavior. It inventories what a skill or 
 
 **Q: Which /create:* command do I use?**
 
-A: `/create:sk-skill` for a new skill under `.opencode/skills/`. `/create:sk-skill-parent` for a parent skill with nested mode packets. `/create:agent` for an agent under `.opencode/agents/`. `/create:feature-catalog` for a rooted feature inventory. `/create:testing-playbook` for a manual testing package. `/create:folder_readme` for a directory-level README. `/create:changelog` for a versioned changelog entry.
+A: `/create:skill` for a new skill under `.opencode/skills/`. `/create:skill-parent` for a parent skill with nested mode packets. `/create:agent` for an agent under `.opencode/agents/`. `/create:command` for an OpenCode slash command set. `/create:feature-catalog` for a rooted feature inventory. `/create:manual-testing-playbook` for a manual testing package. `/create:benchmark` for a curated MCP benchmark folder. `/create:flowchart` for a validated ASCII flowchart. `/create:readme` for a directory-level README. `/create:changelog` for a versioned changelog entry.
 
 ---
 

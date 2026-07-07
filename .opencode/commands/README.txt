@@ -41,7 +41,7 @@ Commands are organized into five groups plus root-level utilities:
 
 | Group | Path | Commands | Purpose |
 |-------|------|----------|---------|
-| **create** | `commands/create/` | 7 | Scaffold OpenCode components, documentation packages, and changelogs |
+| **create** | `commands/create/` | 10 | Scaffold OpenCode components, documentation packages, and changelogs |
 | **deep** | `commands/deep/` | 8 | Deep research, review, context, AI council, improvement and benchmark loops |
 | **doctor** | `commands/doctor/` | 3 | MCP, Spec Kit, update, and subsystem diagnostics |
 | **memory** | `commands/memory/` | 4 | Memory system operations (search, save, learn, manage with shared lifecycle) |
@@ -76,11 +76,14 @@ command/
 │   ├── agent.md              # Create new agent
 │   ├── changelog.md          # Create changelog entry
 │   ├── feature-catalog.md    # Create or update feature catalog package
-│   ├── folder_readme.md      # Create folder README
-│   ├── sk-skill.md           # Create or update skill package/files
-│   ├── sk-skill-parent.md    # Scaffold a parent skill with nested mode packets
-│   ├── testing-playbook.md   # Create or update manual testing playbook package
-│   └── assets/               # YAML workflow definitions (12 files)
+│   ├── readme.md      # Create folder README
+│   ├── skill.md           # Create or update skill package/files
+│   ├── skill-parent.md    # Scaffold a parent skill with nested mode packets
+│   ├── manual-testing-playbook.md   # Create or update manual testing playbook package
+│   ├── command.md            # Create or update OpenCode slash command set
+│   ├── benchmark.md          # Promote a curated MCP benchmark folder
+│   ├── flowchart.md          # Create a validated ASCII flowchart
+│   └── assets/               # YAML workflow definitions (20 files)
 ├── deep/                     # Deep-loop commands
 │   ├── agent-improvement.md  # Evaluator-first agent improvement loop
 │   ├── ai-council.md         # Multi-seat AI council planning
@@ -127,10 +130,13 @@ Scaffold OpenCode components using the `sk-doc` skill. Each command supports `:a
 | Agent | `/create:agent <name>` | Create agent with frontmatter, tool permissions, behavioral rules |
 | Changelog | `/create:changelog <spec-folder-or-component>` | Create a changelog entry from recent work |
 | Feature Catalog | `/create:feature-catalog <skill> [create\|update]` | Create or update a rooted `feature_catalog/` package |
-| Folder README | `/create:folder_readme [readme\|install] <target>` | Unified README and install guide workflow |
-| Parent Skill | `/create:sk-skill-parent <skill-name> [create\|update] [--modes <m1,m2,...>]` | Scaffold a parent skill with nested mode packets (one hub identity, registry source of truth) |
-| Skill | `/create:sk-skill <name> <operation> [type]` | Unified skill create/update/reference/asset workflow |
-| Testing Playbook | `/create:testing-playbook <skill> [create\|update]` | Create or update a rooted `manual_testing_playbook/` package |
+| Folder README | `/create:readme [readme\|install] <target>` | Unified README and install guide workflow |
+| Parent Skill | `/create:skill-parent <skill-name> [create\|update] [--modes <m1,m2,...>]` | Scaffold a parent skill with nested mode packets (one hub identity, registry source of truth) |
+| Skill | `/create:skill <name> <operation> [type]` | Unified skill create/update/reference/asset workflow |
+| Testing Playbook | `/create:manual-testing-playbook <skill> [create\|update]` | Create or update a rooted `manual_testing_playbook/` package |
+| Command | `/create:command <command_invocation> [command_request]` | Create or update an OpenCode slash command set |
+| Benchmark | `/create:benchmark <skill> <spec-packet> [create\|update]` | Promote a curated MCP benchmark folder and report into a skill |
+| Flowchart | `/create:flowchart <target-flowchart.md> [source/process description]` | Create a validated ASCII flowchart markdown file |
 
 ### Doctor Commands
 
@@ -210,8 +216,8 @@ Structured workflows for the spec folder development lifecycle.
 
 ```
 /create:feature-catalog system-spec-kit create :confirm
-/create:testing-playbook system-spec-kit update :auto
-/create:sk-skill my-new-skill full-create :auto
+/create:manual-testing-playbook system-spec-kit update :auto
+/create:skill my-new-skill full-create :auto
 /deep:agent-improvement .opencode/agents/review.md :confirm
 /prompt $improve "Build a clearer CLI handoff prompt" :auto
 /memory:save specs/007-feature
