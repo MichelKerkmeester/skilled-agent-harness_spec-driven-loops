@@ -1,0 +1,31 @@
+{
+  "type": "deep-review-findings-registry",
+  "version": 1,
+  "run": "create-benchmark-deep-review-auto",
+  "target": ".opencode/skills/sk-doc/create-benchmark/",
+  "note": "Reducer synthesis was not emitted by the LEAF; this registry was reconciled by hand from the four iteration records (P0=0, P1=1, P2=1 carried from iteration 001) and each finding confirmed against the cited file:line before resolution.",
+  "findings": [
+    {
+      "id": "P1-001",
+      "severity": "P1",
+      "dimension": "traceability",
+      "title": "Reference overflow taught report structure that contradicts the authoritative SKILL/template contract",
+      "file": ".opencode/skills/sk-doc/create-benchmark/references/worked_example.md:45",
+      "evidence": "worked_example.md:45 taught '## 1. HEADLINE' while SKILL.md:155 and benchmark_report_template.md:37 define Section 1 as 'HEADLINE / OVERVIEW'; worked_example.md:94 and benchmark_report_template.md:22 both cited 'ANCHOR pairs' the template contains zero of.",
+      "resolution": "Aligned worked_example.md:45 to 'HEADLINE / OVERVIEW'; removed the phantom anchor-pair claims from worked_example.md:94 and benchmark_report_template.md:22 (the template validates 0-blocking without anchor pairs and uses numbered ALL-CAPS H2 structure). Both docs re-validated 0-blocking.",
+      "disposition": "resolved"
+    },
+    {
+      "id": "P2-001",
+      "severity": "P2",
+      "dimension": "maintainability",
+      "title": "Template-local markdown links do not resolve at the checked source-asset location",
+      "file": ".opencode/skills/sk-doc/create-benchmark/assets/benchmark/benchmark_report_template.md:322",
+      "evidence": "The report template's RELATED RESOURCES table links (./SOURCE.md, ./results.csv, ../README.md, etc.) resolve only after the template is copied into mcp_server/benchmarks/benchmark-<YYYY-MM-DD>/; a source-location link check flags them as missing.",
+      "resolution": "Added an author-guidance note in the section's HTML comment clarifying the relative links intentionally resolve only after the report lives in its benchmark folder, not from the template source. Links kept clickable so the instantiated report works.",
+      "disposition": "resolved"
+    }
+  ],
+  "counts": { "P0": 0, "P1": 1, "P2": 1 },
+  "resolvedCounts": { "P0": 0, "P1": 1, "P2": 1 }
+}

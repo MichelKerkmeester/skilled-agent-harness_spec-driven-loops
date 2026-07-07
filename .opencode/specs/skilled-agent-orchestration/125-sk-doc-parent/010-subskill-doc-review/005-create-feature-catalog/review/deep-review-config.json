@@ -1,0 +1,15 @@
+{
+  "run": 1,
+  "sessionId": "deep-review-2026-07-07-create-feature-catalog",
+  "target": ".opencode/skills/sk-doc/create-feature-catalog",
+  "reviewTargetType": "skill",
+  "dimensions": ["traceability", "maintainability", "correctness", "security"],
+  "maxIterations": 4,
+  "convergenceThreshold": 0.1,
+  "stopPolicy": "max-iterations",
+  "lineageMode": "restart",
+  "mode": "review",
+  "target_agent": "deep-review",
+  "resolved_route": "/deep:review:auto",
+  "agent_definition_loaded": true
+}

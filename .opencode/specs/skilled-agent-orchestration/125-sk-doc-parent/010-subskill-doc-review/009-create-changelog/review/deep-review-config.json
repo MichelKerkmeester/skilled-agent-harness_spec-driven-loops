@@ -1,0 +1,27 @@
+{
+  "target_agent": "deep-review",
+  "mode": "review",
+  "agent_definition_loaded": true,
+  "resolved_route": {
+    "invocation": "/deep:review:auto",
+    "target": ".opencode/skills/sk-doc/create-changelog/",
+    "targetType": "skill",
+    "specFolder": ".opencode/specs/skilled-agent-orchestration/125-sk-doc-parent/010-subskill-doc-review/009-create-changelog",
+    "reviewPacketRoot": ".opencode/specs/skilled-agent-orchestration/125-sk-doc-parent/010-subskill-doc-review/009-create-changelog/review",
+    "executionMode": "AUTONOMOUS",
+    "lineageMode": "auto",
+    "executor": "native"
+  },
+  "maxIterations": 4,
+  "stopPolicy": "max-iterations",
+  "convergenceThreshold": 0.1,
+  "dimensions": ["correctness", "security", "traceability", "maintainability"],
+  "acceptanceCriteria": [
+    "SKILL.md primary workflow contract is self-sufficient",
+    "references are dissected overflow and non-duplicative",
+    "relative paths resolve",
+    "tool, flag, command, and section claims are real",
+    "docs validate 0-blocking under sk-doc validators",
+    "references do not contradict shared changelog template"
+  ]
+}

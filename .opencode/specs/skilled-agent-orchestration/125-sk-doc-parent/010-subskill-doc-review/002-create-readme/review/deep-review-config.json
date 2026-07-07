@@ -1,0 +1,22 @@
+{
+  "review_target": ".opencode/skills/sk-doc/create-readme/",
+  "review_target_type": "skill",
+  "review_dimensions": ["correctness", "security", "traceability", "maintainability"],
+  "spec_folder": ".opencode/specs/skilled-agent-orchestration/125-sk-doc-parent/010-subskill-doc-review/002-create-readme",
+  "artifact_dir": ".opencode/specs/skilled-agent-orchestration/125-sk-doc-parent/010-subskill-doc-review/002-create-readme/review",
+  "execution_mode": "AUTONOMOUS",
+  "lineage_mode": "auto",
+  "maxIterations": 4,
+  "convergenceThreshold": 0.10,
+  "stop_policy": "max-iterations",
+  "executor": "native",
+  "resource_map_emit": true,
+  "first_run_initialization_authorized": true,
+  "route_proof_required": true,
+  "resolved_route": {
+    "target_agent": "deep-review",
+    "target": ".opencode/skills/sk-doc/create-readme/",
+    "mode": "review",
+    "artifact_dir": ".opencode/specs/skilled-agent-orchestration/125-sk-doc-parent/010-subskill-doc-review/002-create-readme/review"
+  }
+}

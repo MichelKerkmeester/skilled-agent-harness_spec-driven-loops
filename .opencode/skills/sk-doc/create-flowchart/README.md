@@ -55,16 +55,13 @@ For shared markdown standards and the document-level validator, this packet reus
 
 ## 4. QUICK START
 
-1. Read the target document before editing, or confirm the new output path before writing.
-2. Choose the closest pattern from `assets/flowcharts/`.
-3. Draft the flowchart using real source content, labeled branches, clear terminal states, and readable plain-text connectors.
-4. Validate the result:
+`SKILL.md` holds the authoritative numbered authoring workflow — read it first. In brief: pick the closest pattern from `assets/flowcharts/`, draft with real source content and labeled branches, then run the packet-local validator before delivery:
 
 ```bash
 bash scripts/validate_flowchart.sh <target-flowchart.md>
 ```
 
-5. Fix validator errors before delivery. Treat warnings as readability issues and address them when practical.
+Fix validator errors before delivery; treat warnings as readability issues. Use `SKILL.md` for the full step-by-step workflow and `references/README.md` for overflow depth.
 
 Example request:
 

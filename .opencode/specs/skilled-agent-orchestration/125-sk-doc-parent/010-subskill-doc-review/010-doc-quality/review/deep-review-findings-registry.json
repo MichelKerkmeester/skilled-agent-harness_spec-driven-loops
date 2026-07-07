@@ -1,0 +1,6 @@
+{
+  "type": "deep-review-findings-registry",
+  "version": 1,
+  "target": ".opencode/skills/sk-doc/doc-quality/",
+  "findings": []
+}

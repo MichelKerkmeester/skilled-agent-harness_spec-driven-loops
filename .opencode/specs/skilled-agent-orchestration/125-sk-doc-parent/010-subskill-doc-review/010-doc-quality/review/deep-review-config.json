@@ -1,0 +1,20 @@
+{
+  "type": "deep-review-config",
+  "version": 1,
+  "target": ".opencode/skills/sk-doc/doc-quality/",
+  "targetType": "skill",
+  "specFolder": ".opencode/specs/skilled-agent-orchestration/125-sk-doc-parent/010-subskill-doc-review/010-doc-quality",
+  "artifactDir": ".opencode/specs/skilled-agent-orchestration/125-sk-doc-parent/010-subskill-doc-review/010-doc-quality/review/",
+  "executionMode": "AUTONOMOUS",
+  "lineageMode": "restart",
+  "maxIterations": 4,
+  "convergenceThreshold": 0.1,
+  "stopPolicy": "max-iterations",
+  "dimensions": ["correctness", "traceability", "maintainability", "security"],
+  "routeProof": {
+    "target_agent": "deep-review",
+    "resolved_route": "/deep:review:auto -> .opencode/agents/deep-review.md",
+    "agent_definition_loaded": true,
+    "mode": "review"
+  }
+}

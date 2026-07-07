@@ -1,0 +1,19 @@
+{
+  "command": "/deep:review:auto",
+  "executionMode": "AUTONOMOUS",
+  "target_agent": "deep-review",
+  "mode": "review",
+  "reviewTarget": ".opencode/skills/sk-doc/create-manual-testing-playbook/",
+  "reviewTargetType": "skill",
+  "dimensions": ["correctness", "security", "traceability", "maintainability"],
+  "specFolder": ".opencode/specs/skilled-agent-orchestration/125-sk-doc-parent/010-subskill-doc-review/006-create-manual-testing-playbook",
+  "artifactRoot": "review/",
+  "maxIterations": 4,
+  "stopPolicy": "max-iterations",
+  "convergenceThreshold": 0.10,
+  "lineageMode": "auto",
+  "executor": "native",
+  "sessionId": "deep-review-create-manual-testing-playbook-2026-07-07",
+  "generation": 1,
+  "releaseReadinessState": "reviewing"
+}

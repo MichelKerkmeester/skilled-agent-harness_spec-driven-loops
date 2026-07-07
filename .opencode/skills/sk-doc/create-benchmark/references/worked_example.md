@@ -42,7 +42,7 @@ contextType: "reference"
 
 ---
 
-## 1. HEADLINE
+## 1. HEADLINE / OVERVIEW
 
 `<winner>` + <pipeline-config> wins by <primary-metric> and <secondary-metric>.
 
@@ -91,4 +91,4 @@ Retrieval pipeline = <pipeline-description>. Toggle via `<config-flag>=true|fals
 
 ## 3. SECTIONS 4 TO 10
 
-Subsequent sections follow the same pattern: H2 numbered headers, ALL CAPS section names, ANCHOR comment pairs, tables for data, code blocks for verbatim commands. Each section gets its own slug; keep slugs stable across revisions so deep links keep working. See [`../assets/benchmark/benchmark_report_template.md`](../assets/benchmark/benchmark_report_template.md) for all ten sections rendered with fill-in placeholders.
+Subsequent sections follow the same pattern: H2 numbered headers, ALL CAPS section names, tables for data, code blocks for verbatim commands. Each section gets its own slug; keep slugs stable across revisions so deep links keep working. See [`../assets/benchmark/benchmark_report_template.md`](../assets/benchmark/benchmark_report_template.md) for all ten sections rendered with fill-in placeholders.

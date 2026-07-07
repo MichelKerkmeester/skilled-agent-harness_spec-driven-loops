@@ -1,0 +1,8 @@
+{
+  "version": 1,
+  "target": ".opencode/skills/sk-doc/create-readme/",
+  "findings": [],
+  "counts": { "P0": 0, "P1": 0, "P2": 0 },
+  "initializedBy": "deep-review",
+  "initializedAt": "2026-07-07T04:07:30.000Z"
+}

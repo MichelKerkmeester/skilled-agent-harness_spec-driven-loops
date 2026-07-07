@@ -1,0 +1,17 @@
+{
+  "schemaVersion": 1,
+  "target": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/sk-doc/create-command",
+  "reviewTargetType": "skill",
+  "dimensions": ["traceability", "maintainability", "correctness", "security"],
+  "maxIterations": 4,
+  "convergenceThreshold": 0.1,
+  "stopPolicy": "max-iterations",
+  "executionMode": "AUTONOMOUS",
+  "lineageMode": "auto",
+  "mode": "review",
+  "target_agent": "deep-review",
+  "resolved_route": "/deep:review:auto -> .opencode/agents/deep-review.md",
+  "agent_definition_loaded": true,
+  "resourceMapEmit": true,
+  "validationPlan": "python3 .opencode/skills/sk-doc/shared/scripts/validate_document.py <file> --type skill|readme|reference"
+}

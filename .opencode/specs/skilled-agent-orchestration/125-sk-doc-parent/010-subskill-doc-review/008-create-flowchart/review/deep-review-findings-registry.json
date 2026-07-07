@@ -1,0 +1,44 @@
+{
+  "type": "deep-review-findings-registry",
+  "version": 1,
+  "run": "create-flowchart-deep-review-auto",
+  "target": ".opencode/skills/sk-doc/create-flowchart/",
+  "note": "Reducer synthesis was not emitted by the LEAF; this registry was reconciled by hand from the four iteration records (P0=0, P1=1, P2=2) and each finding confirmed against the cited file:line before resolution. A repo-wide scan (190 box-containing files, 0 relying on '└─' alone) proved the detector fix regression-free.",
+  "findings": [
+    {
+      "id": "P1-001",
+      "severity": "P1",
+      "dimension": "traceability",
+      "title": "Connector validator counted '└─' box borders as connectors, so disconnected box diagrams passed the gate the contract promised",
+      "file": ".opencode/skills/sk-doc/create-flowchart/scripts/validate_flowchart.sh:63",
+      "evidence": "check_arrows counted '→|↓|├─|└─'; '└─' is also a normal bottom-left box border (simple_workflow.md:33,37), so a box-only diagram satisfied 'boxes with no connectors is an error' (SKILL.md:227) via its borders.",
+      "resolution": "Removed '└─' from the arrow detector and added the recommended '▼|▶' glyphs -> detector is now '→|↓|▼|▶|├─'. Verified: all 6 packet assets still pass the connector check (via ▼); a border-only box fixture now correctly errors; repo-wide scan found 0 flowcharts relying on '└─' alone, so zero regression. SKILL.md:227 is now an accurate contract.",
+      "disposition": "resolved"
+    },
+    {
+      "id": "P2-002",
+      "severity": "P2",
+      "dimension": "traceability",
+      "title": "SKILL.md-recommended arrow glyphs were not recognized by the validator's connector detector",
+      "file": ".opencode/skills/sk-doc/create-flowchart/SKILL.md:115",
+      "evidence": "SKILL.md:114-116 recommends '▼' (top-to-bottom) and '──▶' (horizontal), but validate_flowchart.sh:63 counted only '→|↓|├─|└─'; every packet asset uses '▼' as its primary vertical connector yet the validator recognized none of it (4 of the 6 assets passed HEAD's connector gate solely via miscounted '└─' borders; the other 2 also contained real '→' arrows).",
+      "resolution": "Added '▼|▶' to the arrow detector (same one-line change as P1-001). The recommended-and-used glyphs are now first-class connectors; validator and contract notation are aligned. Purely additive for arrow recognition (a diagram can only move from fail to pass), no regression.",
+      "disposition": "resolved"
+    },
+    {
+      "id": "P2-001",
+      "severity": "P2",
+      "dimension": "maintainability",
+      "title": "Top-level README duplicated the SKILL.md primary numbered workflow instead of staying route-map oriented",
+      "file": ".opencode/skills/sk-doc/create-flowchart/README.md:56",
+      "evidence": "README §4 QUICK START restated the five-step authoring workflow already owned by SKILL.md, increasing drift risk for the dissected route-map structure.",
+      "resolution": "Shrunk README QUICK START to a route-map pointer (a minimal validate example plus 'use SKILL.md for the full workflow and references/README.md for overflow'). README re-validated 0 issues.",
+      "disposition": "resolved"
+    }
+  ],
+  "counts": { "P0": 0, "P1": 1, "P2": 2 },
+  "resolvedCounts": { "P0": 0, "P1": 1, "P2": 2 },
+  "outOfScopeNoted": [
+    "validate_flowchart.sh flags 'Too many box width variations' (rc=1) on 5 of 6 packet example assets; confirmed pre-existing (identical rc on git HEAD's script) and unrelated to any of the three findings — left for a separate box-width normalization pass."
+  ]
+}

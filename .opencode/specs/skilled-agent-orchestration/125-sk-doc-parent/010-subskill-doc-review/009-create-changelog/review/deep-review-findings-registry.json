@@ -1,0 +1,15 @@
+{
+  "target_agent": "deep-review",
+  "mode": "review",
+  "agent_definition_loaded": true,
+  "resolved_route": {
+    "invocation": "/deep:review:auto",
+    "target": ".opencode/skills/sk-doc/create-changelog/",
+    "targetType": "skill",
+    "specFolder": ".opencode/specs/skilled-agent-orchestration/125-sk-doc-parent/010-subskill-doc-review/009-create-changelog",
+    "reviewPacketRoot": ".opencode/specs/skilled-agent-orchestration/125-sk-doc-parent/010-subskill-doc-review/009-create-changelog/review"
+  },
+  "findings": [],
+  "counts": { "P0": 0, "P1": 0, "P2": 0 },
+  "lastUpdatedBy": "initialization"
+}

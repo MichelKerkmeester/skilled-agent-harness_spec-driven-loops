@@ -60,14 +60,14 @@ check_box_alignment() {
 
 check_arrows() {
     echo "➡️  Checking for arrow patterns..."
-    ARROW_COUNT=$(grep -Ec '→|↓|├─|└─' "$FLOWCHART_FILE" || true)
+    ARROW_COUNT=$(grep -Ec '→|↓|▼|▶|├─' "$FLOWCHART_FILE" || true)
     BOX_COUNT=$(grep -Ec '┌─|┐|└─|┘' "$FLOWCHART_FILE" || true)
     ARROW_COUNT="${ARROW_COUNT:-0}"
     BOX_COUNT="${BOX_COUNT:-0}"
 
     if [[ $ARROW_COUNT -eq 0 ]] && [[ $BOX_COUNT -gt 0 ]]; then
       echo "   ❌ Error: Found boxes but no arrows/connectors (broken flowchart)"
-      echo "   Tip: Add arrows (→, ↓) or tree branches (├─, └─) to connect boxes"
+      echo "   Tip: Add arrows (→, ↓, ▼, ▶) or tree branches (├─) to connect boxes"
       ERRORS=$((ERRORS + 1))
     else
       echo "   ✅ Arrows and connectors present"

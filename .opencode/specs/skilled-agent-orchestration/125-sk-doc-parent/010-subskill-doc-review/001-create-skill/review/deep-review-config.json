@@ -1,0 +1,24 @@
+{
+  "run": "deep-review-create-skill-001",
+  "mode": "review",
+  "target_agent": "deep-review",
+  "resolved_route": "native_task_tool_deep_review_leaf",
+  "agent_definition_loaded": true,
+  "reviewTarget": ".opencode/skills/sk-doc/create-skill/",
+  "reviewTargetType": "skill",
+  "specFolder": ".opencode/specs/skilled-agent-orchestration/125-sk-doc-parent/010-subskill-doc-review/001-create-skill",
+  "artifactDir": ".opencode/specs/skilled-agent-orchestration/125-sk-doc-parent/010-subskill-doc-review/001-create-skill/review",
+  "maxIterations": 4,
+  "stopPolicy": "max-iterations",
+  "convergenceThreshold": 0.10,
+  "lineageMode": "auto",
+  "executor": "native",
+  "dimensions": ["correctness", "security", "traceability", "maintainability"],
+  "requirements": [
+    "SKILL.md primary workflow self-sufficiency",
+    "reference overflow without workflow duplication",
+    "relative path resolution",
+    "tool/script/flag/section claim fidelity",
+    "template validation has zero blocking issues"
+  ]
+}

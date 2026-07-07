@@ -19,7 +19,7 @@ Usage:
   cp .opencode/skills/sk-doc/create-benchmark/assets/benchmark/benchmark_report_template.md \
      .opencode/skills/<your-skill>/mcp_server/benchmarks/benchmark-<YYYY-MM-DD>/benchmark_report.md
 
-Then fill in every {{PLACEHOLDER}}. Keep the ANCHOR pairs and numbered H2 ALL CAPS structure intact.
+Then fill in every {{PLACEHOLDER}}. Keep the numbered H2 ALL CAPS structure intact.
 Validate after authoring:
   python3 .opencode/skills/sk-doc/shared/scripts/validate_document.py \
     .opencode/skills/<your-skill>/mcp_server/benchmarks/benchmark-<YYYY-MM-DD>/benchmark_report.md \
@@ -313,7 +313,7 @@ Expected outcome: {{EXPECTED_OUTCOME_LINE}}.
 
 ## 10. RELATED RESOURCES
 
-<!-- Skill-local files, authoritative spec packet, sibling and follow-on. -->
+<!-- Skill-local files, authoritative spec packet, sibling and follow-on. The relative links below resolve once this report lives in mcp_server/benchmarks/benchmark-<YYYY-MM-DD>/; they intentionally do not resolve from the template's source location. -->
 
 ### Skill-local files
 

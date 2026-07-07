@@ -1,0 +1,8 @@
+{
+  "run": "deep-review-create-skill-001",
+  "target": ".opencode/skills/sk-doc/create-skill/",
+  "findings": [],
+  "counts": { "P0": 0, "P1": 0, "P2": 0 },
+  "lastReducedAt": null,
+  "owner": "reducer"
+}
