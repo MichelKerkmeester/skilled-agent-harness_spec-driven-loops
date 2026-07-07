@@ -1,0 +1,50 @@
+{
+  "openQuestions": [
+    {
+      "id": "q1",
+      "text": "What does .opencode/skills/sk-code/code-quality/ currently provide, and where is it useful, redundant, missing, or friction-heavy?",
+      "status": "open",
+      "source": "initial-strategy"
+    },
+    {
+      "id": "q2",
+      "text": "What shared sk-code assets/references does code-quality rely on, and which shared contracts should be improved for all sk-code modes?",
+      "status": "open",
+      "source": "initial-strategy"
+    },
+    {
+      "id": "q3",
+      "text": "How should code-quality integrate more tightly with system-spec-kit gates, validation, completion checks, and memory/continuity flows?",
+      "status": "open",
+      "source": "initial-strategy"
+    },
+    {
+      "id": "q4",
+      "text": "How should code-quality integrate with system-skill-advisor metadata, routing vocabulary, benchmarks, and prompt-safe recommendations?",
+      "status": "open",
+      "source": "initial-strategy"
+    },
+    {
+      "id": "q5",
+      "text": "How should code-quality integrate with deep-loop research/review flows, hooks, behavior benchmarks, and general software-quality standards?",
+      "status": "open",
+      "source": "initial-strategy"
+    }
+  ],
+  "resolvedQuestions": [],
+  "keyFindings": [],
+  "ruledOutDirections": [],
+  "rejectedPatterns": [],
+  "suppressedCandidates": [],
+  "observedIdeas": [],
+  "promotedIdeas": [],
+  "suppressedIdeas": [],
+  "metrics": {
+    "iterationsCompleted": 0,
+    "openQuestions": 5,
+    "resolvedQuestions": 0,
+    "keyFindings": 0,
+    "convergenceScore": 0,
+    "coverageBySources": {}
+  }
+}
