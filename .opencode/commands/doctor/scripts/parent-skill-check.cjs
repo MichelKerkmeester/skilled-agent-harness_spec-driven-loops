@@ -425,6 +425,18 @@ function main() {
             softFail(`3h: transport packet "${label}" is not declared in the transport-axis extension's transports[]`);
           }
         }
+
+        // 3i — a mode that grants Write must declare mutatesWorkspace:true (writing a
+        // file mutates the workspace) UNLESS it carries a writeScopeNote annotation
+        // documenting a non-project Write scope (e.g. an ephemeral, untracked cache).
+        // Surfaces/transports already forbid Write (3g/3h); this catches workflow modes
+        // whose contract silently claims read-only while holding a Write grant.
+        if (ts && typeof ts === 'object' && Array.isArray(ts.allowed) && ts.allowed.includes('Write')) {
+          const annotated = typeof ts.writeScopeNote === 'string' && ts.writeScopeNote.trim().length > 0;
+          if (ts.mutatesWorkspace !== true && !annotated) {
+            softFail(`3i: mode "${label}" grants Write but is mutatesWorkspace:false with no writeScopeNote (Write mutates the workspace — set mutatesWorkspace:true or annotate a non-project Write scope)`);
+          }
+        }
       }
 
       if (packetOk) pass('3c: every mode packet resolves to an existing sub-directory');
@@ -470,6 +482,37 @@ function main() {
       pass(`3f: extensions {${Object.keys(extensions).join(', ')}} are internally consistent`);
     } else if (Object.keys(extensions).length === 0) {
       info('3f: hub declares no extensions (pure 2-tier)');
+    }
+  }
+
+  // ───────────────────────────────────────────────────────────────
+  // 3j. hub tool grant == union of mode tool surfaces
+  // The routing-only hub must grant exactly the tools its modes can use: no tool
+  // that NO mode declares (an over-grant like a stray Task the hub never
+  // dispatches to), and every tool some mode needs (so the hub can enact it).
+  // ───────────────────────────────────────────────────────────────
+  if (registry && Array.isArray(registry.modes) && registry.modes.length > 0) {
+    let hubTools = null;
+    try {
+      const src = fs.readFileSync(path.join(target, 'SKILL.md'), 'utf8');
+      const m = src.match(/^allowed-tools:\s*\[([^\]]*)\]/m);
+      if (m) hubTools = m[1].split(',').map((t) => t.trim()).filter(Boolean);
+    } catch { /* missing SKILL.md is reported by an earlier structural check */ }
+    if (!hubTools) {
+      softFail('3j: could not read allowed-tools[] from the hub SKILL.md frontmatter');
+    } else {
+      const union = new Set();
+      for (const mode of registry.modes) {
+        for (const t of ((mode.toolSurface || {}).allowed || [])) union.add(t);
+      }
+      const overGrant = hubTools.filter((t) => !union.has(t));
+      const underGrant = [...union].filter((t) => !hubTools.includes(t));
+      if (overGrant.length === 0 && underGrant.length === 0) {
+        pass('3j: hub allowed-tools equals the union of mode tool surfaces');
+      } else {
+        if (overGrant.length > 0) softFail(`3j: hub SKILL.md grants tool(s) no mode declares: [${overGrant.join(', ')}] (routing-only hub must not over-grant)`);
+        if (underGrant.length > 0) softFail(`3j: hub SKILL.md is missing tool(s) a mode needs: [${underGrant.join(', ')}]`);
+      }
     }
   }
 

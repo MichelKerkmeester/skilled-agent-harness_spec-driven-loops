@@ -1,7 +1,7 @@
 ---
 name: sk-code
 description: "Unified two-axis code skill: routes to two WORKFLOW modes (quality, code-review) and bundles two read-only SURFACE evidence packets (code-webflow, code-opencode) — each surface carrying the implement/debug/verify workflow doctrine plus its stack knowledge — over shared surface-detection; holds no per-mode logic; dispatches by workflowMode through mode-registry.json."
-allowed-tools: [Read, Write, Edit, Bash, Grep, Glob, Task]
+allowed-tools: [Read, Write, Edit, Bash, Grep, Glob]
 version: 4.1.0.0
 metadata:
   author: OpenCode

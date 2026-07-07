@@ -46,7 +46,8 @@
         "allowed": ["Read", "Bash", "Grep", "Glob", "Write"],
         "forbidden": ["Edit", "Task"],
         "mutatesWorkspace": false,
-        "bashAllowlist": []
+        "bashAllowlist": [],
+        "writeScopeNote": "Write is scoped to the ephemeral, untracked review cache (.opencode/.code-review-cache/<repo-ref>.jsonl); code-review never writes tracked project files (Edit is forbidden), so the tracked workspace is not mutated."
       },
       "packet": "code-review",
       "packetSkillName": "code-review",
