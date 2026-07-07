@@ -9,7 +9,7 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-speckit/028-memory-search-intelligence/000-release-cleanup/003-skill-references-assets-and-skillmd"
-    last_updated_at: "2026-07-04T17:31:34.024Z"
+    last_updated_at: "2026-07-06T19:16:24.125Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "Executed SKILL.md, references and assets cleanup, recorded evidence"
     next_safe_action: "Concurrent session owns the deferred deep-research skill subset"
@@ -37,7 +37,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | system-speckit/028-memory-search-intelligence/000-release-cleanup/003-skill-references-assets-and-skillmd |
+| **Spec Folder** | 003-skill-references-assets-and-skillmd |
 | **Completed** | 2026-06-19 (commit bb038e19ab) |
 | **Level** | 2 |
 <!-- /ANCHOR:metadata -->

@@ -208,7 +208,7 @@
     ],
     "causal_summary": "The Spec-Kit Memory MCP treats `procedural` as a decay-only classification label, there is no track-record machinery on a stored procedure [CONFIRMED: `memory-types.ts:93-98` (decay-only label, no success/failure counters), `research/iterations/iteration-015.md:9`]",
     "created_at": "2026-06-19T05:40:37.447Z",
-    "last_save_at": "2026-07-04T17:51:04.560Z",
+    "last_save_at": "2026-07-06T19:16:30.880Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -219,14 +219,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:5a9fffa92d5adc8408e92121f6fed683156048cd911ccd25820c853afdcc21ba",
+    "source_fingerprint": "sha256:f2db5bae1df55cd09c0ed66eaaef35a428ef00ae0f586d6d4fa0a92ae3bb6182",
     "source_doc_hashes": {
-      "spec.md": "5e12231b55f7bb853b3d37079c3fa3d62a2543064b130b0157253a1d904a4ce7",
-      "plan.md": "6b992462a9f99867790b72381c3989608ec4f7e6ef37f9ea0a8e648d47bef64f",
-      "tasks.md": "b4928a5c9cbffecb192b24daed8e9ec9744a4e96aa0cb4195d0233629fb015f7",
-      "checklist.md": "044410cb645f830768a3ef4f7850934196323079793143b97c5b80498d77d090",
-      "decision-record.md": "f3c4e0a7424dec14c3de9f68516741521c1d65bbeef742a7832a07dfe706a636",
-      "implementation-summary.md": "3f56657daa37a550c646ecd330a396f407e363acff3149d6956d868ccd2427a9"
+      "spec.md": "ed44e2418f117f72742541216e8b3e52394e11d84038cca0d68874a1843d73e5",
+      "plan.md": "58bb9d41be42e5f3057ff56bdb25b5f538314bf7405d8e239f0427b321f56af8",
+      "tasks.md": "66ed33cc0b563c65bf4607f607eed895d70c79fd24ca4d751c6f04940cd388c3",
+      "checklist.md": "0d32d3c6129ed96db12f9fd275e7f5f920edc8831e6aa26ee1c87c559c0e6cd2",
+      "decision-record.md": "883c5101928e66834cc11a3902269ecabd64261f18211cd6a7b02eb2c1765159",
+      "implementation-summary.md": "af9f45ae1f083b566973717b9796d9075c8cbd420406059e9037ae34346f6f1d"
     },
     "last_active_child_id": null,
     "last_active_at": null

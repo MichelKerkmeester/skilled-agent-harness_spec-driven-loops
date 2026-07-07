@@ -1,0 +1,30 @@
+{
+  "level": "2",
+  "specFolder": "system-speckit/028-memory-search-intelligence/003-spec-data-quality/006-generated-metadata-build/041-search-quality-fixes",
+  "description": "The 029 deep-research traced the vague-query benchmark findings to six fixable causes in the live memory-search pipeline",
+  "keywords": [
+    "029",
+    "deep-research",
+    "traced",
+    "vague-query",
+    "benchmark",
+    "findings",
+    "six",
+    "fixable",
+    "causes",
+    "live",
+    "memory-search",
+    "pipeline"
+  ],
+  "lastUpdated": "2026-07-04T17:11:55.753Z",
+  "specId": "041",
+  "folderSlug": "search-quality-fixes",
+  "parentChain": [
+    "system-speckit",
+    "028-memory-search-intelligence",
+    "003-spec-data-quality",
+    "006-generated-metadata-build"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

@@ -10,7 +10,7 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-speckit/028-memory-search-intelligence/001-speckit-memory/016-iterative-agentic-recall"
-    last_updated_at: "2026-07-04T17:51:08.473Z"
+    last_updated_at: "2026-07-06T19:16:32.115Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "Built default-off agentic loop governor + SPECKIT_AGENTIC_RECALL flag, 18 tests pass"
     next_safe_action: "Wire case agentic (needs mode-enum change + live LLM), then benchmark, PENDING"
@@ -50,7 +50,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 028-memory-search-intelligence/001-speckit-memory/016-iterative-agentic-recall |
+| **Spec Folder** | 016-iterative-agentic-recall |
 | **Completed** | complete (no-go). Phase 1 (governor + flag) DONE. Phase 2 (wiring) + Phase 3 (benchmark) not pursued, candidate concluded a no-go and removed |
 | **Level** | 3 |
 <!-- /ANCHOR:metadata -->

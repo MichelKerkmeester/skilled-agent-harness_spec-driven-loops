@@ -1,0 +1,216 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/028-memory-search-intelligence/003-spec-data-quality/006-generated-metadata-build/040-flag-graduation-benchmark",
+  "spec_folder": "system-speckit/028-memory-search-intelligence/003-spec-data-quality/006-generated-metadata-build/040-flag-graduation-benchmark",
+  "parent_id": "system-speckit/028-memory-search-intelligence/003-spec-data-quality/006-generated-metadata-build",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "flag graduation benchmark",
+      "stage 4 before and after benchmark",
+      "default off flag earn or delete",
+      "graduate flag to default on",
+      "keep off flag roadmap verdict"
+    ],
+    "key_topics": [
+      "flag",
+      "graduation",
+      "benchmark",
+      "stage",
+      "default",
+      "earn",
+      "delete",
+      "graduate",
+      "keep",
+      "roadmap",
+      "verdict",
+      "program"
+    ],
+    "importance_tier": "normal",
+    "status": "planned",
+    "key_files": [
+      ".opencode/specs/system-speckit/028-memory-search-intelligence/feature-flags.md",
+      "scripts/flag-graduation-benchmark.mjs",
+      "scripts/benchmark-report.json",
+      "implementation-summary.md",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/config/capability-flags.ts",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md"
+    ],
+    "entities": [
+      {
+        "name": "feature-flags.md",
+        "kind": "doc",
+        "path": ".opencode/specs/system-speckit/028-memory-search-intelligence/feature-flags.md",
+        "source": "derived"
+      },
+      {
+        "name": "flag-graduation-benchmark.mjs",
+        "kind": "file",
+        "path": "scripts/flag-graduation-benchmark.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "benchmark-report.json",
+        "kind": "config",
+        "path": "scripts/benchmark-report.json",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "capability-flags.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/config/capability-flags.ts",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Flag Graduation Benchmark",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "This Stage",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Run",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "a",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "This program shipped each behavioral change behind a default-OFF flag so the rollout never mass-failed existing files or silently shifted ranking",
+    "created_at": "2026-06-27T17:15:43.353Z",
+    "last_save_at": "2026-07-06T18:49:40.163Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:9a50b9b5765f1aae57a2898008af228780c573ae90348f7fb7c862dc35c152a9",
+    "source_doc_hashes": {
+      "spec.md": "7e7652f40bb1afd9252b2913b78bb830b5766bd7c23d617fa1777a0c56933a6e",
+      "plan.md": "13aebdb112ae23efd57ed4460beaeda616d6bc1e37fe3f5773ea05bfbb2458a3",
+      "tasks.md": "d749d09b251ef7a43cbec87ec8ded55d53b1332c8465e58773433756a88750e7",
+      "checklist.md": "0edfc0398da101c19f73bfecb59a3c21c8ab47674b62b5402746add04654789a",
+      "implementation-summary.md": "216422581846aaab1a036000beed245eda49adb8af6ceaf4c03f52a49560f98c"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

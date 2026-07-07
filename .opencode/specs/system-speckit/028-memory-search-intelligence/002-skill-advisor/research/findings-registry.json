@@ -1,0 +1,78 @@
+{
+  "sessionId": "2026-06-16-028-002-skill-advisor",
+  "parentSessionId": null,
+  "lineageMode": "new",
+  "generation": 1,
+  "continuedFromRun": null,
+  "terminalStop": null,
+  "openQuestions": [
+    {
+      "id": "question-1-q1-would-a-retrieval-shape-query-class-router-improve-lane-weighting-over-the-fi",
+      "text": "Q1: Would a retrieval-shape query-class router improve lane weighting over the fixed 0.42/0.28/0.13/0.12/0.05 split? Map to aionforge query-class router. Where is lane fusion?",
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null
+    },
+    {
+      "id": "question-2-q2-does-deterministic-rrf-fixed-order-stable-tiebreak-zero-weight-elision-remove",
+      "text": "Q2: Does deterministic RRF (fixed order, stable tiebreak, zero-weight elision) remove the comparable-score problem in the current weighted sum? Map to aionforge RRF k=60. Where is the advisor scorer?",
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null
+    },
+    {
+      "id": "question-3-q3-can-a-bounded-reliability-weighted-beta-posterior-auto-tune-lane-weights-from",
+      "text": "Q3: Can a bounded reliability-weighted Beta posterior auto-tune lane weights from outcomes without over-fitting? Map to aionforge attestation-and-promotion.md. Where are lane weights set (lane-registry)?",
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null
+    },
+    {
+      "id": "question-4-q4-can-the-semantic-shadow-lane-0-05-graduate-via-an-exact-rerank-pass-map-to-ai",
+      "text": "Q4: Can the semantic-shadow lane (0.05) graduate via an exact-rerank pass? Map to aionforge dense+exact-rerank. Where is the semantic lane?",
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null
+    },
+    {
+      "id": "question-5-q5-is-an-ambient-off-budget-trigger-harvest-pass-worth-adding-doc-trigger-harves",
+      "text": "Q5: Is an ambient off-budget trigger-harvest pass worth adding (doc-trigger harvest, currently flag-gated)? Map to galadriel ambient mining. Where is trigger indexing + the watcher?",
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null
+    },
+    {
+      "id": "question-6-q6-when-the-skill-graph-is-unavailable-does-the-graph-causal-lane-degrade-gracef",
+      "text": "Q6: When the skill-graph is unavailable, does the graph-causal lane degrade gracefully (skip + reweight) or fail? Map to aionforge graceful degrade.",
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null
+    },
+    {
+      "id": "question-7-q7-which-001-primitives-reuse-here-shared-fuseresultsmulti-bonusoverchannels-opt",
+      "text": "Q7: Which 001 primitives reuse here — shared `fuseResultsMulti {bonusOverChannels}` option, deterministic RRF, query-class routing? (001 flagged skill-advisor as touched by determinism + routing spines.)",
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null
+    }
+  ],
+  "resolvedQuestions": [],
+  "uncoveredQuestions": [
+    "Q1: Would a retrieval-shape query-class router improve lane weighting over the fixed 0.42/0.28/0.13/0.12/0.05 split? Map to aionforge query-class router. Where is lane fusion?",
+    "Q2: Does deterministic RRF (fixed order, stable tiebreak, zero-weight elision) remove the comparable-score problem in the current weighted sum? Map to aionforge RRF k=60. Where is the advisor scorer?",
+    "Q3: Can a bounded reliability-weighted Beta posterior auto-tune lane weights from outcomes without over-fitting? Map to aionforge attestation-and-promotion.md. Where are lane weights set (lane-registry)?",
+    "Q4: Can the semantic-shadow lane (0.05) graduate via an exact-rerank pass? Map to aionforge dense+exact-rerank. Where is the semantic lane?",
+    "Q5: Is an ambient off-budget trigger-harvest pass worth adding (doc-trigger harvest, currently flag-gated)? Map to galadriel ambient mining. Where is trigger indexing + the watcher?",
+    "Q6: When the skill-graph is unavailable, does the graph-causal lane degrade gracefully (skip + reweight) or fail? Map to aionforge graceful degrade.",
+    "Q7: Which 001 primitives reuse here — shared `fuseResultsMulti {bonusOverChannels}` option, deterministic RRF, query-class routing? (001 flagged skill-advisor as touched by determinism + routing spines.)"
+  ],
+  "keyFindings": [],
+  "ruledOutDirections": [],
+  "blockedStopHistory": [],
+  "graphConvergenceScore": 0,
+  "graphDecision": null,
+  "graphBlockers": [],
+  "metrics": {
+    "iterationsCompleted": 18,
+    "openQuestions": 7,
+    "resolvedQuestions": 0,
+    "keyFindings": 0,
+    "convergenceScore": 0.15,
+    "coverageBySources": {}
+  },
+  "corruptionWarnings": [],
+  "status": "IN_PROGRESS"
+}

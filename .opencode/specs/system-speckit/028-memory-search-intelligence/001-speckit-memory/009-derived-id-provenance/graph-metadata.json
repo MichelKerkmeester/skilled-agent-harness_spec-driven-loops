@@ -39,7 +39,7 @@
       "tasks"
     ],
     "importance_tier": "important",
-    "status": "complete",
+    "status": "in_progress",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -209,7 +209,7 @@
     ],
     "causal_summary": "Generated (DERIVED) causal edges have no content-addressed identity",
     "created_at": "2026-06-19T05:40:37.445Z",
-    "last_save_at": "2026-07-04T17:51:03.790Z",
+    "last_save_at": "2026-07-06T19:16:29.962Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -220,14 +220,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:2900eed9b87ba6911a6f481ef344db31d6bb76a8cf3731719e3a251729c9b7dd",
+    "source_fingerprint": "sha256:bd6f1f87e06895bdae82741c8f65a7d1e316c5b6956d3e76a3cc527bbaeb3cdd",
     "source_doc_hashes": {
-      "spec.md": "f177f90cae5c39837566e91dea427442378fe76382fc34ae21a0a7edcb5dd3d8",
-      "plan.md": "cd4d52fc89fe547b4ad55a7d280f69f10d7c88e9b7fe447627421c2403fd0f3e",
-      "tasks.md": "fb0da5ee81f227ffde377c1dfe22942765ede4c07eb87d3b54be46bd19ecf193",
-      "checklist.md": "a3d7c0343e0925cd28d436f762439b2734e33557605e479891ae5fbdb6f67199",
-      "decision-record.md": "b9eedef9115f782c1b3149eb56ee7c04150ef3a2a758a04443f52358a8000590",
-      "implementation-summary.md": "0ebb3a2de1cf1d8b387c7687c5b788bc245f068f27fc3b2a6b0622b16436e964"
+      "spec.md": "afac698f4a5e5414f206b1ca9262cfc2a7c8209677f905e27c7ee69f50b409d8",
+      "plan.md": "08d63e0307d30d503d1e9cd39ff9f08ef488c36115494cdfb410a024fa415094",
+      "tasks.md": "4797c6232644cec59fec7773f7a3408c646753774e6e75328b91a84c65b60ec5",
+      "checklist.md": "33bc752cc36992ee9e90ae1ceeacf861d8e7d52eddc8126a50cdaff491948950",
+      "decision-record.md": "dd8923e365c526a815d1e690799398996a3fc604220f35be0574ce4c8c1a8d68",
+      "implementation-summary.md": "9a4f7ec92c8dee76f516ff25c7acf45b83e62a8db5f787c60c0eca90c95bbd9c"
     },
     "last_active_child_id": null,
     "last_active_at": null

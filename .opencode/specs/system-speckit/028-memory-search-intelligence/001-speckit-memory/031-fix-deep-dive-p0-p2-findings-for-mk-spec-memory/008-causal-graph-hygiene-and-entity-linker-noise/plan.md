@@ -133,7 +133,7 @@ Required inventories:
 ### Phase 1: Setup
 - [ ] Baselines captured: full vitest run, edge relation histogram, strength distribution, row counts (`causal_edges`, `entity_catalog`, `memory_entities`, `memory_surrogates` placeholder-title count)
 - [ ] 🟡 confirm-before-fix pass: reproduce/quote each agent-reported finding in current code (report #19; Agent D linker/community/signals items; Agent H causal-links items; Agent C momentum/cache items)
-- [ ] Absorbed contract read: `../../../006-review-remediation/002-memory-schema-and-concurrency/spec.md` P1-2/P1-4 fix intent quoted into working notes; DB copy prepared for migration dry-runs
+- [ ] Absorbed contract read: `../../../004-review-remediation/002-memory-schema-and-concurrency/spec.md` P1-2/P1-4 fix intent quoted into working notes; DB copy prepared for migration dry-runs
 
 ### Phase 2: Core Implementation
 - [ ] Cluster A - ADR-001 co-occurrence down-weight: consumer inventory, provenance-scoped strength-UPDATE migration, entity-linker write change, causal-boost default exclusion by provenance

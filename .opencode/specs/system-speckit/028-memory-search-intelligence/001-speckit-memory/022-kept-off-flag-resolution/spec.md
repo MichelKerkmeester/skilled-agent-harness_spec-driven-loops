@@ -49,7 +49,7 @@ _memory:
 | **Parent Spec** | ../spec.md |
 | **Parent Packet** | `system-speckit/028-memory-search-intelligence` |
 | **Phase** | 007 of 007 |
-| **Predecessor** | ../006-review-remediation/spec.md |
+| **Predecessor** | ../004-review-remediation/spec.md |
 | **Source decisions** | `../benchmark-status.md`, `../keep-off-flag-roadmap.md` |
 <!-- /ANCHOR:metadata -->
 

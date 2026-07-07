@@ -209,7 +209,7 @@
     ],
     "causal_summary": "Live-measured (deep-dive report §5, ledger L7 🟢): a 5-result `memorysearch` returns a 17.6KB envelope because every telemetry block is double-emitted in camelCase AND snakecase (`artifactRouting`/`artifactrouting`, `graphContribution`/`graphcontribution`, `searchDecisionEnvelope`/`searchdecisionenvelope`, `appliedBoosts`/`appliedboosts`), while the token budget is enforced BEFORE graphContext/routing/envelope attach — so results get compacted to empty snippets while metadata survives, and `meta.tokenCount` reports 6,455 against an \"enforced\" budget of 3,500",
     "created_at": "2026-07-03T09:44:26Z",
-    "last_save_at": "2026-07-04T17:51:09.855Z",
+    "last_save_at": "2026-07-06T19:16:36.369Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -219,13 +219,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:0ef4bced82a945b434c60ea315ebd1198e2ea2bed2fb7752d57cc37b38bac670",
+    "source_fingerprint": "sha256:6c12edd5acc37d90d0bd8f58c23fef678b9ddf549e9402558960bef3a980473e",
     "source_doc_hashes": {
-      "spec.md": "61efbbb0df3dbcdbbe90a8c28e82acbe1067e668fb6abbc75c1824f2e99a5527",
-      "plan.md": "23d7aa2191b8888412e1060336820c06ffdb8832c9393ad0ddde81051ce04a00",
-      "tasks.md": "ab8e2ce66e3958770de3ba3b5c40af91668fd6e46a65af03205403a74ecdee79",
-      "checklist.md": "cd663db0fda91cbe77b823eb24f1108f08fd2d1cabc03438d9c8de340729e76b",
-      "implementation-summary.md": "a4cfa664f2813dc51fcc851ed10669264bd7e90d50cddb3953255f01d22bbba1"
+      "spec.md": "0056f81c7822913b35fb53e61601c74ea407db2eec5e11cc267d06abe16ed66a",
+      "plan.md": "10ea814e164763735fb4e211e89f61255471d212adf0b8aff9c3dd1630fa3d0b",
+      "tasks.md": "b2f88662effdaa6bbf155ad676d72bd4950e195367dc1b790ffe4e53851d3bd7",
+      "checklist.md": "2336005794d54a6726bed73f5ef80a5f24417454523114d3cd47dbf95a13e95c",
+      "implementation-summary.md": "564c81a51a8bfd47864be2adca9990c004da47b07b8494ca0baaee7aba4e542b"
     },
     "last_active_child_id": null,
     "last_active_at": null

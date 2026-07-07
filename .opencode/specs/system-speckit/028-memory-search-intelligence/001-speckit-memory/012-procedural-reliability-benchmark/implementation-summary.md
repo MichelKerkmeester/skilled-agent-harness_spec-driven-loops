@@ -10,7 +10,7 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-speckit/028-memory-search-intelligence/001-speckit-memory/012-procedural-reliability-benchmark"
-    last_updated_at: "2026-07-04T17:51:04.560Z"
+    last_updated_at: "2026-07-06T19:16:30.880Z"
     last_updated_by: "codex"
     recent_action: "Implemented default-off procedural reliability safe core"
     next_safe_action: "Run procedural reliability benchmark"
@@ -43,7 +43,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 028-memory-search-intelligence/001-speckit-memory/012-procedural-reliability-benchmark |
+| **Spec Folder** | 012-procedural-reliability-benchmark |
 | **State** | complete |
 | **Level** | 3 |
 | **Candidates** | 4 (safe-core plumbing done, 4 promotion decisions PENDING) |
@@ -109,7 +109,7 @@ See `decision-record.md` for full ADRs.
 | Build the outcome emitter before any reliability fold | At `r=0.5` the fold is a cold-start no-op [delta `iter-018.jsonl:4`] |
 | f64 Beta primitive + adapter, NOT the integer scorer | The live integer `computeScore` throws on fractional inputs [`bayesian-scorer.ts:182-191`] |
 | Version-reset adds only the reliability-reset residual | The append-only deprecate-never-delete mechanism already exists [`iter-021.jsonl:4`] |
-| Advisor-side Beta routed out to `003-skill-advisor` | `SA-outcome-weighted-ranking` is an Advisor follow-on, not this Memory unit [`roadmap.md:268`] |
+| Advisor-side Beta routed out to `002-skill-advisor` | `SA-outcome-weighted-ranking` is an Advisor follow-on, not this Memory unit [`roadmap.md:268`] |
 
 <!-- /ANCHOR:decisions -->
 
@@ -200,6 +200,6 @@ See `decision-record.md` for full ADRs.
 - [ ] Build the shared bounded-Beta f64 primitive + procedural adapter (REQ-003, shared with Advisor C4).
 - [ ] Run ONE benefit micro-benchmark (reliability-weighting vs `access`/confirmation) for REQ-002.
 - [ ] Decide bad-pattern host: `HAS_FAILURE` migration vs `'deprecated'`/`contradicts` precedent + filter-site audit.
-- [ ] Sibling cross-packet: Advisor `SA-outcome-weighted-ranking` → `003-skill-advisor`.
+- [ ] Sibling cross-packet: Advisor `SA-outcome-weighted-ranking` → `002-skill-advisor`.
 
 <!-- /ANCHOR:follow-up -->

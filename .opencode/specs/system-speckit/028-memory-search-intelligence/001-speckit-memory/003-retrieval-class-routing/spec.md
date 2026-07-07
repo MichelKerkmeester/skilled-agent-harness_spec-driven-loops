@@ -113,7 +113,7 @@ Give recall a retrieval-shape axis: classify each query's shape (single-hop / mu
 | **C-G2** | PENDING, keep-or-cut overlap check not run | Index-time auto-classified cross-cutting topic facet (decisions/problems/milestones), orthogonal to spec_folder/contextType, queryable as an independent recall filter, seed from existing keyword machinery | `handlers/chunking-orchestrator.ts:246-247` + `lib/search/artifact-routing.ts:179` | Low-lev/M | BUILD-new (keep-or-cut decision first) |
 
 ### Out of Scope
-- The four sibling subsystems (Code Graph, Skill Advisor, Deep Loop), covered by sibling 028 phases (`002-code-graph`, `003-skill-advisor`, `004-deep-loop`), including the Code-Graph analogue of this same spine (Q3-C1 PPR / Q4-C1) which lives in `002-code-graph`.
+- The four sibling subsystems (Code Graph, Skill Advisor, Deep Loop), covered by sibling 028 phases (`002-code-graph`, `002-skill-advisor`, `004-deep-loop`), including the Code-Graph analogue of this same spine (Q3-C1 PPR / Q4-C1) which lives in `002-code-graph`.
 - The bi-temporal currentness cluster (C3-A/B/C), idempotency/consolidation (C4-A/C, C-G1), determinism primitives (C5-A/B, C-X1) and graceful embedder-degrade (C9). Those are the other Memory sub-phases / already shipped in 030. C-X1 is a *satisfied dependency* here, not in scope to build.
 - **Re-calibrating the per-class `RetrievalProfile` weight VALUES against a benchmark**. The build lands the *mechanism*. The tuned values are an explicit implementation-time follow-up (028 roadmap §Provenance: "per-class `RetrievalProfile` weight VALUES need re-calibration on the ~1000-memory corpus").
 - The "semantic edge layer" and "async sleep-time consolidation" 028 Wave-2 initiatives (separate prove-first packets).

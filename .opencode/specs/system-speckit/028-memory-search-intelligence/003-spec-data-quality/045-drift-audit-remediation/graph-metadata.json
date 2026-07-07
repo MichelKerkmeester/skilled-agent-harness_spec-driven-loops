@@ -1,0 +1,219 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/028-memory-search-intelligence/003-spec-data-quality/045-drift-audit-remediation",
+  "spec_folder": "system-speckit/028-memory-search-intelligence/003-spec-data-quality/045-drift-audit-remediation",
+  "parent_id": "system-speckit/028-memory-search-intelligence/003-spec-data-quality",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "028 drift audit remediation",
+      "drift audit fix",
+      "028 findings remediation",
+      "packet 028 remediation pass",
+      "028 drift remediation plan",
+      "mimo fix dispatch",
+      "gpt-5.5 verify dispatch",
+      "028 drift remediation tasks",
+      "028 drift remediation checklist",
+      "028 drift remediation summary",
+      "drift audit fixes complete"
+    ],
+    "key_topics": [
+      "028",
+      "drift",
+      "audit",
+      "remediation",
+      "fix",
+      "findings",
+      "packet",
+      "pass",
+      "plan",
+      "mimo",
+      "dispatch",
+      "gpt-5"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "tasks.md",
+      "checklist.md",
+      "plan.md",
+      ".opencode/package.json",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "package.json",
+        "kind": "config",
+        "path": ".opencode/package.json",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Drift Audit Remediation",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Reconcile",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pro Hyperspeed",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Execute Phase",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Bundle",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Investigate",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Date",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "A GPT-5.5-fast (high) audit dispatched via cli-opencode across the 8 phases of the 028-memory-search-intelligence packet (10 parallel sweeps) surfaced 75 findings: 24 high/critical drift/bug/inconsistency issues (independently re-verified against real files, 24/24 confirmed) and 51 unverified medium/low findings from the single sweep pass",
+    "created_at": "2026-07-01T07:28:37.642Z",
+    "last_save_at": "2026-07-06T18:50:01.394Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:4eed19cb32ab832f96b2ebc97cf6fd3dd24e1467de4432febd04f65af10a5b09",
+    "source_doc_hashes": {
+      "spec.md": "f404a34f35fda0fc5b52a1dad2c552f1dd226e6af7539414bd681db7ffe92c9a",
+      "plan.md": "e2ba7b8c8a19a1795fe226697ba140f6978eef783b701e53dc3153ebe39beae7",
+      "tasks.md": "bb4190da87885613c0054ddaf5de5d4ed9a4f20ed9357a1a0793f4300a705d33",
+      "checklist.md": "12c188642bd449392ce6862d83ba786466c1f90927a3e3729a5a9ebd667a4fb7",
+      "implementation-summary.md": "3c171eb51104e9570e1cb29d045d32ed1897b26c26d82523b414e3e97215a157"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

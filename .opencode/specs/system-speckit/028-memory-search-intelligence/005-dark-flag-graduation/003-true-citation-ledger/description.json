@@ -1,0 +1,26 @@
+{
+  "level": "2",
+  "specFolder": "system-speckit/028-memory-search-intelligence/005-dark-flag-graduation/003-true-citation-ledger",
+  "description": "The 028 packet ships the true-citation emitter dark behind a default-off flag",
+  "keywords": [
+    "028",
+    "packet",
+    "ships",
+    "true-citation",
+    "emitter",
+    "dark",
+    "behind",
+    "default-off",
+    "flag"
+  ],
+  "lastUpdated": "2026-07-06T18:50:00.908Z",
+  "specId": "003",
+  "folderSlug": "true-citation-ledger",
+  "parentChain": [
+    "system-speckit",
+    "028-memory-search-intelligence",
+    "005-dark-flag-graduation"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

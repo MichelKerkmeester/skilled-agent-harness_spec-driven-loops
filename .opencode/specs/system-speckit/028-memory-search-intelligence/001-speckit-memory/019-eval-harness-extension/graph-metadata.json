@@ -203,7 +203,7 @@
     ],
     "causal_summary": "The Memory MCP ships a live retrieval eval harness that is already ~75-85% built [CONFIRMED: iter-011 \"extend-not-greenfield … honest figure ≈ 75-85%\"]: a 110-query graded golden set (290 relevance judgments, grades 1-3, 93 real production memory IDs, 0 placeholders), a 12-metric library (`computeAllMetrics`, `eval-metrics.ts:586`, MRR/nDCG/recall/precision/F1/MAP/hitRate + 5 diagnostics), a live end-to-end runner `evalrunablation` driving real `hybridSearchEnhanced` against the golden set with per-channel recall deltas + paired sign-test p-values, a baseline runner, a dashboard, an alignment",
     "created_at": "2026-06-19T05:52:29.575Z",
-    "last_save_at": "2026-07-04T17:51:00.031Z",
+    "last_save_at": "2026-07-06T19:16:33.072Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -214,14 +214,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:19dae591c2e72243483d154621b1e141ec8294bf3b34d7919c3d1211a9ce7b23",
+    "source_fingerprint": "sha256:a4ffeec35c7d767d17fe6590328d92404bcc57be273a6d4f3235be973d3b3bb0",
     "source_doc_hashes": {
-      "spec.md": "a4b1f771f6ce24dfa8b8a830736e0bd06482c6ce3150763f01599a44e8dfa5f7",
-      "plan.md": "5b6dca46877d59cc96dd68a45f479d5ade68e813962e183ea99add0f9875fb88",
-      "tasks.md": "24741a372e19bf727507bd059b150282c0fe2f27ce8f018ea484ef0dd0a9d1b2",
-      "checklist.md": "64e221137b22be871937be4073b700c446d120aa96d8bfa95bb9c474ce00a295",
-      "decision-record.md": "d63adbe12701468bed6a73749af13b694e9dd1e2aaed58c5be3c9e5680c16c25",
-      "implementation-summary.md": "2d4051339da1183b459ad9c38b548bc3e2a5b681bb88e39d500f678f0cd4f5e8"
+      "spec.md": "3bf88e2f14d238a4840da7338f4064fe3920c722ad14033f535ae3087420a0bc",
+      "plan.md": "42ab877a5bb77ab3a77e6429c49ece59873f4f427d93cc2e914d93a3e92293f6",
+      "tasks.md": "7d01f3e1333bc6c61af7bb4048556e6967b439d2426b0b51e67bb8fd5e5bc9b1",
+      "checklist.md": "75b0f25d4d52d069dccb385e47c2a98ff9c2d7ee86bfaf563591d36c9234a062",
+      "decision-record.md": "997f5dae0a7fdec3ff775429bdec9c21eb788578d22f22ecf6c1a4a96f777886",
+      "implementation-summary.md": "292bff3abef95d549743a1b58780ddfc1dbff5cdfa70e84fb8cb362ec419fb06"
     },
     "last_active_child_id": null,
     "last_active_at": null

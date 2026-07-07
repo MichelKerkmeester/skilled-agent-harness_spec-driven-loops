@@ -11,7 +11,7 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-speckit/028-memory-search-intelligence/001-speckit-memory/006-redteam-probe-gate"
-    last_updated_at: "2026-07-04T17:51:05.982Z"
+    last_updated_at: "2026-07-06T19:16:29.052Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "Implemented the MCP-server red-team probe gate and no-querytext denial audit"
     next_safe_action: "Implement sibling prompt-pack probe"
@@ -46,7 +46,7 @@ template_source_hint: "<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 --
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 028-memory-search-intelligence/001-speckit-memory/006-redteam-probe-gate |
+| **Spec Folder** | 006-redteam-probe-gate |
 | **Status** | in_progress |
 | **Level** | 2 |
 

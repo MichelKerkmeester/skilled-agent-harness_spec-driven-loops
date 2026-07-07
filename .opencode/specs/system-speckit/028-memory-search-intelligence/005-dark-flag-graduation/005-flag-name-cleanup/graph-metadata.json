@@ -1,0 +1,220 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/028-memory-search-intelligence/005-dark-flag-graduation/005-flag-name-cleanup",
+  "spec_folder": "system-speckit/028-memory-search-intelligence/005-dark-flag-graduation/005-flag-name-cleanup",
+  "parent_id": "system-speckit/028-memory-search-intelligence/005-dark-flag-graduation",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "version suffix flag rename",
+      "drop V1 from flag name",
+      "speckit flag name cleanup",
+      "env flag no version number",
+      "live vs archived rename boundary"
+    ],
+    "key_topics": [
+      "version",
+      "suffix",
+      "flag",
+      "rename",
+      "drop",
+      "name",
+      "speckit",
+      "cleanup",
+      "env",
+      "number",
+      "live",
+      "archived"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      ".opencode/skills/system-spec-kit/mcp_server/lib/search/search-flags.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md",
+      ".opencode/skills/system-spec-kit/mcp_server/tests/flag-ceiling.vitest.ts",
+      "lib/response/profile-formatters.ts",
+      "references/config/environment_variables.md",
+      ".opencode/commands/memory/search.md",
+      ".opencode/skills/system-spec-kit/mcp_server/scripts/evals/run-eval-v2.mjs",
+      ".opencode/skills/system-spec-kit/mcp_server/tests/session-state.vitest.ts",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "search-flags.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/search/search-flags.ts",
+        "source": "derived"
+      },
+      {
+        "name": "ENV_REFERENCE.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md",
+        "source": "derived"
+      },
+      {
+        "name": "flag-ceiling.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/flag-ceiling.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "profile-formatters.ts",
+        "kind": "code",
+        "path": "lib/response/profile-formatters.ts",
+        "source": "derived"
+      },
+      {
+        "name": "environment_variables.md",
+        "kind": "doc",
+        "path": "references/config/environment_variables.md",
+        "source": "derived"
+      },
+      {
+        "name": "search.md",
+        "kind": "doc",
+        "path": ".opencode/commands/memory/search.md",
+        "source": "derived"
+      },
+      {
+        "name": "run-eval-v2.mjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/scripts/evals/run-eval-v2.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "session-state.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/session-state.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Suffix Flag",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Name Cleanup",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Twelve",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Drop",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Exact",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Twelve live SPECKIT feature flags carry a `V1` version suffix in their environment-variable name",
+    "created_at": "2026-06-24T06:24:03.473Z",
+    "last_save_at": "2026-07-06T19:16:40.396Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:cfaf4536ea65f13d868c4dad55cd7f3825c494a6df276f54c5f7acdee5bde414",
+    "source_doc_hashes": {
+      "spec.md": "375ecc8292c3c3bc148513f206f6c38f106b3592acbef82fb49330baed9d6f2e",
+      "plan.md": "44e7e4a6f38e1fe4c2c8333a913c08ad3dbc50719d4d093d08ec629d0b58c147",
+      "tasks.md": "35713e17c7f05c2fa145f790635e912086ee655a60d8481f195e0c6dd754dd5a",
+      "checklist.md": "22a7b7fa408d185d96a7b87463db153ccaa83a862cb7138a41204ae50a15f9cd",
+      "implementation-summary.md": "493ae2d99d651025c1ee4e2e6b0a75f4b68cca7e9032d4f1a3076368d164cfa5"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

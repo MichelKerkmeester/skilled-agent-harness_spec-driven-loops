@@ -198,7 +198,7 @@
     ],
     "causal_summary": "The 029 model benchmark found that `/memory:search` confidently cited an off-corpus term",
     "created_at": "2026-06-22T00:00:00Z",
-    "last_save_at": "2026-07-04T17:50:58.258Z",
+    "last_save_at": "2026-07-06T19:16:34.885Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,13 +208,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:6335cb9d0d6703ad8f95426b0a5ff8861b6d281da7a2e0f687aa8a603bd67210",
+    "source_fingerprint": "sha256:e0881983cf01d45a14db92c82b32b5365f0a898536489d8b9c889623097dc3f9",
     "source_doc_hashes": {
-      "spec.md": "04f9e1ac68f0a12d7dbbbd08fb035c3db9e447420458a33287f5eaa473febd60",
-      "plan.md": "368a728ff83838f74dac3d25a9480ff1304b871a1213371ff8bd5dd73ef32153",
-      "tasks.md": "a1ec93c74a24a476d1298bacf683bf8e33ab16d3a2eecc000b99514a47413626",
-      "checklist.md": "081a8af97fb72d1848c367541117ea09ba31cfbec82cc98ae7117ea81ddddf99",
-      "implementation-summary.md": "b88f2fb36e796c835b3f70eabac4c3639e3fa828d30c67daa4a129c312f7e39a"
+      "spec.md": "5147c12f9de2caa43edce41110d41291f01dc6d1109ce1504668f89f8646be5d",
+      "plan.md": "8649b6282ad5b86e346ef369da36c3fd269930580a70109a929aef16399b7ad2",
+      "tasks.md": "04237da51326dcff25ee0f9b993513a2e6262c862912d8f8077ff54a9a8f8bb1",
+      "checklist.md": "084dd51907f9761eff7baec04398e107b8265ebc408a895a8e7f352a7529d4be",
+      "implementation-summary.md": "7c6ced29ea5d9ea12e5f147e831bf386f89c8aab559a24e984bc3dbc7b9abda2"
     },
     "last_active_child_id": null,
     "last_active_at": null

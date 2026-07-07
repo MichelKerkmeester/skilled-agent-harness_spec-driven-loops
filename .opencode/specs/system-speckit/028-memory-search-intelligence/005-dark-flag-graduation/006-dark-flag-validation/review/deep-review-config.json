@@ -1,0 +1,24 @@
+{
+  "sessionId": "009-dark-flag-validation-2026-06-24",
+  "parentSessionId": "005-dark-flag-graduation",
+  "lineageMode": "new",
+  "generation": 1,
+  "continuedFromRun": null,
+  "releaseReadinessState": "in-progress",
+  "target": ".opencode/specs/system-spec-kit/028-memory-search-intelligence/005-dark-flag-graduation/006-dark-flag-validation",
+  "reviewDimensions": ["correctness", "security", "spec-alignment", "completeness"],
+  "clusters": [
+    { "id": "001", "name": "multihop-tail-appends", "flags": ["SPECKIT_DETERMINISTIC_MULTIHOP", "SPECKIT_LANE_CHAMPION_BACKFILL"], "files": ["system-spec-kit/mcp_server/lib/search/deterministic-multihop.ts", "system-spec-kit/mcp_server/lib/search/lane-champion-backfill.ts", "system-spec-kit/mcp_server/lib/search/pipeline/orchestrator.ts"] },
+    { "id": "002", "name": "codegraph-staleness-bitemporal", "flags": ["SPECKIT_CODE_GRAPH_REVERSE_DEP_FORCE_PARSE", "SPECKIT_CODE_GRAPH_EDGE_BITEMPORAL_READS"], "files": ["system-code-graph/mcp_server/lib/structural-indexer.ts", "system-code-graph/mcp_server/lib/code-graph-db.ts", "system-code-graph/mcp_server/lib/ensure-ready.ts"] },
+    { "id": "003", "name": "advisor-rrf-conflict-rerank", "flags": ["SPECKIT_ADVISOR_RRF_FUSION"], "files": ["system-skill-advisor/mcp_server/lib/scorer/fusion.ts"] },
+    { "id": "004", "name": "deeploop-finding-dedup-gauges", "flags": ["SPECKIT_FANOUT_NEAR_DUP_DEDUP"], "files": ["deep-loop-runtime/scripts/fanout-merge.cjs"] },
+    { "id": "005", "name": "true-citation-ledger", "flags": ["SPECKIT_TRUE_CITATION_EMITTER"], "files": ["system-spec-kit/mcp_server/lib/feedback/true-citation-emitter.ts"] }
+  ],
+  "maxIterations": 10,
+  "convergence": {
+    "compositeStopScore": 0.75,
+    "minStabilizationPasses": 1,
+    "requiredGates": ["severity-coverage", "dimension-coverage", "byte-identity-verified"]
+  },
+  "resource_map_present": false
+}

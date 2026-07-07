@@ -41,7 +41,7 @@
       "vector"
     ],
     "importance_tier": "important",
-    "status": "complete",
+    "status": "in_progress",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -212,7 +212,7 @@
     ],
     "causal_summary": "The causal graph is substrate-blind at the edge",
     "created_at": "2026-06-19T05:47:05.578Z",
-    "last_save_at": "2026-07-04T17:50:57.515Z",
+    "last_save_at": "2026-07-06T19:16:32.424Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -223,14 +223,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:46670552bcbc32119db1316008d33d9f7936b787368957dd5db2af8e619cadde",
+    "source_fingerprint": "sha256:27cf99787087ce8a2530879cbf47abd77bff84f0776aa1b548490793852803dc",
     "source_doc_hashes": {
-      "spec.md": "7f981c267b8ef52ca6b51bb6e9f38fb0069779993a7d125df57f50f498274031",
-      "plan.md": "cdce77f7427763b688188ac2713427bed0d95d30e7bf292015bb7d797371b556",
-      "tasks.md": "a78fa2643aba685f1df1308cdf810fe86d0709ecb7f8b2583252ebefb0c5eedf",
-      "checklist.md": "b2e9ce9ee43f6a5fa3373e51918010e3c524357deb1155bde6e2d5c132cfc715",
-      "decision-record.md": "c9c5f30f11f844a32eff395fb54e8458f6578f6fd8bbd47d9c014a27235a78d5",
-      "implementation-summary.md": "2523c4b55ea33c21d1773c9deacbc1b57fbe084b84506d90ba281dbc496b3626"
+      "spec.md": "0419ab08ae32e774253c6d0c28093d4418683bffc25f15f026fc2cf0bce2a273",
+      "plan.md": "64ef97b675182a679bc8be4227d6ff0879000d64cfd8c27893ba2a053a1dda89",
+      "tasks.md": "6360a6cac1968e997f5da672177253e65264a15e8a5c07a26e51c3b43b1c4c51",
+      "checklist.md": "c62755c3b60cca387bfd736b949a1c27339a7f9385ec09fcea849a31cc09d9bc",
+      "decision-record.md": "2a8aa532ac065a3880ec11177787b63f62091da31987f1a7a6192833ab95ee14",
+      "implementation-summary.md": "71dabd0b4d6d88b75c9733a854fa567466b280677db3b97be4f69e2f9065f841"
     },
     "last_active_child_id": null,
     "last_active_at": null

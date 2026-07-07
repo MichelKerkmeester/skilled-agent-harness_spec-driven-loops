@@ -124,7 +124,7 @@ Rationale: 011 restores daemon/CLI trust + health truthfulness (and everything a
 - Constitutional block suppression after first call in fallback chains (includeConstitutional:false) (I gap); startup truncation at section boundaries (I gap); UserPromptSubmit shim invalid-JSON concat fix (I P2).
 - Success gates: 5-result search envelope < 6KB default; zero drifted doc claims on re-audit; text format usable.
 
-### 013-absorb-028-006-review-remediation-closeout — L2
+### 013-absorb-028-004-review-remediation-closeout — L2
 - Formally absorb + close: update 028/006/002 and 028/006/004 specs to point at phases 003/008/009 (002-scope) and the distributed P2 mapping (004-scope); complete the 91-P2 triage table mapping each to {fixed-in-phase-NNN | accept-as-is + reason}; update 028/006 parent spec + graph metadata; reconcile 000-release-cleanup/015-manual-playbook-execution-sweep (ex-031) tasks.md Group-A/deferred rows → point at phase 007; mark 028 parent phase map statuses.
 - Sweep the 🟡 findings ledger for anything not mapped by 001–012 → explicit accept-as-is entries with reasons (no silent drops).
 - Final program validation: validate.sh --strict across parent+13 children; scoped memory_index_scan; memory save of program state.

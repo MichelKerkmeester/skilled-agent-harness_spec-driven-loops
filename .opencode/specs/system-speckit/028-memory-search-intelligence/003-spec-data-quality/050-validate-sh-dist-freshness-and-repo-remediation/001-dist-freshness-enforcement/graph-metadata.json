@@ -1,0 +1,221 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/028-memory-search-intelligence/003-spec-data-quality/050-validate-sh-dist-freshness-and-repo-remediation/001-dist-freshness-enforcement",
+  "spec_folder": "system-speckit/028-memory-search-intelligence/003-spec-data-quality/050-validate-sh-dist-freshness-and-repo-remediation/001-dist-freshness-enforcement",
+  "parent_id": "system-speckit/028-memory-search-intelligence/003-spec-data-quality/050-validate-sh-dist-freshness-and-repo-remediation",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "dist freshness enforcement",
+      "validate.sh stale dist backstop",
+      "stale dist hook plugin",
+      "dist freshness enforcement plan",
+      "dist freshness enforcement tasks",
+      "dist freshness enforcement summary",
+      "stale dist validation backstop"
+    ],
+    "key_topics": [
+      "dist",
+      "freshness",
+      "enforcement",
+      "validate",
+      "stale",
+      "backstop",
+      "hook",
+      "plugin",
+      "plan",
+      "tasks",
+      "summary",
+      "validation"
+    ],
+    "importance_tier": "critical",
+    "status": "complete",
+    "key_files": [
+      ".opencode/skills/system-spec-kit/scripts/spec/validate.sh",
+      ".opencode/bin/spec-memory.cjs",
+      ".opencode/skills/system-spec-kit/scripts/lib/dist-freshness.cjs",
+      ".opencode/plugins/mk-dist-freshness-guard.js",
+      ".opencode/bin/code-index.cjs",
+      ".opencode/bin/skill-advisor.cjs",
+      ".opencode/skills/system-spec-kit/scripts/tests/test-dist-freshness.sh",
+      ".opencode/plugins/tests/mk-dist-freshness-guard.test.cjs",
+      ".opencode/skills/system-spec-kit/scripts/tests/test-validation-extended.sh",
+      "scripts/spec/validate.sh",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "validate.sh",
+        "kind": "script",
+        "path": ".opencode/skills/system-spec-kit/scripts/spec/validate.sh",
+        "source": "derived"
+      },
+      {
+        "name": "spec-memory.cjs",
+        "kind": "file",
+        "path": ".opencode/bin/spec-memory.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "dist-freshness.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-spec-kit/scripts/lib/dist-freshness.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "mk-dist-freshness-guard.js",
+        "kind": "code",
+        "path": ".opencode/plugins/mk-dist-freshness-guard.js",
+        "source": "derived"
+      },
+      {
+        "name": "code-index.cjs",
+        "kind": "file",
+        "path": ".opencode/bin/code-index.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "skill-advisor.cjs",
+        "kind": "file",
+        "path": ".opencode/bin/skill-advisor.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "test-dist-freshness.sh",
+        "kind": "script",
+        "path": ".opencode/skills/system-spec-kit/scripts/tests/test-dist-freshness.sh",
+        "source": "derived"
+      },
+      {
+        "name": "mk-dist-freshness-guard.test.cjs",
+        "kind": "file",
+        "path": ".opencode/plugins/tests/mk-dist-freshness-guard.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "test-validation-extended.sh",
+        "kind": "script",
+        "path": ".opencode/skills/system-spec-kit/scripts/tests/test-validation-extended.sh",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Dist Freshness Enforcement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Claude Code",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Extract",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Layered",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "`validate.sh`'s default path (`runnodeorchestrator()`, `scripts/spec/validate.sh:975-989`) only checks `[[ -f \"$orchestratorjs\" ]]` -- file existence -- before trusting the compiled `mcpserver/dist/lib/validation/orchestrator.js`",
+    "created_at": "2026-07-02T03:37:12.940Z",
+    "last_save_at": "2026-07-06T18:49:35.195Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:dd487cf48ef78c99308e508490a1367a6ed5ce5ae48592fd2a57ac6c0f0297b6",
+    "source_doc_hashes": {
+      "spec.md": "a98841b935562ce87fbffb1615b1f17bc60b5b783f19514d0df2783ee2f20766",
+      "plan.md": "c151f885b0bf755441b2eed12fed2cb724c148159bea79a301d0b63a2da60d48",
+      "tasks.md": "9c29906ec3eb0fcef97af7f73f4f33b11344adc50ef6f928897f6250e1a1b934",
+      "implementation-summary.md": "20e561a864ee086234d98a42edf71368dcc311c8d0310a487bfa54e128c79768"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

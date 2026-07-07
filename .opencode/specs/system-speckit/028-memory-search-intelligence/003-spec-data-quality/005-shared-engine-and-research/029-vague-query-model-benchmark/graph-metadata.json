@@ -1,0 +1,226 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/028-memory-search-intelligence/003-spec-data-quality/005-shared-engine-and-research/029-vague-query-model-benchmark",
+  "spec_folder": "system-speckit/028-memory-search-intelligence/003-spec-data-quality/005-shared-engine-and-research/029-vague-query-model-benchmark",
+  "parent_id": "system-speckit/028-memory-search-intelligence/003-spec-data-quality/005-shared-engine-and-research",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "vague query model benchmark",
+      "memory search model comparison",
+      "requestQuality citation robustness",
+      "search behavior benchmark",
+      "model search efficiency",
+      "benchmark driver parser",
+      "search behavior harness",
+      "model dispatch matrix",
+      "benchmark verification",
+      "model search recommendation",
+      "evidence-gap cap dead",
+      "memory search verdict bug research"
+    ],
+    "key_topics": [
+      "vague",
+      "query",
+      "model",
+      "benchmark",
+      "memory",
+      "search",
+      "comparison",
+      "requestquality",
+      "citation",
+      "robustness",
+      "behavior",
+      "efficiency"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "scripts/benchmark-config.json",
+      "scripts/run-benchmark.mjs",
+      "scripts/extract-metrics.mjs",
+      "results/metrics.json",
+      "implementation-summary.md",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "research/research.md"
+    ],
+    "entities": [
+      {
+        "name": "benchmark-config.json",
+        "kind": "config",
+        "path": "scripts/benchmark-config.json",
+        "source": "derived"
+      },
+      {
+        "name": "run-benchmark.mjs",
+        "kind": "file",
+        "path": "scripts/run-benchmark.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "extract-metrics.mjs",
+        "kind": "file",
+        "path": "scripts/extract-metrics.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "metrics.json",
+        "kind": "config",
+        "path": "results/metrics.json",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "Query Model Benchmark",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Characterize",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Change Type",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Three",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "A pilot run showed that four different LLMs drive the `/memory:search` command very differently on the same vague query",
+    "created_at": "2026-06-27T17:15:40.361Z",
+    "last_save_at": "2026-07-07T03:41:11.837Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md",
+      "research/research.md"
+    ],
+    "source_fingerprint": "sha256:3a0035141d9e13a165775cd0fb64124e44e9c496c18ce169b5d564bb6a9591c7",
+    "source_doc_hashes": {
+      "spec.md": "057c1f5b011d0a63aec3070f441568af25477ab408445fb9972d4c8a4b4210f9",
+      "plan.md": "6052a0dba0b31cdcebf31e175a092048886e0bd1b68d9120468aa9a721b5db91",
+      "tasks.md": "f2c61507bd149e692ee04f34dcbacac93f0311a653727c8e10a2766530c4c904",
+      "checklist.md": "cbcfe5d5cd6cd0356f0dea6460668a27758e2b898eeab6e9158784ddaf7aa856",
+      "implementation-summary.md": "1af218c11b56c27bed73e87112a67da57fec934c48add526e8ca67b75f7236e0",
+      "research/research.md": "cbec4f8e9d10334a6fe936e937dd5ef43315460ee81877e20eeeea0df164ffde"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

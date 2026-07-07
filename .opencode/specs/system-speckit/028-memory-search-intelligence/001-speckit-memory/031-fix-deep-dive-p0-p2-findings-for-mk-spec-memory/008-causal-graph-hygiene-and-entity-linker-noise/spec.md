@@ -86,7 +86,7 @@ This is **Phase 8** of the Deep dive remediation phase children specification (p
 **Dependencies**:
 - Phase 002 (`002-archived-tier-and-tombstone-read-exclusions`): the shared active-row predicate this phase reuses when filtering graph members and edge endpoints.
 - Phase 007 (`007-ranking-filter-bypass-and-score-scale-fixes`): consumer-side causal-boost fixes; the "boost amplifies real causality" success gate is measured on 007's fixed consumer.
-- Absorbed contract: `../../../006-review-remediation/002-memory-schema-and-concurrency/` (P1-2, P1-4). Phase 013 updates that tracker's pointers; this phase executes the fixes.
+- Absorbed contract: `../../../004-review-remediation/002-memory-schema-and-concurrency/` (P1-2, P1-4). Phase 013 updates that tracker's pointers; this phase executes the fixes.
 
 **Deliverables**:
 - Provenance-scoped strength UPDATE + code change executing the ADR-001 down-weight disposition for the ~31,536 entity-linker `'supports'`@0.7 edges (no schema migration).
@@ -138,7 +138,7 @@ After this phase, `causal_edges` contains a sane relation histogram where real c
 - Learning loop, FSRS, retention sweeps (incl. absorbed 028/006/002 P1-5) - Phase 009.
 - Perf-only caches (graph adjacency cache, community single-load map) - Phase 010; this phase only fixes correctness of existing caches.
 - Rescue-layer ranking authority - Phase 006 decision gates ranking measurement.
-- The old tracker's own doc updates at `../../../006-review-remediation/002-memory-schema-and-concurrency/` - Phase 013 re-points that contract; this phase must not edit it.
+- The old tracker's own doc updates at `../../../004-review-remediation/002-memory-schema-and-concurrency/` - Phase 013 re-points that contract; this phase must not edit it.
 
 ### Files to Change
 
@@ -208,7 +208,7 @@ After this phase, `causal_edges` contains a sane relation histogram where real c
 |------|------|--------|------------|
 | Dependency | Phase 002 shared active-row predicate | Graph member/endpoint filtering diverges if 002 slips | Land 008's filters against the 002 predicate signature; feature-check at integration |
 | Dependency | Phase 007 causal-boost consumer fixes | "Boost amplifies real causality" gate unmeasurable | Gate SC-006's boost assertion on 007 landing; histogram gates (SC-001) stand alone |
-| Dependency | 028/006/002 absorbed contract (`../../../006-review-remediation/002-memory-schema-and-concurrency/`) | Divergent fix scope if both trackers execute | This phase verifies P1-2 (code already fixed; runs the backfill) and P1-4 (already lock-safe; adds the test); Phase 013 re-points the old tracker; do not edit it here |
+| Dependency | 028/006/002 absorbed contract (`../../../004-review-remediation/002-memory-schema-and-concurrency/`) | Divergent fix scope if both trackers execute | This phase verifies P1-2 (code already fixed; runs the backfill) and P1-4 (already lock-safe; adds the test); Phase 013 re-points the old tracker; do not edit it here |
 | Risk | Down-weight UPDATE hits the wrong edges (provenance column ambiguity) | High | Dry-run on DB copy; select strictly on `created_by = 'entity_linker'` AND relation `supports` AND strength 0.7; count-assert before/after |
 | Risk | Unknown consumers read `'supports'` relation semantics | Medium | Consumer inventory (plan FIX ADDENDUM) before relocation; ADR-001 records the blast radius |
 | Risk | Surrogate regeneration cost (7,108 rows re-embedded) | Medium | ADR-003 chooses batch/lazy strategy; run through the async queue, not the save path |
@@ -337,7 +337,7 @@ After this phase, `causal_edges` contains a sane relation histogram where real c
 - **Verification Checklist**: See `checklist.md`
 - **Decision Records**: See `decision-record.md` (ADR-001/002/003)
 - **Research Sources**: `../research/deep-dive-report.md` (§1 causal-edge rows, ledger L8; §3 P1 #19), `../research/findings-ledger.md` (Agent D + Agent H causal-links items), `../research/phase-decomposition.md` (§008)
-- **Absorbed Contract**: `../../../006-review-remediation/002-memory-schema-and-concurrency/spec.md` (P1-2, P1-4; pointers updated by Phase 013)
+- **Absorbed Contract**: `../../../004-review-remediation/002-memory-schema-and-concurrency/spec.md` (P1-2, P1-4; pointers updated by Phase 013)
 
 ---
 

@@ -12,7 +12,7 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-speckit/028-memory-search-intelligence/001-speckit-memory/021-residual-correctness"
-    last_updated_at: "2026-07-04T17:51:06.364Z"
+    last_updated_at: "2026-07-06T19:16:33.681Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "Implemented both residual correctness candidates and verified focused code/test gates"
     next_safe_action: "None, phase complete"
@@ -44,7 +44,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 028-memory-search-intelligence/001-speckit-memory/021-residual-correctness |
+| **Spec Folder** | 021-residual-correctness |
 | **Completed** | 2026-06-19, both candidates DONE in this phase |
 | **Level** | 2 |
 <!-- /ANCHOR:metadata -->

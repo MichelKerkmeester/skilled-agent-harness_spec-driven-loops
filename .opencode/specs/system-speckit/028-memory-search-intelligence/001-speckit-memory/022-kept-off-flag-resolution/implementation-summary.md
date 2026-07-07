@@ -10,7 +10,7 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-speckit/028-memory-search-intelligence/001-speckit-memory/022-kept-off-flag-resolution"
-    last_updated_at: "2026-07-04T17:51:01.130Z"
+    last_updated_at: "2026-07-06T19:16:33.980Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "Recorded the final flag-resolution reckoning: keep 5 default-on, delete 10 and their code"
     next_safe_action: "Treat this phase as the authoritative per-flag disposition for 028"
@@ -39,7 +39,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | system-speckit/028-memory-search-intelligence/001-speckit-memory/022-kept-off-flag-resolution |
+| **Spec Folder** | 022-kept-off-flag-resolution |
 | **Completed** | 2026-06-20 |
 | **Level** | 2 |
 <!-- /ANCHOR:metadata -->

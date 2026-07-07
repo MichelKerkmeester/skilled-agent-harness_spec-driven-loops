@@ -15,7 +15,7 @@ _memory:
     last_updated_at: "2026-07-04T17:51:09.855Z"
     last_updated_by: "planning-author"
     recent_action: "12 REQs shipped; single-casing + cursor tenant-leak fix + dual-tree docs; live bytes daemon-side"
-    next_safe_action: "Phase 013 absorb-028-006-review-remediation-closeout"
+    next_safe_action: "Phase 013 absorb-028-004-review-remediation-closeout"
     blockers: []
     key_files:
       - ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts"
@@ -59,7 +59,7 @@ FAILURE MODES:
 | **Parent Spec** | ../spec.md |
 | **Phase** | 12 of 13 |
 | **Predecessor** | 011-daemon-freshness-and-health-truthfulness |
-| **Successor** | 013-absorb-028-006-review-remediation-closeout |
+| **Successor** | 013-absorb-028-004-review-remediation-closeout |
 | **Handoff Criteria** | 5-result default `memory_search` envelope < 6KB with single-casing telemetry and honest `meta.tokenCount`; cursor scope enforced server-side with adversarial tests green; command-doc re-audit shows zero drifted claims in both trees; parity check script wired and exiting 0; `--format text` renders result rows; `memory_context` returns structured (non-double-encoded) top-level `data` with truthful resume `fingerprintStatus` |
 <!-- /ANCHOR:metadata -->
 

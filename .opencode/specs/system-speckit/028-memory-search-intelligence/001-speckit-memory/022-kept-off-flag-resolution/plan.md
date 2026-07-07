@@ -161,7 +161,7 @@ Each flag's measured signal feeds the fresh-Opus gate, which decides keep or del
 
 | Phase | Depends On | Reason |
 |-------|------------|--------|
-| 007 | `../006-review-remediation/spec.md` | The deep-review rounds validated the disposition this phase records |
+| 007 | `../004-review-remediation/spec.md` | The deep-review rounds validated the disposition this phase records |
 | 007 | `../benchmark-status.md` | The criterion-4 measurement is the deciding evidence baseline |
 <!-- /ANCHOR:phase-deps -->
 

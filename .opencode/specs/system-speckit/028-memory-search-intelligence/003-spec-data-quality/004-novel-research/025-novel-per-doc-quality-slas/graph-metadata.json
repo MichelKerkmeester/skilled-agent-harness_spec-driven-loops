@@ -1,0 +1,221 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/028-memory-search-intelligence/003-spec-data-quality/004-novel-research/025-novel-per-doc-quality-slas",
+  "spec_folder": "system-speckit/028-memory-search-intelligence/003-spec-data-quality/004-novel-research/025-novel-per-doc-quality-slas",
+  "parent_id": "system-speckit/028-memory-search-intelligence/003-spec-data-quality/004-novel-research",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "per doc quality sla",
+      "quality threshold",
+      "report only ticket",
+      "freshness queue",
+      "description governance block",
+      "per doc quality sla plan",
+      "quality threshold plan",
+      "sla evaluator",
+      "host queue dependency",
+      "per doc quality sla tasks",
+      "sla task breakdown",
+      "per doc quality sla checklist"
+    ],
+    "key_topics": [
+      "per",
+      "doc",
+      "quality",
+      "sla",
+      "threshold",
+      "report",
+      "only",
+      "ticket",
+      "freshness",
+      "queue",
+      "description",
+      "governance"
+    ],
+    "importance_tier": "normal",
+    "status": "draft",
+    "key_files": [
+      ".opencode/skills/system-spec-kit/mcp_server/lib/description/description-schema.ts",
+      "spec.md",
+      ".opencode/skills/system-spec-kit/mcp_server/tests/flag-ceiling.vitest.ts",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "description-schema.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/description/description-schema.ts",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "flag-ceiling.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/flag-ceiling.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Doc Quality",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Add",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Kit Memory",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Thin",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "exactly",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The system computes a per-doc quality score but never holds a doc to a named quality bar over time",
+    "created_at": "2026-06-27T17:15:39.283Z",
+    "last_save_at": "2026-07-06T19:16:37.597Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:05500b59a811a16664925e08dd49dbf3d5f87c47fb67a29fc056466c491d6f15",
+    "source_doc_hashes": {
+      "spec.md": "d933f34d9e686d4f450d5f7c3c337754410120688bed25a863c7f091cd05a4ca",
+      "plan.md": "e8f6d0e0aacdf38d722d8ad3afe8824a19083158f42a3dad5b740ebe9a1ba725",
+      "tasks.md": "a90c4272c4235c07a510a334e2543feaf9e2c30fba742e93cb4aba29041cd034",
+      "checklist.md": "f9d6d0ea2f8ce4bdb8b71e533b5adfebb495d71c43bc04cec8d4563d84e07b5a",
+      "implementation-summary.md": "f1a0e434da7030d3f03842636f7f923da381a7db8976bfaf9f609aa16b32d115"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

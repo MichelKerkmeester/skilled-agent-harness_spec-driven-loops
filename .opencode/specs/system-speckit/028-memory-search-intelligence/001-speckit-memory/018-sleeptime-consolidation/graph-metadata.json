@@ -207,7 +207,7 @@
     ],
     "causal_summary": "The internal Memory MCP has no off-turn memory reorganization",
     "created_at": "2026-06-19T05:47:05.579Z",
-    "last_save_at": "2026-07-04T17:51:07.543Z",
+    "last_save_at": "2026-07-06T19:16:32.744Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -218,14 +218,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:324fd348040a7d4c4a4ce4e28ee0d22696724da4f71335d79170d4142b960cad",
+    "source_fingerprint": "sha256:581dfc977448b7a074558d0a35a7628253afc3189f10b9426cf5a0a0405636a5",
     "source_doc_hashes": {
-      "spec.md": "2470a5f7d03974c6a2e75c8c8b1f8391747169d51769df4806999b68052d76bc",
-      "plan.md": "038adab74dc53fa7c15de4f05b36b63038077ebd5b65a049602ea97557b505df",
-      "tasks.md": "e5d2ccbf1a013f7be194c267b41026e1826c3679c2fdd32d26b5f866ba74a4e6",
-      "checklist.md": "c408a291dec26658047ba62e5b10750042098bbc879625c7ff43fffcbf6ebb69",
-      "decision-record.md": "e1782029ca56edbb69c5134717d566625ee2b1c097e32123403ddf0493eeed59",
-      "implementation-summary.md": "554307134190a9f05d0ffb8d8069e1a609d1dfb82502ba8cbb9f2ca0a253d016"
+      "spec.md": "45afe2b22847ceffa8567617588215e9e70d768eb9d866dcf7cee5a2d04e921e",
+      "plan.md": "a76af3e791bb39a173f9f1b432a3a2cf8746d848649d1cf30e0276402b960ca1",
+      "tasks.md": "e80a895f33fa21ea25772163afd6061a4713b7e6fb2b16dfa7a01a5f0b4bbfe4",
+      "checklist.md": "df37847cbfccc021efe17b2f6f6f2d8ff26666f4602736591fbc24bbdff458ac",
+      "decision-record.md": "03aea119ffeceefc2105fbceb8844814c5c40df2218ad1eae2d26ed6d94fb619",
+      "implementation-summary.md": "93fdf9db45c8dc2805dd30f4f750955310f9968089cc552318302fca5a3ecb42"
     },
     "last_active_child_id": null,
     "last_active_at": null

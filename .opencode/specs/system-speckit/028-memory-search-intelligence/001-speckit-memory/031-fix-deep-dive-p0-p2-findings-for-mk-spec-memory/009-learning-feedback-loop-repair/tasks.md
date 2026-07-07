@@ -48,7 +48,7 @@ _memory:
 
 **Task Format**: `T### [P?] Description (file path)`
 
-Finding references cite the deep-dive report (`../research/deep-dive-report.md`, #N / Chain E), the findings ledger (`../research/findings-ledger.md`, agent letters), and the absorbed item 028/006-review-remediation/002 P1-5. Per the program comment-hygiene rule, finding IDs live HERE, never in code comments.
+Finding references cite the deep-dive report (`../research/deep-dive-report.md`, #N / Chain E), the findings ledger (`../research/findings-ledger.md`, agent letters), and the absorbed item 028/004-review-remediation/002 P1-5. Per the program comment-hygiene rule, finding IDs live HERE, never in code comments.
 <!-- /ANCHOR:notation -->
 
 ---
@@ -133,7 +133,7 @@ Finding references cite the deep-dive report (`../research/deep-dive-report.md`,
 - **Specification**: See `spec.md`
 - **Plan**: See `plan.md`
 - **Sources**: `../research/phase-decomposition.md` (section 009), `../research/deep-dive-report.md` (Chain E; #25/#26/#27; §3 P1 #20 working-memory decay), `../research/findings-ledger.md` (Agent G ledger/dashboard, Agent C FSRS hybrid-decay), `../research/plan-review-report.md` (§4 routed silent-drops; Systemic #1 absorbed-P1-5 reclassification)
-- **Absorbed item**: `../../../006-review-remediation/002-memory-schema-and-concurrency/spec.md` (P1-5; phase 013 updates its pointers)
+- **Absorbed item**: `../../../004-review-remediation/002-memory-schema-and-concurrency/spec.md` (P1-5; phase 013 updates its pointers)
 <!-- /ANCHOR:cross-refs -->
 
 ---

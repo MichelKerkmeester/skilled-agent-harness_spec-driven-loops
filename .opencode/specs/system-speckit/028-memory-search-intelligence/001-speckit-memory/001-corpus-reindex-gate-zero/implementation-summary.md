@@ -10,7 +10,7 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-speckit/028-memory-search-intelligence/001-speckit-memory/001-corpus-reindex-gate-zero"
-    last_updated_at: "2026-07-04T17:51:03.030Z"
+    last_updated_at: "2026-07-06T19:16:27.798Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "Shipped C9-4 coverage guard, verified 100pct coverage so reindex superseded"
     next_safe_action: "Proceed to the benchmark tier, coverage gate is satisfied"
@@ -37,7 +37,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | `028-memory-search-intelligence/001-speckit-memory/001-corpus-reindex-gate-zero` |
+| **Spec Folder** | 001-corpus-reindex-gate-zero |
 | **Level** | 2 |
 | **Status** | complete |
 | **Candidate** | `corpus-reindex-gate-zero`, C9-4 guard DONE, reindex superseded (coverage already 100%) |

@@ -9,7 +9,7 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-speckit/028-memory-search-intelligence/000-release-cleanup/004-feature-catalogs"
-    last_updated_at: "2026-07-04T17:31:33.485Z"
+    last_updated_at: "2026-07-06T19:16:24.431Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "Executed feature_catalog cleanup, recorded evidence"
     next_safe_action: "Phase complete, successor is ../005-manual-testing-playbooks"
@@ -37,7 +37,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | system-speckit/028-memory-search-intelligence/000-release-cleanup/004-feature-catalogs |
+| **Spec Folder** | 004-feature-catalogs |
 | **Completed** | 2026-06-19 (commit ab405fa052) |
 | **Level** | 2 |
 <!-- /ANCHOR:metadata -->

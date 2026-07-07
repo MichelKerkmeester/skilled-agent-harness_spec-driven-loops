@@ -197,7 +197,7 @@
     ],
     "causal_summary": "The every manual testing playbook document across skills and repo-level packages needs a release-readiness cleanup contract before any document edits begin",
     "created_at": "2026-06-19T00:00:00Z",
-    "last_save_at": "2026-07-04T17:31:30.637Z",
+    "last_save_at": "2026-07-06T19:16:24.735Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,13 +207,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:08de36b5e20d33252408999f7f5bd8cf4ffc6ead9d8b3a7210970ae945dbd815",
+    "source_fingerprint": "sha256:f35492e1a8fcd48c27ddbac34467d1e16f90a07464696c9285cdb38ab0850b1f",
     "source_doc_hashes": {
-      "spec.md": "cfce11e6eb75b376f03e5f21418229cfa49da455e997d19d0fd4cc38dcbaaf26",
-      "plan.md": "42527e2ddea8f9756512a47afe1d77229f5da69dac078ca19577495fb9d193e9",
-      "tasks.md": "8c2a5420ac3b7bac1f07a21c414b74b015e5284efd5cc9dc73448f5cabe066b3",
-      "checklist.md": "b266a0744739044e3f15a35aaef07cbc1ca032a26bdcc82280741a8c4be0ac6a",
-      "implementation-summary.md": "8f2fd2f5221286c07715199a49087ba3d448588a27c68673c7b3f13aecd0411c"
+      "spec.md": "70d5b6457b1ebc0f8892f664522b9d355796ed96aafce85f7ee996f315d99b79",
+      "plan.md": "56803f574c906c1fedd2076a8af7654404777ef522befbd1ebf23db8f444f719",
+      "tasks.md": "2ffa9019c75bf3a62a70f441774b75f789a5bb57211d9367bb3a326819f5ab27",
+      "checklist.md": "d6cb052e6b093c3b639f4ee30b3465cac8149903f167050a026f7619c3697207",
+      "implementation-summary.md": "4f6c492d8bddcbdfcba73c795d7b75cedc24319645bedc8a9da108bc8e9fafca"
     },
     "last_active_child_id": null,
     "last_active_at": null

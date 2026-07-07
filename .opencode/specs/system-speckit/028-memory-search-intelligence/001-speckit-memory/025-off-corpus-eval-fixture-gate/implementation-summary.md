@@ -12,7 +12,7 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-speckit/028-memory-search-intelligence/001-speckit-memory/025-off-corpus-eval-fixture-gate"
-    last_updated_at: "2026-07-04T17:50:58.258Z"
+    last_updated_at: "2026-07-06T19:16:34.885Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "Shipped off-corpus fixture, driver and gate, live rate 0.833 on nomic"
     next_safe_action: "Hand the fixture to the downstream lexical-grounding floor phase that this guard validates"

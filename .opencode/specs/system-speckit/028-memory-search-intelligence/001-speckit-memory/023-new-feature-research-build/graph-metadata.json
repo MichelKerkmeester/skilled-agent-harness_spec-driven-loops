@@ -197,7 +197,7 @@
     ],
     "causal_summary": "The flag-resolution reckoning deleted ten default-off switches, and each deletion taught something specific about why a lever fails to move live recall",
     "created_at": "2026-06-20T00:00:00Z",
-    "last_save_at": "2026-07-04T17:51:04.915Z",
+    "last_save_at": "2026-07-06T19:16:34.283Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,13 +207,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:42fcdc46ec1241e53b4542185b2737e750b6ebca5c77816a412bd326a0b73ba8",
+    "source_fingerprint": "sha256:879a73b802228a8229da67a9b1091b558ed35c70bd3b228c70863c4512b3107c",
     "source_doc_hashes": {
-      "spec.md": "90740683a22102437b9628a81d5c0657dcbb3eea47860e19fbb13e7e35ed2d89",
-      "plan.md": "1adbf90c9f7245dbc8b051bc38140ef3ec2cc4fcfc42748b1d9a8140a021d546",
-      "tasks.md": "3150aac394eea2026b0215a57414caa2404123d6f505d50c13ee048cbd7a7d79",
-      "checklist.md": "3df2231ed3120c75e2c6728038b7e48df0c7a1a3e800629a96f51210acc466be",
-      "implementation-summary.md": "219796d1a9fb4ef6fea2faceff1374814d93a500c201728cf044af787de04ce5"
+      "spec.md": "01c3d17a3be08e964026d8666e05044b8c46c420b9bd4d8282f8b684b5ae8f99",
+      "plan.md": "82d5212e29e1a007721c24cbc60d44b71164df24a3e176a3e14fc50dd7392622",
+      "tasks.md": "9244fd2893dd772e261191f1f9bc014e7f53931b4b28ea7ad21138f5d0800e7e",
+      "checklist.md": "e36f429df6d9581548ed470ffc617c3eafd14064a9aa5b99026476344e29b011",
+      "implementation-summary.md": "e27950ec8c309a7dee569707c0fcd98fa735973d10f8f10727302e44f9709ecc"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -12,7 +12,7 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-speckit/028-memory-search-intelligence/001-speckit-memory/013-enrichment-observability"
-    last_updated_at: "2026-07-04T17:51:05.281Z"
+    last_updated_at: "2026-07-06T19:16:31.192Z"
     last_updated_by: "codex-gpt-5"
     recent_action: "Implemented gauge-lag health observability"
     next_safe_action: "Run packet validation and hand back verification evidence"
@@ -43,7 +43,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 028-memory-search-intelligence/001-speckit-memory/013-enrichment-observability |
+| **Spec Folder** | 013-enrichment-observability |
 | **Completed** | Yes |
 | **Level** | 1 |
 <!-- /ANCHOR:metadata -->

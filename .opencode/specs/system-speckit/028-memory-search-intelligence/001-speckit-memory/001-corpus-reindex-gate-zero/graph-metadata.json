@@ -39,7 +39,7 @@
       "assert"
     ],
     "importance_tier": "important",
-    "status": "complete",
+    "status": "in_progress",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -199,7 +199,7 @@
     ],
     "causal_summary": "The Spec-Kit Memory MCP index is partly cold: a measurable fraction of indexed rows are un-enriched / un-embedded, and the FTS/vector consistency state is degraded",
     "created_at": "2026-06-19T05:40:37.442Z",
-    "last_save_at": "2026-07-04T17:51:03.030Z",
+    "last_save_at": "2026-07-06T19:16:27.798Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,13 +209,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:916af3bb9a8c9a355b10258014ceaf6493d9d8c40794c5cf16f4ec000826eafe",
+    "source_fingerprint": "sha256:64b2afb76de31beeb863768d0957fe5c18917c3ee35eb55f0baa575ddb2ccfb3",
     "source_doc_hashes": {
-      "spec.md": "dbbd52f31a5852749c252076b5c48fda90958a8794668dba5f8b3f13051695af",
-      "plan.md": "affd0d6cd00ee0e1fd0f31c0b60b9aecf088fe26dd1b618ad6a332af8ed75ab1",
-      "tasks.md": "2bd1158ad6d9c501455620a6078f2476018ebb0ecfba5fbee3d54020a2166610",
-      "checklist.md": "307c9d2bda6886fca9619c8eba6a34b96b93110df567917d18f7fb5d18a97df1",
-      "implementation-summary.md": "e87b71f28d64e5489e90f52bfde159bc80d995ee24c43535d3d27b685e0f0a07"
+      "spec.md": "f8a7666f1cdf74044b41c652462c8f8e701de892a33a3c0be23087d8c12ce372",
+      "plan.md": "5d985188efa124bb0eac3edcfe351638a43cfaf7b20a0d3b92a633f93db051d7",
+      "tasks.md": "fcc7eaf5bd965699cbcfdb48b6010389fdfaf270cdd3680824c58ee1a2ddf063",
+      "checklist.md": "028d8c24721a69de04ff029049f7abc027715c016e9658cf0953b9b3889527d8",
+      "implementation-summary.md": "db1899b5fca817fa53a98194a4ad069883ed248d7c77b40029f6179e4db674ea"
     },
     "last_active_child_id": null,
     "last_active_at": null

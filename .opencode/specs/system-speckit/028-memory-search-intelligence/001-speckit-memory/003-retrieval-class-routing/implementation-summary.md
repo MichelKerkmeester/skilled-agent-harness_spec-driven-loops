@@ -11,7 +11,7 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-speckit/028-memory-search-intelligence/001-speckit-memory/003-retrieval-class-routing"
-    last_updated_at: "2026-07-04T17:50:58.974Z"
+    last_updated_at: "2026-07-06T19:16:28.438Z"
     last_updated_by: "codex-gpt-5"
     recent_action: "Summarized C2-A/C2-C/C2-B"
     next_safe_action: "Implement pending recall gates"
@@ -43,7 +43,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 028-memory-search-intelligence/001-speckit-memory/003-retrieval-class-routing |
+| **Spec Folder** | 003-retrieval-class-routing |
 | **Status** | in_progress |
 | **Level** | 3 |
 <!-- /ANCHOR:metadata -->

@@ -10,7 +10,7 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-speckit/028-memory-search-intelligence/001-speckit-memory/023-new-feature-research-build"
-    last_updated_at: "2026-07-04T17:51:04.915Z"
+    last_updated_at: "2026-07-06T19:16:34.283Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "Recorded the TRACK B arc, eval-v2 kept and three features held"
     next_safe_action: "Treat this phase as the authoritative TRACK B new-feature outcome for 028"
@@ -40,7 +40,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | system-speckit/028-memory-search-intelligence/001-speckit-memory/023-new-feature-research-build |
+| **Spec Folder** | 023-new-feature-research-build |
 | **Completed** | 2026-06-20 |
 | **Level** | 2 |
 <!-- /ANCHOR:metadata -->

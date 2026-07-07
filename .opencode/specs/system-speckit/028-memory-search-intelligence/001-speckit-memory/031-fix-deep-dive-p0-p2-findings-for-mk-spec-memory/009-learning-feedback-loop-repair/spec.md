@@ -82,7 +82,7 @@ This is **Phase 9** of the Deep dive remediation phase children specification.
 - Phase 011 (daemon freshness) precedes all phases in the recommended execution order, giving this phase a trustworthy CLI/daemon surface.
 - Phase 003 owns PE-gate UPDATE/REINFORCE reachability (report #26) and may land the prediction-error-gate init wiring first; T027 verifies before wiring.
 - Phase 006 owns eval parity (ablation DB-swap half of report #25); shadow-eval fixes here stay measurable through that harness.
-- Absorbs 028/006-review-remediation/002-memory-schema-and-concurrency item P1-5. Verify-first: the re-validation ALREADY ships in code (`memory-retention-sweep.ts:666` calls `revalidateSpareOnlyRetention` on the fresh in-transaction row before DELETE, rationale comment :660-665), so this collapses to writing the interleaving test that proves the existing behavior; phase 013 updates the old tracker's pointers.
+- Absorbs 028/004-review-remediation/002-memory-schema-and-concurrency item P1-5. Verify-first: the re-validation ALREADY ships in code (`memory-retention-sweep.ts:666` calls `revalidateSpareOnlyRetention` on the fresh in-transaction row before DELETE, rationale comment :660-665), so this collapses to writing the interleaving test that proves the existing behavior; phase 013 updates the old tracker's pointers.
 - Absorbs three routed silent-drop findings from the plan-review §4 sweep (previously unowned or orphaned to the code-less phase 013): working-memory decay double-apply (report #20), eval-dashboard latency mislabel + `eval_run_id=0` (Agent G P2), and FSRS hybrid-decay ordering (Agent C CONTRACT).
 
 **Deliverables**:
@@ -147,7 +147,7 @@ Make the loop capable of learning: repeated use strengthens memories, dissatisfa
 - Rescue-layer ranking authority (learned boosts compressed to <=3.7% of final score) - owned by the phase 006 decision; this phase repairs signal production, not ranking consumption.
 - Search hot-path performance work - owned by phase 010; this phase only avoids regressing it.
 - Force-enabling `trackAccess` on the production/auto-surface path - out of scope for this phase; task T041 records a decision only, coordinated with phase 010's latency budget.
-- Pointer/status updates inside 028/006-review-remediation/002 - owned by phase 013 closeout.
+- Pointer/status updates inside 028/004-review-remediation/002 - owned by phase 013 closeout.
 
 ### Files to Change
 

@@ -118,7 +118,7 @@ A second, symmetrical finding: **027's already-shipped doctrine flows back into 
 
 ## Follow-ups (out of this Memory-scoped packet's mandate — for the 028 parent's sibling children)
 
-- **028 Advisor-C4 × 027 `005-advisor-feedback-calibration`** — same Q4 Beta math, applied to the *advisor* (→ `028/003-skill-advisor` reconciliation).
+- **028 Advisor-C4 × 027 `005-advisor-feedback-calibration`** — same Q4 Beta math, applied to the *advisor* (→ `028/002-skill-advisor` reconciliation).
 - **028 Code-Graph cluster (Q1-C1 / Q6-C1 / CG-edge-staleness) × 027 `002…/006-codegraph-tombstone-audit`** — edge-currentness overlap the revisit bounced as "Code-Graph-scoped" (→ `028/002-code-graph` reconciliation).
 
 ---

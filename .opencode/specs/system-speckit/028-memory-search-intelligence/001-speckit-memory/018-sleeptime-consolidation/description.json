@@ -1,4 +1,5 @@
 {
+  "level": "3",
   "specFolder": "system-speckit/028-memory-search-intelligence/001-speckit-memory/018-sleeptime-consolidation",
   "description": "The internal Memory MCP has no off-turn memory reorganization",
   "keywords": [

@@ -1,5 +1,5 @@
 {
-  "level": "3",
+  "level": "2",
   "specFolder": "system-speckit/028-memory-search-intelligence/000-release-cleanup/010-catalog-playbook-coverage-audit",
   "description": "Packet 028 shipped many features into three daemon-backed system skills (system-spec-kit, system-code-graph and system-skill-advisor), but the",
   "keywords": [

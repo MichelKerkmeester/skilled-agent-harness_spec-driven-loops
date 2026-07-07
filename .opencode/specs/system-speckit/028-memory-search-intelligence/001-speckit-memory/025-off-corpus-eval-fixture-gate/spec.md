@@ -18,7 +18,7 @@ _memory:
     next_safe_action: "Hand the fixture to the downstream lexical-grounding floor phase that this guard validates"
     blockers: []
     key_files:
-      - "../../005-spec-data-quality/005-shared-engine-and-research/030-vague-query-improvement-research/research/research.md"
+      - "../../003-spec-data-quality/005-shared-engine-and-research/030-vague-query-improvement-research/research/research.md"
       - ".opencode/skills/system-spec-kit/mcp_server/scripts/evals/ground-truth.json"
       - ".opencode/skills/system-spec-kit/mcp_server/dist/lib/eval/eval-metrics.js"
     session_dedup:

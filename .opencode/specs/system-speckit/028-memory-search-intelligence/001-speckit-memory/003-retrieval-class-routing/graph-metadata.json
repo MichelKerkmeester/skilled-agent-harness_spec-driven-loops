@@ -208,7 +208,7 @@
     ],
     "causal_summary": "The Memory MCP query router (`mcpserver/lib/search/query-router.ts`) fuses exactly two orthogonal classifiers into `RouteResult`, complexity tier (`simple|moderate|complex`) and task intent (`addfeature|fixbug|findspec|…`), and neither is a retrieval-shape classifier [CONFIRMED: `query-router.ts:46-52`, `RouteResult` has `tier`/`channels`/`classification`, no `retrievalClass`]",
     "created_at": "2026-06-19T05:47:05.552Z",
-    "last_save_at": "2026-07-04T17:50:58.974Z",
+    "last_save_at": "2026-07-06T19:16:28.438Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -219,14 +219,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:88fe6aae53174dd751c3b70493d32b3b446e0d10e87f9e27932954d75bbe5a77",
+    "source_fingerprint": "sha256:bbd907885738dfd72a4b2661c54fce3b3844cd9c21ec59c5b9199ec487438d8b",
     "source_doc_hashes": {
-      "spec.md": "9e32f07e0b3058e0e39346eda99cd01d5d63ae897d635b600b50fe5ddbbdc937",
-      "plan.md": "2223b146507e05540a961ebb6de199bf0d2158699c2af425b79fad0da265072b",
-      "tasks.md": "1725fec05a61bc6263a01758da236cedf4bf2ff3b055322a32abc7fc86f527ba",
-      "checklist.md": "e4b2fb6bb2361d169d19da3ab7ec0f316e15c78380318d2a46fac83405e09bd8",
-      "decision-record.md": "8af336d1bd8440f1febb89267a9890ce302e428b68a943030cc8cd347f591602",
-      "implementation-summary.md": "8594fcd7564f910bd61028254cf61da72580171904d31a750cd210e3a3bc46d6"
+      "spec.md": "968a236634b8da6091bc605eeff3d414a0f1e4f77b548f63e553b0dcdba21184",
+      "plan.md": "678401c12b200daf2917cc79e111c91e91741856d6ef7b7a2e1b1ba898fdac80",
+      "tasks.md": "53db0e90fcac8ac20315df0ef7cf3a23e484e3f1197a39ba0e0690c3c87a188e",
+      "checklist.md": "6bbdddbf259f6c4ddf992ef7f67a9459ab9b62e4e69c7b22cd5729df9161b5b2",
+      "decision-record.md": "84931cf422901da314f05deca2c1d05c636ff900b1bd4bf29de652bfb13c04dc",
+      "implementation-summary.md": "1bc9a9075bfc562e2cb252cee49254f9fad424da3806d1e450717143f2fedf85"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -10,7 +10,7 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-speckit/028-memory-search-intelligence/001-speckit-memory/014-mem0-ranking-tweaks"
-    last_updated_at: "2026-07-04T17:51:00.375Z"
+    last_updated_at: "2026-07-06T19:16:31.501Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "Shipped candidates 4 always-on and 2 default-off. Closed 8 NO-TRANSFER"
     next_safe_action: "Run gate-zero corpus reindex"
@@ -42,7 +42,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 028-memory-search-intelligence/001-speckit-memory/014-mem0-ranking-tweaks |
+| **Spec Folder** | 014-mem0-ranking-tweaks |
 | **Completed** | Partial implementation 2026-06-19 |
 | **Level** | 2 |
 | **Actual Effort** | 2 shipped, 1 NO-TRANSFER and 5 pending |

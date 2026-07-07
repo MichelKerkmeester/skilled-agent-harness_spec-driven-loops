@@ -51,12 +51,12 @@
       "lib/eval/reporting-dashboard.ts",
       "mcp_server/formatters/search-results.ts",
       "mcp_server/lib/search/hybrid-search.ts",
-      "mcp_server/context-server.ts",
-      "mcp_server/lib/storage/checkpoints.ts",
-      "mcp_server/lib/embedders/reindex.ts",
-      "mcp_server/api/providers.ts",
-      "shared/embeddings.ts",
-      "mcp_server/handlers/memory-search.ts"
+      "mcp_server/tests/generated-metadata-integrity.vitest.ts",
+      "mcp_server/tests/graph-metadata-schema.vitest.ts",
+      "lib/validation/preflight.ts",
+      "mcp_server/hooks/memory-surface.ts",
+      "feature_catalog/22--context-preservation/passive-context-enrichment.md",
+      "manual_testing_playbook/22--context-preservation/passive-context-enrichment.md"
     ],
     "entities": [
       {
@@ -126,39 +126,33 @@
         "source": "derived"
       },
       {
-        "name": "context-server.ts",
-        "kind": "code",
-        "path": "mcp_server/context-server.ts",
+        "name": "generated-metadata-integrity.vitest.ts",
+        "kind": "test",
+        "path": "mcp_server/tests/generated-metadata-integrity.vitest.ts",
         "source": "derived"
       },
       {
-        "name": "checkpoints.ts",
-        "kind": "code",
-        "path": "mcp_server/lib/storage/checkpoints.ts",
+        "name": "graph-metadata-schema.vitest.ts",
+        "kind": "test",
+        "path": "mcp_server/tests/graph-metadata-schema.vitest.ts",
         "source": "derived"
       },
       {
-        "name": "reindex.ts",
+        "name": "preflight.ts",
         "kind": "code",
-        "path": "mcp_server/lib/embedders/reindex.ts",
+        "path": "lib/validation/preflight.ts",
         "source": "derived"
       },
       {
-        "name": "providers.ts",
+        "name": "memory-surface.ts",
         "kind": "code",
-        "path": "mcp_server/api/providers.ts",
+        "path": "mcp_server/hooks/memory-surface.ts",
         "source": "derived"
       },
       {
-        "name": "embeddings.ts",
-        "kind": "code",
-        "path": "shared/embeddings.ts",
-        "source": "derived"
-      },
-      {
-        "name": "memory-search.ts",
-        "kind": "code",
-        "path": "mcp_server/handlers/memory-search.ts",
+        "name": "passive-context-enrichment.md",
+        "kind": "doc",
+        "path": "feature_catalog/22--context-preservation/passive-context-enrichment.md",
         "source": "derived"
       },
       {
@@ -202,11 +196,17 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Approach For",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The 485-scenario manual testing playbook sweep (packet `031-manual-playbook-execution-sweep`) is confirming real, reproducible bugs across the spec-kit/code-graph/skill-advisor stack — feature-flag kill-switches that don't disable their feature, a \"read-only\" indexing path that mutates data, scoring-pipeline synchronization gaps, and more",
     "created_at": "2026-07-02T11:57:47.283Z",
-    "last_save_at": "2026-07-04T17:31:34.862Z",
+    "last_save_at": "2026-07-06T19:16:27.470Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -216,13 +216,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:cffd935bc078faf58a72e85252fa1790d7f1d7ee7a7b43858686a5199c7e29bb",
+    "source_fingerprint": "sha256:123ed1d55393cc92d4cb8bdddda9c333fb6c84a5d7019056b1be373e745696ee",
     "source_doc_hashes": {
-      "spec.md": "d5cb8aa8b280f3983fba7ad12bca646179bdb80a8d4bbd661730e00663da220b",
-      "plan.md": "e5b1686eafae921bc1f8e2181ee2d7c46fc02b970d1597e6bd91f806dbbb64d9",
+      "spec.md": "c8aa46701b1a727fdfae8b4d60a6d61812a6ed2304da623c2ba9f30c5fedf3f9",
+      "plan.md": "2078fc820e78cf30d596630bc261254145af00c4c777ad9bdc12dc752fd60ac5",
       "tasks.md": "69b9452ad969ca84aec2419ffbe8ea3eac6095649b12e0265bfee9246179db7b",
       "checklist.md": "7718efd51b08af488ea5165bd18afc615342544f76d514f802d6ea23bccbf1d2",
-      "implementation-summary.md": "9178e0be86047ed71535227828ba0a0d5cd9ba151c922fd22cb81bb67c17862b"
+      "implementation-summary.md": "a246c4a5a686ed0afbccfbd662240b4f26c1ccf7127ffc2d5a28ec53253691da"
     },
     "last_active_child_id": null,
     "last_active_at": null

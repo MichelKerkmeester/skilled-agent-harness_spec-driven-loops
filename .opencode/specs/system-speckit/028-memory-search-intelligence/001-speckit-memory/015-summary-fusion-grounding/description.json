@@ -1,4 +1,5 @@
 {
+  "level": "2",
   "specFolder": "system-speckit/028-memory-search-intelligence/001-speckit-memory/015-summary-fusion-grounding",
   "description": "The Memory MCP already computes community and per-chunk summaries, but that evidence never participates in the main ranked blend, and there is no",
   "keywords": [

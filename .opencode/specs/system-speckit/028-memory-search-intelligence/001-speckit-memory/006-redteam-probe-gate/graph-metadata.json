@@ -210,7 +210,7 @@
     ],
     "causal_summary": "The Spec-Kit Memory MCP already defends its individual injection seams, but no single gate proves the whole surface holds",
     "created_at": "2026-06-19T05:40:37.443Z",
-    "last_save_at": "2026-07-04T17:51:05.982Z",
+    "last_save_at": "2026-07-06T19:16:29.052Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -220,13 +220,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:e1dad01de702e04612c16af81f6b73c39b1c686ab8fd029ac7e870bab5481389",
+    "source_fingerprint": "sha256:324b45a38cd20bf98a18f76ebb8ac5c9087eea0e6f7b5a58f0e512fd4a68d7d9",
     "source_doc_hashes": {
-      "spec.md": "3867736f922c6666b755cd6fe5e76b35834dd0aead404213cc4745e3161ad8dd",
-      "plan.md": "af45625b961346bb9379d54cc9d3859c2b9d6acb9d8d4a8f39d5cfa002a333e6",
-      "tasks.md": "a34f1c7952f8af45b1a1f7f02d284410effca7eda9c1589916c1e5bc71bfc5df",
-      "checklist.md": "571a175e0d0c95350784ddc45282fe5a3901b0a39b7d68b4f9bab9e478fffad2",
-      "implementation-summary.md": "26a831885a2730b5ad550ccea100d02f79ccd10733f8b4e73127fbf7908bdb51"
+      "spec.md": "e6f013a1cd360191cf583363523a3b49d1c5217b91f368f10c341afc1dea6255",
+      "plan.md": "44d367b3b15904d738207230c20ba52cf0fad02b2e7e952749dac1c65ada4219",
+      "tasks.md": "cbf31169e217c7b42355940bea935287f0c533ff30c00960f573ef97dc8c2cbb",
+      "checklist.md": "c1d648507df367afd54f16408382447b04dd65964876133cc128aa5b6371a973",
+      "implementation-summary.md": "e179db18032bf30042bb0303e30537558ac74c7e34b4d8477aa677971678359d"
     },
     "last_active_child_id": null,
     "last_active_at": null

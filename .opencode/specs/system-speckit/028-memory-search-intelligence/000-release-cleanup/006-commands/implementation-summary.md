@@ -9,7 +9,7 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-speckit/028-memory-search-intelligence/000-release-cleanup/006-commands"
-    last_updated_at: "2026-07-04T17:31:33.022Z"
+    last_updated_at: "2026-07-06T19:16:25.044Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "Executed command doc cleanup, route-drift fix in doctor/speckit.md"
     next_safe_action: "Concurrent session owns deep/ and agent_router.md doc edits"
@@ -37,7 +37,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | system-speckit/028-memory-search-intelligence/000-release-cleanup/006-commands |
+| **Spec Folder** | 006-commands |
 | **Completed** | 2026-06-19 (commit 818db21c54) |
 | **Level** | 2 |
 <!-- /ANCHOR:metadata -->

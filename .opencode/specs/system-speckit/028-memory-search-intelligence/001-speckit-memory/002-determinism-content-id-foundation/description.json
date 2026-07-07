@@ -1,4 +1,5 @@
 {
+  "level": "3",
   "specFolder": "system-speckit/028-memory-search-intelligence/001-speckit-memory/002-determinism-content-id-foundation",
   "description": "The Memory MCP fuses ranked signals and renders a result set the downstream agent loop caches against, but its ordering is not reproducible: the",
   "keywords": [

@@ -210,7 +210,7 @@
     ],
     "causal_summary": "The daemon-skills playbook validation (packet 011) plus the core memory-search-intelligence re-run surfaced about twenty-two real product findings across the four subsystems",
     "created_at": "2026-06-25T18:18:49.997Z",
-    "last_save_at": "2026-07-04T17:31:28.233Z",
+    "last_save_at": "2026-07-06T19:16:26.850Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -220,13 +220,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:1238a7b98471d5d1d53125cb08aa948c20532499a947d5f8ba7597bee04d97c0",
+    "source_fingerprint": "sha256:adc3565e4e069c4e189f1763dccda3020720272b408c7561a4546bb26bf7d1c7",
     "source_doc_hashes": {
-      "spec.md": "952aacb5a02ab4637767bc0744f73ce36340424f24eb79903bb4ebcac62f3be4",
-      "plan.md": "a52ef7c0c56beb4d7076c584daf4b706af7e76665070f4c723024218e685fb9a",
-      "tasks.md": "fb61d990ff4c6c44e2c5455e89a011f4440025747d631a685861ea96edac52aa",
-      "checklist.md": "ace9631784b6d9d6738e27e3977d47d5de09d353467d63d6d9f24429c481717d",
-      "implementation-summary.md": "4fd9dd274f9662a66edaff971e26ba870c1d2395e1e0fa7c48819b38efdae54c"
+      "spec.md": "5804fb2a494414dbfbe8e9b5dc904579e37ae1186bf650aeaff86bd31779b69e",
+      "plan.md": "780bd2c361f3296bbbeedbf23b85956872aabd22404af6b6f9903efb0d0bbbe2",
+      "tasks.md": "3d90ccb341981ef4135414f6d8e97f880b87ca7e72e1a33251626a819e43c739",
+      "checklist.md": "1bc0006fba305e66b72f4b9f0a0224ce7886b583006cd6b3763dcdcb80b7e3a6",
+      "implementation-summary.md": "8552f3f9fe9e84249f1805079f2ff3dc60e655cfc45c390160f5241bc155b1bc"
     },
     "last_active_child_id": null,
     "last_active_at": null

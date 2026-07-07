@@ -39,7 +39,7 @@
       "skip"
     ],
     "importance_tier": "important",
-    "status": "complete",
+    "status": "in_progress",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -204,7 +204,7 @@
     ],
     "causal_summary": "The Memory MCP's causal-edge currentness machinery records the wrong time and the wrong number of times",
     "created_at": "2026-06-19T05:40:37.444Z",
-    "last_save_at": "2026-07-04T17:51:08.870Z",
+    "last_save_at": "2026-07-06T19:16:29.355Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -215,14 +215,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:c0eb22e1d094611cbb9e9dcb3f44825906697cf7938210fc382fbb5a34b21bba",
+    "source_fingerprint": "sha256:af29b5b623dfe55d92341a9ccbd054ba4a2fde74672d8381b019012132981080",
     "source_doc_hashes": {
-      "spec.md": "f376ec3936848317924b0da146adcda2e7c9daecf876e0febb8aeaacb12f89a7",
-      "plan.md": "5fd4100521ebbe44eb417ed4c2cd062217e1e027a30384e22209256c4f3e9e8e",
-      "tasks.md": "79845d6420cdf953b94b7e3feb83b908d3f8c530b4d3a8ea64d34263c09afae2",
-      "checklist.md": "bea04615f33118c86e32d79044ad7434d5727a5841b7150981a2dd0f2ee820f5",
-      "decision-record.md": "a39e199947df02d2d63e9a53cf4151b6c8f9035a45ec786a4ed4c68dab68d5ae",
-      "implementation-summary.md": "7b2b6d19c7dd3942dd234fad966ce3abf4b595de399c18fc9369dbb4990bc487"
+      "spec.md": "9474e51f0f1304cb825033ed32b1867796acaae38bd86b2b2a0117ce69ce9b16",
+      "plan.md": "f774331159a2a6b7cb42a0c0be93d924246c1b90d377f2a46a3c10a6d22a9c75",
+      "tasks.md": "3c956e67f0f716ea31e41a2e579e6387097d6c2b33bd15abacbcc5b27ee9ed1f",
+      "checklist.md": "e5af60d15522393465481faf9bb5d140e26c894919581808ee9772a91f048560",
+      "decision-record.md": "97fdcf0e47d615bfd1090afe74356a4844c0375d21d42e1e2e05f78622a60624",
+      "implementation-summary.md": "5f12afe01256ad62a656c9af6ad74c7cd49b96beade0875f7b129bac3748c92c"
     },
     "last_active_child_id": null,
     "last_active_at": null

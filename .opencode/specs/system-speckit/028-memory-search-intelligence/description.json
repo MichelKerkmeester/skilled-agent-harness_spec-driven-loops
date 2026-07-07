@@ -1,7 +1,7 @@
 {
   "level": "2",
   "specFolder": "system-speckit/028-memory-search-intelligence",
-  "description": "Packet 028 owns the planning record that turns external memory-system research into shipped retrieval intelligence, cleanup, review remediation,",
+  "description": "Packet 028 owns the planning record that turns external memory-system research into shipped retrieval intelligence, release cleanup, review",
   "keywords": [
     "packet",
     "028",
@@ -15,11 +15,11 @@
     "shipped",
     "retrieval",
     "intelligence",
+    "release",
     "cleanup",
-    "review",
-    "remediation"
+    "review"
   ],
-  "lastUpdated": "2026-07-05T12:17:22.492Z",
+  "lastUpdated": "2026-07-06T19:47:57.920Z",
   "specId": "028",
   "folderSlug": "memory-search-intelligence",
   "parentChain": [

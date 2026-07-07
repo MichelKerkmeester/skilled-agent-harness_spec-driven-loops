@@ -16,7 +16,7 @@
     "system-speckit/028-memory-search-intelligence/001-speckit-memory/031-fix-deep-dive-p0-p2-findings-for-mk-spec-memory/010-search-hot-path-performance",
     "system-speckit/028-memory-search-intelligence/001-speckit-memory/031-fix-deep-dive-p0-p2-findings-for-mk-spec-memory/011-daemon-freshness-and-health-truthfulness",
     "system-speckit/028-memory-search-intelligence/001-speckit-memory/031-fix-deep-dive-p0-p2-findings-for-mk-spec-memory/012-envelope-presentation-and-command-doc-alignment",
-    "system-speckit/028-memory-search-intelligence/001-speckit-memory/031-fix-deep-dive-p0-p2-findings-for-mk-spec-memory/013-absorb-028-006-review-remediation-closeout"
+    "system-speckit/028-memory-search-intelligence/001-speckit-memory/031-fix-deep-dive-p0-p2-findings-for-mk-spec-memory/013-absorb-028-004-review-remediation-closeout"
   ],
   "manual": {
     "depends_on": [],
@@ -131,15 +131,15 @@
     ],
     "causal_summary": "The 2026-07-03 deep dive (live production probing + eight code audits over ~96k lines) found ~150 defects across the mk-spec-memory search stack",
     "created_at": "2026-07-03T09:43:59Z",
-    "last_save_at": "2026-07-06T17:04:30.184Z",
+    "last_save_at": "2026-07-06T19:26:05.767Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:5ea2526c7b9fe25838746069e2b3b890169b141f367cb0b9e6b863208c87bbf5",
+    "source_fingerprint": "sha256:f1dca779fcd815a164c7fec36183ef6e1131868e674f57ccdb7bb5d2216f3653",
     "source_doc_hashes": {
-      "spec.md": "d24fb08503770e82f2b856479e679a7b6e8bbc49a673c97044ffc5e699e6beca"
+      "spec.md": "09826019ef22dc26f9b8cd70b14faee8705097019a536ed28824c50158f9c814"
     },
     "last_active_child_id": null,
     "last_active_at": null

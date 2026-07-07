@@ -1,5 +1,5 @@
 {
-  "level": "3",
+  "level": "2",
   "specFolder": "system-speckit/028-memory-search-intelligence/000-release-cleanup/011-daemon-skills-playbook-validation",
   "description": "Packet 028 shipped a large body of work into three daemon-backed system skills (system-spec-kit, system-skill-advisor and system-code-graph)",
   "keywords": [

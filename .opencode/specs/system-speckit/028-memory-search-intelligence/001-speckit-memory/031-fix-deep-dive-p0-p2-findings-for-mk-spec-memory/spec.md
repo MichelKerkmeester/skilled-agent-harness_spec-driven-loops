@@ -74,7 +74,7 @@ Fix every P0/P1/P2 finding from the deep dive — plus the absorbed open scopes 
 
 ### In Scope
 - All findings recorded in `research/deep-dive-report.md` (§3 bug inventory, §4 performance, §5 presentation) and `research/findings-ledger.md`, mapped to phases in `research/phase-decomposition.md`.
-- Absorbed scopes: Group-A flag-read cluster (T-0211/T-0212/REQ-214, ex-031 tracker) → phase 007; `028/006-review-remediation/002` schema+concurrency items → phases 008/009; `028/006-review-remediation/004` 91-item P2 triage → phase 013.
+- Absorbed scopes: Group-A flag-read cluster (T-0211/T-0212/REQ-214, ex-031 tracker) → phase 007; `028/004-review-remediation/002` schema+concurrency items → phases 008/009; `028/004-review-remediation/004` 91-item P2 triage → phase 013.
 - Data migrations over the production index (dead-row drain, identity heal, tier rewrites, trigger regeneration) with checkpoint-backed rollback.
 - Two tooling defects found during this program's own scaffolding (create.sh `--phase` ignores `--level`; upgrade-level.sh references removed template paths) → tracked in phase 013.
 
@@ -173,7 +173,7 @@ Per-phase Files-to-Change tables live in each child `spec.md`; the program's bla
 | 10 | 010-search-hot-path-performance/ | Rescue N+1 + full-table LIKE; adjacency/community/intent caching; envelope single-serialization; measured targets (search <800ms, triggers <300ms) | Complete |
 | 11 | 011-daemon-freshness-and-health-truthfulness/ | FIRST in execution order: dist-freshness deadlock; exit-75 taxonomy; hook fallback visibility; health truthfulness; SIGBUS diagnosis | Complete |
 | 12 | 012-envelope-presentation-and-command-doc-alignment/ | Kill envelope double-emission; budget-after-attach; cursor scope binding; render why; --format text rows; ~20-item command-doc drift battery; dual-tree sync | Complete |
-| 13 | 013-absorb-028-006-review-remediation-closeout/ | LAST: update absorbed tracker pointers; 91-item P2 mapping table; findings-completeness sweep; record scaffolding tooling bugs; final recursive validation | Complete |
+| 13 | 013-absorb-028-004-review-remediation-closeout/ | LAST: update absorbed tracker pointers; 91-item P2 mapping table; findings-completeness sweep; record scaffolding tooling bugs; final recursive validation | Complete |
 
 ### Phase Transition Rules
 
@@ -200,8 +200,8 @@ Per-phase Files-to-Change tables live in each child `spec.md`; the program's bla
 | 008-causal-graph-hygiene-and-entity-linker-noise | 009-learning-feedback-loop-repair | Graph relation histogram sane; ratchet fixed | 008 gates; absorbed 006/002 items closed |
 | 009-learning-feedback-loop-repair | 010-search-hot-path-performance | Learning loop functional; ledgers bounded | 009 gates; cycle tests pass |
 | 010-search-hot-path-performance | 012-envelope-presentation-and-command-doc-alignment | Latency targets met | 010 before/after benchmark table |
-| 012-envelope-presentation-and-command-doc-alignment | 013-absorb-028-006-review-remediation-closeout | Envelope/doc drift battery complete | 012 checklist green; envelope size check |
-| 013-absorb-028-006-review-remediation-closeout | (program complete) | All trackers pointed; completeness sweep clean | `validate.sh --strict --recursive` green; /memory:save closeout |
+| 012-envelope-presentation-and-command-doc-alignment | 013-absorb-028-004-review-remediation-closeout | Envelope/doc drift battery complete | 012 checklist green; envelope size check |
+| 013-absorb-028-004-review-remediation-closeout | (program complete) | All trackers pointed; completeness sweep clean | `validate.sh --strict --recursive` green; /memory:save closeout |
 <!-- /ANCHOR:phase-map -->
 
 ---
@@ -209,6 +209,6 @@ Per-phase Files-to-Change tables live in each child `spec.md`; the program's bla
 ## RELATED DOCUMENTS
 
 - **Evidence**: `research/deep-dive-report.md`, `research/findings-ledger.md`, `research/phase-decomposition.md`
-- **Absorbed trackers**: `../../006-review-remediation/002-memory-schema-and-concurrency/`, `../../006-review-remediation/004-p2-triage/`, `../../000-release-cleanup/015-manual-playbook-execution-sweep/001-findings-remediation/` (Group-A rows)
-- **Adopted sibling packets** (same restructure, commit 32aae18dc7; 013 re-nested to `../../005-spec-data-quality/050-validate-sh-dist-freshness-and-repo-remediation/` on 2026-07-04): `../../005-spec-data-quality/050-validate-sh-dist-freshness-and-repo-remediation/`, `../../000-release-cleanup/015-manual-playbook-execution-sweep/`, `../../../../system-deep-loop/038-deep-loop-runtime/007-deep-review-followup-hardening/`
+- **Absorbed trackers**: `../../004-review-remediation/002-memory-schema-and-concurrency/`, `../../004-review-remediation/004-p2-triage/`, `../../000-release-cleanup/015-manual-playbook-execution-sweep/001-findings-remediation/` (Group-A rows)
+- **Adopted sibling packets** (same restructure, commit 32aae18dc7; 013 re-nested to `../../003-spec-data-quality/050-validate-sh-dist-freshness-and-repo-remediation/` on 2026-07-04): `../../003-spec-data-quality/050-validate-sh-dist-freshness-and-repo-remediation/`, `../../000-release-cleanup/015-manual-playbook-execution-sweep/`, `../../../../system-deep-loop/038-deep-loop-runtime/007-deep-review-followup-hardening/`
 - **Graph metadata**: `graph-metadata.json`

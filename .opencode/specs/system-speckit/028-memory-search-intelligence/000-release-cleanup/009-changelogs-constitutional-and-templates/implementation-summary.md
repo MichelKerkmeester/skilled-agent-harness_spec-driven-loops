@@ -9,7 +9,7 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-speckit/028-memory-search-intelligence/000-release-cleanup/009-changelogs-constitutional-and-templates"
-    last_updated_at: "2026-07-04T17:31:34.477Z"
+    last_updated_at: "2026-07-06T19:16:25.948Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "Executed cleanup: fixed 4 factual drifts, changelogs left historical"
     next_safe_action: "Phase complete, strict validation passed, no further action"
@@ -37,7 +37,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | system-speckit/028-memory-search-intelligence/000-release-cleanup/009-changelogs-constitutional-and-templates |
+| **Spec Folder** | 009-changelogs-constitutional-and-templates |
 | **Completed** | 2026-06-19 |
 | **Level** | 2 |
 <!-- /ANCHOR:metadata -->

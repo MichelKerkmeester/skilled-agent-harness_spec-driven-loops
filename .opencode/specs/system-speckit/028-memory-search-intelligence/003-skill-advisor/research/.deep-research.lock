@@ -1,8 +1,0 @@
-{
-  "owner_pid": 47478,
-  "started_at_iso": "2026-06-16T17:46:01.334Z",
-  "ttl_ms": 300000,
-  "last_heartbeat_iso": "2026-06-16T17:46:01.334Z",
-  "packet_id": ".opencode/specs/system-spec-kit/028-memory-search-intelligence/003-skill-advisor",
-  "runtime_kind": "main"
-}

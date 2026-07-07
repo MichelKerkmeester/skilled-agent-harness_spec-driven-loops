@@ -1,4 +1,5 @@
 {
+  "level": "3",
   "specFolder": "system-speckit/028-memory-search-intelligence/001-speckit-memory/008-edge-presence-currentness",
   "description": "The Memory MCP already ships the machinery for bi-temporal, edge-presence currentness, but it is build-side only and unwired on the read path",
   "keywords": [

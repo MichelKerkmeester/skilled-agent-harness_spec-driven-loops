@@ -15,7 +15,7 @@ _memory:
     last_updated_at: "2026-07-04T17:51:09.855Z"
     last_updated_by: "planning-author"
     recent_action: "All tasks complete; 12 REQs; single-casing + cursor-leak fix + doc-drift battery; 563 tests"
-    next_safe_action: "Phase 013 absorb-028-006-review-remediation-closeout"
+    next_safe_action: "Phase 013 absorb-028-004-review-remediation-closeout"
     blockers: []
     key_files:
       - ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts"

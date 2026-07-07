@@ -18,7 +18,7 @@ _memory:
     next_safe_action: "Graduate the flag to ON after a wider off-corpus and aligned-good validation pass"
     blockers: []
     key_files:
-      - "../../005-spec-data-quality/005-shared-engine-and-research/030-vague-query-improvement-research/research/research.md"
+      - "../../003-spec-data-quality/005-shared-engine-and-research/030-vague-query-improvement-research/research/research.md"
       - ".opencode/skills/system-spec-kit/mcp_server/lib/search/confidence-scoring.ts"
       - ".opencode/skills/system-spec-kit/mcp_server/formatters/search-results.ts"
     session_dedup:

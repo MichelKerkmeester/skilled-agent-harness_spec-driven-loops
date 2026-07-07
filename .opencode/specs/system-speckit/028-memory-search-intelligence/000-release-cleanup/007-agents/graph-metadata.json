@@ -195,7 +195,7 @@
     ],
     "causal_summary": "The every agent definition in .opencode plus .claude and .codex runtime mirrors needs a release-readiness cleanup contract before any document edits begin",
     "created_at": "2026-06-19T00:00:00Z",
-    "last_save_at": "2026-07-04T17:31:29.256Z",
+    "last_save_at": "2026-07-06T19:16:25.348Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,13 +205,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:6fa1d3197d743d4fcd8918b25b3595c0353a9f93e1e943385d623422c94fce2c",
+    "source_fingerprint": "sha256:54e1c706f6d811d1fa535db0ec7d3b149025d424d7c932d134a19a9da62a6f0f",
     "source_doc_hashes": {
-      "spec.md": "1c614feee1c246fb9421099ba5bd12bc44fd712c04b5b3463bd7c83c853de33d",
-      "plan.md": "aee797a3ba763313202abf03bdcaa53495b85f09928a3a93f5bd7e119108ca11",
-      "tasks.md": "fdfa63a0a06e72fbd7fe53fe62c2b9515981946eb213ec64722805696b6ee893",
-      "checklist.md": "bd2dc8b9f3ac91d71212809d988742025e0d4656fd3765d50ff82fa731e5f46c",
-      "implementation-summary.md": "59592bd47a0ca4896f34fdb873ce25e7e96b50dcfc5675602e0dc8b5aea8c228"
+      "spec.md": "0e87362f0232c5359e02818fa0d2b636fa0cc52fc7255e0a37d6f17f92beccf0",
+      "plan.md": "daaf54b6a5837aad9e5071ab9752eac78aed261e610744d3b50cfeab372b1a3a",
+      "tasks.md": "1c4dbd0428ccca44ff6c3fab0b34d94173612fc993d439a8369e9fe529e6ba37",
+      "checklist.md": "31070ce32502b636b68e45443ee67a9f531ffbd6ce871d6acdad67424c85b44a",
+      "implementation-summary.md": "fb6fbca038ab738054cd2831aa9b4a32e3bca91f458fa8d37aa4ab463629738a"
     },
     "last_active_child_id": null,
     "last_active_at": null

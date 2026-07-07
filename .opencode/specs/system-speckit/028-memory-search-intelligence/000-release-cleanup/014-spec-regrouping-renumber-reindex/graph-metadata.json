@@ -44,9 +44,7 @@
       "checklist.md",
       "implementation-summary.md",
       "specs/design/description.json",
-      "specs/design/graph-metadata.json",
-      "specs/deep-loops/description.json",
-      "specs/deep-loops/graph-metadata.json"
+      "specs/design/graph-metadata.json"
     ],
     "entities": [
       {
@@ -196,7 +194,7 @@
     ],
     "causal_summary": "The selected spec tracks were manually moved and regrouped, leaving gaps, duplicate numeric prefixes, and stale path references in spec metadata and markdown",
     "created_at": "2026-06-30T12:13:28.471Z",
-    "last_save_at": "2026-07-04T17:31:31.478Z",
+    "last_save_at": "2026-07-06T19:16:27.165Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,13 +204,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:063d83578fbce0bc45707c0e08dcac68d34681955661bb40f669862b06bd9928",
+    "source_fingerprint": "sha256:7e815d12bbe8b8b885287228f9d156f0ad6a967860772a816c39bbe7230228a6",
     "source_doc_hashes": {
-      "spec.md": "b5f39d18043de0e88e6bbe02cf2661f708b7540d6d20ff458e5026165ff97f8a",
-      "plan.md": "89d73b1fcbf6505b26fc693d8234982fd55efdd98fc4114b8e7f8eb59c8f8dfc",
-      "tasks.md": "4eb9775ab673bcc38ffc7118e00aa8ce4515a43efefdbcd940d198b36d9af338",
-      "checklist.md": "8bbdde12ade328cdde6c6f165c86cb8360110698837b522da625b956c805a82b",
-      "implementation-summary.md": "35c1ff1570d290c66c31477697511b2b17480e6bb1c41a6bee66969475bc3810"
+      "spec.md": "f0964e6f031970df0f4ba256dd52bc4beb704c1930481800238df0cb1a6abd84",
+      "plan.md": "5e150d9e82075854b9fbd7842aa553a125789a5251d8e7902232af0ac1e821f8",
+      "tasks.md": "aaab9b6effff2befa7f46a4b1b7c43f3700f6d571e1db9e6f666a3b7c995ac54",
+      "checklist.md": "4defc43199ee9bfa8e86c8770e7cc0589207bccf193e7d76f5b248f76ff4b93f",
+      "implementation-summary.md": "f8981973fa84fce6bdd00a61c2c13b48b353edb113957824fa028bfd4c6a89b0"
     },
     "last_active_child_id": null,
     "last_active_at": null

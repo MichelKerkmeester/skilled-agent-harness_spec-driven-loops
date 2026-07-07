@@ -12,10 +12,10 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-speckit/028-memory-search-intelligence/001-speckit-memory/031-fix-deep-dive-p0-p2-findings-for-mk-spec-memory/012-envelope-presentation-and-command-doc-alignment"
-    last_updated_at: "2026-07-04T17:51:09.855Z"
+    last_updated_at: "2026-07-06T19:16:36.369Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "Integrated 012 (12 REQs); single-casing + cursor-leak fix + doc-drift battery; 563 tests green"
-    next_safe_action: "Phase 013 absorb-028-006-review-remediation-closeout"
+    next_safe_action: "Phase 013 absorb-028-004-review-remediation-closeout"
     blockers: []
     key_files:
       - "mcp_server/handlers/memory-search.ts"

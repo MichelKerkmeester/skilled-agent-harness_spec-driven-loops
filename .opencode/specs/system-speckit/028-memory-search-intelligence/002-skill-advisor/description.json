@@ -1,0 +1,33 @@
+{
+  "level": "2",
+  "specFolder": "system-speckit/028-memory-search-intelligence/002-skill-advisor",
+  "description": "The Skill Advisor research surfaced candidate work across deterministic fusion, lane health, embedding freshness, query routing, drift metrics and",
+  "keywords": [
+    "skill",
+    "advisor",
+    "research",
+    "surfaced",
+    "candidate",
+    "work",
+    "across",
+    "deterministic",
+    "fusion",
+    "lane",
+    "health",
+    "embedding",
+    "freshness",
+    "query",
+    "routing",
+    "drift",
+    "metrics"
+  ],
+  "lastUpdated": "2026-07-06T18:50:05.090Z",
+  "specId": "002",
+  "folderSlug": "skill-advisor",
+  "parentChain": [
+    "system-speckit",
+    "028-memory-search-intelligence"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

@@ -9,7 +9,7 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-speckit/028-memory-search-intelligence/000-release-cleanup/002-skill-and-repo-readmes"
-    last_updated_at: "2026-07-04T17:31:31.851Z"
+    last_updated_at: "2026-07-06T19:16:23.821Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "Executed skill and repo README cleanup, recorded evidence"
     next_safe_action: "Phase complete, successor is ../003-skill-references-assets-and-skillmd"
@@ -37,7 +37,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | system-speckit/028-memory-search-intelligence/000-release-cleanup/002-skill-and-repo-readmes |
+| **Spec Folder** | 002-skill-and-repo-readmes |
 | **Completed** | 2026-06-19 (commit 6754d3a133) |
 | **Level** | 2 |
 <!-- /ANCHOR:metadata -->

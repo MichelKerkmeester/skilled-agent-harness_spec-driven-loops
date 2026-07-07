@@ -205,7 +205,7 @@
     ],
     "causal_summary": "The Memory MCP's async-consolidation path is half-built and not crash-safe",
     "created_at": "2026-06-19T05:40:37.446Z",
-    "last_save_at": "2026-07-04T17:51:02.602Z",
+    "last_save_at": "2026-07-06T19:16:30.274Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -216,14 +216,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:ca3ba152d4af9bbb83fda00151d440fd288fc07a5da63e83825b05d77c1d125f",
+    "source_fingerprint": "sha256:8d4813279dfd66977ba6a9d8f2de94ff9a01353e678267ecc9f43a1ee9461e95",
     "source_doc_hashes": {
-      "spec.md": "0e0429b58ab7958493ee2b3aaf13062188cece0c6ed59bd2aa4d0995de91d0b3",
-      "plan.md": "7b8f21b3024a4964a4f045dbe468b4a8cca2b124091fc39a911f836157165de9",
-      "tasks.md": "4d56b1773b840c1cdb7ccbd198905482071948123c0836f2d4ff926c21cb9cc3",
-      "checklist.md": "0cefe78c0ee71893b74ed6b1799338429f7698e32b1519789db936b881ab216a",
-      "decision-record.md": "7c31d956851b05b2c20552703556eec7e2316c1162124a51fea6bfea47257e1d",
-      "implementation-summary.md": "db8dff93d294a65720d1db4839a5b048b110aba7e50921595badc82306f99466"
+      "spec.md": "d625ad7eb8323a38cf5eb70c83b57ff827f55f912a7e085ecd936b9ad5b86aa5",
+      "plan.md": "d2773b28edc0daa68cb4ffa15326354d7600c2414ee0e00fd8430f38b81cb161",
+      "tasks.md": "cc066e9dbe942e64452cd4dd9dd00eb12ecd32019f967c8c2587de8fe439fc9b",
+      "checklist.md": "43da8081f1fdb8065521f1727fbe9e3c79093490075d2aaa6bf0c74f2d8418ec",
+      "decision-record.md": "5d9658e3cba4b93223dcb32500c26cb6fa45d264d89d77eafb2db1439f6cd29f",
+      "implementation-summary.md": "09b27cbbeeb993e1882532d99e67055427cbdd765b958e78e9f442dd760737d6"
     },
     "last_active_child_id": null,
     "last_active_at": null

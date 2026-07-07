@@ -39,7 +39,7 @@
       "extraction"
     ],
     "importance_tier": "important",
-    "status": "in-progress",
+    "status": "in_progress",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -200,7 +200,7 @@
     ],
     "causal_summary": "The Memory MCP already ships the machinery for bi-temporal, edge-presence currentness, but it is build-side only and unwired on the read path",
     "created_at": "2026-06-19T05:40:37.444Z",
-    "last_save_at": "2026-07-04T17:51:03.395Z",
+    "last_save_at": "2026-07-06T19:16:29.660Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -211,14 +211,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:f331f07ad61b94d808f2d23ea355780e7e7bdec72b7966eb52a81acf066ec5b3",
+    "source_fingerprint": "sha256:6a6baf40ae504880659623af36a61c18143e86cbe191cf74e5a6fb4ef478f7e4",
     "source_doc_hashes": {
-      "spec.md": "7de8122f7f6827f04bbb01284678cac82431f055c5d21d8dac1448c310dbf47c",
-      "plan.md": "e2b87f2ec6d00e7ce6cf27ee48e9405ac7529655515aa8577113160dcf9e8568",
-      "tasks.md": "b76c3ec73d7965702d6f0dd917d4cacfba1c8f028a122219ec9a37e82f7302ca",
-      "checklist.md": "56a02d9852b44c97aa1d3166b860843062064f3cc18c6e999c1da0ea6dc9dfbb",
-      "decision-record.md": "214227997cb53c8c30462f3bbd5f9917747a711f5c656ad268bdca69829cb066",
-      "implementation-summary.md": "985dfb1632f3a66445ab2f8efd8d02aee61ce76a797cf34ce2c1c6eee185aa89"
+      "spec.md": "f518a118d21ec24539eef79692d4fe180e86bd74609c6c4b60d6e1d6b0d66429",
+      "plan.md": "73200cd8ee03d7a0358725218ac40e1199ed0af1c3b9486a2f197d25239ff5e2",
+      "tasks.md": "2b16556cbba9f3197a376bf5756fadb2ee974e19980e0a2ca6cac07a8a8f0808",
+      "checklist.md": "bac83fc523c42d906a0af38a79d32dd7483346f831d0f3c6b12a52fb1081aac8",
+      "decision-record.md": "5b950fa50a611140cc6f8f962100b881fddc8e5b0e72452fb9cb5e9e69c040b0",
+      "implementation-summary.md": "bc3ec2af0658928a46be6cd3aa53b3f93586bc8aa91e9649e23591387c5a7a92"
     },
     "last_active_child_id": null,
     "last_active_at": null

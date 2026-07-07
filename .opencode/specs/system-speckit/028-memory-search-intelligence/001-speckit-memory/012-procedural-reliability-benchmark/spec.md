@@ -92,7 +92,7 @@ Capture the procedural-reliability cluster as ONE benchmark-first unit with **ho
 - Schema migrations, measured benchmark promotion and commits. This build keeps benchmark-dependent behavior default-off.
 - The execution-success emitter's *use* for task-success ranking beyond procedural recall (follow-on per `01-go-candidates.md:109`).
 - Adopting an episode model. The research decision is GRAFT onto the existing chunk-save / reconsolidation-on-save hook, never an immutable-episode capture↔consolidation split [CONFIRMED: `research/iterations/iteration-018.md:16`].
-- The other three subsystems (code-graph, skill-advisor, deep-loop) are sibling phases. The Advisor-side Beta posterior (`SA-outcome-weighted-ranking`) is a follow-on for `003-skill-advisor`, not this unit [`roadmap.md:268`].
+- The other three subsystems (code-graph, skill-advisor, deep-loop) are sibling phases. The Advisor-side Beta posterior (`SA-outcome-weighted-ranking`) is a follow-on for `002-skill-advisor`, not this unit [`roadmap.md:268`].
 - Cross-cutting determinism / bi-temporal / graceful-degrade candidates (other `001-speckit-memory` impl sub-phases).
 
 ### Files to Change

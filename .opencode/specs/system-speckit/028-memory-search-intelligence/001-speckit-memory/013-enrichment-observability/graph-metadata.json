@@ -199,7 +199,7 @@
     ],
     "causal_summary": "The Memory MCP splits the write path from background post-insert enrichment: a row commits immediately marked enrichment-pending, then an async, concurrency-capped scheduler runs the actual entity/graph enrichment later [CONFIRMED: `handlers/memory-save.ts:2934-2987`, `lib/search/vector-index-schema.ts:1884-1885`, `postinsertenrichmentstatus TEXT NOT NULL DEFAULT 'complete'`]",
     "created_at": "2026-06-19T05:40:37.448Z",
-    "last_save_at": "2026-07-04T17:51:05.281Z",
+    "last_save_at": "2026-07-06T19:16:31.192Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,12 +208,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:7f02998b60ef598708f139a85128f9188f3bd9908e24ad6220458ee5296d22b4",
+    "source_fingerprint": "sha256:314d7736a9c392c226758832e6bdcaaa002b3324c878d66d2d2498653070ff98",
     "source_doc_hashes": {
-      "spec.md": "374cda8a2b46c8f746e8582581361be557479bf0a4bd29571f02044099cbdb6f",
-      "plan.md": "5dfb570886b1bc6f96e78bda6fd53cb3971cf5dc46bca83dcf0cdaaa25a9b665",
-      "tasks.md": "f3529a68dde7e12a99c88cd226cc99175705262759b63d98ace306975b8c18f8",
-      "implementation-summary.md": "2acb7b101e10af4e73d4f4c26c768bf23db2034c0d9cbe96bf1b1b830e3ddaaf"
+      "spec.md": "39e23ff5c8c9911ee130a3f87910294cbdc2728ee0dfa22d9d364319fb0d1d09",
+      "plan.md": "02b8f9bae0f81955df96930c2948fb4403d46dac1a468988fc49547c26f9a942",
+      "tasks.md": "dcf48ea8dc0ab195d472196bcb51eb321a30876d7853746e019cad6f769ce6d9",
+      "implementation-summary.md": "4de77b10d5d23b3baed8ac9760e0feaeea8729a2835ceeef5ae2286b6ce1b7b6"
     },
     "last_active_child_id": null,
     "last_active_at": null

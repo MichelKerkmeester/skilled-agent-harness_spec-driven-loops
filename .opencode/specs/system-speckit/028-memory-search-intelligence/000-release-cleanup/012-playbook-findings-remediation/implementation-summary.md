@@ -10,7 +10,7 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-speckit/028-memory-search-intelligence/000-release-cleanup/012-playbook-findings-remediation"
-    last_updated_at: "2026-07-04T17:31:28.233Z"
+    last_updated_at: "2026-07-06T19:16:26.850Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "Authored the results report with the eight clusters, the excluded artifacts and the commit list"
     next_safe_action: "Run the whole suite across all clusters together before the 028 review branch merges to main"
@@ -37,7 +37,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | system-speckit/028-memory-search-intelligence/000-release-cleanup/012-playbook-findings-remediation |
+| **Spec Folder** | 012-playbook-findings-remediation |
 | **Completed** | 2026-06-25 |
 | **Level** | 2 |
 | **Status** | Complete, code verified per cluster, landed on the 028 review-branch mainline; whole-suite run before the branch merges to main remains open |

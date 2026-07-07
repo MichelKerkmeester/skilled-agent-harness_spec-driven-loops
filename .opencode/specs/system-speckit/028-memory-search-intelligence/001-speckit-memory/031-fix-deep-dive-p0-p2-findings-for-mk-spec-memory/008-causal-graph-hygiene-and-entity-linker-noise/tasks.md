@@ -86,7 +86,7 @@ Mark the task `[B]` with the blocker named inline, add it to the continuity bloc
 - [x] T005 [P] 🟡 confirm-before-fix: causal-links `blocks`→reversed-`enabled` mapping and fuzzy-LIKE fallback reach (Agent H P2; mcp_server/handlers/causal-links-processor.ts:67,290)
 - [x] T006 [P] 🟡 confirm-before-fix: entity-linker incremental-vs-full normalization mismatch, degree-cache staleness on createEntityLinks, reversed A→B/B→A dup pairs, density guard counting pseudo-edges, catalog LIMIT 500 without ORDER BY, per-memory error full-corpus fallback (Agent D P2/contract; mcp_server/lib/search/entity-linker.ts)
 - [x] T007 [P] 🟡 confirm-before-fix: community rebuild frozen at checkpoint-restore, fingerprint sum-collision, cache not reset on DB rebind, phantom injected member ids; graph-signals exact now-7d momentum + memoryId-only cache keys (Agent D P2, Agent C P2; mcp_server/lib/graph/community-detection.ts, mcp_server/lib/graph/graph-signals.ts)
-- [x] T008 Read the absorbed contract, then CONFIRM both fixes are already in live code: P1-2 (the v40 backfill already hashes `DEFAULT_DERIVED_CAUSAL_EDGE_RULE_VERSION` at vector-index-schema.ts:1119-1129, matching the live default at causal-edges.ts:125; content-id.ts:28 = `causal-edge:v1`; twin-identity test at tests/derived-id-provenance.vitest.ts) and P1-4 (the read-only scan already runs before BEGIN IMMEDIATE at consolidation.ts:574-578; `runSemanticEdgeEmbeddingPass`/`embedEdgeText` do not exist tree-wide; the old :684/:701 cite exceeds the 634-line file). Record that both code defects are already gone — only the P1-2 backfill and the P1-4 test remain (../../../006-review-remediation/002-memory-schema-and-concurrency/spec.md)
+- [x] T008 Read the absorbed contract, then CONFIRM both fixes are already in live code: P1-2 (the v40 backfill already hashes `DEFAULT_DERIVED_CAUSAL_EDGE_RULE_VERSION` at vector-index-schema.ts:1119-1129, matching the live default at causal-edges.ts:125; content-id.ts:28 = `causal-edge:v1`; twin-identity test at tests/derived-id-provenance.vitest.ts) and P1-4 (the read-only scan already runs before BEGIN IMMEDIATE at consolidation.ts:574-578; `runSemanticEdgeEmbeddingPass`/`embedEdgeText` do not exist tree-wide; the old :684/:701 cite exceeds the 634-line file). Record that both code defects are already gone — only the P1-2 backfill and the P1-4 test remain (../../../004-review-remediation/002-memory-schema-and-concurrency/spec.md)
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -167,7 +167,7 @@ Mark the task `[B]` with the blocker named inline, add it to the continuity bloc
 - **Plan**: See `plan.md` (FIX ADDENDUM surfaces, cluster dependency graph)
 - **Decisions**: See `decision-record.md` (ADR-001/002/003)
 - **Research**: `../research/deep-dive-report.md`, `../research/findings-ledger.md`, `../research/phase-decomposition.md` (§008)
-- **Absorbed contract**: `../../../006-review-remediation/002-memory-schema-and-concurrency/` (P1-2, P1-4; Phase 013 re-points it)
+- **Absorbed contract**: `../../../004-review-remediation/002-memory-schema-and-concurrency/` (P1-2, P1-4; Phase 013 re-points it)
 <!-- /ANCHOR:cross-refs -->
 
 ---

@@ -197,7 +197,7 @@
     ],
     "causal_summary": "The 028 build epoch shipped most of its new search and memory behavior behind default-off flags and closed with no flag flipped",
     "created_at": "2026-06-20T00:00:00Z",
-    "last_save_at": "2026-07-04T17:51:01.130Z",
+    "last_save_at": "2026-07-06T19:16:33.980Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,13 +207,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:a0f3056f339a8349aa59c26a7c8c7ef8507f3d3d56c45d9394e6bf675174e395",
+    "source_fingerprint": "sha256:da742d631e0dbd3edf3ffed9a284a07d1227c2d7af523765f82c94e95e777916",
     "source_doc_hashes": {
-      "spec.md": "545cf79a900f17526d69d22f71ed5b2672864c5a3b092aac1f6a7e4ab7a9a107",
-      "plan.md": "5e9a5ce9ae64828f245baf4c131ded5aae7ac241cb832788353b6a7b979e408a",
-      "tasks.md": "a8fb4582db8068064939e96c8bf92c773d4eab9025c2c6e279c0abcfdf00e865",
-      "checklist.md": "e6953ca9d8df71aa69699dfe632655790bfb57d90ff630e33d33d8a2a5315537",
-      "implementation-summary.md": "507e6442c9df77ed1f77be1b30f8d7d0185f298590cae0a63cd1f91e226339e4"
+      "spec.md": "19ace2e2b0d36115518d612b3ceab46952f4ba913a8f8830b0da96bc28479799",
+      "plan.md": "aed26cf2ba6454fb57f16f05ba1454cebda3cffb3682bfe7faea8335f49e09f7",
+      "tasks.md": "c326bc906dc59a57db52f29443065c683628af2f670cc45a74c1b6df8e0782ae",
+      "checklist.md": "2af45e2572e567a3200b5218a6d7c7a881d1c05ae0b19c7e4e2c1549e5893a9f",
+      "implementation-summary.md": "ebff82a7e89302c19873bb522ea823c1285e44edbcbf45496c32c570357c3902"
     },
     "last_active_child_id": null,
     "last_active_at": null

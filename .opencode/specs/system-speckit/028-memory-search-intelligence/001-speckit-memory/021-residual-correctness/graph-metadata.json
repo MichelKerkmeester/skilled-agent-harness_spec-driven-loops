@@ -203,7 +203,7 @@
     ],
     "causal_summary": "This sub-phase closes two always-on correctness residuals surfaced by the 008 retrieval-evaluation campaign",
     "created_at": "2026-06-19T05:52:29.577Z",
-    "last_save_at": "2026-07-04T17:51:06.364Z",
+    "last_save_at": "2026-07-06T19:16:33.681Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -213,13 +213,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:996bbb964966f12700b09f6d037fb1dd095a45e6d0281681d59925c565b3030b",
+    "source_fingerprint": "sha256:56bc55788b74d91bb820f4fa1ea1c68d043ea700a61f96fd25505883a5684d33",
     "source_doc_hashes": {
-      "spec.md": "fe478abc07804c38220064eda0c1337a0229a83d49f2f3667921388b87065d43",
-      "plan.md": "54205ea5b103f9fb112a67f1b315dbc3ed5963546613160456d2f91b31da8987",
-      "tasks.md": "3f26ce4fcf38c4bde5ca610901543b300cb6ea60d6f2cbd0a7e9c6f478db8fe1",
-      "checklist.md": "e7f7cdd5ac3346cd51b625618af653c00dcf53404263107ef2bd2c04143b56ee",
-      "implementation-summary.md": "4f832f550dda20bf80813d6186827629f22af00036bfa66662c6b69a2601fca4"
+      "spec.md": "414d61b42b6481999365f107ff3efb593377a253ee33bc3c4a5e3664eb9c880e",
+      "plan.md": "69e3a126676bfa8c7d39a44c13cd6aec93093e9a628ac191e4984e7b2694acb2",
+      "tasks.md": "017c50037ead4dd852605a9ea5d5265d17583850d875138c15d31d4ead29f8cb",
+      "checklist.md": "e4e23057a42a01c9eda87f67a58f73c2ce8160704389a2fe78f185c9c2a99683",
+      "implementation-summary.md": "8594c8155935307205a3679cbb8285e8df07071f2aa691cc0ee36090865fc19d"
     },
     "last_active_child_id": null,
     "last_active_at": null

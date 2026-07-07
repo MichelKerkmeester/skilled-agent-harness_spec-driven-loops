@@ -11,7 +11,7 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-speckit/028-memory-search-intelligence/001-speckit-memory/011-retention-forgetting"
-    last_updated_at: "2026-07-04T17:51:08.036Z"
+    last_updated_at: "2026-07-06T19:16:30.581Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "Implemented retention spare-only eligibility and live incoming-edge allowlist"
     next_safe_action: "Run strict validation, then continue semantic edge layer"
@@ -42,7 +42,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 028-memory-search-intelligence/001-speckit-memory/011-retention-forgetting |
+| **Spec Folder** | 011-retention-forgetting |
 | **Status** | in_progress |
 | **Completed** | Partial implementation 2026-06-19 |
 | **Level** | 2 |

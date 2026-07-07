@@ -10,7 +10,7 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-speckit/028-memory-search-intelligence/001-speckit-memory/002-determinism-content-id-foundation"
-    last_updated_at: "2026-07-04T17:51:02.224Z"
+    last_updated_at: "2026-07-06T19:16:28.132Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "5 determinism candidates shipped default-byte-identical + 4 gated residue"
     next_safe_action: "Land the fusion-bonus invariant test before any configured-mode promotion"
@@ -41,7 +41,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | system-speckit/028-memory-search-intelligence/001-speckit-memory/002-determinism-content-id-foundation |
+| **Spec Folder** | 002-determinism-content-id-foundation |
 | **Authored** | 2026-06-19 |
 | **Level** | 3 |
 | **Scope** | Determinism + content-id foundation: 5 shipped (Wave-0), 4 gated residue |

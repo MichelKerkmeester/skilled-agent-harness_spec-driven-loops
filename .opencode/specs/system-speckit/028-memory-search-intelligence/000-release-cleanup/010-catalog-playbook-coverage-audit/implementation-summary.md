@@ -10,7 +10,7 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-speckit/028-memory-search-intelligence/000-release-cleanup/010-catalog-playbook-coverage-audit"
-    last_updated_at: "2026-07-04T17:31:32.246Z"
+    last_updated_at: "2026-07-06T19:16:26.254Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "Completed research-only coverage audit, ~50 gaps verified"
     next_safe_action: "Operator decides close-now versus scaffold-cleanup-phase"
@@ -40,7 +40,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | system-speckit/028-memory-search-intelligence/000-release-cleanup/010-catalog-playbook-coverage-audit |
+| **Spec Folder** | 010-catalog-playbook-coverage-audit |
 | **Completed** | 2026-06-22 |
 | **Level** | 2 |
 | **Type** | Research-only audit, no code or doc mutation |

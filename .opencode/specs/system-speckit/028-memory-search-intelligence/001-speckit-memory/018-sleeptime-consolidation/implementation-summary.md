@@ -10,7 +10,7 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-speckit/028-memory-search-intelligence/001-speckit-memory/018-sleeptime-consolidation"
-    last_updated_at: "2026-07-04T17:51:07.543Z"
+    last_updated_at: "2026-07-06T19:16:32.744Z"
     last_updated_by: "codex"
     recent_action: "Implemented default-off sleeptime governor and shadow scaffold"
     next_safe_action: "Consume 010 cadence/cursor gate"
@@ -45,7 +45,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 028-memory-search-intelligence/001-speckit-memory/018-sleeptime-consolidation |
+| **Spec Folder** | 018-sleeptime-consolidation |
 | **Status** | in_progress |
 | **Level** | 3 |
 <!-- /ANCHOR:metadata -->

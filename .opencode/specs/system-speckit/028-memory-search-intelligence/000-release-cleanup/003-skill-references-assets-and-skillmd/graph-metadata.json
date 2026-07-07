@@ -195,7 +195,7 @@
     ],
     "causal_summary": "The every skill SKILL.md plus each skill's references and assets documentation needs a release-readiness cleanup contract before any document edits begin",
     "created_at": "2026-06-19T00:00:00Z",
-    "last_save_at": "2026-07-04T17:31:34.024Z",
+    "last_save_at": "2026-07-06T19:16:24.125Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,13 +205,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:2fe828ab92b5c67263095615119261de7147f3925d71bce234b4b5ac8164816f",
+    "source_fingerprint": "sha256:c4e70b1d2b64d52abb22a1cb9a4293d37a05373486a0a2dc71de6ffedf68a859",
     "source_doc_hashes": {
-      "spec.md": "eaa79b704e05e7db13c5004e56b5aa3942502ff9e80d75ef243337ebe4bd40ec",
-      "plan.md": "20302f17cb15f91e09a1eafe8b495df5e67e1b97796d9b8ffabe9016abac2baa",
-      "tasks.md": "cfcce451a55e7a4f550867736e7e7d1feabdcd1d2f3a1ea0c1f5bec58e581403",
-      "checklist.md": "0efecc93079c3fa1a92a9d02d1625bd79e12ee4de157ebc1214e56c4899d7637",
-      "implementation-summary.md": "3b501841f8dc4333e5ed65f6f7f91825f12c7f2afa011b5c569a1514dbb2a905"
+      "spec.md": "828813c3783910a4b51edce601b74efd46c6cbdcc41defed80fc0a93809b84cb",
+      "plan.md": "5a7266f61baaee6bc3e5cebabe90bba5327d31538cdd84d156037e00c97acdd7",
+      "tasks.md": "ed195b9b3b614804c1d2e6b17d61aa47f2024ae04e739d909abd28eab82b7234",
+      "checklist.md": "ddb578b5f830e346160571574463143bb5c925c1e883d4c63d2841ed0fa388bd",
+      "implementation-summary.md": "d1c6a734cec7297d6b7f289458f34875a2954b70f6aa90f7fcc724f1d45167ae"
     },
     "last_active_child_id": null,
     "last_active_at": null

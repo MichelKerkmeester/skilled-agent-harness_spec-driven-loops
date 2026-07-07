@@ -10,7 +10,7 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-speckit/028-memory-search-intelligence/000-release-cleanup/015-manual-playbook-execution-sweep/001-findings-remediation"
-    last_updated_at: "2026-07-04T17:31:34.862Z"
+    last_updated_at: "2026-07-06T19:16:27.470Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "Fixed T-0381 (empty deep-loop convergence graph) via a graphEvents prompt-pack contract correction, end-to-end proven through upsert.cjs; closed T-0208 as a confirmed false positive; committed (8967d20e37 fix, fa49443a7c docs) and pushed to origin/system-speckit/028-memory-search-intelligence (local == origin)"
     next_safe_action: "All sweep findings resolved and landed on origin. The only outstanding item is pre-existing packet-wide --strict doc-hygiene debt (template headers/anchors/frontmatter blocks across the older docs), which would need its own dedicated cleanup pass — not a findings issue"
@@ -41,7 +41,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 014-manual-playbook-execution-sweep/001-findings-remediation |
+| **Spec Folder** | 001-findings-remediation |
 | **Completed** | 2026-07-03 |
 | **Level** | 2 |
 | **Actual Effort** | Multi-session (485-scenario sweep + fix-dispatch batches + blocked-finding close-out) |

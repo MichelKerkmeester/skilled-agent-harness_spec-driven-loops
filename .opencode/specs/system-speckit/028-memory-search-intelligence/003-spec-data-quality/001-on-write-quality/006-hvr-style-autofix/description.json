@@ -1,0 +1,33 @@
+{
+  "level": "2",
+  "specFolder": "system-speckit/028-memory-search-intelligence/003-spec-data-quality/001-on-write-quality/006-hvr-style-autofix",
+  "description": "The HVR house voice (no em-dashes, no prose semicolons, no Oxford commas) is a documented authoring rule that no tool enforces, so adherence drifts",
+  "keywords": [
+    "hvr",
+    "house",
+    "voice",
+    "em-dashes",
+    "prose",
+    "semicolons",
+    "oxford",
+    "commas",
+    "documented",
+    "authoring",
+    "rule",
+    "tool",
+    "enforces",
+    "adherence",
+    "drifts"
+  ],
+  "lastUpdated": "2026-07-04T17:11:59.369Z",
+  "specId": "006",
+  "folderSlug": "hvr-style-autofix",
+  "parentChain": [
+    "system-speckit",
+    "028-memory-search-intelligence",
+    "003-spec-data-quality",
+    "001-on-write-quality"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

@@ -21,11 +21,11 @@ Reason: The fold-forward pointers target all four subsystem parents. Memory keep
 - 002-code-graph/002-edge-staleness-correctness
 - 002-code-graph/005-seeded-ppr-ranking
 - 002-code-graph/007-parser-resilience
-- 003-skill-advisor/001-rrf-determinism-spine
-- 003-skill-advisor/002-runtime-lane-health-degrade
-- 003-skill-advisor/003-embedding-staleness-signal
-- 003-skill-advisor/004-c4-shadow-seam-beta-posterior
-- 003-skill-advisor/007-outcome-weighted-ranking-followon
+- 002-skill-advisor/001-rrf-determinism-spine
+- 002-skill-advisor/002-runtime-lane-health-degrade
+- 002-skill-advisor/003-embedding-staleness-signal
+- 002-skill-advisor/004-c4-shadow-seam-beta-posterior
+- 002-skill-advisor/007-outcome-weighted-ranking-followon
 - 004-deep-loop/002-fanout-determinism-observability
 - 004-deep-loop/003-fanout-failure-recovery
 - 004-deep-loop/004-reliability-weighted-convergence

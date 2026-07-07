@@ -11,7 +11,7 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-speckit/028-memory-search-intelligence/001-speckit-memory/008-edge-presence-currentness"
-    last_updated_at: "2026-07-04T17:51:03.395Z"
+    last_updated_at: "2026-07-06T19:16:29.660Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "C3-A shipped then kept off as integrity-only, 4 candidates pending"
     next_safe_action: "Land C3-C TemporalMode and memory_history after the C3-B substrate lands"
@@ -42,7 +42,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | system-speckit/028-memory-search-intelligence/001-speckit-memory/008-edge-presence-currentness |
+| **Spec Folder** | 008-edge-presence-currentness |
 | **Status** | in-progress |
 | **Level** | 3 |
 | **Scope** | Five temporal candidates, C3-A shipped and four pending |

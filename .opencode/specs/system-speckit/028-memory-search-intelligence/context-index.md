@@ -15,15 +15,15 @@ sibling packets, keeping their internal phase numbering.
 |---|---|---|
 | `002-code-graph/` (parent + 11 children) | `system-code-graph/001-code-graph-core/` | seeded the empty packet root |
 | `004-deep-loop/` (parent + 6 children + `007` sub-parent + 4) | `system-deep-loop/038-deep-loop-runtime/` | reconciled the stale root children_ids (real 036/037 added) |
-| `003-skill-advisor/` phases 001-008 (parent) | `system-skill-advisor/002-skill-advisor-runtime/` | `009-hard-rule-and-dispatch-preflight-hardening` HELD in 028 (in-progress follow-up) |
+| `002-skill-advisor/` phases 001-008 (parent) | `system-skill-advisor/002-skill-advisor-runtime/` | `001-hard-rule-and-dispatch-preflight-hardening` HELD in 028 (in-progress follow-up) |
 
 ### Batch 2 — scattered subsystem children (from the cross-cutting 007/008 suites)
 
 | Subsystem | From | To |
 |---|---|---|
-| code-graph | `007-.../005-codegraph-seeded-ppr`, `.../006-codegraph-edge-lifecycle`, `.../011-graduation-follow-ups/001-codegraph-defaults-bitemporal`; `008-.../011-code-graph-doc-audit`, `.../011-fix-code-graph-docs` | `system-code-graph/002-006` |
-| deep-loop | `007-.../008-deeploop-finding-dedup`, `.../011-graduation-follow-ups/002-deeploop-gauges-dedup-scale`; `008-.../013-deep-research-loop-instrumentation` | `system-deep-loop/039-041` |
-| skill-advisor | `007-.../007-advisor-rrf-fusion`; `.../011-graduation-follow-ups/004-advisor-penalty-contract` | `system-skill-advisor/003-004` |
+| code-graph | `007-.../005-codegraph-seeded-ppr`, `.../006-codegraph-edge-lifecycle`, `.../007-graduation-follow-ups/001-codegraph-defaults-bitemporal`; `008-.../011-code-graph-doc-audit`, `.../011-fix-code-graph-docs` | `system-code-graph/002-006` |
+| deep-loop | `007-.../008-deeploop-finding-dedup`, `.../007-graduation-follow-ups/002-deeploop-gauges-dedup-scale`; `008-.../013-deep-research-loop-instrumentation` | `system-deep-loop/039-041` |
+| skill-advisor | `007-.../007-advisor-rrf-fusion`; `.../007-graduation-follow-ups/004-advisor-penalty-contract` | `system-skill-advisor/003-004` |
 
 **Rollup docs migrated.** `changelog/{002,003,004}-*/` moved to the target packets' changelogs;
 `before-vs-after.md`, `timeline.md`, `changelog/README.md` and `changelog-028-root.md` repointed;
@@ -39,8 +39,8 @@ freshness, fix `parent_id`. Each moved folder is a net improvement over its pre-
 ## 2. Post-extraction 028 scope
 
 028 top-level is now: `000-release-cleanup`, `001-speckit-memory` (the memory-search engine),
-`003-skill-advisor` (holds only the in-progress `009`), `005-spec-data-quality`, `006-review-remediation`,
-`007-dark-flag-graduation`, `008-speckit-surface-alignment`.
+`002-skill-advisor` (holds only the in-progress `009`), `003-spec-data-quality`, `004-review-remediation`,
+`005-dark-flag-graduation`, `006-speckit-surface-alignment`.
 
 ## 3. Memory-search engine + spec data-quality — work done and tested
 
@@ -53,13 +53,13 @@ ranking-filter-bypass + score-scale fixes, causal-graph hygiene + entity-linker 
 loop repair, search-hot-path performance, envelope/command-doc alignment, and closeout. Recursive
 `validate.sh --strict` was 14 passed / 0 failed across the program parent and all 13 children.
 
-### Spec data-quality — `005-spec-data-quality`
+### Spec data-quality — `003-spec-data-quality`
 
 On-write quality loop, retroactive automation, retrieval-gated tuning, novel research, the shared
 safe-fix engine, generated-metadata build and full-repo JSON migration, plus the flat drift-audit /
 metadata-status-integrity / create.sh-corruption phases (045-053).
 
-### This session (2026-07-06) — new work under `005-spec-data-quality`
+### This session (2026-07-06) — new work under `003-spec-data-quality`
 
 - `051-graph-metadata-child-drift-audit-and-harden` — a repo-wide `children_ids`-vs-on-disk drift audit
   (21 drifted parents found and classified) plus a permanent `GRAPH_METADATA_CHILD_DRIFT` validate rule

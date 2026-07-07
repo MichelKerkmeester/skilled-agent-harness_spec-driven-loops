@@ -9,7 +9,7 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-speckit/028-memory-search-intelligence/000-release-cleanup/008-agents-md"
-    last_updated_at: "2026-07-04T17:31:30.171Z"
+    last_updated_at: "2026-07-06T19:16:25.645Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "Executed cleanup, fixed mk-spec-memory tool count 37 to 39"
     next_safe_action: "Phase complete, proceed to phase 009"
@@ -37,7 +37,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | system-speckit/028-memory-search-intelligence/000-release-cleanup/008-agents-md |
+| **Spec Folder** | 008-agents-md |
 | **Completed** | 2026-06-19 |
 | **Level** | 2 |
 <!-- /ANCHOR:metadata -->

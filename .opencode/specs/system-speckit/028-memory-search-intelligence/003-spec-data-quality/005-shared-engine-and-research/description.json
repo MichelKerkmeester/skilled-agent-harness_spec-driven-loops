@@ -1,0 +1,28 @@
+{
+  "level": "2",
+  "specFolder": "system-speckit/028-memory-search-intelligence/003-spec-data-quality/005-shared-engine-and-research",
+  "description": "Shared Engine and Research subgroup of the spec-data-quality track: the shared fix engine, the floor experiment, governance rollout, and the",
+  "keywords": [
+    "shared",
+    "engine",
+    "research",
+    "subgroup",
+    "spec-data-quality",
+    "track",
+    "fix",
+    "floor",
+    "experiment",
+    "governance",
+    "rollout"
+  ],
+  "lastUpdated": "2026-07-04T17:11:46.952Z",
+  "specId": "005",
+  "folderSlug": "shared-engine-and-research",
+  "parentChain": [
+    "system-speckit",
+    "028-memory-search-intelligence",
+    "003-spec-data-quality"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

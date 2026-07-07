@@ -198,7 +198,7 @@
     ],
     "causal_summary": "The changelog directories, constitutional docs and the system-spec-kit templates package needs a release-readiness cleanup contract before any document edits begin",
     "created_at": "2026-06-19T00:00:00Z",
-    "last_save_at": "2026-07-04T17:31:34.477Z",
+    "last_save_at": "2026-07-06T19:16:25.948Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,13 +208,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:2a4aff1ec6a7b3cb413ae52d0645f19ce864d098597f5ab7eaa5d05db2d88543",
+    "source_fingerprint": "sha256:cfb8faa53e5f47676a3cc8ac39581bc814f4028b645138a2b346016de7ebefbc",
     "source_doc_hashes": {
-      "spec.md": "1a916057c1f1f4b8d7c3bf6e6719949939247d99d6de29db3296eb81335efd6f",
-      "plan.md": "d3fe34680401f42946b2b54180cf79bd6a81ec34b1eb148748944228492a25ab",
-      "tasks.md": "ee850954427c5c1a5ddca7afde62a721deb5847f229a72b6edcc04555970a909",
-      "checklist.md": "e508c88774f6b6e6253803c88dfe721493ea49af177870949857d6d909cf63ac",
-      "implementation-summary.md": "17936c10dabbaa0c6fb27f83ba4d3a9f054878e618f64791cd04fb3a024198d9"
+      "spec.md": "45c851b32591b04f8b490e60442df396d54db2c735289e82b74678c8e6b9de01",
+      "plan.md": "1c1b7cac3756d0f5ace5d5d0b20d15fe1563bc9fe7b6037acd91c89503cbd7f1",
+      "tasks.md": "365eea0e5377b32c4f577a6cbdeede0cb1f7dfeff7fd81ec3fe41e2fd8405037",
+      "checklist.md": "605fbea599766dce205a1ca680b7dd59b0b13dbc9a192d1475c8ffc059aec63a",
+      "implementation-summary.md": "1fdd8dbe1bdb39f797ed9371824db04a834b07a269110f6684dfecfbefc1d2e2"
     },
     "last_active_child_id": null,
     "last_active_at": null

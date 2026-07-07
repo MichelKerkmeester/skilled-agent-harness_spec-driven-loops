@@ -9,7 +9,7 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-speckit/028-memory-search-intelligence/000-release-cleanup/001-code-readmes"
-    last_updated_at: "2026-07-04T17:31:32.623Z"
+    last_updated_at: "2026-07-06T19:15:07.418Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "Executed code README cleanup, recorded evidence"
     next_safe_action: "Phase complete, successor is ../002-skill-and-repo-readmes"
@@ -37,7 +37,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | system-speckit/028-memory-search-intelligence/000-release-cleanup/001-code-readmes |
+| **Spec Folder** | 001-code-readmes |
 | **Completed** | 2026-06-19 (commit a3621ebe33) |
 | **Level** | 2 |
 <!-- /ANCHOR:metadata -->

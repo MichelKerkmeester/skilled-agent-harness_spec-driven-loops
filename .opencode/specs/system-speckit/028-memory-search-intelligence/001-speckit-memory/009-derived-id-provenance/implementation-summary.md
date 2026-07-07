@@ -10,7 +10,7 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-speckit/028-memory-search-intelligence/001-speckit-memory/009-derived-id-provenance"
-    last_updated_at: "2026-07-04T17:51:03.790Z"
+    last_updated_at: "2026-07-06T19:16:29.962Z"
     last_updated_by: "codex"
     recent_action: "Implemented default-off derived-id provenance with schema v40 and focused tests"
     next_safe_action: "Keep benchmark-only insert-cost measurement pending until measured"
@@ -45,7 +45,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | `028-memory-search-intelligence/001-speckit-memory/009-derived-id-provenance` |
+| **Spec Folder** | 009-derived-id-provenance |
 | **Completed** | 2026-06-19 |
 | **Level** | 3 |
 | **Candidate status** | DONE behind default-off `SPECKIT_DERIVED_ID_PROVENANCE` |

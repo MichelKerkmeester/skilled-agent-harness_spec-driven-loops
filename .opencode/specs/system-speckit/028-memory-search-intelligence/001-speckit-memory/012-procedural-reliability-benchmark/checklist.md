@@ -213,7 +213,7 @@ _memory:
 - [x] CHK-130 [P1] Faithful to the research record (no fabricated candidates or benefit numbers)
   - **Evidence**: every candidate + gate traces to `research/` deltas `iter-015/018/021.jsonl`
 - [x] CHK-131 [P1] Scope-locked to the four named candidates, sibling-subsystem Beta work routed out
-  - **Evidence**: spec.md §3 Out of Scope (Advisor `SA-outcome-weighted-ranking` → `003-skill-advisor`)
+  - **Evidence**: spec.md §3 Out of Scope (Advisor `SA-outcome-weighted-ranking` → `002-skill-advisor`)
 - [x] CHK-132 [P2] Regression-baseline captured before any default-on ranking-order change
   - **Evidence**: targeted tests verify default-off byte stability, no default-on ranking-order change shipped
 

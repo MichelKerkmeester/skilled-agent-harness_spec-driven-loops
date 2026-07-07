@@ -36,7 +36,7 @@ The 016 deep-dive remediation program fixed the P0 through P2 findings from the 
 | `010-search-hot-path-performance` | Completed | Batched, cached and gated the twelve measured hot spots with rank parity and FTS token-equivalence proven. Live p50 is a daemon-side capture. [Leaf](./changelog-016-010-search-hot-path-performance.md). |
 | `011-daemon-freshness-and-health-truthfulness` | Completed | Broke the dist-freshness deadlock, exempted help and version from the freshness gate and fixed the health exclusion-audit column. [Leaf](./changelog-016-011-daemon-freshness-and-health-truthfulness.md). |
 | `012-envelope-presentation-and-command-doc-alignment` | Completed | Collapsed the envelope to a single casing, closed a cursor tenant leak and aligned both command trees behind a new byte-parity gate. Live envelope bytes are a daemon-side capture. [Leaf](./changelog-016-012-envelope-presentation-and-command-doc-alignment.md). |
-| `013-absorb-028-006-review-remediation-closeout` | Completed | Doc-only closeout. Absorbed the 006/002, 006/004 and ex-031 trackers, reconstructed the 91-item P2 map and rolled up both parents. [Leaf](./changelog-016-013-absorb-028-006-review-remediation-closeout.md). |
+| `013-absorb-028-004-review-remediation-closeout` | Completed | Doc-only closeout. Absorbed the 006/002, 006/004 and ex-031 trackers, reconstructed the 91-item P2 map and rolled up both parents. [Leaf](./changelog-016-013-absorb-028-004-review-remediation-closeout.md). |
 
 ### Changed
 

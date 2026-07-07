@@ -1,4 +1,5 @@
 {
+  "level": "2",
   "specFolder": "system-speckit/028-memory-search-intelligence/001-speckit-memory/001-corpus-reindex-gate-zero",
   "description": "The Spec-Kit Memory MCP index is partly cold: a measurable fraction of indexed rows are un-enriched / un-embedded, and the FTS/vector consistency",
   "keywords": [
