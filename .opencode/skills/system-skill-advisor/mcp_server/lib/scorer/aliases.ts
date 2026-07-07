@@ -4,10 +4,10 @@
 
 const BASE_ALIAS_GROUPS: Readonly<Record<string, readonly string[]>> = Object.freeze({
   'create:agent': ['command-create-agent', '/create:agent', 'create:agent'],
-  'create:testing-playbook': [
-    'command-create-testing-playbook',
-    '/create:testing-playbook',
-    'create:testing-playbook',
+  'create:manual-testing-playbook': [
+    'command-create-manual-testing-playbook',
+    '/create:manual-testing-playbook',
+    'create:manual-testing-playbook',
   ],
   'memory:save': ['command-memory-save', '/memory:save', 'memory:save'],
   'deep-model-benchmark': [

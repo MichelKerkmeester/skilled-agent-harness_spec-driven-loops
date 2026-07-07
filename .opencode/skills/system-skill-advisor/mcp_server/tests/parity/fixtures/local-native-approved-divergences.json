@@ -256,9 +256,9 @@
       "corpus": "labeled",
       "promptHash": "sha256:d1e22c80dc055fc966cc794da3aabdf0ecb31b0a6b594fb4928c9cc8f67def3c",
       "gold": "sk-doc",
-      "localTop": "create:testing-playbook",
+      "localTop": "create:manual-testing-playbook",
       "nativeTop": "sk-doc",
-      "reason": "baseline divergence captured 2026-06-13: local/native lexical-mis-route disagreement (local=create:testing-playbook, native=sk-doc)",
+      "reason": "baseline divergence captured 2026-06-13: local/native lexical-mis-route disagreement (local=create:manual-testing-playbook, native=sk-doc)",
       "approvedAt": "2026-06-13"
     },
     {
@@ -736,9 +736,9 @@
       "corpus": "labeled",
       "promptHash": "sha256:56b9b933673d3fa1fe9eb42e1ca8222beff0b18909ef416f12d82ad042956f34",
       "gold": "sk-doc",
-      "localTop": "create:testing-playbook",
+      "localTop": "create:manual-testing-playbook",
       "nativeTop": "sk-doc",
-      "reason": "baseline divergence captured 2026-06-13: local/native lexical-mis-route disagreement (local=create:testing-playbook, native=sk-doc)",
+      "reason": "baseline divergence captured 2026-06-13: local/native lexical-mis-route disagreement (local=create:manual-testing-playbook, native=sk-doc)",
       "approvedAt": "2026-06-13"
     },
     {

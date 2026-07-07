@@ -621,8 +621,8 @@ function primaryIntentBonus(
     if (recommendation.skill === 'create:agent') return R.createAgentCreateAgentBonus;
     if (recommendation.skill === 'sk-doc') return R.createAgentSkDocPenalty;
   }
-  if (/\bcreate (a )?(test|testing) playbook\b/.test(promptLower) || promptLower.includes('/create:testing-playbook')) {
-    if (recommendation.skill === 'create:testing-playbook' || recommendation.skill === 'command-create-testing-playbook') return R.createTestingPlaybookBonus;
+  if (/\bcreate (a )?(test|testing) playbook\b/.test(promptLower) || promptLower.includes('/create:manual-testing-playbook')) {
+    if (recommendation.skill === 'create:manual-testing-playbook' || recommendation.skill === 'command-create-manual-testing-playbook') return R.createTestingPlaybookBonus;
     if (recommendation.skill === 'sk-doc') return R.createTestingPlaybookSkDocPenalty;
     if (recommendation.skill === 'deep-loop-workflows') return R.createTestingPlaybookOtherSkillsPenalty;
   }

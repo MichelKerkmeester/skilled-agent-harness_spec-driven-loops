@@ -60,6 +60,6 @@ describe('advisor graph health', () => {
     expect(payload.inventory_parity.missing_in_discovery).toEqual([]);
     expect(payload.inventory_parity.missing_in_graph).toEqual([]);
     expect(payload.inventory_parity.graph_only).toEqual([]);
-    expect(payload.inventory_parity.graphless_inline).toEqual(['create:agent', 'create:testing-playbook', 'memory:save']);
+    expect(payload.inventory_parity.graphless_inline).toEqual(['create:agent', 'create:manual-testing-playbook', 'memory:save']);
   });
 });

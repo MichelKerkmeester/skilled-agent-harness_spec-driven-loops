@@ -315,20 +315,20 @@ describe('027/003 native scorer units', () => {
       skill({ id: 'sk-deep-review', description: 'Deep review loop.' }),
       skill({ id: 'deep-agent-improvement', description: 'Improve agent quality.' }),
       skill({
-        id: 'create:testing-playbook',
+        id: 'create:manual-testing-playbook',
         kind: 'command',
-        description: 'Create command bridge for /create:testing-playbook manual testing playbook scaffolding.',
-        keywords: ['/create:testing-playbook', 'create testing playbook', 'create test playbook', 'testing playbook'],
+        description: 'Create command bridge for /create:manual-testing-playbook manual testing playbook scaffolding.',
+        keywords: ['/create:manual-testing-playbook', 'create testing playbook', 'create test playbook', 'testing playbook'],
         domains: ['create', 'testing', 'playbook', 'command'],
-        intentSignals: ['/create:testing-playbook', 'create testing playbook', 'create test playbook', 'testing playbook'],
+        intentSignals: ['/create:manual-testing-playbook', 'create testing playbook', 'create test playbook', 'testing playbook'],
       }),
       skill({
-        id: 'command-create-testing-playbook',
+        id: 'command-create-manual-testing-playbook',
         kind: 'command',
-        description: 'Create or update a testing playbook using /create:testing-playbook.',
-        keywords: ['/create:testing-playbook', 'create:testing-playbook'],
+        description: 'Create or update a testing playbook using /create:manual-testing-playbook.',
+        keywords: ['/create:manual-testing-playbook', 'create:manual-testing-playbook'],
         domains: ['create', 'testing', 'playbook', 'command'],
-        intentSignals: ['/create:testing-playbook', 'create:testing-playbook'],
+        intentSignals: ['/create:manual-testing-playbook', 'create:manual-testing-playbook'],
       }),
     ]);
 
@@ -338,7 +338,7 @@ describe('027/003 native scorer units', () => {
       includeAllCandidates: true,
     });
     const top3 = result.recommendations.slice(0, 3);
-    const createTesting = top3.find((recommendation) => recommendation.skill === 'create:testing-playbook');
+    const createTesting = top3.find((recommendation) => recommendation.skill === 'create:manual-testing-playbook');
 
     expect(createTesting?.confidence).toBeGreaterThanOrEqual(0.6);
     expect(top3.some((recommendation) => ['sk-deep-review', 'deep-agent-improvement'].includes(recommendation.skill))).toBe(false);
