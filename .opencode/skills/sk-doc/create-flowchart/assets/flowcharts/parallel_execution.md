@@ -75,26 +75,26 @@ Use this asset when documenting workflows that split into concurrent branches an
 └────────────────────────────────────────────────────────┘
                         │
                         ▼
-                    ╱────────╲
-                   ╱ All Tests ╲
-                  ╱   Passed?   ╲
-                  ╲             ╱
-                   ╲───────────╱
-                    │         │
-                  Yes        No
-                    │         │
-                    │         ▼
-                    │    ┌─────────────────┐
-                    │    │  Report Failure │
-                    │    │  • Send alerts  │
-                    │    │  • Log details  │
-                    │    │  • Stop pipeline│
-                    │    └─────────────────┘
-                    │         │
-                    │         ▼
-                    │    ╭─────────────────╮
-                    │    │ Pipeline Failed │
-                    │    ╰─────────────────╯
+                    ╱────────────────────╲
+                   ╱      All Tests       ╲
+                  ╱        Passed?         ╲
+                  ╲                        ╱
+                   ╲────────────────────╱
+                     │         │
+                  [YES] Yes  [NO] No
+                     │         │
+                     │         ▼
+                     │    ┌────────────────────┐
+                     │    │  Report Failure    │
+                     │    │  • Send alerts     │
+                     │    │  • Log details     │
+                     │    │  • Stop pipeline   │
+                     │    └────────────────────┘
+                     │         │
+                     │         ▼
+                     │    ╭────────────────────╮
+                     │    │ Pipeline Failed    │
+                     │    ╰────────────────────╯
                     │
                     ▼
 ┌────────────────────────────────────────────────────────┐
@@ -126,21 +126,21 @@ Use this asset when documenting workflows that split into concurrent branches an
 └────────────────────────────────────────────────────────┘
                     │
                     ▼
-                ╱────────╲
-               ╱  Smoke    ╲
-              ╱   Tests     ╲
-             ╱    Passed?    ╲
-             ╲               ╱
-              ╲─────────────╱
-                │         │
-              Yes        No
-                │         │
-                │         ▼
-                │    ┌──────────────┐
-                │    │  Rollback    │
-                │    │  • Revert    │
-                │    │  • Alert     │
-                │    └──────────────┘
+                ╱────────────────────╲
+               ╱       Smoke          ╲
+              ╱        Tests          ╲
+             ╱        Passed?         ╲
+             ╲                        ╱
+              ╲────────────────────╱
+                 │         │
+              [YES] Yes  [NO] No
+                 │         │
+                 │         ▼
+                 │    ┌────────────────────┐
+                 │    │  Rollback          │
+                 │    │  • Revert          │
+                 │    │  • Alert           │
+                 │    └────────────────────┘
                 │
                 ▼
 ┌────────────────────────────────────────────────────────┐
@@ -148,15 +148,15 @@ Use this asset when documenting workflows that split into concurrent branches an
 │  Manual Approval Required                              │
 └────────────────────────────────────────────────────────┘
                     │
-              ┌─────┴─────┐
-              │           │
-          Approved    Rejected
-              │           │
-              │           ▼
-              │      ┌─────────┐
-              │      │  Hold   │
-              │      │Pipeline │
-              │      └─────────┘
+              ┌───────────────────────────┴───────────────────────────┐
+              │                                                       │
+        [YES] Approved                                         [NO] Rejected
+              │                                                       │
+              │                                                       ▼
+              │                                                 ┌────────────────────┐
+              │                                                 │  Hold              │
+              │                                                 │Pipeline            │
+              │                                                 └────────────────────┘
               │
               ▼
 ┌────────────────────────────────────────────────────────┐
