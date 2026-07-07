@@ -53,14 +53,51 @@ Routing is **registry-driven**. `mode-registry.json` is the single source of tru
 
 ### Routing rule
 ```
-classify the request to a workflowMode (dominant authoring/quality intent; a command like /create:agent resolves directly)
-read mode-registry.json
-  -> resolve workflowMode
-  -> load the packet at registry[mode].packet (e.g. sk-doc/create-agent/SKILL.md)
+SKILL_ROOT = path containing this SKILL.md
+REGISTRY = SKILL_ROOT / "mode-registry.json"
+HUB_ROUTER = SKILL_ROOT / "hub-router.json"
+
+def _guard_in_skill(relative_path):
+  resolved = (SKILL_ROOT / relative_path).resolve()
+  resolved.relative_to(SKILL_ROOT)
+  if resolved.suffix.lower() not in {".md", ".json"}:
+    raise ValueError("only skill-local markdown/json router resources are routable")
+  return resolved.relative_to(SKILL_ROOT).as_posix()
+
+def load_if_available(relative_path, seen):
+  guarded = _guard_in_skill(relative_path)
+  if guarded not in seen and (SKILL_ROOT / guarded).exists():
+    load(guarded)
+    seen.add(guarded)
+    return True
+  return False
+
+seen = set()
+if not REGISTRY.exists() or not HUB_ROUTER.exists():
+  return defer("router metadata missing; inspect sk-doc/mode-registry.json and sk-doc/hub-router.json")
+
+read mode-registry.json and hub-router.json
+classify the request to one or more workflowMode values using hub-router.json
+  (dominant authoring/quality intent; a command like /create:agent resolves directly)
+
+if confidence is low, intent is contradictory, or routerPolicy.defaultMode is null and no mode wins:
+  load_if_available("shared/references/global/quick_reference.md", seen)
+  return UNKNOWN_FALLBACK with a checklist to confirm workflowMode, target document/component, inputs, and validation expectations
+
+for each resolved workflowMode:
+  entry = the matching mode-registry.json modes[] item
+  if entry is missing or entry.packetKind != "workflow":
+    return defer("unknown sk-doc workflowMode; extend mode-registry.json and create a packet first")
+  if not load_if_available(f"{entry.packet}/SKILL.md", seen):
+    return defer("registered packet SKILL.md is missing; repair the packet before routing")
+
+return single or orderedBundle according to hub-router.json routerPolicy.outcomes
 ```
-`routerPolicy.defaultMode` is `null`: an unclear documentation intent asks for disambiguation rather than forcing a stale default. `hub-router.json` carries the router signals and vocabulary classes. Outcomes are `single`, `orderedBundle`, or `defer` — there is no `surfaceBundle` (no surface axis).
+`routerPolicy.defaultMode` is `null`: an unclear documentation intent asks for disambiguation rather than forcing a stale default. `hub-router.json` carries the router signals, vocabulary classes, default fallback resource, and bundle rules. Outcomes are `single`, `orderedBundle`, or `defer` — there is no `surfaceBundle` (no surface axis).
 
 Per-packet behavior is **not flattened**: each packet keeps its own authoring contract, references, assets, scripts, and templates.
+
+This hub does **not** use keyed resource discovery (`references/<key>/` or `assets/<key>/`) at the hub root: there are no hub-root `references/` or `assets/` directories, and packet resources stay inside their owning packet or the shared backbone. If a future workflow needs keyed resource subdirectories, add that behavior inside the owning packet using guarded runtime discovery; do not hardcode resource inventories in this hub.
 
 ---
 

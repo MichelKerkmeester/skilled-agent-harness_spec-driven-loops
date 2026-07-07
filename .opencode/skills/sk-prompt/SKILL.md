@@ -75,7 +75,7 @@ USER REQUEST
 
 ### Resource Domains
 
-The router discovers markdown resources recursively from `references/` and `assets/` and then applies intent scoring from `INTENT_MODEL`.
+This skill uses a **simple intent router**, not a keyed resource-subdirectory router. Its real resources are flat markdown files under `references/` and `assets/`; there are no `references/<key>/` or `assets/<key>/` runtime-key directories to select. The router therefore discovers markdown resources recursively from `references/` and `assets/`, then applies command-prefix and intent scoring against the discovered inventory.
 
 - `references/` for DEPTH methodology, framework definitions, and CLEAR scoring.
 - `assets/` for format-specific deep-dives (Markdown, JSON, YAML).
@@ -106,17 +106,35 @@ from pathlib import Path
 SKILL_ROOT = Path(__file__).resolve().parent
 RESOURCE_BASES = (SKILL_ROOT / "references", SKILL_ROOT / "assets")
 DEFAULT_RESOURCE = "references/depth_framework.md"
+PATTERNS_RESOURCE = "references/patterns_evaluation.md"
+
+COMMAND_INTENTS = {
+    "$text": "TEXT_ENHANCE",
+    "$improve": "TEXT_ENHANCE",
+    "$refine": "TEXT_ENHANCE",
+    "$short": "TEXT_ENHANCE",
+    "$json": "FORMAT_JSON",
+    "$yaml": "FORMAT_YAML",
+    "$raw": "RAW",
+}
 
 INTENT_MODEL = {
     "TEXT_ENHANCE": {"keywords": [("improve", 4), ("enhance", 4), ("prompt", 3), ("text", 3), ("refine", 4)]},
     "FRAMEWORK": {"keywords": [("framework", 4), ("rcaf", 5), ("costar", 5), ("tidd-ec", 5), ("scoring", 3)]},
     "DESIGN_GEN": {"keywords": [("open design", 5), ("start_run", 5), ("design generation", 5), ("generate ui", 4), ("canvas", 3), ("design brief", 4), ("variations", 3)]},
+    "FORMAT_MARKDOWN": {"keywords": [("markdown", 4), ("md", 2), ("readme", 3)]},
+    "FORMAT_JSON": {"keywords": [("json", 5), ("schema", 3), ("api-ready", 3)]},
+    "FORMAT_YAML": {"keywords": [("yaml", 5), ("frontmatter", 3), ("config", 2)]},
 }
 
 RESOURCE_MAP = {
     "TEXT_ENHANCE": ["references/depth_framework.md", "references/patterns_evaluation.md"],
     "FRAMEWORK": ["references/patterns_evaluation.md"],
     "DESIGN_GEN": ["references/design_generation_patterns.md", "references/patterns_evaluation.md"],
+    "FORMAT_MARKDOWN": ["assets/format_guide_markdown.md", "references/patterns_evaluation.md"],
+    "FORMAT_JSON": ["assets/format_guide_json.md", "references/patterns_evaluation.md"],
+    "FORMAT_YAML": ["assets/format_guide_yaml.md", "references/patterns_evaluation.md"],
+    "RAW": [],
 }
 
 ON_DEMAND_KEYWORDS = ["deep dive", "full template", "all frameworks", "format guide", "overnight-agent prompt", "system prompt", "prompt package", "prompt variant", "operator prompt", "evaluator prompt", "dispatch prompt"]
@@ -151,6 +169,13 @@ def _task_text(task) -> str:
         str(task.get(f, "")) for f in ("text", "query", "description", "keywords")
     ).lower()
 
+def detect_command_intent(task):
+    text = _task_text(task).strip()
+    for prefix, intent in COMMAND_INTENTS.items():
+        if text.startswith(prefix):
+            return intent
+    return None
+
 def score_intents(task) -> dict[str, float]:
     text = _task_text(task)
     scores = {intent: 0 for intent in INTENT_MODEL}
@@ -160,7 +185,10 @@ def score_intents(task) -> dict[str, float]:
                 scores[intent] += weight
     return scores
 
-def select_intents(scores, ambiguity_delta=AMBIGUITY_DELTA, max_intents=2):
+def select_intents(task, scores, ambiguity_delta=AMBIGUITY_DELTA, max_intents=2):
+    command_intent = detect_command_intent(task)
+    if command_intent:
+        return (command_intent, None)
     ranked = sorted(scores.items(), key=lambda pair: pair[1], reverse=True)
     primary, primary_score = ranked[0]
     if primary_score == 0:
@@ -174,7 +202,8 @@ def route_prompt_improver_resources(task):
     inventory = discover_markdown_resources()
     text = _task_text(task)
     scores = score_intents(task)
-    primary, secondary = select_intents(scores)
+    command_intent = detect_command_intent(task)
+    primary, secondary = select_intents(task, scores)
     intents = [primary] + ([secondary] if secondary else [])
     loaded = []
     seen = set()
@@ -186,24 +215,32 @@ def route_prompt_improver_resources(task):
             loaded.append(guarded)
             seen.add(guarded)
 
-    # Unknown fallback: when no keywords match at all
-    if scores[primary] == 0:
+    # Prefixes are authoritative; RAW skips DEPTH and reference loading.
+    if command_intent == "RAW":
+        return {"intents": intents, "intent_scores": scores, "resources": loaded, "load_level": "RAW"}
+
+    # Unknown fallback: when no command prefix or keywords match at all.
+    if not command_intent and scores.get(primary, 0) == 0:
         load_if_available(DEFAULT_RESOURCE)
         return {
             "intents": intents,
             "intent_scores": scores,
+            "load_level": "UNKNOWN_FALLBACK",
             "resources": loaded,
             "needs_disambiguation": True,
             "disambiguation_checklist": UNKNOWN_FALLBACK_CHECKLIST,
         }
 
-    # Standard routing: default + intent-mapped resources
-    load_if_available(DEFAULT_RESOURCE)
+    # Standard routing: DEPTH default + intent-mapped resources.
+    if primary != "FRAMEWORK":
+        load_if_available(DEFAULT_RESOURCE)
+    else:
+        load_if_available(PATTERNS_RESOURCE)
     for intent in intents:
         for relative_path in RESOURCE_MAP.get(intent, []):
             load_if_available(relative_path)
 
-    # ON_DEMAND: load all resource map paths when trigger keywords are present
+    # ON_DEMAND: load all mapped markdown resources when trigger keywords are present.
     if any(kw in text for kw in ON_DEMAND_KEYWORDS):
         for paths in RESOURCE_MAP.values():
             for relative_path in paths:

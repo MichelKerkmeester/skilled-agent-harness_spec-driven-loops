@@ -36,6 +36,8 @@ Use this skill (through the hub) for any active deep-loop workflow. Invoke it as
 
 Routing is **registry-driven** (invokable-hub, Option E). `mode-registry.json` is the single source of truth; the hub reads it and does not re-derive the mapping. When invoked as `Skill(deep-loop-workflows[, "<mode>: <request>"])`, the hub classifies the request to a `workflowMode`, resolves it through the registry, and loads `registry[mode].packet`. The advisor routes any deep-loop query to the single identity `deep-loop-workflows`; the hub then picks the mode. The `/deep:*` commands and native agent types remain as complementary surfaces — they reach the same packets through static routers/agent definitions — and the hub holds NO per-mode logic.
 
+This hub is an intent/registry router, not a keyed resource-discovery router: there are no hub-level `references/` or `assets/` directories to route by runtime key. The canonical resource-discovery patterns apply to skills that select `references/<key>/` or `assets/<key>/`; this hub only guards registry-selected packet loads.
+
 ### The three-tier discriminator
 - **`workflowMode`** — the public active mode key: `research`, `review`, `ai-council`, and the four improvement lanes `agent-improvement`, `model-benchmark`, `skill-benchmark`, `ai-system-improvement` (its loop-host mode stays `non-dev-ai-system-refine`).
 - **`runtimeLoopType`** — the graph-backed convergence key consumed by `deep-loop-runtime/scripts/convergence.cjs` (validated against active `research|review|council`). **Explicit `null` for all four improvement lanes; never inferred from `workflowMode`.** Note `ai-council` maps to `runtimeLoopType: council`.
@@ -44,14 +46,20 @@ Routing is **registry-driven** (invokable-hub, Option E). `mode-registry.json` i
 ### Routing rule
 ```
 classify the request to a workflowMode (dominant deep-loop intent; mode hint like "research: ..." overrides)
-read mode-registry.json
+guard mode-registry.json inside SKILL_ROOT and read it as data
+if classifier confidence is low or no mode dominates:
+  → return UNKNOWN_FALLBACK with a disambiguation checklist: choose research, review, ai-council, or one improvement lane
+else:
   → resolve workflowMode from the hint / classified intent (or the /deep:* command / advisor alias)
-  → load the mode packet at registry[mode].packet/SKILL.md
+  → find registry[mode]; if missing, return UNKNOWN_FALLBACK instead of loading a guessed path
+  → guard registry[mode].packet/SKILL.md inside SKILL_ROOT and load it only if the packet directory and SKILL.md both exist
        e.g. registry["research"].packet → deep-loop-workflows/deep-research/SKILL.md
        (the 4 improvement modes all share the deep-loop-workflows/deep-improvement/ packet)
   → if registry[mode].runtimeLoopType !== null: backend = convergence.cjs --loop-type <runtimeLoopType>
      else: backend = improvement loop-host (--mode) or external adapter, per backendKind
 ```
+
+Router-driven loads MUST use `_guard_in_skill(relative_path)` before `load()`, reject paths that escape this skill or do not end in `.md`, and check `if packet_base.exists()` plus `if packet_skill.exists()` before loading. The fallback must name the unresolved `workflowMode` when known, avoid loading any guessed packet, and ask the operator to provide one of the registered modes or the matching `/deep:*` command.
 
 Intent classification favors the single dominant active deep-loop mode; a mode hint (`research: ...`, `review: ...`, `ai-council: ...`, or an improvement lane) overrides the classifier. The legacy advisor projection maps stay hardcoded and drift-guarded against the registry, and the command files remain static routers with hardcoded asset/mode routing; neither resolves from `mode-registry.json` at runtime, but both stay equal to its projection.
 
@@ -134,6 +142,6 @@ All modes consume `deep-loop-runtime` (frozen, MCP-free): executor config, promp
 
 ## 8. RELATED RESOURCES
 
-- Pattern: `.opencode/skills/sk-doc/references/skill_creation/parent_skills_nested_packets.md` (parent-skill hub + nested packets, the one-graph-metadata invariant).
+- Pattern: `.opencode/skills/sk-doc/create-skill/references/parent_skill/parent_skills_nested_packets.md` (parent-skill hub + nested packets, the one-graph-metadata invariant).
 - Sibling example: `.opencode/skills/sk-design/` (the same invokable-hub + `mode-registry.json` Option E pattern).
 - Registry: `mode-registry.json` (this hub's routing contract).

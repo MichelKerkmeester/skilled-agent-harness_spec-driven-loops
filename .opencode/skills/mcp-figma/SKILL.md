@@ -89,7 +89,7 @@ TASK CONTEXT
 
 ### Resource Domains
 
-The router discovers markdown resources recursively from `references/` and `assets/`, then applies intent scoring. References are the primary loaded resources. Assets are paste-ready snippets for the optional MCP path.
+The router discovers markdown resources recursively from `references/` and `assets/`, then applies intent scoring. This skill uses a **flat intent router**: there are no keyed `references/<key>/` or `assets/<key>/` subdirectories. References are the primary loaded resources. Assets are paste-ready snippets for the optional MCP path.
 
 ```text
 references/figma_cli_reference.md   # CLI/daemon/connect model + command examples
@@ -112,7 +112,7 @@ assets/env_template.md              # the prefixed figma_FIGMA_API_KEY .env line
 
 ### Smart Router Pseudocode
 
-> Resilience pattern: see [sk-doc smart-router template](../sk-doc/assets/skill/skill_smart_router.md). Guard paths, discover at runtime, score intents, fall back when unsure.
+> Resilience pattern: see [sk-doc smart-router template](../sk-doc/create-skill/assets/skill/skill_smart_router.md). Guard paths, discover at runtime, score intents, and fall back when unsure. Because this skill has no keyed resource subdirectories, intent selects from the flat resource inventory below.
 
 ```python
 from pathlib import Path
@@ -120,6 +120,8 @@ from pathlib import Path
 SKILL_ROOT = Path(__file__).resolve().parent
 RESOURCE_BASES = (SKILL_ROOT / "references", SKILL_ROOT / "assets")
 DEFAULT_RESOURCE = "references/figma_cli_reference.md"
+MIN_CONFIDENCE = 1
+AMBIGUITY_DELTA = 1
 
 INTENT_MODEL = {
     "CREATE_RENDER":        {"keywords": [("create", 3), ("render", 4), ("frame", 3), ("component", 3), ("icon", 3), ("layout", 3), ("import", 3)]},
@@ -145,8 +147,6 @@ UNKNOWN_FALLBACK_CHECKLIST = [
     "For any author/modify/delete, confirm the target node/file and that a mutation is intended",
     "For destructive verbs, confirm an explicit target and a one-line rollback before running",
 ]
-
-AMBIGUITY_DELTA = 1
 
 def _guard_in_skill(relative_path: str) -> str:
     resolved = (SKILL_ROOT / relative_path).resolve()
@@ -182,21 +182,25 @@ def route_figma_resources(request: str):
     inventory = discover_markdown_resources()
     primary, secondary, scores = classify_intents(request)
     intents = [primary] + ([secondary] if secondary else [])
-    loaded, seen = [], set()
+    loaded, seen, notices = [], set(), []
 
-    def load_if_available(rel: str):
+    def load_if_available(rel: str) -> bool:
         guarded = _guard_in_skill(rel)
         if guarded in inventory and guarded not in seen:
             load(guarded); loaded.append(guarded); seen.add(guarded)
+            return True
+        if guarded not in inventory:
+            notices.append(f"Resource not found in inventory: {guarded}")
+        return False
 
     load_if_available(DEFAULT_RESOURCE)
-    if max(scores.values() or [0]) < 1:
-        return {"intents": intents, "needs_disambiguation": True,
-                "disambiguation_checklist": UNKNOWN_FALLBACK_CHECKLIST, "resources": loaded}
+    if max(scores.values() or [0]) < MIN_CONFIDENCE:
+        return {"intents": intents, "load_level": "UNKNOWN_FALLBACK", "needs_disambiguation": True,
+                "disambiguation_checklist": UNKNOWN_FALLBACK_CHECKLIST, "resources": loaded, "notices": notices}
     for intent in intents:
         for rel in RESOURCE_MAP.get(intent, []):
             load_if_available(rel)
-    return {"intents": intents, "intent_scores": scores, "resources": loaded}
+    return {"intents": intents, "intent_scores": scores, "resources": loaded, "notices": notices}
 ```
 
 ---

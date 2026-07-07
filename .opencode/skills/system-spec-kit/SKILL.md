@@ -79,7 +79,7 @@ Any agent writing authored spec folder docs (`spec.md`, `plan.md`, `tasks.md`, `
 
 ### Resource Domains
 
-The router discovers markdown resources recursively from `references/` and `assets/` and then applies intent scoring from `RESOURCE_MAP`. Keep this section domain-focused rather than static file inventories.
+This skill uses simple intent/domain routing, not keyed runtime resource routing. It does not select whole `references/<key>/` or `assets/<key>/` subtrees from project, mode, stack, or model signals. Instead, the router discovers markdown resources recursively from `references/` and `assets/`, then applies intent scoring from `RESOURCE_MAP` to load real, guarded resources from the current inventory. Keep this section domain-focused rather than static file inventories.
 
 - `references/memory/` for context retrieval, save workflows, trigger behavior, and indexing.
 - `references/templates/` for level selection, template selection, and structure guides.
@@ -87,8 +87,10 @@ The router discovers markdown resources recursively from `references/` and `asse
 - `references/structure/` for folder organization and sub-folder versioning.
 - `references/workflows/` for command workflows, shared intake, rename procedures, and worked examples.
 - `references/debugging/` for troubleshooting and root-cause methodology.
+- `references/cli/` for daemon CLI parity, shared smart-router behavior, and memory handback contracts.
 - `references/config/` for runtime environment configuration and launcher/lease contracts.
 - `references/hooks/` for prompt-time advisor hooks, the OpenCode goal plugin, runtime hook parity, and hook validation playbooks.
+- `assets/*.md` for shared decision matrices, template mapping, and parallel dispatch support.
 
 ### Template and Script Sources of Truth
 
@@ -126,11 +128,11 @@ Spec-script exit codes (`spec/*.sh`; distinct from the daemon-backed memory CLI 
 
 ### Smart Router Pseudocode
 
-The authoritative routing logic for scoped loading, weighted intent scoring, and ambiguity handling.
+The authoritative routing logic for scoped loading, weighted intent scoring, and ambiguity handling. Because this skill is an intent/domain router, Pattern 3 is adapted to extensible intent labels over discovered resources rather than keyed resource subdirectories.
 
 - Pattern 1: Runtime Discovery - `discover_markdown_resources()` recursively inventories `references/` and `assets/`.
 - Pattern 2: Existence-Check Before Load - `load_if_available()` guards, de-duplicates with `seen`, and checks `inventory`.
-- Pattern 3: Extensible Routing Key - command and intent signals select routing labels without static file inventories.
+- Pattern 3: Extensible Routing Key - command and intent signals select domain labels and resource maps without forcing `references/<key>/` or `assets/<key>/` subtrees.
 - Pattern 4: Multi-Tier Graceful Fallback - `UNKNOWN_FALLBACK` asks for disambiguation and missing-resource cases return a "no knowledge base" notice.
 
 ```python
@@ -165,6 +167,8 @@ RESOURCE_MAP = {
         "references/templates/template_guide.md",
         "references/workflows/intake_contract.md",
         "references/validation/template_compliance_contract.md",
+        "assets/level_decision_matrix.md",
+        "assets/complexity_decision_matrix.md",
     ],
     "RESEARCH": [
         "references/workflows/quick_reference.md",
@@ -175,11 +179,12 @@ RESOURCE_MAP = {
         "references/validation/validation_rules.md",
         "references/validation/template_compliance_contract.md",
         "references/templates/template_guide.md",
+        "assets/template_mapping.md",
     ],
     "DEBUG": [
         "references/debugging/troubleshooting.md",
+        "references/debugging/universal_debugging_methodology.md",
         "references/workflows/quick_reference.md",
-        "manual_testing_playbook/manual_testing_playbook.md",
     ],
     "COMPLETE": [
         "references/validation/validation_rules.md",
@@ -228,7 +233,6 @@ RESOURCE_MAP = {
     "EVALUATION": [
         "references/memory/epistemic_vectors.md",
         "references/config/environment_variables.md",
-        "manual_testing_playbook/manual_testing_playbook.md",
     ],
     "SCORING_CALIBRATION": [
         "references/config/environment_variables.md",
@@ -328,7 +332,7 @@ def select_intents(scores: dict[str, float], ambiguity_delta: float = 1.0, max_i
     """Return primary intent and secondary intent when scores are close."""
     ranked = sorted(scores.items(), key=lambda item: item[1], reverse=True)
     if not ranked or ranked[0][1] <= 0:
-        return ["IMPLEMENT"]
+        return []
 
     selected = [ranked[0][0]]
     if len(ranked) > 1:
@@ -365,7 +369,7 @@ def route_speckit_resources(task):
 
     if max(scores.values() or [0]) < 0.5:
         return {
-            "intents": intents,
+            "intents": intents or ["UNKNOWN"],
             "intent_scores": scores,
             "load_level": "UNKNOWN_FALLBACK",
             "needs_disambiguation": True,

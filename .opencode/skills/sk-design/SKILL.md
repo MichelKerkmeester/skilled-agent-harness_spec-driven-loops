@@ -64,6 +64,75 @@ read mode-registry.json
   → the mode cites the shared reference base, or runs its own backend per registry[mode].backendKind
 ```
 
+### Intent-Router Resilience
+
+This hub has simple intent-mode routing, not keyed resource discovery: it selects one or more mode packet folders from `mode-registry.json`. There is no root `references/<key>/` or `assets/<key>/` resource map for the hub; mode packets and `shared/` own their own references and assets. Keep the router resilient without replacing it with the keyed-resource router:
+
+```python
+from pathlib import Path
+
+SKILL_ROOT = Path(__file__).resolve().parent
+REGISTRY_PATH = SKILL_ROOT / "mode-registry.json"
+UNKNOWN_FALLBACK_CHECKLIST = [
+    "Confirm the design goal and artifact surface",
+    "Confirm whether the request asks to create, guide, animate, audit, or extract",
+    "Provide one concrete input such as a file, URL, screenshot, or acceptance criterion",
+    "Confirm the proof expected before a ready claim",
+]
+
+def _guard_in_skill(relative_path: str) -> str:
+    resolved = (SKILL_ROOT / relative_path).resolve()
+    resolved.relative_to(SKILL_ROOT)
+    if resolved.name != "SKILL.md":
+        raise ValueError(f"Only mode packet SKILL.md files are hub-routable: {relative_path}")
+    return resolved.relative_to(SKILL_ROOT).as_posix()
+
+def resolve_mode_packet(mode: str, intent_confidence: float):
+    if intent_confidence < 0.5:
+        return {
+            "load_level": "UNKNOWN_FALLBACK",
+            "needs_disambiguation": True,
+            "disambiguation_checklist": UNKNOWN_FALLBACK_CHECKLIST,
+            "resources": [],
+        }
+
+    if not REGISTRY_PATH.exists():
+        return {
+            "load_level": "UNKNOWN_FALLBACK",
+            "needs_disambiguation": True,
+            "notice": "mode-registry.json is unavailable; ask for route confirmation before loading a mode packet",
+            "disambiguation_checklist": UNKNOWN_FALLBACK_CHECKLIST,
+            "resources": [],
+        }
+
+    registry = read_json(REGISTRY_PATH)
+    modes_by_key = {entry["workflowMode"]: entry for entry in registry.get("modes", [])}
+    packet = modes_by_key.get(mode)
+    if not packet:
+        return {
+            "load_level": "UNKNOWN_FALLBACK",
+            "needs_disambiguation": True,
+            "notice": f"No sk-design mode registered for '{mode}'",
+            "disambiguation_checklist": UNKNOWN_FALLBACK_CHECKLIST,
+            "resources": [],
+        }
+
+    skill_md = _guard_in_skill(f"{packet['packet']}/SKILL.md")
+    if not (SKILL_ROOT / skill_md).exists():
+        return {
+            "load_level": "UNKNOWN_FALLBACK",
+            "needs_disambiguation": True,
+            "notice": f"Registered mode packet is missing: {skill_md}",
+            "disambiguation_checklist": UNKNOWN_FALLBACK_CHECKLIST,
+            "resources": [],
+        }
+
+    load(skill_md)
+    return {"workflowMode": mode, "resources": [skill_md]}
+```
+
+Do not hardcode a file inventory of mode references/assets in the hub. If a future design workflow needs runtime-keyed resource folders, add them to the relevant mode packet and adapt that packet's router to the canonical discovery/guard/fallback pattern rather than loading raw paths here.
+
 Intent classification favors the smallest useful mode. Default a generic "make this look good" prompt to **interface** unless the prompt is explicitly foundations (tokens/color/type/layout), motion (animation/transition), audit (critique/accessibility/slop), or md-generator (`DESIGN.md`/style-reference extraction). Pair modes only when the prompt has clearly separate design axes (e.g. interface + motion for a landing page with substantial choreography).
 
 ### Mode Vocabulary Guardrails
@@ -196,6 +265,6 @@ The four doc-guidance modes (interface, foundations, motion, audit) consume the 
 
 ## 8. RELATED RESOURCES
 
-- Pattern: `.opencode/skills/sk-doc/references/skill_creation/parent_skills_nested_packets.md` (parent-skill hub + nested packets, the one-graph-metadata invariant).
+- Pattern: `.opencode/skills/sk-doc/create-skill/references/parent_skill/parent_skills_nested_packets.md` (parent-skill hub + nested packets, the one-graph-metadata invariant).
 - Canonical example: `.opencode/skills/deep-loop-workflows/` (hub + `mode-registry.json` + mode packets).
 - Registry: `mode-registry.json` (this hub's routing contract).

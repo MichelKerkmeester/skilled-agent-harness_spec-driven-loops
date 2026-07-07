@@ -47,7 +47,7 @@ The **implement → debug → verify** phases are not standalone modes. Their su
 
 ## 2. SMART ROUTING
 
-Routing is **registry-driven**. `mode-registry.json` is the single source of truth; the hub reads it and does not re-derive the mapping. The advisor routes any code query to the single identity `sk-code`; the hub then picks the mode.
+Routing is **registry-driven**. `mode-registry.json` is the single source of truth; the hub reads it and does not re-derive the mapping. The advisor routes any code query to the single identity `sk-code`; the hub then picks the mode. This hub is a simple intent-to-packet router, not a root `references/<key>/` resource router: root `references/` and `assets/` directories are intentionally absent here, and resource slicing lives inside the nested packets plus `shared/references/smart_routing.md`.
 
 ### The discriminator
 - **`workflowMode`** - the public mode/packet key: `quality`, `code-review` (workflow) or `code-webflow`, `code-opencode` (surface).
@@ -57,12 +57,64 @@ Routing is **registry-driven**. `mode-registry.json` is the single source of tru
 Surface packets are advisor-invisible (`routingClass: metadata`, read-only `toolSurface`): the advisor still routes the single identity `sk-code`, and the hub bundles zero-or-more surfaces as evidence via `routerPolicy.outcomes.surfaceBundle` (workflow mode ordered first, surfaces after). "review my webflow animation for jank" → `[code-review, code-webflow]`.
 
 ### Routing rule
-```
-classify the request to a workflowMode (dominant code intent; mode hint like "quality: ..." overrides)
-read mode-registry.json
-  -> resolve workflowMode from the hint / classified intent
-  -> load the mode packet at registry[mode].packet (e.g. sk-code/code-quality/SKILL.md)
-  -> run the backend named by registry[mode].backendKind
+```python
+from pathlib import Path
+
+SKILL_ROOT = Path(__file__).resolve().parent
+UNKNOWN_FALLBACK_CHECKLIST = [
+    "Confirm whether this is quality, code-review, Webflow, or OpenCode work",
+    "Confirm the target files or runtime surface",
+    "Confirm the expected action: implement, debug, verify, quality gate, or review",
+    "Confirm the verification command set before completion",
+]
+
+def _guard_in_skill(relative_path: str) -> str:
+    resolved = (SKILL_ROOT / relative_path).resolve()
+    resolved.relative_to(SKILL_ROOT)
+    if resolved.name != "SKILL.md" and resolved.suffix.lower() != ".md":
+        raise ValueError(f"Only markdown skill resources are routable: {relative_path}")
+    return resolved.relative_to(SKILL_ROOT).as_posix()
+
+def load_if_available(relative_path: str, loaded: list[str], seen: set[str]) -> None:
+    guarded = _guard_in_skill(relative_path)
+    path = SKILL_ROOT / guarded
+    if path.exists() and guarded not in seen:
+        load(guarded)
+        loaded.append(guarded)
+        seen.add(guarded)
+
+def route(task):
+    loaded, seen = [], set()
+    registry = read_json(SKILL_ROOT / "mode-registry.json")
+    workflow_mode = explicit_mode_hint(task) or classify_workflow_mode(task)
+
+    if not workflow_mode:
+        load_if_available("shared/README.md", loaded, seen)
+        return {
+            "load_level": "UNKNOWN_FALLBACK",
+            "needs_disambiguation": True,
+            "disambiguation_checklist": UNKNOWN_FALLBACK_CHECKLIST,
+            "resources": loaded,
+        }
+
+    entry = find_registry_entry(registry, workflowMode=workflow_mode)
+    if not entry:
+        load_if_available("shared/README.md", loaded, seen)
+        return {"load_level": "UNKNOWN_FALLBACK", "unknown_mode": workflow_mode, "resources": loaded}
+
+    packet_skill = f"{entry['packet']}/SKILL.md"
+    load_if_available(packet_skill, loaded, seen)
+
+    for surface_mode in surface_bundle_from_hub_router(task):
+        surface_entry = find_registry_entry(registry, workflowMode=surface_mode)
+        if surface_entry:
+            load_if_available(f"{surface_entry['packet']}/SKILL.md", loaded, seen)
+
+    if not loaded:
+        load_if_available("shared/README.md", loaded, seen)
+        return {"load_level": "UNKNOWN_FALLBACK", "notice": "matched registry but no packet SKILL.md was available", "resources": loaded}
+
+    return {"workflowMode": workflow_mode, "backendKind": entry["backendKind"], "resources": loaded}
 ```
 
 When no workflow mode dominates (a bare implement/debug/verify request), the router defers to a pure surface bundle: it detects the surface, loads that surface's evidence and workflow doctrine, and the agent acts. `routerPolicy.defaultMode` is `null` — the hub does not force a stale default; an unclear code intent asks for disambiguation.
@@ -125,5 +177,5 @@ The `surface-router` backend is the shared surface-detection router under `share
 - Shared workflow doctrine: `shared/references/workflow_implement.md`, `shared/references/workflow_debug.md`, `shared/references/workflow_verify.md` (symlinked into each surface).
 - Registry: `mode-registry.json` (two-axis: `packetKind` discriminates workflow vs surface).
 - Hub router signals + surface bundling: `hub-router.json`.
-- Parent-skill pattern: `.opencode/skills/sk-doc/references/skill_creation/parent_skills_nested_packets.md`.
+- Parent-skill pattern: `.opencode/skills/sk-doc/create-skill/references/parent_skill/parent_skills_nested_packets.md`.
 - Sibling example: `.opencode/skills/sk-design/`.

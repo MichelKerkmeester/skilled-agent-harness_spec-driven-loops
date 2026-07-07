@@ -56,10 +56,10 @@ Browser debugging and automation through two complementary approaches: CLI (bdg)
 
 The authoritative routing logic for scoped loading, weighted intent scoring, and ambiguity handling.
 
-- Pattern 1: Runtime Discovery - `discover_markdown_resources()` recursively scans `references/` and `assets/`.
-- Pattern 2: Existence-Check Before Load - `load_if_available()` uses `_guard_in_skill()`, `inventory`, and `seen`.
-- Pattern 3: Extensible Routing Key - CLI/MCP/install/troubleshoot/automation intents select browser-debugging resources.
-- Pattern 4: Multi-Tier Graceful Fallback - `UNKNOWN_FALLBACK` requests CLI/MCP/session disambiguation and missing intent routes return a "no knowledge base" notice.
+- Pattern 1: Runtime Discovery - `discover_markdown_resources()` recursively scans skill-local `references/` and `assets/` when those folders exist.
+- Pattern 2: Existence-Check Before Load - `load_if_available()` uses `_guard_in_skill()`, the discovered `inventory`, and a `seen` set.
+- Pattern 3: Simple Intent Routing - CLI/MCP/install/troubleshoot/automation intents select the real flat `references/*.md` resources. This skill currently has no keyed `references/<key>/` or `assets/<key>/` resource subdirectories.
+- Pattern 4: Multi-Tier Graceful Fallback - `UNKNOWN_FALLBACK` requests CLI/MCP/session disambiguation, and missing intent routes return a "no knowledge base" notice while retaining the default CDP reference when available.
 
 ```python
 from pathlib import Path
@@ -67,6 +67,12 @@ from pathlib import Path
 SKILL_ROOT = Path(__file__).resolve().parent
 RESOURCE_BASES = (SKILL_ROOT / "references", SKILL_ROOT / "assets")
 DEFAULT_RESOURCE = "references/cdp_patterns.md"
+
+UNKNOWN_FALLBACK_CHECKLIST = [
+    "Confirm CLI vs MCP path",
+    "Confirm target browser/session",
+    "Provide one error, URL, or task goal",
+]
 
 INTENT_SIGNALS = {
     "CLI": {"weight": 4, "keywords": ["bdg", "browser-debugger-cli", "terminal", "cli"]},
@@ -81,7 +87,7 @@ RESOURCE_MAP = {
     "MCP": ["references/session_management.md", "references/cdp_patterns.md"],
     "INSTALL": ["references/troubleshooting.md"],
     "TROUBLESHOOT": ["references/troubleshooting.md"],
-    "AUTOMATION": ["examples/README.md"],
+    "AUTOMATION": ["references/cdp_patterns.md", "references/session_management.md"],
 }
 
 LOADING_LEVELS = {
@@ -131,7 +137,7 @@ def score_intents(task) -> dict[str, float]:
 def select_intents(scores: dict[str, float], ambiguity_delta: float = 1.0, max_intents: int = 2) -> list[str]:
     ranked = sorted(scores.items(), key=lambda item: item[1], reverse=True)
     if not ranked or ranked[0][1] <= 0:
-        return ["CLI"]
+        return ["UNKNOWN"]
     selected = [ranked[0][0]]
     if len(ranked) > 1 and ranked[1][1] > 0 and (ranked[0][1] - ranked[1][1]) <= ambiguity_delta:
         selected.append(ranked[1][0])
@@ -161,7 +167,7 @@ def route_chrome_devtools_resources(task):
             "intent_scores": scores,
             "load_level": "UNKNOWN_FALLBACK",
             "needs_disambiguation": True,
-            "disambiguation_checklist": ["Confirm CLI vs MCP path", "Confirm target browser/session", "Provide one error, URL, or task goal"],
+            "disambiguation_checklist": UNKNOWN_FALLBACK_CHECKLIST,
             "resources": loaded,
         }
 
@@ -326,9 +332,11 @@ Use `bdg cdp --list`, `bdg cdp --describe <domain>`, `bdg cdp --search <term>`, 
 
 ## 8. REFERENCES AND RELATED RESOURCES
 
-The router discovers reference, asset, and script docs dynamically. Start with `references/cdp_patterns.md`, `references/session_management.md`, `references/troubleshooting.md`, then load task-specific resources from `references/`, templates from `assets/`, and automation from `scripts/` when present.
+The router discovers markdown resources dynamically from `references/` and `assets/` when those directories exist. This skill currently routes over the flat reference set: `references/cdp_patterns.md`, `references/session_management.md`, and `references/troubleshooting.md`.
 
 Scripts: `scripts/install.sh`.
+
+Examples: [`examples/README.md`](examples/README.md) — automation example scripts. It lives outside the `references/`/`assets/` discovery roots, so it is linked here rather than auto-loaded by the router.
 
 Related skills: `mcp-code-mode` for MCP fallback and `sk-code` for browser verification in application-code workflows.
 

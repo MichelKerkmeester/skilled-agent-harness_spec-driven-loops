@@ -89,13 +89,13 @@ Resource domains:
 
 | Level | When to Load | Resources |
 |---|---|---|
-| ALWAYS | Every code-graph invocation | `references/runtime/tool_surface.md`, `references/readiness/code_graph_readiness_check.md` |
+| ALWAYS | Every code-graph invocation | Discovered `runtime` and `readiness` reference docs matching the default path hints |
 | CONDITIONAL | Intent signals match a resource domain | Matching canonical references, feature catalog slices, or playbook scenarios |
 | ON_DEMAND | Explicit request or troubleshooting depth needed | Full reference folders, feature catalog families, and manual playbook categories |
 
 ### Smart Router Pseudocode
 
-This pseudocode captures the canonical documentation resource-loading contract. The runtime schema array, not this table, remains authoritative for executable tool registration.
+This pseudocode captures the canonical documentation resource-loading contract. This skill does route over keyed documentation domains: the real `references/<key>/` keys are discovered from the current tree (`runtime`, `readiness`, `config` today), `assets/<key>/` is supported when present, and `feature_catalog/` plus `manual_testing_playbook/` are supporting documentation packages discovered by prefix. The runtime schema array, not this table, remains authoritative for executable tool registration.
 
 ```python
 from pathlib import Path
@@ -103,14 +103,12 @@ from pathlib import Path
 SKILL_ROOT = Path(__file__).resolve().parent
 RESOURCE_BASES = (
     SKILL_ROOT / "references",
+    SKILL_ROOT / "assets",
     SKILL_ROOT / "feature_catalog",
     SKILL_ROOT / "manual_testing_playbook",
-    SKILL_ROOT / "assets",
 )
-DEFAULT_RESOURCES = [
-    "references/runtime/tool_surface.md",
-    "references/readiness/code_graph_readiness_check.md",
-]
+DEFAULT_REFERENCE_KEYS = ("runtime", "readiness")
+DEFAULT_PATH_HINTS = ("tool_surface", "code_graph_readiness_check")
 
 INTENT_SIGNALS = {
     "TOOL_SURFACE": {"weight": 4, "keywords": ["tool", "schema", "tool id", "code_graph_", "detect_changes"]},
@@ -126,50 +124,54 @@ INTENT_SIGNALS = {
     "PLAYBOOK": {"weight": 2, "keywords": ["manual test", "playbook", "scenario", "evidence"]},
 }
 
-RESOURCE_MAP = {
-    "TOOL_SURFACE": [
-        "references/runtime/tool_surface.md",
-        "feature_catalog/06--mcp-tool-surface/tool-registrations.md",
-    ],
-    "READINESS": [
-        "references/readiness/code_graph_readiness_check.md",
-        "references/readiness/readiness_and_scope_fingerprint.md",
-        "feature_catalog/01--read-path-freshness/ensure-code-graph-ready.md",
-        "feature_catalog/02--manual-scan-verify-status/code-graph-status.md",
-    ],
-    "QUERY": [
-        "references/runtime/tool_surface.md",
-        "feature_catalog/01--read-path-freshness/query-self-heal.md",
-        "feature_catalog/04--context-retrieval/code-graph-context.md",
-    ],
-    "SCAN_VERIFY": [
-        "references/readiness/readiness_and_scope_fingerprint.md",
-        "feature_catalog/02--manual-scan-verify-status/code-graph-scan.md",
-        "feature_catalog/02--manual-scan-verify-status/code-graph-verify.md",
-    ],
-    "CHANGE_DETECTION": [
-        "references/runtime/tool_surface.md",
-        "feature_catalog/03--detect-changes/detect-changes-preflight.md",
-    ],
-    "CONFIG": [
-        "references/config/database_path_policy.md",
-    ],
-    "NAMING": [
-        "references/runtime/naming_conventions.md",
-    ],
-    "OWNERSHIP": [
-        "references/runtime/ownership_boundary.md",
-    ],
-    "LAUNCHER": [
-        "references/runtime/launcher_lease.md",
-        "manual_testing_playbook/09--post-rename-infrastructure/launcher-startup-prefix.md",
-    ],
-    "FEATURES": [
-        "feature_catalog/feature_catalog.md",
-    ],
-    "PLAYBOOK": [
-        "manual_testing_playbook/manual_testing_playbook.md",
-    ],
+RESOURCE_DOMAINS = {
+    "TOOL_SURFACE": {
+        "reference_keys": ["runtime"],
+        "path_hints": ["tool_surface"],
+        "support_prefixes": ["feature_catalog/06--mcp-tool-surface/", "manual_testing_playbook/06--mcp-tool-surface/"],
+    },
+    "READINESS": {
+        "reference_keys": ["readiness"],
+        "support_prefixes": [
+            "feature_catalog/01--read-path-freshness/",
+            "feature_catalog/02--manual-scan-verify-status/",
+            "manual_testing_playbook/01--read-path-freshness/",
+            "manual_testing_playbook/02--manual-scan-verify-status/",
+        ],
+    },
+    "QUERY": {
+        "reference_keys": ["runtime"],
+        "path_hints": ["tool_surface"],
+        "support_prefixes": [
+            "feature_catalog/01--read-path-freshness/",
+            "feature_catalog/04--context-retrieval/",
+            "manual_testing_playbook/01--read-path-freshness/",
+            "manual_testing_playbook/04--context-retrieval/",
+            "manual_testing_playbook/06--mcp-tool-surface/",
+        ],
+    },
+    "SCAN_VERIFY": {
+        "reference_keys": ["readiness"],
+        "support_prefixes": ["feature_catalog/02--manual-scan-verify-status/", "manual_testing_playbook/02--manual-scan-verify-status/"],
+    },
+    "CHANGE_DETECTION": {
+        "reference_keys": ["runtime"],
+        "path_hints": ["tool_surface"],
+        "support_prefixes": ["feature_catalog/03--detect-changes/", "manual_testing_playbook/03--detect-changes/"],
+    },
+    "CONFIG": {
+        "reference_keys": ["config"],
+        "support_prefixes": ["manual_testing_playbook/09--post-rename-infrastructure/"],
+    },
+    "NAMING": {"reference_keys": ["runtime"], "path_hints": ["naming_conventions"]},
+    "OWNERSHIP": {"reference_keys": ["runtime"], "path_hints": ["ownership_boundary"]},
+    "LAUNCHER": {
+        "reference_keys": ["runtime"],
+        "path_hints": ["launcher_lease"],
+        "support_prefixes": ["manual_testing_playbook/09--post-rename-infrastructure/"],
+    },
+    "FEATURES": {"support_prefixes": ["feature_catalog/"]},
+    "PLAYBOOK": {"support_prefixes": ["manual_testing_playbook/"]},
 }
 
 UNKNOWN_FALLBACK_CHECKLIST = [
@@ -193,14 +195,20 @@ def _guard_in_skill(relative_path: str) -> str:
         raise ValueError(f"Only markdown resources are routable: {relative_path}")
     return resolved.relative_to(SKILL_ROOT).as_posix()
 
-def _guard_resource_map(resource_map: dict[str, list[str]]) -> None:
-    for intent, resources in resource_map.items():
-        for relative_path in resources:
-            guarded = _guard_in_skill(relative_path)
-            if guarded.startswith("references/"):
-                tail = guarded.removeprefix("references/")
-                if "/" not in tail and "-" in Path(tail).stem:
-                    raise ValueError(f"RESOURCE_MAP must target canonical references, not compatibility stubs: {intent} -> {guarded}")
+def _filter_paths(paths: list[str], keywords: list[str]) -> list[str]:
+    if not keywords:
+        return paths
+    lowered = [keyword.lower() for keyword in keywords]
+    return [path for path in paths if any(keyword in path.lower() for keyword in lowered)]
+
+def discovered_reference_keys(inventory: set[str]) -> set[str]:
+    keys = set()
+    for path in inventory:
+        if path.startswith("references/"):
+            tail = path.removeprefix("references/")
+            if "/" in tail:
+                keys.add(tail.split("/", 1)[0])
+    return keys
 
 def _task_text(task) -> str:
     fields = [
@@ -213,9 +221,8 @@ def _task_text(task) -> str:
 
 loaded = []
 seen = set()
-_guard_resource_map(RESOURCE_MAP)
-_guard_resource_map({"DEFAULT": DEFAULT_RESOURCES})
 inventory = discover_markdown_resources()
+reference_keys = discovered_reference_keys(inventory)
 
 def load_if_available(relative_path: str) -> None:
     guarded = _guard_in_skill(relative_path)
@@ -223,6 +230,23 @@ def load_if_available(relative_path: str) -> None:
         load(guarded)
         loaded.append(guarded)
         seen.add(guarded)
+
+def load_keyed_resources(reference_key: str, path_hints: list[str]) -> int:
+    before = len(loaded)
+    if reference_key not in reference_keys:
+        return 0
+    prefixes = (f"references/{reference_key}/", f"assets/{reference_key}/")
+    paths = sorted(path for path in inventory if path.startswith(prefixes))
+    for path in _filter_paths(paths, path_hints):
+        load_if_available(path)
+    return len(loaded) - before
+
+def load_support_prefix(prefix: str, path_hints: list[str]) -> int:
+    before = len(loaded)
+    paths = sorted(path for path in inventory if path.startswith(prefix))
+    for path in _filter_paths(paths, path_hints):
+        load_if_available(path)
+    return len(loaded) - before
 
 def score_intents(task) -> dict[str, int]:
     text = _task_text(task)
@@ -233,8 +257,8 @@ def score_intents(task) -> dict[str, int]:
             scores[intent] = hits * model["weight"]
     return scores
 
-for resource in DEFAULT_RESOURCES:
-    load_if_available(resource)
+for reference_key in DEFAULT_REFERENCE_KEYS:
+    load_keyed_resources(reference_key, list(DEFAULT_PATH_HINTS))
 
 scores = score_intents(task)
 if max(scores.values() or [0]) < 3:
@@ -250,14 +274,23 @@ top_score = ranked[0][1]
 selected = [intent for intent, score in ranked if top_score - score <= 1][:2]
 
 for intent in selected:
-    resources = RESOURCE_MAP.get(intent, [])
-    if not resources:
+    domain = RESOURCE_DOMAINS.get(intent)
+    if not domain:
         return {
             "notice": f"No knowledge base found for code-graph intent '{intent}'",
             "resources": loaded,
         }
-    for resource in resources:
-        load_if_available(resource)
+    loaded_before = len(loaded)
+    for reference_key in domain.get("reference_keys", []):
+        load_keyed_resources(reference_key, domain.get("path_hints", []))
+    for prefix in domain.get("support_prefixes", []):
+        load_support_prefix(prefix, domain.get("path_hints", []))
+    if len(loaded) == loaded_before:
+        return {
+            "notice": f"No knowledge base found for code-graph intent '{intent}'",
+            "reference_keys": domain.get("reference_keys", []),
+            "resources": loaded,
+        }
 
 return {
     "intents": selected,
@@ -290,7 +323,7 @@ The surface is dual-stack: every tool above is also callable through the full-pa
 
 - **Low confidence:** load default runtime/readiness references, emit `UNKNOWN_FALLBACK_CHECKLIST`, and ask for the missing tool/status/path signal.
 - **Ambiguous intent scores:** load the top two resource domains and disclose the ambiguity instead of picking one silently.
-- **Known intent with no resources:** return a "no knowledge base found" notice naming the missing intent.
+- **Known intent/key with no resources:** return a "no knowledge base found" notice naming the missing intent and reference key.
 - **Unclassifiable intent:** call `code_graph_classify_query_intent` first. If the classifier returns low confidence, ask for one concrete file path, symbol or error message before proceeding.
 - **`mk_code_index` MCP unavailable:** if the daemon is warm, use the daemon-backed CLI recovery path documented above. If neither MCP nor the warm CLI path is available, report the state and stop. Structural queries do not fall back to text search because ambiguous text-search results mislead more than they help.
 - **Graph not ready (`status` returns `blocked`, `empty`, or `trustState: absent`):** call `code_graph_scan` first, then retry. Never return a stale or empty graph result as if it were authoritative.
@@ -298,6 +331,7 @@ The surface is dual-stack: every tool above is also callable through the full-pa
 ### Anti-Patterns
 
 - Static reference inventories that miss newly moved docs.
+- Empty keyword filters that return no paths instead of returning the unfiltered discovered resource list.
 - Loading root compatibility stubs when canonical subfolder references exist.
 - Compatibility stubs without `deprecated_at` and `remove_after` frontmatter, or any router target that points at a stub before the removal-window grep passes.
 - Raw `load("references/file.md")` calls without `_guard_in_skill()`, inventory checks or duplicate suppression.
