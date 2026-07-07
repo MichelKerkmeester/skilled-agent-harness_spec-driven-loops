@@ -1,0 +1,231 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-skill-advisor/001-skill-graph/007-cross-skill-enhancement-edge-propagation",
+  "spec_folder": "system-skill-advisor/001-skill-graph/007-cross-skill-enhancement-edge-propagation",
+  "parent_id": "system-skill-advisor/001-skill-graph",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "skill_graph_propagate_enhances",
+      "cross-skill auto-propagation",
+      "inbound enhancement edges",
+      "skill-advisor edge propagation",
+      "007-cross-skill-enhancement-edge-propagation",
+      "026 plan",
+      "cross-skill propagation plan",
+      "026 tasks",
+      "026 checklist",
+      "026 summary"
+    ],
+    "key_topics": [
+      "cross-skill",
+      "auto-propagation",
+      "inbound",
+      "enhancement",
+      "edges",
+      "skill-advisor",
+      "edge",
+      "propagation",
+      "007-cross-skill-enhancement-edge-propagation",
+      "026",
+      "plan",
+      "tasks"
+    ],
+    "importance_tier": "important",
+    "status": "draft",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      ".opencode/skills/system-skill-advisor/mcp_server/lib/cross-skill-edges/types.ts",
+      ".opencode/skills/system-skill-advisor/mcp_server/lib/cross-skill-edges/metadata-loader.ts",
+      ".opencode/skills/system-skill-advisor/mcp_server/lib/cross-skill-edges/detect-inbound-enhances.ts",
+      ".opencode/skills/system-skill-advisor/mcp_server/lib/cross-skill-edges/context-template.ts",
+      ".opencode/skills/system-skill-advisor/mcp_server/lib/cross-skill-edges/apply-graph-metadata-patch.ts",
+      ".opencode/skills/system-skill-advisor/mcp_server/lib/cross-skill-edges/index.ts",
+      ".opencode/skills/system-skill-advisor/mcp_server/handlers/skill-graph/propagate-enhances.ts",
+      ".opencode/skills/system-skill-advisor/mcp_server/tools/skill-graph-tools.ts",
+      ".opencode/skills/system-skill-advisor/mcp_server/handlers/skill-graph/index.ts",
+      ".opencode/skills/system-skill-advisor/mcp_server/tests/cross-skill-edges.vitest.ts",
+      ".opencode/skills/sk-prompt/graph-metadata.json",
+      ".opencode/skills/system-skill-advisor/graph-metadata.json",
+      "review/review-report.md",
+      ".opencode/skills/system-skill-advisor/mcp_server/advisor-server.ts",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "types.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-skill-advisor/mcp_server/lib/cross-skill-edges/types.ts",
+        "source": "derived"
+      },
+      {
+        "name": "metadata-loader.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-skill-advisor/mcp_server/lib/cross-skill-edges/metadata-loader.ts",
+        "source": "derived"
+      },
+      {
+        "name": "detect-inbound-enhances.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-skill-advisor/mcp_server/lib/cross-skill-edges/detect-inbound-enhances.ts",
+        "source": "derived"
+      },
+      {
+        "name": "context-template.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-skill-advisor/mcp_server/lib/cross-skill-edges/context-template.ts",
+        "source": "derived"
+      },
+      {
+        "name": "apply-graph-metadata-patch.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-skill-advisor/mcp_server/lib/cross-skill-edges/apply-graph-metadata-patch.ts",
+        "source": "derived"
+      },
+      {
+        "name": "index.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-skill-advisor/mcp_server/lib/cross-skill-edges/index.ts",
+        "source": "derived"
+      },
+      {
+        "name": "propagate-enhances.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-skill-advisor/mcp_server/handlers/skill-graph/propagate-enhances.ts",
+        "source": "derived"
+      },
+      {
+        "name": "skill-graph-tools.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-skill-advisor/mcp_server/tools/skill-graph-tools.ts",
+        "source": "derived"
+      },
+      {
+        "name": "cross-skill-edges.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-skill-advisor/mcp_server/tests/cross-skill-edges.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "graph-metadata.json",
+        "kind": "config",
+        "path": ".opencode/skills/sk-prompt/graph-metadata.json",
+        "source": "derived"
+      },
+      {
+        "name": "review-report.md",
+        "kind": "doc",
+        "path": "review/review-report.md",
+        "source": "derived"
+      },
+      {
+        "name": "advisor-server.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-skill-advisor/mcp_server/advisor-server.ts",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Author Level",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement When",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Build",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "When a new skill ships, system-skill-advisor's daemon + indexer correctly auto-discover the new skill's own outbound edges",
+    "created_at": "2026-05-15T15:30:00.000Z",
+    "last_save_at": "2026-07-02T05:31:11.195Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:acf60765d0c4af75e60b773b71e28cccfda74d9b0c1f8c0fc92cab2f02e743b2",
+    "source_doc_hashes": {
+      "spec.md": "1e29b872c36ebc53a263c09b9b4035129e45b5b0866d15784180cbaebc77e39a",
+      "plan.md": "b6ef32c32ca5c8785f69df45d6028b94eb3692cb851894c622f3724a7f69f7ed",
+      "tasks.md": "23c094a8f8749d5839e77837a4727aacbd003216d052687c12dc71930be6dee6",
+      "checklist.md": "c272e9ea0485ecaf443e34291ce31dd633e64e09f3dcdf26684a905b74159a2c",
+      "implementation-summary.md": "efc47204fa60bff606ab360e3907f80528c997fc0e004465fd126d6aeeed5cba"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

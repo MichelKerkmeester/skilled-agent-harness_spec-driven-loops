@@ -1,0 +1,144 @@
+{
+  "folder_path": ".opencode/skills/system-skill-advisor/mcp_server/tests/scorer/fixtures/",
+  "folder_role": "Test fixtures for advisor scorer including intent prompt corpora for routing accuracy tests and skill embedding seeding utilities for lane weight sweep experiments.",
+  "file_inventory": {
+    "by_extension": {
+      ".ts": [
+        "harder-intent-prompt-corpus.ts",
+        "intent-prompt-corpus.ts",
+        "seed-skill-embeddings.ts"
+      ]
+    },
+    "directories": [],
+    "total_files": 3
+  },
+  "architecture_observation": "fixture-only",
+  "public_entrypoints": [
+    {
+      "name": "HarderIntentEntry",
+      "kind": "interface",
+      "file": "harder-intent-prompt-corpus.ts",
+      "purpose": "Interface for harder intent prompt entries with lexical mis-route categorization"
+    },
+    {
+      "name": "HARDER_INTENT_PROMPT_CORPUS",
+      "kind": "const",
+      "file": "harder-intent-prompt-corpus.ts",
+      "purpose": "Readonly array of harder intent prompts designed to test lexical mis-routing edge cases"
+    },
+    {
+      "name": "IntentPromptCategory",
+      "kind": "type",
+      "file": "intent-prompt-corpus.ts",
+      "purpose": "Union type for intent prompt categories: today-correct or intent-described"
+    },
+    {
+      "name": "INTENT_PROMPT_CORPUS",
+      "kind": "const",
+      "file": "intent-prompt-corpus.ts",
+      "purpose": "Readonly array of intent prompts with expected skill routing and category classification"
+    },
+    {
+      "name": "SeededSkill",
+      "kind": "interface",
+      "file": "seed-skill-embeddings.ts",
+      "purpose": "Interface for skill metadata used in embedding seeding operations"
+    },
+    {
+      "name": "SeedResult",
+      "kind": "interface",
+      "file": "seed-skill-embeddings.ts",
+      "purpose": "Interface for seeding operation results including vectors, cache stats, and skip status"
+    },
+    {
+      "name": "seedSkillEmbeddings",
+      "kind": "function",
+      "file": "seed-skill-embeddings.ts",
+      "purpose": "Async function that seeds skill description embeddings with caching and environment skip support"
+    }
+  ],
+  "internal_imports": [
+    {
+      "symbol": "HARDER_INTENT_PROMPT_CORPUS",
+      "imported_by": [
+        ".opencode/skills/system-skill-advisor/mcp_server/tests/scorer/lane-weight-sweep.vitest.ts"
+      ]
+    },
+    {
+      "symbol": "INTENT_PROMPT_CORPUS",
+      "imported_by": [
+        ".opencode/skills/system-skill-advisor/mcp_server/tests/scorer/lane-weight-sweep.vitest.ts"
+      ]
+    },
+    {
+      "symbol": "seedSkillEmbeddings",
+      "imported_by": [
+        ".opencode/skills/system-skill-advisor/mcp_server/tests/scorer/lane-weight-sweep.vitest.ts"
+      ]
+    },
+    {
+      "symbol": "SeededSkill",
+      "imported_by": [
+        ".opencode/skills/system-skill-advisor/mcp_server/tests/scorer/lane-weight-sweep.vitest.ts"
+      ]
+    },
+    {
+      "symbol": "SeedResult",
+      "imported_by": [
+        ".opencode/skills/system-skill-advisor/mcp_server/tests/scorer/lane-weight-sweep.vitest.ts"
+      ]
+    },
+    {
+      "symbol": "HarderIntentEntry",
+      "imported_by": [
+        ".opencode/skills/system-skill-advisor/mcp_server/tests/scorer/lane-weight-sweep.vitest.ts"
+      ]
+    },
+    {
+      "symbol": "IntentPromptCategory",
+      "imported_by": [
+        ".opencode/skills/system-skill-advisor/mcp_server/tests/scorer/lane-weight-sweep.vitest.ts"
+      ]
+    }
+  ],
+  "external_imports": [
+    {
+      "package": "node:crypto",
+      "used_for": "SHA256 hash generation for cache key computation in seed-skill-embeddings.ts"
+    },
+    {
+      "package": "node:fs",
+      "used_for": "File system operations for cache manifest read/write in seed-skill-embeddings.ts"
+    },
+    {
+      "package": "node:path",
+      "used_for": "Path manipulation for cache directory resolution in seed-skill-embeddings.ts"
+    },
+    {
+      "package": "node:url",
+      "used_for": "Module URL resolution for cache directory path in seed-skill-embeddings.ts"
+    },
+    {
+      "package": "@spec-kit/shared/embeddings/factory",
+      "used_for": "Embedding provider creation for skill and prompt vector generation in seed-skill-embeddings.ts"
+    }
+  ],
+  "integration_notes": "This folder provides test fixtures for the advisor scorer system. The intent prompt corpora (INTENT_PROMPT_CORPUS and HARDER_INTENT_PROMPT_CORPUS) contain curated test prompts with expected skill routing results, used to measure scorer accuracy across different lane weight configurations. The seed-skill-embeddings module provides a caching embedding seeder that generates and caches skill description vectors for lane weight sweep experiments, with environment-aware skip logic for when embedding providers are unavailable. These fixtures are consumed by the lane-weight-sweep test harness to generate sweep reports comparing different weight vector configurations.",
+  "validation_commands": [
+    {
+      "command": "cd .opencode/skills/system-skill-advisor/mcp_server && npm test -- tests/scorer/lane-weight-sweep.vitest.ts",
+      "expected": "exit 0",
+      "verified": true
+    }
+  ],
+  "key_invariants": [
+    "INTENT_PROMPT_CORPUS categories are today-correct or intent-described",
+    "HARDER_INTENT_PROMPT_CORPUS entries use category lexical-mis-route",
+    "seedSkillEmbeddings returns skipped: true when embedding provider is unavailable",
+    "seedSkillEmbeddings cache entries are keyed by sha256(description).slice(0, 16) + ':' + providerModelId",
+    "seedSkillEmbeddings cache lives under fixtures/.embeddings-cache/skill-embeddings.json",
+    "seedSkillEmbeddings treats provider creation or embedding failures as environment skips, not errors",
+    "intent prompt corpora include expectedSkill field for routing accuracy validation",
+    "harder intent prompts include reason field documenting lexical mis-route hypotheses"
+  ]
+}

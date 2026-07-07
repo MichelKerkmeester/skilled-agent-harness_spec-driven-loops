@@ -1,0 +1,30 @@
+{
+  "level": "3",
+  "specFolder": "system-skill-advisor/000-migration-from-system-speckit",
+  "description": "Skill-advisor spec history lives in four different places under `system-speckit` (026, 027, 028, plus a half-built `system-skill-advisor` track), with",
+  "keywords": [
+    "skill-advisor",
+    "spec",
+    "history",
+    "lives",
+    "four",
+    "different",
+    "places",
+    "system-speckit",
+    "026",
+    "027",
+    "028",
+    "plus",
+    "half-built",
+    "system-skill-advisor",
+    "track"
+  ],
+  "lastUpdated": "2026-07-07T12:56:31.934Z",
+  "specId": "000",
+  "folderSlug": "migration-from-system-speckit",
+  "parentChain": [
+    "system-skill-advisor"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

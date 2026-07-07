@@ -1,0 +1,28 @@
+{
+  "level": "1",
+  "specFolder": "system-skill-advisor/009-advisor-and-codegraph-migrated-items/008-advisor-feedback-calibration",
+  "description": "The advisor already accepts accepted/corrected/ignored outcome events through `advisorvalidate` (`schemas/advisor-tool-schemas.ts:240-250`), but",
+  "keywords": [
+    "advisor",
+    "already",
+    "accepts",
+    "accepted",
+    "corrected",
+    "ignored",
+    "outcome",
+    "events",
+    "advisorvalidate",
+    "schemas",
+    "advisor-tool-schemas",
+    "240-250"
+  ],
+  "lastUpdated": "2026-07-07T12:56:32.140Z",
+  "specId": "008",
+  "folderSlug": "advisor-feedback-calibration",
+  "parentChain": [
+    "system-skill-advisor",
+    "009-advisor-and-codegraph-migrated-items"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

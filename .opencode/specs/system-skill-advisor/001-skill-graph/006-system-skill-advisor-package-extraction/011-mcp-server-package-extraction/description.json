@@ -1,0 +1,33 @@
+{
+  "level": "3",
+  "specFolder": "system-skill-advisor/001-skill-graph/006-system-skill-advisor-package-extraction/011-mcp-server-package-extraction",
+  "description": "`systemskilladvisor` owned the public `skillgraph` tools, but the SQLite DB/query library and lifecycle still lived in `system-spec-kit/mcpserver`",
+  "keywords": [
+    "systemskilladvisor",
+    "owned",
+    "public",
+    "skillgraph",
+    "tools",
+    "sqlite",
+    "query",
+    "library",
+    "lifecycle",
+    "still",
+    "lived",
+    "system-spec-kit",
+    "mcpserver"
+  ],
+  "lastUpdated": "2026-06-23T03:49:53.294Z",
+  "specId": "011",
+  "folderSlug": "mcp-server-package-extraction",
+  "parentChain": [
+    "system-spec-kit",
+    "026-graph-and-context-optimization",
+    "002-spec-kit-internals",
+    "002-skill-advisor",
+    "001-skill-graph",
+    "006-system-skill-advisor-package-extraction"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

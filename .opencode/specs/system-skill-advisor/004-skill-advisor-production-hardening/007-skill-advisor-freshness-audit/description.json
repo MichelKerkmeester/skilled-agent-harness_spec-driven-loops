@@ -1,0 +1,31 @@
+{
+  "specFolder": "system-skill-advisor/004-skill-advisor-production-hardening/007-skill-advisor-freshness-audit",
+  "description": "Release readiness depends on whether the skill advisor reports freshness honestly, keeps status diagnostic-only, rebuilds graph state on explicit",
+  "keywords": [
+    "release",
+    "readiness",
+    "depends",
+    "whether",
+    "skill",
+    "advisor",
+    "reports",
+    "freshness",
+    "honestly",
+    "keeps",
+    "status",
+    "diagnostic-only",
+    "rebuilds",
+    "graph",
+    "state",
+    "explicit"
+  ],
+  "lastUpdated": "2026-07-07T12:56:31.960Z",
+  "specId": "007",
+  "folderSlug": "skill-advisor-freshness-audit",
+  "parentChain": [
+    "system-skill-advisor",
+    "004-skill-advisor-production-hardening"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": []
+}

@@ -1,0 +1,33 @@
+{
+  "level": "1",
+  "specFolder": "system-skill-advisor/009-advisor-and-codegraph-migrated-items/006-advisor-packed-bm25-lexical",
+  "description": "The advisor lexical lane is token overlap plus static synonyms/hints (`lib/scorer/lanes/lexical.ts:8-23` and `:50-85`), so routing quality depends on",
+  "keywords": [
+    "advisor",
+    "lexical",
+    "lane",
+    "token",
+    "overlap",
+    "plus",
+    "static",
+    "synonyms",
+    "hints",
+    "lib",
+    "scorer",
+    "lanes",
+    "8-23",
+    "50-85",
+    "routing",
+    "quality",
+    "depends"
+  ],
+  "lastUpdated": "2026-07-07T12:56:32.124Z",
+  "specId": "006",
+  "folderSlug": "advisor-packed-bm25-lexical",
+  "parentChain": [
+    "system-skill-advisor",
+    "009-advisor-and-codegraph-migrated-items"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

@@ -1,0 +1,223 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-skill-advisor/010-skill-advisor-frontmatter-alignment",
+  "spec_folder": "system-skill-advisor/010-skill-advisor-frontmatter-alignment",
+  "parent_id": "system-skill-advisor",
+  "parent_id_review_required": true,
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "system-skill-advisor frontmatter alignment",
+      "system-skill-advisor reference frontmatter",
+      "skill frontmatter standardization",
+      "system-skill-advisor frontmatter plan",
+      "advisor reference doc contract",
+      "skill doc contract phase 21",
+      "system-skill-advisor frontmatter tasks",
+      "advisor doc contract tasks",
+      "phase 21 normalization tasks",
+      "system-skill-advisor frontmatter summary",
+      "advisor doc contract evidence",
+      "phase 21 frontmatter complete"
+    ],
+    "key_topics": [
+      "system-skill-advisor",
+      "frontmatter",
+      "alignment",
+      "reference",
+      "skill",
+      "standardization",
+      "plan",
+      "advisor",
+      "doc",
+      "contract",
+      "phase",
+      "tasks"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      ".opencode/skills/system-skill-advisor/references/hooks/skill_advisor_hook.md",
+      ".opencode/skills/system-skill-advisor/references/config/db_path_policy.md",
+      ".opencode/skills/system-skill-advisor/references/runtime/legacy_tool_bridge.md",
+      ".opencode/skills/system-skill-advisor/references/graph/skill_graph_extraction_plan.md",
+      ".opencode/skills/system-skill-advisor/references/decisions/deferred_decisions.md",
+      ".opencode/skills/system-skill-advisor/references/scoring/advisor_scorer.md",
+      "spec.md",
+      "plan.md",
+      "implementation-summary.md",
+      "tasks.md"
+    ],
+    "entities": [
+      {
+        "name": "skill_advisor_hook.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-skill-advisor/references/hooks/skill_advisor_hook.md",
+        "source": "derived"
+      },
+      {
+        "name": "db_path_policy.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-skill-advisor/references/config/db_path_policy.md",
+        "source": "derived"
+      },
+      {
+        "name": "legacy_tool_bridge.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-skill-advisor/references/runtime/legacy_tool_bridge.md",
+        "source": "derived"
+      },
+      {
+        "name": "skill_graph_extraction_plan.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-skill-advisor/references/graph/skill_graph_extraction_plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "deferred_decisions.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-skill-advisor/references/decisions/deferred_decisions.md",
+        "source": "derived"
+      },
+      {
+        "name": "advisor_scorer.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-skill-advisor/references/scoring/advisor_scorer.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Frontmatter Alignment",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Frontmatter",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "system-skill-advisor reference/asset frontmatter is inconsistent with the repo-wide contract: 14 of 15 references and 0 of 0 assets carry the detailed memory-style block (triggerphrases, importancetier, contextType), while the rest carry title+description only",
+    "created_at": "2026-06-11T05:47:39Z",
+    "last_save_at": "2026-07-07T11:58:29.448Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:bdd46c8ba9b9eeb133d0bd574ef2241be0825c0145f3d9442597216b64f0d115",
+    "source_doc_hashes": {
+      "spec.md": "65b7cae93606008d2db6912d9d469ee07e9ba2e1f41a9aef8950a2242ac5816d",
+      "plan.md": "5e1ccc53ddf3659ad26af1decd070560c626cf163b67a6ada1561172741e3990",
+      "tasks.md": "cfc9540ffb6bebbe8fdd2163bd809951460e2fa08a82b0252ddc3878dce8c8f0",
+      "implementation-summary.md": "0412af438c26080f7a3691e5a2402b4ff93cbe19ff559c2c4b057a498fdf92dd"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

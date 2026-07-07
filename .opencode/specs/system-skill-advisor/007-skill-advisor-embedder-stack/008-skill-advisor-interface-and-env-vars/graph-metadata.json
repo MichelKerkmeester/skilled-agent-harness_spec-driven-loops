@@ -1,0 +1,224 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-skill-advisor/007-skill-advisor-embedder-stack/008-skill-advisor-interface-and-env-vars",
+  "spec_folder": "system-skill-advisor/007-skill-advisor-embedder-stack/008-skill-advisor-interface-and-env-vars",
+  "parent_id": "system-skill-advisor/007-skill-advisor-embedder-stack",
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "022/004b skill-advisor interface env-vars",
+      "prompt-policy JSON config",
+      "022/004b plan",
+      "022/004b tasks",
+      "022/004b checklist",
+      "022/004b shipped"
+    ],
+    "key_topics": [
+      "022",
+      "004b",
+      "skill-advisor",
+      "interface",
+      "env-vars",
+      "prompt-policy",
+      "json",
+      "config",
+      "plan",
+      "tasks",
+      "checklist",
+      "shipped"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      ".opencode/skills/system-skill-advisor/mcp_server/lib/compat/contract.ts",
+      ".opencode/skills/system-skill-advisor/mcp_server/lib/scorer/scoring-constants.ts",
+      ".opencode/skills/system-skill-advisor/mcp_server/lib/scorer/fusion.ts",
+      ".opencode/skills/system-skill-advisor/mcp_server/lib/prompt-policy.ts",
+      ".opencode/skills/system-skill-advisor/mcp_server/lib/prompt-cache.ts",
+      ".opencode/skills/system-skill-advisor/mcp_server/lib/render.ts",
+      ".opencode/skills/system-skill-advisor/mcp_server/lib/subprocess.ts",
+      ".opencode/skills/system-skill-advisor/mcp_server/lib/skill-advisor-brief.ts",
+      ".opencode/skills/system-skill-advisor/mcp_server/data/prompt-policy.default.json",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "contract.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-skill-advisor/mcp_server/lib/compat/contract.ts",
+        "source": "derived"
+      },
+      {
+        "name": "scoring-constants.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-skill-advisor/mcp_server/lib/scorer/scoring-constants.ts",
+        "source": "derived"
+      },
+      {
+        "name": "fusion.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-skill-advisor/mcp_server/lib/scorer/fusion.ts",
+        "source": "derived"
+      },
+      {
+        "name": "prompt-policy.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-skill-advisor/mcp_server/lib/prompt-policy.ts",
+        "source": "derived"
+      },
+      {
+        "name": "prompt-cache.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-skill-advisor/mcp_server/lib/prompt-cache.ts",
+        "source": "derived"
+      },
+      {
+        "name": "render.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-skill-advisor/mcp_server/lib/render.ts",
+        "source": "derived"
+      },
+      {
+        "name": "subprocess.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-skill-advisor/mcp_server/lib/subprocess.ts",
+        "source": "derived"
+      },
+      {
+        "name": "skill-advisor-brief.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-skill-advisor/mcp_server/lib/skill-advisor-brief.ts",
+        "source": "derived"
+      },
+      {
+        "name": "prompt-policy.default.json",
+        "kind": "config",
+        "path": ".opencode/skills/system-skill-advisor/mcp_server/data/prompt-policy.default.json",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Advisor Interface",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "cli-opencode",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "git",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "PID",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "HALT-on-failure-per-wave",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Bundle Gate",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "HALT-on-failure",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "cli-opencode + deepseek-v4-pro --variant high dispatched waves 2-4: RoutingCalibration interface expansion, env-var overrides (SPECKIT_ADVISOR_*), prompt-policy externalization to JSON. 9 P1 + 2 P2 closed. Bundle gate PASSED.",
+    "created_at": "2026-05-23T18:00:00.000000Z",
+    "last_save_at": "2026-07-07T11:37:50.259Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:3e6a5c0237e4c2d92f4e5f41dbb967d0ea86c8abbaa14ba749a229ca47584343",
+    "source_doc_hashes": {
+      "spec.md": "a709ec1aaa541f6eefdefa66605ba8e9b3bb2104887d815b19d6a3d25afbb4ed",
+      "plan.md": "f488ed0e23ed21bedb8f6d5d3da7f4381bcd200843371bd2f5705c63a0df5949",
+      "tasks.md": "d09d21745a89757b85731d33d43daecc95c61951cfbf7f2a09b6bbd10525b53f",
+      "checklist.md": "a93bca4ce50ec365ef26ba0dff7446da53004b2f5cf06741af16133b1fad6e97",
+      "implementation-summary.md": "aa79bd6ef4a6879ba8c0dbec6240badfca219620adf0cb07de4744267e116f96"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

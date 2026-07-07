@@ -1,0 +1,222 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-skill-advisor/009-advisor-and-codegraph-migrated-items/005-advisor-provenance-guard",
+  "spec_folder": "system-skill-advisor/009-advisor-and-codegraph-migrated-items/005-advisor-provenance-guard",
+  "parent_id": "system-skill-advisor/009-advisor-and-codegraph-migrated-items",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "advisor provenance guard",
+      "source_kind manual overwrite protection",
+      "skill_graph_propagate_enhances guard",
+      "automated writers never overwrite manual",
+      "implementation",
+      "plan",
+      "name",
+      "template",
+      "plan core",
+      "tasks",
+      "tasks core",
+      "summary"
+    ],
+    "key_topics": [
+      "advisor",
+      "provenance",
+      "guard",
+      "manual",
+      "overwrite",
+      "protection",
+      "automated",
+      "writers",
+      "never",
+      "implementation",
+      "plan",
+      "name"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      ".opencode/skills/system-skill-advisor/mcp_server/lib/cross-skill-edges/apply-graph-metadata-patch.ts",
+      ".opencode/skills/system-skill-advisor/mcp_server/lib/cross-skill-edges/index.ts",
+      ".opencode/skills/system-skill-advisor/mcp_server/lib/cross-skill-edges/types.ts",
+      ".opencode/skills/system-skill-advisor/mcp_server/handlers/skill-graph/propagate-enhances.ts",
+      ".opencode/skills/system-skill-advisor/mcp_server/tests/cross-skill-edges.vitest.ts",
+      ".claude/settings.local.json",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "apply-graph-metadata-patch.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-skill-advisor/mcp_server/lib/cross-skill-edges/apply-graph-metadata-patch.ts",
+        "source": "derived"
+      },
+      {
+        "name": "index.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-skill-advisor/mcp_server/lib/cross-skill-edges/index.ts",
+        "source": "derived"
+      },
+      {
+        "name": "types.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-skill-advisor/mcp_server/lib/cross-skill-edges/types.ts",
+        "source": "derived"
+      },
+      {
+        "name": "propagate-enhances.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-skill-advisor/mcp_server/handlers/skill-graph/propagate-enhances.ts",
+        "source": "derived"
+      },
+      {
+        "name": "cross-skill-edges.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-skill-advisor/mcp_server/tests/cross-skill-edges.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "settings.local.json",
+        "kind": "config",
+        "path": ".claude/settings.local.json",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Guarded",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The advisor's auto edge-patch path adds `autoaddedat` / `autoaddedreason` and is idempotent by target, but it carries no durable `sourcekind` and no manual-protection guard (`lib/cross-skill-edges/apply-graph-metadata-patch.ts:25-29` and `:63-80`)",
+    "created_at": "2026-06-10T19:24:09Z",
+    "last_save_at": "2026-07-07T11:58:28.907Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:bf4d828f520b5a698b8de783599af888f9ac48fa43d270a22eb061cd94989854",
+    "source_doc_hashes": {
+      "spec.md": "a26769db334e7c7fad2b1c191c1c935f367da3888e557139786090a64a1b8f6d",
+      "plan.md": "2504002934c977fd85c704ccfec5ca7f3219028c020e741a2334d7341f6689ea",
+      "tasks.md": "39858aede0973a0c7f2da0aa0a4b1c8b5a5696b77ef8409d1d1172544b140c8f",
+      "implementation-summary.md": "3fb91fea30ee25ddbc3f29b9eff7c8a9d2a2c1ccd8c8ea4db71732841adede0c"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

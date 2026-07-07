@@ -1,0 +1,33 @@
+{
+  "specFolder": "system-skill-advisor/006-playbook-run-and-remediation/003-cli-hooks-and-plugin",
+  "description": "The CLI hook scenarios validate the prompt-time advisor adapters for Claude, Gemini, Codex and Devin runtimes plus the OpenCode plugin bridge",
+  "keywords": [
+    "cli",
+    "hook",
+    "scenarios",
+    "validate",
+    "prompt-time",
+    "advisor",
+    "adapters",
+    "claude",
+    "gemini",
+    "codex",
+    "devin",
+    "runtimes",
+    "plus",
+    "opencode",
+    "plugin",
+    "bridge"
+  ],
+  "lastUpdated": "2026-07-07T12:56:31.987Z",
+  "specId": "003",
+  "folderSlug": "cli-hooks-and-plugin",
+  "parentChain": [
+    "system-skill-advisor",
+    "006-playbook-run-and-remediation"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "26-05-26_21-10__executed-all-46-playbook-scenarios-across-9.md"
+  ]
+}

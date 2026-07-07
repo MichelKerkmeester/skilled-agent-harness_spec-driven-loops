@@ -1,0 +1,34 @@
+{
+  "level": "3",
+  "specFolder": "system-skill-advisor/001-skill-graph",
+  "description": "Phase parent for skill graph infrastructure covering metadata quality, structural migration, daemon/advisor unification, and extraction across 7 child",
+  "keywords": [
+    "phase",
+    "parent",
+    "skill",
+    "graph",
+    "infrastructure",
+    "covering",
+    "metadata",
+    "quality",
+    "structural",
+    "migration",
+    "daemon",
+    "advisor",
+    "unification",
+    "extraction",
+    "across",
+    "child"
+  ],
+  "lastUpdated": "2026-06-23T03:49:53.186Z",
+  "specId": "001",
+  "folderSlug": "skill-graph",
+  "parentChain": [
+    "system-spec-kit",
+    "026-graph-and-context-optimization",
+    "002-spec-kit-internals",
+    "002-skill-advisor"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": []
+}

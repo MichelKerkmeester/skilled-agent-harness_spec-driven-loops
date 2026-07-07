@@ -1,0 +1,108 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-skill-advisor/004-skill-advisor-production-hardening",
+  "spec_folder": "system-skill-advisor/004-skill-advisor-production-hardening",
+  "parent_id": "system-skill-advisor",
+  "parent_id_review_required": true,
+  "children_ids": [
+    "system-skill-advisor/004-skill-advisor-production-hardening/001-deferred-remediation-telemetry-run",
+    "system-skill-advisor/004-skill-advisor-production-hardening/002-advisor-plugin-hardening",
+    "system-skill-advisor/004-skill-advisor-production-hardening/003-advisor-standards-alignment",
+    "system-skill-advisor/004-skill-advisor-production-hardening/004-devin-advisor-hook-integration",
+    "system-skill-advisor/004-skill-advisor-production-hardening/005-fail-open-fallback",
+    "system-skill-advisor/004-skill-advisor-production-hardening/006-codex-native-startup-advisor-hooks",
+    "system-skill-advisor/004-skill-advisor-production-hardening/007-skill-advisor-freshness-audit",
+    "system-skill-advisor/004-skill-advisor-production-hardening/008-fix-skill-advisor-quality"
+  ],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "006-skill-advisor/004-skill-advisor-production-hardening",
+      "hardening",
+      "skill-advisor safety"
+    ],
+    "key_topics": [
+      "006-skill-advisor",
+      "004-skill-advisor-production-hardening",
+      "hardening",
+      "skill-advisor",
+      "safety",
+      "phase",
+      "parent",
+      "improvements",
+      "across",
+      "child",
+      "packets",
+      "covers"
+    ],
+    "importance_tier": "normal",
+    "status": "planned",
+    "key_files": [
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Parent",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Plugin Hardening",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Deferred Remediation",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Telemetry Measurement Run",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Advisor Plugin Hardening",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Advisor Standards Alignment",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Phase parent for skill-advisor hardening and safety improvements across 4 child packets. Covers deferred remediation, telemetry measurement, plugin hardening, standards alignment, and CLI Devin integration hooks.",
+    "created_at": "2026-05-16T09:00:00Z",
+    "last_save_at": "2026-07-07T11:26:23.687Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "source_fingerprint": "sha256:8995209801e892651086c6b5b874467fd71acc9eaadfa3aff4f9a92ced69e1e8",
+    "source_doc_hashes": {
+      "spec.md": "423e845cd7e3176adb553a949ae799324223b36468ff95970d09a2f378105429"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

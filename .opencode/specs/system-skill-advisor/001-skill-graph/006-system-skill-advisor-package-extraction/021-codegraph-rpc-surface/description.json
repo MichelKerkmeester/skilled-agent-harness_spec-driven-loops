@@ -1,0 +1,32 @@
+{
+  "level": "2",
+  "specFolder": "system-skill-advisor/001-skill-graph/006-system-skill-advisor-package-extraction/021-codegraph-rpc-surface",
+  "description": "Packet 020 removed direct source imports from system-spec-kit to system-code-graph, but `classifyQueryIntent()` had no MCP surface to call",
+  "keywords": [
+    "packet",
+    "020",
+    "removed",
+    "direct",
+    "source",
+    "imports",
+    "system-spec-kit",
+    "system-code-graph",
+    "classifyqueryintent",
+    "mcp",
+    "surface",
+    "call"
+  ],
+  "lastUpdated": "2026-06-23T03:49:53.354Z",
+  "specId": "021",
+  "folderSlug": "codegraph-rpc-surface",
+  "parentChain": [
+    "system-spec-kit",
+    "026-graph-and-context-optimization",
+    "002-spec-kit-internals",
+    "002-skill-advisor",
+    "001-skill-graph",
+    "006-system-skill-advisor-package-extraction"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

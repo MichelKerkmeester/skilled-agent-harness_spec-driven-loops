@@ -1,0 +1,107 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-skill-advisor/001-skill-graph",
+  "spec_folder": "system-skill-advisor/001-skill-graph",
+  "parent_id": "system-skill-advisor",
+  "parent_id_review_required": true,
+  "children_ids": [
+    "system-skill-advisor/001-skill-graph/001-skill-graph-metadata-routing-boosts",
+    "system-skill-advisor/001-skill-graph/002-skill-graph-daemon-native-advisor-tools",
+    "system-skill-advisor/001-skill-graph/003-skill-metadata-embedding-quality-audit",
+    "system-skill-advisor/001-skill-graph/004-metadata-fixes-and-seeded-sweep-rerun",
+    "system-skill-advisor/001-skill-graph/005-intent-signals-and-skill-relationships",
+    "system-skill-advisor/001-skill-graph/006-system-skill-advisor-package-extraction",
+    "system-skill-advisor/001-skill-graph/007-cross-skill-enhancement-edge-propagation"
+  ],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "006-skill-advisor/001-skill-graph",
+      "skill-graph",
+      "skill-advisor-infrastructure"
+    ],
+    "key_topics": [
+      "006-skill-advisor",
+      "001-skill-graph",
+      "skill-graph",
+      "skill-advisor-infrastructure",
+      "phase",
+      "parent",
+      "skill",
+      "graph",
+      "infrastructure",
+      "covering",
+      "metadata",
+      "quality"
+    ],
+    "importance_tier": "important",
+    "status": "planned",
+    "key_files": [
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Parent",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Skill Graph Infrastructure",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Skill Advisor Graph",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Skill Graph Daemon",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Advisor Unification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. ROOT PURPOSE",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Phase parent for skill graph infrastructure covering metadata quality, structural migration, daemon/advisor unification, and extraction across 7 child packets.",
+    "created_at": "2026-05-16T09:00:00Z",
+    "last_save_at": "2026-07-07T11:26:23.006Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "source_fingerprint": "sha256:88792136accc76f7c01aacd75052ca538e49d30fd2342216767d173842e1d65c",
+    "source_doc_hashes": {
+      "spec.md": "b58b919997d05712dfba36e90ab3e953731094b01dbc325c0513c043d5cd1d64"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

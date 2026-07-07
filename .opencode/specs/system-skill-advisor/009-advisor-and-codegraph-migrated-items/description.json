@@ -1,0 +1,30 @@
+{
+  "specFolder": "system-skill-advisor/009-advisor-and-codegraph-migrated-items",
+  "description": "The advisor-only phases from the 027 advisor-and-codegraph adoption wave: cross-session reconnect, test-suite repair, spec-folder leak fix, and 5 shar",
+  "keywords": [
+    "advisor-only",
+    "phases",
+    "027",
+    "advisor-and-codegraph",
+    "adoption",
+    "wave",
+    "cross-session",
+    "reconnect",
+    "test-suite",
+    "repair",
+    "spec-folder",
+    "leak",
+    "fix",
+    "shared-feature-adoption",
+    "items"
+  ],
+  "lastUpdated": "2026-07-07T11:51:52.787Z",
+  "specId": "009",
+  "folderSlug": "advisor-and-codegraph-migrated-items",
+  "parentChain": [
+    "system-skill-advisor"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

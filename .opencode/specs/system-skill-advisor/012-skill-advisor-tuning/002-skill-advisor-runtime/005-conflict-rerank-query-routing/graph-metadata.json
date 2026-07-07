@@ -1,0 +1,225 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-skill-advisor/012-skill-advisor-tuning/002-skill-advisor-runtime/005-conflict-rerank-query-routing",
+  "spec_folder": "system-skill-advisor/012-skill-advisor-tuning/002-skill-advisor-runtime/005-conflict-rerank-query-routing",
+  "parent_id": "system-skill-advisor/012-skill-advisor-tuning/002-skill-advisor-runtime",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "advisor conflict rerank query routing",
+      "C1 conflicts_with post-fusion demotion",
+      "QCR query class lane weights",
+      "C6 semantic exact rerank top-K",
+      "skill advisor deferred routing refinements",
+      "advisor conflict rerank routing plan",
+      "C1 post-fusion demotion sequencing",
+      "QCR benchmark gate plan",
+      "C6 top-K rerank after RRF spine",
+      "advisor conflict rerank routing tasks",
+      "C1 QCR C6 deferred tasks",
+      "query class router tasks"
+    ],
+    "key_topics": [
+      "advisor",
+      "conflict",
+      "rerank",
+      "query",
+      "routing",
+      "post-fusion",
+      "demotion",
+      "qcr",
+      "class",
+      "lane",
+      "weights",
+      "semantic"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "checklist.md",
+      ".opencode/skills/system-skill-advisor/mcp_server/lib/scorer/fusion.ts",
+      ".opencode/skills/system-skill-advisor/mcp_server/lib/scorer/lanes/semantic-shadow.ts",
+      ".opencode/skills/system-skill-advisor/mcp_server/lib/metrics.ts",
+      ".opencode/skills/system-skill-advisor/mcp_server/tests/scorer/conflict-query-rerank.vitest.ts",
+      ".opencode/skills/system-skill-advisor/mcp_server/lib/scorer/lanes/graph-causal.ts",
+      ".opencode/skills/system-skill-advisor/mcp_server/database/skill-graph.sqlite"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "fusion.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-skill-advisor/mcp_server/lib/scorer/fusion.ts",
+        "source": "derived"
+      },
+      {
+        "name": "semantic-shadow.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-skill-advisor/mcp_server/lib/scorer/lanes/semantic-shadow.ts",
+        "source": "derived"
+      },
+      {
+        "name": "metrics.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-skill-advisor/mcp_server/lib/metrics.ts",
+        "source": "derived"
+      },
+      {
+        "name": "conflict-query-rerank.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-skill-advisor/mcp_server/tests/scorer/conflict-query-rerank.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "graph-causal.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-skill-advisor/mcp_server/lib/scorer/lanes/graph-causal.ts",
+        "source": "derived"
+      },
+      {
+        "name": "skill-graph.sqlite",
+        "kind": "file",
+        "path": ".opencode/skills/system-skill-advisor/mcp_server/database/skill-graph.sqlite",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Skill Advisor",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Conflict Re",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Class Routing",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Semantic Exact",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Three Skill Advisor",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Date",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The Skill Advisor fuses five lanes, `explicitauthor 0.42 / lexical 0.28 / graphcausal 0.13 / derivedgenerated 0.12 / semanticshadow 0.05` (`lane-registry.ts:8-19`), via a raw-score weighted SUM by default, with an opt-in RRF spine behind `SPECKITADVISORRRFFUSION`",
+    "created_at": "2026-06-19T06:06:27.154Z",
+    "last_save_at": "2026-07-07T09:40:25.043Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:41c8ebc4f745bdaf2ca2fb7bf06c99af82fd867dd4d98e6f5f9fa45e2d1d4a54",
+    "source_doc_hashes": {
+      "spec.md": "6338d8ea883641f1a9770a821b3431fdc7ab30cbf6bae08e99e0a6df5ad3057a",
+      "plan.md": "4a06036484f37e2ef70c5b4fcb31c6a9df805c51b3e5bb3bbdb62a3bceef99ca",
+      "tasks.md": "05fc9cecbe12f828e6c7d95febb9d1fef6959636d8aa1a7cbc8db1e3618e3cb3",
+      "checklist.md": "46dbd255e4cd94f066989582743a1cd13115b1d2e85d7f73d610c442bc1ff418",
+      "implementation-summary.md": "24a142f697d0a4ab30e3910cec67cecb0a725b921d921a1740a69e04563dd19a"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

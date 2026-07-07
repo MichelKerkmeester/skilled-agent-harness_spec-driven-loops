@@ -1,0 +1,30 @@
+{
+  "specFolder": "system-skill-advisor/006-playbook-run-and-remediation/005-finding-remediation/002-scorer-p0-routing-fixes",
+  "description": "The 028 PC-004 regression has genuine P0 failures unrelated to label drift (0/24 P0 cases use the drifted labels)",
+  "keywords": [
+    "028",
+    "pc-004",
+    "regression",
+    "genuine",
+    "failures",
+    "unrelated",
+    "label",
+    "drift",
+    "cases",
+    "use",
+    "drifted",
+    "labels"
+  ],
+  "lastUpdated": "2026-07-07T12:56:32.006Z",
+  "specId": "002",
+  "folderSlug": "scorer-p0-routing-fixes",
+  "parentChain": [
+    "system-skill-advisor",
+    "006-playbook-run-and-remediation",
+    "005-finding-remediation"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "26-05-26_22-20__executed-all-46-playbook-scenarios-across-9.md"
+  ]
+}

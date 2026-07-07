@@ -1,0 +1,221 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-skill-advisor/004-skill-advisor-production-hardening/002-advisor-plugin-hardening",
+  "spec_folder": "system-skill-advisor/004-skill-advisor-production-hardening/002-advisor-plugin-hardening",
+  "parent_id": "system-skill-advisor/004-skill-advisor-production-hardening",
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "skill advisor plugin hardening",
+      "skill advisor per-instance state",
+      "skill advisor in-flight dedup",
+      "skill advisor size caps",
+      "skill advisor lru",
+      "026/009/008",
+      "026/009/008 plan",
+      "skill advisor hardening plan",
+      "026/009/008 tasks",
+      "skill advisor hardening tasks",
+      "026/009/008 checklist",
+      "skill advisor hardening checklist"
+    ],
+    "key_topics": [
+      "skill",
+      "advisor",
+      "plugin",
+      "hardening",
+      "per-instance",
+      "state",
+      "in-flight",
+      "dedup",
+      "size",
+      "caps",
+      "lru",
+      "026"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "checklist.md",
+      "implementation-summary.md",
+      "spec.md",
+      "plan.md",
+      "tasks.md"
+    ],
+    "entities": [
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Advisor Plugin Hardening",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Three",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Convert",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pass Criteria",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "js",
+        "kind": "technology",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "LRU",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Breakdown",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "evidence",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Quality",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Three latent risks in `spec-kit-skill-advisor.js` deferred from 007 Phase 5:",
+    "created_at": "2026-04-23T08:35:00.000Z",
+    "last_save_at": "2026-07-07T11:42:17.499Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:ac97dff14a0a9516fddf098857d8dedbb587bfa345e01ba56feb1d197ec664da",
+    "source_doc_hashes": {
+      "spec.md": "9820be3cb8c70492fd46483d948f439b51ddd7bfaa4e6519a90f85d9181f411e",
+      "plan.md": "e35e9141f8cc9a2f93b132db8cfa1897e9ee7b149791b6ce00fabd49df9e94e3",
+      "tasks.md": "3774ac132a06a1cc72bd8c37b59f51581d1dbf3d723a73cab991ad35f63d07eb",
+      "checklist.md": "60b7c5a6db4defc0ff9c3209d56f3ac08af8c5d22bcc88bbd070661efd271f74",
+      "implementation-summary.md": "f9dc45ca6bd375f06b2153cd5c7a1ad6812495c0130d1e7a6c5e3b3bb66995b6"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

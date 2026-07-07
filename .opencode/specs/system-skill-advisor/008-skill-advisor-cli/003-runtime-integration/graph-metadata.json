@@ -1,0 +1,224 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-skill-advisor/008-skill-advisor-cli/003-runtime-integration",
+  "spec_folder": "system-skill-advisor/008-skill-advisor-cli/003-runtime-integration",
+  "parent_id": "system-skill-advisor/008-skill-advisor-cli",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "skill-advisor runtime integration",
+      "003 003-runtime-integration",
+      "skill-advisor phase 3",
+      "skill-advisor runtime integration plan",
+      "003 003-runtime-integration plan",
+      "skill-advisor phase 3 plan",
+      "skill-advisor runtime integration tasks",
+      "003 003-runtime-integration tasks",
+      "skill-advisor phase 3 tasks",
+      "skill-advisor runtime integration result",
+      "003 003-runtime-integration result",
+      "skill-advisor phase 3 result"
+    ],
+    "key_topics": [
+      "skill-advisor",
+      "runtime",
+      "integration",
+      "003",
+      "003-runtime-integration",
+      "phase",
+      "plan",
+      "tasks",
+      "result",
+      "advisor",
+      "brief",
+      "sits"
+    ],
+    "importance_tier": "normal",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      ".opencode/skills/system-skill-advisor/hooks/lib/skill-advisor-cli-fallback.ts",
+      ".opencode/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts",
+      ".opencode/skills/system-skill-advisor/mcp_server/plugin_bridges/mk-skill-advisor-bridge.mjs",
+      ".opencode/commands/doctor/assets/doctor_skill-advisor.yaml",
+      ".opencode/commands/doctor/assets/doctor_skill-budget.yaml",
+      ".opencode/skills/system-skill-advisor/SKILL.md",
+      ".claude/settings.local.json",
+      ".claude/mcp.json",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "skill-advisor-cli-fallback.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-skill-advisor/hooks/lib/skill-advisor-cli-fallback.ts",
+        "source": "derived"
+      },
+      {
+        "name": "user-prompt-submit.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts",
+        "source": "derived"
+      },
+      {
+        "name": "mk-skill-advisor-bridge.mjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-skill-advisor/mcp_server/plugin_bridges/mk-skill-advisor-bridge.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "doctor_skill-advisor.yaml",
+        "kind": "config",
+        "path": ".opencode/commands/doctor/assets/doctor_skill-advisor.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "doctor_skill-budget.yaml",
+        "kind": "config",
+        "path": ".opencode/commands/doctor/assets/doctor_skill-budget.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-skill-advisor/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "settings.local.json",
+        "kind": "config",
+        "path": ".claude/settings.local.json",
+        "source": "derived"
+      },
+      {
+        "name": "mcp.json",
+        "kind": "config",
+        "path": ".claude/mcp.json",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Runtime Integration",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Shipped",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Thin",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The advisor brief sits on the prompt-submit critical path in every runtime; pairing it with the CLI must respect the measured budget — the one-shot native bridge (824.8ms) stays banned",
+    "created_at": "2026-06-06T14:45:18Z",
+    "last_save_at": "2026-07-07T11:58:28.311Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:123132242858f759133a3fea1c20c6b470cddaaf005e8980ff32c9f39ec355bd",
+    "source_doc_hashes": {
+      "spec.md": "204dcbcf0a9263a2c8ba11a979c4830265a0f7e4eea93a3e099a26a71f684b68",
+      "plan.md": "934875a343bb2f81e28826c3f80c8b7a2e02486eb12d45b92cced008e97a22c2",
+      "tasks.md": "6e32dcfb210351ffae9ad94a3095c440ce804ea5215afeffd89e5888d28b4a62",
+      "implementation-summary.md": "10f8f06b62e990f943b5dc0e48cd0f1ce2d2a73cc5686d3bb825d86204cfc3a4"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

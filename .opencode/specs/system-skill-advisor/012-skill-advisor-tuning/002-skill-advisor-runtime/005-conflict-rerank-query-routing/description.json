@@ -1,0 +1,27 @@
+{
+  "level": "2",
+  "specFolder": "system-skill-advisor/012-skill-advisor-tuning/002-skill-advisor-runtime/005-conflict-rerank-query-routing",
+  "description": "The Skill Advisor fuses five lanes, `explicitauthor 0.42 / lexical 0.28 / graphcausal 0.13 / derivedgenerated 0.12 / semanticshadow 0.05`",
+  "keywords": [
+    "skill",
+    "advisor",
+    "fuses",
+    "five",
+    "lanes",
+    "explicitauthor",
+    "lexical",
+    "graphcausal",
+    "derivedgenerated",
+    "semanticshadow"
+  ],
+  "lastUpdated": "2026-07-06T16:57:19.541Z",
+  "specId": "005",
+  "folderSlug": "conflict-rerank-query-routing",
+  "parentChain": [
+    "system-skill-advisor",
+    "012-skill-advisor-tuning",
+    "002-skill-advisor-runtime"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

@@ -1,0 +1,227 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-skill-advisor/012-skill-advisor-tuning/008-semantic-shadow-prove-or-freeze",
+  "spec_folder": "system-skill-advisor/012-skill-advisor-tuning/008-semantic-shadow-prove-or-freeze",
+  "parent_id": "system-skill-advisor/012-skill-advisor-tuning",
+  "children_ids": [],
+  "migrated": false,
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": [
+      {
+        "packet_id": "system-skill-advisor/012-skill-advisor-tuning/007-eval-hardening",
+        "reason": "Imported from legacy graph-metadata.json",
+        "source": "legacy"
+      }
+    ]
+  },
+  "derived": {
+    "trigger_phrases": [
+      "semantic shadow freeze",
+      "semantic lane prove or freeze",
+      "semantic shadow ablation",
+      "semantic lane fail-on-skip",
+      "semantic shadow degradation detector",
+      "semantic shadow freeze plan",
+      "semantic ablation harness plan",
+      "fail-on-skip guard architecture",
+      "semantic shadow freeze tasks",
+      "semantic ablation task breakdown",
+      "semantic shadow freeze checklist",
+      "semantic ablation verification checklist"
+    ],
+    "key_topics": [
+      "semantic",
+      "shadow",
+      "freeze",
+      "lane",
+      "prove",
+      "ablation",
+      "fail-on-skip",
+      "degradation",
+      "detector",
+      "plan",
+      "harness",
+      "guard"
+    ],
+    "importance_tier": "high",
+    "status": "complete",
+    "key_files": [
+      ".opencode/specs/system-skill-advisor/graph-metadata.json",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md",
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "graph-metadata.json",
+        "kind": "config",
+        "path": ".opencode/specs/system-skill-advisor/graph-metadata.json",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Semantic Shadow Prove",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Dependencies",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Run",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "RRF",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "zero",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "no",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Breakdown",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Milestone Reference",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "a",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The `semanticshadow` lane weight (0.05) had never been confirmed on the full 193-row corpus with real embeddings",
+    "created_at": "2026-07-07T09:00:00.000Z",
+    "last_save_at": "2026-07-07T11:21:37.702Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:ebe0ca9a58ba964a13e5b93f7f0430cdcb80581a1664921e38195b721afae71f",
+    "source_doc_hashes": {
+      "spec.md": "9a264aee29928ab342c7a582df2914914e872d87f8f78cbb728396441ad9feb6",
+      "plan.md": "63ff95430c1e1300dab57ca72768cdd8e0af1ad25c4a379fe505670592ca28ba",
+      "tasks.md": "4fb88c2dd24a212e04657b78640f3eda49ef59809de904dc681941c83fe1f252",
+      "checklist.md": "b5c329837aa5622de17095e3772f774d23665bb3cc0668c4a6783b23d51fef09",
+      "implementation-summary.md": "0a3b9225c03e997b993f4dd556b9dd3338191edbb38c7822e042138d8056a9d6"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

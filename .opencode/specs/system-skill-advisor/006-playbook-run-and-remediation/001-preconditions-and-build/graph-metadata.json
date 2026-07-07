@@ -1,0 +1,221 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-skill-advisor/006-playbook-run-and-remediation/001-preconditions-and-build",
+  "spec_folder": "system-skill-advisor/006-playbook-run-and-remediation/001-preconditions-and-build",
+  "parent_id": "system-skill-advisor/006-playbook-run-and-remediation",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "playbook preconditions",
+      "skill advisor build precondition",
+      "028 phase 001",
+      "playbook preconditions plan",
+      "028 phase 001 plan",
+      "playbook preconditions tasks",
+      "028 phase 001 tasks",
+      "playbook preconditions checklist",
+      "028 phase 001 checklist",
+      "playbook preconditions summary",
+      "028 phase 001 summary"
+    ],
+    "key_topics": [
+      "playbook",
+      "preconditions",
+      "skill",
+      "advisor",
+      "build",
+      "precondition",
+      "028",
+      "phase",
+      "001",
+      "plan",
+      "tasks",
+      "checklist"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "dist/api/index.js",
+      "dist/cli.js",
+      "dist/context-server.js",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "index.js",
+        "kind": "code",
+        "path": "dist/api/index.js",
+        "source": "derived"
+      },
+      {
+        "name": "cli.js",
+        "kind": "code",
+        "path": "dist/cli.js",
+        "source": "derived"
+      },
+      {
+        "name": "context-server.js",
+        "kind": "code",
+        "path": "dist/context-server.js",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Playbook Run Phase",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Bring",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Run",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Build",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The playbook's §2 global preconditions require a current MCP server build, an unset `SPECKITSKILLADVISORHOOKDISABLED` flag, and evidence workspaces before any scenario can run",
+    "created_at": "2026-05-26T20:10:23.387Z",
+    "last_save_at": "2026-07-02T05:31:11.353Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:59f170cba7f00f81f37d76799fe98e2e0c678ec9ca5510fb239c775f69e1797d",
+    "source_doc_hashes": {
+      "spec.md": "1fa56db2aca88852bcec500c05c9547efbd519a50dbb18fb29c1a4a3544c5653",
+      "plan.md": "701cfbd8855e77a3c5182f5a78f66d60f1f2a7dcf8202fcf1925fc130516a85f",
+      "tasks.md": "87448fd3db23a10df292319e9c337122af2f21d96a8dbecf2c6e727d526e9d18",
+      "checklist.md": "ff4ca27818b0bd7fcabfe2675d75a3c4b277b99e369da2483ebf2473a9ef6a1e",
+      "implementation-summary.md": "a564cc4e76121648431ef04d4c4611be5ebef07b079179011d6dd7e82e643d65"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

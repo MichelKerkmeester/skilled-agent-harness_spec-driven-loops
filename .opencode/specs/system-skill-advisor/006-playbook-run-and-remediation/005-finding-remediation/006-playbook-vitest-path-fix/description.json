@@ -1,0 +1,27 @@
+{
+  "specFolder": "system-skill-advisor/006-playbook-run-and-remediation/005-finding-remediation/006-playbook-vitest-path-fix",
+  "description": "NC-004 (`01--native-mcp-tools/ambiguous-brief-rendering.md:38`) and NC-005 (`lifecycle-redirect-metadata.md:36`) document a vitest command run from",
+  "keywords": [
+    "nc-004",
+    "01-native-mcp-tools",
+    "ambiguous-brief-rendering",
+    "nc-005",
+    "lifecycle-redirect-metadata",
+    "document",
+    "vitest",
+    "command",
+    "run"
+  ],
+  "lastUpdated": "2026-07-07T12:56:32.022Z",
+  "specId": "006",
+  "folderSlug": "playbook-vitest-path-fix",
+  "parentChain": [
+    "system-skill-advisor",
+    "006-playbook-run-and-remediation",
+    "005-finding-remediation"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "26-05-26_22-20__executed-all-46-playbook-scenarios-across-9.md"
+  ]
+}

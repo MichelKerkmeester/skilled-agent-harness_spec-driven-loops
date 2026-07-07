@@ -1,0 +1,29 @@
+{
+  "topic": "Investigate and remediate the 5 key findings from the system-skill-advisor playbook run (028): corpus accuracy regression, PC-005 bench, semantic_shadow lane drift, OpenCode plugin bridge native-route fail-open, stale vitest path in NC-004/005.",
+  "maxIterations": 10,
+  "convergenceThreshold": 0.05,
+  "stuckThreshold": 3,
+  "maxDurationMinutes": 120,
+  "specFolder": ".opencode/specs/system-spec-kit/028-skill-advisor-playbook-run/005-finding-remediation",
+  "resource_map_present": true,
+  "resource_map": {
+    "emit": true
+  },
+  "createdAt": "2026-05-26T20:24:43.421Z",
+  "status": "initialized",
+  "executionMode": "auto",
+  "executor": {
+    "type": "cli-codex",
+    "model": "gpt-5.5",
+    "reasoningEffort": "high",
+    "serviceTier": "fast",
+    "timeoutSeconds": 900
+  },
+  "lineage": {
+    "sessionId": "b83e1f02-7c08-4c57-bb89-261c0c12e2bc",
+    "parentSessionId": null,
+    "lineageMode": "new",
+    "generation": 1,
+    "continuedFromRun": null
+  }
+}

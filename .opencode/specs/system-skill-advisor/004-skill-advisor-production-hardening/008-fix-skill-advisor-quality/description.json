@@ -1,0 +1,25 @@
+{
+  "specFolder": "system-skill-advisor/004-skill-advisor-production-hardening/008-fix-skill-advisor-quality",
+  "description": "Eight advisor-quality findings sit across the skill-advisor surface",
+  "keywords": [
+    "eight",
+    "advisor-quality",
+    "findings",
+    "sit",
+    "across",
+    "skill-advisor",
+    "surface"
+  ],
+  "lastUpdated": "2026-07-07T12:56:31.964Z",
+  "specId": "008",
+  "folderSlug": "fix-skill-advisor-quality",
+  "parentChain": [
+    "system-skill-advisor",
+    "004-skill-advisor-production-hardening"
+  ],
+  "memorySequence": 2,
+  "memoryNameHistory": [
+    "01-05-26_08-18__closed-8-advisor-quality-findings-f-006-b1-01-03.md",
+    "01-05-26_08-20__closed-8-advisor-quality-findings-f-006-b1-01-03.md"
+  ]
+}

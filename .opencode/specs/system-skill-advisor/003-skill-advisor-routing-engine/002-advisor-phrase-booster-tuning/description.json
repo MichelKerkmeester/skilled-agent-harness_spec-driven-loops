@@ -1,0 +1,31 @@
+{
+  "specFolder": "system-skill-advisor/003-skill-advisor-routing-engine/002-advisor-phrase-booster-tuning",
+  "description": "The skill advisor's `INTENTBOOSTERS` dict (`skilladvisor.py:496`) contains 24 multi-word keys that the advisor's tokenizer splits on whitespace — maki",
+  "keywords": [
+    "skill",
+    "advisor",
+    "intentboosters",
+    "dict",
+    "skilladvisor",
+    "496",
+    "contains",
+    "multi-word",
+    "keys",
+    "tokenizer",
+    "splits",
+    "whitespace",
+    "maki"
+  ],
+  "lastUpdated": "2026-06-23T03:49:53.489Z",
+  "specId": "002",
+  "folderSlug": "advisor-phrase-booster-tuning",
+  "parentChain": [
+    "system-spec-kit",
+    "026-graph-and-context-optimization",
+    "002-spec-kit-internals",
+    "002-skill-advisor",
+    "003-skill-advisor-routing-engine"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

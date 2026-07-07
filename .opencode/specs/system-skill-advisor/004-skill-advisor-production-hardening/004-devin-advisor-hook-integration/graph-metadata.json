@@ -1,0 +1,242 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-skill-advisor/004-skill-advisor-production-hardening/004-devin-advisor-hook-integration",
+  "spec_folder": "system-skill-advisor/004-skill-advisor-production-hardening/004-devin-advisor-hook-integration",
+  "parent_id": "system-skill-advisor/004-skill-advisor-production-hardening",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "cli-devin",
+      "skill-advisor",
+      "advisor hook",
+      "userpromptsubmit",
+      "plugin rename",
+      "mk-skill-advisor",
+      "post-extraction audit",
+      "004-devin-advisor-hook-integration",
+      "phase b",
+      "advisor plan",
+      "tasks",
+      "checklist"
+    ],
+    "key_topics": [
+      "cli-devin",
+      "skill-advisor",
+      "advisor",
+      "hook",
+      "userpromptsubmit",
+      "plugin",
+      "rename",
+      "mk-skill-advisor",
+      "post-extraction",
+      "audit",
+      "004-devin-advisor-hook-integration",
+      "phase"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "decision-record.md",
+      "checklist.md",
+      "handover.md",
+      "resource-map.md",
+      ".opencode/skills/system-skill-advisor/mcp_server/plugin_bridges/mk-skill-advisor-bridge.mjs",
+      "research/research.md",
+      ".claude/settings.local.json",
+      "research/iterations/iteration-01.md",
+      ".opencode/plugins/mk-skill-advisor.js",
+      "implementation-summary.md",
+      "research/findings.json",
+      ".opencode/plugins/README.md",
+      "mcp_server/plugin_bridges/README.md",
+      "research/iterations/iteration-02.md",
+      ".opencode/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts",
+      "research/iterations/iteration-03.md",
+      ".opencode/skills/system-skill-advisor/README.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "handover.md",
+        "kind": "doc",
+        "path": "handover.md",
+        "source": "derived"
+      },
+      {
+        "name": "resource-map.md",
+        "kind": "doc",
+        "path": "resource-map.md",
+        "source": "derived"
+      },
+      {
+        "name": "mk-skill-advisor-bridge.mjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-skill-advisor/mcp_server/plugin_bridges/mk-skill-advisor-bridge.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "settings.local.json",
+        "kind": "config",
+        "path": ".claude/settings.local.json",
+        "source": "derived"
+      },
+      {
+        "name": "iteration-01.md",
+        "kind": "doc",
+        "path": "research/iterations/iteration-01.md",
+        "source": "derived"
+      },
+      {
+        "name": "mk-skill-advisor.js",
+        "kind": "code",
+        "path": ".opencode/plugins/mk-skill-advisor.js",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "findings.json",
+        "kind": "config",
+        "path": "research/findings.json",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/plugins/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "iteration-02.md",
+        "kind": "doc",
+        "path": "research/iterations/iteration-02.md",
+        "source": "derived"
+      },
+      {
+        "name": "user-prompt-submit.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts",
+        "source": "derived"
+      },
+      {
+        "name": "iteration-03.md",
+        "kind": "doc",
+        "path": "research/iterations/iteration-03.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Devin Skill Advisor",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Plugin Rename",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "Extraction Audit",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Dependencies",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "`system-skill-advisor` already supports Claude, Gemini, Codex, and OpenCode prompt-time guidance, but Devin CLI has no explicit advisor hook registration",
+    "created_at": "2026-05-15T13:05:18.133Z",
+    "last_save_at": "2026-07-07T11:48:30.586Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      "research/research.md",
+      "handover.md",
+      "resource-map.md"
+    ],
+    "source_fingerprint": "sha256:96133073ee8cc3327f80032769fc5e61d71f96199d2c864da1a732151a84a70f",
+    "source_doc_hashes": {
+      "spec.md": "ca8a118eff30968bb42258822a7f866627bdc4e67b1d8aa561c17843985a50c0",
+      "plan.md": "d8108331856b483b1278471ffaf3382f4134035f2980ba6cdfb6daed396a1930",
+      "tasks.md": "713be34982f057c23e6eca3cd843f4cb493543dedcd5f570b00ae04dc8f9e2ff",
+      "checklist.md": "52ddf3be448a676741bd883aa3d89403c86412c8f888c6d9f1810446ee953df2",
+      "decision-record.md": "96eb283c73f19cf2b96f912eeb1b6fb500bc8f60549197d2b41745dd1b2f37ca",
+      "implementation-summary.md": "2daa29eb078724b19ef10dceb9e5c73f2aa5c6e2edfb3f6e86323acc60c1ee79",
+      "research/research.md": "b47120f3449eddbca19578ce3175ebd92dfa9f91d4c000d5af5a065d12480ed7",
+      "handover.md": "09bc6a7f7a0413df84208505a92052f5c793d47298af274d29de1b8ef1a1ae61",
+      "resource-map.md": "98c1273d90fffa5b7a53e6446d170e8ef07a66f7d1e9d80f45fda6ffe7db12a3"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

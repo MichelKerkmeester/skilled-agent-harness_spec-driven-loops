@@ -1,0 +1,26 @@
+{
+  "level": "2",
+  "specFolder": "system-skill-advisor/009-advisor-and-codegraph-migrated-items/002-skill-advisor-suite-repair",
+  "description": "The `system-skill-advisor/mcpserver` vitest suite reported 61 of 553 tests failing in the working tree",
+  "keywords": [
+    "system-skill-advisor",
+    "mcpserver",
+    "vitest",
+    "suite",
+    "reported",
+    "553",
+    "tests",
+    "failing",
+    "working",
+    "tree"
+  ],
+  "lastUpdated": "2026-07-07T12:56:32.102Z",
+  "specId": "002",
+  "folderSlug": "skill-advisor-suite-repair",
+  "parentChain": [
+    "system-skill-advisor",
+    "009-advisor-and-codegraph-migrated-items"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

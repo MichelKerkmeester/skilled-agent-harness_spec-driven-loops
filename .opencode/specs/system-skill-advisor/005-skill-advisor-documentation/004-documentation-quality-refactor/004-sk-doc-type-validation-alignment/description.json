@@ -1,0 +1,28 @@
+{
+  "specFolder": "system-skill-advisor/005-skill-advisor-documentation/004-documentation-quality-refactor/004-sk-doc-type-validation-alignment",
+  "description": "Per-file sk-doc template adherence varies across system-skill-advisor doc surfaces",
+  "keywords": [
+    "per-file",
+    "sk-doc",
+    "template",
+    "adherence",
+    "varies",
+    "across",
+    "system-skill-advisor",
+    "doc",
+    "surfaces"
+  ],
+  "lastUpdated": "2026-06-23T03:49:53.596Z",
+  "specId": "004",
+  "folderSlug": "sk-doc-type-validation-alignment",
+  "parentChain": [
+    "system-spec-kit",
+    "026-graph-and-context-optimization",
+    "002-spec-kit-internals",
+    "002-skill-advisor",
+    "005-skill-advisor-documentation",
+    "004-documentation-quality-refactor"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

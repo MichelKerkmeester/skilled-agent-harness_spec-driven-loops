@@ -1,0 +1,28 @@
+{
+  "specFolder": "system-skill-advisor/012-skill-advisor-tuning/005-executor-delegation-resolver",
+  "description": "The advisor scorer routed explicit OpenCode delegation prompts to `cli-opencode` through an inline pre-clamp band-aid in the explicit lane (`+0.9`",
+  "keywords": [
+    "advisor",
+    "scorer",
+    "routed",
+    "explicit",
+    "opencode",
+    "delegation",
+    "prompts",
+    "cli-opencode",
+    "inline",
+    "pre-clamp",
+    "band-aid",
+    "lane"
+  ],
+  "lastUpdated": "2026-07-06T19:37:30.358Z",
+  "specId": "005",
+  "folderSlug": "executor-delegation-resolver",
+  "parentChain": [
+    "system-skill-advisor",
+    "012-skill-advisor-tuning"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

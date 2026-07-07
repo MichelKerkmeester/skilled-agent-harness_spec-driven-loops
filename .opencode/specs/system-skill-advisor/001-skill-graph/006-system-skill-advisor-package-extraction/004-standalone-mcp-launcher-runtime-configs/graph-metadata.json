@@ -1,0 +1,229 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-skill-advisor/001-skill-graph/006-system-skill-advisor-package-extraction/004-standalone-mcp-launcher-runtime-configs",
+  "spec_folder": "system-skill-advisor/001-skill-graph/006-system-skill-advisor-package-extraction/004-standalone-mcp-launcher-runtime-configs",
+  "parent_id": "system-skill-advisor/001-skill-graph/006-system-skill-advisor-package-extraction",
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "standalone advisor mcp launcher",
+      "system_skill_advisor runtime config",
+      "skill advisor launcher",
+      "013/009/004",
+      "system_skill_advisor implementation plan",
+      "skill advisor launcher plan",
+      "runtime config plan",
+      "system_skill_advisor tasks",
+      "skill advisor launcher tasks",
+      "runtime config tasks",
+      "system_skill_advisor checklist",
+      "skill advisor runtime verification"
+    ],
+    "key_topics": [
+      "standalone",
+      "advisor",
+      "mcp",
+      "launcher",
+      "runtime",
+      "config",
+      "skill",
+      "013",
+      "009",
+      "004",
+      "implementation",
+      "plan"
+    ],
+    "importance_tier": "critical",
+    "status": "planned",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      ".opencode/skills/system-skill-advisor/mcp_server/advisor-server.ts",
+      ".codex/config.toml",
+      ".claude/mcp.json",
+      ".claude/settings.local.json",
+      ".opencode/skills/system-skill-advisor/mcp_server/database/skill-graph.sqlite"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "advisor-server.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-skill-advisor/mcp_server/advisor-server.ts",
+        "source": "derived"
+      },
+      {
+        "name": "config.toml",
+        "kind": "file",
+        "path": ".codex/config.toml",
+        "source": "derived"
+      },
+      {
+        "name": "mcp.json",
+        "kind": "config",
+        "path": ".claude/mcp.json",
+        "source": "derived"
+      },
+      {
+        "name": "settings.local.json",
+        "kind": "config",
+        "path": ".claude/settings.local.json",
+        "source": "derived"
+      },
+      {
+        "name": "skill-graph.sqlite",
+        "kind": "file",
+        "path": ".opencode/skills/system-skill-advisor/mcp_server/database/skill-graph.sqlite",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Dependencies",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Child",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Make",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Model Context Protocol",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Standalone",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Child 003 moved advisor source and DB ownership into the dedicated `system-skill-advisor` package, but the runtime still has no standalone advisor launcher or MCP registration",
+    "created_at": "2026-05-14T12:45:00Z",
+    "last_save_at": "2026-07-02T05:31:11.105Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": "2026-05-14T12:45:00Z",
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:80851858bc119c1658b3e4070224b2fa899a9774a9f405e79f5f10ead10dce50",
+    "source_doc_hashes": {
+      "spec.md": "3027b6d5e24782391b7ccc07f70efd443433c9a996dfba17a0dde422db01c1b3",
+      "plan.md": "ce8e4d39598ca61eabc4cce42755df7876d6dec6792ab52a27ccfadc18fe0c1e",
+      "tasks.md": "b0ad58af8ad239028c3095583b59e1bc51c30e2014a58a94226dbcb82ae2abcc",
+      "checklist.md": "a9bede73e38db081fd569519c44f252bd2ef19d5f82385f5d5cd69911643ef23",
+      "decision-record.md": "55992f0416cc46301409e452437fd9de1920d853225b335f497f8f69cd4cc8e7",
+      "implementation-summary.md": "3dc2597cf5a95ef593c2bc91b7964dd517d8e4f57370ac76855f9aade6063345"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

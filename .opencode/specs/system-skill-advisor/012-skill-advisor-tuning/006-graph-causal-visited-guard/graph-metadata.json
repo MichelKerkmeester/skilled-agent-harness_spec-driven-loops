@@ -1,0 +1,221 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-skill-advisor/012-skill-advisor-tuning/006-graph-causal-visited-guard",
+  "spec_folder": "system-skill-advisor/012-skill-advisor-tuning/006-graph-causal-visited-guard",
+  "parent_id": "system-skill-advisor/012-skill-advisor-tuning",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "graph causal visited guard",
+      "graph causal edge suppression",
+      "score-first graph traversal",
+      "best positive strength expansion",
+      "graph causal visited guard plan",
+      "score-first traversal architecture",
+      "best positive strength map expansion",
+      "graph causal visited guard tasks",
+      "score-first traversal task breakdown",
+      "graph causal visited guard checklist",
+      "score-first traversal verification checklist",
+      "graph causal visited guard summary"
+    ],
+    "key_topics": [
+      "graph",
+      "causal",
+      "visited",
+      "guard",
+      "edge",
+      "suppression",
+      "score-first",
+      "traversal",
+      "best",
+      "positive",
+      "strength",
+      "expansion"
+    ],
+    "importance_tier": "high",
+    "status": "complete",
+    "key_files": [
+      ".opencode/skills/system-skill-advisor/mcp_server/lib/scorer/lanes/graph-causal.ts",
+      ".opencode/skills/system-skill-advisor/mcp_server/tests/scorer/graph-causal-visited-order.vitest.ts",
+      "spec.md",
+      "plan.md",
+      "checklist.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "graph-causal.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-skill-advisor/mcp_server/lib/scorer/lanes/graph-causal.ts",
+        "source": "derived"
+      },
+      {
+        "name": "graph-causal-visited-order.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-skill-advisor/mcp_server/tests/scorer/graph-causal-visited-order.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Causal Visited",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Guard Order Fix",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Score",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "No Python",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "a",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "no",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Breakdown",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Impact",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Quality",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The graph-causal lane's per-seed breadth-first walk called `seen.add(edge.targetId)` before the multiplier/threshold/score logic, so the first edge to reach a target marked it visited and every later edge to that target was dropped",
+    "created_at": "2026-07-06T20:52:20.865Z",
+    "last_save_at": "2026-07-07T11:21:37.378Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:b4c4c0edae07d60110c2e88a08c2804dd54d7411229922e817eba413f6d578cf",
+    "source_doc_hashes": {
+      "spec.md": "387022695de90d9c8e99c1313012c99e5de7edcf8ab5d92593d7d8447e1df166",
+      "plan.md": "6314fb183c429d5e28bba7cf805e7ad1aeca7016ff415ad7447269b1ec25cf79",
+      "tasks.md": "263a52b156894bf39488ca2769bdb66f50cdcc2ef6c4ae35c6e25d0623e63b5e",
+      "checklist.md": "d42137308d5a7133514921dfb1b9c278a4801412aa41e864e18d0d87de64d2e6",
+      "implementation-summary.md": "7747ebf9a41ee6c9ea46f27e8ec1047b1da717ff443330246d5c4d8ee6abd41a"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

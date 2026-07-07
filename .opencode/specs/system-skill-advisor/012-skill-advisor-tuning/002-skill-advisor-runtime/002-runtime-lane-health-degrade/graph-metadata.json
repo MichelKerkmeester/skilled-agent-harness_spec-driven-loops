@@ -1,0 +1,221 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-skill-advisor/012-skill-advisor-tuning/002-skill-advisor-runtime/002-runtime-lane-health-degrade",
+  "spec_folder": "system-skill-advisor/012-skill-advisor-tuning/002-skill-advisor-runtime/002-runtime-lane-health-degrade",
+  "parent_id": "system-skill-advisor/012-skill-advisor-tuning/002-skill-advisor-runtime",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "advisor runtime lane health degrade",
+      "C5 lane elision livetotal",
+      "C5a degraded lane flag",
+      "advisor liveTotal skew baseline",
+      "skill advisor graceful degrade fusion",
+      "advisor lane health degrade plan",
+      "C5 liveTotal elision sequencing",
+      "advisor confidence baseline first",
+      "degrade to remaining advisor plan",
+      "advisor lane health degrade tasks",
+      "C5 liveTotal elision tasks",
+      "advisor baseline first tasks"
+    ],
+    "key_topics": [
+      "advisor",
+      "runtime",
+      "lane",
+      "health",
+      "degrade",
+      "elision",
+      "livetotal",
+      "c5a",
+      "degraded",
+      "flag",
+      "skew",
+      "baseline"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      ".opencode/skills/system-skill-advisor/mcp_server/lib/scorer/fusion.ts",
+      ".opencode/skills/system-skill-advisor/mcp_server/lib/scorer/lane-registry.ts",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "fusion.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-skill-advisor/mcp_server/lib/scorer/fusion.ts",
+        "source": "derived"
+      },
+      {
+        "name": "lane-registry.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-skill-advisor/mcp_server/lib/scorer/lane-registry.ts",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Skill Advisor Runtime Lane",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Graceful Lane",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Skill Advisor",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The Skill Advisor",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Impact",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Quality",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The Skill Advisor fuses five lanes (`explicitauthor 0.42 / lexical 0.28 / graphcausal 0.13 / derivedgenerated 0.12 / semanticshadow 0.05`, `lane-registry.ts:8-19`) and normalizes confidence against a `liveTotal` denominator built from registry-static live weights filtered only by the config `disabled` set, never by runtime emptiness (`fusion.ts:343-345`, `liveNormalized = score / liveTotal` at `fusion.ts:388`) [CONFIRMED: research.md Internal Baseline, iter-003 F5/F7]",
+    "created_at": "2026-06-19T05:52:29.584Z",
+    "last_save_at": "2026-07-07T09:40:25.029Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:0e25063723e290c234956c86472f1b0f39b3bb5fb292f1860514d7ae14211043",
+    "source_doc_hashes": {
+      "spec.md": "43145e71aaadbba39350ecbc4ccb4ccc383b0a4889a3585cc698b57f82a7f0b3",
+      "plan.md": "478b6b14e06e09be01115c3231448e26e773d833eb6912bf92deb796009210ea",
+      "tasks.md": "ff8071a8da007df937f128a48eb99c2b7503742491cbd96b8ba5cdc4fc60cb72",
+      "checklist.md": "3138dd45bc3c0f256f4e52708682a742dc76fe37b19dbab9af940bbbb93ecc0e",
+      "implementation-summary.md": "797f626467755484ae8f713d731be78acc8d5a3c9f598c8876ab5aa504d1135f"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "specFolder": "system-skill-advisor/004-skill-advisor-production-hardening/006-codex-native-startup-advisor-hooks",
+  "description": "Codex CLI sessions do not receive the two payloads Claude Code receives:",
+  "keywords": [
+    "codex",
+    "cli",
+    "sessions",
+    "receive",
+    "two",
+    "payloads",
+    "claude",
+    "code",
+    "receives"
+  ],
+  "lastUpdated": "2026-07-07T12:56:31.955Z",
+  "specId": "006",
+  "folderSlug": "codex-native-startup-advisor-hooks",
+  "parentChain": [
+    "system-skill-advisor",
+    "004-skill-advisor-production-hardening"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

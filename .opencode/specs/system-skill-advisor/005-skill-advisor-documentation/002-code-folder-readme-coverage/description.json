@@ -1,0 +1,24 @@
+{
+  "level": "1",
+  "specFolder": "system-skill-advisor/005-skill-advisor-documentation/002-code-folder-readme-coverage",
+  "description": "Close the gap in two parallel tracks:",
+  "keywords": [
+    "close",
+    "gap",
+    "two",
+    "parallel",
+    "tracks"
+  ],
+  "lastUpdated": "2026-06-23T03:49:53.560Z",
+  "specId": "002",
+  "folderSlug": "code-folder-readme-coverage",
+  "parentChain": [
+    "system-spec-kit",
+    "026-graph-and-context-optimization",
+    "002-spec-kit-internals",
+    "002-skill-advisor",
+    "005-skill-advisor-documentation"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

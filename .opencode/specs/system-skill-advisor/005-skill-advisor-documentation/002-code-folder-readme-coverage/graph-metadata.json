@@ -1,0 +1,233 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-skill-advisor/005-skill-advisor-documentation/002-code-folder-readme-coverage",
+  "spec_folder": "system-skill-advisor/005-skill-advisor-documentation/002-code-folder-readme-coverage",
+  "parent_id": "system-skill-advisor/005-skill-advisor-documentation",
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "024 spec",
+      "system-skill-advisor code-folder readmes",
+      "Phase B code readme scoped",
+      "024 plan",
+      "phase B plan",
+      "024 tasks",
+      "024 implementation",
+      "phase B summary",
+      "024 resource map"
+    ],
+    "key_topics": [
+      "024",
+      "spec",
+      "system-skill-advisor",
+      "code-folder",
+      "readmes",
+      "phase",
+      "code",
+      "readme",
+      "scoped",
+      "plan",
+      "tasks",
+      "implementation"
+    ],
+    "importance_tier": "important",
+    "status": "planned",
+    "key_files": [
+      ".opencode/skills/system-skill-advisor/mcp_server/lib/context/README.md",
+      ".opencode/skills/system-skill-advisor/mcp_server/lib/scorer/lanes/README.md",
+      ".opencode/skills/system-skill-advisor/mcp_server/lib/scorer/lanes/__tests__/README.md",
+      ".opencode/skills/system-skill-advisor/mcp_server/scripts/routing-accuracy/README.md",
+      ".opencode/skills/system-skill-advisor/mcp_server/stress_test/search-quality/README.md",
+      ".opencode/skills/system-skill-advisor/mcp_server/tests/fixtures/lifecycle/README.md",
+      ".opencode/skills/system-skill-advisor/mcp_server/tests/scorer/fixtures/README.md",
+      "research/bundle-verification.md",
+      "research/context-bundles/tests-fixtures-lifecycle.json",
+      "research/context-bundles/tests-scorer-fixtures.json",
+      "plan.md",
+      "tasks.md",
+      "resource-map.md",
+      "lib/context/README.md",
+      "stress_test/search-quality/README.md",
+      "spec.md",
+      ".opencode/skills/sk-doc/assets/readme/readme_code_template.md",
+      ".opencode/skills/sk-doc/references/global/hvr_rules.md",
+      ".opencode/skills/sk-doc/scripts/validate_document.py",
+      ".opencode/skills/sk-doc/scripts/audit_readmes.py"
+    ],
+    "entities": [
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-skill-advisor/mcp_server/lib/context/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "bundle-verification.md",
+        "kind": "doc",
+        "path": "research/bundle-verification.md",
+        "source": "derived"
+      },
+      {
+        "name": "tests-fixtures-lifecycle.json",
+        "kind": "config",
+        "path": "research/context-bundles/tests-fixtures-lifecycle.json",
+        "source": "derived"
+      },
+      {
+        "name": "tests-scorer-fixtures.json",
+        "kind": "config",
+        "path": "research/context-bundles/tests-scorer-fixtures.json",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "resource-map.md",
+        "kind": "doc",
+        "path": "resource-map.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "readme_code_template.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/assets/readme/readme_code_template.md",
+        "source": "derived"
+      },
+      {
+        "name": "hvr_rules.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/references/global/hvr_rules.md",
+        "source": "derived"
+      },
+      {
+        "name": "validate_document.py",
+        "kind": "file",
+        "path": ".opencode/skills/sk-doc/scripts/validate_document.py",
+        "source": "derived"
+      },
+      {
+        "name": "audit_readmes.py",
+        "kind": "file",
+        "path": ".opencode/skills/sk-doc/scripts/audit_readmes.py",
+        "source": "derived"
+      },
+      {
+        "name": "Scaffolded Phase",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Target Level",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Discovery",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Close",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Dispatch Pass",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Phase",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Two",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Test Type",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Close the gap in two parallel tracks:",
+    "created_at": "2026-05-15T11:55:00Z",
+    "last_save_at": "2026-07-02T05:31:11.281Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "resource-map.md"
+    ],
+    "source_fingerprint": "sha256:ee99eefcf8a3fb7785d1578a0e04f78eab39ab6b4958464225ab1aec49d29fe0",
+    "source_doc_hashes": {
+      "spec.md": "e5a7fdef202a3f4d43728917d6782bc6624aabef13a8b9017bc04f1b64597fc3",
+      "plan.md": "6f0fa15dd68eb43e65bb5eb586afc32a4ae462e54bef1c0a73a7a462a8af0879",
+      "tasks.md": "6b45bfabc112cbbb2c16b3f0fd10efef36ad68cf3528e4a9745d057994865bd7",
+      "implementation-summary.md": "6c82e13610f456b2db4addcce0e1c24827fd3624667dae49eec8e4dd6cd61903",
+      "resource-map.md": "ac2f511cb3c456d1e91833938e1bba5ac6ecd22740c1c819b3c410f06774cccb"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

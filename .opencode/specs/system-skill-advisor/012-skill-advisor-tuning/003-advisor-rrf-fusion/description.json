@@ -1,0 +1,29 @@
+{
+  "level": "2",
+  "specFolder": "system-skill-advisor/012-skill-advisor-tuning/003-advisor-rrf-fusion",
+  "description": "The skill advisor ships an RRF-fusion path and two routing guards that are built, pass their unit tests and are byte-identical when off, but have",
+  "keywords": [
+    "skill",
+    "advisor",
+    "ships",
+    "rrf-fusion",
+    "path",
+    "two",
+    "routing",
+    "guards",
+    "built",
+    "pass",
+    "unit",
+    "tests",
+    "byte-identical"
+  ],
+  "lastUpdated": "2026-07-06T17:16:00.215Z",
+  "specId": "003",
+  "folderSlug": "advisor-rrf-fusion",
+  "parentChain": [
+    "system-skill-advisor",
+    "012-skill-advisor-tuning"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

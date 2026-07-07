@@ -1,0 +1,34 @@
+{
+  "topic": "CLI-fallback feasibility for mk_skill_advisor: skill-advisor-specific deltas against the settled spec-memory CLI-over-daemon pattern",
+  "maxIterations": 10,
+  "convergenceThreshold": 0,
+  "stuckThreshold": 3,
+  "maxDurationMinutes": 240,
+  "specFolder": ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure/001-mcp-to-cli-tool-transition/003-skill-advisor-cli/000-skill-advisor-cli-research",
+  "artifactDir": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure/001-mcp-to-cli-tool-transition/003-skill-advisor-cli/000-skill-advisor-cli-research/research/lineages/gpt",
+  "resource_map_present": false,
+  "resource_map": { "emit": false },
+  "createdAt": "2026-06-06T14:00:00Z",
+  "completedAt": "2026-06-06T14:32:00Z",
+  "status": "complete",
+  "executionMode": "fanout-lineage",
+  "loopType": "research",
+  "executor": {
+    "kind": "cli-codex",
+    "model": "gpt-5.5",
+    "label": "gpt"
+  },
+  "lineage": {
+    "sessionId": "fanout-gpt-1780754397647-byff4w",
+    "parentSessionId": "dr-20260606T135000-skill-advisor-cli",
+    "lineageMode": "new",
+    "generation": 1,
+    "continuedFromRun": null
+  },
+  "fileProtection": {
+    "deep-research-config.json": "immutable-after-init",
+    "deep-research-state.jsonl": "append-only",
+    "iterations/iteration-NNN.md": "write-once",
+    "research.md": "workflow-owned-final-synthesis"
+  }
+}

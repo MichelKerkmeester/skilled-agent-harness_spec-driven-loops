@@ -1,0 +1,216 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-skill-advisor/007-skill-advisor-embedder-stack/003-install-guide-docs",
+  "spec_folder": "system-skill-advisor/007-skill-advisor-embedder-stack/003-install-guide-docs",
+  "parent_id": "system-skill-advisor/007-skill-advisor-embedder-stack",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "022/003 install guide",
+      "skill-advisor onboarding docs",
+      "022/003 plan",
+      "022/003 tasks",
+      "010/003 summary",
+      "skill-advisor embedder docs",
+      "022/003 summary"
+    ],
+    "key_topics": [
+      "022",
+      "003",
+      "install",
+      "guide",
+      "skill-advisor",
+      "onboarding",
+      "docs",
+      "plan",
+      "tasks",
+      "010",
+      "summary",
+      "embedder"
+    ],
+    "importance_tier": "normal",
+    "status": "in_progress",
+    "key_files": [
+      "plan.md",
+      "tasks.md",
+      ".opencode/skills/system-skill-advisor/INSTALL_GUIDE.md",
+      ".opencode/skills/system-skill-advisor/README.md",
+      "mcp_server/lib/embedders/registry.ts",
+      "mcp_server/lib/embedders/adapter.ts",
+      "mcp_server/lib/embedders/schema.ts",
+      "spec.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "INSTALL_GUIDE.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-skill-advisor/INSTALL_GUIDE.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-skill-advisor/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "registry.ts",
+        "kind": "code",
+        "path": "mcp_server/lib/embedders/registry.ts",
+        "source": "derived"
+      },
+      {
+        "name": "adapter.ts",
+        "kind": "code",
+        "path": "mcp_server/lib/embedders/adapter.ts",
+        "source": "derived"
+      },
+      {
+        "name": "schema.ts",
+        "kind": "code",
+        "path": "mcp_server/lib/embedders/schema.ts",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Apple Silicon",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. METADATA",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "2. PROBLEM & PURPOSE",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "3. SCOPE",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "4. REQUIREMENTS",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "5. SUCCESS CRITERIA",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. SUMMARY",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "2. QUALITY GATES",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "3. ARCHITECTURE",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "4. IMPLEMENTATION PHASES",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Inventory current docs",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Draft INSTALL_GUIDE \"Choosing an embedder\" section",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "scope",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Document the new pluggable embedder + auto-detect for new users — mirror 019/002 for skill-advisor",
+    "created_at": "2026-05-18T08:07:25.980Z",
+    "last_save_at": "2026-07-07T11:42:15.775Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:ac3af65e37e7d0b90113078481c5f4a315225e1204305ac82491a7a82ea5ee0a",
+    "source_doc_hashes": {
+      "spec.md": "9ab686f4c9c2b830888b9655ae5394689165ddb1e5ae87c7d29f81b23dceacb6",
+      "plan.md": "f72aafd98034c5901c52a034c3af41191432ccff15a129ff0588fdeb5232acb7",
+      "tasks.md": "b3fdb33f4b18074218f0459def20b7b519eee118ef049f79e9b98bc46785ffcf",
+      "implementation-summary.md": "b0335ccff8cc3021a53072679bdddd6e186932da8beffcf7c234b81ae10cd53f"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

@@ -1,0 +1,34 @@
+{
+  "level": "phase",
+  "specFolder": "system-skill-advisor/005-skill-advisor-documentation/004-documentation-quality-refactor",
+  "description": "`.opencode/skills/system-skill-advisor/` has accumulated drift across its 6 doc surfaces (SKILL.md, README.md, ARCHITECTURE.md, INSTALLGUIDE.md, refer",
+  "keywords": [
+    "opencode",
+    "skills",
+    "system-skill-advisor",
+    "accumulated",
+    "drift",
+    "across",
+    "doc",
+    "surfaces",
+    "skill",
+    "readme",
+    "architecture",
+    "installguide",
+    "refer"
+  ],
+  "lastUpdated": "2026-06-23T03:49:53.573Z",
+  "specId": "004",
+  "folderSlug": "documentation-quality-refactor",
+  "parentChain": [
+    "system-spec-kit",
+    "026-graph-and-context-optimization",
+    "002-spec-kit-internals",
+    "002-skill-advisor",
+    "005-skill-advisor-documentation"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "16-05-26_13-23__spec-folder-moved-from-top-level-opencode-specs.md"
+  ]
+}

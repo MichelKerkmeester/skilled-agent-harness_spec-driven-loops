@@ -1,0 +1,46 @@
+{
+  "folder_path": ".opencode/skills/system-skill-advisor/mcp_server/tests/fixtures/lifecycle/",
+  "folder_role": "Test fixtures for lifecycle metadata scenarios including superseded, successor, archived, future, rolled back, and mixed version skill states.",
+  "file_inventory": {
+    "by_extension": {
+      ".ts": ["index.ts"]
+    },
+    "directories": [],
+    "total_files": 1
+  },
+  "architecture_observation": "fixture-only",
+  "public_entrypoints": [
+    {
+      "name": "lifecycleFixtures",
+      "kind": "const",
+      "file": "index.ts",
+      "purpose": "Exports test fixture data for lifecycle metadata scenarios"
+    }
+  ],
+  "internal_imports": [
+    {
+      "symbol": "lifecycleFixtures",
+      "imported_by": [
+        ".opencode/skills/system-skill-advisor/mcp_server/tests/scorer/native-scorer.vitest.ts",
+        ".opencode/skills/system-skill-advisor/mcp_server/tests/lifecycle-derived-metadata.vitest.ts"
+      ]
+    }
+  ],
+  "external_imports": [],
+  "integration_notes": "This folder provides fixture data for testing lifecycle metadata handling in the system-skill-advisor codebase. The fixtures cover various lifecycle states including deprecated skills with redirect metadata, active successors, archived skills in z_archive, future skills in z_future, rolled back schema versions, and mixed schema version arrays. These fixtures are consumed by lifecycle-derived-metadata tests and scorer tests to verify routing logic for skills in different lifecycle states.",
+  "validation_commands": [
+    {
+      "command": "cd .opencode/skills/system-skill-advisor/mcp_server && npm test -- tests/lifecycle-derived-metadata.vitest.ts",
+      "expected": "exit 0",
+      "verified": true
+    }
+  ],
+  "key_invariants": [
+    "lifecycle status values are deprecated|active|archived|future",
+    "superseded fixtures include redirectTo metadata for routing redirects",
+    "archived fixtures reference z_archive directory paths",
+    "future fixtures reference z_future directory paths",
+    "rolled back fixtures use schema_version 1 format without derived block",
+    "mixed version fixtures contain arrays with varying schema_version values"
+  ]
+}

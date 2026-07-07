@@ -1,0 +1,218 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-skill-advisor/001-skill-graph/004-metadata-fixes-and-seeded-sweep-rerun",
+  "spec_folder": "system-skill-advisor/001-skill-graph/004-metadata-fixes-and-seeded-sweep-rerun",
+  "parent_id": "system-skill-advisor/001-skill-graph",
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "skill metadata fixes apply",
+      "post-audit metadata refresh",
+      "advisor seeded resweep",
+      "metadata-aware sweep delta",
+      "metadata fixes plan",
+      "metadata fixes tasks",
+      "metadata fixes checklist",
+      "metadata fixes summary"
+    ],
+    "key_topics": [
+      "skill",
+      "metadata",
+      "fixes",
+      "apply",
+      "post-audit",
+      "refresh",
+      "advisor",
+      "seeded",
+      "resweep",
+      "metadata-aware",
+      "sweep",
+      "delta"
+    ],
+    "importance_tier": "important",
+    "status": "planned",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md",
+      "research/sweep-results-after-fixes.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "sweep-results-after-fixes.md",
+        "kind": "doc",
+        "path": "research/sweep-results-after-fixes.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Phase",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Apply",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "concrete WHAT",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "seeded",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Kit",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Depends On",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Safety Production",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "WHAT",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "All Phase",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "per-vector",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "edit",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "TASK NOTATION",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "PHASE 1: SETUP",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Phase 015/005 produced a research report (`research/audit-report.md`) ranking the 8 lowest-scoring skills with concrete WHAT/WHY/EXAMPLE phrasing changes",
+    "created_at": "2026-05-14T01:00:00Z",
+    "last_save_at": "2026-07-02T05:31:11.085Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": "2026-05-14T01:00:00Z",
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:f80c59c59bb4959d26c5f85973801b6decd8848f467056bb1dea8666e9005780",
+    "source_doc_hashes": {
+      "spec.md": "8053bad99eab777508ba86f839306150353772f04b289a8b33403ddb23c4ce05",
+      "plan.md": "84ad0d8b8e83d31925e9a0ee33ba93731c7b0119a0c77f52fe5dee7c0bdc9d39",
+      "tasks.md": "ba9a40899115a75980f2bfe2dce2e04900c5bad705d212f0e8a1af00eb19484a",
+      "checklist.md": "30028d6cb0bc2430e1ba52a4fe113a00d198693af29cb09f714617bb55d2fba0",
+      "implementation-summary.md": "c03dba4a757481d0371c780feddddcdd0a7a42ec61da476ac8734c76865c661f"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

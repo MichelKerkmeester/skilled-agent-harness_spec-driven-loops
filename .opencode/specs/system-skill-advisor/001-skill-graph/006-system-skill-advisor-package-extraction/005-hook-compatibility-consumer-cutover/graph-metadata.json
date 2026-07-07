@@ -1,0 +1,236 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-skill-advisor/001-skill-graph/006-system-skill-advisor-package-extraction/005-hook-compatibility-consumer-cutover",
+  "spec_folder": "system-skill-advisor/001-skill-graph/006-system-skill-advisor-package-extraction/005-hook-compatibility-consumer-cutover",
+  "parent_id": "system-skill-advisor/001-skill-graph/006-system-skill-advisor-package-extraction",
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "013 009 005 hooks compat",
+      "advisor consumer cutover",
+      "system skill advisor hook cutover",
+      "advisor legacy proxy",
+      "013 009 005 plan",
+      "advisor consumer cutover plan",
+      "advisor proxy migration",
+      "013 009 005 tasks",
+      "advisor consumer cutover tasks",
+      "hooks compat tasks",
+      "013 009 005 checklist",
+      "advisor consumer cutover verification"
+    ],
+    "key_topics": [
+      "013",
+      "009",
+      "005",
+      "hooks",
+      "compat",
+      "advisor",
+      "consumer",
+      "cutover",
+      "system",
+      "skill",
+      "hook",
+      "legacy"
+    ],
+    "importance_tier": "critical",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      ".opencode/skills/system-spec-kit/mcp_server/tools/index.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts",
+      "dist/context-server.js",
+      ".opencode/skills/system-skill-advisor/mcp_server/scripts/skill_advisor.py",
+      ".opencode/skills/system-spec-kit/mcp_server/INSTALL_GUIDE.md",
+      ".opencode/skills/system-skill-advisor/INSTALL_GUIDE.md",
+      ".opencode/commands/doctor/assets/doctor_skill-advisor.yaml",
+      ".opencode/commands/doctor/assets/doctor_update.yaml",
+      ".opencode/skills/system-skill-advisor/mcp_server/database/skill-graph.sqlite",
+      ".codex/config.toml",
+      ".claude/mcp.json",
+      "tools/index.ts"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "index.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/tools/index.ts",
+        "source": "derived"
+      },
+      {
+        "name": "tool-schemas.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts",
+        "source": "derived"
+      },
+      {
+        "name": "context-server.js",
+        "kind": "code",
+        "path": "dist/context-server.js",
+        "source": "derived"
+      },
+      {
+        "name": "skill_advisor.py",
+        "kind": "file",
+        "path": ".opencode/skills/system-skill-advisor/mcp_server/scripts/skill_advisor.py",
+        "source": "derived"
+      },
+      {
+        "name": "INSTALL_GUIDE.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/INSTALL_GUIDE.md",
+        "source": "derived"
+      },
+      {
+        "name": "doctor_skill-advisor.yaml",
+        "kind": "config",
+        "path": ".opencode/commands/doctor/assets/doctor_skill-advisor.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "doctor_update.yaml",
+        "kind": "config",
+        "path": ".opencode/commands/doctor/assets/doctor_update.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "skill-graph.sqlite",
+        "kind": "file",
+        "path": ".opencode/skills/system-skill-advisor/mcp_server/database/skill-graph.sqlite",
+        "source": "derived"
+      },
+      {
+        "name": "config.toml",
+        "kind": "file",
+        "path": ".codex/config.toml",
+        "source": "derived"
+      },
+      {
+        "name": "mcp.json",
+        "kind": "config",
+        "path": ".claude/mcp.json",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Hooks Compat And Consumer Cutover",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Dependencies",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Cut",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "ADR-001 split the advisor into a standalone package and MCP server, but live consumers still carry mixed assumptions",
+    "created_at": "2026-05-14T10:38:05Z",
+    "last_save_at": "2026-07-02T05:31:11.109Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:7b8175a41ac595289c823ec30ca52348f5a171c5524a599121515a934207d291",
+    "source_doc_hashes": {
+      "spec.md": "a4e9c9008e20e851b076879f9e094f2b2057886d702128feb3a5f858f5a04868",
+      "plan.md": "0aea8015e70ee2d0946c10cffc39be244a68b8bdf3ee117e8a58c3a2943fe0fd",
+      "tasks.md": "3f197d8cb57f6fd56c3c306672a0d1c6f43dac1122f8848b48f053b3ee3e34a0",
+      "checklist.md": "c905e055cd337f183be3506ef14cbcfe33255c2a5f61e601ce474bfcbc50f824",
+      "decision-record.md": "29d14f75a5d531815818f70fd31c2a31d28d0d0e9e49719dadf762cb22420d58",
+      "implementation-summary.md": "3eaaecc7e0a72f067cc6204c612d875ac3b5d83333bdad4e8c0b97b874c123ac"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "level": "1",
+  "specFolder": "system-skill-advisor/009-advisor-and-codegraph-migrated-items/004-advisor-observability",
+  "description": "The advisor already computes scorer evidence internally (`lib/scorer/types.ts:80-87`) but strips it at output, so the public `laneBreakdown` exposes",
+  "keywords": [
+    "advisor",
+    "already",
+    "computes",
+    "scorer",
+    "evidence",
+    "internally",
+    "lib",
+    "types",
+    "80-87",
+    "strips",
+    "output",
+    "public",
+    "lanebreakdown",
+    "exposes"
+  ],
+  "lastUpdated": "2026-07-07T12:56:32.112Z",
+  "specId": "004",
+  "folderSlug": "advisor-observability",
+  "parentChain": [
+    "system-skill-advisor",
+    "009-advisor-and-codegraph-migrated-items"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

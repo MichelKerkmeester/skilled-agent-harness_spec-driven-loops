@@ -1,0 +1,31 @@
+{
+  "level": "1",
+  "specFolder": "system-skill-advisor/007-skill-advisor-embedder-stack/002-jina-swap-and-reindex",
+  "description": "Flip skill-advisor default from gemma to jina-embeddings-v3 using 022/001 pluggable layer; reindex skill-graph.sqlite; smoke-test semantic-shadow",
+  "keywords": [
+    "flip",
+    "skill-advisor",
+    "default",
+    "gemma",
+    "jina-embeddings-v3",
+    "using",
+    "022",
+    "001",
+    "pluggable",
+    "layer",
+    "reindex",
+    "skill-graph",
+    "sqlite",
+    "smoke-test",
+    "semantic-shadow"
+  ],
+  "lastUpdated": "2026-07-07T12:56:32.044Z",
+  "specId": "002",
+  "folderSlug": "jina-swap-and-reindex",
+  "parentChain": [
+    "system-skill-advisor",
+    "007-skill-advisor-embedder-stack"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": []
+}

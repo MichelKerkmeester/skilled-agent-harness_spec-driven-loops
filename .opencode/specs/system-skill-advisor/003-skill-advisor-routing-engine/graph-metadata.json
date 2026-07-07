@@ -1,0 +1,106 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-skill-advisor/003-skill-advisor-routing-engine",
+  "spec_folder": "system-skill-advisor/003-skill-advisor-routing-engine",
+  "parent_id": "system-skill-advisor",
+  "parent_id_review_required": true,
+  "children_ids": [
+    "system-skill-advisor/003-skill-advisor-routing-engine/001-memory-search-routing-tuning",
+    "system-skill-advisor/003-skill-advisor-routing-engine/002-advisor-phrase-booster-tuning",
+    "system-skill-advisor/003-skill-advisor-routing-engine/003-smart-remediation-opencode-plugin",
+    "system-skill-advisor/003-skill-advisor-routing-engine/004-advisor-hook-surface-integration",
+    "system-skill-advisor/003-skill-advisor-routing-engine/005-advisor-setup-command",
+    "system-skill-advisor/003-skill-advisor-routing-engine/006-skill-advisor-affordance-evidence"
+  ],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "006-skill-advisor/003-skill-advisor-routing-engine",
+      "router",
+      "intent routing"
+    ],
+    "key_topics": [
+      "006-skill-advisor",
+      "003-skill-advisor-routing-engine",
+      "router",
+      "intent",
+      "routing",
+      "phase",
+      "parent",
+      "optimization",
+      "across",
+      "skill",
+      "advisor",
+      "system"
+    ],
+    "importance_tier": "important",
+    "status": "planned",
+    "key_files": [
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Parent",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Intent Routing",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Routing Tuning Coordination Parent",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Advisor Phrase",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Booster Tailoring",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Router Remediation",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Phase parent for intent routing optimization across the skill advisor system. Coordinates 5 children covering search-and-routing tuning, phrase booster tailoring, smart router remediation, hook surface integration, and setup command infrastructure.",
+    "created_at": "2026-05-16T09:00:00Z",
+    "last_save_at": "2026-07-07T11:26:23.474Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "source_fingerprint": "sha256:0e23dfe65c2d6d780558a4feed720f74e406c693566681d7a1866702d257af1e",
+    "source_doc_hashes": {
+      "spec.md": "c02bacaaa12a476f8676a900fe445ba2cca85a5a8003f7b486bc803a7e514e9d"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

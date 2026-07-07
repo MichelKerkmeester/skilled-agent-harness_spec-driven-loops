@@ -1,0 +1,108 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-skill-advisor/012-skill-advisor-tuning",
+  "spec_folder": "system-skill-advisor/012-skill-advisor-tuning",
+  "parent_id": "system-skill-advisor",
+  "parent_id_review_required": true,
+  "children_ids": [
+    "system-skill-advisor/012-skill-advisor-tuning/001-scorer-saturation-root-fix",
+    "system-skill-advisor/012-skill-advisor-tuning/002-skill-advisor-runtime",
+    "system-skill-advisor/012-skill-advisor-tuning/003-advisor-rrf-fusion",
+    "system-skill-advisor/012-skill-advisor-tuning/004-advisor-penalty-contract",
+    "system-skill-advisor/012-skill-advisor-tuning/005-executor-delegation-resolver",
+    "system-skill-advisor/012-skill-advisor-tuning/006-graph-causal-visited-guard",
+    "system-skill-advisor/012-skill-advisor-tuning/007-eval-hardening",
+    "system-skill-advisor/012-skill-advisor-tuning/008-semantic-shadow-prove-or-freeze"
+  ],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "skill advisor scorer tuning",
+      "advisor scorer root fix",
+      "advisor scorer workstreams"
+    ],
+    "key_topics": [
+      "skill",
+      "advisor",
+      "scorer",
+      "tuning",
+      "root",
+      "fix",
+      "workstreams",
+      "shared",
+      "skill-advisor",
+      "weighted",
+      "five-lane",
+      "fusion"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Land Layer",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The shared skill-advisor scorer — the weighted five-lane fusion that ranks which skill a prompt should route to — carries a saturation-class defect: explicit-lane disambiguation penalties are pre-clamp additive offsets and the fusion floors net-negative lane matches to zero, so durable negative evidence is erased the moment saturating positive support reappears",
+    "created_at": "2026-07-06T11:00:00.000Z",
+    "last_save_at": "2026-07-07T11:21:36.441Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "source_fingerprint": "sha256:51d0038a6acf23672ca5ec7e8de164a1e2dad6987cc7b52f316ae1eb34b8c610",
+    "source_doc_hashes": {
+      "spec.md": "b975073b04f50080ef621034b77b9f8137ac55296a69b0a2f554e1c6c5eadf10"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

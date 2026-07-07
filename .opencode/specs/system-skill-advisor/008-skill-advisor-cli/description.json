@@ -1,0 +1,47 @@
+{
+  "title": "Skill-Advisor CLI Workstream",
+  "trigger_phrases": [
+    "skill advisor cli feasibility",
+    "skill advisor cli fallback",
+    "mk_skill_advisor cli",
+    "028 003 research"
+  ],
+  "level": 2,
+  "schema_version": 1,
+  "packet_id": "system-skill-advisor/008-skill-advisor-cli",
+  "status": "phase-parent",
+  "parent_id": "system-skill-advisor",
+  "importance_tier": "important",
+  "created_at": "2026-06-06T13:40:00Z",
+  "is_phase_parent": true,
+  "children": [
+    "000-skill-advisor-cli-research",
+    "001-cli-core",
+    "002-hardening-and-tests",
+    "003-runtime-integration"
+  ],
+  "specFolder": "system-skill-advisor/008-skill-advisor-cli",
+  "description": "The mkskilladvisor MCP server (9 tools: 4 advisor + 5 skillgraph) powers Gate-2 routing and the prompt-submit advisor brief, but the MCP surface has",
+  "keywords": [
+    "mkskilladvisor",
+    "mcp",
+    "server",
+    "tools",
+    "advisor",
+    "skillgraph",
+    "powers",
+    "gate-2",
+    "routing",
+    "prompt-submit",
+    "brief",
+    "surface"
+  ],
+  "lastUpdated": "2026-07-07T12:56:32.074Z",
+  "specId": "008",
+  "folderSlug": "skill-advisor-cli",
+  "parentChain": [
+    "system-skill-advisor"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

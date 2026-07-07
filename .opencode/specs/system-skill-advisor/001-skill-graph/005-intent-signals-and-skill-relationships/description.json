@@ -1,0 +1,32 @@
+{
+  "level": "2",
+  "specFolder": "system-skill-advisor/001-skill-graph/005-intent-signals-and-skill-relationships",
+  "description": "Phase 015/005's audit found that across all 17 active skills, three structured-signal fields are universally absent:",
+  "keywords": [
+    "phase",
+    "015",
+    "005",
+    "audit",
+    "found",
+    "across",
+    "active",
+    "skills",
+    "three",
+    "structured-signal",
+    "fields",
+    "universally",
+    "absent"
+  ],
+  "lastUpdated": "2026-06-23T03:49:53.217Z",
+  "specId": "005",
+  "folderSlug": "intent-signals-and-skill-relationships",
+  "parentChain": [
+    "system-spec-kit",
+    "026-graph-and-context-optimization",
+    "002-spec-kit-internals",
+    "002-skill-advisor",
+    "001-skill-graph"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

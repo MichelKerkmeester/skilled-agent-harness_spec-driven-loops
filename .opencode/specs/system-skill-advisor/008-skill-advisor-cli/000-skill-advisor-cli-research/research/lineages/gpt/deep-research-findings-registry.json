@@ -1,0 +1,47 @@
+{
+  "openQuestions": [
+    {
+      "id": "measure-mutating-ops",
+      "question": "What are advisor_rebuild and skill_graph_scan wall times under mutation-capable conditions?",
+      "reason": "The lineage was constrained to no writes outside the artifact directory."
+    },
+    {
+      "id": "live-orphan-count",
+      "question": "How many mk-skill-advisor launcher processes are live now?",
+      "reason": "Process table inspection was blocked by sandbox policy."
+    }
+  ],
+  "resolvedQuestions": [
+    "KQ1 parity matrix",
+    "KQ2 daemon dependency audit",
+    "KQ3 affordance transfer",
+    "KQ4 Python prior art and scorer divergence",
+    "KQ5 long-running operation semantics",
+    "KQ6 integration surface map",
+    "KQ7 hook latency policy",
+    "KQ8 coexistence and orphan class",
+    "KQ9 design deltas",
+    "KQ10 verdict"
+  ],
+  "keyFindings": [
+    {
+      "id": "cli-go",
+      "finding": "Additive generated Node CLI is feasible and recommended; MCP remains canonical."
+    },
+    {
+      "id": "python-reconcile",
+      "finding": "skill_advisor.py should be reconciled as legacy advisor_recommend facade, not treated as full parity."
+    },
+    {
+      "id": "warm-hooks",
+      "finding": "Prompt-submit hooks must use warm daemon/in-process/cache paths, not one-shot native bridge."
+    }
+  ],
+  "ruledOutDirections": [
+    "Python-only CLI",
+    "MCP removal",
+    "Per-prompt native subprocess in hooks",
+    "Daemonless feature parity",
+    "Hand-written schema fork"
+  ]
+}

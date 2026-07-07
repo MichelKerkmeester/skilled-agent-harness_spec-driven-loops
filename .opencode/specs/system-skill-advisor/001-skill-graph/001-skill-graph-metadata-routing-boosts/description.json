@@ -1,0 +1,31 @@
+{
+  "specFolder": "system-skill-advisor/001-skill-graph/001-skill-graph-metadata-routing-boosts",
+  "description": "Add structured graph metadata to all 20 skill folders, compile into a lightweight skill-graph.json, and integrate graph-derived boosts into skill_advi",
+  "keywords": [
+    "add",
+    "structured",
+    "graph",
+    "metadata",
+    "skill",
+    "folders",
+    "compile",
+    "lightweight",
+    "skill-graph",
+    "json",
+    "integrate",
+    "graph-derived",
+    "boosts"
+  ],
+  "lastUpdated": "2026-06-23T03:49:53.192Z",
+  "specId": "001",
+  "folderSlug": "skill-graph-metadata-routing-boosts",
+  "parentChain": [
+    "system-spec-kit",
+    "026-graph-and-context-optimization",
+    "002-spec-kit-internals",
+    "002-skill-advisor",
+    "001-skill-graph"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

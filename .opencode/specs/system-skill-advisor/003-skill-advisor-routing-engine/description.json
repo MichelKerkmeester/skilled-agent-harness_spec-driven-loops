@@ -1,0 +1,34 @@
+{
+  "level": "3",
+  "specFolder": "system-skill-advisor/003-skill-advisor-routing-engine",
+  "description": "Phase parent for intent routing optimization across the skill advisor system. Coordinates 5 children covering search-and-routing tuning, phrase booste",
+  "keywords": [
+    "phase",
+    "parent",
+    "intent",
+    "routing",
+    "optimization",
+    "across",
+    "skill",
+    "advisor",
+    "system",
+    "coordinates",
+    "children",
+    "covering",
+    "search-and-routing",
+    "tuning",
+    "phrase",
+    "booste"
+  ],
+  "lastUpdated": "2026-06-23T03:49:53.475Z",
+  "specId": "003",
+  "folderSlug": "skill-advisor-routing-engine",
+  "parentChain": [
+    "system-spec-kit",
+    "026-graph-and-context-optimization",
+    "002-spec-kit-internals",
+    "002-skill-advisor"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": []
+}

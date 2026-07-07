@@ -1,0 +1,30 @@
+{
+  "level": "2",
+  "specFolder": "system-skill-advisor/012-skill-advisor-tuning/001-scorer-saturation-root-fix",
+  "description": "The advisor scorer treats explicit-lane disambiguation penalties as pre-clamp additive offsets and floors net-negative lane matches to zero, so a",
+  "keywords": [
+    "advisor",
+    "scorer",
+    "treats",
+    "explicit-lane",
+    "disambiguation",
+    "penalties",
+    "pre-clamp",
+    "additive",
+    "offsets",
+    "floors",
+    "net-negative",
+    "lane",
+    "matches",
+    "zero"
+  ],
+  "lastUpdated": "2026-07-07T09:40:25.015Z",
+  "specId": "001",
+  "folderSlug": "scorer-saturation-root-fix",
+  "parentChain": [
+    "system-skill-advisor",
+    "012-skill-advisor-tuning"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

@@ -1,0 +1,28 @@
+{
+  "level": "2",
+  "specFolder": "system-skill-advisor/009-advisor-and-codegraph-migrated-items/003-advisor-state-spec-folder-leak",
+  "description": "The skill-advisor resolves where to write its runtime state via `findAdvisorWorkspaceRoot(start)` (`lib/utils/workspace-root.ts`), which walks up",
+  "keywords": [
+    "skill-advisor",
+    "resolves",
+    "write",
+    "runtime",
+    "state",
+    "via",
+    "findadvisorworkspaceroot",
+    "start",
+    "lib",
+    "utils",
+    "workspace-root",
+    "walks"
+  ],
+  "lastUpdated": "2026-07-07T12:56:32.107Z",
+  "specId": "003",
+  "folderSlug": "advisor-state-spec-folder-leak",
+  "parentChain": [
+    "system-skill-advisor",
+    "009-advisor-and-codegraph-migrated-items"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

@@ -1,0 +1,220 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-skill-advisor/004-skill-advisor-production-hardening/008-fix-skill-advisor-quality",
+  "spec_folder": "system-skill-advisor/004-skill-advisor-production-hardening/008-fix-skill-advisor-quality",
+  "parent_id": "system-skill-advisor/004-skill-advisor-production-hardening",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "F-006-B1",
+      "F-012-C2",
+      "F-013-C3",
+      "advisor quality",
+      "renderAdvisorBrief alignment",
+      "graph-causal conflict signal",
+      "projection trigger keyword duplication",
+      "task-intent confidence floor",
+      "ambiguity tie cluster",
+      "review and update disambiguation",
+      "F-006-B1 plan",
+      "F-012-C2 plan"
+    ],
+    "key_topics": [
+      "f-006-b1",
+      "f-012-c2",
+      "f-013-c3",
+      "advisor",
+      "quality",
+      "renderadvisorbrief",
+      "alignment",
+      "graph-causal",
+      "conflict",
+      "signal",
+      "projection",
+      "trigger"
+    ],
+    "importance_tier": "normal",
+    "status": "in_progress",
+    "key_files": [
+      ".opencode/skills/system-spec-kit/scripts/spec/validate.sh",
+      "checklist.md",
+      "implementation-summary.md",
+      "spec.md",
+      "plan.md",
+      "tasks.md"
+    ],
+    "entities": [
+      {
+        "name": "validate.sh",
+        "kind": "script",
+        "path": ".opencode/skills/system-spec-kit/scripts/spec/validate.sh",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Advisor Quality",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Eight",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "The Codex",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Aligns Codex",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Test Type",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "grep",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Begin Phase",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Route Codex",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "five",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Quality Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Eight advisor-quality findings sit across the skill-advisor surface",
+    "created_at": "2026-05-01T05:18:47Z",
+    "last_save_at": "2026-07-07T11:42:16.788Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:41120f0725e80edfcdd7efe201810988b167850b78813f9610d7b9a3b9fbac96",
+    "source_doc_hashes": {
+      "spec.md": "2963877a0638cada8d012eaf6b99266fd4e79bb028cd8f1c17517712c8163c82",
+      "plan.md": "084f1f95a6c3356671913d8f90db9039f34fc9608fea21b9db2ae090389c6782",
+      "tasks.md": "61070a880849315de9ff7148eedea4eac8dd0478590925817fc5dc0d3766960b",
+      "checklist.md": "fe1bf9229743f96f3c55524595a6f3b53565cda44a1e33009bb37dcc8ccc359d",
+      "implementation-summary.md": "66380dbcc8ddb5c9ac72a5ea48ce7f9bd1f66c6a6c11d6b130b841a170f961c1"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

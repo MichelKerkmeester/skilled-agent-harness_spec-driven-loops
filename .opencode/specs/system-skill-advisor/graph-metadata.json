@@ -4,7 +4,19 @@
   "spec_folder": "system-skill-advisor",
   "parent_id": null,
   "children_ids": [
-    "system-skill-advisor/001-skill-advisor-tuning",
+    "system-skill-advisor/000-migration-from-system-speckit",
+    "system-skill-advisor/001-skill-graph",
+    "system-skill-advisor/002-skill-advisor-scoring-engine",
+    "system-skill-advisor/003-skill-advisor-routing-engine",
+    "system-skill-advisor/004-skill-advisor-production-hardening",
+    "system-skill-advisor/005-skill-advisor-documentation",
+    "system-skill-advisor/006-playbook-run-and-remediation",
+    "system-skill-advisor/007-skill-advisor-embedder-stack",
+    "system-skill-advisor/008-skill-advisor-cli",
+    "system-skill-advisor/009-advisor-and-codegraph-migrated-items",
+    "system-skill-advisor/010-skill-advisor-frontmatter-alignment",
+    "system-skill-advisor/011-skill-advisor-phase-parent",
+    "system-skill-advisor/012-skill-advisor-tuning",
     "system-skill-advisor/z_archive"
   ],
   "manual": {
@@ -15,6 +27,8 @@
   "derived": {
     "trigger_phrases": [
       "system-skill-advisor track",
+      "skill advisor subsystem",
+      "skill graph routing engine scoring",
       "advisor scorer intelligence",
       "advisor projection vocabulary",
       "saturation-class root fix"
@@ -22,21 +36,33 @@
     "key_topics": [
       "system-skill-advisor",
       "advisor",
+      "skill-graph",
+      "routing",
+      "scoring",
+      "hardening",
+      "embedder",
+      "cli",
       "scorer",
       "saturation",
-      "demotion",
-      "projection",
-      "vocabulary",
       "track"
     ],
     "importance_tier": "important",
-    "status": "planned",
-    "last_active_child_id": "system-skill-advisor/001-skill-advisor-tuning",
-    "key_files": [],
+    "status": "in_progress",
+    "last_active_child_id": "system-skill-advisor/012-skill-advisor-tuning",
+    "key_files": [
+      "spec.md",
+      "context-index.md"
+    ],
     "entities": [],
-    "causal_summary": "The shared skill-advisor scorer cannot express durable negative evidence: explicit-lane disambiguation penalties are pre-clamp additive offsets and fusion floors net-negative lane matches to zero, so a penalty is erased the moment saturating positive support re-appears",
-    "created_at": "2026-07-06T11:00:00.000Z",
-    "last_save_at": "2026-07-06T11:00:00.000Z",
-    "save_lineage": "graph_only"
+    "causal_summary": "The skill-advisor subsystem's spec history was scattered across three unrelated `system-speckit` packets (026, 027, 028) for over two months, with no single folder a reader could open to understand its full history",
+    "created_at": "2026-04-21T00:00:00.000Z",
+    "last_save_at": "2026-07-07T00:00:00.000Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": ["spec.md", "context-index.md"],
+    "source_fingerprint": "sha256:37977663505af519447c1da131185236a3bbefa8a62f6f0873c84834fb8a21d2",
+    "source_doc_hashes": {
+      "spec.md": "b69dd6c0d427d61117797f9c445dab9fe99ada4bd9a4a735644c1fe8a88ea383"
+    }
   }
 }
