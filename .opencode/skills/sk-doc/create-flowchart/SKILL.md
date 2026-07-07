@@ -36,6 +36,15 @@ Do not use this packet when:
 
 If the target path is unknown and writing would be a guess, ask for the path before creating or editing a file.
 
+This packet uses simple intent and workflow-shape routing, not keyed resource discovery. Its packet-local resources are a flat `references/` route map plus pattern examples under `assets/flowcharts/`; do not infer `references/<key>/` or `assets/<key>/` subdirectories.
+
+Smart routing rules:
+
+- If the request clearly asks for a flowchart, route here and select exactly one closest pattern asset from the table in section 3.
+- If the workflow shape is unclear, load `references/README.md` if it exists and use `UNKNOWN_FALLBACK`: confirm the target artifact, source process, audience, workflow shape, terminal outcomes, and validation path before drafting.
+- If a listed pattern asset or reference is missing, do not crash or invent a replacement path; use the nearest available guidance in `references/README.md` and report the missing resource.
+- Only load packet-local markdown resources under `references/` or `assets/flowcharts/`; keep shared markdown quality guidance in `../shared/` for surrounding-document validation only.
+
 ---
 
 ## 2. Required Inputs

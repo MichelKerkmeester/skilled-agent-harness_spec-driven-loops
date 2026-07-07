@@ -49,6 +49,15 @@ Route by artifact type first, then by folder purpose.
 | Install guide | Markdown guide, usually under `.opencode/install_guides/` | `assets/readme/install_guide_template.md` |
 | Existing README audit | Findings or requested audit artifact | `scripts/audit_readmes.py` |
 
+This packet uses simple artifact routing. It selects README, code-folder README, install-guide or audit behavior from request intent and target-folder purpose. It does not use runtime keyed resource discovery by project, stack, mode or model. The only packet-local resource groups are `references/readme/`, `references/install_guide/` and `assets/readme/`.
+
+Router resilience rules:
+
+- Load optional markdown resources only after resolving them under this packet and confirming they exist.
+- Treat `references/README.md` as the fallback route map when artifact type or folder purpose is unclear.
+- Ask for the missing artifact type, target folder or validation expectation instead of silently loading no resources.
+- Do not add a full `references/<key>/` or `assets/<key>/` runtime-key router unless this packet gains real keyed resource subdirectories.
+
 Use this README decision tree:
 
 ```text
