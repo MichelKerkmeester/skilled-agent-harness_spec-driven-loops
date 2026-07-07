@@ -1,6 +1,6 @@
-# /create:folder_readme Presentation Contract
+# /create:readme Presentation Contract
 
-This file is the single source of truth for user-facing presentation in `/create:folder_readme`: startup questions, setup/status dashboards, README/install display contracts, and result templates. The command router owns asset routing only. The workflow YAML owns execution behavior.
+This file is the single source of truth for user-facing presentation in `/create:readme`: startup questions, setup/status dashboards, README/install display contracts, and result templates. The command router owns asset routing only. The workflow YAML owns execution behavior.
 
 ## 1. Phase 0 Verification Display
 
@@ -35,14 +35,14 @@ This command requires the @markdown agent for:
 - sk-doc skill integration
 
 Restart with:
-@markdown /create:folder_readme [operation] [target]
+@markdown /create:readme [operation] [target]
 
 STATUS=FAIL ERROR="Markdown agent required"
 ```
 
 ## 2. Auto Setup Resolution
 
-For `:auto`, resolve setup using the system auto-mode contract, then load `create_folder_readme_auto.yaml` only when every required field is available.
+For `:auto`, resolve setup using the system auto-mode contract, then load `create_readme_auto.yaml` only when every required field is available.
 
 Pre-bound setup schema:
 

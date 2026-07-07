@@ -2,7 +2,7 @@
 # OPENCODE CREATE: SK-SKILL UNIFIED WORKFLOW (AUTO MODE)
 # ─────────────────────────────────────────────────────────────────
 # Mode: autonomous execution (no approval checkpoints)
-# Entrypoint: /create:sk-skill
+# Entrypoint: /create:skill
 # Operations: full-create | full-update | reference-only | asset-only
 # ─────────────────────────────────────────────────────────────────
 
@@ -497,11 +497,11 @@ termination:
   message: "Unified sk-skill auto workflow complete."
   next_steps:
   - condition: "Need iterative updates"
-    action: "/create:sk-skill [skill-name] full-update :confirm"
+    action: "/create:skill [skill-name] full-update :confirm"
   - condition: "Need another reference"
-    action: "/create:sk-skill [skill-name] reference-only [type] :confirm"
+    action: "/create:skill [skill-name] reference-only [type] :confirm"
   - condition: "Need another asset"
-    action: "/create:sk-skill [skill-name] asset-only [type] :confirm"
+    action: "/create:skill [skill-name] asset-only [type] :confirm"
 
 rules:
   ALWAYS:

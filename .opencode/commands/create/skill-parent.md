@@ -4,7 +4,7 @@ argument-hint: "<skill-name> [create|update] [--modes <mode1,mode2,...>] [--surf
 allowed-tools: Read, Write, Edit, Bash, Glob, Grep, TodoWrite
 ---
 
-# /create:sk-skill-parent Router
+# /create:skill-parent Router
 
 This command is a thin router. It separates execution routing from user-facing presentation.
 
@@ -12,19 +12,19 @@ This command is a thin router. It separates execution routing from user-facing p
 
 | Asset | Path | Purpose |
 | --- | --- | --- |
-| Presentation contract | `.opencode/commands/create/assets/create_parent_skill_presentation.txt` | Startup questions, setup dashboard, operation/status display, and completion template |
-| Auto workflow | `.opencode/commands/create/assets/create_parent_skill_auto.yaml` | Autonomous parent-skill scaffolding workflow execution |
-| Confirm workflow | `.opencode/commands/create/assets/create_parent_skill_confirm.yaml` | Interactive checkpointed parent-skill scaffolding workflow execution |
+| Presentation contract | `.opencode/commands/create/assets/create_skill_parent_presentation.txt` | Startup questions, setup dashboard, operation/status display, and completion template |
+| Auto workflow | `.opencode/commands/create/assets/create_skill_parent_auto.yaml` | Autonomous parent-skill scaffolding workflow execution |
+| Confirm workflow | `.opencode/commands/create/assets/create_skill_parent_confirm.yaml` | Interactive checkpointed parent-skill scaffolding workflow execution |
 
 ## Execution Order
 
-1. Read `.opencode/commands/create/assets/create_parent_skill_presentation.txt`.
+1. Read `.opencode/commands/create/assets/create_skill_parent_presentation.txt`.
 2. Run the presentation contract's Phase 0 verification and setup resolution.
 3. Resolve execution mode from `$ARGUMENTS` or the setup answer: `:auto` or `:confirm`.
 4. Resolve operation from setup: `create` or `update`.
 5. Load exactly one workflow YAML:
-   - `:auto` -> `.opencode/commands/create/assets/create_parent_skill_auto.yaml`
-   - `:confirm` or omitted mode -> `.opencode/commands/create/assets/create_parent_skill_confirm.yaml`
+   - `:auto` -> `.opencode/commands/create/assets/create_skill_parent_auto.yaml`
+   - `:confirm` or omitted mode -> `.opencode/commands/create/assets/create_skill_parent_confirm.yaml`
 6. Execute the selected YAML step by step and route to the resolved operation branch.
 7. Use the presentation contract, not this router, for user prompts, setup/status dashboards, and final result display.
 
@@ -45,7 +45,7 @@ The generated package is:
 
 ## Routing Rules
 
-- This command is the canonical `/create:sk-skill-parent` entrypoint.
+- This command is the canonical `/create:skill-parent` entrypoint.
 - Do not split behavior across legacy or ad-hoc parent-skill scaffolders.
 - Do not edit workflow YAML while executing this command.
 - If any referenced asset is missing, stop and report the missing path.
@@ -59,7 +59,7 @@ The generated package is:
 
 ## Presentation Boundary
 
-The following content lives only in `.opencode/commands/create/assets/create_parent_skill_presentation.txt`:
+The following content lives only in `.opencode/commands/create/assets/create_skill_parent_presentation.txt`:
 
 - Startup questions, Phase 0 verification, setup dashboard, operation display, status display, completion template, and next-step text.
 

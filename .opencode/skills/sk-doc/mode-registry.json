@@ -22,7 +22,7 @@
       "packet": "create-skill",
       "packetSkillName": "create-skill",
       "grandfatheredFolderMismatch": false,
-      "command": "/create:sk-skill",
+      "command": "/create:skill",
       "aliases": ["create skill", "new skill", "scaffold a skill", "make a skill"],
       "advisorRouting": { "routingClass": "metadata", "packetSkillName": "create-skill" }
     },
@@ -34,7 +34,7 @@
       "packet": "create-skill",
       "packetSkillName": "create-skill",
       "grandfatheredFolderMismatch": false,
-      "command": "/create:sk-skill-parent",
+      "command": "/create:skill-parent",
       "aliases": ["create parent skill", "parent skill hub", "scaffold a parent hub", "nested mode packets"],
       "advisorRouting": { "routingClass": "metadata", "packetSkillName": "create-skill" }
     },
@@ -46,7 +46,7 @@
       "packet": "create-readme",
       "packetSkillName": "create-readme",
       "grandfatheredFolderMismatch": false,
-      "command": "/create:folder_readme",
+      "command": "/create:readme",
       "aliases": ["create readme", "write a readme", "folder readme", "install guide", "add documentation"],
       "advisorRouting": { "routingClass": "metadata", "packetSkillName": "create-readme" }
     },
@@ -94,7 +94,7 @@
       "packet": "create-manual-testing-playbook",
       "packetSkillName": "create-manual-testing-playbook",
       "grandfatheredFolderMismatch": false,
-      "command": "/create:testing-playbook",
+      "command": "/create:manual-testing-playbook",
       "aliases": ["create testing playbook", "manual testing playbook", "test scenarios", "validation playbook"],
       "advisorRouting": { "routingClass": "metadata", "packetSkillName": "create-manual-testing-playbook" }
     },

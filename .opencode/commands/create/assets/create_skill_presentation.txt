@@ -1,6 +1,6 @@
-# /create:sk-skill Presentation Contract
+# /create:skill Presentation Contract
 
-This file is the single source of truth for user-facing presentation in `/create:sk-skill`: startup questions, setup/status dashboards, operation display, and result templates. The command router owns asset routing only. The workflow YAML owns execution behavior.
+This file is the single source of truth for user-facing presentation in `/create:skill`: startup questions, setup/status dashboards, operation display, and result templates. The command router owns asset routing only. The workflow YAML owns execution behavior.
 
 ## 1. Phase 0 Verification Display
 
@@ -25,14 +25,14 @@ Hard-block message:
 
 ```text
 This command requires @markdown for template-first generation and sk-doc validation.
-Restart with: @markdown /create:sk-skill <skill-name> [operation] [type]
+Restart with: @markdown /create:skill <skill-name> [operation] [type]
 
 STATUS=FAIL ERROR="Markdown agent required"
 ```
 
 ## 2. Auto Setup Resolution
 
-For `:auto`, resolve setup using the system auto-mode contract, then load `create_sk_skill_auto.yaml` only when every required field is available.
+For `:auto`, resolve setup using the system auto-mode contract, then load `create_skill_auto.yaml` only when every required field is available.
 
 Pre-bound setup schema:
 

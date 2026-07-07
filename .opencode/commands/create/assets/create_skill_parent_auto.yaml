@@ -2,7 +2,7 @@
 # OPENCODE CREATE: PARENT SKILL WORKFLOW (AUTO MODE)
 # ─────────────────────────────────────────────────────────────────
 # Mode: autonomous execution (no approval checkpoints)
-# Entrypoint: /create:sk-skill-parent
+# Entrypoint: /create:skill-parent
 # Operations: create | update
 # ─────────────────────────────────────────────────────────────────
 role: Parent Skill Creator using sk-doc

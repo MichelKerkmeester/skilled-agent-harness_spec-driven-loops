@@ -1,6 +1,6 @@
-# /create:sk-skill-parent Presentation Contract
+# /create:manual-testing-playbook Presentation Contract
 
-This file is the single source of truth for user-facing presentation in `/create:sk-skill-parent`: startup questions, setup/status dashboards, and result display. The command router owns asset routing only. The workflow YAML owns execution behavior.
+This file is the single source of truth for user-facing presentation in `/create:manual-testing-playbook`: startup questions, setup/status dashboards, operation display, and result templates. The command router owns asset routing only. The workflow YAML owns execution behavior.
 
 ## 1. Phase 0 Verification Display
 
@@ -27,24 +27,24 @@ Hard-block message:
 
 ```text
 This command requires @markdown for template-first generation and sk-doc validation.
-Restart with: @markdown /create:sk-skill-parent <skill-name> [create|update]
+Restart with: @markdown /create:manual-testing-playbook <skill-name> [create|update]
 
 STATUS=FAIL ERROR="Markdown agent required"
 ```
 
 ## 2. Auto Setup Resolution
 
-For `:auto`, resolve setup using the system auto-mode contract, then load `create_parent_skill_auto.yaml` only when every required field is available.
+For `:auto`, resolve setup using the system auto-mode contract, then load `create_manual_testing_playbook_auto.yaml` only when every required field is available.
 
 Pre-bound setup schema:
 
 ```yaml
 PRE-BOUND SETUP ANSWERS:
-  skill_name: my-loop-workflows
-  operation: create
-  modes: research,review,ai-council
+  skill_name: system-spec-kit
+  operation: update
+  source_strategy: hybrid
   skill_path: .opencode/skills/
-  skill_root: .opencode/skills/my-loop-workflows
+  playbook_root: .opencode/skills/system-spec-kit/manual_testing_playbook
   execution_mode: AUTONOMOUS
   spec_choice: skip
   spec_path: ""
@@ -57,9 +57,9 @@ Default resolution table:
 | --- | --- | --- | --- | --- |
 | `skill_name` | Yes | First positional token or marker | none | No |
 | `operation` | Yes | Second positional token or marker | none | No |
-| `modes` | Yes | `--modes`, marker, or targeted mode-list choice | none | Yes |
+| `source_strategy` | Yes | marker or targeted source strategy choice | none | Yes |
 | `skill_path` | Yes | `--path`, marker, or default | `.opencode/skills/` | No |
-| `skill_root` | Yes | marker or derived from skill path/name | derived | No |
+| `playbook_root` | Yes | marker or derived from skill path/name | derived | No |
 | `execution_mode` | Yes | `:auto`, `:confirm`, or marker | `AUTONOMOUS` under `:auto` | No |
 | `spec_choice` | Yes | marker or targeted documentation choice | none | Yes |
 | `spec_path` | Conditional | marker or derived from spec choice | none | No |
@@ -73,17 +73,16 @@ Ask one prompt containing only applicable questions. Do not split these question
 Before proceeding, please answer:
 
 Q0. Skill Name (if missing)
-Required format: hyphen-case folder name. This becomes the hub skill identity.
+Required format: hyphen-case folder name.
 
 Q1. Operation (if missing)
-A) create - scaffold a new parent skill with nested mode packets
-B) update - add or revise modes/packets in an existing parent skill
+A) create
+B) update
 
-Q2. Modes (if missing)
-Comma-separated list of workflow mode names (hyphen-case), one packet per mode.
-Each workflow packet folder is named [hub-prefix]-<mode> and packetSkillName == folder.
-Optional --surfaces names become bare-noun read-only surface packets (packetKind: surface).
-Example: modes research,review,ai-council  (optionally --surfaces webflow,animation)
+Q2. Source Strategy
+A) Derive from existing feature catalog when present
+B) Build from a manual scenario list or operator-provided validation matrix
+C) Hybrid: derive what exists, then patch gaps manually
 
 Q3. Spec Folder
 A) Existing
@@ -92,9 +91,9 @@ C) Update related
 D) Skip
 E) Phase folder
 
-Q4. Prior Work Context (when the existing spec has prior continuity)
-A) Load most recent spec-doc record
-B) Load up to 3 most recent spec-doc records
+Q4. Prior Session Context (if existing spec has it)
+A) Load handover plus implementation-summary continuity
+B) Load canonical spec docs up to a recent cap
 C) Skip
 
 Q5. Execution Mode (if no :auto/:confirm suffix)
@@ -104,7 +103,7 @@ B) Autonomous (:auto)
 
 Hard stops:
 
-- Do not infer missing operation or the mode list from context.
+- Do not infer missing operation from context.
 - Do not split setup across multiple prompts.
 - Do not continue with missing required fields.
 
@@ -115,9 +114,9 @@ Hard stops:
 | `create_agent_verified` | Yes | `true` | `[value]` |
 | `skill_name` | Yes | explicit, hyphen-case | `[value]` |
 | `operation` | Yes | `create` or `update` | `[value]` |
-| `modes` | Yes | one or more hyphen-case mode names | `[value]` |
+| `source_strategy` | Yes | one normalized choice | `[value]` |
 | `skill_path` | Yes | default if omitted | `[value]` |
-| `skill_root` | Yes | derived from skill name and path | `[value]` |
+| `playbook_root` | Yes | derived from skill name and path | `[value]` |
 | `execution_mode` | Yes | `:auto` or `:confirm` | `[value]` |
 | `spec_choice` | Yes | A/B/C/D/E | `[value]` |
 | `spec_path` | Conditional | required for A/B/C/E | `[value]` |
@@ -127,29 +126,23 @@ Proceed only when every required field validates.
 ## 5. Completion Result Template
 
 ```text
-Parent Skill Command Complete
+Testing Playbook Command Complete
 
 Skill: [skill_name]
 Operation: [operation]
-Modes: [comma-separated mode list]
+Source strategy: [source_strategy]
 Mode: [:auto|:confirm]
-Target: [skill_root]
-
-Identity:
-- Hub graph-metadata.json count: [must be exactly 1]
-- Per-packet graph-metadata.json count: [must be 0]
+Target: [playbook_root]
 
 Validation:
-- parent-skill-check.cjs canonical gate (exit 0): [PASSED|FAILED]
-- Hub structure (SKILL.md + mode-registry.json + hub-router.json + description.json + graph-metadata.json): [PASSED|FAILED]
-- Canon files (hub-router.json, description.json, changelogs): [PRESENT|MISSING]
-- Per-mode packet (workflow folder == packetSkillName == [hub-prefix]-<mode>, surfaces bare-noun, own SKILL.md): [PASSED|FAILED]
-- Registry advisorRouting coverage (one block per mode): [PASSED|FAILED]
-- One-identity invariant (exactly one graph-metadata.json): [PASSED|FAILED]
+- Root validation: [PASSED|FAILED]
+- Root/per-feature link checks: [PASSED|FAILED]
+- Root/per-feature count checks: [PASSED|FAILED]
+- Forbidden sidecar check: [PASSED|FAILED]
 
 Context:
 - Spec path: [spec_path or none]
 - Memory loaded: [yes/no]
 
-STATUS=[OK|CANCELLED|FAIL] PATH=[skill_root]
+STATUS=[OK|CANCELLED|FAIL] PATH=[playbook_root]
 ```

@@ -12,7 +12,7 @@ Use this packet when you need an operator-facing validation package, not just a 
 
 Good fits:
 
-- `/create:testing-playbook`
+- `/create:manual-testing-playbook`
 - Creating `manual_testing_playbook/manual_testing_playbook.md`
 - Building one file per feature scenario
 - Defining exact prompts, commands, expected signals, evidence, pass/fail criteria, and failure triage

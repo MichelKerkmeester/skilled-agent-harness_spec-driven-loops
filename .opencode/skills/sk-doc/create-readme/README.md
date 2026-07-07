@@ -13,7 +13,7 @@ Use this packet when you need to create, refresh or audit a `README.md`, especia
 - Project, skill, feature or component orientation.
 - Source-code folder documentation with topology, boundaries, entrypoints and validation.
 - Install guides for MCP servers, plugins, CLI tools or development dependencies.
-- `/create:folder_readme` requests.
+- `/create:readme` requests.
 - README freshness checks, broken local reference checks or key artifact coverage audits.
 
 Do not use it for general prose review, changelogs, release notes, non-markdown targets or scaffolding other `sk-doc` artifacts. Those belong in the create-quality-control packet or another `sk-doc` workflow.

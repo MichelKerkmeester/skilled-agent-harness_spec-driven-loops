@@ -4,7 +4,7 @@ argument-hint: "<skill-name> [operation] [type] [--path <dir>] [--chained] [:aut
 allowed-tools: Read, Write, Edit, Bash, Glob, Grep, TodoWrite, mcp__mk_code_index__code_graph_query, mcp__mk_spec_memory__memory_index_scan, mcp__mk_spec_memory__memory_save
 ---
 
-# /create:sk-skill Router
+# /create:skill Router
 
 This command is a thin router. It separates execution routing from user-facing presentation.
 
@@ -12,19 +12,19 @@ This command is a thin router. It separates execution routing from user-facing p
 
 | Asset | Path | Purpose |
 | --- | --- | --- |
-| Presentation contract | `.opencode/commands/create/assets/create_sk_skill_presentation.txt` | Startup questions, setup dashboard, operation/status display, and completion template |
-| Auto workflow | `.opencode/commands/create/assets/create_sk_skill_auto.yaml` | Autonomous unified skill workflow execution |
-| Confirm workflow | `.opencode/commands/create/assets/create_sk_skill_confirm.yaml` | Interactive checkpointed unified skill workflow execution |
+| Presentation contract | `.opencode/commands/create/assets/create_skill_presentation.txt` | Startup questions, setup dashboard, operation/status display, and completion template |
+| Auto workflow | `.opencode/commands/create/assets/create_skill_auto.yaml` | Autonomous unified skill workflow execution |
+| Confirm workflow | `.opencode/commands/create/assets/create_skill_confirm.yaml` | Interactive checkpointed unified skill workflow execution |
 
 ## Execution Order
 
-1. Read `.opencode/commands/create/assets/create_sk_skill_presentation.txt`.
+1. Read `.opencode/commands/create/assets/create_skill_presentation.txt`.
 2. Run the presentation contract's Phase 0 verification and setup resolution.
 3. Resolve operation from setup: `full-create`, `full-update`, `reference-only`, or `asset-only`.
 4. Resolve execution mode from `$ARGUMENTS` or the setup answer: `:auto` or `:confirm`.
 5. Load exactly one workflow YAML:
-   - `:auto` -> `.opencode/commands/create/assets/create_sk_skill_auto.yaml`
-   - `:confirm` or omitted mode -> `.opencode/commands/create/assets/create_sk_skill_confirm.yaml`
+   - `:auto` -> `.opencode/commands/create/assets/create_skill_auto.yaml`
+   - `:confirm` or omitted mode -> `.opencode/commands/create/assets/create_skill_confirm.yaml`
 6. Execute the selected YAML step by step and route to the resolved operation branch.
 7. Use the presentation contract, not this router, for user prompts, setup/status dashboards, and final result display.
 
@@ -37,7 +37,7 @@ This command is a thin router. It separates execution routing from user-facing p
 
 ## Presentation Boundary
 
-The following content lives only in `.opencode/commands/create/assets/create_sk_skill_presentation.txt`:
+The following content lives only in `.opencode/commands/create/assets/create_skill_presentation.txt`:
 
 - Startup questions, Phase 0 verification, setup dashboard, operation display, status display, completion template, and next-step text.
 

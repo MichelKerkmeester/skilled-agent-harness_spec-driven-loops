@@ -5,7 +5,7 @@ allowed-tools: [Read, Write, Edit, Bash, Grep, Glob]
 version: 1.0.0.0
 ---
 
-<!-- Keywords: create-readme, folder readme, code folder readme, project readme, skill readme, install guide, /create:folder_readme, audit_readmes -->
+<!-- Keywords: create-readme, folder readme, code folder readme, project readme, skill readme, install guide, /create:readme, audit_readmes -->
 
 # Create README (workflow)
 
@@ -21,10 +21,10 @@ Use this packet when the request involves:
 - Documenting a project, skill, feature, component or source-code directory.
 - Writing developer orientation for a code folder, including topology, boundaries, entrypoints and validation.
 - Creating an install guide for MCP servers, plugins, CLI tools or development dependencies.
-- Running `/create:folder_readme`.
+- Running `/create:readme`.
 - Auditing README freshness, broken local references or key artifact coverage.
 
-Keyword triggers: `create readme`, `folder readme`, `write readme`, `README.md`, `install guide`, `installation guide`, `setup guide`, `code folder readme`, `/create:folder_readme`, `audit readmes`.
+Keyword triggers: `create readme`, `folder readme`, `write readme`, `README.md`, `install guide`, `installation guide`, `setup guide`, `code folder readme`, `/create:readme`, `audit readmes`.
 
 Skip this packet when:
 

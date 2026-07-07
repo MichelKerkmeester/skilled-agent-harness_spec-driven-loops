@@ -2,7 +2,7 @@
 # OPENCODE CREATE: TESTING PLAYBOOK WORKFLOW (CONFIRM MODE)
 # ─────────────────────────────────────────────────────────────────
 # Mode: interactive execution with checkpoints
-# Entrypoint: /create:testing-playbook
+# Entrypoint: /create:manual-testing-playbook
 # Operations: create | update
 # ─────────────────────────────────────────────────────────────────
 role: Testing Playbook Creator using sk-doc
