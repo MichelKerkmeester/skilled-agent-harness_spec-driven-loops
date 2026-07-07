@@ -6,6 +6,7 @@ import { mkdtempSync, mkdirSync, rmSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { afterEach, describe, expect, it, vi } from 'vitest';
+import Database from 'better-sqlite3';
 import { closeDb, getDb, indexSkillMetadata, initDb } from '../lib/skill-graph/skill-graph-db.js';
 import { writeGraphMetadata } from './fixtures/skill-graph-db.js';
 
@@ -137,6 +138,104 @@ describe('skill graph database indexing', () => {
         { id: 'alpha' },
         { id: 'beta' },
       ]);
+    } finally {
+      closeDb();
+      rmSync(root, { recursive: true, force: true });
+    }
+  });
+
+  it('indexes a skill whose family is the generic sk-hub hub family', () => {
+    const root = mkdtempSync(join(tmpdir(), 'skill-graph-db-'));
+    const dbDir = join(root, 'db');
+    const skillRoot = join(root, 'skills');
+
+    try {
+      initDb(dbDir);
+      const skillDir = join(skillRoot, 'sk-design');
+      mkdirSync(skillDir, { recursive: true });
+      writeFileSync(join(skillDir, 'graph-metadata.json'), JSON.stringify({
+        schema_version: 1,
+        skill_id: 'sk-design',
+        family: 'sk-hub',
+        category: 'design',
+        domains: ['design'],
+        intent_signals: ['sk-design'],
+        derived: {},
+        edges: {},
+      }), 'utf8');
+
+      const result = indexSkillMetadata(skillRoot);
+      expect(result.indexedNodes).toBe(1);
+      expect(getDb().prepare('SELECT family FROM skill_nodes WHERE id = ?').get('sk-design')).toEqual({ family: 'sk-hub' });
+    } finally {
+      closeDb();
+      rmSync(root, { recursive: true, force: true });
+    }
+  });
+
+  it('self-heals a legacy database whose skill_nodes CHECK omits sk-hub', () => {
+    const root = mkdtempSync(join(tmpdir(), 'skill-graph-db-'));
+    const dbDir = join(root, 'db');
+    const skillRoot = join(root, 'skills');
+
+    try {
+      // Plant a legacy DB: skill_nodes with the old family CHECK, an edge child that
+      // FK-references it, and an existing row — exactly the shape the migration must heal
+      // without cascade-deleting the edge or losing the row.
+      mkdirSync(dbDir, { recursive: true });
+      const legacy = new Database(join(dbDir, 'skill-graph.sqlite'));
+      legacy.exec(`
+        CREATE TABLE skill_nodes (
+          id TEXT PRIMARY KEY,
+          family TEXT NOT NULL CHECK(family IN ('cli', 'mcp', 'sk-code', 'deep-loop', 'sk-util', 'system')),
+          category TEXT NOT NULL,
+          schema_version INTEGER NOT NULL,
+          domains TEXT, intent_signals TEXT, derived TEXT,
+          source_path TEXT NOT NULL UNIQUE,
+          content_hash TEXT NOT NULL,
+          embedding BLOB, embedding_model_id TEXT, embedding_content_hash TEXT,
+          indexed_at TEXT DEFAULT (datetime('now'))
+        );
+        CREATE TABLE skill_edges (
+          id INTEGER PRIMARY KEY AUTOINCREMENT,
+          source_id TEXT NOT NULL REFERENCES skill_nodes(id) ON DELETE CASCADE,
+          target_id TEXT NOT NULL REFERENCES skill_nodes(id) ON DELETE CASCADE,
+          edge_type TEXT NOT NULL, weight REAL NOT NULL, context TEXT NOT NULL,
+          UNIQUE(source_id, target_id, edge_type)
+        );
+        CREATE TABLE schema_version (version INTEGER NOT NULL);
+        INSERT INTO skill_nodes (id, family, category, schema_version, source_path, content_hash)
+          VALUES ('legacy-a', 'system', 'test', 1, '/x/legacy-a/graph-metadata.json', 'h-a'),
+                 ('legacy-b', 'system', 'test', 1, '/x/legacy-b/graph-metadata.json', 'h-b');
+        INSERT INTO skill_edges (source_id, target_id, edge_type, weight, context)
+          VALUES ('legacy-a', 'legacy-b', 'enhances', 0.5, 'edge survives the rebuild');
+        INSERT INTO schema_version (version) VALUES (1);
+      `);
+      legacy.close();
+
+      // Opening via initDb runs the migration: CHECK dropped, rows + edge preserved.
+      initDb(dbDir);
+      const tableSql = getDb().prepare("SELECT sql FROM sqlite_master WHERE type='table' AND name='skill_nodes'").get() as { sql: string };
+      expect(tableSql.sql).not.toMatch(/CHECK\s*\(\s*family\s+IN/i);
+      expect(getDb().prepare('SELECT COUNT(*) AS c FROM skill_nodes').get()).toEqual({ c: 2 });
+      expect(getDb().prepare('SELECT COUNT(*) AS c FROM skill_edges').get()).toEqual({ c: 1 });
+
+      // And a sk-hub skill now indexes without tripping a CHECK on the healed table.
+      const skillDir = join(skillRoot, 'sk-hubbed');
+      mkdirSync(skillDir, { recursive: true });
+      writeFileSync(join(skillDir, 'graph-metadata.json'), JSON.stringify({
+        schema_version: 1,
+        skill_id: 'sk-hubbed',
+        family: 'sk-hub',
+        category: 'design',
+        domains: ['x'],
+        intent_signals: ['x'],
+        derived: {},
+        edges: {},
+      }), 'utf8');
+      const result = indexSkillMetadata(skillRoot);
+      expect(result.warnings.join(' ')).not.toMatch(/CHECK/);
+      expect(getDb().prepare('SELECT family FROM skill_nodes WHERE id = ?').get('sk-hubbed')).toEqual({ family: 'sk-hub' });
     } finally {
       closeDb();
       rmSync(root, { recursive: true, force: true });

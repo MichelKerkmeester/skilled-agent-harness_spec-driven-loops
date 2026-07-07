@@ -188,7 +188,7 @@ function isWalFallbackError(error: unknown): boolean {
 const SCHEMA_SQL = `
   CREATE TABLE IF NOT EXISTS skill_nodes (
     id TEXT PRIMARY KEY,
-    family TEXT NOT NULL CHECK(family IN ('cli', 'mcp', 'sk-code', 'deep-loop', 'sk-util', 'system')),
+    family TEXT NOT NULL,
     category TEXT NOT NULL,
     schema_version INTEGER NOT NULL,
     domains TEXT,
@@ -368,6 +368,58 @@ function ensureSchemaMigrations(database: Database.Database): void {
     CREATE INDEX IF NOT EXISTS idx_skill_nodes_embedding_model ON skill_nodes(embedding_model_id);
     CREATE INDEX IF NOT EXISTS idx_skill_nodes_embedding_hash ON skill_nodes(embedding_content_hash);
   `);
+
+  // Older databases baked the family allowlist into the skill_nodes CHECK constraint.
+  // That duplicates the app-level ALLOWED_FAMILIES source of truth and silently drifts:
+  // a family accepted in code still fails the stale CHECK and aborts the entire scan
+  // transaction. Rebuild the table without the constraint so ALLOWED_FAMILIES is the
+  // one gate. Runs once — a rebuilt table no longer matches the detector.
+  const nodesTableSql = (database
+    .prepare("SELECT sql FROM sqlite_master WHERE type = 'table' AND name = 'skill_nodes'")
+    .get() as { sql?: string } | undefined)?.sql ?? '';
+  if (/CHECK\s*\(\s*family\s+IN/i.test(nodesTableSql)) {
+    // foreign_keys must be toggled outside a transaction; the DROP would otherwise
+    // cascade-delete every edge and doc that references skill_nodes.
+    const foreignKeysWereOn = database.pragma('foreign_keys', { simple: true }) === 1;
+    if (foreignKeysWereOn) database.pragma('foreign_keys = OFF');
+    try {
+      database.transaction(() => {
+        database.exec(`
+          CREATE TABLE skill_nodes_rebuild (
+            id TEXT PRIMARY KEY,
+            family TEXT NOT NULL,
+            category TEXT NOT NULL,
+            schema_version INTEGER NOT NULL,
+            domains TEXT,
+            intent_signals TEXT,
+            derived TEXT,
+            source_path TEXT NOT NULL UNIQUE,
+            content_hash TEXT NOT NULL,
+            embedding BLOB,
+            embedding_model_id TEXT,
+            embedding_content_hash TEXT,
+            indexed_at TEXT DEFAULT (datetime('now'))
+          );
+          INSERT INTO skill_nodes_rebuild (id, family, category, schema_version, domains,
+            intent_signals, derived, source_path, content_hash, embedding, embedding_model_id,
+            embedding_content_hash, indexed_at)
+          SELECT id, family, category, schema_version, domains, intent_signals, derived,
+            source_path, content_hash, embedding, embedding_model_id, embedding_content_hash,
+            indexed_at
+          FROM skill_nodes;
+          DROP TABLE skill_nodes;
+          ALTER TABLE skill_nodes_rebuild RENAME TO skill_nodes;
+          CREATE INDEX IF NOT EXISTS idx_skill_nodes_family ON skill_nodes(family);
+          CREATE INDEX IF NOT EXISTS idx_skill_nodes_category ON skill_nodes(category);
+          CREATE INDEX IF NOT EXISTS idx_skill_nodes_hash ON skill_nodes(content_hash);
+          CREATE INDEX IF NOT EXISTS idx_skill_nodes_embedding_model ON skill_nodes(embedding_model_id);
+          CREATE INDEX IF NOT EXISTS idx_skill_nodes_embedding_hash ON skill_nodes(embedding_content_hash);
+        `);
+      })();
+    } finally {
+      if (foreignKeysWereOn) database.pragma('foreign_keys = ON');
+    }
+  }
 }
 
 /** Initialize (or get) the skill graph database. */

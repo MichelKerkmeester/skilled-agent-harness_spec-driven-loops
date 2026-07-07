@@ -121,7 +121,7 @@ const SKILL_ADVISOR_TOOL_DEFINITIONS: readonly ToolDefinition[] = [
         skillId: { type: 'string', description: 'Skill identifier for single-skill queries' },
         sourceSkillId: { type: 'string', description: 'Source skill identifier for transitive_path' },
         targetSkillId: { type: 'string', description: 'Target skill identifier for transitive_path' },
-        family: { type: 'string', enum: ['cli', 'mcp', 'sk-code', 'deep-loop', 'sk-util', 'system'], description: 'Family name for family_members query' },
+        family: { type: 'string', enum: ['cli', 'mcp', 'sk-code', 'sk-hub', 'deep-loop', 'sk-util', 'system'], description: 'Family name for family_members query' },
         minInbound: { type: 'number', minimum: 0, maximum: 200, default: 2, description: 'Minimum inbound edge count for hub_skills query' },
         depth: { type: 'number', minimum: 1, maximum: 10, default: 2, description: 'Traversal depth for subgraph query' },
         limit: { type: 'number', minimum: 1, maximum: 200, default: 50, description: 'Maximum results to return for list queries' },
