@@ -11,8 +11,8 @@ SELF-CHECK: Are the create-command packet resources available?
 
 Required resources:
 - .opencode/skills/sk-doc/create-command/SKILL.md
-- .opencode/skills/sk-doc/create-command/assets/command/command_template.md
-- .opencode/skills/sk-doc/create-command/assets/command/command_presentation_template.md
+- .opencode/skills/sk-doc/create-command/assets/command_template.md
+- .opencode/skills/sk-doc/create-command/assets/command_presentation_template.md
 - .opencode/skills/sk-doc/create-command/references/router_presentation_split.md
 - .opencode/skills/sk-doc/create-command/references/argument_hints_and_modes.md
 

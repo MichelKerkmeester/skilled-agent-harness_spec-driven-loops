@@ -179,4 +179,4 @@ A: `/create:skill` for a new skill under `.opencode/skills/`. `/create:skill-par
 | [`scripts/init_skill.py`](./scripts/init_skill.py) | Skill directory scaffold from the template set |
 | [`scripts/package_skill.py`](./scripts/package_skill.py) | Validate and package a skill to a zip file |
 | [`assets/skill/`](./create-skill/assets/skill/) | SKILL.md, README, reference and asset templates for skill creation |
-| [`assets/flowcharts/`](./create-flowchart/assets/flowcharts/) | Reusable ASCII flowchart patterns for workflows and decision trees |
+| [`assets/flowcharts/`](./create-flowchart/assets/) | Reusable ASCII flowchart patterns for workflows and decision trees |

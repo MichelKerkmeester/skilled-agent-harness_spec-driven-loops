@@ -289,5 +289,5 @@ Validation:
 ## 8. RELATED RESOURCES
 
 - [feature_catalog_snippet_template.md](./feature_catalog_snippet_template.md) - Per-feature file template
-- [manual_testing_playbook_template.md](../../../create-manual-testing-playbook/assets/testing_playbook/manual_testing_playbook_template.md) - Parallel pattern for manual validation packages
+- [manual_testing_playbook_template.md](../../../create-manual-testing-playbook/assets/manual_testing_playbook_template.md) - Parallel pattern for manual validation packages
 - [frontmatter_templates.md](../../../shared/assets/frontmatter_templates.md) - Frontmatter conventions

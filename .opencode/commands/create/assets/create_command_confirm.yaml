@@ -165,8 +165,8 @@ documentation_level:
 # COMMAND CREATION TEMPLATES
 # ─────────────────────────────────────────────────────────────────
 command_templates:
-  command_markdown: .opencode/skills/sk-doc/create-command/assets/command/command_template.md
-  presentation_contract: .opencode/skills/sk-doc/create-command/assets/command/command_presentation_template.md
+  command_markdown: .opencode/skills/sk-doc/create-command/assets/command_template.md
+  presentation_contract: .opencode/skills/sk-doc/create-command/assets/command_presentation_template.md
 
 command_scripts:
   packet_local: "No packet-local scripts are wired; follow create-command/SKILL.md validation instructions."

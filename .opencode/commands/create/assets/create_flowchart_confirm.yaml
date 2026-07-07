@@ -174,12 +174,12 @@ flowchart_references:
   worked_example: .opencode/skills/sk-doc/create-flowchart/references/worked_example.md
 
 flowchart_patterns:
-  linear: .opencode/skills/sk-doc/create-flowchart/assets/flowcharts/simple_workflow.md
-  decision: .opencode/skills/sk-doc/create-flowchart/assets/flowcharts/decision_tree_flow.md
-  parallel: .opencode/skills/sk-doc/create-flowchart/assets/flowcharts/parallel_execution.md
-  approval: .opencode/skills/sk-doc/create-flowchart/assets/flowcharts/approval_workflow_loops.md
-  swimlane: .opencode/skills/sk-doc/create-flowchart/assets/flowcharts/system_architecture_swimlane.md
-  journey: .opencode/skills/sk-doc/create-flowchart/assets/flowcharts/user_onboarding.md
+  linear: .opencode/skills/sk-doc/create-flowchart/assets/simple_workflow.md
+  decision: .opencode/skills/sk-doc/create-flowchart/assets/decision_tree_flow.md
+  parallel: .opencode/skills/sk-doc/create-flowchart/assets/parallel_execution.md
+  approval: .opencode/skills/sk-doc/create-flowchart/assets/approval_workflow_loops.md
+  swimlane: .opencode/skills/sk-doc/create-flowchart/assets/system_architecture_swimlane.md
+  journey: .opencode/skills/sk-doc/create-flowchart/assets/user_onboarding.md
 
 # -----------------------------------------------------------------
 # CHECKPOINT OPTIONS
@@ -412,22 +412,22 @@ workflow:
     - Plan branch labels, connector style, box width strategy, and terminal states
     pattern_selection:
       linear:
-        asset: .opencode/skills/sk-doc/create-flowchart/assets/flowcharts/simple_workflow.md
+        asset: .opencode/skills/sk-doc/create-flowchart/assets/simple_workflow.md
         use_case: "single primary path with little branching"
       decision:
-        asset: .opencode/skills/sk-doc/create-flowchart/assets/flowcharts/decision_tree_flow.md
+        asset: .opencode/skills/sk-doc/create-flowchart/assets/decision_tree_flow.md
         use_case: "branching logic, validation, retries, fallback outcomes"
       parallel:
-        asset: .opencode/skills/sk-doc/create-flowchart/assets/flowcharts/parallel_execution.md
+        asset: .opencode/skills/sk-doc/create-flowchart/assets/parallel_execution.md
         use_case: "fan-out, concurrent work, fan-in, aggregate gates"
       approval:
-        asset: .opencode/skills/sk-doc/create-flowchart/assets/flowcharts/approval_workflow_loops.md
+        asset: .opencode/skills/sk-doc/create-flowchart/assets/approval_workflow_loops.md
         use_case: "review, revision, sign-off, escalation"
       swimlane:
-        asset: .opencode/skills/sk-doc/create-flowchart/assets/flowcharts/system_architecture_swimlane.md
+        asset: .opencode/skills/sk-doc/create-flowchart/assets/system_architecture_swimlane.md
         use_case: "request or data movement across layers or services"
       journey:
-        asset: .opencode/skills/sk-doc/create-flowchart/assets/flowcharts/user_onboarding.md
+        asset: .opencode/skills/sk-doc/create-flowchart/assets/user_onboarding.md
         use_case: "user-facing milestones, validation, support, completion"
     outputs:
     - pattern_asset_selected

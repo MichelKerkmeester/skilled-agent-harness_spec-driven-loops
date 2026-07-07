@@ -161,8 +161,8 @@ reference_sources:
   validation: .opencode/skills/sk-doc/shared/references/validation.md
 
 template_sources:
-  root_playbook: .opencode/skills/sk-doc/create-manual-testing-playbook/assets/testing_playbook/manual_testing_playbook_template.md
-  feature_file: .opencode/skills/sk-doc/create-manual-testing-playbook/assets/testing_playbook/manual_testing_playbook_snippet_template.md
+  root_playbook: .opencode/skills/sk-doc/create-manual-testing-playbook/assets/manual_testing_playbook_template.md
+  feature_file: .opencode/skills/sk-doc/create-manual-testing-playbook/assets/manual_testing_playbook_snippet_template.md
 
 validation_scripts:
   validate_document: .opencode/skills/sk-doc/scripts/validate_document.py

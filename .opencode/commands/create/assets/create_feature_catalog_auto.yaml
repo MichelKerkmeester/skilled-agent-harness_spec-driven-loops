@@ -147,8 +147,8 @@ reference_sources:
   validation: .opencode/skills/sk-doc/shared/references/validation.md
 
 template_sources:
-  root_catalog: .opencode/skills/sk-doc/create-feature-catalog/assets/feature_catalog/feature_catalog_template.md
-  feature_file: .opencode/skills/sk-doc/create-feature-catalog/assets/feature_catalog/feature_catalog_snippet_template.md
+  root_catalog: .opencode/skills/sk-doc/create-feature-catalog/assets/feature_catalog_template.md
+  feature_file: .opencode/skills/sk-doc/create-feature-catalog/assets/feature_catalog_snippet_template.md
 
 validation_scripts:
   validate_document: .opencode/skills/sk-doc/scripts/validate_document.py

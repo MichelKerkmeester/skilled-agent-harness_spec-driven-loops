@@ -383,7 +383,7 @@ readme_ai_optimization:
 # README: REFERENCE TEMPLATES
 # ─────────────────────────────────────────────────────────────────
 readme_reference_templates:
-  readme_template: .opencode/skills/sk-doc/create-readme/assets/readme/readme_template.md
+  readme_template: .opencode/skills/sk-doc/create-readme/assets/readme_template.md
   speckit_readme: .opencode/skills/system-spec-kit/README.md
   memory_readme: .opencode/skills/system-spec-kit/README.md
   core_standards: .opencode/skills/sk-doc/shared/references/core_standards.md
@@ -710,19 +710,19 @@ readme_templates:
   project_readme: |
     # Reference: See readme_template.md S13 (Complete Template) for the canonical 9-section scaffold.
     # Adapt sections per readme_types.project.sections above.
-    # Template path: .opencode/skills/sk-doc/create-readme/assets/readme/readme_template.md
+    # Template path: .opencode/skills/sk-doc/create-readme/assets/readme_template.md
   component_readme: |
     # Reference: See readme_template.md S13 (Complete Template) for the canonical 9-section scaffold.
     # Adapt sections per readme_types.component.sections above.
-    # Template path: .opencode/skills/sk-doc/create-readme/assets/readme/readme_template.md
+    # Template path: .opencode/skills/sk-doc/create-readme/assets/readme_template.md
   feature_readme: |
     # Reference: See readme_template.md S13 (Complete Template) for the canonical 9-section scaffold.
     # Adapt sections per readme_types.feature.sections above (subset of 9 sections).
-    # Template path: .opencode/skills/sk-doc/create-readme/assets/readme/readme_template.md
+    # Template path: .opencode/skills/sk-doc/create-readme/assets/readme_template.md
   skill_readme: |
     # Reference: See readme_template.md S13 (Complete Template) for the canonical 9-section scaffold.
     # Adapt sections per readme_types.skill.sections above.
-    # Template path: .opencode/skills/sk-doc/create-readme/assets/readme/readme_template.md
+    # Template path: .opencode/skills/sk-doc/create-readme/assets/readme_template.md
 
 # ─────────────────────────────────────────────────────────────────
 # README: COMPLETION REPORT TEMPLATE
@@ -1552,7 +1552,7 @@ install_guide_templates:
 # INSTALL GUIDE: REFERENCE TEMPLATES
 # ─────────────────────────────────────────────────────────────────
 install_guide_reference_templates:
-  install_guide_template: .opencode/skills/sk-doc/create-readme/assets/readme/install_guide_template.md
+  install_guide_template: .opencode/skills/sk-doc/create-readme/assets/install_guide_template.md
   mcp_guide: .opencode/install_guides/MCP - Code Mode.md
   cli_guide: .opencode/install_guides/MCP - Chrome Dev Tools.md
   core_standards: .opencode/skills/sk-doc/shared/references/core_standards.md

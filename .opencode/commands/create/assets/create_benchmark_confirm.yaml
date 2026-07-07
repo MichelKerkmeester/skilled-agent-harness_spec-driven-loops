@@ -177,8 +177,8 @@ reference_sources:
   validation: .opencode/skills/sk-doc/shared/references/validation.md
 
 template_sources:
-  benchmark_report: .opencode/skills/sk-doc/create-benchmark/assets/benchmark/benchmark_report_template.md
-  source_file: .opencode/skills/sk-doc/create-benchmark/assets/benchmark/source_template.md
+  benchmark_report: .opencode/skills/sk-doc/create-benchmark/assets/benchmark_report_template.md
+  source_file: .opencode/skills/sk-doc/create-benchmark/assets/source_template.md
 
 validation_scripts:
   validate_document: .opencode/skills/sk-doc/shared/scripts/validate_document.py

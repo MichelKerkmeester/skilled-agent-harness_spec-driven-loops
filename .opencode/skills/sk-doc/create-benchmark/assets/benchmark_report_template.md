@@ -16,7 +16,7 @@ version: 1.8.0.4
 Copy-paste-ready scaffold for mcp_server/benchmarks/benchmark-<YYYY-MM-DD>/benchmark_report.md.
 
 Usage:
-  cp .opencode/skills/sk-doc/create-benchmark/assets/benchmark/benchmark_report_template.md \
+  cp .opencode/skills/sk-doc/create-benchmark/assets/benchmark_report_template.md \
      .opencode/skills/<your-skill>/mcp_server/benchmarks/benchmark-<YYYY-MM-DD>/benchmark_report.md
 
 Then fill in every {{PLACEHOLDER}}. Keep the numbered H2 ALL CAPS structure intact.

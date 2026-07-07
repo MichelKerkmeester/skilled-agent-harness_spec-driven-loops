@@ -12,7 +12,7 @@ SELF-CHECK: Are create-flowchart packet resources available?
 Indicators:
 - `.opencode/skills/sk-doc/create-flowchart/SKILL.md` is readable
 - `.opencode/skills/sk-doc/create-flowchart/scripts/validate_flowchart.sh` exists
-- `.opencode/skills/sk-doc/create-flowchart/assets/flowcharts/*.md` pattern assets are available
+- `.opencode/skills/sk-doc/create-flowchart/assets/*.md` pattern assets are available
 - `.opencode/skills/sk-doc/create-flowchart/references/notation_and_validator.md` is readable
 - `.opencode/skills/sk-doc/create-flowchart/references/pattern_selection.md` is readable
 

@@ -1,0 +1,29 @@
+{
+  "specFolder": "skilled-agent-orchestration/125-sk-doc-parent/021-flatten-asset-subfolders",
+  "description": "Flatten redundant single-subfolder nesting under six sk-doc packets' assets/; 17 templates moved up + 33 live refs rewritten.",
+  "keywords": [
+    "flatten",
+    "redundant",
+    "single-subfolder",
+    "nesting",
+    "six",
+    "sk-doc",
+    "packets",
+    "assets",
+    "templates",
+    "moved",
+    "live",
+    "refs",
+    "rewritten"
+  ],
+  "lastUpdated": "2026-07-07T14:54:32.921Z",
+  "specId": "021",
+  "folderSlug": "flatten-asset-subfolders",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "125-sk-doc-parent"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": 1
+}
