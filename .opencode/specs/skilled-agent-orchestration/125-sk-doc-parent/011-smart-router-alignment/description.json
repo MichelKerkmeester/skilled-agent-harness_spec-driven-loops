@@ -1,20 +1,23 @@
 {
+  "level": 1,
   "specFolder": "skilled-agent-orchestration/125-sk-doc-parent/011-smart-router-alignment",
-  "description": "Align router-carrying SKILL.md nested smart-routers to the canonical 4-pattern template, scaled to actual need.",
+  "description": "Align every router-carrying SKILL.md to the canonical resilient-router template, scaled to need, each GPT edit fresh-Sonnet verified.",
   "keywords": [
     "align",
+    "every",
     "router-carrying",
     "skill",
-    "nested",
-    "smart-routers",
     "canonical",
-    "4-pattern",
+    "resilient-router",
     "template",
     "scaled",
-    "actual",
-    "need"
+    "need",
+    "gpt",
+    "edit",
+    "fresh-sonnet",
+    "verified"
   ],
-  "lastUpdated": "2026-07-07T04:54:02.980Z",
+  "lastUpdated": "2026-07-07T06:49:17.987Z",
   "specId": "011",
   "folderSlug": "smart-router-alignment",
   "parentChain": [
@@ -22,6 +25,5 @@
     "125-sk-doc-parent"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": 1
+  "memoryNameHistory": []
 }

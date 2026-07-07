@@ -18,7 +18,9 @@
       "quality control rename plan",
       "125 sk-doc phase 012 plan",
       "quality control rename tasks",
-      "125 sk-doc phase 012 tasks"
+      "125 sk-doc phase 012 tasks",
+      "quality control rename summary",
+      "125 sk-doc phase 012 summary"
     ],
     "key_topics": [
       "quality",
@@ -32,7 +34,7 @@
       "packet",
       "plan",
       "tasks",
-      "workflow"
+      "summary"
     ],
     "importance_tier": "important",
     "status": "draft",
@@ -44,7 +46,8 @@
       ".opencode/skills/sk-doc/graph-metadata.json",
       "spec.md",
       "plan.md",
-      "tasks.md"
+      "tasks.md",
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -93,6 +96,12 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -184,29 +193,25 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "all",
-        "kind": "key_phrase",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The sk-doc `doc-quality` workflow packet (built in the original phase map's `012-doc-quality/`) is named as if it were a mode or feature flag rather than a create- authoring packet, which is inconsistent with the hub's naming convention and undersells what the packet actually does: validate, score, and optimize an existing document — the same job the bound `/doc:quality` command already describes",
     "created_at": "2026-07-07T04:51:44.810Z",
-    "last_save_at": "2026-07-07T04:51:44.810Z",
+    "last_save_at": "2026-07-07T06:49:22.338Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
-      "tasks.md"
+      "tasks.md",
+      "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:6e9b15999205db0efdc67f7c3f30f9f95003f284b66acbaa65b2185ff526c89a",
+    "source_fingerprint": "sha256:a7dfb0bc36c90c8d89dbc539b4f2ff1c244fc696f4013d925e36f6b135e188a1",
     "source_doc_hashes": {
-      "spec.md": "815c6a365a87a4c021cac76fe6517ebf4cf4a47781ebdfa6e181b9ebddf457ff",
-      "plan.md": "f7bed4f209600528b7ba33a606c0c89eac0f40478a0a2a821902ed6a094565e1",
-      "tasks.md": "66160752c2b6830d62218f66d18260da259817c02918fa4d28768d1b597f4edd"
+      "spec.md": "fb431c5611813f976f706974b9a502c54415affa0ac7f7f2c400880854e84ca6",
+      "plan.md": "13ca547771402b1e78907cbc3f201b14f79abc2429cd79dc615de385cf70ca32",
+      "tasks.md": "4744a4f8fa2f10fa04acd8f359c3d76e2612f8c6ec1e3c0f1e38ff357872098a",
+      "implementation-summary.md": "99e93bf4bbeb651a93a00d9a8cbd9604ab848c87bf517744771fe8cbe9e4ca48"
     },
     "last_active_child_id": null,
     "last_active_at": null

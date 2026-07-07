@@ -17,7 +17,9 @@
       "shared refs reorg plan",
       "125 sk-doc phase 013 plan",
       "shared refs reorg tasks",
-      "125 sk-doc phase 013 tasks"
+      "125 sk-doc phase 013 tasks",
+      "shared refs reorg summary",
+      "125 sk-doc phase 013 summary"
     ],
     "key_topics": [
       "shared",
@@ -38,7 +40,8 @@
     "key_files": [
       "spec.md",
       "plan.md",
-      "tasks.md"
+      "tasks.md",
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -57,6 +60,12 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -166,23 +175,37 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "`.opencode/skills/sk-doc/shared/references/global/` adds a nesting level that carries no meaning beyond \"these are the generic, cross-packet references\" — a distinction `shared/references/` already makes on its own, since everything under `shared/` is by definition cross-packet",
     "created_at": "2026-07-07T04:51:44.948Z",
-    "last_save_at": "2026-07-07T04:51:44.948Z",
+    "last_save_at": "2026-07-07T06:49:26.239Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
-      "tasks.md"
+      "tasks.md",
+      "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:5fed261223b17d42732bbc90c141ac8082d41be8e20a25b92d43958e6905e619",
+    "source_fingerprint": "sha256:f86ecb79dfb3d7f2f58d25fd4985c55cdfacb2276fcab17c11631ab277fffe6d",
     "source_doc_hashes": {
-      "spec.md": "02a8e9a5c2c23347d165e38d045313f14dfc1df9797d422185fbcd5630d25421",
-      "plan.md": "4fa8358d1aec43f3f16e890dbfe3f8d1e127ae92049ada2b1306cc110f9050d0",
-      "tasks.md": "12deb817d49861055243a18f2b8beabd0412b0f781b1e76a99c4e9feeacd5820"
+      "spec.md": "ae8302a9d2b06456a3771d778271971537a04461d0ea99b162b74c1b721b4405",
+      "plan.md": "e779e25493f54a83421afaa27c5b72c26e3ef86fc285b2ed57547b651f52065a",
+      "tasks.md": "ec25bc99f88d48deb481d56031b33b91abd73f4058f5c7b9a6e1e27b52ad83e5",
+      "implementation-summary.md": "0a51fc0d2550ecf2c1c435275f1c1d8064a75c569825d10377f9bbb17995ff96"
     },
     "last_active_child_id": null,
     "last_active_at": null
