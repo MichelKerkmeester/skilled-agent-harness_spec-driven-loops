@@ -12,7 +12,8 @@
     "system-skill-advisor/012-skill-advisor-tuning/005-executor-delegation-resolver",
     "system-skill-advisor/012-skill-advisor-tuning/006-graph-causal-visited-guard",
     "system-skill-advisor/012-skill-advisor-tuning/007-eval-hardening",
-    "system-skill-advisor/012-skill-advisor-tuning/008-semantic-shadow-prove-or-freeze"
+    "system-skill-advisor/012-skill-advisor-tuning/008-semantic-shadow-prove-or-freeze",
+    "system-skill-advisor/012-skill-advisor-tuning/009-parent-hub-vocab-compat"
   ],
   "migrated": true,
   "migration_source": "legacy",
@@ -102,7 +103,7 @@
     "source_doc_hashes": {
       "spec.md": "42684d616db0ef91448b0734c43fc13fa37fff1324704d943cfbe27e9fb3127b"
     },
-    "last_active_child_id": null,
-    "last_active_at": null
+    "last_active_child_id": "009-parent-hub-vocab-compat",
+    "last_active_at": "2026-07-07T18:21:01.000Z"
   }
 }
