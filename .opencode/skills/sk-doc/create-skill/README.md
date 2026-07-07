@@ -35,6 +35,7 @@ Use another `sk-doc` packet for agents, commands, READMEs, benchmarks, feature c
 - `assets/skill/skill_reference_template.md`: reference-file template.
 - `assets/skill/skill_asset_template.md`: asset-file template.
 - `assets/skill/skill_smart_router.md`: router-heavy skill pattern.
+- `assets/skill/skill_procedure_template.md`: private procedure card templates and guidelines.
 - `assets/parent_skill/parent_skill_hub_template.md`: parent hub `SKILL.md` template.
 - `assets/parent_skill/parent_skill_registry_template.json`: parent hub `mode-registry.json` template.
 - `assets/parent_skill/parent_skill_hub_router_template.json`: parent hub router template.

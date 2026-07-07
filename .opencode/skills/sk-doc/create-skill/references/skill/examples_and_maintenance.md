@@ -9,7 +9,7 @@ trigger_phrases:
   - "skill update triggers"
 importance_tier: normal
 contextType: implementation
-version: 1.8.0.1
+version: 1.8.0.2
 ---
 
 # Skill Examples and Maintenance
@@ -116,6 +116,35 @@ database-query/
 - `references/schema.md` - Database schema documentation
 - `references/common_queries.md` - Query pattern examples
 
+### Example 4: PDF Editor Skill With Procedure Cards (extends Example 1)
+
+**Purpose**: The same PDF Editor skill from Example 1, once it grows enough distinct, individually-triggered redaction and verification processes that a single `references/pdf_operations.md` stops being the right shape.
+
+**Directory Structure**:
+```
+pdf-editor/
+├── SKILL.md
+├── scripts/
+│   ├── rotate_pdf.py
+│   ├── crop_pdf.py
+│   └── merge_pdfs.py
+└── references/
+    ├── pdf_operations.md
+    └── procedures/
+        ├── sensitive_field_redaction.md
+        ├── digital_signature_verification.md
+        └── batch_annotation_cleanup.md
+```
+
+**When to add procedure cards**: The skill grew from one workflow (rotate/crop/merge, described in `pdf_operations.md`) to three genuinely distinct, individually-triggered processes — redaction, signature verification, annotation cleanup — each needing its own trigger, output contract, and proof gate. Cramming all three into one reference file would bury the selection logic; splitting them into three unrelated public skills would over-fragment one coherent PDF-editing identity.
+
+**Bundled Resources**:
+- `references/procedures/sensitive_field_redaction.md` - private card; full worked example in [skill_procedure_template.md](../../assets/skill/skill_procedure_template.md)
+- `references/procedures/digital_signature_verification.md` - private card
+- `references/procedures/batch_annotation_cleanup.md` - private card
+
+**Real-world precedent**: `sk-design` uses this exact pattern at hub scale — one parent hub with five public modes, each backed by its own `procedures/` folder plus `shared/procedures/` for cross-mode coordination cards, tracing back to `sk-design/shared/procedure_card_schema.md`.
+
 ---
 
 ## 3. SKILL MAINTENANCE
@@ -128,6 +157,7 @@ database-query/
 3. New features needed
 4. Bundled resources become outdated
 5. Writing style inconsistencies discovered
+6. A single reference file has grown into several distinct, individually-triggered procedures — split it into `references/procedures/` cards using [skill_procedure_template.md](../../assets/skill/skill_procedure_template.md)
 
 ### Update Workflow
 
@@ -163,6 +193,9 @@ version: 2.0.0
 - [overview.md](../shared/overview.md) - Skill anatomy and structure system
 - [creation_workflow.md](./creation_workflow.md) - The 6-step skill creation process
 - [validation_and_packaging.md](../shared/validation_and_packaging.md) - Validation requirements and distribution
+
+### Templates
+- [skill_procedure_template.md](../../assets/skill/skill_procedure_template.md) - Private procedure card templates and guidelines
 
 ### Reference Files
 - [core_standards.md](../../../shared/references/global/core_standards.md) - Document type rules and structural requirements

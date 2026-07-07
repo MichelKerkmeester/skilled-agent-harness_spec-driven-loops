@@ -9,7 +9,7 @@ trigger_phrases:
   - "skill frontmatter completion"
 importance_tier: normal
 contextType: implementation
-version: 1.8.0.2
+version: 1.8.0.3
 ---
 
 # Skill Creation Process
@@ -158,7 +158,8 @@ Begin with resources identified in Step 2: `scripts/`, `references/`, and `asset
 1. Create scripts identified in planning phase
 2. Add reference documentation — start each `references/*.md` from [skill_reference_template.md](../../assets/skill/skill_reference_template.md) so it ships the full 5-field + `version` frontmatter block; name files **snake_case**
 3. Include asset files — start each `assets/*.md` from [skill_asset_template.md](../../assets/skill/skill_asset_template.md) so it ships the full 5-field + `version` frontmatter block; name files **snake_case**
-4. Delete example files generated during initialization
+4. Add procedure cards only when the skill has multiple distinct, individually-triggered internal procedures — start each from [skill_procedure_template.md](../../assets/skill/skill_procedure_template.md), placed under `references/procedures/`; skip this step entirely for a skill with one dominant workflow
+5. Delete example files generated during initialization
 
 **Note**: May require user input (e.g., brand assets, documentation templates).
 
@@ -402,6 +403,7 @@ Iteration 3:
 
 ### Templates
 - [skill_md_template.md](../../assets/skill/skill_md_template.md) - SKILL.md file templates
+- [skill_procedure_template.md](../../assets/skill/skill_procedure_template.md) - Private procedure card templates and guidelines
 - [frontmatter_templates.md](../../../shared/assets/frontmatter_templates.md) - Frontmatter by document type
 
 ### Reference Files
