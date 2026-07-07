@@ -1,0 +1,28 @@
+{
+  "specFolder": "system-code-graph/007-code-graph-buildout/005-resilience-and-advisor/001-code-graph-advisor-refinement/research/001-code-graph-advisor-refinement-roadmap/iterations",
+  "description": "Research iteration artifacts for 001-code-graph-advisor-refinement-roadmap.",
+  "keywords": [
+    "research",
+    "iteration",
+    "artifacts",
+    "001-code-graph-advisor-refinement-roadmap",
+    "system-spec-kit",
+    "026-graph-and-context-optimization",
+    "009-hook-package",
+    "015-code-graph-advisor-refinement",
+    "iterations"
+  ],
+  "lastUpdated": "2026-04-25T03:32:06.433Z",
+  "specId": "015",
+  "folderSlug": "code-graph-advisor-refinement-pt-01-iterations",
+  "parentChain": [
+    "system-spec-kit",
+    "026-graph-and-context-optimization",
+    "009-hook-package",
+    "015-code-graph-advisor-refinement",
+    "research",
+    "001-code-graph-advisor-refinement-roadmap"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

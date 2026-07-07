@@ -50,7 +50,7 @@ _memory:
 | **Created** | 2026-06-16 |
 | **Updated** | 2026-06-19 |
 | **Parent Spec** | `../spec.md` |
-| **Parent Packet** | `system-spec-kit/028-memory-search-intelligence` |
+| **Parent Packet** | system-code-graph |
 <!-- /ANCHOR:metadata -->
 
 ---

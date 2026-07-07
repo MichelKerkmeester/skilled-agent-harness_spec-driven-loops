@@ -1,0 +1,96 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-code-graph/007-code-graph-buildout/002-deprecate-coco-index/005-remove-coco-index-skill",
+  "spec_folder": "system-code-graph/007-code-graph-buildout/002-deprecate-coco-index/005-remove-coco-index-skill",
+  "parent_id": "system-code-graph/007-code-graph-buildout/002-deprecate-coco-index",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "remove-coco-index-skill",
+      "deprecate cocoindex phase 005",
+      "delete cocoindex skill"
+    ],
+    "key_topics": [
+      "remove-coco-index-skill",
+      "deprecate",
+      "cocoindex",
+      "phase",
+      "005",
+      "delete",
+      "skill",
+      "part",
+      "rerank-sidecar",
+      "deprecation",
+      "arc",
+      "014"
+    ],
+    "importance_tier": "important",
+    "status": "planned",
+    "key_files": [
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Part",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Execute",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Change Approx",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Acceptance Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Part of the CocoIndex / rerank-sidecar deprecation arc (014)",
+    "created_at": "2026-05-25T07:55:14.205Z",
+    "last_save_at": "2026-07-07T16:18:33.759Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "source_fingerprint": "sha256:84bf641fac8a5f4300c48fbf624cd38cc0b7853f606f24df0b0c5f147c4144b7",
+    "source_doc_hashes": {
+      "spec.md": "1f5f7a1020d3b5c8231f3fea35d84026ca41129a34f67b76dbd6310b718d94ec"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "specFolder": "system-code-graph/008-code-graph-scatter/006-code-graph-watcher-claim-retraction",
+  "description": "013 validated P1-1: the MCP server README had claimed real-time structural code-graph watching, but the adversarial retest found only",
+  "keywords": [
+    "013",
+    "validated",
+    "p1-1",
+    "mcp",
+    "server",
+    "readme",
+    "claimed",
+    "real-time",
+    "structural",
+    "code-graph",
+    "watching",
+    "adversarial",
+    "retest",
+    "found",
+    "only"
+  ],
+  "lastUpdated": "2026-07-07T16:10:53.170Z",
+  "specId": "006",
+  "folderSlug": "code-graph-watcher-claim-retraction",
+  "parentChain": [
+    "system-code-graph",
+    "008-code-graph-scatter"
+  ],
+  "memorySequence": 2,
+  "memoryNameHistory": [
+    "29-04-26_19-36__resource-map-authored-and-memory-finalization.md"
+  ]
+}

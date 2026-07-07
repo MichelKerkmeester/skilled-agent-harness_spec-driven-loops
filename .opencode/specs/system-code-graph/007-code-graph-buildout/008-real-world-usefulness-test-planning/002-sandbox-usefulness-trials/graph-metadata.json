@@ -1,0 +1,219 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-code-graph/007-code-graph-buildout/008-real-world-usefulness-test-planning/002-sandbox-usefulness-trials",
+  "spec_folder": "system-code-graph/007-code-graph-buildout/008-real-world-usefulness-test-planning/002-sandbox-usefulness-trials",
+  "parent_id": "system-code-graph/007-code-graph-buildout/008-real-world-usefulness-test-planning",
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "real-world usefulness execution",
+      "026/007/012/001",
+      "usefulness synthesis"
+    ],
+    "key_topics": [
+      "real-world",
+      "usefulness",
+      "execution",
+      "026",
+      "007",
+      "012",
+      "001",
+      "synthesis",
+      "parent",
+      "packet",
+      "designed",
+      "58-cell"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      "trials/trial-log.jsonl",
+      "analysis/aggregated-metrics.md",
+      "analysis/per-scenario-deltas.md",
+      "shared/dist/gate-3-classifier.js"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "trial-log.jsonl",
+        "kind": "file",
+        "path": "trials/trial-log.jsonl",
+        "source": "derived"
+      },
+      {
+        "name": "aggregated-metrics.md",
+        "kind": "doc",
+        "path": "analysis/aggregated-metrics.md",
+        "source": "derived"
+      },
+      {
+        "name": "per-scenario-deltas.md",
+        "kind": "doc",
+        "path": "analysis/per-scenario-deltas.md",
+        "source": "derived"
+      },
+      {
+        "name": "gate-3-classifier.js",
+        "kind": "code",
+        "path": "shared/dist/gate-3-classifier.js",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "World Usefulness Test Execution",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Claude Code",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Partial Execution Complete",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Kit Memory",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Create Level",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pilot Tasks",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The parent packet designed a 58-cell usefulness campaign, but many cells require authenticated external CLIs, network access, native Claude Code/OpenCode sessions, or live compaction state",
+    "created_at": "2026-05-06T00:00:00.000Z",
+    "last_save_at": "2026-07-07T16:18:33.843Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:f625194520b56dc28e2bf9537eb09e4c168d064c4feb443921c7848afc97f978",
+    "source_doc_hashes": {
+      "spec.md": "e35238da0b0f9df4ef4bbd50d7c7b4ce851a3cabbd99181ce35b6eaaf34c963e",
+      "plan.md": "92b809dd1ee56420daacfaf64f8837faa9409206a4b953abb89762326c2f5ff2",
+      "tasks.md": "cb0ddc1718f3bd5b2dd3c5a6d690c3520664aa0abe4f10fee90e0e7514db036b",
+      "checklist.md": "f3413825553994491a5654bd67539f60e8bf871a84f7a3c5658787b047cac7de",
+      "decision-record.md": "15775ea2bb4a7b6d255001f028559771957f7baa98f0cead1f519318bf809dd2",
+      "implementation-summary.md": "bae4f5493748e944c9cb911072bcc7ac2a8a73eebf20b4fe967007b19f4230f1"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

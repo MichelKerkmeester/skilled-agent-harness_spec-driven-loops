@@ -1,0 +1,25 @@
+{
+  "specFolder": "system-code-graph/z_archive/016-startup-highlights-remediation",
+  "description": "The `queryStartupHighlights()` function in `code-graph-db.ts` has 3 correctness issues that render the session start highlights useless:",
+  "keywords": [
+    "querystartuphighlights",
+    "function",
+    "code-graph-db",
+    "correctness",
+    "issues",
+    "render",
+    "session",
+    "start",
+    "highlights",
+    "useless"
+  ],
+  "lastUpdated": "2026-07-07T16:12:50.414Z",
+  "specId": "016",
+  "folderSlug": "startup-highlights-remediation",
+  "parentChain": [
+    "system-code-graph",
+    "z_archive"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

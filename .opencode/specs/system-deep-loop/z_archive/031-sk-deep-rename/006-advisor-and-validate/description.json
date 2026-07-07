@@ -1,5 +1,5 @@
 {
-  "specFolder": "skilled-agent-orchestration/z_archive/056-sk-deep-rename/006-advisor-and-validate",
+  "specFolder": "system-deep-loop/z_archive/031-sk-deep-rename/006-advisor-and-validate",
   "description": "Phases 001-005 completed the broad rename from `sk-deep-review`/`sk-deep-research` to `deep-review`/`deep-research`, but Packet 070 still needs final",
   "keywords": [
     "phases",

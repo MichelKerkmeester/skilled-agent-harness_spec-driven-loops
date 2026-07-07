@@ -202,7 +202,7 @@
     ],
     "causal_summary": "The read-only audit at `011-code-graph-doc-audit/review-report.md` confirmed six documentation-alignment defects in `.opencode/skills/system-code-graph/`",
     "created_at": "2026-07-05T00:00:00Z",
-    "last_save_at": "2026-07-06T17:28:25.838Z",
+    "last_save_at": "2026-07-07T16:18:33.743Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -216,7 +216,7 @@
       "spec.md": "c4951e4fea6a08c5e6ab63d22fd8ec93fca614ae42a41166a629251cc85f8ffb",
       "plan.md": "27533a0e097f07cd003805c7eabcd03f8cd4c7e4cde4330da9143ae1c319e262",
       "tasks.md": "062f4f541add1e3d6d6ed036c1834b3b0ce8a3c2cf08664b647cf2ca6dcef9b6",
-      "implementation-summary.md": "579b176a4d3c2e78d17fc1e2af5816bd3cae6becbe4be39f429d1c2d824a858c"
+      "implementation-summary.md": "6a2a59228cc4c3eddff024141d7cb5f7050466f9f2e12a68aa3fca9148bcf813"
     },
     "last_active_child_id": null,
     "last_active_at": null

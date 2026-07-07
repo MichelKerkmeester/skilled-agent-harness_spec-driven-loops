@@ -199,7 +199,7 @@
     ],
     "causal_summary": "The code-graph reindex mutates edges destructively",
     "created_at": "2026-06-19T05:52:29.581Z",
-    "last_save_at": "2026-07-06T16:45:37.676Z",
+    "last_save_at": "2026-07-07T16:02:29.604Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,14 +210,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:6e3354e069e1ec137b3a2835474cb1befab11c273551974749dfca7ebf46bb8e",
+    "source_fingerprint": "sha256:9a855db33e453413e7cef2fd3df9886b0d4b792f426a3d2c0aaa00bc333b7c27",
     "source_doc_hashes": {
-      "spec.md": "7caabe8ab86990d90bf1ec50e306ae1a073c44a3e16b043a395df474c916be9e",
+      "spec.md": "203d8b9860970ebd0796575ac37b8737b8e0df0961534398446d6a19ccbb59ce",
       "plan.md": "1195fc050bf3ef4b9af73dc9f616ab7b931f68b763e7ad374272329cefe7cf63",
       "tasks.md": "4dae88351dae9d3c7fab0f422522be2026d795f10a591e4fb34665af2524c642",
       "checklist.md": "9684e5cd63297dc07fb00f1f18d27edda1a089df34f22c6794fa97fd642182b4",
       "decision-record.md": "35ae06db60433970bb159b7bc4a5ca63236dc09e11061ce1d2f2f25c6d040817",
-      "implementation-summary.md": "dc4b37fcfe1fe82d35654b4c389d611f5b00fc6b470c3b29d8287586db4c1492"
+      "implementation-summary.md": "8714e32455a86b3c83af8bbf77ad868fe686b2cd66742e025dbac52abcd13fed"
     },
     "last_active_child_id": null,
     "last_active_at": null

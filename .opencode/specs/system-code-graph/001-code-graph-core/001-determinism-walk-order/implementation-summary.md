@@ -43,7 +43,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | `system-code-graph/001-code-graph-core/001-determinism-walk-order` |
+| **Spec Folder** | 001-determinism-walk-order |
 | **Completed** | Partial, 2 of 4 candidates done (Q4-C1, det-context-order-global). Residue gated |
 | **Level** | 2 |
 | **Actual Effort** | Q4-C1 shipped in Wave-0 (commit `e21caf5de6`), det-order implemented in this pass, fuser adapter / tuning not yet built (gated) |

@@ -1,0 +1,231 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-code-graph/z_archive/017-opencode-graph-plugin/031-copilot-startup-hook-wiring",
+  "spec_folder": "system-code-graph/z_archive/017-opencode-graph-plugin/031-copilot-startup-hook-wiring",
+  "parent_id": "system-code-graph/z_archive/017-opencode-graph-plugin",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "copilot startup hook wiring",
+      "phase 031",
+      "packet 030 copilot",
+      "phase 031 plan",
+      "copilot startup hook wiring plan",
+      "phase 031 tasks",
+      "copilot startup hook tasks",
+      "phase 031 checklist",
+      "copilot startup hook verification",
+      "phase 031 adr",
+      "copilot startup hook adr",
+      "phase 031 implementation summary"
+    ],
+    "key_topics": [
+      "copilot",
+      "startup",
+      "hook",
+      "wiring",
+      "phase",
+      "031",
+      "packet",
+      "030",
+      "plan",
+      "tasks",
+      "checklist",
+      "verification"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      ".github/hooks/scripts/session-start.sh",
+      ".github/hooks/scripts/superset-notify.sh",
+      ".github/hooks/superset-notify.json",
+      ".opencode/skills/system-spec-kit/mcp_server/tests/runtime-detection.vitest.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/tests/cross-runtime-fallback.vitest.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/tests/copilot-hook-wiring.vitest.ts",
+      "tests/copilot-hook-wiring.vitest.ts",
+      "tests/runtime-detection.vitest.ts",
+      "tests/cross-runtime-fallback.vitest.ts",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "session-start.sh",
+        "kind": "script",
+        "path": ".github/hooks/scripts/session-start.sh",
+        "source": "derived"
+      },
+      {
+        "name": "superset-notify.sh",
+        "kind": "script",
+        "path": ".github/hooks/scripts/superset-notify.sh",
+        "source": "derived"
+      },
+      {
+        "name": "superset-notify.json",
+        "kind": "config",
+        "path": ".github/hooks/superset-notify.json",
+        "source": "derived"
+      },
+      {
+        "name": "runtime-detection.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/runtime-detection.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "cross-runtime-fallback.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/cross-runtime-fallback.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "copilot-hook-wiring.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/copilot-hook-wiring.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specific",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Copilot Startup Hook Wiring",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Keep Copilot",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Dependencies",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Repo",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Copilot CLI live verification proved that the shared startup banner code existed and emitted the right output when run directly, but the repo-level `sessionStart` hook registration still pointed at a Superset notifier that outputs `{}`",
+    "created_at": "2026-04-12T09:02:53.439Z",
+    "last_save_at": "2026-07-07T16:18:34.004Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:f9d3a72fcb68b3a581430a717e4b81197ea300be206e00e75297432b8c974cc1",
+    "source_doc_hashes": {
+      "spec.md": "3870fc322d7ef60b613d3c6b7149159a245b4606e3e7a7f90560ef74758d9991",
+      "plan.md": "364fbf197994a59e34a0f8d2c96f0ff91a7c0c6aa546d315cfb51f860eadb0cd",
+      "tasks.md": "7c587c430ebed4aafde2609838a0a63a218bbe3bf919362d80ae0b73f5637bcf",
+      "checklist.md": "ea7445b01d16e82f9f69486d42e4496a9751388c4e0f0c108c4711ef634c19a5",
+      "decision-record.md": "36bb96deb4eca33f87cad265b25de3bde2a5f64e2ed2f75f9c29ede58b9c2a18",
+      "implementation-summary.md": "d82e9f3f98b80a7f887c01a255f07e7997ad68af22718c62452064dc2cb515b6"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

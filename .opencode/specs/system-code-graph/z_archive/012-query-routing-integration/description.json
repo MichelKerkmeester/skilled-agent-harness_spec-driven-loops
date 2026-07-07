@@ -1,0 +1,20 @@
+{
+  "specFolder": "system-code-graph/z_archive/012-query-routing-integration",
+  "description": "This packet drifted away from the shipped implementation",
+  "keywords": [
+    "packet",
+    "drifted",
+    "away",
+    "shipped",
+    "implementation"
+  ],
+  "lastUpdated": "2026-07-07T16:12:49.248Z",
+  "specId": "012",
+  "folderSlug": "query-routing-integration",
+  "parentChain": [
+    "system-code-graph",
+    "z_archive"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

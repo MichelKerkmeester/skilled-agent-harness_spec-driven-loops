@@ -198,7 +198,7 @@
     ],
     "causal_summary": "The code-graph impact path shipped a bounded seeded personalized PageRank mechanism behind the default-off flag `SPECKITCODEGRAPHSEEDEDPPRRANKING` in commit 657a0f6a3e",
     "created_at": "2026-06-24T04:55:07.954Z",
-    "last_save_at": "2026-07-06T17:15:57.046Z",
+    "last_save_at": "2026-07-07T16:18:33.723Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -214,7 +214,7 @@
       "plan.md": "cd3e3e3ffba9d79f8886ffc2d622cf8ed8c62146dd56ade4a0be725004f5aac1",
       "tasks.md": "5e75efb117dc738b21e18d01881d6cc156250e2a1dc3895cfefefecf1f23d5b6",
       "checklist.md": "425bcf0ca63971c9474891731483b9c2f0b7c12ef9a6b763e824340f523bec19",
-      "implementation-summary.md": "d7a58d3459c6762aeb805680b92fdb3d99c3848ba266b94dde1809b68f060a60"
+      "implementation-summary.md": "aab3b1866e1ad1e14e72c4978e52566d660c4793375aa189df753c62ed886bf1"
     },
     "last_active_child_id": null,
     "last_active_at": null

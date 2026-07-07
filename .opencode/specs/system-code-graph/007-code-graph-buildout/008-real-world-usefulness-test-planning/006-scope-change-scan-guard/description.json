@@ -1,0 +1,44 @@
+{
+  "title": "Scope-Change Guard",
+  "trigger_phrases": [
+    "026/007/012/005",
+    "scope-change guard",
+    "scope_change_scan_rejected",
+    "forceScopeChange",
+    "F-002 scope fingerprint"
+  ],
+  "level": 2,
+  "name": "Scope-Change Guard",
+  "contextType": "implementation",
+  "importance_tier": "critical",
+  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/005-code-graph/011-real-world-usefulness-test-planning/006-scope-change-scan-guard",
+  "created_at": "2026-05-06T07:44:35Z",
+  "status": "complete",
+  "specFolder": "system-code-graph/007-code-graph-buildout/008-real-world-usefulness-test-planning/006-scope-change-scan-guard",
+  "description": "The Phase 012/004 F-002 fix blocks only the literal zero-node full-scan edge case",
+  "keywords": [
+    "phase",
+    "012",
+    "004",
+    "f-002",
+    "fix",
+    "blocks",
+    "only",
+    "literal",
+    "zero-node",
+    "full-scan",
+    "edge",
+    "case"
+  ],
+  "lastUpdated": "2026-06-23T03:49:56.036Z",
+  "specId": "006",
+  "folderSlug": "scope-change-scan-guard",
+  "parentChain": [
+    "system-spec-kit",
+    "026-graph-and-context-optimization",
+    "004-code-graph",
+    "008-real-world-usefulness-test-planning"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

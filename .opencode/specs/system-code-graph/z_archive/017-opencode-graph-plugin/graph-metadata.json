@@ -1,0 +1,244 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-code-graph/z_archive/017-opencode-graph-plugin",
+  "spec_folder": "system-code-graph/z_archive/017-opencode-graph-plugin",
+  "parent_id": "system-code-graph/z_archive",
+  "parent_id_review_required": true,
+  "children_ids": [
+    "system-spec-kit/z_archive/024-compact-code-graph/030-opencode-graph-plugin/001-shared-payload-provenance-layer",
+    "system-spec-kit/z_archive/024-compact-code-graph/030-opencode-graph-plugin/002-opencode-transport-adapter",
+    "system-spec-kit/z_archive/024-compact-code-graph/030-opencode-graph-plugin/003-code-graph-operations-hardening",
+    "system-spec-kit/z_archive/024-compact-code-graph/030-opencode-graph-plugin/004-cross-runtime-startup-surfacing-parity",
+    "system-spec-kit/z_archive/024-compact-code-graph/030-opencode-graph-plugin/005-code-graph-auto-reindex-parity",
+    "system-spec-kit/z_archive/024-compact-code-graph/030-opencode-graph-plugin/031-copilot-startup-hook-wiring",
+    "system-code-graph/z_archive/017-opencode-graph-plugin/001-shared-payload-provenance-layer",
+    "system-code-graph/z_archive/017-opencode-graph-plugin/002-opencode-transport-adapter",
+    "system-code-graph/z_archive/017-opencode-graph-plugin/003-code-graph-operations-hardening",
+    "system-code-graph/z_archive/017-opencode-graph-plugin/004-cross-runtime-startup-surfacing-parity",
+    "system-code-graph/z_archive/017-opencode-graph-plugin/005-code-graph-auto-reindex-parity",
+    "system-code-graph/z_archive/017-opencode-graph-plugin/031-copilot-startup-hook-wiring"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "opencode graph plugin",
+      "packet 030",
+      "phased execution",
+      "compact code graph",
+      "packet 030 plan",
+      "phase coordination",
+      "opencode graph plugin plan",
+      "packet 030 tasks",
+      "phase creation tasks",
+      "packet 030 checklist",
+      "phase verification",
+      "packet 030 adr"
+    ],
+    "key_topics": [
+      "opencode",
+      "graph",
+      "plugin",
+      "packet",
+      "030",
+      "phased",
+      "execution",
+      "compact",
+      "code",
+      "plan",
+      "phase",
+      "coordination"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      ".github/hooks/superset-notify.json",
+      ".github/hooks/scripts/session-start.sh",
+      "plan.md",
+      "checklist.md",
+      "decision-record.md",
+      "research/research.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "resource-map.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "superset-notify.json",
+        "kind": "config",
+        "path": ".github/hooks/superset-notify.json",
+        "source": "derived"
+      },
+      {
+        "name": "session-start.sh",
+        "kind": "script",
+        "path": ".github/hooks/scripts/session-start.sh",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "resource-map.md",
+        "kind": "doc",
+        "path": "resource-map.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Graph Plugin Phased Execution",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Graph Plugin",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "System Spec Kit",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Packet",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Execution Protocol",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Packet `030-opencode-graph-plugin` started as research plus a packet scaffold, then converged into six completed runtime phases: shared payload/provenance contracts, OpenCode transport surfacing, graph-operations hardening, cross-runtime startup parity, bounded code-graph auto-reindex parity, and Copilot startup-hook wiring",
+    "created_at": "2026-04-12T09:02:53.435Z",
+    "last_save_at": "2026-07-07T16:18:33.989Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      "research/research.md",
+      "resource-map.md"
+    ],
+    "source_fingerprint": "sha256:16a42bf90c443d7b1f3590d3fddb07cea740b2b55ea160b454b37398183d1a0c",
+    "source_doc_hashes": {
+      "spec.md": "b58d2748d730ab2a086f838c88baaedcfdbd4e94a80fe7ac58a2beee7e44ccbe",
+      "plan.md": "9ac80afa48faf32baf11f11627b2ab6df612c69e64933fe3f13296b6e44e1a17",
+      "tasks.md": "11274901a25acb5f30c0bbc48ed23ca2be8f962bc6e027ac81a65c3786da88f0",
+      "checklist.md": "92ccb37ba8ab821c70a62ead7a2159b604a10f11d047b15ca5345c094dbe464f",
+      "decision-record.md": "02fab3738f8e6ecc62f4b3fad3eaa091df9022ae41015cef1555940f3b9298e9",
+      "implementation-summary.md": "2ecb84a0ad2e771d0f43aedd2052a267e747a87dd41994fd210a3fbdb6a55408",
+      "research/research.md": "6e1d6e23517c926229d5f5ca86c8432f6029b555d764b86921afbd0f996cacd3",
+      "resource-map.md": "40d817b0b6f875cc10cbf775d0292d2089493a98ee0c9fb55874199d5d401aaa"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

@@ -1,0 +1,240 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-code-graph/007-code-graph-buildout/004-runtime-and-scan/004-end-user-scope-default-and-opt-in",
+  "spec_folder": "system-code-graph/007-code-graph-buildout/004-runtime-and-scan/004-end-user-scope-default-and-opt-in",
+  "parent_id": "system-code-graph/007-code-graph-buildout/004-runtime-and-scan",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "end user scope default",
+      "code graph skill indexing",
+      "skill code indexing flag",
+      "code graph opt-in",
+      "end-user-only indexing",
+      "speckit_code_graph_index_skills",
+      "009 plan",
+      "end user scope default plan",
+      "code graph skill indexing plan",
+      "speckit code graph index skills",
+      "009 tasks",
+      "end user scope tasks"
+    ],
+    "key_topics": [
+      "end",
+      "user",
+      "scope",
+      "default",
+      "code",
+      "graph",
+      "skill",
+      "indexing",
+      "flag",
+      "opt-in",
+      "end-user-only",
+      "009"
+    ],
+    "importance_tier": "high",
+    "status": "complete",
+    "key_files": [
+      "lib/utils/index-scope.ts",
+      "schemas/tool-input-schemas.ts",
+      "review/review-report.md",
+      "resource-map.md",
+      "scripts/tests/workflow-invariance.vitest.ts",
+      "mcp_server/lib/config/capability-flags.ts",
+      "research/research.md",
+      "decision-record.md",
+      "spec.md",
+      "research/resource-map.md",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/utils/index-scope.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md",
+      "implementation-summary.md",
+      "mcp_server/node_modules/vitest/vitest.mjs",
+      ".opencode/skills/system-spec-kit/scripts/tests/workflow-invariance.vitest.ts",
+      "plan.md",
+      "checklist.md",
+      ".opencode/skills/system-spec-kit/mcp_server/context-server.ts"
+    ],
+    "entities": [
+      {
+        "name": "index-scope.ts",
+        "kind": "code",
+        "path": "lib/utils/index-scope.ts",
+        "source": "derived"
+      },
+      {
+        "name": "tool-input-schemas.ts",
+        "kind": "code",
+        "path": "schemas/tool-input-schemas.ts",
+        "source": "derived"
+      },
+      {
+        "name": "review-report.md",
+        "kind": "doc",
+        "path": "review/review-report.md",
+        "source": "derived"
+      },
+      {
+        "name": "resource-map.md",
+        "kind": "doc",
+        "path": "resource-map.md",
+        "source": "derived"
+      },
+      {
+        "name": "workflow-invariance.vitest.ts",
+        "kind": "test",
+        "path": "scripts/tests/workflow-invariance.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "capability-flags.ts",
+        "kind": "code",
+        "path": "mcp_server/lib/config/capability-flags.ts",
+        "source": "derived"
+      },
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "tool-schemas.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts",
+        "source": "derived"
+      },
+      {
+        "name": "tool-input-schema.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "ENV_REFERENCE.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "vitest.mjs",
+        "kind": "file",
+        "path": "mcp_server/node_modules/vitest/vitest.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "context-server.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/context-server.ts",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "User Scope Default",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Graph Indexing",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "Begin Phase",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Latest",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Latest scan: 1,619 files / 34,844 nodes / 17,846 edges, with hundreds of those nodes being spec-kit MCP server internals (skilladvisor, codegraph subsystems, sk- skills)",
+    "created_at": "2026-05-02T11:04:14Z",
+    "last_save_at": "2026-07-07T16:18:33.787Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      "research/research.md",
+      "resource-map.md"
+    ],
+    "source_fingerprint": "sha256:93a326512b7deef724278e63bd1676a27cd3fdf65e59ba7fd6a913ef1257a1c7",
+    "source_doc_hashes": {
+      "spec.md": "021aac3369618604d4560a464af4ce5eedca533bebf7111c27c0c942cfe8366f",
+      "plan.md": "abbb4c28db4811e8967e66340642b7c82e70e85a9d7e8d37fc7953a9fbcc5b78",
+      "tasks.md": "7bc08e8fed685a131f72f34013d1bec6eb5a249c7f49bbe7c7c1bac70fdaa754",
+      "checklist.md": "ef24feec71fe3b7c7ba73a9fb004ffda16cfe2eb4f9e3a22eee497581b5f0f9c",
+      "decision-record.md": "55a586ee119805d8281bb8b6930a788ad9f42b5341b43eda8a6b944badd17949",
+      "implementation-summary.md": "8cd31a0389d52f3f260d7f6452e7253828ead3e0fcd05b52e1841cfaaac610b3",
+      "research/research.md": "1505b26a9d6d20f15afee78af4c2b08d3e4a1a0c3198c72e68148728447eb252",
+      "resource-map.md": "0949b77bb5c1cd91ccee4752bc5b54a7f42b25da9e680624fe2bb391d751e370"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "specFolder": "system-code-graph/z_archive/017-opencode-graph-plugin",
+  "description": "Packet `030-opencode-graph-plugin` started as research plus a packet scaffold, then converged into six completed runtime phases: shared",
+  "keywords": [
+    "packet",
+    "030-opencode-graph-plugin",
+    "started",
+    "research",
+    "plus",
+    "scaffold",
+    "converged",
+    "six",
+    "completed",
+    "runtime",
+    "phases",
+    "shared"
+  ],
+  "lastUpdated": "2026-07-07T16:12:50.693Z",
+  "specId": "017",
+  "folderSlug": "opencode-graph-plugin",
+  "parentChain": [
+    "system-code-graph",
+    "z_archive"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "27-04-26_13-33__retroactive-phase-parent-migration-worker-2.md"
+  ]
+}

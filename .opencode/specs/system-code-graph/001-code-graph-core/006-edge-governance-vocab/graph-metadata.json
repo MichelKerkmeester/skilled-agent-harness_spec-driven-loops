@@ -200,7 +200,7 @@
     ],
     "causal_summary": "The code-graph edge table is ungoverned at write time",
     "created_at": "2026-06-19T05:52:29.582Z",
-    "last_save_at": "2026-07-06T16:45:37.346Z",
+    "last_save_at": "2026-07-07T16:02:29.840Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,13 +210,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:37c2ad91e470531be0f849544ce93e601f8cdc587f14fe33a7204f326eb9dd71",
+    "source_fingerprint": "sha256:871a0136db467f66e034572c26da2a3041c2874b548a1798377d763525c4e71d",
     "source_doc_hashes": {
-      "spec.md": "ff825c890d9f07c58850a61b1e2a6c6fb292fb21e533dfba11bcdd2176127904",
+      "spec.md": "a99dc3ac6d88e027b1ed2280deb7b350fe68f2d4c5ed47abf809b298a0d2b448",
       "plan.md": "fe8c62062459500d66f22ed316b76cdb8e873f600d24e2b4a8d46af506bea5b8",
       "tasks.md": "25cbcc2dbf169170976f8bbc7bd0e3760fa33e3050cbbf1d70a42135c2459ace",
       "checklist.md": "e230a0251196222e319087dcb1439466fb7c32ed7b66d04747b14af34810d7f8",
-      "implementation-summary.md": "0f08891b98e07bbd6f22382e5e747fda649667aa5462a1ffd13c3a26580d3798"
+      "implementation-summary.md": "f666d1e274708b21fe4069cb0d535834ec7bc0eb8b6efe1160b921d20a330df1"
     },
     "last_active_child_id": null,
     "last_active_at": null

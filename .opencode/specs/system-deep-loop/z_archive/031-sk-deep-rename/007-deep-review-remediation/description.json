@@ -1,5 +1,5 @@
 {
-  "specFolder": "skilled-agent-orchestration/z_archive/056-sk-deep-rename/007-deep-review-remediation",
+  "specFolder": "system-deep-loop/z_archive/031-sk-deep-rename/007-deep-review-remediation",
   "description": "The Packet 070 deep review failed because child phase documentation still contains over-replaced identity-renames such as `deep-review to deep-review`",
   "keywords": [
     "packet",

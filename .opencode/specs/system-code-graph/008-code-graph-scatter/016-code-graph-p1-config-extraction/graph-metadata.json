@@ -1,0 +1,232 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-code-graph/008-code-graph-scatter/016-code-graph-p1-config-extraction",
+  "spec_folder": "system-code-graph/008-code-graph-scatter/016-code-graph-p1-config-extraction",
+  "parent_id": "system-code-graph/008-code-graph-scatter",
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [
+      {
+        "packet_id": "packet_id\": \"system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/002-spec-memory-stack/021-hardcoded-default-audit-deep-research",
+        "reason": "Imported from legacy graph-metadata.json",
+        "source": "legacy"
+      },
+      {
+        "packet_id": "reason\": \"closes 6 P1 + 10 P2\"}",
+        "reason": "Imported from legacy graph-metadata.json",
+        "source": "legacy"
+      }
+    ],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "022/007 code-graph config",
+      "CODE_GRAPH_DEFAULTS",
+      "022/007 plan",
+      "022/007 tasks",
+      "022/007 checklist",
+      "022/007 shipped"
+    ],
+    "key_topics": [
+      "022",
+      "007",
+      "code-graph",
+      "config",
+      "plan",
+      "tasks",
+      "checklist",
+      "shipped",
+      "cli-opencode",
+      "deepseek-v4-pro",
+      "variant",
+      "high"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      ".opencode/skills/system-code-graph/mcp_server/lib/config-defaults.ts",
+      ".opencode/skills/system-code-graph/mcp_server/lib/owner-lease.ts",
+      ".opencode/skills/system-code-graph/mcp_server/lib/structural-indexer.ts",
+      ".opencode/skills/system-code-graph/mcp_server/lib/apply-orchestrator.ts",
+      ".opencode/skills/system-code-graph/mcp_server/lib/budget-allocator.ts",
+      ".opencode/skills/system-code-graph/mcp_server/lib/indexer-types.ts",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "config-defaults.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-code-graph/mcp_server/lib/config-defaults.ts",
+        "source": "derived"
+      },
+      {
+        "name": "owner-lease.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-code-graph/mcp_server/lib/owner-lease.ts",
+        "source": "derived"
+      },
+      {
+        "name": "structural-indexer.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-code-graph/mcp_server/lib/structural-indexer.ts",
+        "source": "derived"
+      },
+      {
+        "name": "apply-orchestrator.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-code-graph/mcp_server/lib/apply-orchestrator.ts",
+        "source": "derived"
+      },
+      {
+        "name": "budget-allocator.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-code-graph/mcp_server/lib/budget-allocator.ts",
+        "source": "derived"
+      },
+      {
+        "name": "indexer-types.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-code-graph/mcp_server/lib/indexer-types.ts",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Config Extraction",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "CODE_GRAPH_DEFAULTS",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "partial",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "malformed",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "defaults",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context Consolidate",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Single",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern New",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "env-var",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. SUMMARY",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "cli-opencode",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "dispatch",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "cli-opencode + deepseek-v4-pro --variant high dispatched: new config-defaults.ts with CODE_GRAPH_DEFAULTS (ttlMs, findFilesMaxDepth, quarantineAgeDays, floors, edgeWeights) + 5 SPECKIT_CODE_GRAPH_* env-var overrides + 15-assertion invariant test. 5 consumer files wired.",
+    "created_at": "2026-05-23T18:20:00.000000Z",
+    "last_save_at": "2026-07-07T16:18:33.931Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:1227c3b7483b169cc14260c1da5b8222af098db08f4ba6934266521fe1bf8335",
+    "source_doc_hashes": {
+      "spec.md": "d9b93a191d99509b366aa9473847c559984f6a0580cbe36b683edad6c1ada757",
+      "plan.md": "46b3ac254792533c78e7db5362d9d05fb20ce57e9fcfcfef11c61b6e4f05fea5",
+      "tasks.md": "a6745dddc34419e9595cf69d0768df262c37d2f1a13aca35413f7518b61ac5b5",
+      "checklist.md": "16c0bb28d7288955c233b7922a6acaa2a3c5ef56f611c4b6031b0161c9ea04a4",
+      "implementation-summary.md": "a914d76bf1c6c452cd1f41fb029787a9efe9918268b2856ec8405e70184e2492"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

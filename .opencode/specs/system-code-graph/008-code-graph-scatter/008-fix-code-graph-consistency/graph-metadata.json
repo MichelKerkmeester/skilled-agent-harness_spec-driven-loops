@@ -1,0 +1,220 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-code-graph/008-code-graph-scatter/008-fix-code-graph-consistency",
+  "spec_folder": "system-code-graph/008-code-graph-scatter/008-fix-code-graph-consistency",
+  "parent_id": "system-code-graph/008-code-graph-scatter",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "F-002-A2",
+      "F-014-C4",
+      "F-004-A4-02",
+      "F-004-A4-03",
+      "code graph consistency",
+      "atomic per-file persistence",
+      "sqlite busy timeout",
+      "candidate manifest",
+      "doctor code graph workflow",
+      "F-002-A2 plan",
+      "F-014-C4 plan",
+      "F-004-A4 plan"
+    ],
+    "key_topics": [
+      "f-002-a2",
+      "f-014-c4",
+      "f-004-a4-02",
+      "f-004-a4-03",
+      "code",
+      "graph",
+      "consistency",
+      "atomic",
+      "per-file",
+      "persistence",
+      "sqlite",
+      "busy"
+    ],
+    "importance_tier": "normal",
+    "status": "in_progress",
+    "key_files": [
+      ".opencode/skills/system-spec-kit/scripts/spec/validate.sh",
+      "checklist.md",
+      "implementation-summary.md",
+      "spec.md",
+      "plan.md",
+      "tasks.md"
+    ],
+    "entities": [
+      {
+        "name": "validate.sh",
+        "kind": "script",
+        "path": ".opencode/skills/system-spec-kit/scripts/spec/validate.sh",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Graph Consistency Remediation",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Nine",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Close",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Test Type",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "sibling",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "smaller",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Begin Phase",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "finding IDs",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Quality Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Nine consistency-and-resilience defects across the code-graph indexing, query, and doctor-workflow surface area leak partial-write, contention, snapshot-skew, and silent-error bugs identified by packet 046's deep research:",
+    "created_at": "2026-05-01T05:18:47Z",
+    "last_save_at": "2026-07-07T16:18:33.913Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:c7f4c544d89a3de0fdad832410729c51ad6dc0f6f5d7afce19a9681eefaaf71c",
+    "source_doc_hashes": {
+      "spec.md": "ee396c94704d7251fd9a158c3cd8c4a287df2099bcfbc79a92c87daf7632374e",
+      "plan.md": "d436e034ab8c13f76c0e9fdfebf06a6e2507a21b84265da8bda66dadd2f42239",
+      "tasks.md": "fed3942c74c81561a3ff7cd7eb7dd4a29350e6dc178976c518e8d08bb228ccff",
+      "checklist.md": "b402e275bfa67ce596f36c48d3d9cc99a64c5912bdfc05b1fb55a0a188884b94",
+      "implementation-summary.md": "29bc217ba6c08af0a86d7a414a251c826b06b201446338dd912cf129ba8616f1"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

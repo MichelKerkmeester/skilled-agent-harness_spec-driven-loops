@@ -1,0 +1,218 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-code-graph/z_archive/016-startup-highlights-remediation",
+  "spec_folder": "system-code-graph/z_archive/016-startup-highlights-remediation",
+  "parent_id": "system-code-graph/z_archive",
+  "parent_id_review_required": true,
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "startup highlights",
+      "028",
+      "remediation",
+      "querystartuphighlights",
+      "highlights fix",
+      "startup highlights plan",
+      "028 plan",
+      "028 tasks",
+      "028 checklist",
+      "028 summary"
+    ],
+    "key_topics": [
+      "startup",
+      "highlights",
+      "028",
+      "remediation",
+      "querystartuphighlights",
+      "fix",
+      "plan",
+      "tasks",
+      "checklist",
+      "summary",
+      "function",
+      "code-graph-db"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "checklist.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Startup Highlights Remediation",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Child Header",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Plan",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Startup Highlights Retention",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Query Rewrite",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Chain Design",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Change",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Edge Direction",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Startup Highlights",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Impact",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The `queryStartupHighlights()` function in `code-graph-db.ts` has 3 correctness issues that render the session start highlights useless:",
+    "created_at": "2026-04-12T09:02:53.434Z",
+    "last_save_at": "2026-07-07T16:18:33.987Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:47a63390906da32cf1301cbbbf1cf58e83a45f93a124e1e9f4a44968d2c573a2",
+    "source_doc_hashes": {
+      "spec.md": "eda44def3a107f6f7e491122ab8aa8f7b94f17c65191df10eeb121b4e1baf59c",
+      "plan.md": "30b51f0120fd799c7bf840557237699e0664c52d24b03d49e134b49db71aaef8",
+      "tasks.md": "54e6259b815f31c7c6f21041793a6c06fe49528b28f4695f8b68df8f5878aed8",
+      "checklist.md": "366f99688af6fc3c4e3f5eae5e59d48f895266312030f358c3fa28dee41f4f74",
+      "implementation-summary.md": "60adbc213e670739fdf2d9c02a734e1cf917c378b63b4ef37a52b43f17e970d3"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

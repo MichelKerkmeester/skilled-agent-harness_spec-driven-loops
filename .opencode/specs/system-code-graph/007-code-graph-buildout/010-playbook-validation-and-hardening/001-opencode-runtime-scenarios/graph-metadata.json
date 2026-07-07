@@ -1,0 +1,220 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-code-graph/007-code-graph-buildout/010-playbook-validation-and-hardening/001-opencode-runtime-scenarios",
+  "spec_folder": "system-code-graph/007-code-graph-buildout/010-playbook-validation-and-hardening/001-opencode-runtime-scenarios",
+  "parent_id": "system-code-graph/007-code-graph-buildout/010-playbook-validation-and-hardening",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "opencode runtime scenarios",
+      "code graph live mcp scenarios",
+      "029 phase 001 opencode runtime",
+      "opencode runtime scenarios plan",
+      "code graph live mcp plan",
+      "029 phase 001 plan",
+      "opencode runtime scenarios tasks",
+      "code graph live mcp tasks",
+      "029 phase 001 tasks",
+      "opencode runtime scenarios checklist",
+      "code graph live mcp checklist",
+      "029 phase 001 checklist"
+    ],
+    "key_topics": [
+      "opencode",
+      "runtime",
+      "scenarios",
+      "code",
+      "graph",
+      "live",
+      "mcp",
+      "029",
+      "phase",
+      "001",
+      "plan",
+      "tasks"
+    ],
+    "importance_tier": "normal",
+    "status": "draft",
+    "key_files": [
+      ".opencode/skills/system-code-graph/manual_testing_playbook/manual_testing_playbook.md",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "manual_testing_playbook.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-code-graph/manual_testing_playbook/manual_testing_playbook.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Runtime Scenarios",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Graph Playbook",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Claude Code",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Run",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Dispatch",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Orchestrator",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "evidence",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Date",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Impact",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "15 of the 22 code-graph playbook scenarios require the live `mk-code-index` MCP runtime (scan, query, verify, status, context, detectchanges), the deep-loop coverage-graph runtime, or the doctor-code-graph slash surface",
+    "created_at": "2026-05-26T19:43:14.032Z",
+    "last_save_at": "2026-07-07T16:18:33.869Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:6917c74160cda1e7c1f7348438c7846f2313f0483d4e970fcb69cf42e85aca08",
+    "source_doc_hashes": {
+      "spec.md": "9e9342c065ce2b55e9643d5240de974738a7accc5c59e62cb55b6fb00b03f1c9",
+      "plan.md": "103b21a264e611fadeb21e76528ef27f84c6affe3ef5ae4572d2759c296578d6",
+      "tasks.md": "b41597d95cbb4479f8c3978c7ae9aec4c1446843b04117d24c37fc2dfdf4e552",
+      "checklist.md": "01f5ec1f9cda2f1681493d951c0ec92f1bec22c2819e451fbfa80c06186078e2",
+      "implementation-summary.md": "8b8d220136682254e932e63946442aa69202edadad817c705d6177f7e77f2f65"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

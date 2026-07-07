@@ -54,7 +54,7 @@ _memory:
 | **Created** | 2026-06-19 |
 | **Branch** | `system-speckit/027-xce-research-based-refinement` |
 | **Parent Phase** | `system-code-graph/001-code-graph-core` (research) |
-| **Parent Packet** | `system-spec-kit/028-memory-search-intelligence` |
+| **Parent Packet** | system-code-graph/001-code-graph-core |
 | **Subsystem** | Code Graph, structural retrieval intelligence |
 <!-- /ANCHOR:metadata -->
 

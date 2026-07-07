@@ -1,0 +1,222 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-code-graph/007-code-graph-buildout/008-real-world-usefulness-test-planning/001-usefulness-test-methodology",
+  "spec_folder": "system-code-graph/007-code-graph-buildout/008-real-world-usefulness-test-planning/001-usefulness-test-methodology",
+  "parent_id": "system-code-graph/007-code-graph-buildout/008-real-world-usefulness-test-planning",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "real-world usefulness test",
+      "code graph usefulness",
+      "hook usefulness validation",
+      "runtime integration usefulness",
+      "026/007/012",
+      "real-world usefulness plan",
+      "CLI matrix",
+      "code graph usefulness campaign",
+      "hook usefulness campaign",
+      "real-world usefulness tasks",
+      "scenario runtime cells",
+      "026/007/012 tasks"
+    ],
+    "key_topics": [
+      "real-world",
+      "usefulness",
+      "test",
+      "code",
+      "graph",
+      "hook",
+      "validation",
+      "runtime",
+      "integration",
+      "026",
+      "007",
+      "012"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "World Usefulness Test",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Planning Scaffold Complete",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Execution Mode",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Kit Memory",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scoring Rubric",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Create Level",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Major Scenario Tasks",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Matrix Cell Tasks",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Phases 001-011 shipped capability and resilience for code graph tooling, hooks, and runtime integration surfaces",
+    "created_at": "2026-06-08T11:50:46.782Z",
+    "last_save_at": "2026-07-07T16:18:33.841Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:5627df9f6ceff314c48e9b113d297e14c6d9b40e19fd201655d7062f208c2268",
+    "source_doc_hashes": {
+      "spec.md": "539358fcac6a118f67d851bf15a149024542e43179bd173d34d14d016d44fa4e",
+      "plan.md": "d6816310f397ce613fa203078171fd96e2b70d1cd8ec27956cee13ef7cd2933f",
+      "tasks.md": "32c3fb03643d8d2bf2510fa6ea09da8c4b3049584ce45d67c2f537557b30997e",
+      "checklist.md": "8e8a52435b1f9acef7a1f77df9dd57f238f82dc7c549473562b35a11052e4c6a",
+      "decision-record.md": "6c3736e02baa040ef1caa2ba84466cab0865c2673a3467cb7fc2e863e2ea6802",
+      "implementation-summary.md": "7bf0c3633a089d699a1c7ecec0a7222de49d789dc9f233580a5b4cff2d8c73f3"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

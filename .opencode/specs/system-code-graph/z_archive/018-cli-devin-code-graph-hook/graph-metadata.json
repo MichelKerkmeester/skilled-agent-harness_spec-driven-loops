@@ -1,0 +1,243 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-code-graph/z_archive/018-cli-devin-code-graph-hook",
+  "spec_folder": "system-code-graph/z_archive/018-cli-devin-code-graph-hook",
+  "parent_id": "system-code-graph/z_archive",
+  "parent_id_review_required": true,
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "cli-devin",
+      "code-graph",
+      "sessionstart",
+      "startup brief",
+      "plugin rename",
+      "mk-code-graph",
+      "post-extraction audit",
+      "036-cli-devin-code-graph-hook",
+      "phase b",
+      "code graph plan",
+      "tasks",
+      "checklist"
+    ],
+    "key_topics": [
+      "cli-devin",
+      "code-graph",
+      "sessionstart",
+      "startup",
+      "brief",
+      "plugin",
+      "rename",
+      "mk-code-graph",
+      "post-extraction",
+      "audit",
+      "036-cli-devin-code-graph-hook",
+      "phase"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "decision-record.md",
+      "checklist.md",
+      "handover.md",
+      "resource-map.md",
+      ".opencode/plugins/README.md",
+      "feature_catalog/feature_catalog.md",
+      "manual_testing_playbook/manual_testing_playbook.md",
+      "plugin_bridges/README.md",
+      "research/research.md",
+      ".claude/settings.local.json",
+      ".opencode/plugins/mk-code-graph.js",
+      "implementation-summary.md",
+      "research/findings.json",
+      ".opencode/skills/system-code-graph/mcp_server/plugin_bridges/mk-code-graph-bridge.mjs",
+      ".opencode/skills/system-code-graph/mcp_server/plugin_bridges/README.md",
+      ".opencode/skills/system-code-graph/SKILL.md",
+      ".opencode/skills/system-code-graph/feature_catalog/feature_catalog.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "handover.md",
+        "kind": "doc",
+        "path": "handover.md",
+        "source": "derived"
+      },
+      {
+        "name": "resource-map.md",
+        "kind": "doc",
+        "path": "resource-map.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/plugins/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "feature_catalog.md",
+        "kind": "doc",
+        "path": "feature_catalog/feature_catalog.md",
+        "source": "derived"
+      },
+      {
+        "name": "manual_testing_playbook.md",
+        "kind": "doc",
+        "path": "manual_testing_playbook/manual_testing_playbook.md",
+        "source": "derived"
+      },
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "settings.local.json",
+        "kind": "config",
+        "path": ".claude/settings.local.json",
+        "source": "derived"
+      },
+      {
+        "name": "mk-code-graph.js",
+        "kind": "code",
+        "path": ".opencode/plugins/mk-code-graph.js",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "findings.json",
+        "kind": "config",
+        "path": "research/findings.json",
+        "source": "derived"
+      },
+      {
+        "name": "mk-code-graph-bridge.mjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-code-graph/mcp_server/plugin_bridges/mk-code-graph-bridge.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-code-graph/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Devin Code Graph",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Plugin Rename",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Extraction Audit",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Dependencies",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "`system-code-graph` is extracted as a skill and MCP surface, but its runtime startup hooks still live in `system-spec-kit/mcpserver/hooks/`",
+    "created_at": "2026-05-15T13:06:00.454Z",
+    "last_save_at": "2026-07-07T16:18:34.006Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      "research/research.md",
+      "handover.md",
+      "resource-map.md"
+    ],
+    "source_fingerprint": "sha256:654a1197b589527ab35fb70371c3c5d46de372204bd99e057df6e88efae7bfcc",
+    "source_doc_hashes": {
+      "spec.md": "f19efb196f85a00d188e8ff38812c91db33bb528633e454638950ded838ff48f",
+      "plan.md": "42ca3659f830a82f5f66b1e0361e41cf38dc93f230a0320117a55bfb0c77539a",
+      "tasks.md": "9883dd72a85a32f7f9d6c99bc55bd3c9f9b90612a31809074fa1ab401c40e261",
+      "checklist.md": "5053e7cd7a642e761b3bf2b99b122e14e70e77281cb9c7f73b9c275f39660ef7",
+      "decision-record.md": "0ef583287ab16ad5cb07e15965c588627596152078e4b58df1ef00ff20c06846",
+      "implementation-summary.md": "5c81f38b748f6dc3b79ec1adfb1bf8e125d50e81b5ed8bd8438c9299273df209",
+      "research/research.md": "c9216e83813240f7d45f2a74c8df17da94db5641551e2b3b697cdb35ac67bdc5",
+      "handover.md": "7565eeacac7b1bc1a3e8863f27a1585b2191b2219a77462d927dd66cabf64594",
+      "resource-map.md": "a3e9e099652965269be18c85b913a868bb157d6252e9d07defb36c92d462ab31"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

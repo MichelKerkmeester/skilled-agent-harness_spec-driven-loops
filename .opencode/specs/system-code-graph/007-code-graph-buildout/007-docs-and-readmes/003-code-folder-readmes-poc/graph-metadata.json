@@ -1,0 +1,228 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-code-graph/007-code-graph-buildout/007-docs-and-readmes/003-code-folder-readmes-poc",
+  "spec_folder": "system-code-graph/007-code-graph-buildout/007-docs-and-readmes/003-code-folder-readmes-poc",
+  "parent_id": "system-code-graph/007-code-graph-buildout/007-docs-and-readmes",
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "035 spec",
+      "system-code-graph code-folder readmes",
+      "Phase A code readme proof-of-concept",
+      "035 plan",
+      "phase A plan",
+      "035 tasks",
+      "035 implementation",
+      "035 resource map"
+    ],
+    "key_topics": [
+      "035",
+      "spec",
+      "system-code-graph",
+      "code-folder",
+      "readmes",
+      "phase",
+      "code",
+      "readme",
+      "proof-of-concept",
+      "plan",
+      "tasks",
+      "implementation"
+    ],
+    "importance_tier": "important",
+    "status": "planned",
+    "key_files": [
+      ".opencode/skills/system-code-graph/mcp_server/README.md",
+      ".opencode/skills/system-code-graph/mcp_server/core/README.md",
+      ".opencode/skills/system-code-graph/mcp_server/plugin_bridges/README.md",
+      "research/context-bundles/mcp_server-root.json",
+      "research/context-bundles/core.json",
+      "research/context-bundles/plugin_bridges.json",
+      "plan.md",
+      "tasks.md",
+      "resource-map.md",
+      "spec.md",
+      "mcp_server/README.md",
+      "mcp_server/core/README.md",
+      "mcp_server/plugin_bridges/README.md",
+      ".opencode/skills/system-spec-kit/mcp_server/README.md",
+      ".opencode/skills/system-spec-kit/mcp_server/utils/README.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-code-graph/mcp_server/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "mcp_server-root.json",
+        "kind": "config",
+        "path": "research/context-bundles/mcp_server-root.json",
+        "source": "derived"
+      },
+      {
+        "name": "core.json",
+        "kind": "config",
+        "path": "research/context-bundles/core.json",
+        "source": "derived"
+      },
+      {
+        "name": "plugin_bridges.json",
+        "kind": "config",
+        "path": "research/context-bundles/plugin_bridges.json",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "resource-map.md",
+        "kind": "doc",
+        "path": "resource-map.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scaffolded Phase",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Target Level",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Three",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Author",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Dispatch Pass",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Three",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "One Devin",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Two",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Compose Pass",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Author 3 sk-doc-aligned READMEs (CODE template, 9 anchored sections, YAML frontmatter, HVR-compliant prose) using a two-pass cli-devin + cli-opencode pipeline",
+    "created_at": "2026-05-15T08:50:00Z",
+    "last_save_at": "2026-07-07T16:18:33.830Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "resource-map.md"
+    ],
+    "source_fingerprint": "sha256:365107300ea9a61340050703955099148fa329bf56b6f1a02acdd7221f387cfb",
+    "source_doc_hashes": {
+      "spec.md": "3e08d640b434e30550c743a73ec3eef76007b73e8f39c79dc2d59e838cfed5bc",
+      "plan.md": "0b370d902143613e829e3283a946ccef35ab04d690314c0c6d5d74c28fb013b2",
+      "tasks.md": "3618bcc5eee633157d7d150505b718fc8cc2b249be4bada7262d6935679649a6",
+      "implementation-summary.md": "9de705c44b7f3bee2f8d1bb807da36ad9fc45c3e1e84304b9cc590ca0dec5d96",
+      "resource-map.md": "6002e1872afccaf58df38975f6e9423cd67568148a7e296fc637958e543703f9"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

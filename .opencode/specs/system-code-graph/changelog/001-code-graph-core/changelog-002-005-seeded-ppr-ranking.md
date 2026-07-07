@@ -14,8 +14,8 @@ contextType: "implementation"
 
 ## 2026-06-19
 
-> Spec folder: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/002-code-graph/005-seeded-ppr-ranking` (Level 3)
-> Parent packet: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/002-code-graph`
+> Spec folder: `.opencode/specs/system-code-graph/001-code-graph-core/005-seeded-ppr-ranking` (Level 3)
+> Parent packet: `.opencode/specs/system-code-graph/001-code-graph-core`
 
 ### Summary
 
@@ -64,8 +64,8 @@ _No file-level detail recorded._
 
 ## 2026-07-01
 
-> Spec folder: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/002-code-graph/005-seeded-ppr-ranking` (Level 3)
-> Parent packet: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/002-code-graph`
+> Spec folder: `.opencode/specs/system-code-graph/001-code-graph-core/005-seeded-ppr-ranking` (Level 3)
+> Parent packet: `.opencode/specs/system-code-graph/001-code-graph-core`
 
 ### Summary
 

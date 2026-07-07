@@ -1,0 +1,231 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-code-graph/z_archive/020-code-graph-self-contained-package",
+  "spec_folder": "system-code-graph/z_archive/020-code-graph-self-contained-package",
+  "parent_id": "system-code-graph/z_archive",
+  "parent_id_review_required": true,
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "028",
+      "code-graph self-contained",
+      "code-graph package migration",
+      "mcp_server/code-graph/",
+      "plan",
+      "002",
+      "code",
+      "ystem",
+      "spec",
+      "kit",
+      "026",
+      "graph"
+    ],
+    "key_topics": [
+      "028",
+      "code-graph",
+      "self-contained",
+      "package",
+      "migration",
+      "plan",
+      "002",
+      "code",
+      "ystem",
+      "spec",
+      "kit",
+      "026"
+    ],
+    "importance_tier": "important",
+    "status": "draft",
+    "key_files": [
+      ".opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/tools/index.ts",
+      "mcp_server/tools/index.ts",
+      "mcp_server/vitest.config.ts",
+      "mcp_server/schemas/tool-input-schemas.ts",
+      "mcp_server/tool-schemas.ts",
+      "scripts/graph/backfill-graph-metadata.ts",
+      "schemas/tool-input-schemas.ts",
+      "tools/index.ts",
+      "spec.md",
+      "tasks.md",
+      "checklist.md",
+      "plan.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "tool-schemas.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts",
+        "source": "derived"
+      },
+      {
+        "name": "index.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/tools/index.ts",
+        "source": "derived"
+      },
+      {
+        "name": "vitest.config.ts",
+        "kind": "code",
+        "path": "mcp_server/vitest.config.ts",
+        "source": "derived"
+      },
+      {
+        "name": "tool-input-schemas.ts",
+        "kind": "code",
+        "path": "mcp_server/schemas/tool-input-schemas.ts",
+        "source": "derived"
+      },
+      {
+        "name": "backfill-graph-metadata.ts",
+        "kind": "code",
+        "path": "scripts/graph/backfill-graph-metadata.ts",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scaffolded Phase",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Graph Self",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Contained Package Migration",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Code",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Sequence",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "grep",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "git",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1 — Baseline capture (5 min)",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implement Phase",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "baseline",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "evidence",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Dispatch prompt for cli-codex",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Migrate code-graph into a parallel self-contained package at `mcpserver/code-graph/` with subfolders `lib/`, `tools/`, `handlers/`, `tests/`, `schemas/` (if extracted)",
+    "created_at": "2026-04-21T08:25:24.317Z",
+    "last_save_at": "2026-07-07T16:18:34.011Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:0c132d77a8bc57580a4a7ac693d348f2d46e778b7be87845023f2ce9bc4f703b",
+    "source_doc_hashes": {
+      "spec.md": "d003b92236f8daa303af102390a0e3ecc2eb57894533a6b64692cb08756f4b55",
+      "plan.md": "b2af8d506a2809a4de418fa25385b0d4cef09740e7a08cbc369c04cb48782819",
+      "tasks.md": "b4846b534d73d77ce55fcd8d72e2e69e4fcd2f64940526ad212bf00690770852",
+      "checklist.md": "c57a0b6dcb490852a2f0a224cf511b599e2542d7a8a2a2b3c88f2f9eeee59e18",
+      "implementation-summary.md": "a106e600588c7e738ef00a43796487e081ce69caea7f88c4af8585ad50b625ee"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

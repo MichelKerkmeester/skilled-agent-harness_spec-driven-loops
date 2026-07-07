@@ -1,0 +1,25 @@
+{
+  "specFolder": "system-code-graph/008-code-graph-scatter/012-code-graph-readiness-audit",
+  "description": "The release-readiness program needs a truth check for the post-032 code graph readiness contract",
+  "keywords": [
+    "release-readiness",
+    "program",
+    "needs",
+    "truth",
+    "check",
+    "post-032",
+    "code",
+    "graph",
+    "readiness",
+    "contract"
+  ],
+  "lastUpdated": "2026-07-07T16:10:55.232Z",
+  "specId": "012",
+  "folderSlug": "code-graph-readiness-audit",
+  "parentChain": [
+    "system-code-graph",
+    "008-code-graph-scatter"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": []
+}

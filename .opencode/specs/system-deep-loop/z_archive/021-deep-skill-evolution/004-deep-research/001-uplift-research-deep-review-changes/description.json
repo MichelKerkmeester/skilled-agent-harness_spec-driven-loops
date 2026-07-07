@@ -1,6 +1,6 @@
 {
   "level": "phase-child",
-  "specFolder": "skilled-agent-orchestration/116-deep-skill-evolution/004-deep-research/001-uplift-research-deep-review-changes",
+  "specFolder": "system-deep-loop/z_archive/021-deep-skill-evolution/004-deep-research/001-uplift-research-deep-review-changes",
   "description": "10-iter deep-research dispatch hosting the research workspace. Mixed-executor: cli-devin SWE-1.6 iters 1-8 + cli-codex gpt-5.5 high fast iters 9-10. Outputs research-report.md + per-iter narratives, deltas, prompts, logs.",
   "keywords": [
     "119/001",

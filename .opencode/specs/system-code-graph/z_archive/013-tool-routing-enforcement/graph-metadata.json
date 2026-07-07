@@ -1,0 +1,238 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-code-graph/z_archive/013-tool-routing-enforcement",
+  "spec_folder": "system-code-graph/z_archive/013-tool-routing-enforcement",
+  "parent_id": "system-code-graph/z_archive",
+  "parent_id_review_required": true,
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "tool routing enforcement",
+      "cocoindex not used",
+      "code graph misjudgment",
+      "use cocoindex instead of grep",
+      "semantic search enforcement",
+      "tool routing plan",
+      "enforcement implementation order",
+      "cocoindex enforcement plan",
+      "tool routing tasks",
+      "enforcement tasks",
+      "tool routing checklist",
+      "enforcement verification"
+    ],
+    "key_topics": [
+      "tool",
+      "routing",
+      "enforcement",
+      "cocoindex",
+      "used",
+      "code",
+      "graph",
+      "misjudgment",
+      "use",
+      "instead",
+      "grep",
+      "semantic"
+    ],
+    "importance_tier": "normal",
+    "status": "draft",
+    "key_files": [
+      "mcp_server/context-server.ts",
+      "mcp_server/hooks/memory-surface.ts",
+      "mcp_server/tool-schemas.ts",
+      "mcp_server/lib/session/session-snapshot.ts",
+      ".opencode/skills/system-spec-kit/constitutional/gate-tool-routing.md",
+      "hooks/memory-surface.ts",
+      "lib/session/session-snapshot.ts",
+      ".opencode/agents/context.md",
+      ".claude/agents/context.md",
+      "constitutional/gate-tool-routing.md",
+      "tests/context-server.vitest.ts",
+      "hooks/claude/session-prime.ts",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      "research/research.md"
+    ],
+    "entities": [
+      {
+        "name": "context-server.ts",
+        "kind": "code",
+        "path": "mcp_server/context-server.ts",
+        "source": "derived"
+      },
+      {
+        "name": "memory-surface.ts",
+        "kind": "code",
+        "path": "mcp_server/hooks/memory-surface.ts",
+        "source": "derived"
+      },
+      {
+        "name": "tool-schemas.ts",
+        "kind": "code",
+        "path": "mcp_server/tool-schemas.ts",
+        "source": "derived"
+      },
+      {
+        "name": "session-snapshot.ts",
+        "kind": "code",
+        "path": "mcp_server/lib/session/session-snapshot.ts",
+        "source": "derived"
+      },
+      {
+        "name": "gate-tool-routing.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/constitutional/gate-tool-routing.md",
+        "source": "derived"
+      },
+      {
+        "name": "context.md",
+        "kind": "doc",
+        "path": ".opencode/agents/context.md",
+        "source": "derived"
+      },
+      {
+        "name": "context-server.vitest.ts",
+        "kind": "test",
+        "path": "tests/context-server.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "session-prime.ts",
+        "kind": "code",
+        "path": "hooks/claude/session-prime.ts",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Tool Routing",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Graph",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Plan",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Tool Routing Enforcement",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Order",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Server Instructions",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "AI assistants across all CLI runtimes (Claude Code, Codex CLI, Copilot CLI, Gemini CLI) consistently default to Grep/Glob for code search tasks even when CocoIndex (semantic search) and Code Graph (structural queries) are available and appropriate",
+    "created_at": "2026-04-12T09:02:53.431Z",
+    "last_save_at": "2026-07-07T16:18:33.980Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      "research/research.md"
+    ],
+    "source_fingerprint": "sha256:a6dce738aef4f0bfaa952135129b0a9346b73e907acb7c0c8dc59a55dfad91c8",
+    "source_doc_hashes": {
+      "spec.md": "f808f2aeffd5ec01837f433e2984b838d4f71151477cad1c4449ae56dd5c0cca",
+      "plan.md": "5b4a5f19d07ad9ed5de650a90364901f9802573d5d144bf7c81341a468f503ef",
+      "tasks.md": "0722fa13424efc81465b150da3afe490445dace8b3f722a0d6990db0c7caaaca",
+      "checklist.md": "2a8e2ec93da822bcddfa6fca4d7f95b33f6798f0b977656909e83fa7d880ded8",
+      "decision-record.md": "e8cf6b8faa09803e100cc90e2935ecd58ffc364a87c6c57212e0b8540a926c26",
+      "implementation-summary.md": "d85ec05c19447a39f07b7879cadc7c846125f2a9b30135cb6f32093a262f8767",
+      "research/research.md": "f456b6398d68ec3bf40e83a81ebbf0a76e905d7834f9e7c9bd8374bac8456ca5"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

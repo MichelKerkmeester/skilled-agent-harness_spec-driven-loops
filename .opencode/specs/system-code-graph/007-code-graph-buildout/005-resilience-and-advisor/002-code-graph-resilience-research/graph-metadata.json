@@ -1,0 +1,236 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-code-graph/007-code-graph-buildout/005-resilience-and-advisor/002-code-graph-resilience-research",
+  "spec_folder": "system-code-graph/007-code-graph-buildout/005-resilience-and-advisor/002-code-graph-resilience-research",
+  "parent_id": "system-code-graph/007-code-graph-buildout/005-resilience-and-advisor",
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "code graph resilience research",
+      "code graph staleness research",
+      "code graph error resilience",
+      "006-code-graph-resilience-research",
+      "code graph resilience research plan",
+      "006-code-graph-resilience-research plan",
+      "code graph resilience research tasks",
+      "006-code-graph-resilience-research tasks",
+      "code graph resilience research checklist",
+      "006-code-graph-resilience-research checklist",
+      "code graph resilience decision record",
+      "code graph staleness thresholds"
+    ],
+    "key_topics": [
+      "code",
+      "graph",
+      "resilience",
+      "research",
+      "staleness",
+      "error",
+      "006-code-graph-resilience-research",
+      "plan",
+      "tasks",
+      "checklist",
+      "decision",
+      "record"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "assets/staleness-model.md",
+      "assets/recovery-playbook.md",
+      "assets/exclude-rule-confidence.json",
+      "research/research.md",
+      "decision-record.md",
+      "research/iterations/iteration-001.md",
+      "research/iterations/iteration-007.md",
+      "research/deltas/iteration-001.json",
+      "research/deltas/iteration-007.json",
+      "research/deep-research-state.jsonl",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md",
+      "research/deep-research-config.json",
+      "plan.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "staleness-model.md",
+        "kind": "doc",
+        "path": "assets/staleness-model.md",
+        "source": "derived"
+      },
+      {
+        "name": "recovery-playbook.md",
+        "kind": "doc",
+        "path": "assets/recovery-playbook.md",
+        "source": "derived"
+      },
+      {
+        "name": "exclude-rule-confidence.json",
+        "kind": "config",
+        "path": "assets/exclude-rule-confidence.json",
+        "source": "derived"
+      },
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "iteration-001.md",
+        "kind": "doc",
+        "path": "research/iterations/iteration-001.md",
+        "source": "derived"
+      },
+      {
+        "name": "iteration-007.md",
+        "kind": "doc",
+        "path": "research/iterations/iteration-007.md",
+        "source": "derived"
+      },
+      {
+        "name": "iteration-001.json",
+        "kind": "config",
+        "path": "research/deltas/iteration-001.json",
+        "source": "derived"
+      },
+      {
+        "name": "iteration-007.json",
+        "kind": "config",
+        "path": "research/deltas/iteration-007.json",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-state.jsonl",
+        "kind": "file",
+        "path": "research/deep-research-state.jsonl",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-config.json",
+        "kind": "config",
+        "path": "research/deep-research-config.json",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Graph Resilience Research",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Research Queued",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Run",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The code graph index has three observable failure modes today:",
+    "created_at": "2026-04-25T20:30:00Z",
+    "last_save_at": "2026-07-07T16:18:33.800Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      "research/research.md"
+    ],
+    "source_fingerprint": "sha256:a0af62f4b31c41abdeb817b3c2cb770a6e45119241ef53c6c3807a2ec123b4f1",
+    "source_doc_hashes": {
+      "spec.md": "856ddda50dccb99951828272130a5348a24e44a4638cc5214a5a3a73ec14517b",
+      "plan.md": "e153ef8ca04879e393e2744fb29806fb23a9b51cfeec09a88dc518f7b000e935",
+      "tasks.md": "d003da7eab64967228873f25f6f6cc416893320f06f7c7e3b1f854d27af50577",
+      "checklist.md": "b6c598a13a50335b29d7eb57fefea127f40c72b2ae1e8e33ab963beadec8bd81",
+      "decision-record.md": "cb3e30bc49aa87246b6c065b3567350cc4b0f820bbdae6e3f4c88bb98cd0c609",
+      "implementation-summary.md": "98cdd5aea63bba70d8207bac8cb6c1cc5d00f6ef78b99d7282bb67759baec603",
+      "research/research.md": "0e40170ce320419b6bf8b1d73c31db964f1c849e8aa161453e3d4027701285dc"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

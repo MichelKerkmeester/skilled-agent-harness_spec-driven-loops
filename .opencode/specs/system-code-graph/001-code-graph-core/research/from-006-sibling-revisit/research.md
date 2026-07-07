@@ -10,7 +10,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/028-memory-search-intelligence/006-sibling-revisit"
+    packet_pointer: "system-code-graph/001-code-graph-core/research/from-006-sibling-revisit"
     last_updated_at: "2026-06-17T07:30:00Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "Reconciled 006 ledger tally to NET-NEW x10 + orphaned-row dispositions"

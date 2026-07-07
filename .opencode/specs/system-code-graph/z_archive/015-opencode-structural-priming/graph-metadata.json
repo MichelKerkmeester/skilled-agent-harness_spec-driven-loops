@@ -1,0 +1,227 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-code-graph/z_archive/015-opencode-structural-priming",
+  "spec_folder": "system-code-graph/z_archive/015-opencode-structural-priming",
+  "parent_id": "system-code-graph/z_archive",
+  "parent_id_review_required": true,
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "opencode structural priming",
+      "structural bootstrap contract",
+      "non-hook startup guidance",
+      "027 structural priming",
+      "opencode structural priming plan",
+      "non-hook bootstrap plan",
+      "027 structural priming plan",
+      "027 structural priming tasks",
+      "opencode structural bootstrap tasks",
+      "027 structural priming checklist",
+      "opencode bootstrap checklist",
+      "027 implementation summary"
+    ],
+    "key_topics": [
+      "opencode",
+      "structural",
+      "priming",
+      "bootstrap",
+      "contract",
+      "non-hook",
+      "startup",
+      "guidance",
+      "027",
+      "plan",
+      "tasks",
+      "checklist"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "mcp_server/lib/session/session-snapshot.ts",
+      "mcp_server/hooks/memory-surface.ts",
+      "mcp_server/handlers/session-bootstrap.ts",
+      "mcp_server/handlers/session-resume.ts",
+      "mcp_server/handlers/session-health.ts",
+      "mcp_server/context-server.ts",
+      ".opencode/agents/context.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "session-snapshot.ts",
+        "kind": "code",
+        "path": "mcp_server/lib/session/session-snapshot.ts",
+        "source": "derived"
+      },
+      {
+        "name": "memory-surface.ts",
+        "kind": "code",
+        "path": "mcp_server/hooks/memory-surface.ts",
+        "source": "derived"
+      },
+      {
+        "name": "session-bootstrap.ts",
+        "kind": "code",
+        "path": "mcp_server/handlers/session-bootstrap.ts",
+        "source": "derived"
+      },
+      {
+        "name": "session-resume.ts",
+        "kind": "code",
+        "path": "mcp_server/handlers/session-resume.ts",
+        "source": "derived"
+      },
+      {
+        "name": "session-health.ts",
+        "kind": "code",
+        "path": "mcp_server/handlers/session-health.ts",
+        "source": "derived"
+      },
+      {
+        "name": "context-server.ts",
+        "kind": "code",
+        "path": "mcp_server/context-server.ts",
+        "source": "derived"
+      },
+      {
+        "name": "context.md",
+        "kind": "doc",
+        "path": ".opencode/agents/context.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Structural Priming",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Child Header",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Plan",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Kit",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Shared",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Phases 018 and 024 improved hookless session bootstrap, but non-hook runtimes still depend too much on the model deciding to call structural tools at the right moment",
+    "created_at": "2026-04-12T09:02:53.433Z",
+    "last_save_at": "2026-07-07T16:18:33.985Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:1f44dd812df763df75cb39e0da47f27cfd1fae38ced5abe5e48923e8ee2140f2",
+    "source_doc_hashes": {
+      "spec.md": "59297dd4123594c6905d9fd86d94ae7b3f0b3d78b50cf195924c29cff4aa6a7d",
+      "plan.md": "e26e87ec3aa36edd713aa841973415c8c948a410efbfd37b0c6c0e75e8491418",
+      "tasks.md": "d61540798d963781d4fe1cafbd0d979327969d1699119bc1e4104d8cd0c98ea7",
+      "checklist.md": "734a5aa515abb7a94660e8e3c41b2f0b9593ca9e7828faebbb956e10898f5bc8",
+      "implementation-summary.md": "bf2bf354a73f35a548ccd755b168060313172432ae527deff7470c53ca320fa3"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "specFolder": "system-code-graph/007-code-graph-buildout/010-playbook-validation-and-hardening/006-parser-quarantine-recovery",
+  "description": "029 finding F-RUNTIME-2: a single B2 fault (\"memory access out of bounds\") sets the module-level `parserHealth = 'quarantined'` (`tree-sitter-parser.t",
+  "keywords": [
+    "029",
+    "finding",
+    "f-runtime-2",
+    "single",
+    "fault",
+    "memory",
+    "access",
+    "bounds",
+    "sets",
+    "module-level",
+    "parserhealth",
+    "quarantined",
+    "tree-sitter-parser"
+  ],
+  "lastUpdated": "2026-06-23T03:49:56.107Z",
+  "specId": "006",
+  "folderSlug": "parser-quarantine-recovery",
+  "parentChain": [
+    "system-spec-kit",
+    "026-graph-and-context-optimization",
+    "004-code-graph",
+    "010-playbook-validation-and-hardening"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

@@ -1,0 +1,30 @@
+{
+  "level": "1",
+  "specFolder": "system-code-graph/z_archive/019-code-graph-public-readme-update",
+  "description": "The repository-root `README.md` is the first document new readers see, but parts of it still describe code graph as memory-owned or omit the",
+  "keywords": [
+    "repository-root",
+    "readme",
+    "first",
+    "document",
+    "new",
+    "readers",
+    "see",
+    "parts",
+    "still",
+    "describe",
+    "code",
+    "graph",
+    "memory-owned",
+    "omit"
+  ],
+  "lastUpdated": "2026-07-07T16:12:51.307Z",
+  "specId": "019",
+  "folderSlug": "code-graph-public-readme-update",
+  "parentChain": [
+    "system-code-graph",
+    "z_archive"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": []
+}

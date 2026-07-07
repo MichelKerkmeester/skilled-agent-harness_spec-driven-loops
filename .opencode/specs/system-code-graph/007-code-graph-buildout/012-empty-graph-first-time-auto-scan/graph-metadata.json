@@ -1,0 +1,218 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-code-graph/007-code-graph-buildout/012-empty-graph-first-time-auto-scan",
+  "spec_folder": "system-code-graph/007-code-graph-buildout/012-empty-graph-first-time-auto-scan",
+  "parent_id": "system-code-graph/007-code-graph-buildout",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "empty graph auto scan",
+      "code graph first-time auto-establish",
+      "026 004 012 auto scan",
+      "auto reindex empty graph",
+      "isDefaultEndUserScope",
+      "empty graph auto scan plan",
+      "code graph auto-establish plan",
+      "empty graph auto scan tasks",
+      "empty graph auto scan checklist",
+      "empty graph auto scan summary",
+      "code graph auto-establish implementation"
+    ],
+    "key_topics": [
+      "empty",
+      "graph",
+      "auto",
+      "scan",
+      "code",
+      "first-time",
+      "auto-establish",
+      "026",
+      "004",
+      "012",
+      "reindex",
+      "isdefaultenduserscope"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "implementation-summary.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Graph First",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Time Auto",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement When",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Make",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Add",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Read",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "operator",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Date",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Impact",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "When the code graph is empty (never built, or reset), the read tools (`codegraphquery`, `codegraphcontext`) return `status:\"blocked\"` with `requiredAction: codegraphscan` — they never build the index themselves",
+    "created_at": "2026-05-29T10:44:34.652Z",
+    "last_save_at": "2026-07-07T16:18:33.893Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:b2821400fc377ecd0da30d637c7ed70aba318e43c52902a71d097459d53eced3",
+    "source_doc_hashes": {
+      "spec.md": "a7cbd7a817ca7e3e9c61c6e9f6eb57f2c4a1c296a4374b5f16555a400d78a79a",
+      "plan.md": "21bdd69e6d5b525748f8d34ffd3f2742d594eb2149b3ef20bbc9ad7695afa925",
+      "tasks.md": "74f85290f6a97d62e4e55d814bc5becebba5e652c1958895454030805311d0d3",
+      "checklist.md": "abb93f40cb8a920a6d5dd9fc959ea30f0891e96631b31c58dd28af1515081dfa",
+      "implementation-summary.md": "511d776d553d1c7a63127d4e72480915c98e61cbbca406617b8f8174af897a95"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

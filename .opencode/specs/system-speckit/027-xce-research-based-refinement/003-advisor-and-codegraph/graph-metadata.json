@@ -4,8 +4,7 @@
   "spec_folder": "system-speckit/027-xce-research-based-refinement/003-advisor-and-codegraph",
   "parent_id": "system-speckit/027-xce-research-based-refinement",
   "children_ids": [
-    "system-speckit/027-xce-research-based-refinement/003-advisor-and-codegraph/001-causal-traversal-bfs",
-    "system-speckit/027-xce-research-based-refinement/003-advisor-and-codegraph/002-xce-feature-adoption-advisor-codegraph"
+    "system-speckit/027-xce-research-based-refinement/003-advisor-and-codegraph/001-causal-traversal-bfs"
   ],
   "manual": {
     "depends_on": [],
@@ -85,17 +84,17 @@
     ],
     "causal_summary": "The code-graph carried recursive-CTE traversals that defeated its indexes and needed a shared snapshot-equivalent BFS helper",
     "created_at": "2026-06-14T00:00:00Z",
-    "last_save_at": "2026-07-07T11:55:37.574Z",
+    "last_save_at": "2026-07-07T16:24:48.270Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:486c837bf7ecb0e1b236028c32fd35c4773b1732a037f85389200337855754cc",
+    "source_fingerprint": "sha256:99e243c104a0fbe9ce9dd6f50d9bb802cd82ce90789775111395de273ad28c7e",
     "source_doc_hashes": {
-      "spec.md": "500fa8e6bf4cd9d1118f2f7eb2f0d6625160883f14a7d068810fcf8661bda928"
+      "spec.md": "f8676f8640089b3e1d8df1bff697b2074cff874a4ce5fda74f75bfb0f5a566cb"
     },
-    "last_active_child_id": "system-speckit/027-xce-research-based-refinement/003-advisor-and-codegraph/002-xce-feature-adoption-advisor-codegraph",
+    "last_active_child_id": "system-speckit/027-xce-research-based-refinement/003-advisor-and-codegraph/001-causal-traversal-bfs",
     "last_active_at": "2026-06-19T00:00:00Z"
   }
 }

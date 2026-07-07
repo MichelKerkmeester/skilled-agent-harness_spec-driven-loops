@@ -1,0 +1,24 @@
+{
+  "level": "1",
+  "specFolder": "system-code-graph/008-code-graph-scatter/015-code-graph-launcher-and-db-lifecycle",
+  "description": "The code-index audit found stale/orphan-prone launcher and server ownership",
+  "keywords": [
+    "code-index",
+    "audit",
+    "found",
+    "stale",
+    "orphan-prone",
+    "launcher",
+    "server",
+    "ownership"
+  ],
+  "lastUpdated": "2026-07-07T16:10:56.249Z",
+  "specId": "015",
+  "folderSlug": "code-graph-launcher-and-db-lifecycle",
+  "parentChain": [
+    "system-code-graph",
+    "008-code-graph-scatter"
+  ],
+  "memorySequence": 7,
+  "memoryNameHistory": []
+}

@@ -198,7 +198,7 @@
     ],
     "causal_summary": "The code-graph readiness signal has no generation counter: `code-graph-context.ts:320` `computeFreshness()` reports only a wall-clock staleness bucket (`fresh`/`recent`/`stale`/`unknown` from `MAX(indexedat)`), and the read-path gate is binary (`freshness !== 'fresh'` blocks at `handlers/query.ts:903-915`)",
     "created_at": "2026-06-19T05:52:29.580Z",
-    "last_save_at": "2026-07-06T16:45:38.011Z",
+    "last_save_at": "2026-07-07T16:02:29.486Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,13 +208,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:648d5c98ffcd1777ebcc0d643cb6b47d26bbf71a684f764eceafbca66344f3e9",
+    "source_fingerprint": "sha256:94582f34f6c2d01e42b005ded030e26275016dccf1359d2e6893be75c0479444",
     "source_doc_hashes": {
       "spec.md": "faa5c1385b4cca2d76b47b4be30e47d531362bc71bfdd3a39c2d33a806a46b86",
       "plan.md": "e88e1305e1c75d47f0f1a4225f8b1cbf6e3539a48eb62d826b7799c51c6b61b6",
       "tasks.md": "79c23e1e176b5e8d38451058a01d93f26f7a4bf11d515db23286cfaf3a2184ca",
       "checklist.md": "e1c2f3ce92393d7afb2750f8a417328ee086653872b77fc87d91f277c61bf382",
-      "implementation-summary.md": "a8491537609e24335fa014d096ebabb4b7622f6f9885b72ad20e5442d769c0a6"
+      "implementation-summary.md": "41f22a526250feab837e4e0d712665a342a7e2fa34f3a2c3bd93594b6149ddb5"
     },
     "last_active_child_id": null,
     "last_active_at": null

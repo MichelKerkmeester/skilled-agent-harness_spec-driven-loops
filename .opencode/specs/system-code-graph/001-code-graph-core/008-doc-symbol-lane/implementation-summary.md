@@ -49,7 +49,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | `system-code-graph/001-code-graph-core/008-doc-symbol-lane` |
+| **Spec Folder** | 008-doc-symbol-lane |
 | **Completed** | 2026-06-19 (2 of 2 candidates implemented, shipped in commit `b18c077311`) |
 | **Level** | 2 |
 | **Candidates** | Q5-C1 / `Q5-C1-doc-symbol-extractor` (DONE), Q7-lease-classification-telemetry (DONE: classifier + no-op emit) |

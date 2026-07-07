@@ -1,0 +1,29 @@
+{
+  "specFolder": "system-code-graph/z_archive/006-cocoindex-ux-utilization",
+  "description": "Phase 012 improved CocoIndex visibility and routing, but the packet drifted away from the Level 2 template and from current implementation reality",
+  "keywords": [
+    "phase",
+    "012",
+    "improved",
+    "cocoindex",
+    "visibility",
+    "routing",
+    "packet",
+    "drifted",
+    "away",
+    "level",
+    "template",
+    "current",
+    "implementation",
+    "reality"
+  ],
+  "lastUpdated": "2026-07-07T16:12:47.475Z",
+  "specId": "006",
+  "folderSlug": "cocoindex-ux-utilization",
+  "parentChain": [
+    "system-code-graph",
+    "z_archive"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

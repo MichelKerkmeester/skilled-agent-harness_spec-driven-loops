@@ -1,6 +1,6 @@
 {
   "level": "phase-child",
-  "specFolder": "skilled-agent-orchestration/116-deep-skill-evolution/005-deep-agent-improvement/003-recommendations",
+  "specFolder": "system-deep-loop/z_archive/021-deep-skill-evolution/005-deep-agent-improvement/003-recommendations",
   "description": "Prioritized improvement packet roadmap for deep-agent-improvement based on 10-iter research findings. Output: improvement-roadmap.md with concrete packet plan (effort, priority, dependencies).",
   "keywords": [
     "123/003",

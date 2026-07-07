@@ -1,6 +1,6 @@
 ---
 title: "Feature Specification: Advisor and Code Graph (Phase Parent)"
-description: "Phase-parent for the skill-advisor and code-graph subsystem phases: causal traversal, cross-subsystem feature adoption, and advisor launcher resilience."
+description: "Phase-parent for the shared BFS traversal helper retained by both skill-advisor and code-graph consumers."
 trigger_phrases:
   - "027 advisor and code graph"
   - "causal traversal bfs"
@@ -14,7 +14,7 @@ _memory:
     packet_pointer: "system-spec-kit/027-xce-research-based-refinement/003-advisor-and-codegraph"
     last_updated_at: "2026-06-20T00:00:00Z"
     last_updated_by: "claude-opus-4-8"
-    recent_action: "Reconcile phase-parent map + topology to the five shipped child phases"
+    recent_action: "Record that codegraph-specific nested content moved under the system-code-graph track"
     next_safe_action: "Resume or validate a child phase folder"
     blockers: []
     key_files:
@@ -65,7 +65,7 @@ _memory:
 The code-graph carried recursive-CTE traversals that defeated its indexes and needed a shared snapshot-equivalent BFS helper. That helper is also consumed by the skill-advisor's own skill-graph queries, so it stays here as shared infrastructure rather than moving with the advisor-only work.
 
 ### Purpose
-Own the shared BFS helper and the pure-code-graph XCE feature adoptions (tombstone audit, BFS consolidation, why-included trace, symbol resolver) so each can be resumed and validated independently. The advisor-only phases that originally lived here (cross-session reconnect, suite repair, spec-folder-leak fix, and 5 advisor-specific feature adoptions) moved to `system-skill-advisor/009-advisor-and-codegraph-migrated-items/` on 2026-07-07.
+Own the shared BFS helper so it remains visible as shared infrastructure for both code-graph and skill-advisor consumers. The codegraph-specific nested feature-adoption content moved to `system-code-graph/009-advisor-codegraph-shared-features/`; the advisor-only phases moved to `system-skill-advisor/009-advisor-and-codegraph-migrated-items/`.
 
 > **Phase-parent note:** This spec.md is the only REQUIRED authored document at the parent level. All detailed planning, task breakdowns, checklists, decisions, and continuity live inside the child phase folders listed in the Phase Documentation Map below. Program-level history and consolidation narrative live in the 027 root `../context-index.md` and `../timeline.md` — not here.
 <!-- /ANCHOR:problem -->
@@ -77,12 +77,13 @@ Own the shared BFS helper and the pure-code-graph XCE feature adoptions (tombsto
 
 ### In Scope
 - Shared app-level BFS traversal helper for the code graph (also consumed by skill-advisor).
-- Pure code-graph XCE feature transfers (tombstone audit, BFS consolidation, why-included trace, symbol resolver).
+- The retained `001-causal-traversal-bfs/` child phase.
 
 ### Out of Scope
 - Memory-store and search work (track 002).
 - Shared transport, command, and dependency layers (track 004).
 - Advisor-only work: moved to `system-skill-advisor/009-advisor-and-codegraph-migrated-items/`.
+- Codegraph-specific nested feature-adoption work: moved to `system-code-graph/009-advisor-codegraph-shared-features/`.
 - Implementation detail at the parent level.
 
 ### Files to Change
@@ -103,7 +104,8 @@ Summary of aggregate file scope. Per-phase detail lives in each child's plan.md.
 | Phase | Folder | Focus | Status |
 |-------|--------|-------|--------|
 | 001 | `001-causal-traversal-bfs/` | Replace the recursive-CTE graph traversals with a shared snapshot-equivalent BFS helper | Complete |
-| 002 | `002-xce-feature-adoption-advisor-codegraph/` | Nested phase parent: 4 pure-code-graph XCE feature transfers (tombstone audit, BFS consolidation, why-included trace, symbol resolver) | Phase Parent |
+
+The former codegraph-specific nested phase parent moved to `system-code-graph/009-advisor-codegraph-shared-features/`.
 
 ### Phase Transition Rules
 

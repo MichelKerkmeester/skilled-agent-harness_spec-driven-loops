@@ -1,0 +1,221 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-code-graph/008-code-graph-scatter/006-code-graph-watcher-claim-retraction",
+  "spec_folder": "system-code-graph/008-code-graph-scatter/006-code-graph-watcher-claim-retraction",
+  "parent_id": "system-code-graph/008-code-graph-scatter",
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "004-code-graph-watcher-claim-retraction",
+      "code-graph watcher retraction",
+      "structural watcher doc fix",
+      "read-path graph freshness",
+      "004-code-graph-watcher-claim-retraction resource map",
+      "code graph watcher retraction file ledger"
+    ],
+    "key_topics": [
+      "004-code-graph-watcher-claim-retraction",
+      "code-graph",
+      "watcher",
+      "retraction",
+      "structural",
+      "doc",
+      "fix",
+      "read-path",
+      "graph",
+      "freshness",
+      "resource",
+      "map"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md",
+      ".opencode/skills/system-spec-kit/mcp_server/README.md",
+      ".opencode/skills/system-spec-kit/SKILL.md",
+      ".opencode/skills/system-spec-kit/references/config/hook_system.md",
+      "resource-map.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "hook_system.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/references/config/hook_system.md",
+        "source": "derived"
+      },
+      {
+        "name": "resource-map.md",
+        "kind": "doc",
+        "path": "resource-map.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Graph Watcher Retraction",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Depends On",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Retract",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Acceptance Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Runtime Code",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Evidence",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "013 validated P1-1: the MCP server README had claimed real-time structural code-graph watching, but the adversarial retest found only markdown/spec-doc and skill-graph watcher paths",
+    "created_at": "2026-04-29T13:55:04Z",
+    "last_save_at": "2026-07-07T16:18:33.909Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md",
+      "resource-map.md"
+    ],
+    "source_fingerprint": "sha256:9a7b88e394cf20b53481e824cefece9b429ef67604bb6a0e2ed4df3de058d72f",
+    "source_doc_hashes": {
+      "spec.md": "2f6c9847b8c49df22b52c4d572d2df20e561b6fcc746c57bd0d6ce53d0e8befa",
+      "plan.md": "4fa62c572545098f91000fac8de7c9fab5f92c0d0e63ddbfa08778a3838c8f7b",
+      "tasks.md": "a77ec5116dfd8dc48b4b0c9208dcd3658e24fb011c1268ef4c55ceecf4cef5d6",
+      "checklist.md": "e7bd3d3759d9eabcd8bf4535aa5f87e017e296c9d90b916cf52272c22c3e12e7",
+      "implementation-summary.md": "3a7b35897b7e5a876778c3cd6b178539bd61686746d280556bfcc2b97bceb2a9",
+      "resource-map.md": "68c5529feae25169d7174cf3abc7967b94b3c9bf4f3b74ce73b7bca4b6b8c680"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

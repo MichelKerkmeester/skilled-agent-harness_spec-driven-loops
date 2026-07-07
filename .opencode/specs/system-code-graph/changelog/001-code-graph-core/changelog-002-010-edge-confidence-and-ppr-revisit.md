@@ -14,8 +14,8 @@ contextType: "implementation"
 
 ## 2026-07-01
 
-> Spec folder: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/002-code-graph/010-edge-confidence-and-ppr-revisit` (Level 3)
-> Parent packet: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/002-code-graph`
+> Spec folder: `.opencode/specs/system-code-graph/001-code-graph-core/010-edge-confidence-and-ppr-revisit` (Level 3)
+> Parent packet: `.opencode/specs/system-code-graph/001-code-graph-core`
 
 ### Summary
 

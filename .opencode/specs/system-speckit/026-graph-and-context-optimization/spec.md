@@ -98,7 +98,7 @@ Deliver graph indexing, context/memory continuity, embedding architecture, skill
 | 001 | `001-research-and-baseline/` | External research corpus, adoption decisions, and graph/context baselines | complete |
 | 002 | `002-spec-kit-internals/` | Resource-map/deep-loop plumbing, skill-advisor system, template system, spec-folder naming, validate/orchestrator parity | complete |
 | 003 | `003-memory-and-causal-runtime/` | Memory continuity substrate, causal-graph channel routing, embedding architecture + embedding-stack consolidation/hardening | complete |
-| 004 | `004-code-graph/` | Code-graph structural-indexing package, CocoIndex decoupling, startup fixes, code-graph sub-themes | complete |
+| 004 | `system-code-graph/007-code-graph-buildout/` | Moved to the system-code-graph track; code-graph structural-indexing package, CocoIndex decoupling, startup fixes, code-graph sub-themes | moved |
 | 005 | `005-graph-impact-and-affordance/` | External-project adoption uplift: phase runner, edge/impact explanation, affordance + causal-trust display | deferred |
 | 006 | `006-operator-tooling/` | Runtime hook parity, doctor command surface, install-script/doctor realignment, session-lifecycle + worktree automation | complete |
 | 007 | `007-mcp-daemon-reliability/` | MCP daemon lifecycle reliability: IPC socket canonicalization, WAL checkpoint-on-close, graceful shutdown + watchdog, provider dispose, at-rest durability + memory-DB/graph-churn healing + infra follow-up hardening | complete |

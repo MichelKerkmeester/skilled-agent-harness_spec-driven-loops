@@ -1,5 +1,5 @@
 {
-  "specFolder": "skilled-agent-orchestration/z_archive/056-sk-deep-rename/001-discovery-impact-map",
+  "specFolder": "system-deep-loop/z_archive/031-sk-deep-rename/001-discovery-impact-map",
   "description": "Packet 070 will rename `sk-deep-review` to `deep-review` and `sk-deep-research` to `deep-research`",
   "keywords": [
     "packet",

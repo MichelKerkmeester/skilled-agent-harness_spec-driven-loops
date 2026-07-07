@@ -185,7 +185,7 @@
     ],
     "causal_summary": "A single crashing file is permanently removed from the code graph with no bounded-retry escape",
     "created_at": "2026-06-19T05:52:29.582Z",
-    "last_save_at": "2026-07-06T16:45:38.673Z",
+    "last_save_at": "2026-07-07T16:02:29.964Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -194,12 +194,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:fef31f117202cc179ea0bbd9d274132fe2020e9a923c8b875f2dd45a869c72aa",
+    "source_fingerprint": "sha256:c5ad9d64e7b67ce00a9979b6f967c30f405b12c6cb18212ea9fa8ec3cec28bb7",
     "source_doc_hashes": {
-      "spec.md": "e5f0ed42cb5ba81d25f19a40b2b4031ab39fffacd840ca46d459046a1a80f9a2",
+      "spec.md": "102884874026da04797351a1c14e82109f2f60d691537d4d44bbf1eb3647c830",
       "plan.md": "8c85cd63edf315e4b1e17b12d01c1833ea1abf43f1cecb4f785d1dd54726cd77",
       "tasks.md": "b124863f07541dff9c5710e84947be531e1d30c875867b3b0afb6f80f76cfe05",
-      "implementation-summary.md": "d3f5e2feea6fe4cbedc8850e7fad7f2b675b8818387bbe0a171fc48bb531d157"
+      "implementation-summary.md": "bc9157d432084d94038de87bb31082fffa8da39b33063d81754c9a62525eb9c4"
     },
     "last_active_child_id": null,
     "last_active_at": null

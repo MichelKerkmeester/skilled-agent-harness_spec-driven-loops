@@ -1,0 +1,218 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-code-graph/z_archive/019-code-graph-public-readme-update",
+  "spec_folder": "system-code-graph/z_archive/019-code-graph-public-readme-update",
+  "parent_id": "system-code-graph/z_archive",
+  "parent_id_review_required": true,
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "015 public readme update",
+      "public readme post 014 extraction",
+      "system code graph first class skill readme",
+      "standalone mcp topology readme",
+      "015 public readme update plan",
+      "readme standalone mcp topology plan",
+      "015 public readme update tasks",
+      "readme standalone mcp topology tasks",
+      "015 public readme update summary",
+      "readme standalone mcp topology complete"
+    ],
+    "key_topics": [
+      "015",
+      "public",
+      "readme",
+      "update",
+      "post",
+      "014",
+      "extraction",
+      "system",
+      "code",
+      "graph",
+      "first",
+      "class"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      ".opencode/skills/system-code-graph/SKILL.md",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-code-graph/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Git Metadata",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Refresh",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Public",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Graph",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Update Code Graph",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The repository-root `README.md` is the first document new readers see, but parts of it still describe code graph as memory-owned or omit the standalone MCP topology created by packet 014",
+    "created_at": "2026-05-14T19:30:00Z",
+    "last_save_at": "2026-07-07T16:18:34.010Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:01373c44e615b5c5f2eba19ed62bd1ef5a8940ec1c55cdafc79443cd0443490c",
+    "source_doc_hashes": {
+      "spec.md": "06dea33ba68ef3d271a9fcb58d57a9596fcc952514cedd1d5e0160a279c7d873",
+      "plan.md": "440651752747667c4f1d523cd9615187987ae25262b62b668dedb9b4e50df9f1",
+      "tasks.md": "105a5fc71dcc54bf0b9b29392e620910ac0fc92bde4afa11e37952a0a7aad7ec",
+      "implementation-summary.md": "eeb32f8cb0baf1856f06c0bbb179da0bc617e4d4c4b949207aa7597cf65b7574"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

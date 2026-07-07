@@ -1,0 +1,237 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-code-graph/007-code-graph-buildout/009-system-code-graph-uplift-phase-parent",
+  "spec_folder": "system-code-graph/007-code-graph-buildout/009-system-code-graph-uplift-phase-parent",
+  "parent_id": "system-code-graph/007-code-graph-buildout",
+  "children_ids": [
+    "system-spec-kit/026-graph-and-context-optimization/004-code-graph/009-system-code-graph-uplift-phase-parent/001-skill-docs-install-guide-and-readmes-polish",
+    "system-spec-kit/026-graph-and-context-optimization/004-code-graph/009-system-code-graph-uplift-phase-parent/002-readme-problem-first-rewrite",
+    "system-spec-kit/026-graph-and-context-optimization/004-code-graph/009-system-code-graph-uplift-phase-parent/003-sk-doc-type-validation-alignment",
+    "system-speckit/026-graph-and-context-optimization/004-code-graph/009-system-code-graph-uplift-phase-parent/001-skill-docs-install-guide-and-readmes-polish",
+    "system-speckit/026-graph-and-context-optimization/004-code-graph/009-system-code-graph-uplift-phase-parent/002-readme-problem-first-rewrite",
+    "system-speckit/026-graph-and-context-optimization/004-code-graph/009-system-code-graph-uplift-phase-parent/003-sk-doc-type-validation-alignment",
+    "system-code-graph/007-code-graph-buildout/009-system-code-graph-uplift-phase-parent/001-skill-docs-install-guide-and-readmes-polish",
+    "system-code-graph/007-code-graph-buildout/009-system-code-graph-uplift-phase-parent/002-readme-problem-first-rewrite",
+    "system-code-graph/007-code-graph-buildout/009-system-code-graph-uplift-phase-parent/003-sk-doc-type-validation-alignment"
+  ],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "029 system-code-graph uplift",
+      "system-code-graph marketing readme",
+      "sk-doc 1:1 alignment system-code-graph",
+      "029 resource map",
+      "system-code-graph uplift paths",
+      "deep-research preflight",
+      "paths analyzed"
+    ],
+    "key_topics": [
+      "029",
+      "system-code-graph",
+      "uplift",
+      "marketing",
+      "readme",
+      "sk-doc",
+      "alignment",
+      "resource",
+      "map",
+      "paths",
+      "deep-research",
+      "preflight"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "resource-map.md",
+      "research/research.md",
+      ".opencode/skills/system-code-graph/SKILL.md",
+      ".opencode/skills/system-code-graph/INSTALL_GUIDE.md",
+      ".opencode/skills/system-code-graph/README.md",
+      ".opencode/skills/system-code-graph/feature_catalog/feature_catalog.md",
+      ".opencode/skills/system-code-graph/manual_testing_playbook/manual_testing_playbook.md",
+      ".opencode/skills/system-code-graph/ARCHITECTURE.md",
+      "research/deep-research-state.jsonl",
+      "research/resource-map.md",
+      ".opencode/skills/system-code-graph/mcp_server/README.md",
+      ".opencode/skills/system-code-graph/mcp_server/handlers/README.md",
+      ".opencode/skills/system-code-graph/mcp_server/lib/README.md",
+      ".opencode/skills/system-code-graph/changelog/v1.0.0.0.md",
+      ".opencode/skills/system-code-graph/changelog/v1.0.2.0.md",
+      ".opencode/skills/system-code-graph/changelog/v1.0.3.0.md",
+      ".opencode/skills/system-spec-kit/README.md",
+      ".opencode/skills/sk-doc/SKILL.md",
+      ".opencode/skills/system-spec-kit/templates/manifest/phase-parent.spec.md.tmpl"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "resource-map.md",
+        "kind": "doc",
+        "path": "resource-map.md",
+        "source": "derived"
+      },
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "key_phrase",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "INSTALL_GUIDE.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-code-graph/INSTALL_GUIDE.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-code-graph/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "feature_catalog.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-code-graph/feature_catalog/feature_catalog.md",
+        "source": "derived"
+      },
+      {
+        "name": "manual_testing_playbook.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-code-graph/manual_testing_playbook/manual_testing_playbook.md",
+        "source": "derived"
+      },
+      {
+        "name": "ARCHITECTURE.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-code-graph/ARCHITECTURE.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-state.jsonl",
+        "kind": "file",
+        "path": "research/deep-research-state.jsonl",
+        "source": "derived"
+      },
+      {
+        "name": "v1.0.0.0.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-code-graph/changelog/v1.0.0.0.md",
+        "source": "derived"
+      },
+      {
+        "name": "v1.0.2.0.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-code-graph/changelog/v1.0.2.0.md",
+        "source": "derived"
+      },
+      {
+        "name": "v1.0.3.0.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-code-graph/changelog/v1.0.3.0.md",
+        "source": "derived"
+      },
+      {
+        "name": "phase-parent.spec.md.tmpl",
+        "kind": "file",
+        "path": ".opencode/skills/system-spec-kit/templates/manifest/phase-parent.spec.md.tmpl",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Deep Research",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "estimated",
+        "kind": "key_phrase",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "full",
+        "kind": "key_phrase",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "HVR",
+        "kind": "key_phrase",
+        "path": "research/research.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The `system-code-graph` skill ships a runtime that works but a doc surface that under-sells it",
+    "created_at": "2026-05-16T09:37:48Z",
+    "last_save_at": "2026-07-07T16:18:33.862Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "research/research.md",
+      "resource-map.md"
+    ],
+    "source_fingerprint": "sha256:c2e153ebe72ac1b5cb4ae677d17e622540b4d284770ad0db914d1cd2799e5103",
+    "source_doc_hashes": {
+      "spec.md": "04de0c9f9994b8c23d432cef0618a1169e32bd5d4ff32b01abbc36dee6f76e01",
+      "research/research.md": "611dd415bd8f2bc6ffeee54194081ef4b51a3ece8de1e9601e9e28878fe0c43d",
+      "resource-map.md": "b39d8a6e21fb9314b7cff2f9c9c4fd4e93e2e0cff8a6def2bc62e4f8b7ec2aba"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

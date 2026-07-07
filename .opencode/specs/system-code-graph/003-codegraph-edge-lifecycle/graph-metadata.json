@@ -202,7 +202,7 @@
     ],
     "causal_summary": "Three code-graph edge-lifecycle capabilities ship finished but dark behind default-off flags with no measured verdict",
     "created_at": "2026-06-24T04:51:53.815Z",
-    "last_save_at": "2026-07-06T17:15:57.469Z",
+    "last_save_at": "2026-07-07T16:18:33.725Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -218,7 +218,7 @@
       "plan.md": "4af5d928329f6b956584bbe301eecffc5bfba56f8a3e20aef96de2d182d8a238",
       "tasks.md": "55acfdc622335fdaff7dcc5418e991a5282d66ea6d39370d4cb72c05afcd0e8f",
       "checklist.md": "846506deb3f2b4e18ec89d5753a6dd757ccdbcd4fe2e42f6cc35cafd242d4540",
-      "implementation-summary.md": "4d86d142964004bd0e8170f2485ab5a0338b026a4356f4a8cd0b353a4111e462"
+      "implementation-summary.md": "e26bcf13692d285fe81e3920bdb7fefa6a86a8b534400f7be7905a2c488bbed3"
     },
     "last_active_child_id": null,
     "last_active_at": null

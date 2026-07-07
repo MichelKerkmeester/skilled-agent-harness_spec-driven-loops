@@ -1,5 +1,5 @@
 {
-  "specFolder": "skilled-agent-orchestration/z_archive/056-sk-deep-rename/009-family-schema-migration",
+  "specFolder": "system-deep-loop/z_archive/031-sk-deep-rename/009-family-schema-migration",
   "description": "Phase 008 attempted the `sk-deep` to `deep-loop` internal family rename, but the existing SQLite-backed skill graph schema rejects `deep-loop` inserts",
   "keywords": [
     "phase",

@@ -1,0 +1,221 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-code-graph/007-code-graph-buildout/010-playbook-validation-and-hardening/006-parser-quarantine-recovery",
+  "spec_folder": "system-code-graph/007-code-graph-buildout/010-playbook-validation-and-hardening/006-parser-quarantine-recovery",
+  "parent_id": "system-code-graph/007-code-graph-buildout/010-playbook-validation-and-hardening",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "parser quarantine recovery",
+      "f-runtime-2 tree-sitter quarantine",
+      "029 phase 006 parser recovery",
+      "parser quarantine recovery plan",
+      "f-runtime-2 plan",
+      "029 phase 006 plan",
+      "parser quarantine recovery tasks",
+      "f-runtime-2 tasks",
+      "029 phase 006 tasks",
+      "parser quarantine recovery checklist",
+      "f-runtime-2 checklist",
+      "029 phase 006 checklist"
+    ],
+    "key_topics": [
+      "parser",
+      "quarantine",
+      "recovery",
+      "f-runtime-2",
+      "tree-sitter",
+      "029",
+      "phase",
+      "006",
+      "plan",
+      "tasks",
+      "checklist",
+      "finding"
+    ],
+    "importance_tier": "normal",
+    "status": "draft",
+    "key_files": [
+      ".opencode/skills/system-code-graph/mcp_server/lib/tree-sitter-parser.ts",
+      ".opencode/skills/system-code-graph/mcp_server/handlers/scan.ts",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "tree-sitter-parser.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-code-graph/mcp_server/lib/tree-sitter-parser.ts",
+        "source": "derived"
+      },
+      {
+        "name": "scan.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-code-graph/mcp_server/handlers/scan.ts",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parser Quarantine Recovery",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Add",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Add",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Module",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "029 finding F-RUNTIME-2: a single B2 fault (\"memory access out of bounds\") sets the module-level `parserHealth = 'quarantined'` (`tree-sitter-parser.ts:813-815`), after which every parse early-returns a sentinel (`:770-772`)",
+    "created_at": "2026-05-27T03:49:59.734Z",
+    "last_save_at": "2026-07-07T16:18:33.879Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:b39d79c7c26129f3f9f668761cea9be97b54a0584d8d9cde7cbe8a37e323c02f",
+    "source_doc_hashes": {
+      "spec.md": "2268a8379cb4b7e4249ccc470c013ca7c03eb4f3a62f550417108791444114e6",
+      "plan.md": "0537a3ceead7f799f3e52e7dabee07479ab22cacd5e9155e6ac9ea0b9a481296",
+      "tasks.md": "5db29f066ff72d3ce0b8e40c622900ab574829b102e1edef008e8f6588852c58",
+      "checklist.md": "820f7c5cce90c2c2b4e623db13267bc067577a199446edf8f508cc8c8bf1d1a1",
+      "implementation-summary.md": "e424acea5c60af60648e804a993afd020b54f8a2f7fcc986bd6a755bef0471ca"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

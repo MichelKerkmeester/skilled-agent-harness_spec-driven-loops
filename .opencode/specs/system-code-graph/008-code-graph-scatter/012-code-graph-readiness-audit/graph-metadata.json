@@ -1,0 +1,213 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-code-graph/008-code-graph-scatter/012-code-graph-readiness-audit",
+  "spec_folder": "system-code-graph/008-code-graph-scatter/012-code-graph-readiness-audit",
+  "parent_id": "system-code-graph/008-code-graph-scatter",
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "045-004-code-graph-readiness-audit",
+      "code graph readiness audit",
+      "read-path contract review",
+      "ensure-ready behavior"
+    ],
+    "key_topics": [
+      "045-004-code-graph-readiness-audit",
+      "code",
+      "graph",
+      "readiness",
+      "audit",
+      "read-path",
+      "contract",
+      "review",
+      "ensure-ready",
+      "behavior",
+      "release-readiness",
+      "program"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Graph Readiness Release",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Readiness Audit",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Produce",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Kit Memory",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Impact",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Quality",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The release-readiness program needs a truth check for the post-032 code graph readiness contract",
+    "created_at": "2026-04-29T20:00:00.000Z",
+    "last_save_at": "2026-07-07T16:18:33.923Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:4391a3afe80ff24745e4e2502a701ebaa2ae2b28e3c9ee7f9adfe5801873f144",
+    "source_doc_hashes": {
+      "spec.md": "e08dc7217b5b06534329135c6afb39049bb9f709900c589ade83ac789450dd2e",
+      "plan.md": "ef252cffb23b699e11ce5cbae9a99d2c485f147c186ca7a67d11058a87b1b881",
+      "tasks.md": "810f5f1a783947c262b621191f5dc74f25a3f614f1bd399ff90fde2c660af96a",
+      "checklist.md": "d2bbf51f7d8904bd4ca17112b1700164ba740715f368895ff4453fefacbf88e0",
+      "implementation-summary.md": "5bd090ee5c7c236dc8b9cc4844f4b6b28bd7b572f61aa838d309ee4187646cf1"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

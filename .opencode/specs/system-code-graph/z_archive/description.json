@@ -1,0 +1,48 @@
+{
+  "packet_id": "system-code-graph/z_archive",
+  "spec_folder": "system-code-graph/z_archive",
+  "parent_id": "system-code-graph",
+  "title": "System Code Graph Archive",
+  "summary": "Archived container for migrated system-code-graph historical packets.",
+  "trigger_phrases": [
+    "system-code-graph archive",
+    "code graph archive",
+    "structural indexer archive"
+  ],
+  "key_topics": [
+    "archive",
+    "code-graph",
+    "structural-indexer",
+    "cocoindex"
+  ],
+  "importance_tier": "archived",
+  "status": "archived",
+  "children_ids": [
+    "system-code-graph/z_archive/001-documentation-alignment",
+    "system-code-graph/z_archive/002-structural-indexer",
+    "system-code-graph/z_archive/003-code-graph-storage-query",
+    "system-code-graph/z_archive/004-cocoindex-bridge-context",
+    "system-code-graph/z_archive/005-compaction-working-set",
+    "system-code-graph/z_archive/006-cocoindex-ux-utilization",
+    "system-code-graph/z_archive/007-correctness-boundary-repair",
+    "system-code-graph/z_archive/008-tree-sitter-migration",
+    "system-code-graph/z_archive/009-cross-runtime-ux",
+    "system-code-graph/z_archive/010-tree-sitter-classifier-fixes",
+    "system-code-graph/z_archive/011-code-graph-auto-trigger",
+    "system-code-graph/z_archive/012-query-routing-integration",
+    "system-code-graph/z_archive/013-tool-routing-enforcement",
+    "system-code-graph/z_archive/014-session-start-injection-debug",
+    "system-code-graph/z_archive/015-opencode-structural-priming",
+    "system-code-graph/z_archive/016-startup-highlights-remediation",
+    "system-code-graph/z_archive/017-opencode-graph-plugin",
+    "system-code-graph/z_archive/018-cli-devin-code-graph-hook",
+    "system-code-graph/z_archive/019-code-graph-public-readme-update",
+    "system-code-graph/z_archive/020-code-graph-self-contained-package",
+    "system-code-graph/z_archive/021-system-code-graph-deep-review-remediation",
+    "system-code-graph/z_archive/022-orphan-code-graph-db-cleanup",
+    "system-code-graph/z_archive/023-system-code-graph-comprehensive-deep-review",
+    "system-code-graph/z_archive/024-system-code-graph-deferred-followon"
+  ],
+  "created_at": "2026-07-07T16:12:24.704Z",
+  "updated_at": "2026-07-07T16:12:24.704Z"
+}

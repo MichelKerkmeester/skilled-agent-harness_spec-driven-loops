@@ -12,7 +12,6 @@
     "system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure/006-code-mode-orphan-lifecycle",
     "system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure/007-ipc-client-cap-hardening",
     "system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure/008-mcp-config-alignment-reelection-default",
-    "system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure/009-code-graph-code-only-indexing",
     "system-speckit/027-xce-research-based-refinement/004-shared-infrastructure/001-mcp-to-cli-tool-transition",
     "system-speckit/027-xce-research-based-refinement/004-shared-infrastructure/002-command-presentation-workflow-separation",
     "system-speckit/027-xce-research-based-refinement/004-shared-infrastructure/003-storage-adapter-ports",
@@ -20,8 +19,7 @@
     "system-speckit/027-xce-research-based-refinement/004-shared-infrastructure/005-autonomous-dependency-patching",
     "system-speckit/027-xce-research-based-refinement/004-shared-infrastructure/006-code-mode-orphan-lifecycle",
     "system-speckit/027-xce-research-based-refinement/004-shared-infrastructure/007-ipc-client-cap-hardening",
-    "system-speckit/027-xce-research-based-refinement/004-shared-infrastructure/008-mcp-config-alignment-reelection-default",
-    "system-speckit/027-xce-research-based-refinement/004-shared-infrastructure/009-code-graph-code-only-indexing"
+    "system-speckit/027-xce-research-based-refinement/004-shared-infrastructure/008-mcp-config-alignment-reelection-default"
   ],
   "manual": {
     "depends_on": [],

@@ -1,0 +1,27 @@
+{
+  "level": "1",
+  "specFolder": "system-code-graph/010-code-graph-scatter-027/002-code-graph-robustness",
+  "description": "Remediation sub-phase of the 027 fresh+regression deep-review: 8 findings (0 P1) in this subsystem, each carried as a task with its registry",
+  "keywords": [
+    "remediation",
+    "sub-phase",
+    "027",
+    "fresh",
+    "regression",
+    "deep-review",
+    "findings",
+    "subsystem",
+    "carried",
+    "task",
+    "registry"
+  ],
+  "lastUpdated": "2026-07-07T16:15:42.400Z",
+  "specId": "002",
+  "folderSlug": "code-graph-robustness",
+  "parentChain": [
+    "system-code-graph",
+    "010-code-graph-scatter-027"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

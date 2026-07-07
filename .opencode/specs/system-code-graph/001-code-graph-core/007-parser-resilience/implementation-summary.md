@@ -50,7 +50,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | `system-code-graph/001-code-graph-core/007-parser-resilience` |
+| **Spec Folder** | 007-parser-resilience |
 | **Status** | Complete |
 | **Completed** | 2026-06-19 |
 | **Level** | 1 |

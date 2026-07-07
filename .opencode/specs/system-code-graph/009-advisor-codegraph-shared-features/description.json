@@ -1,0 +1,31 @@
+{
+  "level": "phase",
+  "specFolder": "system-code-graph/009-advisor-codegraph-shared-features",
+  "description": "Spec-027 hardened the Spec Kit Memory system with retrieval observability, a provenance-overwrite guard, packed BM25/BM25F lexical search, shared",
+  "keywords": [
+    "spec-027",
+    "hardened",
+    "spec",
+    "kit",
+    "memory",
+    "system",
+    "retrieval",
+    "observability",
+    "provenance-overwrite",
+    "guard",
+    "packed",
+    "bm25",
+    "bm25f",
+    "lexical",
+    "search",
+    "shared"
+  ],
+  "lastUpdated": "2026-07-07T16:15:41.726Z",
+  "specId": "009",
+  "folderSlug": "advisor-codegraph-shared-features",
+  "parentChain": [
+    "system-code-graph"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

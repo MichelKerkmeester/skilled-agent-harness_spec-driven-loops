@@ -1,0 +1,33 @@
+{
+  "specFolder": "system-code-graph/z_archive/015-opencode-structural-priming",
+  "description": "Phases 018 and 024 improved hookless session bootstrap, but non-hook runtimes still depend too much on the model deciding to call structural tools at",
+  "keywords": [
+    "phases",
+    "018",
+    "024",
+    "improved",
+    "hookless",
+    "session",
+    "bootstrap",
+    "non-hook",
+    "runtimes",
+    "still",
+    "depend",
+    "too",
+    "much",
+    "model",
+    "deciding",
+    "call",
+    "structural",
+    "tools"
+  ],
+  "lastUpdated": "2026-07-07T16:12:50.119Z",
+  "specId": "015",
+  "folderSlug": "opencode-structural-priming",
+  "parentChain": [
+    "system-code-graph",
+    "z_archive"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

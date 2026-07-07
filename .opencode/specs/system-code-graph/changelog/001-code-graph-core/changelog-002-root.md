@@ -14,7 +14,7 @@ contextType: "implementation"
 
 ## 2026-06-19
 
-> Spec folder: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/002-code-graph` (Level 2)
+> Spec folder: `.opencode/specs/system-code-graph/001-code-graph-core` (Level 2)
 
 ### Summary
 

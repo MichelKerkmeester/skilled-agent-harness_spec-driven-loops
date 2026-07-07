@@ -1,0 +1,219 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-code-graph/z_archive/022-orphan-code-graph-db-cleanup",
+  "spec_folder": "system-code-graph/z_archive/022-orphan-code-graph-db-cleanup",
+  "parent_id": "system-code-graph/z_archive",
+  "parent_id_review_required": true,
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "008 orphan code graph db cleanup",
+      "stale code graph sqlite under system spec kit",
+      "system spec kit code graph db cleanup",
+      "prevent code graph database under spec kit memory",
+      "008 orphan code graph db cleanup plan",
+      "system spec kit stale code graph cleanup",
+      "008 orphan code graph db cleanup tasks",
+      "stale code graph db cleanup tasks",
+      "008 orphan code graph db cleanup summary",
+      "system spec kit code graph db cleanup complete"
+    ],
+    "key_topics": [
+      "008",
+      "orphan",
+      "code",
+      "graph",
+      "cleanup",
+      "stale",
+      "sqlite",
+      "system",
+      "spec",
+      "kit",
+      "prevent",
+      "database"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      ".opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts",
+      "schemas/tool-input-schemas.ts",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "tool-input-schemas.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Orphan Code Graph",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Remove",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Launcher",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built The",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Packet 014 extracted code-graph ownership to `.opencode/skills/system-code-graph/`, but stale code-graph SQLite files and compiled extracted code remained under `.opencode/skills/system-spec-kit/mcpserver/`",
+    "created_at": "2026-05-14T13:03:24Z",
+    "last_save_at": "2026-07-07T16:18:34.016Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:a9ce91385d9e732fdd96d2431d2920c4b740e3274fa19ccd42a3cd527b084469",
+    "source_doc_hashes": {
+      "spec.md": "8204e6ee0e407cdeb4ec2f61059668ff951d724b57923205beb957eb03b7427e",
+      "plan.md": "3ca3b80861917f47566e9604dc5d23e27ba36204b0c1e43f260b886f213d9651",
+      "tasks.md": "b64a9b7fcba5e3153b03f5a35de3f56bdf33c1b58002d8aeae5d4fa05f80f93a",
+      "implementation-summary.md": "e8956d9947464eb5b4d299163c488a7d3af50be08deb33bbafa7055b270f2b33"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

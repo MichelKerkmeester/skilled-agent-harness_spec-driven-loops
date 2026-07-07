@@ -1,0 +1,31 @@
+{
+  "level": "1",
+  "specFolder": "system-code-graph/z_archive/022-orphan-code-graph-db-cleanup",
+  "description": "Packet 014 extracted code-graph ownership to `.opencode/skills/system-code-graph/`, but stale code-graph SQLite files and compiled extracted code",
+  "keywords": [
+    "packet",
+    "014",
+    "extracted",
+    "code-graph",
+    "ownership",
+    "opencode",
+    "skills",
+    "system-code-graph",
+    "stale",
+    "sqlite",
+    "files",
+    "compiled",
+    "code"
+  ],
+  "lastUpdated": "2026-07-07T16:12:52.281Z",
+  "specId": "022",
+  "folderSlug": "orphan-code-graph-db-cleanup",
+  "parentChain": [
+    "system-code-graph",
+    "z_archive"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "14-05-26_14-09__packet-014-moved-canonical-code-graph-ownership-to.md"
+  ]
+}

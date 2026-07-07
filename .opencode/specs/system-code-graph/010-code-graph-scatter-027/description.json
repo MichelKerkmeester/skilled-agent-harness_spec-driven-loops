@@ -1,0 +1,26 @@
+{
+  "specFolder": "system-code-graph/010-code-graph-scatter-027",
+  "description": "Lean phase parent collecting four code-graph spec packets moved out of the 027 refinement tree.",
+  "keywords": [
+    "lean",
+    "phase",
+    "parent",
+    "collecting",
+    "four",
+    "code-graph",
+    "spec",
+    "packets",
+    "moved",
+    "027",
+    "refinement",
+    "tree"
+  ],
+  "lastUpdated": "2026-07-07T16:15:43.356Z",
+  "specId": "010",
+  "folderSlug": "code-graph-scatter-027",
+  "parentChain": [
+    "system-code-graph"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

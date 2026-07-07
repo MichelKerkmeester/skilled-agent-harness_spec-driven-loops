@@ -4,7 +4,6 @@
   "spec_folder": "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/006-research/004-fix-deep-research-findings",
   "parent_id": "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/006-research",
   "children_ids": [
-    "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/006-research/004-fix-deep-research-findings/001-fix-code-graph-consistency",
     "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/006-research/004-fix-deep-research-findings/003-fix-validation-memory",
     "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/006-research/004-fix-deep-research-findings/004-resource-leaks-silent-errors",
     "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/006-research/004-fix-deep-research-findings/005-fix-architecture-cleanup-followups",

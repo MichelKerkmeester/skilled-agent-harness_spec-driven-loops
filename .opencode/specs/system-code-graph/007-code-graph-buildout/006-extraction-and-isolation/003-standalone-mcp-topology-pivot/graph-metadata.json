@@ -1,0 +1,219 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-code-graph/007-code-graph-buildout/006-extraction-and-isolation/003-standalone-mcp-topology-pivot",
+  "spec_folder": "system-code-graph/007-code-graph-buildout/006-extraction-and-isolation/003-standalone-mcp-topology-pivot",
+  "parent_id": "system-code-graph/007-code-graph-buildout/006-extraction-and-isolation",
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "mcp topology pivot",
+      "system code graph standalone mcp",
+      "ADR-002 code graph topology"
+    ],
+    "key_topics": [
+      "mcp",
+      "topology",
+      "pivot",
+      "system",
+      "code",
+      "graph",
+      "standalone",
+      "adr-002",
+      "reality",
+      "diverged",
+      "adr-001",
+      "two"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      ".opencode/skills/system-code-graph/mcp_server/index.ts",
+      ".opencode/skills/system-code-graph/mcp_server/tool-schemas.ts",
+      ".opencode/skills/system-code-graph/mcp_server/database/code-graph.sqlite",
+      ".opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "index.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-code-graph/mcp_server/index.ts",
+        "source": "derived"
+      },
+      {
+        "name": "tool-schemas.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-code-graph/mcp_server/tool-schemas.ts",
+        "source": "derived"
+      },
+      {
+        "name": "code-graph.sqlite",
+        "kind": "file",
+        "path": ".opencode/skills/system-code-graph/mcp_server/database/code-graph.sqlite",
+        "source": "derived"
+      },
+      {
+        "name": "Topology Pivot",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Reality",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Ship",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. METADATA",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "2. PROBLEM & PURPOSE",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Smoke Vitest",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Depends On",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "env",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "SUMMARY",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "QUALITY GATES",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "All Phase",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "post-reorg",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "validation",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Reality diverged from ADR-001 in two ways",
+    "created_at": "2026-05-14T09:13:21Z",
+    "last_save_at": "2026-07-07T16:18:33.820Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": "2026-05-14T09:24:15Z",
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:d8468d15b00909298b5a7e043f3bb67a4c4a58dbcf6b9f9b9559ced783014a14",
+    "source_doc_hashes": {
+      "spec.md": "d716e57cf18a73da902c0e1f0be51d4fa37980e3a1f521b892e30882576c9367",
+      "plan.md": "5df33e1269ff1eec34937e4fe12e82e39b558f32bf3670152a33f06dd9287e74",
+      "tasks.md": "70e84169e3430307c22515687c88e9d256e93cf7f7b6f27f9ae61269a8f8d3dc",
+      "checklist.md": "8b195439b77c5c63256baa02aa98c584bb21db74d9c8e0e0401be8b6b06aaad2",
+      "decision-record.md": "fff328f3f1f5aa2e815687f5f094e9f305399b7738d60b0e05de35c8bfa17d86",
+      "implementation-summary.md": "15e8a1f7e8fad21ddcdab97b5849340457eceaaa7098dd92acd3551dc5a14622"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

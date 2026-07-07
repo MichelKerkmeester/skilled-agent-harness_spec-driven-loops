@@ -1,0 +1,29 @@
+{
+  "specFolder": "system-code-graph/z_archive/018-cli-devin-code-graph-hook",
+  "description": "`system-code-graph` is extracted as a skill and MCP surface, but its runtime startup hooks still live in `system-spec-kit/mcpserver/hooks/`",
+  "keywords": [
+    "system-code-graph",
+    "extracted",
+    "skill",
+    "mcp",
+    "surface",
+    "runtime",
+    "startup",
+    "hooks",
+    "still",
+    "live",
+    "system-spec-kit",
+    "mcpserver"
+  ],
+  "lastUpdated": "2026-07-07T16:12:50.998Z",
+  "specId": "018",
+  "folderSlug": "cli-devin-code-graph-hook",
+  "parentChain": [
+    "system-code-graph",
+    "z_archive"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "15-05-26_14-06__manual-context-save.md"
+  ]
+}

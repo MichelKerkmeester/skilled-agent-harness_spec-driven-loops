@@ -1,0 +1,31 @@
+{
+  "specFolder": "system-code-graph/007-code-graph-buildout/011-source-bug-and-misalignment-audit",
+  "description": "The `system-code-graph` skill ships a ~17.5k-LOC standalone `mk-code-index` MCP server (tree-sitter parsing, better-sqlite3 storage, IPC launcher, own",
+  "keywords": [
+    "system-code-graph",
+    "skill",
+    "ships",
+    "5k-loc",
+    "standalone",
+    "mk-code-index",
+    "mcp",
+    "server",
+    "tree-sitter",
+    "parsing",
+    "better-sqlite3",
+    "storage",
+    "ipc",
+    "launcher",
+    "own"
+  ],
+  "lastUpdated": "2026-06-23T03:49:56.124Z",
+  "specId": "011",
+  "folderSlug": "source-bug-and-misalignment-audit",
+  "parentChain": [
+    "system-spec-kit",
+    "026-graph-and-context-optimization",
+    "004-code-graph"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

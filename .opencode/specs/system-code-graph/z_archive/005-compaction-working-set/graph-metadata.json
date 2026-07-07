@@ -1,0 +1,227 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-code-graph/z_archive/005-compaction-working-set",
+  "spec_folder": "system-code-graph/z_archive/005-compaction-working-set",
+  "parent_id": "system-code-graph/z_archive",
+  "parent_id_review_required": true,
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "phase",
+      "011",
+      "compaction",
+      "working",
+      "set",
+      "spec",
+      "plan",
+      "tasks",
+      "024",
+      "checklist",
+      "implementation",
+      "summary"
+    ],
+    "key_topics": [
+      "phase",
+      "011",
+      "compaction",
+      "working",
+      "set",
+      "spec",
+      "plan",
+      "tasks",
+      "024",
+      "checklist",
+      "implementation",
+      "summary"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "hooks/claude/compact-inject.ts",
+      "hooks/claude/session-prime.ts",
+      "tests/budget-allocator.vitest.ts",
+      "tests/compact-merger.vitest.ts",
+      "tests/dual-scope-hooks.vitest.ts",
+      "hooks/memory-surface.ts",
+      "mcp_server/hooks/memory-surface.ts",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "compact-inject.ts",
+        "kind": "code",
+        "path": "hooks/claude/compact-inject.ts",
+        "source": "derived"
+      },
+      {
+        "name": "session-prime.ts",
+        "kind": "code",
+        "path": "hooks/claude/session-prime.ts",
+        "source": "derived"
+      },
+      {
+        "name": "budget-allocator.vitest.ts",
+        "kind": "test",
+        "path": "tests/budget-allocator.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "compact-merger.vitest.ts",
+        "kind": "test",
+        "path": "tests/compact-merger.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "dual-scope-hooks.vitest.ts",
+        "kind": "test",
+        "path": "tests/dual-scope-hooks.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "memory-surface.ts",
+        "kind": "code",
+        "path": "hooks/memory-surface.ts",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Compaction Working",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Set Integration",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Summary Wire",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Exists",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Design Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Token Budget Allocation Total",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Graph",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Constitutional Rules",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Active Files",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Structural Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation Template",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Setup Template",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Template",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "This phase addresses concrete context-preservation and code-graph reliability gaps tracked in this packet",
+    "created_at": "2026-04-12T09:02:50.350Z",
+    "last_save_at": "2026-07-07T16:18:33.962Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:304be6e719ab63c17fd1d14d2fea074a229fdfce90206289303dd1786e4ff893",
+    "source_doc_hashes": {
+      "spec.md": "2d77c9e5df8441047d1ceaf43b171a89ada16a86f85bf3c5123de392d2e912fb",
+      "plan.md": "0a26ddc1f3c72683578a8fe11c2003324c44480395cb1e8391897c71ed68e5b0",
+      "tasks.md": "712b52d0b536eeeb35dd221a862869b1c38f00d1a784b16166ccf812714c643c",
+      "checklist.md": "8f577cf4463087b0f56ec91260318462443f70c7b1d91e97bbac6ebbadd9d1e2",
+      "implementation-summary.md": "f062b4a0b9249418c0371cfa0f0517d21e9bb874b69e8ccad2fa0715fb1c891a"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

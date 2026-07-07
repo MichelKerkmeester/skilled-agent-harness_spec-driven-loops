@@ -1,0 +1,231 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-code-graph/z_archive/017-opencode-graph-plugin/001-shared-payload-provenance-layer",
+  "spec_folder": "system-code-graph/z_archive/017-opencode-graph-plugin/001-shared-payload-provenance-layer",
+  "parent_id": "system-code-graph/z_archive/017-opencode-graph-plugin",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "shared payload and provenance layer",
+      "packet 030",
+      "level 3",
+      "shared payload and provenance layer plan",
+      "phase 1 tasks",
+      "payload provenance tasks",
+      "shared payload and provenance layer checklist",
+      "level 3 verification",
+      "shared payload and provenance layer adr",
+      "level 3 decision record",
+      "phase 1 implementation summary",
+      "shared payload provenance implementation"
+    ],
+    "key_topics": [
+      "shared",
+      "payload",
+      "provenance",
+      "layer",
+      "packet",
+      "030",
+      "level",
+      "plan",
+      "phase",
+      "tasks",
+      "checklist",
+      "verification"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "mcp_server/lib/context/shared-payload.ts",
+      "mcp_server/lib/session/session-snapshot.ts",
+      "mcp_server/handlers/session-resume.ts",
+      "mcp_server/handlers/session-health.ts",
+      "mcp_server/handlers/session-bootstrap.ts",
+      "mcp_server/hooks/claude/compact-inject.ts",
+      "mcp_server/hooks/claude/hook-state.ts",
+      "mcp_server/hooks/claude/shared.ts",
+      "mcp_server/hooks/claude/session-prime.ts",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "shared-payload.ts",
+        "kind": "code",
+        "path": "mcp_server/lib/context/shared-payload.ts",
+        "source": "derived"
+      },
+      {
+        "name": "session-snapshot.ts",
+        "kind": "code",
+        "path": "mcp_server/lib/session/session-snapshot.ts",
+        "source": "derived"
+      },
+      {
+        "name": "session-resume.ts",
+        "kind": "code",
+        "path": "mcp_server/handlers/session-resume.ts",
+        "source": "derived"
+      },
+      {
+        "name": "session-health.ts",
+        "kind": "code",
+        "path": "mcp_server/handlers/session-health.ts",
+        "source": "derived"
+      },
+      {
+        "name": "session-bootstrap.ts",
+        "kind": "code",
+        "path": "mcp_server/handlers/session-bootstrap.ts",
+        "source": "derived"
+      },
+      {
+        "name": "compact-inject.ts",
+        "kind": "code",
+        "path": "mcp_server/hooks/claude/compact-inject.ts",
+        "source": "derived"
+      },
+      {
+        "name": "hook-state.ts",
+        "kind": "code",
+        "path": "mcp_server/hooks/claude/hook-state.ts",
+        "source": "derived"
+      },
+      {
+        "name": "shared.ts",
+        "kind": "code",
+        "path": "mcp_server/hooks/claude/shared.ts",
+        "source": "derived"
+      },
+      {
+        "name": "session-prime.ts",
+        "kind": "code",
+        "path": "mcp_server/hooks/claude/session-prime.ts",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Shared Payload",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Provenance Layer",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "The Level",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Dependencies",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The research found that the real prerequisite is not the OpenCode adapter shell itself, but a shared payload/provenance composition layer",
+    "created_at": "2026-04-12T09:02:53.436Z",
+    "last_save_at": "2026-07-07T16:18:33.993Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:29896fd9c09b5d7351eb5bd38e17943c229ce7bae44009924673255047f71ac1",
+    "source_doc_hashes": {
+      "spec.md": "19970d9010335009f44c15b2dfce2d19990e6fd2c83701036b01aca5490ae5fc",
+      "plan.md": "b20c69606fb8ff2cbfbd127f80900fc64da4db7ce04e35aa2c25ea2523c8b272",
+      "tasks.md": "e8cd569a5405b26f6c87cb849a0262ce8ad462ea13598c96c5021dc8ce2e71ab",
+      "checklist.md": "30ee93eade5095013b8f3492ada05af61aaf641a14c34c55dc2742bb66e2664e",
+      "decision-record.md": "ccfe85daae0108603dd4b1e15b2d768a01b9b103cc7df26be2e65f199443b6b2",
+      "implementation-summary.md": "3189e6f845e544634000915a60efa41e59395d542d1b9985234ae30e755441ea"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

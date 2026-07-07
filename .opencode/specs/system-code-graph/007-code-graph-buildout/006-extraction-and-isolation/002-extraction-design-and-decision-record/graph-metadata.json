@@ -1,0 +1,242 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-code-graph/007-code-graph-buildout/006-extraction-and-isolation/002-extraction-design-and-decision-record",
+  "spec_folder": "system-code-graph/007-code-graph-buildout/006-extraction-and-isolation/002-extraction-design-and-decision-record",
+  "parent_id": "system-code-graph/007-code-graph-buildout/006-extraction-and-isolation",
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "code graph extraction design",
+      "code-graph extraction ADR",
+      "code graph topology design",
+      "system-code-graph architectural shape",
+      "code graph extraction design plan",
+      "code graph extraction design tasks",
+      "code graph extraction design checklist",
+      "code graph extraction decision",
+      "system code graph ADR",
+      "code graph tool-id stability",
+      "code graph extraction 001-extraction-design-and-adr summary",
+      "code graph extraction resource map"
+    ],
+    "key_topics": [
+      "code",
+      "graph",
+      "extraction",
+      "design",
+      "code-graph",
+      "adr",
+      "topology",
+      "system-code-graph",
+      "architectural",
+      "shape",
+      "plan",
+      "tasks"
+    ],
+    "importance_tier": "important",
+    "status": "planned",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md",
+      "resource-map.md",
+      "decision-record.md",
+      "core/config.ts",
+      "mcp_server/plugin_bridges/spec-kit-opencode-message-schema.mjs",
+      "research/research.md",
+      "mcp_server/tool-schemas.ts",
+      "mcp_server/vitest.config.ts",
+      "research/deep-research-config.json",
+      ".opencode/skills/system-spec-kit/references/config/hook_system.md",
+      ".opencode/skills/system-spec-kit/references/config/environment_variables.md",
+      ".opencode/skills/system-spec-kit/references/memory/memory_system.md",
+      ".opencode/skills/system-spec-kit/SKILL.md",
+      ".opencode/skills/system-spec-kit/README.md",
+      ".opencode/skills/system-spec-kit/ARCHITECTURE.md",
+      ".opencode/commands/memory/search.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "resource-map.md",
+        "kind": "doc",
+        "path": "resource-map.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "config.ts",
+        "kind": "code",
+        "path": "core/config.ts",
+        "source": "derived"
+      },
+      {
+        "name": "spec-kit-opencode-message-schema.mjs",
+        "kind": "file",
+        "path": "mcp_server/plugin_bridges/spec-kit-opencode-message-schema.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "tool-schemas.ts",
+        "kind": "code",
+        "path": "mcp_server/tool-schemas.ts",
+        "source": "derived"
+      },
+      {
+        "name": "vitest.config.ts",
+        "kind": "code",
+        "path": "mcp_server/vitest.config.ts",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-config.json",
+        "kind": "config",
+        "path": "research/deep-research-config.json",
+        "source": "derived"
+      },
+      {
+        "name": "hook_system.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/references/config/hook_system.md",
+        "source": "derived"
+      },
+      {
+        "name": "environment_variables.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/references/config/environment_variables.md",
+        "source": "derived"
+      },
+      {
+        "name": "memory_system.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/references/memory/memory_system.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "ARCHITECTURE.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/ARCHITECTURE.md",
+        "source": "derived"
+      },
+      {
+        "name": "search.md",
+        "kind": "doc",
+        "path": ".opencode/commands/memory/search.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Code",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Run",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Needs Done",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Code-graph today is a 108-file subsystem (29 lib TS + 10 handlers + 2 tools + 28 vitest + 16 in-package docs + 23 READMEs) inside `system-spec-kit`, 12 MCP tools (`codegraph`, `ccc`, `detectchanges`), backed by `code-graph.sqlite` (55 MB live index, 7 exclusive tables), consumed by 5 cross-subsystem handlers, 6 runtime hooks across 4 runtimes, 7 agent files, 5 commands, 1 plugin bridge + 2 `.mjs` siblings, 1 constitutional rule, 4 top-level docs, and 63 category-22 docs across `featurecatalog/22--/` + `manualtestingplaybook/22--/`",
+    "created_at": "2026-05-14T07:00:38Z",
+    "last_save_at": "2026-07-07T16:18:33.816Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": "2026-05-14T07:00:38Z",
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      "research/research.md",
+      "resource-map.md"
+    ],
+    "source_fingerprint": "sha256:b335aa69091d0ce5905a1c677ff3d7972d057108681885394c6a6cd8189d1e5e",
+    "source_doc_hashes": {
+      "spec.md": "a6dc8462d4b93517774fbb63d28001bf979623a36376156365de157073f741e5",
+      "plan.md": "3d9d92fa7a0801514d51629d5f0ce082c42e767009d6c03e612ca9d50ff3a7f6",
+      "tasks.md": "f296439bb9c0fdfcf752aea7ec38fc932c7de45345eaaa4b4812d0f70f5ec086",
+      "checklist.md": "fffb989b93b86e40dc9e26feb52c0d574d489691995eafb29059d876f804f77f",
+      "decision-record.md": "9aec8355ab52fba53773f037b0e514dd1714a152766b65f6d7f921c5b06d3995",
+      "implementation-summary.md": "fccae132879b6e54265aa3b68dcf525401608696121fa843e0c523b33a74a31f",
+      "research/research.md": "0f03e52013fd35999e3e38262adbc054e14dba810b4e246628f3aaed494abe29",
+      "resource-map.md": "7e7c308f16dae3cb123202aa8d0efc7dd594c653658a3f2dcfecb5b00713fa8f"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

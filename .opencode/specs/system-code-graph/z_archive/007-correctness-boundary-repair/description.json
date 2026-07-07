@@ -1,0 +1,24 @@
+{
+  "specFolder": "system-code-graph/z_archive/007-correctness-boundary-repair",
+  "description": "This phase addresses concrete context-preservation and code-graph reliability gaps tracked in this packet",
+  "keywords": [
+    "phase",
+    "addresses",
+    "concrete",
+    "context-preservation",
+    "code-graph",
+    "reliability",
+    "gaps",
+    "tracked",
+    "packet"
+  ],
+  "lastUpdated": "2026-07-07T16:12:47.773Z",
+  "specId": "007",
+  "folderSlug": "correctness-boundary-repair",
+  "parentChain": [
+    "system-code-graph",
+    "z_archive"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

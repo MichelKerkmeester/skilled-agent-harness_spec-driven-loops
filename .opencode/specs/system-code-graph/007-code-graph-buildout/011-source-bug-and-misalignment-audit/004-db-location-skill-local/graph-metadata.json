@@ -1,0 +1,213 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-code-graph/007-code-graph-buildout/011-source-bug-and-misalignment-audit/004-db-location-skill-local",
+  "spec_folder": "system-code-graph/007-code-graph-buildout/011-source-bug-and-misalignment-audit/004-db-location-skill-local",
+  "parent_id": "system-code-graph/007-code-graph-buildout/011-source-bug-and-misalignment-audit",
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "code graph db location skill-local",
+      "fix 1 spec-kit relocation"
+    ],
+    "key_topics": [
+      "code",
+      "graph",
+      "location",
+      "skill-local",
+      "fix",
+      "spec-kit",
+      "relocation",
+      "code-graph",
+      "sqlite",
+      "sidecars",
+      "lease",
+      "readiness"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "mcp_server/core/config.ts",
+      ".opencode/bin/mk-code-index-launcher.cjs",
+      "lib/ipc/socket-server.ts",
+      "mcp_server/tests/launcher-lease.vitest.ts",
+      "core/config.ts",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "config.ts",
+        "kind": "code",
+        "path": "mcp_server/core/config.ts",
+        "source": "derived"
+      },
+      {
+        "name": "mk-code-index-launcher.cjs",
+        "kind": "file",
+        "path": ".opencode/bin/mk-code-index-launcher.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "socket-server.ts",
+        "kind": "code",
+        "path": "lib/ipc/socket-server.ts",
+        "source": "derived"
+      },
+      {
+        "name": "launcher-lease.vitest.ts",
+        "kind": "test",
+        "path": "mcp_server/tests/launcher-lease.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Location Skill",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Move",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Acceptance Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. SUMMARY",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "2. QUALITY GATES",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "3. ARCHITECTURE",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The code-graph SQLite DB + sidecars + lease + readiness marker were created at the workspace-root `.opencode/.spec-kit/code-graph/database/`",
+    "created_at": "2026-05-29T09:55:00.000Z",
+    "last_save_at": "2026-07-07T16:18:33.891Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:5861631d7bebaebbf1207b06b47b8e6a32d09da1aa879ea63a7c8dc477e14484",
+    "source_doc_hashes": {
+      "spec.md": "7f32fb915c3f77839ad2f0102f6a46d082dcd4de253229a69fe140d3b126476b",
+      "plan.md": "dd536f262a8d38db66bfc8bf9eb000d28181912dbc25ab9f33e8477013f076a4",
+      "tasks.md": "4d8bb1f279a777bc540fdc160466dfe8cfd79ab71474fec3098759a2cf38e370",
+      "implementation-summary.md": "05875d58682327ec52a3e33664acca4bea5d8306477e0ee0cf7e543162655d6f"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

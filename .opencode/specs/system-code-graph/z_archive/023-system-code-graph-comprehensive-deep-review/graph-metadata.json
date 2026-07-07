@@ -1,0 +1,133 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-code-graph/z_archive/023-system-code-graph-comprehensive-deep-review",
+  "spec_folder": "system-code-graph/z_archive/023-system-code-graph-comprehensive-deep-review",
+  "parent_id": "system-code-graph/z_archive",
+  "parent_id_review_required": true,
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "037 system-code-graph comprehensive deep-review",
+      "system-code-graph 20-iter cli-devin review",
+      "cli-devin SWE-1.6 deep-review",
+      "code-graph release-readiness audit"
+    ],
+    "key_topics": [
+      "037",
+      "system-code-graph",
+      "comprehensive",
+      "deep-review",
+      "20-iter",
+      "cli-devin",
+      "review",
+      "swe-1",
+      "code-graph",
+      "release-readiness",
+      "audit",
+      "skill"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "review/deep-review-state.jsonl",
+      "review/review-report.md",
+      ".opencode/bin/mk-code-index-launcher.cjs",
+      ".opencode/commands/doctor/_routes.yaml",
+      ".github/workflows/isolation-check.yml"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-review-state.jsonl",
+        "kind": "file",
+        "path": "review/deep-review-state.jsonl",
+        "source": "derived"
+      },
+      {
+        "name": "review-report.md",
+        "kind": "doc",
+        "path": "review/review-report.md",
+        "source": "derived"
+      },
+      {
+        "name": "mk-code-index-launcher.cjs",
+        "kind": "file",
+        "path": ".opencode/bin/mk-code-index-launcher.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "_routes.yaml",
+        "kind": "config",
+        "path": ".opencode/commands/doctor/_routes.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "isolation-check.yml",
+        "kind": "config",
+        "path": ".github/workflows/isolation-check.yml",
+        "source": "derived"
+      },
+      {
+        "name": "System Code Graph Comprehensive Deep Review",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Install Guide",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Run",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The `system-code-graph` skill has been through a multi-arc evolution: extraction from `system-spec-kit` (packet 014), MCP server rename `systemcodegraph` → `mk-code-index` (packet 010), full spec-kit decoupling with CI isolation check (packets 015–020), sk-doc documentation alignment (025/035), and the just-shipped Install Guide + `/doctor:mcp` coverage (packet 026 Phase 2 → commit `1fc38a177`)",
+    "created_at": "2026-05-26T16:51:06.370Z",
+    "last_save_at": "2026-07-07T16:18:34.018Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "source_fingerprint": "sha256:d4a2b19a3ece948996ddcf44b9545add282f1a71fd2a053c51ca9321900df489",
+    "source_doc_hashes": {
+      "spec.md": "d94522118195c2ad9c549da0f92e6f7ca2ef872ebad8f5ffdfee077a7aab3786"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

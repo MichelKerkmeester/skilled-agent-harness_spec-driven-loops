@@ -1,5 +1,5 @@
 {
-  "specFolder": "skilled-agent-orchestration/z_archive/056-sk-deep-rename/003-opencode-internals",
+  "specFolder": "system-deep-loop/z_archive/031-sk-deep-rename/003-opencode-internals",
   "description": "Phase 002 renamed the skill folders and updated the advisor graph source, but many `.opencode/` consumers still point at `sk-deep-review` and `sk-deep",
   "keywords": [
     "phase",

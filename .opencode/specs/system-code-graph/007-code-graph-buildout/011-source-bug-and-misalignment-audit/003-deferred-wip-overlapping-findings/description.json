@@ -1,0 +1,31 @@
+{
+  "specFolder": "system-code-graph/007-code-graph-buildout/011-source-bug-and-misalignment-audit/003-deferred-wip-overlapping-findings",
+  "description": "A subset of findings could not be safely auto-fixed: they edit files under active in-tree WIP, or their correct fix requires reconciling behavioral se",
+  "keywords": [
+    "subset",
+    "findings",
+    "safely",
+    "auto-fixed",
+    "edit",
+    "files",
+    "active",
+    "in-tree",
+    "wip",
+    "correct",
+    "fix",
+    "requires",
+    "reconciling",
+    "behavioral"
+  ],
+  "lastUpdated": "2026-06-30T12:42:37.576Z",
+  "specId": "003",
+  "folderSlug": "deferred-wip-overlapping-findings",
+  "parentChain": [
+    "system-speckit",
+    "026-graph-and-context-optimization",
+    "004-code-graph",
+    "011-source-bug-and-misalignment-audit"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

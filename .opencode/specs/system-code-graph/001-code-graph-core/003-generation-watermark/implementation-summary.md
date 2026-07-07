@@ -41,7 +41,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | system-code-graph/001-code-graph-core/003-generation-watermark |
+| **Spec Folder** | 003-generation-watermark |
 | **Status** | complete |
 | **Completed** | 2026-06-19 |
 | **Level** | 2 |

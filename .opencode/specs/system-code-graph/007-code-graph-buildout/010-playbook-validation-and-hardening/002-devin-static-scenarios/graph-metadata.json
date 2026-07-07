@@ -1,0 +1,219 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-code-graph/007-code-graph-buildout/010-playbook-validation-and-hardening/002-devin-static-scenarios",
+  "spec_folder": "system-code-graph/007-code-graph-buildout/010-playbook-validation-and-hardening/002-devin-static-scenarios",
+  "parent_id": "system-code-graph/007-code-graph-buildout/010-playbook-validation-and-hardening",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "devin static scenarios",
+      "code graph post-rename infra scenarios",
+      "029 phase 002 devin static",
+      "devin static scenarios plan",
+      "code graph post-rename infra plan",
+      "029 phase 002 plan",
+      "devin static scenarios tasks",
+      "code graph post-rename infra tasks",
+      "029 phase 002 tasks",
+      "devin static scenarios checklist",
+      "code graph post-rename infra checklist",
+      "029 phase 002 checklist"
+    ],
+    "key_topics": [
+      "devin",
+      "static",
+      "scenarios",
+      "code",
+      "graph",
+      "post-rename",
+      "infra",
+      "029",
+      "phase",
+      "002",
+      "plan",
+      "tasks"
+    ],
+    "importance_tier": "normal",
+    "status": "draft",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Devin Static Scenarios",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Graph Playbook",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Run",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Dispatch",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Devin Pro",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "evidence",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Date",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Impact",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "7 of the 22 playbook scenarios are static/source-inspection or build-verification checks (MCP manifest post-rename, launcher startup prefix, mcp.json server key, database path, TypeScript build/entry point, unicode-normalization fix) plus the Devin CLI SessionStart hook scenario",
+    "created_at": "2026-05-26T19:43:14.033Z",
+    "last_save_at": "2026-07-07T16:18:33.871Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:26db1c07bfa290f6569b6c8a82c1988a889fce2b43406200d4da9f649bb62cc8",
+    "source_doc_hashes": {
+      "spec.md": "2ab2f13bfc3bec514f9ec2a8b6baccd5afd48dcde1a136221de3c591c213b010",
+      "plan.md": "ba237e8c9ea95da55872a43401ee89ac910f130bf51baa089259c227405bdf4f",
+      "tasks.md": "850db1d2a88ad643233fae3c78857160c5637aa28e0f0ea9f8facc5e8426ab34",
+      "checklist.md": "86c13c5227c02572c78432107c4464b8c3da2fcdb65fd39b74fadf5c0213397d",
+      "implementation-summary.md": "ded18d7cef80ffb75e1f23fa2d5530b6f96d8fe1531deffc8bfd11fd2f462d55"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

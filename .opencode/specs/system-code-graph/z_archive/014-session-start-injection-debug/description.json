@@ -1,0 +1,25 @@
+{
+  "specFolder": "system-code-graph/z_archive/014-session-start-injection-debug",
+  "description": "The startup priming path is still broken or too thin where true startup injection should happen",
+  "keywords": [
+    "startup",
+    "priming",
+    "path",
+    "still",
+    "broken",
+    "too",
+    "thin",
+    "true",
+    "injection",
+    "happen"
+  ],
+  "lastUpdated": "2026-07-07T16:12:49.806Z",
+  "specId": "014",
+  "folderSlug": "session-start-injection-debug",
+  "parentChain": [
+    "system-code-graph",
+    "z_archive"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

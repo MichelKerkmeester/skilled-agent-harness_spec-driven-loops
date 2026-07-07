@@ -1,0 +1,30 @@
+{
+  "level": "1",
+  "specFolder": "system-code-graph/007-code-graph-buildout/009-system-code-graph-uplift-phase-parent/001-skill-docs-install-guide-and-readmes-polish",
+  "description": "Research \u00a710 enumerated 10 priority items spanning SKILL.md, INSTALLGUIDE.md, ARCHITECTURE.md, references, featurecatalog, and per-folder mcpserver RE",
+  "keywords": [
+    "research",
+    "enumerated",
+    "priority",
+    "items",
+    "spanning",
+    "skill",
+    "installguide",
+    "architecture",
+    "references",
+    "featurecatalog",
+    "per-folder",
+    "mcpserver"
+  ],
+  "lastUpdated": "2026-06-23T03:49:56.061Z",
+  "specId": "001",
+  "folderSlug": "skill-docs-install-guide-and-readmes-polish",
+  "parentChain": [
+    "system-spec-kit",
+    "026-graph-and-context-optimization",
+    "004-code-graph",
+    "009-system-code-graph-uplift-phase-parent"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

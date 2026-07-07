@@ -51,7 +51,7 @@ _memory:
 | **Created** | 2026-06-19 |
 | **Branch** | `system-speckit/027-xce-research-based-refinement` |
 | **Parent Phase** | `system-code-graph/001-code-graph-core` (research) |
-| **Parent Packet** | `system-spec-kit/028-memory-search-intelligence` |
+| **Parent Packet** | system-code-graph/001-code-graph-core |
 | **Subsystem** | Code Graph, structural retrieval intelligence |
 | **Candidates** | Q2-C1 / `Q2-C1-parser-transient-fatal` (one candidate, two label forms) |
 | **Shipped In** | Local workspace implementation, 2026-06-19 (not committed) |

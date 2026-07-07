@@ -47,7 +47,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | `system-code-graph/001-code-graph-core/006-edge-governance-vocab` |
+| **Spec Folder** | 006-edge-governance-vocab |
 | **Status** | complete |
 | **Completion scope** | Closed-vocab governance shipped default-off. Churn cap, audit-subgraph and derived-clock siblings deferred |
 | **Level** | 2 |

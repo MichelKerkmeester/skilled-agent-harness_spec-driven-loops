@@ -46,7 +46,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | `system-code-graph/001-code-graph-core/004-code-edge-bitemporal` |
+| **Spec Folder** | 004-code-edge-bitemporal |
 | **Completed** | Complete |
 | **Level** | 3 |
 <!-- /ANCHOR:metadata -->

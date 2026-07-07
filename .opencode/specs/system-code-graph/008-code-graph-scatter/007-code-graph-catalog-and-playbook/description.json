@@ -1,0 +1,30 @@
+{
+  "specFolder": "system-code-graph/008-code-graph-scatter/007-code-graph-catalog-and-playbook",
+  "description": "The codegraph runtime package had README coverage and root skill catalog/playbook entries, but it lacked package-local `featurecatalog/` and",
+  "keywords": [
+    "codegraph",
+    "runtime",
+    "package",
+    "readme",
+    "coverage",
+    "root",
+    "skill",
+    "catalog",
+    "playbook",
+    "entries",
+    "lacked",
+    "package-local",
+    "featurecatalog"
+  ],
+  "lastUpdated": "2026-07-07T16:10:53.533Z",
+  "specId": "007",
+  "folderSlug": "code-graph-catalog-and-playbook",
+  "parentChain": [
+    "system-code-graph",
+    "008-code-graph-scatter"
+  ],
+  "memorySequence": 2,
+  "memoryNameHistory": [
+    "29-04-26_19-40__resource-map-authored-and-memory-finalization.md"
+  ]
+}

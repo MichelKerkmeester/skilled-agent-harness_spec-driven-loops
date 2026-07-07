@@ -200,7 +200,7 @@
     ],
     "causal_summary": "The code-graph doc lane is hash-only: `'doc'` is excluded from the tree-sitter parser type (`tree-sitter-parser.ts:67` `type ParserLanguage = Exclude<SupportedLanguage,'doc'>`), and when `language === 'doc'` the indexer short-circuits to an empty result (`structural-indexer.ts:1237-1249` returns `{nodes:[], edges:[], contentHash, parseHealth:'clean'…}`)",
     "created_at": "2026-06-19T05:53:16.600Z",
-    "last_save_at": "2026-07-06T16:45:38.997Z",
+    "last_save_at": "2026-07-07T16:02:30.087Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,13 +210,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:c389d603884a302e16610cc372f19341989cfca5606a74d527cd74e36bcf724d",
+    "source_fingerprint": "sha256:e0037ee1ad5ca5f3ad97c9ebd992aadf4532ba7b84e686efe9cb8dd8f8912994",
     "source_doc_hashes": {
       "spec.md": "1f24416a8dc27d09f264d847dfeb5a8d124b15264c30ac2bf484f96499249f1a",
       "plan.md": "9bb553a1033b51b0f6bda0b1b0f4f2203fa8941c26aed59285a7234fc069ec8a",
       "tasks.md": "dd13dbc42e84faeff5d8a81e4e3a420b4d4e90d85e52ce334f5d0f375bd689e9",
       "checklist.md": "116cfd1c4334d9beb0606e7ce1ee5053532e094406b54d321c72a7271cdfab49",
-      "implementation-summary.md": "e9cbca0ae341ce37a9d01d063312ae50149db57a0adfc1fd02d8b22eece0c7b3"
+      "implementation-summary.md": "e3941de411e0d7e8ccc29346c0fbe4b3eb172ab6576da7ac507c228dd137ffc2"
     },
     "last_active_child_id": null,
     "last_active_at": null

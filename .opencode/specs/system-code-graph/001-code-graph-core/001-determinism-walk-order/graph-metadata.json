@@ -198,7 +198,7 @@
     ],
     "causal_summary": "Before this pass, the code-graph impact/dependency walk ranked callers/callees on a single seam, `rankContextEdges` feeding `finalize()` in `code-graph-context.ts:365-378, :436, :712`, and its ordering was not reproducible across scan rebuilds",
     "created_at": "2026-06-19T05:52:29.579Z",
-    "last_save_at": "2026-07-06T16:45:37.020Z",
+    "last_save_at": "2026-07-07T16:02:29.248Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,13 +208,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:3e5466527a118b1a14d19b83ec955f6bbf29bff4f55ce8b4182fc8c14efd1f9a",
+    "source_fingerprint": "sha256:121305552f5105c1683795e8d7f52ac3c481d4d126222f3e9c6907835b918e4c",
     "source_doc_hashes": {
       "spec.md": "f178498d2b1b315c5099273ed3f28ea81878e8bf8400947f72de88e0685d75fd",
       "plan.md": "5478165ae9c644abd2e98a2cdb9399e456c1ea5270c8b814f61f315735fd94b6",
       "tasks.md": "c264dd680af826cf3f0b9b12f7849d72ee5d49cfd4db837cae7996aad601f9ec",
       "checklist.md": "5932dfbec36417408368123a70627c947c3ebb4763e8778a84caa8b6ddeb2103",
-      "implementation-summary.md": "1e03254cbdf3396edc88554addf47b29381f2241134557809b4861bea6c81636"
+      "implementation-summary.md": "4fd854a0733ff652737a168f6149a79f01ba1d9aca35743d2906fbfa62342088"
     },
     "last_active_child_id": null,
     "last_active_at": null

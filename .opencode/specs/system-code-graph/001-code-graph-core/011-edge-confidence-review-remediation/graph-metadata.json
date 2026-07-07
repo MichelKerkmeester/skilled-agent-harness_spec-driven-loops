@@ -199,7 +199,7 @@
     ],
     "causal_summary": "A 20-iteration deep review (GPT-5.5-fast high, via cli-opencode, `stop-policy=max-iterations` so it could not converge early) audited `002-code-graph/010-edge-confidence-and-ppr-revisit` for correctness, security, traceability, and maintainability",
     "created_at": "2026-07-01T17:16:49.130Z",
-    "last_save_at": "2026-07-06T16:45:35.615Z",
+    "last_save_at": "2026-07-07T16:02:30.321Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,14 +210,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:1e668de0d1eb91e3d6da9e9b2b0bfb7fe2cfab9f4155f91d63504fc5df10d02a",
+    "source_fingerprint": "sha256:a1ca0d6df4c05ab492aaa2da79f23176ed5fee724c652b4b882be6fb552efa01",
     "source_doc_hashes": {
       "spec.md": "b91723a76e9e237af045caeb458d39373a961ac7ff4e3d629ad9054012d38a5a",
       "plan.md": "5df2d154c72f4bccc1bde85caee6d4c2ea9b078e6687b5b883de6219292839f5",
       "tasks.md": "e9106d27b5ec5cf4bc7e8f8d71633c7fa4e2d3b40e957afe2a5fabf338b5bc94",
       "checklist.md": "dbfe925e9edc7fe142d31dac8128be2fd2c4f6598ed66fb468423e6b8bb4e43d",
       "decision-record.md": "d820847e912bd554bfd6dab6b1a9a6153292c99a4e25f79c9849aff8c72cebe1",
-      "implementation-summary.md": "b8cd323e1ac96e3b2020783300ba52d75506284ce3ef6c2dbbdc3d2f0884b4a4"
+      "implementation-summary.md": "e25522ee96483b14006494d2c07b1135e6f5a67e8e3dc4cc4cd4639635bfe35f"
     },
     "last_active_child_id": null,
     "last_active_at": null

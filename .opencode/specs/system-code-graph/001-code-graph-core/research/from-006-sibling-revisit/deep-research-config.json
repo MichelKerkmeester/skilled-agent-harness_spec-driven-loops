@@ -7,7 +7,7 @@
   "maxToolCallsPerIteration": 12,
   "maxMinutesPerIteration": 10,
   "progressiveSynthesis": true,
-  "specFolder": ".opencode/specs/system-spec-kit/028-memory-search-intelligence/006-sibling-revisit",
+  "specFolder": ".opencode/specs/system-code-graph/001-code-graph-core/research/from-006-sibling-revisit",
   "resource_map_present": false,
   "resource_map": { "emit": false },
   "createdAt": "2026-06-17T05:19:00Z",

@@ -1,0 +1,51 @@
+{
+  "title": "Fix-Iteration Quality Meta-Research \u2014 root causes of multi-round fix trajectories",
+  "trigger_phrases": [
+    "fix iteration quality",
+    "class of bug vs finding",
+    "LEAF agent fix narrowness",
+    "cross-cutting consumer detection",
+    "error redaction algorithm patterns",
+    "precedence policy pattern",
+    "fix completeness checklist",
+    "multi-round fix cost"
+  ],
+  "level": 3,
+  "spec_id": "026/007/010",
+  "spec_kind": "research",
+  "status": "in-progress",
+  "topic": "Why iterative LEAF-agent fixes accumulate gaps despite individual-fix verification, and what changes to FIX prompt + sk-code-review + sk-deep-review would compress the cycle",
+  "importance_tier": "important",
+  "created_at": "2026-05-02T15:35:00Z",
+  "last_updated_at": "2026-05-02T19:53:19Z",
+  "specFolder": "system-code-graph/007-code-graph-buildout/005-resilience-and-advisor/004-iteration-quality-meta-research",
+  "description": "Prior fix cycles closed cited sites but missed sibling producers, downstream consumers, matrix rows, or algorithm invariants",
+  "keywords": [
+    "prior",
+    "fix",
+    "cycles",
+    "closed",
+    "cited",
+    "sites",
+    "missed",
+    "sibling",
+    "producers",
+    "downstream",
+    "consumers",
+    "matrix",
+    "rows",
+    "algorithm",
+    "invariants"
+  ],
+  "lastUpdated": "2026-06-23T03:49:55.912Z",
+  "specId": "004",
+  "folderSlug": "iteration-quality-meta-research",
+  "parentChain": [
+    "system-spec-kit",
+    "026-graph-and-context-optimization",
+    "004-code-graph",
+    "005-resilience-and-advisor"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

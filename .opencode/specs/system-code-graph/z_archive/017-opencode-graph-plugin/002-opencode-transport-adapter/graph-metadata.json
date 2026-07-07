@@ -1,0 +1,231 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-code-graph/z_archive/017-opencode-graph-plugin/002-opencode-transport-adapter",
+  "spec_folder": "system-code-graph/z_archive/017-opencode-graph-plugin/002-opencode-transport-adapter",
+  "parent_id": "system-code-graph/z_archive/017-opencode-graph-plugin",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "opencode transport adapter",
+      "packet 030",
+      "level 3",
+      "opencode transport adapter plan",
+      "phase 2 tasks",
+      "transport adapter tasks",
+      "opencode transport adapter checklist",
+      "level 3 verification",
+      "opencode transport adapter adr",
+      "level 3 decision record",
+      "phase 2 implementation summary",
+      "opencode transport adapter implementation"
+    ],
+    "key_topics": [
+      "opencode",
+      "transport",
+      "adapter",
+      "packet",
+      "030",
+      "level",
+      "plan",
+      "phase",
+      "tasks",
+      "checklist",
+      "verification",
+      "adr"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/context/opencode-transport.ts",
+      "dist/lib/context/opencode-transport.js",
+      ".opencode/skills/system-spec-kit/mcp_server/dist/lib/context/opencode-transport.js",
+      ".opencode/skills/system-spec-kit/mcp_server/handlers/session-resume.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/tests/opencode-transport.vitest.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/tests/opencode-plugin.vitest.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/tests/session-resume.vitest.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/tests/session-bootstrap.vitest.ts",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "opencode-transport.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/context/opencode-transport.ts",
+        "source": "derived"
+      },
+      {
+        "name": "opencode-transport.js",
+        "kind": "code",
+        "path": "dist/lib/context/opencode-transport.js",
+        "source": "derived"
+      },
+      {
+        "name": "session-resume.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/handlers/session-resume.ts",
+        "source": "derived"
+      },
+      {
+        "name": "session-bootstrap.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts",
+        "source": "derived"
+      },
+      {
+        "name": "opencode-transport.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/opencode-transport.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "opencode-plugin.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/opencode-plugin.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "session-resume.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/session-resume.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "session-bootstrap.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/session-bootstrap.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specifica",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Transport Adapter",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "The Level",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Dependencies",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Thin",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Packet 024 already has strong retrieval surfaces, but OpenCode still lacked a clean prompt-time transport layer that could inject compact context during hook assembly",
+    "created_at": "2026-04-12T09:02:53.436Z",
+    "last_save_at": "2026-07-07T16:18:33.995Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:805b21c6fad7f5729b751ba94c636d4784a8daaa8461c9cd84e8467015937726",
+    "source_doc_hashes": {
+      "spec.md": "287cb79805c071a7594f7f0f1aabc239e9e66f23d4afb6a2a4f89c1c2cafd184",
+      "plan.md": "a50c5412577a9d9b6db7f2de05671b264213f27ee2a55208cca2c4fcafd8bf7e",
+      "tasks.md": "a3a7007402b780086019e45b20319d4c3cf83b85683ba09c6419d0802db3cda8",
+      "checklist.md": "cbd65c00e219b272fbc41aac5d45c134ee6d638d81e7277f816409060dd3c267",
+      "decision-record.md": "7eb934ca08eccfa7fecaf9f9ee3bc28d6cedc737ed47a020206cddfa6d74dc10",
+      "implementation-summary.md": "9eb47549ad28f76f910636fe3be03777748fc913f0728055125fc9cc90a3ad6d"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

@@ -4,7 +4,6 @@
   "spec_folder": "system-speckit/026-graph-and-context-optimization/005-graph-impact-and-affordance",
   "parent_id": "system-speckit/026-graph-and-context-optimization",
   "children_ids": [
-    "system-speckit/026-graph-and-context-optimization/005-graph-impact-and-affordance/001-code-graph-phase-runner",
     "system-speckit/026-graph-and-context-optimization/005-graph-impact-and-affordance/002-edge-explanation-impact-uplift",
     "system-speckit/026-graph-and-context-optimization/005-graph-impact-and-affordance/003-memory-causal-trust-display",
     "system-speckit/026-graph-and-context-optimization/005-graph-impact-and-affordance/004-deep-review-findings",

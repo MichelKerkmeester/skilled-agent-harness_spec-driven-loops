@@ -53,7 +53,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | `system-code-graph/001-code-graph-core/005-seeded-ppr-ranking` |
+| **Spec Folder** | 005-seeded-ppr-ranking |
 | **Status** | complete |
 | **Completed** | Mechanism implemented default-off, benchmark/schema-gated acceptance remains pending |
 | **Level** | 3 |

@@ -200,7 +200,7 @@
     ],
     "causal_summary": "Seeded-PPR ranking was cut because uniform CALLS-edge confidence (all edges: INFERRED, 0.8, 0.8) gave it nothing to differentiate on",
     "created_at": "2026-07-01T00:00:00.000Z",
-    "last_save_at": "2026-07-06T16:45:35.982Z",
+    "last_save_at": "2026-07-07T16:02:30.205Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -211,14 +211,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:46c4d4ac8b1ab10c22ba673846de5e33092d45bde05f2094b9d4f1e306c9300e",
+    "source_fingerprint": "sha256:e517119af317212e3b809ff41323850ddc66d52c64ca95e67bcfbf11c0949ffe",
     "source_doc_hashes": {
       "spec.md": "6a0552d5a8351ab7cd614367e53f46de508a46f813de9b0cc4adbbd3bbcdf69c",
       "plan.md": "a2e3f97922d809e1218fb5654d720cf0052db757808f1585bbf9dfb166efdcfa",
       "tasks.md": "903f597b011c15a8a70d58a2b184fc3e2d73a05aea872b7e113dc5ff9b40d17d",
       "checklist.md": "79e3538d899bc7765bef4a416662fa41b5ed80053909f25510dcbc041cb304f1",
       "decision-record.md": "9263d2a4f04bc6b1a724f02b3d5d70a8683990c788efa287f39019902a7c8a52",
-      "implementation-summary.md": "6cc00c96d886a6545b20a035e11af243dfad8c40a876a4d6bf15642465d60761"
+      "implementation-summary.md": "2d57e70df85f02b9531346da915888a5358b8d8ca442c9f79dd6a9b170612dff"
     },
     "last_active_child_id": null,
     "last_active_at": "2026-07-01T00:00:00.000Z"

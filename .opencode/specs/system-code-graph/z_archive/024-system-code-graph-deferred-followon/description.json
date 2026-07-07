@@ -1,0 +1,33 @@
+{
+  "specFolder": "system-code-graph/z_archive/024-system-code-graph-deferred-followon",
+  "description": "Packet 038 successfully closed 11 of the 24 verified P0+P1 findings from 037's 20-iter deep-review (P0-1 docs, P0-2 by parallel-agent's Path-1 real",
+  "keywords": [
+    "packet",
+    "038",
+    "successfully",
+    "closed",
+    "verified",
+    "findings",
+    "037",
+    "20-iter",
+    "deep-review",
+    "p0-1",
+    "docs",
+    "p0-2",
+    "parallel-agent",
+    "path-1",
+    "real"
+  ],
+  "lastUpdated": "2026-07-07T16:12:52.851Z",
+  "specId": "024",
+  "folderSlug": "system-code-graph-deferred-followon",
+  "parentChain": [
+    "system-code-graph",
+    "z_archive"
+  ],
+  "memorySequence": 2,
+  "memoryNameHistory": [
+    "15-05-26_19-08__manual-context-save.md",
+    "15-05-26_19-29__manual-context-save.md"
+  ]
+}

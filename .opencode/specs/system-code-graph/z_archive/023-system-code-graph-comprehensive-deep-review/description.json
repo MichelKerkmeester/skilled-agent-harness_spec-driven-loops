@@ -1,0 +1,35 @@
+{
+  "title": "System Code Graph Comprehensive Deep Review (20 iterations, cli-devin SWE-1.6)",
+  "trigger_phrases": [
+    "037 system-code-graph comprehensive deep-review",
+    "cli-devin SWE-1.6 deep-review",
+    "code-graph release-readiness audit"
+  ],
+  "packet_id": "system-spec-kit/026-graph-and-context-optimization/005-code-graph/037-system-code-graph-comprehensive-deep-review",
+  "importance_tier": "important",
+  "contextType": "implementation",
+  "specFolder": "system-code-graph/z_archive/023-system-code-graph-comprehensive-deep-review",
+  "description": "The `system-code-graph` skill has been through a multi-arc evolution: extraction from `system-spec-kit` (packet 014), MCP server rename",
+  "keywords": [
+    "system-code-graph",
+    "skill",
+    "multi-arc",
+    "evolution",
+    "extraction",
+    "system-spec-kit",
+    "packet",
+    "014",
+    "mcp",
+    "server",
+    "rename"
+  ],
+  "lastUpdated": "2026-07-07T16:12:52.569Z",
+  "specId": "023",
+  "folderSlug": "system-code-graph-comprehensive-deep-review",
+  "parentChain": [
+    "system-code-graph",
+    "z_archive"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

@@ -35,7 +35,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 002-code-graph/011-edge-confidence-review-remediation |
+| **Spec Folder** | 011-edge-confidence-review-remediation |
 | **Completed** | 2026-07-01 |
 | **Level** | 3 |
 <!-- /ANCHOR:metadata -->

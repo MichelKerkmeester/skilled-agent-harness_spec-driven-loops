@@ -1,0 +1,26 @@
+{
+  "level": "3",
+  "specFolder": "system-code-graph/007-code-graph-buildout/007-docs-and-readmes/006-reference-template-alignment",
+  "description": "The code-graph reference set did not follow sk-doc reference-template naming and structure 1:1",
+  "keywords": [
+    "code-graph",
+    "reference",
+    "set",
+    "follow",
+    "sk-doc",
+    "reference-template",
+    "naming",
+    "structure"
+  ],
+  "lastUpdated": "2026-06-23T03:49:55.993Z",
+  "specId": "006",
+  "folderSlug": "reference-template-alignment",
+  "parentChain": [
+    "system-spec-kit",
+    "026-graph-and-context-optimization",
+    "004-code-graph",
+    "007-docs-and-readmes"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

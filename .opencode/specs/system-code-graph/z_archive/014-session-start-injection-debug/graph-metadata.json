@@ -1,0 +1,223 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-code-graph/z_archive/014-session-start-injection-debug",
+  "spec_folder": "system-code-graph/z_archive/014-session-start-injection-debug",
+  "parent_id": "system-code-graph/z_archive",
+  "parent_id_review_required": true,
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "startup injection",
+      "session start context",
+      "handlestartup",
+      "compact code graph injection",
+      "graph freshness empty",
+      "startup auto priming",
+      "026",
+      "startup injection plan",
+      "handlestartup fix",
+      "026 plan",
+      "cross-runtime priming",
+      "026 tasks"
+    ],
+    "key_topics": [
+      "startup",
+      "injection",
+      "session",
+      "start",
+      "context",
+      "handlestartup",
+      "compact",
+      "code",
+      "graph",
+      "freshness",
+      "empty",
+      "auto"
+    ],
+    "importance_tier": "critical",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "mcp_server/hooks/claude/hook-state.ts",
+      "mcp_server/hooks/claude/session-prime.ts",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "hooks/claude/hook-state.ts",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "hook-state.ts",
+        "kind": "code",
+        "path": "mcp_server/hooks/claude/hook-state.ts",
+        "source": "derived"
+      },
+      {
+        "name": "session-prime.ts",
+        "kind": "code",
+        "path": "mcp_server/hooks/claude/session-prime.ts",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Startup Context Injection Debug",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Child Header",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Plan",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Hook Runtime Brief",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Sibling Handoff",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Claude Code",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Build",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Startup Context Injection",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Date",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The startup priming path is still broken or too thin where true startup injection should happen",
+    "created_at": "2026-04-12T09:02:53.432Z",
+    "last_save_at": "2026-07-07T16:18:33.983Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:4f4c2067d64a40ec0f8937aacb1326107a410b9f4a7ab15f3d0bb1c157dd9f25",
+    "source_doc_hashes": {
+      "spec.md": "9d20e4ebf240033a5cfc32c356ddc83ae4e2390628915a20551cf250dca92128",
+      "plan.md": "e90d4db45320fa09c757651386c3450045b2ac727f364a747e1aeba770da587d",
+      "tasks.md": "bd53f18de3914830ff67eb7f07dc32c5ff3a36284627bc359cbcae5063013296",
+      "checklist.md": "2925a39dd4e35ad8fc1e589d2e921f219f5a64bbb1a1711252dbc5ae25338aee",
+      "implementation-summary.md": "bb783402b61862642a59db1341af0796e109aac35ebf58321f1f4c4c25712b41"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

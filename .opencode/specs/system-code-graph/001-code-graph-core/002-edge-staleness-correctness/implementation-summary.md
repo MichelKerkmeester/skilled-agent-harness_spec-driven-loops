@@ -42,7 +42,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | `system-code-graph/001-code-graph-core/002-edge-staleness-correctness` |
+| **Spec Folder** | 002-edge-staleness-correctness |
 | **Status** | pending — fan-in re-parse benchmark gates default-on |
 | **Completed** | Built default-off / tombstone-gated; fan-in benchmark gates default-on (pending) |
 | **Level** | 2 |

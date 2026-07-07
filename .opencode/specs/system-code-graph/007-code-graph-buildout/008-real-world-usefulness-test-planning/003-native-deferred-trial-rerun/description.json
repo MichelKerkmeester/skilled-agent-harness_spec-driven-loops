@@ -1,0 +1,34 @@
+{
+  "level": 2,
+  "name": "Native Rerun of Deferred Usefulness Cells",
+  "specFolder": "system-code-graph/007-code-graph-buildout/008-real-world-usefulness-test-planning/003-native-deferred-trial-rerun",
+  "description": "The sandbox campaign deferred native cells because it could not access MCP tools, authenticated state, network, or real compaction context",
+  "keywords": [
+    "sandbox",
+    "campaign",
+    "deferred",
+    "native",
+    "cells",
+    "because",
+    "access",
+    "mcp",
+    "tools",
+    "authenticated",
+    "state",
+    "network",
+    "real",
+    "compaction",
+    "context"
+  ],
+  "lastUpdated": "2026-06-23T03:49:56.017Z",
+  "specId": "003",
+  "folderSlug": "native-deferred-trial-rerun",
+  "parentChain": [
+    "system-spec-kit",
+    "026-graph-and-context-optimization",
+    "004-code-graph",
+    "008-real-world-usefulness-test-planning"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

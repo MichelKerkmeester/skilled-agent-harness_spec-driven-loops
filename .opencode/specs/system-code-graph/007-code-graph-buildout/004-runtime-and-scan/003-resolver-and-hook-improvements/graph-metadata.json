@@ -1,0 +1,238 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-code-graph/007-code-graph-buildout/004-runtime-and-scan/003-resolver-and-hook-improvements",
+  "spec_folder": "system-code-graph/007-code-graph-buildout/004-runtime-and-scan/003-resolver-and-hook-improvements",
+  "parent_id": "system-code-graph/007-code-graph-buildout/004-runtime-and-scan",
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "code-graph hook improvements",
+      "code-graph system research",
+      "026/009/013",
+      "implementation plan",
+      "013",
+      "hook daemon parity",
+      "tasks",
+      "013 checklist",
+      "code-graph hook improvements verification",
+      "013 implementation summary",
+      "code-graph hook improvements closeout",
+      "013 resource map"
+    ],
+    "key_topics": [
+      "code-graph",
+      "hook",
+      "improvements",
+      "system",
+      "research",
+      "026",
+      "009",
+      "013",
+      "implementation",
+      "plan",
+      "daemon",
+      "parity"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "plan.md",
+      ".opencode/skills/system-spec-kit/mcp_server/hooks/claude/session-prime.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/tests/hook-session-start.vitest.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md",
+      "tasks.md",
+      "checklist.md",
+      "resource-map.md",
+      "implementation-summary.md",
+      "review/review-report.md",
+      "review/deep-review-findings-registry.json",
+      "spec.md",
+      ".opencode/skills/system-spec-kit/references/config/hook_system.md",
+      ".opencode/skills/system-spec-kit/mcp_server/handlers/index.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/handlers/session-resume.ts",
+      ".opencode/skills/system-spec-kit/scripts/spec/validate.sh",
+      ".opencode/skills/system-spec-kit/SKILL.md",
+      ".opencode/skills/system-spec-kit/templates/README.md",
+      ".opencode/skills/system-spec-kit/references/templates/level_specifications.md"
+    ],
+    "entities": [
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "session-prime.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/hooks/claude/session-prime.ts",
+        "source": "derived"
+      },
+      {
+        "name": "hook-session-start.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/hook-session-start.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "ENV_REFERENCE.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "resource-map.md",
+        "kind": "doc",
+        "path": "resource-map.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "review-report.md",
+        "kind": "doc",
+        "path": "review/review-report.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-review-findings-registry.json",
+        "kind": "config",
+        "path": "review/deep-review-findings-registry.json",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "hook_system.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/references/config/hook_system.md",
+        "source": "derived"
+      },
+      {
+        "name": "index.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/handlers/index.ts",
+        "source": "derived"
+      },
+      {
+        "name": "memory-context.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts",
+        "source": "derived"
+      },
+      {
+        "name": "memory-search.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts",
+        "source": "derived"
+      },
+      {
+        "name": "session-resume.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/handlers/session-resume.ts",
+        "source": "derived"
+      },
+      {
+        "name": "validate.sh",
+        "kind": "script",
+        "path": ".opencode/skills/system-spec-kit/scripts/spec/validate.sh",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/templates/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "level_specifications.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/references/templates/level_specifications.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Graph System",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Hooks Improvement Investigation",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The code-graph system has been delivered and partially remediated across 026 phases 003 (code-graph-package) and 009 (hook-package)",
+    "created_at": "2026-04-24T01:10:00Z",
+    "last_save_at": "2026-07-07T16:18:33.784Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md",
+      "resource-map.md"
+    ],
+    "source_fingerprint": "sha256:36e973dea831cc758c6195ee0095f77c26cb0a800b1b0e6d10743f0d8fa4a9d7",
+    "source_doc_hashes": {
+      "spec.md": "3f2ecc8710cfec1b2e90be701bf55bb2ff662fcec005affe994d8c8abbd33b3b",
+      "plan.md": "5df10c9cc7be102944693a5309443cfe51c2cc7be8bcfec31697ba3dfc79b3c5",
+      "tasks.md": "39e0c8b423e6246d79fdce9355ceb7e1f3d6cfb92bf99574501dde8cc63cf1ab",
+      "checklist.md": "d071bb12bc49d468cb03bbf50529ff0c501190649d8232cf440bfa08ae647fcf",
+      "implementation-summary.md": "e659e76953e5ad574101b9678b32e2fedbaa7451f9501ecdcefaed79fe80b368",
+      "resource-map.md": "e501e2211099506881ebbe67728ea6b3b3ff64e99e1560c25e611b2718f95004"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

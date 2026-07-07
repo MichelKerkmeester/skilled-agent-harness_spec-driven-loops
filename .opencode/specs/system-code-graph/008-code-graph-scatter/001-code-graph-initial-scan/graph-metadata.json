@@ -1,0 +1,214 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-code-graph/008-code-graph-scatter/001-code-graph-initial-scan",
+  "spec_folder": "system-code-graph/008-code-graph-scatter/001-code-graph-initial-scan",
+  "parent_id": "system-code-graph/008-code-graph-scatter",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "code graph initial scan",
+      "code_graph_scan populate",
+      "empty code graph full scan",
+      "code graph readiness",
+      "code graph initial scan plan",
+      "code_graph_scan full populate plan",
+      "code graph initial scan tasks",
+      "code_graph_scan populate tasks",
+      "code graph initial scan summary",
+      "code_graph_scan pending reconnect"
+    ],
+    "key_topics": [
+      "code",
+      "graph",
+      "initial",
+      "scan",
+      "populate",
+      "empty",
+      "full",
+      "readiness",
+      "plan",
+      "tasks",
+      "summary",
+      "pending"
+    ],
+    "importance_tier": "normal",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview With Phase",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Operational",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow Reconnect",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Confirm Phase",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "an",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "final",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "`codegraphstatus` reports `totalNodes: 0`, `freshness: \"empty\"`, `action: \"fullscan\"`",
+    "created_at": "2026-05-28T16:38:37Z",
+    "last_save_at": "2026-07-07T16:18:33.900Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:51321df526e247eff511beccc7c9f281dcdd7a672c4f66111d2ed51710f4f927",
+    "source_doc_hashes": {
+      "spec.md": "8086196a1ba3d36610e6e1c6d5bfa63d976ad19ddc0fe666ed4f5ad711f12748",
+      "plan.md": "98e9106912fec9d17ad5491ab1a7b217fb2b89d5dde30ea2f54bd81fe72218f7",
+      "tasks.md": "4ca34a76f5fc20f033afe6da4705fe53200a419a300ba8739e99246f3f1aa92d",
+      "implementation-summary.md": "027bc865b067bdf3af76a9c60c73b0ea9309aed73b622ccc52fd95e9ea7cb2d2"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

@@ -1,0 +1,238 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-code-graph/007-code-graph-buildout/008-real-world-usefulness-test-planning/004-code-graph-bug-surface-research",
+  "spec_folder": "system-code-graph/007-code-graph-buildout/008-real-world-usefulness-test-planning/004-code-graph-bug-surface-research",
+  "parent_id": "system-code-graph/007-code-graph-buildout/008-real-world-usefulness-test-planning",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "deep research issues",
+      "code graph bug surface",
+      "hook advisor synthesis",
+      "deep research plan",
+      "synthesis plan",
+      "code graph remediation backlog",
+      "deep research tasks",
+      "iteration synthesis tasks",
+      "research backlog tasks",
+      "deep research checklist",
+      "synthesis verification",
+      "research validation"
+    ],
+    "key_topics": [
+      "deep",
+      "research",
+      "issues",
+      "code",
+      "graph",
+      "bug",
+      "surface",
+      "hook",
+      "advisor",
+      "synthesis",
+      "plan",
+      "remediation"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "research/research.md",
+      "research/resource-map.md",
+      "implementation-summary.md",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "research/iterations/iteration-001.md",
+      "research/deep-research-strategy.md",
+      "research/deep-research-config.json",
+      "research/deltas/iter-001.jsonl",
+      "research/iterations/iteration-002.md",
+      "research/iterations/iteration-003.md",
+      "research/iterations/iteration-004.md",
+      "research/iterations/iteration-005.md",
+      "research/iterations/iteration-006.md",
+      "research/iterations/iteration-007.md",
+      "research/iterations/iteration-008.md",
+      "research/iterations/iteration-009.md"
+    ],
+    "entities": [
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "iteration-001.md",
+        "kind": "doc",
+        "path": "research/iterations/iteration-001.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-strategy.md",
+        "kind": "doc",
+        "path": "research/deep-research-strategy.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-config.json",
+        "kind": "config",
+        "path": "research/deep-research-config.json",
+        "source": "derived"
+      },
+      {
+        "name": "iter-001.jsonl",
+        "kind": "file",
+        "path": "research/deltas/iter-001.jsonl",
+        "source": "derived"
+      },
+      {
+        "name": "iteration-002.md",
+        "kind": "doc",
+        "path": "research/iterations/iteration-002.md",
+        "source": "derived"
+      },
+      {
+        "name": "iteration-003.md",
+        "kind": "doc",
+        "path": "research/iterations/iteration-003.md",
+        "source": "derived"
+      },
+      {
+        "name": "iteration-004.md",
+        "kind": "doc",
+        "path": "research/iterations/iteration-004.md",
+        "source": "derived"
+      },
+      {
+        "name": "iteration-005.md",
+        "kind": "doc",
+        "path": "research/iterations/iteration-005.md",
+        "source": "derived"
+      },
+      {
+        "name": "iteration-006.md",
+        "kind": "doc",
+        "path": "research/iterations/iteration-006.md",
+        "source": "derived"
+      },
+      {
+        "name": "iteration-007.md",
+        "kind": "doc",
+        "path": "research/iterations/iteration-007.md",
+        "source": "derived"
+      },
+      {
+        "name": "iteration-008.md",
+        "kind": "doc",
+        "path": "research/iterations/iteration-008.md",
+        "source": "derived"
+      },
+      {
+        "name": "iteration-009.md",
+        "kind": "doc",
+        "path": "research/iterations/iteration-009.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Deep Research Issues",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Produce",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The native rerun downgraded code graph from useful to overhead after broad scans, read-path drift blocks, parser crashes, and a zero-node persistence regression made the graph unreliable during framework-maintainer work",
+    "created_at": "2026-05-06T05:27:17Z",
+    "last_save_at": "2026-07-07T16:18:33.848Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      "research/research.md"
+    ],
+    "source_fingerprint": "sha256:b7958ac8603987b461f4235aecff6a8c8c47b18065d74a2ca189fba002f73981",
+    "source_doc_hashes": {
+      "spec.md": "7b6cce814998c70c2780a385f5fed1d92d354f91feb5f7911e2323dd0d4e0b85",
+      "plan.md": "6fd1b5fa75e4e2a9711a837c72d7911ab2e9d49679c3b65d100d8e4de34013be",
+      "tasks.md": "14f9500ba765dcb8df36d87731960de66300fd8200ab3543a39b4879e87b5f49",
+      "checklist.md": "3c11cca6580dccd676d1d20c32accfad65d8c3ee726d8400a9d8730de85d38b5",
+      "decision-record.md": "ce6a5402215cdacfa7ba36dbcb893bf227a1773230531af9a86f81b6c201a1a7",
+      "implementation-summary.md": "229898556a21c7bd71ac08688807cb5fdcb5c944ae4db87fbb63d0fbfa85b439",
+      "research/research.md": "159e6556735f9b3987d7dc11a749cd6b9a9078237cc7d8d8b32d036c376aa9f1"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

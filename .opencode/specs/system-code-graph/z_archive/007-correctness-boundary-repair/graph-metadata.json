@@ -1,0 +1,227 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-code-graph/z_archive/007-correctness-boundary-repair",
+  "spec_folder": "system-code-graph/z_archive/007-correctness-boundary-repair",
+  "parent_id": "system-code-graph/z_archive",
+  "parent_id_review_required": true,
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "spec",
+      "correctness",
+      "boundary",
+      "repair",
+      "013",
+      "plan",
+      "tasks",
+      "checklist",
+      "decision",
+      "record",
+      "decision record",
+      "implementation"
+    ],
+    "key_topics": [
+      "spec",
+      "correctness",
+      "boundary",
+      "repair",
+      "013",
+      "plan",
+      "tasks",
+      "checklist",
+      "decision",
+      "record",
+      "implementation",
+      "phase"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "handlers/memory-context.ts",
+      "tests/budget-allocator.vitest.ts",
+      "tests/compact-merger.vitest.ts",
+      "mcp_server/handlers/memory-context.ts",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "memory-context.ts",
+        "kind": "code",
+        "path": "handlers/memory-context.ts",
+        "source": "derived"
+      },
+      {
+        "name": "budget-allocator.vitest.ts",
+        "kind": "test",
+        "path": "tests/budget-allocator.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "compact-merger.vitest.ts",
+        "kind": "test",
+        "path": "tests/compact-merger.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Boundary Repair",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Summary Fix",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Must Fix",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Target Files",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Requirements Traceability",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Order",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Checklist",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Execution Rules",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Status Reporting Format",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation Template",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Setup Template",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Template",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Template",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "This phase addresses concrete context-preservation and code-graph reliability gaps tracked in this packet",
+    "created_at": "2026-04-13T04:55:08.076Z",
+    "last_save_at": "2026-07-07T16:18:33.966Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:99278a5f61e3ac52b5f0f58e9f0d5a92c524bf10edcf5c6dab854d7508bf2a00",
+    "source_doc_hashes": {
+      "spec.md": "260b862a424a2b5416f7babbe063639ae60e13d241b07616fde3824c1ff752f5",
+      "plan.md": "13ce780b14ff1a09b23017d62f1343598fc6084339e6a2643f14c029657c4446",
+      "tasks.md": "9e00b278c75fa01e5a8d200961a0abc35c97fa0e5f1a3a01ba6bab3a82103c2d",
+      "checklist.md": "800f3ce69af294be8bebf7e021279ecab434331d1ff95be8caee2ef1b10dc852",
+      "decision-record.md": "4d98560176e16e9c6c06d975e57747581a38a7328b04036480658f562d06dc68",
+      "implementation-summary.md": "49223ca39d32ed27db71e58f343590fa87bb4c37a99bca561414d33f5c79f86a"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

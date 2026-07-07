@@ -1,0 +1,217 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-code-graph/007-code-graph-buildout/002-deprecate-coco-index/016-remediate-residue-tail",
+  "spec_folder": "system-code-graph/007-code-graph-buildout/002-deprecate-coco-index/016-remediate-residue-tail",
+  "parent_id": "system-code-graph/007-code-graph-buildout/002-deprecate-coco-index",
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "deprecation residue completeness verdict",
+      "coco ccc rerank residue tail closed",
+      "exhaustive residue sweep methodology",
+      "residue tail plan",
+      "completeness verdict plan",
+      "residue tail tasks",
+      "coco ccc rerank cleanup closed",
+      "exhaustive sweep methodology bug"
+    ],
+    "key_topics": [
+      "deprecation",
+      "residue",
+      "completeness",
+      "verdict",
+      "coco",
+      "ccc",
+      "rerank",
+      "tail",
+      "closed",
+      "exhaustive",
+      "sweep",
+      "methodology"
+    ],
+    "importance_tier": "normal",
+    "status": "in_progress",
+    "key_files": [
+      ".opencode/skills/deep-loop-runtime/lib/deep-loop/README.md",
+      ".opencode/skills/system-spec-kit/manual_testing_playbook/manual_testing_playbook.md",
+      "scripts/.folder-list.txt",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/skills/deep-loop-runtime/lib/deep-loop/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "manual_testing_playbook.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/manual_testing_playbook/manual_testing_playbook.md",
+        "source": "derived"
+      },
+      {
+        "name": ".folder-list.txt",
+        "kind": "file",
+        "path": "scripts/.folder-list.txt",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement After",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Every",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Change Type",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview An",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Documentation",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow Repo",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "corrected",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "After packets `014-remediate-codegraph-naming` + `015-remediate-cross-surface-residue`, an exhaustive verify-first sweep was run to prove the 014 deprecation residue was fully closed (not just \"a grep returned 0\")",
+    "created_at": "2026-05-25T16:46:14Z",
+    "last_save_at": "2026-07-07T16:18:33.769Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:159580ae2b85afe3abf13130664d84726a1ee6c942f197f629f06b1dd07fa5b6",
+    "source_doc_hashes": {
+      "spec.md": "6bc8f9502ffb9bd51aeb14f8565f695d9fec9e805c0ecf98a9a94db83557221f",
+      "plan.md": "fa5f9c2238544071f0d3a8bd6ab2736eb2b69f890221e5c40a4eae9d391d28cf",
+      "tasks.md": "3fef62b86a869dbc56fc368a4755b1dd556c0c06d448780beca12bbf887a09aa",
+      "implementation-summary.md": "ef560061bdc086cfd2514e6f24cdf8f18397af2ad4b80d559acbe1c809873c00"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

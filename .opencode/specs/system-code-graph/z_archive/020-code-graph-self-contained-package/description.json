@@ -1,0 +1,26 @@
+{
+  "specFolder": "system-code-graph/z_archive/020-code-graph-self-contained-package",
+  "description": "Migrate code-graph into a parallel self-contained package at `mcpserver/code-graph/` with subfolders `lib/`, `tools/`, `handlers/`, `tests/`,",
+  "keywords": [
+    "migrate",
+    "code-graph",
+    "parallel",
+    "self-contained",
+    "package",
+    "mcpserver",
+    "subfolders",
+    "lib",
+    "tools",
+    "handlers",
+    "tests"
+  ],
+  "lastUpdated": "2026-07-07T16:12:51.618Z",
+  "specId": "020",
+  "folderSlug": "code-graph-self-contained-package",
+  "parentChain": [
+    "system-code-graph",
+    "z_archive"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

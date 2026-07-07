@@ -1,0 +1,226 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-code-graph/z_archive/017-opencode-graph-plugin/004-cross-runtime-startup-surfacing-parity",
+  "spec_folder": "system-code-graph/z_archive/017-opencode-graph-plugin/004-cross-runtime-startup-surfacing-parity",
+  "parent_id": "system-code-graph/z_archive/017-opencode-graph-plugin",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "cross-runtime startup surfacing parity",
+      "packet 030",
+      "level 3",
+      "cross-runtime startup surfacing parity plan",
+      "phase 4 tasks",
+      "startup parity tasks",
+      "runtime startup surfacing",
+      "cross-runtime startup surfacing parity checklist",
+      "level 3 verification",
+      "cross-runtime startup surfacing parity adr",
+      "level 3 decision record",
+      "phase 4 implementation summary"
+    ],
+    "key_topics": [
+      "cross-runtime",
+      "startup",
+      "surfacing",
+      "parity",
+      "packet",
+      "030",
+      "level",
+      "plan",
+      "phase",
+      "tasks",
+      "runtime",
+      "checklist"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/session/session-snapshot.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/handlers/session-resume.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/hooks/claude/session-prime.ts",
+      ".github/hooks/superset-notify.json",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "session-snapshot.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/session/session-snapshot.ts",
+        "source": "derived"
+      },
+      {
+        "name": "session-resume.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/handlers/session-resume.ts",
+        "source": "derived"
+      },
+      {
+        "name": "session-prime.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/hooks/claude/session-prime.ts",
+        "source": "derived"
+      },
+      {
+        "name": "superset-notify.json",
+        "kind": "config",
+        "path": ".github/hooks/superset-notify.json",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Runtime Startup Surfacing Parity",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "The Level",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Dependencies",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Reference",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Execution Protocol",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Checklist",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "OpenCode now injects a structured startup digest and session-context surfacing through the packet-030 plugin layer, but the other repo-managed CLI runtimes still split startup behavior across hooks, injected context, and manual bootstrap instructions",
+    "created_at": "2026-04-12T09:02:53.438Z",
+    "last_save_at": "2026-07-07T16:18:34.000Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:c1821d1f03e3054a9afcca724696c6b6da690f23bc50131a1799c65ceb94b44a",
+    "source_doc_hashes": {
+      "spec.md": "7b65380dd934eba210e5ee2ac09b80523547fc5f85fbe009441275443593afa6",
+      "plan.md": "fdc4858de567d5a993a258e73b24dbf2cb2501e2c3a39d6cee012f66b039947c",
+      "tasks.md": "db0fad2064a8c2ec51370c360855d659d460c293e68862e434ddcb9830ec9109",
+      "checklist.md": "f4ede3af20eea58beefbae001140104427470189f23641d308c0fd8863ce8559",
+      "decision-record.md": "4f7edf00b233d09cbe68b9c8df10cf42b4487fbb5c3ea8d6967e201835074d0a",
+      "implementation-summary.md": "89b0df81ab612bb83edb8b6a8ef051fe25938d2c353324c25a2544c10cf643f9"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

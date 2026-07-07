@@ -1,0 +1,23 @@
+{
+  "level": "1",
+  "specFolder": "system-code-graph/008-code-graph-scatter/001-code-graph-initial-scan",
+  "description": "`codegraphstatus` reports `totalNodes: 0`, `freshness: \"empty\"`, `action: \"fullscan\"`",
+  "keywords": [
+    "codegraphstatus",
+    "reports",
+    "totalnodes",
+    "freshness",
+    "empty",
+    "action",
+    "fullscan"
+  ],
+  "lastUpdated": "2026-07-07T16:10:51.528Z",
+  "specId": "001",
+  "folderSlug": "code-graph-initial-scan",
+  "parentChain": [
+    "system-code-graph",
+    "008-code-graph-scatter"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

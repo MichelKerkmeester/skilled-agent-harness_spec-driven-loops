@@ -1,0 +1,23 @@
+{
+  "level": "2",
+  "specFolder": "system-code-graph/007-code-graph-buildout/006-extraction-and-isolation/003-standalone-mcp-topology-pivot",
+  "description": "Reality diverged from ADR-001 in two ways",
+  "keywords": [
+    "reality",
+    "diverged",
+    "adr-001",
+    "two",
+    "ways"
+  ],
+  "lastUpdated": "2026-06-23T03:49:55.945Z",
+  "specId": "003",
+  "folderSlug": "standalone-mcp-topology-pivot",
+  "parentChain": [
+    "system-spec-kit",
+    "026-graph-and-context-optimization",
+    "004-code-graph",
+    "006-extraction-and-isolation"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}
