@@ -1,8 +1,9 @@
 {
   "schema_version": 1,
-  "packet_id": "skilled-agent-orchestration/z_archive/021-sk-doc-feature-catalog-testing-playbook",
-  "spec_folder": "skilled-agent-orchestration/z_archive/021-sk-doc-feature-catalog-testing-playbook",
-  "parent_id": null,
+  "packet_id": "sk-doc/z_archive/003-sk-doc-feature-catalog-testing-playbook",
+  "spec_folder": "sk-doc/z_archive/003-sk-doc-feature-catalog-testing-playbook",
+  "parent_id": "sk-doc/z_archive",
+  "parent_id_review_required": true,
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -39,7 +40,7 @@
       "regroup"
     ],
     "importance_tier": "normal",
-    "status": "complete",
+    "status": "in_progress",
     "key_files": [
       ".opencode/skills/system-spec-kit/mcp_server/tests/feature-flag-reference-docs.vitest.ts",
       "spec.md",
@@ -49,8 +50,6 @@
       "implementation-summary.md",
       ".opencode/skills/sk-doc/SKILL.md",
       ".opencode/skills/sk-doc/README.md",
-      ".opencode/skills/sk-doc/references/global/quick_reference.md",
-      ".opencode/skills/sk-doc/references/global/workflows.md",
       ".opencode/skills/system-spec-kit/manual_testing_playbook/MANUAL_TESTING_PLAYBOOK.md",
       ".opencode/skills/system-spec-kit/feature_catalog/FEATURE_CATALOG.md"
     ],
@@ -101,18 +100,6 @@
         "name": "README.md",
         "kind": "doc",
         "path": ".opencode/skills/sk-doc/README.md",
-        "source": "derived"
-      },
-      {
-        "name": "quick_reference.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-doc/references/global/quick_reference.md",
-        "source": "derived"
-      },
-      {
-        "name": "workflows.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-doc/references/global/workflows.md",
         "source": "derived"
       },
       {
@@ -198,11 +185,23 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Establish Level",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The original spec packet captured only the first part of the work: refactoring manual testing playbooks toward a feature-catalog-like package shape",
     "created_at": "2026-04-12T09:02:50.221Z",
-    "last_save_at": "2026-06-23T03:49:48.998Z",
+    "last_save_at": "2026-07-07T17:12:10.715Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

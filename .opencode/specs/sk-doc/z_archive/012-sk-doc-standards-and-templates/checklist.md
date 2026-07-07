@@ -7,7 +7,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "skilled-agent-orchestration/z_archive/108-catalog-playbook-snippet-denumbering/001-sk-doc-standards-and-templates"
+    packet_pointer: "sk-doc/z_archive/012-sk-doc-standards-and-templates"
     last_updated_at: "2026-06-06T00:00:00Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "Authored phase 001 checklist during 133 scaffold"

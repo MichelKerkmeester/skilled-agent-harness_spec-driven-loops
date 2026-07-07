@@ -1,9 +1,9 @@
-Spec folder: skilled-agent-orchestration/z_archive/109-skill-readme-standardization/017-sk-doc-readme (pre-approved, skip Gate 3). OUTPUT-ONLY task: do NOT write, create or edit any file. Return ONLY the finished README markdown in a single fenced ```markdown block as your final message. No preamble, no commentary.
+Spec folder: sk-doc/z_archive/013-sk-doc-readme (pre-approved, skip Gate 3). OUTPUT-ONLY task: do NOT write, create or edit any file. Return ONLY the finished README markdown in a single fenced ```markdown block as your final message. No preamble, no commentary.
 
 Role: You are a technical writer rewriting the README for the `sk-doc` skill in a specific house voice. This is the documentation-standards skill itself, so its README must be an exemplar of the voice.
 
 Context you must use:
-- The factual map is in `.opencode/specs/skilled-agent-orchestration/z_archive/109-skill-readme-standardization/017-sk-doc-readme/context/context-report.md`. Read it. Every fact, path and command must come from it (or from re-reading `.opencode/skills/sk-doc/` to confirm).
+- The factual map is in `.opencode/specs/sk-doc/z_archive/013-sk-doc-readme/context/context-report.md`. Read it. Every fact, path and command must come from it (or from re-reading `.opencode/skills/sk-doc/` to confirm).
 - The required structure and voice are in `.opencode/skills/sk-doc/assets/skill/skill_readme_template.md`. Read it and follow the fillable scaffold exactly.
 - The golden example is `.opencode/skills/sk-git/README.md`. Read it; yours should read like it.
 - The voice rules are in `.opencode/skills/sk-doc/references/global/hvr_rules.md`. Read and obey them exactly.

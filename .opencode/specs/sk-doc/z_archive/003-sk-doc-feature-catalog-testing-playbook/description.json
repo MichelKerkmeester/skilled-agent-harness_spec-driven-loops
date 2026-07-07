@@ -1,5 +1,5 @@
 {
-  "specFolder": "skilled-agent-orchestration/z_archive/021-sk-doc-feature-catalog-testing-playbook",
+  "specFolder": "sk-doc/z_archive/003-sk-doc-feature-catalog-testing-playbook",
   "description": "The original spec packet captured only the first part of the work: refactoring manual testing playbooks toward a feature-catalog-like package shape",
   "keywords": [
     "original",
@@ -19,11 +19,11 @@
     "package",
     "shape"
   ],
-  "lastUpdated": "2026-06-23T03:49:49.000Z",
-  "specId": "021",
+  "lastUpdated": "2026-07-07T17:12:10.866Z",
+  "specId": "003",
   "folderSlug": "sk-doc-feature-catalog-testing-playbook",
   "parentChain": [
-    "skilled-agent-orchestration",
+    "sk-doc",
     "z_archive"
   ],
   "memorySequence": 0,

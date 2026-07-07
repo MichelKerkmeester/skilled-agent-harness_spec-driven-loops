@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: sk-doc README and HVR [skilled-agent-orchestration/z_archive/026-sk-doc-readme-hvr-improvements/plan]"
+title: "Implementation Plan: sk-doc README and HVR [sk-doc/z_archive/004-sk-doc-readme-hvr-improvements/plan]"
 description: "Four-phase plan for upgrading sk-doc HVR rules, the README template, and the README creation reference."
 trigger_phrases:
   - "hvr plan"
@@ -10,7 +10,7 @@ contextType: "general"
 template_source_hint: "<!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2 -->"
 _memory:
   continuity:
-    packet_pointer: "skilled-agent-orchestration/z_archive/026-sk-doc-readme-hvr-improvements"
+    packet_pointer: "sk-doc/z_archive/004-sk-doc-readme-hvr-improvements"
     last_updated_at: "2026-04-24T15:25:01Z"
     last_updated_by: "backfill-memory-block"
     recent_action: "Backfilled _memory block (repo-wide frontmatter sweep)"

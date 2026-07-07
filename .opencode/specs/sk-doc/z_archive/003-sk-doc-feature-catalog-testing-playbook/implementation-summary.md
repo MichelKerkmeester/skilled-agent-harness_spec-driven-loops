@@ -23,7 +23,7 @@ This summary records the final delivered scope after the original playbook refac
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 021-sk-doc-feature-catalog-testing-playbook |
+| **Spec Folder** | 003-sk-doc-feature-catalog-testing-playbook |
 | **Completed** | 2026-03-19 |
 | **Level** | 2 |
 <!-- /ANCHOR:metadata -->

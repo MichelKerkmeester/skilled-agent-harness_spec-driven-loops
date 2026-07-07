@@ -1,6 +1,6 @@
 # Deep Review Report: 068-sk-doc-organization
 
-**Review packet**: `.opencode/specs/skilled-agent-orchestration/z_archive/054-sk-doc-organization/review/`
+**Review packet**: `.opencode/specs/sk-doc/z_archive/007-sk-doc-organization/review/`
 **Iterations run**: 7 of 7 (hard cap)
 **Convergence streak (consecutive iterations with 0 new in-scope P0/P1)**: 3 (iter 5, 6, 7)
 **Executor**: cli-copilot (`claude-opus-4.7`) — fallback from cli-codex which stalled 3× in this session

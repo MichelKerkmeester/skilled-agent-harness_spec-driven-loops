@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "skilled-agent-orchestration/z_archive/057-sk-doc-router-stress-test/003-synthesize",
-  "spec_folder": "skilled-agent-orchestration/z_archive/057-sk-doc-router-stress-test/003-synthesize",
-  "parent_id": "skilled-agent-orchestration/z_archive/057-sk-doc-router-stress-test",
+  "packet_id": "sk-doc/z_archive/008-sk-doc-router-stress-test/003-synthesize",
+  "spec_folder": "sk-doc/z_archive/008-sk-doc-router-stress-test/003-synthesize",
+  "parent_id": "sk-doc/z_archive/008-sk-doc-router-stress-test",
   "children_ids": [],
   "manual": {
     "depends_on": [],

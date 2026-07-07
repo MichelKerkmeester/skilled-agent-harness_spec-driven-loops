@@ -6,7 +6,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "skilled-agent-orchestration/z_archive/064-sk-doc-missing-router-intents-bullet-aware-matrix"
+    packet_pointer: "sk-doc/z_archive/010-sk-doc-missing-router-intents-bullet-aware-matrix"
     last_updated_at: "2026-05-05T18:30:00Z"
     last_updated_by: "claude-orchestrator"
     recent_action: "v3 matrix complete"
@@ -74,7 +74,7 @@ _memory:
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] T010 `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/skilled-agent-orchestration/z_archive/064-sk-doc-missing-router-intents-bullet-aware-matrix --strict` exits 0
+- [ ] T010 `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/sk-doc/z_archive/010-sk-doc-missing-router-intents-bullet-aware-matrix --strict` exits 0
 - [ ] T011 `git add` + commit "feat(076): sk-doc router coverage v3 — OPTIMIZATION + INSTALL_GUIDE intents + bullet-aware extractor"
 - [ ] T012 `git push origin main` succeeds
 <!-- /ANCHOR:completion -->

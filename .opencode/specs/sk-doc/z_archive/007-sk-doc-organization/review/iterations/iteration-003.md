@@ -9,7 +9,7 @@
 
 ### 1. Parent folder layout (lean trio + 3 children)
 ```
-ls .opencode/specs/skilled-agent-orchestration/z_archive/054-sk-doc-organization/
+ls .opencode/specs/sk-doc/z_archive/007-sk-doc-organization/
 → 001-relocate/  002-update-and-mirror/  003-verify-and-ship/
   description.json  graph-metadata.json  spec.md  review/
 ```

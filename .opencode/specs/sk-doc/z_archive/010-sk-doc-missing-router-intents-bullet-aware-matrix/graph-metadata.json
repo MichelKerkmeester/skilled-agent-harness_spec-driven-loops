@@ -1,8 +1,9 @@
 {
   "schema_version": 1,
-  "packet_id": "skilled-agent-orchestration/z_archive/064-sk-doc-missing-router-intents-bullet-aware-matrix",
-  "spec_folder": "skilled-agent-orchestration/z_archive/064-sk-doc-missing-router-intents-bullet-aware-matrix",
-  "parent_id": null,
+  "packet_id": "sk-doc/z_archive/010-sk-doc-missing-router-intents-bullet-aware-matrix",
+  "spec_folder": "sk-doc/z_archive/010-sk-doc-missing-router-intents-bullet-aware-matrix",
+  "parent_id": "sk-doc/z_archive",
+  "parent_id_review_required": true,
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -35,6 +36,8 @@
     "importance_tier": "important",
     "status": "in_progress",
     "key_files": [
+      ".opencode/specs/sk-doc/z_archive/010-sk-doc-missing-router-intents-bullet-aware-matrix/scripts/extract_metrics_v3.py",
+      ".opencode/specs/sk-doc/z_archive/010-sk-doc-missing-router-intents-bullet-aware-matrix/matrix_v3.csv",
       ".opencode/skills/sk-doc/manual_testing_playbook/manual_testing_playbook.md",
       "scripts/run-matrix-076.sh",
       "scripts/extract_metrics_v3.py",
@@ -45,6 +48,18 @@
     ],
     "entities": [
       {
+        "name": "extract_metrics_v3.py",
+        "kind": "file",
+        "path": ".opencode/specs/sk-doc/z_archive/010-sk-doc-missing-router-intents-bullet-aware-matrix/scripts/extract_metrics_v3.py",
+        "source": "derived"
+      },
+      {
+        "name": "matrix_v3.csv",
+        "kind": "file",
+        "path": ".opencode/specs/sk-doc/z_archive/010-sk-doc-missing-router-intents-bullet-aware-matrix/matrix_v3.csv",
+        "source": "derived"
+      },
+      {
         "name": "manual_testing_playbook.md",
         "kind": "doc",
         "path": ".opencode/skills/sk-doc/manual_testing_playbook/manual_testing_playbook.md",
@@ -54,12 +69,6 @@
         "name": "run-matrix-076.sh",
         "kind": "script",
         "path": "scripts/run-matrix-076.sh",
-        "source": "derived"
-      },
-      {
-        "name": "extract_metrics_v3.py",
-        "kind": "file",
-        "path": "scripts/extract_metrics_v3.py",
         "source": "derived"
       },
       {
@@ -181,17 +190,11 @@
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
-      },
-      {
-        "name": "Spec Folder",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Packet 071 stress-matrix covered 15 scenarios but exercised only 9 of sk-doc's 11 router intents",
     "created_at": "2026-05-05T15:34:50Z",
-    "last_save_at": "2026-06-23T03:49:49.824Z",
+    "last_save_at": "2026-07-07T17:13:14.634Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -200,12 +203,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:e1f1b144f00839acdda9a802a76ce16476d1ca60bb0fb8444fa8d20781aa01db",
+    "source_fingerprint": "sha256:853c0243f19168e15866c05c7f005f9cdaccff6d5a1582ec0e58b17d97c24bee",
     "source_doc_hashes": {
-      "spec.md": "a170caf9c57a263af002dcef5112951032f4d54c103964ee467fe3c2b380cd91",
-      "plan.md": "901e12db66b9b365d82974967ef2302e3c754a3ed6097d763d2efb3e6edfb904",
-      "tasks.md": "3fa85f5801c2dda481d60f81649c22b971203af4b9193d815fd41f9e36284345",
-      "implementation-summary.md": "35c568daad853ba6f9c1a29757f391503847b0b69c1fd6e9d3b0e12e52c0e7f4"
+      "spec.md": "e6072138b3be55d13198891f780c15b5fb40cc7ebe7af5a517be3e9a0107f9a1",
+      "plan.md": "8bbac970ab2116fa29d2e5151ccedce319ce8fb71e2dc42ca1fabf156e93df7b",
+      "tasks.md": "20735b49fd42661fdef63327299eaec3f6a55a59261d4412e05f5a1ffb716fb9",
+      "implementation-summary.md": "123822da04d485ba9e2ca1754039f2656ae9bc3b9319ef191280360f3285ebc5"
     },
     "last_active_child_id": null,
     "last_active_at": null

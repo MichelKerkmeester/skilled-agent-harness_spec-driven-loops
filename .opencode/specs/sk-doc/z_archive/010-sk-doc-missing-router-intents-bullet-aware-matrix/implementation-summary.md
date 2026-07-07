@@ -6,15 +6,15 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "skilled-agent-orchestration/z_archive/064-sk-doc-missing-router-intents-bullet-aware-matrix"
+    packet_pointer: "sk-doc/z_archive/010-sk-doc-missing-router-intents-bullet-aware-matrix"
     last_updated_at: "2026-05-05T18:35:00Z"
     last_updated_by: "claude-orchestrator"
     recent_action: "Spec docs authored"
     next_safe_action: "Validate + commit + push"
     blockers: []
     key_files:
-      - .opencode/specs/skilled-agent-orchestration/z_archive/064-sk-doc-missing-router-intents-bullet-aware-matrix/matrix_v3.csv
-      - .opencode/specs/skilled-agent-orchestration/z_archive/064-sk-doc-missing-router-intents-bullet-aware-matrix/review-report-v3.md
+      - .opencode/specs/sk-doc/z_archive/010-sk-doc-missing-router-intents-bullet-aware-matrix/matrix_v3.csv
+      - .opencode/specs/sk-doc/z_archive/010-sk-doc-missing-router-intents-bullet-aware-matrix/review-report-v3.md
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "076-complete"
@@ -36,7 +36,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 076-sk-doc-missing-router-intents-bullet-aware-matrix |
+| **Spec Folder** | 010-sk-doc-missing-router-intents-bullet-aware-matrix |
 | **Completed** | 2026-05-05 |
 | **Level** | 1 |
 | **Predecessor** | 072 review-report-v2.md (extractor v2; n=15) |

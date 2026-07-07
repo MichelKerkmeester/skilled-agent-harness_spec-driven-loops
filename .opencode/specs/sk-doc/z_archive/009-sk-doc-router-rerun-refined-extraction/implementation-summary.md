@@ -6,13 +6,13 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "skilled-agent-orchestration/z_archive/060-sk-doc-router-rerun-refined-extraction"
+    packet_pointer: "sk-doc/z_archive/009-sk-doc-router-rerun-refined-extraction"
     last_updated_at: "2026-05-05T16:10:00Z"
     last_updated_by: "claude-orchestrator"
     recent_action: "072 final: matrix_v2 + review-report-v2 shipped; ready to commit + push"
     next_safe_action: "(packet final after commit + push)"
     blockers: []
-    key_files: [.opencode/specs/skilled-agent-orchestration/z_archive/060-sk-doc-router-rerun-refined-extraction/review-report-v2.md]
+    key_files: [.opencode/specs/sk-doc/z_archive/009-sk-doc-router-rerun-refined-extraction/review-report-v2.md]
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "072-complete"
@@ -34,7 +34,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 072-sk-doc-router-rerun-refined-extraction |
+| **Spec Folder** | 009-sk-doc-router-rerun-refined-extraction |
 | **Completed** | 2026-05-05 |
 | **Level** | 1 |
 | **Predecessor** | 071-sk-doc-router-stress-test (commit 46a63f9c1) |

@@ -7,7 +7,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: ".opencode/specs/skilled-agent-orchestration/z_archive/082-sk-doc-skill-readme-and-structure"
+    packet_pointer: "sk-doc/z_archive/011-sk-doc-skill-readme-and-structure/003-markdown-agent-rename"
     last_updated_at: "2026-05-10T00:00:00Z"
     last_updated_by: "gpt-5.5"
     recent_action: "Implemented markdown agent rename across runtime mirrors and create-command references"

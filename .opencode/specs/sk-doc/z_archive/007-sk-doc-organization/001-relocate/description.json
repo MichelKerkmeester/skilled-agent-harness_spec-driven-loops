@@ -1,6 +1,6 @@
 {
   "level": "1",
-  "specFolder": "skilled-agent-orchestration/z_archive/054-sk-doc-organization/001-relocate",
+  "specFolder": "sk-doc/z_archive/007-sk-doc-organization/001-relocate",
   "description": "The sk-doc skill's `assets/` directory has accreted a two-level hierarchy where heavy-traffic templates and package folders sit one level deeper than",
   "keywords": [
     "sk-doc",

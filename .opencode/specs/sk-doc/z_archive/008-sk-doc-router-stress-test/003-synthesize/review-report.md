@@ -1,6 +1,6 @@
 # Deep Review Report: 071-sk-doc-router-stress-test
 
-**Packet**: `.opencode/specs/skilled-agent-orchestration/z_archive/057-sk-doc-router-stress-test/`
+**Packet**: `.opencode/specs/sk-doc/z_archive/008-sk-doc-router-stress-test/`
 **Test matrix**: 15 scenarios × 3 CLIs = 45 cells, complete (45/45)
 **Date**: 2026-05-05
 **Author**: Claude Opus 4.7 orchestrator + cli-copilot (scenarios) + 3 CLIs (matrix execution)

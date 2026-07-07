@@ -1,6 +1,6 @@
 {
   "level": "1",
-  "specFolder": "skilled-agent-orchestration/z_archive/054-sk-doc-organization/002-update-and-mirror",
+  "specFolder": "sk-doc/z_archive/007-sk-doc-organization/002-update-and-mirror",
   "description": "After Phase 1 moves the 4 asset items to `assets/` root, every dependent reference across sk-doc internal docs, `/create:` commands × 4 runtimes, the",
   "keywords": [
     "phase",

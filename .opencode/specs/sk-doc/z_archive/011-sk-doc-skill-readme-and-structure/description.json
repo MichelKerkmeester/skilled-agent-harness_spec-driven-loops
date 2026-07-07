@@ -1,6 +1,6 @@
 {
   "level": "phase",
-  "specFolder": "skilled-agent-orchestration/z_archive/082-sk-doc-skill-readme-and-structure",
+  "specFolder": "sk-doc/z_archive/011-sk-doc-skill-readme-and-structure",
   "description": "Phase parent for sk-doc reference relocation, sk-doc skill README asset creation, and markdown-agent rename planning.",
   "keywords": [
     "phase",
@@ -16,11 +16,11 @@
     "rename",
     "planning"
   ],
-  "lastUpdated": "2026-06-23T03:49:50.254Z",
-  "specId": "082",
+  "lastUpdated": "2026-07-07T17:13:15.255Z",
+  "specId": "011",
   "folderSlug": "sk-doc-skill-readme-and-structure",
   "parentChain": [
-    "skilled-agent-orchestration",
+    "sk-doc",
     "z_archive"
   ],
   "memorySequence": 0,

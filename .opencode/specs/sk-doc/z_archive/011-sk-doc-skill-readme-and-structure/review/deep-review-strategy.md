@@ -2,7 +2,7 @@
 
 ## Review Charter
 
-**Target:** specs/skilled-agent-orchestration/z_archive/082-sk-doc-skill-readme-and-structure
+**Target:** specs/sk-doc/z_archive/011-sk-doc-skill-readme-and-structure
 **Type:** spec-folder (phase parent — review ALL 4 child phases plus parent coordination)
 **Dimensions:** correctness, security, traceability, maintainability
 **Max Iterations:** 10
@@ -11,7 +11,7 @@
 ## Known Context
 
 ### Target Structure
-Phase parent containing 4 child phases under `.opencode/specs/skilled-agent-orchestration/z_archive/082-sk-doc-skill-readme-and-structure/`:
+Phase parent containing 4 child phases under `.opencode/specs/sk-doc/z_archive/011-sk-doc-skill-readme-and-structure/`:
 
 | Phase | Folder | Status | Description |
 |-------|--------|--------|-------------|

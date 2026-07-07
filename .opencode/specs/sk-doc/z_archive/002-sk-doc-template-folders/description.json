@@ -1,5 +1,5 @@
 {
-  "specFolder": "skilled-agent-orchestration/z_archive/011-sk-doc-template-folders",
+  "specFolder": "sk-doc/z_archive/002-sk-doc-template-folders",
   "description": "The sk-doc skill stores all OpenCode component templates (skill, agent, command) in a single `assets/opencode/` directory",
   "keywords": [
     "sk-doc",
@@ -14,11 +14,11 @@
     "assets",
     "directory"
   ],
-  "lastUpdated": "2026-06-23T03:49:48.938Z",
-  "specId": "011",
+  "lastUpdated": "2026-07-07T17:12:10.545Z",
+  "specId": "002",
   "folderSlug": "sk-doc-template-folders",
   "parentChain": [
-    "skilled-agent-orchestration",
+    "sk-doc",
     "z_archive"
   ],
   "memorySequence": 0,

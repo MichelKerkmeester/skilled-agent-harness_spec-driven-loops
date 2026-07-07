@@ -8,7 +8,7 @@ importance_tier: "normal"
 contextType: "specification"
 _memory:
   continuity:
-    packet_pointer: "skilled-agent-orchestration/z_archive/109-skill-readme-standardization/017-sk-doc-readme"
+    packet_pointer: "sk-doc/z_archive/013-sk-doc-readme"
     last_updated_at: "2026-06-07T14:25:14Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "Shipped sk-doc README via deep-context + dual-draft"

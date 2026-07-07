@@ -9,7 +9,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "068-sk-doc-organization/004-remediation"
+    packet_pointer: "sk-doc/z_archive/007-sk-doc-organization/004-remediation"
     last_updated_at: "2026-05-05T11:50:00Z"
     last_updated_by: "claude-orchestrator"
     recent_action: "Authored 004 spec.md after deep-review converged with 1 P1 + 2 P2 actionable findings"
@@ -133,7 +133,7 @@ Close the residual doc-accuracy gap with surgical edits.
 
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-004 | validate.sh --strict on parent 068 still exits 0 | `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/skilled-agent-orchestration/z_archive/054-sk-doc-organization --strict` exits 0 |
+| REQ-004 | validate.sh --strict on parent 068 still exits 0 | `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/sk-doc/z_archive/007-sk-doc-organization --strict` exits 0 |
 | REQ-005 | One commit on main; no surviving feature branch | `git branch --show-current = main`; `git log -1 --format=%s` matches `feat(sk-doc): remediate review findings (068/004)` |
 | REQ-006 | Active-scope residual rg still returns 0 | Same residual sweep from Phase 2 D.2 returns 0 hits |
 <!-- /ANCHOR:requirements -->

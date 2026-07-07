@@ -7,7 +7,7 @@ importance_tier: "important"
 contextType: "validation"
 _memory:
   continuity:
-    packet_pointer: ".opencode/specs/skilled-agent-orchestration/z_archive/082-sk-doc-skill-readme-and-structure"
+    packet_pointer: "sk-doc/z_archive/011-sk-doc-skill-readme-and-structure/001-sk-doc-reference-relocation"
     last_updated_at: "2026-05-10T00:00:00Z"
     last_updated_by: "gpt-5.5"
     recent_action: "Relocated sk-doc creation references and updated stale paths"

@@ -6,7 +6,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "skilled-agent-orchestration/z_archive/064-sk-doc-missing-router-intents-bullet-aware-matrix"
+    packet_pointer: "sk-doc/z_archive/010-sk-doc-missing-router-intents-bullet-aware-matrix"
     last_updated_at: "2026-05-05T18:30:00Z"
     last_updated_by: "claude-orchestrator"
     recent_action: "v3 matrix complete"

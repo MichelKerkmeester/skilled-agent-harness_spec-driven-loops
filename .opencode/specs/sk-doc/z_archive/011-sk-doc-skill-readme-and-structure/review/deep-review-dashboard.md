@@ -1,6 +1,6 @@
 # Deep Review Dashboard
 
-**Review Target:** specs/skilled-agent-orchestration/z_archive/082-sk-doc-skill-readme-and-structure
+**Review Target:** specs/sk-doc/z_archive/011-sk-doc-skill-readme-and-structure
 **Type:** Phase parent (4 child phases + parent coordination)
 **Date:** 2026-05-11
 **Session ID:** 2026-05-11T10-00-00Z

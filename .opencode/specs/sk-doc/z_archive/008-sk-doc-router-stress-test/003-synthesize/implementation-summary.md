@@ -6,13 +6,13 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "071-sk-doc-router-stress-test/003-synthesize"
+    packet_pointer: "sk-doc/z_archive/008-sk-doc-router-stress-test/003-synthesize"
     last_updated_at: "2026-05-05T15:40:00Z"
     last_updated_by: "claude-orchestrator"
     recent_action: "Phase 3 complete: matrix.csv + review-report.md shipped"
     next_safe_action: "Phase 4 closeout (validate + final commit)"
     blockers: []
-    key_files: [.opencode/specs/skilled-agent-orchestration/z_archive/057-sk-doc-router-stress-test/003-synthesize/review-report.md]
+    key_files: [.opencode/specs/sk-doc/z_archive/008-sk-doc-router-stress-test/003-synthesize/review-report.md]
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "phase3-complete"
@@ -34,7 +34,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 071-sk-doc-router-stress-test/003-synthesize |
+| **Spec Folder** | 003-synthesize |
 | **Completed** | 2026-05-05 |
 | **Level** | 1 |
 | **Headline finding** | cli-codex (gpt-5.5/high/fast) is the clear winner for sk-doc routing tasks |

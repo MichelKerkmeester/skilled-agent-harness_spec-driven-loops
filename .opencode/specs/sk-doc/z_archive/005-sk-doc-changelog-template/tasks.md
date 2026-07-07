@@ -11,7 +11,7 @@ contextType: "implementation"
 template_source_hint: "<!-- SPECKIT_TEMPLATE_SOURCE: tasks-core | v2.2 -->"
 _memory:
   continuity:
-    packet_pointer: "skilled-agent-orchestration/z_archive/033-sk-doc-changelog-template"
+    packet_pointer: "sk-doc/z_archive/005-sk-doc-changelog-template"
     last_updated_at: "2026-04-24T15:25:01Z"
     last_updated_by: "backfill-memory-block"
     recent_action: "Backfilled frontmatter (repo-wide gap fill)"
@@ -20,7 +20,7 @@ _memory:
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: tasks-core | v2.2 -->
 ---
-title: "Tasks: Move changelog_template.md into sk-doc [045] [skilled-agent-orchestration/z_archive/033-sk-doc-changelog-template/tasks]"
+title: "Tasks: Move changelog_template.md into sk-doc [045] [sk-doc/z_archive/005-sk-doc-changelog-template/tasks]"
 description: "Task tracker for the changelog template relocation packet."
 trigger_phrases:
   - "045 tasks"
@@ -29,7 +29,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "skilled-agent-orchestration/z_archive/033-sk-doc-changelog-template"
+    packet_pointer: "sk-doc/z_archive/005-sk-doc-changelog-template"
     last_updated_at: "2026-04-18T00:00:00Z"
     last_updated_by: "claude"
     recent_action: "Drafted task list"

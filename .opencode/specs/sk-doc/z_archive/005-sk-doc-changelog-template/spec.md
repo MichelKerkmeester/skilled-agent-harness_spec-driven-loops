@@ -11,7 +11,7 @@ contextType: "implementation"
 template_source_hint: "<!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->"
 _memory:
   continuity:
-    packet_pointer: "skilled-agent-orchestration/z_archive/033-sk-doc-changelog-template"
+    packet_pointer: "sk-doc/z_archive/005-sk-doc-changelog-template"
     last_updated_at: "2026-04-24T15:25:01Z"
     last_updated_by: "backfill-memory-block"
     recent_action: "Backfilled frontmatter (repo-wide gap fill)"
@@ -20,7 +20,7 @@ _memory:
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 ---
-title: "Feature Specification: Move changelog_template.md [skilled-agent-orchestration/z_archive/033-sk-doc-changelog-template/spec]"
+title: "Feature Specification: Move changelog_template.md [sk-doc/z_archive/005-sk-doc-changelog-template/spec]"
 description: "Relocate the canonical changelog & release notes template from the create-command asset folder into sk-doc, where every other documentation template already lives. Update the changelog command YAMLs, the changelog command markdown, and the spec-kit nested-changelog reference to point at the new location."
 trigger_phrases:
   - "045"
@@ -32,7 +32,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "skilled-agent-orchestration/z_archive/033-sk-doc-changelog-template"
+    packet_pointer: "sk-doc/z_archive/005-sk-doc-changelog-template"
     last_updated_at: "2026-04-18T00:00:00Z"
     last_updated_by: "claude"
     recent_action: "Initialize packet for changelog template relocation"

@@ -6,13 +6,13 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "071-sk-doc-router-stress-test/002-matrix-execute"
+    packet_pointer: "sk-doc/z_archive/008-sk-doc-router-stress-test/002-matrix-execute"
     last_updated_at: "2026-05-05T15:30:00Z"
     last_updated_by: "claude-orchestrator"
     recent_action: "Phase 2 complete: 45/45 cells executed, methodology bug remediated mid-run"
     next_safe_action: "Phase 3 synthesis (matrix.csv + review-report.md)"
     blockers: []
-    key_files: [.opencode/specs/skilled-agent-orchestration/z_archive/057-sk-doc-router-stress-test/002-matrix-execute/scripts/run-matrix.sh]
+    key_files: [.opencode/specs/sk-doc/z_archive/008-sk-doc-router-stress-test/002-matrix-execute/scripts/run-matrix.sh]
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "phase2-complete"

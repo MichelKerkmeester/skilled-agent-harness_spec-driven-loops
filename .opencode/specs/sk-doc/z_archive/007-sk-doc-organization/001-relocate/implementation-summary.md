@@ -8,7 +8,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "068-sk-doc-organization/001-relocate"
+    packet_pointer: "sk-doc/z_archive/007-sk-doc-organization/001-relocate"
     last_updated_at: "2026-05-05T08:20:00Z"
     last_updated_by: "claude-orchestrator"
     recent_action: "Phase 1 complete: 4 git mv + rmdir + commit ccd73ef55"
@@ -40,7 +40,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 068-sk-doc-organization/001-relocate |
+| **Spec Folder** | 001-relocate |
 | **Completed** | 2026-05-05 |
 | **Level** | 1 |
 | **Commit** | ccd73ef55 |

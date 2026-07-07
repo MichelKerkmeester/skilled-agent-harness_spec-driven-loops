@@ -8,7 +8,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "068-sk-doc-organization/004-remediation"
+    packet_pointer: "sk-doc/z_archive/007-sk-doc-organization/004-remediation"
     last_updated_at: "2026-05-05T12:00:00Z"
     last_updated_by: "claude-orchestrator"
     recent_action: "Phase 4 complete: 3 fixes applied, validate.sh PASS, residual 0"
@@ -40,7 +40,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 068-sk-doc-organization/004-remediation |
+| **Spec Folder** | 004-remediation |
 | **Completed** | 2026-05-05 |
 | **Level** | 1 |
 | **Predecessor** | 003-verify-and-ship |

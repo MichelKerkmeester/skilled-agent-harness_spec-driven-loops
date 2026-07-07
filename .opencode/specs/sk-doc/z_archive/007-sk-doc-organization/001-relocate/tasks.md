@@ -8,7 +8,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "068-sk-doc-organization/001-relocate"
+    packet_pointer: "sk-doc/z_archive/007-sk-doc-organization/001-relocate"
     last_updated_at: "2026-05-05T08:15:00Z"
     last_updated_by: "claude-orchestrator"
     recent_action: "Authored tasks.md after Phase 1 work executed"

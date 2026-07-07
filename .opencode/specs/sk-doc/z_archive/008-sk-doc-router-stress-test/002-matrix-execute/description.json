@@ -1,6 +1,6 @@
 {
   "level": "1",
-  "specFolder": "skilled-agent-orchestration/z_archive/057-sk-doc-router-stress-test/002-matrix-execute",
+  "specFolder": "sk-doc/z_archive/008-sk-doc-router-stress-test/002-matrix-execute",
   "description": "sk-doc has 11 router intents but no comparative data on how cli-codex/cli-copilot/cli-opencode interpret the router across realistic input scenarios",
   "keywords": [
     "sk-doc",

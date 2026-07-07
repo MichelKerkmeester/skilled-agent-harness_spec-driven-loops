@@ -6,7 +6,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "071-sk-doc-router-stress-test/004-closeout"
+    packet_pointer: "sk-doc/z_archive/008-sk-doc-router-stress-test/004-closeout"
     last_updated_at: "2026-05-05T15:50:00Z"
     last_updated_by: "claude-orchestrator"
     recent_action: "Phase 4 tasks authored"

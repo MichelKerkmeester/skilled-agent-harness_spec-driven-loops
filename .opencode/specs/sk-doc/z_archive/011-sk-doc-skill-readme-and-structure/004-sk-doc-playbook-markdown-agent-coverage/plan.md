@@ -7,7 +7,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: ".opencode/specs/skilled-agent-orchestration/z_archive/082-sk-doc-skill-readme-and-structure/004-sk-doc-playbook-markdown-agent-coverage"
+    packet_pointer: "sk-doc/z_archive/011-sk-doc-skill-readme-and-structure/004-sk-doc-playbook-markdown-agent-coverage"
     last_updated_at: "2026-05-11T00:00:00Z"
     last_updated_by: "claude-opus-4-7"
     recent_action: "Authored Level 2 plan"

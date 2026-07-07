@@ -6,7 +6,7 @@ Review the completed `003-markdown-agent-rename` spec folder and its implementat
 
 ## Review Boundaries
 
-- Review target: `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/skilled-agent-orchestration/z_archive/082-sk-doc-skill-readme-and-structure/003-markdown-agent-rename`
+- Review target: `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/sk-doc/z_archive/011-sk-doc-skill-readme-and-structure/003-markdown-agent-rename`
 - Target type: `spec-folder`
 - Execution mode: `auto`
 - Max iterations: 5
@@ -25,12 +25,12 @@ Review the completed `003-markdown-agent-rename` spec folder and its implementat
 
 | Path | Role |
 |------|------|
-| `.opencode/specs/skilled-agent-orchestration/z_archive/082-sk-doc-skill-readme-and-structure/003-markdown-agent-rename/spec.md` | Requirements and scope |
-| `.opencode/specs/skilled-agent-orchestration/z_archive/082-sk-doc-skill-readme-and-structure/003-markdown-agent-rename/plan.md` | Implementation plan and quality gates |
-| `.opencode/specs/skilled-agent-orchestration/z_archive/082-sk-doc-skill-readme-and-structure/003-markdown-agent-rename/tasks.md` | Task completion claims |
-| `.opencode/specs/skilled-agent-orchestration/z_archive/082-sk-doc-skill-readme-and-structure/003-markdown-agent-rename/checklist.md` | Verification evidence claims |
-| `.opencode/specs/skilled-agent-orchestration/z_archive/082-sk-doc-skill-readme-and-structure/003-markdown-agent-rename/implementation-summary.md` | Delivery summary and verification summary |
-| `.opencode/specs/skilled-agent-orchestration/z_archive/082-sk-doc-skill-readme-and-structure/003-markdown-agent-rename/resource-map.md` | Expected path ledger and verification commands |
+| `.opencode/specs/sk-doc/z_archive/011-sk-doc-skill-readme-and-structure/003-markdown-agent-rename/spec.md` | Requirements and scope |
+| `.opencode/specs/sk-doc/z_archive/011-sk-doc-skill-readme-and-structure/003-markdown-agent-rename/plan.md` | Implementation plan and quality gates |
+| `.opencode/specs/sk-doc/z_archive/011-sk-doc-skill-readme-and-structure/003-markdown-agent-rename/tasks.md` | Task completion claims |
+| `.opencode/specs/sk-doc/z_archive/011-sk-doc-skill-readme-and-structure/003-markdown-agent-rename/checklist.md` | Verification evidence claims |
+| `.opencode/specs/sk-doc/z_archive/011-sk-doc-skill-readme-and-structure/003-markdown-agent-rename/implementation-summary.md` | Delivery summary and verification summary |
+| `.opencode/specs/sk-doc/z_archive/011-sk-doc-skill-readme-and-structure/003-markdown-agent-rename/resource-map.md` | Expected path ledger and verification commands |
 | `.opencode/agents/markdown.md` | Canonical renamed OpenCode agent |
 | `.claude/agents/markdown.md` | Claude runtime mirror |
 | `.gemini/agents/markdown.md` | Gemini runtime mirror |

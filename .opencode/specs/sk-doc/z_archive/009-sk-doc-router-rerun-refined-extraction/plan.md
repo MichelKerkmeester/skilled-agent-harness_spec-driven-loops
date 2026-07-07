@@ -6,7 +6,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "skilled-agent-orchestration/z_archive/060-sk-doc-router-rerun-refined-extraction"
+    packet_pointer: "sk-doc/z_archive/009-sk-doc-router-rerun-refined-extraction"
     last_updated_at: "2026-05-05T16:05:00Z"
     last_updated_by: "claude-orchestrator"
     recent_action: "Plan authored after v2 extractor revealed copilot hallucination"

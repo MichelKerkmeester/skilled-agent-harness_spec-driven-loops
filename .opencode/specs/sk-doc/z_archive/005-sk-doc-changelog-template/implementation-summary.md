@@ -10,7 +10,7 @@ contextType: "implementation"
 template_source_hint: "<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->"
 _memory:
   continuity:
-    packet_pointer: "skilled-agent-orchestration/z_archive/033-sk-doc-changelog-template"
+    packet_pointer: "sk-doc/z_archive/005-sk-doc-changelog-template"
     last_updated_at: "2026-04-24T15:25:01Z"
     last_updated_by: "backfill-memory-block"
     recent_action: "Backfilled frontmatter (repo-wide gap fill)"
@@ -19,7 +19,7 @@ _memory:
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
 ---
-title: "Implementation Summary: Move [skilled-agent-orchestration/z_archive/033-sk-doc-changelog-template/implementation-summary]"
+title: "Implementation Summary: Move [sk-doc/z_archive/005-sk-doc-changelog-template/implementation-summary]"
 description: "The canonical changelog and release-notes template now lives next to every other documentation template in sk-doc. Smart Routing exposes it on changelog or release-notes intents, the changelog command surfaces resolve to the new path, and the spec-kit nested-changelog reference points at sk-doc instead of the deleted create-command asset path."
 trigger_phrases:
   - "045 implementation summary"
@@ -29,7 +29,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "skilled-agent-orchestration/z_archive/033-sk-doc-changelog-template"
+    packet_pointer: "sk-doc/z_archive/005-sk-doc-changelog-template"
     last_updated_at: "2026-04-18T00:00:00Z"
     last_updated_by: "claude"
     recent_action: "Completed template relocation, reference updates, and sk-doc Smart Router wire-up"
@@ -66,7 +66,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 045-sk-doc-changelog-template |
+| **Spec Folder** | 005-sk-doc-changelog-template |
 | **Completed** | 2026-04-18 |
 | **Level** | 1 |
 <!-- /ANCHOR:metadata -->

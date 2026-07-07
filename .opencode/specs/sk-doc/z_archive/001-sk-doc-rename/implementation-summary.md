@@ -23,7 +23,7 @@ SPECKIT_TEMPLATE_SOURCE: "impl-summary-core | v2.2"
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 010-sk-doc-rename |
+| **Spec Folder** | 001-sk-doc-rename |
 | **Completed** | 2026-02-23 |
 | **Level** | 2 |
 <!-- /ANCHOR:metadata -->

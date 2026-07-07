@@ -1,7 +1,7 @@
 # Deep Review Strategy: 068-sk-doc-organization
 
 ## Review Target
-`.opencode/specs/skilled-agent-orchestration/z_archive/054-sk-doc-organization/` — sk-doc asset reorganization packet (Phases 1-3 shipped on main, 4 commits ccd73ef55 → 98cc6b59c).
+`.opencode/specs/sk-doc/z_archive/007-sk-doc-organization/` — sk-doc asset reorganization packet (Phases 1-3 shipped on main, 4 commits ccd73ef55 → 98cc6b59c).
 
 ## Goal
 Verify all work done in Phases 1-3 has been applied/implemented correctly. Surface any P0/P1/P2 findings that warrant remediation before marking the packet final.

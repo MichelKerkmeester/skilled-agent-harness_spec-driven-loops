@@ -7,7 +7,7 @@ importance_tier: "high"
 contextType: "agent-architecture"
 _memory:
   continuity:
-    packet_pointer: "skilled-agent-orchestration/z_archive/049-sk-doc-agent-template-alignment"
+    packet_pointer: "sk-doc/z_archive/006-sk-doc-agent-template-alignment"
     last_updated_at: "2026-05-03T00:00:00Z"
     last_updated_by: "claude-opus-4-7-1m"
     recent_action: "Updated sk-doc agent template with production alignment patterns"
@@ -73,7 +73,7 @@ _memory:
 - `wc -l .opencode/skills/sk-doc/assets/agents/agent_template.md` -> 765 lines.
 - `rg -n "RELATED RESOURCES|@write|write\\.md|INTRO PARAGRAPH PATTERNS|@general|\\(built-in\\)" .opencode/skills/sk-doc/assets/agents/agent_template.md || true` -> no matches.
 - `rg -n "^## [0-9]+\\.|mcpServers|BINDING:|REFUSE:|HOOK-INJECTED|ILLEGAL NESTING|PRODUCTION EXAMPLES|VALIDATION CHECKLIST|Last Updated" .opencode/skills/sk-doc/assets/agents/agent_template.md` -> confirmed required anchors and contracts are present.
-- `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh specs/skilled-agent-orchestration/z_archive/049-sk-doc-agent-template-alignment --strict` initially failed because this implementation summary was still scaffolded; this summary update provides concrete artifact and verification evidence.
+- `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh specs/sk-doc/z_archive/006-sk-doc-agent-template-alignment --strict` initially failed because this implementation summary was still scaffolded; this summary update provides concrete artifact and verification evidence.
 <!-- /ANCHOR:verification -->
 
 <!-- ANCHOR:limitations -->

@@ -7,15 +7,15 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: ".opencode/specs/skilled-agent-orchestration/z_archive/082-sk-doc-skill-readme-and-structure"
+    packet_pointer: "sk-doc/z_archive/011-sk-doc-skill-readme-and-structure/003-markdown-agent-rename"
     last_updated_at: "2026-05-10T12:31:54Z"
     last_updated_by: "gpt-5.5"
     recent_action: "Remediated P1-001 Codex registry routing and broadened stale-identity verification scope"
     next_safe_action: "Run final verification and save continuity"
     blockers: []
     key_files:
-      - ".opencode/specs/skilled-agent-orchestration/z_archive/082-sk-doc-skill-readme-and-structure/003-markdown-agent-rename/review/review-report.md"
-      - ".opencode/specs/skilled-agent-orchestration/z_archive/082-sk-doc-skill-readme-and-structure/003-markdown-agent-rename/review/deep-review-findings-registry.json"
+      - "sk-doc/z_archive/011-sk-doc-skill-readme-and-structure/003-markdown-agent-rename/003-markdown-agent-rename/review/review-report.md"
+      - "sk-doc/z_archive/011-sk-doc-skill-readme-and-structure/003-markdown-agent-rename/003-markdown-agent-rename/review/deep-review-findings-registry.json"
       - ".codex/config.toml"
       - ".opencode/commands/speckit/assets/speckit_implement_auto.yaml"
     session_dedup:

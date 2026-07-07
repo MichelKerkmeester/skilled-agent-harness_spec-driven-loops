@@ -1,6 +1,6 @@
 {
   "level": "1",
-  "specFolder": "skilled-agent-orchestration/z_archive/054-sk-doc-organization/003-verify-and-ship",
+  "specFolder": "sk-doc/z_archive/007-sk-doc-organization/003-verify-and-ship",
   "description": "Phases 1 and 2 left the repo in a state where the reorg APPEARS complete but no fresh-context verification has confirmed it",
   "keywords": [
     "phases",

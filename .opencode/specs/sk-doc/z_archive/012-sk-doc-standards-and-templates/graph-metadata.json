@@ -1,8 +1,9 @@
 {
   "schema_version": 1,
-  "packet_id": "skilled-agent-orchestration/z_archive/108-catalog-playbook-snippet-denumbering/001-sk-doc-standards-and-templates",
-  "spec_folder": "skilled-agent-orchestration/z_archive/108-catalog-playbook-snippet-denumbering/001-sk-doc-standards-and-templates",
-  "parent_id": "skilled-agent-orchestration/z_archive/108-catalog-playbook-snippet-denumbering",
+  "packet_id": "sk-doc/z_archive/012-sk-doc-standards-and-templates",
+  "spec_folder": "sk-doc/z_archive/012-sk-doc-standards-and-templates",
+  "parent_id": "sk-doc/z_archive",
+  "parent_id_review_required": true,
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -39,83 +40,15 @@
     "importance_tier": "normal",
     "status": "complete",
     "key_files": [
-      ".opencode/skills/sk-doc/references/feature_catalog_creation.md",
-      ".opencode/skills/sk-doc/references/manual_testing_playbook_creation.md",
-      ".opencode/skills/sk-doc/assets/feature_catalog/feature_catalog_template.md",
-      ".opencode/skills/sk-doc/assets/feature_catalog/feature_catalog_snippet_template.md",
-      ".opencode/skills/sk-doc/assets/testing_playbook/manual_testing_playbook_template.md",
-      ".opencode/skills/sk-doc/assets/testing_playbook/manual_testing_playbook_snippet_template.md",
-      ".opencode/commands/create/feature-catalog.md",
-      ".opencode/commands/create/testing-playbook.md",
-      ".opencode/skills/sk-doc/scripts/validate_document.py",
-      ".opencode/skills/sk-doc/assets/template_rules.json",
       "spec.md",
       "plan.md",
-      "checklist.md",
       "tasks.md",
+      "checklist.md",
+      ".opencode/commands/create/feature-catalog.md",
+      ".opencode/skills/sk-doc/scripts/validate_document.py",
       "implementation-summary.md"
     ],
     "entities": [
-      {
-        "name": "feature_catalog_creation.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-doc/references/feature_catalog_creation.md",
-        "source": "derived"
-      },
-      {
-        "name": "manual_testing_playbook_creation.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-doc/references/manual_testing_playbook_creation.md",
-        "source": "derived"
-      },
-      {
-        "name": "feature_catalog_template.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-doc/assets/feature_catalog/feature_catalog_template.md",
-        "source": "derived"
-      },
-      {
-        "name": "feature_catalog_snippet_template.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-doc/assets/feature_catalog/feature_catalog_snippet_template.md",
-        "source": "derived"
-      },
-      {
-        "name": "manual_testing_playbook_template.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-doc/assets/testing_playbook/manual_testing_playbook_template.md",
-        "source": "derived"
-      },
-      {
-        "name": "manual_testing_playbook_snippet_template.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-doc/assets/testing_playbook/manual_testing_playbook_snippet_template.md",
-        "source": "derived"
-      },
-      {
-        "name": "feature-catalog.md",
-        "kind": "doc",
-        "path": ".opencode/commands/create/feature-catalog.md",
-        "source": "derived"
-      },
-      {
-        "name": "testing-playbook.md",
-        "kind": "doc",
-        "path": ".opencode/commands/create/testing-playbook.md",
-        "source": "derived"
-      },
-      {
-        "name": "validate_document.py",
-        "kind": "file",
-        "path": ".opencode/skills/sk-doc/scripts/validate_document.py",
-        "source": "derived"
-      },
-      {
-        "name": "template_rules.json",
-        "kind": "config",
-        "path": ".opencode/skills/sk-doc/assets/template_rules.json",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -129,15 +62,27 @@
         "source": "derived"
       },
       {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
         "name": "checklist.md",
         "kind": "doc",
         "path": "checklist.md",
         "source": "derived"
       },
       {
-        "name": "tasks.md",
+        "name": "feature-catalog.md",
         "kind": "doc",
-        "path": "tasks.md",
+        "path": ".opencode/commands/create/feature-catalog.md",
+        "source": "derived"
+      },
+      {
+        "name": "validate_document.py",
+        "kind": "file",
+        "path": ".opencode/skills/sk-doc/scripts/validate_document.py",
         "source": "derived"
       },
       {
@@ -199,11 +144,59 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Current Role",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature File",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The sk-doc creation standards and templates mandate a globally-sequential numeric prefix on per-feature snippet filenames (`NNN-feature-name.md`)",
     "created_at": "2026-06-06T06:46:12.384Z",
-    "last_save_at": "2026-06-23T03:49:51.715Z",
+    "last_save_at": "2026-07-07T17:13:15.432Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -213,13 +206,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:9373ebd605aa1b79143e4de37085a3e0ac836d14cdfcda81aadbff6deb84617a",
+    "source_fingerprint": "sha256:5eee3fa902ad174f1f868f6c48254d57760509b3ae2e93f95ce25a29bd7166f8",
     "source_doc_hashes": {
-      "spec.md": "8e2641fd5ddbaa2f9d397c3b85d3fb691a0d845fc8ac970249562a2eb78e769c",
-      "plan.md": "04a9e16ab1bbfd939c711a2a2229c58600d32d631fe8507feae6d7c48578c82c",
-      "tasks.md": "9d0d130739a31fd7c0013f02434c357c4aa2631602dd0624e332a85cbbaefc74",
-      "checklist.md": "009477c2e3f54ed833418214f14f965760d63cbe7305004978e14b9d1309683c",
-      "implementation-summary.md": "f70b5e1ee39bc18f2d36daa1e9f11845a3fcf2cbdad1681d441295e341bbb9a9"
+      "spec.md": "cd2fff8ab422cb88a1f33c868951a8fe95c9ff67ac37b101d27a57bac14a2c07",
+      "plan.md": "2fc593a719d4842d45239db1a96b675aa060772174514d345cd54687233f1038",
+      "tasks.md": "16ad5fb222ecbcf7818d1b5ee337619dec99008fd96263dd0ac28a873f2f5587",
+      "checklist.md": "98584545c2f0e85e9a95bc5e891972cd374d43649f853aa051d72993609ecb08",
+      "implementation-summary.md": "b3dbfc03dfb746387bc8f8279703697554061f1d23d7f9f88ccc687e4490089d"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "skilled-agent-orchestration/z_archive/082-sk-doc-skill-readme-and-structure/001-sk-doc-reference-relocation",
+  "specFolder": "sk-doc/z_archive/011-sk-doc-skill-readme-and-structure/001-sk-doc-reference-relocation",
   "description": "sk-doc keeps creation guides in references specific, but the requested structure moves those guides to the root references folder",
   "keywords": [
     "sk-doc",

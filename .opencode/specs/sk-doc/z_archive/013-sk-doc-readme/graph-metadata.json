@@ -1,8 +1,9 @@
 {
   "schema_version": 1,
-  "packet_id": "skilled-agent-orchestration/z_archive/109-skill-readme-standardization/017-sk-doc-readme",
-  "spec_folder": "skilled-agent-orchestration/z_archive/109-skill-readme-standardization/017-sk-doc-readme",
-  "parent_id": "skilled-agent-orchestration/z_archive/109-skill-readme-standardization",
+  "packet_id": "sk-doc/z_archive/013-sk-doc-readme",
+  "spec_folder": "sk-doc/z_archive/013-sk-doc-readme",
+  "parent_id": "sk-doc/z_archive",
+  "parent_id_review_required": true,
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -188,7 +189,7 @@
     ],
     "causal_summary": "The sk-doc README is a tabular reference card with no problem-first entry point, and it is heavily count-stale: the version (1.6.0.0) disagrees with SKILL.md (1.5.0.0) and the newest changelog (1.7.0.0), it says six scripts when there are eight, thirteen references when there are fourteen, seven flowchart patterns when there are six files, and three skill templates when there are five",
     "created_at": "2026-06-07T14:25:14Z",
-    "last_save_at": "2026-06-23T03:49:51.915Z",
+    "last_save_at": "2026-07-07T17:13:15.779Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -197,12 +198,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:f3e30bd64bfd1b19c0029fede35099fdde83c8e93fa1146424e8258518332010",
+    "source_fingerprint": "sha256:967984aed163c93d603478b550fd22eef83799ba8838fc615ffe4e2c0fe276e1",
     "source_doc_hashes": {
-      "spec.md": "b4db94968ecc3d02c504d03ffbd06b1db201119ee4cb02f70aa7582a2798815d",
-      "plan.md": "d7cb3322228290743fecb53367a4c6b081c47fd808b4b184fbf90b5f66267ab8",
-      "tasks.md": "1120293dae4e6c0970604f99d4fca520ce9df9413a65e4179b057a002d51f22c",
-      "implementation-summary.md": "3fe072b29fa689df3c03adeff9a0f0ecf59ab2e8757bbd2e51b0e19d2f0aeb88"
+      "spec.md": "7cbb42ba7fe3224fefb6ae58e77d6b13deb5aa8d9fef1aa8db2a80691f7f5deb",
+      "plan.md": "9046a98e00a3ff6239c32016290caa063e64bcc601ca07497a2d8e6e0ed3c6ed",
+      "tasks.md": "6293300c64f28605f024575b16b8eb9ec9e4eaa0ed0a162066059bc45c4eec4d",
+      "implementation-summary.md": "f04cc3d570c324e0d1732cda86299fddab5a29fdc5a3f3ba9e3b86381931b91a"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -6,7 +6,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "071-sk-doc-router-stress-test/001-scenario-author"
+    packet_pointer: "sk-doc/z_archive/008-sk-doc-router-stress-test/001-scenario-author"
     last_updated_at: "2026-05-05T12:45:00Z"
     last_updated_by: "claude-orchestrator"
     recent_action: "Phase 1 complete: 15 scenarios + index authored via cli-copilot"
@@ -35,7 +35,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 071-sk-doc-router-stress-test/001-scenario-author |
+| **Spec Folder** | 001-scenario-author |
 | **Completed** | 2026-05-05 |
 | **Level** | 1 |
 | **Authoring executor** | cli-copilot (claude-opus-4.7), batch dispatch (~60s, +748/-0 lines) |

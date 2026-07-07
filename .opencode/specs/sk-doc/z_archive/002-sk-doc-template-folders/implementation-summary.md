@@ -19,7 +19,7 @@ contextType: "implementation"
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 011-sk-doc-template-folders |
+| **Spec Folder** | 002-sk-doc-template-folders |
 | **Completed** | 2026-03-01 |
 | **Level** | 2 |
 <!-- /ANCHOR:metadata -->

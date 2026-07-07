@@ -8,7 +8,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "068-sk-doc-organization/002-update-and-mirror"
+    packet_pointer: "sk-doc/z_archive/007-sk-doc-organization/002-update-and-mirror"
     last_updated_at: "2026-05-05T08:45:00Z"
     last_updated_by: "claude-orchestrator"
     recent_action: "Phase 2 complete: substring sweep + 4-runtime mirror; tomllib parse-check OK on all 5 .toml files"
@@ -39,7 +39,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 068-sk-doc-organization/002-update-and-mirror |
+| **Spec Folder** | 002-update-and-mirror |
 | **Completed** | 2026-05-05 |
 | **Level** | 1 |
 | **Predecessor** | 001-relocate (commit ccd73ef55) |

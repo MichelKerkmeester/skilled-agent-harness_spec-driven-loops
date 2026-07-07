@@ -1,5 +1,5 @@
 {
-  "specFolder": "skilled-agent-orchestration/z_archive/049-sk-doc-agent-template-alignment",
+  "specFolder": "sk-doc/z_archive/006-sk-doc-agent-template-alignment",
   "description": "Clean up agent files (063a) AND align the template to current production reality (063b)",
   "keywords": [
     "clean",
@@ -13,11 +13,11 @@
     "reality",
     "063b"
   ],
-  "lastUpdated": "2026-06-23T03:49:49.523Z",
-  "specId": "049",
+  "lastUpdated": "2026-07-07T17:12:11.705Z",
+  "specId": "006",
   "folderSlug": "sk-doc-agent-template-alignment",
   "parentChain": [
-    "skilled-agent-orchestration",
+    "sk-doc",
     "z_archive"
   ],
   "memorySequence": 1,

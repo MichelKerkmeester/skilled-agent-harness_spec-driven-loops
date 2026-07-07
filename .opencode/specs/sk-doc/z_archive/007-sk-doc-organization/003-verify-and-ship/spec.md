@@ -9,7 +9,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "068-sk-doc-organization/003-verify-and-ship"
+    packet_pointer: "sk-doc/z_archive/007-sk-doc-organization/003-verify-and-ship"
     last_updated_at: "2026-05-05T08:55:00Z"
     last_updated_by: "claude-orchestrator"
     recent_action: "Authored phase 3 spec.md after Phase 2 commit"
@@ -93,7 +93,7 @@ Get an independent fresh-context verifier (`@review` with `sk-code-review`) to v
 ## 3. SCOPE
 
 ### In Scope
-- Run `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/skilled-agent-orchestration/z_archive/054-sk-doc-organization --strict` (must exit 0)
+- Run `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/sk-doc/z_archive/007-sk-doc-organization --strict` (must exit 0)
 - Dispatch `@review` (Opus 4.7, fresh context, read-only) with `sk-code-review` skill loaded
 - Verifier reruns `rg` residual + `validate.sh --strict` + `diff -rq` checks IN FRESH SHELL (never trust prior reported output)
 - Verifier samples 3 random updated files for content drift check
@@ -156,7 +156,7 @@ Get an independent fresh-context verifier (`@review` with `sk-code-review`) to v
 
 ### Given/When/Then Verification Scenarios
 
-**Given** Phase 1 and Phase 2 commits landed, **When** running `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/skilled-agent-orchestration/z_archive/054-sk-doc-organization --strict`, **Then** exit code is 0 and no `[ERR]` lines appear.
+**Given** Phase 1 and Phase 2 commits landed, **When** running `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/sk-doc/z_archive/007-sk-doc-organization --strict`, **Then** exit code is 0 and no `[ERR]` lines appear.
 
 **Given** the residual sweep filter from Phase 2, **When** running `rg --no-config --no-ignore-vcs --glob '!**/specs/**' --glob '!**/z_archive/**' ... 'assets/(documentation/...|agents/...)' .opencode .claude .codex .gemini`, **Then** rg exits 1 (no matches).
 

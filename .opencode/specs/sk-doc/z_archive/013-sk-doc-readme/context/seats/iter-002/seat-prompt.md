@@ -1,4 +1,4 @@
-Spec folder: skilled-agent-orchestration/z_archive/109-skill-readme-standardization/017-sk-doc-readme (pre-approved, skip Gate 3). READ-ONLY: do not write, create or edit any file. Return findings as your final assistant message only.
+Spec folder: sk-doc/z_archive/013-sk-doc-readme (pre-approved, skip Gate 3). READ-ONLY: do not write, create or edit any file. Return findings as your final assistant message only.
 
 Role: You are verifying exact facts about the `.opencode/skills/sk-doc/` skill so a README rewrite cites them correctly. This pass locks the precise, citable details and finds stale facts.
 

@@ -8,7 +8,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "068-sk-doc-organization/003-verify-and-ship"
+    packet_pointer: "sk-doc/z_archive/007-sk-doc-organization/003-verify-and-ship"
     last_updated_at: "2026-05-05T09:05:00Z"
     last_updated_by: "claude-orchestrator"
     recent_action: "Phase 3 complete: validate.sh PASS + @review opus PASS + P2 SKILL.md narrative fix"
@@ -16,7 +16,7 @@ _memory:
     blockers: []
     key_files:
       - .opencode/skills/sk-doc/SKILL.md
-      - .opencode/specs/skilled-agent-orchestration/z_archive/054-sk-doc-organization/spec.md
+      - .opencode/specs/sk-doc/z_archive/007-sk-doc-organization/spec.md
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "phase3-complete"
@@ -38,7 +38,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 068-sk-doc-organization/003-verify-and-ship |
+| **Spec Folder** | 003-verify-and-ship |
 | **Completed** | 2026-05-05 |
 | **Level** | 1 |
 | **Predecessor** | 002-update-and-mirror |

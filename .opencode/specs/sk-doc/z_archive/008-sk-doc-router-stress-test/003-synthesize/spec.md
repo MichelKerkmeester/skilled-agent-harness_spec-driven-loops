@@ -6,13 +6,13 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "071-sk-doc-router-stress-test/003-synthesize"
+    packet_pointer: "sk-doc/z_archive/008-sk-doc-router-stress-test/003-synthesize"
     last_updated_at: "2026-05-05T15:35:00Z"
     last_updated_by: "claude-orchestrator"
     recent_action: "Phase 3 complete: matrix.csv (45 rows) + review-report.md authored"
     next_safe_action: "Phase 4 closeout"
     blockers: []
-    key_files: [.opencode/specs/skilled-agent-orchestration/z_archive/057-sk-doc-router-stress-test/003-synthesize/review-report.md]
+    key_files: [.opencode/specs/sk-doc/z_archive/008-sk-doc-router-stress-test/003-synthesize/review-report.md]
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "phase3-complete"

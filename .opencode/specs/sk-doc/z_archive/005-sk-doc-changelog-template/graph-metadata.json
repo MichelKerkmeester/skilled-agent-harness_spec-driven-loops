@@ -1,8 +1,9 @@
 {
   "schema_version": 1,
-  "packet_id": "skilled-agent-orchestration/z_archive/033-sk-doc-changelog-template",
-  "spec_folder": "skilled-agent-orchestration/z_archive/033-sk-doc-changelog-template",
-  "parent_id": null,
+  "packet_id": "sk-doc/z_archive/005-sk-doc-changelog-template",
+  "spec_folder": "sk-doc/z_archive/005-sk-doc-changelog-template",
+  "parent_id": "sk-doc/z_archive",
+  "parent_id_review_required": true,
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -189,7 +190,7 @@
     ],
     "causal_summary": "The canonical changelog and release-notes template previously lived at the create-command asset path (`.opencode/commands/create/assets/changelogtemplate`)",
     "created_at": "2026-04-18T09:14:07.277Z",
-    "last_save_at": "2026-06-23T03:49:49.295Z",
+    "last_save_at": "2026-07-07T17:12:11.299Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -198,12 +199,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:44d1e60be51ab162e96bcacbcc22aa316fc8b5bbafa9ffe6a86785d81b7097b5",
+    "source_fingerprint": "sha256:0da86091a090ebe8ff4d57c750a435cb9f3b0dc82f6c04aff48eac464b667f1e",
     "source_doc_hashes": {
-      "spec.md": "98bc8f144b3b533d2c3e2d7164a95f06749e4fd57e2e1f3d084e838efe39d2ce",
-      "plan.md": "2883572782c827daca47685f501c845c1b7c343ca813f6cf09809ec21dd95194",
-      "tasks.md": "afb1517b6140acf422537bf0c1d795b2a1dac81921af3dc12e097d1fb7e39aca",
-      "implementation-summary.md": "0de2bb767000a4e106129f2a050b3c2055b4e4e8e56baac659df5160adba5683"
+      "spec.md": "b2d7e5e6209618e4bb0c5216171fc7766a1669e19856d74fa0b413b53799c89b",
+      "plan.md": "27b6961dbd9ed071e24ceaabb3b3c1d2d36078e1ae56712e679c612cd4c2a81e",
+      "tasks.md": "2368ada2d8fc28bba3b848f53b7b56642c96e0e1ea5b9206d43213e06118d535",
+      "implementation-summary.md": "5b9e1d7ad108bdfe84781e5025746b1b464dd4612c1973457e74f4e03e83bbe1"
     },
     "last_active_child_id": null,
     "last_active_at": null

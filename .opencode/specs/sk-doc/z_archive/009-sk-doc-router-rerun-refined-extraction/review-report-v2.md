@@ -1,6 +1,6 @@
 # Deep Review Report v2: 072-sk-doc-router-rerun-refined-extraction
 
-**Packet**: `.opencode/specs/skilled-agent-orchestration/z_archive/060-sk-doc-router-rerun-refined-extraction/`
+**Packet**: `.opencode/specs/sk-doc/z_archive/009-sk-doc-router-rerun-refined-extraction/`
 **Predecessor**: 071-sk-doc-router-stress-test (commit 46a63f9c1)
 **Source data**: 071's 45 raw cell logs (no new dispatches — re-extraction only)
 **Date**: 2026-05-05

@@ -8,7 +8,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "068-sk-doc-organization/002-update-and-mirror"
+    packet_pointer: "sk-doc/z_archive/007-sk-doc-organization/002-update-and-mirror"
     last_updated_at: "2026-05-05T08:30:00Z"
     last_updated_by: "claude-orchestrator"
     recent_action: "Authored tasks.md for Phase 2"

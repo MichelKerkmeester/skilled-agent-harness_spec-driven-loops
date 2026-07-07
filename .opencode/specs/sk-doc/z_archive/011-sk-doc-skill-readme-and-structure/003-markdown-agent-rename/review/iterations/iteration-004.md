@@ -10,12 +10,12 @@
 
 ## Files Reviewed
 
-- `.opencode/specs/skilled-agent-orchestration/z_archive/082-sk-doc-skill-readme-and-structure/003-markdown-agent-rename/review/deep-review-config.json`
-- `.opencode/specs/skilled-agent-orchestration/z_archive/082-sk-doc-skill-readme-and-structure/003-markdown-agent-rename/review/deep-review-state.jsonl`
-- `.opencode/specs/skilled-agent-orchestration/z_archive/082-sk-doc-skill-readme-and-structure/003-markdown-agent-rename/review/deep-review-findings-registry.json`
-- `.opencode/specs/skilled-agent-orchestration/z_archive/082-sk-doc-skill-readme-and-structure/003-markdown-agent-rename/review/deep-review-strategy.md`
-- `.opencode/specs/skilled-agent-orchestration/z_archive/082-sk-doc-skill-readme-and-structure/003-markdown-agent-rename/resource-map.md`
-- `.opencode/specs/skilled-agent-orchestration/z_archive/082-sk-doc-skill-readme-and-structure/003-markdown-agent-rename/implementation-summary.md`
+- `.opencode/specs/sk-doc/z_archive/011-sk-doc-skill-readme-and-structure/003-markdown-agent-rename/review/deep-review-config.json`
+- `.opencode/specs/sk-doc/z_archive/011-sk-doc-skill-readme-and-structure/003-markdown-agent-rename/review/deep-review-state.jsonl`
+- `.opencode/specs/sk-doc/z_archive/011-sk-doc-skill-readme-and-structure/003-markdown-agent-rename/review/deep-review-findings-registry.json`
+- `.opencode/specs/sk-doc/z_archive/011-sk-doc-skill-readme-and-structure/003-markdown-agent-rename/review/deep-review-strategy.md`
+- `.opencode/specs/sk-doc/z_archive/011-sk-doc-skill-readme-and-structure/003-markdown-agent-rename/resource-map.md`
+- `.opencode/specs/sk-doc/z_archive/011-sk-doc-skill-readme-and-structure/003-markdown-agent-rename/implementation-summary.md`
 - `.codex/config.toml`
 - `.codex/agents/markdown.toml`
 - `.opencode/skills/sk-code-review/references/review_core.md`
@@ -28,7 +28,7 @@ None.
 
 ### P1 Findings
 
-1. **Carry-forward: Codex agent registry still points at the removed create agent** -- `.codex/config.toml:62` -- Maintainability/stabilization re-check found the issue remains small and localized to the Codex registry consumer, not a broad rename drift pattern. The renamed Codex mirror is internally clear as `name = "markdown"` [SOURCE: `.codex/agents/markdown.toml:1`; SOURCE: `.codex/agents/markdown.toml:3`], and implementation evidence says the Codex runtime mirror moved to `.codex/agents/markdown.toml` [SOURCE: `.opencode/specs/skilled-agent-orchestration/z_archive/082-sk-doc-skill-readme-and-structure/003-markdown-agent-rename/implementation-summary.md:65`]. The remaining blocker is that `.codex/config.toml` still registers `[agents.create]` and loads `agents/create.toml` [SOURCE: `.codex/config.toml:62`; SOURCE: `.codex/config.toml:64`], while the resource-map verification commands still search `.codex/agents` but not `.codex/config.toml` [SOURCE: `.opencode/specs/skilled-agent-orchestration/z_archive/082-sk-doc-skill-readme-and-structure/003-markdown-agent-rename/resource-map.md:64`; SOURCE: `.opencode/specs/skilled-agent-orchestration/z_archive/082-sk-doc-skill-readme-and-structure/003-markdown-agent-rename/resource-map.md:67`].
+1. **Carry-forward: Codex agent registry still points at the removed create agent** -- `.codex/config.toml:62` -- Maintainability/stabilization re-check found the issue remains small and localized to the Codex registry consumer, not a broad rename drift pattern. The renamed Codex mirror is internally clear as `name = "markdown"` [SOURCE: `.codex/agents/markdown.toml:1`; SOURCE: `.codex/agents/markdown.toml:3`], and implementation evidence says the Codex runtime mirror moved to `.codex/agents/markdown.toml` [SOURCE: `.opencode/specs/sk-doc/z_archive/011-sk-doc-skill-readme-and-structure/003-markdown-agent-rename/implementation-summary.md:65`]. The remaining blocker is that `.codex/config.toml` still registers `[agents.create]` and loads `agents/create.toml` [SOURCE: `.codex/config.toml:62`; SOURCE: `.codex/config.toml:64`], while the resource-map verification commands still search `.codex/agents` but not `.codex/config.toml` [SOURCE: `.opencode/specs/sk-doc/z_archive/011-sk-doc-skill-readme-and-structure/003-markdown-agent-rename/resource-map.md:64`; SOURCE: `.opencode/specs/sk-doc/z_archive/011-sk-doc-skill-readme-and-structure/003-markdown-agent-rename/resource-map.md:67`].
    - Finding class: cross-consumer
    - Scope proof: The stabilization grep showed expected `@markdown` references across runtime mirrors, orchestrator/code routing, and create workflows, while the only behavior-breaking stale `agents/create.toml` evidence remains the Codex registry line already captured in P1-001.
    - Affected surface hints: Codex multi-agent registry; markdown agent routing; resource-map verification coverage; `/create:*` command-family preservation.

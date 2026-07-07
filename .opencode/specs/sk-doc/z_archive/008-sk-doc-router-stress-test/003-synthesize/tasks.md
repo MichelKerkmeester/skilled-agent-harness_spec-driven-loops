@@ -6,7 +6,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "071-sk-doc-router-stress-test/003-synthesize"
+    packet_pointer: "sk-doc/z_archive/008-sk-doc-router-stress-test/003-synthesize"
     last_updated_at: "2026-05-05T15:35:00Z"
     last_updated_by: "claude-orchestrator"
     recent_action: "All tasks complete"

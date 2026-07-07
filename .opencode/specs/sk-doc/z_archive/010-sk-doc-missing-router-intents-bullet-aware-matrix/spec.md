@@ -6,7 +6,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "skilled-agent-orchestration/z_archive/064-sk-doc-missing-router-intents-bullet-aware-matrix"
+    packet_pointer: "sk-doc/z_archive/010-sk-doc-missing-router-intents-bullet-aware-matrix"
     last_updated_at: "2026-05-05T18:30:00Z"
     last_updated_by: "claude-orchestrator"
     recent_action: "v3 matrix complete"
@@ -15,8 +15,8 @@ _memory:
     key_files:
       - .opencode/skills/sk-doc/manual_testing_playbook/01--intent-detection/004-optimization.md
       - .opencode/skills/sk-doc/manual_testing_playbook/01--intent-detection/005-install-guide.md
-      - .opencode/specs/skilled-agent-orchestration/z_archive/064-sk-doc-missing-router-intents-bullet-aware-matrix/scripts/extract_metrics_v3.py
-      - .opencode/specs/skilled-agent-orchestration/z_archive/064-sk-doc-missing-router-intents-bullet-aware-matrix/matrix_v3.csv
+      - .opencode/specs/sk-doc/z_archive/010-sk-doc-missing-router-intents-bullet-aware-matrix/scripts/extract_metrics_v3.py
+      - .opencode/specs/sk-doc/z_archive/010-sk-doc-missing-router-intents-bullet-aware-matrix/matrix_v3.csv
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "076-final"

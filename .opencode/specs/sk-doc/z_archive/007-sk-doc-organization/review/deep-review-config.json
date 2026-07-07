@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "spec_folder": ".opencode/specs/skilled-agent-orchestration/z_archive/054-sk-doc-organization",
+  "spec_folder": ".opencode/specs/sk-doc/z_archive/007-sk-doc-organization",
   "review_target": "068-sk-doc-organization",
   "review_target_type": "spec-folder",
   "review_dimensions": ["correctness", "security", "traceability", "maintainability"],
@@ -30,7 +30,7 @@
     ".codex/agents/create.toml",
     ".gemini/commands/create/",
     ".gemini/agents/create.md",
-    ".opencode/specs/skilled-agent-orchestration/z_archive/054-sk-doc-organization/"
+    ".opencode/specs/sk-doc/z_archive/007-sk-doc-organization/"
   ],
   "scope_exclusions": [
     "barter/coder/",

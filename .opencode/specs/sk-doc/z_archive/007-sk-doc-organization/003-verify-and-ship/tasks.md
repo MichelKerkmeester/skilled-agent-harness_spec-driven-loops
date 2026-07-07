@@ -8,7 +8,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "068-sk-doc-organization/003-verify-and-ship"
+    packet_pointer: "sk-doc/z_archive/007-sk-doc-organization/003-verify-and-ship"
     last_updated_at: "2026-05-05T08:55:00Z"
     last_updated_by: "claude-orchestrator"
     recent_action: "Authored tasks.md for Phase 3"
@@ -58,7 +58,7 @@ _memory:
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation (verification gate)
 
-- [ ] T004 Run `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/skilled-agent-orchestration/z_archive/054-sk-doc-organization --strict`; must exit 0
+- [ ] T004 Run `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/sk-doc/z_archive/007-sk-doc-organization --strict`; must exit 0
 - [ ] T005 Dispatch `@review` agent (Opus 4.7, fresh context, read-only) with `sk-code-review` skill loaded
 - [ ] T006 Verifier reruns validate.sh + rg residual + diff -rq + tomllib parse-check IN FRESH SHELL
 - [ ] T007 Verifier samples 3 random updated files; confirms NEW path-strings present, no content drift

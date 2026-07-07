@@ -1,0 +1,46 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/z_archive",
+  "spec_folder": "sk-doc/z_archive",
+  "parent_id": "sk-doc",
+  "children_ids": [
+    "sk-doc/z_archive/001-sk-doc-rename",
+    "sk-doc/z_archive/002-sk-doc-template-folders",
+    "sk-doc/z_archive/003-sk-doc-feature-catalog-testing-playbook",
+    "sk-doc/z_archive/004-sk-doc-readme-hvr-improvements",
+    "sk-doc/z_archive/005-sk-doc-changelog-template",
+    "sk-doc/z_archive/006-sk-doc-agent-template-alignment",
+    "sk-doc/z_archive/007-sk-doc-organization",
+    "sk-doc/z_archive/008-sk-doc-router-stress-test",
+    "sk-doc/z_archive/009-sk-doc-router-rerun-refined-extraction",
+    "sk-doc/z_archive/010-sk-doc-missing-router-intents-bullet-aware-matrix",
+    "sk-doc/z_archive/011-sk-doc-skill-readme-and-structure",
+    "sk-doc/z_archive/012-sk-doc-standards-and-templates",
+    "sk-doc/z_archive/013-sk-doc-readme"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [],
+    "key_topics": [
+      "archive",
+      "cold-tier",
+      "container",
+      "sk-doc"
+    ],
+    "importance_tier": "archived",
+    "status": "archived",
+    "key_files": [],
+    "entities": [],
+    "causal_summary": "Hand-authored archived container node for cold-tier graph discoverability under sk-doc/z_archive; indexes 13 migrated sk-doc child folder(s), no canonical spec documents.",
+    "created_at": "2026-07-07T00:00:00.000Z",
+    "last_save_at": "2026-07-07T00:00:00.000Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [],
+    "source_doc_hashes": {}
+  }
+}

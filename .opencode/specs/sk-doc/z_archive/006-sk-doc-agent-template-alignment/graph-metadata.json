@@ -1,8 +1,9 @@
 {
   "schema_version": 1,
-  "packet_id": "skilled-agent-orchestration/z_archive/049-sk-doc-agent-template-alignment",
-  "spec_folder": "skilled-agent-orchestration/z_archive/049-sk-doc-agent-template-alignment",
-  "parent_id": null,
+  "packet_id": "sk-doc/z_archive/006-sk-doc-agent-template-alignment",
+  "spec_folder": "sk-doc/z_archive/006-sk-doc-agent-template-alignment",
+  "parent_id": "sk-doc/z_archive",
+  "parent_id_review_required": true,
   "children_ids": [],
   "migrated": true,
   "migration_source": "legacy",
@@ -191,7 +192,7 @@
     ],
     "causal_summary": "Clean up agent files (063a) AND align the template to current production reality (063b)",
     "created_at": "2026-05-18T07:49:27.115Z",
-    "last_save_at": "2026-06-23T03:49:49.522Z",
+    "last_save_at": "2026-07-07T17:12:11.571Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -200,12 +201,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:a5ae96e38081dd52c545767499b6757ea799ed5b34f9b8c6a488f09a19cb9d66",
+    "source_fingerprint": "sha256:6bc2696ccf09ff4bda3fc23d8f4ce4ca0564a0a895ce9ae814817f8b5fa09113",
     "source_doc_hashes": {
-      "spec.md": "ad56889e706a2153f5a6d75dd627e2567704d5474433b93340ee84f39db2cf09",
-      "plan.md": "396089849c38ff9754e8a69c324620326870e30c3b3077bb69a44f7f80e00d06",
-      "tasks.md": "70f7f7accc3caf914217a87d5fc7ba79ffb0c7fd2cafeb303df98a56cd3b046c",
-      "implementation-summary.md": "1bb30b7d91dced7af8fc6dae61200c3d41a5ad69ca66a0f98f788499ddeebbf6"
+      "spec.md": "edb34ab978f1193d565f54c1cb1884ed0bbaba39e788800f924fe172634069d6",
+      "plan.md": "bfa9d4128b11881b7b92e56b7276958191ac4dd1cca1036c2428ec95cf9aa7df",
+      "tasks.md": "06d5c7a2fcd827be6c2be290699bf6803d0533f23c0635deec8a2d2d651390fb",
+      "implementation-summary.md": "526a28750d8c508cc7c649b6a510057ca44da239cf2202d30a6a3defcbec8592"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -11,10 +11,10 @@
 
 ## Files Reviewed
 
-- `.opencode/specs/skilled-agent-orchestration/z_archive/082-sk-doc-skill-readme-and-structure/003-markdown-agent-rename/spec.md`
-- `.opencode/specs/skilled-agent-orchestration/z_archive/082-sk-doc-skill-readme-and-structure/003-markdown-agent-rename/implementation-summary.md`
-- `.opencode/specs/skilled-agent-orchestration/z_archive/082-sk-doc-skill-readme-and-structure/003-markdown-agent-rename/checklist.md`
-- `.opencode/specs/skilled-agent-orchestration/z_archive/082-sk-doc-skill-readme-and-structure/003-markdown-agent-rename/resource-map.md`
+- `.opencode/specs/sk-doc/z_archive/011-sk-doc-skill-readme-and-structure/003-markdown-agent-rename/spec.md`
+- `.opencode/specs/sk-doc/z_archive/011-sk-doc-skill-readme-and-structure/003-markdown-agent-rename/implementation-summary.md`
+- `.opencode/specs/sk-doc/z_archive/011-sk-doc-skill-readme-and-structure/003-markdown-agent-rename/checklist.md`
+- `.opencode/specs/sk-doc/z_archive/011-sk-doc-skill-readme-and-structure/003-markdown-agent-rename/resource-map.md`
 - `.opencode/agents/markdown.md`
 - `.claude/agents/markdown.md`
 - `.gemini/agents/markdown.md`
@@ -31,9 +31,9 @@ None.
 
 ### P1 Findings
 
-1. **Codex agent registry still points at the removed create agent** -- `.codex/config.toml:62` -- The spec requires agent identity references to use `markdown` except preserved `/create:*` command names [SOURCE: `.opencode/specs/skilled-agent-orchestration/z_archive/082-sk-doc-skill-readme-and-structure/003-markdown-agent-rename/spec.md:110`]. The Codex runtime agent file now exists as `markdown.toml` with `name = "markdown"` [SOURCE: `.codex/agents/markdown.toml:1`], but the Codex multi-agent registry still declares `[agents.create]` and loads `agents/create.toml` [SOURCE: `.codex/config.toml:62`; SOURCE: `.codex/config.toml:64`]. The old-file glob found no `.codex/agents/create.toml`, so this registry entry is behavior-inconsistent and can route Codex users to a missing agent config.
+1. **Codex agent registry still points at the removed create agent** -- `.codex/config.toml:62` -- The spec requires agent identity references to use `markdown` except preserved `/create:*` command names [SOURCE: `.opencode/specs/sk-doc/z_archive/011-sk-doc-skill-readme-and-structure/003-markdown-agent-rename/spec.md:110`]. The Codex runtime agent file now exists as `markdown.toml` with `name = "markdown"` [SOURCE: `.codex/agents/markdown.toml:1`], but the Codex multi-agent registry still declares `[agents.create]` and loads `agents/create.toml` [SOURCE: `.codex/config.toml:62`; SOURCE: `.codex/config.toml:64`]. The old-file glob found no `.codex/agents/create.toml`, so this registry entry is behavior-inconsistent and can route Codex users to a missing agent config.
    - Finding class: cross-consumer
-   - Scope proof: The implementation summary claims the Codex mirror moved from `create.toml` to `markdown.toml` [SOURCE: `.opencode/specs/skilled-agent-orchestration/z_archive/082-sk-doc-skill-readme-and-structure/003-markdown-agent-rename/implementation-summary.md:65`], while the stale registry remains in `.codex/config.toml:62-64` and the scoped old-file glob did not find `.codex/agents/create.toml`.
+   - Scope proof: The implementation summary claims the Codex mirror moved from `create.toml` to `markdown.toml` [SOURCE: `.opencode/specs/sk-doc/z_archive/011-sk-doc-skill-readme-and-structure/003-markdown-agent-rename/implementation-summary.md:65`], while the stale registry remains in `.codex/config.toml:62-64` and the scoped old-file glob did not find `.codex/agents/create.toml`.
    - Affected surface hints: [`Codex multi-agent registry`, `markdown Codex mirror`, `agent identity routing`]
    - Recommendation: Rename the Codex registry entry to `agents.markdown`, point it at `agents/markdown.toml`, and update the description to match the markdown identity while preserving literal `/create:*` command names.
    - Claim adjudication: `{ "type": "gate-relevant-P1", "claim": "Codex config still routes the renamed documentation executor through a removed create.toml file.", "evidenceRefs": [".codex/config.toml:62", ".codex/config.toml:64", ".codex/agents/markdown.toml:1", "spec.md:110"], "counterevidenceSought": "Checked renamed Codex agent file presence and old create file absence by scoped glob; checked old identity search inside .codex and found only .codex/config.toml.", "alternativeExplanation": "The key could intentionally remain create as a command-family alias, but config_file points to a removed create.toml rather than the existing markdown.toml, so the alias interpretation does not preserve behavior.", "finalSeverity": "P1", "confidence": "high", "downgradeTrigger": "Downgrade only if Codex ignores project .codex/config.toml agent registry entirely for all supported workflows." }`

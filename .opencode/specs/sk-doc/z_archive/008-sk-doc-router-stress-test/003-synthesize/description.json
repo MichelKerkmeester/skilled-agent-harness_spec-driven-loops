@@ -1,6 +1,6 @@
 {
   "level": "1",
-  "specFolder": "skilled-agent-orchestration/z_archive/057-sk-doc-router-stress-test/003-synthesize",
+  "specFolder": "sk-doc/z_archive/008-sk-doc-router-stress-test/003-synthesize",
   "description": "45 raw cell logs from Phase 2 contain CLI-specific output formats (codex stdout with token line, copilot Tokens summary block, opencode JSONL stream)",
   "keywords": [
     "raw",

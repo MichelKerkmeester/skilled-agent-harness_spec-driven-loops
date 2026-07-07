@@ -1,6 +1,6 @@
 {
   "level": "1",
-  "specFolder": "skilled-agent-orchestration/z_archive/082-sk-doc-skill-readme-and-structure/003-markdown-agent-rename",
+  "specFolder": "sk-doc/z_archive/011-sk-doc-skill-readme-and-structure/003-markdown-agent-rename",
   "description": "The documentation authoring agent is currently named create, but the desired long-term identity is markdown",
   "keywords": [
     "documentation",

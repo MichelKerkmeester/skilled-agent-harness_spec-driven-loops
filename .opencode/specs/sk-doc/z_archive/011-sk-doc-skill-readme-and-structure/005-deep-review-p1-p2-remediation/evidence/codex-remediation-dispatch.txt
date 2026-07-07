@@ -27,21 +27,21 @@ Your task is mechanical: apply 16 specific edits across 9 files. Do NOT add comm
 All paths below are relative to that root.
 
 # CONTEXT — SOURCE OF TRUTH
-Read this file first to ground every edit: `.opencode/specs/skilled-agent-orchestration/z_archive/082-sk-doc-skill-readme-and-structure/review/deep-review-dashboard.md`. It enumerates every finding ID, file:line citation, and remediation hint you'll need.
+Read this file first to ground every edit: `.opencode/specs/sk-doc/z_archive/011-sk-doc-skill-readme-and-structure/review/deep-review-dashboard.md`. It enumerates every finding ID, file:line citation, and remediation hint you'll need.
 
-Also read: `.opencode/specs/skilled-agent-orchestration/z_archive/082-sk-doc-skill-readme-and-structure/005-deep-review-p1-p2-remediation/tasks.md` — your task list with finding IDs mapped to edits.
+Also read: `.opencode/specs/sk-doc/z_archive/011-sk-doc-skill-readme-and-structure/005-deep-review-p1-p2-remediation/tasks.md` — your task list with finding IDs mapped to edits.
 
 # SCOPE — THE ONLY FILES YOU MAY EDIT
 
 ```
-.opencode/specs/skilled-agent-orchestration/z_archive/082-sk-doc-skill-readme-and-structure/spec.md
-.opencode/specs/skilled-agent-orchestration/z_archive/082-sk-doc-skill-readme-and-structure/001-sk-doc-reference-relocation/spec.md
-.opencode/specs/skilled-agent-orchestration/z_archive/082-sk-doc-skill-readme-and-structure/002-sk-doc-skill-readme-asset/spec.md
-.opencode/specs/skilled-agent-orchestration/z_archive/082-sk-doc-skill-readme-and-structure/002-sk-doc-skill-readme-asset/checklist.md
-.opencode/specs/skilled-agent-orchestration/z_archive/082-sk-doc-skill-readme-and-structure/003-markdown-agent-rename/spec.md
-.opencode/specs/skilled-agent-orchestration/z_archive/082-sk-doc-skill-readme-and-structure/004-sk-doc-playbook-markdown-agent-coverage/spec.md
-.opencode/specs/skilled-agent-orchestration/z_archive/082-sk-doc-skill-readme-and-structure/004-sk-doc-playbook-markdown-agent-coverage/checklist.md
-.opencode/specs/skilled-agent-orchestration/z_archive/082-sk-doc-skill-readme-and-structure/004-sk-doc-playbook-markdown-agent-coverage/implementation-summary.md
+.opencode/specs/sk-doc/z_archive/011-sk-doc-skill-readme-and-structure/spec.md
+.opencode/specs/sk-doc/z_archive/011-sk-doc-skill-readme-and-structure/001-sk-doc-reference-relocation/spec.md
+.opencode/specs/sk-doc/z_archive/011-sk-doc-skill-readme-and-structure/002-sk-doc-skill-readme-asset/spec.md
+.opencode/specs/sk-doc/z_archive/011-sk-doc-skill-readme-and-structure/002-sk-doc-skill-readme-asset/checklist.md
+.opencode/specs/sk-doc/z_archive/011-sk-doc-skill-readme-and-structure/003-markdown-agent-rename/spec.md
+.opencode/specs/sk-doc/z_archive/011-sk-doc-skill-readme-and-structure/004-sk-doc-playbook-markdown-agent-coverage/spec.md
+.opencode/specs/sk-doc/z_archive/011-sk-doc-skill-readme-and-structure/004-sk-doc-playbook-markdown-agent-coverage/checklist.md
+.opencode/specs/sk-doc/z_archive/011-sk-doc-skill-readme-and-structure/004-sk-doc-playbook-markdown-agent-coverage/implementation-summary.md
 .opencode/skills/sk-doc/manual_testing_playbook/06--agent-dispatch/002-markdown-agent-cli-codex.md
 ```
 
@@ -209,7 +209,7 @@ hook: UserPromptSubmit Completed
 codex
 I’ll keep this tight and mechanical: first I’m reading the two source-of-truth docs and only the scoped files that need edits, then I’ll patch those files directly.
 exec
-/bin/zsh -lc "sed -n '1,260p' .opencode/specs/skilled-agent-orchestration/z_archive/082-sk-doc-skill-readme-and-structure/005-deep-review-p1-p2-remediation/tasks.md" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "sed -n '1,260p' .opencode/specs/sk-doc/z_archive/011-sk-doc-skill-readme-and-structure/005-deep-review-p1-p2-remediation/tasks.md" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
 ---
 title: "Tasks: deep-review P1+P2 remediation"
@@ -220,7 +220,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: ".opencode/specs/skilled-agent-orchestration/z_archive/082-sk-doc-skill-readme-and-structure/005-deep-review-p1-p2-remediation"
+    packet_pointer: ".opencode/specs/sk-doc/z_archive/011-sk-doc-skill-readme-and-structure/005-deep-review-p1-p2-remediation"
     last_updated_at: "2026-05-11T09:35:00Z"
     last_updated_by: "claude-opus-4-7"
     recent_action: "Authored task list"
@@ -336,11 +336,11 @@ P2 fixes:
 <!-- /ANCHOR:cross-refs -->
 
 exec
-/bin/zsh -lc "sed -n '1,260p' .opencode/specs/skilled-agent-orchestration/z_archive/082-sk-doc-skill-readme-and-structure/review/deep-review-dashboard.md" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "sed -n '1,260p' .opencode/specs/sk-doc/z_archive/011-sk-doc-skill-readme-and-structure/review/deep-review-dashboard.md" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
 # Deep Review Dashboard
 
-**Review Target:** specs/skilled-agent-orchestration/z_archive/082-sk-doc-skill-readme-and-structure
+**Review Target:** specs/sk-doc/z_archive/011-sk-doc-skill-readme-and-structure
 **Type:** Phase parent (4 child phases + parent coordination)
 **Date:** 2026-05-11
 **Session ID:** 2026-05-11T10-00-00Z
@@ -459,7 +459,7 @@ exec
 codex
 The dashboard and task packet match the requested finding set. I’m now reading only the editable targets so the patch can stay inside the requested scope.
 exec
-/bin/zsh -lc "sed -n '1,240p' .opencode/specs/skilled-agent-orchestration/z_archive/082-sk-doc-skill-readme-and-structure/spec.md" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "sed -n '1,240p' .opencode/specs/sk-doc/z_archive/011-sk-doc-skill-readme-and-structure/spec.md" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
 ---
 title: "Feature Specification: sk-doc skill README and structure"
@@ -472,7 +472,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "skilled-agent-orchestration/z_archive/082-sk-doc-skill-readme-and-structure"
+    packet_pointer: "sk-doc/z_archive/011-sk-doc-skill-readme-and-structure"
     last_updated_at: "2026-05-10T00:00:00Z"
     last_updated_by: "gpt-5.5"
     recent_action: "Prepared phase parent"
@@ -554,7 +554,7 @@ Out of scope:
 - `graph-metadata.json`
 
 exec
-/bin/zsh -lc "sed -n '1,180p' .opencode/specs/skilled-agent-orchestration/z_archive/082-sk-doc-skill-readme-and-structure/001-sk-doc-reference-relocation/spec.md" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "sed -n '1,180p' .opencode/specs/sk-doc/z_archive/011-sk-doc-skill-readme-and-structure/001-sk-doc-reference-relocation/spec.md" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
 ---
 title: "Feature Specification: sk-doc reference relocation"
@@ -565,7 +565,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: ".opencode/specs/skilled-agent-orchestration/z_archive/082-sk-doc-skill-readme-and-structure"
+    packet_pointer: ".opencode/specs/sk-doc/z_archive/011-sk-doc-skill-readme-and-structure"
     last_updated_at: "2026-05-10T00:00:00Z"
     last_updated_by: "gpt-5.5"
     recent_action: "Relocated sk-doc creation references and updated stale paths"
@@ -738,7 +738,7 @@ Relocate the creation guides and make every path reference point to the new root
 
 
 exec
-/bin/zsh -lc "sed -n '1,220p' .opencode/specs/skilled-agent-orchestration/z_archive/082-sk-doc-skill-readme-and-structure/002-sk-doc-skill-readme-asset/spec.md" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "sed -n '1,220p' .opencode/specs/sk-doc/z_archive/011-sk-doc-skill-readme-and-structure/002-sk-doc-skill-readme-asset/spec.md" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
 ---
 title: "Feature Specification: sk-doc skill README asset"
@@ -749,7 +749,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: ".opencode/specs/skilled-agent-orchestration/z_archive/082-sk-doc-skill-readme-and-structure"
+    packet_pointer: ".opencode/specs/sk-doc/z_archive/011-sk-doc-skill-readme-and-structure"
     last_updated_at: "2026-05-10T00:00:00Z"
     last_updated_by: "gpt-5.5"
     recent_action: "Prepared planning documentation"
@@ -925,7 +925,7 @@ Create a reusable sk-doc skill README asset and wire it into the skill creation 
 <!-- /ANCHOR:questions -->
 
 exec
-/bin/zsh -lc "sed -n '1,260p' .opencode/specs/skilled-agent-orchestration/z_archive/082-sk-doc-skill-readme-and-structure/002-sk-doc-skill-readme-asset/checklist.md" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "sed -n '1,260p' .opencode/specs/sk-doc/z_archive/011-sk-doc-skill-readme-and-structure/002-sk-doc-skill-readme-asset/checklist.md" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
 ---
 title: "Verification Checklist: sk-doc skill README asset"
@@ -936,7 +936,7 @@ importance_tier: "important"
 contextType: "validation"
 _memory:
   continuity:
-    packet_pointer: ".opencode/specs/skilled-agent-orchestration/z_archive/082-sk-doc-skill-readme-and-structure"
+    packet_pointer: ".opencode/specs/sk-doc/z_archive/011-sk-doc-skill-readme-and-structure"
     last_updated_at: "2026-05-10T00:00:00Z"
     last_updated_by: "gpt-5.5"
     recent_action: "Prepared planning documentation"
@@ -1058,7 +1058,7 @@ _memory:
 <!-- /ANCHOR:summary -->
 
 exec
-/bin/zsh -lc "sed -n '1,220p' .opencode/specs/skilled-agent-orchestration/z_archive/082-sk-doc-skill-readme-and-structure/003-markdown-agent-rename/spec.md" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "sed -n '1,220p' .opencode/specs/sk-doc/z_archive/011-sk-doc-skill-readme-and-structure/003-markdown-agent-rename/spec.md" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
 ---
 title: "Feature Specification: markdown agent rename"
@@ -1069,7 +1069,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: ".opencode/specs/skilled-agent-orchestration/z_archive/082-sk-doc-skill-readme-and-structure"
+    packet_pointer: ".opencode/specs/sk-doc/z_archive/011-sk-doc-skill-readme-and-structure"
     last_updated_at: "2026-05-10T00:00:00Z"
     last_updated_by: "gpt-5.5"
     recent_action: "Implemented markdown agent rename across runtime mirrors and create-command references"
@@ -1256,7 +1256,7 @@ Rename the agent identity from create to markdown without changing create comman
 <!-- /ANCHOR:questions -->
 
 exec
-/bin/zsh -lc "sed -n '1,220p' .opencode/specs/skilled-agent-orchestration/z_archive/082-sk-doc-skill-readme-and-structure/004-sk-doc-playbook-markdown-agent-coverage/spec.md" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "sed -n '1,220p' .opencode/specs/sk-doc/z_archive/011-sk-doc-skill-readme-and-structure/004-sk-doc-playbook-markdown-agent-coverage/spec.md" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
 ---
 title: "Feature Specification: sk-doc playbook markdown-agent coverage"
@@ -1268,7 +1268,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: ".opencode/specs/skilled-agent-orchestration/z_archive/082-sk-doc-skill-readme-and-structure/004-sk-doc-playbook-markdown-agent-coverage"
+    packet_pointer: ".opencode/specs/sk-doc/z_archive/011-sk-doc-skill-readme-and-structure/004-sk-doc-playbook-markdown-agent-coverage"
     last_updated_at: "2026-05-11T00:00:00Z"
     last_updated_by: "claude-opus-4-7"
     recent_action: "Authored Level 2 spec for sk-doc playbook markdown-agent coverage"
@@ -1457,7 +1457,7 @@ Close the gap: add a new `06--agent-dispatch/` section with three scenarios that
 <!-- /ANCHOR:questions -->
 
 exec
-/bin/zsh -lc "sed -n '1,320p' .opencode/specs/skilled-agent-orchestration/z_archive/082-sk-doc-skill-readme-and-structure/004-sk-doc-playbook-markdown-agent-coverage/checklist.md" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "sed -n '1,320p' .opencode/specs/sk-doc/z_archive/011-sk-doc-skill-readme-and-structure/004-sk-doc-playbook-markdown-agent-coverage/checklist.md" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
 ---
 title: "Verification Checklist: sk-doc playbook markdown-agent coverage"
@@ -1468,7 +1468,7 @@ importance_tier: "important"
 contextType: "validation"
 _memory:
   continuity:
-    packet_pointer: ".opencode/specs/skilled-agent-orchestration/z_archive/082-sk-doc-skill-readme-and-structure/004-sk-doc-playbook-markdown-agent-coverage"
+    packet_pointer: ".opencode/specs/sk-doc/z_archive/011-sk-doc-skill-readme-and-structure/004-sk-doc-playbook-markdown-agent-coverage"
     last_updated_at: "2026-05-11T00:00:00Z"
     last_updated_by: "claude-opus-4-7"
     recent_action: "Authored Level 2 verification checklist"
@@ -1590,7 +1590,7 @@ _memory:
 <!-- /ANCHOR:summary -->
 
 exec
-/bin/zsh -lc "sed -n '1,240p' .opencode/specs/skilled-agent-orchestration/z_archive/082-sk-doc-skill-readme-and-structure/004-sk-doc-playbook-markdown-agent-coverage/implementation-summary.md" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "sed -n '1,240p' .opencode/specs/sk-doc/z_archive/011-sk-doc-skill-readme-and-structure/004-sk-doc-playbook-markdown-agent-coverage/implementation-summary.md" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
 ---
 title: "Implementation Summary: sk-doc playbook markdown-agent coverage"
@@ -1601,7 +1601,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: ".opencode/specs/skilled-agent-orchestration/z_archive/082-sk-doc-skill-readme-and-structure/004-sk-doc-playbook-markdown-agent-coverage"
+    packet_pointer: ".opencode/specs/sk-doc/z_archive/011-sk-doc-skill-readme-and-structure/004-sk-doc-playbook-markdown-agent-coverage"
     last_updated_at: "2026-05-11T09:10:00Z"
     last_updated_by: "claude-opus-4-7"
     recent_action: "Deep-review converged"
@@ -1804,7 +1804,7 @@ Memory-mandated flags:
 ```bash
 PROMPT='Use the @markdown agent to scaffold a v0.1.0 changelog for a stub skill named sk-test-dummy via /create:changelog. Write the result to /tmp/sk-test-dummy-CHANGELOG-cli-codex.md. Do NOT install the stub skill into the .opencode/skills/ tree. Report which agent received the work, which sk-doc resources were loaded, and the changelog sections produced.'
 
-EVIDENCE='/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/skilled-agent-orchestration/z_archive/082-sk-doc-skill-readme-and-structure/004-sk-doc-playbook-markdown-agent-coverage/evidence/SD-019-cli-codex.txt'
+EVIDENCE='/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/sk-doc/z_archive/011-sk-doc-skill-readme-and-structure/004-sk-doc-playbook-markdown-agent-coverage/evidence/SD-019-cli-codex.txt'
 
 # Dispatch via cli-codex (gpt-5.5/fast)
 codex exec \
@@ -1836,7 +1836,7 @@ test -f /tmp/sk-test-dummy-CHANGELOG-cli-codex.md && \
 codex
 I found the target rows and checklist states. The patch is mostly metadata/status synchronization plus evidence text; I’m not expanding scope beyond the nine listed files.
 exec
-/bin/zsh -lc "sed -n '241,520p' .opencode/specs/skilled-agent-orchestration/z_archive/082-sk-doc-skill-readme-and-structure/004-sk-doc-playbook-markdown-agent-coverage/implementation-summary.md" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "sed -n '241,520p' .opencode/specs/sk-doc/z_archive/011-sk-doc-skill-readme-and-structure/004-sk-doc-playbook-markdown-agent-coverage/implementation-summary.md" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
 exec
 /bin/zsh -lc "sed -n '81,180p' .opencode/skills/sk-doc/manual_testing_playbook/06--agent-dispatch/002-markdown-agent-cli-codex.md" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
@@ -1864,14 +1864,14 @@ This scenario is fixed to `cli-codex`. Equivalent dispatches for cli-claude-code
 - Playbook ID: SD-019
 - Canonical root source: `manual_testing_playbook.md`
 - Feature file path: `06--agent-dispatch/002-markdown-agent-cli-codex.md`
-- Introduced by: `.opencode/specs/skilled-agent-orchestration/z_archive/082-sk-doc-skill-readme-and-structure/004-sk-doc-playbook-markdown-agent-coverage`
+- Introduced by: `.opencode/specs/sk-doc/z_archive/011-sk-doc-skill-readme-and-structure/004-sk-doc-playbook-markdown-agent-coverage`
 
 exec
-/bin/zsh -lc 'wc -l .opencode/specs/skilled-agent-orchestration/z_archive/082-sk-doc-skill-readme-and-structure/004-sk-doc-playbook-markdown-agent-coverage/implementation-summary.md' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc 'wc -l .opencode/specs/sk-doc/z_archive/011-sk-doc-skill-readme-and-structure/004-sk-doc-playbook-markdown-agent-coverage/implementation-summary.md' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
 exec
-/bin/zsh -lc "rg -n \"\\*\\*Status\\*\\*|completion_pct|open_questions\" .opencode/specs/skilled-agent-orchestration/z_archive/082-sk-doc-skill-readme-and-structure/004-sk-doc-playbook-markdown-agent-coverage/implementation-summary.md" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "rg -n \"\\*\\*Status\\*\\*|completion_pct|open_questions\" .opencode/specs/sk-doc/z_archive/011-sk-doc-skill-readme-and-structure/004-sk-doc-playbook-markdown-agent-coverage/implementation-summary.md" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
-     156 .opencode/specs/skilled-agent-orchestration/z_archive/082-sk-doc-skill-readme-and-structure/004-sk-doc-playbook-markdown-agent-coverage/implementation-summary.md
+     156 .opencode/specs/sk-doc/z_archive/011-sk-doc-skill-readme-and-structure/004-sk-doc-playbook-markdown-agent-coverage/implementation-summary.md
 
  succeeded in 0ms:
 29:    completion_pct: 90
@@ -1882,13 +1882,13 @@ One requested implementation-summary status row is not present in the file as-re
 apply patch
 patch: completed
 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/sk-doc/manual_testing_playbook/06--agent-dispatch/002-markdown-agent-cli-codex.md
-/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/skilled-agent-orchestration/z_archive/082-sk-doc-skill-readme-and-structure/001-sk-doc-reference-relocation/spec.md
-/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/skilled-agent-orchestration/z_archive/082-sk-doc-skill-readme-and-structure/002-sk-doc-skill-readme-asset/checklist.md
-/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/skilled-agent-orchestration/z_archive/082-sk-doc-skill-readme-and-structure/002-sk-doc-skill-readme-asset/spec.md
-/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/skilled-agent-orchestration/z_archive/082-sk-doc-skill-readme-and-structure/003-markdown-agent-rename/spec.md
-/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/skilled-agent-orchestration/z_archive/082-sk-doc-skill-readme-and-structure/004-sk-doc-playbook-markdown-agent-coverage/implementation-summary.md
-/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/skilled-agent-orchestration/z_archive/082-sk-doc-skill-readme-and-structure/004-sk-doc-playbook-markdown-agent-coverage/spec.md
-/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/skilled-agent-orchestration/z_archive/082-sk-doc-skill-readme-and-structure/spec.md
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/sk-doc/z_archive/011-sk-doc-skill-readme-and-structure/001-sk-doc-reference-relocation/spec.md
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/sk-doc/z_archive/011-sk-doc-skill-readme-and-structure/002-sk-doc-skill-readme-asset/checklist.md
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/sk-doc/z_archive/011-sk-doc-skill-readme-and-structure/002-sk-doc-skill-readme-asset/spec.md
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/sk-doc/z_archive/011-sk-doc-skill-readme-and-structure/003-markdown-agent-rename/spec.md
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/sk-doc/z_archive/011-sk-doc-skill-readme-and-structure/004-sk-doc-playbook-markdown-agent-coverage/implementation-summary.md
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/sk-doc/z_archive/011-sk-doc-skill-readme-and-structure/004-sk-doc-playbook-markdown-agent-coverage/spec.md
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/sk-doc/z_archive/011-sk-doc-skill-readme-and-structure/spec.md
 diff --git a/.opencode/skills/sk-doc/manual_testing_playbook/06--agent-dispatch/002-markdown-agent-cli-codex.md b/.opencode/skills/sk-doc/manual_testing_playbook/06--agent-dispatch/002-markdown-agent-cli-codex.md
 index 347ef307e493d7a64f0f0261e00d5b19215a57d3..de1c242780321f626ceff32dab1fcbc795d453e6
 --- a/.opencode/skills/sk-doc/manual_testing_playbook/06--agent-dispatch/002-markdown-agent-cli-codex.md
@@ -1902,10 +1902,10 @@ index 347ef307e493d7a64f0f0261e00d5b19215a57d3..de1c242780321f626ceff32dab1fcbc7
  expected_intent: CHANGELOG
  expected_agent: '@markdown'
  expected_resources:
-diff --git a/.opencode/specs/skilled-agent-orchestration/z_archive/082-sk-doc-skill-readme-and-structure/001-sk-doc-reference-relocation/spec.md b/.opencode/specs/skilled-agent-orchestration/z_archive/082-sk-doc-skill-readme-and-structure/001-sk-doc-reference-relocation/spec.md
+diff --git a/.opencode/specs/sk-doc/z_archive/011-sk-doc-skill-readme-and-structure/001-sk-doc-reference-relocation/spec.md b/.opencode/specs/sk-doc/z_archive/011-sk-doc-skill-readme-and-structure/001-sk-doc-reference-relocation/spec.md
 index c37e897e10aae72ad25cd72506f3a2f15cf1905e..ec15aa8b4b52abee1c3f94d3a55b571f96ff7338
---- a/.opencode/specs/skilled-agent-orchestration/z_archive/082-sk-doc-skill-readme-and-structure/001-sk-doc-reference-relocation/spec.md
-+++ b/.opencode/specs/skilled-agent-orchestration/z_archive/082-sk-doc-skill-readme-and-structure/001-sk-doc-reference-relocation/spec.md
+--- a/.opencode/specs/sk-doc/z_archive/011-sk-doc-skill-readme-and-structure/001-sk-doc-reference-relocation/spec.md
++++ b/.opencode/specs/sk-doc/z_archive/011-sk-doc-skill-readme-and-structure/001-sk-doc-reference-relocation/spec.md
 @@ -40,7 +40,7 @@
  | **Created** | 2026-05-10 |
  | **Branch** | `main` |
@@ -1915,10 +1915,10 @@ index c37e897e10aae72ad25cd72506f3a2f15cf1905e..ec15aa8b4b52abee1c3f94d3a55b571f
  | **Predecessor** | None |
  | **Successor** | 002-sk-doc-skill-readme-asset |
  <!-- /ANCHOR:metadata -->
-diff --git a/.opencode/specs/skilled-agent-orchestration/z_archive/082-sk-doc-skill-readme-and-structure/002-sk-doc-skill-readme-asset/checklist.md b/.opencode/specs/skilled-agent-orchestration/z_archive/082-sk-doc-skill-readme-and-structure/002-sk-doc-skill-readme-asset/checklist.md
+diff --git a/.opencode/specs/sk-doc/z_archive/011-sk-doc-skill-readme-and-structure/002-sk-doc-skill-readme-asset/checklist.md b/.opencode/specs/sk-doc/z_archive/011-sk-doc-skill-readme-and-structure/002-sk-doc-skill-readme-asset/checklist.md
 index 61eceb29030846cf89e70f3f96fbea4826989734..d2e69d14fc130cc31665aef1e84401c6bc079863
---- a/.opencode/specs/skilled-agent-orchestration/z_archive/082-sk-doc-skill-readme-and-structure/002-sk-doc-skill-readme-asset/checklist.md
-+++ b/.opencode/specs/skilled-agent-orchestration/z_archive/082-sk-doc-skill-readme-and-structure/002-sk-doc-skill-readme-asset/checklist.md
+--- a/.opencode/specs/sk-doc/z_archive/011-sk-doc-skill-readme-and-structure/002-sk-doc-skill-readme-asset/checklist.md
++++ b/.opencode/specs/sk-doc/z_archive/011-sk-doc-skill-readme-and-structure/002-sk-doc-skill-readme-asset/checklist.md
 @@ -18,7 +18,7 @@
        fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
        session_id: "102-sk-doc-skill-readme-and-structure"
@@ -1937,10 +1937,10 @@ index 61eceb29030846cf89e70f3f96fbea4826989734..d2e69d14fc130cc31665aef1e84401c6
  <!-- /ANCHOR:pre-impl -->
  
  ---
-diff --git a/.opencode/specs/skilled-agent-orchestration/z_archive/082-sk-doc-skill-readme-and-structure/002-sk-doc-skill-readme-asset/spec.md b/.opencode/specs/skilled-agent-orchestration/z_archive/082-sk-doc-skill-readme-and-structure/002-sk-doc-skill-readme-asset/spec.md
+diff --git a/.opencode/specs/sk-doc/z_archive/011-sk-doc-skill-readme-and-structure/002-sk-doc-skill-readme-asset/spec.md b/.opencode/specs/sk-doc/z_archive/011-sk-doc-skill-readme-and-structure/002-sk-doc-skill-readme-asset/spec.md
 index a98a7083330cc84f5a9a1118a9b58daa05caea78..bdc80cc72c7cb53faf8417420cd3fbe934c736dc
---- a/.opencode/specs/skilled-agent-orchestration/z_archive/082-sk-doc-skill-readme-and-structure/002-sk-doc-skill-readme-asset/spec.md
-+++ b/.opencode/specs/skilled-agent-orchestration/z_archive/082-sk-doc-skill-readme-and-structure/002-sk-doc-skill-readme-asset/spec.md
+--- a/.opencode/specs/sk-doc/z_archive/011-sk-doc-skill-readme-and-structure/002-sk-doc-skill-readme-asset/spec.md
++++ b/.opencode/specs/sk-doc/z_archive/011-sk-doc-skill-readme-and-structure/002-sk-doc-skill-readme-asset/spec.md
 @@ -40,7 +40,7 @@
  | **Created** | 2026-05-10 |
  | **Branch** | `main` |
@@ -1950,10 +1950,10 @@ index a98a7083330cc84f5a9a1118a9b58daa05caea78..bdc80cc72c7cb53faf8417420cd3fbe9
  | **Predecessor** | 001-sk-doc-reference-relocation |
  | **Successor** | 003-markdown-agent-rename |
  <!-- /ANCHOR:metadata -->
-diff --git a/.opencode/specs/skilled-agent-orchestration/z_archive/082-sk-doc-skill-readme-and-structure/003-markdown-agent-rename/spec.md b/.opencode/specs/skilled-agent-orchestration/z_archive/082-sk-doc-skill-readme-and-structure/003-markdown-agent-rename/spec.md
+diff --git a/.opencode/specs/sk-doc/z_archive/011-sk-doc-skill-readme-and-structure/003-markdown-agent-rename/spec.md b/.opencode/specs/sk-doc/z_archive/011-sk-doc-skill-readme-and-structure/003-markdown-agent-rename/spec.md
 index 8eff03d6e6645b4eee41056b0d7921fd08184670..2db4c060e5d263351e0a5d55857e17d3cd6d5af1
---- a/.opencode/specs/skilled-agent-orchestration/z_archive/082-sk-doc-skill-readme-and-structure/003-markdown-agent-rename/spec.md
-+++ b/.opencode/specs/skilled-agent-orchestration/z_archive/082-sk-doc-skill-readme-and-structure/003-markdown-agent-rename/spec.md
+--- a/.opencode/specs/sk-doc/z_archive/011-sk-doc-skill-readme-and-structure/003-markdown-agent-rename/spec.md
++++ b/.opencode/specs/sk-doc/z_archive/011-sk-doc-skill-readme-and-structure/003-markdown-agent-rename/spec.md
 @@ -40,7 +40,7 @@
  | **Created** | 2026-05-10 |
  | **Branch** | `main` |
@@ -1963,10 +1963,10 @@ index 8eff03d6e6645b4eee41056b0d7921fd08184670..2db4c060e5d263351e0a5d55857e17d3
  | **Predecessor** | 002-sk-doc-skill-readme-asset |
  | **Successor** | None |
  <!-- /ANCHOR:metadata -->
-diff --git a/.opencode/specs/skilled-agent-orchestration/z_archive/082-sk-doc-skill-readme-and-structure/004-sk-doc-playbook-markdown-agent-coverage/implementation-summary.md b/.opencode/specs/skilled-agent-orchestration/z_archive/082-sk-doc-skill-readme-and-structure/004-sk-doc-playbook-markdown-agent-coverage/implementation-summary.md
+diff --git a/.opencode/specs/sk-doc/z_archive/011-sk-doc-skill-readme-and-structure/004-sk-doc-playbook-markdown-agent-coverage/implementation-summary.md b/.opencode/specs/sk-doc/z_archive/011-sk-doc-skill-readme-and-structure/004-sk-doc-playbook-markdown-agent-coverage/implementation-summary.md
 index 7729a47c5b2aded0e3d1ac1baa6a6e5247d619ba..e0b3ab9d70d3394f681952e0a124b439e537bc05
---- a/.opencode/specs/skilled-agent-orchestration/z_archive/082-sk-doc-skill-readme-and-structure/004-sk-doc-playbook-markdown-agent-coverage/implementation-summary.md
-+++ b/.opencode/specs/skilled-agent-orchestration/z_archive/082-sk-doc-skill-readme-and-structure/004-sk-doc-playbook-markdown-agent-coverage/implementation-summary.md
+--- a/.opencode/specs/sk-doc/z_archive/011-sk-doc-skill-readme-and-structure/004-sk-doc-playbook-markdown-agent-coverage/implementation-summary.md
++++ b/.opencode/specs/sk-doc/z_archive/011-sk-doc-skill-readme-and-structure/004-sk-doc-playbook-markdown-agent-coverage/implementation-summary.md
 @@ -26,9 +26,8 @@
        fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
        session_id: "102-004-sk-doc-playbook-markdown-agent-coverage"
@@ -1987,10 +1987,10 @@ index 7729a47c5b2aded0e3d1ac1baa6a6e5247d619ba..e0b3ab9d70d3394f681952e0a124b439
  | **Level** | 2 |
  | **Verdict** | CONDITIONAL (review-report.md) |
  <!-- /ANCHOR:metadata -->
-diff --git a/.opencode/specs/skilled-agent-orchestration/z_archive/082-sk-doc-skill-readme-and-structure/004-sk-doc-playbook-markdown-agent-coverage/spec.md b/.opencode/specs/skilled-agent-orchestration/z_archive/082-sk-doc-skill-readme-and-structure/004-sk-doc-playbook-markdown-agent-coverage/spec.md
+diff --git a/.opencode/specs/sk-doc/z_archive/011-sk-doc-skill-readme-and-structure/004-sk-doc-playbook-markdown-agent-coverage/spec.md b/.opencode/specs/sk-doc/z_archive/011-sk-doc-skill-readme-and-structure/004-sk-doc-playbook-markdown-agent-coverage/spec.md
 index 9fe9f328120d1cef3702fc332b7bd11ad0ba2965..0580070f40e8e51798a105427ab4312b33580d5c
---- a/.opencode/specs/skilled-agent-orchestration/z_archive/082-sk-doc-skill-readme-and-structure/004-sk-doc-playbook-markdown-agent-coverage/spec.md
-+++ b/.opencode/specs/skilled-agent-orchestration/z_archive/082-sk-doc-skill-readme-and-structure/004-sk-doc-playbook-markdown-agent-coverage/spec.md
+--- a/.opencode/specs/sk-doc/z_archive/011-sk-doc-skill-readme-and-structure/004-sk-doc-playbook-markdown-agent-coverage/spec.md
++++ b/.opencode/specs/sk-doc/z_archive/011-sk-doc-skill-readme-and-structure/004-sk-doc-playbook-markdown-agent-coverage/spec.md
 @@ -37,7 +37,7 @@
  |-------|-------|
  | **Level** | 2 |
@@ -2000,10 +2000,10 @@ index 9fe9f328120d1cef3702fc332b7bd11ad0ba2965..0580070f40e8e51798a105427ab4312b
  | **Created** | 2026-05-11 |
  | **Branch** | `main` |
  | **Parent Spec** | ../spec.md |
-diff --git a/.opencode/specs/skilled-agent-orchestration/z_archive/082-sk-doc-skill-readme-and-structure/spec.md b/.opencode/specs/skilled-agent-orchestration/z_archive/082-sk-doc-skill-readme-and-structure/spec.md
+diff --git a/.opencode/specs/sk-doc/z_archive/011-sk-doc-skill-readme-and-structure/spec.md b/.opencode/specs/sk-doc/z_archive/011-sk-doc-skill-readme-and-structure/spec.md
 index b7f43cc352bfdd4d85c06627df8523f509c50326..f1e9e3f36bb00a145d4841a78c30a6989f1ae8f3
---- a/.opencode/specs/skilled-agent-orchestration/z_archive/082-sk-doc-skill-readme-and-structure/spec.md
-+++ b/.opencode/specs/skilled-agent-orchestration/z_archive/082-sk-doc-skill-readme-and-structure/spec.md
+--- a/.opencode/specs/sk-doc/z_archive/011-sk-doc-skill-readme-and-structure/spec.md
++++ b/.opencode/specs/sk-doc/z_archive/011-sk-doc-skill-readme-and-structure/spec.md
 @@ -61,7 +61,7 @@
  | Phase | Folder | Status | Description |
  | --- | --- | --- | --- |
@@ -2073,10 +2073,10 @@ index 347ef307e493d7a64f0f0261e00d5b19215a57d3..de1c242780321f626ceff32dab1fcbc7
  expected_intent: CHANGELOG
  expected_agent: '@markdown'
  expected_resources:
-diff --git a/.opencode/specs/skilled-agent-orchestration/z_archive/082-sk-doc-skill-readme-and-structure/001-sk-doc-reference-relocation/spec.md b/.opencode/specs/skilled-agent-orchestration/z_archive/082-sk-doc-skill-readme-and-structure/001-sk-doc-reference-relocation/spec.md
+diff --git a/.opencode/specs/sk-doc/z_archive/011-sk-doc-skill-readme-and-structure/001-sk-doc-reference-relocation/spec.md b/.opencode/specs/sk-doc/z_archive/011-sk-doc-skill-readme-and-structure/001-sk-doc-reference-relocation/spec.md
 index c37e897e10aae72ad25cd72506f3a2f15cf1905e..ec15aa8b4b52abee1c3f94d3a55b571f96ff7338
---- a/.opencode/specs/skilled-agent-orchestration/z_archive/082-sk-doc-skill-readme-and-structure/001-sk-doc-reference-relocation/spec.md
-+++ b/.opencode/specs/skilled-agent-orchestration/z_archive/082-sk-doc-skill-readme-and-structure/001-sk-doc-reference-relocation/spec.md
+--- a/.opencode/specs/sk-doc/z_archive/011-sk-doc-skill-readme-and-structure/001-sk-doc-reference-relocation/spec.md
++++ b/.opencode/specs/sk-doc/z_archive/011-sk-doc-skill-readme-and-structure/001-sk-doc-reference-relocation/spec.md
 @@ -40,7 +40,7 @@
  | **Created** | 2026-05-10 |
  | **Branch** | `main` |
@@ -2086,10 +2086,10 @@ index c37e897e10aae72ad25cd72506f3a2f15cf1905e..ec15aa8b4b52abee1c3f94d3a55b571f
  | **Predecessor** | None |
  | **Successor** | 002-sk-doc-skill-readme-asset |
  <!-- /ANCHOR:metadata -->
-diff --git a/.opencode/specs/skilled-agent-orchestration/z_archive/082-sk-doc-skill-readme-and-structure/002-sk-doc-skill-readme-asset/checklist.md b/.opencode/specs/skilled-agent-orchestration/z_archive/082-sk-doc-skill-readme-and-structure/002-sk-doc-skill-readme-asset/checklist.md
+diff --git a/.opencode/specs/sk-doc/z_archive/011-sk-doc-skill-readme-and-structure/002-sk-doc-skill-readme-asset/checklist.md b/.opencode/specs/sk-doc/z_archive/011-sk-doc-skill-readme-and-structure/002-sk-doc-skill-readme-asset/checklist.md
 index 61eceb29030846cf89e70f3f96fbea4826989734..d2e69d14fc130cc31665aef1e84401c6bc079863
---- a/.opencode/specs/skilled-agent-orchestration/z_archive/082-sk-doc-skill-readme-and-structure/002-sk-doc-skill-readme-asset/checklist.md
-+++ b/.opencode/specs/skilled-agent-orchestration/z_archive/082-sk-doc-skill-readme-and-structure/002-sk-doc-skill-readme-asset/checklist.md
+--- a/.opencode/specs/sk-doc/z_archive/011-sk-doc-skill-readme-and-structure/002-sk-doc-skill-readme-asset/checklist.md
++++ b/.opencode/specs/sk-doc/z_archive/011-sk-doc-skill-readme-and-structure/002-sk-doc-skill-readme-asset/checklist.md
 @@ -18,7 +18,7 @@
        fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
        session_id: "102-sk-doc-skill-readme-and-structure"
@@ -2108,10 +2108,10 @@ index 61eceb29030846cf89e70f3f96fbea4826989734..d2e69d14fc130cc31665aef1e84401c6
  <!-- /ANCHOR:pre-impl -->
  
  ---
-diff --git a/.opencode/specs/skilled-agent-orchestration/z_archive/082-sk-doc-skill-readme-and-structure/002-sk-doc-skill-readme-asset/spec.md b/.opencode/specs/skilled-agent-orchestration/z_archive/082-sk-doc-skill-readme-and-structure/002-sk-doc-skill-readme-asset/spec.md
+diff --git a/.opencode/specs/sk-doc/z_archive/011-sk-doc-skill-readme-and-structure/002-sk-doc-skill-readme-asset/spec.md b/.opencode/specs/sk-doc/z_archive/011-sk-doc-skill-readme-and-structure/002-sk-doc-skill-readme-asset/spec.md
 index a98a7083330cc84f5a9a1118a9b58daa05caea78..bdc80cc72c7cb53faf8417420cd3fbe934c736dc
---- a/.opencode/specs/skilled-agent-orchestration/z_archive/082-sk-doc-skill-readme-and-structure/002-sk-doc-skill-readme-asset/spec.md
-+++ b/.opencode/specs/skilled-agent-orchestration/z_archive/082-sk-doc-skill-readme-and-structure/002-sk-doc-skill-readme-asset/spec.md
+--- a/.opencode/specs/sk-doc/z_archive/011-sk-doc-skill-readme-and-structure/002-sk-doc-skill-readme-asset/spec.md
++++ b/.opencode/specs/sk-doc/z_archive/011-sk-doc-skill-readme-and-structure/002-sk-doc-skill-readme-asset/spec.md
 @@ -40,7 +40,7 @@
  | **Created** | 2026-05-10 |
  | **Branch** | `main` |
@@ -2121,10 +2121,10 @@ index a98a7083330cc84f5a9a1118a9b58daa05caea78..bdc80cc72c7cb53faf8417420cd3fbe9
  | **Predecessor** | 001-sk-doc-reference-relocation |
  | **Successor** | 003-markdown-agent-rename |
  <!-- /ANCHOR:metadata -->
-diff --git a/.opencode/specs/skilled-agent-orchestration/z_archive/082-sk-doc-skill-readme-and-structure/003-markdown-agent-rename/spec.md b/.opencode/specs/skilled-agent-orchestration/z_archive/082-sk-doc-skill-readme-and-structure/003-markdown-agent-rename/spec.md
+diff --git a/.opencode/specs/sk-doc/z_archive/011-sk-doc-skill-readme-and-structure/003-markdown-agent-rename/spec.md b/.opencode/specs/sk-doc/z_archive/011-sk-doc-skill-readme-and-structure/003-markdown-agent-rename/spec.md
 index 8eff03d6e6645b4eee41056b0d7921fd08184670..2db4c060e5d263351e0a5d55857e17d3cd6d5af1
---- a/.opencode/specs/skilled-agent-orchestration/z_archive/082-sk-doc-skill-readme-and-structure/003-markdown-agent-rename/spec.md
-+++ b/.opencode/specs/skilled-agent-orchestration/z_archive/082-sk-doc-skill-readme-and-structure/003-markdown-agent-rename/spec.md
+--- a/.opencode/specs/sk-doc/z_archive/011-sk-doc-skill-readme-and-structure/003-markdown-agent-rename/spec.md
++++ b/.opencode/specs/sk-doc/z_archive/011-sk-doc-skill-readme-and-structure/003-markdown-agent-rename/spec.md
 @@ -40,7 +40,7 @@
  | **Created** | 2026-05-10 |
  | **Branch** | `main` |
@@ -2134,10 +2134,10 @@ index 8eff03d6e6645b4eee41056b0d7921fd08184670..2db4c060e5d263351e0a5d55857e17d3
  | **Predecessor** | 002-sk-doc-skill-readme-asset |
  | **Successor** | None |
  <!-- /ANCHOR:metadata -->
-diff --git a/.opencode/specs/skilled-agent-orchestration/z_archive/082-sk-doc-skill-readme-and-structure/004-sk-doc-playbook-markdown-agent-coverage/implementation-summary.md b/.opencode/specs/skilled-agent-orchestration/z_archive/082-sk-doc-skill-readme-and-structure/004-sk-doc-playbook-markdown-agent-coverage/implementation-summary.md
+diff --git a/.opencode/specs/sk-doc/z_archive/011-sk-doc-skill-readme-and-structure/004-sk-doc-playbook-markdown-agent-coverage/implementation-summary.md b/.opencode/specs/sk-doc/z_archive/011-sk-doc-skill-readme-and-structure/004-sk-doc-playbook-markdown-agent-coverage/implementation-summary.md
 index 7729a47c5b2aded0e3d1ac1baa6a6e5247d619ba..e0b3ab9d70d3394f681952e0a124b439e537bc05
---- a/.opencode/specs/skilled-agent-orchestration/z_archive/082-sk-doc-skill-readme-and-structure/004-sk-doc-playbook-markdown-agent-coverage/implementation-summary.md
-+++ b/.opencode/specs/skilled-agent-orchestration/z_archive/082-sk-doc-skill-readme-and-structure/004-sk-doc-playbook-markdown-agent-coverage/implementation-summary.md
+--- a/.opencode/specs/sk-doc/z_archive/011-sk-doc-skill-readme-and-structure/004-sk-doc-playbook-markdown-agent-coverage/implementation-summary.md
++++ b/.opencode/specs/sk-doc/z_archive/011-sk-doc-skill-readme-and-structure/004-sk-doc-playbook-markdown-agent-coverage/implementation-summary.md
 @@ -26,9 +26,8 @@
        fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
        session_id: "102-004-sk-doc-playbook-markdown-agent-coverage"
@@ -2158,10 +2158,10 @@ index 7729a47c5b2aded0e3d1ac1baa6a6e5247d619ba..e0b3ab9d70d3394f681952e0a124b439
  | **Level** | 2 |
  | **Verdict** | CONDITIONAL (review-report.md) |
  <!-- /ANCHOR:metadata -->
-diff --git a/.opencode/specs/skilled-agent-orchestration/z_archive/082-sk-doc-skill-readme-and-structure/004-sk-doc-playbook-markdown-agent-coverage/spec.md b/.opencode/specs/skilled-agent-orchestration/z_archive/082-sk-doc-skill-readme-and-structure/004-sk-doc-playbook-markdown-agent-coverage/spec.md
+diff --git a/.opencode/specs/sk-doc/z_archive/011-sk-doc-skill-readme-and-structure/004-sk-doc-playbook-markdown-agent-coverage/spec.md b/.opencode/specs/sk-doc/z_archive/011-sk-doc-skill-readme-and-structure/004-sk-doc-playbook-markdown-agent-coverage/spec.md
 index 9fe9f328120d1cef3702fc332b7bd11ad0ba2965..0580070f40e8e51798a105427ab4312b33580d5c
---- a/.opencode/specs/skilled-agent-orchestration/z_archive/082-sk-doc-skill-readme-and-structure/004-sk-doc-playbook-markdown-agent-coverage/spec.md
-+++ b/.opencode/specs/skilled-agent-orchestration/z_archive/082-sk-doc-skill-readme-and-structure/004-sk-doc-playbook-markdown-agent-coverage/spec.md
+--- a/.opencode/specs/sk-doc/z_archive/011-sk-doc-skill-readme-and-structure/004-sk-doc-playbook-markdown-agent-coverage/spec.md
++++ b/.opencode/specs/sk-doc/z_archive/011-sk-doc-skill-readme-and-structure/004-sk-doc-playbook-markdown-agent-coverage/spec.md
 @@ -37,7 +37,7 @@
  |-------|-------|
  | **Level** | 2 |
@@ -2171,10 +2171,10 @@ index 9fe9f328120d1cef3702fc332b7bd11ad0ba2965..0580070f40e8e51798a105427ab4312b
  | **Created** | 2026-05-11 |
  | **Branch** | `main` |
  | **Parent Spec** | ../spec.md |
-diff --git a/.opencode/specs/skilled-agent-orchestration/z_archive/082-sk-doc-skill-readme-and-structure/spec.md b/.opencode/specs/skilled-agent-orchestration/z_archive/082-sk-doc-skill-readme-and-structure/spec.md
+diff --git a/.opencode/specs/sk-doc/z_archive/011-sk-doc-skill-readme-and-structure/spec.md b/.opencode/specs/sk-doc/z_archive/011-sk-doc-skill-readme-and-structure/spec.md
 index b7f43cc352bfdd4d85c06627df8523f509c50326..f1e9e3f36bb00a145d4841a78c30a6989f1ae8f3
---- a/.opencode/specs/skilled-agent-orchestration/z_archive/082-sk-doc-skill-readme-and-structure/spec.md
-+++ b/.opencode/specs/skilled-agent-orchestration/z_archive/082-sk-doc-skill-readme-and-structure/spec.md
+--- a/.opencode/specs/sk-doc/z_archive/011-sk-doc-skill-readme-and-structure/spec.md
++++ b/.opencode/specs/sk-doc/z_archive/011-sk-doc-skill-readme-and-structure/spec.md
 @@ -61,7 +61,7 @@
  | Phase | Folder | Status | Description |
  | --- | --- | --- | --- |
@@ -2235,7 +2235,7 @@ codex
 The first batch landed in the intended files. I’m applying the large checklist evidence mapping now; it’s a straight line-by-line replacement against the checked anchors.
 apply patch
 patch: completed
-/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/skilled-agent-orchestration/z_archive/082-sk-doc-skill-readme-and-structure/004-sk-doc-playbook-markdown-agent-coverage/checklist.md
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/sk-doc/z_archive/011-sk-doc-skill-readme-and-structure/004-sk-doc-playbook-markdown-agent-coverage/checklist.md
 diff --git a/.opencode/skills/sk-doc/manual_testing_playbook/06--agent-dispatch/002-markdown-agent-cli-codex.md b/.opencode/skills/sk-doc/manual_testing_playbook/06--agent-dispatch/002-markdown-agent-cli-codex.md
 index 347ef307e493d7a64f0f0261e00d5b19215a57d3..de1c242780321f626ceff32dab1fcbc795d453e6
 --- a/.opencode/skills/sk-doc/manual_testing_playbook/06--agent-dispatch/002-markdown-agent-cli-codex.md
@@ -2249,10 +2249,10 @@ index 347ef307e493d7a64f0f0261e00d5b19215a57d3..de1c242780321f626ceff32dab1fcbc7
  expected_intent: CHANGELOG
  expected_agent: '@markdown'
  expected_resources:
-diff --git a/.opencode/specs/skilled-agent-orchestration/z_archive/082-sk-doc-skill-readme-and-structure/001-sk-doc-reference-relocation/spec.md b/.opencode/specs/skilled-agent-orchestration/z_archive/082-sk-doc-skill-readme-and-structure/001-sk-doc-reference-relocation/spec.md
+diff --git a/.opencode/specs/sk-doc/z_archive/011-sk-doc-skill-readme-and-structure/001-sk-doc-reference-relocation/spec.md b/.opencode/specs/sk-doc/z_archive/011-sk-doc-skill-readme-and-structure/001-sk-doc-reference-relocation/spec.md
 index c37e897e10aae72ad25cd72506f3a2f15cf1905e..ec15aa8b4b52abee1c3f94d3a55b571f96ff7338
---- a/.opencode/specs/skilled-agent-orchestration/z_archive/082-sk-doc-skill-readme-and-structure/001-sk-doc-reference-relocation/spec.md
-+++ b/.opencode/specs/skilled-agent-orchestration/z_archive/082-sk-doc-skill-readme-and-structure/001-sk-doc-reference-relocation/spec.md
+--- a/.opencode/specs/sk-doc/z_archive/011-sk-doc-skill-readme-and-structure/001-sk-doc-reference-relocation/spec.md
++++ b/.opencode/specs/sk-doc/z_archive/011-sk-doc-skill-readme-and-structure/001-sk-doc-reference-relocation/spec.md
 @@ -40,7 +40,7 @@
  | **Created** | 2026-05-10 |
  | **Branch** | `main` |
@@ -2262,10 +2262,10 @@ index c37e897e10aae72ad25cd72506f3a2f15cf1905e..ec15aa8b4b52abee1c3f94d3a55b571f
  | **Predecessor** | None |
  | **Successor** | 002-sk-doc-skill-readme-asset |
  <!-- /ANCHOR:metadata -->
-diff --git a/.opencode/specs/skilled-agent-orchestration/z_archive/082-sk-doc-skill-readme-and-structure/002-sk-doc-skill-readme-asset/checklist.md b/.opencode/specs/skilled-agent-orchestration/z_archive/082-sk-doc-skill-readme-and-structure/002-sk-doc-skill-readme-asset/checklist.md
+diff --git a/.opencode/specs/sk-doc/z_archive/011-sk-doc-skill-readme-and-structure/002-sk-doc-skill-readme-asset/checklist.md b/.opencode/specs/sk-doc/z_archive/011-sk-doc-skill-readme-and-structure/002-sk-doc-skill-readme-asset/checklist.md
 index 61eceb29030846cf89e70f3f96fbea4826989734..d2e69d14fc130cc31665aef1e84401c6bc079863
---- a/.opencode/specs/skilled-agent-orchestration/z_archive/082-sk-doc-skill-readme-and-structure/002-sk-doc-skill-readme-asset/checklist.md
-+++ b/.opencode/specs/skilled-agent-orchestration/z_archive/082-sk-doc-skill-readme-and-structure/002-sk-doc-skill-readme-asset/checklist.md
+--- a/.opencode/specs/sk-doc/z_archive/011-sk-doc-skill-readme-and-structure/002-sk-doc-skill-readme-asset/checklist.md
++++ b/.opencode/specs/sk-doc/z_archive/011-sk-doc-skill-readme-and-structure/002-sk-doc-skill-readme-asset/checklist.md
 @@ -18,7 +18,7 @@
        fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
        session_id: "102-sk-doc-skill-readme-and-structure"
@@ -2284,10 +2284,10 @@ index 61eceb29030846cf89e70f3f96fbea4826989734..d2e69d14fc130cc31665aef1e84401c6
  <!-- /ANCHOR:pre-impl -->
  
  ---
-diff --git a/.opencode/specs/skilled-agent-orchestration/z_archive/082-sk-doc-skill-readme-and-structure/002-sk-doc-skill-readme-asset/spec.md b/.opencode/specs/skilled-agent-orchestration/z_archive/082-sk-doc-skill-readme-and-structure/002-sk-doc-skill-readme-asset/spec.md
+diff --git a/.opencode/specs/sk-doc/z_archive/011-sk-doc-skill-readme-and-structure/002-sk-doc-skill-readme-asset/spec.md b/.opencode/specs/sk-doc/z_archive/011-sk-doc-skill-readme-and-structure/002-sk-doc-skill-readme-asset/spec.md
 index a98a7083330cc84f5a9a1118a9b58daa05caea78..bdc80cc72c7cb53faf8417420cd3fbe934c736dc
---- a/.opencode/specs/skilled-agent-orchestration/z_archive/082-sk-doc-skill-readme-and-structure/002-sk-doc-skill-readme-asset/spec.md
-+++ b/.opencode/specs/skilled-agent-orchestration/z_archive/082-sk-doc-skill-readme-and-structure/002-sk-doc-skill-readme-asset/spec.md
+--- a/.opencode/specs/sk-doc/z_archive/011-sk-doc-skill-readme-and-structure/002-sk-doc-skill-readme-asset/spec.md
++++ b/.opencode/specs/sk-doc/z_archive/011-sk-doc-skill-readme-and-structure/002-sk-doc-skill-readme-asset/spec.md
 @@ -40,7 +40,7 @@
  | **Created** | 2026-05-10 |
  | **Branch** | `main` |
@@ -2297,10 +2297,10 @@ index a98a7083330cc84f5a9a1118a9b58daa05caea78..bdc80cc72c7cb53faf8417420cd3fbe9
  | **Predecessor** | 001-sk-doc-reference-relocation |
  | **Successor** | 003-markdown-agent-rename |
  <!-- /ANCHOR:metadata -->
-diff --git a/.opencode/specs/skilled-agent-orchestration/z_archive/082-sk-doc-skill-readme-and-structure/003-markdown-agent-rename/spec.md b/.opencode/specs/skilled-agent-orchestration/z_archive/082-sk-doc-skill-readme-and-structure/003-markdown-agent-rename/spec.md
+diff --git a/.opencode/specs/sk-doc/z_archive/011-sk-doc-skill-readme-and-structure/003-markdown-agent-rename/spec.md b/.opencode/specs/sk-doc/z_archive/011-sk-doc-skill-readme-and-structure/003-markdown-agent-rename/spec.md
 index 8eff03d6e6645b4eee41056b0d7921fd08184670..2db4c060e5d263351e0a5d55857e17d3cd6d5af1
---- a/.opencode/specs/skilled-agent-orchestration/z_archive/082-sk-doc-skill-readme-and-structure/003-markdown-agent-rename/spec.md
-+++ b/.opencode/specs/skilled-agent-orchestration/z_archive/082-sk-doc-skill-readme-and-structure/003-markdown-agent-rename/spec.md
+--- a/.opencode/specs/sk-doc/z_archive/011-sk-doc-skill-readme-and-structure/003-markdown-agent-rename/spec.md
++++ b/.opencode/specs/sk-doc/z_archive/011-sk-doc-skill-readme-and-structure/003-markdown-agent-rename/spec.md
 @@ -40,7 +40,7 @@
  | **Created** | 2026-05-10 |
  | **Branch** | `main` |
@@ -2310,10 +2310,10 @@ index 8eff03d6e6645b4eee41056b0d7921fd08184670..2db4c060e5d263351e0a5d55857e17d3
  | **Predecessor** | 002-sk-doc-skill-readme-asset |
  | **Successor** | None |
  <!-- /ANCHOR:metadata -->
-diff --git a/.opencode/specs/skilled-agent-orchestration/z_archive/082-sk-doc-skill-readme-and-structure/004-sk-doc-playbook-markdown-agent-coverage/checklist.md b/.opencode/specs/skilled-agent-orchestration/z_archive/082-sk-doc-skill-readme-and-structure/004-sk-doc-playbook-markdown-agent-coverage/checklist.md
+diff --git a/.opencode/specs/sk-doc/z_archive/011-sk-doc-skill-readme-and-structure/004-sk-doc-playbook-markdown-agent-coverage/checklist.md b/.opencode/specs/sk-doc/z_archive/011-sk-doc-skill-readme-and-structure/004-sk-doc-playbook-markdown-agent-coverage/checklist.md
 index 49766ecc639b7ceee77d34be8596ca8c0c8de99f..5ba40417b12e3d150d1d4f05f60c53c6b109800a
---- a/.opencode/specs/skilled-agent-orchestration/z_archive/082-sk-doc-skill-readme-and-structure/004-sk-doc-playbook-markdown-agent-coverage/checklist.md
-+++ b/.opencode/specs/skilled-agent-orchestration/z_archive/082-sk-doc-skill-readme-and-structure/004-sk-doc-playbook-markdown-agent-coverage/checklist.md
+--- a/.opencode/specs/sk-doc/z_archive/011-sk-doc-skill-readme-and-structure/004-sk-doc-playbook-markdown-agent-coverage/checklist.md
++++ b/.opencode/specs/sk-doc/z_archive/011-sk-doc-skill-readme-and-structure/004-sk-doc-playbook-markdown-agent-coverage/checklist.md
 @@ -44,9 +44,9 @@
  <!-- ANCHOR:pre-impl -->
  ## Pre-Implementation
@@ -2429,10 +2429,10 @@ index 49766ecc639b7ceee77d34be8596ca8c0c8de99f..5ba40417b12e3d150d1d4f05f60c53c6
 -**Verification Date**: [YYYY-MM-DD]
 +**Verification Date**: 2026-05-11
  <!-- /ANCHOR:summary -->
-diff --git a/.opencode/specs/skilled-agent-orchestration/z_archive/082-sk-doc-skill-readme-and-structure/004-sk-doc-playbook-markdown-agent-coverage/implementation-summary.md b/.opencode/specs/skilled-agent-orchestration/z_archive/082-sk-doc-skill-readme-and-structure/004-sk-doc-playbook-markdown-agent-coverage/implementation-summary.md
+diff --git a/.opencode/specs/sk-doc/z_archive/011-sk-doc-skill-readme-and-structure/004-sk-doc-playbook-markdown-agent-coverage/implementation-summary.md b/.opencode/specs/sk-doc/z_archive/011-sk-doc-skill-readme-and-structure/004-sk-doc-playbook-markdown-agent-coverage/implementation-summary.md
 index 7729a47c5b2aded0e3d1ac1baa6a6e5247d619ba..e0b3ab9d70d3394f681952e0a124b439e537bc05
---- a/.opencode/specs/skilled-agent-orchestration/z_archive/082-sk-doc-skill-readme-and-structure/004-sk-doc-playbook-markdown-agent-coverage/implementation-summary.md
-+++ b/.opencode/specs/skilled-agent-orchestration/z_archive/082-sk-doc-skill-readme-and-structure/004-sk-doc-playbook-markdown-agent-coverage/implementation-summary.md
+--- a/.opencode/specs/sk-doc/z_archive/011-sk-doc-skill-readme-and-structure/004-sk-doc-playbook-markdown-agent-coverage/implementation-summary.md
++++ b/.opencode/specs/sk-doc/z_archive/011-sk-doc-skill-readme-and-structure/004-sk-doc-playbook-markdown-agent-coverage/implementation-summary.md
 @@ -26,9 +26,8 @@
        fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
        session_id: "102-004-sk-doc-playbook-markdown-agent-coverage"
@@ -2453,10 +2453,10 @@ index 7729a47c5b2aded0e3d1ac1baa6a6e5247d619ba..e0b3ab9d70d3394f681952e0a124b439
  | **Level** | 2 |
  | **Verdict** | CONDITIONAL (review-report.md) |
  <!-- /ANCHOR:metadata -->
-diff --git a/.opencode/specs/skilled-agent-orchestration/z_archive/082-sk-doc-skill-readme-and-structure/004-sk-doc-playbook-markdown-agent-coverage/spec.md b/.opencode/specs/skilled-agent-orchestration/z_archive/082-sk-doc-skill-readme-and-structure/004-sk-doc-playbook-markdown-agent-coverage/spec.md
+diff --git a/.opencode/specs/sk-doc/z_archive/011-sk-doc-skill-readme-and-structure/004-sk-doc-playbook-markdown-agent-coverage/spec.md b/.opencode/specs/sk-doc/z_archive/011-sk-doc-skill-readme-and-structure/004-sk-doc-playbook-markdown-agent-coverage/spec.md
 index 9fe9f328120d1cef3702fc332b7bd11ad0ba2965..0580070f40e8e51798a105427ab4312b33580d5c
---- a/.opencode/specs/skilled-agent-orchestration/z_archive/082-sk-doc-skill-readme-and-structure/004-sk-doc-playbook-markdown-agent-coverage/spec.md
-+++ b/.opencode/specs/skilled-agent-orchestration/z_archive/082-sk-doc-skill-readme-and-structure/004-sk-doc-playbook-markdown-agent-coverage/spec.md
+--- a/.opencode/specs/sk-doc/z_archive/011-sk-doc-skill-readme-and-structure/004-sk-doc-playbook-markdown-agent-coverage/spec.md
++++ b/.opencode/specs/sk-doc/z_archive/011-sk-doc-skill-readme-and-structure/004-sk-doc-playbook-markdown-agent-coverage/spec.md
 @@ -37,7 +37,7 @@
  |-------|-------|
  | **Level** | 2 |
@@ -2466,10 +2466,10 @@ index 9fe9f328120d1cef3702fc332b7bd11ad0ba2965..0580070f40e8e51798a105427ab4312b
  | **Created** | 2026-05-11 |
  | **Branch** | `main` |
  | **Parent Spec** | ../spec.md |
-diff --git a/.opencode/specs/skilled-agent-orchestration/z_archive/082-sk-doc-skill-readme-and-structure/spec.md b/.opencode/specs/skilled-agent-orchestration/z_archive/082-sk-doc-skill-readme-and-structure/spec.md
+diff --git a/.opencode/specs/sk-doc/z_archive/011-sk-doc-skill-readme-and-structure/spec.md b/.opencode/specs/sk-doc/z_archive/011-sk-doc-skill-readme-and-structure/spec.md
 index b7f43cc352bfdd4d85c06627df8523f509c50326..f1e9e3f36bb00a145d4841a78c30a6989f1ae8f3
---- a/.opencode/specs/skilled-agent-orchestration/z_archive/082-sk-doc-skill-readme-and-structure/spec.md
-+++ b/.opencode/specs/skilled-agent-orchestration/z_archive/082-sk-doc-skill-readme-and-structure/spec.md
+--- a/.opencode/specs/sk-doc/z_archive/011-sk-doc-skill-readme-and-structure/spec.md
++++ b/.opencode/specs/sk-doc/z_archive/011-sk-doc-skill-readme-and-structure/spec.md
 @@ -61,7 +61,7 @@
  | Phase | Folder | Status | Description |
  | --- | --- | --- | --- |
@@ -2539,10 +2539,10 @@ index 347ef307e493d7a64f0f0261e00d5b19215a57d3..de1c242780321f626ceff32dab1fcbc7
  expected_intent: CHANGELOG
  expected_agent: '@markdown'
  expected_resources:
-diff --git a/.opencode/specs/skilled-agent-orchestration/z_archive/082-sk-doc-skill-readme-and-structure/001-sk-doc-reference-relocation/spec.md b/.opencode/specs/skilled-agent-orchestration/z_archive/082-sk-doc-skill-readme-and-structure/001-sk-doc-reference-relocation/spec.md
+diff --git a/.opencode/specs/sk-doc/z_archive/011-sk-doc-skill-readme-and-structure/001-sk-doc-reference-relocation/spec.md b/.opencode/specs/sk-doc/z_archive/011-sk-doc-skill-readme-and-structure/001-sk-doc-reference-relocation/spec.md
 index c37e897e10aae72ad25cd72506f3a2f15cf1905e..ec15aa8b4b52abee1c3f94d3a55b571f96ff7338
---- a/.opencode/specs/skilled-agent-orchestration/z_archive/082-sk-doc-skill-readme-and-structure/001-sk-doc-reference-relocation/spec.md
-+++ b/.opencode/specs/skilled-agent-orchestration/z_archive/082-sk-doc-skill-readme-and-structure/001-sk-doc-reference-relocation/spec.md
+--- a/.opencode/specs/sk-doc/z_archive/011-sk-doc-skill-readme-and-structure/001-sk-doc-reference-relocation/spec.md
++++ b/.opencode/specs/sk-doc/z_archive/011-sk-doc-skill-readme-and-structure/001-sk-doc-reference-relocation/spec.md
 @@ -40,7 +40,7 @@
  | **Created** | 2026-05-10 |
  | **Branch** | `main` |
@@ -2552,10 +2552,10 @@ index c37e897e10aae72ad25cd72506f3a2f15cf1905e..ec15aa8b4b52abee1c3f94d3a55b571f
  | **Predecessor** | None |
  | **Successor** | 002-sk-doc-skill-readme-asset |
  <!-- /ANCHOR:metadata -->
-diff --git a/.opencode/specs/skilled-agent-orchestration/z_archive/082-sk-doc-skill-readme-and-structure/002-sk-doc-skill-readme-asset/checklist.md b/.opencode/specs/skilled-agent-orchestration/z_archive/082-sk-doc-skill-readme-and-structure/002-sk-doc-skill-readme-asset/checklist.md
+diff --git a/.opencode/specs/sk-doc/z_archive/011-sk-doc-skill-readme-and-structure/002-sk-doc-skill-readme-asset/checklist.md b/.opencode/specs/sk-doc/z_archive/011-sk-doc-skill-readme-and-structure/002-sk-doc-skill-readme-asset/checklist.md
 index 61eceb29030846cf89e70f3f96fbea4826989734..d2e69d14fc130cc31665aef1e84401c6bc079863
---- a/.opencode/specs/skilled-agent-orchestration/z_archive/082-sk-doc-skill-readme-and-structure/002-sk-doc-skill-readme-asset/checklist.md
-+++ b/.opencode/specs/skilled-agent-orchestration/z_archive/082-sk-doc-skill-readme-and-structure/002-sk-doc-skill-readme-asset/checklist.md
+--- a/.opencode/specs/sk-doc/z_archive/011-sk-doc-skill-readme-and-structure/002-sk-doc-skill-readme-asset/checklist.md
++++ b/.opencode/specs/sk-doc/z_archive/011-sk-doc-skill-readme-and-structure/002-sk-doc-skill-readme-asset/checklist.md
 @@ -18,7 +18,7 @@
        fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
        session_id: "102-sk-doc-skill-readme-and-structure"
@@ -2574,10 +2574,10 @@ index 61eceb29030846cf89e70f3f96fbea4826989734..d2e69d14fc130cc31665aef1e84401c6
  <!-- /ANCHOR:pre-impl -->
  
  ---
-diff --git a/.opencode/specs/skilled-agent-orchestration/z_archive/082-sk-doc-skill-readme-and-structure/002-sk-doc-skill-readme-asset/spec.md b/.opencode/specs/skilled-agent-orchestration/z_archive/082-sk-doc-skill-readme-and-structure/002-sk-doc-skill-readme-asset/spec.md
+diff --git a/.opencode/specs/sk-doc/z_archive/011-sk-doc-skill-readme-and-structure/002-sk-doc-skill-readme-asset/spec.md b/.opencode/specs/sk-doc/z_archive/011-sk-doc-skill-readme-and-structure/002-sk-doc-skill-readme-asset/spec.md
 index a98a7083330cc84f5a9a1118a9b58daa05caea78..bdc80cc72c7cb53faf8417420cd3fbe934c736dc
---- a/.opencode/specs/skilled-agent-orchestration/z_archive/082-sk-doc-skill-readme-and-structure/002-sk-doc-skill-readme-asset/spec.md
-+++ b/.opencode/specs/skilled-agent-orchestration/z_archive/082-sk-doc-skill-readme-and-structure/002-sk-doc-skill-readme-asset/spec.md
+--- a/.opencode/specs/sk-doc/z_archive/011-sk-doc-skill-readme-and-structure/002-sk-doc-skill-readme-asset/spec.md
++++ b/.opencode/specs/sk-doc/z_archive/011-sk-doc-skill-readme-and-structure/002-sk-doc-skill-readme-asset/spec.md
 @@ -40,7 +40,7 @@
  | **Created** | 2026-05-10 |
  | **Branch** | `main` |
@@ -2587,10 +2587,10 @@ index a98a7083330cc84f5a9a1118a9b58daa05caea78..bdc80cc72c7cb53faf8417420cd3fbe9
  | **Predecessor** | 001-sk-doc-reference-relocation |
  | **Successor** | 003-markdown-agent-rename |
  <!-- /ANCHOR:metadata -->
-diff --git a/.opencode/specs/skilled-agent-orchestration/z_archive/082-sk-doc-skill-readme-and-structure/003-markdown-agent-rename/spec.md b/.opencode/specs/skilled-agent-orchestration/z_archive/082-sk-doc-skill-readme-and-structure/003-markdown-agent-rename/spec.md
+diff --git a/.opencode/specs/sk-doc/z_archive/011-sk-doc-skill-readme-and-structure/003-markdown-agent-rename/spec.md b/.opencode/specs/sk-doc/z_archive/011-sk-doc-skill-readme-and-structure/003-markdown-agent-rename/spec.md
 index 8eff03d6e6645b4eee41056b0d7921fd08184670..2db4c060e5d263351e0a5d55857e17d3cd6d5af1
---- a/.opencode/specs/skilled-agent-orchestration/z_archive/082-sk-doc-skill-readme-and-structure/003-markdown-agent-rename/spec.md
-+++ b/.opencode/specs/skilled-agent-orchestration/z_archive/082-sk-doc-skill-readme-and-structure/003-markdown-agent-rename/spec.md
+--- a/.opencode/specs/sk-doc/z_archive/011-sk-doc-skill-readme-and-structure/003-markdown-agent-rename/spec.md
++++ b/.opencode/specs/sk-doc/z_archive/011-sk-doc-skill-readme-and-structure/003-markdown-agent-rename/spec.md
 @@ -40,7 +40,7 @@
  | **Created** | 2026-05-10 |
  | **Branch** | `main` |
@@ -2600,10 +2600,10 @@ index 8eff03d6e6645b4eee41056b0d7921fd08184670..2db4c060e5d263351e0a5d55857e17d3
  | **Predecessor** | 002-sk-doc-skill-readme-asset |
  | **Successor** | None |
  <!-- /ANCHOR:metadata -->
-diff --git a/.opencode/specs/skilled-agent-orchestration/z_archive/082-sk-doc-skill-readme-and-structure/004-sk-doc-playbook-markdown-agent-coverage/checklist.md b/.opencode/specs/skilled-agent-orchestration/z_archive/082-sk-doc-skill-readme-and-structure/004-sk-doc-playbook-markdown-agent-coverage/checklist.md
+diff --git a/.opencode/specs/sk-doc/z_archive/011-sk-doc-skill-readme-and-structure/004-sk-doc-playbook-markdown-agent-coverage/checklist.md b/.opencode/specs/sk-doc/z_archive/011-sk-doc-skill-readme-and-structure/004-sk-doc-playbook-markdown-agent-coverage/checklist.md
 index 49766ecc639b7ceee77d34be8596ca8c0c8de99f..5ba40417b12e3d150d1d4f05f60c53c6b109800a
---- a/.opencode/specs/skilled-agent-orchestration/z_archive/082-sk-doc-skill-readme-and-structure/004-sk-doc-playbook-markdown-agent-coverage/checklist.md
-+++ b/.opencode/specs/skilled-agent-orchestration/z_archive/082-sk-doc-skill-readme-and-structure/004-sk-doc-playbook-markdown-agent-coverage/checklist.md
+--- a/.opencode/specs/sk-doc/z_archive/011-sk-doc-skill-readme-and-structure/004-sk-doc-playbook-markdown-agent-coverage/checklist.md
++++ b/.opencode/specs/sk-doc/z_archive/011-sk-doc-skill-readme-and-structure/004-sk-doc-playbook-markdown-agent-coverage/checklist.md
 @@ -44,9 +44,9 @@
  <!-- ANCHOR:pre-impl -->
  ## Pre-Implementation
@@ -2719,10 +2719,10 @@ index 49766ecc639b7ceee77d34be8596ca8c0c8de99f..5ba40417b12e3d150d1d4f05f60c53c6
 -**Verification Date**: [YYYY-MM-DD]
 +**Verification Date**: 2026-05-11
  <!-- /ANCHOR:summary -->
-diff --git a/.opencode/specs/skilled-agent-orchestration/z_archive/082-sk-doc-skill-readme-and-structure/004-sk-doc-playbook-markdown-agent-coverage/implementation-summary.md b/.opencode/specs/skilled-agent-orchestration/z_archive/082-sk-doc-skill-readme-and-structure/004-sk-doc-playbook-markdown-agent-coverage/implementation-summary.md
+diff --git a/.opencode/specs/sk-doc/z_archive/011-sk-doc-skill-readme-and-structure/004-sk-doc-playbook-markdown-agent-coverage/implementation-summary.md b/.opencode/specs/sk-doc/z_archive/011-sk-doc-skill-readme-and-structure/004-sk-doc-playbook-markdown-agent-coverage/implementation-summary.md
 index 7729a47c5b2aded0e3d1ac1baa6a6e5247d619ba..e0b3ab9d70d3394f681952e0a124b439e537bc05
---- a/.opencode/specs/skilled-agent-orchestration/z_archive/082-sk-doc-skill-readme-and-structure/004-sk-doc-playbook-markdown-agent-coverage/implementation-summary.md
-+++ b/.opencode/specs/skilled-agent-orchestration/z_archive/082-sk-doc-skill-readme-and-structure/004-sk-doc-playbook-markdown-agent-coverage/implementation-summary.md
+--- a/.opencode/specs/sk-doc/z_archive/011-sk-doc-skill-readme-and-structure/004-sk-doc-playbook-markdown-agent-coverage/implementation-summary.md
++++ b/.opencode/specs/sk-doc/z_archive/011-sk-doc-skill-readme-and-structure/004-sk-doc-playbook-markdown-agent-coverage/implementation-summary.md
 @@ -26,9 +26,8 @@
        fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
        session_id: "102-004-sk-doc-playbook-markdown-agent-coverage"
@@ -2743,10 +2743,10 @@ index 7729a47c5b2aded0e3d1ac1baa6a6e5247d619ba..e0b3ab9d70d3394f681952e0a124b439
  | **Level** | 2 |
  | **Verdict** | CONDITIONAL (review-report.md) |
  <!-- /ANCHOR:metadata -->
-diff --git a/.opencode/specs/skilled-agent-orchestration/z_archive/082-sk-doc-skill-readme-and-structure/004-sk-doc-playbook-markdown-agent-coverage/spec.md b/.opencode/specs/skilled-agent-orchestration/z_archive/082-sk-doc-skill-readme-and-structure/004-sk-doc-playbook-markdown-agent-coverage/spec.md
+diff --git a/.opencode/specs/sk-doc/z_archive/011-sk-doc-skill-readme-and-structure/004-sk-doc-playbook-markdown-agent-coverage/spec.md b/.opencode/specs/sk-doc/z_archive/011-sk-doc-skill-readme-and-structure/004-sk-doc-playbook-markdown-agent-coverage/spec.md
 index 9fe9f328120d1cef3702fc332b7bd11ad0ba2965..0580070f40e8e51798a105427ab4312b33580d5c
---- a/.opencode/specs/skilled-agent-orchestration/z_archive/082-sk-doc-skill-readme-and-structure/004-sk-doc-playbook-markdown-agent-coverage/spec.md
-+++ b/.opencode/specs/skilled-agent-orchestration/z_archive/082-sk-doc-skill-readme-and-structure/004-sk-doc-playbook-markdown-agent-coverage/spec.md
+--- a/.opencode/specs/sk-doc/z_archive/011-sk-doc-skill-readme-and-structure/004-sk-doc-playbook-markdown-agent-coverage/spec.md
++++ b/.opencode/specs/sk-doc/z_archive/011-sk-doc-skill-readme-and-structure/004-sk-doc-playbook-markdown-agent-coverage/spec.md
 @@ -37,7 +37,7 @@
  |-------|-------|
  | **Level** | 2 |
@@ -2756,10 +2756,10 @@ index 9fe9f328120d1cef3702fc332b7bd11ad0ba2965..0580070f40e8e51798a105427ab4312b
  | **Created** | 2026-05-11 |
  | **Branch** | `main` |
  | **Parent Spec** | ../spec.md |
-diff --git a/.opencode/specs/skilled-agent-orchestration/z_archive/082-sk-doc-skill-readme-and-structure/spec.md b/.opencode/specs/skilled-agent-orchestration/z_archive/082-sk-doc-skill-readme-and-structure/spec.md
+diff --git a/.opencode/specs/sk-doc/z_archive/011-sk-doc-skill-readme-and-structure/spec.md b/.opencode/specs/sk-doc/z_archive/011-sk-doc-skill-readme-and-structure/spec.md
 index b7f43cc352bfdd4d85c06627df8523f509c50326..f1e9e3f36bb00a145d4841a78c30a6989f1ae8f3
---- a/.opencode/specs/skilled-agent-orchestration/z_archive/082-sk-doc-skill-readme-and-structure/spec.md
-+++ b/.opencode/specs/skilled-agent-orchestration/z_archive/082-sk-doc-skill-readme-and-structure/spec.md
+--- a/.opencode/specs/sk-doc/z_archive/011-sk-doc-skill-readme-and-structure/spec.md
++++ b/.opencode/specs/sk-doc/z_archive/011-sk-doc-skill-readme-and-structure/spec.md
 @@ -61,7 +61,7 @@
  | Phase | Folder | Status | Description |
  | --- | --- | --- | --- |
@@ -2818,14 +2818,14 @@ index b7f43cc352bfdd4d85c06627df8523f509c50326..f1e9e3f36bb00a145d4841a78c30a698
 
 codex
 Modified files:
-- `.opencode/specs/skilled-agent-orchestration/z_archive/082-sk-doc-skill-readme-and-structure/spec.md`
-- `.opencode/specs/skilled-agent-orchestration/z_archive/082-sk-doc-skill-readme-and-structure/001-sk-doc-reference-relocation/spec.md`
-- `.opencode/specs/skilled-agent-orchestration/z_archive/082-sk-doc-skill-readme-and-structure/002-sk-doc-skill-readme-asset/spec.md`
-- `.opencode/specs/skilled-agent-orchestration/z_archive/082-sk-doc-skill-readme-and-structure/002-sk-doc-skill-readme-asset/checklist.md`
-- `.opencode/specs/skilled-agent-orchestration/z_archive/082-sk-doc-skill-readme-and-structure/003-markdown-agent-rename/spec.md`
-- `.opencode/specs/skilled-agent-orchestration/z_archive/082-sk-doc-skill-readme-and-structure/004-sk-doc-playbook-markdown-agent-coverage/spec.md`
-- `.opencode/specs/skilled-agent-orchestration/z_archive/082-sk-doc-skill-readme-and-structure/004-sk-doc-playbook-markdown-agent-coverage/checklist.md`
-- `.opencode/specs/skilled-agent-orchestration/z_archive/082-sk-doc-skill-readme-and-structure/004-sk-doc-playbook-markdown-agent-coverage/implementation-summary.md`
+- `.opencode/specs/sk-doc/z_archive/011-sk-doc-skill-readme-and-structure/spec.md`
+- `.opencode/specs/sk-doc/z_archive/011-sk-doc-skill-readme-and-structure/001-sk-doc-reference-relocation/spec.md`
+- `.opencode/specs/sk-doc/z_archive/011-sk-doc-skill-readme-and-structure/002-sk-doc-skill-readme-asset/spec.md`
+- `.opencode/specs/sk-doc/z_archive/011-sk-doc-skill-readme-and-structure/002-sk-doc-skill-readme-asset/checklist.md`
+- `.opencode/specs/sk-doc/z_archive/011-sk-doc-skill-readme-and-structure/003-markdown-agent-rename/spec.md`
+- `.opencode/specs/sk-doc/z_archive/011-sk-doc-skill-readme-and-structure/004-sk-doc-playbook-markdown-agent-coverage/spec.md`
+- `.opencode/specs/sk-doc/z_archive/011-sk-doc-skill-readme-and-structure/004-sk-doc-playbook-markdown-agent-coverage/checklist.md`
+- `.opencode/specs/sk-doc/z_archive/011-sk-doc-skill-readme-and-structure/004-sk-doc-playbook-markdown-agent-coverage/implementation-summary.md`
 - `.opencode/skills/sk-doc/manual_testing_playbook/06--agent-dispatch/002-markdown-agent-cli-codex.md`
 
 - T010: Phase 2 parent status changed from Draft to Complete.
@@ -2862,10 +2862,10 @@ index 347ef307e493d7a64f0f0261e00d5b19215a57d3..de1c242780321f626ceff32dab1fcbc7
  expected_intent: CHANGELOG
  expected_agent: '@markdown'
  expected_resources:
-diff --git a/.opencode/specs/skilled-agent-orchestration/z_archive/082-sk-doc-skill-readme-and-structure/001-sk-doc-reference-relocation/spec.md b/.opencode/specs/skilled-agent-orchestration/z_archive/082-sk-doc-skill-readme-and-structure/001-sk-doc-reference-relocation/spec.md
+diff --git a/.opencode/specs/sk-doc/z_archive/011-sk-doc-skill-readme-and-structure/001-sk-doc-reference-relocation/spec.md b/.opencode/specs/sk-doc/z_archive/011-sk-doc-skill-readme-and-structure/001-sk-doc-reference-relocation/spec.md
 index c37e897e10aae72ad25cd72506f3a2f15cf1905e..ec15aa8b4b52abee1c3f94d3a55b571f96ff7338
---- a/.opencode/specs/skilled-agent-orchestration/z_archive/082-sk-doc-skill-readme-and-structure/001-sk-doc-reference-relocation/spec.md
-+++ b/.opencode/specs/skilled-agent-orchestration/z_archive/082-sk-doc-skill-readme-and-structure/001-sk-doc-reference-relocation/spec.md
+--- a/.opencode/specs/sk-doc/z_archive/011-sk-doc-skill-readme-and-structure/001-sk-doc-reference-relocation/spec.md
++++ b/.opencode/specs/sk-doc/z_archive/011-sk-doc-skill-readme-and-structure/001-sk-doc-reference-relocation/spec.md
 @@ -40,7 +40,7 @@
  | **Created** | 2026-05-10 |
  | **Branch** | `main` |
@@ -2875,10 +2875,10 @@ index c37e897e10aae72ad25cd72506f3a2f15cf1905e..ec15aa8b4b52abee1c3f94d3a55b571f
  | **Predecessor** | None |
  | **Successor** | 002-sk-doc-skill-readme-asset |
  <!-- /ANCHOR:metadata -->
-diff --git a/.opencode/specs/skilled-agent-orchestration/z_archive/082-sk-doc-skill-readme-and-structure/002-sk-doc-skill-readme-asset/checklist.md b/.opencode/specs/skilled-agent-orchestration/z_archive/082-sk-doc-skill-readme-and-structure/002-sk-doc-skill-readme-asset/checklist.md
+diff --git a/.opencode/specs/sk-doc/z_archive/011-sk-doc-skill-readme-and-structure/002-sk-doc-skill-readme-asset/checklist.md b/.opencode/specs/sk-doc/z_archive/011-sk-doc-skill-readme-and-structure/002-sk-doc-skill-readme-asset/checklist.md
 index 61eceb29030846cf89e70f3f96fbea4826989734..d2e69d14fc130cc31665aef1e84401c6bc079863
---- a/.opencode/specs/skilled-agent-orchestration/z_archive/082-sk-doc-skill-readme-and-structure/002-sk-doc-skill-readme-asset/checklist.md
-+++ b/.opencode/specs/skilled-agent-orchestration/z_archive/082-sk-doc-skill-readme-and-structure/002-sk-doc-skill-readme-asset/checklist.md
+--- a/.opencode/specs/sk-doc/z_archive/011-sk-doc-skill-readme-and-structure/002-sk-doc-skill-readme-asset/checklist.md
++++ b/.opencode/specs/sk-doc/z_archive/011-sk-doc-skill-readme-and-structure/002-sk-doc-skill-readme-asset/checklist.md
 @@ -18,7 +18,7 @@
        fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
        session_id: "102-sk-doc-skill-readme-and-structure"
@@ -2897,10 +2897,10 @@ index 61eceb29030846cf89e70f3f96fbea4826989734..d2e69d14fc130cc31665aef1e84401c6
  <!-- /ANCHOR:pre-impl -->
  
  ---
-diff --git a/.opencode/specs/skilled-agent-orchestration/z_archive/082-sk-doc-skill-readme-and-structure/002-sk-doc-skill-readme-asset/spec.md b/.opencode/specs/skilled-agent-orchestration/z_archive/082-sk-doc-skill-readme-and-structure/002-sk-doc-skill-readme-asset/spec.md
+diff --git a/.opencode/specs/sk-doc/z_archive/011-sk-doc-skill-readme-and-structure/002-sk-doc-skill-readme-asset/spec.md b/.opencode/specs/sk-doc/z_archive/011-sk-doc-skill-readme-and-structure/002-sk-doc-skill-readme-asset/spec.md
 index a98a7083330cc84f5a9a1118a9b58daa05caea78..bdc80cc72c7cb53faf8417420cd3fbe934c736dc
---- a/.opencode/specs/skilled-agent-orchestration/z_archive/082-sk-doc-skill-readme-and-structure/002-sk-doc-skill-readme-asset/spec.md
-+++ b/.opencode/specs/skilled-agent-orchestration/z_archive/082-sk-doc-skill-readme-and-structure/002-sk-doc-skill-readme-asset/spec.md
+--- a/.opencode/specs/sk-doc/z_archive/011-sk-doc-skill-readme-and-structure/002-sk-doc-skill-readme-asset/spec.md
++++ b/.opencode/specs/sk-doc/z_archive/011-sk-doc-skill-readme-and-structure/002-sk-doc-skill-readme-asset/spec.md
 @@ -40,7 +40,7 @@
  | **Created** | 2026-05-10 |
  | **Branch** | `main` |
@@ -2910,10 +2910,10 @@ index a98a7083330cc84f5a9a1118a9b58daa05caea78..bdc80cc72c7cb53faf8417420cd3fbe9
  | **Predecessor** | 001-sk-doc-reference-relocation |
  | **Successor** | 003-markdown-agent-rename |
  <!-- /ANCHOR:metadata -->
-diff --git a/.opencode/specs/skilled-agent-orchestration/z_archive/082-sk-doc-skill-readme-and-structure/003-markdown-agent-rename/spec.md b/.opencode/specs/skilled-agent-orchestration/z_archive/082-sk-doc-skill-readme-and-structure/003-markdown-agent-rename/spec.md
+diff --git a/.opencode/specs/sk-doc/z_archive/011-sk-doc-skill-readme-and-structure/003-markdown-agent-rename/spec.md b/.opencode/specs/sk-doc/z_archive/011-sk-doc-skill-readme-and-structure/003-markdown-agent-rename/spec.md
 index 8eff03d6e6645b4eee41056b0d7921fd08184670..2db4c060e5d263351e0a5d55857e17d3cd6d5af1
---- a/.opencode/specs/skilled-agent-orchestration/z_archive/082-sk-doc-skill-readme-and-structure/003-markdown-agent-rename/spec.md
-+++ b/.opencode/specs/skilled-agent-orchestration/z_archive/082-sk-doc-skill-readme-and-structure/003-markdown-agent-rename/spec.md
+--- a/.opencode/specs/sk-doc/z_archive/011-sk-doc-skill-readme-and-structure/003-markdown-agent-rename/spec.md
++++ b/.opencode/specs/sk-doc/z_archive/011-sk-doc-skill-readme-and-structure/003-markdown-agent-rename/spec.md
 @@ -40,7 +40,7 @@
  | **Created** | 2026-05-10 |
  | **Branch** | `main` |
@@ -2923,10 +2923,10 @@ index 8eff03d6e6645b4eee41056b0d7921fd08184670..2db4c060e5d263351e0a5d55857e17d3
  | **Predecessor** | 002-sk-doc-skill-readme-asset |
  | **Successor** | None |
  <!-- /ANCHOR:metadata -->
-diff --git a/.opencode/specs/skilled-agent-orchestration/z_archive/082-sk-doc-skill-readme-and-structure/004-sk-doc-playbook-markdown-agent-coverage/checklist.md b/.opencode/specs/skilled-agent-orchestration/z_archive/082-sk-doc-skill-readme-and-structure/004-sk-doc-playbook-markdown-agent-coverage/checklist.md
+diff --git a/.opencode/specs/sk-doc/z_archive/011-sk-doc-skill-readme-and-structure/004-sk-doc-playbook-markdown-agent-coverage/checklist.md b/.opencode/specs/sk-doc/z_archive/011-sk-doc-skill-readme-and-structure/004-sk-doc-playbook-markdown-agent-coverage/checklist.md
 index 49766ecc639b7ceee77d34be8596ca8c0c8de99f..5ba40417b12e3d150d1d4f05f60c53c6b109800a
---- a/.opencode/specs/skilled-agent-orchestration/z_archive/082-sk-doc-skill-readme-and-structure/004-sk-doc-playbook-markdown-agent-coverage/checklist.md
-+++ b/.opencode/specs/skilled-agent-orchestration/z_archive/082-sk-doc-skill-readme-and-structure/004-sk-doc-playbook-markdown-agent-coverage/checklist.md
+--- a/.opencode/specs/sk-doc/z_archive/011-sk-doc-skill-readme-and-structure/004-sk-doc-playbook-markdown-agent-coverage/checklist.md
++++ b/.opencode/specs/sk-doc/z_archive/011-sk-doc-skill-readme-and-structure/004-sk-doc-playbook-markdown-agent-coverage/checklist.md
 @@ -44,9 +44,9 @@
  <!-- ANCHOR:pre-impl -->
  ## Pre-Implementation
@@ -3042,10 +3042,10 @@ index 49766ecc639b7ceee77d34be8596ca8c0c8de99f..5ba40417b12e3d150d1d4f05f60c53c6
 -**Verification Date**: [YYYY-MM-DD]
 +**Verification Date**: 2026-05-11
  <!-- /ANCHOR:summary -->
-diff --git a/.opencode/specs/skilled-agent-orchestration/z_archive/082-sk-doc-skill-readme-and-structure/004-sk-doc-playbook-markdown-agent-coverage/implementation-summary.md b/.opencode/specs/skilled-agent-orchestration/z_archive/082-sk-doc-skill-readme-and-structure/004-sk-doc-playbook-markdown-agent-coverage/implementation-summary.md
+diff --git a/.opencode/specs/sk-doc/z_archive/011-sk-doc-skill-readme-and-structure/004-sk-doc-playbook-markdown-agent-coverage/implementation-summary.md b/.opencode/specs/sk-doc/z_archive/011-sk-doc-skill-readme-and-structure/004-sk-doc-playbook-markdown-agent-coverage/implementation-summary.md
 index 7729a47c5b2aded0e3d1ac1baa6a6e5247d619ba..e0b3ab9d70d3394f681952e0a124b439e537bc05
---- a/.opencode/specs/skilled-agent-orchestration/z_archive/082-sk-doc-skill-readme-and-structure/004-sk-doc-playbook-markdown-agent-coverage/implementation-summary.md
-+++ b/.opencode/specs/skilled-agent-orchestration/z_archive/082-sk-doc-skill-readme-and-structure/004-sk-doc-playbook-markdown-agent-coverage/implementation-summary.md
+--- a/.opencode/specs/sk-doc/z_archive/011-sk-doc-skill-readme-and-structure/004-sk-doc-playbook-markdown-agent-coverage/implementation-summary.md
++++ b/.opencode/specs/sk-doc/z_archive/011-sk-doc-skill-readme-and-structure/004-sk-doc-playbook-markdown-agent-coverage/implementation-summary.md
 @@ -26,9 +26,8 @@
        fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
        session_id: "102-004-sk-doc-playbook-markdown-agent-coverage"
@@ -3066,10 +3066,10 @@ index 7729a47c5b2aded0e3d1ac1baa6a6e5247d619ba..e0b3ab9d70d3394f681952e0a124b439
  | **Level** | 2 |
  | **Verdict** | CONDITIONAL (review-report.md) |
  <!-- /ANCHOR:metadata -->
-diff --git a/.opencode/specs/skilled-agent-orchestration/z_archive/082-sk-doc-skill-readme-and-structure/004-sk-doc-playbook-markdown-agent-coverage/spec.md b/.opencode/specs/skilled-agent-orchestration/z_archive/082-sk-doc-skill-readme-and-structure/004-sk-doc-playbook-markdown-agent-coverage/spec.md
+diff --git a/.opencode/specs/sk-doc/z_archive/011-sk-doc-skill-readme-and-structure/004-sk-doc-playbook-markdown-agent-coverage/spec.md b/.opencode/specs/sk-doc/z_archive/011-sk-doc-skill-readme-and-structure/004-sk-doc-playbook-markdown-agent-coverage/spec.md
 index 9fe9f328120d1cef3702fc332b7bd11ad0ba2965..0580070f40e8e51798a105427ab4312b33580d5c
---- a/.opencode/specs/skilled-agent-orchestration/z_archive/082-sk-doc-skill-readme-and-structure/004-sk-doc-playbook-markdown-agent-coverage/spec.md
-+++ b/.opencode/specs/skilled-agent-orchestration/z_archive/082-sk-doc-skill-readme-and-structure/004-sk-doc-playbook-markdown-agent-coverage/spec.md
+--- a/.opencode/specs/sk-doc/z_archive/011-sk-doc-skill-readme-and-structure/004-sk-doc-playbook-markdown-agent-coverage/spec.md
++++ b/.opencode/specs/sk-doc/z_archive/011-sk-doc-skill-readme-and-structure/004-sk-doc-playbook-markdown-agent-coverage/spec.md
 @@ -37,7 +37,7 @@
  |-------|-------|
  | **Level** | 2 |
@@ -3079,10 +3079,10 @@ index 9fe9f328120d1cef3702fc332b7bd11ad0ba2965..0580070f40e8e51798a105427ab4312b
  | **Created** | 2026-05-11 |
  | **Branch** | `main` |
  | **Parent Spec** | ../spec.md |
-diff --git a/.opencode/specs/skilled-agent-orchestration/z_archive/082-sk-doc-skill-readme-and-structure/spec.md b/.opencode/specs/skilled-agent-orchestration/z_archive/082-sk-doc-skill-readme-and-structure/spec.md
+diff --git a/.opencode/specs/sk-doc/z_archive/011-sk-doc-skill-readme-and-structure/spec.md b/.opencode/specs/sk-doc/z_archive/011-sk-doc-skill-readme-and-structure/spec.md
 index b7f43cc352bfdd4d85c06627df8523f509c50326..f1e9e3f36bb00a145d4841a78c30a6989f1ae8f3
---- a/.opencode/specs/skilled-agent-orchestration/z_archive/082-sk-doc-skill-readme-and-structure/spec.md
-+++ b/.opencode/specs/skilled-agent-orchestration/z_archive/082-sk-doc-skill-readme-and-structure/spec.md
+--- a/.opencode/specs/sk-doc/z_archive/011-sk-doc-skill-readme-and-structure/spec.md
++++ b/.opencode/specs/sk-doc/z_archive/011-sk-doc-skill-readme-and-structure/spec.md
 @@ -61,7 +61,7 @@
  | Phase | Folder | Status | Description |
  | --- | --- | --- | --- |
@@ -3144,14 +3144,14 @@ hook: Stop Completed
 tokens used
 71,422
 Modified files:
-- `.opencode/specs/skilled-agent-orchestration/z_archive/082-sk-doc-skill-readme-and-structure/spec.md`
-- `.opencode/specs/skilled-agent-orchestration/z_archive/082-sk-doc-skill-readme-and-structure/001-sk-doc-reference-relocation/spec.md`
-- `.opencode/specs/skilled-agent-orchestration/z_archive/082-sk-doc-skill-readme-and-structure/002-sk-doc-skill-readme-asset/spec.md`
-- `.opencode/specs/skilled-agent-orchestration/z_archive/082-sk-doc-skill-readme-and-structure/002-sk-doc-skill-readme-asset/checklist.md`
-- `.opencode/specs/skilled-agent-orchestration/z_archive/082-sk-doc-skill-readme-and-structure/003-markdown-agent-rename/spec.md`
-- `.opencode/specs/skilled-agent-orchestration/z_archive/082-sk-doc-skill-readme-and-structure/004-sk-doc-playbook-markdown-agent-coverage/spec.md`
-- `.opencode/specs/skilled-agent-orchestration/z_archive/082-sk-doc-skill-readme-and-structure/004-sk-doc-playbook-markdown-agent-coverage/checklist.md`
-- `.opencode/specs/skilled-agent-orchestration/z_archive/082-sk-doc-skill-readme-and-structure/004-sk-doc-playbook-markdown-agent-coverage/implementation-summary.md`
+- `.opencode/specs/sk-doc/z_archive/011-sk-doc-skill-readme-and-structure/spec.md`
+- `.opencode/specs/sk-doc/z_archive/011-sk-doc-skill-readme-and-structure/001-sk-doc-reference-relocation/spec.md`
+- `.opencode/specs/sk-doc/z_archive/011-sk-doc-skill-readme-and-structure/002-sk-doc-skill-readme-asset/spec.md`
+- `.opencode/specs/sk-doc/z_archive/011-sk-doc-skill-readme-and-structure/002-sk-doc-skill-readme-asset/checklist.md`
+- `.opencode/specs/sk-doc/z_archive/011-sk-doc-skill-readme-and-structure/003-markdown-agent-rename/spec.md`
+- `.opencode/specs/sk-doc/z_archive/011-sk-doc-skill-readme-and-structure/004-sk-doc-playbook-markdown-agent-coverage/spec.md`
+- `.opencode/specs/sk-doc/z_archive/011-sk-doc-skill-readme-and-structure/004-sk-doc-playbook-markdown-agent-coverage/checklist.md`
+- `.opencode/specs/sk-doc/z_archive/011-sk-doc-skill-readme-and-structure/004-sk-doc-playbook-markdown-agent-coverage/implementation-summary.md`
 - `.opencode/skills/sk-doc/manual_testing_playbook/06--agent-dispatch/002-markdown-agent-cli-codex.md`
 
 - T010: Phase 2 parent status changed from Draft to Complete.

@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: sk-doc README and HVR [skilled-agent-orchestration/z_archive/026-sk-doc-readme-hvr-improvements/spec]"
+title: "Feature Specification: sk-doc README and HVR [sk-doc/z_archive/004-sk-doc-readme-hvr-improvements/spec]"
 description: "Upgrade HVR rules, README template and create a new readme_creation reference to align sk-doc with production-quality exemplars from system-spec-kit."
 trigger_phrases:
   - "hvr rules upgrade"
@@ -11,7 +11,7 @@ contextType: "general"
 template_source_hint: "<!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->"
 _memory:
   continuity:
-    packet_pointer: "skilled-agent-orchestration/z_archive/026-sk-doc-readme-hvr-improvements"
+    packet_pointer: "sk-doc/z_archive/004-sk-doc-readme-hvr-improvements"
     last_updated_at: "2026-04-24T15:25:01Z"
     last_updated_by: "backfill-memory-block"
     recent_action: "Backfilled _memory block (repo-wide frontmatter sweep)"

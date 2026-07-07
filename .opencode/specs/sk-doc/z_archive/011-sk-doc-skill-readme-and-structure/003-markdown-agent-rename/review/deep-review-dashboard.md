@@ -15,7 +15,7 @@ Reducer-generated observability surface for the active review packet.
 <!-- /ANCHOR:overview -->
 <!-- ANCHOR:status -->
 ## 2. STATUS
-- Review Target: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/skilled-agent-orchestration/z_archive/082-sk-doc-skill-readme-and-structure/003-markdown-agent-rename (spec-folder)
+- Review Target: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/sk-doc/z_archive/011-sk-doc-skill-readme-and-structure/003-markdown-agent-rename (spec-folder)
 - Started: 2026-05-10T12:15:36Z
 - Status: INITIALIZED
 - Iteration: 4 of 5

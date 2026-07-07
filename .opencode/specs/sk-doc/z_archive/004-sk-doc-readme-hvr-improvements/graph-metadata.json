@@ -1,8 +1,9 @@
 {
   "schema_version": 1,
-  "packet_id": "skilled-agent-orchestration/z_archive/026-sk-doc-readme-hvr-improvements",
-  "spec_folder": "skilled-agent-orchestration/z_archive/026-sk-doc-readme-hvr-improvements",
-  "parent_id": null,
+  "packet_id": "sk-doc/z_archive/004-sk-doc-readme-hvr-improvements",
+  "spec_folder": "sk-doc/z_archive/004-sk-doc-readme-hvr-improvements",
+  "parent_id": "sk-doc/z_archive",
+  "parent_id_review_required": true,
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -41,36 +42,26 @@
     "importance_tier": "normal",
     "status": "draft",
     "key_files": [
-      ".opencode/skills/sk-doc/references/global/hvr_rules.md",
+      "spec.md",
       ".opencode/skills/sk-doc/SKILL.md",
-      ".opencode/skills/cli-codex/SKILL.md",
-      ".opencode/skills/cli-codex/assets/prompt_templates.md",
       "tasks.md",
       "checklist.md",
       ".opencode/skills/system-spec-kit/README.md",
       ".opencode/skills/system-spec-kit/mcp_server/README.md",
-      ".opencode/skills/sk-doc/assets/skill/skill_reference_template.md",
-      "spec.md",
       "plan.md",
       "implementation-summary.md"
     ],
     "entities": [
       {
-        "name": "hvr_rules.md",
+        "name": "spec.md",
         "kind": "doc",
-        "path": ".opencode/skills/sk-doc/references/global/hvr_rules.md",
+        "path": "spec.md",
         "source": "derived"
       },
       {
         "name": "SKILL.md",
         "kind": "doc",
         "path": ".opencode/skills/sk-doc/SKILL.md",
-        "source": "derived"
-      },
-      {
-        "name": "prompt_templates.md",
-        "kind": "doc",
-        "path": ".opencode/skills/cli-codex/assets/prompt_templates.md",
         "source": "derived"
       },
       {
@@ -89,18 +80,6 @@
         "name": "README.md",
         "kind": "doc",
         "path": ".opencode/skills/system-spec-kit/README.md",
-        "source": "derived"
-      },
-      {
-        "name": "skill_reference_template.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-doc/assets/skill/skill_reference_template.md",
-        "source": "derived"
-      },
-      {
-        "name": "spec.md",
-        "kind": "doc",
-        "path": "spec.md",
         "source": "derived"
       },
       {
@@ -198,11 +177,29 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Brief Preparation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Deliverable Workstreams",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Packet Verification",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The sk-doc HVR rules (`../../../skill/sk-doc/references/global/hvrrules.md`) cover word-level and punctuation-level AI tells but lack structural patterns, section-level guidance and scoring calibration learned from writing production READMEs",
     "created_at": "2026-04-12T09:02:50.178Z",
-    "last_save_at": "2026-06-23T03:49:49.066Z",
+    "last_save_at": "2026-07-07T17:12:11.023Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -212,13 +209,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:8e2159ccb7324b5603db8c9a67db91c3b44d14a9b0c89d50f91be7ff34a19405",
+    "source_fingerprint": "sha256:ceb99104daf099a0271b01a3c27930c59610887e58bd2a565de111cff7dbfd2b",
     "source_doc_hashes": {
-      "spec.md": "cbb939f4818b4f19f3dee1612181825a09edeb239154f98dc2436fe30ba27a17",
-      "plan.md": "c07ba6d7050bec545cf6d58aeadb89962662b6232bfa6d6dd204d14b2507058b",
-      "tasks.md": "1d83caf6b1b67c90388502f6dd6668eff7d8afdce36305489e95a6bfd5dace75",
-      "checklist.md": "c028c340a3615723a8657a26cb929d05fcd167d1a34ecc10f6474469d0e28225",
-      "implementation-summary.md": "abf9fe793aed66d610ea6e1f7fa9a7e9b25f456b9c81845135ee543411be1911"
+      "spec.md": "0cb9010081578a4f066e746fb40d2524d4c8058a7cf6e7995c081399d3e1e55d",
+      "plan.md": "9176688856293e1dd12433a8d2195bcc0cac546dcd5ff4c767b3624ac077e52c",
+      "tasks.md": "b018b2d5fbb844d517b293d0baae3c4593a276fd13ccab3cbbcdef4e71525e40",
+      "checklist.md": "d6a0766cc519bab773fcab073be4e64642df0a6008a103c23d20b67be0835390",
+      "implementation-summary.md": "410e37c673ef4232fcf22cb2ca91ba0cd70a310799e6b78db60fb21b9a60fb90"
     },
     "last_active_child_id": null,
     "last_active_at": null

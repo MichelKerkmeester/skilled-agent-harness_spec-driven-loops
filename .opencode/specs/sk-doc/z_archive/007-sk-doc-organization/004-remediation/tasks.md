@@ -8,7 +8,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "068-sk-doc-organization/004-remediation"
+    packet_pointer: "sk-doc/z_archive/007-sk-doc-organization/004-remediation"
     last_updated_at: "2026-05-05T11:55:00Z"
     last_updated_by: "claude-orchestrator"
     recent_action: "Authored tasks.md after 3 fixes already applied"

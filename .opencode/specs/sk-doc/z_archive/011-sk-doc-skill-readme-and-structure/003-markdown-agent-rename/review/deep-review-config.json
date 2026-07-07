@@ -1,7 +1,7 @@
 {
   "topic": "Review: markdown agent rename",
   "mode": "review",
-  "reviewTarget": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/skilled-agent-orchestration/z_archive/082-sk-doc-skill-readme-and-structure/003-markdown-agent-rename",
+  "reviewTarget": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/sk-doc/z_archive/011-sk-doc-skill-readme-and-structure/003-markdown-agent-rename",
   "reviewTargetType": "spec-folder",
   "reviewDimensions": [
     "correctness",
@@ -32,7 +32,7 @@
   },
   "qualityGateThreshold": true,
   "releaseReadinessState": "in-progress",
-  "specFolder": ".opencode/specs/skilled-agent-orchestration/z_archive/082-sk-doc-skill-readme-and-structure/003-markdown-agent-rename",
+  "specFolder": ".opencode/specs/sk-doc/z_archive/011-sk-doc-skill-readme-and-structure/003-markdown-agent-rename",
   "createdAt": "2026-05-10T12:15:36Z",
   "status": "complete",
   "executionMode": "auto",

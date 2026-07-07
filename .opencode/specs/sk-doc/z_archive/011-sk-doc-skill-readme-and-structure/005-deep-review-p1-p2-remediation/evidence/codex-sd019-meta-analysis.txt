@@ -8,7 +8,7 @@ Task: meta-analysis (read-only); produce 5-section diagnostic
 Reading additional input from stdin...
 OpenAI Codex v0.130.0
 --------
-workdir: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/skilled-agent-orchestration/z_archive/082-sk-doc-skill-readme-and-structure
+workdir: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/sk-doc/z_archive/011-sk-doc-skill-readme-and-structure
 model: gpt-5.5
 provider: openai
 approval: never
@@ -49,7 +49,7 @@ codex exec -c service_tier="fast" -c sandbox_workspace_write.network_access=true
 
 # WHAT HAPPENED — full transcript at this path
 
-`.opencode/specs/skilled-agent-orchestration/z_archive/082-sk-doc-skill-readme-and-structure/004-sk-doc-playbook-markdown-agent-coverage/evidence/SD-019-cli-codex.txt`
+`.opencode/specs/sk-doc/z_archive/011-sk-doc-skill-readme-and-structure/004-sk-doc-playbook-markdown-agent-coverage/evidence/SD-019-cli-codex.txt`
 
 Key events from that transcript (verbatim quotes):
 
@@ -92,7 +92,7 @@ Other agents in `.codex/config.toml`: code, context, debug, orchestrate, deep-re
 
 # WHAT WE'VE ALREADY CONCLUDED (the current decision — verify or refute it)
 
-From `.opencode/specs/skilled-agent-orchestration/z_archive/082-sk-doc-skill-readme-and-structure/005-deep-review-p1-p2-remediation/implementation-summary.md`:
+From `.opencode/specs/sk-doc/z_archive/011-sk-doc-skill-readme-and-structure/005-deep-review-p1-p2-remediation/implementation-summary.md`:
 
 We classified F-001 as "accepted limitation" — three layers:
 1. SD-019 scenario frontmatter marks `expected_skip_in_non_interactive: true` + `skip_rationale`
@@ -181,7 +181,7 @@ hook: UserPromptSubmit Completed
 codex
 I’ll keep this read-only: config, agent TOML, the SD-019 transcript/scenario, and the existing remediation notes. No scenario dispatch, no `/create:changelog`, no writes.
 exec
-/bin/zsh -lc 'python3 ../../../skills/system-spec-kit/mcp_server/skill_advisor/scripts/skill_advisor.py "diagnose codex CLI dispatch failure SD-019 markdown agent SpawnAgent non-interactive prompt remediation" --threshold 0.8' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/skilled-agent-orchestration/z_archive/082-sk-doc-skill-readme-and-structure
+/bin/zsh -lc 'python3 ../../../skills/system-spec-kit/mcp_server/skill_advisor/scripts/skill_advisor.py "diagnose codex CLI dispatch failure SD-019 markdown agent SpawnAgent non-interactive prompt remediation" --threshold 0.8' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/sk-doc/z_archive/011-sk-doc-skill-readme-and-structure
  succeeded in 781ms:
 [
   {
@@ -246,9 +246,9 @@ exec
 codex
 SKILL ROUTING: `cli-codex` and `sk-prompt` are relevant here; `sk-code` was also suggested, but this is a read-only runtime/prompt diagnosis rather than code implementation. I’m loading the two narrow skills and then I’ll inspect the evidence.
 exec
-/bin/zsh -lc "sed -n '1,220p' /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/cli-codex/SKILL.md" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/skilled-agent-orchestration/z_archive/082-sk-doc-skill-readme-and-structure
+/bin/zsh -lc "sed -n '1,220p' /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/cli-codex/SKILL.md" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/sk-doc/z_archive/011-sk-doc-skill-readme-and-structure
 exec
-/bin/zsh -lc "sed -n '1,220p' /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/sk-prompt/SKILL.md" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/skilled-agent-orchestration/z_archive/082-sk-doc-skill-readme-and-structure
+/bin/zsh -lc "sed -n '1,220p' /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/sk-prompt/SKILL.md" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/sk-doc/z_archive/011-sk-doc-skill-readme-and-structure
  succeeded in 0ms:
 ---
 name: sk-prompt
@@ -696,7 +696,7 @@ codex exec \
 codex
 The first useful signal is already a constraint: the `cli-codex` skill explicitly refuses self-invocation when the current runtime is Codex. That makes the diagnosis more about the in-process SpawnAgent surface and prompt behavior than about launching another `codex exec`.
 exec
-/bin/zsh -lc "sed -n '1,220p' /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.codex/config.toml" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/skilled-agent-orchestration/z_archive/082-sk-doc-skill-readme-and-structure
+/bin/zsh -lc "sed -n '1,220p' /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.codex/config.toml" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/sk-doc/z_archive/011-sk-doc-skill-readme-and-structure
  succeeded in 0ms:
 model_auto_compact_token_limit = 750000
 
@@ -800,7 +800,7 @@ description = "Multi-strategy planning architect for diverse reasoning and optim
 config_file = "agents/deep-ai-council.toml"
 
 exec
-/bin/zsh -lc "sed -n '1,260p' /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.codex/agents/markdown.toml" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/skilled-agent-orchestration/z_archive/082-sk-doc-skill-readme-and-structure
+/bin/zsh -lc "sed -n '1,260p' /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.codex/agents/markdown.toml" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/sk-doc/z_archive/011-sk-doc-skill-readme-and-structure
  succeeded in 0ms:
 # Agent: markdown
 # Converted from: .opencode/agents/markdown.md
@@ -1064,7 +1064,7 @@ Use hook-injected startup, graph, memory, or skill-advisor context as a routing 
 | **Template-Free Writing** | Produces inconsistent documentation | Load `sk-doc` and the command template first |
 
 exec
-/bin/zsh -lc "sed -n '1,240p' /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/sk-doc/manual_testing_playbook/06--agent-dispatch/002-markdown-agent-cli-codex.md" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/skilled-agent-orchestration/z_archive/082-sk-doc-skill-readme-and-structure
+/bin/zsh -lc "sed -n '1,240p' /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/sk-doc/manual_testing_playbook/06--agent-dispatch/002-markdown-agent-cli-codex.md" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/sk-doc/z_archive/011-sk-doc-skill-readme-and-structure
  succeeded in 0ms:
 ---
 id: SD-019
@@ -1120,7 +1120,7 @@ Memory-mandated flags:
 ```bash
 PROMPT='Use the @markdown agent to scaffold a v0.1.0 changelog for a stub skill named sk-test-dummy via /create:changelog. Write the result to /tmp/sk-test-dummy-CHANGELOG-cli-codex.md. Do NOT install the stub skill into the .opencode/skills/ tree. Report which agent received the work, which sk-doc resources were loaded, and the changelog sections produced.'
 
-EVIDENCE='/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/skilled-agent-orchestration/z_archive/082-sk-doc-skill-readme-and-structure/004-sk-doc-playbook-markdown-agent-coverage/evidence/SD-019-cli-codex.txt'
+EVIDENCE='/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/sk-doc/z_archive/011-sk-doc-skill-readme-and-structure/004-sk-doc-playbook-markdown-agent-coverage/evidence/SD-019-cli-codex.txt'
 
 # Dispatch via cli-codex (gpt-5.5/fast)
 codex exec \
@@ -1171,12 +1171,12 @@ This scenario is fixed to `cli-codex`. Equivalent dispatches for cli-claude-code
 - Playbook ID: SD-019
 - Canonical root source: `manual_testing_playbook.md`
 - Feature file path: `06--agent-dispatch/002-markdown-agent-cli-codex.md`
-- Introduced by: `.opencode/specs/skilled-agent-orchestration/z_archive/082-sk-doc-skill-readme-and-structure/004-sk-doc-playbook-markdown-agent-coverage`
+- Introduced by: `.opencode/specs/sk-doc/z_archive/011-sk-doc-skill-readme-and-structure/004-sk-doc-playbook-markdown-agent-coverage`
 
 exec
-/bin/zsh -lc "sed -n '1,260p' /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/skilled-agent-orchestration/z_archive/082-sk-doc-skill-readme-and-structure/005-deep-review-p1-p2-remediation/implementation-summary.md" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/skilled-agent-orchestration/z_archive/082-sk-doc-skill-readme-and-structure
+/bin/zsh -lc "sed -n '1,260p' /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/sk-doc/z_archive/011-sk-doc-skill-readme-and-structure/005-deep-review-p1-p2-remediation/implementation-summary.md" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/sk-doc/z_archive/011-sk-doc-skill-readme-and-structure
 exec
-/bin/zsh -lc 'rg -n -C 6 "Full-history forked|agent type is currently not available|Schrodinger|markdown agent|SpawnAgent|Gate 3|SPEC FOLDER|The dedicated" /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/skilled-agent-orchestration/z_archive/082-sk-doc-skill-readme-and-structure/004-sk-doc-playbook-markdown-agent-coverage/evidence/SD-019-cli-codex.txt' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/skilled-agent-orchestration/z_archive/082-sk-doc-skill-readme-and-structure
+/bin/zsh -lc 'rg -n -C 6 "Full-history forked|agent type is currently not available|Schrodinger|markdown agent|SpawnAgent|Gate 3|SPEC FOLDER|The dedicated" /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/sk-doc/z_archive/011-sk-doc-skill-readme-and-structure/004-sk-doc-playbook-markdown-agent-coverage/evidence/SD-019-cli-codex.txt' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/sk-doc/z_archive/011-sk-doc-skill-readme-and-structure
  succeeded in 0ms:
 ---
 title: "Implementation Summary: deep-review P1+P2 remediation"
@@ -1187,7 +1187,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: ".opencode/specs/skilled-agent-orchestration/z_archive/082-sk-doc-skill-readme-and-structure/005-deep-review-p1-p2-remediation"
+    packet_pointer: ".opencode/specs/sk-doc/z_archive/011-sk-doc-skill-readme-and-structure/005-deep-review-p1-p2-remediation"
     last_updated_at: "2026-05-11T10:40:00Z"
     last_updated_by: "claude-opus-4-7"
     recent_action: "Codex remediation complete"
@@ -1550,7 +1550,7 @@ Surfaced during Stage E of 004 (not in the dashboard, but documented in 004/impl
 2217-================================================================
 
 exec
-/bin/zsh -lc "sed -n '1,260p' /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/shared/gate-3-classifier.ts" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/skilled-agent-orchestration/z_archive/082-sk-doc-skill-readme-and-structure
+/bin/zsh -lc "sed -n '1,260p' /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/shared/gate-3-classifier.ts" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/sk-doc/z_archive/011-sk-doc-skill-readme-and-structure
  succeeded in 0ms:
 // ---------------------------------------------------------------
 // MODULE: Gate 3 Classifier
@@ -1814,7 +1814,7 @@ function hasFileTarget(normalized: string): boolean {
 }
 
 exec
-/bin/zsh -lc "sed -n '220,520p' /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/shared/gate-3-classifier.ts" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/skilled-agent-orchestration/z_archive/082-sk-doc-skill-readme-and-structure
+/bin/zsh -lc "sed -n '220,520p' /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/shared/gate-3-classifier.ts" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/sk-doc/z_archive/011-sk-doc-skill-readme-and-structure
  succeeded in 0ms:
 
     for (const writeEntry of writeMatches) {
@@ -1996,7 +1996,7 @@ export function toJsonSnapshot(): Gate3VocabularySnapshot {
 codex
 The transcript has two distinct failures, not one: first a malformed full-history fork request, then an unavailable typed agent. After that the model invented a fallback path and got stuck on Gate 3, which is the non-interactive failure mode.
 exec
-/bin/zsh -lc "sed -n '1,140p' /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/skilled-agent-orchestration/z_archive/082-sk-doc-skill-readme-and-structure/004-sk-doc-playbook-markdown-agent-coverage/evidence/SD-019-cli-codex.txt" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/skilled-agent-orchestration/z_archive/082-sk-doc-skill-readme-and-structure
+/bin/zsh -lc "sed -n '1,140p' /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/sk-doc/z_archive/011-sk-doc-skill-readme-and-structure/004-sk-doc-playbook-markdown-agent-coverage/evidence/SD-019-cli-codex.txt" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/sk-doc/z_archive/011-sk-doc-skill-readme-and-structure
  succeeded in 0ms:
 === SD-019 dispatch: cli-codex @markdown via /create:changelog ===
 === START: 2026-05-11T07:36:05+02:00 ===
@@ -2140,7 +2140,7 @@ For styled HTML visuals (interactive diagrams, dashboard pages, or polished data
 **See**: [assets/flowcharts/](./assets/flowcharts/)
 
 exec
-/bin/zsh -lc "sed -n '2100,2198p' /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/skilled-agent-orchestration/z_archive/082-sk-doc-skill-readme-and-structure/004-sk-doc-playbook-markdown-agent-coverage/evidence/SD-019-cli-codex.txt" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/skilled-agent-orchestration/z_archive/082-sk-doc-skill-readme-and-structure
+/bin/zsh -lc "sed -n '2100,2198p' /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/sk-doc/z_archive/011-sk-doc-skill-readme-and-structure/004-sk-doc-playbook-markdown-agent-coverage/evidence/SD-019-cli-codex.txt" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/sk-doc/z_archive/011-sk-doc-skill-readme-and-structure
  succeeded in 0ms:
 ## 3. HOW IT WORKS
 
@@ -2243,7 +2243,7 @@ For this throwaway scaffold, the sensible answer is `D) Skip`. Confirm that and 
 
 
 exec
-/bin/zsh -lc 'rg -n -C 4 "Known Issues|F-001|SD-019|Accepted limitation|cli-codex" /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/skilled-agent-orchestration/z_archive/082-sk-doc-skill-readme-and-structure/spec.md' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/skilled-agent-orchestration/z_archive/082-sk-doc-skill-readme-and-structure
+/bin/zsh -lc 'rg -n -C 4 "Known Issues|F-001|SD-019|Accepted limitation|cli-codex" /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/sk-doc/z_archive/011-sk-doc-skill-readme-and-structure/spec.md' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/sk-doc/z_archive/011-sk-doc-skill-readme-and-structure
  succeeded in 0ms:
 62-| --- | --- | --- | --- |
 63-| 1 | `001-sk-doc-reference-relocation/` | Complete | Move `sk-doc/references/specific` documents to `sk-doc/references` root and update all old-path references. |
@@ -2303,7 +2303,7 @@ exec
 124-The Phase 3 (`003-markdown-agent-rename/`) shipped with its own 4-iteration deep-review. Findings registry at `003/review/deep-review-findings-registry.json`; iteration files at `003/review/iterations/`; final dashboard at `003/review/deep-review-dashboard.md`. All Phase 3 findings were closed during that earlier review; cross-referenced here for completeness.
 
 exec
-/bin/zsh -lc "sed -n '1,220p' /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/sk-doc/SKILL.md" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/skilled-agent-orchestration/z_archive/082-sk-doc-skill-readme-and-structure
+/bin/zsh -lc "sed -n '1,220p' /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/sk-doc/SKILL.md" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/sk-doc/z_archive/011-sk-doc-skill-readme-and-structure
  succeeded in 0ms:
 ---
 name: sk-doc
@@ -2476,7 +2476,7 @@ The router discovers markdown resources recursively from `references/` and `asse
 - `assets/feature_catalog/` and `assets/testing_playbook/` at the assets/ root for feature catalog and manual testing playbook package templates.
 - `assets/flowcharts/` for reusable ASCII flowchart patterns and diagram examples.
 
-> **Cross-CLI consumption note** (per packets 071/072 stress-test data): when sk-doc is dispatched via an external CLI and the caller consumes the routing-trace output LITERALLY (e.g. attempts to `Read()` cited resource paths), prefer **cli-codex** (gpt-5.5/high/fast) — it scored 66.7% resource-accuracy vs cli-opencode 47.2% on the sk-doc router stress matrix. claude-opus-4.7 tends to hallucinate plausible-sounding paths that don't exist in this skill's filesystem; treat its routing trace as advisory and verify cited paths before reading. See `specs/skilled-agent-orchestration/z_archive/060-sk-doc-router-rerun-refined-extraction/review-report-v2.md` for the full data + P1-072-001 hallucination finding.
+> **Cross-CLI consumption note** (per packets 071/072 stress-test data): when sk-doc is dispatched via an external CLI and the caller consumes the routing-trace output LITERALLY (e.g. attempts to `Read()` cited resource paths), prefer **cli-codex** (gpt-5.5/high/fast) — it scored 66.7% resource-accuracy vs cli-opencode 47.2% on the sk-doc router stress matrix. claude-opus-4.7 tends to hallucinate plausible-sounding paths that don't exist in this skill's filesystem; treat its routing trace as advisory and verify cited paths before reading. See `specs/sk-doc/z_archive/009-sk-doc-router-rerun-refined-extraction/review-report-v2.md` for the full data + P1-072-001 hallucination finding.
 
 ### Resource Loading Levels
 
@@ -2527,7 +2527,7 @@ RESOURCE_MAP = {
     "PLAYBOOK": ["references/manual_testing_playbook_creation.md", "assets/testing_playbook/manual_testing_playbook_template.md"],
 
 exec
-/bin/zsh -lc "sed -n '1,220p' /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/sk-doc/assets/changelog_template.md" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/skilled-agent-orchestration/z_archive/082-sk-doc-skill-readme-and-structure
+/bin/zsh -lc "sed -n '1,220p' /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/sk-doc/assets/changelog_template.md" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/sk-doc/z_archive/011-sk-doc-skill-readme-and-structure
  succeeded in 0ms:
 ---
 title: Changelog & Release Notes Templates
@@ -2751,14 +2751,14 @@ These rules apply to both changelog files and GitHub release notes. See `PUBLIC_
 | Hotfix (1-3 changes)          | Compact  | Quick bug fix, typo correction                        |
 
 exec
-/bin/zsh -lc "sed -n '1,220p' /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/sk-doc/references/changelog_creation.md" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/skilled-agent-orchestration/z_archive/082-sk-doc-skill-readme-and-structure
+/bin/zsh -lc "sed -n '1,220p' /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/sk-doc/references/changelog_creation.md" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/sk-doc/z_archive/011-sk-doc-skill-readme-and-structure
  exited 1 in 0ms:
 sed: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/sk-doc/references/changelog_creation.md: No such file or directory
 
 codex
 One detail shifted under the evidence: `assets/changelog_template.md` exists, but the expected `references/changelog_creation.md` path does not. That matters for the prompt-fix: it should not promise loading a missing reference unless the scenario’s resource expectation is also updated.
 exec
-/bin/zsh -lc "rg --files /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/sk-doc | rg 'changelog|create_changelog'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/skilled-agent-orchestration/z_archive/082-sk-doc-skill-readme-and-structure
+/bin/zsh -lc "rg --files /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/sk-doc | rg 'changelog|create_changelog'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/sk-doc/z_archive/011-sk-doc-skill-readme-and-structure
  succeeded in 0ms:
 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/sk-doc/assets/changelog_template.md
 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/sk-doc/changelog/v1.0.2.0.md
@@ -2783,7 +2783,7 @@ exec
 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/sk-doc/scripts/tests/test_changelog_validator.py
 
 exec
-/bin/zsh -lc "find /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.codex/agents -maxdepth 1 -type f -name '*.toml' -print" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/skilled-agent-orchestration/z_archive/082-sk-doc-skill-readme-and-structure
+/bin/zsh -lc "find /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.codex/agents -maxdepth 1 -type f -name '*.toml' -print" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/sk-doc/z_archive/011-sk-doc-skill-readme-and-structure
  succeeded in 0ms:
 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.codex/agents/context.toml
 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.codex/agents/deep-agent-improvement.toml
@@ -2798,7 +2798,7 @@ exec
 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.codex/agents/markdown.toml
 
 exec
-/bin/zsh -lc "rg -n \"changelog_creation|create_changelog|CHANGELOG|changelog_template|/create:changelog\" /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/sk-doc/SKILL.md /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/sk-doc -g '*.md' -g '*.yaml'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/skilled-agent-orchestration/z_archive/082-sk-doc-skill-readme-and-structure
+/bin/zsh -lc "rg -n \"changelog_creation|create_changelog|CHANGELOG|changelog_template|/create:changelog\" /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/sk-doc/SKILL.md /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/sk-doc -g '*.md' -g '*.yaml'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/sk-doc/z_archive/011-sk-doc-skill-readme-and-structure
  succeeded in 0ms:
 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/sk-doc/SKILL.md:40:**Changelog & Release Notes** - Use `changelog_template.md` when:
 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/sk-doc/SKILL.md:44:- Template: [changelog_template.md](./assets/changelog_template.md). Used by `/create:changelog` (auto + confirm). Nested packet-local changelogs use the spec-kit templates at `.opencode/skills/system-spec-kit/templates/changelog/` instead.
@@ -2906,7 +2906,7 @@ exec
 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/sk-doc/manual_testing_playbook/04--cross-cli-dispatch/002-large-prompt-stress.md:46:1. Which sk-doc intent the router would select for the input (pick from the 11-intent RESOURCE_MAP: DOC_QUALITY, OPTIMIZATION, SKILL_CREATION, AGENT_COMMAND, FLOWCHART, INSTALL_GUIDE, HVR, PLAYBOOK, FEATURE_CATALOG, README_CREATION, CHANGELOG; or UNKNOWN_FALLBACK if no keywords match)
 
 exec
-/bin/zsh -lc 'codex --help' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/skilled-agent-orchestration/z_archive/082-sk-doc-skill-readme-and-structure
+/bin/zsh -lc 'codex --help' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/sk-doc/z_archive/011-sk-doc-skill-readme-and-structure
  succeeded in 0ms:
 WARNING: proceeding, even though we could not update PATH: Operation not permitted (os error 1)
 Codex CLI
@@ -3034,7 +3034,7 @@ Options:
           Print version
 
 exec
-/bin/zsh -lc 'codex exec --help' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/skilled-agent-orchestration/z_archive/082-sk-doc-skill-readme-and-structure
+/bin/zsh -lc 'codex exec --help' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/sk-doc/z_archive/011-sk-doc-skill-readme-and-structure
  succeeded in 0ms:
 WARNING: proceeding, even though we could not update PATH: Operation not permitted (os error 1)
 Run Codex non-interactively
@@ -3133,7 +3133,7 @@ Options:
           Print version
 
 exec
-/bin/zsh -lc 'codex features list' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/skilled-agent-orchestration/z_archive/082-sk-doc-skill-readme-and-structure
+/bin/zsh -lc 'codex features list' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/sk-doc/z_archive/011-sk-doc-skill-readme-and-structure
  succeeded in 0ms:
 WARNING: proceeding, even though we could not update PATH: Operation not permitted (os error 1)
 apply_patch_freeform                    under development  false
@@ -3212,7 +3212,7 @@ workspace_dependencies                  stable             true
 workspace_owner_usage_nudge             under development  false
 
 exec
-/bin/zsh -lc 'codex debug --help' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/skilled-agent-orchestration/z_archive/082-sk-doc-skill-readme-and-structure
+/bin/zsh -lc 'codex debug --help' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/sk-doc/z_archive/011-sk-doc-skill-readme-and-structure
  succeeded in 0ms:
 WARNING: proceeding, even though we could not update PATH: Operation not permitted (os error 1)
 Debugging tools
@@ -3244,7 +3244,7 @@ Options:
           Print help (see a summary with '-h')
 
 exec
-/bin/zsh -lc 'codex debug prompt-input --help' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/skilled-agent-orchestration/z_archive/082-sk-doc-skill-readme-and-structure
+/bin/zsh -lc 'codex debug prompt-input --help' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/sk-doc/z_archive/011-sk-doc-skill-readme-and-structure
  succeeded in 0ms:
 WARNING: proceeding, even though we could not update PATH: Operation not permitted (os error 1)
 Render the model-visible prompt input list as JSON

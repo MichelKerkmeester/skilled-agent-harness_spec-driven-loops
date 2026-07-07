@@ -1,6 +1,6 @@
 {
   "level": "1",
-  "specFolder": "skilled-agent-orchestration/z_archive/064-sk-doc-missing-router-intents-bullet-aware-matrix",
+  "specFolder": "sk-doc/z_archive/010-sk-doc-missing-router-intents-bullet-aware-matrix",
   "description": "Packet 071 stress-matrix covered 15 scenarios but exercised only 9 of sk-doc's 11 router intents",
   "keywords": [
     "packet",
@@ -14,11 +14,11 @@
     "router",
     "intents"
   ],
-  "lastUpdated": "2026-06-23T03:49:49.826Z",
-  "specId": "064",
+  "lastUpdated": "2026-07-07T17:13:14.876Z",
+  "specId": "010",
   "folderSlug": "sk-doc-missing-router-intents-bullet-aware-matrix",
   "parentChain": [
-    "skilled-agent-orchestration",
+    "sk-doc",
     "z_archive"
   ],
   "memorySequence": 1,

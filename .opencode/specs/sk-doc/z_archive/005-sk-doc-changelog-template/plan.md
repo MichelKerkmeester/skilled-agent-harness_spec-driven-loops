@@ -11,7 +11,7 @@ contextType: "planning"
 template_source_hint: "<!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2 -->"
 _memory:
   continuity:
-    packet_pointer: "skilled-agent-orchestration/z_archive/033-sk-doc-changelog-template"
+    packet_pointer: "sk-doc/z_archive/005-sk-doc-changelog-template"
     last_updated_at: "2026-04-24T15:25:01Z"
     last_updated_by: "backfill-memory-block"
     recent_action: "Backfilled frontmatter (repo-wide gap fill)"
@@ -20,7 +20,7 @@ _memory:
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2 -->
 ---
-title: "Implementation Plan: Move changelog_template.md into [skilled-agent-orchestration/z_archive/033-sk-doc-changelog-template/plan]"
+title: "Implementation Plan: Move changelog_template.md into [sk-doc/z_archive/005-sk-doc-changelog-template/plan]"
 description: "Path-only relocation of the canonical changelog template plus updates to the four downstream references and a sk-doc Smart Router wire-up."
 trigger_phrases:
   - "045 plan"
@@ -30,7 +30,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "skilled-agent-orchestration/z_archive/033-sk-doc-changelog-template"
+    packet_pointer: "sk-doc/z_archive/005-sk-doc-changelog-template"
     last_updated_at: "2026-04-18T00:00:00Z"
     last_updated_by: "claude"
     recent_action: "Drafted Level 1 plan for changelog template relocation"

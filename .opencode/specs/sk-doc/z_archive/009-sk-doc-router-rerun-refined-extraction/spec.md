@@ -6,15 +6,15 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "skilled-agent-orchestration/z_archive/060-sk-doc-router-rerun-refined-extraction"
+    packet_pointer: "sk-doc/z_archive/009-sk-doc-router-rerun-refined-extraction"
     last_updated_at: "2026-05-05T16:00:00Z"
     last_updated_by: "claude-orchestrator"
     recent_action: "Authored 072 spec.md after packet 071 closeout"
     next_safe_action: "Commit + push"
     blockers: []
     key_files:
-      - .opencode/specs/skilled-agent-orchestration/z_archive/057-sk-doc-router-stress-test/003-synthesize/scripts/extract_metrics.py
-      - .opencode/specs/skilled-agent-orchestration/z_archive/057-sk-doc-router-stress-test/002-matrix-execute/logs/
+      - .opencode/specs/sk-doc/z_archive/008-sk-doc-router-stress-test/003-synthesize/scripts/extract_metrics.py
+      - .opencode/specs/sk-doc/z_archive/008-sk-doc-router-stress-test/002-matrix-execute/logs/
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "072-authoring"

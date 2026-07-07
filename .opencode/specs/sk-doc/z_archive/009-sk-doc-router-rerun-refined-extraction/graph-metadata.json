@@ -1,8 +1,9 @@
 {
   "schema_version": 1,
-  "packet_id": "skilled-agent-orchestration/z_archive/060-sk-doc-router-rerun-refined-extraction",
-  "spec_folder": "skilled-agent-orchestration/z_archive/060-sk-doc-router-rerun-refined-extraction",
-  "parent_id": null,
+  "packet_id": "sk-doc/z_archive/009-sk-doc-router-rerun-refined-extraction",
+  "spec_folder": "sk-doc/z_archive/009-sk-doc-router-rerun-refined-extraction",
+  "parent_id": "sk-doc/z_archive",
+  "parent_id_review_required": true,
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -35,12 +36,19 @@
     "importance_tier": "normal",
     "status": "in_progress",
     "key_files": [
+      ".opencode/specs/sk-doc/z_archive/008-sk-doc-router-stress-test/003-synthesize/scripts/extract_metrics.py",
       "spec.md",
       "plan.md",
       "implementation-summary.md",
       "tasks.md"
     ],
     "entities": [
+      {
+        "name": "extract_metrics.py",
+        "kind": "file",
+        "path": ".opencode/specs/sk-doc/z_archive/008-sk-doc-router-stress-test/003-synthesize/scripts/extract_metrics.py",
+        "source": "derived"
+      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -178,17 +186,11 @@
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
-      },
-      {
-        "name": "Files Changed",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Packet 071's 003-synthesize/review-report.md flagged P1-001: cli-copilot's resource accuracy was reported as 5.6%, but this number is inflated-low because the detectresources() heuristic in extractmetrics.py captures ANY `references/` or `assets/` path mention — including ones in cli-copilot's verbose \"Not loaded:\" / \"would NOT load\" sections",
     "created_at": "2026-05-05T14:41:58Z",
-    "last_save_at": "2026-06-23T03:49:49.799Z",
+    "last_save_at": "2026-07-07T17:13:14.254Z",
     "save_lineage": "graph_only",
     "last_accessed_at": "2026-05-05T16:10:00Z",
     "source_docs": [
@@ -197,12 +199,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:a8173b1716606cb2468ca152357a09d1c34a2c70baddbb4ff4beb2ee6f54d4d3",
+    "source_fingerprint": "sha256:f6733f4e649b860b93418da0cda52972100b70ca138efa3232c0cf91610c6f39",
     "source_doc_hashes": {
-      "spec.md": "e7e799364a1963e60d216fd02a8de4a580c246ddbdd625bb13bf0aaf40c5d071",
-      "plan.md": "4484dcbcf3902db931325004dbb9ae1c263fdae7d860a970e9ded5c1cc6607d8",
-      "tasks.md": "72bfa1adfc5f9ea1d7c9dfdd0eeeafe56bfd68eb24c3aa5753fe136f737d5e4e",
-      "implementation-summary.md": "b6017fb0339f9e6e10101ef77e0e35d3d3691ec96cbe07c0593108fbe2747e0d"
+      "spec.md": "14a95e7c54b260c78f0375334c9f2b26d0b4fb9bca8d00c5ed37529b398ed963",
+      "plan.md": "a902ab49f448de6684f53f94a68dfe0d81cfa2f7c8f0f6df4af5d91a0b5b132e",
+      "tasks.md": "8654da6346697370ce7ffcda5f0d1ed6be1a33bc50f75ba2cd77850dbb3d7e65",
+      "implementation-summary.md": "e920a34693171f8ba42dc1ddb5aadacd1e6bd145bf044cdc09fb23feea53c46a"
     },
     "last_active_child_id": null,
     "last_active_at": null

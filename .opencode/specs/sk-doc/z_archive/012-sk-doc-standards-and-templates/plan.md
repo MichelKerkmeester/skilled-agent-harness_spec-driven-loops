@@ -8,7 +8,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "skilled-agent-orchestration/z_archive/108-catalog-playbook-snippet-denumbering/001-sk-doc-standards-and-templates"
+    packet_pointer: "sk-doc/z_archive/012-sk-doc-standards-and-templates"
     last_updated_at: "2026-06-06T00:00:00Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "Authored phase 001 plan during 133 scaffold"
@@ -186,7 +186,7 @@ References ──► Templates + create-commands ──► Validator wording + v
 ## L2: ENHANCED ROLLBACK
 
 ### Dispatch brief invariants (cli-opencode)
-- `Spec folder: .opencode/specs/skilled-agent-orchestration/z_archive/108-catalog-playbook-snippet-denumbering/001-sk-doc-standards-and-templates (pre-approved, skip Gate 3)`
+- `Spec folder: .opencode/specs/sk-doc/z_archive/012-sk-doc-standards-and-templates (pre-approved, skip Gate 3)`
 - `--model xiaomi-token-plan-ams/mimo-v2.5-pro --variant high --format json --dir <repo-root>` (MiMo author); no `--agent`; append `</dev/null`.
 - `BANNED OPERATIONS: rename/delete any file; edit category-folder numbers; change validate_document.py logic.`
 - `ALLOWED WRITE PATHS:` the 12 enumerated files only.

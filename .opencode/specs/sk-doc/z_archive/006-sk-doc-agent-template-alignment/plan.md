@@ -7,7 +7,7 @@ importance_tier: "high"
 contextType: "agent-architecture"
 _memory:
   continuity:
-    packet_pointer: "skilled-agent-orchestration/z_archive/049-sk-doc-agent-template-alignment"
+    packet_pointer: "sk-doc/z_archive/006-sk-doc-agent-template-alignment"
     last_updated_at: "2026-05-03T00:00:00Z"
     last_updated_by: "claude-opus-4-7-1m"
     recent_action: "Plan scaffolded"

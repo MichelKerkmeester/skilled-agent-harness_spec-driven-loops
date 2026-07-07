@@ -76,7 +76,7 @@ stat -L -f '%i' .opencode/commands/create/agent.md             → 32374636 (SAM
 rg -n --no-config --no-ignore-vcs \
    --glob "!**/iterations/**" --glob "!**/research/**" --glob "!**/review/**" \
    "TODO|FIXME|in progress|placeholder" \
-   .opencode/specs/skilled-agent-orchestration/z_archive/054-sk-doc-organization/
+   .opencode/specs/sk-doc/z_archive/007-sk-doc-organization/
 ```
 - **0 hits.** ✓ No leftover ship-clean contradictions.
 

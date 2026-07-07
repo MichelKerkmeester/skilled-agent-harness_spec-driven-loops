@@ -1,6 +1,6 @@
 {
-  "specFolder": "skilled-agent-orchestration/z_archive/010-sk-doc-rename",
-  "description": "The Public repository previously contained legacy documentation-skill identifiers plus stale references to a removed visual skill across content, fold",
+  "specFolder": "sk-doc/z_archive/001-sk-doc-rename",
+  "description": "The Public repository previously contained legacy documentation-skill identifiers plus stale references to a removed visual skill across content,",
   "keywords": [
     "public",
     "repository",
@@ -16,14 +16,13 @@
     "visual",
     "skill",
     "across",
-    "content",
-    "fold"
+    "content"
   ],
-  "lastUpdated": "2026-06-23T03:49:48.932Z",
-  "specId": "010",
+  "lastUpdated": "2026-07-07T17:12:10.245Z",
+  "specId": "001",
   "folderSlug": "sk-doc-rename",
   "parentChain": [
-    "skilled-agent-orchestration",
+    "sk-doc",
     "z_archive"
   ],
   "memorySequence": 0,
