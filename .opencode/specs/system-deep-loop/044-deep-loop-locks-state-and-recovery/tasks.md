@@ -20,7 +20,7 @@ _memory:
       - "tasks.md"
       - "implementation-summary.md"
     session_dedup:
-      fingerprint: "sha256:0404040404040404040404040404040404040404040404040404040404040404"
+      fingerprint: "sha256:d5ab8fc7cd1b4635e55434333f0915fa9aa1c39557d786c94356dd1d4e4e3b79"
       session_id: "009-memory-leak-remediation-004"
       parent_session_id: null
     completion_pct: 0

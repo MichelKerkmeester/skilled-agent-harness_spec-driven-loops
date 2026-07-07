@@ -188,7 +188,7 @@ Collapse the hub to a surface-primary model with four sub-skills — `code-openc
 ## RELATED DOCUMENTS
 
 - **Parent hub**: `.opencode/skills/sk-code/`
-- **Harness dependencies**: `system-deep-loop/037-router-replay-surface-slice-sync`, `system-deep-loop/038-scenario-loader-code-surface-sync`
+- **Harness dependencies**: `system-deep-loop/036-router-replay-surface-slice-sync`, `system-deep-loop/037-scenario-loader-code-surface-sync`
 - **Prior phase**: `sk-code/017-sk-code-parent/021-playbook-gold-and-lane-c-rebaseline`
 
 <!-- /ANCHOR:related-docs -->

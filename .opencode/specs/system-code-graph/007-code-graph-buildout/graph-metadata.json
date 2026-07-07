@@ -156,7 +156,7 @@
       "spec.md": "400ca1736095ca683bb0b3a2287899ed38d33b5016348e164601e6de07233d10",
       "resource-map.md": "c6d4c60181a520025513dafc659bdf591ecbbf1af453e5284ce628d3b167b9b3"
     },
-    "last_active_child_id": "system-spec-kit/026-graph-and-context-optimization/004-code-graph/014-gold-query-battery-repair",
+    "last_active_child_id": "system-code-graph/007-code-graph-buildout/014-gold-query-battery-repair",
     "last_active_at": "2026-06-07T10:45:05.624Z"
   }
 }

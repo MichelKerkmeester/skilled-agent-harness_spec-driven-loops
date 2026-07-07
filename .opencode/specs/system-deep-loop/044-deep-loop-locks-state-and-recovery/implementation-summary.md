@@ -23,7 +23,7 @@ _memory:
       - ".opencode/skills/system-spec-kit/mcp_server/lib/deep-loop/jsonl-repair.ts"
       - ".opencode/skills/system-spec-kit/mcp_server/lib/deep-loop/atomic-state.ts"
     session_dedup:
-      fingerprint: "sha256:0404040404040404040404040404040404040404040404040404040404040404"
+      fingerprint: "sha256:45bd5f465414743be164b9b513c94bc96ef817c13f0dcf32d915f2e884f4ba35"
       session_id: "009-memory-leak-remediation-004"
       parent_session_id: null
     completion_pct: 100

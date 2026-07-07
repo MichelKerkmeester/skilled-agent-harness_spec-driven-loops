@@ -41298,6 +41298,3189 @@
         "drift-prone"
       ],
       "lastUpdated": "2026-06-23T03:50:00.846Z"
+    },
+    {
+      "specFolder": "system-code-graph",
+      "description": "Track folder for code-graph packets - structural code search, edge lifecycle, seeded-PPR impact ranking, determinism, parser resilience, daemon hardening.",
+      "keywords": [
+        "system-code-graph",
+        "track",
+        "code-graph",
+        "structural-search",
+        "impact-analysis",
+        "seeded-ppr",
+        "edge-lifecycle",
+        "determinism"
+      ],
+      "lastUpdated": "2026-07-06T16:46:59.166Z"
+    },
+    {
+      "specFolder": "system-code-graph/008-code-graph-scatter",
+      "description": "Lean phase parent collecting sixteen previously-scattered single-purpose code-graph fix and audit packets moved out of the 026 optimization tree.",
+      "keywords": [
+        "lean",
+        "phase",
+        "parent",
+        "collecting",
+        "sixteen",
+        "previously-scattered",
+        "single-purpose",
+        "code-graph",
+        "fix",
+        "audit",
+        "packets",
+        "moved",
+        "026",
+        "optimization",
+        "tree"
+      ],
+      "lastUpdated": "2026-07-07T16:21:02.882Z"
+    },
+    {
+      "specFolder": "system-code-graph/008-code-graph-scatter/015-code-graph-launcher-and-db-lifecycle",
+      "description": "The code-index audit found stale/orphan-prone launcher and server ownership",
+      "keywords": [
+        "code-index",
+        "audit",
+        "found",
+        "stale",
+        "orphan-prone",
+        "launcher",
+        "server",
+        "ownership"
+      ],
+      "lastUpdated": "2026-07-07T16:10:56.249Z"
+    },
+    {
+      "specFolder": "system-code-graph/008-code-graph-scatter/016-code-graph-p1-config-extraction",
+      "description": "cli-opencode + deepseek-v4-pro --variant high dispatched: new config-defaults.ts with CODE_GRAPH_DEFAULTS (ttlMs, findFilesMaxDepth,",
+      "keywords": [
+        "cli-opencode",
+        "deepseek-v4-pro",
+        "variant",
+        "high",
+        "dispatched",
+        "new",
+        "config-defaults",
+        "ttlms",
+        "findfilesmaxdepth"
+      ],
+      "lastUpdated": "2026-07-07T16:10:56.564Z"
+    },
+    {
+      "specFolder": "system-code-graph/008-code-graph-scatter/004-substrate-codegraph-2nd-daemon",
+      "description": "Two defects compounded in `run-substrate-stress-harness.mjs`",
+      "keywords": [
+        "two",
+        "defects",
+        "compounded",
+        "run-substrate-stress-harness",
+        "mjs"
+      ],
+      "lastUpdated": "2026-07-07T16:10:52.517Z"
+    },
+    {
+      "specFolder": "system-code-graph/008-code-graph-scatter/012-code-graph-readiness-audit",
+      "description": "The release-readiness program needs a truth check for the post-032 code graph readiness contract",
+      "keywords": [
+        "release-readiness",
+        "program",
+        "needs",
+        "truth",
+        "check",
+        "post-032",
+        "code",
+        "graph",
+        "readiness",
+        "contract"
+      ],
+      "lastUpdated": "2026-07-07T16:10:55.232Z"
+    },
+    {
+      "specFolder": "system-code-graph/008-code-graph-scatter/010-code-graph-status-readiness-snapshot",
+      "description": "v1.0.2 stress test pre-flight detected a 4-hour staleness drift on the live code graph (`010 findings.md` lines 123-126)",
+      "keywords": [
+        "stress",
+        "test",
+        "pre-flight",
+        "detected",
+        "4-hour",
+        "staleness",
+        "drift",
+        "live",
+        "code",
+        "graph",
+        "010",
+        "findings",
+        "lines",
+        "123-126"
+      ],
+      "lastUpdated": "2026-07-07T16:10:54.524Z"
+    },
+    {
+      "specFolder": "system-code-graph/008-code-graph-scatter/011-code-graph-fail-fast-routing",
+      "description": "006 stress-test recorded 249.8s spent on `cli-opencode` Q1 because the structural code-graph was empty/stale; the read path correctly blocked but the",
+      "keywords": [
+        "006",
+        "stress-test",
+        "recorded",
+        "249",
+        "spent",
+        "cli-opencode",
+        "because",
+        "structural",
+        "code-graph",
+        "empty",
+        "stale",
+        "read",
+        "path",
+        "correctly",
+        "blocked"
+      ],
+      "lastUpdated": "2026-07-07T16:10:54.886Z"
+    },
+    {
+      "specFolder": "system-code-graph/008-code-graph-scatter/003-substrate-codegraph-scenarios",
+      "description": "The deferred goal was \"make substrate scenarios 403/404/407 run for real instead of SKIP.\" Investigation found the playbooks call",
+      "keywords": [
+        "deferred",
+        "goal",
+        "make",
+        "substrate",
+        "scenarios",
+        "403",
+        "404",
+        "407",
+        "run",
+        "real",
+        "instead",
+        "skip",
+        "investigation",
+        "found",
+        "playbooks",
+        "call"
+      ],
+      "lastUpdated": "2026-07-07T16:10:52.180Z"
+    },
+    {
+      "specFolder": "system-code-graph/008-code-graph-scatter/014-code-graph-suite-triage",
+      "description": "Arc 009 phase 007 shipped the code-graph launcher single-owner + closeDb lifecycle work but used a targeted-gate (lib/owner-lease + launcher-lease)",
+      "keywords": [
+        "arc",
+        "009",
+        "phase",
+        "007",
+        "shipped",
+        "code-graph",
+        "launcher",
+        "single-owner",
+        "closedb",
+        "lifecycle",
+        "work",
+        "used",
+        "targeted-gate",
+        "lib",
+        "owner-lease",
+        "launcher-lease"
+      ],
+      "lastUpdated": "2026-07-07T16:10:55.920Z"
+    },
+    {
+      "specFolder": "system-code-graph/008-code-graph-scatter/013-code-graph-import-path-cleanup",
+      "description": "The `mcpserver` build emitted stale shared-package files under `.opencode/skills/system-spec-kit/mcpserver/dist/system-spec-kit/shared/`",
+      "keywords": [
+        "mcpserver",
+        "build",
+        "emitted",
+        "stale",
+        "shared-package",
+        "files",
+        "opencode",
+        "skills",
+        "system-spec-kit",
+        "dist",
+        "shared"
+      ],
+      "lastUpdated": "2026-07-07T16:10:55.581Z"
+    },
+    {
+      "specFolder": "system-code-graph/008-code-graph-scatter/006-code-graph-watcher-claim-retraction",
+      "description": "013 validated P1-1: the MCP server README had claimed real-time structural code-graph watching, but the adversarial retest found only",
+      "keywords": [
+        "013",
+        "validated",
+        "p1-1",
+        "mcp",
+        "server",
+        "readme",
+        "claimed",
+        "real-time",
+        "structural",
+        "code-graph",
+        "watching",
+        "adversarial",
+        "retest",
+        "found",
+        "only"
+      ],
+      "lastUpdated": "2026-07-07T16:10:53.170Z"
+    },
+    {
+      "specFolder": "system-code-graph/008-code-graph-scatter/005-code-graph-phase-runner",
+      "description": "`codegraph/lib/structural-indexer.ts:1369` `indexFiles()` runs scan stages inlined with no phase abstraction",
+      "keywords": [
+        "codegraph",
+        "lib",
+        "structural-indexer",
+        "1369",
+        "indexfiles",
+        "runs",
+        "scan",
+        "stages",
+        "inlined",
+        "phase",
+        "abstraction"
+      ],
+      "lastUpdated": "2026-07-07T16:10:52.833Z"
+    },
+    {
+      "specFolder": "system-code-graph/008-code-graph-scatter/009-code-graph-degraded-stress-cell",
+      "description": "Packet 010's v1.0.2 stress run produced a NEUTRAL verdict for packet 005 (code-graph fast-fail) because the Q1 cells did not exercise",
+      "keywords": [
+        "packet",
+        "010",
+        "stress",
+        "run",
+        "produced",
+        "neutral",
+        "verdict",
+        "005",
+        "code-graph",
+        "fast-fail",
+        "because",
+        "cells",
+        "exercise"
+      ],
+      "lastUpdated": "2026-07-07T16:10:54.198Z"
+    },
+    {
+      "specFolder": "system-code-graph/008-code-graph-scatter/001-code-graph-initial-scan",
+      "description": "`codegraphstatus` reports `totalNodes: 0`, `freshness: \"empty\"`, `action: \"fullscan\"`",
+      "keywords": [
+        "codegraphstatus",
+        "reports",
+        "totalnodes",
+        "freshness",
+        "empty",
+        "action",
+        "fullscan"
+      ],
+      "lastUpdated": "2026-07-07T16:10:51.528Z"
+    },
+    {
+      "specFolder": "system-code-graph/008-code-graph-scatter/002-deep-review-shutdown-and-codegraph",
+      "description": "The recent daemon-shutdown / memory-DB-lifecycle work (packets 008 checkpoint-on-close, 009 shutdown-durability, 010 at-rest-wal) and the code-graph",
+      "keywords": [
+        "recent",
+        "daemon-shutdown",
+        "memory-db-lifecycle",
+        "work",
+        "packets",
+        "008",
+        "checkpoint-on-close",
+        "009",
+        "shutdown-durability",
+        "010",
+        "at-rest-wal",
+        "code-graph"
+      ],
+      "lastUpdated": "2026-07-07T16:10:51.825Z"
+    },
+    {
+      "specFolder": "system-code-graph/008-code-graph-scatter/007-code-graph-catalog-and-playbook",
+      "description": "The codegraph runtime package had README coverage and root skill catalog/playbook entries, but it lacked package-local `featurecatalog/` and",
+      "keywords": [
+        "codegraph",
+        "runtime",
+        "package",
+        "readme",
+        "coverage",
+        "root",
+        "skill",
+        "catalog",
+        "playbook",
+        "entries",
+        "lacked",
+        "package-local",
+        "featurecatalog"
+      ],
+      "lastUpdated": "2026-07-07T16:10:53.533Z"
+    },
+    {
+      "specFolder": "system-code-graph/008-code-graph-scatter/008-fix-code-graph-consistency",
+      "description": "Nine consistency-and-resilience defects across the code-graph indexing, query, and doctor-workflow surface area leak partial-write, contention,",
+      "keywords": [
+        "nine",
+        "consistency-and-resilience",
+        "defects",
+        "across",
+        "code-graph",
+        "indexing",
+        "query",
+        "doctor-workflow",
+        "surface",
+        "area",
+        "leak",
+        "partial-write",
+        "contention"
+      ],
+      "lastUpdated": "2026-07-07T16:10:53.874Z"
+    },
+    {
+      "specFolder": "system-code-graph/010-code-graph-scatter-027",
+      "description": "Lean phase parent collecting four code-graph spec packets moved out of the 027 refinement tree.",
+      "keywords": [
+        "lean",
+        "phase",
+        "parent",
+        "collecting",
+        "four",
+        "code-graph",
+        "spec",
+        "packets",
+        "moved",
+        "027",
+        "refinement",
+        "tree"
+      ],
+      "lastUpdated": "2026-07-07T16:15:43.356Z"
+    },
+    {
+      "specFolder": "system-code-graph/010-code-graph-scatter-027/001-code-graph-code-only-indexing",
+      "description": "The code graph (`mkcodeindex`) is meant to model code structure, but its default include globs pulled in `/.md`, registering markdown/prose docs as",
+      "keywords": [
+        "code",
+        "graph",
+        "mkcodeindex",
+        "meant",
+        "model",
+        "structure",
+        "default",
+        "include",
+        "globs",
+        "pulled",
+        "registering",
+        "markdown",
+        "prose",
+        "docs"
+      ],
+      "lastUpdated": "2026-07-07T16:15:42.009Z"
+    },
+    {
+      "specFolder": "system-code-graph/010-code-graph-scatter-027/004-system-code-graph-frontmatter-alignment",
+      "description": "system-code-graph reference/asset frontmatter is inconsistent with the repo-wide contract: 6 of 7 references and 0 of 0 assets carry the detailed",
+      "keywords": [
+        "system-code-graph",
+        "reference",
+        "asset",
+        "frontmatter",
+        "inconsistent",
+        "repo-wide",
+        "contract",
+        "references",
+        "assets",
+        "carry",
+        "detailed"
+      ],
+      "lastUpdated": "2026-07-07T16:15:43.041Z"
+    },
+    {
+      "specFolder": "system-code-graph/010-code-graph-scatter-027/003-codegraph-apply-safety",
+      "description": "Spec wrapper for the code-graph apply-safety disposition packet moved under system-code-graph.",
+      "keywords": [
+        "spec",
+        "wrapper",
+        "code-graph",
+        "apply-safety",
+        "disposition",
+        "packet",
+        "moved",
+        "system-code-graph"
+      ],
+      "lastUpdated": "2026-07-07T16:15:42.699Z"
+    },
+    {
+      "specFolder": "system-code-graph/010-code-graph-scatter-027/002-code-graph-robustness",
+      "description": "Remediation sub-phase of the 027 fresh+regression deep-review: 8 findings (0 P1) in this subsystem, each carried as a task with its registry",
+      "keywords": [
+        "remediation",
+        "sub-phase",
+        "027",
+        "fresh",
+        "regression",
+        "deep-review",
+        "findings",
+        "subsystem",
+        "carried",
+        "task",
+        "registry"
+      ],
+      "lastUpdated": "2026-07-07T16:15:42.400Z"
+    },
+    {
+      "specFolder": "system-code-graph/009-advisor-codegraph-shared-features",
+      "description": "Spec-027 hardened the Spec Kit Memory system with retrieval observability, a provenance-overwrite guard, packed BM25/BM25F lexical search, shared",
+      "keywords": [
+        "spec-027",
+        "hardened",
+        "spec",
+        "kit",
+        "memory",
+        "system",
+        "retrieval",
+        "observability",
+        "provenance-overwrite",
+        "guard",
+        "packed",
+        "bm25",
+        "bm25f",
+        "lexical",
+        "search",
+        "shared"
+      ],
+      "lastUpdated": "2026-07-07T16:15:41.726Z"
+    },
+    {
+      "specFolder": "system-code-graph/009-advisor-codegraph-shared-features/002-codegraph-bfs-consolidation",
+      "description": "The code graph already uses app-level BFS rather than recursive CTEs for transitive symbol traversal (`handlers/query.ts:537-632`) and blast radius",
+      "keywords": [
+        "code",
+        "graph",
+        "already",
+        "uses",
+        "app-level",
+        "bfs",
+        "rather",
+        "recursive",
+        "ctes",
+        "transitive",
+        "symbol",
+        "traversal",
+        "handlers",
+        "query",
+        "537-632",
+        "blast",
+        "radius"
+      ],
+      "lastUpdated": "2026-07-07T12:56:32.410Z"
+    },
+    {
+      "specFolder": "system-code-graph/009-advisor-codegraph-shared-features/001-codegraph-tombstone-audit",
+      "description": "The code graph hard-deletes nodes and edges during reindex and stale cleanup (`lib/code-graph-db.ts:692-704`, `:784-790`, `:890-905`), so after a file",
+      "keywords": [
+        "code",
+        "graph",
+        "hard-deletes",
+        "nodes",
+        "edges",
+        "reindex",
+        "stale",
+        "cleanup",
+        "lib",
+        "code-graph-db",
+        "692-704",
+        "784-790",
+        "890-905",
+        "file"
+      ],
+      "lastUpdated": "2026-07-07T12:56:32.406Z"
+    },
+    {
+      "specFolder": "system-code-graph/009-advisor-codegraph-shared-features/004-codegraph-bm25-symbol-resolver",
+      "description": "Code-graph subject matching is exact equality on `fqname` or `name` (`handlers/query.ts:202-235`), so a near-miss symbol query returns nothing and the",
+      "keywords": [
+        "code-graph",
+        "subject",
+        "matching",
+        "exact",
+        "equality",
+        "fqname",
+        "name",
+        "handlers",
+        "query",
+        "202-235",
+        "near-miss",
+        "symbol",
+        "returns",
+        "nothing"
+      ],
+      "lastUpdated": "2026-07-07T12:56:32.419Z"
+    },
+    {
+      "specFolder": "system-code-graph/009-advisor-codegraph-shared-features/003-codegraph-why-included",
+      "description": "Code graph already returns depth groups and risk for `blastradius` and `codegraphcontext`, but not the concrete edge chain per file - so a consumer",
+      "keywords": [
+        "code",
+        "graph",
+        "already",
+        "returns",
+        "depth",
+        "groups",
+        "risk",
+        "blastradius",
+        "codegraphcontext",
+        "concrete",
+        "edge",
+        "chain",
+        "per",
+        "file",
+        "consumer"
+      ],
+      "lastUpdated": "2026-07-07T12:56:32.414Z"
+    },
+    {
+      "specFolder": "system-code-graph/007-code-graph-buildout",
+      "description": "Build and harden the code-graph structural-indexing surface: the standalone package, CocoIndex decoupling, startup fixes, and the code-graph runtime,",
+      "keywords": [
+        "build",
+        "harden",
+        "code-graph",
+        "structural-indexing",
+        "surface",
+        "standalone",
+        "package",
+        "cocoindex",
+        "decoupling",
+        "startup",
+        "fixes",
+        "runtime"
+      ],
+      "lastUpdated": "2026-07-07T16:09:32.409Z"
+    },
+    {
+      "specFolder": "system-code-graph/007-code-graph-buildout/001-mcp-shared-dependency-startup-fix",
+      "description": "Codex startup logs show `mkskilladvisor` and `mkcodeindex` failing during MCP initialization with `ERRMODULENOTFOUND: Cannot find package '@spec-kit/s",
+      "keywords": [
+        "codex",
+        "startup",
+        "logs",
+        "show",
+        "mkskilladvisor",
+        "mkcodeindex",
+        "failing",
+        "mcp",
+        "initialization",
+        "errmodulenotfound",
+        "cannot",
+        "find",
+        "package",
+        "spec-kit"
+      ],
+      "lastUpdated": "2026-06-23T03:49:55.740Z"
+    },
+    {
+      "specFolder": "system-code-graph/007-code-graph-buildout/008-real-world-usefulness-test-planning",
+      "description": "Earlier code-graph phases shipped capability and resilience for the tooling, hooks, and runtime integration surfaces",
+      "keywords": [
+        "earlier",
+        "code-graph",
+        "phases",
+        "shipped",
+        "capability",
+        "resilience",
+        "tooling",
+        "hooks",
+        "runtime",
+        "integration",
+        "surfaces"
+      ],
+      "lastUpdated": "2026-06-23T03:49:55.999Z"
+    },
+    {
+      "specFolder": "system-code-graph/007-code-graph-buildout/008-real-world-usefulness-test-planning/005-fix-zero-node-and-parser-issues",
+      "description": "The real-world usefulness research found two end-user-facing P0 code graph bugs",
+      "keywords": [
+        "real-world",
+        "usefulness",
+        "research",
+        "found",
+        "two",
+        "end-user-facing",
+        "code",
+        "graph",
+        "bugs"
+      ],
+      "lastUpdated": "2026-06-23T03:49:56.030Z"
+    },
+    {
+      "specFolder": "system-code-graph/007-code-graph-buildout/008-real-world-usefulness-test-planning/007-readiness-hooks-advisor-polish",
+      "description": "The Phase 012 deep research identified 12 remaining P1 findings after the P0 remediation packets",
+      "keywords": [
+        "phase",
+        "012",
+        "deep",
+        "research",
+        "identified",
+        "remaining",
+        "findings",
+        "remediation",
+        "packets"
+      ],
+      "lastUpdated": "2026-06-23T03:49:56.042Z"
+    },
+    {
+      "specFolder": "system-code-graph/007-code-graph-buildout/008-real-world-usefulness-test-planning/003-native-deferred-trial-rerun",
+      "description": "The sandbox campaign deferred native cells because it could not access MCP tools, authenticated state, network, or real compaction context",
+      "keywords": [
+        "sandbox",
+        "campaign",
+        "deferred",
+        "native",
+        "cells",
+        "because",
+        "access",
+        "mcp",
+        "tools",
+        "authenticated",
+        "state",
+        "network",
+        "real",
+        "compaction",
+        "context"
+      ],
+      "lastUpdated": "2026-06-23T03:49:56.017Z"
+    },
+    {
+      "specFolder": "system-code-graph/007-code-graph-buildout/008-real-world-usefulness-test-planning/001-usefulness-test-methodology",
+      "description": "Phases 001-011 shipped capability and resilience for code graph tooling, hooks, and runtime integration surfaces",
+      "keywords": [
+        "phases",
+        "001-011",
+        "shipped",
+        "capability",
+        "resilience",
+        "code",
+        "graph",
+        "tooling",
+        "hooks",
+        "runtime",
+        "integration",
+        "surfaces"
+      ],
+      "lastUpdated": "2026-06-23T03:49:56.005Z"
+    },
+    {
+      "specFolder": "system-code-graph/007-code-graph-buildout/008-real-world-usefulness-test-planning/002-sandbox-usefulness-trials",
+      "description": "The parent packet designed a 58-cell usefulness campaign, but many cells require authenticated external CLIs, network access, native Claude Code/OpenC",
+      "keywords": [
+        "parent",
+        "packet",
+        "designed",
+        "58-cell",
+        "usefulness",
+        "campaign",
+        "many",
+        "cells",
+        "require",
+        "authenticated",
+        "external",
+        "clis",
+        "network",
+        "access",
+        "native",
+        "claude",
+        "code",
+        "openc"
+      ],
+      "lastUpdated": "2026-06-23T03:49:56.011Z"
+    },
+    {
+      "specFolder": "system-code-graph/007-code-graph-buildout/008-real-world-usefulness-test-planning/008-tree-sitter-parser-crash-resilience",
+      "description": "Live testing of the code-graph (after F-002/F-003/F-018/F-019 remediation landed) showed that broad-scope scans (`agents+commands+specs+plugins=all`)",
+      "keywords": [
+        "live",
+        "testing",
+        "code-graph",
+        "f-002",
+        "f-003",
+        "f-018",
+        "f-019",
+        "remediation",
+        "landed",
+        "showed",
+        "broad-scope",
+        "scans",
+        "agents",
+        "commands",
+        "specs",
+        "plugins"
+      ],
+      "lastUpdated": "2026-06-23T03:49:56.049Z"
+    },
+    {
+      "specFolder": "system-code-graph/007-code-graph-buildout/008-real-world-usefulness-test-planning/006-scope-change-scan-guard",
+      "description": "The Phase 012/004 F-002 fix blocks only the literal zero-node full-scan edge case",
+      "keywords": [
+        "phase",
+        "012",
+        "004",
+        "f-002",
+        "fix",
+        "blocks",
+        "only",
+        "literal",
+        "zero-node",
+        "full-scan",
+        "edge",
+        "case"
+      ],
+      "lastUpdated": "2026-06-23T03:49:56.036Z"
+    },
+    {
+      "specFolder": "system-code-graph/007-code-graph-buildout/008-real-world-usefulness-test-planning/004-code-graph-bug-surface-research",
+      "description": "The native rerun downgraded code graph from useful to overhead after broad scans, read-path drift blocks, parser crashes, and a zero-node persistence",
+      "keywords": [
+        "native",
+        "rerun",
+        "downgraded",
+        "code",
+        "graph",
+        "useful",
+        "overhead",
+        "broad",
+        "scans",
+        "read-path",
+        "drift",
+        "blocks",
+        "parser",
+        "crashes",
+        "zero-node",
+        "persistence"
+      ],
+      "lastUpdated": "2026-06-23T03:49:56.024Z"
+    },
+    {
+      "specFolder": "system-code-graph/007-code-graph-buildout/009-system-code-graph-uplift-phase-parent",
+      "description": "The `system-code-graph` skill ships a runtime that works but a doc surface that under-sells it",
+      "keywords": [
+        "system-code-graph",
+        "skill",
+        "ships",
+        "runtime",
+        "works",
+        "doc",
+        "surface",
+        "under-sells"
+      ],
+      "lastUpdated": "2026-06-23T03:49:56.055Z"
+    },
+    {
+      "specFolder": "system-code-graph/007-code-graph-buildout/009-system-code-graph-uplift-phase-parent/001-skill-docs-install-guide-and-readmes-polish",
+      "description": "Research §10 enumerated 10 priority items spanning SKILL.md, INSTALLGUIDE.md, ARCHITECTURE.md, references, featurecatalog, and per-folder mcpserver RE",
+      "keywords": [
+        "research",
+        "enumerated",
+        "priority",
+        "items",
+        "spanning",
+        "skill",
+        "installguide",
+        "architecture",
+        "references",
+        "featurecatalog",
+        "per-folder",
+        "mcpserver"
+      ],
+      "lastUpdated": "2026-06-23T03:49:56.061Z"
+    },
+    {
+      "specFolder": "system-code-graph/007-code-graph-buildout/009-system-code-graph-uplift-phase-parent/003-sk-doc-type-validation-alignment",
+      "description": "Phase 3. Research synthesized at parent 019/research/research.md §12. Exhaustive validate_document.py --type <type> exit-0 across every authored doc. Per D3, validate manually for ALL files including per-feature files under feature_catalog/01--*/*.md and per-scenario files under manual_testing_playbook/01--*/*.md (no sampling). Research §5 Q7/Q8 confirmed validator does not auto-recurse; manual recursion required for both catalog and playbook subdirectories. Primary docs already type-compliant per research iter-019; this phase is verification + per-feature/per-scenario recursion.",
+      "keywords": [
+        "phase-stub",
+        "sk-doc-1to1-alignment",
+        "validate-document-exit-0",
+        "per-type-validation"
+      ],
+      "lastUpdated": "2026-05-16T09:37:48Z"
+    },
+    {
+      "specFolder": "system-code-graph/007-code-graph-buildout/009-system-code-graph-uplift-phase-parent/002-readme-problem-first-rewrite",
+      "description": "The current `.opencode/skills/system-code-graph/README.md` opens with implementation prose (\"Structural code indexing, SQLite-backed graph storage...\"",
+      "keywords": [
+        "current",
+        "opencode",
+        "skills",
+        "system-code-graph",
+        "readme",
+        "opens",
+        "implementation",
+        "prose",
+        "structural",
+        "code",
+        "indexing",
+        "sqlite-backed",
+        "graph",
+        "storage"
+      ],
+      "lastUpdated": "2026-06-23T03:49:56.067Z"
+    },
+    {
+      "specFolder": "system-code-graph/007-code-graph-buildout/011-source-bug-and-misalignment-audit",
+      "description": "The `system-code-graph` skill ships a ~17.5k-LOC standalone `mk-code-index` MCP server (tree-sitter parsing, better-sqlite3 storage, IPC launcher, own",
+      "keywords": [
+        "system-code-graph",
+        "skill",
+        "ships",
+        "5k-loc",
+        "standalone",
+        "mk-code-index",
+        "mcp",
+        "server",
+        "tree-sitter",
+        "parsing",
+        "better-sqlite3",
+        "storage",
+        "ipc",
+        "launcher",
+        "own"
+      ],
+      "lastUpdated": "2026-06-23T03:49:56.124Z"
+    },
+    {
+      "specFolder": "system-code-graph/007-code-graph-buildout/011-source-bug-and-misalignment-audit/001-source-bug-audit-findings",
+      "description": "The `system-code-graph` skill ships a ~17.5k-LOC standalone `mk-code-index` MCP server (tree-sitter parsing, better-sqlite3 storage, IPC launcher, own",
+      "keywords": [
+        "system-code-graph",
+        "skill",
+        "ships",
+        "5k-loc",
+        "standalone",
+        "mk-code-index",
+        "mcp",
+        "server",
+        "tree-sitter",
+        "parsing",
+        "better-sqlite3",
+        "storage",
+        "ipc",
+        "launcher",
+        "own"
+      ],
+      "lastUpdated": "2026-06-23T03:49:56.130Z"
+    },
+    {
+      "specFolder": "system-code-graph/007-code-graph-buildout/011-source-bug-and-misalignment-audit/004-db-location-skill-local",
+      "description": "The code-graph SQLite DB + sidecars + lease + readiness marker were created at the workspace-root `.opencode/.spec-kit/code-graph/database/`",
+      "keywords": [
+        "code-graph",
+        "sqlite",
+        "sidecars",
+        "lease",
+        "readiness",
+        "marker",
+        "created",
+        "workspace-root",
+        "opencode",
+        "spec-kit",
+        "database"
+      ],
+      "lastUpdated": "2026-06-23T03:49:56.147Z"
+    },
+    {
+      "specFolder": "system-code-graph/007-code-graph-buildout/011-source-bug-and-misalignment-audit/003-deferred-wip-overlapping-findings",
+      "description": "A subset of findings could not be safely auto-fixed: they edit files under active in-tree WIP, or their correct fix requires reconciling behavioral se",
+      "keywords": [
+        "subset",
+        "findings",
+        "safely",
+        "auto-fixed",
+        "edit",
+        "files",
+        "active",
+        "in-tree",
+        "wip",
+        "correct",
+        "fix",
+        "requires",
+        "reconciling",
+        "behavioral"
+      ],
+      "lastUpdated": "2026-06-30T12:42:37.576Z"
+    },
+    {
+      "specFolder": "system-code-graph/007-code-graph-buildout/011-source-bug-and-misalignment-audit/002-applied-source-and-doc-fixes",
+      "description": "The 011 audit recorded 37+1 findings in the system-code-graph MCP server",
+      "keywords": [
+        "011",
+        "audit",
+        "recorded",
+        "findings",
+        "system-code-graph",
+        "mcp",
+        "server"
+      ],
+      "lastUpdated": "2026-06-30T12:42:37.570Z"
+    },
+    {
+      "specFolder": "system-code-graph/007-code-graph-buildout/002-deprecate-coco-index",
+      "description": "The repo carries a semantic code-search stack that is being retired: the `mcp-coco-index` skill (a soft-fork of cocoindex-code + the `ccc` CLI + the `",
+      "keywords": [
+        "repo",
+        "carries",
+        "semantic",
+        "code-search",
+        "stack",
+        "retired",
+        "mcp-coco-index",
+        "skill",
+        "soft-fork",
+        "cocoindex-code",
+        "ccc",
+        "cli"
+      ],
+      "lastUpdated": "2026-06-23T03:49:55.746Z"
+    },
+    {
+      "specFolder": "system-code-graph/007-code-graph-buildout/002-deprecate-coco-index/007-docs-readme-search-routing",
+      "description": "Part of the CocoIndex / rerank-sidecar deprecation arc (014)",
+      "keywords": [
+        "part",
+        "cocoindex",
+        "rerank-sidecar",
+        "deprecation",
+        "arc",
+        "014"
+      ],
+      "lastUpdated": "2026-06-23T03:49:55.782Z"
+    },
+    {
+      "specFolder": "system-code-graph/007-code-graph-buildout/002-deprecate-coco-index/003-remove-memory-rerank-path",
+      "description": "Part of the CocoIndex / rerank-sidecar deprecation arc (014)",
+      "keywords": [
+        "part",
+        "cocoindex",
+        "rerank-sidecar",
+        "deprecation",
+        "arc",
+        "014"
+      ],
+      "lastUpdated": "2026-06-23T03:49:55.762Z"
+    },
+    {
+      "specFolder": "system-code-graph/007-code-graph-buildout/002-deprecate-coco-index/001-touchpoint-research",
+      "description": "Deprecating mcp-coco-index + system-rerank-sidecar and decoupling system-code-graph touches a large, dispersed surface (skills, commands, agents, hook",
+      "keywords": [
+        "deprecating",
+        "mcp-coco-index",
+        "system-rerank-sidecar",
+        "decoupling",
+        "system-code-graph",
+        "touches",
+        "large",
+        "dispersed",
+        "surface",
+        "skills",
+        "commands",
+        "agents",
+        "hook"
+      ],
+      "lastUpdated": "2026-06-23T03:49:55.752Z"
+    },
+    {
+      "specFolder": "system-code-graph/007-code-graph-buildout/002-deprecate-coco-index/017-remove-llm-reranking-keep-mmr",
+      "description": "Packet 014/003 already removed the core inactive LLM-model reranking path: cross-encoder modules, local GGUF reranker sidecar coupling, the conditiona",
+      "keywords": [
+        "packet",
+        "014",
+        "003",
+        "already",
+        "removed",
+        "core",
+        "inactive",
+        "llm-model",
+        "reranking",
+        "path",
+        "cross-encoder",
+        "modules",
+        "local",
+        "gguf",
+        "reranker",
+        "sidecar",
+        "coupling",
+        "conditiona"
+      ],
+      "lastUpdated": "2026-06-23T03:49:55.826Z"
+    },
+    {
+      "specFolder": "system-code-graph/007-code-graph-buildout/002-deprecate-coco-index/013-post-deprecation-deep-review",
+      "description": "The 014 deprecation was declared complete, but the session repeatedly found more residual at each grep refinement (`cocoindex`→`ccc`→`ccc`), and a pre",
+      "keywords": [
+        "014",
+        "deprecation",
+        "declared",
+        "complete",
+        "session",
+        "repeatedly",
+        "found",
+        "residual",
+        "grep",
+        "refinement",
+        "cocoindex",
+        "ccc",
+        "pre"
+      ],
+      "lastUpdated": "2026-06-23T03:49:55.798Z"
+    },
+    {
+      "specFolder": "system-code-graph/007-code-graph-buildout/002-deprecate-coco-index/004-remove-rerank-sidecar-skill",
+      "description": "Part of the CocoIndex / rerank-sidecar deprecation arc (014)",
+      "keywords": [
+        "part",
+        "cocoindex",
+        "rerank-sidecar",
+        "deprecation",
+        "arc",
+        "014"
+      ],
+      "lastUpdated": "2026-06-23T03:49:55.767Z"
+    },
+    {
+      "specFolder": "system-code-graph/007-code-graph-buildout/002-deprecate-coco-index/008-runtime-artifacts-cleanup",
+      "description": "Part of the CocoIndex / rerank-sidecar deprecation arc (014)",
+      "keywords": [
+        "part",
+        "cocoindex",
+        "rerank-sidecar",
+        "deprecation",
+        "arc",
+        "014"
+      ],
+      "lastUpdated": "2026-06-23T03:49:55.787Z"
+    },
+    {
+      "specFolder": "system-code-graph/007-code-graph-buildout/002-deprecate-coco-index/006-runtime-configs-4runtime-mirror",
+      "description": "Part of the CocoIndex / rerank-sidecar deprecation arc (014)",
+      "keywords": [
+        "part",
+        "cocoindex",
+        "rerank-sidecar",
+        "deprecation",
+        "arc",
+        "014"
+      ],
+      "lastUpdated": "2026-06-23T03:49:55.777Z"
+    },
+    {
+      "specFolder": "system-code-graph/007-code-graph-buildout/002-deprecate-coco-index/016-remediate-residue-tail",
+      "description": "After packets `014-remediate-codegraph-naming` + `015-remediate-cross-surface-residue`, an exhaustive verify-first sweep was run to prove the 014 depr",
+      "keywords": [
+        "packets",
+        "014-remediate-codegraph-naming",
+        "015-remediate-cross-surface-residue",
+        "exhaustive",
+        "verify-first",
+        "sweep",
+        "run",
+        "prove",
+        "014",
+        "depr"
+      ],
+      "lastUpdated": "2026-06-23T03:49:55.819Z"
+    },
+    {
+      "specFolder": "system-code-graph/007-code-graph-buildout/002-deprecate-coco-index/005-remove-coco-index-skill",
+      "description": "Part of the CocoIndex / rerank-sidecar deprecation arc (014)",
+      "keywords": [
+        "part",
+        "cocoindex",
+        "rerank-sidecar",
+        "deprecation",
+        "arc",
+        "014"
+      ],
+      "lastUpdated": "2026-06-23T03:49:55.772Z"
+    },
+    {
+      "specFolder": "system-code-graph/007-code-graph-buildout/002-deprecate-coco-index/015-remediate-cross-surface-residue",
+      "description": "The 014 CocoIndex + rerank-sidecar deprecation deleted the code, and `014-remediate-codegraph-naming` cleaned the code-graph docs, but six non-code-gr",
+      "keywords": [
+        "014",
+        "cocoindex",
+        "rerank-sidecar",
+        "deprecation",
+        "deleted",
+        "code",
+        "014-remediate-codegraph-naming",
+        "cleaned",
+        "code-graph",
+        "docs",
+        "six",
+        "non-code-gr"
+      ],
+      "lastUpdated": "2026-06-23T03:49:55.813Z"
+    },
+    {
+      "specFolder": "system-code-graph/007-code-graph-buildout/002-deprecate-coco-index/014-remediate-codegraph-naming",
+      "description": "The 014 deprecation renamed code-graph's handlers and tools to their own clean identifiers — handlers are `status.ts` / `scan.ts` / `verify.ts` (+ `qu",
+      "keywords": [
+        "014",
+        "deprecation",
+        "renamed",
+        "code-graph",
+        "handlers",
+        "tools",
+        "own",
+        "clean",
+        "identifiers",
+        "status",
+        "scan",
+        "verify"
+      ],
+      "lastUpdated": "2026-06-23T03:49:55.806Z"
+    },
+    {
+      "specFolder": "system-code-graph/007-code-graph-buildout/002-deprecate-coco-index/002-decouple-code-graph",
+      "description": "Part of the CocoIndex / rerank-sidecar deprecation arc (014)",
+      "keywords": [
+        "part",
+        "cocoindex",
+        "rerank-sidecar",
+        "deprecation",
+        "arc",
+        "014"
+      ],
+      "lastUpdated": "2026-06-23T03:49:55.757Z"
+    },
+    {
+      "specFolder": "system-code-graph/007-code-graph-buildout/002-deprecate-coco-index/010-remove-memory-coco-integration",
+      "description": "system-spec-kit (memory) carries a live CocoIndex integration the research missed: `lib/cocoindex/daemon-probe.ts`, `lib/utils/cocoindex-path.ts` (`is",
+      "keywords": [
+        "system-spec-kit",
+        "memory",
+        "carries",
+        "live",
+        "cocoindex",
+        "integration",
+        "research",
+        "missed",
+        "lib",
+        "daemon-probe",
+        "utils",
+        "cocoindex-path"
+      ],
+      "lastUpdated": "2026-06-23T03:49:55.793Z"
+    },
+    {
+      "specFolder": "system-code-graph/007-code-graph-buildout/014-gold-query-battery-repair",
+      "description": "The Code Graph MCP read path reports a fresh index, but `codegraphquery` still blocks because the verification gate fails",
+      "keywords": [
+        "code",
+        "graph",
+        "mcp",
+        "read",
+        "path",
+        "reports",
+        "fresh",
+        "index",
+        "codegraphquery",
+        "still",
+        "blocks",
+        "because",
+        "verification",
+        "gate",
+        "fails"
+      ],
+      "lastUpdated": "2026-06-23T03:49:56.166Z"
+    },
+    {
+      "specFolder": "system-code-graph/007-code-graph-buildout/004-runtime-and-scan",
+      "description": "The code-graph runtime and scan-correctness track: runtime upgrades, scan scope and correctness, resolver and hook improvements, and exclude tuning",
+      "keywords": [
+        "code-graph",
+        "runtime",
+        "scan-correctness",
+        "track",
+        "upgrades",
+        "scan",
+        "scope",
+        "correctness",
+        "resolver",
+        "hook",
+        "improvements",
+        "exclude",
+        "tuning"
+      ],
+      "lastUpdated": "2026-06-23T03:49:55.837Z"
+    },
+    {
+      "specFolder": "system-code-graph/007-code-graph-buildout/004-runtime-and-scan/003-resolver-and-hook-improvements",
+      "description": "The code-graph system has been delivered and partially remediated across 026 phases 003 (code-graph-package) and 009 (hook-package)",
+      "keywords": [
+        "code-graph",
+        "system",
+        "delivered",
+        "partially",
+        "remediated",
+        "across",
+        "026",
+        "phases",
+        "003",
+        "code-graph-package",
+        "009",
+        "hook-package"
+      ],
+      "lastUpdated": "2026-06-23T03:49:55.859Z"
+    },
+    {
+      "specFolder": "system-code-graph/007-code-graph-buildout/004-runtime-and-scan/001-code-graph-runtime-upgrades",
+      "description": "Current 026 graph work hardens trust (`011`) and advisory routing (`008`), but it does not add new detector provenance states, blast-radius correctnes",
+      "keywords": [
+        "current",
+        "026",
+        "graph",
+        "work",
+        "hardens",
+        "trust",
+        "011",
+        "advisory",
+        "routing",
+        "008",
+        "add",
+        "new",
+        "detector",
+        "provenance",
+        "states",
+        "blast-radius",
+        "correctnes"
+      ],
+      "lastUpdated": "2026-06-23T03:49:55.843Z"
+    },
+    {
+      "specFolder": "system-code-graph/007-code-graph-buildout/004-runtime-and-scan/005-broader-excludes-and-granular-skills",
+      "description": "Packet 009 excluded `.opencode/skills/` from default code-graph scans, but adjacent internal-heavy folders remained in the default scan surface",
+      "keywords": [
+        "packet",
+        "009",
+        "excluded",
+        "opencode",
+        "skills",
+        "default",
+        "code-graph",
+        "scans",
+        "adjacent",
+        "internal-heavy",
+        "folders",
+        "remained",
+        "scan",
+        "surface"
+      ],
+      "lastUpdated": "2026-06-23T03:49:55.873Z"
+    },
+    {
+      "specFolder": "system-code-graph/007-code-graph-buildout/004-runtime-and-scan/004-end-user-scope-default-and-opt-in",
+      "description": "Latest scan: 1,619 files / 34,844 nodes / 17,846 edges, with hundreds of those nodes being spec-kit MCP server internals (skilladvisor, codegraph subs",
+      "keywords": [
+        "latest",
+        "scan",
+        "619",
+        "files",
+        "844",
+        "nodes",
+        "846",
+        "edges",
+        "hundreds",
+        "spec-kit",
+        "mcp",
+        "server",
+        "internals",
+        "skilladvisor",
+        "codegraph",
+        "subs"
+      ],
+      "lastUpdated": "2026-06-23T03:49:55.867Z"
+    },
+    {
+      "specFolder": "system-code-graph/007-code-graph-buildout/004-runtime-and-scan/002-fix-stale-highlights-and-scan-scope",
+      "description": "Investigation 2026-04-23 (read-only Codex pass) surfaced three findings:",
+      "keywords": [
+        "investigation",
+        "2026-04-23",
+        "read-only",
+        "codex",
+        "pass",
+        "surfaced",
+        "three",
+        "findings"
+      ],
+      "lastUpdated": "2026-06-23T03:49:55.851Z"
+    },
+    {
+      "specFolder": "system-code-graph/007-code-graph-buildout/005-resilience-and-advisor",
+      "description": "The code-graph resilience and advisor-integration track: advisor refinement, backend resilience research and implementation, iteration-quality meta re",
+      "keywords": [
+        "code-graph",
+        "resilience",
+        "advisor-integration",
+        "track",
+        "advisor",
+        "refinement",
+        "backend",
+        "research",
+        "implementation",
+        "iteration-quality",
+        "meta"
+      ],
+      "lastUpdated": "2026-06-23T03:49:55.879Z"
+    },
+    {
+      "specFolder": "system-code-graph/007-code-graph-buildout/005-resilience-and-advisor/005-doctor-apply-mode-implementation",
+      "description": "`/doctor:code-graph` shipped Phase A (diagnostic-only `auto` and `confirm` modes) in packet `005-doctor-diagnostic-command-phase-a/`, with apply-mode",
+      "keywords": [
+        "doctor",
+        "code-graph",
+        "shipped",
+        "phase",
+        "diagnostic-only",
+        "auto",
+        "confirm",
+        "modes",
+        "packet",
+        "005-doctor-diagnostic-command-phase-a",
+        "apply-mode"
+      ],
+      "lastUpdated": "2026-06-23T03:49:55.919Z"
+    },
+    {
+      "specFolder": "system-code-graph/007-code-graph-buildout/005-resilience-and-advisor/001-code-graph-advisor-refinement",
+      "description": "The Code Graph system (AST-based structural indexer) and the Skill Advisor system (5-lane fusion scorer) each carry known limitations discovered piece",
+      "keywords": [
+        "code",
+        "graph",
+        "system",
+        "ast-based",
+        "structural",
+        "indexer",
+        "skill",
+        "advisor",
+        "5-lane",
+        "fusion",
+        "scorer",
+        "carry",
+        "known",
+        "limitations",
+        "discovered",
+        "piece"
+      ],
+      "lastUpdated": "2026-06-23T03:49:55.888Z"
+    },
+    {
+      "specFolder": "system-code-graph/007-code-graph-buildout/005-resilience-and-advisor/001-code-graph-advisor-refinement/research/001-code-graph-advisor-refinement-roadmap/iterations",
+      "description": "Research iteration artifacts for 001-code-graph-advisor-refinement-roadmap.",
+      "keywords": [
+        "research",
+        "iteration",
+        "artifacts",
+        "001-code-graph-advisor-refinement-roadmap",
+        "system-spec-kit",
+        "026-graph-and-context-optimization",
+        "009-hook-package",
+        "015-code-graph-advisor-refinement",
+        "iterations"
+      ],
+      "lastUpdated": "2026-04-25T03:32:06.433Z"
+    },
+    {
+      "specFolder": "system-code-graph/007-code-graph-buildout/005-resilience-and-advisor/004-iteration-quality-meta-research",
+      "description": "Prior fix cycles closed cited sites but missed sibling producers, downstream consumers, matrix rows, or algorithm invariants",
+      "keywords": [
+        "prior",
+        "fix",
+        "cycles",
+        "closed",
+        "cited",
+        "sites",
+        "missed",
+        "sibling",
+        "producers",
+        "downstream",
+        "consumers",
+        "matrix",
+        "rows",
+        "algorithm",
+        "invariants"
+      ],
+      "lastUpdated": "2026-06-23T03:49:55.912Z"
+    },
+    {
+      "specFolder": "system-code-graph/007-code-graph-buildout/005-resilience-and-advisor/003-code-graph-backend-resilience-implementation",
+      "description": "The 007 resilience-research packet identified five concrete backend resilience gaps and produced design-ready patch plans for each (iter 8-12 markdown",
+      "keywords": [
+        "007",
+        "resilience-research",
+        "packet",
+        "identified",
+        "five",
+        "concrete",
+        "backend",
+        "resilience",
+        "gaps",
+        "produced",
+        "design-ready",
+        "patch",
+        "plans",
+        "iter",
+        "8-12",
+        "markdown"
+      ],
+      "lastUpdated": "2026-06-23T03:49:55.903Z"
+    },
+    {
+      "specFolder": "system-code-graph/007-code-graph-buildout/005-resilience-and-advisor/002-code-graph-resilience-research",
+      "description": "The code graph index has three observable failure modes today:",
+      "keywords": [
+        "code",
+        "graph",
+        "index",
+        "three",
+        "observable",
+        "failure",
+        "modes",
+        "today"
+      ],
+      "lastUpdated": "2026-06-23T03:49:55.896Z"
+    },
+    {
+      "specFolder": "system-code-graph/007-code-graph-buildout/010-playbook-validation-and-hardening",
+      "description": "The `system-code-graph` skill ships a 22-scenario manual testing playbook (`manualtestingplaybook/`) that validates the `mk-code-index` MCP runtime: r",
+      "keywords": [
+        "system-code-graph",
+        "skill",
+        "ships",
+        "22-scenario",
+        "manual",
+        "testing",
+        "playbook",
+        "manualtestingplaybook",
+        "validates",
+        "mk-code-index",
+        "mcp",
+        "runtime"
+      ],
+      "lastUpdated": "2026-06-23T03:49:56.073Z"
+    },
+    {
+      "specFolder": "system-code-graph/007-code-graph-buildout/010-playbook-validation-and-hardening/004-hook-and-doc-fixes",
+      "description": "The 029 validation run surfaced (a) F-025-1: the Devin SessionStart hook in `.devin/hooks.v1.json` registers a non-existent path, so the hook never fi",
+      "keywords": [
+        "029",
+        "validation",
+        "run",
+        "surfaced",
+        "f-025-1",
+        "devin",
+        "sessionstart",
+        "hook",
+        "hooks",
+        "json",
+        "registers",
+        "non-existent",
+        "path",
+        "never"
+      ],
+      "lastUpdated": "2026-06-23T03:49:56.096Z"
+    },
+    {
+      "specFolder": "system-code-graph/007-code-graph-buildout/010-playbook-validation-and-hardening/007-followup-hook-docs-and-022",
+      "description": "Two non-blocking follow-ups remained after the 029 remediation",
+      "keywords": [
+        "two",
+        "non-blocking",
+        "follow-ups",
+        "remained",
+        "029",
+        "remediation"
+      ],
+      "lastUpdated": "2026-06-23T03:49:56.113Z"
+    },
+    {
+      "specFolder": "system-code-graph/007-code-graph-buildout/010-playbook-validation-and-hardening/001-opencode-runtime-scenarios",
+      "description": "15 of the 22 code-graph playbook scenarios require the live `mk-code-index` MCP runtime (scan, query, verify, status, context, detectchanges), the dee",
+      "keywords": [
+        "code-graph",
+        "playbook",
+        "scenarios",
+        "require",
+        "live",
+        "mk-code-index",
+        "mcp",
+        "runtime",
+        "scan",
+        "query",
+        "verify",
+        "status",
+        "context",
+        "detectchanges",
+        "dee"
+      ],
+      "lastUpdated": "2026-06-23T03:49:56.078Z"
+    },
+    {
+      "specFolder": "system-code-graph/007-code-graph-buildout/010-playbook-validation-and-hardening/008-blast-radius-transitive-flag",
+      "description": "Finding F-022-1 (phase 007): `codegraphquery` blastradius ignores the `includeTransitive` flag",
+      "keywords": [
+        "finding",
+        "f-022-1",
+        "phase",
+        "007",
+        "codegraphquery",
+        "blastradius",
+        "ignores",
+        "includetransitive",
+        "flag"
+      ],
+      "lastUpdated": "2026-06-23T03:49:56.119Z"
+    },
+    {
+      "specFolder": "system-code-graph/007-code-graph-buildout/010-playbook-validation-and-hardening/006-parser-quarantine-recovery",
+      "description": "029 finding F-RUNTIME-2: a single B2 fault (\"memory access out of bounds\") sets the module-level `parserHealth = 'quarantined'` (`tree-sitter-parser.t",
+      "keywords": [
+        "029",
+        "finding",
+        "f-runtime-2",
+        "single",
+        "fault",
+        "memory",
+        "access",
+        "bounds",
+        "sets",
+        "module-level",
+        "parserhealth",
+        "quarantined",
+        "tree-sitter-parser"
+      ],
+      "lastUpdated": "2026-06-23T03:49:56.107Z"
+    },
+    {
+      "specFolder": "system-code-graph/007-code-graph-buildout/010-playbook-validation-and-hardening/005-db-binding-cleanup",
+      "description": "029 finding F-019-1 reported a legacy code-graph SQLite DB at `.opencode/skills/system-code-graph/mcpserver/database/code-graph.sqlite` (106 KB) along",
+      "keywords": [
+        "029",
+        "finding",
+        "f-019-1",
+        "reported",
+        "legacy",
+        "code-graph",
+        "sqlite",
+        "opencode",
+        "skills",
+        "system-code-graph",
+        "mcpserver",
+        "database",
+        "106",
+        "along"
+      ],
+      "lastUpdated": "2026-06-23T03:49:56.101Z"
+    },
+    {
+      "specFolder": "system-code-graph/007-code-graph-buildout/010-playbook-validation-and-hardening/002-devin-static-scenarios",
+      "description": "7 of the 22 playbook scenarios are static/source-inspection or build-verification checks (MCP manifest post-rename, launcher startup prefix, mcp.json",
+      "keywords": [
+        "playbook",
+        "scenarios",
+        "static",
+        "source-inspection",
+        "build-verification",
+        "checks",
+        "mcp",
+        "manifest",
+        "post-rename",
+        "launcher",
+        "startup",
+        "prefix",
+        "json"
+      ],
+      "lastUpdated": "2026-06-23T03:49:56.084Z"
+    },
+    {
+      "specFolder": "system-code-graph/007-code-graph-buildout/010-playbook-validation-and-hardening/003-release-readiness-synthesis",
+      "description": "Phases 001 and 002 each produce per-scenario evidence, but the playbook's release-readiness verdict (§5 Review Protocol) requires a single consolidate",
+      "keywords": [
+        "phases",
+        "001",
+        "002",
+        "produce",
+        "per-scenario",
+        "evidence",
+        "playbook",
+        "release-readiness",
+        "verdict",
+        "review",
+        "protocol",
+        "requires",
+        "single",
+        "consolidate"
+      ],
+      "lastUpdated": "2026-06-23T03:49:56.090Z"
+    },
+    {
+      "specFolder": "system-code-graph/007-code-graph-buildout/003-code-graph-workspace-root-fix",
+      "description": "`/mcp` reported `Failed to reconnect to mkcodeindex: -32000`",
+      "keywords": [
+        "mcp",
+        "reported",
+        "failed",
+        "reconnect",
+        "mkcodeindex",
+        "32000"
+      ],
+      "lastUpdated": "2026-06-23T03:49:55.832Z"
+    },
+    {
+      "specFolder": "system-code-graph/007-code-graph-buildout/013-owner-lease-election-race",
+      "description": "The launcher (`mk-code-index-launcher.cjs`) elects the single writer through several gates before spawning the daemon, but two of them are non-atomic:",
+      "keywords": [
+        "launcher",
+        "mk-code-index-launcher",
+        "cjs",
+        "elects",
+        "single",
+        "writer",
+        "several",
+        "gates",
+        "spawning",
+        "daemon",
+        "two",
+        "them",
+        "non-atomic"
+      ],
+      "lastUpdated": "2026-06-23T03:49:56.160Z"
+    },
+    {
+      "specFolder": "system-code-graph/007-code-graph-buildout/006-extraction-and-isolation",
+      "description": "The system-code-graph extraction and standalone-MCP isolation track: extraction, extraction design and decision record, standalone-MCP topology pivot,",
+      "keywords": [
+        "system-code-graph",
+        "extraction",
+        "standalone-mcp",
+        "isolation",
+        "track",
+        "design",
+        "decision",
+        "record",
+        "topology",
+        "pivot"
+      ],
+      "lastUpdated": "2026-06-23T03:49:55.924Z"
+    },
+    {
+      "specFolder": "system-code-graph/007-code-graph-buildout/006-extraction-and-isolation/002-extraction-design-and-decision-record",
+      "description": "Code-graph today is a 108-file subsystem (29 lib TS + 10 handlers + 2 tools + 28 vitest + 16 in-package docs + 23 READMEs) inside `system-spec-kit`, 1",
+      "keywords": [
+        "code-graph",
+        "today",
+        "108-file",
+        "subsystem",
+        "lib",
+        "handlers",
+        "tools",
+        "vitest",
+        "in-package",
+        "docs",
+        "readmes",
+        "inside",
+        "system-spec-kit"
+      ],
+      "lastUpdated": "2026-06-23T03:49:55.939Z"
+    },
+    {
+      "specFolder": "system-code-graph/007-code-graph-buildout/006-extraction-and-isolation/003-standalone-mcp-topology-pivot",
+      "description": "Reality diverged from ADR-001 in two ways",
+      "keywords": [
+        "reality",
+        "diverged",
+        "adr-001",
+        "two",
+        "ways"
+      ],
+      "lastUpdated": "2026-06-23T03:49:55.945Z"
+    },
+    {
+      "specFolder": "system-code-graph/007-code-graph-buildout/006-extraction-and-isolation/004-three-way-isolation-finalize",
+      "description": "Close the last 1 production import in system-code-graph + the 6 in system-skill-advisor by duplicating symbols into each skill's lib/shared/, then dro",
+      "keywords": [
+        "close",
+        "last",
+        "production",
+        "import",
+        "system-code-graph",
+        "system-skill-advisor",
+        "duplicating",
+        "symbols",
+        "skill",
+        "lib",
+        "shared",
+        "dro"
+      ],
+      "lastUpdated": "2026-06-23T03:49:55.951Z"
+    },
+    {
+      "specFolder": "system-code-graph/007-code-graph-buildout/006-extraction-and-isolation/001-system-code-graph-extraction",
+      "description": "Migrate the code-graph subsystem out of system-spec-kit's MCP server into a dedicated `.opencode/skills/system-code-graph/` package with its own SKILL",
+      "keywords": [
+        "migrate",
+        "code-graph",
+        "subsystem",
+        "system-spec-kit",
+        "mcp",
+        "server",
+        "dedicated",
+        "opencode",
+        "skills",
+        "system-code-graph",
+        "package",
+        "own",
+        "skill"
+      ],
+      "lastUpdated": "2026-06-23T03:49:55.931Z"
+    },
+    {
+      "specFolder": "system-code-graph/007-code-graph-buildout/007-docs-and-readmes",
+      "description": "The code-graph documentation track: doctor diagnostic command phase-a, system-code-graph READMEs, code-folder READMEs, doc-drift alignment, cross-skil",
+      "keywords": [
+        "code-graph",
+        "documentation",
+        "track",
+        "doctor",
+        "diagnostic",
+        "command",
+        "phase-a",
+        "system-code-graph",
+        "readmes",
+        "code-folder",
+        "doc-drift",
+        "alignment",
+        "cross-skil"
+      ],
+      "lastUpdated": "2026-06-23T03:49:55.956Z"
+    },
+    {
+      "specFolder": "system-code-graph/007-code-graph-buildout/007-docs-and-readmes/002-system-code-graph-readmes-update",
+      "description": "The system-code-graph skill READMEs were inconsistent after extraction and the packet 010 MCP rename",
+      "keywords": [
+        "system-code-graph",
+        "skill",
+        "readmes",
+        "inconsistent",
+        "extraction",
+        "packet",
+        "010",
+        "mcp",
+        "rename"
+      ],
+      "lastUpdated": "2026-06-23T03:49:55.969Z"
+    },
+    {
+      "specFolder": "system-code-graph/007-code-graph-buildout/007-docs-and-readmes/001-doctor-diagnostic-command-phase-a",
+      "description": "Code graph operations have no doctor surface",
+      "keywords": [
+        "code",
+        "graph",
+        "operations",
+        "doctor",
+        "surface"
+      ],
+      "lastUpdated": "2026-06-23T03:49:55.963Z"
+    },
+    {
+      "specFolder": "system-code-graph/007-code-graph-buildout/007-docs-and-readmes/004-doc-drift-alignment",
+      "description": "Authored docs under `.opencode/skills/system-code-graph/` disagree with the live runtime on four points: (1) tool count is claimed as `10` in 6 places",
+      "keywords": [
+        "authored",
+        "docs",
+        "opencode",
+        "skills",
+        "system-code-graph",
+        "disagree",
+        "live",
+        "runtime",
+        "four",
+        "points",
+        "tool",
+        "count",
+        "claimed",
+        "places"
+      ],
+      "lastUpdated": "2026-06-23T03:49:55.981Z"
+    },
+    {
+      "specFolder": "system-code-graph/007-code-graph-buildout/007-docs-and-readmes/005-cross-skill-doc-polish",
+      "description": "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]",
+      "keywords": [
+        "broken",
+        "missing",
+        "inefficient",
+        "2-3",
+        "sentences",
+        "describing",
+        "specific",
+        "pain",
+        "point"
+      ],
+      "lastUpdated": "2026-06-23T03:49:55.987Z"
+    },
+    {
+      "specFolder": "system-code-graph/007-code-graph-buildout/007-docs-and-readmes/003-code-folder-readmes-poc",
+      "description": "Author 3 sk-doc-aligned READMEs (CODE template, 9 anchored sections, YAML frontmatter, HVR-compliant prose) using a two-pass cli-devin + cli-opencode",
+      "keywords": [
+        "author",
+        "sk-doc-aligned",
+        "readmes",
+        "code",
+        "template",
+        "anchored",
+        "sections",
+        "yaml",
+        "frontmatter",
+        "hvr-compliant",
+        "prose",
+        "using",
+        "two-pass",
+        "cli-devin",
+        "cli-opencode"
+      ],
+      "lastUpdated": "2026-06-23T03:49:55.975Z"
+    },
+    {
+      "specFolder": "system-code-graph/007-code-graph-buildout/007-docs-and-readmes/006-reference-template-alignment",
+      "description": "The code-graph reference set did not follow sk-doc reference-template naming and structure 1:1",
+      "keywords": [
+        "code-graph",
+        "reference",
+        "set",
+        "follow",
+        "sk-doc",
+        "reference-template",
+        "naming",
+        "structure"
+      ],
+      "lastUpdated": "2026-06-23T03:49:55.993Z"
+    },
+    {
+      "specFolder": "system-code-graph/007-code-graph-buildout/012-empty-graph-first-time-auto-scan",
+      "description": "When the code graph is empty (never built, or reset), the read tools (`codegraphquery`, `codegraphcontext`) return `status:\"blocked\"` with `requiredAc",
+      "keywords": [
+        "code",
+        "graph",
+        "empty",
+        "never",
+        "built",
+        "reset",
+        "read",
+        "tools",
+        "codegraphquery",
+        "codegraphcontext",
+        "return",
+        "status",
+        "blocked",
+        "requiredac"
+      ],
+      "lastUpdated": "2026-06-23T03:49:56.154Z"
+    },
+    {
+      "specFolder": "system-code-graph/z_archive",
+      "description": "",
+      "keywords": [],
+      "lastUpdated": "2026-07-07T00:00:00.000Z"
+    },
+    {
+      "specFolder": "system-code-graph/z_archive/009-cross-runtime-ux",
+      "description": "This phase addresses concrete context-preservation and code-graph reliability gaps tracked in this packet",
+      "keywords": [
+        "phase",
+        "addresses",
+        "concrete",
+        "context-preservation",
+        "code-graph",
+        "reliability",
+        "gaps",
+        "tracked",
+        "packet"
+      ],
+      "lastUpdated": "2026-07-07T16:12:48.437Z"
+    },
+    {
+      "specFolder": "system-code-graph/z_archive/020-code-graph-self-contained-package",
+      "description": "Migrate code-graph into a parallel self-contained package at `mcpserver/code-graph/` with subfolders `lib/`, `tools/`, `handlers/`, `tests/`,",
+      "keywords": [
+        "migrate",
+        "code-graph",
+        "parallel",
+        "self-contained",
+        "package",
+        "mcpserver",
+        "subfolders",
+        "lib",
+        "tools",
+        "handlers",
+        "tests"
+      ],
+      "lastUpdated": "2026-07-07T16:12:51.618Z"
+    },
+    {
+      "specFolder": "system-code-graph/z_archive/014-session-start-injection-debug",
+      "description": "The startup priming path is still broken or too thin where true startup injection should happen",
+      "keywords": [
+        "startup",
+        "priming",
+        "path",
+        "still",
+        "broken",
+        "too",
+        "thin",
+        "true",
+        "injection",
+        "happen"
+      ],
+      "lastUpdated": "2026-07-07T16:12:49.806Z"
+    },
+    {
+      "specFolder": "system-code-graph/z_archive/023-system-code-graph-comprehensive-deep-review",
+      "description": "The `system-code-graph` skill has been through a multi-arc evolution: extraction from `system-spec-kit` (packet 014), MCP server rename",
+      "keywords": [
+        "system-code-graph",
+        "skill",
+        "multi-arc",
+        "evolution",
+        "extraction",
+        "system-spec-kit",
+        "packet",
+        "014",
+        "mcp",
+        "server",
+        "rename"
+      ],
+      "lastUpdated": "2026-07-07T16:12:52.569Z"
+    },
+    {
+      "specFolder": "system-code-graph/z_archive/015-opencode-structural-priming",
+      "description": "Phases 018 and 024 improved hookless session bootstrap, but non-hook runtimes still depend too much on the model deciding to call structural tools at",
+      "keywords": [
+        "phases",
+        "018",
+        "024",
+        "improved",
+        "hookless",
+        "session",
+        "bootstrap",
+        "non-hook",
+        "runtimes",
+        "still",
+        "depend",
+        "too",
+        "much",
+        "model",
+        "deciding",
+        "call",
+        "structural",
+        "tools"
+      ],
+      "lastUpdated": "2026-07-07T16:12:50.119Z"
+    },
+    {
+      "specFolder": "system-code-graph/z_archive/021-system-code-graph-deep-review-remediation",
+      "description": "Packet 037's 20-iter deep-review surfaced 2 P0 + 25 P1 + ~30 P2 findings on system-code-graph v1.0.0.0",
+      "keywords": [
+        "packet",
+        "037",
+        "20-iter",
+        "deep-review",
+        "surfaced",
+        "findings",
+        "system-code-graph"
+      ],
+      "lastUpdated": "2026-07-07T16:12:51.938Z"
+    },
+    {
+      "specFolder": "system-code-graph/z_archive/006-cocoindex-ux-utilization",
+      "description": "Phase 012 improved CocoIndex visibility and routing, but the packet drifted away from the Level 2 template and from current implementation reality",
+      "keywords": [
+        "phase",
+        "012",
+        "improved",
+        "cocoindex",
+        "visibility",
+        "routing",
+        "packet",
+        "drifted",
+        "away",
+        "level",
+        "template",
+        "current",
+        "implementation",
+        "reality"
+      ],
+      "lastUpdated": "2026-07-07T16:12:47.475Z"
+    },
+    {
+      "specFolder": "system-code-graph/z_archive/005-compaction-working-set",
+      "description": "This phase addresses concrete context-preservation and code-graph reliability gaps tracked in this packet",
+      "keywords": [
+        "phase",
+        "addresses",
+        "concrete",
+        "context-preservation",
+        "code-graph",
+        "reliability",
+        "gaps",
+        "tracked",
+        "packet"
+      ],
+      "lastUpdated": "2026-07-07T16:12:47.168Z"
+    },
+    {
+      "specFolder": "system-code-graph/z_archive/004-cocoindex-bridge-context",
+      "description": "This phase addresses concrete context-preservation and code-graph reliability gaps tracked in this packet",
+      "keywords": [
+        "phase",
+        "addresses",
+        "concrete",
+        "context-preservation",
+        "code-graph",
+        "reliability",
+        "gaps",
+        "tracked",
+        "packet"
+      ],
+      "lastUpdated": "2026-07-07T16:12:46.877Z"
+    },
+    {
+      "specFolder": "system-code-graph/z_archive/022-orphan-code-graph-db-cleanup",
+      "description": "Packet 014 extracted code-graph ownership to `.opencode/skills/system-code-graph/`, but stale code-graph SQLite files and compiled extracted code",
+      "keywords": [
+        "packet",
+        "014",
+        "extracted",
+        "code-graph",
+        "ownership",
+        "opencode",
+        "skills",
+        "system-code-graph",
+        "stale",
+        "sqlite",
+        "files",
+        "compiled",
+        "code"
+      ],
+      "lastUpdated": "2026-07-07T16:12:52.281Z"
+    },
+    {
+      "specFolder": "system-code-graph/z_archive/016-startup-highlights-remediation",
+      "description": "The `queryStartupHighlights()` function in `code-graph-db.ts` has 3 correctness issues that render the session start highlights useless:",
+      "keywords": [
+        "querystartuphighlights",
+        "function",
+        "code-graph-db",
+        "correctness",
+        "issues",
+        "render",
+        "session",
+        "start",
+        "highlights",
+        "useless"
+      ],
+      "lastUpdated": "2026-07-07T16:12:50.414Z"
+    },
+    {
+      "specFolder": "system-code-graph/z_archive/011-code-graph-auto-trigger",
+      "description": "This phase addresses concrete context-preservation and code-graph reliability gaps tracked in this packet",
+      "keywords": [
+        "phase",
+        "addresses",
+        "concrete",
+        "context-preservation",
+        "code-graph",
+        "reliability",
+        "gaps",
+        "tracked",
+        "packet"
+      ],
+      "lastUpdated": "2026-07-07T16:12:48.979Z"
+    },
+    {
+      "specFolder": "system-code-graph/z_archive/003-code-graph-storage-query",
+      "description": "This phase addresses concrete context-preservation and code-graph reliability gaps tracked in this packet",
+      "keywords": [
+        "phase",
+        "addresses",
+        "concrete",
+        "context-preservation",
+        "code-graph",
+        "reliability",
+        "gaps",
+        "tracked",
+        "packet"
+      ],
+      "lastUpdated": "2026-07-07T16:12:46.571Z"
+    },
+    {
+      "specFolder": "system-code-graph/z_archive/007-correctness-boundary-repair",
+      "description": "This phase addresses concrete context-preservation and code-graph reliability gaps tracked in this packet",
+      "keywords": [
+        "phase",
+        "addresses",
+        "concrete",
+        "context-preservation",
+        "code-graph",
+        "reliability",
+        "gaps",
+        "tracked",
+        "packet"
+      ],
+      "lastUpdated": "2026-07-07T16:12:47.773Z"
+    },
+    {
+      "specFolder": "system-code-graph/z_archive/017-opencode-graph-plugin",
+      "description": "Packet `030-opencode-graph-plugin` started as research plus a packet scaffold, then converged into six completed runtime phases: shared",
+      "keywords": [
+        "packet",
+        "030-opencode-graph-plugin",
+        "started",
+        "research",
+        "plus",
+        "scaffold",
+        "converged",
+        "six",
+        "completed",
+        "runtime",
+        "phases",
+        "shared"
+      ],
+      "lastUpdated": "2026-07-07T16:12:50.693Z"
+    },
+    {
+      "specFolder": "system-code-graph/z_archive/017-opencode-graph-plugin/003-code-graph-operations-hardening",
+      "description": "The additional research showed that the current graph runtime is good at compact context generation but still thin on durability, portability, and int",
+      "keywords": [
+        "additional",
+        "research",
+        "showed",
+        "current",
+        "graph",
+        "runtime",
+        "good",
+        "compact",
+        "context",
+        "generation",
+        "still",
+        "thin",
+        "durability",
+        "portability",
+        "int"
+      ],
+      "lastUpdated": "2026-06-23T03:50:00.796Z"
+    },
+    {
+      "specFolder": "system-code-graph/z_archive/017-opencode-graph-plugin/004-cross-runtime-startup-surfacing-parity",
+      "description": "OpenCode now injects a structured startup digest and session-context surfacing through the packet-030 plugin layer, but the other repo-managed CLI run",
+      "keywords": [
+        "opencode",
+        "now",
+        "injects",
+        "structured",
+        "startup",
+        "digest",
+        "session-context",
+        "surfacing",
+        "packet-030",
+        "plugin",
+        "layer",
+        "repo-managed",
+        "cli",
+        "run"
+      ],
+      "lastUpdated": "2026-06-23T03:50:00.802Z"
+    },
+    {
+      "specFolder": "system-code-graph/z_archive/017-opencode-graph-plugin/002-opencode-transport-adapter",
+      "description": "Packet 024 already has strong retrieval surfaces, but OpenCode still lacked a clean prompt-time transport layer that could inject compact context duri",
+      "keywords": [
+        "packet",
+        "024",
+        "already",
+        "strong",
+        "retrieval",
+        "surfaces",
+        "opencode",
+        "still",
+        "lacked",
+        "clean",
+        "prompt-time",
+        "transport",
+        "layer",
+        "inject",
+        "compact",
+        "context",
+        "duri"
+      ],
+      "lastUpdated": "2026-06-23T03:50:00.790Z"
+    },
+    {
+      "specFolder": "system-code-graph/z_archive/017-opencode-graph-plugin/031-copilot-startup-hook-wiring",
+      "description": "Copilot CLI live verification proved that the shared startup banner code existed and emitted the right output when run directly, but the repo-level `s",
+      "keywords": [
+        "copilot",
+        "cli",
+        "live",
+        "verification",
+        "proved",
+        "shared",
+        "startup",
+        "banner",
+        "code",
+        "existed",
+        "emitted",
+        "right",
+        "output",
+        "run",
+        "directly",
+        "repo-level"
+      ],
+      "lastUpdated": "2026-06-23T03:50:00.816Z"
+    },
+    {
+      "specFolder": "system-code-graph/z_archive/017-opencode-graph-plugin/005-code-graph-auto-reindex-parity",
+      "description": "The code graph already has an auto-readiness engine, but the main structural read paths currently call it with inline indexing disabled",
+      "keywords": [
+        "code",
+        "graph",
+        "already",
+        "auto-readiness",
+        "engine",
+        "main",
+        "structural",
+        "read",
+        "paths",
+        "currently",
+        "call",
+        "inline",
+        "indexing",
+        "disabled"
+      ],
+      "lastUpdated": "2026-06-23T03:50:00.810Z"
+    },
+    {
+      "specFolder": "system-code-graph/z_archive/017-opencode-graph-plugin/001-shared-payload-provenance-layer",
+      "description": "The research found that the real prerequisite is not the OpenCode adapter shell itself, but a shared payload/provenance composition layer",
+      "keywords": [
+        "research",
+        "found",
+        "real",
+        "prerequisite",
+        "opencode",
+        "adapter",
+        "shell",
+        "itself",
+        "shared",
+        "payload",
+        "provenance",
+        "composition",
+        "layer"
+      ],
+      "lastUpdated": "2026-06-23T03:50:00.784Z"
+    },
+    {
+      "specFolder": "system-code-graph/z_archive/013-tool-routing-enforcement",
+      "description": "AI assistants across all CLI runtimes (Claude Code, Codex CLI, Copilot CLI, Gemini CLI) consistently default to Grep/Glob for code search tasks even",
+      "keywords": [
+        "assistants",
+        "across",
+        "cli",
+        "runtimes",
+        "claude",
+        "code",
+        "codex",
+        "copilot",
+        "gemini",
+        "consistently",
+        "default",
+        "grep",
+        "glob",
+        "search",
+        "tasks",
+        "even"
+      ],
+      "lastUpdated": "2026-07-07T16:12:49.534Z"
+    },
+    {
+      "specFolder": "system-code-graph/z_archive/012-query-routing-integration",
+      "description": "This packet drifted away from the shipped implementation",
+      "keywords": [
+        "packet",
+        "drifted",
+        "away",
+        "shipped",
+        "implementation"
+      ],
+      "lastUpdated": "2026-07-07T16:12:49.248Z"
+    },
+    {
+      "specFolder": "system-code-graph/z_archive/008-tree-sitter-migration",
+      "description": "This phase addresses concrete context-preservation and code-graph reliability gaps tracked in this packet",
+      "keywords": [
+        "phase",
+        "addresses",
+        "concrete",
+        "context-preservation",
+        "code-graph",
+        "reliability",
+        "gaps",
+        "tracked",
+        "packet"
+      ],
+      "lastUpdated": "2026-07-07T16:12:48.109Z"
+    },
+    {
+      "specFolder": "system-code-graph/z_archive/018-cli-devin-code-graph-hook",
+      "description": "`system-code-graph` is extracted as a skill and MCP surface, but its runtime startup hooks still live in `system-spec-kit/mcpserver/hooks/`",
+      "keywords": [
+        "system-code-graph",
+        "extracted",
+        "skill",
+        "mcp",
+        "surface",
+        "runtime",
+        "startup",
+        "hooks",
+        "still",
+        "live",
+        "system-spec-kit",
+        "mcpserver"
+      ],
+      "lastUpdated": "2026-07-07T16:12:50.998Z"
+    },
+    {
+      "specFolder": "system-code-graph/z_archive/001-documentation-alignment",
+      "description": "This phase addresses concrete context-preservation and code-graph reliability gaps tracked in this packet",
+      "keywords": [
+        "phase",
+        "addresses",
+        "concrete",
+        "context-preservation",
+        "code-graph",
+        "reliability",
+        "gaps",
+        "tracked",
+        "packet"
+      ],
+      "lastUpdated": "2026-07-07T16:12:45.968Z"
+    },
+    {
+      "specFolder": "system-code-graph/z_archive/010-tree-sitter-classifier-fixes",
+      "description": "This phase addresses concrete context-preservation and code-graph reliability gaps tracked in this packet",
+      "keywords": [
+        "phase",
+        "addresses",
+        "concrete",
+        "context-preservation",
+        "code-graph",
+        "reliability",
+        "gaps",
+        "tracked",
+        "packet"
+      ],
+      "lastUpdated": "2026-07-07T16:12:48.718Z"
+    },
+    {
+      "specFolder": "system-code-graph/z_archive/024-system-code-graph-deferred-followon",
+      "description": "Packet 038 successfully closed 11 of the 24 verified P0+P1 findings from 037's 20-iter deep-review (P0-1 docs, P0-2 by parallel-agent's Path-1 real",
+      "keywords": [
+        "packet",
+        "038",
+        "successfully",
+        "closed",
+        "verified",
+        "findings",
+        "037",
+        "20-iter",
+        "deep-review",
+        "p0-1",
+        "docs",
+        "p0-2",
+        "parallel-agent",
+        "path-1",
+        "real"
+      ],
+      "lastUpdated": "2026-07-07T16:12:52.851Z"
+    },
+    {
+      "specFolder": "system-code-graph/z_archive/002-structural-indexer",
+      "description": "This phase addresses concrete context-preservation and code-graph reliability gaps tracked in this packet",
+      "keywords": [
+        "phase",
+        "addresses",
+        "concrete",
+        "context-preservation",
+        "code-graph",
+        "reliability",
+        "gaps",
+        "tracked",
+        "packet"
+      ],
+      "lastUpdated": "2026-07-07T16:12:46.245Z"
+    },
+    {
+      "specFolder": "system-code-graph/z_archive/019-code-graph-public-readme-update",
+      "description": "The repository-root `README.md` is the first document new readers see, but parts of it still describe code graph as memory-owned or omit the",
+      "keywords": [
+        "repository-root",
+        "readme",
+        "first",
+        "document",
+        "new",
+        "readers",
+        "see",
+        "parts",
+        "still",
+        "describe",
+        "code",
+        "graph",
+        "memory-owned",
+        "omit"
+      ],
+      "lastUpdated": "2026-07-07T16:12:51.307Z"
+    },
+    {
+      "specFolder": "system-deep-loop",
+      "description": "Track folder for deep-loop workflow packets - deep research, deep review, AI council, improvement loops, runtime hardening, and loop observability.",
+      "keywords": [
+        "system-deep-loop",
+        "track",
+        "deep-research",
+        "deep-review",
+        "ai-council",
+        "deep-improvement",
+        "runtime",
+        "workflow",
+        "observability"
+      ],
+      "lastUpdated": "2026-06-30T13:20:00.000Z"
+    },
+    {
+      "specFolder": "system-deep-loop/044-deep-loop-locks-state-and-recovery",
+      "description": "The broad audit found advisory locks without PID/TTL/heartbeat metadata, inconsistent deep-review locking, and JSONL state recovery gaps",
+      "keywords": [
+        "broad",
+        "audit",
+        "found",
+        "advisory",
+        "locks",
+        "without",
+        "pid",
+        "ttl",
+        "heartbeat",
+        "metadata",
+        "inconsistent",
+        "deep-review",
+        "locking",
+        "jsonl",
+        "state",
+        "recovery",
+        "gaps"
+      ],
+      "lastUpdated": "2026-07-07T15:25:34.343Z"
+    },
+    {
+      "specFolder": "system-deep-loop/050-deep-review-frontmatter-alignment",
+      "description": "deep-review reference/asset frontmatter is inconsistent with the repo-wide contract: 3 of 10 references and 0 of 2 assets carry the detailed",
+      "keywords": [
+        "deep-review",
+        "reference",
+        "asset",
+        "frontmatter",
+        "inconsistent",
+        "repo-wide",
+        "contract",
+        "references",
+        "assets",
+        "carry",
+        "detailed"
+      ],
+      "lastUpdated": "2026-07-07T15:25:52.627Z"
+    },
+    {
+      "specFolder": "system-deep-loop/048-deep-loop-runtime-frontmatter-alignment",
+      "description": "deep-loop-runtime reference/asset frontmatter is inconsistent with the repo-wide contract: 4 of 4 references and 0 of 0 assets carry the detailed",
+      "keywords": [
+        "deep-loop-runtime",
+        "reference",
+        "asset",
+        "frontmatter",
+        "inconsistent",
+        "repo-wide",
+        "contract",
+        "references",
+        "assets",
+        "carry",
+        "detailed"
+      ],
+      "lastUpdated": "2026-07-07T15:24:40.789Z"
+    },
+    {
+      "specFolder": "system-deep-loop/051-deep-loop-parent-skill-alignment",
+      "description": "`deep-loop-workflows` was the canonical parent-skill example, but the sk-design conversion (spec 154) advanced the pattern beyond it",
+      "keywords": [
+        "deep-loop-workflows",
+        "canonical",
+        "parent-skill",
+        "example",
+        "sk-design",
+        "conversion",
+        "spec",
+        "154",
+        "advanced",
+        "pattern",
+        "beyond"
+      ],
+      "lastUpdated": "2026-07-07T15:25:35.190Z"
+    },
+    {
+      "specFolder": "system-deep-loop/045-deep-loop-fanout-reliability",
+      "description": "The deep-loop fan-out runner reported failed and timed-out CLI lineages as successes (the worker returned a result object instead of throwing, so the",
+      "keywords": [
+        "deep-loop",
+        "fan-out",
+        "runner",
+        "reported",
+        "failed",
+        "timed-out",
+        "cli",
+        "lineages",
+        "successes",
+        "worker",
+        "returned",
+        "result",
+        "object",
+        "instead",
+        "throwing"
+      ],
+      "lastUpdated": "2026-07-07T15:25:34.738Z"
+    },
+    {
+      "specFolder": "system-deep-loop/047-deep-improvement-frontmatter-alignment",
+      "description": "deep-improvement reference/asset frontmatter is inconsistent with the repo-wide contract: 17 of 23 references and 8 of 11 assets carry the detailed",
+      "keywords": [
+        "deep-improvement",
+        "reference",
+        "asset",
+        "frontmatter",
+        "inconsistent",
+        "repo-wide",
+        "contract",
+        "references",
+        "assets",
+        "carry",
+        "detailed"
+      ],
+      "lastUpdated": "2026-07-07T15:23:55.514Z"
+    },
+    {
+      "specFolder": "system-deep-loop/046-deep-ai-council-frontmatter-alignment",
+      "description": "deep-ai-council reference/asset frontmatter is inconsistent with the repo-wide contract: 15 of 15 references and 2 of 3 assets carry the detailed",
+      "keywords": [
+        "deep-ai-council",
+        "reference",
+        "asset",
+        "frontmatter",
+        "inconsistent",
+        "repo-wide",
+        "contract",
+        "references",
+        "assets",
+        "carry",
+        "detailed"
+      ],
+      "lastUpdated": "2026-07-07T15:23:01.325Z"
+    },
+    {
+      "specFolder": "system-deep-loop/049-deep-research-frontmatter-alignment",
+      "description": "deep-research reference/asset frontmatter is inconsistent with the repo-wide contract: 0 of 13 references and 0 of 2 assets carry the detailed",
+      "keywords": [
+        "deep-research",
+        "reference",
+        "asset",
+        "frontmatter",
+        "inconsistent",
+        "repo-wide",
+        "contract",
+        "references",
+        "assets",
+        "carry",
+        "detailed"
+      ],
+      "lastUpdated": "2026-07-07T15:25:10.178Z"
+    },
+    {
+      "specFolder": "system-deep-loop/043-deep-loop-workflow-integrity-audit",
+      "description": "The release-readiness program needs a truth check for the deep-loop workflow layer",
+      "keywords": [
+        "release-readiness",
+        "program",
+        "needs",
+        "truth",
+        "check",
+        "deep-loop",
+        "workflow",
+        "layer"
+      ],
+      "lastUpdated": "2026-07-07T15:25:33.791Z"
+    },
+    {
+      "specFolder": "system-deep-loop/042-fix-deep-loop-workflow-state",
+      "description": "Five findings flagged the deep-loop workflow state machine",
+      "keywords": [
+        "five",
+        "findings",
+        "flagged",
+        "deep-loop",
+        "workflow",
+        "state",
+        "machine"
+      ],
+      "lastUpdated": "2026-07-07T15:25:33.124Z"
+    },
+    {
+      "specFolder": "system-deep-loop/z_archive",
+      "description": "Cold-tier archive container under system-deep-loop. Holds archived deep-loop spec-folder phases (deep-research, deep-review, ai-council, and improvement history). Archived tier: excluded from default recall, retrievable via includeArchived.",
+      "keywords": [
+        "archive",
+        "cold-tier",
+        "system-deep-loop",
+        "deep-research",
+        "deep-review"
+      ],
+      "lastUpdated": "2026-07-06T09:52:21.000Z"
+    },
+    {
+      "specFolder": "system-deep-loop/z_archive/034-deep-review-uplift",
+      "description": "Two efficiency gaps in deep-review's multi-dimensional iteration model:",
+      "keywords": [
+        "two",
+        "efficiency",
+        "gaps",
+        "deep-review",
+        "multi-dimensional",
+        "iteration",
+        "model"
+      ],
+      "lastUpdated": "2026-07-07T15:26:19.039Z"
+    },
+    {
+      "specFolder": "system-deep-loop/z_archive/039-deep-loop-runtime-readme",
+      "description": "The deep-loop-runtime README is a tabular reference card with no problem-first entry point, and its Key Features table carries stale counts (27 vitest",
+      "keywords": [
+        "deep-loop-runtime",
+        "readme",
+        "tabular",
+        "reference",
+        "card",
+        "problem-first",
+        "entry",
+        "point",
+        "key",
+        "features",
+        "table",
+        "carries",
+        "stale",
+        "counts",
+        "vitest"
+      ],
+      "lastUpdated": "2026-07-07T15:24:12.061Z"
+    },
+    {
+      "specFolder": "system-deep-loop/z_archive/035-deep-agent-improvement-uplift",
+      "description": "deep-agent-improvement evaluates candidate agent mutations across 5 dimensions × multiple mutation types per dimension",
+      "keywords": [
+        "deep-agent-improvement",
+        "evaluates",
+        "candidate",
+        "agent",
+        "mutations",
+        "across",
+        "dimensions",
+        "multiple",
+        "mutation",
+        "types",
+        "per",
+        "dimension"
+      ],
+      "lastUpdated": "2026-07-07T15:26:34.420Z"
+    },
+    {
+      "specFolder": "system-deep-loop/z_archive/021-deep-skill-evolution/004-deep-research/003-uplift-recommendations",
+      "description": "3-packet follow-on roadmap closing the 5 actionable items from the 10-iter deep-research investigation. Outputs: uplift-roadmap.md with prioritized packet 120/121/122 plan.",
+      "keywords": [
+        "119/003",
+        "uplift-roadmap",
+        "packet-120",
+        "packet-121",
+        "packet-122"
+      ],
+      "lastUpdated": "2026-05-23T06:00:00.000Z"
+    },
+    {
+      "specFolder": "system-deep-loop/z_archive/021-deep-skill-evolution/004-deep-research/001-uplift-research-deep-review-changes",
+      "description": "10-iter deep-research dispatch hosting the research workspace. Mixed-executor: cli-devin SWE-1.6 iters 1-8 + cli-codex gpt-5.5 high fast iters 9-10. Outputs research-report.md + per-iter narratives, deltas, prompts, logs.",
+      "keywords": [
+        "119/001",
+        "deep-research",
+        "10-iter",
+        "cli-devin",
+        "cli-codex",
+        "research-report"
+      ],
+      "lastUpdated": "2026-05-23T06:00:00.000Z"
+    },
+    {
+      "specFolder": "system-deep-loop/z_archive/021-deep-skill-evolution/004-deep-research/002-uplift-applicability-analysis",
+      "description": "Applicability classification table for all 47 changes catalogued from arc 118. Outputs: applicability-table.md mapping each C-NNN to APPLY / SKIP / ADAPT / ALREADY-DONE.",
+      "keywords": [
+        "119/002",
+        "applicability",
+        "118-arc-changes",
+        "classification",
+        "uplift-mapping"
+      ],
+      "lastUpdated": "2026-05-23T06:00:00.000Z"
+    },
+    {
+      "specFolder": "system-deep-loop/z_archive/021-deep-skill-evolution/005-deep-agent-improvement/002-applicability-analysis",
+      "description": "Applicability classification table for each pattern/finding from arcs 117-122 to deep-agent-improvement: APPLY / SKIP / ADAPT / ALREADY-DONE.",
+      "keywords": [
+        "123/002",
+        "applicability",
+        "117-122-mapping",
+        "deep-agent-improvement"
+      ],
+      "lastUpdated": "2026-05-23T06:30:00.000Z"
+    },
+    {
+      "specFolder": "system-deep-loop/z_archive/021-deep-skill-evolution/005-deep-agent-improvement/001-research-recent-updates",
+      "description": "10-iter deep-research dispatch on recent arc 117-122 updates and their applicability to deep-agent-improvement. Mixed-executor: cli-devin SWE-1.6 iters 1-8 + cli-codex gpt-5.5 high fast iters 9-10. Outputs research-report.md + per-iter artifacts.",
+      "keywords": [
+        "123/001",
+        "deep-agent-improvement",
+        "10-iter",
+        "cli-devin",
+        "cli-codex"
+      ],
+      "lastUpdated": "2026-05-23T06:30:00.000Z"
+    },
+    {
+      "specFolder": "system-deep-loop/z_archive/021-deep-skill-evolution/005-deep-agent-improvement/003-recommendations",
+      "description": "Prioritized improvement packet roadmap for deep-agent-improvement based on 10-iter research findings. Output: improvement-roadmap.md with concrete packet plan (effort, priority, dependencies).",
+      "keywords": [
+        "123/003",
+        "improvement-roadmap",
+        "deep-agent-improvement"
+      ],
+      "lastUpdated": "2026-05-23T06:30:00.000Z"
+    },
+    {
+      "specFolder": "system-deep-loop/z_archive/021-deep-skill-evolution/z_archive",
+      "description": "Nested cold-tier archive container under system-deep-loop/z_archive/021-deep-skill-evolution. Holds archived child material (arc-workspaces). Archived tier: excluded from default recall, retrievable via includeArchived.",
+      "keywords": [
+        "archive",
+        "cold-tier",
+        "system-deep-loop",
+        "deep-skill-evolution",
+        "nested"
+      ],
+      "lastUpdated": "2026-07-06T09:52:21.000Z"
+    },
+    {
+      "specFolder": "system-deep-loop/z_archive/037-deep-context-readme",
+      "description": "The deep-context README is a tabular reference card with no problem-first entry point, and its Key Statistics carry stale facts: version 1.0.0 (the",
+      "keywords": [
+        "deep-context",
+        "readme",
+        "tabular",
+        "reference",
+        "card",
+        "problem-first",
+        "entry",
+        "point",
+        "key",
+        "statistics",
+        "carry",
+        "stale",
+        "facts",
+        "version"
+      ],
+      "lastUpdated": "2026-07-07T15:24:11.270Z"
+    },
+    {
+      "specFolder": "system-deep-loop/z_archive/029-agent-deep-review-optimization",
+      "description": "`@deep-review` (579 LOC) has not been through the sk-improve-agent v2 lens",
+      "keywords": [
+        "deep-review",
+        "579",
+        "loc",
+        "sk-improve-agent",
+        "lens"
+      ],
+      "lastUpdated": "2026-07-07T15:25:23.854Z"
+    },
+    {
+      "specFolder": "system-deep-loop/z_archive/038-deep-improvement-readme",
+      "description": "The deep-improvement README is a tabular reference card with no problem-first entry point, and its stats carry stale facts (a feature-catalog count of",
+      "keywords": [
+        "deep-improvement",
+        "readme",
+        "tabular",
+        "reference",
+        "card",
+        "problem-first",
+        "entry",
+        "point",
+        "stats",
+        "carry",
+        "stale",
+        "facts",
+        "feature-catalog",
+        "count"
+      ],
+      "lastUpdated": "2026-07-07T15:24:11.646Z"
+    },
+    {
+      "specFolder": "system-deep-loop/z_archive/032-improve-agent-to-deep-agent-improvement-rename",
+      "description": "Packet 079 renamed the skill `sk-improve-agent` → `deep-agent-improvement` but kept the agent name `@improve-agent` stable per the original",
+      "keywords": [
+        "packet",
+        "079",
+        "renamed",
+        "skill",
+        "sk-improve-agent",
+        "deep-agent-improvement",
+        "kept",
+        "agent",
+        "name",
+        "improve-agent",
+        "stable",
+        "per",
+        "original"
+      ],
+      "lastUpdated": "2026-07-07T15:26:01.431Z"
+    },
+    {
+      "specFolder": "system-deep-loop/z_archive/036-deep-ai-council-readme",
+      "description": "The deep-ai-council README is a tabular reference card with no problem-first entry point",
+      "keywords": [
+        "deep-ai-council",
+        "readme",
+        "tabular",
+        "reference",
+        "card",
+        "problem-first",
+        "entry",
+        "point"
+      ],
+      "lastUpdated": "2026-07-07T15:24:10.872Z"
+    },
+    {
+      "specFolder": "system-deep-loop/z_archive/031-sk-deep-rename",
+      "description": "The two deep- skills currently use a `sk-` prefix (`sk-deep-review`, `sk-deep-research`) inherited from when all skills carried it",
+      "keywords": [
+        "two",
+        "deep",
+        "skills",
+        "currently",
+        "use",
+        "prefix",
+        "sk-deep-review",
+        "sk-deep-research",
+        "inherited",
+        "carried"
+      ],
+      "lastUpdated": "2026-07-07T15:25:48.024Z"
+    },
+    {
+      "specFolder": "system-deep-loop/z_archive/031-sk-deep-rename/004-runtime-mirrors",
+      "description": "Phase 001 found runtime mirror files in `.claude`, `.codex`, and `.gemini` that still reference the old deep-loop skill names",
+      "keywords": [
+        "phase",
+        "001",
+        "found",
+        "runtime",
+        "mirror",
+        "files",
+        "claude",
+        "codex",
+        "gemini",
+        "still",
+        "reference",
+        "old",
+        "deep-loop",
+        "skill",
+        "names"
+      ],
+      "lastUpdated": "2026-06-30T12:42:36.645Z"
+    },
+    {
+      "specFolder": "system-deep-loop/z_archive/031-sk-deep-rename/007-deep-review-remediation",
+      "description": "The Packet 070 deep review failed because child phase documentation still contains over-replaced identity-renames such as `deep-review to deep-review`",
+      "keywords": [
+        "packet",
+        "070",
+        "deep",
+        "review",
+        "failed",
+        "because",
+        "child",
+        "phase",
+        "documentation",
+        "still",
+        "contains",
+        "over-replaced",
+        "identity-renames",
+        "deep-review"
+      ],
+      "lastUpdated": "2026-06-30T12:42:36.661Z"
+    },
+    {
+      "specFolder": "system-deep-loop/z_archive/031-sk-deep-rename/006-advisor-and-validate",
+      "description": "Phases 001-005 completed the broad rename from `sk-deep-review`/`sk-deep-research` to `deep-review`/`deep-research`, but Packet 070 still needs final",
+      "keywords": [
+        "phases",
+        "001-005",
+        "completed",
+        "broad",
+        "rename",
+        "sk-deep-review",
+        "sk-deep-research",
+        "deep-review",
+        "deep-research",
+        "packet",
+        "070",
+        "still",
+        "needs",
+        "final"
+      ],
+      "lastUpdated": "2026-06-30T12:42:36.656Z"
+    },
+    {
+      "specFolder": "system-deep-loop/z_archive/031-sk-deep-rename/005-root-and-config",
+      "description": "Packet 070 renames the old deep-loop skill IDs to `deep-review` and `deep-research`",
+      "keywords": [
+        "packet",
+        "070",
+        "renames",
+        "old",
+        "deep-loop",
+        "skill",
+        "ids",
+        "deep-review",
+        "deep-research"
+      ],
+      "lastUpdated": "2026-06-30T12:42:36.651Z"
+    },
+    {
+      "specFolder": "system-deep-loop/z_archive/031-sk-deep-rename/009-family-schema-migration",
+      "description": "Phase 008 attempted the `sk-deep` to `deep-loop` internal family rename, but the existing SQLite-backed skill graph schema rejects `deep-loop` inserts",
+      "keywords": [
+        "phase",
+        "008",
+        "attempted",
+        "sk-deep",
+        "deep-loop",
+        "internal",
+        "family",
+        "rename",
+        "existing",
+        "sqlite-backed",
+        "skill",
+        "graph",
+        "schema",
+        "rejects",
+        "inserts"
+      ],
+      "lastUpdated": "2026-06-30T12:42:36.671Z"
+    },
+    {
+      "specFolder": "system-deep-loop/z_archive/031-sk-deep-rename/003-opencode-internals",
+      "description": "Phase 002 renamed the skill folders and updated the advisor graph source, but many `.opencode/` consumers still point at `sk-deep-review` and `sk-deep",
+      "keywords": [
+        "phase",
+        "002",
+        "renamed",
+        "skill",
+        "folders",
+        "updated",
+        "advisor",
+        "graph",
+        "source",
+        "many",
+        "opencode",
+        "consumers",
+        "still",
+        "point",
+        "sk-deep-review",
+        "sk-deep"
+      ],
+      "lastUpdated": "2026-06-30T12:42:36.641Z"
+    },
+    {
+      "specFolder": "system-deep-loop/z_archive/031-sk-deep-rename/001-discovery-impact-map",
+      "description": "Packet 070 will rename `sk-deep-review` to `deep-review` and `sk-deep-research` to `deep-research`",
+      "keywords": [
+        "packet",
+        "070",
+        "rename",
+        "sk-deep-review",
+        "deep-review",
+        "sk-deep-research",
+        "deep-research"
+      ],
+      "lastUpdated": "2026-06-30T12:42:36.631Z"
+    },
+    {
+      "specFolder": "system-deep-loop/z_archive/031-sk-deep-rename/008-final-cleanup",
+      "description": "Packet 070 still has three approved P1 cleanup gaps",
+      "keywords": [
+        "packet",
+        "070",
+        "still",
+        "three",
+        "approved",
+        "cleanup",
+        "gaps"
+      ],
+      "lastUpdated": "2026-06-30T12:42:36.666Z"
+    },
+    {
+      "specFolder": "system-deep-loop/z_archive/031-sk-deep-rename/002-skill-folder-rename",
+      "description": "Phase 001 measured 130 Phase 002 files: the two old skill folder roots and `.opencode/skills/system-spec-kit/mcpserver/skilladvisor/scripts/skill-grap",
+      "keywords": [
+        "phase",
+        "001",
+        "measured",
+        "130",
+        "002",
+        "files",
+        "two",
+        "old",
+        "skill",
+        "folder",
+        "roots",
+        "opencode",
+        "skills",
+        "system-spec-kit",
+        "mcpserver",
+        "skilladvisor",
+        "scripts",
+        "skill-grap"
+      ],
+      "lastUpdated": "2026-06-30T12:42:36.635Z"
+    },
+    {
+      "specFolder": "system-deep-loop/z_archive/041-deep-review-readme",
+      "description": "The deep-review README is a tabular reference card with a buried Key Statistics block and no problem-first entry point",
+      "keywords": [
+        "deep-review",
+        "readme",
+        "tabular",
+        "reference",
+        "card",
+        "buried",
+        "key",
+        "statistics",
+        "block",
+        "problem-first",
+        "entry",
+        "point"
+      ],
+      "lastUpdated": "2026-07-07T15:24:12.797Z"
+    },
+    {
+      "specFolder": "system-deep-loop/z_archive/030-agent-deep-research-optimization",
+      "description": "`@deep-research` (476 LOC) has not been through the sk-improve-agent v2 lens",
+      "keywords": [
+        "deep-research",
+        "476",
+        "loc",
+        "sk-improve-agent",
+        "lens"
+      ],
+      "lastUpdated": "2026-07-07T15:25:37.789Z"
+    },
+    {
+      "specFolder": "system-deep-loop/z_archive/040-deep-research-readme",
+      "description": "The deep-research README is a tabular reference card with a buried Key Statistics block and no problem-first entry point",
+      "keywords": [
+        "deep-research",
+        "readme",
+        "tabular",
+        "reference",
+        "card",
+        "buried",
+        "key",
+        "statistics",
+        "block",
+        "problem-first",
+        "entry",
+        "point"
+      ],
+      "lastUpdated": "2026-07-07T15:24:12.441Z"
+    },
+    {
+      "specFolder": "system-deep-loop/z_archive/033-deep-review-three-tier-setup",
+      "description": "`/deep:start-review-loop:auto` advertises itself as autonomous (`:auto` suffix → `executionmode = AUTONOMOUS`)",
+      "keywords": [
+        "deep",
+        "start-review-loop",
+        "auto",
+        "advertises",
+        "itself",
+        "autonomous",
+        "suffix",
+        "executionmode"
+      ],
+      "lastUpdated": "2026-07-07T15:26:10.471Z"
+    },
+    {
+      "specFolder": "sk-code",
+      "description": "Track folder for sk-code packets - unified two-axis code skill: two workflow modes (code-quality, code-review) plus two read-only surface evidence packets (code-webflow, code-opencode).",
+      "keywords": [
+        "sk-code",
+        "track",
+        "code-quality",
+        "code-review",
+        "code-webflow",
+        "code-opencode"
+      ],
+      "lastUpdated": "2026-07-07T00:00:00.000Z"
+    },
+    {
+      "specFolder": "sk-code/z_archive",
+      "description": "Cold-tier archive container under sk-code for 16 migrated sk-code specification packets.",
+      "keywords": [
+        "archive",
+        "cold-tier",
+        "sk-code",
+        "migrated"
+      ],
+      "lastUpdated": "2026-07-07T00:00:00.000Z"
+    },
+    {
+      "specFolder": "sk-doc/z_archive",
+      "description": "Cold-tier archive container under sk-doc for 13 migrated sk-doc specification packets.",
+      "keywords": [
+        "archive",
+        "cold-tier",
+        "sk-doc",
+        "migrated"
+      ],
+      "lastUpdated": "2026-07-07T00:00:00.000Z"
     }
   ]
 }

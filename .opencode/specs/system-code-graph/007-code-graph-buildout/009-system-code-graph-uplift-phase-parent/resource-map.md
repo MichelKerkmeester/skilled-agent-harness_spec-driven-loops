@@ -125,10 +125,10 @@ Authored at scaffold time so the deep-research dispatch has a clean ledger. Pair
 
 | Path | Action | Status | Note |
 |------|--------|--------|------|
-| `.opencode/specs/system-spec-kit/028-system-code-graph-doc-alignment/` | Cited | OK | Predecessor packet; closed tool-count + topology drift |
-| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/005-code-graph/014-system-code-graph-extraction/` | Cited | OK | Original extraction packet |
-| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/005-code-graph/025-skill-docs-sk-doc-alignment/` | Cited | OK | Prior sk-doc alignment work |
-| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/005-code-graph/040-three-way-isolation-finalize/` | Cited | OK | v1.0.3.0 isolation packet |
+| `.opencode/specs/system-spec-kit/028-system-code-graph-doc-alignment/` | Cited | STALE | Predecessor packet; closed tool-count + topology drift. Path moved during the 2026-07-07 system-code-graph consolidation; exact destination not re-derived |
+| `.opencode/specs/system-code-graph/007-code-graph-buildout/006-extraction-and-isolation/001-system-code-graph-extraction/` | Cited | OK | Original extraction packet; path corrected 2026-07-07 (was `system-spec-kit/026-graph-and-context-optimization/005-code-graph/014-system-code-graph-extraction/`) |
+| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/005-code-graph/025-skill-docs-sk-doc-alignment/` | Cited | STALE | Prior sk-doc alignment work. Path moved during the 2026-07-07 system-code-graph consolidation; exact destination not re-derived |
+| `.opencode/specs/system-code-graph/007-code-graph-buildout/006-extraction-and-isolation/004-three-way-isolation-finalize/` | Cited | OK | v1.0.3.0 isolation packet; path corrected 2026-07-07 (was `system-spec-kit/026-graph-and-context-optimization/005-code-graph/040-three-way-isolation-finalize/`) |
 <!-- /ANCHOR:specs -->
 
 ---
