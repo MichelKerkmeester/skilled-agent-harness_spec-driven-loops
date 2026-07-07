@@ -91,7 +91,7 @@ permission:
   task: deny
   list: allow
   patch: deny
-  external_directory: allow
+  external_directory: deny
 ---
 ```
 

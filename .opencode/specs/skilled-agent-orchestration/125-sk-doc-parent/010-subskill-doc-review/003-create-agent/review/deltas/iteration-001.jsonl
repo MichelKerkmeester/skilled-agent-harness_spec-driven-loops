@@ -1,0 +1,1 @@
+{"type":"delta","run":"create-agent-deep-review-auto","iteration":1,"target_agent":"deep-review","resolved_route":".opencode/agents/deep-review.md","agent_definition_loaded":true,"mode":"review","addedFindings":["P2-001"],"counts":{"P0":0,"P1":0,"P2":1},"newFindingsRatio":1.0}

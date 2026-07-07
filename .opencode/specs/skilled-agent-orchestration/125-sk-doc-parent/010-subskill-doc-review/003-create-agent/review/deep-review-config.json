@@ -1,0 +1,17 @@
+{
+  "run": "create-agent-deep-review-auto",
+  "target_agent": "deep-review",
+  "resolved_route": ".opencode/agents/deep-review.md",
+  "agent_definition_loaded": true,
+  "mode": "review",
+  "review_target": ".opencode/skills/sk-doc/create-agent/",
+  "review_target_type": "skill",
+  "review_dimensions": ["correctness", "security", "traceability", "maintainability"],
+  "execution_mode": "AUTONOMOUS",
+  "lineage_mode": "auto",
+  "maxIterations": 4,
+  "stop_policy": "max-iterations",
+  "convergenceThreshold": 0.1,
+  "executor": "native",
+  "artifact_dir": ".opencode/specs/skilled-agent-orchestration/125-sk-doc-parent/010-subskill-doc-review/003-create-agent/review"
+}

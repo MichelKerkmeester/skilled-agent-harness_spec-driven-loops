@@ -1,0 +1,24 @@
+{
+  "run": "create-agent-deep-review-auto",
+  "target_agent": "deep-review",
+  "resolved_route": ".opencode/agents/deep-review.md",
+  "agent_definition_loaded": true,
+  "mode": "review",
+  "findings": [
+    {
+      "id": "P2-001",
+      "severity": "P2",
+      "title": "Canonical permission example over-grants before least-authority reduction",
+      "dimension": "maintainability",
+      "file": ".opencode/skills/sk-doc/create-agent/SKILL.md:81",
+      "evidence": "SKILL.md presents a canonical starter permission object with write, edit, bash, memory, list, and external_directory all set to allow, while the same contract later says permissions must be explicit least-authority choices and the permission reference says external_directory is high-risk and should be denied unless clearly needed.",
+      "recommendation": "Make the SKILL.md starter block explicitly illustrative, or change high-risk/default-unneeded permissions to deny/ask and instruct authors to elevate only with role-specific proof.",
+      "resolution": "Applied: canonical starter block external_directory changed allow->deny at SKILL.md, aligning it with the block's own deny of the other high-risk tools (webfetch, chrome_devtools, patch) and permission_design.md high-risk-deny rule. Authors elevate with role-specific justification per frontmatter rule 5.",
+      "disposition": "resolved",
+      "findingClass": "instance-only",
+      "scopeProof": "Reviewed SKILL.md permission block and permission_design.md permission rules; no other active P0/P1 issue was supported by validation or link checks.",
+      "affectedSurfaceHints": ["create-agent SKILL.md", "agent permission guidance"]
+    }
+  ],
+  "counts": { "P0": 0, "P1": 0, "P2": 1 }
+}
