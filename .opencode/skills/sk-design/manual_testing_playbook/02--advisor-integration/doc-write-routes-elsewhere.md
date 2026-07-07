@@ -1,7 +1,7 @@
 ---
 title: "AI-003: Documentation Write Routes Elsewhere"
 description: "Verify documentation authoring prompts do not false-fire sk-design just because they mention the sk-design hub."
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # AI-003: Documentation Write Routes Elsewhere
@@ -16,7 +16,7 @@ This scenario verifies that `sk-design` does not capture documentation authoring
 
 **Exact prompt**:
 ```text
-Write a README section explaining how the sk-design hub routes its five modes.
+Write a README section explaining how the sk-design hub routes its six modes.
 ```
 
 **Expected mode resolution**: none for `sk-design`; route elsewhere.

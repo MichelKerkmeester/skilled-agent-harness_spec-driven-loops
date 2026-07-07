@@ -65,7 +65,9 @@
     "design audit",
     "accessibility audit",
     "DESIGN.md",
-    "style reference"
+    "style reference",
+    "open design",
+    "od cli"
   ],
   "derived": {
     "trigger_phrases": [
@@ -152,7 +154,7 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "sk-design is the single public design skill that routes a request to one of five design modes (interface, foundations, motion, audit, md-generator) by workflowMode through mode-registry.json over a shared design reference base. The four doc-guidance modes cite the shared reference base (anti-slop principles, cognitive laws, design-token vocabulary) for consistent vocabulary, while md-generator runs its own Playwright CSS-extraction backend (backendKind discriminates the two). The hub holds no per-mode design logic; every mode keeps its own judgment, examples, and verification in its packet, and all five route by hub membership so the advisor sees exactly one design identity.",
+    "causal_summary": "sk-design is the single public design skill that routes a request to one of five design modes (interface, foundations, motion, audit, md-generator) or one nested transport packet (design-mcp-open-design) by workflowMode through mode-registry.json. The five design modes share packetKind:\"workflow\"; design-mcp-open-design is the sole packetKind:\"transport\" entry, driving the external Open Design app's od CLI and stdio MCP server without performing design judgment itself. The four doc-guidance modes cite the shared reference base (anti-slop principles, cognitive laws, design-token vocabulary) for consistent vocabulary, md-generator runs its own Playwright CSS-extraction backend, and design-mcp-open-design runs an od-cli-transport backend (backendKind discriminates all three). The hub holds no per-mode design logic; every mode keeps its own judgment, examples, and verification in its packet, and all six route by hub membership so the advisor sees exactly one design identity.",
     "source_docs": [
       "SKILL.md",
       "mode-registry.json"

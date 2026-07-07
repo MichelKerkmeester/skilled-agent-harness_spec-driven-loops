@@ -1,7 +1,7 @@
 ---
 title: "AI-001: Positive Design Controls"
 description: "Verify sk-design wins positive design-control prompts at confidence >= 0.80 and the hub resolves the matching mode."
-version: 1.0.0.0
+version: 1.1.0.0
 ---
 
 # AI-001: Positive Design Controls
@@ -23,6 +23,7 @@ This scenario verifies end-to-end advisor integration for the single public advi
 | P3 | `Design the transition choreography and reduced-motion fallback for this modal.` | `motion` | `motion-aliases` includes `transitions` and `reduced motion`. |
 | P4 | `Audit this settings screen for WCAG contrast, keyboard focus, and design slop.` | `audit` | `audit-accessibility` includes `wcag contrast`; `audit-quality` includes design QA terms. |
 | P5 | `Extract design tokens from https://example.com and generate DESIGN.md.` | `md-generator` | `md-generator-aliases` includes `extract design tokens` and `generate design.md`. |
+| P6 | `Wire Open Design's MCP server into opencode so I can drive od cli from the terminal.` | `design-mcp-open-design` | `design-mcp-open-design-aliases` includes `wire open design` and `od cli`; distinguishes from the external sibling `mcp-figma`. |
 
 **Expected packet loaded**:
 - P1: `design-interface/SKILL.md`
@@ -30,6 +31,7 @@ This scenario verifies end-to-end advisor integration for the single public advi
 - P3: `design-motion/SKILL.md`
 - P4: `design-audit/SKILL.md`
 - P5: `design-md-generator/SKILL.md`
+- P6: `design-mcp-open-design/SKILL.md`
 
 **Expected shared resources loaded or cited**:
 - P1: `shared/register.md`, `shared/context_loading_contract.md`
@@ -37,6 +39,7 @@ This scenario verifies end-to-end advisor integration for the single public advi
 - P3: `shared/register.md`
 - P4: `shared/register.md`, `shared/context_loading_contract.md`
 - P5: UNKNOWN; the md-generator router is scoped to its own folder
+- P6: none required; `design-mcp-open-design` is a transport packet, not a doc-guidance mode, so it does not consume the shared design reference base
 
 **Expected advisor behavior**: win. `sk-design` should be top-1 for every positive prompt at confidence `>= 0.80`.
 
@@ -45,7 +48,7 @@ This scenario verifies end-to-end advisor integration for the single public advi
 ### Preconditions
 
 1. The advisor sees a single public `sk-design` identity.
-2. `mode-registry.json` contains all five modes with `advisorRouting.routingClass: metadata`.
+2. `mode-registry.json` contains all six modes (five `packetKind: workflow` plus one `packetKind: transport`) with `advisorRouting.routingClass: metadata`.
 
 ### Exact Command Sequence
 
@@ -55,8 +58,8 @@ This scenario verifies end-to-end advisor integration for the single public advi
 
 ### Pass/Fail Criteria
 
-- **PASS** iff all five probes return `sk-design` top-1 at confidence `>= 0.80`, and the hub resolves the expected mode and packet for each probe.
-- **FAIL** iff any positive probe routes to a non-design skill, any child mode appears as a separate advisor identity, or any hub mode resolves to the wrong packet.
+- **PASS** iff all six probes return `sk-design` top-1 at confidence `>= 0.80`, and the hub resolves the expected mode and packet for each probe.
+- **FAIL** iff any positive probe routes to a non-design skill, any child mode appears as a separate advisor identity, any hub mode resolves to the wrong packet, or P6 is misrouted to the external `mcp-figma` sibling.
 
 ### Failure Triage
 

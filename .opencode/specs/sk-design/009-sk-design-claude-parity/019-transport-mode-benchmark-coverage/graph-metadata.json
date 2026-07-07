@@ -1,0 +1,227 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-design/009-sk-design-claude-parity/019-transport-mode-benchmark-coverage",
+  "spec_folder": "sk-design/009-sk-design-claude-parity/019-transport-mode-benchmark-coverage",
+  "parent_id": "sk-design/009-sk-design-claude-parity",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "transport mode benchmark coverage",
+      "phase 019 sk-design",
+      "sk-design re-benchmark after transport integration",
+      "MR-007 open design routing",
+      "phase 019 plan",
+      "transport mode benchmark plan",
+      "tasks",
+      "phase 019 tasks",
+      "verification",
+      "checklist",
+      "phase 019 checklist",
+      "implementation"
+    ],
+    "key_topics": [
+      "transport",
+      "mode",
+      "benchmark",
+      "coverage",
+      "phase",
+      "019",
+      "sk-design",
+      "re-benchmark",
+      "integration",
+      "mr-007",
+      "open",
+      "design"
+    ],
+    "importance_tier": "high",
+    "status": "in_progress",
+    "key_files": [
+      ".opencode/skills/sk-design/manual_testing_playbook/01--mode-routing/mcp-open-design-mode.md",
+      ".opencode/skills/sk-design/manual_testing_playbook/02--advisor-integration/positive-design-controls.md",
+      ".opencode/skills/sk-design/manual_testing_playbook/02--advisor-integration/doc-write-routes-elsewhere.md",
+      ".opencode/skills/sk-design/manual_testing_playbook/manual_testing_playbook.md",
+      ".opencode/skills/sk-design/README.md",
+      ".opencode/skills/sk-design/description.json",
+      ".opencode/skills/sk-design/graph-metadata.json",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "manual_testing_playbook/manual_testing_playbook.md",
+      "implementation-summary.md",
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "mcp-open-design-mode.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-design/manual_testing_playbook/01--mode-routing/mcp-open-design-mode.md",
+        "source": "derived"
+      },
+      {
+        "name": "positive-design-controls.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-design/manual_testing_playbook/02--advisor-integration/positive-design-controls.md",
+        "source": "derived"
+      },
+      {
+        "name": "doc-write-routes-elsewhere.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-design/manual_testing_playbook/02--advisor-integration/doc-write-routes-elsewhere.md",
+        "source": "derived"
+      },
+      {
+        "name": "manual_testing_playbook.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-design/manual_testing_playbook/manual_testing_playbook.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-design/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "description.json",
+        "kind": "config",
+        "path": ".opencode/skills/sk-design/description.json",
+        "source": "derived"
+      },
+      {
+        "name": "graph-metadata.json",
+        "kind": "config",
+        "path": ".opencode/skills/sk-design/graph-metadata.json",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Transport Mode Benchmark Coverage",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Routing Re",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Phase",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Bring",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Phase",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Additive",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Phase 018 integrated `design-mcp-open-design` as a registered `packetKind: \"transport\"` mode in sk-design's registries, but the hub's `manualtestingplaybook` (the corpus the skill-benchmark harness scores against) still only exercised the five original design-judgment modes — it had zero scenarios naming the new mode",
+    "created_at": "2026-07-07T08:32:09.549Z",
+    "last_save_at": "2026-07-07T08:33:02.128Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:b82a2d3d161ade63ac780dbead80d492a96ed704220067d9149d2c7bfe4cb3a1",
+    "source_doc_hashes": {
+      "spec.md": "f3aaf3d5b96d3a44ee191681a47e5ef8fbd904b1adbc2c7f8e8c49ecbf45128a",
+      "plan.md": "d85895b5053fa8499a62b0611be253cade437821baf8b4a247ca0209caafc53e",
+      "tasks.md": "2dd03bb2623d2fca3ac57367e0751756548e94868cb4394c8022be032350fe81",
+      "checklist.md": "e0a74000f34b035c3898aa2c7b20ab6120cb118e167b8e2bc3b9c886da4f88fc",
+      "implementation-summary.md": "f6d56426a660fde5adc38571155a1bceac22ecb394b282971da62edae95b7148"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

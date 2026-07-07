@@ -1,7 +1,7 @@
 ---
 title: "sk-design: Manual Testing Playbook"
 description: "Operator-facing reference combining the manual testing directory, execution expectations, and per-feature validation files for the sk-design parent-skill hub."
-version: 1.0.0.0
+version: 1.1.0.0
 ---
 
 # sk-design: Manual Testing Playbook
@@ -29,10 +29,10 @@ Canonical package artifacts:
 
 ## 1. OVERVIEW
 
-This playbook provides 32 deterministic scenarios across 8 categories validating the `sk-design` parent-skill hub. Each feature keeps its stable `{PREFIX}-NNN` ID and links to a dedicated feature file with the full execution contract.
+This playbook provides 33 deterministic scenarios across 8 categories validating the `sk-design` parent-skill hub. Each feature keeps its stable `{PREFIX}-NNN` ID and links to a dedicated feature file with the full execution contract.
 
 Coverage note: the playbook covers sk-design's parent-hub routing at the current skill files. It exercises:
-- Mode routing across the five registry modes: `interface`, `foundations`, `motion`, `audit`, and `md-generator`.
+- Mode routing across the five `packetKind: "workflow"` registry modes: `interface`, `foundations`, `motion`, `audit`, and `md-generator`; plus the one `packetKind: "transport"` mode, `design-mcp-open-design`.
 - The mode-hint override rule from the hub: a hint such as `motion: ...` resolves the matching mode.
 - Skill advisor integration: `sk-design` wins positive design controls at confidence `>= 0.80`; pure code and documentation requests route elsewhere.
 - Transform-verb routing from `mode-registry.json`: interface-frame `make it`, audit-frame `should it be`, `aliasOnly`, and excluded aliases.
@@ -64,7 +64,7 @@ Coverage note: the playbook covers sk-design's parent-hub routing at the current
 ## 2. GLOBAL PRECONDITIONS
 
 1. Working directory is the repository root.
-2. The sk-design hub is present at `.opencode/skills/sk-design/` with `SKILL.md`, `mode-registry.json`, `hub-router.json`, `shared/`, and all five mode folders intact.
+2. The sk-design hub is present at `.opencode/skills/sk-design/` with `SKILL.md`, `mode-registry.json`, `hub-router.json`, `shared/`, and all five workflow mode folders plus the `design-mcp-open-design` transport packet intact.
 3. The skill advisor is callable either through the runtime hook or through `python3 .opencode/skills/system-skill-advisor/mcp_server/scripts/skill_advisor.py`.
 4. Operators capture evidence under `/tmp/skd-<SCENARIO-ID>/` or `/tmp/skd-<SCENARIO-ID>.txt`.
 5. Scenarios outside `04--md-generator-pipeline/` are read-only routing tests against skill assets.
@@ -132,7 +132,7 @@ For each executed scenario, check:
 - `PARTIAL`: at least one mapped scenario is PARTIAL, none are FAIL.
 - `FAIL`: any mapped scenario is FAIL.
 
-Critical-path scenarios are MR-001, MR-002, MR-003, MR-004, MR-005, AI-001, AI-002, TV-001, TV-002, MG-001, SR-003, PB-001, PB-002, and PB-003.
+Critical-path scenarios are MR-001, MR-002, MR-003, MR-004, MR-005, MR-007, AI-001, AI-002, TV-001, TV-002, MG-001, SR-003, PB-001, PB-002, and PB-003.
 
 Candidate additions for the next operator-confirmed critical-path policy are PB-004, PB-005, PB-006, FR-001, FR-002, HM-001, HM-002, and HM-003. They are not silently promoted by this playbook update.
 
@@ -175,7 +175,7 @@ This section records wave planning and capacity guidance for the manual testing 
 
 ---
 
-## 7. MODE ROUTING (`MR-001..MR-006`)
+## 7. MODE ROUTING (`MR-001..MR-007`)
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Expected Signals | Per-Feature File |
 |---|---|---|---|---|---|
@@ -185,6 +185,7 @@ This section records wave planning and capacity guidance for the manual testing 
 | `MR-004` | Audit Mode | QA request routes to `audit` | `Audit this checkout UI for WCAG contrast, keyboard focus, responsive issues, and design slop.` | `audit-aliases`: `design audit`; `audit-accessibility`: `wcag contrast`; `audit-quality`: `design-qa` | `01--mode-routing/audit-mode.md` |
 | `MR-005` | md-generator Mode | Live-site extraction request routes to `md-generator` | `Extract the design system from https://example.com into a DESIGN.md style reference.` | `md-generator-aliases`: `extract design system`; `md-generator-artifacts`: `design.md`; backend `playwright-extract` | `01--mode-routing/md-generator-mode.md` |
 | `MR-006` | Mode Hint Override | `motion:` hint resolves `motion` | `motion: make the menu transition feel bolder and more deliberate.` | Hub rule: mode hint like `motion: ...` overrides; `motion-temporal`: `transition design` | `01--mode-routing/mode-hint-motion.md` |
+| `MR-007` | Open Design Transport Mode | Open Design wiring request routes to the nested transport packet `design-mcp-open-design`, not a design-judgment mode or the external `mcp-figma` sibling | `Wire Open Design's MCP server into opencode so I can drive od cli from the terminal.` | `design-mcp-open-design-aliases`: `wire open design`, `od cli`; `packetKind: "transport"` | `01--mode-routing/mcp-open-design-mode.md` |
 
 ---
 
@@ -194,7 +195,7 @@ This section records wave planning and capacity guidance for the manual testing 
 |---|---|---|---|---|---|
 | `AI-001` | Positive Design Controls | Verify sk-design wins positive design prompts at confidence `>= 0.80` | Multi-prompt battery in file | Advisor top-1 `sk-design`; hub resolves matching mode | `02--advisor-integration/positive-design-controls.md` |
 | `AI-002` | Pure Code Negative | Verify pure code edit routes to sk-code, not sk-design | `Refactor the parseExecutorConfig function in a TypeScript config loader to throw when the executor type is missing.` | Advisor route elsewhere: expected `sk-code` | `02--advisor-integration/pure-code-routes-skcode.md` |
-| `AI-003` | Documentation Negative | Verify documentation authoring routes to sk-doc or another documentation owner | `Write a README section explaining how the sk-design hub routes its five modes.` | Advisor route elsewhere: expected `sk-doc` or another documentation owner, not `sk-design` | `02--advisor-integration/doc-write-routes-elsewhere.md` |
+| `AI-003` | Documentation Negative | Verify documentation authoring routes to sk-doc or another documentation owner | `Write a README section explaining how the sk-design hub routes its six modes.` | Advisor route elsewhere: expected `sk-doc` or another documentation owner, not `sk-design` | `02--advisor-integration/doc-write-routes-elsewhere.md` |
 
 ---
 
@@ -279,6 +280,7 @@ No automated tests are claimed by this playbook. Manual execution is the validat
 | Mode Routing | MR-004 | `01--mode-routing/audit-mode.md` | Yes |
 | Mode Routing | MR-005 | `01--mode-routing/md-generator-mode.md` | Yes |
 | Mode Routing | MR-006 | `01--mode-routing/mode-hint-motion.md` | No |
+| Mode Routing | MR-007 | `01--mode-routing/mcp-open-design-mode.md` | Yes |
 | Advisor Integration | AI-001 | `02--advisor-integration/positive-design-controls.md` | Yes |
 | Advisor Integration | AI-002 | `02--advisor-integration/pure-code-routes-skcode.md` | Yes |
 | Advisor Integration | AI-003 | `02--advisor-integration/doc-write-routes-elsewhere.md` | No |
@@ -306,7 +308,7 @@ No automated tests are claimed by this playbook. Manual execution is the validat
 | Hub Manager Intake | HM-002 | `08--hub-manager-intake/visible-plan-before-build.md` | Candidate |
 | Hub Manager Intake | HM-003 | `08--hub-manager-intake/verifier-cadence-pause.md` | Candidate |
 
-**Total scenarios**: 32
-**Critical-path scenarios**: 14
+**Total scenarios**: 33
+**Critical-path scenarios**: 15
 **Critical-path candidates pending operator confirmation**: 8
 **Categories**: 8
