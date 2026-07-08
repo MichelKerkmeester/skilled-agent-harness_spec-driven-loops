@@ -14,16 +14,17 @@
     "harness-migration",
     "main-side-runbook"
   ],
-  "lastUpdated": "2026-07-07T18:16:01.026Z",
+  "lastUpdated": "2026-07-08T03:34:42.228Z",
   "specId": "009",
   "folderSlug": "cutover-and-rollout",
   "parentChain": [
     "sk-code",
     "017-sk-code-parent"
   ],
-  "memorySequence": 11,
+  "memorySequence": 12,
   "memoryNameHistory": [
     "05-07-26_07-47__while-the-waiter-runs-honest-consolidated-status.md",
-    "07-07-26_19-16__all-my-authored-docs-are-clean-continuity-fields.md"
+    "07-07-26_19-16__all-my-authored-docs-are-clean-continuity-fields.md",
+    "08-07-26_04-34__i-m-treating-this-compaction-boundary-per-the.md"
   ]
 }

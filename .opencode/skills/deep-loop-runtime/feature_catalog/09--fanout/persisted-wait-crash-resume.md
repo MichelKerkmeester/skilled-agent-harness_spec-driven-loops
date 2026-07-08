@@ -54,7 +54,7 @@ The implementation is source-backed and covered by runtime-owned tests under `.o
 - Canonical catalog source: `feature_catalog.md`
 - Feature ID: F045
 - Feature file path: `09--fanout/persisted-wait-crash-resume.md`
-- Source phase: `.opencode/specs/skilled-agent-orchestration/156-agent-loops-improved/002-implementation/002-deep-loop-runtime/018-persisted-wait-crash-resume`
+- Source phase: `.opencode/specs/system-deep-loop/030-deep-loop-improved/002-deep-loop-runtime/018-persisted-wait-crash-resume`
 - Primary sources: `scripts/fanout-run.cjs`, `.opencode/commands/deep/assets/deep_research_auto.yaml`, `tests/unit/fanout-run.vitest.ts`
 Related references:
 - [fanout](../09--fanout/) — Fan-out category

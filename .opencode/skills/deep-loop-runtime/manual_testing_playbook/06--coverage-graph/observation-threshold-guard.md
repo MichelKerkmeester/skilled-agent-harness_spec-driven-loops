@@ -87,6 +87,6 @@ Observation-threshold guard matches the documented current reality, the source a
 - Playbook ID: DLR-041
 - Feature catalog entry: `feature_catalog/06--coverage-graph/observation-threshold-guard.md`
 - Scenario file path: `manual_testing_playbook/06--coverage-graph/observation-threshold-guard.md`
-- Source phase: `.opencode/specs/skilled-agent-orchestration/156-agent-loops-improved/002-implementation/002-deep-loop-runtime/012-observation-threshold-guard`
+- Source phase: `.opencode/specs/system-deep-loop/030-deep-loop-improved/002-deep-loop-runtime/012-observation-threshold-guard`
 - Expected verdict mode: GREEN when current tests and source anchors agree
 - Wall-time estimate: 5-15 min

@@ -53,7 +53,7 @@ The implementation is source-backed and covered by runtime-owned tests under `.o
 - Canonical catalog source: `feature_catalog.md`
 - Feature ID: F034
 - Feature file path: `04--state-safety/loop-lock-heartbeat-hardening.md`
-- Source phase: `.opencode/specs/skilled-agent-orchestration/156-agent-loops-improved/002-implementation/002-deep-loop-runtime/007-loop-lock-heartbeat-hardening`
+- Source phase: `.opencode/specs/system-deep-loop/030-deep-loop-improved/002-deep-loop-runtime/007-loop-lock-heartbeat-hardening`
 - Primary sources: `lib/deep-loop/loop-lock.ts`, `tests/unit/loop-lock.vitest.ts`
 Related references:
 - [state safety](../04--state-safety/) — State safety category

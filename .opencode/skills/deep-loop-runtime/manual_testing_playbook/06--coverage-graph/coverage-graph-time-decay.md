@@ -81,6 +81,6 @@ Coverage-graph time decay matches the documented current reality, the source anc
 - Playbook ID: DLR-042
 - Feature catalog entry: `feature_catalog/06--coverage-graph/coverage-graph-time-decay.md`
 - Scenario file path: `manual_testing_playbook/06--coverage-graph/coverage-graph-time-decay.md`
-- Source phase: `.opencode/specs/skilled-agent-orchestration/156-agent-loops-improved/002-implementation/002-deep-loop-runtime/013-coverage-graph-time-decay`
+- Source phase: `.opencode/specs/system-deep-loop/030-deep-loop-improved/002-deep-loop-runtime/013-coverage-graph-time-decay`
 - Expected verdict mode: GREEN when current tests and source anchors agree
 - Wall-time estimate: 5-15 min

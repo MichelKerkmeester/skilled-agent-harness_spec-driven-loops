@@ -55,7 +55,7 @@ The implementation is source-backed and covered by runtime-owned tests under `.o
 - Canonical catalog source: `feature_catalog.md`
 - Feature ID: F049
 - Feature file path: `12--testing/record-replay-cassette-harness.md`
-- Source phase: `.opencode/specs/skilled-agent-orchestration/156-agent-loops-improved/002-implementation/007-testing/002-record-replay-cassette-harness`
+- Source phase: `.opencode/specs/system-deep-loop/030-deep-loop-improved/007-testing/002-record-replay-cassette-harness`
 - Primary sources: `tests/helpers/spawn-cjs.ts`, `tests/integration/convergence-script.vitest.ts`, `tests/unit/fanout-run.vitest.ts`
 Related references:
 - [testing](../12--testing/) — Testing category

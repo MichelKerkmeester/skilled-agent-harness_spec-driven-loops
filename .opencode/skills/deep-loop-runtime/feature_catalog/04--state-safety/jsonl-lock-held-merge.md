@@ -54,7 +54,7 @@ The implementation is source-backed and covered by runtime-owned tests under `.o
 - Canonical catalog source: `feature_catalog.md`
 - Feature ID: F033
 - Feature file path: `04--state-safety/jsonl-lock-held-merge.md`
-- Source phase: `.opencode/specs/skilled-agent-orchestration/156-agent-loops-improved/002-implementation/002-deep-loop-runtime/006-jsonl-lock-held-merge`
+- Source phase: `.opencode/specs/system-deep-loop/030-deep-loop-improved/002-deep-loop-runtime/006-jsonl-lock-held-merge`
 - Primary sources: `lib/deep-loop/jsonl-repair.ts`, `scripts/fanout-salvage.cjs`, `tests/unit/jsonl-repair.vitest.ts`
 Related references:
 - [state safety](../04--state-safety/) — State safety category

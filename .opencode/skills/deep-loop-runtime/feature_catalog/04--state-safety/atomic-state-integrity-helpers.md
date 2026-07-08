@@ -53,7 +53,7 @@ The implementation is source-backed and covered by runtime-owned tests under `.o
 - Canonical catalog source: `feature_catalog.md`
 - Feature ID: F029
 - Feature file path: `04--state-safety/atomic-state-integrity-helpers.md`
-- Source phase: `.opencode/specs/skilled-agent-orchestration/156-agent-loops-improved/002-implementation/002-deep-loop-runtime/002-atomic-state-integrity-helpers`
+- Source phase: `.opencode/specs/system-deep-loop/030-deep-loop-improved/002-deep-loop-runtime/002-atomic-state-integrity-helpers`
 - Primary sources: `lib/deep-loop/atomic-state.ts`, `tests/unit/atomic-state.vitest.ts`
 Related references:
 - [state safety](../04--state-safety/) — State safety category

@@ -83,6 +83,6 @@ Hermetic test isolation matches the documented current reality, the source ancho
 - Playbook ID: DLR-050
 - Feature catalog entry: `feature_catalog/12--testing/hermetic-test-isolation.md`
 - Scenario file path: `manual_testing_playbook/12--testing/hermetic-test-isolation.md`
-- Source phase: `.opencode/specs/skilled-agent-orchestration/156-agent-loops-improved/002-implementation/007-testing/001-hermetic-test-isolation`
+- Source phase: `.opencode/specs/system-deep-loop/030-deep-loop-improved/007-testing/001-hermetic-test-isolation`
 - Expected verdict mode: GREEN when current tests and source anchors agree
 - Wall-time estimate: 5-15 min

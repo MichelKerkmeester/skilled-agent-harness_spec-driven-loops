@@ -56,7 +56,7 @@ The implementation is source-backed and covered by runtime-owned tests under `.o
 - Canonical catalog source: `feature_catalog.md`
 - Feature ID: F039
 - Feature file path: `06--coverage-graph/observation-threshold-guard.md`
-- Source phase: `.opencode/specs/skilled-agent-orchestration/156-agent-loops-improved/002-implementation/002-deep-loop-runtime/012-observation-threshold-guard`
+- Source phase: `.opencode/specs/system-deep-loop/030-deep-loop-improved/002-deep-loop-runtime/012-observation-threshold-guard`
 - Primary sources: `lib/coverage-graph/coverage-graph-signals.ts`, `scripts/convergence.cjs`, `tests/integration/convergence-script.vitest.ts`, `tests/unit/convergence-score-delta.vitest.ts`, `tests/unit/coverage-graph-signals.vitest.ts`
 Related references:
 - [coverage graph](../06--coverage-graph/) — Coverage graph category

@@ -81,6 +81,6 @@ Abortable chunked sleep matches the documented current reality, the source ancho
 - Playbook ID: DLR-033
 - Feature catalog entry: `feature_catalog/10--lifecycle/abortable-chunked-sleep.md`
 - Scenario file path: `manual_testing_playbook/10--lifecycle/abortable-chunked-sleep.md`
-- Source phase: `.opencode/specs/skilled-agent-orchestration/156-agent-loops-improved/002-implementation/002-deep-loop-runtime/004-abortable-chunked-sleep`
+- Source phase: `.opencode/specs/system-deep-loop/030-deep-loop-improved/002-deep-loop-runtime/004-abortable-chunked-sleep`
 - Expected verdict mode: GREEN when current tests and source anchors agree
 - Wall-time estimate: 5-15 min

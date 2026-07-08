@@ -81,6 +81,6 @@ Fallback-router typed reroute matches the documented current reality, the source
 - Playbook ID: DLR-044
 - Feature catalog entry: `feature_catalog/01--executor/fallback-router-typed-reroute.md`
 - Scenario file path: `manual_testing_playbook/01--executor/fallback-router-typed-reroute.md`
-- Source phase: `.opencode/specs/skilled-agent-orchestration/156-agent-loops-improved/002-implementation/002-deep-loop-runtime/015-fallback-router-typed-reroute`
+- Source phase: `.opencode/specs/system-deep-loop/030-deep-loop-improved/002-deep-loop-runtime/015-fallback-router-typed-reroute`
 - Expected verdict mode: GREEN when current tests and source anchors agree
 - Wall-time estimate: 5-15 min

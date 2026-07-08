@@ -53,7 +53,7 @@ The implementation is source-backed and covered by runtime-owned tests under `.o
 - Canonical catalog source: `feature_catalog.md`
 - Feature ID: F040
 - Feature file path: `06--coverage-graph/coverage-graph-time-decay.md`
-- Source phase: `.opencode/specs/skilled-agent-orchestration/156-agent-loops-improved/002-implementation/002-deep-loop-runtime/013-coverage-graph-time-decay`
+- Source phase: `.opencode/specs/system-deep-loop/030-deep-loop-improved/002-deep-loop-runtime/013-coverage-graph-time-decay`
 - Primary sources: `lib/coverage-graph/coverage-graph-signals.ts`, `tests/unit/coverage-graph-signals.vitest.ts`
 Related references:
 - [coverage graph](../06--coverage-graph/) — Coverage graph category

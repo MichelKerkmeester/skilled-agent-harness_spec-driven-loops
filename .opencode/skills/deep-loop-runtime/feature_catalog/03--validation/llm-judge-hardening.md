@@ -53,7 +53,7 @@ The implementation is source-backed and covered by runtime-owned tests under `.o
 - Canonical catalog source: `feature_catalog.md`
 - Feature ID: F043
 - Feature file path: `03--validation/llm-judge-hardening.md`
-- Source phase: `.opencode/specs/skilled-agent-orchestration/156-agent-loops-improved/002-implementation/002-deep-loop-runtime/016-llm-judge-hardening`
+- Source phase: `.opencode/specs/system-deep-loop/030-deep-loop-improved/002-deep-loop-runtime/016-llm-judge-hardening`
 - Primary sources: `lib/deep-loop/post-dispatch-validate.ts`, `tests/unit/post-dispatch-validate.vitest.ts`
 Related references:
 - [validation](../03--validation/) — Validation category

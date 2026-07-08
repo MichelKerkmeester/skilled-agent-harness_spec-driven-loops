@@ -53,7 +53,7 @@ The implementation is source-backed and covered by runtime-owned tests under `.o
 - Canonical catalog source: `feature_catalog.md`
 - Feature ID: F031
 - Feature file path: `10--lifecycle/abortable-chunked-sleep.md`
-- Source phase: `.opencode/specs/skilled-agent-orchestration/156-agent-loops-improved/002-implementation/002-deep-loop-runtime/004-abortable-chunked-sleep`
+- Source phase: `.opencode/specs/system-deep-loop/030-deep-loop-improved/002-deep-loop-runtime/004-abortable-chunked-sleep`
 - Primary sources: `lib/deep-loop/sleep.ts`, `tests/unit/sleep.vitest.ts`
 Related references:
 - [lifecycle](../10--lifecycle/) — Lifecycle category

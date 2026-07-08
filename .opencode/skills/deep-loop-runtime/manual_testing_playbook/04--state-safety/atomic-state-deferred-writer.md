@@ -110,6 +110,6 @@ Atomic-state deferred writer matches the documented current reality, the source 
 - Playbook ID: DLR-032
 - Feature catalog entry: `feature_catalog/04--state-safety/atomic-state-deferred-writer.md`
 - Scenario file path: `manual_testing_playbook/04--state-safety/atomic-state-deferred-writer.md`
-- Source phase: `.opencode/specs/skilled-agent-orchestration/156-agent-loops-improved/002-implementation/002-deep-loop-runtime/003-atomic-state-deferred-writer`
+- Source phase: `.opencode/specs/system-deep-loop/030-deep-loop-improved/002-deep-loop-runtime/003-atomic-state-deferred-writer`
 - Expected verdict mode: GREEN when current tests and source anchors agree
 - Wall-time estimate: 5-15 min

@@ -57,7 +57,7 @@ The implementation is source-backed and covered by runtime-owned tests under `.o
 - Canonical catalog source: `feature_catalog.md`
 - Feature ID: F036
 - Feature file path: `11--observability/byte-offset-log-regions.md`
-- Source phase: `.opencode/specs/skilled-agent-orchestration/156-agent-loops-improved/002-implementation/002-deep-loop-runtime/009-byte-offset-log-regions`
+- Source phase: `.opencode/specs/system-deep-loop/030-deep-loop-improved/002-deep-loop-runtime/009-byte-offset-log-regions`
 - Primary sources: `lib/deep-loop/post-dispatch-validate.ts`, `.opencode/commands/deep/assets/deep_research_auto.yaml`, `.opencode/skills/deep-loop-workflows/deep-research/scripts/reduce-state.cjs`, `tests/unit/post-dispatch-validate.vitest.ts`, `tests/unit/deep-research-reduce-state.vitest.ts`, `.opencode/skills/deep-loop-workflows/deep-research/scripts/reduce-state-sparkline.test.cjs`
 Related references:
 - [observability](../11--observability/) — Observability category

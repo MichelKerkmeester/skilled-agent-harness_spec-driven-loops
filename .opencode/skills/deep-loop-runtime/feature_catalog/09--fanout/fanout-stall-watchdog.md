@@ -53,7 +53,7 @@ The implementation is source-backed and covered by runtime-owned tests under `.o
 - Canonical catalog source: `feature_catalog.md`
 - Feature ID: F044
 - Feature file path: `09--fanout/fanout-stall-watchdog.md`
-- Source phase: `.opencode/specs/skilled-agent-orchestration/156-agent-loops-improved/002-implementation/002-deep-loop-runtime/017-fanout-stall-watchdog`
+- Source phase: `.opencode/specs/system-deep-loop/030-deep-loop-improved/002-deep-loop-runtime/017-fanout-stall-watchdog`
 - Primary sources: `scripts/fanout-pool.cjs`, `tests/unit/fanout-pool.vitest.ts`
 Related references:
 - [fanout](../09--fanout/) — Fan-out category

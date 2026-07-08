@@ -81,6 +81,6 @@ Loop-lock heartbeat hardening matches the documented current reality, the source
 - Playbook ID: DLR-036
 - Feature catalog entry: `feature_catalog/04--state-safety/loop-lock-heartbeat-hardening.md`
 - Scenario file path: `manual_testing_playbook/04--state-safety/loop-lock-heartbeat-hardening.md`
-- Source phase: `.opencode/specs/skilled-agent-orchestration/156-agent-loops-improved/002-implementation/002-deep-loop-runtime/007-loop-lock-heartbeat-hardening`
+- Source phase: `.opencode/specs/system-deep-loop/030-deep-loop-improved/002-deep-loop-runtime/007-loop-lock-heartbeat-hardening`
 - Expected verdict mode: GREEN when current tests and source anchors agree
 - Wall-time estimate: 5-15 min

@@ -1491,7 +1491,7 @@ A: The feature catalog is the current technical reference documenting the memory
 - **[→ Spec Kit README](.opencode/skills/system-spec-kit/README.md)** - Spec folder workflow, Level contract template set, validation rules
 - **[→ MCP Server README](.opencode/skills/system-spec-kit/mcp_server/README.md)** - Memory API reference and runtime support docs
 - **[→ Repo Scripts Runbook](.opencode/scripts/README.md)** - Dry-run orphan MCP sweeper, Claude cleanup, and LaunchAgent template guidance
-- **[→ Orphan MCP Leak Prevention Packet](.opencode/specs/system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/009-memory-leak-remediation/022-orphan-mcp-leak-prevention/implementation-summary.md)** - Canonical implementation summary and rollout state
+- **[→ Orphan MCP Leak Prevention Packet](.opencode/specs/system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/022-orphan-mcp-leak-prevention/implementation-summary.md)** - Canonical implementation summary and rollout state
 - **[→ System Code Graph Skill](.opencode/skills/system-code-graph/SKILL.md)** - First-class structural graph skill and MCP routing rules
 - **[→ Skill Advisor README](.opencode/skills/system-skill-advisor/README.md)** - Standalone `mk_skill_advisor` server, nine advisor/skill-graph tools and routing docs
 - **[→ Install Guide](.opencode/skills/system-spec-kit/mcp_server/INSTALL_GUIDE.md)** - MCP server setup, embedding providers

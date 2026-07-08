@@ -54,7 +54,7 @@ The implementation is source-backed and covered by runtime-owned tests under `.o
 - Canonical catalog source: `feature_catalog.md`
 - Feature ID: F046
 - Feature file path: `11--observability/single-loop-telemetry-heartbeat.md`
-- Source phase: `.opencode/specs/skilled-agent-orchestration/156-agent-loops-improved/002-implementation/006-ux-observability-automation/002-single-loop-telemetry-heartbeat`
+- Source phase: `.opencode/specs/system-deep-loop/030-deep-loop-improved/006-ux-observability-automation/002-single-loop-telemetry-heartbeat`
 - Primary sources: `.opencode/commands/deep/assets/deep_research_auto.yaml`, `lib/deep-loop/atomic-state.ts`, `tests/unit/atomic-state.vitest.ts`
 Related references:
 - [observability](../11--observability/) — Observability category

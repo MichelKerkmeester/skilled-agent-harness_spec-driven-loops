@@ -81,6 +81,6 @@ Lifecycle taxonomy guards matches the documented current reality, the source anc
 - Playbook ID: DLR-034
 - Feature catalog entry: `feature_catalog/10--lifecycle/lifecycle-taxonomy-guards.md`
 - Scenario file path: `manual_testing_playbook/10--lifecycle/lifecycle-taxonomy-guards.md`
-- Source phase: `.opencode/specs/skilled-agent-orchestration/156-agent-loops-improved/002-implementation/002-deep-loop-runtime/005-lifecycle-taxonomy-guards`
+- Source phase: `.opencode/specs/system-deep-loop/030-deep-loop-improved/002-deep-loop-runtime/005-lifecycle-taxonomy-guards`
 - Expected verdict mode: GREEN when current tests and source anchors agree
 - Wall-time estimate: 5-15 min

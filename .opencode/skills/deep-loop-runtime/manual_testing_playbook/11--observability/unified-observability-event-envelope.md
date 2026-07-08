@@ -93,6 +93,6 @@ Unified observability event envelope matches the documented current reality, the
 - Playbook ID: DLR-049
 - Feature catalog entry: `feature_catalog/11--observability/unified-observability-event-envelope.md`
 - Scenario file path: `manual_testing_playbook/11--observability/unified-observability-event-envelope.md`
-- Source phase: `.opencode/specs/skilled-agent-orchestration/156-agent-loops-improved/002-implementation/006-ux-observability-automation/003-unified-observability-event-envelope`
+- Source phase: `.opencode/specs/system-deep-loop/030-deep-loop-improved/006-ux-observability-automation/003-unified-observability-event-envelope`
 - Expected verdict mode: GREEN when current tests and source anchors agree
 - Wall-time estimate: 5-15 min

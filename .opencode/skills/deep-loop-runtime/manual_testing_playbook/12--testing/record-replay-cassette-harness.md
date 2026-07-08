@@ -85,6 +85,6 @@ Record-replay cassette harness matches the documented current reality, the sourc
 - Playbook ID: DLR-051
 - Feature catalog entry: `feature_catalog/12--testing/record-replay-cassette-harness.md`
 - Scenario file path: `manual_testing_playbook/12--testing/record-replay-cassette-harness.md`
-- Source phase: `.opencode/specs/skilled-agent-orchestration/156-agent-loops-improved/002-implementation/007-testing/002-record-replay-cassette-harness`
+- Source phase: `.opencode/specs/system-deep-loop/030-deep-loop-improved/007-testing/002-record-replay-cassette-harness`
 - Expected verdict mode: GREEN when current tests and source anchors agree
 - Wall-time estimate: 5-15 min

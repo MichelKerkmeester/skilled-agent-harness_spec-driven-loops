@@ -53,7 +53,7 @@ The implementation is source-backed and covered by runtime-owned tests under `.o
 - Canonical catalog source: `feature_catalog.md`
 - Feature ID: F042
 - Feature file path: `01--executor/fallback-router-typed-reroute.md`
-- Source phase: `.opencode/specs/skilled-agent-orchestration/156-agent-loops-improved/002-implementation/002-deep-loop-runtime/015-fallback-router-typed-reroute`
+- Source phase: `.opencode/specs/system-deep-loop/030-deep-loop-improved/002-deep-loop-runtime/015-fallback-router-typed-reroute`
 - Primary sources: `lib/deep-loop/fallback-router.ts`, `tests/unit/fallback-router.vitest.ts`
 Related references:
 - [executor](../01--executor/) — Executor category

@@ -83,6 +83,6 @@ Fixed-rate overrun accounting matches the documented current reality, the source
 - Playbook ID: DLR-039
 - Feature catalog entry: `feature_catalog/09--fanout/fixed-rate-overrun-accounting.md`
 - Scenario file path: `manual_testing_playbook/09--fanout/fixed-rate-overrun-accounting.md`
-- Source phase: `.opencode/specs/skilled-agent-orchestration/156-agent-loops-improved/002-implementation/002-deep-loop-runtime/010-fixed-rate-overrun-accounting`
+- Source phase: `.opencode/specs/system-deep-loop/030-deep-loop-improved/002-deep-loop-runtime/010-fixed-rate-overrun-accounting`
 - Expected verdict mode: GREEN when current tests and source anchors agree
 - Wall-time estimate: 5-15 min

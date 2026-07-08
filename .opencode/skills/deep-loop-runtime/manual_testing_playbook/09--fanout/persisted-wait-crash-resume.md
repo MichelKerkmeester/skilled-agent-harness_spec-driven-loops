@@ -83,6 +83,6 @@ Persisted-wait crash resume matches the documented current reality, the source a
 - Playbook ID: DLR-047
 - Feature catalog entry: `feature_catalog/09--fanout/persisted-wait-crash-resume.md`
 - Scenario file path: `manual_testing_playbook/09--fanout/persisted-wait-crash-resume.md`
-- Source phase: `.opencode/specs/skilled-agent-orchestration/156-agent-loops-improved/002-implementation/002-deep-loop-runtime/018-persisted-wait-crash-resume`
+- Source phase: `.opencode/specs/system-deep-loop/030-deep-loop-improved/002-deep-loop-runtime/018-persisted-wait-crash-resume`
 - Expected verdict mode: GREEN when current tests and source anchors agree
 - Wall-time estimate: 5-15 min

@@ -83,6 +83,6 @@ Single-loop telemetry heartbeat matches the documented current reality, the sour
 - Playbook ID: DLR-048
 - Feature catalog entry: `feature_catalog/11--observability/single-loop-telemetry-heartbeat.md`
 - Scenario file path: `manual_testing_playbook/11--observability/single-loop-telemetry-heartbeat.md`
-- Source phase: `.opencode/specs/skilled-agent-orchestration/156-agent-loops-improved/002-implementation/006-ux-observability-automation/002-single-loop-telemetry-heartbeat`
+- Source phase: `.opencode/specs/system-deep-loop/030-deep-loop-improved/006-ux-observability-automation/002-single-loop-telemetry-heartbeat`
 - Expected verdict mode: GREEN when current tests and source anchors agree
 - Wall-time estimate: 5-15 min
