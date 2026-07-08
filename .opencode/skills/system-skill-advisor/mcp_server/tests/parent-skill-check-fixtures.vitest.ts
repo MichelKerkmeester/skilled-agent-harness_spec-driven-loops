@@ -90,6 +90,10 @@ describe('parent-skill-check fixture harness', () => {
       rule: '5h', label: 'router defaultMode is not a registered mode',
       mutate: (d) => { const p = join(d, 'hub-router.json'); const r = readJson(p) as { routerPolicy: Record<string, unknown> }; r.routerPolicy.defaultMode = 'ghost-mode'; writeJson(p, r); },
     },
+    {
+      rule: '8b', label: 'description.json carries a registry-owned modes[] duplicate',
+      mutate: (d) => { const p = join(d, 'description.json'); const j = readJson(p); j.modes = ['fake-duplicate']; writeJson(p, j); },
+    },
   ];
 
   for (const { rule, label, mutate } of mutants) {

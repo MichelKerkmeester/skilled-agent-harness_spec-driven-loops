@@ -836,6 +836,15 @@ function main() {
       } else {
         softFail(`8a: description.json missing field(s): [${missing.join(', ')}]`);
       }
+      // 8b — description.json must not duplicate registry-owned vocab. modes[]/backend_kinds
+      // belong to the mode-registry; a copy here is a second source of truth that drifts
+      // silently. Remediation dropped these; this rule keeps them from resurrecting.
+      const registryOwned = ['modes', 'backend_kinds'].filter((k) => k in desc);
+      if (registryOwned.length === 0) {
+        pass('8b: description.json carries no registry-owned duplicate keys');
+      } else {
+        softFail(`8b: description.json carries registry-owned key(s) [${registryOwned.join(', ')}] — mode-registry.json is the single source of truth; remove them`);
+      }
     } catch (e) {
       softFail(`8a: description.json is not valid JSON: ${e.message}`);
     }
