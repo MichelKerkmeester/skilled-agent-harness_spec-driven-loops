@@ -242,6 +242,63 @@ describe('skill graph database indexing', () => {
     }
   });
 
+  it('self-heals a legacy database whose skill_edges CHECK omits a new edge type', () => {
+    const root = mkdtempSync(join(tmpdir(), 'skill-graph-db-'));
+    const dbDir = join(root, 'db');
+
+    try {
+      // Plant a legacy DB: skill_edges carrying the old edge_type CHECK, two nodes, one edge.
+      mkdirSync(dbDir, { recursive: true });
+      const legacy = new Database(join(dbDir, 'skill-graph.sqlite'));
+      legacy.exec(`
+        CREATE TABLE skill_nodes (
+          id TEXT PRIMARY KEY, family TEXT NOT NULL, category TEXT NOT NULL,
+          schema_version INTEGER NOT NULL, domains TEXT, intent_signals TEXT, derived TEXT,
+          source_path TEXT NOT NULL UNIQUE, content_hash TEXT NOT NULL,
+          embedding BLOB, embedding_model_id TEXT, embedding_content_hash TEXT,
+          indexed_at TEXT DEFAULT (datetime('now'))
+        );
+        CREATE TABLE skill_edges (
+          id INTEGER PRIMARY KEY AUTOINCREMENT,
+          source_id TEXT NOT NULL REFERENCES skill_nodes(id) ON DELETE CASCADE,
+          target_id TEXT NOT NULL REFERENCES skill_nodes(id) ON DELETE CASCADE,
+          edge_type TEXT NOT NULL CHECK(edge_type IN ('depends_on','enhances','siblings','conflicts_with','prerequisite_for')),
+          weight REAL NOT NULL CHECK(weight >= 0.0 AND weight <= 1.0),
+          context TEXT NOT NULL,
+          UNIQUE(source_id, target_id, edge_type),
+          CHECK(source_id != target_id)
+        );
+        CREATE TABLE schema_version (version INTEGER NOT NULL);
+        INSERT INTO skill_nodes (id, family, category, schema_version, source_path, content_hash)
+          VALUES ('a','system','test',1,'/x/a/graph-metadata.json','h-a'),
+                 ('b','system','test',1,'/x/b/graph-metadata.json','h-b');
+        INSERT INTO skill_edges (source_id, target_id, edge_type, weight, context)
+          VALUES ('a','b','enhances',0.5,'existing edge survives');
+        INSERT INTO schema_version (version) VALUES (1);
+      `);
+      // The old CHECK rejects a novel edge type today.
+      expect(() => legacy.prepare("INSERT INTO skill_edges (source_id,target_id,edge_type,weight,context) VALUES ('a','b','mentors',0.5,'x')").run()).toThrow();
+      legacy.close();
+
+      // Opening via initDb runs the migration: the edge_type CHECK is dropped, the edge preserved.
+      initDb(dbDir);
+      const tableSql = getDb().prepare("SELECT sql FROM sqlite_master WHERE type='table' AND name='skill_edges'").get() as { sql: string };
+      expect(tableSql.sql).not.toMatch(/CHECK\s*\(\s*edge_type\s+IN/i);
+      expect(getDb().prepare('SELECT COUNT(*) AS c FROM skill_edges').get()).toEqual({ c: 1 });
+
+      // A newly-added edge type now inserts (EDGE_TYPES is the single gate; the SQL no longer rejects it).
+      getDb().prepare("INSERT INTO skill_edges (source_id,target_id,edge_type,weight,context) VALUES ('a','b','mentors',0.5,'new edge type')").run();
+      expect(getDb().prepare("SELECT COUNT(*) AS c FROM skill_edges WHERE edge_type='mentors'").get()).toEqual({ c: 1 });
+
+      // The structural CHECKs (weight range, no self-loop) survive the rebuild.
+      expect(() => getDb().prepare("INSERT INTO skill_edges (source_id,target_id,edge_type,weight,context) VALUES ('a','a','enhances',0.5,'self loop')").run()).toThrow();
+      expect(() => getDb().prepare("INSERT INTO skill_edges (source_id,target_id,edge_type,weight,context) VALUES ('a','b','depends_on',9.0,'bad weight')").run()).toThrow();
+    } finally {
+      closeDb();
+      rmSync(root, { recursive: true, force: true });
+    }
+  });
+
   it('sanitizes skill metadata before writing indexed rows', () => {
     const root = mkdtempSync(join(tmpdir(), 'skill-graph-db-'));
     const dbDir = join(root, 'db');

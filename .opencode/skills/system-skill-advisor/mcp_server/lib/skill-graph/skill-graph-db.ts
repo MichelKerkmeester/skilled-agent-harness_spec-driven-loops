@@ -206,7 +206,7 @@ const SCHEMA_SQL = `
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     source_id TEXT NOT NULL REFERENCES skill_nodes(id) ON DELETE CASCADE,
     target_id TEXT NOT NULL REFERENCES skill_nodes(id) ON DELETE CASCADE,
-    edge_type TEXT NOT NULL CHECK(edge_type IN ('depends_on', 'enhances', 'siblings', 'conflicts_with', 'prerequisite_for')),
+    edge_type TEXT NOT NULL,
     weight REAL NOT NULL CHECK(weight >= 0.0 AND weight <= 1.0),
     context TEXT NOT NULL,
     UNIQUE(source_id, target_id, edge_type),
@@ -414,6 +414,43 @@ function ensureSchemaMigrations(database: Database.Database): void {
           CREATE INDEX IF NOT EXISTS idx_skill_nodes_hash ON skill_nodes(content_hash);
           CREATE INDEX IF NOT EXISTS idx_skill_nodes_embedding_model ON skill_nodes(embedding_model_id);
           CREATE INDEX IF NOT EXISTS idx_skill_nodes_embedding_hash ON skill_nodes(embedding_content_hash);
+        `);
+      })();
+    } finally {
+      if (foreignKeysWereOn) database.pragma('foreign_keys = ON');
+    }
+  }
+
+  // The skill_edges.edge_type CHECK is the same drift-prone mirror as the family CHECK
+  // above: a new edge type added to the app-level EDGE_TYPES gate still fails the stale SQL
+  // constraint and aborts the whole scan. Rebuild skill_edges without it — EDGE_TYPES is the
+  // one gate. Keeps the weight-range and no-self-loop CHECKs (structural, not drift-prone).
+  const edgesTableSql = (database
+    .prepare("SELECT sql FROM sqlite_master WHERE type = 'table' AND name = 'skill_edges'")
+    .get() as { sql?: string } | undefined)?.sql ?? '';
+  if (/CHECK\s*\(\s*edge_type\s+IN/i.test(edgesTableSql)) {
+    const foreignKeysWereOn = database.pragma('foreign_keys', { simple: true }) === 1;
+    if (foreignKeysWereOn) database.pragma('foreign_keys = OFF');
+    try {
+      database.transaction(() => {
+        database.exec(`
+          CREATE TABLE skill_edges_rebuild (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            source_id TEXT NOT NULL REFERENCES skill_nodes(id) ON DELETE CASCADE,
+            target_id TEXT NOT NULL REFERENCES skill_nodes(id) ON DELETE CASCADE,
+            edge_type TEXT NOT NULL,
+            weight REAL NOT NULL CHECK(weight >= 0.0 AND weight <= 1.0),
+            context TEXT NOT NULL,
+            UNIQUE(source_id, target_id, edge_type),
+            CHECK(source_id != target_id)
+          );
+          INSERT INTO skill_edges_rebuild (id, source_id, target_id, edge_type, weight, context)
+          SELECT id, source_id, target_id, edge_type, weight, context FROM skill_edges;
+          DROP TABLE skill_edges;
+          ALTER TABLE skill_edges_rebuild RENAME TO skill_edges;
+          CREATE INDEX IF NOT EXISTS idx_skill_edges_source ON skill_edges(source_id, edge_type);
+          CREATE INDEX IF NOT EXISTS idx_skill_edges_target ON skill_edges(target_id, edge_type);
+          CREATE INDEX IF NOT EXISTS idx_skill_edges_type ON skill_edges(edge_type);
         `);
       })();
     } finally {
