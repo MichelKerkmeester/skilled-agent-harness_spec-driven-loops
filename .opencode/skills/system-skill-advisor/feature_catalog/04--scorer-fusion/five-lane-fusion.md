@@ -37,9 +37,7 @@ The opt-in `SPECKIT_ADVISOR_RRF_FUSION` flag (default off) routes the same five 
 
 ### Self-recommendation penalty
 
-On read-only audit and explainer prompts the scorer applies `auditRecsAdvisorPenalty` (-0.25) to any recommendation whose skill is in the canonical self-recommendation id set. That set covers both `system-skill-advisor` and the `skill-advisor` alias, so neither the canonical id nor the alias self-recommends to the top. The penalty is the standing defense after the separate self-recommendation guard was cut as behaviorally redundant, so it carries a durable rationale and a regression contract test.
-
-The cut guard is still reachable through the opt-in `SPECKIT_ADVISOR_SELF_RECOMMENDATION_GUARD` flag (default off), read by `isAdvisorSelfRecommendationGuardEnabled()`. With the flag off the standing penalty fires unconditionally for the canonical id set. With the flag on the scorer routes through the narrower guard predicate, which additionally requires a self-authored explicit signal before demoting, so enabling it relaxes rather than tightens the default demotion. The default-off path is the live behavior.
+On read-only audit and explainer prompts the scorer applies `auditRecsAdvisorPenalty` (-0.25) to any recommendation whose skill is in the canonical self-recommendation id set. That set covers both `system-skill-advisor` and the `skill-advisor` alias, so neither the canonical id nor the alias self-recommends to the top. The penalty is the SOLE defense: the separate opt-in self-recommendation guard that once sat behind it was removed as behaviorally redundant (a benchmark built to trigger it moved zero top-1 results, and the advisor never reaches the guard's confidence branch since it is never `readOnlyRouteAllowed`). The penalty therefore carries a durable rationale and a regression contract test.
 
 ## 3. SOURCE FILES
 

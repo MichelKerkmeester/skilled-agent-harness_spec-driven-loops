@@ -138,10 +138,10 @@ export interface RoutingCalibration {
   // Demotes the advisor — both its canonical id and its alias — from
   // recommending itself on a read-only "audit the recommendation quality"
   // prompt; auditing routing output is a review task, not an advisor
-  // invocation. This penalty is the SOLE remaining defense against advisor
-  // self-recommendation on those prompts: the explicit opt-in guard that used
-  // to back it up was removed as redundant precisely because this implicit
-  // penalty already fires. It must be applied through the canonical self-rec id
+  // invocation. This penalty is the SOLE defense against advisor
+  // self-recommendation on those prompts — there is no separate guard behind it,
+  // so this is the only thing demoting the advisor. It must be applied through
+  // the canonical self-rec id
   // set so the alias is demoted too, not just the exact id. Do not remove or
   // zero it without a documented, tested replacement, or the advisor can rank
   // itself first on audit/explainer prompts again with nothing to stop it.

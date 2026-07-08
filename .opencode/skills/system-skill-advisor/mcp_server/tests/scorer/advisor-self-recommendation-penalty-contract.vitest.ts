@@ -3,10 +3,9 @@
 // ───────────────────────────────────────────────────────────────
 // Locks the implicit `auditRecsAdvisorPenalty` that keeps the advisor from
 // recommending itself on a read-only "audit the recommendation quality" prompt.
-// The explicit opt-in guard that used to back this up was removed as redundant
-// because this penalty already fires, so this penalty is now the SOLE defense.
-// These tests fire it in the production-default state (guard flag OFF) and break
-// loudly if a refactor removes, zeroes, or makes the penalty non-negative.
+// This penalty is the SOLE defense — there is no separate guard behind it — so
+// these tests break loudly if a refactor removes, zeroes, or makes the penalty
+// non-negative.
 //
 // The competitor skill id sorts AFTER both 'system-skill-advisor' and its
 // 'skill-advisor' alias alphabetically and carries an identical explicit-author
@@ -19,12 +18,9 @@
 // BOTH the exact id and the alias, so the alias must be demoted too. A separate
 // test pins the alias to catch a regression to an exact-id-only check.
 
-import { afterEach, beforeEach, describe, expect, it } from 'vitest';
+import { describe, expect, it } from 'vitest';
 
-import {
-  ADVISOR_SELF_RECOMMENDATION_GUARD_FLAG,
-  scoreAdvisorPrompt,
-} from '../../lib/scorer/fusion.js';
+import { scoreAdvisorPrompt } from '../../lib/scorer/fusion.js';
 import { createFixtureProjection } from '../../lib/scorer/projection.js';
 import { SCORING_CALIBRATION } from '../../lib/scorer/scoring-constants.js';
 import type { SkillProjection } from '../../lib/scorer/types.js';
@@ -73,31 +69,13 @@ function scoreAudit(prompt: string, projection: ReturnType<typeof auditProjectio
 }
 
 describe('advisor self-recommendation penalty contract', () => {
-  let previousGuardFlag: string | undefined;
-
-  beforeEach(() => {
-    // Pin the production-default state: the explicit opt-in guard is OFF, so the
-    // implicit penalty in primaryIntentBonus is the only thing demoting the
-    // advisor on an audit prompt.
-    previousGuardFlag = process.env[ADVISOR_SELF_RECOMMENDATION_GUARD_FLAG];
-    delete process.env[ADVISOR_SELF_RECOMMENDATION_GUARD_FLAG];
-  });
-
-  afterEach(() => {
-    if (previousGuardFlag === undefined) {
-      delete process.env[ADVISOR_SELF_RECOMMENDATION_GUARD_FLAG];
-    } else {
-      process.env[ADVISOR_SELF_RECOMMENDATION_GUARD_FLAG] = previousGuardFlag;
-    }
-  });
-
   it('is a negative penalty in the calibration constants', () => {
     // A removal or sign-flip of the constant is the failure this whole suite
     // guards against; assert the contract value directly so the break is obvious.
     expect(SCORING_CALIBRATION.routing.auditRecsAdvisorPenalty).toBeLessThan(0);
   });
 
-  it('keeps system-skill-advisor off the top spot on an audit prompt with the guard OFF', () => {
+  it('keeps system-skill-advisor off the top spot on an audit prompt', () => {
     const result = scoreAudit(AUDIT_PROMPT, auditProjection());
 
     expect(result.recommendations[0].skill).not.toBe('system-skill-advisor');
@@ -120,7 +98,7 @@ describe('advisor self-recommendation penalty contract', () => {
     expect(competitorRank).toBeLessThan(advisorRank);
   });
 
-  it('also demotes the skill-advisor ALIAS off the top spot on an audit prompt with the guard OFF', () => {
+  it('also demotes the skill-advisor ALIAS off the top spot on an audit prompt', () => {
     // The penalty must defend the alias id too, not only the exact canonical id.
     // The alias carries the same audit signal and the competitor sorts after it,
     // so absent an alias-covering penalty the alias would win the tie-break and

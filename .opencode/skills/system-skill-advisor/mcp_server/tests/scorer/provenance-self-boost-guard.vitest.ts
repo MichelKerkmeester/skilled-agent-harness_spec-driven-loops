@@ -1,8 +1,5 @@
-import { afterEach, beforeEach, describe, expect, it } from 'vitest';
-import {
-  ADVISOR_SELF_RECOMMENDATION_GUARD_FLAG,
-  scoreAdvisorPrompt,
-} from '../../lib/scorer/fusion.js';
+import { describe, expect, it } from 'vitest';
+import { scoreAdvisorPrompt } from '../../lib/scorer/fusion.js';
 import { scoreExplicitLane } from '../../lib/scorer/lanes/explicit.js';
 import { createFixtureProjection } from '../../lib/scorer/projection.js';
 import type { SkillProjection } from '../../lib/scorer/types.js';
@@ -26,22 +23,7 @@ function skill(overrides: Partial<SkillProjection> & Pick<SkillProjection, 'id'>
   };
 }
 
-describe('advisor provenance self-boost guard', () => {
-  let previousGuardFlag: string | undefined;
-
-  beforeEach(() => {
-    previousGuardFlag = process.env[ADVISOR_SELF_RECOMMENDATION_GUARD_FLAG];
-    delete process.env[ADVISOR_SELF_RECOMMENDATION_GUARD_FLAG];
-  });
-
-  afterEach(() => {
-    if (previousGuardFlag === undefined) {
-      delete process.env[ADVISOR_SELF_RECOMMENDATION_GUARD_FLAG];
-    } else {
-      process.env[ADVISOR_SELF_RECOMMENDATION_GUARD_FLAG] = previousGuardFlag;
-    }
-  });
-
+describe('advisor provenance self-boost and audit penalty', () => {
   it('keeps producer identity out of the default explicit-author lane output', () => {
     const projection = createFixtureProjection([
       skill({ id: 'alpha', intentSignals: ['alpha exact route'] }),
@@ -57,7 +39,7 @@ describe('advisor provenance self-boost guard', () => {
     });
   });
 
-  it('threads producer identity when the self-recommendation guard is enabled', () => {
+  it('threads producer identity when includeProducerIdentity is requested', () => {
     const projection = createFixtureProjection([
       skill({ id: 'alpha', intentSignals: ['alpha exact route'] }),
     ]);
@@ -75,77 +57,52 @@ describe('advisor provenance self-boost guard', () => {
     });
   });
 
-  it('leaves non-advisor explicit-author routing byte-identical when enabled', () => {
+  it('routes a non-advisor explicit-author prompt to the matching skill', () => {
     const projection = createFixtureProjection([
       skill({ id: 'alpha', intentSignals: ['alpha exact route'] }),
       skill({ id: 'beta', intentSignals: ['beta exact route'] }),
     ]);
-    const prompt = 'run alpha exact route';
-    const off = scoreAdvisorPrompt(prompt, {
+
+    const result = scoreAdvisorPrompt('run alpha exact route', {
       workspaceRoot: process.cwd(),
       projection,
       includeAllCandidates: true,
     });
 
-    process.env[ADVISOR_SELF_RECOMMENDATION_GUARD_FLAG] = '1';
-    const on = scoreAdvisorPrompt(prompt, {
-      workspaceRoot: process.cwd(),
-      projection,
-      includeAllCandidates: true,
-    });
-
-    expect(on).toEqual(off);
+    expect(result.recommendations[0].skill).toBe('alpha');
   });
 
-  it('applies the recommendation-audit penalty to the advisor alias in both the guard-off default and guard-on', () => {
+  it('applies the recommendation-audit penalty to the advisor alias', () => {
     // The audit penalty is applied through the canonical self-rec id set, which
     // covers the 'skill-advisor' alias as well as the exact id, so the alias is
-    // demoted in the production-default guard-off state — not only when the
-    // explicit guard is enabled. The alias must behave like the canonical id.
+    // demoted below a score-tied competitor that sorts after it. The alias must
+    // behave like the canonical id, not win the tie-break.
     const projection = createFixtureProjection([
       skill({ id: 'skill-advisor', intentSignals: ['recommendation quality'] }),
       skill({ id: 'zzz-review', intentSignals: ['recommendation quality'] }),
     ]);
-    const prompt = 'audit recommendation quality';
 
-    const off = scoreAdvisorPrompt(prompt, {
+    const result = scoreAdvisorPrompt('audit recommendation quality', {
       workspaceRoot: process.cwd(),
       projection,
       includeAllCandidates: true,
     });
 
-    process.env[ADVISOR_SELF_RECOMMENDATION_GUARD_FLAG] = '1';
-    const on = scoreAdvisorPrompt(prompt, {
-      workspaceRoot: process.cwd(),
-      projection,
-      includeAllCandidates: true,
-    });
-
-    expect(off.recommendations[0].skill).toBe('zzz-review');
-    expect(on.recommendations[0].skill).toBe('zzz-review');
+    expect(result.recommendations[0].skill).toBe('zzz-review');
   });
 
-  it('preserves the existing system advisor audit penalty', () => {
+  it('applies the recommendation-audit penalty to the canonical advisor id', () => {
     const projection = createFixtureProjection([
       skill({ id: 'system-skill-advisor', intentSignals: ['recommendation quality'] }),
       skill({ id: 'zzz-review', intentSignals: ['recommendation quality'] }),
     ]);
-    const prompt = 'audit recommendation quality';
 
-    const off = scoreAdvisorPrompt(prompt, {
+    const result = scoreAdvisorPrompt('audit recommendation quality', {
       workspaceRoot: process.cwd(),
       projection,
       includeAllCandidates: true,
     });
 
-    process.env[ADVISOR_SELF_RECOMMENDATION_GUARD_FLAG] = '1';
-    const on = scoreAdvisorPrompt(prompt, {
-      workspaceRoot: process.cwd(),
-      projection,
-      includeAllCandidates: true,
-    });
-
-    expect(off.recommendations[0].skill).toBe('zzz-review');
-    expect(on.recommendations[0].skill).toBe('zzz-review');
+    expect(result.recommendations[0].skill).toBe('zzz-review');
   });
 });
