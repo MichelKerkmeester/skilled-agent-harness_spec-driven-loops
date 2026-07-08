@@ -9,18 +9,18 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "sk-doc/999-sk-doc-parent/024-canon-self-enforcement"
-    last_updated_at: "2026-07-08T03:22:24Z"
+    last_updated_at: "2026-07-08T03:42:41Z"
     last_updated_by: "claude-opus"
-    recent_action: "Phase 1 PREP done: WU8 guard (green) + WU11 seq doc; baseline 4/4"
-    next_safe_action: "Execute Phase 2 trio: WU1 CI gate, WU3 edge_type, WU12a, WU2 battery"
+    recent_action: "Phase 2 trio landed: WU1 CI+CWD, WU3 edge_type, WU12a, WU2 battery"
+    next_safe_action: "Execute Phase 3 DO-NOW: WU4 cmd-binding, WU5 panel, WU6/7/9, WU12bcd"
     blockers: []
     key_files:
-      - ".opencode/specs/sk-doc/999-sk-doc-parent/024-canon-self-enforcement/references/wu11-dead-id-sequencing.md"
+      - ".opencode/commands/doctor/scripts/parent-skill-check.cjs"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "bootstrap-session"
       parent_session_id: null
-    completion_pct: 30
+    completion_pct: 55
     open_questions: []
     answered_questions: []
 ---
@@ -68,10 +68,10 @@ _memory:
 ## Phase 2: Implementation
 
 **Foundational trio (lead)**
-- [ ] T006 WU1 [P1] Widen CI gate to `skills/*/mode-registry.json` + per-hub checker loop; fix CWD rule-4a (`routing-registry-drift.yml:9-20,51`; `parent-skill-check.cjs:90,194,599,608`)
-- [ ] T007 WU3 [P] Defuse `edge_type` CHECK + self-heal migration + vitest (`skill-graph-db.ts:209,372-422`; `skill-graph-db.vitest.ts:176-219`)
-- [ ] T008 WU12(a) [P] Patch template `sk-hub` family line (`parent_skill_graph_metadata_template.json:5`)
-- [ ] T009 WU2 Cross-language vocabulary-agreement battery; subset-flag the 2 gated read-only sites (`skill-graph-db.ts:47,49-54,148,158`; `skill_graph_compiler.py:38,44`; `skill-graph-tools.ts:45`; `parent-skill-check.cjs:43,48,53`; flag `skill_advisor.py:242`, `graph-causal.ts:28-34`)
+- [x] T006 WU1 [P1] Widen CI gate to `skills/*/mode-registry.json` + per-hub checker loop; fix CWD rule-4a — `f8924b0495` (proven from /tmp)
+- [x] T007 WU3 [P] Defuse `edge_type` CHECK + self-heal migration + vitest — `8934e37d4f` (live DB carried the twin; heals clean)
+- [x] T008 WU12(a) [P] Patch template `sk-hub` family line — `5c61c13f5d`→`84924bd848`
+- [x] T009 WU2 Cross-language vocabulary-agreement battery; 2 gated sites subset-flagged — `5c61c13f5d`→`84924bd848` (5/5, RED-proven)
 
 **DO-NOW hardening batch**
 - [ ] T010 WU4 [P] [D1] Command-binding existence gate vitest; RED on `/doc:quality` (`sk-doc/mode-registry.json:145`; `.opencode/commands/**`)
