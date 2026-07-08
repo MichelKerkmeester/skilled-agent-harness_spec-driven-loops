@@ -5,14 +5,21 @@
   "keywords": [
     "needs-rebuild",
     "sentinel",
-    "corruption",
-    "repairNeedsRebuildSentinel",
-    "quick_check",
-    "checkpoints",
-    "vector-index-store",
-    "post_crash_integrity_probe"
+    "file",
+    "conflates",
+    "two",
+    "failure",
+    "classes",
+    "half-finished",
+    "checkpoint",
+    "restores",
+    "safely",
+    "auto-repaired",
+    "physical",
+    "page",
+    "corruption"
   ],
-  "lastUpdated": "2026-07-08T16:02:23Z",
+  "lastUpdated": "2026-07-08T18:05:02.598Z",
   "specId": "034",
   "folderSlug": "rebuild-sentinel-corruption-handling",
   "parentChain": [
