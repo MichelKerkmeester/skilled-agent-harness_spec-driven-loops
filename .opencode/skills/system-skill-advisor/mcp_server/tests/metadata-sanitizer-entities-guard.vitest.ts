@@ -1,20 +1,17 @@
 // ───────────────────────────────────────────────────────────────
-// MODULE: derived.entities shape-break guard (known bug, fix deferred)
+// MODULE: derived.entities shape preservation guard
 // ───────────────────────────────────────────────────────────────
-// sanitizeDerivedMetadata bundles `entities` with the plain string-array keys and
-// filters every element to `typeof entry === 'string'`, so the object-shaped entities
-// that sk-design and system-deep-loop ship ({name, kind, path, source}) are silently
-// dropped — they never reach the SQLite index or the scorer's derivedKeywords. The fix
-// (flatten object entities to their `name`) changes indexed content and therefore shifts
-// advisor scoring, so it must co-land with the 193-row parity re-baseline, not before.
-//
-// This guard is GREEN while the bug stands and flips RED the moment the fix lands — the
-// signal to recompute the parity baseline and retire this marker.
+// sanitizeDerivedMetadata flattens object-shaped entities ({name, kind, path,
+// source}, as sk-design and system-deep-loop ship) to their `name` so they reach
+// the SQLite index and the scorer's derivedKeywords. Before this fix the object
+// shape was filtered out by a `typeof entry === 'string'` guard and dropped
+// silently; because restoring it changes indexed content and shifts advisor
+// scoring, the fix co-landed with the 193-row parity re-baseline.
 
 import { describe, it, expect } from 'vitest';
 import { sanitizeDerivedMetadata } from '../lib/skill-graph/metadata-sanitizer.js';
 
-describe('derived.entities object-shape drop (fix gated on the scorer re-baseline)', () => {
+describe('derived.entities object-shape preservation', () => {
   const objectEntity = {
     name: 'sk-design',
     kind: 'skill',
@@ -22,23 +19,33 @@ describe('derived.entities object-shape drop (fix gated on the scorer re-baselin
     source: 'derived',
   };
 
-  // Desired post-fix behavior: the object entity survives, flattened to its name.
-  // Fails today because entities are dropped — `it.fails` therefore passes now and
-  // will RED when the sanitizer is fixed.
-  it.fails('preserves object-shaped entities (dropped today)', () => {
+  // Object entities survive, flattened to their `name`.
+  it('preserves object-shaped entities, indexed by name', () => {
     const out = sanitizeDerivedMetadata({ entities: [objectEntity] }, 'guard-test');
     expect(out?.entities).toContain('sk-design');
   });
 
-  // Pin the current (buggy) behavior so the drop is documented, not accidental.
-  it('documents the current behavior: object entities collapse to an empty array', () => {
-    const out = sanitizeDerivedMetadata({ entities: [objectEntity] }, 'guard-test');
-    expect(out?.entities).toEqual([]);
+  // When `name` is absent the entity falls back to its `path`.
+  it('falls back to path when an object entity has no name', () => {
+    const out = sanitizeDerivedMetadata(
+      { entities: [{ kind: 'reference', path: 'quick_start', source: 'derived' }] },
+      'guard-test',
+    );
+    expect(out?.entities).toContain('quick_start');
   });
 
-  // String entities are unaffected — only the object shape is dropped.
-  it('keeps string entities (only the object shape is lost)', () => {
+  // Plain string entities remain unaffected.
+  it('keeps string entities untouched', () => {
     const out = sanitizeDerivedMetadata({ entities: ['plain-string-entity'] }, 'guard-test');
     expect(out?.entities).toEqual(['plain-string-entity']);
+  });
+
+  // Shapeless entries (no name, no path) are still dropped.
+  it('drops entities with neither name nor path', () => {
+    const out = sanitizeDerivedMetadata(
+      { entities: [{ kind: 'reference', source: 'derived' }, 42, null] },
+      'guard-test',
+    );
+    expect(out?.entities).toEqual([]);
   });
 });

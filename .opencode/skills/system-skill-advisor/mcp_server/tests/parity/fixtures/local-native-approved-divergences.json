@@ -224,11 +224,11 @@
     {
       "id": "rr-iter2-041",
       "corpus": "labeled",
-      "promptHash": "sha256:d8b52f3665a438dfdcf2eae8a93422387d2a5e981cd70d795d8238b9f26fa30c",
+      "promptHash": "sha256:961de14da2881efeec31b769a51a3f66ef87b685c473f181b546d098ecb2b3f5",
       "gold": "system-deep-loop",
       "localTop": "deep-research",
       "nativeTop": "system-deep-loop",
-      "reason": "deep-loop merge re-baseline: legacy deep-* skills folded into system-deep-loop shifted native top-1; recorded as approved local-vs-native divergence",
+      "reason": "deep-loop merge re-baseline: legacy deep-* skills folded into system-deep-loop shifted native top-1; recorded as approved local-vs-native divergence; promptHash re-approved 2026-07-08 for the WU11 dead-id migration (/deep:start-*-loop -> /deep:*)",
       "approvedAt": "2026-06-15"
     },
     {
@@ -244,11 +244,11 @@
     {
       "id": "rr-iter2-046",
       "corpus": "labeled",
-      "promptHash": "sha256:565345fe2413c2a915d1448a744fb0e662fc563bfa5bbf9d4035e9fa5117fd8a",
+      "promptHash": "sha256:cf84a4ca158f68c875f8acae58c1357948c57e20e75044f42226abeeb9d4c5b2",
       "gold": "system-deep-loop",
       "localTop": "deep-review",
       "nativeTop": "system-spec-kit",
-      "reason": "baseline divergence captured 2026-06-13: local/native lexical-mis-route disagreement (local=deep-review, native=system-spec-kit)",
+      "reason": "baseline divergence captured 2026-06-13: local/native lexical-mis-route disagreement (local=deep-review, native=system-spec-kit); promptHash re-approved 2026-07-08 for the WU11 dead-id migration (/deep:start-*-loop -> /deep:*)",
       "approvedAt": "2026-06-13"
     },
     {
@@ -624,21 +624,21 @@
     {
       "id": "rr-iter3-149",
       "corpus": "labeled",
-      "promptHash": "sha256:7835647650813b6bfab37b922c629cc9396e9f75301a894e0cae02f0545bfe37",
+      "promptHash": "sha256:3b81a0d0236db6fe8cf04b2e9678ba730468378bd093ad9d582816d220f28508",
       "gold": "system-deep-loop",
       "localTop": "deep-research",
       "nativeTop": "system-deep-loop",
-      "reason": "deep-loop merge re-baseline: legacy deep-* skills folded into system-deep-loop shifted native top-1; recorded as approved local-vs-native divergence",
+      "reason": "deep-loop merge re-baseline: legacy deep-* skills folded into system-deep-loop shifted native top-1; recorded as approved local-vs-native divergence; promptHash re-approved 2026-07-08 for the WU11 dead-id migration (/deep:start-*-loop -> /deep:*)",
       "approvedAt": "2026-06-15"
     },
     {
       "id": "rr-iter3-154",
       "corpus": "labeled",
-      "promptHash": "sha256:e5ca59e6aaf93b62c8922d5384b116cd2b5e32e2c39ff60c2ce3532353d41ad0",
+      "promptHash": "sha256:a4ab8d6be368c9f16a6fc2c56b1b51354816565e636bfe6a219f99e5a35610a2",
       "gold": "system-deep-loop",
       "localTop": "deep-review",
       "nativeTop": "system-deep-loop",
-      "reason": "deep-loop merge re-baseline: legacy deep-* skills folded into system-deep-loop shifted native top-1; recorded as approved local-vs-native divergence",
+      "reason": "deep-loop merge re-baseline: legacy deep-* skills folded into system-deep-loop shifted native top-1; recorded as approved local-vs-native divergence; promptHash re-approved 2026-07-08 for the WU11 dead-id migration (/deep:start-*-loop -> /deep:*)",
       "approvedAt": "2026-06-15"
     },
     {
@@ -684,11 +684,11 @@
     {
       "id": "rr-iter3-168",
       "corpus": "labeled",
-      "promptHash": "sha256:0ea500718ab50a26e8c9e21c9a72d5929bb57c199ae5e6f1123c7097315f8de7",
+      "promptHash": "sha256:5249917554f1290d938ac3c8f25a9a88d10403495e7d245adfcfe2e9e19ff50b",
       "gold": "system-deep-loop",
       "localTop": "deep-research",
       "nativeTop": "system-deep-loop",
-      "reason": "deep-loop merge re-baseline: legacy deep-* skills folded into system-deep-loop shifted native top-1; recorded as approved local-vs-native divergence",
+      "reason": "deep-loop merge re-baseline: legacy deep-* skills folded into system-deep-loop shifted native top-1; recorded as approved local-vs-native divergence; promptHash re-approved 2026-07-08 for the WU11 dead-id migration (/deep:start-*-loop -> /deep:*)",
       "approvedAt": "2026-06-15"
     },
     {

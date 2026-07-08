@@ -55,7 +55,7 @@ const SKILL_GRAPH_DB = advisorDbDirOverride
   ? join(advisorDbDirOverride, 'skill-graph.sqlite')
   : join('.opencode', 'skills', 'system-skill-advisor', 'mcp_server', 'database', 'skill-graph.sqlite');
 
-const COMMAND_BRIDGES: readonly SkillProjection[] = [
+export const COMMAND_BRIDGES: readonly SkillProjection[] = [
   {
     id: 'command-spec-kit',
     kind: 'command',
@@ -63,9 +63,9 @@ const COMMAND_BRIDGES: readonly SkillProjection[] = [
     category: 'command',
     name: 'command-spec-kit',
     description: 'Spec Kit command bridge for /spec_kit workflows.',
-    keywords: ['/speckit:plan', '/speckit:resume', '/deep:start-research-loop', '/deep:start-review-loop'],
+    keywords: ['/speckit:plan', '/speckit:resume', '/deep:research', '/deep:review'],
     domains: ['spec-kit', 'command'],
-    intentSignals: ['/speckit:plan', '/speckit:resume', '/deep:start-research-loop', '/deep:start-review-loop'],
+    intentSignals: ['/speckit:plan', '/speckit:resume', '/deep:research', '/deep:review'],
     derivedTriggers: [],
     derivedKeywords: [],
     sourcePath: null,
@@ -137,10 +137,10 @@ const COMMAND_BRIDGES: readonly SkillProjection[] = [
     family: 'system',
     category: 'command',
     name: 'deep-model-benchmark',
-    description: 'Deep command bridge for /deep:start-model-benchmark-loop model and prompt-framework benchmarking.',
-    keywords: ['/deep:start-model-benchmark-loop', 'benchmark a model', 'benchmark a prompt framework', 'optimize a model', 'model benchmark loop'],
+    description: 'Deep command bridge for /deep:model-benchmark model and prompt-framework benchmarking.',
+    keywords: ['/deep:model-benchmark', 'benchmark a model', 'benchmark a prompt framework', 'optimize a model', 'model benchmark loop'],
     domains: ['deep', 'benchmark', 'model', 'command'],
-    intentSignals: ['/deep:start-model-benchmark-loop', 'benchmark a model', 'benchmark a prompt framework', 'optimize a model', 'model benchmark loop'],
+    intentSignals: ['/deep:model-benchmark', 'benchmark a model', 'benchmark a prompt framework', 'optimize a model', 'model benchmark loop'],
     derivedTriggers: [],
     derivedKeywords: [],
     sourcePath: null,

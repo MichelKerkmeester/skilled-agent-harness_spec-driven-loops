@@ -54,10 +54,26 @@ export function sanitizeMetadataStringArray(value: readonly string[], sourcePath
   return output;
 }
 
+// `derived.entities` ships two shapes: plain strings and the object form
+// {name, kind, path, source} emitted by the graph derivation. Index the object
+// form by its `name` (falling back to `path`) so entity concepts still reach the
+// scorer's derivedKeywords instead of being silently dropped by a string filter.
+function flattenEntityEntry(entry: unknown): string | null {
+  if (typeof entry === 'string') return entry;
+  if (entry !== null && typeof entry === 'object') {
+    const record = entry as Record<string, unknown>;
+    for (const field of ['name', 'path'] as const) {
+      const candidate = record[field];
+      if (typeof candidate === 'string' && candidate.trim() !== '') return candidate;
+    }
+  }
+  return null;
+}
+
 export function sanitizeDerivedMetadata(value: JsonRecord | null, sourcePath: string): JsonRecord | null {
   if (value === null) return null;
   const sanitized: JsonRecord = { ...value };
-  for (const key of ['trigger_phrases', 'key_topics', 'entities']) {
+  for (const key of ['trigger_phrases', 'key_topics']) {
     const raw = value[key];
     if (Array.isArray(raw)) {
       sanitized[key] = sanitizeMetadataStringArray(
@@ -65,6 +81,12 @@ export function sanitizeDerivedMetadata(value: JsonRecord | null, sourcePath: st
         sourcePath,
       );
     }
+  }
+  if (Array.isArray(value.entities)) {
+    const flattened = value.entities
+      .map(flattenEntityEntry)
+      .filter((entry): entry is string => entry !== null);
+    sanitized.entities = sanitizeMetadataStringArray(flattened, sourcePath);
   }
   if (Array.isArray(value.source_docs)) {
     sanitized.source_docs = sanitizeMetadataStringArray(

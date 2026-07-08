@@ -47,7 +47,7 @@
       "advisorRouting": {
         "routingClass": "lexical",
         "legacyAdvisorId": "deep-research",
-        "legacyAliases": ["command-spec-kit-deep-research", "/deep:start-research-loop", "spec_kit:deep-research", "deep-research", "sk-deep-research"],
+        "legacyAliases": ["command-spec-kit-deep-research", "/deep:research", "spec_kit:deep-research", "deep-research", "sk-deep-research"],
         "packetSkillName": "deep-research"
       }
     },
@@ -71,7 +71,7 @@
       "advisorRouting": {
         "routingClass": "lexical",
         "legacyAdvisorId": "deep-review",
-        "legacyAliases": ["command-spec-kit-deep-review", "/deep:start-review-loop", "spec_kit:deep-review", "deep-review", "sk-deep-review"],
+        "legacyAliases": ["command-spec-kit-deep-review", "/deep:review", "spec_kit:deep-review", "deep-review", "sk-deep-review"],
         "packetSkillName": "deep-review"
       }
     },

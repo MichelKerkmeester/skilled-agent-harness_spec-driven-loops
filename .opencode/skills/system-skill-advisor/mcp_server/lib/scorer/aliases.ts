@@ -2,7 +2,7 @@
 // MODULE: Advisor Skill Alias Groups
 // ───────────────────────────────────────────────────────────────
 
-const BASE_ALIAS_GROUPS: Readonly<Record<string, readonly string[]>> = Object.freeze({
+export const BASE_ALIAS_GROUPS: Readonly<Record<string, readonly string[]>> = Object.freeze({
   'create:agent': ['command-create-agent', '/create:agent', 'create:agent'],
   'create:manual-testing-playbook': [
     'command-create-manual-testing-playbook',
@@ -12,7 +12,7 @@ const BASE_ALIAS_GROUPS: Readonly<Record<string, readonly string[]>> = Object.fr
   'memory:save': ['command-memory-save', '/memory:save', 'memory:save'],
   'deep-model-benchmark': [
     'command-spec-kit-deep-model-benchmark',
-    '/deep:start-model-benchmark-loop',
+    '/deep:model-benchmark',
     'deep-model-benchmark',
     'sk-deep-model-benchmark',
   ],
@@ -20,7 +20,7 @@ const BASE_ALIAS_GROUPS: Readonly<Record<string, readonly string[]>> = Object.fr
 
 // BEGIN GENERATED DEEP ROUTING PROJECTION
 /** Hash of the generated deep-loop routing projection embedded below. */
-export const DEEP_ROUTING_PROJECTION_HASH = 'sha256:54ee3696fdffc06d5f32a6707be19841fcc0b4b5964e6e7a2ebf802e7d212fd9';
+export const DEEP_ROUTING_PROJECTION_HASH = 'sha256:26638486adc5b54900221c2b16014d6aa4367311e7b422c905654493031500e6';
 
 const GENERATED_DEEP_ALIAS_GROUPS: Readonly<Record<string, readonly string[]>> = Object.freeze({
   'deep-ai-council': [
@@ -40,14 +40,14 @@ const GENERATED_DEEP_ALIAS_GROUPS: Readonly<Record<string, readonly string[]>> =
   ],
   'deep-research': [
     'command-spec-kit-deep-research',
-    '/deep:start-research-loop',
+    '/deep:research',
     'spec_kit:deep-research',
     'deep-research',
     'sk-deep-research',
   ],
   'deep-review': [
     'command-spec-kit-deep-review',
-    '/deep:start-review-loop',
+    '/deep:review',
     'spec_kit:deep-review',
     'deep-review',
     'sk-deep-review',

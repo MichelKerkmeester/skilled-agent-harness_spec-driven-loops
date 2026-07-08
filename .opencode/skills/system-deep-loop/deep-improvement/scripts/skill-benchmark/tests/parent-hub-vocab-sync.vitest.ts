@@ -7,9 +7,35 @@ const BENCHMARK_ROOT = resolve(__dirname, '..');
 const SKILL_ROOT = resolve(__dirname, '..', '..', '..');
 const REPO_SKILLS = resolve(SKILL_ROOT, '..', '..');
 const SKDESIGN = join(REPO_SKILLS, 'sk-design');
-const { checkVocabSync } = require(join(BENCHMARK_ROOT, 'parent-hub-vocab-sync.cjs'));
+const { checkVocabSync, ownerModeForClass } = require(join(BENCHMARK_ROOT, 'parent-hub-vocab-sync.cjs'));
 
 const tempRoots: string[] = [];
+
+describe('ownerModeForClass — longest-prefix ownership', () => {
+  // buildModePrefixes emits `${mode}-` for each mode; when one mode name is a
+  // prefix of another, first-match-wins misattributed the more specific class.
+  const ambiguousPrefixes: Array<[string, string]> = [
+    ['review-', 'review'],
+    ['review-loop-', 'review-loop'],
+  ];
+
+  it('attributes the specific class to the longest matching mode prefix', () => {
+    expect(ownerModeForClass('review-loop-aliases', ambiguousPrefixes)).toBe('review-loop');
+  });
+
+  it('is independent of prefix declaration order', () => {
+    const reversed = [...ambiguousPrefixes].reverse();
+    expect(ownerModeForClass('review-loop-aliases', reversed)).toBe('review-loop');
+  });
+
+  it('still attributes the shorter class to the shorter mode', () => {
+    expect(ownerModeForClass('review-aliases', ambiguousPrefixes)).toBe('review');
+  });
+
+  it('returns null for the reserved hub-identity class', () => {
+    expect(ownerModeForClass('hub-identity', ambiguousPrefixes)).toBeNull();
+  });
+});
 
 function syntheticFamily(): string {
   const tempRoot = mkdtempSync(join(tmpdir(), 'parent-hub-vocab-sync-'));

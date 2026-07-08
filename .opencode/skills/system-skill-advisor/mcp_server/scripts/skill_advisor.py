@@ -257,15 +257,15 @@ SKILL_ALIAS_GROUPS = {
     "memory:save": {"command-memory-save", "/memory:save", "memory:save"},
     "deep-research": {
         "command-spec-kit-deep-research",
-        "/deep:start-research-loop",
-        "deep:start-research-loop",
+        "/deep:research",
+        "deep:research",
         "deep-research",
         "sk-deep-research",
     },
     "deep-review": {
         "command-spec-kit-deep-review",
-        "/deep:start-review-loop",
-        "deep:start-review-loop",
+        "/deep:review",
+        "deep:review",
         "deep-review",
         "sk-deep-review",
     },
@@ -288,7 +288,7 @@ SKILL_ALIAS_TO_CANONICAL = {
     for alias in {canonical, *aliases}
 }
 # BEGIN GENERATED DEEP ROUTING PROJECTION HASH
-DEEP_ROUTING_PROJECTION_HASH = "sha256:54ee3696fdffc06d5f32a6707be19841fcc0b4b5964e6e7a2ebf802e7d212fd9"
+DEEP_ROUTING_PROJECTION_HASH = "sha256:26638486adc5b54900221c2b16014d6aa4367311e7b422c905654493031500e6"
 # END GENERATED DEEP ROUTING PROJECTION HASH
 STRICT_TOPOLOGY_HEADERS = (
     ("DEPENDENCY CYCLE ERRORS", "dependency cycles"),
@@ -1926,9 +1926,6 @@ PHRASE_INTENT_BOOSTERS = {
     "auto review security audit": [("deep-review", 2.5)],
     "auto review audit": [("deep-review", 2.2)],
     "auto review loop": [("deep-review", 2.5)],
-    ":start-review-loop": [("system-deep-loop", 3.0)],
-    ":start-review-loop:auto": [("system-deep-loop", 3.0)],
-    ":start-review-loop:confirm": [("system-deep-loop", 3.0)],
     ":review:auto": [("system-deep-loop", 3.0)],
     ":review:confirm": [("system-deep-loop", 3.0)],
     "mcp server code": [("sk-code", 1.8)],
@@ -2023,7 +2020,7 @@ COMMAND_BRIDGES = {
     # ─────────────────────────────────────────────────────────────────
     # Per-subcommand bridges for /spec_kit family.
     # Previously all /speckit:* subcommands collapsed to `command-spec-kit`
-    # at `kind_priority=2`, so `/deep:start-research-loop` lost its owning-skill
+    # at `kind_priority=2`, so `/deep:research` lost its owning-skill
     # signal (should route to `deep-research`, not `command-spec-kit`).
     # Dict insertion order IS iteration order in Python 3.7+, so the specific
     # subcommand markers MUST appear BEFORE the deprecated generic bridge —
@@ -2047,13 +2044,13 @@ COMMAND_BRIDGES = {
         "owning_skill": "system-spec-kit",
     },
     "command-spec-kit-deep-research": {
-        "description": "Run the autonomous deep-research loop using /deep:start-research-loop.",
-        "slash_markers": ["/deep:start-research-loop", "deep:start-research-loop"],
+        "description": "Run the autonomous deep-research loop using /deep:research.",
+        "slash_markers": ["/deep:research", "deep:research"],
         "owning_skill": "deep-research",
     },
     "command-spec-kit-deep-review": {
-        "description": "Run the autonomous deep-review loop using /deep:start-review-loop.",
-        "slash_markers": ["/deep:start-review-loop", "deep:start-review-loop"],
+        "description": "Run the autonomous deep-review loop using /deep:review.",
+        "slash_markers": ["/deep:review", "deep:review"],
         "owning_skill": "deep-review",
     },
     "command-spec-kit-resume": {
@@ -3090,8 +3087,8 @@ ITERATION_LOOP_PHRASES = (
     "autoresearch", "auto research", "research loop", "review loop",
     "iterative research", "iterative review", "autonomous research", "autonomous review",
     "iterations of", ":auto", "convergence detection",
-    "/deep:start-research-loop", "/deep:start-review-loop",
-    "deep:start-research-loop", "deep:start-review-loop",
+    "/deep:research", "/deep:review",
+    "deep:research", "deep:review",
 )
 
 # Deep-research disambiguation phrases. When the prompt
@@ -3109,8 +3106,8 @@ DEEP_RESEARCH_DISAMBIGUATION_PHRASES = (
     "iterative research",
     "autonomous research",
     "auto research",
-    "/deep:start-research-loop",
-    "deep:start-research-loop",
+    "/deep:research",
+    "deep:research",
 )
 
 # Symmetric guard for deep-review vs code-review wording collisions.
@@ -3125,8 +3122,8 @@ DEEP_REVIEW_DISAMBIGUATION_PHRASES = (
     "review loop",
     "iterative review",
     "autonomous review",
-    "/deep:start-review-loop",
-    "deep:start-review-loop",
+    "/deep:review",
+    "deep:review",
     ":review:auto",
     ":review:confirm",
 )

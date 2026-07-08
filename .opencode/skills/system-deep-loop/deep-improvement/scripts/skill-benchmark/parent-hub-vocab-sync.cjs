@@ -112,10 +112,19 @@ function readJson(filePath, findings, label, required) {
 
 function ownerModeForClass(className, modePrefixes) {
   if (className === 'hub-identity') return null;
+  // Longest-prefix wins: when one mode name is a prefix of another (e.g.
+  // `review` vs `review-loop`), first-match order would misattribute the more
+  // specific class to the shorter mode. Pick the longest matching prefix so
+  // ownership is anchored to the most specific mode regardless of registry order.
+  let owner = null;
+  let ownerPrefixLength = -1;
   for (const [prefix, mode] of modePrefixes || []) {
-    if (className.startsWith(prefix)) return mode;
+    if (className.startsWith(prefix) && prefix.length > ownerPrefixLength) {
+      owner = mode;
+      ownerPrefixLength = prefix.length;
+    }
   }
-  return null;
+  return owner;
 }
 
 function extractHubKeywords(skillMd) {

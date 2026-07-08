@@ -102,9 +102,9 @@ const PHRASE_BOOSTS: Readonly<Record<string, readonly [string, number][]>> = {
   '/create:agent': [['create:agent', 1.6], ['sk-doc', 0.45]],
   '/create:manual-testing-playbook': [['create:manual-testing-playbook', 1.8], ['command-create-manual-testing-playbook', 1.2], ['sk-doc', 0.2]],
   '/memory:save': [['memory:save', 1.6], ['command-memory-save', 1], ['system-spec-kit', 0.45]],
-  '/deep:start-research-loop': [['system-deep-loop', 1.6], ['command-spec-kit', 0.45]],
-  '/deep:start-review-loop': [['system-deep-loop', 1.6], ['command-spec-kit', 0.45]],
-  '/deep:start-model-benchmark-loop': [['deep-model-benchmark', 1.6], ['command-spec-kit', 0.45]],
+  '/deep:research': [['system-deep-loop', 1.6], ['command-spec-kit', 0.45]],
+  '/deep:review': [['system-deep-loop', 1.6], ['command-spec-kit', 0.45]],
+  '/deep:model-benchmark': [['deep-model-benchmark', 1.6], ['command-spec-kit', 0.45]],
   '/deep:start-agent-improvement-loop': [['system-deep-loop', 1.6], ['command-spec-kit', 0.45]],
   '/speckit:resume': [['system-spec-kit', 0.9], ['command-spec-kit', 0.75]],
   'auto review release readiness': [['system-deep-loop', 1]],
@@ -128,7 +128,7 @@ const PHRASE_BOOSTS: Readonly<Record<string, readonly [string, number][]>> = {
   'dynamic profile': [['system-deep-loop', 1.5]],
   // Lane B (model-benchmark) command anchors. These benchmark or optimize a
   // model / prompt framework against fixtures, routed by the
-  // /deep:start-model-benchmark-loop command (canonical deep-model-benchmark).
+  // /deep:model-benchmark command (canonical deep-model-benchmark).
   // Lane B runs as a MODE of the agent-improvement skill, now folded into
   // system-deep-loop. The projection exposes that merged node, so the
   // disambiguation penalty must target system-deep-loop to actually lower the
@@ -304,10 +304,10 @@ export function scoreExplicitLane(
   if (/\breview\b/.test(lower) && /\b(update|edit|fix|modify)\b/.test(lower)) {
     push(scores, 'sk-code', 3.0, 'review-plus-write-disambiguation');
   }
-  if (/\b(continue|resume|launch|kick off|overnight|convergence|iteration|iterative|multi-pass|loop)\b/.test(lower) && /\bresearch\b/.test(lower)) {
+  if (/\b(continue|resume|launch|kick off|overnight|convergence|iterations?|iterative|multi-pass|loop)\b/.test(lower) && /\bresearch\b/.test(lower)) {
     push(scores, 'system-deep-loop', 0.85, 'research-loop');
   }
-  if (/\b(continue|resume|launch|start|convergence|iteration|iterative|multi-pass|loop)\b/.test(lower) && /\breview\b/.test(lower)) {
+  if (/\b(continue|resume|launch|start|convergence|iterations?|iterative|multi-pass|loop)\b/.test(lower) && /\breview\b/.test(lower)) {
     push(scores, 'system-deep-loop', 0.85, 'review-loop');
     if (/\b(audit|spec folder|packet|convergence)\b/.test(lower)) {
       push(scores, 'sk-code', -0.6, 'iterative-review-vs-pr-disambiguation');
