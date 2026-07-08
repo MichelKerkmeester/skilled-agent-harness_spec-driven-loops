@@ -1,11 +1,96 @@
-Packet: system-deep-loop/z_archive/027-deep-improvement-guarded-refine-hardening
-Spec Folder: system-deep-loop/z_archive/027-deep-improvement-guarded-refine-hardening
-Status: planned
-Importance Tier: important
-Summary: Feature Specification: Guarded Refine-Loop Hardening from Copywriter Pilot Teachings
-Migrated: true
-Migration Source: legacy
-Children: system-deep-loop/z_archive/027-deep-improvement-guarded-refine-hardening/001-lane-d-loop-hardening, system-deep-loop/z_archive/027-deep-improvement-guarded-refine-hardening/002-lane-d-command-and-agent-surface, system-deep-loop/z_archive/027-deep-improvement-guarded-refine-hardening/003-anti-goodhart-cross-lane-adoption, system-deep-loop/z_archive/027-deep-improvement-guarded-refine-hardening/004-fixture-and-grader-infrastructure, system-deep-loop/z_archive/027-deep-improvement-guarded-refine-hardening/005-validation-and-second-packaging-rollout
-Key Topics: feature, specification, guarded, refine-loop, hardening, copywriter, pilot, teachings
-Key Files: spec.md
-Source Docs: spec.md
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/z_archive/027-deep-improvement-guarded-refine-hardening",
+  "spec_folder": "system-deep-loop/z_archive/027-deep-improvement-guarded-refine-hardening",
+  "parent_id": null,
+  "children_ids": [
+    "system-deep-loop/z_archive/027-deep-improvement-guarded-refine-hardening/001-lane-d-loop-hardening",
+    "system-deep-loop/z_archive/027-deep-improvement-guarded-refine-hardening/002-lane-d-command-and-agent-surface",
+    "system-deep-loop/z_archive/027-deep-improvement-guarded-refine-hardening/003-anti-goodhart-cross-lane-adoption",
+    "system-deep-loop/z_archive/027-deep-improvement-guarded-refine-hardening/004-fixture-and-grader-infrastructure",
+    "system-deep-loop/z_archive/027-deep-improvement-guarded-refine-hardening/005-validation-and-second-packaging-rollout"
+  ],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [],
+    "key_topics": [
+      "feature",
+      "specification",
+      "guarded",
+      "refine-loop",
+      "hardening",
+      "copywriter",
+      "pilot",
+      "teachings"
+    ],
+    "importance_tier": "important",
+    "status": "planned",
+    "key_files": [
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Guarded Refine",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Loop Hardening",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Copywriter Pilot Teachings",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "The Copywriter",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "System Prompt",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Feature Specification: Guarded Refine-Loop Hardening from Copywriter Pilot Teachings",
+    "created_at": "2026-07-08T06:29:37.414Z",
+    "last_save_at": "2026-07-08T06:29:37.415Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "source_fingerprint": "sha256:11b8b8401d3c5038c97120c7d373bc2e0a0a474b9ad1afe7824a9ae7ac195745",
+    "source_doc_hashes": {
+      "spec.md": "5e47a6b144b39bcec52b2802fa3fd40d56db6fecc1368523c20bb6f24deccfbb"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}
