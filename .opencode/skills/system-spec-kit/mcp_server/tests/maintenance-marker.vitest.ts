@@ -224,4 +224,69 @@ describe('maintenance-marker', () => {
     second.end();
     expect(markerExists()).toBe(false);
   });
+
+  describe('boot-fts-integrity-rebuild call site (context-server.ts wrap)', () => {
+    const BOOT_LABEL = 'boot-fts-integrity-rebuild';
+
+    // Mirrors the exact shape added to context-server.ts's runBootFtsIntegrityCheck():
+    // begin before the routine, .end() in a finally so every exit path (return or throw)
+    // releases it.
+    function runWrapped<T>(routine: () => T): T {
+      const handle = beginMaintenance(BOOT_LABEL);
+      try {
+        return routine();
+      } finally {
+        handle.end();
+      }
+    }
+
+    it('holds a fresh marker naming this pid for the duration of the wrapped routine', () => {
+      let observedDuringRoutine: MarkerShape | null = null;
+      runWrapped(() => {
+        observedDuringRoutine = readMarker();
+      });
+
+      expect(observedDuringRoutine).not.toBeNull();
+      expect(observedDuringRoutine!.childPid).toBe(process.pid);
+      expect(observedDuringRoutine!.labels).toContain(BOOT_LABEL);
+      expect(observedDuringRoutine!.activeUntilMs).toBeGreaterThan(Date.now());
+      // Marker removed once the wrapped routine returns (the finally ran).
+      expect(markerExists()).toBe(false);
+    });
+
+    it('releases the marker via finally even when the wrapped routine throws', () => {
+      expect(() =>
+        runWrapped(() => {
+          expect(markerExists()).toBe(true);
+          throw new Error('forced boot-rebuild failure');
+        }),
+      ).toThrow('forced boot-rebuild failure');
+
+      // The finally must have run despite the throw: no dangling marker left for the 180s TTL to clear.
+      expect(markerExists()).toBe(false);
+    });
+
+    it('overlaps correctly with a concurrent memory-index background-scan marker (reference-counted)', () => {
+      const bootHandle = beginMaintenance(BOOT_LABEL);
+      const scanHandle = beginMaintenance('index_scan');
+      expect(markerExists()).toBe(true);
+      let marker = readMarker();
+      expect(marker.labels).toContain(BOOT_LABEL);
+      expect(marker.labels).toContain('index_scan');
+
+      // The boot rebuild finishing first must not clear the marker while the background
+      // scan is still active.
+      bootHandle.end();
+      expect(markerExists()).toBe(true);
+
+      scanHandle.refresh();
+      marker = readMarker();
+      expect(marker.labels).toContain('index_scan');
+      expect(marker.labels).not.toContain(BOOT_LABEL);
+
+      // Only the last holder ending removes the marker.
+      scanHandle.end();
+      expect(markerExists()).toBe(false);
+    });
+  });
 });

@@ -48,6 +48,7 @@ import { validateInputLengths } from './utils/index.js';
 import { recordHistory } from './lib/storage/history.js';
 import * as historyStore from './lib/storage/history.js';
 import { pruneExpiredIdempotencyReceipts } from './lib/storage/idempotency-receipts.js';
+import { beginMaintenance } from './lib/storage/maintenance-marker.js';
 
 // Hooks
 import {
@@ -380,6 +381,20 @@ function getBootFtsIntegrityHealth(): BootFtsIntegrityHealth {
 }
 
 function runBootFtsIntegrityCheck(): void {
+  // This runs fully synchronously (better-sqlite3 has no async FTS5 rebuild path) and can
+  // block the event loop long enough, against a large database, to fail a concurrent
+  // session's deep liveness probe. Hold the same busy-by-design marker the launcher's
+  // adopt-vs-reap escape hatch already trusts, so a slow-but-alive daemon is adopted
+  // instead of reaped mid-rebuild (which would only re-arm this same boot check).
+  const maintenance = beginMaintenance('boot-fts-integrity-rebuild');
+  try {
+    runBootFtsIntegrityCheckAttempt();
+  } finally {
+    maintenance.end();
+  }
+}
+
+function runBootFtsIntegrityCheckAttempt(): void {
   const db = vectorIndex.getDb();
   try {
     db.prepare("INSERT INTO memory_fts(memory_fts) VALUES('integrity-check')").run();

@@ -118,6 +118,41 @@ describe('launcher maintenance-active adopt guard', () => {
       ).toBe(false);
     }
   });
+
+  // The guard is label-agnostic (it only looks at childPid/activeUntilMs/liveness), so a
+  // marker written by the boot-time FTS integrity-rebuild call site is spared exactly like
+  // any other maintenance source. This is the shape context-server.ts's maintenance-marker.ts
+  // wrap actually writes to disk (see maintenance-marker.vitest.ts's boot-rebuild coverage).
+  const bootRebuildMarker = (childPid: number): MaintenanceMarker => ({
+    childPid,
+    activeUntilMs: NOW + 30_000,
+    jobId: undefined,
+    refreshedAtIso: '2026-06-09T00:00:00.000Z',
+  });
+
+  it('adopts a daemon busy with the boot-time FTS integrity-rebuild (h)', () => {
+    expect(
+      launcher.shouldAdoptDespiteProbe({
+        marker: bootRebuildMarker(4242),
+        childPid: 4242,
+        childLiveness: 'alive',
+        nowMs: NOW,
+      }),
+    ).toBe(true);
+  });
+
+  it('reaps once a boot-rebuild marker has lapsed past its activeUntilMs (i)', () => {
+    // A genuinely wedged rebuild cannot refresh the marker, so it ages out and normal
+    // reaping resumes — the fail-safe this fix intentionally does not touch.
+    expect(
+      launcher.shouldAdoptDespiteProbe({
+        marker: { ...bootRebuildMarker(4242), activeUntilMs: NOW - 1 },
+        childPid: 4242,
+        childLiveness: 'alive',
+        nowMs: NOW,
+      }),
+    ).toBe(false);
+  });
 });
 
 describe('launcher maintenance marker reader (injected fs)', () => {
