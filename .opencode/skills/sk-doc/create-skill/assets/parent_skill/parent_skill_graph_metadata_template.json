@@ -2,7 +2,7 @@
   "_template": "Parent-skill hub graph-metadata.json scaffold. Replace every [bracketed] placeholder. This is the one advisor identity node for the hub; packet folders do not carry graph-metadata.json. The canonical live example is sk-code/graph-metadata.json.",
   "schema_version": 2,
   "skill_id": "[parent-skill-name]",
-  "family": "[cli|mcp|sk-code|deep-loop|sk-util|system]",
+  "family": "[cli|mcp|sk-code|sk-hub|deep-loop|sk-util|system]",
   "category": "[category]",
   "deprecated": false,
   "edges": {
