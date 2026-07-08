@@ -1,0 +1,225 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/999-sk-doc-parent/024-canon-self-enforcement",
+  "spec_folder": "sk-doc/999-sk-doc-parent/024-canon-self-enforcement",
+  "parent_id": "sk-doc/999-sk-doc-parent",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "canon self-enforcement plan",
+      "999 sk-doc phase 024",
+      "parent hub advisor hardening",
+      "canon self-enforcement plan detail",
+      "999 sk-doc phase 024 plan",
+      "canon self-enforcement tasks",
+      "999 sk-doc phase 024 tasks",
+      "canon self-enforcement checklist",
+      "999 sk-doc phase 024 checklist",
+      "canon self-enforcement decisions",
+      "999 sk-doc phase 024 adr",
+      "canon self-enforcement summary"
+    ],
+    "key_topics": [
+      "canon",
+      "self-enforcement",
+      "plan",
+      "999",
+      "sk-doc",
+      "phase",
+      "024",
+      "parent",
+      "hub",
+      "advisor",
+      "hardening",
+      "detail"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      ".opencode/specs/sk-doc/999-sk-doc-parent/022-parent-skill-logic-review/review-report.md",
+      ".github/workflows/routing-registry-drift.yml",
+      ".opencode/commands/doctor/scripts/parent-skill-check.cjs",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "review-report.md",
+        "kind": "doc",
+        "path": ".opencode/specs/sk-doc/999-sk-doc-parent/022-parent-skill-logic-review/review-report.md",
+        "source": "derived"
+      },
+      {
+        "name": "routing-registry-drift.yml",
+        "kind": "config",
+        "path": ".github/workflows/routing-registry-drift.yml",
+        "source": "derived"
+      },
+      {
+        "name": "parent-skill-check.cjs",
+        "kind": "file",
+        "path": ".opencode/commands/doctor/scripts/parent-skill-check.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Depends On",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Canon",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Convert",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Work Units",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Core Implementation",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Test Type",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Execution Protocol",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Canon is declared once in each hub's `mode-registry.json` and then hand-copied into ~12 consumer dialects that must agree but are only kept in sync by discipline",
+    "created_at": "2026-07-07T20:30:08.079Z",
+    "last_save_at": "2026-07-07T20:37:15.055Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:d575be304aee56ef2b98cccf772202832b6b309eec2b063dfcf0a4cb74b6e7cd",
+    "source_doc_hashes": {
+      "spec.md": "28c7108f3b45ad094038406ef3264b9f9f5d72d231bdfd80376291a23510d567",
+      "plan.md": "6059847de4cc960a294588d512447ec6619ad03bc55ca0218d232dac1fe3b6d8",
+      "tasks.md": "4fa4daf68696ed190ba514dab6727aa2136dae6e2f86c2039015d502e5b85d51",
+      "checklist.md": "38201d0e2351c28f9998c5c56fbf320b0408593ef056b99906110ebc376cd0a4",
+      "decision-record.md": "5bb43cd7b117e426f22c22400abb26630f0ac2ce07243b64518054fc83fb8dca",
+      "implementation-summary.md": "76458d32d91b3b4d4a40b36fb85b83d484368338edf7e09869f14468a347d9ac"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}
